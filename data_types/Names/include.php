@@ -1,0 +1,59 @@
+<script>
+var Names_ns = {
+
+  /**
+   * Called when the user submits the form to generate some data. If the selected data set contains
+   * one or more rows of this data type, this function is called with the list of row numbers. Note that
+   * the row numbers passed are the original row numbers of the rows on creation. It's possible that the
+   * user has re-sorted or deleted some rows. So to get the visible row number for a row, called
+   * gd._getVisibleRowOrderByRowNum(row).
+   */
+  validate: function(rows)
+  {
+    var visibleProblemRows = [];
+    var problemFields      = [];
+    for (var i=0; i<rows.length; i++)
+    {
+      if ($("#option_" + rows[i]).val() == "")
+      {
+        var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
+        visibleProblemRows.push(visibleRowNum);
+        problemFields.push($("#option_" + rows[i]));
+      }
+    }
+
+    if (visibleProblemRows.length)
+      gd.errors.push({ els: problemFields, error: L.Names_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+  },
+
+  /**
+   * Called when a form is loaded that contains this data type. This is passed the row number and
+   * the custom data type data to populate the fields. loadRow functions all must return an array
+   * with two indexes - both functions:
+   *  [0] code to execute (generally inserting data into fields)
+   *  [1] a boolean test to determine WHEN to execute the code.
+   */
+  loadRow: function(rowNum, data)
+  {
+    return [
+      function() {
+        $("#dt_" + rowNum).val(data.example);
+        $("#option_" + rowNum).val(data.option);
+      },
+      function() { return $("#option_" + rowNum).length > 0; }
+    ];
+  },
+
+  /**
+   * Called when the user saves a form. This function is passed the row number of the row to
+   * save. It should return a well-formatted JSON object (of whatever structure is relevant.
+   */
+  saveRow: function(rowNum)
+  {
+    return {
+      "example":  $("#dt_" + rowNum).val(),
+      "option":   $("#option_" + rowNum).val()
+    };
+  }
+}
+</script>
