@@ -85,6 +85,7 @@ var io = {
     $.ajax({
       url:  "code/ajax_save.php",
       data: data_str,
+      type: 'POST',
       success: function(data) {
         var json = $.evalJSON(data);
 
