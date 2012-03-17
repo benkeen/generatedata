@@ -1,0 +1,18 @@
+Ever needed custom formatted sample / test data, like, bad? Well, that's the idea of the Data Generator. It's a free, open source script written in JavaScript, PHP and MySQL that lets you quickly generate large volumes of custom data in a variety of formats for use in testing software, populating databases, and scoring with girls. 
+
+There's a free online version found here:
+http://www.generatedata.com/#about
+
+This repository is for the latest version of the code, still currently under development. You can find a demo here:
+http://beta.generatedata.com/
+
+For a full, working copy of the script, download the 2.3.9 tag.
+
+For (rather scanty) installation instructions, please see: 
+http://www.generatedata.com/#download
+
+Some significantly improved documentation is coming soon. I'm busy working on other work until April/May of 2012, but will be returning to this project then.
+
+Thanks!
+
+- Ben Keen
