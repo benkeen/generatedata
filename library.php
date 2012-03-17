@@ -10,7 +10,12 @@
  */
 
 $g_version = "3.0.0";
-$g_default_language = "en"; // default! Can be overridden in settings.php
+
+// these can be overwritten in settings.php if you want
+$g_default_language = "en";
+$g_max_generated_rows = 5000;
+$g_show_save_panel = true;
+$g_error_reporting = 2047;
 
 $settings_file_exists = false;
 if (file_exists(dirname(__FILE__) . "/code/settings"))
@@ -18,7 +23,12 @@ if (file_exists(dirname(__FILE__) . "/code/settings"))
 	$settings_file_exists = true;
   require_once(dirname(__FILE__) . "/code/settings.php");
 }
-error_reporting(2047);
+
+$g_default_language = "en";
+
+// ------------------------------------------------------------------------------------------------
+
+error_reporting($g_error_reporting);
 
 require_once(dirname(__FILE__) . "/code/accounts.php");
 require_once(dirname(__FILE__) . "/code/countries.php");
