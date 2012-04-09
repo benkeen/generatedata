@@ -113,10 +113,10 @@ function gd_array_sort($array, $key)
 
 
 /**
- * This function is like rand
+ * This function is like rand, only allows it to be weighted.
  *
- * @param unknown_type $weights
- * @return unknown
+ * @param array $weights
+ * @return integer
  */
 function gd_weighted_rand($weights)
 {
@@ -129,3 +129,50 @@ function gd_weighted_rand($weights)
       return $k;
   }
 }
+
+
+function gd_display_page()
+{
+
+}
+
+
+/**
+ * A helper function called when trying to render a Smarty template. It checks the Smarty cache
+ * folder exists and is writable.
+ *
+ * @param boolean true if all is okay; false otherwise
+ */
+function gd_check_cache_folder_writable()
+{
+	$cache_folder = realpath(dirname(__FILE__) . "../cache");
+  return (is_readable($cache_folder) && is_writable($cache_folder));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

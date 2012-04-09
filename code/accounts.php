@@ -167,9 +167,6 @@ function gd_get_forms($account_id)
 }
 
 
-/*------------------------------------------------------------------------------------------------*\
-  Function:    update_total_row_count
-\*------------------------------------------------------------------------------------------------*/
 function update_total_row_count($account_id, $num_rows)
 {
   global $g_table_prefix;

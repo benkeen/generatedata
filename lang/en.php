@@ -262,5 +262,6 @@ $LANG["table_column"] = "Table Column";
 $LANG["text"] = "Text";
 $LANG["use_custom_xml_format"] = "Use custom XML format";
 $LANG["website"] = "Website";
+$LANG["install"] = "Install";
 
 ?>

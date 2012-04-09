@@ -78,6 +78,7 @@ nav#tabs ul {
   padding: 0px;
 }
 nav#tabs ul li {
+  cursor: pointer;
   margin: 2px 2px 0 0;
   padding: 3px 0 0 0;
   float: left;
@@ -92,6 +93,7 @@ nav#tabs ul li {
   height: 22px;
 }
 nav#tabs ul li.selected {
+	cursor: inherit;
   border-bottom: 0px;
   height: 22px;
   background-color: white;
@@ -119,6 +121,12 @@ nav#tabs ul li:hover {
   text-align: left;
   position: relative;
 }
+.no_js {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ffffcc;
+}
+
 footer {
   width: 980px;
   margin: 0 auto;

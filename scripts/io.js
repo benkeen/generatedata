@@ -1,11 +1,9 @@
 var io = {
 
-  saveForm: function()
-  {
+  saveForm: function() {
     var buttons = [];
     var newFormName = $("#saveFormName").val();
-    if (!newFormName || newFormName == L.default_save_form_empty_str)
-    {
+    if (!newFormName || newFormName == L.default_save_form_empty_str) {
       gd.errors = [];
       gd.errors.push({ els: null, error: L.no_form_name });
       gd.displayErrors();
@@ -15,38 +13,38 @@ var io = {
     // if the name already exists, check with the user that it's okay to overwrite it
     var form_exists = false;
     var form_list_dd = $("#formList")[0];
-    for (var i=0; i<form_list_dd.length; i++)
-    {
-      if (form_list_dd[i].text == newFormName)
+    for (var i=0; i<form_list_dd.length; i++) {
+      if (form_list_dd[i].text == newFormName) {
         form_exists = true;
+      }
     }
 
-    if (form_exists)
-    {
-      if (!confirm(L.form_exists_overwrite_confirmation))
+    if (form_exists) {
+      if (!confirm(L.form_exists_overwrite_confirmation)) {
         return false;
+      }
     }
 
     // okay! now we serialize the form data and submit it for storage
     var countries = [];
-    for (i=0; i<document.data["countryChoice[]"].length; i++)
-    {
-      if (document.data["countryChoice[]"][i].checked)
+    for (i=0; i<document.data["countryChoice[]"].length; i++) {
+      if (document.data["countryChoice[]"][i].checked) {
         countries.push(document.data["countryChoice[]"][i].value);
+      }
     }
 
     var rowData = [];
     var orderedRowIDs = gd._getRowOrder();
-    for (var i=0; i<orderedRowIDs.length; i++)
-    {
+    for (var i=0; i<orderedRowIDs.length; i++) {
       var currRow  = orderedRowIDs[i];
       var func_ns  = $("#type_" + currRow).val() + "_ns";
 
       // not every data type NEEDS a save-load function beyond the data type dropdown value, e.g.
       // "email" data type
       var currData = {};
-      if (typeof window[func_ns] === "object" && typeof window[func_ns].saveRow === "function")
+      if (typeof window[func_ns] === "object" && typeof window[func_ns].saveRow === "function") {
         currData = window[func_ns].saveRow(currRow);
+      }
 
       currData.title    = $("#title_" + currRow).val();
       currData.dataType = $("#type_" + currRow).val();
@@ -80,7 +78,7 @@ var io = {
     };
 
     var data_str = 'form_name=' + newFormName + '&form_content=' + $.toJSON(data);
-    gd.startProcessing();
+    g.startProcessing();
 
     $.ajax({
       url:  "code/ajax_save.php",
@@ -91,16 +89,17 @@ var io = {
         // if this form isn't listed in the form dropdown list, add it
         var already_listed = false;
         var form_list_dd = $("#formList")[0];
-        for (var f=0; f<form_list_dd.length; f++)
-        {
-          if (form_list_dd[f].text == json.form_name)
+        for (var f=0; f<form_list_dd.length; f++) {
+          if (form_list_dd[f].text == json.form_name) {
             already_listed = true;
+          }
         }
-        if (!already_listed)
+        if (!already_listed) {
           form_list_dd[form_list_dd.length] = new Option(json.form_name, json.form_id, false, false);
+        }
 
-        gd.displayMessage(L.form_saved);
-        gd.stopProcessing();
+        g.displayMessage(L.form_saved);
+        g.stopProcessing();
       },
 
       error: function() {
@@ -110,54 +109,48 @@ var io = {
     });
   },
 
-  loadForm: function()
-  {
-    if (gd.queue.length)
-    {
+  loadForm: function() {
+    if (gd.queue.length) {
       alert(L.script_thinking);
       return false;
     }
 
-    gd.startProcessing();
+    g.startProcessing();
 
     // get the form to load
     $.ajax({
       url:  "code/ajax_load.php",
       data: "form_id=" + $("#formList").val(),
-      success: function(data)
-      {
+      success: function(data) {
         var json = $.evalJSON(data);
 
-        if (json.success == "true")
-        {
+        if (json.success == "true") {
           var info = json.form_content;
 
           var form_list = $("#formList")[0];
-          for (var i=0; i<form_list.length; i++)
-          {
-            if (form_list[i].selected)
+          for (var i=0; i<form_list.length; i++) {
+            if (form_list[i].selected) {
               $("#saveFormName").val(form_list[i].text);
+            }
           }
 
           // remove all the existing rows (except the heading row)
           gd.emptyForm(false, 0);
 
           $("#numResults").val(info.numResults);
-          for (var i=0; i<document.data.resultType.length; i++)
-          {
-            if (document.data.resultType[i].value == info.resultType)
-            {
+          for (var i=0; i<document.data.resultType.length; i++) {
+            if (document.data.resultType[i].value == info.resultType) {
               document.data.resultType[i].checked = true;
               gd.changeResultType(info.resultType);
               break;
             }
           }
-          for (i=0; i<document.data["countryChoice[]"].length; i++)
-          {
-            if ($.inArray(document.data["countryChoice[]"][i].value, info.countries) != -1)
+          for (i=0; i<document.data["countryChoice[]"].length; i++) {
+            if ($.inArray(document.data["countryChoice[]"][i].value, info.countries) != -1) {
               document.data["countryChoice[]"][i].checked = true;
-            else
+            } else {
               document.data["countryChoice[]"][i].checked = false;
+            }
           }
           gd.updateCountryChoice();
 
@@ -188,28 +181,24 @@ var io = {
           // now populate the rows. Do everything that we can: create the rows, populate the titles & select
           // the data type. The remaining fields are custom to the data type, so we leave them to their
           // [ns].loadRow function (if defined)
-          for (var i=0; i<rowOrder.length; i++)
-          {
+          for (var i=0; i<rowOrder.length; i++) {
             var currRow = rowOrder[i];
             $("#title_" + currRow).val(info.rowData[i]["title"]); // decodeURIComponent
             $("#type_" + currRow).val(info.rowData[i]["dataType"]);
             gd.changeRowType("type_" + currRow, info.rowData[i]["dataType"]);
 
             var func_ns  = $("#type_" + currRow).val() + "_ns";
-            if (typeof window[func_ns] === "object" && typeof window[func_ns].loadRow === "function")
-            {
+            if (typeof window[func_ns] === "object" && typeof window[func_ns].loadRow === "function") {
               gd.queue.push(window[func_ns].loadRow(currRow, info.rowData[i]));
             }
           }
           gd.processQueue();
-        }
-        else
-        {
+        } else {
           gd.errors = [];
           gd.errors.push({ els: null, error: json.message });
-          gd.displayErrors();
+          g.displayErrors();
         }
-        gd.stopProcessing();
+        g.stopProcessing();
       }
     });
   },
@@ -268,50 +257,43 @@ var io = {
   },
   */
 
-  deleteForm: function()
-  {
+  deleteForm: function() {
     var form_id = $("#formList").val();
-    if (!form_id)
-    {
+    if (!form_id) {
       gd.errors = [];
       gd.errors.push({ els: null, error: "Please select a form to delete." });
-      gd.displayErrors();
+      g.displayErrors();
       return false;
     }
 
     // check it's okay with the user first
-    if (!confirm(L.confirm_delete_form))
+    if (!confirm(L.confirm_delete_form)) {
       return false;
+    }
 
-    gd.startProcessing();
+    g.startProcessing();
 
     $.ajax({
       url:  "code/ajax_delete_form.php",
       data: "form_id=" + $("#formList").val(),
-      success: function(data)
-      {
+      success: function(data) {
         var json = $.evalJSON(data);
-        if (json.success)
-        {
+        if (json.success) {
           // it was deleted. Remove it from the dropdown list and inform the user
           var formList = $("#formList")[0];
-          for (var i=0; i<formList.options.length; i++)
-          {
-            if (formList.options[i].value == json.form_id)
+          for (var i=0; i<formList.options.length; i++) {
+            if (formList.options[i].value == json.form_id) {
               formList.options[i] = null;
+            }
           }
-
-          gd.displayMessage(L.form_deleted);
-        }
-        else
-        {
-          gd.displayMessage(L.form_not_deleted);
+          g.displayMessage(L.form_deleted);
+        } else {
+          g.displayMessage(L.form_not_deleted);
         }
 
-        gd.stopProcessing();
+        g.stopProcessing();
       },
-      error: function(data)
-      {
+      error: function(data) {
         alert(L.fatal_error);
         gd.stopProcessing();
       }

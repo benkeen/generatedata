@@ -1,4 +1,5 @@
 <?php
+
 /*------------------------------------------------------------------------------------------------*\
 
   generator.php
@@ -29,7 +30,7 @@ function gd_get_lipsum()
 /**
  * Returns an array of cities
  */
-function get_cities()
+function gd_get_cities()
 {
   global $g_table_prefix;
 

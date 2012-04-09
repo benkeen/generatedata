@@ -9,8 +9,7 @@
  */
 function gd_get_translations()
 {
-  $folder = dirname(__FILE__);
-  $translation_folder = realpath("$folder/../lang/");
+  $translation_folder = realpath(dirname(__FILE__) . "/../lang/");
 
   $translations = array();
   if ($handle = opendir($translation_folder))
