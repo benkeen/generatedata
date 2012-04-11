@@ -133,7 +133,52 @@ function gd_weighted_rand($weights)
 
 function gd_display_page()
 {
+  global $g_root_dir, $g_root_url, $g_success, $g_message, $g_link, $LANG, $g_smarty;
 
+  // common variables. These are sent to EVERY templates
+  $g_smarty->template_dir = "$g_root_dir/themes/$theme";
+  $g_smarty->compile_dir  = "$g_root_dir/themes/$theme/cache";
+
+  // check the compile directory has the write permissions
+  if (!is_writable($g_smarty->compile_dir))
+  {
+    ft_display_serious_error("", "");
+		exit;
+  }
+
+  $g_smarty->assign("LANG", $LANG);
+  $g_smarty->assign("SESSION", $_SESSION["ft"]);
+  $g_smarty->assign("account", $_SESSION["ft"]["account"]);
+  $g_smarty->assign("g_root_dir", $g_root_dir);
+  $g_smarty->assign("g_root_url", $g_root_url);
+  $g_smarty->assign("same_page", ft_get_clean_php_self());
+  $g_smarty->assign("query_string", $_SERVER["QUERY_STRING"]);
+
+  // if this page has been told to dislay a custom message, override g_success and g_message
+  if ((!isset($g_upgrade_info["message"]) || empty($g_upgrade_info["message"])) && isset($_GET["message"]))
+  {
+    list($g_success, $g_message) = ft_display_custom_page_message($_GET["message"]);
+  }
+  $g_smarty->assign("g_success", $g_success);
+  $g_smarty->assign("g_message", $g_message);
+
+  // check the "required" vars are at least set so they don't produce warnings when smarty debug is enabled
+  if (!isset($page_vars["head_string"])) $page_vars["head_string"] = "";
+  if (!isset($page_vars["head_js"]))     $page_vars["head_js"] = "";
+
+  if (!empty($page_vars["head_js"]) || !empty($js_messages))
+    $page_vars["head_js"] = "<script>\n//<![CDATA[\n{$page_vars["head_js"]}\n$js_messages\n//]]>\n</script>";
+
+  if (!isset($page_vars["head_css"]))
+    $page_vars["head_css"] = "";
+
+  // now add the custom variables for this template, as defined in $page_vars
+  foreach ($page_vars as $key=>$value)
+    $g_smarty->assign($key, $value);
+
+  $g_smarty->display($template);
+
+  ft_db_disconnect($g_link);
 }
 
 
