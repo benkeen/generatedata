@@ -82,6 +82,7 @@ var io = {
 
     $.ajax({
       url:  "code/ajax_save.php",
+      type: "POST",
       data: data_str,
       success: function(data) {
         var json = $.evalJSON(data);
@@ -120,6 +121,7 @@ var io = {
     // get the form to load
     $.ajax({
       url:  "code/ajax_load.php",
+      type: "POST",
       data: "form_id=" + $("#formList").val(),
       success: function(data) {
         var json = $.evalJSON(data);
