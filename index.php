@@ -7,7 +7,10 @@ require_once("library.php");
 // if it's not marked as having been installed, display the install instructions page
 if (!$settings_file_exists)
 {
-  header("location: install.php");
+	$query_string = (isset($_GET["source"]) && in_array($_GET["source"], array("fromerrorpage"))) ?
+	  "?source={$_GET["source"]}" : "";
+
+  header("location: install.php{$query_string}");
   exit;
 }
 

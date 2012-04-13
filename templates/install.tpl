@@ -7,14 +7,12 @@
   <meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.1.custom.css" />
-  <noscript><style type="text/css">#content { display: none; }</style></noscript>
+  <script src="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"></script>
+  {literal}<noscript><style type="text/css">#content { display: none; }</style></noscript>{/literal}
 </head>
 <body>
   <header>
     <nav>
-      <a href="http://www.generatedata.com">{$LANG.website}</a> |
-      <a href="http://www.generatedata.com/#donate">{$LANG.donate}</a> |
-      <a href="http://www.generatedata.com/forums/">{$LANG.forums}</a> |
       {language_dropdown}
     </nav>
   </header>
@@ -37,7 +35,7 @@
           and install the script. If you're confused about any of this, visit the Help tab for a little more info.
         </p>
 
-        <table>
+        <table cellpadding="0" cellspacing="0">
         <tr>
           <td width="160">Host Name</td>
           <td><input type="text" name="g_db_hostname" value="localhost" /></td>
@@ -78,7 +76,12 @@
 
   </section>
 
-  <footer>Version <?php echo $g_version?></footer>
+  <footer>
+    Version {$g_version} <span class="joiner">|</span>
+    <a href="http://www.generatedata.com">{$LANG.website}</a> <span class="joiner">|</span>
+    <a href="http://www.generatedata.com/#donate">{$LANG.donate}</a> <span class="joiner">|</span>
+    <a href="http://www.generatedata.com/forums/">{$LANG.forums}</a>
+  </footer>
 
   <script src="scripts/jquery-1.4.2.min.js"></script>
   <script src="scripts/jquery-ui-1.8.1.custom.min.js"></script>

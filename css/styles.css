@@ -9,6 +9,9 @@ body {
   background: #dedede url(../images/topBackground.jpg) repeat-x;
   text-align: center;
 }
+h1 {
+	font: normal 16pt 'Open Sans', Arial, sans-serif;
+}
 body, table, td, div, span, div, p {
   font: 11px Verdana, sans-serif; /* 0.94em */
   line-height: 20px;
@@ -76,6 +79,9 @@ nav#tabs ul {
   list-style: none;
   margin: 0px;
   padding: 0px;
+}
+.joiner {
+	color: #cccccc;
 }
 nav#tabs ul li {
   cursor: pointer;
@@ -147,7 +153,8 @@ footer {
 footer a:link, footer a:visited {
   color: #555555;
   text-decoration: none;
-  font-weight: bold;
+  color: #3366cc;
+  outline: none;
 }
 footer a:hover {
   text-decoration: underline;

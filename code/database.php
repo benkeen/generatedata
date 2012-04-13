@@ -1,12 +1,13 @@
 <?php
 
+
 /**
- * Connects to a database. After connecting, you should always call disconnect_db() to close it when
- * done.
+ * Connects to a database. After connecting, you should always call disconnect_db() to close it
+ * when done.
  */
 function gd_db_connect()
 {
-	global $g_table_prefix, $g_db_hostname, $g_db_username, $g_db_password, $g_db_name;
+	global $g_db_hostname, $g_db_username, $g_db_password, $g_db_name;
 
 	$link = mysql_connect($g_db_hostname, $g_db_username, $g_db_password)
 		or die("Couldn't connect to database: " . mysql_error());
@@ -16,8 +17,9 @@ function gd_db_connect()
 	return $link;
 }
 
+
 /**
- * Disconnects from a database
+ * Disconnects from a database.
  */
 function gd_db_disconnect($link)
 {

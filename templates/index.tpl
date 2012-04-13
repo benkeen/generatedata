@@ -145,6 +145,7 @@
                 <li class="colTitle"><input type="text" name="title_$ROW$" id="title_$ROW$" /></li>
                 <li class="colDataType">
                   <select name="type_$ROW$" id="type_$ROW$" onchange="gd.changeRowType(this.name, this.value)">
+                  {*
                     <option value="">{$LANG.please_select}</option>
                     <?php
                     while (list($group_name_key, $curr_data_types) = each($data_types))
@@ -160,6 +161,7 @@
                       echo "</optgroup>\n";
                     }
                     ?>
+                  *}
                   </select>
                 </li>
                 <li class="colExamples" id="example_$ROW$">&nbsp;</li>
@@ -178,7 +180,7 @@
               </ul>
             </div>
 
-
+            {*
             <?php
             reset($data_types);
             while (list($group_name, $curr_data_types) = each($data_types))
@@ -212,6 +214,7 @@ EOF;
               }
             }
             ?>
+            *}
           </div>
         </form>
         <div id="helpPopup"></div>

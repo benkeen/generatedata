@@ -130,28 +130,43 @@ function gd_weighted_rand($weights)
   }
 }
 
-
-function gd_display_page()
+/**
+ * A security-related function. This returns a clean version of PHP_SELF for use in the templates. This wards
+ * against URI Cross-site scripting attacks.
+ *
+ * @return the cleaned $_SERVER["PHP_SELF"]
+ */
+function gd_get_clean_php_self()
 {
-  global $g_root_dir, $g_root_url, $g_success, $g_message, $g_link, $LANG, $g_smarty;
+  return htmlspecialchars(strip_tags($_SERVER['PHP_SELF']), ENT_QUOTES);
+}
+
+
+/**
+ * Used to generate the main index and install pages.
+ *
+ * @param string $template
+ * @param array $params
+ */
+function gd_display_page($template, $page_vars)
+{
+  global $g_success, $g_message, $g_link, $LANG, $g_smarty, $g_version;
 
   // common variables. These are sent to EVERY templates
-  $g_smarty->template_dir = "$g_root_dir/themes/$theme";
-  $g_smarty->compile_dir  = "$g_root_dir/themes/$theme/cache";
+  $g_smarty->template_dir = realpath(dirname(__FILE__) . "/../templates");
+  $g_smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
 
   // check the compile directory has the write permissions
   if (!is_writable($g_smarty->compile_dir))
   {
-    ft_display_serious_error("", "");
-		exit;
+    gd_display_serious_error("The <b>/cache</b> folder isn't writable. This folder is used by Smarty to generate temporary files for speedy page loads. You'll need to update that folder's permissions to allow read and write permissions (777 on unix/mac).");
+    exit;
   }
 
   $g_smarty->assign("LANG", $LANG);
-  $g_smarty->assign("SESSION", $_SESSION["ft"]);
-  $g_smarty->assign("account", $_SESSION["ft"]["account"]);
-  $g_smarty->assign("g_root_dir", $g_root_dir);
-  $g_smarty->assign("g_root_url", $g_root_url);
-  $g_smarty->assign("same_page", ft_get_clean_php_self());
+  $g_smarty->assign("SESSION", $_SESSION["gd"]);
+  $g_smarty->assign("g_version", $g_version);
+  $g_smarty->assign("same_page", gd_get_clean_php_self());
   $g_smarty->assign("query_string", $_SERVER["QUERY_STRING"]);
 
   // if this page has been told to dislay a custom message, override g_success and g_message
@@ -162,62 +177,53 @@ function gd_display_page()
   $g_smarty->assign("g_success", $g_success);
   $g_smarty->assign("g_message", $g_message);
 
-  // check the "required" vars are at least set so they don't produce warnings when smarty debug is enabled
-  if (!isset($page_vars["head_string"])) $page_vars["head_string"] = "";
-  if (!isset($page_vars["head_js"]))     $page_vars["head_js"] = "";
-
-  if (!empty($page_vars["head_js"]) || !empty($js_messages))
-    $page_vars["head_js"] = "<script>\n//<![CDATA[\n{$page_vars["head_js"]}\n$js_messages\n//]]>\n</script>";
-
-  if (!isset($page_vars["head_css"]))
-    $page_vars["head_css"] = "";
-
   // now add the custom variables for this template, as defined in $page_vars
   foreach ($page_vars as $key=>$value)
     $g_smarty->assign($key, $value);
 
-  $g_smarty->display($template);
+  $g_smarty->display(realpath(dirname(__FILE__) . "/../$template"));
 
-  ft_db_disconnect($g_link);
+  gd_db_disconnect($g_link);
 }
 
 
 /**
- * A helper function called when trying to render a Smarty template. It checks the Smarty cache
- * folder exists and is writable.
+ * This is used for serious errors: when no database connection can be made or the Smarty cache folder isn't writable.
+ * All it does is output the error string with no other dependencies - not even language strings. The paths assume
+ * that we're in the application root (otherwise they won't work).
  *
- * @param boolean true if all is okay; false otherwise
+ * This function only handles English. For problems of this severity, I think that's okay.
+ *
+ * @param string $error
  */
-function gd_check_cache_folder_writable()
+function gd_display_serious_error($error)
 {
-	$cache_folder = realpath(dirname(__FILE__) . "../cache");
-  return (is_readable($cache_folder) && is_writable($cache_folder));
+	$not_fixed_message = "";
+	if (isset($_GET["source"]))
+	{
+		$not_fixed_message = "<div id=\"not_fixed\">Nope, ain't fixed yet. Try again.</div>";
+	}
+
+  echo <<< END
+<html>
+<head>
+  <title>Things just aint right.</title>
+  <link rel="stylesheet" type="text/css" href="css/errorpage.css">
+  <script src="scripts/jquery-1.7.2.min.js"></script>
+  <script>
+  $(function() {
+    $("button").bind("click", function() { window.location = "index.php?source=fromerrorpage"; });
+  });
+  </script>
+</head>
+<body>
+<div id="box">
+  <h1>Uh-oh.</h1>
+  $not_fixed_message
+  {$error}
+  <button class="cupid-green">Click here when you think you've fixed it.</button>
+</div>
+</body>
+</html>
+END;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

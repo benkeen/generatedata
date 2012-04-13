@@ -7,7 +7,6 @@ $LANG = array();
 $LANG["language"] = "English";
 $LANG["title"] = "generatedata.com";
 
-
 // Category: Content
 $LANG["AlphaNumeric_example_CanPostalCode"] = "(Can. Postal code)";
 $LANG["AlphaNumeric_example_Password"] = "(Password)";
@@ -263,5 +262,3 @@ $LANG["text"] = "Text";
 $LANG["use_custom_xml_format"] = "Use custom XML format";
 $LANG["website"] = "Website";
 $LANG["install"] = "Install";
-
-?>
