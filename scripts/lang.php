@@ -6,7 +6,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 require_once("../library.php");
 
 $lines = array();
-while (list($key, $value) = each($LANG))
+while (list($key, $value) = each($L))
 {
 	$lines[] = "\t\"$key\": \"" . addslashes($value) . "\"";
 }

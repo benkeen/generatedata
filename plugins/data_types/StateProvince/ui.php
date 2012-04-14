@@ -44,6 +44,6 @@ EOF;
 $help_popup_width  = 400;
 $help_html_content =<<<EOF
   <p>
-    {$LANG["StateProvince_help_text"]}
+    {$L["StateProvince_help_text"]}
   </p>
 EOF;

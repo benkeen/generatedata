@@ -26,7 +26,7 @@ function smarty_function_country_list()
                   echo "</div><div class=\"col\">";
 
                 $checked = ($slug == "canada" || $slug == "us") ? "checked" : "";
-                $country_in_curr_lang = $LANG[$country_lang_key];
+                $country_in_curr_lang = $L[$country_lang_key];
 
                 echo <<<EOF
                   <div>

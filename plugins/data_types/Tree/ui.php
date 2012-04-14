@@ -18,8 +18,8 @@ $data_type_field_group_order = 60;
 // OPTIONS
 
 $data_type_options_html =<<<EOF
-<div>{$LANG["Tree_auto_increment_row_num"]} <input type="text" id="tree_ai_row_num_\$ROW\$" name="tree_ai_row_num_\$ROW\$" value="1" size="3" maxlength="3" /></div>
-<div>{$LANG["Tree_max_num_sibling_nodes"]} <input type="text" id="tree_max_siblings_\$ROW\$" name="tree_max_siblings_\$ROW\$" value="2" size="3" maxlength="3" /></div>
+<div>{$L["Tree_auto_increment_row_num"]} <input type="text" id="tree_ai_row_num_\$ROW\$" name="tree_ai_row_num_\$ROW\$" value="1" size="3" maxlength="3" /></div>
+<div>{$L["Tree_max_num_sibling_nodes"]} <input type="text" id="tree_max_siblings_\$ROW\$" name="tree_max_siblings_\$ROW\$" value="2" size="3" maxlength="3" /></div>
 EOF;
 
 // ------------------------------------------------------------------------------------------------
@@ -28,9 +28,9 @@ EOF;
 $help_popup_width = 400;
 $help_html_content =<<<EOF
   <p>
-    {$LANG["Tree_help_1"]}
+    {$L["Tree_help_1"]}
   </p>
   <p>
-    {$LANG["Tree_help_2"]}
+    {$L["Tree_help_2"]}
   </p>
 EOF;

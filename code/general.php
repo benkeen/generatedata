@@ -150,7 +150,7 @@ function gd_get_clean_php_self()
  */
 function gd_display_page($template, $page_vars)
 {
-  global $g_success, $g_message, $g_link, $LANG, $g_smarty, $g_version;
+  global $g_success, $g_message, $g_link, $L, $g_smarty, $g_version;
 
   // common variables. These are sent to EVERY templates
   $g_smarty->template_dir = realpath(dirname(__FILE__) . "/../templates");
@@ -163,7 +163,7 @@ function gd_display_page($template, $page_vars)
     exit;
   }
 
-  $g_smarty->assign("LANG", $LANG);
+  $g_smarty->assign("L", $L);
   $g_smarty->assign("SESSION", $_SESSION["gd"]);
   $g_smarty->assign("g_version", $g_version);
   $g_smarty->assign("same_page", gd_get_clean_php_self());
@@ -208,7 +208,7 @@ function gd_display_serious_error($error)
 <html>
 <head>
   <title>Things just aint right.</title>
-  <link rel="stylesheet" type="text/css" href="css/errorpage.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
   <script src="scripts/jquery-1.7.2.min.js"></script>
   <script>
   $(function() {
@@ -216,12 +216,12 @@ function gd_display_serious_error($error)
   });
   </script>
 </head>
-<body>
+<body class="error_page">
 <div id="box">
   <h1>Uh-oh.</h1>
   $not_fixed_message
   {$error}
-  <button class="cupid-green">Click here when you think you've fixed it.</button>
+  <button class="green_button">Click here when you think you've fixed it.</button>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{$LANG.title}</title>
+  <title>{$L.title}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content="GenerateData.com: free, GNU-licensed, random custom data generator for testing software" />
   <meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
@@ -12,16 +12,16 @@
 <body>
   <header>
     <nav>
-      <a href="http://www.generatedata.com">{$LANG.website}</a> |
-      <a href="http://www.generatedata.com/#donate">{$LANG.donate}</a> |
-      <a href="http://www.generatedata.com/forums/">{$LANG.forums}</a> |
+      <a href="http://www.generatedata.com">{$L.website}</a> |
+      <a href="http://www.generatedata.com/#donate">{$L.donate}</a> |
+      <a href="http://www.generatedata.com/forums/">{$L.forums}</a> |
       {language_dropdown}
     </nav>
   </header>
   <nav id="tabs">
     <ul>
-      <li id="tab1" class="selected">{$LANG.generate}</li>
-      <li id="tab2">{$LANG.help}</li>
+      <li id="tab1" class="selected">{$L.generate}</li>
+      <li id="tab2">{$L.help}</li>
     </ul>
   </nav>
   <section>
@@ -34,13 +34,13 @@
         <div id="controlPanelWindow" class="box">
           <div id="controlPanel">
             <div>
-              <input type="text" name="saveFormName" id="saveFormName" placeholder="{$LANG.default_save_form_empty_str}" value=""
+              <input type="text" name="saveFormName" id="saveFormName" placeholder="{$L.default_save_form_empty_str}" value=""
                 maxlength="35" />
-              <button type="button" class="button buttonType2" onclick="io.saveForm()">{$LANG.save_uc}</button>
+              <button type="button" class="button buttonType2" onclick="io.saveForm()">{$L.save_uc}</button>
             </div>
             <div>
               <select name="formList" id="formList">
-                <option value=""><?php echo $LANG["please_select"]?></option>
+                <option value=""><?php echo $L["please_select"]?></option>
                 <?php
                 for ($i=0; $i<count($forms); $i++)
                 {
@@ -50,8 +50,8 @@
                 }
                 ?>
               </select>
-              <button type="button" class="button buttonType2" onclick="io.loadForm()">{$LANG.load_uc}</button>
-              <button type="button" class="button buttonType3" onclick="io.deleteForm()">{$LANG.del_uc}</button>
+              <button type="button" class="button buttonType2" onclick="io.loadForm()">{$L.load_uc}</button>
+              <button type="button" class="button buttonType3" onclick="io.deleteForm()">{$L.del_uc}</button>
             </div>
           </div>
         </div>
@@ -63,14 +63,14 @@
           <input type="hidden" name="deletedRows" id="deletedRows" value="" />
 
           <div class="setting">
-            <label>{$LANG.num_results}</label>
+            <label>{$L.num_results}</label>
             <div>
               <input type="text" style="width:45px;" name="numResults" id="numResults" value="100" /> <!-- TODO -->
             </div>
             <div class="clear"></div>
           </div>
           <div class="setting">
-            <label>{$LANG.result_type}</label>
+            <label>{$L.result_type}</label>
             <div>
               <input type="radio" name="resultType" value="HTML" id="HTML" checked="checked" /> <label for="HTML">HTML</label>&nbsp;
               <input type="radio" name="resultType" value="Excel" id="Excel" /> <label for="Excel">Excel</label>&nbsp;
@@ -81,7 +81,7 @@
             <div class="clear"></div>
           </div>
           <div class="setting">
-            <label>{$LANG.countries}</label>
+            <label>{$L.countries}</label>
             <div id="countryList">
               {country_list}
             </div>
@@ -95,38 +95,38 @@
           <div id="settingsCSV">{include file="settings_csv.tpl"}</div>
 
           <div id="messages">
-            <a class="close" title="{$LANG.hide_error}" onclick="return g.hideErrors(false)" href="#">X</a>
+            <a class="close" title="{$L.hide_error}" onclick="return g.hideErrors(false)" href="#">X</a>
             <div></div>
           </div>
 
           <div class="verticalPad"></div>
 
           <ul class="tableHeadings">
-            <li class="colOrder">{$LANG.order}</li>
-            <li class="colTitle" id="colTitle">{$LANG.column_title}</li>
-            <li class="colDataType">{$LANG.data_type}</li>
-            <li class="colExamples">{$LANG.examples}</li>
-            <li class="colOptions">{$LANG.options}</li>
-            <li class="colHelp">{$LANG.help}</li>
-            <li class="colDelete"><input type="button" class="deleteRowsBtn" value="{$LANG.del}" /></li>
+            <li class="colOrder">{$L.order}</li>
+            <li class="colTitle" id="colTitle">{$L.column_title}</li>
+            <li class="colDataType">{$L.data_type}</li>
+            <li class="colExamples">{$L.examples}</li>
+            <li class="colOptions">{$L.options}</li>
+            <li class="colHelp">{$L.help}</li>
+            <li class="colDelete"><input type="button" class="deleteRowsBtn" value="{$L.del}" /></li>
           </ul>
           <ul id="tableRows"></ul>
           <ul class="tableHeadings">
-            <li class="colOrder">{$LANG.order}</li>
-            <li class="colTitle" id="colTitle">{$LANG.column_title}</li>
-            <li class="colDataType">{$LANG.data_type}</li>
-            <li class="colExamples">{$LANG.examples}</li>
-            <li class="colOptions">{$LANG.options}</li>
-            <li class="colHelp">{$LANG.help}</li>
-            <li class="colDelete"><input type="button" class="deleteRowsBtn" value="{$LANG.del}" /></li>
+            <li class="colOrder">{$L.order}</li>
+            <li class="colTitle" id="colTitle">{$L.column_title}</li>
+            <li class="colDataType">{$L.data_type}</li>
+            <li class="colExamples">{$L.examples}</li>
+            <li class="colOptions">{$L.options}</li>
+            <li class="colHelp">{$L.help}</li>
+            <li class="colDelete"><input type="button" class="deleteRowsBtn" value="{$L.del}" /></li>
           </ul>
 
           <div class="clear"></div>
           <div class="verticalPad"></div>
 
-          <div style="float: right"><input type="button" value="{$LANG.empty_form}" onclick="return gd.emptyForm(true, 5)" /></div>
-          {$LANG.add} <input type="text" name="numRows" id="numRows" value="1" size="2" />
-          <input type="button" value="{$LANG.row_sp}" onclick="gd.addRows(document.data.numRows.value)" />
+          <div style="float: right"><input type="button" value="{$L.empty_form}" onclick="return gd.emptyForm(true, 5)" /></div>
+          {$L.add} <input type="text" name="numRows" id="numRows" value="1" size="2" />
+          <input type="button" value="{$L.row_sp}" onclick="gd.addRows(document.data.numRows.value)" />
 
 
           {* hidden iframe, to which the form is submitted *}
@@ -134,7 +134,7 @@
 
           <div class="verticalPad"></div>
           <div>
-            <button class="button buttonType1" type="submit">{$LANG.generate}</button>
+            <button class="button buttonType1" type="submit">{$L.generate}</button>
           </div>
 
           <!--  TODO - jquery templates? Might be nicer...! -->
@@ -146,11 +146,11 @@
                 <li class="colDataType">
                   <select name="type_$ROW$" id="type_$ROW$" onchange="gd.changeRowType(this.name, this.value)">
                   {*
-                    <option value="">{$LANG.please_select}</option>
+                    <option value="">{$L.please_select}</option>
                     <?php
                     while (list($group_name_key, $curr_data_types) = each($data_types))
                     {
-                      $group_name = $LANG[$group_name_key];
+                      $group_name = $L[$group_name_key];
                       echo "<optgroup label=\"$group_name\">\n";
 
                       foreach ($curr_data_types as $data_type_info)
@@ -236,9 +236,9 @@ EOF;
     <!-- TODO -->
     <noscript>
       <div class="error"><span><span><span><span><span><span><span><span>
-      <div class="red"><?php echo $LANG["no_js"]?></div>
+      <div class="red"><?php echo $L["no_js"]?></div>
       <br/>
-      <?php echo $LANG["no_js_blurb"]?>
+      <?php echo $L["no_js_blurb"]?>
       </span></span></span></span></span></span></span></span></div>
     </noscript>
   </section>

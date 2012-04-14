@@ -18,15 +18,15 @@ $data_type_field_group_order = 90;
 // OPTIONS
 
 $data_type_options_html =<<<EOF
-<input type="checkbox" name="includeLat_\$ROW\$" id="includeLat_\$ROW\$" checked /><label for="includeLat_\$ROW\$">{$LANG["LatLng_latitude"]}</label>&nbsp;
-<input type="checkbox" name="includeLng_\$ROW\$" id="includeLng_\$ROW\$" checked /><label for="includeLng_\$ROW\$">{$LANG["LatLng_longitude"]}</label>
+<input type="checkbox" name="includeLat_\$ROW\$" id="includeLat_\$ROW\$" checked /><label for="includeLat_\$ROW\$">{$L["LatLng_latitude"]}</label>&nbsp;
+<input type="checkbox" name="includeLng_\$ROW\$" id="includeLng_\$ROW\$" checked /><label for="includeLng_\$ROW\$">{$L["LatLng_longitude"]}</label>
 EOF;
 
 
 $help_popup_width = 360;
 $help_html_content =<<<EOF
   <p>
-    {$LANG["LatLng_help"]}
+    {$L["LatLng_help"]}
   </p>
 EOF;
 

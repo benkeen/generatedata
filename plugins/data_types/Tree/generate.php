@@ -25,12 +25,12 @@ function Tree_get_template_options($postdata, $col, $num_cols)
 
 function Tree_generate_item($row, $options, $existing_row_data)
 {
-  global $Tree_open_nodes, $LANG;
+  global $Tree_open_nodes, $L;
 
   $ai_row_num = $options["ai_row_num"];
 
   if (!isset($existing_row_data["order{$ai_row_num}"]["random_data"]))
-    return $LANG["Tree_invalid_parent"];
+    return $L["Tree_invalid_parent"];
 
   $parent_row_id = $existing_row_data["order{$ai_row_num}"]["random_data"];
 

@@ -9,20 +9,28 @@ body {
   background: #dedede url(../images/topBackground.jpg) repeat-x;
   text-align: center;
 }
-h1 {
-	font: normal 16pt 'Open Sans', Arial, sans-serif;
-}
 body, table, td, div, span, div, p {
   font: 11px Verdana, sans-serif; /* 0.94em */
   line-height: 20px;
   color: #555555;
 }
 table, td, p, div, input, select, optgroup {
-  line-height: 14pt;
+  line-height: 17pt;
 }
 input, select, textarea, option {
   font: 8pt Verdana, sans-serif;
   color: #336699;
+}
+h1 {
+  font-size: 1.6em;
+  font-weight: normal;
+  font-family: verdana;
+}
+h2 {
+  font-size: 1.2em;
+  color: green;
+  font-weight: normal;
+  font-family: verdana;
 }
 form {
   margin: 0px;
@@ -84,6 +92,9 @@ nav#tabs ul {
 	color: #cccccc;
 }
 nav#tabs ul li {
+	color: green;
+	font-size: 9pt;
+	text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);
   cursor: pointer;
   margin: 2px 2px 0 0;
   padding: 3px 0 0 0;
@@ -420,4 +431,124 @@ hr {
 .disabled {
   color: #cccccc;
   background-color: #efefef;
+}
+/* from: http://hellohappy.org/css3-buttons/ */
+button.green_button {
+  display: block;
+  background-color: #7fbf4d;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+  background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: linear-gradient(top, #7fbf4d, #63a62f);
+  border: 1px solid #63a62f;
+  border-bottom: 1px solid #5b992b;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
+  -moz-box-shadow: inset 0 1px 0 0 #96ca6d;
+  box-shadow: inset 0 1px 0 0 #96ca6d;
+  color: #fff;
+  font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  line-height: 1;
+  padding: 7px 15px 8px;
+  margin: 15px 0px 0px;
+  text-align: center;
+  text-shadow: 0 -1px 0 #4c9021;
+}
+button.green_button:hover {
+  background-color: #76b347;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
+  background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
+  background-image: -moz-linear-gradient(top, #76b347, #5e9e2e);
+  background-image: -ms-linear-gradient(top, #76b347, #5e9e2e);
+  background-image: -o-linear-gradient(top, #76b347, #5e9e2e);
+  background-image: linear-gradient(top, #76b347, #5e9e2e);
+  -webkit-box-shadow: inset 0 1px 0 0 #8dbf67;
+  -moz-box-shadow: inset 0 1px 0 0 #8dbf67;
+  box-shadow: inset 0 1px 0 0 #8dbf67;
+  cursor: pointer; }
+  button.cupid-green:active {
+  border: 1px solid #5b992b;
+  border-bottom: 1px solid #538c27;
+  -webkit-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
+  -moz-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
+  box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
+}
+
+#box {
+  position: relative;
+  width: 60%;
+  background: #ffffff;
+  -moz-border-radius: 4px;
+  border-radius: 6px;
+  padding: 2em 1.5em;
+  color: rgba(0,0,0,.8);
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.5;
+  margin: 60px auto;
+  text-align: left;
+}
+#box:before, #box:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);
+  -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+#box:after {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+.error_page h1 {
+  margin: 0px 0px 16px 0px;
+  font-weight: bold;
+}
+#not_fixed {
+  color: #990000;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+body.error_page #box {
+  text-align: left;
+  font-family: verdana;
+  font-size: 11pt;
+  line-height: 22px;
+}
+.install_page .fields label {
+  float: left;
+  width: 160px;
+  color: #777777;
+  margin-top: 4px;
+}
+.install_page .fields input {
+	float: left;
+	width: 210px;
+	margin-top: 2px;
+}
+.install_page .row {
+  border-bottom: 1px solid #efefef;
+  clear: left;
+  height: 26px;
+  width: 390px;
 }

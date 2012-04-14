@@ -18,8 +18,8 @@ $data_type_field_group_order = 30;
 // OPTIONS
 
 $data_type_options_html =<<<EOF
-&nbsp;{$LANG["NumberRange_between"]} <input type="text" name="numRangeMin_\$ROW\$" id="numRangeMin_\$ROW\$" style="width: 30px" value="1" />
-{$LANG["NumberRange_and"]} <input type="text" name="numRangeMax_\$ROW\$" id="numRangeMax_\$ROW\$" style="width: 30px" value="10" />
+&nbsp;{$L["NumberRange_between"]} <input type="text" name="numRangeMin_\$ROW\$" id="numRangeMin_\$ROW\$" style="width: 30px" value="1" />
+{$L["NumberRange_and"]} <input type="text" name="numRangeMax_\$ROW\$" id="numRangeMax_\$ROW\$" style="width: 30px" value="10" />
 EOF;
 
 // ------------------------------------------------------------------------------------------------
@@ -28,6 +28,6 @@ EOF;
 $help_popup_width  = 320;
 $help_html_content =<<<EOF
 	<p>
-		{$LANG["NumberRange_help"]}
+		{$L["NumberRange_help"]}
 	</p>
 EOF;

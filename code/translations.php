@@ -33,5 +33,5 @@ function gd_extract_translation_file_info($file)
   @include($file);
   $info = get_defined_vars();
 
-  return $info["LANG"]["language"];
+  return $info["L"]["language"];
 }

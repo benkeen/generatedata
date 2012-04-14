@@ -19,18 +19,18 @@ $data_type_field_group_order = 10;
 
 $data_type_example_html =<<<EOF
 	<select name="dt_\$ROW\$" id="dt_\$ROW\$" onchange="$('#option_\$ROW\$').val(this.value)">
-		<option value="">{$LANG["please_select"]}</option>
-		<option value="MaleName">{$LANG["Names_example_MaleName"]}</option>
-		<option value="FemaleName">{$LANG["Names_example_FemaleName"]}</option>
-		<option value="Name">{$LANG["Names_example_Name"]}</option>
-		<option value="MaleName Surname">{$LANG["Names_example_MaleName_Surname"]}</option>
-		<option value="FemaleName Surname">{$LANG["Names_example_FemaleName_Surname"]}</option>
-		<option value="Name Surname">{$LANG["Names_example_Name_Surname"]}</option>
-		<option value="Name Initial. Surname">{$LANG["Names_example_Name_Initial_Surname"]}</option>
-		<option value="Surname">{$LANG["Names_example_surname"]}</option>
-		<option value="Surname, Name Initial.">{$LANG["Names_example_Surname_Name_Initial"]}</option>
-		<option value="Name, Name, Name, Name">{$LANG["Names_example_Name4"]}</option>
-		<option value="Name Surname|Name Initial. Surname">{$LANG["Names_example_fullnames"]}</option>
+		<option value="">{$L["please_select"]}</option>
+		<option value="MaleName">{$L["Names_example_MaleName"]}</option>
+		<option value="FemaleName">{$L["Names_example_FemaleName"]}</option>
+		<option value="Name">{$L["Names_example_Name"]}</option>
+		<option value="MaleName Surname">{$L["Names_example_MaleName_Surname"]}</option>
+		<option value="FemaleName Surname">{$L["Names_example_FemaleName_Surname"]}</option>
+		<option value="Name Surname">{$L["Names_example_Name_Surname"]}</option>
+		<option value="Name Initial. Surname">{$L["Names_example_Name_Initial_Surname"]}</option>
+		<option value="Surname">{$L["Names_example_surname"]}</option>
+		<option value="Surname, Name Initial.">{$L["Names_example_Surname_Name_Initial"]}</option>
+		<option value="Name, Name, Name, Name">{$L["Names_example_Name4"]}</option>
+		<option value="Name Surname|Name Initial. Surname">{$L["Names_example_fullnames"]}</option>
 	</select>
 EOF;
 
@@ -47,29 +47,29 @@ EOF;
 $help_popup_width = 380;
 $help_html_content =<<<EOF
 <p>
-	{$LANG["Names_help_intro"]}
+	{$L["Names_help_intro"]}
 </p>
 
 <table cellpadding="0" cellspacing="1">
 <tr>
 	<td class="heading_1" width="100">Name</td>
-	<td>{$LANG["Names_type_Name"]}</td>
+	<td>{$L["Names_type_Name"]}</td>
 </tr>
 <tr>
 	<td class="heading_1">MaleName</td>
-	<td>{$LANG["Names_type_MaleName"]}</td>
+	<td>{$L["Names_type_MaleName"]}</td>
 </tr>
 <tr>
 	<td class="heading_1">FemaleName</td>
-	<td>{$LANG["Names_type_FemaleName"]}</td>
+	<td>{$L["Names_type_FemaleName"]}</td>
 </tr>
 <tr>
 	<td class="heading_1">Initial</td>
-	<td>{$LANG["Names_type_Initial"]}</td>
+	<td>{$L["Names_type_Initial"]}</td>
 </tr>
 <tr>
 	<td class="heading_1">Surname</td>
-	<td>{$LANG["Names_type_Surname"]}</td>
+	<td>{$L["Names_type_Surname"]}</td>
 </tr>
 </table>
 EOF;

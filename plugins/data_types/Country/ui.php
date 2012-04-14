@@ -16,5 +16,5 @@ $data_type_field_group_order = 80;
 
 $data_type_options_html =<<<EOF
 <input type="checkbox" name="option_\$ROW\$" value="" id="option_\$ROW\$" checked="checked" />
-  <label for="option_\$ROW\$">{$LANG["Country_limit_results"]}</label>
+  <label for="option_\$ROW\$">{$L["Country_limit_results"]}</label>
 EOF;

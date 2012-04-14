@@ -107,7 +107,7 @@ function gd_sort_by_col_order($template)
  */
 function gd_get_data_types()
 {
-  global $g_field_groups, $LANG, $g_language;
+  global $g_field_groups, $L, $g_language;
 
   $folder = dirname(__FILE__);
   $data_types_folder = realpath("$folder/../data_types");
@@ -155,7 +155,7 @@ function gd_get_data_types()
  */
 function gd_extract_data_type_info($folder)
 {
-  global $LANG;
+  global $L;
 
   if (!is_file("$folder/ui.php"))
     return array();
@@ -164,7 +164,7 @@ function gd_extract_data_type_info($folder)
 
   $info = get_defined_vars();
   unset($info["L"]);
-  $info["data_type_name"] = $LANG["{$info["data_folder_name"]}_name"];
+  $info["data_type_name"] = $L["{$info["data_folder_name"]}_name"];
 
   return $info;
 }
@@ -175,11 +175,10 @@ function gd_extract_data_type_info($folder)
  */
 function gd_include_data_type_code()
 {
-  $folder = dirname(__FILE__);
-  $data_types_folder = realpath("$folder/../data_types");
+  $data_types_folder = realpath(dirname(__FILE__) . "/../data_types");
 
   if ($handle = opendir($data_types_folder))
-   {
+  {
     while (false !== ($item = readdir($handle)))
     {
       if ($item == "." || $item == ".." || $item == ".svn")

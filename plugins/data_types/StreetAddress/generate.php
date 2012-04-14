@@ -9,11 +9,11 @@ $StreetAddress_process_order = 1;
 
 function StreetAddress_generate_item($row, $options, $existing_row_data)
 {
-  global $g_words, $LANG;
+  global $g_words, $L;
 
   $street_address = "";
   $street_name = ucwords(gd_generate_random_text_str($g_words, false, "fixed", 1));
-  $valid_street_types = explode(",", $LANG["StreetAddress_street_types"]);
+  $valid_street_types = explode(",", $L["StreetAddress_street_types"]);
   $street_type = $valid_street_types[rand(0, count($valid_street_types)-1)];
 
   $format = rand(1, 4);
@@ -21,13 +21,13 @@ function StreetAddress_generate_item($row, $options, $existing_row_data)
   switch($format)
   {
     case "1":
-      $street_address = $LANG["StreetAddress_po_box"] . " " . rand(100, 999) . ", " . rand(100, 9999) . " $street_name " . $street_type;
+      $street_address = $L["StreetAddress_po_box"] . " " . rand(100, 999) . ", " . rand(100, 9999) . " $street_name " . $street_type;
       break;
     case "2":
       $street_address = rand(100, 999) . "-" . rand(100, 9999) . " $street_name " . $street_type;
       break;
     case "3":
-      $street_address = $LANG["StreetAddress_ap_num"] . rand(100, 999) . "-" . rand(100, 9999) . " $street_name " . $street_type;
+      $street_address = $L["StreetAddress_ap_num"] . rand(100, 999) . "-" . rand(100, 9999) . " $street_name " . $street_type;
       break;
     case "4":
       $street_address = rand(100, 9999) . " $street_name " . $street_type;

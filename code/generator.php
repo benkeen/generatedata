@@ -194,7 +194,7 @@ function gd_generate_random_alphanumeric_str($str)
  */
 function gd_generate_custom_xml($custom_xml_structure, $g_template, $num_rows)
 {
-  global $LANG;
+  global $L;
 
   $xml = "";
 
@@ -205,7 +205,7 @@ function gd_generate_custom_xml($custom_xml_structure, $g_template, $num_rows)
 
   if (count($matches) < 2)
   {
-  	echo "<error>{$LANG["invalid_custom_xml"]}</error>";
+  	echo "<error>{$L["invalid_custom_xml"]}</error>";
   	return;
   }
 

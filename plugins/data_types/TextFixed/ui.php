@@ -18,7 +18,7 @@ $data_type_field_group_order = 10;
 // OPTIONS
 
 $data_type_options_html =<<<EOF
-&nbsp;{$LANG["TextFixed_generate"]} #<input type="text" name="numWords_\$ROW\$" id="numWords_\$ROW\$" style="width: 30px" value="10" /> {$LANG["TextFixed_words"]}
+&nbsp;{$L["TextFixed_generate"]} #<input type="text" name="numWords_\$ROW\$" id="numWords_\$ROW\$" style="width: 30px" value="10" /> {$L["TextFixed_words"]}
 EOF;
 
 
@@ -28,6 +28,6 @@ EOF;
 $help_popup_width = 320;
 $help_html_content =<<<EOF
   <p>
-    {$LANG["TextFixed_help"]}
+    {$L["TextFixed_help"]}
   </p>
 EOF;

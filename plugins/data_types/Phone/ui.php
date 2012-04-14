@@ -21,11 +21,11 @@ $data_type_field_group_order = 20;
 
 $data_type_example_html =<<<EOF
   <select name="dt_\$ROW\$" id="dt_\$ROW\$" onchange="$('#option_\$ROW\$').val(this.value)">
-    <option value="">{$LANG["please_select"]}</option>
-    <option value="1-Xxx-Xxx-xxxx">{$LANG["Phone_example_1"]}</option>
-    <option value="(Xxx) Xxx-xxxx">{$LANG["Phone_example_2"]}</option>
-    <option value="1 Xx Xxx Xxxx-xxxx">{$LANG["Phone_uk"]}</option>
-    <option value="1-Xxx-Xxx-xxxx|Xxx-xxxx">{$LANG["Phone_different_formats"]}</option>
+    <option value="">{$L["please_select"]}</option>
+    <option value="1-Xxx-Xxx-xxxx">{$L["Phone_example_1"]}</option>
+    <option value="(Xxx) Xxx-xxxx">{$L["Phone_example_2"]}</option>
+    <option value="1 Xx Xxx Xxxx-xxxx">{$L["Phone_uk"]}</option>
+    <option value="1-Xxx-Xxx-xxxx|Xxx-xxxx">{$L["Phone_different_formats"]}</option>
   </select>
 EOF;
 
@@ -42,13 +42,13 @@ EOF;
 $help_popup_width = 450;
 $help_html_content =<<<EOF
   <p>
-    {$LANG["Phone_help_text1"]}
+    {$L["Phone_help_text1"]}
   </p>
   <p>
-    {$LANG["Phone_help_text2"]}
+    {$L["Phone_help_text2"]}
   </p>
   <p>
-    {$LANG["Phone_help_text3"]}
+    {$L["Phone_help_text3"]}
   </p>
 EOF;
 

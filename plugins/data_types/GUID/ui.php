@@ -19,6 +19,6 @@ $data_type_field_group_order = 60;
 $help_popup_width = 460;
 $help_html_content =<<<EOF
 	<p>
-		{$LANG["GUID_help"]}
+		{$L["GUID_help"]}
 	</p>
 EOF;

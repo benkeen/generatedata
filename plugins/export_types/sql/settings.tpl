@@ -4,11 +4,11 @@
 
                 <table cellspacing="2" cellpadding="0" width="100%">
                 <tr>
-                  <td width="150"><label for="sql_table_name">{$LANG.db_table_name}</label></td>
+                  <td width="150"><label for="sql_table_name">{$L.db_table_name}</label></td>
                   <td><input type="text" size="10" name="sql_table_name" id="sql_table_name" value="myTable" /></td>
                 </tr>
                 <tr>
-                  <td><label for="sql_database">{$LANG.db_type}</label></td>
+                  <td><label for="sql_database">{$L.db_type}</label></td>
                   <td>
                     <select name="sql_database" id="sql_database">
                       <option value="MySQL">MySQL</option>
@@ -18,19 +18,19 @@
                   </td>
                 </tr>
                 <tr>
-                  <td><label><?php echo $LANG["misc_options"]?></label></td>
+                  <td><label><?php echo $L["misc_options"]?></label></td>
                   <td>
                     <div>
                       <input type="checkbox" name="sql_create_table" id="sql_create_table" checked />
-                      <label for="sql_create_table"><?php echo $LANG["include_create_table_query"]?></label>
+                      <label for="sql_create_table"><?php echo $L["include_create_table_query"]?></label>
                     </div>
                     <div>
                       <input type="checkbox" name="sql_drop_table" id="sql_drop_table" checked />
-                      <label for="sql_drop_table"><?php echo $LANG["include_drop_table_query"]?></label>
+                      <label for="sql_drop_table"><?php echo $L["include_drop_table_query"]?></label>
                     </div>
                     <div>
                       <input type="checkbox" name="enclose_with_backquotes" id="enclose_with_backquotes" checked />
-                      <label for="enclose_with_backquotes"><?php echo $LANG["enclose_table_backquotes"]?></label>
+                      <label for="enclose_with_backquotes"><?php echo $L["enclose_table_backquotes"]?></label>
                     </div>
                   </td>
                 </tr>
@@ -41,7 +41,7 @@
 
                 <table cellspacing="0" cellpadding="0" width="100%">
                 <tr>
-                  <td><label><?php echo $LANG["statement_type"]?></label></td>
+                  <td><label><?php echo $L["statement_type"]?></label></td>
                   <td>
                     <div>
                       <input type="radio" name="sql_statement_type" id="sst1" value="insert" checked />
@@ -54,15 +54,15 @@
                   </td>
                 </tr>
                 <tr>
-                  <td><label><?php echo $LANG["primary_key"]?></label></td>
+                  <td><label><?php echo $L["primary_key"]?></label></td>
                   <td>
                   <div>
                     <input type="radio" name="sql_primary_key" id="spk2" value="none" />
-                    <label for="spk2"><?php echo $LANG["none"]?></label>
+                    <label for="spk2"><?php echo $L["none"]?></label>
                   </div>
                   <div>
                     <input type="radio" name="sql_primary_key" id="spk1" value="default" checked />
-                    <label for="spk1"><?php echo $LANG["add_default_auto_increment_col"]?></label>
+                    <label for="spk1"><?php echo $L["add_default_auto_increment_col"]?></label>
                   </div>
                   </td>
                 </tr>

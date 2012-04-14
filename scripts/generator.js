@@ -19,9 +19,9 @@ $(function() {
   gd.init();
 
   // TODO
-  if ($.browser.msie)
+  if ($.browser.msie) {
     $("body").html("<h1>Sorry, this script will not run on IE yet.</h1>");
-  });
+  }
 });
 
 

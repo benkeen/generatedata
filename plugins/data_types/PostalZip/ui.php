@@ -38,6 +38,6 @@ EOF;
 $help_popup_width  = 320;
 $help_html_content =<<<EOF
 	<p>
-		{$LANG["PostalZip_help_text"]}
+		{$L["PostalZip_help_text"]}
 	</p>
 EOF;

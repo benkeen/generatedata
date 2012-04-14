@@ -53,7 +53,6 @@ if (!isset($_SESSION["gd"]))
 
 $g_smarty = new Smarty();
 $g_language = (isset($_SESSION["gd"]["language"])) ? $_SESSION["gd"]["language"] : $g_default_language;
-$g_translations = gd_get_translations();
 if (isset($_GET["lang"]))
 {
   $lang = strip_tags($_GET["lang"]);

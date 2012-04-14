@@ -35,9 +35,9 @@ EOF;
 // OPTIONS
 
 $data_type_options_html =<<<EOF
-&nbsp;{$LANG["AutoIncrement_start_at_c"]} <input type="text" name="autoIncrementStart_\$ROW\$" id="autoIncrementStart_\$ROW\$" style="width: 40px" value="1" />&nbsp;
-&nbsp;{$LANG["AutoIncrement_increment_c"]} <input type="text" name="autoIncrementValue_\$ROW\$" id="autoIncrementValue_\$ROW\$" style="width: 40px" value="1" />
-&nbsp;{$LANG["AutoIncrement_placeholder_str"]} <input type="text" name="autoIncrementPlaceholder_\$ROW\$" id="autoIncrementPlaceholder_\$ROW\$" style="width: 140px" />
+&nbsp;{$L["AutoIncrement_start_at_c"]} <input type="text" name="autoIncrementStart_\$ROW\$" id="autoIncrementStart_\$ROW\$" style="width: 40px" value="1" />&nbsp;
+&nbsp;{$L["AutoIncrement_increment_c"]} <input type="text" name="autoIncrementValue_\$ROW\$" id="autoIncrementValue_\$ROW\$" style="width: 40px" value="1" />
+&nbsp;{$L["AutoIncrement_placeholder_str"]} <input type="text" name="autoIncrementPlaceholder_\$ROW\$" id="autoIncrementPlaceholder_\$ROW\$" style="width: 140px" />
 EOF;
 
 // ------------------------------------------------------------------------------------------------
@@ -46,10 +46,10 @@ EOF;
 $help_popup_width = 480;
 $help_html_content =<<<EOF
 	<p>
-	  {$LANG["AutoIncrement_help_intro"]}
+	  {$L["AutoIncrement_help_intro"]}
 	</p>
 	<p>
-	  {$LANG["AutoIncrement_help_para2"]}
+	  {$L["AutoIncrement_help_para2"]}
 	</p>
 
 	<ul>
