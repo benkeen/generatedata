@@ -9,10 +9,6 @@ $(function() {
       g.selectTab(tabNum);
     });
   });
-
-  if ($("body.install_page").length) {
-    $("#g_db_hostname").select();
-  }
 });
 
 

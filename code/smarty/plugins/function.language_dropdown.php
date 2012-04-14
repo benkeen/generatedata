@@ -8,7 +8,11 @@
  */
 function smarty_function_language_dropdown($params, &$smarty)
 {
-	global $L;
+	global $L, $g_language;
+
+	// default to whatever is explicitly supplied. Failing that, default to the global var
+	$default_language = isset($params["default"]) ? $params["default"] : $g_language;
+	$name_id = isset($params["name_id"]) ? $params["name_id"] : "";
 
 	$translations = gd_get_translations();
 
@@ -16,12 +20,12 @@ function smarty_function_language_dropdown($params, &$smarty)
   while (list($file, $language) = each($translations))
   {
     $value = preg_replace("/\.php$/", "", $file);
-    $selected = ($value == $g_language) ? " selected" : "";
+    $selected = ($value == $default_language) ? " selected" : "";
     $options .= "<option value=\"{$value}\"{$selected}>{$language}</option>\n";
   }
 
   echo <<<END
-    <select id="selectLanguage">
+    <select name="$name_id" id="$name_id">
       <option value="">{$L["select_language"]}</option>
       {$options}
     </select>

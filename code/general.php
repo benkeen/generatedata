@@ -150,7 +150,7 @@ function gd_get_clean_php_self()
  */
 function gd_display_page($template, $page_vars)
 {
-  global $g_success, $g_message, $g_link, $L, $g_smarty, $g_version;
+  global $g_success, $g_message, $g_link, $L, $g_smarty, $g_version, $g_table_prefix;
 
   // common variables. These are sent to EVERY templates
   $g_smarty->template_dir = realpath(dirname(__FILE__) . "/../templates");
@@ -167,6 +167,7 @@ function gd_display_page($template, $page_vars)
   $g_smarty->assign("SESSION", $_SESSION["gd"]);
   $g_smarty->assign("g_version", $g_version);
   $g_smarty->assign("same_page", gd_get_clean_php_self());
+  $g_smarty->assign("g_table_prefix", $g_table_prefix);
   $g_smarty->assign("query_string", $_SERVER["QUERY_STRING"]);
 
   // if this page has been told to dislay a custom message, override g_success and g_message
@@ -207,7 +208,7 @@ function gd_display_serious_error($error)
   echo <<< END
 <html>
 <head>
-  <title>Things just aint right.</title>
+  <title>Things just ain't right.</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <script src="scripts/jquery-1.7.2.min.js"></script>
   <script>

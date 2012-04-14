@@ -227,24 +227,20 @@ EOF;
         <br />
         This tab will contain additional links to help documentation, such as information on how to develop your
         own data types and information about the API.
-        <br />
-        <br />
-        <br />
       </div>
     </div>
 
-    <!-- TODO -->
     <noscript>
-      <div class="error"><span><span><span><span><span><span><span><span>
-      <div class="red"><?php echo $L["no_js"]?></div>
-      <br/>
-      <?php echo $L["no_js_blurb"]?>
-      </span></span></span></span></span></span></span></span></div>
+      <h1>{$L.no_js}</h1>
+      {$L.no_js_blurb}
+      <form action="{$same_page}">
+        <button class="green_button" id="create_database">{$L.refresh_page}</button>
+      </form>
     </noscript>
   </section>
 
   <footer>
-    Version {$g_version}
+    {$L.version} {$g_version} - <a href="https://github.com/benkeen/generatedata" target="_blank">github</a>
   </footer>
 
   <?php

@@ -234,8 +234,6 @@ $L["no_csv_delimiter"] = "Please enter the CSV delimiter.";
 $L["no_data"] = "Oops, nothing to generate! Enter some data to be generated.";
 $L["no_examples_available"] = "No examples available.";
 $L["no_form_name"] = "Please enter a form name.";
-$L["no_js"] = "<b>Error:</b> JavaScript is not enabled.";
-$L["no_js_blurb"] = "The Data Generator script relies heavily on javascript. You&#39;ll need to enable it in your browser then refresh this page.";
 $L["no_num_rows"] = "Please enter the number of rows to add.";
 $L["no_options_available"] = "No options available.";
 $L["node_name"] = "Node Name";
@@ -262,6 +260,10 @@ $L["text"] = "Text";
 $L["use_custom_xml_format"] = "Use custom XML format";
 $L["website"] = "Website";
 
+// modified
+$L["no_js"] = "Yikes, javascript's not enabled!";
+$L["no_js_blurb"] = "You know this is, like, the 21st century? The Data Generator script relies heavily on javascript - things just plain won't work without it. You&#39;ll need to enable it in your browser then refresh this page.";
+
 // new
 $L["install"] = "Install";
 $L["host_name"] = "Host Name";
@@ -270,3 +272,19 @@ $L["table_prefix"] = "Table Prefix";
 $L["database_name"] = "Database Name";
 $L["mysql_username"] = "MySQL Username";
 $L["mysql_password"] = "MySQL Password";
+$L["default_language"] = "Default Language";
+$L["installation_intro"] = "Alrighty, let's get this sucker installed. Enter your database information to create your database tables. If you're unsure about any of this, click on the Help tab for a little more info.";
+$L["version"] = "Version";
+$L["help_intro"] = "The installation script does two things for you. One, it automatically generates a <b>settings.php</b> file which contains your unique database connection info, so that it knows how to connect to the database whenever you visit the script. Two, it populates the database with various information that it needs: things like general settings, user accounts and raw data like people's names, country and city names.";
+$L["help_prerequisites"] = "Pre-requisites";
+$L["help_prereq_info"] = "Just like virtually every other PHP/MySQL script out there, you need to have already created a database before running the installation script. <i>The installation script doesn't create the database, it just tries to connect to it to create the tables.</i> If you're not sure how to create a database within your environment, you'll either need to contact your hosting provider, or spend some time researching it on Google. Sorry!";
+$L["what_each_field_means"] = "What each field means";
+$L["host_name_desc"] = "The name of your database connection. Often it's just <i>localhost</i>, but sometimes it's something like <i>mysql.yoursite.com</i>.";
+$L["database_name_desc"] = "The name of your database that you (or your hosting provider) created.";
+$L["mysql_username_desc"] = "The name of the MySQL user account that has access to the database details provided in the previous fields.";
+$L["mysql_password_desc"] = "The MySQL user's password.";
+$L["mysql_table_prefix_desc"] = "This adds a prefix to all of your database tables, to ensure they never conflict with any existing table names.";
+$L["default_lang_desc"] = "The entire user interface can be viewed in whatever language you want.";
+$L["still_stuck"] = "Still stuck?";
+$L["still_stuck_info"] = "I'm afraid if you're still stuck, you'll need to hunt down a developer to lend a hand. Try luring them into your office with cans of jolt or promises of xbox. You could try posting in our <a href=\"http://forums.generatedata.com\" target=\"_blank\">forums</a> but there's not much more information we'll be able to provide that isn't already described here.";
+$L["refresh_page"] = "Refresh Page";
