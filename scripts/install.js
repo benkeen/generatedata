@@ -1,43 +1,57 @@
 $(function() {
-  $("#g_db_hostname").select();
-  $("#create_database").bind("click", install_ns.submit);
+  $("#dbHostname").select();
+  $("form").bind("submit", installNs.submit);
+  $("input[name=employUserAccounts]").bind("click", function() {
+    if (this.value == "yes") {
+      $(".emailRow,.passwordRow").removeClass("disabledRow").find("input").removeAttr("disabled");
+    } else {
+      $(".emailRow,.passwordRow").addClass("disabledRow").find("input").attr("disabled", "disabled");
+    }
+  });
 });
 
 
-var install_ns = {};
+var installNs = {};
 
-install_ns.submit = function() {
+installNs.submit = function() {
+  $(".error").hide();
 
   // validation
   var validChars = /[^a-zA-Z0-9_]/;
   var errors = [];
-  if ($.trim($("#g_db_hostname").val()) == "") {
-    errors.push({ fieldId: "g_db_hostname", error: "Please enter your database hostname." });
+  if ($.trim($("#dbHostname").val()) == "") {
+    errors.push({ fieldId: "dbHostname", error: L.validation_no_db_hostname });
   }
-  var g_db_name = $.trim($("#g_db_name").val());
-  if (g_db_name == "") {
-    errors.push({ fieldId: "g_db_name", error: "Please enter your database name." });
-  } else if (validChars.test(g_db_name)) {
-    errors.push({ fieldId: "g_db_name", error: "Your database name can only be comprised of alphanumeric or _ characters." });
-  }
-
-  var g_db_username = $.trim($("#g_db_username").val());
-  if (g_db_username == "") {
-    errors.push({ fieldId: "g_db_username", error: "Please enter your MySQL username." });
-  } else if (validChars.test(g_db_username)) {
-    errors.push({ fieldId: "g_db_username", error: "Your MySQL username can only be comprised of alphanumeric or _ characters." });
+  var dbName = $.trim($("#dbName").val());
+  if (dbName == "") {
+    errors.push({ fieldId: "dbName", error: L.validation_no_db_name });
+  } else if (validChars.test(dbName)) {
+    errors.push({ fieldId: "dbName", error: L.validation_invalid_chars });
   }
 
-  var g_db_password = $.trim($("#g_db_password").val());
-  if (g_db_name == "") {
-    errors.push({ fieldId: "g_db_password", error: "Please enter your MySQL password." });
+  var dbUsername = $.trim($("#dbUsername").val());
+  if (dbUsername == "") {
+    errors.push({ fieldId: "dbUsername", error: L.validation_no_mysql_username });
+  } else if (validChars.test(dbUsername)) {
+    errors.push({ fieldId: "dbUsername", error: L.validation_invalid_chars });
   }
 
-  var g_table_prefix = $.trim($("#g_table_prefix").val());
-  if (validChars.test(g_table_prefix)) {
-    errors.push({ fieldId: "g_table_prefix", error: "Your database prefix can only be comprised of alphanumeric or _ characters." });
+  var dbPassword = $.trim($("#dbPassword").val());
+  if (dbPassword == "") {
+    errors.push({ fieldId: "dbPassword", error: L.validation_no_mysql_password });
   }
 
-  // ajax -> create settings.php file [or return error] -> populate DB -> return. Here, overwrite content in page and just say "click here
-  // to
+  var tablePrefix = $.trim($("#tablePrefix").val());
+  if (validChars.test(tablePrefix)) {
+    errors.push({ fieldId: "tablePrefix", error: L.validation_invalid_chars });
+  }
+
+  if (errors.length) {
+	$("#" + errors[0].fieldId).select();
+	for (var i=0; i<errors.length; i++) {
+      $("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
+	}
+    return false;
+  }
+
 }

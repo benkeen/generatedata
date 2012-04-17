@@ -33,7 +33,7 @@ h2 {
   font-family: verdana;
 }
 .vpad {
-	padding-bottom: 14px;
+  padding-bottom: 14px;
 }
 form {
   margin: 0px;
@@ -79,8 +79,8 @@ nav {
   display: block;
 }
 a:link, nav a:visited {
-	color: #2d99f5;
-	text-decoration: none;
+  color: #2d99f5;
+  text-decoration: none;
 }
 a:hover {
   text-decoration: underline;
@@ -99,12 +99,12 @@ nav#tabs ul {
   padding: 0px;
 }
 .joiner {
-	color: #cccccc;
+  color: #cccccc;
 }
 nav#tabs ul li {
-	color: green;
-	font-size: 9pt;
-	text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);
+  color: green;
+  font-size: 9pt;
+  text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);
   cursor: pointer;
   margin: 2px 2px 0 0;
   padding: 3px 0 0 0;
@@ -120,7 +120,7 @@ nav#tabs ul li {
   height: 22px;
 }
 nav#tabs ul li.selected {
-	cursor: inherit;
+  cursor: inherit;
   border-bottom: 0px;
   height: 22px;
   background-color: white;
@@ -373,8 +373,8 @@ li.colDelete {
 }
 
 #messages {
-	position: relative;
-	display: none;
+  position: relative;
+  display: none;
 }
 #messages a.close:link, #messages a.close:visited {
   position: absolute;
@@ -390,19 +390,19 @@ li.colDelete {
   border: 1px solid #0058DB;
 }
 .notify div {
-	padding: 8px;
-	color: #0058DB;
+  padding: 8px;
+  color: #0058DB;
 }
 .errors {
-	background-color: #FFEDED;
-	border: 1px solid #CC0000;
+  background-color: #FFEDED;
+  border: 1px solid #CC0000;
 }
 .errors div {
   padding: 8px;
   color: #AA0000
 }
 .errors div ul {
-	margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .problemField {
@@ -439,7 +439,7 @@ hr {
 }
 
 /* from: http://hellohappy.org/css3-buttons/ */
-.green_button {
+.greenButton {
   display: block;
   background-color: #7fbf4d;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
@@ -464,7 +464,7 @@ hr {
   text-align: center;
   text-shadow: 0 -1px 0 #4c9021;
 }
-.green_button:hover {
+.greenButton:hover {
   background-color: #76b347;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
   background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
@@ -477,7 +477,7 @@ hr {
   box-shadow: inset 0 1px 0 0 #8dbf67;
   cursor: pointer;
 }
-.green_button:active {
+.greenButton:active {
   border: 1px solid #5b992b;
   border-bottom: 1px solid #538c27;
   -webkit-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
@@ -542,35 +542,71 @@ body.error_page #box {
   font-size: 11pt;
   line-height: 22px;
 }
-.install_page .fields label {
+.installPage .fields .field {
+  float: left;
+  width: 376px;
+  border-bottom: 1px solid #efefef;
+  clear: left;
+}
+.installPage .fields .radioGroup input {
+  width: 20px;
+  float: left;
+}
+.installPage .fields .radioGroup label {
+	width: inherit;
+	float: left;
+}
+.installPage .fields .disabledRow label {
+  color: #cccccc;
+}
+.installPage .fields label {
   float: left;
   width: 160px;
   color: #777777;
   margin-top: 2px;
 }
-.install_page .fields input {
-	float: left;
-	width: 210px;
-	margin-top: 2px;
-}
-.install_page #g_table_prefix {
-	width: 60px;
-}
-.install_page .fields div {
+.installPage .fields input {
+  float: left;
+  width: 210px;
   margin-top: 2px;
 }
-.fields > div {
-  border-bottom: 1px solid #efefef;
-  clear: left;
-  height: 26px;
+.installPage #tablePrefix {
+  width: 60px;
 }
-.install_page .install_form > div {
-  width: 390px;
+.installPage .fields div {
+  margin-top: 2px;
 }
-.fields input.pwd_field {
-  width: 100px;
+.installPage .doc label {
+  float: left;
+  width: 160px;
+  color: #777777;
+  margin-top: 2px;
+  clear: right;
+}
+.installPage .doc>div {
+  clear: both;
+}
+.installPage .doc div>div {
+  float: right;
+  width: 770px;
 }
 
+
+.fields {
+  line-height: 21px;
+}
+.fields .error {
+  margin-left: 6px;
+  background: transparent url(../images/error.gif) left center no-repeat;
+  float: left;
+  width: 360px;
+  padding-left: 24px;
+  color: #e22222;
+  display: none;
+}
+.fields input.pwdField {
+  width: 100px;
+}
 #tab1Content h2 {
   float: left;
   width: 160px;

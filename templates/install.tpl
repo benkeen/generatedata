@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.1.custom.css" />
   {literal}<noscript><style type="text/css">.hideNoJS { display: none; }</style></noscript>{/literal}
 </head>
-<body class="install_page">
+<body class="installPage">
   <header>
     <nav>
       <a href="http://www.generatedata.com">{$L.website}</a> |
@@ -26,79 +26,92 @@
   </nav>
   <section>
     <div id="content" class="hideNoJS">
-      <div id="loadingIcon"><img src="images/loading2.gif" width="16" height="16" /></div>
+<!--       <div id="loadingIcon"><img src="images/loading2.gif" width="16" height="16" /></div> -->
       <div id="tab1Content" class="tabContent">
 
         <h1>{$L.installation}</h1>
-
         <p>
           {$L.installation_intro}
         </p>
 
-        <h2>1. Database Info</h2>
+        <h2>1. {$L.database_info}</h2>
+        <form>
+	        <div class="fields installForm">
+	          <div class="field">
+	            <label for="dbHostname">{$L.host_name}</label>
+	            <input type="text" id="dbHostname" value="localhost" />
+	          </div>
+	          <div class="error" id="dbHostname_error"></div>
+	          <div class="field">
+	            <label for="dbName">{$L.database_name}</label>
+	            <input type="text" id="dbName" value="" />
+	          </div>
+	          <div class="error" id="dbName_error"></div>
+	          <div class="field">
+	            <label for="dbUsername">{$L.mysql_username}</label>
+	            <input type="text" id="dbUsername" value="" />
+	          </div>
+	          <div class="error" id="dbUsername_error"></div>
+	          <div class="field">
+	            <label for="dbPassword">{$L.mysql_password}</label>
+	            <input type="text" id="dbPassword" value="" class="pwdField" />
+	          </div>
+	          <div class="error" id="dbPassword_error"></div>
+	          <div class="field">
+	            <label>{$L.table_prefix}</label>
+	            <input type="text" id="tablePrefix" value="{$g_table_prefix}" maxlength="10" />
+	          </div>
+	          <div class="error" id="tablePrefix_error"></div>
+	          <div class="field">
+	            <label for="defaultLanguage">{$L.default_language}</label>
+	            {language_dropdown name_id="defaultLanguage" default="en"}
+	          </div>
+	          <div class="error" id="defaultLanguage_error"></div>
+	        </div>
 
-        <div class="fields install_form">
-          <div>
-            <label for="g_db_hostname">{$L.host_name}</label>
-            <input type="text" id="g_db_hostname" value="localhost" />
-          </div>
-          <div>
-            <label for="g_db_name">{$L.database_name}</label>
-            <input type="text" id="g_db_name" value="" />
-          </div>
-          <div>
-            <label for="g_db_username">{$L.mysql_username}</label>
-            <input type="text" id="g_db_username" value="" />
-          </div>
-          <div>
-            <label for="g_db_password">{$L.mysql_password}</label>
-            <input type="text" id="g_db_password" value="" class="pwd_field" />
-          </div>
-          <div>
-            <label>{$L.table_prefix}</label>
-            <input type="text" id="g_table_prefix" value="{$g_table_prefix}" maxlength="10" />
-          </div>
-          <div>
-            <label for="defaultLanguage">{$L.default_language}</label>
-            {language_dropdown name_id="defaultLanguage" default="en"}
-          </div>
-        </div>
+	        <div class="clear vpad"></div>
 
-        <div class="clear vpad"></div>
+	        <h2>2. {$L.user_accounts}</h2>
+	        <div class="fields installForm">
+	          <div class="field">
+	            <label for="email">{$L.employ_user_accounts}</label>
+	            <div class="radioGroup">
+	              <input type="radio" name="employUserAccounts" id="eua1" value="yes" />
+	                <label for="eua1">{$L.yes}</label>
+	              <input type="radio" name="employUserAccounts" id="eua2" value="no" checked="checked" />
+	                <label for="eua2">{$L.no}</label>
+	            </div>
+	          </div>
+	          <div class="field emailRow disabledRow">
+	            <label for="email">{$L.email}</label>
+	            <input type="text" id="email" value="" disabled="disabled" />
+	          </div>
+	          <div class="error" id="email_error"></div>
+	          <div class="field passwordRow disabledRow">
+	            <label for="password">{$L.password}</label>
+	            <input type="text" id="password" value="{$random_password}" class="pwdField" disabled="disabled" />
+	          </div>
+	          <div class="error" id="password_error"></div>
+	        </div>
 
-        <h2>2. User Account</h2>
-
-        <div class="fields install_form">
-          <div>
-            <label for="g_db_hostname">Username</label>
-            <input type="text" id="" value="admin" />
-          </div>
-          <div>
-            <label for="g_db_hostname">Password</label>
-            <input type="text" id="" value="{$random_password}" class="pwd_field" />
-          </div>
-        </div>
-
-        <div class="clear"></div>
-        <button class="green_button" id="create_database">{$L.install}</button>
-
+	        <div class="clear"></div>
+	        <button class="greenButton">{$L.install}</button>
+        </form>
       </div>
+
       <div id="tab2Content" style="display:none">
         <h1>{$L.help}</h1>
-
         <p>
           {$L.help_intro}
         </p>
 
         <h2>{$L.help_prerequisites}</h2>
-
         <p>
           {$L.help_prereq_info}
         </p>
 
         <h2>{$L.what_each_field_means}</h2>
-
-        <div class="fields">
+        <div class="doc">
           <div>
             <label>{$L.host_name}</label>
             <div>{$L.host_name_desc}</div>
@@ -108,11 +121,11 @@
             <div>{$L.database_name_desc}</div>
           </div>
           <div>
-            <label for="g_db_username">{$L.mysql_username}</label>
+            <label>{$L.mysql_username}</label>
             <div>{$L.mysql_username_desc}</div>
           </div>
           <div>
-            <label for="g_db_username">{$L.mysql_password}</label>
+            <label>{$L.mysql_password}</label>
             <div>{$L.mysql_password_desc}</div>
           </div>
           <div>
@@ -123,10 +136,28 @@
             <label>{$L.default_language}</label>
             <div>{$L.default_lang_desc}</div>
           </div>
+          <div>
+            <label>{$L.employ_user_accounts}</label>
+            <div>
+              By default, the Data Generator saves all form configurations to a single location. If you enable this feature,
+              any time you want to save or load a test configuration you'll need to be logged in. This can be handy if the
+              script is going to be used by multiple people. The installation script lets you create a single user account,
+              but you can create more later on.
+            </div>
+          </div>
+          <div>
+            <label>{$L.email}</label>
+            <div>Your email address.</div>
+          </div>
+          <div>
+            <label>{$L.password}</label>
+            <div>Your password. A default, random one is generated for your convenience.</div>
+          </div>
         </div>
 
-        <h2>{$L.still_stuck}</h2>
+        <div class="clear"></div>
 
+        <h2>{$L.still_stuck}</h2>
         <p>
           {$L.still_stuck_info}
         </p>
@@ -137,10 +168,9 @@
       <h1>{$L.no_js}</h1>
       {$L.no_js_blurb}
       <form action="{$same_page}">
-        <button class="green_button" id="create_database">{$L.refresh_page}</button>
+        <button class="greenButton" id="create_database">{$L.refresh_page}</button>
       </form>
     </noscript>
-
   </section>
 
   <footer>
