@@ -42,14 +42,6 @@ var gd = {
     gd.updateCountryChoice();
   },
 
-  startProcessing: function() {
-    $("#loadingIcon").show();
-  },
-
-  stopProcessing: function() {
-    $("#loadingIcon").hide();
-  },
-
   addRows: function(rows) {
     var rows = rows.toString();
     if (rows.match(/\D/) || rows == 0 || rows == "") {

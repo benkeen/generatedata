@@ -222,9 +222,29 @@ function gd_display_serious_error($error)
   <h1>Uh-oh.</h1>
   $not_fixed_message
   {$error}
-  <button class="green_button">Click here when you think you've fixed it.</button>
+  <button class="greenButton">Click here when you think you've fixed it.</button>
 </div>
 </body>
 </html>
 END;
 }
+
+
+function gd_eval_smarty_string($placeholder_str, $placeholders)
+{
+	global $g_smarty;
+
+  $smarty = new Smarty();
+  $smarty->template_dir = realpath(dirname(__FILE__) . "/../code/smarty");
+  $smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
+
+  $smarty->assign("eval_str", $placeholder_str);
+  if (!empty($placeholders))
+  {
+    while (list($key, $value) = each($placeholders))
+      $smarty->assign($key, $value);
+  }
+
+  return $smarty->fetch("eval.tpl");
+}
+

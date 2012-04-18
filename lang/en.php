@@ -15,7 +15,7 @@ $L["confirm_delete_form"] = "Are you sure you want to delete this form?";
 $L["confirm_empty_form"] = "Are you sure you want to empty this form?";
 $L["countries"] = "Countries";
 
-// move to
+// move ....
 $L["country_australia"] = "Australia";
 $L["country_belgium"] = "Belgium";
 $L["country_canada"] = "Canada";
@@ -89,12 +89,8 @@ $L["table_column"] = "Table Column";
 $L["text"] = "Text";
 $L["use_custom_xml_format"] = "Use custom XML format";
 $L["website"] = "Website";
-
-// modified
 $L["no_js"] = "Yikes, javascript's not enabled!";
 $L["no_js_blurb"] = "You know this is, like, the 21st century? The Data Generator script relies heavily on javascript - things just plain won't work without it. You&#39;ll need to enable it in your browser then refresh this page.";
-
-// new
 $L["install"] = "Install";
 $L["host_name"] = "Host Name";
 $L["installation"] = "Installation";
@@ -126,12 +122,15 @@ $L["email"] = "Email";
 $L["yes"] = "Yes";
 $L["no"] = "No";
 $L["employ_user_accounts"] = "Employ user accounts";
-
 $L["validation_no_db_hostname"] = "Please enter your database hostname.";
 $L["validation_no_db_name"] = "Please enter your database name.";
 $L["validation_invalid_chars"] = "Alphanumeric and underscore characters only, please.";
 $L["validation_no_mysql_username"] = "Please enter your MySQL username.";
 $L["validation_no_mysql_password"] = "Please enter your MySQL password.";
-
-
-
+$L["employ_user_accounts_desc"] = "By default, the Data Generator saves all form configurations to a single location so anyone visiting the script will see all saved configurations. If you enable the user account feature, any time you want to save or load a test configuration you'll need to be logged in. This can be handy if the script is going to be used by multiple people. The installation script lets you create a single user account, but you can create more later on.";
+$L["email_desc"] = "Your email address.";
+$L["password_desc"] = "Your password. A default, random one is generated for your convenience.";
+$L["validation_no_email"] = "Please enter your email address.";
+$L["validation_no_password"] = "Please enter your password.";
+$L["install_invalid_db_info"] = "We were unable to connect to the database using the information you supplied. The error message the database returned is: <i>{\$db_connection_error}</i>";
+$L["install_no_db_connection"] = "Please check your database name and login information. Although we were able to connect to the database host, we could not connect to the database. The error message the database returned is: <i>{\$db_select_error}</i>";

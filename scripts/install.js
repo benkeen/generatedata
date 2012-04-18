@@ -19,7 +19,8 @@ installNs.submit = function() {
   // validation
   var validChars = /[^a-zA-Z0-9_]/;
   var errors = [];
-  if ($.trim($("#dbHostname").val()) == "") {
+  var dbHostname = $("#dbHostname").val();
+  if ($.trim(dbHostname) == "") {
     errors.push({ fieldId: "dbHostname", error: L.validation_no_db_hostname });
   }
   var dbName = $.trim($("#dbName").val());
@@ -46,6 +47,20 @@ installNs.submit = function() {
     errors.push({ fieldId: "tablePrefix", error: L.validation_invalid_chars });
   }
 
+  var employUserAccounts = $("input[name=employUserAccounts]:checked").val();
+  var email = "";
+  var password = "";
+  if (employUserAccounts == "yes") {
+    var email = $.trim($("#email").val());
+    if (email == "") {
+      errors.push({ fieldId: "email", error: L.validation_no_email });
+    }
+    var password = $.trim($("#password").val());
+    if (password == "") {
+      errors.push({ fieldId: "password", error: L.validation_no_password });
+    }
+  }
+
   if (errors.length) {
 	$("#" + errors[0].fieldId).select();
 	for (var i=0; i<errors.length; i++) {
@@ -53,5 +68,37 @@ installNs.submit = function() {
 	}
     return false;
   }
+
+  g.startProcessing();
+  $.ajax({
+    url: "code/ajax.php",
+    type: "POST",
+    dataType: "json",
+    data: {
+      action: "install",
+      dbHostname: dbHostname,
+      dbName: dbName,
+      dbUsername: dbUsername,
+      dbPassword: dbPassword,
+      tablePrefix: tablePrefix,
+      employUserAccounts: employUserAccounts
+    },
+    success: installNs.installResponse,
+    error: installNs.installError
+  });
+
+  return false;
+}
+
+installNs.installResponse = function(json) {
+  g.stopProcessing();
+  if (json.success == 0) {
+    $("#installError .response").html(json.error);
+    $("#installError").effect("highlight", { color: "#ff5b5b" }, 1500);
+    return;
+  }
+}
+
+installNs.installError = function(json) {
 
 }

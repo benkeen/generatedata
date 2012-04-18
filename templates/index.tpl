@@ -6,7 +6,7 @@
   <meta name="description" content="GenerateData.com: free, GNU-licensed, random custom data generator for testing software" />
   <meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.1.custom.css" />
+  <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
   {literal}<noscript><style type="text/css">#content { display: none; }</style></noscript>{/literal}
 </head>
 <body>
@@ -247,8 +247,8 @@ EOF;
   gd_include_data_type_includes();
   ?>
 
-  <script src="scripts/jquery-1.4.2.min.js"></script>
-  <script src="scripts/jquery-ui-1.8.1.custom.min.js"></script>
+  <script src="scripts/jquery-1.7.2.min.js"></script>
+  <script src="scripts/jquery-ui-1.8.19.custom.min.js"></script>
   <script src="scripts/jquery.json-2.2.min.js"></script>
   <script src="scripts/lang.php"></script>
   <script src="scripts/generator.js"></script>

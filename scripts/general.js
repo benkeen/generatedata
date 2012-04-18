@@ -39,6 +39,14 @@ var g = {
     }
   },
 
+  startProcessing: function() {
+    $("#loadingIcon").show();
+  },
+
+  stopProcessing: function() {
+    $("#loadingIcon").hide();
+  },
+
   clearErrors: function() {
     gd.errors = [];
     $("*").removeClass("problemField");

@@ -40,6 +40,7 @@ function get_account($account_id)
  * @param integer $account_id
  * @param string $form_name
  * @param string $form_content
+ * @return string
  */
 function gd_save_form($account_id, $form_name, $form_content)
 {

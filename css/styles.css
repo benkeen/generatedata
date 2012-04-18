@@ -19,7 +19,7 @@ table, td, p, div, input, select, optgroup, noscript {
 }
 input, select, textarea, option {
   font: 8pt Verdana, sans-serif;
-  color: #336699;
+  color: #222222;
 }
 h1 {
   font-size: 1.6em;
@@ -35,6 +35,40 @@ h2 {
 .vpad {
   padding-bottom: 14px;
 }
+/* TODO */
+.verticalPad {
+  margin-top: 10px;
+}
+#installError {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 3px 10px 3px 46px;
+	margin-bottom: 10px;
+	background: #ffe1e1 url(../images/alert.png) 8px center no-repeat;
+	text-shadow: 0 1px 0 #fff;
+  display: none;
+  min-height: 36px;
+  position: relative;
+}
+#installError .icon {
+  background-image: url(../images/stop.png);
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 6px;
+  top: 5px;
+}
+#installError h3 {
+  font-weight: bold;
+  color: #cc0000;
+  display: inline;
+  font-size: 8pt;
+}
+#installError .response {
+  color: #000000;
+}
+
 form {
   margin: 0px;
 }
@@ -88,6 +122,7 @@ a:hover {
 nav a:link, nav a:visited {
   color: #3366cc;
   outline: none;
+  text-shadow: 0 1px 0 #fff;
 }
 nav#tabs {
   width: 980px;
@@ -102,7 +137,7 @@ nav#tabs ul {
   color: #cccccc;
 }
 nav#tabs ul li {
-  color: green;
+  color: #222222;
   font-size: 9pt;
   text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);
   cursor: pointer;
@@ -211,16 +246,16 @@ header nav a:hover {
   background-color: #edf3fe;
 }
 #loadingIcon {
-  position: absolute;
   display: none;
+  position: absolute;
   right: -20px;
-  top: -30px;
+  top: -45px;
+  background-image: url(../images/loading2.gif);
+  width: 16px;
+  height: 16px;
 }
 .clear {
   clear: left;
-}
-.verticalPad {
-  margin-top: 10px;
 }
 
 /* settings area */
@@ -493,7 +528,6 @@ hr {
   border-radius: 6px;
   padding: 2em 1.5em;
   color: rgba(0,0,0,.8);
-  text-shadow: 0 1px 0 #fff;
   line-height: 1.5;
   margin: 60px auto;
   text-align: left;

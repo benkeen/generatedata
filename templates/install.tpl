@@ -6,14 +6,13 @@
   <meta name="description" content="GenerateData.com: free, GNU-licensed, random custom data generator for testing software" />
   <meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.1.custom.css" />
+  <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
   {literal}<noscript><style type="text/css">.hideNoJS { display: none; }</style></noscript>{/literal}
 </head>
 <body class="installPage">
   <header>
     <nav>
       <a href="http://www.generatedata.com">{$L.website}</a> |
-      <a href="http://www.generatedata.com/#donate">{$L.donate}</a> |
       <a href="http://forums.generatedata.com">{$L.forums}</a> <span class="hideNoJS">|</span>
       <span class="hideNoJS">{language_dropdown name_id="selectLanguage"}</span>
     </nav>
@@ -26,13 +25,19 @@
   </nav>
   <section>
     <div id="content" class="hideNoJS">
-<!--       <div id="loadingIcon"><img src="images/loading2.gif" width="16" height="16" /></div> -->
+      <div id="loadingIcon"></div>
       <div id="tab1Content" class="tabContent">
 
         <h1>{$L.installation}</h1>
         <p>
           {$L.installation_intro}
         </p>
+
+	    	<div id="installError">
+	    	  <div class="icon"></div>
+  				<h3>Uh-oh.</h3>
+	  			<span class="response"></span>
+	      </div>
 
         <h2>1. {$L.database_info}</h2>
         <form>
@@ -58,7 +63,7 @@
 	          </div>
 	          <div class="error" id="dbPassword_error"></div>
 	          <div class="field">
-	            <label>{$L.table_prefix}</label>
+	            <label for="tablePrefix">{$L.table_prefix}</label>
 	            <input type="text" id="tablePrefix" value="{$g_table_prefix}" maxlength="10" />
 	          </div>
 	          <div class="error" id="tablePrefix_error"></div>
@@ -74,7 +79,7 @@
 	        <h2>2. {$L.user_accounts}</h2>
 	        <div class="fields installForm">
 	          <div class="field">
-	            <label for="email">{$L.employ_user_accounts}</label>
+	            <label>{$L.employ_user_accounts}</label>
 	            <div class="radioGroup">
 	              <input type="radio" name="employUserAccounts" id="eua1" value="yes" />
 	                <label for="eua1">{$L.yes}</label>
@@ -138,20 +143,15 @@
           </div>
           <div>
             <label>{$L.employ_user_accounts}</label>
-            <div>
-              By default, the Data Generator saves all form configurations to a single location. If you enable this feature,
-              any time you want to save or load a test configuration you'll need to be logged in. This can be handy if the
-              script is going to be used by multiple people. The installation script lets you create a single user account,
-              but you can create more later on.
-            </div>
+            <div>{$L.employ_user_accounts_desc}</div>
           </div>
           <div>
             <label>{$L.email}</label>
-            <div>Your email address.</div>
+            <div>{$L.email_desc}</div>
           </div>
           <div>
             <label>{$L.password}</label>
-            <div>Your password. A default, random one is generated for your convenience.</div>
+            <div>{$L.password_desc}</div>
           </div>
         </div>
 
@@ -178,7 +178,7 @@
   </footer>
 
   <script src="scripts/jquery-1.7.2.min.js"></script>
-  <script src="scripts/jquery-ui-1.8.1.custom.min.js"></script>
+  <script src="scripts/jquery-ui-1.8.19.custom.min.js"></script>
   <script src="scripts/jquery.json-2.2.min.js"></script>
   <script src="scripts/lang.php"></script>
   <script src="scripts/general.js"></script>
