@@ -3,9 +3,10 @@
 /**
  * This handles all Ajax requests for the Data Generator Core.
  */
-session_start();
-header("Cache-Control: private, no-cache, must-revalidate");
 require_once(realpath(dirname(__FILE__) . "/../library.php"));
+header("Cache-Control: private, no-cache, must-revalidate");
+
+
 $request = array_merge($_POST, $_GET);
 $request = gd_clean_hash($request);
 
@@ -38,7 +39,6 @@ switch ($request["action"])
     break;
 
 	case "install":
-
 		// first, test the DB information
     list($success, $error) = gd_test_db_settings($request);
     if (!$success)
@@ -46,6 +46,11 @@ switch ($request["action"])
     	echo "{ \"success\": 0, \"error\": \"$error\" }";
     	exit;
     }
+
+    // second, populate the database with the Core + any modules
+
+    // third, create the settings.php file
+
 		break;
 
 	case "login":

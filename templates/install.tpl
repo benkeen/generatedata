@@ -174,7 +174,7 @@
   </section>
 
   <footer>
-    {$L.version} {$g_version} - <a href="https://github.com/benkeen/generatedata" target="_blank">github</a>
+    {$L.version} {$version} - <a href="https://github.com/benkeen/generatedata" target="_blank">github</a>
   </footer>
 
   <script src="scripts/jquery-1.7.2.min.js"></script>

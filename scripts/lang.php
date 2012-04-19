@@ -7,7 +7,7 @@ header("Content-type: application/x-javascript");
 require_once("../library.php");
 
 $lines = array();
-while (list($key, $value) = each($L))
+while (list($key, $value) = each(Core::$L))
 {
 	$lines[] = "\"$key\":\"" . addslashes($value) . "\"";
 }

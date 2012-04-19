@@ -1,11 +1,9 @@
 <?php
 
-session_start();
-header("Cache-control: private");
 require_once("library.php");
 
 // if it's not marked as having been installed, display the install instructions page
-if (!$settings_file_exists)
+if (!Core::$settingsFileExists)
 {
 	$query_string = (isset($_GET["source"]) && in_array($_GET["source"], array("fromerrorpage"))) ?
 	  "?source={$_GET["source"]}" : "";
@@ -22,4 +20,6 @@ $data_types = gd_get_data_types();
 
 $params = array();
 $params["data_types"] = $data_types;
-gd_display_page($params, "templates/index.tpl");
+Utils::displayPage($params, "templates/index.tpl");
+
+// Page object?

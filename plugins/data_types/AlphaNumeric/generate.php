@@ -1,5 +1,11 @@
 <?php
 
+class AlphaNumeric extends DataType
+{
+
+}
+
+
 // this lets the processor know that this data type relies on data defined in other fields. That
 // information is either hardcoded in the functions below, or passed via an option
 $AlphaNumeric_process_order = 1;

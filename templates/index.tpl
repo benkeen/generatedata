@@ -26,8 +26,7 @@
   </nav>
   <section>
     <div id="content">
-      <!--  TODO -->
-      <div id="loadingIcon"><img src="images/loading2.gif" width="16" height="16" /></div>
+      <div id="loadingIcon"></div>
       <div id="tab1Content" class="tabContent">
 
         {if $g_show_save_panel}
@@ -240,7 +239,7 @@ EOF;
   </section>
 
   <footer>
-    {$L.version} {$g_version} - <a href="https://github.com/benkeen/generatedata" target="_blank">github</a>
+    {$L.version} {$version} - <a href="https://github.com/benkeen/generatedata" target="_blank">github</a>
   </footer>
 
   <?php
