@@ -13,17 +13,20 @@ function smarty_function_language_dropdown($params, &$smarty)
 	$name_id = isset($params["name_id"]) ? $params["name_id"] : "";
 
 	$options = "";
-  while (list($file, $language) = each(Core::$translations))
+	$translations        = Core::getAvailableTranslations();
+	$currentLanguageFile = Core::getCurrentLanguageFile();
+	$L                   = Core::getCurrentLanguageStrings();
+
+  while (list($file, $language) = each($translations))
   {
     $value = preg_replace("/\.php$/", "", $file);
-    $selected = ($value == Core::$language) ? " selected" : "";
+    $selected = ($value == $currentLanguageFile) ? " selected" : "";
     $options .= "<option value=\"{$value}\"{$selected}>{$language}</option>\n";
   }
 
-  $please_select = Core::$L["select_language"];
   echo <<<END
     <select name="$name_id" id="$name_id">
-      <option value="">$please_select</option>
+      <option value="">{$L["select_language"]}</option>
       {$options}
     </select>
 END;

@@ -2,7 +2,6 @@ $(function() {
   $("input[name=resultType]").bind("click", function() { gd.changeResultType(this.value); });
   $("input[name=countryChoice\[\]]").bind("click", gd.updateCountryChoice);
   $(".deleteRowsBtn").bind("click", gd.deleteRows);
-  $("#selectLanguage").bind("change", g.changeLanguage);
   $("input[name=sql_statement_type]").bind("click", gd.changeStatementType);
   $("#xml_use_custom_format").bind("click", gd.toggleCustomXMLFormat);
   if ($("#xml_use_custom_format").attr("checked")) {

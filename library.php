@@ -10,16 +10,16 @@
  */
 
 require_once(dirname(__FILE__) . "/code/Account.class.php");
-//require_once(dirname(__FILE__) . "/code/countries.php");
+require_once(dirname(__FILE__) . "/code/AjaxRequest.class.php");
 require_once(dirname(__FILE__) . "/code/Core.class.php");
 require_once(dirname(__FILE__) . "/code/DataType.abstract.class.php");
 require_once(dirname(__FILE__) . "/code/Database.class.php");
 require_once(dirname(__FILE__) . "/code/DataTypes.class.php");
 require_once(dirname(__FILE__) . "/code/ExportTypes.class.php");
 require_once(dirname(__FILE__) . "/code/Installation.class.php");
+require_once(dirname(__FILE__) . "/code/SessionManager.class.php");
 require_once(dirname(__FILE__) . "/code/Translations.class.php");
 require_once(dirname(__FILE__) . "/code/smarty/Smarty.class.php");
 require_once(dirname(__FILE__) . "/code/Utils.class.php");
 
 Core::init();
-error_reporting(Core::$errorReporting);

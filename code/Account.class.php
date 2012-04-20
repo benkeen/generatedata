@@ -40,16 +40,16 @@ class Account
 
 
 	/**
-	 * Saves a form. TODO RENAME.
+	 * Saves a test data configuration.
 	 *
 	 * @param integer $account_id
 	 * @param string $form_name
 	 * @param string $form_content
 	 * @return string
 	 */
-	function saveForm($form_name, $form_content)
+	public function saveConfiguration($form_name, $form_content)
 	{
-	  global $g_table_prefix, $L;
+//	  global $g_table_prefix, $L;
 
 	  // find out if there's already a form with this name for this user
 	  $count_query = mysql_query("
@@ -84,7 +84,7 @@ class Account
 	}
 
 
-	function gd_load_form($form_id)
+	public function loadConfiguration($form_id)
 	{
 	  global $g_table_prefix;
 
@@ -119,7 +119,7 @@ class Account
 	}
 
 
-	function gd_delete_form($form_id)
+	public function deleteConfiguration($form_id)
 	{
 	  global $g_table_prefix;
 
@@ -154,7 +154,8 @@ class Account
 	}
 
 
-	function gd_get_forms($account_id)
+  // private? part of constructor?
+	public function getConfigurations($account_id)
 	{
 	  global $g_table_prefix;
 
@@ -173,11 +174,10 @@ class Account
 	}
 
 
-	function update_total_row_count($account_id, $num_rows)
+	public function updateTotalRowCount($num_rows)
 	{
-	  global $g_table_prefix;
-
-	  $link = db_connect();
+	  //global $g_table_prefix;
+	  //$link = db_connect();
 
 	  // Ben, surely there's a way to do this in a single query...
 	  $select_query = mysql_query("
@@ -197,6 +197,6 @@ class Account
 	    WHERE  account_id = $account_id
 	      ");
 
-	  db_disconnect($link);
+//	  db_disconnect($link);
 	}
 }

@@ -9,6 +9,7 @@ $(function() {
       g.selectTab(tabNum);
     });
   });
+  $("#selectLanguage").bind("change", g.changeLanguage);
 });
 
 

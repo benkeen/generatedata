@@ -166,14 +166,15 @@ class Utils
 	  }
 
 	  // check that the user is running PHP 5 - TODO
-	  Core::$smarty->assign("L", Core::$L);
+	  Core::$smarty->assign("L", Core::getCurrentLanguageStrings());
 	  //Core::$smarty->assign("SESSION", $_SESSION["gd"]);
-	  Core::$smarty->assign("version", Core::$version);
+	  Core::$smarty->assign("version", Core::getVersion());
 	  Core::$smarty->assign("samePage", Utils::getCleanPhpSelf());
-	  Core::$smarty->assign("dbTablePrefix", Core::$dbTablePrefix);
+	  Core::$smarty->assign("dbTablePrefix", Core::getDbTablePrefix());
 	  Core::$smarty->assign("query_string", $_SERVER["QUERY_STRING"]);
-	  Core::$smarty->assign("g_success", $g_success);
-	  Core::$smarty->assign("g_message", $g_message);
+
+	  //Core::$smarty->assign("g_success", $g_success);
+	  //Core::$smarty->assign("g_message", $g_message);
 
 	  // now add the custom variables for this template, as defined in $page_vars
 	  foreach ($pageVars as $key=>$value)
