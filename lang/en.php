@@ -134,3 +134,5 @@ $L["validation_no_email"] = "Please enter your email address.";
 $L["validation_no_password"] = "Please enter your password.";
 $L["install_invalid_db_info"] = "We were unable to connect to the database using the information you supplied. The error message the database returned is: <i>{\$db_connection_error}</i>";
 $L["install_no_db_connection"] = "Please check your database name and login information. Although we were able to connect to the database host, we could not connect to the database. The error message the database returned is: <i>{\$db_select_error}</i>";
+
+//print_r($L);

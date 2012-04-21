@@ -14,7 +14,7 @@
     <nav>
       <a href="http://www.generatedata.com">{$L.website}</a> |
       <a href="http://forums.generatedata.com">{$L.forums}</a> <span class="hideNoJS">|</span>
-      <span class="hideNoJS">{language_dropdown name_id="selectLanguage"}</span>
+      <span class="hideNoJS">{language_dropdown nameId="selectLanguage"}</span>
     </nav>
   </header>
   <nav id="tabs">
@@ -64,7 +64,7 @@
 	          <div class="error" id="dbPassword_error"></div>
 	          <div class="field">
 	            <label for="tablePrefix">{$L.table_prefix}</label>
-	            <input type="text" id="tablePrefix" value="{$g_table_prefix}" maxlength="10" />
+	            <input type="text" id="tablePrefix" value="{$dbTablePrefix}" maxlength="10" />
 	          </div>
 	          <div class="error" id="tablePrefix_error"></div>
 	          <div class="field">

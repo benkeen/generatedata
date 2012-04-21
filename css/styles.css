@@ -590,9 +590,10 @@ body.error_page #box {
 	width: inherit;
 	float: left;
 }
-.installPage .fields .disabledRow label {
+.installPage .fields .disabledRow label, .installPage .fields .disabledRow input {
   color: #cccccc;
 }
+
 .installPage .fields label {
   float: left;
   width: 160px;
@@ -624,7 +625,6 @@ body.error_page #box {
   float: right;
   width: 770px;
 }
-
 
 .fields {
   line-height: 21px;

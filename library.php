@@ -9,17 +9,18 @@
  * automatically by the installation script.
  */
 
-require_once(dirname(__FILE__) . "/code/Account.class.php");
-require_once(dirname(__FILE__) . "/code/AjaxRequest.class.php");
-require_once(dirname(__FILE__) . "/code/Core.class.php");
-require_once(dirname(__FILE__) . "/code/DataType.abstract.class.php");
-require_once(dirname(__FILE__) . "/code/Database.class.php");
-require_once(dirname(__FILE__) . "/code/DataTypes.class.php");
-require_once(dirname(__FILE__) . "/code/ExportTypes.class.php");
-require_once(dirname(__FILE__) . "/code/Installation.class.php");
-require_once(dirname(__FILE__) . "/code/SessionManager.class.php");
-require_once(dirname(__FILE__) . "/code/Translations.class.php");
-require_once(dirname(__FILE__) . "/code/smarty/Smarty.class.php");
-require_once(dirname(__FILE__) . "/code/Utils.class.php");
+require_once(dirname(__FILE__) . "/classes/Account.class.php");
+require_once(dirname(__FILE__) . "/classes/AjaxRequest.class.php");
+require_once(dirname(__FILE__) . "/classes/Core.class.php");
+require_once(dirname(__FILE__) . "/classes/DataType.abstract.class.php");
+require_once(dirname(__FILE__) . "/classes/Database.class.php");
+require_once(dirname(__FILE__) . "/classes/DataTypes.class.php");
+require_once(dirname(__FILE__) . "/classes/ExportTypes.class.php");
+require_once(dirname(__FILE__) . "/classes/Installation.class.php");
+require_once(dirname(__FILE__) . "/classes/Language.class.php");
+require_once(dirname(__FILE__) . "/classes/SessionManager.class.php");
+require_once(dirname(__FILE__) . "/classes/Translations.class.php");
+require_once(dirname(__FILE__) . "/classes/Utils.class.php");
+require_once(dirname(__FILE__) . "/smarty/Smarty.class.php");
 
 Core::init();
