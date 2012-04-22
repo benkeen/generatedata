@@ -185,7 +185,7 @@ nav#tabs ul li:hover {
 }
 footer {
   width: 980px;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   height: 20px;
   font-size: 7pt;
   background-color: #ffffff;
@@ -200,7 +200,6 @@ footer {
   -webkit-box-shadow: 2px 4px 5px #666666;
   display: block;
 }
-
 footer a:link, footer a:visited {
   color: #555555;
   text-decoration: none;

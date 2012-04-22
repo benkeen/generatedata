@@ -71,7 +71,7 @@ installNs.submit = function() {
 
   g.startProcessing();
   $.ajax({
-    url: "code/ajax.php",
+    url: "ajax.php",
     type: "POST",
     dataType: "json",
     data: {

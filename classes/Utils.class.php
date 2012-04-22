@@ -27,6 +27,51 @@ class Utils
     return $cleanHash;
   }
 
+  /**
+   * A generic assertion function used to confirm the existence of things like the existence of values in $_POST,
+   * $_GET,
+   *
+   * @param array $statements
+   */
+  public static function assert($statements)
+  {
+    $passed = true;
+    if (!empty($statements))
+    {
+    	foreach ($statements as $group)
+    	{
+    		switch ($group)
+    		{
+      		case "logged_in":
+	          if (empty(Core::$user))
+	          {
+			  			throw new Exception("not_logged_in");
+				  		return;
+	          }
+    	  		break;
+
+      		case "post":
+      		case "get":
+      			break;
+    		}
+
+/*
+        if (!isset($post["form_id"]) || empty($post["form_id"]))
+        {
+					throw new Exception("Not logged in", "not_logged_in");
+					return;
+        }
+        if (!is_numeric($post["form_id"]))
+        {
+					throw new Exception("Invalid form ID.", "");
+					return;
+        }
+*/
+    	}
+    }
+
+    return $passed;
+  }
 
   /**
    * Recursively sanitizes data stored in any non-object data format, preparing it
@@ -152,8 +197,6 @@ class Utils
 	 */
 	static function displayPage($template, $pageVars)
 	{
-	  global $g_success, $g_message;
-
 	  // common variables. These are sent to EVERY templates
 	  Core::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates");
 	  Core::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
@@ -165,7 +208,16 @@ class Utils
 	    exit;
 	  }
 
-	  // check that the user is running PHP 5 - TODO
+	  // check that the user is running PHP 5.2 or later. This is needed for json_encode and json_decode and
+	  // for Smarty 3
+	  $minimumPHPVersion = Core::getMinimumPHPVersion();
+	  $currentVersion = PHP_VERSION;
+    if (version_compare($currentVersion, $minimumPHPVersion) < 0)
+    {
+	    Utils::displaySeriousError("Sorry, you need to be running PHP <b>$minimumPHPVersion</b> or later. You're currently running <b>$currentVersion</b>.");
+	    exit;
+    }
+
 	  Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
 	  //Core::$smarty->assign("SESSION", $_SESSION["gd"]);
 	  Core::$smarty->assign("version", Core::getVersion());
@@ -173,15 +225,11 @@ class Utils
 	  Core::$smarty->assign("dbTablePrefix", Core::getDbTablePrefix());
 	  Core::$smarty->assign("query_string", $_SERVER["QUERY_STRING"]);
 
-	  //Core::$smarty->assign("g_success", $g_success);
-	  //Core::$smarty->assign("g_message", $g_message);
-
 	  // now add the custom variables for this template, as defined in $page_vars
 	  foreach ($pageVars as $key=>$value)
 	    Core::$smarty->assign($key, $value);
 
 	  Core::$smarty->display(realpath(dirname(__FILE__) . "/../$template"));
-
 	  //gd_db_disconnect($g_link);
 	}
 
@@ -484,4 +532,18 @@ END;
 
 	  return $final_xml;
 	}
+
+
+	public function maybeShowInstallationPage()
+	{
+		if (!Core::checkSettingsFileExists())
+		{
+			$query_string = (isset($_GET["source"]) && in_array($_GET["source"], array("fromerrorpage"))) ?
+			  "?source={$_GET["source"]}" : "";
+
+		  header("location: install.php{$query_string}");
+		  exit;
+		}
+	}
+
 }

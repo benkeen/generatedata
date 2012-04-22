@@ -5,10 +5,20 @@
 $(function() {
   $("#tabs ul li").each(function() {
     var tabNum = parseInt($(this).attr("id").replace(/^tab/, ""), 10);
-    $(this).bind("click", function() {
+    $(this).bind("click", function(e, a) {
       g.selectTab(tabNum);
+      window.location = window.location.href.split("#")[0] + "#t" + tabNum;
     });
   });
+  // if the page was just reloaded, see if we need to display a particular tab
+  if (window.location.href.match(/#/)) {
+    var tabNum = window.location.href.split("#")[1].replace(/^t/, "");
+    if (g.isNumber(tabNum) && tabNum >= 1 && tabNum <= $("#tabs ul li").length) {
+      g.selectTab(tabNum);
+      g.currentTab = tabNum;
+    }
+  }
+
   $("#selectLanguage").bind("change", g.changeLanguage);
 });
 
@@ -32,11 +42,12 @@ var g = {
     return false;
   },
 
-  // TODO: should temporarily save form settings in memory when switching between languages
+  // TODO: should temporarily save form settings in memory when switching between languages; or at least prompt the
+  // user to let them know they're going to lose any changes unless they do it manually
   changeLanguage: function() {
     var lang_file = $("#selectLanguage").val();
     if (lang_file != "") {
-      window.location = "?lang=" + lang_file;
+      window.location = "?lang=" + lang_file + "#t" + g.currentTab;
     }
   },
 
@@ -109,8 +120,12 @@ var g = {
     }
 
     gd.messageVisible = true;
-    },
+  },
 
+
+  isNumber: function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  },
 
 
   /*

@@ -10,6 +10,13 @@ class AjaxRequest
 	private $action;
   private $response;
 
+
+  /**
+   * AjaxRequest objects are automatically processed when they are created, based on the unique $action
+   * value. The result of the call is stored in $response to be handled however you need (e.g. output
+   * as JSON, XML etc) - or an Exception is thrown if something went wrong. Exception are used SOLELY for
+   * program errors: not for user-entry errors.
+   */
   public function __construct($action, $post = array())
   {
 		if (empty($action))
@@ -35,24 +42,6 @@ class AjaxRequest
         $this->response = Core::$user->loadConfiguration($post["form_id"]);
 				break;
 
-/*
-        if (empty(Core::$user))
-        {
-					throw new Exception("Not logged in", "not_logged_in");
-					return;
-        }
-        if (!isset($post["form_id"]) || empty($post["form_id"]))
-        {
-					throw new Exception("Not logged in", "not_logged_in");
-					return;
-        }
-        if (!is_numeric($post["form_id"]))
-        {
-					throw new Exception("Invalid form ID.", "");
-					return;
-        }
-*/
-
 			case "saveConfiguration":
 //				$account_id   = $_SESSION["account_id"];
 //				$form_name    = addslashes($request["form_name"]);
@@ -69,14 +58,34 @@ class AjaxRequest
 		    break;
 
 			case "install":
+        try
+        {
+          $assertions = array(
+            "no_settings_file" => true,
+            "post" => array(
+              "required" => array("dbHostname", "dbName", "dbUsername", "employUserAccounts")
+            )
+          );
+        	Utils::assert($assertions);
+        }
+        catch (Exception $e)
+        {
+        	return;
+        }
 
-				// first, test the DB information
-		    list($success, $error) = gd_test_db_settings($request);
-		    if (!$success)
-		    {
-		    	echo "{ \"success\": 0, \"error\": \"$error\" }";
-		    	exit;
-		    }
+echo "okay!";
+exit;
+
+			    list($success, $error) = gd_test_db_settings($request);
+			    if (!$success)
+			    {
+			    	echo "{ \"success\": 0, \"error\": \"$error\" }";
+			    	exit;
+			    }
+
+
+        //$this->response = Core::$user->loadConfiguration($post["form_id"]);
+
 
 		    // second, populate the database with the Core + any modules
 

@@ -3,8 +3,11 @@
 /**
  * This handles all Ajax requests for the Data Generator Core.
  */
-require_once("code/library.php");
-header("Cache-Control: private, no-cache, must-revalidate");
+require_once(realpath(dirname(__FILE__) . "/library.php"));
+
+// sessions needed here AFTER installation, to get access to $user [or should it be passed &
+// validated with all requests?]
+//header("Cache-Control: private, no-cache, must-revalidate");
 
 try
 {
@@ -13,6 +16,7 @@ try
 }
 catch (Exception $e)
 {
-  Utils::generateJSON($e->message);
+	echo "!";
+//  Utils::generateJSON($e->message);
   exit;
 }

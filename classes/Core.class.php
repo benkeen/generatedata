@@ -6,6 +6,10 @@
  * various general vars and data for the script, including the main Smarty object, custom settings from the user's
  * settings.php file. Basically, this class is used instead of the global namespace to store info needed throughout
  * the code.
+ *
+ * init() initializes the bare minimum needed for (for example) the installation page. After the script is installed,
+ * to initialize the database, sessions, Data Type info etc., just run the ... ??? [either param to init() or separate
+ * function/functions to populate more info in Core].
  */
 class Core
 {
@@ -19,18 +23,20 @@ class Core
   private static $maxGeneratedRows = 100000;
   private static $defaultNumRows = 100;
 	private static $defaultLanguageFile = "en";
+  private static $dataTypeGroups = array("human_data", "text", "other");
 
   // non-overidable settings
 	private static $version = "3.0.0";
+	private static $minimumPHPVersion = '5.2.0';
 	private static $settingsFileExists = false;
-  private static $dataTypeGroups = array("human_data", "text", "other");
-	private static $translations;
-  private static $language;
-  private static $db;
-  private static $user; // the current logged in user
 
-  // can't be private! Or if so, we have to provide additional getters + settings, which seems awfully klutzy...
+  // Hmm.... I like these being public for the simplicity of the calling syntax [Core::$language->smarty->doStuff()]
+  // but it seems poorly designed. Maybe run this by Julius if no solution presents itself.
   public static $smarty;
+  public static $language;
+  public static $translations;
+  public static $user; // the current logged in user
+  public static $db;
 
 
   public static function init()
@@ -63,14 +69,6 @@ class Core
 		}
 
     error_reporting(self::$errorReporting);
-
-/*
-    if (self::$settingsFileExists)
-    {
-      $db = new Database(self::$dbHostname, self::$dbName, self::$dbUsername, self::$dbPassword);
-      SessionManager();
-    }
-*/
 
     self::$translations = new Translations();
     self::$language     = new Language();
@@ -121,23 +119,18 @@ class Core
   	return self::$settingsFileExists;
   }
 
-  public function getCurrentLanguageFile()
-  {
-  	return self::$currentLanguageFile;
-  }
-
   public function getDefaultLanguageFile()
   {
   	return self::$defaultLanguageFile;
   }
 
-  public function getAvailableTranslations()
-  {
-  	return self::$availableTranslations;
-  }
-
   public function getDataTypeGroups()
   {
   	return self::$dataTypeGroups;
+  }
+
+  public function getMinimumPHPVersion()
+  {
+  	return self::$minimumPHPVersion;
   }
 }
