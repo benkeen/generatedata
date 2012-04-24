@@ -1,15 +1,13 @@
 <?php
 
 
-class ExportTypes
-{
-	public function getExportTypes()
-	{
+class ExportTypes {
+
+	public function getExportTypes() {
 
 	}
 
-	public function getExportTypeSettings()
-	{
+	public function getExportTypeSettings() {
 
 	}
 }

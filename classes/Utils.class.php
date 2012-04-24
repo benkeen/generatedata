@@ -4,19 +4,14 @@
 /**
  * Utility functions for use throughout the script.
  */
-class Utils
-{
-  public static function cleanHash($hash)
-  {
+class Utils {
+  public static function cleanHash($hash) {
     $cleanHash = $hash;
-    if (get_magic_quotes_gpc())
-    {
-      while (list($key, $value) = each($hash))
-      {
-        if (!is_array($value))
+    if (get_magic_quotes_gpc()) {
+      while (list($key, $value) = each($hash)) {
+        if (!is_array($value)) {
           $cleanHash[$key] = stripslashes($value);
-        else
-        {
+        } else {
           $cleanArray = array();
           foreach ($value as $val)
             $cleanArray[] = stripslashes($val);
@@ -27,33 +22,44 @@ class Utils
     return $cleanHash;
   }
 
+
   /**
    * A generic assertion function used to confirm the existence of things like the existence of values in $_POST,
-   * $_GET,
+   * $_GET, $_SESSIONS, whether the user is logged in and so on
    *
    * @param array $statements
    */
-  public static function assert($statements)
-  {
+  public static function assert($statements) {
     $passed = true;
-    if (!empty($statements))
-    {
-    	foreach ($statements as $group)
-    	{
-    		switch ($group)
-    		{
-      		case "logged_in":
-	          if (empty(Core::$user))
-	          {
-			  			throw new Exception("not_logged_in");
-				  		return;
-	          }
-    	  		break;
+    if (empty($statements)) {
+      return $passed;
+    }
 
-      		case "post":
-      		case "get":
-      			break;
-    		}
+/*    $assertions = array(
+            "post" => array(
+              "required" => array("dbHostname", "dbName", "dbUsername", "employUserAccounts")
+            )
+          );*/
+
+   	foreach ($statements as $group) {
+   		switch ($group) {
+     		case "logged_in":
+          if (empty(Core::$user)) {
+		  			throw new Exception("not_logged_in");
+			  		return;
+          }
+   	  		break;
+
+     		case "no_settings_file":
+     			$settingsFileAndPath = realpath(dirname(__FILE__) . "/../settings.php");
+     			$settingsFileExists = file_exists($settingsFileAndPath);
+          return ($group === true) ? !$settingsFileExists : $settingsFileExists;
+   	  	  break;
+
+     		case "post":
+     		case "get":
+     			break;
+   		}
 
 /*
         if (!isset($post["form_id"]) || empty($post["form_id"]))
@@ -68,7 +74,6 @@ class Utils
         }
 */
     	}
-    }
 
     return $passed;
   }
@@ -77,18 +82,16 @@ class Utils
    * Recursively sanitizes data stored in any non-object data format, preparing it
    * for safe use in SQL statements.
    */
-  public static function sanitize($input)
-  {
-    if (is_array($input))
-    {
+  public static function sanitize($input) {
+    if (is_array($input)) {
       $output = array();
-      foreach ($input as $k=>$i)
+      foreach ($input as $k=>$i) {
         $output[$k] = self::sanitize($i);
-    }
-    else
-    {
-      if (get_magic_quotes_gpc())
+      }
+    } else {
+      if (get_magic_quotes_gpc()) {
         $output = stripslashes($input);
+      }
     }
 
     return $output;
@@ -101,12 +104,11 @@ class Utils
 	 * @param array $set - the set of items
 	 * @param integer $num - the number of items in the set to return
 	 */
-	public static function returnRandomSubset($set, $num)
-	{
+	public static function returnRandomSubset($set, $num) {
 	  // check $num is no greater than the total set
-	  if ($num > count($set))
+	  if ($num > count($set)) {
 	    $num = count($set);
-
+	  }
 	  shuffle($set);
 	  return array_slice($set, 0, $num);
 	}
@@ -115,8 +117,7 @@ class Utils
 	/**
 	 * Converts a datetime to a timestamp.
 	 */
-	public static function convertDatetimeToTimestamp($datetime)
-	{
+	public static function convertDatetimeToTimestamp($datetime) {
 	  list($date, $time) = explode(" ", $datetime);
 	  list($year, $month, $day) = explode("-", $date);
 	  list($hours, $minutes, $seconds) = explode(":", $time);
@@ -127,8 +128,7 @@ class Utils
 	/**
 	 * Adds years to a MySQL datetime & returns a UNIX timestamp of the new date
 	 */
-	public static function addYearsToDatetime($datetime, $yearsToAdd)
-	{
+	public static function addYearsToDatetime($datetime, $yearsToAdd) {
 	  list($date, $time) = explode(" ", $datetime);
 	  list($year, $month, $day) = explode("-", $date);
 	  list($hours, $minutes, $seconds) = explode(":", $time);
@@ -143,11 +143,11 @@ class Utils
 	 * @param mixed $key
 	 * @return array
 	 */
-	public static function arraySort($array, $key)
-	{
+	public static function arraySort($array, $key) {
 	  $sortValues = array();
-	  for ($i=0; $i<sizeof($array); $i++)
+	  for ($i=0; $i<sizeof($array); $i++) {
 	    $sortValues[$i] = $array[$i][$key];
+	  }
 
 	  asort($sortValues);
 	  reset($sortValues);
@@ -164,15 +164,14 @@ class Utils
 	 * @param array $weights
 	 * @return integer
 	 */
-	public static function weightedRand($weights)
-	{
+	public static function weightedRand($weights) {
 	  $r = mt_rand(1, 1000);
 	  $offset = 0;
-	  foreach ($weights as $k => $w)
-	  {
+	  foreach ($weights as $k => $w) {
 	    $offset += $w * 1000;
-	    if ($r <= $offset)
+	    if ($r <= $offset) {
 	      return $k;
+	    }
 	  }
 	}
 
@@ -183,8 +182,7 @@ class Utils
 	 *
 	 * @return the cleaned $_SERVER["PHP_SELF"]
 	 */
-	public static function getCleanPhpSelf()
-	{
+	public static function getCleanPhpSelf() {
 	  return htmlspecialchars(strip_tags($_SERVER['PHP_SELF']), ENT_QUOTES);
 	}
 
@@ -195,15 +193,13 @@ class Utils
 	 * @param string $template
 	 * @param array $params
 	 */
-	static function displayPage($template, $pageVars)
-	{
+	static function displayPage($template, $pageVars) {
 	  // common variables. These are sent to EVERY templates
 	  Core::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates");
 	  Core::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
 
 	  // check the compile directory has the write permissions
-	  if (!is_writable(Core::$smarty->compile_dir))
-	  {
+	  if (!is_writable(Core::$smarty->compile_dir)) {
 	    Utils::displaySeriousError("The <b>/cache</b> folder isn't writable. This folder is used by Smarty to generate temporary files for speedy page loads. You'll need to update that folder's permissions to allow read and write permissions (777 on unix/mac).");
 	    exit;
 	  }
@@ -212,8 +208,7 @@ class Utils
 	  // for Smarty 3
 	  $minimumPHPVersion = Core::getMinimumPHPVersion();
 	  $currentVersion = PHP_VERSION;
-    if (version_compare($currentVersion, $minimumPHPVersion) < 0)
-    {
+    if (version_compare($currentVersion, $minimumPHPVersion) < 0) {
 	    Utils::displaySeriousError("Sorry, you need to be running PHP <b>$minimumPHPVersion</b> or later. You're currently running <b>$currentVersion</b>.");
 	    exit;
     }
@@ -243,11 +238,9 @@ class Utils
 	 *
 	 * @param string $error
 	 */
-	static function displaySeriousError($error)
-	{
+	static function displaySeriousError($error) {
 	  $not_fixed_message = "";
-	  if (isset($_GET["source"]))
-	  {
+	  if (isset($_GET["source"])) {
 	    $not_fixed_message = "<div id=\"not_fixed\">Nope, ain't fixed yet. Try again.</div>";
 	  }
 
@@ -275,8 +268,8 @@ class Utils
 END;
   }
 
-	function evalSmartyString($placeholderStr, $placeholders)
-	{
+
+	function evalSmartyString($placeholderStr, $placeholders) {
 	  global $g_smarty;
 
 	  $smarty = new Smarty();
@@ -284,10 +277,10 @@ END;
 	  $smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
 
 	  $smarty->assign("eval_str", $placeholderStr);
-	  if (!empty($placeholders))
-	  {
-	    while (list($key, $value) = each($placeholders))
+	  if (!empty($placeholders)) {
+	    while (list($key, $value) = each($placeholders)) {
 	      $smarty->assign($key, $value);
+	    }
 	  }
 
 	  return $smarty->fetch("eval.tpl");
@@ -303,8 +296,7 @@ END;
 	 *     x       - 0-9
 	 *     H       - 0-F
 	 */
-	static public function generateRandomAlphanumericStr($str)
-	{
+	static public function generateRandomAlphanumericStr($str) {
 	  $letters    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	  $consonants = "BCDFGHJKLMNPQRSTVWXYZ";
 	  $vowels     = "AEIOU";
@@ -313,10 +305,8 @@ END;
 	  // loop through each character and convert all unescaped X's to 1-9 and
 	  // unescaped x's to 0-9.
 	  $new_str = "";
-	  for ($i=0; $i<strlen($str); $i++)
-	  {
-	    switch ($str[$i])
-	    {
+	  for ($i=0; $i<strlen($str); $i++) {
+	    switch ($str[$i]) {
 	      // Numbers
 	      case "X": $new_str .= rand(1,9);  break;
 	      case "x": $new_str .= rand(0,9);  break;
@@ -372,8 +362,7 @@ END;
 	 * Returns an array of lorem ipsum words. Assumes that a file exists in a misc/ subfolder called
 	 * loremipsum.txt, containing lorem ipsum text.
 	 */
-	function gd_get_lipsum()
-	{
+	function gd_get_lipsum() {
 		global $g_table_prefix;
 
 		// grab all the words in the text files & put them in an array (1 word per index)
@@ -387,10 +376,9 @@ END;
 
 
 	/**
-	 * Returns an array of cities
+	 * Returns an array of cities. TODO move
 	 */
-	function gd_get_cities()
-	{
+	function gd_get_cities() {
 	  global $g_table_prefix;
 
 	  $query = mysql_query("
@@ -414,22 +402,24 @@ END;
 	 * @param integer $min     - the minimum # of words to return OR the total number
 	 * @param integer $max     - the max # of words to return (or null for "fixed" type)
 	 */
-	function gd_generate_random_text_str($words, $starts_with_lipsum, $type, $min, $max = "")
-	{
+	public function generateRandomTextStr($words, $starts_with_lipsum, $type, $min, $max = "") {
 	  // determine the number of words to return
 	  $index = 0;
-	  if      ($type == "fixed")
+	  if      ($type == "fixed") {
 	    $num_words = $min;
-	  else if ($type == "range")
+	  } else if ($type == "range") {
 	    $num_words = rand($min, $max);
+	  }
 
-	  if ($num_words > count($words))
+	  if ($num_words > count($words)) {
 	    $num_words = count($words);
+	  }
 
 	  // determine the offset
 	  $offset = 0;
-	  if (!$starts_with_lipsum)
+	  if (!$starts_with_lipsum) {
 	    $offset = rand(2, count($words) - ($num_words + 1));
+	  }
 
 	  $word_array = array_slice($words, $offset, $num_words);
 
@@ -440,29 +430,28 @@ END;
 	/**
 	 * Converts all x's and X's in a string with a random digit. X's: 1-9, x's: 0-9.
 	 */
-	function gd_generate_random_num_str($str)
-	{
+	public function generateRandomNumStr($str) {
 	  // loop through each character and convert all unescaped X's to 1-9 and
 	  // unescaped x's to 0-9.
 	  $new_str = "";
-	  for ($i=0; $i<strlen($str); $i++)
-	  {
-	    if      ($str[$i] == '\\' && ($str[$i+1] == "X" || $str[$i+1] == "x"))
+	  for ($i=0; $i<strlen($str); $i++) {
+	    if ($str[$i] == '\\' && ($str[$i+1] == "X" || $str[$i+1] == "x")) {
 	      continue;
-	    else if ($str[$i] == "X")
-	    {
-	      if ($i != 0 && ($str[$i-1] == '\\'))
+	    } else if ($str[$i] == "X") {
+	      if ($i != 0 && ($str[$i-1] == '\\')) {
 	        $new_str .= "X";
-	      else
+	      } else {
 	        $new_str .= rand(1,9);
-	    }
-	    else if ($str[$i] == "x")
-	      if ($i != 0 && ($str[$i-1] == '\\'))
+	      }
+	    } else if ($str[$i] == "x") {
+	      if ($i != 0 && ($str[$i-1] == '\\')) {
 	        $new_str .= "x";
-	      else
+	      } else {
 	        $new_str .= rand(0,9);
-	    else
+	      }
+	    } else {
 	      $new_str .= $str[$i];
+	    }
 	  }
 
 	  return trim($new_str);
@@ -476,8 +465,7 @@ END;
 	 * @param array $g_template
 	 * @param integer $num_rows
 	 */
-	function gd_generate_custom_xml($custom_xml_structure, $g_template, $num_rows)
-	{
+	public function generateCustomXML($custom_xml_structure, $g_template, $num_rows) {
 	  global $L;
 
 	  $xml = "";
@@ -487,8 +475,7 @@ END;
 	  // insensitive
 	  preg_match("/(.*)\{records\}(.*)\{\/records\}(.*)/is", $custom_xml_structure, $matches);
 
-	  if (count($matches) < 2)
-	  {
+	  if (count($matches) < 2) {
 	  	echo "<error>{$L["invalid_custom_xml"]}</error>";
 	  	return;
 	  }
@@ -499,29 +486,26 @@ END;
 
 	  // now loop through the {records} and replace the appropriate placeholders with their rows
 	  $xml_rows = "";
-	  for ($row=1; $row<=$num_rows; $row++)
-	  {
+	  for ($row=1; $row<=$num_rows; $row++) {
 	    $placeholders = array();
-	    while (list($order, $data_types) = each($g_template))
-	    {
-	      foreach ($data_types as $data_type)
-	      {
+	    while (list($order, $data_types) = each($g_template)) {
+	      foreach ($data_types as $data_type) {
 	        $order = $data_type["column_num"];
 	        $data_type_folder = $data_type["data_type_folder"];
 	        $data_type_func = "{$data_type_folder}_generate_item";
 	        $data_type["random_data"] = $data_type_func($row, $data_type["options"], $row_data);
 
-	        if (is_array($data_type["random_data"]))
+	        if (is_array($data_type["random_data"])) {
 	          $placeholders["ROW{$order}"] = $data_type["random_data"]["display"];
-	        else
+	        } else {
 	          $placeholders["ROW{$order}"] = $data_type["random_data"];
+	        }
 	      }
 	    }
 	    reset($g_template);
 
 	    $row_markup_copy = $row_markup;
-	    while (list($placeholder, $value) = each($placeholders))
-	    {
+	    while (list($placeholder, $value) = each($placeholders)) {
 	      $row_markup_copy = preg_replace("/\{$placeholder\}/", $value, $row_markup_copy);
 	    }
 
@@ -534,10 +518,8 @@ END;
 	}
 
 
-	public function maybeShowInstallationPage()
-	{
-		if (!Core::checkSettingsFileExists())
-		{
+	public function maybeShowInstallationPage() {
+		if (!Core::checkSettingsFileExists()) {
 			$query_string = (isset($_GET["source"]) && in_array($_GET["source"], array("fromerrorpage"))) ?
 			  "?source={$_GET["source"]}" : "";
 
@@ -545,5 +527,4 @@ END;
 		  exit;
 		}
 	}
-
 }

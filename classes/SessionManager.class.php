@@ -1,10 +1,9 @@
 <?php
 
 
-class SessionManager
-{
-  function __construct()
-  {
+class SessionManager {
+
+  function __construct() {
     $this->db_link = Core::getDBLink();
 
     // register this object as the session handler
@@ -18,20 +17,17 @@ class SessionManager
     );
   }
 
-  function open($save_path, $session_name)
-  {
+  function open($save_path, $session_name) {
     global $sess_save_path; // TODO?
     $sess_save_path = $save_path;
     return true;
   }
 
-  function close()
-  {
+  function close() {
     return true;
   }
 
-  function read($id)
-  {
+  function read($id) {
     $data = "";
 
     // fetch session data from the selected database
@@ -43,8 +39,7 @@ class SessionManager
     $rs = mysql_query($sql, $this->db_link);
     $a  = mysql_num_rows($rs);
 
-    if ($a > 0)
-    {
+    if ($a > 0) {
       $row = mysql_fetch_assoc($rs);
       $data = $row["session_data"];
     }
@@ -53,15 +48,15 @@ class SessionManager
   }
 
   // this is only executed until after the output stream has been closed
-  function write($id, $data)
-  {
+  function write($id, $data) {
     global $g_table_prefix, $g_api_sessions_timeout;
 
     $life_time = 3600;
-    if (isset($_SESSION["ft"]["account"]["sessions_timeout"]))
+    if (isset($_SESSION["ft"]["account"]["sessions_timeout"])) {
       $life_time = $_SESSION["ft"]["account"]["sessions_timeout"] * 60;
-    else
+    } else {
       $life_time = $g_api_sessions_timeout;
+    }
 
     $time = time() + $life_time;
 
@@ -74,8 +69,7 @@ class SessionManager
     return true;
   }
 
-  function destroy($id)
-  {
+  function destroy($id) {
     $newid = mysql_real_escape_string($id);
     $sql = "DELETE FROM {$g_table_prefix}sessions WHERE session_id = '$newid'";
 
@@ -83,8 +77,7 @@ class SessionManager
     return true;
   }
 
-  function gc()
-  {
+  function gc() {
     // delete all records who have passed the expiration time
     $sql = "DELETE FROM {$g_table_prefix}sessions WHERE expires < UNIX_TIMESTAMP()";
     mysql_query($sql);

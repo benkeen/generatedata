@@ -11,8 +11,7 @@
  * to initialize the database, sessions, Data Type info etc., just run the ... ??? [either param to init() or separate
  * function/functions to populate more info in Core].
  */
-class Core
-{
+class Core {
   // overridable settings that the user may define in settings.php
   private static $dbHostname;
 	private static $dbName;
@@ -39,98 +38,91 @@ class Core
   public static $db;
 
 
-  public static function init()
-  {
+  public static function init() {
   	// instantiate our all-purpose Smarty object
     self::$smarty = new Smarty();
 
   	// find out if the settings file is defined and override the default properties
   	$settingsFilePath = realpath(dirname(__FILE__) . "/../settings.php");
   	$defaultLanguage = "";
-		if (file_exists($settingsFilePath))
-		{
+		if (file_exists($settingsFilePath)) {
 			self::$settingsFileExists = true;
 		  require_once($settingsFilePath); // boy I don't like this!
 
-		  if (isset($errorReporting))
+		  if (isset($errorReporting)) {
 		    self::$errorReporting = $errorReporting;
-		  if (isset($dbHostname))
+		  }
+		  if (isset($dbHostname)) {
 		    self::$dbHostname = $dbHostname;
-		  if (isset($dbName))
+		  }
+		  if (isset($dbName)) {
 		    self::$dbName = $dbName;
-		  if (isset($dbUsername))
+		  }
+		  if (isset($dbUsername)) {
 		    self::$dbUsername = $dbUsername;
-		  if (isset($dbPassword))
+		  }
+		  if (isset($dbPassword)) {
 		    self::$dbPassword = $dbPassword;
-		  if (isset($dbTablePrefix))
+		  }
+		  if (isset($dbTablePrefix)) {
 		    self::$dbTablePrefix = $dbTablePrefix;
-		  if (isset($defaultLanguageFile))
+		  }
+		  if (isset($defaultLanguageFile)) {
 		    self::$defaultLanguageFile;
+		  }
 		}
 
     error_reporting(self::$errorReporting);
 
     self::$translations = new Translations();
-    self::$language     = new Language();
+    self::$language     = new Language(self::$defaultLanguageFile);
   }
 
-  public function getHostname()
-  {
+  public function getHostname() {
   	return self::$dbHostname;
   }
 
-  public function getDbName()
-  {
+  public function getDbName() {
   	return self::$dbName;
   }
 
-  public function getDbUsername()
-  {
+  public function getDbUsername() {
   	return self::$dbUsername;
   }
 
-  public function getDbPassword()
-  {
+  public function getDbPassword() {
   	return self::$dbPassword;
   }
 
-  public function getDbTablePrefix()
-  {
+  public function getDbTablePrefix() {
   	return self::$dbTablePrefix;
   }
 
-  public function getMaxGeneratedRows()
-  {
+  public function getMaxGeneratedRows() {
   	return self::$maxGeneratedRows;
   }
 
-  public function getDefaultNumRows()
-  {
+  public function getDefaultNumRows() {
   	return self::$defaultNumRows;
   }
 
-  public function getVersion()
-  {
+  public function getVersion() {
   	return self::$version;
   }
 
-  public function checkSettingsFileExists()
-  {
+  public function checkSettingsFileExists() {
   	return self::$settingsFileExists;
   }
 
-  public function getDefaultLanguageFile()
-  {
+  public function getDefaultLanguageFile() {
   	return self::$defaultLanguageFile;
   }
 
-  public function getDataTypeGroups()
-  {
+  public function getDataTypeGroups() {
   	return self::$dataTypeGroups;
   }
 
-  public function getMinimumPHPVersion()
-  {
+  public function getMinimumPHPVersion() {
   	return self::$minimumPHPVersion;
   }
 }

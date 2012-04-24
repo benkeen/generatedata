@@ -1,8 +1,8 @@
 <?php
 
 
-class Countries
-{
+class Countries {
+
 	/**
 	 * This returns all those countries in the database that have country-specific data, namely:
 	 * region info (province / state / county), postal code info AND a list of cities. These countries
@@ -10,8 +10,7 @@ class Countries
 	 *
 	 * @return array
 	 */
-	public function getConfiguredCountries()
-	{
+	public function getConfiguredCountries() {
 		$query = mysql_query("
 			SELECT *
 			FROM   {$g_table_prefix}countries
@@ -19,8 +18,9 @@ class Countries
 				");
 
 		$results = array();
-		while ($row = mysql_fetch_assoc($query))
+		while ($row = mysql_fetch_assoc($query)) {
 		  $results[] = $row;
+		}
 
 		return $results;
   }

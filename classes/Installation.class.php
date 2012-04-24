@@ -1,9 +1,8 @@
 <?php
 
-class Installation
-{
-	function gd_create_database_tables()
-	{
+class Installation {
+
+	function gd_create_database_tables() {
 		$g_db_install_queries[] = "
 			CREATE TABLE gd_user_accounts (
 			  account_id mediumint(8) unsigned NOT NULL auto_increment,
@@ -40,12 +39,10 @@ class Installation
 			  PRIMARY KEY  (form_id)
 			) AUTO_INCREMENT=39
 		";
-
 	}
 
 
-	function gd_create_settings_file()
-	{
+	function gd_create_settings_file() {
 
 	}
 }

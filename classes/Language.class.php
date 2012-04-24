@@ -1,7 +1,6 @@
 <?php
 
-class Language
-{
+class Language {
   private $currentLanguageFile;
   private $currentLanguageStrings;
 
@@ -16,65 +15,55 @@ class Language
    * @param string $languageFile
    * @param boolean $overrideDefault
    */
-	function __construct($languageFile, $overrideDefault = true)
-	{
+	function __construct($languageFile, $overrideDefault = true) {
     $this->currentLanguageFile = $languageFile;
 
-		if ($overrideDefault)
+		if ($overrideDefault) {
 		  $this->overrideDefaultLanguageFile();
+		}
 
     // TODO exception handling here
 
-		require(realpath(dirname(__FILE__) . "/../lang/{$languageFile}.php"));
+		$fileAndPath = realpath(dirname(__FILE__) . "/../lang/" . $this->currentLanguageFile . ".php");
+		require($fileAndPath);
     $this->currentLanguageStrings = $L;
 	}
 
-  public function getCurrentLanguageFile()
-  {
+  public function getCurrentLanguageFile() {
   	return $this->currentLanguageFile;
   }
 
-  public function getCurrentLanguageStrings()
-  {
+  public function getCurrentLanguageStrings() {
   	return $this->currentLanguageStrings;
   }
 
-	public function generateJSStrings()
-	{
+	public function generateJSStrings() {
 		$lines = array();
-		while (list($key, $value) = each($L))
-		{
+		while (list($key, $value) = each($this->currentLanguageStrings)) {
 			$lines[] = "\"$key\":\"" . addslashes($value) . "\"";
 		}
-		echo "var L={\n" . implode(",\n", $lines) . "}";
+		return "var L={\n" . implode(",\n", $lines) . "}";
 	}
 
 
   // private member functions
 
-  private function overrideDefaultLanguageFile()
-  {
+  private function overrideDefaultLanguageFile() {
+  	$languageFile = $this->currentLanguageFile;
+
   	// if sessions are enabled, see if the current language is stashed in there
 
-  	//
+  	// TODO
 
-
-  	// TODO : all the sessions management stuff sucks!
-		//if (!isset($_SESSION["gd"]))
-		//  $_SESSION["gd"] = array();
-		//$languageFile = (isset($_SESSION["gd"]["languageFile"])) ? $_SESSION["gd"]["languageFile"] : Core::getDefaultLanguageFile();
-
-		// TODO not thrilled about this
-		if (isset($_GET["lang"]))
-		{
-		  $lang = strip_tags($_GET["lang"]);
-		  $lang = preg_replace("/\W/", "", $lang);
-		  $languageFile = $lang;
+		if (isset($_GET["lang"])) {
+		  $queryStringLangFile = strip_tags($_GET["lang"]);
+		  $queryStringLangFile = preg_replace("/\W/", "", $queryStringLangFile);
+		  $fileAndPath = realpath(dirname(__FILE__) . "/../lang/{$queryStringLangFile}.php");
+		  if (file_exists($fileAndPath)) {
+		    $languageFile = $queryStringLangFile;
+		  }
 		}
-		//$_SESSION["gd"]["languageFile"] = $languageFile;
 
-		// if it doesn't exist, fall back on the default language file
-//    if (!is_file(realpath(dirname(__FILE__) . "/../lang/$languageFile.php")))
-//      $languageFile = self::$defaultLanguageFile;
+    $this->currentLanguageFile = $languageFile;
   }
 }

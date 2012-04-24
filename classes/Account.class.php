@@ -1,14 +1,12 @@
 <?php
 
 
-class Account
-{
+class Account {
 	private $accountId;
 
 
 	// TODO, obviously!
-  public function __construct($accountId)
-	{
+  public function __construct($accountId) {
 	  //global $g_table_prefix;
 //	  $link = db_connect();
 
@@ -33,8 +31,7 @@ class Account
 	}
 
 
-	public function getID()
-	{
+	public function getID() {
 		return $this->accountID;
 	}
 
@@ -47,8 +44,7 @@ class Account
 	 * @param string $form_content
 	 * @return string
 	 */
-	public function saveConfiguration($form_name, $form_content)
-	{
+	public function saveConfiguration($form_name, $form_content) {
 //	  global $g_table_prefix, $L;
 
 	  // find out if there's already a form with this name for this user
@@ -62,8 +58,7 @@ class Account
 	  $result = mysql_fetch_row($count_query);
 	  $form_already_exists = ($result[0] == 0) ? false : true;
 
-	  if ($form_already_exists)
-		{
+	  if ($form_already_exists) {
 		  $query = mysql_query("
 			  UPDATE {$g_table_prefix}forms
 				SET    content = '$form_content'
@@ -71,9 +66,7 @@ class Account
 				       form_name = '$form_name'
 							   ");
 	    echo '{ "success": "true",  "message": "Your form has been updated.", "form_name": "' . $form_name . '" }';
-		}
-		else
-		{
+		} else {
 		  $query = mysql_query("
 			  INSERT INTO {$g_table_prefix}forms (account_id, form_name, content)
 	      VALUES ($account_id, '$form_name', '$form_content')
@@ -84,12 +77,12 @@ class Account
 	}
 
 
-	public function loadConfiguration($form_id)
-	{
+	public function loadConfiguration($form_id) {
 	  global $g_table_prefix;
 
-	  if (!isset($_SESSION["account_id"]))
+	  if (!isset($_SESSION["account_id"])) {
 	    return;
+	  }
 
 	  $query = mysql_query("
 	    SELECT *
@@ -97,15 +90,13 @@ class Account
 	    WHERE  form_id = $form_id
 	      ");
 
-	  if (!$query || mysql_num_rows($query) == 0)
-	  {
+	  if (!$query || mysql_num_rows($query) == 0) {
 	    echo '{ "success": "false", "message": "Sorry, this form isn\'t found. You might want to try logging out then logging back in." }';
 	    return;
 	  }
 
 	  $result = mysql_fetch_assoc($query);
-	  if ($result["account_id"] != $_SESSION["account_id"])
-	  {
+	  if ($result["account_id"] != $_SESSION["account_id"]) {
 	    echo '{ "success": "false", "message": "Sorry, you don\'t have permission to view this form. Please re-login in and try again." }';
 	    return;
 	  }
@@ -114,17 +105,16 @@ class Account
 	//  $clean_str = preg_replace("/^\{/", "", $result["content"]);
 	//  $clean_str = preg_replace("/\}$/", "", $clean_str);
 	  $clean_str = addslashes($result["content"]);
-
 	  echo '{ "success": "true", "form_content": ' . $result["content"] . ' }';
 	}
 
 
-	public function deleteConfiguration($form_id)
-	{
+	public function deleteConfiguration($form_id) {
 	  global $g_table_prefix;
 
-	  if (!isset($_SESSION["account_id"]))
+	  if (!isset($_SESSION["account_id"])) {
 	    return;
+	  }
 
 	  $query = mysql_query("
 	    SELECT *
@@ -132,15 +122,13 @@ class Account
 	    WHERE  form_id = $form_id
 	      ");
 
-	  if (mysql_num_rows($query) == 0)
-	  {
+	  if (mysql_num_rows($query) == 0) {
 	    echo '{ "success": "false",  "message": "Sorry, this form isn\'t found. You might want to try logging out then logging back in." }';
 	    return;
 	  }
 
 	  $result = mysql_fetch_assoc($query);
-	  if ($result["account_id"] != $_SESSION["account_id"])
-	  {
+	  if ($result["account_id"] != $_SESSION["account_id"]) {
 	    echo '{ "success": "false", "message": "Sorry, you don\'t have permission to delete this form. Please re-login in and try again." }';
 	    return;
 	  }
@@ -155,8 +143,7 @@ class Account
 
 
   // private? part of constructor?
-	public function getConfigurations($account_id)
-	{
+	public function getConfigurations($account_id) {
 	  global $g_table_prefix;
 
 	  $query = mysql_query("
@@ -174,8 +161,7 @@ class Account
 	}
 
 
-	public function updateTotalRowCount($num_rows)
-	{
+	public function updateTotalRowCount($num_rows) {
 	  //global $g_table_prefix;
 	  //$link = db_connect();
 

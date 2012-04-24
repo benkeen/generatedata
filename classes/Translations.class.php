@@ -1,8 +1,7 @@
 <?php
 
 
-class Translations
-{
+class Translations {
 	private $list;
 
 	/**
@@ -11,22 +10,20 @@ class Translations
 	 *
 	 * @return array a hash of filename => language name
 	 */
-	function __construct()
-	{
+	function __construct() {
 	  $translationsFolder = realpath(dirname(__FILE__) . "/../lang/");
 	  $translations = array();
-	  if ($handle = opendir($translationsFolder))
-	  {
-	    while (false !== ($item = readdir($handle)))
-	    {
-	      if ($item == "." || $item == ".." || $item == ".svn")
+	  if ($handle = opendir($translationsFolder)) {
+	    while (false !== ($item = readdir($handle))) {
+	      if ($item == "." || $item == ".." || $item == ".svn") {
 	        continue;
+	      }
 
-	      if (is_file("$translationsFolder/$item") && preg_match("/php$/", $item))
-	      {
+	      if (is_file("$translationsFolder/$item") && preg_match("/php$/", $item)) {
 	      	$lang = $this->extractTranslationFileLanguage("$translationsFolder/$item");
-	      	if (!empty($lang))
+	      	if (!empty($lang)) {
 	          $translations[$item] = $lang;
+	      	}
 	      }
 	    }
 	    closedir($handle);
@@ -35,13 +32,11 @@ class Translations
 	  $this->list = $translations;
 	}
 
-	public function getList()
-	{
+	public function getList() {
 		return $this->list;
 	}
 
-	private function extractTranslationFileLanguage($file)
-	{
+	private function extractTranslationFileLanguage($file) {
 	  @include($file);
 	  $info = get_defined_vars();
 	  return (isset($info["L"]["language"])) ? $info["L"]["language"] : "";
