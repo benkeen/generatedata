@@ -12,6 +12,7 @@
  * function/functions to populate more info in Core].
  */
 class Core {
+
   // overridable settings that the user may define in settings.php
   private static $dbHostname;
 	private static $dbName;
@@ -28,18 +29,18 @@ class Core {
 	private static $version = "3.0.0";
 	private static $minimumPHPVersion = '5.2.0';
 	private static $settingsFileExists = false;
+  private static $language;
 
-  // Hmm.... I like these being public for the simplicity of the calling syntax [Core::$language->smarty->doStuff()]
-  // but it seems poorly designed. Maybe run this by Julius if no solution presents itself.
+  // Hmm.... I like these being public for the simplicity of the calling syntax [Core::$smarty->doStuff() instead
+  // of Core::getSmarty()->customDoStuff()] but it seems poorly designed. Maybe run this by Julius if no solution
+  // presents itself.
   public static $smarty;
-  public static $language;
   public static $translations;
   public static $user; // the current logged in user
   public static $db;
 
 
   public static function init() {
-  	// instantiate our all-purpose Smarty object
     self::$smarty = new Smarty();
 
   	// find out if the settings file is defined and override the default properties
@@ -116,6 +117,10 @@ class Core {
 
   public function getDefaultLanguageFile() {
   	return self::$defaultLanguageFile;
+  }
+
+  public function getLanguage() {
+    return self::$language;
   }
 
   public function getDataTypeGroups() {

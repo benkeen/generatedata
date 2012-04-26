@@ -37,7 +37,7 @@ class Language {
   	return $this->currentLanguageStrings;
   }
 
-	public function generateJSStrings() {
+	public function getCurrentLanguageStringsJS() {
 		$lines = array();
 		while (list($key, $value) = each($this->currentLanguageStrings)) {
 			$lines[] = "\"$key\":\"" . addslashes($value) . "\"";

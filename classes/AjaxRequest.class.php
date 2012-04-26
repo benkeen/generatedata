@@ -27,7 +27,7 @@ class AjaxRequest {
 
     switch ($this->action) {
       case "loadConfiguration":
-        $assertions = array(
+/*        $assertions = array(
           "logged_in" => true,
           "post" => array(
             "required" => "form_id",
@@ -36,6 +36,7 @@ class AjaxRequest {
         );
         Utils::assert($assertions);
         $this->response = Core::$user->loadConfiguration($post["form_id"]);
+*/
         break;
 
       case "saveConfiguration":
@@ -52,20 +53,21 @@ class AjaxRequest {
         break;
 
       case "install":
+      	// check all preconditions
         try {
-          $assertions = array(
-            "no_settings_file" => true,
-            "post" => array(
-              "required" => array("dbHostname", "dbName", "dbUsername", "employUserAccounts")
-            )
-          );
+          $assertions = array("no_settings_file" => true);
           Utils::assert($assertions);
         } catch (GDException $e) {
-        	$this->response = $e->getError();
+        	$this->response = $e->getFormattedError();
           return;
         }
 
-//        list($success, $error) = gd_test_db_settings($request);
+        list($success, $error) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
+        if (!$success) {
+        	$this->response["success"] = 0;
+        	$this->response["error"] = $error;
+        	return;
+        }
         break;
 
       case "login":
@@ -74,6 +76,10 @@ class AjaxRequest {
       case "logout":
         break;
     }
+  }
+
+  public function getResponse() {
+    return $this->response;
   }
 }
 

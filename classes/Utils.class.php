@@ -25,27 +25,21 @@ class Utils {
 
   /**
    * A generic assertion function used to confirm the existence of things like the existence of values in $_POST,
-   * $_GET, $_SESSIONS, whether the user is logged in and so on
+   * $_GET, $_SESSIONS, whether the user is logged in and so on. If it fails anything, it throws a GDException,
+   * otherwise it does nothing.
    *
    * @param array $statements
    */
   public static function assert($statements) {
-    $passed = true;
     if (empty($statements)) {
-      return $passed;
+      return;
     }
 
-/*    $assertions = array(
-            "post" => array(
-              "required" => array("dbHostname", "dbName", "dbUsername", "employUserAccounts")
-            )
-          );*/
-
-   	foreach ($statements as $group) {
-   		switch ($group) {
+   	while (list($test, $values) = each($statements)) {
+   		switch ($test) {
      		case "logged_in":
           if (empty(Core::$user)) {
-		  			throw new Exception("not_logged_in");
+		  			throw new GDException(Exceptions::NOTLOGGEDIN);
 			  		return;
           }
    	  		break;
@@ -53,29 +47,28 @@ class Utils {
      		case "no_settings_file":
      			$settingsFileAndPath = realpath(dirname(__FILE__) . "/../settings.php");
      			$settingsFileExists = file_exists($settingsFileAndPath);
-          return ($group === true) ? !$settingsFileExists : $settingsFileExists;
+          if ($values === true && $settingsFileExists) {
+          	throw new GDException(Exceptions::SETTINGSFILEEXISTS);
+          }
    	  	  break;
 
+   	  	// urgh. Nesting. This is also better placed in a Validation class...
      		case "post":
-     		case "get":
+
+     			switch ($values)
+     			{
+     				case "required":
+
+     					break;
+     				case "numeric":
+     					break;
+     			}
+     			break;
+
+     	  case "get":
      			break;
    		}
-
-/*
-        if (!isset($post["form_id"]) || empty($post["form_id"]))
-        {
-					throw new Exception("Not logged in", "not_logged_in");
-					return;
-        }
-        if (!is_numeric($post["form_id"]))
-        {
-					throw new Exception("Invalid form ID.", "");
-					return;
-        }
-*/
-    	}
-
-    return $passed;
+    }
   }
 
   /**
@@ -213,7 +206,9 @@ class Utils {
 	    exit;
     }
 
-	  Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
+    $language = Core::getLanguage();
+
+	  Core::$smarty->assign("L", $language->getCurrentLanguageStrings());
 	  //Core::$smarty->assign("SESSION", $_SESSION["gd"]);
 	  Core::$smarty->assign("version", Core::getVersion());
 	  Core::$smarty->assign("samePage", Utils::getCleanPhpSelf());
@@ -270,10 +265,8 @@ END;
 
 
 	function evalSmartyString($placeholderStr, $placeholders) {
-	  global $g_smarty;
-
 	  $smarty = new Smarty();
-	  $smarty->template_dir = realpath(dirname(__FILE__) . "/../code/smarty");
+	  $smarty->template_dir = realpath(dirname(__FILE__) . "/../smarty");
 	  $smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
 
 	  $smarty->assign("eval_str", $placeholderStr);

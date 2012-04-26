@@ -126,7 +126,6 @@ $L["validation_no_db_hostname"] = "Please enter your database hostname.";
 $L["validation_no_db_name"] = "Please enter your database name.";
 $L["validation_invalid_chars"] = "Alphanumeric and underscore characters only, please.";
 $L["validation_no_mysql_username"] = "Please enter your MySQL username.";
-$L["validation_no_mysql_password"] = "Please enter your MySQL password.";
 $L["employ_user_accounts_desc"] = "By default, the Data Generator saves all form configurations to a single location so anyone visiting the script will see all saved configurations. If you enable the user account feature, any time you want to save or load a test configuration you'll need to be logged in. This can be handy if the script is going to be used by multiple people. The installation script lets you create a single user account, but you can create more later on.";
 $L["email_desc"] = "Your email address.";
 $L["password_desc"] = "Your password. A default, random one is generated for your convenience.";

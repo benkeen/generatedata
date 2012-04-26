@@ -45,7 +45,7 @@ h2 {
 	border-radius: 5px;
 	padding: 3px 10px 3px 46px;
 	margin-bottom: 10px;
-	background: #ffe1e1 url(../images/alert.png) 8px center no-repeat;
+	background-color: #ffe1e1;
 	text-shadow: 0 1px 0 #fff;
   display: none;
   min-height: 36px;

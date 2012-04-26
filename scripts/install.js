@@ -38,10 +38,6 @@ installNs.submit = function() {
   }
 
   var dbPassword = $.trim($("#dbPassword").val());
-  if (dbPassword == "") {
-    errors.push({ fieldId: "dbPassword", error: L.validation_no_mysql_password });
-  }
-
   var tablePrefix = $.trim($("#tablePrefix").val());
   if (validChars.test(tablePrefix)) {
     errors.push({ fieldId: "tablePrefix", error: L.validation_invalid_chars });

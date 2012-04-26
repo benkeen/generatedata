@@ -3,7 +3,6 @@
 
 class Database {
 
-
   public function __construct() {
 
   }
@@ -34,25 +33,26 @@ class Database {
 
 
 	/**
-	 * Confirms that the database settings provided are valid.
+	 * Checks to see if the database information provided is valid or not.
 	 */
 	public static function testDbSettings($dbHostname, $dbName, $dbUsername, $dbPassword) {
-	  $db_connection_error = "";
-	  $link = @mysql_connect($hostname, $username, $password)
-	    or $db_connection_error = mysql_error();
+	  $dbConnectionError = "";
+	  $lang = Core::getLanguage()->getCurrentLanguageStrings();
+	  $link = @mysql_connect($dbHostname, $dbUsername, $dbPassword)
+	    or $dbConnectionError = mysql_error();
 
-	  if ($db_connection_error) {
-	    $placeholders = array("db_connection_error" => $db_connection_error);
-	    $error = gd_eval_smarty_string($L["install_invalid_db_info"], $placeholders);
+	  if ($dbConnectionError) {
+	    $placeholders = array("db_connection_error" => $dbConnectionError);
+	    $error = Utils::evalSmartyString($lang["install_invalid_db_info"], $placeholders);
 	    return array(false, $error);
 	  } else {
-	    $db_select_error = "";
-	    @mysql_select_db($db_name)
-	      or $db_select_error = mysql_error();
+	    $dbSelectError = "";
+	    @mysql_select_db($dbName)
+	      or $dbSelectError = mysql_error();
 
-	    if ($db_select_error) {
-	      $placeholders = array("db_select_error" => $db_select_error);
-	      $error = ft_install_eval_smarty_string($L["install_no_db_connection"], $placeholders);
+	    if ($dbSelectError) {
+	      $placeholders = array("db_select_error" => $dbSelectError);
+	      $error = Utils::evalSmartyString($lang["install_no_db_connection"], $placeholders);
 	      return array(false, $error);
 	    } else {
 	      @mysql_close($link);
