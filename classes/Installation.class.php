@@ -1,10 +1,55 @@
 <?php
 
-class Installation {
 
-	function gd_create_database_tables() {
-		$g_db_install_queries[] = "
-			CREATE TABLE gd_user_accounts (
+/**
+ * A simple namespace class to include all installation code. The installation functions to create the
+ * database tables run AFTER the settings file has been created.
+ */
+class Installation {
+  private $databaseCreationError = false;
+
+
+	function createSettingsFile($dbHostname, $dbName, $dbUsername, $dbPassword, $tablePrefix) {
+    $content =<<< END
+<?php
+
+\$dbHostname    = '$dbHostname';
+\$dbName        = '$dbName';
+\$dbUsername    = '$dbUsername';
+\$dbPassword    = '$dbPassword';
+\$dbTablePrefix = '$tablePrefix';
+
+END;
+
+	  $file = realpath("../global/settings.php");
+	  $handle = @fopen($file, "w");
+	  if ($handle) {
+	    fwrite($handle, $content);
+	    fclose($handle);
+	    return array(true, "");
+	  }
+
+	  // no such luck! we couldn't create the file on the server. The user will need to do it manually
+	  return array(false, $content);
+	}
+
+
+	public function createDatabase() {
+		Core::loadSettingsFile();
+    Core::initDatabase();
+
+    // TODO want to add the rollback HERE. So that any failures - even in the plugins - will clean out
+    // the entire DB tables. That makes it easier to re-install
+		self::runCoreSQL();
+		self::runDataTypeSQL();
+	}
+
+	public function runCoreSQL() {
+    $prefix = Core::getDbTablePrefix();
+
+		$queries = array();
+		$queries[] = "
+			CREATE TABLE {$prefix}user_accounts (
 			  account_id mediumint(8) unsigned NOT NULL auto_increment,
 			  date_created datetime NOT NULL,
 			  last_updated datetime NOT NULL,
@@ -17,12 +62,12 @@ class Installation {
 			  password_recovery_answer varchar(100) default NULL,
 			  max_records mediumint(9) default NULL,
 			  num_records_generated int(11) NOT NULL default '0',
-			  PRIMARY KEY  (account_id)
+			  PRIMARY KEY (account_id)
 			)
 		";
 
-		$g_db_install_queries[] = "
-		  CREATE TABLE gd_settings (
+		$queries[] = "
+		  CREATE TABLE {$prefix}settings (
 		    setting_id mediumint(9) NOT NULL AUTO_INCREMENT,
 		    setting_name varchar(100) NOT NULL,
 		    setting_value text NOT NULL,
@@ -30,22 +75,24 @@ class Installation {
 		  )
 		";
 
-		$g_db_install_queries[] = "
-			CREATE TABLE gd_forms (
+		$queries[] = "
+			CREATE TABLE {$prefix}forms (
 			  form_id mediumint(9) NOT NULL auto_increment,
 			  account_id mediumint(9) NOT NULL,
 			  form_name varchar(100) NOT NULL,
 			  content mediumtext NOT NULL,
-			  PRIMARY KEY  (form_id)
-			) AUTO_INCREMENT=39
+			  PRIMARY KEY (form_id)
+			)
 		";
+
+		// execute queries [rollback!]
 	}
 
-
-	function gd_create_settings_file() {
+	public function createDataTypeTables() {
 
 	}
 }
+
 
 /*
 $g_db_install_queries = array();

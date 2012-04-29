@@ -37,36 +37,20 @@ class Utils {
 
    	while (list($test, $values) = each($statements)) {
    		switch ($test) {
-     		case "logged_in":
+     		case "loggedIn":
           if (empty(Core::$user)) {
 		  			throw new GDException(Exceptions::NOTLOGGEDIN);
 			  		return;
           }
    	  		break;
 
-     		case "no_settings_file":
+     		case "noSettingsFile":
      			$settingsFileAndPath = realpath(dirname(__FILE__) . "/../settings.php");
      			$settingsFileExists = file_exists($settingsFileAndPath);
           if ($values === true && $settingsFileExists) {
           	throw new GDException(Exceptions::SETTINGSFILEEXISTS);
           }
    	  	  break;
-
-   	  	// urgh. Nesting. This is also better placed in a Validation class...
-     		case "post":
-
-     			switch ($values)
-     			{
-     				case "required":
-
-     					break;
-     				case "numeric":
-     					break;
-     			}
-     			break;
-
-     	  case "get":
-     			break;
    		}
     }
   }
@@ -212,7 +196,6 @@ class Utils {
 	  //Core::$smarty->assign("SESSION", $_SESSION["gd"]);
 	  Core::$smarty->assign("version", Core::getVersion());
 	  Core::$smarty->assign("samePage", Utils::getCleanPhpSelf());
-	  Core::$smarty->assign("dbTablePrefix", Core::getDbTablePrefix());
 	  Core::$smarty->assign("query_string", $_SERVER["QUERY_STRING"]);
 
 	  // now add the custom variables for this template, as defined in $page_vars

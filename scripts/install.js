@@ -89,7 +89,7 @@ installNs.submit = function() {
 installNs.installResponse = function(json) {
   g.stopProcessing();
   if (json.success == 0) {
-    $("#installError .response").html(json.error);
+    $("#installError .response").html(json.message);
     $("#installError").effect("highlight", { color: "#ff5b5b" }, 1500);
     return;
   }

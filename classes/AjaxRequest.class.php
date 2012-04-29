@@ -52,23 +52,39 @@ class AjaxRequest {
         gd_delete_form($form_id);
         break;
 
+      // a fresh install assumes it's a blank slate: no database tables, no settings file
       case "install":
-      	// check all preconditions
         try {
-          $assertions = array("no_settings_file" => true);
+          $assertions = array("noSettingsFile" => true);
           Utils::assert($assertions);
         } catch (GDException $e) {
         	$this->response = $e->getFormattedError();
           return;
         }
 
-        list($success, $error) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
+        // check the database settings provided are valid
+        list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
         if (!$success) {
         	$this->response["success"] = 0;
-        	$this->response["error"] = $error;
+        	$this->response["message"] = $message;
         	return;
         }
+
+        // okay! Time to create the settings file and database
+        list($success, $message) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"],
+          $post["dbUsername"], $post["dbPassword"], $post["tablePrefix"]);
+
+        if (!$success) {
+        	$this->response["success"] = 0;
+        	$this->response["message"] = $message;
+        	return;
+        }
+
+        // now create the database tables
         break;
+
+      case "create_database":
+      	break;
 
       case "login":
         break;

@@ -134,4 +134,6 @@ $L["validation_no_password"] = "Please enter your password.";
 $L["install_invalid_db_info"] = "We were unable to connect to the database using the information you supplied. The error message the database returned is: <i>{\$db_connection_error}</i>";
 $L["install_no_db_connection"] = "Please check your database name and login information. Although we were able to connect to the database host, we could not connect to the database. The error message the database returned is: <i>{\$db_select_error}</i>";
 
-//print_r($L);
+$L["settings_file_exists"] = "The settings file already exists. For new installations, the settings.php shouldn't exist. Either delete it and continue the installation script or try loading the script again with the existing settings file values.";
+$L["first_name"] = "First Name";
+$L["last_name"] = "Last Name";

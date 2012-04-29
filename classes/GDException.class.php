@@ -19,12 +19,14 @@ class GDException extends Exception {
   }
 
   public function getFormattedError() {
-  	$language        = Core::getLanguage();
-  	$languageStrings = $language->getCurrentLanguageStrings();
-  	$errorCode       = $this->getCode();
-  	$errorMessage    = "";
+  	$language     = Core::getLanguage()->getCurrentLanguageStrings();
+  	$errorCode    = $this->getCode();
+  	$errorMessage = "";
 
   	switch ($errorCode) {
+  		case Exceptions::SETTINGSFILEEXISTS:
+  			$errorMessage = $language["settings_file_exists"];
+  			break;
   		case Exceptions::NOTLOGGEDIN:
   			$errorMessage = "";
   			break;

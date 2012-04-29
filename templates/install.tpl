@@ -3,8 +3,8 @@
 <head>
   <title>{$L.title}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="description" content="GenerateData.com: free, GNU-licensed, random custom data generator for testing software" />
-  <meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
+  <meta name="description" content="generatedata.com: free, GPL-licensed random data generator for testing software" />
+  <meta name="keywords" content="random data generator, test data generation, sample data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
   {literal}<noscript><style type="text/css">.hideNoJS { display: none; }</style></noscript>{/literal}
@@ -25,8 +25,8 @@
   </nav>
   <section>
     <div id="content" class="hideNoJS">
-      <div id="loadingIcon"></div>
       <div id="tab1Content" class="tabContent">
+        <div id="processingIcon"></div>
 
         <h1>{$L.installation}</h1>
         <p>
@@ -64,7 +64,7 @@
 	          <div class="error" id="dbPassword_error"></div>
 	          <div class="field">
 	            <label for="tablePrefix">{$L.table_prefix}</label>
-	            <input type="text" id="tablePrefix" value="{$dbTablePrefix}" maxlength="10" />
+	            <input type="text" id="tablePrefix" value="{$tablePrefix}" maxlength="10" />
 	          </div>
 	          <div class="error" id="tablePrefix_error"></div>
 	          <div class="field">
@@ -87,6 +87,16 @@
 	                <label for="eua2">{$L.no}</label>
 	            </div>
 	          </div>
+	          <div class="field firstNameRow disabledRow">
+	            <label for="email">{$L.first_name}</label>
+	            <input type="text" id="firstName" value="" disabled="disabled" />
+	          </div>
+	          <div class="error" id="firstName_error"></div>
+	          <div class="field lastNameRow disabledRow">
+	            <label for="email">{$L.last_name}</label>
+	            <input type="text" id="lastName" value="" disabled="disabled" />
+	          </div>
+	          <div class="error" id="lastName_error"></div>
 	          <div class="field emailRow disabledRow">
 	            <label for="email">{$L.email}</label>
 	            <input type="text" id="email" value="" disabled="disabled" />
@@ -94,7 +104,7 @@
 	          <div class="error" id="email_error"></div>
 	          <div class="field passwordRow disabledRow">
 	            <label for="password">{$L.password}</label>
-	            <input type="text" id="password" value="{$random_password}" class="pwdField" disabled="disabled" />
+	            <input type="text" id="password" value="{$randomPassword}" class="pwdField" disabled="disabled" />
 	          </div>
 	          <div class="error" id="password_error"></div>
 	        </div>

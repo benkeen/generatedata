@@ -5,8 +5,8 @@
  * in most cases - automatically create this file, but worst-case scenario (no permissions, for example) it will
  * at least generate the file content so you can create it yourself.
  */
-$dbHostname    = "";
-$dbName        = "";
-$dbUsername    = "";
-$dbPassword    = "";
-$dbTablePrefix = "";
+$dbHostname    = '';
+$dbName        = '';
+$dbUsername    = '';
+$dbPassword    = '';
+$dbTablePrefix = '';

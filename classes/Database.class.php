@@ -2,25 +2,25 @@
 
 
 class Database {
+  private $link;
 
   public function __construct() {
+		$dbHostname = Core::getHostname();
+		$dbUsername = Core::getDbUsername();
+		$dbPassword = Core::getDbPassword();
+		$dbName     = Core::getDbPassword();
 
-  }
+		try {
+		  $this->link = mysql_connect($dbHostname, $dbUsername, $dbPassword);
+		} catch (Exception $e) {
+			// or die("Couldn't connect to database: " . mysql_error());
+		}
 
-
-	/**
-	 * Connects to a database. After connecting, you should always call disconnect_db() to close it
-	 * when done.
-	 */
-	public function connect() {
-		global $g_db_hostname, $g_db_username, $g_db_password, $g_db_name;
-
-		$link = mysql_connect($g_db_hostname, $g_db_username, $g_db_password)
-			or die("Couldn't connect to database: " . mysql_error());
-		@mysql_select_db($g_db_name)
-			or die ("couldn't find database '$g_db_name': " . mysql_error());
-
-		return $link;
+		try {
+		  @mysql_select_db($dbName);
+		} catch (Exception $e) {
+     //  die ("couldn't find database '$g_db_name': " . mysql_error());
+		}
 	}
 
 

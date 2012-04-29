@@ -3,5 +3,7 @@
 require_once("library.php");
 
 $params = array();
-$params["random_password"] = Utils::generateRandomAlphanumericStr("CVxxCxV");
+$params["randomPassword"] = Utils::generateRandomAlphanumericStr("CVxxCxV");
+$params["tablePrefix"]    = Core::getDbTablePrefix();
+
 Utils::displayPage("templates/install.tpl", $params);
