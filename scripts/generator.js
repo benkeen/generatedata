@@ -1,3 +1,14 @@
+var Generator = Generator || {};
+
+Generator.defineDataType = function(name, code) {
+
+}
+
+
+// ------------------------------------------
+
+
+
 $(function() {
   $("input[name=resultType]").bind("click", function() { gd.changeResultType(this.value); });
   $("input[name=countryChoice\[\]]").bind("click", gd.updateCountryChoice);
@@ -16,11 +27,6 @@ $(function() {
   });
   $("#data").bind("submit", gd.submitForm);
   gd.init();
-
-  // TODO
-  if ($.browser.msie) {
-    $("body").html("<h1>Sorry, this script will not run on IE yet.</h1>");
-  }
 });
 
 
@@ -91,7 +97,7 @@ var gd = {
     $("#tableRows>li .colOrder").each(function(i) { $(this).html(i+1); });
   },
 
-  showHelpPopup: function(row) {
+  showHelpPopup: function(row) { // TODO - use "dialog" not "popup" term
     var choice = $("#type_" + row).val();
     var title   = null;
     for (var i=0; i<$("#type_" + row)[0].options.length; i++) {
@@ -115,9 +121,7 @@ var gd = {
 
     // if the user just selected the empty value ("Please Select"), clear everything
     if (choice == "") {
-      $('#example_' + row).html(""); // TODO
-      $('#options_' + row).html("");
-      $('#help_' + row).html("");
+      $('#example_' + row + ',#options_' + row + ',#help_' + row).html("");
       return;
     }
 

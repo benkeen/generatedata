@@ -12,12 +12,13 @@ class Names extends DataType {
   private $lastNames    = array();
   private $letters      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   private $helpDialogWidth = 380;
+  private $includedFiles = array("Names.js");
+
 
   // possible constructors...
   // (1) when generating data,
   // (2) when loading UI,
   // (3) for installing the module
-
 
   public function getTemplateOptions($post, $column, $numCols) {
     if (!isset($post["option_$column"]) || empty($post["option_$column"])) {

@@ -1,9 +1,6 @@
 <?php
 
 
-// the name of the field group in which this data type should appear
-$data_type_field_group_index = "human_data";
-
 
 // ------------------------------------------------------------------------------------------------
 // EXAMPLES

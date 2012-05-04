@@ -2,14 +2,10 @@
 
 
 /**
- * Called on script load for any Data Generator page. It does all the heavy lifting (once!) and initializes
- * various general vars and data for the script, including the main Smarty object, custom settings from the user's
- * settings.php file. Basically, this class is used instead of the global namespace to store info needed throughout
- * the code.
- *
- * init() initializes the bare minimum needed for (for example) the installation page. After the script is installed,
- * to initialize the database, sessions, Data Type info etc., just run the ... ??? [either param to init() or separate
- * function/functions to populate more info in Core].
+ * Called on script load for any Data Generator page. It does all the heavy lifting and initializes various
+ * general vars and data for the script. It's used instead of the global namespace to store info needed throughout
+ * the code; the class is static so we don't need to re-instantiate it all over the place, and force it to
+ * reload the
  */
 class Core {
 
@@ -23,21 +19,21 @@ class Core {
   private static $maxGeneratedRows = 100000;
   private static $defaultNumRows = 100;
   private static $defaultLanguageFile = "en";
-  private static $dataTypeGroups = array("human_data", "text", "other"); // ...
+
+  // overridable, but only by Data Types
+  private static $dataTypeGroups = array("human_data", "text", "other"); // TODO... this really does suck
 
   // non-overidable settings
   private static $version = "3.0.0";
   private static $minimumPHPVersion = "5.2.0";
   private static $settingsFileExists = false;
-  private static $language;
-  private static $db;
 
-  // Hmm.... I like these being public for the simplicity of the calling syntax [Core::$smarty->doStuff() instead
-  // of Core::getSmarty()->customDoStuff()] but it seems poorly designed. Maybe run this by Julius if no solution
-  // presents itself
+  // left as public, because they're often modified ... [okay?]
+  public static $language;
+  public static $db;
   public static $smarty;
   public static $translations;
-  public static $user; // the current logged in user
+  public static $user; // the current logged in user (if there IS someone logged in)
 
 
   public static function init() {
@@ -139,19 +135,11 @@ class Core {
     return self::$defaultLanguageFile;
   }
 
-  public function getLanguage() {
-    return self::$language;
-  }
-
   public function getDataTypeGroups() {
     return self::$dataTypeGroups;
   }
 
   public function getMinimumPHPVersion() {
     return self::$minimumPHPVersion;
-  }
-
-  public function getDatabase() {
-  	return self::$db;
   }
 }
