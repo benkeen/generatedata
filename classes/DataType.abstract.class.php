@@ -8,10 +8,10 @@
 abstract class DataType {
 
 	// MUST be defined by each Data Type
-	abstract private $hasHelpDialog; // boolean
-  abstract private $dataTypeFieldGroup; // string
-  abstract private $dataTypeFieldGroupOrder; // int
-  abstract private $processOrder; // int
+  private $hasHelpDialog; // boolean
+  private $dataTypeFieldGroup; // string
+  private $dataTypeFieldGroupOrder; // int
+  private $processOrder; // int
 
   // OPTIONALLY defined by data types
   protected $includedFiles = array();
@@ -32,7 +32,7 @@ abstract class DataType {
 	abstract function generateItem($row, $options, $existingRowData);
 
 	/**
-	 *
+	 * ...?
 	 *
 	 * @param string $export_type e.g. "sql"
 	 * @param mixed $options e.g. "mysql" or "oracle"
@@ -51,7 +51,9 @@ abstract class DataType {
 	 * tables. If a problem occurs, all tables created are rolled back and an appropriate error message is displayed
 	 * to the user. If no problems occur, this method should return and do nothing.
 	 */
-	static function install();
+	static function install() {
+		return;
+	}
 
 	/**
 	 * Called during data generation. This determines what options the user selected in the user
@@ -79,7 +81,9 @@ abstract class DataType {
 	 * [shouldn't be required... just like install(), but I'd like to mention it in this file for documentation purposes]
 	 *
 	 */
-  function getHelpDialogInfo();
+  function getHelpDialogInfo() {
+		return;
+	}
 
 
   // 3. NON-OVERRIDABLE FUNCTIONS
@@ -108,7 +112,7 @@ abstract class DataType {
   /**
    * Returns an array of file names, which will be included ONCE in the main generator page.
    *
-   * [shouldn't be required]
+   * @return array
    */
   final function getIncludedFiles() {
     return $this->includedFiles;
@@ -125,7 +129,9 @@ abstract class DataType {
 
 	/**
 	 * Returns the order in which this data type should be parsed. The generator does N number of passes for each
-	 * row of data generated, each pass processes whatever data types are . This allows
+	 * row of data generated, each pass processes whatever data types are ...
+	 *
+	 * @return integer
 	 */
   final function getProcessOrder() {
 		return $this->processOrder;

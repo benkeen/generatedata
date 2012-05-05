@@ -190,9 +190,7 @@ class Utils {
 	    exit;
     }
 
-    $language = Core::getLanguage();
-
-	  Core::$smarty->assign("L", $language->getCurrentLanguageStrings());
+	  Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
 	  //Core::$smarty->assign("SESSION", $_SESSION["gd"]);
 	  Core::$smarty->assign("version", Core::getVersion());
 	  Core::$smarty->assign("samePage", Utils::getCleanPhpSelf());
