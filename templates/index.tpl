@@ -13,7 +13,6 @@
   <header>
     <nav>
       <a href="http://www.generatedata.com">{$L.website}</a> |
-      <a href="http://www.generatedata.com/#donate">{$L.donate}</a> |
       <a href="http://www.generatedata.com/forums/">{$L.forums}</a> |
       {language_dropdown}
     </nav>
@@ -21,7 +20,8 @@
   <nav id="tabs">
     <ul>
       <li id="tab1" class="selected">{$L.generate}</li>
-      <li id="tab2">{$L.help}</li>
+      <li id="tab2">Admin</li>
+      <li id="tab3">{$L.help}</li>
     </ul>
   </nav>
   <section>
@@ -29,7 +29,7 @@
       <div id="loadingIcon"></div>
       <div id="tab1Content" class="tabContent">
 
-        {if $g_show_save_panel}
+        {*{if $g_show_save_panel}
         <div id="controlPanelWindow" class="box">
           <div id="controlPanel">
             <div>
@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        {/if}
+        {/if}*}
 
         <form action="process.php" method="post" name="data" id="data" target="hiddenIframe">
           <input type="hidden" name="numCols" id="numCols" value="" />
@@ -88,10 +88,11 @@
           </div>
 
           <div class="clear"></div>
-
+{*
           <div id="settingsSQL">{include file="settings_sql.tpl"}</div>
           <div id="settingsXML">{include file="settings_xml.tpl"}</div>
           <div id="settingsCSV">{include file="settings_csv.tpl"}</div>
+*}
 
           <div id="messages">
             <a class="close" title="{$L.hide_error}" onclick="return g.hideErrors(false)" href="#">X</a>
@@ -133,7 +134,7 @@
 
           <div class="verticalPad"></div>
           <div>
-            <button class="button buttonType1" type="submit">{$L.generate}</button>
+            <button class="greenButton">{$L.generate}</button>
           </div>
 
           <!--  TODO - jquery templates? Might be nicer...! -->
@@ -243,7 +244,7 @@ EOF;
   </footer>
 
   <?php
-  gd_include_data_type_includes();
+  //gd_include_data_type_includes();
   ?>
 
   <script src="scripts/jquery-1.7.2.min.js"></script>

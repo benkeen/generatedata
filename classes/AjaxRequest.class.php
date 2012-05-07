@@ -54,14 +54,14 @@ class AjaxRequest {
 
       // a fresh install assumes it's a blank slate: no database tables, no settings file
       case "install":
-        try {
+/*        try {
           $assertions = array("noSettingsFile" => true);
           Utils::assert($assertions);
         } catch (GDException $e) {
         	$this->response = $e->getFormattedError();
           return;
         }
-
+*/
         // check the database settings provided are valid
         list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
         if (!$success) {
@@ -80,11 +80,11 @@ class AjaxRequest {
         	return;
         }
 
-        // now create the database tables
-        break;
+        // now create the database
+        Installation::createDatabase();
 
-      case "create_database":
-      	break;
+        // we're done! Redirect to the index page (?) Return nice message saying "installed!"?
+        break;
 
       case "login":
         break;

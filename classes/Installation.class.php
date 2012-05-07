@@ -9,7 +9,10 @@ class Installation {
   private $databaseCreationError = false;
 
 
-	function createSettingsFile($dbHostname, $dbName, $dbUsername, $dbPassword, $tablePrefix) {
+	public static function createSettingsFile($dbHostname, $dbName, $dbUsername, $dbPassword, $tablePrefix) {
+
+		// TODO escape params [especially password]
+
     $content =<<< END
 <?php
 
@@ -21,7 +24,7 @@ class Installation {
 
 END;
 
-	  $file = realpath("../global/settings.php");
+	  $file = dirname(__FILE__) . "/../settings.php";
 	  $handle = @fopen($file, "w");
 	  if ($handle) {
 	    fwrite($handle, $content);
@@ -34,20 +37,39 @@ END;
 	}
 
 
-	public function createDatabase() {
+	public static function createDatabase() {
 		Core::loadSettingsFile();
     Core::initDatabase();
 
     // TODO want to add the rollback HERE. So that any failures - even in the plugins - will clean out
-    // the entire DB tables. That makes it easier to re-install
-		self::runCoreSQL();
-		self::runDataTypeSQL();
+    // the entire DB tables. That makes it easier to re-install...
+
+		self::createCoreTables();
+		self::createDataTypeTables();
 	}
 
-	public function runCoreSQL() {
+
+	public static function createCoreTables() {
     $prefix = Core::getDbTablePrefix();
 
 		$queries = array();
+		$queries[] = "
+			CREATE TABLE {$prefix}configurations (
+			  configuration_id mediumint(9) NOT NULL auto_increment,
+			  account_id mediumint(9) NOT NULL,
+			  configuration_name varchar(100) NOT NULL,
+			  content mediumtext NOT NULL,
+			  PRIMARY KEY (configuration_id)
+			)
+		";
+		$queries[] = "
+		  CREATE TABLE {$prefix}settings (
+		    setting_id mediumint(9) NOT NULL AUTO_INCREMENT,
+		    setting_name varchar(100) NOT NULL,
+		    setting_value text NOT NULL,
+		    PRIMARY KEY (setting_id)
+		  )
+		";
 		$queries[] = "
 			CREATE TABLE {$prefix}user_accounts (
 			  account_id mediumint(8) unsigned NOT NULL auto_increment,
@@ -66,42 +88,30 @@ END;
 			)
 		";
 
-		$queries[] = "
-		  CREATE TABLE {$prefix}settings (
-		    setting_id mediumint(9) NOT NULL AUTO_INCREMENT,
-		    setting_name varchar(100) NOT NULL,
-		    setting_value text NOT NULL,
-		    PRIMARY KEY (setting_id)
-		  )
-		";
+		$rollbackQueries = array();
+		$rollbackQueries[] = "DROP TABLE {$prefix}configurations";
+		$rollbackQueries[] = "DROP TABLE {$prefix}settings";
+		$rollbackQueries[] = "DROP TABLE {$prefix}user_accounts";
 
-		$queries[] = "
-			CREATE TABLE {$prefix}forms (
-			  form_id mediumint(9) NOT NULL auto_increment,
-			  account_id mediumint(9) NOT NULL,
-			  form_name varchar(100) NOT NULL,
-			  content mediumtext NOT NULL,
-			  PRIMARY KEY (form_id)
-			)
-		";
-
-		// execute queries [rollback!]
+		$response = Core::$db->query($queries, $rollbackQueries);
 	}
 
-	public function createDataTypeTables() {
+	public static function createDataTypeTables() {
+    Core::initDataTypes();
 
+    // now run whatever installation code exists for each Data Type
+    while (list($groupKey, $dataTypes) = each(Core::$dataTypes)) {
+    	// try / catch?
+    	foreach ($dataTypes as $dataType) {
+        $dataType->install();
+    	}
+    }
 	}
 }
 
 
 /*
 $g_db_install_queries = array();
-
-//$g_db_install_queries[] = "
-//	INSERT INTO gd_user_accounts (account_id, date_created, last_updated, date_expires, first_name, last_name, email, password, password_recovery_question, password_recovery_answer, max_records, num_records_generated) VALUES
-//	(1, '2007-05-19 19:13:07', '2007-05-19 19:14:52', '2010-05-19 19:13:07', 'Test', 'Account', 'test@test.com', 'test', '', '', 0, 0);
-//";
-
 $g_db_install_queries[] = "
 	INSERT INTO gd_cities (region_identifier, city) VALUES
 	('nova_scotia', 'Municipal District'),

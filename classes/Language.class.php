@@ -33,7 +33,7 @@ class Language {
   	return $this->currentLanguageFile;
   }
 
-  public function getCurrentLanguageStrings() {
+  public function getCurrentLanguageStrings() { // TODO far too verbose
   	return $this->currentLanguageStrings;
   }
 

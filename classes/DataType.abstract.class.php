@@ -8,10 +8,11 @@
 abstract class DataType {
 
 	// MUST be defined by each Data Type
-  private $hasHelpDialog; // boolean
-  private $dataTypeFieldGroup; // string
-  private $dataTypeFieldGroupOrder; // int
-  private $processOrder; // int
+	protected $dataTypeName = "";
+  protected $hasHelpDialog; // boolean
+  protected $dataTypeFieldGroup; // string
+  protected $dataTypeFieldGroupOrder; // int
+  protected $processOrder; // int
 
   // OPTIONALLY defined by data types
   protected $includedFiles = array();
@@ -32,8 +33,6 @@ abstract class DataType {
 	abstract function generateItem($row, $options, $existingRowData);
 
 	/**
-	 * ...?
-	 *
 	 * @param string $export_type e.g. "sql"
 	 * @param mixed $options e.g. "mysql" or "oracle"
 	 * @return string
@@ -55,6 +54,30 @@ abstract class DataType {
 		return;
 	}
 
+  /**
+   * If the Data Type wants to include something in the Example column, it must return the HTML via this function.
+   * If this function isn't defined (or it returns an empty string), the string "No examples available." will be
+   * outputted in the cell.
+   *
+   * @param integer $row the row number. Note: the visible row number may not be the same number that is displayed
+   *   in the page. This number is used purely to uniquely identify the row for coding purposes.
+   */
+	public function getExampleColumnHTML($row) {
+		return "";
+	}
+
+  /**
+   * If the Data Type wants to include something in the Options column, it must return the HTML via this function.
+   * If this function isn't defined (or it returns an empty string), the string "No options available." will be
+   * outputted in the cell.
+   *
+   * @param integer $row the row number. Note: the visible row number may not be the same number that is displayed
+   *   in the page. This number is used purely to uniquely identify the row for coding purposes.
+   */
+	public function getOptionsColumnHTML($row) {
+		return "";
+	}
+
 	/**
 	 * Called during data generation. This determines what options the user selected in the user
 	 * interface; it's used to figure out what settings to pass to each Data Type to provide that function the
@@ -69,7 +92,7 @@ abstract class DataType {
 	 * @param integer the number of columns in the data set
 	 * @return array a hash of ... [TODO...]
 	 */
-	function getTemplateOptions($postdata, $column, $numCols) { // TODO the name sucks...
+	public function getTemplateOptions($postdata, $column, $numCols) { // TODO the name sucks...
 		return null;
 	}
 
@@ -81,8 +104,15 @@ abstract class DataType {
 	 * [shouldn't be required... just like install(), but I'd like to mention it in this file for documentation purposes]
 	 *
 	 */
-  function getHelpDialogInfo() {
+  public function getHelpDialogInfo() {
 		return;
+	}
+
+	/**
+	 * For debugging and dev work.
+	 */
+	public function __toString() {
+	  echo $this->getName();
 	}
 
 
@@ -90,14 +120,8 @@ abstract class DataType {
   // - these are automatically inherited by all Data Types when they extend this abstract class. These simply
   // act as getters for the required private vars defined above
 
-  /**
-   * This returns the field group that this Data Type should be listed in. See the Core::$dataTypeGroups for the
-   * available options.
-   *
-   * @return string
-   */
-	final function getDataTypeFieldGroup() {
-		return $this->dataTypeFieldGroup;
+	final public function getName() {
+		return $this->dataTypeName;
 	}
 
 	/**
@@ -105,7 +129,7 @@ abstract class DataType {
 	 *
 	 * @return boolean
 	 */
-	final function hasHelpDialog() {
+	final public function hasHelpDialog() {
 		return $this->hasHelpDialog;
 	}
 
@@ -114,16 +138,26 @@ abstract class DataType {
    *
    * @return array
    */
-  final function getIncludedFiles() {
+  final public function getIncludedFiles() {
     return $this->includedFiles;
   }
+
+ /**
+   * This returns the field group that this Data Type should be listed in. See the Core::$dataTypeGroups for the
+   * available options.
+   *
+   * @return string
+   */
+	final public function getDataTypeFieldGroup() {
+		return $this->dataTypeFieldGroup;
+	}
 
   /**
 	 * Returns the order within the field group that this Data Type should appear.
 	 *
 	 * @return integer
 	 */
-	final function getDataTypeFieldGroupOrder() {
+	final public function getDataTypeFieldGroupOrder() {
 		return $this->dataTypeFieldGroupOrder;
 	}
 
@@ -133,7 +167,7 @@ abstract class DataType {
 	 *
 	 * @return integer
 	 */
-  final function getProcessOrder() {
+  final public function getProcessOrder() {
 		return $this->processOrder;
 	}
 }

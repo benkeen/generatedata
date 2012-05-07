@@ -5,7 +5,7 @@
  * Called on script load for any Data Generator page. It does all the heavy lifting and initializes various
  * general vars and data for the script. It's used instead of the global namespace to store info needed throughout
  * the code; the class is static so we don't need to re-instantiate it all over the place, and force it to
- * reload the
+ * reload/re-instantiate the various components.
  */
 class Core {
 
@@ -20,20 +20,22 @@ class Core {
   private static $defaultNumRows = 100;
   private static $defaultLanguageFile = "en";
 
-  // overridable, but only by Data Types
-  private static $dataTypeGroups = array("human_data", "text", "other"); // TODO... this really does suck
 
   // non-overidable settings
   private static $version = "3.0.0";
   private static $minimumPHPVersion = "5.2.0";
   private static $settingsFileExists = false;
+  private static $dataTypeGroups = array("human_data", "text", "other");
 
-  // left as public, because they're often modified ... [okay?]
+  // left as public, because they're often modified throughout the code ... [okay?]
   public static $language;
   public static $db;
   public static $smarty;
   public static $translations;
   public static $user; // the current logged in user (if there IS someone logged in)
+  public static $dataTypes;
+  public static $exportTypes;
+  public static $countries;
 
 
   public static function init() {
@@ -46,6 +48,9 @@ class Core {
     self::$language     = new Language(self::$defaultLanguageFile);
 
     self::initDatabase();
+    self::initDataTypes();
+    self::initExportTypes();
+    self::initCountries();
   }
 
 
@@ -57,7 +62,7 @@ class Core {
     $settingsFilePath = realpath(dirname(__FILE__) . "/../settings.php");
     if (file_exists($settingsFilePath)) {
       self::$settingsFileExists = true;
-      require_once($settingsFilePath); // boy I don't like this...
+      require_once($settingsFilePath); // TODO boy I don't like this... include_once, wrapped in try-catch maybe?
 
       if (isset($dbHostname)) {
         self::$dbHostname = $dbHostname;
@@ -91,8 +96,25 @@ class Core {
 
   public function initDatabase() {
   	if (Core::$settingsFileExists) {
-      $this->db = new Database();
+      self::$db = new Database();
   	}
+  }
+
+  public function initDataTypes() {
+  	if (!Core::$settingsFileExists) {
+  		return;
+  	}
+
+    // parse the Data Types folder and identify those modules that are available
+    self::$dataTypes = DataTypeHelper::getDataTypes();
+  }
+
+  public function initExportTypes() {
+
+  }
+
+  public function initCountries() {
+
   }
 
   public function getHostname() {

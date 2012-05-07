@@ -114,28 +114,6 @@ class Utils {
 
 
 	/**
-	 * Sorts a multidimensional (2 deep) array based on a particular key.
-	 *
-	 * @param array $array
-	 * @param mixed $key
-	 * @return array
-	 */
-	public static function arraySort($array, $key) {
-	  $sortValues = array();
-	  for ($i=0; $i<sizeof($array); $i++) {
-	    $sortValues[$i] = $array[$i][$key];
-	  }
-
-	  asort($sortValues);
-	  reset($sortValues);
-	  while (list($k, $v) = each($sortValues))
-	    $sortedArr[] = $array[$k];
-
-	  return $sortedArr;
-	}
-
-
-	/**
 	 * This function is like rand, only allows it to be weighted.
 	 *
 	 * @param array $weights
@@ -170,7 +148,7 @@ class Utils {
 	 * @param string $template
 	 * @param array $params
 	 */
-	static function displayPage($template, $pageVars) {
+	static function displayPage($template, $pageVars = array()) {
 	  // common variables. These are sent to EVERY templates
 	  Core::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates");
 	  Core::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
@@ -194,13 +172,14 @@ class Utils {
 	  //Core::$smarty->assign("SESSION", $_SESSION["gd"]);
 	  Core::$smarty->assign("version", Core::getVersion());
 	  Core::$smarty->assign("samePage", Utils::getCleanPhpSelf());
-	  Core::$smarty->assign("query_string", $_SERVER["QUERY_STRING"]);
+	  Core::$smarty->assign("queryString", $_SERVER["QUERY_STRING"]);
 
 	  // now add the custom variables for this template, as defined in $page_vars
 	  foreach ($pageVars as $key=>$value)
 	    Core::$smarty->assign($key, $value);
 
 	  Core::$smarty->display(realpath(dirname(__FILE__) . "/../$template"));
+
 	  //gd_db_disconnect($g_link);
 	}
 
