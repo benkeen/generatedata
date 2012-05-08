@@ -314,17 +314,19 @@ END;
 	/**
 	 * Returns an array of lorem ipsum words. Assumes that a file exists in a misc/ subfolder called
 	 * loremipsum.txt, containing lorem ipsum text.
+	 *
+	 * TODO this seems a good candidate to memoize...
 	 */
-	function gd_get_lipsum() {
-		global $g_table_prefix;
+	function getLipsumWords() {
+    $prefix = Core::getDbTablePrefix();
 
 		// grab all the words in the text files & put them in an array (1 word per index)
-		$query = mysql_query("SELECT * FROM {$g_table_prefix}loremipsum");
+		$query = "SELECT * FROM {$prefix}loremipsum WHERE setting_name = 'lipsum'";
+		$response = Core::$db->query($query);
 
-		$info = mysql_fetch_assoc($query);
-		$words = preg_split("/\s+/", $info["lipsum"]);
-
-		return $words;
+//		$info = mysql_fetch_assoc($query);
+	//	$words = preg_split("/\s+/", $info["lipsum"]);
+//		return $words;
 	}
 
 

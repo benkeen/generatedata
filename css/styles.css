@@ -153,6 +153,7 @@ nav#tabs ul li {
   -webkit-border-top-right-radius: 12px;
   background-color: #efefef;
   height: 22px;
+  color: green;
 }
 nav#tabs ul li.selected {
   cursor: inherit;
@@ -443,7 +444,7 @@ li.colDelete {
   background-color: #990000;
   color: #ffffcc;
 }
-#field_type_hidden_data {
+.hidden {
   display: none;
 }
 .suboptionActive { color: black; }

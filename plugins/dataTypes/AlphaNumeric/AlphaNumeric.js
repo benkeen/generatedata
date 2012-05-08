@@ -1,4 +1,3 @@
-<script>
 var AlphaNumeric_ns = {
   validate: function(rows) {
     var visibleProblemRows = [];
@@ -37,4 +36,3 @@ var AlphaNumeric_ns = {
     };
   }
 }
-</script>

@@ -137,3 +137,4 @@ $L["install_no_db_connection"] = "Please check your database name and login info
 $L["settings_file_exists"] = "The settings file already exists. For new installations, the settings.php shouldn't exist. Either delete it and continue the installation script or try loading the script again with the existing settings file values.";
 $L["first_name"] = "First Name";
 $L["last_name"] = "Last Name";
+$L["settings"] = "Settings";

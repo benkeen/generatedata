@@ -1,9 +1,10 @@
 <?php
 
 class Language {
-  private $currentLanguageFile;
+  private $currentLanguageFile; // should include .php suffix, no?
   private $currentLanguageStrings;
 
+  // TODO also add private var for human-readable string of current language
 
   /**
    * The Language class constructor requires the name of the language file (i.e. "fr" in "fr.php") as the

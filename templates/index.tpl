@@ -20,7 +20,7 @@
   <nav id="tabs">
     <ul>
       <li id="tab1" class="selected">{$L.generate}</li>
-      <li id="tab2">Admin</li>
+      <li id="tab2">{$L.settings}</li>
       <li id="tab3">{$L.help}</li>
     </ul>
   </nav>
@@ -61,13 +61,6 @@
           <input type="hidden" name="rowOrder" id="rowOrder" value="" />
           <input type="hidden" name="deletedRows" id="deletedRows" value="" />
 
-          <div class="setting">
-            <label>{$L.num_results}</label>
-            <div>
-              <input type="text" style="width:45px;" name="numResults" id="numResults" value="100" /> <!-- TODO -->
-            </div>
-            <div class="clear"></div>
-          </div>
           <div class="setting">
             <label>{$L.result_type}</label>
             <div>
@@ -134,36 +127,16 @@
 
           <div class="verticalPad"></div>
           <div>
+            <input type="text" style="width:45px;" name="numResults" id="numResults" value="100" />
             <button class="greenButton">{$L.generate}</button>
           </div>
 
-          <!--  TODO - jquery templates? Might be nicer...! -->
-          <div id="field_type_hidden_data">
+          <div class="hidden">
             <div id="HTML_Row">
               <ul>
                 <li class="colOrder">$ROW$</li>
                 <li class="colTitle"><input type="text" name="title_$ROW$" id="title_$ROW$" /></li>
-                <li class="colDataType">
-                  <select name="type_$ROW$" id="type_$ROW$" onchange="gd.changeRowType(this.name, this.value)">
-                  {*
-                    <option value="">{$L.please_select}</option>
-                    <?php
-                    while (list($group_name_key, $curr_data_types) = each($data_types))
-                    {
-                      $group_name = $L[$group_name_key];
-                      echo "<optgroup label=\"$group_name\">\n";
-
-                      foreach ($curr_data_types as $data_type_info)
-                      {
-                        echo "<option value=\"{$data_type_info["data_folder_name"]}\">{$data_type_info["data_type_name"]}</option>\n";
-                      }
-
-                      echo "</optgroup>\n";
-                    }
-                    ?>
-                  *}
-                  </select>
-                </li>
+                <li class="colDataType">{data_types_dropdown}</li>
                 <li class="colExamples" id="example_$ROW$">&nbsp;</li>
                 <li class="colOptions" id="options_$ROW$">&nbsp;</li>
                 <li class="colHelp" id="help_$ROW$">&nbsp;</li>

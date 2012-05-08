@@ -1,7 +1,7 @@
 <?php
 
 
-class ExportTypes {
+class ExportTypeHelper {
 
 	public function getExportTypes() {
 

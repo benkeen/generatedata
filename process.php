@@ -30,7 +30,7 @@ if ($resultType == "XML")
 
 require("library.php");
 
-// if there's no incoming FORM values, just exit.
+// if there's no incoming FORM values, just exit
 if (empty($_POST))
   exit;
 
@@ -85,6 +85,6 @@ switch ($g_resultType)
     break;
   case "SQL":
     require_once("export_types/sql.php");
-    break;}
-
+    break;
+}
 

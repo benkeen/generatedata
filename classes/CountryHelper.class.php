@@ -1,7 +1,7 @@
 <?php
 
 
-class Countries {
+class CountryHelper {
 
 	/**
 	 * This returns all those countries in the database that have country-specific data, namely:

@@ -12,17 +12,21 @@
 require_once(dirname(__FILE__) . "/classes/Account.class.php");
 require_once(dirname(__FILE__) . "/classes/AjaxRequest.class.php");
 require_once(dirname(__FILE__) . "/classes/Core.class.php");
+require_once(dirname(__FILE__) . "/classes/CountryHelper.class.php");
 require_once(dirname(__FILE__) . "/classes/Database.class.php");
 require_once(dirname(__FILE__) . "/classes/DataType.abstract.class.php");
 require_once(dirname(__FILE__) . "/classes/DataTypeHelper.class.php");
-require_once(dirname(__FILE__) . "/classes/Exceptions.class.php");
-require_once(dirname(__FILE__) . "/classes/ExportTypes.class.php");
-//require_once(dirname(__FILE__) . "/classes/GDException.class.php");
+require_once(dirname(__FILE__) . "/classes/ExportType.abstract.class.php");
+require_once(dirname(__FILE__) . "/classes/ExportTypeHelper.class.php");
 require_once(dirname(__FILE__) . "/classes/Installation.class.php");
 require_once(dirname(__FILE__) . "/classes/Language.class.php");
 require_once(dirname(__FILE__) . "/classes/SessionManager.class.php");
 require_once(dirname(__FILE__) . "/classes/Translations.class.php");
 require_once(dirname(__FILE__) . "/classes/Utils.class.php");
 require_once(dirname(__FILE__) . "/smarty/Smarty.class.php");
+
+//require_once(dirname(__FILE__) . "/classes/Exceptions.class.php");
+//require_once(dirname(__FILE__) . "/classes/GDException.class.php");
+
 
 Core::init();

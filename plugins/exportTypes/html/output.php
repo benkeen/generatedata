@@ -25,6 +25,7 @@
 ksort($g_template, SORT_NUMERIC);
 for ($row=1; $row<=$g_numResults; $row++)
 {
+	// TODO. With new design, this chunk of code will be handled PRIOR to the Export Type's generate() method
   $row_data = array();
   while (list($order, $data_types) = each($g_template))
   {

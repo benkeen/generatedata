@@ -4,14 +4,27 @@ Generator.defineDataType = function(name, code) {
 
 }
 
+/**
+
+Big Client-side stuff to do
+---------------------------
+
+- Refactor JS into Generator object
+- Data Types should use Generator.defineDataType to register their JS...
+- Add generic namespace code for
+- Namespace all classes and IDs
+- Countries + Export Types need to be dynamically loaded [requires backend code, first]
+
+*/
+
 
 // ------------------------------------------
 
 
 
 $(function() {
-  $("input[name=resultType]").bind("click", function() { gd.changeResultType(this.value); });
-  $("input[name=countryChoice\[\]]").bind("click", gd.updateCountryChoice);
+  $(".resultType").bind("click", function() { gd.changeResultType(this.value); });
+  $(".countryChoice").bind("click", gd.updateCountryChoice);
   $(".deleteRowsBtn").bind("click", gd.deleteRows);
   $("input[name=sql_statement_type]").bind("click", gd.changeStatementType);
   $("#xml_use_custom_format").bind("click", gd.toggleCustomXMLFormat);
@@ -21,6 +34,7 @@ $(function() {
 
   $("#tableRows").sortable({
     handle: ".colOrder",
+    axis: "y",
     update: function(event, ui) {
       gd.restyleRows();
     }

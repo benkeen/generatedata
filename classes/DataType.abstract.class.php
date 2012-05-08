@@ -12,7 +12,7 @@ abstract class DataType {
   protected $hasHelpDialog; // boolean
   protected $dataTypeFieldGroup; // string
   protected $dataTypeFieldGroupOrder; // int
-  protected $processOrder; // int
+  protected $processOrder = 1; // int
 
   // OPTIONALLY defined by data types
   protected $includedFiles = array();
@@ -120,7 +120,7 @@ abstract class DataType {
   // - these are automatically inherited by all Data Types when they extend this abstract class. These simply
   // act as getters for the required private vars defined above
 
-	final public function getName() {
+	final public function getName() { // TODO should return in current language...
 		return $this->dataTypeName;
 	}
 
