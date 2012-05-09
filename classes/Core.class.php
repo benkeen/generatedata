@@ -110,7 +110,12 @@ class Core {
   }
 
   public function initExportTypes() {
+  	if (!Core::$settingsFileExists) {
+  		return;
+  	}
 
+    // parse the Data Types folder and identify those modules that are available
+    self::$exportTypes = ExportTypeHelper::getExportTypes();
   }
 
   public function initCountries() {

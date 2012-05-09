@@ -22,7 +22,7 @@ abstract class ExportType {
 
   /**
    * If the export type needs to display any additional settings in the UI (like XML, CSV or SQL does), this function
-   * should return
+   * should return.
    */
 	public function getSettings() {
 		return "";

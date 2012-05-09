@@ -17,6 +17,9 @@ abstract class DataType {
   // OPTIONALLY defined by data types
   protected $includedFiles = array();
 
+  //
+  public $L;
+
 
   // REQUIRED METHODS
 
@@ -117,8 +120,16 @@ abstract class DataType {
 
 
   // 3. NON-OVERRIDABLE FUNCTIONS
-  // - these are automatically inherited by all Data Types when they extend this abstract class. These simply
-  // act as getters for the required private vars defined above
+  // - these are automatically inherited by all Data Types when they extend this abstract class.
+
+  /**
+   * The default constructor. Automatically populates the $L member var with whatever language is currently being
+   * used.
+   */
+	final function __construct() {
+    //Core::$language->
+	}
+
 
 	final public function getName() { // TODO should return in current language...
 		return $this->dataTypeName;

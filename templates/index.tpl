@@ -64,11 +64,7 @@
           <div class="setting">
             <label>{$L.result_type}</label>
             <div>
-              <input type="radio" name="resultType" value="HTML" id="HTML" checked="checked" /> <label for="HTML">HTML</label>&nbsp;
-              <input type="radio" name="resultType" value="Excel" id="Excel" /> <label for="Excel">Excel</label>&nbsp;
-              <input type="radio" name="resultType" value="XML" id="XML" /> <label for="XML">XML</label>&nbsp;
-              <input type="radio" name="resultType" value="CSV" id="CSV" /> <label for="CSV">CSV</label>&nbsp;
-              <input type="radio" name="resultType" value="SQL" id="SQL" /> <label for="SQL">SQL</label>
+              {export_types}
             </div>
             <div class="clear"></div>
           </div>

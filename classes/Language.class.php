@@ -4,6 +4,7 @@ class Language {
   private $currentLanguageFile; // should include .php suffix, no?
   private $currentLanguageStrings;
 
+
   // TODO also add private var for human-readable string of current language
 
   /**

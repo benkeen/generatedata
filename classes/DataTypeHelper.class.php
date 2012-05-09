@@ -140,7 +140,8 @@ class DataTypeHelper {
 	/**
 	 * Instantiates and returns a Data Type object.
 	 *
-	 * @param string $folder
+	 * @param string $baseFolder
+	 * @param string $dataTypeFolderName
 	 */
 	private function instantiateDataType($baseFolder, $dataTypeFolderName) {
 
