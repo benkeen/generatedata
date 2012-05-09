@@ -25,5 +25,5 @@ http://www.generatedata.com/#download
 Some significantly improved documentation is coming soon. I'm busy working on other work until
 April/May of 2012, but will be returning to this project then.
 
-- Ben Keen
+Ben Keen
 [@vancouverben](https://twitter.com/#!/vancouverben)
