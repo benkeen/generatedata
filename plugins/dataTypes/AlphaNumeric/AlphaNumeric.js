@@ -27,7 +27,7 @@ var AlphaNumeric_ns = {
 
   /**
    * Called when the user saves a form. This function is passed the row number of the row to
-   * save. It should return a well-formatted JSON object (of whatever structure is relevant.
+   * save. It should return a well-formatted JSON object.
    */
   saveRow: function(rowNum) {
     return {

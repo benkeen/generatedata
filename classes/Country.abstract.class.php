@@ -1,7 +1,5 @@
 <?php
 
-namespace Countries;
-
 abstract class Country {
 	protected $countryName;
 	protected $countrySlug;

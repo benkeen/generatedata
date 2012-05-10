@@ -3,23 +3,24 @@
  */
 
 $(function() {
-  $("#tabs ul li").each(function() {
-    var tabNum = parseInt($(this).attr("id").replace(/^tab/, ""), 10);
+  $("#gdTabs ul li").each(function() {
+    var tabNum = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
     $(this).bind("click", function(e, a) {
       g.selectTab(tabNum);
       window.location = window.location.href.split("#")[0] + "#t" + tabNum;
     });
   });
+
   // if the page was just reloaded, see if we need to display a particular tab
   if (window.location.href.match(/#/)) {
     var tabNum = window.location.href.split("#")[1].replace(/^t/, "");
-    if (g.isNumber(tabNum) && tabNum >= 1 && tabNum <= $("#tabs ul li").length) {
+    if (g.isNumber(tabNum) && tabNum >= 1 && tabNum <= $("#gdTabs ul li").length) {
       g.selectTab(tabNum);
       g.currentTab = tabNum;
     }
   }
 
-  $("#selectLanguage").bind("change", g.changeLanguage);
+  $("#gdSelectLanguage").bind("change", g.changeLanguage);
 });
 
 
@@ -33,10 +34,10 @@ var g = {
       return false;
     }
 
-    $("#tab" + g.currentTab).removeClass("selected");
-    $("#tab" + tab).addClass("selected");
-    $("#tab" + g.currentTab + "Content").hide();
-    $("#tab" + tab + "Content").show();
+    $("#gdTab" + g.currentTab).removeClass("gdSelected");
+    $("#gdTab" + tab).addClass("gdSelected");
+    $("#gdTab" + g.currentTab + "Content").hide();
+    $("#gdTab" + tab + "Content").show();
 
     g.currentTab = tab;
     return false;
@@ -45,7 +46,7 @@ var g = {
   // TODO: should temporarily save form settings in memory when switching between languages; or at least prompt the
   // user to let them know they're going to lose any changes unless they do it manually
   changeLanguage: function() {
-    var lang_file = $("#selectLanguage").val();
+    var lang_file = $("#gdSelectLanguage").val();
     if (lang_file != "") {
       window.location = "?lang=" + lang_file + "#t" + g.currentTab;
     }
@@ -61,7 +62,7 @@ var g = {
 
   clearErrors: function() {
     gd.errors = [];
-    $("*").removeClass("problemField");
+    $("*").removeClass("gdProblemField");
   },
 
   hideErrors: function(unhighlightProblemFields) {
@@ -70,10 +71,10 @@ var g = {
     }
 
     if (unhighlightProblemFields) {
-      $("*").removeClass("problemField");
+      $("*").removeClass("gdProblemField");
     }
 
-    $("#messages").hide("blind", null, 500);
+    $("#gdMessages").hide("blind", null, 500);
     gd.errors = [];
     gd.messageVisible = false;
 
@@ -91,32 +92,30 @@ var g = {
             $(gd.errors[i].els[j]).focus();
             hasFocus = true;
           }
-          $(gd.errors[i].els[j]).addClass("problemField");
+          $(gd.errors[i].els[j]).addClass("gdProblemField");
         }
       }
 
       html += "<li>" + gd.errors[i].error + "</li>";
     }
-    $("#messages").removeClass("notify").addClass("errors margin_top");
-    $("#messages div").html(html);
+    $("#gdMessages").removeClass("gdNotify").addClass("gdErrors gdMarginTop");
+    $("#gdMessages div").html(html);
 
     // if this is the first time the errors are displayed (i.e. it's not already visible), blind it in
     if (!gd.messageVisible) {
-      $("#messages").show("blind", null, 500);
+      $("#gdMessages").show("blind", null, 500);
     }
 
     gd.messageVisible = true;
   },
 
   displayMessage: function(message) {
-    $("#messages").removeClass("errors");
-    $("#messages").addClass("notify");
-    $("#messages").addClass("margin_top");
-    $("#messages div").html(message);
+    $("#gdMessages").removeClass("gdErrors").addClass("gdNotify gdMarginTop");
+    $("#gdMessages div").html(message);
 
     // if this is the first time the errors are displayed (i.e. it's not already visible), blind it in
     if (!gd.messageVisible) {
-      $("#messages").show("blind", null, 500);
+      $("#gdMessages").show("blind", null, 500);
     }
 
     gd.messageVisible = true;

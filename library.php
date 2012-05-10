@@ -12,6 +12,7 @@
 require_once(dirname(__FILE__) . "/classes/Account.class.php");
 require_once(dirname(__FILE__) . "/classes/AjaxRequest.class.php");
 require_once(dirname(__FILE__) . "/classes/Core.class.php");
+require_once(dirname(__FILE__) . "/classes/Country.abstract.class.php");
 require_once(dirname(__FILE__) . "/classes/CountryHelper.class.php");
 require_once(dirname(__FILE__) . "/classes/Database.class.php");
 require_once(dirname(__FILE__) . "/classes/DataType.abstract.class.php");

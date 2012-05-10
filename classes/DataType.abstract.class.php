@@ -1,9 +1,10 @@
 <?php
 
+
 /**
- * Our base class for all Data Type plugins. All Data Types must define a class that extends this class. This
- * page documents and defines (where the language permits!) what's required, what's optional, and what each
- * method and member variable does.
+ * Our base class for all Data Type plugins. All Data Types must define a class that extends this class, also
+ * in the DataTypes namespace. This page documents and defines (where the language permits!) what's required,
+ * what's optional, and what each method and member variable does.
  */
 abstract class DataType {
 

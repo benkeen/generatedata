@@ -1,18 +1,5 @@
 <?php
 
-// MAIN SETTINGS
-
-// this acts as the internal namespace for the data type. It must be unique, alphanumeric chars only - a-Z -
-// and be the same as the actual folder name.
-$data_folder_name = "AutoIncrement";
-
-// the name of the field group in which this data type should appear
-$data_type_field_group_index = "other";
-
-// the order in which this item should appear in the field group. To allow other data types
-// to be sandwiched in between others, it's generally a good idea to make each item 10 apart
-$data_type_field_group_order = 10;
-
 
 // ------------------------------------------------------------------------------------------------
 // EXAMPLES
@@ -30,31 +17,3 @@ $data_type_example_html =<<<EOF
     <option value="2,4,{ROW}i">2i, 4i, 6i, 8i...</option>
   </select>
 EOF;
-
-// ------------------------------------------------------------------------------------------------
-// OPTIONS
-
-$data_type_options_html =<<<EOF
-&nbsp;{$L["AutoIncrement_start_at_c"]} <input type="text" name="autoIncrementStart_\$ROW\$" id="autoIncrementStart_\$ROW\$" style="width: 40px" value="1" />&nbsp;
-&nbsp;{$L["AutoIncrement_increment_c"]} <input type="text" name="autoIncrementValue_\$ROW\$" id="autoIncrementValue_\$ROW\$" style="width: 40px" value="1" />
-&nbsp;{$L["AutoIncrement_placeholder_str"]} <input type="text" name="autoIncrementPlaceholder_\$ROW\$" id="autoIncrementPlaceholder_\$ROW\$" style="width: 140px" />
-EOF;
-
-// ------------------------------------------------------------------------------------------------
-// HELP
-
-$help_popup_width = 480;
-$help_html_content =<<<EOF
-	<p>
-	  {$L["AutoIncrement_help_intro"]}
-	</p>
-	<p>
-	  {$L["AutoIncrement_help_para2"]}
-	</p>
-
-	<ul>
-	  <li><b>ROW-{\$INCR}</b> -> ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
-	  <li><b>{\$INCR}F</b> -> 1F, 2F, 3F, 4F, ...</li>
-	</ul>
-EOF;
-

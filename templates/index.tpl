@@ -17,17 +17,17 @@
       {language_dropdown}
     </nav>
   </header>
-  <nav id="tabs">
+  <nav id="gdTabs">
     <ul>
-      <li id="tab1" class="selected">{$L.generate}</li>
-      <li id="tab2">{$L.settings}</li>
-      <li id="tab3">{$L.help}</li>
+      <li id="gdTab1" class="gdSelected">{$L.generate}</li>
+      <li id="gdTab2">{$L.settings}</li>
+      <li id="gdTab3">{$L.help}</li>
     </ul>
   </nav>
   <section>
-    <div id="content">
-      <div id="loadingIcon"></div>
-      <div id="tab1Content" class="tabContent">
+    <div id="gdContent">
+      <div id="gdLoadingIcon"></div>
+      <div id="gdTab1Content" class="gdTabContent">
 
         {*{if $g_show_save_panel}
         <div id="controlPanelWindow" class="box">
@@ -56,62 +56,62 @@
         </div>
         {/if}*}
 
-        <form action="process.php" method="post" name="data" id="data" target="hiddenIframe">
-          <input type="hidden" name="numCols" id="numCols" value="" />
-          <input type="hidden" name="rowOrder" id="rowOrder" value="" />
-          <input type="hidden" name="deletedRows" id="deletedRows" value="" />
+        <form action="process.php" method="post" name="gdData" id="gdData" target="hiddenIframe">
+          <input type="hidden" name="gdNumCols" id="gdNumCols" value="" />
+          <input type="hidden" name="gdRowOrder" id="gdRowOrder" value="" />
+          <input type="hidden" name="gdDeletedRows" id="gdDeletedRows" value="" />
 
-          <div class="setting">
+          <div class="gdSetting">
             <label>{$L.result_type}</label>
             <div>
               {export_types}
             </div>
-            <div class="clear"></div>
+            <div class="gdClear"></div>
           </div>
-          <div class="setting">
+          <div class="gdSetting">
             <label>{$L.countries}</label>
             <div id="countryList">
               {country_list}
             </div>
-            <div class="clear"> </div>
+            <div class="gdClear"> </div>
           </div>
+          <div class="gdClear"></div>
 
-          <div class="clear"></div>
 {*
-          <div id="settingsSQL">{include file="settings_sql.tpl"}</div>
-          <div id="settingsXML">{include file="settings_xml.tpl"}</div>
-          <div id="settingsCSV">{include file="settings_csv.tpl"}</div>
+          <div id="gdSettingsSQL" class="gdSettingsOptions">{include file="settings_sql.tpl"}</div>
+          <div id="gdSettingsXML" class="gdSettingsOptions">{include file="settings_xml.tpl"}</div>
+          <div id="gdSettingsCSV" class="gdSettingsOptions">{include file="settings_csv.tpl"}</div>
 *}
 
-          <div id="messages">
-            <a class="close" title="{$L.hide_error}" onclick="return g.hideErrors(false)" href="#">X</a>
+          <div id="gdMessages">
+            <a class="gdClose" title="{$L.hide_error}" onclick="return g.hideErrors(false)" href="#">X</a>
             <div></div>
           </div>
 
-          <div class="verticalPad"></div>
+          <div class="gdVerticalPad"></div>
 
-          <ul class="tableHeadings">
-            <li class="colOrder">{$L.order}</li>
-            <li class="colTitle" id="colTitle">{$L.column_title}</li>
-            <li class="colDataType">{$L.data_type}</li>
-            <li class="colExamples">{$L.examples}</li>
-            <li class="colOptions">{$L.options}</li>
-            <li class="colHelp">{$L.help}</li>
-            <li class="colDelete"><input type="button" class="deleteRowsBtn" value="{$L.del}" /></li>
+          <ul class="gdTableHeadings">
+            <li class="gdColOrder">{$L.order}</li>
+            <li class="gdColTitle" id="colTitle">{$L.column_title}</li>
+            <li class="gdColDataType">{$L.data_type}</li>
+            <li class="gdColExamples">{$L.examples}</li>
+            <li class="gdColOptions">{$L.options}</li>
+            <li class="gdColHelp">{$L.help}</li>
+            <li class="gdColDelete"><input type="button" class="gdDeleteRowsBtn" value="{$L.del}" /></li>
           </ul>
-          <ul id="tableRows"></ul>
-          <ul class="tableHeadings">
-            <li class="colOrder">{$L.order}</li>
-            <li class="colTitle" id="colTitle">{$L.column_title}</li>
-            <li class="colDataType">{$L.data_type}</li>
-            <li class="colExamples">{$L.examples}</li>
-            <li class="colOptions">{$L.options}</li>
-            <li class="colHelp">{$L.help}</li>
-            <li class="colDelete"><input type="button" class="deleteRowsBtn" value="{$L.del}" /></li>
+          <ul id="gdTableRows"></ul>
+          <ul class="gdTableHeadings">
+            <li class="gdColOrder">{$L.order}</li>
+            <li class="gdColTitle" id="colTitle">{$L.column_title}</li>
+            <li class="gdColDataType">{$L.data_type}</li>
+            <li class="gdColExamples">{$L.examples}</li>
+            <li class="gdColOptions">{$L.options}</li>
+            <li class="gdColHelp">{$L.help}</li>
+            <li class="gdColDelete"><input type="button" class="gdDeleteRowsBtn" value="{$L.del}" /></li>
           </ul>
 
-          <div class="clear"></div>
-          <div class="verticalPad"></div>
+          <div class="gdClear"></div>
+          <div class="gdVerticalPad"></div>
 
           <div style="float: right"><input type="button" value="{$L.empty_form}" onclick="return gd.emptyForm(true, 5)" /></div>
           {$L.add} <input type="text" name="numRows" id="numRows" value="1" size="2" />
@@ -121,22 +121,22 @@
           {* hidden iframe, to which the form is submitted *}
           <iframe name="hiddenIframe" src="" frameborder="0" scrolling="no" style="height: 0px; width: 0px;"></iframe>
 
-          <div class="verticalPad"></div>
+          <div class="gdVerticalPad"></div>
           <div>
-            <input type="text" style="width:45px;" name="numResults" id="numResults" value="100" />
-            <button class="greenButton">{$L.generate}</button>
+            <button class="gdGreenButton gdGenerateButton">{$L.generate}</button>
+            <input type="text" style="width:45px;" name="gdNumResults" id="gdNumResults" value="100" /> rows
           </div>
 
           <div class="hidden">
             <div id="HTML_Row">
               <ul>
-                <li class="colOrder">$ROW$</li>
-                <li class="colTitle"><input type="text" name="title_$ROW$" id="title_$ROW$" /></li>
-                <li class="colDataType">{data_types_dropdown}</li>
-                <li class="colExamples" id="example_$ROW$">&nbsp;</li>
-                <li class="colOptions" id="options_$ROW$">&nbsp;</li>
-                <li class="colHelp" id="help_$ROW$">&nbsp;</li>
-                <li class="colDelete"><input type="checkbox" onclick="gd.markRowAsDeleted(this)" name="deleteRows" /></li>
+                <li class="gdColOrder">$ROW$</li>
+                <li class="gdColTitle"><input type="text" name="title_$ROW$" id="title_$ROW$" /></li>
+                <li class="gdColDataType">{data_types_dropdown}</li>
+                <li class="gdColExamples" id="example_$ROW$">&nbsp;</li>
+                <li class="gdColOptions" id="options_$ROW$">&nbsp;</li>
+                <li class="gdColHelp" id="help_$ROW$">&nbsp;</li>
+                <li class="gdColDelete"><input type="checkbox" onclick="gd.markRowAsDeleted(this)" name="gdDeleteRows" /></li>
               </ul>
             </div>
 
@@ -186,10 +186,10 @@ EOF;
             *}
           </div>
         </form>
-        <div id="helpPopup"></div>
+        <div id="gdHelpPopup"></div>
       </div>
 
-      <div class="tabContent" id="tab2Content">
+      <div class="gdTabContent" id="gdTab2Content">
         <br />
         <b>Coming soon!</b>
         <br />
@@ -203,7 +203,7 @@ EOF;
       <h1>{$L.no_js}</h1>
       {$L.no_js_blurb}
       <form action="{$same_page}">
-        <button class="green_button" id="create_database">{$L.refresh_page}</button>
+        <button class="gdGreenButton">{$L.refresh_page}</button>
       </form>
     </noscript>
   </section>

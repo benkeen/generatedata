@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
   <style type="text/css">
@@ -14,6 +14,7 @@
 <table cellpadding="1" cellspacing="1">
 <tr>
   <?php
+  // TODO
   $sorted_cols = gd_sort_by_col_order($g_template);
   foreach ($sorted_cols as $col)
   {
@@ -22,9 +23,11 @@
   ?>
 </tr>
 <?php
-ksort($g_template, SORT_NUMERIC);
-for ($row=1; $row<=$g_numResults; $row++)
-{
+
+ksort($g_template, SORT_NUMERIC); // TODO
+
+for ($row=1; $row<=$g_numResults; $row++) {
+
 	// TODO. With new design, this chunk of code will be handled PRIOR to the Export Type's generate() method
   $row_data = array();
   while (list($order, $data_types) = each($g_template))
@@ -40,6 +43,8 @@ for ($row=1; $row<=$g_numResults; $row++)
   }
   reset($g_template);
   ksort($row_data, SORT_NUMERIC);
+
+  // ---------------------
 
   echo "<tr>";
   foreach ($row_data as $data)

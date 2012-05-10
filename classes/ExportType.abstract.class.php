@@ -1,5 +1,6 @@
 <?php
 
+
 abstract class ExportType {
 
 	protected $exportTypeName = "";

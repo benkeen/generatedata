@@ -10,8 +10,8 @@ Big Client-side stuff to do
 ---------------------------
 
 - Refactor JS into Generator object
-- Data Types should use Generator.defineDataType to register their JS...
-- Add generic namespace code for
+- Data Types should use Generator.defineDataType to register their JS code.
+- Add generic namespace code for additional code for Data Types
 - Namespace all classes and IDs
 - Countries + Export Types need to be dynamically loaded [requires backend code, first]
 
@@ -21,10 +21,9 @@ Big Client-side stuff to do
 // ------------------------------------------
 
 
-
 $(function() {
-  $(".resultType").bind("click", function() { gd.changeResultType(this.value); });
-  $(".countryChoice").bind("click", gd.updateCountryChoice);
+  $(".gdResultType").bind("click", function() { gd.changeResultType(this.value); });
+  $(".gdCountries").bind("click", gd.updateCountryChoice);
   $(".deleteRowsBtn").bind("click", gd.deleteRows);
   $("input[name=sql_statement_type]").bind("click", gd.changeStatementType);
   $("#xml_use_custom_format").bind("click", gd.toggleCustomXMLFormat);
@@ -32,14 +31,14 @@ $(function() {
     gd.toggleCustomXMLFormat.call($("#xml_use_custom_format")[0]);
   }
 
-  $("#tableRows").sortable({
+  $("#gdTableRows").sortable({
     handle: ".colOrder",
     axis: "y",
     update: function(event, ui) {
       gd.restyleRows();
     }
   });
-  $("#data").bind("submit", gd.submitForm);
+  $("#gdData").bind("submit", gd.submitForm);
   gd.init();
 });
 
@@ -65,7 +64,7 @@ var gd = {
     var rows = rows.toString();
     if (rows.match(/\D/) || rows == 0 || rows == "") {
       g.clearErrors();
-      gd.errors.push({ els: [$("#numRows")], error: L.no_num_rows });
+      gd.errors.push({ els: [$("#gdNumRows")], error: L.no_num_rows });
       gd.displayErrors();
       return false;
     }
@@ -73,10 +72,10 @@ var gd = {
     for (var i=1; i<=rows; i++) {
       var currRow = ++gd.numRows;
       var newRowHTML = $('#HTML_Row').html().replace(/\$ROW\$/g, currRow);
-      $("#tableRows").append("<li class=\"tableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
+      $("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
     }
 
-    $("#numCols").val(gd.numRows);
+    $("#gdNumCols").val(gd.numRows);
     gd.restyleRows();
   },
 
@@ -104,22 +103,21 @@ var gd = {
   },
 
   restyleRows: function() {
-    $("#tableRows>li").removeClass("oddRow");
-    $("#tableRows>li").removeClass("evenRow"); // TODO
-    $("#tableRows>li:odd").addClass("oddRow");
-    $("#tableRows>li:even").addClass("evenRow");
-    $("#tableRows>li .colOrder").each(function(i) { $(this).html(i+1); });
+    $("#gdTableRows>li").removeClass("gdOddRow gdEvenRow");
+    $("#gdTableRows>li:odd").addClass("gdOddRow");
+    $("#gdTableRows>li:even").addClass("gdEvenRow");
+    $("#gdTableRows>li .gdColOrder").each(function(i) { $(this).html(i+1); });
   },
 
   showHelpPopup: function(row) { // TODO - use "dialog" not "popup" term
     var choice = $("#type_" + row).val();
     var title   = null;
     for (var i=0; i<$("#type_" + row)[0].options.length; i++) {
-      if (choice == $("#type_" + row)[0].options[i].value)
+      if (choice == $("#type_" + row)[0].options[i].value) {
         title = $("#type_" + row)[0].options[i].text;
+      }
     }
     var width = gd.dataTypes[choice].width;
-
     var myDialog = $('#helpPopup').html($("#dt_help_" + choice).html()).dialog({
       autoOpen:  false,
       modal:     true,
@@ -226,11 +224,11 @@ var gd = {
   updateCountryChoice: function() {
     gd.countries.length = 0;
 
-    for (var i=0; i<document.data["countryChoice[]"].length; i++) {
-      if (document.data["countryChoice[]"][i].checked) {
-        gd.countries.push(document.data["countryChoice[]"][i].value);
+    $(".gdCountryChoice").each(function() {
+      if (this.checked) {
+        gd.countries.push(this.value);
       }
-    }
+    });
 
     // now hide/show all country-specific elements, based on what the user has selected)
     for (var i=0; i<gd.allCountries.length; i++) {
@@ -258,10 +256,10 @@ var gd = {
 
   // called on page load. Hides/shows the resultType-specific fields
   initResultType: function() {
-    for (var i=0; i<document.data.resultType.length; i++) {
-      if (document.data.resultType[i].checked) {
-        gd.currResultType = document.data.resultType[i].value;
-        switch (document.data.resultType[i].value) {
+    for (var i=0; i<document.gdData.gdExportType.length; i++) {
+      if (document.gdData.gdExportType[i].checked) {
+        gd.currResultType = document.gdData.gdExportType[i].value;
+        switch (gd.currResultType) {
           case "XML":
             $("#custom_col_name").html(L.node_name);
             $("#settingsXML").show();
@@ -434,9 +432,9 @@ var gd = {
 
     // all checks out. Set the form target and submit the sucker
     if (resultType == "HTML" || resultType == "XML" || resultType == "SQL") {
-      document.data.target = "_blank";
+      document.gdData.target = "_blank";
     } else {
-      document.data.target = "hiddenIframe";
+      document.gdData.target = "hiddenIframe";
     }
 
     // pass the ordered rows to the server, according to whatever sort the user's done

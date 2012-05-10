@@ -19,7 +19,7 @@ class Core {
   private static $maxGeneratedRows = 100000;
   private static $defaultNumRows = 100;
   private static $defaultLanguageFile = "en";
-
+  private static $defaultExportType = "HTML";
 
   // non-overidable settings
   private static $version = "3.0.0";
@@ -43,10 +43,10 @@ class Core {
 
     error_reporting(self::$errorReporting);
 
-    self::$smarty       = new Smarty();
     self::$translations = new Translations();
     self::$language     = new Language(self::$defaultLanguageFile);
 
+    self::initSmarty();
     self::initDatabase();
     self::initDataTypes();
     self::initExportTypes();
@@ -94,6 +94,16 @@ class Core {
     }
   }
 
+  private function initSmarty() {
+  	$here = dirname(__FILE__);
+
+    self::$smarty = new Smarty();
+	  self::$smarty->template_dir = realpath("$here/../templates");
+	  self::$smarty->compile_dir  = realpath("$here/../cache");
+	  self::$smarty->assign("version", self::getVersion());
+	  self::$smarty->assign("samePage", Utils::getCleanPhpSelf());
+  }
+
   public function initDatabase() {
   	if (Core::$settingsFileExists) {
       self::$db = new Database();
@@ -120,6 +130,10 @@ class Core {
 
   public function initCountries() {
 
+  }
+
+  public function getDefaultExportType() {
+  	return self::$defaultExportType;
   }
 
   public function getHostname() {

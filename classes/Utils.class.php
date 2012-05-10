@@ -13,8 +13,9 @@ class Utils {
           $cleanHash[$key] = stripslashes($value);
         } else {
           $cleanArray = array();
-          foreach ($value as $val)
+          foreach ($value as $val) {
             $cleanArray[] = stripslashes($val);
+          }
           $cleanHash[$key] = $cleanArray;
         }
       }
@@ -54,6 +55,7 @@ class Utils {
    		}
     }
   }
+
 
   /**
    * Recursively sanitizes data stored in any non-object data format, preparing it
@@ -149,9 +151,6 @@ class Utils {
 	 * @param array $params
 	 */
 	static function displayPage($template, $pageVars = array()) {
-	  // common variables. These are sent to EVERY templates
-	  Core::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates");
-	  Core::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
 
 	  // check the compile directory has the write permissions
 	  if (!is_writable(Core::$smarty->compile_dir)) {
@@ -159,8 +158,8 @@ class Utils {
 	    exit;
 	  }
 
-	  // check that the user is running PHP 5.2 or later. This is needed for json_encode and json_decode and
-	  // for Smarty 3
+	  // check that the user is running a recent enough version of PHP. This is needed for json_encode,
+	  // json_decode and for Smarty 3
 	  $minimumPHPVersion = Core::getMinimumPHPVersion();
 	  $currentVersion = PHP_VERSION;
     if (version_compare($currentVersion, $minimumPHPVersion) < 0) {
@@ -170,13 +169,12 @@ class Utils {
 
 	  Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
 	  //Core::$smarty->assign("SESSION", $_SESSION["gd"]);
-	  Core::$smarty->assign("version", Core::getVersion());
-	  Core::$smarty->assign("samePage", Utils::getCleanPhpSelf());
 	  Core::$smarty->assign("queryString", $_SERVER["QUERY_STRING"]);
 
 	  // now add the custom variables for this template, as defined in $page_vars
-	  foreach ($pageVars as $key=>$value)
+	  foreach ($pageVars as $key=>$value) {
 	    Core::$smarty->assign($key, $value);
+	  }
 
 	  Core::$smarty->display(realpath(dirname(__FILE__) . "/../$template"));
 
@@ -194,12 +192,13 @@ class Utils {
 	 * @param string $error
 	 */
 	static function displaySeriousError($error) {
-	  $not_fixed_message = "";
+	  $notFixedMessage = "";
 	  if (isset($_GET["source"])) {
-	    $not_fixed_message = "<div id=\"not_fixed\">Nope, ain't fixed yet. Try again.</div>";
+	    $notFixedMessage = "<div id=\"gdNotFixed\">Nope, ain't fixed yet. Try again.</div>";
 	  }
 
 	  echo <<< END
+	<!DOCTYPE html>
 	<html>
 	<head>
 	  <title>Things just ain't right.</title>
@@ -211,12 +210,12 @@ class Utils {
 	  });
 	  </script>
 	</head>
-	<body class="error_page">
-	<div id="box">
+	<body class="gdErrorPage">
+	<div id="gdBox">
 	  <h1>Uh-oh.</h1>
-	  $not_fixed_message
+	  $notFixedMessage
 	  {$error}
-	  <button class="greenButton">Click here when you think you've fixed it.</button>
+	  <button class="gdGreenButton">Click here when you think you've fixed it.</button>
 	</div>
 	</body>
 	</html>
@@ -240,7 +239,7 @@ END;
 	}
 
 	/**
-	 * Converts the following characters in the string and returns it:
+	 * Converts the following characters in the parameter string and returns it:
 	 *
 	 *     C, c, A - any consonant (Upper case, lower case, any)
 	 *     V, v, B - any vowel (Upper case, lower case, any)
@@ -248,6 +247,9 @@ END;
 	 *     X       - 1-9
 	 *     x       - 0-9
 	 *     H       - 0-F
+	 *
+	 * @param string
+	 * @return string
 	 */
 	static public function generateRandomAlphanumericStr($str) {
 	  $letters    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -269,10 +271,11 @@ END;
 	      case "l": $new_str .= strtolower($letters[rand(0, strlen($letters)-1)]); break;
 	      case "D":
 	        $bool = rand()&1;
-	        if ($bool)
+	        if ($bool) {
 	          $new_str .= $letters[rand(0, strlen($letters)-1)];
-	        else
+	        } else {
 	          $new_str .= strtolower($letters[rand(0, strlen($letters)-1)]);
+	        }
 	        break;
 
 	      // Consonants
@@ -280,10 +283,11 @@ END;
 	      case "c": $new_str .= strtolower($consonants[rand(0, strlen($consonants)-1)]);  break;
 	      case "E":
 	        $bool = rand()&1;
-	        if ($bool)
+	        if ($bool) {
 	          $new_str .= $consonants[rand(0, strlen($consonants)-1)];
-	        else
+	        } else {
 	          $new_str .= strtolower($consonants[rand(0, strlen($consonants)-1)]);
+	        }
 	        break;
 
 	      // Vowels
@@ -291,10 +295,11 @@ END;
 	      case "v": $new_str .= strtolower($vowels[rand(0, strlen($vowels)-1)]);  break;
 	      case "F":
 	        $bool = rand()&1;
-	        if ($bool)
+	        if ($bool) {
 	          $new_str .= $vowels[rand(0, strlen($vowels)-1)];
-	        else
+	        } else {
 	          $new_str .= strtolower($vowels[rand(0, strlen($vowels)-1)]);
+	        }
 	        break;
 
 	      case "H":
@@ -360,7 +365,7 @@ END;
 	public function generateRandomTextStr($words, $starts_with_lipsum, $type, $min, $max = "") {
 	  // determine the number of words to return
 	  $index = 0;
-	  if      ($type == "fixed") {
+	  if ($type == "fixed") {
 	    $num_words = $min;
 	  } else if ($type == "range") {
 	    $num_words = rand($min, $max);
@@ -375,7 +380,6 @@ END;
 	  if (!$starts_with_lipsum) {
 	    $offset = rand(2, count($words) - ($num_words + 1));
 	  }
-
 	  $word_array = array_slice($words, $offset, $num_words);
 
 	  return join(" ", $word_array);

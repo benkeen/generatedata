@@ -1,5 +1,6 @@
 <?php
 
+
 class AlphaNumeric extends DataType {
 
   protected $dataTypeName = "Alphanumeric";
@@ -106,5 +107,4 @@ EOF;
 		  "content"     => $content
 		);
 	}
-
 }

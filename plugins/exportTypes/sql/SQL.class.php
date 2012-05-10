@@ -1,7 +1,7 @@
 <?php
 
 
-class XML extends ExportType {
+class SQL extends ExportType {
   protected $exportTypeName = "SQL";
 
   function generator($numResults, $columns, $data) {

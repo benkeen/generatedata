@@ -9,112 +9,112 @@
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
   {literal}<noscript><style type="text/css">.hideNoJS { display: none; }</style></noscript>{/literal}
 </head>
-<body class="installPage">
+<body class="gdInstallPage">
   <header>
     <nav>
       <a href="http://www.generatedata.com">{$L.website}</a> |
       <a href="http://forums.generatedata.com">{$L.forums}</a> <span class="hideNoJS">|</span>
-      <span class="hideNoJS">{language_dropdown nameId="selectLanguage"}</span>
+      <span class="hideNoJS">{language_dropdown nameId="gdSelectLanguage"}</span>
     </nav>
   </header>
-  <nav id="tabs">
+  <nav id="gdTabs">
     <ul>
-      <li id="tab1" class="selected">{$L.install}</li>
-      <li id="tab2" class="hideNoJS">{$L.help}</li>
+      <li id="gdTab1" class="gdSelected">{$L.install}</li>
+      <li id="gdTab2" class="hideNoJS">{$L.help}</li>
     </ul>
   </nav>
   <section>
-    <div id="content" class="hideNoJS">
-      <div id="tab1Content" class="tabContent">
-        <div id="processingIcon"></div>
+    <div id="gdContent" class="hideNoJS">
+      <div id="gdTab1Content" class="gdTabContent">
+        <div id="gdProcessingIcon"></div>
 
         <h1>{$L.installation}</h1>
         <p>
           {$L.installation_intro}
         </p>
 
-	    	<div id="installError">
-	    	  <div class="icon"></div>
+	    	<div id="gdInstallError">
+	    	  <div class="gdIcon"></div>
   				<h3>Uh-oh.</h3>
-	  			<span class="response"></span>
+	  			<span class="gdResponse"></span>
 	      </div>
 
         <h2>1. {$L.database_info}</h2>
         <form>
-	        <div class="fields installForm">
-	          <div class="field">
+	        <div class="gdFields gdInstallForm">
+	          <div class="gdField">
 	            <label for="dbHostname">{$L.host_name}</label>
 	            <input type="text" id="dbHostname" value="localhost" />
 	          </div>
-	          <div class="error" id="dbHostname_error"></div>
-	          <div class="field">
+	          <div class="gdError" id="dbHostname_error"></div>
+	          <div class="gdField">
 	            <label for="dbName">{$L.database_name}</label>
 	            <input type="text" id="dbName" value="" />
 	          </div>
-	          <div class="error" id="dbName_error"></div>
-	          <div class="field">
+	          <div class="gdError" id="dbName_error"></div>
+	          <div class="gdField">
 	            <label for="dbUsername">{$L.mysql_username}</label>
 	            <input type="text" id="dbUsername" value="" />
 	          </div>
-	          <div class="error" id="dbUsername_error"></div>
-	          <div class="field">
+	          <div class="gdError" id="dbUsername_error"></div>
+	          <div class="gdField">
 	            <label for="dbPassword">{$L.mysql_password}</label>
 	            <input type="text" id="dbPassword" value="" class="pwdField" />
 	          </div>
-	          <div class="error" id="dbPassword_error"></div>
-	          <div class="field">
+	          <div class="gdError" id="dbPassword_error"></div>
+	          <div class="gdField">
 	            <label for="tablePrefix">{$L.table_prefix}</label>
 	            <input type="text" id="tablePrefix" value="{$tablePrefix}" maxlength="10" />
 	          </div>
-	          <div class="error" id="tablePrefix_error"></div>
-	          <div class="field">
+	          <div class="gdError" id="tablePrefix_error"></div>
+	          <div class="gdField">
 	            <label for="defaultLanguage">{$L.default_language}</label>
 	            {language_dropdown name_id="defaultLanguage" default="en"}
 	          </div>
-	          <div class="error" id="defaultLanguage_error"></div>
+	          <div class="gdError" id="defaultLanguage_error"></div>
 	        </div>
 
-	        <div class="clear vpad"></div>
+	        <div class="gdClear gdVerticalPad"></div>
 
 	        <h2>2. {$L.user_accounts}</h2>
-	        <div class="fields installForm">
-	          <div class="field">
+	        <div class="gdFields gdInstallForm">
+	          <div class="gdField">
 	            <label>{$L.employ_user_accounts}</label>
-	            <div class="radioGroup">
+	            <div class="gdRadioGroup">
 	              <input type="radio" name="employUserAccounts" id="eua1" value="yes" />
 	                <label for="eua1">{$L.yes}</label>
 	              <input type="radio" name="employUserAccounts" id="eua2" value="no" checked="checked" />
 	                <label for="eua2">{$L.no}</label>
 	            </div>
 	          </div>
-	          <div class="field firstNameRow disabledRow">
+	          <div class="gdField firstNameRow gdDisabledRow">
 	            <label for="email">{$L.first_name}</label>
 	            <input type="text" id="firstName" value="" disabled="disabled" />
 	          </div>
-	          <div class="error" id="firstName_error"></div>
-	          <div class="field lastNameRow disabledRow">
+	          <div class="gdError" id="firstName_error"></div>
+	          <div class="gdField lastNameRow gdDisabledRow">
 	            <label for="email">{$L.last_name}</label>
 	            <input type="text" id="lastName" value="" disabled="disabled" />
 	          </div>
-	          <div class="error" id="lastName_error"></div>
-	          <div class="field emailRow disabledRow">
+	          <div class="gdError" id="lastName_error"></div>
+	          <div class="gdField emailRow gdDisabledRow">
 	            <label for="email">{$L.email}</label>
 	            <input type="text" id="email" value="" disabled="disabled" />
 	          </div>
-	          <div class="error" id="email_error"></div>
-	          <div class="field passwordRow disabledRow">
+	          <div class="gdError" id="email_error"></div>
+	          <div class="gdField passwordRow gdDisabledRow">
 	            <label for="password">{$L.password}</label>
 	            <input type="text" id="password" value="{$randomPassword}" class="pwdField" disabled="disabled" />
 	          </div>
-	          <div class="error" id="password_error"></div>
+	          <div class="gdError" id="password_error"></div>
 	        </div>
 
-	        <div class="clear"></div>
-	        <button class="greenButton">{$L.install}</button>
+	        <div class="gdClear"></div>
+	        <button class="gdGreenButton">{$L.install}</button>
         </form>
       </div>
 
-      <div id="tab2Content" style="display:none">
+      <div id="gdTab2Content" style="display:none">
         <h1>{$L.help}</h1>
         <p>
           {$L.help_intro}
@@ -165,7 +165,7 @@
           </div>
         </div>
 
-        <div class="clear"></div>
+        <div class="gdClear"></div>
 
         <h2>{$L.still_stuck}</h2>
         <p>

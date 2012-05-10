@@ -1,23 +1,26 @@
 <?php
 
 /**
- *
+ * Generates the list of available Export Types.
  *
  * @param array $params
  * @param object $smarty
  */
 function smarty_function_export_types($params, &$smarty)
 {
-	$translations        = Core::$translations->getList();
-	$currentLanguageFile = Core::$language->getCurrentLanguageFile();
-	$L                   = Core::$language->getCurrentLanguageStrings();
+	$defaultExportType = Core::getDefaultExportType();
+  $exportTypes       = Core::$exportTypes;
 
-/*
-              <input type="radio" name="resultType" value="HTML" id="HTML" checked="checked" /> <label for="HTML">HTML</label>&nbsp;
-              <input type="radio" name="resultType" value="Excel" id="Excel" /> <label for="Excel">Excel</label>&nbsp;
-              <input type="radio" name="resultType" value="XML" id="XML" /> <label for="XML">XML</label>&nbsp;
-              <input type="radio" name="resultType" value="CSV" id="CSV" /> <label for="CSV">CSV</label>&nbsp;
-              <input type="radio" name="resultType" value="SQL" id="SQL" /> <label for="SQL">SQL</label>
-*/
+  foreach ($exportTypes as $exportType) {
+  	$name = $exportType->getName();
+    $class = get_class($exportType);
 
+    $checked = ($defaultExportType == $class) ? 'checked="checked"' : "";
+
+    echo <<< END
+    <input type="radio" name="gdExportType" value="$class" $checked />
+      <label for="$class">$name</label>
+END;
+
+  }
 }

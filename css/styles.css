@@ -32,14 +32,29 @@ h2 {
   font-weight: normal;
   font-family: verdana;
 }
-.vpad {
-  padding-bottom: 14px;
+form {
+  margin: 0px;
 }
+select, optgroup, option {
+  font-size: 8pt;
+  font-family: verdana;
+}
+optgroup {
+  font-weight: bold;
+}
+a:link, nav a:visited {
+  color: #2d99f5;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 /* TODO */
-.verticalPad {
-  margin-top: 10px;
+.gdVerticalPad {
+  padding-bottom: 10px;
 }
-#installError {
+#gdInstallError {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -51,7 +66,7 @@ h2 {
   min-height: 36px;
   position: relative;
 }
-#installError .icon {
+#gdInstallError .icon {
   background-image: url(../images/stop.png);
   width: 32px;
   height: 32px;
@@ -59,27 +74,16 @@ h2 {
   left: 6px;
   top: 5px;
 }
-#installError h3 {
+#gdInstallError h3 {
   font-weight: bold;
   color: #cc0000;
   display: inline;
   font-size: 8pt;
 }
-#installError .response {
+#gdInstallError .response {
   color: #000000;
 }
-
-form {
-  margin: 0px;
-}
-select, optgroup, option {
-  font-size: 8pt;
-  font-family: verdana;
-}
-optgroup {
-  font-weight: bold;
-}
-.margin_top {
+.gdMarginTop {
   margin-top: 10px;
 }
 
@@ -112,23 +116,16 @@ section {
 nav {
   display: block;
 }
-a:link, nav a:visited {
-  color: #2d99f5;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
 nav a:link, nav a:visited {
   color: #3366cc;
   outline: none;
   text-shadow: 0 1px 0 #fff;
 }
-nav#tabs {
+nav#gdTabs {
   width: 980px;
   margin: 0 auto;
 }
-nav#tabs ul {
+nav#gdTabs ul {
   list-style: none;
   margin: 0px;
   padding: 0px;
@@ -136,7 +133,7 @@ nav#tabs ul {
 .joiner {
   color: #cccccc;
 }
-nav#tabs ul li {
+nav#gdTabs ul li {
   color: #222222;
   font-size: 9pt;
   text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);
@@ -155,32 +152,32 @@ nav#tabs ul li {
   height: 22px;
   color: green;
 }
-nav#tabs ul li.selected {
+nav#gdTabs ul li.gdSelected {
   cursor: inherit;
   border-bottom: 0px;
   height: 22px;
   background-color: white;
 }
-nav#tabs ul li.selected:hover {
+nav#gdTabs ul li.gdSelected:hover {
   background-color: white;
 }
-nav#tabs ul li a:link, nav#tabs ul li a:visited {
+nav#gdTabs ul li a:link, nav#gdTabs ul li a:visited {
   display:block;
   font-size: 9pt;
   text-shadow: rgba(64, 64, 64, 0.2) 3px 3px 8px;
   color: green;
   text-decoration: none;
 }
-nav#tabs ul li:hover {
+nav#gdTabs ul li:hover {
   background-color: #f5faf6;
 }
-.tabContent {
+.gdTabContent {
   display: none;
 }
-#tab1Content {
+#gdTab1Content {
   display: block;
 }
-#content {
+#gdContent {
   text-align: left;
   position: relative;
 }
@@ -239,13 +236,13 @@ header nav a:hover {
   color: #990000;
   border-bottom: 1px solid #990000;
 }
-.evenRow {
+.gdEvenRow {
   background-color: #efefef;
 }
-.oddRow {
+.gdOddRow {
   background-color: #edf3fe;
 }
-#loadingIcon {
+#gdLoadingIcon {
   display: none;
   position: absolute;
   right: -20px;
@@ -254,25 +251,25 @@ header nav a:hover {
   width: 16px;
   height: 16px;
 }
-.clear {
+.gdClear {
   clear: left;
 }
 
 /* settings area */
-.setting {
+.gdSetting {
   position: relative;
   clear: left;
   line-height: 18pt;
   width: 500px;
 }
-.setting>label {
+.gdSetting>label {
   float: left;
   width: 160px;
 }
-.setting>div {
+.gdSetting>div {
   float: left;
 }
-#settingsSQL, #settingsXML, #settingsCSV {
+.gdSettingsOptions {
   background-color: #EDF3FE;
   border: 1px solid #C5D1E8;
   padding: 6px;
@@ -282,7 +279,7 @@ header nav a:hover {
 #settingsSQL table td {
   vertical-align: top;
 }
-div.clear {
+div.gdClear {
   clear: both;
   width: 0px;
 }
@@ -307,7 +304,10 @@ div.clear {
 }
 
 /* the generate data table */
-.tableHeadings, #tableRows, #tableRows ul {
+.gdTableHeadings {
+	line-height: 18.6px;
+}
+.gdTableHeadings, #gdTableRows, #gdTableRows ul {
   font-family: tahoma, arial;
   clear: both;
   margin: 0px;
@@ -315,7 +315,7 @@ div.clear {
   list-style: none;
   font-weight: bold;
 }
-.tableHeadings li {
+.gdTableHeadings li {
   background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#cccccc), color-stop(0.5, #cccccc), color-stop(0.5, #cccccc));
   background: -moz-linear-gradient(bottom, #dddddd, #cccccc);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#cccccc');
@@ -325,10 +325,10 @@ div.clear {
   margin: 0px 0px 0px 1px;
   padding: 0px;
 }
-#tableRows {
+#gdTableRows {
   margin-bottom: 8px;
 }
-#tableRows li {
+#gdTableRows li {
   float: left;
   margin: 0px 0px 1px 1px;
   padding: 0px;
@@ -336,48 +336,48 @@ div.clear {
   font-family: verdana;
   line-height: 16pt;
 }
-.colOrder {
+.gdColOrder {
   cursor: move;
   width: 40px;
   text-align: center;
 }
-.colTitle {
+.gdColTitle {
   width: 136px;
 }
-.colTitle input {
+.gdColTitle input {
   width: 130px;
 }
-.colDataType {
+.gdColDataType {
   width: 198px;
 }
-.colDataType select {
+.gdColDataType select {
   width: 198px;
 }
-.colExamples {
+.gdColExamples {
   width: 195px;
 }
-.colOptions {
+.gdColOptions {
   width: 274px;
 }
-.colHelp {
+.gdColHelp {
   width: 38px;
   text-align: center;
 }
-li.colDelete {
+li.gdColDelete {
   width: 38px;
   text-align: center;
   display: block;
 }
-.colOptions .ui-datepicker-trigger {
+.gdColOptions .ui-datepicker-trigger {
   margin-bottom: -3px;
 }
-#tableRows .colHelp .ui-helper-clearfix {
+#gdTableRows .gdColHelp .ui-helper-clearfix {
   margin-left: 8px;
   margin-top: 2px;
 }
 
 /* buttons */
-.button {
+.gdButton {
   border: 0px;
   margin: 1px;
   padding: 2px 6px;
@@ -385,7 +385,7 @@ li.colDelete {
   text-shadow: rgba(64, 64, 64, 0.2) 3px 3px 8px;
   cursor: pointer;
 }
-.buttonType1 {
+.gdButtonType1 {
   color: white;
   background-color: #58BB44;
   font-size: 9pt;
@@ -394,24 +394,23 @@ li.colDelete {
   -webkit-box-shadow: 2px 3px 3px #666666;
   -moz-box-shadow: 2px 3px 3px #666666;
 }
-.buttonType2 {
+.gdButtonType2 {
   color: #666666;
   background-color: #e9e9e9;
   font-size: 7pt;
   border: 1px solid #cccccc;
 }
-.buttonType3 {
+.gdButtonType3 {
   color: #660000;
   background-color: #e9e9e9;
   font-size: 7pt;
   border: 1px solid #cccccc;
 }
-
-#messages {
+#gdMessages {
   position: relative;
   display: none;
 }
-#messages a.close:link, #messages a.close:visited {
+#gdMessages a.close:link, #gdMessages a.gdClose:visited {
   position: absolute;
   top: 10px;
   right: 12px;
@@ -419,37 +418,39 @@ li.colDelete {
   color: black;
   text-shadow: rgba(64, 64, 64, 0.2) 3px 3px 3px;
 }
-
-.notify {
+.gdNotify {
   background-color: #F2F8FF;
   border: 1px solid #0058DB;
 }
-.notify div {
+.gdNotify div {
   padding: 8px;
   color: #0058DB;
 }
-.errors {
+.gdErrors {
   background-color: #FFEDED;
   border: 1px solid #CC0000;
 }
-.errors div {
+.gdErrors div {
   padding: 8px;
   color: #AA0000
 }
-.errors div ul {
+.gdErrors div ul {
   margin-bottom: 0px;
 }
-
-.problemField {
+.gdProblemField {
   background-color: #990000;
   color: #ffffcc;
 }
 .hidden {
   display: none;
 }
+
 .suboptionActive { color: black; }
 .suboptionInactive { color: #cccccc; }
+
+/* DROP */
 .country_netherlands, .country_uk, .country_australia { display: none; }
+
 .heading_1 { font-weight: bold; font-size: 8pt; }
 .heading_3 { color: #666666; font-size: 8pt; border-top: 1px solid #999999; padding-top: 3px; font-weight: bold; }
 .light_grey { color: #cccccc; }
@@ -464,7 +465,6 @@ hr {
   border: 0px;
 }
 .bold { font-weight: bold; }
-
 .box {
   background-color: #F4F8FF;
 }
@@ -474,7 +474,7 @@ hr {
 }
 
 /* from: http://hellohappy.org/css3-buttons/ */
-.greenButton {
+.gdGreenButton {
   display: block;
   background-color: #7fbf4d;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
@@ -499,7 +499,7 @@ hr {
   text-align: center;
   text-shadow: 0 -1px 0 #4c9021;
 }
-.greenButton:hover {
+.gdGreenButton:hover {
   background-color: #76b347;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
   background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
@@ -512,15 +512,18 @@ hr {
   box-shadow: inset 0 1px 0 0 #8dbf67;
   cursor: pointer;
 }
-.greenButton:active {
+.gdGreenButton:active {
   border: 1px solid #5b992b;
   border-bottom: 1px solid #538c27;
   -webkit-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
   -moz-box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
   box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
 }
-
-#box {
+.gdGenerateButton {
+  display: inline;
+  padding: 4px 15px 3px;
+}
+#gdBox {
   position: relative;
   width: 60%;
   background: #ffffff;
@@ -532,7 +535,7 @@ hr {
   margin: 60px auto;
   text-align: left;
 }
-#box:before, #box:after {
+#gdBox:before, #gdBox:after {
   z-index: -1;
   position: absolute;
   content: "";
@@ -551,7 +554,7 @@ hr {
   -ms-transform: rotate(-3deg);
   transform: rotate(-3deg);
 }
-#box:after {
+#gdBox:after {
   -webkit-transform: rotate(3deg);
   -moz-transform: rotate(3deg);
   -o-transform: rotate(3deg);
@@ -560,76 +563,75 @@ hr {
   right: 10px;
   left: auto;
 }
-
-.error_page h1 {
+.gdErrorPage h1 {
   margin: 0px 0px 16px 0px;
   font-weight: bold;
 }
-#not_fixed {
+#gdNotFixed {
   color: #990000;
   margin-bottom: 8px;
   font-style: italic;
 }
-body.error_page #box {
+body.gdErrorPage #gdBox {
   text-align: left;
   font-family: verdana;
   font-size: 11pt;
   line-height: 22px;
 }
-.installPage .fields .field {
+.gdInstallPage .gdFields .gdField {
   float: left;
   width: 376px;
   border-bottom: 1px solid #efefef;
   clear: left;
 }
-.installPage .fields .radioGroup input {
+.gdInstallPage .gdFields .gdRadioGroup input {
   width: 20px;
   float: left;
 }
-.installPage .fields .radioGroup label {
+.gdInstallPage .gdFields .gdRadioGroup label {
 	width: inherit;
 	float: left;
 }
-.installPage .fields .disabledRow label, .installPage .fields .disabledRow input {
+.gdInstallPage .gdFields .gdDisabledRow label, .gdInstallPage .gdFields .gdDisabledRow input {
   color: #cccccc;
 }
 
-.installPage .fields label {
+.gdInstallPage .gdFields label {
   float: left;
   width: 160px;
   color: #777777;
   margin-top: 2px;
 }
-.installPage .fields input {
+.gdInstallPage .gdFields input {
   float: left;
   width: 210px;
   margin-top: 2px;
 }
-.installPage #tablePrefix {
+.gdInstallPage #tablePrefix {
   width: 60px;
 }
-.installPage .fields div {
+.gdInstallPage .gdFields div {
   margin-top: 2px;
 }
-.installPage .doc label {
+.gdInstallPage .doc label {
   float: left;
   width: 160px;
   color: #777777;
   margin-top: 2px;
   clear: right;
 }
-.installPage .doc>div {
+.gdInstallPage .doc>div {
   clear: both;
 }
-.installPage .doc div>div {
+.gdInstallPage .doc div>div {
   float: right;
   width: 770px;
 }
 
-.fields {
+.gdFields {
   line-height: 21px;
 }
-.fields .error {
+.gdFields .gdError {
   margin-left: 6px;
   background: transparent url(../images/error.gif) left center no-repeat;
   float: left;
@@ -638,14 +640,14 @@ body.error_page #box {
   color: #e22222;
   display: none;
 }
-.fields input.pwdField {
+.gdFields input.pwdField {
   width: 100px;
 }
-#tab1Content h2 {
+#gdTab1Content h2 {
   float: left;
   width: 160px;
   margin: 4px 0px;
 }
-#tab1Content .fields {
+#gdTab1Content .gdFields {
   float: left;
 }

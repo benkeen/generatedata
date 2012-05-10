@@ -1,4 +1,3 @@
-<script>
 var AutoIncrement_ns = {
   loadRow: function(rowNum, data)
   {
@@ -32,4 +31,3 @@ var AutoIncrement_ns = {
     return false;
   }
 }
-</script>

@@ -1,5 +1,6 @@
 <?php
 
+
 class Email extends DataType {
 
 	protected $dataTypeName = "Email";
