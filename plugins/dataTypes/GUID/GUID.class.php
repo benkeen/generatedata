@@ -1,8 +1,7 @@
 <?php
 
 
-class DataType_GUID extends DataType {
-
+class DataType_GUID extends DataTypePlugin {
   protected $dataTypeName = "GUID";
   protected $dataTypeFieldGroup = "numeric";
   protected $dataTypeFieldGroupOrder = 50;

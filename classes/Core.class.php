@@ -20,6 +20,7 @@ class Core {
   private static $defaultNumRows = 100;
   private static $defaultLanguageFile = "en";
   private static $defaultExportType = "HTML";
+  private static $defaultCountryPlugins = array("canada", "us");
 
   // non-overidable settings
   private static $version = "3.0.0";
@@ -33,9 +34,9 @@ class Core {
   public static $smarty;
   public static $translations;
   public static $user; // the current logged in user (if there IS someone logged in)
-  public static $dataTypes;
-  public static $exportTypes;
-  public static $countries;
+  public static $dataTypePlugins;
+  public static $exportTypePlugins;
+  public static $countryPlugins;
 
 
   public static function init() {
@@ -115,25 +116,30 @@ class Core {
   		return;
   	}
 
-    // parse the Data Types folder and identify those modules that are available
-    self::$dataTypes = DataTypeHelper::getDataTypes();
+    // parse the Data Types folder and identify those plugins that are available
+    self::$dataTypePlugins = DataTypePluginHelper::getDataTypePlugins();
   }
 
   public function initExportTypes() {
   	if (!Core::$settingsFileExists) {
   		return;
   	}
-
-    // parse the Data Types folder and identify those modules that are available
-    self::$exportTypes = ExportTypeHelper::getExportTypes();
+    self::$exportTypePlugins = ExportTypePluginHelper::getExportTypePlugins();
   }
 
   public function initCountries() {
-
+  	if (!Core::$settingsFileExists) {
+  		return;
+  	}
+    self::$countryPlugins = CountryPluginHelper::getCountryPlugins();
   }
 
   public function getDefaultExportType() {
   	return self::$defaultExportType;
+  }
+
+  public function getDefaultCountryPlugins() {
+  	return self::$defaultCountryPlugins;
   }
 
   public function getHostname() {

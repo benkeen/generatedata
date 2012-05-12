@@ -1,7 +1,7 @@
 <?php
 
 
-class DataType_StreetAddress extends DataType {
+class DataType_StreetAddress extends DataTypePlugin {
   protected $dataTypeName = "Street Address";
   protected $dataTypeFieldGroup = "geo";
   protected $dataTypeFieldGroupOrder = 10;

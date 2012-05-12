@@ -1,7 +1,7 @@
 <?php
 
 /*
-class DataType_StreetAddress extends DataType {
+class DataType_StreetAddress extends DataTypePlugin {
   protected $dataTypeName = "Street Address";
   protected $dataTypeFieldGroup = "geo";
   protected $dataTypeFieldGroupOrder = 10;
@@ -17,6 +17,9 @@ class DataType_StreetAddress extends DataType {
 
 	public function getTemplateOptions($postdata, $column, $numCols) {
 	}
+
+  public function getExampleColumnHTML($row) {
+  }
 
 	public function getOptionsColumnHTML($row) {
 	}

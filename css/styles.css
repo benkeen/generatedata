@@ -283,7 +283,7 @@ div.gdClear {
   clear: both;
   width: 0px;
 }
-#countryList .col {
+#countryList .gdCountryPluginCol {
   float: left;
   margin-right: 20px;
 }

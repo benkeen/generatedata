@@ -1,4 +1,3 @@
-<script>
 var Phone_ns = {
   validate: function(rows)
   {
@@ -41,4 +40,3 @@ var Phone_ns = {
     };
   }
 }
-</script>

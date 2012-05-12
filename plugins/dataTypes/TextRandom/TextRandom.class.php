@@ -1,6 +1,6 @@
 <?php
 
-class DataType_TextRandom extends DataType {
+class DataType_TextRandom extends DataTypePlugin {
   protected $dataTypeName = "Random Number of Words";
   protected $dataTypeFieldGroup = "text";
   protected $dataTypeFieldGroupOrder = 20;

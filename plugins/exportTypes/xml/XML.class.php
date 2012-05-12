@@ -1,7 +1,7 @@
 <?php
 
 
-class XML extends ExportType {
+class XML extends ExportTypePlugin {
   protected $exportTypeName = "XML";
 
   function generator($numResults, $columns, $data) {

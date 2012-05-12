@@ -1,8 +1,7 @@
 <?php
 
 
-class DataType_Email extends DataType {
-
+class DataType_Email extends DataTypePlugin {
 	protected $dataTypeName = "Email";
   protected $dataTypeFieldGroup = "human_data";
   protected $dataTypeFieldGroupOrder = 30;

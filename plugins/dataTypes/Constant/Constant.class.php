@@ -1,11 +1,11 @@
 <?php
 
 
-class DataType_Constant extends DataType {
+class DataType_Constant extends DataTypePlugin {
   protected $dataTypeName = "Constant";
   protected $hasHelpDialog = true;
   protected $dataTypeFieldGroup = "other";
-  protected $dataTypeFieldGroupOrder = 80;
+  protected $dataTypeFieldGroupOrder = 10;
   protected $includedFiles = array("Constant.js");
   protected $processOrder = 100;
 

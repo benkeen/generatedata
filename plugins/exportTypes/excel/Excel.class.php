@@ -1,7 +1,7 @@
 <?php
 
 
-class Excel extends ExportType {
+class Excel extends ExportTypePlugin {
   protected $exportTypeName = "Excel";
 
   function generator($numResults, $columns, $data) {

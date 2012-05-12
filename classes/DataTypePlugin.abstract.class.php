@@ -6,7 +6,7 @@
  * in the DataTypes namespace. This page documents and defines (where the language permits!) what's required,
  * what's optional, and what each method and member variable does.
  */
-abstract class DataType {
+abstract class DataTypePlugin {
 
 	// MUST be defined by each Data Type
 	protected $dataTypeName = "";
@@ -133,7 +133,8 @@ abstract class DataType {
 	}
 
 
-	final public function getName() { // TODO should return in current language...
+	// TODO should return in current language...
+	final public function getName() {
 		return $this->dataTypeName;
 	}
 

@@ -1,8 +1,7 @@
 <?php
 
 
-class DataType_Region extends DataType {
-
+class DataType_Region extends DataTypePlugin {
   protected $dataTypeName = "State / Province / County";
   protected $dataTypeFieldGroup = "geo";
   protected $dataTypeFieldGroupOrder = 40;

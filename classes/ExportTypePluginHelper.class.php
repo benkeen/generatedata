@@ -1,12 +1,12 @@
 <?php
 
 
-class ExportTypeHelper {
+class ExportTypePluginHelper {
 
   /**
    * Returns an array of available, instantiated Export Type objects.
    */
-  function getExportTypes() {
+  function getExportTypePlugins() {
     $exportTypesFolder = realpath(dirname(__FILE__) . "/../plugins/exportTypes");
     $exportTypes = array();
     if ($handle = opendir($exportTypesFolder)) {
@@ -59,7 +59,7 @@ class ExportTypeHelper {
     }
 
     // enforce inheritance of the abstract DataType class
-    if (!($instance instanceof ExportType)) {
+    if (!($instance instanceof ExportTypePlugin)) {
       return false;
     }
 

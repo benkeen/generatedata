@@ -7,37 +7,32 @@
  */
 function smarty_function_country_list()
 {
+	// N.B. Once more country plugins are added, this markup will be updated to use CSS3 columns
+  $num_per_col = 3;
 
-/*
-  echo <div class="col">
-              <?php
-              $num_per_col = 3;
-              $countries   = gd_get_configurable_countries();
-              $row   = 0;
-              $slugs = array();
-              foreach ($countries as $country_info)
-              {
-                $country          = $country_info["country"];
-                $slug             = $country_info["country_slug"];
-                $country_lang_key = $country_info["country_lang_key"];
-                $slugs[] = "\"$slug\"";
+  $countryPlugins = Core::$countryPlugins;
+  $defaultChecked = Core::getDefaultCountryPlugins();
 
-                if ($row > 0 && ($row % $num_per_col == 0))
-                  echo "</div><div class=\"col\">";
+  echo "<div class=\"gdCountryPluginCol\">";
 
-                $checked = ($slug == "canada" || $slug == "us") ? "checked" : "";
-                $country_in_curr_lang = $L[$country_lang_key];
+  $row = 0;
+  foreach ($countryPlugins as $obj) {
+    $countryName = $obj->getName();
+    $slug        = $obj->getSlug();
 
-                echo <<<EOF
-                  <div>
-                    <input type="checkbox" name="countryChoice[]" value="$slug" id="$slug" $checked />
-                    <label for="$slug">$country_in_curr_lang</label>
-                  </div>
+    if ($row > 0 && ($row % $num_per_col == 0)) {
+      echo "</div><div class=\"gdCountryPluginCol\">";
+    }
+
+    $checked = (in_array($slug, $defaultChecked)) ? "checked" : "";
+    echo <<<EOF
+      <div>
+        <input type="checkbox" name="countryChoice[]" value="$slug" id="$slug" $checked />
+        <label for="$slug">$countryName</label>
+      </div>
 EOF;
-                $row++;
-              }
-              ?>
-              </div>
-              <script>gd.allCountries = [<?php echo join(",", $slugs)?>];</script>
-	*/
+    $row++;
+  }
+
+  echo "</div>";
 }

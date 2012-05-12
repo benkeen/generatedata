@@ -1,9 +1,11 @@
 <?php
 
 
-class DataTypeHelper {
+class DataTypePluginHelper {
 
 	/**
+	 * [TODO re-write blurb.]
+	 *
 	 * This function creates a "template" of the data set to be generated. It's an ordered array of hashes, with
 	 * the hashes having the following values:
 	 *
@@ -98,7 +100,7 @@ class DataTypeHelper {
 	/**
 	 * Returns an array of available, instantiated Data Type objects.
 	 */
-	function getDataTypes() {
+	function getDataTypePlugins() {
 	  $dataTypesFolder = realpath(dirname(__FILE__) . "/../plugins/dataTypes");
 	  $dataTypes = array();
 	  if ($handle = opendir($dataTypesFolder)) {
@@ -173,48 +175,10 @@ class DataTypeHelper {
 	  }
 
 	  // enforce inheritance of the abstract DataType class
-	  if (!($instance instanceof DataType)) {
+	  if (!($instance instanceof DataTypePlugin)) {
 	  	return false;
 	  }
 
 	  return $instance;
-	}
-
-
-	/**
-	 * Called by process.php. This includes all data type generate.php files.
-	 */
-	function includeDataTypeCode() {
-	  $data_types_folder = realpath(dirname(__FILE__) . "/../data_types");
-
-	  if ($handle = opendir($data_types_folder)) {
-	    while (false !== ($item = readdir($handle))) {
-	      if ($item == "." || $item == ".." || $item == ".svn") {
-	        continue;
-	      }
-	      if (is_dir("$data_types_folder/$item")) {
-	        include_once("$data_types_folder/$item/generate.php");
-	      }
-	    }
-
-	    closedir($handle);
-	  }
-	}
-
-	function includeDataTypeIncludes() {
-	  $data_types = array();
-	  $data_types_folder = realpath(dirname(__FILE__) . "/../data_types");
-
-	  if ($handle = opendir($data_types_folder)) {
-	    while (false !== ($item = readdir($handle))) {
-	      if ($item == "." || $item == ".." || $item == ".svn") {
-	        continue;
-	      }
-	      if (is_dir("$data_types_folder/$item") && is_file("$data_types_folder/$item/include.php")) {
-	        include_once("$data_types_folder/$item/include.php");
-	      }
-	    }
-	    closedir($handle);
-	  }
 	}
 }

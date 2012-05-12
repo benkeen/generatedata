@@ -1,6 +1,6 @@
   <?php
 
-class DataType_Date extends DataType {
+class DataType_Date extends DataTypePlugin {
 
   protected $dataTypeName = "Date";
   protected $dataTypeFieldGroup = "human_data";

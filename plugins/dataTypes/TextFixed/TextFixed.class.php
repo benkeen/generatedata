@@ -1,6 +1,6 @@
 <?php
 
-class DataType_TextFixed extends DataType {
+class DataType_TextFixed extends DataTypePlugin {
   protected $dataTypeName = "Fixed Number of Words";
   protected $dataTypeFieldGroup = "text";
   protected $dataTypeFieldGroupOrder = 10;

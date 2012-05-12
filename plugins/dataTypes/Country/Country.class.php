@@ -1,8 +1,7 @@
 <?php
 
 
-class DataType_Country extends DataType {
-
+class DataType_Country extends DataTypePlugin {
   protected $dataTypeName = "Country";
   protected $dataTypeFieldGroup = "geo";
   protected $dataTypeFieldGroupOrder = 50;

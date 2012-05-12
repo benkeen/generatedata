@@ -1,6 +1,6 @@
 <?php
 
-class DataType_City extends DataType {
+class DataType_City extends DataTypePlugin {
 
 	protected $dataTypeName = "City";
   protected $dataTypeFieldGroup = "geo";

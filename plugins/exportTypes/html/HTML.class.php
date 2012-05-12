@@ -1,7 +1,7 @@
 <?php
 
 
-class HTML extends ExportType {
+class HTML extends ExportTypePlugin {
   protected $exportTypeName = "HTML";
 
   function generator($numResults, $columns, $data) {

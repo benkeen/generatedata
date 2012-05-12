@@ -2,7 +2,7 @@
 
 function smarty_function_data_types_dropdown($params, &$smarty) {
   $L = Core::$language->getCurrentLanguageStrings();
-  $dataTypeGroups = Core::$dataTypes;
+  $dataTypeGroups = Core::$dataTypePlugins; // TODO bad var name
 
   $options = "";
   while (list($group, $dataTypes) = each($dataTypeGroups)) {

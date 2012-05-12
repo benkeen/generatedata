@@ -1,7 +1,7 @@
 <?php
 
 
-class DataType_AutoIncrement extends DataType {
+class DataType_AutoIncrement extends DataTypePlugin {
 
   protected $dataTypeName = "AutoIncrement";
   protected $hasHelpDialog = true;

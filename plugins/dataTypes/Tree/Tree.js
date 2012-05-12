@@ -1,4 +1,3 @@
-<script>
 var Tree_ns = {
   loadRow: function(rowNum, data)
   {
@@ -19,4 +18,3 @@ var Tree_ns = {
     };
   }
 }
-</script>

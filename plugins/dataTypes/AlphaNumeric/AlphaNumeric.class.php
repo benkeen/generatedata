@@ -1,7 +1,7 @@
 <?php
 
 
-class DataType_AlphaNumeric extends DataType {
+class DataType_AlphaNumeric extends DataTypePlugin {
 
   protected $dataTypeName = "Alphanumeric";
   protected $hasHelpDialog = true;

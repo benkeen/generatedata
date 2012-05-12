@@ -1,12 +1,12 @@
 <?php
 
 
-class DataType_Composite extends DataType {
+class DataType_Composite extends DataTypePlugin {
 
   protected $dataTypeName = "Composite";
   protected $hasHelpDialog = true;
   protected $dataTypeFieldGroup = "other";
-  protected $dataTypeFieldGroupOrder = 70;
+  protected $dataTypeFieldGroupOrder = 20;
   protected $includedFiles = array("Composite.js");
   protected $processOrder = 100;
 

@@ -1,7 +1,7 @@
 <?php
 
 
-class DataType_Names extends DataType {
+class DataType_Names extends DataTypePlugin {
 
 	protected $dataTypeName = "Names";
 	protected $hasHelpDialog = true;

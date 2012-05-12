@@ -9,7 +9,7 @@
 function smarty_function_export_types($params, &$smarty)
 {
 	$defaultExportType = Core::getDefaultExportType();
-  $exportTypes       = Core::$exportTypes;
+  $exportTypes       = Core::$exportTypePlugins;
 
   foreach ($exportTypes as $exportType) {
   	$name = $exportType->getName();

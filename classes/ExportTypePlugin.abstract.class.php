@@ -1,7 +1,7 @@
 <?php
 
 
-abstract class ExportType {
+abstract class ExportTypePlugin {
 
 	protected $exportTypeName = "";
 
