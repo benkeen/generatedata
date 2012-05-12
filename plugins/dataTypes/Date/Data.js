@@ -1,4 +1,3 @@
-<script>
 var Date_ns = {
   validate: function(rows)
   {
@@ -41,4 +40,3 @@ var Date_ns = {
     };
   }
 }
-</script>

@@ -1,10 +1,11 @@
 <?php
 
-/*
-class DataType_StreetAddress extends DataType {
-  protected $dataTypeName = "Street Address";
+
+class DataType_Region extends DataType {
+
+  protected $dataTypeName = "State / Province / County";
   protected $dataTypeFieldGroup = "geo";
-  protected $dataTypeFieldGroupOrder = 10;
+  protected $dataTypeFieldGroupOrder = 40;
 
   private $helpDialogWidth = 360;
 
@@ -27,5 +28,5 @@ class DataType_StreetAddress extends DataType {
       "content"     => "<p>{$L["LatLng_help"]}</p>"
     );
 	}
+
 }
-*/

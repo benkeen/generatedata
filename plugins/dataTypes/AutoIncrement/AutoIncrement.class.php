@@ -1,24 +1,56 @@
 <?php
 
 
-class AutoIncrement extends DataType {
+class DataType_AutoIncrement extends DataType {
 
   protected $dataTypeName = "AutoIncrement";
   protected $hasHelpDialog = true;
-  protected $dataTypeFieldGroup = "other";
-  protected $dataTypeFieldGroupOrder = 10;
+  protected $dataTypeFieldGroup = "numeric";
+  protected $dataTypeFieldGroupOrder = 20;
   protected $includedFiles = array("AutoIncrement.js");
 
   private $helpDialogWidth = 480;
 
 
   public function generateItem($row, $placeholderStr, $existingRowData) {
+	  $start       = $options["start"];
+	  $increment   = $options["increment"];
+	  $placeholder = $options["placeholder"];
+
+	  $val = ((($row-1) * $increment) + $start);
+
+	  if (!empty($placeholder))
+	  	$val = preg_replace('/\{\$INCR\}/', $val, $placeholder);
+
+	  return $val;
   }
 
   public function getExportTypeInfo($exportType, $options) {
+	  $info = "";
+	  switch ($export_type)
+	  {
+	  	case "sql":
+	  		if ($options == "MySQL" || $options == "SQLite")
+	        $info = "mediumint";
+	      else if ($options == "Oracle")
+	        $info = "number default NULL";
+	  	  break;
+	  }
+
+	  return $info;
   }
 
   public function getTemplateOptions($postdata, $col, $num_cols) {
+	  if (empty($postdata["autoIncrementStart_$col"]) || empty($postdata["autoIncrementValue_$col"]))
+		  return false;
+
+		$options = array(
+		  "start"       => $postdata["autoIncrementStart_$col"],
+		  "increment"   => $postdata["autoIncrementValue_$col"],
+		  "placeholder" => $postdata["autoIncrementPlaceholder_$col"]
+		);
+
+	  return $options;
   }
 
   public function getExampleColumnHTML($row) {

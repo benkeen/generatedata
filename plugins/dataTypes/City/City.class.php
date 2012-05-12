@@ -1,10 +1,10 @@
 <?php
 
-class City extends DataType {
+class DataType_City extends DataType {
 
 	protected $dataTypeName = "City";
-  protected $dataTypeFieldGroup = "human_data";
-  protected $dataTypeFieldGroupOrder = 50;
+  protected $dataTypeFieldGroup = "geo";
+  protected $dataTypeFieldGroupOrder = 20;
   protected $processOrder = 3;
 
   private $cities;

@@ -1,5 +1,4 @@
-<script>
-var Constant_ns = {
+var Composite_ns = {
   validate: function(rows)
   {
     var visibleProblemRows = [];
@@ -15,14 +14,14 @@ var Constant_ns = {
     }
 
     if (visibleProblemRows.length)
-      gd.errors.push({ els: problemFields, error: L.Constant_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+      gd.errors.push({ els: problemFields, error: L.AlphaNumeric_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
   },
 
   loadRow: function(rowNum, data)
   {
     return [
       function() {
-        $("#loop_count_" + rowNum).val(data.loop_count);
+        $("#dt_" + rowNum).val(data.example);
         $("#option_" + rowNum).val(data.option);
       },
       function() { return $("#option_" + rowNum).length > 0; }
@@ -32,9 +31,8 @@ var Constant_ns = {
   saveRow: function(rowNum)
   {
     return {
-      "loop_count": $("#loop_count_" + rowNum).val(),
-      "option":     $("#option_" + rowNum).val()
+      "example":  $("#dt_" + rowNum).val(),
+      "option":   $("#option_" + rowNum).val()
     };
   }
 }
-</script>

@@ -1,10 +1,9 @@
 <?php
 
-/*
-class DataType_StreetAddress extends DataType {
-  protected $dataTypeName = "Street Address";
-  protected $dataTypeFieldGroup = "geo";
-  protected $dataTypeFieldGroupOrder = 10;
+class DataType_TextRandom extends DataType {
+  protected $dataTypeName = "Random Number of Words";
+  protected $dataTypeFieldGroup = "text";
+  protected $dataTypeFieldGroupOrder = 20;
 
   private $helpDialogWidth = 360;
 
@@ -28,4 +27,3 @@ class DataType_StreetAddress extends DataType {
     );
 	}
 }
-*/

@@ -1,13 +1,12 @@
 <?php
 
 
-class Names extends DataType {
+class DataType_Names extends DataType {
 
 	protected $dataTypeName = "Names";
 	protected $hasHelpDialog = true;
   protected $dataTypeFieldGroup = "human_data";
   protected $dataTypeFieldGroupOrder = 10;
-  protected $processOrder = 1;
   protected $includedFiles = array("Names.js");
 
   // custom member vars for this Data Type

@@ -17,6 +17,7 @@ abstract class DataType {
 
   // OPTIONALLY defined by data types
   protected $includedFiles = array();
+  protected $enabled = true; // TODO
 
   //
   public $L;

@@ -14,7 +14,7 @@
     <nav>
       <a href="http://www.generatedata.com">{$L.website}</a> |
       <a href="http://www.generatedata.com/forums/">{$L.forums}</a> |
-      {language_dropdown}
+      {language_dropdown nameId="gdSelectLanguage"}
     </nav>
   </header>
   <nav id="gdTabs">
@@ -190,12 +190,11 @@ EOF;
       </div>
 
       <div class="gdTabContent" id="gdTab2Content">
-        <br />
-        <b>Coming soon!</b>
-        <br />
-        <br />
-        This tab will contain additional links to help documentation, such as information on how to develop your
-        own data types and information about the API.
+
+      </div>
+
+      <div class="gdTabContent" id="gdTab3Content">
+
       </div>
     </div>
 

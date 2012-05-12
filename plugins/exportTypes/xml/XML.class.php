@@ -2,7 +2,7 @@
 
 
 class XML extends ExportType {
-  protected $exportTypeName = "Excel";
+  protected $exportTypeName = "XML";
 
   function generator($numResults, $columns, $data) {
 

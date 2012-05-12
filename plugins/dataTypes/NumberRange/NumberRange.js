@@ -1,4 +1,3 @@
-<script>
 var NumberRange_ns = {
   loadRow: function(rowNum, data)
   {
@@ -19,4 +18,3 @@ var NumberRange_ns = {
     };
   }
 }
-</script>

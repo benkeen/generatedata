@@ -1,10 +1,5 @@
 <?php
 
-$data_folder_name = "Composite";
-$data_type_field_group_index = "other";
-$data_type_field_group_order = 70;
-
-
 $data_type_example_html = $L["see_help_popup"];
 
 $data_type_options_html =<<<EOF

@@ -1,4 +1,3 @@
-<script>
 var Country_ns = {
   loadRow: function(rowNum, data)
   {
@@ -17,4 +16,3 @@ var Country_ns = {
     };
   }
 }
-</script>

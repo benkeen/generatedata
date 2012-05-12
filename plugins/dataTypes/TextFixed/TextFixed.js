@@ -1,4 +1,3 @@
-<script>
 var TextFixed_ns = {
   loadRow: function(rowNum, data)
   {
@@ -17,4 +16,3 @@ var TextFixed_ns = {
     };
   }
 }
-</script>

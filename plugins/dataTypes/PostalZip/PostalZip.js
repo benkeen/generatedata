@@ -1,4 +1,3 @@
-<script>
 var PostalZip_ns = {
   loadRow: function(rowNum, data)
   {
@@ -36,4 +35,3 @@ var PostalZip_ns = {
     return { "zips": zips };
   }
 }
-</script>

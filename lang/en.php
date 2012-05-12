@@ -138,3 +138,5 @@ $L["settings_file_exists"] = "The settings file already exists. For new installa
 $L["first_name"] = "First Name";
 $L["last_name"] = "Last Name";
 $L["settings"] = "Settings";
+$L["geo"] = "Geo";
+$L["numeric"] = "Numeric";

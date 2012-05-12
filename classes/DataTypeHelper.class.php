@@ -126,10 +126,11 @@ class DataTypeHelper {
         $currFieldGroupKey   = $currDataType->getDataTypeFieldGroup();
         $currFieldGroupOrder = $currDataType->getDataTypeFieldGroupOrder();
 	      if ($currFieldGroupKey == $groupNameKey) {
-	        $groupTypes["s{$currFieldGroupOrder}"] = $currDataType;
+	      	// TODO this prevents two DataTypes using the same order, which leads to accidental bugs
+	        $groupTypes[$currFieldGroupOrder] = $currDataType;
 	      }
 	    }
-	    ksort($groupTypes);
+	    ksort($groupTypes, SORT_NUMERIC);
 	    $sortedDataTypes[$groupNameKey] = array_values($groupTypes);
 	  }
 
@@ -157,14 +158,15 @@ class DataTypeHelper {
 	  	return false;
 	  }
 
-	  if (!class_exists($dataTypeFolderName)) {
+	  $className = "DataType_$dataTypeFolderName";
+	  if (!class_exists($className)) {
 	  	return false;
 	  }
 
 
 	  $instance = null;
 	  try {
-      $instance = new $dataTypeFolderName();
+      $instance = new $className();
 	  } catch (Exception $e) {
 
 	  	return false;

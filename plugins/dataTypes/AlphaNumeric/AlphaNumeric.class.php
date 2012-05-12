@@ -1,12 +1,12 @@
 <?php
 
 
-class AlphaNumeric extends DataType {
+class DataType_AlphaNumeric extends DataType {
 
   protected $dataTypeName = "Alphanumeric";
   protected $hasHelpDialog = true;
-  protected $dataTypeFieldGroup = "other";
-  protected $dataTypeFieldGroupOrder = 20;
+  protected $dataTypeFieldGroup = "numeric";
+  protected $dataTypeFieldGroupOrder = 10;
   protected $includedFiles = array("AlphaNumeric.js");
 
   private $helpDialogWidth = 460;
