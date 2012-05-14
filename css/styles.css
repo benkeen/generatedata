@@ -283,7 +283,7 @@ div.gdClear {
   clear: both;
   width: 0px;
 }
-#countryList .gdCountryPluginCol {
+.gdCountryPluginCol {
   float: left;
   margin-right: 20px;
 }
@@ -294,12 +294,10 @@ div.gdClear {
   width: 200px;
   z-index: 10;
 }
-#tableRows li.deletedRow {
-  background: -moz-linear-gradient(left top, #990000, #660000);
-  background: -webkit-gradient(linear, left top, right top, from(#990000), to(#660000));
-  /*filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr='#ff990000', EndColorStr='#FF660000');*/
+#gdTableRows li.gdDeletedRow {
+	background-color: #660000;
 }
-#tableRows li.deletedRow, #tableRows li.deletedRow label, #tableRows li.deletedRow div {
+#gdTableRows li.gdDeletedRow, #gdTableRows li.gdDeletedRow label, #gdTableRows li.gdDeletedRow div {
   color: #ffffcc;
 }
 

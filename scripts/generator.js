@@ -1,49 +1,29 @@
-var Generator = Generator || {};
-
-Generator.defineDataType = function(name, code) {
-
-}
-
-/**
-
-Big Client-side stuff to do
----------------------------
-
-- Refactor JS into Generator object
-- Data Types should use Generator.defineDataType to register their JS code.
-- Add generic namespace code for additional code for Data Types
-- Namespace all classes and IDs
-- Countries + Export Types need to be dynamically loaded [requires backend code, first]
-
-*/
-
-
-// ------------------------------------------
-
-
 $(function() {
-  $(".gdResultType").bind("click", function() { gd.changeResultType(this.value); });
-  $(".gdCountries").bind("click", gd.updateCountryChoice);
-  $(".deleteRowsBtn").bind("click", gd.deleteRows);
-  $("input[name=sql_statement_type]").bind("click", gd.changeStatementType);
-  $("#xml_use_custom_format").bind("click", gd.toggleCustomXMLFormat);
+  $(".gdResultType").bind("click", function() { Generator.changeResultType(this.value); });
+  $(".gdCountries").bind("click", Generator.updateCountryChoice);
+  $(".deleteRowsBtn").bind("click", Generator.deleteRows);
+  $("input[name=sql_statement_type]").bind("click", Generator.changeStatementType);
+  $("#xml_use_custom_format").bind("click", Generator.toggleCustomXMLFormat);
   if ($("#xml_use_custom_format").attr("checked")) {
-    gd.toggleCustomXMLFormat.call($("#xml_use_custom_format")[0]);
+    Generator.toggleCustomXMLFormat.call($("#xml_use_custom_format")[0]);
   }
 
+  $(".gdDeleteRows").live("change", Generator.markRowAsDeleted);
+  $(".gdAddRowsBtn").bind("click", function() { Generator.addRows($("#gdNumRows").val()); })
   $("#gdTableRows").sortable({
-    handle: ".colOrder",
+    handle: ".gdColOrder",
     axis: "y",
     update: function(event, ui) {
-      gd.restyleRows();
+      Generator.restyleRows();
     }
   });
-  $("#gdData").bind("submit", gd.submitForm);
-  gd.init();
+  $("#gdData").bind("submit", Generator.submitForm);
+  Generator.init();
 });
 
 
-var gd = {
+
+var Generator = {
   numRows:          0,
   request:          null,
   countries:        [],
@@ -52,53 +32,54 @@ var gd = {
   queue:            [],
   deletedRows:      [],
   dataTypes:        {},   // populated on load with all data types from the /data_types folder
+  exportTypes:      {},
   currResultType:   null, // populated on load
 
   init: function() {
-    gd.addRows(5);
-    gd.initResultType();
-    gd.updateCountryChoice();
+    Generator.addRows(5);
+    Generator.initResultType();
+    Generator.updateCountryChoice();
   },
 
   addRows: function(rows) {
     var rows = rows.toString();
     if (rows.match(/\D/) || rows == 0 || rows == "") {
       g.clearErrors();
-      gd.errors.push({ els: [$("#gdNumRows")], error: L.no_num_rows });
-      gd.displayErrors();
+      Generator.errors.push({ els: [$("#gdNumRows")], error: L.no_num_rows });
+      Generator.displayErrors();
       return false;
     }
 
     for (var i=1; i<=rows; i++) {
-      var currRow = ++gd.numRows;
+      var currRow = ++Generator.numRows;
       var newRowHTML = $('#HTML_Row').html().replace(/\$ROW\$/g, currRow);
       $("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
     }
 
-    $("#gdNumCols").val(gd.numRows);
-    gd.restyleRows();
+    $("#gdNumCols").val(Generator.numRows);
+    Generator.restyleRows();
   },
 
   deleteRows: function() {
-    $("input[name=deleteRows]:checked").each(function() {
-      var parentRowID = $(this).parents(".tableRow").attr("id");
+    $("input[name=gdDeleteRows]:checked").each(function() {
+      var row = $(this).closest(".gdTableRow");
+      var parentRowID = row.attr("id");
       if (parentRowID != null) {
-        var row = parentRowID.replace(/row_/g, "");
-
-        // remove element here
-        $(this).parents(".tableRow").remove();
-        gd.deletedRows.push(row);
+        var rowID = parentRowID.replace(/row_/g, "");
+        row.remove();
+        Generator.deletedRows.push(rowID);
       }
     });
 
-    gd.restyleRows();
+    Generator.restyleRows();
   },
 
-  markRowAsDeleted: function(el) {
+  markRowAsDeleted: function(e) {
+    var el = e.target;
     if (el.checked) {
-      $(el).parents(".tableRow").addClass("deletedRow");
+      $(el).closest(".gdTableRow").addClass("gdDeletedRow").effect("highlight", { color: "#cc0000" }, 1000);
     } else {
-      $(el).parents(".tableRow").removeClass("deletedRow");
+      $(el).closest(".gdTableRow").removeClass("gdDeletedRow");
     }
   },
 
@@ -109,7 +90,7 @@ var gd = {
     $("#gdTableRows>li .gdColOrder").each(function(i) { $(this).html(i+1); });
   },
 
-  showHelpPopup: function(row) { // TODO - use "dialog" not "popup" term
+  showHelpDialog: function(row) {
     var choice = $("#type_" + row).val();
     var title   = null;
     for (var i=0; i<$("#type_" + row)[0].options.length; i++) {
@@ -117,7 +98,7 @@ var gd = {
         title = $("#type_" + row)[0].options[i].text;
       }
     }
-    var width = gd.dataTypes[choice].width;
+    var width = Generator.dataTypes[choice].width;
     var myDialog = $('#helpPopup').html($("#dt_help_" + choice).html()).dialog({
       autoOpen:  false,
       modal:     true,
@@ -141,7 +122,7 @@ var gd = {
     var hasOptionsTest = function() { return (typeof $("#option_" + row) != "undefined"); };
     var readyTest = ($("#dt_options_" + rowType).length > 0) ? hasOptionsTest : noOptionsTest;
 
-    gd.queue.push([
+    Generator.queue.push([
       function() {
         var exampleHTML = null;
         var optionsHTML = null;
@@ -169,12 +150,12 @@ var gd = {
       readyTest
     ]);
 
-    gd.processQueue();
+    Generator.processQueue();
   },
 
   // called whenever the user changes the result type, to hide/show custom options
   changeResultType: function(resultType) {
-    if (resultType == gd.currResultType) {
+    if (resultType == Generator.currResultType) {
       return;
     }
 
@@ -182,26 +163,26 @@ var gd = {
       case "HTML":
       case "Excel":
         $("#colTitle").html(L.column_title);
-        gd.hideResultTypeIfOpen(["XML", "SQL", "CSV"]);
+        Generator.hideResultTypeIfOpen(["XML", "SQL", "CSV"]);
         break;
       case "XML":
         $("#colTitle").html(L.node_name);
-        gd.hideResultTypeIfOpen(["SQL", "CSV"]);
+        Generator.hideResultTypeIfOpen(["SQL", "CSV"]);
         $("#settingsXML").show("blind", null, 500);
         break;
       case "CSV":
         $("#colTitle").html(L.column_title);
-        gd.hideResultTypeIfOpen(["SQL", "XML"]);
+        Generator.hideResultTypeIfOpen(["SQL", "XML"]);
         $("#settingsCSV").show("blind", null, 500);
         break;
       case "SQL":
         $("#colTitle").html(L.table_column);
-        gd.hideResultTypeIfOpen(["CSV", "XML"]);
+        Generator.hideResultTypeIfOpen(["CSV", "XML"]);
         $("#settingsSQL").show("blind", null, 500);
         break;
     }
 
-    gd.currResultType = resultType;
+    Generator.currResultType = resultType;
   },
 
   changeStatementType: function() {
@@ -215,27 +196,27 @@ var gd = {
 
   hideResultTypeIfOpen: function(resultTypes) {
     for (var i=0; i<resultTypes.length; i++) {
-      if (gd.currResultType == resultTypes[i] && $("#settings" + resultTypes[i]).length > 0) {
+      if (Generator.currResultType == resultTypes[i] && $("#settings" + resultTypes[i]).length > 0) {
         $("#settings" + resultTypes[i]).hide("blind", null, 500);
       }
     }
   },
 
   updateCountryChoice: function() {
-    gd.countries.length = 0;
+    Generator.countries.length = 0;
 
     $(".gdCountryChoice").each(function() {
       if (this.checked) {
-        gd.countries.push(this.value);
+        Generator.countries.push(this.value);
       }
     });
 
     // now hide/show all country-specific elements, based on what the user has selected)
-    for (var i=0; i<gd.allCountries.length; i++) {
-      var elements = $(".country_" + gd.allCountries[i]);
+    for (var i=0; i<Generator.allCountries.length; i++) {
+      var elements = $(".country_" + Generator.allCountries[i]);
 
       // if selected, ensure that elements with that language's classes are visible
-      var display = ($.inArray(gd.allCountries[i], gd.countries) != -1) ? "block" : "none";
+      var display = ($.inArray(Generator.allCountries[i], Generator.countries) != -1) ? "block" : "none";
       if (elements.length > 0) {
         for (var k=0; k<elements.length; k++) {
           elements[k].style.display = display;
@@ -258,8 +239,8 @@ var gd = {
   initResultType: function() {
     for (var i=0; i<document.gdData.gdExportType.length; i++) {
       if (document.gdData.gdExportType[i].checked) {
-        gd.currResultType = document.gdData.gdExportType[i].value;
-        switch (gd.currResultType) {
+        Generator.currResultType = document.gdData.gdExportType[i].value;
+        switch (Generator.currResultType) {
           case "XML":
             $("#custom_col_name").html(L.node_name);
             $("#settingsXML").show();
@@ -286,10 +267,10 @@ var gd = {
     }
 
     $("input[name=deleteRows]").attr("checked", "checked");
-    gd.deleteRows();
+    Generator.deleteRows();
 
     if (numInitRows) {
-      gd.addRows(numInitRows);
+      Generator.addRows(numInitRows);
     }
 
     return false;
@@ -305,11 +286,11 @@ var gd = {
 
     // check numResults is an integer
     if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
-      gd.errors.push({ el: $("#numResults"), error: L.invalid_num_results });
+      Generator.errors.push({ el: $("#numResults"), error: L.invalid_num_results });
     }
 
     var error = false;
-    var orderedRowIDs = gd._getRowOrder();
+    var orderedRowIDs = Generator._getRowOrder();
     var resultType = $("input[name=resultType]:checked").val();
     var numGeneratedRows = 0;
 
@@ -350,10 +331,10 @@ var gd = {
       // keep track of the data types that have custom validation routines
       var func_ns = $("#type_" + nodeNum).val() + "_ns";
       if (typeof window[func_ns] === "object" && typeof window[func_ns].validate === "function") {
-        if (!gd._multiDimArrayContains(func_ns, dataTypeValidationFunctions)) {
+        if (!Generator._multiDimArrayContains(func_ns, dataTypeValidationFunctions)) {
           dataTypeValidationFunctions.push([func_ns, [nodeNum]]);
         } else {
-          dataTypeValidationFunctions = gd._multiDimArrayAddRow(func_ns, dataTypeValidationFunctions, nodeNum);
+          dataTypeValidationFunctions = Generator._multiDimArrayAddRow(func_ns, dataTypeValidationFunctions, nodeNum);
         }
       }
 
@@ -374,7 +355,7 @@ var gd = {
         problemFields.push(missingNodeNames[i][0]);
         rowNumbers.push(missingNodeNames[i][1]);
       }
-      gd.errors.push({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+      Generator.errors.push({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
     }
     if (invalidNodeNames.length) {
       var problemFields = [];
@@ -383,7 +364,7 @@ var gd = {
         problemFields.push(invalidNodeNames[i][0]);
         rowNumbers.push(invalidNodeNames[i][1]);
       }
-      gd.errors.push({ els: problemFields, error: L.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+      Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
     }
     if (missingTableNames.length) {
       var problemFields = [];
@@ -392,7 +373,7 @@ var gd = {
         problemFields.push(missingTableNames[i][0]);
         rowNumbers.push(missingTableNames[i][1]);
       }
-      gd.errors.push({ els: problemFields, error: L.missing_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+      Generator.errors.push({ els: problemFields, error: L.missing_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
     }
     if (invalidTableNames.length) {
       var problemFields = [];
@@ -401,32 +382,32 @@ var gd = {
         problemFields.push(invalidTableNames[i][0]);
         rowNumbers.push(invalidTableNames[i][1]);
       }
-      gd.errors.push({ els: problemFields, error: L.invalid_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+      Generator.errors.push({ els: problemFields, error: L.invalid_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
     }
 
     if (resultType == "XML") {
       if ($("#xml_root_node_name").val() == "") {
-        gd.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
+        Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
       } else if ($("#xml_root_node_name").val().match(/\W/)) {
-        gd.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
+        Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
       } else if ($("#xml_record_node_name").val() == "") {
-        gd.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
+        Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
       } else if ($("#xml_record_node_name").val().match(/\W/)) {
-        gd.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
+        Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
       }
     }
     else if (resultType == "CSV") {
       if ($("#csv_delimiter").val() == "") {
-        gd.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
+        Generator.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
       }
     }
 
     if (numGeneratedRows == 0) {
-      gd.errors.push({ els: null, error: L.no_data });
+      Generator.errors.push({ els: null, error: L.no_data });
     }
 
-    if (gd.errors.length) {
-      gd.displayErrors();
+    if (Generator.errors.length) {
+      Generator.displayErrors();
       return false;
     }
 
@@ -438,14 +419,15 @@ var gd = {
     }
 
     // pass the ordered rows to the server, according to whatever sort the user's done
-    $("#rowOrder").val(gd._getRowOrder());
-    $("#deletedRows").val(gd.deletedRows.toString());
+    $("#rowOrder").val(Generator._getRowOrder());
+    $("#deletedRows").val(Generator.deletedRows.toString());
 
     return true;
   },
 
 
   // helper functions for the generator code
+
   _getRowOrder: function() {
     var orderedRowIDs = $("#tableRows").sortable("toArray");
     var sortedOrder = [];
@@ -462,7 +444,7 @@ var gd = {
    * was first generated. This function finds the visible row order by the actual row number in the markup.
    */
   _getVisibleRowOrderByRowNum: function(rowNum) {
-    var rowOrder = gd._getRowOrder();
+    var rowOrder = Generator._getRowOrder();
     var visibleRowNum = 1;
     for (var i=0; i<rowOrder.length; i++) {
       if (rowOrder[i] == rowNum) {
@@ -491,6 +473,16 @@ var gd = {
       }
     }
     return arr;
+  },
+
+
+  registerDataTypePlugin: function(name, code) {
+
+  },
+
+  registerExportTypePlugin: function(name, code) {
+
   }
+
 };
 

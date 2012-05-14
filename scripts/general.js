@@ -3,6 +3,7 @@
  */
 
 $(function() {
+  $(".gdNoJS").hide();
   $("#gdTabs ul li").each(function() {
     var tabNum = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
     $(this).bind("click", function(e, a) {

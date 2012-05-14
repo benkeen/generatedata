@@ -20,7 +20,7 @@ class Core {
   private static $defaultNumRows = 100;
   private static $defaultLanguageFile = "en";
   private static $defaultExportType = "HTML";
-  private static $defaultCountryPlugins = array("canada", "us");
+  private static $defaultCountryPlugins = array("canada", "united_states");
 
   // non-overidable settings
   private static $version = "3.0.0";

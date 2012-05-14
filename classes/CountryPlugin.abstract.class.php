@@ -2,6 +2,7 @@
 
 abstract class CountryPlugin {
 	protected $countryName;
+	protected $countrySlug;
   protected $regionNames;
   protected $zipFormat;
 
@@ -14,6 +15,6 @@ abstract class CountryPlugin {
 	}
 
 	final public function getSlug() {
-    return $this->countryName;
+    return $this->countrySlug;
 	}
 }

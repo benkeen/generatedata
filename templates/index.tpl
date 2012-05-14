@@ -7,7 +7,6 @@
   <meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
-  {literal}<noscript><style type="text/css">#content { display: none; }</style></noscript>{/literal}
 </head>
 <body>
   <header>
@@ -28,6 +27,8 @@
     <div id="gdContent">
       <div id="gdLoadingIcon"></div>
       <div id="gdTab1Content" class="gdTabContent">
+
+        <div class="gdNoJS">Please enable javascript in your browser.</div>
 
         {*{if $g_show_save_panel}
         <div id="controlPanelWindow" class="box">
@@ -114,8 +115,8 @@
           <div class="gdVerticalPad"></div>
 
           <div style="float: right"><input type="button" value="{$L.empty_form}" onclick="return gd.emptyForm(true, 5)" /></div>
-          {$L.add} <input type="text" name="numRows" id="numRows" value="1" size="2" />
-          <input type="button" value="{$L.row_sp}" onclick="gd.addRows(document.data.numRows.value)" />
+          {$L.add} <input type="text" name="gdNumRows" id="gdNumRows" value="1" size="2" />
+          <input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 
 
           {* hidden iframe, to which the form is submitted *}
@@ -136,7 +137,7 @@
                 <li class="gdColExamples" id="example_$ROW$">&nbsp;</li>
                 <li class="gdColOptions" id="options_$ROW$">&nbsp;</li>
                 <li class="gdColHelp" id="help_$ROW$">&nbsp;</li>
-                <li class="gdColDelete"><input type="checkbox" onclick="gd.markRowAsDeleted(this)" name="gdDeleteRows" /></li>
+                <li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="huh" /></li>
               </ul>
             </div>
 
@@ -144,7 +145,7 @@
               <ul class="ui-widget ui-helper-clearfix">
                 <li class="ui-state-default ui-corner-all" onmouseover="$(this).addClass('ui-state-hover')"
                   onmouseout="$(this).removeClass('ui-state-hover')"
-                  onclick="gd.showHelpPopup($ROW$)"
+                  onclick="gd.showHelpDialog($ROW$)"
                   id="helpLink_$ROW$"><span class="ui-icon ui-icon-help" /></li>
               </ul>
             </div>
@@ -174,7 +175,7 @@
                   // settings for the help popup
                   echo <<<EOF
                     <script>
-                    gd.dataTypes["$dt_ns"] = {
+                    Generator.dataTypes["$dt_ns"] = {
                       width: {$data_type_info["help_popup_width"]}
                     }
                     </script>
@@ -197,14 +198,6 @@ EOF;
 
       </div>
     </div>
-
-    <noscript>
-      <h1>{$L.no_js}</h1>
-      {$L.no_js_blurb}
-      <form action="{$same_page}">
-        <button class="gdGreenButton">{$L.refresh_page}</button>
-      </form>
-    </noscript>
   </section>
 
   <footer>
@@ -218,8 +211,8 @@ EOF;
   <script src="scripts/jquery-1.7.2.min.js"></script>
   <script src="scripts/jquery-ui-1.8.19.custom.min.js"></script>
   <script src="scripts/jquery.json-2.2.min.js"></script>
-  <script src="scripts/lang.php"></script>
+  <script src="scripts/general.js"></script>
   <script src="scripts/generator.js"></script>
-  <script src="scripts/io.js"></script>
+  <script src="scripts/lang.php"></script>
 </body>
 </html>
