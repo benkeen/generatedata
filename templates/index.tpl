@@ -7,6 +7,7 @@
   <meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
+  <script data-main="scripts/main" src="scripts/require.js"></script>
 </head>
 <body>
   <header>
@@ -208,11 +209,5 @@ EOF;
   //gd_include_data_type_includes();
   ?>
 
-  <script src="scripts/jquery-1.7.2.min.js"></script>
-  <script src="scripts/jquery-ui-1.8.19.custom.min.js"></script>
-  <script src="scripts/jquery.json-2.2.min.js"></script>
-  <script src="scripts/general.js"></script>
-  <script src="scripts/generator.js"></script>
-  <script src="scripts/lang.php"></script>
 </body>
 </html>

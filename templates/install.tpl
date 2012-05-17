@@ -7,7 +7,7 @@
   <meta name="keywords" content="random data generator, test data generation, sample data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
-  {literal}<noscript><style type="text/css">.hideNoJS { display: none; }</style></noscript>{/literal}
+  <script data-main="scripts/install" src="scripts/require.js"></script>
 </head>
 <body class="gdInstallPage">
   <header>
@@ -26,6 +26,8 @@
   <section>
     <div id="gdContent" class="hideNoJS">
       <div id="gdTab1Content" class="gdTabContent">
+        <div class="gdNoJS">Please enable javascript in your browser.</div>
+
         <div id="gdProcessingIcon"></div>
 
         <h1>{$L.installation}</h1>
@@ -87,22 +89,22 @@
 	                <label for="eua2">{$L.no}</label>
 	            </div>
 	          </div>
-	          <div class="gdField firstNameRow gdDisabledRow">
+	          <div class="gdField gdFirstNameRow gdDisabledRow">
 	            <label for="email">{$L.first_name}</label>
 	            <input type="text" id="firstName" value="" disabled="disabled" />
 	          </div>
 	          <div class="gdError" id="firstName_error"></div>
-	          <div class="gdField lastNameRow gdDisabledRow">
+	          <div class="gdField gdLastNameRow gdDisabledRow">
 	            <label for="email">{$L.last_name}</label>
 	            <input type="text" id="lastName" value="" disabled="disabled" />
 	          </div>
 	          <div class="gdError" id="lastName_error"></div>
-	          <div class="gdField emailRow gdDisabledRow">
+	          <div class="gdField gdEmailRow gdDisabledRow">
 	            <label for="email">{$L.email}</label>
 	            <input type="text" id="email" value="" disabled="disabled" />
 	          </div>
 	          <div class="gdError" id="email_error"></div>
-	          <div class="gdField passwordRow gdDisabledRow">
+	          <div class="gdField gdPasswordRow gdDisabledRow">
 	            <label for="password">{$L.password}</label>
 	            <input type="text" id="password" value="{$randomPassword}" class="pwdField" disabled="disabled" />
 	          </div>
@@ -173,25 +175,11 @@
         </p>
       </div>
     </div>
-
-    <noscript>
-      <h1>{$L.no_js}</h1>
-      {$L.no_js_blurb}
-      <form action="{$same_page}">
-        <button class="greenButton" id="create_database">{$L.refresh_page}</button>
-      </form>
-    </noscript>
   </section>
 
   <footer>
     {$L.version} {$version} - <a href="https://github.com/benkeen/generatedata" target="_blank">github</a>
   </footer>
 
-  <script src="scripts/jquery-1.7.2.min.js"></script>
-  <script src="scripts/jquery-ui-1.8.19.custom.min.js"></script>
-  <script src="scripts/jquery.json-2.2.min.js"></script>
-  <script src="scripts/lang.php"></script>
-  <script src="scripts/general.js"></script>
-  <script src="scripts/install.js"></script>
 </body>
 </html>
