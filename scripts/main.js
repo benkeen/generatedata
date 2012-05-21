@@ -1,11 +1,13 @@
 require([
 	"generator",
 	"utils",
+	"mediator",
 	"libs/jquery-1.7.2.min",
 	"libs/jquery-ui-1.8.19.custom.min",
 	"libs/jquery.json-2.2.min",
 	"scripts/lang.php?",
-], function(generator, utils) {
+	"pageinit"
+], function(generator, utils, mediator) {
 
 	$(function() {
 		$(".gdResultType").bind("click", function() { generator.changeResultType(this.value); });

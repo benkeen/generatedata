@@ -19,7 +19,7 @@ function smarty_function_data_types_dropdown($params, &$smarty) {
   // name="type_$ROW$" id="type_$ROW$" onchange="gd.changeRowType(this.name, this.value)"
 
   echo <<< END
-  <select>
+  <select class=\"\">
     <option value="">{$L["please_select"]}</option>
     $options
   </select>
