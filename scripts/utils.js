@@ -8,7 +8,7 @@ define([
 	/**
 	 * Some general functions, used on all Data Generator pages (i.e. the installation page + main generator page).
 	 *
-	 * ... hmm...! TODO, this sucks.
+	 * TODO move
 	 */
 	$(function() {
 		$(".gdNoJS").hide();

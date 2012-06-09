@@ -192,11 +192,9 @@ EOF;
       </div>
 
       <div class="gdTabContent" id="gdTab2Content">
-
       </div>
 
       <div class="gdTabContent" id="gdTab3Content">
-
       </div>
     </div>
   </section>

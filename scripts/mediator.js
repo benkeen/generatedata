@@ -1,29 +1,24 @@
 /**
  * The mediator handles all the pub/sub functionality for the Core. All modules interact
- * with one another indirectly by publishing and subscribing to messages.
+ * with one another indirectly through this module by publishing and subscribing to messages.
+ *
+ * TODO. Core registration, module initialization, Core pub/sub should be handled in a separate
+ * layer.
  */
 define([
-	''
-], function() {
-
+	'utils'
+], function(utils) {
 
 	var Mediator = (function() {
 
 		// stores all plugins
-		var _plugins = [];
-
-		/**
-		 * Our registration function. Any plugins - Data Types, Export Types or Countries - that
-		 * want to include any client-side code need to register themselves with the mediator.
-		 *
-		 * @param pluginType string "dataType", "exportType", "country" (Core?)
-		 */
-		var register = function(pluginType, name, constructor) {
-
+		var _plugins = {
+			dataTypes: [],
+			exportTypes: [],
+			countries: []
 		};
 
-/*
-		var subscribe = function(channel, fn) {
+		var _subscribe = function(channel, fn) {
 			if (!mediator.channels[channel]) {
 				mediator.channels[channel] = [];
 			}
@@ -31,7 +26,7 @@ define([
 			return this;
 		};
 
-		publish = function(channel) {
+		var _publish = function(channel) {
 			if (!mediator.channels[channel]) {
 				return false;
 			}
@@ -43,12 +38,39 @@ define([
 			return this;
 		};
 
-*/
+		/**
+		 * Our registration function. Any plugins - Data Types, Export Types or Countries - that
+		 * want to include any client-side code need to register themselves with the mediator.
+		 */
+		var register = function(module, constructor) {
+			if (!typeof constructor == "function") {
+				return;
+			}
+            if (!module.hasOwnProperty("type")) {
+            	return;
+            }
+
+            // store the module for initialization
+            switch (module.type) {
+            	case "dataType":
+            		break;
+            	case "exportType":
+            		break;
+            	case "countries":
+            		break;
+            }
+		}
+
+		var _start = function() {
+
+		}
 
 		return {
-			channels:  {},
-			publish:   publish,
-			subscribe: subscribe,
+//			channels:  {},
+			start:     _start,
+			register:  _register,
+			publish:   _publish,
+			subscribe: _subscribe,
 		};
 
 	})();

@@ -1,15 +1,24 @@
 require([
 	"generator",
 	"utils",
+	"constants",
 	"mediator",
 	"libs/jquery-1.7.2.min",
 	"libs/jquery-ui-1.8.19.custom.min",
 	"libs/jquery.json-2.2.min",
 	"scripts/lang.php?",
 	"pageinit"
-], function(generator, utils, mediator) {
+], function(generator, utils, C, mediator) {
 
-	$(function() {
+	var module = {
+		id: "mainpage",
+		type: C.COMPONENT.CORE,
+		loadSpeed: 10
+	};
+
+	mediator.register(module, function() {
+
+		// TODO. Should use pub sub, too...
 		$(".gdResultType").bind("click", function() { generator.changeResultType(this.value); });
 		$(".gdCountries").bind("click", generator.updateCountryChoice);
 		$(".deleteRowsBtn").bind("click", generator.deleteRows);
@@ -29,7 +38,19 @@ require([
 			}
 		});
 		$("#gdData").bind("submit", generator.submitForm);
-		generator.init();
+//		generator.init();
+
+		// determine which events we're going to subscribe to. This is used to map out the
+		// Core behaviour to handle all built-in event handling
+		var subscriptions = [
+            {
+            	type: C.RESULT_TYPE.CHANGE,
+            	func: generator.handleEvent
+            },
+
+		];
+
+		mediator.subscribe(subscriptions);
 	});
 
 });

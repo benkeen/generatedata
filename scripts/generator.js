@@ -8,6 +8,17 @@ define([
 	"scripts/lang.php?"
 ], function(utils) {
 
+	var module = {
+		id: "generator",
+		type: C.COMPONENT.CORE,
+		loadSpeed: 5
+	};
+
+	//
+	mediator.register(module, function() {
+
+	});
+
 	var Generator = {
 		numRows:          0,
 		request:          null,
