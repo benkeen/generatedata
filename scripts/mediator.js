@@ -1,15 +1,11 @@
 /**
- * The mediator handles all the pub/sub functionality for the Core. All modules interact
- * with one another indirectly through this module by publishing and subscribing to messages.
- *
- * TODO. Core registration, module initialization, Core pub/sub should be handled in a separate
- * layer.
+ * The mediator handles all the JS module registration and pub/sub functionality for the Core.
  */
 define([
 	'utils'
 ], function(utils) {
 
-	var Mediator = (function() {
+	var mediator = (function() {
 
 		// stores all plugins
 		var _plugins = {
@@ -42,7 +38,7 @@ define([
 		 * Our registration function. Any plugins - Data Types, Export Types or Countries - that
 		 * want to include any client-side code need to register themselves with the mediator.
 		 */
-		var register = function(module, constructor) {
+		var _register = function(module, constructor) {
 			if (!typeof constructor == "function") {
 				return;
 			}
@@ -66,7 +62,6 @@ define([
 		}
 
 		return {
-//			channels:  {},
 			start:     _start,
 			register:  _register,
 			publish:   _publish,
@@ -75,5 +70,5 @@ define([
 
 	})();
 
-	return Mediator;
+	return mediator;
 });

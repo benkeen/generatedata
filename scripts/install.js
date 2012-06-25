@@ -72,8 +72,8 @@ require([
 		for (var i=0; i<errors.length; i++) {
 				$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
 		}
-			return false;
-		}
+		return false;
+	}
 
 		g.startProcessing();
 		$.ajax({

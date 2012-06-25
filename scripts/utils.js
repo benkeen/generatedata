@@ -5,50 +5,23 @@ define([
 	"scripts/lang.php?"
 ], function() {
 
-	/**
-	 * Some general functions, used on all Data Generator pages (i.e. the installation page + main generator page).
-	 *
-	 * TODO move
-	 */
-	$(function() {
-		$(".gdNoJS").hide();
-		$("#gdTabs ul li").each(function() {
-			var tabNum = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
-			$(this).bind("click", function(e, a) {
-				utils.selectTab(tabNum);
-				window.location = window.location.href.split("#")[0] + "#t" + tabNum;
-			});
-		});
+	var _currentTab     = 1;
+	var _errors         = [];
+	var _messageVisible = false;
 
-		// if the page was just reloaded, see if we need to display a particular tab
-		if (window.location.href.match(/#/)) {
-			var tabNum = window.location.href.split("#")[1].replace(/^t/, "");
-			if (utils.isNumber(tabNum) && tabNum >= 1 && tabNum <= $("#gdTabs ul li").length) {
-				utils.selectTab(tabNum);
-				utils.currentTab = tabNum;
-			}
-		}
-
-		$("#gdSelectLanguage").bind("change", utils.changeLanguage);
-	});
-
-
-	var utils = {
-		currentTab:       1,
-		errors:           [],
-		messageVisible:   false,
+	return {
 
 		selectTab: function(tab) {
-			if (tab == utils.currentTab) {
+			if (tab == _currentTab) {
 				return false;
 			}
 
-			$("#gdTab" + utils.currentTab).removeClass("gdSelected");
+			$("#gdTab" + _currentTab).removeClass("gdSelected");
 			$("#gdTab" + tab).addClass("gdSelected");
-			$("#gdTab" + utils.currentTab + "Content").hide();
+			$("#gdTab" + _currentTab + "Content").hide();
 			$("#gdTab" + tab + "Content").show();
 
-			utils.currentTab = tab;
+			_currentTab = tab;
 			return false;
 		},
 
@@ -57,7 +30,7 @@ define([
 		changeLanguage: function() {
 			var lang_file = $("#gdSelectLanguage").val();
 			if (lang_file != "") {
-				window.location = "?lang=" + lang_file + "#t" + utils.currentTab;
+				window.location = "?lang=" + lang_file + "#t" + _currentTab;
 			}
 		},
 
@@ -75,7 +48,7 @@ define([
 		},
 
 		hideErrors: function(unhighlightProblemFields) {
-			if (!gd.messageVisible) {
+			if (!_messageVisible) {
 				return;
 			}
 
@@ -84,8 +57,8 @@ define([
 			}
 
 			$("#gdMessages").hide("blind", null, 500);
-			gd.errors = [];
-			gd.messageVisible = false;
+			_errors = [];
+			_messageVisible = false;
 
 			return false;
 		},
@@ -111,11 +84,11 @@ define([
 			$("#gdMessages div").html(html);
 
 			// if this is the first time the errors are displayed (i.e. it's not already visible), blind it in
-			if (!gd.messageVisible) {
+			if (!_messageVisible) {
 				$("#gdMessages").show("blind", null, 500);
 			}
 
-			gd.messageVisible = true;
+			_messageVisible = true;
 		},
 
 		displayMessage: function(message) {
@@ -123,11 +96,11 @@ define([
 			$("#gdMessages div").html(message);
 
 			// if this is the first time the errors are displayed (i.e. it's not already visible), blind it in
-			if (!gd.messageVisible) {
+			if (!_messageVisible) {
 				$("#gdMessages").show("blind", null, 500);
 			}
 
-			gd.messageVisible = true;
+			_messageVisible = true;
 		},
 
 
@@ -168,5 +141,4 @@ define([
 		}
 	}
 
-	return utils;
 });

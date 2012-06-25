@@ -3,7 +3,7 @@
  */
 require([
  	"utils",
-	"order!libs/jquery-1.7.2.min"
+	"libs/jquery-1.7.2.min"
 ], function(utils) {
 
 	/**
