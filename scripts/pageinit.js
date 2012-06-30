@@ -1,14 +1,12 @@
 /**
- * This module runs on all page loads, initializing various common
+ * This module runs on all page loads, initializing a few things needed for all pages:
+ * namely the tab functionality and the language dropdown change event.
  */
 require([
  	"utils",
-	"libs/jquery-1.7.2.min"
+	"libs/jquery"
 ], function(utils) {
 
-	/**
-	 * Some general functions, used on all Data Generator pages (i.e. the installation page + main generator page).
-	 */
 	$(function() {
 		$(".gdNoJS").hide();
 		$("#gdTabs ul li").each(function() {
@@ -30,5 +28,4 @@ require([
 
 		$("#gdSelectLanguage").bind("change", utils.changeLanguage);
 	});
-
 });

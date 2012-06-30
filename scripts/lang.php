@@ -12,4 +12,12 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 header("Content-type: application/x-javascript");
 */
 
-echo Core::$language->getCurrentLanguageStringsJS();
+$js = Core::$language->getCurrentLanguageStringsJS();
+?>
+define([
+], function() {
+
+	<?php echo $js?>
+
+	return L;
+});

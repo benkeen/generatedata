@@ -1,90 +1,209 @@
-// TODO convert this to use the module pattern. Wayyyy too much is being revealed...!
-
+/**
+ * This file contains the core code for the generator. It initializes the default
+ * functionality of the generator page, subscribes to and publishes all the appropriate Core
+ * events.
+ */
 define([
+	"mediator",
 	"utils",
-	"order!libs/jquery-1.7.2.min",
-	"order!libs/jquery-ui-1.8.19.custom.min",
-	"order!libs/jquery.json-2.2.min",
+	"constants",
 	"scripts/lang.php?"
-], function(utils) {
+], function(mediator, utils, C, L) {
 
-	var module = {
-		id: "generator",
-		type: C.COMPONENT.CORE,
-		loadSpeed: 5
+	// private vars
+	var _numRows  = 0;
+`	var _request  = null;
+	var _countries = [];
+	var _allCountries = [];
+	var _lastJsonResponse = null;
+	var _queue = [];
+	var _deletedRows = [];
+	var _dataTypes = {};   // populated onload with all data types from the /data_types folder
+	var _exportTypes = {};
+	var _currResultType = null; // populated onload
+
+
+	// private functions
+
+	var _addRows = function(numRows) {
+		var rows = rows.toString();
+		if (rows.match(/\D/) || rows == 0 || rows == "") {
+			utils.clearErrors();
+			Generator.errors.push({ els: [$("#gdNumRows")], error: L.no_num_rows });
+			Generator.displayErrors();
+			return false;
+		}
+
+		for (var i=1; i<=rows; i++) {
+			var currRow = ++_numRows;
+			var newRowHTML = $('#HTML_Row').html().replace(/\$ROW\$/g, currRow);
+			$("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
+		}
+
+		$("#gdNumCols").val(Generator.numRows);
+		_restyleRows();
 	};
 
-	//
-	mediator.register(module, function() {
+	/**
+	 * This is called when the user actually clicks one of the DEL buttons, deleting those rows marked
+	 * as deleted.
+	 *
+	 * @function
+	 * @private
+	 */
+	var _deleteRows = function() {
+		var rowIDs = [];
+		$("input[name=gdDeleteRows]:checked").each(function() {
+			var row = $(this).closest(".gdTableRow");
+			var parentRowID = row.attr("id");
+			if (parentRowID != null) {
+				var rowID = parentRowID.replace(/row_/g, "");
+				row.remove();
+				rowIDs.push(rowID);
+				_deletedRows.push(rowID);
+			}
+		});
 
-	});
+		mediator.publish({
+			type: C.EVENT.DATA_TABLE.ROW.DELETE,
+			data: {
+				rowIDs: rowIDs
+			}
+		});
+
+		_restyleRows();
+	};
+
+	var restyleRows = function() {
+		$("#gdTableRows>li").removeClass("gdOddRow gdEvenRow");
+		$("#gdTableRows>li:odd").addClass("gdOddRow");
+		$("#gdTableRows>li:even").addClass("gdEvenRow");
+		$("#gdTableRows>li .gdColOrder").each(function(i) { $(this).html(i+1); });
+	};
+
+	var _markRowToDelete = function(e) {
+		var el = e.target;
+		if (el.checked) {
+			$(el).closest(".gdTableRow").addClass("gdDeletedRow").effect("highlight", { color: "#cc0000" }, 1000);
+		} else {
+			$(el).closest(".gdTableRow").removeClass("gdDeletedRow");
+		}
+	};
+
+	var _updateCountryChoice = function() {
+		Generator.countries.length = 0;
+
+		$(".gdCountryChoice").each(function() {
+			if (this.checked) {
+				Generator.countries.push(this.value);
+			}
+		});
+
+		// now hide/show all country-specific elements, based on what the user has selected)
+		for (var i=0; i<Generator.allCountries.length; i++) {
+			var elements = $(".country_" + Generator.allCountries[i]);
+
+			// if selected, ensure that elements with that language's classes are visible
+			var display = ($.inArray(Generator.allCountries[i], Generator.countries) != -1) ? "block" : "none";
+			if (elements.length > 0) {
+				for (var k=0; k<elements.length; k++) {
+					elements[k].style.display = display;
+				}
+			}
+		}
+	};
+
+
+	var _changeResultType = function(resultType) {
+		if (resultType == _currResultType) {
+			return;
+		}
+
+		mediator.publish({
+			type: C.EVENT.RESULT_TYPE.CHANGE,
+			data: {
+				newResultType: resultType,
+				oldResultType: _currResultType
+			}
+		});
+
+		/*
+		TODO ... automate the hide/show of the sections
+
+		switch (resultType) {
+			case "HTML":
+			case "Excel":
+				$("#colTitle").html(L.column_title);
+				Generator.hideResultTypeIfOpen(["XML", "SQL", "CSV"]);
+				break;
+			case "XML":
+				$("#colTitle").html(L.node_name);
+				Generator.hideResultTypeIfOpen(["SQL", "CSV"]);
+				$("#settingsXML").show("blind", null, 500);
+				break;
+			case "CSV":
+				$("#colTitle").html(L.column_title);
+				Generator.hideResultTypeIfOpen(["SQL", "XML"]);
+				$("#settingsCSV").show("blind", null, 500);
+				break;
+			case "SQL":
+				$("#colTitle").html(L.table_column);
+				Generator.hideResultTypeIfOpen(["CSV", "XML"]);
+				$("#settingsSQL").show("blind", null, 500);
+				break;
+		}
+		*/
+
+		_currResultType = resultType;
+	};
+
+
+	/**
+	 * Our initialization function. This runs prior to ANY modules being actually run. It enables
+	 * us to ensure all subscriptions are in place, prior to
+	 */
+	var _init = function() {
+
+	};
+
+	/**
+	 * Our constructor. This is executed.
+	 */
+	var _run = function() {
+		// assign the assorted event handlers, which trigger the appropriate PUBLISH events
+		$(".gdResultType").bind("click", _changeResultType);
+		$(".gdCountries").bind("click", Generator.updateCountryChoice);
+		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
+		$(".deleteRowsBtn").bind("click", _deleteRows);
+		$(".gdDeleteRows").live("change", _markRowToDelete);
+		$("#gdTableRows").sortable({
+			handle: ".gdColOrder",
+			axis: "y",
+			update: function(event, ui) {
+				_restyleRows();
+			}
+		});
+		$("#gdData").bind("submit", Generator.submitForm);
+
+		// TODO Move to XML Result Type module
+		/*
+		if ($("#xml_use_custom_format").attr("checked")) {
+			Generator.toggleCustomXMLFormat.call($("#xml_use_custom_format")[0]);
+		}
+		$("input[name=sql_statement_type]").bind("click", Generator.changeStatementType);
+		$("#xml_use_custom_format").bind("click", Generator.toggleCustomXMLFormat);
+		*/
+
+		// now
+		_addRows(5);
+		Generator.initResultType();
+		Generator.updateCountryChoice();
+	}
+
+
+	// TODO convert to private methods
 
 	var Generator = {
-		numRows:          0,
-		request:          null,
-		countries:        [],
-		allCountries:     [],
-		lastJsonResponse: null,
-		queue:            [],
-		deletedRows:      [],
-		dataTypes:        {},   // populated on load with all data types from the /data_types folder
-		exportTypes:      {},
-		currResultType:   null, // populated on load
-
-		init: function() {
-			Generator.addRows(5);
-			Generator.initResultType();
-			Generator.updateCountryChoice();
-		},
-
-		addRows: function(rows) {
-			var rows = rows.toString();
-			if (rows.match(/\D/) || rows == 0 || rows == "") {
-				g.clearErrors();
-				Generator.errors.push({ els: [$("#gdNumRows")], error: L.no_num_rows });
-				Generator.displayErrors();
-				return false;
-			}
-
-			for (var i=1; i<=rows; i++) {
-				var currRow = ++Generator.numRows;
-				var newRowHTML = $('#HTML_Row').html().replace(/\$ROW\$/g, currRow);
-				$("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
-			}
-
-			$("#gdNumCols").val(Generator.numRows);
-			Generator.restyleRows();
-		},
-
-		deleteRows: function() {
-			$("input[name=gdDeleteRows]:checked").each(function() {
-				var row = $(this).closest(".gdTableRow");
-				var parentRowID = row.attr("id");
-				if (parentRowID != null) {
-					var rowID = parentRowID.replace(/row_/g, "");
-					row.remove();
-					Generator.deletedRows.push(rowID);
-				}
-			});
-
-			Generator.restyleRows();
-		},
-
-		markRowAsDeleted: function(e) {
-			var el = e.target;
-			if (el.checked) {
-				$(el).closest(".gdTableRow").addClass("gdDeletedRow").effect("highlight", { color: "#cc0000" }, 1000);
-			} else {
-				$(el).closest(".gdTableRow").removeClass("gdDeletedRow");
-			}
-		},
-
-		restyleRows: function() {
-			$("#gdTableRows>li").removeClass("gdOddRow gdEvenRow");
-			$("#gdTableRows>li:odd").addClass("gdOddRow");
-			$("#gdTableRows>li:even").addClass("gdEvenRow");
-			$("#gdTableRows>li .gdColOrder").each(function(i) { $(this).html(i+1); });
-		},
 
 		showHelpDialog: function(row) {
 			var choice = $("#type_" + row).val();
@@ -149,38 +268,6 @@ define([
 			Generator.processQueue();
 		},
 
-		// called whenever the user changes the result type, to hide/show custom options
-		changeResultType: function(resultType) {
-			if (resultType == Generator.currResultType) {
-				return;
-			}
-
-			switch (resultType) {
-				case "HTML":
-				case "Excel":
-					$("#colTitle").html(L.column_title);
-					Generator.hideResultTypeIfOpen(["XML", "SQL", "CSV"]);
-					break;
-				case "XML":
-					$("#colTitle").html(L.node_name);
-					Generator.hideResultTypeIfOpen(["SQL", "CSV"]);
-					$("#settingsXML").show("blind", null, 500);
-					break;
-				case "CSV":
-					$("#colTitle").html(L.column_title);
-					Generator.hideResultTypeIfOpen(["SQL", "XML"]);
-					$("#settingsCSV").show("blind", null, 500);
-					break;
-				case "SQL":
-					$("#colTitle").html(L.table_column);
-					Generator.hideResultTypeIfOpen(["CSV", "XML"]);
-					$("#settingsSQL").show("blind", null, 500);
-					break;
-			}
-
-			Generator.currResultType = resultType;
-		},
-
 		changeStatementType: function() {
 			if ($("input[name=sql_statement_type]:checked").val() == "update") {
 				$("#spk1").attr("checked", "checked");
@@ -194,29 +281,6 @@ define([
 			for (var i=0; i<resultTypes.length; i++) {
 				if (Generator.currResultType == resultTypes[i] && $("#settings" + resultTypes[i]).length > 0) {
 					$("#settings" + resultTypes[i]).hide("blind", null, 500);
-				}
-			}
-		},
-
-		updateCountryChoice: function() {
-			Generator.countries.length = 0;
-
-			$(".gdCountryChoice").each(function() {
-				if (this.checked) {
-					Generator.countries.push(this.value);
-				}
-			});
-
-			// now hide/show all country-specific elements, based on what the user has selected)
-			for (var i=0; i<Generator.allCountries.length; i++) {
-				var elements = $(".country_" + Generator.allCountries[i]);
-
-				// if selected, ensure that elements with that language's classes are visible
-				var display = ($.inArray(Generator.allCountries[i], Generator.countries) != -1) ? "block" : "none";
-				if (elements.length > 0) {
-					for (var k=0; k<elements.length; k++) {
-						elements[k].style.display = display;
-					}
 				}
 			}
 		},
@@ -472,5 +536,12 @@ define([
 		}
 	};
 
-	return Generator;
+//	return Generator;
+
+	// register our module
+	var MODULE_ID = "generator";
+	mediator.register(MODULE_ID, C.COMPONENT.CORE, {
+		init: _init,
+		run: _run
+	});
 });

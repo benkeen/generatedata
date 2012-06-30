@@ -1,74 +1,77 @@
 /**
- * The mediator handles all the JS module registration and pub/sub functionality for the Core.
+ * The mediator handles all the pub/sub functionality for the Core. All modules interact
+ * with one another indirectly through this module by publishing and subscribing to messages.
  */
 define([
-	'utils'
-], function(utils) {
+	'constants',
+	'utils',
+	'controller'
+], function(C, utils, controller) {
 
-	var mediator = (function() {
+	var _controller = controller;
 
-		// stores all plugins
-		var _plugins = {
-			dataTypes: [],
-			exportTypes: [],
-			countries: []
-		};
+	/**
+	 * Our registration function. Any plugins - Data Types, Export Types or Countries - that
+	 * want to include any client-side code need to register themselves with the mediator in
+	 * order to access PUB/SUB.
+	 *
+	 * @param {object} module
+	 */
+	var _register = function(moduleID, moduleType, module) {
+		_controller.register(moduleID, moduleType, module);
+	}
 
-		var _subscribe = function(channel, fn) {
-			if (!mediator.channels[channel]) {
-				mediator.channels[channel] = [];
-			}
-			mediator.channels[channel].push({ context: this, callback: fn });
-			return this;
-		};
-
-		var _publish = function(channel) {
-			if (!mediator.channels[channel]) {
-				return false;
-			}
-			var args = Array.prototype.slice.call(arguments, 1);
-			for (var i = 0, l = mediator.channels[channel].length; i < l; i++) {
-				var subscription = mediator.channels[channel][i];
-				subscription.callback.apply(subscription.context, args);
-			}
-			return this;
-		};
-
-		/**
-		 * Our registration function. Any plugins - Data Types, Export Types or Countries - that
-		 * want to include any client-side code need to register themselves with the mediator.
-		 */
-		var _register = function(module, constructor) {
-			if (!typeof constructor == "function") {
-				return;
-			}
-            if (!module.hasOwnProperty("type")) {
-            	return;
-            }
-
-            // store the module for initialization
-            switch (module.type) {
-            	case "dataType":
-            		break;
-            	case "exportType":
-            		break;
-            	case "countries":
-            		break;
-            }
+	var _publish = function(messages) {
+		// convert to array
+		if (messages.length == 0) {
+			return;
 		}
 
-		var _start = function() {
+		var modules = _controller.getModules();
 
+		for (var i=0; i<messages.length; i++) {
+			if (C.DEBUGGING.LIST_PUBLISH_EVENTS) {
+				console.log("mediator.publish(): ", events[i]);
+			}
+
+			for (var moduleID in modules) {
+				if (!modules.hasOwnProperty(mod)) {
+					continue;
+				}
+
+				// TODO... this isn't quite right
+                var currModule = modules[mod];
+                if (currModule.subscriptions.hasOwnProperty(events[i])) {
+                	currModule.subscriptions[events[i]]()
+                }
+			}
 		}
+	}
 
-		return {
-			start:     _start,
-			register:  _register,
-			publish:   _publish,
-			subscribe: _subscribe,
-		};
+	var _subscribe = function(moduleID, subscriptions) {
 
-	})();
+	}
 
-	return mediator;
+	var _unsubscribe = function(moduleID, subscriptions) {
+
+	}
+
+	var _start = function() {
+        _controller.initAll();
+        _controller.runAll();
+	}
+
+	var _getModuleIDs = function() {
+		return _controller.getModuleIDs()
+	}
+
+	// our public API
+	return {
+		register:     _register,
+		publish:      _publish,
+		subscribe:    _subscribe,
+		unsubscribe:  _unsubscribe,
+		start:    	  _start,
+		getModuleIDs: _getModuleIDs
+	};
 });

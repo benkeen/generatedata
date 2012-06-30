@@ -7,7 +7,8 @@
   <meta name="keywords" content="random data generator, test data generation, sample data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
-  <script data-main="scripts/install" src="scripts/require.js"></script>
+  <script data-main="scripts/install" src="scripts/libs/require.js"></script>
+  <script src="scripts/require_config.js"></script>
 </head>
 <body class="gdInstallPage">
   <header>
