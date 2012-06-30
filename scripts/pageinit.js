@@ -4,7 +4,9 @@
  */
 require([
  	"utils",
-	"libs/jquery"
+	"jquery",
+	"jquery-ui",
+	"jquery-json"
 ], function(utils) {
 
 	$(function() {

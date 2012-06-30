@@ -96,7 +96,6 @@ class Core {
 	}
 
 	private function initSmarty() {
-		echo realpath(dirname(__FILE__) . "/../cache");
 		self::$smarty = new Smarty();
 		self::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates/");
 		self::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache/");

@@ -1,13 +1,13 @@
 require([
 	"mediator",
-	"libs/jquery",
-	"libs/jquery-ui-1.8.19.custom.min",
-	"libs/jquery.json-2.2.min",
 	"scripts/lang.php?",
+	"jquery",
+	"jquery-ui",
+	"jquery-json",
 	"pageinit"
-], function(mediator) {
+], function(mediator, L) {
 
-	// TODO move...
+	// TODO move...?
 
 	$(function() {
 		$("#dbHostname").select();

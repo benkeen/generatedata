@@ -18,34 +18,39 @@ define([
 	 * @param {object} module
 	 */
 	var _register = function(moduleID, moduleType, module) {
-		_controller.register(moduleID, moduleType, module);
+		if (_controller.register(moduleID, moduleType, module)) {
+			_publish({
+				sender: moduleID,
+				type: C.EVENT.MODULE.REGISTER
+			});
+		}
 	}
 
 	var _publish = function(messages) {
-		// convert to array
-		if (messages.length == 0) {
-			return;
+		if (!$.isArray(messages)) {
+			messages = [messages];
 		}
 
 		var modules = _controller.getModules();
 
 		for (var i=0; i<messages.length; i++) {
 			if (C.DEBUGGING.LIST_PUBLISH_EVENTS) {
-				console.log("mediator.publish(): ", events[i]);
+				console.log("mediator.publish(): ", messages[i]);
 			}
 
 			for (var moduleID in modules) {
-				if (!modules.hasOwnProperty(mod)) {
+				if (!modules.hasOwnProperty(moduleID)) {
 					continue;
 				}
 
 				// TODO... this isn't quite right
-                var currModule = modules[mod];
-                if (currModule.subscriptions.hasOwnProperty(events[i])) {
-                	currModule.subscriptions[events[i]]()
+                var currModule = modules[moduleID];
+                if (currModule.subscriptions.hasOwnProperty(messages[i])) {
+                	currModule.subscriptions[messages[i]]()
                 }
 			}
 		}
+
 	}
 
 	var _subscribe = function(moduleID, subscriptions) {

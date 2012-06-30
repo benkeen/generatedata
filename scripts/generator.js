@@ -7,12 +7,13 @@ define([
 	"mediator",
 	"utils",
 	"constants",
-	"scripts/lang.php?"
+	"scripts/lang.php?",
+	"jquery-ui",
 ], function(mediator, utils, C, L) {
 
 	// private vars
 	var _numRows  = 0;
-`	var _request  = null;
+	var _request  = null;
 	var _countries = [];
 	var _allCountries = [];
 	var _lastJsonResponse = null;
@@ -25,7 +26,7 @@ define([
 
 	// private functions
 
-	var _addRows = function(numRows) {
+	var _addRows = function(rows) {
 		var rows = rows.toString();
 		if (rows.match(/\D/) || rows == 0 || rows == "") {
 			utils.clearErrors();
@@ -65,6 +66,7 @@ define([
 		});
 
 		mediator.publish({
+			sender: MODULE_ID,
 			type: C.EVENT.DATA_TABLE.ROW.DELETE,
 			data: {
 				rowIDs: rowIDs
@@ -74,7 +76,7 @@ define([
 		_restyleRows();
 	};
 
-	var restyleRows = function() {
+	var _restyleRows = function() {
 		$("#gdTableRows>li").removeClass("gdOddRow gdEvenRow");
 		$("#gdTableRows>li:odd").addClass("gdOddRow");
 		$("#gdTableRows>li:even").addClass("gdEvenRow");
@@ -83,28 +85,38 @@ define([
 
 	var _markRowToDelete = function(e) {
 		var el = e.target;
+		var event = null;
 		if (el.checked) {
 			$(el).closest(".gdTableRow").addClass("gdDeletedRow").effect("highlight", { color: "#cc0000" }, 1000);
+			event = C.EVENT.DATA_TABLE.ROW.CHECK_TO_DELETE;
 		} else {
 			$(el).closest(".gdTableRow").removeClass("gdDeletedRow");
+			event = C.EVENT.DATA_TABLE.ROW.UNCHECK_TO_DELETE;
 		}
+		mediator.publish({
+			sender: MODULE_ID,
+			type: event,
+			data: {
+				row: el
+			}
+		});
 	};
 
 	var _updateCountryChoice = function() {
-		Generator.countries.length = 0;
+		_countries.length = 0;
 
 		$(".gdCountryChoice").each(function() {
 			if (this.checked) {
-				Generator.countries.push(this.value);
+				_countries.push(this.value);
 			}
 		});
 
 		// now hide/show all country-specific elements, based on what the user has selected)
-		for (var i=0; i<Generator.allCountries.length; i++) {
-			var elements = $(".country_" + Generator.allCountries[i]);
+		for (var i=0; i<_allCountries.length; i++) {
+			var elements = $(".country_" + _allCountries[i]);
 
 			// if selected, ensure that elements with that language's classes are visible
-			var display = ($.inArray(Generator.allCountries[i], Generator.countries) != -1) ? "block" : "none";
+			var display = ($.inArray(_allCountries[i], _countries) != -1) ? "block" : "none";
 			if (elements.length > 0) {
 				for (var k=0; k<elements.length; k++) {
 					elements[k].style.display = display;
@@ -157,22 +169,50 @@ define([
 		_currResultType = resultType;
 	};
 
+	// called on page load. Hides/shows the resultType-specific fields
+	var _initResultType = function() {
+		/*
+		for (var i=0; i<document.gdData.gdExportType.length; i++) {
+			if (document.gdData.gdExportType[i].checked) {
+				Generator.currResultType = document.gdData.gdExportType[i].value;
+				switch (Generator.currResultType) {
+					case "XML":
+						$("#custom_col_name").html(L.node_name);
+						$("#settingsXML").show();
+						break;
+					case "SQL":
+						$("#custom_col_name").html(L.table_column);
+						$("#settingsSQL").show();
+						break;
+					case "CSV":
+						$("#custom_col_name").html(L.table_column);
+						$("#settingsCSV").show();
+						break;
+				}
+			}
+		}
+		*/
+	};
+
+
 
 	/**
 	 * Our initialization function. This runs prior to ANY modules being actually run. It enables
-	 * us to ensure all subscriptions are in place, prior to
+	 * us to ensure all subscriptions are in place, prior to actually anything gets published.
 	 */
 	var _init = function() {
 
 	};
 
+
 	/**
 	 * Our constructor. This is executed.
 	 */
 	var _run = function() {
+
 		// assign the assorted event handlers, which trigger the appropriate PUBLISH events
 		$(".gdResultType").bind("click", _changeResultType);
-		$(".gdCountries").bind("click", Generator.updateCountryChoice);
+		$(".gdCountries").bind("click", _updateCountryChoice);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".deleteRowsBtn").bind("click", _deleteRows);
 		$(".gdDeleteRows").live("change", _markRowToDelete);
@@ -185,19 +225,9 @@ define([
 		});
 		$("#gdData").bind("submit", Generator.submitForm);
 
-		// TODO Move to XML Result Type module
-		/*
-		if ($("#xml_use_custom_format").attr("checked")) {
-			Generator.toggleCustomXMLFormat.call($("#xml_use_custom_format")[0]);
-		}
-		$("input[name=sql_statement_type]").bind("click", Generator.changeStatementType);
-		$("#xml_use_custom_format").bind("click", Generator.toggleCustomXMLFormat);
-		*/
-
-		// now
 		_addRows(5);
-		Generator.initResultType();
-		Generator.updateCountryChoice();
+		_initResultType();
+		_updateCountryChoice();
 	}
 
 
@@ -281,39 +311,6 @@ define([
 			for (var i=0; i<resultTypes.length; i++) {
 				if (Generator.currResultType == resultTypes[i] && $("#settings" + resultTypes[i]).length > 0) {
 					$("#settings" + resultTypes[i]).hide("blind", null, 500);
-				}
-			}
-		},
-
-		toggleCustomXMLFormat: function() {
-		if ($(this).attr("checked")) {
-			$("#xml_custom_format").attr("disabled", false);
-			$("#xml_custom_format").removeClass("disabled");
-		} else {
-				$("#xml_custom_format").attr("disabled", true);
-				$("#xml_custom_format").addClass("disabled");
-		}
-		},
-
-		// called on page load. Hides/shows the resultType-specific fields
-		initResultType: function() {
-			for (var i=0; i<document.gdData.gdExportType.length; i++) {
-				if (document.gdData.gdExportType[i].checked) {
-					Generator.currResultType = document.gdData.gdExportType[i].value;
-					switch (Generator.currResultType) {
-						case "XML":
-							$("#custom_col_name").html(L.node_name);
-							$("#settingsXML").show();
-							break;
-						case "SQL":
-							$("#custom_col_name").html(L.table_column);
-							$("#settingsSQL").show();
-							break;
-						case "CSV":
-							$("#custom_col_name").html(L.table_column);
-							$("#settingsCSV").show();
-							break;
-					}
 				}
 			}
 		},
@@ -536,12 +533,12 @@ define([
 		}
 	};
 
-//	return Generator;
-
 	// register our module
 	var MODULE_ID = "generator";
 	mediator.register(MODULE_ID, C.COMPONENT.CORE, {
 		init: _init,
-		run: _run
+		run: _run,
+		skipDomReady: false
 	});
+
 });

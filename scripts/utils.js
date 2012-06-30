@@ -1,9 +1,9 @@
 define([
-	"libs/jquery",
-	"libs/jquery-ui-1.8.19.custom.min",
-	"libs/jquery.json-2.2.min",
-	"scripts/lang.php?"
-], function() {
+	"lang"
+	"jquery",
+	"jquery-ui",
+	"jquery-json",
+], function(L) {
 
 	var _currentTab     = 1;
 	var _errors         = [];

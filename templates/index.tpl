@@ -7,7 +7,7 @@
   <meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
-  <script data-main="scripts/main" src="scripts/libs/require.js"></script>
+  <script src="scripts/libs/require.js"></script>
   <script src="scripts/require_config.js"></script>
 </head>
 <body>
@@ -207,6 +207,18 @@ EOF;
   <?php
   //gd_include_data_type_includes();
   ?>
+
+	<script>
+	require([
+		"mediator",
+		"generator",
+
+		// TODO
+		"plugins/exportTypes/Excel/Excel.js",
+
+		"scripts/pageinit"
+	], function(mediator) { mediator.start(); });
+	</script>
 
 </body>
 </html>

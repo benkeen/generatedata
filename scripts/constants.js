@@ -11,10 +11,8 @@ define([], function() {
 		DEBUGGING: {
 			CONSOLE_LOG: true,
 			LIST_PUBLISH_EVENTS: true,
-			LIST_SUBSCRIBE_EVENTS: true,
-			LIST_MODULE_REGISTRATIONS: true
+			LIST_SUBSCRIBE_EVENTS: true
 		},
-
 
 		/**
 		 * List of component types.
@@ -42,7 +40,8 @@ define([], function() {
 			DATA_TABLE: {
 				ONLOAD_READY: "event-data-table-onload-ready",
 				ROW: {
-					MARK_TO_DELETE: "event-data-table-mark-row-to-delete",
+					CHECK_TO_DELETE: "event-data-table-check-row-to-delete",
+					UNCHECK_TO_DELETE: "event-data-table-uncheck-row-to-delete",
 					DELETE: "event-data-table-row-delete",
 					ADD: "event-data-table-row-add",
 					SORT: "event-data-table-row-sort"
@@ -63,6 +62,10 @@ define([], function() {
 			},
 			LANGUAGE: {
 				CHANGE: "event-language-change"
+			},
+			MODULE: {
+				REGISTER: "event-module-register",
+				UNREGISTER: "event-module-unregister"
 			}
 		}
 	}

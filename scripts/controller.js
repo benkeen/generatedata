@@ -2,7 +2,7 @@
  * The Controller is the brain of the whole client-side code.
  */
 define([
-	'constants'
+	'constants',
 ], function(C) {
 
 	/**
@@ -42,20 +42,26 @@ define([
 				return;
 			}
 
-			_modules[moduleID] = {
-				type: moduleType,
-				init: (module.hasOwnProperty("init")) ? module.init : null,
-				run: (module.hasOwnProperty("run")) ? module.run : null
-			}
+			var settings = $.extend({
+				type: null,
+				init: null,
+				run: null,
+				skipDomReady: true,
+				subscriptions: []
+			}, module);
 
-			if (C.DEBUGGING.LIST_MODULE_REGISTRATIONS) {
-				console.log("Module registered: " + moduleID + " - ", _modules[moduleID]);
-			}
+			_modules[moduleID] = settings;
+			return true;
 		},
 
-
 		unregister: function(moduleID) {
+			if (_modules.hasOwnProperty(moduleID)) {
+				delete _modules[moduleID];
 
+				if (C.DEBUGGING.CONSOLE_LOG) {
+					console.warn("module unregistered: " + moduleID);
+				}
+			}
 		},
 
 		/**
@@ -67,7 +73,7 @@ define([
 					_modules[moduleID].init();
 				} catch(e) {
 					if (C.DEBUGGING.CONSOLE_LOG) {
-						console.warn("Init() method failed for " + moduleID + ":", e, " - module unregistered.");
+						console.warn("init() method failed for " + moduleID + ":", e);
 						this.unregister(moduleID);
 					}
 				}
@@ -97,6 +103,10 @@ define([
 			for (var moduleID in _modules) {
 				this.run(moduleID);
 			}
+		},
+
+		getModules: function() {
+			return _modules;
 		}
 	};
 
