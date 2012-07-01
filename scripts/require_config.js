@@ -8,10 +8,10 @@ require.config({
 		"jquery":      "scripts/libs/jquery",
 		"jquery-json": "scripts/libs/jquery.json-2.2.min",
 		"jquery-ui":   "scripts/libs/jquery-ui-1.8.19.custom.min",
-		"lang":        "scripts/lang?"
+		"lang":        "scripts/lang.php?"
 	},
     shim: {
-        'jqueryjson': ['scripts/libs/jquery'],
-        'jquery-ui':  ['scripts/libs/jquery'],
+        'jquery-json': ['scripts/libs/jquery'],
+        'jquery-ui':   ['scripts/libs/jquery'],
     }
 });

@@ -53,5 +53,3 @@ for ($row=1; $row<=$g_numResults; $row++)
 
   echo implode($csv_delimiter, $values) . $newline;
 }
-
-?>

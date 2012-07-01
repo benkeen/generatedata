@@ -1,5 +1,5 @@
 define([
-	"lang"
+	"lang",
 	"jquery",
 	"jquery-ui",
 	"jquery-json",

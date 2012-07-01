@@ -7,11 +7,11 @@ define([
 	"mediator",
 	"utils",
 	"constants",
-	"scripts/lang.php?",
+	"lang",
 	"jquery-ui",
 ], function(mediator, utils, C, L) {
 
-	// private vars
+	var MODULE_ID = "generator";
 	var _numRows  = 0;
 	var _request  = null;
 	var _countries = [];
@@ -21,10 +21,8 @@ define([
 	var _deletedRows = [];
 	var _dataTypes = {};   // populated onload with all data types from the /data_types folder
 	var _exportTypes = {};
-	var _currResultType = null; // populated onload
+	var _currExportType = null; // populated onload
 
-
-	// private functions
 
 	var _addRows = function(rows) {
 		var rows = rows.toString();
@@ -54,11 +52,11 @@ define([
 	 */
 	var _deleteRows = function() {
 		var rowIDs = [];
-		$("input[name=gdDeleteRows]:checked").each(function() {
+		$(".gdDeleteRows:checked").each(function() {
 			var row = $(this).closest(".gdTableRow");
 			var parentRowID = row.attr("id");
 			if (parentRowID != null) {
-				var rowID = parentRowID.replace(/row_/g, "");
+				var rowID = parseInt(parentRowID.replace(/row_/g, ""), 10);
 				row.remove();
 				rowIDs.push(rowID);
 				_deletedRows.push(rowID);
@@ -102,6 +100,21 @@ define([
 		});
 	};
 
+	var _emptyForm = function(requireConfirmation, numInitRows) {
+		if (requireConfirmation) {
+			var answer = confirm(L.confirm_empty_form);
+			if (!answer) {
+				return false;
+			}
+		}
+
+		$("input[name=deleteRows]").attr("checked", "checked");
+		_deleteRows();
+		if (numInitRows) {
+			_addRows(numInitRows);
+		}
+	};
+
 	var _updateCountryChoice = function() {
 		_countries.length = 0;
 
@@ -126,16 +139,18 @@ define([
 	};
 
 
-	var _changeResultType = function(resultType) {
-		if (resultType == _currResultType) {
+	var _changeExportType = function() {
+		var exportType = $(".gdExportType:checked").val();
+		if (exportType == _currExportType) {
 			return;
 		}
 
 		mediator.publish({
+			sender: MODULE_ID,
 			type: C.EVENT.RESULT_TYPE.CHANGE,
 			data: {
-				newResultType: resultType,
-				oldResultType: _currResultType
+				newExportType: exportType,
+				oldExportType: _currExportType
 			}
 		});
 
@@ -166,7 +181,7 @@ define([
 		}
 		*/
 
-		_currResultType = resultType;
+		_currExportType = exportType;
 	};
 
 	// called on page load. Hides/shows the resultType-specific fields
@@ -211,11 +226,12 @@ define([
 	var _run = function() {
 
 		// assign the assorted event handlers, which trigger the appropriate PUBLISH events
-		$(".gdResultType").bind("click", _changeResultType);
+		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdCountries").bind("click", _updateCountryChoice);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
-		$(".deleteRowsBtn").bind("click", _deleteRows);
+		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$(".gdDeleteRows").live("change", _markRowToDelete);
+		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); });
 		$("#gdTableRows").sortable({
 			handle: ".gdColOrder",
 			axis: "y",
@@ -224,6 +240,7 @@ define([
 			}
 		});
 		$("#gdData").bind("submit", Generator.submitForm);
+		_currExportType = $(".gdExportType:checked").val();
 
 		_addRows(5);
 		_initResultType();
@@ -534,7 +551,6 @@ define([
 	};
 
 	// register our module
-	var MODULE_ID = "generator";
 	mediator.register(MODULE_ID, C.COMPONENT.CORE, {
 		init: _init,
 		run: _run,

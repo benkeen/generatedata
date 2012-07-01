@@ -12,7 +12,13 @@ $forms = gd_get_forms($_SESSION["account_id"]);
 $data_types = gd_get_data_types();
 */
 
+$jsModules = ExportTypePluginHelper::getExportTypeJSResources(Core::$exportTypePlugins);
+$exportTypeJSModules = "";
+if (!empty($jsModules)) {
+	$exportTypeJSModules = "\"" . implode("\",\n\"", $jsModules) . "\"";
+}
+
 $params = array();
-//$params["data_types"] = $data_types;
+$params["exportTypeJSModules"] = $exportTypeJSModules;
 
 Utils::displayPage("templates/index.tpl", $params);

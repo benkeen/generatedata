@@ -26,56 +26,56 @@ class DataTypePluginHelper {
 	 * @return array
 	 */
 	private function getDataSetTemplate($hash, $num_cols) {
-	  $row_order = $hash["rowOrder"];
-	  $row_numbers = explode(",", $row_order);
+		$row_order = $hash["rowOrder"];
+		$row_numbers = explode(",", $row_order);
 
-	  // find out what the user wants to generate
-	  $info = array();
-	  $order = 1;
-	  foreach ($row_numbers as $i) {
-	    $title = $hash["title_$i"];
-	    $type  = $hash["type_$i"];
+		// find out what the user wants to generate
+		$info = array();
+		$order = 1;
+		foreach ($row_numbers as $i) {
+			$title = $hash["title_$i"];
+			$type  = $hash["type_$i"];
 
-	    // if there's no type, the field just wasn't filled in. Ignore the row
-	    if (empty($type)) {
-	      continue;
-	    }
+			// if there's no type, the field just wasn't filled in. Ignore the row
+			if (empty($type)) {
+				continue;
+			}
 
-	    // make a note of the process order
-	    $process_order = 1;
-	    $process_order_varname = "{$type}_process_order";
-	    global $$process_order_varname;
-	    if (!empty($$process_order_varname)) {
-	      $process_order = $$process_order_varname;
-	    }
+			// make a note of the process order
+			$process_order = 1;
+			$process_order_varname = "{$type}_process_order";
+			global $$process_order_varname;
+			if (!empty($$process_order_varname)) {
+				$process_order = $$process_order_varname;
+			}
 
-	    // this data type may or may not have options. If it does, it'll have a ..._get_template_options
-	    // function defined to return them
-	    $data_type_function = "{$type}_get_template_options";
-	    $options = "";
+			// this data type may or may not have options. If it does, it'll have a ..._get_template_options
+			// function defined to return them
+			$data_type_function = "{$type}_get_template_options";
+			$options = "";
 
-	    if (function_exists($data_type_function)) {
-	      $options = $data_type_function($hash, $i, $num_cols);
-	    }
+			if (function_exists($data_type_function)) {
+				$options = $data_type_function($hash, $i, $num_cols);
+			}
 
-	    if ($options !== false) {
-	      if (!array_key_exists("process_order$process_order", $info)) {
-	        $info["process_order$process_order"] = array();
-	      }
-	      $info["process_order$process_order"][] = array(
-	        "column_num"       => $order,
-	        "title"            => $title,
-	        "data_type_folder" => $type,
-	        "options"          => $options
-	      );
-	    }
-	    $order++;
-	  }
+			if ($options !== false) {
+				if (!array_key_exists("process_order$process_order", $info)) {
+					$info["process_order$process_order"] = array();
+				}
+				$info["process_order$process_order"][] = array(
+					"column_num"       => $order,
+					"title"            => $title,
+					"data_type_folder" => $type,
+					"options"          => $options
+				);
+			}
+			$order++;
+		}
 
-	  // sort by process order and return
-	  ksort($info);
+		// sort by process order and return
+		ksort($info);
 
-	  return $info;
+		return $info;
 	}
 
 
@@ -85,13 +85,13 @@ class DataTypePluginHelper {
 	 * @param array $template
 	function sortByColOrder($template) {
 		$ordered = array();
-	  while (list($order, $data_types) = each($template)) {
-	    foreach ($data_types as $data_type) {
-	    	$order = $data_type["column_num"];
-	    	$ordered["order$order"] = $data_type;
-	    }
-	  }
-	  asort($ordered);
+		while (list($order, $data_types) = each($template)) {
+			foreach ($data_types as $data_type) {
+				$order = $data_type["column_num"];
+				$ordered["order$order"] = $data_type;
+			}
+		}
+		asort($ordered);
 		return array_values($ordered);
 	}
 	*/
@@ -101,42 +101,42 @@ class DataTypePluginHelper {
 	 * Returns an array of available, instantiated Data Type objects.
 	 */
 	function getDataTypePlugins() {
-	  $dataTypesFolder = realpath(dirname(__FILE__) . "/../plugins/dataTypes");
-	  $dataTypes = array();
-	  if ($handle = opendir($dataTypesFolder)) {
-	    while (false !== ($item = readdir($handle))) {
-	      if ($item == "." || $item == ".." || $item == ".svn") {
-	        continue;
-	      }
-	      if (is_dir("$dataTypesFolder/$item")) {
-	        $obj = self::instantiateDataType($dataTypesFolder, $item);
-	        if ($obj != null) {
-	          $dataTypes[] = $obj;
-	        }
-	      }
-	    }
-	    closedir($handle);
-	  }
+		$dataTypesFolder = realpath(dirname(__FILE__) . "/../plugins/dataTypes");
+		$dataTypes = array();
+		if ($handle = opendir($dataTypesFolder)) {
+			while (false !== ($item = readdir($handle))) {
+				if ($item == "." || $item == ".." || $item == ".svn") {
+					continue;
+				}
+				if (is_dir("$dataTypesFolder/$item")) {
+					$obj = self::instantiateDataType($dataTypesFolder, $item);
+					if ($obj != null) {
+						$dataTypes[] = $obj;
+					}
+				}
+			}
+			closedir($handle);
+		}
 
-	  // now sort the data type information by field groups first and their order within those
-	  // field groups
-	  $dataTypeGroups = Core::getDataTypeGroups();
-	  $sortedDataTypes = array();
-	  foreach ($dataTypeGroups as $groupNameKey) {
-	    $groupTypes = array();
-	    foreach ($dataTypes as $currDataType) {
-        $currFieldGroupKey   = $currDataType->getDataTypeFieldGroup();
-        $currFieldGroupOrder = $currDataType->getDataTypeFieldGroupOrder();
-	      if ($currFieldGroupKey == $groupNameKey) {
-	      	// TODO this prevents two DataTypes using the same order, which leads to accidental bugs
-	        $groupTypes[$currFieldGroupOrder] = $currDataType;
-	      }
-	    }
-	    ksort($groupTypes, SORT_NUMERIC);
-	    $sortedDataTypes[$groupNameKey] = array_values($groupTypes);
-	  }
+		// now sort the data type information by field groups first and their order within those
+		// field groups
+		$dataTypeGroups = Core::getDataTypeGroups();
+		$sortedDataTypes = array();
+		foreach ($dataTypeGroups as $groupNameKey) {
+			$groupTypes = array();
+			foreach ($dataTypes as $currDataType) {
+				$currFieldGroupKey   = $currDataType->getDataTypeFieldGroup();
+				$currFieldGroupOrder = $currDataType->getDataTypeFieldGroupOrder();
+				if ($currFieldGroupKey == $groupNameKey) {
+					// TODO this prevents two DataTypes using the same order, which leads to accidental bugs
+					$groupTypes[$currFieldGroupOrder] = $currDataType;
+				}
+			}
+			ksort($groupTypes, SORT_NUMERIC);
+			$sortedDataTypes[$groupNameKey] = array_values($groupTypes);
+		}
 
-	  return $sortedDataTypes;
+		return $sortedDataTypes;
 	}
 
 
@@ -149,36 +149,36 @@ class DataTypePluginHelper {
 	private function instantiateDataType($baseFolder, $dataTypeFolderName) {
 
 		$dataTypeClassFileName = "{$dataTypeFolderName}.class.php";
-	  if (!is_file("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName")) {
-	    return false;
-	  }
+		if (!is_file("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName")) {
+			return false;
+		}
 
-	  // now try to include and instantiate the class [bug...
-	  try {
-	    include("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName");
-	  } catch (Exception $e) {
-	  	return false;
-	  }
+		// now try to include and instantiate the class [bug...
+		try {
+			include("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName");
+		} catch (Exception $e) {
+			return false;
+		}
 
-	  $className = "DataType_$dataTypeFolderName";
-	  if (!class_exists($className)) {
-	  	return false;
-	  }
+		$className = "DataType_$dataTypeFolderName";
+		if (!class_exists($className)) {
+			return false;
+		}
 
 
-	  $instance = null;
-	  try {
-      $instance = new $className();
-	  } catch (Exception $e) {
+		$instance = null;
+		try {
+			$instance = new $className();
+		} catch (Exception $e) {
 
-	  	return false;
-	  }
+			return false;
+		}
 
-	  // enforce inheritance of the abstract DataType class
-	  if (!($instance instanceof DataTypePlugin)) {
-	  	return false;
-	  }
+		// enforce inheritance of the abstract DataType class
+		if (!($instance instanceof DataTypePlugin)) {
+			return false;
+		}
 
-	  return $instance;
+		return $instance;
 	}
 }

@@ -1,6 +1,6 @@
 require([
 	"mediator",
-	"scripts/lang.php?",
+	"lang",
 	"jquery",
 	"jquery-ui",
 	"jquery-json",

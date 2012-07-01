@@ -2,15 +2,13 @@
  * The Controller is the brain of the whole client-side code.
  */
 define([
-	'constants',
+	'constants'
 ], function(C) {
 
 	/**
-	 * Stores all modules, regardless of type (Core, Data Types, Export Types, Countries)
-	 * and their active instances.
+	 * Stores all modules, regardless of type (Core, Data Types, Export Types, Countries).
 	 */
 	var _modules = {};
-
 
 	return {
 
@@ -22,8 +20,6 @@ define([
 		 * @function
 		 */
 		register: function(moduleID, moduleType, module) {
-
-			// validate the module info
 			if (_modules.hasOwnProperty(moduleID) && C.DEBUGGING.CONSOLE_LOG) {
 				console.warn("Sorry, a module with ID has already been registered.");
 				return;
