@@ -6,19 +6,18 @@ require_once("library.php");
 Utils::maybeShowInstallationPage();
 
 
-/*
-$_SESSION["account_id"] = 1;
-$forms = gd_get_forms($_SESSION["account_id"]);
-$data_types = gd_get_data_types();
-*/
+$exportTypes = Core::$exportTypePlugins;
+$exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalSettingsHTML($exportTypes);
 
-$jsModules = ExportTypePluginHelper::getExportTypeJSResources(Core::$exportTypePlugins);
+$jsModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes);
 $exportTypeJSModules = "";
 if (!empty($jsModules)) {
 	$exportTypeJSModules = "\"" . implode("\",\n\"", $jsModules) . "\"";
 }
 
 $params = array();
+$params["dataTypeJSModules"] = ""; // TODO
 $params["exportTypeJSModules"] = $exportTypeJSModules;
+$params["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
 
 Utils::displayPage("templates/index.tpl", $params);

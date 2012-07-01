@@ -74,10 +74,6 @@ class ExportTypePluginHelper {
 		return $instance;
 	}
 
-	public function getExportTypeSettings() {
-
-	}
-
 	/**
 	 * Used in the main page to generate a list of
 	 * @return array
@@ -94,6 +90,22 @@ class ExportTypePluginHelper {
 
 		return $files;
 	}
+
+	/**
+	 * Used in the main page to generate a list of
+	 * @return array
+	 */
+	public function getExportTypeAdditionalSettingsHTML($exportTypes) {
+		$additionalSettings = array();
+		foreach ($exportTypes as $exportType) {
+			$name = $exportType->getName();
+			$settings = $exportType->getAdditionalSettingsHTML();
+			if (!empty($settings))
+			{
+				$additionalSettings[$name] = $settings;
+			}
+		}
+
+		return $additionalSettings;
+	}
 }
-
-

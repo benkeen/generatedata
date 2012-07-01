@@ -24,6 +24,8 @@ define([], function() {
 			CORE: 'core'
 		},
 
+		EXPORT_TYPE_SETTINGS_BLIND_SPEED: 500,
+
 		/**
 		 * Contains all Core events.
 		 */
@@ -65,7 +67,9 @@ define([], function() {
 			},
 			MODULE: {
 				REGISTER: "event-module-register",
-				UNREGISTER: "event-module-unregister"
+				UNREGISTER: "event-module-unregister",
+
+				READY: "" // ... INIT? RUN?
 			}
 		}
 	}

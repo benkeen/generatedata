@@ -14,29 +14,20 @@ define([
 	}
 
 	var _run = function() {
-
+		if ($("#xml_use_custom_format").attr("checked")) {
+			_toggleCustomXMLFormat.call($("#xml_use_custom_format")[0]);
+		}
+		//$("input[name=sql_statement_type]").bind("click", Generator.changeStatementType);
+		$("#xml_use_custom_format").bind("click", _toggleCustomXMLFormat);
 	}
 
-	/*
-
-		if ($("#xml_use_custom_format").attr("checked")) {
-			Generator.toggleCustomXMLFormat.call($("#xml_use_custom_format")[0]);
+	var _toggleCustomXMLFormat = function() {
+		if ($(this).attr("checked")) {
+			$("#xml_custom_format").removeAttr("disabled").removeClass("disabled");
+		} else {
+			$("#xml_custom_format").attr("disabled", "disabled").addClass("disabled");
 		}
-		$("input[name=sql_statement_type]").bind("click", Generator.changeStatementType);
-		$("#xml_use_custom_format").bind("click", Generator.toggleCustomXMLFormat);
-
-
-		toggleCustomXMLFormat: function() {
-			if ($(this).attr("checked")) {
-				$("#xml_custom_format").attr("disabled", false);
-				$("#xml_custom_format").removeClass("disabled");
-			} else {
-				$("#xml_custom_format").attr("disabled", true);
-				$("#xml_custom_format").addClass("disabled");
-			}
-		},
-
-	 */
+	};
 
 	mediator.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
 		init: _init,

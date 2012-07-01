@@ -22,6 +22,7 @@ define([
 	var _dataTypes = {};   // populated onload with all data types from the /data_types folder
 	var _exportTypes = {};
 	var _currExportType = null; // populated onload
+	var _subscriptions = {};
 
 
 	var _addRows = function(rows) {
@@ -140,8 +141,8 @@ define([
 
 
 	var _changeExportType = function() {
-		var exportType = $(".gdExportType:checked").val();
-		if (exportType == _currExportType) {
+		var newExportType = $(".gdExportType:checked").val();
+		if (newExportType == _currExportType) {
 			return;
 		}
 
@@ -149,64 +150,19 @@ define([
 			sender: MODULE_ID,
 			type: C.EVENT.RESULT_TYPE.CHANGE,
 			data: {
-				newExportType: exportType,
+				newExportType: newExportType,
 				oldExportType: _currExportType
 			}
 		});
 
-		/*
-		TODO ... automate the hide/show of the sections
+		// TODO: $("#colTitle").html(L.column_title);
 
-		switch (resultType) {
-			case "HTML":
-			case "Excel":
-				$("#colTitle").html(L.column_title);
-				Generator.hideResultTypeIfOpen(["XML", "SQL", "CSV"]);
-				break;
-			case "XML":
-				$("#colTitle").html(L.node_name);
-				Generator.hideResultTypeIfOpen(["SQL", "CSV"]);
-				$("#settingsXML").show("blind", null, 500);
-				break;
-			case "CSV":
-				$("#colTitle").html(L.column_title);
-				Generator.hideResultTypeIfOpen(["SQL", "XML"]);
-				$("#settingsCSV").show("blind", null, 500);
-				break;
-			case "SQL":
-				$("#colTitle").html(L.table_column);
-				Generator.hideResultTypeIfOpen(["CSV", "XML"]);
-				$("#settingsSQL").show("blind", null, 500);
-				break;
+		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0) {
+			$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", null, C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
 		}
-		*/
+		$("#gdExportTypeAdditionalSettings_" + newExportType).show("blind", null, C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
 
-		_currExportType = exportType;
-	};
-
-	// called on page load. Hides/shows the resultType-specific fields
-	var _initResultType = function() {
-		/*
-		for (var i=0; i<document.gdData.gdExportType.length; i++) {
-			if (document.gdData.gdExportType[i].checked) {
-				Generator.currResultType = document.gdData.gdExportType[i].value;
-				switch (Generator.currResultType) {
-					case "XML":
-						$("#custom_col_name").html(L.node_name);
-						$("#settingsXML").show();
-						break;
-					case "SQL":
-						$("#custom_col_name").html(L.table_column);
-						$("#settingsSQL").show();
-						break;
-					case "CSV":
-						$("#custom_col_name").html(L.table_column);
-						$("#settingsCSV").show();
-						break;
-				}
-			}
-		}
-		*/
+		_currExportType = newExportType;
 	};
 
 
@@ -216,12 +172,13 @@ define([
 	 * us to ensure all subscriptions are in place, prior to actually anything gets published.
 	 */
 	var _init = function() {
-
+		_subscriptions[C.EVENT.MODULE.REGISTER] = _trackModuleRegistrations;
+		mediator.subscribe(MODULE_ID, _subscriptions);
 	};
 
 
 	/**
-	 * Our constructor. This is executed.
+	 * Our constructor.
 	 */
 	var _run = function() {
 
@@ -243,10 +200,13 @@ define([
 		_currExportType = $(".gdExportType:checked").val();
 
 		_addRows(5);
-		_initResultType();
+//		_initResultType();
 		_updateCountryChoice();
 	}
 
+	var _trackModuleRegistrations = function(message) {
+		console.log("in _trackModuleRegistrations, message");
+	}
 
 	// TODO convert to private methods
 
@@ -323,33 +283,6 @@ define([
 				$("input[name=sql_primary_key]").attr("disabled", "");
 			}
 		},
-
-		hideResultTypeIfOpen: function(resultTypes) {
-			for (var i=0; i<resultTypes.length; i++) {
-				if (Generator.currResultType == resultTypes[i] && $("#settings" + resultTypes[i]).length > 0) {
-					$("#settings" + resultTypes[i]).hide("blind", null, 500);
-				}
-			}
-		},
-
-		emptyForm: function(requireConfirmation, numInitRows) {
-			if (requireConfirmation) {
-				var answer = confirm(L.confirm_empty_form);
-				if (!answer) {
-					return false;
-				}
-			}
-
-			$("input[name=deleteRows]").attr("checked", "checked");
-			Generator.deleteRows();
-
-			if (numInitRows) {
-				Generator.addRows(numInitRows);
-			}
-
-			return false;
-		},
-
 
 		// determines the target of the form: the hidden iframe for excel or a new window for HTML
 		submitForm: function() {

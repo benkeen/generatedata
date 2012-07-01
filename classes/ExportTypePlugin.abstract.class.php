@@ -12,7 +12,6 @@ abstract class ExportTypePlugin {
 	 */
 	abstract function generator($numResults, $columns, $data);
 
-
 	/**
 	 * Outputs any additional headers, prior to the generator() call.
 	 *
@@ -22,14 +21,12 @@ abstract class ExportTypePlugin {
 		return;
 	}
 
-
 	/**
-	 * If the export type needs to display any additional settings in the UI (like XML, CSV or SQL does), this function
-	 * should return.
-	 *
-	 * TODO rename
+	 * If the Export Type needs to display any additional settings in the UI (like XML, CSV or SQL does), it needs
+	 * to define this function which return the markup. The hiding/showing of the appropriate section happens automatically.
+	 * @return string
 	 */
-	public function getSettings() {
+	public function getAdditionalSettingsHTML() {
 		return "";
 	}
 

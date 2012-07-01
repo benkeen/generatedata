@@ -80,12 +80,9 @@
 					</div>
 					<div class="gdClear"></div>
 
-
-{*
-					<div id="gdSettingsSQL" class="gdExportTypeAdditionalSettings">{include file="settings_sql.tpl"}</div>
-					<div id="gdSettingsXML" class="gdExportTypeAdditionalSettings">{include file="settings_xml.tpl"}</div>
-					<div id="gdSettingsCSV" class="gdExportTypeAdditionalSettings">{include file="settings_csv.tpl"}</div>
-*}
+					{foreach from=$exportTypeAdditionalSettings key=k item=i}
+						<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeAdditionalSettings">{$i}</div>
+					{/foreach}
 
 					<div id="gdMessages">
 						<a class="gdClose" title="{$L.hide_error}" onclick="return g.hideErrors(false)" href="#">X</a>
@@ -212,6 +209,9 @@ EOF;
 
 		// Export Type modules
 		{$exportTypeJSModules},
+
+		// Data Type modules
+		{$dataTypeJSModules},
 
 		"scripts/pageinit"
 	], function(mediator) { mediator.start(); });
