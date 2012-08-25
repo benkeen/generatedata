@@ -4,13 +4,13 @@
  */
 require([
  	"utils",
-	"jquery",
 	"jquery-ui",
 	"jquery-json"
 ], function(utils) {
 
 	$(function() {
 		$(".gdNoJS").hide();
+		$(".hideNoJs").show();
 		$("#gdTabs ul li").each(function() {
 			var tabNum = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
 			$(this).bind("click", function(e, a) {

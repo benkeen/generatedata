@@ -14,14 +14,18 @@ $L["column_title"] = "Column Title";
 $L["confirm_delete_form"] = "Are you sure you want to delete this form?";
 $L["confirm_empty_form"] = "Are you sure you want to empty this form?";
 $L["countries"] = "Countries";
+$L["meta_description"] = "GenerateData.com: free, GNU-licensed, random custom data generator for testing software";
+$L["meta_keywords"] = "Random Data, Test Data, Sample Data, data generator, generate data";
 
-// move ....
+
+// ------------ to be moved -------------
 $L["country_australia"] = "Australia";
 $L["country_belgium"] = "Belgium";
 $L["country_canada"] = "Canada";
 $L["country_netherlands"] = "Netherlands";
 $L["country_uk"] = "United Kingdom";
 $L["country_us"] = "United States";
+// ------------------------------------
 
 $L["data_type"] = "Data Type";
 $L["db_table_name"] = "Database table name";

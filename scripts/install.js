@@ -1,7 +1,6 @@
 require([
 	"mediator",
 	"lang",
-	"jquery",
 	"jquery-ui",
 	"jquery-json",
 	"pageinit"

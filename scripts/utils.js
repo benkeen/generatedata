@@ -1,6 +1,5 @@
 define([
 	"lang",
-	"jquery",
 	"jquery-ui",
 	"jquery-json",
 ], function(L) {
@@ -10,7 +9,6 @@ define([
 	var _messageVisible = false;
 
 	return {
-
 		selectTab: function(tab) {
 			if (tab == _currentTab) {
 				return false;

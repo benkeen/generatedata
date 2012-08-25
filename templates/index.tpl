@@ -3,10 +3,11 @@
 <head>
 	<title>{$L.title}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="GenerateData.com: free, GNU-licensed, random custom data generator for testing software" />
-	<meta name="keywords" content="Random Data, Test Data, Sample Data, data generator, generate data, Ben Keen, Benjamin Keen" />
+	<meta name="description" content="{$L.meta_description}" />
+	<meta name="keywords" content="{$L.meta_keywords}" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
+	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/require.js"></script>
 	<script src="scripts/require_config.js"></script>
 </head>
