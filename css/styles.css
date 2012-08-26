@@ -62,9 +62,9 @@ a:hover {
 	margin-bottom: 10px;
 	background-color: #ffe1e1;
 	text-shadow: 0 1px 0 #fff;
-  display: none;
-  min-height: 36px;
-  position: relative;
+	display: none;
+	min-height: 36px;
+	position: relative;
 }
 #gdInstallError .icon {
   background-image: url(../images/stop.png);
@@ -625,7 +625,6 @@ body.gdErrorPage #gdBox {
   float: right;
   width: 770px;
 }
-
 .gdFields {
   line-height: 21px;
 }
@@ -648,4 +647,19 @@ body.gdErrorPage #gdBox {
 }
 #gdTab1Content .gdFields {
   float: left;
+}
+.gdHideNoJS {
+	display: none;
+}
+.gdNoJS {
+	background-color: #ffffcc;
+	padding:15px;
+	font-size: 10pt;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin: 10px 0px;
+	text-shadow: 0 1px 0 #fff;
+	-moz-box-shadow: 2px 4px 5px #666666;
+	-webkit-box-shadow: 2px 4px 5px #666666;
 }

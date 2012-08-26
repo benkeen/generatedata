@@ -26,7 +26,7 @@ function smarty_function_language_dropdown($params, &$smarty)
   }
 
   echo <<<END
-    <select name="$nameId" id="$nameId">
+    <select name="$nameId" id="$nameId" class="gdHideNoJS">
       <option value="">{$L["select_language"]}</option>
       {$options}
     </select>

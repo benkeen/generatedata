@@ -15,23 +15,23 @@
 	<header>
 		<nav>
 			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://www.generatedata.com/forums/">{$L.forums}</a> |
+			<a href="http://www.generatedata.com/forums/">{$L.forums}</a> <span class="gdHideNoJS">|</span>
 			{language_dropdown nameId="gdSelectLanguage"}
 		</nav>
 	</header>
 	<nav id="gdTabs">
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
-			<li id="gdTab2">{$L.settings}</li>
-			<li id="gdTab3">{$L.help}</li>
+			<li id="gdTab2" class="gdHideNoJS">{$L.settings}</li>
+			<li id="gdTab3" class="gdHideNoJS">{$L.help}</li>
 		</ul>
 	</nav>
 	<section>
-		<div id="gdContent">
+		<div class="gdNoJS">Please enable javascript in your browser.</div>
+		<div id="gdContent" class="gdHideNoJS">
 			<div id="gdLoadingIcon"></div>
-			<div id="gdTab1Content" class="gdTabContent">
 
-				<div class="gdNoJS">Please enable javascript in your browser.</div>
+			<div id="gdTab1Content" class="gdTabContent ">
 
 				{*{if $g_show_save_panel}
 				<div id="controlPanelWindow" class="box">

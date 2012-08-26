@@ -15,20 +15,20 @@
 	<header>
 		<nav>
 			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://forums.generatedata.com">{$L.forums}</a> <span class="hideNoJS">|</span>
+			<a href="http://forums.generatedata.com">{$L.forums}</a> <span class="gdHideNoJS">|</span>
 			<span class="hideNoJS">{language_dropdown nameId="gdSelectLanguage"}</span>
 		</nav>
 	</header>
 	<nav id="gdTabs">
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.install}</li>
-			<li id="gdTab2" class="hideNoJS">{$L.help}</li>
+			<li id="gdTab2" class="gdHideNoJS">{$L.help}</li>
 		</ul>
 	</nav>
 	<section>
-	<div class="gdNoJS">Please enable javascript in your browser.</div>
+		<div class="gdNoJS">Please enable javascript in your browser.</div>
 
-		<div id="gdContent" class="hideNoJS">
+		<div id="gdContent" class="gdHideNoJS">
 			<div id="gdTab1Content" class="gdTabContent">
 
 				<div id="gdProcessingIcon"></div>

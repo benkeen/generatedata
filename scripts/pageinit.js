@@ -1,6 +1,6 @@
 /**
- * This module runs on all page loads, initializing a few things needed for all pages:
- * namely the tab functionality and the language dropdown change event.
+ * This module runs on page load for all pages, initializing a few things:
+ * the tab functionality and the language dropdown change event.
  */
 require([
  	"utils",
@@ -10,7 +10,7 @@ require([
 
 	$(function() {
 		$(".gdNoJS").hide();
-		$(".hideNoJs").show();
+		$(".gdHideNoJS").show();
 		$("#gdTabs ul li").each(function() {
 			var tabNum = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
 			$(this).bind("click", function(e, a) {
