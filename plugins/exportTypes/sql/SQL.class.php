@@ -3,6 +3,7 @@
 
 class SQL extends ExportTypePlugin {
 	protected $exportTypeName = "SQL";
+	protected $rowLabelTranslationKey = "row_label";
 
 	function generator($numResults, $columns, $data) {
 

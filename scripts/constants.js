@@ -46,7 +46,7 @@ define([], function() {
 					UNCHECK_TO_DELETE: "event-data-table-uncheck-row-to-delete",
 					DELETE: "event-data-table-row-delete",
 					ADD: "event-data-table-row-add",
-					SORT: "event-data-table-row-sort"
+					RE_SORT: "event-data-table-row-sort"
 				},
 				CLEAR: "event-data-table-clear",
 			},

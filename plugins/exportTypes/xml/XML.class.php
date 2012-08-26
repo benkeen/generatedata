@@ -3,6 +3,7 @@
 
 class XML extends ExportTypePlugin {
 	protected $exportTypeName = "XML";
+	protected $rowLabelTranslationKey = "row_label";
 
 	function generator($numResults, $columns, $data) {
 

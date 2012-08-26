@@ -1,5 +1,7 @@
 <?php
 
+// TODO the prefix really shouldn't be necessary - it should be inserted by Core code to ensure proper namespacing
+
 $L = array();
 
 $L["AlphaNumeric_example_CanPostalCode"] = "(Can. Postal code)";

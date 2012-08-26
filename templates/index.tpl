@@ -214,7 +214,7 @@ EOF;
 		// Data Type modules
 		{$dataTypeJSModules},
 
-		"scripts/pageinit"
+		"pageinit"
 	], function(mediator) { mediator.start(); });
 	</script>
 

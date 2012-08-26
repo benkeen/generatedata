@@ -3,6 +3,7 @@
 
 class CSV extends ExportTypePlugin {
   protected $exportTypeName = "CSV";
+  protected $rowLabelTranslationKey = "row_label";
 
   function generator($numResults, $columns, $data) {
 

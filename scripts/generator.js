@@ -67,9 +67,7 @@ define([
 		mediator.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.DATA_TABLE.ROW.DELETE,
-			data: {
-				rowIDs: rowIDs
-			}
+			rowIDs: rowIDs
 		});
 
 		_restyleRows();
@@ -95,9 +93,7 @@ define([
 		mediator.publish({
 			sender: MODULE_ID,
 			type: event,
-			data: {
-				row: el
-			}
+			row: el
 		});
 	};
 
@@ -140,6 +136,12 @@ define([
 	};
 
 
+	/**
+	 * Called whenever the user changes the result type (XML, HTML, CSV etc). This function publishes
+	 * the appropriate event in case a plugin needs to be aware of the event, but it handles the
+	 * hiding/showing and changing of the title column label "out-the-box" rather than force
+	 * the Export Type modules to have to do the work.
+	 */
 	var _changeExportType = function() {
 		var newExportType = $(".gdExportType:checked").val();
 		if (newExportType == _currExportType) {
@@ -149,14 +151,13 @@ define([
 		mediator.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.RESULT_TYPE.CHANGE,
-			data: {
-				newExportType: newExportType,
-				oldExportType: _currExportType
-			}
+			newExportType: newExportType,
+			oldExportType: _currExportType
 		});
 
 		// TODO: $("#colTitle").html(L.column_title);
 
+		// hide and show the appropriate Export Type additional settings section
 		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0) {
 			$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", null, C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
 		}
@@ -194,8 +195,14 @@ define([
 			axis: "y",
 			update: function(event, ui) {
 				_restyleRows();
+				mediator.publish({
+					sender: MODULE_ID,
+					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
+					row: ui.item
+				});
 			}
 		});
+
 		$("#gdData").bind("submit", Generator.submitForm);
 		_currExportType = $(".gdExportType:checked").val();
 

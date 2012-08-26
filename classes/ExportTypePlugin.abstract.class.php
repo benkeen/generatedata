@@ -3,8 +3,28 @@
 
 abstract class ExportTypePlugin {
 
+	/**
+	 * The name of the export type "HTML", "XML" etc. This is always in English; even in different languages,
+	 * "JSON" is still "JSON", so having no translation is acceptable here.
+	 * @var string
+	 */
 	protected $exportTypeName = "";
+
+	/**
+	 * This governs the label that should appear on the second column of the data generator table: the label
+	 * for the row. e.g. for HTML, CSV is would be "Column Title", for SQL it would be "Table column" etc.
+	 * This specifies the translation key for the label, found in the /plugins/exportTpypes/[export type]/lang/[lang].php
+	 * file.
+	 * @var string
+	 */
+	protected $rowLabelTranslationKey = "";
+
+	/**
+	 * An array of JS modules that need to be included for this module. They should be requireJS-friendly
+	 * modules.
+	 */
 	protected $jsModules = array();
+
 
 	/**
 	 * This does the job of actually generating the data in the appropriate format. It's fed all the information that
