@@ -1,6 +1,11 @@
 <?php
 
 
+/**
+ * Our base class for all Export Type plugins. All Export Types must define a class that extends this class.
+ * This page documents and defines (where the language permits!) what's required, what's optional, and
+ * what each method and member variable does.
+ */
 abstract class ExportTypePlugin {
 
 	/**
@@ -11,20 +16,45 @@ abstract class ExportTypePlugin {
 	protected $exportTypeName = "";
 
 	/**
-	 * This governs the label that should appear on the second column of the data generator table: the label
-	 * for the row. e.g. for HTML, CSV is would be "Column Title", for SQL it would be "Table column" etc.
-	 * This specifies the translation key for the label, found in the /plugins/exportTpypes/[export type]/lang/[lang].php
-	 * file.
-	 * @var string
-	 */
-	protected $rowLabelTranslationKey = "";
-
-	/**
 	 * An array of JS modules that need to be included for this module. They should be requireJS-friendly
 	 * modules.
+	 * @var array
 	 */
 	protected $jsModules = array();
 
+	/**
+	 * Contains all strings for the current language. This is populated automatically on instantiation and
+	 * contains the strings for the currently selected language.
+	 * @var array
+	 */
+	public $language = array();
+
+
+	/**
+	 * Our default, un-overridable constructor. This populates $language.
+	 */
+	public final function __construct() {
+
+		// a little magic to find the current instantiated class's folder
+		$currClass = new ReflectionClass(get_class($this));
+		$currClassFolder = dirname($currClass->getFileName());
+
+		$defaultLangFileStr = Core::getDefaultLanguageFile();
+		$currentLangFileStr = Core::$language->getCurrentLanguageFile();
+
+		$currentLangFile = $currClassFolder . "/lang/" . $currentLangFileStr . ".php";
+		$defaultLangFile = $currClassFolder . "/lang/" . $defaultLangFileStr . ".php";
+
+		if (file_exists($currentLangFile)) {
+			require($currentLangFile);
+		} else if (file_exists($defaultLangFile)) {
+			require($defaultLangFile);
+		}
+
+		if (isset($L)) {
+			$this->language = $L;
+		}
+	}
 
 	/**
 	 * This does the job of actually generating the data in the appropriate format. It's fed all the information that
@@ -34,8 +64,6 @@ abstract class ExportTypePlugin {
 
 	/**
 	 * Outputs any additional headers, prior to the generator() call.
-	 *
-	 * TODO rename
 	 */
 	public function outputHeaders() {
 		return;
@@ -64,6 +92,14 @@ abstract class ExportTypePlugin {
 	 */
 	public final function getName() {
 		return $this->exportTypeName;
+	}
+
+	/**
+	 * Returns the name of the Export Type in the current language.
+	 * @return string
+	 */
+	public final function getRowLabelTranslationKey() {
+		return $this->rowLabelTranslationKey;
 	}
 
 	/**

@@ -2,28 +2,28 @@
 
 
 /**
- * Our base class for all Data Type plugins. All Data Types must define a class that extends this class, also
- * in the DataTypes namespace. This page documents and defines (where the language permits!) what's required,
- * what's optional, and what each method and member variable does.
+ * Our base class for all Data Type plugins. All Data Types must define a class that extends this class.
+ * This page documents and defines (where the language permits!) what's required, what's optional, and
+ * what each method and member variable does.
  */
 abstract class DataTypePlugin {
 
 	// MUST be defined by each Data Type
 	protected $dataTypeName = "";
-  protected $hasHelpDialog; // boolean
-  protected $dataTypeFieldGroup; // string
-  protected $dataTypeFieldGroupOrder; // int
-  protected $processOrder = 1; // int
+	protected $hasHelpDialog; // boolean
+	protected $dataTypeFieldGroup; // string
+	protected $dataTypeFieldGroupOrder; // int
+	protected $processOrder = 1; // int
 
-  // OPTIONALLY defined by data types
-  protected $includedFiles = array();
-  protected $enabled = true; // TODO
+	// OPTIONALLY defined by data types
+	protected $includedFiles = array();
+	protected $enabled = true; // TODO
 
-  //
-  public $L;
+	//
+	public $L;
 
 
-  // REQUIRED METHODS
+	// REQUIRED METHODS
 
 	/**
 	 * This is the main workhorse function: it does the work of actually generating a random data snippet.
@@ -59,26 +59,26 @@ abstract class DataTypePlugin {
 		return;
 	}
 
-  /**
-   * If the Data Type wants to include something in the Example column, it must return the HTML via this function.
-   * If this function isn't defined (or it returns an empty string), the string "No examples available." will be
-   * outputted in the cell.
-   *
-   * @param integer $row the row number. Note: the visible row number may not be the same number that is displayed
-   *   in the page. This number is used purely to uniquely identify the row for coding purposes.
-   */
+	/**
+	 * If the Data Type wants to include something in the Example column, it must return the HTML via this function.
+	 * If this function isn't defined (or it returns an empty string), the string "No examples available." will be
+	 * outputted in the cell.
+	 *
+	 * @param integer $row the row number. Note: the visible row number may not be the same number that is displayed
+	 *   in the page. This number is used purely to uniquely identify the row for coding purposes.
+	 */
 	public function getExampleColumnHTML($row) {
 		return "";
 	}
 
-  /**
-   * If the Data Type wants to include something in the Options column, it must return the HTML via this function.
-   * If this function isn't defined (or it returns an empty string), the string "No options available." will be
-   * outputted in the cell.
-   *
-   * @param integer $row the row number. Note: the visible row number may not be the same number that is displayed
-   *   in the page. This number is used purely to uniquely identify the row for coding purposes.
-   */
+	/**
+	 * If the Data Type wants to include something in the Options column, it must return the HTML via this function.
+	 * If this function isn't defined (or it returns an empty string), the string "No options available." will be
+	 * outputted in the cell.
+	 *
+	 * @param integer $row the row number. Note: the visible row number may not be the same number that is displayed
+	 *   in the page. This number is used purely to uniquely identify the row for coding purposes.
+	 */
 	public function getOptionsColumnHTML($row) {
 		return "";
 	}
@@ -109,7 +109,7 @@ abstract class DataTypePlugin {
 	 * [shouldn't be required... just like install(), but I'd like to mention it in this file for documentation purposes]
 	 *
 	 */
-  public function getHelpDialogInfo() {
+	public function getHelpDialogInfo() {
 		return;
 	}
 
@@ -117,19 +117,19 @@ abstract class DataTypePlugin {
 	 * For debugging and dev work.
 	 */
 	public function __toString() {
-	  echo $this->getName();
+		echo $this->getName();
 	}
 
 
-  // 3. NON-OVERRIDABLE FUNCTIONS
-  // - these are automatically inherited by all Data Types when they extend this abstract class.
+	// 3. NON-OVERRIDABLE FUNCTIONS
+	// - these are automatically inherited by all Data Types when they extend this abstract class.
 
-  /**
-   * The default constructor. Automatically populates the $L member var with whatever language is currently being
-   * used.
-   */
+	/**
+	 * The default constructor. Automatically populates the $L member var with whatever language is currently being
+	 * used.
+	 */
 	final function __construct() {
-    //Core::$language->
+		//Core::$language->
 	}
 
 
@@ -147,26 +147,26 @@ abstract class DataTypePlugin {
 		return $this->hasHelpDialog;
 	}
 
-  /**
-   * Returns an array of file names, which will be included ONCE in the main generator page.
-   *
-   * @return array
-   */
-  final public function getIncludedFiles() {
-    return $this->includedFiles;
-  }
+	/**
+	 * Returns an array of file names, which will be included ONCE in the main generator page.
+	 *
+	 * @return array
+	 */
+	final public function getIncludedFiles() {
+		return $this->includedFiles;
+	}
 
- /**
-   * This returns the field group that this Data Type should be listed in. See the Core::$dataTypeGroups for the
-   * available options.
-   *
-   * @return string
-   */
+/**
+	 * This returns the field group that this Data Type should be listed in. See the Core::$dataTypeGroups for the
+	 * available options.
+	 *
+	 * @return string
+	 */
 	final public function getDataTypeFieldGroup() {
 		return $this->dataTypeFieldGroup;
 	}
 
-  /**
+	/**
 	 * Returns the order within the field group that this Data Type should appear.
 	 *
 	 * @return integer
@@ -181,7 +181,7 @@ abstract class DataTypePlugin {
 	 *
 	 * @return integer
 	 */
-  final public function getProcessOrder() {
+	final public function getProcessOrder() {
 		return $this->processOrder;
 	}
 }

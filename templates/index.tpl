@@ -94,7 +94,7 @@
 
 					<ul class="gdTableHeadings">
 						<li class="gdColOrder">{$L.order}</li>
-						<li class="gdColTitle" id="colTitle">{$L.column_title}</li>
+						<li class="gdColTitle" id="gdColTitleTop">{$L.column_title}</li>
 						<li class="gdColDataType">{$L.data_type}</li>
 						<li class="gdColExamples">{$L.examples}</li>
 						<li class="gdColOptions">{$L.options}</li>
@@ -104,7 +104,7 @@
 					<ul id="gdTableRows"></ul>
 					<ul class="gdTableHeadings">
 						<li class="gdColOrder">{$L.order}</li>
-						<li class="gdColTitle" id="colTitle">{$L.column_title}</li>
+						<li class="gdColTitle" id="gdColTitleBottom">{$L.column_title}</li>
 						<li class="gdColDataType">{$L.data_type}</li>
 						<li class="gdColExamples">{$L.examples}</li>
 						<li class="gdColOptions">{$L.options}</li>

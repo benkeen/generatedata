@@ -3,7 +3,7 @@
 /**
  * The ExportTypePlugin.abstract.class.php file defines the abstract class that all Export Types
  * need to extend in order to be registered within the system. This class contains a number of
- * helper methods for interacting with the Export Types as a whole. It's used by the Core only.
+ * helper methods for interacting with Export Types as a whole. It's used by the Core only.
  */
 class ExportTypePluginHelper {
 
@@ -20,13 +20,19 @@ class ExportTypePluginHelper {
 				}
 				if (is_dir("$exportTypesFolder/$item")) {
 					$obj = self::instantiateExportType($exportTypesFolder, $item);
+
 					if ($obj != null) {
 						$exportTypes[] = $obj;
 					}
 
 					$folders = explode(DIRECTORY_SEPARATOR, "$exportTypesFolder/$item");
 					$folders = array_reverse($folders);
+
+					// interesting, this. This is extremely simple and makes access to these values really easy
+					// ($class->path), but they're public so they can be overridden (bad!). But I still think
+					// it's better than some verbose getter function like $obj->getPath();
 					$obj->path = "{$folders[2]}/{$folders[1]}/{$folders[0]}";
+					$obj->folder = $folders[0];
 				}
 			}
 			closedir($handle);

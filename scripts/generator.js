@@ -155,7 +155,7 @@ define([
 			oldExportType: _currExportType
 		});
 
-		// TODO: $("#colTitle").html(L.column_title);
+		// TODO: $("#gdColTitle").html(L.column_title);
 
 		// hide and show the appropriate Export Type additional settings section
 		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0) {
