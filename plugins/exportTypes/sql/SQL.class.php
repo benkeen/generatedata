@@ -3,6 +3,7 @@
 
 class SQL extends ExportTypePlugin {
 	protected $exportTypeName = "SQL";
+	protected $jsModules = array("SQL.js");
 
 	function generator($numResults, $columns, $data) {
 

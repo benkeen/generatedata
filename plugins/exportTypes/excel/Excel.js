@@ -6,8 +6,7 @@ define([
 	"mediator"
 ], function(C, mediator) {
 
-	var MODULE_ID = "export_type_excel";
-
+	var MODULE_ID = "export-type-Excel";
 
 	var _init = function() {
 
