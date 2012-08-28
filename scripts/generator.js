@@ -112,15 +112,27 @@ define([
 		}
 	};
 
-	var _updateCountryChoice = function() {
-		_countries.length = 0;
+	/**
+	 * Called whenever the user selects or deselects a Country. If any modules need to do
+	 * anything special, they can subscribe to the appropriate event.
+	 */
+	var _updateCountryChoice = function(e) {
 
+		_countries.length = 0;
 		$(".gdCountryChoice").each(function() {
 			if (this.checked) {
 				_countries.push(this.value);
 			}
 		});
 
+		mediator.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.COUNTRIES.CHANGE,
+			countries: _countries
+		});
+
+
+		/*
 		// now hide/show all country-specific elements, based on what the user has selected)
 		for (var i=0; i<_allCountries.length; i++) {
 			var elements = $(".country_" + _allCountries[i]);
@@ -133,6 +145,7 @@ define([
 				}
 			}
 		}
+		*/
 	};
 
 
@@ -178,23 +191,23 @@ define([
 	 * us to ensure all subscriptions are in place, prior to actually anything gets published.
 	 */
 	var _init = function() {
-		_subscriptions[C.EVENT.MODULE.REGISTER] = _trackModuleRegistrations;
-		mediator.subscribe(MODULE_ID, _subscriptions);
+
 	};
 
 
 	/**
-	 * Our constructor. This binds the appropriate event handlers, which in turn publish
-	 * the various events for the modules to subscribe to.
+	 * Called when everything is loaded. This binds the appropriate event handlers, which in turn
+	 * publish the various events for the modules to pick up on.
 	 */
 	var _run = function() {
+		$("#gdCountryList").on("click", "input", _updateCountryChoice);
+		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
+		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
+		$("#gdData").bind("submit", Generator.submitForm);
+
 		$(".gdExportType").bind("click", _changeExportType);
-		$(".gdCountries").bind("click", _updateCountryChoice);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
-
-		// TODO event delegate this
-		$(".gdDeleteRows").live("change", _markRowToDelete);
 
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); });
 		$("#gdTableRows").sortable({
@@ -210,15 +223,63 @@ define([
 			}
 		});
 
-		$("#gdData").bind("submit", Generator.submitForm);
-
-		_addRows(5);
 		_changeExportType();
 		_updateCountryChoice();
+		_addRows(5);
 	}
 
-	var _trackModuleRegistrations = function(message) {
-		console.log("in _trackModuleRegistrations, message");
+
+	/**
+	 * Called when the user changes the Data Type for a particular row. Data Types populate the
+	 * various content of the table by subscribing to the,
+	 *
+	 * The reason for this somewhat verbose process is to allow
+	 */
+	var _changeRowType = function(e) {
+
+		var row = parseInt($(e.type).attr("id").replace(/^gdDataType_/, ""));
+		var choice = e.target.value;
+
+		// if the user just selected the empty value ("Please Select"), clear everything
+		if (choice == "") {
+			$('#example_' + row + ',#options_' + row + ',#help_' + row).html("");
+			return;
+		}
+
+		var noOptionsTest  = function() { return true; };
+		var hasOptionsTest = function() { return (typeof $("#option_" + row) != "undefined"); };
+		var readyTest = ($("#dt_options_" + rowType).length > 0) ? hasOptionsTest : noOptionsTest;
+
+
+		Generator.queue.push([
+			function() {
+				var exampleHTML = null;
+				var optionsHTML = null;
+
+				if ($("#dt_example_" + choice).length > 0) {
+					exampleHTML = $("#dt_example_" + choice).html().replace(/\$ROW\$/g, row);
+				} else {
+					exampleHTML = "&nbsp;" + L.no_examples_available;
+				}
+				$('#example_' + row).html(exampleHTML);
+
+				if ($("#dt_options_" + choice).length > 0) {
+					optionsHTML = $("#dt_options_" + choice).html().replace(/\$ROW\$/g, row);
+				} else {
+					optionsHTML = "&nbsp;" + L.no_options_available;
+				}
+				$('#options_' + row).html(optionsHTML);
+
+				if ($("#dt_help_" + choice).length > 0) {
+					$('#help_' + row).html($("#HTML_question").html().replace(/\$ROW\$/g, row));
+				} else {
+					$('#help_' + row).html(" ");
+				}
+			},
+			readyTest
+		]);
+
+		Generator.processQueue();
 	}
 
 
@@ -244,49 +305,6 @@ define([
 			myDialog.dialog('open');
 		},
 
-		changeRowType: function(rowType, choice) {
-			var row = parseInt(rowType.replace(/^type_/, ""));
-
-			// if the user just selected the empty value ("Please Select"), clear everything
-			if (choice == "") {
-				$('#example_' + row + ',#options_' + row + ',#help_' + row).html("");
-				return;
-			}
-
-			var noOptionsTest  = function() { return true; };
-			var hasOptionsTest = function() { return (typeof $("#option_" + row) != "undefined"); };
-			var readyTest = ($("#dt_options_" + rowType).length > 0) ? hasOptionsTest : noOptionsTest;
-
-			Generator.queue.push([
-				function() {
-					var exampleHTML = null;
-					var optionsHTML = null;
-
-					if ($("#dt_example_" + choice).length > 0) {
-						exampleHTML = $("#dt_example_" + choice).html().replace(/\$ROW\$/g, row);
-					} else {
-						exampleHTML = "&nbsp;" + L.no_examples_available;
-					}
-					$('#example_' + row).html(exampleHTML);
-
-					if ($("#dt_options_" + choice).length > 0) {
-						optionsHTML = $("#dt_options_" + choice).html().replace(/\$ROW\$/g, row);
-					} else {
-						optionsHTML = "&nbsp;" + L.no_options_available;
-					}
-					$('#options_' + row).html(optionsHTML);
-
-					if ($("#dt_help_" + choice).length > 0) {
-						$('#help_' + row).html($("#HTML_question").html().replace(/\$ROW\$/g, row));
-					} else {
-						$('#help_' + row).html(" ");
-					}
-				},
-				readyTest
-			]);
-
-			Generator.processQueue();
-		},
 
 		changeStatementType: function() {
 			if ($("input[name=sql_statement_type]:checked").val() == "update") {

@@ -20,7 +20,7 @@ class SQL extends ExportTypePlugin {
 		<table cellspacing="2" cellpadding="0" width="100%">
 		<tr>
 			<td width="150"><label for="sql_table_name">{$L["db_table_name"]}</label></td>
-			<td><input type="text" size="10" name="sql_table_name" id="sql_table_name" value="myTable" /></td>
+			<td><input type="text" size="30" name="sql_table_name" id="sql_table_name" value="myTable" /></td>
 		</tr>
 		<tr>
 			<td><label for="sql_database">{$L["db_type"]}</label></td>
@@ -33,7 +33,7 @@ class SQL extends ExportTypePlugin {
 			</td>
 		</tr>
 		<tr>
-			<td><label>{$L["misc_options"]}</label></td>
+			<td valign="top"><label>{$L["misc_options"]}</label></td>
 			<td>
 				<div>
 					<input type="checkbox" name="sql_create_table" id="sql_create_table" checked />
@@ -52,11 +52,11 @@ class SQL extends ExportTypePlugin {
 		</table>
 
 	</td>
-	<td width="50%">
+	<td width="50%" valign="top">
 
 		<table cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td><label>{$L["statement_type"]}</label></td>
+			<td valign="top"><label>{$L["statement_type"]}</label></td>
 			<td>
 				<div>
 					<input type="radio" name="sql_statement_type" id="sst1" value="insert" checked />
@@ -69,7 +69,7 @@ class SQL extends ExportTypePlugin {
 			</td>
 		</tr>
 		<tr>
-			<td><label>{$L["primary_key"]}</label></td>
+			<td valign="top"><label>{$L["primary_key"]}</label></td>
 			<td>
 			<div>
 				<input type="radio" name="sql_primary_key" id="spk2" value="none" />

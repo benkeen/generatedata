@@ -3,6 +3,16 @@
 
 class DataTypePluginHelper {
 
+	public function getDataTypeResources() {
+
+		$dataTypeGroups = Core::$dataTypePlugins;
+print_r($dataTypeGroups);
+
+//		foreach ($dataTypeGroups as )
+		echo "chicken";
+	}
+
+
 	/**
 	 * [TODO re-write blurb.]
 	 *

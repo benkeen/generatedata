@@ -27,7 +27,7 @@ function smarty_function_country_list()
     $checked = (in_array($slug, $defaultChecked)) ? "checked" : "";
     echo <<<EOF
       <div>
-        <input type="checkbox" name="countryChoice[]" value="$slug" id="$slug" $checked />
+        <input type="checkbox" class="gdCountryChoice" name="gdCountryChoice[]" value="$slug" id="$slug" $checked />
         <label for="$slug">$countryName</label>
       </div>
 EOF;

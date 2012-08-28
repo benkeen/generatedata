@@ -5,73 +5,73 @@ class DataType_Names extends DataTypePlugin {
 
 	protected $dataTypeName = "Names";
 	protected $hasHelpDialog = true;
-  protected $dataTypeFieldGroup = "human_data";
-  protected $dataTypeFieldGroupOrder = 10;
-  protected $includedFiles = array("Names.js");
+	protected $dataTypeFieldGroup = "human_data";
+	protected $dataTypeFieldGroupOrder = 10;
+	protected $includedFiles = array("Names.js");
 
-  // custom member vars for this Data Type
+	// custom member vars for this Data Type
 	private $helpDialogWidth = 380;
-  private $maleNames    = array();
-  private $femaleNames  = array();
-  private $firstNames   = array();
-  private $lastNames    = array();
-  private $letters      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private $maleNames    = array();
+	private $femaleNames  = array();
+	private $firstNames   = array();
+	private $lastNames    = array();
+	private $letters      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
-  public function generateItem($row, $placeholderStr, $existingRowData) {
-    while (preg_match("/MaleName/", $placeholderStr)) {
-      $str = preg_replace("/MaleName/", $this->getRandomName($this->maleNames), $placeholderStr, 1);
-    }
-    while (preg_match("/FemaleName/", $placeholderStr)) {
-      $str = preg_replace("/FemaleName/", $this->getRandomName($this->femaleNames), $placeholderStr, 1);
-    }
-    while (preg_match("/Name/", $placeholderStr)) {
-      $str = preg_replace("/Name/", $this->getRandomName($this->firstNames), $placeholderStr, 1);
-    }
-    while (preg_match("/Surname/", $placeholderStr)) {
-      $str = preg_replace("/Surname/", $this->lastNames[rand(0, count($this->lastNames)-1)], $placeholderStr, 1);
-    }
-    while (preg_match("/Initial/", $placeholderStr)) {
-      $str = preg_replace("/Initial/", $this->letters[rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
-    }
+	public function generateItem($row, $placeholderStr, $existingRowData) {
+		while (preg_match("/MaleName/", $placeholderStr)) {
+			$str = preg_replace("/MaleName/", $this->getRandomName($this->maleNames), $placeholderStr, 1);
+		}
+		while (preg_match("/FemaleName/", $placeholderStr)) {
+			$str = preg_replace("/FemaleName/", $this->getRandomName($this->femaleNames), $placeholderStr, 1);
+		}
+		while (preg_match("/Name/", $placeholderStr)) {
+			$str = preg_replace("/Name/", $this->getRandomName($this->firstNames), $placeholderStr, 1);
+		}
+		while (preg_match("/Surname/", $placeholderStr)) {
+			$str = preg_replace("/Surname/", $this->lastNames[rand(0, count($this->lastNames)-1)], $placeholderStr, 1);
+		}
+		while (preg_match("/Initial/", $placeholderStr)) {
+			$str = preg_replace("/Initial/", $this->letters[rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
+		}
 
-    // in case the user entered multiple | separated formats, pick one
-    $formats = explode("|", $placeholderStr);
-    $chosenFormat = $formats[0];
-    if (count($formats) > 1) {
-      $chosenFormat = $formats[rand(0, count($formats)-1)];
-    }
+		// in case the user entered multiple | separated formats, pick one
+		$formats = explode("|", $placeholderStr);
+		$chosenFormat = $formats[0];
+		if (count($formats) > 1) {
+			$chosenFormat = $formats[rand(0, count($formats)-1)];
+		}
 
-    return trim($chosenFormat);
-  }
+		return trim($chosenFormat);
+	}
 
 
-  public function getTemplateOptions($post, $column, $numCols) {
-    if (!isset($post["option_$column"]) || empty($post["option_$column"])) {
-      return false;
-    }
-    return $postdata["option_$column"];
-  }
+	public function getTemplateOptions($post, $column, $numCols) {
+		if (!isset($post["option_$column"]) || empty($post["option_$column"])) {
+			return false;
+		}
+		return $postdata["option_$column"];
+	}
 
-  public function getExportTypeInfo($exportType, $options) {
-    $info = "";
-    switch ($exportType) {
-      case "sql":
-        if ($options == "MySQL" || $options == "SQLite")
-          $info = "varchar(255) default NULL";
-        else if ($options == "Oracle")
-          $info = "varchar2(255) default NULL";
-        break;
-    }
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($exportType) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite")
+					$info = "varchar(255) default NULL";
+				else if ($options == "Oracle")
+					$info = "varchar2(255) default NULL";
+				break;
+		}
 
-    return $info;
-  }
+		return $info;
+	}
 
-  public function getExampleColumnHTML($row) {
-  	$L = Core::$language->getCurrentLanguageStrings();
+	public function getExampleColumnHTML($row) {
+		$L = Core::$language->getCurrentLanguageStrings();
 
-  	// TODO remove inline event handler [also, why is there a name attribute? do we save this info?]
-    $html =<<< END
+		// TODO remove inline event handler [also, why is there a name attribute? do we save this info?]
+		$html =<<< END
 	<select name="dt_$row" id="dt_$row" onchange="$('#option_$row').val(this.value)">
 		<option value="">{$L["please_select"]}</option>
 		<option value="MaleName">{$L["Names_example_MaleName"]}</option>
@@ -87,54 +87,54 @@ class DataType_Names extends DataTypePlugin {
 		<option value="Name Surname|Name Initial. Surname">{$L["Names_example_fullnames"]}</option>
 	</select>
 END;
-    return $html;
-  }
+		return $html;
+	}
 
-  public function getOptionsColumnHTML($row) {
-    return "<input type=\"text\" name=\"option_$row\" id=\"option_$row\" style=\"width: 230px\" />";
-  }
+	public function getOptionsColumnHTML($row) {
+		return "<input type=\"text\" name=\"option_$row\" id=\"option_$row\" style=\"width: 230px\" />";
+	}
 
-  public function getNames() {
-    return $this->names;
-  }
+	public function getNames() {
+		return $this->names;
+	}
 
-  public function getFirstNames() {
-    return $this->names;
-  }
+	public function getFirstNames() {
+		return $this->names;
+	}
 
-  public function getLastNames() {
-    return $this->lastNames;
-  }
+	public function getLastNames() {
+		return $this->lastNames;
+	}
 
 
-  // -------- private member functions ---------
+	// -------- private member functions ---------
 
 	private function initFirstNames() {
 		// TODO
-	  $query = mysql_query("
-	    SELECT first_name
-	    FROM   {$g_table_prefix}first_names
-	      ");
-	  $names = array();
-	  while ($name = mysql_fetch_assoc($query))
-	    $names[] = $name['first_name'];
+		$query = mysql_query("
+			SELECT first_name
+			FROM   {$g_table_prefix}first_names
+				");
+		$names = array();
+		while ($name = mysql_fetch_assoc($query))
+			$names[] = $name['first_name'];
 	}
 
 
 	private function initLastName() {
-	  $query = mysql_query("
-	    SELECT surname
-	    FROM   {$g_table_prefix}surnames
-	      ");
+		$query = mysql_query("
+			SELECT surname
+			FROM   {$g_table_prefix}surnames
+				");
 
-	  $names = array();
-	  while ($name = mysql_fetch_assoc($query))
-	    $names[] = $name['surname'];
+		$names = array();
+		while ($name = mysql_fetch_assoc($query))
+			$names[] = $name['surname'];
 	}
 
 
 	private function getRandomName($nameArray) {
-	  return $nameArray[rand(0, count($nameArray)-1)];
+		return $nameArray[rand(0, count($nameArray)-1)];
 	}
 
 
@@ -146,10 +146,10 @@ END;
 		$queries = array();
 		$queries[] = "
 			CREATE TABLE {$prefix}first_names (
-			  id mediumint(9) NOT NULL auto_increment,
-			  first_name varchar(50) NOT NULL default '',
-			  gender enum('male','female','both') NOT NULL default 'male',
-			  PRIMARY KEY (id)
+				id mediumint(9) NOT NULL auto_increment,
+				first_name varchar(50) NOT NULL default '',
+				gender enum('male','female','both') NOT NULL default 'male',
+				PRIMARY KEY (id)
 			)
 		";
 		$queries[] = "
@@ -158,9 +158,9 @@ END;
 		";
 		$queries[] = "
 			CREATE TABLE {$prefix}last_names (
-			  id mediumint(9) NOT NULL auto_increment,
-			  surname varchar(100) NOT NULL default '',
-			  PRIMARY KEY (id)
+				id mediumint(9) NOT NULL auto_increment,
+				surname varchar(100) NOT NULL default '',
+				PRIMARY KEY (id)
 			)
 		";
 		$queries[] = "
@@ -179,7 +179,7 @@ END;
 
 	public function getHelpDialogInfo() {
 		$L = Core::$language->getCurrentLanguageStrings();
-  	$content =<<<EOF
+		$content =<<<EOF
 	<p>
 		{$L["Names_help_intro"]}
 	</p>
@@ -209,8 +209,8 @@ END;
 EOF;
 
 		return array(
-		  "dialogWidth" => $this->helpDialogWidth,
-		  "content"     => $content
+			"dialogWidth" => $this->helpDialogWidth,
+			"content"     => $content
 		);
 	}
 }

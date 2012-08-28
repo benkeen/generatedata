@@ -74,7 +74,7 @@
 					</div>
 					<div class="gdSetting">
 						<label>{$L.countries}</label>
-						<div id="countryList">
+						<div id="gdCountryList">
 							{country_list}
 						</div>
 						<div class="gdClear"> </div>
@@ -135,10 +135,10 @@
 								<li class="gdColOrder">$ROW$</li>
 								<li class="gdColTitle"><input type="text" name="title_$ROW$" id="title_$ROW$" /></li>
 								<li class="gdColDataType">{data_types_dropdown}</li>
-								<li class="gdColExamples" id="example_$ROW$">&nbsp;</li>
-								<li class="gdColOptions" id="options_$ROW$">&nbsp;</li>
-								<li class="gdColHelp" id="help_$ROW$">&nbsp;</li>
-								<li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="huh" /></li>
+								<li class="gdColExamples" id="gdColExamples_$ROW$">&nbsp;</li>
+								<li class="gdColOptions" id="gdColOptions_$ROW$">&nbsp;</li>
+								<li class="gdColHelp" id="gdColHelp_$ROW$">&nbsp;</li>
+								<li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="gdDeleteRows_$ROW$" /></li>
 							</ul>
 						</div>
 
@@ -150,6 +150,8 @@
 									id="helpLink_$ROW$"><span class="ui-icon ui-icon-help" /></li>
 							</ul>
 						</div>
+
+{data_type_resources}
 
 						{*
 						<?php

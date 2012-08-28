@@ -1,27 +1,27 @@
 <?php
 
 function smarty_function_data_types_dropdown($params, &$smarty) {
-  $L = Core::$language->getCurrentLanguageStrings();
-  $dataTypeGroups = Core::$dataTypePlugins; // TODO bad var name
+	$L = Core::$language->getCurrentLanguageStrings();
+	$dataTypeGroups = Core::$dataTypePlugins; // TODO bad var name
 
-  $options = "";
-  while (list($group, $dataTypes) = each($dataTypeGroups)) {
-    $groupName = $L[$group];
-    $options .= "<optgroup label=\"$groupName\">\n";
+	$options = "";
+	while (list($group, $dataTypes) = each($dataTypeGroups)) {
+		$groupName = $L[$group];
+		$options .= "<optgroup label=\"$groupName\">\n";
 
-    foreach ($dataTypes as $dataType) {
-      $name = $dataType->getName();
-      $options .= "<option value=\"\">$name</option>\n";
-    }
-    $options .= "</optgroup>";
-  }
+		foreach ($dataTypes as $dataType) {
+			$name = $dataType->getName();
+			$options .= "<option value=\"\">$name</option>\n";
+		}
+		$options .= "</optgroup>";
+	}
 
-  // name="type_$ROW$" id="type_$ROW$" onchange="gd.changeRowType(this.name, this.value)"
+	// name="type_$ROW$" id="type_$ROW$" onchange="gd.changeRowType(this.name, this.value)"
 
-  echo <<< END
-  <select class=\"\">
-    <option value="">{$L["please_select"]}</option>
-    $options
-  </select>
+	echo <<< END
+	<select class="gdDataType" id="gdDataType_\$ROW\$">
+		<option value="">{$L["please_select"]}</option>
+		$options
+	</select>
 END;
 }
