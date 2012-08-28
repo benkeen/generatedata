@@ -4,14 +4,14 @@ define([
 	"mediator"
 ], function(C, L, mediator) {
 
-	var MODULE_ID = "export-type-SQL";
-	var LANG = L.modules.SQL;
+	var MODULE_ID = "export-type-XML";
+	var LANG = L.modules.XML;
 
 	/**
-	 * Called when the user changes the result type
+	 * Called when the user changes the result type.
 	 */
 	var _resultTypeChanged = function(msg) {
-		if (msg.newExportType == "SQL") {
+		if (msg.newExportType == "XML") {
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
 		}
 	}

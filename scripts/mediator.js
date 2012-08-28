@@ -73,22 +73,23 @@ define([
 			if (C.DEBUGGING.LIST_PUBLISH_EVENTS) {
 				console.log("mediator.publish(): ", messages[i]);
 			}
-
+			var currMessage = messages[i].type;
 			for (var moduleID in _modules) {
-				if (!_modules.hasOwnProperty(moduleID)) {
-					continue;
-				}
-
-				// TODO... this isn't quite right
-                var currModule = _modules[moduleID];
-                if (currModule.subscriptions.hasOwnProperty(messages[i])) {
-                	currModule.subscriptions[messages[i]]()
+                if (_modules[moduleID].subscriptions.hasOwnProperty(currMessage)) {
+                	_modules[moduleID].subscriptions[currMessage](messages[i]);
                 }
 			}
 		}
-
 	}
 
+
+	/**
+	 * Our main subscribe() function. This is called by any module, regardless of type,
+	 * to allow it to subscribe to one or more specific notifications.
+	 *
+	 * @param string moduleID
+	 * @param array
+	 */
 	var _subscribe = function(moduleID, subscriptions) {
 		if (arguments.length != 2) {
 			if (C.DEBUGGING.CONSOLE_LOG) {
@@ -105,19 +106,14 @@ define([
             }
         }
 
-        // TODO. add check for empty object
-//        if (!cleanSubscriptions.length) {
-//        	return;
-//        }
-
         if (_modules.hasOwnProperty(moduleID)) {
             var existingSubscriptions = _modules[moduleID].subscriptions;
 
-            // blithely overwrite any existing subscriptions for this particular event
+            // blithely add and overwrite any existing subscriptions for the events defined
             for (var event in cleanSubscriptions) {
                 existingSubscriptions[event] = cleanSubscriptions[event];
             }
-            _modules[moduleID].subscriptions = cleanSubscriptions;
+            _modules[moduleID].subscriptions = existingSubscriptions;
 
 			if (C.DEBUGGING.LIST_SUBSCRIBE_EVENTS) {
 				console.log("mediator.subscribe(): ", moduleID, cleanSubscriptions);
@@ -174,8 +170,6 @@ define([
 		return _modules;
 	}
 
-
-	// TODO... so weird that this is here... maybe it
 	var _start = function() {
         _initAll();
         _runAll();

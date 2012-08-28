@@ -148,6 +148,10 @@ define([
 			return;
 		}
 
+		// always reset the column heading to the default "Column Title". Export Types have the option
+		// to overwrite it through the publish event below
+		$("#gdColTitleTop,#gdColTitleBottom").html(L.column_title);
+
 		mediator.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.RESULT_TYPE.CHANGE,
@@ -155,17 +159,18 @@ define([
 			oldExportType: _currExportType
 		});
 
-		// TODO: $("#gdColTitle").html(L.column_title);
-
 		// hide and show the appropriate Export Type additional settings section
 		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0) {
 			$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", null, C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
 		}
-		$("#gdExportTypeAdditionalSettings_" + newExportType).show("blind", null, C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
+		if (_currExportType == null) {
+			$("#gdExportTypeAdditionalSettings_" + newExportType).show();
+		} else {
+			$("#gdExportTypeAdditionalSettings_" + newExportType).show("blind", null, C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
+		}
 
 		_currExportType = newExportType;
 	};
-
 
 
 	/**
@@ -179,16 +184,18 @@ define([
 
 
 	/**
-	 * Our constructor.
+	 * Our constructor. This binds the appropriate event handlers, which in turn publish
+	 * the various events for the modules to subscribe to.
 	 */
 	var _run = function() {
-
-		// assign the assorted event handlers, which trigger the appropriate PUBLISH events
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdCountries").bind("click", _updateCountryChoice);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
+
+		// TODO event delegate this
 		$(".gdDeleteRows").live("change", _markRowToDelete);
+
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); });
 		$("#gdTableRows").sortable({
 			handle: ".gdColOrder",
@@ -204,10 +211,9 @@ define([
 		});
 
 		$("#gdData").bind("submit", Generator.submitForm);
-		_currExportType = $(".gdExportType:checked").val();
 
 		_addRows(5);
-//		_initResultType();
+		_changeExportType();
 		_updateCountryChoice();
 	}
 
@@ -215,16 +221,16 @@ define([
 		console.log("in _trackModuleRegistrations, message");
 	}
 
-	// TODO convert to private methods
 
 	var Generator = {
 
 		showHelpDialog: function(row) {
 			var choice = $("#type_" + row).val();
 			var title   = null;
-			for (var i=0; i<$("#type_" + row)[0].options.length; i++) {
-				if (choice == $("#type_" + row)[0].options[i].value) {
-					title = $("#type_" + row)[0].options[i].text;
+			var opts = $("#type_" + row)[0].options;
+			for (var i=0; i<opts.length; i++) {
+				if (choice == opts[i].value) {
+					title = opts[i].text;
 				}
 			}
 			var width = Generator.dataTypes[choice].width;
