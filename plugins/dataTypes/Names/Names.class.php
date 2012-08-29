@@ -67,31 +67,30 @@ class DataType_Names extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getExampleColumnHTML($row) {
+	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		// TODO remove inline event handler [also, why is there a name attribute? do we save this info?]
 		$html =<<< END
-	<select name="dt_$row" id="dt_$row" onchange="$('#option_$row').val(this.value)">
+	<select name="gdDataTypeExample_\$ROW\$" id="gdDataTypeExample_\$ROW\$">
 		<option value="">{$L["please_select"]}</option>
-		<option value="MaleName">{$L["Names_example_MaleName"]}</option>
-		<option value="FemaleName">{$L["Names_example_FemaleName"]}</option>
-		<option value="Name">{$L["Names_example_Name"]}</option>
-		<option value="MaleName Surname">{$L["Names_example_MaleName_Surname"]}</option>
-		<option value="FemaleName Surname">{$L["Names_example_FemaleName_Surname"]}</option>
-		<option value="Name Surname">{$L["Names_example_Name_Surname"]}</option>
-		<option value="Name Initial. Surname">{$L["Names_example_Name_Initial_Surname"]}</option>
-		<option value="Surname">{$L["Names_example_surname"]}</option>
-		<option value="Surname, Name Initial.">{$L["Names_example_Surname_Name_Initial"]}</option>
-		<option value="Name, Name, Name, Name">{$L["Names_example_Name4"]}</option>
-		<option value="Name Surname|Name Initial. Surname">{$L["Names_example_fullnames"]}</option>
+		<option value="MaleName">{$this->L["Names_example_MaleName"]}</option>
+		<option value="FemaleName">{$this->L["Names_example_FemaleName"]}</option>
+		<option value="Name">{$this->L["Names_example_Name"]}</option>
+		<option value="MaleName Surname">{$this->L["Names_example_MaleName_Surname"]}</option>
+		<option value="FemaleName Surname">{$this->L["Names_example_FemaleName_Surname"]}</option>
+		<option value="Name Surname">{$this->L["Names_example_Name_Surname"]}</option>
+		<option value="Name Initial. Surname">{$this->L["Names_example_Name_Initial_Surname"]}</option>
+		<option value="Surname">{$this->L["Names_example_surname"]}</option>
+		<option value="Surname, Name Initial.">{$this->L["Names_example_Surname_Name_Initial"]}</option>
+		<option value="Name, Name, Name, Name">{$this->L["Names_example_Name4"]}</option>
+		<option value="Name Surname|Name Initial. Surname">{$this->L["Names_example_fullnames"]}</option>
 	</select>
 END;
 		return $html;
 	}
 
-	public function getOptionsColumnHTML($row) {
-		return "<input type=\"text\" name=\"option_$row\" id=\"option_$row\" style=\"width: 230px\" />";
+	public function getOptionsColumnHTML() {
+		return '<input type="text" name="option_$ROW" id="option_$ROW" style="width: 230px" />';
 	}
 
 	public function getNames() {
@@ -179,31 +178,32 @@ END;
 
 	public function getHelpDialogInfo() {
 		$L = Core::$language->getCurrentLanguageStrings();
+
 		$content =<<<EOF
 	<p>
-		{$L["Names_help_intro"]}
+		{$this->L["Names_help_intro"]}
 	</p>
 
 	<table cellpadding="0" cellspacing="1">
 	<tr>
 		<td class="heading_1" width="100">Name</td>
-		<td>{$L["Names_type_Name"]}</td>
+		<td>{$this->L["Names_type_Name"]}</td>
 	</tr>
 	<tr>
 		<td class="heading_1">MaleName</td>
-		<td>{$L["Names_type_MaleName"]}</td>
+		<td>{$this->L["Names_type_MaleName"]}</td>
 	</tr>
 	<tr>
 		<td class="heading_1">FemaleName</td>
-		<td>{$L["Names_type_FemaleName"]}</td>
+		<td>{$this->L["Names_type_FemaleName"]}</td>
 	</tr>
 	<tr>
 		<td class="heading_1">Initial</td>
-		<td>{$L["Names_type_Initial"]}</td>
+		<td>{$this->L["Names_type_Initial"]}</td>
 	</tr>
 	<tr>
 		<td class="heading_1">Surname</td>
-		<td>{$L["Names_type_Surname"]}</td>
+		<td>{$this->L["Names_type_Surname"]}</td>
 	</tr>
 	</table>
 EOF;

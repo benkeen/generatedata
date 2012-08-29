@@ -19,8 +19,12 @@ abstract class DataTypePlugin {
 	protected $includedFiles = array();
 	protected $enabled = true; // TODO
 
-	//
-	public $L;
+	/**
+	 * Contains all strings for the current language. This is populated automatically on instantiation and
+	 * contains the strings for the currently selected language.
+	 * @var array
+	 */
+	public $L = array();
 
 
 	// REQUIRED METHODS
@@ -60,26 +64,22 @@ abstract class DataTypePlugin {
 	}
 
 	/**
-	 * If the Data Type wants to include something in the Example column, it must return the HTML via this function.
+	 * If the Data Type wants to include something in the Example column, it should return the raw HTML via this function.
 	 * If this function isn't defined (or it returns an empty string), the string "No examples available." will be
-	 * outputted in the cell.
-	 *
-	 * @param integer $row the row number. Note: the visible row number may not be the same number that is displayed
-	 *   in the page. This number is used purely to uniquely identify the row for coding purposes.
+	 * outputted in the cell. This is used for inserting static content into the appropriate spot in the table; if the
+	 * Data Type needs something more dynamic, it should subscribe to the appropriate event.
 	 */
-	public function getExampleColumnHTML($row) {
+	public function getExampleColumnHTML() {
 		return "";
 	}
 
 	/**
 	 * If the Data Type wants to include something in the Options column, it must return the HTML via this function.
 	 * If this function isn't defined (or it returns an empty string), the string "No options available." will be
-	 * outputted in the cell.
-	 *
-	 * @param integer $row the row number. Note: the visible row number may not be the same number that is displayed
-	 *   in the page. This number is used purely to uniquely identify the row for coding purposes.
+	 * outputted in the cell. This is used for inserting static content into the appropriate spot in the table; if the
+	 * Data Type needs something more dynamic, it should subscribe to the appropriate event.
 	 */
-	public function getOptionsColumnHTML($row) {
+	public function getOptionsColumnHTML() {
 		return "";
 	}
 
@@ -129,7 +129,26 @@ abstract class DataTypePlugin {
 	 * used.
 	 */
 	final function __construct() {
-		//Core::$language->
+
+		// a little magic to find the current instantiated class's folder
+		$currClass = new ReflectionClass(get_class($this));
+		$currClassFolder = dirname($currClass->getFileName());
+
+		$defaultLangFileStr = Core::getDefaultLanguageFile();
+		$currentLangFileStr = Core::$language->getCurrentLanguageFile();
+
+		$currentLangFile = $currClassFolder . "/lang/" . $currentLangFileStr . ".php";
+		$defaultLangFile = $currClassFolder . "/lang/" . $defaultLangFileStr . ".php";
+
+		if (file_exists($currentLangFile)) {
+			require($currentLangFile);
+		} else if (file_exists($defaultLangFile)) {
+			require($defaultLangFile);
+		}
+
+		if (isset($L)) {
+			$this->L = $L;
+		}
 	}
 
 

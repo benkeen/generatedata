@@ -27,11 +27,11 @@ abstract class ExportTypePlugin {
 	 * contains the strings for the currently selected language.
 	 * @var array
 	 */
-	public $language = array();
+	public $L = array();
 
 
 	/**
-	 * Our default, un-overridable constructor. This populates $language.
+	 * Our default, un-overridable constructor. This populates $L.
 	 */
 	public final function __construct() {
 
@@ -52,7 +52,7 @@ abstract class ExportTypePlugin {
 		}
 
 		if (isset($L)) {
-			$this->language = $L;
+			$this->L = $L;
 		}
 	}
 

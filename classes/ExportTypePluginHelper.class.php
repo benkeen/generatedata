@@ -37,6 +37,7 @@ class ExportTypePluginHelper {
 			}
 			closedir($handle);
 		}
+
 		return $exportTypes;
 	}
 

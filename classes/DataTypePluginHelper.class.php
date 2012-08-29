@@ -6,10 +6,22 @@ class DataTypePluginHelper {
 	public function getDataTypeResources() {
 
 		$dataTypeGroups = Core::$dataTypePlugins;
-print_r($dataTypeGroups);
+
+		$resources = array();
+		while (list($group, $dataTypes) = each($dataTypeGroups)) {
+			foreach ($dataTypes as $dataType) {
+				$resources[] = array(
+					"example" => $dataType->getExampleColumnHTML(),
+					"options" => $dataType->getOptionsColumnHTML(),
+					"help" => $dataType->getHelpDialogInfo()
+				);
+			}
+		}
+
 
 //		foreach ($dataTypeGroups as )
-		echo "chicken";
+		print_r($resources);
+		exit;
 	}
 
 
@@ -120,9 +132,13 @@ print_r($dataTypeGroups);
 				}
 				if (is_dir("$dataTypesFolder/$item")) {
 					$obj = self::instantiateDataType($dataTypesFolder, $item);
+
 					if ($obj != null) {
 						$dataTypes[] = $obj;
 					}
+
+					$obj->path = "$dataTypesFolder/$item";
+					$obj->folder = $item;
 				}
 			}
 			closedir($handle);
@@ -137,6 +153,7 @@ print_r($dataTypeGroups);
 			foreach ($dataTypes as $currDataType) {
 				$currFieldGroupKey   = $currDataType->getDataTypeFieldGroup();
 				$currFieldGroupOrder = $currDataType->getDataTypeFieldGroupOrder();
+
 				if ($currFieldGroupKey == $groupNameKey) {
 					// TODO this prevents two DataTypes using the same order, which leads to accidental bugs
 					$groupTypes[$currFieldGroupOrder] = $currDataType;

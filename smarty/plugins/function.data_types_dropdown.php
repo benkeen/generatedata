@@ -11,7 +11,7 @@ function smarty_function_data_types_dropdown($params, &$smarty) {
 
 		foreach ($dataTypes as $dataType) {
 			$name = $dataType->getName();
-			$options .= "<option value=\"\">$name</option>\n";
+			$options .= "<option value=\"{$dataType->folder}\">$name</option>\n";
 		}
 		$options .= "</optgroup>";
 	}
@@ -19,7 +19,7 @@ function smarty_function_data_types_dropdown($params, &$smarty) {
 	// name="type_$ROW$" id="type_$ROW$" onchange="gd.changeRowType(this.name, this.value)"
 
 	echo <<< END
-	<select class="gdDataType" id="gdDataType_\$ROW\$">
+	<select class="gdDataType" name="" id="gdDataType_\$ROW\$">
 		<option value="">{$L["please_select"]}</option>
 		$options
 	</select>

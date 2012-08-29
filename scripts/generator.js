@@ -230,14 +230,13 @@ define([
 
 
 	/**
-	 * Called when the user changes the Data Type for a particular row. Data Types populate the
-	 * various content of the table by subscribing to the,
+	 * Called when the user changes the Data Type for a particular row.
 	 *
 	 * The reason for this somewhat verbose process is to allow
 	 */
 	var _changeRowType = function(e) {
 
-		var row = parseInt($(e.type).attr("id").replace(/^gdDataType_/, ""));
+		var row = parseInt($(e.target).attr("id").replace(/^gdDataType_/, ""));
 		var choice = e.target.value;
 
 		// if the user just selected the empty value ("Please Select"), clear everything
@@ -249,7 +248,6 @@ define([
 		var noOptionsTest  = function() { return true; };
 		var hasOptionsTest = function() { return (typeof $("#option_" + row) != "undefined"); };
 		var readyTest = ($("#dt_options_" + rowType).length > 0) ? hasOptionsTest : noOptionsTest;
-
 
 		Generator.queue.push([
 			function() {
