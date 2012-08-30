@@ -147,7 +147,7 @@
 								<li class="ui-state-default ui-corner-all" onmouseover="$(this).addClass('ui-state-hover')"
 									onmouseout="$(this).removeClass('ui-state-hover')"
 									onclick="gd.showHelpDialog($ROW$)"
-									id="helpLink_$ROW$"><span class="ui-icon ui-icon-help" /></li>
+									id="helpLink_$ROW$"><span class="ui-icon ui-icon-help"></span></li>
 							</ul>
 						</div>
 

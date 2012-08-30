@@ -70,11 +70,11 @@ END;
 		return $html;
 	}
 
-	public function getOptionsColumnHTML($row) {
+	public function getOptionsColumnHTML() {
 		$html =<<< END
-&nbsp;{$L["AutoIncrement_start_at_c"]} <input type="text" name="autoIncrementStart_\$ROW\$" id="autoIncrementStart_\$ROW\$" style="width: 40px" value="1" />&nbsp;
-&nbsp;{$L["AutoIncrement_increment_c"]} <input type="text" name="autoIncrementValue_\$ROW\$" id="autoIncrementValue_\$ROW\$" style="width: 40px" value="1" />
-&nbsp;{$L["AutoIncrement_placeholder_str"]} <input type="text" name="autoIncrementPlaceholder_\$ROW\$" id="autoIncrementPlaceholder_\$ROW\$" style="width: 140px" />
+&nbsp;{$this->L["AutoIncrement_start_at_c"]} <input type="text" name="autoIncrementStart_\$ROW\$" id="autoIncrementStart_\$ROW\$" style="width: 40px" value="1" />&nbsp;
+&nbsp;{$this->L["AutoIncrement_increment_c"]} <input type="text" name="autoIncrementValue_\$ROW\$" id="autoIncrementValue_\$ROW\$" style="width: 40px" value="1" />
+&nbsp;{$this->L["AutoIncrement_placeholder_str"]} <input type="text" name="autoIncrementPlaceholder_\$ROW\$" id="autoIncrementPlaceholder_\$ROW\$" style="width: 140px" />
 END;
 		return $html;
 	}
@@ -83,10 +83,10 @@ END;
 		$L = Core::$language->getCurrentLanguageStrings();
 		$content =<<< END
 	<p>
-		{$L["AutoIncrement_help_intro"]}
+		{$this->L["AutoIncrement_help_intro"]}
 	</p>
 	<p>
-		{$L["AutoIncrement_help_para2"]}
+		{$this->L["AutoIncrement_help_para2"]}
 	</p>
 
 	<ul>

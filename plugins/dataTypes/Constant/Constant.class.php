@@ -8,23 +8,19 @@ class DataType_Constant extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $includedFiles = array("Constant.js");
 	protected $processOrder = 100;
-
 	private $helpDialogWidth = 460;
 
 	public function generateItem($row, $options, $existingRowData) {
 		$num_values = count($options["values"]);
-		if ($num_values == 1)
+		if ($num_values == 1) {
 			$value = $options["values"][0];
-		else
-		{
-		$item_index = floor(($row-1) / $options["loop_count"]);
-
-		if ($item_index > ($num_values - 1))
+		} else {
+			$item_index = floor(($row-1) / $options["loop_count"]);
+			if ($item_index > ($num_values - 1)) {
 				$item_index = ($item_index % $num_values);
-
-		$value = $options["values"][$item_index];
+			}
+			$value = $options["values"][$item_index];
 		}
-
 		return $value;
 	}
 
@@ -83,15 +79,15 @@ EOF;
 	public function getHelpDialogInfo() {
 		$html =<<< END
 	<p>
-		{$L["Constant_help_1"]}
+		{$this->L["Constant_help_1"]}
 	</p>
 	<ul>
-		<li>{$L["Constant_help_2"]}</li>
-		<li>{$L["Constant_help_3"]}</li>
-		<li>{$L["Constant_help_4"]}</li>
+		<li>{$this->L["Constant_help_2"]}</li>
+		<li>{$this->L["Constant_help_3"]}</li>
+		<li>{$this->L["Constant_help_4"]}</li>
 	</ul>
 	<p>
-		{$L["Constant_help_5"]}
+		{$this->L["Constant_help_5"]}
 	</p>
 END;
 

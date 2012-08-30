@@ -5,8 +5,8 @@ class DataType_PostalZip extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $processOrder = 2;
-
 	private $helpDialogWidth = 320;
+
 
 	// $PostalZip_formats       = PostalZip_get_country_zip_formats();
 	//$g_countries = gd_get_configurable_countries();
@@ -99,7 +99,7 @@ EOF;
 	public function getHelpDialogInfo() {
 		return array(
 			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => "<p>{$L["PostalZip_help_text"]}</p>"
+			"content"     => "<p>{$this->L["PostalZip_help_text"]}</p>"
 		);
 	}
 

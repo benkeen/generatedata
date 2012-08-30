@@ -5,7 +5,6 @@ require_once("library.php");
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();
 
-
 $exportTypes = Core::$exportTypePlugins;
 $exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalSettingsHTML($exportTypes);
 

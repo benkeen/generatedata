@@ -3,10 +3,15 @@
 
 class DataTypePluginHelper {
 
+	/**
+	 * Used in the main generator page to output raw HTML content into the page for use
+	 * by the dynamic generator table to insert/update the appropriate row based on the selected
+	 * Data Type.
+	 *
+	 * @return array
+	 */
 	public function getDataTypeResources() {
-
 		$dataTypeGroups = Core::$dataTypePlugins;
-
 		$resources = array();
 		while (list($group, $dataTypes) = each($dataTypeGroups)) {
 			foreach ($dataTypes as $dataType) {
@@ -18,10 +23,7 @@ class DataTypePluginHelper {
 			}
 		}
 
-
-//		foreach ($dataTypeGroups as )
-		print_r($resources);
-		exit;
+		return $resources;
 	}
 
 

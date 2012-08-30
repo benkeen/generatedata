@@ -10,39 +10,30 @@
 function smarty_function_data_type_resources($params, &$smarty) {
 
 	$resources = DataTypePluginHelper::getDataTypeResources();
-	exit;
 
-/*
-						while (list($group_name, $curr_data_types) = each($data_types))
-						{
-							foreach ($curr_data_types as $data_type_info)
-							{
-								$dt_ns = $data_type_info["data_folder_name"];
+	for ($i=0; $i<count($resources); $i++) {
 
-								// examples HTML
-								if (!empty($data_type_info["data_type_example_html"]))
-									echo "<div id=\"dt_example_$dt_ns\">{$data_type_info["data_type_example_html"]}</div>";
+		$currDataTypeResource = $resources[$i];
 
-								// options HTML
-								if (!empty($data_type_info["data_type_options_html"]))
-									echo "<div id=\"dt_options_$dt_ns\">{$data_type_info["data_type_options_html"]}</div>";
+		// examples HTML
+		echo "<div id=\"dt_example_\">{$currDataTypeResource["example"]}</div>";
 
-								// help popup
-								if (!empty($data_type_info["help_html_content"]))
-								{
-									echo "<div id=\"dt_help_$dt_ns\">{$data_type_info["help_html_content"]}</div>";
+		// options HTML
+		echo "<div id=\"dt_options_\">{$currDataTypeResource["options"]}</div>";
+
+		// help popup
+		echo "<div id=\"dt_help_\">{$currDataTypeResource["help"]}</div>";
 
 									// settings for the help popup
-									echo <<<EOF
-										<script>
-										Generator.dataTypes["$dt_ns"] = {
-											width: {$data_type_info["help_popup_width"]}
-										}
-										</script>
-EOF;
-								}
-							}
-						}
-*/
+	//								echo <<<EOF
+//										<script>
+	//									Generator.dataTypes["$dt_ns"] = {
+		//									width: {$data_type_info["help_popup_width"]}
+			//							}
+				//						</script>
+//EOF;
+		//						}
+
+	}
 
 }
