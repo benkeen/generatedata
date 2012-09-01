@@ -200,6 +200,8 @@ define([
 		$("#gdCountryList").on("click", "input", _updateCountryChoice);
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
 		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
+		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
+
 		$("#gdData").bind("submit", Generator.submitForm);
 
 		$(".gdExportType").bind("click", _changeExportType);
@@ -265,7 +267,7 @@ define([
 				$('#gdColOptions_' + row).html(optionsHTML);
 
 				if ($("#gdDataTypeHelp_" + dataTypeFolder).html() != "") {
-					$('#gdDataTypeHelp_' + row).html($("#HTML_question").html().replace(/\$ROW\$/g, row));
+					$('#gdColHelp_' + row).html($("#gdHelpIcon").html().replace(/\$ROW\$/g, row));
 				} else {
 					$('#gdColHelp_' + row).html(" ");
 				}
@@ -287,28 +289,42 @@ define([
 	}
 
 
-	var Generator = {
-
-		showHelpDialog: function(row) {
-			var choice = $("#type_" + row).val();
-			var title   = null;
-			var opts = $("#type_" + row)[0].options;
-			for (var i=0; i<opts.length; i++) {
-				if (choice == opts[i].value) {
-					title = opts[i].text;
-				}
+	var _showHelpDialog = function(e) {
+		var dataTypeDropdown = $(e.target).closest(".gdTableRow").find(".gdDataType");
+		var choice = dataTypeDropdown.val();
+		var title = null;
+		var opts = $(dataTypeDropdown)[0].options;
+		for (var i=0; i<opts.length; i++) {
+			if (choice == opts[i].value) {
+				title = opts[i].text;
 			}
-			var width = Generator.dataTypes[choice].width;
-			var myDialog = $('#helpPopup').html($("#dt_help_" + choice).html()).dialog({
-				autoOpen:  false,
-				modal:     true,
-				resizable: false,
-				title:     title,
-				width:     width
-			});
-			myDialog.dialog('open');
-		},
+		}
 
+		var dataTypeHelpContent = $("#gdDataTypeHelp_" + choice).html();
+		var width = $.data(dataTypeHelpContent, "dialogWidth");
+		var myDialog = $('#gdHelpPopup').html(dataTypeHelpContent).dialog({
+			autoOpen:  false,
+			modal:     true,
+			resizable: false,
+			title:     title,
+			width:     width
+		});
+		myDialog.dialog('open');
+	}
+
+
+	var _getRowOrder = function() {
+		var orderedRowIDs = $("#tableRows").sortable("toArray");
+		var sortedOrder = [];
+		for (var i=0; i<orderedRowIDs.length; i++) {
+			var row = orderedRowIDs[i].replace(/row_/g, "");
+			sortedOrder.push(row);
+		}
+		return sortedOrder;
+	};
+
+
+	var Generator = {
 
 		changeStatementType: function() {
 			if ($("input[name=sql_statement_type]:checked").val() == "update") {
@@ -332,7 +348,7 @@ define([
 			}
 
 			var error = false;
-			var orderedRowIDs = Generator._getRowOrder();
+			var orderedRowIDs = _getRowOrder();
 			var resultType = $("input[name=resultType]:checked").val();
 			var numGeneratedRows = 0;
 
@@ -461,43 +477,12 @@ define([
 			}
 
 			// pass the ordered rows to the server, according to whatever sort the user's done
-			$("#rowOrder").val(Generator._getRowOrder());
+			$("#rowOrder").val(_getRowOrder());
 			$("#deletedRows").val(Generator.deletedRows.toString());
 
 			return true;
 		},
 
-
-		// helper functions for the generator code
-
-		_getRowOrder: function() {
-			var orderedRowIDs = $("#tableRows").sortable("toArray");
-			var sortedOrder = [];
-			for (var i=0; i<orderedRowIDs.length; i++) {
-				var row = orderedRowIDs[i].replace(/row_/g, "");
-				sortedOrder.push(row);
-			}
-			return sortedOrder;
-		},
-
-		/**
-		 * When a user re-orders or deletes some rows, the table gives the appearance of being numbered
-		 * numerically 1-N, however the actual markup retains the original number scheme according to how it
-		 * was first generated. This function finds the visible row order by the actual row number in the markup.
-		 */
-		_getVisibleRowOrderByRowNum: function(rowNum) {
-			var rowOrder = Generator._getRowOrder();
-			var visibleRowNum = 1;
-			for (var i=0; i<rowOrder.length; i++) {
-				if (rowOrder[i] == rowNum) {
-					return visibleRowNum;
-				}
-				visibleRowNum++;
-			}
-
-			// shouldn't ever happen
-			return false;
-		},
 
 		_multiDimArrayContains: function(target, arr) {
 			for (var i=0; i<arr.length; i++) {
@@ -524,5 +509,30 @@ define([
 		run: _run,
 		skipDomReady: false
 	});
+
+	// the public API for this module
+
+	return {
+		getRowOrder: _getRowOrder,
+
+		/**
+		 * When a user re-orders or deletes some rows, the table gives the appearance of being numbered
+		 * numerically 1-N, however the actual markup retains the original number scheme according to how it
+		 * was first generated. This function finds the visible row order by the actual row number in the markup.
+		 */
+		getVisibleRowOrderByRowNum: function(rowNum) {
+			var rowOrder = _getRowOrder();
+			var visibleRowNum = 1;
+			for (var i=0; i<rowOrder.length; i++) {
+				if (rowOrder[i] == rowNum) {
+					return visibleRowNum;
+				}
+				visibleRowNum++;
+			}
+
+			// shouldn't ever happen
+			return false;
+		}
+	}
 
 });

@@ -641,3 +641,6 @@ body.gdErrorPage #gdBox {
 	text-shadow: 0 1px 0 #fff;
 	box-shadow: 2px 4px 5px #666666;
 }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
+	cursor: pointer;
+}

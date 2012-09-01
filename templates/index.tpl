@@ -141,19 +141,15 @@
 								<li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="gdDeleteRows_$ROW$" /></li>
 							</ul>
 						</div>
-
-						<div id="HTML_question">
+						<div id="gdHelpIcon">
 							<ul class="ui-widget ui-helper-clearfix">
 								<li class="ui-state-default ui-corner-all" onmouseover="$(this).addClass('ui-state-hover')"
-									onmouseout="$(this).removeClass('ui-state-hover')"
-									onclick="gd.showHelpDialog($ROW$)"
-									id="helpLink_$ROW$"><span class="ui-icon ui-icon-help"></span></li>
+									onmouseout="$(this).removeClass('ui-state-hover')"><span class="ui-icon ui-icon-help"></span></li>
 							</ul>
 						</div>
-
 						{data_type_resources}
-
 					</div>
+
 				</form>
 				<div id="gdHelpPopup"></div>
 			</div>

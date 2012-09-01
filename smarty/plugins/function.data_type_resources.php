@@ -22,6 +22,6 @@ function smarty_function_data_type_resources($params, &$smarty) {
 		echo "<div id=\"gdDataTypeOptions_{$currDataTypeResource["folder"]}\">{$currDataTypeResource["options"]}</div>";
 
 		// help popup
-		echo "<div id=\"gdDataTypeHelp\" data-dialog-height=\"{$currDataTypeResource["help"]["dialogWidth"]}\">{$currDataTypeResource["help"]["content"]}</div>";
+		echo "<div id=\"gdDataTypeHelp_{$currDataTypeResource["folder"]}\" data-dialog-width=\"{$currDataTypeResource["help"]["dialogWidth"]}\">{$currDataTypeResource["help"]["content"]}</div>";
 	}
 }
