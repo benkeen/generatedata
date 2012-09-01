@@ -1,8 +1,7 @@
 require.config({
 	baseUrl: "scripts/",
 	paths: {
-		"mediator":    "mediator",
-		"controller":  "controller",
+		"manager":     "manager",
 		"constants":   "constants",
 		"generator":   "generator",
 		"utils":       "utils",

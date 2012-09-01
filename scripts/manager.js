@@ -1,5 +1,5 @@
 /**
- * The mediator handles all the pub/sub functionality for the Core. All modules interact
+ * The manager handles all the pub/sub functionality for the Core. All modules interact
  * with one another indirectly through this module by publishing and subscribing to messages.
  */
 define([
@@ -14,7 +14,7 @@ define([
 
 	/**
 	 * Our registration function. Any plugins - Data Types, Export Types or Countries - that
-	 * want to include any client-side code need to register themselves with the mediator in
+	 * want to include any client-side code need to register themselves with the manager in
 	 * order to access PUB/SUB.
 	 *
 	 * @param {object} module
@@ -71,7 +71,7 @@ define([
 
 		for (var i=0; i<messages.length; i++) {
 			if (C.DEBUGGING.LIST_PUBLISH_EVENTS) {
-				console.log("mediator.publish(): ", messages[i]);
+				console.log("manager.publish(): ", messages[i]);
 			}
 			var currMessage = messages[i].type;
 			for (var moduleID in _modules) {
@@ -93,7 +93,7 @@ define([
 	var _subscribe = function(moduleID, subscriptions) {
 		if (arguments.length != 2) {
 			if (C.DEBUGGING.CONSOLE_LOG) {
-				console.warn("Invalid params for mediator.subscribe()");
+				console.warn("Invalid params for manager.subscribe()");
 			}
 			return;
 		}
@@ -116,7 +116,7 @@ define([
             _modules[moduleID].subscriptions = existingSubscriptions;
 
 			if (C.DEBUGGING.LIST_SUBSCRIBE_EVENTS) {
-				console.log("mediator.subscribe(): ", moduleID, cleanSubscriptions);
+				console.log("manager.subscribe(): ", moduleID, cleanSubscriptions);
 			}
         }
 	}

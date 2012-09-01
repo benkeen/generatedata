@@ -53,7 +53,7 @@ $data_type_options_html =<<<EOF
 	</tr>
 	<tr>
 		<td>
-			<input type="text" name="option_\$ROW\$" id="option_\$ROW\$" style="width: 230px;" />
+			<input type="text" name="option_\$ROW\$" id="option_\$ROW\$" style="width: 267px;" />
 		</td>
 	</tr>
 	</table>

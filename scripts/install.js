@@ -1,10 +1,10 @@
 require([
-	"mediator",
+	"manager",
 	"lang",
 	"jquery-ui",
 	"jquery-json",
 	"pageinit"
-], function(mediator, L) {
+], function(manager, L) {
 
 	// TODO move...?
 

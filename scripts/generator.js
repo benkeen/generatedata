@@ -4,12 +4,12 @@
  * events.
  */
 define([
-	"mediator",
+	"manager",
 	"utils",
 	"constants",
 	"lang",
 	"jquery-ui",
-], function(mediator, utils, C, L) {
+], function(manager, utils, C, L) {
 
 	var MODULE_ID = "generator";
 	var _numRows  = 0;
@@ -23,7 +23,6 @@ define([
 	var _exportTypes = {};
 	var _currExportType = null; // populated onload
 	var _subscriptions = {};
-
 
 	var _addRows = function(rows) {
 		var rows = rows.toString();
@@ -64,7 +63,7 @@ define([
 			}
 		});
 
-		mediator.publish({
+		manager.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.DATA_TABLE.ROW.DELETE,
 			rowIDs: rowIDs
@@ -90,7 +89,7 @@ define([
 			$(el).closest(".gdTableRow").removeClass("gdDeletedRow");
 			event = C.EVENT.DATA_TABLE.ROW.UNCHECK_TO_DELETE;
 		}
-		mediator.publish({
+		manager.publish({
 			sender: MODULE_ID,
 			type: event,
 			row: el
@@ -117,7 +116,6 @@ define([
 	 * anything special, they can subscribe to the appropriate event.
 	 */
 	var _updateCountryChoice = function(e) {
-
 		_countries.length = 0;
 		$(".gdCountryChoice").each(function() {
 			if (this.checked) {
@@ -125,12 +123,11 @@ define([
 			}
 		});
 
-		mediator.publish({
+		manager.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.COUNTRIES.CHANGE,
 			countries: _countries
 		});
-
 
 		/*
 		// now hide/show all country-specific elements, based on what the user has selected)
@@ -165,7 +162,7 @@ define([
 		// to overwrite it through the publish event below
 		$("#gdColTitleTop,#gdColTitleBottom").html(L.column_title);
 
-		mediator.publish({
+		manager.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.RESULT_TYPE.CHANGE,
 			newExportType: newExportType,
@@ -202,7 +199,7 @@ define([
 	var _run = function() {
 		$("#gdCountryList").on("click", "input", _updateCountryChoice);
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
+		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
 		$("#gdData").bind("submit", Generator.submitForm);
 
 		$(".gdExportType").bind("click", _changeExportType);
@@ -215,7 +212,7 @@ define([
 			axis: "y",
 			update: function(event, ui) {
 				_restyleRows();
-				mediator.publish({
+				manager.publish({
 					sender: MODULE_ID,
 					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
 					row: ui.item
@@ -235,49 +232,58 @@ define([
 	 * The reason for this somewhat verbose process is to allow
 	 */
 	var _changeRowType = function(e) {
-
 		var row = parseInt($(e.target).attr("id").replace(/^gdDataType_/, ""));
-		var choice = e.target.value;
+		var dataTypeFolder = e.target.value;
 
 		// if the user just selected the empty value ("Please Select"), clear everything
-		if (choice == "") {
-			$('#example_' + row + ',#options_' + row + ',#help_' + row).html("");
+		if (dataTypeFolder == "") {
+			$('#gdColExamples_' + row + ',#gdColOptions_' + row + ',#gdColHelp_' + row).html("");
 			return;
 		}
 
 		var noOptionsTest  = function() { return true; };
 		var hasOptionsTest = function() { return (typeof $("#option_" + row) != "undefined"); };
-		var readyTest = ($("#dt_options_" + rowType).length > 0) ? hasOptionsTest : noOptionsTest;
+		var readyTest = ($("#gdDataTypeOptions_" + dataTypeFolder).length > 0) ? hasOptionsTest : noOptionsTest;
 
-		Generator.queue.push([
+		utils.pushToQueue([
 			function() {
 				var exampleHTML = null;
 				var optionsHTML = null;
 
-				if ($("#dt_example_" + choice).length > 0) {
-					exampleHTML = $("#dt_example_" + choice).html().replace(/\$ROW\$/g, row);
+				if ($("#gdDataTypeExamples_" + dataTypeFolder).html() != "") {
+					exampleHTML = $("#gdDataTypeExamples_" + dataTypeFolder).html().replace(/\$ROW\$/g, row);
 				} else {
 					exampleHTML = "&nbsp;" + L.no_examples_available;
 				}
-				$('#example_' + row).html(exampleHTML);
+				$('#gdColExamples_' + row).html(exampleHTML);
 
-				if ($("#dt_options_" + choice).length > 0) {
-					optionsHTML = $("#dt_options_" + choice).html().replace(/\$ROW\$/g, row);
+				if ($("#gdDataTypeOptions_" + dataTypeFolder).html() != "") {
+					optionsHTML = $("#gdDataTypeOptions_" + dataTypeFolder).html().replace(/\$ROW\$/g, row);
 				} else {
 					optionsHTML = "&nbsp;" + L.no_options_available;
 				}
-				$('#options_' + row).html(optionsHTML);
+				$('#gdColOptions_' + row).html(optionsHTML);
 
-				if ($("#dt_help_" + choice).length > 0) {
-					$('#help_' + row).html($("#HTML_question").html().replace(/\$ROW\$/g, row));
+				if ($("#gdDataTypeHelp_" + dataTypeFolder).html() != "") {
+					$('#gdDataTypeHelp_' + row).html($("#HTML_question").html().replace(/\$ROW\$/g, row));
 				} else {
-					$('#help_' + row).html(" ");
+					$('#gdColHelp_' + row).html(" ");
 				}
 			},
-			readyTest
+			readyTest,
 		]);
 
-		Generator.processQueue();
+		utils.processQueue();
+
+		// note, the queue MAY not have been fully processed at this point, but we publish
+		// the event as having been completed. If any modules need to subscribe to this event, they need to
+		// be aware the DOM may not have been completed!
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
+			row: row,
+			dataTypeFolder: dataTypeFolder
+		});
 	}
 
 
@@ -513,7 +519,7 @@ define([
 	};
 
 	// register our module
-	mediator.register(MODULE_ID, C.COMPONENT.CORE, {
+	manager.register(MODULE_ID, C.COMPONENT.CORE, {
 		init: _init,
 		run: _run,
 		skipDomReady: false

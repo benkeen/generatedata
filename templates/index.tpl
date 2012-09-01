@@ -172,7 +172,7 @@
 
 	<script>
 	require([
-		"mediator",
+		"manager",
 		"generator",
 
 		// Export Type modules
@@ -182,7 +182,7 @@
 		{$dataTypeJSModules},
 
 		"pageinit"
-	], function(mediator) { mediator.start(); });
+	], function(manager) { manager.start(); });
 	</script>
 
 </body>

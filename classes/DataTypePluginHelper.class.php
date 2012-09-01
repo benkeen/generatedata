@@ -16,7 +16,8 @@ class DataTypePluginHelper {
 		while (list($group, $dataTypes) = each($dataTypeGroups)) {
 			foreach ($dataTypes as $dataType) {
 				$resources[] = array(
-					"example" => $dataType->getExampleColumnHTML(),
+					"folder" => $dataType->folder,
+					"examples" => $dataType->getExampleColumnHTML(),
 					"options" => $dataType->getOptionsColumnHTML(),
 					"help" => $dataType->getHelpDialogInfo()
 				);

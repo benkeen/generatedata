@@ -1,8 +1,8 @@
 define([
 	"constants",
 	"lang",
-	"mediator"
-], function(C, L, mediator) {
+	"manager"
+], function(C, L, manager) {
 
 	var MODULE_ID = "export-type-SQL";
 	var LANG = L.modules.SQL;
@@ -19,14 +19,14 @@ define([
 	var _init = function() {
 		var subscriptions = {};
 		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
-		mediator.subscribe(MODULE_ID, subscriptions);
+		manager.subscribe(MODULE_ID, subscriptions);
 	}
 
 	var _run = function() {
 
 	}
 
-	mediator.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
+	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
 		init: _init,
 		run: _run
 	});

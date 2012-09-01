@@ -7,6 +7,7 @@ define([
 	var _currentTab     = 1;
 	var _errors         = [];
 	var _messageVisible = false;
+	var _domChangeQueue = [];
 
 	return {
 		selectTab: function(tab) {
@@ -112,29 +113,34 @@ define([
 		and redraw page content. It ensures a series of DOM-manipulation-intensive changes are completed
 		sequentially. See my post here: http://www.benjaminkeen.com/?p=136
 
-		This code relies on the gd.queue array being populated with arrays with the following indexes:
+		This code relies on the _domChangeQueue array being populated with arrays with the following indexes:
 			[0] : code to execute - (function)
 			[1] : boolean test to determine completion - (function)
 			[2] : interval ID (managed internally by script) - (integer)
 		*/
+		pushToQueue: function(arr) {
+			_domChangeQueue.push(arr);
+		},
+
 		processQueue: function() {
-			if (!gd.queue.length) {
+			if (!_domChangeQueue.length) {
 				return;
 			}
 
 			// if this code hasn't begun being executed, start 'er up
-			if (!gd.queue[0][2]) {
-				setTimeout(function() { gd.queue[0][0]() }, 10);
-				timeout_id = setInterval("gd.checkQueueItemComplete()", 25);
-				gd.queue[0][2] = timeout_id;
+			if (!_domChangeQueue[0][2]) {
+				setTimeout(function() { _domChangeQueue[0][0]() }, 10);
+				var currObj = this;
+				timeout_id = setInterval(function() { currObj.checkQueueItemComplete() }, 25);
+				_domChangeQueue[0][2] = timeout_id;
 			}
 		},
 
 		checkQueueItemComplete: function() {
-			if (gd.queue[0][1]()) {
-				clearInterval(gd.queue[0][2]);
-				gd.queue.shift();
-				gd.processQueue();
+			if (_domChangeQueue[0][1]()) {
+				clearInterval(_domChangeQueue[0][2]);
+				_domChangeQueue.shift();
+				this.processQueue();
 			}
 		}
 	}

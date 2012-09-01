@@ -58,7 +58,7 @@ EOF;
 	}
 
 	public function getOptionsColumnHTML() {
-		$html = '<input type="text" name="option_$ROW$" id="option_$ROW$" style="width: 230px" />';
+		$html = '<input type="text" name="option_$ROW$" id="option_$ROW$" style="width: 267px" />';
 		return $html;
 	}
 

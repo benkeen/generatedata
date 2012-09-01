@@ -3,8 +3,8 @@
  */
 define([
 	"constants",
-	"mediator"
-], function(C, mediator) {
+	"manager"
+], function(C, manager) {
 
 	var MODULE_ID = "export-type-Excel";
 
@@ -28,7 +28,7 @@ define([
 		}
 	};
 
-	mediator.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
+	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
 		init: _init,
 		run: _run
 	});

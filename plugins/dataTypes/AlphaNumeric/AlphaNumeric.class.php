@@ -52,7 +52,7 @@ END;
 	}
 
 	public function getOptionsColumnHTML() {
-		return '<input type="text" name="option_$ROW$" id="option_$ROW$ style="width: 230px" />';
+		return '<input type="text" name="option_$ROW$" id="option_$ROW$ style="width: 267px" />';
 	}
 
 	public function getHelpDialogInfo() {

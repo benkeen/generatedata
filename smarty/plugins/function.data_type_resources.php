@@ -16,24 +16,12 @@ function smarty_function_data_type_resources($params, &$smarty) {
 		$currDataTypeResource = $resources[$i];
 
 		// examples HTML
-		echo "<div id=\"dt_example_\">{$currDataTypeResource["example"]}</div>";
+		echo "<div id=\"gdDataTypeExamples_{$currDataTypeResource["folder"]}\">{$currDataTypeResource["examples"]}</div>";
 
 		// options HTML
-		echo "<div id=\"dt_options_\">{$currDataTypeResource["options"]}</div>";
+		echo "<div id=\"gdDataTypeOptions_{$currDataTypeResource["folder"]}\">{$currDataTypeResource["options"]}</div>";
 
 		// help popup
-		echo "<div id=\"dt_help_\">{$currDataTypeResource["help"]}</div>";
-
-									// settings for the help popup
-	//								echo <<<EOF
-//										<script>
-	//									Generator.dataTypes["$dt_ns"] = {
-		//									width: {$data_type_info["help_popup_width"]}
-			//							}
-				//						</script>
-//EOF;
-		//						}
-
+		echo "<div id=\"gdDataTypeHelp\" data-dialog-height=\"{$currDataTypeResource["help"]["dialogWidth"]}\">{$currDataTypeResource["help"]["content"]}</div>";
 	}
-
 }
