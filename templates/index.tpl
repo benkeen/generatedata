@@ -6,10 +6,10 @@
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
-	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.19.custom.css" />
+	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.23.custom.css" />
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/require.js"></script>
-	<script src="scripts/require_config.js"></script>
+	<script src="scripts/requireConfig.js"></script>
 </head>
 <body>
 	<header>
@@ -155,6 +155,22 @@
 			</div>
 
 			<div class="gdTabContent" id="gdTab2Content">
+				<form method="post">
+					<h3>Developer Settings</h3>
+					<div>
+						<input type="checkbox" name="consoleEventsPublish" id="gdSettingsConsoleEventsPublish"
+							value="enabled" {if $settings.consoleEventsPublish == "enabled"}checked="checked"{/if} />
+							<label for="gdSettingsConsoleEventsPublish">List console.log() <b>publish</b> events</label>
+					</div>
+					<div>
+						<input type="checkbox" name="consoleEventsSubscribe" id="gdSettingsConsoleEventsSubscribe"
+							value="enabled" {if $settings.consoleEventsSubscribe == "enabled"}checked="checked"{/if} />
+							<label for="gdSettingsConsoleEventsSubscribe">List console.log() <b>subscribe</b> events</label>
+					</div>
+					<p>
+						<input type="submit" name="submit" value="Update" />
+					</p>
+				</form>
 			</div>
 
 			<div class="gdTabContent" id="gdTab3Content">

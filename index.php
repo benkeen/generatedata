@@ -2,6 +2,7 @@
 
 require_once("library.php");
 
+
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();
 
@@ -18,5 +19,6 @@ $params = array();
 $params["dataTypeJSModules"] = ""; // TODO
 $params["exportTypeJSModules"] = $exportTypeJSModules;
 $params["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
+$params["settings"] = Settings::getSettings();
 
 Utils::displayPage("templates/index.tpl", $params);

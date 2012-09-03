@@ -356,13 +356,6 @@ li.gdColDelete {
 	text-align: center;
 	display: block;
 }
-.gdColOptions .ui-datepicker-trigger {
-	margin-bottom: -3px;
-}
-#gdTableRows .gdColHelp .ui-helper-clearfix {
-	margin-left: 8px;
-	margin-top: 2px;
-}
 
 /* buttons */
 .gdButton {
@@ -641,6 +634,21 @@ body.gdErrorPage #gdBox {
 	text-shadow: 0 1px 0 #fff;
 	box-shadow: 2px 4px 5px #666666;
 }
+
+/* jQuery UI style overrides */
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
 	cursor: pointer;
+}
+.ui-dialog {
+	text-align: left;
+}
+.ui-dialog-title {
+	font-weight: bold;
+}
+.gdColOptions .ui-datepicker-trigger {
+	margin-bottom: -3px;
+}
+#gdTableRows .gdColHelp .ui-helper-clearfix {
+	margin-left: 8px;
+	margin-top: 2px;
 }

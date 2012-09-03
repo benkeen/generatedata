@@ -28,8 +28,10 @@ define([
 		var rows = rows.toString();
 		if (rows.match(/\D/) || rows == 0 || rows == "") {
 			utils.clearErrors();
+
 			Generator.errors.push({ els: [$("#gdNumRows")], error: L.no_num_rows });
 			Generator.displayErrors();
+
 			return false;
 		}
 
@@ -39,9 +41,10 @@ define([
 			$("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
 		}
 
-		$("#gdNumCols").val(Generator.numRows);
+		$("#gdNumCols").val(_numRows);
 		_restyleRows();
 	};
+
 
 	/**
 	 * This is called when the user actually clicks one of the DEL buttons, deleting those rows marked
@@ -202,7 +205,7 @@ define([
 		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 
-		$("#gdData").bind("submit", Generator.submitForm);
+		$("#gdData").bind("submit", _submitForm);
 
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
@@ -300,8 +303,10 @@ define([
 			}
 		}
 
-		var dataTypeHelpContent = $("#gdDataTypeHelp_" + choice).html();
-		var width = $.data(dataTypeHelpContent, "dialogWidth");
+		var helpElement = $("#gdDataTypeHelp_" + choice);
+		var dataTypeHelpContent = helpElement.html();
+		var width = $(helpElement).data("dialogWidth");
+
 		var myDialog = $('#gdHelpPopup').html(dataTypeHelpContent).dialog({
 			autoOpen:  false,
 			modal:     true,
@@ -324,184 +329,172 @@ define([
 	};
 
 
-	var Generator = {
 
-		changeStatementType: function() {
-			if ($("input[name=sql_statement_type]:checked").val() == "update") {
-				$("#spk1").attr("checked", "checked");
-				$("input[name=sql_primary_key]").attr("disabled", "disabled");
-			} else {
-				$("input[name=sql_primary_key]").attr("disabled", "");
-			}
-		},
+	var _submitForm = function() {
+		var numResults = $("#numResults").val();
+		var numCols    = $("#numCols").val();
 
-		// determines the target of the form: the hidden iframe for excel or a new window for HTML
-		submitForm: function() {
-			var numResults = $("#numResults").val();
-			var numCols    = $("#numCols").val();
+		g.clearErrors();
 
-			g.clearErrors();
-
-			// check numResults is an integer
-			if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
-				Generator.errors.push({ el: $("#numResults"), error: L.invalid_num_results });
-			}
-
-			var error = false;
-			var orderedRowIDs = _getRowOrder();
-			var resultType = $("input[name=resultType]:checked").val();
-			var numGeneratedRows = 0;
-
-			var missingNodeNames  = [];
-			var invalidNodeNames  = [];
-			var missingTableNames = [];
-			var invalidTableNames = [];
-
-			var visibleRowNum = 0;
-			var dataTypeValidationFunctions = [];
-			for (var i=0; i<orderedRowIDs.length; i++) {
-				var nodeNum = orderedRowIDs[i];
-				visibleRowNum++;
-
-				// ignore rows that haven't specified a data type
-				if ($("#type_" + nodeNum).val() == "") {
-					continue;
-				}
-
-				switch (resultType) {
-					case "XML":
-						if ($("#title_" + nodeNum).val() == "") {
-							missingNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
-						} else if ($("#title_" + nodeNum).val().match(/\W/) || $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
-							invalidNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
-						}
-						break;
-
-					case "SQL":
-						if ($("#title_" + nodeNum).val() == "") {
-							missingTableNames.push([$("#title_" + nodeNum), visibleRowNum]);
-						} else if ($("#title_" + nodeNum).val().match(/\W/) || $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
-							invalidTableNames.push([$("#title_" + nodeNum), visibleRowNum]);
-						}
-						break;
-				}
-
-				// keep track of the data types that have custom validation routines
-				var func_ns = $("#type_" + nodeNum).val() + "_ns";
-				if (typeof window[func_ns] === "object" && typeof window[func_ns].validate === "function") {
-					if (!Generator._multiDimArrayContains(func_ns, dataTypeValidationFunctions)) {
-						dataTypeValidationFunctions.push([func_ns, [nodeNum]]);
-					} else {
-						dataTypeValidationFunctions = Generator._multiDimArrayAddRow(func_ns, dataTypeValidationFunctions, nodeNum);
-					}
-				}
-
-				numGeneratedRows++;
-			}
-
-			// now call all data type validation functions
-			for (var i=0; i<dataTypeValidationFunctions.length; i++) {
-				var func = dataTypeValidationFunctions[i][0];
-				var rows = dataTypeValidationFunctions[i][1];
-				window[func].validate(rows);
-			}
-
-			if (missingNodeNames.length) {
-				var problemFields = [];
-				var rowNumbers    = [];
-				for (var i=0; i<missingNodeNames.length; i++) {
-					problemFields.push(missingNodeNames[i][0]);
-					rowNumbers.push(missingNodeNames[i][1]);
-				}
-				Generator.errors.push({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-			}
-			if (invalidNodeNames.length) {
-				var problemFields = [];
-				var rowNumbers    = [];
-				for (var i=0; i<invalidNodeNames.length; i++) {
-					problemFields.push(invalidNodeNames[i][0]);
-					rowNumbers.push(invalidNodeNames[i][1]);
-				}
-				Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-			}
-			if (missingTableNames.length) {
-				var problemFields = [];
-				var rowNumbers    = [];
-				for (var i=0; i<missingTableNames.length; i++) {
-					problemFields.push(missingTableNames[i][0]);
-					rowNumbers.push(missingTableNames[i][1]);
-				}
-				Generator.errors.push({ els: problemFields, error: L.missing_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-			}
-			if (invalidTableNames.length) {
-				var problemFields = [];
-				var rowNumbers    = [];
-				for (var i=0; i<invalidTableNames.length; i++) {
-					problemFields.push(invalidTableNames[i][0]);
-					rowNumbers.push(invalidTableNames[i][1]);
-				}
-				Generator.errors.push({ els: problemFields, error: L.invalid_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-			}
-
-			if (resultType == "XML") {
-				if ($("#xml_root_node_name").val() == "") {
-					Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
-				} else if ($("#xml_root_node_name").val().match(/\W/)) {
-					Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
-				} else if ($("#xml_record_node_name").val() == "") {
-					Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
-				} else if ($("#xml_record_node_name").val().match(/\W/)) {
-					Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
-				}
-			}
-			else if (resultType == "CSV") {
-				if ($("#csv_delimiter").val() == "") {
-					Generator.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
-				}
-			}
-
-			if (numGeneratedRows == 0) {
-				Generator.errors.push({ els: null, error: L.no_data });
-			}
-
-			if (Generator.errors.length) {
-				Generator.displayErrors();
-				return false;
-			}
-
-			// all checks out. Set the form target and submit the sucker
-			if (resultType == "HTML" || resultType == "XML" || resultType == "SQL") {
-				document.gdData.target = "_blank";
-			} else {
-				document.gdData.target = "hiddenIframe";
-			}
-
-			// pass the ordered rows to the server, according to whatever sort the user's done
-			$("#rowOrder").val(_getRowOrder());
-			$("#deletedRows").val(Generator.deletedRows.toString());
-
-			return true;
-		},
-
-
-		_multiDimArrayContains: function(target, arr) {
-			for (var i=0; i<arr.length; i++) {
-				if (arr[i][0] == target) {
-					return true;
-				}
-			}
-			return false;
-		},
-
-		_multiDimArrayAddRow: function(target, arr, rowNum) {
-			for (var i=0; i<arr.length; i++) {
-				if (arr[i][0] == target) {
-					arr[i][1].push(rowNum);
-				}
-			}
-			return arr;
+		// check numResults is an integer
+		if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
+			Generator.errors.push({ el: $("#numResults"), error: L.invalid_num_results });
 		}
+
+		var error = false;
+		var orderedRowIDs = _getRowOrder();
+		var resultType = $("input[name=resultType]:checked").val();
+		var numGeneratedRows = 0;
+
+		var missingNodeNames  = [];
+		var invalidNodeNames  = [];
+		var missingTableNames = [];
+		var invalidTableNames = [];
+
+		var visibleRowNum = 0;
+		var dataTypeValidationFunctions = [];
+		for (var i=0; i<orderedRowIDs.length; i++) {
+			var nodeNum = orderedRowIDs[i];
+			visibleRowNum++;
+
+			// ignore rows that haven't specified a data type
+			if ($("#type_" + nodeNum).val() == "") {
+				continue;
+			}
+
+			switch (resultType) {
+				case "XML":
+					if ($("#title_" + nodeNum).val() == "") {
+						missingNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
+					} else if ($("#title_" + nodeNum).val().match(/\W/) || $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
+						invalidNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
+					}
+					break;
+
+				case "SQL":
+					if ($("#title_" + nodeNum).val() == "") {
+						missingTableNames.push([$("#title_" + nodeNum), visibleRowNum]);
+					} else if ($("#title_" + nodeNum).val().match(/\W/) || $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
+						invalidTableNames.push([$("#title_" + nodeNum), visibleRowNum]);
+					}
+					break;
+			}
+
+			// keep track of the data types that have custom validation routines
+			var func_ns = $("#type_" + nodeNum).val() + "_ns";
+			if (typeof window[func_ns] === "object" && typeof window[func_ns].validate === "function") {
+				if (!Generator._multiDimArrayContains(func_ns, dataTypeValidationFunctions)) {
+					dataTypeValidationFunctions.push([func_ns, [nodeNum]]);
+				} else {
+					dataTypeValidationFunctions = Generator._multiDimArrayAddRow(func_ns, dataTypeValidationFunctions, nodeNum);
+				}
+			}
+
+			numGeneratedRows++;
+		}
+
+		// now call all data type validation functions
+		for (var i=0; i<dataTypeValidationFunctions.length; i++) {
+			var func = dataTypeValidationFunctions[i][0];
+			var rows = dataTypeValidationFunctions[i][1];
+			window[func].validate(rows);
+		}
+
+		if (missingNodeNames.length) {
+			var problemFields = [];
+			var rowNumbers    = [];
+			for (var i=0; i<missingNodeNames.length; i++) {
+				problemFields.push(missingNodeNames[i][0]);
+				rowNumbers.push(missingNodeNames[i][1]);
+			}
+			Generator.errors.push({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+		}
+		if (invalidNodeNames.length) {
+			var problemFields = [];
+			var rowNumbers    = [];
+			for (var i=0; i<invalidNodeNames.length; i++) {
+				problemFields.push(invalidNodeNames[i][0]);
+				rowNumbers.push(invalidNodeNames[i][1]);
+			}
+			Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+		}
+		if (missingTableNames.length) {
+			var problemFields = [];
+			var rowNumbers    = [];
+			for (var i=0; i<missingTableNames.length; i++) {
+				problemFields.push(missingTableNames[i][0]);
+				rowNumbers.push(missingTableNames[i][1]);
+			}
+			Generator.errors.push({ els: problemFields, error: L.missing_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+		}
+		if (invalidTableNames.length) {
+			var problemFields = [];
+			var rowNumbers    = [];
+			for (var i=0; i<invalidTableNames.length; i++) {
+				problemFields.push(invalidTableNames[i][0]);
+				rowNumbers.push(invalidTableNames[i][1]);
+			}
+			Generator.errors.push({ els: problemFields, error: L.invalid_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+		}
+
+		if (resultType == "XML") {
+			if ($("#xml_root_node_name").val() == "") {
+				Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
+			} else if ($("#xml_root_node_name").val().match(/\W/)) {
+				Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
+			} else if ($("#xml_record_node_name").val() == "") {
+				Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
+			} else if ($("#xml_record_node_name").val().match(/\W/)) {
+				Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
+			}
+		}
+		else if (resultType == "CSV") {
+			if ($("#csv_delimiter").val() == "") {
+				Generator.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
+			}
+		}
+
+		if (numGeneratedRows == 0) {
+			Generator.errors.push({ els: null, error: L.no_data });
+		}
+
+		if (Generator.errors.length) {
+			Generator.displayErrors();
+			return false;
+		}
+
+		// all checks out. Set the form target and submit the sucker
+		if (resultType == "HTML" || resultType == "XML" || resultType == "SQL") {
+			document.gdData.target = "_blank";
+		} else {
+			document.gdData.target = "hiddenIframe";
+		}
+
+		// pass the ordered rows to the server, according to whatever sort the user's done
+		$("#rowOrder").val(_getRowOrder());
+		$("#deletedRows").val(Generator.deletedRows.toString());
+
+		return true;
 	};
+
+	var _multiDimArrayContains = function(target, arr) {
+		for (var i=0; i<arr.length; i++) {
+			if (arr[i][0] == target) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	var _multiDimArrayAddRow = function(target, arr, rowNum) {
+		for (var i=0; i<arr.length; i++) {
+			if (arr[i][0] == target) {
+				arr[i][1].push(rowNum);
+			}
+		}
+		return arr;
+	};
+
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.CORE, {
@@ -510,7 +503,9 @@ define([
 		skipDomReady: false
 	});
 
-	// the public API for this module
+
+	// the public API for this module. These are the only revealed functions for use by other modules
+	// that choose to include generator.js as a dependency.
 
 	return {
 		getRowOrder: _getRowOrder,
