@@ -99,10 +99,24 @@ class DataTypePluginHelper {
 
 		// sort by process order and return
 		ksort($info);
-
 		return $info;
 	}
 
+
+	/**
+	 * Helper function to convert the data types that are grouped in Core::$dataTypePlugins into
+	 * a simple array, where order is not important
+	 * @return array
+	 */
+	public function getDataTypeList($groupedDataTypes) {
+		$list = array();
+		while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
+			foreach ($dataTypes as $dataType) {
+				$list[] = $dataType;
+			}
+		}
+		return $list;
+	}
 
 	/**
 	 * Used for sorting the data set template, created by gd_get_data_set_template().
@@ -121,9 +135,9 @@ class DataTypePluginHelper {
 	}
 	*/
 
-
 	/**
-	 * Returns an array of available, instantiated Data Type objects.
+	 * Returns an array of available, grouped, instantiated Data Type objects.
+	 * @return array
 	 */
 	function getDataTypePlugins() {
 		$dataTypesFolder = realpath(dirname(__FILE__) . "/../plugins/dataTypes");
@@ -135,13 +149,11 @@ class DataTypePluginHelper {
 				}
 				if (is_dir("$dataTypesFolder/$item")) {
 					$obj = self::instantiateDataType($dataTypesFolder, $item);
-
 					if ($obj != null) {
+						$obj->path = "$dataTypesFolder/$item";
+						$obj->folder = $item;
 						$dataTypes[] = $obj;
 					}
-
-					$obj->path = "$dataTypesFolder/$item";
-					$obj->folder = $item;
 				}
 			}
 			closedir($handle);

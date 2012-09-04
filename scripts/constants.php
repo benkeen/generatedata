@@ -1,5 +1,6 @@
+<?php require_once(realpath(dirname(__FILE__) . "/../library.php")); ?>
 /**
- * Contains all constants used by the script.
+ * Constants used by the client-side code.
  */
 define([], function() {
 
@@ -10,8 +11,9 @@ define([], function() {
 		 */
 		DEBUGGING: {
 			CONSOLE_LOG: true,
-			LIST_PUBLISH_EVENTS: true,
-			LIST_SUBSCRIBE_EVENTS: true
+			LIST_PUBLISH_EVENTS: <?php echo (Settings::getSetting("consoleEventsPublish") == "enabled") ? "true" : "false"; ?>,
+			LIST_SUBSCRIBE_EVENTS: <?php echo (Settings::getSetting("consoleEventsSubscribe") == "enabled") ? "true" : "false"; ?>
+
 		},
 
 		/**
@@ -47,7 +49,9 @@ define([], function() {
 					TYPE_CHANGE: 'event-data-table-row-type-change',
 					DELETE: "event-data-table-row-delete",
 					ADD: "event-data-table-row-add",
-					RE_SORT: "event-data-table-row-sort"
+					RE_SORT: "event-data-table-row-sort",
+					HELP_DIALOG_OPEN: "event-data-table-help-dialog-open",
+					HELP_DIALOG_CLOSE: "event-data-table-help-dialog-close"
 				},
 				CLEAR: "event-data-table-clear",
 			},
@@ -68,9 +72,7 @@ define([], function() {
 			},
 			MODULE: {
 				REGISTER: "event-module-register",
-				UNREGISTER: "event-module-unregister",
-
-				READY: "" // ... INIT? RUN?
+				UNREGISTER: "event-module-unregister"
 			}
 		}
 	}

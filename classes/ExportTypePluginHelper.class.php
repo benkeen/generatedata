@@ -22,17 +22,18 @@ class ExportTypePluginHelper {
 					$obj = self::instantiateExportType($exportTypesFolder, $item);
 
 					if ($obj != null) {
+
+						$folders = explode(DIRECTORY_SEPARATOR, "$exportTypesFolder/$item");
+						$folders = array_reverse($folders);
+
+						// interesting, this. This is extremely simple and makes access to these values really easy
+						// ($class->path), but they're public so they can be overridden (bad!). But I still think
+						// it's better than some verbose getter function like $obj->getPath();
+						$obj->path = "{$folders[2]}/{$folders[1]}/{$folders[0]}";
+						$obj->folder = $folders[0];
+
 						$exportTypes[] = $obj;
 					}
-
-					$folders = explode(DIRECTORY_SEPARATOR, "$exportTypesFolder/$item");
-					$folders = array_reverse($folders);
-
-					// interesting, this. This is extremely simple and makes access to these values really easy
-					// ($class->path), but they're public so they can be overridden (bad!). But I still think
-					// it's better than some verbose getter function like $obj->getPath();
-					$obj->path = "{$folders[2]}/{$folders[1]}/{$folders[0]}";
-					$obj->folder = $folders[0];
 				}
 			}
 			closedir($handle);

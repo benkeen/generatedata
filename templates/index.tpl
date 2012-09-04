@@ -86,7 +86,7 @@
 					{/foreach}
 
 					<div id="gdMessages">
-						<a class="gdClose" title="{$L.hide_error}" onclick="return g.hideErrors(false)" href="#">X</a>
+						<a class="gdMessageClose" title="{$L.hide_error}" href="#">X</a>
 						<div></div>
 					</div>
 
@@ -155,7 +155,7 @@
 			</div>
 
 			<div class="gdTabContent" id="gdTab2Content">
-				<form method="post">
+				<form action="index.php#t2" method="post">
 					<h3>Developer Settings</h3>
 					<div>
 						<input type="checkbox" name="consoleEventsPublish" id="gdSettingsConsoleEventsPublish"
@@ -168,7 +168,7 @@
 							<label for="gdSettingsConsoleEventsSubscribe">List console.log() <b>subscribe</b> events</label>
 					</div>
 					<p>
-						<input type="submit" name="submit" value="Update" />
+						<input type="submit" name="updateSettings" value="Update" />
 					</p>
 				</form>
 			</div>

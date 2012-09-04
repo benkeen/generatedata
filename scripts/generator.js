@@ -28,21 +28,28 @@ define([
 		var rows = rows.toString();
 		if (rows.match(/\D/) || rows == 0 || rows == "") {
 			utils.clearErrors();
-
-			Generator.errors.push({ els: [$("#gdNumRows")], error: L.no_num_rows });
-			Generator.displayErrors();
-
+			utils.addErrors({ els: [$("#gdNumRows")], error: L.no_num_rows });
+			utils.displayErrors();
 			return false;
 		}
 
+		var rowIDs = [];
 		for (var i=1; i<=rows; i++) {
 			var currRow = ++_numRows;
+			rowIDs.push(currRow);
 			var newRowHTML = $('#HTML_Row').html().replace(/\$ROW\$/g, currRow);
 			$("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
 		}
 
 		$("#gdNumCols").val(_numRows);
 		_restyleRows();
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.ADD,
+			numRows: rows,
+			rowIDs: rowIDs
+		});
 	};
 
 
@@ -204,7 +211,7 @@ define([
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
 		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
-
+		$(".gdMessageClose").on("click", function() { utils.hideErrors(false); return false; });
 		$("#gdData").bind("submit", _submitForm);
 
 		$(".gdExportType").bind("click", _changeExportType);
@@ -293,7 +300,8 @@ define([
 
 
 	var _showHelpDialog = function(e) {
-		var dataTypeDropdown = $(e.target).closest(".gdTableRow").find(".gdDataType");
+		var row = $(e.target).closest(".gdTableRow");
+		var dataTypeDropdown = row.find(".gdDataType");
 		var choice = dataTypeDropdown.val();
 		var title = null;
 		var opts = $(dataTypeDropdown)[0].options;
@@ -312,9 +320,23 @@ define([
 			modal:     true,
 			resizable: false,
 			title:     title,
-			width:     width
+			width:     width,
+			close:     function(e, ui) {
+				manager.publish({
+					sender: MODULE_ID,
+					type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_CLOSE,
+					rowElement: row,
+					event: e
+				});
+			}
 		});
 		myDialog.dialog('open');
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN,
+			rowElement: row
+		});
 	}
 
 
@@ -338,7 +360,7 @@ define([
 
 		// check numResults is an integer
 		if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
-			Generator.errors.push({ el: $("#numResults"), error: L.invalid_num_results });
+			utils.addErrors({ el: $("#numResults"), error: L.invalid_num_results });
 		}
 
 		var error = false;
@@ -383,10 +405,10 @@ define([
 			// keep track of the data types that have custom validation routines
 			var func_ns = $("#type_" + nodeNum).val() + "_ns";
 			if (typeof window[func_ns] === "object" && typeof window[func_ns].validate === "function") {
-				if (!Generator._multiDimArrayContains(func_ns, dataTypeValidationFunctions)) {
+				if (!_multiDimArrayContains(func_ns, dataTypeValidationFunctions)) {
 					dataTypeValidationFunctions.push([func_ns, [nodeNum]]);
 				} else {
-					dataTypeValidationFunctions = Generator._multiDimArrayAddRow(func_ns, dataTypeValidationFunctions, nodeNum);
+					dataTypeValidationFunctions = _multiDimArrayAddRow(func_ns, dataTypeValidationFunctions, nodeNum);
 				}
 			}
 
@@ -407,7 +429,7 @@ define([
 				problemFields.push(missingNodeNames[i][0]);
 				rowNumbers.push(missingNodeNames[i][1]);
 			}
-			Generator.errors.push({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+			utils.addErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
 		}
 		if (invalidNodeNames.length) {
 			var problemFields = [];
@@ -416,6 +438,7 @@ define([
 				problemFields.push(invalidNodeNames[i][0]);
 				rowNumbers.push(invalidNodeNames[i][1]);
 			}
+			utils.addErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
 			Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
 		}
 		if (missingTableNames.length) {

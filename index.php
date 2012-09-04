@@ -2,6 +2,9 @@
 
 require_once("library.php");
 
+if (isset($_POST["updateSettings"])) {
+	Settings::updateSettings($_POST);
+}
 
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();

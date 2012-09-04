@@ -1,9 +1,12 @@
 define([
+	"manager",
+	"constants",
 	"lang",
 	"jquery-ui",
 	"jquery-json",
-], function(L) {
+], function(manager, C, L) {
 
+	var MODULE_ID       = "utils";
 	var _currentTab     = 1;
 	var _errors         = [];
 	var _messageVisible = false;
@@ -19,6 +22,13 @@ define([
 			$("#gdTab" + tab).addClass("gdSelected");
 			$("#gdTab" + _currentTab + "Content").hide();
 			$("#gdTab" + tab + "Content").show();
+
+			manager.publish({
+				sender: MODULE_ID,
+				type: C.EVENT.TAB.CHANGE,
+				oldTab: _currentTab,
+				newTab: tab
+			});
 
 			_currentTab = tab;
 			return false;
@@ -41,8 +51,12 @@ define([
 			$("#loadingIcon").hide();
 		},
 
+		addErrors: function(errors) {
+			_errors.push(errors);
+		},
+
 		clearErrors: function() {
-			gd.errors = [];
+			_errors = [];
 			$("*").removeClass("gdProblemField");
 		},
 
@@ -65,19 +79,21 @@ define([
 		displayErrors: function() {
 			var html = L.please_fix_errors + "<ul>";
 			var hasFocus = false;
-			for (var i=0; i<gd.errors.length; i++) {
-				// style all offending fields and focus on the first field
-				if (gd.errors[i].els != null) {
-					for (var j=0; j<gd.errors[i].els.length; j++) {
+
+			for (var i=0; i<_errors.length; i++) {
+
+				// style all offending fields and focus on the first one with a problem
+				if (_errors[i].els != null) {
+					for (var j=0; j<_errors[i].els.length; j++) {
 						if (!hasFocus) {
-							$(gd.errors[i].els[j]).focus();
+							$(_errors[i].els[j]).focus();
 							hasFocus = true;
 						}
-						$(gd.errors[i].els[j]).addClass("gdProblemField");
+						$(_errors[i].els[j]).addClass("gdProblemField");
 					}
 				}
 
-				html += "<li>" + gd.errors[i].error + "</li>";
+				html += "<li>" + _errors[i].error + "</li>";
 			}
 			$("#gdMessages").removeClass("gdNotify").addClass("gdErrors gdMarginTop");
 			$("#gdMessages div").html(html);

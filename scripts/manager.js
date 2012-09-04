@@ -4,13 +4,11 @@
  */
 define([
 	'constants',
-	'utils'
-], function(C, utils) {
+], function(C) {
 
 	// stores all modules, regardless of type (Core, Data Types, Export Types, Countries).
 	// It's a hash of Module ID -> module info
 	var _modules = {};
-
 
 	/**
 	 * Our registration function. Any plugins - Data Types, Export Types or Countries - that

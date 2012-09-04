@@ -5,7 +5,7 @@ define([
 ], function(C, L, manager) {
 
 	var MODULE_ID = "export-type-SQL";
-	var LANG = L.modules.SQL;
+	var LANG = L.exportTypePlugins.SQL;
 
 	/**
 	 * Called when the user changes the result type

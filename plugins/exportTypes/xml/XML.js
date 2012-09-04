@@ -5,7 +5,7 @@ define([
 ], function(C, L, manager) {
 
 	var MODULE_ID = "export-type-XML";
-	var LANG = L.modules.XML;
+	var LANG = L.exportTypePlugins.XML;
 
 	/**
 	 * Called when the user changes the result type.
