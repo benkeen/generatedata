@@ -5,16 +5,9 @@ class DataType_Date extends DataTypePlugin {
 	protected $dataTypeName = "Date";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 100;
-	protected $includedFiles = array("Country.js");
+	protected $jsModules = array("Date.js");
 
 	private $helpDialogWidth = 860;
-
-	/*
-	private $next_year = mktime(0, 0, 0, date("m"),  date("d"),  date("Y")+1);
-	private $next_year = date("m/d/Y", $next_year);
-	private $last_year = mktime(0, 0, 0, date("m"),  date("d"),  date("Y")-1);
-	private $last_year = date("m/d/Y", $last_year);
-	*/
 
 	public function generateItem($row, $options, $existingRowData) {
 		// convert the From and To dates to datetimes
@@ -63,7 +56,7 @@ class DataType_Date extends DataTypePlugin {
 		$L = Core::$language->getCurrentLanguageStrings();
 
 		$html =<<<EOF
-			<select id="dt_\$ROW\$" onchange="$('#option_\$ROW\$').val(this.value)">
+			<select id="dtExample_%ROW%">
 				<option value="">{$L["please_select"]}</option>
 				<option value="M j, Y">Jan 1, 2012</option>
 				<option value="F jS, Y">January 1st, 2012</option>
@@ -90,35 +83,18 @@ EOF;
 	public function getOptionsColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		// value = $last_year / $next_year
-		$html =<<< END
-	{$this->L["Date_from"]}
-	<input type="text" name="fromDate_\$ROW\$" id="fromDate_\$ROW\$" size="10" value="" />
-	<script>
-	$(function() {
-		$("#fromDate_\$ROW\$").datepicker({
-			showOn:          'button',
-			buttonImage:     'images/calendar_icon.gif',
-			buttonImageOnly: true
-		});
-	});
-	</script>
+		$nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
+		$lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));
 
-	{$this->L["Date_to"]}
-	<input type="text" name="toDate_\$ROW\$" id="toDate_\$ROW\$" size="10" value="" />
-	<script>
-	$(function() {
-		$("#toDate_\$ROW\$").datepicker({
-			showOn:          'button',
-			buttonImage:     'images/calendar_icon.gif',
-			buttonImageOnly: true
-		});
-	});
-	</script>
+		$html =<<< END
+	{$this->L["Date_from"]} <input type="text" name="dtFromDate_%ROW%" id="dtFromDate_%ROW%" class="" size="10" value="$lastYear" />
+	{$this->L["Date_to"]} <input type="text" name="dtToDate_%ROW%" id="dtToDate_%ROW%" size="10" value="$nextYear" />
 	<div>
-		{$this->L["Date_format_code"]}&nbsp;<input type="text" name="option_\$ROW\$" id="option_\$ROW\$" style="width: 160px;" />
+		{$this->L["Date_format_code"]}&nbsp;<input type="text" name="option_%ROW%" id="option_%ROW%" style="width: 160px" />
 	</div>
 END;
+
+		return $html;
 	}
 
 	public function getHelpDialogInfo() {

@@ -9,13 +9,31 @@ define([
 
 	var _init = function() {
 		var subscriptions = {};
+		subscriptions[C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE] = _dataTypeChange;
 		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__Date"] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
+	}
+
+	var _dataTypeChange = function(msg) {
+
+		if ($("#dtFromDate_" + msg.rowID).length) {
+			$("#dtFromDate_" + msg.rowID).datepicker({
+				showOn:          'button',
+				buttonImage:     'http://localhost:8888/generatedata/images/calendar_icon.gif',
+				buttonImageOnly: true
+			});
+			$("#dtToDate_" + msg.rowID).datepicker({
+				showOn:          'button',
+				buttonImage:     'images/calendar_icon.gif',
+				buttonImageOnly: true
+			});
+		}
 	}
 
 	var _exampleChange = function(msg) {
 		//$("#dtOption_" + msg.rowID).val(msg.value);
 	}
+
 
 /*
 	validate: function(rows)

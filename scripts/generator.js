@@ -24,14 +24,6 @@ define([
 	var _currExportType = null; // populated onload
 	var _subscriptions = {};
 
-	/**
-	 * Our initialization function. This runs prior to ANY modules being actually run. It enables
-	 * us to ensure all subscriptions are in place, prior to actually anything gets published.
-	 */
-	var _init = function() {
-
-	};
-
 
 	/**
 	 * Called when everything is loaded. This binds the appropriate event handlers, which in turn
@@ -538,7 +530,6 @@ define([
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.CORE, {
-		init: _init,
 		run: _run,
 		skipDomReady: false
 	});
