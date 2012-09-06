@@ -1,9 +1,11 @@
 <?php
 
 class DataType_Phone extends DataTypePlugin {
+
 	protected $dataTypeName = "Phone / Fax";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 20;
+	protected $jsModules = array("Phone.js");
 
 	private $helpDialogWidth = 450;
 
@@ -58,7 +60,7 @@ EOF;
 	}
 
 	public function getOptionsColumnHTML() {
-		$html = '<input type="text" name="option_$ROW$" id="option_$ROW$" style="width: 267px" />';
+		$html = '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 		return $html;
 	}
 

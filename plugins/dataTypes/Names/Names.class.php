@@ -7,7 +7,7 @@ class DataType_Names extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 10;
-	protected $includedFiles = array("Names.js");
+	protected $jsModules = array("Names.js");
 
 	// custom member vars for this Data Type
 	private $helpDialogWidth = 380;
@@ -71,7 +71,7 @@ class DataType_Names extends DataTypePlugin {
 		$L = Core::$language->getCurrentLanguageStrings();
 
 		$html =<<< END
-	<select name="gdDataTypeExample_\$ROW\$" id="gdDataTypeExample_\$ROW\$">
+	<select name="gdDataTypeExample_%ROW%" id="gdDataTypeExample_%ROW%">
 		<option value="">{$L["please_select"]}</option>
 		<option value="MaleName">{$this->L["Names_example_MaleName"]}</option>
 		<option value="FemaleName">{$this->L["Names_example_FemaleName"]}</option>
@@ -90,7 +90,7 @@ END;
 	}
 
 	public function getOptionsColumnHTML() {
-		return '<input type="text" name="option_$ROW" id="option_$ROW" style="width: 267px" />';
+		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 	}
 
 	public function getNames() {

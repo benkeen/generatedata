@@ -3,7 +3,7 @@
 $data_type_example_html = $L["see_help_popup"];
 
 $data_type_options_html =<<<EOF
-<textarea name="option_\$ROW\$" id="option_\$ROW\$" style="height: 70px; width: 260px"></textarea>
+<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" style="height: 70px; width: 260px"></textarea>
 EOF;
 
 

@@ -24,6 +24,54 @@ define([
 	var _currExportType = null; // populated onload
 	var _subscriptions = {};
 
+	/**
+	 * Our initialization function. This runs prior to ANY modules being actually run. It enables
+	 * us to ensure all subscriptions are in place, prior to actually anything gets published.
+	 */
+	var _init = function() {
+
+	};
+
+
+	/**
+	 * Called when everything is loaded. This binds the appropriate event handlers, which in turn
+	 * publish the various events for the modules to pick up on.
+	 */
+	var _run = function() {
+		$("#gdCountryList").on("click", "input", _updateCountryChoice);
+		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
+		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
+		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
+		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
+
+		$(".gdMessageClose").on("click", function() { utils.hideErrors(false); return false; });
+		$("#gdData").bind("submit", _submitForm);
+
+		$(".gdExportType").bind("click", _changeExportType);
+		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
+		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
+
+
+
+		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); });
+		$("#gdTableRows").sortable({
+			handle: ".gdColOrder",
+			axis: "y",
+			update: function(event, ui) {
+				_restyleRows();
+				manager.publish({
+					sender: MODULE_ID,
+					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
+					row: ui.item
+				});
+			}
+		});
+
+		_changeExportType();
+		_updateCountryChoice();
+		_addRows(5);
+	}
+
 	var _addRows = function(rows) {
 		var rows = rows.toString();
 		if (rows.match(/\D/) || rows == 0 || rows == "") {
@@ -37,7 +85,7 @@ define([
 		for (var i=1; i<=rows; i++) {
 			var currRow = ++_numRows;
 			rowIDs.push(currRow);
-			var newRowHTML = $('#HTML_Row').html().replace(/\$ROW\$/g, currRow);
+			var newRowHTML = $("#gdTableRowTemplate").html().replace(/%ROW%/g, currRow);
 			$("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
 		}
 
@@ -193,50 +241,19 @@ define([
 	};
 
 
-	/**
-	 * Our initialization function. This runs prior to ANY modules being actually run. It enables
-	 * us to ensure all subscriptions are in place, prior to actually anything gets published.
-	 */
-	var _init = function() {
+	var _publishExampleChange = function(e) {
+		var select = e.target;
+		var rowElement = $(select).closest(".gdTableRow");
+		var rowID = parseInt($(rowElement).attr("id").replace(/^row_/, ""));
+		var dataTypeFolder = $(rowElement).find(".gdDataType").val();
 
-	};
-
-
-	/**
-	 * Called when everything is loaded. This binds the appropriate event handlers, which in turn
-	 * publish the various events for the modules to pick up on.
-	 */
-	var _run = function() {
-		$("#gdCountryList").on("click", "input", _updateCountryChoice);
-		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
-		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
-		$(".gdMessageClose").on("click", function() { utils.hideErrors(false); return false; });
-		$("#gdData").bind("submit", _submitForm);
-
-		$(".gdExportType").bind("click", _changeExportType);
-		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
-		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
-
-		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); });
-		$("#gdTableRows").sortable({
-			handle: ".gdColOrder",
-			axis: "y",
-			update: function(event, ui) {
-				_restyleRows();
-				manager.publish({
-					sender: MODULE_ID,
-					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
-					row: ui.item
-				});
-			}
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + dataTypeFolder,
+			rowID: rowID,
+			value: select.value
 		});
-
-		_changeExportType();
-		_updateCountryChoice();
-		_addRows(5);
 	}
-
 
 	/**
 	 * Called when the user changes the Data Type for a particular row.
@@ -244,17 +261,17 @@ define([
 	 * The reason for this somewhat verbose process is to allow
 	 */
 	var _changeRowType = function(e) {
-		var row = parseInt($(e.target).attr("id").replace(/^gdDataType_/, ""));
+		var rowID = parseInt($(e.target).attr("id").replace(/^gdDataType_/, ""));
 		var dataTypeFolder = e.target.value;
 
 		// if the user just selected the empty value ("Please Select"), clear everything
 		if (dataTypeFolder == "") {
-			$('#gdColExamples_' + row + ',#gdColOptions_' + row + ',#gdColHelp_' + row).html("");
+			$('#gdColExamples_' + rowID + ',#gdColOptions_' + rowID + ',#gdColHelp_' + rowID).html("");
 			return;
 		}
 
 		var noOptionsTest  = function() { return true; };
-		var hasOptionsTest = function() { return (typeof $("#option_" + row) != "undefined"); };
+		var hasOptionsTest = function() { return (typeof $("#dtOption_" + rowID) != "undefined"); };
 		var readyTest = ($("#gdDataTypeOptions_" + dataTypeFolder).length > 0) ? hasOptionsTest : noOptionsTest;
 
 		utils.pushToQueue([
@@ -263,23 +280,23 @@ define([
 				var optionsHTML = null;
 
 				if ($("#gdDataTypeExamples_" + dataTypeFolder).html() != "") {
-					exampleHTML = $("#gdDataTypeExamples_" + dataTypeFolder).html().replace(/\$ROW\$/g, row);
+					exampleHTML = $("#gdDataTypeExamples_" + dataTypeFolder).html().replace(/%ROW%/g, rowID);
 				} else {
 					exampleHTML = "&nbsp;" + L.no_examples_available;
 				}
-				$('#gdColExamples_' + row).html(exampleHTML);
+				$('#gdColExamples_' + rowID).html(exampleHTML);
 
 				if ($("#gdDataTypeOptions_" + dataTypeFolder).html() != "") {
-					optionsHTML = $("#gdDataTypeOptions_" + dataTypeFolder).html().replace(/\$ROW\$/g, row);
+					optionsHTML = $("#gdDataTypeOptions_" + dataTypeFolder).html().replace(/%ROW%/g, rowID);
 				} else {
 					optionsHTML = "&nbsp;" + L.no_options_available;
 				}
-				$('#gdColOptions_' + row).html(optionsHTML);
+				$('#gdColOptions_' + rowID).html(optionsHTML);
 
 				if ($("#gdDataTypeHelp_" + dataTypeFolder).html() != "") {
-					$('#gdColHelp_' + row).html($("#gdHelpIcon").html().replace(/\$ROW\$/g, row));
+					$('#gdColHelp_' + rowID).html($("#gdHelpIcon").html().replace(/%ROW%/g, rowID));
 				} else {
-					$('#gdColHelp_' + row).html(" ");
+					$('#gdColHelp_' + rowID).html(" ");
 				}
 			},
 			readyTest,
@@ -293,7 +310,7 @@ define([
 		manager.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
-			row: row,
+			rowID: rowID,
 			dataTypeFolder: dataTypeFolder
 		});
 	}

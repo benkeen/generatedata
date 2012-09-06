@@ -18,8 +18,15 @@ if (!empty($jsModules)) {
 	$exportTypeJSModules = "\"" . implode("\",\n\"", $jsModules) . "\"";
 }
 
+$dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
+$jsModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes);
+$dataTypeJSModules = "";
+if (!empty($jsModules)) {
+	$dataTypeJSModules = "\"" . implode("\",\n\"", $jsModules) . "\"";
+}
+
 $params = array();
-$params["dataTypeJSModules"] = ""; // TODO
+$params["dataTypeJSModules"] = $dataTypeJSModules;
 $params["exportTypeJSModules"] = $exportTypeJSModules;
 $params["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
 $params["settings"] = Settings::getSettings();

@@ -87,7 +87,7 @@ abstract class ExportTypePlugin {
 	}
 
 	/**
-	 * Returns the name of the Export Type in the current language.
+	 * Returns the name of the Export Type in the current language.x
 	 * @return string
 	 */
 	public final function getName() {

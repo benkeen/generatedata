@@ -41,7 +41,7 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 		$html =<<< END
-	<select name="dt_\$ROW\$" id="dt_\$ROW\$">
+	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
 		<option value="">{$L["please_select"]}</option>
 		<option value="LxL xLx">V6M 4C1 {$this->L["AlphaNumeric_example_CanPostalCode"]}</option>
 		<option value="xxxxx">90210 {$this->L["AlphaNumeric_example_USZipCode"]}</option>
@@ -52,7 +52,7 @@ END;
 	}
 
 	public function getOptionsColumnHTML() {
-		return '<input type="text" name="option_$ROW$" id="option_$ROW$ style="width: 267px" />';
+		return '<input type="text" name="option_%ROW%" id="option_%ROW% style="width: 267px" />';
 	}
 
 	public function getHelpDialogInfo() {

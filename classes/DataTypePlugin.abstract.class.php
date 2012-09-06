@@ -16,8 +16,13 @@ abstract class DataTypePlugin {
 	protected $processOrder = 1; // int
 
 	// OPTIONALLY defined by data types
-	protected $includedFiles = array();
-	protected $enabled = true; // TODO
+
+	/**
+	 * An array of JS modules that need to be included for this module. They should be requireJS-friendly
+	 * modules.
+	 * @var array
+	 */
+	protected $jsModules = array();
 
 	/**
 	 * Contains all strings for the current language. This is populated automatically on instantiation and
@@ -175,7 +180,7 @@ abstract class DataTypePlugin {
 		return $this->includedFiles;
 	}
 
-/**
+	/**
 	 * This returns the field group that this Data Type should be listed in. See the Core::$dataTypeGroups for the
 	 * available options.
 	 *
@@ -202,5 +207,22 @@ abstract class DataTypePlugin {
 	 */
 	final public function getProcessOrder() {
 		return $this->processOrder;
+	}
+
+	/**
+	 * Returns the path from the generatedata root folder. That value is automatically created
+	 * for each module when it it instantiated.
+	 * @return string
+	 */
+	public final function getPath() {
+		return $this->path;
+	}
+
+	/**
+	 * Returns a list of all javascript modules for this Export Type.
+	 * @return array
+	 */
+	public final function getJSModules() {
+		return $this->jsModules;
 	}
 }

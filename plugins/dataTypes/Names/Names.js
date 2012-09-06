@@ -9,11 +9,12 @@ define([
 
 	var _init = function() {
 		var subscriptions = {};
-
+		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__Names"] = _exampleChange;
+		manager.subscribe(MODULE_ID, subscriptions);
 	}
 
-	var _run = function() {
-
+	var _exampleChange = function(msg) {
+		$("#dtOption_" + msg.rowID).val(msg.value);
 	}
 
 
@@ -61,7 +62,7 @@ define([
 	 * Called when the user saves a form. This function is passed the row number of the row to
 	 * save. It should return a well-formatted JSON object (of whatever structure is relevant.
 	 */
-	var _saveRow: function(rowNum) {
+	var _saveRow = function(rowNum) {
 		return {
 			"example":  $("#dt_" + rowNum).val(),
 			"option":   $("#option_" + rowNum).val()
@@ -70,8 +71,7 @@ define([
 
 
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		init: _init,
-		run: _run
+		init: _init
 	});
 
 });

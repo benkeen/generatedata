@@ -55,7 +55,7 @@ class DataType_AutoIncrement extends DataTypePlugin {
 
 	public function getExampleColumnHTML() {
 		$html =<<< END
-	<select name="dt_\$ROW\$" id="dt_\$ROW\$">
+	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
 		<option value="1,1,">1, 2, 3, 4, 5, 6...</option>
 		<option value="100,1,">100, 101, 102, 103, 104...</option>
 		<option value="0,2,">0, 2, 4, 6, 8, 10...</option>
@@ -72,9 +72,9 @@ END;
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END
-&nbsp;{$this->L["AutoIncrement_start_at_c"]} <input type="text" name="autoIncrementStart_\$ROW\$" id="autoIncrementStart_\$ROW\$" style="width: 40px" value="1" />&nbsp;
-&nbsp;{$this->L["AutoIncrement_increment_c"]} <input type="text" name="autoIncrementValue_\$ROW\$" id="autoIncrementValue_\$ROW\$" style="width: 40px" value="1" />
-&nbsp;{$this->L["AutoIncrement_placeholder_str"]} <input type="text" name="autoIncrementPlaceholder_\$ROW\$" id="autoIncrementPlaceholder_\$ROW\$" style="width: 140px" />
+&nbsp;{$this->L["AutoIncrement_start_at_c"]} <input type="text" name="autoIncrementStart_%ROW%" id="autoIncrementStart_%ROW%" style="width: 40px" value="1" />&nbsp;
+&nbsp;{$this->L["AutoIncrement_increment_c"]} <input type="text" name="autoIncrementValue_%ROW%" id="autoIncrementValue_%ROW%" style="width: 40px" value="1" />
+&nbsp;{$this->L["AutoIncrement_placeholder_str"]} <input type="text" name="autoIncrementPlaceholder_%ROW%" id="autoIncrementPlaceholder_%ROW%" style="width: 140px" />
 END;
 		return $html;
 	}

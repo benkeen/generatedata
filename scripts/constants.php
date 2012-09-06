@@ -47,6 +47,7 @@ define([], function() {
 					CHECK_TO_DELETE: "event-data-table-check-row-to-delete",
 					UNCHECK_TO_DELETE: "event-data-table-uncheck-row-to-delete",
 					TYPE_CHANGE: 'event-data-table-row-type-change',
+					EXAMPLE_CHANGE: 'event-data-table-row-example-change',
 					DELETE: "event-data-table-row-delete",
 					ADD: "event-data-table-row-add",
 					RE_SORT: "event-data-table-row-sort",

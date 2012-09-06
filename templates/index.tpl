@@ -119,26 +119,25 @@
 					{$L.add} <input type="text" name="gdNumRows" id="gdNumRows" value="1" size="2" />
 					<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 
-
 					{* hidden iframe, to which the form is submitted *}
 					<iframe name="hiddenIframe" src="" frameborder="0" scrolling="no" style="height: 0px; width: 0px;"></iframe>
 
 					<div class="gdVerticalPad"></div>
 					<div>
 						<button class="gdGreenButton gdGenerateButton">{$L.generate}</button>
-						<input type="text" style="width:45px;" name="gdNumResults" id="gdNumResults" value="100" /> rows
+						<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
 					</div>
 
 					<div class="hidden">
-						<div id="HTML_Row">
+						<div id="gdTableRowTemplate">
 							<ul>
-								<li class="gdColOrder">$ROW$</li>
-								<li class="gdColTitle"><input type="text" name="title_$ROW$" id="title_$ROW$" /></li>
+								<li class="gdColOrder">%ROW%</li>
+								<li class="gdColTitle"><input type="text" name="title_%ROW%" id="title_%ROW%" /></li>
 								<li class="gdColDataType">{data_types_dropdown}</li>
-								<li class="gdColExamples" id="gdColExamples_$ROW$">&nbsp;</li>
-								<li class="gdColOptions" id="gdColOptions_$ROW$">&nbsp;</li>
-								<li class="gdColHelp" id="gdColHelp_$ROW$">&nbsp;</li>
-								<li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="gdDeleteRows_$ROW$" /></li>
+								<li class="gdColExamples" id="gdColExamples_%ROW%">&nbsp;</li>
+								<li class="gdColOptions" id="gdColOptions_%ROW%">&nbsp;</li>
+								<li class="gdColHelp" id="gdColHelp_%ROW%">&nbsp;</li>
+								<li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="gdDeleteRows_%ROW%" /></li>
 							</ul>
 						</div>
 						<div id="gdHelpIcon">

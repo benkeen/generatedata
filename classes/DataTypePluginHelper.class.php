@@ -118,6 +118,24 @@ class DataTypePluginHelper {
 		return $list;
 	}
 
+
+	/**
+	 * Used in the main page to generate a list of Export Type JS files.
+	 * @return array
+	 */
+	public function getDataTypeJSResources($dataTypes) {
+		$files = array();
+		foreach ($dataTypes as $dataType) {
+			$jsModules = $dataType->getJSModules();
+			$path      = $dataType->getPath();
+			for ($i=0; $i<count($jsModules); $i++) {
+				$files[] = "$path/{$jsModules[$i]}";
+			}
+		}
+
+		return $files;
+	}
+
 	/**
 	 * Used for sorting the data set template, created by gd_get_data_set_template().
 	 *
@@ -150,7 +168,10 @@ class DataTypePluginHelper {
 				if (is_dir("$dataTypesFolder/$item")) {
 					$obj = self::instantiateDataType($dataTypesFolder, $item);
 					if ($obj != null) {
-						$obj->path = "$dataTypesFolder/$item";
+						$folders = explode(DIRECTORY_SEPARATOR, "$dataTypesFolder/$item");
+						$folders = array_reverse($folders);
+
+						$obj->path = "{$folders[2]}/{$folders[1]}/{$folders[0]}";
 						$obj->folder = $item;
 						$dataTypes[] = $obj;
 					}

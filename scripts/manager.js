@@ -38,8 +38,8 @@ define([
 
 		var settings = $.extend({
 			type: null,
-			init: null,
-			run: null,
+			init: function() { },
+			run: function() { },
 			skipDomReady: false,
 			subscriptions: {}
 		}, module);

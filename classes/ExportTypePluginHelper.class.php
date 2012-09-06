@@ -22,7 +22,6 @@ class ExportTypePluginHelper {
 					$obj = self::instantiateExportType($exportTypesFolder, $item);
 
 					if ($obj != null) {
-
 						$folders = explode(DIRECTORY_SEPARATOR, "$exportTypesFolder/$item");
 						$folders = array_reverse($folders);
 
@@ -83,7 +82,7 @@ class ExportTypePluginHelper {
 	}
 
 	/**
-	 * Used in the main page to generate a list of
+	 * Used in the main page to generate a list of Export Type JS files.
 	 * @return array
 	 */
 	public function getExportTypeJSResources($exportTypes) {
