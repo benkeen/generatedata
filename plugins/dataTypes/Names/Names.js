@@ -1,8 +1,9 @@
 define([
 	"manager",
 	"constants",
-	"lang"
-], function(manager, C, L) {
+	"lang",
+	"generator"
+], function(manager, C, L, generator) {
 
 	var MODULE_ID = "data-type-Names";
 	var LANG = L.dataTypePlugins.Names;
@@ -26,19 +27,23 @@ define([
 	 * gen._getVisibleRowOrderByRowNum(row)
 	 */
 	var _validate = function(rows) {
+
 		var visibleProblemRows = [];
 		var problemFields      = [];
 		for (var i=0; i<rows.length; i++) {
-			if ($("#option_" + rows[i]).val() == "") {
-				var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
+			if ($("#dtOption_" + rows[i]).val() == "") {
+				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#option_" + rows[i]));
+				problemFields.push($("#dtOption_" + rows[i]));
 			}
 		}
 
+		var errors = [];
 		if (visibleProblemRows.length) {
-			gd.errors.push({ els: problemFields, error: L.Names_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+			errors.push({ els: problemFields, error: L.Names_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 		}
+
+		return errors;
 	};
 
 	/**
@@ -71,7 +76,8 @@ define([
 
 
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		init: _init
+		init: _init,
+		validate: _validate
 	});
 
 });

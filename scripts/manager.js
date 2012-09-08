@@ -18,6 +18,7 @@ define([
 	 * @param {object} module
 	 */
 	var _register = function(moduleID, moduleType, module) {
+
 		if (_modules.hasOwnProperty(moduleID) && C.DEBUGGING.CONSOLE_LOG) {
 			console.warn("Sorry, a module with ID has already been registered.");
 			return;
@@ -37,16 +38,20 @@ define([
 		}
 
 		var settings = $.extend({
-			type: null,
 			init: function() { },
 			run: function() { },
+			validate: function() { },
 			skipDomReady: false,
 			subscriptions: {}
 		}, module);
 
+		// include the type
+		settings.type = moduleType;
+
 		// store the module
 		_modules[moduleID] = settings;
 
+		// announce it's been registered
 		_publish({
 			sender: moduleID,
 			type: C.EVENT.MODULE.REGISTER
@@ -62,6 +67,9 @@ define([
 		}
 	}
 
+	/**
+	 * Used to publish a message that can be picked up by any other module.
+	 */
 	var _publish = function(messages) {
 		if (!$.isArray(messages)) {
 			messages = [messages];
@@ -79,7 +87,6 @@ define([
 			}
 		}
 	}
-
 
 	/**
 	 * Our main subscribe() function. This is called by any module, regardless of type,
@@ -120,6 +127,32 @@ define([
 	}
 
 	var _unsubscribe = function(moduleID, subscriptions) {
+
+	}
+
+	var _validateDataTypes = function(rowValidationNeededGroupedByDataType) {
+
+		for (var moduleID in _modules) {
+			if (_modules[moduleID].type != C.COMPONENT.DATA_TYPE) {
+				continue;
+			}
+
+			// check to see if there are any rows in the form of this data type that need validating
+			if (!rowValidationNeededGroupedByDataType.hasOwnProperty(moduleID)) {
+				continue;
+			}
+
+			var errors = _modules[moduleID].validate(rowValidationNeededGroupedByDataType[moduleID]);
+			if (!$.isArray(errors)) {
+				continue;
+			}
+
+			console.log("errors:");
+			console.log(errors);
+		}
+	}
+
+	var _validateExportTypes = function() {
 
 	}
 
@@ -180,6 +213,8 @@ define([
 		subscribe:    _subscribe,
 		unsubscribe:  _unsubscribe,
 		getModules:   _getModules,
+		validateDataTypes: _validateDataTypes,
+		validateExportTypes: _validateExportTypes,
 
 		// this one's weird...
 		start:    	  _start

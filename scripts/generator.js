@@ -35,15 +35,11 @@ define([
 		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
-
 		$(".gdMessageClose").on("click", function() { utils.hideErrors(false); return false; });
 		$("#gdData").bind("submit", _submitForm);
-
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
-
-
 
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); });
 		$("#gdTableRows").sortable({
@@ -350,7 +346,7 @@ define([
 
 
 	var _getRowOrder = function() {
-		var orderedRowIDs = $("#tableRows").sortable("toArray");
+		var orderedRowIDs = $("#gdTableRows").sortable("toArray");
 		var sortedOrder = [];
 		for (var i=0; i<orderedRowIDs.length; i++) {
 			var row = orderedRowIDs[i].replace(/row_/g, "");
@@ -362,21 +358,49 @@ define([
 
 
 	var _submitForm = function() {
-		var numResults = $("#numResults").val();
-		var numCols    = $("#numCols").val();
+		var numResults = $("#gdNumResults").val();
+		var numCols    = $("#gdNumCols").val();
 
-		g.clearErrors();
+		utils.clearErrors();
 
-		// check numResults is an integer
+		// check the users specified a numeric value for the number of results
 		if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
-			utils.addErrors({ el: $("#numResults"), error: L.invalid_num_results });
+			utils.addErrors({ el: $("#gdNumResults"), error: L.invalid_num_results });
 		}
 
-		var error = false;
 		var orderedRowIDs = _getRowOrder();
-		var resultType = $("input[name=resultType]:checked").val();
+		var resultType = $("input[name=gdExportType]:checked").val();
 		var numGeneratedRows = 0;
 
+		// look through the form and construct an object of data-type-folder => [row IDs] to
+		// pass to the manager. The manager uses that to farm out the actual validation work
+		// to the appropriate module
+		var rowValidationNeededGroupByDataType = {};
+		for (var i=0; i<orderedRowIDs.length; i++) {
+			var rowID = orderedRowIDs[i];
+			var currRowType = $("#gdDataType_" + rowID).val();
+
+			// ignore empty rows, they don't need validating
+			if (!currRowType) {
+				continue;
+			}
+
+			if (!rowValidationNeededGroupByDataType.hasOwnProperty(currRowType)) {
+				rowValidationNeededGroupByDataType["data-type-" + currRowType] = [];
+			}
+			rowValidationNeededGroupByDataType["data-type-" + currRowType].push(rowID);
+		}
+
+		var dataTypeValidationErrors = manager.validateDataTypes(rowValidationNeededGroupByDataType);
+
+//		var exportTypeValidationErrors = manager.validateExportTypes({
+//			rows: orderedRowIDs,
+//			workNeeded: dataTypesToRows
+//		});
+
+		return false;
+
+/*
 		var missingNodeNames  = [];
 		var invalidNodeNames  = [];
 		var missingTableNames = [];
@@ -423,6 +447,7 @@ define([
 
 			numGeneratedRows++;
 		}
+*/
 
 		// now call all data type validation functions
 		for (var i=0; i<dataTypeValidationFunctions.length; i++) {
@@ -544,7 +569,7 @@ define([
 		/**
 		 * When a user re-orders or deletes some rows, the table gives the appearance of being numbered
 		 * numerically 1-N, however the actual markup retains the original number scheme according to how it
-		 * was first generated. This function finds the visible row order by the actual row number in the markup.
+		 * was first generated. This function returns the visible number of the
 		 */
 		getVisibleRowOrderByRowNum: function(rowNum) {
 			var rowOrder = _getRowOrder();
