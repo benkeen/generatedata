@@ -57,13 +57,14 @@ class Language {
 		// Export Types
 		$exportTypeLines = array();
 		$exportTypes = Core::$exportTypePlugins;
+
 		foreach ($exportTypes as $exportType) {
 			$moduleFolder = $exportType->folder;
-			if (!isset($exportType->language)) {
+			if (!isset($exportType->L)) {
 				continue;
 			}
 			$currModuleLines = array();
-			while (list($key, $value) = each($exportType->language)) {
+			while (list($key, $value) = each($exportType->L)) {
 				$currModuleLines[] = "\"$key\":\"" . addslashes($value) . "\"";
 			}
 			$exportTypeLines[] = "  \"$moduleFolder\": {" . implode(",\n", $currModuleLines) . "}";
@@ -75,14 +76,14 @@ class Language {
 		$dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
 		foreach ($dataTypes as $dataType) {
 			$moduleFolder = $dataType->folder;
-			if (!isset($dataType->language)) {
+			if (!isset($dataType->L)) {
 				continue;
 			}
 			$currModuleLines = array();
-			while (list($key, $value) = each($exportType->language)) {
+			while (list($key, $value) = each($dataType->L)) {
 				$currModuleLines[] = "\"$key\":\"" . addslashes($value) . "\"";
 			}
-			$moduleLines[] = "  \"$moduleFolder\": {" . implode(",\n", $currModuleLines) . "}";
+			$dataTypeLines[] = "  \"$moduleFolder\": {" . implode(",\n", $currModuleLines) . "}";
 		}
 		$lines[] = "\"dataTypePlugins\": {\n" . implode(",\n", $dataTypeLines) . "\n}";
 

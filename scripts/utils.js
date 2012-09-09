@@ -1,3 +1,7 @@
+/**
+ * TODO This code isn't bad but I don't like the sub-groupings of functionality - like error functions &
+ * vars, and the queue stuff. Separate module? Nest the return object to group them?
+ */
 define([
 	"manager",
 	"constants",
@@ -52,7 +56,9 @@ define([
 		},
 
 		addErrors: function(errors) {
-			_errors.push(errors);
+			if ($.isArray(errors) && errors.length) {
+				_errors.push(errors);
+			}
 		},
 
 		clearErrors: function() {
@@ -74,6 +80,13 @@ define([
 			_messageVisible = false;
 
 			return false;
+		},
+
+		/**
+		 * Helper function to return the errors currently that have been logged.
+		 */
+		getErrors: function() {
+			return _errors;
 		},
 
 		displayErrors: function() {

@@ -73,17 +73,17 @@ class DataType_Names extends DataTypePlugin {
 		$html =<<< END
 	<select name="gdDataTypeExample_%ROW%" id="gdDataTypeExample_%ROW%">
 		<option value="">{$L["please_select"]}</option>
-		<option value="MaleName">{$this->L["Names_example_MaleName"]}</option>
-		<option value="FemaleName">{$this->L["Names_example_FemaleName"]}</option>
-		<option value="Name">{$this->L["Names_example_Name"]}</option>
-		<option value="MaleName Surname">{$this->L["Names_example_MaleName_Surname"]}</option>
-		<option value="FemaleName Surname">{$this->L["Names_example_FemaleName_Surname"]}</option>
-		<option value="Name Surname">{$this->L["Names_example_Name_Surname"]}</option>
-		<option value="Name Initial. Surname">{$this->L["Names_example_Name_Initial_Surname"]}</option>
-		<option value="Surname">{$this->L["Names_example_surname"]}</option>
-		<option value="Surname, Name Initial.">{$this->L["Names_example_Surname_Name_Initial"]}</option>
-		<option value="Name, Name, Name, Name">{$this->L["Names_example_Name4"]}</option>
-		<option value="Name Surname|Name Initial. Surname">{$this->L["Names_example_fullnames"]}</option>
+		<option value="MaleName">{$this->L["example_MaleName"]}</option>
+		<option value="FemaleName">{$this->L["example_FemaleName"]}</option>
+		<option value="Name">{$this->L["example_Name"]}</option>
+		<option value="MaleName Surname">{$this->L["example_MaleName_Surname"]}</option>
+		<option value="FemaleName Surname">{$this->L["example_FemaleName_Surname"]}</option>
+		<option value="Name Surname">{$this->L["example_Name_Surname"]}</option>
+		<option value="Name Initial. Surname">{$this->L["example_Name_Initial_Surname"]}</option>
+		<option value="Surname">{$this->L["example_surname"]}</option>
+		<option value="Surname, Name Initial.">{$this->L["example_Surname_Name_Initial"]}</option>
+		<option value="Name, Name, Name, Name">{$this->L["example_Name4"]}</option>
+		<option value="Name Surname|Name Initial. Surname">{$this->L["example_fullnames"]}</option>
 	</select>
 END;
 		return $html;
@@ -181,29 +181,29 @@ END;
 
 		$content =<<<EOF
 	<p>
-		{$this->L["Names_help_intro"]}
+		{$this->L["help_intro"]}
 	</p>
 
 	<table cellpadding="0" cellspacing="1">
 	<tr>
 		<td class="heading_1" width="100">Name</td>
-		<td>{$this->L["Names_type_Name"]}</td>
+		<td>{$this->L["type_Name"]}</td>
 	</tr>
 	<tr>
 		<td class="heading_1">MaleName</td>
-		<td>{$this->L["Names_type_MaleName"]}</td>
+		<td>{$this->L["type_MaleName"]}</td>
 	</tr>
 	<tr>
 		<td class="heading_1">FemaleName</td>
-		<td>{$this->L["Names_type_FemaleName"]}</td>
+		<td>{$this->L["type_FemaleName"]}</td>
 	</tr>
 	<tr>
 		<td class="heading_1">Initial</td>
-		<td>{$this->L["Names_type_Initial"]}</td>
+		<td>{$this->L["type_Initial"]}</td>
 	</tr>
 	<tr>
 		<td class="heading_1">Surname</td>
-		<td>{$this->L["Names_type_Surname"]}</td>
+		<td>{$this->L["type_Surname"]}</td>
 	</tr>
 	</table>
 EOF;

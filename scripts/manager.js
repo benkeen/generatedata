@@ -130,8 +130,13 @@ define([
 
 	}
 
+	/**
+	 * This performs the necessary validation on whatever data types are in the table. It farms out
+	 * the work to the appropriate module and returns an array of objects containing the (localized) error
+	 * strings and offending form fields. The generator does the job of the styling and error display.
+	 */
 	var _validateDataTypes = function(rowValidationNeededGroupedByDataType) {
-
+		var errors = [];
 		for (var moduleID in _modules) {
 			if (_modules[moduleID].type != C.COMPONENT.DATA_TYPE) {
 				continue;
@@ -142,14 +147,13 @@ define([
 				continue;
 			}
 
-			var errors = _modules[moduleID].validate(rowValidationNeededGroupedByDataType[moduleID]);
+			var currErrors = _modules[moduleID].validate(rowValidationNeededGroupedByDataType[moduleID]);
 			if (!$.isArray(errors)) {
 				continue;
 			}
-
-			console.log("errors:");
-			console.log(errors);
+			errors = errors.concat(errors, currErrors);
 		}
+		return errors;
 	}
 
 	var _validateExportTypes = function() {

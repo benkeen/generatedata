@@ -27,7 +27,6 @@ define([
 	 * gen._getVisibleRowOrderByRowNum(row)
 	 */
 	var _validate = function(rows) {
-
 		var visibleProblemRows = [];
 		var problemFields      = [];
 		for (var i=0; i<rows.length; i++) {
@@ -40,7 +39,7 @@ define([
 
 		var errors = [];
 		if (visibleProblemRows.length) {
-			errors.push({ els: problemFields, error: L.Names_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 		}
 
 		return errors;

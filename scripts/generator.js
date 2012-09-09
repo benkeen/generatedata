@@ -359,7 +359,7 @@ define([
 
 	var _submitForm = function() {
 		var numResults = $("#gdNumResults").val();
-		var numCols    = $("#gdNumCols").val();
+		var numCols    = $("#gdNumCols").val(); // TODO this var name is as confusing as hell
 
 		utils.clearErrors();
 
@@ -370,7 +370,7 @@ define([
 
 		var orderedRowIDs = _getRowOrder();
 		var resultType = $("input[name=gdExportType]:checked").val();
-		var numGeneratedRows = 0;
+		var validRowIDs = [];
 
 		// look through the form and construct an object of data-type-folder => [row IDs] to
 		// pass to the manager. The manager uses that to farm out the actual validation work
@@ -385,20 +385,37 @@ define([
 				continue;
 			}
 
-			if (!rowValidationNeededGroupByDataType.hasOwnProperty(currRowType)) {
+			if (!rowValidationNeededGroupByDataType.hasOwnProperty("data-type-" + currRowType)) {
 				rowValidationNeededGroupByDataType["data-type-" + currRowType] = [];
 			}
 			rowValidationNeededGroupByDataType["data-type-" + currRowType].push(rowID);
+			validRowIDs.push(rowID);
+		}
+
+		// if none of the data columns had a selected data type, display an error about that, too
+		if (!validRowIDs.length) {
+			utils.addErrors({ els: null, error: L.no_data });
 		}
 
 		var dataTypeValidationErrors = manager.validateDataTypes(rowValidationNeededGroupByDataType);
+		utils.addErrors(dataTypeValidationErrors);
 
 //		var exportTypeValidationErrors = manager.validateExportTypes({
 //			rows: orderedRowIDs,
 //			workNeeded: dataTypesToRows
 //		});
 
+
+		var errors = utils.getErrors();
+		if (errors.length) {
+			utils.displayErrors();
+			return false;
+		}
+
+		console.log("would normally submit now");
 		return false;
+
+
 
 /*
 		var missingNodeNames  = [];
@@ -446,14 +463,6 @@ define([
 			}
 
 			numGeneratedRows++;
-		}
-*/
-
-		// now call all data type validation functions
-		for (var i=0; i<dataTypeValidationFunctions.length; i++) {
-			var func = dataTypeValidationFunctions[i][0];
-			var rows = dataTypeValidationFunctions[i][1];
-			window[func].validate(rows);
 		}
 
 		if (missingNodeNames.length) {
@@ -510,15 +519,7 @@ define([
 				Generator.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
 			}
 		}
-
-		if (numGeneratedRows == 0) {
-			Generator.errors.push({ els: null, error: L.no_data });
-		}
-
-		if (Generator.errors.length) {
-			Generator.displayErrors();
-			return false;
-		}
+*/
 
 		// all checks out. Set the form target and submit the sucker
 		if (resultType == "HTML" || resultType == "XML" || resultType == "SQL") {
