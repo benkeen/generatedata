@@ -424,7 +424,8 @@ li.gdColDelete {
 	color: #AA0000
 }
 .gdErrors div ul {
-	margin-bottom: 0px;
+	margin: 0px;
+	padding-left: 16px;
 }
 .gdProblemField {
 	background-color: #990000;

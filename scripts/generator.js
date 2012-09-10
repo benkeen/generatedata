@@ -398,6 +398,7 @@ define([
 		}
 
 		var dataTypeValidationErrors = manager.validateDataTypes(rowValidationNeededGroupByDataType);
+		console.log(dataTypeValidationErrors);
 		utils.addErrors(dataTypeValidationErrors);
 
 //		var exportTypeValidationErrors = manager.validateExportTypes({

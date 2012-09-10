@@ -55,10 +55,17 @@ define([
 			$("#loadingIcon").hide();
 		},
 
-		addErrors: function(errors) {
-			if ($.isArray(errors) && errors.length) {
-				_errors.push(errors);
+		/**
+		 * This adds an array of error objects, or just a single one. An error object has two keys:
+		 *
+		 */
+		addErrors: function(newErrors) {
+			if ($.isArray(newErrors) && newErrors.length) {
+				_errors = _errors.concat(_errors, newErrors);
+			} else {
+				_errors.push(newErrors);
 			}
+			console.log(_errors);
 		},
 
 		clearErrors: function() {
@@ -90,7 +97,8 @@ define([
 		},
 
 		displayErrors: function() {
-			var html = L.please_fix_errors + "<ul>";
+
+			var html = "<ul>";
 			var hasFocus = false;
 
 			for (var i=0; i<_errors.length; i++) {
