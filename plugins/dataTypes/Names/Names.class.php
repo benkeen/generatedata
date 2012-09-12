@@ -71,7 +71,7 @@ class DataType_Names extends DataTypePlugin {
 		$L = Core::$language->getCurrentLanguageStrings();
 
 		$html =<<< END
-	<select name="gdDataTypeExample_%ROW%" id="gdDataTypeExample_%ROW%">
+	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
 		<option value="">{$L["please_select"]}</option>
 		<option value="MaleName">{$this->L["example_MaleName"]}</option>
 		<option value="FemaleName">{$this->L["example_FemaleName"]}</option>

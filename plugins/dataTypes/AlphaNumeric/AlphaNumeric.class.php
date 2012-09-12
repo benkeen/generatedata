@@ -7,7 +7,7 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 10;
-	protected $includedFiles = array("AlphaNumeric.js");
+	protected $jsModules = array("AlphaNumeric.js");
 
 	private $helpDialogWidth = 460;
 
@@ -52,7 +52,7 @@ END;
 	}
 
 	public function getOptionsColumnHTML() {
-		return '<input type="text" name="option_%ROW%" id="option_%ROW% style="width: 267px" />';
+		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 	}
 
 	public function getHelpDialogInfo() {
