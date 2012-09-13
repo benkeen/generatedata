@@ -7,7 +7,7 @@ class DataType_AutoIncrement extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 20;
-	protected $includedFiles = array("AutoIncrement.js");
+	protected $jsModules = array("AutoIncrement.js");
 
 	private $helpDialogWidth = 480;
 
@@ -63,8 +63,8 @@ class DataType_AutoIncrement extends DataTypePlugin {
 		<option value="1000,-1,">1000, 999, 998, 997...</option>
 		<option value="0,-1,">0, -1, -2, -3, -4...</option>
 		<option value="0,0.5,">0, 0.5, 1, 1.5, 2...</option>
-		<option value="1,1,ROW-{ROW}">ROW-1, ROW-2, ROW-3,...</option>
-		<option value="2,4,{ROW}i">2i, 4i, 6i, 8i...</option>
+		<option value="1,1,ROW-{INCR}">ROW-1, ROW-2, ROW-3,...</option>
+		<option value="2,4,{INCR}i">2i, 4i, 6i, 8i...</option>
 	</select>
 END;
 		return $html;
@@ -72,9 +72,9 @@ END;
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END
-&nbsp;{$this->L["AutoIncrement_start_at_c"]} <input type="text" name="autoIncrementStart_%ROW%" id="autoIncrementStart_%ROW%" style="width: 40px" value="1" />&nbsp;
-&nbsp;{$this->L["AutoIncrement_increment_c"]} <input type="text" name="autoIncrementValue_%ROW%" id="autoIncrementValue_%ROW%" style="width: 40px" value="1" />
-&nbsp;{$this->L["AutoIncrement_placeholder_str"]} <input type="text" name="autoIncrementPlaceholder_%ROW%" id="autoIncrementPlaceholder_%ROW%" style="width: 140px" />
+&nbsp;{$this->L["AutoIncrement_start_at_c"]} <input type="text" name="dtAutoIncrementStart_%ROW%" id="dtAutoIncrementStart_%ROW%" style="width: 40px" value="1" />&nbsp;
+&nbsp;{$this->L["AutoIncrement_increment_c"]} <input type="text" name="dtAutoIncrementValue_%ROW%" id="dtAutoIncrementValue_%ROW%" style="width: 40px" value="1" />
+&nbsp;{$this->L["AutoIncrement_placeholder_str"]} <input type="text" name="dtAutoIncrementPlaceholder_%ROW%" id="dtAutoIncrementPlaceholder_%ROW%" style="width: 140px" />
 END;
 		return $html;
 	}

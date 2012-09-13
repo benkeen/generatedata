@@ -1,4 +1,4 @@
-var Country_ns = {
+/*var Country_ns = {
   loadRow: function(rowNum, data)
   {
     return [
@@ -15,4 +15,4 @@ var Country_ns = {
       "option": $("#option_" + rowNum).attr("checked")
     };
   }
-}
+}*/

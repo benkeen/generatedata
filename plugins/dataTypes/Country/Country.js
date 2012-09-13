@@ -1,3 +1,4 @@
+/*
 var LatLng_ns = {
   loadRow: function(rowNum, data)
   {
@@ -18,3 +19,4 @@ var LatLng_ns = {
     };
   }
 }
+*/

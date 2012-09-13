@@ -12,16 +12,12 @@ define([
 	var _init = function() {
 		var subscriptions = {};
 		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__AlphaNumeric"] = _exampleChange;
-
-		console.log(subscriptions);
-
 		manager.subscribe(MODULE_ID, subscriptions);
 	}
 
 	var _exampleChange = function(msg) {
 		$("#dtOption_" + msg.rowID).val(msg.value);
 	}
-
 
 	var _validate = function(rows) {
 		var visibleProblemRows = [];

@@ -5,8 +5,7 @@ class DataType_Country extends DataTypePlugin {
 	protected $dataTypeName = "Country";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 50;
-	protected $includedFiles = array("Country.js");
-
+	protected $jsModules = array("Country.js");
 	private $countries;
 
 	public function generateItem($row, $placeholderStr, $existingRowData) {
@@ -47,8 +46,8 @@ class DataType_Country extends DataTypePlugin {
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END
-<input type="checkbox" name="option_\$ROW\$" value="" id="option_\$ROW\" checked="checked" />
-	<label for="option_\$ROW\">{$this->L["Country_limit_results"]}</label>
+<input type="checkbox" name="dtOption_%ROW%" value="" id="dtOption_%ROW%" checked="checked" />
+	<label for="dtOption_%ROW%">{$this->L["Country_limit_results"]}</label>
 END;
 		return $html;
 	}

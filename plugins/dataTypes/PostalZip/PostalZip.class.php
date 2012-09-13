@@ -88,8 +88,8 @@ class DataType_PostalZip extends DataTypePlugin {
 
 			$html .= <<<EOF
 		<div class="country_$slug">
-			<input type="checkbox" name="includeZip_{$slug}_\$ROW\$" id="includeZip_{$slug}_\$ROW\$" checked />
-			<label for="includeZip_{$slug}_\$ROW\$">$regionName</label>
+			<input type="checkbox" name="includeZip_{$slug}_%ROW%" id="includeZip_{$slug}_%ROW%" checked="checked" />
+			<label for="includeZip_{$slug}_%ROW%">$regionName</label>
 		</div>
 EOF;
 		}

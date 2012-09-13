@@ -4,7 +4,7 @@ class DataType_LatLng extends DataTypePlugin {
 	protected $dataTypeName = "Latitude / Longitude";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 100;
-	protected $includedFiles = array("LatLng.js");
+	protected $jsModules = array("LatLng.js");
 
 	// $LatLng_cached_math = array();
 	private $helpDialogWidth = 360;
@@ -25,9 +25,13 @@ class DataType_LatLng extends DataTypePlugin {
 			$info[] = (mt_rand($LatLng_cached_math["min_lng_calc"], $LatLng_cached_math["max_lng_calc"]) / $LatLng_cached_math["divisor"]);
 		}
 		else if ($options["lat"])
+		{
 			$info[] = (mt_rand($LatLng_cached_math["min_lat_calc"], $LatLng_cached_math["max_lat_calc"]) / $LatLng_cached_math["divisor"]);
+		}
 		else if ($options["lng"])
+		{
 			$info[] = (mt_rand($LatLng_cached_math["min_lng_calc"], $LatLng_cached_math["max_lng_calc"]) / $LatLng_cached_math["divisor"]);
+		}
 
 		return join(", ", $info);
 	}
@@ -38,9 +42,13 @@ class DataType_LatLng extends DataTypePlugin {
 		{
 			case "sql":
 				if ($options == "MySQL" || $options == "SQLite")
+				{
 					$info = "varchar(30) default NULL";
+				}
 				else
+				{
 					$info = "varchar2(30) default NULL";
+				}
 				break;
 		}
 
@@ -73,8 +81,10 @@ class DataType_LatLng extends DataTypePlugin {
 
 	public function getOptionsColumnHTML() {
 		$html =<<<END
-<input type="checkbox" name="includeLat_\$ROW\$" id="includeLat_\$ROW\$" checked /><label for="includeLat_\$ROW\$">{$this->L["LatLng_latitude"]}</label>&nbsp;
-<input type="checkbox" name="includeLng_\$ROW\$" id="includeLng_\$ROW\$" checked /><label for="includeLng_\$ROW\$">{$this->L["LatLng_longitude"]}</label>
+<input type="checkbox" name="dtIncludeLat_%ROW%" id="dtIncludeLat_%ROW%" checked="checked" />
+  <label for="dtIncludeLat_%ROW%">{$this->L["LatLng_latitude"]}</label>&nbsp;
+<input type="checkbox" name="dtIncludeLng_%ROW%" id="dtIncludeLng_%ROW%" checked="checked" />
+  <label for="dtIncludeLng_%ROW%">{$this->L["LatLng_longitude"]}</label>
 END;
 		return $html;
 	}

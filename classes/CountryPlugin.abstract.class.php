@@ -19,6 +19,6 @@ abstract class CountryPlugin {
 	}
 
 	final public function getRegionNames() {
-		return $this->countrySlug;
+		return $this->regionNames;
 	}
 }

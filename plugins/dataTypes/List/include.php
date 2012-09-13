@@ -1,5 +1,4 @@
-<script>
-var List_ns = {
+/*var List_ns = {
   loadRow: function(rowNum, data)
   {
     return [
@@ -27,4 +26,4 @@ var List_ns = {
     };
   }
 }
-</script>
+*/
