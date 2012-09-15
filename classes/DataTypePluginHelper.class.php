@@ -121,6 +121,7 @@ class DataTypePluginHelper {
 
 	/**
 	 * Used in the main page to generate a list of Export Type JS files.
+	 * @param array the data types
 	 * @return array
 	 */
 	public function getDataTypeJSResources($dataTypes) {
@@ -133,7 +134,35 @@ class DataTypePluginHelper {
 			}
 		}
 
-		return $files;
+		$dataTypeJSModules = "";
+		if (!empty($files)) {
+			$dataTypeJSModules = "\"" . implode("\",\n\"", $files) . "\"";
+		}
+
+		return $dataTypeJSModules;
+	}
+
+
+	/**
+	 * Used in the main page to generate the Data Type CSS includes.
+	 * @param array the data types
+	 * @param array
+	 */
+	public function getDataTypeCSSIncludes($dataTypes) {
+		$files = array();
+		foreach ($dataTypes as $dataType) {
+			$cssFile = $dataType->getCSSFile();
+			if (!empty($cssFile)) {
+				$path = $dataType->getPath();
+				$files[] = "$path/$cssFile";
+			}
+		}
+
+		$cssIncludes = "";
+		foreach ($files as $file) {
+			$cssIncludes[] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"$file\" />";
+		}
+		return implode("\n", $cssIncludes);
 	}
 
 	/**

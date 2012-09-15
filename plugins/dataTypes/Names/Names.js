@@ -74,6 +74,7 @@ define([
 	};
 
 
+	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
 		init: _init,
 		validate: _validate

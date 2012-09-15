@@ -434,16 +434,12 @@ li.gdColDelete {
 .hidden {
 	display: none;
 }
+.gdTip {
+	color: #777777;
+}
 
-.suboptionActive { color: black; }
-.suboptionInactive { color: #cccccc; }
-
-/* DROP */
-.country_netherlands, .country_uk, .country_australia { display: none; }
-
-.heading_1 { font-weight: bold; font-size: 8pt; }
 .heading_3 { color: #666666; font-size: 8pt; border-top: 1px solid #999999; padding-top: 3px; font-weight: bold; }
-.light_grey { color: #cccccc; }
+
 .medium_grey { color: #999999; }
 .green_text { color: green; }
 .blue_text { color: #336699; }
@@ -646,6 +642,9 @@ body.gdErrorPage #gdBox {
 	box-shadow: 2px 4px 5px #666666;
 }
 
+#consoleEventsModuleList {
+	width: 400px;
+}
 /* jQuery UI style overrides */
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
 	cursor: pointer;

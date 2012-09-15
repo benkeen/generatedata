@@ -4,7 +4,7 @@ class DataType_NumberRange extends DataTypePlugin {
 	protected $dataTypeName = "Number Range";
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 30;
-	protected $includedFiles = array("NumberRange.js");
+	protected $jsModules = array("NumberRange.js");
 
 	private $helpDialogWidth = 320;
 

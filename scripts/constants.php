@@ -10,9 +10,9 @@ define([], function() {
 		 * Contains various options for debugging.
 		 */
 		DEBUGGING: {
-			CONSOLE_LOG: true,
+			CONSOLE_WARN: <?php echo (Settings::getSetting("consoleWarnings") == "enabled") ? "true" : "false"; ?>,
 			LIST_PUBLISH_EVENTS: <?php echo (Settings::getSetting("consoleEventsPublish") == "enabled") ? "true" : "false"; ?>,
-			LIST_SUBSCRIBE_EVENTS: <?php echo (Settings::getSetting("consoleEventsSubscribe") == "enabled") ? "true" : "false"; ?>
+			LIST_SUBSCRIBE_EVENTS: <?php echo (Settings::getSetting("consoleEventsSubscribe") == "enabled") ? "true" : "false"; ?>,
 
 		},
 

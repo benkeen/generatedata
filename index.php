@@ -12,23 +12,17 @@ Utils::maybeShowInstallationPage();
 $exportTypes = Core::$exportTypePlugins;
 $exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalSettingsHTML($exportTypes);
 
-$jsModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes);
-$exportTypeJSModules = "";
-if (!empty($jsModules)) {
-	$exportTypeJSModules = "\"" . implode("\",\n\"", $jsModules) . "\"";
-}
-
 $dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
-$jsModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes);
-$dataTypeJSModules = "";
-if (!empty($jsModules)) {
-	$dataTypeJSModules = "\"" . implode("\",\n\"", $jsModules) . "\"";
-}
+
+$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes);
+$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes);
+$cssIncludes = DataTypePluginHelper::getDataTypeCSSIncludes($dataTypes);
 
 $params = array();
 $params["dataTypeJSModules"] = $dataTypeJSModules;
 $params["exportTypeJSModules"] = $exportTypeJSModules;
 $params["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
 $params["settings"] = Settings::getSettings();
+$params["cssIncludes"] = $cssIncludes;
 
 Utils::displayPage("templates/index.tpl", $params);

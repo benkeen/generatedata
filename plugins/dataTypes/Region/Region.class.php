@@ -6,6 +6,7 @@ class DataType_Region extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("Region.js");
+	protected $cssFile = "Region.css";
 	private $helpDialogWidth = 360;
 
 
@@ -29,16 +30,20 @@ class DataType_Region extends DataTypePlugin {
 			// onclick="StateProvince_ns.hideShowStateProvCounty(%ROW%, this.checked, '$slug')"
 
 			$html .= <<<EOF
-		<div class="country_$slug" style="position: relative">
-			<input type="checkbox" name="includeRegion_{$slug}_%ROW%" class="main" id="includeRegion_{$slug}_%ROW%" checked="checked"
-				/><label for="includeRegion_{$slug}_%ROW%">$regionName</label>
-			<span style="position: absolute; left: 125px; border-left: 1px solid #dddddd;"><input type="checkbox"
-				name="includeRegion_{$slug}_Full_%ROW%" id="includeRegion_{$slug}_Full_%ROW%" checked="checked" /><label for="includeRegion_{$slug}_Full_%ROW%"
-				id="includeRegion_{$slug}_FullLabel_%ROW%" class="suboptionActive">Full</label></span>
-			<span style="position: absolute; left: 175px;"><input type="checkbox" name="includeRegion_{$slug}_Short_%ROW%"
-				id="includeRegion_{$slug}_Short_%ROW%" checked="checked" /><label for="includeRegion_{$slug}_Short_%ROW%" id="includeRegion_{$slug}_ShortLabel_%ROW%"
-				class="suboptionActive">Short</label></span>
-		</div>
+<div class="dtRegionSection dtCountry_$slug">
+	<input type="checkbox" name="dtIncludeRegion_{$slug}_%ROW%" id="dtIncludeRegion_{$slug}_%ROW%"
+		checked="checked" /><label for="dtIncludeRegion_{$slug}_%ROW%">$regionName</label>
+	<span class="dtRegionFull">
+		<input type="checkbox" name="dtIncludeRegion_{$slug}_Full_%ROW%" id="dtIncludeRegion_{$slug}_Full_%ROW%" checked="checked"
+			/><label for="dtIncludeRegion_{$slug}_Full_%ROW%"
+		id="dtIncludeRegion_{$slug}_FullLabel_%ROW%" class="dtRegionSuboptionActive">Full</label>
+	</span>
+	<span class="dtRegionShort">
+		<input type="checkbox" name="dtIncludeRegion_{$slug}_Short_%ROW%" id="dtIncludeRegion_{$slug}_Short_%ROW%" checked="checked"
+			/><label for="dtIncludeRegion_{$slug}_Short_%ROW%" id="dtIncludeRegion_{$slug}_ShortLabel_%ROW%"
+		class="dtRegionSuboptionActive">Short</label>
+	</span>
+</div>
 EOF;
 		}
 		return $html;

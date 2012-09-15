@@ -10,6 +10,7 @@
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/require.js"></script>
 	<script src="scripts/requireConfig.js"></script>
+	{$cssIncludes}
 </head>
 <body>
 	<header>
@@ -157,6 +158,11 @@
 				<form action="index.php#t2" method="post">
 					<h3>Developer Settings</h3>
 					<div>
+						<input type="checkbox" name="consoleWarnings" id="gdSettingsConsoleWarnings"
+							value="enabled" {if $settings.consoleWarnings == "enabled"}checked="checked"{/if} />
+							<label for="gdSettingsConsoleWarnings">List console.warn() events</label>
+					</div>
+						<div>
 						<input type="checkbox" name="consoleEventsPublish" id="gdSettingsConsoleEventsPublish"
 							value="enabled" {if $settings.consoleEventsPublish == "enabled"}checked="checked"{/if} />
 							<label for="gdSettingsConsoleEventsPublish">List console.log() <b>publish</b> events</label>
@@ -165,6 +171,12 @@
 						<input type="checkbox" name="consoleEventsSubscribe" id="gdSettingsConsoleEventsSubscribe"
 							value="enabled" {if $settings.consoleEventsSubscribe == "enabled"}checked="checked"{/if} />
 							<label for="gdSettingsConsoleEventsSubscribe">List console.log() <b>subscribe</b> events</label>
+					</div>
+					<div>
+						<label for="consoleEventsModuleList">Limit console messages to following modules:</label>
+							<input type="text" id="consoleEventsModuleList" name="consoleEventsModuleList"
+							value="{$settings.consoleEventsModuleList|escape}" />
+							<span class="gdTip">(comma-delimited MODULE_IDs)</span>
 					</div>
 					<p>
 						<input type="submit" name="updateSettings" value="Update" />

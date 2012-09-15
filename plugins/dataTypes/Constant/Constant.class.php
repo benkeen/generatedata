@@ -6,7 +6,7 @@ class DataType_Constant extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "other";
 	protected $dataTypeFieldGroupOrder = 10;
-	protected $includedFiles = array("Constant.js");
+	protected $jsModules = array("Constant.js");
 	protected $processOrder = 100;
 	private $helpDialogWidth = 460;
 

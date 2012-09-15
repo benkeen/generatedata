@@ -83,7 +83,7 @@ class ExportTypePluginHelper {
 
 	/**
 	 * Used in the main page to generate a list of Export Type JS files.
-	 * @return array
+	 * @return string
 	 */
 	public function getExportTypeJSResources($exportTypes) {
 		$files = array();
@@ -95,7 +95,12 @@ class ExportTypePluginHelper {
 			}
 		}
 
-		return $files;
+		$exportTypeJSModules = "";
+		if (!empty($files)) {
+			$exportTypeJSModules = "\"" . implode("\",\n\"", $files) . "\"";
+		}
+
+		return $exportTypeJSModules;
 	}
 
 	/**

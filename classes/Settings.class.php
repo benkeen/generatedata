@@ -46,20 +46,23 @@ class Settings {
 	 * @param array $post
 	 */
 	public function updateSettings($post) {
-		$consoleEventsPublish   = isset($post["consoleEventsPublish"]) ? "enabled" : "";
-		$consoleEventsSubscribe = isset($post["consoleEventsSubscribe"]) ? "enabled" : "";
+
+		$settings = array(
+			"consoleWarnings"         => isset($post["consoleWarnings"]) ? "enabled" : "",
+			"consoleEventsPublish"    => isset($post["consoleEventsPublish"]) ? "enabled" : "",
+			"consoleEventsSubscribe"  => isset($post["consoleEventsSubscribe"]) ? "enabled" : "",
+			"consoleEventsModuleList" => $post["consoleEventsModuleList"]
+		);
+
+		// TODO error checking + string escape for module list
 
 		$prefix = Core::getDbTablePrefix();
-		$result = Core::$db->query("
-			UPDATE {$prefix}settings
-			SET    setting_value = '$consoleEventsPublish'
-			WHERE  setting_name = 'consoleEventsPublish'
-		");
-
-		Core::$db->query("
-			UPDATE {$prefix}settings
-			SET    setting_value = '$consoleEventsSubscribe'
-			WHERE  setting_name = 'consoleEventsSubscribe'
-		");
+		while (list($key, $value) = each($settings)) {
+			$result = Core::$db->query("
+				UPDATE {$prefix}settings
+				SET    setting_value = '$value'
+				WHERE  setting_name = '$key'
+			");
+		}
 	}
 }

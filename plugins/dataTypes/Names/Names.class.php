@@ -186,23 +186,23 @@ END;
 
 	<table cellpadding="0" cellspacing="1">
 	<tr>
-		<td class="heading_1" width="100">Name</td>
+		<td width="100"><h4>Name</h4></td>
 		<td>{$this->L["type_Name"]}</td>
 	</tr>
 	<tr>
-		<td class="heading_1">MaleName</td>
+		<td><h4>MaleName</h4></td>
 		<td>{$this->L["type_MaleName"]}</td>
 	</tr>
 	<tr>
-		<td class="heading_1">FemaleName</td>
+		<td><h4>FemaleName</h4></td>
 		<td>{$this->L["type_FemaleName"]}</td>
 	</tr>
 	<tr>
-		<td class="heading_1">Initial</td>
+		<td><h4>Initial</h4></td>
 		<td>{$this->L["type_Initial"]}</td>
 	</tr>
 	<tr>
-		<td class="heading_1">Surname</td>
+		<td><h4>Surname</h4></td>
 		<td>{$this->L["type_Surname"]}</td>
 	</tr>
 	</table>

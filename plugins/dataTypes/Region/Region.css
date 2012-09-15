@@ -1,0 +1,17 @@
+/** supplementary styles to display the Options section properly */
+.dtRegionSection {
+	position: relative;
+}
+.dtRegionSuboptionActive { color: black; }
+.dtRegionSuboptionInactive { color: #cccccc; }
+
+.dtRegionFull {
+	position: absolute;
+	left: 125px;
+	border-left: 1px solid #dddddd;
+	margin-left: 5px;
+}
+.dtRegionShort {
+	position: absolute;
+	left: 175px;
+}

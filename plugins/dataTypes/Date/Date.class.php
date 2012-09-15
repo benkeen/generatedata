@@ -105,45 +105,45 @@ END;
 
 			<table cellpadding="0" cellspacing="1">
 			<tr>
-				<td class="heading_1" width="50">{$this->L["Date_char"]}</td>
-				<td class="heading_1">{$this->L["Date_description"]}</td>
-				<td class="heading_1">{$this->L["Date_example"]}</td>
+				<td width="50"><h4>{$this->L["Date_char"]}</h4></td>
+				<td>{$this->L["Date_description"]}</td>
+				<td>{$this->L["Date_example"]}</td>
 			</tr>
 			<tr>
 				<td class="heading_3" colspan="3">{$this->L["Date_day"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">d</td>
+				<td><h4>d</h4></td>
 				<td>{$this->L["Date_help_d"]}</td>
 				<td>{$this->L["Date_help_d_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">D</td>
+				<td><h4>D</h4></td>
 				<td>{$this->L["Date_help_D"]}</td>
 				<td>{$this->L["Date_help_D_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">j</td>
+				<td><h4>j</h4></td>
 				<td>{$this->L["Date_help_j"]}</td>
 				<td>{$this->L["Date_help_j_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">l</td>
+				<td><h4>l</h4></td>
 				<td>{$this->L["Date_help_l"]}</td>
 				<td>{$this->L["Date_help_l_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">S</td>
+				<td><h4>S</h4></td>
 				<td>{$this->L["Date_help_S"]}</td>
 				<td>{$this->L["Date_help_S_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">w</td>
+				<td><h4>w</h4></td>
 				<td>{$this->L["Date_help_w"]}</td>
 				<td>{$this->L["Date_help_w_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">z</td>
+				<td><h4>z</h4></td>
 				<td>{$this->L["Date_help_z"]}</td>
 				<td>{$this->L["Date_help_z_example"]}</td>
 			</tr>
@@ -151,7 +151,7 @@ END;
 				<td class="heading_3" colspan="3">{$this->L["Date_week"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">W</td>
+				<td><h4>W</h4></td>
 				<td>{$this->L["Date_help_W"]}</td>
 				<td>{$this->L["Date_help_W_example"]}</td>
 			</tr>
@@ -159,27 +159,27 @@ END;
 				<td class="heading_3" colspan="3">{$this->L["Date_month"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">F</td>
+				<td><h4>F</h4></td>
 				<td>{$this->L["Date_help_F"]}</td>
 				<td>{$this->L["Date_help_F_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">m</td>
+				<td><h4>m</h4></td>
 				<td>{$this->L["Date_help_m"]}</td>
 				<td>{$this->L["Date_help_m_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">M</td>
+				<td><h4>M</h4></td>
 				<td>{$this->L["Date_help_M"]}</td>
 				<td>{$this->L["Date_help_M_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">n</td>
+				<td><h4>n</h4></td>
 				<td>{$this->L["Date_help_n"]}</td>
 				<td>{$this->L["Date_help_n_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">t</td>
+				<td><h4>t</h4></td>
 				<td>{$this->L["Date_help_t"]}</td>
 				<td>{$this->L["Date_help_t_example"]}</td>
 			</tr>
@@ -187,17 +187,17 @@ END;
 				<td class="heading_3" colspan="3">{$this->L["Date_year"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">L</td>
+				<td><h4>L</h4></td>
 				<td>{$this->L["Date_help_L"]}</td>
 				<td>{$this->L["Date_help_L_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">Y</td>
+				<td><h4>Y</h4></td>
 				<td>{$this->L["Date_help_Y"]}</td>
 				<td>{$this->L["Date_help_Y_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_1">y</td>
+				<td><h4>y</h4></td>
 				<td>{$this->L["Date_help_y"]}</td>
 				<td>{$this->L["Date_help_y_example"]}</td>
 			</tr>

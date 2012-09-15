@@ -25,6 +25,12 @@ abstract class DataTypePlugin {
 	protected $jsModules = array();
 
 	/**
+	 * A single CSS file for any additional CSS needed for the module. It's up to the developer to properly
+	 * name their CSS classes/IDs to prevent namespace collisions.
+	 */
+	protected $cssFile = "";
+
+	/**
 	 * Contains all strings for the current language. This is populated automatically on instantiation and
 	 * contains the strings for the currently selected language.
 	 * @var array
@@ -219,10 +225,18 @@ abstract class DataTypePlugin {
 	}
 
 	/**
-	 * Returns a list of all javascript modules for this Export Type.
+	 * Returns a list of all javascript modules for this Data Type (if included).
 	 * @return array
 	 */
 	public final function getJSModules() {
 		return $this->jsModules;
+	}
+
+	/**
+	 * Returns the CSS filename for this Data Type (if included).
+	 * @return array
+	 */
+	public final function getCSSFile() {
+		return $this->cssFile;
 	}
 }

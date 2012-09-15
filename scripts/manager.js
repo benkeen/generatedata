@@ -19,21 +19,28 @@ define([
 	 */
 	var _register = function(moduleID, moduleType, module) {
 
-		if (_modules.hasOwnProperty(moduleID) && C.DEBUGGING.CONSOLE_LOG) {
-			console.warn("Sorry, a module with ID has already been registered.");
+		if (_modules.hasOwnProperty(moduleID)) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn("Sorry, a module with ID has already been registered.");
+			}
 			return;
 		}
-		if ($.inArray(moduleType, [C.COMPONENT.DATA_TYPE, C.COMPONENT.EXPORT_TYPE, C.COMPONENT.CORE]) == -1 &&
-			C.DEBUGGING.CONSOLE_LOG) {
-			console.warn("Unknown module type: " + moduleType);
+		if ($.inArray(moduleType, [C.COMPONENT.DATA_TYPE, C.COMPONENT.EXPORT_TYPE, C.COMPONENT.CORE]) == -1) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn("Unknown module type: " + moduleType);
+			}
 			return;
 		}
 		if (module.hasOwnProperty("init") && typeof module.init != "function") {
-			console.warn("Module has an invalid init function. Should be a function!");
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn(moduleID + " module has an invalid init() function. Should be a function!");
+			}
 			return;
 		}
 		if (module.hasOwnProperty("run") && typeof module.run != "function") {
-			console.warn("Module has an invalid init function. Should be a function!");
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn(moduleID + " module has an invalid run() function. Should be a function!");
+			}
 			return;
 		}
 
@@ -61,7 +68,7 @@ define([
 	var _unregister = function(moduleID) {
 		if (_modules.hasOwnProperty(moduleID)) {
 			delete _modules[moduleID];
-			if (C.DEBUGGING.CONSOLE_LOG) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.warn("module unregistered: " + moduleID);
 			}
 		}
@@ -97,7 +104,7 @@ define([
 	 */
 	var _subscribe = function(moduleID, subscriptions) {
 		if (arguments.length != 2) {
-			if (C.DEBUGGING.CONSOLE_LOG) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.warn("Invalid params for manager.subscribe()");
 			}
 			return;
@@ -168,7 +175,7 @@ define([
 			try {
 				_modules[moduleID].init();
 			} catch(e) {
-				if (C.DEBUGGING.CONSOLE_LOG) {
+				if (C.DEBUGGING.CONSOLE_WARN) {
 					console.warn("init() method failed for " + moduleID + ":", e);
 					_unregister(moduleID);
 				}
