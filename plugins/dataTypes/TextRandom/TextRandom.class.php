@@ -18,22 +18,17 @@ class DataType_TextRandom extends DataTypePlugin {
 	}
 
 	public function getOptionsColumnHTML() {
-		echo <<< END
-	<table cellpadding="0" cellspacing="1">
-	<tr>
-		<td>
+		$html =<<< END
+		<div>
 			<input type="checkbox" name="dtStartsWithLipsum_%ROW%" id="dtStartsWithLipsum_%ROW%" />
 			<label for="dtStartsWithLipsum_%ROW%">Start with "Lorem Ipsum..."</label>
-		</td>
-	</tr>
-	<tr>
-		<td>
+		</div>
+		<div>
 			Generate #<input type="text" name="dtNumWordsMin_%ROW%" id="dtNumWordsMin_%ROW%" style="width: 40px" value="1" />
 			to #<input type="text" name="dtNumWordsMax_%ROW%" id="dtNumWordsMax_%ROW%" style="width: 40px" value="10" /> words
-		</td>
-	</tr>
-	</table>
+		</div>
 END;
+		return $html;
 	}
 
 	public function getHelpDialogInfo() {

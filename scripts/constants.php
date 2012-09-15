@@ -22,7 +22,6 @@ define([], function() {
 		COMPONENT: {
 			DATA_TYPE: 'data-type',
 			EXPORT_TYPE: 'export-type',
-			//COUNTRIES: 'countries',
 			CORE: 'core'
 		},
 

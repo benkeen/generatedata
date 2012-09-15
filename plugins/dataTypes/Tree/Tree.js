@@ -1,4 +1,4 @@
-var Tree_ns = {
+/*var Tree_ns = {
   loadRow: function(rowNum, data)
   {
     return [
@@ -17,4 +17,4 @@ var Tree_ns = {
       "tree_max_siblings": $("#tree_max_siblings_" + rowNum).val()
     };
   }
-}
+}*/

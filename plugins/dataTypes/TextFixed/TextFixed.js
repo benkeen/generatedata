@@ -1,4 +1,4 @@
-var TextFixed_ns = {
+/*var TextFixed_ns = {
   loadRow: function(rowNum, data)
   {
     return [
@@ -15,4 +15,4 @@ var TextFixed_ns = {
       "numWords": $("#numWords_" + rowNum).val()
     };
   }
-}
+}*/

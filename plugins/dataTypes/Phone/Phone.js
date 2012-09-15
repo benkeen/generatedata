@@ -1,4 +1,4 @@
-define([
+\define([
 	"manager",
 	"constants",
 	"lang"

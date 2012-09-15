@@ -50,6 +50,15 @@ a:hover {
 	text-decoration: underline;
 }
 
+.cols2 {
+	clear:both;
+	position:relative;
+}
+.cols2 .col {
+	float: left;
+	width: 410px;
+}
+
 /* TODO */
 .gdVerticalPad {
 	padding-bottom: 10px;
@@ -641,6 +650,12 @@ body.gdErrorPage #gdBox {
 	text-shadow: 0 1px 0 #fff;
 	box-shadow: 2px 4px 5px #666666;
 }
+#gdHelpPopup p {
+	margin-top: 5px;
+}
+#gdHelpPopup h4 {
+	margin: 0px;
+}
 
 #consoleEventsModuleList {
 	width: 400px;
@@ -661,4 +676,19 @@ body.gdErrorPage #gdBox {
 #gdTableRows .gdColHelp .ui-helper-clearfix {
 	margin-left: 8px;
 	margin-top: 2px;
+}
+
+/* overridden Chosen styles */
+body .chzn-container-multi .chzn-choices .search-choice {
+	margin-left: 3px;
+	padding: 0px 7px 2px 5px;
+	margin-bottom: 1px;
+}
+body .chzn-container-multi .chzn-choices .search-field .default {
+	/*padding: 2px 5px; */
+	font: 11px Verdana, sans-serif;
+}
+body .chzn-container-multi .chzn-choices {
+	background-image: none;
+	padding-bottom: 2px;
 }

@@ -2,9 +2,12 @@
 .dtRegionSection {
 	position: relative;
 }
-.dtRegionSuboptionActive { color: black; }
-.dtRegionSuboptionInactive { color: #cccccc; }
-
+.dtRegionSuboptionActive {
+	color: #555555;
+}
+.dtRegionSuboptionInactive {
+	color: #cccccc;
+}
 .dtRegionFull {
 	position: absolute;
 	left: 125px;

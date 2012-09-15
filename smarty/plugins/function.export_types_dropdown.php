@@ -1,8 +1,12 @@
 <?php
 
-function smarty_function_data_types_dropdown($params, &$smarty) {
+function smarty_function_export_types_dropdown($params, &$smarty) {
 	$L = Core::$language->getCurrentLanguageStrings();
-	$dataTypeGroups = Core::$dataTypePlugins;
+	$exportTypeGroups = Core::$exportTypePlugins;
+
+//	print_r($exportTypeGroups);
+//	exit;
+	return;
 
 	// TODO clean up these
 

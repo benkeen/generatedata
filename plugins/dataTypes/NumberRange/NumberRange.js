@@ -1,4 +1,4 @@
-var NumberRange_ns = {
+/*var NumberRange_ns = {
   loadRow: function(rowNum, data)
   {
     return [
@@ -17,4 +17,4 @@ var NumberRange_ns = {
       "numRangeMax": $("#numRangeMax_" + rowNum).val()
     };
   }
-}
+}*/

@@ -1,4 +1,4 @@
-var Constant_ns = {
+/*var Constant_ns = {
   validate: function(rows)
   {
     var visibleProblemRows = [];
@@ -35,4 +35,4 @@ var Constant_ns = {
       "option":     $("#option_" + rowNum).val()
     };
   }
-}
+}*/

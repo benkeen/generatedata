@@ -5,11 +5,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.23.custom.css" />
+	<link rel="stylesheet" type="text/css" href="css/chosen.css" />
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/require.js"></script>
 	<script src="scripts/requireConfig.js"></script>
+	<script src="scripts/chosen.jquery.min.js"></script>
 	{$cssIncludes}
 </head>
 <body>
@@ -157,27 +159,35 @@
 			<div class="gdTabContent" id="gdTab2Content">
 				<form action="index.php#t2" method="post">
 					<h3>Developer Settings</h3>
-					<div>
-						<input type="checkbox" name="consoleWarnings" id="gdSettingsConsoleWarnings"
-							value="enabled" {if $settings.consoleWarnings == "enabled"}checked="checked"{/if} />
-							<label for="gdSettingsConsoleWarnings">List console.warn() events</label>
+
+					<div class="cols2">
+						<div class="col">
+							<div>
+								<input type="checkbox" name="consoleWarnings" id="gdSettingsConsoleWarnings"
+									value="enabled" {if $settings.consoleWarnings == "enabled"}checked="checked"{/if} />
+									<label for="gdSettingsConsoleWarnings">List console.warn() events</label>
+							</div>
+								<div>
+								<input type="checkbox" name="consoleEventsPublish" id="gdSettingsConsoleEventsPublish"
+									value="enabled" {if $settings.consoleEventsPublish == "enabled"}checked="checked"{/if} />
+									<label for="gdSettingsConsoleEventsPublish">List console.log() <b>publish</b> events</label>
+							</div>
+							<div>
+								<input type="checkbox" name="consoleEventsSubscribe" id="gdSettingsConsoleEventsSubscribe"
+									value="enabled" {if $settings.consoleEventsSubscribe == "enabled"}checked="checked"{/if} />
+									<label for="gdSettingsConsoleEventsSubscribe">List console.log() <b>subscribe</b> events</label>
+							</div>
+						</div>
+						<div class="col">
+							<label for="consoleEventsModuleList">Limit console messages to specific modules</label>
+							{data_types_dropdown name="consoleEventsDataTypePlugins[]" id="consoleEventsDataTypePlugins"
+								style="width:500px" multiple=true extras="data-placeholder=\"All Data Type plugins\"" includeDefaultOption=false}
+							{export_types_dropdown name="consoleEventsExportTypePlugins" id="consoleEventsExportTypePlugins"
+								style="width:500px" multiple=true extras="data-placeholder=\"All Export Type plugins\"" includeDefaultOption=false}
+						</div>
 					</div>
-						<div>
-						<input type="checkbox" name="consoleEventsPublish" id="gdSettingsConsoleEventsPublish"
-							value="enabled" {if $settings.consoleEventsPublish == "enabled"}checked="checked"{/if} />
-							<label for="gdSettingsConsoleEventsPublish">List console.log() <b>publish</b> events</label>
-					</div>
-					<div>
-						<input type="checkbox" name="consoleEventsSubscribe" id="gdSettingsConsoleEventsSubscribe"
-							value="enabled" {if $settings.consoleEventsSubscribe == "enabled"}checked="checked"{/if} />
-							<label for="gdSettingsConsoleEventsSubscribe">List console.log() <b>subscribe</b> events</label>
-					</div>
-					<div>
-						<label for="consoleEventsModuleList">Limit console messages to following modules:</label>
-							<input type="text" id="consoleEventsModuleList" name="consoleEventsModuleList"
-							value="{$settings.consoleEventsModuleList|escape}" />
-							<span class="gdTip">(comma-delimited MODULE_IDs)</span>
-					</div>
+
+					<div class="gdClear"></div>
 					<p>
 						<input type="submit" name="updateSettings" value="Update" />
 					</p>

@@ -29,5 +29,8 @@ require([
 		}
 
 		$("#gdSelectLanguage").bind("change", utils.changeLanguage);
+
+		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
+		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
 	});
 });

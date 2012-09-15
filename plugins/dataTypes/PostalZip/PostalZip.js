@@ -1,3 +1,36 @@
+define([
+	"manager",
+	"constants",
+	"lang"
+], function(manager, C, L) {
+
+/*
+	var _init = function() {
+		var subscriptions = {};
+		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
+		manager.subscribe(MODULE_ID, subscriptions);
+	}
+	var _countryChange = function(msg) {
+		var shownClassesSelectors = [];
+		for (var i=0; i<msg.countries.length; i++) {
+			shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i]);
+		}
+		shownClassesSelector = shownClassesSelectors.join(",");
+
+		$(".dtRegionSection").hide();
+		$(shownClassesSelector).show();
+	}
+
+
+	// register our module
+	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+		init: _init
+	});
+*/
+
+});
+
+/*
 var PostalZip_ns = {
   loadRow: function(rowNum, data)
   {
@@ -35,3 +68,4 @@ var PostalZip_ns = {
     return { "zips": zips };
   }
 }
+*/

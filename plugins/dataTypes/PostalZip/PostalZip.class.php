@@ -16,31 +16,25 @@ class DataType_PostalZip extends DataTypePlugin {
 
 		// track the country info (this finds the FIRST country field listed)
 		$PostalZip_row_country_info = array();
-		while (list($key, $info) = each($existing_row_data))
-		{
-			if ($info["data_type_folder"] == "Country")
-			{
+		while (list($key, $info) = each($existing_row_data)) {
+			if ($info["data_type_folder"] == "Country") {
 				$PostalZip_row_country_info = $info;
 				break;
 			}
 		}
 
 		$random_zip = "";
-		if (empty($PostalZip_row_country_info))
-		{
+		if (empty($PostalZip_row_country_info)) {
 			$rand_country = $options[rand(0, count($options)-1)];
 			$random_zip = PostalZip_convert($PostalZip_formats[$rand_country]);
-		}
-		else
-		{
+		} else {
 			// if this country is one of the formats that was selected, generate it in that format -
 			// otherwise just generate a zip in any selected format
 			$country_slug = $PostalZip_row_country_info["random_data"]["slug"];
 
-			if (in_array($country_slug, $options))
+			if (in_array($country_slug, $options)) {
 				$random_zip = PostalZip_convert($PostalZip_formats[$country_slug]);
-			else
-			{
+			} else {
 				$rand_country = $options[rand(0, count($options)-1)];
 				$random_zip = PostalZip_convert($PostalZip_formats[$rand_country]);
 			}
@@ -87,10 +81,10 @@ class DataType_PostalZip extends DataTypePlugin {
 			$regionName = $pluginInfo->getRegionNames();
 
 			$html .= <<<EOF
-		<div class="country_$slug">
-			<input type="checkbox" name="includeZip_{$slug}_%ROW%" id="includeZip_{$slug}_%ROW%" checked="checked" />
-			<label for="includeZip_{$slug}_%ROW%">$regionName</label>
-		</div>
+<div class="dtCountry dtCountry_$slug">
+	<input type="checkbox" name="dtCountryIncludeZip_{$slug}_%ROW%" id="dtCountryIncludeZip_{$slug}_%ROW%" checked="checked" />
+	<label for="dtCountryIncludeZip_{$slug}_%ROW%">$regionName</label>
+</div>
 EOF;
 		}
 		return $html;
