@@ -65,11 +65,11 @@ class DataType_Constant extends DataTypePlugin {
 <table cellspacing="0" cellpadding="0" width="260">
 	<tr>
 		<td>{$this->L["Constant_loop_count"]}</td>
-		<td><input type="text" name="loop_count_\$ROW\$" id="loop_count_\$ROW\$" size="5" value="10" /></td>
+		<td><input type="text" name="loop_count_%ROW%" id="loop_count_%ROW%" size="5" value="10" /></td>
 	</tr>
 	<tr>
 		<td>{$this->L["Constant_values"]}</td>
-		<td><input name="option_\$ROW\$" id="option_\$ROW\$" style="width: 100%" /></td>
+		<td><input name="option_%ROW%" id="option_%ROW%" style="width: 100%" /></td>
 	</tr>
 </table>
 EOF;

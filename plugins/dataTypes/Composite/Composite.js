@@ -1,4 +1,4 @@
-var Composite_ns = {
+/*var Composite_ns = {
   validate: function(rows)
   {
     var visibleProblemRows = [];
@@ -35,4 +35,4 @@ var Composite_ns = {
       "option":   $("#option_" + rowNum).val()
     };
   }
-}
+}*/

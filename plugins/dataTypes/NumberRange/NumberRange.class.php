@@ -47,8 +47,8 @@ class DataType_NumberRange extends DataTypePlugin {
 
 	public function getOptionsColumnHTML() {
 		$html =<<<END
-&nbsp;{$this->L["NumberRange_between"]} <input type="text" name="numRangeMin_\$ROW\$" id="numRangeMin_\$ROW\$" style="width: 30px" value="1" />
-{$this->L["NumberRange_and"]} <input type="text" name="numRangeMax_\$ROW\$" id="numRangeMax_\$ROW\$" style="width: 30px" value="10" />
+&nbsp;{$this->L["NumberRange_between"]} <input type="text" name="numRangeMin_%ROW%" id="numRangeMin_%ROW%" style="width: 30px" value="1" />
+{$this->L["NumberRange_and"]} <input type="text" name="numRangeMax_%ROW%" id="numRangeMax_%ROW%" style="width: 30px" value="10" />
 END;
 		return $html;
 	}

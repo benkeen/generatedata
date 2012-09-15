@@ -20,8 +20,7 @@ class DataType_Tree extends DataTypePlugin {
 
 		$parent_row_id = $existing_row_data["order{$ai_row_num}"]["random_data"];
 
-		if ($row == 1)
-		{
+		if ($row == 1) {
 			$Tree_open_nodes[] = array($parent_row_id, 1);
 			return "0";
 		}
@@ -77,8 +76,8 @@ class DataType_Tree extends DataTypePlugin {
 
 	public function getOptionsColumnHTML() {
 		$html =<<<END
-<div>{$this->L["Tree_auto_increment_row_num"]} <input type="text" id="tree_ai_row_num_\$ROW\$" name="tree_ai_row_num_\$ROW\$" value="1" size="3" maxlength="3" /></div>
-<div>{$this->L["Tree_max_num_sibling_nodes"]} <input type="text" id="tree_max_siblings_\$ROW\$" name="tree_max_siblings_\$ROW\$" value="2" size="3" maxlength="3" /></div>
+<div>{$this->L["Tree_auto_increment_row_num"]} <input type="text" id="tree_ai_row_num_%ROW%" name="tree_ai_row_num_%ROW%" value="1" size="3" maxlength="3" /></div>
+<div>{$this->L["Tree_max_num_sibling_nodes"]} <input type="text" id="tree_max_siblings_%ROW%" name="tree_max_siblings_%ROW%" value="2" size="3" maxlength="3" /></div>
 END;
 		return $html;
 	}

@@ -7,10 +7,10 @@ class DataType_Composite extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "other";
 	protected $dataTypeFieldGroupOrder = 20;
-	protected $includedFiles = array("Composite.js");
+	protected $jsModules = array("Composite.js");
 	protected $processOrder = 100;
 
-	private $helpDialogWidth = 460;
+	private $helpDialogWidth = 520;
 
 	public function generateItem($row, $placeholderStr, $existingRowData) {
 		global $Composite_smarty;
@@ -56,5 +56,50 @@ class DataType_Composite extends DataTypePlugin {
 		}
 
 		return $postdata["option_$col"];
+	}
+
+	public function getExampleColumnHTML() {
+		$L = Core::$language->getCurrentLanguageStrings();
+		return $L["see_help_popup"];
+	}
+
+	public function getOptionsColumnHTML() {
+		return '<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" style="height: 70px; width: 260px"></textarea>';
+	}
+
+	public function getHelpDialogInfo() {
+		$content =<<< END
+	<p>
+		{$this->L["Composite_help_1"]}
+	</p>
+	<p>
+		{$this->L["Composite_help_2"]}
+	</p>
+	<p>
+		{$this->L["Composite_help_3"]}
+	</p>
+	<ul>
+		<li>{$this->L["Composite_help_4"]}</li>
+		<li>{$this->L["Composite_help_5"]}
+			<ul>
+				<li><b>{\$ROW2-\$ROW1}</b> - {$this->L["Composite_subtraction"]}</li>
+				<li><b>{\$ROW2*\$ROW1}</b> - {$this->L["Composite_multiplication"]}</li>
+				<li><b>{\$ROW2/\$ROW1}</b> - {$this->L["Composite_division"]}</li>
+			</ul>
+		</li>
+		<li>
+			{$this->L["Composite_help_6"]}
+			<b>{if \$ROW1 == 5}{$this->L["Composite_na"]}{else}{\$ROW1}{/if}</b>
+		</li>
+	</ul>
+	<p>
+		{$this->L["Composite_help_7"]}
+	</p>
+END;
+
+		return array(
+			"dialogWidth" => $this->helpDialogWidth,
+			"content"     => $content
+		);
 	}
 }

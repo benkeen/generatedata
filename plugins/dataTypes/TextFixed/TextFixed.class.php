@@ -4,7 +4,7 @@ class DataType_TextFixed extends DataTypePlugin {
 	protected $dataTypeName = "Fixed Number of Words";
 	protected $dataTypeFieldGroup = "text";
 	protected $dataTypeFieldGroupOrder = 10;
-	protected $includedFiles = array("TextFixed.js");
+	protected $jsModules = array("TextFixed.js");
 
 	private $helpDialogWidth = 320;
 
@@ -38,7 +38,7 @@ class DataType_TextFixed extends DataTypePlugin {
 
 	public function getOptionsColumnHTML() {
 		$html =<<<END
-&nbsp;{$this->L["TextFixed_generate"]} #<input type="text" name="numWords_\$ROW\$" id="numWords_\$ROW\$" style="width: 30px" value="10" />
+&nbsp;{$this->L["TextFixed_generate"]} #<input type="text" name="dtNumWords_%ROW%" id="dtNumWords_%ROW%" style="width: 30px" value="10" />
 {$this->L["TextFixed_words"]}
 END;
 		return $html;
