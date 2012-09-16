@@ -256,8 +256,29 @@ define([
 			return;
 		}
 
-		var noOptionsTest  = function() { return true; };
-		var hasOptionsTest = function() { return (typeof $("#dtOption_" + rowID) != "undefined"); };
+		// this is called whenever the row content (Options + Examples nodes) have been fully populated and the
+		// DOM is ready.
+		var onComplete = function() {
+			manager.publish({
+				sender: MODULE_ID,
+				type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
+				rowID: rowID,
+				dataTypeModuleID: dataTypeModuleID
+			});
+		}
+
+		// our two "is ready" tests, which depend on the content for the current Data Type
+		var noOptionsTest  = function() {
+			onComplete();
+			return true;
+		};
+		var hasOptionsTest = function() {
+			var isReady = (typeof $("#dtOption_" + rowID) != "undefined");
+			if (isReady) {
+				onComplete();
+			}
+			return isReady;
+		};
 		var readyTest = ($("#gdDataTypeOptions_" + dataTypeModuleID).length > 0) ? hasOptionsTest : noOptionsTest;
 
 		utils.pushToQueue([
@@ -275,7 +296,7 @@ define([
 				if ($("#gdDataTypeOptions_" + dataTypeModuleID).html() != "") {
 					optionsHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html().replace(/%ROW%/g, rowID);
 				} else {
-					optionsHTML = "&nbsp;" + L.no_options_available;
+					optionsHTML = L.no_options_available;
 				}
 				$('#gdColOptions_' + rowID).html(optionsHTML);
 
@@ -289,16 +310,6 @@ define([
 		]);
 
 		utils.processQueue();
-
-		// note, the queue MAY not have been fully processed at this point, but we publish
-		// the event as having been completed. If any modules need to subscribe to this event, they need to
-		// be aware the DOM may not have been completed!
-		manager.publish({
-			sender: MODULE_ID,
-			type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
-			rowID: rowID,
-			dataTypeModuleID: dataTypeModuleID
-		});
 	}
 
 

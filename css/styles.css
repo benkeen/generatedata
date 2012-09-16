@@ -674,7 +674,8 @@ body.gdErrorPage #gdBox {
 	font-weight: bold;
 }
 .gdColOptions .ui-datepicker-trigger {
-	margin-bottom: -3px;
+	margin: 0px 0px -3px 1px;
+	cursor: pointer;
 }
 #gdTableRows .gdColHelp .ui-helper-clearfix {
 	margin-left: 8px;

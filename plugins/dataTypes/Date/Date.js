@@ -15,27 +15,25 @@ define([
 	}
 
 	var _dataTypeChange = function(msg) {
-		console.log($("#dtFromDate_" + msg.rowID));
-
-		if ($("#dtFromDate_" + msg.rowID).length) {
-
-			$("#dtFromDate_" + msg.rowID).datepicker({
-				showOn:          'button',
-				buttonImage:     '../images/calendar_icon.gif',
-				buttonImageOnly: true
-			});
-			$("#dtToDate_" + msg.rowID).datepicker({
-				showOn:          'button',
-				buttonImage:     '../images/calendar_icon.gif',
-				buttonImageOnly: true
-			});
-		}
+		$("#dtFromDate_" + msg.rowID).datepicker({
+			showOn:          'button',
+			buttonImage:     'images/calendar_icon.gif',
+			buttonImageOnly: true
+		});
+		$("#dtToDate_" + msg.rowID).datepicker({
+			showOn:          'button',
+			buttonImage:     'images/calendar_icon.gif',
+			buttonImageOnly: true
+		});
 	}
 
 	var _exampleChange = function(msg) {
 		$("#dtOption_" + msg.rowID).val(msg.value);
 	}
 
+	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+		init: _init
+	});
 
 /*
 	validate: function(rows)
@@ -79,9 +77,5 @@ define([
 		};
 	}
 */
-
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		init: _init
-	});
 
 });

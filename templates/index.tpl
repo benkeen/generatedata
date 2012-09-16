@@ -9,9 +9,9 @@
 	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.23.custom.css" />
 	<link rel="stylesheet" type="text/css" href="css/chosen.css" />
 	<script src="scripts/libs/jquery.js"></script>
+	<script src="scripts/libs/chosen.jquery.min.js"></script>
 	<script src="scripts/libs/require.js"></script>
 	<script src="scripts/requireConfig.js"></script>
-	<script src="scripts/chosen.jquery.min.js"></script>
 	{$cssIncludes}
 </head>
 <body>
@@ -23,6 +23,12 @@
 		</nav>
 	</header>
 	<nav id="gdTabs">
+
+		<!-- temporary -->
+		<div style="float:right">
+			<img src="images/document_save.png" style="margin-top: 6px" />
+		</div>
+
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
 			<li id="gdTab2" class="gdHideNoJS">{$L.settings}</li>
