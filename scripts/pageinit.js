@@ -30,7 +30,9 @@ require([
 
 		$("#gdSelectLanguage").bind("change", utils.changeLanguage);
 
+		// for the Settings tab
 		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
 		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
+
 	});
 });

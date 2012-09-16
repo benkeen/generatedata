@@ -90,7 +90,7 @@ EOF;
 	{$this->L["Date_from"]} <input type="text" name="dtFromDate_%ROW%" id="dtFromDate_%ROW%" class="" size="10" value="$lastYear" />
 	{$this->L["Date_to"]} <input type="text" name="dtToDate_%ROW%" id="dtToDate_%ROW%" size="10" value="$nextYear" />
 	<div>
-		{$this->L["Date_format_code"]}&nbsp;<input type="text" name="option_%ROW%" id="option_%ROW%" style="width: 160px" />
+		{$this->L["Date_format_code"]}&nbsp;<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 160px" />
 	</div>
 END;
 

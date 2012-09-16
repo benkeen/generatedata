@@ -11,7 +11,7 @@ define([
 	"jquery-ui",
 ], function(manager, utils, C, L) {
 
-	var MODULE_ID = "generator";
+	var MODULE_ID = "core-generator";
 	var _numRows  = 0;
 	var _request  = null;
 	var _countries = [];
@@ -32,7 +32,7 @@ define([
 	var _run = function() {
 		$("#gdCountryList").on("click", "input", _updateCountryChoice);
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
+		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
 		$(".gdMessageClose").on("click", function() { utils.hideErrors(false); return false; });
@@ -245,43 +245,41 @@ define([
 
 	/**
 	 * Called when the user changes the Data Type for a particular row.
-	 *
-	 * The reason for this somewhat verbose process is to allow
 	 */
 	var _changeRowType = function(e) {
 		var rowID = parseInt($(e.target).attr("id").replace(/^gdDataType_/, ""));
-		var dataTypeFolder = e.target.value;
+		var dataTypeModuleID = e.target.value;
 
 		// if the user just selected the empty value ("Please Select"), clear everything
-		if (dataTypeFolder == "") {
+		if (dataTypeModuleID == "") {
 			$('#gdColExamples_' + rowID + ',#gdColOptions_' + rowID + ',#gdColHelp_' + rowID).html("");
 			return;
 		}
 
 		var noOptionsTest  = function() { return true; };
 		var hasOptionsTest = function() { return (typeof $("#dtOption_" + rowID) != "undefined"); };
-		var readyTest = ($("#gdDataTypeOptions_" + dataTypeFolder).length > 0) ? hasOptionsTest : noOptionsTest;
+		var readyTest = ($("#gdDataTypeOptions_" + dataTypeModuleID).length > 0) ? hasOptionsTest : noOptionsTest;
 
 		utils.pushToQueue([
 			function() {
 				var exampleHTML = null;
 				var optionsHTML = null;
 
-				if ($("#gdDataTypeExamples_" + dataTypeFolder).html() != "") {
-					exampleHTML = $("#gdDataTypeExamples_" + dataTypeFolder).html().replace(/%ROW%/g, rowID);
+				if ($("#gdDataTypeExamples_" + dataTypeModuleID).html() != "") {
+					exampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html().replace(/%ROW%/g, rowID);
 				} else {
 					exampleHTML = "&nbsp;" + L.no_examples_available;
 				}
 				$('#gdColExamples_' + rowID).html(exampleHTML);
 
-				if ($("#gdDataTypeOptions_" + dataTypeFolder).html() != "") {
-					optionsHTML = $("#gdDataTypeOptions_" + dataTypeFolder).html().replace(/%ROW%/g, rowID);
+				if ($("#gdDataTypeOptions_" + dataTypeModuleID).html() != "") {
+					optionsHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html().replace(/%ROW%/g, rowID);
 				} else {
 					optionsHTML = "&nbsp;" + L.no_options_available;
 				}
 				$('#gdColOptions_' + rowID).html(optionsHTML);
 
-				if ($("#gdDataTypeHelp_" + dataTypeFolder).html() != "") {
+				if ($("#gdDataTypeHelp_" + dataTypeModuleID).html() != "") {
 					$('#gdColHelp_' + rowID).html($("#gdHelpIcon").html().replace(/%ROW%/g, rowID));
 				} else {
 					$('#gdColHelp_' + rowID).html(" ");
@@ -299,7 +297,7 @@ define([
 			sender: MODULE_ID,
 			type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
 			rowID: rowID,
-			dataTypeFolder: dataTypeFolder
+			dataTypeModuleID: dataTypeModuleID
 		});
 	}
 

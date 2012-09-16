@@ -4,9 +4,6 @@ function smarty_function_export_types_dropdown($params, &$smarty) {
 	$L = Core::$language->getCurrentLanguageStrings();
 	$exportTypeGroups = Core::$exportTypePlugins;
 
-//	print_r($exportTypeGroups);
-//	exit;
-	return;
 
 	// TODO clean up these
 
@@ -16,21 +13,18 @@ function smarty_function_export_types_dropdown($params, &$smarty) {
 	$extras = (isset($params["extras"])) ? $params["extras"] : "";
 	$style = (isset($params["style"])) ? $params["style"] : "";
 	$includeDefaultOption = (isset($params["includeDefaultOption"])) ? $params["includeDefaultOption"] : true;
+	$selected = explode(",", $params["selected"]);
 
 	$options = "";
 	if ($includeDefaultOption) {
 		$options .= "<option value=\"\">{$L["please_select"]}</option>";
 	}
 
-	while (list($group, $dataTypes) = each($dataTypeGroups)) {
-		$groupName = $L[$group];
-		$options .= "<optgroup label=\"$groupName\">\n";
-
-		foreach ($dataTypes as $dataType) {
-			$name = $dataType->getName();
-			$options .= "<option value=\"{$dataType->folder}\">$name</option>\n";
-		}
-		$options .= "</optgroup>";
+	foreach ($exportTypeGroups as $exportTypeGroup) {
+		$currName = $exportTypeGroup->getName();
+		$value = "export-type-{$exportTypeGroup->folder}";
+		$selectedAttr = (in_array($value, $selected)) ? " selected=\"selected\"" : "";
+		$options .= "<option value=\"$value\"$selectedAttr>$currName</option>\n";
 	}
 
 	echo <<< END

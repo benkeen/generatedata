@@ -1,4 +1,4 @@
-\define([
+define([
 	"manager",
 	"constants",
 	"lang"
@@ -9,13 +9,19 @@
 
 	var _init = function() {
 		var subscriptions = {};
-		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__Phone"] = _exampleChange;
+		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	}
 
 	var _exampleChange = function(msg) {
 		$("#dtOption_" + msg.rowID).val(msg.value);
 	}
+
+	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+		init: _init
+	});
+});
+
 
 /*
 	validate: function(rows)
@@ -55,11 +61,3 @@
 		};
 	}
 */
-
-
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		init: _init
-	});
-
-});
-

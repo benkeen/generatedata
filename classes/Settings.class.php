@@ -47,11 +47,20 @@ class Settings {
 	 */
 	public function updateSettings($post) {
 
+		if (!isset($post["consoleEventsDataTypePlugins"])) {
+			$post["consoleEventsDataTypePlugins"] = array();
+		}
+		if (!isset($post["consoleEventsExportTypePlugins"])) {
+			$post["consoleEventsExportTypePlugins"] = array();
+		}
+
 		$settings = array(
 			"consoleWarnings"         => isset($post["consoleWarnings"]) ? "enabled" : "",
 			"consoleEventsPublish"    => isset($post["consoleEventsPublish"]) ? "enabled" : "",
 			"consoleEventsSubscribe"  => isset($post["consoleEventsSubscribe"]) ? "enabled" : "",
-			"consoleEventsModuleList" => $post["consoleEventsModuleList"]
+			"consoleCoreEvents"       => isset($post["consoleCoreEvents"]) ? "enabled" : "",
+			"consoleEventsDataTypePlugins"   => implode(",", $post["consoleEventsDataTypePlugins"]),
+			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"])
 		);
 
 		// TODO error checking + string escape for module list

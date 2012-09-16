@@ -31,6 +31,20 @@ define([
 			}
 			return;
 		}
+
+		// ensure the module ID has an appropriate prefix
+		var requiredModuleIDPrefixes = {};
+		requiredModuleIDPrefixes[C.COMPONENT.DATA_TYPE] = "data-type-";
+		requiredModuleIDPrefixes[C.COMPONENT.EXPORT_TYPE] = "export-type-";
+		requiredModuleIDPrefixes[C.COMPONENT.CORE] = "core-";
+		var regExp = new RegExp("^" + requiredModuleIDPrefixes[moduleType]);
+		if (!regExp.test(moduleID)) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn("Invalid module ID for " + moduleID);
+			}
+			return;
+		}
+
 		if (module.hasOwnProperty("init") && typeof module.init != "function") {
 			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.warn(moduleID + " module has an invalid init() function. Should be a function!");
@@ -68,7 +82,7 @@ define([
 	var _unregister = function(moduleID) {
 		if (_modules.hasOwnProperty(moduleID)) {
 			delete _modules[moduleID];
-			if (C.DEBUGGING.CONSOLE_WARN) {
+			if (C.DEBUGGING.CONSOLE_LOG_CORE) {
 				console.warn("module unregistered: " + moduleID);
 			}
 		}

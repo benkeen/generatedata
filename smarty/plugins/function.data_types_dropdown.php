@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Used in the Settings tab to output a list of available dropdowns. This is enhanced client-side with
+ * the Chosen plugin.
+ */
 function smarty_function_data_types_dropdown($params, &$smarty) {
 	$L = Core::$language->getCurrentLanguageStrings();
 	$dataTypeGroups = Core::$dataTypePlugins;
@@ -12,6 +16,7 @@ function smarty_function_data_types_dropdown($params, &$smarty) {
 	$extras = (isset($params["extras"])) ? $params["extras"] : "";
 	$style = (isset($params["style"])) ? $params["style"] : "";
 	$includeDefaultOption = (isset($params["includeDefaultOption"])) ? $params["includeDefaultOption"] : true;
+	$selected = isset($params["selected"]) ? explode(",", $params["selected"]) : array();
 
 	$options = "";
 	if ($includeDefaultOption) {
@@ -23,8 +28,10 @@ function smarty_function_data_types_dropdown($params, &$smarty) {
 		$options .= "<optgroup label=\"$groupName\">\n";
 
 		foreach ($dataTypes as $dataType) {
-			$name = $dataType->getName();
-			$options .= "<option value=\"{$dataType->folder}\">$name</option>\n";
+			$currName = $dataType->getName();
+			$value = "data-type-{$dataType->folder}";
+			$selectedAttr = (in_array($value, $selected)) ? " selected=\"selected\"" : "";
+			$options .= "<option value=\"$value\"$selectedAttr>$currName</option>\n";
 		}
 		$options .= "</optgroup>";
 	}

@@ -10,7 +10,7 @@ define([
 	"jquery-json",
 ], function(manager, C, L) {
 
-	var MODULE_ID       = "utils";
+	var MODULE_ID       = "core-utils";
 	var _currentTab     = 1;
 	var _errors         = [];
 	var _messageVisible = false;

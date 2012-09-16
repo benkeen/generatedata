@@ -27,6 +27,7 @@ $L["country_uk"] = "United Kingdom";
 $L["country_us"] = "United States";
 // ------------------------------------
 
+$L["update_settings"] = "Update Settings";
 $L["data_type"] = "Data Type";
 $L["db_table_name"] = "Database table name";
 $L["db_type"] = "Database Type";

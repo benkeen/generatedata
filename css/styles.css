@@ -32,6 +32,12 @@ h2 {
 	font-weight: normal;
 	font-family: verdana;
 }
+h3 {
+	margin: 10px 0px 7px;
+}
+p {
+	margin: 6px 0px;
+}
 form {
 	margin: 0px;
 }
@@ -480,8 +486,6 @@ hr {
 	background-image: linear-gradient(top, #7fbf4d, #63a62f);
 	border: 1px solid #63a62f;
 	border-bottom: 1px solid #5b992b;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
 	-webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
 	-moz-box-shadow: inset 0 1px 0 0 #96ca6d;
@@ -489,7 +493,7 @@ hr {
 	color: #fff;
 	font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
 	line-height: 1;
-	padding: 7px 15px 8px;
+	padding: 4px 15px 3px;
 	margin: 15px 0px 0px;
 	text-align: center;
 	text-shadow: 0 -1px 0 #4c9021;
@@ -512,7 +516,6 @@ hr {
 }
 .gdGenerateButton {
 	display: inline;
-	padding: 4px 15px 3px;
 }
 #gdBox {
 	position: relative;
@@ -681,7 +684,7 @@ body.gdErrorPage #gdBox {
 /* overridden Chosen styles */
 body .chzn-container-multi .chzn-choices .search-choice {
 	margin-left: 3px;
-	padding: 0px 7px 2px 5px;
+	padding: 0px 20px 2px 5px;
 	margin-bottom: 1px;
 }
 body .chzn-container-multi .chzn-choices .search-field .default {

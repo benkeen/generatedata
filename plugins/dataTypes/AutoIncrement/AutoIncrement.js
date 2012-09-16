@@ -10,7 +10,7 @@ define([
 
 	var _init = function() {
 		var subscriptions = {};
-		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__AutoIncrement"] = _exampleChange;
+		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	}
 
