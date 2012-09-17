@@ -21,13 +21,13 @@ class XML extends ExportTypePlugin {
 		<tr>
 			<td width="160"><label for="xml_root_node_name">{$LANG["root_node_name"]}</label></td>
 			<td>
-				<input type="text" size="10" name="xml_root_node_name" id="xml_root_node_name" value="records" />
+				<input type="text" size="15" name="xml_root_node_name" id="xml_root_node_name" value="records" />
 			</td>
 		</tr>
 		<tr>
 			<td><label for="xml_record_node_name">{$LANG["record_node_name"]}</label></td>
 			<td>
-				<input type="text" size="10" name="xml_record_node_name" id="xml_record_node_name" value="record" />
+				<input type="text" size="15" name="xml_record_node_name" id="xml_record_node_name" value="record" />
 			</td>
 		</tr>
 		</table>

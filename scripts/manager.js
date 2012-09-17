@@ -3,7 +3,7 @@
  * with one another indirectly through this module by publishing and subscribing to messages.
  */
 define([
-	'constants',
+	'constants'
 ], function(C) {
 
 	// stores all modules, regardless of type (Core, Data Types, Export Types, Countries).
@@ -97,6 +97,14 @@ define([
 		}
 
 		for (var i=0; i<messages.length; i++) {
+
+			/*
+			if LIST_PUBLISH_EVENTS
+			LIST_CORE_EVENTS: true,
+			LIMIT_DATA_TYPE_EVENTS: "data-type-Phone,data-type-Date",
+			LIMIT_EXPORT_TYPE_EVENTS: ""
+			*/
+
 			if (C.DEBUGGING.LIST_PUBLISH_EVENTS) {
 				console.log("manager.publish(): ", messages[i]);
 			}
@@ -226,6 +234,10 @@ define([
 		return _modules;
 	}
 
+	var _log = function(message) {
+
+	}
+
 	var _start = function() {
         _initAll();
         _runAll();
@@ -240,6 +252,7 @@ define([
 		getModules:   _getModules,
 		validateDataTypes: _validateDataTypes,
 		validateExportTypes: _validateExportTypes,
+		log: _log,
 
 		// this one's weird...
 		start:    	  _start

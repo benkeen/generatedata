@@ -681,6 +681,9 @@ body.gdErrorPage #gdBox {
 	margin-left: 8px;
 	margin-top: 2px;
 }
+body .ui-widget-content {
+	color: #555555;
+}
 
 /* overridden Chosen styles */
 body .chzn-container-multi .chzn-choices .search-choice {
