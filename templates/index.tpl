@@ -94,7 +94,7 @@
 						<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeAdditionalSettings">{$i}</div>
 					{/foreach}
 
-					<div id="gdMessages">
+					<div id="gdMessages" class="gdMessage">
 						<a class="gdMessageClose" title="{$L.hide_error}" href="#">X</a>
 						<div></div>
 					</div>
@@ -163,8 +163,13 @@
 			</div>
 
 			<div class="gdTabContent" id="gdTab2Content">
-				<form action="index.php#t2" method="post">
-					<input type="hidden" name="updateSettings" value="" />
+
+				<div id="settingsTabMessage" class="gdMessage gdNotify gdMarginTop">
+					<a href="#" title="Hide" class="gdMessageClose">X</a>
+					<p></p>
+				</div>
+
+				<form action="index.php#t2" method="post" id="settingsForm">
 
 					<h3>Developer Settings</h3>
 
@@ -197,10 +202,10 @@
 						</div>
 						<div class="col">
 							<label for="consoleEventsModuleList">Limit console messages to specific modules</label>
-							{data_types_dropdown name="consoleEventsDataTypePlugins[]" id="consoleEventsDataTypePlugins"
+							{data_types_dropdown name="consoleEventsDataTypePlugins" id="consoleEventsDataTypePlugins"
 								style="width:500px" multiple=true extras="data-placeholder=\"All Data Type plugins\""
 								includeDefaultOption=false selected=$settings.consoleEventsDataTypePlugins}
-							{export_types_dropdown name="consoleEventsExportTypePlugins[]" id="consoleEventsExportTypePlugins"
+							{export_types_dropdown name="consoleEventsExportTypePlugins" id="consoleEventsExportTypePlugins"
 								style="width:500px" multiple=true extras="data-placeholder=\"All Export Type plugins\""
 								includeDefaultOption=false selected=$settings.consoleEventsExportTypePlugins}
 						</div>

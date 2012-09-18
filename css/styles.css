@@ -400,11 +400,11 @@ li.gdColDelete {
 	font-size: 7pt;
 	border: 1px solid #cccccc;
 }
-#gdMessages {
+.gdMessage {
 	position: relative;
 	display: none;
 }
-#gdMessages a.gdMessageClose:link, #gdMessages a.gdMessageClose:visited {
+.gdMessage a.gdMessageClose:link, .gdMessage a.gdMessageClose:visited {
 	position: absolute;
 	top: 10px;
 	right: 12px;
@@ -418,17 +418,22 @@ li.gdColDelete {
 	border-radius: 6px;
 	text-align: center;
 }
-#gdMessages a.gdMessageClose:hover {
+.gdErrors a.gdMessageClose:hover {
 	background-color: #AA0000;
+	color: white;
+}
+.gdNotify a.gdMessageClose:hover {
+	background-color: #3b82cb;
 	color: white;
 }
 .gdNotify {
 	background-color: #F2F8FF;
 	border: 1px solid #0058DB;
 }
-.gdNotify div {
+.gdNotify p {
 	padding: 8px;
 	color: #0058DB;
+	margin: 0px;
 }
 .gdErrors {
 	background-color: #FFEDED;

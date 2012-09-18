@@ -47,6 +47,8 @@ class Settings {
 	 */
 	public function updateSettings($post) {
 
+		$L = Core::$language->getCurrentLanguageStrings();
+
 		if (!isset($post["consoleEventsDataTypePlugins"])) {
 			$post["consoleEventsDataTypePlugins"] = array();
 		}
@@ -55,23 +57,33 @@ class Settings {
 		}
 
 		$settings = array(
-			"consoleWarnings"         => isset($post["consoleWarnings"]) ? "enabled" : "",
-			"consoleEventsPublish"    => isset($post["consoleEventsPublish"]) ? "enabled" : "",
-			"consoleEventsSubscribe"  => isset($post["consoleEventsSubscribe"]) ? "enabled" : "",
-			"consoleCoreEvents"       => isset($post["consoleCoreEvents"]) ? "enabled" : "",
+			"consoleWarnings"         => ($post["consoleWarnings"] == "true") ? "enabled" : "",
+			"consoleEventsPublish"    => ($post["consoleEventsPublish"] == "true") ? "enabled" : "",
+			"consoleEventsSubscribe"  => ($post["consoleEventsSubscribe"] == "true") ? "enabled" : "",
+			"consoleCoreEvents"       => ($post["consoleCoreEvents"] == "true") ? "enabled" : "",
 			"consoleEventsDataTypePlugins"   => implode(",", $post["consoleEventsDataTypePlugins"]),
 			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"])
 		);
 
-		// TODO error checking + string escape for module list
 
 		$prefix = Core::getDbTablePrefix();
+		$errors = array();
 		while (list($key, $value) = each($settings)) {
+			$value = mysql_real_escape_string($value);
 			$result = Core::$db->query("
 				UPDATE {$prefix}settings
 				SET    setting_value = '$value'
 				WHERE  setting_name = '$key'
 			");
+			if (!$result["success"]) {
+				$errors[] = $result["errorMessage"];
+			}
+		}
+
+		if (count($errors) > 0) {
+			return array(false, implode("<br />", $errors));
+		} else {
+			return array(true, $L["notify_settings_updated"]);
 		}
 	}
 }

@@ -35,7 +35,7 @@ define([
 		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
-		$(".gdMessageClose").on("click", function() { utils.hideErrors(false); return false; });
+		$(".gdMessageClose").on("click", function(e) { utils.hideErrors(e.target, false); return false; });
 		$("#gdData").bind("submit", _submitForm);
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
@@ -65,7 +65,7 @@ define([
 		if (rows.match(/\D/) || rows == 0 || rows == "") {
 			utils.clearErrors();
 			utils.addErrors({ els: [$("#gdNumRows")], error: L.no_num_rows });
-			utils.displayErrors();
+			utils.displayErrors("#gdMessages");
 			return false;
 		}
 
@@ -417,7 +417,7 @@ define([
 
 		var errors = utils.getErrors();
 		if (errors.length) {
-			utils.displayErrors();
+			utils.displayErrors("#gdMessages");
 			return false;
 		}
 

@@ -34,5 +34,51 @@ require([
 		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
 		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
 
+		function installResponse(json) {
+			utils.stopProcessing();
+			if (json.success == 0) {
+//				$("#installError .response").html(json.message);
+//				$("#installError").effect("highlight", { color: "#ff5b5b" }, 1500);
+				return;
+			}
+		}
+
+		function installError(json) {
+
+		}
+
+		$("#settingsForm").bind("submit", function(e) {
+			e.preventDefault();
+			utils.startProcessing();
+			$.ajax({
+				url: "ajax.php",
+				type: "POST",
+				dataType: "json",
+				data: {
+					action: "updateSettings",
+					consoleWarnings: $("#gdSettingsConsoleWarnings")[0].checked,
+					consoleEventsPublish: $("#gdSettingsConsoleEventsPublish")[0].checked,
+					consoleEventsSubscribe: $("#gdSettingsConsoleEventsSubscribe")[0].checked,
+					consoleCoreEvents: $("#gdSettingsConsoleCoreEvents")[0].checked,
+					consoleEventsDataTypePlugins: $("#consoleEventsDataTypePlugins").val(),
+					consoleEventsExportTypePlugins: $("#consoleEventsExportTypePlugins").val()
+				},
+				success: function(json) {
+					utils.stopProcessing();
+					if (json.success == 1) {
+						$("#settingsTabMessage p").html(json.message);
+						$("#settingsTabMessage").effect("highlight", { color: "#a4c2ff" }, 1500);
+					}
+				},
+				error: function(json) {
+					utils.stopProcessing();
+					if (json.success == 1) {
+						$("#settingsTabMessage p").html(json.message);
+						$("#settingsTabMessage").effect("highlight", { color: "#ff5b5b" }, 1500);
+					}
+				},
+			});
+		});
+
 	});
 });

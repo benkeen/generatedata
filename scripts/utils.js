@@ -73,7 +73,7 @@ define([
 			$("*").removeClass("gdProblemField");
 		},
 
-		hideErrors: function(unhighlightProblemFields) {
+		hideErrors: function(el, unhighlightProblemFields) {
 			if (!_messageVisible) {
 				return;
 			}
@@ -82,7 +82,7 @@ define([
 				$("*").removeClass("gdProblemField");
 			}
 
-			$("#gdMessages").hide("blind", null, 500);
+			$(el).closest(".gdMessage").hide("blind", null, 500);
 			_errors = [];
 			_messageVisible = false;
 
@@ -96,8 +96,10 @@ define([
 			return _errors;
 		},
 
-		displayErrors: function() {
-
+		/**
+		 * Displays the errors
+		 */
+		displayErrors: function(el) {
 			var html = "<ul>";
 			var hasFocus = false;
 
@@ -116,12 +118,12 @@ define([
 
 				html += "<li>" + _errors[i].error + "</li>";
 			}
-			$("#gdMessages").removeClass("gdNotify").addClass("gdErrors gdMarginTop");
-			$("#gdMessages div").html(html);
+			$(el).removeClass("gdNotify").addClass("gdErrors gdMarginTop");
+			$(el).find("div").html(html);
 
 			// if this is the first time the errors are displayed (i.e. it's not already visible), blind it in
 			if (!_messageVisible) {
-				$("#gdMessages").show("blind", null, 500);
+				$(el).show("blind", null, 500);
 			}
 
 			_messageVisible = true;

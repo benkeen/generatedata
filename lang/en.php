@@ -145,3 +145,5 @@ $L["last_name"] = "Last Name";
 $L["settings"] = "Settings";
 $L["geo"] = "Geo";
 $L["numeric"] = "Numeric";
+$L["notify_settings_updated"] = "Your settings have been updated.";
+

@@ -66,14 +66,14 @@ require([
 		}
 
 		if (errors.length) {
-		$("#" + errors[0].fieldId).select();
-		for (var i=0; i<errors.length; i++) {
-				$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
+			$("#" + errors[0].fieldId).select();
+			for (var i=0; i<errors.length; i++) {
+					$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
+			}
+			return false;
 		}
-		return false;
-	}
 
-		g.startProcessing();
+		utils.startProcessing();
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
