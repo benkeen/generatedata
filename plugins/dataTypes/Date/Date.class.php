@@ -4,7 +4,7 @@ class DataType_Date extends DataTypePlugin {
 
 	protected $dataTypeName = "Date";
 	protected $dataTypeFieldGroup = "human_data";
-	protected $dataTypeFieldGroupOrder = 100;
+	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("Date.js");
 
 	private $helpDialogWidth = 860;
