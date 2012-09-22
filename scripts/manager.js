@@ -9,6 +9,14 @@ define([
 	// stores all modules, regardless of type (Core, Data Types, Export Types, Countries).
 	// It's a hash of Module ID -> module info
 	var _modules = {};
+	var _requiredModuleIDPrefixes = {};
+	_requiredModuleIDPrefixes[C.COMPONENT.DATA_TYPE] = "data-type-";
+	_requiredModuleIDPrefixes[C.COMPONENT.EXPORT_TYPE] = "export-type-";
+	_requiredModuleIDPrefixes[C.COMPONENT.CORE] = "core-";
+	var _filterDataTypeMessages = (C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS == "") ? false : true;
+	var _filterExportTypeMessages = (C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS == "") ? false : true;
+	var _permittedDataTypes = C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS.split(",");
+	var _permittedExportTypes = C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS.split(",");
 
 	/**
 	 * Our registration function. Any plugins - Data Types, Export Types or Countries - that
@@ -18,10 +26,9 @@ define([
 	 * @param {object} module
 	 */
 	var _register = function(moduleID, moduleType, module) {
-
 		if (_modules.hasOwnProperty(moduleID)) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
-				console.warn("Sorry, a module with ID has already been registered.");
+				console.warn("Sorry, a module with that ID has already been registered.");
 			}
 			return;
 		}
@@ -33,11 +40,7 @@ define([
 		}
 
 		// ensure the module ID has an appropriate prefix
-		var requiredModuleIDPrefixes = {};
-		requiredModuleIDPrefixes[C.COMPONENT.DATA_TYPE] = "data-type-";
-		requiredModuleIDPrefixes[C.COMPONENT.EXPORT_TYPE] = "export-type-";
-		requiredModuleIDPrefixes[C.COMPONENT.CORE] = "core-";
-		var regExp = new RegExp("^" + requiredModuleIDPrefixes[moduleType]);
+		var regExp = new RegExp("^" + _requiredModuleIDPrefixes[moduleType]);
 		if (!regExp.test(moduleID)) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.warn("Invalid module ID for " + moduleID);
@@ -97,17 +100,35 @@ define([
 		}
 
 		for (var i=0; i<messages.length; i++) {
-
-			/*
-			if LIST_PUBLISH_EVENTS
-			LIST_CORE_EVENTS: true,
-			LIMIT_DATA_TYPE_EVENTS: "data-type-Phone,data-type-Date",
-			LIMIT_EXPORT_TYPE_EVENTS: ""
-			*/
+			var pluginType = _getPluginType(messages[i].sender);
 
 			if (C.DEBUGGING.LIST_PUBLISH_EVENTS) {
-				console.log("manager.publish(): ", messages[i]);
+				var log = false;
+				if (pluginType == "data-type") {
+					if (_filterDataTypeMessages) {
+						if ($.inArray(messages[i].sender, _permittedDataTypes) != -1) {
+							log = true;
+						}
+					} else {
+						log = true;
+					}
+				} else if (pluginType == "export-type") {
+					if (_filterExportTypeMessages) {
+						if ($.inArray(messages[i].sender, _permittedExportTypes) != -1) {
+							log = true;
+						}
+					} else {
+						log = true;
+					}
+				} else {
+					log = true;
+				}
+
+				if (log) {
+					console.log("manager.publish(): ", messages[i]);
+				}
 			}
+
 			var currMessage = messages[i].type;
 			for (var moduleID in _modules) {
                 if (_modules[moduleID].subscriptions.hasOwnProperty(currMessage)) {
@@ -142,6 +163,7 @@ define([
 
         if (_modules.hasOwnProperty(moduleID)) {
             var existingSubscriptions = _modules[moduleID].subscriptions;
+            var pluginType = _getPluginType(moduleID);
 
             // blithely add and overwrite any existing subscriptions for the events defined
             for (var event in cleanSubscriptions) {
@@ -150,7 +172,30 @@ define([
             _modules[moduleID].subscriptions = existingSubscriptions;
 
 			if (C.DEBUGGING.LIST_SUBSCRIBE_EVENTS) {
-				console.log("manager.subscribe(): ", moduleID, cleanSubscriptions);
+				var log = false;
+				if (pluginType == "data-type") {
+					if (_filterDataTypeMessages) {
+						if ($.inArray(moduleID, _permittedDataTypes) != -1) {
+							log = true;
+						}
+					} else {
+						log = true;
+					}
+				} else if (pluginType == "export-type") {
+					if (_filterExportTypeMessages) {
+						if ($.inArray(moduleID, _permittedExportTypes) != -1) {
+							log = true;
+						}
+					} else {
+						log = true;
+					}
+				} else {
+					log = true;
+				}
+
+				if (log) {
+					console.log("manager.subscribe(): ", moduleID, cleanSubscriptions);
+				}
 			}
         }
 	}
@@ -234,13 +279,26 @@ define([
 		return _modules;
 	}
 
-	var _log = function(message) {
-
-	}
-
 	var _start = function() {
         _initAll();
         _runAll();
+	}
+
+	var _getPluginType = function(moduleID) {
+		var isDataType = new RegExp("^" + _requiredModuleIDPrefixes[C.COMPONENT.DATA_TYPE]);
+		var isExportType = new RegExp("^" + _requiredModuleIDPrefixes[C.COMPONENT.EXPORT_TYPE]);
+		var isCore = new RegExp("^" + _requiredModuleIDPrefixes[C.COMPONENT.CORE]);
+
+		var type = null;
+		if (isDataType.test(moduleID)) {
+			type = "data-type";
+		} else if (isExportType.test(moduleID)) {
+			type = "export-type";
+		} else if (isCore.test(moduleID)) {
+			type = "core";
+		}
+
+		return type;
 	}
 
 	// our public API
@@ -252,7 +310,6 @@ define([
 		getModules:   _getModules,
 		validateDataTypes: _validateDataTypes,
 		validateExportTypes: _validateExportTypes,
-		log: _log,
 
 		// this one's weird...
 		start:    	  _start

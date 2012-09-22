@@ -174,7 +174,7 @@
 					<h3>Developer Settings</h3>
 
 					<p>
-						The following sections lets you fine-tune what you see in your javascript console for debugging / development.
+						The following sections lets you fine-tune what you see in your javascript console for development purposes.
 					</p>
 
 					<div class="cols2">
@@ -201,7 +201,7 @@
 							</div>
 						</div>
 						<div class="col">
-							<label for="consoleEventsModuleList">Limit console messages to specific modules</label>
+							<label for="consoleEventsModuleList">Limit pub/sub console messages to specific modules:</label>
 							{data_types_dropdown name="consoleEventsDataTypePlugins" id="consoleEventsDataTypePlugins"
 								style="width:500px" multiple=true extras="data-placeholder=\"All Data Type plugins\""
 								includeDefaultOption=false selected=$settings.consoleEventsDataTypePlugins}

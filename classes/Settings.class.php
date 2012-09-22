@@ -49,10 +49,10 @@ class Settings {
 
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		if (!isset($post["consoleEventsDataTypePlugins"])) {
+		if (!isset($post["consoleEventsDataTypePlugins"]) || empty($post["consoleEventsDataTypePlugins"])) {
 			$post["consoleEventsDataTypePlugins"] = array();
 		}
-		if (!isset($post["consoleEventsExportTypePlugins"])) {
+		if (!isset($post["consoleEventsExportTypePlugins"]) || empty($post["consoleEventsExportTypePlugins"])) {
 			$post["consoleEventsExportTypePlugins"] = array();
 		}
 
