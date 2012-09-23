@@ -55,7 +55,6 @@ a:link, nav a:visited {
 a:hover {
 	text-decoration: underline;
 }
-
 .cols2 {
 	clear:both;
 	position:relative;
@@ -182,7 +181,13 @@ nav#gdTabs ul li:hover {
 	background-color: #f5faf6;
 }
 .gdTabContent {
-	display: none;
+	padding: 0px;
+	margin: 0px;
+}
+.gdTabContent li {
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
 }
 #gdTab1Content {
 	display: block;

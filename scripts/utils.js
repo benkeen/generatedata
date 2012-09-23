@@ -21,7 +21,6 @@ define([
 			if (tab == _currentTab) {
 				return false;
 			}
-
 			$("#gdTab" + _currentTab).removeClass("gdSelected");
 			$("#gdTab" + tab).addClass("gdSelected");
 			$("#gdTab" + _currentTab + "Content").hide();

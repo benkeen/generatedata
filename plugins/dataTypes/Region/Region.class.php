@@ -30,7 +30,7 @@ class DataType_Region extends DataTypePlugin {
 			// onclick="StateProvince_ns.hideShowStateProvCounty(%ROW%, this.checked, '$slug')"
 
 			$html .= <<<EOF
-<div class="dtRegionSection dtRegionCountry_$slug">
+<div class="dtRegionCountry dtRegionCountry_$slug">
 	<input type="checkbox" name="dtIncludeRegion_{$slug}_%ROW%" id="dtIncludeRegion_{$slug}_%ROW%" class="dtRegionCountry"
 		checked="checked" /><label for="dtIncludeRegion_{$slug}_%ROW%">$regionName</label>
 	<span class="dtRegionFull">

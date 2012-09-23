@@ -117,6 +117,7 @@ END;
 				date_created datetime NOT NULL,
 				last_updated datetime NOT NULL,
 				date_expires datetime default NULL,
+				account_type ENUM('user', 'admin') NOT NULL,
 				first_name varchar(50) default NULL,
 				last_name varchar(50) default NULL,
 				email varchar(100) NOT NULL,

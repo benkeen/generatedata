@@ -11,7 +11,6 @@ define([
 		var subscriptions = {};
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
-
 		$("#gdTableRows").on("click", ".dtRegionCountry", _toggleCountryRegion);
 	}
 
@@ -22,14 +21,13 @@ define([
 	var _countryChange = function(msg) {
 		var shownClassesSelectors = [];
 		for (var i=0; i<msg.countries.length; i++) {
-			shownClassesSelectors.push(".dtCountry_" + msg.countries[i]);
+			shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i]);
 		}
 		shownClassesSelector = shownClassesSelectors.join(",");
 
-		$(".dtCountry").hide();
+		$(".dtRegionCountry").hide();
 		$(shownClassesSelector).show();
 	}
-
 
 	var _validate = function() {
 

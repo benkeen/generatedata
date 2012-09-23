@@ -6,7 +6,6 @@ class DataType_City extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $processOrder = 3;
-
 	private $cities;
 
 	public function generateItem($row, $placeholderStr, $existingRowData) {
@@ -66,7 +65,6 @@ class DataType_City extends DataTypePlugin {
 
 	// NAH! Move this to a constructor, then make a simple getter
 	public function getList() {
-
 		global $g_table_prefix;
 
 		$query = mysql_query("

@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.23.custom.css" />
 	<script src="scripts/libs/jquery.js"></script>
+	<script src="scripts/libs/chosen.jquery.min.js"></script>
 	<script data-main="scripts/install" src="scripts/libs/require.js"></script>
 	<script src="scripts/requireConfig.js"></script>
 </head>
