@@ -38,8 +38,7 @@
 		</ul>
 	</nav>
 	<section>
-		<div class="gdNoJS">Please enable javascript in your browser.</div>
-
+		<p class="gdNoJS">{$L.no_js}</p>
 		<div id="gdContent" class="gdHideNoJS">
 			<ul class="gdTabContent">
 				<li id="gdTab1Content">{include file="generate_tab1.tpl"}</li>

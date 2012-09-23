@@ -478,7 +478,7 @@ END;
 
 
 	public function maybeShowInstallationPage() {
-		if (!Core::checkSettingsFileExists()) {
+		if (!Core::checkIsInstalled()) {
 			$query_string = (isset($_GET["source"]) && in_array($_GET["source"], array("fromerrorpage"))) ?
 				"?source={$_GET["source"]}" : "";
 

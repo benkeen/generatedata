@@ -46,9 +46,7 @@ class Settings {
 	 * @param array $post
 	 */
 	public function updateSettings($post) {
-
 		$L = Core::$language->getCurrentLanguageStrings();
-
 		if (!isset($post["consoleEventsDataTypePlugins"]) || empty($post["consoleEventsDataTypePlugins"])) {
 			$post["consoleEventsDataTypePlugins"] = array();
 		}
@@ -64,7 +62,6 @@ class Settings {
 			"consoleEventsDataTypePlugins"   => implode(",", $post["consoleEventsDataTypePlugins"]),
 			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"])
 		);
-
 
 		$prefix = Core::getDbTablePrefix();
 		$errors = array();
@@ -84,6 +81,61 @@ class Settings {
 			return array(false, implode("<br />", $errors));
 		} else {
 			return array(true, $L["notify_settings_updated"]);
+		}
+	}
+
+	/**
+	 * A custom function for outputting a settings file into the constants.js file. This
+	 * allows the file to be referenced in the installation script prior to actual installation (where
+	 * there are no settings yet in the DB).
+	 *
+	 * @param string $setting
+	 */
+	public function safeDisplaySetting($setting) {
+		switch ($setting) {
+			case "consoleWarnings":
+				if (!Core::checkIsInstalled()) {
+					echo "false";
+				} else {
+					echo (Settings::getSetting("consoleWarnings") == "enabled") ? "true" : "false";
+				}
+				break;
+
+			case "consoleEventsPublish":
+				if (!Core::checkIsInstalled()) {
+					echo "false";
+				} else {
+					echo (Settings::getSetting("consoleEventsPublish") == "enabled") ? "true" : "false";
+				}
+				break;
+
+			case "consoleEventsSubscribe":
+				if (!Core::checkIsInstalled()) {
+					echo "false";
+				} else {
+					echo (Settings::getSetting("consoleEventsSubscribe") == "enabled") ? "true" : "false";
+				}
+				break;
+
+			case "consoleCoreEvents":
+				if (!Core::checkIsInstalled()) {
+					echo "false";
+				} else {
+					echo (Settings::getSetting("consoleCoreEvents") == "enabled") ? "true" : "false";
+				}
+				break;
+
+			case "consoleEventsDataTypePlugins":
+				if (Core::checkIsInstalled()) {
+					echo Settings::getSetting("consoleEventsDataTypePlugins");
+				}
+				break;
+
+			case "consoleEventsExportTypePlugins":
+				if (Core::checkIsInstalled()) {
+					echo Settings::getSetting("consoleEventsExportTypePlugins");
+				}
+				break;
 		}
 	}
 }

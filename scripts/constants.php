@@ -10,13 +10,12 @@ define([], function() {
 		 * Contains various options for debugging.
 		 */
 		DEBUGGING: {
-			CONSOLE_WARN: <?php echo (Settings::getSetting("consoleWarnings") == "enabled") ? "true" : "false"; ?>,
-			LIST_PUBLISH_EVENTS: <?php echo (Settings::getSetting("consoleEventsPublish") == "enabled") ? "true" : "false"; ?>,
-			LIST_SUBSCRIBE_EVENTS: <?php echo (Settings::getSetting("consoleEventsSubscribe") == "enabled") ? "true" : "false"; ?>,
-			LIST_CORE_EVENTS: <?php echo (Settings::getSetting("consoleCoreEvents") == "enabled") ? "true" : "false"; ?>,
-			LIMIT_DATA_TYPE_EVENTS: "<?php echo Settings::getSetting("consoleEventsDataTypePlugins") ?>",
-			LIMIT_EXPORT_TYPE_EVENTS: "<?php echo Settings::getSetting("consoleEventsExportTypePlugins") ?>"
-
+			CONSOLE_WARN: <?php Settings::safeDisplaySetting("consoleWarnings"); ?>,
+			LIST_PUBLISH_EVENTS: <?php Settings::safeDisplaySetting("consoleEventsPublish"); ?>,
+			LIST_SUBSCRIBE_EVENTS: <?php Settings::safeDisplaySetting("consoleEventsSubscribe"); ?>,
+			LIST_CORE_EVENTS: <?php Settings::safeDisplaySetting("consoleCoreEvents"); ?>,
+			LIMIT_DATA_TYPE_EVENTS: "<?php Settings::safeDisplaySetting("consoleEventsDataTypePlugins") ?>",
+			LIMIT_EXPORT_TYPE_EVENTS: "<?php Settings::safeDisplaySetting("consoleEventsExportTypePlugins") ?>"
 		},
 
 		/**

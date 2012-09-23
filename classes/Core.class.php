@@ -25,10 +25,10 @@ class Core {
 	// non-overidable settings
 	private static $version = "3.0.0";
 	private static $minimumPHPVersion = "5.2.0";
-	private static $settingsFileExists = false;
+	private static $isInstalled = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "other");
 
-	// left as public, because they're often modified throughout the code ... [okay?]
+	// left as public, because they're often modified
 	public static $language;
 	public static $db;
 	public static $smarty;
@@ -62,7 +62,7 @@ class Core {
 	public function loadSettingsFile() {
 		$settingsFilePath = realpath(dirname(__FILE__) . "/../settings.php");
 		if (file_exists($settingsFilePath)) {
-			self::$settingsFileExists = true;
+			self::$isInstalled = true;
 			require_once($settingsFilePath); // TODO boy I don't like this... include_once, wrapped in try-catch maybe?
 
 			if (isset($dbHostname)) {
@@ -104,13 +104,13 @@ class Core {
 	}
 
 	public function initDatabase() {
-		if (Core::$settingsFileExists) {
+		if (Core::$isInstalled) {
 			self::$db = new Database();
 		}
 	}
 
 	public function initDataTypes() {
-		if (!Core::$settingsFileExists) {
+		if (!Core::$isInstalled) {
 			return;
 		}
 
@@ -119,14 +119,14 @@ class Core {
 	}
 
 	public function initExportTypes() {
-		if (!Core::$settingsFileExists) {
+		if (!Core::$isInstalled) {
 			return;
 		}
 		self::$exportTypePlugins = ExportTypePluginHelper::getExportTypePlugins();
 	}
 
 	public function initCountries() {
-		if (!Core::$settingsFileExists) {
+		if (!Core::$isInstalled) {
 			return;
 		}
 		self::$countryPlugins = CountryPluginHelper::getCountryPlugins();
@@ -172,8 +172,8 @@ class Core {
 		return self::$version;
 	}
 
-	public function checkSettingsFileExists() {
-		return self::$settingsFileExists;
+	public function checkIsInstalled() {
+		return self::$isInstalled;
 	}
 
 	public function getDefaultLanguageFile() {

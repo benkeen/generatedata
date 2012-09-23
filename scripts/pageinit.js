@@ -8,6 +8,8 @@ require([
 	"jquery-json"
 ], function(utils) {
 
+	console.log("!");
+
 	$(function() {
 		$(".gdNoJS").hide();
 		$(".gdHideNoJS").show();
