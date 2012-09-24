@@ -36,8 +36,13 @@ class Settings {
 			FROM {$prefix}settings
 			WHERE setting_name = '$settingName'
 		");
-		$data = mysql_fetch_assoc($response["results"]);
-		return $data["setting_value"];
+
+		$value = "";
+		if ($response["success"]) {
+			$data = mysql_fetch_assoc($response["results"]);
+			$value = $data["setting_value"];
+		}
+		return $value;
 	}
 
 

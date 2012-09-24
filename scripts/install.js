@@ -1,30 +1,31 @@
 require([
 	"manager",
 	"lang",
+	"utils",
+	"pageinit",
 	"jquery-ui",
 	"jquery-json",
-	"pageinit"
-], function(manager, L) {
-
-	// TODO move...?
+], function(manager, L, utils) {
 
 	$(function() {
 		$("#dbHostname").select();
 		$("form").bind("submit", submit);
-		$("input[name=employUserAccounts]").bind("click", function() {
-			var rowSelector = ".gdEmailRow,.gdPasswordRow,.gdFirstNameRow,.gdLastNameRow";
-			if (this.value == "yes") {
-				$(rowSelector).removeClass("gdDisabledRow").find("input").removeAttr("disabled");
-			} else {
-				$(rowSelector).addClass("gdDisabledRow").find("input").attr("disabled", "disabled");
-			}
-		});
+		$("input[name=employUserAccounts]").bind("click", _toggleUserAccountSection);
+		_toggleUserAccountSection();
 	});
 
+	function _toggleUserAccountSection() {
+		var value = $("input[name=employUserAccounts]:checked").val();
+		var rowSelector = ".gdEmailRow,.gdPasswordRow,.gdFirstNameRow,.gdLastNameRow";
+		if (value == "yes") {
+			$(rowSelector).removeClass("gdDisabledRow").find("input").removeAttr("disabled");
+		} else {
+			$(rowSelector).addClass("gdDisabledRow").find("input").attr("disabled", "disabled");
+		}
+	}
 
 	function submit() {
-		$(".error").hide();
-
+		$(".gdError").hide();
 		var validChars = /[^a-zA-Z0-9_]/;
 		var errors = [];
 		var dbHostname = $("#dbHostname").val();
@@ -45,21 +46,34 @@ require([
 			errors.push({ fieldId: "dbUsername", error: L.validation_invalid_chars });
 		}
 
+		// the password is optional (e.g. for local environments)
 		var dbPassword = $.trim($("#dbPassword").val());
-		var tablePrefix = $.trim($("#tablePrefix").val());
-		if (validChars.test(tablePrefix)) {
-			errors.push({ fieldId: "tablePrefix", error: L.validation_invalid_chars });
+
+		var dbTablePrefix = $.trim($("#dbTablePrefix").val());
+		if (validChars.test(dbTablePrefix)) {
+			errors.push({ fieldId: "dbTablePrefix", error: L.validation_invalid_chars });
 		}
 
 		var employUserAccounts = $("input[name=employUserAccounts]:checked").val();
+		var firstName = "";
+		var lastName = "";
 		var email = "";
 		var password = "";
+
 		if (employUserAccounts == "yes") {
-			var email = $.trim($("#email").val());
+			firstName = $.trim($("#firstName").val());
+			if (firstName == "") {
+				errors.push({ fieldId: "firstName", error: L.validation_no_first_name });
+			}
+			lastName = $.trim($("#lastName").val());
+			if (lastName == "") {
+				errors.push({ fieldId: "lastName", error: L.validation_no_last_name });
+			}
+			email = $.trim($("#email").val());
 			if (email == "") {
 				errors.push({ fieldId: "email", error: L.validation_no_email });
 			}
-			var password = $.trim($("#password").val());
+			password = $.trim($("#password").val());
 			if (password == "") {
 				errors.push({ fieldId: "password", error: L.validation_no_password });
 			}
@@ -68,7 +82,7 @@ require([
 		if (errors.length) {
 			$("#" + errors[0].fieldId).select();
 			for (var i=0; i<errors.length; i++) {
-					$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
+				$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
 			}
 			return false;
 		}
@@ -84,8 +98,12 @@ require([
 				dbName: dbName,
 				dbUsername: dbUsername,
 				dbPassword: dbPassword,
-				tablePrefix: tablePrefix,
-				employUserAccounts: employUserAccounts
+				dbTablePrefix: dbTablePrefix,
+				employUserAccounts: employUserAccounts,
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				password: password
 			},
 			success: installResponse,
 			error: installError
@@ -94,16 +112,32 @@ require([
 		return false;
 	}
 
+	/**
+	 * Display the installation response. This contains details about all Data Types, Export Types and Country-specific
+	 * data installed.
+	 */
 	function installResponse(json) {
-		g.stopProcessing();
+		utils.stopProcessing();
+
 		if (json.success == 0) {
-			$("#installError .response").html(json.message);
-			$("#installError").effect("highlight", { color: "#ff5b5b" }, 1500);
-			return;
+			_displayError(json.message);
+		} else {
+//			utils.displayMessage("gdInstallMessage", json.message);
 		}
+		return;
 	}
 
+
+	function _displayError(message) {
+		$("#gdInstallMessage .gdResponse").html(message);
+		$("#gdInstallMessage").show();
+	}
+
+	/**
+	 *
+	 */
 	function installError(json) {
-
+		_displayError(json.message);
 	}
+
 });

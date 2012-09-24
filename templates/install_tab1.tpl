@@ -1,13 +1,14 @@
 	<h1>{$L.installation}</h1>
-	<p>
-		{$L.installation_intro}
-	</p>
 
 	<div id="gdInstallError">
 		<div class="gdIcon"></div>
 		<h3>Uh-oh.</h3>
-		<span class="gdResponse"></span>
+		<div class="gdResponse"></div>
 	</div>
+
+	<p>
+		{$L.installation_intro}
+	</p>
 
 	<h2>1. {$L.database_info}</h2>
 	<form>
@@ -33,8 +34,8 @@
 			</div>
 			<div class="gdError" id="dbPassword_error"></div>
 			<div class="gdField">
-				<label for="tablePrefix">{$L.table_prefix}</label>
-				<input type="text" id="tablePrefix" value="{$tablePrefix}" maxlength="10" />
+				<label for="dbTablePrefix">{$L.table_prefix}</label>
+				<input type="text" id="dbTablePrefix" value="{$tablePrefix}" maxlength="10" />
 			</div>
 			<div class="gdError" id="tablePrefix_error"></div>
 			<div class="gdField">
@@ -62,16 +63,19 @@
 				<input type="text" id="firstName" value="" disabled="disabled" />
 			</div>
 			<div class="gdError" id="firstName_error"></div>
+
 			<div class="gdField gdLastNameRow gdDisabledRow">
 				<label for="email">{$L.last_name}</label>
 				<input type="text" id="lastName" value="" disabled="disabled" />
 			</div>
 			<div class="gdError" id="lastName_error"></div>
+
 			<div class="gdField gdEmailRow gdDisabledRow">
 				<label for="email">{$L.email}</label>
 				<input type="text" id="email" value="" disabled="disabled" />
 			</div>
 			<div class="gdError" id="email_error"></div>
+
 			<div class="gdField gdPasswordRow gdDisabledRow">
 				<label for="password">{$L.password}</label>
 				<input type="text" id="password" value="{$randomPassword}" class="pwdField" disabled="disabled" />

@@ -54,14 +54,13 @@ class AjaxRequest {
 
 			// a fresh install assumes it's a blank slate: no database tables, no settings file
 			case "install":
-/*        try {
-					$assertions = array("noSettingsFile" => true);
-					Utils::assert($assertions);
-				} catch (GDException $e) {
-					$this->response = $e->getFormattedError();
+
+				if (Core::checkIsInstalled()) {
+					$this->response["success"] = 0;
+					$this->response["message"] = "Your settings.php file already exists.";
 					return;
 				}
-*/
+
 				// check the database settings provided are valid
 				list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
 				if (!$success) {
@@ -71,19 +70,36 @@ class AjaxRequest {
 				}
 
 				// okay! Time to create the settings file and database
-				list($success, $message) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"],
-					$post["dbUsername"], $post["dbPassword"], $post["tablePrefix"]);
-
+				list($success, $message) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"], $post["dbTablePrefix"]);
 				if (!$success) {
 					$this->response["success"] = 0;
 					$this->response["message"] = $message;
 					return;
 				}
 
-				// now create the database
-				Installation::createDatabase();
+				// now create the database. This creates the database and initializes the Core::$db object
+				// for use by any following SQL
+				list($success, $message) = Installation::createDatabase();
+				if (!$success) {
+					$this->response["success"] = 0;
+					$this->response["message"] = $message;
+					return;
+				}
 
-				// we're done! Redirect to the index page (?) Return nice message saying "installed!"?
+				// if they want user accounts, create the administrator account
+				if ($post["employUserAccounts"] == "yes") {
+					$adminAccount = array(
+						"accountType" => "admin",
+						"firstName"   => $post["firstName"],
+						"lastName"    => $post["lastName"],
+						"email"       => $post["email"],
+						"password"    => $post["password"]
+					);
+					Accounts::createUser($adminAccount);
+				}
+
+				$this->response["success"] = 1;
+				$this->response["message"] = "";
 				break;
 
 			case "login":

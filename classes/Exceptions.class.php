@@ -9,4 +9,5 @@ class Exceptions {
 	const SETTINGSFILEEXISTS = 2;
 	const MISSINGFIELDS      = 3;
 	const NOTNUMERICFIELD    = 4;
+
 }

@@ -28,8 +28,8 @@
 		<div style="float:right">
 			<img src="images/document_save.png" style="margin-top: 6px" />
 		</div>
-		<div id="gdLoadingIcon"></div>
 		-->
+		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
 			<li id="gdTab2" class="gdHideNoJS">{$L.user_accounts}</li>

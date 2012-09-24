@@ -185,4 +185,30 @@ class Account {
 
 //	  db_disconnect($link);
 	}
+
+	/**
+	 * Used (currently) in the installation script.
+	 *
+	 * @param array $accountInfo
+	 */
+	public static function createUser($accountInfo) {
+
+		$accountInfo = Utils::sanitize($accountInfo);
+
+		$accountType = $accountInfo["accountType"];
+		$firstName   = $accountInfo["firstName"];
+		$lastName    = $accountInfo["lastName"];
+		$email       = $accountInfo["email"];
+		$password    = $accountInfo["password"];
+
+		$now = Utils::getCurrentDatetime();
+
+		$prefix = Core::getDbTablePrefix();
+		$result = Core::$db->query("
+			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, account_type,
+				first_name, last_name, email, password, num_records_generated)
+			VALUES ('$now', '$now', '$now', '$accountType', '$firstName', '$lastName', '$email',
+				'$password', 0)
+		");
+	}
 }

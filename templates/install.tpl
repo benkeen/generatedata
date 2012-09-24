@@ -21,6 +21,7 @@
 		</nav>
 	</header>
 	<nav id="gdTabs">
+		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.install}</li>
 			<li id="gdTab2" class="gdHideNoJS">{$L.help}</li>
@@ -28,6 +29,7 @@
 	</nav>
 	<section>
 		<p class="gdNoJS">{$L.no_js}</p>
+
 		<div id="gdContent" class="gdHideNoJS">
 			<ul class="gdTabContent">
 				<li id="gdTab1Content">{include file="install_tab1.tpl"}</li>
@@ -35,7 +37,6 @@
 			</ul>
 		</div>
 	</section>
-
 	<footer>
 		{$L.version} {$version} - <a href="https://github.com/benkeen/generatedata" target="_blank">github</a>
 	</footer>

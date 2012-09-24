@@ -47,40 +47,36 @@ define([
 		},
 
 		startProcessing: function() {
-			$("#loadingIcon").show();
+			$("#gdProcessingIcon").show();
 		},
 
 		stopProcessing: function() {
-			$("#loadingIcon").hide();
+			$("#gdProcessingIcon").hide();
 		},
 
 		/**
-		 * This adds an array of error objects, or just a single one. An error object has two keys:
-		 *
+		 * This adds an array of error objects, or just a single one.
 		 */
-		addErrors: function(newErrors) {
+		addValidationErrors: function(newErrors) {
 			if ($.isArray(newErrors) && newErrors.length) {
 				_errors = _errors.concat(_errors, newErrors);
 			} else {
 				_errors.push(newErrors);
 			}
-			console.log(_errors);
 		},
 
-		clearErrors: function() {
+		clearValidationErrors: function() {
 			_errors = [];
 			$("*").removeClass("gdProblemField");
 		},
 
-		hideErrors: function(el, unhighlightProblemFields) {
+		hideValidationErrors: function(el, unhighlightProblemFields) {
 			if (!_messageVisible) {
 				return;
 			}
-
 			if (unhighlightProblemFields) {
 				$("*").removeClass("gdProblemField");
 			}
-
 			$(el).closest(".gdMessage").hide("blind", null, 500);
 			_errors = [];
 			_messageVisible = false;
@@ -91,14 +87,14 @@ define([
 		/**
 		 * Helper function to return the errors currently that have been logged.
 		 */
-		getErrors: function() {
+		getValidationErrors: function() {
 			return _errors;
 		},
 
 		/**
 		 * Displays the errors
 		 */
-		displayErrors: function(el) {
+		displayValidationErrors: function(el) {
 			var html = "<ul>";
 			var hasFocus = false;
 
@@ -128,6 +124,7 @@ define([
 			_messageVisible = true;
 		},
 
+
 		displayMessage: function(message) {
 			$("#gdMessages").removeClass("gdErrors").addClass("gdNotify gdMarginTop");
 			$("#gdMessages div").html(message);
@@ -139,7 +136,6 @@ define([
 
 			_messageVisible = true;
 		},
-
 
 		isNumber: function(n) {
 			return !isNaN(parseFloat(n)) && isFinite(n);

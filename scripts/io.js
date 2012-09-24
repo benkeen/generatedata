@@ -6,7 +6,7 @@ var io = {
 		if (!newFormName || newFormName == L.default_save_form_empty_str) {
 			gd.errors = [];
 			gd.errors.push({ els: null, error: L.no_form_name });
-			utils.displayErrors("#gdMessages");
+			utils.displayValidationErrors("#gdMessages");
 			return false;
 		}
 
@@ -198,7 +198,7 @@ var io = {
 				} else {
 					gd.errors = [];
 					gd.errors.push({ els: null, error: json.message });
-					utils.displayErrors("#gdMessages");
+					utils.displayValidationErrors("#gdMessages");
 				}
 				g.stopProcessing();
 			}
@@ -264,7 +264,7 @@ var io = {
 		if (!form_id) {
 			gd.errors = [];
 			gd.errors.push({ els: null, error: "Please select a form to delete." });
-			utils.displayErrors("#gdMessages");
+			utils.displayValidationErrors("#gdMessages");
 			return false;
 		}
 

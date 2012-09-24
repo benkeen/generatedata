@@ -1,4 +1,4 @@
-	<?php
+<?php
 
 class DataType_Date extends DataTypePlugin {
 

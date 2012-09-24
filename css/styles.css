@@ -68,7 +68,10 @@ a:hover {
 .gdVerticalPad {
 	padding-bottom: 10px;
 }
-#gdInstallError {
+.gdMarginTop {
+	margin-top: 10px;
+}
+#gdInstallMessage {
 	border-radius: 5px;
 	padding: 3px 10px 3px 46px;
 	margin-bottom: 10px;
@@ -78,25 +81,28 @@ a:hover {
 	min-height: 36px;
 	position: relative;
 }
-#gdInstallError .icon {
-	background-image: url(../images/stop.png);
+#gdInstallMessage .gdIcon {
 	width: 32px;
 	height: 32px;
 	position: absolute;
 	left: 6px;
 	top: 5px;
 }
-#gdInstallError h3 {
+.gdInstallError .gdIcon {
+	background-image: url(../images/stop.png);
+}
+.gdInstallSuccess .gdIcon {
+	background-image: url(../images/info.png);
+}
+
+#gdInstallMessage h3 {
 	font-weight: bold;
 	color: #cc0000;
 	display: inline;
 	font-size: 8pt;
 }
-#gdInstallError .response {
+#gdInstallMessage .gdResponse {
 	color: #000000;
-}
-.gdMarginTop {
-	margin-top: 10px;
 }
 
 /* page sections */
@@ -135,6 +141,7 @@ nav a:link, nav a:visited {
 nav#gdTabs {
 	width: 980px;
 	margin: 0 auto;
+	position: relative;
 }
 nav#gdTabs ul {
 	list-style: none;
@@ -252,12 +259,12 @@ header nav a:hover {
 .gdOddRow {
 	background-color: #edf3fe;
 }
-#gdLoadingIcon {
+#gdProcessingIcon {
 	display: none;
 	position: absolute;
-	right: -20px;
-	top: -45px;
-	background-image: url(../images/loading2.gif);
+	top: 6px;
+	right: 0px;
+	background-image: url(../images/loading.gif);
 	width: 16px;
 	height: 16px;
 }

@@ -172,7 +172,6 @@ END;
 		$rollbackQueries[] = "DROP TABLE {$prefix}last_names";
 
 		$response = Core::$db->query($queries, $rollbackQueries);
-		print_r($response);
 	}
 
 

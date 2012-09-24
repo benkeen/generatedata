@@ -2,13 +2,11 @@
  * This module runs on page load for all pages, initializing a few things:
  * the tab functionality and the language dropdown change event.
  */
-require([
+define([
  	"utils",
 	"jquery-ui",
 	"jquery-json"
 ], function(utils) {
-
-	console.log("!");
 
 	$(function() {
 		$(".gdNoJS").hide();

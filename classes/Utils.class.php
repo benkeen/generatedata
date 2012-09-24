@@ -104,6 +104,10 @@ class Utils {
 	}
 
 
+	public static function getCurrentDatetime() {
+		return date("Y-m-d H:i:s");
+	}
+
 	/**
 	 * Adds years to a MySQL datetime & returns a UNIX timestamp of the new date
 	 */

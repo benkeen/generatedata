@@ -35,7 +35,7 @@ define([
 		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
-		$(".gdMessageClose").on("click", function(e) { utils.hideErrors(e.target, false); return false; });
+		$(".gdMessageClose").on("click", function(e) { utils.hideValidationErrors(e.target, false); return false; });
 		$("#gdData").bind("submit", _submitForm);
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
@@ -63,9 +63,9 @@ define([
 	var _addRows = function(rows) {
 		var rows = rows.toString();
 		if (rows.match(/\D/) || rows == 0 || rows == "") {
-			utils.clearErrors();
-			utils.addErrors({ els: [$("#gdNumRows")], error: L.no_num_rows });
-			utils.displayErrors("#gdMessages");
+			utils.clearValidationErrors();
+			utils.addValidationErrors({ els: [$("#gdNumRows")], error: L.no_num_rows });
+			utils.displayValidationErrors("#gdMessages");
 			return false;
 		}
 
@@ -370,11 +370,11 @@ define([
 		var numResults = $("#gdNumResults").val();
 		var numCols    = $("#gdNumCols").val(); // TODO this var name is as confusing as hell
 
-		utils.clearErrors();
+		utils.clearValidationErrors();
 
 		// check the users specified a numeric value for the number of results
 		if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
-			utils.addErrors({ el: $("#gdNumResults"), error: L.invalid_num_results });
+			utils.addValidationErrors({ el: $("#gdNumResults"), error: L.invalid_num_results });
 		}
 
 		var orderedRowIDs = _getRowOrder();
@@ -403,11 +403,11 @@ define([
 
 		// if none of the data columns had a selected data type, display an error about that, too
 		if (!validRowIDs.length) {
-			utils.addErrors({ els: null, error: L.no_data });
+			utils.addValidationErrors({ els: null, error: L.no_data });
 		}
 
 		var dataTypeValidationErrors = manager.validateDataTypes(rowValidationNeededGroupByDataType);
-		utils.addErrors(dataTypeValidationErrors);
+		utils.addValidationErrors(dataTypeValidationErrors);
 
 //		var exportTypeValidationErrors = manager.validateExportTypes({
 //			rows: orderedRowIDs,
@@ -415,9 +415,9 @@ define([
 //		});
 
 
-		var errors = utils.getErrors();
+		var errors = utils.getValidationErrors();
 		if (errors.length) {
-			utils.displayErrors("#gdMessages");
+			utils.displayValidationErrors("#gdMessages");
 			return false;
 		}
 
@@ -481,7 +481,7 @@ define([
 				problemFields.push(missingNodeNames[i][0]);
 				rowNumbers.push(missingNodeNames[i][1]);
 			}
-			utils.addErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
 		}
 		if (invalidNodeNames.length) {
 			var problemFields = [];
@@ -490,7 +490,7 @@ define([
 				problemFields.push(invalidNodeNames[i][0]);
 				rowNumbers.push(invalidNodeNames[i][1]);
 			}
-			utils.addErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
 			Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
 		}
 		if (missingTableNames.length) {
