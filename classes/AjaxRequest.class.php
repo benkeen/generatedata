@@ -52,9 +52,24 @@ class AjaxRequest {
 				gd_delete_form($form_id);
 				break;
 
-			// a fresh install assumes it's a blank slate: no database tables, no settings file
-			case "install":
 
+			// a fresh install assumes it's a blank slate: no database tables, no settings file
+			case "installation_test_db_settings":
+				break;
+
+			case "installation_create_settings_file":
+				break;
+
+			case "installation_create_core_database":
+				break;
+
+			case "installation_data_types":
+				break;
+
+			case "installation_export_types":
+				break;
+
+			case "install":
 				if (Core::checkIsInstalled()) {
 					$this->response["success"] = 0;
 					$this->response["message"] = "Your settings.php file already exists.";
@@ -79,6 +94,9 @@ class AjaxRequest {
 
 				// now create the database. This creates the database and initializes the Core::$db object
 				// for use by any following SQL
+
+				$installationLog = array();
+
 				list($success, $message) = Installation::createDatabase();
 				if (!$success) {
 					$this->response["success"] = 0;
@@ -95,7 +113,7 @@ class AjaxRequest {
 						"email"       => $post["email"],
 						"password"    => $post["password"]
 					);
-					Accounts::createUser($adminAccount);
+					Account::createUser($adminAccount);
 				}
 
 				$this->response["success"] = 1;

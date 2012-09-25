@@ -6,6 +6,7 @@
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/install.css">
 	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.23.custom.css" />
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/chosen.jquery.min.js"></script>
@@ -29,7 +30,6 @@
 	</nav>
 	<section>
 		<p class="gdNoJS">{$L.no_js}</p>
-
 		<div id="gdContent" class="gdHideNoJS">
 			<ul class="gdTabContent">
 				<li id="gdTab1Content">{include file="install_tab1.tpl"}</li>

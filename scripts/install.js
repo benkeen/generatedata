@@ -7,6 +7,8 @@ require([
 	"jquery-json",
 ], function(manager, L, utils) {
 
+	var currInstallationStep = null;
+
 	$(function() {
 		$("#dbHostname").select();
 		$("form").bind("submit", submit);
@@ -88,12 +90,20 @@ require([
 		}
 
 		utils.startProcessing();
+		_startInstallationProcess();
+
+		return false;
+	}
+
+
+	function startInstallationProcess() {
+		currInstallationStep = 1;
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "install",
+				action: "installation_test_db_settings",
 				dbHostname: dbHostname,
 				dbName: dbName,
 				dbUsername: dbUsername,
@@ -105,18 +115,17 @@ require([
 				email: email,
 				password: password
 			},
-			success: installResponse,
+			success: continueInstallationProcess,
 			error: installError
 		});
-
-		return false;
 	}
+
 
 	/**
 	 * Display the installation response. This contains details about all Data Types, Export Types and Country-specific
 	 * data installed.
 	 */
-	function installResponse(json) {
+	function continueInstallationProcess(json) {
 		utils.stopProcessing();
 
 		if (json.success == 0) {
