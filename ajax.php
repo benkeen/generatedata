@@ -1,7 +1,8 @@
 <?php
 
 /**
- * This handles all Ajax requests for the Data Generator Core.
+ * This handles all Ajax requests for the Data Generator Core. Note that we only include the library.php
+ * here, we don't Core::init(). Depending on the context (e.g. installation), that may not be desired.
  */
 require_once(realpath(dirname(__FILE__) . "/library.php"));
 

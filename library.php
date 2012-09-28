@@ -29,5 +29,3 @@ require_once(dirname(__FILE__) . "/smarty/Smarty.class.php");
 
 //require_once(dirname(__FILE__) . "/classes/Exceptions.class.php");
 //require_once(dirname(__FILE__) . "/classes/GDException.class.php");
-
-Core::init();

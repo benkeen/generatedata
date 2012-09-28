@@ -3,6 +3,7 @@
 // TODO this really sucks. We've already initialized Core in the calling page. Can't we get around re-doing it here?
 // Check sessions? What's stored there? Could we store everything, or would it be better to just re-init Core like now?
 require_once("../library.php");
+Core::init();
 
 /*
 session_start();

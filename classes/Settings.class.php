@@ -26,7 +26,7 @@ class Settings {
 	/**
 	 * Returns the value of a specific settings.
 	 * @param string the unique setting name (setting_name column value in the Settings table)
-	 * @return
+	 * @return if not found, null. Otherwise the string value
 	 */
 	public function getSetting($settingName) {
 		$prefix = Core::getDbTablePrefix();
@@ -37,7 +37,7 @@ class Settings {
 			WHERE setting_name = '$settingName'
 		");
 
-		$value = "";
+		$value = null;
 		if ($response["success"]) {
 			$data = mysql_fetch_assoc($response["results"]);
 			$value = $data["setting_value"];
@@ -45,6 +45,15 @@ class Settings {
 		return $value;
 	}
 
+	public function setSetting($settingName, $settingValue) {
+		$prefix = Core::getDbTablePrefix();
+		$settingValue = Utils::sanitize($settingValue);
+		$response = Core::$db->query("
+			UPDATE {$prefix}settings
+			SET setting_value = '$settingValue',
+			WHERE setting_name = '$settingName'
+		");
+	}
 
 	/**
 	 * Used to update the settings on the Settings tab.

@@ -2,17 +2,17 @@
 
 	<nav id="gdInstallNav">
 		<ol>
-			<li id="nav1" class="selected">Check Database Info</li>
-			<li id="nav2">Create Settings File</li>
-			<li id="nav3">{$L.user_accounts}</li>
-			<li id="nav4">Data Types</li>
-			<li id="nav5">Export Types</li>
-			<li id="nav6">Country Data</li>
-			<li id="nav7">Complete!</li>
+			<li id="nav1" class="{if $currentPage == 1}selected{else}complete{/if}">Check Database Info</li>
+			<li id="nav2" class="{if $currentPage == 2}selected{elseif $currentPage > 2}complete{/if}">Create Settings File</li>
+			<li id="nav3" class="{if $currentPage == 3}selected{elseif $currentPage > 3}complete{/if}">{$L.user_accounts}</li>
+			<li id="nav4" class="{if $currentPage == 4}selected{elseif $currentPage > 4}complete{/if}">Data Types</li>
+			<li id="nav5" class="{if $currentPage == 5}selected{elseif $currentPage > 5}complete{/if}">Export Types</li>
+			<li id="nav6" class="{if $currentPage == 6}selected{elseif $currentPage > 6}complete{/if}">Country Data</li>
+			<li id="nav7" class="{if $currentPage == 7}selected{/if}">Complete!</li>
 		</ol>
 	</nav>
 
-	<div class="gdInstallSection" id="page1">
+	<div class="gdInstallSection{if $currentPage != 1} hidden{/if}" id="page1">
 
 		<div class="gdInstallTabMessage">
 			<div class="gdIcon"></div>
@@ -63,7 +63,7 @@
 		</form>
 	</div>
 
-	<div class="gdInstallSection hidden" id="page2">
+	<div class="gdInstallSection{if $currentPage != 2} hidden{/if}" id="page2">
 		<p>
 			So far so good! Now click the button below to create your <b>settings.php</b> file. This file is stored in
 			the root folder of this application and is the only place (other than the database) that stores custom information
@@ -74,17 +74,19 @@
 		</form>
 	</div>
 
-	<div class="gdInstallSection hidden" id="page3">
+	<div class="gdInstallSection{if $currentPage != 3} hidden{/if}" id="page3">
 		<p>
-			The Data Generator lets you save your data configurations for later use. By default, saved data
-			is associated with a <i>single, unprotected user account</i>: anyone visiting the script will be able
-			to load, save and delete these configurations. If you wish people to have to logging in to use the script and
-			save data, specify the administrator account below: you will be able to create user accounts later.
+			By default, there's no password protection: everyone visiting your Data Generator installation can
+			load, save and delete form configurations.
+
+			If you want multiple users to use this script, enter the administrator account details below. This account
+			will be allowed to create and manage user accounts.
 		</p>
+
 		<form>
 			<div class="gdFields">
 				<div class="gdField">
-					<label>{$L.employ_user_accounts}</label>
+					<label>Include User Accounts</label>
 					<div class="gdRadioGroup">
 						<input type="radio" name="employUserAccounts" id="eua1" value="yes" />
 							<label for="eua1">{$L.yes}</label>
@@ -92,38 +94,40 @@
 							<label for="eua2">{$L.no}</label>
 					</div>
 				</div>
+				<div class="gdField gdAdminAccountHeading gdDisabledRow"><label for="firstName">Admin Account</label></div>
+
 				<div class="gdField gdFirstNameRow gdDisabledRow">
-					<label for="email">{$L.first_name}</label>
+					<label for="firstName">&#8212; {$L.first_name}</label>
 					<input type="text" id="firstName" value="" disabled="disabled" />
 				</div>
 				<div class="gdError" id="firstName_error"></div>
 
 				<div class="gdField gdLastNameRow gdDisabledRow">
-					<label for="email">{$L.last_name}</label>
+					<label for="lastName">&#8212; {$L.last_name}</label>
 					<input type="text" id="lastName" value="" disabled="disabled" />
 				</div>
 				<div class="gdError" id="lastName_error"></div>
 
 				<div class="gdField gdEmailRow gdDisabledRow">
-					<label for="email">{$L.email}</label>
+					<label for="email">&#8212; {$L.email}</label>
 					<input type="text" id="email" value="" disabled="disabled" />
 				</div>
 				<div class="gdError" id="email_error"></div>
 
 				<div class="gdField gdPasswordRow gdDisabledRow">
-					<label for="password">{$L.password}</label>
+					<label for="password">&#8212; {$L.password}</label>
 					<input type="text" id="password" value="{$randomPassword}" class="pwdField" disabled="disabled" />
 				</div>
 				<div class="gdError" id="password_error"></div>
-
-				<div class="gdClear"></div>
 			</div>
 
-			<button class="gdGreenButton">Check Database Info &raquo;</button>
+			<div class="gdClear"></div>
+
+			<button class="gdGreenButton">Continue &raquo;</button>
 		</form>
 	</div>
 
-	<div class="gdInstallSection hidden" id="page4">
+	<div class="gdInstallSection{if $currentPage != 4} hidden{/if}" id="page4">
 		<p>
 			So far so good! Your database information appears to be valid. Click the button below to create
 			your <b>settings.php</b> file.
@@ -134,19 +138,19 @@
 		</form>
 	</div>
 
-	<div class="gdInstallSection hidden" id="page5">
+	<div class="gdInstallSection{if $currentPage != 5} hidden{/if}" id="page5">
 		<form>
 			<button class="gdGreenButton">Continue &raquo;</button>
 		</form>
 	</div>
 
-	<div class="gdInstallSection hidden" id="page6">
+	<div class="gdInstallSection{if $currentPage != 6} hidden{/if}" id="page6">
 		<form>
 			<button class="gdGreenButton">Continue &raquo;</button>
 		</form>
 	</div>
 
-	<div class="gdInstallSection hidden" id="page7">
+	<div class="gdInstallSection{if $currentPage != 7} hidden{/if}" id="page7">
 		<form>
 			<button class="gdGreenButton">Continue &raquo;</button>
 		</form>

@@ -9,7 +9,6 @@ class AjaxRequest {
 	private $action;
 	private $response;
 
-
 	/**
 	 * AjaxRequest objects are automatically processed when they are created, based on the unique $action
 	 * value. The result of the call is stored in $response to be handled however you need (e.g. output
@@ -61,35 +60,20 @@ class AjaxRequest {
 				break;
 
 			case "installation_create_settings_file":
-				list($success, $message) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"], $post["dbTablePrefix"]);
-				if (!$success) {
-					$this->response["success"] = 0;
-					$this->response["message"] = $message;
-					return;
-				}
-				break;
-
-			case "installation_create_core_database":
-				break;
-
-			case "installation_data_types":
-				break;
-
-			case "installation_export_types":
-				break;
-
-			case "install":
-				if (Core::checkIsInstalled()) {
+				Core::init();
+				if (Core::checkSettingsFileExists()) {
 					$this->response["success"] = 0;
 					$this->response["message"] = "Your settings.php file already exists.";
 					return;
+				} else {
+					list($success, $message) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"], $post["dbTablePrefix"]);
+					$this->response["success"] = $success;
+					$this->response["message"] = $message;
 				}
+				break;
 
-				// now create the database. This creates the database and initializes the Core::$db object
-				// for use by any following SQL
-
-				$installationLog = array();
-
+			case "installation_create_database":
+				Core::init();
 				list($success, $message) = Installation::createDatabase();
 				if (!$success) {
 					$this->response["success"] = 0;
@@ -109,8 +93,20 @@ class AjaxRequest {
 					Account::createUser($adminAccount);
 				}
 
+				// make note of the fact that we've passed this installation step
+				Settings::setSetting("installationStepComplete_Core", "yes");
+
 				$this->response["success"] = 1;
 				$this->response["message"] = "";
+				break;
+
+			case "installation_data_types":
+				break;
+
+			case "installation_export_types":
+				break;
+
+			case "install":
 				break;
 
 			case "login":

@@ -17,11 +17,18 @@ require([
 		$("form").bind("submit", submit);
 		$("input[name=employUserAccounts]").bind("click", _toggleUserAccountSection);
 		_toggleUserAccountSection();
+
+		// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
+		// installing the script last time 'round, it will return them to the appropriate step.
+		var selectedNavPage = $("#gdInstallNav li.selected");
+		if (selectedNavPage.length) {
+			_currStep = parseInt(selectedNavPage.attr("id").replace(/^nav/, ""), 10);
+		}
 	});
 
 	function _toggleUserAccountSection() {
 		var value = $("input[name=employUserAccounts]:checked").val();
-		var rowSelector = ".gdEmailRow,.gdPasswordRow,.gdFirstNameRow,.gdLastNameRow";
+		var rowSelector = ".gdEmailRow,.gdPasswordRow,.gdFirstNameRow,.gdLastNameRow,.gdAdminAccountHeading";
 		if (value == "yes") {
 			$(rowSelector).removeClass("gdDisabledRow").find("input").removeAttr("disabled");
 		} else {
@@ -31,17 +38,18 @@ require([
 
 	function submit() {
 		$(".gdError").hide();
+		var errors = [];
 
 		switch (_currStep) {
 
 			// this validates the tab, and stores the database info in
 			case 1:
 				var validChars = /[^a-zA-Z0-9_]/;
-				var errors = [];
 				var dbHostname = $("#dbHostname").val();
 				if ($.trim(dbHostname) == "") {
 					errors.push({ fieldId: "dbHostname", error: L.validation_no_db_hostname });
 				}
+
 				var dbName = $.trim($("#dbName").val());
 				if (dbName == "") {
 					errors.push({ fieldId: "dbName", error: L.validation_no_db_name });
@@ -63,6 +71,75 @@ require([
 				if (validChars.test(dbTablePrefix)) {
 					errors.push({ fieldId: "dbTablePrefix", error: L.validation_invalid_chars });
 				}
+
+				if (errors.length) {
+					$("#" + errors[0].fieldId).select();
+					for (var i=0; i<errors.length; i++) {
+						$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
+					}
+					return false;
+				}
+
+				// all looks good! Keep track of the inputted vars for later use
+				_dbSettings = {
+					dbHostname: dbHostname,
+					dbName: dbName,
+					dbUsername: dbUsername,
+					dbPassword: dbPassword,
+					dbTablePrefix: dbTablePrefix
+				}
+
+				utils.startProcessing();
+				$.ajax({
+					url: "ajax.php",
+					type: "POST",
+					dataType: "json",
+					data: {
+						action: "installation_test_db_settings",
+						dbHostname: dbHostname,
+						dbName: dbName,
+						dbUsername: dbUsername,
+						dbPassword: dbPassword
+					},
+					success: function(json) {
+						utils.stopProcessing();
+						if (json.success == 0) {
+							_displayError(json.message);
+						} else {
+							gotoNextPage();
+						}
+					},
+					error: installError
+				});
+				break;
+
+			case 2:
+				utils.startProcessing();
+				$.ajax({
+					url: "ajax.php",
+					type: "POST",
+					dataType: "json",
+					data: {
+						action: "installation_create_settings_file",
+						dbHostname: _dbSettings.dbHostname,
+						dbName: _dbSettings.dbName,
+						dbUsername: _dbSettings.dbUsername,
+						dbPassword: _dbSettings.dbPassword,
+						dbTablePrefix: _dbSettings.dbTablePrefix
+					},
+					success: function(json) {
+						utils.stopProcessing();
+						if (json.success == 0) {
+							_displayError(json.message);
+						} else {
+							gotoNextPage();
+						}
+					},
+					error: installError
+				});
+				break;
+
+			case 3:
 
 				var employUserAccounts = $("input[name=employUserAccounts]:checked").val();
 				var firstName = "";
@@ -103,11 +180,12 @@ require([
 					type: "POST",
 					dataType: "json",
 					data: {
-						action: "installation_test_db_settings",
-						dbHostname: dbHostname,
-						dbName: dbName,
-						dbUsername: dbUsername,
-						dbPassword: dbPassword
+						action: "installation_create_database",
+						employUserAccounts: employUserAccounts,
+						firstName: firstName,
+						lastName: lastName,
+						email: email,
+						password: password
 					},
 					success: function(json) {
 						utils.stopProcessing();
@@ -121,31 +199,6 @@ require([
 				});
 				break;
 
-			case "2":
-				utils.startProcessing();
-				$.ajax({
-					url: "ajax.php",
-					type: "POST",
-					dataType: "json",
-					data: {
-						action: "installation_test_db_settings",
-						dbHostname: dbHostname,
-						dbName: dbName,
-						dbUsername: dbUsername,
-						dbPassword: dbPassword,
-						dbTablePrefix: dbTablePrefix
-					},
-					success: function(json) {
-						utils.stopProcessing();
-						if (json.success == 0) {
-							_displayError(json.message);
-						} else {
-							gotoNextPage();
-						}
-					},
-					error: installError
-				});
-				break;
 		}
 
 		/*

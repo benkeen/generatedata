@@ -1,4 +1,7 @@
-<?php require_once(realpath(dirname(__FILE__) . "/../library.php")); ?>
+<?php
+require_once(realpath(dirname(__FILE__) . "/../library.php"));
+Core::init();
+?>
 /**
  * Constants used by the client-side code.
  */

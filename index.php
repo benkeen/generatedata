@@ -2,6 +2,8 @@
 
 require_once("library.php");
 
+Core::init();
+
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();
 

@@ -60,6 +60,9 @@ h1 {
 .gdInstallPage .gdFields .gdDisabledRow label, .gdInstallPage .gdFields .gdDisabledRow input {
 	color: #cccccc;
 }
+.gdAdminAccountHeading {
+	font-weight: bold;
+}
 .gdInstallPage .gdFields label {
 	float: left;
 	width: 160px;
@@ -73,6 +76,9 @@ h1 {
 }
 .gdInstallPage #dbTablePrefix {
 	width: 60px;
+}
+.gdInstallPage input.pwdField {
+	width: 100px;
 }
 .gdInstallPage .gdFields div {
 	margin-top: 2px;

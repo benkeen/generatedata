@@ -25,7 +25,7 @@ class Installation {
 END;
 
 		$file = dirname(__FILE__) . "/../settings.php";
-		$handle = @fopen($file, "w");
+		$handle = fopen($file, "w");
 		if ($handle) {
 			fwrite($handle, $content);
 			fclose($handle);
@@ -103,7 +103,12 @@ END;
 				('consoleEventsDataTypePlugins', ''),
 				('consoleEventsExportTypePlugins', ''),
 				('consoleCoreEvents', ''),
-				('consoleWarnings', '')
+				('consoleWarnings', ''),
+				('installationStepComplete_Core', 'no'),
+				('installationStepComplete_DataTypes', 'no'),
+				('installationStepComplete_ExportTypes', 'no'),
+				('installationStepComplete_CountryData', 'no'),
+				('installationComplete', 'no')
 		";
 		$queries[] = "
 			CREATE TABLE {$prefix}user_accounts (

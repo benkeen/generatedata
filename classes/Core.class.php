@@ -25,7 +25,7 @@ class Core {
 	// non-overidable settings
 	private static $version = "3.0.0";
 	private static $minimumPHPVersion = "5.2.0";
-	private static $isInstalled = false;
+	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "other");
 
 	// left as public, because they're often modified
@@ -49,6 +49,8 @@ class Core {
 
 		self::initSmarty();
 		self::initDatabase();
+
+		// these three...
 		self::initDataTypes();
 		self::initExportTypes();
 		self::initCountries();
@@ -62,7 +64,7 @@ class Core {
 	public function loadSettingsFile() {
 		$settingsFilePath = realpath(dirname(__FILE__) . "/../settings.php");
 		if (file_exists($settingsFilePath)) {
-			self::$isInstalled = true;
+			self::$settingsFileExists = true;
 			require_once($settingsFilePath); // TODO boy I don't like this... include_once, wrapped in try-catch maybe?
 
 			if (isset($dbHostname)) {
@@ -104,13 +106,13 @@ class Core {
 	}
 
 	public function initDatabase() {
-		if (Core::$isInstalled) {
+		if (Core::$settingsFileExists) {
 			self::$db = new Database();
 		}
 	}
 
 	public function initDataTypes() {
-		if (!Core::$isInstalled) {
+		if (!Core::$settingsFileExists) {
 			return;
 		}
 
@@ -119,14 +121,14 @@ class Core {
 	}
 
 	public function initExportTypes() {
-		if (!Core::$isInstalled) {
+		if (!Core::$settingsFileExists) {
 			return;
 		}
 		self::$exportTypePlugins = ExportTypePluginHelper::getExportTypePlugins();
 	}
 
 	public function initCountries() {
-		if (!Core::$isInstalled) {
+		if (!Core::$settingsFileExists) {
 			return;
 		}
 		self::$countryPlugins = CountryPluginHelper::getCountryPlugins();
@@ -172,8 +174,24 @@ class Core {
 		return self::$version;
 	}
 
+	public function checkSettingsFileExists() {
+		return self::$settingsFileExists;
+	}
+
+	/**
+	 * Full installation of the program is determined by (a) the settings.php file existing and (b)
+	 * the "installationComplete" setting value existing in the database. Note: this function assumes
+	 * the database connection in Core::$db has already been created.
+	 */
 	public function checkIsInstalled() {
-		return self::$isInstalled;
+		if (!self::$settingsFileExists) {
+			return false;
+		}
+		$installationComplete = Settings::getSetting("installationComplete");
+		if (!isset($installationComplete) || $installationComplete == "no") {
+			return false;
+		}
+		return true;
 	}
 
 	public function getDefaultLanguageFile() {

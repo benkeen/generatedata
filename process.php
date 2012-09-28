@@ -30,6 +30,8 @@ if ($resultType == "XML")
 
 require("library.php");
 
+Core::init();
+
 // if there's no incoming FORM values, just exit
 if (empty($_POST))
   exit;
