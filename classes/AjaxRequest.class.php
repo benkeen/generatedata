@@ -55,9 +55,18 @@ class AjaxRequest {
 
 			// a fresh install assumes it's a blank slate: no database tables, no settings file
 			case "installation_test_db_settings":
+				list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
+				$this->response["success"] = $success;
+				$this->response["message"] = $message;
 				break;
 
 			case "installation_create_settings_file":
+				list($success, $message) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"], $post["dbTablePrefix"]);
+				if (!$success) {
+					$this->response["success"] = 0;
+					$this->response["message"] = $message;
+					return;
+				}
 				break;
 
 			case "installation_create_core_database":
@@ -73,22 +82,6 @@ class AjaxRequest {
 				if (Core::checkIsInstalled()) {
 					$this->response["success"] = 0;
 					$this->response["message"] = "Your settings.php file already exists.";
-					return;
-				}
-
-				// check the database settings provided are valid
-				list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
-				if (!$success) {
-					$this->response["success"] = 0;
-					$this->response["message"] = $message;
-					return;
-				}
-
-				// okay! Time to create the settings file and database
-				list($success, $message) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"], $post["dbTablePrefix"]);
-				if (!$success) {
-					$this->response["success"] = 0;
-					$this->response["message"] = $message;
 					return;
 				}
 

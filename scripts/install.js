@@ -7,8 +7,11 @@ require([
 	"jquery-json",
 ], function(manager, L, utils) {
 
-	var currInstallationStep = null;
+	// everything in this module is private, but we re-use the _ notation here just to signify scope
+	var _currStep = 1;
+	var _dbSettings = {};
 
+	// on load,
 	$(function() {
 		$("#dbHostname").select();
 		$("form").bind("submit", submit);
@@ -28,96 +31,144 @@ require([
 
 	function submit() {
 		$(".gdError").hide();
-		var validChars = /[^a-zA-Z0-9_]/;
-		var errors = [];
-		var dbHostname = $("#dbHostname").val();
-		if ($.trim(dbHostname) == "") {
-			errors.push({ fieldId: "dbHostname", error: L.validation_no_db_hostname });
+
+		switch (_currStep) {
+
+			// this validates the tab, and stores the database info in
+			case 1:
+				var validChars = /[^a-zA-Z0-9_]/;
+				var errors = [];
+				var dbHostname = $("#dbHostname").val();
+				if ($.trim(dbHostname) == "") {
+					errors.push({ fieldId: "dbHostname", error: L.validation_no_db_hostname });
+				}
+				var dbName = $.trim($("#dbName").val());
+				if (dbName == "") {
+					errors.push({ fieldId: "dbName", error: L.validation_no_db_name });
+				} else if (validChars.test(dbName)) {
+					errors.push({ fieldId: "dbName", error: L.validation_invalid_chars });
+				}
+
+				var dbUsername = $.trim($("#dbUsername").val());
+				if (dbUsername == "") {
+					errors.push({ fieldId: "dbUsername", error: L.validation_no_mysql_username });
+				} else if (validChars.test(dbUsername)) {
+					errors.push({ fieldId: "dbUsername", error: L.validation_invalid_chars });
+				}
+
+				// the password is optional (e.g. for local environments)
+				var dbPassword = $.trim($("#dbPassword").val());
+
+				var dbTablePrefix = $.trim($("#dbTablePrefix").val());
+				if (validChars.test(dbTablePrefix)) {
+					errors.push({ fieldId: "dbTablePrefix", error: L.validation_invalid_chars });
+				}
+
+				var employUserAccounts = $("input[name=employUserAccounts]:checked").val();
+				var firstName = "";
+				var lastName = "";
+				var email = "";
+				var password = "";
+
+				if (employUserAccounts == "yes") {
+					firstName = $.trim($("#firstName").val());
+					if (firstName == "") {
+						errors.push({ fieldId: "firstName", error: L.validation_no_first_name });
+					}
+					lastName = $.trim($("#lastName").val());
+					if (lastName == "") {
+						errors.push({ fieldId: "lastName", error: L.validation_no_last_name });
+					}
+					email = $.trim($("#email").val());
+					if (email == "") {
+						errors.push({ fieldId: "email", error: L.validation_no_email });
+					}
+					password = $.trim($("#password").val());
+					if (password == "") {
+						errors.push({ fieldId: "password", error: L.validation_no_password });
+					}
+				}
+
+				if (errors.length) {
+					$("#" + errors[0].fieldId).select();
+					for (var i=0; i<errors.length; i++) {
+						$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
+					}
+					return false;
+				}
+
+				utils.startProcessing();
+				$.ajax({
+					url: "ajax.php",
+					type: "POST",
+					dataType: "json",
+					data: {
+						action: "installation_test_db_settings",
+						dbHostname: dbHostname,
+						dbName: dbName,
+						dbUsername: dbUsername,
+						dbPassword: dbPassword
+					},
+					success: function(json) {
+						utils.stopProcessing();
+						if (json.success == 0) {
+							_displayError(json.message);
+						} else {
+							gotoNextPage();
+						}
+					},
+					error: installError
+				});
+				break;
+
+			case "2":
+				utils.startProcessing();
+				$.ajax({
+					url: "ajax.php",
+					type: "POST",
+					dataType: "json",
+					data: {
+						action: "installation_test_db_settings",
+						dbHostname: dbHostname,
+						dbName: dbName,
+						dbUsername: dbUsername,
+						dbPassword: dbPassword,
+						dbTablePrefix: dbTablePrefix
+					},
+					success: function(json) {
+						utils.stopProcessing();
+						if (json.success == 0) {
+							_displayError(json.message);
+						} else {
+							gotoNextPage();
+						}
+					},
+					error: installError
+				});
+				break;
 		}
-		var dbName = $.trim($("#dbName").val());
-		if (dbName == "") {
-			errors.push({ fieldId: "dbName", error: L.validation_no_db_name });
-		} else if (validChars.test(dbName)) {
-			errors.push({ fieldId: "dbName", error: L.validation_invalid_chars });
-		}
 
-		var dbUsername = $.trim($("#dbUsername").val());
-		if (dbUsername == "") {
-			errors.push({ fieldId: "dbUsername", error: L.validation_no_mysql_username });
-		} else if (validChars.test(dbUsername)) {
-			errors.push({ fieldId: "dbUsername", error: L.validation_invalid_chars });
-		}
+		/*
+					employUserAccounts: employUserAccounts,
+					firstName: firstName,
+					lastName: lastName,
+					email: email,
+					password: password
 
-		// the password is optional (e.g. for local environments)
-		var dbPassword = $.trim($("#dbPassword").val());
+		 */
 
-		var dbTablePrefix = $.trim($("#dbTablePrefix").val());
-		if (validChars.test(dbTablePrefix)) {
-			errors.push({ fieldId: "dbTablePrefix", error: L.validation_invalid_chars });
-		}
-
-		var employUserAccounts = $("input[name=employUserAccounts]:checked").val();
-		var firstName = "";
-		var lastName = "";
-		var email = "";
-		var password = "";
-
-		if (employUserAccounts == "yes") {
-			firstName = $.trim($("#firstName").val());
-			if (firstName == "") {
-				errors.push({ fieldId: "firstName", error: L.validation_no_first_name });
-			}
-			lastName = $.trim($("#lastName").val());
-			if (lastName == "") {
-				errors.push({ fieldId: "lastName", error: L.validation_no_last_name });
-			}
-			email = $.trim($("#email").val());
-			if (email == "") {
-				errors.push({ fieldId: "email", error: L.validation_no_email });
-			}
-			password = $.trim($("#password").val());
-			if (password == "") {
-				errors.push({ fieldId: "password", error: L.validation_no_password });
-			}
-		}
-
-		if (errors.length) {
-			$("#" + errors[0].fieldId).select();
-			for (var i=0; i<errors.length; i++) {
-				$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
-			}
-			return false;
-		}
-
-		utils.startProcessing();
-		_startInstallationProcess();
 
 		return false;
 	}
 
 
-	function startInstallationProcess() {
-		currInstallationStep = 1;
-		$.ajax({
-			url: "ajax.php",
-			type: "POST",
-			dataType: "json",
-			data: {
-				action: "installation_test_db_settings",
-				dbHostname: dbHostname,
-				dbName: dbName,
-				dbUsername: dbUsername,
-				dbPassword: dbPassword,
-				dbTablePrefix: dbTablePrefix,
-				employUserAccounts: employUserAccounts,
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				password: password
-			},
-			success: continueInstallationProcess,
-			error: installError
-		});
+	function gotoNextPage() {
+		$("#nav" + _currStep).removeClass("selected").addClass("complete");
+		$("#page" + _currStep).addClass("hidden");
+
+		_currStep += 1;
+		$("#nav" + _currStep).addClass("selected");
+		$("#page" + _currStep).removeClass("hidden");
 	}
 
 
@@ -127,25 +178,25 @@ require([
 	 */
 	function continueInstallationProcess(json) {
 		utils.stopProcessing();
-
-		if (json.success == 0) {
+		if (json.success) {
 			_displayError(json.message);
 		} else {
-//			utils.displayMessage("gdInstallMessage", json.message);
+			utils.displayMessage("gdInstallMessage", json.message);
 		}
 		return;
 	}
 
 
 	function _displayError(message) {
-		$("#gdInstallMessage .gdResponse").html(message);
-		$("#gdInstallMessage").show();
+		$("#page" + _currStep + " .gdInstallTabMessage .gdResponse").html(message);
+		$("#page" + _currStep + " .gdInstallTabMessage").addClass("gdInstallError").show();
 	}
 
 	/**
-	 *
+	 * In case of any Ajax error.
 	 */
 	function installError(json) {
+		utils.stopProcessing();
 		_displayError(json.message);
 	}
 

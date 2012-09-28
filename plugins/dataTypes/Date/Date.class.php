@@ -110,7 +110,7 @@ END;
 				<td>{$this->L["Date_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_3" colspan="3">{$this->L["Date_day"]}</td>
+				<td colspan="3"><h5>{$this->L["Date_day"]}</h5></td>
 			</tr>
 			<tr>
 				<td><h4>d</h4></td>
@@ -148,7 +148,7 @@ END;
 				<td>{$this->L["Date_help_z_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_3" colspan="3">{$this->L["Date_week"]}</td>
+				<td colspan="3"><h5>{$this->L["Date_week"]}</h5></td>
 			</tr>
 			<tr>
 				<td><h4>W</h4></td>
@@ -156,7 +156,7 @@ END;
 				<td>{$this->L["Date_help_W_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_3" colspan="3">{$this->L["Date_month"]}</td>
+				<td colspan="3"><h5>{$this->L["Date_month"]}</h5></td>
 			</tr>
 			<tr>
 				<td><h4>F</h4></td>
@@ -184,7 +184,7 @@ END;
 				<td>{$this->L["Date_help_t_example"]}</td>
 			</tr>
 			<tr>
-				<td class="heading_3" colspan="3">{$this->L["Date_year"]}</td>
+				<td colspan="3"><h5>{$this->L["Date_year"]}</h5></td>
 			</tr>
 			<tr>
 				<td><h4>L</h4></td>

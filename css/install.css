@@ -1,41 +1,48 @@
 h1 {
-	border-bottom: 1px solid #dddddd;
-	padding-bottom: 6px;
+	border-bottom: 1px solid #efefef;
+	padding-bottom: 8px;
 	margin-bottom: 8px;
 }
-
-#gdInstallMessage {
+.gdInstallTabMessage {
 	border-radius: 5px;
-	padding: 3px 10px 3px 46px;
+	padding: 3px 10px 3px 54px;
 	margin-bottom: 10px;
-	background-color: #ffe1e1;
 	text-shadow: 0 1px 0 #fff;
 	display: none;
 	min-height: 36px;
 	position: relative;
 }
-#gdInstallMessage .gdIcon {
+.gdInstallTabMessage .gdIcon {
 	width: 32px;
 	height: 32px;
 	position: absolute;
-	left: 6px;
-	top: 5px;
+	left: 12px;
+	top: 10px;
+}
+.gdInstallTabMessage h3 {
+	font-weight: bold;
+	display: inline;
+	font-size: 8pt;
+}
+.gdInstallTabMessage .gdResponse {
+	color: #000000;
+}
+
+.gdInstallError {
+	background-color: #ffe1e1;
+}
+.gdInstallError h3 {
+	color: #cc0000;
 }
 .gdInstallError .gdIcon {
 	background-image: url(../images/stop.png);
 }
+
 .gdInstallSuccess .gdIcon {
 	background-image: url(../images/info.png);
 }
-#gdInstallMessage h3 {
-	font-weight: bold;
-	color: #cc0000;
-	display: inline;
-	font-size: 8pt;
-}
-#gdInstallMessage .gdResponse {
-	color: #000000;
-}
+
+
 .gdInstallPage .gdFields .gdField {
 	float: left;
 	width: 376px;
@@ -64,7 +71,7 @@ h1 {
 	width: 210px;
 	margin-top: 2px;
 }
-.gdInstallPage #tablePrefix {
+.gdInstallPage #dbTablePrefix {
 	width: 60px;
 }
 .gdInstallPage .gdFields div {
@@ -103,11 +110,16 @@ h1 {
 	font-weight: bold;
 	color: green;
 }
+#gdInstallNav ol li.complete {
+	color: #999999;
+}
 .gdInstallSection {
 	float: right;
 	width: 725px;
 }
-
+.gdInstallSection p {
+	margin-bottom: 12px;
+}
 .gdInstallSection button {
-	float: left;
+	margin-bottom: 10px;
 }
