@@ -15,6 +15,7 @@ class Core {
 	private static $dbUsername;
 	private static $dbPassword;
 	private static $dbTablePrefix = "gd_";
+	private static $encryptionSalt;
 	private static $errorReporting = 2047;
 	private static $maxGeneratedRows = 100000;
 	private static $defaultNumRows = 100;
@@ -50,7 +51,6 @@ class Core {
 		self::initSmarty();
 		self::initDatabase();
 
-		// these three...
 		self::initDataTypes();
 		self::initExportTypes();
 		self::initCountries();
@@ -65,34 +65,24 @@ class Core {
 		$settingsFilePath = realpath(dirname(__FILE__) . "/../settings.php");
 		if (file_exists($settingsFilePath)) {
 			self::$settingsFileExists = true;
-			require_once($settingsFilePath); // TODO boy I don't like this... include_once, wrapped in try-catch maybe?
+			require_once($settingsFilePath);
 
-			if (isset($dbHostname)) {
-				self::$dbHostname = $dbHostname;
-			}
-			if (isset($dbName)) {
-				self::$dbName = $dbName;
-			}
-			if (isset($dbUsername)) {
-				self::$dbUsername = $dbUsername;
-			}
-			if (isset($dbPassword)) {
-				self::$dbPassword = $dbPassword;
-			}
-			if (isset($dbTablePrefix)) {
-				self::$dbTablePrefix = $dbTablePrefix;
-			}
-			if (isset($errorReporting)) {
-				self::$errorReporting = $errorReporting;
-			}
+			self::$dbHostname = (isset($dbHostname)) ? $dbHostname : null;
+			self::$dbName     = (isset($dbName)) ? $dbName : null;
+			self::$dbUsername = (isset($dbUsername)) ? $dbUsername : null;
+			self::$dbPassword = (isset($dbPassword)) ? $dbPassword : null;
+			self::$dbTablePrefix = (isset($dbTablePrefix)) ? $dbTablePrefix : null;
+			self::$errorReporting = (isset($errorReporting)) ? $errorReporting : null;
+			self::$encryptionSalt = (isset($encryptionSalt)) ? $encryptionSalt : null;
+
 			if (isset($maxGeneratedRows)) {
-				self::$maxGeneratedRows = $maxGeneratedRows;
+				self::$maxGeneratedRows = maxGeneratedRows;
 			}
 			if (isset($defaultNumRows)) {
 				self::$defaultNumRows = $defaultNumRows;
 			}
 			if (isset($defaultLanguageFile)) {
-				self::$defaultLanguageFile;
+				self::$defaultLanguageFile = $defaultLanguageFile;
 			}
 		}
 	}
@@ -164,6 +154,10 @@ class Core {
 
 	public function getMaxGeneratedRows() {
 		return self::$maxGeneratedRows;
+	}
+
+	public function getEncryptionSalt() {
+		return self::$encryptionSalt;
 	}
 
 	public function getDefaultNumRows() {

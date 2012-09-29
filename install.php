@@ -13,14 +13,10 @@ if (Core::checkIsInstalled()) {
 $currentPage = 1;
 if (Core::checkSettingsFileExists()) {
 	$currentPage = 3;
+	if (Settings::getSetting("installationStepComplete_Core") == "yes") {
+		$currentPage = 4;
+	}
 }
-
-/*
-('installationStepComplete_UserAccounts', 'no'),
-('installationStepComplete_DataTypes', 'no'),
-('installationStepComplete_ExportTypes', 'no'),
-('installationStepComplete_CountryData', 'no'),
-*/
 
 $params = array();
 $params["randomPassword"] = Utils::generateRandomAlphanumericStr("CVxxCxV");

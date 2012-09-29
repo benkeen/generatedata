@@ -5,10 +5,8 @@
 			<li id="nav1" class="{if $currentPage == 1}selected{else}complete{/if}">Check Database Info</li>
 			<li id="nav2" class="{if $currentPage == 2}selected{elseif $currentPage > 2}complete{/if}">Create Settings File</li>
 			<li id="nav3" class="{if $currentPage == 3}selected{elseif $currentPage > 3}complete{/if}">{$L.user_accounts}</li>
-			<li id="nav4" class="{if $currentPage == 4}selected{elseif $currentPage > 4}complete{/if}">Data Types</li>
-			<li id="nav5" class="{if $currentPage == 5}selected{elseif $currentPage > 5}complete{/if}">Export Types</li>
-			<li id="nav6" class="{if $currentPage == 6}selected{elseif $currentPage > 6}complete{/if}">Country Data</li>
-			<li id="nav7" class="{if $currentPage == 7}selected{/if}">Complete!</li>
+			<li id="nav4" class="{if $currentPage == 4}selected{elseif $currentPage > 4}complete{/if}">Plugins</li>
+			<li id="nav5" class="{if $currentPage == 5}selected{/if}">Complete!</li>
 		</ol>
 	</nav>
 
@@ -129,28 +127,17 @@
 
 	<div class="gdInstallSection{if $currentPage != 4} hidden{/if}" id="page4">
 		<p>
-			So far so good! Your database information appears to be valid. Click the button below to create
-			your <b>settings.php</b> file.
+			Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> -
+			i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all
+			the Country-specific data like regions and cities.
 		</p>
 
 		<form>
-			<button class="gdGreenButton">Continue &raquo;</button>
+			<button class="gdGreenButton">Install Plugins &raquo;</button>
 		</form>
 	</div>
 
-	<div class="gdInstallSection{if $currentPage != 5} hidden{/if}" id="page5">
-		<form>
-			<button class="gdGreenButton">Continue &raquo;</button>
-		</form>
-	</div>
-
-	<div class="gdInstallSection{if $currentPage != 6} hidden{/if}" id="page6">
-		<form>
-			<button class="gdGreenButton">Continue &raquo;</button>
-		</form>
-	</div>
-
-	<div class="gdInstallSection{if $currentPage != 7} hidden{/if}" id="page7">
+	<div class="gdInstallSection{if $currentPage != 5} hidden{/if}" id="page7">
 		<form>
 			<button class="gdGreenButton">Continue &raquo;</button>
 		</form>

@@ -50,8 +50,8 @@ class Settings {
 		$settingValue = Utils::sanitize($settingValue);
 		$response = Core::$db->query("
 			UPDATE {$prefix}settings
-			SET setting_value = '$settingValue',
-			WHERE setting_name = '$settingName'
+			SET    setting_value = '$settingValue'
+			WHERE  setting_name = '$settingName'
 		");
 	}
 

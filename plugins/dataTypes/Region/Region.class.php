@@ -10,22 +10,6 @@ class DataType_Region extends DataTypePlugin {
 	private $helpDialogWidth = 360;
 
 
-	static function install() {
-		/*
-		$queries[] = "
-			CREATE TABLE {$prefix}regions (
-				region_id mediumint(9) NOT NULL AUTO_INCREMENT,
-				country_slug varchar(100) NOT NULL,
-				region varchar(35) CHARACTER SET utf8 NOT NULL,
-				region_short char(2) CHARACTER SET utf8 DEFAULT NULL,
-				region_slug varchar(100) NOT NULL,
-				weight smallint(3) NOT NULL,
-				PRIMARY KEY (region_id)
-			)
-		";
-		*/
-	}
-
 	public function generateItem($row, $options, $existingRowData) {
 	}
 

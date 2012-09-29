@@ -11,17 +11,20 @@ class Installation {
 
 	public static function createSettingsFile($dbHostname, $dbName, $dbUsername, $dbPassword, $tablePrefix) {
 
-		// TODO escape params [especially password]
+		$encryptionSalt = Utils::generateRandomAlphanumericStr("VVV");
+		$dbUsername = Utils::sanitize($dbUsername);
+		$dbPassword = Utils::sanitize($dbPassword);
+		$tablePrefix = Utils::sanitize($tablePrefix);
 
 		$content =<<< END
 <?php
 
-\$dbHostname    = '$dbHostname';
-\$dbName        = '$dbName';
-\$dbUsername    = '$dbUsername';
-\$dbPassword    = '$dbPassword';
-\$dbTablePrefix = '$tablePrefix';
-
+\$dbHostname     = '$dbHostname';
+\$dbName         = '$dbName';
+\$dbUsername     = '$dbUsername';
+\$dbPassword     = '$dbPassword';
+\$dbTablePrefix  = '$tablePrefix';
+\$encryptionSalt = '$encryptionSalt';
 END;
 
 		$file = dirname(__FILE__) . "/../settings.php";
@@ -38,10 +41,8 @@ END;
 
 
 	public static function createDatabase() {
-		Core::loadSettingsFile();
-		Core::initDatabase();
-
 		$response = self::createCoreTables();
+
 		if ($response["success"] == 1) {
 			self::createDataTypeTables();
 			return array(true, "");
@@ -57,6 +58,20 @@ END;
 	public static function createCoreTables() {
 		$prefix = Core::getDbTablePrefix();
 
+		$rollbackQueries = array(
+			"DROP TABLE {$prefix}cities",
+			"DROP TABLE {$prefix}configurations",
+			"DROP TABLE {$prefix}countries",
+			"DROP TABLE {$prefix}regions",
+			"DROP TABLE {$prefix}settings",
+			"DROP TABLE {$prefix}user_accounts"
+		);
+
+		// start off by clearing out the DB, just in case. For this, we just run the rollback queries (used
+		// below, in case of an SQL error)
+		Core::$db->query($rollbackQueries);
+
+		// now construct the database
 		$queries = array();
 		$queries[] = "
 			CREATE TABLE {$prefix}cities (
@@ -84,8 +99,15 @@ END;
 			)
 		";
 		$queries[] = "
-			INSERT INTO {$prefix}countries (country, country_slug)
-			VALUES ('Afghanistan', 'afghanistan'),('Albania', 'albania'),('Algeria', 'algeria'),('American Samoa', 'american_samoa'),('Andorra', 'andorra'),('Angola', 'angola'),('Anguilla', 'anguilla'),('Antarctica', 'antarctica'),('Antigua and Barbuda', 'antigua_and_barbuda'),('Argentina', 'argentina'),('Armenia', 'armenia'),('Aruba', 'aruba'),('Australia', 'australia'),('Austria', 'austria'),('Azerbaijan', 'azerbaijan'),('Bahamas', 'bahamas'),('Bahrain', 'bahrain'),('Bangladesh', 'bangladesh'),('Barbados', 'barbados'),('Belarus', 'belarus'),('Belgium', 'belgium'),('Belize', 'belize'),('Benin', 'benin'),('Bermuda', 'bermuda'),('Bhutan', 'bhutan'),('Bolivia', 'bolivia'),('Bosnia and Herzegovina', 'bosnia_and_herzegovina'),('Botswana', 'botswana'),('Bouvet Island', 'bouvet_island'),('Brazil', 'brazil'),('British Indian Ocean Territory', 'british_indian_ocean_territory'),('Brunei Darussalam', 'brunei_darussalam'),('Bulgaria', 'bulgaria'),('Burkina Faso', 'burkina_faso'),('Burundi', 'burundi'),('Cambodia', 'cambodia'),('Cameroon', 'cameroon'),('Canada', 'canada'),('Cape Verde', 'cape_verde'),('Cayman Islands', 'cayman_islands'),('Central African Republic', 'central_african_republic'),('Chad', 'chad'),('Chile', 'chile'),('China', 'china'),('Christmas Island', 'christmas_island'),('Cocos (Keeling) Islands', 'cocos_keeling_islands'),('Colombia', 'colombia'),('Comoros', 'comoros'),('Congo', 'congo'),('Cook Islands', 'cook_islands'),('Costa Rica', 'costa_rica'),('Croatia', 'croatia'),('Cuba', 'cuba'),('Cyprus', 'cyprus'),('Czech Republic', 'czech_republic'),('Denmark', 'denmark'),('Djibouti', 'djibouti'),('Dominica', 'dominica'),('Dominican Republic', 'dominican_republic'),('Ecuador', 'ecuador'),('Egypt', 'egypt'),('El Salvador', 'el_salvador'),('Equatorial Guinea', 'equatorial_guinea'),('Eritrea', 'eritrea'),('Estonia', 'estonia'),('Ethiopia', 'ethiopia'),('Falkland Islands (Malvinas)', 'falkland_islands_malvinas'),('Faroe Islands', 'faroe_islands'),('Fiji', 'fiji'),('Finland', 'finland'),('France', 'france'),('French Guiana', 'french_guiana'),('French Polynesia', 'french_polynesia'),('French Southern Territories', 'french_southern_territories'),('Gabon', 'gabon'),('Gambia', 'gambia'),('Georgia', 'georgia'),('Germany', 'germany'),('Ghana', 'ghana'),('Gibraltar', 'gibraltar'),('Greece', 'greece'),('Greenland', 'greenland'),('Grenada', 'grenada'),('Guadeloupe', 'guadeloupe'),('Guam', 'guam'),('Guatemala', 'guatemala'),('Guinea', 'guinea'),('Guinea-bissau', 'guinea_bissau'),('Guyana', 'guyana'),('Haiti', 'haiti'),('Heard Island and Mcdonald Islands', 'heard_island_and_mcdonald_islands'),('Holy See (Vatican City State)', 'holy_see_vatican_city_state'),('Honduras', 'honduras'),('Hong Kong', 'hong_kong'),('Hungary', 'hungary'),('Iceland', 'iceland'),('India', 'india'),('Indonesia', 'indonesia'),('Iran, Islamic Republic of', 'iran_islamic_republic_of'),('Iraq', 'iraq'),('Ireland', 'ireland'),('Israel', 'israel'),('Italy', 'italy'),('Jamaica', 'jamaica'),('Japan', 'japan'),('Jordan', 'jordan'),('Kazakhstan', 'kazakhstan'),('Kenya', 'kenya'),('Kiribati', 'kiribati'),('Korea', 'korea'),('Korea, Republic of', 'korea_republic_of'),('Kuwait', 'kuwait'),('Kyrgyzstan', 'kyrgyzstan'),('Latvia', 'latvia'),('Lebanon', 'lebanon'),('Lesotho', 'lesotho'),('Liberia', 'liberia'),('Libyan Arab Jamahiriya', 'libyan_arab_jamahiriya'),('Liechtenstein', 'liechtenstein'),('Lithuania', 'lithuania'),('Luxembourg', 'luxembourg'),('Macao', 'macao'),('Macedonia', 'macedonia'),('Madagascar', 'madagascar'),('Malawi', 'malawi'),('Malaysia', 'malaysia'),('Maldives', 'maldives'),('Mali', 'mali'),('Malta', 'malta'),('Marshall Islands', 'marshall_islands'),('Martinique', 'martinique'),('Mauritania', 'mauritania'),('Mauritius', 'mauritius'),('Mayotte', 'mayotte'),('Mexico', 'mexico'),('Micronesia', 'micronesia'),('Moldova', 'moldova'),('Monaco', 'monaco'),('Mongolia', 'mongolia'),('Montserrat', 'montserrat'),('Morocco', 'morocco'),('Mozambique', 'mozambique'),('Myanmar', 'myanmar'),('Namibia', 'namibia'),('Nauru', 'nauru'),('Nepal', 'nepal'),('Netherlands', 'netherlands'),('Netherlands Antilles', 'netherlands_antilles'),('New Caledonia', 'new_caledonia'),('New Zealand', 'new_zealand'),('Nicaragua', 'nicaragua'),('Niger', 'niger'),('Nigeria', 'nigeria'),('Niue', 'niue'),('Norfolk Island', 'norfolk_island'),('Northern Mariana Islands', 'northern_mariana_islands'),('Norway', 'norway'),('Oman', 'oman'),('Pakistan', 'pakistan'),('Palau', 'palau'),('Palestinian Territory, Occupied', 'palestinian_territory_occupied'),('Panama', 'panama'),('Papua New Guinea', 'papua_new_guinea'),('Paraguay', 'paraguay'),('Peru', 'peru'),('Philippines', 'philippines'),('Pitcairn', 'pitcairn'),('Poland', 'poland'),('Portugal', 'portugal'),('Puerto Rico', 'puerto_rico'),('Qatar', 'qatar'),('Reunion', 'reunion'),('Romania', 'romania'),('Russian Federation', 'russian_federation'),('Rwanda', 'rwanda'),('Saint Helena', 'saint_helena'),('Saint Kitts and Nevis', 'saint_kitts_and_nevis'),('Saint Lucia', 'saint_lucia'),('Saint Pierre and Miquelon', 'saint_pierre_and_miquelon'),('Saint Vincent and The Grenadines', 'saint_vincent_and_the_grenadines'),('Samoa', 'samoa'),('San Marino', 'san_marino'),('Sao Tome and Principe', 'sao_tome_and_principe'),('Saudi Arabia', 'saudi_arabia'),('Senegal', 'senegal'),('Serbia and Montenegro', 'serbia_and_montenegro'),('Seychelles', 'seychelles'),('Sierra Leone', 'sierra_leone'),('Singapore', 'singapore'),('Slovakia', 'slovakia'),('Slovenia', 'slovenia'),('Solomon Islands', 'solomon_islands'),('Somalia', 'somalia'),('South Africa', 'south_africa'),('South Georgia and The South Sandwich Islands', 'south_georgia_and_the_south_sandwich_islands'),('Spain', 'spain'),('Sri Lanka', 'sri_lanka'),('Sudan', 'sudan'),('Suriname', 'suriname'),('Svalbard and Jan Mayen', 'svalbard_and_jan_mayen'),('Swaziland', 'swaziland'),('Sweden', 'sweden'),('Switzerland', 'switzerland'),('Syrian Arab Republic', 'syrian_arab_republic'),('Taiwan, Province of China', 'taiwan_province_of_china'),('Tajikistan', 'tajikistan'),('Tanzania, United Republic of', 'tanzania_united_republic_of'),('Thailand', 'thailand'),('Timor-leste', 'timor_leste'),('Togo', 'togo'),('Tokelau', 'tokelau'),('Tonga', 'tonga'),('Trinidad and Tobago', 'trinidad_and_tobago'),('Tunisia', 'tunisia'),('Turkey', 'turkey'),('Turkmenistan', 'turkmenistan'),('Turks and Caicos Islands', 'turks_and_caicos_islands'),('Tuvalu', 'tuvalu'),('Uganda', 'uganda'),('Ukraine', 'ukraine'),('United Arab Emirates', 'united_arab_emirates'),('United Kingdom', 'united_kingdom'),('United States', 'united_states'),('United States Minor Outlying Islands', 'united_states_minor_outlying_islands'),('Uruguay', 'uruguay'),('Uzbekistan', 'uzbekistan'),('Vanuatu', 'vanuatu'),('Venezuela', 'venezuela'),('Viet Nam', 'viet_nam'),('Virgin Islands, British', 'virgin_islands_british'),('Virgin Islands, U.S.', 'virgin_islands_us'),('Wallis and Futuna', 'wallis_and_futuna'),('Western Sahara', 'western_sahara'),('Yemen', 'yemen'),('Zambia', 'zambia'),('Zimbabwe', 'zimbabwe')
+			CREATE TABLE {$prefix}regions (
+				region_id mediumint(9) NOT NULL AUTO_INCREMENT,
+				country_slug varchar(100) NOT NULL,
+				region varchar(35) CHARACTER SET utf8 NOT NULL,
+				region_short char(2) CHARACTER SET utf8 DEFAULT NULL,
+				region_slug varchar(100) NOT NULL,
+				weight smallint(3) NOT NULL,
+				PRIMARY KEY (region_id)
+			)
 		";
 		$queries[] = "
 			CREATE TABLE {$prefix}settings (
@@ -105,9 +127,6 @@ END;
 				('consoleCoreEvents', ''),
 				('consoleWarnings', ''),
 				('installationStepComplete_Core', 'no'),
-				('installationStepComplete_DataTypes', 'no'),
-				('installationStepComplete_ExportTypes', 'no'),
-				('installationStepComplete_CountryData', 'no'),
 				('installationComplete', 'no')
 		";
 		$queries[] = "
@@ -120,7 +139,7 @@ END;
 				first_name varchar(50) default NULL,
 				last_name varchar(50) default NULL,
 				email varchar(100) NOT NULL,
-				password varchar(20) NOT NULL,
+				password varchar(50) NOT NULL,
 				password_recovery_question varchar(100) default NULL,
 				password_recovery_answer varchar(100) default NULL,
 				max_records mediumint(9) default NULL,
@@ -129,26 +148,15 @@ END;
 			)
 		";
 
-		// hmm...! What if the data already existed? This would overwrite everything... TODO the
-		// installation code should first detect existence of Core tables & issue a warning, like with Form Tools
-		$rollbackQueries = array();
-		$rollbackQueries[] = "DROP TABLE {$prefix}cities";
-		$rollbackQueries[] = "DROP TABLE {$prefix}configurations";
-		$rollbackQueries[] = "DROP TABLE {$prefix}countries";
-		$rollbackQueries[] = "DROP TABLE {$prefix}regions";
-		$rollbackQueries[] = "DROP TABLE {$prefix}settings";
-		$rollbackQueries[] = "DROP TABLE {$prefix}user_accounts";
-
 		return Core::$db->query($queries, $rollbackQueries);
 	}
 
 	public static function createDataTypeTables() {
-		Core::initDataTypes();
+		//Core::initDataTypes();
 
 		// now run whatever installation code exists for each Data Type. For simplicity,
 		$hasErrors = false;
 		while (list($groupKey, $dataTypes) = each(Core::$dataTypePlugins)) {
-			// try / catch?
 			foreach ($dataTypes as $dataType) {
 				$dataType->install();
 			}

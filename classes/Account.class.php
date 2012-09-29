@@ -187,19 +187,21 @@ class Account {
 	}
 
 	/**
-	 * Used (currently) in the installation script.
+	 * Used (currently) in the installation script. Note: this function relies on the settings file having
+	 * been defined, along with an arbitrary encryption salt.
 	 *
 	 * @param array $accountInfo
 	 */
 	public static function createUser($accountInfo) {
 
 		$accountInfo = Utils::sanitize($accountInfo);
+		$encryptionSalt = Core::getEncryptionSalt();
 
 		$accountType = $accountInfo["accountType"];
 		$firstName   = $accountInfo["firstName"];
 		$lastName    = $accountInfo["lastName"];
 		$email       = $accountInfo["email"];
-		$password    = $accountInfo["password"];
+		$password    = crypt($accountInfo["password"], $encryptionSalt);
 
 		$now = Utils::getCurrentDatetime();
 

@@ -54,6 +54,7 @@ class AjaxRequest {
 
 			// a fresh install assumes it's a blank slate: no database tables, no settings file
 			case "installation_test_db_settings":
+				Core::init();
 				list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
 				$this->response["success"] = $success;
 				$this->response["message"] = $message;

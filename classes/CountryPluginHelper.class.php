@@ -23,57 +23,57 @@ class CountryPluginHelper {
 	 * @return array
 	 */
 	public function getCountryPlugins() {
-	  $countryPluginsFolder = realpath(dirname(__FILE__) . "/../plugins/countries");
-	  $countryPlugins = array();
+		$countryPluginsFolder = realpath(dirname(__FILE__) . "/../plugins/countries");
+		$countryPlugins = array();
 
-	  if ($handle = opendir($countryPluginsFolder)) {
-	    while (false !== ($item = readdir($handle))) {
-	      if ($item == "." || $item == ".." || $item == ".svn") {
-	        continue;
-	      }
+		if ($handle = opendir($countryPluginsFolder)) {
+			while (false !== ($item = readdir($handle))) {
+				if ($item == "." || $item == ".." || $item == ".svn") {
+					continue;
+				}
 
-	      if (is_dir("$countryPluginsFolder/$item")) {
-	        $obj = self::instantiateCountryPlugin($countryPluginsFolder, $item);
-	        if ($obj != null) {
-	          $countryPlugins[] = $obj;
-	        }
-	      }
-	    }
-	    closedir($handle);
-	  }
+				if (is_dir("$countryPluginsFolder/$item")) {
+					$obj = self::instantiateCountryPlugin($countryPluginsFolder, $item);
+					if ($obj != null) {
+						$countryPlugins[] = $obj;
+					}
+				}
+			}
+			closedir($handle);
+		}
 
-	  return $countryPlugins;
-  }
+		return $countryPlugins;
+	}
 
 	private function instantiateCountryPlugin($baseFolder, $countryPluginFolder) {
 		$countryPluginClassFileName = "{$countryPluginFolder}.class.php";
-	  if (!is_file("$baseFolder/$countryPluginFolder/$countryPluginClassFileName")) {
-	    return false;
-	  }
+		if (!is_file("$baseFolder/$countryPluginFolder/$countryPluginClassFileName")) {
+			return false;
+		}
 
-	  try {
-	    include("$baseFolder/$countryPluginFolder/$countryPluginClassFileName");
-	  } catch (Exception $e) {
-	  	return false;
-	  }
+		try {
+			include("$baseFolder/$countryPluginFolder/$countryPluginClassFileName");
+		} catch (Exception $e) {
+			return false;
+		}
 
-	  $className = "Country_$countryPluginFolder";
-	  if (!class_exists($className)) {
-	  	return false;
-	  }
+		$className = "Country_$countryPluginFolder";
+		if (!class_exists($className)) {
+			return false;
+		}
 
-	  $instance = null;
-	  try {
-      $instance = new $className();
-	  } catch (Exception $e) {
-	  	return false;
-	  }
+		$instance = null;
+		try {
+			$instance = new $className();
+		} catch (Exception $e) {
+			return false;
+		}
 
-	  // enforce inheritance of the abstract CountryPlugin class
-	  if (!($instance instanceof CountryPlugin)) {
-	  	return false;
-	  }
+		// enforce inheritance of the abstract CountryPlugin class
+		if (!($instance instanceof CountryPlugin)) {
+			return false;
+		}
 
-	  return $instance;
+		return $instance;
 	}
 }
