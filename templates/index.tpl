@@ -24,7 +24,6 @@
 	</header>
 	<nav id="gdTabs">
 		<!--
-		temporary
 		<div style="float:right">
 			<img src="images/document_save.png" style="margin-top: 6px" />
 		</div>
@@ -32,7 +31,7 @@
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
-			<li id="gdTab2" class="gdHideNoJS">{$L.user_accounts}</li>
+			{if $settings.employUserAccounts == "yes"}<li id="gdTab2" class="gdHideNoJS">{$L.user_accounts}</li>{/if}
 			<li id="gdTab3" class="gdHideNoJS">{$L.settings}</li>
 			<li id="gdTab4" class="gdHideNoJS">{$L.help}</li>
 		</ul>
@@ -42,7 +41,7 @@
 		<div id="gdContent" class="gdHideNoJS">
 			<ul class="gdTabContent">
 				<li id="gdTab1Content">{include file="generate_tab1.tpl"}</li>
-				<li id="gdTab2Content" style="display:none">{include file="generate_tab2.tpl"}</li>
+				{if $settings.employUserAccounts == "yes"}<li id="gdTab2Content" style="display:none">{include file="generate_tab2.tpl"}</li>{/if}
 				<li id="gdTab3Content" style="display:none">{include file="generate_tab3.tpl"}</li>
 				<li id="gdTab4Content" style="display:none">{include file="generate_tab4.tpl"}</li>
 			</ul>

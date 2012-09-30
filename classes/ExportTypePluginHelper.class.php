@@ -10,7 +10,14 @@ class ExportTypePluginHelper {
 	/**
 	 * Returns an array of available, instantiated Export Type objects.
 	 */
-	function getExportTypePlugins() {
+	function getExportTypePlugins($installedOnly = true) {
+
+		$allowedExportTypes = array();
+		if ($installedOnly) {
+			$exportTypes = Settings::getSetting("installedExportTypes");
+			$allowedExportTypes = explode(",", $exportTypes);
+		}
+
 		$exportTypesFolder = realpath(dirname(__FILE__) . "/../plugins/exportTypes");
 		$exportTypes = array();
 		if ($handle = opendir($exportTypesFolder)) {
@@ -18,6 +25,11 @@ class ExportTypePluginHelper {
 				if ($item == "." || $item == ".." || $item == ".svn") {
 					continue;
 				}
+
+				if (!empty($allowedExportTypes) && !in_array($item, $allowedExportTypes)) {
+					continue;
+				}
+
 				if (is_dir("$exportTypesFolder/$item")) {
 					$obj = self::instantiateExportType($exportTypesFolder, $item);
 

@@ -87,7 +87,7 @@ class AjaxRequest {
 				$groupedDataTypes = DataTypePluginHelper::getDataTypePlugins(false);
 				$dataTypes = DataTypePluginHelper::getDataTypeList($groupedDataTypes);
 
-				if ($index >= count($dataTypes) - 1) {
+				if ($index >= count($dataTypes)) {
 					$this->response["success"] = 1;
 					$this->response["isComplete"] = true;
 				} else {
@@ -119,9 +119,9 @@ class AjaxRequest {
 			case "installation_export_types":
 				Core::init(array("database"));
 				$index = $post["index"];
-				$exportTypes = ExportTypePluginHelper::getExportTypePlugins();
+				$exportTypes = ExportTypePluginHelper::getExportTypePlugins(false);
 
-				if ($index >= count($exportTypes) - 1) {
+				if ($index >= count($exportTypes)) {
 					$this->response["success"] = 1;
 					$this->response["isComplete"] = true;
 				} else {
@@ -154,7 +154,7 @@ class AjaxRequest {
 				$index = $post["index"];
 				$countryPlugins = CountryPluginHelper::getCountryPlugins();
 
-				if ($index >= count($countryPlugins) - 1) {
+				if ($index >= count($countryPlugins)) {
 					$this->response["success"] = 1;
 					$this->response["isComplete"] = true;
 				} else {
