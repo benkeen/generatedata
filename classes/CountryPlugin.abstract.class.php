@@ -6,8 +6,12 @@ abstract class CountryPlugin {
 	protected $regionNames;
 	protected $zipFormat;
 
+	public function install() {
+		return array(true, "");
+	}
+
 	final public function getName() {
-		return $this->countryName;
+        return $this->countryName;
 	}
 
 	final public function getSlug() {
@@ -16,9 +20,5 @@ abstract class CountryPlugin {
 
 	final public function getRegionNames() {
 		return $this->regionNames;
-	}
-
-	static public function install() {
-		return array(true, "");
 	}
 }

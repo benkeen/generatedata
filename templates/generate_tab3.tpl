@@ -5,6 +5,10 @@
 
 <form action="index.php#t2" method="post" id="settingsForm">
 
+	<h3>Plugins</h3>
+
+	<input type="button" value="Reset plugins" />
+
 	<h3>Developer</h3>
 
 	<p>

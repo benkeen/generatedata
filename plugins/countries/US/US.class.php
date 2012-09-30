@@ -6,7 +6,7 @@ class Country_US extends CountryPlugin {
 	protected $regionNames = "US States";
 	protected $zipFormat = "xxxxx";
 
-	static function install() {
+	public function install() {
 		return array(true, "");
 	}
 }

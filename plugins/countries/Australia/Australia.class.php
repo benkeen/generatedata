@@ -6,7 +6,7 @@ class Country_Australia extends CountryPlugin {
 	protected $regionNames = "Australian St./Terr.";
 	protected $zipFormat = "Xxxx";
 
-	static function install() {
+	public function install() {
 		$prefix = Core::getDbTablePrefix();
 
 		// interesting... how to get access to member var?
@@ -62,7 +62,7 @@ class Country_Australia extends CountryPlugin {
 			VALUES ('Australia', '$countrySlug')
 		";
 		$queries[] = "
-			INSERT INTO {$prefix}regions (country_slug, region, region_short, region_slug, weight)
+			INSERT INTO {$prefix}regions (country_slug, region, region_slug, region_short, weight)
 			VALUES
 			('$countrySlug', 'Australian Capital Territories', 'australian_capital_territories', 'AC', '3'),
 			('$countrySlug', 'New South Wales', 'new_south_wales', 'NS', '69'),
@@ -74,10 +74,10 @@ class Country_Australia extends CountryPlugin {
 			('$countrySlug', 'Western Australia', 'western_australia', 'WA', '21')
 		";
 
-		while (list($region_slug, $cities) = each($regionCities)) {
+		while (list($regionSlug, $cities) = each($regionCities)) {
 			$rows = array();
-			foreach ($cities as $city_name) {
-				$rows[] = "('$countrySlug', '$region_slug', '$city_name')";
+			foreach ($cities as $cityName) {
+				$rows[] = "('$countrySlug', '$regionSlug', '$cityName')";
 			}
 			$rows_str = implode(",", $rows);
 			$queries[] = "
@@ -93,5 +93,16 @@ class Country_Australia extends CountryPlugin {
 		} else {
 			return array(false, $response["errorMessage"]);
 		}
+	}
+
+	static function uninstall() {
+		$prefix = Core::getDbTablePrefix();
+		$countrySlug = "australia";
+
+		$queries = array();
+		$queries[] = "DELETE FROM {$prefix}countries WHERE country_slug = '$countrySlug'";
+		$queries[] = "DELETE FROM {$prefix}regions WHERE country_slug = '$countrySlug'";
+		$queries[] = "DELETE FROM {$prefix}cities WHERE country_slug = '$countrySlug'";
+		Core::$db->query($queries);
 	}
 }

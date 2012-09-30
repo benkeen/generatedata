@@ -6,7 +6,7 @@ class Country_Canada extends CountryPlugin {
 	protected $regionNames = "Provinces";
 	protected $zipFormat = "LXL XLx";
 
-	static function install() {
+	public function install() {
 		return array(true, "");
 	}
 }
