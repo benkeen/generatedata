@@ -35,6 +35,8 @@ class CountryPluginHelper {
 				if (is_dir("$countryPluginsFolder/$item")) {
 					$obj = self::instantiateCountryPlugin($countryPluginsFolder, $item);
 					if ($obj != null) {
+						$obj->path = $countryPluginsFolder;
+						$obj->folder = $item;
 						$countryPlugins[] = $obj;
 					}
 				}

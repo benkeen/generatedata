@@ -65,13 +65,13 @@ abstract class DataTypePlugin {
 	/**
 	 * This is called once during the initial installation of the script, or when the installation is reset (which is
 	 * effectively a fresh install). It is called AFTER the Core tables are installed, and you can rely
-	 * on Core::$db having been initialized and the database connection having been set up. For robustness,
-	 * all Data Type modules should throw a GDException in the event of a problem during creation of database
-	 * tables. If a problem occurs, all tables created are rolled back and an appropriate error message is displayed
-	 * to the user. If no problems occur, this method should return and do nothing.
+	 * on Core::$db having been initialized and the database connection having been set up.
+	 *
+	 * @return array [0] success / error
+	 * 				 [1] the error message, if there was a problem
 	 */
 	static function install() {
-		return;
+		return array(true, "");
 	}
 
 	/**

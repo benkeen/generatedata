@@ -62,6 +62,21 @@ abstract class ExportTypePlugin {
 	 */
 	abstract function generator($numResults, $columns, $data);
 
+
+	// 2. OPTIONALLY DEFINED FUNCTIONS
+
+	/**
+	 * This is called once during the initial installation of the script, or when the installation is reset (which is
+	 * effectively a fresh install). It is called AFTER the Core tables are installed, and you can rely
+	 * on Core::$db having been initialized and the database connection having been set up.
+	 *
+	 * @return array [0] success / Error
+	 * 				 [1] the error message, if there was a problem
+	 */
+	static function install() {
+		return array(true, "");
+	}
+
 	/**
 	 * Outputs any additional headers, prior to the generator() call.
 	 */

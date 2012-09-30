@@ -53,6 +53,7 @@ class Settings {
 			SET    setting_value = '$settingValue'
 			WHERE  setting_name = '$settingName'
 		");
+		return $response;
 	}
 
 	/**

@@ -588,10 +588,10 @@ body.gdErrorPage #gdBox {
 #gdHelpPopup h4 {
 	margin: 0px;
 }
-
 #consoleEventsModuleList {
 	width: 400px;
 }
+
 /* jQuery UI style overrides */
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
 	cursor: pointer;

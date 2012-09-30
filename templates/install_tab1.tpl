@@ -132,14 +132,35 @@
 			the Country-specific data like regions and cities.
 		</p>
 
+		<div id="pluginInstallationResults" class="hidden">
+			<div>
+				<h4>1. Data Types</h4>
+				<div id="gdDataTypeResponse" class="gdResponse"></div>
+			</div>
+			<div>
+				<h4>2. Export Types</h4>
+				<div id="gdExportTypeResponse" class="gdResponse"></div>
+			</div>
+			<div>
+				<h4>3. Countries</h4>
+				<div id="gdCountriesResponse" class="gdResponse"></div>
+			</div>
+		</div>
+		<div class="gdClear"></div>
+
 		<form>
-			<button class="gdGreenButton">Install Plugins &raquo;</button>
+			<button class="gdGreenButton" id="gdInstallPluginsBtn">Install Plugins &raquo;</button>
 		</form>
 	</div>
 
-	<div class="gdInstallSection{if $currentPage != 5} hidden{/if}" id="page7">
-		<form>
-			<button class="gdGreenButton">Continue &raquo;</button>
+	<div class="gdInstallSection{if $currentPage != 5} hidden{/if}" id="page5">
+
+		<p>
+			The Data Generator has been succesfully installed! Click the button below to go to the script.
+		</p>
+
+		<form action="./">
+			<button class="gdGreenButton">Go to script &raquo;</button>
 		</form>
 	</div>
 

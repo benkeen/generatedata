@@ -7,6 +7,7 @@ class Country_UK extends CountryPlugin {
 	protected $zipFormat = "Lx xLL|Lxx xLL|LxL xLL|LLx xLL|LLxx xLL|LLxL xLL";
 
 	static function install() {
-		return;
+		return array(true, "");
 	}
+
 }

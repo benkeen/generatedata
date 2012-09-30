@@ -7,6 +7,6 @@ class Country_Canada extends CountryPlugin {
 	protected $zipFormat = "LXL XLx";
 
 	static function install() {
-		return;
+		return array(true, "");
 	}
 }

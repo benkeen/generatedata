@@ -25,43 +25,21 @@ class AjaxRequest {
 		$post = Utils::cleanHash($post);
 
 		switch ($this->action) {
-			case "loadConfiguration":
-/*        $assertions = array(
-					"logged_in" => true,
-					"post" => array(
-						"required" => "form_id",
-						"numeric"  => "form_id"
-					)
-				);
-				Utils::assert($assertions);
-				$this->response = Core::$user->loadConfiguration($post["form_id"]);
-*/
-				break;
 
-			case "saveConfiguration":
-//				$account_id   = $_SESSION["account_id"];
-//				$form_name    = addslashes($request["form_name"]);
-//				$form_content = addslashes($request["form_content"]);
-				//gd_save_form($account_id, $form_name, $form_content);
-				$this->response = Core::$user->saveConfiguration($post);
-				break;
-
-			case "deleteConfiguration":
-				$form_id = $request["form_id"];
-				gd_delete_form($form_id);
-				break;
-
+			// ------------------------------------------------------------------------------------
+			// INSTALLATION
+			// ------------------------------------------------------------------------------------
 
 			// a fresh install assumes it's a blank slate: no database tables, no settings file
 			case "installation_test_db_settings":
-				Core::init();
+				Core::init(array());
 				list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
 				$this->response["success"] = $success;
 				$this->response["message"] = $message;
 				break;
 
 			case "installation_create_settings_file":
-				Core::init();
+				Core::init(array());
 				if (Core::checkSettingsFileExists()) {
 					$this->response["success"] = 0;
 					$this->response["message"] = "Your settings.php file already exists.";
@@ -74,7 +52,7 @@ class AjaxRequest {
 				break;
 
 			case "installation_create_database":
-				Core::init();
+				Core::init(array("database"));
 				list($success, $message) = Installation::createDatabase();
 				if (!$success) {
 					$this->response["success"] = 0;
@@ -102,19 +80,147 @@ class AjaxRequest {
 				break;
 
 			case "installation_data_types":
+				Core::init(array("database"));
+				$index = $post["index"];
+
+				$groupedDataTypes = DataTypePluginHelper::getDataTypePlugins(false);
+				$dataTypes = DataTypePluginHelper::getDataTypeList($groupedDataTypes);
+
+				if ($index >= count($dataTypes) - 1) {
+					$this->response["success"] = 1;
+					$this->response["isComplete"] = true;
+				} else {
+					// attempt to install this data type
+					$currDataType = $dataTypes[$index];
+					$this->response["dataTypeName"] = $currDataType->getName();
+					$this->response["dataTypeFolder"] = $currDataType->folder;
+					$this->response["isComplete"] = false;
+
+					try {
+						list($success, $message) = $currDataType->install();
+						$this->response["success"] = $success;
+						$this->response["message"] = $message;
+					} catch (Exception $e) {
+						$this->response["success"] = false;
+						$this->response["message"] = "Unknown error.";
+					}
+				}
+				break;
+
+			case "installation_save_data_types":
+				Core::init(array("database"));
+				$folders = $post["folders"];
+				$response = Settings::setSetting("installedDataTypes", $folders);
+				$this->response["success"] = $response["success"];
+				$this->response["message"] = $response["message"];
 				break;
 
 			case "installation_export_types":
+				Core::init(array("database"));
+				$index = $post["index"];
+				$exportTypes = ExportTypePluginHelper::getExportTypePlugins();
+
+				if ($index >= count($exportTypes) - 1) {
+					$this->response["success"] = 1;
+					$this->response["isComplete"] = true;
+				} else {
+					// attempt to install this data type
+					$currExportType = $exportTypes[$index];
+					$this->response["exportTypeName"] = $currExportType->getName();
+					$this->response["exportTypeFolder"] = $currExportType->folder;
+					$this->response["isComplete"] = false;
+					try {
+						list($success, $message) = $currExportType->install();
+						$this->response["success"] = $success;
+						$this->response["message"] = $message;
+					} catch (Exception $e) {
+						$this->response["success"] = false;
+						$this->response["message"] = "Unknown error.";
+					}
+				}
 				break;
 
-			case "install":
+			case "installation_save_export_types":
+				Core::init(array("database"));
+				$folders = $post["folders"];
+				$response = Settings::setSetting("installedExportTypes", $folders);
+				$this->response["success"] = $response["success"];
+				$this->response["message"] = $response["message"];
 				break;
+
+			case "installation_countries":
+				Core::init(array("database"));
+				$index = $post["index"];
+				$countryPlugins = CountryPluginHelper::getCountryPlugins();
+
+				if ($index >= count($countryPlugins) - 1) {
+					$this->response["success"] = 1;
+					$this->response["isComplete"] = true;
+				} else {
+					// attempt to install this data type
+					$currCountryPlugin = $countryPlugins[$index];
+					$this->response["countryName"] = $currCountryPlugin->getName();
+					$this->response["countryFolder"] = $currCountryPlugin->folder;
+					$this->response["isComplete"] = false;
+					try {
+						list($success, $message) = $currCountryPlugin->install();
+						$this->response["success"] = $success;
+						$this->response["message"] = $message;
+					} catch (Exception $e) {
+						$this->response["success"] = false;
+						$this->response["message"] = "Unknown error.";
+					}
+				}
+				break;
+
+			case "installation_save_countries":
+				Core::init(array("database"));
+				$folders = $post["folders"];
+				$response = Settings::setSetting("installedCountries", $folders);
+				$response = Settings::setSetting("installationComplete", "yes");
+				$this->response["success"] = $response["success"];
+				$this->response["message"] = $response["message"];
+				break;
+
+			// ------------------------------------------------------------------------------------
+			// USER ACCOUNTS
+			// ------------------------------------------------------------------------------------
 
 			case "login":
 				break;
 
 			case "logout":
 				break;
+
+
+			case "loadConfiguration":
+/*        $assertions = array(
+					"logged_in" => true,
+					"post" => array(
+						"required" => "form_id",
+						"numeric"  => "form_id"
+					)
+				);
+				Utils::assert($assertions);
+				$this->response = Core::$user->loadConfiguration($post["form_id"]);
+*/
+				break;
+
+			case "saveConfiguration":
+//				$account_id   = $_SESSION["account_id"];
+//				$form_name    = addslashes($request["form_name"]);
+//				$form_content = addslashes($request["form_content"]);
+				//gd_save_form($account_id, $form_name, $form_content);
+				$this->response = Core::$user->saveConfiguration($post);
+				break;
+
+			case "deleteConfiguration":
+				$form_id = $request["form_id"];
+				gd_delete_form($form_id);
+				break;
+
+
+
 
 			case "updateSettings":
 				list($success, $message) = Settings::updateSettings($post);

@@ -40,7 +40,15 @@ class Core {
 	public static $countryPlugins;
 
 
-	public static function init() {
+	/**
+	 * Our initialization function. This is called on all page requests to initialize the Core
+	 * object. Since it's also used during installation (when the databas and/or plugins haven't been
+	 * installed), the optional parameter controls whether or not the database object and plugins should
+	 * be initialized.
+	 *
+	 * @param array
+	 */
+	public static function init($initComponents = array("database", "plugins")) {
 		self::loadSettingsFile();
 
 		error_reporting(self::$errorReporting);
@@ -49,11 +57,15 @@ class Core {
 		self::$language     = new Language(self::$defaultLanguageFile);
 
 		self::initSmarty();
-		self::initDatabase();
 
-		self::initDataTypes();
-		self::initExportTypes();
-		self::initCountries();
+		if (in_array("database", $initComponents)) {
+			self::initDatabase();
+		}
+		if (in_array("plugins", $initComponents)) {
+			self::initDataTypes();
+			self::initExportTypes();
+			self::initCountries();
+		}
 	}
 
 

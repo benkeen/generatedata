@@ -7,6 +7,6 @@ class Country_Belgium extends CountryPlugin {
 	protected $zipFormat = "Xxxx";
 
 	static function install() {
-		return;
+		return array(true, "");
 	}
 }

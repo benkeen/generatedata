@@ -17,4 +17,8 @@ abstract class CountryPlugin {
 	final public function getRegionNames() {
 		return $this->regionNames;
 	}
+
+	static public function install() {
+		return array(true, "");
+	}
 }

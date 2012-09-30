@@ -44,7 +44,6 @@ END;
 		$response = self::createCoreTables();
 
 		if ($response["success"] == 1) {
-			self::createDataTypeTables();
 			return array(true, "");
 		} else {
 			return array(false, "There was a problem creating the Core tables. Please report this problem.");
@@ -76,6 +75,7 @@ END;
 		$queries[] = "
 			CREATE TABLE {$prefix}cities (
 				city_id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+				country_slug varchar(100) NOT NULL,
 				region_slug varchar(100) NOT NULL,
 				city varchar(80) CHARACTER SET utf8 NOT NULL,
 				PRIMARY KEY (city_id)
@@ -127,7 +127,10 @@ END;
 				('consoleCoreEvents', ''),
 				('consoleWarnings', ''),
 				('installationStepComplete_Core', 'no'),
-				('installationComplete', 'no')
+				('installationComplete', 'no'),
+				('installedDataTypes', ''),
+				('installedExportTypes', ''),
+				('installedCountries', '')
 		";
 		$queries[] = "
 			CREATE TABLE {$prefix}user_accounts (
@@ -151,16 +154,8 @@ END;
 		return Core::$db->query($queries, $rollbackQueries);
 	}
 
-	public static function createDataTypeTables() {
-		//Core::initDataTypes();
+	public static function installDataType() {
 
-		// now run whatever installation code exists for each Data Type. For simplicity,
-		$hasErrors = false;
-		while (list($groupKey, $dataTypes) = each(Core::$dataTypePlugins)) {
-			foreach ($dataTypes as $dataType) {
-				$dataType->install();
-			}
-		}
 	}
 }
 
@@ -257,105 +252,7 @@ $g_db_install_queries[] = "
 	('manitoba', 'Daly'),
 	('manitoba', 'Brandon'),
 	('manitoba', 'Beausejour'),
-	(1057, 234, 'Canberra'),
-	(1058, 235, 'Sydney'),
-	(1059, 235, 'Albury'),
-	(1060, 235, 'Armidale'),
-	(1061, 235, 'Bathurst'),
-	(1062, 235, 'Blue Mountains'),
-	(1063, 235, 'Broken Hill'),
-	(1064, 235, 'Campbelltown'),
-	(1065, 235, 'Cessnock'),
-	(1066, 235, 'Dubbo'),
-	(1067, 235, 'Goulburn'),
-	(1068, 235, 'Grafton'),
-	(1069, 235, 'Lithgow'),
-	(1070, 235, 'Liverpool'),
-	(1071, 235, 'Newcastle'),
-	(1072, 235, 'Orange'),
-	(1073, 235, 'Parramatta'),
-	(1074, 235, 'Penrith'),
-	(1075, 235, 'Queanbeyan'),
-	(1076, 235, 'Tamworth'),
-	(1077, 235, 'Wagga Wagga'),
-	(1078, 235, 'Wollongong'),
-	(1079, 236, 'Darwin'),
-	(1080, 236, 'Palmerston'),
-	(1081, 237, 'Brisbane'),
-	(1082, 237, 'Bundaberg'),
-	(1083, 237, 'Cairns'),
-	(1084, 237, 'Caloundra'),
-	(1085, 237, 'Charters Towers'),
-	(1086, 237, 'Gladstone'),
-	(1087, 237, 'Gold Coast'),
-	(1088, 237, 'Hervey Bay'),
-	(1089, 237, 'Ipswich'),
-	(1090, 237, 'Logan City'),
-	(1091, 237, 'Mackay'),
-	(1092, 237, 'Maryborough'),
-	(1093, 237, 'Mount Isa'),
-	(1094, 237, 'Redcliffe'),
-	(1095, 237, 'Redlands'),
-	(1096, 237, 'Rockhampton'),
-	(1097, 237, 'Toowoomba'),
-	(1098, 237, 'Townsville'),
-	(1099, 238, 'Adelaide'),
-	(1100, 238, 'Mount Gambier'),
-	(1101, 238, 'Murray Bridge'),
-	(1102, 238, 'Port Augusta'),
-	(1103, 238, 'Port Pirie'),
-	(1104, 238, 'Port Lincoln'),
-	(1105, 238, 'Victor Harbor'),
-	(1106, 238, 'Whyalla'),
-	(1107, 239, 'Greater Hobart'),
-	(1108, 239, 'Burnie'),
-	(1109, 239, 'Devonport'),
-	(1110, 239, 'Launceston'),
-	(1111, 240, 'Melbourne'),
-	(1112, 240, 'Ararat'),
-	(1113, 240, 'Bairnsdale'),
-	(1114, 240, 'Benalla'),
-	(1115, 240, 'Ballarat'),
-	(1116, 240, 'Bendigo'),
-	(1117, 240, 'Belgrave'),
-	(1118, 240, 'Dandenong'),
-	(1119, 240, 'Frankston'),
-	(1120, 240, 'Geelong'),
-	(1121, 240, 'Hamilton'),
-	(1122, 240, 'Horsham'),
-	(1123, 240, 'Melton'),
-	(1124, 240, 'Moe'),
-	(1125, 240, 'Morwell'),
-	(1126, 240, 'Mildura'),
-	(1127, 240, 'Sale'),
-	(1128, 240, 'Shepparton'),
-	(1129, 240, 'Swan Hill'),
-	(1130, 240, 'Traralgon'),
-	(1131, 240, 'Wangaratta'),
-	(1132, 240, 'Warrnambool'),
-	(1133, 240, 'Wodonga'),
-	(1134, 241, 'Perth'),
-	(1135, 241, 'Albany'),
-	(1136, 241, 'Armadale'),
-	(1137, 241, 'Bayswater'),
-	(1138, 241, 'Belmont'),
-	(1139, 241, 'Bunbury'),
-	(1140, 241, 'Canning'),
-	(1141, 241, 'Cockburn'),
-	(1142, 241, 'Fremantle'),
-	(1143, 241, 'Geraldton-Greenough'),
-	(1144, 241, 'Gosnells'),
-	(1145, 241, 'Joondalup'),
-	(1146, 241, 'Kalgoorlie-Boulder'),
-	(1147, 241, 'Mandurah'),
-	(1148, 241, 'Melville'),
-	(1149, 241, 'Nedlands'),
-	(1150, 241, 'Rockingham'),
-	(1151, 241, 'South Perth'),
-	(1152, 241, 'Stirling'),
-	(1153, 241, 'Subiaco'),
-	(1154, 241, 'Swan'),
-	(1155, 241, 'Wanneroo'),
+
 	(1244, 59, 'Arviat'),
 	(1245, 59, 'Cambridge Bay'),
 	(1246, 59, 'Gjoa Haven'),
@@ -4521,19 +4418,6 @@ $g_db_install_queries[] = "
 ";
 
 $g_db_install_queries[] = "
-	CREATE TABLE gd_countries (
-		id mediumint(9) NOT NULL auto_increment,
-		country varchar(100) NOT NULL default '',
-		country_slug varchar(100) default NULL,
-		country_lang_key varchar(30) default NULL,
-		has_full_data_set enum('yes','no') NOT NULL default 'no',
-		region_name varchar(50) NOT NULL,
-		zip_format varchar(255) default NULL,
-		PRIMARY KEY  (id)
-	) AUTO_INCREMENT=237
-";
-
-$g_db_install_queries[] = "
 	INSERT INTO gd_countries (id, country, country_slug, country_lang_key, has_full_data_set, region_name, zip_format) VALUES
 	(1, 'Afghanistan', NULL, NULL, 'no', '', NULL),
 	(2, 'Albania', NULL, NULL, 'no', '', NULL),
@@ -5007,14 +4891,6 @@ INSERT INTO gd_regions (region_id, country_id, region, region_short, region_iden
 (231, 222, 'West Riding of Yorkshire', 'WR', '1'),
 (232, 222, 'West Yorkshire', 'WY', '1'),
 (233, 222, 'Yorkshire', 'YK', '1'),
-(234, 13, 'Australian Capital Territories', 'AC', '3'),
-(235, 13, 'New South Wales', 'NS', '69'),
-(236, 13, 'Northern Territory', 'NT', '2'),
-(237, 13, 'Queensland', 'QL', '42'),
-(238, 13, 'South Australia', 'SA', '16'),
-(239, 13, 'Tasmania', 'TA', '5'),
-(240, 13, 'Victoria', 'VI', '52'),
-(241, 13, 'Western Australia', 'WA', '21'),
 (242, 222, 'Bedfordshire', 'BD', 'bedfordshire', '1'),
 (243, 222, 'Berkshire', 'BR', '1'),
 (244, 222, 'Buckinghamshire', 'BK', '1'),
@@ -5099,6 +4975,7 @@ INSERT INTO gd_regions (region_id, country_id, region, region_short, region_iden
 (323, 222, 'Sutherland', 'SU', '1'),
 (324, 222, 'West Lothian', 'WL', '1'),
 (325, 222, 'Wigtownshire', 'WI', '1'),
+
 (326, 21, 'Antwerpen', 'AN', '1'),
 (327, 21, 'Brussels Hoofdstedelijk Gewest', 'BU', '1'),
 (328, 21, 'Waals-Brabant', 'WB', '1'),

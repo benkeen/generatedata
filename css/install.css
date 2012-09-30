@@ -37,12 +37,9 @@ h1 {
 .gdInstallError .gdIcon {
 	background-image: url(../images/stop.png);
 }
-
 .gdInstallSuccess .gdIcon {
 	background-image: url(../images/info.png);
 }
-
-
 .gdInstallPage .gdFields .gdField {
 	float: left;
 	width: 376px;
@@ -128,4 +125,54 @@ h1 {
 }
 .gdInstallSection button {
 	margin-bottom: 10px;
+}
+
+#pluginInstallationResults>div {
+	padding: 4px 8px 8px;
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	float: left;
+	width: 30%;
+	margin-right: 10px;
+}
+#pluginInstallationResults>div:last-child {
+	margin-right: 0px;
+}
+#pluginInstallationResults h4 {
+	margin: 0px;
+	padding: 0px;
+	font-weight: normal;
+	color: #222222;
+	font-style: italic;
+}
+#pluginInstallationResults .gdResponse div {
+	font-size: 7pt;
+	line-height: 16px;
+	border-bottom: 1px solid #dddddd;
+	clear: both;
+}
+#pluginInstallationResults .gdResponse div:first-child {
+	margin-top: 4px;
+}
+#pluginInstallationResults .gdResponse div:last-child {
+	border-bottom: 0px;
+}
+#pluginInstallationResults .gdResponse .gdSuccess {
+	background-color: green;
+	color: white;
+	border-radius: 3px;
+	padding: 0px 4px;
+	float: right;
+	line-height: 16px;
+	font-size: 6.5pt;
+}
+#pluginInstallationResults .gdResponse .gdError {
+	background-color: #cc0000;
+	color: white;
+	border-radius: 3px;
+	padding: 0px 4px;
+	float: right;
+	line-height: 16px;
+	font-size: 6.5pt;
+	cursor: pointer;
 }

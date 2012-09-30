@@ -186,7 +186,7 @@ class DataTypePluginHelper {
 	 * Returns an array of available, grouped, instantiated Data Type objects.
 	 * @return array
 	 */
-	function getDataTypePlugins() {
+	function getDataTypePlugins($installedOnly = true) {
 		$dataTypesFolder = realpath(dirname(__FILE__) . "/../plugins/dataTypes");
 		$dataTypes = array();
 		if ($handle = opendir($dataTypesFolder)) {
