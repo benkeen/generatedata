@@ -70,6 +70,7 @@ class AjaxRequest {
 						"password"    => $post["password"]
 					);
 					Account::createUser($adminAccount);
+					Settings::setSetting("employUserAccounts", "yes");
 				}
 
 				// make note of the fact that we've passed this installation step

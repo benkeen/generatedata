@@ -5,7 +5,7 @@
 
 <form action="index.php#t2" method="post" id="settingsForm">
 
-	<h3>Developer Settings</h3>
+	<h3>Developer</h3>
 
 	<p>
 		The following sections lets you fine-tune what you see in your javascript console for development purposes.
