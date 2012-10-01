@@ -9,10 +9,7 @@ class Country_Australia extends CountryPlugin {
 	public function install() {
 		$prefix = Core::getDbTablePrefix();
 
-		// interesting... how to get access to member var?
-		$countrySlug = "australia";
-
-		$regionCities = array(
+		$data = array(
 			"australian_capital_territories" => array(
 				"Canberra"
 			),
@@ -50,34 +47,28 @@ class Country_Australia extends CountryPlugin {
 			)
 		);
 
-		$rollbackQueries = array();
-		$rollbackQueries[] = "DELETE FROM {$prefix}countries WHERE country_slug = '$countrySlug'";
-		$rollbackQueries[] = "DELETE FROM {$prefix}regions WHERE country_slug = '$countrySlug'";
-		$rollbackQueries[] = "DELETE FROM {$prefix}cities WHERE country_slug = '$countrySlug'";
-		Core::$db->query($rollbackQueries);
-
 		$queries = array();
 		$queries[] = "
 			INSERT INTO {$prefix}countries (country, country_slug)
-			VALUES ('Australia', '$countrySlug')
+			VALUES ('Australia', '{$this->countrySlug}')
 		";
 		$queries[] = "
 			INSERT INTO {$prefix}regions (country_slug, region, region_slug, region_short, weight)
 			VALUES
-			('$countrySlug', 'Australian Capital Territories', 'australian_capital_territories', 'AC', '3'),
-			('$countrySlug', 'New South Wales', 'new_south_wales', 'NS', '69'),
-			('$countrySlug', 'Northern Territory', 'northern_territory', 'NT', '2'),
-			('$countrySlug', 'Queensland', 'queensland', 'QL', '42'),
-			('$countrySlug', 'South Australia', 'south_australia', 'SA', '16'),
-			('$countrySlug', 'Tasmania', 'tasmania', 'TA', '5'),
-			('$countrySlug', 'Victoria', 'victoria', 'VI', '52'),
-			('$countrySlug', 'Western Australia', 'western_australia', 'WA', '21')
+			('{$this->countrySlug}', 'Australian Capital Territories', 'australian_capital_territories', 'AC', '3'),
+			('{$this->countrySlug}', 'New South Wales', 'new_south_wales', 'NS', '69'),
+			('{$this->countrySlug}', 'Northern Territory', 'northern_territory', 'NT', '2'),
+			('{$this->countrySlug}', 'Queensland', 'queensland', 'QL', '42'),
+			('{$this->countrySlug}', 'South Australia', 'south_australia', 'SA', '16'),
+			('{$this->countrySlug}', 'Tasmania', 'tasmania', 'TA', '5'),
+			('{$this->countrySlug}', 'Victoria', 'victoria', 'VI', '52'),
+			('{$this->countrySlug}', 'Western Australia', 'western_australia', 'WA', '21')
 		";
 
-		while (list($regionSlug, $cities) = each($regionCities)) {
+		while (list($regionSlug, $cities) = each($data)) {
 			$rows = array();
 			foreach ($cities as $cityName) {
-				$rows[] = "('$countrySlug', '$regionSlug', '$cityName')";
+				$rows[] = "('{$this->countrySlug}', '$regionSlug', '$cityName')";
 			}
 			$rows_str = implode(",", $rows);
 			$queries[] = "
@@ -86,23 +77,13 @@ class Country_Australia extends CountryPlugin {
 			";
 		}
 
-		$response = Core::$db->query($queries, $rollbackQueries);
+		$response = Core::$db->query($queries);
 
 		if ($response["success"]) {
 			return array(true, "");
 		} else {
+			$this->uninstall();
 			return array(false, $response["errorMessage"]);
 		}
-	}
-
-	static function uninstall() {
-		$prefix = Core::getDbTablePrefix();
-		$countrySlug = "australia";
-
-		$queries = array();
-		$queries[] = "DELETE FROM {$prefix}countries WHERE country_slug = '$countrySlug'";
-		$queries[] = "DELETE FROM {$prefix}regions WHERE country_slug = '$countrySlug'";
-		$queries[] = "DELETE FROM {$prefix}cities WHERE country_slug = '$countrySlug'";
-		Core::$db->query($queries);
 	}
 }

@@ -9,14 +9,6 @@ class Country_Belgium extends CountryPlugin {
 	public function install() {
 		$prefix = Core::getDbTablePrefix();
 
-		$countrySlug = "belgium"; // again, because can't seem to access var above...!!!
-
-		$rollbackQueries = array();
-		$rollbackQueries[] = "DELETE FROM {$prefix}countries WHERE country_slug = '$countrySlug'";
-		$rollbackQueries[] = "DELETE FROM {$prefix}regions WHERE country_slug = '$countrySlug'";
-		$rollbackQueries[] = "DELETE FROM {$prefix}cities WHERE country_slug = '$countrySlug'";
-		Core::$db->query($rollbackQueries);
-
 		$data = array(
 			array(
 				"regionName" => "Antwerpen",
@@ -225,20 +217,20 @@ class Country_Belgium extends CountryPlugin {
 
 		// now insert the data
 		$queries = array();
-		$queries[] = "INSERT INTO {$prefix}countries (country, country_slug) VALUES ('Belgium', '$countrySlug')";
+		$queries[] = "INSERT INTO {$prefix}countries (country, country_slug) VALUES ('Belgium', '{$this->countrySlug}')";
 
 		foreach ($data as $regionInfo) {
 			$currRegionName = $regionInfo["regionName"];
 			$currRegionSlug = $regionInfo["regionSlug"];
 			$queries[] = "
 				INSERT INTO {$prefix}regions (country_slug, region, region_slug, region_short, weight)
-				VALUES ('$countrySlug', '$currRegionName', '$currRegionSlug', '{$regionInfo["regionShort"]}', '{$regionInfo["weight"]}')
+				VALUES ('{$this->countrySlug}', '$currRegionName', '$currRegionSlug', '{$regionInfo["regionShort"]}', '{$regionInfo["weight"]}')
 			";
 
 			$rows = array();
 			foreach ($regionInfo["cities"] as $cityName) {
 				$cityName = addslashes($cityName);
-				$rows[] = "('$countrySlug', '$currRegionSlug', '$cityName')";
+				$rows[] = "('{$this->countrySlug}', '$currRegionSlug', '$cityName')";
 			}
 			$rowsStr = implode(",", $rows);
 			$queries[] = "
@@ -247,14 +239,13 @@ class Country_Belgium extends CountryPlugin {
 			";
 		}
 
-		$response = Core::$db->query($queries, $rollbackQueries);
+		$response = Core::$db->query($queries);
 
 		if ($response["success"]) {
 			return array(true, "");
 		} else {
+			$this->uninstall();
 			return array(false, $response["errorMessage"]);
 		}
-
-		return array(true, "");
 	}
 }

@@ -8,8 +8,8 @@ require([
 ], function(manager, L, utils) {
 
 	// everything in this module is private, but we re-use the _ notation here just to signify scope
-	var _currStep = 1;
 	var _dbSettings = {};
+	var _pluginsInstalled = false;
 	var _successfullyInstalledDataTypes = [];
 	var _successfullyInstalledExportTypes = [];
 	var _successfullyInstalledCountries = [];
@@ -54,11 +54,15 @@ require([
 		});
 	}
 
-	function submit() {
+	/**
+	 * Called for every step in the installation script. This figures out what page the user's on
+	 */
+	function submit(e) {
+		var currentStep = parseInt($(e.target).closest(".gdInstallSection").attr("id").replace(/page/, ""), 10);
 		$(".gdError").hide();
 		var errors = [];
 
-		switch (_currStep) {
+		switch (currentStep) {
 
 			// this validates the tab, and stores the database info in
 			case 1:
@@ -124,7 +128,7 @@ require([
 						if (json.success == 0) {
 							_displayError(json.message);
 						} else {
-							gotoNextPage();
+							gotoNextStep(currentStep);
 						}
 					},
 					error: installError
@@ -150,7 +154,7 @@ require([
 						if (json.success == 0) {
 							_displayError(json.message);
 						} else {
-							gotoNextPage();
+							gotoNextStep(currentStep);
 						}
 					},
 					error: installError
@@ -209,7 +213,7 @@ require([
 						if (json.success == 0) {
 							_displayError(json.message);
 						} else {
-							gotoNextPage();
+							gotoNextStep(currentStep);
 						}
 					},
 					error: installError
@@ -217,18 +221,19 @@ require([
 				break;
 
 			case 4:
-				utils.startProcessing();
-				$("#pluginInstallationResults").removeClass("hidden");
-				$("#gdInstallPluginsBtn").hide();
-				$("#pluginInstallationResults .gdResponse").html("");
-				installDataTypes();
+				if (!_pluginsInstalled) {
+					utils.startProcessing();
+					$("#pluginInstallationResults").removeClass("hidden");
+					$("#gdInstallPluginsBtn").hide();
+					$("#pluginInstallationResults .gdResponse").html("");
+					installDataTypes();
+				} else {
+					gotoNextStep(currentStep);
+				}
 				break;
 
 			case 5:
-				// temporary hack!
-				_currStep--;
-
-				gotoNextPage();
+				window.location = "./";
 				break;
 		}
 
@@ -249,7 +254,6 @@ require([
 			error: installError
 		});
 	}
-
 
 	function installDataTypeResponse(json) {
 		// once all data types are installed, send the list of successful installations to the server
@@ -310,7 +314,6 @@ require([
 					folders: _successfullyInstalledExportTypes.toString()
 				},
 				success: function(json) {
-					// now proceed to the Export Types
 					_currIndex = 0;
 					installCountries();
 				},
@@ -348,7 +351,6 @@ require([
 		utils.stopProcessing();
 	}
 
-
 	function installCountriesResponse(json) {
 		if (json.isComplete) {
 			$.ajax({
@@ -363,6 +365,7 @@ require([
 					_currIndex = 0;
 					$("#gdInstallPluginsBtn").html("Continue &raquo;").show();
 					_currStep++;
+					_pluginsInstalled = true;
 				},
 				error: installError
 			});
@@ -382,13 +385,13 @@ require([
 	}
 
 
-	function gotoNextPage() {
-		$("#nav" + _currStep).removeClass("selected").addClass("complete");
-		$("#page" + _currStep).addClass("hidden");
+	function gotoNextStep(step) {
+		$("#nav" + step).removeClass("selected").addClass("complete");
+		$("#page" + step).addClass("hidden");
 
-		_currStep += 1;
-		$("#nav" + _currStep).addClass("selected");
-		$("#page" + _currStep).removeClass("hidden");
+		var nextStep = step + 1;
+		$("#nav" + nextStep).addClass("selected");
+		$("#page" +  nextStep).removeClass("hidden");
 	}
 
 

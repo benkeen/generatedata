@@ -164,6 +164,9 @@ class AjaxRequest {
 					$this->response["countryFolder"] = $currCountryPlugin->folder;
 					$this->response["isComplete"] = false;
 					try {
+						// always run the uninstallation function first to ensure any old data is all cleared out
+						$currCountryPlugin->uninstall();
+
 						list($success, $message) = $currCountryPlugin->install();
 						$this->response["success"] = $success;
 						$this->response["message"] = $message;
