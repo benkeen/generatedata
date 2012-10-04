@@ -1,5 +1,5 @@
 <?php
-$page = "data_types";
+$page = "export_types";
 require_once("templates/header.php");
 ?>
 
@@ -9,7 +9,7 @@ require_once("templates/header.php");
 		    <div class="span3 bs-docs-sidebar">
 	        <ul class="nav nav-list bs-docs-sidenav affix">
 	          <li><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
-	          <li><a href="#anatomy"><i class="icon-chevron-right"></i> Anatomy of a Data Type</a></li>
+	          <li><a href="#anatomy"><i class="icon-chevron-right"></i> Anatomy of an Export Type</a></li>
 	          <li><a href="#installation"><i class="icon-chevron-right"></i> Installation Script</a></li>
 	          <li><a href="#database"><i class="icon-chevron-right"></i> Database / raw Data</a></li>
 	          <li><a href="#i18n"><i class="icon-chevron-right"></i> I18N</a></li>
@@ -22,33 +22,16 @@ require_once("templates/header.php");
 					<section>
 						<div class="hero-unit">
 							<div>
-								<h1>Data Types</h1>
+								<h1>Export Types</h1>
 							</div>
 							<p>
-								This page explains how to construct new Data Types.
+								Constructing new formats for the data export.
 							</p>
 						</div>
 					</section>
 
 	      	<section>
 						<h2>Overview</h2>
-
-
-<!--
-          		<p>
-          			Data Types are self-contained plugins that generate a single random data item, like a name, email address, country name,
-	          		country code, image, picture, URL, barcode image, binary string - really anything you want! At the time of writing,
-	          		there are 20 separate data types. Many are very generic, like “Number Range”, and “Custom List”, allowing to get maximum
-	          		use out of them; others are more specific, like "Latitude / Longitude"
-	          	</p>
-	          	<p>
-								Data Types can offer basic functionality, like “Email Address” which has no options, examples or help doc.; or they can be
-								more advanced, like the “Date” Data Type, which contains examples of date formats for easy generation, contains a date
-								picker dialog (courtesy of jQuery UI), and a custom help dialog window.
-
-Data Types can be standalone and generate data that has no bearing on other fields (like the “Alpha Numeric” Data Type), or make decisions about its content based on other rows in the data set (like “State / Province / County”, which shows an appropriate value if the data set contains a country field so that provinces are listed for Canada and states for the US).
- -->
-
 						<p>
 						  This document explains how to add your own data types so you can generate pretty much whatever information you want.
 						</p>
@@ -136,7 +119,7 @@ Data Types can be standalone and generate data that has no bearing on other fiel
 						  Here's an example from the Alpha-numeric data type:
 						</p>
 
-						<blockquote><pre>$data_type_example_html =<<<EOF
+						<blockquote><pre>$data_type_example_html =<<< EOF
 						  <select name="dt_\$ROW\$" id="dt_\$ROW\$" onchange="$('#option_\$ROW\$').val(this.value)">
 						    <option value="">{$LANG["please_select"]}</option>
 						    <option value="LxL xLx">V6M 4C1 {$LANG["AlphaNumeric_example_CanPostalCode"]}</option>
