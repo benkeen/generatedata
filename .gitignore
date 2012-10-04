@@ -3,3 +3,4 @@ settings.php
 .DS_Store
 .buildpath
 cache/*
+.settings/org.eclipse.php.core.prefs
