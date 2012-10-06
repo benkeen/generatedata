@@ -219,7 +219,7 @@ class Utils {
 		<h1>Uh-oh.</h1>
 		$notFixedMessage
 		{$error}
-		<button class="gdGreenButton">Click here when you think you've fixed it.</button>
+		<button class="gdPrimaryButton">Click here when you think you've fixed it.</button>
 	</div>
 	</body>
 	</html>

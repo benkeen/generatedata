@@ -1,6 +1,25 @@
 /**
- * Used in the installation and Setting tab. This contains the code to re-install all plugins and
- * interact with the
+ * Used in the installation and Setting tab. This contains the code to install all plugins and
+ * display the success / error response.
+ *
+ * It requires the page to contain the following markup, where it will be inserting the result of the
+ * installation.
+ *
+ *  	<div id="pluginInstallationResults" class="hidden">
+ *  		<div>
+ *  			<h4>1. Data Types</h4>
+ *  			<div id="gdDataTypeResponse" class="gdResponse"></div>
+ *  		</div>
+ *  		<div>
+ *  			<h4>2. Export Types</h4>
+ *  			<div id="gdExportTypeResponse" class="gdResponse"></div>
+ *  		</div>
+ *  		<div>
+ *  			<h4>3. Countries</h4>
+ *  			<div id="gdCountriesResponse" class="gdResponse"></div>
+ *  		</div>
+ *  	</div>
+ *  	<div class="gdClear"></div>
  */
 define([
 	"manager",
@@ -10,8 +29,25 @@ define([
 	"jquery-json",
 ], function(manager, L, utils) {
 
+	// used as an iterator to install the plugins one by one
+	var _currIndex = 0;
+	var _errorHandler = null;
+	var _onCompleteHandler = null;
 
-	function installDataTypes() {
+	var _successfullyInstalledDataTypes = [];
+	var _successfullyInstalledExportTypes = [];
+	var _successfullyInstalledCountries = [];
+
+	// TODO: ensure params should be required
+	var _installPlugins = function(params) {
+		_errorHandler      = params.errorHandler;
+		_onCompleteHandler = params.onCompleteHandler;
+		$("#gdPluginInstallationResults").removeClass("hidden");
+		$("#gdPluginInstallationResults .gdResponse").html("");
+		_installDataTypes();
+	}
+
+	var _installDataTypes = function() {
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -20,12 +56,12 @@ define([
 				action: "installation_data_types",
 				index: _currIndex
 			},
-			success: installDataTypeResponse,
-			error: installError
+			success: _installDataTypeResponse,
+			error: _errorHandler
 		});
 	}
 
-	function installDataTypeResponse(json) {
+	var _installDataTypeResponse = function(json) {
 		// once all data types are installed, send the list of successful installations to the server
 		if (json.isComplete) {
 			$.ajax({
@@ -39,9 +75,9 @@ define([
 				success: function(json) {
 					// now proceed to the Export Types
 					_currIndex = 0;
-					installExportTypes();
+					_installExportTypes();
 				},
-				error: installError
+				error: _errorHandler
 			});
 		} else {
 			var str = "";
@@ -54,11 +90,11 @@ define([
 			$("#gdDataTypeResponse").append("<div>" + str + "</div>");
 
 			_currIndex++;
-			installDataTypes();
+			_installDataTypes();
 		}
 	}
 
-	function installExportTypes() {
+	var _installExportTypes = function() {
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -67,13 +103,13 @@ define([
 				action: "installation_export_types",
 				index: _currIndex
 			},
-			success: installExportTypesResponse,
-			error: installError
+			success: _installExportTypesResponse,
+			error: _errorHandler
 		});
 	}
 
 
-	function installExportTypesResponse(json) {
+	var _installExportTypesResponse = function(json) {
 		if (json.isComplete) {
 			$.ajax({
 				url: "ajax.php",
@@ -85,9 +121,9 @@ define([
 				},
 				success: function(json) {
 					_currIndex = 0;
-					installCountries();
+					_installCountries();
 				},
-				error: installError
+				error: _errorHandler
 			});
 		} else {
 			var str = "";
@@ -100,12 +136,12 @@ define([
 			$("#gdExportTypeResponse").append("<div>" + str + "</div>");
 
 			_currIndex++;
-			installExportTypes();
+			_installExportTypes();
 		}
 	}
 
 
-	function installCountries(index) {
+	var _installCountries = function(index) {
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -114,14 +150,12 @@ define([
 				action: "installation_countries",
 				index: _currIndex
 			},
-			success: installCountriesResponse,
-			error: installError
+			success: _installCountriesResponse,
+			error: _errorHandler
 		});
-
-		utils.stopProcessing();
 	}
 
-	function installCountriesResponse(json) {
+	var _installCountriesResponse = function(json) {
 		if (json.isComplete) {
 			$.ajax({
 				url: "ajax.php",
@@ -133,11 +167,11 @@ define([
 				},
 				success: function(json) {
 					_currIndex = 0;
-					$("#gdInstallPluginsBtn").html("Continue &raquo;").show();
-					_currStep++;
-					_pluginsInstalled = true;
+					if ($.isFunction(_onCompleteHandler)) {
+						_onCompleteHandler();
+					}
 				},
-				error: installError
+				error: _errorHandler
 			});
 		} else {
 			var str = "";
@@ -150,34 +184,16 @@ define([
 			$("#gdCountriesResponse").append("<div>" + str + "</div>");
 
 			_currIndex++;
-			installCountries();
+			_installCountries();
 		}
-	}
-
-
-	function gotoNextStep(step) {
-		$("#nav" + step).removeClass("selected").addClass("complete");
-		$("#page" + step).addClass("hidden");
-
-		var nextStep = step + 1;
-		$("#nav" + nextStep).addClass("selected");
-		$("#page" +  nextStep).removeClass("hidden");
 	}
 
 
 	/**
-	 * Display the installation response. This contains details about all Data Types, Export Types and Country-specific
-	 * data installed.
+	 * Our public API.
 	 */
-	function continueInstallationProcess(json) {
-		utils.stopProcessing();
-		if (json.success) {
-			_displayError(json.message);
-		} else {
-			utils.displayMessage("gdInstallMessage", json.message);
-		}
-		return;
+	return {
+		installPlugins: _installPlugins
 	}
-
 
 });

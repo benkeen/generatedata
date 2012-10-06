@@ -4,4 +4,4 @@
 		<label>allow anonymous access to the script</label>
 
 
-	<button class="gdGreenButton">Create User &raquo;</button>
+	<button class="gdPrimaryButton">Create User &raquo;</button>

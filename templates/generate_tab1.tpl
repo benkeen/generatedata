@@ -89,7 +89,7 @@
 
 					<div class="gdVerticalPad"></div>
 					<div>
-						<button class="gdGreenButton gdGenerateButton">{$L.generate}</button>
+						<button class="gdPrimaryButton gdGenerateButton">{$L.generate}</button>
 						<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
 					</div>
 

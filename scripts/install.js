@@ -1,22 +1,17 @@
 require([
 	"manager",
+	"pluginManager",
 	"lang",
 	"utils",
 	"pageinit",
 	"jquery-ui",
 	"jquery-json",
-], function(manager, L, utils) {
+], function(manager, pluginManager, L, utils) {
 
 	// everything in this module is private, but we re-use the _ notation here just to signify scope
 	var _dbSettings = {};
 	var _pluginsInstalled = false;
-	var _successfullyInstalledDataTypes = [];
-	var _successfullyInstalledExportTypes = [];
-	var _successfullyInstalledCountries = [];
 
-
-	// used as an iterator to install the plugins one by one
-	var _currIndex = 0;
 
 	$(function() {
 		$("#dbHostname").select();
@@ -223,10 +218,15 @@ require([
 			case 4:
 				if (!_pluginsInstalled) {
 					utils.startProcessing();
-					$("#pluginInstallationResults").removeClass("hidden");
 					$("#gdInstallPluginsBtn").hide();
-					$("#pluginInstallationResults .gdResponse").html("");
-					installDataTypes();
+					pluginManager.installPlugins({
+						errorHandler: installError,
+						onCompleteHandler: function() {
+							$("#gdInstallPluginsBtn").html("Continue &raquo;").show();
+							_currStep++;
+							_pluginsInstalled = true;
+						}
+					});
 				} else {
 					gotoNextStep(currentStep);
 				}
@@ -240,11 +240,33 @@ require([
 		return false;
 	}
 
-
-
 	function _displayError(message) {
 		$("#page" + _currStep + " .gdInstallTabMessage .gdResponse").html(message);
 		$("#page" + _currStep + " .gdInstallTabMessage").addClass("gdInstallError").show();
+	}
+
+	function gotoNextStep(step) {
+		$("#nav" + step).removeClass("selected").addClass("complete");
+		$("#page" + step).addClass("hidden");
+
+		var nextStep = step + 1;
+		$("#nav" + nextStep).addClass("selected");
+		$("#page" +  nextStep).removeClass("hidden");
+	}
+
+
+	/**
+	 * Display the installation response. This contains details about all Data Types, Export Types and Country-specific
+	 * data installed.
+	 */
+	function continueInstallationProcess(json) {
+		utils.stopProcessing();
+		if (json.success) {
+			_displayError(json.message);
+		} else {
+			utils.displayMessage("gdInstallMessage", json.message);
+		}
+		return;
 	}
 
 	/**

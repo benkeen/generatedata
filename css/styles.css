@@ -452,7 +452,7 @@ hr {
 }
 
 /* from: http://hellohappy.org/css3-buttons/ */
-.gdGreenButton {
+.gdPrimaryButton {
 	display: block;
 	background-color: #7fbf4d;
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
@@ -470,12 +470,12 @@ hr {
 	color: #fff;
 	font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
 	line-height: 1;
-	padding: 4px 15px 3px;
+	padding: 4px 15px 4px;
 	margin: 15px 0px 0px;
 	text-align: center;
 	text-shadow: 0 -1px 0 #4c9021;
 }
-.gdGreenButton:hover {
+.gdPrimaryButton:hover {
 	background-color: #76b347;
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
 	background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
@@ -486,11 +486,51 @@ hr {
 	box-shadow: inset 0 1px 0 0 #8dbf67;
 	cursor: pointer;
 }
-.gdGreenButton:active {
+.gdPrimaryButton:active {
 	border: 1px solid #5b992b;
 	border-bottom: 1px solid #538c27;
 	box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
 }
+.gdSecondaryButton {
+	display: block;
+	background-color: #3366CC;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3366CC), color-stop(100%, #2a5bbd));
+	background-image: -webkit-linear-gradient(top, #3366CC, #2a5bbd);
+	background-image: -moz-linear-gradient(top, #3366CC, #2a5bbd);
+	background-image: -ms-linear-gradient(top, #3366CC, #2a5bbd);
+	background-image: -o-linear-gradient(top, #3366CC, #2a5bbd);
+	background-image: linear-gradient(top, #3366CC, #2a5bbd);
+	border: 1px solid #2a5bbd;
+	border-bottom: 1px solid #547fd3;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 0 0 #6b90d9;
+	-moz-box-shadow: inset 0 1px 0 0 #6b90d9;
+	box-shadow: inset 0 1px 0 0 #6b90d9;
+	color: #fff;
+	font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+	line-height: 1;
+	padding: 2px 10px 2px;
+	margin: 15px 0px 0px;
+	text-align: center;
+	text-shadow: 0 -1px 0 #4c9021;
+}
+.gdSecondaryButton:hover {
+	background-color: #76b347;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2250ac), color-stop(100%, #1d4699));
+	background-image: -webkit-linear-gradient(top, #2250ac, #1d4699);
+	background-image: -moz-linear-gradient(top, #2250ac, #1d4699);
+	background-image: -ms-linear-gradient(top, #2250ac, #1d4699);
+	background-image: -o-linear-gradient(top, #2250ac, #1d4699);
+	background-image: linear-gradient(top, #2250ac, #1d4699);
+	box-shadow: inset 0 1px 0 0 #4b71bc;
+	cursor: pointer;
+}
+.gdSecondaryButton:active {
+	border: 1px solid #2250ac;
+	border-bottom: 1px solid #4b71bc;
+	box-shadow: inset 0 0 8px 4px #1d4699, 0 1px 0 0 #eeeeee;
+}
+
 .gdGenerateButton {
 	display: inline;
 }
@@ -627,4 +667,55 @@ body .chzn-container-multi .chzn-choices .search-field .default {
 body .chzn-container-multi .chzn-choices {
 	background-image: none;
 	padding-bottom: 2px;
+}
+
+/* plugin installation */
+#gdPluginInstallationResults>div {
+	padding: 4px 8px 8px;
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	float: left;
+	width: 30%;
+	margin-right: 10px;
+}
+#gdPluginInstallationResults>div:last-child {
+	margin-right: 0px;
+}
+#gdPluginInstallationResults h4 {
+	margin: 0px;
+	padding: 0px;
+	font-weight: normal;
+	color: #222222;
+	font-style: italic;
+}
+#gdPluginInstallationResults .gdResponse div {
+	font-size: 7pt;
+	line-height: 16px;
+	border-bottom: 1px solid #dddddd;
+	clear: both;
+}
+#gdPluginInstallationResults .gdResponse div:first-child {
+	margin-top: 4px;
+}
+#gdPluginInstallationResults .gdResponse div:last-child {
+	border-bottom: 0px;
+}
+#gdPluginInstallationResults .gdResponse .gdSuccess {
+	background-color: green;
+	color: white;
+	border-radius: 3px;
+	padding: 0px 4px;
+	float: right;
+	line-height: 16px;
+	font-size: 6.5pt;
+}
+#gdPluginInstallationResults .gdResponse .gdError {
+	background-color: #cc0000;
+	color: white;
+	border-radius: 3px;
+	padding: 0px 4px;
+	float: right;
+	line-height: 16px;
+	font-size: 6.5pt;
+	cursor: pointer;
 }

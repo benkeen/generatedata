@@ -57,7 +57,7 @@
 
 			<div class="gdClear"></div>
 
-			<button class="gdGreenButton">Continue &raquo;</button>
+			<button class="gdPrimaryButton">Continue &raquo;</button>
 		</form>
 	</div>
 
@@ -68,7 +68,7 @@
 			about your installation.
 		</p>
 		<form>
-			<button class="gdGreenButton">Create File &raquo;</button>
+			<button class="gdPrimaryButton">Create File &raquo;</button>
 		</form>
 	</div>
 
@@ -121,7 +121,7 @@
 
 			<div class="gdClear"></div>
 
-			<button class="gdGreenButton">Continue &raquo;</button>
+			<button class="gdPrimaryButton">Continue &raquo;</button>
 		</form>
 	</div>
 
@@ -132,7 +132,7 @@
 			the Country-specific data like regions and cities.
 		</p>
 
-		<div id="pluginInstallationResults" class="hidden">
+		<div id="gdPluginInstallationResults" class="hidden">
 			<div>
 				<h4>1. Data Types</h4>
 				<div id="gdDataTypeResponse" class="gdResponse"></div>
@@ -149,7 +149,7 @@
 		<div class="gdClear"></div>
 
 		<form>
-			<button class="gdGreenButton" id="gdInstallPluginsBtn">Install Plugins &raquo;</button>
+			<button class="gdPrimaryButton" id="gdInstallPluginsBtn">Install Plugins &raquo;</button>
 		</form>
 	</div>
 
@@ -160,7 +160,7 @@
 		</p>
 
 		<form action="./">
-			<button class="gdGreenButton">Go to script &raquo;</button>
+			<button class="gdPrimaryButton">Go to script &raquo;</button>
 		</form>
 	</div>
 

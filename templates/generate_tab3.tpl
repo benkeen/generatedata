@@ -7,7 +7,29 @@
 
 	<h3>Plugins</h3>
 
-	<input type="button" value="Reset plugins" />
+	<p>
+		Any time you add or remove a plugin, you need to reset the plugins. This will update the database and ensure
+		you can access the plugins you require.
+		<button id="gdResetPluginsBtn" class="gdSecondaryButton">Reset plugins</button>
+	</p>
+
+	<div id="gdPluginInstallation">
+		<div id="gdPluginInstallationResults" class="hidden">
+			<div>
+				<h4>1. Data Types</h4>
+				<div id="gdDataTypeResponse" class="gdResponse"></div>
+			</div>
+			<div>
+				<h4>2. Export Types</h4>
+				<div id="gdExportTypeResponse" class="gdResponse"></div>
+			</div>
+			<div>
+				<h4>3. Countries</h4>
+				<div id="gdCountriesResponse" class="gdResponse"></div>
+			</div>
+		</div>
+		<div class="gdClear"></div>
+	</div>
 
 	<h3>Developer</h3>
 
@@ -51,6 +73,6 @@
 
 	<div class="gdClear"></div>
 	<p>
-		<button class="gdGreenButton" id="updateSettingsBtn">{$L.update_settings}</button>
+		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.update_settings}</button>
 	</p>
 </form>

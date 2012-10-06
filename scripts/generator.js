@@ -5,11 +5,12 @@
  */
 define([
 	"manager",
+	"pluginManager",
 	"utils",
 	"constants",
 	"lang",
 	"jquery-ui",
-], function(manager, utils, C, L) {
+], function(manager, pluginManager, utils, C, L) {
 
 	var MODULE_ID = "core-generator";
 	var _numRows  = 0;
@@ -57,6 +58,8 @@ define([
 				});
 			}
 		});
+
+		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 
 		_changeExportType();
 		_updateCountryChoice();
@@ -546,6 +549,32 @@ define([
 
 		return true;
 	};
+
+	var _resetPluginsDialog = function() {
+
+		$("#gdPluginInstallation").dialog({
+			modal:     true,
+			resizable: true,
+			title:     "Reset Plugins",
+			width:     800,
+			height:    400,
+			open: function() {
+				pluginManager.installPlugins({
+					errorHandler: null,
+					onCompleteHandler: function() {
+						console.log("done");
+					}
+				});
+			},
+			buttons: {
+				"Close": function() {
+					$(this).dialog("close");
+				}
+			}
+		});
+		return false;
+	}
+
 
 	var _multiDimArrayContains = function(target, arr) {
 		for (var i=0; i<arr.length; i++) {

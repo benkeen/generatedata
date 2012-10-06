@@ -25,7 +25,7 @@ $page = (isset($page)) ? $page : "home";
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="./">generatedata.com</a>
+          <a class="brand" href="../">generatedata.com</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li <?php if ($page == "home") echo 'class="active"'; ?>><a href="index.php">Home</a></li>
