@@ -44,7 +44,6 @@ define([
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
-
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); });
 		$("#gdTableRows").sortable({
 			handle: ".gdColOrder",
@@ -69,7 +68,7 @@ define([
 	var _addRows = function(rows) {
 		var rows = rows.toString();
 		if (rows.match(/\D/) || rows == 0 || rows == "") {
-			utils.clearValidationErrors();
+			utils.clearValidationErrors($("#gdTab1Content"));
 			utils.addValidationErrors({ els: [$("#gdNumRows")], error: L.no_num_rows });
 			utils.displayValidationErrors("#gdMessages");
 			return false;
@@ -155,7 +154,6 @@ define([
 				return false;
 			}
 		}
-
 		$("input[name=deleteRows]").attr("checked", "checked");
 		_deleteRows();
 		if (numInitRows) {
@@ -174,27 +172,11 @@ define([
 				_countries.push(this.value);
 			}
 		});
-
 		manager.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.COUNTRIES.CHANGE,
 			countries: _countries
 		});
-
-		/*
-		// now hide/show all country-specific elements, based on what the user has selected)
-		for (var i=0; i<_allCountries.length; i++) {
-			var elements = $(".country_" + _allCountries[i]);
-
-			// if selected, ensure that elements with that language's classes are visible
-			var display = ($.inArray(_allCountries[i], _countries) != -1) ? "block" : "none";
-			if (elements.length > 0) {
-				for (var k=0; k<elements.length; k++) {
-					elements[k].style.display = display;
-				}
-			}
-		}
-		*/
 	};
 
 
@@ -371,15 +353,19 @@ define([
 	};
 
 
-
+	/**
+	 * Called when the user submits the main Generate tab. It performs all necessary validation
+	 * and th
+	 */
 	var _submitForm = function() {
 		var numResults = $("#gdNumResults").val();
 		var numCols    = $("#gdNumCols").val(); // TODO this var name is as confusing as hell
 
-		utils.clearValidationErrors();
+		utils.clearValidationErrors($("#gdTab1Content"));
 
 		// check the users specified a numeric value for the number of results
 		if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
+			console.log(L.invalid_num_results);
 			utils.addValidationErrors({ el: $("#gdNumResults"), error: L.invalid_num_results });
 		}
 
@@ -400,10 +386,10 @@ define([
 				continue;
 			}
 
-			if (!rowValidationNeededGroupByDataType.hasOwnProperty("data-type-" + currRowType)) {
-				rowValidationNeededGroupByDataType["data-type-" + currRowType] = [];
+			if (!rowValidationNeededGroupByDataType.hasOwnProperty(currRowType)) {
+				rowValidationNeededGroupByDataType[currRowType] = [];
 			}
-			rowValidationNeededGroupByDataType["data-type-" + currRowType].push(rowID);
+			rowValidationNeededGroupByDataType[currRowType].push(rowID);
 			validRowIDs.push(rowID);
 		}
 
@@ -562,15 +548,25 @@ define([
 				pluginManager.installPlugins({
 					errorHandler: null,
 					onCompleteHandler: function() {
-						console.log("done");
+						$("#gdPluginInstallation").dialog("option", "buttons", [
+						    {
+						    	text: "Refresh Page",
+						    	click: function() {
+						    		window.location.reload(true); // window.location.replace("index.php?message=plugins_reset#t3");
+						    	}
+						    }
+						]);
 					}
 				});
 			},
-			buttons: {
-				"Close": function() {
-					$(this).dialog("close");
-				}
-			}
+			buttons: [
+			    {
+			    	text: "Close",
+			    	click: function() {
+			    		$(this).dialog("close");
+			    	}
+			    }
+			]
 		});
 		return false;
 	}

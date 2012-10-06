@@ -225,6 +225,7 @@ require([
 							$("#gdInstallPluginsBtn").html("Continue &raquo;").show();
 							_currStep++;
 							_pluginsInstalled = true;
+							utils.stopProcessing();
 						}
 					});
 				} else {

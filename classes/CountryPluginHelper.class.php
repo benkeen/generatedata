@@ -20,15 +20,25 @@ class CountryPluginHelper {
 	 * region info (province / state / county), postal code info AND a list of cities. These countries
 	 * have special functionality within the UI.
 	 *
+	 * @param boolean $installedOnly this determines
 	 * @return array
 	 */
-	public function getCountryPlugins() {
+	public function getCountryPlugins($installedOnly = true) {
+		$allowedCountries = array();
+		if ($installedOnly) {
+			$installedCountries = Settings::getSetting("installedCountries");
+			$allowedCountries = explode(",", $installedCountries);
+		}
+
 		$countryPluginsFolder = realpath(dirname(__FILE__) . "/../plugins/countries");
 		$countryPlugins = array();
 
 		if ($handle = opendir($countryPluginsFolder)) {
 			while (false !== ($item = readdir($handle))) {
 				if ($item == "." || $item == ".." || $item == ".svn") {
+					continue;
+				}
+				if (!empty($allowedCountries) && !in_array($item, $allowedCountries)) {
 					continue;
 				}
 

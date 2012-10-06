@@ -65,9 +65,9 @@ define([
 			}
 		},
 
-		clearValidationErrors: function() {
+		clearValidationErrors: function(topLevelEl) {
 			_errors = [];
-			$("*").removeClass("gdProblemField");
+			$(topLevelEl).find(".gdProblemField").removeClass("gdProblemField");
 		},
 
 		hideValidationErrors: function(el, unhighlightProblemFields) {

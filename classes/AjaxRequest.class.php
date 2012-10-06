@@ -152,7 +152,7 @@ class AjaxRequest {
 			case "installation_countries":
 				Core::init(array("database"));
 				$index = $post["index"];
-				$countryPlugins = CountryPluginHelper::getCountryPlugins();
+				$countryPlugins = CountryPluginHelper::getCountryPlugins(false);
 
 				if ($index >= count($countryPlugins)) {
 					$this->response["success"] = 1;

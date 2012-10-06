@@ -187,11 +187,20 @@ class DataTypePluginHelper {
 	 * @return array
 	 */
 	function getDataTypePlugins($installedOnly = true) {
+		$allowedDataTypes = array();
+		if ($installedOnly) {
+			$installedDataTypes = Settings::getSetting("installedDataTypes");
+			$allowedDataTypes = explode(",", $installedDataTypes);
+		}
+
 		$dataTypesFolder = realpath(dirname(__FILE__) . "/../plugins/dataTypes");
 		$dataTypes = array();
 		if ($handle = opendir($dataTypesFolder)) {
 			while (false !== ($item = readdir($handle))) {
 				if ($item == "." || $item == ".." || $item == ".svn") {
+					continue;
+				}
+				if (!empty($allowedDataTypes) && !in_array($item, $allowedDataTypes)) {
 					continue;
 				}
 				if (is_dir("$dataTypesFolder/$item")) {
