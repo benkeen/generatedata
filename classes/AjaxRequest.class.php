@@ -223,10 +223,8 @@ class AjaxRequest {
 				gd_delete_form($form_id);
 				break;
 
-
-
-
 			case "updateSettings":
+				Core::init();
 				list($success, $message) = Settings::updateSettings($post);
 				$this->response["success"] = $success;
 				$this->response["message"] = $message;

@@ -133,14 +133,12 @@ define([
 			if (!_messageVisible) {
 				$("#gdMessages").show("blind", null, 500);
 			}
-
 			_messageVisible = true;
 		},
 
 		isNumber: function(n) {
 			return !isNaN(parseFloat(n)) && isFinite(n);
 		},
-
 
 		/*
 		This code handles problems caused by the time taken by browser HTML rendering engines to manipulate

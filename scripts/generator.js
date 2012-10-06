@@ -35,7 +35,10 @@ define([
 		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
-		$(".gdMessageClose").on("click", function(e) { utils.hideValidationErrors(e.target, false); return false; });
+		$(document).on("click", ".gdMessageClose", function(e) {
+			$(e.target).closest(".gdMessage").hide("slow");
+			return false;
+		});
 		$("#gdData").bind("submit", _submitForm);
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });

@@ -7,7 +7,6 @@ class Country_Netherlands extends CountryPlugin {
 	protected $zipFormat = "xxxxLL";
 
 	public function install() {
-
 		$data = array(
 			array(
 				"regionName" => "Drenthe",
@@ -126,37 +125,6 @@ class Country_Netherlands extends CountryPlugin {
 			)
 		);
 
-		// now insert the data
-		$queries = array();
-		$queries[] = "INSERT INTO {$prefix}countries (country, country_slug) VALUES ('Canada', '{$this->countrySlug}')";
-
-		foreach ($data as $regionInfo) {
-			$currRegionName = $regionInfo["regionName"];
-			$currRegionSlug = $regionInfo["regionSlug"];
-			$queries[] = "
-				INSERT INTO {$prefix}regions (country_slug, region, region_slug, region_short, weight)
-				VALUES ('{$this->countrySlug}', '$currRegionName', '$currRegionSlug', '{$regionInfo["regionShort"]}', '{$regionInfo["weight"]}')
-			";
-
-			$rows = array();
-			foreach ($regionInfo["cities"] as $cityName) {
-				$cityName = addslashes($cityName);
-				$rows[] = "('{$this->countrySlug}', '$currRegionSlug', '$cityName')";
-			}
-			$rowsStr = implode(",", $rows);
-			$queries[] = "
-				INSERT INTO {$prefix}cities (country_slug, region_slug, city)
-				VALUES $rowsStr
-			";
-		}
-
-		$response = Core::$db->query($queries);
-
-		if ($response["success"]) {
-			return array(true, "");
-		} else {
-			$this->uninstall();
-			return array(false, $response["errorMessage"]);
-		}
+		return CountryPluginHelper::populateDB($this->countryName, $this->countrySlug, $data);
 	}
 }
