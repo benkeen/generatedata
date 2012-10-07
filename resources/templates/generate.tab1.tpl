@@ -25,7 +25,7 @@
 	</div>
 	{/if}*}
 
-	<form action="process.php" method="post" name="gdData" id="gdData" target="hiddenIframe">
+	<form id="gdData">
 		<input type="hidden" name="gdNumCols" id="gdNumCols" value="" />
 		<input type="hidden" name="gdRowOrder" id="gdRowOrder" value="" />
 		<input type="hidden" name="gdDeletedRows" id="gdDeletedRows" value="" />
@@ -84,8 +84,9 @@
 		{$L.add} <input type="text" name="gdNumRows" id="gdNumRows" value="1" size="2" />
 		<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 
-		{* hidden iframe, to which the form is submitted *}
+		{* hidden iframe, to which the form may be is submitted
 		<iframe name="hiddenIframe" src="" frameborder="0" scrolling="no" style="height: 0px; width: 0px;"></iframe>
+		*}
 
 		<div class="gdVerticalPad"></div>
 		<div>
@@ -116,3 +117,5 @@
 
 	</form>
 	<div id="gdHelpPopup"></div>
+
+	{include file="export.dialog.tpl"}

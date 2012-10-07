@@ -454,115 +454,50 @@ define([
 		} else {
 			document.gdData.target = "hiddenIframe";
 		}
-
 		// pass the ordered rows to the server, according to whatever sort the user's done
 		$("#rowOrder").val(_getRowOrder());
 		$("#deletedRows").val(Generator.deletedRows.toString());
 */
 
+		var windowHeight = $(window).height();
+		var calculatedHeight = windowHeight * 0.9;
 
-		return true;
+
+		$("#gdExportDialog").removeClass("hidden").dialog({
+			title: "Generating...",
+			modal: true,
+			width: "90%",
+			height:	calculatedHeight,
+			open: function() {
+				$.ajax({
+					url: "generate.php",
+					type: "POST",
+					data: {
+						formData: $("#gdData").serialize(),
+						batchSize: 100,
+					},
+					success: function(response) {
+						console.log("success: ", response);
+					},
+					error: function(response) {
+						console.log("response: ", response);
+					}
+				});
+			},
+			buttons: [
+			    {
+			    	text: "Close",
+			    	click: function() { $(this).dialog("close"); }
+			    }
+			]
+		})
+
+		return false;
 	};
 
 
 /*
-		var missingNodeNames  = [];
-		var invalidNodeNames  = [];
-		var missingTableNames = [];
-		var invalidTableNames = [];
-
-		var visibleRowNum = 0;
-		var dataTypeValidationFunctions = [];
-		for (var i=0; i<orderedRowIDs.length; i++) {
-			var nodeNum = orderedRowIDs[i];
-			visibleRowNum++;
-
-			// ignore rows that haven't specified a data type
-			if ($("#type_" + nodeNum).val() == "") {
-				continue;
-			}
-
-			switch (resultType) {
-				case "XML":
-					if ($("#title_" + nodeNum).val() == "") {
-						missingNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
-					} else if ($("#title_" + nodeNum).val().match(/\W/) || $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
-						invalidNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
-					}
-					break;
-
-				case "SQL":
-					if ($("#title_" + nodeNum).val() == "") {
-						missingTableNames.push([$("#title_" + nodeNum), visibleRowNum]);
-					} else if ($("#title_" + nodeNum).val().match(/\W/) || $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
-						invalidTableNames.push([$("#title_" + nodeNum), visibleRowNum]);
-					}
-					break;
-			}
-
-			// keep track of the data types that have custom validation routines
-			var func_ns = $("#type_" + nodeNum).val() + "_ns";
-			if (typeof window[func_ns] === "object" && typeof window[func_ns].validate === "function") {
-				if (!_multiDimArrayContains(func_ns, dataTypeValidationFunctions)) {
-					dataTypeValidationFunctions.push([func_ns, [nodeNum]]);
-				} else {
-					dataTypeValidationFunctions = _multiDimArrayAddRow(func_ns, dataTypeValidationFunctions, nodeNum);
-				}
-			}
-
-			numGeneratedRows++;
-		}
-
-		if (missingNodeNames.length) {
-			var problemFields = [];
-			var rowNumbers    = [];
-			for (var i=0; i<missingNodeNames.length; i++) {
-				problemFields.push(missingNodeNames[i][0]);
-				rowNumbers.push(missingNodeNames[i][1]);
-			}
-			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-		}
-		if (invalidNodeNames.length) {
-			var problemFields = [];
-			var rowNumbers    = [];
-			for (var i=0; i<invalidNodeNames.length; i++) {
-				problemFields.push(invalidNodeNames[i][0]);
-				rowNumbers.push(invalidNodeNames[i][1]);
-			}
-			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-			Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-		}
-		if (missingTableNames.length) {
-			var problemFields = [];
-			var rowNumbers    = [];
-			for (var i=0; i<missingTableNames.length; i++) {
-				problemFields.push(missingTableNames[i][0]);
-				rowNumbers.push(missingTableNames[i][1]);
-			}
-			Generator.errors.push({ els: problemFields, error: L.missing_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-		}
-		if (invalidTableNames.length) {
-			var problemFields = [];
-			var rowNumbers    = [];
-			for (var i=0; i<invalidTableNames.length; i++) {
-				problemFields.push(invalidTableNames[i][0]);
-				rowNumbers.push(invalidTableNames[i][1]);
-			}
-			Generator.errors.push({ els: problemFields, error: L.invalid_table_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-		}
-
-		if (resultType == "XML") {
-			if ($("#xml_root_node_name").val() == "") {
-				Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
-			} else if ($("#xml_root_node_name").val().match(/\W/)) {
-				Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
-			} else if ($("#xml_record_node_name").val() == "") {
-				Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
-			} else if ($("#xml_record_node_name").val().match(/\W/)) {
-				Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
-			}
-		}
-		else if (resultType == "CSV") {
+		if (resultType == "CSV") {
 			if ($("#csv_delimiter").val() == "") {
 				Generator.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
 			}
@@ -603,6 +538,10 @@ define([
 		return false;
 	}
 
+
+	/**
+	 * This updates the contents of the settings page. Once it gets complicated enough, this will be moved to a separate module.
+	 */
 	var _updateSettings = function(e) {
 		e.preventDefault();
 		utils.startProcessing();
@@ -653,6 +592,7 @@ define([
 		}
 		return arr;
 	};
+
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.CORE, {

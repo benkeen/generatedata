@@ -1,11 +1,10 @@
 <?php
-session_start();
-header("Cache-control: private");
 
-$resultType = $_POST["resultType"];
+//header("Cache-control: private");
+//session_start();
 
 // these have to be outputted FIRST to send the headers properly
-if ($resultType == "Excel")
+/*if ($resultType == "Excel")
 {
   header("Content-Type: application/vnd.ms-excel");
   header("Content-Disposition: attachment; filename=randomdata.xls");
@@ -26,16 +25,15 @@ if ($resultType == "XML")
   header("Cache-Control: no-store, no-cache, must-revalidate");
   header("Cache-Control: post-check=0, pre-check=0", false);
   header("Pragma: no-cache");
-}
+}*/
 
 require("library.php");
-
 Core::init();
 
-// if there's no incoming FORM values, just exit
-if (empty($_POST))
+// if there's no incoming FORM values, just exit. This would never occur if properly submitted via the UI
+if (empty($_POST)) {
   exit;
-
+}
 
 // include all generate.php files for the data set. We have to include ALL data types because we don't
 // know if one data type uses the functions of another
@@ -43,12 +41,11 @@ $data_types = array();
 $folder = dirname(__FILE__);
 $data_types_folder = realpath("data_types");
 
-if ($handle = opendir($data_types_folder))
-{
-  while (false !== ($item = readdir($handle)))
-  {
-  	if ($item == "." || $item == ".." || $item == ".svn")
+if ($handle = opendir($data_types_folder)) {
+  while (false !== ($item = readdir($handle))) {
+  	if ($item == "." || $item == ".." || $item == ".svn") {
   	  continue;
+  	}
 
   	// only include the data type generate.php once: users may be using the data type > 1 time in a data set
     if (is_dir("$data_types_folder/$item"))
@@ -61,7 +58,7 @@ if ($handle = opendir($data_types_folder))
 
 // for use by any data type
 $g_words = gd_get_lipsum();
-$g_resultType = $_POST["resultType"];
+$g_exportType = $_POST["gdExportType"];
 $g_numCols    = $_POST["numCols"];
 $g_numResults = $_POST["numResults"];
 

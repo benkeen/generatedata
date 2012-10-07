@@ -446,7 +446,7 @@ hr {
 .box {
 	background-color: #F4F8FF;
 }
-.disabled {
+.gdDisabled {
 	color: #cccccc;
 	background-color: #efefef;
 }
@@ -729,4 +729,26 @@ body .chzn-container-multi .chzn-choices {
 
 #gdEmptyForm {
 	float: right;
+}
+#gdGeneratedContent {
+	width: 100%;
+	height: 90%;
+}
+#gdTextSize {
+	float: right;
+	list-style: none;
+}
+#gdTextSize li {
+	float: left;
+	width: 18px;
+	vertical-align: top:
+}
+#gdTextSize .small {
+	font-size: 8pt;
+}
+#gdTextSize .medium {
+	font-size: 12pt;
+}
+#gdTextSize .large {
+	font-size: 16pt;
 }

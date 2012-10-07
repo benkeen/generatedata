@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/styles.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui-1.8.23.custom.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/chosen.css" />
+	<link rel="stylesheet" type="text/css" href="libs/codemirror/lib/codemirror.css" />
+	<script src="libs/codemirror/lib/codemirror.js"></script>
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/chosen.jquery.min.js"></script>
 	<script src="scripts/libs/require.js"></script>
@@ -31,7 +33,7 @@
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
-			{if $settings.employUserAccounts == "yes"}<li id="gdTab2" class="gdHideNoJS">{$L.user_accounts}</li>{/if}
+			{if $settings.employUserAccounts == "yes"}<li id="gdTab2" class="gdHideNoJS">{$L.accounts}</li>{/if}
 			<li id="gdTab3" class="gdHideNoJS">{$L.settings}</li>
 			<li id="gdTab4" class="gdHideNoJS">{$L.help}</li>
 		</ul>

@@ -5,6 +5,17 @@
 
 <form action="index.php#t2" method="post" id="gdSettingsForm">
 
+	<h3>Account Settings</h3>
+
+	<p>
+		<input type="text" size="3" maxlength="5" value="100" />
+			<label>Size of generated rows</label>
+		<div class="gdHint">
+			Most export types generate the results in a dialog window, which incrementally fills up as the data is generated. The larger
+			the data set, the longer generation can take. This setting controls the size of each chunk that's generated.
+		</div>
+	</p>
+
 	<h3>Plugins</h3>
 
 	<p>
