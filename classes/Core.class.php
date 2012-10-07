@@ -78,7 +78,6 @@ class Core {
 		if (file_exists($settingsFilePath)) {
 			self::$settingsFileExists = true;
 			require_once($settingsFilePath);
-
 			self::$dbHostname = (isset($dbHostname)) ? $dbHostname : null;
 			self::$dbName     = (isset($dbName)) ? $dbName : null;
 			self::$dbUsername = (isset($dbUsername)) ? $dbUsername : null;
@@ -101,7 +100,7 @@ class Core {
 
 	private function initSmarty() {
 		self::$smarty = new Smarty();
-		self::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates/");
+		self::$smarty->template_dir = realpath(dirname(__FILE__) . "/../resources/templates/");
 		self::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache/");
 		self::$smarty->assign("version", self::getVersion());
 		self::$smarty->assign("samePage", Utils::getCleanPhpSelf());

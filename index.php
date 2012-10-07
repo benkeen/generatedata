@@ -12,6 +12,7 @@ $exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalS
 
 $dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
 
+
 $exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes);
 $dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes);
 $cssIncludes = DataTypePluginHelper::getDataTypeCSSIncludes($dataTypes);
@@ -23,4 +24,4 @@ $pageParams["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
 $pageParams["settings"] = Settings::getSettings();
 $pageParams["cssIncludes"] = $cssIncludes;
 
-Utils::displayPage("templates/index.tpl", $pageParams);
+Utils::displayPage("resources/templates/index.tpl", $pageParams);

@@ -102,7 +102,6 @@ define([
 	 */
 	var _deleteRows = function() {
 		var rowIDs = [];
-		console.log($(".gdDeleteRows:checked"));
 		$(".gdDeleteRows:checked").each(function() {
 			var row = $(this).closest(".gdTableRow");
 			var parentRowID = row.attr("id");
@@ -148,19 +147,21 @@ define([
 	};
 
 	var _emptyForm = function(requireConfirmation, numInitRows) {
-		$("input[name=deleteRows]").attr("checked", "checked");
 		if (requireConfirmation) {
 			$("<div></div>").html(L.confirm_empty_form).dialog({
 				title: "Please confirm",
+				modal: true,
 				width: 360,
 				buttons: [
 					{
 						text: "Yes",
 						click: function() {
+							$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
 							_deleteRows();
 							if (numInitRows) {
 								_addRows(numInitRows);
 							}
+							$(this).dialog("close");
 						}
 					},
 					{
@@ -172,6 +173,7 @@ define([
 				]
 			});
 		} else {
+			$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
 			_deleteRows();
 			if (numInitRows) {
 				_addRows(numInitRows);
@@ -445,7 +447,7 @@ define([
 			return false;
 		}
 
-
+/*
 		// all checks out. Set the form target and submit the sucker
 		if (resultType == "HTML" || resultType == "XML" || resultType == "SQL") {
 			document.gdData.target = "_blank";
@@ -456,6 +458,8 @@ define([
 		// pass the ordered rows to the server, according to whatever sort the user's done
 		$("#rowOrder").val(_getRowOrder());
 		$("#deletedRows").val(Generator.deletedRows.toString());
+*/
+
 
 		return true;
 	};

@@ -11,7 +11,7 @@ class Translations {
 	 * @return array a hash of filename => language name
 	 */
 	function __construct() {
-	  $translationsFolder = realpath(dirname(__FILE__) . "/../lang/");
+	  $translationsFolder = realpath(dirname(__FILE__) . "/../resources/lang/");
 	  $translations = array();
 	  if ($handle = opendir($translationsFolder)) {
 	    while (false !== ($item = readdir($handle))) {

@@ -1,8 +1,8 @@
     <footer class="footer">
       <div class="container">
         <ul class="footer-links">
-          <li><a href="http://blog.getbootstrap.com">How to contribute</a></li>
-          <li><a href="http://blog.getbootstrap.com">Scripts / Tools used</a></li>
+          <li><a href="contribute.php">How to contribute</a></li>
+          <li><a href="thanks.php">Scripts / Tools used</a></li>
         </ul>
       </div>
     </footer>

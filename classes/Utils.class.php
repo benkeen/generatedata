@@ -157,7 +157,7 @@ class Utils {
 	static function displayPage($template, $pageVars = array()) {
 
 		// check the compile directory has the write permissions
-		if (!is_writable(Core::$smarty->compile_dir)) {
+		if (!is_writable(Core::$smarty->compile_dir) && is_readable(Core::$smarty->compile_dir)) {
 			Utils::displaySeriousError("The <b>/cache</b> folder isn't writable. This folder is used by Smarty to generate temporary files for speedy page loads. You'll need to update that folder's permissions to allow read and write permissions (777 on unix/mac).");
 			exit;
 		}
@@ -172,7 +172,6 @@ class Utils {
 		}
 
 		Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
-		//Core::$smarty->assign("SESSION", $_SESSION["gd"]);
 		Core::$smarty->assign("queryString", $_SERVER["QUERY_STRING"]);
 
 		// now add the custom variables for this template, as defined in $page_vars
@@ -180,9 +179,12 @@ class Utils {
 			Core::$smarty->assign($key, $value);
 		}
 
-		Core::$smarty->display(realpath(dirname(__FILE__) . "/../$template"));
-
-		//gd_db_disconnect($g_link);
+		try {
+			Core::$smarty->display(realpath(dirname(__FILE__) . "/../$template"));
+		} catch (Exception $e) {
+			Utils::displaySeriousError("Smarty encountered a problem writing to the /cache folder. The (probably quite abstruse) error message returned is:<br /><br /><i>{$e}</i>");
+			exit;
+		}
 	}
 
 
@@ -206,7 +208,7 @@ class Utils {
 	<html>
 	<head>
 		<title>Things just ain't right.</title>
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="resources/css/styles.css">
 		<script src="scripts/libs/jquery.js"></script>
 		<script>
 		$(function() {

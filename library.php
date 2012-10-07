@@ -25,7 +25,7 @@ require_once(dirname(__FILE__) . "/classes/SessionManager.class.php");
 require_once(dirname(__FILE__) . "/classes/Settings.class.php");
 require_once(dirname(__FILE__) . "/classes/Translations.class.php");
 require_once(dirname(__FILE__) . "/classes/Utils.class.php");
-require_once(dirname(__FILE__) . "/smarty/Smarty.class.php");
+require_once(dirname(__FILE__) . "/libs/smarty/Smarty.class.php");
 
 //require_once(dirname(__FILE__) . "/classes/Exceptions.class.php");
 //require_once(dirname(__FILE__) . "/classes/GDException.class.php");
