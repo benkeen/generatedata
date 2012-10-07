@@ -11,3 +11,4 @@ $L["Phone_help_text3"] = "As with many of the other data types, to generate phon
 $L["Phone_incomplete_fields"] = "The Phone data type needs to have the format entered in the Options text field. Please fix the following rows:";
 $L["Phone_name"] = "Phone / Fax";
 $L["Phone_uk"] = "UK";
+$L["incomplete_fields"] = "The Phone / Fax data type needs to have the format entered in the Options text field. Please fix the following rows:";

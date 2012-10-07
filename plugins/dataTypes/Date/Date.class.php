@@ -87,10 +87,10 @@ EOF;
 		$lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));
 
 		$html =<<< END
-	{$this->L["Date_from"]} <input type="text" name="dtFromDate_%ROW%" id="dtFromDate_%ROW%" class="" size="10" value="$lastYear" />
-	{$this->L["Date_to"]} <input type="text" name="dtToDate_%ROW%" id="dtToDate_%ROW%" size="10" value="$nextYear" />
+	{$this->L["from"]} <input type="text" name="dtFromDate_%ROW%" id="dtFromDate_%ROW%" class="" size="10" value="$lastYear" />
+	{$this->L["to"]} <input type="text" name="dtToDate_%ROW%" id="dtToDate_%ROW%" size="10" value="$nextYear" />
 	<div>
-		{$this->L["Date_format_code"]}&nbsp;<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 160px" />
+		{$this->L["format_code"]}&nbsp;<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 160px" />
 	</div>
 END;
 
@@ -100,106 +100,106 @@ END;
 	public function getHelpDialogInfo() {
 		$html =<<<END
 			<p>
-				{$this->L["Date_help_intro"]}
+				{$this->L["help_intro"]}
 			</p>
 
 			<table cellpadding="0" cellspacing="1">
 			<tr>
-				<td width="50"><h4>{$this->L["Date_char"]}</h4></td>
-				<td>{$this->L["Date_description"]}</td>
-				<td>{$this->L["Date_example"]}</td>
+				<td width="50"><h4>{$this->L["char"]}</h4></td>
+				<td>{$this->L["description"]}</td>
+				<td>{$this->L["example"]}</td>
 			</tr>
 			<tr>
-				<td colspan="3"><h5>{$this->L["Date_day"]}</h5></td>
+				<td colspan="3"><h5>{$this->L["day"]}</h5></td>
 			</tr>
 			<tr>
 				<td><h4>d</h4></td>
-				<td>{$this->L["Date_help_d"]}</td>
-				<td>{$this->L["Date_help_d_example"]}</td>
+				<td>{$this->L["help_d"]}</td>
+				<td>{$this->L["help_d_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>D</h4></td>
-				<td>{$this->L["Date_help_D"]}</td>
-				<td>{$this->L["Date_help_D_example"]}</td>
+				<td>{$this->L["help_D"]}</td>
+				<td>{$this->L["help_D_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>j</h4></td>
-				<td>{$this->L["Date_help_j"]}</td>
-				<td>{$this->L["Date_help_j_example"]}</td>
+				<td>{$this->L["help_j"]}</td>
+				<td>{$this->L["help_j_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>l</h4></td>
-				<td>{$this->L["Date_help_l"]}</td>
-				<td>{$this->L["Date_help_l_example"]}</td>
+				<td>{$this->L["help_l"]}</td>
+				<td>{$this->L["help_l_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>S</h4></td>
-				<td>{$this->L["Date_help_S"]}</td>
-				<td>{$this->L["Date_help_S_example"]}</td>
+				<td>{$this->L["help_S"]}</td>
+				<td>{$this->L["help_S_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>w</h4></td>
-				<td>{$this->L["Date_help_w"]}</td>
-				<td>{$this->L["Date_help_w_example"]}</td>
+				<td>{$this->L["help_w"]}</td>
+				<td>{$this->L["help_w_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>z</h4></td>
-				<td>{$this->L["Date_help_z"]}</td>
-				<td>{$this->L["Date_help_z_example"]}</td>
+				<td>{$this->L["help_z"]}</td>
+				<td>{$this->L["help_z_example"]}</td>
 			</tr>
 			<tr>
-				<td colspan="3"><h5>{$this->L["Date_week"]}</h5></td>
+				<td colspan="3"><h5>{$this->L["week"]}</h5></td>
 			</tr>
 			<tr>
 				<td><h4>W</h4></td>
-				<td>{$this->L["Date_help_W"]}</td>
-				<td>{$this->L["Date_help_W_example"]}</td>
+				<td>{$this->L["help_W"]}</td>
+				<td>{$this->L["help_W_example"]}</td>
 			</tr>
 			<tr>
-				<td colspan="3"><h5>{$this->L["Date_month"]}</h5></td>
+				<td colspan="3"><h5>{$this->L["month"]}</h5></td>
 			</tr>
 			<tr>
 				<td><h4>F</h4></td>
-				<td>{$this->L["Date_help_F"]}</td>
-				<td>{$this->L["Date_help_F_example"]}</td>
+				<td>{$this->L["help_F"]}</td>
+				<td>{$this->L["help_F_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>m</h4></td>
-				<td>{$this->L["Date_help_m"]}</td>
-				<td>{$this->L["Date_help_m_example"]}</td>
+				<td>{$this->L["help_m"]}</td>
+				<td>{$this->L["help_m_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>M</h4></td>
-				<td>{$this->L["Date_help_M"]}</td>
-				<td>{$this->L["Date_help_M_example"]}</td>
+				<td>{$this->L["help_M"]}</td>
+				<td>{$this->L["help_M_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>n</h4></td>
-				<td>{$this->L["Date_help_n"]}</td>
-				<td>{$this->L["Date_help_n_example"]}</td>
+				<td>{$this->L["help_n"]}</td>
+				<td>{$this->L["help_n_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>t</h4></td>
-				<td>{$this->L["Date_help_t"]}</td>
-				<td>{$this->L["Date_help_t_example"]}</td>
+				<td>{$this->L["help_t"]}</td>
+				<td>{$this->L["help_t_example"]}</td>
 			</tr>
 			<tr>
-				<td colspan="3"><h5>{$this->L["Date_year"]}</h5></td>
+				<td colspan="3"><h5>{$this->L["year"]}</h5></td>
 			</tr>
 			<tr>
 				<td><h4>L</h4></td>
-				<td>{$this->L["Date_help_L"]}</td>
-				<td>{$this->L["Date_help_L_example"]}</td>
+				<td>{$this->L["help_L"]}</td>
+				<td>{$this->L["help_L_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>Y</h4></td>
-				<td>{$this->L["Date_help_Y"]}</td>
-				<td>{$this->L["Date_help_Y_example"]}</td>
+				<td>{$this->L["help_Y"]}</td>
+				<td>{$this->L["help_Y_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>y</h4></td>
-				<td>{$this->L["Date_help_y"]}</td>
-				<td>{$this->L["Date_help_y_example"]}</td>
+				<td>{$this->L["help_y"]}</td>
+				<td>{$this->L["help_y_example"]}</td>
 			</tr>
 			</table>
 END;

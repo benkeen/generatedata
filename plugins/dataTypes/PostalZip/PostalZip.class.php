@@ -5,6 +5,7 @@ class DataType_PostalZip extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $processOrder = 2;
+	protected $jsModules = array("PostalZip.js");
 	private $helpDialogWidth = 320;
 
 

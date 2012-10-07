@@ -29,17 +29,17 @@ class DataType_NumberRange extends DataTypePlugin {
 	}
 
 	public function getTemplateOptions($postdata, $column, $numCols) {
-		if ((empty($postdata["numRangeMin_$col"]) && $postdata["numRangeMin_$col"] !== "0") ||
-				(empty($postdata["numRangeMax_$col"]) && $postdata["numRangeMax_$col"] !== "0"))
+		if ((empty($postdata["dtNumRangeMin_$col"]) && $postdata["dtNumRangeMin_$col"] !== "0") ||
+				(empty($postdata["dtNumRangeMax_$col"]) && $postdata["dtNumRangeMax_$col"] !== "0"))
 			return false;
 
-		if (!is_numeric($postdata["numRangeMin_$col"]) || !is_numeric($postdata["numRangeMax_$col"]))
+		if (!is_numeric($postdata["dtNumRangeMin_$col"]) || !is_numeric($postdata["dtNumRangeMax_$col"]))
 			return false;
 
 
 		$options = array(
-			"min" => $postdata["numRangeMin_$col"],
-			"max" => $postdata["numRangeMax_$col"]
+			"min" => $postdata["dtNumRangeMin_$col"],
+			"max" => $postdata["dtNumRangeMax_$col"]
 		);
 
 		return $options;
@@ -47,8 +47,8 @@ class DataType_NumberRange extends DataTypePlugin {
 
 	public function getOptionsColumnHTML() {
 		$html =<<<END
-&nbsp;{$this->L["NumberRange_between"]} <input type="text" name="numRangeMin_%ROW%" id="numRangeMin_%ROW%" style="width: 30px" value="1" />
-{$this->L["NumberRange_and"]} <input type="text" name="numRangeMax_%ROW%" id="numRangeMax_%ROW%" style="width: 30px" value="10" />
+&nbsp;{$this->L["between"]} <input type="text" name="dtNumRangeMin_%ROW%" id="dtNumRangeMin_%ROW%" style="width: 30px" value="1" />
+{$this->L["and"]} <input type="text" name="dtNumRangeMax_%ROW%" id="dtNumRangeMax_%ROW%" style="width: 30px" value="10" />
 END;
 		return $html;
 	}

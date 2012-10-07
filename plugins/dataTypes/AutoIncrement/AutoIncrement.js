@@ -7,9 +7,9 @@ define([
 
 	var MODULE_ID = "data-type-AutoIncrement";
 	var LANG = L.dataTypePlugins.AutoIncrement;
+	var subscriptions = {};
 
 	var _init = function() {
-		var subscriptions = {};
 		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	}
@@ -23,49 +23,28 @@ define([
 	}
 
 	var _validate = function(rows) {
-		/*
 		var visibleProblemRows = [];
 		var problemFields      = [];
 		for (var i=0; i<rows.length; i++) {
-			if ($("#option_" + rows[i]).val() == "") {
-				var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
+			var autoIncrementStart = $.trim($("#dtAutoIncrementStart_" + rows[i]).val());
+			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+			if (autoIncrementStart == "") {
+				problemFields.push($("#dtAutoIncrementStart_" + rows[i]));
+			}
+			var autoIncrementEnd = $.trim($("#dtAutoIncrementValue_" + rows[i]).val());
+			if (autoIncrementEnd == "") {
+				problemFields.push($("#dtAutoIncrementValue_" + rows[i]));
+			}
+			if (autoIncrementStart == "" || autoIncrementEnd == "") {
 				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#option_" + rows[i]));
 			}
 		}
-
+		var errors = [];
 		if (visibleProblemRows.length) {
-			gd.errors.push({ els: problemFields, error: L.AlphaNumeric_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 		}
-		*/
+		return errors;
 	}
-
-	/*
-		var AutoIncrement_ns = {
-		loadRow: function(rowNum, data)
-		{
-			return [
-				function() {
-					$("#dt_" + rowNum).val(data.example);
-					$("#autoIncrementStart_" + rowNum).val(data.start);
-					$("#autoIncrementValue_" + rowNum).val(data.value);
-					$("#autoIncrementPlaceholder_" + rowNum).val(data.placeholder);
-				},
-				function() { return $("#autoIncrementPlaceholder_" + rowNum).length > 0; }
-			];
-		},
-
-		saveRow: function(rowNum)
-		{
-			return {
-				"example":     $("#dt_" + rowNum).val(),
-				"start":       $("#autoIncrementStart_" + rowNum).val(),
-				"value":       $("#autoIncrementValue_" + rowNum).val(),
-				"placeholder": $("#autoIncrementPlaceholder_" + rowNum).val()
-			};
-		}
-	}
-	*/
 
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
 		init: _init,
@@ -73,3 +52,31 @@ define([
 	});
 
 });
+
+
+/*
+var AutoIncrement_ns = {
+	loadRow: function(rowNum, data)
+	{
+		return [
+			function() {
+				$("#dt_" + rowNum).val(data.example);
+				$("#autoIncrementStart_" + rowNum).val(data.start);
+				$("#autoIncrementValue_" + rowNum).val(data.value);
+				$("#autoIncrementPlaceholder_" + rowNum).val(data.placeholder);
+			},
+			function() { return $("#autoIncrementPlaceholder_" + rowNum).length > 0; }
+		];
+	},
+
+	saveRow: function(rowNum)
+	{
+		return {
+			"example":     $("#dt_" + rowNum).val(),
+			"start":       $("#autoIncrementStart_" + rowNum).val(),
+			"value":       $("#autoIncrementValue_" + rowNum).val(),
+			"placeholder": $("#autoIncrementPlaceholder_" + rowNum).val()
+		};
+	}
+}
+*/

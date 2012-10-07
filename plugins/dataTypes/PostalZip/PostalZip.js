@@ -4,31 +4,36 @@ define([
 	"lang"
 ], function(manager, C, L) {
 
-/*
+	var MODULE_ID = "data-type-PostalZip";
+	var LANG = L.dataTypePlugins.PostalZip;
+	var subscriptions = {};
+
 	var _init = function() {
-		var subscriptions = {};
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	}
+
 	var _countryChange = function(msg) {
 		var shownClassesSelectors = [];
 		for (var i=0; i<msg.countries.length; i++) {
-			shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i]);
+			shownClassesSelectors.push(".dtCountry_" + msg.countries[i]);
 		}
 		shownClassesSelector = shownClassesSelectors.join(",");
-
-		$(".dtRegionSection").hide();
+		$(".dtCountry").hide();
 		$(shownClassesSelector).show();
 	}
 
+	var _validate = function() {
+
+	}
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		init: _init
+		init: _init,
+		validate: _validate
 	});
-*/
-
 });
+
 
 /*
 var PostalZip_ns = {

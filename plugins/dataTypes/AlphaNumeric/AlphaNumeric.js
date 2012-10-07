@@ -6,11 +6,10 @@ define([
 ], function(manager, C, L, generator) {
 
 	var MODULE_ID = "data-type-AlphaNumeric";
-	var LANG = L.dataTypePlugins.Alphanumeric;
-
+	var LANG = L.dataTypePlugins.AlphaNumeric;
+	var subscriptions = {};
 
 	var _init = function() {
-		var subscriptions = {};
 		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	}
@@ -23,36 +22,19 @@ define([
 		var visibleProblemRows = [];
 		var problemFields      = [];
 		for (var i=0; i<rows.length; i++) {
-			if ($("#option_" + rows[i]).val() == "") {
-				var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
+			var currEl = $("#dtOption_" + rows[i]);
+			if ($.trim(currEl.val()) == "") {
+				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#option_" + rows[i]));
+				problemFields.push(currEl);
 			}
 		}
-
+		var errors = [];
 		if (visibleProblemRows.length) {
-			gd.errors.push({ els: problemFields, error: L.AlphaNumeric_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 		}
+		return errors;
 	}
-
-	/*
-	var _loadRow = function(rowNum, data) {
-		return [
-			function() {
-				$("#dt_" + rowNum).val(data.example);
-				$("#option_" + rowNum).val(data.option);
-			},
-			function() { return $("#option_" + rowNum).length > 0; }
-		];
-	},
-
-	var saveRow = function(rowNum) {
-		return {
-			"example":  $("#dt_" + rowNum).val(),
-			"option":   $("#option_" + rowNum).val()
-		};
-	}
-	*/
 
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
 		init: _init,
@@ -60,3 +42,24 @@ define([
 	});
 
 });
+
+
+/*
+var _loadRow = function(rowNum, data) {
+	return [
+		function() {
+			$("#dt_" + rowNum).val(data.example);
+			$("#option_" + rowNum).val(data.option);
+		},
+		function() { return $("#option_" + rowNum).length > 0; }
+	];
+},
+
+var saveRow = function(rowNum) {
+	return {
+		"example":  $("#dt_" + rowNum).val(),
+		"option":   $("#option_" + rowNum).val()
+	};
+}
+*/
+

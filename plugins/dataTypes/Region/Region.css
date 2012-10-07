@@ -4,9 +4,11 @@
 }
 .dtRegionSuboptionActive {
 	color: #555555;
+	line-height: 17pt;
 }
 .dtRegionSuboptionInactive {
 	color: #cccccc;
+	line-height: 17pt;
 }
 .dtRegionFull {
 	position: absolute;

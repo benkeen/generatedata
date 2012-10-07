@@ -1,11 +1,12 @@
 define([
 	"manager",
 	"constants",
-	"lang"
-], function(manager, C, L) {
+	"lang",
+	"generator"
+], function(manager, C, L, generator) {
 
 	var MODULE_ID = "data-type-Phone";
-	var LANG = L.dataTypePlugins.Names;
+	var LANG = L.dataTypePlugins.Phone;
 
 	var _init = function() {
 		var subscriptions = {};
@@ -17,31 +18,31 @@ define([
 		$("#dtOption_" + msg.rowID).val(msg.value);
 	}
 
+	var _validate = function(rows) {
+		var visibleProblemRows = [];
+		var problemFields      = [];
+		for (var i=0; i<rows.length; i++) {
+			if ($("#dtOption_" + rows[i]).val() == "") {
+				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+				visibleProblemRows.push(visibleRowNum);
+				problemFields.push($("#dtOption_" + rows[i]));
+			}
+		}
+		var errors = [];
+		if (visibleProblemRows.length) {
+			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+		}
+		return errors;
+	};
+
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		init: _init
+		init: _init,
+		validate: _validate
 	});
 });
 
 
 /*
-	validate: function(rows)
-	{
-		var visibleProblemRows = [];
-		var problemFields      = [];
-		for (var i=0; i<rows.length; i++)
-		{
-			if ($("#option_" + rows[i]).val() == "")
-			{
-				var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
-				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#option_" + rows[i]));
-			}
-		}
-
-		if (visibleProblemRows.length)
-			gd.errors.push({ els: problemFields, error: L.Phone_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-	},
-
 	loadRow: function(rowNum, data)
 	{
 		return [

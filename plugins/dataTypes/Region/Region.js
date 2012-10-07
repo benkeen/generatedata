@@ -1,14 +1,15 @@
 define([
 	"manager",
 	"constants",
-	"lang"
-], function(manager, C, L) {
+	"lang",
+	"generator"
+], function(manager, C, L, generator) {
 
 	var MODULE_ID = "data-type-Region";
 	var LANG = L.dataTypePlugins.Region;
+	var subscriptions = {};
 
 	var _init = function() {
-		var subscriptions = {};
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 		$("#gdTableRows").on("click", ".dtRegionCountry", _toggleCountryRegion);
@@ -21,10 +22,9 @@ define([
 	var _countryChange = function(msg) {
 		var shownClassesSelectors = [];
 		for (var i=0; i<msg.countries.length; i++) {
-			shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i]);
+			shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i] + ",.dtIncludeRegion_" + msg.countries[i]);
 		}
 		shownClassesSelector = shownClassesSelectors.join(",");
-
 		$(".dtRegionCountry").hide();
 		$(shownClassesSelector).show();
 	}
@@ -35,7 +35,6 @@ define([
 
 	var _toggleCountryRegion = function(e) {
 		var el = e.target;
-
 		var parent = $(el).parent();
 		if (el.checked) {
 			parent.find("span input").removeAttr("disabled");

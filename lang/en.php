@@ -17,7 +17,6 @@ $L["meta_description"] = "GenerateData.com: free, GNU-licensed, random custom da
 $L["meta_keywords"] = "Random Data, Test Data, Sample Data, data generator, generate data";
 $L["row_label"] = "Column Title";
 $L["row_label_plural"] = "Column Titles";
-
 $L["update_settings"] = "Update Settings";
 $L["data_type"] = "Data Type";
 $L["db_table_name"] = "Database table name";

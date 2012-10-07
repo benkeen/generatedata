@@ -413,8 +413,7 @@ define([
 			}
 		}
 
-		vals = manager.validateDataTypes(rowValidationNeededGroupByDataType);
-		utils.addValidationErrors(vals);
+		utils.addValidationErrors(manager.validateDataTypes(rowValidationNeededGroupByDataType));
 
 //		var exportTypeValidationErrors = manager.validateExportTypes({
 //			rows: orderedRowIDs,
@@ -429,7 +428,6 @@ define([
 
 		console.log("would normally submit now");
 		return false;
-
 
 
 /*

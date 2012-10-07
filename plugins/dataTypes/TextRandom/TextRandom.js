@@ -8,16 +8,36 @@ define([
 	var MODULE_ID = "data-type-TextRandom";
 	var LANG = L.dataTypePlugins.TextRandom;
 
-	var _init = function() {
-
+	var _validate = function(rows) {
+		var visibleProblemRows = [];
+		var problemFields      = [];
+		for (var i=0; i<rows.length; i++) {
+			var numWordsMin = $.trim($("#dtNumWordsMin_" + rows[i]).val());
+			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+			if (numWordsMin == "") {
+				visibleProblemRows.push(visibleRowNum);
+				problemFields.push($("#dtNumWordsMin_" + rows[i]));
+			}
+			var numWordsMax = $.trim($("#dtNumWordsMax_" + rows[i]).val());
+			if (numWordsMax == "") {
+				visibleProblemRows.push(visibleRowNum);
+				problemFields.push($("#dtNumWordsMax_" + rows[i]));
+			}
+		}
+		var errors = [];
+		if (visibleProblemRows.length) {
+			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+		}
+		return errors;
 	};
 
-	var _validate = function() {
+	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+		validate: _validate
+	});
+});
 
-	};
 
-
-	/*
+/*
 {
   loadRow: function(rowNum, data)
   {
@@ -40,12 +60,4 @@ define([
     };
   }
 }
-	*/
-
-
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		init: _init,
-		validate: _validate
-	});
-
-});
+*/
