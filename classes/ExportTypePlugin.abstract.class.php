@@ -23,6 +23,20 @@ abstract class ExportTypePlugin {
 	protected $jsModules = array();
 
 	/**
+	 * By default, the Data Generator opens a dialog window to display the results. This setting lets you choose
+	 * to override that and just pass the Ajax request directly to the server. This is handy for export types like
+	 * Excel which just prompts for file download - not shows the results in the UI.
+	 * @var boolean
+	 */
+	protected $openResultsInDialog = true;
+
+	/**
+	 * This controls
+	 * @var unknown_type
+	 */
+	protected $syntaxHighlighterLanguage = null;
+
+	/**
 	 * Contains all strings for the current language. This is populated automatically on instantiation and
 	 * contains the strings for the currently selected language.
 	 * @var array
