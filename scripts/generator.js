@@ -27,8 +27,7 @@ define([
 
 
 	/**
-	 * Called when everything is loaded. This binds the appropriate event handlers, which in turn
-	 * publish the various events for the modules to pick up on.
+	 * Called when everything is loaded. This binds the appropriate event handlers
 	 */
 	var _run = function() {
 		$("#gdCountryList").on("click", "input", _updateCountryChoice);
@@ -37,7 +36,7 @@ define([
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
 		$(document).on("click", ".gdMessageClose", function(e) {
-			$(e.target).closest(".gdMessage").hide("slow");
+			$(e.target).closest(".gdMessage").hide("blind", null, 500);
 			return false;
 		});
 		$("#gdData").bind("submit", _submitForm);
@@ -57,8 +56,8 @@ define([
 				});
 			}
 		});
-
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
+		$("#gdSettingsForm").bind("submit", _updateSettings);
 
 		_changeExportType();
 		_updateCountryChoice();
@@ -194,7 +193,7 @@ define([
 
 		// always reset the column heading to the default "Column Title". Export Types have the option
 		// to overwrite it through the publish event below
-		$("#gdColTitleTop,#gdColTitleBottom").html(L.column_title);
+		$("#gdColTitleTop,#gdColTitleBottom").html(L.row_label);
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -354,8 +353,7 @@ define([
 
 
 	/**
-	 * Called when the user submits the main Generate tab. It performs all necessary validation
-	 * and th
+	 * Called when the user submits the main Generate tab. It performs all necessary validation.
 	 */
 	var _submitForm = function() {
 		var numResults = $("#gdNumResults").val();
@@ -385,7 +383,6 @@ define([
 			if (!currRowType) {
 				continue;
 			}
-
 			if (!rowValidationNeededGroupByDataType.hasOwnProperty(currRowType)) {
 				rowValidationNeededGroupByDataType[currRowType] = [];
 			}
@@ -396,10 +393,29 @@ define([
 		// if none of the data columns had a selected data type, display an error about that, too
 		if (!validRowIDs.length) {
 			utils.addValidationErrors({ els: null, error: L.no_data });
+		} else {
+			// check all filled-in rows contained something in the first column
+			var rowsMissingTitleEls = [];
+			for (var i=0; i<validRowIDs.length; i++) {
+				var currRowID = validRowIDs[i];
+				var currTitle = $("#gdTitle_" + currRowID);
+				if ($.trim(currTitle.val()) == "") {
+					rowsMissingTitleEls.push(currTitle[0]);
+				}
+			}
+
+			if (rowsMissingTitleEls.length) {
+				var label = L.row_label_plural;
+				if (L.exportTypePlugins[resultType].hasOwnProperty("row_label_plural")) {
+					label = L.exportTypePlugins[resultType].row_label_plural;
+				}
+				var message = "Please enter all " + label + ".";
+				utils.addValidationErrors({ els: rowsMissingTitleEls, error: message });
+			}
 		}
 
-		var dataTypeValidationErrors = manager.validateDataTypes(rowValidationNeededGroupByDataType);
-		utils.addValidationErrors(dataTypeValidationErrors);
+		vals = manager.validateDataTypes(rowValidationNeededGroupByDataType);
+		utils.addValidationErrors(vals);
 
 //		var exportTypeValidationErrors = manager.validateExportTypes({
 //			rows: orderedRowIDs,
@@ -537,7 +553,6 @@ define([
 	};
 
 	var _resetPluginsDialog = function() {
-
 		$("#gdPluginInstallation").dialog({
 			modal:     true,
 			resizable: true,
@@ -571,6 +586,38 @@ define([
 		return false;
 	}
 
+	var _updateSettings = function(e) {
+		e.preventDefault();
+		utils.startProcessing();
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				action: "updateSettings",
+				consoleWarnings: $("#gdSettingsConsoleWarnings")[0].checked,
+				consoleEventsPublish: $("#gdSettingsConsoleEventsPublish")[0].checked,
+				consoleEventsSubscribe: $("#gdSettingsConsoleEventsSubscribe")[0].checked,
+				consoleCoreEvents: $("#gdSettingsConsoleCoreEvents")[0].checked,
+				consoleEventsDataTypePlugins: $("#consoleEventsDataTypePlugins").val(),
+				consoleEventsExportTypePlugins: $("#consoleEventsExportTypePlugins").val()
+			},
+			success: function(json) {
+				utils.stopProcessing();
+				if (json.success == 1) {
+					$("#settingsTabMessage p").html(json.message);
+					utils.updateMessageBlock($("#settingsTabMessage"), "notify");
+				}
+			},
+			error: function(json) {
+				utils.stopProcessing();
+				if (json.success == 1) {
+					$("#settingsTabMessage p").html(json.message);
+					utils.updateMessageBlock($("#settingsTabMessage"), "error");
+				}
+			},
+		});
+	}
 
 	var _multiDimArrayContains = function(target, arr) {
 		for (var i=0; i<arr.length; i++) {
@@ -589,7 +636,6 @@ define([
 		}
 		return arr;
 	};
-
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.CORE, {

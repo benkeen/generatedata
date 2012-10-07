@@ -3,7 +3,7 @@
 	<p></p>
 </div>
 
-<form action="index.php#t2" method="post" id="settingsForm">
+<form action="index.php#t2" method="post" id="gdSettingsForm">
 
 	<h3>Plugins</h3>
 

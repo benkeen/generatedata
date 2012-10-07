@@ -13,7 +13,6 @@ define([
 	var MODULE_ID       = "core-utils";
 	var _currentTab     = 1;
 	var _errors         = [];
-	var _messageVisible = false;
 	var _domChangeQueue = [];
 
 	return {
@@ -58,8 +57,10 @@ define([
 		 * This adds an array of error objects, or just a single one.
 		 */
 		addValidationErrors: function(newErrors) {
-			if ($.isArray(newErrors) && newErrors.length) {
-				_errors = _errors.concat(_errors, newErrors);
+			if ($.isArray(newErrors)) {
+				if (newErrors.length) {
+					_errors = _errors.concat(newErrors);
+				}
 			} else {
 				_errors.push(newErrors);
 			}
@@ -71,16 +72,14 @@ define([
 		},
 
 		hideValidationErrors: function(el, unhighlightProblemFields) {
-			if (!_messageVisible) {
+			if (el.css("display") != "block") {
 				return;
 			}
 			if (unhighlightProblemFields) {
-				$("*").removeClass("gdProblemField");
+				$(el).find(".gdProblemField").removeClass("gdProblemField");
 			}
 			$(el).closest(".gdMessage").hide("blind", null, 500);
 			_errors = [];
-			_messageVisible = false;
-
 			return false;
 		},
 
@@ -98,7 +97,12 @@ define([
 			var html = "<ul>";
 			var hasFocus = false;
 
+			console.log("in displayValidationErrors:", _errors);
+
 			for (var i=0; i<_errors.length; i++) {
+				if (typeof _errors[i] != "object" || !_errors[i].hasOwnProperty("error")) {
+					continue;
+				}
 
 				// style all offending fields and focus on the first one with a problem
 				if (_errors[i].els != null) {
@@ -116,24 +120,27 @@ define([
 			$(el).removeClass("gdNotify").addClass("gdErrors gdMarginTop");
 			$(el).find("div").html(html);
 
-			// if this is the first time the errors are displayed (i.e. it's not already visible), blind it in
-			if (!_messageVisible) {
-				$(el).show("blind", null, 500);
-			}
-
-			_messageVisible = true;
+			// display the message
+			this.updateMessageBlock(el, "error");
 		},
 
+		displayMessage: function(el, message) {
+			$(el).removeClass("gdErrors").addClass("gdNotify gdMarginTop");
+			$(el).find("div").html(message);
+			this.updateMessageBlock(el, "notify");
+		},
 
-		displayMessage: function(message) {
-			$("#gdMessages").removeClass("gdErrors").addClass("gdNotify gdMarginTop");
-			$("#gdMessages div").html(message);
-
-			// if this is the first time the errors are displayed (i.e. it's not already visible), blind it in
-			if (!_messageVisible) {
-				$("#gdMessages").show("blind", null, 500);
+		/**
+		 * Helper function to actually show / highlight a message block consistently. This assumes the message / error
+		 * is already in the element. It either blinds it quickly in, or does a highlight effect to draw attention to it.
+		 */
+		updateMessageBlock: function(el, messageType) {
+			var color = (messageType == "error") ? "#ffc9c9" : "#a4c2ff";
+			if ($(el).css("display") != "block") {
+				$(el).show("blind", null, 500);
+			} else {
+				$(el).effect("highlight", { color: color }, 1500);
 			}
-			_messageVisible = true;
 		},
 
 		isNumber: function(n) {

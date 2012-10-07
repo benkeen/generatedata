@@ -265,7 +265,7 @@ require([
 		if (json.success) {
 			_displayError(json.message);
 		} else {
-			utils.displayMessage("gdInstallMessage", json.message);
+			utils.displayMessage("#gdInstallMessage", json.message);
 		}
 		return;
 	}

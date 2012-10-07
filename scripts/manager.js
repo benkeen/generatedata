@@ -222,10 +222,11 @@ define([
 			}
 
 			var currErrors = _modules[moduleID].validate(rowValidationNeededGroupedByDataType[moduleID]);
-			if (!$.isArray(errors)) {
+			if (!$.isArray(currErrors)) {
 				continue;
+			} else if (currErrors.length) {
+				errors = errors.concat(currErrors);
 			}
-			errors = errors.concat(errors, currErrors);
 		}
 		return errors;
 	}

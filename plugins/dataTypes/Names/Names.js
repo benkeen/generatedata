@@ -18,7 +18,6 @@ define([
 		$("#dtOption_" + msg.rowID).val(msg.value);
 	}
 
-
 	/**
 	 * Called when the user submits the form to generate some data. If the selected data set contains
 	 * one or more rows of this data type, this function is called with the list of row numbers. Note that
@@ -36,12 +35,10 @@ define([
 				problemFields.push($("#dtOption_" + rows[i]));
 			}
 		}
-
 		var errors = [];
 		if (visibleProblemRows.length) {
 			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 		}
-
 		return errors;
 	};
 

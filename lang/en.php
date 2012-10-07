@@ -10,22 +10,13 @@ $L["about"] = "About";
 $L["accounts"] = "Accounts";
 $L["add"] = "Add";
 $L["add_default_auto_increment_col"] = "Add default auto-increment column";
-$L["column_title"] = "Column Title";
 $L["confirm_delete_form"] = "Are you sure you want to delete this form?";
 $L["confirm_empty_form"] = "Are you sure you want to empty this form?";
 $L["countries"] = "Countries";
 $L["meta_description"] = "GenerateData.com: free, GNU-licensed, random custom data generator for testing software";
 $L["meta_keywords"] = "Random Data, Test Data, Sample Data, data generator, generate data";
-
-
-// ------------ to be moved -------------
-$L["country_australia"] = "Australia";
-$L["country_belgium"] = "Belgium";
-$L["country_canada"] = "Canada";
-$L["country_netherlands"] = "Netherlands";
-$L["country_uk"] = "United Kingdom";
-$L["country_us"] = "United States";
-// ------------------------------------
+$L["row_label"] = "Column Title";
+$L["row_label_plural"] = "Column Titles";
 
 $L["update_settings"] = "Update Settings";
 $L["data_type"] = "Data Type";

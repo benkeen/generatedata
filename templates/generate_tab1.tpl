@@ -59,7 +59,7 @@
 
 					<ul class="gdTableHeadings">
 						<li class="gdColOrder">{$L.order}</li>
-						<li class="gdColTitle" id="gdColTitleTop">{$L.column_title}</li>
+						<li class="gdColTitle" id="gdColTitleTop">{$L.row_label}</li>
 						<li class="gdColDataType">{$L.data_type}</li>
 						<li class="gdColExamples">{$L.examples}</li>
 						<li class="gdColOptions">{$L.options}</li>
@@ -69,7 +69,7 @@
 					<ul id="gdTableRows"></ul>
 					<ul class="gdTableHeadings">
 						<li class="gdColOrder">{$L.order}</li>
-						<li class="gdColTitle" id="gdColTitleBottom">{$L.column_title}</li>
+						<li class="gdColTitle" id="gdColTitleBottom">{$L.row_label}</li>
 						<li class="gdColDataType">{$L.data_type}</li>
 						<li class="gdColExamples">{$L.examples}</li>
 						<li class="gdColOptions">{$L.options}</li>
@@ -97,7 +97,7 @@
 						<div id="gdTableRowTemplate">
 							<ul>
 								<li class="gdColOrder">%ROW%</li>
-								<li class="gdColTitle"><input type="text" name="title_%ROW%" id="title_%ROW%" /></li>
+								<li class="gdColTitle"><input type="text" name="gdTitle_%ROW%" id="gdTitle_%ROW%" /></li>
 								<li class="gdColDataType">{data_types_dropdown}</li>
 								<li class="gdColExamples" id="gdColExamples_%ROW%">&nbsp;</li>
 								<li class="gdColOptions" id="gdColOptions_%ROW%">&nbsp;</li>
