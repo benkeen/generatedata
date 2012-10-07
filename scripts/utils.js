@@ -97,8 +97,6 @@ define([
 			var html = "<ul>";
 			var hasFocus = false;
 
-			console.log("in displayValidationErrors:", _errors);
-
 			for (var i=0; i<_errors.length; i++) {
 				if (typeof _errors[i] != "object" || !_errors[i].hasOwnProperty("error")) {
 					continue;

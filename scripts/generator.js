@@ -363,7 +363,6 @@ define([
 
 		// check the users specified a numeric value for the number of results
 		if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
-			console.log(L.invalid_num_results);
 			utils.addValidationErrors({ el: $("#gdNumResults"), error: L.invalid_num_results });
 		}
 
@@ -421,7 +420,6 @@ define([
 //			rows: orderedRowIDs,
 //			workNeeded: dataTypesToRows
 //		});
-
 
 		var errors = utils.getValidationErrors();
 		if (errors.length) {
