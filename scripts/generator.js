@@ -43,7 +43,7 @@ define([
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
-		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); });
+		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); return false; });
 		$("#gdTableRows").sortable({
 			handle: ".gdColOrder",
 			axis: "y",
@@ -102,6 +102,7 @@ define([
 	 */
 	var _deleteRows = function() {
 		var rowIDs = [];
+		console.log($(".gdDeleteRows:checked"));
 		$(".gdDeleteRows:checked").each(function() {
 			var row = $(this).closest(".gdTableRow");
 			var parentRowID = row.attr("id");
@@ -147,16 +148,34 @@ define([
 	};
 
 	var _emptyForm = function(requireConfirmation, numInitRows) {
-		if (requireConfirmation) {
-			var answer = confirm(L.confirm_empty_form);
-			if (!answer) {
-				return false;
-			}
-		}
 		$("input[name=deleteRows]").attr("checked", "checked");
-		_deleteRows();
-		if (numInitRows) {
-			_addRows(numInitRows);
+		if (requireConfirmation) {
+			$("<div></div>").html(L.confirm_empty_form).dialog({
+				title: "Please confirm",
+				width: 360,
+				buttons: [
+					{
+						text: "Yes",
+						click: function() {
+							_deleteRows();
+							if (numInitRows) {
+								_addRows(numInitRows);
+							}
+						}
+					},
+					{
+						text: "No",
+						click: function() {
+							$(this).dialog("close");
+						}
+					}
+				]
+			});
+		} else {
+			_deleteRows();
+			if (numInitRows) {
+				_addRows(numInitRows);
+			}
 		}
 	};
 
@@ -426,8 +445,20 @@ define([
 			return false;
 		}
 
-		console.log("would normally submit now");
-		return false;
+
+		// all checks out. Set the form target and submit the sucker
+		if (resultType == "HTML" || resultType == "XML" || resultType == "SQL") {
+			document.gdData.target = "_blank";
+		} else {
+			document.gdData.target = "hiddenIframe";
+		}
+
+		// pass the ordered rows to the server, according to whatever sort the user's done
+		$("#rowOrder").val(_getRowOrder());
+		$("#deletedRows").val(Generator.deletedRows.toString());
+
+		return true;
+	};
 
 
 /*
@@ -533,20 +564,6 @@ define([
 			}
 		}
 */
-
-		// all checks out. Set the form target and submit the sucker
-		if (resultType == "HTML" || resultType == "XML" || resultType == "SQL") {
-			document.gdData.target = "_blank";
-		} else {
-			document.gdData.target = "hiddenIframe";
-		}
-
-		// pass the ordered rows to the server, according to whatever sort the user's done
-		$("#rowOrder").val(_getRowOrder());
-		$("#deletedRows").val(Generator.deletedRows.toString());
-
-		return true;
-	};
 
 	var _resetPluginsDialog = function() {
 		$("#gdPluginInstallation").dialog({

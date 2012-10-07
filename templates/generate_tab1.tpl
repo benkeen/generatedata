@@ -78,9 +78,9 @@
 					</ul>
 
 					<div class="gdClear"></div>
+					<button class="gdSecondaryButton" id="gdEmptyForm">{$L.empty_form}</button>
 					<div class="gdVerticalPad"></div>
 
-					<div style="float: right"><input type="button" id="gdEmptyForm" value="{$L.empty_form}" /></div>
 					{$L.add} <input type="text" name="gdNumRows" id="gdNumRows" value="1" size="2" />
 					<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 
