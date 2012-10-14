@@ -3,6 +3,8 @@
 require_once("library.php");
 Core::init();
 
+var_dump($_POST);
+
 $config = array(
 	"exportType"        => $_POST["gdExportType"],
 	"countries"         => $_POST["gdCountryChoice"],

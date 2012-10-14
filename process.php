@@ -57,7 +57,6 @@ if ($handle = opendir($data_types_folder)) {
 }
 
 // for use by any data type
-$g_words = gd_get_lipsum();
 $g_exportType = $_POST["gdExportType"];
 $g_numCols    = $_POST["numCols"];
 $g_numResults = $_POST["numResults"];

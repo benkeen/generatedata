@@ -6,7 +6,11 @@
  */
 class Generator {
 
+	public $lipsum;
+
 	public function __construct($config) {
+
+//		$this->lipsum = Utils::getLipsum();
 
 	}
 

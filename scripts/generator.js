@@ -388,7 +388,7 @@ define([
 		}
 
 		var orderedRowIDs = _getRowOrder();
-		var resultType = $("input[name=gdExportType]:checked").val();
+		var exportType = $("input[name=gdExportType]:checked").val();
 		var validRowIDs = [];
 
 		// look through the form and construct an object of data-type-folder => [row IDs] to
@@ -426,8 +426,8 @@ define([
 
 			if (rowsMissingTitleEls.length) {
 				var label = L.row_label_plural;
-				if (L.exportTypePlugins[resultType].hasOwnProperty("row_label_plural")) {
-					label = L.exportTypePlugins[resultType].row_label_plural;
+				if (L.exportTypePlugins[exportType].hasOwnProperty("row_label_plural")) {
+					label = L.exportTypePlugins[exportType].row_label_plural;
 				}
 				var message = "Please enter all " + label + ".";
 				utils.addValidationErrors({ els: rowsMissingTitleEls, error: message });
@@ -475,6 +475,14 @@ define([
 					data: {
 						formData: $("#gdData").serialize(),
 						batchSize: 100,
+						currentBatchNum: 1,
+						exportType: exportType
+
+//
+//						"exportType"        => $_POST["gdExportType"],
+//						"countries"         => $_POST["gdCountryChoice"],
+//						"numRowsToGenerate" => $_POST["numRowsToGenerate"],
+
 					},
 					success: function(response) {
 						console.log("success: ", response);
@@ -495,14 +503,6 @@ define([
 		return false;
 	};
 
-
-/*
-		if (resultType == "CSV") {
-			if ($("#csv_delimiter").val() == "") {
-				Generator.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
-			}
-		}
-*/
 
 	var _resetPluginsDialog = function() {
 		$("#gdPluginInstallation").dialog({
