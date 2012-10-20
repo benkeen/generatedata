@@ -6,7 +6,7 @@ class JSON extends ExportTypePlugin {
 	protected $jsModules = array("JSON.js");
 	public $L = array();
 
-	function generator($numResults, $columns, $data) {
+	function generate($generator) {
 
 	}
 }

@@ -5,7 +5,7 @@ class CSV extends ExportTypePlugin {
 	protected $exportTypeName = "CSV";
 	public $L = array();
 
-	function generator($numResults, $columns, $data) {
+	function generate($generator) {
 
 	}
 

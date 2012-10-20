@@ -26,8 +26,6 @@
 	{/if}*}
 
 	<form id="gdData">
-		<input type="hidden" name="gdNumCols" id="gdNumCols" value="" />
-		<input type="hidden" name="gdRowOrder" id="gdRowOrder" value="" />
 		<input type="hidden" name="gdDeletedRows" id="gdDeletedRows" value="" />
 
 		<div class="gdSetting">
@@ -94,28 +92,28 @@
 			<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
 		</div>
 
-		<div class="hidden">
-			<div id="gdTableRowTemplate">
-				<ul>
-					<li class="gdColOrder">%ROW%</li>
-					<li class="gdColTitle"><input type="text" name="gdTitle_%ROW%" id="gdTitle_%ROW%" /></li>
-					<li class="gdColDataType">{data_types_dropdown}</li>
-					<li class="gdColExamples" id="gdColExamples_%ROW%">&nbsp;</li>
-					<li class="gdColOptions" id="gdColOptions_%ROW%">&nbsp;</li>
-					<li class="gdColHelp" id="gdColHelp_%ROW%">&nbsp;</li>
-					<li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="gdDeleteRows_%ROW%" /></li>
-				</ul>
-			</div>
-			<div id="gdHelpIcon">
-				<ul class="ui-widget ui-helper-clearfix">
-					<li class="ui-state-default ui-corner-all" onmouseover="$(this).addClass('ui-state-hover')"
-						onmouseout="$(this).removeClass('ui-state-hover')"><span class="ui-icon ui-icon-help"></span></li>
-				</ul>
-			</div>
-			{data_type_resources}
-		</div>
-
 	</form>
 	<div id="gdHelpPopup"></div>
+
+	<div class="hidden">
+		<div id="gdTableRowTemplate">
+			<ul>
+				<li class="gdColOrder">%ROW%</li>
+				<li class="gdColTitle"><input type="text" name="gdTitle_%ROW%" id="gdTitle_%ROW%" /></li>
+				<li class="gdColDataType">{data_types_dropdown}</li>
+				<li class="gdColExamples" id="gdColExamples_%ROW%">&nbsp;</li>
+				<li class="gdColOptions" id="gdColOptions_%ROW%">&nbsp;</li>
+				<li class="gdColHelp" id="gdColHelp_%ROW%">&nbsp;</li>
+				<li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="gdDeleteRows_%ROW%" /></li>
+			</ul>
+		</div>
+		<div id="gdHelpIcon">
+			<ul class="ui-widget ui-helper-clearfix">
+				<li class="ui-state-default ui-corner-all" onmouseover="$(this).addClass('ui-state-hover')"
+					onmouseout="$(this).removeClass('ui-state-hover')"><span class="ui-icon ui-icon-help"></span></li>
+			</ul>
+		</div>
+		{data_type_resources}
+	</div>
 
 	{include file="export.dialog.tpl"}

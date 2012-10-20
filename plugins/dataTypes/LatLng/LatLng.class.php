@@ -55,7 +55,7 @@ class DataType_LatLng extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 		global $LatLng_cached_math;
 		if (!isset($postdata["includeLat_$col"]) && empty($postdata["includeLng_$col"]))
 			return false;

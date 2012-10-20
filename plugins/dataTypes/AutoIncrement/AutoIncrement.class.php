@@ -40,7 +40,7 @@ class DataType_AutoIncrement extends DataTypePlugin {
     return $info;
   }
 
-  public function getTemplateOptions($postdata, $col, $num_cols) {
+  public function getRowGenerationOptions($postdata, $col, $num_cols) {
     if (empty($postdata["autoIncrementStart_$col"]) || empty($postdata["autoIncrementValue_$col"]))
       return false;
 

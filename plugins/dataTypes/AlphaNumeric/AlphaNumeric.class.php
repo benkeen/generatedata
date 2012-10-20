@@ -31,7 +31,7 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getTemplateOptions($postdata, $col, $num_cols) {
+	public function getRowGenerationOptions($postdata, $col, $num_cols) {
 		if (!isset($postdata["option_$col"]) || empty($postdata["option_$col"])) {
 			return false;
 		}

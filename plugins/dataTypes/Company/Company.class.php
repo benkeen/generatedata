@@ -16,7 +16,7 @@ class DataType_Company extends DataTypePlugin {
 	public function getExportTypeInfo($exportType, $options) {
 	}
 
-	public function getTemplateOptions($postdata, $col, $num_cols) {
+	public function getRowGenerationOptions($postdata, $col, $num_cols) {
 	}
 
 	public function getHelpDialogInfo() {

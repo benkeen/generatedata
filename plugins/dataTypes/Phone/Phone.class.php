@@ -37,7 +37,7 @@ class DataType_Phone extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 		if (empty($postdata["option_$col"]))
 			return false;
 

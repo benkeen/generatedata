@@ -28,7 +28,7 @@ class DataType_NumberRange extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 		if ((empty($postdata["dtNumRangeMin_$col"]) && $postdata["dtNumRangeMin_$col"] !== "0") ||
 				(empty($postdata["dtNumRangeMax_$col"]) && $postdata["dtNumRangeMax_$col"] !== "0"))
 			return false;

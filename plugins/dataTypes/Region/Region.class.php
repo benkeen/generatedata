@@ -16,7 +16,7 @@ class DataType_Region extends DataTypePlugin {
 	public function getExportTypeInfo($exportType, $options) {
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 	}
 
 	public function getOptionsColumnHTML() {

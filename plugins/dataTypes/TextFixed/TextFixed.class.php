@@ -29,7 +29,7 @@ class DataType_TextFixed extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 		if (empty($postdata["numWords_$col"]))
 			return false;
 

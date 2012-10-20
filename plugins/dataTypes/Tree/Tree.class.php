@@ -56,7 +56,7 @@ class DataType_Tree extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 		if (empty($postdata["tree_ai_row_num_$col"]) || empty($postdata["tree_max_siblings_$col"]))
 			return false;
 

@@ -45,7 +45,9 @@ abstract class ExportTypePlugin {
 
 
 	/**
-	 * Our default, un-overridable constructor. This populates $L.
+	 * Our default, un-overridable constructor. This populates $L for the instantiated class. Export Types
+	 * are constructed when the main generator UI page loads; for actual code generation, their generate()
+	 * function is called.
 	 */
 	public final function __construct() {
 
@@ -71,10 +73,13 @@ abstract class ExportTypePlugin {
 	}
 
 	/**
-	 * This does the job of actually generating the data in the appropriate format. It's fed all the information that
-	 * the Export Type needs.
+	 * This does the job of actually generating the data in the appropriate format. It's fed the instantiated
+	 * Generator class, containing the various information the Export Type could need.
+	 *
+	 * @param Generator $generator
+	 * @return
 	 */
-	abstract function generator($numResults, $columns, $data);
+	abstract function generate($generator);
 
 
 	// 2. OPTIONALLY DEFINED FUNCTIONS
@@ -107,6 +112,8 @@ abstract class ExportTypePlugin {
 		return "";
 	}
 
+	// 3. NON-OVERRIDABLE FUNCTIONS
+
 	/**
 	 * Returns a list of all javascript modules for this Export Type.
 	 * @return array
@@ -116,11 +123,19 @@ abstract class ExportTypePlugin {
 	}
 
 	/**
-	 * Returns the name of the Export Type in the current language.x
+	 * Returns the name of the Export Type in the current language.
 	 * @return string
 	 */
 	public final function getName() {
 		return $this->exportTypeName;
+	}
+
+	/**
+	 * Returns the name of the Export Type in the current language.
+	 * @return string
+	 */
+	public final function getFolder() {
+		return $this->folder;
 	}
 
 	/**

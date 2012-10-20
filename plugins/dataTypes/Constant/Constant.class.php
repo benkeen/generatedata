@@ -39,7 +39,7 @@ class DataType_Constant extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 		if (!isset($postdata["option_$col"]) || empty($postdata["option_$col"]))
 			return false;
 		if (!isset($postdata["loop_count_$col"]) || empty($postdata["loop_count_$col"]))

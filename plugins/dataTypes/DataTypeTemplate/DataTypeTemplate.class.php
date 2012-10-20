@@ -15,7 +15,7 @@ class DataType_StreetAddress extends DataTypePlugin {
 	public function getExportTypeInfo($exportType, $options) {
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 	}
 
 	public function getExampleColumnHTML($row) {

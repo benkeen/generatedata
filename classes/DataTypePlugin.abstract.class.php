@@ -45,7 +45,7 @@ abstract class DataTypePlugin {
 	 *
 	 * @param integer $row the row number in the generated content (indexed from 1)
 	 * @param mixed $options whatever options were passed for this Data Type, i.e. whatever information was returned
-	 *   - and in whatever format - by getTemplateOptions(). By default, this is set to null.
+	 *   - and in whatever format - by getRowGenerationOptions(). By default, this is set to null.
 	 * @param array $existingRowData depending on the Data Type's processOrder, this will contain all the data from
 	 *   fields that have already been processed.
 	 * @return string/int/primitive
@@ -95,9 +95,9 @@ abstract class DataTypePlugin {
 	}
 
 	/**
-	 * Called during data generation. This determines what options the user selected in the user
-	 * interface; it's used to figure out what settings to pass to each Data Type to provide that function the
-	 * information needed to generate that particular data item.
+	 * Called during data generation. This determines what options the user selected in the user interface; it's
+	 * used to figure out what settings to pass to each Data Type to provide that function the information needed
+	 * to generate that particular data item.
 	 *
 	 * Note: if this function determines that the values entered by the user in the options column are invalid
 	 * (most likely just incomplete) the function can explicitly return false to tell the core script to ignore
@@ -106,9 +106,13 @@ abstract class DataTypePlugin {
 	 * @param array $post the entire contents of $_POST
 	 * @param integer the column number (well, *row* in the UI!) of the item
 	 * @param integer the number of columns in the data set
-	 * @return array a hash of ... [TODO...]
+	 * @return mixed
+	 *        - false, if the Data Type doesn't have sufficient information to generate the row (i.e. things weren't
+	 *        filled in in the UI and the Data Type didn't add proper validation)
+	 *        - anything else. This can be any data structure needed by the Data Type. It'll be passed as-is
+	 *        into the generateItem function as the second parameter.
 	 */
-	public function getTemplateOptions($postdata, $column, $numCols) { // TODO the name sucks...
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 		return null;
 	}
 

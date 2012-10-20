@@ -46,11 +46,11 @@ class DataType_Names extends DataTypePlugin {
 	}
 
 
-	public function getTemplateOptions($post, $column, $numCols) {
-		if (!isset($post["option_$column"]) || empty($post["option_$column"])) {
+	public function getRowGenerationOptions($post, $colNum, $numCols) {
+		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
 			return false;
 		}
-		return $postdata["option_$column"];
+		return $post["dtOption_$colNum"];
 	}
 
 	public function getExportTypeInfo($exportType, $options) {

@@ -6,7 +6,7 @@ class XML extends ExportTypePlugin {
 	protected $jsModules = array("XML.js");
 	public $L = array();
 
-	function generator($numResults, $columns, $data) {
+	function generate($generator) {
 
 	}
 

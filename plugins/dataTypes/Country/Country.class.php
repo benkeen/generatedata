@@ -77,7 +77,7 @@ class DataType_Country extends DataTypePlugin {
 	}
 
 
-	public function getTemplateOptions($postdata, $col, $num_cols) {
+	public function getRowGenerationOptions($postdata, $col, $num_cols) {
 		if (isset($postdata["option_$col"])) {
 			$g_countries = Country_get_countries($postdata["countryChoice"]);
 		} else {

@@ -9,9 +9,7 @@ Utils::maybeShowInstallationPage();
 
 $exportTypes = Core::$exportTypePlugins;
 $exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalSettingsHTML($exportTypes);
-
 $dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
-
 
 $exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes);
 $dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes);

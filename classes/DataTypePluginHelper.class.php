@@ -30,7 +30,8 @@ class DataTypePluginHelper {
 
 	/**
 	 * Helper function to convert the data types that are grouped in Core::$dataTypePlugins into
-	 * a simple array, where order is not important
+	 * a simple array, where order is not important.
+	 * @param array $groupedDataTypes
 	 * @return array
 	 */
 	public function getDataTypeList($groupedDataTypes) {
@@ -41,6 +42,22 @@ class DataTypePluginHelper {
 			}
 		}
 		return $list;
+	}
+
+	/**
+	 * A second helper function to convert the data types that are grouepd in Core::$dataTypePlugins
+	 * into a hash of [Data Type Folder] => object
+	 * @param array $groupedDataTypes
+	 * @return array
+	 */
+	public function getDataTypeHash($groupedDataTypes) {
+		$hash = array();
+		while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
+			foreach ($dataTypes as $dataType) {
+				$hash[$dataType->getName()] = $dataType;
+			}
+		}
+		return $hash;
 	}
 
 

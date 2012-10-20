@@ -59,7 +59,7 @@ class DataType_PostalZip extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getTemplateOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
 		//global $PostalZip_formats;
 
 		$country_choice = $postdata["countryChoice"];

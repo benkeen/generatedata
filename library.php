@@ -19,6 +19,7 @@ require_once(dirname(__FILE__) . "/classes/DataTypePlugin.abstract.class.php");
 require_once(dirname(__FILE__) . "/classes/DataTypePluginHelper.class.php");
 require_once(dirname(__FILE__) . "/classes/ExportTypePlugin.abstract.class.php");
 require_once(dirname(__FILE__) . "/classes/ExportTypePluginHelper.class.php");
+require_once(dirname(__FILE__) . "/classes/Generator.class.php");
 require_once(dirname(__FILE__) . "/classes/Installation.class.php");
 require_once(dirname(__FILE__) . "/classes/Language.class.php");
 require_once(dirname(__FILE__) . "/classes/SessionManager.class.php");

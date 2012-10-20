@@ -27,7 +27,7 @@ define([
 
 
 	/**
-	 * Called when everything is loaded. This binds the appropriate event handlers
+	 * Called when everything is loaded. This binds the appropriate event handlers.
 	 */
 	var _run = function() {
 		$("#gdCountryList").on("click", "input", _updateCountryChoice);
@@ -39,7 +39,7 @@ define([
 			$(e.target).closest(".gdMessage").hide("blind", null, 500);
 			return false;
 		});
-		$("#gdData").bind("submit", _submitForm);
+		$("#gdData").bind("submit", _generateData);
 		$(".gdExportType").bind("click", _changeExportType);
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
@@ -54,6 +54,7 @@ define([
 					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
 					row: ui.item
 				});
+				_updateRowOrder();
 			}
 		});
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
@@ -81,7 +82,6 @@ define([
 			$("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
 		}
 
-		$("#gdNumCols").val(_numRows);
 		_restyleRows();
 
 		manager.publish({
@@ -128,6 +128,14 @@ define([
 		$("#gdTableRows>li:even").addClass("gdEvenRow");
 		$("#gdTableRows>li .gdColOrder").each(function(i) { $(this).html(i+1); });
 	};
+
+	/**
+	 * Called whenever the user changes the sort order, deletes or adds a row. This serializes the
+	 * row order info into a hidden gdRowOrder field for use by the server.
+	 */
+	var _updateRowOrder = function() {
+		$("#gdRowOrder").val(_getRowOrder().toString());
+	}
 
 	var _markRowToDelete = function(e) {
 		var el = e.target;
@@ -376,9 +384,8 @@ define([
 	/**
 	 * Called when the user submits the main Generate tab. It performs all necessary validation.
 	 */
-	var _submitForm = function() {
+	var _generateData = function() {
 		var numResults = $("#gdNumResults").val();
-		var numCols    = $("#gdNumCols").val(); // TODO this var name is as confusing as hell
 
 		utils.clearValidationErrors($("#gdTab1Content"));
 
@@ -459,9 +466,14 @@ define([
 		$("#deletedRows").val(Generator.deletedRows.toString());
 */
 
+		// for the moment, let's just assume ALL export types use the dialog. We can tweak this later.
+
 		var windowHeight = $(window).height();
 		var calculatedHeight = windowHeight * 0.9;
 
+		var formData = $("#gdData").serialize();
+		var data = formData + "&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
+		         + "&gdNumCols=" + _numRows;
 
 		$("#gdExportDialog").removeClass("hidden").dialog({
 			title: "Generating...",
@@ -472,18 +484,7 @@ define([
 				$.ajax({
 					url: "generate.php",
 					type: "POST",
-					data: {
-						formData: $("#gdData").serialize(),
-						batchSize: 100,
-						currentBatchNum: 1,
-						exportType: exportType
-
-//
-//						"exportType"        => $_POST["gdExportType"],
-//						"countries"         => $_POST["gdCountryChoice"],
-//						"numRowsToGenerate" => $_POST["numRowsToGenerate"],
-
-					},
+					data: data,
 					success: function(response) {
 						console.log("success: ", response);
 					},
@@ -602,7 +603,8 @@ define([
 
 
 	// the public API for this module. These are the only revealed functions for use by other modules
-	// that choose to include generator.js as a dependency.
+	// that choose to include generator.js as a dependency. Even though the bulk of the functions are private,
+	// it still contains a couple of handy methods
 
 	return {
 		getRowOrder: _getRowOrder,
