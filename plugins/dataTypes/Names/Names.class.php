@@ -18,7 +18,8 @@ class DataType_Names extends DataTypePlugin {
 	private $letters      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
-	public function generateItem($row, $placeholderStr, $existingRowData) {
+
+	public function generate($rowNum, $placeholderStr, $existingRowData) {
 		while (preg_match("/MaleName/", $placeholderStr)) {
 			$str = preg_replace("/MaleName/", $this->getRandomName($this->maleNames), $placeholderStr, 1);
 		}

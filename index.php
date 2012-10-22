@@ -22,4 +22,4 @@ $pageParams["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
 $pageParams["settings"] = Settings::getSettings();
 $pageParams["cssIncludes"] = $cssIncludes;
 
-Utils::displayPage("resources/templates/index.tpl", $pageParams);
+Templates::displayPage("resources/templates/index.tpl", $pageParams);

@@ -12,7 +12,7 @@ class DataType_PostalZip extends DataTypePlugin {
 	// $PostalZip_formats       = PostalZip_get_country_zip_formats();
 	//$g_countries = gd_get_configurable_countries();
 
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 		global $PostalZip_formats;
 
 		// track the country info (this finds the FIRST country field listed)

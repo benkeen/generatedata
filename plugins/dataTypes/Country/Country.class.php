@@ -51,7 +51,7 @@ class DataType_Country extends DataTypePlugin {
 		'Virgin Islands, U.S.', 'Wallis and Futuna', 'Western Sahara', 'Yemen', 'Zambia', 'Zimbabwe');
 
 
-	public function generateItem($row, $placeholderStr, $existingRowData) {
+	public function generate($row, $placeholderStr, $existingRowData) {
 		//global $g_countries;
 		$random_country = $g_countries[rand(0, count($g_countries)-1)];
 		return array(

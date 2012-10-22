@@ -9,7 +9,7 @@ class DataType_Company extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 50;
 	private $helpDialogWidth = 340;
 
-	public function generateItem($row, $placeholderStr, $existingRowData) {
+	public function generate($row, $placeholderStr, $existingRowData) {
 		// Company,Corp.,Corporation,Inc.,Incorporated,LLC,LLP,Ltd,Limited,PC,Foundation,Institute,Associates,Industries,Consulting
 	}
 

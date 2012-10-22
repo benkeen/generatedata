@@ -7,7 +7,7 @@ class DataType_StreetAddress extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 
 
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 //	  global $g_words, $L;
 		$street_address = "";
 		$street_name = ucwords(gd_generate_random_text_str($g_words, false, "fixed", 1));

@@ -12,7 +12,7 @@ class DataType_AutoIncrement extends DataTypePlugin {
   private $helpDialogWidth = 480;
 
 
-  public function generateItem($row, $placeholderStr, $existingRowData) {
+  public function generate($row, $placeholderStr, $existingRowData) {
     $start       = $options["start"];
     $increment   = $options["increment"];
     $placeholder = $options["placeholder"];

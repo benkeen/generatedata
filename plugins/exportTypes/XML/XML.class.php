@@ -53,4 +53,64 @@ class XML extends ExportTypePlugin {
 END;
 		return $html;
 	}
+
+	/**
+	 * This is used to generate custom XML structures (added on 2.3.6).
+	 *
+	 * @param string $custom_xml_structure
+	 * @param array $g_template
+	 * @param integer $num_rows
+	 */
+	public function generateCustomXML($custom_xml_structure, $g_template, $num_rows) {
+		global $L;
+
+		$xml = "";
+
+		// first, add the chunk of markup between the records tag. Note the "is" bit. That tells
+		// the regexp parser to let . match newline characters and that it should be case
+		// insensitive
+		preg_match("/(.*)\{records\}(.*)\{\/records\}(.*)/is", $custom_xml_structure, $matches);
+
+		if (count($matches) < 2) {
+			echo "<error>{$L["invalid_custom_xml"]}</error>";
+			return;
+		}
+
+		$xml_start  = $matches[1];
+		$row_markup = $matches[2];
+		$xml_end    = $matches[3];
+
+		// now loop through the {records} and replace the appropriate placeholders with their rows
+		$xml_rows = "";
+		for ($row=1; $row<=$num_rows; $row++) {
+			$placeholders = array();
+			while (list($order, $data_types) = each($g_template)) {
+				foreach ($data_types as $data_type) {
+					$order = $data_type["column_num"];
+					$data_type_folder = $data_type["data_type_folder"];
+					$data_type_func = "{$data_type_folder}_generate_item";
+					$data_type["random_data"] = $data_type_func($row, $data_type["options"], $row_data);
+
+					if (is_array($data_type["random_data"])) {
+						$placeholders["ROW{$order}"] = $data_type["random_data"]["display"];
+					} else {
+						$placeholders["ROW{$order}"] = $data_type["random_data"];
+					}
+				}
+			}
+			reset($g_template);
+
+			$row_markup_copy = $row_markup;
+			while (list($placeholder, $value) = each($placeholders)) {
+				$row_markup_copy = preg_replace("/\{$placeholder\}/", $value, $row_markup_copy);
+			}
+
+			$xml_rows .= $row_markup_copy;
+		}
+
+		$final_xml = $xml_start . $xml_rows . $xml_end;
+
+		return $final_xml;
+	}
+
 }

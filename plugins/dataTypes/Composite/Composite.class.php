@@ -12,7 +12,7 @@ class DataType_Composite extends DataTypePlugin {
 
 	private $helpDialogWidth = 520;
 
-	public function generateItem($row, $placeholderStr, $existingRowData) {
+	public function generate($row, $placeholderStr, $existingRowData) {
 		global $Composite_smarty;
 
 		$placeholders = array();

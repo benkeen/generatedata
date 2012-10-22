@@ -5,6 +5,7 @@
  * Utility functions for use throughout the script.
  */
 class Utils {
+
 	public static function cleanHash($hash) {
 		$cleanHash = $hash;
 		if (get_magic_quotes_gpc()) {
@@ -28,6 +29,8 @@ class Utils {
 	 * A generic assertion function used to confirm the existence of things like the existence of values in $_POST,
 	 * $_GET, $_SESSIONS, whether the user is logged in and so on. If it fails anything, it throws a GDException,
 	 * otherwise it does nothing.
+	 *
+	 * TODO
 	 *
 	 * @param array $statements
 	 */
@@ -145,103 +148,6 @@ class Utils {
 	 */
 	public static function getCleanPhpSelf() {
 		return htmlspecialchars(strip_tags($_SERVER['PHP_SELF']), ENT_QUOTES);
-	}
-
-
-	/**
-	 * Used to generate the main index and install pages.
-	 *
-	 * @param string $template
-	 * @param array $params
-	 */
-	static function displayPage($template, $pageVars = array()) {
-
-		// check the compile directory has the write permissions
-		if (!is_writable(Core::$smarty->compile_dir) && is_readable(Core::$smarty->compile_dir)) {
-			Utils::displaySeriousError("The <b>/cache</b> folder isn't writable. This folder is used by Smarty to generate temporary files for speedy page loads. You'll need to update that folder's permissions to allow read and write permissions (777 on unix/mac).");
-			exit;
-		}
-
-		// check that the user is running a recent enough version of PHP. This is needed for json_encode,
-		// json_decode and for Smarty 3
-		$minimumPHPVersion = Core::getMinimumPHPVersion();
-		$currentVersion = PHP_VERSION;
-		if (version_compare($currentVersion, $minimumPHPVersion) < 0) {
-			Utils::displaySeriousError("Sorry, you need to be running PHP <b>$minimumPHPVersion</b> or later. You're currently running <b>$currentVersion</b>.");
-			exit;
-		}
-
-		Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
-		Core::$smarty->assign("queryString", $_SERVER["QUERY_STRING"]);
-
-		// now add the custom variables for this template, as defined in $page_vars
-		foreach ($pageVars as $key=>$value) {
-			Core::$smarty->assign($key, $value);
-		}
-
-		try {
-			Core::$smarty->display(realpath(dirname(__FILE__) . "/../$template"));
-		} catch (Exception $e) {
-			Utils::displaySeriousError("Smarty encountered a problem writing to the /cache folder. The (probably quite abstruse) error message returned is:<br /><br /><i>{$e}</i>");
-			exit;
-		}
-	}
-
-
-	/**
-	 * This is used for serious errors: when no database connection can be made or the Smarty cache folder isn't writable.
-	 * All it does is output the error string with no other dependencies - not even language strings. The paths assume
-	 * that we're in the application root (otherwise they won't work).
-	 *
-	 * This function only handles English. For problems of this severity, I think that's okay.
-	 *
-	 * @param string $error
-	 */
-	static function displaySeriousError($error) {
-		$notFixedMessage = "";
-		if (isset($_GET["source"])) {
-			$notFixedMessage = "<div id=\"gdNotFixed\">Nope, ain't fixed yet. Try again.</div>";
-		}
-
-		echo <<< END
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>Things just ain't right.</title>
-		<link rel="stylesheet" type="text/css" href="resources/css/styles.css">
-		<script src="scripts/libs/jquery.js"></script>
-		<script>
-		$(function() {
-			$("button").bind("click", function() { window.location = "index.php?source=fromerrorpage"; });
-		});
-		</script>
-	</head>
-	<body class="gdErrorPage">
-	<div id="gdBox">
-		<h1>Uh-oh.</h1>
-		$notFixedMessage
-		{$error}
-		<button class="gdPrimaryButton">Click here when you think you've fixed it.</button>
-	</div>
-	</body>
-	</html>
-END;
-	}
-
-
-	function evalSmartyString($placeholderStr, $placeholders) {
-		$smarty = new Smarty();
-		$smarty->template_dir = realpath(dirname(__FILE__) . "/../smarty");
-		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
-
-		$smarty->assign("eval_str", $placeholderStr);
-		if (!empty($placeholders)) {
-			while (list($key, $value) = each($placeholders)) {
-				$smarty->assign($key, $value);
-			}
-		}
-
-		return $smarty->fetch("eval.tpl");
 	}
 
 	/**
@@ -422,65 +328,6 @@ END;
 		return trim($new_str);
 	}
 
-
-	/**
-	 * This is used to generate custom XML structures (added on 2.3.6).
-	 *
-	 * @param string $custom_xml_structure
-	 * @param array $g_template
-	 * @param integer $num_rows
-	 */
-	public function generateCustomXML($custom_xml_structure, $g_template, $num_rows) {
-		global $L;
-
-		$xml = "";
-
-		// first, add the chunk of markup between the records tag. Note the "is" bit. That tells
-		// the regexp parser to let . match newline characters and that it should be case
-		// insensitive
-		preg_match("/(.*)\{records\}(.*)\{\/records\}(.*)/is", $custom_xml_structure, $matches);
-
-		if (count($matches) < 2) {
-			echo "<error>{$L["invalid_custom_xml"]}</error>";
-			return;
-		}
-
-		$xml_start  = $matches[1];
-		$row_markup = $matches[2];
-		$xml_end    = $matches[3];
-
-		// now loop through the {records} and replace the appropriate placeholders with their rows
-		$xml_rows = "";
-		for ($row=1; $row<=$num_rows; $row++) {
-			$placeholders = array();
-			while (list($order, $data_types) = each($g_template)) {
-				foreach ($data_types as $data_type) {
-					$order = $data_type["column_num"];
-					$data_type_folder = $data_type["data_type_folder"];
-					$data_type_func = "{$data_type_folder}_generate_item";
-					$data_type["random_data"] = $data_type_func($row, $data_type["options"], $row_data);
-
-					if (is_array($data_type["random_data"])) {
-						$placeholders["ROW{$order}"] = $data_type["random_data"]["display"];
-					} else {
-						$placeholders["ROW{$order}"] = $data_type["random_data"];
-					}
-				}
-			}
-			reset($g_template);
-
-			$row_markup_copy = $row_markup;
-			while (list($placeholder, $value) = each($placeholders)) {
-				$row_markup_copy = preg_replace("/\{$placeholder\}/", $value, $row_markup_copy);
-			}
-
-			$xml_rows .= $row_markup_copy;
-		}
-
-		$final_xml = $xml_start . $xml_rows . $xml_end;
-
-		return $final_xml;
-	}
 
 
 	public function maybeShowInstallationPage() {

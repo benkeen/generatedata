@@ -43,7 +43,7 @@ class Database {
 
 		if ($dbConnectionError) {
 			$placeholders = array("db_connection_error" => $dbConnectionError);
-			$error = Utils::evalSmartyString($lang["install_invalid_db_info"], $placeholders);
+			$error = Templates::evalSmartyString($lang["install_invalid_db_info"], $placeholders);
 			return array(false, $error);
 		} else {
 			$dbSelectError = "";
@@ -52,7 +52,7 @@ class Database {
 
 			if ($dbSelectError) {
 				$placeholders = array("db_select_error" => $dbSelectError);
-				$error = Utils::evalSmartyString($lang["install_no_db_connection"], $placeholders);
+				$error = Template::evalSmartyString($lang["install_no_db_connection"], $placeholders);
 				return array(false, $error);
 			} else {
 				@mysql_close($link);

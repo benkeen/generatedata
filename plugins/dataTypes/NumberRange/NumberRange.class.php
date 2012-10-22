@@ -9,7 +9,7 @@ class DataType_NumberRange extends DataTypePlugin {
 	private $helpDialogWidth = 320;
 
 
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 		return rand($options["min"], $options["max"]);
 	}
 

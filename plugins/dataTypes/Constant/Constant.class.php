@@ -10,7 +10,7 @@ class DataType_Constant extends DataTypePlugin {
 	protected $processOrder = 100;
 	private $helpDialogWidth = 460;
 
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 		$num_values = count($options["values"]);
 		if ($num_values == 1) {
 			$value = $options["values"][0];

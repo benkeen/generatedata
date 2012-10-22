@@ -8,7 +8,7 @@ class DataType_TextRandom extends DataTypePlugin {
 	private $helpDialogWidth = 320;
 
 
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 	}
 
 	public function getExportTypeInfo($exportType, $options) {

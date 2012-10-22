@@ -8,7 +8,7 @@ class DataType_City extends DataTypePlugin {
 	protected $processOrder = 3;
 	private $cities;
 
-	public function generateItem($row, $placeholderStr, $existingRowData) {
+	public function generate($row, $placeholderStr, $existingRowData) {
 		global $City_list;
 
 		// see if this row has a region [N.B. This is something that could be calculated ONCE on the first row]

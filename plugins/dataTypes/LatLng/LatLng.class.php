@@ -15,7 +15,7 @@ class DataType_LatLng extends DataTypePlugin {
 	 *   Lat: -90 -> + 90
 	 *   Lng: -180 -> +180
 	 */
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 		global $LatLng_cached_math;
 
 		$info = array();

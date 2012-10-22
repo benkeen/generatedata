@@ -10,7 +10,7 @@ class DataType_Phone extends DataTypePlugin {
 	private $helpDialogWidth = 450;
 
 
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 		$phone_str = gd_generate_random_num_str($options);
 
 		// in case the user entered multiple | separated formats, pick one

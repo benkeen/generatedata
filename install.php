@@ -23,4 +23,4 @@ $params["randomPassword"] = Utils::generateRandomAlphanumericStr("CVxxCxV");
 $params["tablePrefix"]    = Core::getDbTablePrefix();
 $params["currentPage"]    = $currentPage;
 
-Utils::displayPage("resources/templates/install.tpl", $params);
+Templates::displayPage("resources/templates/install.tpl", $params);

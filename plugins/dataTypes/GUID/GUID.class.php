@@ -10,7 +10,7 @@ class DataType_GUID extends DataTypePlugin {
 	private $helpDialogWidth = 460;
 
 
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 //		global $GUID_generated;
 
 		$guid = gd_generate_random_alphanumeric_str("HHHHHHHH-HHHH-HHHH-HHHH-HHHH-HHHHHHHH");

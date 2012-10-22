@@ -12,7 +12,7 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 	private $helpDialogWidth = 460;
 
 
-	public function generateItem($row, $placeholderStr, $existingRowData) {
+	public function generate($row, $placeholderStr, $existingRowData) {
 		$formats = explode("|", $placeholderStr);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {

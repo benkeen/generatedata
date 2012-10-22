@@ -11,6 +11,8 @@ class Generator {
 	private $template;
 	private $exportType;
 	private $countries;
+	private $dataTypes;
+
 
 	/**
 	 * @param array $postdata everything from the form post.
@@ -21,6 +23,7 @@ class Generator {
 		$this->numResults = $postdata["gdNumRowsToGenerate"];
 		$this->exportType = $postdata["gdExportType"];
 		$this->countries  = $postdata["gdCountries"];
+		$this->dataTypes = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 
 		// figure out what we're going to need to generate
 		$this->createDataSetTemplate($postdata);
@@ -66,8 +69,6 @@ class Generator {
 	 * @return array
 	 */
 	private function createDataSetTemplate($hash) {
-		$dataTypes = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
-
 		$numCols  = $hash["gdNumCols"];
 		$rowOrder = $hash["gdRowOrder"];
 		$rowNums = explode(",", $rowOrder);
@@ -85,7 +86,7 @@ class Generator {
 			}
 
 			$dataTypeFolder = preg_replace("/^data-type-/", "", $dataType);
-			$currDataType = $dataTypes[$dataTypeFolder];
+			$currDataType = $this->dataTypes[$dataTypeFolder];
 			$processOrder = $currDataType->getProcessOrder();
 			$options = $currDataType->getRowGenerationOptions($hash, $i, $numCols);
 
@@ -124,7 +125,7 @@ class Generator {
 	}
 
 	public function getNumResults() {
-		return $this->batchNum;
+		return $this->numResults;
 	}
 
 	public function getTemplateByProcessOrder() {
@@ -157,5 +158,9 @@ class Generator {
 
 	public function getCountries() {
 		return $this->countries;
+	}
+
+	public function getDataTypes() {
+		return $this->dataTypes;
 	}
 }

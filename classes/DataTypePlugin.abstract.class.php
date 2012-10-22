@@ -43,14 +43,14 @@ abstract class DataTypePlugin {
 	/**
 	 * This is the main workhorse function: it does the work of actually generating a random data snippet.
 	 *
-	 * @param integer $row the row number in the generated content (indexed from 1)
+	 * @param integer $rowNum the row number in the generated content (indexed from 1)
 	 * @param mixed $options whatever options were passed for this Data Type, i.e. whatever information was returned
 	 *   - and in whatever format - by getRowGenerationOptions(). By default, this is set to null.
 	 * @param array $existingRowData depending on the Data Type's processOrder, this will contain all the data from
 	 *   fields that have already been processed.
 	 * @return string/int/primitive
 	 */
-	abstract function generateItem($row, $options, $existingRowData);
+	abstract function generate($rowNum, $options, $existingRowData);
 
 	/**
 	 * @param string $export_type e.g. "sql"

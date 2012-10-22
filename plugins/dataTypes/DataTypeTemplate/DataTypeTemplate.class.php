@@ -9,7 +9,7 @@ class DataType_StreetAddress extends DataTypePlugin {
 	private $helpDialogWidth = 360;
 
 
-	public function generateItem($row, $options, $existingRowData) {
+	public function generate($row, $options, $existingRowData) {
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
