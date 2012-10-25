@@ -6,26 +6,22 @@ class DataType_Phone extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $jsModules = array("Phone.js");
-
 	private $helpDialogWidth = 450;
 
 
-	public function generate($row, $options, $existingRowData) {
-		$phone_str = gd_generate_random_num_str($options);
-
-		// in case the user entered multiple | separated formats, pick one
-		$formats = explode("|", $phone_str);
-		$chosen_format = $formats[0];
-		if (count($formats) > 1)
-			$chosen_format = $formats[rand(0, count($formats)-1)];
-
-		return $chosen_format;
+	public function generate($rowNum, $placeholderStr, $existingRowData) {
+		$phoneStr = Utils::generateRandomAlphanumericStr($placeholderStr);
+		$formats = explode("|", $phoneStr);
+		$chosenFormat = $formats[0];
+		if (count($formats) > 1) {
+			$chosenFormat = $formats[rand(0, count($formats)-1)];
+		}
+		return $chosenFormat;
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
 		$info = "";
-		switch ($export_type)
-		{
+		switch ($export_type) {
 			case "sql":
 				if ($options == "MySQL" || $options == "SQLite")
 					$info = "varchar(100) default NULL";
@@ -37,11 +33,11 @@ class DataType_Phone extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
-		if (empty($postdata["option_$col"]))
+	public function getRowGenerationOptions($post, $colNum, $numCols) {
+		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
 			return false;
-
-		return $postdata["option_$col"];
+		}
+		return $post["dtOption_$colNum"];
 	}
 
 	public function getExampleColumnHTML() {

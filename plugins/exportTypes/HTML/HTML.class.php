@@ -6,6 +6,7 @@
 class HTML extends ExportTypePlugin {
 	protected $exportTypeName = "HTML";
 
+
 	/**
 	 * @see ExportTypePlugin::generate()
 	 */
@@ -25,23 +26,18 @@ class HTML extends ExportTypePlugin {
 		ksort($template, SORT_NUMERIC);
 
 		$data = array();
-		for ($row=1; $row<=$numResults; $row++) {
-			$rowData = array();
+		for ($rowNum=1; $rowNum<=$numResults; $rowNum++) {
+			$currRowData = array();
 			while (list($order, $dataTypeGenerationInfo) = each($template)) {
 				foreach ($dataTypeGenerationInfo as $genInfo) {
-					$order = $gen["colNum"];
-
+					$columnOrder = $genInfo["colNum"];
 					$currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
-					$genInfo["randomData"] = $currDataType->generate($row, $dataTypeInfo["options"], $row_data);
-
-
-					$rowData["$order"] = $genInfo;
-					print_r($rowData);
+					$genInfo["randomData"] = $currDataType->generate($rowNum, $genInfo["options"], $row_data);
+					$currRowData["$columnOrder"] = $genInfo;
 				}
 			}
 			reset($template);
 			ksort($rowData, SORT_NUMERIC);
-			$data[] = $rowData;
 
 /*
 			echo "<tr>";
@@ -52,20 +48,29 @@ class HTML extends ExportTypePlugin {
 			}
 			echo "</tr>";
 */
+			$data[] = $currRowData;
 		}
 
-		exit;
 
-		print_r($data);
-		exit;
+		try {
+			$placeholders = array(
+				"isFirstRow" => true,
+				"isLastRow"  => true,
+				"cols"       => $cols,
+				"data"       => $data
+			);
+			$str = Templates::evalSmartyTemplate("plugins/exportTypes/HTML/output_table.tpl", $placeholders);
+			return array(
+				"success" => true,
+				"content" => $str
+			);
 
-
-		//
-		$placeholders = array(
-			"isFirstRow" => true,
-			"cols"       => $cols,
-			"isLastRow"  => true
-		);
-		echo Templates::evalSmartyTemplate("plugins/exportTypes/HTML/output_table.tpl", $placeholders);
+		} catch (Exception $e) {
+			return array(
+				"success"  => false,
+				"response" => $e,
+				"content"  => ""
+			);
+		}
 	}
 }

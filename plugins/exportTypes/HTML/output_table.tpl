@@ -1,22 +1,15 @@
-{* generates the HTML data in table format *}
-{if $isFirstRow}
-<table cellpadding="1" cellspacing="1">
+{if $isFirstRow}<table cellpadding="1" cellspacing="1">
 <tr>
   {foreach $cols as $col}
-    <th>{$col.title}</th>
+	<th>{$col}</th>
   {/foreach}
 </tr>
 {/if}
-
-{*
-{foreach from=$rows item=i}
+{foreach from=$data item=i}
 <tr>
-	<td>
-	</td>
+	{foreach from=$i item=j}<td>{$j.randomData}</td>
+	{/foreach}
 </tr>
 {/foreach}
-*}
 
-{if $isLastRow}
-</table>
-{/if}
+{if $isLastRow}</table>{/if}

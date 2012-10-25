@@ -83,6 +83,7 @@ define([
 		}
 
 		_restyleRows();
+		_updateRowOrder();
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -120,6 +121,7 @@ define([
 		});
 
 		_restyleRows();
+		_updateRowOrder();
 	};
 
 	var _restyleRows = function() {
@@ -472,7 +474,7 @@ define([
 		var calculatedHeight = windowHeight * 0.9;
 
 		var formData = $("#gdData").serialize();
-		var data = formData + "&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
+		var data = formData + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
 		         + "&gdNumCols=" + _numRows;
 
 		$("#gdExportDialog").removeClass("hidden").dialog({
@@ -482,11 +484,15 @@ define([
 			height:	calculatedHeight,
 			open: function() {
 				$.ajax({
-					url: "generate.php",
+					url: "ajax.php",
 					type: "POST",
 					data: data,
+					dataType: "json",
 					success: function(response) {
 						console.log("success: ", response);
+						if (response.success) {
+							$("#gdGeneratedContent").html(response.content);
+						}
 					},
 					error: function(response) {
 						console.log("response: ", response);
@@ -494,6 +500,10 @@ define([
 				});
 			},
 			buttons: [
+			    {
+			    	text: "Regenerate",
+			    	click: function() {  }
+			    },
 			    {
 			    	text: "Close",
 			    	click: function() { $(this).dialog("close"); }

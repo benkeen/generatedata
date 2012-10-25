@@ -32,14 +32,14 @@ class AjaxRequest {
 
 			// a fresh install assumes it's a blank slate: no database tables, no settings file
 			case "installation_test_db_settings":
-				Core::init(array());
+				Core::init("installation");
 				list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
 				$this->response["success"] = $success;
 				$this->response["message"] = $message;
 				break;
 
 			case "installation_create_settings_file":
-				Core::init(array());
+				Core::init("installation");
 				if (Core::checkSettingsFileExists()) {
 					$this->response["success"] = 0;
 					$this->response["message"] = "Your settings.php file already exists.";
@@ -52,7 +52,7 @@ class AjaxRequest {
 				break;
 
 			case "installation_create_database":
-				Core::init(array("database"));
+				Core::init("installation_db_ready");
 				list($success, $message) = Installation::createDatabase();
 				if (!$success) {
 					$this->response["success"] = 0;
@@ -81,10 +81,10 @@ class AjaxRequest {
 				break;
 
 			case "installation_data_types":
-				Core::init(array("database"));
+				Core::init("installation_db_ready");
 				$index = $post["index"];
 
-				$groupedDataTypes = DataTypePluginHelper::getDataTypePlugins(false);
+				$groupedDataTypes = DataTypePluginHelper::getDataTypePlugins("installion_db_ready", false);
 				$dataTypes = DataTypePluginHelper::getDataTypeList($groupedDataTypes);
 
 				if ($index >= count($dataTypes)) {
@@ -109,7 +109,7 @@ class AjaxRequest {
 				break;
 
 			case "installation_save_data_types":
-				Core::init(array("database"));
+				Core::init("installation_db_ready");
 				$folders = $post["folders"];
 				$response = Settings::setSetting("installedDataTypes", $folders);
 				$this->response["success"] = $response["success"];
@@ -117,7 +117,7 @@ class AjaxRequest {
 				break;
 
 			case "installation_export_types":
-				Core::init(array("database"));
+				Core::init("installation_db_ready");
 				$index = $post["index"];
 				$exportTypes = ExportTypePluginHelper::getExportTypePlugins(false);
 
@@ -142,7 +142,7 @@ class AjaxRequest {
 				break;
 
 			case "installation_save_export_types":
-				Core::init(array("database"));
+				Core::init("installation_db_ready");
 				$folders = $post["folders"];
 				$response = Settings::setSetting("installedExportTypes", $folders);
 				$this->response["success"] = $response["success"];
@@ -150,7 +150,7 @@ class AjaxRequest {
 				break;
 
 			case "installation_countries":
-				Core::init(array("database"));
+				Core::init("installation_db_ready");
 				$index = $post["index"];
 				$countryPlugins = CountryPluginHelper::getCountryPlugins(false);
 
@@ -178,7 +178,7 @@ class AjaxRequest {
 				break;
 
 			case "installation_save_countries":
-				Core::init(array("database"));
+				Core::init("installation_db_ready");
 				$folders = $post["folders"];
 				$response = Settings::setSetting("installedCountries", $folders);
 				$response = Settings::setSetting("installationComplete", "yes");
@@ -190,15 +190,15 @@ class AjaxRequest {
 			// USER ACCOUNTS
 			// ------------------------------------------------------------------------------------
 
+/*
 			case "login":
 				break;
 
 			case "logout":
 				break;
 
-
 			case "loadConfiguration":
-/*        $assertions = array(
+  		      $assertions = array(
 					"logged_in" => true,
 					"post" => array(
 						"required" => "form_id",
@@ -207,7 +207,6 @@ class AjaxRequest {
 				);
 				Utils::assert($assertions);
 				$this->response = Core::$user->loadConfiguration($post["form_id"]);
-*/
 				break;
 
 			case "saveConfiguration":
@@ -223,11 +222,20 @@ class AjaxRequest {
 				gd_delete_form($form_id);
 				break;
 
+*/
 			case "updateSettings":
 				Core::init();
 				list($success, $message) = Settings::updateSettings($post);
 				$this->response["success"] = $success;
 				$this->response["message"] = $message;
+				break;
+
+			case "generate":
+				Core::init("generation");
+				$gen = new Generator($_POST);
+				$response = $gen->generate();
+				$this->response["success"] = $response["success"];
+				$this->response["content"] = $response["content"];
 				break;
 		}
 	}

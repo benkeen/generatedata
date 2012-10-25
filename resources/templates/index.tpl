@@ -5,9 +5,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
-	<link rel="stylesheet" type="text/css" href="resources/css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="resources/css/compiled/styles.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui-1.8.23.custom.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/chosen.css" />
+	<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
 	<link rel="stylesheet" type="text/css" href="libs/codemirror/lib/codemirror.css" />
 	<script src="libs/codemirror/lib/codemirror.js"></script>
 	<script src="scripts/libs/jquery.js"></script>

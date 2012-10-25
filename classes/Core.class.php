@@ -46,9 +46,15 @@ class Core {
 	 * installed), the optional parameter controls whether or not the database object and plugins should
 	 * be initialized.
 	 *
-	 * @param array
+	 * @param string $runtimeContext This determines the context in which the Core is being initialized. This
+	 *          info is used to let plugins instantiate themselves differently, as well as prevent the loading
+	 *          of incomplete parts of the script.
+	 *          "installation":          a fresh installation, DB not installed yet
+	 *          "installation_db_ready": during installation after the DB has been installed
+	 *          "ui":                    (default) for the main generator page
+	 *          "generation":            when we're in the process of creating actual data
 	 */
-	public static function init($initComponents = array("database", "plugins")) {
+	public static function init($runtimeContext = "ui") {
 		self::loadSettingsFile();
 
 		error_reporting(self::$errorReporting);
@@ -58,12 +64,13 @@ class Core {
 
 		self::initSmarty();
 
-		if (in_array("database", $initComponents)) {
+		if ($runtimeContext != "installation") {
 			self::initDatabase();
 		}
-		if (in_array("plugins", $initComponents)) {
-			self::initDataTypes();
-			self::initExportTypes();
+
+		if ($runtimeContext == "ui" || $runtimeContext == "generation") {
+			self::initDataTypes($runtimeContext);
+			self::initExportTypes($runtimeContext);
 			self::initCountries();
 		}
 	}
@@ -112,20 +119,20 @@ class Core {
 		}
 	}
 
-	public function initDataTypes() {
+	public function initDataTypes($runtimeContext) {
 		if (!Core::$settingsFileExists) {
 			return;
 		}
 
 		// parse the Data Types folder and identify those plugins that are available
-		self::$dataTypePlugins = DataTypePluginHelper::getDataTypePlugins();
+		self::$dataTypePlugins = DataTypePluginHelper::getDataTypePlugins($runtimeContext);
 	}
 
-	public function initExportTypes() {
+	public function initExportTypes($runtimeContext) {
 		if (!Core::$settingsFileExists) {
 			return;
 		}
-		self::$exportTypePlugins = ExportTypePluginHelper::getExportTypePlugins();
+		self::$exportTypePlugins = ExportTypePluginHelper::getExportTypePlugins($runtimeContext);
 	}
 
 	public function initCountries() {

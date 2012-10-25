@@ -54,7 +54,7 @@ class DataTypePluginHelper {
 		$hash = array();
 		while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
 			foreach ($dataTypes as $dataType) {
-				$hash[$dataType->getName()] = $dataType;
+				$hash[$dataType->folder] = $dataType;
 			}
 		}
 		return $hash;
@@ -128,7 +128,7 @@ class DataTypePluginHelper {
 	 * Returns an array of available, grouped, instantiated Data Type objects.
 	 * @return array
 	 */
-	function getDataTypePlugins($installedOnly = true) {
+	function getDataTypePlugins($runtimeContext, $installedOnly = true) {
 		$allowedDataTypes = array();
 		if ($installedOnly) {
 			$installedDataTypes = Settings::getSetting("installedDataTypes");
@@ -146,7 +146,7 @@ class DataTypePluginHelper {
 					continue;
 				}
 				if (is_dir("$dataTypesFolder/$item")) {
-					$obj = self::instantiateDataType($dataTypesFolder, $item);
+					$obj = self::instantiateDataType($runtimeContext, $dataTypesFolder, $item);
 					if ($obj != null) {
 						$folders = explode(DIRECTORY_SEPARATOR, "$dataTypesFolder/$item");
 						$folders = array_reverse($folders);
@@ -189,7 +189,7 @@ class DataTypePluginHelper {
 	 * @param string $baseFolder
 	 * @param string $dataTypeFolderName
 	 */
-	private function instantiateDataType($baseFolder, $dataTypeFolderName) {
+	private function instantiateDataType($runtimeContext, $baseFolder, $dataTypeFolderName) {
 
 		$dataTypeClassFileName = "{$dataTypeFolderName}.class.php";
 		if (!is_file("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName")) {
@@ -211,7 +211,7 @@ class DataTypePluginHelper {
 
 		$instance = null;
 		try {
-			$instance = new $className();
+			$instance = new $className($runtimeContext);
 		} catch (Exception $e) {
 
 			return false;

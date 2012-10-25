@@ -8,14 +8,17 @@
  */
 abstract class DataTypePlugin {
 
-	// MUST be defined by each Data Type
+
+	// REQUIRED MEMBER VARS
+
 	protected $dataTypeName = "";
 	protected $hasHelpDialog; // boolean
 	protected $dataTypeFieldGroup; // string
 	protected $dataTypeFieldGroupOrder; // int
 	protected $processOrder = 1; // int
 
-	// OPTIONALLY defined by data types
+
+	// OPTIONAL MEMBER VARS
 
 	/**
 	 * An array of JS modules that need to be included for this module. They should be requireJS-friendly
@@ -61,6 +64,38 @@ abstract class DataTypePlugin {
 
 
 	// 2. OPTIONALLY DEFINED FUNCTIONS
+
+	/**
+	 * The default constructor. Automatically populates the $L member var with whatever language is currently being
+	 * used.
+	 *
+	 * @param string $content "ui" / "generation". Data Types are instantiated in one of two contexts: once when
+	 *    the main UI page loads, so that the Data Type can be presented as an option for selection in the Data
+	 *    Generator, and secondly when we're actually actually generating the results. Data Types can choose
+	 */
+	public function __construct($runtimeContext) {
+
+		// a little magic to find the current instantiated class's folder
+		$currClass = new ReflectionClass(get_class($this));
+		$currClassFolder = dirname($currClass->getFileName());
+
+		$defaultLangFileStr = Core::getDefaultLanguageFile();
+		$currentLangFileStr = Core::$language->getCurrentLanguageFile();
+
+		$currentLangFile = $currClassFolder . "/lang/" . $currentLangFileStr . ".php";
+		$defaultLangFile = $currClassFolder . "/lang/" . $defaultLangFileStr . ".php";
+
+		if (file_exists($currentLangFile)) {
+			require($currentLangFile);
+		} else if (file_exists($defaultLangFile)) {
+			require($defaultLangFile);
+		}
+
+		if (isset($L)) {
+			$this->L = $L;
+		}
+	}
+
 
 	/**
 	 * This is called once during the initial installation of the script, or when the installation is reset (which is
@@ -138,33 +173,6 @@ abstract class DataTypePlugin {
 
 	// 3. NON-OVERRIDABLE FUNCTIONS
 	// - these are automatically inherited by all Data Types when they extend this abstract class.
-
-	/**
-	 * The default constructor. Automatically populates the $L member var with whatever language is currently being
-	 * used.
-	 */
-	final function __construct() {
-
-		// a little magic to find the current instantiated class's folder
-		$currClass = new ReflectionClass(get_class($this));
-		$currClassFolder = dirname($currClass->getFileName());
-
-		$defaultLangFileStr = Core::getDefaultLanguageFile();
-		$currentLangFileStr = Core::$language->getCurrentLanguageFile();
-
-		$currentLangFile = $currClassFolder . "/lang/" . $currentLangFileStr . ".php";
-		$defaultLangFile = $currClassFolder . "/lang/" . $defaultLangFileStr . ".php";
-
-		if (file_exists($currentLangFile)) {
-			require($currentLangFile);
-		} else if (file_exists($defaultLangFile)) {
-			require($defaultLangFile);
-		}
-
-		if (isset($L)) {
-			$this->L = $L;
-		}
-	}
 
 
 	// TODO should return in current language...

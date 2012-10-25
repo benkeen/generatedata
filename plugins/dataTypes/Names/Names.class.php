@@ -18,22 +18,37 @@ class DataType_Names extends DataTypePlugin {
 	private $letters      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
+	/**
+	 * @param string $runtimeContext "generation" or "ui"
+	 */
+	public function __construct($runtimeContext) {
+		// call the parent constructor (populates $L)
+		parent::__construct();
+
+		// if we're in the process of generating data, populate the private vars with the first and last names
+		// needed for data generation
+		if ($runtimeContext == "generation") {
+			self::initFirstNames();
+			self::initLastNames();
+		}
+	}
+
 
 	public function generate($rowNum, $placeholderStr, $existingRowData) {
 		while (preg_match("/MaleName/", $placeholderStr)) {
-			$str = preg_replace("/MaleName/", $this->getRandomName($this->maleNames), $placeholderStr, 1);
+			$placeholderStr = preg_replace("/MaleName/", $this->getRandomFirstName($this->maleNames), $placeholderStr, 1);
 		}
 		while (preg_match("/FemaleName/", $placeholderStr)) {
-			$str = preg_replace("/FemaleName/", $this->getRandomName($this->femaleNames), $placeholderStr, 1);
+			$placeholderStr = preg_replace("/FemaleName/", $this->getRandomFirstName($this->femaleNames), $placeholderStr, 1);
 		}
 		while (preg_match("/Name/", $placeholderStr)) {
-			$str = preg_replace("/Name/", $this->getRandomName($this->firstNames), $placeholderStr, 1);
+			$placeholderStr = preg_replace("/Name/", $this->getRandomFirstName($this->firstNames), $placeholderStr, 1);
 		}
 		while (preg_match("/Surname/", $placeholderStr)) {
-			$str = preg_replace("/Surname/", $this->lastNames[rand(0, count($this->lastNames)-1)], $placeholderStr, 1);
+			$placeholderStr = preg_replace("/Surname/", $this->lastNames[rand(0, count($this->lastNames)-1)], $placeholderStr, 1);
 		}
 		while (preg_match("/Initial/", $placeholderStr)) {
-			$str = preg_replace("/Initial/", $this->letters[rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
+			$placeholderStr = preg_replace("/Initial/", $this->letters[rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
 		}
 
 		// in case the user entered multiple | separated formats, pick one
@@ -95,11 +110,11 @@ END;
 	}
 
 	public function getNames() {
-		return $this->names;
+		return $this->firstNames;
 	}
 
 	public function getFirstNames() {
-		return $this->names;
+		return $this->firstNames;
 	}
 
 	public function getLastNames() {
@@ -109,31 +124,58 @@ END;
 
 	// -------- private member functions ---------
 
+	/**
+	 * Called when instantiating the plugin during data generation. Set the firstNames, maleNames and
+	 * femaleNames.
+	 */
 	private function initFirstNames() {
-		// TODO
-		$query = mysql_query("
-			SELECT first_name
-			FROM   {$g_table_prefix}first_names
-				");
-		$names = array();
-		while ($name = mysql_fetch_assoc($query))
-			$names[] = $name['first_name'];
+		$prefix = Core::getDbTablePrefix();
+		$response = Core::$db->query("
+			SELECT *
+			FROM   {$prefix}first_names
+		");
+
+		if ($response["success"]) {
+			$names = array();
+			$maleNames = array();
+			$femaleNames = array();
+			while ($row = mysql_fetch_assoc($response["results"])) {
+				$gender = $row["gender"];
+				$name   = $row["first_name"];
+
+				$names[] = $name;
+				if ($gender == "male") {
+					$maleNames[] = $name;
+				} else {
+					$femaleNames[] = $name;
+				}
+			}
+
+			$this->firstNames  = $names;
+			$this->maleNames   = $maleNames;
+			$this->femaleNames = $femaleNames;
+		}
 	}
 
 
-	private function initLastName() {
-		$query = mysql_query("
-			SELECT surname
-			FROM   {$g_table_prefix}surnames
-				");
+	private function initLastNames() {
+		$prefix = Core::getDbTablePrefix();
+		$response = Core::$db->query("
+			SELECT *
+			FROM   {$prefix}last_names
+		");
 
-		$names = array();
-		while ($name = mysql_fetch_assoc($query))
-			$names[] = $name['surname'];
+		if ($response["success"]) {
+			$lastNames = array();
+			while ($row = mysql_fetch_assoc($response["results"])) {
+				$lastNames[] = $row["last_name"];
+			}
+			$this->lastNames = $lastNames;
+		}
 	}
 
 
-	private function getRandomName($nameArray) {
+	private function getRandomFirstName($nameArray) {
 		return $nameArray[rand(0, count($nameArray)-1)];
 	}
 

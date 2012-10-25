@@ -45,11 +45,23 @@ abstract class ExportTypePlugin {
 
 
 	/**
-	 * Our default, un-overridable constructor. This populates $L for the instantiated class. Export Types
+	 * This does the job of actually generating the data in the appropriate format. It's fed the instantiated
+	 * Generator class, containing the various information the Export Type could need.
+	 *
+	 * @param Generator $generator
+	 * @return
+	 */
+	abstract function generate($generator);
+
+
+	// 2. OPTIONALLY DEFINED FUNCTIONS
+
+	/**
+	 * Our default constructor. This populates $L for the instantiated class. Export Types
 	 * are constructed when the main generator UI page loads; for actual code generation, their generate()
 	 * function is called.
 	 */
-	public final function __construct() {
+	public function __construct($runtimeContext) {
 
 		// a little magic to find the current instantiated class's folder
 		$currClass = new ReflectionClass(get_class($this));
@@ -71,18 +83,6 @@ abstract class ExportTypePlugin {
 			$this->L = $L;
 		}
 	}
-
-	/**
-	 * This does the job of actually generating the data in the appropriate format. It's fed the instantiated
-	 * Generator class, containing the various information the Export Type could need.
-	 *
-	 * @param Generator $generator
-	 * @return
-	 */
-	abstract function generate($generator);
-
-
-	// 2. OPTIONALLY DEFINED FUNCTIONS
 
 	/**
 	 * This is called once during the initial installation of the script, or when the installation is reset (which is

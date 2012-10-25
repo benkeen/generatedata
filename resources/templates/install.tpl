@@ -5,8 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
-	<link rel="stylesheet" type="text/css" href="resources/css/styles.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/install.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/compiled/styles.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/compiled/install.css">
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui-1.8.23.custom.css" />
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/chosen.jquery.min.js"></script>

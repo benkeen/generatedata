@@ -10,7 +10,7 @@ class ExportTypePluginHelper {
 	/**
 	 * Returns an array of available, instantiated Export Type objects.
 	 */
-	function getExportTypePlugins($installedOnly = true) {
+	function getExportTypePlugins($runtimeContext, $installedOnly = true) {
 		$allowedExportTypes = array();
 		if ($installedOnly) {
 			$exportTypes = Settings::getSetting("installedExportTypes");
@@ -27,7 +27,7 @@ class ExportTypePluginHelper {
 					continue;
 				}
 				if (is_dir("$exportTypesFolder/$item")) {
-					$obj = self::instantiateExportType($exportTypesFolder, $item);
+					$obj = self::instantiateExportType($runtimeContext, $exportTypesFolder, $item);
 
 					if ($obj != null) {
 						$folders = explode(DIRECTORY_SEPARATOR, "$exportTypesFolder/$item");
@@ -56,7 +56,7 @@ class ExportTypePluginHelper {
 	 * @param string $baseFolder
 	 * @param string $exportTypeFileName this is the name of the folder AND the class name
 	 */
-	private function instantiateExportType($baseFolder, $exportTypeFolderName) {
+	private function instantiateExportType($runtimeContext, $baseFolder, $exportTypeFolderName) {
 
 		$filename = "{$exportTypeFolderName}.class.php";
 		if (!is_file("$baseFolder/$exportTypeFolderName/$filename")) {
@@ -76,7 +76,7 @@ class ExportTypePluginHelper {
 
 		$instance = null;
 		try {
-			$instance = new $exportTypeFolderName();
+			$instance = new $exportTypeFolderName($runtimeContext);
 		} catch (Exception $e) {
 			return false;
 		}
