@@ -233,17 +233,24 @@ class Utils {
 	 * loremipsum.txt, containing lorem ipsum text.
 	 *
 	 * TODO this seems a good candidate to memoize...
+	 *
+	 * @return array a large array of words
 	 */
-	function getLipsumWords() {
+	function getLipsum() {
 		$prefix = Core::getDbTablePrefix();
 
 		// grab all the words in the text files & put them in an array (1 word per index)
-		$query = "SELECT * FROM {$prefix}loremipsum WHERE setting_name = 'lipsum'";
-		$response = Core::$db->query($query);
+		$response = Core::$db->query("
+			SELECT *
+			FROM {$prefix}settings
+			WHERE setting_name = 'lipsum'
+		");
 
-//		$info = mysql_fetch_assoc($query);
-	//	$words = preg_split("/\s+/", $info["lipsum"]);
-//		return $words;
+		if ($response["success"]) {
+			$info = mysql_fetch_assoc($response["results"]);
+			$words = preg_split("/\s+/", $info["setting_value"]);
+			return $words;
+		}
 	}
 
 

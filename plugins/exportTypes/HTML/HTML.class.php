@@ -52,6 +52,7 @@ class HTML extends ExportTypePlugin {
 		}
 
 
+
 		try {
 			$placeholders = array(
 				"isFirstRow" => true,

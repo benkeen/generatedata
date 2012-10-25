@@ -5,23 +5,28 @@ class DataType_Email extends DataTypePlugin {
 	protected $dataTypeName = "Email";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 30;
-
 	private $words;
+	private $numWords;
 
-	// constructor?
+	public function __construct($runtimeContext) {
+		parent::__construct($runtimeContext);
+		if ($runtimeContext == "generation") {
+			$this->words = Utils::getLipsum();
+			$this->numWords = count($this->words);
+		}
+	}
 
-
-	public function generate($row, $placeholderStr, $existingRowData) {
+	public function generate($rowNum, $placeholderStr, $existingRowData) {
 		// prefix
 		$numPrefixWords = rand(1, 3);
-		$offset = rand(0, count($this->words) - ($numPrefixWords + 1));
+		$offset = rand(0, $this->numWords - ($numPrefixWords + 1));
 		$words = array_slice($words, $offset, $numPrefixWords);
 		$words = preg_replace("/[,.:]/", "", $words);
 		$prefix = join(".", $words);
 
 		// domain
-		$num_domain_words = rand(1, 3);
-		$offset = rand(0, count($this->words) - ($numDomainWords + 1));
+		$numDomainWords = rand(1, 3);
+		$offset = rand(0, $this->numWords - ($numDomainWords + 1));
 		$words = array_slice($this->words, $offset, $numDomainWords);
 		$words = preg_replace("/[,.:]/", "", $words);
 		$domain = join("", $words);
@@ -30,8 +35,7 @@ class DataType_Email extends DataTypePlugin {
 		$validSuffixes = array("edu", "com", "org", "ca", "net", "co.uk");
 		$suffix = $validSuffixes[rand(0, count($validSuffixes)-1)];
 
-		$email = "$prefix@$domain.$suffix";
-		return $email;
+		return "$prefix@$domain.$suffix";
 	}
 
 	public function getExportTypeInfo($exportType, $options) {

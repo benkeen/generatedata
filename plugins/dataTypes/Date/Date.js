@@ -18,12 +18,12 @@ define([
 	var _dataTypeChange = function(msg) {
 		$("#dtFromDate_" + msg.rowID).datepicker({
 			showOn:          'button',
-			buttonImage:     'images/calendar_icon.gif',
+			buttonImage:     'resources/images/calendar_icon.gif',
 			buttonImageOnly: true
 		});
 		$("#dtToDate_" + msg.rowID).datepicker({
 			showOn:          'button',
-			buttonImage:     'images/calendar_icon.gif',
+			buttonImage:     'resources/images/calendar_icon.gif',
 			buttonImageOnly: true
 		});
 	}
@@ -55,24 +55,6 @@ define([
 	});
 
 /*
-	validate: function(rows)
-	{
-		var visibleProblemRows = [];
-		var problemFields      = [];
-		for (var i=0; i<rows.length; i++)
-		{
-			if ($("#option_" + rows[i]).val() == "")
-			{
-				var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
-				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#option_" + rows[i]));
-			}
-		}
-
-		if (visibleProblemRows.length)
-			gd.errors.push({ els: problemFields, error: L.Date_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-	},
-
 	loadRow: function(rowNum, data)
 	{
 		return [

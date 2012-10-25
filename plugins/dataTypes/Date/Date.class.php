@@ -6,8 +6,8 @@ class DataType_Date extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("Date.js");
-
 	private $helpDialogWidth = 860;
+
 
 	public function generate($row, $options, $existingRowData) {
 		// convert the From and To dates to datetimes
@@ -25,8 +25,7 @@ class DataType_Date extends DataTypePlugin {
 
 	public function getExportTypeInfo($exportType, $options) {
 		$info = "";
-		switch ($export_type)
-		{
+		switch ($export_type) {
 			case "sql":
 				if ($options == "MySQL" || $options == "SQLite")
 					$info = "varchar(100) default NULL";
@@ -39,14 +38,14 @@ class DataType_Date extends DataTypePlugin {
 	}
 
 	public function getRowGenerationOptions($postdata, $column, $numCols) {
-		if (empty($postdata["fromDate_$col"]) || empty($postdata["toDate_$col"]) || empty($postdata["option_$col"])) {
+		if (empty($postdata["dtFromDate_$col"]) || empty($postdata["dtToDate_$col"]) || empty($postdata["dtOption_$col"])) {
 			return false;
 		}
 
 		$options = array(
-			"format_code" => $postdata["option_$col"],
-			"from"        => $postdata["fromDate_$col"],
-			"to"          => $postdata["toDate_$col"]
+			"format_code" => $postdata["dtOption_$col"],
+			"from"        => $postdata["dtFromDate_$col"],
+			"to"          => $postdata["dtToDate_$col"]
 		);
 
 		return $options;
