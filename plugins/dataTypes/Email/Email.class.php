@@ -20,7 +20,7 @@ class DataType_Email extends DataTypePlugin {
 		// prefix
 		$numPrefixWords = rand(1, 3);
 		$offset = rand(0, $this->numWords - ($numPrefixWords + 1));
-		$words = array_slice($words, $offset, $numPrefixWords);
+		$words = array_slice($this->words, $offset, $numPrefixWords);
 		$words = preg_replace("/[,.:]/", "", $words);
 		$prefix = join(".", $words);
 
