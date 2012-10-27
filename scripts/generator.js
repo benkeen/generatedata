@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * This file contains the core code for the generator. It initializes the default
  * functionality of the generator page, subscribes to and publishes all the appropriate Core
