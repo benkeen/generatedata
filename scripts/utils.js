@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * TODO This code isn't bad but I don't like the sub-groupings of functionality - like error functions &
  * vars, and the queue stuff. Separate module? Nest the return object to group them?

@@ -1,3 +1,5 @@
+"use strict";
+
 /*var Country_ns = {
   loadRow: function(rowNum, data)
   {

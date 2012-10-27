@@ -1,3 +1,5 @@
+"use strict";
+
 /*var Constant_ns = {
   validate: function(rows)
   {

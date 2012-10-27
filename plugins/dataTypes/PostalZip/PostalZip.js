@@ -1,3 +1,5 @@
+"use strict";
+
 define([
 	"manager",
 	"constants",
@@ -18,7 +20,7 @@ define([
 		for (var i=0; i<msg.countries.length; i++) {
 			shownClassesSelectors.push(".dtCountry_" + msg.countries[i]);
 		}
-		shownClassesSelector = shownClassesSelectors.join(",");
+		var shownClassesSelector = shownClassesSelectors.join(",");
 		$(".dtCountry").hide();
 		$(shownClassesSelector).show();
 	}

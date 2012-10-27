@@ -7,32 +7,15 @@
  */
 function smarty_function_country_list()
 {
-	// N.B. Once more country plugins are added, this markup will be updated to use CSS3 columns
-  $num_per_col = 3;
+	$countryPlugins = Core::$countryPlugins;
+	$defaultChecked = Core::getDefaultCountryPlugins();
 
-  $countryPlugins = Core::$countryPlugins;
-  $defaultChecked = Core::getDefaultCountryPlugins();
-
-  echo "<div class=\"gdCountryPluginCol\">";
-
-  $row = 0;
-  foreach ($countryPlugins as $obj) {
-    $countryName = $obj->getName();
-    $slug        = $obj->getSlug();
-
-    if ($row > 0 && ($row % $num_per_col == 0)) {
-      echo "</div><div class=\"gdCountryPluginCol\">";
-    }
-
-    $checked = (in_array($slug, $defaultChecked)) ? "checked" : "";
-    echo <<<EOF
-      <div>
-        <input type="checkbox" class="gdCountryChoice" name="gdCountryChoice[]" value="$slug" id="$slug" $checked />
-        <label for="$slug">$countryName</label>
-      </div>
-EOF;
-    $row++;
-  }
-
-  echo "</div>";
+	echo "<select id=\"gdCountries\" multiple style=\"width: 100%\">";
+	foreach ($countryPlugins as $obj) {
+		$countryName = $obj->getName();
+		$slug        = $obj->getSlug();
+		$selected    = (in_array($slug, $defaultChecked)) ? " selected=\"selected\"" : "";
+		echo "<option value=\"$slug\"$selected>$countryName</option>";
+	}
+	echo "</select>";
 }

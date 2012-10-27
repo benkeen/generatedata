@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * This module runs on page load for all pages, initializing a few things:
  * the tab functionality and the language dropdown change event.
@@ -33,6 +35,7 @@ define([
 		// for the Settings tab
 		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
 		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
+
 
 		function installResponse(json) {
 			utils.stopProcessing();

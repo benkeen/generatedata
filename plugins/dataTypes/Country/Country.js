@@ -1,3 +1,5 @@
+"use strict";
+
 /*
 var LatLng_ns = {
   loadRow: function(rowNum, data)

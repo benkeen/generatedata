@@ -1,3 +1,5 @@
+"use strict";
+
 define([
 	"manager",
 	"constants",
@@ -24,7 +26,7 @@ define([
 		for (var i=0; i<msg.countries.length; i++) {
 			shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i] + ",.dtIncludeRegion_" + msg.countries[i]);
 		}
-		shownClassesSelector = shownClassesSelectors.join(",");
+		var shownClassesSelector = shownClassesSelectors.join(",");
 		$(".dtRegionCountry").hide();
 		$(shownClassesSelector).show();
 	}

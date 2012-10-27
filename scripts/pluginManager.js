@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Used in the installation and Setting tab. This contains the code to install all plugins and
  * display the success / error response.

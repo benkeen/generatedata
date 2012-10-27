@@ -1,3 +1,5 @@
+"use strict";
+
 /*var Tree_ns = {
   loadRow: function(rowNum, data)
   {

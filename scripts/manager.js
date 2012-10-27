@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * The manager handles all the pub/sub functionality for the Core. All modules interact
  * with one another indirectly through this module by publishing and subscribing to messages.

@@ -4,13 +4,12 @@
 	<textarea id="gdGeneratedContent"></textarea>
 	<div>
 		<input type="checkbox" id="gdEnableSyntaxHighlighting" checked="checked" />
-			<label>Enable syntax highlighting</label>
+		<label>Enable syntax highlighting</label>
 
-			<ul id="gdTextSize">
-				<li class="small">A</li>
-				<li class="medium">A</li>
-				<li class="large">A</li>
-			</ul>
+		<ul id="gdTextSize">
+			<li class="small">A</li>
+			<li class="medium">A</li>
+			<li class="large">A</li>
+		</ul>
 	</div>
-
 </div>

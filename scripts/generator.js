@@ -32,7 +32,9 @@ define([
 	 * Called when everything is loaded. This binds the appropriate event handlers.
 	 */
 	var _run = function() {
-		$("#gdCountryList").on("click", "input", _updateCountryChoice);
+		$("#gdCountries").chosen().change(_updateCountryChoice);
+		$("#gdGenerateSubtab1 button").on("click", function() { return _showSubtab(2) });
+
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
 		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
@@ -56,7 +58,6 @@ define([
 					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
 					row: ui.item
 				});
-				_updateRowOrder();
 			}
 		});
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
@@ -65,6 +66,18 @@ define([
 		_changeExportType();
 		_updateCountryChoice();
 		_addRows(5);
+	}
+
+	var _showSubtab = function(tab) {
+		if (tab == 1) {
+			$("#gdGenerateSubtab1").show();
+			$("#gdGenerateSubtab2").hide();
+		} else {
+			$("#gdGenerateSubtab1").hide();
+			$("#gdGenerateSubtab2").show();
+		}
+
+		return false;
 	}
 
 	var _addRows = function(rows) {
@@ -85,7 +98,6 @@ define([
 		}
 
 		_restyleRows();
-		_updateRowOrder();
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -123,7 +135,6 @@ define([
 		});
 
 		_restyleRows();
-		_updateRowOrder();
 	};
 
 	var _restyleRows = function() {
@@ -132,14 +143,6 @@ define([
 		$("#gdTableRows>li:even").addClass("gdEvenRow");
 		$("#gdTableRows>li .gdColOrder").each(function(i) { $(this).html(i+1); });
 	};
-
-	/**
-	 * Called whenever the user changes the sort order, deletes or adds a row. This serializes the
-	 * row order info into a hidden gdRowOrder field for use by the server.
-	 */
-	var _updateRowOrder = function() {
-		$("#gdRowOrder").val(_getRowOrder().toString());
-	}
 
 	var _markRowToDelete = function(e) {
 		var el = e.target;
@@ -197,10 +200,10 @@ define([
 	 * Called whenever the user selects or deselects a Country. If any modules need to do
 	 * anything special, they can subscribe to the appropriate event.
 	 */
-	var _updateCountryChoice = function(e) {
+	var _updateCountryChoice = function() {
 		_countries.length = 0;
-		$(".gdCountryChoice").each(function() {
-			if (this.checked) {
+		$("#gdCountries option").each(function() {
+			if (this.selected) {
 				_countries.push(this.value);
 			}
 		});
@@ -458,60 +461,29 @@ define([
 			return false;
 		}
 
-/*
-		// all checks out. Set the form target and submit the sucker
-		if (resultType == "HTML" || resultType == "XML" || resultType == "SQL") {
-			document.gdData.target = "_blank";
-		} else {
-			document.gdData.target = "hiddenIframe";
-		}
-		// pass the ordered rows to the server, according to whatever sort the user's done
-		$("#rowOrder").val(_getRowOrder());
-		$("#deletedRows").val(Generator.deletedRows.toString());
-*/
-
 		// for the moment, let's just assume ALL export types use the dialog. We can tweak this later.
-
-		var windowHeight = $(window).height();
-		var calculatedHeight = windowHeight * 0.9;
-
 		var formData = $("#gdData").serialize();
-		var data = formData + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
+		var rowOrder = _getRowOrder().toString();
+		var data = formData + "&rowOrder=" + rowOrder + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
 		         + "&gdNumCols=" + _numRows;
 
-		$("#gdExportDialog").removeClass("hidden").dialog({
-			title: "Generating...",
-			modal: true,
-			width: "90%",
-			height:	calculatedHeight,
-			open: function() {
-				$.ajax({
-					url: "ajax.php",
-					type: "POST",
-					data: data,
-					dataType: "json",
-					success: function(response) {
-						console.log("success: ", response);
-						if (response.success) {
-							$("#gdGeneratedContent").html(response.content);
-						}
-					},
-					error: function(response) {
-						console.log("response: ", response);
-					}
-				});
+		/*
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			data: data,
+			dataType: "json",
+			success: function(response) {
+				console.log("success: ", response);
+				if (response.success) {
+					$("#gdGeneratedContent").html(response.content);
+				}
 			},
-			buttons: [
-			    {
-			    	text: "Regenerate",
-			    	click: function() {  }
-			    },
-			    {
-			    	text: "Close",
-			    	click: function() { $(this).dialog("close"); }
-			    }
-			]
-		})
+			error: function(response) {
+				console.log("response: ", response);
+			}
+		});
+		*/
 
 		return false;
 	};
