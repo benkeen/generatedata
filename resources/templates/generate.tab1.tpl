@@ -62,7 +62,7 @@
 
 		<div class="gdVerticalPad"></div>
 
-		<div class="hidden" style="background-color: #f2f2f2; border-radius: 10px; padding: 8px">
+		<div id="gdResponsePanel" class="hidden">
 			<div>Generated <b>0</b> of <b>100</b> results</div>
 			<textarea id="gdGeneratedContent"></textarea>
 			<div>

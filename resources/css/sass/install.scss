@@ -3,11 +3,9 @@ h1 {
 	padding-bottom: 8px;
 	margin-bottom: 8px;
 }
-
 .gdAdminAccountHeading {
 	font-weight: bold;
 }
-
 .gdInstallTabMessage {
 	border-radius: 5px;
 	padding: 3px 10px 3px 54px;
@@ -67,9 +65,10 @@ h1 {
 			}
 		}
 
-		.gdDisabledRow label,
-		.gdDisabledRow input {
-			color: #cccccc;
+		.gdDisabledRow {
+			label, input {
+				color: #cccccc;
+			}
 		}
 		label {
 			float: left;

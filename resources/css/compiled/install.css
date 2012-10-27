@@ -48,8 +48,7 @@ h1 {
 .gdInstallPage .gdFields .gdRadioGroup label {
   width: inherit;
   float: left; }
-.gdInstallPage .gdFields .gdDisabledRow label,
-.gdInstallPage .gdFields .gdDisabledRow input {
+.gdInstallPage .gdFields .gdDisabledRow label, .gdInstallPage .gdFields .gdDisabledRow input {
   color: #cccccc; }
 .gdInstallPage .gdFields label {
   float: left;

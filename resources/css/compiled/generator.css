@@ -1,0 +1,116 @@
+/* contains styles for the generator table */
+#gdTableRows li.gdDeletedRow {
+  background-color: #660000;
+  color: #ffffcc; }
+  #gdTableRows li.gdDeletedRow label {
+    color: #ffffcc; }
+  #gdTableRows li.gdDeletedRow div {
+    color: #ffffcc; }
+#gdTableRows > li:nth-child(even) {
+  background-color: #edf3fe; }
+#gdTableRows > li:nth-child(odd) {
+  background-color: #efefef; }
+
+.gdTableHeadings {
+  line-height: 18.6px; }
+  .gdTableHeadings li {
+    background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#cccccc), color-stop(0.5, #cccccc), color-stop(0.5, #cccccc));
+    background: -moz-linear-gradient(bottom, #dddddd, #cccccc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#cccccc');
+    float: left;
+    text-align: center;
+    height: 20px;
+    margin: 0px 0px 0px 1px;
+    padding: 0px; }
+
+.gdTableHeadings, #gdTableRows, #gdTableRows ul {
+  font-family: tahoma, arial;
+  clear: both;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  font-weight: bold; }
+
+#gdTableRows {
+  margin-bottom: 8px; }
+  #gdTableRows li {
+    float: left;
+    margin: 0px 0px 1px 1px;
+    padding: 0px;
+    font-weight: normal;
+    font-family: verdana;
+    line-height: 16pt; }
+
+.gdExportTypeAdditionalSettings {
+  border: 1px solid #cccccc;
+  padding: 6px;
+  margin-top: 6px;
+  display: none; }
+
+.gdColOrder {
+  cursor: move;
+  width: 40px;
+  text-align: center; }
+
+.gdColTitle {
+  width: 136px; }
+  .gdColTitle input {
+    width: 130px; }
+
+.gdColDataType {
+  width: 198px; }
+  .gdColDataType select {
+    width: 198px; }
+
+.gdColExamples {
+  width: 195px; }
+
+.gdColOptions {
+  width: 274px; }
+
+.gdColHelp {
+  width: 38px;
+  text-align: center; }
+
+li.gdColDelete {
+  width: 38px;
+  text-align: center;
+  display: block; }
+
+#gdHelpPopup p {
+  margin-top: 5px; }
+#gdHelpPopup h4 {
+  margin: 0px; }
+
+#gdEmptyForm {
+  float: right; }
+
+#gdTextSize {
+  float: right;
+  list-style: none; }
+  #gdTextSize li {
+    float: left;
+    width: 18px;
+    vertical-align: top; }
+  #gdTextSize .small {
+    font-size: 8pt; }
+  #gdTextSize .medium {
+    font-size: 12pt; }
+  #gdTextSize .large {
+    font-size: 16pt; }
+
+#gdResponsePanel {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 8px;
+  textarea-height: 400px;
+  textarea-width: 100%; }
+
+#gdProcessingIcon {
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 0px;
+  background-image: url(../../images/loading.gif);
+  width: 16px;
+  height: 16px; }

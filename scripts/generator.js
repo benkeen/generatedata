@@ -21,7 +21,6 @@ define([
 	var _allCountries = [];
 	var _lastJsonResponse = null;
 	var _queue = [];
-	var _deletedRows = [];
 	var _dataTypes = {};   // populated onload with all data types from the /data_types folder
 	var _exportTypes = {};
 	var _currExportType = null; // populated onload
@@ -29,7 +28,8 @@ define([
 
 
 	/**
-	 * Called when everything is loaded. This binds the appropriate event handlers.
+	 * Called when everything is loaded. This binds the appropriate event handlers and sets up the
+	 * page.
 	 */
 	var _run = function() {
 		$("#gdCountries").chosen().change(_updateCountryChoice);
@@ -53,7 +53,7 @@ define([
 			handle: ".gdColOrder",
 			axis: "y",
 			update: function(event, ui) {
-				_restyleRows();
+				_updateVisibleRowNums();
 				manager.publish({
 					sender: MODULE_ID,
 					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
@@ -98,7 +98,7 @@ define([
 			$("#gdTableRows").append("<li class=\"gdTableRow\" id=\"row_" + currRow + "\">" + newRowHTML +"</li>");
 		}
 
-		_restyleRows();
+		_updateVisibleRowNums();
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -125,7 +125,6 @@ define([
 				var rowID = parseInt(parentRowID.replace(/row_/g, ""), 10);
 				row.remove();
 				rowIDs.push(rowID);
-				_deletedRows.push(rowID);
 			}
 		});
 
@@ -135,13 +134,10 @@ define([
 			rowIDs: rowIDs
 		});
 
-		_restyleRows();
+		_updateVisibleRowNums();
 	};
 
-	var _restyleRows = function() {
-		$("#gdTableRows>li").removeClass("gdOddRow gdEvenRow");
-		$("#gdTableRows>li:odd").addClass("gdOddRow");
-		$("#gdTableRows>li:even").addClass("gdEvenRow");
+	var _updateVisibleRowNums = function() {
 		$("#gdTableRows>li .gdColOrder").each(function(i) { $(this).html(i+1); });
 	};
 
@@ -468,14 +464,16 @@ define([
 		var data = formData + "&rowOrder=" + rowOrder + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
 		         + "&gdNumCols=" + _numRows;
 
-		/*
+
+		$("#gdResponsePanel").show("slow");
+
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
 			data: data,
 			dataType: "json",
 			success: function(response) {
-				console.log("success: ", response);
+
 				if (response.success) {
 					$("#gdGeneratedContent").html(response.content);
 				}
@@ -484,7 +482,6 @@ define([
 				console.log("response: ", response);
 			}
 		});
-		*/
 
 		return false;
 	};
