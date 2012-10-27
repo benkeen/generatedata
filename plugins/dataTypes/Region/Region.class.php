@@ -2,7 +2,7 @@
 
 
 class DataType_Region extends DataTypePlugin {
-	protected $dataTypeName = "State / Province / County";
+	protected $dataTypeName = "Region";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("Region.js");

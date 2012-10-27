@@ -107,7 +107,7 @@ class HTML extends ExportTypePlugin {
 					<input type="checkbox" name="etXML_useCustomExportFormat" id="etXML_useCustomExportFormat" />
 					{$LANG["use_custom_xml_format"]}
 				</label>
-				<textarea style="width: 98%; height: 200px" class="gdDisabled" name="etXML_customFormat" id="etXML_customFormat" disabled="disabled">
+				<textarea style="width: 98%; height: 100px" class="gdDisabled" name="etXML_customFormat" id="etXML_customFormat" disabled="disabled">
 </textarea>
 			</td>
 		</tr>

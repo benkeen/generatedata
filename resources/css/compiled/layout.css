@@ -156,3 +156,31 @@ header nav {
 
 #consoleEventsModuleList {
   width: 400px; }
+
+#gdExportTypeTabs ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  height: 20px;
+  border-bottom: 1px solid #cccccc; }
+  #gdExportTypeTabs ul li {
+    line-height: 19px;
+    height: 20px;
+    float: left;
+    margin-right: 2px;
+    padding: 0px 16px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: #efefef;
+    cursor: pointer; }
+    #gdExportTypeTabs ul li.selected {
+      background-color: white;
+      border: 1px solid #cccccc;
+      border-bottom: 0px; }
+#gdExportTypeTabs .gdExportTypeTabSettings {
+  clear: both;
+  border: 1px solid #cccccc;
+  border-top: 0px;
+  padding: 6px;
+  margin: 0px 0px 10px;
+  display: none; }

@@ -1,4 +1,8 @@
 /* contains styles for the generator table */
+hr.divider {
+  color: #efefef;
+  margin: 16px 0px; }
+
 #gdTableRows li.gdDeletedRow {
   background-color: #660000;
   color: #ffffcc; }
@@ -40,12 +44,6 @@
     font-weight: normal;
     font-family: verdana;
     line-height: 16pt; }
-
-.gdExportTypeAdditionalSettings {
-  border: 1px solid #cccccc;
-  padding: 6px;
-  margin-top: 6px;
-  display: none; }
 
 .gdColOrder {
   cursor: move;

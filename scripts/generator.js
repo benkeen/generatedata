@@ -66,7 +66,7 @@ define([
 
 		_changeExportType();
 		_updateCountryChoice();
-		_addRows(5);
+		_addRows(3);
 	}
 
 	var _showSubtab = function(tab) {

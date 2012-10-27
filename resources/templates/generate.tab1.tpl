@@ -1,7 +1,7 @@
 <form id="gdData">
 
 	<div id="gdGenerateSubtab1">
-		<h1>Construct Data Set</h1>
+		<h1>Country-specific data</h1>
 
 		{country_list}
 		<div id="gdMessages" class="gdMessage">
@@ -9,7 +9,9 @@
 			<div></div>
 		</div>
 
-		<div class="gdVerticalPad"></div>
+		<hr class="divider" />
+
+		<h1>Data Set</h1>
 
 		<ul class="gdTableHeadings">
 			<li class="gdColOrder">{$L.order}</li>
@@ -31,12 +33,34 @@
 			<li class="gdColDelete"><input type="button" class="gdDeleteRowsBtn" value="{$L.del}" /></li>
 		</ul>
 		<div class="gdClear"></div>
+		<!--
 		<button class="gdSecondaryButton" id="gdEmptyForm">{$L.empty_form}</button>
+ 		-->
 
 		<div class="gdVerticalPad"></div>
 
 		{$L.add} <input type="text" name="gdNumRows" id="gdNumRows" value="1" size="2" />
 		<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
+
+		<hr class="divider" />
+
+		<h1>Export Type</h1>
+
+		<div id="gdExportTypeTabs">
+			<ul>
+				<li>CSV</li>
+				<li>Excel</li>
+				<li class="selected">HTML</li>
+				<li>JSON</li>
+				<li>SQL</li>
+				<li>XML</li>
+			</ul>
+
+			{foreach from=$exportTypeAdditionalSettings key=k item=i}
+				<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeTabSettings">{$i}</div>
+			{/foreach}
+
+		</div>
 
 		<div class="gdVerticalPad"></div>
 		<button class="gdPrimaryButton">Continue &raquo;</button>
@@ -49,10 +73,6 @@
 		{export_types}
 
 		<div class="gdClear"></div>
-
-		{foreach from=$exportTypeAdditionalSettings key=k item=i}
-			<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeAdditionalSettings">{$i}</div>
-		{/foreach}
 
 		<div>
 			<button class="gdPrimaryButton" id="gdBackButton">&laquo;</button>
