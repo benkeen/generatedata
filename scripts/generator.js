@@ -33,7 +33,8 @@ define([
 	 */
 	var _run = function() {
 		$("#gdCountries").chosen().change(_updateCountryChoice);
-		$("#gdGenerateSubtab1 button").on("click", function() { return _showSubtab(2) });
+		$("#gdGenerateSubtab1 button").on("click", function() { return _showSubtab(2); });
+		$("#gdBackButton").on("click", function() { return _showSubtab(1); })
 
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
 		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);

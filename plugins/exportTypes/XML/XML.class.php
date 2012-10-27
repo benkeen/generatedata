@@ -37,7 +37,7 @@ class XML extends ExportTypePlugin {
 			<input type="checkbox" name="etXML_useCustomExportFormat" id="etXML_useCustomExportFormat" />
 			{$LANG["use_custom_xml_format"]}
 		</label>
-		<textarea style="width: 98%; height: 70px" class="gdDisabled" name="etXML_customFormat" id="etXML_customFormat" disabled="disabled">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+		<textarea style="width: 98%; height: 200px" class="gdDisabled" name="etXML_customFormat" id="etXML_customFormat" disabled="disabled">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;records&gt;
 	{records}
 		&lt;record&gt;
@@ -46,7 +46,6 @@ class XML extends ExportTypePlugin {
 		&lt;/record&gt;
 	{/records}
 &lt;/records&gt;</textarea>
-		<!--<div style="line-height:12px"><a href="">edit full screen</a></div>-->
 	</td>
 </tr>
 </table>

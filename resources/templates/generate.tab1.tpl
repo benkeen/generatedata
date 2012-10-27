@@ -39,14 +39,14 @@
 		<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 
 		<div class="gdVerticalPad"></div>
-		<button class="gdPrimaryButton gdGenerateButton">Continue &raquo;</button>
+		<button class="gdPrimaryButton">Continue &raquo;</button>
 	</div>
 
 
 	<div id="gdGenerateSubtab2" style="display:none">
 		<h1>Generate</h1>
 
-		Format: {export_types}
+		{export_types}
 
 		<div class="gdClear"></div>
 
@@ -55,24 +55,27 @@
 		{/foreach}
 
 		<div>
+			<button class="gdPrimaryButton" id="gdBackButton">&laquo;</button>
 	 		<button class="gdPrimaryButton gdGenerateButton">{$L.generate}</button>
 			<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
 		</div>
 
 		<div class="gdVerticalPad"></div>
 
-		<textarea id="gdGeneratedContent"></textarea>
-		<div>
-			<input type="checkbox" id="gdEnableSyntaxHighlighting" checked="checked" />
-			<label>Enable syntax highlighting</label>
+		<div class="hidden" style="background-color: #f2f2f2; border-radius: 10px; padding: 8px">
+			<div>Generated <b>0</b> of <b>100</b> results</div>
+			<textarea id="gdGeneratedContent"></textarea>
+			<div>
+				<input type="checkbox" id="gdEnableSyntaxHighlighting" checked="checked" />
+				<label>Enable syntax highlighting</label>
 
-			<ul id="gdTextSize">
-				<li class="small">A</li>
-				<li class="medium">A</li>
-				<li class="large">A</li>
-			</ul>
+				<ul id="gdTextSize">
+					<li class="small">A</li>
+					<li class="medium">A</li>
+					<li class="large">A</li>
+				</ul>
+			</div>
 		</div>
-
 	</div>
 </form>
 
