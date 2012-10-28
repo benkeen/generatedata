@@ -7,7 +7,7 @@ class DataType_GUID extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 50;
 
 	private $generatedGUIDs = array();
-	private $helpDialogWidth = 460;
+	private $helpDialogWidth = 510;
 
 
 	public function generate($row, $options, $existingRowData) {

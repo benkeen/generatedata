@@ -7,7 +7,7 @@ class DataType_Region extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("Region.js");
 	protected $cssFile = "Region.css";
-	private $helpDialogWidth = 360;
+	private $helpDialogWidth = 410;
 
 
 	public function generate($row, $options, $existingRowData) {

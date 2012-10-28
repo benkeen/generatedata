@@ -5,7 +5,7 @@ class DataType_TextRandom extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "text";
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $jsModules = array("TextRandom.js");
-	private $helpDialogWidth = 320;
+	private $helpDialogWidth = 370;
 
 
 	public function generate($row, $options, $existingRowData) {

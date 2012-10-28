@@ -83,7 +83,7 @@ section {
   text-align: left;
   padding: 10px 25px 10px 25px;
   clear: left;
-  box-shadow: 2px 4px 5px #666666;
+  box-shadow: 2px 4px 3px #999999;
   display: block; }
 
 nav {
@@ -104,7 +104,7 @@ footer {
   border-bottom-right-radius: 24px;
   border-radius-bottomleft: 24px;
   border-radius-bottomright: 24px;
-  box-shadow: 2px 4px 5px #666666;
+  box-shadow: 2px 4px 3px #999999;
   display: block; }
   footer a:link, footer a:visited {
     color: #555555;
@@ -234,7 +234,6 @@ hr.divider {
   margin: 16px 0px 0px; }
 
 #gdTableRows li.gdDeletedRow {
-  background-color: #660000;
   color: #ffffcc; }
   #gdTableRows li.gdDeletedRow label {
     color: #ffffcc; }
@@ -244,6 +243,10 @@ hr.divider {
   background-color: #edf3fe; }
 #gdTableRows > li:nth-child(odd) {
   background-color: #efefef; }
+
+/* needed to override the nth-child style */
+body #gdTableRows li.gdDeletedRow {
+  background-color: #660000; }
 
 .gdTableHeadings {
   line-height: 18.6px; }
@@ -309,7 +312,7 @@ li.gdColDelete {
   padding-left: 54px;
   background: transparent url(../../images/info.png) 10px 10px no-repeat; }
   #gdHelpPopup p {
-    margin-top: 5px; }
+    margin: 5px 0px 12px; }
   #gdHelpPopup h4 {
     margin: 0px; }
 
@@ -379,8 +382,12 @@ li.gdColDelete {
   border: 1px solid #cccccc;
   border-top: 0px;
   padding: 6px;
-  margin: 0px 0px 10px;
+  margin: 0px;
   display: none; }
+#gdExportTypeTabs #gdShowSettingsLink {
+  float: right;
+  font-size: 7pt;
+  color: #3366CC; }
 
 /* buttons */
 .gdButton {
@@ -583,7 +590,8 @@ body .chzn-container-multi .chzn-choices .search-field .default {
 body .chzn-container-multi .chzn-choices {
   background-image: none;
   padding-bottom: 2px;
-  border: 1px solid #cccccc; }
+  border: 1px solid #cccccc;
+  background-color: #fafafa; }
 
 /* plugin installation */
 #gdPluginInstallationResults > div {

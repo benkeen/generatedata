@@ -16,7 +16,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa", "Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Alaska',
 				"regionShort" => 'AK',
 				"regionSlug" => 'alaska',
@@ -24,7 +25,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Anchorage", "Fairbanks", "Juneau", "College", "Anchorage", "Fairbanks", "Juneau", "College", "Ketchikan"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Arizona',
 				"regionShort" => 'AZ',
 				"regionSlug" => 'arizona',
@@ -32,7 +34,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Phoenix", "Tucson", "Mesa", "Glendale", "Chandler"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Arkansas',
 				"regionShort" => 'AK',
 				"regionSlug" => 'arkansas',
@@ -40,7 +43,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Little Rock", "Fort Smith", "Fayetteville", "Springdale", "Jonesboro"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'California',
 				"regionShort" => 'CA',
 				"regionSlug" => 'california',
@@ -48,7 +52,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Los Angeles", "San Diego", "San Jose", "San Francisco", "Fresno", "Sacramento"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Colorado',
 				"regionShort" => 'CO',
 				"regionSlug" => 'colorado',
@@ -56,7 +61,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Denver", "Colorado Springs", "Aurora", "Lakewood", "Fort Collins"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Connecticut',
 				"regionShort" => 'CT',
 				"regionSlug" => 'connecticut',
@@ -64,7 +70,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Bridgeport", "New Haven", "Hartford", "Stamford", "Waterbury"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Delaware',
 				"regionShort" => 'DE',
 				"regionSlug" => 'delaware',
@@ -72,7 +79,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Wilmington", "Dover", "Newark", "Pike Creek", "Bear"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Florida',
 				"regionShort" => 'FL',
 				"regionSlug" => 'florida',
@@ -80,7 +88,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Jacksonville", "Miami", "Tampa", "St. Petersburg", "Orlando", "Tallahassee"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Georgia',
 				"regionShort" => 'GA',
 				"regionSlug" => 'georgia',
@@ -88,7 +97,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Georgia", "Atlanta", "Augusta", "Columbus", "Savannah", "Athens"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Hawaii',
 				"regionShort" => 'HI',
 				"regionSlug" => 'hawaii',
@@ -96,7 +106,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Honolulu", "Hilo", "Kailua", "Kaneohe", "Kapolei"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Idaho',
 				"regionShort" => 'ID',
 				"regionSlug" => 'idaho',
@@ -104,7 +115,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Boise", "Nampa", "Meridian", "Pocatello", "Idaho Falls"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Illinois',
 				"regionShort" => 'IL',
 				"regionSlug" => 'illinois',
@@ -112,7 +124,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Chicago", "Aurora", "Rockford", "Joliet", "Naperville", "Springfield"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Indiana',
 				"regionShort" => 'IN',
 				"regionSlug" => 'indiana',
@@ -120,7 +133,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Indianapolis", "Fort Wayne", "Evansville", "South Bend", "Gary"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Iowa',
 				"regionShort" => 'IA',
 				"regionSlug" => 'iowa',
@@ -128,7 +142,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Des Moines", "Cedar Rapids", "Davenport", "Sioux City", "Iowa City"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Kansas',
 				"regionShort" => 'KS',
 				"regionSlug" => 'kansas',
@@ -136,7 +151,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Wichita", "Overland Park", "Kansas City", "Topeka", "Olathe"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Kentucky',
 				"regionShort" => 'KY',
 				"regionSlug" => 'kentucky',
@@ -144,7 +160,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Louisville", "Lexington", "Owensboro", "Bowling Green", "Covington", "Frankfort"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Louisiana',
 				"regionShort" => 'LA',
 				"regionSlug" => 'louisiana',
@@ -152,7 +169,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"New Orleans", "Baton Rouge", "Shreveport", "Metairie", "Lafayette"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Maine',
 				"regionShort" => 'ME',
 				"regionSlug" => 'maine',
@@ -160,7 +178,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Portland", "Lewiston", "Bangor", "South Portland", "Auburn", "Augusta"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Maryland',
 				"regionShort" => 'MD',
 				"regionSlug" => 'maryland',
@@ -168,7 +187,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Baltimore", "Rockville", "Frederick", "Gaithersburg", "Columbia", "Annapolis"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Massachusetts',
 				"regionShort" => 'MA',
 				"regionSlug" => 'massachusetts',
@@ -176,7 +196,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Boston", "Worcester", "Springfield", "Lowell", "Cambridge"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Michigan',
 				"regionShort" => 'MI',
 				"regionSlug" => 'michigan',
@@ -184,7 +205,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Detroit", "Grand Rapids", "Warren", "Sterling Heights", "Flint", "Lansing"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Minnesota',
 				"regionShort" => 'MN',
 				"regionSlug" => 'minnesota',
@@ -192,7 +214,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Minneapolis", "Saint Paul", "Rochester", "Duluth", "Bloomington"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Mississippi',
 				"regionShort" => 'MS',
 				"regionSlug" => 'mississippi',
@@ -200,7 +223,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Jackson", "Gulfport", "Hattiesburg", "Biloxi", "Southaven"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Missouri',
 				"regionShort" => 'MO',
 				"regionSlug" => 'missouri',
@@ -208,7 +232,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Kansas City", "Saint Louis", "Springfield", "Independence", "Columbia", "Jefferson City"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Montana',
 				"regionShort" => 'MT',
 				"regionSlug" => 'montana',
@@ -216,7 +241,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Billings", "Missoula", "Great Falls", "Butte", "Bozeman", "Helena"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Nebraska',
 				"regionShort" => 'NE',
 				"regionSlug" => 'nebraska',
@@ -224,7 +250,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Omaha", "Lincoln", "Bellevue", "Grand Island", "Kearney"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Nevada',
 				"regionShort" => 'NV',
 				"regionSlug" => 'nevada',
@@ -232,7 +259,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Las Vegas", "Henderson", "North Las Vegas", "Reno", "Paradise", "Carson City"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Ohio',
 				"regionShort" => 'OH',
 				"regionSlug" => 'ohio',
@@ -240,7 +268,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Columbus", "Cleveland", "Cincinnati", "Toledo", "Akron"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Oklahoma',
 				"regionShort" => 'OK',
 				"regionSlug" => 'oklahoma',
@@ -248,7 +277,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Oklahoma City", "Tulsa", "Norman", "Lawton", "Broken Arrow"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Oregon',
 				"regionShort" => 'OR',
 				"regionSlug" => 'oregon',
@@ -256,7 +286,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Portland", "Eugene", "Salem", "Gresham", "Hillsboro"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Pennsylvania',
 				"regionShort" => 'PA',
 				"regionSlug" => 'pennsylvania',
@@ -264,7 +295,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Philadelphia", "Pittsburgh", "Allentown", "Erie", "Reading", "Harrisburg"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Tennessee',
 				"regionShort" => 'TN',
 				"regionSlug" => 'tennessee',
@@ -272,7 +304,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Memphis", "Nashville", "Knoxville", "Chattanooga", "Clarksville"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Texas',
 				"regionShort" => 'TX',
 				"regionSlug" => 'texas',
@@ -280,7 +313,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Houston", "San Antonio", "Dallas", "Austin", "Fort Worth"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Utah',
 				"regionShort" => 'UT',
 				"regionSlug" => 'utah',
@@ -288,7 +322,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Salt Lake City", "West Valley City", "Provo", "West Jordan", "Sandy"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Vermont',
 				"regionShort" => 'VT',
 				"regionSlug" => 'vermont',
@@ -296,7 +331,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Burlington", "Essex", "Rutland", "Colchester", "South Burlington", "Montpelier"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Virginia',
 				"regionShort" => 'VA',
 				"regionSlug" => 'virginia',
@@ -304,7 +340,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Virginia Beach", "Norfolk", "Chesapeake", "Richmond", "Newport News"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Washington',
 				"regionShort" => 'WA',
 				"regionSlug" => 'washington',
@@ -312,7 +349,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Seattle", "Spokane", "Tacoma", "Vancouver", "Bellevue", "Olympia"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Wisconsin',
 				"regionShort" => 'WI',
 				"regionSlug" => 'wisconsin',
@@ -320,7 +358,8 @@ class Country_US extends CountryPlugin {
 				"cities" => array(
 					"Milwaukee", "Madison", "Green Bay", "Kenosha", "Racine"
 				)
-			),	array(
+			),
+			array(
 				"regionName" => 'Wyoming',
 				"regionShort" => 'WY',
 				"regionSlug" => 'wyoming',

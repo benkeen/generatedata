@@ -7,7 +7,7 @@ class DataType_LatLng extends DataTypePlugin {
 	protected $jsModules = array("LatLng.js");
 
 	// $LatLng_cached_math = array();
-	private $helpDialogWidth = 360;
+	private $helpDialogWidth = 410;
 
 
 	/**

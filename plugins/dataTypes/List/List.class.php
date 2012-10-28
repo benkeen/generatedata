@@ -5,7 +5,7 @@ class DataType_List extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "other";
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("List.js");
-	private $helpDialogWidth = 360;
+	private $helpDialogWidth = 410;
 
 
 	public function generate($row, $options, $existingRowData) {

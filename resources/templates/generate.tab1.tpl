@@ -1,9 +1,8 @@
 <form id="gdData">
-
 	<div id="gdGenerateSubtab1">
 
-		<h1>Country-specific data</h1>
-		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix">
+		<h1>{$L.country_specific_data}</h1>
+		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="country-specific-data">
 			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
 		</ul>
 
@@ -12,11 +11,10 @@
 			<a class="gdMessageClose" title="{$L.hide_error}" href="#">X</a>
 			<div></div>
 		</div>
-
 		<hr class="divider" />
 
-		<h1>Data Set</h1>
-		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix">
+		<h1>{$L.data_set}</h1>
+		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="data-set">
 			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
 		</ul>
 		<div class="gdClear"></div>
@@ -40,46 +38,36 @@
 			<li class="gdColHelp">{$L.help}</li>
 			<li class="gdColDelete"><input type="button" class="gdDeleteRowsBtn" value="{$L.del}" /></li>
 		</ul>
-		<div class="gdClear"></div>
+		<!-- <button class="gdSecondaryButton" id="gdEmptyForm">{$L.empty_form}</button> -->
 
-		<!--
-		<button class="gdSecondaryButton" id="gdEmptyForm">{$L.empty_form}</button>
- 		-->
-
-		<div class="gdVerticalPad"></div>
+		<div class="gdClear gdVerticalPad"></div>
 
 		{$L.add} <input type="text" name="gdNumRows" id="gdNumRows" value="1" size="2" />
 		<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 
 		<hr class="divider" />
 
-		<h1>Data Format</h1>
-		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix">
+		<h1>{$L.data_format}</h1>
+		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="data-format">
 			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
 		</ul>
 		<div class="gdClear"></div>
 
 		<div id="gdExportTypeTabs">
-			<a href="" style="float:right; font-size: 7pt; color: #3366CC">show additional settings</a>
+			<a href="#" id="gdShowSettingsLink">show additional settings</a>
 			{export_type_tabs}
 			{foreach from=$exportTypeAdditionalSettings key=k item=i}
 				<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeTabSettings">{$i}</div>
 			{/foreach}
 		</div>
 
-		<div class="gdVerticalPad"></div>
-
-		<div class="gdClear"></div>
-		<div>
-	 		<button class="gdPrimaryButton gdGenerateButton">{$L.generate}</button>
-			<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
-		</div>
-
+		<div class="gdClear gdVerticalPad"></div>
+ 		<button class="gdPrimaryButton gdGenerateButton">{$L.generate}</button>
+		<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
 	</div>
 
 
 	<div id="gdGenerateSubtab2" style="display:none">
-
 		<div class="gdVerticalPad"></div>
 
 		<div id="gdResponsePanel" class="hidden">
@@ -97,6 +85,7 @@
 			</div>
 		</div>
 	</div>
+
 </form>
 
 <div id="gdHelpPopup"></div>

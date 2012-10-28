@@ -139,3 +139,10 @@ $L["geo"] = "Geo";
 $L["numeric"] = "Numeric";
 $L["notify_settings_updated"] = "Your settings have been updated.";
 
+$L["tip_country_data"] = "<p>This section lets you control what country-specific data should be included in your generated data sets. The values you select here affect certain Data Types that you may select, such as <i>Region</i>, <i>Postal/Zip</i> and <i>Country</i>.</p><p>To give you a better idea, try selecting the <i>Region</i> Data Type for one of your rows, then add / remove countries from the Country-Specific Data section. You'll see that the options you are provided with are affected by the countries you have selected: you can only ever generate a subset of the countries selected.</p>";
+$L["tip_data_set"] = "<p>This is where you define what kind of data you want to generate. Use the table to build up, row by row, what each should contain. Each Data Type you choose will have different options - some will have none. You can add new rows using the Add button beneath the table; you can sort the data by clicking on the order column cell and dragging the row up or down. When you have finished constructing your data set, you can proceed to the next section.</p>";
+$L["tip_data_format"] = "<p>This section controls the export format for the data.</p>";
+
+$L["country_specific_data"] = "Country-specific data";
+$L["data_set"] = "Data Set";
+$L["data_format"] = "Data Format";

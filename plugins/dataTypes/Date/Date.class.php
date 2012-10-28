@@ -6,7 +6,7 @@ class DataType_Date extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("Date.js");
-	private $helpDialogWidth = 860;
+	private $helpDialogWidth = 910;
 
 
 	public function generate($row, $options, $existingRowData) {

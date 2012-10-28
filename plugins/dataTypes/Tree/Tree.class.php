@@ -6,7 +6,7 @@ class DataType_Tree extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $processOrder = 2;
 
-	private $helpDialogWidth = 400;
+	private $helpDialogWidth = 450;
 
 	// $Tree_open_nodes = array();
 

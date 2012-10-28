@@ -6,7 +6,7 @@ class DataType_NumberRange extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $jsModules = array("NumberRange.js");
 
-	private $helpDialogWidth = 320;
+	private $helpDialogWidth = 370;
 
 
 	public function generate($row, $options, $existingRowData) {

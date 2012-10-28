@@ -170,7 +170,7 @@ define([
 			if (!_domChangeQueue[0][2]) {
 				setTimeout(function() { _domChangeQueue[0][0]() }, 10);
 				var currObj = this;
-				timeout_id = setInterval(function() { currObj.checkQueueItemComplete() }, 25);
+				var timeout_id = setInterval(function() { currObj.checkQueueItemComplete() }, 25);
 				_domChangeQueue[0][2] = timeout_id;
 			}
 		},

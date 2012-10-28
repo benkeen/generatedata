@@ -25,6 +25,7 @@ define([
 	var _exportTypes = {};
 	var _currExportType = null; // populated onload
 	var _subscriptions = {};
+	var _showExportTypeSettings = false;
 
 
 	/**
@@ -37,6 +38,10 @@ define([
 		$("#gdBackButton").on("click", function() { return _showSubtab(1); })
 		$(".gdSectionHelpTip li").bind("mouseover", function() { $(this).addClass('ui-state-hover'); });
 		$(".gdSectionHelpTip li").bind("mouseout", function() { $(this).removeClass('ui-state-hover'); });
+		$(".gdSectionHelpTip").bind("click", _showSectionHelpTip);
+		$("#gdShowSettingsLink").bind("click", function() {
+
+		});
 
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
 		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
@@ -46,8 +51,12 @@ define([
 			$(e.target).closest(".gdMessage").hide("blind", null, 500);
 			return false;
 		});
+
 		$("#gdData").bind("submit", _generateData);
-		$(".gdExportType").bind("click", _changeExportType);
+		$("#gdExportTypeTabs>ul>li").bind("click", function(e) {
+			_selectExportTypeTab($(e.target).data("exportType"));
+		});
+
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); return false; });
@@ -66,7 +75,7 @@ define([
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdSettingsForm").bind("submit", _updateSettings);
 
-		_changeExportType();
+		_initExportTypeTab();
 		_updateCountryChoice();
 		_addRows(3);
 	}
@@ -213,6 +222,10 @@ define([
 		});
 	};
 
+	var _initExportTypeTab = function() {
+		var newExportType = $("#gdExportTypeTabs>ul>li.selected").data("exportType");
+		_selectExportTypeTab(newExportType);
+	}
 
 	/**
 	 * Called whenever the user changes the result type (XML, HTML, CSV etc). This function publishes
@@ -220,11 +233,12 @@ define([
 	 * hiding/showing and changing of the title column label "out-the-box" rather than force
 	 * the Export Type modules to have to do the work.
 	 */
-	var _changeExportType = function() {
-		var newExportType = $(".gdExportType:checked").val();
+	var _selectExportTypeTab = function(newExportType) {
 		if (newExportType == _currExportType) {
 			return;
 		}
+
+		$("#gdExportTypeTabs>ul>li").removeClass("selected");
 
 		// always reset the column heading to the default "Column Title". Export Types have the option
 		// to overwrite it through the publish event below
@@ -290,7 +304,7 @@ define([
 		}
 
 		// our two "is ready" tests, which depend on the content for the current Data Type
-		var noOptionsTest  = function() {
+		var noOptionsTest = function() {
 			onComplete();
 			return true;
 		};
@@ -302,6 +316,7 @@ define([
 			return isReady;
 		};
 		var readyTest = ($("#gdDataTypeOptions_" + dataTypeModuleID).length > 0) ? hasOptionsTest : noOptionsTest;
+
 
 		utils.pushToQueue([
 			function() {
@@ -577,6 +592,34 @@ define([
 		}
 		return arr;
 	};
+
+	var _showSectionHelpTip = function() {
+		var tipText = "";
+		var titleText = "";
+		switch ($(this).data("tip")) {
+			case "country-specific-data":
+				titleText = "Country-specific Data";
+				tipText = L.tip_country_data;
+				break;
+			case "data-set":
+				titleText = "Data Set";
+				tipText = L.tip_data_set;
+				break;
+			case "data-format":
+				titleText = "Data Format";
+				tipText = L.tip_data_format;
+				break;
+		}
+
+		var myDialog = $("#gdHelpPopup").html(tipText).dialog({
+			autoOpen:  false,
+			modal:     true,
+			resizable: false,
+			title:     titleText,
+			width:     500
+		});
+		myDialog.dialog("open");
+	}
 
 
 	// register our module

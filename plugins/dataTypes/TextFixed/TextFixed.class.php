@@ -6,7 +6,7 @@ class DataType_TextFixed extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("TextFixed.js");
 
-	private $helpDialogWidth = 320;
+	private $helpDialogWidth = 370;
 
 
 	public function generate($row, $options, $existingRowData) {
