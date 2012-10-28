@@ -26,6 +26,7 @@ define([
 	var _currExportType = null; // populated onload
 	var _subscriptions = {};
 	var _showExportTypeSettings = false;
+	var _codemirror = null;
 
 
 	/**
@@ -34,7 +35,7 @@ define([
 	 */
 	var _run = function() {
 		$("#gdCountries").chosen().change(_updateCountryChoice);
-		$("#gdGenerateSubtab1 button").on("click", function() { return _showSubtab(2); });
+		$("#gdGenerateButton").on("click", _generateData);
 		$("#gdBackButton").on("click", function() { return _showSubtab(1); })
 		$(".gdSectionHelpTip li").bind("mouseover", function() { $(this).addClass('ui-state-hover'); });
 		$(".gdSectionHelpTip li").bind("mouseout", function() { $(this).removeClass('ui-state-hover'); });
@@ -445,7 +446,8 @@ define([
 
 
 	/**
-	 * Called when the user submits the main Generate tab. It performs all necessary validation.
+	 * Called when the user submits the main Generate tab. It performs all necessary validation
+	 * and starts the data generation process.
 	 */
 	var _generateData = function() {
 		var numResults = $("#gdNumResults").val();
@@ -518,13 +520,19 @@ define([
 		}
 
 		// for the moment, let's just assume ALL export types use the dialog. We can tweak this later.
+
+		// TODO this sucks... could we send an object instead?
 		var formData = $("#gdData").serialize();
 		var rowOrder = _getRowOrder().toString();
-		var data = formData + "&rowOrder=" + rowOrder + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
+		var data = formData + "&gdRowOrder=" + rowOrder + "&gdExportType=" + _currExportType
+				 + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
 		         + "&gdNumCols=" + _numRows;
 
+		_showSubtab(2);
 
-		$("#gdResponsePanel").show("slow");
+		_codemirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
+			mode: "xml"
+		});
 
 		$.ajax({
 			url: "ajax.php",
@@ -532,9 +540,9 @@ define([
 			data: data,
 			dataType: "json",
 			success: function(response) {
-
 				if (response.success) {
-					$("#gdGeneratedContent").html(response.content);
+//					$("#gdGeneratedData").html(response.content);
+					_codemirror.setValue(response.content);
 				}
 			},
 			error: function(response) {

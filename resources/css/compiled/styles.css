@@ -331,12 +331,9 @@ li.gdColDelete {
   #gdTextSize .large {
     font-size: 16pt; }
 
-#gdResponsePanel {
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  padding: 8px;
-  textarea-height: 400px;
-  textarea-width: 100%; }
+#gdGeneratedData {
+  height: 400px;
+  width: 100%; }
 
 #gdProcessingIcon {
   display: none;
@@ -494,7 +491,7 @@ li.gdColDelete {
     -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
     box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee; }
 
-.gdGenerateButton {
+#gdGenerateButton {
   display: inline; }
 
 #gdBackButton {
@@ -636,6 +633,16 @@ body .chzn-container-multi .chzn-choices {
   line-height: 16px;
   font-size: 6.5pt;
   cursor: pointer; }
+
+/* overridden CodeMirror styles */
+body .CodeMirror pre {
+  font-family: monospace; }
+
+body .CodeMirror {
+  border: 1px solid #cccccc; }
+
+body .CodeMirror-lines div {
+  line-height: 13pt; }
 
 .gdMessage {
   position: relative;

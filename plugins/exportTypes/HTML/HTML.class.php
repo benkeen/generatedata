@@ -38,20 +38,8 @@ class HTML extends ExportTypePlugin {
 			}
 			reset($template);
 			ksort($rowData, SORT_NUMERIC);
-
-/*
-			echo "<tr>";
-			foreach ($row_data as $data)
-			{
-				$val = (is_array($data["random_data"])) ? $data["random_data"]["display"] : $data["random_data"];
-				echo "<td>$val</td>";
-			}
-			echo "</tr>";
-*/
 			$data[] = $currRowData;
 		}
-
-
 
 		try {
 			$placeholders = array(

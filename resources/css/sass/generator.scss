@@ -117,16 +117,11 @@ li.gdColDelete {
 		font-size: 16pt;
 	}
 }
-#gdResponsePanel {
-	background-color: #f2f2f2;
-	border-radius: 10px;
-	padding: 8px;
-
-	textarea: {
-		height: 400px;
-		width: 100%;
-	}
+#gdGeneratedData {
+	height: 400px;
+	width: 100%;
 }
+
 #gdProcessingIcon {
 	display: none;
 	position: absolute;

@@ -133,3 +133,13 @@ body .chzn-container-multi .chzn-choices {
   line-height: 16px;
   font-size: 6.5pt;
   cursor: pointer; }
+
+/* overridden CodeMirror styles */
+body .CodeMirror pre {
+  font-family: monospace; }
+
+body .CodeMirror {
+  border: 1px solid #cccccc; }
+
+body .CodeMirror-lines div {
+  line-height: 13pt; }
