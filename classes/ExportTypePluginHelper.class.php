@@ -120,9 +120,11 @@ class ExportTypePluginHelper {
 		foreach ($exportTypes as $exportType) {
 			$name = $exportType->getName();
 			$settings = $exportType->getAdditionalSettingsHTML();
-			if (!empty($settings))
-			{
+			if (!empty($settings)) {
 				$additionalSettings[$name] = $settings;
+			} else {
+				$lang = Core::$language->getCurrentLanguageStrings();
+				$additionalSettings[$name] = $lang["no_additional_export_type_settings"];
 			}
 		}
 

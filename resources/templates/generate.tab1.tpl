@@ -54,7 +54,10 @@
 		<div class="gdClear"></div>
 
 		<div id="gdExportTypeTabs">
-			<a href="#" id="gdShowSettingsLink">show additional settings</a>
+			<span id="gdShowSettingsLink">
+				<span>+</span>
+				<a href="#">show data format options</a>
+			</span>
 			{export_type_tabs}
 			{foreach from=$exportTypeAdditionalSettings key=k item=i}
 				<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeTabSettings">{$i}</div>

@@ -1,52 +1,11 @@
-h1 {
-	border-bottom: 1px solid #efefef;
-	padding-bottom: 8px;
-	margin-bottom: 8px;
-}
-.gdAdminAccountHeading {
-	font-weight: bold;
-}
-.gdInstallTabMessage {
-	border-radius: 5px;
-	padding: 3px 10px 3px 54px;
-	margin-bottom: 10px;
-	text-shadow: 0 1px 0 #fff;
-	display: none;
-	min-height: 36px;
-	position: relative;
-
-	.gdIcon {
-		width: 32px;
-		height: 32px;
-		position: absolute;
-		left: 12px;
-		top: 10px;
-	}
-	h3 {
-		font-weight: bold;
-		display: inline;
-		font-size: 8pt;
-	}
-	.gdResponse {
-		color: #000000;
-	}
-}
-
-.gdInstallError {
-	background-color: #ffe1e1;
-	h3 {
-		color: #cc0000;
-	}
-	.gdIcon {
-		background-image: url(../images/stop.png);
-	}
-}
-
-.gdInstallSuccess .gdIcon {
-	background-image: url(../images/info.png);
-}
-
+/* custom styles for the installation page */
 .gdInstallPage {
+	h1 {
+		border-bottom: 1px solid #efefef;
+		padding-bottom: 8px;
+		margin-bottom: 8px;
+		float: none;
+	}
 	.gdFields {
 		.gdField {
 			float: left;
@@ -105,38 +64,78 @@ h1 {
 		float: right;
 		width: 770px;
 	}
-}
+	#gdInstallNav {
+		float: left;
+		width: 200px;
+		padding-top: 6px;
 
-/* installation in-page nav */
-#gdInstallNav {
-	float: left;
-	width: 200px;
-	padding-top: 6px;
-
-	ol {
-		margin: 0px;
-		padding: 0px 0px 0px 20px;
+		ol {
+			margin: 0px;
+			padding: 0px 0px 0px 20px;
+		}
+		ol li {
+			padding-left: 0px;
+			color: #cccccc;
+		}
+		ol li.selected {
+			font-weight: bold;
+			color: green;
+		}
+		ol li.complete {
+			color: #999999;
+		}
 	}
-	ol li {
-		padding-left: 0px;
-		color: #cccccc;
+	.gdInstallSection {
+		float: right;
+		width: 725px;
+		p {
+			margin-bottom: 12px;
+		}
+		button {
+			margin-bottom: 10px;
+		}
 	}
-	ol li.selected {
+	.gdAdminAccountHeading {
 		font-weight: bold;
-		color: green;
 	}
-	ol li.complete {
-		color: #999999;
-	}
-}
-
-.gdInstallSection {
-	float: right;
-	width: 725px;
-	p {
-		margin-bottom: 12px;
-	}
-	button {
+	.gdInstallTabMessage {
+		border-radius: 5px;
+		padding: 3px 10px 3px 54px;
 		margin-bottom: 10px;
+		text-shadow: 0 1px 0 #fff;
+		display: none;
+		min-height: 36px;
+		position: relative;
+
+		.gdIcon {
+			width: 32px;
+			height: 32px;
+			position: absolute;
+			left: 12px;
+			top: 10px;
+		}
+		h3 {
+			font-weight: bold;
+			display: inline;
+			font-size: 8pt;
+		}
+		.gdResponse {
+			color: #000000;
+		}
 	}
+
+	.gdInstallError {
+		background-color: #ffe1e1;
+		h3 {
+			color: #cc0000;
+		}
+		.gdIcon {
+			background-image: url(../images/stop.png);
+		}
+	}
+
+	.gdInstallSuccess .gdIcon {
+		background-image: url(../images/info.png);
+	}
+
 }

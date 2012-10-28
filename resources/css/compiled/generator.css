@@ -5,16 +5,14 @@ hr.divider {
 
 #gdTableRows li.gdDeletedRow {
   color: #ffffcc; }
-  #gdTableRows li.gdDeletedRow label {
-    color: #ffffcc; }
-  #gdTableRows li.gdDeletedRow div {
+  #gdTableRows li.gdDeletedRow label, #gdTableRows li.gdDeletedRow div {
     color: #ffffcc; }
 #gdTableRows > li:nth-child(even) {
   background-color: #edf3fe; }
 #gdTableRows > li:nth-child(odd) {
   background-color: #efefef; }
 
-/* needed to override the nth-child style */
+/* needed to override the nth-child style above */
 body #gdTableRows li.gdDeletedRow {
   background-color: #660000; }
 
@@ -149,12 +147,15 @@ li.gdColDelete {
       border-bottom: 0px; }
 #gdExportTypeTabs .gdExportTypeTabSettings {
   clear: both;
-  border: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
   border-top: 0px;
   padding: 6px;
   margin: 0px;
   display: none; }
 #gdExportTypeTabs #gdShowSettingsLink {
-  float: right;
-  font-size: 7pt;
-  color: #3366CC; }
+  float: right; }
+  #gdExportTypeTabs #gdShowSettingsLink span {
+    font-size: 7pt; }
+  #gdExportTypeTabs #gdShowSettingsLink a {
+    font-size: 7pt;
+    color: #3366CC; }

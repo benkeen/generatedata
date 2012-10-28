@@ -13,6 +13,7 @@ require([
 	// everything in this module is private, but we re-use the _ notation here just to signify scope
 	var _dbSettings = {};
 	var _pluginsInstalled = false;
+	var _currStep = null;
 
 
 	$(function() {

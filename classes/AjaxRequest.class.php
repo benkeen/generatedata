@@ -119,7 +119,7 @@ class AjaxRequest {
 			case "installation_export_types":
 				Core::init("installation_db_ready");
 				$index = $post["index"];
-				$exportTypes = ExportTypePluginHelper::getExportTypePlugins(false);
+				$exportTypes = ExportTypePluginHelper::getExportTypePlugins("installation_db_ready", false);
 
 				if ($index >= count($exportTypes)) {
 					$this->response["success"] = 1;

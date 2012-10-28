@@ -76,13 +76,11 @@ class HTML extends ExportTypePlugin {
 	}
 
 	function getAdditionalSettingsHTML() {
-		$LANG = Core::$language->getCurrentLanguageStrings();
-
 		$html =<<< END
 		<table cellspacing="0" cellpadding="0" width="100%">
 		<tr>
 			<td width="30%" valign="top">
-				<table cellspacing="0" cellpadding="0">
+				<table cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 					<td colspan="2">
 						<input type="checkbox" checked="checked" />
@@ -90,7 +88,7 @@ class HTML extends ExportTypePlugin {
 					</td>
 				</tr>
 				<tr>
-					<td width="160" valign="top">Data format</td>
+					<td width="130" valign="top">Data format</td>
 					<td>
 						<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" value="table" checked="checked" />
 							<label for="etHTMLExportFormat1">&lt;table&gt;</label><br />
@@ -105,7 +103,7 @@ class HTML extends ExportTypePlugin {
 			<td width="70%" valign="top">
 				<label for="etXML_useCustomExportFormat">
 					<input type="checkbox" name="etXML_useCustomExportFormat" id="etXML_useCustomExportFormat" />
-					{$LANG["use_custom_xml_format"]}
+					{$this->L["use_custom_html_format"]}
 				</label>
 				<textarea style="width: 98%; height: 100px" class="gdDisabled" name="etXML_customFormat" id="etXML_customFormat" disabled="disabled">
 </textarea>

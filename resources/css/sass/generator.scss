@@ -6,10 +6,7 @@ hr.divider {
 #gdTableRows {
 	li.gdDeletedRow {
 		color: #ffffcc;
-		label {
-			color: #ffffcc;
-		}
-		div {
+		label, div {
 			color: #ffffcc;
 		}
 	}
@@ -20,7 +17,7 @@ hr.divider {
 		background-color: #efefef;
 	}
 }
-/* needed to override the nth-child style */
+/* needed to override the nth-child style above */
 body #gdTableRows li.gdDeletedRow {
 	background-color: #660000;
 }
@@ -176,7 +173,7 @@ li.gdColDelete {
 	}
 	.gdExportTypeTabSettings {
 		clear: both;
-		border: 1px solid #cccccc;
+		border-bottom: 1px solid #cccccc;
 		border-top: 0px;
 		padding: 6px;
 		margin: 0px;
@@ -184,7 +181,12 @@ li.gdColDelete {
 	}
 	#gdShowSettingsLink {
 		float: right;
-		font-size: 7pt;
-		color: #3366CC;
+		span {
+			font-size: 7pt;
+		}
+		a {
+			font-size: 7pt;
+			color: #3366CC;
+		}
 	}
 }

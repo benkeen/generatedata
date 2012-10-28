@@ -40,13 +40,32 @@ define([
 		$(".gdSectionHelpTip li").bind("mouseout", function() { $(this).removeClass('ui-state-hover'); });
 		$(".gdSectionHelpTip").bind("click", _showSectionHelpTip);
 		$("#gdShowSettingsLink").bind("click", function() {
-
+			// if we're already showing it, hide it!
+			if (_showExportTypeSettings) {
+				_hideExportTypeSettingsSection();
+			} else {
+				_showExportTypeSettingsSection(_currExportType);
+			}
+			return false;
 		});
 
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
 		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
+		$("#gdTableRows").sortable({
+			handle: ".gdColOrder",
+			axis: "y",
+			update: function(event, ui) {
+				_updateVisibleRowNums();
+				manager.publish({
+					sender: MODULE_ID,
+					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
+					row: ui.item
+				});
+			}
+		});
+
 		$(document).on("click", ".gdMessageClose", function(e) {
 			$(e.target).closest(".gdMessage").hide("blind", null, 500);
 			return false;
@@ -60,18 +79,6 @@ define([
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); return false; });
-		$("#gdTableRows").sortable({
-			handle: ".gdColOrder",
-			axis: "y",
-			update: function(event, ui) {
-				_updateVisibleRowNums();
-				manager.publish({
-					sender: MODULE_ID,
-					type: C.EVENT.DATA_TABLE.ROW.RE_SORT,
-					row: ui.item
-				});
-			}
-		});
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdSettingsForm").bind("submit", _updateSettings);
 
@@ -169,6 +176,11 @@ define([
 		});
 	};
 
+
+	/**
+	 * Resets the entire page back to it's defaults: default countries, a blank table and the default data
+	 * format. TODO
+	 */
 	var _emptyForm = function(requireConfirmation, numInitRows) {
 		if (requireConfirmation) {
 			$("<div></div>").html(L.confirm_empty_form).dialog({
@@ -238,7 +250,10 @@ define([
 			return;
 		}
 
-		$("#gdExportTypeTabs>ul>li").removeClass("selected");
+		if (_currExportType != null) {
+			$("#gdExportTypeTabs>ul>li").removeClass("selected");
+			$("#gdExportType_" + newExportType).addClass("selected");
+		}
 
 		// always reset the column heading to the default "Column Title". Export Types have the option
 		// to overwrite it through the publish event below
@@ -251,19 +266,46 @@ define([
 			oldExportType: _currExportType
 		});
 
-		// hide and show the appropriate Export Type additional settings section
-		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0) {
-			$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", null, C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
-		}
-		if (_currExportType == null) {
-			$("#gdExportTypeAdditionalSettings_" + newExportType).show();
-		} else {
-			$("#gdExportTypeAdditionalSettings_" + newExportType).show("blind", null, C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
+		// hide and show the appropriate Export Type additional settings section (if the + showdata format options link
+		// has been clicked)
+		if (_showExportTypeSettings) {
+			_showExportTypeSettingsSection(newExportType);
 		}
 
 		_currExportType = newExportType;
 	};
 
+
+	var _showExportTypeSettingsSection = function(newExportType) {
+		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0 && _showExportTypeSettings) {
+			$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
+		}
+		if (_currExportType == null) {
+			$("#gdExportTypeAdditionalSettings_" + newExportType).show();
+		} else {
+			$("#gdExportTypeAdditionalSettings_" + newExportType).show(
+				"blind",
+				C.EXPORT_TYPE_SETTINGS_BLIND_SPEED,
+				function() {
+					_showExportTypeSettings = true;
+					$("#gdShowSettingsLink span").html("-");
+					$("#gdShowSettingsLink a").html("hide data format options");
+				}
+			);
+		}
+	}
+
+	var _hideExportTypeSettingsSection = function() {
+		$("#gdExportTypeAdditionalSettings_" + _currExportType).hide(
+			"blind",
+			C.EXPORT_TYPE_SETTINGS_BLIND_SPEED,
+			function() {
+				_showExportTypeSettings = false;
+				$("#gdShowSettingsLink span").html("+");
+				$("#gdShowSettingsLink a").html("show data format options");
+			}
+		);
+	}
 
 	var _publishExampleChange = function(e) {
 		var select = e.target;
