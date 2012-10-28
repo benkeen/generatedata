@@ -9,7 +9,7 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("AlphaNumeric.js");
 
-	private $helpDialogWidth = 460;
+	private $helpDialogWidth = 510;
 
 
 	public function generate($row, $placeholderStr, $existingRowData) {

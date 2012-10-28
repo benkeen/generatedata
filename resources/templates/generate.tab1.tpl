@@ -1,7 +1,11 @@
 <form id="gdData">
 
 	<div id="gdGenerateSubtab1">
+
 		<h1>Country-specific data</h1>
+		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix">
+			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
+		</ul>
 
 		{country_list}
 		<div id="gdMessages" class="gdMessage">
@@ -12,6 +16,10 @@
 		<hr class="divider" />
 
 		<h1>Data Set</h1>
+		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix">
+			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
+		</ul>
+		<div class="gdClear"></div>
 
 		<ul class="gdTableHeadings">
 			<li class="gdColOrder">{$L.order}</li>
@@ -33,6 +41,7 @@
 			<li class="gdColDelete"><input type="button" class="gdDeleteRowsBtn" value="{$L.del}" /></li>
 		</ul>
 		<div class="gdClear"></div>
+
 		<!--
 		<button class="gdSecondaryButton" id="gdEmptyForm">{$L.empty_form}</button>
  		-->
@@ -44,41 +53,32 @@
 
 		<hr class="divider" />
 
-		<h1>Export Type</h1>
+		<h1>Data Format</h1>
+		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix">
+			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
+		</ul>
+		<div class="gdClear"></div>
 
 		<div id="gdExportTypeTabs">
-			<ul>
-				<li>CSV</li>
-				<li>Excel</li>
-				<li class="selected">HTML</li>
-				<li>JSON</li>
-				<li>SQL</li>
-				<li>XML</li>
-			</ul>
-
+			<a href="" style="float:right; font-size: 7pt; color: #3366CC">show additional settings</a>
+			{export_type_tabs}
 			{foreach from=$exportTypeAdditionalSettings key=k item=i}
 				<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeTabSettings">{$i}</div>
 			{/foreach}
-
 		</div>
 
 		<div class="gdVerticalPad"></div>
-		<button class="gdPrimaryButton">Continue &raquo;</button>
+
+		<div class="gdClear"></div>
+		<div>
+	 		<button class="gdPrimaryButton gdGenerateButton">{$L.generate}</button>
+			<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
+		</div>
+
 	</div>
 
 
 	<div id="gdGenerateSubtab2" style="display:none">
-		<h1>Generate</h1>
-
-		{export_types}
-
-		<div class="gdClear"></div>
-
-		<div>
-			<button class="gdPrimaryButton" id="gdBackButton">&laquo;</button>
-	 		<button class="gdPrimaryButton gdGenerateButton">{$L.generate}</button>
-			<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
-		</div>
 
 		<div class="gdVerticalPad"></div>
 

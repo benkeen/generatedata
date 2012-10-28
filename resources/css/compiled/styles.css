@@ -171,6 +171,13 @@ header nav {
     padding: 0px;
     margin: 0px;
     list-style: none; }
+  .gdTabContent h1 {
+    float: left; }
+  .gdTabContent .gdSectionHelpTip {
+    float: left;
+    list-style: none;
+    padding-left: 10px;
+    padding-top: 17px; }
 
 #gdTab1Content {
   display: block; }
@@ -221,38 +228,10 @@ header nav {
 #consoleEventsModuleList {
   width: 400px; }
 
-#gdExportTypeTabs ul {
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-  height: 20px;
-  border-bottom: 1px solid #cccccc; }
-  #gdExportTypeTabs ul li {
-    line-height: 19px;
-    height: 20px;
-    float: left;
-    margin-right: 2px;
-    padding: 0px 16px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    background-color: #efefef;
-    cursor: pointer; }
-    #gdExportTypeTabs ul li.selected {
-      background-color: white;
-      border: 1px solid #cccccc;
-      border-bottom: 0px; }
-#gdExportTypeTabs .gdExportTypeTabSettings {
-  clear: both;
-  border: 1px solid #cccccc;
-  border-top: 0px;
-  padding: 6px;
-  margin: 0px 0px 10px;
-  display: none; }
-
 /* contains styles for the generator table */
 hr.divider {
   color: #efefef;
-  margin: 16px 0px; }
+  margin: 16px 0px 0px; }
 
 #gdTableRows li.gdDeletedRow {
   background-color: #660000;
@@ -312,7 +291,7 @@ hr.divider {
     width: 198px; }
 
 .gdColExamples {
-  width: 195px; }
+  width: 198px; }
 
 .gdColOptions {
   width: 274px; }
@@ -326,10 +305,13 @@ li.gdColDelete {
   text-align: center;
   display: block; }
 
-#gdHelpPopup p {
-  margin-top: 5px; }
-#gdHelpPopup h4 {
-  margin: 0px; }
+#gdHelpPopup {
+  padding-left: 54px;
+  background: transparent url(../../images/info.png) 10px 10px no-repeat; }
+  #gdHelpPopup p {
+    margin-top: 5px; }
+  #gdHelpPopup h4 {
+    margin: 0px; }
 
 #gdEmptyForm {
   float: right; }
@@ -363,6 +345,42 @@ li.gdColDelete {
   background-image: url(../../images/loading.gif);
   width: 16px;
   height: 16px; }
+
+#gdExportTypeTabs ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  height: 20px;
+  border-bottom: 1px solid #e1e1e1; }
+  #gdExportTypeTabs ul li {
+    line-height: 19px;
+    height: 20px;
+    float: left;
+    margin-right: 2px;
+    padding: 0px 16px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background: #f2f2f2;
+    background: -moz-linear-gradient(top, #f2f2f2 0%, #e1e1e1 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f2f2), color-stop(100%, #e1e1e1));
+    background: -webkit-linear-gradient(top, #f2f2f2 0%, #e1e1e1 100%);
+    background: -o-linear-gradient(top, #f2f2f2 0%, #e1e1e1 100%);
+    background: -ms-linear-gradient(top, #f2f2f2 0%, #e1e1e1 100%);
+    background: linear-gradient(to bottom, #f2f2f2 0%, #e1e1e1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
+    cursor: pointer; }
+    #gdExportTypeTabs ul li.selected {
+      background: white;
+      background-color: white;
+      border: 1px solid #cccccc;
+      border-bottom: 0px; }
+#gdExportTypeTabs .gdExportTypeTabSettings {
+  clear: both;
+  border: 1px solid #cccccc;
+  border-top: 0px;
+  padding: 6px;
+  margin: 0px 0px 10px;
+  display: none; }
 
 /* buttons */
 .gdButton {
@@ -537,6 +555,22 @@ div.gdClear {
 body .ui-widget-content {
   color: #555555; }
 
+body .ui-widget-overlay {
+  background: #333333 url(images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
+  opacity: .30;
+  filter: Alpha(Opacity=30); }
+
+body .ui-widget-shadow {
+  margin: -8px 0 0 -8px;
+  padding: 8px;
+  background: #333333 url(images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
+  opacity: .30;
+  filter: Alpha(Opacity=30);
+  -moz-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px; }
+
 /* overridden Chosen styles */
 body .chzn-container-multi .chzn-choices .search-choice {
   margin-left: 3px;
@@ -548,7 +582,8 @@ body .chzn-container-multi .chzn-choices .search-field .default {
 
 body .chzn-container-multi .chzn-choices {
   background-image: none;
-  padding-bottom: 2px; }
+  padding-bottom: 2px;
+  border: 1px solid #cccccc; }
 
 /* plugin installation */
 #gdPluginInstallationResults > div {
@@ -638,17 +673,23 @@ body .chzn-container-multi .chzn-choices {
   color: #ffffcc; }
 
 /* used for the "serious error" page */
-#gdBox {
+body.gdErrorPage h1 {
+  margin: 0px 0px 12px 0px;
+  font-weight: bold; }
+body.gdErrorPage #gdBox {
+  font-family: verdana;
+  font-size: 11pt;
+  line-height: 22px;
   position: relative;
   width: 60%;
   background: #ffffff;
   border-radius: 6px;
-  padding: 2em 1.5em;
+  padding: 25px;
   color: rgba(0, 0, 0, 0.8);
   line-height: 1.5;
   margin: 60px auto;
   text-align: left; }
-  #gdBox:before, #gdBox:after {
+  body.gdErrorPage #gdBox:before, body.gdErrorPage #gdBox:after {
     z-index: -1;
     position: absolute;
     content: "";
@@ -664,7 +705,7 @@ body .chzn-container-multi .chzn-choices {
     -o-transform: rotate(-3deg);
     -ms-transform: rotate(-3deg);
     transform: rotate(-3deg); }
-  #gdBox:after {
+  body.gdErrorPage #gdBox:after {
     -webkit-transform: rotate(3deg);
     -moz-transform: rotate(3deg);
     -o-transform: rotate(3deg);
@@ -672,17 +713,19 @@ body .chzn-container-multi .chzn-choices {
     transform: rotate(3deg);
     right: 10px;
     left: auto; }
-
-body.gdErrorPage h1 {
-  margin: 0px 0px 16px 0px;
-  font-weight: bold; }
-body.gdErrorPage #gdBox {
-  text-align: left;
-  font-family: verdana;
-  font-size: 11pt;
-  line-height: 22px; }
-
-#gdNotFixed {
+  body.gdErrorPage #gdBox p {
+    font-size: 11pt;
+    line-height: 22px;
+    margin-bottom: 12px; }
+body.gdErrorPage #gdNotFixed {
   color: #990000;
   margin-bottom: 8px;
   font-style: italic; }
+body.gdErrorPage #gdSeriousError {
+  font-size: 8pt;
+  max-height: 160px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  background-color: #fbfbfb; }

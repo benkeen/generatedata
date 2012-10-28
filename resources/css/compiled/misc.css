@@ -60,6 +60,22 @@ div.gdClear {
 body .ui-widget-content {
   color: #555555; }
 
+body .ui-widget-overlay {
+  background: #333333 url(images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
+  opacity: .30;
+  filter: Alpha(Opacity=30); }
+
+body .ui-widget-shadow {
+  margin: -8px 0 0 -8px;
+  padding: 8px;
+  background: #333333 url(images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
+  opacity: .30;
+  filter: Alpha(Opacity=30);
+  -moz-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px; }
+
 /* overridden Chosen styles */
 body .chzn-container-multi .chzn-choices .search-choice {
   margin-left: 3px;
@@ -71,7 +87,8 @@ body .chzn-container-multi .chzn-choices .search-field .default {
 
 body .chzn-container-multi .chzn-choices {
   background-image: none;
-  padding-bottom: 2px; }
+  padding-bottom: 2px;
+  border: 1px solid #cccccc; }
 
 /* plugin installation */
 #gdPluginInstallationResults > div {

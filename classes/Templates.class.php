@@ -47,7 +47,7 @@ class Templates {
 				return Core::$smarty->fetch($templatePath);
 			}
 		} catch (Exception $e) {
-			Templates::displaySeriousError("Smarty encountered a problem writing to the /cache folder. The (probably quite abstruse) error message returned is:<br /><br /><i>{$e}</i>");
+			Templates::displaySeriousError("Smarty encountered a problem writing to the /cache folder. The (probably indecipherable) error message returned is:", $e);
 			exit;
 		}
 	}
@@ -92,10 +92,14 @@ class Templates {
 	 *
 	 * @param string $error
 	 */
-	static function displaySeriousError($error) {
+	static function displaySeriousError($error, $errorDetails = "") {
 		$notFixedMessage = "";
 		if (isset($_GET["source"])) {
-			$notFixedMessage = "<div id=\"gdNotFixed\">Nope, ain't fixed yet. Try again.</div>";
+			$notFixedMessage = "<p id=\"gdNotFixed\">Nope, ain't fixed yet. Try again.</p>";
+		}
+
+		if (!empty($errorDetails)) {
+			$errorDetails = "<div id=\"gdSeriousError\">" . htmlspecialchars($errorDetails) . "</div>";
 		}
 
 		echo <<< END
@@ -115,7 +119,9 @@ class Templates {
 	<div id="gdBox">
 		<h1>Uh-oh.</h1>
 		$notFixedMessage
-		{$error}
+		<p>$error</p>
+
+		$errorDetails
 		<button class="gdPrimaryButton">Click here when you think you've fixed it.</button>
 	</div>
 	</body>

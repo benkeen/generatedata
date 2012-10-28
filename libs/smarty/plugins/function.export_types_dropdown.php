@@ -4,7 +4,6 @@ function smarty_function_export_types_dropdown($params, &$smarty) {
 	$L = Core::$language->getCurrentLanguageStrings();
 	$exportTypeGroups = Core::$exportTypePlugins;
 
-
 	// TODO clean up these
 
 	$name = isset($params["name"]) ? $params["name"] : "gdDataType_%ROW%";

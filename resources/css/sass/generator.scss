@@ -1,7 +1,7 @@
 /* contains styles for the generator table */
 hr.divider {
 	color: #efefef;
-	margin: 16px 0px;
+	margin: 16px 0px 0px;
 }
 
 #gdTableRows {
@@ -73,7 +73,7 @@ hr.divider {
 	}
 }
 .gdColExamples {
-	width: 195px;
+	width: 198px;
 }
 .gdColOptions {
 	width: 274px;
@@ -94,6 +94,8 @@ li.gdColDelete {
 	h4 {
 		margin: 0px;
 	}
+	padding-left: 54px;
+	background: transparent url(../../images/info.png) 10px 10px no-repeat;
 }
 #gdEmptyForm {
 	float: right;
@@ -135,4 +137,49 @@ li.gdColDelete {
 	background-image: url(../../images/loading.gif);
 	width: 16px;
 	height: 16px;
+}
+
+#gdExportTypeTabs {
+	ul {
+		list-style: none;
+		margin: 0px;
+		padding: 0px;
+		height: 20px;
+		border-bottom: 1px solid #e1e1e1;
+
+		li {
+			line-height: 19px;
+			height: 20px;
+			float: left;
+			margin-right: 2px;
+			padding: 0px 16px;
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+			background: #f2f2f2;
+			background: -moz-linear-gradient(top,  #f2f2f2 0%, #e1e1e1 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f2f2), color-stop(100%,#e1e1e1));
+			background: -webkit-linear-gradient(top,  #f2f2f2 0%,#e1e1e1 100%);
+			background: -o-linear-gradient(top,  #f2f2f2 0%,#e1e1e1 100%);
+			background: -ms-linear-gradient(top,  #f2f2f2 0%,#e1e1e1 100%);
+			background: linear-gradient(to bottom,  #f2f2f2 0%,#e1e1e1 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
+			cursor: pointer;
+
+			&.selected {
+				background: white;
+				background-color: white;
+				border: 1px solid #cccccc;
+				border-bottom: 0px;
+			}
+		}
+
+	}
+	.gdExportTypeTabSettings {
+		clear: both;
+		border: 1px solid #cccccc;
+		border-top: 0px;
+		padding: 6px;
+		margin: 0px 0px 10px;
+		display: none;
+	}
 }

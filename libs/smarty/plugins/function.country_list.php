@@ -15,6 +15,7 @@ function smarty_function_country_list()
 		$countryName = $obj->getName();
 		$slug        = $obj->getSlug();
 		$selected    = (in_array($slug, $defaultChecked)) ? " selected=\"selected\"" : "";
+
 		echo "<option value=\"$slug\"$selected>$countryName</option>";
 	}
 	echo "</select>";
