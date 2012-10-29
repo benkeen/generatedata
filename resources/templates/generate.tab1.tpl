@@ -65,8 +65,23 @@
 		</div>
 
 		<div class="gdClear gdVerticalPad"></div>
- 		<button class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
-		<input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
+
+		<hr class="divider" style="margin-bottom: 16px;" />
+
+		<div id="gdGenerateSection">
+	 		<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
+			Generate <input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
+
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+			<input type="radio" checked="checked" />
+				<label>Generate in-page</label>
+			<input type="radio" disabled="disabled" />
+				<label>New window/tab</label>
+			<input type="radio" disabled="disabled" />
+				<label>Prompt to download</label>
+		</div>
+
 	</div>
 
 
@@ -74,7 +89,7 @@
 		<div class="gdVerticalPad"></div>
 
 		<div>Generated <b>0</b> of <b>100</b> results</div>
-		<textarea id="gdGeneratedData"></textarea>
+		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
 		<div>
 			<input type="checkbox" id="gdEnableSyntaxHighlighting" checked="checked" />
 			<label>Enable syntax highlighting</label>

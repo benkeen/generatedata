@@ -1,15 +1,9 @@
-{if $isFirstRow}<table cellpadding="1" cellspacing="1">
-<tr>
-{foreach $cols as $col}
-	<th>{$col}</th>
-{/foreach}
-</tr>
-{/if}
 {foreach from=$data item=i}
-<tr>
-{foreach from=$i item=j}	<td>{$j.randomData}</td>
+<dl>
+{foreach from=$i item=j name=loop}
+{assign var=index value=$smarty.foreach.loop.index}
+	<dt>{$cols[$index]}</dt>
+		<dd>{$j.randomData}</dd>
 {/foreach}
-</tr>
+</dl>
 {/foreach}
-
-{if $isLastRow}</table>{/if}

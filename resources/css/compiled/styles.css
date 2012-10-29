@@ -387,6 +387,12 @@ li.gdColDelete {
     font-size: 7pt;
     color: #3366CC; }
 
+#gdGenerateSection {
+  background-color: #E4FFE4;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #bbbbbb; }
+
 /* buttons */
 .gdButton {
   border: 0px;
@@ -492,7 +498,9 @@ li.gdColDelete {
     box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee; }
 
 #gdGenerateButton {
-  display: inline; }
+  display: inline;
+  font-size: 11pt;
+  margin: 0px; }
 
 #gdBackButton {
   float: left;
@@ -641,8 +649,14 @@ body .CodeMirror pre {
 body .CodeMirror {
   border: 1px solid #cccccc; }
 
-body .CodeMirror-lines div {
-  line-height: 13pt; }
+body .CodeMirror-lines div pre {
+  line-height: 14px; }
+
+body .cm-s-default pre span {
+  line-height: 10px; }
+
+body .CodeMirror-scroll {
+  height: 500px; }
 
 .gdMessage {
   position: relative;

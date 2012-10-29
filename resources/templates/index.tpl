@@ -13,7 +13,6 @@
 
 	<!--  needs to be dynamically added and referenced... -->
 	<script src="libs/codemirror/mode/xml/xml.js"></script>
-	<script src="libs/codemirror/mode/sql/sql.js"></script>
 
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/chosen.jquery.min.js"></script>

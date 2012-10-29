@@ -34,10 +34,10 @@ class DataType_Company extends DataTypePlugin {
 	public function generate($row, $placeholderStr, $existingRowData) {
 		$numCompanyNameWords = rand(1, 3);
 		$offset = rand(0, $this->numWords - ($numCompanyNameWords + 1));
-		$words = array_slice($words, $offset, $numCompanyNameWords);
+		$words = array_slice($this->words, $offset, $numCompanyNameWords);
 		$words = preg_replace("/[,.:]/", "", $words);
 		$companyType = $this->companyTypes[rand(0, $this->numCompanyTypes-1)];
-		return implode(" ", $words) . " " . $companyType;
+		return ucwords(implode(" ", $words) . " " . $companyType);
 	}
 
 	// TODO

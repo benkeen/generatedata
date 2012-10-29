@@ -1,20 +1,13 @@
-{* generates the HTML data in table format *}
-{if $firstRow}
-<table cellpadding="1" cellspacing="1">
-<tr>
-  {foreach $sortedCols as $col}
-    <th>{$col.title}</th>
-  {/foreach}
-</tr>
-{/if}
-
-{foreach from=$rows item=i}
-<tr>
-	<td>
-	</td>
-</tr>
+{if $isFirstRow}
+<ul>
+{foreach $cols as $col}
+	<li>{$col}</li>
 {/foreach}
-
-{if $lastRow}
-</table>
+</ul>
 {/if}
+{foreach from=$data item=i}
+<ul>
+{foreach from=$i item=j}	<li>{$j.randomData}</li>
+{/foreach}
+</ul>
+{/foreach}

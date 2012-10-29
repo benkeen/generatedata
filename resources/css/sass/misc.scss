@@ -154,6 +154,12 @@ body .CodeMirror pre {
 body .CodeMirror {
 	border: 1px solid #cccccc;
 }
-body .CodeMirror-lines div {
-	line-height: 13pt;
+body .CodeMirror-lines div pre {
+	line-height: 14px;
+}
+body .cm-s-default pre span {
+	line-height: 10px;
+}
+body .CodeMirror-scroll {
+	height: 500px;
 }

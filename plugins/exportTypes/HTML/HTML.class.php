@@ -15,6 +15,7 @@ class HTML extends ExportTypePlugin {
 		$template   = $generator->getTemplateByProcessOrder();
 		$numResults = $generator->getNumResults();
 		$dataTypes  = $generator->getDataTypes();
+		$postData   = $generator->getPostData();
 
 		// first, generate the (ordered) list of table headings
 		$cols = array();
@@ -48,7 +49,17 @@ class HTML extends ExportTypePlugin {
 				"cols"       => $cols,
 				"data"       => $data
 			);
-			$str = Templates::evalSmartyTemplate("plugins/exportTypes/HTML/output_table.tpl", $placeholders);
+
+			$template = "";
+			if ($postData["etHTMLExportFormat"] == "ul") {
+				$template = "plugins/exportTypes/HTML/output_ul.tpl";
+			} else if ($postData["etHTMLExportFormat"] == "dl") {
+				$template = "plugins/exportTypes/HTML/output_dl.tpl";
+			} else {
+				$template = "plugins/exportTypes/HTML/output_table.tpl";
+			}
+			$str = Templates::evalSmartyTemplate($template, $placeholders);
+
 			return array(
 				"success" => true,
 				"content" => $str

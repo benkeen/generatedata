@@ -12,26 +12,28 @@ class Generator {
 	private $exportType;
 	private $countries;
 	private $dataTypes;
+	private $postData;
 
 
 	/**
 	 * @param array $postdata everything from the form post.
 	 */
-	public function __construct($postdata) {
-		$this->batchSize  = $postdata["gdBatchSize"];
-		$this->batchNum   = $postdata["gdCurrentBatchNum"];
-		$this->numResults = $postdata["gdNumRowsToGenerate"];
-		$this->countries  = $postdata["gdCountries"];
+	public function __construct($postData) {
+		$this->batchSize  = $postData["gdBatchSize"];
+		$this->batchNum   = $postData["gdCurrentBatchNum"];
+		$this->numResults = $postData["gdNumRowsToGenerate"];
+		$this->countries  = $postData["gdCountries"];
 		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
+		$this->postData   = $postData;
 
 		// figure out what we're going to need to generate
-		$this->createDataSetTemplate($postdata);
+		$this->createDataSetTemplate($postData);
 
 		// now we farm out the work of data generation to the selected Export Type
 		$exportTypes = Core::$exportTypePlugins;
 		$selectedExportType = null;
 		foreach ($exportTypes as $currExportType) {
-			if ($currExportType->getFolder() != $postdata["gdExportType"]) {
+			if ($currExportType->getFolder() != $postData["gdExportType"]) {
 				continue;
 			}
 			$this->exportType = $currExportType;
@@ -138,17 +140,20 @@ class Generator {
 	 *
 	 * This is generally used for producing the list of headings in the expected order.
 	 *
+	 * TODO confirm this works after processing order has been implemented.
+	 *
 	 * @param array $template
 	 */
 	public function getTemplateByDisplayOrder() {
 		$ordered = array();
+
 		while (list($order, $dataTypes) = each($this->template)) {
 			foreach ($dataTypes as $dataType) {
 		    	$order = $dataType["colNum"];
 		    	$ordered["order$order"] = $dataType;
 			}
 		}
-		asort($ordered);
+		ksort($ordered);
 		return array_values($ordered);
 	}
 
@@ -162,5 +167,9 @@ class Generator {
 
 	public function getDataTypes() {
 		return $this->dataTypes;
+	}
+
+	public function getPostData() {
+		return $this->postData;
 	}
 }

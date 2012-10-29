@@ -12,15 +12,15 @@ class DataType_Date extends DataTypePlugin {
 	public function generate($row, $options, $existingRowData) {
 		// convert the From and To dates to datetimes
 		list($month, $day, $year) = split("/", $options["from"]);
-		$from_date = mktime(0, 0, 0, $month, $day, $year);
+		$fromDate = mktime(0, 0, 0, $month, $day, $year);
 		list($month, $day, $year) = split("/", $options["to"]);
-		$to_date = mktime(0, 0, 0, $month, $day, $year);
+		$toDate = mktime(0, 0, 0, $month, $day, $year);
 
 		// randomly pick a date between those dates
-		$rand_date = mt_rand($from_date, $to_date);
+		$randDate = mt_rand($fromDate, $toDate);
 
 		// display the new date in the value specified
-		return date($options["format_code"], $rand_date);
+		return date($options["formatCode"], $randDate);
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
@@ -37,15 +37,15 @@ class DataType_Date extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
-		if (empty($postdata["dtFromDate_$col"]) || empty($postdata["dtToDate_$col"]) || empty($postdata["dtOption_$col"])) {
+	public function getRowGenerationOptions($postdata, $colNum, $numCols) {
+		if (empty($postdata["dtFromDate_$colNum"]) || empty($postdata["dtToDate_$colNum"]) || empty($postdata["dtOption_$colNum"])) {
 			return false;
 		}
 
 		$options = array(
-			"formatCode" => $postdata["dtOption_$col"],
-			"from"       => $postdata["dtFromDate_$col"],
-			"to"         => $postdata["dtToDate_$col"]
+			"formatCode" => $postdata["dtOption_$colNum"],
+			"from"       => $postdata["dtFromDate_$colNum"],
+			"to"         => $postdata["dtToDate_$colNum"]
 		);
 
 		return $options;

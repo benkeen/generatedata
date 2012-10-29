@@ -5,33 +5,43 @@ class DataType_StreetAddress extends DataTypePlugin {
 	protected $dataTypeName = "Street Address";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 10;
+	private $words;
+	private $validStreetTypes;
+	private $numValidStreetTypes;
+
+
+	public function __construct($runtimeContext) {
+		parent::__construct($runtimeContext);
+		if ($runtimeContext == "generation") {
+			$this->words = Utils::getLipsum();
+			$this->validStreetTypes = explode(",", $this->L["street_types"]);
+			$this->numValidStreetTypes = count($this->validStreetTypes);
+		}
+	}
 
 
 	public function generate($row, $options, $existingRowData) {
-//	  global $g_words, $L;
-		$street_address = "";
-		$street_name = ucwords(gd_generate_random_text_str($g_words, false, "fixed", 1));
-		$valid_street_types = explode(",", $L["StreetAddress_street_types"]);
-		$street_type = $valid_street_types[rand(0, count($valid_street_types)-1)];
+		$streetName = ucwords(Utils::generateRandomTextStr($this->words, false, "fixed", 1));
+		$streetType = $this->validStreetTypes[rand(0, $this->numValidStreetTypes-1)];
 
 		$format = rand(1, 4);
-
+		$streetAddress = "";
 		switch($format) {
 			case "1":
-				$street_address = $L["StreetAddress_po_box"] . " " . rand(100, 999) . ", " . rand(100, 9999) . " $street_name " . $street_type;
+				$streetAddress = $this->L["po_box"] . " " . rand(100, 999) . ", " . rand(100, 9999) . " $streetName " . $streetType;
 				break;
 			case "2":
-				$street_address = rand(100, 999) . "-" . rand(100, 9999) . " $street_name " . $street_type;
+				$streetAddress = rand(100, 999) . "-" . rand(100, 9999) . " $streetName $streetType";
 				break;
 			case "3":
-				$street_address = $L["StreetAddress_ap_num"] . rand(100, 999) . "-" . rand(100, 9999) . " $street_name " . $street_type;
+				$streetAddress = $this->L["ap_num"] . rand(100, 999) . "-" . rand(100, 9999) . " $streetName " . $streetType;
 				break;
 			case "4":
-				$street_address = rand(100, 9999) . " $street_name " . $street_type;
+				$streetAddress = rand(100, 9999) . " $streetName " . $streetType;
 				break;
 		}
 
-		return $street_address;
+		return $streetAddress;
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
@@ -47,5 +57,4 @@ class DataType_StreetAddress extends DataTypePlugin {
 
 		return $info;
 	}
-
 }

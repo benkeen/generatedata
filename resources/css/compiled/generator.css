@@ -156,3 +156,9 @@ li.gdColDelete {
   #gdExportTypeTabs #gdShowSettingsLink a {
     font-size: 7pt;
     color: #3366CC; }
+
+#gdGenerateSection {
+  background-color: #E4FFE4;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #bbbbbb; }

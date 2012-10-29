@@ -26,7 +26,7 @@ define([
 	var _currExportType = null; // populated onload
 	var _subscriptions = {};
 	var _showExportTypeSettings = false;
-	var _codemirror = null;
+	var _codeMirror = null;
 
 
 	/**
@@ -530,9 +530,12 @@ define([
 
 		_showSubtab(2);
 
-		_codemirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
-			mode: "xml"
-		});
+		if (_codeMirror == null) {
+			_codeMirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
+				mode: "xml",
+				readOnly: true
+			});
+		}
 
 		$.ajax({
 			url: "ajax.php",
@@ -542,7 +545,7 @@ define([
 			success: function(response) {
 				if (response.success) {
 //					$("#gdGeneratedData").html(response.content);
-					_codemirror.setValue(response.content);
+					_codeMirror.setValue(response.content);
 				}
 			},
 			error: function(response) {

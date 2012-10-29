@@ -11,5 +11,4 @@
 {/foreach}
 </tr>
 {/foreach}
-
 {if $isLastRow}</table>{/if}
