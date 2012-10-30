@@ -141,7 +141,9 @@ li.gdColDelete {
       background: white;
       background-color: white;
       border: 1px solid #cccccc;
-      border-bottom: 0px; }
+      border-bottom: 0px;
+      line-height: 18px;
+      padding: 0px 15px; }
 #gdExportTypeTabs .gdExportTypeTabSettings {
   clear: both;
   border-bottom: 1px solid #cccccc;

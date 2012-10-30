@@ -371,7 +371,9 @@ li.gdColDelete {
       background: white;
       background-color: white;
       border: 1px solid #cccccc;
-      border-bottom: 0px; }
+      border-bottom: 0px;
+      line-height: 18px;
+      padding: 0px 15px; }
 #gdExportTypeTabs .gdExportTypeTabSettings {
   clear: both;
   border-bottom: 1px solid #cccccc;
@@ -674,6 +676,9 @@ body .CodeMirror-scroll {
     line-height: 16px;
     border-radius: 6px;
     text-align: center; }
+  .gdMessage ul {
+    margin: 0px;
+    padding: 0px 20px; }
 
 .gdNotify {
   background-color: #F2F8FF;

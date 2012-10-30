@@ -14,6 +14,9 @@
     line-height: 16px;
     border-radius: 6px;
     text-align: center; }
+  .gdMessage ul {
+    margin: 0px;
+    padding: 0px 20px; }
 
 .gdNotify {
   background-color: #F2F8FF;
