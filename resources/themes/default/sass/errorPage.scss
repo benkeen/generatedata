@@ -1,0 +1,68 @@
+/* used for the "serious error" page */
+body.gdErrorPage {
+	h1 {
+		margin: 0px 0px 12px 0px;
+		font-weight: bold;
+	}
+	#gdBox {
+		font-family: verdana;
+		font-size: 11pt;
+		line-height: 22px;
+		position: relative;
+		width: 60%;
+		background: #ffffff;
+		border-radius: 6px;
+		padding: 25px;
+		color: rgba(0,0,0,.8);
+		line-height: 1.5;
+		margin: 60px auto;
+		text-align: left;
+		&:before, &:after {
+			z-index: -1;
+			position: absolute;
+			content: "";
+			bottom: 15px;
+			left: 10px;
+			width: 50%;
+			top: 80%;
+			max-width:300px;
+			background: rgba(0, 0, 0, 0.7);
+			box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+			-webkit-transform: rotate(-3deg);
+			-moz-transform: rotate(-3deg);
+			-o-transform: rotate(-3deg);
+			-ms-transform: rotate(-3deg);
+			transform: rotate(-3deg);
+		}
+		&:after {
+			-webkit-transform: rotate(3deg);
+			-moz-transform: rotate(3deg);
+			-o-transform: rotate(3deg);
+			-ms-transform: rotate(3deg);
+			transform: rotate(3deg);
+			right: 10px;
+			left: auto;
+		}
+		p {
+			font-size: 11pt;
+			line-height: 22px;
+			margin-bottom: 12px;
+		}
+	}
+
+	#gdNotFixed {
+		color: #990000;
+		margin-bottom: 8px;
+		font-style: italic;
+	}
+
+	#gdSeriousError {
+		font-size: 8pt;
+		max-height: 160px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		padding: 8px;
+		border: 1px solid #cccccc;
+		background-color: #fbfbfb;
+	}
+}

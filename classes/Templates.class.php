@@ -33,6 +33,7 @@ class Templates {
 
 		Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
 		Core::$smarty->assign("queryString", $_SERVER["QUERY_STRING"]);
+		Core::$smarty->assign("theme", Core::getTheme());
 
 		// now add the custom variables for this template, as defined in $page_vars
 		foreach ($pageVars as $key=>$value) {

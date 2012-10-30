@@ -8,6 +8,11 @@ class DataType_City extends DataTypePlugin {
 	protected $processOrder = 3;
 	private $cities;
 
+	public function __construct($runtimeContext) {
+
+	}
+
+
 	public function generate($row, $placeholderStr, $existingRowData) {
 		global $City_list;
 
@@ -70,7 +75,7 @@ class DataType_City extends DataTypePlugin {
 		$query = mysql_query("
 			SELECT *
 			FROM   {$g_table_prefix}cities
-				");
+		");
 
 		$cities = array();
 		$cities_by_region = array();

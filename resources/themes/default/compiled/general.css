@@ -6,12 +6,10 @@ html {
 body {
   height: 100%;
   margin: 0px;
-  background: #dedede url(../../images/topBackground.jpg) repeat-x;
   text-align: center; }
 
 body, table, td, div, span, div, p {
-  font: 11px Verdana, sans-serif;
-  /* 0.94em */
+  font: 12px "lucida grande";
   line-height: 20px;
   color: #555555; }
 
@@ -19,19 +17,18 @@ table, td, p, div, input, select, optgroup, noscript {
   line-height: 17pt; }
 
 input, select, textarea, option {
-  font: 8pt Verdana, sans-serif;
+  font: 12px "lucida grande";
   color: #222222; }
 
 h1 {
   font-size: 1.6em;
-  font-weight: normal;
-  font-family: verdana; }
+  font-weight: normal; }
 
 h2 {
   font-size: 1.2em;
   color: green;
   font-weight: normal;
-  font-family: verdana; }
+  font-family: inherit; }
 
 h3 {
   margin: 10px 0px 7px; }
@@ -49,8 +46,7 @@ form {
   margin: 0px; }
 
 select, optgroup, option {
-  font-size: 8pt;
-  font-family: verdana; }
+  font: 12px "lucida grande"; }
 
 optgroup {
   font-weight: bold; }

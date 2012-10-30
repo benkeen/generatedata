@@ -1,0 +1,63 @@
+/* general styles */
+html {
+	overflow: -moz-scrollbars-vertical;
+	height: 100%;
+}
+body {
+	height: 100%;
+	margin: 0px;
+	background: #dedede url(../images/topBackground.jpg) repeat-x;
+	text-align: center;
+}
+body, table, td, div, span, div, p {
+	font: 11px Verdana, sans-serif; /* 0.94em */
+	line-height: 20px;
+	color: #555555;
+}
+table, td, p, div, input, select, optgroup, noscript {
+	line-height: 17pt;
+}
+input, select, textarea, option {
+	font: 8pt Verdana, sans-serif;
+	color: #222222;
+}
+h1 {
+	font-size: 1.6em;
+	font-weight: normal;
+	font-family: verdana;
+}
+h2 {
+	font-size: 1.2em;
+	color: green;
+	font-weight: normal;
+	font-family: verdana;
+}
+h3 {
+	margin: 10px 0px 7px;
+}
+p {
+	margin: 6px 0px;
+}
+hr {
+	color: #efefef;
+	background-color: #efefef;
+	height: 1px;
+	border: 0px;
+}
+form {
+	margin: 0px;
+}
+select, optgroup, option {
+	font-size: 8pt;
+	font-family: verdana;
+}
+optgroup {
+	font-weight: bold;
+}
+a:link, nav a:visited {
+	color: #2d99f5;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}

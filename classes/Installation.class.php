@@ -25,6 +25,7 @@ class Installation {
 \$dbPassword     = '$dbPassword';
 \$dbTablePrefix  = '$tablePrefix';
 \$encryptionSalt = '$encryptionSalt';
+\$theme          = 'default';
 END;
 
 		$file = dirname(__FILE__) . "/../settings.php";

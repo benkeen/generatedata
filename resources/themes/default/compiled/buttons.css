@@ -1,0 +1,112 @@
+/* buttons */
+.gdButton {
+  border: 0px;
+  margin: 1px;
+  padding: 2px 6px;
+  font-family: verdana;
+  text-shadow: rgba(64, 64, 64, 0.2) 3px 3px 8px;
+  cursor: pointer; }
+
+.gdButtonType1 {
+  color: white;
+  background-color: #58BB44;
+  font-size: 9pt;
+  font-weight: bold;
+  box-shadow: 2px 3px 3px #666666; }
+
+.gdButtonType2 {
+  color: #666666;
+  background-color: #e9e9e9;
+  font-size: 7pt;
+  border: 1px solid #cccccc; }
+
+.gdButtonType3 {
+  color: #660000;
+  background-color: #e9e9e9;
+  font-size: 7pt;
+  border: 1px solid #cccccc; }
+
+/* from: http://hellohappy.org/css3-buttons/ */
+.gdPrimaryButton {
+  display: block;
+  background-color: #7fbf4d;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+  background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: linear-gradient(top, #7fbf4d, #63a62f);
+  border: 1px solid #63a62f;
+  border-bottom: 1px solid #5b992b;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
+  -moz-box-shadow: inset 0 1px 0 0 #96ca6d;
+  box-shadow: inset 0 1px 0 0 #96ca6d;
+  color: #fff;
+  font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  line-height: 1;
+  padding: 4px 15px 4px;
+  margin: 15px 0px 0px;
+  text-align: center;
+  text-shadow: 0 -1px 0 #4c9021; }
+  .gdPrimaryButton:hover {
+    background-color: #76b347;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
+    background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -moz-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -ms-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -o-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: linear-gradient(top, #76b347, #5e9e2e);
+    box-shadow: inset 0 1px 0 0 #8dbf67;
+    cursor: pointer; }
+  .gdPrimaryButton:active {
+    border: 1px solid #5b992b;
+    border-bottom: 1px solid #538c27;
+    box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee; }
+
+.gdSecondaryButton {
+  display: block;
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: linear-gradient(top, #eeeeee, #cccccc);
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #bbb;
+  border-radius: 3px;
+  color: #333;
+  font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  line-height: 1;
+  padding: 2px 10px 2px;
+  margin: 15px 0px 0px;
+  text-align: center;
+  text-shadow: 0 1px 0 #eee; }
+  .gdSecondaryButton:hover {
+    background-color: #dddddd;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
+    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: linear-gradient(top, #dddddd, #bbbbbb);
+    border: 1px solid #bbb;
+    border-bottom: 1px solid #999;
+    cursor: pointer;
+    text-shadow: 0 1px 0 #ddd;
+    cursor: pointer; }
+  .gdSecondaryButton:active {
+    border: 1px solid #aaa;
+    border-bottom: 1px solid #888;
+    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee; }
+
+#gdGenerateButton {
+  display: inline;
+  font-size: 11pt;
+  margin: 0px; }
+
+#gdBackButton {
+  float: left;
+  margin-right: 4px; }

@@ -1,6 +1,4 @@
 header {
-  background-image: url(../../images/siteHeader.jpg);
-  background-repeat: no-repeat;
   position: relative;
   width: 980px;
   height: 77px;
@@ -19,7 +17,6 @@ section {
   text-align: left;
   padding: 10px 25px 10px 25px;
   clear: left;
-  box-shadow: 2px 4px 3px #999999;
   display: block; }
 
 nav {
@@ -40,7 +37,6 @@ footer {
   border-bottom-right-radius: 24px;
   border-radius-bottomleft: 24px;
   border-radius-bottomright: 24px;
-  box-shadow: 2px 4px 3px #999999;
   display: block; }
   footer a:link, footer a:visited {
     color: #555555;
@@ -77,13 +73,13 @@ header nav {
       padding: 3px 0 0 0;
       float: left;
       width: 120px;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-      border-radius-topleft: 12px;
-      border-radius-topright: 12px;
-      background-color: #efefef;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      border-radius-topleft: 6px;
+      border-radius-topright: 6px;
+      background: linear-gradient(to bottom, #efefef 0%, #e1e1e1 100%) repeat scroll 0 0 transparent;
       height: 22px;
-      color: green; }
+      color: black; }
       #gdTabs ul li a:link, #gdTabs ul li a:visited {
         display: block;
         font-size: 9pt;
@@ -96,7 +92,11 @@ header nav {
       cursor: inherit;
       border-bottom: 0px;
       height: 22px;
-      background-color: white; }
+      background-color: white;
+      background: white;
+      border: 1px solid #cccccc;
+      border-bottom: 0px;
+      line-height: 19px; }
       #gdTabs ul li.gdSelected:hover {
         background-color: white; }
 

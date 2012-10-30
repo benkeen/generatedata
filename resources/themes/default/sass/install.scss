@@ -1,0 +1,141 @@
+/* custom styles for the installation page */
+.gdInstallPage {
+	h1 {
+		border-bottom: 1px solid #efefef;
+		padding-bottom: 8px;
+		margin-bottom: 8px;
+		float: none;
+	}
+	.gdFields {
+		.gdField {
+			float: left;
+			width: 376px;
+			border-bottom: 1px solid #efefef;
+			clear: left;
+		}
+		.gdRadioGroup {
+			input {
+				width: 20px;
+				float: left;
+			}
+			label {
+				width: inherit;
+				float: left;
+			}
+		}
+
+		.gdDisabledRow {
+			label, input {
+				color: #cccccc;
+			}
+		}
+		label {
+			float: left;
+			width: 160px;
+			color: #777777;
+			margin-top: 2px;
+		}
+		input {
+			float: left;
+			width: 210px;
+			margin-top: 2px;
+		}
+		div {
+			margin-top: 2px;
+		}
+	}
+	#dbTablePrefix {
+		width: 60px;
+	}
+	input.pwdField {
+		width: 100px;
+	}
+	.doc label {
+		float: left;
+		width: 160px;
+		color: #777777;
+		margin-top: 2px;
+		clear: right;
+	}
+	.doc>div {
+		clear: both;
+	}
+	.doc div>div {
+		float: right;
+		width: 770px;
+	}
+	#gdInstallNav {
+		float: left;
+		width: 200px;
+		padding-top: 6px;
+
+		ol {
+			margin: 0px;
+			padding: 0px 0px 0px 20px;
+		}
+		ol li {
+			padding-left: 0px;
+			color: #cccccc;
+		}
+		ol li.selected {
+			font-weight: bold;
+			color: green;
+		}
+		ol li.complete {
+			color: #999999;
+		}
+	}
+	.gdInstallSection {
+		float: right;
+		width: 725px;
+		p {
+			margin-bottom: 12px;
+		}
+		button {
+			margin-bottom: 10px;
+		}
+	}
+	.gdAdminAccountHeading {
+		font-weight: bold;
+	}
+	.gdInstallTabMessage {
+		border-radius: 5px;
+		padding: 3px 10px 3px 54px;
+		margin-bottom: 10px;
+		text-shadow: 0 1px 0 #fff;
+		display: none;
+		min-height: 36px;
+		position: relative;
+
+		.gdIcon {
+			width: 32px;
+			height: 32px;
+			position: absolute;
+			left: 12px;
+			top: 10px;
+		}
+		h3 {
+			font-weight: bold;
+			display: inline;
+			font-size: 8pt;
+		}
+		.gdResponse {
+			color: #000000;
+		}
+	}
+
+	.gdInstallError {
+		background-color: #ffe1e1;
+		h3 {
+			color: #cc0000;
+		}
+		.gdIcon {
+			background-image: url(../images/stop.png);
+		}
+	}
+
+	.gdInstallSuccess .gdIcon {
+		background-image: url(../images/info.png);
+	}
+
+}
