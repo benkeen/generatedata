@@ -232,6 +232,10 @@ class AjaxRequest {
 
 			case "generate":
 				Core::init("generation");
+
+//print_r(Core::$countryPlugins);
+//exit;
+
 				$gen = new Generator($_POST);
 				$response = $gen->generate();
 				$this->response["success"] = $response["success"];

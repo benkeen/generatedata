@@ -70,9 +70,9 @@ class Core {
 		}
 
 		if ($runtimeContext == "ui" || $runtimeContext == "generation") {
-			self::initDataTypes($runtimeContext);
-			self::initExportTypes($runtimeContext);
 			self::initCountries();
+			self::initExportTypes($runtimeContext);
+			self::initDataTypes($runtimeContext);
 		}
 	}
 

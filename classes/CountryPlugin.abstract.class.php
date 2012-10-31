@@ -44,4 +44,8 @@ abstract class CountryPlugin {
 	final public function getRegionNames() {
 		return $this->regionNames;
 	}
+
+	final public function getZipFormat() {
+		return $this->zipFormat;
+	}
 }
