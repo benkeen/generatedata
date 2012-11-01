@@ -11,11 +11,7 @@ class DataType_City extends DataTypePlugin {
 
 
 	public function __construct($runtimeContext) {
-		// call the parent constructor (populates $L)
 		parent::__construct();
-
-		// if we're in the process of generating data, populate the private vars with the first and last names
-		// needed for data generation
 		if ($runtimeContext == "generation") {
 			self::initCityList();
 		}
@@ -27,6 +23,7 @@ class DataType_City extends DataTypePlugin {
 		// see if this row has a region [N.B. This is something that could be calculated ONCE on the first row]
 		$rowRegionInfo = array();
 		$rowCountryInfo = array();
+
 		/*
 		while (list($key, $info) = each($existing_row_data)) {
 			if ($info["data_type_folder"] == "StateProvince") {

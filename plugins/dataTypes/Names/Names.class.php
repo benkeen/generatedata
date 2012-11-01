@@ -22,11 +22,7 @@ class DataType_Names extends DataTypePlugin {
 	 * @param string $runtimeContext "generation" or "ui"
 	 */
 	public function __construct($runtimeContext) {
-		// call the parent constructor (populates $L)
 		parent::__construct();
-
-		// if we're in the process of generating data, populate the private vars with the first and last names
-		// needed for data generation
 		if ($runtimeContext == "generation") {
 			self::initFirstNames();
 			self::initLastNames();

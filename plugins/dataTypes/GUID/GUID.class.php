@@ -5,33 +5,32 @@ class DataType_GUID extends DataTypePlugin {
 	protected $dataTypeName = "GUID";
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 50;
-
 	private $generatedGUIDs = array();
 	private $helpDialogWidth = 510;
 
 
 	public function generate($row, $options, $existingRowData) {
-//		global $GUID_generated;
-
-		$guid = gd_generate_random_alphanumeric_str("HHHHHHHH-HHHH-HHHH-HHHH-HHHH-HHHHHHHH");
+		$placeholderStr = "HHHHHHHH-HHHH-HHHH-HHHH-HHHH-HHHHHHHH";
+		$guid = Utils::generateRandomAlphanumericStr($placeholderStr);
 
 		// pretty sodding unlikely, but just in case!
-		while (in_array($guid, $GUID_generated))
-			$guid = gd_generate_random_alphanumeric_str("HHHHHHHH-HHHH-HHHH-HHHH-HHHH-HHHHHHHH");
+		while (in_array($guid, $this->generatedGUIDs)) {
+			$guid = Utils::generateRandomAlphanumericStr($placeholderStr);
+		}
+		$this->generatedGUIDs[] = $guid;
 
-		$GUID_generated[] = $guid;
 		return $guid;
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
 		$info = "";
-		switch ($export_type)
-		{
+		switch ($exportType) {
 			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
+				if ($options == "MySQL" || $options == "SQLite") {
 					$info = "varchar(36) NOT NULL";
-				else
+				} else {
 					$info = "varchar2(36) NOT NULL";
+				}
 				break;
 		}
 
@@ -41,7 +40,7 @@ class DataType_GUID extends DataTypePlugin {
 	public function getHelpDialogInfo() {
 		return array(
 			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => "<p>{$this->L["GUID_help"]}</p>"
+			"content"     => "<p>{$this->L["help"]}</p>"
 		);
 	}
 }

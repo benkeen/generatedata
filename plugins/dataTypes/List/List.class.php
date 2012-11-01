@@ -9,13 +9,37 @@ class DataType_List extends DataTypePlugin {
 
 
 	public function generate($row, $options, $existingRowData) {
+		$allElements = explode("|", $options["values"]);
+
+		$val = "";
+		if ($options["list_type"] == "Exactly") {
+			$val = implode(", ", gd_return_random_subset($all_elements, $options["number"]));
+		} else {
+			// at MOST. So randomly calculate a number up to the num specified:
+			$num_items = rand(0, $options["number"]);
+			$val = implode(", ", gd_return_random_subset($all_elements, $num_items));
+		}
+
+		return $val;
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-	}
 
 	public function getRowGenerationOptions($postdata, $column, $numCols) {
+		if (empty($postdata["option_$col"])) {
+			return false;
+		}
+
+		$list_type = $postdata["list_type_{$col}"]; // Exactly or AtMost
+		$number    = ($list_type == "Exactly") ? $postdata["exactly_{$col}"] : $postdata["at_most_{$col}"];
+		$options = array(
+			"list_type" => $list_type,
+			"number"    => $number,
+			"values"    => $postdata["option_{$col}"]
+		);
+
+		return $options;
 	}
+
 
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
@@ -62,5 +86,20 @@ END;
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => "<p>{$this->L["help"]}</p>"
 		);
+	}
+
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($export_type) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite") {
+					$info = "varchar(255) default NULL";
+				} else if ($options == "Oracle") {
+					$info = "varchar2(255) default NULL";
+				}
+				break;
+		}
+
+		return $info;
 	}
 }
