@@ -1,21 +1,23 @@
 header {
 	position: relative;
-	width: 980px;
-	height: 77px;
+	width: 930px;
+	height: 93px;
 	margin: 0 auto;
 	text-align: center;
 	margin-bottom: 8px;
+	padding: 1em;
 	display: block;
+	/*border-top: 5px solid #4B5C66;*/
 }
 section {
-	width: 500px;
-	border-top: none;
+	/*width: 500px;*/
+	border-top: 2px solid #70B32D;
 	border-bottom: none;
 	background-color: white;
 	width: 930px;
 	margin: 0 auto;
 	text-align: left;
-	padding: 10px 25px 10px 25px;
+	padding: 10px 0px;
 	clear: left;
 	display: block;
 }
@@ -28,16 +30,16 @@ nav {
 	}
 }
 footer {
-	width: 980px;
+	width: 930px;
 	margin: 0 auto 10px;
 	height: 20px;
 	font-size: 7pt;
-	background-color: #ffffff;
-	border-top: none;
-	border-bottom-left-radius: 24px;
-	border-bottom-right-radius: 24px;
-	border-radius-bottomleft: 24px;
-	border-radius-bottomright: 24px;
+	/*background-color: #eeeeee;*/
+	/*border-top: none;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-radius-bottomleft: 3px;
+	border-radius-bottomright: 3px;*/
 	display: block;
 
 	a:link, a:visited {
@@ -53,63 +55,80 @@ footer {
 
 header nav {
 	position: absolute;
-	right: 0px;
-	top: 20px;
-
+	right: 1em;
+	top: 1em;
+	
 	a:link, a:visited {
 		text-decoration: none;
+		color: #CDD0D5;
+		text-decoration: none;
+		-webkit-transition: color .2s;
+		-moz-transition: color .2s;
+		-o-transition: color .2s;
+		transition: color .2s;
+		
 	}
 	a:hover {
-		color: #990000;
-		border-bottom: 1px solid #990000;
+		color: #70B32D;
+		-webkit-transition: color .2s;
+		-moz-transition: color .2s;
+		-o-transition: color .2s;
+		transition: color .2s;
 	}
 }
 
 #gdTabs {
-	width: 980px;
+	width: 930px;
 	margin: 0 auto;
 	position: relative;
+	
 	ul {
 		list-style: none;
 		margin: 0px;
 		padding: 0px;
+		font-size: 15px;
+		line-height: 15px;
 		li {
-			color: #222222;
-			font-size: 9pt;
-			text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);
+			color: #CDD0D5;
+			/*text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);*/
 			cursor: pointer;
-			margin: 2px 2px 0 0;
-			padding: 3px 0 0 0;
+			margin: 0;
+			padding: 0;
 			float: left;
-			width: 120px;
-			border-top-left-radius: 6px;
-			border-top-right-radius: 6px;
-			border-radius-topleft: 6px;
-			border-radius-topright: 6px;
+			width: 8em;
 			background: linear-gradient(to bottom, #EFEFEF 0%, #E1E1E1 100%) repeat scroll 0 0 transparent;
 			height: 22px;
-			color: black;
-
+			text-align: left;
+			
 			a:link, a:visited {
 				display:block;
-				font-size: 9pt;
-				text-shadow: rgba(64, 64, 64, 0.2) 3px 3px 8px;
-				color: green;
+				
+				/*text-shadow: rgba(64, 64, 64, 0.2) 3px 3px 8px;*/
+				color: #CDD0D5;
 				text-decoration: none;
+				-webkit-transition: color .2s;
+				-moz-transition: color .2s;
+				-o-transition: color .2s;
+				transition: color .2s;
 			}
 			&:hover {
-				background-color: #f5faf6;
+				color: #70B32D;
+				-webkit-transition: color .2s;
+				-moz-transition: color .2s;
+				-o-transition: color .2s;
+				transition: color .2s;
 			}
 		}
 		li.gdSelected {
+			color: #70B32D;
 			cursor: inherit;
 			border-bottom: 0px;
 			height: 22px;
 			background-color: white;
 			background: white;
-			border: 1px solid #cccccc;
+			/*border: 1px solid #ffffff;*/
 			border-bottom: 0px;
-			line-height: 19px;
+			line-height: 15px;
 			&:hover {
 				background-color: white;
 			}

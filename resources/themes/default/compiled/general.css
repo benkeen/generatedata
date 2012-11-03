@@ -6,39 +6,46 @@ html {
 body {
   height: 100%;
   margin: 0px;
-  text-align: center; }
+  text-align: center;
+  /*background-color: #F6F8FA;*/
+  border-top: 5px solid #4B5C66; }
 
 body, table, td, div, span, div, p {
-  font: 12px "lucida grande";
-  line-height: 20px;
-  color: #555555; }
+  font: 12px/1.35 "lucida grande", tahoma, verdana, arial, sans-serif;
+  color: #4B5C66; }
 
 table, td, p, div, input, select, optgroup, noscript {
-  line-height: 17pt; }
+  line-height: 15px; }
 
 input, select, textarea, option {
-  font: 12px "lucida grande";
+  font: 12px/1.35 "lucida grande", tahoma, verdana, arial, sans-serif;
   color: #222222; }
 
 h1 {
-  font-size: 1.6em;
-  font-weight: normal; }
+  color: #4B5C66;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+  font: normal normal 20px/26px "lucida grande", tahoma, verdana, arial, sans-serif; }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 0.81em;
   color: green;
   font-weight: normal;
   font-family: inherit; }
 
 h3 {
-  margin: 10px 0px 7px; }
+  margin: 2em 0px 1em;
+  font-family: sans-serif;
+  font-variant: normal;
+  text-transform: uppercase;
+  font-size: 12px; }
 
 p {
   margin: 6px 0px; }
 
 hr {
   color: #efefef;
-  background-color: #efefef;
+  background-color: #E1E6E9;
   height: 1px;
   border: 0px; }
 
@@ -46,7 +53,7 @@ form {
   margin: 0px; }
 
 select, optgroup, option {
-  font: 12px "lucida grande"; }
+  font: 12px 'lucida grande', tahoma, verdana, arial, sans-serif; }
 
 optgroup {
   font-weight: bold; }
