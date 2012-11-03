@@ -34,7 +34,7 @@ div.gdClear {
 	background-color: #ffffcc;
 	padding:15px;
 	font-size: 10pt;
-	border-radius: 5px;
+	border-radius: 3px;
 	margin: 10px 0px;
 	text-shadow: 0 1px 0 #fff;
 	box-shadow: 2px 4px 5px #666666;
@@ -68,10 +68,10 @@ body .ui-widget-overlay {
 body .ui-widget-shadow {
 	margin: -8px 0 0 -8px; padding: 8px; background: #333333 url(images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
 	opacity: .30;filter:Alpha(Opacity=30);
-	-moz-border-radius: 8px;
-	-khtml-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 
@@ -87,8 +87,8 @@ body .chzn-container-multi .chzn-choices .search-field .default {
 body .chzn-container-multi .chzn-choices {
 	background-image: none;
 	padding-bottom: 2px;
-	border: 1px solid #cccccc;
-	background-color: #fafafa;
+	border: 1px solid #E1E6E9;
+	background-color: #F0F2F4;
 }
 
 /* plugin installation */
@@ -96,7 +96,7 @@ body .chzn-container-multi .chzn-choices {
 	&>div {
 		padding: 4px 8px 8px;
 		background-color: #f2f2f2;
-		border-radius: 8px;
+		border-radius: 3px;
 		float: left;
 		width: 30%;
 		margin-right: 10px;
