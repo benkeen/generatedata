@@ -6,15 +6,45 @@ class DataType_TextRandom extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $jsModules = array("TextRandom.js");
 	private $helpDialogWidth = 370;
+	private $words;
 
+	public function __construct($runtimeContext) {
+		parent::__construct($runtimeContext);
+		if ($runtimeContext == "generation") {
+			$this->words = Utils::getLipsum();
+		}
+	}
 
 	public function generate($row, $options, $existingRowData) {
+		return Utils::generateRandomTextStr($this->words, $options["startsWithLipsum"], "range", $options["numWordsMin"], $options["numWordsMax"]);
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($exportType) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite") {
+					$info = "TEXT default NULL";
+				} else if ($options == "Oracle") {
+        			$info = "BLOB default NULL";
+				}
+  				break;
+		}
+		return $info;
 	}
 
 	public function getRowGenerationOptions($postdata, $column, $numCols) {
+		if (empty($postdata["dtNumWordsMin_$column"]) || empty($postdata["dtNumWordsMin_$column"])) {
+			return false;
+		}
+
+		$options = array(
+			"numWordsMin"      => $postdata["dtNumWordsMin_$column"],
+			"numWordsMax"      => $postdata["dtNumWordsMax_$column"],
+			"startsWithLipsum" => isset($postdata["dtStartsWithLipsum_$column"]) ? true : false
+		);
+
+		return $options;
 	}
 
 	public function getOptionsColumnHTML() {

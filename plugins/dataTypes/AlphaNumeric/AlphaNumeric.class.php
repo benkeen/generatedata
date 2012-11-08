@@ -21,21 +21,11 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 		return Utils::generateRandomAlphanumericStr($chosenFormat);
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				$info = "varchar(255)";
-				break;
-		}
-		return $info;
-	}
-
-	public function getRowGenerationOptions($postdata, $col, $num_cols) {
-		if (!isset($postdata["option_$col"]) || empty($postdata["option_$col"])) {
+	public function getRowGenerationOptions($postdata, $column, $numCols) {
+		if (!isset($postdata["dtOption_$column"]) || empty($postdata["dtOption_$column"])) {
 			return false;
 		}
-		return $postdata["option_$col"];
+		return $postdata["dtOption_$column"];
 	}
 
 	public function getExampleColumnHTML() {
@@ -107,4 +97,15 @@ EOF;
 			"content"     => $content
 		);
 	}
+
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($exportType) {
+			case "sql":
+				$info = "varchar(255)";
+				break;
+		}
+		return $info;
+	}
+
 }

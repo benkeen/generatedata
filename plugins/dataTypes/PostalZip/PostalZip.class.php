@@ -6,6 +6,7 @@ class DataType_PostalZip extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $processOrder = 2;
 	protected $jsModules = array("PostalZip.js");
+
 	private $helpDialogWidth = 370;
 	private $zipFormats;
 
@@ -37,7 +38,6 @@ class DataType_PostalZip extends DataTypePlugin {
 		$randomZip = "";
 		if (empty($rowCountryInfo)) {
 			$randCountry = $options[rand(0, count($options)-1)];
-
 			$randomZip = $this->convert($this->formats[$randCountry]);
 		} else {
 			// if this country is one of the formats that was selected, generate it in that format -

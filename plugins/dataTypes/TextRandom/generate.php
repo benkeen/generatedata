@@ -5,21 +5,6 @@
 $TextRandom_process_order = 1;
 
 
-function TextRandom_get_template_options($postdata, $col, $num_cols)
-{
-  if (empty($postdata["numWordsMin_$col"]) || empty($postdata["numWordsMin_$col"]))
-    return false;
-
-  $options = array(
-    "numWordsMin"      => $postdata["numWordsMin_$col"],
-    "numWordsMax"      => $postdata["numWordsMax_$col"],
-    "startsWithLipsum" => isset($postdata["startsWithLipsum_$col"]) ? true : false
-  );
-
-  return $options;
-}
-
-
 function TextRandom_generate_item($row, $options, $existing_row_data)
 {
   global $g_words;

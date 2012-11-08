@@ -7,33 +7,24 @@ class DataType_TextFixed extends DataTypePlugin {
 	protected $jsModules = array("TextFixed.js");
 
 	private $helpDialogWidth = 370;
+	private $words;
 
-
-	public function generate($row, $options, $existingRowData) {
-	// global $g_words;
-		return gd_generate_random_text_str($g_words, false, "fixed", $options);
+	public function __construct($runtimeContext) {
+		parent::__construct($runtimeContext);
+		if ($runtimeContext == "generation") {
+			$this->words = Utils::getLipsum();
+		}
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($export_type)
-		{
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
-					$info = "TEXT default NULL";
-				else if ($options == "Oracle")
-					$info = "BLOB default NULL";
-				break;
-		}
-
-		return $info;
+	public function generate($row, $options, $existingRowData) {
+		return Utils::generateRandomTextStr($this->words, false, "fixed", $options);
 	}
 
 	public function getRowGenerationOptions($postdata, $column, $numCols) {
-		if (empty($postdata["numWords_$col"]))
+		if (empty($postdata["dtNumWords_$column"])) {
 			return false;
-
-		return $postdata["numWords_$col"];
+		}
+		return $postdata["dtNumWords_$column"];
 	}
 
 	public function getOptionsColumnHTML() {
@@ -50,4 +41,21 @@ END;
 			"content"     => "<p>{$this->L["TextFixed_help"]}</p>"
 		);
 	}
+
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($exportType) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite") {
+					$info = "TEXT default NULL";
+				} else if ($options == "Oracle") {
+					$info = "BLOB default NULL";
+				}
+				break;
+		}
+
+		return $info;
+	}
+
+
 }

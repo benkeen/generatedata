@@ -15,13 +15,13 @@ class DataType_NumberRange extends DataTypePlugin {
 
 	public function getExportTypeInfo($exportType, $options) {
 		$info = "";
-		switch ($export_type)
-		{
+		switch ($exportType) {
 			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
+				if ($options == "MySQL" || $options == "SQLite") {
 					$info = "mediumint default NULL";
-				else if ($options == "Oracle")
+				} else if ($options == "Oracle") {
 					$info = "varchar2(50) default NULL";
+				}
 				break;
 		}
 
@@ -29,17 +29,18 @@ class DataType_NumberRange extends DataTypePlugin {
 	}
 
 	public function getRowGenerationOptions($postdata, $column, $numCols) {
-		if ((empty($postdata["dtNumRangeMin_$col"]) && $postdata["dtNumRangeMin_$col"] !== "0") ||
-				(empty($postdata["dtNumRangeMax_$col"]) && $postdata["dtNumRangeMax_$col"] !== "0"))
+		if ((empty($postdata["dtNumRangeMin_$column"]) && $postdata["dtNumRangeMin_$column"] !== "0") ||
+			(empty($postdata["dtNumRangeMax_$column"]) && $postdata["dtNumRangeMax_$column"] !== "0")) {
 			return false;
+		}
 
-		if (!is_numeric($postdata["dtNumRangeMin_$col"]) || !is_numeric($postdata["dtNumRangeMax_$col"]))
+		if (!is_numeric($postdata["dtNumRangeMin_$column"]) || !is_numeric($postdata["dtNumRangeMax_$column"])) {
 			return false;
-
+		}
 
 		$options = array(
-			"min" => $postdata["dtNumRangeMin_$col"],
-			"max" => $postdata["dtNumRangeMax_$col"]
+			"min" => $postdata["dtNumRangeMin_$column"],
+			"max" => $postdata["dtNumRangeMax_$column"]
 		);
 
 		return $options;

@@ -1,7 +1,6 @@
 <?php
 
 require_once("library.php");
-
 Core::init();
 
 // if the script is already installed, redirect them to the index page.

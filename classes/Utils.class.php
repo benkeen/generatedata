@@ -281,27 +281,27 @@ class Utils {
 	 * @param integer $min     - the minimum # of words to return OR the total number
 	 * @param integer $max     - the max # of words to return (or null for "fixed" type)
 	 */
-	public function generateRandomTextStr($words, $starts_with_lipsum, $type, $min, $max = "") {
+	public function generateRandomTextStr($words, $startsWithLipsum, $type, $min, $max = "") {
 		// determine the number of words to return
 		$index = 0;
 		if ($type == "fixed") {
-			$num_words = $min;
+			$numWords = $min;
 		} else if ($type == "range") {
-			$num_words = rand($min, $max);
+			$numWords = rand($min, $max);
 		}
 
-		if ($num_words > count($words)) {
-			$num_words = count($words);
+		if ($numWords > count($words)) {
+			$numWords = count($words);
 		}
 
 		// determine the offset
 		$offset = 0;
-		if (!$starts_with_lipsum) {
-			$offset = rand(2, count($words) - ($num_words + 1));
+		if (!$startsWithLipsum) {
+			$offset = rand(2, count($words) - ($numWords + 1));
 		}
-		$word_array = array_slice($words, $offset, $num_words);
+		$wordArray = array_slice($words, $offset, $numWords);
 
-		return join(" ", $word_array);
+		return join(" ", $wordArray);
 	}
 
 
