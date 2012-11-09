@@ -22,7 +22,6 @@ class Core {
 	private static $defaultLanguageFile = "en";
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array("canada", "united_states");
-	private static $theme;
 
 	// non-overidable settings
 	private static $version = "3.0.0";
@@ -93,7 +92,6 @@ class Core {
 			self::$dbTablePrefix = (isset($dbTablePrefix)) ? $dbTablePrefix : null;
 			self::$errorReporting = (isset($errorReporting)) ? $errorReporting : null;
 			self::$encryptionSalt = (isset($encryptionSalt)) ? $encryptionSalt : null;
-			self::$theme = $theme;
 
 			if (isset($maxGeneratedRows)) {
 				self::$maxGeneratedRows = maxGeneratedRows;
@@ -218,9 +216,5 @@ class Core {
 
 	public function getMinimumPHPVersion() {
 		return self::$minimumPHPVersion;
-	}
-
-	public function getTheme() {
-		return self::$theme;
 	}
 }

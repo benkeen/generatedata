@@ -11,13 +11,18 @@ define([
 ], function(utils) {
 
 	$(function() {
-		$(".gdNoJS").hide();
 		$(".gdHideNoJS").show();
 		$("#gdTabs ul li").each(function() {
 			var tabNum = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
 			$(this).bind("click", function(e, a) {
 				utils.selectTab(tabNum);
 				window.location = window.location.href.split("#")[0] + "#t" + tabNum;
+
+				// workaround for Chosen bug
+				if (tabNum == 1) {
+					$("#gdCountries_chzn, #gdCountries_chzn .chzn-drop").css({ width: "100%" });
+
+				}
 			});
 		});
 

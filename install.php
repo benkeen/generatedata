@@ -18,6 +18,7 @@ if (Core::checkSettingsFileExists()) {
 }
 
 $params = array();
+$params["theme"] = "default";
 $params["randomPassword"] = Utils::generateRandomAlphanumericStr("CVxxCxV");
 $params["tablePrefix"]    = Core::getDbTablePrefix();
 $params["currentPage"]    = $currentPage;

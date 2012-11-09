@@ -156,7 +156,7 @@
 	<div class="gdInstallSection{if $currentPage != 5} hidden{/if}" id="page5">
 
 		<p>
-			The Data Generator has been succesfully installed! Click the button below to go to the script.
+			The Data Generator has been successfully installed! Click the button below to go to the script.
 		</p>
 
 		<form action="./">

@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
-	<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
+	<link rel="stylesheet" type="text/css" href="resources/themes/default/compiled/styles.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui-1.8.23.custom.css" />
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/chosen.jquery.min.js"></script>
@@ -28,7 +28,8 @@
 		</ul>
 	</nav>
 	<section>
-		<p class="gdNoJS">{$L.no_js}</p>
+		<noscript><p>{$L.no_js}</p></noscript>
+
 		<div id="gdContent" class="gdHideNoJS">
 			<ul class="gdTabContent">
 				<li id="gdTab1Content">{include file="install.tab1.tpl"}</li>

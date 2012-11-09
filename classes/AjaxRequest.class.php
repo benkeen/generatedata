@@ -223,12 +223,6 @@ class AjaxRequest {
 				break;
 
 */
-			case "updateSettings":
-				Core::init();
-				list($success, $message) = Settings::updateSettings($post);
-				$this->response["success"] = $success;
-				$this->response["message"] = $message;
-				break;
 
 			case "generate":
 				Core::init("generation");

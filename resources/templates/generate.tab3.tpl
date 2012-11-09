@@ -1,10 +1,11 @@
-<div id="settingsTabMessage" class="gdMessage gdNotify gdMarginTop">
+<div id="settingsTabMessage" class="gdMessage {if $success}gdNotify{elseif !$success}gdError{/if} gdMarginTop" {if $message}style="display:block"{/if}>
 	<a href="#" title="Hide" class="gdMessageClose">X</a>
-	<p></p>
+	<p>{$message}</p>
 </div>
 
-<form action="index.php#t2" method="post" id="gdSettingsForm">
+<form action="./#t3" method="post" id="gdSettingsForm">
 
+<!--
 	<h3>Account Settings</h3>
 
 	<p>
@@ -15,6 +16,7 @@
 			the data set, the longer generation can take. This setting controls the size of each chunk that's generated.
 		</div>
 	</p>
+-->
 
 	<h3>Plugins</h3>
 
@@ -40,6 +42,16 @@
 			</div>
 		</div>
 		<div class="gdClear"></div>
+	</div>
+
+	<h3>Misc</h3>
+
+	<div>
+		Theme
+		<input type="radio" name="theme" value="default" id="gdTheme1" {if $settings.theme == "default"}checked="checked"{/if} />
+			<label for="gdTheme1">Default</label>
+		<input type="radio" name="theme" value="classic" id="gdTheme2" {if $settings.theme == "classic"}checked="checked"{/if} />
+			<label for="gdTheme2">Classic</label>
 	</div>
 
 	<h3>Developer</h3>

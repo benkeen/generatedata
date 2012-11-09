@@ -81,7 +81,7 @@ define([
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); return false; });
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
-		$("#gdSettingsForm").bind("submit", _updateSettings);
+		//$("#gdSettingsForm").bind("submit", _updateSettings);
 
 		_initExportTypeTab();
 		_updateCountryChoice();
@@ -627,6 +627,8 @@ define([
 			},
 		});
 	}
+
+	// utils.updateMessageBlock($("#settingsTabMessage"), "error");
 
 	var _multiDimArrayContains = function(target, arr) {
 		for (var i=0; i<arr.length; i++) {

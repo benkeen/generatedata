@@ -34,7 +34,6 @@
 			<img src="images/document_save.png" style="margin-top: 6px" />
 		</div>
 		-->
-
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
@@ -44,7 +43,7 @@
 		</ul>
 	</nav>
 	<section>
-		<p class="gdNoJS">{$L.no_js}</p>
+		<noscript><p>{$L.no_js}</p></noscript>
 		<div id="gdContent" class="gdHideNoJS">
 			<ul class="gdTabContent">
 				<li id="gdTab1Content">{include file="generate.tab1.tpl"}</li>

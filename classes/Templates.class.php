@@ -33,7 +33,11 @@ class Templates {
 
 		Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
 		Core::$smarty->assign("queryString", $_SERVER["QUERY_STRING"]);
-		Core::$smarty->assign("theme", Core::getTheme());
+
+		// this sucks. Needs to cache the DB value
+		$theme = isset($pageVars["theme"]) ? $pageVars["theme"] : Settings::getSetting("theme");
+
+		Core::$smarty->assign("theme", $theme);
 
 		// now add the custom variables for this template, as defined in $page_vars
 		foreach ($pageVars as $key=>$value) {
@@ -108,7 +112,7 @@ class Templates {
 	<html>
 	<head>
 		<title>Things just ain't right.</title>
-		<link rel="stylesheet" type="text/css" href="resources/css/compiled/styles.css">
+		<link rel="stylesheet" type="text/css" href="resources/themes/default/css/compiled/styles.css">
 		<script src="scripts/libs/jquery.js"></script>
 		<script>
 		$(function() {
@@ -129,5 +133,4 @@ class Templates {
 	</html>
 END;
 	}
-
 }

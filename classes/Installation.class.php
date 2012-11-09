@@ -25,7 +25,6 @@ class Installation {
 \$dbPassword     = '$dbPassword';
 \$dbTablePrefix  = '$tablePrefix';
 \$encryptionSalt = '$encryptionSalt';
-\$theme          = 'default';
 END;
 
 		$file = dirname(__FILE__) . "/../settings.php";
@@ -132,7 +131,8 @@ END;
 				('installationComplete', 'no'),
 				('installedDataTypes', ''),
 				('installedExportTypes', ''),
-				('installedCountries', '')
+				('installedCountries', ''),
+				('theme', 'default')
 		";
 		$queries[] = "
 			CREATE TABLE {$prefix}user_accounts (

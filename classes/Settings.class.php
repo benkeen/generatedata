@@ -70,12 +70,13 @@ class Settings {
 		}
 
 		$settings = array(
-			"consoleWarnings"         => ($post["consoleWarnings"] == "true") ? "enabled" : "",
-			"consoleEventsPublish"    => ($post["consoleEventsPublish"] == "true") ? "enabled" : "",
-			"consoleEventsSubscribe"  => ($post["consoleEventsSubscribe"] == "true") ? "enabled" : "",
-			"consoleCoreEvents"       => ($post["consoleCoreEvents"] == "true") ? "enabled" : "",
+			"consoleWarnings"         => ($post["consoleWarnings"] == "enabled") ? "enabled" : "",
+			"consoleEventsPublish"    => ($post["consoleEventsPublish"] == "enabled") ? "enabled" : "",
+			"consoleEventsSubscribe"  => ($post["consoleEventsSubscribe"] == "enabled") ? "enabled" : "",
+			"consoleCoreEvents"       => ($post["consoleCoreEvents"] == "enabled") ? "enabled" : "",
 			"consoleEventsDataTypePlugins"   => implode(",", $post["consoleEventsDataTypePlugins"]),
-			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"])
+			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"]),
+		    "theme" => $post["theme"]
 		);
 
 		$prefix = Core::getDbTablePrefix();
