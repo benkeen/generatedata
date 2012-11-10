@@ -12,7 +12,7 @@ class DataType_LatLng extends DataTypePlugin {
 
 
 	public function __construct($runtimeContext) {
-		parent::__construct();
+		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			self::initVars();
 		}
@@ -23,7 +23,7 @@ class DataType_LatLng extends DataTypePlugin {
 	 *   Lat: -90 -> + 90
 	 *   Lng: -180 -> +180
 	 */
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 		$info = array();
 		if ($options["lat"] && $options["lng"]) {
 			$info[] = (mt_rand($this->cachedMath["minLatCalc"], $this->cachedMath["maxLatCalc"]) / $this->cachedMath["divisor"]);
@@ -38,7 +38,7 @@ class DataType_LatLng extends DataTypePlugin {
 	}
 
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		if (!isset($postdata["dtLatLng_Lat$column"]) && empty($postdata["dtLatLng_Lng$column"])) {
 			return false;
 		}

@@ -14,7 +14,7 @@ class DataType_PostalZip extends DataTypePlugin {
 	//$g_countries = gd_get_configurable_countries();
 
 	public function __construct($runtimeContext) {
-		parent::__construct();
+		parent::__construct($runtimeContext);
 
 		// if we're in the process of generating data, populate the private vars with the first and last names
 		// needed for data generation
@@ -24,7 +24,7 @@ class DataType_PostalZip extends DataTypePlugin {
 	}
 
 
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 		// track the country info (this finds the FIRST country field listed)
 		$rowCountryInfo = array();
 		/*while (list($key, $info) = each($existing_row_data)) {
@@ -55,7 +55,7 @@ class DataType_PostalZip extends DataTypePlugin {
 		return $randomZip;
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		// dtCountryIncludeZip_canada_1
 
 		$countries = $postdata["gdCountries"];

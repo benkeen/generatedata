@@ -57,6 +57,7 @@ class CountryPluginHelper {
 		return $countryPlugins;
 	}
 
+
 	private function instantiateCountryPlugin($baseFolder, $countryPluginFolder) {
 		$countryPluginClassFileName = "{$countryPluginFolder}.class.php";
 		if (!is_file("$baseFolder/$countryPluginFolder/$countryPluginClassFileName")) {

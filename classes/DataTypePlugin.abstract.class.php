@@ -46,6 +46,8 @@ abstract class DataTypePlugin {
 	/**
 	 * This is the main workhorse function: it does the work of actually generating a random data snippet.
 	 *
+	 * @param object $generator the main Generator object, containing a number of functions that can be utilized
+	 *   by
 	 * @param integer $rowNum the row number in the generated content (indexed from 1)
 	 * @param mixed $options whatever options were passed for this Data Type, i.e. whatever information was returned
 	 *   - and in whatever format - by getRowGenerationOptions(). By default, this is set to null.
@@ -53,7 +55,7 @@ abstract class DataTypePlugin {
 	 *   fields that have already been processed.
 	 * @return string/int/primitive
 	 */
-	abstract function generate($rowNum, $options, $existingRowData);
+	abstract function generate($generator, $rowNum, $options, $existingRowData);
 
 	/**
 	 * @param string $export_type e.g. "sql"
@@ -147,7 +149,7 @@ abstract class DataTypePlugin {
 	 *        - anything else. This can be any data structure needed by the Data Type. It'll be passed as-is
 	 *        into the generateItem function as the second parameter.
 	 */
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		return null;
 	}
 

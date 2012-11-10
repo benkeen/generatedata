@@ -8,7 +8,7 @@ class DataType_List extends DataTypePlugin {
 	private $helpDialogWidth = 410;
 
 
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 		$allElements = explode("|", $options["values"]);
 
 		$val = "";
@@ -24,7 +24,7 @@ class DataType_List extends DataTypePlugin {
 	}
 
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		if (empty($postdata["option_$col"])) {
 			return false;
 		}

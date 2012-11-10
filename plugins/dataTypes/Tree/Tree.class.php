@@ -10,7 +10,7 @@ class DataType_Tree extends DataTypePlugin {
 
 	// $Tree_open_nodes = array();
 
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 		global $Tree_open_nodes, $L;
 
 		$ai_row_num = $options["ai_row_num"];
@@ -56,7 +56,7 @@ class DataType_Tree extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		if (empty($postdata["tree_ai_row_num_$col"]) || empty($postdata["tree_max_siblings_$col"]))
 			return false;
 

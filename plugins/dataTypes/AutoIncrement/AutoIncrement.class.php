@@ -11,7 +11,7 @@ class DataType_AutoIncrement extends DataTypePlugin {
 	private $helpDialogWidth = 530;
 
 
-	public function generate($rowNum, $options, $existingRowData) {
+	public function generate($generator, $rowNum, $options, $existingRowData) {
 		$start       = $options["start"];
 		$increment   = $options["increment"];
 		$placeholder = $options["placeholder"];
@@ -40,7 +40,7 @@ class DataType_AutoIncrement extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getRowGenerationOptions($postdata, $col, $num_cols) {
+	public function getRowGenerationOptions($generator, $postdata, $col, $num_cols) {
 		$start = isset($postdata["dtAutoIncrementStart_$col"]) ? $postdata["dtAutoIncrementStart_$col"] : null;
 		$end   = isset($postdata["dtAutoIncrementValue_$col"]) ? $postdata["dtAutoIncrementValue_$col"] : null;
 

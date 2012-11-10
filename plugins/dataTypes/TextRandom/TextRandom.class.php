@@ -15,7 +15,7 @@ class DataType_TextRandom extends DataTypePlugin {
 		}
 	}
 
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 		return Utils::generateRandomTextStr($this->words, $options["startsWithLipsum"], "range", $options["numWordsMin"], $options["numWordsMax"]);
 	}
 
@@ -33,7 +33,7 @@ class DataType_TextRandom extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		if (empty($postdata["dtNumWordsMin_$column"]) || empty($postdata["dtNumWordsMin_$column"])) {
 			return false;
 		}

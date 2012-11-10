@@ -22,7 +22,7 @@ class DataType_Names extends DataTypePlugin {
 	 * @param string $runtimeContext "generation" or "ui"
 	 */
 	public function __construct($runtimeContext) {
-		parent::__construct();
+		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			self::initFirstNames();
 			self::initLastNames();
@@ -30,7 +30,7 @@ class DataType_Names extends DataTypePlugin {
 	}
 
 
-	public function generate($rowNum, $placeholderStr, $existingRowData) {
+	public function generate($generator, $rowNum, $placeholderStr, $existingRowData) {
 		while (preg_match("/MaleName/", $placeholderStr)) {
 			$placeholderStr = preg_replace("/MaleName/", $this->getRandomFirstName($this->maleNames), $placeholderStr, 1);
 		}
@@ -58,7 +58,7 @@ class DataType_Names extends DataTypePlugin {
 	}
 
 
-	public function getRowGenerationOptions($post, $colNum, $numCols) {
+	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {
 		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
 			return false;
 		}

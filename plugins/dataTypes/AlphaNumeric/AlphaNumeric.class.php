@@ -12,7 +12,8 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 	private $helpDialogWidth = 510;
 
 
-	public function generate($row, $placeholderStr, $existingRowData) {
+	//	public function generate($rowNum, $options, $existingRowData) {
+	public function generate($generator, $row, $placeholderStr, $existingRowData) {
 		$formats = explode("|", $placeholderStr);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {
@@ -21,11 +22,11 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 		return Utils::generateRandomAlphanumericStr($chosenFormat);
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
-		if (!isset($postdata["dtOption_$column"]) || empty($postdata["dtOption_$column"])) {
+	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+		if (!isset($postdata["dtOption_$colNum"]) || empty($postdata["dtOption_$colNum"])) {
 			return false;
 		}
-		return $postdata["dtOption_$column"];
+		return $postdata["dtOption_$colNum"];
 	}
 
 	public function getExampleColumnHTML() {
@@ -107,5 +108,4 @@ EOF;
 		}
 		return $info;
 	}
-
 }

@@ -16,7 +16,7 @@ class DataType_Email extends DataTypePlugin {
 		}
 	}
 
-	public function generate($rowNum, $placeholderStr, $existingRowData) {
+	public function generate($generator, $rowNum, $placeholderStr, $existingRowData) {
 		// prefix
 		$numPrefixWords = rand(1, 3);
 		$offset = rand(0, $this->numWords - ($numPrefixWords + 1));

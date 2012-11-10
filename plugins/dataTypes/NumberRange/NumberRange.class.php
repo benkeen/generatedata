@@ -9,7 +9,7 @@ class DataType_NumberRange extends DataTypePlugin {
 	private $helpDialogWidth = 370;
 
 
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 		return rand($options["min"], $options["max"]);
 	}
 
@@ -28,7 +28,7 @@ class DataType_NumberRange extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		if ((empty($postdata["dtNumRangeMin_$column"]) && $postdata["dtNumRangeMin_$column"] !== "0") ||
 			(empty($postdata["dtNumRangeMax_$column"]) && $postdata["dtNumRangeMax_$column"] !== "0")) {
 			return false;

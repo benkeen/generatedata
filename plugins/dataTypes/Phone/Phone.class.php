@@ -9,7 +9,7 @@ class DataType_Phone extends DataTypePlugin {
 	private $helpDialogWidth = 500;
 
 
-	public function generate($rowNum, $placeholderStr, $existingRowData) {
+	public function generate($generator, $rowNum, $placeholderStr, $existingRowData) {
 		$phoneStr = Utils::generateRandomAlphanumericStr($placeholderStr);
 		$formats = explode("|", $phoneStr);
 		$chosenFormat = $formats[0];
@@ -33,7 +33,7 @@ class DataType_Phone extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getRowGenerationOptions($post, $colNum, $numCols) {
+	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {
 		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
 			return false;
 		}

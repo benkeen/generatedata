@@ -519,14 +519,14 @@ define([
 			return false;
 		}
 
-		// for the moment, let's just assume ALL export types use the dialog. We can tweak this later.
+		// for the moment, let's just assume ALL export types generate into the page. We can tweak this later.
 
 		// TODO this sucks... could we send an object instead?
 		var formData = $("#gdData").serialize();
 		var rowOrder = _getRowOrder().toString();
 		var data = formData + "&gdRowOrder=" + rowOrder + "&gdExportType=" + _currExportType
 				 + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
-		         + "&gdNumCols=" + _numRows;
+		         + "&gdNumCols=" + _numRows + "&gdCountries=" + _countries.toString();
 
 		_showSubtab(2);
 

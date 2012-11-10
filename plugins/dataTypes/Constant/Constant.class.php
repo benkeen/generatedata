@@ -10,7 +10,7 @@ class DataType_Constant extends DataTypePlugin {
 	protected $processOrder = 100;
 	private $helpDialogWidth = 460;
 
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 		$num_values = count($options["values"]);
 		if ($num_values == 1) {
 			$value = $options["values"][0];
@@ -39,7 +39,7 @@ class DataType_Constant extends DataTypePlugin {
 		return $info;
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		if (!isset($postdata["option_$col"]) || empty($postdata["option_$col"]))
 			return false;
 		if (!isset($postdata["loop_count_$col"]) || empty($postdata["loop_count_$col"]))

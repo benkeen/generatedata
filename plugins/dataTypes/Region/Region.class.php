@@ -10,13 +10,13 @@ class DataType_Region extends DataTypePlugin {
 	private $helpDialogWidth = 410;
 
 
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 	}
 
 	public function getOptionsColumnHTML() {

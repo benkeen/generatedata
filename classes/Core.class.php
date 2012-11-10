@@ -90,9 +90,11 @@ class Core {
 			self::$dbUsername = (isset($dbUsername)) ? $dbUsername : null;
 			self::$dbPassword = (isset($dbPassword)) ? $dbPassword : null;
 			self::$dbTablePrefix = (isset($dbTablePrefix)) ? $dbTablePrefix : null;
-			self::$errorReporting = (isset($errorReporting)) ? $errorReporting : null;
 			self::$encryptionSalt = (isset($encryptionSalt)) ? $encryptionSalt : null;
 
+			if (isset($errorReporting)) {
+				self::$errorReporting = $errorReporting;
+			}
 			if (isset($maxGeneratedRows)) {
 				self::$maxGeneratedRows = maxGeneratedRows;
 			}

@@ -16,11 +16,11 @@ class DataType_TextFixed extends DataTypePlugin {
 		}
 	}
 
-	public function generate($row, $options, $existingRowData) {
+	public function generate($generator, $row, $options, $existingRowData) {
 		return Utils::generateRandomTextStr($this->words, false, "fixed", $options);
 	}
 
-	public function getRowGenerationOptions($postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
 		if (empty($postdata["dtNumWords_$column"])) {
 			return false;
 		}

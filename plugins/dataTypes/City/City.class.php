@@ -11,14 +11,14 @@ class DataType_City extends DataTypePlugin {
 
 
 	public function __construct($runtimeContext) {
-		parent::__construct();
+		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			self::initCityList();
 		}
 	}
 
 
-	public function generate($row, $placeholderStr, $existingRowData) {
+	public function generate($generator, $row, $placeholderStr, $existingRowData) {
 
 		// see if this row has a region [N.B. This is something that could be calculated ONCE on the first row]
 		$rowRegionInfo = array();
