@@ -23,7 +23,9 @@ class DataType_LatLng extends DataTypePlugin {
 	 *   Lat: -90 -> + 90
 	 *   Lng: -180 -> +180
 	 */
-	public function generate($generator, $row, $options, $existingRowData) {
+	public function generate($generator, $generationContextData) {
+		$options = $generationContextData["generationOptions"];
+
 		$info = array();
 		if ($options["lat"] && $options["lng"]) {
 			$info[] = (mt_rand($this->cachedMath["minLatCalc"], $this->cachedMath["maxLatCalc"]) / $this->cachedMath["divisor"]);

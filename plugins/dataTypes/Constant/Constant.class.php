@@ -10,7 +10,9 @@ class DataType_Constant extends DataTypePlugin {
 	protected $processOrder = 100;
 	private $helpDialogWidth = 460;
 
-	public function generate($generator, $row, $options, $existingRowData) {
+
+	public function generate($generator, $generationContextData) {
+		$options = $generationContextData["generationOptions"];
 		$num_values = count($options["values"]);
 		if ($num_values == 1) {
 			$value = $options["values"][0];
@@ -26,13 +28,13 @@ class DataType_Constant extends DataTypePlugin {
 
 	public function getExportTypeInfo($exportType, $options) {
 		$info = "";
-		switch ($exportType)
-		{
+		switch ($exportType) {
 			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
+				if ($options == "MySQL" || $options == "SQLite") {
 					$info = "TEXT default NULL";
-				else if ($options == "Oracle")
+				} else if ($options == "Oracle") {
 					$info = "BLOB default NULL";
+				}
 				break;
 		}
 
@@ -40,16 +42,19 @@ class DataType_Constant extends DataTypePlugin {
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
-		if (!isset($postdata["option_$col"]) || empty($postdata["option_$col"]))
+		if (!isset($postdata["dtOption_$col"]) || empty($postdata["dtOption_$col"])) {
 			return false;
-		if (!isset($postdata["loop_count_$col"]) || empty($postdata["loop_count_$col"]))
+		}
+		if (!isset($postdata["dtLoopCount_$col"]) || empty($postdata["dtLoopCount_$col"])) {
 			return false;
-		if (!is_numeric($postdata["loop_count_$col"]) || $postdata["loop_count_$col"] <= 0)
+		}
+		if (!is_numeric($postdata["dtLoopCount_$col"]) || $postdata["dtLoopCount_$col"] <= 0) {
 			return false;
+		}
 
 		$options = array(
-			"loop_count" => $postdata["loop_count_$col"],
-			"values"     => explode("|", $postdata["option_$col"])
+			"loopCount" => $postdata["dtLoopCount_$col"],
+			"values"     => explode("|", $postdata["dtOption_$col"])
 		);
 
 		return $options;
@@ -64,12 +69,12 @@ class DataType_Constant extends DataTypePlugin {
 		$html =<<<EOF
 <table cellspacing="0" cellpadding="0" width="260">
 	<tr>
-		<td>{$this->L["Constant_loop_count"]}</td>
-		<td><input type="text" name="loop_count_%ROW%" id="loop_count_%ROW%" size="5" value="10" /></td>
+		<td>{$this->L["loop_count"]}</td>
+		<td><input type="text" name="dtLoopCount_%ROW%" id="dtLoopCount_%ROW%" size="5" value="10" /></td>
 	</tr>
 	<tr>
-		<td>{$this->L["Constant_values"]}</td>
-		<td><input name="option_%ROW%" id="option_%ROW%" style="width: 100%" /></td>
+		<td>{$this->L["values"]}</td>
+		<td><input name="dtOption_%ROW%" id="option_%ROW%" style="width: 100%" /></td>
 	</tr>
 </table>
 EOF;
@@ -79,23 +84,21 @@ EOF;
 	public function getHelpDialogInfo() {
 		$html =<<< END
 	<p>
-		{$this->L["Constant_help_1"]}
+		{$this->L["help_1"]}
 	</p>
 	<ul>
-		<li>{$this->L["Constant_help_2"]}</li>
-		<li>{$this->L["Constant_help_3"]}</li>
-		<li>{$this->L["Constant_help_4"]}</li>
+		<li>{$this->L["help_2"]}</li>
+		<li>{$this->L["help_3"]}</li>
+		<li>{$this->L["help_4"]}</li>
 	</ul>
 	<p>
-		{$this->L["Constant_help_5"]}
+		{$this->L["help_5"]}
 	</p>
 END;
 
-    return array(
-      "dialogWidth" => $this->helpDialogWidth,
-      "content"     => $html
-    );
+		return array(
+			"dialogWidth" => $this->helpDialogWidth,
+			"content"     => $html
+		);
 	}
-
-
 }

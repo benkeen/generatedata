@@ -9,7 +9,7 @@ class DataType_GUID extends DataTypePlugin {
 	private $helpDialogWidth = 510;
 
 
-	public function generate($generator, $row, $options, $existingRowData) {
+	public function generate($generator, $generationContextData) {
 		$placeholderStr = "HHHHHHHH-HHHH-HHHH-HHHH-HHHH-HHHHHHHH";
 		$guid = Utils::generateRandomAlphanumericStr($placeholderStr);
 

@@ -24,7 +24,9 @@ class DataType_PostalZip extends DataTypePlugin {
 	}
 
 
-	public function generate($generator, $row, $options, $existingRowData) {
+	public function generate($generator, $generationContextData) {
+		$options = $generationContextData["generationOptions"];
+
 		// track the country info (this finds the FIRST country field listed)
 		$rowCountryInfo = array();
 		/*while (list($key, $info) = each($existing_row_data)) {
@@ -33,7 +35,6 @@ class DataType_PostalZip extends DataTypePlugin {
 				break;
 			}
 		}*/
-		print_r($options);
 
 		$randomZip = "";
 		if (empty($rowCountryInfo)) {

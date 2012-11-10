@@ -11,33 +11,19 @@ class DataType_AutoIncrement extends DataTypePlugin {
 	private $helpDialogWidth = 530;
 
 
-	public function generate($generator, $rowNum, $options, $existingRowData) {
-		$start       = $options["start"];
-		$increment   = $options["increment"];
-		$placeholder = $options["placeholder"];
+	public function generate($generator, $generationContextData) {
+		$rowSettings = $generationContextData["generationOptions"];
+		$start       = $rowSettings["start"];
+		$increment   = $rowSettings["increment"];
+		$placeholder = $rowSettings["placeholder"];
 
-		$val = (($rowNum-1) * $increment) + $start;
+		$val = (($rowSettings["rowNum"]-1) * $increment) + $start;
 
 		if (!empty($placeholder)) {
 			$val = preg_replace('/\{\$INCR\}/', $val, $placeholder);
 		}
 
 		return $val;
-	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($export_type) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "mediumint";
-				} else if ($options == "Oracle") {
-					$info = "number default NULL";
-				}
-				break;
-		}
-
-		return $info;
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $col, $num_cols) {
@@ -103,4 +89,20 @@ END;
 			"content"     => $content
 		);
 	}
+
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($export_type) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite") {
+					$info = "mediumint";
+				} else if ($options == "Oracle") {
+					$info = "number default NULL";
+				}
+				break;
+		}
+
+		return $info;
+	}
+
 }

@@ -33,7 +33,13 @@ class HTML extends ExportTypePlugin {
 				foreach ($dataTypeGenerationInfo as $genInfo) {
 					$columnOrder = $genInfo["colNum"];
 					$currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
-					$genInfo["randomData"] = $currDataType->generate($rowNum, $genInfo["options"], $row_data);
+
+					$generationContextData = array(
+						"rowNum"            => $rowNum,
+						"generationOptions" => $genInfo["generationOptions"],
+						"existingRowData"   => $rowData
+					);
+					$genInfo["randomData"] = $currDataType->generate($generator, $generationContextData);
 					$currRowData["$columnOrder"] = $genInfo;
 				}
 			}

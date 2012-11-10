@@ -46,16 +46,19 @@ abstract class DataTypePlugin {
 	/**
 	 * This is the main workhorse function: it does the work of actually generating a random data snippet.
 	 *
-	 * @param object $generator the main Generator object, containing a number of functions that can be utilized
-	 *   by
-	 * @param integer $rowNum the row number in the generated content (indexed from 1)
-	 * @param mixed $options whatever options were passed for this Data Type, i.e. whatever information was returned
-	 *   - and in whatever format - by getRowGenerationOptions(). By default, this is set to null.
-	 * @param array $existingRowData depending on the Data Type's processOrder, this will contain all the data from
-	 *   fields that have already been processed.
+	 * @param object $generator the main Generator object, through which a Data Type can call the various
+	 *     available public methods.
+	 * @param array $generationContextData a hash of information relating to the generation context. Namely:
+	 *     "rowNum"             => the row number in the generated content (indexed from 1)
+	 *     "generationOptions"  => whatever options were passed for this particular row and data type; i.e.
+	 *                             whatever information was returned by getRowGenerationOptions(). This data
+	 *                             can be empty or contain anything needed - in whatever format. By default,
+	 *                             this is set to null.
+	 *     "existingRowData"    => depending on the Data Type's processOrder, this will contain all the data
+	 *                             from fields that have already been processed.
 	 * @return string/int/primitive
 	 */
-	abstract function generate($generator, $rowNum, $options, $existingRowData);
+	abstract function generate($generator, $generationContextData);
 
 	/**
 	 * @param string $export_type e.g. "sql"
@@ -69,11 +72,13 @@ abstract class DataTypePlugin {
 
 	/**
 	 * The default constructor. Automatically populates the $L member var with whatever language is currently being
-	 * used.
+	 * used. If a Data Type uses its own constructor, it should always call the parent constructor as well, to ensure
+	 * $L is populated. ( parent::__construct($runtimeContext); )
 	 *
 	 * @param string $content "ui" / "generation". Data Types are instantiated in one of two contexts: once when
 	 *    the main UI page loads, so that the Data Type can be presented as an option for selection in the Data
-	 *    Generator, and secondly when we're actually actually generating the results. Data Types can choose
+	 *    Generator, and secondly when we're actually actually generating the results. It's sometimes beneficial
+	 *    to only instantiate aspects of the class depending on the context.
 	 */
 	public function __construct($runtimeContext) {
 
@@ -140,8 +145,9 @@ abstract class DataTypePlugin {
 	 * (most likely just incomplete) the function can explicitly return false to tell the core script to ignore
 	 * this row.
 	 *
+	 * @param object $generator the instance of the Generator object, containing assorted public methods
 	 * @param array $post the entire contents of $_POST
-	 * @param integer the column number (well, *row* in the UI!) of the item
+	 * @param integer the column number (*row* in the UI!) of the item
 	 * @param integer the number of columns in the data set
 	 * @return mixed
 	 *        - false, if the Data Type doesn't have sufficient information to generate the row (i.e. things weren't

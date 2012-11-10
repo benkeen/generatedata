@@ -10,7 +10,9 @@ class DataType_Tree extends DataTypePlugin {
 
 	// $Tree_open_nodes = array();
 
-	public function generate($generator, $row, $options, $existingRowData) {
+	public function generate($generator, $generationContextData) {
+		$options = $generationContextData["generationOptions"];
+
 		global $Tree_open_nodes, $L;
 
 		$ai_row_num = $options["ai_row_num"];

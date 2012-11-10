@@ -9,8 +9,8 @@ class DataType_Phone extends DataTypePlugin {
 	private $helpDialogWidth = 500;
 
 
-	public function generate($generator, $rowNum, $placeholderStr, $existingRowData) {
-		$phoneStr = Utils::generateRandomAlphanumericStr($placeholderStr);
+	public function generate($generator, $generationContextData) {
+		$phoneStr = Utils::generateRandomAlphanumericStr($generationContextData["generationOptions"]);
 		$formats = explode("|", $phoneStr);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {

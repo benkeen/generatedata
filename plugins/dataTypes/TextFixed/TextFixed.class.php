@@ -16,7 +16,8 @@ class DataType_TextFixed extends DataTypePlugin {
 		}
 	}
 
-	public function generate($generator, $row, $options, $existingRowData) {
+	public function generate($generator, $generationContextData) {
+		$options = $generationContextData["generationOptions"];
 		return Utils::generateRandomTextStr($this->words, false, "fixed", $options);
 	}
 

@@ -31,7 +31,7 @@ class DataType_Company extends DataTypePlugin {
 		}
 	}
 
-	public function generate($generator, $row, $placeholderStr, $existingRowData) {
+	public function generate($generator, $generationContextData) {
 		$numCompanyNameWords = rand(1, 3);
 		$offset = rand(0, $this->numWords - ($numCompanyNameWords + 1));
 		$words = array_slice($this->words, $offset, $numCompanyNameWords);

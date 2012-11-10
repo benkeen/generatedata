@@ -18,7 +18,7 @@ class DataType_City extends DataTypePlugin {
 	}
 
 
-	public function generate($generator, $row, $placeholderStr, $existingRowData) {
+	public function generate($generator, $generationContextData) {
 
 		// see if this row has a region [N.B. This is something that could be calculated ONCE on the first row]
 		$rowRegionInfo = array();

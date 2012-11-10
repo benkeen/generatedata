@@ -8,12 +8,14 @@ class DataType_List extends DataTypePlugin {
 	private $helpDialogWidth = 410;
 
 
-	public function generate($generator, $row, $options, $existingRowData) {
+	// TODO...
+	public function generate($generator, $generationContextData) {
+		$options = $generationContextData["generationOptions"];
 		$allElements = explode("|", $options["values"]);
 
 		$val = "";
 		if ($options["list_type"] == "Exactly") {
-			$val = implode(", ", gd_return_random_subset($all_elements, $options["number"]));
+			$val = implode(", ", gd_return_random_subset($allElements, $options["number"]));
 		} else {
 			// at MOST. So randomly calculate a number up to the num specified:
 			$num_items = rand(0, $options["number"]);

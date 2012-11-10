@@ -113,7 +113,7 @@ class AjaxRequest {
 				$folders = $post["folders"];
 				$response = Settings::setSetting("installedDataTypes", $folders);
 				$this->response["success"] = $response["success"];
-				$this->response["message"] = $response["message"];
+				$this->response["message"] = $response["errorMessage"];
 				break;
 
 			case "installation_export_types":
@@ -146,7 +146,7 @@ class AjaxRequest {
 				$folders = $post["folders"];
 				$response = Settings::setSetting("installedExportTypes", $folders);
 				$this->response["success"] = $response["success"];
-				$this->response["message"] = $response["message"];
+				$this->response["message"] = $response["errorMessage"];
 				break;
 
 			case "installation_countries":
@@ -183,7 +183,7 @@ class AjaxRequest {
 				$response = Settings::setSetting("installedCountries", $folders);
 				$response = Settings::setSetting("installationComplete", "yes");
 				$this->response["success"] = $response["success"];
-				$this->response["message"] = $response["message"];
+				$this->response["message"] = $response["errorMessage"];
 				break;
 
 			// ------------------------------------------------------------------------------------

@@ -20,7 +20,7 @@ class DataType_StreetAddress extends DataTypePlugin {
 	}
 
 
-	public function generate($generator, $row, $options, $existingRowData) {
+	public function generate($generator, $generationContextData) {
 		$streetName = ucwords(Utils::generateRandomTextStr($this->words, false, "fixed", 1));
 		$streetType = $this->validStreetTypes[rand(0, $this->numValidStreetTypes-1)];
 

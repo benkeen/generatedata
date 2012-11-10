@@ -70,10 +70,10 @@ class Settings {
 		}
 
 		$settings = array(
-			"consoleWarnings"         => ($post["consoleWarnings"] == "enabled") ? "enabled" : "",
-			"consoleEventsPublish"    => ($post["consoleEventsPublish"] == "enabled") ? "enabled" : "",
-			"consoleEventsSubscribe"  => ($post["consoleEventsSubscribe"] == "enabled") ? "enabled" : "",
-			"consoleCoreEvents"       => ($post["consoleCoreEvents"] == "enabled") ? "enabled" : "",
+			"consoleWarnings"         => isset($post["consoleWarnings"]) ? "enabled" : "",
+			"consoleEventsPublish"    => isset($post["consoleEventsPublish"]) ? "enabled" : "",
+			"consoleEventsSubscribe"  => isset($post["consoleEventsSubscribe"]) ? "enabled" : "",
+			"consoleCoreEvents"       => isset($post["consoleCoreEvents"]) ? "enabled" : "",
 			"consoleEventsDataTypePlugins"   => implode(",", $post["consoleEventsDataTypePlugins"]),
 			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"]),
 		    "theme" => $post["theme"]

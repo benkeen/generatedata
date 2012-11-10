@@ -9,7 +9,9 @@ class DataType_Date extends DataTypePlugin {
 	private $helpDialogWidth = 910;
 
 
-	public function generate($generator, $row, $options, $existingRowData) {
+	public function generate($generator, $generationContextData) {
+		$options = $generationContextData["generationOptions"];
+
 		// convert the From and To dates to datetimes
 		list($month, $day, $year) = split("/", $options["from"]);
 		$fromDate = mktime(0, 0, 0, $month, $day, $year);

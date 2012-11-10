@@ -30,7 +30,9 @@ class DataType_Names extends DataTypePlugin {
 	}
 
 
-	public function generate($generator, $rowNum, $placeholderStr, $existingRowData) {
+	public function generate($generator, $generationContextData) {
+		$placeholderStr = $generationContextData["generationOptions"];
+
 		while (preg_match("/MaleName/", $placeholderStr)) {
 			$placeholderStr = preg_replace("/MaleName/", $this->getRandomFirstName($this->maleNames), $placeholderStr, 1);
 		}

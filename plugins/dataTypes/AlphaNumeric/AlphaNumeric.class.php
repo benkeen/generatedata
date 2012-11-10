@@ -12,9 +12,8 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 	private $helpDialogWidth = 510;
 
 
-	//	public function generate($rowNum, $options, $existingRowData) {
-	public function generate($generator, $row, $placeholderStr, $existingRowData) {
-		$formats = explode("|", $placeholderStr);
+	public function generate($generator, $generationContextData) {
+		$formats = explode("|", $generationContextData["generationOptions"]);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {
 			$chosenFormat = $formats[rand(0, count($formats)-1)];

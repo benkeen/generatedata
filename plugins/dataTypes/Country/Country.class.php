@@ -51,17 +51,22 @@ class DataType_Country extends DataTypePlugin {
 		'Virgin Islands, U.S.', 'Wallis and Futuna', 'Western Sahara', 'Yemen', 'Zambia', 'Zimbabwe');
 
 
+	/**
+	 * For convenience, the constructor gets ALL country-plugin installed and stores all their data locally.
+	 * The individual generate() calls for each row filter out the country data it's not interested in.
+	 * @param string $runtimeContext
+	 */
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
-			//Core::$countryPlugins;
+			$countryPlugins = Core::$countryPlugins;
+			foreach ($countryPlugins as $countryPlugin) {
 
-
-			$this->selectedCountries = $this->getCountries($generator->getCountries());
+			}
 		}
 	}
 
-	public function generate($generator, $row, $placeholderStr, $existingRowData) {
+	public function generate($generator, $generationContextData) {
 		$randomCountry = $g_countries[rand(0, count($g_countries)-1)];
 		return array(
 			"display" => $randomCountry["country"],
@@ -70,16 +75,17 @@ class DataType_Country extends DataTypePlugin {
 		);
 	}
 
+	/**
+	 * Called for each row. This figures out what country-data we're interested in generating for
+	 * this row - either a subset of the selected Country plugins, or ANY country name.
+	 * @see DataTypePlugin::getRowGenerationOptions()
+	 */
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
-
-		print_r();
-
+		$option = "allSelectedCountryPlugins";
 		if (isset($postdata["dtOption_$colNum"])) {
-			$g_countries = self::getCountries($generator->getCountries());
-		} else {
-			$g_countries = self::getCountries();
+			$option = "anyCountry";
 		}
-		return "";
+		return $option;
 	}
 
 
