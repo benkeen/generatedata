@@ -152,6 +152,12 @@ class Settings {
 					echo Settings::getSetting("consoleEventsExportTypePlugins");
 				}
 				break;
+
+			case "theme":
+				if (Core::checkIsInstalled()) {
+					echo Settings::getSetting("theme");
+				}
+				break;
 		}
 	}
 }

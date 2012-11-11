@@ -81,7 +81,6 @@ define([
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); return false; });
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
-		//$("#gdSettingsForm").bind("submit", _updateSettings);
 
 		_initExportTypeTab();
 		_updateCountryChoice();
@@ -537,6 +536,8 @@ define([
 			});
 		}
 
+		_codeMirror.setValue("");
+
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -591,42 +592,6 @@ define([
 		return false;
 	}
 
-
-	/**
-	 * This updates the contents of the settings page. Once it gets complicated enough, this will be moved to a separate module.
-	 */
-	var _updateSettings = function(e) {
-		e.preventDefault();
-		utils.startProcessing();
-		$.ajax({
-			url: "ajax.php",
-			type: "POST",
-			dataType: "json",
-			data: {
-				action: "updateSettings",
-				consoleWarnings: $("#gdSettingsConsoleWarnings")[0].checked,
-				consoleEventsPublish: $("#gdSettingsConsoleEventsPublish")[0].checked,
-				consoleEventsSubscribe: $("#gdSettingsConsoleEventsSubscribe")[0].checked,
-				consoleCoreEvents: $("#gdSettingsConsoleCoreEvents")[0].checked,
-				consoleEventsDataTypePlugins: $("#consoleEventsDataTypePlugins").val(),
-				consoleEventsExportTypePlugins: $("#consoleEventsExportTypePlugins").val()
-			},
-			success: function(json) {
-				utils.stopProcessing();
-				if (json.success == 1) {
-					$("#settingsTabMessage p").html(json.message);
-					utils.updateMessageBlock($("#settingsTabMessage"), "notify");
-				}
-			},
-			error: function(json) {
-				utils.stopProcessing();
-				if (json.success == 1) {
-					$("#settingsTabMessage p").html(json.message);
-					utils.updateMessageBlock($("#settingsTabMessage"), "error");
-				}
-			},
-		});
-	}
 
 	// utils.updateMessageBlock($("#settingsTabMessage"), "error");
 

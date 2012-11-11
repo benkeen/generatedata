@@ -6,7 +6,6 @@ class DataType_PostalZip extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $processOrder = 2;
 	protected $jsModules = array("PostalZip.js");
-
 	private $helpDialogWidth = 370;
 	private $zipFormats;
 
@@ -39,42 +38,35 @@ class DataType_PostalZip extends DataTypePlugin {
 		$randomZip = "";
 		if (empty($rowCountryInfo)) {
 			$randCountry = $options[rand(0, count($options)-1)];
-			$randomZip = $this->convert($this->formats[$randCountry]);
+			$randomZip = $this->convert($this->zipFormats[$randCountry]);
 		} else {
 			// if this country is one of the formats that was selected, generate it in that format -
 			// otherwise just generate a zip in any selected format
 			$countrySlug = $rowCountryInfo["randomData"]["slug"];
-
 			if (in_array($countrySlug, $options)) {
-				$randomZip = $this->convert($this->formats[$countrySlug]);
+				$randomZip = $this->convert($this->zipFormats[$countrySlug]);
 			} else {
 				$randCountry = $options[rand(0, count($options)-1)];
-				$randomZip = $this->convert($this->formats[$randCountry]);
+				$randomZip = $this->convert($this->zipFormats[$randCountry]);
 			}
 		}
 
 		return $randomZip;
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
-		// dtCountryIncludeZip_canada_1
-
-		$countries = $postdata["gdCountries"];
+	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+		$countries = $generator->getCountries();
 		$options = array();
 		foreach ($countries as $slug) {
-			if (isset($postdata["dtIncludeZip_{$slug}_$col"])) {
+			if (isset($postdata["dtCountryIncludeZip_{$slug}_$colNum"])) {
 				$options[] = $slug;
 			}
 		}
-
-		// dtCountryIncludeZip_canada_1
-
 		return $options;
 	}
 
 	public function getOptionsColumnHTML() {
 		$countryPlugins = Core::$countryPlugins;
-
 		$html = "";
 		foreach ($countryPlugins as $pluginInfo) {
 			$slug       = $pluginInfo->getSlug();
@@ -93,7 +85,7 @@ EOF;
 	public function getHelpDialogInfo() {
 		return array(
 			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => "<p>{$this->L["PostalZip_help_text"]}</p>"
+			"content"     => "<p>{$this->L["help_text"]}</p>"
 		);
 	}
 
@@ -120,7 +112,7 @@ EOF;
 			$format = $formats[rand(0, count($formats)-1)];
 		}
 
-		return gd_generate_random_alphanumeric_str($format);
+		return Utils::generateRandomAlphanumericStr($format);
 	}
 
 

@@ -20,12 +20,12 @@ define([
 	var _dataTypeChange = function(msg) {
 		$("#dtFromDate_" + msg.rowID).datepicker({
 			showOn:          'button',
-			buttonImage:     'resources/images/calendar_icon.gif',
+			buttonImage:     'resources/themes/' + C.THEME + '/images/calendar_icon.gif',
 			buttonImageOnly: true
 		});
 		$("#dtToDate_" + msg.rowID).datepicker({
 			showOn:          'button',
-			buttonImage:     'resources/images/calendar_icon.gif',
+			buttonImage:     'resources/themes/' + C.THEME + '/images/calendar_icon.gif',
 			buttonImageOnly: true
 		});
 	}

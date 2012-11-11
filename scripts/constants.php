@@ -32,6 +32,8 @@ define([], function() {
 
 		EXPORT_TYPE_SETTINGS_BLIND_SPEED: 500,
 
+		THEME: "<?php Settings::safeDisplaySetting("theme") ?>",
+
 		/**
 		 * Contains all Core events.
 		 */

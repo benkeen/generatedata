@@ -70,7 +70,7 @@
 		<hr class="divider" style="margin-bottom: 16px;" />
 
 		<div id="gdGenerateSection">
-	 		<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
+			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
 			Generate <input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

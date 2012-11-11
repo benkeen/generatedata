@@ -19,20 +19,6 @@ class DataType_Phone extends DataTypePlugin {
 		return $chosenFormat;
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($export_type) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
-					$info = "varchar(100) default NULL";
-				else if ($options == "Oracle")
-					$info = "varchar2(100) default NULL";
-				break;
-		}
-
-		return $info;
-	}
-
 	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {
 		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
 			return false;
@@ -46,10 +32,14 @@ class DataType_Phone extends DataTypePlugin {
 		$html =<<<EOF
 	<select name="dt_%ROW%" id="dt_%ROW%">
 		<option value="">{$L["please_select"]}</option>
-		<option value="1-Xxx-Xxx-xxxx">{$this->L["Phone_example_1"]}</option>
-		<option value="(Xxx) Xxx-xxxx">{$this->L["Phone_example_2"]}</option>
-		<option value="1 Xx Xxx Xxxx-xxxx">{$this->L["Phone_uk"]}</option>
-		<option value="1-Xxx-Xxx-xxxx|Xxx-xxxx">{$this->L["Phone_different_formats"]}</option>
+		<option value="1-Xxx-Xxx-xxxx">{$this->L["example_1"]}</option>
+		<option value="(Xxx) Xxx-xxxx">{$this->L["example_2"]}</option>
+		<option value="1 Xx Xxx Xxxx-xxxx">{$this->L["uk"]}</option>
+		<option value="0X xx xx xx xx">{$this->L["france"]}</option>
+		<option value="(0X) xxxx xxxx">{$this->L["australia"]}</option>
+		<option value="(0xx) xxxxxxxx|(0xxx) xxxxxxxx|(0xxxx) xxxxxxx|(03xxxx) xxxxxx">{$this->L["germany"]}</option>
+		<option value="0xx-xxx-xxxx">{$this->L["japan"]}</option>
+		<option value="1-Xxx-Xxx-xxxx|Xxx-xxxx">{$this->L["different_formats"]}</option>
 	</select>
 EOF;
 		return $html;
@@ -63,13 +53,13 @@ EOF;
 	public function getHelpDialogInfo() {
 		$html =<<<END
 	<p>
-		{$this->L["Phone_help_text1"]}
+		{$this->L["help_text1"]}
 	</p>
 	<p>
-		{$this->L["Phone_help_text2"]}
+		{$this->L["help_text2"]}
 	</p>
 	<p>
-		{$this->L["Phone_help_text3"]}
+		{$this->L["help_text3"]}
 	</p>
 END;
 
@@ -77,5 +67,20 @@ END;
 	      "dialogWidth" => $this->helpDialogWidth,
 	      "content"     => $html
 	    );
+	}
+
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($exportType) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite") {
+					$info = "varchar(100) default NULL";
+				} else if ($options == "Oracle") {
+					$info = "varchar2(100) default NULL";
+				}
+				break;
+		}
+
+		return $info;
 	}
 }

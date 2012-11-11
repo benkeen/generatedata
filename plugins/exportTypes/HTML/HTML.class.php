@@ -37,14 +37,14 @@ class HTML extends ExportTypePlugin {
 					$generationContextData = array(
 						"rowNum"            => $rowNum,
 						"generationOptions" => $genInfo["generationOptions"],
-						"existingRowData"   => $rowData
+						"existingRowData"   => $currRowData
 					);
 					$genInfo["randomData"] = $currDataType->generate($generator, $generationContextData);
 					$currRowData["$columnOrder"] = $genInfo;
 				}
 			}
 			reset($template);
-			ksort($rowData, SORT_NUMERIC);
+			ksort($currRowData, SORT_NUMERIC);
 			$data[] = $currRowData;
 		}
 

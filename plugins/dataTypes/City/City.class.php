@@ -56,8 +56,9 @@ class DataType_City extends DataTypePlugin {
 			$random_city = $City_list[$random_region_id][rand(0, count($City_list[$random_region_id])-1)]["city"];
 		} else {
 		*/
-			$randRegionSlug = array_rand($this->citiesByRegion);
-			$randomCity = $this->citiesByRegion[$randRegionSlug][rand(0, count($this->citiesByRegion[$regionSlug])-1)]["city"];
+		$randRegionSlug = array_rand($this->citiesByRegion);
+		$randomCity = $this->citiesByRegion[$randRegionSlug][rand(0, count($this->citiesByRegion[$randRegionSlug])-1)]["city"];
+
 		//}
 
 		return $randomCity;
@@ -96,12 +97,13 @@ class DataType_City extends DataTypePlugin {
 
 	public function getExportTypeInfo($exportType, $options) {
 		$info = "";
-		switch ($export_type) {
+		switch ($exportType) {
 			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
+				if ($options == "MySQL" || $options == "SQLite") {
 					$info = "varchar(100) default NULL";
-				else if ($options == "Oracle")
+				} else if ($options == "Oracle") {
 					$info = "varchar2(100) default NULL";
+				}
 				break;
 		}
 

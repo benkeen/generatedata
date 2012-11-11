@@ -147,7 +147,7 @@ abstract class DataTypePlugin {
 	 *
 	 * @param object $generator the instance of the Generator object, containing assorted public methods
 	 * @param array $post the entire contents of $_POST
-	 * @param integer the column number (*row* in the UI!) of the item
+	 * @param integer the column number (*row* in the UI...!) of the item
 	 * @param integer the number of columns in the data set
 	 * @return mixed
 	 *        - false, if the Data Type doesn't have sufficient information to generate the row (i.e. things weren't
@@ -155,7 +155,7 @@ abstract class DataTypePlugin {
 	 *        - anything else. This can be any data structure needed by the Data Type. It'll be passed as-is
 	 *        into the generateItem function as the second parameter.
 	 */
-	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
+	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
 		return null;
 	}
 
