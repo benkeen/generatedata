@@ -10,12 +10,11 @@ function smarty_function_country_list()
 	$countryPlugins = Core::$countryPlugins;
 	$defaultChecked = Core::getDefaultCountryPlugins();
 
-	echo "<select id=\"gdCountries\" multiple style=\"width: 100%\">";
+	echo "<select id=\"gdCountries\" multiple style=\"width: 100%\" data-placeholder=\"Select a country or two\">";
 	foreach ($countryPlugins as $obj) {
 		$countryName = $obj->getName();
 		$slug        = $obj->getSlug();
 		$selected    = (in_array($slug, $defaultChecked)) ? " selected=\"selected\"" : "";
-
 		echo "<option value=\"$slug\"$selected>$countryName</option>";
 	}
 	echo "</select>";

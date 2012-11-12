@@ -49,6 +49,9 @@ class DataType_Country extends DataTypePlugin {
 		'Turks and Caicos Islands', 'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom',
 		'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Venezuela', 'Viet Nam', 'Virgin Islands, British',
 		'Virgin Islands, U.S.', 'Wallis and Futuna', 'Western Sahara', 'Yemen', 'Zambia', 'Zimbabwe');
+	private $numCountries;
+	private $countryRegionData;
+	private $numCountryRegionData;
 
 
 	/**
@@ -59,20 +62,25 @@ class DataType_Country extends DataTypePlugin {
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
-			$countryPlugins = Core::$countryPlugins;
-			foreach ($countryPlugins as $countryPlugin) {
-
-			}
+			$this->numCountries = count($this->countries);
+			$this->countryRegionData = Core::$geoData->getCountryRegions();
+			$this->numCountryRegionData = count($this->countryRegionData);
 		}
 	}
 
 	public function generate($generator, $generationContextData) {
-		$randomCountry = $g_countries[rand(0, count($g_countries)-1)];
-		return array(
-			"display" => $randomCountry["country"],
-			"slug"    => $randomCountry["slug"],
-			"id"      => $randomCountry["id"]
-		);
+		$data = array();
+		if ($generationContextData["generationOptions"] == "all") {
+			$data["display"] = $this->countries[rand(0, $this->numCountries-1)];
+		} else {
+			$randomCountry = $this->countryRegionData[rand(0, $this->numCountryRegionData-1)];
+			$data = array(
+				"display" => $randomCountry["country"],
+				"slug"    => $randomCountry["country_slug"],
+				"id"      => $randomCountry["id"]
+			);
+		}
+		return $data;
 	}
 
 	/**
@@ -81,9 +89,9 @@ class DataType_Country extends DataTypePlugin {
 	 * @see DataTypePlugin::getRowGenerationOptions()
 	 */
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
-		$option = "allSelectedCountryPlugins";
+		$option = "all";
 		if (isset($postdata["dtOption_$colNum"])) {
-			$option = "anyCountry";
+			$option = "countryPluginsOnly";
 		}
 		return $option;
 	}

@@ -56,11 +56,15 @@ abstract class DataTypePlugin {
 	 *                             this is set to null.
 	 *     "existingRowData"    => depending on the Data Type's processOrder, this will contain all the data
 	 *                             from fields that have already been processed.
-	 * @return string/int/primitive
+	 * @return array Data Types have to return a hash with at least one key: "display". They can also load up
+	 *     the hash with whatever else they want, if they want to provide additional meta data to other Data
+	 *     Types that are being generated on that row (e.g. Country, passing it's country_slug info to Region)
 	 */
 	abstract function generate($generator, $generationContextData);
 
 	/**
+	 * TODO. I'll rethink this sucker.
+	 *
 	 * @param string $export_type e.g. "sql"
 	 * @param mixed $options e.g. "mysql" or "oracle"
 	 * @return string

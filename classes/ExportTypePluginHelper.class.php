@@ -112,7 +112,7 @@ class ExportTypePluginHelper {
 	}
 
 	/**
-	 * Used in the main page to generate a list of
+	 * Used in the main page to generate the tabset of additional settings for each Export Type.
 	 * @return array
 	 */
 	public function getExportTypeAdditionalSettingsHTML($exportTypes) {

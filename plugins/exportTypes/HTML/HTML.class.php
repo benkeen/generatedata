@@ -1,8 +1,10 @@
 <?php
 
 /**
- * TODO add setting: "HTML format": table, ul
+ * TODO the bulk of this classes code will be moved to the Core, once we establish what aspects
+ * may be generalized.
  */
+
 class HTML extends ExportTypePlugin {
 	protected $exportTypeName = "HTML";
 
@@ -23,15 +25,12 @@ class HTML extends ExportTypePlugin {
 			$cols[] = $colInfo["title"];
 		}
 
-		// next, generate the actual table content
-		ksort($template, SORT_NUMERIC);
-
 		$data = array();
 		for ($rowNum=1; $rowNum<=$numResults; $rowNum++) {
 			$currRowData = array();
 			while (list($order, $dataTypeGenerationInfo) = each($template)) {
 				foreach ($dataTypeGenerationInfo as $genInfo) {
-					$columnOrder = $genInfo["colNum"];
+					$colNum = $genInfo["colNum"];
 					$currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
 
 					$generationContextData = array(
@@ -40,11 +39,12 @@ class HTML extends ExportTypePlugin {
 						"existingRowData"   => $currRowData
 					);
 					$genInfo["randomData"] = $currDataType->generate($generator, $generationContextData);
-					$currRowData["$columnOrder"] = $genInfo;
+					$currRowData["$colNum"] = $genInfo;
 				}
 			}
 			reset($template);
 			ksort($currRowData, SORT_NUMERIC);
+
 			$data[] = $currRowData;
 		}
 

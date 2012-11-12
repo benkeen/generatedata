@@ -93,15 +93,14 @@ class Generator {
 			$processOrder = $currDataType->getProcessOrder();
 			$options = $currDataType->getRowGenerationOptions($this, $hash, $i, $numCols);
 
-
 			// the only time $options is false is if this Data Type explicitly returned it, meaning
-			// that it was unable to determine the options needed. This could occur if the user didn't enter in appropriate
-			// values in the UI and the Data Type failed to catch it via the JS validation
+			// that it was unable to determine the options needed. This could occur if the user didn't enter in
+			// appropriate values in the UI and the Data Type failed to catch it via the JS validation
 			if ($options !== false) {
-				if (!array_key_exists("processOrder$processOrder", $templatesByProcessOrder)) {
-					$templatesByProcessOrder["processOrder$processOrder"] = array();
+				if (!array_key_exists("$processOrder", $templatesByProcessOrder)) {
+					$templatesByProcessOrder["$processOrder"] = array();
 				}
-				$templatesByProcessOrder["processOrder$processOrder"][] = array(
+				$templatesByProcessOrder["$processOrder"][] = array(
 					"title"             => $title,
 				    "colNum"            => $order,
 					"dataTypeFolder"    => $dataTypeFolder,
@@ -113,7 +112,7 @@ class Generator {
 		}
 
 		// sort by process order and return
-		ksort($templatesByProcessOrder);
+		ksort($templatesByProcessOrder, SORT_NUMERIC);
 		$this->template = $templatesByProcessOrder;
 	}
 

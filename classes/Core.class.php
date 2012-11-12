@@ -29,7 +29,7 @@ class Core {
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "other");
 
-	// left as public, because they're often modified
+	// left as public, because they're often modified / accessed, and getters are frickin' fussy with PHP
 	public static $language;
 	public static $db;
 	public static $smarty;
@@ -38,6 +38,7 @@ class Core {
 	public static $dataTypePlugins;
 	public static $exportTypePlugins;
 	public static $countryPlugins;
+	public static $geoData;
 
 
 	/**
@@ -64,11 +65,14 @@ class Core {
 
 		self::initSmarty();
 
+		// the order is significant, here
 		if ($runtimeContext != "installation") {
 			self::initDatabase();
 		}
-
-		if ($runtimeContext == "ui" || $runtimeContext == "generation") {
+		if ($runtimeContext == "generation") {
+			self::initGeoData();
+		}
+		if ($runtimeContext != "installation") {
 			self::initCountries();
 			self::initExportTypes($runtimeContext);
 			self::initDataTypes($runtimeContext);
@@ -142,6 +146,14 @@ class Core {
 			return;
 		}
 		self::$countryPlugins = CountryPluginHelper::getCountryPlugins();
+	}
+
+	/**
+	 * This function returns the actual data populated in the database by the Country plugins. It
+	 * returns an array of country data, contains regions and cities.
+	 */
+	public function initGeoData() {
+		self::$geoData = new GeoData();
 	}
 
 	public function getDefaultExportType() {

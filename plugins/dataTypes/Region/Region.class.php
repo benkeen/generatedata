@@ -9,23 +9,31 @@ class DataType_Region extends DataTypePlugin {
 	protected $jsModules = array("Region.js");
 	protected $cssFile = "Region.css";
 	private $helpDialogWidth = 410;
-	private $regions;
+	private $countryRegionHash;
 
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
+
 		if ($runtimeContext == "generation") {
-			$this->regions = $this->getRegions();
+			// convert the country-region info into something more useful for us
+			$countryRegions = Core::$geoData->getCountryRegions();
+			$countryRegionHash = array();
+			foreach ($countryRegions as $countryRegion) {
+				$countrySlug = $countryRegion["country_slug"];
+
+				$countryRegionHash[$countrySlug] = array(
+					"numRegions" => count($countryRegion["regions"]),
+					"regions"    => $countryRegion["regions"]
+				);
+			}
+
+			$this->countryRegionHash = $countryRegionHash;
 		}
 	}
 
 	public function generate($generator, $generationContextData) {
-		global $StateProvince_regions, $StateProvince_region_countries;
-
-		// if the user didn't select any options (i.e. regions), just return - nothing to display!
-		if (empty($options)) {
-			return;
-		}
+		$options = $generationContextData["generationOptions"];
 
 		// see if this row has a country [N.B. This is something that could be calculated ONCE on the first row]
 		$rowCountryInfo = array();
@@ -36,90 +44,66 @@ class DataType_Region extends DataTypePlugin {
 			}
 		}
 
-		// if it's not defined, just show a random region from the selected list of regions
-		$region_info = array();
+		$regionInfo = array();
 		$keys = array("region", "region_short");
-		if (empty($row_country_info)) {
-			$rand_country_slug = array_rand($options);
 
-			$index = "";
-			if ($options[$rand_country_slug]["full"] == 1 && $options[$rand_country_slug]["short"] == 1)
-				$index = rand(0, 1); // weird, rand()&1 doesn't work - always returns 1 0 1 0 1 0...
-			else if ($options[$rand_country_slug]["full"] == 1)
-				$index = 0;
-			else if ($options[$rand_country_slug]["short"] == 1)
-				$index = 1;
-
-			if ($index === "")
+		// if the data set didn't include a Country, just generate any old region pulled from any of the
+		// Country plugin data
+		if (empty($rowCountryInfo) || $rowCountryInfo["generationOptions"] == "all") {
+			$randCountrySlug = array_rand($options);
+			$index = $this->getRandIndex($options, $randCountrySlug);
+			if ($index === null) {
 				return;
-
-			$region_info = $StateProvince_regions[$rand_country_slug][rand(0, count($StateProvince_regions[$rand_country_slug])-1)];
-			$region_info["display"] = $region_info[$keys[$index]];
-		}
-		else
-		{
-			// if the random country generated for this row is a country that has mapped data (currently just 5),
-			// then pick a region WITHIN that country
-			$country_slug = $row_country_info["random_data"]["slug"];
-			if (array_key_exists($country_slug, $options))
-			{
-				$index = "";
-				if ($options[$country_slug]["full"] == 1 && $options[$country_slug]["short"] == 1)
-					$index = rand(0, 1); // weird, rand()&1 doesn't work - always returns 1 0 1 0 1 0...
-				else if ($options[$country_slug]["full"] == 1)
-					$index = 0;
-				else if ($options[$country_slug]["short"] == 1)
-					$index = 1;
-
-				if ($index === "")
-					return;
-
-				$region_info = $StateProvince_regions[$country_slug][rand(0, count($StateProvince_regions[$country_slug])-1)];
-				$region_info["display"] = $region_info[$keys[$index]];
 			}
 
-			// otherwise just pick any region for one of the selected regions
-			else
-			{
-				$rand_country_slug = array_rand($options);
+			$randCountry = $this->countryRegionHash[$randCountrySlug];
+			$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
+			$regionInfo["display"] = $regionInfo[$keys[$index]];
 
-				$index = "";
-				if ($options[$rand_country_slug]["full"] == 1 && $options[$rand_country_slug]["short"] == 1)
-					$index = rand(0, 1); // weird, rand()&1 doesn't work - always returns 1 0 1 0 1 0...
-				else if ($options[$rand_country_slug]["full"] == 1)
-					$index = 0;
-				else if ($options[$rand_country_slug]["short"] == 1)
-					$index = 1;
+		// here, there *was* a country Data Type chosen and the Country row is pulling from the subset of
+		// Country plugins
+		} else {
+			$currRowCountrySlug = $rowCountryInfo["randomData"]["slug"];
 
-				if ($index === "")
-					return;
+			echo $currRowCountrySlug;
+			exit;
 
-				$region_info = $StateProvince_regions[$rand_country_slug][rand(0, count($StateProvince_regions[$rand_country_slug])-1)];
-				$region_info["display"] = $region_info[$keys[$index]];
+			$index = $this->getRandIndex($options, $currRowCountrySlug);
+			if ($index === null) {
+				return;
 			}
+
+
+			$regionInfo = $StateProvince_regions[$country_slug][rand(0, count($StateProvince_regions[$country_slug])-1)];
+			$regionInfo["display"] = $region_info[$keys[$index]];
 		}
 
-		return $region_info;
+		return $regionInfo;
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
-//		global $StateProvince_regions;
 		$countries = $generator->getCountries();
-		$options = array();
-
+		$generationOptions = array();
 		foreach ($countries as $slug) {
-			if (isset($postdata["includeRegion_{$slug}_$colNum"])) {
-				$region_full  = (isset($postdata["includeRegion_{$slug}_Full_$colNum"])) ? true : false;
-				$region_short = (isset($postdata["includeRegion_{$slug}_Short_$colNum"])) ? true : false;
-				$options[$slug] = array(
+			if (isset($postdata["dtIncludeRegion_{$slug}_$colNum"])) {
+				$region_full  = (isset($postdata["dtIncludeRegion_{$slug}_Full_$colNum"])) ? true : false;
+				$region_short = (isset($postdata["dtIncludeRegion_{$slug}_Short_$colNum"])) ? true : false;
+				$generationOptions[$slug] = array(
 					"full"  => $region_full,
 					"short" => $region_short
 				);
 			}
 		}
 
-		return $options;
+		// if there were no generation options for this row, the user didn't select anything: return
+		// false to ensure the row won't appear in the generated data set
+		if (empty($generationOptions)) {
+			return false;
+		}
+
+		return $generationOptions;
 	}
+
 
 	public function getOptionsColumnHTML() {
 		$countryPlugins = Core::$countryPlugins;
@@ -171,34 +155,16 @@ EOF;
 		return $info;
 	}
 
-	public function getRegions() {
-		$countryPlugins = Core::$countryPlugins;
-
-		$regions = array();
-		foreach ($countryPlugins as $countryPlugin) {
-
-
-			/*
-			$country_id   = $row["id"];
-			$country_slug = $row["country_slug"];
-			$query2 = mysql_query("SELECT * FROM {$g_table_prefix}regions WHERE country_id = $country_id");
-
-			$region_list = array();
-			while ($row2 = mysql_fetch_assoc($query2))
-			{
-				$region_list[] = array(
-					"region"       => $row2["region"],
-					"region_id"    => $row2["region_id"],
-					"region_short" => $row2["region_short"],
-					"weight"       => $row2["weight"]
-				);
-			}
-			$regions[$country_slug] = $region_list;
-			$StateProvince_region_countries[] = $country_slug;
-			*/
+	private function getRandIndex($options, $randCountrySlug) {
+		$index = null;
+		if ($options[$randCountrySlug]["full"] == 1 && $options[$randCountrySlug]["short"] == 1) {
+			$index = rand(0, 1); // weird, rand()&1 doesn't work - always returns 1 0 1 0 1 0...
+		} else if ($options[$randCountrySlug]["full"] == 1) {
+			$index = 0;
+		} else if ($options[$randCountrySlug]["short"] == 1) {
+			$index = 1;
 		}
-
-		return $regions;
+		return $index;
 	}
 
 }

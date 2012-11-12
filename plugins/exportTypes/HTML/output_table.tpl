@@ -7,7 +7,7 @@
 {/if}
 {foreach from=$data item=i}
 <tr>
-{foreach from=$i item=j}	<td>{$j.randomData}</td>
+{foreach from=$i item=j}	<td>{$j.randomData.display}</td>
 {/foreach}
 </tr>
 {/foreach}

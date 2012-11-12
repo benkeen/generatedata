@@ -11,34 +11,34 @@
  *      format easily convertable to JSON, along with a custom generate human-friendly error string.
  */
 class GDException extends Exception {
-  private $data;
+	private $data;
 
-  public function __construct($code, $data = array()) {
-  	parent::__construct(null, $code);
-  	$this->data = $data;
-  }
+	public function __construct($code, $data = array()) {
+		parent::__construct(null, $code);
+		$this->data = $data;
+	}
 
-  public function getFormattedError() {
-  	$language     = Core::getLanguage()->getCurrentLanguageStrings();
-  	$errorCode    = $this->getCode();
-  	$errorMessage = "";
+	public function getFormattedError() {
+		$language     = Core::getLanguage()->getCurrentLanguageStrings();
+		$errorCode    = $this->getCode();
+		$errorMessage = "";
 
-  	switch ($errorCode) {
-  		case Exceptions::SETTINGSFILEEXISTS:
-  			$errorMessage = $language["settings_file_exists"];
-  			break;
-  		case Exceptions::NOTLOGGEDIN:
-  			$errorMessage = "";
-  			break;
-  		case Exceptions::NOTNUMERICFIELD:
-  			$errorMessage = "";
-  			break;
-  	}
+		switch ($errorCode) {
+			case Exceptions::SETTINGSFILEEXISTS:
+				$errorMessage = $language["settings_file_exists"];
+				break;
+			case Exceptions::NOTLOGGEDIN:
+				$errorMessage = "";
+				break;
+			case Exceptions::NOTNUMERICFIELD:
+				$errorMessage = "";
+				break;
+		}
 
-    return array(
-      "success"   => 0,
-      "exception" => 1,
-      "message"   => $errorMessage
-    );
-  }
+		return array(
+			"success"   => 0,
+			"exception" => 1,
+			"message"   => $errorMessage
+		);
+	}
 }
