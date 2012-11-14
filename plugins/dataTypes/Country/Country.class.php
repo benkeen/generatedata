@@ -50,6 +50,8 @@ class DataType_Country extends DataTypePlugin {
 		'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Venezuela', 'Viet Nam', 'Virgin Islands, British',
 		'Virgin Islands, U.S.', 'Wallis and Futuna', 'Western Sahara', 'Yemen', 'Zambia', 'Zimbabwe');
 	private $numCountries;
+	private $selectedCountrySlugs;
+	private $numSelectedCountrySlugs;
 	private $countryRegionData;
 	private $numCountryRegionData;
 
@@ -63,8 +65,15 @@ class DataType_Country extends DataTypePlugin {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			$this->numCountries = count($this->countries);
-			$this->countryRegionData = Core::$geoData->getCountryRegions();
-			$this->numCountryRegionData = count($this->countryRegionData);
+
+			// convert the country region data to a hash (country_slug as key)
+			$countryRegionData = Core::$geoData->getCountryRegions();
+			$countryHash = array();
+			foreach ($countryRegionData as $regionData) {
+				$countryHash[$regionData["country_slug"]] = $regionData;
+			}
+			$this->countryRegionData = $countryHash;
+			$this->numCountryRegionData = count($countryHash);
 		}
 	}
 
@@ -73,7 +82,10 @@ class DataType_Country extends DataTypePlugin {
 		if ($generationContextData["generationOptions"] == "all") {
 			$data["display"] = $this->countries[rand(0, $this->numCountries-1)];
 		} else {
-			$randomCountry = $this->countryRegionData[rand(0, $this->numCountryRegionData-1)];
+			// pick a random country from whatever countries were selected
+			$randomCountrySlug = $this->selectedCountrySlugs[rand(0, $this->numSelectedCountrySlugs-1)];
+			$randomCountry = $this->countryRegionData[$randomCountrySlug];
+
 			$data = array(
 				"display" => $randomCountry["country"],
 				"slug"    => $randomCountry["country_slug"],
@@ -89,6 +101,11 @@ class DataType_Country extends DataTypePlugin {
 	 * @see DataTypePlugin::getRowGenerationOptions()
 	 */
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+		if (empty($selectedCountrySlugs)) {
+			$this->selectedCountrySlugs    = $generator->getCountries();
+			$this->numSelectedCountrySlugs = count($this->selectedCountrySlugs);
+		}
+
 		$option = "all";
 		if (isset($postdata["dtOption_$colNum"])) {
 			$option = "countryPluginsOnly";

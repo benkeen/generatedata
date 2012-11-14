@@ -55,7 +55,6 @@ class DataType_Region extends DataTypePlugin {
 			if ($index === null) {
 				return;
 			}
-
 			$randCountry = $this->countryRegionHash[$randCountrySlug];
 			$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
 			$regionInfo["display"] = $regionInfo[$keys[$index]];
@@ -65,17 +64,21 @@ class DataType_Region extends DataTypePlugin {
 		} else {
 			$currRowCountrySlug = $rowCountryInfo["randomData"]["slug"];
 
-			echo $currRowCountrySlug;
-			exit;
-
-			$index = $this->getRandIndex($options, $currRowCountrySlug);
-			if ($index === null) {
-				return;
+			// here, we've gotten the slug of the country for this particular row, but the user may have unselected
+			// it from the row's generation options. See if it's available and if so, use that; otherwise, display
+			// any old region
+			if (array_key_exists($currRowCountrySlug, $options)) {
+				$regions = $this->countryRegionHash[$currRowCountrySlug];
+				$regionInfo = $regions["regions"][rand(0, $regions["numRegions"]-1)];
+				$index = $this->getRandIndex($options, $currRowCountrySlug);
+				$regionInfo["display"] = $regionInfo[$keys[$index]];
+			} else {
+				$randCountrySlug = array_rand($options);
+				$index = $this->getRandIndex($options, $randCountrySlug);
+				$randCountry = $this->countryRegionHash[$randCountrySlug];
+				$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
+				$regionInfo["display"] = $regionInfo[$keys[$index]];
 			}
-
-
-			$regionInfo = $StateProvince_regions[$country_slug][rand(0, count($StateProvince_regions[$country_slug])-1)];
-			$regionInfo["display"] = $region_info[$keys[$index]];
 		}
 
 		return $regionInfo;
