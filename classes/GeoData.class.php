@@ -26,7 +26,12 @@ class GeoData {
 		$this->constructDataSubsets();
 	}
 
-	public function getCountryRegions($countrySlug = null) {
+	/**
+	 * Returns a hash of country_slug => country data. The regions are stored in a "regions"
+	 * key and the number of regions is additionally stored in a "numRegions" key, for convenience.
+	 * @param unknown_type $countrySlug
+	 */
+	public function getCountryRegionHash($countrySlug = null) {
 		$data = $this->countryRegions;
 		if ($countrySlug != null) {
 			foreach ($this->countryRegions as $countryData) {
@@ -36,7 +41,17 @@ class GeoData {
 				}
 			}
 		}
-		return $data;
+
+		// convert the country-region info into something more useful for us
+		$countryRegionHash = array();
+		foreach ($data as $countryRegion) {
+			$countrySlug = $countryRegion["country_slug"];
+			$countryRegion["numRegions"] = count($countryRegion["regions"]);
+			$countryRegion["regions"] = $countryRegion["regions"];
+			$countryRegionHash[$countrySlug] = $countryRegion;
+		}
+
+		return $countryRegionHash;
 	}
 
 	public function getRegionCities($regionSlug = null) {

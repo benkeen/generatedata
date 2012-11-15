@@ -65,15 +65,8 @@ class DataType_Country extends DataTypePlugin {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			$this->numCountries = count($this->countries);
-
-			// convert the country region data to a hash (country_slug as key)
-			$countryRegionData = Core::$geoData->getCountryRegions();
-			$countryHash = array();
-			foreach ($countryRegionData as $regionData) {
-				$countryHash[$regionData["country_slug"]] = $regionData;
-			}
-			$this->countryRegionData = $countryHash;
-			$this->numCountryRegionData = count($countryHash);
+			$this->countryRegionData = Core::$geoData->getCountryRegionHash();
+			$this->numCountryRegionData = count($this->countryRegionData);
 		}
 	}
 

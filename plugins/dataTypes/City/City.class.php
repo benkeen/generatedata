@@ -6,6 +6,7 @@ class DataType_City extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $processOrder = 3;
+	private $countryRegions;
 	private $citiesByRegion;
 	private $numRegions;
 
@@ -14,6 +15,7 @@ class DataType_City extends DataTypePlugin {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			self::initCityList();
+			$this->countryRegions = Core::$geoData->getCountryRegionHash();
 		}
 	}
 
@@ -24,49 +26,61 @@ class DataType_City extends DataTypePlugin {
 		$rowRegionInfo = array();
 		$rowCountryInfo = array();
 
-		/*
-		while (list($key, $info) = each($existing_row_data)) {
-			if ($info["data_type_folder"] == "StateProvince") {
-				$row_region_info = $info;
+		while (list($key, $info) = each($generationContextData["existingRowData"])) {
+			if ($info["dataTypeFolder"] == "Region") {
+				$rowRegionInfo = $info;
 				break;
 			}
 		}
-		reset($existing_row_data);
+		reset($generationContextData["existingRowData"]);
 
-		// see if this row has a country [N.B. This is something that could be calculated ONCE on the first row]
-		if (empty($row_region_info)) {
-			$row_country_info = array();
-			while (list($key, $info) = each($existing_row_data)) {
-				if ($info["data_type_folder"] == "Country") {
-					$row_country_info = $info;
+		// if there was no region specified, see if this row has a country [N.B. This is also
+		// something that could be calculated ONCE on the first row]
+		$rowCountryInfo = array();
+		if (empty($rowRegionInfo)) {
+			while (list($key, $info) = each($generationContextData["existingRowData"])) {
+				if ($info["dataTypeFolder"] == "Country") {
+					$rowCountryInfo = $info;
 					break;
 				}
 			}
 		}
-		*/
 
 		$randomCity = "";
-/*		if (!empty($rowRegionInfo)) {
+		if (!empty($rowRegionInfo)) {
 			$regionSlug = $rowRegionInfo["randomData"]["region_slug"];
 			$randomCity = $this->citiesByRegion[$regionSlug][rand(0, count($this->citiesByRegion[$regionSlug])-1)]["city"];
 		} else if (!empty($rowCountryInfo)) {
+			// pick a random region in this country
+			$countrySlug = $rowCountryInfo["randomData"]["slug"];
+			$countryRegions = $this->countryRegions[$countrySlug]["regions"];
+			$numCountryRegions = $this->countryRegions[$countrySlug]["numRegions"];
+
+			print_r($this->citiesByRegion);
+			exit;
+
+			/*
 			// get all region IDs associated with this country
 			$regions = Country_get_regions($row_country_info["randomData"]["id"]);
 			$random_region_id = $regions[rand(0, count($regions)-1)]["region_id"];
 			$random_city = $City_list[$random_region_id][rand(0, count($City_list[$random_region_id])-1)]["city"];
+			*/
 		} else {
-		*/
-		$randRegionSlug = array_rand($this->citiesByRegion);
-		$randomCity = $this->citiesByRegion[$randRegionSlug][rand(0, count($this->citiesByRegion[$randRegionSlug])-1)]["city"];
+			$randRegionSlug = array_rand($this->citiesByRegion);
+			$randomCity = $this->citiesByRegion[$randRegionSlug][rand(0, count($this->citiesByRegion[$randRegionSlug])-1)]["city"];
+		}
 
-		//}
-
-		return $randomCity;
+		$return = array(
+			"display" => $randomCity
+		);
+		return $return;
 	}
 
 
 	/**
 	 * Called when the plugin is initialized during data generation.
+	 *
+	 * TODO. this doesn't look right. What about regions with the same slug?
 	 */
 	private function initCityList() {
 		$prefix = Core::getDbTablePrefix();

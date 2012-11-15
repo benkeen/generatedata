@@ -16,19 +16,7 @@ class DataType_Region extends DataTypePlugin {
 		parent::__construct($runtimeContext);
 
 		if ($runtimeContext == "generation") {
-			// convert the country-region info into something more useful for us
-			$countryRegions = Core::$geoData->getCountryRegions();
-			$countryRegionHash = array();
-			foreach ($countryRegions as $countryRegion) {
-				$countrySlug = $countryRegion["country_slug"];
-
-				$countryRegionHash[$countrySlug] = array(
-					"numRegions" => count($countryRegion["regions"]),
-					"regions"    => $countryRegion["regions"]
-				);
-			}
-
-			$this->countryRegionHash = $countryRegionHash;
+			$this->countryRegionHash = Core::$geoData->getCountryRegionHash();
 		}
 	}
 

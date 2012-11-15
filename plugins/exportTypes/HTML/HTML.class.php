@@ -27,6 +27,10 @@ class HTML extends ExportTypePlugin {
 
 		$data = array();
 		for ($rowNum=1; $rowNum<=$numResults; $rowNum++) {
+
+			// $template is alreay grouped by process order. Just loop through each one, passing off the
+			// actual data generation to the appropriate Data Type. Note that we pass all previously generated
+			// data (including any metadata returned by the Data Type).
 			$currRowData = array();
 			while (list($order, $dataTypeGenerationInfo) = each($template)) {
 				foreach ($dataTypeGenerationInfo as $genInfo) {
@@ -39,7 +43,7 @@ class HTML extends ExportTypePlugin {
 						"existingRowData"   => $currRowData
 					);
 					$genInfo["randomData"] = $currDataType->generate($generator, $generationContextData);
-					$currRowData["$colNum"] = $genInfo;
+					$currRowData[] = $genInfo;
 				}
 			}
 			reset($template);
@@ -47,7 +51,6 @@ class HTML extends ExportTypePlugin {
 
 			$data[] = $currRowData;
 		}
-
 		try {
 			$placeholders = array(
 				"isFirstRow" => true,
