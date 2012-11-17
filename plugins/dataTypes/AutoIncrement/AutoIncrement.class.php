@@ -16,14 +16,15 @@ class DataType_AutoIncrement extends DataTypePlugin {
 		$start       = $rowSettings["start"];
 		$increment   = $rowSettings["increment"];
 		$placeholder = $rowSettings["placeholder"];
-
-		$val = (($rowSettings["rowNum"]-1) * $increment) + $start;
+		$val = (($generationContextData["rowNum"]-1) * $increment) + $start;
 
 		if (!empty($placeholder)) {
 			$val = preg_replace('/\{\$INCR\}/', $val, $placeholder);
 		}
 
-		return $val;
+		return array(
+			"display" => $val
+		);
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $col, $num_cols) {

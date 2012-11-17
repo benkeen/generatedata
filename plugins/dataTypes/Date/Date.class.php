@@ -22,7 +22,10 @@ class DataType_Date extends DataTypePlugin {
 		$randDate = mt_rand($fromDate, $toDate);
 
 		// display the new date in the value specified
-		return date($options["formatCode"], $randDate);
+		$date = date($options["formatCode"], $randDate);
+		return array(
+			"display" => $date
+		);
 	}
 
 	public function getExportTypeInfo($exportType, $options) {

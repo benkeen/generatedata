@@ -8,7 +8,6 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("AlphaNumeric.js");
-
 	private $helpDialogWidth = 510;
 
 
@@ -18,7 +17,10 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 		if (count($formats) > 1) {
 			$chosenFormat = $formats[rand(0, count($formats)-1)];
 		}
-		return Utils::generateRandomAlphanumericStr($chosenFormat);
+		$val = Utils::generateRandomAlphanumericStr($chosenFormat);
+		return array(
+			"display" => $val
+		);
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {

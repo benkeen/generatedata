@@ -37,7 +37,9 @@ class DataType_Company extends DataTypePlugin {
 		$words = array_slice($this->words, $offset, $numCompanyNameWords);
 		$words = preg_replace("/[,.:]/", "", $words);
 		$companyType = $this->companyTypes[rand(0, $this->numCompanyTypes-1)];
-		return ucwords(implode(" ", $words) . " " . $companyType);
+		return array(
+			"display" => ucwords(implode(" ", $words) . " " . $companyType)
+		);
 	}
 
 	// TODO

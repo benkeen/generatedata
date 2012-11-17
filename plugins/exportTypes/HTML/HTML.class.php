@@ -92,26 +92,14 @@ class HTML extends ExportTypePlugin {
 		$html =<<< END
 		<table cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td width="30%" valign="top">
-				<table cellspacing="0" cellpadding="0" width="100%">
-				<tr>
-					<td colspan="2">
-						<input type="checkbox" checked="checked" />
-							<label>Include entire webpage HTML</label>
-					</td>
-				</tr>
-				<tr>
-					<td width="130" valign="top">Data format</td>
-					<td>
-						<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" value="table" checked="checked" />
-							<label for="etHTMLExportFormat1">&lt;table&gt;</label><br />
-						<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat2" value="ul" />
-							<label for="etHTMLExportFormat2">&lt;ul&gt;</label><br />
-						<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat3" value="dl" />
-							<label for="etHTMLExportFormat3">&lt;dl&gt;</label>
-					</td>
-				</tr>
-				</table>
+			<td width="17%" valign="top">Data format</td>
+			<td width="14%" valign="top">
+				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" value="table" checked="checked" />
+					<label for="etHTMLExportFormat1">&lt;table&gt;</label><br />
+				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat2" value="ul" />
+					<label for="etHTMLExportFormat2">&lt;ul&gt;</label><br />
+				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat3" value="dl" />
+					<label for="etHTMLExportFormat3">&lt;dl&gt;</label>
 			</td>
 			<td width="70%" valign="top">
 				<label for="etXML_useCustomExportFormat">

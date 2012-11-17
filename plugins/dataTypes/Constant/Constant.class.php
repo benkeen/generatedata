@@ -13,50 +13,38 @@ class DataType_Constant extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
-		$num_values = count($options["values"]);
-		if ($num_values == 1) {
+		$rowNum  = $generationContextData["rowNum"];
+		$numValues = count($options["values"]);
+		if ($numValues == 1) {
 			$value = $options["values"][0];
 		} else {
-			$item_index = floor(($row-1) / $options["loop_count"]);
-			if ($item_index > ($num_values - 1)) {
-				$item_index = ($item_index % $num_values);
+			$itemIndex = floor(($rowNum-1) / $options["loopCount"]);
+			if ($itemIndex > ($numValues - 1)) {
+				$itemIndex = ($itemIndex % $numValues);
 			}
-			$value = $options["values"][$item_index];
+			$value = $options["values"][$itemIndex];
 		}
-		return $value;
+		return array(
+			"display" => $value
+		);
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "TEXT default NULL";
-				} else if ($options == "Oracle") {
-					$info = "BLOB default NULL";
-				}
-				break;
-		}
 
-		return $info;
-	}
-
-	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
-		if (!isset($postdata["dtOption_$col"]) || empty($postdata["dtOption_$col"])) {
+	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+		if (!isset($postdata["dtOption_$colNum"]) || empty($postdata["dtOption_$colNum"])) {
 			return false;
 		}
-		if (!isset($postdata["dtLoopCount_$col"]) || empty($postdata["dtLoopCount_$col"])) {
+		if (!isset($postdata["dtLoopCount_$colNum"]) || empty($postdata["dtLoopCount_$colNum"])) {
 			return false;
 		}
-		if (!is_numeric($postdata["dtLoopCount_$col"]) || $postdata["dtLoopCount_$col"] <= 0) {
+		if (!is_numeric($postdata["dtLoopCount_$colNum"]) || $postdata["dtLoopCount_$colNum"] <= 0) {
 			return false;
 		}
 
 		$options = array(
-			"loopCount" => $postdata["dtLoopCount_$col"],
-			"values"     => explode("|", $postdata["dtOption_$col"])
+			"loopCount" => $postdata["dtLoopCount_$colNum"],
+			"values"    => explode("|", $postdata["dtOption_$colNum"])
 		);
-
 		return $options;
 	}
 
@@ -100,5 +88,20 @@ END;
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => $html
 		);
+	}
+
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($exportType) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite") {
+					$info = "TEXT default NULL";
+				} else if ($options == "Oracle") {
+					$info = "BLOB default NULL";
+				}
+				break;
+		}
+
+		return $info;
 	}
 }

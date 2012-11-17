@@ -35,7 +35,7 @@ define([
 	 */
 	var _run = function() {
 		$("#gdCountries").chosen().change(_updateCountryChoice);
-		$("#gdGenerateButton").on("click", _generateData);
+		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
 		$("#gdBackButton").on("click", function() { return _showSubtab(1); })
 		$(".gdSectionHelpTip li").bind("mouseover", function() { $(this).addClass('ui-state-hover'); });
 		$(".gdSectionHelpTip li").bind("mouseout", function() { $(this).removeClass('ui-state-hover'); });

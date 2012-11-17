@@ -103,6 +103,7 @@
 		</div>
 
 		<button class="gdPrimaryButton" id="gdBackButton">&laquo; Back</button>
+		<button class="gdPrimaryButton" id="gdRegenerateButton">Regenerate</button>
 		<div class="gdClear"></div>
 	</div>
 

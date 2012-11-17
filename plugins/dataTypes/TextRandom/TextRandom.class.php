@@ -17,7 +17,10 @@ class DataType_TextRandom extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
-		return Utils::generateRandomTextStr($this->words, $options["startsWithLipsum"], "range", $options["numWordsMin"], $options["numWordsMax"]);
+		$textStr = Utils::generateRandomTextStr($this->words, $options["startsWithLipsum"], "range", $options["numWordsMin"], $options["numWordsMax"]);
+		return array(
+			"display" => $textStr
+		);
 	}
 
 	public function getExportTypeInfo($exportType, $options) {

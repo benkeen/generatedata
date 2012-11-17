@@ -9,7 +9,6 @@ class DataType_PostalZip extends DataTypePlugin {
 	private $helpDialogWidth = 370;
 	private $zipFormats;
 
-
 	//$g_countries = gd_get_configurable_countries();
 
 	public function __construct($runtimeContext) {
@@ -28,12 +27,12 @@ class DataType_PostalZip extends DataTypePlugin {
 
 		// track the country info (this finds the FIRST country field listed)
 		$rowCountryInfo = array();
-		/*while (list($key, $info) = each($existing_row_data)) {
-			if ($info["data_type_folder"] == "Country") {
-				$PostalZip_row_country_info = $info;
+		while (list($key, $info) = each($generationContextData["existingRowData"])) {
+			if ($info["dataTypeFolder"] == "Country") {
+				$rowCountryInfo = $info;
 				break;
 			}
-		}*/
+		}
 
 		$randomZip = "";
 		if (empty($rowCountryInfo)) {
@@ -50,8 +49,9 @@ class DataType_PostalZip extends DataTypePlugin {
 				$randomZip = $this->convert($this->zipFormats[$randCountry]);
 			}
 		}
-
-		return $randomZip;
+		return array(
+			"display" => $randomZip
+		);
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
@@ -92,7 +92,6 @@ EOF;
 
 	private function initZipFormats() {
 		$countryPlugins = Core::$countryPlugins;
-
 		$formats = array();
 		foreach ($countryPlugins as $countryInfo) {
 			$countrySlug = $countryInfo->getSlug();

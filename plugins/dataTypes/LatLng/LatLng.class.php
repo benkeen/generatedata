@@ -36,7 +36,9 @@ class DataType_LatLng extends DataTypePlugin {
 			$info[] = (mt_rand($this->cachedMath["minLngCalc"], $this->cachedMath["maxLngCalc"]) / $this->cachedMath["divisor"]);
 		}
 
-		return join(", ", $info);
+		return array(
+			"display" => join(", ", $info)
+		);
 	}
 
 
@@ -44,12 +46,10 @@ class DataType_LatLng extends DataTypePlugin {
 		if (!isset($postdata["dtLatLng_Lat$column"]) && empty($postdata["dtLatLng_Lng$column"])) {
 			return false;
 		}
-
 		$options = array(
 			"lat" => isset($postdata["dtLatLng_Lat$column"]) ? true : false,
 			"lng" => isset($postdata["dtLatLng_Lng$column"]) ? true : false
 		);
-
 		return $options;
 	}
 

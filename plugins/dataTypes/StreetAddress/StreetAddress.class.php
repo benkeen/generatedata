@@ -41,17 +41,20 @@ class DataType_StreetAddress extends DataTypePlugin {
 				break;
 		}
 
-		return $streetAddress;
+		return array(
+			"display" => $streetAddress
+		);
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
 		$info = "";
-		switch ($export_type) {
+		switch ($exportType) {
 			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
+				if ($options == "MySQL" || $options == "SQLite") {
 					$info = "varchar(255) default NULL";
-				else if ($options == "Oracle")
+				} else if ($options == "Oracle") {
 					$info = "varchar2(255) default NULL";
+				}
 				break;
 		}
 

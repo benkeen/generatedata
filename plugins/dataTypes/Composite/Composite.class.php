@@ -9,54 +9,43 @@ class DataType_Composite extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $jsModules = array("Composite.js");
 	protected $processOrder = 100;
-
 	private $helpDialogWidth = 520;
+	private $smarty;
 
-	// TODO...
-	public function generate($generator, $generationContextData) {
-		global $Composite_smarty;
-
-		$placeholders = array();
-		foreach ($existing_row_data as $row_info)
-		{
-			$column_number = $row_info["column_num"];
-			$random_data   = is_array($row_info["random_data"]) ? $row_info["random_data"]["display"] : $row_info["random_data"];
-			$placeholders["ROW{$column_number}"] = $random_data;
+	public function __construct($runtimeContext) {
+		parent::__construct($runtimeContext);
+		if ($runtimeContext == "generation") {
+			$this->smarty = new Smarty();
+			$this->smarty->template_dir = realpath(dirname(__FILE__) . "/../../../libs/smarty");
+			$this->smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../../cache");
 		}
-
-		$curr_folder = dirname(__FILE__);
-		$Composite_smarty->template_dir = realpath("$curr_folder/../../code/smarty");
-		$Composite_smarty->compile_dir  = realpath("$curr_folder/../../cache");
-		while (list($key, $value) = each($placeholders))
-			$Composite_smarty->assign($key, $value);
-
-		$Composite_smarty->assign("eval_str", $options);
-		$output = $Composite_smarty->fetch("eval.tpl");
-
-		return $output;
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($export_type)
-		{
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
-					$info = "TEXT default NULL";
-				else if ($options == "Oracle")
-					$info = "BLOB default NULL";
-				break;
+
+	public function generate($generator, $generationContextData) {
+		$placeholders = array();
+		foreach ($generationContextData["existingRowData"] as $rowInfo) {
+			$colNum = $rowInfo["colNum"];
+			$randomData  = is_array($rowInfo["randomData"]) ? $rowInfo["randomData"]["display"] : $rowInfo["randomData"];
+			$placeholders["ROW{$colNum}"] = $randomData;
+		}
+		while (list($key, $value) = each($placeholders)) {
+			$this->smarty->assign($key, $value);
 		}
 
-		return $info;
+		$this->smarty->assign("eval_str", $generationContextData["generationOptions"]);
+		$output = $this->smarty->fetch("eval.tpl");
+
+		return array(
+			"display" => $output
+		);
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $col, $num_cols) {
-		if (!isset($postdata["option_$col"]) || empty($postdata["option_$col"])) {
+		if (!isset($postdata["dtOption_$col"]) || empty($postdata["dtOption_$col"])) {
 			return false;
 		}
-
-		return $postdata["option_$col"];
+		return $postdata["dtOption_$col"];
 	}
 
 	public function getExampleColumnHTML() {
@@ -102,5 +91,20 @@ END;
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => $content
 		);
+	}
+
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($exportType) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite") {
+					$info = "TEXT default NULL";
+				} else if ($options == "Oracle") {
+					$info = "BLOB default NULL";
+				}
+				break;
+		}
+
+		return $info;
 	}
 }

@@ -5,28 +5,14 @@ class DataType_NumberRange extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $jsModules = array("NumberRange.js");
-
 	private $helpDialogWidth = 370;
 
 
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
-		return rand($options["min"], $options["max"]);
-	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "mediumint default NULL";
-				} else if ($options == "Oracle") {
-					$info = "varchar2(50) default NULL";
-				}
-				break;
-		}
-
-		return $info;
+		return array(
+			"display" => rand($options["min"], $options["max"])
+		);
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
@@ -34,16 +20,13 @@ class DataType_NumberRange extends DataTypePlugin {
 			(empty($postdata["dtNumRangeMax_$column"]) && $postdata["dtNumRangeMax_$column"] !== "0")) {
 			return false;
 		}
-
 		if (!is_numeric($postdata["dtNumRangeMin_$column"]) || !is_numeric($postdata["dtNumRangeMax_$column"])) {
 			return false;
 		}
-
 		$options = array(
 			"min" => $postdata["dtNumRangeMin_$column"],
 			"max" => $postdata["dtNumRangeMax_$column"]
 		);
-
 		return $options;
 	}
 
@@ -60,5 +43,20 @@ END;
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => "<p>{$this->L["NumberRange_help"]}</p>"
 		);
+	}
+
+	public function getExportTypeInfo($exportType, $options) {
+		$info = "";
+		switch ($exportType) {
+			case "sql":
+				if ($options == "MySQL" || $options == "SQLite") {
+					$info = "mediumint default NULL";
+				} else if ($options == "Oracle") {
+					$info = "varchar2(50) default NULL";
+				}
+				break;
+		}
+
+		return $info;
 	}
 }

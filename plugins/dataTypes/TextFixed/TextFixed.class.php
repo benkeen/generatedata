@@ -18,14 +18,17 @@ class DataType_TextFixed extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
-		return Utils::generateRandomTextStr($this->words, false, "fixed", $options);
+		$textStr = Utils::generateRandomTextStr($this->words, false, "fixed", $options);
+		return array(
+			"display" => $textStr
+		);
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
-		if (empty($postdata["dtNumWords_$column"])) {
+	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+		if (empty($postdata["dtNumWords_$colNum"])) {
 			return false;
 		}
-		return $postdata["dtNumWords_$column"];
+		return $postdata["dtNumWords_$colNum"];
 	}
 
 	public function getOptionsColumnHTML() {

@@ -18,8 +18,9 @@ class DataType_GUID extends DataTypePlugin {
 			$guid = Utils::generateRandomAlphanumericStr($placeholderStr);
 		}
 		$this->generatedGUIDs[] = $guid;
-
-		return $guid;
+		return array(
+			"display" => $guid
+		);
 	}
 
 	public function getExportTypeInfo($exportType, $options) {
