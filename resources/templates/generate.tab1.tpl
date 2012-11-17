@@ -1,4 +1,4 @@
-<form id="gdData">
+<form id="gdData" method="post">
 	<div id="gdGenerateSubtab1">
 
 		<h1>{$L.country_specific_data}</h1>

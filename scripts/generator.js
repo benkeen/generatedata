@@ -519,10 +519,11 @@ define([
 
 		var exportLocation = $("input[name=gdExportLocation]:checked")[0].value;
 
-		if (exportLocation == "in_page") {
+		// TODO this sucks... could we send an object instead? (at least for in_page)
+		var formData = $("#gdData").serialize();
 
-			// TODO this sucks... could we send an object instead?
-			var formData = $("#gdData").serialize();
+		//
+		if (exportLocation == "in_page") {
 			var rowOrder = _getRowOrder().toString();
 			var data = formData + "&gdRowOrder=" + rowOrder + "&gdExportType=" + _currExportType
 					 + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults

@@ -16,11 +16,14 @@ class Generator {
 
 
 	/**
-	 * @param array $postdata everything from the form post.
+	 * @param array $postdata everything from the form post. The Generator is used in 3 different
+	 * contexts:
 	 */
 	public function __construct($postData) {
+
 		$this->batchSize  = $postData["gdBatchSize"];
 		$this->batchNum   = $postData["gdCurrentBatchNum"];
+
 		$this->numResults = $postData["gdNumRowsToGenerate"];
 		$this->countries  = explode(",", $postData["gdCountries"]);
 		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);

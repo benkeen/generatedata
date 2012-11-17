@@ -8,35 +8,36 @@ class DataType_List extends DataTypePlugin {
 	private $helpDialogWidth = 410;
 
 
-	// TODO...
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 		$allElements = explode("|", $options["values"]);
 
 		$val = "";
-		if ($options["list_type"] == "Exactly") {
-			$val = implode(", ", gd_return_random_subset($allElements, $options["number"]));
+		if ($options["listType"] == "Exactly") {
+			$val = implode(", ", Utils::returnRandomSubset($allElements, $options["number"]));
 		} else {
-			// at MOST. So randomly calculate a number up to the num specified:
-			$num_items = rand(0, $options["number"]);
-			$val = implode(", ", gd_return_random_subset($all_elements, $num_items));
+			// at MOST. So randomly calculate a number up to the num specified
+			$numItems = rand(0, $options["number"]);
+			$val = implode(", ", Utils::returnRandomSubset($allElements, $numItems));
 		}
 
-		return $val;
+		return array(
+			"display" => $val
+		);
 	}
 
 
-	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
-		if (empty($postdata["option_$col"])) {
+	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+		if (empty($postdata["dtOption_$colNum"])) {
 			return false;
 		}
 
-		$list_type = $postdata["list_type_{$col}"]; // Exactly or AtMost
-		$number    = ($list_type == "Exactly") ? $postdata["exactly_{$col}"] : $postdata["at_most_{$col}"];
+		$listType = $postdata["dtListType_$colNum"]; // Exactly or AtMost
+		$number   = ($listType == "Exactly") ? $postdata["dtListExactly_$colNum"] : $postdata["dtListAtMost_$colNum"];
 		$options = array(
-			"list_type" => $list_type,
-			"number"    => $number,
-			"values"    => $postdata["option_{$col}"]
+			"listType" => $listType,
+			"number"   => $number,
+			"values"   => $postdata["dtOption_$colNum"]
 		);
 
 		return $options;
@@ -74,7 +75,7 @@ END;
 		<input type="text" size="2" name="dtListExactly_%ROW%" id="dtListExactly_%ROW%" value="1" />&nbsp;&nbsp;
 		<input type="radio" name="dtListType_%ROW%" id="dtListType2_%ROW%" value="AtMost" />
 		<label for="dtListType2_%ROW%">{$this->L["at_most"]}</label>
-		<input type="text" size="2" name="dtAtMost_%ROW%" id="dtAtMost_%ROW%" value="1" />
+		<input type="text" size="2" name="dtListAtMost_%ROW%" id="dtListAtMost_%ROW%" value="1" />
 	</div>
 	<div>
 		<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px;" />
@@ -92,7 +93,7 @@ END;
 
 	public function getExportTypeInfo($exportType, $options) {
 		$info = "";
-		switch ($export_type) {
+		switch ($exportType) {
 			case "sql":
 				if ($options == "MySQL" || $options == "SQLite") {
 					$info = "varchar(255) default NULL";
