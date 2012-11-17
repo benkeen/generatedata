@@ -7,8 +7,7 @@ class DataType_City extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $processOrder = 3;
 	private $countryRegions;
-	private $citiesByRegion;
-	private $numRegions;
+	private $citiesByCountryRegion;
 
 
 	public function __construct($runtimeContext) {
@@ -48,13 +47,20 @@ class DataType_City extends DataTypePlugin {
 
 		$randomCity = "";
 		if (!empty($rowRegionInfo)) {
+			$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 			$regionSlug = $rowRegionInfo["randomData"]["region_slug"];
-			$randomCity = $this->citiesByRegion[$regionSlug][rand(0, count($this->citiesByRegion[$regionSlug])-1)]["city"];
+
+			// now pick the random city in the country-region specified
+			$regionData = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug];
+			$numCitiesInRegion = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug]["numCities"];
+			$citiesInRegion    = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug]["cities"];
+			$randomCity = $citiesInRegion[rand(0, $numCitiesInRegion-1)]["city"];
 		} else if (!empty($rowCountryInfo)) {
+
 			// pick a random region in this country
 			$countrySlug = $rowCountryInfo["randomData"]["slug"];
-			$countryRegions = $this->countryRegions[$countrySlug]["regions"];
-			$numCountryRegions = $this->countryRegions[$countrySlug]["numRegions"];
+			$countryRegions = $this->citiesByCountryRegion[$countrySlug]["regions"];
+			$numCountryRegions = $this->citiesByCountryRegion[$countrySlug]["numRegions"];
 
 			print_r($this->citiesByRegion);
 			exit;
@@ -70,17 +76,14 @@ class DataType_City extends DataTypePlugin {
 			$randomCity = $this->citiesByRegion[$randRegionSlug][rand(0, count($this->citiesByRegion[$randRegionSlug])-1)]["city"];
 		}
 
-		$return = array(
+		return array(
 			"display" => $randomCity
 		);
-		return $return;
 	}
 
 
 	/**
-	 * Called when the plugin is initialized during data generation.
-	 *
-	 * TODO. this doesn't look right. What about regions with the same slug?
+	 * Called when the plugin is initialized during data generation. This
 	 */
 	private function initCityList() {
 		$prefix = Core::getDbTablePrefix();
@@ -89,23 +92,38 @@ class DataType_City extends DataTypePlugin {
 			FROM {$prefix}cities
 		");
 
-		if ($response["success"]) {
-			$cities = array();
-			$citiesByRegion = array();
-			while ($cityInfo = mysql_fetch_assoc($response["results"])) {
-				if (!array_key_exists($cityInfo["region_slug"], $citiesByRegion)) {
-					$citiesByRegion[$cityInfo["region_slug"]] = array();
-				}
-
-				$citiesByRegion[$cityInfo["region_slug"]][] = array(
-					"city"    => $cityInfo["city"],
-					"city_id" => $cityInfo["city_id"]
-				);
-			}
+		if (!$response["success"]) {
+			return;
 		}
 
-		$this->citiesByRegion = $citiesByRegion;
-		$this->numRegions = count($citiesByRegion);
+		$cities = array();
+		$citiesByCountryRegion = array();
+		while ($cityInfo = mysql_fetch_assoc($response["results"])) {
+			$currCountrySlug = $cityInfo["country_slug"];
+			$currRegionSlug  = $cityInfo["region_slug"];
+			if (!array_key_exists($currCountrySlug, $citiesByCountryRegion)) {
+				$citiesByCountryRegion[$currCountrySlug] = array(
+					"numRegions" => 0,
+					"regions" => array()
+				);
+			}
+			if (!array_key_exists($currRegionSlug, $citiesByCountryRegion[$currCountrySlug]["regions"])) {
+				$citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug] = array(
+					"numCities" => 0,
+					"cities" => array()
+				);
+				$citiesByCountryRegion[$currCountrySlug]["numRegions"]++;
+			}
+			$citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug]["cities"][] = array(
+				"city"    => $cityInfo["city"],
+				"city_id" => $cityInfo["city_id"]
+			);
+			$citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug]["numCities"]++;
+		}
+
+		// now we've put together all the info, add in "numRegions" and "numCities" hash keys
+		// at the appropriate spots in the data structure. This'll help speed up the data generation
+		$this->citiesByCountryRegion = $citiesByCountryRegion;
 	}
 
 

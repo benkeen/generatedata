@@ -25,13 +25,16 @@ class HTML extends ExportTypePlugin {
 			$cols[] = $colInfo["title"];
 		}
 
-		$data = array();
+		// contains only the information needed for display purposes
+		$displayData = array();
+
 		for ($rowNum=1; $rowNum<=$numResults; $rowNum++) {
 
 			// $template is alreay grouped by process order. Just loop through each one, passing off the
 			// actual data generation to the appropriate Data Type. Note that we pass all previously generated
 			// data (including any metadata returned by the Data Type).
 			$currRowData = array();
+
 			while (list($order, $dataTypeGenerationInfo) = each($template)) {
 				foreach ($dataTypeGenerationInfo as $genInfo) {
 					$colNum = $genInfo["colNum"];
@@ -43,44 +46,46 @@ class HTML extends ExportTypePlugin {
 						"existingRowData"   => $currRowData
 					);
 					$genInfo["randomData"] = $currDataType->generate($generator, $generationContextData);
-					$currRowData[] = $genInfo;
+					$currRowData["$colNum"] = $genInfo;
 				}
 			}
 			reset($template);
+
+			// now sort the row columns in the desired order
 			ksort($currRowData, SORT_NUMERIC);
 
-			$data[] = $currRowData;
-		}
-		try {
-			$placeholders = array(
-				"isFirstRow" => true,
-				"isLastRow"  => true,
-				"cols"       => $cols,
-				"data"       => $data
-			);
-
-			$template = "";
-			if ($postData["etHTMLExportFormat"] == "ul") {
-				$template = "plugins/exportTypes/HTML/output_ul.tpl";
-			} else if ($postData["etHTMLExportFormat"] == "dl") {
-				$template = "plugins/exportTypes/HTML/output_dl.tpl";
-			} else {
-				$template = "plugins/exportTypes/HTML/output_table.tpl";
+			// now we have all the info we need for this row, filter out the display value
+			$currRowDisplayData = array();
+			foreach ($currRowData as $orderedRowData) {
+				$currRowDisplayData[] = $orderedRowData["randomData"]["display"];
 			}
-			$str = Templates::evalSmartyTemplate($template, $placeholders);
-
-			return array(
-				"success" => true,
-				"content" => $str
-			);
-
-		} catch (Exception $e) {
-			return array(
-				"success"  => false,
-				"response" => $e,
-				"content"  => ""
-			);
+			$displayData[] = $currRowDisplayData;
 		}
+
+		$data = array(
+			"isFirstRow" => true,
+			"isLastRow"  => true,
+			"cols"       => $cols,
+			"data"       => $displayData
+		);
+
+		$template = "";
+		switch ($postData["etHTMLExportFormat"]) {
+			case "table":
+				$content = $this->genFormatTable($data);
+				break;
+			case "ul":
+				$content = $this->genFormatUl($data);
+				break;
+			case "dl":
+				$content = $this->genFormatDl($data);
+				break;
+		}
+
+		return array(
+			"success" => true,
+			"content" => $content
+		);
 	}
 
 	function getAdditionalSettingsHTML() {
@@ -120,5 +125,81 @@ class HTML extends ExportTypePlugin {
 		</table>
 END;
 		return $html;
+	}
+
+
+	/**
+	 * Generates the data in <table> format. Technically we should probably pass this and the other markup generation
+	 * logic to Smarty, but this is faster.
+	 * @param array $data
+	 * @return string
+	 */
+	private function genFormatTable($data) {
+		$content = "";
+		if ($data["isFirstRow"]) {
+			$content .= "<table cellpadding=\"1\" cellspacing=\"1\">\n<tr>\n";
+			foreach ($data["cols"] as $colName) {
+				$content .= "\t<th>$colName</th>\n";
+			}
+			$content .= "</tr>\n";
+		}
+
+		foreach ($data["data"] as $row) {
+			$content .= "<tr>\n";
+			foreach ($row as $col) {
+				$content .= "\t<td>$col</td>\n";
+			}
+			$content .= "</tr>\n";
+		}
+
+		if ($data["isLastRow"]) {
+			$content .= "</table>";
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Generates the data in <ul> format.
+	 * @param array $data
+	 * @return string
+	 */
+	private function genFormatUl($data) {
+		$content = "";
+		if ($data["isFirstRow"]) {
+			$content .= "<ul>\n";
+			foreach ($data["cols"] as $colName) {
+				$content .= "\t<li>$colName</li>\n";
+			}
+			$content .= "</ul>\n";
+		}
+
+		foreach ($data["data"] as $row) {
+			$content .= "<ul>\n";
+			foreach ($row as $col) {
+				$content .= "\t<li>$col</li>\n";
+			}
+			$content .= "</ul>\n";
+		}
+		return $content;
+	}
+
+	/**
+	 * Generates the data in <dl> format.
+	 * @param array $data
+	 * @return string
+	 */
+	private function genFormatDl($data) {
+		$numCols = count($data["cols"]);
+		$content = "";
+		foreach ($data["data"] as $row) {
+			$content .= "<dl>\n";
+			for ($i=0; $i<$numCols; $i++) {
+				$content .= "\t<dt>{$data["cols"][$i]}</dt>\n";
+				$content .= "\t\t<dd>{$row[$i]}</dd>\n";
+			}
+			$content .= "</dl>\n";
+		}
+		return $content;
 	}
 }

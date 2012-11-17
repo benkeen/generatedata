@@ -20,6 +20,10 @@ class DataType_Region extends DataTypePlugin {
 		}
 	}
 
+	/**
+	 * Generate a random region, and return the display string and additional meta data for use
+	 * by any other Data Type.
+	 */
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 
@@ -46,6 +50,7 @@ class DataType_Region extends DataTypePlugin {
 			$randCountry = $this->countryRegionHash[$randCountrySlug];
 			$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
 			$regionInfo["display"] = $regionInfo[$keys[$index]];
+			$regionInfo["country_slug"] = $randCountrySlug;
 
 		// here, there *was* a country Data Type chosen and the Country row is pulling from the subset of
 		// Country plugins
@@ -67,6 +72,8 @@ class DataType_Region extends DataTypePlugin {
 				$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
 				$regionInfo["display"] = $regionInfo[$keys[$index]];
 			}
+
+			$regionInfo["country_slug"] = $currRowCountrySlug;
 		}
 
 		return $regionInfo;
