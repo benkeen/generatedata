@@ -450,7 +450,6 @@ define([
 	 */
 	var _generateData = function() {
 		var numResults = $("#gdNumResults").val();
-
 		utils.clearValidationErrors($("#gdTab1Content"));
 
 		// check the users specified a numeric value for the number of results
@@ -518,43 +517,48 @@ define([
 			return false;
 		}
 
-		// for the moment, let's just assume ALL export types generate into the page. We can tweak this later.
+		var exportLocation = $("input[name=gdExportLocation]:checked")[0].value;
 
-		// TODO this sucks... could we send an object instead?
-		var formData = $("#gdData").serialize();
-		var rowOrder = _getRowOrder().toString();
-		var data = formData + "&gdRowOrder=" + rowOrder + "&gdExportType=" + _currExportType
-				 + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
-		         + "&gdNumCols=" + _numRows + "&gdCountries=" + _countries.toString();
+		if (exportLocation == "in_page") {
 
-		_showSubtab(2);
+			// TODO this sucks... could we send an object instead?
+			var formData = $("#gdData").serialize();
+			var rowOrder = _getRowOrder().toString();
+			var data = formData + "&gdRowOrder=" + rowOrder + "&gdExportType=" + _currExportType
+					 + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
+			         + "&gdNumCols=" + _numRows + "&gdCountries=" + _countries.toString();
+			_showSubtab(2);
 
-		if (_codeMirror == null) {
-			_codeMirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
-				mode: "xml",
-				readOnly: true
+			if (_codeMirror == null) {
+				_codeMirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
+					mode: "xml",
+					readOnly: true
+				});
+			}
+			_codeMirror.setValue("");
+
+			$.ajax({
+				url: "ajax.php",
+				type: "POST",
+				data: data,
+				dataType: "json",
+				success: function(response) {
+					if (response.success) {
+						_codeMirror.setValue(response.content);
+					}
+				},
+				error: function(response) {
+					console.log("response: ", response);
+				}
+			});
+			return false;
+
+		} else if (exportLocation == "new_window") {
+			$("#gdData").attr({
+				"target": "blank",
+				"action": "generate.php"
 			});
 		}
-
-		_codeMirror.setValue("");
-
-		$.ajax({
-			url: "ajax.php",
-			type: "POST",
-			data: data,
-			dataType: "json",
-			success: function(response) {
-				if (response.success) {
-//					$("#gdGeneratedData").html(response.content);
-					_codeMirror.setValue(response.content);
-				}
-			},
-			error: function(response) {
-				console.log("response: ", response);
-			}
-		});
-
-		return false;
 	};
 
 

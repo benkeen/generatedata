@@ -75,16 +75,14 @@
 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-			<input type="radio" checked="checked" />
-				<label>Generate in-page</label>
-			<input type="radio" disabled="disabled" />
-				<label>New window/tab</label>
-			<input type="radio" disabled="disabled" />
-				<label>Prompt to download</label>
+			<input type="radio" name="gdExportLocation" id="gdExportLocation1" value="in_page" checked="checked" />
+				<label for="gdExportLocation1">Generate in-page</label>
+			<input type="radio" name="gdExportLocation" id="gdExportLocation2" value="new_window" />
+				<label for="gdExportLocation2">New window/tab</label>
+			<input type="radio" name="gdExportLocation" id="gdExportLocation3" value="download" disabled="disabled" />
+				<label for="gdExportLocation3">Prompt to download</label>
 		</div>
-
 	</div>
-
 
 	<div id="gdGenerateSubtab2" class="hidden">
 		<div class="gdVerticalPad"></div>
