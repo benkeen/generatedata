@@ -323,13 +323,22 @@ li.gdColDelete {
   #gdTextSize li {
     float: left;
     width: 18px;
-    vertical-align: top; }
-  #gdTextSize .small {
-    font-size: 8pt; }
-  #gdTextSize .medium {
-    font-size: 12pt; }
-  #gdTextSize .large {
-    font-size: 16pt; }
+    vertical-align: top;
+    margin: 3px 0px 0px 3px;
+    background-color: #F2F2F2;
+    padding: 1px 3px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer; }
+    #gdTextSize li.selected {
+      background-color: #3366cc;
+      color: white; }
+    #gdTextSize li.small {
+      font-size: 8pt; }
+    #gdTextSize li.medium {
+      font-size: 12pt; }
+    #gdTextSize li.large {
+      font-size: 16pt; }
 
 #gdGeneratedData {
   height: 400px;
@@ -397,6 +406,13 @@ li.gdColDelete {
 
 #gdGenerateCount, #gdGenerateTotal {
   font-weight: bold; }
+
+#gdGenerateInPageLoading {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/loadingWhite.gif);
+  margin: 2px 0px -4px 10px;
+  display: hidden; }
 
 /* buttons */
 .gdButton {
@@ -648,20 +664,31 @@ body .chzn-container-multi .chzn-choices {
   cursor: pointer; }
 
 /* overridden CodeMirror styles */
-body .CodeMirror pre {
-  font-family: monospace; }
-
 body .CodeMirror {
   border: 1px solid #cccccc; }
+  body .CodeMirror pre {
+    font-family: monospace; }
 
 body .CodeMirror-lines div pre {
   line-height: 14px; }
 
-body .cm-s-default pre span {
-  line-height: 10px; }
-
 body .CodeMirror-scroll {
   height: 500px; }
+
+body .CodeMirror_small div, body .CodeMirror_small span {
+  font-size: 7pt; }
+body .CodeMirror_small .cm-s-default pre span {
+  line-height: 10px; }
+
+body .CodeMirror_medium div, body .CodeMirror_medium span {
+  font-size: 9pt; }
+body .CodeMirror_medium .cm-s-default pre span {
+  line-height: 16px; }
+
+body .CodeMirror_large div, body .CodeMirror_large span {
+  font-size: 12pt; }
+body .CodeMirror_large .cm-s-default pre span {
+  line-height: 22px; }
 
 .gdMessage {
   position: relative;

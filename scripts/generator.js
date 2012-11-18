@@ -60,7 +60,7 @@ define([
 		});
 
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("change", ".gdDataType", _changeRowType);
+		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
 		$("#gdTableRows").sortable({
@@ -90,6 +90,7 @@ define([
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); return false; });
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
+		$("#gdTextSize").on("click", "li", _changeTextSize);
 
 		_initExportTypeTab();
 		_updateCountryChoice();
@@ -559,13 +560,14 @@ define([
 				mode: "xml",
 				readOnly: true
 			});
+			$(".CodeMirror").addClass("CodeMirror_medium");
 		}
-
 
 		_codeMirror.setValue("");
 		_generateInPageRunningCount = 0;
-		$("#gdGenerateCount").html(_generateInPageRunningCount);
-		$("#gdGenerateTotal").html(_numResults);
+		$("#gdGenerateCount").html(utils.formatNumWithCommas(_generateInPageRunningCount));
+		$("#gdGenerateTotal").html(utils.formatNumWithCommas(_numResults));
+		$("#gdGenerateInPageLoading").css("display", "inline-block");
 
 		_generateInPageBatchNum = 1;
 		_generateInPageData = data;
@@ -592,7 +594,7 @@ define([
 			// 1. Update the running count ("Generated X of Y rows")
 			_generateInPageRunningCount = (_generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE) > _numResults ?
 				_numResults : _generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE;
-			$("#gdGenerateCount").html(_generateInPageRunningCount);
+			$("#gdGenerateCount").html(utils.formatNumWithCommas(_generateInPageRunningCount));
 
 			// 2. Update the actual content
 			_generateInPageContent += response.content;
@@ -600,7 +602,7 @@ define([
 
 			// now either continue processing, or indicate we're done
 			if (response.isComplete) {
-
+				$("#gdGenerateInPageLoading").hide("fade");
 			} else {
 				_generateInPageBatchNum++;
 				_generateInPageBatch();
@@ -700,6 +702,13 @@ define([
 		myDialog.dialog("open");
 	}
 
+
+	var _changeTextSize = function(e) {
+		$("#gdTextSize li").removeClass("selected");
+		var size = $(e.target).attr("class");
+		$(e.target).addClass("selected");
+		$(".CodeMirror").removeClass("CodeMirror_small CodeMirror_medium CodeMirror_large").addClass("CodeMirror_" + size);
+	}
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.CORE, {

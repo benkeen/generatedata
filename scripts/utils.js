@@ -147,6 +147,10 @@ define([
 			return !isNaN(parseFloat(n)) && isFinite(n);
 		},
 
+		formatNumWithCommas: function(num) {
+			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		},
+
 		/*
 		This code handles problems caused by the time taken by browser HTML rendering engines to manipulate
 		and redraw page content. It ensures a series of DOM-manipulation-intensive changes are completed

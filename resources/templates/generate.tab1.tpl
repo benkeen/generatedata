@@ -71,7 +71,7 @@
 
 		<div id="gdGenerateSection">
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
-			Generate <input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="100" /> rows
+			Generate <input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="1000" /> rows
 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -87,20 +87,20 @@
 	<div id="gdGenerateSubtab2" class="hidden">
 		<div class="gdVerticalPad"></div>
 
-		<div>Generated <span id="gdGenerateCount"></span> of <span id="gdGenerateTotal"></span> results</div>
-		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
-		<div>
-			<input type="checkbox" id="gdEnableSyntaxHighlighting" checked="checked" />
-			<label>Enable syntax highlighting</label>
-
+		<div style="margin-bottom: 4px;">
+			Generated <span id="gdGenerateCount"></span> of <span id="gdGenerateTotal"></span> results
+			<span id="gdGenerateInPageLoading"></span>
 			<ul id="gdTextSize">
 				<li class="small">A</li>
-				<li class="medium">A</li>
+				<li class="medium selected">A</li>
 				<li class="large">A</li>
 			</ul>
+			<div class="gdClear"></div>
 		</div>
 
-		<button class="gdPrimaryButton" id="gdBackButton">&laquo; Back</button>
+		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
+
+		<button class="gdPrimaryButton" id="gdBackButton" title="Back">&laquo;</button>
 		<button class="gdPrimaryButton" id="gdRegenerateButton">Regenerate</button>
 		<div class="gdClear"></div>
 	</div>

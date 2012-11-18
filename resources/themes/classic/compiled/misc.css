@@ -135,17 +135,28 @@ body .chzn-container-multi .chzn-choices {
   cursor: pointer; }
 
 /* overridden CodeMirror styles */
-body .CodeMirror pre {
-  font-family: monospace; }
-
 body .CodeMirror {
   border: 1px solid #cccccc; }
+  body .CodeMirror pre {
+    font-family: monospace; }
 
 body .CodeMirror-lines div pre {
   line-height: 14px; }
 
-body .cm-s-default pre span {
-  line-height: 10px; }
-
 body .CodeMirror-scroll {
   height: 500px; }
+
+body .CodeMirror_small div, body .CodeMirror_small span {
+  font-size: 7pt; }
+body .CodeMirror_small .cm-s-default pre span {
+  line-height: 10px; }
+
+body .CodeMirror_medium div, body .CodeMirror_medium span {
+  font-size: 9pt; }
+body .CodeMirror_medium .cm-s-default pre span {
+  line-height: 16px; }
+
+body .CodeMirror_large div, body .CodeMirror_large span {
+  font-size: 12pt; }
+body .CodeMirror_large .cm-s-default pre span {
+  line-height: 22px; }

@@ -52,8 +52,6 @@ class Generator {
 			$this->exportType = $currExportType;
 			break;
 		}
-
-		// TODO should have error checking here to confirm the export type was found
 	}
 
 
