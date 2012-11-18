@@ -115,7 +115,7 @@ require([
 					type: "POST",
 					dataType: "json",
 					data: {
-						action: "installation_test_db_settings",
+						action: "installationTestDbSettings",
 						dbHostname: dbHostname,
 						dbName: dbName,
 						dbUsername: dbUsername,
@@ -140,7 +140,7 @@ require([
 					type: "POST",
 					dataType: "json",
 					data: {
-						action: "installation_create_settings_file",
+						action: "installationCreateSettingsFile",
 						dbHostname: _dbSettings.dbHostname,
 						dbName: _dbSettings.dbName,
 						dbUsername: _dbSettings.dbUsername,
@@ -199,7 +199,7 @@ require([
 					type: "POST",
 					dataType: "json",
 					data: {
-						action: "installation_create_database",
+						action: "installationCreateDatabase",
 						employUserAccounts: employUserAccounts,
 						firstName: firstName,
 						lastName: lastName,

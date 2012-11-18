@@ -1,14 +1,13 @@
 <?php
 
 require_once("library.php");
-
 Core::init();
 
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();
 
 $pageParams = array();
-if (isset($_POST) && !empty($_POST)) {
+if (isset($_POST["updateSettings"])) {
 	list($success, $message) = Settings::updateSettings($_POST);
 	$pageParams["success"] = $success;
 	$pageParams["message"] = $message;

@@ -164,3 +164,6 @@ li.gdColDelete {
   border-radius: 8px;
   padding: 20px;
   border: 1px solid #bbbbbb; }
+
+#gdGenerateCount, #gdGenerateTotal {
+  font-weight: bold; }

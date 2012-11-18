@@ -40,19 +40,5 @@ define([
 		// for the Settings tab
 		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
 		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
-
-
-		function installResponse(json) {
-			utils.stopProcessing();
-			if (json.success == 0) {
-//				$("#installError .response").html(json.message);
-//				$("#installError").effect("highlight", { color: "#ff5b5b" }, 1500);
-				return;
-			}
-		}
-
-		function installError(json) {
-
-		}
 	});
 });

@@ -56,7 +56,9 @@ class DataType_Names extends DataTypePlugin {
 			$chosenFormat = $formats[rand(0, count($formats)-1)];
 		}
 
-		return trim($chosenFormat);
+		return array(
+			"display" => trim($chosenFormat)
+		);
 	}
 
 

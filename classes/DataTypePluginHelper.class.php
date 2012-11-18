@@ -108,23 +108,6 @@ class DataTypePluginHelper {
 	}
 
 	/**
-	 * Used for sorting the data set template, created by gd_get_data_set_template().
-	 *
-	 * @param array $template
-	function sortByColOrder($template) {
-		$ordered = array();
-		while (list($order, $data_types) = each($template)) {
-			foreach ($data_types as $data_type) {
-				$order = $data_type["column_num"];
-				$ordered["order$order"] = $data_type;
-			}
-		}
-		asort($ordered);
-		return array_values($ordered);
-	}
-	*/
-
-	/**
 	 * Returns an array of available, grouped, instantiated Data Type objects.
 	 * @return array
 	 */

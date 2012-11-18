@@ -75,9 +75,9 @@
 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-			<input type="radio" name="gdExportLocation" id="gdExportLocation1" value="in_page" checked="checked" />
+			<input type="radio" name="gdExportLocation" id="gdExportLocation1" value="inPage" checked="checked" />
 				<label for="gdExportLocation1">Generate in-page</label>
-			<input type="radio" name="gdExportLocation" id="gdExportLocation2" value="new_window" />
+			<input type="radio" name="gdExportLocation" id="gdExportLocation2" value="newTab" />
 				<label for="gdExportLocation2">New window/tab</label>
 			<input type="radio" name="gdExportLocation" id="gdExportLocation3" value="download" disabled="disabled" />
 				<label for="gdExportLocation3">Prompt to download</label>
@@ -87,7 +87,7 @@
 	<div id="gdGenerateSubtab2" class="hidden">
 		<div class="gdVerticalPad"></div>
 
-		<div>Generated <b>0</b> of <b>100</b> results</div>
+		<div>Generated <span id="gdGenerateCount"></span> of <span id="gdGenerateTotal"></span> results</div>
 		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
 		<div>
 			<input type="checkbox" id="gdEnableSyntaxHighlighting" checked="checked" />

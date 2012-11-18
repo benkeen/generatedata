@@ -72,7 +72,7 @@ class Core {
 		if ($runtimeContext == "generation") {
 			self::initGeoData();
 		}
-		if ($runtimeContext != "installation") {
+		if ($runtimeContext == "ui" || $runtimeContext == "generation") {
 			self::initCountries();
 			self::initExportTypes($runtimeContext);
 			self::initDataTypes($runtimeContext);

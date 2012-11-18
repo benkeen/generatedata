@@ -14,20 +14,30 @@ class Generator {
 	private $dataTypes;
 	private $postData;
 
+	private $isFirstBatch;
+	private $isLastBatch;
+	private $currentBatchFirstRow;
+	private $currentBatchLastRow;
+
 
 	/**
 	 * @param array $postdata everything from the form post. The Generator is used in 3 different
 	 * contexts:
 	 */
 	public function __construct($postData) {
-
 		$this->batchSize  = $postData["gdBatchSize"];
 		$this->batchNum   = $postData["gdCurrentBatchNum"];
-
 		$this->numResults = $postData["gdNumRowsToGenerate"];
 		$this->countries  = explode(",", $postData["gdCountries"]);
 		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 		$this->postData   = $postData;
+
+		// make a note of whether this batch is the first / last. This is useful information for the
+		// Export Types to know whether to output special content at the top or bottom
+		$this->isFirstBatch = ($this->batchNum == 1);
+		$this->isLastBatch = (($this->batchNum * $this->batchSize) >= $this->numResults);
+		$this->currentBatchFirstRow = (($this->batchNum - 1) * $this->batchSize) + 1;
+		$this->currentBatchLastRow = ($this->currentBatchFirstRow + $this->batchSize > $this->numResults) ? $this->numResults : $this->currentBatchFirstRow + $this->batchSize;
 
 		// figure out what we're going to need to generate
 		$this->createDataSetTemplate($postData);
@@ -47,8 +57,13 @@ class Generator {
 	}
 
 
+	/**
+	 * Calls the appropriate Export Type's generation function to actually generate the random data.
+	 */
 	public function generate() {
-		return $this->exportType->generate($this);
+		$response = $this->exportType->generate($this);
+		$response["isComplete"] = $this->isLastBatch;
+		return $response;
 	}
 
 
@@ -175,5 +190,21 @@ class Generator {
 
 	public function getPostData() {
 		return $this->postData;
+	}
+
+	public function isFirstBatch() {
+		return $this->isFirstBatch;
+	}
+
+	public function isLastBatch() {
+		return $this->isLastBatch;
+	}
+
+	public function getCurrentBatchFirstRow() {
+		return $this->currentBatchFirstRow;
+	}
+
+	public function getCurrentBatchLastRow() {
+		return $this->currentBatchLastRow;
 	}
 }

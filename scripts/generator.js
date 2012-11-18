@@ -28,6 +28,15 @@ define([
 	var _showExportTypeSettings = false;
 	var _codeMirror = null;
 
+	// the number of results being generated
+	var _numResults;
+
+	// for storing data during in-page data generation
+	var _generateInPageRunningCount;
+	var _generateInPageBatchNum;
+	var _generateInPageData;
+	var _generateInPageContent = "";
+
 
 	/**
 	 * Called when everything is loaded. This binds the appropriate event handlers and sets up the
@@ -175,7 +184,6 @@ define([
 			row: el
 		});
 	};
-
 
 	/**
 	 * Resets the entire page back to it's defaults: default countries, a blank table and the default data
@@ -365,15 +373,17 @@ define([
 				var exampleHTML = null;
 				var optionsHTML = null;
 
-				if ($("#gdDataTypeExamples_" + dataTypeModuleID).html() != "") {
-					exampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html().replace(/%ROW%/g, rowID);
+				var dataTypeExampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html();
+				if (dataTypeExampleHTML != "") {
+					exampleHTML = dataTypeExampleHTML.replace(/%ROW%/g, rowID);
 				} else {
 					exampleHTML = "&nbsp;" + L.no_examples_available;
 				}
-				$('#gdColExamples_' + rowID).html(exampleHTML);
+				$("#gdColExamples_" + rowID).html(exampleHTML);
 
-				if ($("#gdDataTypeOptions_" + dataTypeModuleID).html() != "") {
-					optionsHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html().replace(/%ROW%/g, rowID);
+				var dataTypeOptionHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html();
+				if (dataTypeOptionHTML != "") {
+					optionsHTML = dataTypeOptionHTML.replace(/%ROW%/g, rowID);
 				} else {
 					optionsHTML = L.no_options_available;
 				}
@@ -385,7 +395,7 @@ define([
 					$('#gdColHelp_' + rowID).html(" ");
 				}
 			},
-			readyTest,
+			readyTest
 		]);
 
 		utils.processQueue();
@@ -449,11 +459,11 @@ define([
 	 * and starts the data generation process.
 	 */
 	var _generateData = function() {
-		var numResults = $("#gdNumResults").val();
+		_numResults = $("#gdNumResults").val();
 		utils.clearValidationErrors($("#gdTab1Content"));
 
 		// check the users specified a numeric value for the number of results
-		if (numResults.match(/\D/) || numResults == 0 || numResults == "") {
+		if (_numResults.match(/\D/) || _numResults == 0 || _numResults == "") {
 			utils.addValidationErrors({ el: $("#gdNumResults"), error: L.invalid_num_results });
 		}
 
@@ -519,49 +529,93 @@ define([
 
 		var exportLocation = $("input[name=gdExportLocation]:checked")[0].value;
 
-		// TODO this sucks... could we send an object instead? (at least for in_page)
-		var formData = $("#gdData").serialize();
-
-		//
-		if (exportLocation == "in_page") {
-			var rowOrder = _getRowOrder().toString();
-			var data = formData + "&gdRowOrder=" + rowOrder + "&gdExportType=" + _currExportType
-					 + "&action=generate&gdBatchSize=100&gdCurrentBatchNum=1&gdNumRowsToGenerate=" + numResults
-			         + "&gdNumCols=" + _numRows + "&gdCountries=" + _countries.toString();
-			_showSubtab(2);
-
-			if (_codeMirror == null) {
-				_codeMirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
-					mode: "xml",
-					readOnly: true
-				});
-			}
-			_codeMirror.setValue("");
-
-			$.ajax({
-				url: "ajax.php",
-				type: "POST",
-				data: data,
-				dataType: "json",
-				success: function(response) {
-					if (response.success) {
-						_codeMirror.setValue(response.content);
-					}
-				},
-				error: function(response) {
-					console.log("response: ", response);
-				}
-			});
+		// now pass off the work to the appropriate generation function. Each works slightly differently.
+		if (exportLocation == "inPage") {
+			_generateInPage();
 			return false;
-
-		} else if (exportLocation == "new_window") {
-			$("#gdData").attr({
-				"target": "blank",
-				"action": "generate.php"
-			});
+		} else if (exportLocation == "newTab") {
+			_generateNewWindow();
 		}
 	};
 
+
+	/**
+	 * Generate the results in-page. This option hides the generator table and displays the results in a large,
+	 * CodeMirror-enhanced textarea. This is the only generation format that makes use of *batches*: since generation
+	 * can take a long time, this passes off work to the server in batches of (say) 100, so the user can see the
+	 * generation process take place.
+	 */
+	var _generateInPage = function() {
+		var formData = $("#gdData").serialize();
+		var rowOrder = _getRowOrder().toString();
+		var data = formData + "&gdRowOrder=" + rowOrder + "&gdExportType=" + _currExportType
+				 + "&action=generateInPage&gdNumRowsToGenerate=" + _numResults
+		         + "&gdNumCols=" + _numRows + "&gdCountries=" + _countries.toString()
+		         + "&gdBatchSize=" + C.GENERATE_IN_PAGE_BATCH_SIZE;
+		_showSubtab(2);
+
+		if (_codeMirror == null) {
+			_codeMirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
+				mode: "xml",
+				readOnly: true
+			});
+		}
+
+
+		_codeMirror.setValue("");
+		_generateInPageRunningCount = 0;
+		$("#gdGenerateCount").html(_generateInPageRunningCount);
+		$("#gdGenerateTotal").html(_numResults);
+
+		_generateInPageBatchNum = 1;
+		_generateInPageData = data;
+		_generateInPageContent = "";
+		_generateInPageBatch();
+	}
+
+	var _generateInPageBatch = function() {
+		var data = _generateInPageData + "&gdCurrentBatchNum=" + _generateInPageBatchNum;
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			data: data,
+			dataType: "json",
+			success: _generateInPageBatchResponse,
+			error: function(response) {
+				console.log("error response: ", response);
+			}
+		});
+	}
+
+	var _generateInPageBatchResponse = function(response) {
+		if (response.success) {
+			// 1. Update the running count ("Generated X of Y rows")
+			_generateInPageRunningCount = (_generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE) > _numResults ?
+				_numResults : _generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE;
+			$("#gdGenerateCount").html(_generateInPageRunningCount);
+
+			// 2. Update the actual content
+			_generateInPageContent += response.content;
+			_codeMirror.setValue(_generateInPageContent);
+
+			// now either continue processing, or indicate we're done
+			if (response.isComplete) {
+
+			} else {
+				_generateInPageBatchNum++;
+				_generateInPageBatch();
+			}
+		} else {
+
+		}
+	}
+
+	var _generateNewWindow = function() {
+		$("#gdData").attr({
+			"target": "blank",
+			"action": "generate.php"
+		});
+	}
 
 	var _resetPluginsDialog = function() {
 		$("#gdPluginInstallation").dialog({

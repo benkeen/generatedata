@@ -16,7 +16,9 @@ class DataType_Phone extends DataTypePlugin {
 		if (count($formats) > 1) {
 			$chosenFormat = $formats[rand(0, count($formats)-1)];
 		}
-		return $chosenFormat;
+		return array(
+			"display" => $chosenFormat
+		);
 	}
 
 	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {

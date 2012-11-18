@@ -4,7 +4,7 @@
 </div>
 
 <form action="./#t3" method="post" id="gdSettingsForm">
-
+	<input type="hidden" name="updateSettings" value="1" />
 <!--
 	<h3>Account Settings</h3>
 

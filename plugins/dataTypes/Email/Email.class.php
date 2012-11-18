@@ -36,7 +36,9 @@ class DataType_Email extends DataTypePlugin {
 		$validSuffixes = array("edu", "com", "org", "ca", "net", "co.uk");
 		$suffix = $validSuffixes[rand(0, count($validSuffixes)-1)];
 
-		return "$prefix@$domain.$suffix";
+		return array(
+			"display" => "$prefix@$domain.$suffix"
+		);
 	}
 
 	public function getExportTypeInfo($exportType, $options) {

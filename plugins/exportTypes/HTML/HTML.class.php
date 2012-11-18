@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TODO the bulk of this classes code will be moved to the Core, once we establish what aspects
+ * TODO the bulk of this class's code will be moved to the Core, once we establish what aspects
  * may be generalized.
  */
 
@@ -13,11 +13,13 @@ class HTML extends ExportTypePlugin {
 	 * @see ExportTypePlugin::generate()
 	 */
 	function generate($generator) {
-		$columns    = $generator->getTemplateByDisplayOrder();
-		$template   = $generator->getTemplateByProcessOrder();
-		$numResults = $generator->getNumResults();
-		$dataTypes  = $generator->getDataTypes();
-		$postData   = $generator->getPostData();
+		$columns     = $generator->getTemplateByDisplayOrder();
+		$template    = $generator->getTemplateByProcessOrder();
+		$numResults  = $generator->getNumResults();
+		$dataTypes   = $generator->getDataTypes();
+		$postData    = $generator->getPostData();
+		$firstRowNum = $generator->getCurrentBatchFirstRow();
+		$lastRowNum  = $generator->getCurrentBatchLastRow();
 
 		// first, generate the (ordered) list of table headings
 		$cols = array();
@@ -28,7 +30,7 @@ class HTML extends ExportTypePlugin {
 		// contains only the information needed for display purposes
 		$displayData = array();
 
-		for ($rowNum=1; $rowNum<=$numResults; $rowNum++) {
+		for ($rowNum=$firstRowNum; $rowNum<=$lastRowNum; $rowNum++) {
 
 			// $template is alreay grouped by process order. Just loop through each one, passing off the
 			// actual data generation to the appropriate Data Type. Note that we pass all previously generated
@@ -63,10 +65,10 @@ class HTML extends ExportTypePlugin {
 		}
 
 		$data = array(
-			"isFirstRow" => true,
-			"isLastRow"  => true,
-			"cols"       => $cols,
-			"data"       => $displayData
+			"isFirstBatch" => $generator->isFirstBatch(),
+			"isLastBatch"  => $generator->isLastBatch(),
+			"cols"         => $cols,
+			"data"         => $displayData
 		);
 
 		$template = "";
@@ -87,6 +89,7 @@ class HTML extends ExportTypePlugin {
 			"content" => $content
 		);
 	}
+
 
 	function getAdditionalSettingsHTML() {
 		$html =<<< END
@@ -124,7 +127,7 @@ END;
 	 */
 	private function genFormatTable($data) {
 		$content = "";
-		if ($data["isFirstRow"]) {
+		if ($data["isFirstBatch"]) {
 			$content .= "<table cellpadding=\"1\" cellspacing=\"1\">\n<tr>\n";
 			foreach ($data["cols"] as $colName) {
 				$content .= "\t<th>$colName</th>\n";
@@ -140,7 +143,7 @@ END;
 			$content .= "</tr>\n";
 		}
 
-		if ($data["isLastRow"]) {
+		if ($data["isLastBatch"]) {
 			$content .= "</table>";
 		}
 
@@ -154,7 +157,7 @@ END;
 	 */
 	private function genFormatUl($data) {
 		$content = "";
-		if ($data["isFirstRow"]) {
+		if ($data["isFirstBatch"]) {
 			$content .= "<ul>\n";
 			foreach ($data["cols"] as $colName) {
 				$content .= "\t<li>$colName</li>\n";

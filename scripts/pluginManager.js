@@ -55,7 +55,7 @@ define([
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installation_data_types",
+				action: "installationDataTypes",
 				index: _currIndex
 			},
 			success: _installDataTypeResponse,
@@ -71,7 +71,7 @@ define([
 				type: "POST",
 				dataType: "json",
 				data: {
-					action: "installation_save_data_types",
+					action: "installationSaveDataTypes",
 					folders: _successfullyInstalledDataTypes.toString()
 				},
 				success: function(json) {
@@ -87,7 +87,7 @@ define([
 				str = json.dataTypeName + " <span class=\"gdSuccess\">success</span>";
 				_successfullyInstalledDataTypes.push(json.dataTypeFolder);
 			} else {
-				str = json.dataTypeName + " <span class=\"gdError\" data-error=\"" + json.message + "\">error</span>";
+				str = json.dataTypeName + " <span class=\"gdError\" data-error=\"" + json.content + "\">error</span>";
 			}
 			$("#gdDataTypeResponse").append("<div>" + str + "</div>");
 
@@ -102,7 +102,7 @@ define([
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installation_export_types",
+				action: "installationExportTypes",
 				index: _currIndex
 			},
 			success: _installExportTypesResponse,
@@ -118,7 +118,7 @@ define([
 				type: "POST",
 				dataType: "json",
 				data: {
-					action: "installation_save_export_types",
+					action: "installationSaveExportTypes",
 					folders: _successfullyInstalledExportTypes.toString()
 				},
 				success: function(json) {
@@ -133,7 +133,7 @@ define([
 				str = json.exportTypeName + " <span class=\"gdSuccess\">success</span>";
 				_successfullyInstalledExportTypes.push(json.exportTypeFolder);
 			} else {
-				str = json.exportTypeName + " <span class=\"gdError\" data-error=\"" + json.message + "\">error</span>";
+				str = json.exportTypeName + " <span class=\"gdError\" data-error=\"" + json.content + "\">error</span>";
 			}
 			$("#gdExportTypeResponse").append("<div>" + str + "</div>");
 
@@ -149,7 +149,7 @@ define([
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installation_countries",
+				action: "installationCountries",
 				index: _currIndex
 			},
 			success: _installCountriesResponse,
@@ -164,7 +164,7 @@ define([
 				type: "POST",
 				dataType: "json",
 				data: {
-					action: "installation_save_countries",
+					action: "installationSaveCountries",
 					folders: _successfullyInstalledCountries.toString()
 				},
 				success: function(json) {
@@ -181,7 +181,7 @@ define([
 				str = json.countryName + " <span class=\"gdSuccess\">success</span>";
 				_successfullyInstalledCountries.push(json.countryFolder);
 			} else {
-				str = json.countryName + " <span class=\"gdError\" data-error=\"" + json.message + "\">error</span>";
+				str = json.countryName + " <span class=\"gdError\" data-error=\"" + json.content + "\">error</span>";
 			}
 			$("#gdCountriesResponse").append("<div>" + str + "</div>");
 

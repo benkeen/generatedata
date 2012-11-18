@@ -31,32 +31,32 @@ class AjaxRequest {
 			// ------------------------------------------------------------------------------------
 
 			// a fresh install assumes it's a blank slate: no database tables, no settings file
-			case "installation_test_db_settings":
+			case "installationTestDbSettings":
 				Core::init("installation");
-				list($success, $message) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
+				list($success, $content) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
 				$this->response["success"] = $success;
-				$this->response["message"] = $message;
+				$this->response["content"] = $content;
 				break;
 
-			case "installation_create_settings_file":
+			case "installationCreateSettingsFile":
 				Core::init("installation");
 				if (Core::checkSettingsFileExists()) {
 					$this->response["success"] = 0;
-					$this->response["message"] = "Your settings.php file already exists.";
+					$this->response["content"] = "Your settings.php file already exists.";
 					return;
 				} else {
-					list($success, $message) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"], $post["dbTablePrefix"]);
+					list($success, $content) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"], $post["dbTablePrefix"]);
 					$this->response["success"] = $success;
-					$this->response["message"] = $message;
+					$this->response["content"] = $content;
 				}
 				break;
 
-			case "installation_create_database":
+			case "installationCreateDatabase":
 				Core::init("installation_db_ready");
-				list($success, $message) = Installation::createDatabase();
+				list($success, $content) = Installation::createDatabase();
 				if (!$success) {
 					$this->response["success"] = 0;
-					$this->response["message"] = $message;
+					$this->response["content"] = $content;
 					return;
 				}
 
@@ -77,18 +77,18 @@ class AjaxRequest {
 				Settings::setSetting("installationStepComplete_Core", "yes");
 
 				$this->response["success"] = 1;
-				$this->response["message"] = "";
+				$this->response["content"] = "";
 				break;
 
-			case "installation_data_types":
+			case "installationDataTypes":
 				Core::init("installation_db_ready");
 				$index = $post["index"];
-
 				$groupedDataTypes = DataTypePluginHelper::getDataTypePlugins("installion_db_ready", false);
 				$dataTypes = DataTypePluginHelper::getDataTypeList($groupedDataTypes);
 
 				if ($index >= count($dataTypes)) {
 					$this->response["success"] = 1;
+					$this->response["content"] = "";
 					$this->response["isComplete"] = true;
 				} else {
 					// attempt to install this data type
@@ -98,31 +98,32 @@ class AjaxRequest {
 					$this->response["isComplete"] = false;
 
 					try {
-						list($success, $message) = $currDataType->install();
+						list($success, $content) = $currDataType->install();
 						$this->response["success"] = $success;
-						$this->response["message"] = $message;
+						$this->response["content"] = $content;
 					} catch (Exception $e) {
 						$this->response["success"] = false;
-						$this->response["message"] = "Unknown error.";
+						$this->response["content"] = "Unknown error.";
 					}
 				}
 				break;
 
-			case "installation_save_data_types":
+			case "installationSaveDataTypes":
 				Core::init("installation_db_ready");
 				$folders = $post["folders"];
 				$response = Settings::setSetting("installedDataTypes", $folders);
 				$this->response["success"] = $response["success"];
-				$this->response["message"] = $response["errorMessage"];
+				$this->response["content"] = $response["errorMessage"];
 				break;
 
-			case "installation_export_types":
+			case "installationExportTypes":
 				Core::init("installation_db_ready");
 				$index = $post["index"];
 				$exportTypes = ExportTypePluginHelper::getExportTypePlugins("installation_db_ready", false);
 
 				if ($index >= count($exportTypes)) {
 					$this->response["success"] = 1;
+					$this->response["content"] = "";
 					$this->response["isComplete"] = true;
 				} else {
 					// attempt to install this data type
@@ -131,31 +132,32 @@ class AjaxRequest {
 					$this->response["exportTypeFolder"] = $currExportType->folder;
 					$this->response["isComplete"] = false;
 					try {
-						list($success, $message) = $currExportType->install();
+						list($success, $content) = $currExportType->install();
 						$this->response["success"] = $success;
-						$this->response["message"] = $message;
+						$this->response["content"] = $content;
 					} catch (Exception $e) {
 						$this->response["success"] = false;
-						$this->response["message"] = "Unknown error.";
+						$this->response["content"] = "Unknown error.";
 					}
 				}
 				break;
 
-			case "installation_save_export_types":
+			case "installationSaveExportTypes":
 				Core::init("installation_db_ready");
 				$folders = $post["folders"];
 				$response = Settings::setSetting("installedExportTypes", $folders);
 				$this->response["success"] = $response["success"];
-				$this->response["message"] = $response["errorMessage"];
+				$this->response["content"] = $response["errorMessage"];
 				break;
 
-			case "installation_countries":
+			case "installationCountries":
 				Core::init("installation_db_ready");
 				$index = $post["index"];
 				$countryPlugins = CountryPluginHelper::getCountryPlugins(false);
 
 				if ($index >= count($countryPlugins)) {
 					$this->response["success"] = 1;
+					$this->response["content"] = "";
 					$this->response["isComplete"] = true;
 				} else {
 					// attempt to install this data type
@@ -167,24 +169,25 @@ class AjaxRequest {
 						// always run the uninstallation function first to ensure any old data is all cleared out
 						$currCountryPlugin->uninstall();
 
-						list($success, $message) = $currCountryPlugin->install();
+						list($success, $content) = $currCountryPlugin->install();
 						$this->response["success"] = $success;
-						$this->response["message"] = $message;
+						$this->response["content"] = $content;
 					} catch (Exception $e) {
 						$this->response["success"] = false;
-						$this->response["message"] = "Unknown error.";
+						$this->response["content"] = "Unknown error.";
 					}
 				}
 				break;
 
-			case "installation_save_countries":
+			case "installationSaveCountries":
 				Core::init("installation_db_ready");
 				$folders = $post["folders"];
 				$response = Settings::setSetting("installedCountries", $folders);
 				$response = Settings::setSetting("installationComplete", "yes");
 				$this->response["success"] = $response["success"];
-				$this->response["message"] = $response["errorMessage"];
+				$this->response["content"] = $response["errorMessage"];
 				break;
+
 
 			// ------------------------------------------------------------------------------------
 			// USER ACCOUNTS
@@ -224,16 +227,13 @@ class AjaxRequest {
 
 */
 
-			case "generate":
+			case "generateInPage":
 				Core::init("generation");
-
-//print_r(Core::$countryPlugins);
-//exit;
-
 				$gen = new Generator($_POST);
 				$response = $gen->generate();
-				$this->response["success"] = $response["success"];
-				$this->response["content"] = $response["content"];
+				$this->response["success"]    = $response["success"];
+				$this->response["content"]    = $response["content"];
+				$this->response["isComplete"] = $response["isComplete"];
 				break;
 		}
 	}

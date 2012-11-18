@@ -32,6 +32,8 @@ define([], function() {
 
 		EXPORT_TYPE_SETTINGS_BLIND_SPEED: 500,
 
+		GENERATE_IN_PAGE_BATCH_SIZE: 100,
+
 		THEME: "<?php Settings::safeDisplaySetting("theme") ?>",
 
 		/**
