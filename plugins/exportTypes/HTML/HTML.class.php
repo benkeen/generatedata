@@ -7,19 +7,22 @@
 
 class HTML extends ExportTypePlugin {
 	protected $exportTypeName = "HTML";
-
+	private $exportTarget;
 
 	/**
 	 * @see ExportTypePlugin::generate()
 	 */
 	function generate($generator) {
-		$columns     = $generator->getTemplateByDisplayOrder();
-		$template    = $generator->getTemplateByProcessOrder();
-		$numResults  = $generator->getNumResults();
-		$dataTypes   = $generator->getDataTypes();
-		$postData    = $generator->getPostData();
-		$firstRowNum = $generator->getCurrentBatchFirstRow();
-		$lastRowNum  = $generator->getCurrentBatchLastRow();
+		$this->exportTarget = $generator->getExportTarget();
+
+		$columns      = $generator->getTemplateByDisplayOrder();
+		$template     = $generator->getTemplateByProcessOrder();
+		$numResults   = $generator->getNumResults();
+		$dataTypes    = $generator->getDataTypes();
+		$postData     = $generator->getPostData();
+		$firstRowNum  = $generator->getCurrentBatchFirstRow();
+		$lastRowNum   = $generator->getCurrentBatchLastRow();
+
 
 		// first, generate the (ordered) list of table headings
 		$cols = array();
@@ -71,17 +74,28 @@ class HTML extends ExportTypePlugin {
 			"data"         => $displayData
 		);
 
-		$template = "";
+		$content = "";
+
+		// if we're generating the data in the context of a new window/tab, include the additional
+		// necessary HTML & styles to prettify it a bit
+		if ($this->exportTarget == "newTab") {
+			$content .= $this->generateExportHeader();
+		}
+
 		switch ($postData["etHTMLExportFormat"]) {
 			case "table":
-				$content = $this->genFormatTable($data);
+				$content .= $this->genFormatTable($data);
 				break;
 			case "ul":
-				$content = $this->genFormatUl($data);
+				$content .= $this->genFormatUl($data);
 				break;
 			case "dl":
-				$content = $this->genFormatDl($data);
+				$content .= $this->genFormatDl($data);
 				break;
+		}
+
+		if ($this->exportTarget == "newTab") {
+			$content .= $this->generateExportFooter();
 		}
 
 		return array(
@@ -95,22 +109,20 @@ class HTML extends ExportTypePlugin {
 		$html =<<< END
 		<table cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td width="17%" valign="top">Data format</td>
-			<td width="14%" valign="top">
+			<td width="15%" valign="top">Data format</td>
+			<td width="35%" valign="top">
 				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" value="table" checked="checked" />
-					<label for="etHTMLExportFormat1">&lt;table&gt;</label><br />
+					<label for="etHTMLExportFormat1">&lt;table&gt;</label>
 				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat2" value="ul" />
-					<label for="etHTMLExportFormat2">&lt;ul&gt;</label><br />
+					<label for="etHTMLExportFormat2">&lt;ul&gt;</label>
 				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat3" value="dl" />
 					<label for="etHTMLExportFormat3">&lt;dl&gt;</label>
 			</td>
-			<td width="70%" valign="top">
-				<label for="etXML_useCustomExportFormat">
-					<input type="checkbox" name="etXML_useCustomExportFormat" id="etXML_useCustomExportFormat" />
-					{$this->L["use_custom_html_format"]}
-				</label>
-				<textarea style="width: 98%; height: 100px" class="gdDisabled" name="etXML_customFormat" id="etXML_customFormat" disabled="disabled">
-</textarea>
+			<td width="50%" valign="top">
+				<input type="checkbox" name="etXML_useCustomExportFormat" id="etXML_useCustomExportFormat" />
+					<label for="etXML_useCustomExportFormat">{$this->L["use_custom_html_format"]}</label>
+					<a href="#" id="etHTML_editCustomFormat">[edit]</a>
+
 			</td>
 		</tr>
 		</table>
@@ -126,6 +138,7 @@ END;
 	 * @return string
 	 */
 	private function genFormatTable($data) {
+
 		$content = "";
 		if ($data["isFirstBatch"]) {
 			$content .= "<table cellpadding=\"1\" cellspacing=\"1\">\n<tr>\n";
@@ -192,5 +205,29 @@ END;
 			$content .= "</dl>\n";
 		}
 		return $content;
+	}
+
+	private function generateExportHeader() {
+		$html =<<< END
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	body { margin: 10px; }
+	table, th, td, li, dl { font-family: "lucida grande", arial; font-size: 8pt; }
+	dt { font-weight: bold; }
+	table { background-color: #efefef; border: 2px solid #dddddd; width: 100%; }
+	th { background-color: #efefef; }
+	td { background-color: #ffffff; }
+	</style>
+</head>
+<body>
+END;
+		return $html;
+	}
+
+	private function generateExportFooter() {
+		return "</body></html>";
 	}
 }

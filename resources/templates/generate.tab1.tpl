@@ -1,4 +1,11 @@
 <form id="gdData" method="post">
+	{* here because the new window/tab export format option uses a simple POST. This standardizes it all
+	   so that for all export formats we can just serialize the form *}
+	<input type="hidden" name="gdRowOrder" id="gdRowOrder" />
+	<input type="hidden" name="gdExportType" id="gdExportType" />
+	<input type="hidden" name="gdNumCols" id="gdNumCols" />
+	<input type="hidden" name="gdExportFormat" id="gdExportFormat" />
+
 	<div id="gdGenerateSubtab1">
 
 		<h1>{$L.country_specific_data}</h1>
@@ -43,7 +50,7 @@
 
 		<div class="gdClear gdVerticalPad"></div>
 
-		{$L.add} <input type="text" name="gdNumRows" id="gdNumRows" value="1" size="2" />
+		{$L.add} <input type="text" name="gdNumRowsToAdd" id="gdNumRowsToAdd" value="1" size="2" />
 		<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 
 		<hr class="divider" />
@@ -71,16 +78,16 @@
 
 		<div id="gdGenerateSection">
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
-			Generate <input type="text" style="width:45px" name="gdNumResults" id="gdNumResults" value="1000" /> rows
+			Generate <input type="text" style="width:45px" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="1000" /> rows
 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-			<input type="radio" name="gdExportLocation" id="gdExportLocation1" value="inPage" checked="checked" />
-				<label for="gdExportLocation1">Generate in-page</label>
-			<input type="radio" name="gdExportLocation" id="gdExportLocation2" value="newTab" />
-				<label for="gdExportLocation2">New window/tab</label>
-			<input type="radio" name="gdExportLocation" id="gdExportLocation3" value="download" disabled="disabled" />
-				<label for="gdExportLocation3">Prompt to download</label>
+			<input type="radio" name="gdExportTarget" id="gdExportTarget1" value="inPage" checked="checked" />
+				<label for="gdExportTarget1">Generate in-page</label>
+			<input type="radio" name="gdExportTarget" id="gdExportTarget2" value="newTab" />
+				<label for="gdExportTarget2">New window/tab</label>
+			<input type="radio" name="gdExportTarget" id="gdExportTarget3" value="download" disabled="disabled" />
+				<label for="gdExportTarget3">Prompt to download</label>
 		</div>
 	</div>
 
@@ -128,5 +135,3 @@
 	</div>
 	{data_type_resources}
 </div>
-
-{include file="export.dialog.tpl"}

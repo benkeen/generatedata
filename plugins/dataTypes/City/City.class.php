@@ -49,7 +49,8 @@ class DataType_City extends DataTypePlugin {
 			$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 			$regionSlug = $rowRegionInfo["randomData"]["region_slug"];
 
-			// now pick the random city in the country-region specified
+			// now pick the random city in the country-region specified.
+			// TODO bug here (when user unselected particular row regions)
 			$regionData = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug];
 			$numCitiesInRegion = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug]["numCities"];
 			$citiesInRegion    = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug]["cities"];

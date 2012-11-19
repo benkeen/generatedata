@@ -5,6 +5,7 @@
  * plugins and piecing the generateda data for returning to the client.
  */
 class Generator {
+	private $exportTarget;
 	private $batchNum;
 	private $batchSize;
 	private $numResults;
@@ -13,7 +14,6 @@ class Generator {
 	private $countries;
 	private $dataTypes;
 	private $postData;
-
 	private $isFirstBatch;
 	private $isLastBatch;
 	private $currentBatchFirstRow;
@@ -25,10 +25,18 @@ class Generator {
 	 * contexts:
 	 */
 	public function __construct($postData) {
-		$this->batchSize  = $postData["gdBatchSize"];
-		$this->batchNum   = $postData["gdCurrentBatchNum"];
+		$this->exportTarget = $postData["gdExportTarget"]; // inPage, newTab or promptDownload
+
+		if ($this->exportTarget == "inPage") {
+			$this->batchSize  = $postData["gdBatchSize"];
+			$this->batchNum   = $postData["gdCurrentBatchNum"];
+		} else {
+			$this->batchSize = $postData["gdNumRowsToGenerate"];
+			$this->batchNum = 1;
+		}
+
 		$this->numResults = $postData["gdNumRowsToGenerate"];
-		$this->countries  = explode(",", $postData["gdCountries"]);
+		$this->countries  = $postData["gdCountries"];
 		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 		$this->postData   = $postData;
 
@@ -134,6 +142,17 @@ class Generator {
 
 
 	// getters
+
+	/**
+	 * Returns a string representing the target / location of the data generation is happening:
+	 * 		"inPage"
+	 * 		"newTab"
+	 * 		"promptDownload"
+	 * @return string
+	 */
+	public function getExportTarget() {
+		return $this->exportTarget;
+	}
 
 	public function getBatchNum() {
 		return $this->batchNum;

@@ -29,7 +29,7 @@ define([
 	var _codeMirror = null;
 
 	// the number of results being generated
-	var _numResults;
+	var _numRowsToGenerate;
 
 	// for storing data during in-page data generation
 	var _generateInPageRunningCount;
@@ -86,7 +86,7 @@ define([
 			_selectExportTypeTab($(e.target).data("exportType"));
 		});
 
-		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRows").val()); });
+		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRowsToAdd").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); return false; });
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
@@ -113,7 +113,7 @@ define([
 		var rows = rows.toString();
 		if (rows.match(/\D/) || rows == 0 || rows == "") {
 			utils.clearValidationErrors($("#gdTab1Content"));
-			utils.addValidationErrors({ els: [$("#gdNumRows")], error: L.no_num_rows });
+			utils.addValidationErrors({ els: [$("#gdNumRowsToAdd")], error: L.no_num_rows });
 			utils.displayValidationErrors("#gdMessages");
 			return false;
 		}
@@ -330,6 +330,7 @@ define([
 		});
 	}
 
+
 	/**
 	 * Called when the user changes the Data Type for a particular row.
 	 */
@@ -460,12 +461,12 @@ define([
 	 * and starts the data generation process.
 	 */
 	var _generateData = function() {
-		_numResults = $("#gdNumResults").val();
+		_numRowsToGenerate = $("#gdNumRowsToGenerate").val();
 		utils.clearValidationErrors($("#gdTab1Content"));
 
 		// check the users specified a numeric value for the number of results
-		if (_numResults.match(/\D/) || _numResults == 0 || _numResults == "") {
-			utils.addValidationErrors({ el: $("#gdNumResults"), error: L.invalid_num_results });
+		if (_numRowsToGenerate.match(/\D/) || _numRowsToGenerate == 0 || _numRowsToGenerate == "") {
+			utils.addValidationErrors({ el: $("#gdNumRowsToGenerate"), error: L.invalid_num_results });
 		}
 
 		var orderedRowIDs = _getRowOrder();
@@ -528,13 +529,17 @@ define([
 			return false;
 		}
 
-		var exportLocation = $("input[name=gdExportLocation]:checked")[0].value;
+		var exportTarget = $("input[name=gdExportTarget]:checked")[0].value;
+		var rowOrder = _getRowOrder().toString();
+		$("#gdRowOrder").val(rowOrder);
+		$("#gdExportType").val(_currExportType);
+		$("#gdNumCols").val(_numRows);
 
 		// now pass off the work to the appropriate generation function. Each works slightly differently.
-		if (exportLocation == "inPage") {
+		if (exportTarget == "inPage") {
 			_generateInPage();
 			return false;
-		} else if (exportLocation == "newTab") {
+		} else if (exportTarget == "newTab") {
 			_generateNewWindow();
 		}
 	};
@@ -548,11 +553,9 @@ define([
 	 */
 	var _generateInPage = function() {
 		var formData = $("#gdData").serialize();
-		var rowOrder = _getRowOrder().toString();
-		var data = formData + "&gdRowOrder=" + rowOrder + "&gdExportType=" + _currExportType
-				 + "&action=generateInPage&gdNumRowsToGenerate=" + _numResults
-		         + "&gdNumCols=" + _numRows + "&gdCountries=" + _countries.toString()
-		         + "&gdBatchSize=" + C.GENERATE_IN_PAGE_BATCH_SIZE;
+
+		// "action" added for AjaxRequest only
+		var data = formData + "&action=generateInPage&gdBatchSize=" + C.GENERATE_IN_PAGE_BATCH_SIZE;
 		_showSubtab(2);
 
 		if (_codeMirror == null) {
@@ -566,7 +569,7 @@ define([
 		_codeMirror.setValue("");
 		_generateInPageRunningCount = 0;
 		$("#gdGenerateCount").html(utils.formatNumWithCommas(_generateInPageRunningCount));
-		$("#gdGenerateTotal").html(utils.formatNumWithCommas(_numResults));
+		$("#gdGenerateTotal").html(utils.formatNumWithCommas(_numRowsToGenerate));
 		$("#gdGenerateInPageLoading").css("display", "inline-block");
 
 		_generateInPageBatchNum = 1;
@@ -592,8 +595,8 @@ define([
 	var _generateInPageBatchResponse = function(response) {
 		if (response.success) {
 			// 1. Update the running count ("Generated X of Y rows")
-			_generateInPageRunningCount = (_generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE) > _numResults ?
-				_numResults : _generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE;
+			_generateInPageRunningCount = (_generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE) > _numRowsToGenerate ?
+				_numRowsToGenerate : _generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE;
 			$("#gdGenerateCount").html(utils.formatNumWithCommas(_generateInPageRunningCount));
 
 			// 2. Update the actual content
