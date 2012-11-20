@@ -14,24 +14,18 @@
 
 	var _updateDialogDimensions = function() {
 		var dimensions = _getDialogDimensions();
-		$("#etHTMLCustomFormatDialog").dialog({
-			width: dimensions.width,
-			height: dimensions.height
-		});
+		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
+		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
 	}
 
 	var _openEditCustomFormatDialog = function() {
 		var dimensions = _getDialogDimensions();
-		$("#etHTMLCustomSmarty").css({
-			width: "400px",
-			height: "400px"
-		});
 
 		// calculate size of main content area
 		$("#etHTMLCustomFormatDialog").dialog({
 			title: "Custom HTML Format",
-			width: dimensions.width,
-			height: dimensions.height,
+			width: dimensions.dialogWidth,
+			height: dimensions.dialogHeight,
 			open: function() {
 				if (_codeMirror == null) {
 					_codeMirror = CodeMirror.fromTextArea($("#etHTMLCustomSmarty")[0], {
@@ -39,6 +33,10 @@
 						lineNumbers: true
 					});
 					$("#etHTMLCustomSmarty").addClass("CodeMirror_medium");
+					$("#etHTMLCustomContent .CodeMirror-scroll").css({
+						width: dimensions.contentWidth,
+						height: dimensions.contentHeight
+					});
 				}
 			},
 			buttons: [
@@ -55,9 +53,16 @@
 	}
 
 	var _getDialogDimensions = function() {
+		var dialogHeight  = ($(window).height() / 100) * 90;
+		var dialogWidth   = ($(window).width() / 100) * 90;
+		var contentHeight = dialogHeight - 110;
+		var contentWidth  = dialogWidth - 370;
+
 		return {
-			height: ($(window).height() / 100) * 90,
-			width: ($(window).width() / 100) * 90
+			dialogHeight: dialogHeight,
+			dialogWidth: dialogWidth,
+			contentHeight: contentHeight,
+			contentWidth: contentWidth
 		}
 	}
 

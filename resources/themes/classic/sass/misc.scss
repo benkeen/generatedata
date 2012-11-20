@@ -39,6 +39,7 @@ noscript {
 	text-shadow: 0 1px 0 #fff;
 	box-shadow: 2px 4px 5px #666666;
 }
+
 /* jQuery UI style overrides */
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
 	cursor: pointer;
@@ -73,7 +74,6 @@ body .ui-widget-shadow {
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
 }
-
 
 /* overridden Chosen styles */
 body .chzn-container-multi .chzn-choices .search-choice {

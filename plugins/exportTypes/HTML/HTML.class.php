@@ -131,10 +131,6 @@ class HTML extends ExportTypePlugin {
 
 <div id="etHTMLCustomFormatDialog" style="display:none">
 	<div style="width: 300px; float: left;">
-		<p>
-			This dialog lets you customize the HTML used in generating your data through custom Smarty template logic.
-		</p>
-
 		<h4>Available Smarty Vars</h4>
 
 <pre>{\$isFirstBatch}, {\$isLastBatch}</pre>
@@ -150,7 +146,7 @@ an ordered array of values for each item of data.
 
 		<button class="gdPrimaryButton">Reset Custom HTML</button>
 	</div>
-	<div style="etHTMLCustomContent">
+	<div id="etHTMLCustomContent">
 		<textarea id="etHTMLCustomSmarty"><!DOCTYPE html>
 <html>
 <head>

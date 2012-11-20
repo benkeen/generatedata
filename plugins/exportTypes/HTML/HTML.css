@@ -1,6 +1,9 @@
 #etHTMLCustomFormatDialog pre {
 	margin-bottom: 0px;
 }
+#etHTMLCustomFormatDialog h4 {
+	margin: 0px 0px 4px;
+}
 #etHTMLCustomContent {
 	float:left;
 	border-left: 1px solid #efefef;
