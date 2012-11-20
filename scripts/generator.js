@@ -564,6 +564,8 @@ define([
 			return false;
 		} else if (exportTarget == "newTab") {
 			_generateNewWindow();
+		} else if (exportTarget == "promptDownload") {
+			_generatePromptDownload();
 		}
 	};
 
@@ -639,6 +641,13 @@ define([
 	}
 
 	var _generateNewWindow = function() {
+		$("#gdData").attr({
+			"target": "blank",
+			"action": "generate.php"
+		});
+	}
+
+	var _generatePromptDownload = function() {
 		$("#gdData").attr({
 			"target": "blank",
 			"action": "generate.php"

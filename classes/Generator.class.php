@@ -19,10 +19,9 @@ class Generator {
 	private $currentBatchFirstRow;
 	private $currentBatchLastRow;
 
-
 	/**
 	 * @param array $postdata everything from the form post. The Generator is used in 3 different
-	 * contexts:
+	 * contexts: for in-page generation, new tab/window or for prompting download of the data.
 	 */
 	public function __construct($postData) {
 		$this->exportTarget = $postData["gdExportTarget"]; // inPage, newTab or promptDownload
@@ -68,7 +67,13 @@ class Generator {
 	 */
 	public function generate() {
 		$response = $this->exportType->generate($this);
+		$response["contentTypeHeader"] = $this->exportType->getContentTypeHeader();
 		$response["isComplete"] = $this->isLastBatch;
+
+		if ($this->exportTarget == "promptDownload") {
+			$response["promptDownloadFilename"] = $this->exportType->getDownloadFilename($this);
+		}
+
 		return $response;
 	}
 

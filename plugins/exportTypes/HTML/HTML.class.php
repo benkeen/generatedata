@@ -9,7 +9,9 @@ class HTML extends ExportTypePlugin {
 	protected $exportTypeName = "HTML";
 	protected $jsModules = array("HTML.js");
 	protected $cssFile = "HTML.css";
+	protected $contentTypeHeader = "text/html";
 	private $exportTarget;
+
 
 	/**
 	 * @see ExportTypePlugin::generate()
@@ -80,7 +82,7 @@ class HTML extends ExportTypePlugin {
 
 		// if we're generating the data in the context of a new window/tab, include the additional
 		// necessary HTML & styles to prettify it a bit
-		if ($this->exportTarget == "newTab") {
+		if ($this->exportTarget == "newTab" || $this->exportTarget == "promptDownload") {
 			$content .= $this->generateExportHeader();
 		}
 
@@ -96,7 +98,7 @@ class HTML extends ExportTypePlugin {
 				break;
 		}
 
-		if ($this->exportTarget == "newTab") {
+		if ($this->exportTarget == "newTab" || $this->exportTarget == "promptDownload") {
 			$content .= $this->generateExportFooter();
 		}
 
@@ -104,6 +106,18 @@ class HTML extends ExportTypePlugin {
 			"success" => true,
 			"content" => $content
 		);
+	}
+
+
+	/**
+	 * Used for constructing the filename of the filename when downloading.
+	 * @see ExportTypePlugin::getDownloadFilename()
+	 * @param Generator $generator
+	 * @return string
+	 */
+	function getDownloadFilename($generator) {
+		$time = date("U");
+		return "randomdata-{$time}.html";
 	}
 
 
@@ -121,10 +135,9 @@ class HTML extends ExportTypePlugin {
 					<label for="etHTMLExportFormat3">&lt;dl&gt;</label>
 			</td>
 			<td width="50%" valign="top">
-				<input type="checkbox" name="etXML_useCustomExportFormat" id="etXML_useCustomExportFormat" />
-					<label for="etXML_useCustomExportFormat">{$this->L["use_custom_html_format"]}</label>
-					<a href="#" id="etHTML_editCustomFormat">[edit]</a>
-
+				<input type="checkbox" name="etHTMLUseCustomExportFormat" id="etHTMLUseCustomExportFormat" />
+					<label for="etHTMLUseCustomExportFormat">{$this->L["use_custom_html_format"]}</label>
+					<input type="button" id="etHTMLEditCustomFormat" value="edit" disabled="disabled" />
 			</td>
 		</tr>
 		</table>

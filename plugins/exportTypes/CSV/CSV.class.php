@@ -3,16 +3,28 @@
 
 class CSV extends ExportTypePlugin {
 	protected $exportTypeName = "CSV";
+	protected $contentTypeHeader = "application/csv";
 	public $L = array();
 
 	function generate($generator) {
 
 	}
 
+	/**
+	 * Used for constructing the filename of the filename when downloading.
+	 * @see ExportTypePlugin::getDownloadFilename()
+	 * @param Generator $generator
+	 * @return string
+	 */
+	function getDownloadFilename($generator) {
+		$time = date("M-j-Y");
+		return "data{$time}.csv";
+	}
+
 	function outputHeaders() {
 		header("Content-Type: application/csv");
 		header("Content-Disposition: attachment; filename=randomdata.csv");
-		header("Cache-Control: public");
+		//header("Cache-Control: public");
 	}
 
 	function getAdditionalSettingsHTML() {

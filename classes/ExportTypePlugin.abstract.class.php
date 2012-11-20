@@ -37,10 +37,18 @@ abstract class ExportTypePlugin {
 	protected $openResultsInDialog = true;
 
 	/**
-	 * This controls
-	 * @var unknown_type
+	 * An array of whatever CodeMirror modes (the syntax highlighter) this Export Type needs. This ensures they're
+	 * all loaded at runtime for use in the generator.
+	 * @var array
 	 */
-	protected $syntaxHighlighterLanguage = null;
+	protected $codemirrorModes = array();
+
+	/**
+	 * Needed for the "prompt for download" export option. This should contain the standard Content-Type header
+	 * value (like "text/html") of the generated content, so the browser knows what to do with the downloaded file.
+	 * @var string
+	 */
+	protected $contentTypeHeader;
 
 	/**
 	 * Contains all strings for the current language. This is populated automatically on instantiation and
@@ -50,14 +58,26 @@ abstract class ExportTypePlugin {
 	public $L = array();
 
 
+	// 1. REQUIRED FUNCTIONS
+
 	/**
 	 * This does the job of actually generating the data in the appropriate format. It's fed the instantiated
 	 * Generator class, containing the various information the Export Type could need.
 	 *
 	 * @param Generator $generator
-	 * @return
+	 * @return array
 	 */
 	abstract function generate($generator);
+
+	/**
+	 * Used for the "prompt for download" option for all Export Types. This function needs to return the
+	 * filename of the downloadable file. It can either be "clever" and construct a filename based on the
+	 * current data being generated, or simple: the same filename each time. It doesn't matter: purely a
+	 * matter of preference.
+	 * @param Generator $generator
+	 * @return string
+	 */
+	abstract function getDownloadFilename($generator);
 
 
 	// 2. OPTIONALLY DEFINED FUNCTIONS
@@ -167,5 +187,13 @@ abstract class ExportTypePlugin {
 	 */
 	public final function getPath() {
 		return $this->path;
+	}
+
+	/**
+	 *
+	 * @return string
+	 */
+	public final function getContentTypeHeader() {
+		return $this->contentTypeHeader;
 	}
 }

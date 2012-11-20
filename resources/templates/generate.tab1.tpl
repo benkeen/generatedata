@@ -79,7 +79,7 @@
 
 		<div id="gdGenerateSection">
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
-			Generate <input type="text" style="width:45px" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="1000" /> rows
+			Generate <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="1000" /> rows
 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -87,7 +87,7 @@
 				<label for="gdExportTarget1">Generate in-page</label>
 			<input type="radio" name="gdExportTarget" id="gdExportTarget2" value="newTab" />
 				<label for="gdExportTarget2">New window/tab</label>
-			<input type="radio" name="gdExportTarget" id="gdExportTarget3" value="download" disabled="disabled" />
+			<input type="radio" name="gdExportTarget" id="gdExportTarget3" value="promptDownload" />
 				<label for="gdExportTarget3">Prompt to download</label>
 		</div>
 	</div>

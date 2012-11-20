@@ -68,6 +68,13 @@
 
 	$(function() {
 		$(window).resize(_updateDialogDimensions);
-		$("#etHTML_editCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
+		$("#etHTMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
+		$("#etHTMLUseCustomExportFormat").bind("click", function() {
+			if (this.checked) {
+				$("#etHTMLEditCustomFormat").removeAttr("disabled");
+			} else {
+				$("#etHTMLEditCustomFormat").attr("disabled", "disabled");
+			}
+		})
 	});
 });
