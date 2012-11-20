@@ -47,7 +47,7 @@ noscript {
 	text-align: left;
 }
 .ui-dialog-title {
-	font-weight: bold;
+	font-size: 14px;
 }
 .gdColOptions .ui-datepicker-trigger {
 	margin: 0px 0px -3px 1px;
@@ -176,6 +176,9 @@ body .CodeMirror_medium {
 	}
 	.cm-s-default pre span {
 		line-height: 16px;
+	}
+	.CodeMirror-gutter-text pre {
+		line-height: 20px;
 	}
 }
 body .CodeMirror_large {

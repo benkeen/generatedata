@@ -23,6 +23,12 @@ abstract class ExportTypePlugin {
 	protected $jsModules = array();
 
 	/**
+	 * A single CSS file for any additional CSS needed for the module. It's up to the developer to properly
+	 * name their CSS classes/IDs to prevent namespace collisions.
+	 */
+	protected $cssFile = "";
+
+	/**
 	 * By default, the Data Generator opens a dialog window to display the results. This setting lets you choose
 	 * to override that and just pass the Ajax request directly to the server. This is handy for export types like
 	 * Excel which just prompts for file download - not shows the results in the UI.
@@ -120,6 +126,14 @@ abstract class ExportTypePlugin {
 	 */
 	public final function getJSModules() {
 		return $this->jsModules;
+	}
+
+	/**
+	 * Returns the CSS filename for this Data Type (if included).
+	 * @return array
+	 */
+	public final function getCSSFile() {
+		return $this->cssFile;
 	}
 
 	/**

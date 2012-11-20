@@ -7,6 +7,8 @@
 
 class HTML extends ExportTypePlugin {
 	protected $exportTypeName = "HTML";
+	protected $jsModules = array("HTML.js");
+	protected $cssFile = "HTML.css";
 	private $exportTarget;
 
 	/**
@@ -126,6 +128,65 @@ class HTML extends ExportTypePlugin {
 			</td>
 		</tr>
 		</table>
+
+<div id="etHTMLCustomFormatDialog" style="display:none">
+	<div style="width: 300px; float: left;">
+		<p>
+			This dialog lets you customize the HTML used in generating your data through custom Smarty template logic.
+		</p>
+
+		<h4>Available Smarty Vars</h4>
+
+<pre>{\$isFirstBatch}, {\$isLastBatch}</pre>
+Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for
+users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.
+
+<pre>{\$colData}</pre>
+An ordered array of strings containing the column names.
+
+<pre>{\$rowData}</pre>
+An ordered array of arrays. Each top level array contains the contents of the row; each child array contains
+an ordered array of values for each item of data.
+
+		<button class="gdPrimaryButton">Reset Custom HTML</button>
+	</div>
+	<div style="etHTMLCustomContent">
+		<textarea id="etHTMLCustomSmarty"><!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	body { margin: 10px; }
+	table, th, td, li, dl { font-family: "lucida grande", arial; font-size: 8pt; }
+	dt { font-weight: bold; }
+	table { background-color: #efefef; border: 2px solid #dddddd; width: 100%; }
+	th { background-color: #efefef; }
+	td { background-color: #ffffff; }
+	</style>
+</head>
+<body>
+
+{if \$isFirstBatch}
+<table cellspacing="0" cellpadding="1">
+<tr>
+{foreach \$colData as \$col}
+	<th>{\$col}</th>
+{/foreach}
+</tr>
+{/if}
+
+{foreach \$rowData as \$row}
+
+{/foreach}
+
+{if \$isLastBatch}
+</table>
+{/if}
+
+</body>
+</html>
+</textarea>
+	</div>
+</div>
 END;
 		return $html;
 	}

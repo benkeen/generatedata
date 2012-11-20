@@ -5,4 +5,6 @@ settings.php
 cache/*
 .settings/org.eclipse.php.core.prefs
 .settings/org.eclipse.php.core.prefs
-resources/css/.sass-cache/*
+resources/themes/classic/.sass-cache/*
+resources/themes/default/.sass-cache/*
+resources/themes/.sass-cache/*

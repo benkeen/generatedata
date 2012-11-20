@@ -130,4 +130,26 @@ class ExportTypePluginHelper {
 
 		return $additionalSettings;
 	}
+
+	/**
+	 * Used in the main page to generate the Export Type CSS includes.
+	 * @param array the export types
+	 * @param string
+	 */
+	public function getExportTypeCSSIncludes($exportTypes) {
+		$files = array();
+		foreach ($exportTypes as $exportType) {
+			$cssFile = $exportType->getCSSFile();
+			if (!empty($cssFile)) {
+				$path = $exportType->getPath();
+				$files[] = "$path/$cssFile";
+			}
+		}
+
+		$cssIncludes = "";
+		foreach ($files as $file) {
+			$cssIncludes[] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"$file\" />";
+		}
+		return implode("\n", $cssIncludes);
+	}
 }

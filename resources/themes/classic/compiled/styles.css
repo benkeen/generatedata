@@ -83,7 +83,6 @@ section {
   text-align: left;
   padding: 10px 25px 10px 25px;
   clear: left;
-  box-shadow: 2px 4px 3px #999999;
   display: block; }
 
 nav {
@@ -95,16 +94,16 @@ nav {
 
 footer {
   width: 980px;
-  margin: 0 auto 10px;
+  margin: 0 auto 15px;
+  padding: 5px 0px;
   height: 20px;
   font-size: 7pt;
   background-color: #ffffff;
   border-top: none;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
-  border-radius-bottomleft: 24px;
-  border-radius-bottomright: 24px;
-  box-shadow: 2px 4px 3px #999999;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-radius-bottomleft: 8px;
+  border-radius-bottomright: 8px;
   display: block; }
   footer a:link, footer a:visited {
     color: #555555;
@@ -135,28 +134,27 @@ header nav {
     #gdTabs ul li {
       color: #222222;
       font-size: 9pt;
-      text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);
       cursor: pointer;
-      margin: 2px 2px 0 0;
+      margin: 2px 1px 0 0;
       padding: 3px 0 0 0;
       float: left;
       width: 120px;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-      border-radius-topleft: 12px;
-      border-radius-topright: 12px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-radius-topleft: 8px;
+      border-radius-topright: 8px;
       background-color: #efefef;
       height: 22px;
-      color: green; }
+      color: #666666; }
       #gdTabs ul li a:link, #gdTabs ul li a:visited {
         display: block;
         font-size: 9pt;
-        text-shadow: rgba(64, 64, 64, 0.2) 3px 3px 8px;
         color: green;
         text-decoration: none; }
       #gdTabs ul li:hover {
         background-color: #f5faf6; }
     #gdTabs ul li.gdSelected {
+      color: green;
       cursor: inherit;
       border-bottom: 0px;
       height: 22px;
@@ -400,7 +398,7 @@ li.gdColDelete {
 
 #gdGenerateSection {
   background-color: #E4FFE4;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 20px;
   border: 1px solid #bbbbbb; }
 
@@ -576,7 +574,7 @@ noscript {
   text-align: left; }
 
 .ui-dialog-title {
-  font-weight: bold; }
+  font-size: 14px; }
 
 .gdColOptions .ui-datepicker-trigger {
   margin: 0px 0px -3px 1px;
@@ -684,6 +682,8 @@ body .CodeMirror_medium div, body .CodeMirror_medium span {
   font-size: 9pt; }
 body .CodeMirror_medium .cm-s-default pre span {
   line-height: 16px; }
+body .CodeMirror_medium .CodeMirror-gutter-text pre {
+  line-height: 20px; }
 
 body .CodeMirror_large div, body .CodeMirror_large span {
   font-size: 12pt; }

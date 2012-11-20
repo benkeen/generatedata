@@ -25,7 +25,7 @@ define([
 	var _exportTypes = {};
 	var _currExportType = null; // populated onload
 	var _subscriptions = {};
-	var _showExportTypeSettings = false;
+	var _showExportTypeSettings = true;
 	var _codeMirror = null;
 
 	var _lastSelectedDataType = null;
@@ -65,14 +65,12 @@ define([
 		// republished. Only really an issue on Firefox, which publishes keyup and change events when
 		// changing the selected option via the keyboard (up and down). It also allows us to tab off the field
 		// into whatever field is displayed next.
-		$("#gdTableRows").on("change", ".gdDataType", _onChangeDataType);
-		$("#gdTableRows").on("keyup", ".gdDataType", _onKeyupDataType);
+		$("#gdTableRows").on("change keyup", ".gdDataType", _onChangeDataType);
 		$("#gdTableRows").on("focus", ".gdDataType", _onFocusDataType);
 
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
 		$("#gdTableRows").on("change", ".gdColExamples select", _publishExampleChange);
-
 
 		$("#gdTableRows").sortable({
 			handle: ".gdColOrder",
@@ -116,7 +114,6 @@ define([
 			$("#gdGenerateSubtab1").hide();
 			$("#gdGenerateSubtab2").show();
 		}
-
 		return false;
 	}
 
@@ -138,7 +135,6 @@ define([
 		}
 
 		_updateVisibleRowNums();
-
 		manager.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.DATA_TABLE.ROW.ADD,
@@ -348,12 +344,6 @@ define([
 	 */
 	var _onFocusDataType = function(e) {
 		_lastSelectedDataType = e.target.value;
-	}
-
-	var _onKeyupDataType = function(e) {
-		if ($.inArray(e.keyCode, [38, 40]) != -1) {
-			_publishDataTypeChange(e.target);
-		}
 	}
 
 	/**
@@ -763,7 +753,8 @@ define([
 		/**
 		 * When a user re-orders or deletes some rows, the table gives the appearance of being numbered
 		 * numerically 1-N, however the actual markup retains the original number scheme according to how it
-		 * was first generated. This function returns the visible number of the
+		 * was first generated. This function returns the visible number of the row number, used for generating
+		 * helpful error messages.
 		 */
 		getVisibleRowOrderByRowNum: function(rowNum) {
 			var rowOrder = _getRowOrder();

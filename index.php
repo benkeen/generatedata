@@ -18,13 +18,17 @@ $exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalS
 $dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
 
 $exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes);
+$exportTypeCssIncludes = ExportTypePluginHelper::getExportTypeCSSIncludes($exportTypes);
 $dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes);
-$cssIncludes = DataTypePluginHelper::getDataTypeCSSIncludes($dataTypes);
+$dataTypeCssIncludes = DataTypePluginHelper::getDataTypeCSSIncludes($dataTypes);
+$cssIncludes = $exportTypeCssIncludes . "\n" . $dataTypeCssIncludes;
 
 $pageParams["dataTypeJSModules"] = $dataTypeJSModules;
 $pageParams["exportTypeJSModules"] = $exportTypeJSModules;
 $pageParams["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
 $pageParams["settings"] = Settings::getSettings();
 $pageParams["cssIncludes"] = $cssIncludes;
+
+$pageParams["defaultExportType"] = Core::getDefaultExportType();
 
 Templates::displayPage("resources/templates/index.tpl", $pageParams);
