@@ -28,6 +28,8 @@ define([
 	var _showExportTypeSettings = false;
 	var _codeMirror = null;
 
+	var _lastSelectedDataType = null;
+
 	// the number of results being generated
 	var _numRowsToGenerate;
 
@@ -59,10 +61,19 @@ define([
 			return false;
 		});
 
+		// each event is handled separately to ensure that the Change Data Type event isn't unnecessarily
+		// republished. Only really an issue on Firefox, which publishes keyup and change events when
+		// changing the selected option via the keyboard (up and down). It also allows us to tab off the field
+		// into whatever field is displayed next.
+		$("#gdTableRows").on("change", ".gdDataType", _onChangeDataType);
+		$("#gdTableRows").on("keyup", ".gdDataType", _onKeyupDataType);
+		$("#gdTableRows").on("focus", ".gdDataType", _onFocusDataType);
+
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("change keyup", ".gdDataType", _changeRowType);
 		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
-		$("#gdTableRows").on("change keyup", ".gdColExamples select", _publishExampleChange);
+		$("#gdTableRows").on("change", ".gdColExamples select", _publishExampleChange);
+
+
 		$("#gdTableRows").sortable({
 			handle: ".gdColOrder",
 			axis: "y",
@@ -332,11 +343,34 @@ define([
 
 
 	/**
+	 * Called whenever the user focuses on a Row Type. This makes a note of the last selected
+	 * Data Type, to prevent unnecessary re-publishing of (non-)changed data types.
+	 */
+	var _onFocusDataType = function(e) {
+		_lastSelectedDataType = e.target.value;
+	}
+
+	var _onKeyupDataType = function(e) {
+		if ($.inArray(e.keyCode, [38, 40]) != -1) {
+			_publishDataTypeChange(e.target);
+		}
+	}
+
+	/**
 	 * Called when the user changes the Data Type for a particular row.
 	 */
-	var _changeRowType = function(e) {
-		var rowID = parseInt($(e.target).attr("id").replace(/^gdDataType_/, ""));
-		var dataTypeModuleID = e.target.value;
+	var _onChangeDataType = function(e) {
+		if (e.target.value != _lastSelectedDataType) {
+			_publishDataTypeChange(e.target);
+		}
+	}
+
+	var _publishDataTypeChange = function(el) {
+		var rowID = parseInt($(el).attr("id").replace(/^gdDataType_/, ""));
+		var dataTypeModuleID = el.value;
+
+		// make a note of the last value
+		_lastSelectedDataType = dataTypeModuleID;
 
 		// if the user just selected the empty value ("Please Select"), clear everything
 		if (dataTypeModuleID == "") {
@@ -368,7 +402,6 @@ define([
 			return isReady;
 		};
 		var readyTest = ($("#gdDataTypeOptions_" + dataTypeModuleID).length > 0) ? hasOptionsTest : noOptionsTest;
-
 
 		utils.pushToQueue([
 			function() {
