@@ -666,32 +666,28 @@ body .chzn-container-multi .chzn-choices {
 
 /* overridden CodeMirror styles */
 body .CodeMirror {
-  border: 1px solid #cccccc; }
-  body .CodeMirror pre {
+  border: 1px solid #cccccc;
+  /*line-height: 16px;*/ }
+  body .CodeMirror pre, body .CodeMirror span {
     font-family: monospace; }
 
 body .CodeMirror-lines div pre {
-  line-height: 14px; }
+  /*line-height: 14px;*/ }
 
 body .CodeMirror-scroll {
   height: 500px; }
 
-body .CodeMirror_small div, body .CodeMirror_small span {
+body .CodeMirror_small table, body .CodeMirror_small td, body .CodeMirror_small p, body .CodeMirror_small div, body .CodeMirror_small span {
+  line-height: 10px;
   font-size: 7pt; }
-body .CodeMirror_small .cm-s-default pre span {
-  line-height: 10px; }
 
-body .CodeMirror_medium div, body .CodeMirror_medium span {
+body .CodeMirror_medium table, body .CodeMirror_medium td, body .CodeMirror_medium p, body .CodeMirror_medium div, body .CodeMirror_medium span {
+  line-height: 16px;
   font-size: 9pt; }
-body .CodeMirror_medium .cm-s-default pre span {
-  line-height: 16px; }
-body .CodeMirror_medium .CodeMirror-gutter-text pre {
-  line-height: 20px; }
 
-body .CodeMirror_large div, body .CodeMirror_large span {
+body .CodeMirror_large table, body .CodeMirror_large td, body .CodeMirror_large p, body .CodeMirror_large div, body .CodeMirror_large span {
+  line-height: 22px;
   font-size: 12pt; }
-body .CodeMirror_large .cm-s-default pre span {
-  line-height: 22px; }
 
 .gdMessage {
   position: relative;

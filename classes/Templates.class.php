@@ -75,7 +75,7 @@ class Templates {
 	 */
 	function evalSmartyString($placeholderStr, $placeholders) {
 		$smarty = new Smarty();
-		$smarty->template_dir = realpath(dirname(__FILE__) . "/../smarty");
+		$smarty->template_dir = realpath(dirname(__FILE__) . "/../libs/smarty");
 		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
 
 		$smarty->assign("eval_str", $placeholderStr);

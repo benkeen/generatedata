@@ -11,7 +11,16 @@ class HTML extends ExportTypePlugin {
 	protected $cssFile = "HTML.css";
 	protected $contentTypeHeader = "text/html";
 	private $exportTarget;
+	private $smarty;
 
+	function __construct($runtimeContext) {
+		parent::__construct($runtimeContext);
+		if ($runtimeContext == "generation") {
+			$this->smarty = new Smarty();
+			$this->smarty->template_dir = realpath(dirname(__FILE__) . "/../../../libs/smarty");
+			$this->smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../../cache");
+		}
+	}
 
 	/**
 	 * @see ExportTypePlugin::generate()
@@ -26,7 +35,6 @@ class HTML extends ExportTypePlugin {
 		$postData     = $generator->getPostData();
 		$firstRowNum  = $generator->getCurrentBatchFirstRow();
 		$lastRowNum   = $generator->getCurrentBatchLastRow();
-
 
 		// first, generate the (ordered) list of table headings
 		$cols = array();
@@ -74,32 +82,38 @@ class HTML extends ExportTypePlugin {
 		$data = array(
 			"isFirstBatch" => $generator->isFirstBatch(),
 			"isLastBatch"  => $generator->isLastBatch(),
-			"cols"         => $cols,
-			"data"         => $displayData
+			"colData"      => $cols,
+			"rowData"      => $displayData
 		);
 
 		$content = "";
+		$exportFormat = (isset($postData["etHTMLExportFormat"])) ? $postData["etHTMLExportFormat"] : "custom";
 
-		// if we're generating the data in the context of a new window/tab, include the additional
-		// necessary HTML & styles to prettify it a bit
-		if ($this->exportTarget == "newTab" || $this->exportTarget == "promptDownload") {
-			$content .= $this->generateExportHeader();
-		}
+		if ($exportFormat == "custom") {
+			$content .= $this->genFormatCustom($data, $postData["etHTMLCustomSmarty"]);
+		} else {
 
-		switch ($postData["etHTMLExportFormat"]) {
-			case "table":
-				$content .= $this->genFormatTable($data);
-				break;
-			case "ul":
-				$content .= $this->genFormatUl($data);
-				break;
-			case "dl":
-				$content .= $this->genFormatDl($data);
-				break;
-		}
+			// if we're generating the data in the context of a new window/tab, include the additional
+			// necessary HTML & styles to prettify it a bit
+			if ($this->exportTarget == "newTab" || $this->exportTarget == "promptDownload") {
+				$content .= $this->generateExportHeader();
+			}
 
-		if ($this->exportTarget == "newTab" || $this->exportTarget == "promptDownload") {
-			$content .= $this->generateExportFooter();
+			switch ($exportFormat) {
+				case "table":
+					$content .= $this->genFormatTable($data);
+					break;
+				case "ul":
+					$content .= $this->genFormatUl($data);
+					break;
+				case "dl":
+					$content .= $this->genFormatDl($data);
+					break;
+			}
+
+			if ($this->exportTarget == "newTab" || $this->exportTarget == "promptDownload") {
+				$content .= $this->generateExportFooter();
+			}
 		}
 
 		return array(
@@ -125,13 +139,13 @@ class HTML extends ExportTypePlugin {
 		$html =<<< END
 		<table cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td width="15%" valign="top">Data format</td>
-			<td width="35%" valign="top">
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" value="table" checked="checked" />
+			<td width="15%" valign="top" class="etHTMLDefaultFormatLabels">Data format</td>
+			<td width="35%" valign="top" class="etHTMLDefaultFormatLabels">
+				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" class="etHTMLDefaultFormats" value="table" checked="checked" />
 					<label for="etHTMLExportFormat1">&lt;table&gt;</label>
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat2" value="ul" />
+				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat2" class="etHTMLDefaultFormats" value="ul" />
 					<label for="etHTMLExportFormat2">&lt;ul&gt;</label>
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat3" value="dl" />
+				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat3" class="etHTMLDefaultFormats" value="dl" />
 					<label for="etHTMLExportFormat3">&lt;dl&gt;</label>
 			</td>
 			<td width="50%" valign="top">
@@ -160,7 +174,8 @@ an ordered array of values for each item of data.
 		<button class="gdPrimaryButton">Reset Custom HTML</button>
 	</div>
 	<div id="etHTMLCustomContent">
-		<textarea id="etHTMLCustomSmarty"><!DOCTYPE html>
+		<textarea name="etHTMLCustomSmarty" id="etHTMLCustomSmarty">{if \$isFirstBatch}
+<!DOCTYPE html>
 <html>
 <head>
 	<style type="text/css">
@@ -174,7 +189,6 @@ an ordered array of values for each item of data.
 </head>
 <body>
 
-{if \$isFirstBatch}
 <table cellspacing="0" cellpadding="1">
 <tr>
 {foreach \$colData as \$col}
@@ -182,18 +196,19 @@ an ordered array of values for each item of data.
 {/foreach}
 </tr>
 {/if}
-
 {foreach \$rowData as \$row}
-
+<tr>
+{foreach \$row as \$r}	<td>{\$r}</td>
+{/foreach}
+</tr>
 {/foreach}
 
 {if \$isLastBatch}
 </table>
-{/if}
 
 </body>
 </html>
-</textarea>
+{/if}</textarea>
 	</div>
 </div>
 END;
@@ -208,24 +223,21 @@ END;
 	 * @return string
 	 */
 	private function genFormatTable($data) {
-
 		$content = "";
 		if ($data["isFirstBatch"]) {
 			$content .= "<table cellpadding=\"1\" cellspacing=\"1\">\n<tr>\n";
-			foreach ($data["cols"] as $colName) {
+			foreach ($data["colData"] as $colName) {
 				$content .= "\t<th>$colName</th>\n";
 			}
 			$content .= "</tr>\n";
 		}
-
-		foreach ($data["data"] as $row) {
+		foreach ($data["rowData"] as $row) {
 			$content .= "<tr>\n";
 			foreach ($row as $col) {
 				$content .= "\t<td>$col</td>\n";
 			}
 			$content .= "</tr>\n";
 		}
-
 		if ($data["isLastBatch"]) {
 			$content .= "</table>";
 		}
@@ -242,13 +254,12 @@ END;
 		$content = "";
 		if ($data["isFirstBatch"]) {
 			$content .= "<ul>\n";
-			foreach ($data["cols"] as $colName) {
+			foreach ($data["colData"] as $colName) {
 				$content .= "\t<li>$colName</li>\n";
 			}
 			$content .= "</ul>\n";
 		}
-
-		foreach ($data["data"] as $row) {
+		foreach ($data["rowData"] as $row) {
 			$content .= "<ul>\n";
 			foreach ($row as $col) {
 				$content .= "\t<li>$col</li>\n";
@@ -264,17 +275,26 @@ END;
 	 * @return string
 	 */
 	private function genFormatDl($data) {
-		$numCols = count($data["cols"]);
+		$numCols = count($data["colData"]);
 		$content = "";
-		foreach ($data["data"] as $row) {
+		foreach ($data["rowData"] as $row) {
 			$content .= "<dl>\n";
 			for ($i=0; $i<$numCols; $i++) {
-				$content .= "\t<dt>{$data["cols"][$i]}</dt>\n";
+				$content .= "\t<dt>{$data["colData"][$i]}</dt>\n";
 				$content .= "\t\t<dd>{$row[$i]}</dd>\n";
 			}
 			$content .= "</dl>\n";
 		}
 		return $content;
+	}
+
+	/**
+	 * Generates the data in whatever Smarty content the user entered.
+	 * @param array $data
+	 * @param string $template
+	 */
+	private function genFormatCustom($data, $template) {
+		return Templates::evalSmartyString($template, $data);
 	}
 
 	private function generateExportHeader() {

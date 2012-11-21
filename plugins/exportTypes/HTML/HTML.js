@@ -24,6 +24,7 @@
 		// calculate size of main content area
 		$("#etHTMLCustomFormatDialog").dialog({
 			title: "Custom HTML Format",
+			modal: true,
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
 			open: function() {
@@ -32,7 +33,7 @@
 						mode: "xml",
 						lineNumbers: true
 					});
-					$("#etHTMLCustomSmarty").addClass("CodeMirror_medium");
+					$("#etHTMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
 					$("#etHTMLCustomContent .CodeMirror-scroll").css({
 						width: dimensions.contentWidth,
 						height: dimensions.contentHeight
@@ -72,8 +73,12 @@
 		$("#etHTMLUseCustomExportFormat").bind("click", function() {
 			if (this.checked) {
 				$("#etHTMLEditCustomFormat").removeAttr("disabled");
+				$(".etHTMLDefaultFormats").attr("disabled", "disabled");
+				$(".etHTMLDefaultFormatLabels").addClass("etHTMLDisabled");
 			} else {
 				$("#etHTMLEditCustomFormat").attr("disabled", "disabled");
+				$(".etHTMLDefaultFormats").removeAttr("disabled");
+				$(".etHTMLDefaultFormatLabels").removeClass("etHTMLDisabled");
 			}
 		})
 	});

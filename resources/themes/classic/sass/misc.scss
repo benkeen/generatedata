@@ -150,12 +150,13 @@ body .chzn-container-multi .chzn-choices {
 /* overridden CodeMirror styles */
 body .CodeMirror {
 	border: 1px solid #cccccc;
-	pre {
+	/*line-height: 16px;*/
+	pre, span {
 		font-family: monospace;
 	}
 }
 body .CodeMirror-lines div pre {
-	line-height: 14px;
+	/*line-height: 14px;*/
 }
 
 body .CodeMirror-scroll {
@@ -163,29 +164,20 @@ body .CodeMirror-scroll {
 }
 
 body .CodeMirror_small {
-	div, span {
-		font-size: 7pt;
-	}
-	.cm-s-default pre span {
+	table, td, p, div, span {
 		line-height: 10px;
+		font-size: 7pt;
 	}
 }
 body .CodeMirror_medium {
-	div, span {
-		font-size: 9pt;
-	}
-	.cm-s-default pre span {
+	table, td, p, div, span {
 		line-height: 16px;
-	}
-	.CodeMirror-gutter-text pre {
-		line-height: 20px;
+		font-size: 9pt;
 	}
 }
 body .CodeMirror_large {
-	div, span {
-		font-size: 12pt;
-	}
-	.cm-s-default pre span {
+	table, td, p, div, span {
 		line-height: 22px;
+		font-size: 12pt;
 	}
 }

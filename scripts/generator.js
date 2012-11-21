@@ -586,7 +586,8 @@ define([
 		if (_codeMirror == null) {
 			_codeMirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
 				mode: "xml",
-				readOnly: true
+				readOnly: true,
+				lineNumbers: true
 			});
 			$(".CodeMirror").addClass("CodeMirror_medium");
 		}
@@ -742,7 +743,7 @@ define([
 		$("#gdTextSize li").removeClass("selected");
 		var size = $(e.target).attr("class");
 		$(e.target).addClass("selected");
-		$(".CodeMirror").removeClass("CodeMirror_small CodeMirror_medium CodeMirror_large").addClass("CodeMirror_" + size);
+		$("#gdGenerateSubtab2 .CodeMirror").removeClass("CodeMirror_small CodeMirror_medium CodeMirror_large").addClass("CodeMirror_" + size);
 	}
 
 	// register our module
