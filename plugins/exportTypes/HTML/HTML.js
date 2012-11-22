@@ -67,7 +67,18 @@
 		}
 	}
 
-	$(function() {
+	/**
+	 * If the user is generating in-page data with this Export Type, enable the XML
+	 * mode for the in-page editor.
+	 */
+	var _onGenerate = function(msg) {
+		if (msg.exportTarget != "inPage" || msg.exportType != "HTML") {
+			return;
+		}
+		msg.editor.setOption("mode", "xml");
+	}
+
+	var _init = function() {
 		$(window).resize(_updateDialogDimensions);
 		$("#etHTMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
 		$("#etHTMLUseCustomExportFormat").bind("click", function() {
@@ -80,6 +91,20 @@
 				$(".etHTMLDefaultFormats").removeAttr("disabled");
 				$(".etHTMLDefaultFormatLabels").removeClass("etHTMLDisabled");
 			}
-		})
+		});
+
+		var subscriptions = {};
+		subscriptions[C.EVENT.GENERATE] = _onGenerate;
+		manager.subscribe(MODULE_ID, subscriptions);
+	};
+
+	var _validate = function() {
+
+	}
+
+	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
+		init: _init,
+		validate: _validate
 	});
+
 });

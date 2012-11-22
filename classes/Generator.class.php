@@ -44,7 +44,8 @@ class Generator {
 		$this->isFirstBatch = ($this->batchNum == 1);
 		$this->isLastBatch = (($this->batchNum * $this->batchSize) >= $this->numResults);
 		$this->currentBatchFirstRow = (($this->batchNum - 1) * $this->batchSize) + 1;
-		$this->currentBatchLastRow = ($this->currentBatchFirstRow + $this->batchSize > $this->numResults) ? $this->numResults : $this->currentBatchFirstRow + $this->batchSize;
+		$this->currentBatchLastRow = ($this->currentBatchFirstRow + $this->batchSize > $this->numResults) ?
+			$this->numResults : $this->currentBatchFirstRow + $this->batchSize - 1;
 
 		// figure out what we're going to need to generate
 		$this->createDataSetTemplate($postData);
@@ -146,7 +147,77 @@ class Generator {
 	}
 
 
-	// getters
+	/**
+	 * This is a helper function for use by the Export Types. It sifts through all the data and returns a hash containing
+	 * the information most likely to be needed for generation, namely:
+	 * 	  array(
+	 *       "isFirstBatch" => (boolean),
+	 *       "isLastBatch" => (boolean),
+	 *       "colData" => ordered array of the column names,
+	 *       "rowData" => an array of arrays. Each top level array
+	 *    );
+	 *
+	 * Using this function is completely optional - it's just provided for convenience.
+	 * @return array
+	 */
+	public function generateExportData() {
+		$columns      = $this->getTemplateByDisplayOrder();
+		$template     = $this->getTemplateByProcessOrder();
+		$dataTypes    = $this->getDataTypes();
+		$firstRowNum  = $this->getCurrentBatchFirstRow();
+		$lastRowNum   = $this->getCurrentBatchLastRow();
+
+		// first, generate the (ordered) list of table headings
+		$cols = array();
+		foreach ($columns as $colInfo) {
+			$cols[] = $colInfo["title"];
+		}
+
+		// contains only the information needed for display purposes
+		$displayData = array();
+		for ($rowNum=$firstRowNum; $rowNum<=$lastRowNum; $rowNum++) {
+
+			// $template is already grouped by process order. Just loop through each one, passing off the
+			// actual data generation to the appropriate Data Type. Note that we pass all previously generated
+			// data (including any metadata returned by the Data Type).
+			$currRowData = array();
+
+			while (list($order, $dataTypeGenerationInfo) = each($template)) {
+				foreach ($dataTypeGenerationInfo as $genInfo) {
+					$colNum = $genInfo["colNum"];
+					$currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
+					$generationContextData = array(
+						"rowNum"            => $rowNum,
+						"generationOptions" => $genInfo["generationOptions"],
+						"existingRowData"   => $currRowData
+					);
+					$genInfo["randomData"] = $currDataType->generate($this, $generationContextData);
+					$currRowData["$colNum"] = $genInfo;
+				}
+			}
+			reset($template);
+
+			// now sort the row columns in the desired order
+			ksort($currRowData, SORT_NUMERIC);
+
+			// now we have all the info we need for this row, filter out the display value
+			$currRowDisplayData = array();
+			foreach ($currRowData as $orderedRowData) {
+				$currRowDisplayData[] = $orderedRowData["randomData"]["display"];
+			}
+			$displayData[] = $currRowDisplayData;
+		}
+
+		$data = array(
+			"isFirstBatch" => $this->isFirstBatch(),
+			"isLastBatch"  => $this->isLastBatch(),
+			"colData"      => $cols,
+			"rowData"      => $displayData
+		);
+
+		return $data;
+	}
+
 
 	/**
 	 * Returns a string representing the target / location of the data generation is happening:

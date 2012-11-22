@@ -152,4 +152,27 @@ class ExportTypePluginHelper {
 		}
 		return implode("\n", $cssIncludes);
 	}
+
+	/**
+	 * Returns a string of all <script> tags linking to the appropriate CodeMirror modes.
+	 * @param array $exportTypes
+	 * @return string
+	 */
+	public function getExportTypeCodeMirrorModes($exportTypes) {
+		$files = array();
+		foreach ($exportTypes as $exportType) {
+			$modes = $exportType->getCodeMirrorModes();
+			foreach ($modes as $mode) {
+				if (file_exists(realpath(dirname(__FILE__) . "/../libs/codemirror/mode/{$mode}/{$mode}.js"))) {
+					$files[] = "libs/codemirror/mode/{$mode}/{$mode}.js";
+				}
+			}
+		}
+
+		$includes = "";
+		foreach ($files as $file) {
+			$includes[] = "<script src=\"$file\"></script>";
+		}
+		return implode("\n", $includes);
+	}
 }

@@ -10,15 +10,12 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
 	<link rel="stylesheet" type="text/css" href="libs/codemirror/lib/codemirror.css" />
 	<script src="libs/codemirror/lib/codemirror.js"></script>
-
-	<!--  needs to be dynamically added and referenced... -->
-	<script src="libs/codemirror/mode/xml/xml.js"></script>
-
 	<script src="scripts/libs/jquery.js"></script>
 	<script src="scripts/libs/chosen.jquery.min.js"></script>
 	<script src="scripts/libs/require.js"></script>
 	<script src="scripts/requireConfig.js"></script>
 	{$cssIncludes}
+	{$codeMirrorIncludes}
 </head>
 <body>
 	<header>

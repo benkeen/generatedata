@@ -2,7 +2,7 @@
 
 /**
  * TODO the bulk of this class's code will be moved to the Core, once we establish what aspects
- * may be generalized.
+ * can be generalized.
  */
 
 class HTML extends ExportTypePlugin {
@@ -10,7 +10,7 @@ class HTML extends ExportTypePlugin {
 	protected $jsModules = array("HTML.js");
 	protected $cssFile = "HTML.css";
 	protected $contentTypeHeader = "text/html";
-	private $exportTarget;
+	protected $codeMirrorModes = array("xml");
 	private $smarty;
 
 	function __construct($runtimeContext) {
@@ -26,80 +26,24 @@ class HTML extends ExportTypePlugin {
 	 * @see ExportTypePlugin::generate()
 	 */
 	function generate($generator) {
-		$this->exportTarget = $generator->getExportTarget();
-
-		$columns      = $generator->getTemplateByDisplayOrder();
-		$template     = $generator->getTemplateByProcessOrder();
-		$numResults   = $generator->getNumResults();
-		$dataTypes    = $generator->getDataTypes();
+		$exportTarget = $generator->getExportTarget();
 		$postData     = $generator->getPostData();
-		$firstRowNum  = $generator->getCurrentBatchFirstRow();
-		$lastRowNum   = $generator->getCurrentBatchLastRow();
-
-		// first, generate the (ordered) list of table headings
-		$cols = array();
-		foreach ($columns as $colInfo) {
-			$cols[] = $colInfo["title"];
-		}
-
-		// contains only the information needed for display purposes
-		$displayData = array();
-
-		for ($rowNum=$firstRowNum; $rowNum<=$lastRowNum; $rowNum++) {
-
-			// $template is alreay grouped by process order. Just loop through each one, passing off the
-			// actual data generation to the appropriate Data Type. Note that we pass all previously generated
-			// data (including any metadata returned by the Data Type).
-			$currRowData = array();
-
-			while (list($order, $dataTypeGenerationInfo) = each($template)) {
-				foreach ($dataTypeGenerationInfo as $genInfo) {
-					$colNum = $genInfo["colNum"];
-					$currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
-
-					$generationContextData = array(
-						"rowNum"            => $rowNum,
-						"generationOptions" => $genInfo["generationOptions"],
-						"existingRowData"   => $currRowData
-					);
-					$genInfo["randomData"] = $currDataType->generate($generator, $generationContextData);
-					$currRowData["$colNum"] = $genInfo;
-				}
-			}
-			reset($template);
-
-			// now sort the row columns in the desired order
-			ksort($currRowData, SORT_NUMERIC);
-
-			// now we have all the info we need for this row, filter out the display value
-			$currRowDisplayData = array();
-			foreach ($currRowData as $orderedRowData) {
-				$currRowDisplayData[] = $orderedRowData["randomData"]["display"];
-			}
-			$displayData[] = $currRowDisplayData;
-		}
-
-		$data = array(
-			"isFirstBatch" => $generator->isFirstBatch(),
-			"isLastBatch"  => $generator->isLastBatch(),
-			"colData"      => $cols,
-			"rowData"      => $displayData
-		);
+		$data         = $generator->generateExportData();
 
 		$content = "";
-		$exportFormat = (isset($postData["etHTMLExportFormat"])) ? $postData["etHTMLExportFormat"] : "custom";
+		$htmlFormat = (isset($postData["etHTMLExportFormat"])) ? $postData["etHTMLExportFormat"] : "custom";
 
-		if ($exportFormat == "custom") {
+		if ($htmlFormat == "custom") {
 			$content .= $this->genFormatCustom($data, $postData["etHTMLCustomSmarty"]);
 		} else {
 
 			// if we're generating the data in the context of a new window/tab, include the additional
 			// necessary HTML & styles to prettify it a bit
-			if ($this->exportTarget == "newTab" || $this->exportTarget == "promptDownload") {
+			if ($exportTarget == "newTab" || $exportTarget == "promptDownload") {
 				$content .= $this->generateExportHeader();
 			}
 
-			switch ($exportFormat) {
+			switch ($htmlFormat) {
 				case "table":
 					$content .= $this->genFormatTable($data);
 					break;
@@ -111,7 +55,7 @@ class HTML extends ExportTypePlugin {
 					break;
 			}
 
-			if ($this->exportTarget == "newTab" || $this->exportTarget == "promptDownload") {
+			if ($exportTarget == "newTab" || $exportTarget == "promptDownload") {
 				$content .= $this->generateExportFooter();
 			}
 		}

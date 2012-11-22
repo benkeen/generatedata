@@ -255,25 +255,6 @@ class Utils {
 
 
 	/**
-	 * Returns an array of cities. TODO move
-	 */
-	function gd_get_cities() {
-		global $g_table_prefix;
-
-		$query = mysql_query("
-			SELECT city
-			FROM   {$g_table_prefix}cities
-				");
-
-		$cities = array();
-		while ($city_info = mysql_fetch_assoc($query))
-			$cities[] = $city_info['city'];
-
-		return $cities;
-	}
-
-
-	/**
 	 * Generates a string of lorem ipsum words.
 	 *
 	 * @param string $starts_with_lipsum  - true/false
@@ -345,5 +326,13 @@ class Utils {
 			header("location: install.php{$query_string}");
 			exit;
 		}
+	}
+
+	public function enquoteArray($arr, $char = "\"") {
+		$newArr = array();
+		foreach ($arr as $item) {
+			$newArr[] = "{$char}$item{$char}";
+		}
+		return $newArr;
 	}
 }

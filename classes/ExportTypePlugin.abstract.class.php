@@ -41,7 +41,7 @@ abstract class ExportTypePlugin {
 	 * all loaded at runtime for use in the generator.
 	 * @var array
 	 */
-	protected $codemirrorModes = array();
+	protected $codeMirrorModes = array();
 
 	/**
 	 * Needed for the "prompt for download" export option. This should contain the standard Content-Type header
@@ -190,10 +190,16 @@ abstract class ExportTypePlugin {
 	}
 
 	/**
-	 *
 	 * @return string
 	 */
 	public final function getContentTypeHeader() {
 		return $this->contentTypeHeader;
+	}
+
+	/**
+	 * @return array
+	 */
+	public final function getCodeMirrorModes() {
+		return $this->codeMirrorModes;
 	}
 }

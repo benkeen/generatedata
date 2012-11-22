@@ -3,11 +3,44 @@
 
 class CSV extends ExportTypePlugin {
 	protected $exportTypeName = "CSV";
+	protected $jsModules = array("CSV.js");
 	protected $contentTypeHeader = "application/csv";
 	public $L = array();
 
-	function generate($generator) {
 
+	function generate($generator) {
+		$exportTarget = $generator->getExportTarget();
+		$postData     = $generator->getPostData();
+		$data         = $generator->generateExportData();
+
+		$csvDelimiter = ($postData["etCSV_delimiter"] == '\t') ? "\t" : $postData["etCSV_delimiter"];
+		$csvLineEndings = $postData["etCSV_lineEndings"];
+
+		switch ($csvLineEndings) {
+			case "Windows":
+				$newline = "\r\n";
+				break;
+			case "Unix":
+				$newline = "\n";
+				break;
+			case "Mac":
+			default:
+				$newline = "\r";
+				break;
+		}
+
+		$content = "";
+		if ($data["isFirstBatch"]) {
+			$content .= implode($csvDelimiter, $data["colData"]);
+		}
+		foreach ($data["rowData"] as $row) {
+			$content .= $newline . implode($csvDelimiter, $row);
+		}
+
+		return array(
+			"success" => true,
+			"content" => $content
+		);
 	}
 
 	/**
@@ -21,12 +54,6 @@ class CSV extends ExportTypePlugin {
 		return "data{$time}.csv";
 	}
 
-	function outputHeaders() {
-		header("Content-Type: application/csv");
-		header("Content-Disposition: attachment; filename=randomdata.csv");
-		//header("Cache-Control: public");
-	}
-
 	function getAdditionalSettingsHTML() {
 		$LANG = Core::$language->getCurrentLanguageStrings();
 
@@ -38,7 +65,7 @@ class CSV extends ExportTypePlugin {
 		<tr>
 			<td width="160">{$LANG["delimiter_chars"]}</td>
 			<td>
-				<input type="text" size="2" name="csv_delimiter" id="csv_delimiter" value="|" />
+				<input type="text" size="2" name="etCSV_delimiter" id="etCSV_delimiter" value="|" />
 			</td>
 		</tr>
 		</table>
@@ -48,7 +75,7 @@ class CSV extends ExportTypePlugin {
 		<tr>
 			<td width="160">{$LANG["eol_char"]}</td>
 			<td>
-				<select name="csv_line_endings" id="csv_line_endings">
+				<select name="etCSV_lineEndings" id="etCSV_lineEndings">
 					<option value="Windows">Windows</option>
 					<option value="Unix">Unix</option>
 					<option value="Mac">Mac</option>

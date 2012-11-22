@@ -104,6 +104,7 @@ define([
 		_initExportTypeTab();
 		_updateCountryChoice();
 		_addRows(3);
+		_initInPageCodeMirror();
 	}
 
 	var _showSubtab = function(tab) {
@@ -559,6 +560,15 @@ define([
 		$("#gdNumCols").val(_numRows);
 
 		// now pass off the work to the appropriate generation function. Each works slightly differently.
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.GENERATE,
+			exportTarget: exportTarget,
+			exportType: _currExportType,
+			editor: _codeMirror
+		});
+
 		if (exportTarget == "inPage") {
 			_generateInPage();
 			return false;
@@ -582,15 +592,6 @@ define([
 		// "action" added for AjaxRequest only
 		var data = formData + "&action=generateInPage&gdBatchSize=" + C.GENERATE_IN_PAGE_BATCH_SIZE;
 		_showSubtab(2);
-
-		if (_codeMirror == null) {
-			_codeMirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
-				mode: "xml",
-				readOnly: true,
-				lineNumbers: true
-			});
-			$(".CodeMirror").addClass("CodeMirror_medium");
-		}
 
 		_codeMirror.setValue("");
 		_generateInPageRunningCount = 0;
@@ -744,6 +745,19 @@ define([
 		var size = $(e.target).attr("class");
 		$(e.target).addClass("selected");
 		$("#gdGenerateSubtab2 .CodeMirror").removeClass("CodeMirror_small CodeMirror_medium CodeMirror_large").addClass("CodeMirror_" + size);
+	}
+
+	/**
+	 * Called on page load. We always instantiate the codemirror object on the generate in-page. This object is
+	 * passed in the C.EVENT.GENERATE message for export types to mess with (i.e. change the mode).
+	 */
+	var _initInPageCodeMirror = function() {
+		_codeMirror = CodeMirror.fromTextArea($("#gdGeneratedData")[0], {
+			mode: "xml",
+			readOnly: true,
+			lineNumbers: true
+		});
+		$(".CodeMirror").addClass("CodeMirror_medium");
 	}
 
 	// register our module
