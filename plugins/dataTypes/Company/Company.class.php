@@ -37,24 +37,17 @@ class DataType_Company extends DataTypePlugin {
 		$words = array_slice($this->words, $offset, $numCompanyNameWords);
 		$words = preg_replace("/[,.:]/", "", $words);
 		$companyType = $this->companyTypes[rand(0, $this->numCompanyTypes-1)];
+
 		return array(
 			"display" => ucwords(implode(" ", $words) . " " . $companyType)
 		);
 	}
 
-	// TODO
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
-					$info = "varchar(255) default NULL";
-				else if ($options == "Oracle")
-					$info = "varchar2(255) default NULL";
-				break;
-		}
-
-		return $info;
+	public function getDataTypeMetadata() {
+		return array(
+			"sqlField" => "varchar(255)",
+			"sqlField_Oracle" => "varchar2(255)"
+		);
 	}
 
 	public function getHelpDialogInfo() {

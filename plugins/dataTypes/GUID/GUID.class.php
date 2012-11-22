@@ -23,25 +23,17 @@ class DataType_GUID extends DataTypePlugin {
 		);
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "varchar(36) NOT NULL";
-				} else {
-					$info = "varchar2(36) NOT NULL";
-				}
-				break;
-		}
-
-		return $info;
-	}
-
 	public function getHelpDialogInfo() {
 		return array(
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => "<p>{$this->L["help"]}</p>"
+		);
+	}
+
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "varchar(36) NOT NULL",
+			"SQLField_Oracle" => "varchar2(36) NOT NULL"
 		);
 	}
 }

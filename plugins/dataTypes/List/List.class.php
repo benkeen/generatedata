@@ -84,25 +84,17 @@ END;
 		return $html;
 	}
 
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "varchar(255) default NULL",
+			"SQLField_Oracle" => "varchar2(255) default NULL"
+		);
+	}
+
 	public function getHelpDialogInfo() {
 		return array(
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => "<p>{$this->L["help"]}</p>"
 		);
-	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "varchar(255) default NULL";
-				} else if ($options == "Oracle") {
-					$info = "varchar2(255) default NULL";
-				}
-				break;
-		}
-
-		return $info;
 	}
 }

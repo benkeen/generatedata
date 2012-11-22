@@ -70,6 +70,13 @@ END;
 		return $html;
 	}
 
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "mediumint",
+			"SQLField_Oracle" => "number default NULL"
+		);
+	}
+
 	public function getHelpDialogInfo() {
 		$L = Core::$language->getCurrentLanguageStrings();
 		$content =<<< END
@@ -90,20 +97,4 @@ END;
 			"content"     => $content
 		);
 	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($export_type) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "mediumint";
-				} else if ($options == "Oracle") {
-					$info = "number default NULL";
-				}
-				break;
-		}
-
-		return $info;
-	}
-
 }

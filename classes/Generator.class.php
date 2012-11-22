@@ -134,7 +134,8 @@ class Generator {
 					"title"             => $title,
 				    "colNum"            => $order,
 					"dataTypeFolder"    => $dataTypeFolder,
-					"generationOptions" => $options
+					"generationOptions" => $options,
+					"columnMetadata"    => $currDataType->getDataTypeMetaData()
 				);
 			}
 

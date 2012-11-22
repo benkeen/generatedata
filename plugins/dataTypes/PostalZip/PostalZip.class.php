@@ -115,18 +115,10 @@ EOF;
 	}
 
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($export_type) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "varchar(10) default NULL";
-				} else if ($options == "Oracle") {
-					$info = "varchar2(10) default NULL";
-				}
-				break;
-		}
-
-		return $info;
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "varchar(10) default NULL",
+			"SQLField_Oracle" => "varchar2(10) default NULL"
+		);
 	}
 }

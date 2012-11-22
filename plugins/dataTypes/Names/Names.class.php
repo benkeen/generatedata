@@ -69,18 +69,12 @@ class DataType_Names extends DataTypePlugin {
 		return $post["dtOption_$colNum"];
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
-					$info = "varchar(255) default NULL";
-				else if ($options == "Oracle")
-					$info = "varchar2(255) default NULL";
-				break;
-		}
 
-		return $info;
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "varchar(255) default NULL",
+			"SQLField_Oracle" => "varchar2(255) default NULL"
+		);
 	}
 
 	public function getExampleColumnHTML() {

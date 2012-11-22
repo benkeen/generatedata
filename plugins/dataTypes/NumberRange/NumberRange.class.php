@@ -38,25 +38,17 @@ END;
 		return $html;
 	}
 
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "mediumint default NULL",
+			"SQLField_Oracle" => "varchar2(50) default NULL"
+		);
+	}
+
 	public function getHelpDialogInfo() {
 		return array(
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => "<p>{$this->L["NumberRange_help"]}</p>"
 		);
-	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "mediumint default NULL";
-				} else if ($options == "Oracle") {
-					$info = "varchar2(50) default NULL";
-				}
-				break;
-		}
-
-		return $info;
 	}
 }

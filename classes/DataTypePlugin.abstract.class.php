@@ -62,15 +62,6 @@ abstract class DataTypePlugin {
 	 */
 	abstract function generate($generator, $generationContextData);
 
-	/**
-	 * TODO. I'll rethink this sucker.
-	 *
-	 * @param string $export_type e.g. "sql"
-	 * @param mixed $options e.g. "mysql" or "oracle"
-	 * @return string
-	 */
-	abstract function getExportTypeInfo($exportType, $options);
-
 
 	// 2. OPTIONALLY DEFINED FUNCTIONS
 
@@ -161,6 +152,16 @@ abstract class DataTypePlugin {
 	 */
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
 		return null;
+	}
+
+	/**
+	 * Used for providing additional metadata about the Data Type for use during generation. Right now this
+	 * is only used to pass additional data to the SQL Export Type so it can intelligently create a CREATE TABLE
+	 * statement with database column types and sizes that are appropriate to each field type.
+	 * @return array
+	 */
+	public function getDataTypeMetadata() {
+		return array();
 	}
 
 	/**

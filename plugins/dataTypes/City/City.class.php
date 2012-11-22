@@ -70,7 +70,9 @@ class DataType_City extends DataTypePlugin {
 		}
 
 		return array(
-			"display" => $randomCity
+			"display" => $randomCity,
+			"SQLField" => "varchar(100) default NULL",
+			"SQLField_Oracle" => "varchar2(100) default NULL"
 		);
 	}
 
@@ -119,19 +121,11 @@ class DataType_City extends DataTypePlugin {
 		$this->citiesByCountryRegion = $citiesByCountryRegion;
 	}
 
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "varchar(100) default NULL";
-				} else if ($options == "Oracle") {
-					$info = "varchar2(100) default NULL";
-				}
-				break;
-		}
-
-		return $info;
+	public function getDataTypeMetadata() {
+		return array(
+			"sqlField" => "varchar(255)",
+			"sqlField_Oracle" => "varchar2(255)"
+		);
 	}
+
 }

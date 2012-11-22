@@ -72,21 +72,12 @@ END;
 		);
 	}
 
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($export_type) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "varchar(30) default NULL";
-				} else {
-					$info = "varchar2(30) default NULL";
-				}
-				break;
-		}
-		return $info;
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "varchar(30) default NULL",
+			"SQLField_Oracle" => "varchar2(30) default NULL"
+		);
 	}
-
 
 	private function initVars() {
 		// to 5 D.P. Arbitrary - should be configurable, but it should be good enough for most cases

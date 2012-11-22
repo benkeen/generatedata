@@ -57,6 +57,13 @@ class DataType_Composite extends DataTypePlugin {
 		return '<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" style="height: 70px; width: 260px"></textarea>';
 	}
 
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "TEXT default NULL",
+			"SQLField_Oracle" => "BLOB default NULL"
+		);
+	}
+
 	public function getHelpDialogInfo() {
 		$content =<<< END
 	<p>
@@ -91,20 +98,5 @@ END;
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => $content
 		);
-	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "TEXT default NULL";
-				} else if ($options == "Oracle") {
-					$info = "BLOB default NULL";
-				}
-				break;
-		}
-
-		return $info;
 	}
 }

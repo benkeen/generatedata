@@ -24,22 +24,10 @@ class DataType_Date extends DataTypePlugin {
 		// display the new date in the value specified
 		$date = date($options["formatCode"], $randDate);
 		return array(
-			"display" => $date
+			"display" => $date,
+			"SQLField" => "varchar(100) default NULL",
+			"SQLField_Oracle" => "varchar2(100) default NULL"
 		);
-	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($export_type) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
-					$info = "varchar(100) default NULL";
-				else if ($options == "Oracle")
-					$info = "varchar2(100) default NULL";
-				break;
-		}
-
-		return $info;
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {

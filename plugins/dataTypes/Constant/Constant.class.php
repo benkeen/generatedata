@@ -69,6 +69,13 @@ EOF;
 		return $html;
 	}
 
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "TEXT default NULL",
+			"SQLField_Oracle" => "BLOB default NULL"
+		);
+	}
+
 	public function getHelpDialogInfo() {
 		$html =<<< END
 	<p>
@@ -88,20 +95,5 @@ END;
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => $html
 		);
-	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "TEXT default NULL";
-				} else if ($options == "Oracle") {
-					$info = "BLOB default NULL";
-				}
-				break;
-		}
-
-		return $info;
 	}
 }

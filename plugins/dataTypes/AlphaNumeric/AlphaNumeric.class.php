@@ -47,6 +47,13 @@ END;
 		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 	}
 
+	public function getDataTypeMetadata() {
+		return array(
+			"sqlField" => "varchar(255)",
+			"sqlField_Oracle" => "varchar2(255)"
+		);
+	}
+
 	public function getHelpDialogInfo() {
 		$L = Core::$language->getCurrentLanguageStrings();
 		$content =<<<EOF
@@ -98,15 +105,5 @@ EOF;
 			"dialogWidth" => $this->helpDialogWidth,
 			"content"     => $content
 		);
-	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				$info = "varchar(255)";
-				break;
-		}
-		return $info;
 	}
 }

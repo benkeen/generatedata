@@ -115,22 +115,12 @@ END;
 		return $html;
 	}
 
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "varchar(100) default NULL";
-				} else if ($options == "Oracle") {
-					$info = "varchar2(100) default NULL";
-				}
-				break;
-		}
-
-		return $info;
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "varchar(100) default NULL",
+			"SQLField_Oracle" => "varchar2(100) default NULL"
+		);
 	}
-
 
 	/**
 	 * Returns an array of countries.
@@ -165,7 +155,6 @@ END;
 		}
 		return $countries;
 	}
-
 
 	function getRegions($countryID) {
 		$prefix = Core::getDbTablePrefix();

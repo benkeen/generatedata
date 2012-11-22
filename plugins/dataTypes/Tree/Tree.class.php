@@ -76,6 +76,13 @@ END;
 		return $html;
 	}
 
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "mediumint default NULL",
+			"SQLField_Oracle" => "number"
+		);
+	}
+
 	public function getHelpDialogInfo() {
 		$html =<<<END
 	<p>
@@ -90,20 +97,4 @@ END;
 			"content"     => $html
 		);
 	}
-
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "mediumint default NULL";
-				} else {
-					$info = "number";
-				}
-				break;
-		}
-
-		return $info;
-	}
-
 }

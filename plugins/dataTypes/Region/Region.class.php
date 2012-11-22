@@ -138,19 +138,11 @@ EOF;
 		);
 	}
 
-	public function getExportTypeInfo($exportType, $options) {
-		$info = "";
-		switch ($exportType) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite") {
-					$info = "varchar(50) default NULL";
-				} else if ($options == "Oracle") {
-					$info = "varchar2(50) default NULL";
-				}
-				break;
-		}
-
-		return $info;
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "varchar(50) default NULL",
+			"SQLField_Oracle" => "varchar2(50) default NULL"
+		);
 	}
 
 	private function getRandIndex($options, $randCountrySlug) {
