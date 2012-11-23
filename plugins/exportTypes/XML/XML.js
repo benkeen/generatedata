@@ -15,11 +15,15 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 
 		// assign event handlers for the custom sections option
-		$("#etXML_useCustomExportFormat").bind("change", function() {
+		$("#etXMLUseCustomExportFormat").bind("click", function() {
 			if (this.checked) {
-				$("#etXML_customFormat").removeAttr("disabled").removeClass("gdDisabled");
+				$("#etXMLEditCustomFormat").removeAttr("disabled");
+				$("#etXMLRootNodeName,#etXMLRecordNodeName").attr("disabled", "disabled");
+				$(".etXMLDefaultFormatLabels").addClass("etXMLDisabled");
 			} else {
-				$("#etXML_customFormat").attr("disabled", "disabled").addClass("gdDisabled");
+				$("#etXMLEditCustomFormat").attr("disabled", "disabled");
+				$("#etXMLRootNodeName,#etXMLRecordNodeName").removeAttr("disabled");
+				$(".etXMLDefaultFormatLabels").removeClass("etXMLDisabled");
 			}
 		});
 
@@ -44,7 +48,6 @@ define([
 	 * XML additional settings are filled in properly and all rows have a valid node name.
 	 */
 	var _validate = function() {
-
 /*
 		var missingNodeNames  = [];
 		var invalidNodeNames  = [];

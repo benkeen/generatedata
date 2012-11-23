@@ -22,6 +22,9 @@ input, select, textarea, option {
   font: 8pt Verdana, sans-serif;
   color: #222222; }
 
+input[disabled='disabled'] {
+  color: #bbbbbb; }
+
 h1 {
   font-size: 1.6em;
   font-weight: normal;
@@ -72,6 +75,15 @@ header {
   text-align: center;
   margin-bottom: 8px;
   display: block; }
+  header nav {
+    position: absolute;
+    right: 0px;
+    top: 20px; }
+    header nav a:link, header nav a:visited {
+      text-decoration: none; }
+    header nav a:hover {
+      color: #990000;
+      border-bottom: 1px solid #990000; }
 
 section {
   width: 500px;
@@ -112,16 +124,6 @@ footer {
     outline: none; }
     footer a:link:hover, footer a:visited:hover {
       text-decoration: underline; }
-
-header nav {
-  position: absolute;
-  right: 0px;
-  top: 20px; }
-  header nav a:link, header nav a:visited {
-    text-decoration: none; }
-  header nav a:hover {
-    color: #990000;
-    border-bottom: 1px solid #990000; }
 
 #gdTabs {
   width: 980px;
@@ -363,7 +365,7 @@ li.gdColDelete {
       line-height: 19px;
       height: 20px;
       float: left;
-      margin-right: 2px;
+      margin-right: 1px;
       padding: 0px 16px;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
@@ -419,6 +421,14 @@ li.gdColDelete {
 #gdProgressMeter {
   width: 260px;
   margin-right: 3px; }
+
+#gdUserAccountLink:before {
+  content: "";
+  background: transparent url(../images/user.png) left center no-repeat;
+  width: 20px;
+  height: 16px;
+  margin-bottom: -3px;
+  display: inline-block; }
 
 /* buttons */
 .gdButton {

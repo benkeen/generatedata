@@ -152,7 +152,7 @@ li.gdColDelete {
 			line-height: 19px;
 			height: 20px;
 			float: left;
-			margin-right: 2px;
+			margin-right: 1px;
 			padding: 0px 16px;
 			border-top-left-radius: 6px;
 			border-top-right-radius: 6px;
@@ -219,4 +219,12 @@ li.gdColDelete {
 #gdProgressMeter {
 	width: 260px;
 	margin-right: 3px;
+}
+#gdUserAccountLink:before {
+	content: "";
+	background: transparent url(../images/user.png) left center no-repeat;
+	width: 20px;
+	height: 16px;
+	margin-bottom: -3px;
+	display: inline-block;
 }

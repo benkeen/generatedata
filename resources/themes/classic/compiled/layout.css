@@ -8,6 +8,15 @@ header {
   text-align: center;
   margin-bottom: 8px;
   display: block; }
+  header nav {
+    position: absolute;
+    right: 0px;
+    top: 20px; }
+    header nav a:link, header nav a:visited {
+      text-decoration: none; }
+    header nav a:hover {
+      color: #990000;
+      border-bottom: 1px solid #990000; }
 
 section {
   width: 500px;
@@ -48,16 +57,6 @@ footer {
     outline: none; }
     footer a:link:hover, footer a:visited:hover {
       text-decoration: underline; }
-
-header nav {
-  position: absolute;
-  right: 0px;
-  top: 20px; }
-  header nav a:link, header nav a:visited {
-    text-decoration: none; }
-  header nav a:hover {
-    color: #990000;
-    border-bottom: 1px solid #990000; }
 
 #gdTabs {
   width: 980px;

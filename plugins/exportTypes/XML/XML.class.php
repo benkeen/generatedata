@@ -4,6 +4,7 @@
 class XML extends ExportTypePlugin {
 	protected $exportTypeName = "XML";
 	protected $jsModules = array("XML.js");
+	protected $cssFile = "XML.css";
 	public $L = array();
 
 	function generate($generator) {
@@ -31,13 +32,13 @@ class XML extends ExportTypePlugin {
 	<td width="40%" valign="top">
 		<table cellspacing="0" cellpadding="0">
 		<tr>
-			<td width="160"><label for="etXMLRootNodeName">{$LANG["root_node_name"]}</label></td>
+			<td width="160" class="etXMLDefaultFormatLabels"><label for="etXMLRootNodeName">{$LANG["root_node_name"]}</label></td>
 			<td>
 				<input type="text" size="15" name="etXMLRootNodeName" id="etXMLRootNodeName" value="records" />
 			</td>
 		</tr>
 		<tr>
-			<td><label for="etXMLRecordNodeName">{$LANG["record_node_name"]}</label></td>
+			<td class="etXMLDefaultFormatLabels"><label for="etXMLRecordNodeName">{$LANG["record_node_name"]}</label></td>
 			<td>
 				<input type="text" size="15" name="etXMLRecordNodeName" id="etXMLRecordNodeName" value="record" />
 			</td>

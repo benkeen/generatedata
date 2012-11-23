@@ -27,6 +27,10 @@ define([
 			$("#gdTab" + _currentTab + "Content").hide();
 			$("#gdTab" + tab + "Content").show();
 
+			// hide any messages already open on the old tab
+			console.log($("#gdTab" + _currentTab + "Content .gdMessage"));
+			$("#gdTab" + _currentTab + "Content" + " .gdMessage").hide();
+
 			manager.publish({
 				sender: MODULE_ID,
 				type: C.EVENT.TAB.CHANGE,

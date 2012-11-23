@@ -22,6 +22,9 @@ input, select, textarea, option {
   font: 8pt Verdana, sans-serif;
   color: #222222; }
 
+input[disabled='disabled'] {
+  color: #bbbbbb; }
+
 h1 {
   font-size: 1.6em;
   font-weight: normal;

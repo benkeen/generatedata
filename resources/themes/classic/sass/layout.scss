@@ -8,6 +8,20 @@ header {
 	text-align: center;
 	margin-bottom: 8px;
 	display: block;
+
+	nav {
+		position: absolute;
+		right: 0px;
+		top: 20px;
+
+		a:link, a:visited {
+			text-decoration: none;
+		}
+		a:hover {
+			color: #990000;
+			border-bottom: 1px solid #990000;
+		}
+	}
 }
 section {
 	width: 500px;
@@ -51,20 +65,6 @@ footer {
 		&:hover {
 			text-decoration: underline;
 		}
-	}
-}
-
-header nav {
-	position: absolute;
-	right: 0px;
-	top: 20px;
-
-	a:link, a:visited {
-		text-decoration: none;
-	}
-	a:hover {
-		color: #990000;
-		border-bottom: 1px solid #990000;
 	}
 }
 
