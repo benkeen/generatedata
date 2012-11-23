@@ -17,7 +17,7 @@ section {
   width: 930px;
   margin: 0 auto;
   text-align: left;
-  padding: 10px 25px 10px 25px;
+  padding: 10px 25px 20px;
   clear: left;
   display: block; }
 
@@ -34,7 +34,7 @@ footer {
   padding: 5px 0px;
   height: 20px;
   font-size: 7pt;
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   border-top: none;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;

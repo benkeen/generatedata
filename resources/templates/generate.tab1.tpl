@@ -73,9 +73,7 @@
 			{/foreach}
 		</div>
 
-		<div class="gdClear gdVerticalPad"></div>
-
-		<hr class="divider" style="margin-bottom: 16px;" />
+		<div class="gdClear"></div>
 
 		<div id="gdGenerateSection">
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
@@ -94,7 +92,6 @@
 
 	<div id="gdGenerateSubtab2" class="hidden">
 		<div class="gdVerticalPad"></div>
-
 		<div style="margin-bottom: 4px;">
 			Generated <span id="gdGenerateCount"></span> of <span id="gdGenerateTotal"></span> results
 			<span id="gdGenerateInPageLoading"></span>
@@ -105,9 +102,7 @@
 			</ul>
 			<div class="gdClear"></div>
 		</div>
-
 		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
-
 		<button class="gdPrimaryButton" id="gdBackButton" title="Back">&laquo;</button>
 		<button class="gdPrimaryButton" id="gdRegenerateButton">Regenerate</button>
 		<div class="gdClear"></div>
