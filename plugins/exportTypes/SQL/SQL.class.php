@@ -15,23 +15,41 @@ class SQL extends ExportTypePlugin {
 	protected $jsModules = array("SQL.js");
 	public $L = array();
 
-	function generate($generator) {
-		$exportTarget = $generator->getExportTarget();
-		$postData     = $generator->getPostData();
-		$data         = $generator->generateExportData();
+	// stores various info about the current generation set
+	private $template;
+	private $postData;
+	private $exportTarget;
+	private $isFirstBatch;
+	private $isLastBatch;
+	private $includeDropTable;
+	private $createTable;
+	private $databaseType;
+	private $tableName;
+	private $backquote;
+	private $sqlStatementType;
+	private $primaryKey;
 
-		$includeDropTable = isset($postData["etSQL_dropTable"]);
-		$createTable      = isset($postData["etSQL_createTable"]);
-		$databaseType     = $postData["etSQL_databaseType"];
-		$tableName        = $postData["etSQL_tableName"];
-		$backquote        = isset($postData["etSQL_encloseWithBackquotes"]) ? "`" : "";
-		$sqlStatementType = isset($postData["etSQL_statementType"]) ? $postData["etSQL_statementType"] : "insert";
-		$primaryKey       = (isset($postData["etSQL_primaryKey"])) ? $postData["etSQL_primaryKey"] : "default";
+
+	function generate($generator) {
+		$this->template     = $generator->getTemplateByDisplayOrder();
+		$this->postData     = $generator->getPostData();
+		$this->exportTarget = $generator->getExportTarget();
+		$this->isFirstBatch = $generator->isFirstBatch();
+		$this->isLastBatch  = $generator->isLastBatch();
+
+		// grab whatever settings where chosen by the user
+		$this->includeDropTable = isset($postData["etSQL_dropTable"]);
+		$this->createTable      = isset($postData["etSQL_createTable"]);
+		$this->databaseType     = $postData["etSQL_databaseType"];
+		$this->tableName        = $postData["etSQL_tableName"];
+		$this->backquote        = isset($postData["etSQL_encloseWithBackquotes"]) ? "`" : "";
+		$this->sqlStatementType = isset($postData["etSQL_statementType"]) ? $postData["etSQL_statementType"] : "insert";
+		$this->primaryKey       = (isset($postData["etSQL_primaryKey"])) ? $postData["etSQL_primaryKey"] : "default";
 
 		$content = "";
 
 		// if required, output the DROP TABLE query
-		if ($data["isFirstBatch"]) {
+		if ($isFirstBatch) {
 			if (isset($includeDropTable)) {
 				$content .= "DROP TABLE {$backquote}$tableName{$backquote};\n";
 				if ($exportTarget == "newTab") {
@@ -43,13 +61,13 @@ class SQL extends ExportTypePlugin {
 		if ($createTable) {
 			switch ($databaseType) {
 				case "MySQL":
-					$content .= generateCreateTableSQL_MySQL();
+					$content .= $this->generateCreateTableSQL_MySQL();
 					break;
 				case "Oracle":
-					$content .= generateCreateTableSQL_Oracle();
+					$content .= $this->generateCreateTableSQL_Oracle();
 					break;
 				case "SQLite":
-					$content .= generateCreateTableSQL_SQLite();
+					$content .= $this->generateCreateTableSQL_SQLite();
 					break;
 			}
 		}
@@ -153,8 +171,16 @@ END;
 	}
 
 
-	// needed vars: $tableName, $backquote, $primaryKey, $exportTarget, $template... lots!
-	private function generateCreateTableSQL_MySQL() {
+	/**
+	 * Generates a MySQL table with all the data.
+	 * @return string
+	 */
+	private function generateCreateTableSQL_MySQL($params) {
+		$tableName = $params["tableName"];
+		$template  = $params["template"];
+		$tableName = $params["primaryKey"];
+		$tableName = $params["exportTarget"];
+
 		$content = "CREATE TABLE {$backquote}$tableName{$backquote} (<br />\n";
 
 		if ($primaryKey == "default") {
@@ -162,14 +188,13 @@ END;
 		}
 
 		$rows = array();
-		while (list($order, $data_types) = each($g_template)) {
-			foreach ($data_types as $data_type) {
-				$data_type_folder = $data_type["data_type_folder"];
-				$order            = $data_type["column_num"];
-				$get_export_type_info_func = "{$data_type_folder}_get_export_type_info";
-				$export_type_info = $get_export_type_info_func('sql', 'MySQL');
-				$rows["$order"] = "&nbsp;&nbsp;{$backquote}{$data_type["title"]}{$backquote} " . $export_type_info;
-			}
+		foreach ($template as $dataType) {
+			$data_type_folder = $data_type["data_type_folder"];
+			$order            = $data_type["column_num"];
+			$get_export_type_info_func = "{$data_type_folder}_get_export_type_info";
+
+
+			$rows["$order"] = "&nbsp;&nbsp;{$backquote}{$data_type["title"]}{$backquote} " . $export_type_info;
 		}
 
 		reset($g_template);

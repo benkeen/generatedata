@@ -79,30 +79,31 @@
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
 			Generate <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="1000" /> rows
 
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-			<input type="radio" name="gdExportTarget" id="gdExportTarget1" value="inPage" checked="checked" />
-				<label for="gdExportTarget1">Generate in-page</label>
-			<input type="radio" name="gdExportTarget" id="gdExportTarget2" value="newTab" />
-				<label for="gdExportTarget2">New window/tab</label>
-			<input type="radio" name="gdExportTarget" id="gdExportTarget3" value="promptDownload" />
-				<label for="gdExportTarget3">Prompt to download</label>
+			<span>
+				<input type="radio" name="gdExportTarget" id="gdExportTarget1" value="inPage" checked="checked" />
+					<label for="gdExportTarget1">Generate in-page</label>
+				<input type="radio" name="gdExportTarget" id="gdExportTarget2" value="newTab" />
+					<label for="gdExportTarget2">New window/tab</label>
+				<input type="radio" name="gdExportTarget" id="gdExportTarget3" value="promptDownload" />
+					<label for="gdExportTarget3">Prompt to download</label>
+			</span>
 		</div>
 	</div>
 
 	<div id="gdGenerateSubtab2" class="hidden">
-		<div class="gdVerticalPad"></div>
-		<div style="margin-bottom: 4px;">
-			Generated <span id="gdGenerateCount"></span> of <span id="gdGenerateTotal"></span> results
-			<span id="gdGenerateInPageLoading"></span>
-			<ul id="gdTextSize">
-				<li class="small">A</li>
-				<li class="medium selected">A</li>
-				<li class="large">A</li>
-			</ul>
-			<div class="gdClear"></div>
+		<div id="gdGenerationPanel">
+			<div>
+				Generated <span id="gdGenerateCount"></span> of <span id="gdGenerateTotal"></span> results
+			</div>
+			<progress id="gdProgressMeter" max="" value=""></progress>
+			<a href="">cancel</a>
 		</div>
 		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
+		<ul id="gdTextSize">
+			<li class="small">A</li>
+			<li class="medium selected">A</li>
+			<li class="large">A</li>
+		</ul>
 		<button class="gdPrimaryButton" id="gdBackButton" title="Back">&laquo;</button>
 		<button class="gdPrimaryButton" id="gdRegenerateButton">Regenerate</button>
 		<div class="gdClear"></div>

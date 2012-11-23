@@ -569,6 +569,9 @@ define([
 			editor: _codeMirror
 		});
 
+		// TODO doesn't seem to work
+		_codeMirror.scrollTo(0, 0);
+
 		if (exportTarget == "inPage") {
 			_generateInPage();
 			return false;
@@ -597,7 +600,8 @@ define([
 		_generateInPageRunningCount = 0;
 		$("#gdGenerateCount").html(utils.formatNumWithCommas(_generateInPageRunningCount));
 		$("#gdGenerateTotal").html(utils.formatNumWithCommas(_numRowsToGenerate));
-		$("#gdGenerateInPageLoading").css("display", "inline-block");
+		$("#gdProgressMeter").attr("max", _numRowsToGenerate);
+		$("#gdProgressMeter").attr("value", 0);
 
 		_generateInPageBatchNum = 1;
 		_generateInPageData = data;
@@ -625,6 +629,7 @@ define([
 			_generateInPageRunningCount = (_generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE) > _numRowsToGenerate ?
 				_numRowsToGenerate : _generateInPageRunningCount + C.GENERATE_IN_PAGE_BATCH_SIZE;
 			$("#gdGenerateCount").html(utils.formatNumWithCommas(_generateInPageRunningCount));
+			$("#gdProgressMeter").attr("value", _generateInPageRunningCount);
 
 			// 2. Update the actual content
 			_generateInPageContent += response.content;
@@ -632,7 +637,9 @@ define([
 
 			// now either continue processing, or indicate we're done
 			if (response.isComplete) {
-				$("#gdGenerateInPageLoading").hide("fade");
+				//$("#gdGenerateInPageLoading").hide("fade");
+				// TODO disable "cancel" link
+
 			} else {
 				_generateInPageBatchNum++;
 				_generateInPageBatch();
@@ -745,6 +752,7 @@ define([
 		var size = $(e.target).attr("class");
 		$(e.target).addClass("selected");
 		$("#gdGenerateSubtab2 .CodeMirror").removeClass("CodeMirror_small CodeMirror_medium CodeMirror_large").addClass("CodeMirror_" + size);
+		_codeMirror.refresh();
 	}
 
 	/**

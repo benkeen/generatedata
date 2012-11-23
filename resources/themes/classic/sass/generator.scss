@@ -202,17 +202,22 @@ li.gdColDelete {
 	border-radius: 6px;
 	padding: 20px;
 	border: 1px solid #bbbbbb;
+
+	span {
+		margin-left: 60px;
+	}
 }
 #gdGenerateCount, #gdGenerateTotal {
 	font-weight: bold;
 }
-#gdGenerateInPageLoading {
-	width: 16px;
-	height: 16px;
-	background-image: url(../images/loadingWhite.gif);
-	margin: 2px 0px -4px 10px;
-	display: hidden;
-}
 #gdNumRowsToGenerate {
 	width: 45px;
+}
+#gdGenerationPanel {
+	line-height:10px;
+	margin-bottom:8px;
+}
+#gdProgressMeter {
+	width: 260px;
+	margin-right: 3px;
 }

@@ -253,8 +253,6 @@ class Generator {
 	 *
 	 * This is generally used for producing the list of headings in the expected order.
 	 *
-	 * TODO confirm this works after processing order has been implemented.
-	 *
 	 * @param array $template
 	 */
 	public function getTemplateByDisplayOrder() {
@@ -266,6 +264,7 @@ class Generator {
 		    	$ordered["order$order"] = $dataType;
 			}
 		}
+		reset($this->template);
 		ksort($ordered);
 		return array_values($ordered);
 	}
