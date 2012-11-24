@@ -11,7 +11,6 @@ class HTML extends ExportTypePlugin {
 	protected $cssFile = "HTML.css";
 	protected $contentTypeHeader = "text/html";
 	protected $codeMirrorModes = array("xml");
-	private $smarty;
 
 	function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
@@ -34,7 +33,8 @@ class HTML extends ExportTypePlugin {
 		$htmlFormat = (isset($postData["etHTMLExportFormat"])) ? $postData["etHTMLExportFormat"] : "custom";
 
 		if ($htmlFormat == "custom") {
-			$content .= $this->genFormatCustom($data, $postData["etHTMLCustomSmarty"]);
+			$smartyTemplate = (get_magic_quotes_gpc()) ? stripslashes($postData["etHTMLCustomSmarty"]) : $postData["etHTMLCustomSmarty"];
+			$content .= $this->genFormatCustom($data, $smartyTemplate);
 		} else {
 
 			// if we're generating the data in the context of a new window/tab, include the additional

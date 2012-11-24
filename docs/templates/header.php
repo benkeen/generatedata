@@ -30,9 +30,9 @@ $page = (isset($page)) ? $page : "home";
             <ul class="nav">
               <li <?php if ($page == "home") echo 'class="active"'; ?>><a href="index.php">Home</a></li>
               <li <?php if ($page == "core") echo 'class="active"'; ?>><a href="core.php">The Core Script</a></li>
-              <li <?php if ($page == "data_types") echo 'class="active"'; ?>><a href="data_types.php">Data Types</a></li>
-              <li <?php if ($page == "export_types") echo 'class="active"'; ?>><a href="export_types.php">Export Types</a></li>
-              <li <?php if ($page == "country") echo 'class="active"'; ?>><a href="country_data.php">Country Data</a></li>
+              <li <?php if ($page == "dataTypes") echo 'class="active"'; ?>><a href="dataTypes.php">Data Types</a></li>
+              <li <?php if ($page == "exportTypes") echo 'class="active"'; ?>><a href="exportTypes.php">Export Types</a></li>
+              <li <?php if ($page == "country") echo 'class="active"'; ?>><a href="countryData.php">Country Data</a></li>
               <li <?php if ($page == "translations") echo 'class="active"'; ?>><a href="translations.php">Translations</a></li>
             </ul>
           </div>

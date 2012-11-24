@@ -4,11 +4,31 @@
 class XML extends ExportTypePlugin {
 	protected $exportTypeName = "XML";
 	protected $jsModules = array("XML.js");
-	protected $cssFile = "XML.css";
+	protected $codeMirrorModes = array("xml");
 	public $L = array();
 
+	/**
+	 * Generates the XML data.
+	 * @see ExportTypePlugin::generate()
+	 * @return array
+	 */
 	function generate($generator) {
+		$exportTarget = $generator->getExportTarget();
+		$postData     = $generator->getPostData();
+		$useCustomXMLFormat = isset($postData["etXMLUseCustomExportFormat"]);
 
+		$content = "";
+		if ($useCustomXMLFormat) {
+			$smartyTemplate = (get_magic_quotes_gpc()) ? stripslashes($postData["etXMLCustomSmarty"]) : $postData["etXMLCustomSmarty"];
+			$content = $this->generateCustomXML($generator, $smartyTemplate);
+		} else {
+			$content = $this->generateXML($generator, $postData);
+		}
+
+		return array(
+			"success" => true,
+			"content" => $content
+		);
 	}
 
 	/**
@@ -17,13 +37,12 @@ class XML extends ExportTypePlugin {
 	 * @param Generator $generator
 	 * @return string
 	 */
-	function getDownloadFilename($generator) {
+	public function getDownloadFilename($generator) {
 		$time = date("M-j-Y");
 		return "data{$time}.xml";
 	}
 
-
-	function getAdditionalSettingsHTML() {
+	public function getAdditionalSettingsHTML() {
 		$LANG = Core::$language->getCurrentLanguageStrings();
 
 		$html =<<< END
@@ -52,66 +71,90 @@ class XML extends ExportTypePlugin {
 	</td>
 </tr>
 </table>
+
+<div id="etXMLCustomFormatDialog" style="display:none">
+	<div style="width: 300px; float: left;">
+		<h4>Available Smarty Vars</h4>
+
+<pre>{\$isFirstBatch}, {\$isLastBatch}</pre>
+Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for
+users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.
+
+<pre>{\$colData}</pre>
+An ordered array of strings containing the column names.
+
+<pre>{\$rowData}</pre>
+An ordered array of arrays. Each top level array contains the contents of the row; each child array contains
+an ordered array of values for each item of data.
+
+		<button class="gdPrimaryButton">Reset Custom HTML</button>
+	</div>
+	<div id="etXMLCustomContent">
+		<textarea name="etXMLCustomSmarty" id="etXMLCustomSmarty">{if \$isFirstBatch}
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<records>
+{/if}
+{foreach \$rowData as \$row}
+  <record>
+{foreach from=\$colData item=col name=c}
+	<{\$col}>{\$row[\$smarty.foreach.c.index]}</{\$col}>
+{/foreach}
+  </record>
+{/foreach}
+{if \$isLastBatch}
+</records>
+{/if}</textarea>
+	</div>
+</div>
 END;
 		return $html;
 	}
 
+
 	/**
-	 * This is used to generate custom XML structures (added on 2.3.6).
+	 * Generates the XML data based on the two settings available: Root Node Name and Record Node Name, which
+	 * default to "records" and "<record>" respectively.
 	 *
-	 * @param string $custom_xml_structure
-	 * @param array $g_template
-	 * @param integer $num_rows
+	 * @param object $generator the Generator object
+	 * @param array $postData
 	 */
-	public function generateCustomXML($custom_xml_structure, $g_template, $num_rows) {
-		global $L;
+	private function generateXML($generator, $postData) {
+		$data = $generator->generateExportData();
+		$rootNodeName   = $postData["etXMLRootNodeName"];
+		$recordNodeName = $postData["etXMLRecordNodeName"];
 
-		$xml = "";
-
-		// first, add the chunk of markup between the records tag. Note the "is" bit. That tells
-		// the regexp parser to let . match newline characters and that it should be case
-		// insensitive
-		preg_match("/(.*)\{records\}(.*)\{\/records\}(.*)/is", $custom_xml_structure, $matches);
-
-		if (count($matches) < 2) {
-			echo "<error>{$L["invalid_custom_xml"]}</error>";
-			return;
+		$content = "";
+		if ($generator->isFirstBatch()) {
+			$content .= '<?xml version="1.0" encoding="UTF-8" ?>';
+			$content .= "\n<{$rootNodeName}>\n";
 		}
 
-		$xml_start  = $matches[1];
-		$row_markup = $matches[2];
-		$xml_end    = $matches[3];
-
-		// now loop through the {records} and replace the appropriate placeholders with their rows
-		$xml_rows = "";
-		for ($row=1; $row<=$num_rows; $row++) {
-			$placeholders = array();
-			while (list($order, $data_types) = each($g_template)) {
-				foreach ($data_types as $data_type) {
-					$order = $data_type["column_num"];
-					$data_type_folder = $data_type["data_type_folder"];
-					$data_type_func = "{$data_type_folder}_generate_item";
-					$data_type["random_data"] = $data_type_func($row, $data_type["options"], $row_data);
-
-					if (is_array($data_type["random_data"])) {
-						$placeholders["ROW{$order}"] = $data_type["random_data"]["display"];
-					} else {
-						$placeholders["ROW{$order}"] = $data_type["random_data"];
-					}
-				}
+		$numCols = count($data["colData"]);
+		foreach ($data["rowData"] as $row) {
+			$content .= "\t<{$recordNodeName}>\n";
+			for ($i=0; $i<$numCols; $i++) {
+				$content .= "\t\t<{$data["colData"][$i]}>{$row[$i]}</{$data["colData"][$i]}>\n";
 			}
-			reset($g_template);
-
-			$row_markup_copy = $row_markup;
-			while (list($placeholder, $value) = each($placeholders)) {
-				$row_markup_copy = preg_replace("/\{$placeholder\}/", $value, $row_markup_copy);
-			}
-
-			$xml_rows .= $row_markup_copy;
+			$content .= "\t</{$recordNodeName}>\n";
 		}
 
-		$final_xml = $xml_start . $xml_rows . $xml_end;
-
-		return $final_xml;
+		if ($generator->isLastBatch()) {
+			$content .= "</{$rootNodeName}>";
+		}
+		return $content;
 	}
+
+
+	/**
+	 * This is used to generate custom XML formats.
+	 *
+	 * @param object $generator the Generator object
+	 * @param string $smartyTemplate the Smarty content entered by
+	 */
+	private function generateCustomXML($generator, $smartyTemplate) {
+		$data = $generator->generateExportData();
+		return Templates::evalSmartyString($smartyTemplate, $data);
+	}
+
 }

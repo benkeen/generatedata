@@ -6,24 +6,31 @@ define([
 	"manager"
 ], function(C, L, manager) {
 
+	"use strict";
+
 	var MODULE_ID = "export-type-XML";
 	var LANG = L.exportTypePlugins.XML;
+	var _dialog = null;
+	var _codeMirror = null;
 
 	var _init = function() {
 		var subscriptions = {};
 		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
 		manager.subscribe(MODULE_ID, subscriptions);
 
+		$(window).resize(_updateDialogDimensions);
+		$("#etXMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
+
 		// assign event handlers for the custom sections option
 		$("#etXMLUseCustomExportFormat").bind("click", function() {
 			if (this.checked) {
 				$("#etXMLEditCustomFormat").removeAttr("disabled");
 				$("#etXMLRootNodeName,#etXMLRecordNodeName").attr("disabled", "disabled");
-				$(".etXMLDefaultFormatLabels").addClass("etXMLDisabled");
+				$(".etXMLDefaultFormatLabels").addClass("gdDisabledText");
 			} else {
 				$("#etXMLEditCustomFormat").attr("disabled", "disabled");
 				$("#etXMLRootNodeName,#etXMLRecordNodeName").removeAttr("disabled");
-				$(".etXMLDefaultFormatLabels").removeClass("etXMLDisabled");
+				$(".etXMLDefaultFormatLabels").removeClass("gdDisabledText");
 			}
 		});
 
@@ -42,6 +49,56 @@ define([
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
 		}
 	}
+
+	var _openEditCustomFormatDialog = function() {
+		var dimensions = _getDialogDimensions();
+
+		// calculate size of main content area
+		$("#etXMLCustomFormatDialog").dialog({
+			title: "Custom XML Format",
+			modal: true,
+			width: dimensions.dialogWidth,
+			height: dimensions.dialogHeight,
+			open: function() {
+				if (_codeMirror == null) {
+					_codeMirror = CodeMirror.fromTextArea($("#etXMLCustomSmarty")[0], {
+						mode: "xml",
+						lineNumbers: true
+					});
+					$("#etXMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
+					$("#etXMLCustomContent .CodeMirror-scroll").css({
+						width: dimensions.contentWidth,
+						height: dimensions.contentHeight
+					});
+				}
+			},
+			buttons: [
+			    {
+			    	text: "Close",
+			    	click: function() {
+			    		$(this).dialog("close");
+			    	}
+			    }
+			]
+		});
+
+		return false;
+	}
+
+	var _getDialogDimensions = function() {
+		var dialogHeight  = ($(window).height() / 100) * 90;
+		var dialogWidth   = ($(window).width() / 100) * 90;
+		var contentHeight = dialogHeight - 110;
+		var contentWidth  = dialogWidth - 370;
+
+		return {
+			dialogHeight: dialogHeight,
+			dialogWidth: dialogWidth,
+			contentHeight: contentHeight,
+			contentWidth: contentWidth
+		}
+	}
+
 
 	/**
 	 * Our validation function performed when the user clicks the main Generate button. This ensures the
@@ -146,6 +203,12 @@ define([
 			}
 		}
 */
+	}
+
+	var _updateDialogDimensions = function() {
+		var dimensions = _getDialogDimensions();
+		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
+		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
 	}
 
 	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {

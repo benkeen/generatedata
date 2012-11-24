@@ -85,11 +85,11 @@
 			if (this.checked) {
 				$("#etHTMLEditCustomFormat").removeAttr("disabled");
 				$(".etHTMLDefaultFormats").attr("disabled", "disabled");
-				$(".etHTMLDefaultFormatLabels").addClass("etHTMLDisabled");
+				$(".etHTMLDefaultFormatLabels").addClass("gdDisabledText");
 			} else {
 				$("#etHTMLEditCustomFormat").attr("disabled", "disabled");
 				$(".etHTMLDefaultFormats").removeAttr("disabled");
-				$(".etHTMLDefaultFormatLabels").removeClass("etHTMLDisabled");
+				$(".etHTMLDefaultFormatLabels").removeClass("gdDisabledText");
 			}
 		});
 

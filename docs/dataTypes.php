@@ -1,5 +1,5 @@
 <?php
-$page = "data_types";
+$page = "dataTypes";
 require_once("templates/header.php");
 ?>
 

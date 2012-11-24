@@ -13,6 +13,7 @@
 class SQL extends ExportTypePlugin {
 	protected $exportTypeName = "SQL";
 	protected $jsModules = array("SQL.js");
+	protected $codeMirrorModes = array("mysql");
 	public $L = array();
 
 	// stores various info about the current generation set

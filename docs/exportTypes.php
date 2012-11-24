@@ -1,5 +1,5 @@
 <?php
-$page = "export_types";
+$page = "exportTypes";
 require_once("templates/header.php");
 ?>
 
