@@ -36,40 +36,29 @@ class SQL extends ExportTypePlugin {
 		$this->exportTarget = $generator->getExportTarget();
 		$this->isFirstBatch = $generator->isFirstBatch();
 		$this->isLastBatch  = $generator->isLastBatch();
+		$this->data         = $generator->generateExportData();
+		$this->currentBatchFirstRow = $generator->getCurrentBatchFirstRow();
 
 		// grab whatever settings where chosen by the user
-		$this->includeDropTable = isset($postData["etSQL_dropTable"]);
-		$this->createTable      = isset($postData["etSQL_createTable"]);
-		$this->databaseType     = $postData["etSQL_databaseType"];
-		$this->tableName        = $postData["etSQL_tableName"];
-		$this->backquote        = isset($postData["etSQL_encloseWithBackquotes"]) ? "`" : "";
-		$this->sqlStatementType = isset($postData["etSQL_statementType"]) ? $postData["etSQL_statementType"] : "insert";
-		$this->primaryKey       = (isset($postData["etSQL_primaryKey"])) ? $postData["etSQL_primaryKey"] : "default";
+		$this->includeDropTable = isset($this->postData["etSQL_dropTable"]);
+		$this->createTable      = isset($this->postData["etSQL_createTable"]);
+		$this->databaseType     = $this->postData["etSQL_databaseType"];
+		$this->tableName        = $this->postData["etSQL_tableName"];
+		$this->backquote        = isset($this->postData["etSQL_encloseWithBackquotes"]) ? "`" : "";
+		$this->sqlStatementType = isset($this->postData["etSQL_statementType"]) ? $this->postData["etSQL_statementType"] : "insert";
+		$this->primaryKey       = (isset($this->postData["etSQL_primaryKey"])) ? $this->postData["etSQL_primaryKey"] : "default";
 
 		$content = "";
-
-		// if required, output the DROP TABLE query
-		if ($isFirstBatch) {
-			if (isset($includeDropTable)) {
-				$content .= "DROP TABLE {$backquote}$tableName{$backquote};\n";
-				if ($exportTarget == "newTab") {
-					$content .= "<br /><br /><hr size='1' /><br />";
-				}
-			}
-		}
-
-		if ($createTable) {
-			switch ($databaseType) {
-				case "MySQL":
-					$content .= $this->generateCreateTableSQL_MySQL();
-					break;
-				case "Oracle":
-					$content .= $this->generateCreateTableSQL_Oracle();
-					break;
-				case "SQLite":
-					$content .= $this->generateCreateTableSQL_SQLite();
-					break;
-			}
+		switch ($this->databaseType) {
+			case "MySQL":
+				$content .= $this->generateCreateTableSQL_MySQL();
+				break;
+			case "Oracle":
+				$content .= $this->generateCreateTableSQL_Oracle();
+				break;
+			case "SQLite":
+				$content .= $this->generateCreateTableSQL_SQLite();
+				break;
 		}
 
 		return array(
@@ -103,7 +92,7 @@ class SQL extends ExportTypePlugin {
 			<td><input type="text" size="48" name="etSQL_tableName" id="etSQL_tabelName" value="myTable" /></td>
 		</tr>
 		<tr>
-			<td><label for="sql_database">{$LANG["db_type"]}</label></td>
+			<td><label for="etSQL_databaseType">{$LANG["db_type"]}</label></td>
 			<td>
 				<select name="etSQL_databaseType" id="etSQL_databaseType">
 					<option value="MySQL">MySQL</option>
@@ -175,89 +164,226 @@ END;
 	 * Generates a MySQL table with all the data.
 	 * @return string
 	 */
-	private function generateCreateTableSQL_MySQL($params) {
-		$tableName = $params["tableName"];
-		$template  = $params["template"];
-		$tableName = $params["primaryKey"];
-		$tableName = $params["exportTarget"];
+	private function generateCreateTableSQL_MySQL() {
+		$content = "";
+		$endLineChar = ($this->exportTarget == "inPage") ? "\n" : "<br />\n";
+		$prefix      = ($this->exportTarget == "inPage") ? "  " : "&nbsp;&nbsp;";
 
-		$content = "CREATE TABLE {$backquote}$tableName{$backquote} (<br />\n";
+		if ($this->isFirstBatch) {
+			if ($this->includeDropTable) {
+				$dropTableEndLine = ($this->exportTarget == "inPage") ? "\n\n" : "<br /><br /><hr size=\"1\" />\n";
+				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
+			}
 
-		if ($primaryKey == "default") {
-			echo "&nbsp;&nbsp;{$backquote}id{$backquote} mediumint(8) unsigned NOT NULL auto_increment,<br />\n";
-		}
+			if ($this->createTable) {
+				$content = "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
+				if ($this->primaryKey == "default") {
+					$content .= "{$prefix}{$this->backquote}id{$this->backquote} mediumint(8) unsigned NOT NULL auto_increment,$endLineChar";
+				}
 
-		$rows = array();
-		foreach ($template as $dataType) {
-			$data_type_folder = $data_type["data_type_folder"];
-			$order            = $data_type["column_num"];
-			$get_export_type_info_func = "{$data_type_folder}_get_export_type_info";
+				$cols = array();
+				foreach ($this->template as $dataType) {
+					// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
+					$columnTypeInfo = "MEDIUMTEXT";
+					if (isset($dataType["columnMetadata"]["SQLField_MySQL"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField_MySQL"];
+					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
+					}
+					$cols[] = "{$prefix}{$this->backquote}{$dataType["title"]}{$this->backquote} $columnTypeInfo";
+				}
 
+				$content .= implode(",$endLineChar", $cols);
 
-			$rows["$order"] = "&nbsp;&nbsp;{$backquote}{$data_type["title"]}{$backquote} " . $export_type_info;
-		}
-
-		reset($g_template);
-		ksort($rows, SORT_NUMERIC);
-		echo implode(",<br />\n", $rows);
-
-		if ($primaryKey == "default") {
-			echo ",<br />\n&nbsp;&nbsp;PRIMARY KEY ({$backquote}id{$backquote})<br />\n) TYPE=MyISAM AUTO_INCREMENT=1;";
-		} else if ($sql_primary_key == "none") {
-			echo "<br />) TYPE=MyISAM;";
-		}
-	}
-
-
-	private function generateCreateTableSQL_Oracle() {
-		echo "CREATE TABLE {$backquote}$table_name{$backquote} (<br />\n";
-		if ($sql_primary_key == "default")
-			echo "&nbsp;&nbsp;{$backquote}id{$backquote} number primary key,<br />\n";
-
-		reset($g_template);
-		$rows = array();
-		while (list($order, $data_types) = each($g_template))
-		{
-			foreach ($data_types as $data_type)
-			{
-				$data_type_folder = $data_type["data_type_folder"];
-				$order            = $data_type["column_num"];
-				$get_export_type_info_func = "{$data_type_folder}_get_export_type_info";
-				$export_type_info = $get_export_type_info_func('sql', 'Oracle');
-				$rows[] = "&nbsp;&nbsp;{$backquote}{$data_type["title"]}{$backquote} " . $export_type_info;
+				if ($this->primaryKey == "default") {
+					$content .= ",$endLineChar{$prefix}PRIMARY KEY ({$this->backquote}id{$this->backquote})$endLineChar) AUTO_INCREMENT=1;{$endLineChar}{$endLineChar}";
+				} else if ($this->primaryKey == "none") {
+					$content .= "$endLineChar);{$endLineChar}{$endLineChar}";
+				}
 			}
 		}
-		reset($g_template);
-		ksort($rows, SORT_NUMERIC);
-		echo implode(",<br />\n", $rows);
 
-		echo "\n<br />);";
+		$colNamesStr = "";
+		if ($this->backquote) {
+			$quoted = Utils::enquoteArray($this->data["colData"], "`");
+			$colNamesStr = implode(",", $quoted);
+		} else {
+			$colNamesStr = implode(",", $this->data["colData"]);
+		}
+
+		$numRows = count($this->data["rowData"]);
+		$numCols = count($this->data["colData"]);
+		for ($i=0; $i<$numRows; $i++) {
+			if ($this->sqlStatementType == "insert") {
+				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "'");
+				$rowDataStr = implode(",", $quoted);
+				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+			} else {
+
+				$pairs = array();
+				for ($j=0; $j<$numCols; $j++) {
+					$colName  = $this->data["colData"][$j];
+					$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
+				}
+
+				$pairsStr = implode(", ", $pairs);
+				$rowNum = $this->currentBatchFirstRow + $i;
+				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
+			}
+		}
+
+		return $content;
 	}
+
+
+	/**
+	 * Generates an Oracle table with all the data.
+	 * @return string
+	 */
+	private function generateCreateTableSQL_Oracle() {
+		$content = "";
+		$endLineChar = ($this->exportTarget == "inPage") ? "\n" : "<br />\n";
+		$prefix      = ($this->exportTarget == "inPage") ? "  " : "&nbsp;&nbsp;";
+
+		if ($this->isFirstBatch) {
+			if ($this->includeDropTable) {
+				$dropTableEndLine = ($this->exportTarget == "inPage") ? "\n\n" : "<br /><br /><hr size=\"1\" />\n";
+				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
+			}
+
+			if ($this->createTable) {
+				$content = "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
+				if ($this->primaryKey == "default") {
+					$content .= "{$prefix}{$this->backquote}id{$this->backquote} number primary key,$endLineChar";
+				}
+
+				$cols = array();
+				foreach ($this->template as $dataType) {
+					// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
+					$columnTypeInfo = "MEDIUMTEXT";
+					if (isset($dataType["columnMetadata"]["SQLField_Oracle"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField_Oracle"];
+					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
+					}
+					$cols[] = "{$prefix}{$this->backquote}{$dataType["title"]}{$this->backquote} $columnTypeInfo";
+				}
+
+				$content .= implode(",$endLineChar", $cols);
+
+				if ($this->primaryKey == "default") {
+					$content .= ",$endLineChar{$prefix}PRIMARY KEY ({$this->backquote}id{$this->backquote})$endLineChar) AUTO_INCREMENT=1;{$endLineChar}{$endLineChar}";
+				} else if ($this->primaryKey == "none") {
+					$content .= "$endLineChar);{$endLineChar}{$endLineChar}";
+				}
+			}
+		}
+
+		$colNamesStr = "";
+		if ($this->backquote) {
+			$quoted = Utils::enquoteArray($this->data["colData"], "`");
+			$colNamesStr = implode(",", $quoted);
+		} else {
+			$colNamesStr = implode(",", $this->data["colData"]);
+		}
+
+		$numRows = count($this->data["rowData"]);
+		$numCols = count($this->data["colData"]);
+		for ($i=0; $i<$numRows; $i++) {
+			if ($this->sqlStatementType == "insert") {
+				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "'");
+				$rowDataStr = implode(",", $quoted);
+				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+			} else {
+
+				$pairs = array();
+				for ($j=0; $j<$numCols; $j++) {
+					$colName  = $this->data["colData"][$j];
+					$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
+				}
+
+				$pairsStr = implode(", ", $pairs);
+				$rowNum = $this->currentBatchFirstRow + $i;
+				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
+			}
+		}
+
+		return $content;
+	}
+
 
 	private function generateCreateTableSQL_SQLite() {
+		$content = "";
+		$endLineChar = ($this->exportTarget == "inPage") ? "\n" : "<br />\n";
+		$prefix      = ($this->exportTarget == "inPage") ? "  " : "&nbsp;&nbsp;";
 
-		echo "CREATE TABLE {$backquote}$table_name{$backquote} (<br />\n";
-		if ($sql_primary_key == "default")
-			echo "&nbsp;&nbsp;{$backquote}id{$backquote} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,<br />\n";
+		if ($this->isFirstBatch) {
+			if ($this->includeDropTable) {
+				$dropTableEndLine = ($this->exportTarget == "inPage") ? "\n\n" : "<br /><br /><hr size=\"1\" />\n";
+				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
+			}
 
-		reset($g_template);
-		$rows = array();
-		while (list($order, $data_types) = each($g_template))
-		{
-			foreach ($data_types as $data_type)
-			{
-				$data_type_folder = $data_type["data_type_folder"];
-				$order            = $data_type["column_num"];
-				$get_export_type_info_func = "{$data_type_folder}_get_export_type_info";
-				$export_type_info = $get_export_type_info_func('sql', 'SQLite');
-				$rows["$order"] = "&nbsp;&nbsp;{$backquote}{$data_type["title"]}{$backquote} " . $export_type_info;
+			if ($this->createTable) {
+				$content = "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
+				if ($this->primaryKey == "default") {
+					$content .= "{$prefix}{$this->backquote}id{$this->backquote} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,$endLineChar";
+				}
+
+				$cols = array();
+				foreach ($this->template as $dataType) {
+					// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
+					$columnTypeInfo = "MEDIUMTEXT";
+					if (isset($dataType["columnMetadata"]["SQLField_SQLite"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField_SQLite"];
+					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
+					}
+					$cols[] = "{$prefix}{$this->backquote}{$dataType["title"]}{$this->backquote} $columnTypeInfo";
+				}
+
+				$content .= implode(",$endLineChar", $cols);
+
+				if ($this->primaryKey == "default") {
+					$content .= ",$endLineChar{$prefix}PRIMARY KEY ({$this->backquote}id{$this->backquote})$endLineChar) AUTO_INCREMENT=1;{$endLineChar}{$endLineChar}";
+				} else if ($this->primaryKey == "none") {
+					$content .= "$endLineChar);{$endLineChar}{$endLineChar}";
+				}
 			}
 		}
-		reset($g_template);
-		ksort($rows, SORT_NUMERIC);
-		echo implode(",<br />\n", $rows);
 
-		echo "<br />);\n";
+		$colNamesStr = "";
+		if ($this->backquote) {
+			$quoted = Utils::enquoteArray($this->data["colData"], "`");
+			$colNamesStr = implode(",", $quoted);
+		} else {
+			$colNamesStr = implode(",", $this->data["colData"]);
+		}
+
+		$numRows = count($this->data["rowData"]);
+		$numCols = count($this->data["colData"]);
+		for ($i=0; $i<$numRows; $i++) {
+			if ($this->sqlStatementType == "insert") {
+				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "'");
+				$rowDataStr = implode(",", $quoted);
+				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+			} else {
+
+				$pairs = array();
+				for ($j=0; $j<$numCols; $j++) {
+					$colName  = $this->data["colData"][$j];
+					$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
+				}
+
+				$pairsStr = implode(", ", $pairs);
+				$rowNum = $this->currentBatchFirstRow + $i;
+				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
+			}
+		}
+
+		return $content;
 	}
 
 }
