@@ -20,6 +20,9 @@ define([
 			return;
 		}
 		msg.editor.setOption("mode", "javascript");
+
+		var wrapLines = ($("#etJSON_stripWhitespace")[0].checked);
+		msg.editor.setOption("lineWrapping", wrapLines);
 	}
 
 	var _init = function() {

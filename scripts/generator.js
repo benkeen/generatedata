@@ -559,8 +559,11 @@ define([
 		$("#gdExportType").val(_currExportType);
 		$("#gdNumCols").val(_numRows);
 
-		// now pass off the work to the appropriate generation function. Each works slightly differently.
+		// reset CodeMirror (scrollTo not working ...)
+		_codeMirror.setOption("lineWrapping", false);
+		_codeMirror.scrollTo(0, 0);
 
+		// now pass off the work to the appropriate generation function. Each works slightly differently.
 		manager.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.GENERATE,
@@ -570,8 +573,6 @@ define([
 		});
 
 		// TODO doesn't seem to work
-		_codeMirror.scrollTo(0, 0);
-
 		if (exportTarget == "inPage") {
 			_generateInPage();
 			return false;
