@@ -38,6 +38,7 @@ $page = (isset($page)) ? $page : "home";
 		          <li><a href="jsdoc/">JS Documentation</a></li>
 		        </ul>
               </li>
+              <li <?php if ($page == "home") echo 'class="active"'; ?>><a href="index.php">Intro</a></li>
               <li <?php if ($page == "core") echo 'class="active"'; ?>><a href="core.php">The Core Script</a></li>
               <li <?php if ($page == "dataTypes") echo 'class="active"'; ?>><a href="dataTypes.php">Data Types</a></li>
               <li <?php if ($page == "exportTypes") echo 'class="active"'; ?>><a href="exportTypes.php">Export Types</a></li>

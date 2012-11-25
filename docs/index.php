@@ -11,15 +11,14 @@ require_once("templates/header.php");
 					<p>
 						This doc explains more than you ever wanted to know about the Data Generator:
 						how it works, how it's structured, and how to extend it to add your own Data Types,
-						Export Types, Country-specific data, and new, better translations. May the thrills
-						commence.
+						Export Types and Country-specific data. May the thrills commence. Hope you're wearing a diaper.
 					</p>
 				</div>
 
 				<h3>Intro</h3>
 				<p>
 					First off, if you haven't already done so check out the <a href="http://www.generatedata.com" target="_blank">script
-					online</a> and generate a few things. You should have a general sense about what the script does
+					online</a> and generate some data. You should have a general sense about what the script does
 					before you bother reading any further.
 				</p>
 				<p>
@@ -57,7 +56,7 @@ require_once("templates/header.php");
 					<td><a href="exportTypes.php">Export Types</a></td>
 					<td>
 						<p>
-							Export Types are the formats in which the data is actually generated, for example XML, HTML, CSV, JSON, etc.
+							Export Types are the formats in which the data is actually generated: XML, HTML, CSV, JSON, etc.
 						</p>
 
 						<a href="exportTypes.php" class="btn btn-primary btn-small">More about Export Types &raquo;</a>
@@ -66,6 +65,13 @@ require_once("templates/header.php");
 				<tr>
 					<td><a href="countryData.php">Country Data</a></td>
 					<td>
+						<p>
+							In order to generate realistic-looking human-related data, you need to actually provide the
+							data set to pull from. The Country plugins let you do just this: you provide some data
+							country, regions and cities for a particular country. This allows various Data Types to intelligently
+							generate rows of data with regions, cities and postal codes that match the country selected. These are
+							very simple plugins to create.
+						</p>
 						<a href="countryData" class="btn btn-primary btn-small">More about Country Data &raquo;</a>
 					</td>
 				</tr>

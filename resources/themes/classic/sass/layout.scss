@@ -65,6 +65,28 @@ footer {
 			text-decoration: underline;
 		}
 	}
+
+	ul {
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+		li {
+			margin: 0px;
+			padding: 0px;
+			display: inline;
+			&:before {
+				content: " | ";
+				color: #cccccc;
+			}
+			&:first-child:before {
+				content: "";
+			}
+			span {
+				margin: 0px 6px;
+				font-size: inherit;
+			}
+		}
+	}
 }
 
 #gdTabs {

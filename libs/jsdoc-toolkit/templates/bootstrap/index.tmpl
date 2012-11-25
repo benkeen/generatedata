@@ -38,7 +38,7 @@
 			          <li><a href="./">JS Documentation</a></li>
 			        </ul>
 	              </li>
-				  <li><a href="{+Link.base+}index.html">Module Index</a></li>
+				  <li class="active"><a href="{+Link.base+}index.html">Module Index</a></li>
 				  <li><a href="{+Link.base+}files.html">File Index</a></li>
 				</ul>
 			</div>
@@ -71,7 +71,7 @@
 					<div class="jsdoc-member{+ thisClass.params.length || thisClass.returns.length ? ' accordion-button' : '' +}">
 						<div class="jsdoc-member-definition">
 							<b>{+ new Link().toSymbol(thisClass.alias).withText(thisClass.name).setAttribute('id', thisClass.name) +}</b>
-							{+ makeSignature(thisClass.params) +}
+
 							<if test="thisClass.isInterface"><span class="label label-jsdoc label-jsdoc-interface">Interface</span> </if>
 							<if test="thisClass.hasMethod('getInstance')"><span class="label label-jsdoc label-jsdoc-singleton">Singleton</span> </if>
 							<if test="thisClass.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span> </if>

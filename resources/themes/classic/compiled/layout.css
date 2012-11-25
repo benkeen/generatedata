@@ -57,6 +57,22 @@ footer {
     outline: none; }
     footer a:link:hover, footer a:visited:hover {
       text-decoration: underline; }
+  footer ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px; }
+    footer ul li {
+      margin: 0px;
+      padding: 0px;
+      display: inline; }
+      footer ul li:before {
+        content: " | ";
+        color: #cccccc; }
+      footer ul li:first-child:before {
+        content: ""; }
+      footer ul li span {
+        margin: 0px 6px;
+        font-size: inherit; }
 
 #gdTabs {
   width: 980px;
