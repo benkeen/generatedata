@@ -1,0 +1,52 @@
+<div class="well" id="class-list">
+	<ul class="nav nav-list">
+		<li class="nav-header">Classes</li>
+		<for each="item" in="data">
+			<li>{!
+				if (true || item.alias !== "_global_") {
+					var type = 'icon-jsdoc icon-jsdoc-';
+					if (item.isNamespace) {
+						type += 'namespace';
+					} else if (item.isInterface) {
+						type += 'interface';
+					} else if (item.isConstant) {
+						type += 'constant';
+					} else {
+						type += 'class';
+					}
+					var name = '<span class="jsdoc-class-index">' + item.name + '</span>' ;
+					var icon = '<i class="' + type + '"></i>';
+
+
+					var indent = item.alias.split('.').length - 1;
+					var content = '<span class="indent" style="padding-left:' + (indent * 14) + 'px;">' + icon + name + '</span>';
+
+					if (item.deprecated) {
+						content += ' <span class="pull-right label label-jsdoc label-jsdoc-deprecated">Deprecated</span> ';
+					}
+
+					if (item.isPrivate) {
+						content += ' <span class="pull-right label label-jsdoc label-jsdoc-private">Private</span> ';
+					}
+
+					if (item.isProtected) {
+						content += ' <span class="pull-right label label-jsdoc label-jsdoc-protected">Protected</span> ';
+					}
+
+					if (item.isInner) {
+						content += ' <span class="pull-right label label-jsdoc label-jsdoc-inner">Inner</span> ';
+					}
+
+					if (item.isInterface) {
+						content += ' <span class="pull-right label label-jsdoc label-jsdoc-interface">Interface</span> ';
+					}
+
+					if (item.hasMethod('getInstance')) {
+						content += ' <span class="pull-right label label-jsdoc label-jsdoc-singleton">Singleton</span>';
+					}
+					output += new Link().toClass(item.alias).withText(content);
+				}
+			!}</li>
+		</for>
+	</ul>
+</div>

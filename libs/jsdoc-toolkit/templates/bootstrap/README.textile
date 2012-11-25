@@ -1,0 +1,17 @@
+h1. JsDoc2 Template with Bootstrap
+
+h2. Abstract
+
+This template make beautiful and functional documents.
+
+h2. Overview
+
+See "JsDoc2 Template with Bootstrap":http://orgachem.github.com/JsDoc2-Template-Bootstrap/ .
+
+h2. Install
+
+bq. To produce output files you must use a template to format the generated documentation. Use the @-t@ option to specify which template you wish to use. 
+
+bc. java -jar jsrun.jar app/run.js myscripts/ -t=templates/jsdoc
+
+Show the official "documents":http://code.google.com/p/jsdoc-toolkit/wiki/CommandlineOptions#Using_a_Template , if you want more informations.

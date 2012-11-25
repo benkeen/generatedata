@@ -68,7 +68,7 @@
 			</span>
 			{export_type_tabs}
 			{foreach from=$exportTypeAdditionalSettings key=k item=i}
-				<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeTabSettings"
+				<div id="gdExportTypeAdditionalSettings_{$k|replace:' ':''}" class="gdExportTypeTabSettings"
 					{if $defaultExportType == $i}style="display:block"{/if}>{$i}</div>
 			{/foreach}
 		</div>

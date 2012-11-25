@@ -1,11 +1,16 @@
-"use strict";
-
+/**
+ * @name AlphaNumeric
+ * @description JS code for the AlphaNumeric Data Type
+ * @namespace
+ */
 define([
 	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
+
+	"use strict";
 
 	var MODULE_ID = "data-type-AlphaNumeric";
 	var LANG = L.dataTypePlugins.AlphaNumeric;
@@ -42,9 +47,7 @@ define([
 		init: _init,
 		validate: _validate
 	});
-
 });
-
 
 /*
 var _loadRow = function(rowNum, data) {
@@ -64,4 +67,3 @@ var saveRow = function(rowNum) {
 	};
 }
 */
-

@@ -1,5 +1,8 @@
-"use strict";
-
+/**
+ * @name AutoIncrement
+ * @description JS code for the AutoIncrement Data Type
+ * @namespace
+ */
 define([
 	"manager",
 	"constants",
@@ -7,7 +10,11 @@ define([
 	"generator"
 ], function(manager, C, L, generator) {
 
+	"use strict";
+
+	/* @private */
 	var MODULE_ID = "data-type-AutoIncrement";
+
 	var LANG = L.dataTypePlugins.AutoIncrement;
 	var subscriptions = {};
 

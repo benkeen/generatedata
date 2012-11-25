@@ -20,30 +20,20 @@ h3 code {
   font-weight: normal;
 }
 
-
-/* Tweak navbar brand link to be super sleek
--------------------------------------------------- */
-
-body > .navbar {
+body .navbar {
   font-size: 13px;
 }
 
-/* Change the docs' brand */
-body > .navbar .brand {
-  padding-right: 0;
-  padding-left: 0;
-  margin-left: 20px;
-  float: right;
-  font-weight: bold;
-  color: #000;
-  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
-  -webkit-transition: all .2s linear;
-     -moz-transition: all .2s linear;
-          transition: all .2s linear;
+body .navbar .brand {
+  width: 160px;
+  font-size: 20px;
+  font-weight: 200;
+  margin-left: -20px;
+  padding: 8px 20px 12px;
+  line-height: 1;
 }
-body > .navbar .brand:hover {
+body .navbar .brand:hover {
   text-decoration: none;
-  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
 }
 
 

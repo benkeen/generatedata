@@ -1,5 +1,3 @@
-"use strict";
-
 require([
 	"manager",
 	"pluginManager",
@@ -9,6 +7,8 @@ require([
 	"jquery-ui",
 	"jquery-json",
 ], function(manager, pluginManager, L, utils) {
+
+	"use strict";
 
 	// everything in this module is private, but we re-use the _ notation here just to signify scope
 	var _dbSettings = {};

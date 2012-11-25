@@ -1,12 +1,14 @@
-"use strict";
-
 /**
- * The manager handles all the pub/sub functionality for the Core. All modules interact
+ * @name Manager
+ * @description The manager handles all the pub/sub functionality for the Core. All modules interact
  * with one another indirectly through this module by publishing and subscribing to messages.
+ * @namespace
  */
 define([
 	'constants'
 ], function(C) {
+
+	"use strict";
 
 	// stores all modules, regardless of type (Core, Data Types, Export Types, Countries).
 	// It's a hash of Module ID -> module info

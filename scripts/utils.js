@@ -1,8 +1,8 @@
-"use strict";
-
 /**
- * TODO This code isn't bad but I don't like the sub-groupings of functionality - like error functions &
- * vars, and the queue stuff. Separate module? Nest the return object to group them?
+ * @name Utils
+ * @description This contains a bunch of utility function for use (primarily) by the client-side Generator
+ * code, but also for any plugin that wants it.
+ * @namespace Core
  */
 define([
 	"manager",
@@ -11,6 +11,8 @@ define([
 	"jquery-ui",
 	"jquery-json",
 ], function(manager, C, L) {
+
+	"use strict";
 
 	var MODULE_ID       = "core-utils";
 	var _currentTab     = 1;

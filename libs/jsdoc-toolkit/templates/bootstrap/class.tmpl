@@ -1,0 +1,822 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset={+IO.encoding+}" />
+	<meta name="generator" content="JsDoc Toolkit" />
+	<title>JsDoc Reference - {+data.alias+}</title>
+
+	<link media="all" rel="stylesheet" href="{+Link.base+}css/common.css" type="text/css" />
+	<link media="all" rel="stylesheet" href="{+Link.base+}css/prettify.css" type="text/css" />
+	<link media="all" rel="stylesheet" href="{+Link.base+}css/bootstrap.min.css" type="text/css" />
+	<link media="print" rel="stylesheet" href="{+Link.base+}css/print.css" type="text/css" />
+	<style type="text/css">
+		.icon-jsdoc {
+			background: url("{+Link.base+}img/classicons.png") no-repeat;
+		}
+	</style>
+	<script src="{+Link.base+}js/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script src="{+Link.base+}js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="{+Link.base+}js/prettify.js" type="text/javascript"></script>
+	<script src="{+Link.base+}js/accordion.js" type="text/javascript"></script>
+</head>
+
+<body onload="prettyPrint()"><div class="container-fluid">
+<!-- ============================== header ================================= -->	
+	<!-- begin static/header.html -->
+	<header class="header navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="#"><strong>JsDoc</strong> Reference</a>
+				<ul id="class-file-selector" class="nav">
+					<li><a href="{+Link.base+}index.html">Class Index</a></li>
+					<li><a href="{+Link.base+}files.html">File Index</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+	<div class="row-fluid">
+		<div id="index" class="span3">
+			<!-- begin publish.classesIndex -->
+			{+publish.classesIndex+}
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content" class="span9">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				{!
+					var classType = "";
+					var classIcon = Link.base;
+					
+					if (data.isBuiltin()) {
+						classType += "Built-In ";
+					}
+					
+					if (data.isNamespace) {
+						if (data.is('FUNCTION')) {
+							classType += "Function ";
+						}
+						classType += "Namespace ";
+						classIcon += "img/namespace.png";
+					}
+					else {
+						classType += "Class ";
+						if (data.isInterface) {
+							classType += "Interface ";
+							classIcon += "img/interface.png";
+						} else {
+							classIcon += "img/class.png";
+						}
+					}
+					
+				!}
+				<img src="{+ classIcon +}" alt="{+classType+}" class="jsdoc-large-icon" />{+data.alias+}
+				<if test="data.isInterface"><span class="label label-jsdoc label-jsdoc-interface">Interface</span></if>
+				<if test="data.hasMethod('getInstance')"><span class="label label-jsdoc label-jsdoc-singleton">Singleton</span></if>
+				<if test="data.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span></if>
+				<if test="data.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span></if>
+				<if test="data.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span></if>
+				<if test="data.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span></if>
+			</h1>
+			<if test="data.version"><br />Version
+				{+ data.version +}.<br />
+			</if>
+			{!
+				var staticMethods = [];
+				var instanceMethods = [];
+				var staticProperties = [];
+				var instanceProperties = [];
+				var nestedNamespaces = [];
+				var constructorMembers = [];
+				
+				data.methods.forEach(function(symbol) {
+					if (symbol.is('CONSTRUCTOR')) {
+						constructorMembers.push(symbol);
+					} else if (symbol.isStatic) {
+						staticMethods.push(symbol);
+					} else {
+						instanceMethods.push(symbol);
+					}
+				});
+				staticMethods = staticMethods.sort(makeSortby("alias"));
+				instanceMethods = instanceMethods.sort(makeSortby("alias"));
+				
+				data.properties.forEach(function(symbol) {
+					if (symbol.isNamespace) {
+						nestedNamespaces.push(symbol);
+					} else if (symbol.isStatic) {
+						staticProperties.push(symbol);
+					} else {
+						instanceProperties.push(symbol);
+					}
+				});
+				nestedNamespaces = nestedNamespaces.sort(makeSortby("alias"));
+				staticProperties = staticProperties.sort(makeSortby("alias"));
+				instanceProperties = instanceProperties.sort(makeSortby("alias"));
+			!}
+			<div class="jsdoc-hierarchy-nav">
+				<ul class="breadcrumb">
+					<if test="data.isNamespace">
+						<li class="jsdoc-hierarchy-caption">Hierarchy</li>
+							<for each="namespaceSymbol" in="getParentNamespaces(data)">
+								<li>{+ new Link().toSymbol(namespaceSymbol.alias) +}<span class="divider">«</span></li>
+							</for>
+						<li class="active">{+ data.name +}</li>
+					<else />
+						<li class="jsdoc-hierarchy-caption">Inheritance</li>
+							<for each="classSymbol" in="getParentSymbols(data)">
+								<li>{+ new Link().toSymbol(classSymbol.alias) +}<span class="divider">«</span></li>
+							</for>
+						<li class="active">{+ data.name +}</li>
+					</if>
+				</ul>
+			</div>
+
+<!-- ============================== constructor summary ==================== -->
+			<if test="!data.isBuiltin() && data.is('CONSTRUCTOR')">
+				<h3>Constructor</h3>
+				<div class="jsdoc-members">
+					<div class="jsdoc-member{+ data.params.length || data.returns.length ? ' accordion-button' : '' +}">
+						<div class="jsdoc-member-definition">
+							<b>{+ new Link().toSymbol(data.alias).withText(data.name).setAttribute('id', data.name) +}</b>
+							<if test="classType != 'Namespace '">{+ makeSignature(data.params) +}</if>
+							<if test="data.isInterface"><span class="label label-jsdoc label-jsdoc-interface">Interface</span> </if>
+							<if test="data.hasMethod('getInstance')"><span class="label label-jsdoc label-jsdoc-singleton">Singleton</span> </if>
+							<if test="data.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span> </if>
+							<if test="data.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span> </if>
+							<if test="data.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span> </if>
+							<if test="data.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span> </if>
+							<if test="data.isStatic"><span class="label label-jsdoc label-jsdoc-static">Static</span></if>
+						</div>
+						<div class="jsdoc-member-description">
+							<div class="jsdoc-member-content">
+								<div class="jsdoc-member-summary">
+									{+ createDescription(data.desc) +}
+									<span class="pull-right">{+ new Link().toSrc(data.srcFile).withText('code »').inner(data.srcLineNum ? 'line' + data.srcLineNum : '') +}</span>
+								</div>
+								<if test="data.example.length">
+									<for each="example" in="data.example">
+										<pre class="prettyprint linenums">{+ example +}</pre>
+									</for>
+								</if>
+								<if test="data.deprecated">
+									<div class="jsdoc-member-deprecated jsdoc-member-info">
+										<span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span>
+										{+ createDescription(data.deprecated) +}
+									</div>
+								</if>
+								<if test="data.requires.length">
+									<div class="jsdoc-member-require jsdoc-member-info">
+										<span class="label label-jsdoc label-jsdoc-requires">Requires</span>
+										<for each="symbol" in="data.requires">
+											<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+										</for>
+									</div>
+								</if>
+								<if test="data.exceptions.length">
+									<div class="jsdoc-member-exception jsdoc-member-info">
+										<span class="label label-jsdoc label-jsdoc-exceptions">Throws</span>
+										<for each="symbol" in="data.exceptions">
+											<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+										</for>
+									</div>
+								</if>
+								<if test="data.see.length">
+									<div class="jsdoc-member-see jsdoc-member-info">
+										<span class="label label-jsdoc label-jsdoc-see">See</span>
+										<for each="symbol" in="data.see">
+											<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+										</for>
+									</div>
+								</if>
+								<if test="data.since">
+									<div class="jsdoc-member-since jsdoc-member-info">
+										<span class="label label-jsdoc label-jsdoc-since">Since</span>
+										{+ data.since +}
+									</div>
+								</if>
+								<if test="data.params.length || data.returns.length">
+									<div class="jsdoc-member-detail accordion-content">
+										<if test="data.params.length">
+											<b>Parameters</b>
+											<dl>
+												<for each="param" in="data.params">
+													<dt>{+ param.name +} : {+ createTypeLink(param.type) +}</dt>
+													<dd>{+ createDescription(param.desc) +}</dd>
+												</for>
+											</dl>
+										</if>
+										<if test="data.returns.length">
+											<b>Returns</b>
+											<dl>
+												<for each="param" in="data.returns">
+													<dt>{+ createTypeLink(param.type) +}</dt>
+													<dd>{+ createDescription(param.desc) +}</dd>
+												</for>
+											</dl>
+										</if>
+									</div>
+								</if>
+							</div>
+						</div>
+					</div>
+				</div>
+			<else /><if test="!data.isBuiltin() && data.isNamespace">
+				<h3>Namespace</h3>
+				<div class="jsdoc-members">
+					<div class="jsdoc-member{+ data.params.length || data.returns.length ? ' accordion-button' : '' +}">
+						<div class="jsdoc-member-definition">
+							<b>{+ new Link().toSymbol(data.alias).setAttribute('id', data.name) +}</b>
+							<if test="classType != 'Namespace '">{+ makeSignature(data.params) +}</if>
+							<if test="data.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span></if>
+							<if test="data.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span></if>
+							<if test="data.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span></if>
+							<if test="data.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span></if>
+							<if test="data.isStatic"><span class="label label-jsdoc label-jsdoc-static">Static</span></if>
+						</div>
+						<div class="jsdoc-member-description">
+							<div class="jsdoc-member-summary">
+								{+ createDescription(data.desc) +}
+								<span class="pull-right">
+									{+ new Link().toSrc(data.srcFile).withText('code »').inner(data.srcLineNum ? 'line' + data.srcLineNum : '') +}
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</if></if>
+
+<!-- ============================== instance members summary ===================== -->
+			{!
+				var instanceMethodsLength = instanceMethods.length;
+				var instancePropertiesLength = instanceProperties.length;
+			!}
+			<if test="instanceMethodsLength || instancePropertiesLength">
+				<h3>Instance members</h3>
+				<if test="instanceMethodsLength">
+					<h4>Instance Methods<span class="jsdoc-inherits-caption pull-right">Defined By</span></h4>
+					<div class="jsdoc-members">
+						<for each="member" in="instanceMethods">
+							<div class="jsdoc-member{+ member.params.length || member.returns.length ? ' accordion-button' : '' +}{+ member.isPrivate ? ' container-jsdoc-private' : '' +}{+ member.isProtected ? ' container-jsdoc-protected' : '' +}{+ member.deprecated ? ' container-jsdoc-deprecated' : '' +}">
+								<div class="jsdoc-member-definition">
+									<div class="jsdoc-member-content">
+										<b>{+ new Link().toSymbol(member.alias).withText(member.name).setAttribute('id', member.name)+}</b>
+										<span class="signature">{+ makeSignature(member.params) +}</span>
+										<if test="member.type && member.type !== 'void'"> : {+ createTypeLink(member.type) +}</if>
+										<if test="member.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span></if>
+										<if test="member.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span></if>
+										<if test="member.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span></if>
+										<span class="jsdoc-inherits-from pull-right">{+ new Link().toSymbol(member.memberOf) +}</span>
+									</div>
+								</div>
+								<div class="jsdoc-member-description">
+									<div class="jsdoc-member-content">
+										<div class="jsdoc-member-summary">
+											{+ createDescription(member.desc) +}
+											<span class="pull-right">{+ new Link().toSrc(member.srcFile).withText('code »').inner(member.srcLineNum ? 'line' + member.srcLineNum : '') +}</span>
+										</div>
+										<if test="member.example.length">
+											<for each="example" in="member.example">
+												<pre class="prettyprint linenums">{+ example +}</pre>
+											</for>
+										</if>
+										<if test="member.deprecated">
+											<div class="jsdoc-member-deprecated jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span>
+												{+ createDescription(member.deprecated) +}
+											</div>
+										</if>
+										<if test="member.requires.length">
+											<div class="jsdoc-member-require jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-requires">Requires</span>
+												<for each="symbol" in="member.requires">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.exceptions.length">
+											<div class="jsdoc-member-exception jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-exceptions">Throws</span>
+												<for each="symbol" in="member.exceptions">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.see.length">
+											<div class="jsdoc-member-see jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-see">See</span>
+												<for each="symbol" in="member.see">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.since">
+											<div class="jsdoc-member-since jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-since">Since</span>
+												{+ member.since +}
+											</div>
+										</if>
+										<if test="member.params.length || member.returns.length">
+											<div class="jsdoc-member-detail accordion-content">
+												<if test="member.params.length">
+													<b>Parameters</b>
+													<dl>
+														<for each="param" in="member.params">
+															<dt>{+ param.name +} : {+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+												<if test="member.returns.length">
+													<b>Returns</b>
+													<dl>
+														<for each="param" in="member.returns">
+															<dt>{+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+											</div>
+										</if>
+									</div>
+								</div>
+							</div>
+						</for>
+					</div>
+				</if>
+				<if test="instancePropertiesLength">
+					<h4>Instance Properties<span class="jsdoc-inherits-caption pull-right">Defined By</span></h4>
+					<div class="jsdoc-members">
+						<for each="member" in="instanceProperties">
+							<div class="jsdoc-member{+ member.params.length || member.returns.length ? ' accordion-button' : '' +}{+ member.isPrivate ? ' container-jsdoc-private' : '' +}{+ member.isProtected ? ' container-jsdoc-protected' : '' +}">
+								<div class="jsdoc-member-definition">
+									<b>{+ new Link().toSymbol(member.alias).withText(member.name).setAttribute('id', member.name) +}</b>
+									<if test="member.type"> : {+new Link().toSymbol(member.type)+}</if>
+									<if test="member.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span></if>
+									<if test="member.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span></if>
+									<if test="member.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span></if>
+									<if test="member.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span></if>
+									<span class="jsdoc-inherits-from pull-right">{+new Link().toSymbol(member.memberOf)+}</span>
+								</div>
+								<div class="jsdoc-member-description">
+									<div class="jsdoc-member-content">
+										<div class="jsdoc-member-summary">
+											{+ createDescription(member.desc) +}
+											<span class="pull-right">{+ new Link().toSrc(member.srcFile).withText('code »').inner(member.srcLineNum ? 'line' + member.srcLineNum : '') +}</span>
+										</div>
+										<if test="member.example.length">
+											<for each="example" in="member.example">
+												<pre class="prettyprint linenums">{+ example +}</pre>
+											</for>
+										</if>
+										<if test="member.deprecated">
+											<div class="jsdoc-member-deprecated jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span>
+												{+ createDescription(member.deprecated) +}
+											</div>
+										</if>
+										<if test="member.requires.length">
+											<div class="jsdoc-member-require jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-requires">Requires</span>
+												<for each="symbol" in="member.requires">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.exceptions.length">
+											<div class="jsdoc-member-exception jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-exceptions">Throws</span>
+												<for each="symbol" in="member.exceptions">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.see.length">
+											<div class="jsdoc-member-see jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-see">See</span>
+												<for each="symbol" in="member.see">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.since">
+											<div class="jsdoc-member-since jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-since">Since</span>
+												{+ member.since +}
+											</div>
+										</if>
+										<if test="member.params.length || member.returns.length">
+											<div class="jsdoc-member-detail accordion-content">
+												<if test="member.params.length">
+													<b>Parameters</b>
+													<dl>
+														<for each="param" in="member.params">
+															<dt>{+ param.name +} : {+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+												<if test="member.returns.length">
+													<b>Returns</b>
+													<dl>
+														<for each="param" in="member.returns">
+															<dt>{+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+											</div>
+										</if>
+									</div>
+								</div>
+							</div>
+						</for>
+					</div>
+				</if>
+			</if>
+
+<!-- ============================== static members summary ======================== -->
+			{!
+				var nestedNamespacesLength = nestedNamespaces.length;
+				var constructorMembersLength = constructorMembers.length;
+				var staticMethodsLength = staticMethods.length;
+				var staticPropertiesLength = staticProperties.length;
+			!}
+			<if test="nestedNamespacesLength || constructorMembersLength || staticMethodsLength || staticPropertiesLength">
+				<h3>Static members</h3>
+				<if test="nestedNamespacesLength">
+					<h4>Nested namespaces<span class="jsdoc-inherits-caption pull-right">Defined By</span></h4>
+					<div class="jsdoc-members">
+						<for each="member" in="nestedNamespaces">
+							<div class="jsdoc-member{+ member.params.length || member.returns.length ? ' accordion-button' : '' +}{+ member.isPrivate ? ' container-jsdoc-private' : '' +}{+ member.isProtected ? ' container-jsdoc-protected' : '' +}">
+								<div class="jsdoc-member-definition">
+									<i class="icon-jsdoc icon-jsdoc-namespace"></i>
+									<b>{+ new Link().toSymbol(member.alias).withText(member.name).setAttribute('id', member.name) +}</b>
+									<if test="member.type && member.type !== 'void'"> : {+new Link().toSymbol(member.type)+}</if>
+									<if test="member.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span></if>
+									<if test="member.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span></if>
+									<if test="member.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span></if>
+									<if test="member.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span></if>
+									<span class="label label-jsdoc label-jsdoc-static">Static</span>
+									<span class="jsdoc-inherits-from pull-right">{+new Link().toSymbol(member.memberOf)+}</span>
+								</div>
+								<div class="jsdoc-member-description">
+									<div class="jsdoc-member-content">
+										<div class="jsdoc-member-summary">
+											{+ createDescription(member.desc) +}
+											<span class="pull-right">{+ new Link().toSrc(member.srcFile).withText('code »').inner(member.srcLineNum ? 'line' + member.srcLineNum : '') +}</span>
+										</div>
+										<if test="member.example.length">
+											<for each="example" in="member.example">
+												<pre class="prettyprint linenums">{+ example +}</pre>
+											</for>
+										</if>
+										<if test="member.deprecated">
+											<div class="jsdoc-member-deprecated jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span>
+												{+ createDescription(member.deprecated) +}
+											</div>
+										</if>
+										<if test="member.requires.length">
+											<div class="jsdoc-member-require jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-requires">Requires</span>
+												<for each="symbol" in="member.requires">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.exceptions.length">
+											<div class="jsdoc-member-exception jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-exceptions">Throws</span>
+												<for each="symbol" in="member.exceptions">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.see.length">
+											<div class="jsdoc-member-see jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-see">See</span>
+												<for each="symbol" in="member.see">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.since">
+											<div class="jsdoc-member-since jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-since">Since</span>
+												{+ member.since +}
+											</div>
+										</if>
+										<if test="member.params.length || member.returns.length">
+											<div class="jsdoc-member-detail accordion-content">
+												<if test="member.params.length">
+													<b>Parameters</b>
+													<dl>
+														<for each="param" in="member.params">
+															<dt>{+ param.name +} : {+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+												<if test="member.returns.length">
+													<b>Returns</b>
+													<dl>
+														<for each="param" in="member.returns">
+															<dt>{+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+											</div>
+										</if>
+									</div>
+								</div>
+							</div>
+						</for>
+					</div>
+				</if>
+				<if test="constructorMembersLength">
+					<h4>Constructor members<span class="jsdoc-inherits-caption pull-right">Defined By</span></h4>
+					<div class="jsdoc-members">
+						<for each="member" in="constructorMembers">
+							<div class="jsdoc-member{+ member.params.length || member.returns.length ? ' accordion-button' : '' +}{+ member.isPrivate ? ' container-jsdoc-private' : '' +}{+ member.isProtected ? ' container-jsdoc-protected' : '' +}">
+								<div class="jsdoc-member-definition">
+									<i class="icon-jsdoc icon-jsdoc-class"></i>
+									<b>{+ new Link().toSymbol(member.alias).withText(member.name).setAttribute('id', member.name)+}</b>
+									<span class="signature">{+ makeSignature(member.params) +}</span>
+									<if test="member.type && member.type !== 'void'"> : {+new Link().toSymbol(member.type)+}</if>
+									<if test="member.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span></if>
+									<if test="member.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span></if>
+									<if test="member.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span></if>
+									<if test="member.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span></if>
+									<span class="label label-jsdoc label-jsdoc-static">Static</span>
+									<span class="jsdoc-inherits-from pull-right">{+new Link().toSymbol(member.memberOf)+}</span>
+								</div>
+								<div class="jsdoc-member-description">
+									<div class="jsdoc-member-content">
+										<div class="jsdoc-member-summary">
+											{+ createDescription(member.desc) +}
+											<span class="pull-right">{+ new Link().toSrc(member.srcFile).withText('code »').inner(member.srcLineNum ? 'line' + member.srcLineNum : '') +}</span>
+										</div>
+										<if test="member.example.length">
+											<for each="example" in="member.example">
+												<pre class="prettyprint linenums">{+ example +}</pre>
+											</for>
+										</if>
+										<if test="member.deprecated">
+											<div class="jsdoc-member-deprecated jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span>
+												{+ createDescription(member.deprecated) +}
+											</div>
+										</if>
+										<if test="member.requires.length">
+											<div class="jsdoc-member-require jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-requires">Requires</span>
+												<for each="symbol" in="member.requires">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.exceptions.length">
+											<div class="jsdoc-member-exception jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-exceptions">Throws</span>
+												<for each="symbol" in="member.exceptions">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.see.length">
+											<div class="jsdoc-member-see jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-see">See</span>
+												<for each="symbol" in="member.see">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.since">
+											<div class="jsdoc-member-since jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-since">Since</span>
+												{+ member.since +}
+											</div>
+										</if>
+										<if test="member.params.length || member.returns.length">
+											<div class="jsdoc-member-detail accordion-content">
+												<if test="member.params.length">
+													<b>Parameters</b>
+													<dl>
+														<for each="param" in="member.params">
+															<dt>{+ param.name +} : {+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+												<if test="member.returns.length">
+													<b>Returns</b>
+													<dl>
+														<for each="param" in="member.returns">
+															<dt>{+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+											</div>
+										</if>
+									</div>
+								</div>
+							</div>
+						</for>
+					</div>
+				</if>
+				<if test="staticMethodsLength">
+					<h4>Static Methods<span class="jsdoc-inherits-caption pull-right">Defined By</span></h4>
+					<div class="jsdoc-members">
+						<for each="member" in="staticMethods">
+							<div class="jsdoc-member{+ member.params.length || member.returns.length ? ' accordion-button' : '' +}{+ member.isPrivate ? ' container-jsdoc-private' : '' +}{+ member.isProtected ? ' container-jsdoc-protected' : '' +}">
+								<div class="jsdoc-member-definition">
+									<b>{+ new Link().toSymbol(member.alias).withText(member.name).setAttribute('id', member.name) +}</b>
+									<span class="signature">{+ makeSignature(member.params) +}</span>
+									<if test="member.type && member.type !== 'void'"> : {+new Link().toSymbol(member.type) +}</if>
+									<if test="member.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span></if>
+									<if test="member.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span></if>
+									<if test="member.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span></if>
+									<if test="member.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span></if>
+									<span class="label label-jsdoc label-jsdoc-static">Static</span>
+									<span class="jsdoc-inherits-from pull-right">{+new Link().toSymbol(member.memberOf)+}</span>
+								</div>
+								<div class="jsdoc-member-description">
+									<div class="jsdoc-member-content">
+										<div class="jsdoc-member-summary">
+											{+ createDescription(member.desc) +}
+											<span class="pull-right">{+ new Link().toSrc(member.srcFile).withText('code »').inner(member.srcLineNum ? 'line' + member.srcLineNum : '') +}</span>
+										</div>
+										<if test="member.example.length">
+											<for each="example" in="member.example">
+												<pre class="prettyprint linenums">{+ example +}</pre>
+											</for>
+										</if>
+										<if test="member.deprecated">
+											<div class="jsdoc-member-deprecated jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span>
+												{+ createDescription(member.deprecated) +}
+											</div>
+										</if>
+										<if test="member.requires.length">
+											<div class="jsdoc-member-require jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-requires">Requires</span>
+												<for each="symbol" in="member.requires">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.exceptions.length">
+											<div class="jsdoc-member-exception jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-exceptions">Throws</span>
+												<for each="symbol" in="member.exceptions">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.see.length">
+											<div class="jsdoc-member-see jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-see">See</span>
+												<for each="symbol" in="member.see">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.since">
+											<div class="jsdoc-member-since jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-since">Since</span>
+												{+ member.since +}
+											</div>
+										</if>
+										<if test="member.params.length || member.returns.length">
+											<div class="jsdoc-member-detail accordion-content">
+												<if test="member.params.length">
+													<b>Parameters</b>
+													<dl>
+														<for each="param" in="member.params">
+															<dt>{+ param.name +} : {+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+												<if test="member.returns.length">
+													<b>Returns</b>
+													<dl>
+														<for each="param" in="member.returns">
+															<dt>{+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+											</div>
+										</if>
+									</div>
+								</div>
+							</div>
+						</for>
+					</div>
+				</if>
+				<if test="staticPropertiesLength">
+					<h4>Static Properties<span class="jsdoc-inherits-caption pull-right">Defined By</span></h4>
+					<div class="jsdoc-members">
+						<for each="member" in="staticProperties">
+							<div class="jsdoc-member{+ member.params.length || member.returns.length ? ' accordion-button' : '' +}{+ member.isPrivate ? ' container-jsdoc-private' : '' +}{+ member.isProtected ? ' container-jsdoc-protected' : '' +}">
+								<div class="jsdoc-member-definition">
+									<b>{+ new Link().toSymbol(member.alias).withText(member.name).setAttribute('id', member.name)+}</b>
+									<if test="member.type"> : {+new Link().toSymbol(member.type)+}</if>
+									<if test="member.deprecated"><span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span></if>
+									<if test="member.isPrivate"><span class="label label-jsdoc label-jsdoc-private">Private</span></if>
+									<if test="member.isProtected"><span class="label label-jsdoc label-jsdoc-protected">Protected</span></if>
+									<if test="member.isInner"><span class="label label-jsdoc label-jsdoc-inner">Inner</span></if>
+									<span class="label label-jsdoc label-jsdoc-static">Static</span>
+									<span class="jsdoc-inherits-from pull-right">{+new Link().toSymbol(member.memberOf)+}</span>
+								</div>
+								<div class="jsdoc-member-description">
+									<div class="jsdoc-member-content">
+										<div class="jsdoc-member-summary">
+											{+ createDescription(member.desc) +}
+											<span class="pull-right">{+ new Link().toSrc(member.srcFile).withText('code »').inner(member.srcLineNum ? 'line' + member.srcLineNum : '') +}</span>
+										</div>
+										<if test="member.example.length">
+											<for each="example" in="member.example">
+												<pre class="prettyprint linenums">{+ example +}</pre>
+											</for>
+										</if>
+										<if test="member.deprecated">
+											<div class="jsdoc-member-deprecated jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-deprecated">Deprecated</span>
+												{+ createDescription(member.deprecated) +}
+											</div>
+										</if>
+										<if test="member.requires.length">
+											<div class="jsdoc-member-require jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-requires">Requires</span>
+												<for each="symbol" in="member.requires">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.exceptions.length">
+											<div class="jsdoc-member-exception jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-exceptions">Throws</span>
+												<for each="symbol" in="member.exceptions">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.see.length">
+											<div class="jsdoc-member-see jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-see">See</span>
+												<for each="symbol" in="member.see">
+													<span class="jsdoc-symbol-enum">{+ new Link().toSymbol(symbol) +}</span>
+												</for>
+											</div>
+										</if>
+										<if test="member.since">
+											<div class="jsdoc-member-since jsdoc-member-info">
+												<span class="label label-jsdoc label-jsdoc-since">Since</span>
+												{+ member.since +}
+											</div>
+										</if>
+										<if test="member.params.length || member.returns.length">
+											<div class="jsdoc-member-detail accordion-content">
+												<if test="member.params.length">
+													<b>Parameters</b>
+													<dl>
+														<for each="param" in="member.params">
+															<dt>{+ param.name +} : {+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+												<if test="member.returns.length">
+													<b>Returns</b>
+													<dl>
+														<for each="param" in="member.returns">
+															<dt>{+ createTypeLink(param.type) +}</dt>
+															<dd>{+ createDescription(param.desc) +}</dd>
+														</for>
+													</dl>
+												</if>
+											</div>
+										</if>
+									</div>
+								</div>
+							</div>
+						</for>
+					</div>
+				</if>
+			</if>
+
+<!-- ============================== footer ================================= -->
+	<footer class="footer">
+		<if test="JSDOC.opt.D.copyright"><p>&copy;{+JSDOC.opt.D.copyright+}</p></if>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> {+JSDOC.VERSION+} on {+new Date()+}</p>
+	</footer>
+</div></body>
+</html>

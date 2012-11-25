@@ -5,7 +5,7 @@ $page = (isset($page)) ? $page : "home";
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Data Generator: Developer Documentation</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="assets/css/docs.css" rel="stylesheet">
@@ -25,10 +25,20 @@ $page = (isset($page)) ? $page : "home";
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="../">generatedata.com</a>
+          <a class="brand" href="../">Developer Doc</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li <?php if ($page == "home") echo 'class="active"'; ?>><a href="index.php">Home</a></li>
+              <li class="dropdown <?php if ($page == "home") echo 'active'; ?>">
+              	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              		Doc Section
+              		<b class="caret"></b>
+              	</a>
+		        <ul class="dropdown-menu">
+		          <li><a href="./">Developer Doc</a></li>
+		          <li><a href="phpdoc/">PHP Documentation</a></li>
+		          <li><a href="jsdoc/">JS Documentation</a></li>
+		        </ul>
+              </li>
               <li <?php if ($page == "core") echo 'class="active"'; ?>><a href="core.php">The Core Script</a></li>
               <li <?php if ($page == "dataTypes") echo 'class="active"'; ?>><a href="dataTypes.php">Data Types</a></li>
               <li <?php if ($page == "exportTypes") echo 'class="active"'; ?>><a href="exportTypes.php">Export Types</a></li>
