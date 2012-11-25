@@ -1,8 +1,3 @@
-/**
- * @name AlphaNumeric
- * @description JS code for the AlphaNumeric Data Type
- * @namespace
- */
 define([
 	"manager",
 	"constants",
@@ -11,6 +6,13 @@ define([
 ], function(manager, C, L, generator) {
 
 	"use strict";
+
+	/**
+	 * @name AlphaNumeric
+	 * @description JS code for the AlphaNumeric Data Type.
+	 * @see DataType
+	 * @namespace
+	 */
 
 	var MODULE_ID = "data-type-AlphaNumeric";
 	var LANG = L.dataTypePlugins.AlphaNumeric;

@@ -22,7 +22,7 @@ function publish(symbolSet) {
 		symbolsDir:	"symbols/",
 		srcDir:			"symbols/src/"
 	};
-	
+
   // overwrite to a better Link module
   eval(include('extends/Link.js'));
 
@@ -32,13 +32,13 @@ function publish(symbolSet) {
 			return "&lt;"+srcFilePath+"&gt;";
 		}
 	}
-	
+
 	// create the folders and subfolders to hold the output
 	IO.mkPath((publish.conf.outDir+"symbols/src").split("/"));
 	IO.mkPath((publish.conf.outDir+"js").split("/"));
 	IO.mkPath((publish.conf.outDir+"css").split("/"));
 	IO.mkPath((publish.conf.outDir+"img").split("/"));
-		
+
 	// used to allow Link to check the details of things being linked to
 	Link.symbolSet = symbolSet;
 
@@ -52,50 +52,50 @@ function publish(symbolSet) {
 		print("Couldn't create the required templates: "+e);
 		quit();
 	}
-	
+
 	// some ustility filters
 	function hasNoParent($) {return ($.memberOf == "")}
 	function isaFile($) {return ($.is("FILE"))}
 	function isaClass($) {return ($.is("CONSTRUCTOR") || $.isNamespace)}
-	
+
 	// get an array version of the symbolset, useful for filtering
 	var symbols = symbolSet.toArray();
-	
-		
+
+
 		// get a list of all the classes in the symbolset
 		var classes = smartSort(symbols.filter(isaClass));
-	
+
 	// create a filemap in which outfiles must be to be named uniquely, ignoring case
 	if (JSDOC.opt.u) {
 		var filemapCounts = {};
 		Link.filemap = {};
 		for (var i = 0, l = classes.length; i < l; i++) {
 			var lcAlias = classes[i].alias.toLowerCase();
-			
+
 			if (!filemapCounts[lcAlias]) filemapCounts[lcAlias] = 1;
 			else filemapCounts[lcAlias]++;
-			
-			Link.filemap[classes[i].alias] = 
+
+			Link.filemap[classes[i].alias] =
 				(filemapCounts[lcAlias] > 1)?
 				lcAlias+"_"+filemapCounts[lcAlias] : lcAlias;
 		}
 	}
-	
+
 	// create a class index, displayed in the left-hand column of every class page
 	Link.base = "../";
 		publish.classesIndex = classesTemplate.process(classes); // kept in memory
-	
+
 	// create each of the class pages
 	for (var i = 0, l = classes.length; i < l; i++) {
 		var symbol = classes[i];
-		
+
 		symbol.events = symbol.getEvents();	 // 1 order matters
 		symbol.methods = symbol.getMethods(); // 2
-		
+
 		Link.currentSymbol= symbol;
 		var output = "";
 		output = classTemplate.process(symbol);
-		
+
 		IO.saveFile(publish.conf.outDir+"symbols/", ((JSDOC.opt.u)? Link.filemap[symbol.alias] : symbol.alias) + publish.conf.ext, output);
 	}
 
@@ -110,42 +110,42 @@ function publish(symbolSet) {
 			name = name.replace(/\:/g, "_");
 			var output = "";
 			output = sourceTemplate.process({ file: file, source: escapeHTML(IO.readFile(file)) });
-			
+
 			IO.saveFile(srcDir, name + publish.conf.ext, output);
 		}
-	
+
 	// regenerate the index with different relative links, used in the index pages
 	Link.base = "";
 	publish.classesIndex = classesTemplate.process(classes);
-	
+
 	// create the class index page
 	try {
 		var classesindexTemplate = new JSDOC.JsPlate(publish.conf.templatesDir+"index.tmpl");
 	}
 	catch(e) { print(e.message); quit(); }
-	
+
 	var classesIndex = classesindexTemplate.process(classes);
 	IO.saveFile(publish.conf.outDir, "index"+publish.conf.ext, classesIndex);
 	classesindexTemplate = classesIndex = classes = null;
-	
+
 	// create the file index page
 	try {
 		var fileindexTemplate = new JSDOC.JsPlate(publish.conf.templatesDir+"allfiles.tmpl");
 	}
 	catch(e) { print(e.message); quit(); }
-	
+
 	var documentedFiles = symbols.filter(isaFile); // files that have file-level docs
 	var allFiles = []; // not all files have file-level docs, but we need to list every one
-	
+
 	for (var i = 0; i < files.length; i++) {
 		allFiles.push(new JSDOC.Symbol(files[i], [], "FILE", new JSDOC.DocComment("/** */")));
 	}
-	
+
 	for (var i = 0; i < documentedFiles.length; i++) {
 		var offset = files.indexOf(documentedFiles[i].alias);
 		allFiles[offset] = documentedFiles[i];
 	}
-		
+
 	allFiles = allFiles.sort(makeSortby("name"));
 
 	// output the file index page
@@ -178,7 +178,7 @@ function publish(symbolSet) {
 		];
 	var numOfCssPaths = cssPaths.length;
 	var cssPath;
-	
+
 	dstDir = publish.conf.outDir + 'css/';
 	for (var i = 0; i < numOfCssPaths; i++) {
 		cssPath = cssPaths[i];
@@ -195,7 +195,7 @@ function publish(symbolSet) {
 		];
 	var numOfImgPaths = imgPaths.length;
 	var imgPath;
-	
+
 	dstDir = publish.conf.outDir + 'img/';
 	for (var i = 0; i < numOfImgPaths; i++) {
 		imgPath = imgPaths[i];
@@ -258,7 +258,7 @@ function resolveLinks(str, from) {
 			return new Link().toSymbol(symbolName);
 		}
 	);
-	
+
 	return str;
 }
 
@@ -338,7 +338,7 @@ function createInlineCodes(str, from) {
 			return new Link().toSymbol(symbolName);
 		}
 	);
-	
+
 	return str;
 }
 

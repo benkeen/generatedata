@@ -1,14 +1,17 @@
-/**
- * @name Manager
- * @description The manager handles all the pub/sub functionality for the Core. All modules interact
- * with one another indirectly through this module by publishing and subscribing to messages.
- * @namespace
- */
 define([
-	'constants'
+	"constants"
 ], function(C) {
 
 	"use strict";
+
+	/**
+	 * @name Manager
+	 * @see Core
+	 * @description The manager handles all the pub/sub functionality for the Core. All modules interact
+	 * with one another indirectly through this module by publishing and subscribing to messages.
+	 * @return {Object}
+	 * @namespace
+	 */
 
 	// stores all modules, regardless of type (Core, Data Types, Export Types, Countries).
 	// It's a hash of Module ID -> module info

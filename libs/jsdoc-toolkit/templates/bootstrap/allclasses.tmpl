@@ -1,6 +1,6 @@
 <div class="well" id="class-list">
 	<ul class="nav nav-list">
-		<li class="nav-header">Classes</li>
+		<li class="nav-header">Modules</li>
 		<for each="item" in="data">
 			<li>{!
 				if (true || item.alias !== "_global_") {
@@ -17,9 +17,8 @@
 					var name = '<span class="jsdoc-class-index">' + item.name + '</span>' ;
 					var icon = '<i class="' + type + '"></i>';
 
-
 					var indent = item.alias.split('.').length - 1;
-					var content = '<span class="indent" style="padding-left:' + (indent * 14) + 'px;">' + icon + name + '</span>';
+					var content = '<span class="indent" style="padding-left:' + (indent * 14) + 'px;">' + icon + name + ' <span class="moduleTypeOuter"><span class="moduleType moduleType_' + item.see + '">' + item.see + '</span></span></span>';
 
 					if (item.deprecated) {
 						content += ' <span class="pull-right label label-jsdoc label-jsdoc-deprecated">Deprecated</span> ';

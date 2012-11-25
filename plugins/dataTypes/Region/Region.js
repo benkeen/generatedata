@@ -1,11 +1,18 @@
-"use strict";
-
 define([
 	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
+
+	"use strict";
+
+	/**
+	 * @name Region
+	 * @description JS code for the Region Data Type.
+	 * @see DataType
+	 * @namespace
+	 */
 
 	var MODULE_ID = "data-type-Region";
 	var LANG = L.dataTypePlugins.Region;

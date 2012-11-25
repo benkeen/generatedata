@@ -6,6 +6,15 @@ define([
 	"manager"
 ], function(C, L, manager) {
 
+	"use strict";
+
+	/**
+	 * @name SQL
+	 * @see ExportType
+	 * @description Client-side code for the SQL Export Type.
+	 * @namespace
+	 */
+
 	var MODULE_ID = "export-type-SQL";
 	var LANG = L.exportTypePlugins.SQL;
 

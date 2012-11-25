@@ -7,7 +7,16 @@ define([
 	"generator"
 ], function(manager, C, L, generator) {
 
+	/**
+	 * @name List
+	 * @description JS code for the List Data Type.
+	 * @see DataType
+	 * @namespace
+	 */
+
+	/** @member */
 	var MODULE_ID = "data-type-List";
+
 	var LANG = L.dataTypePlugins.List;
 
 	var _init = function() {

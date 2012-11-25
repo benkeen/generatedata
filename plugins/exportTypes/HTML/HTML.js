@@ -1,11 +1,18 @@
-"use strict";
-
  define([
 	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
+
+	 "use strict";
+
+	/**
+	 * @name HTML
+	 * @see ExportType
+	 * @description Client-side code for the HTML Export Type.
+	 * @namespace
+	 */
 
 	var MODULE_ID = "export-type-HTML";
 	var LANG = L.exportTypePlugins.HTML;

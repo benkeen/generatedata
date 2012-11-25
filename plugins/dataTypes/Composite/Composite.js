@@ -1,5 +1,3 @@
-"use strict";
-
 /*var Composite_ns = {
   validate: function(rows)
   {

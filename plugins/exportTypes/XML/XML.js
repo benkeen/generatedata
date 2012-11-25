@@ -1,5 +1,3 @@
-"use strict";
-
 define([
 	"constants",
 	"lang",
@@ -7,6 +5,13 @@ define([
 ], function(C, L, manager) {
 
 	"use strict";
+
+	/**
+	 * @name XML
+	 * @see ExportType
+	 * @description Client-side code for the XML Export Type.
+	 * @namespace
+	 */
 
 	var MODULE_ID = "export-type-XML";
 	var LANG = L.exportTypePlugins.XML;

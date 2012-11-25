@@ -1,9 +1,3 @@
-/**
- * @name Utils
- * @description This contains a bunch of utility function for use (primarily) by the client-side Generator
- * code, but also for any plugin that wants it.
- * @namespace Core
- */
 define([
 	"manager",
 	"constants",
@@ -14,12 +8,28 @@ define([
 
 	"use strict";
 
+	/**
+	 * @name Utils
+	 * @see Core
+	 * @description This files contains various helper functions for anyone that wants it.
+	 * @return {Object}
+	 * @namespace
+	 */
+
 	var MODULE_ID       = "core-utils";
 	var _currentTab     = 1;
 	var _errors         = [];
 	var _domChangeQueue = [];
 
 	return {
+
+		/**
+		 * @description The Data Generator interface is arranged into a number of tabs (or just pages, depending on the theme)
+		 * which are navigable client-side, not server-side. This function changes tabs for you.
+		 * @function
+		 * @param {Number} rowNum a tab number, indexed from 1
+		 * @name Utils#selectTab
+		 */
 		selectTab: function(tab) {
 			if (tab == _currentTab) {
 				return false;
@@ -30,7 +40,6 @@ define([
 			$("#gdTab" + tab + "Content").show();
 
 			// hide any messages already open on the old tab
-			console.log($("#gdTab" + _currentTab + "Content .gdMessage"));
 			$("#gdTab" + _currentTab + "Content" + " .gdMessage").hide();
 
 			manager.publish({

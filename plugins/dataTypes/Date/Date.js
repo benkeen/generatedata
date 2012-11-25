@@ -1,11 +1,18 @@
-"use strict";
-
 define([
 	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
+
+	"use strict";
+
+	/**
+	 * @name Date
+	 * @description JS code for the Date Data Type.
+	 * @see DataType
+	 * @namespace
+	 */
 
 	var MODULE_ID = "data-type-Date";
 	var LANG = L.dataTypePlugins.Date;

@@ -24,13 +24,14 @@ body .navbar {
   font-size: 13px;
 }
 
-body .navbar .brand {
-  width: 160px;
+body .navbar .dropdown > .brand {
+  width: 200px;
   font-size: 20px;
   font-weight: 200;
   margin-left: -20px;
   padding: 8px 20px 12px;
   line-height: 1;
+  color: white;
 }
 body .navbar .brand:hover {
   text-decoration: none;
@@ -986,4 +987,36 @@ form.bs-docs-example {
   .footer .pull-right {
     float: none;
   }
+}
+
+.moduleTypeOuter {
+	width: 70px;
+	float: left;
+}
+.moduleType {
+	border-radius: 3px 3px 3px 3px;
+	padding: 1px 5px 2px;
+	color: #FFFFFF;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: 14px;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	white-space: no-wrap;
+	margin-right: 10px;
+}
+.moduleType_Core {
+	background-color: #0bbb0b;
+}
+.moduleType_DataType {
+	background-color: #3388cc;
+}
+.moduleType_ExportType {
+	background-color: #0ff0cc;
+}
+
+body ol.linenums li {
+	line-height: 17px;
+}
+body pre {
+	font-size: 12px;
 }

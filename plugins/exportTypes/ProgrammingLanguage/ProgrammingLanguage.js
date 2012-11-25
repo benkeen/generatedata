@@ -7,6 +7,15 @@ define([
 	"generator"
 ], function(manager, C, L, generator) {
 
+	"use strict";
+
+	/**
+	 * @name ProgrammingLanguage
+	 * @see ExportType
+	 * @description Client-side code for the Programming Language Export Type.
+	 * @namespace
+	 */
+
 	var MODULE_ID = "export-type-ProgrammingLanguage";
 	var LANG = L.exportTypePlugins.ProgrammingLanguage;
 

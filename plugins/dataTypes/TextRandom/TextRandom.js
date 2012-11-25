@@ -1,11 +1,18 @@
-"use strict";
-
 define([
 	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
+
+	"use strict";
+
+	/**
+	 * @name TextRandom
+	 * @description JS code for the TextRandom Data Type.
+	 * @see DataType
+	 * @namespace
+	 */
 
 	var MODULE_ID = "data-type-TextRandom";
 	var LANG = L.dataTypePlugins.TextRandom;

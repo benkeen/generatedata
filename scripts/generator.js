@@ -1,10 +1,3 @@
-/**
- * @name Generator
- * @description This file contains the core client-side code for the Data Generator. It initializes the default
- * functionality of the generator page, subscribes to and publishes all the appropriate Core events and
- * offers a few public functions for use by any plugins running custom JS code.
- * @namespace
- */
 define([
 	"manager",
 	"pluginManager",
@@ -15,6 +8,17 @@ define([
 ], function(manager, pluginManager, utils, C, L) {
 
 	"use strict";
+
+	/**
+	 * @name Generator
+	 * @see Core
+	 * @description This file contains the core client-side code for the Data Generator. It initializes the default
+	 * functionality of the generator page, subscribes to and publishes all the appropriate Core events and
+	 * offers a few public functions for use by any plugins running custom JS code.
+	 * @author Ben Keen
+	 * @return {Object}
+	 * @namespace
+	 */
 
 	var MODULE_ID = "core-generator";
 	var _numRows  = 0;
@@ -777,18 +781,18 @@ define([
 		skipDomReady: false
 	});
 
-
-	/**
+	/*
 	 * The public API for this module. These are the only revealed functions for use by other modules
 	 * that choose to include generator.js as a dependency. Even though the bulk of the functions are private,
 	 * it still contains a couple of handy methods.
 	 */
-	return {
+
+	var obj = {
 
 		/**
 		 * Returns an ordered array of row IDs. Row IDs are unique and may be in any order with possible gaps. Each
 		 * row is added dynamically, and may be sorted or deleted.
-         * @public
+         * @function
          * @name Generator#getRowOrder
          */
 		getRowOrder: _getRowOrder,
@@ -798,7 +802,8 @@ define([
 		 * numerically 1-N, however the actual markup retains the original number scheme according to how it
 		 * was first generated. This function returns the visible number of the row number, used for generating
 		 * helpful error messages.
-         * @public
+         * @function
+         * @param {Number} rowNum a row number. Returns false if there's no corresponding visible row number.
          * @name Generator#getVisibleRowOrderByRowNum
 		 */
 		getVisibleRowOrderByRowNum: function(rowNum) {
@@ -811,9 +816,10 @@ define([
 				visibleRowNum++;
 			}
 
-			// shouldn't ever happen
+			// should
 			return false;
 		}
 	}
 
+	return obj;
 });

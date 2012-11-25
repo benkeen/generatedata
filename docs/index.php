@@ -10,17 +10,17 @@ require_once("templates/header.php");
 					<h1>Developer Doc</h1>
 					<p>
 						This doc explains more than you ever wanted to know about the Data Generator:
-						how it works, how it's structured, and most importantly how to extend it to
-						add your own Data Types, Export Types, Country-specific data, and new, better
-						translations.
+						how it works, how it's structured, and how to extend it to add your own Data Types,
+						Export Types, Country-specific data, and new, better translations. May the thrills
+						commence.
 					</p>
 				</div>
 
 				<h3>Intro</h3>
 				<p>
-					First off, if you haven't already done so check out the <a href="http://www.generatedata.com" target="_blank">online
-					version</a> and generate a few random data sets. You should have a general sense about what the script does
-					before you bother continue reading.
+					First off, if you haven't already done so check out the <a href="http://www.generatedata.com" target="_blank">script
+					online</a> and generate a few things. You should have a general sense about what the script does
+					before you bother reading any further.
 				</p>
 				<p>
 					Version 3.0.0 of the Data Generator was a complete redesign of the script to make it properly <i>modular</i>:

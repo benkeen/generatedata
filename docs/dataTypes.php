@@ -24,9 +24,6 @@ require_once("templates/header.php");
 							<div>
 								<h1>Data Types</h1>
 							</div>
-							<p>
-								This page explains how to construct new Data Types.
-							</p>
 						</div>
 					</section>
 
@@ -394,7 +391,6 @@ var Names_ns = {
 	The upshot of all this is that you can use this mechanism to add dependencies between data types. If you have
 	a data type that relies on one of the existing ones, just give it a higher process order. Tada!
 </p>
-
 
 			</div>
 		</div>

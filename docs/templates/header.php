@@ -25,12 +25,11 @@ $page = (isset($page)) ? $page : "home";
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="../">Developer Doc</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="dropdown <?php if ($page == "home") echo 'active'; ?>">
-              	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              		Doc Section
+              <li class="dropdown">
+              	<a class="brand dropdown-toggle" data-toggle="dropdown" href="#">
+              		Developer Doc
               		<b class="caret"></b>
               	</a>
 		        <ul class="dropdown-menu">

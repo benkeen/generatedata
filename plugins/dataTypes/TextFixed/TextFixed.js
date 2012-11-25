@@ -1,11 +1,18 @@
-"use strict";
-
 define([
 	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
+
+	"use strict";
+
+	/**
+	 * @name TextFixed
+	 * @description JS code for the TextFixed Data Type.
+	 * @see DataType
+	 * @namespace
+	 */
 
 	var MODULE_ID = "data-type-TextFixed";
 	var LANG = L.dataTypePlugins.TextFixed;
