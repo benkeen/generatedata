@@ -11,7 +11,7 @@ define([
 	/**
 	 * @name Utils
 	 * @see Core
-	 * @description This files contains various helper functions for anyone that wants it.
+	 * @description This file contains various helper functions for anyone that wants it.
 	 * @return {Object}
 	 * @namespace
 	 */

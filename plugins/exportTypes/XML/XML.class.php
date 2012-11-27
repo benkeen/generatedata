@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package ExportTypes
+ */
 class XML extends ExportTypePlugin {
 	protected $exportTypeName = "XML";
 	protected $jsModules = array("XML.js");

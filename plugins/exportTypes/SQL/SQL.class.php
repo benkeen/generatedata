@@ -9,6 +9,9 @@
  * 		"sqlField_Oracle"   Used for Oracle only
  * 		"sqlField_MySQL"    Used for MySQL only
  * 		"sqlField_SQLite"   Used for SQLite only
+ *
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package ExportTypes
  */
 class SQL extends ExportTypePlugin {
 	protected $exportTypeName = "SQL";

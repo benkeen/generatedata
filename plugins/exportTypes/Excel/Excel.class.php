@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @package ExportTypes
+ */
 
 class Excel extends ExportTypePlugin {
 	protected $exportTypeName = "Excel";

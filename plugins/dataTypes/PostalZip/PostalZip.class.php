@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
+
 class DataType_PostalZip extends DataTypePlugin {
 	protected $dataTypeName = "Postal / Zip";
 	protected $dataTypeFieldGroup = "geo";

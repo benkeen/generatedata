@@ -1,8 +1,9 @@
 <?php
 
-
 /**
  * Functions for interacting with Smarty templates, and anything relating to actually generating or displaying markup.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
 class Templates {
 

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
+
 
 class DataType_Email extends DataTypePlugin {
 	protected $dataTypeName = "Email";

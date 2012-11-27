@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \GeoData</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">651</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">10</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Our contructor."><span class="description">Our contructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_getCountryRegionHash" title="getCountryRegionHash :: Returns a hash of country_slug =&gt; country data."><span class="description">Returns a hash of country_slug =&gt; country data.</span><pre>getCountryRegionHash()</pre></a></li>
+<li class="method public "><a href="#method_getRegionCities" title="getRegionCities :: "><span class="description">getRegionCities()
+        </span><pre>getRegionCities()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="method private "><a href="#method_constructDataSubsets" title="constructDataSubsets :: Called after the country, region and city data has been populated."><span class="description">Called after the country, region and city data has been populated.</span><pre>constructDataSubsets()</pre></a></li>
+<li class="method private "><a href="#method_initCityData" title="initCityData :: "><span class="description">initCityData()
+        </span><pre>initCityData()</pre></a></li>
+<li class="method private "><a href="#method_initCountryData" title="initCountryData :: "><span class="description">initCountryData()
+        </span><pre>initCountryData()</pre></a></li>
+<li class="method private "><a href="#method_initRegionData" title="initRegionData :: "><span class="description">initRegionData()
+        </span><pre>initRegionData()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property_cityData" title="$cityData :: "><span class="description"></span><pre>$cityData</pre></a></li>
+<li class="property private "><a href="#property_countryData" title="$countryData :: "><span class="description"></span><pre>$countryData</pre></a></li>
+<li class="property private "><a href="#property_countryRegions" title="$countryRegions :: "><span class="description"></span><pre>$countryRegions</pre></a></li>
+<li class="property private "><a href="#property_regionCities" title="$regionCities :: "><span class="description"></span><pre>$regionCities</pre></a></li>
+<li class="property private "><a href="#property_regionData" title="$regionData :: "><span class="description"></span><pre>$regionData</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\GeoData"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/GeoData.html">GeoData</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">This contains all practical functions for accessing the geographical data (countries,
+regions and cities) in the database that have been populated by the various Country plugins.</p>
+<div class="details">
+<div class="long_description"><p>This class is automatically instantiated by the Core during code generation
+(runtimeContext == "generation") and found in Core::$geoData</p></div>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="mailto:ben.keen@gmail.com">Ben Keen</a></td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Core.html">Core</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Our contructor.</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>This extracts all the region info from the database (country, region +
+city) and stores them in private vars for easy reference later on.</p></div></div></div>
+</div>
+<a id="method_getCountryRegionHash"></a><div class="element clickable method public method_getCountryRegionHash" data-toggle="collapse" data-target=".method_getCountryRegionHash .collapse">
+<h2>Returns a hash of country_slug =&gt; country data.</h2>
+<pre>getCountryRegionHash(\unknown_type $countrySlug) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The regions are stored in a "regions"
+key and the number of regions is additionally stored in a "numRegions" key, for convenience.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$countrySlug</h4>
+<code>\unknown_type</code>
+</div>
+</div></div>
+</div>
+<a id="method_getRegionCities"></a><div class="element clickable method public method_getRegionCities" data-toggle="collapse" data-target=".method_getRegionCities .collapse">
+<h2>getRegionCities()
+        </h2>
+<pre>getRegionCities($regionSlug) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$regionSlug</h4></div>
+</div></div>
+</div>
+<a id="method_constructDataSubsets"></a><div class="element clickable method private method_constructDataSubsets" data-toggle="collapse" data-target=".method_constructDataSubsets .collapse">
+<h2>Called after the country, region and city data has been populated.</h2>
+<pre>constructDataSubsets() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>This populates $countryRegions
+and $regionCities, for general use.</p></div></div></div>
+</div>
+<a id="method_initCityData"></a><div class="element clickable method private method_initCityData" data-toggle="collapse" data-target=".method_initCityData .collapse">
+<h2>initCityData()
+        </h2>
+<pre>initCityData() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_initCountryData"></a><div class="element clickable method private method_initCountryData" data-toggle="collapse" data-target=".method_initCountryData .collapse">
+<h2>initCountryData()
+        </h2>
+<pre>initCountryData() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_initRegionData"></a><div class="element clickable method private method_initRegionData" data-toggle="collapse" data-target=".method_initRegionData .collapse">
+<h2>initRegionData()
+        </h2>
+<pre>initRegionData() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_cityData"> </a><div class="element clickable property private property_cityData" data-toggle="collapse" data-target=".property_cityData .collapse">
+<h2></h2>
+<pre>$cityData </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_countryData"> </a><div class="element clickable property private property_countryData" data-toggle="collapse" data-target=".property_countryData .collapse">
+<h2></h2>
+<pre>$countryData </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_countryRegions"> </a><div class="element clickable property private property_countryRegions" data-toggle="collapse" data-target=".property_countryRegions .collapse">
+<h2></h2>
+<pre>$countryRegions </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_regionCities"> </a><div class="element clickable property private property_regionCities" data-toggle="collapse" data-target=".property_regionCities .collapse">
+<h2></h2>
+<pre>$regionCities </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_regionData"> </a><div class="element clickable property private property_regionData" data-toggle="collapse" data-target=".property_regionData .collapse">
+<h2></h2>
+<pre>$regionData </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2012-11-26T19:46:19-08:00.<br></footer></div>
+</div>
+</body>
+</html>

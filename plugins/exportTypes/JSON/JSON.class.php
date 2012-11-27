@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package ExportTypes
+ */
 class JSON extends ExportTypePlugin {
 	protected $exportTypeName = "JSON";
 	protected $jsModules = array("JSON.js");

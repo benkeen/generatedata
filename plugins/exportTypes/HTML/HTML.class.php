@@ -1,10 +1,9 @@
 <?php
 
 /**
- * TODO the bulk of this class's code will be moved to the Core, once we establish what aspects
- * can be generalized.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package ExportTypes
  */
-
 class HTML extends ExportTypePlugin {
 	protected $exportTypeName = "HTML";
 	protected $jsModules = array("HTML.js");

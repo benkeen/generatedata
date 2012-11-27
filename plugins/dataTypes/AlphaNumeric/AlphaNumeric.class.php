@@ -1,8 +1,14 @@
 <?php
 
-
+/**
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package DataTypes
+ */
 class DataType_AlphaNumeric extends DataTypePlugin {
 
+	/**#@+
+     * @access protected
+     */
 	protected $dataTypeName = "Alphanumeric";
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "numeric";

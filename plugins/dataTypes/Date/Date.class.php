@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
+
 class DataType_Date extends DataTypePlugin {
 
 	protected $dataTypeName = "Date";

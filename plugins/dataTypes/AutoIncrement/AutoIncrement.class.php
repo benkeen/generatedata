@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
+
 
 class DataType_AutoIncrement extends DataTypePlugin {
 

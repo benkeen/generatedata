@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package Countries
+ */
+
 class Country_UK extends CountryPlugin {
 	protected $countryName = "United Kingdom";
 	protected $countrySlug = "united_kingdom";

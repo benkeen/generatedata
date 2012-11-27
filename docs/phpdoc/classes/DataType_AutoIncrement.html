@@ -1,0 +1,484 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \DataType_AutoIncrement</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">651</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">10</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method___construct" title="__construct :: The default constructor."><span class="description">The default constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method___toString" title="__toString :: For debugging and dev work."><span class="description">For debugging and dev work.</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#method_generate" title="generate :: This is the main workhorse function: it does the work of actually generating a random data snippet."><span class="description">This is the main workhorse function: it does the work of actually generating a random data snippet.</span><pre>generate()</pre></a></li>
+<li class="method public inherited"><a href="#method_getCSSFile" title="getCSSFile :: Returns the CSS filename for this Data Type (if included)."><span class="description">Returns the CSS filename for this Data Type (if included).</span><pre>getCSSFile()</pre></a></li>
+<li class="method public inherited"><a href="#method_getDataTypeFieldGroup" title="getDataTypeFieldGroup :: This returns the field group that this Data Type should be listed in."><span class="description">This returns the field group that this Data Type should be listed in.</span><pre>getDataTypeFieldGroup()</pre></a></li>
+<li class="method public inherited"><a href="#method_getDataTypeFieldGroupOrder" title="getDataTypeFieldGroupOrder :: Returns the order within the field group that this Data Type should appear."><span class="description">Returns the order within the field group that this Data Type should appear.</span><pre>getDataTypeFieldGroupOrder()</pre></a></li>
+<li class="method public "><a href="#method_getDataTypeMetadata" title="getDataTypeMetadata :: Used for providing additional metadata about the Data Type for use during generation."><span class="description">Used for providing additional metadata about the Data Type for use during generation.</span><pre>getDataTypeMetadata()</pre></a></li>
+<li class="method public "><a href="#method_getExampleColumnHTML" title="getExampleColumnHTML :: If the Data Type wants to include something in the Example column, it should return the raw HTML via this function."><span class="description">If the Data Type wants to include something in the Example column, it should return the raw HTML via this function.</span><pre>getExampleColumnHTML()</pre></a></li>
+<li class="method public "><a href="#method_getHelpDialogInfo" title="getHelpDialogInfo :: Returns information about the help dialog for this Data Type."><span class="description">Returns information about the help dialog for this Data Type.</span><pre>getHelpDialogInfo()</pre></a></li>
+<li class="method public inherited"><a href="#method_getIncludedFiles" title="getIncludedFiles :: Returns an array of file names, which will be included ONCE in the main generator page."><span class="description">Returns an array of file names, which will be included ONCE in the main generator page.</span><pre>getIncludedFiles()</pre></a></li>
+<li class="method public inherited"><a href="#method_getJSModules" title="getJSModules :: Returns a list of all javascript modules for this Data Type (if included)."><span class="description">Returns a list of all javascript modules for this Data Type (if included).</span><pre>getJSModules()</pre></a></li>
+<li class="method public inherited"><a href="#method_getName" title="getName :: "><span class="description">getName()
+        </span><pre>getName()</pre></a></li>
+<li class="method public "><a href="#method_getOptionsColumnHTML" title="getOptionsColumnHTML :: If the Data Type wants to include something in the Options column, it must return the HTML via this function."><span class="description">If the Data Type wants to include something in the Options column, it must return the HTML via this function.</span><pre>getOptionsColumnHTML()</pre></a></li>
+<li class="method public inherited"><a href="#method_getPath" title="getPath :: Returns the path from the generatedata root folder."><span class="description">Returns the path from the generatedata root folder.</span><pre>getPath()</pre></a></li>
+<li class="method public inherited"><a href="#method_getProcessOrder" title="getProcessOrder :: Returns the order in which this data type should be parsed."><span class="description">Returns the order in which this data type should be parsed.</span><pre>getProcessOrder()</pre></a></li>
+<li class="method public "><a href="#method_getRowGenerationOptions" title="getRowGenerationOptions :: Called during data generation."><span class="description">Called during data generation.</span><pre>getRowGenerationOptions()</pre></a></li>
+<li class="method public inherited"><a href="#method_hasHelpDialog" title="hasHelpDialog :: Returns true if this Data Type has a help dialog."><span class="description">Returns true if this Data Type has a help dialog.</span><pre>hasHelpDialog()</pre></a></li>
+<li class="method public inherited"><a href="#method_install" title="install :: This is called once during the initial installation of the script, or when the installation is reset (which is
+effectively a fresh install)."><span class="description">This is called once during the initial installation of the script, or when the installation is reset (which is
+effectively a fresh install).</span><pre>install()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul><li class="property public inherited"><a href="#property_L" title="$L :: Contains all strings for the current language."><span class="description"></span><pre>$L</pre></a></li></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected inherited"><a href="#property_cssFile" title="$cssFile :: A single CSS file for any additional CSS needed for the module."><span class="description"></span><pre>$cssFile</pre></a></li>
+<li class="property protected "><a href="#property_dataTypeFieldGroup" title="$dataTypeFieldGroup :: "><span class="description"></span><pre>$dataTypeFieldGroup</pre></a></li>
+<li class="property protected "><a href="#property_dataTypeFieldGroupOrder" title="$dataTypeFieldGroupOrder :: "><span class="description"></span><pre>$dataTypeFieldGroupOrder</pre></a></li>
+<li class="property protected "><a href="#property_dataTypeName" title="$dataTypeName :: "><span class="description"></span><pre>$dataTypeName</pre></a></li>
+<li class="property protected "><a href="#property_hasHelpDialog" title="$hasHelpDialog :: "><span class="description"></span><pre>$hasHelpDialog</pre></a></li>
+<li class="property protected "><a href="#property_jsModules" title="$jsModules :: An array of JS modules that need to be included for this module."><span class="description"></span><pre>$jsModules</pre></a></li>
+<li class="property protected inherited"><a href="#property_processOrder" title="$processOrder :: "><span class="description"></span><pre>$processOrder</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private "><a href="#property_helpDialogWidth" title="$helpDialogWidth :: "><span class="description"></span><pre>$helpDialogWidth</pre></a></li></ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\DataType_AutoIncrement"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/DataType_AutoIncrement.html">DataType_AutoIncrement</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Our base class for all Data Type plugins.</p>
+<div class="details">
+<div class="long_description"><p>All Data Types must define a class that extends this class.
+This page documents and defines (where the language permits!) what's required, what's optional, and
+what each method and member variable does.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/DataTypes.html">DataTypes</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:ben.keen@gmail.com">Ben Keen</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>The default constructor.</h2>
+<pre>__construct($runtimeContext) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Automatically populates the $L member var with whatever language is currently being
+used. If a Data Type uses its own constructor, it should always call the parent constructor as well, to ensure
+$L is populated. ( parent::__construct($runtimeContext); )</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$runtimeContext</h4></div>
+</div></div>
+</div>
+<a id="method___toString"></a><div class="element clickable method public method___toString" data-toggle="collapse" data-target=".method___toString .collapse">
+<h2>For debugging and dev work.</h2>
+<pre>__toString() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::__toString()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_generate"></a><div class="element clickable method public method_generate" data-toggle="collapse" data-target=".method_generate .collapse">
+<h2>This is the main workhorse function: it does the work of actually generating a random data snippet.</h2>
+<pre>generate(object $generator, array $generationContextData) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$generator</h4>
+<code>object</code><p>the main Generator object, through which a Data Type can call the various available public methods.</p></div>
+<div class="subelement argument">
+<h4>$generationContextData</h4>
+<code>array</code><p>a hash of information relating to the generation context. Namely: "rowNum" => the row number in the generated content (indexed from 1) "generationOptions" => whatever options were passed for this particular row and data type; i.e. whatever information was returned by getRowGenerationOptions(). This data can be empty or contain anything needed - in whatever format. By default, this is set to null. "existingRowData" => depending on the Data Type's processOrder, this will contain all the data from fields that have already been processed.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Data Types have to return a hash with at least one key: "display". They can also load up
+    the hash with whatever else they want, if they want to provide additional meta data to other Data
+    Types that are being generated on that row (e.g. Country, passing it's country_slug info to Region)</div>
+</div></div>
+</div>
+<a id="method_getCSSFile"></a><div class="element clickable method public method_getCSSFile" data-toggle="collapse" data-target=".method_getCSSFile .collapse">
+<h2>Returns the CSS filename for this Data Type (if included).</h2>
+<pre>getCSSFile() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::getCSSFile()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getDataTypeFieldGroup"></a><div class="element clickable method public method_getDataTypeFieldGroup" data-toggle="collapse" data-target=".method_getDataTypeFieldGroup .collapse">
+<h2>This returns the field group that this Data Type should be listed in.</h2>
+<pre>getDataTypeFieldGroup() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>See the Core::$dataTypeGroups for the
+available options.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::getDataTypeFieldGroup()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getDataTypeFieldGroupOrder"></a><div class="element clickable method public method_getDataTypeFieldGroupOrder" data-toggle="collapse" data-target=".method_getDataTypeFieldGroupOrder .collapse">
+<h2>Returns the order within the field group that this Data Type should appear.</h2>
+<pre>getDataTypeFieldGroupOrder() : integer</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::getDataTypeFieldGroupOrder()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_getDataTypeMetadata"></a><div class="element clickable method public method_getDataTypeMetadata" data-toggle="collapse" data-target=".method_getDataTypeMetadata .collapse">
+<h2>Used for providing additional metadata about the Data Type for use during generation.</h2>
+<pre>getDataTypeMetadata() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Right now this
+is only used to pass additional data to the SQL Export Type so it can intelligently create a CREATE TABLE
+statement with database column types and sizes that are appropriate to each field type.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getExampleColumnHTML"></a><div class="element clickable method public method_getExampleColumnHTML" data-toggle="collapse" data-target=".method_getExampleColumnHTML .collapse">
+<h2>If the Data Type wants to include something in the Example column, it should return the raw HTML via this function.</h2>
+<pre>getExampleColumnHTML() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>If this function isn't defined (or it returns an empty string), the string "No examples available." will be
+outputted in the cell. This is used for inserting static content into the appropriate spot in the table; if the
+Data Type needs something more dynamic, it should subscribe to the appropriate event.</p></div></div></div>
+</div>
+<a id="method_getHelpDialogInfo"></a><div class="element clickable method public method_getHelpDialogInfo" data-toggle="collapse" data-target=".method_getHelpDialogInfo .collapse">
+<h2>Returns information about the help dialog for this Data Type.</h2>
+<pre>getHelpDialogInfo() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>It returns a hash with two keys:
+   [dialogWidth]
+   [content]</p>
+
+<p>[shouldn't be required... just like install(), but I'd like to mention it in this file for documentation purposes]</p></div></div></div>
+</div>
+<a id="method_getIncludedFiles"></a><div class="element clickable method public method_getIncludedFiles" data-toggle="collapse" data-target=".method_getIncludedFiles .collapse">
+<h2>Returns an array of file names, which will be included ONCE in the main generator page.</h2>
+<pre>getIncludedFiles() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::getIncludedFiles()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getJSModules"></a><div class="element clickable method public method_getJSModules" data-toggle="collapse" data-target=".method_getJSModules .collapse">
+<h2>Returns a list of all javascript modules for this Data Type (if included).</h2>
+<pre>getJSModules() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::getJSModules()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getName"></a><div class="element clickable method public method_getName" data-toggle="collapse" data-target=".method_getName .collapse">
+<h2>getName()
+        </h2>
+<pre>getName() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::getName()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getOptionsColumnHTML"></a><div class="element clickable method public method_getOptionsColumnHTML" data-toggle="collapse" data-target=".method_getOptionsColumnHTML .collapse">
+<h2>If the Data Type wants to include something in the Options column, it must return the HTML via this function.</h2>
+<pre>getOptionsColumnHTML() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>If this function isn't defined (or it returns an empty string), the string "No options available." will be
+outputted in the cell. This is used for inserting static content into the appropriate spot in the table; if the
+Data Type needs something more dynamic, it should subscribe to the appropriate event.</p></div></div></div>
+</div>
+<a id="method_getPath"></a><div class="element clickable method public method_getPath" data-toggle="collapse" data-target=".method_getPath .collapse">
+<h2>Returns the path from the generatedata root folder.</h2>
+<pre>getPath() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>That value is automatically created
+for each module when it it instantiated.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::getPath()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getProcessOrder"></a><div class="element clickable method public method_getProcessOrder" data-toggle="collapse" data-target=".method_getProcessOrder .collapse">
+<h2>Returns the order in which this data type should be parsed.</h2>
+<pre>getProcessOrder() : integer</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The generator does N number of passes for each
+row of data generated, each pass processes whatever data types are ...</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::getProcessOrder()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_getRowGenerationOptions"></a><div class="element clickable method public method_getRowGenerationOptions" data-toggle="collapse" data-target=".method_getRowGenerationOptions .collapse">
+<h2>Called during data generation.</h2>
+<pre>getRowGenerationOptions(object $generator, $postdata, $col, $num_cols) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This determines what options the user selected in the user interface; it's
+used to figure out what settings to pass to each Data Type to provide that function the information needed
+to generate that particular data item.</p>
+
+<p>Note: if this function determines that the values entered by the user in the options column are invalid
+(most likely just incomplete) the function can explicitly return false to tell the core script to ignore
+this row.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$generator</h4>
+<code>object</code><p>the instance of the Generator object, containing assorted public methods</p></div>
+<div class="subelement argument"><h4>$postdata</h4></div>
+<div class="subelement argument"><h4>$col</h4></div>
+<div class="subelement argument"><h4>$num_cols</h4></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>- false, if the Data Type doesn't have sufficient information to generate the row (i.e. things weren't
+       filled in in the UI and the Data Type didn't add proper validation)
+       - anything else. This can be any data structure needed by the Data Type. It'll be passed as-is
+       into the generateItem function as the second parameter.</div>
+</div></div>
+</div>
+<a id="method_hasHelpDialog"></a><div class="element clickable method public method_hasHelpDialog" data-toggle="collapse" data-target=".method_hasHelpDialog .collapse">
+<h2>Returns true if this Data Type has a help dialog.</h2>
+<pre>hasHelpDialog() : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::hasHelpDialog()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_install"></a><div class="element clickable method public method_install" data-toggle="collapse" data-target=".method_install .collapse">
+<h2>This is called once during the initial installation of the script, or when the installation is reset (which is
+effectively a fresh install).</h2>
+<pre>install() : array</pre>
+<div class="labels">
+<span class="label">Inherited</span><span class="label">Static</span>
+</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It is called AFTER the Core tables are installed, and you can rely
+on Core::$db having been initialized and the database connection having been set up.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::install()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>[0] success / error
+				 [1] the error message, if there was a problem</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_L"> </a><div class="element clickable property public property_L" data-toggle="collapse" data-target=".property_L .collapse">
+<h2></h2>
+<pre>$L : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is populated automatically on instantiation and
+contains the strings for the currently selected language.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::$$L</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_cssFile"> </a><div class="element clickable property protected property_cssFile" data-toggle="collapse" data-target=".property_cssFile .collapse">
+<h2></h2>
+<pre>$cssFile </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It's up to the developer to properly
+name their CSS classes/IDs to prevent namespace collisions.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::$$cssFile</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_dataTypeFieldGroup"> </a><div class="element clickable property protected property_dataTypeFieldGroup" data-toggle="collapse" data-target=".property_dataTypeFieldGroup .collapse">
+<h2></h2>
+<pre>$dataTypeFieldGroup </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_dataTypeFieldGroupOrder"> </a><div class="element clickable property protected property_dataTypeFieldGroupOrder" data-toggle="collapse" data-target=".property_dataTypeFieldGroupOrder .collapse">
+<h2></h2>
+<pre>$dataTypeFieldGroupOrder </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_dataTypeName"> </a><div class="element clickable property protected property_dataTypeName" data-toggle="collapse" data-target=".property_dataTypeName .collapse">
+<h2></h2>
+<pre>$dataTypeName </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_hasHelpDialog"> </a><div class="element clickable property protected property_hasHelpDialog" data-toggle="collapse" data-target=".property_hasHelpDialog .collapse">
+<h2></h2>
+<pre>$hasHelpDialog </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_jsModules"> </a><div class="element clickable property protected property_jsModules" data-toggle="collapse" data-target=".property_jsModules .collapse">
+<h2></h2>
+<pre>$jsModules : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>They should be requireJS-friendly
+modules.</p></div></div></div>
+</div>
+<a id="property_processOrder"> </a><div class="element clickable property protected property_processOrder" data-toggle="collapse" data-target=".property_processOrder .collapse">
+<h2></h2>
+<pre>$processOrder </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\DataTypePlugin::$$processOrder</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_helpDialogWidth"> </a><div class="element clickable property private property_helpDialogWidth" data-toggle="collapse" data-target=".property_helpDialogWidth .collapse">
+<h2></h2>
+<pre>$helpDialogWidth </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2012-11-26T19:46:19-08:00.<br></footer></div>
+</div>
+</body>
+</html>

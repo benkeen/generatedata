@@ -1,9 +1,10 @@
 <?php
 
-
 /**
  * A simple namespace class to include all installation code. The installation functions to create the
  * database tables run AFTER the settings file has been created.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
 class Installation {
 	private $databaseCreationError = false;

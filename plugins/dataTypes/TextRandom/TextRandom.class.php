@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
+
+
 class DataType_TextRandom extends DataTypePlugin {
 	protected $dataTypeName = "Random Number of Words";
 	protected $dataTypeFieldGroup = "text";

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
+
 class DataType_LatLng extends DataTypePlugin {
 	protected $dataTypeName = "Latitude / Longitude";
 	protected $dataTypeFieldGroup = "geo";

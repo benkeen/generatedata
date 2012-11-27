@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Utils</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">651</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">10</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list"><li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method_addYearsToDatetime" title="addYearsToDatetime :: Adds years to a MySQL datetime &amp; returns a UNIX timestamp of the new date"><span class="description">Adds years to a MySQL datetime &amp; returns a UNIX timestamp of the new date</span><pre>addYearsToDatetime()</pre></a></li>
+<li class="method public "><a href="#method_assert" title="assert :: A generic assertion function used to confirm the existence of things like the existence of values in $_POST,
+$_GET, $_SESSIONS, whether the user is logged in and so on."><span class="description">A generic assertion function used to confirm the existence of things like the existence of values in $_POST,
+$_GET, $_SESSIONS, whether the user is logged in and so on.</span><pre>assert()</pre></a></li>
+<li class="method public "><a href="#method_cleanHash" title="cleanHash :: "><span class="description">cleanHash()
+        </span><pre>cleanHash()</pre></a></li>
+<li class="method public "><a href="#method_convertDatetimeToTimestamp" title="convertDatetimeToTimestamp :: Converts a datetime to a timestamp."><span class="description">Converts a datetime to a timestamp.</span><pre>convertDatetimeToTimestamp()</pre></a></li>
+<li class="method public "><a href="#method_enquoteArray" title="enquoteArray :: "><span class="description">enquoteArray()
+        </span><pre>enquoteArray()</pre></a></li>
+<li class="method public "><a href="#method_generateRandomAlphanumericStr" title="generateRandomAlphanumericStr :: Converts the following characters in the parameter string and returns it:"><span class="description">Converts the following characters in the parameter string and returns it:</span><pre>generateRandomAlphanumericStr()</pre></a></li>
+<li class="method public "><a href="#method_generateRandomNumStr" title="generateRandomNumStr :: Converts all x's and X's in a string with a random digit."><span class="description">Converts all x's and X's in a string with a random digit.</span><pre>generateRandomNumStr()</pre></a></li>
+<li class="method public "><a href="#method_generateRandomTextStr" title="generateRandomTextStr :: Generates a string of lorem ipsum words."><span class="description">Generates a string of lorem ipsum words.</span><pre>generateRandomTextStr()</pre></a></li>
+<li class="method public "><a href="#method_getCleanPhpSelf" title="getCleanPhpSelf :: A security-related function."><span class="description">A security-related function.</span><pre>getCleanPhpSelf()</pre></a></li>
+<li class="method public "><a href="#method_getCurrentDatetime" title="getCurrentDatetime :: "><span class="description">getCurrentDatetime()
+        </span><pre>getCurrentDatetime()</pre></a></li>
+<li class="method public "><a href="#method_getLipsum" title="getLipsum :: Returns an array of lorem ipsum words."><span class="description">Returns an array of lorem ipsum words.</span><pre>getLipsum()</pre></a></li>
+<li class="method public "><a href="#method_maybeShowInstallationPage" title="maybeShowInstallationPage :: "><span class="description">maybeShowInstallationPage()
+        </span><pre>maybeShowInstallationPage()</pre></a></li>
+<li class="method public "><a href="#method_returnRandomSubset" title="returnRandomSubset :: Returns a random subset of an array."><span class="description">Returns a random subset of an array.</span><pre>returnRandomSubset()</pre></a></li>
+<li class="method public "><a href="#method_sanitize" title="sanitize :: Recursively sanitizes data stored in any non-object data format, preparing it
+for safe use in SQL statements."><span class="description">Recursively sanitizes data stored in any non-object data format, preparing it
+for safe use in SQL statements.</span><pre>sanitize()</pre></a></li>
+<li class="method public "><a href="#method_weightedRand" title="weightedRand :: This function is like rand, only allows it to be weighted."><span class="description">This function is like rand, only allows it to be weighted.</span><pre>weightedRand()</pre></a></li>
+</ul>
+</li></ul>
+</div>
+<div class="span8">
+<a id="\Utils"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Utils.html">Utils</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Utility functions for use throughout the script.</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="mailto:ben.keen@gmail.com">Ben Keen</a></td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Core.html">Core</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_addYearsToDatetime"></a><div class="element clickable method public method_addYearsToDatetime" data-toggle="collapse" data-target=".method_addYearsToDatetime .collapse">
+<h2>Adds years to a MySQL datetime &amp; returns a UNIX timestamp of the new date</h2>
+<pre>addYearsToDatetime($datetime, $yearsToAdd) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$datetime</h4></div>
+<div class="subelement argument"><h4>$yearsToAdd</h4></div>
+</div></div>
+</div>
+<a id="method_assert"></a><div class="element clickable method public method_assert" data-toggle="collapse" data-target=".method_assert .collapse">
+<h2>A generic assertion function used to confirm the existence of things like the existence of values in $_POST,
+$_GET, $_SESSIONS, whether the user is logged in and so on.</h2>
+<pre>assert(array $statements) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If it fails anything, it throws a GDException,
+otherwise it does nothing.</p>
+
+<p>TODO</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$statements</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a id="method_cleanHash"></a><div class="element clickable method public method_cleanHash" data-toggle="collapse" data-target=".method_cleanHash .collapse">
+<h2>cleanHash()
+        </h2>
+<pre>cleanHash($hash) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$hash</h4></div>
+</div></div>
+</div>
+<a id="method_convertDatetimeToTimestamp"></a><div class="element clickable method public method_convertDatetimeToTimestamp" data-toggle="collapse" data-target=".method_convertDatetimeToTimestamp .collapse">
+<h2>Converts a datetime to a timestamp.</h2>
+<pre>convertDatetimeToTimestamp($datetime) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$datetime</h4></div>
+</div></div>
+</div>
+<a id="method_enquoteArray"></a><div class="element clickable method public method_enquoteArray" data-toggle="collapse" data-target=".method_enquoteArray .collapse">
+<h2>enquoteArray()
+        </h2>
+<pre>enquoteArray($arr, $char) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$arr</h4></div>
+<div class="subelement argument"><h4>$char</h4></div>
+</div></div>
+</div>
+<a id="method_generateRandomAlphanumericStr"></a><div class="element clickable method public method_generateRandomAlphanumericStr" data-toggle="collapse" data-target=".method_generateRandomAlphanumericStr .collapse">
+<h2>Converts the following characters in the parameter string and returns it:</h2>
+<pre>generateRandomAlphanumericStr(string $str) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>C, c, A - any consonant (Upper case, lower case, any)
+    V, v, B - any vowel (Upper case, lower case, any)
+    L, l, V - any letter (Upper case, lower case, any)
+    X       - 1-9
+    x       - 0-9
+    H       - 0-F</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$str</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_generateRandomNumStr"></a><div class="element clickable method public method_generateRandomNumStr" data-toggle="collapse" data-target=".method_generateRandomNumStr .collapse">
+<h2>Converts all x's and X's in a string with a random digit.</h2>
+<pre>generateRandomNumStr($str) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>X's: 1-9, x's: 0-9.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$str</h4></div>
+</div></div>
+</div>
+<a id="method_generateRandomTextStr"></a><div class="element clickable method public method_generateRandomTextStr" data-toggle="collapse" data-target=".method_generateRandomTextStr .collapse">
+<h2>Generates a string of lorem ipsum words.</h2>
+<pre>generateRandomTextStr($words, $startsWithLipsum, string $type, integer $min, integer $max) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$words</h4></div>
+<div class="subelement argument"><h4>$startsWithLipsum</h4></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code><ul>
+<li>"fixed"/"range"</li>
+</ul>
+</div>
+<div class="subelement argument">
+<h4>$min</h4>
+<code>integer</code><ul>
+<li>the minimum # of words to return OR the total number</li>
+</ul>
+</div>
+<div class="subelement argument">
+<h4>$max</h4>
+<code>integer</code><ul>
+<li>the max # of words to return (or null for "fixed" type)</li>
+</ul>
+</div>
+</div></div>
+</div>
+<a id="method_getCleanPhpSelf"></a><div class="element clickable method public method_getCleanPhpSelf" data-toggle="collapse" data-target=".method_getCleanPhpSelf .collapse">
+<h2>A security-related function.</h2>
+<pre>getCleanPhpSelf() : \the</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This returns a clean version of PHP_SELF for use in the templates. This wards
+against URI Cross-site scripting attacks.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\the</code>cleaned $_SERVER["PHP_SELF"]</div>
+</div></div>
+</div>
+<a id="method_getCurrentDatetime"></a><div class="element clickable method public method_getCurrentDatetime" data-toggle="collapse" data-target=".method_getCurrentDatetime .collapse">
+<h2>getCurrentDatetime()
+        </h2>
+<pre>getCurrentDatetime() </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getLipsum"></a><div class="element clickable method public method_getLipsum" data-toggle="collapse" data-target=".method_getLipsum .collapse">
+<h2>Returns an array of lorem ipsum words.</h2>
+<pre>getLipsum() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Assumes that a file exists in a misc/ subfolder called
+loremipsum.txt, containing lorem ipsum text.</p>
+
+<p>TODO this seems a good candidate to memoize...</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>a large array of words</div>
+</div></div>
+</div>
+<a id="method_maybeShowInstallationPage"></a><div class="element clickable method public method_maybeShowInstallationPage" data-toggle="collapse" data-target=".method_maybeShowInstallationPage .collapse">
+<h2>maybeShowInstallationPage()
+        </h2>
+<pre>maybeShowInstallationPage() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_returnRandomSubset"></a><div class="element clickable method public method_returnRandomSubset" data-toggle="collapse" data-target=".method_returnRandomSubset .collapse">
+<h2>Returns a random subset of an array.</h2>
+<pre>returnRandomSubset(array $set, integer $num) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The result may be empty, or the same set.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$set</h4>
+<code>array</code><ul>
+<li>the set of items</li>
+</ul>
+</div>
+<div class="subelement argument">
+<h4>$num</h4>
+<code>integer</code><ul>
+<li>the number of items in the set to return</li>
+</ul>
+</div>
+</div></div>
+</div>
+<a id="method_sanitize"></a><div class="element clickable method public method_sanitize" data-toggle="collapse" data-target=".method_sanitize .collapse">
+<h2>Recursively sanitizes data stored in any non-object data format, preparing it
+for safe use in SQL statements.</h2>
+<pre>sanitize($input) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$input</h4></div>
+</div></div>
+</div>
+<a id="method_weightedRand"></a><div class="element clickable method public method_weightedRand" data-toggle="collapse" data-target=".method_weightedRand .collapse">
+<h2>This function is like rand, only allows it to be weighted.</h2>
+<pre>weightedRand(array $weights) : integer</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$weights</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2012-11-26T19:46:19-08:00.<br></footer></div>
+</div>
+</body>
+</html>

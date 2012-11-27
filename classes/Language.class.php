@@ -3,6 +3,8 @@
 /**
  * This class contains all functionality relating to the current selected language. For code
  * relating to all available translations, see the Translation class.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
 class Language {
 

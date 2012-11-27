@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
 
 class DataType_Composite extends DataTypePlugin {
 

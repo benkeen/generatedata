@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
 
 class DataType_Region extends DataTypePlugin {
 	protected $dataTypeName = "Region";

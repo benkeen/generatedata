@@ -1,8 +1,9 @@
 <?php
 
-
 /**
  * Utility functions for use throughout the script.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
 class Utils {
 

@@ -5,6 +5,9 @@
  * Our base class for all Data Type plugins. All Data Types must define a class that extends this class.
  * This page documents and defines (where the language permits!) what's required, what's optional, and
  * what each method and member variable does.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
+ * @abstract
  */
 abstract class DataTypePlugin {
 

@@ -1,10 +1,13 @@
 <?php
 
+
 /**
  * This contains all practical functions for accessing the geographical data (countries,
  * regions and cities) in the database that have been populated by the various Country plugins.
  * This class is automatically instantiated by the Core during code generation
  * (runtimeContext == "generation") and found in Core::$geoData
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
 class GeoData {
 

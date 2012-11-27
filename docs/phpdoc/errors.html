@@ -1,0 +1,4561 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="css/template.css" rel="stylesheet" media="all">
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="js/bootstrap.js" type="text/javascript"></script><script src="js/template.js" type="text/javascript"></script><script src="js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="img/favicon.ico">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">651</span></a></li>
+<li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">10</span>
+</li></ul></a></li>
+<li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4"><ul class="side-nav nav nav-list">
+<li class="nav-header">Filter type</li>
+<li><div class="btn-group type-filter" data-toggle="buttons-checkbox">
+<button class="btn critical">Critical</button><button class="btn error">Error</button><button class="btn notice">Notice</button>
+</div></li>
+<li class="nav-header">Navigation</li>
+<li><a href="#classes/Account.class.php"><i class="icon-file"></i>classes/Account.class.php</a></li>
+<li><a href="#classes/AjaxRequest.class.php"><i class="icon-file"></i>classes/AjaxRequest.class.php</a></li>
+<li><a href="#classes/Core.class.php"><i class="icon-file"></i>classes/Core.class.php</a></li>
+<li><a href="#classes/CountryPlugin.abstract.class.php"><i class="icon-file"></i>classes/CountryPlugin.abstract.class.php</a></li>
+<li><a href="#classes/CountryPluginHelper.class.php"><i class="icon-file"></i>classes/CountryPluginHelper.class.php</a></li>
+<li><a href="#classes/Database.class.php"><i class="icon-file"></i>classes/Database.class.php</a></li>
+<li><a href="#classes/DataTypePlugin.abstract.class.php"><i class="icon-file"></i>classes/DataTypePlugin.abstract.class.php</a></li>
+<li><a href="#classes/DataTypePluginHelper.class.php"><i class="icon-file"></i>classes/DataTypePluginHelper.class.php</a></li>
+<li><a href="#classes/Exceptions.class.php"><i class="icon-file"></i>classes/Exceptions.class.php</a></li>
+<li><a href="#classes/ExportTypePlugin.abstract.class.php"><i class="icon-file"></i>classes/ExportTypePlugin.abstract.class.php</a></li>
+<li><a href="#classes/ExportTypePluginHelper.class.php"><i class="icon-file"></i>classes/ExportTypePluginHelper.class.php</a></li>
+<li><a href="#classes/GDException.class.php"><i class="icon-file"></i>classes/GDException.class.php</a></li>
+<li><a href="#classes/Generator.class.php"><i class="icon-file"></i>classes/Generator.class.php</a></li>
+<li><a href="#classes/GeoData.class.php"><i class="icon-file"></i>classes/GeoData.class.php</a></li>
+<li><a href="#classes/Installation.class.php"><i class="icon-file"></i>classes/Installation.class.php</a></li>
+<li><a href="#classes/Language.class.php"><i class="icon-file"></i>classes/Language.class.php</a></li>
+<li><a href="#classes/SessionManager.class.php"><i class="icon-file"></i>classes/SessionManager.class.php</a></li>
+<li><a href="#classes/Settings.class.php"><i class="icon-file"></i>classes/Settings.class.php</a></li>
+<li><a href="#classes/Templates.class.php"><i class="icon-file"></i>classes/Templates.class.php</a></li>
+<li><a href="#classes/Translations.class.php"><i class="icon-file"></i>classes/Translations.class.php</a></li>
+<li><a href="#classes/Utils.class.php"><i class="icon-file"></i>classes/Utils.class.php</a></li>
+<li><a href="#classes/Validate.class.php"><i class="icon-file"></i>classes/Validate.class.php</a></li>
+<li><a href="#plugins/countries/Australia/Australia.class.php"><i class="icon-file"></i>plugins/countries/Australia/Australia.class.php</a></li>
+<li><a href="#plugins/countries/Belgium/Belgium.class.php"><i class="icon-file"></i>plugins/countries/Belgium/Belgium.class.php</a></li>
+<li><a href="#plugins/countries/Canada/Canada.class.php"><i class="icon-file"></i>plugins/countries/Canada/Canada.class.php</a></li>
+<li><a href="#plugins/countries/Netherlands/Netherlands.class.php"><i class="icon-file"></i>plugins/countries/Netherlands/Netherlands.class.php</a></li>
+<li><a href="#plugins/countries/UK/UK.class.php"><i class="icon-file"></i>plugins/countries/UK/UK.class.php</a></li>
+<li><a href="#plugins/countries/US/US.class.php"><i class="icon-file"></i>plugins/countries/US/US.class.php</a></li>
+<li><a href="#plugins/dataTypes/AlphaNumeric/AlphaNumeric.class.php"><i class="icon-file"></i>plugins/dataTypes/AlphaNumeric/AlphaNumeric.class.php</a></li>
+<li><a href="#plugins/dataTypes/AlphaNumeric/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/AlphaNumeric/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/AutoIncrement/AutoIncrement.class.php"><i class="icon-file"></i>plugins/dataTypes/AutoIncrement/AutoIncrement.class.php</a></li>
+<li><a href="#plugins/dataTypes/AutoIncrement/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/AutoIncrement/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/City/City.class.php"><i class="icon-file"></i>plugins/dataTypes/City/City.class.php</a></li>
+<li><a href="#plugins/dataTypes/City/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/City/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Company/Company.class.php"><i class="icon-file"></i>plugins/dataTypes/Company/Company.class.php</a></li>
+<li><a href="#plugins/dataTypes/Company/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Company/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Composite/Composite.class.php"><i class="icon-file"></i>plugins/dataTypes/Composite/Composite.class.php</a></li>
+<li><a href="#plugins/dataTypes/Composite/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Composite/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Constant/Constant.class.php"><i class="icon-file"></i>plugins/dataTypes/Constant/Constant.class.php</a></li>
+<li><a href="#plugins/dataTypes/Constant/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Constant/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Country/Country.class.php"><i class="icon-file"></i>plugins/dataTypes/Country/Country.class.php</a></li>
+<li><a href="#plugins/dataTypes/Country/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Country/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/DataTypeTemplate/DataTypeTemplate.class.php"><i class="icon-file"></i>plugins/dataTypes/DataTypeTemplate/DataTypeTemplate.class.php</a></li>
+<li><a href="#plugins/dataTypes/Date/Date.class.php"><i class="icon-file"></i>plugins/dataTypes/Date/Date.class.php</a></li>
+<li><a href="#plugins/dataTypes/Date/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Date/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Email/Email.class.php"><i class="icon-file"></i>plugins/dataTypes/Email/Email.class.php</a></li>
+<li><a href="#plugins/dataTypes/Email/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Email/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/GUID/GUID.class.php"><i class="icon-file"></i>plugins/dataTypes/GUID/GUID.class.php</a></li>
+<li><a href="#plugins/dataTypes/GUID/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/GUID/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/index.php"><i class="icon-file"></i>plugins/dataTypes/index.php</a></li>
+<li><a href="#plugins/dataTypes/LatLng/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/LatLng/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/LatLng/LatLng.class.php"><i class="icon-file"></i>plugins/dataTypes/LatLng/LatLng.class.php</a></li>
+<li><a href="#plugins/dataTypes/List/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/List/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/List/List.class.php"><i class="icon-file"></i>plugins/dataTypes/List/List.class.php</a></li>
+<li><a href="#plugins/dataTypes/Names/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Names/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Names/Names.class.php"><i class="icon-file"></i>plugins/dataTypes/Names/Names.class.php</a></li>
+<li><a href="#plugins/dataTypes/NumberRange/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/NumberRange/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/NumberRange/NumberRange.class.php"><i class="icon-file"></i>plugins/dataTypes/NumberRange/NumberRange.class.php</a></li>
+<li><a href="#plugins/dataTypes/Phone/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Phone/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Phone/Phone.class.php"><i class="icon-file"></i>plugins/dataTypes/Phone/Phone.class.php</a></li>
+<li><a href="#plugins/dataTypes/PostalZip/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/PostalZip/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/PostalZip/PostalZip.class.php"><i class="icon-file"></i>plugins/dataTypes/PostalZip/PostalZip.class.php</a></li>
+<li><a href="#plugins/dataTypes/Region/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Region/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Region/Region.class.php"><i class="icon-file"></i>plugins/dataTypes/Region/Region.class.php</a></li>
+<li><a href="#plugins/dataTypes/StreetAddress/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/StreetAddress/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/StreetAddress/StreetAddress.class.php"><i class="icon-file"></i>plugins/dataTypes/StreetAddress/StreetAddress.class.php</a></li>
+<li><a href="#plugins/dataTypes/TextFixed/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/TextFixed/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/TextFixed/TextFixed.class.php"><i class="icon-file"></i>plugins/dataTypes/TextFixed/TextFixed.class.php</a></li>
+<li><a href="#plugins/dataTypes/TextRandom/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/TextRandom/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/TextRandom/TextRandom.class.php"><i class="icon-file"></i>plugins/dataTypes/TextRandom/TextRandom.class.php</a></li>
+<li><a href="#plugins/dataTypes/Tree/lang/en.php"><i class="icon-file"></i>plugins/dataTypes/Tree/lang/en.php</a></li>
+<li><a href="#plugins/dataTypes/Tree/Tree.class.php"><i class="icon-file"></i>plugins/dataTypes/Tree/Tree.class.php</a></li>
+<li><a href="#plugins/exportTypes/CSV/CSV.class.php"><i class="icon-file"></i>plugins/exportTypes/CSV/CSV.class.php</a></li>
+<li><a href="#plugins/exportTypes/CSV/lang/en.php"><i class="icon-file"></i>plugins/exportTypes/CSV/lang/en.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/Excel.class.php"><i class="icon-file"></i>plugins/exportTypes/Excel/Excel.class.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/lang/en.php"><i class="icon-file"></i>plugins/exportTypes/Excel/lang/en.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/output.php"><i class="icon-file"></i>plugins/exportTypes/Excel/output.php</a></li>
+<li><a href="#plugins/exportTypes/HTML/HTML.class.php"><i class="icon-file"></i>plugins/exportTypes/HTML/HTML.class.php</a></li>
+<li><a href="#plugins/exportTypes/HTML/lang/en.php"><i class="icon-file"></i>plugins/exportTypes/HTML/lang/en.php</a></li>
+<li><a href="#plugins/exportTypes/JSON/JSON.class.php"><i class="icon-file"></i>plugins/exportTypes/JSON/JSON.class.php</a></li>
+<li><a href="#plugins/exportTypes/JSON/lang/en.php"><i class="icon-file"></i>plugins/exportTypes/JSON/lang/en.php</a></li>
+<li><a href="#plugins/exportTypes/ProgrammingLanguage/ProgrammingLanguage.class.php"><i class="icon-file"></i>plugins/exportTypes/ProgrammingLanguage/ProgrammingLanguage.class.php</a></li>
+<li><a href="#plugins/exportTypes/SQL/lang/en.php"><i class="icon-file"></i>plugins/exportTypes/SQL/lang/en.php</a></li>
+<li><a href="#plugins/exportTypes/SQL/SQL.class.php"><i class="icon-file"></i>plugins/exportTypes/SQL/SQL.class.php</a></li>
+<li><a href="#plugins/exportTypes/XML/lang/en.php"><i class="icon-file"></i>plugins/exportTypes/XML/lang/en.php</a></li>
+<li><a href="#plugins/exportTypes/XML/XML.class.php"><i class="icon-file"></i>plugins/exportTypes/XML/XML.class.php</a></li>
+</ul></div>
+<div class="span8">
+<ul class="breadcrumb">
+<li>
+<a href=""><i class="icon-remove-sign"></i></a><span class="divider">\</span>
+</li>
+<li>Compilation Errors</li>
+</ul>
+<div class="package-contents">
+<a name="classes/Account.class.php" id="classes/Account.class.php"></a><h3>
+<i class="icon-file"></i>classes/Account.class.php<small style="float: right;padding-right: 10px;">12</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Account.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>4</td>
+<td>No short description for class \Account</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $accountId</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for method getID()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Name of argument $form_name does not match with the DocBlock's name $account_id in saveConfiguration()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Name of argument $form_content does not match with the DocBlock's name $form_name in saveConfiguration()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>39</td>
+<td>Parameter $account_id could not be found in saveConfiguration()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No DocBlock was found for method loadConfiguration()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>110</td>
+<td>No DocBlock was found for method deleteConfiguration()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>144</td>
+<td>No DocBlock was found for method getConfigurations()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>162</td>
+<td>No DocBlock was found for method updateTotalRowCount()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/AjaxRequest.class.php" id="classes/AjaxRequest.class.php"></a><h3>
+<i class="icon-file"></i>classes/AjaxRequest.class.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/AjaxRequest.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $action</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>Argument $action is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>Argument $post is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>243</td>
+<td>No DocBlock was found for method getResponse()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Core.class.php" id="classes/Core.class.php"></a><h3>
+<i class="icon-file"></i>classes/Core.class.php<small style="float: right;padding-right: 10px;">36</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Core.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No DocBlock was found for property $errorReporting</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>79</td>
+<td>No DocBlock was found for property $maxGeneratedRows</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>80</td>
+<td>No DocBlock was found for property $defaultNumRows</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>81</td>
+<td>No DocBlock was found for property $defaultLanguageFile</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>82</td>
+<td>No DocBlock was found for property $defaultExportType</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>83</td>
+<td>No DocBlock was found for property $defaultCountryPlugins</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>No DocBlock was found for property $version</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>87</td>
+<td>No DocBlock was found for property $minimumPHPVersion</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>88</td>
+<td>No DocBlock was found for property $settingsFileExists</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No DocBlock was found for property $dataTypeGroups</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>92</td>
+<td>No DocBlock was found for property $language</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>93</td>
+<td>No DocBlock was found for property $db</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>94</td>
+<td>No DocBlock was found for property $smarty</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>95</td>
+<td>No DocBlock was found for property $translations</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>96</td>
+<td>No DocBlock was found for property $user</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>97</td>
+<td>No DocBlock was found for property $dataTypePlugins</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>98</td>
+<td>No DocBlock was found for property $exportTypePlugins</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>99</td>
+<td>No DocBlock was found for property $countryPlugins</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>100</td>
+<td>No DocBlock was found for property $geoData</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>180</td>
+<td>No short description for method getDefaultExportType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>187</td>
+<td>No short description for method getDefaultCountryPlugins()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>194</td>
+<td>No short description for method getHostname()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>201</td>
+<td>No short description for method getDbName()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>208</td>
+<td>No short description for method getDbUsername()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>215</td>
+<td>No short description for method getDbPassword()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>222</td>
+<td>No short description for method getDbTablePrefix()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>229</td>
+<td>No short description for method getMaxGeneratedRows()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>236</td>
+<td>No short description for method getEncryptionSalt()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>243</td>
+<td>No short description for method getDefaultNumRows()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>250</td>
+<td>No short description for method getVersion()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>257</td>
+<td>No short description for method checkSettingsFileExists()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>281</td>
+<td>No short description for method getDefaultLanguageFile()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>288</td>
+<td>No short description for method getDataTypeGroups()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>352</td>
+<td>Argument $runtimeContext is missing from the Docblock of initDataTypes()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>365</td>
+<td>Argument $runtimeContext is missing from the Docblock of initExportTypes()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/CountryPlugin.abstract.class.php" id="classes/CountryPlugin.abstract.class.php"></a><h3>
+<i class="icon-file"></i>classes/CountryPlugin.abstract.class.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/CountryPlugin.abstract.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \CountryPlugin</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $countryName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $countrySlug</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $regionNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $zipFormat</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No DocBlock was found for method getName()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for method getSlug()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>49</td>
+<td>No DocBlock was found for method getRegionNames()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>No DocBlock was found for method getZipFormat()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/CountryPluginHelper.class.php" id="classes/CountryPluginHelper.class.php"></a><h3>
+<i class="icon-file"></i>classes/CountryPluginHelper.class.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/CountryPluginHelper.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No DocBlock was found for method instantiateCountryPlugin()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Database.class.php" id="classes/Database.class.php"></a><h3>
+<i class="icon-file"></i>classes/Database.class.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Database.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Database</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $link</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>Argument $link is missing from the Docblock of disconnect()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Argument $dbHostname is missing from the Docblock of testDbSettings()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Argument $dbName is missing from the Docblock of testDbSettings()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Argument $dbUsername is missing from the Docblock of testDbSettings()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Argument $dbPassword is missing from the Docblock of testDbSettings()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/DataTypePlugin.abstract.class.php" id="classes/DataTypePlugin.abstract.class.php"></a><h3>
+<i class="icon-file"></i>classes/DataTypePlugin.abstract.class.php<small style="float: right;padding-right: 10px;">11</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/DataTypePlugin.abstract.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $hasHelpDialog</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $processOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>Name of argument $runtimeContext does not match with the DocBlock's name $content in __construct()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>71</td>
+<td>Parameter $content could not be found in __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>137</td>
+<td>Name of argument $postdata does not match with the DocBlock's name $post in getRowGenerationOptions()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>137</td>
+<td>Parameter $post could not be found in getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>195</td>
+<td>No DocBlock was found for method getName()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/DataTypePluginHelper.class.php" id="classes/DataTypePluginHelper.class.php"></a><h3>
+<i class="icon-file"></i>classes/DataTypePluginHelper.class.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/DataTypePluginHelper.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataTypePluginHelper</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>91</td>
+<td>Parameter  could not be found in getDataTypeCSSIncludes()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>113</td>
+<td>Argument $runtimeContext is missing from the Docblock of getDataTypePlugins()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>113</td>
+<td>Argument $installedOnly is missing from the Docblock of getDataTypePlugins()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>172</td>
+<td>Name of argument $runtimeContext does not match with the DocBlock's name $baseFolder in instantiateDataType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>172</td>
+<td>Name of argument $baseFolder does not match with the DocBlock's name $dataTypeFolderName in instantiateDataType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>172</td>
+<td>Argument $dataTypeFolderName is missing from the Docblock of instantiateDataType()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Exceptions.class.php" id="classes/Exceptions.class.php"></a><h3>
+<i class="icon-file"></i>classes/Exceptions.class.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Exceptions.class.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/ExportTypePlugin.abstract.class.php" id="classes/ExportTypePlugin.abstract.class.php"></a><h3>
+<i class="icon-file"></i>classes/ExportTypePlugin.abstract.class.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/ExportTypePlugin.abstract.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>88</td>
+<td>Argument $runtimeContext is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>195</td>
+<td>No short description for method getContentTypeHeader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>202</td>
+<td>No short description for method getCodeMirrorModes()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/ExportTypePluginHelper.class.php" id="classes/ExportTypePluginHelper.class.php"></a><h3>
+<i class="icon-file"></i>classes/ExportTypePluginHelper.class.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/ExportTypePluginHelper.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>Argument $runtimeContext is missing from the Docblock of getExportTypePlugins()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>Argument $installedOnly is missing from the Docblock of getExportTypePlugins()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>Name of argument $runtimeContext does not match with the DocBlock's name $baseFolder in instantiateExportType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>Name of argument $baseFolder does not match with the DocBlock's name $exportTypeFileName in instantiateExportType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>Argument $exportTypeFolderName is missing from the Docblock of instantiateExportType()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>55</td>
+<td>Parameter $exportTypeFileName could not be found in instantiateExportType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>94</td>
+<td>Argument $exportTypes is missing from the Docblock of getExportTypeJSResources()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>116</td>
+<td>Argument $exportTypes is missing from the Docblock of getExportTypeAdditionalSettingsHTML()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>136</td>
+<td>Parameter  could not be found in getExportTypeCSSIncludes()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/GDException.class.php" id="classes/GDException.class.php"></a><h3>
+<i class="icon-file"></i>classes/GDException.class.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/GDException.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $data</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for method getFormattedError()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Generator.class.php" id="classes/Generator.class.php"></a><h3>
+<i class="icon-file"></i>classes/Generator.class.php<small style="float: right;padding-right: 10px;">31</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Generator.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $exportTarget</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $batchNum</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $batchSize</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $numResults</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $template</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $exportType</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $countries</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $dataTypes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $postData</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $isFirstBatch</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $isLastBatch</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $currentBatchFirstRow</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $currentBatchLastRow</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No short description for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>Name of argument $postData does not match with the DocBlock's name $postdata in __construct()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>24</td>
+<td>Parameter $postdata could not be found in __construct()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>84</td>
+<td>Parameter $numCols could not be found in createDataSetTemplate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>236</td>
+<td>No DocBlock was found for method getBatchNum()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>240</td>
+<td>No DocBlock was found for method getBatchSize()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>244</td>
+<td>No DocBlock was found for method getNumResults()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>248</td>
+<td>No DocBlock was found for method getTemplateByProcessOrder()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>252</td>
+<td>Parameter $template could not be found in getTemplateByDisplayOrder()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>274</td>
+<td>No DocBlock was found for method getExportType()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>278</td>
+<td>No DocBlock was found for method getCountries()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>282</td>
+<td>No DocBlock was found for method getDataTypes()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>286</td>
+<td>No DocBlock was found for method getPostData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>290</td>
+<td>No DocBlock was found for method isFirstBatch()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>294</td>
+<td>No DocBlock was found for method isLastBatch()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>298</td>
+<td>No DocBlock was found for method getCurrentBatchFirstRow()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>302</td>
+<td>No DocBlock was found for method getCurrentBatchLastRow()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/GeoData.class.php" id="classes/GeoData.class.php"></a><h3>
+<i class="icon-file"></i>classes/GeoData.class.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/GeoData.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $countryData</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $regionData</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $cityData</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $countryRegions</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $regionCities</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>60</td>
+<td>No DocBlock was found for method getRegionCities()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>73</td>
+<td>No DocBlock was found for method initCountryData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>93</td>
+<td>No DocBlock was found for method initRegionData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>110</td>
+<td>No DocBlock was found for method initCityData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Installation.class.php" id="classes/Installation.class.php"></a><h3>
+<i class="icon-file"></i>classes/Installation.class.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Installation.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $databaseCreationError</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method createSettingsFile()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No DocBlock was found for method createDatabase()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Language.class.php" id="classes/Language.class.php"></a><h3>
+<i class="icon-file"></i>classes/Language.class.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Language.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $currentLanguageFile</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $currentLanguageStrings</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>41</td>
+<td>No DocBlock was found for method getCurrentLanguageFile()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for method getCurrentLanguageStrings()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>No DocBlock was found for method overrideDefaultLanguageFile()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/SessionManager.class.php" id="classes/SessionManager.class.php"></a><h3>
+<i class="icon-file"></i>classes/SessionManager.class.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/SessionManager.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \SessionManager</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for method open()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for method close()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for method read()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No DocBlock was found for method write()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>75</td>
+<td>No DocBlock was found for method destroy()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>83</td>
+<td>No DocBlock was found for method gc()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Settings.class.php" id="classes/Settings.class.php"></a><h3>
+<i class="icon-file"></i>classes/Settings.class.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Settings.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Settings</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No DocBlock was found for method setSetting()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Templates.class.php" id="classes/Templates.class.php"></a><h3>
+<i class="icon-file"></i>classes/Templates.class.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Templates.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>Name of argument $pageVars does not match with the DocBlock's name $params in displayPage()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>10</td>
+<td>Parameter $params could not be found in displayPage()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>92</td>
+<td>Argument $errorDetails is missing from the Docblock of displaySeriousError()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Translations.class.php" id="classes/Translations.class.php"></a><h3>
+<i class="icon-file"></i>classes/Translations.class.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Translations.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Translations</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $list</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for method getList()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No DocBlock was found for method extractTranslationFileLanguage()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Utils.class.php" id="classes/Utils.class.php"></a><h3>
+<i class="icon-file"></i>classes/Utils.class.php<small style="float: right;padding-right: 10px;">16</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Utils.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for method cleanHash()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>64</td>
+<td>Argument $input is missing from the Docblock of sanitize()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>100</td>
+<td>Argument $datetime is missing from the Docblock of convertDatetimeToTimestamp()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>111</td>
+<td>No DocBlock was found for method getCurrentDatetime()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>115</td>
+<td>Argument $datetime is missing from the Docblock of addYearsToDatetime()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>115</td>
+<td>Argument $yearsToAdd is missing from the Docblock of addYearsToDatetime()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>258</td>
+<td>Name of argument $words does not match with the DocBlock's name $starts_with_lipsum in generateRandomTextStr()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>258</td>
+<td>Name of argument $startsWithLipsum does not match with the DocBlock's name $type in generateRandomTextStr()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>258</td>
+<td>Name of argument $type does not match with the DocBlock's name $min in generateRandomTextStr()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>258</td>
+<td>Name of argument $min does not match with the DocBlock's name $max in generateRandomTextStr()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>258</td>
+<td>Argument $max is missing from the Docblock of generateRandomTextStr()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>258</td>
+<td>Parameter $starts_with_lipsum could not be found in generateRandomTextStr()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>290</td>
+<td>Argument $str is missing from the Docblock of generateRandomNumStr()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>322</td>
+<td>No DocBlock was found for method maybeShowInstallationPage()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>332</td>
+<td>No DocBlock was found for method enquoteArray()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="classes/Validate.class.php" id="classes/Validate.class.php"></a><h3>
+<i class="icon-file"></i>classes/Validate.class.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file classes/Validate.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Validate</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/countries/Australia/Australia.class.php" id="plugins/countries/Australia/Australia.class.php"></a><h3>
+<i class="icon-file"></i>plugins/countries/Australia/Australia.class.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/countries/Australia/Australia.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Country_Australia</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $countryName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $countrySlug</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $regionNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $zipFormat</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method install()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/countries/Belgium/Belgium.class.php" id="plugins/countries/Belgium/Belgium.class.php"></a><h3>
+<i class="icon-file"></i>plugins/countries/Belgium/Belgium.class.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/countries/Belgium/Belgium.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Country_Belgium</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $countryName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $countrySlug</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $regionNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $zipFormat</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method install()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/countries/Canada/Canada.class.php" id="plugins/countries/Canada/Canada.class.php"></a><h3>
+<i class="icon-file"></i>plugins/countries/Canada/Canada.class.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/countries/Canada/Canada.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Country_Canada</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $countryName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $countrySlug</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $regionNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $zipFormat</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method install()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/countries/Netherlands/Netherlands.class.php" id="plugins/countries/Netherlands/Netherlands.class.php"></a><h3>
+<i class="icon-file"></i>plugins/countries/Netherlands/Netherlands.class.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/countries/Netherlands/Netherlands.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Country_Netherlands</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $countryName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $countrySlug</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $regionNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $zipFormat</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method install()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/countries/UK/UK.class.php" id="plugins/countries/UK/UK.class.php"></a><h3>
+<i class="icon-file"></i>plugins/countries/UK/UK.class.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/countries/UK/UK.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Country_UK</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $countryName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $countrySlug</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $regionNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $zipFormat</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method install()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/countries/US/US.class.php" id="plugins/countries/US/US.class.php"></a><h3>
+<i class="icon-file"></i>plugins/countries/US/US.class.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/countries/US/US.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Country_US</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $countryName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $countrySlug</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $regionNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $zipFormat</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method install()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/AlphaNumeric/AlphaNumeric.class.php" id="plugins/dataTypes/AlphaNumeric/AlphaNumeric.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/AlphaNumeric/AlphaNumeric.class.php<small style="float: right;padding-right: 10px;">14</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/AlphaNumeric/AlphaNumeric.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_AlphaNumeric</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $hasHelpDialog</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>No DocBlock was found for method getExampleColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>52</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/AlphaNumeric/lang/en.php" id="plugins/dataTypes/AlphaNumeric/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/AlphaNumeric/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/AlphaNumeric/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/AutoIncrement/AutoIncrement.class.php" id="plugins/dataTypes/AutoIncrement/AutoIncrement.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/AutoIncrement/AutoIncrement.class.php<small style="float: right;padding-right: 10px;">14</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/AutoIncrement/AutoIncrement.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_AutoIncrement</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $hasHelpDialog</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No DocBlock was found for method getExampleColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>68</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>77</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>84</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/AutoIncrement/lang/en.php" id="plugins/dataTypes/AutoIncrement/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/AutoIncrement/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/AutoIncrement/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/City/City.class.php" id="plugins/dataTypes/City/City.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/City/City.class.php<small style="float: right;padding-right: 10px;">11</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/City/City.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_City</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $processOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $countryRegions</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $citiesByCountryRegion</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>128</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/City/lang/en.php" id="plugins/dataTypes/City/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/City/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/City/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Company/Company.class.php" id="plugins/dataTypes/Company/Company.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Company/Company.class.php<small style="float: right;padding-right: 10px;">14</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Company/Company.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Company</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $hasHelpDialog</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $companyTypes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $numCompanyTypes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $words</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $numWords</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>49</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Company/lang/en.php" id="plugins/dataTypes/Company/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Company/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Company/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Composite/Composite.class.php" id="plugins/dataTypes/Composite/Composite.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Composite/Composite.class.php<small style="float: right;padding-right: 10px;">17</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Composite/Composite.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Composite</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $hasHelpDialog</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $processOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $smarty</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No DocBlock was found for method getExampleColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>70</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Composite/lang/en.php" id="plugins/dataTypes/Composite/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Composite/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Composite/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Constant/Constant.class.php" id="plugins/dataTypes/Constant/Constant.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Constant/Constant.class.php<small style="float: right;padding-right: 10px;">15</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Constant/Constant.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Constant</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $hasHelpDialog</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $processOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No DocBlock was found for method getExampleColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>75</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>82</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Constant/lang/en.php" id="plugins/dataTypes/Constant/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Constant/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Constant/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Country/Country.class.php" id="plugins/dataTypes/Country/Country.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Country/Country.class.php<small style="float: right;padding-right: 10px;">20</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Country/Country.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $countries</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No DocBlock was found for property $numCountries</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No DocBlock was found for property $selectedCountrySlugs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>57</td>
+<td>No DocBlock was found for property $numSelectedCountrySlugs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>58</td>
+<td>No DocBlock was found for property $countryRegionData</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No DocBlock was found for property $numCountryRegionData</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>76</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>94</td>
+<td>Argument $generator is missing from the Docblock of getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>94</td>
+<td>Argument $postdata is missing from the Docblock of getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>94</td>
+<td>Argument $colNum is missing from the Docblock of getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>94</td>
+<td>Argument $numCols is missing from the Docblock of getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>113</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>121</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>128</td>
+<td>Argument $countrySlugs is missing from the Docblock of getCountries()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>162</td>
+<td>No DocBlock was found for method getRegions()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Country/lang/en.php" id="plugins/dataTypes/Country/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Country/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Country/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/DataTypeTemplate/DataTypeTemplate.class.php" id="plugins/dataTypes/DataTypeTemplate/DataTypeTemplate.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/DataTypeTemplate/DataTypeTemplate.class.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/DataTypeTemplate/DataTypeTemplate.class.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Date/Date.class.php" id="plugins/dataTypes/Date/Date.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Date/Date.class.php<small style="float: right;padding-right: 10px;">12</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Date/Date.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Date</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No DocBlock was found for method getExampleColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>79</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>96</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Date/lang/en.php" id="plugins/dataTypes/Date/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Date/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Date/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Email/Email.class.php" id="plugins/dataTypes/Email/Email.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Email/Email.class.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Email/Email.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Email</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $words</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $numWords</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Email/lang/en.php" id="plugins/dataTypes/Email/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Email/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Email/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/GUID/GUID.class.php" id="plugins/dataTypes/GUID/GUID.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/GUID/GUID.class.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/GUID/GUID.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_GUID</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $generatedGUIDs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/GUID/lang/en.php" id="plugins/dataTypes/GUID/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/GUID/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/GUID/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/index.php" id="plugins/dataTypes/index.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/index.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/index.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/LatLng/lang/en.php" id="plugins/dataTypes/LatLng/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/LatLng/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/LatLng/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/LatLng/LatLng.class.php" id="plugins/dataTypes/LatLng/LatLng.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/LatLng/LatLng.class.php<small style="float: right;padding-right: 10px;">16</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/LatLng/LatLng.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_LatLng</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $cachedMath</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>Argument $generator is missing from the Docblock of generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>Argument $generationContextData is missing from the Docblock of generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>49</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>72</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>79</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>No DocBlock was found for method initVars()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/List/lang/en.php" id="plugins/dataTypes/List/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/List/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/List/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/List/List.class.php" id="plugins/dataTypes/List/List.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/List/List.class.php<small style="float: right;padding-right: 10px;">13</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/List/List.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_List</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No DocBlock was found for method getExampleColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>74</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>91</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>98</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Names/lang/en.php" id="plugins/dataTypes/Names/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Names/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Names/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Names/Names.class.php" id="plugins/dataTypes/Names/Names.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Names/Names.class.php<small style="float: right;padding-right: 10px;">25</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Names/Names.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Names</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $hasHelpDialog</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $maleNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $femaleNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $firstNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $lastNames</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $letters</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No short description for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>68</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>76</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>83</td>
+<td>No DocBlock was found for method getExampleColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>105</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>109</td>
+<td>No DocBlock was found for method getNames()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>113</td>
+<td>No DocBlock was found for method getFirstNames()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>117</td>
+<td>No DocBlock was found for method getLastNames()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>158</td>
+<td>No DocBlock was found for method initLastNames()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>175</td>
+<td>No DocBlock was found for method getRandomFirstName()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>230</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/NumberRange/lang/en.php" id="plugins/dataTypes/NumberRange/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/NumberRange/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/NumberRange/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/NumberRange/NumberRange.class.php" id="plugins/dataTypes/NumberRange/NumberRange.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/NumberRange/NumberRange.class.php<small style="float: right;padding-right: 10px;">12</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/NumberRange/NumberRange.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_NumberRange</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>52</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Phone/lang/en.php" id="plugins/dataTypes/Phone/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Phone/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Phone/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Phone/Phone.class.php" id="plugins/dataTypes/Phone/Phone.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Phone/Phone.class.php<small style="float: right;padding-right: 10px;">13</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Phone/Phone.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Phone</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for method getExampleColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/PostalZip/lang/en.php" id="plugins/dataTypes/PostalZip/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/PostalZip/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/PostalZip/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/PostalZip/PostalZip.class.php" id="plugins/dataTypes/PostalZip/PostalZip.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/PostalZip/PostalZip.class.php<small style="float: right;padding-right: 10px;">17</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/PostalZip/PostalZip.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_PostalZip</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $processOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $zipFormats</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>72</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>97</td>
+<td>No DocBlock was found for method initZipFormats()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>110</td>
+<td>No DocBlock was found for method convert()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>122</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Region/lang/en.php" id="plugins/dataTypes/Region/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Region/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Region/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Region/Region.class.php" id="plugins/dataTypes/Region/Region.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Region/Region.class.php<small style="float: right;padding-right: 10px;">18</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Region/Region.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Region</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $processOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $cssFile</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $countryRegionHash</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>Argument $generator is missing from the Docblock of generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>Argument $generationContextData is missing from the Docblock of generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>85</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>109</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>137</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>144</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>151</td>
+<td>No DocBlock was found for method getRandIndex()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/StreetAddress/lang/en.php" id="plugins/dataTypes/StreetAddress/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/StreetAddress/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/StreetAddress/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/StreetAddress/StreetAddress.class.php" id="plugins/dataTypes/StreetAddress/StreetAddress.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/StreetAddress/StreetAddress.class.php<small style="float: right;padding-right: 10px;">11</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/StreetAddress/StreetAddress.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_StreetAddress</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $words</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $validStreetTypes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $numValidStreetTypes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>52</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/TextFixed/lang/en.php" id="plugins/dataTypes/TextFixed/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/TextFixed/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/TextFixed/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/TextFixed/TextFixed.class.php" id="plugins/dataTypes/TextFixed/TextFixed.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/TextFixed/TextFixed.class.php<small style="float: right;padding-right: 10px;">14</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/TextFixed/TextFixed.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_TextFixed</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $words</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/TextRandom/lang/en.php" id="plugins/dataTypes/TextRandom/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/TextRandom/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/TextRandom/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/TextRandom/TextRandom.class.php" id="plugins/dataTypes/TextRandom/TextRandom.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/TextRandom/TextRandom.class.php<small style="float: right;padding-right: 10px;">14</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/TextRandom/TextRandom.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_TextRandom</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $words</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>52</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>66</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Tree/lang/en.php" id="plugins/dataTypes/Tree/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Tree/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Tree/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/Tree/Tree.class.php" id="plugins/dataTypes/Tree/Tree.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/Tree/Tree.class.php<small style="float: right;padding-right: 10px;">13</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/dataTypes/Tree/Tree.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \DataType_Tree</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $dataTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $dataTypeFieldGroup</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $dataTypeFieldGroupOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $processOrder</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $helpDialogWidth</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $openTreeNodes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>59</td>
+<td>No DocBlock was found for method getRowGenerationOptions()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>75</td>
+<td>No DocBlock was found for method getOptionsColumnHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>83</td>
+<td>No DocBlock was found for method getDataTypeMetadata()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>90</td>
+<td>No DocBlock was found for method getHelpDialogInfo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/CSV/CSV.class.php" id="plugins/exportTypes/CSV/CSV.class.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/CSV/CSV.class.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/CSV/CSV.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \CSV</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $exportTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $contentTypeHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $L</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>61</td>
+<td>No DocBlock was found for method getAdditionalSettingsHTML()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/CSV/lang/en.php" id="plugins/exportTypes/CSV/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/CSV/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/CSV/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/Excel.class.php" id="plugins/exportTypes/Excel/Excel.class.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/Excel.class.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/Excel/Excel.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \Excel</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $exportTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $L</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/lang/en.php" id="plugins/exportTypes/Excel/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/Excel/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/output.php" id="plugins/exportTypes/Excel/output.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/output.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/Excel/output.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/HTML/HTML.class.php" id="plugins/exportTypes/HTML/HTML.class.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/HTML/HTML.class.php<small style="float: right;padding-right: 10px;">13</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/HTML/HTML.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \HTML</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $exportTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $cssFile</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $contentTypeHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $codeMirrorModes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No short description for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>Argument $generator is missing from the Docblock of generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>81</td>
+<td>No DocBlock was found for method getAdditionalSettingsHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>243</td>
+<td>No DocBlock was found for method generateExportHeader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>263</td>
+<td>No DocBlock was found for method generateExportFooter()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/HTML/lang/en.php" id="plugins/exportTypes/HTML/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/HTML/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/HTML/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/JSON/JSON.class.php" id="plugins/exportTypes/JSON/JSON.class.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/JSON/JSON.class.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/JSON/JSON.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \JSON</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $exportTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $codeMirrorModes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $contentTypeHeader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $L</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>77</td>
+<td>No DocBlock was found for method getAdditionalSettingsHTML()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/JSON/lang/en.php" id="plugins/exportTypes/JSON/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/JSON/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/JSON/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/ProgrammingLanguage/ProgrammingLanguage.class.php" id="plugins/exportTypes/ProgrammingLanguage/ProgrammingLanguage.class.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/ProgrammingLanguage/ProgrammingLanguage.class.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/ProgrammingLanguage/ProgrammingLanguage.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \ProgrammingLanguage</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $exportTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $codeMirrorModes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $L</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No DocBlock was found for method getAdditionalSettingsHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>58</td>
+<td>No DocBlock was found for method generatePHP()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/SQL/lang/en.php" id="plugins/exportTypes/SQL/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/SQL/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/SQL/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/SQL/SQL.class.php" id="plugins/exportTypes/SQL/SQL.class.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/SQL/SQL.class.php<small style="float: right;padding-right: 10px;">20</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/SQL/SQL.class.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $exportTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $codeMirrorModes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $L</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $template</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $postData</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $exportTarget</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $isFirstBatch</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for property $isLastBatch</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for property $includeDropTable</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for property $createTable</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for property $databaseType</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for property $tableName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for property $backquote</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for property $sqlStatementType</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $primaryKey</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for method generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>85</td>
+<td>No DocBlock was found for method getAdditionalSettingsHTML()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>321</td>
+<td>No DocBlock was found for method generateCreateTableSQL_SQLite()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/XML/lang/en.php" id="plugins/exportTypes/XML/lang/en.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/XML/lang/en.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/XML/lang/en.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/XML/XML.class.php" id="plugins/exportTypes/XML/XML.class.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/XML/XML.class.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file plugins/exportTypes/XML/XML.class.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>3</td>
+<td>No short description for class \XML</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for property $exportTypeName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for property $jsModules</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>10</td>
+<td>No DocBlock was found for property $codeMirrorModes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $L</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>Argument $generator is missing from the Docblock of generate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No DocBlock was found for method getAdditionalSettingsHTML()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2012-11-26T19:46:19-08:00.<br></footer></div>
+</div>
+</body>
+</html>

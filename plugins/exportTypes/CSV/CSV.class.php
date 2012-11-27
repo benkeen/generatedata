@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package ExportTypes
+ */
+
 
 class CSV extends ExportTypePlugin {
 	protected $exportTypeName = "CSV";

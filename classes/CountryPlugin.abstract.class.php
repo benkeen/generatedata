@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
+ * @abstract
+ */
 abstract class CountryPlugin {
 	protected $countryName;
 	protected $countrySlug;

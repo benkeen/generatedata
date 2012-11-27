@@ -1,0 +1,12 @@
+{
+    "name": "phpdocumentor/template-responsive",
+    "type": "phpdocumentor-template",
+    "description": "Responsive modern template for phpDocumentor",
+    "keywords": ["documentation", "template", "phpdoc"],
+    "homepage": "http://www.phpdoc.org",
+    "license": "MIT",
+    "require": {
+        "ext-xsl": "*",
+        "phpdocumentor/unified-asset-installer": "1.*"
+    }
+}

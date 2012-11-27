@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
+ */
 class Database {
 	private $link;
 
@@ -26,6 +29,7 @@ class Database {
 
 	/**
 	 * Disconnects from a database.
+	 * @access public
 	 */
 	public function disconnect($link) {
 		@mysql_close($link);
@@ -34,6 +38,7 @@ class Database {
 
 	/**
 	 * Checks to see if the database information provided is valid or not.
+	 * @access public
 	 */
 	public static function testDbSettings($dbHostname, $dbName, $dbUsername, $dbPassword) {
 		$dbConnectionError = "";

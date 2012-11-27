@@ -4,6 +4,8 @@
  * The ExportTypePlugin.abstract.class.php file defines the abstract class that all Export Types
  * need to extend in order to be registered within the system. This class contains a number of
  * helper methods for interacting with Export Types as a whole. It's used by the Core only.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
 class ExportTypePluginHelper {
 
@@ -168,6 +170,9 @@ class ExportTypePluginHelper {
 				}
 			}
 		}
+
+		// remove duplicated
+		$files = array_unique($files);
 
 		$includes = "";
 		foreach ($files as $file) {

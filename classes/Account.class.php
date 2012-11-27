@@ -1,15 +1,16 @@
 <?php
 
 
+/**
+ * @package Core
+ * @author Ben Keen <ben.keen@gmail.com>
+ */
 class Account {
 	private $accountId;
 
 
 	// TODO, obviously!
 	public function __construct($accountId) {
-		//global $g_table_prefix;
-//	  $link = db_connect();
-
 		$query = mysql_query("
 			SELECT *
 			FROM   {$g_table_prefix}user_accounts
@@ -26,8 +27,7 @@ class Account {
 		db_disconnect($link);
 
 		$user_info["num_forms_saved"] = $form_count[0];
-
-//	  return $user_info;
+//		return $user_info;
 	}
 
 
@@ -45,8 +45,6 @@ class Account {
 	 * @return string
 	 */
 	public function saveConfiguration($form_name, $form_content) {
-//	  global $g_table_prefix, $L;
-
 		// find out if there's already a form with this name for this user
 		$count_query = mysql_query("
 			SELECT count(*)

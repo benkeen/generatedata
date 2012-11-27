@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
+
 class DataType_List extends DataTypePlugin {
 	protected $dataTypeName = "Custom List";
 	protected $dataTypeFieldGroup = "other";

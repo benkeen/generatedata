@@ -10,6 +10,9 @@
  *   larger list (hardcoded in the class below). The benefits to using the country-specific data mapping is that
  *   it allows the script to intelligently generate rows of data where the City, Region and Country fields are
  *   in synch (i.e. no cities that don't belong to a particular region, etc).
+ *
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package DataTypes
  */
 class DataType_Country extends DataTypePlugin {
 	protected $dataTypeName = "Country";

@@ -9,6 +9,8 @@
  *      code), this stores the fields that are missing in $data.
  *   3. There's a custom getFormattedError function which generates a simple hash of the Exception information in a
  *      format easily convertable to JSON, along with a custom generate human-friendly error string.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
 class GDException extends Exception {
 	private $data;

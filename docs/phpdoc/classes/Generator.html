@@ -1,0 +1,421 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Generator</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">651</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">10</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
+        </span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_generate" title="generate :: Calls the appropriate Export Type's generation function to actually generate the random data."><span class="description">Calls the appropriate Export Type's generation function to actually generate the random data.</span><pre>generate()</pre></a></li>
+<li class="method public "><a href="#method_generateExportData" title="generateExportData :: This is a helper function for use by the Export Types."><span class="description">This is a helper function for use by the Export Types.</span><pre>generateExportData()</pre></a></li>
+<li class="method public "><a href="#method_getBatchNum" title="getBatchNum :: "><span class="description">getBatchNum()
+        </span><pre>getBatchNum()</pre></a></li>
+<li class="method public "><a href="#method_getBatchSize" title="getBatchSize :: "><span class="description">getBatchSize()
+        </span><pre>getBatchSize()</pre></a></li>
+<li class="method public "><a href="#method_getCountries" title="getCountries :: "><span class="description">getCountries()
+        </span><pre>getCountries()</pre></a></li>
+<li class="method public "><a href="#method_getCurrentBatchFirstRow" title="getCurrentBatchFirstRow :: "><span class="description">getCurrentBatchFirstRow()
+        </span><pre>getCurrentBatchFirstRow()</pre></a></li>
+<li class="method public "><a href="#method_getCurrentBatchLastRow" title="getCurrentBatchLastRow :: "><span class="description">getCurrentBatchLastRow()
+        </span><pre>getCurrentBatchLastRow()</pre></a></li>
+<li class="method public "><a href="#method_getDataTypes" title="getDataTypes :: "><span class="description">getDataTypes()
+        </span><pre>getDataTypes()</pre></a></li>
+<li class="method public "><a href="#method_getExportTarget" title='getExportTarget :: Returns a string representing the target / location of the data generation is happening:
+		"inPage"
+		"newTab"
+		"promptDownload"'><span class="description">Returns a string representing the target / location of the data generation is happening:
+		"inPage"
+		"newTab"
+		"promptDownload"</span><pre>getExportTarget()</pre></a></li>
+<li class="method public "><a href="#method_getExportType" title="getExportType :: "><span class="description">getExportType()
+        </span><pre>getExportType()</pre></a></li>
+<li class="method public "><a href="#method_getNumResults" title="getNumResults :: "><span class="description">getNumResults()
+        </span><pre>getNumResults()</pre></a></li>
+<li class="method public "><a href="#method_getPostData" title="getPostData :: "><span class="description">getPostData()
+        </span><pre>getPostData()</pre></a></li>
+<li class="method public "><a href="#method_getTemplateByDisplayOrder" title="getTemplateByDisplayOrder :: this-&gt;template contains the entire data set to be generated by the Export Type, grouped
+by the priority in which they should be generated."><span class="description">this-&gt;template contains the entire data set to be generated by the Export Type, grouped
+by the priority in which they should be generated.</span><pre>getTemplateByDisplayOrder()</pre></a></li>
+<li class="method public "><a href="#method_getTemplateByProcessOrder" title="getTemplateByProcessOrder :: "><span class="description">getTemplateByProcessOrder()
+        </span><pre>getTemplateByProcessOrder()</pre></a></li>
+<li class="method public "><a href="#method_isFirstBatch" title="isFirstBatch :: "><span class="description">isFirstBatch()
+        </span><pre>isFirstBatch()</pre></a></li>
+<li class="method public "><a href="#method_isLastBatch" title="isLastBatch :: "><span class="description">isLastBatch()
+        </span><pre>isLastBatch()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private "><a href="#method_createDataSetTemplate" title='createDataSetTemplate :: This function creates a "template" of the data set to be generated by passing off work to the
+various Data Types.'><span class="description">This function creates a "template" of the data set to be generated by passing off work to the
+various Data Types.</span><pre>createDataSetTemplate()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property_batchNum" title="$batchNum :: "><span class="description"></span><pre>$batchNum</pre></a></li>
+<li class="property private "><a href="#property_batchSize" title="$batchSize :: "><span class="description"></span><pre>$batchSize</pre></a></li>
+<li class="property private "><a href="#property_countries" title="$countries :: "><span class="description"></span><pre>$countries</pre></a></li>
+<li class="property private "><a href="#property_currentBatchFirstRow" title="$currentBatchFirstRow :: "><span class="description"></span><pre>$currentBatchFirstRow</pre></a></li>
+<li class="property private "><a href="#property_currentBatchLastRow" title="$currentBatchLastRow :: "><span class="description"></span><pre>$currentBatchLastRow</pre></a></li>
+<li class="property private "><a href="#property_dataTypes" title="$dataTypes :: "><span class="description"></span><pre>$dataTypes</pre></a></li>
+<li class="property private "><a href="#property_exportTarget" title="$exportTarget :: "><span class="description"></span><pre>$exportTarget</pre></a></li>
+<li class="property private "><a href="#property_exportType" title="$exportType :: "><span class="description"></span><pre>$exportType</pre></a></li>
+<li class="property private "><a href="#property_isFirstBatch" title="$isFirstBatch :: "><span class="description"></span><pre>$isFirstBatch</pre></a></li>
+<li class="property private "><a href="#property_isLastBatch" title="$isLastBatch :: "><span class="description"></span><pre>$isLastBatch</pre></a></li>
+<li class="property private "><a href="#property_numResults" title="$numResults :: "><span class="description"></span><pre>$numResults</pre></a></li>
+<li class="property private "><a href="#property_postData" title="$postData :: "><span class="description"></span><pre>$postData</pre></a></li>
+<li class="property private "><a href="#property_template" title="$template :: "><span class="description"></span><pre>$template</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\Generator"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Generator.html">Generator</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Our generator class.</p>
+<div class="details">
+<div class="long_description"><p>This does the work of interpreting the form data, passing the work off to the various
+plugins and piecing the generateda data for returning to the client.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="mailto:ben.keen@gmail.com">Ben Keen</a></td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Core.html">Core</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>__construct()
+        </h2>
+<pre>__construct($postData) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$postData</h4></div>
+</div></div>
+</div>
+<a id="method_generate"></a><div class="element clickable method public method_generate" data-toggle="collapse" data-target=".method_generate .collapse">
+<h2>Calls the appropriate Export Type's generation function to actually generate the random data.</h2>
+<pre>generate() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_generateExportData"></a><div class="element clickable method public method_generateExportData" data-toggle="collapse" data-target=".method_generateExportData .collapse">
+<h2>This is a helper function for use by the Export Types.</h2>
+<pre>generateExportData() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It sifts through all the data and returns a hash containing
+the information most likely to be needed for generation, namely:
+      array(
+      "isFirstBatch" => (boolean),
+      "isLastBatch" => (boolean),
+      "colData" => ordered array of the column names,
+      "rowData" => an array of arrays. Each top level array
+   );</p>
+
+<p>Using this function is completely optional - it's just provided for convenience.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getBatchNum"></a><div class="element clickable method public method_getBatchNum" data-toggle="collapse" data-target=".method_getBatchNum .collapse">
+<h2>getBatchNum()
+        </h2>
+<pre>getBatchNum() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getBatchSize"></a><div class="element clickable method public method_getBatchSize" data-toggle="collapse" data-target=".method_getBatchSize .collapse">
+<h2>getBatchSize()
+        </h2>
+<pre>getBatchSize() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getCountries"></a><div class="element clickable method public method_getCountries" data-toggle="collapse" data-target=".method_getCountries .collapse">
+<h2>getCountries()
+        </h2>
+<pre>getCountries() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getCurrentBatchFirstRow"></a><div class="element clickable method public method_getCurrentBatchFirstRow" data-toggle="collapse" data-target=".method_getCurrentBatchFirstRow .collapse">
+<h2>getCurrentBatchFirstRow()
+        </h2>
+<pre>getCurrentBatchFirstRow() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getCurrentBatchLastRow"></a><div class="element clickable method public method_getCurrentBatchLastRow" data-toggle="collapse" data-target=".method_getCurrentBatchLastRow .collapse">
+<h2>getCurrentBatchLastRow()
+        </h2>
+<pre>getCurrentBatchLastRow() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getDataTypes"></a><div class="element clickable method public method_getDataTypes" data-toggle="collapse" data-target=".method_getDataTypes .collapse">
+<h2>getDataTypes()
+        </h2>
+<pre>getDataTypes() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getExportTarget"></a><div class="element clickable method public method_getExportTarget" data-toggle="collapse" data-target=".method_getExportTarget .collapse">
+<h2>Returns a string representing the target / location of the data generation is happening:
+		"inPage"
+		"newTab"
+		"promptDownload"</h2>
+<pre>getExportTarget() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getExportType"></a><div class="element clickable method public method_getExportType" data-toggle="collapse" data-target=".method_getExportType .collapse">
+<h2>getExportType()
+        </h2>
+<pre>getExportType() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getNumResults"></a><div class="element clickable method public method_getNumResults" data-toggle="collapse" data-target=".method_getNumResults .collapse">
+<h2>getNumResults()
+        </h2>
+<pre>getNumResults() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getPostData"></a><div class="element clickable method public method_getPostData" data-toggle="collapse" data-target=".method_getPostData .collapse">
+<h2>getPostData()
+        </h2>
+<pre>getPostData() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getTemplateByDisplayOrder"></a><div class="element clickable method public method_getTemplateByDisplayOrder" data-toggle="collapse" data-target=".method_getTemplateByDisplayOrder .collapse">
+<h2>this-&gt;template contains the entire data set to be generated by the Export Type, grouped
+by the priority in which they should be generated.</h2>
+<pre>getTemplateByDisplayOrder() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>This flattens the info and returns a</p>
+
+<p>This is generally used for producing the list of headings in the expected order.</p></div></div></div>
+</div>
+<a id="method_getTemplateByProcessOrder"></a><div class="element clickable method public method_getTemplateByProcessOrder" data-toggle="collapse" data-target=".method_getTemplateByProcessOrder .collapse">
+<h2>getTemplateByProcessOrder()
+        </h2>
+<pre>getTemplateByProcessOrder() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_isFirstBatch"></a><div class="element clickable method public method_isFirstBatch" data-toggle="collapse" data-target=".method_isFirstBatch .collapse">
+<h2>isFirstBatch()
+        </h2>
+<pre>isFirstBatch() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_isLastBatch"></a><div class="element clickable method public method_isLastBatch" data-toggle="collapse" data-target=".method_isLastBatch .collapse">
+<h2>isLastBatch()
+        </h2>
+<pre>isLastBatch() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_createDataSetTemplate"></a><div class="element clickable method private method_createDataSetTemplate" data-toggle="collapse" data-target=".method_createDataSetTemplate .collapse">
+<h2>This function creates a "template" of the data set to be generated by passing off work to the
+various Data Types.</h2>
+<pre>createDataSetTemplate(array $hash) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The "template" that's returned is an ordered array of hashes, each hash being
+of the following structure:</p>
+
+<p>array(
+     "title" => "", // whatever string is being used for the column title / node name / etc.
+     "type"  => "", // the namespace (folder name) of the Data Type
+     "options" => "" // whatever custom options have been specified for this Data Type
+     "has_dependencies" => ""  // boolean true / false. This is for Data Types whose generated content
+                               // (may) depend on values in other fields in the row, e.g. "Region",
+                               // which would need to know the randomly generated country to generate
+                               // an appropriate value
+  )</p>
+
+<p>The first two values are found right in the $_POST values, but the third and fourth are determined by
+the Data Type itself.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$hash</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_batchNum"> </a><div class="element clickable property private property_batchNum" data-toggle="collapse" data-target=".property_batchNum .collapse">
+<h2></h2>
+<pre>$batchNum </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_batchSize"> </a><div class="element clickable property private property_batchSize" data-toggle="collapse" data-target=".property_batchSize .collapse">
+<h2></h2>
+<pre>$batchSize </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_countries"> </a><div class="element clickable property private property_countries" data-toggle="collapse" data-target=".property_countries .collapse">
+<h2></h2>
+<pre>$countries </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_currentBatchFirstRow"> </a><div class="element clickable property private property_currentBatchFirstRow" data-toggle="collapse" data-target=".property_currentBatchFirstRow .collapse">
+<h2></h2>
+<pre>$currentBatchFirstRow </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_currentBatchLastRow"> </a><div class="element clickable property private property_currentBatchLastRow" data-toggle="collapse" data-target=".property_currentBatchLastRow .collapse">
+<h2></h2>
+<pre>$currentBatchLastRow </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_dataTypes"> </a><div class="element clickable property private property_dataTypes" data-toggle="collapse" data-target=".property_dataTypes .collapse">
+<h2></h2>
+<pre>$dataTypes </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_exportTarget"> </a><div class="element clickable property private property_exportTarget" data-toggle="collapse" data-target=".property_exportTarget .collapse">
+<h2></h2>
+<pre>$exportTarget </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_exportType"> </a><div class="element clickable property private property_exportType" data-toggle="collapse" data-target=".property_exportType .collapse">
+<h2></h2>
+<pre>$exportType </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_isFirstBatch"> </a><div class="element clickable property private property_isFirstBatch" data-toggle="collapse" data-target=".property_isFirstBatch .collapse">
+<h2></h2>
+<pre>$isFirstBatch </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_isLastBatch"> </a><div class="element clickable property private property_isLastBatch" data-toggle="collapse" data-target=".property_isLastBatch .collapse">
+<h2></h2>
+<pre>$isLastBatch </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_numResults"> </a><div class="element clickable property private property_numResults" data-toggle="collapse" data-target=".property_numResults .collapse">
+<h2></h2>
+<pre>$numResults </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_postData"> </a><div class="element clickable property private property_postData" data-toggle="collapse" data-target=".property_postData .collapse">
+<h2></h2>
+<pre>$postData </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_template"> </a><div class="element clickable property private property_template" data-toggle="collapse" data-target=".property_template .collapse">
+<h2></h2>
+<pre>$template </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2012-11-26T19:46:19-08:00.<br></footer></div>
+</div>
+</body>
+</html>

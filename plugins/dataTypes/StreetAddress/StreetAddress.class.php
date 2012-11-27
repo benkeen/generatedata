@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
 
 class DataType_StreetAddress extends DataTypePlugin {
 	protected $dataTypeName = "Street Address";

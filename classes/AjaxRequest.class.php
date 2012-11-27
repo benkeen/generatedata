@@ -3,7 +3,9 @@
 
 /**
  * A generic class for handling all of the Core's Ajax requests. All requests are identified
- * through a unique "action" string, and (usually) arbitrary other info passed via POST
+ * through a unique "action" string, and (usually) arbitrary other info passed via POST.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
 class AjaxRequest {
 	private $action;

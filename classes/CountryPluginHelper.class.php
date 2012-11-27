@@ -1,10 +1,12 @@
 <?php
 
+
 /**
  * A helper class used by the Core script for instantiating and working with the Country plugins. None
  * of these functions are useful to plugins directly.
+ * @author Ben Keen <ben.keen@gmail.com>
+ * @package Core
  */
-
 class CountryPluginHelper {
 
 	/**

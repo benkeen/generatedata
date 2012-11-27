@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @package DataTypes
+ */
+
 class DataType_Phone extends DataTypePlugin {
 
 	protected $dataTypeName = "Phone / Fax";

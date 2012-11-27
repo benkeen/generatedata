@@ -29,9 +29,20 @@ define([
 			return;
 		}
 
-//		msg.editor.setOption("mode", "javascript");
-//		var wrapLines = ($("#etJSON_stripWhitespace")[0].checked);
-//		msg.editor.setOption("lineWrapping", wrapLines);
+		switch ($("#etProgrammingLanguage_language")[0].value) {
+			case "JavaScript":
+				msg.editor.setOption("mode", "javascript");
+				break;
+			case "Perl":
+				msg.editor.setOption("mode", "perl");
+				break;
+			case "PHP":
+				msg.editor.setOption("mode", "php");
+				break;
+			case "Ruby":
+				msg.editor.setOption("mode", "ruby");
+				break;
+		}
 	}
 
 	var _init = function() {
