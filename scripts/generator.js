@@ -1,10 +1,11 @@
+/*global $:false,CodeMirror:false,console:false */
 define([
 	"manager",
 	"pluginManager",
 	"utils",
 	"constants",
 	"lang",
-	"jquery-ui",
+	"jquery-ui"
 ], function(manager, pluginManager, utils, C, L) {
 
 	"use strict";
@@ -53,7 +54,7 @@ define([
 	var _run = function() {
 		$("#gdCountries").chosen().change(_updateCountryChoice);
 		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
-		$("#gdBackButton").on("click", function() { return _showSubtab(1); })
+		$("#gdBackButton").on("click", function() { return _showSubtab(1); });
 		$(".gdSectionHelpTip li").bind("mouseover", function() { $(this).addClass('ui-state-hover'); });
 		$(".gdSectionHelpTip li").bind("mouseout", function() { $(this).removeClass('ui-state-hover'); });
 		$(".gdSectionHelpTip").bind("click", _showSectionHelpTip);
@@ -111,7 +112,7 @@ define([
 		_updateCountryChoice();
 		_addRows(3);
 		_initInPageCodeMirror();
-	}
+	};
 
 	var _showSubtab = function(tab) {
 		if (tab == 1) {
@@ -122,11 +123,11 @@ define([
 			$("#gdGenerateSubtab2").show();
 		}
 		return false;
-	}
+	};
 
 	var _addRows = function(rows) {
-		var rows = rows.toString();
-		if (rows.match(/\D/) || rows == 0 || rows == "") {
+		rows = rows.toString();
+		if (rows.match(/\D/) || rows === 0 || rows === "") {
 			utils.clearValidationErrors($("#gdTab1Content"));
 			utils.addValidationErrors({ els: [$("#gdNumRowsToAdd")], error: L.no_num_rows });
 			utils.displayValidationErrors("#gdMessages");
@@ -163,7 +164,7 @@ define([
 		$(".gdDeleteRows:checked").each(function() {
 			var row = $(this).closest(".gdTableRow");
 			var parentRowID = row.attr("id");
-			if (parentRowID != null) {
+			if (parentRowID !== null) {
 				var rowID = parseInt(parentRowID.replace(/row_/g, ""), 10);
 				row.remove();
 				rowIDs.push(rowID);
@@ -260,7 +261,7 @@ define([
 	var _initExportTypeTab = function() {
 		var newExportType = $("#gdExportTypeTabs>ul>li.selected").data("exportType");
 		_selectExportTypeTab(newExportType);
-	}
+	};
 
 	/**
 	 * Called whenever the user changes the result type (XML, HTML, CSV etc). This function publishes
@@ -273,7 +274,7 @@ define([
 			return;
 		}
 
-		if (_currExportType != null) {
+		if (_currExportType !== null) {
 			$("#gdExportTypeTabs>ul>li").removeClass("selected");
 			$("#gdExportType_" + newExportType).addClass("selected");
 		}
@@ -303,7 +304,7 @@ define([
 		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0 && _showExportTypeSettings) {
 			$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
 		}
-		if (_currExportType == null) {
+		if (_currExportType === null) {
 			$("#gdExportTypeAdditionalSettings_" + newExportType).show();
 		} else {
 			$("#gdExportTypeAdditionalSettings_" + newExportType).show(
@@ -316,7 +317,7 @@ define([
 				}
 			);
 		}
-	}
+	};
 
 	var _hideExportTypeSettingsSection = function() {
 		$("#gdExportTypeAdditionalSettings_" + _currExportType).hide(
@@ -328,12 +329,12 @@ define([
 				$("#gdShowSettingsLink a").html("show data format options");
 			}
 		);
-	}
+	};
 
 	var _publishExampleChange = function(e) {
 		var select = e.target;
 		var rowElement = $(select).closest(".gdTableRow");
-		var rowID = parseInt($(rowElement).attr("id").replace(/^row_/, ""));
+		var rowID = parseInt($(rowElement).attr("id").replace(/^row_/, ""), 10);
 		var dataTypeFolder = $(rowElement).find(".gdDataType").val();
 
 		manager.publish({
@@ -342,8 +343,7 @@ define([
 			rowID: rowID,
 			value: select.value
 		});
-	}
-
+	};
 
 	/**
 	 * Called whenever the user focuses on a Row Type. This makes a note of the last selected
@@ -351,7 +351,7 @@ define([
 	 */
 	var _onFocusDataType = function(e) {
 		_lastSelectedDataType = e.target.value;
-	}
+	};
 
 	/**
 	 * Called when the user changes the Data Type for a particular row.
@@ -360,17 +360,17 @@ define([
 		if (e.target.value != _lastSelectedDataType) {
 			_publishDataTypeChange(e.target);
 		}
-	}
+	};
 
 	var _publishDataTypeChange = function(el) {
-		var rowID = parseInt($(el).attr("id").replace(/^gdDataType_/, ""));
+		var rowID = parseInt($(el).attr("id").replace(/^gdDataType_/, ""), 10);
 		var dataTypeModuleID = el.value;
 
 		// make a note of the last value
 		_lastSelectedDataType = dataTypeModuleID;
 
 		// if the user just selected the empty value ("Please Select"), clear everything
-		if (dataTypeModuleID == "") {
+		if (dataTypeModuleID === "") {
 			$('#gdColExamples_' + rowID + ',#gdColOptions_' + rowID + ',#gdColHelp_' + rowID).html("");
 			return;
 		}
@@ -384,7 +384,7 @@ define([
 				rowID: rowID,
 				dataTypeModuleID: dataTypeModuleID
 			});
-		}
+		};
 
 		// our two "is ready" tests, which depend on the content for the current Data Type
 		var noOptionsTest = function() {
@@ -406,7 +406,7 @@ define([
 				var optionsHTML = null;
 
 				var dataTypeExampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html();
-				if (dataTypeExampleHTML != "") {
+				if (dataTypeExampleHTML !== "") {
 					exampleHTML = dataTypeExampleHTML.replace(/%ROW%/g, rowID);
 				} else {
 					exampleHTML = "&nbsp;" + L.no_examples_available;
@@ -414,14 +414,14 @@ define([
 				$("#gdColExamples_" + rowID).html(exampleHTML);
 
 				var dataTypeOptionHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html();
-				if (dataTypeOptionHTML != "") {
+				if (dataTypeOptionHTML !== "") {
 					optionsHTML = dataTypeOptionHTML.replace(/%ROW%/g, rowID);
 				} else {
 					optionsHTML = L.no_options_available;
 				}
 				$('#gdColOptions_' + rowID).html(optionsHTML);
 
-				if ($("#gdDataTypeHelp_" + dataTypeModuleID).html() != "") {
+				if ($("#gdDataTypeHelp_" + dataTypeModuleID).html() !== "") {
 					$('#gdColHelp_' + rowID).html($("#gdHelpIcon").html().replace(/%ROW%/g, rowID));
 				} else {
 					$('#gdColHelp_' + rowID).html(" ");
@@ -431,8 +431,7 @@ define([
 		]);
 
 		utils.processQueue();
-	}
-
+	};
 
 	var _showHelpDialog = function(e) {
 		var row = $(e.target).closest(".gdTableRow");
@@ -472,7 +471,7 @@ define([
 			type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN,
 			rowElement: row
 		});
-	}
+	};
 
 
 	var _getRowOrder = function() {
@@ -495,7 +494,7 @@ define([
 		utils.clearValidationErrors($("#gdTab1Content"));
 
 		// check the users specified a numeric value for the number of results
-		if (_numRowsToGenerate.match(/\D/) || _numRowsToGenerate == 0 || _numRowsToGenerate == "") {
+		if (_numRowsToGenerate.match(/\D/) || _numRowsToGenerate === 0 || _numRowsToGenerate === "") {
 			utils.addValidationErrors({ el: $("#gdNumRowsToGenerate"), error: L.invalid_num_results });
 		}
 
@@ -531,7 +530,7 @@ define([
 			for (var i=0; i<validRowIDs.length; i++) {
 				var currRowID = validRowIDs[i];
 				var currTitle = $("#gdTitle_" + currRowID);
-				if ($.trim(currTitle.val()) == "") {
+				if ($.trim(currTitle.val()) === "") {
 					rowsMissingTitleEls.push(currTitle[0]);
 				}
 			}
@@ -614,7 +613,7 @@ define([
 		_generateInPageData = data;
 		_generateInPageContent = "";
 		_generateInPageBatch();
-	}
+	};
 
 	var _generateInPageBatch = function() {
 		var data = _generateInPageData + "&gdCurrentBatchNum=" + _generateInPageBatchNum;
@@ -628,7 +627,7 @@ define([
 				console.log("error response: ", response);
 			}
 		});
-	}
+	};
 
 	var _generateInPageBatchResponse = function(response) {
 		if (response.success) {
@@ -654,21 +653,21 @@ define([
 		} else {
 
 		}
-	}
+	};
 
 	var _generateNewWindow = function() {
 		$("#gdData").attr({
 			"target": "blank",
 			"action": "generate.php"
 		});
-	}
+	};
 
 	var _generatePromptDownload = function() {
 		$("#gdData").attr({
 			"target": "blank",
 			"action": "generate.php"
 		});
-	}
+	};
 
 	var _resetPluginsDialog = function() {
 		$("#gdPluginInstallation").dialog({
@@ -682,27 +681,27 @@ define([
 					errorHandler: null,
 					onCompleteHandler: function() {
 						$("#gdPluginInstallation").dialog("option", "buttons", [
-						    {
-						    	text: "Refresh Page",
-						    	click: function() {
-						    		window.location.reload(true); // window.location.replace("index.php?message=plugins_reset#t3");
-						    	}
-						    }
+							{
+								text: "Refresh Page",
+								click: function() {
+									window.location.reload(true); // window.location.replace("index.php?message=plugins_reset#t3");
+								}
+							}
 						]);
 					}
 				});
 			},
 			buttons: [
-			    {
-			    	text: "Close",
-			    	click: function() {
-			    		$(this).dialog("close");
-			    	}
-			    }
+				{
+					text: "Close",
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
 			]
 		});
 		return false;
-	}
+	};
 
 
 	// utils.updateMessageBlock($("#settingsTabMessage"), "error");
@@ -751,7 +750,7 @@ define([
 			width:     500
 		});
 		myDialog.dialog("open");
-	}
+	};
 
 
 	var _changeTextSize = function(e) {
@@ -760,7 +759,7 @@ define([
 		$(e.target).addClass("selected");
 		$("#gdGenerateSubtab2 .CodeMirror").removeClass("CodeMirror_small CodeMirror_medium CodeMirror_large").addClass("CodeMirror_" + size);
 		_codeMirror.refresh();
-	}
+	};
 
 	/**
 	 * Called on page load. We always instantiate the codemirror object on the generate in-page. This object is
@@ -773,7 +772,7 @@ define([
 			lineNumbers: true
 		});
 		$(".CodeMirror").addClass("CodeMirror_medium");
-	}
+	};
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.CORE, {
@@ -819,7 +818,7 @@ define([
 			// should
 			return false;
 		}
-	}
+	};
 
 	return obj;
 });

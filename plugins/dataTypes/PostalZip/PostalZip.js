@@ -1,10 +1,11 @@
-"use strict";
-
+/*global $:false*/
 define([
 	"manager",
 	"constants",
 	"lang"
 ], function(manager, C, L) {
+
+	"use strict";
 
 	var MODULE_ID = "data-type-PostalZip";
 	var LANG = L.dataTypePlugins.PostalZip;
@@ -13,7 +14,7 @@ define([
 	var _init = function() {
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
-	}
+	};
 
 	var _countryChange = function(msg) {
 		var shownClassesSelectors = [];
@@ -23,11 +24,11 @@ define([
 		var shownClassesSelector = shownClassesSelectors.join(",");
 		$(".dtCountry").hide();
 		$(shownClassesSelector).show();
-	}
+	};
 
 	var _validate = function() {
 
-	}
+	};
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {

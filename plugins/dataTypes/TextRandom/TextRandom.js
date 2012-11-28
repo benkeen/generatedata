@@ -1,3 +1,4 @@
+/*global $:false*/
 define([
 	"manager",
 	"constants",
@@ -23,12 +24,12 @@ define([
 		for (var i=0; i<rows.length; i++) {
 			var numWordsMin = $.trim($("#dtNumWordsMin_" + rows[i]).val());
 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-			if (numWordsMin == "") {
+			if (numWordsMin === "") {
 				visibleProblemRows.push(visibleRowNum);
 				problemFields.push($("#dtNumWordsMin_" + rows[i]));
 			}
 			var numWordsMax = $.trim($("#dtNumWordsMax_" + rows[i]).val());
-			if (numWordsMax == "") {
+			if (numWordsMax === "") {
 				visibleProblemRows.push(visibleRowNum);
 				problemFields.push($("#dtNumWordsMax_" + rows[i]));
 			}

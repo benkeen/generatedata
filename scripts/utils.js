@@ -1,9 +1,10 @@
+/*global $:false*/
 define([
 	"manager",
 	"constants",
 	"lang",
 	"jquery-ui",
-	"jquery-json",
+	"jquery-json"
 ], function(manager, C, L) {
 
 	"use strict";
@@ -57,7 +58,7 @@ define([
 		// user to let them know they're going to lose any changes unless they do it manually
 		changeLanguage: function() {
 			var lang_file = $("#gdSelectLanguage").val();
-			if (lang_file != "") {
+			if (lang_file !== "") {
 				window.location = "?lang=" + lang_file + "#t" + _currentTab;
 			}
 		},
@@ -120,7 +121,7 @@ define([
 				}
 
 				// style all offending fields and focus on the first one with a problem
-				if (_errors[i].els != null) {
+				if (_errors[i].els !== null) {
 					for (var j=0; j<_errors[i].els.length; j++) {
 						if (!hasFocus) {
 							$(_errors[i].els[j]).focus();
@@ -187,9 +188,9 @@ define([
 
 			// if this code hasn't begun being executed, start 'er up
 			if (!_domChangeQueue[0][2]) {
-				setTimeout(function() { _domChangeQueue[0][0]() }, 10);
+				setTimeout(function() { _domChangeQueue[0][0](); }, 10);
 				var currObj = this;
-				var timeout_id = setInterval(function() { currObj.checkQueueItemComplete() }, 25);
+				var timeout_id = setInterval(function() { currObj.checkQueueItemComplete(); }, 25);
 				_domChangeQueue[0][2] = timeout_id;
 			}
 		},
@@ -201,6 +202,5 @@ define([
 				this.processQueue();
 			}
 		}
-	}
-
+	};
 });

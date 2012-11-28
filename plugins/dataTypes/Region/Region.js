@@ -1,3 +1,4 @@
+/*global $:false*/
 define([
 	"manager",
 	"constants",
@@ -22,7 +23,7 @@ define([
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 		$("#gdTableRows").on("click", ".dtRegionCountry", _toggleCountryRegion);
-	}
+	};
 
 	/**
 	 * This is called any time the country list changes - including on load. It ensures only the appropriate
@@ -36,11 +37,11 @@ define([
 		var shownClassesSelector = shownClassesSelectors.join(",");
 		$(".dtRegionCountry").hide();
 		$(shownClassesSelector).show();
-	}
+	};
 
 	var _validate = function() {
 
-	}
+	};
 
 	var _toggleCountryRegion = function(e) {
 		var el = e.target;
@@ -52,7 +53,7 @@ define([
 			$(el).parent().find("span input").attr("disabled", "disabled");
 			parent.find("span label").addClass("dtRegionSuboptionInactive").removeClass("dtRegionSuboptionActive");
 		}
-	}
+	};
 
 
 	/*

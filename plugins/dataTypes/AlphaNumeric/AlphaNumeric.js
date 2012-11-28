@@ -1,3 +1,4 @@
+/*global $:false*/
 define([
 	"manager",
 	"constants",
@@ -21,18 +22,18 @@ define([
 	var _init = function() {
 		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
-	}
+	};
 
 	var _exampleChange = function(msg) {
 		$("#dtOption_" + msg.rowID).val(msg.value);
-	}
+	};
 
 	var _validate = function(rows) {
 		var visibleProblemRows = [];
 		var problemFields      = [];
 		for (var i=0; i<rows.length; i++) {
 			var currEl = $("#dtOption_" + rows[i]);
-			if ($.trim(currEl.val()) == "") {
+			if ($.trim(currEl.val()) === "") {
 				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 				visibleProblemRows.push(visibleRowNum);
 				problemFields.push(currEl);
@@ -43,7 +44,7 @@ define([
 			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 		}
 		return errors;
-	}
+	};
 
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
 		init: _init,

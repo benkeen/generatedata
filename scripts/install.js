@@ -1,3 +1,4 @@
+/*global $:false*/
 require([
 	"manager",
 	"pluginManager",
@@ -5,7 +6,7 @@ require([
 	"utils",
 	"pageinit",
 	"jquery-ui",
-	"jquery-json",
+	"jquery-json"
 ], function(manager, pluginManager, L, utils) {
 
 	"use strict";
@@ -66,19 +67,19 @@ require([
 			case 1:
 				var validChars = /[^a-zA-Z0-9_]/;
 				var dbHostname = $("#dbHostname").val();
-				if ($.trim(dbHostname) == "") {
+				if ($.trim(dbHostname) === "") {
 					errors.push({ fieldId: "dbHostname", error: L.validation_no_db_hostname });
 				}
 
 				var dbName = $.trim($("#dbName").val());
-				if (dbName == "") {
+				if (dbName === "") {
 					errors.push({ fieldId: "dbName", error: L.validation_no_db_name });
 				} else if (validChars.test(dbName)) {
 					errors.push({ fieldId: "dbName", error: L.validation_invalid_chars });
 				}
 
 				var dbUsername = $.trim($("#dbUsername").val());
-				if (dbUsername == "") {
+				if (dbUsername === "") {
 					errors.push({ fieldId: "dbUsername", error: L.validation_no_mysql_username });
 				} else if (validChars.test(dbUsername)) {
 					errors.push({ fieldId: "dbUsername", error: L.validation_invalid_chars });
@@ -107,7 +108,7 @@ require([
 					dbUsername: dbUsername,
 					dbPassword: dbPassword,
 					dbTablePrefix: dbTablePrefix
-				}
+				};
 
 				utils.startProcessing();
 				$.ajax({
@@ -123,7 +124,7 @@ require([
 					},
 					success: function(json) {
 						utils.stopProcessing();
-						if (json.success == 0) {
+						if (json.success === 0) {
 							_displayError(json.message);
 						} else {
 							gotoNextStep(currentStep);
@@ -149,7 +150,7 @@ require([
 					},
 					success: function(json) {
 						utils.stopProcessing();
-						if (json.success == 0) {
+						if (json.success === 0) {
 							_displayError(json.message);
 						} else {
 							gotoNextStep(currentStep);
@@ -168,19 +169,19 @@ require([
 
 				if (employUserAccounts == "yes") {
 					firstName = $.trim($("#firstName").val());
-					if (firstName == "") {
+					if (firstName === "") {
 						errors.push({ fieldId: "firstName", error: L.validation_no_first_name });
 					}
 					lastName = $.trim($("#lastName").val());
-					if (lastName == "") {
+					if (lastName === "") {
 						errors.push({ fieldId: "lastName", error: L.validation_no_last_name });
 					}
 					email = $.trim($("#email").val());
-					if (email == "") {
+					if (email === "") {
 						errors.push({ fieldId: "email", error: L.validation_no_email });
 					}
 					password = $.trim($("#password").val());
-					if (password == "") {
+					if (password === "") {
 						errors.push({ fieldId: "password", error: L.validation_no_password });
 					}
 				}
@@ -208,7 +209,7 @@ require([
 					},
 					success: function(json) {
 						utils.stopProcessing();
-						if (json.success == 0) {
+						if (json.success === 0) {
 							_displayError(json.message);
 						} else {
 							gotoNextStep(currentStep);
@@ -256,21 +257,6 @@ require([
 		var nextStep = step + 1;
 		$("#nav" + nextStep).addClass("selected");
 		$("#page" +  nextStep).removeClass("hidden");
-	}
-
-
-	/**
-	 * Display the installation response. This contains details about all Data Types, Export Types and Country-specific
-	 * data installed.
-	 */
-	function continueInstallationProcess(json) {
-		utils.stopProcessing();
-		if (json.success) {
-			_displayError(json.message);
-		} else {
-			utils.displayMessage("#gdInstallMessage", json.message);
-		}
-		return;
 	}
 
 	/**

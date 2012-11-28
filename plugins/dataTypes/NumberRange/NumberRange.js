@@ -1,11 +1,12 @@
-"use strict";
-
+/*global $:false*/
 define([
 	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
+
+	"use strict";
 
 	var MODULE_ID = "data-type-NumberRange";
 	var LANG = L.dataTypePlugins.NumberRange;
@@ -17,15 +18,15 @@ define([
 		for (var i=0; i<rows.length; i++) {
 			var numWordsMin = $.trim($("#dtNumRangeMin_" + rows[i]).val());
 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-			if (numWordsMin == "") {
+			if (numWordsMin === "") {
 				problemFields.push($("#dtNumRangeMin_" + rows[i]));
 			}
 			var numWordsMax = $.trim($("#dtNumRangeMax_" + rows[i]).val());
-			if (numWordsMax == "") {
+			if (numWordsMax === "") {
 				problemFields.push($("#dtNumRangeMax_" + rows[i]));
 			}
 
-			if (numWordsMin == "" || numWordsMax == "") {
+			if (numWordsMin === "" || numWordsMax === "") {
 				visibleProblemRows.push(visibleRowNum);
 			}
 		}

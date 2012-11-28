@@ -1,11 +1,12 @@
-"use strict";
-
+/*global $:false*/
 define([
 	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
+
+	"use strict";
 
 	var MODULE_ID = "data-type-Names";
 	var LANG = L.dataTypePlugins.Names;
@@ -14,11 +15,11 @@ define([
 		var subscriptions = {};
 		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
-	}
+	};
 
 	var _exampleChange = function(msg) {
 		$("#dtOption_" + msg.rowID).val(msg.value);
-	}
+	};
 
 	/**
 	 * Called when the user submits the form to generate some data. If the selected data set contains
@@ -31,7 +32,7 @@ define([
 		var visibleProblemRows = [];
 		var problemFields      = [];
 		for (var i=0; i<rows.length; i++) {
-			if ($("#dtOption_" + rows[i]).val() == "") {
+			if ($("#dtOption_" + rows[i]).val() === "") {
 				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 				visibleProblemRows.push(visibleRowNum);
 				problemFields.push($("#dtOption_" + rows[i]));
@@ -71,7 +72,6 @@ define([
 			"option":   $("#option_" + rowNum).val()
 		};
 	};
-
 
 	// register our module
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {

@@ -1,3 +1,4 @@
+/*global $:false,console:false*/
 define([
 	"constants"
 ], function(C) {
@@ -20,8 +21,8 @@ define([
 	_requiredModuleIDPrefixes[C.COMPONENT.DATA_TYPE] = "data-type-";
 	_requiredModuleIDPrefixes[C.COMPONENT.EXPORT_TYPE] = "export-type-";
 	_requiredModuleIDPrefixes[C.COMPONENT.CORE] = "core-";
-	var _filterDataTypeMessages = (C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS == "") ? false : true;
-	var _filterExportTypeMessages = (C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS == "") ? false : true;
+	var _filterDataTypeMessages = (C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS === "") ? false : true;
+	var _filterExportTypeMessages = (C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS === "") ? false : true;
 	var _permittedDataTypes = C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS.split(",");
 	var _permittedExportTypes = C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS.split(",");
 
@@ -87,7 +88,7 @@ define([
 			sender: moduleID,
 			type: C.EVENT.MODULE.REGISTER
 		});
-	}
+	};
 
 	var _unregister = function(moduleID) {
 		if (_modules.hasOwnProperty(moduleID)) {
@@ -96,7 +97,7 @@ define([
 				console.warn("module unregistered: " + moduleID);
 			}
 		}
-	}
+	};
 
 	/**
 	 * Used to publish a message that can be picked up by any other module.
@@ -139,11 +140,11 @@ define([
 			var currMessage = messages[i].type;
 			for (var moduleID in _modules) {
                 if (_modules[moduleID].subscriptions.hasOwnProperty(currMessage)) {
-                	_modules[moduleID].subscriptions[currMessage](messages[i]);
+					_modules[moduleID].subscriptions[currMessage](messages[i]);
                 }
 			}
 		}
-	}
+	};
 
 	/**
 	 * Our main subscribe() function. This is called by any module, regardless of type,
@@ -205,11 +206,11 @@ define([
 				}
 			}
         }
-	}
+	};
 
 	var _unsubscribe = function(moduleID, subscriptions) {
 
-	}
+	};
 
 	/**
 	 * This performs the necessary validation on whatever data types are in the table. It farms out
@@ -236,17 +237,17 @@ define([
 			}
 		}
 		return errors;
-	}
+	};
 
 	var _validateExportTypes = function() {
 
-	}
+	};
 
 	/**
 	 * Runs the initialization method of a single module.
 	 */
 	var _init = function(moduleID) {
-		if (_modules[moduleID].init != null) {
+		if (_modules[moduleID].init !== null) {
 			try {
 				_modules[moduleID].init();
 			} catch(e) {
@@ -281,16 +282,16 @@ define([
 		for (var moduleID in _modules) {
 			_run(moduleID);
 		}
-	}
+	};
 
 	var _getModules = function() {
 		return _modules;
-	}
+	};
 
 	var _start = function() {
         _initAll();
         _runAll();
-	}
+	};
 
 	var _getPluginType = function(moduleID) {
 		var isDataType = new RegExp("^" + _requiredModuleIDPrefixes[C.COMPONENT.DATA_TYPE]);
@@ -307,7 +308,7 @@ define([
 		}
 
 		return type;
-	}
+	};
 
 	// our public API
 	return {
@@ -320,6 +321,6 @@ define([
 		validateExportTypes: _validateExportTypes,
 
 		// this one's weird...
-		start:    	  _start
+		start: _start
 	};
 });

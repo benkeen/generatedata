@@ -1,20 +1,22 @@
-"use strict";
-
-/**
- * This module runs on page load for all pages, initializing a few things:
- * the tab functionality and the language dropdown change event.
- */
+/*global $:false*/
 define([
- 	"utils",
+	"utils",
 	"jquery-ui",
 	"jquery-json"
 ], function(utils) {
+
+	"use strict";
+
+	/**
+	 * This module runs on page load for all pages, initializing a few things:
+	 * the tab functionality and the language dropdown change event.
+	 */
 
 	$(function() {
 		$(".gdHideNoJS").show();
 		$("#gdTabs ul li").each(function() {
 			var tabNum = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
-			$(this).bind("click", function(e, a) {
+			$(this).bind("click", function() {
 				utils.selectTab(tabNum);
 				window.location = window.location.href.split("#")[0] + "#t" + tabNum;
 

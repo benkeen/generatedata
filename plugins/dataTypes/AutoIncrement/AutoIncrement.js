@@ -1,3 +1,4 @@
+/*global $:false*/
 define([
 	"manager",
 	"constants",
@@ -23,7 +24,7 @@ define([
 	var _init = function() {
 		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
-	}
+	};
 
 	var _exampleChange = function(msg) {
 		var parts = msg.value.split(',');
@@ -31,7 +32,7 @@ define([
 		$("#dtAutoIncrementStart_" + rowNum).val(parts[0]);
 		$("#dtAutoIncrementValue_" + rowNum).val(parts[1]);
 		$("#dtAutoIncrementPlaceholder_" + rowNum).val(parts[2]);
-	}
+	};
 
 	var _validate = function(rows) {
 		var visibleProblemRows = [];
@@ -39,14 +40,14 @@ define([
 		for (var i=0; i<rows.length; i++) {
 			var autoIncrementStart = $.trim($("#dtAutoIncrementStart_" + rows[i]).val());
 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-			if (autoIncrementStart == "") {
+			if (autoIncrementStart === "") {
 				problemFields.push($("#dtAutoIncrementStart_" + rows[i]));
 			}
 			var autoIncrementEnd = $.trim($("#dtAutoIncrementValue_" + rows[i]).val());
-			if (autoIncrementEnd == "") {
+			if (autoIncrementEnd === "") {
 				problemFields.push($("#dtAutoIncrementValue_" + rows[i]));
 			}
-			if (autoIncrementStart == "" || autoIncrementEnd == "") {
+			if (autoIncrementStart === "" || autoIncrementEnd === "") {
 				visibleProblemRows.push(visibleRowNum);
 			}
 		}
@@ -55,13 +56,12 @@ define([
 			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 		}
 		return errors;
-	}
+	};
 
 	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
 		init: _init,
 		validate: _validate
 	});
-
 });
 
 
