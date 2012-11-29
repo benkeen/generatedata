@@ -33,7 +33,7 @@ class Language {
 
 		// TODO exception handling here
 
-		$fileAndPath = realpath(dirname(__FILE__) . "/../resources/lang/" . $this->currentLanguageFile . ".php");
+		$fileAndPath = realpath(dirname(__FILE__) . "/../lang/" . $this->currentLanguageFile . ".php");
 		require($fileAndPath);
 		$this->currentLanguageStrings = $L;
 	}

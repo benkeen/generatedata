@@ -17,7 +17,6 @@ $encoded = json_encode($response);
 
 $errorCode = json_last_error();
 if ($errorCode) {
-
 	switch ($errorCode) {
         case JSON_ERROR_NONE:
             echo ' - No errors';

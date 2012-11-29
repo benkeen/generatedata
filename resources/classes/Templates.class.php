@@ -46,7 +46,8 @@ class Templates {
 		}
 
 		try {
-			$templatePath = realpath(dirname(__FILE__) . "/../$template");
+			$templatePath = realpath(dirname(__FILE__) . "/../../$template");
+
 			if ($action == "display") {
 				Core::$smarty->display($templatePath);
 			} else {
@@ -77,7 +78,7 @@ class Templates {
 	function evalSmartyString($placeholderStr, $placeholders) {
 		$smarty = new Smarty();
 		$smarty->template_dir = realpath(dirname(__FILE__) . "/../libs/smarty");
-		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache");
+		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache");
 
 		$smarty->assign("eval_str", $placeholderStr);
 		if (!empty($placeholders)) {
@@ -114,7 +115,7 @@ class Templates {
 	<head>
 		<title>Things just ain't right.</title>
 		<link rel="stylesheet" type="text/css" href="resources/themes/default/compiled/styles.css">
-		<script src="scripts/libs/jquery.js"></script>
+		<script src="resources/scripts/libs/jquery.js"></script>
 		<script>
 		$(function() {
 			$("button").bind("click", function() { window.location = "index.php?source=fromerrorpage"; });

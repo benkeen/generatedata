@@ -151,7 +151,7 @@ class Core {
 	 * @access private
 	 */
 	private function loadSettingsFile() {
-		$settingsFilePath = realpath(dirname(__FILE__) . "/../settings.php");
+		$settingsFilePath = realpath(dirname(__FILE__) . "/../../settings.php");
 		if (file_exists($settingsFilePath)) {
 			self::$settingsFileExists = true;
 			require_once($settingsFilePath);
@@ -312,8 +312,8 @@ class Core {
 	 */
 	private function initSmarty() {
 		self::$smarty = new Smarty();
-		self::$smarty->template_dir = realpath(dirname(__FILE__) . "/../resources/templates/");
-		self::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../cache/");
+		self::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates/");
+		self::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache/");
 		self::$smarty->assign("version", self::getVersion());
 		self::$smarty->assign("samePage", Utils::getCleanPhpSelf());
 	}

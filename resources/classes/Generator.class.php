@@ -37,7 +37,7 @@ class Generator {
 		}
 
 		$this->numResults = $postData["gdNumRowsToGenerate"];
-		$this->countries  = $postData["gdCountries"];
+		$this->countries  = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
 		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 		$this->postData   = $postData;
 

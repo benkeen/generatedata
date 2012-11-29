@@ -45,6 +45,7 @@ class Account {
 	 * @return string
 	 */
 	public function saveConfiguration($form_name, $form_content) {
+
 		// find out if there's already a form with this name for this user
 		$count_query = mysql_query("
 			SELECT count(*)

@@ -18,7 +18,7 @@ class ExportTypePluginHelper {
 			$exportTypes = Settings::getSetting("installedExportTypes");
 			$allowedExportTypes = explode(",", $exportTypes);
 		}
-		$exportTypesFolder = realpath(dirname(__FILE__) . "/../plugins/exportTypes");
+		$exportTypesFolder = realpath(dirname(__FILE__) . "/../../plugins/exportTypes");
 		$exportTypes = array();
 		if ($handle = opendir($exportTypesFolder)) {
 			while (false !== ($item = readdir($handle))) {
@@ -166,7 +166,7 @@ class ExportTypePluginHelper {
 			$modes = $exportType->getCodeMirrorModes();
 			foreach ($modes as $mode) {
 				if (file_exists(realpath(dirname(__FILE__) . "/../libs/codemirror/mode/{$mode}/{$mode}.js"))) {
-					$files[] = "libs/codemirror/mode/{$mode}/{$mode}.js";
+					$files[] = "resources/libs/codemirror/mode/{$mode}/{$mode}.js";
 				}
 			}
 		}

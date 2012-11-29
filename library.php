@@ -9,26 +9,26 @@
  * automatically by the installation script.
  */
 
-require_once(dirname(__FILE__) . "/classes/Account.class.php");
-require_once(dirname(__FILE__) . "/classes/AjaxRequest.class.php");
-require_once(dirname(__FILE__) . "/classes/Core.class.php");
-require_once(dirname(__FILE__) . "/classes/CountryPlugin.abstract.class.php");
-require_once(dirname(__FILE__) . "/classes/CountryPluginHelper.class.php");
-require_once(dirname(__FILE__) . "/classes/Database.class.php");
-require_once(dirname(__FILE__) . "/classes/DataTypePlugin.abstract.class.php");
-require_once(dirname(__FILE__) . "/classes/DataTypePluginHelper.class.php");
-require_once(dirname(__FILE__) . "/classes/ExportTypePlugin.abstract.class.php");
-require_once(dirname(__FILE__) . "/classes/ExportTypePluginHelper.class.php");
-require_once(dirname(__FILE__) . "/classes/Generator.class.php");
-require_once(dirname(__FILE__) . "/classes/GeoData.class.php");
-require_once(dirname(__FILE__) . "/classes/Installation.class.php");
-require_once(dirname(__FILE__) . "/classes/Language.class.php");
-require_once(dirname(__FILE__) . "/classes/SessionManager.class.php");
-require_once(dirname(__FILE__) . "/classes/Settings.class.php");
-require_once(dirname(__FILE__) . "/classes/Templates.class.php");
-require_once(dirname(__FILE__) . "/classes/Translations.class.php");
-require_once(dirname(__FILE__) . "/classes/Utils.class.php");
-require_once(dirname(__FILE__) . "/libs/smarty/Smarty.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Account.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/AjaxRequest.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Core.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/CountryPlugin.abstract.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/CountryPluginHelper.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Database.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/DataTypePlugin.abstract.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/DataTypePluginHelper.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/ExportTypePlugin.abstract.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/ExportTypePluginHelper.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Generator.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/GeoData.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Installation.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Language.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/SessionManager.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Settings.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Templates.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Translations.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Utils.class.php");
+require_once(dirname(__FILE__) . "/resources/libs/smarty/Smarty.class.php");
 
 //require_once(dirname(__FILE__) . "/classes/Exceptions.class.php");
 //require_once(dirname(__FILE__) . "/classes/GDException.class.php");

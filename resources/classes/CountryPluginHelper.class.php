@@ -24,7 +24,7 @@ class CountryPluginHelper {
 			$allowedCountries = explode(",", $installedCountries);
 		}
 
-		$countryPluginsFolder = realpath(dirname(__FILE__) . "/../plugins/countries");
+		$countryPluginsFolder = realpath(dirname(__FILE__) . "/../../plugins/countries");
 		$countryPlugins = array();
 
 		if ($handle = opendir($countryPluginsFolder)) {

@@ -7,10 +7,10 @@
 	<meta name="keywords" content="{$L.meta_keywords}" />
 	<link rel="stylesheet" type="text/css" href="resources/themes/default/compiled/styles.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui-1.8.23.custom.css" />
-	<script src="scripts/libs/jquery.js"></script>
-	<script src="scripts/libs/chosen.jquery.min.js"></script>
-	<script data-main="scripts/install" src="scripts/libs/require.js"></script>
-	<script src="scripts/requireConfig.js"></script>
+	<script src="resources/scripts/libs/jquery.js"></script>
+	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
+	<script data-main="resources/scripts/install" src="resources/scripts/libs/require.js"></script>
+	<script src="resources/scripts/requireConfig.js"></script>
 </head>
 <body class="gdInstallPage">
 	<header>

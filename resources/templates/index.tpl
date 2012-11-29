@@ -8,12 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui-1.8.23.custom.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
-	<link rel="stylesheet" type="text/css" href="libs/codemirror/lib/codemirror.css" />
-	<script src="libs/codemirror/lib/codemirror.js"></script>
-	<script src="scripts/libs/jquery.js"></script>
-	<script src="scripts/libs/chosen.jquery.min.js"></script>
-	<script src="scripts/libs/require.js"></script>
-	<script src="scripts/requireConfig.js"></script>
+	<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
+	<script src="resources/libs/codemirror/lib/codemirror.js"></script>
+	<script src="resources/scripts/libs/jquery.js"></script>
+	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
+	<script src="resources/scripts/libs/require.js"></script>
+	<script src="resources/scripts/requireConfig.js"></script>
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
@@ -27,11 +27,6 @@
 		</nav>
 	</header>
 	<nav id="gdTabs">
-		<!--
-		<div style="float:right">
-			<img src="images/document_save.png" style="margin-top: 6px" />
-		</div>
-		-->
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
@@ -63,6 +58,7 @@
 	require([
 		"manager",
 		"generator",
+		"accounts",
 		{$exportTypeJSModules},
 		{$dataTypeJSModules},
 		"pageinit"

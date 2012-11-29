@@ -6336,8 +6336,8 @@ logic to Smarty, but this is faster.&lt;/p&gt;</long-description>
       <name>ProgrammingLanguage</name>
       <full_name>\ProgrammingLanguage</full_name>
       <docblock line="3">
-        <description></description>
-        <long-description></long-description>
+        <description/>
+        <long-description/>
         <tag line="3" name="author" description="Ben Keen &lt;ben.keen@gmail.com&gt;"/>
         <tag line="3" name="package" description="ExportTypes"/>
       </docblock>
@@ -6362,7 +6362,7 @@ logic to Smarty, but this is faster.&lt;/p&gt;</long-description>
         <full_name>generate</full_name>
         <argument line="16">
           <name>$generator</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6371,7 +6371,7 @@ logic to Smarty, but this is faster.&lt;/p&gt;</long-description>
         <full_name>getDownloadFilename</full_name>
         <docblock line="44">
           <description>Used for constructing the filename of the filename when downloading.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="44" name="see" description="\global\ExportTypePlugin::getDownloadFilename()" refers="\global\ExportTypePlugin::getDownloadFilename()"/>
           <tag line="44" name="param" description="" type="\Generator" variable="$generator">
             <type by_reference="false">\Generator</type>
@@ -6382,7 +6382,7 @@ logic to Smarty, but this is faster.&lt;/p&gt;</long-description>
         </docblock>
         <argument line="50">
           <name>$generator</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6395,7 +6395,7 @@ logic to Smarty, but this is faster.&lt;/p&gt;</long-description>
         <full_name>generatePerl</full_name>
         <argument line="69">
           <name>$data</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6404,7 +6404,7 @@ logic to Smarty, but this is faster.&lt;/p&gt;</long-description>
         <full_name>generatePHP</full_name>
         <argument line="101">
           <name>$data</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6413,7 +6413,7 @@ logic to Smarty, but this is faster.&lt;/p&gt;</long-description>
         <full_name>generateJS</full_name>
         <argument line="133">
           <name>$data</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6422,7 +6422,7 @@ logic to Smarty, but this is faster.&lt;/p&gt;</long-description>
         <full_name>generateRuby</full_name>
         <argument line="165">
           <name>$data</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>

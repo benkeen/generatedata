@@ -4,4 +4,10 @@
 		<label>allow anonymous access to the script</label>
 
 
-	<button class="gdPrimaryButton">Create User &raquo;</button>
+	<button class="gdPrimaryButton" id="gdAddAccount">Create Account &raquo;</button>
+
+
+	<div id="gdAddAccountDialog" class="hidden">
+
+
+	</div>
