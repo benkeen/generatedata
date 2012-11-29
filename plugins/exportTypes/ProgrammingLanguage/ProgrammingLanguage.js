@@ -1,5 +1,4 @@
-"use strict";
-
+/*global $:false*/
 define([
 	"manager",
 	"constants",
@@ -43,13 +42,13 @@ define([
 				msg.editor.setOption("mode", "ruby");
 				break;
 		}
-	}
+	};
 
 	var _init = function() {
 		var subscriptions = {};
 		subscriptions[C.EVENT.GENERATE] = _onGenerate;
 		manager.subscribe(MODULE_ID, subscriptions);
-	}
+	};
 
 	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
 		init: _init

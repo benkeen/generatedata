@@ -1,5 +1,4 @@
-"use strict";
-
+/*global $:false*/
 define([
 	"constants",
 	"lang",
@@ -14,7 +13,6 @@ define([
 	 * @description Client-side code for the SQL Export Type.
 	 * @namespace
 	 */
-
 	var MODULE_ID = "export-type-SQL";
 	var LANG = L.exportTypePlugins.SQL;
 
@@ -24,7 +22,7 @@ define([
 		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
 		subscriptions[C.EVENT.GENERATE] = _onGenerate;
 		manager.subscribe(MODULE_ID, subscriptions);
-	}
+	};
 
 
 	/**
@@ -34,7 +32,7 @@ define([
 		if (msg.newExportType == "SQL") {
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
 		}
-	}
+	};
 
 	/**
 	 * If the user is generating in-page data with this Export Type, enable the XML
@@ -46,7 +44,7 @@ define([
 			return;
 		}
 		msg.editor.setOption("mode", "mysql");
-	}
+	};
 
 	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
 		init: _init

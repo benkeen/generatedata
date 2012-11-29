@@ -1,3 +1,4 @@
+/*global $:false,CodeMirror:false*/
 define([
 	"constants",
 	"lang",
@@ -43,7 +44,7 @@ define([
 		if ($("#etXML_useCustomExportFormat").attr("checked")) {
 			$("#etXML_customFormat").removeAttr("disabled").removeClass("gdDisabled");
 		}
-	}
+	};
 
 	/**
 	 * Called when the user changes the result type. This just changes the 2nd column heading to be
@@ -53,7 +54,7 @@ define([
 		if (msg.newExportType == "XML") {
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
 		}
-	}
+	};
 
 	var _openEditCustomFormatDialog = function() {
 		var dimensions = _getDialogDimensions();
@@ -65,7 +66,7 @@ define([
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
 			open: function() {
-				if (_codeMirror == null) {
+				if (_codeMirror === null) {
 					_codeMirror = CodeMirror.fromTextArea($("#etXMLCustomSmarty")[0], {
 						mode: "xml",
 						lineNumbers: true
@@ -78,17 +79,17 @@ define([
 				}
 			},
 			buttons: [
-			    {
-			    	text: "Close",
-			    	click: function() {
-			    		$(this).dialog("close");
-			    	}
-			    }
+				{
+					text: "Close",
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
 			]
 		});
 
 		return false;
-	}
+	};
 
 	var _getDialogDimensions = function() {
 		var dialogHeight  = ($(window).height() / 100) * 90;
@@ -101,8 +102,8 @@ define([
 			dialogWidth: dialogWidth,
 			contentHeight: contentHeight,
 			contentWidth: contentWidth
-		}
-	}
+		};
+	};
 
 
 	/**
@@ -208,13 +209,13 @@ define([
 			}
 		}
 */
-	}
+	};
 
 	var _updateDialogDimensions = function() {
 		var dimensions = _getDialogDimensions();
 		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
 		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
-	}
+	};
 
 	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
 		init: _init,

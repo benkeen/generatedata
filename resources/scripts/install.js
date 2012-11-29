@@ -1,4 +1,4 @@
-/*global $:false*/
+/*global $:false,browser:true*/
 require([
 	"manager",
 	"pluginManager",

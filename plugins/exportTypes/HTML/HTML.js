@@ -1,3 +1,4 @@
+/*global $:false,CodeMirror:false*/
  define([
 	"manager",
 	"constants",
@@ -5,7 +6,7 @@
 	"generator"
 ], function(manager, C, L, generator) {
 
-	 "use strict";
+	"use strict";
 
 	/**
 	 * @name HTML
@@ -23,7 +24,7 @@
 		var dimensions = _getDialogDimensions();
 		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
 		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
-	}
+	};
 
 	var _openEditCustomFormatDialog = function() {
 		var dimensions = _getDialogDimensions();
@@ -35,7 +36,7 @@
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
 			open: function() {
-				if (_codeMirror == null) {
+				if (_codeMirror === null) {
 					_codeMirror = CodeMirror.fromTextArea($("#etHTMLCustomSmarty")[0], {
 						mode: "xml",
 						lineNumbers: true
@@ -48,17 +49,17 @@
 				}
 			},
 			buttons: [
-			    {
-			    	text: "Close",
-			    	click: function() {
-			    		$(this).dialog("close");
-			    	}
-			    }
+				{
+					text: "Close",
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
 			]
 		});
 
 		return false;
-	}
+	};
 
 	var _getDialogDimensions = function() {
 		var dialogHeight  = ($(window).height() / 100) * 90;
@@ -71,8 +72,8 @@
 			dialogWidth: dialogWidth,
 			contentHeight: contentHeight,
 			contentWidth: contentWidth
-		}
-	}
+		};
+	};
 
 	/**
 	 * If the user is generating in-page data with this Export Type, enable the XML
@@ -83,7 +84,7 @@
 			return;
 		}
 		msg.editor.setOption("mode", "xml");
-	}
+	};
 
 	var _init = function() {
 		$(window).resize(_updateDialogDimensions);
@@ -107,7 +108,7 @@
 
 	var _validate = function() {
 
-	}
+	};
 
 	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
 		init: _init,

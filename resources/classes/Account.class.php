@@ -9,7 +9,6 @@ class Account {
 	private $accountId;
 
 
-	// TODO, obviously!
 	public function __construct($accountId) {
 		$query = mysql_query("
 			SELECT *
