@@ -1,3 +1,7 @@
+{if $settings.employUserAccounts == "no"}
+	<span id="gdSaveLoadLink"><img src="resources/themes/{$theme}/images/documentSave.png" title="Load / save data sets" /></span>
+{/if}
+
 <form id="gdData" method="post">
 	{* here because the new window/tab export format option uses a simple POST. This standardizes it all
 	   so that for all export formats we can just serialize the form *}
@@ -131,4 +135,13 @@
 		</ul>
 	</div>
 	{data_type_resources}
+</div>
+
+<div id="gdManageDataSets" class="hidden">
+	Name, Created, Last Used, Rows generated, delete
+
+	<br />
+
+	<input type="text" id="gdNewDataSetName" />
+		<input type="button" id="gdSaveDataSet" value="Save" />
 </div>

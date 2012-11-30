@@ -29,6 +29,10 @@ define([
 	var _permittedExportTypes = C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS.split(",");
 
 
+	/**
+	 * Our JS module registration function. All module types: Data Types, Export Types and the Core register
+	 * themselves with this function.
+	 */
 	var _register = function(moduleID, moduleType, module) {
 		if (_modules.hasOwnProperty(moduleID)) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
@@ -52,6 +56,7 @@ define([
 			return;
 		}
 
+		// init() and run() are common to all modules
 		if (module.hasOwnProperty("init") && typeof module.init != "function") {
 			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.warn(moduleID + " module has an invalid init() function. Should be a function!");
@@ -69,6 +74,7 @@ define([
 			init: function() { },
 			run: function() { },
 			validate: function() { },
+			serializeRow: function() { },
 			skipDomReady: false,
 			subscriptions: {}
 		}, module);
@@ -308,6 +314,24 @@ define([
 		return type;
 	};
 
+
+	var _serializeDataTypeRow = function(rowDataType, rowNum) {
+		if (!_modules.hasOwnProperty(rowDataType)) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn("Invalid params for manager.serializeDataTypeRow()");
+			}
+			return;
+		}
+		var currDataType = _modules[rowDataType];
+		console.log(currDataType);
+	};
+
+
+	var _serializeExportTypes = function() {
+
+	};
+
+
 	// our public API
 	return {
 
@@ -323,13 +347,13 @@ define([
 		 *     C.COMPONENT.DATA_TYPE or C.COMPONENT.EXPORT_TYPE
 		 * @param {Object} module an object with the following required properties:<br />
 		 * - run() - a function<br />
-		 * - save() - <br />
+		 * - init() - where subscriptions are generally set up. All init()'s are run prior to anything being run().
 		 * - load() - <br />
 		 * Optional properties:<br />
 		 * - skipDomReady (boolean)<br />
 		 * @name Manager#register
 		 */
-		register:     _register,
+		register: _register,
 
 		/**
 		 * Publishes a message, which any other module that's been registered can subscribe to.
@@ -345,26 +369,26 @@ define([
 		 * subscribing to the event.
 		 * @name Manager#publish
 		 */
-		publish:      _publish,
+		publish: _publish,
 
 		/**
 		 * @function
 		 * @name Manager#subscribe
 		 */
-		subscribe:    _subscribe,
+		subscribe: _subscribe,
 
 		/**
 		 * @function
 		 * @name Manager#unsubscribe
 		 */
-		unsubscribe:  _unsubscribe,
+		unsubscribe: _unsubscribe,
 
 		/**
 		 * Return an object containing all registered modules.
 		 * @function
 		 * @name Manager#getModules
 		 */
-		getModules:   _getModules,
+		getModules: _getModules,
 
 		/**
 		 * @function
@@ -378,7 +402,22 @@ define([
 		 */
 		validateExportTypes: _validateExportTypes,
 
-		// this one's weird...
+		/**
+		 * @function
+		 * @name Manager#serializeDataTypeRow
+		 */
+		serializeDataTypeRow: _serializeDataTypeRow,
+
+		/**
+		 * @function
+		 * @name Manager#serializeExportTypes
+		 */
+		serializeExportTypes: _serializeExportTypes,
+
+		/**
+		 * @function
+		 * @name Manager#start
+		 */
 		start: _start
 	};
 });

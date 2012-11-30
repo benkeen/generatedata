@@ -129,7 +129,7 @@ class Core {
 		self::initSmarty();
 
 		// the order is significant, here
-		if ($runtimeContext != "installation") {
+		if ($runtimeContext != "installation" || $runtimeContext != "installation_db_ready") {
 			self::initDatabase();
 		}
 		if ($runtimeContext == "generation") {

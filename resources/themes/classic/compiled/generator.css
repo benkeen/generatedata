@@ -199,3 +199,14 @@ li.gdColDelete {
   height: 16px;
   margin-bottom: -3px;
   display: inline-block; }
+
+#gdSaveLoadLink {
+  float: right;
+  padding: 2px;
+  margin-top: 4px;
+  background-color: #efefef;
+  border-radius: 2px;
+  height: 18px;
+  cursor: pointer; }
+  #gdSaveLoadLink:hover {
+    background-color: #cccccc; }

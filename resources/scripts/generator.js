@@ -756,13 +756,13 @@ define([
 		skipDomReady: false
 	});
 
+
 	/*
 	 * The public API for this module. These are the only revealed functions for use by other modules
 	 * that choose to include generator.js as a dependency. Even though the bulk of the functions are private,
 	 * it still contains a couple of handy methods.
 	 */
-
-	var obj = {
+	return {
 
 		/**
 		 * Returns an ordered array of row IDs. Row IDs are unique and may be in any order with possible gaps. Each
@@ -793,8 +793,33 @@ define([
 
 			// should
 			return false;
+		},
+
+		/**
+		 * Returns an array of selected countries.
+		 * @function
+		 * @name Generator#getCountries
+		 */
+		getCountries: function() {
+			return _countries;
+		},
+
+		/**
+		 * Returns the current export type.
+		 * @function
+		 * @name Generator#getCurrentExportType
+		 */
+		getCurrentExportType: function() {
+			return _currExportType;
+		},
+
+		/**
+		 * Returns the number of rows to generate currently entered.
+		 * @function
+		 * @name Generator#getNumRowsToGenerate
+		 */
+		getNumRowsToGenerate: function() {
+			return $("#gdNumRowsToGenerate").val();
 		}
 	};
-
-	return obj;
 });

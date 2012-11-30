@@ -11,7 +11,6 @@ class Installation {
 
 
 	public static function createSettingsFile($dbHostname, $dbName, $dbUsername, $dbPassword, $tablePrefix) {
-
 		$encryptionSalt = Utils::generateRandomAlphanumericStr("VVV");
 		$dbUsername = Utils::sanitize($dbUsername);
 		$dbPassword = Utils::sanitize($dbPassword);
@@ -28,7 +27,7 @@ class Installation {
 \$encryptionSalt = '$encryptionSalt';
 END;
 
-		$file = dirname(__FILE__) . "/../settings.php";
+		$file = dirname(__FILE__) . "/../../settings.php";
 		$handle = fopen($file, "w");
 		if ($handle) {
 			fwrite($handle, $content);

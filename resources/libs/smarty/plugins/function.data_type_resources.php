@@ -3,7 +3,6 @@
 /**
  * This is used on the generate page to output raw markup into the page for use by the generator.
  *
- *
  * @param array $params
  * @param object $smarty
  */

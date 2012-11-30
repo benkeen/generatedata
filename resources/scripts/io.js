@@ -1,3 +1,168 @@
+/*global $:false,console:false */
+define([
+	"manager",
+	"generator",
+	"utils",
+	"constants",
+	"lang",
+	"jquery-ui"
+], function(manager, generator, utils, C, L) {
+
+	"use strict";
+
+	/**
+	 * @name IO
+	 * @see Core
+	 * @description This module contains all code relating to I/O - saving and loading configurations.
+	 * @author Ben Keen <ben.keen@gmail.com>
+	 * @return {Object}
+	 * @namespace
+	 */
+
+	var MODULE_ID = "core-io";
+	var dataSets = null;
+
+
+	var _run = function() {
+		$("#gdSaveLoadLink").on("click", _openManageConfigurationsDialog);
+		$("#gdSaveDataSet").on("click", _saveDataSet);
+	};
+
+
+	var _openManageConfigurationsDialog = function() {
+		$("#gdManageDataSets").dialog({
+			title: "Manage Data Sets",
+			width: 800,
+			minHeight: 400,
+			modal: true,
+			buttons: [
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]
+		});
+	};
+
+	/**
+	 * Serializes and saves the current data set.
+	 */
+	var _saveDataSet = function() {
+		var buttons = [];
+		var newDataSetName = $("#gdNewDataSetName").val();
+
+		/*if (!newFormName || newFormName == L.default_save_form_empty_str) {
+			errors = [];
+			gd.errors.push({ els: null, error: L.no_form_name });
+			utils.displayValidationErrors("#gdMessages");
+			return false;
+		}*/
+
+		// if the name already exists, check with the user that it's okay to overwrite it
+		/*
+		var formExists = false;
+		for (var i=0; i<form_list_dd.length; i++) {
+			if (form_list_dd[i].text == newFormName) {
+				form_exists = true;
+			}
+		}
+
+		if (form_exists) {
+			if (!confirm(L.form_exists_overwrite_confirmation)) {
+				return false;
+			}
+		}
+		*/
+
+		var rowData = [];
+		var orderedRowIDs = generator.getRowOrder();
+		for (var i=0; i<orderedRowIDs.length; i++) {
+			var rowNum  = orderedRowIDs[i];
+			var rowDataType = $("#gdDataType" + rowNum).val();
+			rowData.push({
+				title: $("#gdTitle_" + rowNum).val(),
+				dataType: rowDataType,
+				data: manager.serializeDataTypeRow(rowDataType, rowNum)
+			});
+		}
+
+		var data = {
+			numResults: generator.getNumRowsToGenerate(),
+			countries: generator.getCountries(),
+			dataTypes: rowData,
+			exportTypes: manager.serializeExportTypes(),
+			selectedExportType: generator.getCurrentExportType()
+		};
+
+		console.log(data);
+
+
+		/*
+			xmlSettings: {
+				rootNodeName:          $("#xml_root_node_name").val(),
+				recordNodeName:        $("#xml_record_node_name").val(),
+				xml_use_custom_format: $("#xml_use_custom_format").attr("checked"),
+				xml_custom_format:     $("#xml_custom_format").val()
+			},
+			csvSettings: {
+				delimiter:        $("#csv_delimiter").val(),
+				csv_line_endings: $("#csv_line_endings").val()
+			},
+			sqlSettings: {
+				dbTableName:   $("#sql_table_name").val(),
+				dbType:        $("#sql_database").val(),
+				includeCreateTableQuery: $("#sql_create_table").is(":checked"),
+				includeDropTableQuery:   $("#sql_drop_table").is(":checked"),
+				encloseWithBackquotes:   $("#enclose_with_backquotes").is(":checked"),
+				statementType: $("input[name=sql_statement_type]:checked").val(),
+				primaryKey:    $("input[name=sql_primary_key]:checked").val()
+			}
+		*/
+
+		return;
+
+//		var data_str = 'form_name=' + newFormName + '&form_content=' + $.toJSON(data);
+		utils.startProcessing();
+
+		$.ajax({
+			url:  "code/ajax_save.php",
+			type: "POST",
+			data: data_str,
+			success: function(data) {
+				var json = $.evalJSON(data);
+
+				// if this form isn't listed in the form dropdown list, add it
+				var already_listed = false;
+				var form_list_dd = $("#formList")[0];
+				for (var f=0; f<form_list_dd.length; f++) {
+					if (form_list_dd[f].text == json.form_name) {
+						already_listed = true;
+					}
+				}
+				if (!already_listed) {
+					form_list_dd[form_list_dd.length] = new Option(json.form_name, json.form_id, false, false);
+				}
+
+				g.displayMessage(L.form_saved);
+				g.stopProcessing();
+			},
+
+			error: function() {
+				alert(L.fatal_error);
+				gd.stopProcessing();
+			}
+		});		
+	}
+
+	// register our module
+	manager.register(MODULE_ID, C.COMPONENT.CORE, {
+		run: _run
+	});
+});
+
+
+
+/*
 var io = {
 
 	saveForm: function() {
@@ -205,7 +370,6 @@ var io = {
 		});
 	},
 
-	/*
 	loadRowContent: function()
 	{
 		for (currRow=1; currRow<=g_lastJsonResponse.num_rows; currRow++)
@@ -257,7 +421,6 @@ var io = {
 			}
 		}
 	},
-	*/
 
 	deleteForm: function() {
 		var form_id = $("#formList").val();
@@ -302,3 +465,4 @@ var io = {
 		});
 	}
 }
+*/
