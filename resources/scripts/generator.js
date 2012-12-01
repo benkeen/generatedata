@@ -503,7 +503,6 @@ define([
 		}
 
 		var orderedRowIDs = _getRowOrder();
-		var exportType = $("input[name=gdExportType]:checked").val();
 		var validRowIDs = [];
 
 		// look through the form and construct an object of data-type-folder => [row IDs] to
@@ -515,7 +514,7 @@ define([
 			var currRowType = $("#gdDataType_" + rowID).val();
 
 			// ignore empty rows, they don't need validating
-			if (!currRowType) {
+			if (currRowType === "") {
 				continue;
 			}
 			if (!rowValidationNeededGroupByDataType.hasOwnProperty(currRowType)) {
@@ -531,8 +530,8 @@ define([
 		} else {
 			// check all filled-in rows contained something in the first column
 			var rowsMissingTitleEls = [];
-			for (var i=0; i<validRowIDs.length; i++) {
-				var currRowID = validRowIDs[i];
+			for (var j=0; j<validRowIDs.length; j++) {
+				var currRowID = validRowIDs[j];
 				var currTitle = $("#gdTitle_" + currRowID);
 				if ($.trim(currTitle.val()) === "") {
 					rowsMissingTitleEls.push(currTitle[0]);
@@ -541,8 +540,8 @@ define([
 
 			if (rowsMissingTitleEls.length) {
 				var label = L.row_label_plural;
-				if (L.exportTypePlugins[exportType].hasOwnProperty("row_label_plural")) {
-					label = L.exportTypePlugins[exportType].row_label_plural;
+				if (L.exportTypePlugins[_currExportType].hasOwnProperty("row_label_plural")) {
+					label = L.exportTypePlugins[_currExportType].row_label_plural;
 				}
 				var message = "Please enter all " + label + ".";
 				utils.addValidationErrors({ els: rowsMissingTitleEls, error: message });
@@ -551,10 +550,12 @@ define([
 
 		utils.addValidationErrors(manager.validateDataTypes(rowValidationNeededGroupByDataType));
 
-//		var exportTypeValidationErrors = manager.validateExportTypes({
-//			rows: orderedRowIDs,
-//			workNeeded: dataTypesToRows
-//		});
+		var exportTypeValidationErrors = manager.validateExportType({ exportType: _currExportType, rows: validRowIDs });
+		if (!$.isArray(exportTypeValidationErrors)) {
+			utils.addValidationErrors({ els: null, error: "Ack! There was an error in the Export Type's validate() function. Sorry, we can't proceed - call a developer!" });
+		} else {
+			utils.addValidationErrors(exportTypeValidationErrors);
+		}
 
 		var errors = utils.getValidationErrors();
 		if (errors.length) {

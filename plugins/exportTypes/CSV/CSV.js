@@ -32,9 +32,18 @@ define([
 	};
 	
 	var _validate = function() {
-		/*if ($("#csv_delimiter").val() == "") {
-			Generator.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
-		}*/
+		var delimiterField = $("#etCSV_delimiter");
+		var errors = [];
+
+		// note we don't trim it. I figure whitespace could, technically be used as a delimiter
+		if (delimiterField.val() === "") {
+			errors.push({
+				els: delimiterField,
+				error: LANG.validation_no_delimiter
+			});
+		}
+
+		return errors;
 	};
 
 	manager.registerExportType(MODULE_ID, {

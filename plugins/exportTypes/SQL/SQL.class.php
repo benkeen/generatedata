@@ -93,7 +93,7 @@ class SQL extends ExportTypePlugin {
 		<table cellspacing="2" cellpadding="0" width="100%">
 		<tr>
 			<td width="150"><label for="etSQL_tableName">{$LANG["db_table_name"]}</label></td>
-			<td><input type="text" size="48" name="etSQL_tableName" id="etSQL_tabelName" value="myTable" /></td>
+			<td><input type="text" size="48" name="etSQL_tableName" id="etSQL_tableName" value="myTable" /></td>
 		</tr>
 		<tr>
 			<td><label for="etSQL_databaseType">{$LANG["db_type"]}</label></td>

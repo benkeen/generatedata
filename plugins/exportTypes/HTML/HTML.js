@@ -8,7 +8,6 @@
 
 	"use strict";
 
-
 	/**
 	 * @name HTML
 	 * @see ExportType
@@ -107,10 +106,6 @@
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-	var _validate = function() {
-
-	};
-
 	var _loadSettings = function(settings) {
 		$("input[name=etHTMLExportFormat]").val(settings.dataFormat); // TODO (check...)
 		$("#etHTMLUseCustomExportFormat").val(settings.useCustomExportFormat);
@@ -128,7 +123,6 @@
 
 	manager.registerExportType(MODULE_ID, {
 		init: _init,
-		validate: _validate,
 		loadSettings: _loadSettings,
 		saveSettings: _saveSettings
 	});

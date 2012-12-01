@@ -81,6 +81,7 @@ class Core {
 	private static $defaultLanguageFile = "en";
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array("canada", "united_states");
+	private static $defaultTheme = "classic"; 
 
 	// non-overidable settings
 	private static $version = "3.0.0";
@@ -301,6 +302,13 @@ class Core {
 		return self::$minimumPHPVersion;
 	}
 
+	/**
+	 * Used during the installation process only: it returns the default theme for new installations.
+	 * @access public
+	 */
+	public function getDefaultTheme() {
+		return self::$defaultTheme;
+	}
 
 
 	// ------------------ private methods ------------------
@@ -372,5 +380,4 @@ class Core {
 		}
 		self::$exportTypePlugins = ExportTypePluginHelper::getExportTypePlugins($runtimeContext);
 	}
-
 }

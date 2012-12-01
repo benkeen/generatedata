@@ -1,10 +1,6 @@
 settings.php
-.project
-.DS_Store
-.buildpath
 cache/*
-.settings/org.eclipse.php.core.prefs
-.settings/org.eclipse.php.core.prefs
+.DS_Store
 resources/themes/classic/.sass-cache/*
 resources/themes/default/.sass-cache/*
 resources/themes/.sass-cache/*

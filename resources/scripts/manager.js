@@ -61,7 +61,7 @@ define([
 		var settings = $.extend({
 			init: function() { },
 			run: function() { },
-			validate: function() { },
+			validate: function() { return []; },
 			saveRow: function() { return {}; },
 			loadRow: function() { },
 			skipDomReady: false,
@@ -119,7 +119,7 @@ define([
 		var settings = $.extend({
 			init: function() { },
 			run: function() { },
-			validate: function() { },
+			validate: function() { return []; },
 			saveSettings: function() { return {}; },
 			loadSettings: function() { },
 			subscriptions: {}
@@ -177,6 +177,7 @@ define([
 		}
 	};
 
+
 	var _publish = function(messages) {
 		if (!$.isArray(messages)) {
 			messages = [messages];
@@ -221,13 +222,6 @@ define([
 		}
 	};
 
-	/**
-	 * Our main subscribe() function. This is called by any module, regardless of type,
-	 * to allow it to subscribe to one or more specific notifications.
-	 *
-	 * @param string moduleID
-	 * @param array
-	 */
 	var _subscribe = function(moduleID, subscriptions) {
 		if (arguments.length != 2) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
@@ -287,11 +281,6 @@ define([
 
 	};
 
-	/**
-	 * This performs the necessary validation on whatever data types are in the table. It farms out
-	 * the work to the appropriate module and returns an array of objects containing the (localized) error
-	 * strings and offending form fields. The generator does the job of the styling and error display.
-	 */
 	var _validateDataTypes = function(rowValidationNeededGroupedByDataType) {
 		var errors = [];
 		for (var moduleID in _modules) {
@@ -314,8 +303,32 @@ define([
 		return errors;
 	};
 
-	var _validateExportTypes = function() {
+	/**
+	 * Passes off work to the current Export Type to do whatever validation it requires. If any of the
+	 * Export Type validation function throw an error or don't return an array, the process is halted and
+	 * we return null. The generator does the job of informing the user.
+	 */
+	var _validateExportType = function(info) {
+		var exportTypeModuleID = "export-type-" + info.exportType;
+		var rows = info.rows;
+		var errors = [];
 
+		try {
+			errors = _modules[exportTypeModuleID].validate(rows);
+		} catch (e) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.error("Error in validate() function for " + info.exportType + " Export Type. Error: ", e);
+			}
+			return null;
+		}
+
+		if (!$.isArray(errors)) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.error("Error! The validate() function for " + info.exportType + " didn't return an array.");
+			}
+			return null;
+		}
+		return errors;
 	};
 
 	/**
@@ -468,7 +481,6 @@ define([
 
 		/**
 		 * Publishes a message, which any other module that's been registered can subscribe to.
-		 *
 		 * @function
 		 * @param {Object|Array} messages either a single object (single message) or an array of messages.
 		 * Each message is an object of the following form:
@@ -483,7 +495,11 @@ define([
 		publish: _publish,
 
 		/**
+		 * Our main subscribe() function. This is called by any module, regardless of type,
+		 * to allow it to subscribe to one or more specific notifications.
 		 * @function
+		 * @param string moduleID
+		 * @param array
 		 * @name Manager#subscribe
 		 */
 		subscribe: _subscribe,
@@ -502,16 +518,20 @@ define([
 		getModules: _getModules,
 
 		/**
+		 * This performs the necessary validation on whatever data types are in the table. It farms out
+		 * the work to the appropriate module and returns an array of objects containing the (localized) error
+		 * strings and offending form fields. The generator does the job of the styling and error display.
 		 * @function
+		 * @param {Object} rowValidationNeededGroupedByDataType
 		 * @name Manager#validateDataTypes
 		 */
 		validateDataTypes: _validateDataTypes,
 
 		/**
 		 * @function
-		 * @name Manager#validateExportTypes
+		 * @name Manager#validateExportType
 		 */
-		validateExportTypes: _validateExportTypes,
+		validateExportType: _validateExportType,
 
 		/**
 		 * @function
@@ -526,6 +546,8 @@ define([
 		serializeExportTypes: _serializeExportTypes,
 
 		/**
+		 * Activates the entire client-side code. This may only be executed once, and is done by the
+		 * Core code.
 		 * @function
 		 * @name Manager#start
 		 */

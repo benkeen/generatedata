@@ -116,6 +116,7 @@ END;
 				UNIQUE KEY setting_name (setting_name)
 			)
 		";
+		$defaultTheme = Core::getDefaultTheme();
 		$queries[] = "
 			INSERT INTO {$prefix}settings (setting_name, setting_value)
 			VALUES
@@ -132,7 +133,7 @@ END;
 				('installedDataTypes', ''),
 				('installedExportTypes', ''),
 				('installedCountries', ''),
-				('theme', 'default')
+				('theme', '$defaultTheme')
 		";
 		$queries[] = "
 			CREATE TABLE {$prefix}user_accounts (
