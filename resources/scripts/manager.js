@@ -14,73 +14,62 @@ define([
 	 * @namespace
 	 */
 
-	// stores all modules, regardless of type (Core, Data Types, Export Types, Countries).
-	// It's a hash of Module ID -> module info
+	// stores all modules: Core, Data Types and Export Types. It's a hash of Module ID -> module info
 	var _isStarted = false;
 	var _modules = {};
-	var _requiredModuleIDPrefixes = {};
-	_requiredModuleIDPrefixes[C.COMPONENT.DATA_TYPE] = "data-type-";
-	_requiredModuleIDPrefixes[C.COMPONENT.EXPORT_TYPE] = "export-type-";
-	_requiredModuleIDPrefixes[C.COMPONENT.CORE] = "core-";
-
 	var _filterDataTypeMessages = (C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS === "") ? false : true;
 	var _filterExportTypeMessages = (C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS === "") ? false : true;
 	var _permittedDataTypes = C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS.split(",");
 	var _permittedExportTypes = C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS.split(",");
+  
 
-
-	/**
-	 * Our JS module registration function. All module types: Data Types, Export Types and the Core register
-	 * themselves with this function.
-	 */
-	var _register = function(moduleID, moduleType, module) {
+	var _registerDataType = function(moduleID, module) {
 		if (_modules.hasOwnProperty(moduleID)) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.warn("Sorry, a module with that ID has already been registered.");
 			}
 			return;
 		}
-		if ($.inArray(moduleType, [C.COMPONENT.DATA_TYPE, C.COMPONENT.EXPORT_TYPE, C.COMPONENT.CORE]) == -1) {
-			if (C.DEBUGGING.CONSOLE_WARN) {
-				console.warn("Unknown module type: " + moduleType);
+
+		// do a little safety-checking on the module functions
+		var requiredFuncs = ["saveRow", "loadRow"];
+		for (var i=0; i<requiredFuncs.length; i++) {
+			if (!module.hasOwnProperty(requiredFuncs[i])) {
+				if (C.DEBUGGING.CONSOLE_WARN) {
+					console.warn(moduleID + " module is missing a " + requiredFuncs[i] + "() function.");
+				}
+				return;
 			}
-			return;
+			if (typeof module[requiredFuncs[i]] != "function") {
+				if (C.DEBUGGING.CONSOLE_WARN) {
+					console.warn(moduleID + " module has an invalid " + requiredFuncs[i] + "() function. Should be a function!");
+				}
+				return;
+			}
 		}
 
-		// ensure the module ID has an appropriate prefix
-		var regExp = new RegExp("^" + _requiredModuleIDPrefixes[moduleType]);
-		if (!regExp.test(moduleID)) {
-			if (C.DEBUGGING.CONSOLE_WARN) {
-				console.warn("Invalid module ID for " + moduleID);
+		var optionalFuncs = ["init", "run", "validate"];
+		for (var j=0; j<optionalFuncs.length; j++) {
+			if (module.hasOwnProperty(optionalFuncs[j]) && typeof module[optionalFuncs[j]] != "function") {
+				if (C.DEBUGGING.CONSOLE_WARN) {
+					console.warn(moduleID + " module has an invalid " + optionalFuncs[j] + "() function. Should be a function!");
+				}
+				return;
 			}
-			return;
-		}
-
-		// init() and run() are common to all modules
-		if (module.hasOwnProperty("init") && typeof module.init != "function") {
-			if (C.DEBUGGING.CONSOLE_WARN) {
-				console.warn(moduleID + " module has an invalid init() function. Should be a function!");
-			}
-			return;
-		}
-		if (module.hasOwnProperty("run") && typeof module.run != "function") {
-			if (C.DEBUGGING.CONSOLE_WARN) {
-				console.warn(moduleID + " module has an invalid run() function. Should be a function!");
-			}
-			return;
 		}
 
 		var settings = $.extend({
 			init: function() { },
 			run: function() { },
 			validate: function() { },
-			serializeRow: function() { },
+			saveRow: function() { return {}; },
+			loadRow: function() { },
 			skipDomReady: false,
 			subscriptions: {}
 		}, module);
 
 		// include the type
-		settings.type = moduleType;
+		settings.type = C.COMPONENT.DATA_TYPE;
 
 		// store the module
 		_modules[moduleID] = settings;
@@ -91,6 +80,93 @@ define([
 			type: C.EVENT.MODULE.REGISTER
 		});
 	};
+
+
+	var _registerExportType = function(moduleID, module) {
+		if (_modules.hasOwnProperty(moduleID)) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn("Sorry, a module with that ID has already been registered.");
+			}
+			return;
+		}
+
+		var requiredFuncs = ["saveSettings", "loadSettings"];
+		for (var i=0; i<requiredFuncs.length; i++) {
+			if (!module.hasOwnProperty(requiredFuncs[i])) {
+				if (C.DEBUGGING.CONSOLE_WARN) {
+					console.warn(moduleID + " module is missing a " + requiredFuncs[i] + "() function.");
+				}
+				return;
+			}
+			if (typeof module[requiredFuncs[i]] != "function") {
+				if (C.DEBUGGING.CONSOLE_WARN) {
+					console.warn(moduleID + " module has an invalid " + requiredFuncs[i] + "() function. Should be a function!");
+				}
+				return;
+			}
+		}
+
+		var optionalFuncs = ["init", "run", "validate"];
+		for (var j=0; j<optionalFuncs.length; j++) {
+			if (module.hasOwnProperty(optionalFuncs[j]) && typeof module[optionalFuncs[j]] != "function") {
+				if (C.DEBUGGING.CONSOLE_WARN) {
+					console.warn(moduleID + " module has an invalid " + optionalFuncs[j] + "() function. Should be a function!");
+				}
+				return;
+			}
+		}
+
+		var settings = $.extend({
+			init: function() { },
+			run: function() { },
+			validate: function() { },
+			saveSettings: function() { return {}; },
+			loadSettings: function() { },
+			subscriptions: {}
+		}, module);
+
+		// include the type
+		settings.type = C.COMPONENT.EXPORT_TYPE;
+
+		// store the module
+		_modules[moduleID] = settings;
+
+		// announce it's been registered
+		_publish({
+			sender: moduleID,
+			type: C.EVENT.MODULE.REGISTER
+		});
+	};
+
+
+	var _registerCoreModule = function(moduleID, module) {
+		if (_modules.hasOwnProperty(moduleID)) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn("Sorry, a module with that ID has already been registered.");
+			}
+			return;
+		}
+
+		var settings = $.extend({
+			init: function() { },
+			run: function() { },
+			skipDomReady: false,
+			subscriptions: {}
+		}, module);
+
+		// include the type
+		settings.type = C.COMPONENT.CORE;
+
+		// store the module
+		_modules[moduleID] = settings;
+
+		// announce it's been registered
+		_publish({
+			sender: moduleID,
+			type: C.EVENT.MODULE.REGISTER
+		});
+	};
+
 
 	var _unregister = function(moduleID) {
 		if (_modules.hasOwnProperty(moduleID)) {
@@ -298,9 +374,9 @@ define([
 	};
 
 	var _getPluginType = function(moduleID) {
-		var isDataType = new RegExp("^" + _requiredModuleIDPrefixes[C.COMPONENT.DATA_TYPE]);
-		var isExportType = new RegExp("^" + _requiredModuleIDPrefixes[C.COMPONENT.EXPORT_TYPE]);
-		var isCore = new RegExp("^" + _requiredModuleIDPrefixes[C.COMPONENT.CORE]);
+		var isDataType   = new RegExp("^data-type-");
+		var isExportType = new RegExp("^export-type-");
+		var isCore       = new RegExp("^core-");
 
 		var type = null;
 		if (isDataType.test(moduleID)) {
@@ -318,17 +394,23 @@ define([
 	var _serializeDataTypeRow = function(rowDataType, rowNum) {
 		if (!_modules.hasOwnProperty(rowDataType)) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
-				console.warn("Invalid params for manager.serializeDataTypeRow()");
+				console.warn("Unknown data type for manager.serializeDataTypeRow(): " + rowDataType);
 			}
 			return;
 		}
-		var currDataType = _modules[rowDataType];
-		console.log(currDataType);
+		return _modules[rowDataType].saveRow(rowNum);
 	};
 
 
 	var _serializeExportTypes = function() {
-
+		var isExportType = new RegExp("^export-type-");
+		var exportTypeData = {};
+		for (var moduleID in _modules) {
+			if (isExportType.test(moduleID)) {
+				exportTypeData[moduleID] = _modules[moduleID].saveSettings();
+			}
+		}
+		return exportTypeData;
 	};
 
 
@@ -336,24 +418,53 @@ define([
 	return {
 
 		/**
-		 * Our registration function. Any plugins - Data Types, Export Types or the Core - that
-		 * want to include any client-side code need to register themselves with the manager in
-		 * order to access PUB/SUB.
+		 * Our registration function for Data Types plugins.
 		 *
 		 * @function
 		 * @param {String} moduleID the unique module ID. Module IDs should be of the following format:
-		 *    [type]-[plugin folder name], where "type" is "core", "export-type" or "data-type".
-		 * @param {String} moduleType a string identifying the module type: C.COMPONENT.CORE,
-		 *     C.COMPONENT.DATA_TYPE or C.COMPONENT.EXPORT_TYPE
+		 *   data-type-[Data Type folder name]
+		 * @param {Object} module an object with the following required properties:<br />
+		 * - saveRow() - <br />
+		 * - loadRow() - <br />
+		 * Optional properties:
+		 * - run()<br />
+		 * - init() - where subscriptions are generally set up. All init()'s are run prior to anything being run().<br />
+		 * - skipDomReady (boolean)<br />
+		 * @name Manager#registerDataType
+		 */
+		registerDataType: _registerDataType,
+
+		/**
+		 * Our registration function for Export Types plugins.
+		 *
+		 * @function
+		 * @param {String} moduleID the unique module ID. Module IDs should be of the following format:
+		 *   data-type-[Data Type folder name]
 		 * @param {Object} module an object with the following required properties:<br />
 		 * - run() - a function<br />
 		 * - init() - where subscriptions are generally set up. All init()'s are run prior to anything being run().
-		 * - load() - <br />
-		 * Optional properties:<br />
+		 * - saveRow() - <br />
+		 * - loadRow() - <br />
 		 * - skipDomReady (boolean)<br />
-		 * @name Manager#register
+		 * @name Manager#registerDataType
 		 */
-		register: _register,
+		registerExportType: _registerExportType,
+
+		/**
+		 * Our registration function for Core plugins.
+		 *
+		 * @function
+		 * @param {String} moduleID the unique module ID. Module IDs should be of the following format:
+		 *   data-type-[Data Type folder name]
+		 * @param {Object} module an object with the following required properties:<br />
+		 * - run() - a function<br />
+		 * - init() - where subscriptions are generally set up. All init()'s are run prior to anything being run().
+		 * - saveRow() - <br />
+		 * - loadRow() - <br />
+		 * - skipDomReady (boolean)<br />
+		 * @name Manager#registerDataType
+		 */
+		registerCoreModule: _registerCoreModule,
 
 		/**
 		 * Publishes a message, which any other module that's been registered can subscribe to.

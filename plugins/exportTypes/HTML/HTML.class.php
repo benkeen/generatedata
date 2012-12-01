@@ -80,24 +80,24 @@ class HTML extends ExportTypePlugin {
 
 	function getAdditionalSettingsHTML() {
 		$html =<<< END
-		<table cellspacing="0" cellpadding="0" width="100%">
-		<tr>
-			<td width="15%" valign="top" class="etHTMLDefaultFormatLabels">Data format</td>
-			<td width="35%" valign="top" class="etHTMLDefaultFormatLabels">
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" class="etHTMLDefaultFormats" value="table" checked="checked" />
-					<label for="etHTMLExportFormat1">&lt;table&gt;</label>
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat2" class="etHTMLDefaultFormats" value="ul" />
-					<label for="etHTMLExportFormat2">&lt;ul&gt;</label>
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat3" class="etHTMLDefaultFormats" value="dl" />
-					<label for="etHTMLExportFormat3">&lt;dl&gt;</label>
-			</td>
-			<td width="50%" valign="top">
-				<input type="checkbox" name="etHTMLUseCustomExportFormat" id="etHTMLUseCustomExportFormat" />
-					<label for="etHTMLUseCustomExportFormat">{$this->L["use_custom_html_format"]}</label>
-					<input type="button" id="etHTMLEditCustomFormat" value="edit" disabled="disabled" />
-			</td>
-		</tr>
-		</table>
+<table cellspacing="0" cellpadding="0" width="100%">
+<tr>
+	<td width="15%" valign="top" class="etHTMLDefaultFormatLabels">Data format</td>
+	<td width="35%" valign="top" class="etHTMLDefaultFormatLabels">
+		<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" class="etHTMLDefaultFormats" value="table" checked="checked" />
+			<label for="etHTMLExportFormat1">&lt;table&gt;</label>
+		<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat2" class="etHTMLDefaultFormats" value="ul" />
+			<label for="etHTMLExportFormat2">&lt;ul&gt;</label>
+		<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat3" class="etHTMLDefaultFormats" value="dl" />
+			<label for="etHTMLExportFormat3">&lt;dl&gt;</label>
+	</td>
+	<td width="50%" valign="top">
+		<input type="checkbox" name="etHTMLUseCustomExportFormat" id="etHTMLUseCustomExportFormat" />
+			<label for="etHTMLUseCustomExportFormat">{$this->L["use_custom_html_format"]}</label>
+			<input type="button" id="etHTMLEditCustomFormat" value="edit" disabled="disabled" />
+	</td>
+</tr>
+</table>
 
 <div id="etHTMLCustomFormatDialog" style="display:none">
 	<div style="width: 300px; float: left;">

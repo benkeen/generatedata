@@ -8,6 +8,7 @@
 
 	"use strict";
 
+
 	/**
 	 * @name HTML
 	 * @see ExportType
@@ -110,9 +111,25 @@
 
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
-		init: _init,
-		validate: _validate
-	});
+	var _loadSettings = function(settings) {
+		$("input[name=etHTMLExportFormat]").val(settings.dataFormat); // TODO (check...)
+		$("#etHTMLUseCustomExportFormat").val(settings.useCustomExportFormat);
+		$("#etHTMLCustomSmarty").val(settings.customExportSmartyContent);
+	};
 
+	var _saveSettings = function() {
+		return {
+			"dataFormat": $("input[name=etHTMLExportFormat]:checked").val(),
+			"useCustomExportFormat": $("#etHTMLUseCustomExportFormat")[0].checked,
+			"customExportSmartyContent": $("#etHTMLCustomSmarty").val()
+		};
+	};
+	
+
+	manager.registerExportType(MODULE_ID, {
+		init: _init,
+		validate: _validate,
+		loadSettings: _loadSettings,
+		saveSettings: _saveSettings
+	});
 });

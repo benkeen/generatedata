@@ -25,6 +25,14 @@ define([
 		$("#gdTableRows").on("click", ".dtRegionCountry", _toggleCountryRegion);
 	};
 
+	var _saveRow = function() {
+
+	};
+
+	var _loadRow = function() {
+
+	};
+
 	/**
 	 * This is called any time the country list changes - including on load. It ensures only the appropriate
 	 * regions are displayed.
@@ -104,9 +112,11 @@ var StateProvince_ns = {
 }*/
 
 	// register our module
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+	manager.registerDataType(MODULE_ID, {
 		init: _init,
-		validate: _validate
+		validate: _validate,
+		loadRow: _loadRow,
+		saveRow: _saveRow
 	});
 
 });

@@ -50,8 +50,25 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
-		init: _init
+	var _validate = function() {
+
+	};
+
+	var _loadSettings = function(settings) {
+		$("#etProgrammingLanguage_language").val(settings.language);
+	};
+
+	var _saveSettings = function() {
+		return {
+			language: $("#etProgrammingLanguage_language").val()
+		};
+	};
+
+	manager.registerExportType(MODULE_ID, {
+		init: _init,
+		validate: _validate,
+		loadSettings: _loadSettings,
+		saveSettings: _saveSettings
 	});
 
 });

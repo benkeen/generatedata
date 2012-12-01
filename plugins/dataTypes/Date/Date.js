@@ -42,6 +42,27 @@ define([
 		$("#dtOption_" + msg.rowID).val(msg.value);
 	};
 
+	var _saveRow = function(rowNum) {
+		return {
+			"fromDate": $("#fromDate_" + rowNum).val(),
+			"toDate":   $("#toDate_" + rowNum).val(),
+			"example":  $("#dt_" + rowNum).val(),
+			"option":   $("#option_" + rowNum).val()
+		};
+	};
+
+	var _loadRow = function(rowNum, data) {
+		return [
+			function() {
+				$("#fromDate_" + rowNum).val(data.fromDate);
+				$("#toDate_" + rowNum).val(data.toDate);
+				$("#dt_" + rowNum).val(data.example);
+				$("#option_" + rowNum).val(data.option);
+			},
+			function() { return $("#option_" + rowNum).length > 0; }
+		];
+	};
+
 	var _validate = function(rows) {
 		var visibleProblemRows = [];
 		var problemFields      = [];
@@ -59,34 +80,10 @@ define([
 		return errors;
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+	manager.registerDataType(MODULE_ID, {
 		init: _init,
-		validate: _validate
+		validate: _validate,
+		saveRow: _saveRow,
+		loadRow: _loadRow
 	});
-
-/*
-	loadRow: function(rowNum, data)
-	{
-		return [
-			function() {
-				$("#fromDate_" + rowNum).val(data.fromDate);
-				$("#toDate_" + rowNum).val(data.toDate);
-				$("#dt_" + rowNum).val(data.example);
-				$("#option_" + rowNum).val(data.option);
-			},
-			function() { return $("#option_" + rowNum).length > 0; }
-		];
-	},
-
-	saveRow: function(rowNum)
-	{
-		return {
-			"fromDate": $("#fromDate_" + rowNum).val(),
-			"toDate":   $("#toDate_" + rowNum).val(),
-			"example":  $("#dt_" + rowNum).val(),
-			"option":   $("#option_" + rowNum).val()
-		};
-	}
-*/
-
 });

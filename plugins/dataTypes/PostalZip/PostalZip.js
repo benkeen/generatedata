@@ -16,6 +16,14 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
+	var _saveRow = function() {
+
+	};
+
+	var _loadRow = function() {
+
+	};
+
 	var _countryChange = function(msg) {
 		var shownClassesSelectors = [];
 		for (var i=0; i<msg.countries.length; i++) {
@@ -31,9 +39,11 @@ define([
 	};
 
 	// register our module
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+	manager.registerDataType(MODULE_ID, {
 		init: _init,
-		validate: _validate
+		validate: _validate,
+		saveRow: _saveRow,
+		loadRow: _loadRow
 	});
 });
 

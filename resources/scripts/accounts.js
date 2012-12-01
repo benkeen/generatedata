@@ -32,7 +32,7 @@ define([
 	};
 
 	// register our module
-	manager.register(MODULE_ID, C.COMPONENT.CORE, {
+	manager.registerCoreModule(MODULE_ID, {
 		run: _run,
 		skipDomReady: false
 	});

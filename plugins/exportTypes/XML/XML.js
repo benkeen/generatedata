@@ -19,32 +19,6 @@ define([
 	var _dialog = null;
 	var _codeMirror = null;
 
-	var _init = function() {
-		var subscriptions = {};
-		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
-		manager.subscribe(MODULE_ID, subscriptions);
-
-		$(window).resize(_updateDialogDimensions);
-		$("#etXMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
-
-		// assign event handlers for the custom sections option
-		$("#etXMLUseCustomExportFormat").bind("click", function() {
-			if (this.checked) {
-				$("#etXMLEditCustomFormat").removeAttr("disabled");
-				$("#etXMLRootNodeName,#etXMLRecordNodeName").attr("disabled", "disabled");
-				$(".etXMLDefaultFormatLabels").addClass("gdDisabledText");
-			} else {
-				$("#etXMLEditCustomFormat").attr("disabled", "disabled");
-				$("#etXMLRootNodeName,#etXMLRecordNodeName").removeAttr("disabled");
-				$(".etXMLDefaultFormatLabels").removeClass("gdDisabledText");
-			}
-		});
-
-		// for onload
-		if ($("#etXML_useCustomExportFormat").attr("checked")) {
-			$("#etXML_customFormat").removeAttr("disabled").removeClass("gdDisabled");
-		}
-	};
 
 	/**
 	 * Called when the user changes the result type. This just changes the 2nd column heading to be
@@ -217,8 +191,46 @@ define([
 		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
+	var _init = function() {
+		var subscriptions = {};
+		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
+		manager.subscribe(MODULE_ID, subscriptions);
+
+		$(window).resize(_updateDialogDimensions);
+		$("#etXMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
+
+		// assign event handlers for the custom sections option
+		$("#etXMLUseCustomExportFormat").bind("click", function() {
+			if (this.checked) {
+				$("#etXMLEditCustomFormat").removeAttr("disabled");
+				$("#etXMLRootNodeName,#etXMLRecordNodeName").attr("disabled", "disabled");
+				$(".etXMLDefaultFormatLabels").addClass("gdDisabledText");
+			} else {
+				$("#etXMLEditCustomFormat").attr("disabled", "disabled");
+				$("#etXMLRootNodeName,#etXMLRecordNodeName").removeAttr("disabled");
+				$(".etXMLDefaultFormatLabels").removeClass("gdDisabledText");
+			}
+		});
+
+		// for onload
+		if ($("#etXML_useCustomExportFormat").attr("checked")) {
+			$("#etXML_customFormat").removeAttr("disabled").removeClass("gdDisabled");
+		}
+	};
+
+	var _loadSettings = function(settings) {
+
+	};
+
+	var _saveSettings = function() {
+
+	};
+
+	manager.registerExportType(MODULE_ID, {
 		init: _init,
-		validate: _validate
+		validate: _validate,
+		loadSettings: _loadSettings,
+		saveSettings: _saveSettings
 	});
+
 });

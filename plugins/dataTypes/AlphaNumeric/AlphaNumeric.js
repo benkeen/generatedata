@@ -24,6 +24,23 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
+	var _saveRow = function(rowNum) {
+		return {
+			"example": $("#dt_" + rowNum).val(),
+			"option":  $("#option_" + rowNum).val()
+		};
+	};
+
+	var _loadRow = function(rowNum, data) {
+		return [
+			function() {
+				$("#dt_" + rowNum).val(data.example);
+				$("#option_" + rowNum).val(data.option);
+			},
+			function() { return $("#option_" + rowNum).length > 0; }
+		];
+	};
+
 	var _exampleChange = function(msg) {
 		$("#dtOption_" + msg.rowID).val(msg.value);
 	};
@@ -46,27 +63,10 @@ define([
 		return errors;
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+	manager.registerDataType(MODULE_ID, {
 		init: _init,
-		validate: _validate
+		validate: _validate,
+		saveRow: _saveRow,
+		loadRow: _loadRow
 	});
 });
-
-/*
-var _loadRow = function(rowNum, data) {
-	return [
-		function() {
-			$("#dt_" + rowNum).val(data.example);
-			$("#option_" + rowNum).val(data.option);
-		},
-		function() { return $("#option_" + rowNum).length > 0; }
-	];
-},
-
-var saveRow = function(rowNum) {
-	return {
-		"example":  $("#dt_" + rowNum).val(),
-		"option":   $("#option_" + rowNum).val()
-	};
-}
-*/

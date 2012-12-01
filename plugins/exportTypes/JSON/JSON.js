@@ -38,8 +38,25 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
-		init: _init
+	var _validate = function() {
+
+	};
+
+	var _loadSettings = function(settings) {
+		$("#etJSON_stripWhitespace").val(settings.stripWhitespace);
+	};
+
+	var _saveSettings = function() {
+		return {
+			stripWhitespace: $("#etJSON_stripWhitespace")[0].checked
+		};
+	};
+
+	manager.registerExportType(MODULE_ID, {
+		init: _init,
+		validate: _validate,
+		loadSettings: _loadSettings,
+		saveSettings: _saveSettings
 	});
 
 });

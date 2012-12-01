@@ -57,7 +57,6 @@ define([
 			utils.displayValidationErrors("#gdMessages");
 			return false;
 		}*/
-
 		// if the name already exists, check with the user that it's okay to overwrite it
 		/*
 		var formExists = false;
@@ -66,7 +65,6 @@ define([
 				form_exists = true;
 			}
 		}
-
 		if (form_exists) {
 			if (!confirm(L.form_exists_overwrite_confirmation)) {
 				return false;
@@ -78,7 +76,11 @@ define([
 		var orderedRowIDs = generator.getRowOrder();
 		for (var i=0; i<orderedRowIDs.length; i++) {
 			var rowNum  = orderedRowIDs[i];
-			var rowDataType = $("#gdDataType" + rowNum).val();
+			var rowDataType = $("#gdDataType_" + rowNum).val();
+			if (rowDataType === "") {
+				continue;
+			}
+
 			rowData.push({
 				title: $("#gdTitle_" + rowNum).val(),
 				dataType: rowDataType,
@@ -86,16 +88,16 @@ define([
 			});
 		}
 
-		var data = {
+		var configuration = {
+			dataSetName: "",
+			exportTarget: generator.getExportTarget(),
 			numResults: generator.getNumRowsToGenerate(),
 			countries: generator.getCountries(),
 			dataTypes: rowData,
 			exportTypes: manager.serializeExportTypes(),
 			selectedExportType: generator.getCurrentExportType()
 		};
-
-		console.log(data);
-
+		console.log(configuration);
 
 		/*
 			xmlSettings: {
@@ -127,7 +129,7 @@ define([
 		$.ajax({
 			url:  "code/ajax_save.php",
 			type: "POST",
-			data: data_str,
+			data: $.toJSON(configuration),
 			success: function(data) {
 				var json = $.evalJSON(data);
 
@@ -155,7 +157,7 @@ define([
 	}
 
 	// register our module
-	manager.register(MODULE_ID, C.COMPONENT.CORE, {
+	manager.registerCoreModule(MODULE_ID, {
 		run: _run
 	});
 });

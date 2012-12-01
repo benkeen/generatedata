@@ -46,7 +46,23 @@ define([
 		msg.editor.setOption("mode", "mysql");
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
-		init: _init
+	var _validate = function() {
+
+	};
+
+	var _loadSettings = function(settings) {
+
+	};
+
+	var _saveSettings = function() {
+
+	};
+
+	manager.registerExportType(MODULE_ID, {
+		init: _init,
+		validate: _validate,
+		loadSettings: _loadSettings,
+		saveSettings: _saveSettings
 	});
+
 });

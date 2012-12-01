@@ -46,37 +46,40 @@ define([
 	};
 
 	/**
+	 * Called when the user saves a form. This function is passed the row number of the row to
+	 * save. It should return a JSON object (of whatever structure is relevant).
+	 */
+	var _saveRow = function(rowNum) {
+		return {
+			"example": $("#dtExample_" + rowNum).val(),
+			"option":  $("#dtOption_" + rowNum).val()
+		};
+	};
+
+	/**
 	 * Called when a form is loaded that contains this data type. This is passed the row number and
 	 * the custom data type data to populate the fields. loadRow functions all must return an array
 	 * with two indexes - both functions:
 	 *  [0] code to execute (generally inserting data into fields)
-	 *  [1] a boolean test to determine WHEN to execute the code.
+	 *  [1] a boolean test to determine WHEN the content has been inserted.
 	 */
 	var _loadRow = function(rowNum, data) {
 		return [
 			function() {
-				$("#dt_" + rowNum).val(data.example);
-				$("#option_" + rowNum).val(data.option);
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtOption_" + rowNum).val(data.option);
 			},
-			function() { return $("#option_" + rowNum).length > 0; }
+			function() { return $("#dtOption_" + rowNum).length > 0; }
 		];
 	};
 
-	/**
-	 * Called when the user saves a form. This function is passed the row number of the row to
-	 * save. It should return a well-formatted JSON object (of whatever structure is relevant.
-	 */
-	var _saveRow = function(rowNum) {
-		return {
-			"example":  $("#dt_" + rowNum).val(),
-			"option":   $("#option_" + rowNum).val()
-		};
-	};
 
 	// register our module
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+	manager.registerDataType(MODULE_ID, {
 		init: _init,
-		validate: _validate
+		validate: _validate,
+		loadRow: _loadRow,
+		saveRow: _saveRow
 	});
 
 });

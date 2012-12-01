@@ -11,6 +11,14 @@ define([
 	var MODULE_ID = "data-type-NumberRange";
 	var LANG = L.dataTypePlugins.NumberRange;
 
+	var _saveRow = function(rowNum) {
+		
+	};
+
+	var _loadRow = function(rowNum, data) {
+
+	};
+
 	var _validate = function(rows) {
 		var visibleProblemRows = [];
 		var problemFields      = [];
@@ -37,8 +45,10 @@ define([
 		return errors;
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		validate: _validate
+	manager.registerDataType(MODULE_ID, {
+		validate: _validate,
+		loadRow: _loadRow,
+		saveRow: _saveRow
 	});
 });
 

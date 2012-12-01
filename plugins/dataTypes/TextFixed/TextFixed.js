@@ -18,6 +18,14 @@ define([
 	var MODULE_ID = "data-type-TextFixed";
 	var LANG = L.dataTypePlugins.TextFixed;
 
+	var _saveRow = function() {
+
+	};
+
+	var _loadRow = function() {
+
+	};
+
 	var _validate = function(rows) {
 		var visibleProblemRows = [];
 		var problemFields      = [];
@@ -37,8 +45,10 @@ define([
 	};
 
 	// register our module
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
-		validate: _validate
+	manager.registerDataType(MODULE_ID, {
+		validate: _validate,
+		loadRow: _loadRow,
+		saveRow: _saveRow
 	});
 });
 

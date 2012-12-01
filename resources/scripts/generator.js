@@ -27,7 +27,6 @@ define([
 	var _currExportType = null; // populated onload
 	var _showExportTypeSettings = true;
 	var _codeMirror = null;
-
 	var _lastSelectedDataType = null;
 
 	// the number of results being generated
@@ -459,7 +458,15 @@ define([
 					rowElement: row,
 					event: e
 				});
-			}
+			},
+			buttons: [
+				{
+					text: "Close",
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
+			]
 		});
 		myDialog.dialog('open');
 
@@ -723,7 +730,15 @@ define([
 			modal:     true,
 			resizable: false,
 			title:     titleText,
-			width:     500
+			width:     500,
+			buttons: [
+				{
+					text: "Close",
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
+			]
 		});
 		myDialog.dialog("open");
 	};
@@ -751,7 +766,7 @@ define([
 	};
 
 	// register our module
-	manager.register(MODULE_ID, C.COMPONENT.CORE, {
+	manager.registerCoreModule(MODULE_ID, {
 		run: _run,
 		skipDomReady: false
 	});
@@ -811,6 +826,15 @@ define([
 		 */
 		getCurrentExportType: function() {
 			return _currExportType;
+		},
+
+		/**
+		 * Returns the current export type.
+		 * @function
+		 * @name Generator#getCurrentExportType
+		 */
+		getExportTarget: function() {
+			return $("input[name=gdExportTarget]").val();
 		},
 
 		/**

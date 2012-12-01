@@ -26,6 +26,14 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
+	var _saveRow = function() {
+
+	};
+
+	var _loadRow = function() {
+
+	};
+
 	var _exampleChange = function(msg) {
 		var parts = msg.value.split(',');
 		var rowNum = msg.rowID;
@@ -58,9 +66,11 @@ define([
 		return errors;
 	};
 
-	manager.register(MODULE_ID, C.COMPONENT.DATA_TYPE, {
+	manager.registerDataType(MODULE_ID, {
 		init: _init,
-		validate: _validate
+		validate: _validate,
+		loadRow: _loadRow,
+		saveRow: _saveRow
 	});
 });
 
