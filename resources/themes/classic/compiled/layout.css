@@ -129,7 +129,8 @@ footer {
     padding-top: 17px; }
 
 #gdTab1Content {
-  display: block; }
+  display: block;
+  margin-top: 20px; }
   #gdTab1Content h2 {
     float: left;
     width: 160px;

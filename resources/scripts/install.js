@@ -20,10 +20,10 @@ require([
 	$(function() {
 		$("#dbHostname").select();
 		$("form").bind("submit", submit);
-		$("input[name=employUserAccounts]").bind("click", _toggleUserAccountSection);
+		$("input[name=userAccountSetup]").bind("click", _toggleAdminAccountSection);
 		$("#pluginInstallationResults").on("click", ".gdError", _displayPluginInstallationError);
 
-		_toggleUserAccountSection();
+		_toggleAdminAccountSection();
 
 		// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
 		// installing the script last time 'round, it will return them to the appropriate step.
@@ -33,8 +33,10 @@ require([
 		}
 	});
 
-	function _toggleUserAccountSection() {
-		var value = $("input[name=employUserAccounts]:checked").val();
+
+	// TODO
+	function _toggleAdminAccountSection() {
+		var value = $("input[name=userAccountSetup]:checked").val();
 		var rowSelector = ".gdEmailRow,.gdPasswordRow,.gdFirstNameRow,.gdLastNameRow,.gdAdminAccountHeading";
 		if (value == "yes") {
 			$(rowSelector).removeClass("gdDisabledRow").find("input").removeAttr("disabled");
@@ -161,12 +163,13 @@ require([
 				break;
 
 			case 3:
-				var employUserAccounts = $("input[name=employUserAccounts]:checked").val();
+				var userAccountSetup = $("input[name=userAccountSetup]:checked").val();
 				var firstName = "";
 				var lastName = "";
 				var email = "";
 				var password = "";
 
+				/*
 				if (employUserAccounts == "yes") {
 					firstName = $.trim($("#firstName").val());
 					if (firstName === "") {
@@ -193,6 +196,7 @@ require([
 					}
 					return false;
 				}
+				*/
 
 				utils.startProcessing();
 				$.ajax({
@@ -201,7 +205,7 @@ require([
 					dataType: "json",
 					data: {
 						action: "installationCreateDatabase",
-						employUserAccounts: employUserAccounts,
+						userAccountSetup: userAccountSetup,
 						firstName: firstName,
 						lastName: lastName,
 						email: email,

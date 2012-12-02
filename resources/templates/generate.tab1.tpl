@@ -1,6 +1,9 @@
-{if $settings.employUserAccounts == "no"}
-	<span id="gdSaveLoadLink"><img src="resources/themes/{$theme}/images/documentSave.png" title="Load / save data sets" /></span>
-{/if}
+<ul id="gdActionIcons">
+	<li id="gdSaveLoadLink"><img src="resources/themes/{$theme}/images/documentSave32x32B.png" title="Load / save data sets" /></li>
+	<li id="gdDataSetLink"><img src="resources/themes/{$theme}/images/link.png" title="Link to this data set" /></li>
+	<li id="gdHelpLink"><img src="resources/themes/{$theme}/images/help.png" title="Argh! Help!" /></li>
+</ul>
+
 
 <form id="gdData" method="post">
 	{* here because the new window/tab export format option uses a simple POST. This standardizes it all
@@ -12,10 +15,16 @@
 
 	<div id="gdGenerateSubtab1">
 
+		<input type="text" style="font-size: 1.6em; border: 1px solid #cccccc; padding: 6px; width: 798px" placeholder="Your data set name here..." />
+
+		<div class="gdClear" style="padding-bottom: 30px"></div>		
+
+<!--
 		<h1>{$L.country_specific_data}</h1>
 		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="country-specific-data">
 			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
 		</ul>
+-->
 
 		{country_list}
 
@@ -23,13 +32,17 @@
 			<a class="gdMessageClose" title="{$L.hide_error}" href="#">X</a>
 			<div></div>
 		</div>
-		<hr class="divider" />
 
+<!--
+		<hr class="divider" />
 		<h1>{$L.data_set}</h1>
 		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="data-set">
 			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
 		</ul>
 		<div class="gdClear"></div>
+-->
+
+		<div class="gdClear" style="padding-bottom: 30px"></div>
 
 		<ul class="gdTableHeadings">
 			<li class="gdColOrder">{$L.order}</li>
@@ -57,18 +70,21 @@
 		{$L.add} <input type="text" name="gdNumRowsToAdd" id="gdNumRowsToAdd" value="1" size="2" />
 		<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 
-		<hr class="divider" />
 
+	<!--	
 		<h1>{$L.data_format}</h1>
+		<hr class="divider" />
 		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="data-format">
 			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
 		</ul>
 		<div class="gdClear"></div>
+	-->
+		<div class="gdClear" style="padding-bottom: 30px"></div>
 
 		<div id="gdExportTypeTabs">
 			<span id="gdShowSettingsLink">
 				<span>+</span>
-				<a href="#">show data format options</a>
+				<a href="#">hide data format options</a>
 			</span>
 			{export_type_tabs}
 			{foreach from=$exportTypeAdditionalSettings key=k item=i}

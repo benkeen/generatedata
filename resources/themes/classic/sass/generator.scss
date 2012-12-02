@@ -24,14 +24,17 @@ body #gdTableRows li.gdDeletedRow {
 .gdTableHeadings {
 	line-height: 18.6px;
 	li {
-		background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#cccccc), color-stop(0.5, #cccccc), color-stop(0.5, #cccccc));
-		background: -moz-linear-gradient(bottom, #dddddd, #cccccc);
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#cccccc');
+		background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#dfdfdf), color-stop(0.5, #dfdfdf), color-stop(0.5, #dfdfdf));
+		background: -moz-linear-gradient(bottom, #dddddd, #dfdfdf);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#dfdfdf');
 		float: left;
 		text-align: center;
 		height: 20px;
 		margin: 0px 0px 0px 1px;
 		padding: 0px;
+		color: #444444;
+		text-shadow: 1px 1px #f2f2f2;
+		font-weight: normal;
 	}
 }
 .gdTableHeadings, #gdTableRows, #gdTableRows ul {
@@ -149,7 +152,7 @@ li.gdColDelete {
 		height: 20px;
 		border-bottom: 1px solid #e1e1e1;
 		li {
-			line-height: 19px;
+			line-height: 20px;
 			height: 20px;
 			float: left;
 			margin-right: 1px;
@@ -165,6 +168,7 @@ li.gdColDelete {
 			background: linear-gradient(to bottom,  #f2f2f2 0%,#e1e1e1 100%);
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
 			cursor: pointer;
+			text-shadow: 1px 1px #f2f2f2;
 
 			&.selected {
 				background: white;
@@ -229,16 +233,27 @@ li.gdColDelete {
 	display: inline-block;
 }
 
-#gdSaveLoadLink {
+#gdActionIcons {
 	float: right;
-	padding: 2px;
-	margin-top: 4px;
-	background-color: #efefef;
-	border-radius: 2px;
-	height: 18px;
-	cursor: pointer;
-	&:hover {
-		background-color: #cccccc;
+	list-style: none; 
+	margin-top: 0px;
+	padding: 0px;
+
+	li {
+		padding: 2px;
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		background-color: #efefef;
+		-webkit-transition: background-color .2s;
+		-moz-transition: background-color .2s;
+		transition: background-color .2s;
+		border-radius: 3px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #cccccc;
+		}
 	}
 }
 

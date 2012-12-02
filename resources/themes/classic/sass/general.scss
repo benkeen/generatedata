@@ -10,7 +10,7 @@ body {
 	text-align: center;
 }
 body, table, td, div, span, div, p {
-	font: 11px Verdana, sans-serif; /* 0.94em */
+	font: 11px "lucida grande", verdana, sans-serif; /* 0.94em */
 	line-height: 20px;
 	color: #555555;
 }
@@ -18,22 +18,28 @@ table, td, p, div, input, select, optgroup, noscript {
 	line-height: 17pt;
 }
 input, select, textarea, option {
-	font: 8pt Verdana, sans-serif;
+	font: 8pt "lucida grande", verdana, sans-serif;
 	color: #222222;
 }
 input[disabled='disabled'] {
 	color: #bbbbbb;
 }
+::-webkit-input-placeholder  { 
+	color: #aaaaaa;
+}
+input:-moz-placeholder {
+	color: #aaaaaa;
+}
 h1 {
 	font-size: 1.6em;
 	font-weight: normal;
-	font-family: verdana;
+	font-family: inherit;
 }
 h2 {
 	font-size: 1.2em;
 	color: green;
 	font-weight: normal;
-	font-family: verdana;
+	font-family: inherit;
 }
 h3 {
 	margin: 10px 0px 7px;
@@ -52,7 +58,7 @@ form {
 }
 select, optgroup, option {
 	font-size: 8pt;
-	font-family: verdana;
+	font-family: "lucida grande", verdana;
 }
 optgroup {
 	font-weight: bold;

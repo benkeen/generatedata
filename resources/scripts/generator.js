@@ -23,6 +23,7 @@ define([
 
 	var MODULE_ID = "core-generator";
 	var _numRows  = 0;
+	var _numRowsToShowOnStart = 5;
 	var _countries = [];
 	var _currExportType = null; // populated onload
 	var _showExportTypeSettings = true;
@@ -47,9 +48,8 @@ define([
 		$("#gdCountries").chosen().change(_updateCountryChoice);
 		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
 		$("#gdBackButton").on("click", function() { return _showSubtab(1); });
-		$(".gdSectionHelpTip li").bind("mouseover", function() { $(this).addClass('ui-state-hover'); });
-		$(".gdSectionHelpTip li").bind("mouseout", function() { $(this).removeClass('ui-state-hover'); });
-		$(".gdSectionHelpTip").bind("click", _showSectionHelpTip);
+		$("#gdHelpLink").bind("click", _showScriptHelpDialog);
+		
 		$("#gdShowSettingsLink").bind("click", function() {
 			// if we're already showing it, hide it!
 			if (_showExportTypeSettings) {
@@ -101,7 +101,7 @@ define([
 
 		_initExportTypeTab();
 		_updateCountryChoice();
-		_addRows(3);
+		_addRows(_numRowsToShowOnStart);
 		_initInPageCodeMirror();
 	};
 
@@ -206,7 +206,7 @@ define([
 			$("<div></div>").html(L.confirm_empty_form).dialog({
 				title: "Please confirm",
 				modal: true,
-				width: 360,
+				width: 60,
 				buttons: [
 					{
 						text: "Yes",
@@ -708,9 +708,11 @@ define([
 		return false;
 	};
 
-	var _showSectionHelpTip = function() {
+
+	var _showScriptHelpDialog = function() {
 		var tipText = "";
 		var titleText = "";
+
 		switch ($(this).data("tip")) {
 			case "country-specific-data":
 				titleText = "Country-specific Data";
@@ -830,9 +832,9 @@ define([
 		},
 
 		/**
-		 * Returns the current export type.
+		 * Returns the current export target (new window, prompt, in-page).
 		 * @function
-		 * @name Generator#getCurrentExportType
+		 * @name Generator#getExportTarget
 		 */
 		getExportTarget: function() {
 			return $("input[name=gdExportTarget]").val();

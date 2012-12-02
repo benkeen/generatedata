@@ -22,6 +22,7 @@ define([
 	var _errors         = [];
 	var _domChangeQueue = [];
 
+
 	return {
 
 		/**

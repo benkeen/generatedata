@@ -74,24 +74,27 @@
 
 	<div class="gdInstallSection{if $currentPage != 3} hidden{/if}" id="page3">
 		<p>
-			By default, there's no password protection: everyone visiting your Data Generator installation can
-			load, save and delete form configurations.
-
-			If you want multiple users to use this script, enter the administrator account details below. This account
-			will be allowed to create and manage user accounts.
+			You have three choices for the way your installation handles user accounts.
 		</p>
 
+		<!-- employUserAccounts -->
+
 		<form>
-			<div class="gdFields">
-				<div class="gdField">
-					<label>Include User Accounts</label>
-					<div class="gdRadioGroup">
-						<input type="radio" name="employUserAccounts" id="eua1" value="yes" />
-							<label for="eua1">{$L.yes}</label>
-						<input type="radio" name="employUserAccounts" id="eua2" value="no" checked="checked" />
-							<label for="eua2">{$L.no}</label>
-					</div>
-				</div>
+			<div>
+				<input type="radio" name="userAccountSetup" id="acs1" value="anonymous" checked="checked" />
+					<label for="acs1">Single, anonymous user account</label>
+			</div>
+			<div>
+				<input type="radio" name="userAccountSetup" id="acs2" value="single" disabled="disabled" />
+					<label for="acs2">Single user account, requires login</label>
+			</div>
+			<div>
+				<input type="radio" name="userAccountSetup" id="acs3" value="multiple" disabled="disabled" />
+					<label for="acs3">Multiple accounts</label>
+			</div>
+
+			<div>
+				<!--
 				<div class="gdField gdAdminAccountHeading gdDisabledRow"><label for="firstName">Admin Account</label></div>
 
 				<div class="gdField gdFirstNameRow gdDisabledRow">
@@ -117,6 +120,7 @@
 					<input type="text" id="password" value="{$randomPassword}" class="pwdField" disabled="disabled" />
 				</div>
 				<div class="gdError" id="password_error"></div>
+			-->
 			</div>
 
 			<div class="gdClear"></div>

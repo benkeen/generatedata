@@ -459,7 +459,7 @@ define([
 		 * - saveRow() - <br />
 		 * - loadRow() - <br />
 		 * - skipDomReady (boolean)<br />
-		 * @name Manager#registerDataType
+		 * @name Manager#registerExportType
 		 */
 		registerExportType: _registerExportType,
 
@@ -475,7 +475,7 @@ define([
 		 * - saveRow() - <br />
 		 * - loadRow() - <br />
 		 * - skipDomReady (boolean)<br />
-		 * @name Manager#registerDataType
+		 * @name Manager#registerCoreModule
 		 */
 		registerCoreModule: _registerCoreModule,
 

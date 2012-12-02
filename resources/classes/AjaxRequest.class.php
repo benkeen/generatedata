@@ -24,7 +24,7 @@ class AjaxRequest {
 		}
 
 		$this->action = $action;
-		$post = Utils::cleanHash($post);
+		$post = Utils::sanitize($post);
 
 		switch ($this->action) {
 
@@ -62,20 +62,19 @@ class AjaxRequest {
 					return;
 				}
 
-				// if they want user accounts, create the administrator account
-				if ($post["employUserAccounts"] == "yes") {
-					$adminAccount = array(
-						"accountType" => "admin",
-						"firstName"   => $post["firstName"],
-						"lastName"    => $post["lastName"],
-						"email"       => $post["email"],
-						"password"    => $post["password"]
-					);
-					Account::createUser($adminAccount);
-					Settings::setSetting("employUserAccounts", "yes");
-				}
+				// always create the administrator account. If the user chose the anonymous setup, all values
+				// will be blank and all configurations will be associated with this (anonymous) user
+				$adminAccount = array(
+					"accountType" => "admin",
+					"firstName"   => $post["firstName"],
+					"lastName"    => $post["lastName"],
+					"email"       => $post["email"],
+					"password"    => $post["password"]
+				);
+				Account::createUser($adminAccount);
 
 				// make note of the fact that we've passed this installation step
+				Settings::setSetting("userAccountSetup", $post["userAccountSetup"]);
 				Settings::setSetting("installationStepComplete_Core", "yes");
 
 				$this->response["success"] = 1;
@@ -190,10 +189,26 @@ class AjaxRequest {
 				$this->response["content"] = $response["errorMessage"];
 				break;
 
+			case "generateInPage":
+				Core::init("generation");
+				$gen = new Generator($_POST);
+				$response = $gen->generate();
+				$this->response["success"]    = $response["success"];
+				$this->response["content"]    = $response["content"];
+				$this->response["isComplete"] = $response["isComplete"];
+				break;
 
 			// ------------------------------------------------------------------------------------
 			// USER ACCOUNTS
 			// ------------------------------------------------------------------------------------
+
+			case "saveConfiguration":
+				Core::init();
+				$response = Core::$user->saveConfiguration($post);
+				$this->response["success"] = $response["success"];
+				$this->response["content"] = $response["message"];
+				break;
+
 
 /*
 			case "login":
@@ -214,14 +229,6 @@ class AjaxRequest {
 				$this->response = Core::$user->loadConfiguration($post["form_id"]);
 				break;
 
-			case "saveConfiguration":
-//				$account_id   = $_SESSION["account_id"];
-//				$form_name    = addslashes($request["form_name"]);
-//				$form_content = addslashes($request["form_content"]);
-				//gd_save_form($account_id, $form_name, $form_content);
-				$this->response = Core::$user->saveConfiguration($post);
-				break;
-
 			case "deleteConfiguration":
 				$form_id = $request["form_id"];
 				gd_delete_form($form_id);
@@ -229,14 +236,7 @@ class AjaxRequest {
 
 */
 
-			case "generateInPage":
-				Core::init("generation");
-				$gen = new Generator($_POST);
-				$response = $gen->generate();
-				$this->response["success"]    = $response["success"];
-				$this->response["content"]    = $response["content"];
-				$this->response["isComplete"] = $response["isComplete"];
-				break;
+
 		}
 	}
 

@@ -6,43 +6,66 @@
  * @author Ben Keen <ben.keen@gmail.com>
  */
 class Account {
-	private $accountId;
+	private $isAnonymous = false;
+	private $accountID;
+	private $accountType;
+	private $configurations;
 
 
-	public function __construct($accountId) {
-		$query = mysql_query("
-			SELECT *
-			FROM   {$g_table_prefix}user_accounts
-			WHERE  account_id = $accountId
-				");
-		$user_info = mysql_fetch_assoc($query);
+	/**
+	 * Instantiates a user account. This is passed either "anonymous" or the Account ID
+	 * as the constructor parameter. 
+ 	 *
+	 * @param mixed $accountID
+	 */
+	public function __construct($accountID) {
+		if ($accountID == "anonymous") {
+			$accountID = 1;
+			$this->isAnonymous = true;
+		}
 
+		$prefix = Core::getDbTablePrefix();		
+		$response = Core::$db->query("
+			SELECT * 
+			FROM {$prefix}user_accounts
+			WHERE account_id = $accountID
+		");
+
+		if ($response["success"]) {
+			$accountInfo = mysql_fetch_assoc($response["results"]);
+			$this->accountID = $accountInfo["account_id"];
+			$this->accountType = $accountInfo["account_type"];
+		}
+/*
 		$form_count_query = mysql_query("
 			SELECT count(*)
 			FROM   {$g_table_prefix}forms
 			WHERE  account_id = $account_id
 				");
 		$form_count = mysql_fetch_array($form_count_query);
-		db_disconnect($link);
-
 		$user_info["num_forms_saved"] = $form_count[0];
-//		return $user_info;
+*/
 	}
 
+	public function isAnonymous() {
+		return $this->isAnonymous;
+	}
 
 	public function getID() {
 		return $this->accountID;
 	}
 
+	public function getAccountType() {
+		return $this->accountType;
+	}
 
-	/**
+	/*
 	 * Saves a test data configuration.
 	 *
 	 * @param integer $account_id
 	 * @param string $form_name
 	 * @param string $form_content
 	 * @return string
-	 */
 	public function saveConfiguration($form_name, $form_content) {
 
 		// find out if there's already a form with this name for this user
@@ -160,9 +183,6 @@ class Account {
 
 
 	public function updateTotalRowCount($num_rows) {
-		//global $g_table_prefix;
-		//$link = db_connect();
-
 		// Ben, surely there's a way to do this in a single query...
 		$select_query = mysql_query("
 			SELECT num_records_generated
@@ -180,9 +200,44 @@ class Account {
 			SET    num_records_generated = $new_total
 			WHERE  account_id = $account_id
 				");
-
-//	  db_disconnect($link);
 	}
+*/
+
+	public function saveConfiguration($data) {
+		$configurationName = Utils::sanitize($data["dataSetName"]);
+
+		unset($data["action"]);
+		unset($data["dataSetName"]);
+		$content = Utils::sanitize(json_encode($data));
+
+		$now = Utils::getCurrentDatetime();
+		$prefix = Core::getDbTablePrefix();
+		$accountID = $this->accountID;
+
+		$response = Core::$db->query("
+			INSERT INTO {$prefix}configurations (date_created, last_updated, account_id, configuration_name, content)
+			VALUES ('$now', '$now', $accountID, '$configurationName', '$content')
+		");
+
+		if ($response["success"]) {
+			$configurationID = mysql_insert_id();
+			return array(
+				"success" => true,
+				"message" => $configurationID
+			);
+		} else {
+			return array(
+				"success" => false,
+				"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
+			);
+		}
+	}
+
+
+	public static function loadAnonymousDataSet($configurationID) {
+
+	}
+
 
 	/**
 	 * Used (currently) in the installation script. Note: this function relies on the settings file having
@@ -191,7 +246,6 @@ class Account {
 	 * @param array $accountInfo
 	 */
 	public static function createUser($accountInfo) {
-
 		$accountInfo = Utils::sanitize($accountInfo);
 		$encryptionSalt = Core::getEncryptionSalt();
 

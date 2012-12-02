@@ -20,7 +20,7 @@
 <body>
 	<header>
 		<nav>
-			{if $settings.employUserAccounts == "yes"}<a href="#" id="gdUserAccountLink">Your Account</a> |{/if}
+			{if $settings.userAccountSetup == "anonymous"}<a href="#" id="gdUserAccountLink">Your Account</a> |{/if}
 			<a href="http://www.generatedata.com">{$L.website}</a> |
 			<a href="http://www.generatedata.com/forums/">{$L.forums}</a> <span class="gdHideNoJS">|</span>
 			{language_dropdown nameId="gdSelectLanguage"}
@@ -30,9 +30,8 @@
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
-			{if $settings.employUserAccounts == "yes"}<li id="gdTab2" class="gdHideNoJS">{$L.accounts}</li>{/if}
+			{if $settings.userAccountSetup == "multiple"}<li id="gdTab2" class="gdHideNoJS">{$L.accounts}</li>{/if}
 			<li id="gdTab3" class="gdHideNoJS">{$L.settings}</li>
-			<li id="gdTab4" class="gdHideNoJS">{$L.help}</li>
 		</ul>
 	</nav>
 	<section>
@@ -40,9 +39,8 @@
 		<div id="gdContent" class="gdHideNoJS">
 			<ul class="gdTabContent">
 				<li id="gdTab1Content">{include file="generate.tab1.tpl"}</li>
-				{if $settings.employUserAccounts == "yes"}<li id="gdTab2Content" style="display:none">{include file="generate.tab2.tpl"}</li>{/if}
+				{if $settings.userAccountSetup == "multiple"}<li id="gdTab2Content" style="display:none">{include file="generate.tab2.tpl"}</li>{/if}
 				<li id="gdTab3Content" style="display:none">{include file="generate.tab3.tpl"}</li>
-				<li id="gdTab4Content" style="display:none">{include file="generate.tab4.tpl"}</li>
 			</ul>
 		</div>
 	</section>

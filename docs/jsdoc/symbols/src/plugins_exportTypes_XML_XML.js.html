@@ -65,6 +65,8 @@
 		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Excel.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Excel</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Generator.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Generator</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_Core">Core</span></span></span></a></li>
 		
 			<li><a href="../../symbols/HTML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">HTML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -100,11 +102,13 @@
 			<div id="content" class="span9">
 <!-- ============================== source code ============================ -->
 
-				<pre id="source-code" class="prettyprint linenums">define([
+				<pre id="source-code" class="prettyprint linenums">/*global $:false,CodeMirror:false*/
+define([
+	"manager",
+	"generator",
 	"constants",
-	"lang",
-	"manager"
-], function(C, L, manager) {
+	"lang"
+], function(manager, generator, C, L) {
 
 	"use strict";
 
@@ -119,6 +123,7 @@
 	var LANG = L.exportTypePlugins.XML;
 	var _dialog = null;
 	var _codeMirror = null;
+
 
 	var _init = function() {
 		var subscriptions = {};
@@ -145,7 +150,56 @@
 		if ($("#etXML_useCustomExportFormat").attr("checked")) {
 			$("#etXML_customFormat").removeAttr("disabled").removeClass("gdDisabled");
 		}
-	}
+	};
+
+	var _validate = function(rowNums) {
+		var errors = [];
+
+		var invalidNodeNames  = [];
+
+		for (var i=0; i&lt;rowNums.length; i++) {
+			var rowNum = rowNums[i];
+			var nodeField = $("#gdTitle_" + rowNum);
+			var nodeFieldVal = nodeField.val();
+
+			// if ($("#title_" + nodeNum).val().match(/\W/) ||  $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
+			// invalidNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
+			// }
+		}
+
+/*		if (invalidNodeNames.length) {
+			var problemFields = [];
+			var rowNumbers    = [];
+			for (var i=0; i&lt;invalidNodeNames.length; i++) {
+				problemFields.push(invalidNodeNames[i][0]);
+				rowNumbers.push(invalidNodeNames[i][1]);
+			}
+			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
+			Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
+		}
+
+		if ($("#xml_root_node_name").val() == "") {
+			Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
+		} else if ($("#xml_root_node_name").val().match(/\W/)) {
+			Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
+		} else if ($("#xml_record_node_name").val() == "") {
+			Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
+		} else if ($("#xml_record_node_name").val().match(/\W/)) {
+			Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
+		}
+		*/
+
+		return errors;
+	};
+
+
+	var _loadSettings = function(settings) {
+
+	};
+
+	var _saveSettings = function() {
+
+	};
 
 	/**
 	 * Called when the user changes the result type. This just changes the 2nd column heading to be
@@ -155,7 +209,7 @@
 		if (msg.newExportType == "XML") {
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
 		}
-	}
+	};
 
 	var _openEditCustomFormatDialog = function() {
 		var dimensions = _getDialogDimensions();
@@ -167,7 +221,7 @@
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
 			open: function() {
-				if (_codeMirror == null) {
+				if (_codeMirror === null) {
 					_codeMirror = CodeMirror.fromTextArea($("#etXMLCustomSmarty")[0], {
 						mode: "xml",
 						lineNumbers: true
@@ -180,17 +234,17 @@
 				}
 			},
 			buttons: [
-			    {
-			    	text: "Close",
-			    	click: function() {
-			    		$(this).dialog("close");
-			    	}
-			    }
+				{
+					text: "Close",
+					click: function() {
+						$(this).dialog("close");
+					}
+				}
 			]
 		});
 
 		return false;
-	}
+	};
 
 	var _getDialogDimensions = function() {
 		var dialogHeight  = ($(window).height() / 100) * 90;
@@ -203,125 +257,45 @@
 			dialogWidth: dialogWidth,
 			contentHeight: contentHeight,
 			contentWidth: contentWidth
-		}
-	}
-
-
-	/**
-	 * Our validation function performed when the user clicks the main Generate button. This ensures the
-	 * XML additional settings are filled in properly and all rows have a valid node name.
-	 */
-	var _validate = function() {
-/*
-		var missingNodeNames  = [];
-		var invalidNodeNames  = [];
-		var missingTableNames = [];
-		var invalidTableNames = [];
-
-		var visibleRowNum = 0;
-		var dataTypeValidationFunctions = [];
-		for (var i=0; i&lt;orderedRowIDs.length; i++) {
-			var nodeNum = orderedRowIDs[i];
-			visibleRowNum++;
-
-			// ignore rows that haven't specified a data type
-			if ($("#type_" + nodeNum).val() == "") {
-				continue;
-			}
-
-			switch (resultType) {
-				case "XML":
-					if ($("#title_" + nodeNum).val() == "") {
-						missingNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
-					} else if ($("#title_" + nodeNum).val().match(/\W/) || $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
-						invalidNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
-					}
-					break;
-
-				case "SQL":
-					if ($("#title_" + nodeNum).val() == "") {
-						missingTableNames.push([$("#title_" + nodeNum), visibleRowNum]);
-					} else if ($("#title_" + nodeNum).val().match(/\W/) || $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
-						invalidTableNames.push([$("#title_" + nodeNum), visibleRowNum]);
-					}
-					break;
-			}
-
-			// keep track of the data types that have custom validation routines
-			var func_ns = $("#type_" + nodeNum).val() + "_ns";
-			if (typeof window[func_ns] === "object" &amp;&amp; typeof window[func_ns].validate === "function") {
-				if (!_multiDimArrayContains(func_ns, dataTypeValidationFunctions)) {
-					dataTypeValidationFunctions.push([func_ns, [nodeNum]]);
-				} else {
-					dataTypeValidationFunctions = _multiDimArrayAddRow(func_ns, dataTypeValidationFunctions, nodeNum);
-				}
-			}
-
-			numGeneratedRows++;
-		}
-
-		if (missingNodeNames.length) {
-			var problemFields = [];
-			var rowNumbers    = [];
-			for (var i=0; i&lt;missingNodeNames.length; i++) {
-				problemFields.push(missingNodeNames[i][0]);
-				rowNumbers.push(missingNodeNames[i][1]);
-			}
-			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
-		}
-		if (invalidNodeNames.length) {
-			var problemFields = [];
-			var rowNumbers    = [];
-			for (var i=0; i&lt;invalidNodeNames.length; i++) {
-				problemFields.push(invalidNodeNames[i][0]);
-				rowNumbers.push(invalidNodeNames[i][1]);
-			}
-			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
-			Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
-		}
-		if (missingTableNames.length) {
-			var problemFields = [];
-			var rowNumbers    = [];
-			for (var i=0; i&lt;missingTableNames.length; i++) {
-				problemFields.push(missingTableNames[i][0]);
-				rowNumbers.push(missingTableNames[i][1]);
-			}
-			Generator.errors.push({ els: problemFields, error: L.missing_table_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
-		}
-		if (invalidTableNames.length) {
-			var problemFields = [];
-			var rowNumbers    = [];
-			for (var i=0; i&lt;invalidTableNames.length; i++) {
-				problemFields.push(invalidTableNames[i][0]);
-				rowNumbers.push(invalidTableNames[i][1]);
-			}
-			Generator.errors.push({ els: problemFields, error: L.invalid_table_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
-		}
-
-		if (resultType == "XML") {
-			if ($("#xml_root_node_name").val() == "") {
-				Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
-			} else if ($("#xml_root_node_name").val().match(/\W/)) {
-				Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
-			} else if ($("#xml_record_node_name").val() == "") {
-				Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
-			} else if ($("#xml_record_node_name").val().match(/\W/)) {
-				Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
-			}
-		}
-*/
-	}
+		};
+	};
 
 	var _updateDialogDimensions = function() {
 		var dimensions = _getDialogDimensions();
 		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
 		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
-	}
+	};
 
-	manager.register(MODULE_ID, C.COMPONENT.EXPORT_TYPE, {
+
+	manager.registerExportType(MODULE_ID, {
+		
+		/**
+		 * @function
+		 * @name XML#init
+		 */
 		init: _init,
-		validate: _validate
+
+		/**
+		 * Our validation function performed when the user clicks the main Generate button. This ensures the
+		 * XML additional settings are filled in properly and all rows have a valid node name.
+		 * @function
+		 * @name XML#validate
+		 */
+		validate: _validate,
+
+		/**
+		 * @function
+		 * @name XML#loadSettings
+		 */
+		loadSettings: _loadSettings,
+
+		/**
+		 * @function
+		 * @name XML#saveSettings
+		 */
+		saveSettings: _saveSettings
 	});
+
 });</pre>
 			</div>
 		</section>
@@ -333,7 +307,7 @@
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Thu Nov 29 2012 23:03:03 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Sat Dec 01 2012 14:57:34 GMT-0800 (PST)</p>
 	</div>
 </footer>
 

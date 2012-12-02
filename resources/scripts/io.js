@@ -1,4 +1,4 @@
-/*global $:false,console:false */
+/*global $:false,console:false*/
 define([
 	"manager",
 	"generator",
@@ -89,7 +89,8 @@ define([
 		}
 
 		var configuration = {
-			dataSetName: "",
+			action: "saveConfiguration",
+			dataSetName: newDataSetName,
 			exportTarget: generator.getExportTarget(),
 			numResults: generator.getNumRowsToGenerate(),
 			countries: generator.getCountries(),
@@ -97,73 +98,30 @@ define([
 			exportTypes: manager.serializeExportTypes(),
 			selectedExportType: generator.getCurrentExportType()
 		};
-		console.log(configuration);
 
-		/*
-			xmlSettings: {
-				rootNodeName:          $("#xml_root_node_name").val(),
-				recordNodeName:        $("#xml_record_node_name").val(),
-				xml_use_custom_format: $("#xml_use_custom_format").attr("checked"),
-				xml_custom_format:     $("#xml_custom_format").val()
-			},
-			csvSettings: {
-				delimiter:        $("#csv_delimiter").val(),
-				csv_line_endings: $("#csv_line_endings").val()
-			},
-			sqlSettings: {
-				dbTableName:   $("#sql_table_name").val(),
-				dbType:        $("#sql_database").val(),
-				includeCreateTableQuery: $("#sql_create_table").is(":checked"),
-				includeDropTableQuery:   $("#sql_drop_table").is(":checked"),
-				encloseWithBackquotes:   $("#enclose_with_backquotes").is(":checked"),
-				statementType: $("input[name=sql_statement_type]:checked").val(),
-				primaryKey:    $("input[name=sql_primary_key]:checked").val()
-			}
-		*/
-
-		return;
-
-//		var data_str = 'form_name=' + newFormName + '&form_content=' + $.toJSON(data);
 		utils.startProcessing();
-
 		$.ajax({
-			url:  "code/ajax_save.php",
+			url:  "ajax.php",
 			type: "POST",
-			data: $.toJSON(configuration),
-			success: function(data) {
-				var json = $.evalJSON(data);
-
-				// if this form isn't listed in the form dropdown list, add it
-				var already_listed = false;
-				var form_list_dd = $("#formList")[0];
-				for (var f=0; f<form_list_dd.length; f++) {
-					if (form_list_dd[f].text == json.form_name) {
-						already_listed = true;
-					}
-				}
-				if (!already_listed) {
-					form_list_dd[form_list_dd.length] = new Option(json.form_name, json.form_id, false, false);
-				}
-
-				g.displayMessage(L.form_saved);
-				g.stopProcessing();
+			data: configuration,
+			success: function(response) {
+				console.log(response);
+				//g.stopProcessing();
 			},
 
 			error: function() {
-				alert(L.fatal_error);
-				gd.stopProcessing();
+				// alert(L.fatal_error);
+				// gd.stopProcessing();
 			}
-		});		
-	}
+		});
+	};
 
 	// register our module
 	manager.registerCoreModule(MODULE_ID, {
 		run: _run
 	});
+
 });
-
-
-
 /*
 var io = {
 
@@ -466,5 +424,5 @@ var io = {
 			}
 		});
 	}
-}
 */
+

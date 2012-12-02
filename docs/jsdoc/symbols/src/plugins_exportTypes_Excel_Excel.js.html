@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Source - ../../../plugins/dataTypes/LatLng/LatLng.js</title>
+	<title>Source - ../../../plugins/exportTypes/Excel/Excel.js</title>
 	<meta name="generator" content="JsDoc Toolkit" />
 
 	<link media="all" rel="stylesheet" href="../../css/common.css" type="text/css" />
@@ -102,26 +102,56 @@
 			<div id="content" class="span9">
 <!-- ============================== source code ============================ -->
 
-				<pre id="source-code" class="prettyprint linenums">"use strict";
+				<pre id="source-code" class="prettyprint linenums">/*global $:false,CodeMirror:false*/
+ define([
+	"manager",
+	"constants",
+	"lang",
+	"generator"
+], function(manager, C, L, generator) {
 
-/*var Country_ns = {
-  loadRow: function(rowNum, data)
-  {
-    return [
-      function() {
-        $("#option_" + rowNum).attr("checked", data.option);
-      },
-      function() { return $("#option_" + rowNum).length &gt; 0; }
-    ];
-  },
+	"use strict";
 
-  saveRow: function(rowNum)
-  {
-    return {
-      "option": $("#option_" + rowNum).attr("checked")
-    };
-  }
-}*/</pre>
+	/**
+	 * @name Excel
+	 * @see ExportType
+	 * @description Client-side code for the Excel Export Type.
+	 * @namespace
+	 */
+
+	var MODULE_ID = "export-type-Excel";
+	var LANG = L.exportTypePlugins.Excel;
+
+
+	var _loadSettings = function(settings) {
+		// $("#etCSV_delimiter").val(settings.delimiter);
+		// $("#etCSV_lineEndings").val(settings.eol);
+	};
+
+	var _saveSettings = function() {
+		// return {
+		// 	"delimiter": $("#etCSV_delimiter").val(),
+		// 	"eol": $("#etCSV_lineEndings").val()
+		// };
+	};
+	
+	var _validate = function() {
+		/*if ($("#csv_delimiter").val() == "") {
+			Generator.errors.push({ els: [$("#csv_delimiter")], error: L.no_csv_delimiter });
+		}*/
+	};
+
+	var _validate = function() {
+
+	};
+
+	manager.registerExportType(MODULE_ID, {
+		validate: _validate,
+		loadSettings: _loadSettings,
+		saveSettings: _saveSettings
+	});
+});
+</pre>
 			</div>
 		</section>
 	</div>

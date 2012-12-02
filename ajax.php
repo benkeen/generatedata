@@ -15,6 +15,7 @@ $response = $ajaxRequest->getResponse();
 $response["content"] = utf8_encode($response["content"]);
 $encoded = json_encode($response);
 
+// TODO
 $errorCode = json_last_error();
 if ($errorCode) {
 	switch ($errorCode) {
