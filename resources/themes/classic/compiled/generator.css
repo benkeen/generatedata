@@ -8,7 +8,7 @@ hr.divider {
   #gdTableRows li.gdDeletedRow label, #gdTableRows li.gdDeletedRow div {
     color: #ffffcc; }
 #gdTableRows > li:nth-child(even) {
-  background-color: #edf3fe; }
+  background-color: #ebfeeb; }
 #gdTableRows > li:nth-child(odd) {
   background-color: #efefef; }
 
@@ -181,6 +181,8 @@ li.gdColDelete {
   border: 1px solid #bbbbbb; }
   #gdGenerateSection span {
     margin-left: 60px; }
+    #gdGenerateSection span label {
+      margin-right: 8px; }
 
 #gdGenerateCount, #gdGenerateTotal {
   font-weight: bold; }
@@ -222,3 +224,14 @@ li.gdColDelete {
     cursor: pointer; }
     #gdActionIcons li:hover {
       background-color: #cccccc; }
+
+#gdDataSetName {
+  font-size: 1.6em;
+  border: 1px solid #cccccc;
+  padding: 6px;
+  width: 718px;
+  color: #555555; }
+  #gdDataSetName::-webkit-input-placeholder {
+    color: #aaaaaa; }
+  #gdDataSetName:-moz-placeholder {
+    color: #aaaaaa; }

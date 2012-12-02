@@ -11,7 +11,7 @@ hr.divider {
 		}
 	}
 	&>li:nth-child(even) {
-		background-color: #edf3fe;
+		background-color: #ebfeeb;
 	}
 	&>li:nth-child(odd) {
 		background-color: #efefef;
@@ -208,6 +208,9 @@ li.gdColDelete {
 
 	span {
 		margin-left: 60px;
+		label {
+			margin-right: 8px;
+		}
 	}
 }
 #gdGenerateCount, #gdGenerateTotal {
@@ -257,3 +260,17 @@ li.gdColDelete {
 	}
 }
 
+#gdDataSetName {
+	font-size: 1.6em;
+	border: 1px solid #cccccc; 
+	padding: 6px; 
+	width: 718px;
+	color: #555555;
+
+	&::-webkit-input-placeholder  { 
+		color: #aaaaaa;
+	}
+	&:-moz-placeholder {
+		color: #aaaaaa;
+	}
+}

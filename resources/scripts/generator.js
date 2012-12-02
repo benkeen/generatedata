@@ -563,7 +563,7 @@ define([
 			return false;
 		}
 
-		var exportTarget = $("input[name=gdExportTarget]:checked")[0].value;
+		var exportTarget = _getExportTarget();
 		var rowOrder = _getRowOrder().toString();
 		$("#gdRowOrder").val(rowOrder);
 		$("#gdExportType").val(_currExportType);
@@ -768,6 +768,11 @@ define([
 		$(".CodeMirror").addClass("CodeMirror_medium");
 	};
 
+	var _getExportTarget = function() {
+		return $("input[name=gdExportTarget]").val();
+	};
+
+
 	// register our module
 	manager.registerCoreModule(MODULE_ID, {
 		run: _run,
@@ -808,8 +813,6 @@ define([
 				}
 				visibleRowNum++;
 			}
-
-			// should
 			return false;
 		},
 
@@ -836,9 +839,7 @@ define([
 		 * @function
 		 * @name Generator#getExportTarget
 		 */
-		getExportTarget: function() {
-			return $("input[name=gdExportTarget]").val();
-		},
+		getExportTarget: _getExportTarget,
 
 		/**
 		 * Returns the number of rows to generate currently entered.
@@ -847,6 +848,16 @@ define([
 		 */
 		getNumRowsToGenerate: function() {
 			return $("#gdNumRowsToGenerate").val();
+		},
+
+
+		/**
+		 * Returns the number of rows to generate currently entered.
+		 * @function
+		 * @name Generator#openMainDialog
+		 */
+		openMainDialog: function() {
+
 		}
 	};
 });

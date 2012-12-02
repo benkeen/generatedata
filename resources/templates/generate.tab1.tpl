@@ -1,6 +1,8 @@
 <ul id="gdActionIcons">
-	<li id="gdSaveLoadLink"><img src="resources/themes/{$theme}/images/documentSave32x32B.png" title="Load / save data sets" /></li>
+	<li id="gdSaveLoadLink"><img src="resources/themes/{$theme}/images/documentSave32x32B.png" title="Save this data set" /></li>
+	<li><img src="resources/themes/{$theme}/images/load.png" title="Load data set" /></li>
 	<li id="gdDataSetLink"><img src="resources/themes/{$theme}/images/link.png" title="Link to this data set" /></li>
+	<li><img src="resources/themes/{$theme}/images/trash.png" title="Clear the page: start anew!" /></li>
 	<li id="gdHelpLink"><img src="resources/themes/{$theme}/images/help.png" title="Argh! Help!" /></li>
 </ul>
 
@@ -14,10 +16,9 @@
 	<input type="hidden" name="gdExportFormat" id="gdExportFormat" />
 
 	<div id="gdGenerateSubtab1">
+		<input type="text" id="gdDataSetName" placeholder="Your data set name here..." />
 
-		<input type="text" style="font-size: 1.6em; border: 1px solid #cccccc; padding: 6px; width: 798px" placeholder="Your data set name here..." />
-
-		<div class="gdClear" style="padding-bottom: 30px"></div>		
+		<div class="gdClear" style="padding-bottom: 20px"></div>		
 
 <!--
 		<h1>{$L.country_specific_data}</h1>
@@ -42,7 +43,7 @@
 		<div class="gdClear"></div>
 -->
 
-		<div class="gdClear" style="padding-bottom: 30px"></div>
+		<div class="gdClear" style="padding-bottom: 20px"></div>
 
 		<ul class="gdTableHeadings">
 			<li class="gdColOrder">{$L.order}</li>
@@ -67,8 +68,10 @@
 
 		<div class="gdClear gdVerticalPad"></div>
 
-		{$L.add} <input type="text" name="gdNumRowsToAdd" id="gdNumRowsToAdd" value="1" size="2" />
-		<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
+		<div style="background-color: #f2f2f2; border-radius: 3px; padding: 4px 4px 4px 8px; display:inline-block">
+			{$L.add} <input type="text" name="gdNumRowsToAdd" id="gdNumRowsToAdd" value="1" size="2" />
+			<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
+		</div>
 
 
 	<!--	
@@ -153,11 +156,11 @@
 	{data_type_resources}
 </div>
 
+
 <div id="gdManageDataSets" class="hidden">
 	Name, Created, Last Used, Rows generated, delete
 
 	<br />
 
-	<input type="text" id="gdNewDataSetName" />
-		<input type="button" id="gdSaveDataSet" value="Save" />
+	<input type="button" id="gdSaveDataSet" value="Save" />
 </div>

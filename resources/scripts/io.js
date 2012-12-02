@@ -49,7 +49,7 @@ define([
 	 */
 	var _saveDataSet = function() {
 		var buttons = [];
-		var newDataSetName = $("#gdNewDataSetName").val();
+		var newDataSetName = $("#gdDataSetName").val();
 
 		/*if (!newFormName || newFormName == L.default_save_form_empty_str) {
 			errors = [];
