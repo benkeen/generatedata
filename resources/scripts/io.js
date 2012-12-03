@@ -13,7 +13,7 @@ define([
 	/**
 	 * @name IO
 	 * @see Core
-	 * @description This module contains all code relating to I/O - saving and loading configurations.
+	 * @description This module contains all code relating to I/O - saving and loading configurations.	 
 	 * @author Ben Keen <ben.keen@gmail.com>
 	 * @return {Object}
 	 * @namespace
@@ -24,104 +24,9 @@ define([
 
 
 	var _run = function() {
-		$("#gdSaveLoadLink").on("click", _openManageConfigurationsDialog);
-		$("#gdSaveDataSet").on("click", _saveDataSet);
 	};
 
 
-	var _openManageConfigurationsDialog = function() {
-		$("#gdManageDataSets").dialog({
-			title: "Manage Data Sets",
-			width: 800,
-			minHeight: 400,
-			modal: true,
-			buttons: [
-				{
-					text: "Close",
-					click: function() { $(this).dialog("close"); }
-				}
-			]
-		});
-	};
-
-	/**
-	 * Serializes and saves the current data set.
-	 */
-	var _saveDataSet = function() {
-		var buttons = [];
-		var newDataSetName = $("#gdDataSetName").val();
-
-		/*if (!newFormName || newFormName == L.default_save_form_empty_str) {
-			errors = [];
-			gd.errors.push({ els: null, error: L.no_form_name });
-			utils.displayValidationErrors("#gdMessages");
-			return false;
-		}*/
-		// if the name already exists, check with the user that it's okay to overwrite it
-		/*
-		var formExists = false;
-		for (var i=0; i<form_list_dd.length; i++) {
-			if (form_list_dd[i].text == newFormName) {
-				form_exists = true;
-			}
-		}
-		if (form_exists) {
-			if (!confirm(L.form_exists_overwrite_confirmation)) {
-				return false;
-			}
-		}
-		*/
-
-		var rowData = [];
-		var orderedRowIDs = generator.getRowOrder();
-		for (var i=0; i<orderedRowIDs.length; i++) {
-			var rowNum  = orderedRowIDs[i];
-			var rowDataType = $("#gdDataType_" + rowNum).val();
-			if (rowDataType === "") {
-				continue;
-			}
-
-			rowData.push({
-				title: $("#gdTitle_" + rowNum).val(),
-				dataType: rowDataType,
-				data: manager.serializeDataTypeRow(rowDataType, rowNum)
-			});
-		}
-
-		var configuration = {
-			action: "saveConfiguration",
-			dataSetName: newDataSetName,
-			exportTarget: generator.getExportTarget(),
-			numResults: generator.getNumRowsToGenerate(),
-			countries: generator.getCountries(),
-			dataTypes: rowData,
-			exportTypes: manager.serializeExportTypes(),
-			selectedExportType: generator.getCurrentExportType()
-		};
-
-		utils.startProcessing();
-		$.ajax({
-			url:  "ajax.php",
-			type: "POST",
-			data: configuration,
-			success: function(response) {
-				console.log(response);
-				//g.stopProcessing();
-			},
-
-			error: function() {
-				// alert(L.fatal_error);
-				// gd.stopProcessing();
-			}
-		});
-	};
-
-	// register our module
-	manager.registerCoreModule(MODULE_ID, {
-		run: _run
-	});
-
-});
 /*
 var io = {
 

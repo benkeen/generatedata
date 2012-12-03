@@ -337,8 +337,13 @@ li.gdColDelete {
   #gdHelpPopup h4 {
     margin: 0px; }
 
-#gdEmptyForm {
-  float: right; }
+#gdEmptyFormDialog {
+  padding-left: 54px;
+  background: transparent url(../images/help.png) 10px 10px no-repeat; }
+  #gdEmptyFormDialog p {
+    margin: 5px 0px 12px; }
+  #gdEmptyFormDialog h4 {
+    margin: 0px; }
 
 #gdTextSize {
   float: right;

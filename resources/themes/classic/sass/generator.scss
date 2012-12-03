@@ -98,8 +98,15 @@ li.gdColDelete {
 	padding-left: 54px;
 	background: transparent url(../images/info.png) 10px 10px no-repeat;
 }
-#gdEmptyForm {
-	float: right;
+#gdEmptyFormDialog {
+	p {
+		margin: 5px 0px 12px;
+	}
+	h4 {
+		margin: 0px;
+	}
+	padding-left: 54px;
+	background: transparent url(../images/help.png) 10px 10px no-repeat;
 }
 #gdTextSize {
 	float: right;

@@ -11,11 +11,8 @@ require_once(realpath(dirname(__FILE__) . "/library.php"));
 header("Cache-Control: private, no-cache, must-revalidate");
 
 $ajaxRequest = new AjaxRequest(@$_POST["action"], $_POST);
-$response = $ajaxRequest->getResponse();
-$response["content"] = utf8_encode($response["content"]);
-$encoded = json_encode($response);
+$encoded = json_encode($ajaxRequest->getResponse());
 
-// TODO
 $errorCode = json_last_error();
 if ($errorCode) {
 	switch ($errorCode) {

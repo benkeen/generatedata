@@ -45,6 +45,7 @@ define([
 	 * page.
 	 */
 	var _run = function() {
+		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
 		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
 		$("#gdBackButton").on("click", function() { return _showSubtab(1); });
@@ -95,9 +96,13 @@ define([
 
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRowsToAdd").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
-		$("#gdEmptyForm").bind("click", function() { _emptyForm(true, 5); return false; });
+		$("#gdEmptyForm").bind("click", function() { _emptyForm(); return false; });
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdTextSize").on("click", "li", _changeTextSize);
+
+		$("#gdSaveLoadLink").on("click", _openManageConfigurationsDialog);
+		$("#gdSaveDataSet").on("click", _saveDataSet);
+
 
 		_initExportTypeTab();
 		_updateCountryChoice();
@@ -115,6 +120,97 @@ define([
 		}
 		return false;
 	};
+
+
+	// tmp
+	var _openManageConfigurationsDialog = function() {
+		$("#gdMainDialog").dialog({
+			title: "Manage Data Sets",
+			width: 800,
+			minHeight: 400,
+			modal: true,
+			buttons: [
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]
+		});
+	};
+
+
+	/**
+	 * Serializes and saves the current data set.
+	 */
+	var _saveDataSet = function() {
+		var buttons = [];
+		var newDataSetName = $("#gdDataSetName").val();
+
+		/*if (!newFormName || newFormName == L.default_save_form_empty_str) {
+			errors = [];
+			gd.errors.push({ els: null, error: L.no_form_name });
+			utils.displayValidationErrors("#gdMessages");
+			return false;
+		}*/
+		// if the name already exists, check with the user that it's okay to overwrite it
+		/*
+		var formExists = false;
+		for (var i=0; i<form_list_dd.length; i++) {
+			if (form_list_dd[i].text == newFormName) {
+				form_exists = true;
+			}
+		}
+		if (form_exists) {
+			if (!confirm(L.form_exists_overwrite_confirmation)) {
+				return false;
+			}
+		}
+		*/
+
+		var rowData = [];
+		var orderedRowIDs = _getRowOrder();
+		for (var i=0; i<orderedRowIDs.length; i++) {
+			var rowNum  = orderedRowIDs[i];
+			var rowDataType = $("#gdDataType_" + rowNum).val();
+			if (rowDataType === "") {
+				continue;
+			}
+
+			rowData.push({
+				title: $("#gdTitle_" + rowNum).val(),
+				dataType: rowDataType,
+				data: manager.serializeDataTypeRow(rowDataType, rowNum)
+			});
+		}
+
+		var configuration = {
+			action: "saveConfiguration",
+			dataSetName: newDataSetName,
+			exportTarget: _getExportTarget(),
+			numResults: _getNumRowsToGenerate(),
+			countries: _countries,
+			dataTypes: rowData,
+			exportTypes: manager.serializeExportTypes(),
+			selectedExportType: _currExportType
+		};
+
+		utils.startProcessing();
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			data: configuration,
+			success: function(response) {
+				console.log(response);
+				//g.stopProcessing();
+			},
+
+			error: function() {
+				// alert(L.fatal_error);
+				// gd.stopProcessing();
+			}
+		});
+	};
+
 
 	var _addRows = function(rows) {
 		rows = rows.toString();
@@ -198,24 +294,29 @@ define([
 	};
 
 	/**
-	 * Resets the entire page back to it's defaults: default countries, a blank table and the default data
-	 * format. TODO
+	 * Resets the entire page back to its defaults: default countries, a blank table and the default data
+	 * format. The optional object param lets you optionally display a confirmation modal and reset the
+	 * the table to the default num of rows.
+	 * @function
+	 * @private
+	 * @name#Generator
 	 */
-	var _emptyForm = function(requireConfirmation, numInitRows) {
-		if (requireConfirmation) {
-			$("<div></div>").html(L.confirm_empty_form).dialog({
+	var _emptyForm = function(settings) {
+		var opts = $.extend({
+			requireConfirmation: true,
+			displayDefaultRows: true
+		}, settings);
+
+		if (opts.requireConfirmation) {
+			$("#gdEmptyFormDialog").html(L.confirm_empty_form).dialog({
 				title: "Please confirm",
 				modal: true,
-				width: 60,
+				width: 400,
 				buttons: [
 					{
 						text: "Yes",
 						click: function() {
-							$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
-							_deleteRows();
-							if (numInitRows) {
-								_addRows(numInitRows);
-							}
+							_clearForm(opts.displayDefaultRows);
 							$(this).dialog("close");
 						}
 					},
@@ -228,12 +329,22 @@ define([
 				]
 			});
 		} else {
-			$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
-			_deleteRows();
-			if (numInitRows) {
-				_addRows(numInitRows);
-			}
+			_clearForm(opts.displayDefaultRows);
 		}
+	};
+
+	var _clearForm = function(displayDefaultRows) {
+		$("#gdDataSetName").val("");
+		$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
+		_deleteRows();
+		if (displayDefaultRows) {
+			_addRows(_numRowsToShowOnStart);
+		}
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.CLEAR
+		});
 	};
 
 	/**
@@ -494,7 +605,7 @@ define([
 	 * and starts the data generation process.
 	 */
 	var _generateData = function() {
-		_numRowsToGenerate = $("#gdNumRowsToGenerate").val();
+		_numRowsToGenerate = _getNumRowsToGenerate();
 		utils.clearValidationErrors($("#gdTab1Content"));
 
 		// check the users specified a numeric value for the number of results
@@ -772,6 +883,10 @@ define([
 		return $("input[name=gdExportTarget]").val();
 	};
 
+	var _getNumRowsToGenerate = function() {
+		return $("#gdNumRowsToGenerate").val();
+	};
+
 
 	// register our module
 	manager.registerCoreModule(MODULE_ID, {
@@ -826,15 +941,6 @@ define([
 		},
 
 		/**
-		 * Returns the current export type.
-		 * @function
-		 * @name Generator#getCurrentExportType
-		 */
-		getCurrentExportType: function() {
-			return _currExportType;
-		},
-
-		/**
 		 * Returns the current export target (new window, prompt, in-page).
 		 * @function
 		 * @name Generator#getExportTarget
@@ -846,10 +952,7 @@ define([
 		 * @function
 		 * @name Generator#getNumRowsToGenerate
 		 */
-		getNumRowsToGenerate: function() {
-			return $("#gdNumRowsToGenerate").val();
-		},
-
+		getNumRowsToGenerate: _getNumRowsToGenerate,
 
 		/**
 		 * Returns the number of rows to generate currently entered.

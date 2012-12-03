@@ -1,8 +1,8 @@
 <ul id="gdActionIcons">
-	<li id="gdSaveLoadLink"><img src="resources/themes/{$theme}/images/documentSave32x32B.png" title="Save this data set" /></li>
+	<li id="gdSaveLoadLink"><img src="resources/themes/{$theme}/images/save.png" title="Save this data set" /></li>
 	<li><img src="resources/themes/{$theme}/images/load.png" title="Load data set" /></li>
+	<li id="gdEmptyForm"><img src="resources/themes/{$theme}/images/trash.png" title="Clear the page: start anew!" /></li>
 	<li id="gdDataSetLink"><img src="resources/themes/{$theme}/images/link.png" title="Link to this data set" /></li>
-	<li><img src="resources/themes/{$theme}/images/trash.png" title="Clear the page: start anew!" /></li>
 	<li id="gdHelpLink"><img src="resources/themes/{$theme}/images/help.png" title="Argh! Help!" /></li>
 </ul>
 
@@ -20,28 +20,12 @@
 
 		<div class="gdClear" style="padding-bottom: 20px"></div>		
 
-<!--
-		<h1>{$L.country_specific_data}</h1>
-		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="country-specific-data">
-			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
-		</ul>
--->
-
 		{country_list}
 
 		<div id="gdMessages" class="gdMessage">
 			<a class="gdMessageClose" title="{$L.hide_error}" href="#">X</a>
 			<div></div>
 		</div>
-
-<!--
-		<hr class="divider" />
-		<h1>{$L.data_set}</h1>
-		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="data-set">
-			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
-		</ul>
-		<div class="gdClear"></div>
--->
 
 		<div class="gdClear" style="padding-bottom: 20px"></div>
 
@@ -73,15 +57,6 @@
 			<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 		</div>
 
-
-	<!--	
-		<h1>{$L.data_format}</h1>
-		<hr class="divider" />
-		<ul class="gdSectionHelpTip ui-widget ui-helper-clearfix" data-tip="data-format">
-			<li class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-help" title="Help"></span></li>
-		</ul>
-		<div class="gdClear"></div>
-	-->
 		<div class="gdClear" style="padding-bottom: 30px"></div>
 
 		<div id="gdExportTypeTabs">
@@ -135,15 +110,16 @@
 </form>
 
 <div id="gdHelpPopup"></div>
+<div id="gdEmptyFormDialog"></div>
 <div class="hidden">
 	<div id="gdTableRowTemplate">
 		<ul>
 			<li class="gdColOrder">%ROW%</li>
 			<li class="gdColTitle"><input type="text" name="gdTitle_%ROW%" id="gdTitle_%ROW%" /></li>
 			<li class="gdColDataType">{data_types_dropdown}</li>
-			<li class="gdColExamples" id="gdColExamples_%ROW%">&nbsp;</li>
-			<li class="gdColOptions" id="gdColOptions_%ROW%">&nbsp;</li>
-			<li class="gdColHelp" id="gdColHelp_%ROW%">&nbsp;</li>
+			<li class="gdColExamples" id="gdColExamples_%ROW%"></li>
+			<li class="gdColOptions" id="gdColOptions_%ROW%"></li>
+			<li class="gdColHelp" id="gdColHelp_%ROW%"></li>
 			<li class="gdColDelete"><input type="checkbox" class="gdDeleteRows" name="gdDeleteRows_%ROW%" /></li>
 		</ul>
 	</div>
@@ -157,10 +133,25 @@
 </div>
 
 
-<div id="gdManageDataSets" class="hidden">
-	Name, Created, Last Used, Rows generated, delete
+<div id="gdMainDialog" class="hidden">
+	<ul id="gdMainDialogTabs">
+		<li id="">Your Account</li>
+		<li id="">Your Data Sets</li>
+		<li id="">Help</li>
+	</ul>
+	<div id="">
+		Account type: admin/user/anonymous<br />
+		Total rows generated: <br />
+		Date created: <br />
+	</div>
+	<div id="">
+		Data Set Name, Date Created, Last Used, Rows generated, delete
+		<br />
 
-	<br />
+		<input type="button" id="gdSaveDataSet" value="Save" />
+	</div>
+	<div id="">
 
-	<input type="button" id="gdSaveDataSet" value="Save" />
+	</div>
 </div>
+

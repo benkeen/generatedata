@@ -9,12 +9,19 @@ class Account {
 	private $isAnonymous = false;
 	private $accountID;
 	private $accountType;
+	private $dateCreated;
+	private $lastUpdated;
+	private $dateExpires;
+	private $firstName;
+	private $lastName;
+	private $email;
+	private $password;
 	private $configurations;
 
 
 	/**
 	 * Instantiates a user account. This is passed either "anonymous" or the Account ID
-	 * as the constructor parameter. 
+	 * as the constructor parameter.
  	 *
 	 * @param mixed $accountID
 	 */
@@ -35,16 +42,30 @@ class Account {
 			$accountInfo = mysql_fetch_assoc($response["results"]);
 			$this->accountID = $accountInfo["account_id"];
 			$this->accountType = $accountInfo["account_type"];
+			$this->dateCreated = $accountInfo["date_created"];
+			$this->last_updated = $accountInfo["last_updated"];
+			$this->date_expires = $accountInfo["date_expires"];
+			$this->firstName = $accountInfo["first_name"];
+			$this->lastName = $accountInfo["last_name"];
+			
+			$this->getConfigurations();
 		}
-/*
-		$form_count_query = mysql_query("
-			SELECT count(*)
-			FROM   {$g_table_prefix}forms
-			WHERE  account_id = $account_id
-				");
-		$form_count = mysql_fetch_array($form_count_query);
-		$user_info["num_forms_saved"] = $form_count[0];
-*/
+	}
+
+
+	public function getAccount() {
+		return array(
+			"isAnonymous"    => $this->isAnonymous,
+			"accountID"      => $this->accountID,
+			"accountType"    => $this->accountType,
+			"dateCreated"    => $this->dateCreated,
+			"lastUpdated"    => $this->lastUpdated,
+			"dateExpires"    => $this->dateExpires,
+			"firstName"      => $this->firstName,
+			"lastName"       => $this->lastName,
+			"email"          => $this->email,
+			"configurations" => $this->configurations
+		);
 	}
 
 	public function isAnonymous() {
@@ -58,6 +79,28 @@ class Account {
 	public function getAccountType() {
 		return $this->accountType;
 	}
+
+	public function getConfigurations() {
+		$accountID = $this->accountID;
+		$prefix   = Core::getDbTablePrefix();		
+		$response = Core::$db->query("
+			SELECT *
+			FROM   {$prefix}configurations
+			WHERE  account_id = $accountID
+			ORDER BY last_updated DESC
+		");
+
+		if ($response["success"]) {
+			$data = array();
+			while ($row = mysql_fetch_assoc($response["results"])) {
+				$data[] = $row;
+			}
+			$this->configurations = $data;
+		} else {
+			// TODO
+		}
+	}
+
 
 	/*
 	 * Saves a test data configuration.

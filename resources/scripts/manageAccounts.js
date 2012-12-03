@@ -10,16 +10,17 @@ define([
 	"use strict";
 
 	/**
-	 * @name Accounts
+	 * @name ManageAccounts
 	 * @see Core
-	 * @description This module is for managing user accounts - loading, updating, deleting. For loading and
-	 * saving of data sets within an account (or for the global anonymous account) see io.js.
+	 * @description This module is loaded for the admin account in multiple user mode only. It contains the 
+	 * code for managing user accounts - loading, updating, deleting. For loading and saving of data sets, 
+	 * retrieving current account info, etc. see account.js.
 	 * @author Ben Keen <ben.keen@gmail.com>
 	 * @return {Object}
 	 * @namespace
 	 */
 
-	var MODULE_ID = "core-accounts";
+	var MODULE_ID = "core-manageAccounts";
 
 
 	var _run = function() {

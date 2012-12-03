@@ -202,13 +202,20 @@ class AjaxRequest {
 			// USER ACCOUNTS
 			// ------------------------------------------------------------------------------------
 
+			// called onload 
+			case "getAccount":
+				Core::init();
+				$response = Core::$user->getAccount();
+				$this->response["success"] = true;
+				$this->response["content"] = $response;
+				break;
+
 			case "saveConfiguration":
 				Core::init();
 				$response = Core::$user->saveConfiguration($post);
 				$this->response["success"] = $response["success"];
 				$this->response["content"] = $response["message"];
 				break;
-
 
 /*
 			case "login":
@@ -233,15 +240,11 @@ class AjaxRequest {
 				$form_id = $request["form_id"];
 				gd_delete_form($form_id);
 				break;
-
 */
-
-
 		}
 	}
 
 	public function getResponse() {
-		return $this->response;
+		return Utils::utf8_encode_array($this->response);
 	}
 }
-
