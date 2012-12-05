@@ -5,8 +5,9 @@ define([
 	"utils",
 	"constants",
 	"lang",
-	"jquery-ui"
-], function(manager, pluginManager, utils, C, L) {
+	"jquery-ui",
+	"moment"
+], function(manager, pluginManager, utils, C, L, moment) {
 
 	"use strict";
 
@@ -23,7 +24,7 @@ define([
 
 	var MODULE_ID = "core-generator";
 	var _numRows  = 0;
-	var _numRowsToShowOnStart = 5;
+	var _numRowsToShowOnStart = 4;
 	var _countries = [];
 	var _currExportType = null; // populated onload
 	var _showExportTypeSettings = true;
@@ -45,12 +46,12 @@ define([
 	 * page.
 	 */
 	var _run = function() {
+		utils.startProcessing();
 		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
 		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
 		$("#gdBackButton").on("click", function() { return _showSubtab(1); });
-		$("#gdHelpLink").bind("click", _showScriptHelpDialog);
-		
+
 		$("#gdShowSettingsLink").bind("click", function() {
 			// if we're already showing it, hide it!
 			if (_showExportTypeSettings) {
@@ -68,7 +69,7 @@ define([
 		$("#gdTableRows").on("change keyup", ".gdDataType", _onChangeDataType);
 		$("#gdTableRows").on("focus", ".gdDataType", _onFocusDataType);
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("click", ".ui-icon-help", _showHelpDialog);
+		$("#gdTableRows").on("click", ".ui-icon-help", _showDataSetHelp);
 		$("#gdTableRows").on("change", ".gdColExamples select", _publishExampleChange);
 
 		$("#gdTableRows").sortable({
@@ -96,18 +97,22 @@ define([
 
 		$(".gdAddRowsBtn").bind("click", function() { _addRows($("#gdNumRowsToAdd").val()); });
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
-		$("#gdEmptyForm").bind("click", function() { _emptyForm(); return false; });
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdTextSize").on("click", "li", _changeTextSize);
 
-		$("#gdSaveLoadLink").on("click", _openManageConfigurationsDialog);
+		// icon actions
+		$("#gdSaveLink").on("click", _onClickSaveIcon);
+		$("#gdLoadLink").on("click", function() { _openMainDialog({ tab: 2 }); });
 		$("#gdSaveDataSet").on("click", _saveDataSet);
+		$("#gdEmptyForm").bind("click", _emptyForm);
+		$("#gdHelpLink").bind("click", function() { _openMainDialog({ tab: 3 }); });
 
 
 		_initExportTypeTab();
 		_updateCountryChoice();
 		_addRows(_numRowsToShowOnStart);
 		_initInPageCodeMirror();
+		_initMainDialog();
 	};
 
 	var _showSubtab = function(tab) {
@@ -122,20 +127,12 @@ define([
 	};
 
 
-	// tmp
-	var _openManageConfigurationsDialog = function() {
-		$("#gdMainDialog").dialog({
-			title: "Manage Data Sets",
-			width: 800,
-			minHeight: 400,
-			modal: true,
-			buttons: [
-				{
-					text: "Close",
-					click: function() { $(this).dialog("close"); }
-				}
-			]
-		});
+	/**
+	 * Called when the user clicks the save icon. This intelligently decides how to save the information,
+	 * based on whether it's a totally new data set, or if the user had loaded one already.
+	 */
+	var _onClickSaveIcon = function() {
+
 	};
 
 
@@ -382,8 +379,8 @@ define([
 		}
 
 		if (_currExportType !== null) {
-			$("#gdExportTypeTabs>ul>li").removeClass("selected");
-			$("#gdExportType_" + newExportType).addClass("selected");
+			$("#gdExportTypeTabs>ul>li").removeClass("gdSelected");
+			$("#gdExportType_" + newExportType).addClass("gdSelected");
 		}
 
 		// always reset the column heading to the default "Column Title". Export Types have the option
@@ -540,7 +537,7 @@ define([
 		utils.processQueue();
 	};
 
-	var _showHelpDialog = function(e) {
+	var _showDataSetHelp = function(e) {
 		var row = $(e.target).closest(".gdTableRow");
 		var dataTypeDropdown = row.find(".gdDataType");
 		var choice = dataTypeDropdown.val();
@@ -820,48 +817,10 @@ define([
 	};
 
 
-	var _showScriptHelpDialog = function() {
-		var tipText = "";
-		var titleText = "";
-
-		switch ($(this).data("tip")) {
-			case "country-specific-data":
-				titleText = "Country-specific Data";
-				tipText = L.tip_country_data;
-				break;
-			case "data-set":
-				titleText = "Data Set";
-				tipText = L.tip_data_set;
-				break;
-			case "data-format":
-				titleText = "Data Format";
-				tipText = L.tip_data_format;
-				break;
-		}
-
-		var myDialog = $("#gdHelpPopup").html(tipText).dialog({
-			autoOpen:  false,
-			modal:     true,
-			resizable: false,
-			title:     titleText,
-			width:     500,
-			buttons: [
-				{
-					text: "Close",
-					click: function() {
-						$(this).dialog("close");
-					}
-				}
-			]
-		});
-		myDialog.dialog("open");
-	};
-
-
 	var _changeTextSize = function(e) {
-		$("#gdTextSize li").removeClass("selected");
+		$("#gdTextSize li").removeClass("gdSelected");
 		var size = $(e.target).attr("class");
-		$(e.target).addClass("selected");
+		$(e.target).addClass("gdSelected");
 		$("#gdGenerateSubtab2 .CodeMirror").removeClass("CodeMirror_small CodeMirror_medium CodeMirror_large").addClass("CodeMirror_" + size);
 		_codeMirror.refresh();
 	};
@@ -885,6 +844,40 @@ define([
 
 	var _getNumRowsToGenerate = function() {
 		return $("#gdNumRowsToGenerate").val();
+	};
+
+
+	// --------------- main dialog -----------------
+
+	var _initMainDialog = function() {
+		$("#gdMainDialogTabs ul li").each(function() {
+			var tab = parseInt($(this).attr("id").replace(/^gdMainDialogTab/, ""), 10);
+			$(this).bind("click", function() {
+				utils.selectTab({ tabIDPrefix: "gdMainDialogTab", tab: tab } );
+			});
+		});
+	};
+
+	var _openMainDialog = function(settings) {
+		var opts = $.extend({
+			tab: 1
+		}, settings);
+
+		// hide/show the appropriate tab
+		$("#gdMainDialogTab" + opts.tab).trigger("click");
+
+		$("#gdMainDialog").dialog({
+			title: "generatedata.com",
+			width: 800,
+			minHeight: 400,
+			modal: true,
+			buttons: [
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]
+		});
 	};
 
 
@@ -959,8 +952,6 @@ define([
 		 * @function
 		 * @name Generator#openMainDialog
 		 */
-		openMainDialog: function() {
-
-		}
+		openMainDialog: _openMainDialog
 	};
 });

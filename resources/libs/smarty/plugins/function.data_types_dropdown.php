@@ -20,7 +20,7 @@ function smarty_function_data_types_dropdown($params, &$smarty) {
 
 	$options = "";
 	if ($includeDefaultOption) {
-		$options .= "<option value=\"\">{$L["please_select"]}</option>";
+		$options .= "<option value=\"\">{$L["select_data_type"]}</option>";
 	}
 
 	while (list($group, $dataTypes) = each($dataTypeGroups)) {

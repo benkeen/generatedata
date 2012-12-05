@@ -29,31 +29,38 @@ define([
 		 * @description The Data Generator interface is arranged into a number of tabs (or just pages, depending on the theme)
 		 * which are navigable client-side, not server-side. This function changes tabs for you.
 		 * @function
-		 * @param {Number} rowNum a tab number, indexed from 1
+		 * @param {Object}
 		 * @name Utils#selectTab
 		 */
-		selectTab: function(tab) {
-			if (tab == _currentTab) {
+		selectTab: function(settings) {
+			var opts = $.extend({
+				tab: 1,
+				tabIDPrefix: ""
+			}, settings);
+
+			if (opts.tab == _currentTab) {
 				return false;
 			}
-			$("#gdTab" + _currentTab).removeClass("gdSelected");
-			$("#gdTab" + tab).addClass("gdSelected");
-			$("#gdTab" + _currentTab + "Content").hide();
-			$("#gdTab" + tab + "Content").show();
+
+			$("#" + opts.tabIDPrefix + _currentTab).removeClass("gdSelected");
+			$("#" + opts.tabIDPrefix + opts.tab).addClass("gdSelected");
+			$("#" + opts.tabIDPrefix + _currentTab + "Content").hide();
+			$("#" + opts.tabIDPrefix + opts.tab + "Content").show();
 
 			// hide any messages already open on the old tab
-			$("#gdTab" + _currentTab + "Content" + " .gdMessage").hide();
+			$("#" + opts.tabIDPrefix + _currentTab + "Content" + " .gdMessage").hide();
 
 			manager.publish({
 				sender: MODULE_ID,
 				type: C.EVENT.TAB.CHANGE,
 				oldTab: _currentTab,
-				newTab: tab
+				newTab: opts.tab
 			});
 
-			_currentTab = tab;
+			_currentTab = opts.tab;
 			return false;
 		},
+
 
 		// TODO: should temporarily save form settings in memory when switching between languages; or at least prompt the
 		// user to let them know they're going to lose any changes unless they do it manually

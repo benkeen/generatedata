@@ -14,7 +14,7 @@ function smarty_function_export_type_tabs($params, &$smarty) {
 	foreach ($exportTypes as $exportType) {
 		$name = $exportType->getName();
 		$exportTypeClass = get_class($exportType);
-		$class = ($defaultExportType == $exportTypeClass) ? "selected" : "";
+		$class = ($defaultExportType == $exportTypeClass) ? "gdSelected" : "";
 		echo "<li data-export-type=\"$exportTypeClass\" id=\"gdExportType_$exportTypeClass\" class=\"$class\">$name</li>";
 	}
 	echo "</ul>";

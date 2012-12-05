@@ -105,9 +105,35 @@
 #gdGenerateButton {
   display: inline;
   font-size: 11pt;
-  margin: 0px; }
+  margin: -2px 0px 0px 0px;
+  line-height: 15px; }
 
 #gdBackButton {
   float: left;
   margin-right: 4px;
   padding: 4px 6px; }
+
+#gdSaveLink {
+  background: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#efefef), color-stop(0.5, #efefef), color-stop(0.5, #efefef));
+  background: -moz-linear-gradient(bottom, #dfdfdf, #efefef);
+  padding: 4px;
+  border: 1px solid #cccccc;
+  padding: 6px 20px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  line-height: 22px;
+  font-size: 11px;
+  color: #666666;
+  display: inline-block;
+  text-transform: 1px 1px #F2F2F2;
+  cursor: pointer; }
+  #gdSaveLink:hover {
+    background-color: #7fbf4d;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+    background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: linear-gradient(top, #7fbf4d, #63a62f);
+    border: 1px solid #6ca341;
+    color: white; }

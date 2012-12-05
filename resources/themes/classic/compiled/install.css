@@ -53,7 +53,7 @@
   .gdInstallPage #gdInstallNav ol li {
     padding-left: 0px;
     color: #cccccc; }
-  .gdInstallPage #gdInstallNav ol li.selected {
+  .gdInstallPage #gdInstallNav ol li.gdSelected {
     font-weight: bold;
     color: green; }
   .gdInstallPage #gdInstallNav ol li.complete {

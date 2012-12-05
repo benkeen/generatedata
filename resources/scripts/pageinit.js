@@ -14,26 +14,26 @@ define([
 
 	$(function() {
 		$(".gdHideNoJS").show();
+
 		$("#gdTabs ul li").each(function() {
-			var tabNum = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
+			var tab = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
 			$(this).bind("click", function() {
-				utils.selectTab(tabNum);
-				window.location = window.location.href.split("#")[0] + "#t" + tabNum;
+				utils.selectTab({ tabIDPrefix: "gdTabs", tab: tab } );
+				window.location = window.location.href.split("#")[0] + "#t" + tab;
 
 				// workaround for Chosen bug
-				if (tabNum == 1) {
+				if (tab == 1) {
 					$("#gdCountries_chzn, #gdCountries_chzn .chzn-drop").css({ width: "100%" });
-
 				}
 			});
 		});
 
 		// if the page was just reloaded, see if we need to display a particular tab
 		if (window.location.href.match(/#/)) {
-			var tabNum = window.location.href.split("#")[1].replace(/^t/, "");
-			if (utils.isNumber(tabNum) && tabNum >= 1 && tabNum <= $("#gdTabs ul li").length) {
-				utils.selectTab(tabNum);
-				utils.currentTab = tabNum;
+			var tab = window.location.href.split("#")[1].replace(/^t/, "");
+			if (utils.isNumber(tab) && tab >= 1 && tab <= $("#gdTabs ul li").length) {
+				utils.selectTab({ tabIDPrefix: "gdTabs", tab: tab });
+				utils.currentTab = tab;
 			}
 		}
 

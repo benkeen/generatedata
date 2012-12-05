@@ -1,0 +1,13 @@
+#gdMainDialog {
+  padding: 3px 2px; }
+  #gdMainDialog ul li {
+    padding: 2px 30px; }
+  #gdMainDialog .gdSmallTabs {
+    margin-bottom: 10px; }
+    #gdMainDialog .gdSmallTabs ul {
+      height: 24px; }
+  #gdMainDialog .gdSelected {
+    padding: 2px 29px; }
+
+#gdMainDialogContent {
+  padding: 6px; }

@@ -70,6 +70,7 @@ $L["order"] = "Order";
 $L["other"] = "Other";
 $L["please_fix_errors"] = "Please fix the following errors and resubmit:";
 $L["please_select"] = "Please Select";
+$L["select_data_type"] = "Select Data Type";
 $L["primary_key"] = "Primary Key";
 $L["record_node_name"] = "Record node name";
 $L["result_type"] = "Result Type";

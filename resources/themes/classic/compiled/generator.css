@@ -10,7 +10,7 @@ hr.divider {
 #gdTableRows > li:nth-child(even) {
   background-color: #ebfeeb; }
 #gdTableRows > li:nth-child(odd) {
-  background-color: #efefef; }
+  background-color: #f1f1f1; }
 
 /* needed to override the nth-child style above */
 body #gdTableRows li.gdDeletedRow {
@@ -30,6 +30,21 @@ body #gdTableRows li.gdDeletedRow {
     color: #444444;
     text-shadow: 1px 1px #f2f2f2;
     font-weight: normal; }
+  .gdTableHeadings thead tr {
+    background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#dfdfdf), color-stop(0.5, #dfdfdf), color-stop(0.5, #dfdfdf));
+    background: -moz-linear-gradient(bottom, #dddddd, #dfdfdf);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#dfdfdf');
+    color: #444444;
+    text-shadow: 1px 1px #f2f2f2; }
+    .gdTableHeadings thead tr th {
+      line-height: 18.6px;
+      text-align: center;
+      font-weight: normal;
+      height: 20px; }
+  .gdTableHeadings tbody tr > li:nth-child(even) {
+    background-color: #ebfeeb; }
+  .gdTableHeadings tbody tr > li:nth-child(odd) {
+    background-color: #f1f1f1; }
 
 .gdTableHeadings, #gdTableRows, #gdTableRows ul {
   font-family: tahoma, arial;
@@ -108,7 +123,7 @@ li.gdColDelete {
     text-align: center;
     border-radius: 3px;
     cursor: pointer; }
-    #gdTextSize li.selected {
+    #gdTextSize li.gdSelected {
       background-color: #3366cc;
       color: white; }
     #gdTextSize li.small {
@@ -131,15 +146,15 @@ li.gdColDelete {
   width: 16px;
   height: 16px; }
 
-#gdExportTypeTabs {
+.gdSmallTabs {
   margin-bottom: 20px; }
-  #gdExportTypeTabs ul {
+  .gdSmallTabs ul {
     list-style: none;
     margin: 0px;
     padding: 0px;
     height: 20px;
     border-bottom: 1px solid #e1e1e1; }
-    #gdExportTypeTabs ul li {
+    .gdSmallTabs ul li {
       line-height: 20px;
       height: 20px;
       float: left;
@@ -157,25 +172,25 @@ li.gdColDelete {
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
       cursor: pointer;
       text-shadow: 1px 1px #f2f2f2; }
-      #gdExportTypeTabs ul li.selected {
+      .gdSmallTabs ul li.gdSelected {
         background: white;
         background-color: white;
         border: 1px solid #cccccc;
         border-bottom: 0px;
         line-height: 18px;
         padding: 0px 15px; }
-  #gdExportTypeTabs .gdExportTypeTabSettings {
+  .gdSmallTabs .gdExportTypeTabSettings {
     clear: both;
     border-bottom: 1px solid #cccccc;
     border-top: 0px;
     padding: 6px;
     margin: 0px;
     display: none; }
-  #gdExportTypeTabs #gdShowSettingsLink {
+  .gdSmallTabs #gdShowSettingsLink {
     float: right; }
-    #gdExportTypeTabs #gdShowSettingsLink span {
+    .gdSmallTabs #gdShowSettingsLink span {
       font-size: 7pt; }
-    #gdExportTypeTabs #gdShowSettingsLink a {
+    .gdSmallTabs #gdShowSettingsLink a {
       font-size: 7pt;
       color: #3366CC; }
 
@@ -221,21 +236,33 @@ li.gdColDelete {
     display: inline-block;
     width: 32px;
     height: 32px;
-    background-color: #efefef;
+    background-color: #e1e1e1;
     -webkit-transition: background-color .2s;
     -moz-transition: background-color .2s;
     transition: background-color .2s;
     border-radius: 3px;
-    cursor: pointer; }
+    cursor: pointer;
+    display: inline-block; }
     #gdActionIcons li:hover {
       background-color: #cccccc; }
+    #gdActionIcons li.loading:hover {
+      background-color: #e1e1e1; }
+    #gdActionIcons li.loading img {
+      filter: url(../../../css/filters.svg#grayscale);
+      filter: gray;
+      -webkit-filter: grayscale(1);
+      /* Webkit Nightlies & Chrome Canary */
+      opacity: .5; }
 
 #gdDataSetName {
   font-size: 1.6em;
   border: 1px solid #cccccc;
+  border-right: 0px;
   padding: 6px;
-  width: 718px;
-  color: #555555; }
+  width: 690px;
+  color: #555555;
+  float: left;
+  height: 22px; }
   #gdDataSetName::-webkit-input-placeholder {
     color: #aaaaaa; }
   #gdDataSetName:-moz-placeholder {

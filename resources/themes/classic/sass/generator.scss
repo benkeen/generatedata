@@ -14,7 +14,7 @@ hr.divider {
 		background-color: #ebfeeb;
 	}
 	&>li:nth-child(odd) {
-		background-color: #efefef;
+		background-color: #f1f1f1;
 	}
 }
 /* needed to override the nth-child style above */
@@ -35,6 +35,29 @@ body #gdTableRows li.gdDeletedRow {
 		color: #444444;
 		text-shadow: 1px 1px #f2f2f2;
 		font-weight: normal;
+	}
+	thead {
+		tr {
+			background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#dfdfdf), color-stop(0.5, #dfdfdf), color-stop(0.5, #dfdfdf));
+			background: -moz-linear-gradient(bottom, #dddddd, #dfdfdf);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#dfdfdf');
+			color: #444444;
+			text-shadow: 1px 1px #f2f2f2;
+			th {
+				line-height: 18.6px;
+				text-align: center;
+				font-weight: normal;
+				height: 20px;
+			}
+		}
+	}
+	tbody tr {
+		&>li:nth-child(even) {
+			background-color: #ebfeeb;
+		}
+		&>li:nth-child(odd) {
+			background-color: #f1f1f1;
+		}
 	}
 }
 .gdTableHeadings, #gdTableRows, #gdTableRows ul {
@@ -121,7 +144,7 @@ li.gdColDelete {
 		text-align: center;
 		border-radius: 3px;
 		cursor: pointer;
-		&.selected {
+		&.gdSelected {
 			background-color: #3366cc;
 			color: white;
 		}
@@ -150,7 +173,8 @@ li.gdColDelete {
 	width: 16px;
 	height: 16px;
 }
-#gdExportTypeTabs {
+
+.gdSmallTabs {
 	margin-bottom: 20px;
 	ul {
 		list-style: none;
@@ -176,8 +200,7 @@ li.gdColDelete {
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
 			cursor: pointer;
 			text-shadow: 1px 1px #f2f2f2;
-
-			&.selected {
+			&.gdSelected {
 				background: white;
 				background-color: white;
 				border: 1px solid #cccccc;
@@ -242,37 +265,49 @@ li.gdColDelete {
 	margin-bottom: -3px;
 	display: inline-block;
 }
-
 #gdActionIcons {
 	float: right;
 	list-style: none; 
 	margin-top: 0px;
 	padding: 0px;
-
 	li {
 		padding: 2px;
 		display: inline-block;
 		width: 32px;
 		height: 32px;
-		background-color: #efefef;
+		background-color: #e1e1e1;
 		-webkit-transition: background-color .2s;
 		-moz-transition: background-color .2s;
 		transition: background-color .2s;
 		border-radius: 3px;
 		cursor: pointer;
-
+		display: inline-block;
 		&:hover {
 			background-color: #cccccc;
 		}
+		&.loading {
+			&:hover {
+				background-color: #e1e1e1;
+			}
+			img {
+				filter: url(../../../css/filters.svg#grayscale);
+				filter: gray;
+				-webkit-filter: grayscale(1); /* Webkit Nightlies & Chrome Canary */
+				opacity: .5;
+			}
+		}
+
 	}
 }
-
 #gdDataSetName {
 	font-size: 1.6em;
 	border: 1px solid #cccccc; 
+	border-right: 0px;
 	padding: 6px; 
-	width: 718px;
+	width: 690px;
 	color: #555555;
+	float: left;
+	height: 22px;
 
 	&::-webkit-input-placeholder  { 
 		color: #aaaaaa;
