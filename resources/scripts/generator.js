@@ -2,12 +2,13 @@
 define([
 	"manager",
 	"pluginManager",
+	"accountManager",
 	"utils",
 	"constants",
 	"lang",
 	"jquery-ui",
 	"moment"
-], function(manager, pluginManager, utils, C, L, moment) {
+], function(manager, pluginManager, accountManager, utils, C, L, moment) {
 
 	"use strict";
 
@@ -99,14 +100,14 @@ define([
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdTextSize").on("click", "li", _changeTextSize);
+		$(".gdSectionHelp").on("click", _showHelpSection);
 
 		// icon actions
-		$("#gdSaveLink").on("click", _onClickSaveIcon);
+		$("#gdSaveBtn").on("click", _onClickSaveIcon);
 		$("#gdLoadLink").on("click", function() { _openMainDialog({ tab: 2 }); });
 		$("#gdSaveDataSet").on("click", _saveDataSet);
 		$("#gdEmptyForm").bind("click", _emptyForm);
 		$("#gdHelpLink").bind("click", function() { _openMainDialog({ tab: 3 }); });
-
 
 		_initExportTypeTab();
 		_updateCountryChoice();
@@ -132,7 +133,13 @@ define([
 	 * based on whether it's a totally new data set, or if the user had loaded one already.
 	 */
 	var _onClickSaveIcon = function() {
+		if (accountManager.getCurrConfigurationID() === null) {
+			_saveDataSet();
+		} else {
+			// confirm the overwrite
+		}
 
+		return false;
 	};
 
 
@@ -191,21 +198,7 @@ define([
 			selectedExportType: _currExportType
 		};
 
-		utils.startProcessing();
-		$.ajax({
-			url:  "ajax.php",
-			type: "POST",
-			data: configuration,
-			success: function(response) {
-				console.log(response);
-				//g.stopProcessing();
-			},
-
-			error: function() {
-				// alert(L.fatal_error);
-				// gd.stopProcessing();
-			}
-		});
+		accountManager.saveConfiguration(configuration);
 	};
 
 
@@ -848,6 +841,14 @@ define([
 
 
 	// --------------- main dialog -----------------
+
+	var _showHelpSection = function(e) {
+		var section = $(e.target).data("helpSection");
+		
+		// highlight the appropriate section in the third tab
+
+		_openMainDialog({ tab: 3 });
+	};
 
 	var _initMainDialog = function() {
 		$("#gdMainDialogTabs ul li").each(function() {

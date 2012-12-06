@@ -51,7 +51,7 @@
 	require([
 		"manager",
 		"generator",
-		"account",
+		"accountManager",
 		{$exportTypeJSModules},
 		{$dataTypeJSModules},
 		"pageinit"

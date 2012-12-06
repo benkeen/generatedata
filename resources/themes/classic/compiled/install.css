@@ -56,7 +56,7 @@
   .gdInstallPage #gdInstallNav ol li.gdSelected {
     font-weight: bold;
     color: green; }
-  .gdInstallPage #gdInstallNav ol li.complete {
+  .gdInstallPage #gdInstallNav ol li.gdComplete {
     color: #999999; }
 .gdInstallPage .gdInstallSection {
   float: right;

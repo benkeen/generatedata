@@ -156,9 +156,18 @@ footer {
 	display: block;
 	margin-top: 20px;
 	h2 {
-		float: left;
-		width: 160px;
-		margin: 4px 0px;
+		margin: 0px 0px 4px;
+		font-size: 12px;
+		color: #777777;
+		padding: 1px 20px 0px 1px;
+		span.gdSectionHelp {
+			background: transparent url("../images/helpSmall.png") right center no-repeat;			
+			cursor: pointer;
+			width: 14px;
+			height: 14px;
+			display: inline-block;
+			margin: 0px 0px -2px 3px;
+		}
 	}
 	.gdFields {
 		float: left;
@@ -193,7 +202,6 @@ footer {
 .gdFields {
 	line-height: 21px;
 	width: 725px;
-
 	.gdError {
 		margin-left: 6px;
 		background: transparent url(../../images/error.gif) left center no-repeat;

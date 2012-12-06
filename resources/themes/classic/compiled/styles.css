@@ -202,9 +202,17 @@ footer {
   display: block;
   margin-top: 20px; }
   #gdTab1Content h2 {
-    float: left;
-    width: 160px;
-    margin: 4px 0px; }
+    margin: 0px 0px 4px;
+    font-size: 12px;
+    color: #777777;
+    padding: 1px 20px 0px 1px; }
+    #gdTab1Content h2 span.gdSectionHelp {
+      background: transparent url("../images/helpSmall.png") right center no-repeat;
+      cursor: pointer;
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      margin: 0px 0px -2px 3px; }
   #gdTab1Content .gdFields {
     float: left; }
 
@@ -633,12 +641,12 @@ li.gdColDelete {
   margin-right: 4px;
   padding: 4px 6px; }
 
-#gdSaveLink {
+#gdSaveBtn {
   background: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#efefef), color-stop(0.5, #efefef), color-stop(0.5, #efefef));
   background: -moz-linear-gradient(bottom, #dfdfdf, #efefef);
   padding: 4px;
   border: 1px solid #cccccc;
-  padding: 6px 20px;
+  padding: 5px 17px;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   line-height: 22px;
@@ -646,8 +654,11 @@ li.gdColDelete {
   color: #666666;
   display: inline-block;
   text-transform: 1px 1px #F2F2F2;
-  cursor: pointer; }
-  #gdSaveLink:hover {
+  cursor: pointer;
+  height: 36px;
+  margin-left: 0px;
+  width: 68px; }
+  #gdSaveBtn:hover {
     background-color: #7fbf4d;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
     background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
@@ -982,7 +993,7 @@ body.gdErrorPage #gdSeriousError {
   .gdInstallPage #gdInstallNav ol li.gdSelected {
     font-weight: bold;
     color: green; }
-  .gdInstallPage #gdInstallNav ol li.complete {
+  .gdInstallPage #gdInstallNav ol li.gdComplete {
     color: #999999; }
 .gdInstallPage .gdInstallSection {
   float: right;

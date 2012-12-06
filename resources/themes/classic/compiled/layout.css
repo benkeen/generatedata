@@ -132,9 +132,17 @@ footer {
   display: block;
   margin-top: 20px; }
   #gdTab1Content h2 {
-    float: left;
-    width: 160px;
-    margin: 4px 0px; }
+    margin: 0px 0px 4px;
+    font-size: 12px;
+    color: #777777;
+    padding: 1px 20px 0px 1px; }
+    #gdTab1Content h2 span.gdSectionHelp {
+      background: transparent url("../images/helpSmall.png") right center no-repeat;
+      cursor: pointer;
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      margin: 0px 0px -2px 3px; }
   #gdTab1Content .gdFields {
     float: left; }
 

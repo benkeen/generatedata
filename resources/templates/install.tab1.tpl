@@ -2,11 +2,11 @@
 
 	<nav id="gdInstallNav">
 		<ol>
-			<li id="nav1" class="{if $currentPage == 1}selected{else}complete{/if}">Check Database Info</li>
-			<li id="nav2" class="{if $currentPage == 2}selected{elseif $currentPage > 2}complete{/if}">Create Settings File</li>
-			<li id="nav3" class="{if $currentPage == 3}selected{elseif $currentPage > 3}complete{/if}">{$L.user_accounts}</li>
-			<li id="nav4" class="{if $currentPage == 4}selected{elseif $currentPage > 4}complete{/if}">Plugins</li>
-			<li id="nav5" class="{if $currentPage == 5}selected{/if}">Complete!</li>
+			<li id="nav1" class="{if $currentPage == 1}gdSelected{else}gdComplete{/if}">Check Database Info</li>
+			<li id="nav2" class="{if $currentPage == 2}gdSelected{elseif $currentPage > 2}gdComplete{/if}">Create Settings File</li>
+			<li id="nav3" class="{if $currentPage == 3}gdSelected{elseif $currentPage > 3}gdComplete{/if}">{$L.user_accounts}</li>
+			<li id="nav4" class="{if $currentPage == 4}gdSelected{elseif $currentPage > 4}gdComplete{/if}">Plugins</li>
+			<li id="nav5" class="{if $currentPage == 5}gdSelected{/if}">Complete!</li>
 		</ol>
 	</nav>
 

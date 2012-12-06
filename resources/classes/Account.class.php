@@ -93,8 +93,10 @@ class Account {
 		if ($response["success"]) {
 			$data = array();
 			while ($row = mysql_fetch_assoc($response["results"])) {
+				//$row["content"] = stripslashes($row["content"]);
 				$data[] = $row;
 			}
+
 			$this->configurations = $data;
 		} else {
 			// TODO
@@ -251,7 +253,7 @@ class Account {
 
 		unset($data["action"]);
 		unset($data["dataSetName"]);
-		$content = Utils::sanitize(json_encode($data));
+		$content = json_encode($data);
 
 		$now = Utils::getCurrentDatetime();
 		$prefix = Core::getDbTablePrefix();
@@ -259,7 +261,7 @@ class Account {
 
 		$response = Core::$db->query("
 			INSERT INTO {$prefix}configurations (date_created, last_updated, account_id, configuration_name, content)
-			VALUES ('$now', '$now', $accountID, '$configurationName', '$content')
+			VALUES ('$now', '$now', $accountID, '" . $configurationName . "', '" . $content . "')
 		");
 
 		if ($response["success"]) {

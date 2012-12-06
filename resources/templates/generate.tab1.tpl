@@ -1,9 +1,8 @@
 <ul id="gdActionIcons">
-<!--	<li id="gdSaveLink" class="loading"><img src="resources/themes/{$theme}/images/save.png" /></li> -->
-	<li id="gdLoadLink" class="loading"><img src="resources/themes/{$theme}/images/load.png" title="Load data set" /></li>
-	<li id="gdEmptyForm"><img src="resources/themes/{$theme}/images/trash.png" title="Clear the page: start anew!" /></li>
-	<li id="gdDataSetLink" class="loading"><img src="resources/themes/{$theme}/images/link.png" title="Link to this data set" /></li>
-	<li id="gdHelpLink"><img src="resources/themes/{$theme}/images/help.png" title="Argh! Help!" /></li>
+	<li id="gdLoadLink" class="loading"><img src="resources/themes/{$theme}/images/load.png" title="Your Data Sets" /></li>
+	<li id="gdEmptyForm"><img src="resources/themes/{$theme}/images/trash.png" title="Clear the page" /></li>
+	<li id="gdDataSetLink" class="loading"><img src="resources/themes/{$theme}/images/link.png" title="Link to this Data Set" /></li>
+	<li id="gdHelpLink"><img src="resources/themes/{$theme}/images/help.png" title="Argh, help!" /></li>
 </ul>
 
 <form id="gdData" method="post">
@@ -15,9 +14,15 @@
 	<input type="hidden" name="gdExportFormat" id="gdExportFormat" />
 
 	<div id="gdGenerateSubtab1">
-		<input type="text" id="gdDataSetName" placeholder="Your data set name here..." /><span id="gdSaveLink">SAVE</span>
+		<input type="text" id="gdDataSetName" placeholder="Your data set name here..." /><button id="gdSaveBtn">SAVE</button>
 
 		<div class="gdClear" style="padding-bottom: 20px"></div>		
+
+		<h2>
+			COUNTRY-SPECIFIC DATA
+			<span data-help-section="countryData" class="gdSectionHelp"></span>
+		</h2>
+
 		{country_list}
 
 		<div id="gdMessages" class="gdMessage">
@@ -26,6 +31,11 @@
 		</div>
 
 		<div class="gdClear" style="padding-bottom: 20px"></div>
+
+		<h2>
+			DATA SET
+			<span data-help-section="dataTypes" class="gdSectionHelp"></span>
+		</h2>
 
 		<ul class="gdTableHeadings">
 			<li class="gdColOrder">{$L.order}</li>
@@ -52,8 +62,12 @@
 			{$L.add} <input type="text" name="gdNumRowsToAdd" id="gdNumRowsToAdd" value="1" size="2" />
 			<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 		</div>
-
 		<div class="gdClear" style="padding-bottom: 30px"></div>
+
+		<h2>
+			EXPORT TYPES
+			<span data-help-section="exportTypes" class="gdSectionHelp"></span>
+		</h2>
 
 		<div id="gdExportTypeTabs" class="gdSmallTabs">
 			<span id="gdShowSettingsLink">
@@ -72,7 +86,6 @@
 		<div id="gdGenerateSection">
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
 			Generate <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="1000" /> rows
-
 			<span>
 				<input type="radio" name="gdExportTarget" id="gdExportTarget1" value="inPage" checked="checked" />
 					<label for="gdExportTarget1">Generate in-page</label>
@@ -152,7 +165,7 @@
 						<th>Data Created</th>
 						<th>Last Used</th>
 						<th>Rows Generated</th>
-						<th width="50">Load</th>
+						<th width="60">Load</th>
 						<th width="50">Delete</th>
 					</tr>
 				</thead>
@@ -160,7 +173,6 @@
 			</table>
 		</div>
 		<div id="gdMainDialogTab3Content" class="hidden">
-
 
 <p>{$L.tip_country_data}</p>
 <p>{$L.tip_data_set}</p>

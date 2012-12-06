@@ -27,7 +27,7 @@ require([
 
 		// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
 		// installing the script last time 'round, it will return them to the appropriate step.
-		var selectedNavPage = $("#gdInstallNav li.selected");
+		var selectedNavPage = $("#gdInstallNav li.gdSelected");
 		if (selectedNavPage.length) {
 			_currStep = parseInt(selectedNavPage.attr("id").replace(/^nav/, ""), 10);
 		}
@@ -230,7 +230,7 @@ require([
 					pluginManager.installPlugins({
 						errorHandler: installError,
 						onCompleteHandler: function() {
-							$("#gdInstallPluginsBtn").html("Continue &raquo;").show();
+							$("#gdInstallPluginsBtn").html("Continue &raquo;").fadeIn();
 							_currStep++;
 							_pluginsInstalled = true;
 							utils.stopProcessing();
@@ -255,11 +255,11 @@ require([
 	}
 
 	function gotoNextStep(step) {
-		$("#nav" + step).removeClass("selected").addClass("complete");
+		$("#nav" + step).removeClass("gdSelected").addClass("gdComplete");
 		$("#page" + step).addClass("hidden");
 
 		var nextStep = step + 1;
-		$("#nav" + nextStep).addClass("selected");
+		$("#nav" + nextStep).addClass("gdSelected");
 		$("#page" +  nextStep).removeClass("hidden");
 	}
 
