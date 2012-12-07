@@ -253,7 +253,7 @@ class Account {
 
 		unset($data["action"]);
 		unset($data["dataSetName"]);
-		$content = json_encode($data);
+		$content = addslashes(json_encode($data));
 
 		$now = Utils::getCurrentDatetime();
 		$prefix = Core::getDbTablePrefix();

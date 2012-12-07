@@ -1,11 +1,18 @@
 #gdMainDialog {
 	padding: 3px 2px;
+
+	div, p {
+		line-height: 16pt;
+	}
 	ul li {
 		padding: 2px 30px;
 	}
+	h3 {
+		margin: 2px 0px 0px;
+	}
 
 	.gdSmallTabs {
-		margin-bottom: 10px;
+		margin-bottom: 0px;
 		ul {
 			height: 24px;
 		}
@@ -17,3 +24,8 @@
 #gdMainDialogContent {
 	padding: 6px;
 } 
+
+.gdHelpSection {
+	padding: 8px;
+	margin: 0px -8px;	
+}

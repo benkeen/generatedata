@@ -1,9 +1,13 @@
 #gdMainDialog {
   padding: 3px 2px; }
+  #gdMainDialog div, #gdMainDialog p {
+    line-height: 16pt; }
   #gdMainDialog ul li {
     padding: 2px 30px; }
+  #gdMainDialog h3 {
+    margin: 2px 0px 0px; }
   #gdMainDialog .gdSmallTabs {
-    margin-bottom: 10px; }
+    margin-bottom: 0px; }
     #gdMainDialog .gdSmallTabs ul {
       height: 24px; }
   #gdMainDialog .gdSelected {
@@ -11,3 +15,7 @@
 
 #gdMainDialogContent {
   padding: 6px; }
+
+.gdHelpSection {
+  padding: 8px;
+  margin: 0px -8px; }

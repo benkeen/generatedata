@@ -109,12 +109,89 @@ define([
 		$("#gdEmptyForm").bind("click", _emptyForm);
 		$("#gdHelpLink").bind("click", function() { _openMainDialog({ tab: 3 }); });
 
+		//
+		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
+
+
 		_initExportTypeTab();
 		_updateCountryChoice();
 		_addRows(_numRowsToShowOnStart);
 		_initInPageCodeMirror();
 		_initMainDialog();
 	};
+
+
+	/**
+	 * Called when the user clicks the "LOAD" link for a particular data set. This queries the account Manager
+	 * to retrieve the data set, and then displays the information in the page.
+	 */
+	var _loadDataSet = function(e) {
+		utils.startProcessing();
+
+		var configurationID = $(e.target).closest("tr").data("id");
+		var configuration = accountManager.getConfiguration(configurationID);
+
+		var json = $.evalJSON(configuration.content);
+
+		// clear the form
+		_clearForm(0);
+
+		console.log(json);
+
+		// now start populating the page
+		$("#gdDataSetName").val(configuration.configuration_name);
+		$("#gdNumRowsToGenerate").val(json.numResults);
+		$("input[name=gdExportTarget]").val(json.exportTarget);
+
+/*
+		for (var i=0; i<document.data.resultType.length; i++) {
+			if (document.data.resultType[i].value == info.resultType) {
+				document.data.resultType[i].checked = true;
+				gd.changeResultType(info.resultType);
+				break;
+			}
+		}
+		for (i=0; i<document.data["countryChoice[]"].length; i++) {
+			if ($.inArray(document.data["countryChoice[]"][i].value, info.countries) != -1) {
+				document.data["countryChoice[]"][i].checked = true;
+			} else {
+				document.data["countryChoice[]"][i].checked = false;
+			}
+		}
+		gd.updateCountryChoice();
+*/
+
+/*
+		// add the new blank rows
+		gd.addRows(info.rowData.length);
+		var rowOrder = gd._getRowOrder();
+
+		// now populate the rows. Do everything that we can: create the rows, populate the titles & select
+		// the data type. The remaining fields are custom to the data type, so we leave them to their
+		// [ns].loadRow function (if defined)
+		for (var i=0; i<rowOrder.length; i++) {
+			var currRow = rowOrder[i];
+			$("#title_" + currRow).val(info.rowData[i]["title"]); // decodeURIComponent
+			$("#type_" + currRow).val(info.rowData[i]["dataType"]);
+			gd.changeRowType("type_" + currRow, info.rowData[i]["dataType"]);
+
+			var func_ns  = $("#type_" + currRow).val() + "_ns";
+			if (typeof window[func_ns] === "object" && typeof window[func_ns].loadRow === "function") {
+				gd.queue.push(window[func_ns].loadRow(currRow, info.rowData[i]));
+			}
+		}
+		gd.processQueue();
+
+		} else {
+			gd.errors = [];
+			gd.errors.push({ els: null, error: json.message });
+			utils.displayValidationErrors("#gdMessages");
+		}
+*/
+		utils.stopProcessing();
+	};
+
+
 
 	var _showSubtab = function(tab) {
 		if (tab == 1) {
@@ -144,7 +221,7 @@ define([
 
 
 	/**
-	 * Serializes and saves the current data set.
+	 * Serializes the current data set and passes it over to the Account Manager to actually save.
 	 */
 	var _saveDataSet = function() {
 		var buttons = [];
@@ -200,6 +277,7 @@ define([
 
 		accountManager.saveConfiguration(configuration);
 	};
+
 
 
 	var _addRows = function(rows) {
@@ -843,11 +921,21 @@ define([
 	// --------------- main dialog -----------------
 
 	var _showHelpSection = function(e) {
-		var section = $(e.target).data("helpSection");
-		
-		// highlight the appropriate section in the third tab
-
 		_openMainDialog({ tab: 3 });
+
+		// highlight the appropriate help section to draw attention to it
+		var section = $(e.target).data("helpSection");
+		var helpEl = null;
+		if (section == "countryData") {
+			helpEl = "gdHelpSection_CountryData";
+		} else if (section == "dataTypes") {
+			helpEl = "gdHelpSection_DataSets";
+		} else if (section == "exportTypes") {
+			helpEl = "gdHelpSection_ExportTypes";
+		}
+		if (helpEl !== null) {
+			$("#" + helpEl).css("background-color", "#63A62F").animate({ backgroundColor: "#EBFEEB"}, 1500);
+		}
 	};
 
 	var _initMainDialog = function() {
@@ -867,6 +955,10 @@ define([
 		// hide/show the appropriate tab
 		$("#gdMainDialogTab" + opts.tab).trigger("click");
 
+		// remove any custom styles
+		$(".gdHelpSection").removeAttr("style");
+
+		// open the dialog
 		$("#gdMainDialog").dialog({
 			title: "generatedata.com",
 			width: 800,
