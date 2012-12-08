@@ -89,7 +89,7 @@ footer {
 	}
 }
 
-#gdTabs {
+#gdMainTabs {
 	width: 980px;
 	margin: 0 auto;
 	position: relative;
@@ -134,7 +134,7 @@ footer {
 		}
 	}
 }
-.gdTabContent {
+.gdMainTabContent {
 	padding: 0px;
 	margin: 0px;
 	&>li {
@@ -152,7 +152,7 @@ footer {
 		padding-top: 17px;
 	}
 }
-#gdTab1Content {
+#gdMainTab1Content {
 	display: block;
 	margin-top: 20px;
 	h2 {

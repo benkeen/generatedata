@@ -212,8 +212,8 @@
 			<div class="gdHelpSection" id="gdHelpSection_ExportTypes">
 				<h3>Export Types</h3>
 				<p>
-					This section controls the generated format of the data. Each format may provide different options to let you 
-					customize the output.
+					This section lets you control the format of your generated data. Each format may provide different options 
+					to let you tailor the output to exactly what you want.
 				</p>
 			</div>
 		</div>

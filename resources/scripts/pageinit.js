@@ -1,46 +1,82 @@
 /*global $:false*/
 define([
+	"manager",
 	"utils",
 	"jquery-ui",
 	"jquery-json"
-], function(utils) {
+], function(manager, utils) {
 
 	"use strict";
 
 	/**
-	 * This module runs on page load for all pages, initializing a few things:
-	 * the tab functionality and the language dropdown change event.
+	 * @name PageInit
+	 * @see Core
+	 * @description This runs on page load to initialize various general functionality needed: main tab
+	 * events, language dropdown events etc.
+	 * @return {Object}
+	 * @namespace
 	 */
 
-	$(function() {
+	var MODULE_ID = "core-pageInit";
+	var _currMainTab = 1;
+
+	var _init = function() {
+
+		// show all those elements in the page that were marked as being hidden if no JS
 		$(".gdHideNoJS").show();
 
-		$("#gdTabs ul li").each(function() {
-			var tab = parseInt($(this).attr("id").replace(/^gdTab/, ""), 10);
-			$(this).bind("click", function() {
-				utils.selectTab({ tabIDPrefix: "gdTabs", tab: tab } );
-				window.location = window.location.href.split("#")[0] + "#t" + tab;
-
-				// workaround for Chosen bug
-				if (tab == 1) {
-					$("#gdCountries_chzn, #gdCountries_chzn .chzn-drop").css({ width: "100%" });
-				}
-			});
-		});
-
-		// if the page was just reloaded, see if we need to display a particular tab
-		if (window.location.href.match(/#/)) {
-			var tab = window.location.href.split("#")[1].replace(/^t/, "");
-			if (utils.isNumber(tab) && tab >= 1 && tab <= $("#gdTabs ul li").length) {
-				utils.selectTab({ tabIDPrefix: "gdTabs", tab: tab });
-				utils.currentTab = tab;
-			}
-		}
-
-		$("#gdSelectLanguage").bind("change", utils.changeLanguage);
+		_initStartTab();
+		_initMainTabs();
+		$("#gdSelectLanguage").bind("change", _changeLanguage);
 
 		// for the Settings tab
 		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
 		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
+
+	};
+
+	var _changeLanguage = function() {
+		var langFile = $("#gdSelectLanguage").val();
+		if (langFile !== "") {
+			window.location = "?lang=" + langFile + "#t" + _currMainTab;
+		}
+	};
+
+	// if the page was just reloaded, see if we need to display a particular tab
+	var _initStartTab = function() {
+		if (window.location.href.match(/#/)) {
+			var tab = window.location.href.split("#")[1].replace(/^t/, "");
+			if (utils.isNumber(tab) && tab >= 1 && tab <= $("#gdMainTabs ul li").length) {
+				utils.selectTab({ tabIDPrefix: "gdTabs", tab: tab });
+				utils.currentTab = tab;
+			}
+		}
+	};
+
+	var _initMainTabs = function() {
+		// ...
+		$("#gdMainTabs ul li").each(function() {
+			var newTab = parseInt($(this).attr("id").replace(/^gdMainTab/, ""), 10);
+			$(this).bind("click", function() {
+				utils.selectTab({ tabGroup: "mainTabs", tabIDPrefix: "gdMainTab", newTab: newTab, oldTab: _currMainTab } );
+
+				window.location = window.location.href.split("#")[0] + "#t" + newTab;
+				_currMainTab = newTab;
+
+				// workaround for Chosen bug
+				if (newTab == 1) {
+					$("#gdCountries_chzn, #gdCountries_chzn .chzn-drop").css({ width: "100%" });
+				}
+
+				// hide any messages already open on the old tab
+				$("#gdMainTab" + _currMainTab + "Content" + " .gdMessage").hide();
+			});
+		});
+	};
+
+	// register our module
+	manager.registerCoreModule(MODULE_ID, {
+		init: _init
 	});
+
 });

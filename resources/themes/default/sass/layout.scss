@@ -77,7 +77,7 @@ header nav {
 	}
 }
 
-#gdTabs {
+#gdMainTabs {
 	width: 930px;
 	margin: 0 auto;
 	position: relative;
@@ -135,7 +135,7 @@ header nav {
 		}
 	}
 }
-.gdTabContent {
+.gdMainTabContent {
 	padding: 0px;
 	margin: 0px;
 	&>li {
@@ -153,7 +153,7 @@ header nav {
 		padding-top: 17px;
 	}
 }
-#gdTab1Content {
+#gdMainTab1Content {
 	display: block;
 	h2 {
 		margin: 4px 0px;

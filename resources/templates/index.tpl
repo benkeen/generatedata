@@ -26,21 +26,21 @@
 			{language_dropdown nameId="gdSelectLanguage"}
 		</nav>
 	</header>
-	<nav id="gdTabs">
+	<nav id="gdMainTabs">
 		<span id="gdProcessingIcon"></span>
 		<ul>
-			<li id="gdTab1" class="gdSelected">{$L.generate}</li>
-			{if $settings.userAccountSetup == "multiple"}<li id="gdTab2" class="gdHideNoJS">{$L.accounts}</li>{/if}
-			<li id="gdTab3" class="gdHideNoJS">{$L.settings}</li>
+			<li id="gdMainTab1" class="gdSelected">{$L.generate}</li>
+			{if $settings.userAccountSetup == "multiple"}<li id="gdMainTab2" class="gdHideNoJS">{$L.accounts}</li>{/if}
+			<li id="gdMainTab3" class="gdHideNoJS">{$L.settings}</li>
 		</ul>
 	</nav>
 	<section>
 		<noscript><p>{$L.no_js}</p></noscript>
 		<div id="gdContent" class="gdHideNoJS">
-			<ul class="gdTabContent">
-				<li id="gdTab1Content">{include file="generate.tab1.tpl"}</li>
-				{if $settings.userAccountSetup == "multiple"}<li id="gdTab2Content" style="display:none">{include file="generate.tab2.tpl"}</li>{/if}
-				<li id="gdTab3Content" style="display:none">{include file="generate.tab3.tpl"}</li>
+			<ul class="gdMainTabContent">
+				<li id="gdMainTab1Content">{include file="generate.tab1.tpl"}</li>
+				{if $settings.userAccountSetup == "multiple"}<li id="gdMainTab2Content" style="display:none">{include file="generate.tab2.tpl"}</li>{/if}
+				<li id="gdMainTab3Content" style="display:none">{include file="generate.tab3.tpl"}</li>
 			</ul>
 		</div>
 	</section>

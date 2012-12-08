@@ -18,7 +18,6 @@ define([
 	 */
 
 	var MODULE_ID       = "core-utils";
-	var _currentTab     = 1;
 	var _errors         = [];
 	var _domChangeQueue = [];
 
@@ -26,49 +25,41 @@ define([
 	return {
 
 		/**
-		 * @description The Data Generator interface is arranged into a number of tabs (or just pages, depending on the theme)
-		 * which are navigable client-side, not server-side. This function changes tabs for you.
+		 * @description This is a general tab-changer helper function for use by any tabbed group. It
+		 * needs to be passed the old tab number, new tab number, the CSS prefix used for to ID the tabs
+		 * and the name of the tab group (to be used in the publish message). For an example, see the
+		 * pageinit.js file, which initializes the main tabs.
 		 * @function
+		 * @public
 		 * @param {Object}
 		 * @name Utils#selectTab
 		 */
 		selectTab: function(settings) {
 			var opts = $.extend({
-				tab: 1,
+				tabGroup: "",
+				oldTab: null,
+				newTab: null,
 				tabIDPrefix: ""
 			}, settings);
 
-			if (opts.tab == _currentTab) {
+			if (opts.oldTab == opts.newTab) {
 				return false;
 			}
 
-			$("#" + opts.tabIDPrefix + _currentTab).removeClass("gdSelected");
-			$("#" + opts.tabIDPrefix + opts.tab).addClass("gdSelected");
-			$("#" + opts.tabIDPrefix + _currentTab + "Content").hide();
-			$("#" + opts.tabIDPrefix + opts.tab + "Content").show();
-
-			// hide any messages already open on the old tab
-			$("#" + opts.tabIDPrefix + _currentTab + "Content" + " .gdMessage").hide();
+			$("#" + opts.tabIDPrefix + opts.oldTab).removeClass("gdSelected");
+			$("#" + opts.tabIDPrefix + opts.newTab).addClass("gdSelected");
+			$("#" + opts.tabIDPrefix + opts.oldTab + "Content").hide();
+			$("#" + opts.tabIDPrefix + opts.newTab + "Content").show();
 
 			manager.publish({
 				sender: MODULE_ID,
 				type: C.EVENT.TAB.CHANGE,
-				oldTab: _currentTab,
-				newTab: opts.tab
+				tabGroup: opts.tabGroup,
+				oldTab: opts.oldTab,
+				newTab: opts.newTab
 			});
 
-			_currentTab = opts.tab;
 			return false;
-		},
-
-
-		// TODO: should temporarily save form settings in memory when switching between languages; or at least prompt the
-		// user to let them know they're going to lose any changes unless they do it manually
-		changeLanguage: function() {
-			var lang_file = $("#gdSelectLanguage").val();
-			if (lang_file !== "") {
-				window.location = "?lang=" + lang_file + "#t" + _currentTab;
-			}
 		},
 
 		startProcessing: function() {

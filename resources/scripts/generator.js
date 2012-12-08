@@ -26,6 +26,7 @@ define([
 	var MODULE_ID = "core-generator";
 	var _numRows  = 0;
 	var _numRowsToShowOnStart = 4;
+	var _currHelpDialogTab = 1;
 	var _countries = [];
 	var _currExportType = null; // populated onload
 	var _showExportTypeSettings = true;
@@ -111,7 +112,6 @@ define([
 
 		//
 		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
-
 
 		_initExportTypeTab();
 		_updateCountryChoice();
@@ -434,7 +434,7 @@ define([
 	};
 
 	var _initExportTypeTab = function() {
-		var newExportType = $("#gdExportTypeTabs>ul>li.selected").data("exportType");
+		var newExportType = $("#gdExportTypeTabs li.gdSelected").data("exportType");
 		_selectExportTypeTab(newExportType);
 	};
 
@@ -940,9 +940,10 @@ define([
 
 	var _initMainDialog = function() {
 		$("#gdMainDialogTabs ul li").each(function() {
-			var tab = parseInt($(this).attr("id").replace(/^gdMainDialogTab/, ""), 10);
+			var newTab = parseInt($(this).attr("id").replace(/^gdMainDialogTab/, ""), 10);
 			$(this).bind("click", function() {
-				utils.selectTab({ tabIDPrefix: "gdMainDialogTab", tab: tab } );
+				utils.selectTab({ tabGroup: "dialogTabs", tabIDPrefix: "gdMainDialogTab", newTab: newTab, oldTab: _currHelpDialogTab } );
+				_currHelpDialogTab = newTab;
 			});
 		});
 	};

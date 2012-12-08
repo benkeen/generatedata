@@ -20,20 +20,20 @@
 			<span class="hideNoJS">{language_dropdown nameId="gdSelectLanguage"}</span>
 		</nav>
 	</header>
-	<nav id="gdTabs">
+	<nav id="gdMainTabs">
 		<span id="gdProcessingIcon"></span>
 		<ul>
-			<li id="gdTab1" class="gdSelected">{$L.install}</li>
-			<li id="gdTab2" class="gdHideNoJS">{$L.help}</li>
+			<li id="gdMainTab1" class="gdSelected">{$L.install}</li>
+			<li id="gdMainTab2" class="gdHideNoJS">{$L.help}</li>
 		</ul>
 	</nav>
 	<section>
 		<noscript><p>{$L.no_js}</p></noscript>
 
 		<div id="gdContent" class="gdHideNoJS">
-			<ul class="gdTabContent">
-				<li id="gdTab1Content">{include file="install.tab1.tpl"}</li>
-				<li id="gdTab2Content" style="display:none">{include file="install.tab2.tpl"}</li>
+			<ul class="gdMainTabContent">
+				<li id="gdMainTab1Content">{include file="install.tab1.tpl"}</li>
+				<li id="gdMainTab2Content" style="display:none">{include file="install.tab2.tpl"}</li>
 			</ul>
 		</div>
 	</section>

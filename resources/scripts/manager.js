@@ -32,23 +32,7 @@ define([
 		}
 
 		// do a little safety-checking on the module functions
-		var requiredFuncs = ["saveRow", "loadRow"];
-		for (var i=0; i<requiredFuncs.length; i++) {
-			if (!module.hasOwnProperty(requiredFuncs[i])) {
-				if (C.DEBUGGING.CONSOLE_WARN) {
-					console.warn(moduleID + " module is missing a " + requiredFuncs[i] + "() function.");
-				}
-				return;
-			}
-			if (typeof module[requiredFuncs[i]] != "function") {
-				if (C.DEBUGGING.CONSOLE_WARN) {
-					console.warn(moduleID + " module has an invalid " + requiredFuncs[i] + "() function. Should be a function!");
-				}
-				return;
-			}
-		}
-
-		var optionalFuncs = ["init", "run", "validate"];
+		var optionalFuncs = ["init", "run", "validate", "saveRow", "loadRow"];
 		for (var j=0; j<optionalFuncs.length; j++) {
 			if (module.hasOwnProperty(optionalFuncs[j]) && typeof module[optionalFuncs[j]] != "function") {
 				if (C.DEBUGGING.CONSOLE_WARN) {
@@ -90,27 +74,11 @@ define([
 			return;
 		}
 
-		var requiredFuncs = ["saveSettings", "loadSettings"];
-		for (var i=0; i<requiredFuncs.length; i++) {
-			if (!module.hasOwnProperty(requiredFuncs[i])) {
+		var optionalFuncs = ["init", "run", "validate", "saveSettings", "loadSettings"];
+		for (var i=0; i<optionalFuncs.length; i++) {
+			if (module.hasOwnProperty(optionalFuncs[i]) && typeof module[optionalFuncs[i]] != "function") {
 				if (C.DEBUGGING.CONSOLE_WARN) {
-					console.warn(moduleID + " module is missing a " + requiredFuncs[i] + "() function.");
-				}
-				return;
-			}
-			if (typeof module[requiredFuncs[i]] != "function") {
-				if (C.DEBUGGING.CONSOLE_WARN) {
-					console.warn(moduleID + " module has an invalid " + requiredFuncs[i] + "() function. Should be a function!");
-				}
-				return;
-			}
-		}
-
-		var optionalFuncs = ["init", "run", "validate"];
-		for (var j=0; j<optionalFuncs.length; j++) {
-			if (module.hasOwnProperty(optionalFuncs[j]) && typeof module[optionalFuncs[j]] != "function") {
-				if (C.DEBUGGING.CONSOLE_WARN) {
-					console.warn(moduleID + " module has an invalid " + optionalFuncs[j] + "() function. Should be a function!");
+					console.warn(moduleID + " module has an invalid " + optionalFuncs[i] + "() function. Should be a function!");
 				}
 				return;
 			}
@@ -314,8 +282,10 @@ define([
 		var errors = [];
 
 		try {
+			console.log(_modules, exportTypeModuleID, info);
 			errors = _modules[exportTypeModuleID].validate(rows);
 		} catch (e) {
+			console.log("..");
 			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.error("Error in validate() function for " + info.exportType + " Export Type. Error: ", e);
 			}
@@ -323,11 +293,15 @@ define([
 		}
 
 		if (!$.isArray(errors)) {
+			console.log("..!!!");
 			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.error("Error! The validate() function for " + info.exportType + " didn't return an array.");
 			}
 			return null;
 		}
+
+		console.log(errors);
+
 		return errors;
 	};
 
