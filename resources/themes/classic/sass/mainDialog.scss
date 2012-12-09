@@ -1,33 +1,53 @@
 #gdMainDialog {
-	padding: 3px 2px;
-
+	border: 1px solid #cccccc;
+	padding: 0px;
+	margin: 3px 2px;
 	div, p {
 		line-height: 16pt;
-	}
-	ul li {
-		padding: 2px 30px;
 	}
 	h3 {
 		margin: 2px 0px 0px;
 	}
-
-	.gdSmallTabs {
-		margin-bottom: 0px;
-		ul {
-			height: 24px;
-		}
+	.ui-widget button {
+		font-family: "lucida grande", verdana;
 	}
-	.gdSelected {
-		padding: 2px 29px;
+
+	.gdDeletedDataSetRow {
+		background-color: #EBFEEB;
 	}
 }
+
 #gdMainDialogContent {
 	padding: 6px;
+	clear: both;
 }
-.gdHelpSection {
-	padding: 2px 8px;
-	margin: 0px -8px;	
-}
+
 #gdAccountDataSets td a {
 	display: block;
+	color: #3366CC;
+	&:hover {
+		background-color: #efefef;
+	}
+}
+
+#gdMainDialogTabs {
+	ul {
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+		background-color: pink;
+
+		li {
+			width: 25%;
+			float: left;
+			margin: 0px;
+			background-color: #efefef;
+			text-align: center;
+			cursor: pointer;
+
+			&.gdSelected {
+				background-color: white;
+			}
+		}
+	}
 }

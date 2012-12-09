@@ -2,10 +2,11 @@
 define([
 	"manager",
 	"utils",
+	"moment",
 	"constants",
 	"lang",
 	"jquery-ui"
-], function(manager, utils, C, L) {
+], function(manager, utils, moment, C, L) {
 
 	"use strict";
 
@@ -65,13 +66,16 @@ define([
 		var currDataSet;
 		for (var i=0; i<_dataSets.length; i++) {
 			currDataSet = _dataSets[i];
+			var dateCreated = moment.unix(currDataSet.date_created_unix).format("MMM Do, YYYY");
+			var lastUpdated = moment.unix(currDataSet.last_updated_unix).format("MMM Do, YYYY");
+
 			row = '<tr data-id="' + currDataSet.configuration_id + '">' +
 				'<td>' + currDataSet.configuration_name + '</td>' +
-				'<td>' + currDataSet.date_created + '</td>' +
-				'<td>' + currDataSet.last_updated + '</td>' +
-				'<td>' + currDataSet.num_rows_generated + '</td>' +
+				'<td>' + dateCreated + '</td>' +
+				'<td>' + lastUpdated + '</td>' +
+				'<td align="center">' + currDataSet.num_rows_generated + '</td>' +
 				'<td align="center"><a href="#">load</a></td>' +
-				'<td align="center"><input type="checkbox" name="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
+				'<td align="center"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
 				'</tr>';
 			html += row;
 		}

@@ -305,7 +305,7 @@ body #gdTableRows li.gdDeletedRow {
     background-color: #f1f1f1; }
 
 .gdTableHeadings, #gdTableRows, #gdTableRows ul {
-  font-family: tahoma, arial;
+  font-family: "lucida grande", verdana;
   clear: both;
   margin: 0px;
   padding: 0px;
@@ -1034,26 +1034,39 @@ body.gdErrorPage #gdSeriousError {
   background-image: url(../images/info.png); }
 
 #gdMainDialog {
-  padding: 3px 2px; }
+  border: 1px solid #cccccc;
+  padding: 0px;
+  margin: 3px 2px; }
   #gdMainDialog div, #gdMainDialog p {
     line-height: 16pt; }
-  #gdMainDialog ul li {
-    padding: 2px 30px; }
   #gdMainDialog h3 {
     margin: 2px 0px 0px; }
-  #gdMainDialog .gdSmallTabs {
-    margin-bottom: 0px; }
-    #gdMainDialog .gdSmallTabs ul {
-      height: 24px; }
-  #gdMainDialog .gdSelected {
-    padding: 2px 29px; }
+  #gdMainDialog .ui-widget button {
+    font-family: "lucida grande", verdana; }
+  #gdMainDialog .gdDeletedDataSetRow {
+    background-color: #EBFEEB; }
 
 #gdMainDialogContent {
-  padding: 6px; }
-
-.gdHelpSection {
-  padding: 2px 8px;
-  margin: 0px -8px; }
+  padding: 6px;
+  clear: both; }
 
 #gdAccountDataSets td a {
-  display: block; }
+  display: block;
+  color: #3366CC; }
+  #gdAccountDataSets td a:hover {
+    background-color: #efefef; }
+
+#gdMainDialogTabs ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  background-color: pink; }
+  #gdMainDialogTabs ul li {
+    width: 25%;
+    float: left;
+    margin: 0px;
+    background-color: #efefef;
+    text-align: center;
+    cursor: pointer; }
+    #gdMainDialogTabs ul li.gdSelected {
+      background-color: white; }

@@ -42,9 +42,9 @@ class Account {
 			$accountInfo = mysql_fetch_assoc($response["results"]);
 			$this->accountID = $accountInfo["account_id"];
 			$this->accountType = $accountInfo["account_type"];
-			$this->dateCreated = $accountInfo["date_created"];
-			$this->last_updated = $accountInfo["last_updated"];
-			$this->date_expires = $accountInfo["date_expires"];
+			$this->dateCreated = date("U", strtotime($accountInfo["date_created"]));
+			$this->last_updated = date("U", strtotime($accountInfo["last_updated"]));
+			$this->date_expires = date("U", strtotime($accountInfo["date_expires"]));
 			$this->firstName = $accountInfo["first_name"];
 			$this->lastName = $accountInfo["last_name"];
 			
@@ -84,7 +84,7 @@ class Account {
 		$accountID = $this->accountID;
 		$prefix   = Core::getDbTablePrefix();		
 		$response = Core::$db->query("
-			SELECT *
+			SELECT *, unix_timestamp(date_created) as date_created_unix, unix_timestamp(last_updated) as last_updated_unix
 			FROM   {$prefix}configurations
 			WHERE  account_id = $accountID
 			ORDER BY last_updated DESC
@@ -93,10 +93,8 @@ class Account {
 		if ($response["success"]) {
 			$data = array();
 			while ($row = mysql_fetch_assoc($response["results"])) {
-				//$row["content"] = stripslashes($row["content"]);
 				$data[] = $row;
 			}
-
 			$this->configurations = $data;
 		} else {
 			// TODO

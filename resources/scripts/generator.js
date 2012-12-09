@@ -111,8 +111,11 @@ define([
 		$("#gdEmptyForm").bind("click", _emptyForm);
 		$("#gdHelpLink").bind("click", function() { return _openMainDialog({ tab: 3 }); });
 
-		//
+		// main dialog
 		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
+		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _markDataSetRowToDelete);
+		//$(".gdDeleteDataSetsBtn").bind("click", _deleteRows);
+
 
 		_initExportTypeTab();
 		_updateCountryChoice();
@@ -993,6 +996,16 @@ define([
 			visibleRowNum++;
 		}
 		return false;
+	};
+
+	var _markDataSetRowToDelete = function(e) {
+		var el = e.target;
+		var event = null;
+		if (el.checked) {
+			$(el).closest("tr").addClass("gdDeletedDataSetRow").effect("highlight", { color: "#cc0000" }, 1000);
+		} else {
+			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
+		}
 	};
 
 

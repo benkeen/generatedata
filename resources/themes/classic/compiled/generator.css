@@ -47,7 +47,7 @@ body #gdTableRows li.gdDeletedRow {
     background-color: #f1f1f1; }
 
 .gdTableHeadings, #gdTableRows, #gdTableRows ul {
-  font-family: tahoma, arial;
+  font-family: "lucida grande", verdana;
   clear: both;
   margin: 0px;
   padding: 0px;
