@@ -30,7 +30,10 @@ define([
 	};
 
 	var _loadRow = function() {
-
+		return [
+			function() { },
+			function() { return true; }
+		];
 	};
 
 	/**

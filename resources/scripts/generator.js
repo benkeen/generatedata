@@ -4,11 +4,12 @@ define([
 	"pluginManager",
 	"accountManager",
 	"utils",
+	"queue",
 	"constants",
 	"lang",
 	"jquery-ui",
 	"moment"
-], function(manager, pluginManager, accountManager, utils, C, L, moment) {
+], function(manager, pluginManager, accountManager, utils, Queue, C, L, moment) {
 
 	"use strict";
 
@@ -105,10 +106,10 @@ define([
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveIcon);
-		$("#gdLoadLink").on("click", function() { _openMainDialog({ tab: 2 }); });
+		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
 		$("#gdSaveDataSet").on("click", _saveDataSet);
 		$("#gdEmptyForm").bind("click", _emptyForm);
-		$("#gdHelpLink").bind("click", function() { _openMainDialog({ tab: 3 }); });
+		$("#gdHelpLink").bind("click", function() { return _openMainDialog({ tab: 3 }); });
 
 		//
 		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
@@ -126,71 +127,65 @@ define([
 	 * to retrieve the data set, and then displays the information in the page.
 	 */
 	var _loadDataSet = function(e) {
+		e.preventDefault();
+
 		utils.startProcessing();
 
 		var configurationID = $(e.target).closest("tr").data("id");
 		var configuration = accountManager.getConfiguration(configurationID);
-
 		var json = $.evalJSON(configuration.content);
+		var numRows = json.hasOwnProperty("dataTypes") ? json.dataTypes.length : _numRowsToShowOnStart;
 
 		// clear the form
-		_clearForm(0);
-
-		console.log(json);
+		_clearForm(numRows);
 
 		// now start populating the page
 		$("#gdDataSetName").val(configuration.configuration_name);
 		$("#gdNumRowsToGenerate").val(json.numResults);
 		$("input[name=gdExportTarget]").val(json.exportTarget);
 
-/*
-		for (var i=0; i<document.data.resultType.length; i++) {
-			if (document.data.resultType[i].value == info.resultType) {
-				document.data.resultType[i].checked = true;
-				gd.changeResultType(info.resultType);
-				break;
-			}
-		}
-		for (i=0; i<document.data["countryChoice[]"].length; i++) {
-			if ($.inArray(document.data["countryChoice[]"][i].value, info.countries) != -1) {
-				document.data["countryChoice[]"][i].checked = true;
-			} else {
-				document.data["countryChoice[]"][i].checked = false;
-			}
-		}
-		gd.updateCountryChoice();
-*/
-
-/*
-		// add the new blank rows
-		gd.addRows(info.rowData.length);
-		var rowOrder = gd._getRowOrder();
+		_updateCountries(json.countries);
 
 		// now populate the rows. Do everything that we can: create the rows, populate the titles & select
 		// the data type. The remaining fields are custom to the data type, so we leave them to their
-		// [ns].loadRow function (if defined)
-		for (var i=0; i<rowOrder.length; i++) {
-			var currRow = rowOrder[i];
-			$("#title_" + currRow).val(info.rowData[i]["title"]); // decodeURIComponent
-			$("#type_" + currRow).val(info.rowData[i]["dataType"]);
-			gd.changeRowType("type_" + currRow, info.rowData[i]["dataType"]);
+		// .loadData function (if defined)
 
-			var func_ns  = $("#type_" + currRow).val() + "_ns";
-			if (typeof window[func_ns] === "object" && typeof window[func_ns].loadRow === "function") {
-				gd.queue.push(window[func_ns].loadRow(currRow, info.rowData[i]));
+		if (json.hasOwnProperty("dataTypes")) {
+			var numDataTypeRows = json.dataTypes.length;
+			var orderedRowIDs = _getRowOrder();
+			
+			var data = [];
+			for (var i=0; i<numDataTypeRows; i++) {
+				var currDataType = json.dataTypes[i];
+				var currRowID = orderedRowIDs[i];
+				$("#gdTitle_" + currRowID).val(currDataType.title);
+				$("#gdDataType_" + currRowID).val(currDataType.dataType).trigger("change");
+
+				currDataType.rowID = currRowID;
+				data.push(currDataType);
 			}
-		}
-		gd.processQueue();
 
-		} else {
-			gd.errors = [];
-			gd.errors.push({ els: null, error: json.message });
-			utils.displayValidationErrors("#gdMessages");
+			manager.loadDataTypeRows(data);
 		}
-*/
+
+
 		utils.stopProcessing();
+
+		_closeMainDialog();
 	};
 
+
+	var _updateCountries = function(countries) {
+		$("#gdCountries option").each(function() {
+			if ($.inArray(this.value, countries) != -1) {
+				this.selected = true;
+			} else {
+				this.selected = false;
+			}
+		});
+		$("#gdCountries").trigger("liszt:updated");
+		_updateCountryChoice();
+	};
 
 
 	var _showSubtab = function(tab) {
@@ -372,7 +367,7 @@ define([
 	var _emptyForm = function(settings) {
 		var opts = $.extend({
 			requireConfirmation: true,
-			displayDefaultRows: true
+			numRows: _numRowsToShowOnStart
 		}, settings);
 
 		if (opts.requireConfirmation) {
@@ -384,7 +379,7 @@ define([
 					{
 						text: "Yes",
 						click: function() {
-							_clearForm(opts.displayDefaultRows);
+							_clearForm(opts.numRows);
 							$(this).dialog("close");
 						}
 					},
@@ -397,17 +392,15 @@ define([
 				]
 			});
 		} else {
-			_clearForm(opts.displayDefaultRows);
+			_clearForm(opts.numRows);
 		}
 	};
 
-	var _clearForm = function(displayDefaultRows) {
+	var _clearForm = function(numDefaultRows) {
 		$("#gdDataSetName").val("");
 		$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
 		_deleteRows();
-		if (displayDefaultRows) {
-			_addRows(_numRowsToShowOnStart);
-		}
+		_addRows(numDefaultRows);
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -575,11 +568,10 @@ define([
 		};
 		var readyTest = ($("#gdDataTypeOptions_" + dataTypeModuleID).length > 0) ? hasOptionsTest : noOptionsTest;
 
-		utils.pushToQueue([
-			function() {
+		Queue.add({
+			execute: function() {
 				var exampleHTML = null;
 				var optionsHTML = null;
-
 				var dataTypeExampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html();
 				if (dataTypeExampleHTML !== "") {
 					exampleHTML = dataTypeExampleHTML.replace(/%ROW%/g, rowID);
@@ -594,7 +586,7 @@ define([
 				} else {
 					optionsHTML = L.no_options_available;
 				}
-				$('#gdColOptions_' + rowID).html(optionsHTML);
+				$("#gdColOptions_" + rowID).html(optionsHTML);
 
 				if ($("#gdDataTypeHelp_" + dataTypeModuleID).html() !== "") {
 					$('#gdColHelp_' + rowID).html($("#gdHelpIcon").html().replace(/%ROW%/g, rowID));
@@ -602,10 +594,10 @@ define([
 					$('#gdColHelp_' + rowID).html(" ");
 				}
 			},
-			readyTest
-		]);
+			isComplete: readyTest
+		});
 
-		utils.processQueue();
+		Queue.process({ context: "dataTypeChange: " + dataTypeModuleID });
 	};
 
 	var _showDataSetHelp = function(e) {
@@ -972,7 +964,27 @@ define([
 				}
 			]
 		});
+
+		return false;
 	};
+
+	var _closeMainDialog = function() {
+		$("#gdMainDialog").dialog("close");
+	};
+
+
+	var _getVisibleRowOrderByRowNum = function(rowNum) {
+		var rowOrder = _getRowOrder();
+		var visibleRowNum = 1;
+		for (var i=0; i<rowOrder.length; i++) {
+			if (rowOrder[i] == rowNum) {
+				return visibleRowNum;
+			}
+			visibleRowNum++;
+		}
+		return false;
+	};
+
 
 
 	// register our module
@@ -1006,17 +1018,7 @@ define([
          * @param {Number} rowNum a row number. Returns false if there's no corresponding visible row number.
          * @name Generator#getVisibleRowOrderByRowNum
 		 */
-		getVisibleRowOrderByRowNum: function(rowNum) {
-			var rowOrder = _getRowOrder();
-			var visibleRowNum = 1;
-			for (var i=0; i<rowOrder.length; i++) {
-				if (rowOrder[i] == rowNum) {
-					return visibleRowNum;
-				}
-				visibleRowNum++;
-			}
-			return false;
-		},
+		getVisibleRowOrderByRowNum: _getVisibleRowOrderByRowNum,
 
 		/**
 		 * Returns an array of selected countries.

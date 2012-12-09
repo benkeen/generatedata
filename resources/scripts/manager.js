@@ -1,7 +1,8 @@
 /*global $:false,console:false*/
 define([
-	"constants"
-], function(C) {
+	"constants",
+	"queue"
+], function(C, Queue) {
 
 	"use strict";
 
@@ -47,7 +48,7 @@ define([
 			run: function() { },
 			validate: function() { return []; },
 			saveRow: function() { return {}; },
-			loadRow: function() { },
+			loadRow: null,
 			skipDomReady: false,
 			subscriptions: {}
 		}, module);
@@ -89,7 +90,7 @@ define([
 			run: function() { },
 			validate: function() { return []; },
 			saveSettings: function() { return {}; },
-			loadSettings: function() { },
+			loadSettings: null,
 			subscriptions: {}
 		}, module);
 
@@ -285,7 +286,6 @@ define([
 			console.log(_modules, exportTypeModuleID, info);
 			errors = _modules[exportTypeModuleID].validate(rows);
 		} catch (e) {
-			console.log("..");
 			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.error("Error in validate() function for " + info.exportType + " Export Type. Error: ", e);
 			}
@@ -293,14 +293,11 @@ define([
 		}
 
 		if (!$.isArray(errors)) {
-			console.log("..!!!");
 			if (C.DEBUGGING.CONSOLE_WARN) {
 				console.error("Error! The validate() function for " + info.exportType + " didn't return an array.");
 			}
 			return null;
 		}
-
-		console.log(errors);
 
 		return errors;
 	};
@@ -401,6 +398,26 @@ define([
 	};
 
 
+	var _loadDataTypeRows = function(rowData) {
+		for (var i=0; i<rowData.length; i++) {
+			var currDataType = rowData[i].dataType;
+			if (!_modules.hasOwnProperty(currDataType)) {
+				continue;
+			}
+			var loadRowFunc = _modules[currDataType].loadRow(rowData[i].rowID, rowData[i].data);
+			if (loadRowFunc !== null) {
+				Queue.add(loadRowFunc);
+			}
+		}
+		Queue.process({ onSuccess: _onDataTypesLoaded });
+	};
+
+
+	var _onDataTypesLoaded = function() {
+		console.log(":-)");
+	};
+
+
 	// our public API
 	return {
 
@@ -490,6 +507,14 @@ define([
 		 * @name Manager#getModules
 		 */
 		getModules: _getModules,
+
+		/**
+		 * Called by the generator when a saved data set is loaded. This passes the saved data sets to the individual
+		 * Data Types so they load their own data as they see fit.
+		 * @function
+		 * @name Manager#loadDataTypeRows
+		 */
+		loadDataTypeRows: _loadDataTypeRows,
 
 		/**
 		 * This performs the necessary validation on whatever data types are in the table. It farms out

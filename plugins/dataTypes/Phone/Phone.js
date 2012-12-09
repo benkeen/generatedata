@@ -19,19 +19,20 @@ define([
 
 	var _saveRow = function(rowNum) {
 		return {
-			"example":  $("#dt_" + rowNum).val(),
-			"option":   $("#option_" + rowNum).val()
+			"example":  $("#dtExample_" + rowNum).val(),
+			"option":   $("#dtOption_" + rowNum).val()
 		};
 	};
 
 	var _loadRow = function(rowNum, data) {
-		return [
-			function() {
-				$("#dt_" + rowNum).val(data.example);
-				$("#option_" + rowNum).val(data.option);
+
+		return {
+			execute: function() {
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtOption_" + rowNum).val(data.option);
 			},
-			function() { return $("#option_" + rowNum).length > 0; }
-		];
+			isComplete: function() { return $("#dtOption_" + rowNum).length > 0; }
+		};
 	};
 
 	var _exampleChange = function(msg) {

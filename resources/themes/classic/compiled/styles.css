@@ -1054,3 +1054,6 @@ body.gdErrorPage #gdSeriousError {
 .gdHelpSection {
   padding: 8px;
   margin: 0px -8px; }
+
+#gdAccountDataSets td a {
+  display: block; }

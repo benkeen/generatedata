@@ -36,7 +36,7 @@ class DataType_Phone extends DataTypePlugin {
 		$L = Core::$language->getCurrentLanguageStrings();
 
 		$html =<<<EOF
-	<select name="dt_%ROW%" id="dt_%ROW%">
+	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
 		<option value="">{$L["please_select"]}</option>
 		<option value="1-Xxx-Xxx-xxxx">{$this->L["example_1"]}</option>
 		<option value="(Xxx) Xxx-xxxx">{$this->L["example_2"]}</option>

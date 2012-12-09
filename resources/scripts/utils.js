@@ -19,7 +19,36 @@ define([
 
 	var MODULE_ID       = "core-utils";
 	var _errors         = [];
-	var _domChangeQueue = [];
+	
+
+	var _queue = {
+		domChanges: [],
+
+		add: function(arr) {
+			_queue.domChanges.push(arr);
+		},
+
+		process: function() {
+			if (!_queue.domChanges.length) {
+				return;
+			}
+
+			// if this code hasn't begun being executed, start 'er up
+			if (!_queue.domChanges[0][2]) {
+				var currObj = this;
+				setTimeout(function() { currObj.domChanges[0][0](); }, 10);
+				_queue.domChanges[0][2] = setInterval(function() { _queue.examineQueue(); }, 25);
+			}
+		},
+
+		examineQueue: function() {
+			if (_queue.domChanges[0][1]()) {
+				clearInterval(_queue.domChanges[0][2]);
+				_queue.domChanges.shift();
+				_queue.process();
+			}
+		}
+	};
 
 
 	return {
@@ -164,42 +193,6 @@ define([
 
 		formatNumWithCommas: function(num) {
 			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		},
-
-		/*
-		This code handles problems caused by the time taken by browser HTML rendering engines to manipulate
-		and redraw page content. It ensures a series of DOM-manipulation-intensive changes are completed
-		sequentially. See my post here: http://www.benjaminkeen.com/?p=136
-
-		This code relies on the _domChangeQueue array being populated with arrays with the following indexes:
-			[0] : code to execute - (function)
-			[1] : boolean test to determine completion - (function)
-			[2] : interval ID (managed internally by script) - (integer)
-		*/
-		pushToQueue: function(arr) {
-			_domChangeQueue.push(arr);
-		},
-
-		processQueue: function() {
-			if (!_domChangeQueue.length) {
-				return;
-			}
-
-			// if this code hasn't begun being executed, start 'er up
-			if (!_domChangeQueue[0][2]) {
-				setTimeout(function() { _domChangeQueue[0][0](); }, 10);
-				var currObj = this;
-				var timeout_id = setInterval(function() { currObj.checkQueueItemComplete(); }, 25);
-				_domChangeQueue[0][2] = timeout_id;
-			}
-		},
-
-		checkQueueItemComplete: function() {
-			if (_domChangeQueue[0][1]()) {
-				clearInterval(_domChangeQueue[0][2]);
-				_domChangeQueue.shift();
-				this.processQueue();
-			}
 		}
 	};
 });

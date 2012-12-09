@@ -64,13 +64,13 @@ define([
 	 *  [1] a boolean test to determine WHEN the content has been inserted.
 	 */
 	var _loadRow = function(rowNum, data) {
-		return [
-			function() {
+		return {
+			execute: function() {
 				$("#dtExample_" + rowNum).val(data.example);
 				$("#dtOption_" + rowNum).val(data.option);
 			},
-			function() { return $("#dtOption_" + rowNum).length > 0; }
-		];
+			isComplete: function() { return $("#dtOption_" + rowNum).length > 0; }
+		};
 	};
 
 

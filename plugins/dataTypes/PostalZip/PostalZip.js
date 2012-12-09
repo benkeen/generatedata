@@ -21,7 +21,10 @@ define([
 	};
 
 	var _loadRow = function() {
-
+		return [
+			function() { },
+			function() { return true; }
+		];
 	};
 
 	var _countryChange = function(msg) {

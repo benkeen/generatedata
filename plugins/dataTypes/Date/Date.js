@@ -44,23 +44,27 @@ define([
 
 	var _saveRow = function(rowNum) {
 		return {
-			"fromDate": $("#fromDate_" + rowNum).val(),
-			"toDate":   $("#toDate_" + rowNum).val(),
-			"example":  $("#dt_" + rowNum).val(),
-			"option":   $("#option_" + rowNum).val()
+			"fromDate": $("#dtFromDate_" + rowNum).val(),
+			"toDate":   $("#dtFtoDate_" + rowNum).val(),
+			"example":  $("#dtExample_" + rowNum).val(),
+			"option":   $("#dtOption_" + rowNum).val()
 		};
 	};
 
 	var _loadRow = function(rowNum, data) {
-		return [
-			function() {
-				$("#fromDate_" + rowNum).val(data.fromDate);
-				$("#toDate_" + rowNum).val(data.toDate);
-				$("#dt_" + rowNum).val(data.example);
-				$("#option_" + rowNum).val(data.option);
-			},
-			function() { return $("#option_" + rowNum).length > 0; }
-		];
+		return {
+			execute: function() { },
+			isComplete: function() {
+				if ($("#dtOption_" + rowNum).length > 0) {
+					$("#dtFromDate_" + rowNum).val(data.fromDate);
+					$("#dtToDate_" + rowNum).val(data.toDate);
+					$("#dtExample" + rowNum + "option[value='" + data.example + "']").attr("selected", "selected");
+					$("#dtOption_" + rowNum).val(data.option);
+					return true;
+				}
+				return false;
+			}
+		};
 	};
 
 	var _validate = function(rows) {
