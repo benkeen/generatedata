@@ -222,12 +222,22 @@ define([
 		var buttons = [];
 		var newDataSetName = $("#gdDataSetName").val();
 
-		/*if (!newFormName || newFormName == L.default_save_form_empty_str) {
-			errors = [];
-			gd.errors.push({ els: null, error: L.no_form_name });
-			utils.displayValidationErrors("#gdMessages");
+		// if there's no Data Set name provided, do a special
+		if (!newDataSetName) {
+			$("#gdDataSetName").css({
+				backgroundColor: "#770000",
+				borderTopColor: "#550000",
+				borderLeftColor: "#550000",
+				borderBottomColor: "#550000"
+			}).animate({
+				backgroundColor: "#ffffff",
+				borderTopColor: "#cccccc",
+				borderLeftColor: "#cccccc",
+				borderBottomColor: "#cccccc"
+			}, 1500);
 			return false;
-		}*/
+		}
+
 		// if the name already exists, check with the user that it's okay to overwrite it
 		/*
 		var formExists = false;
