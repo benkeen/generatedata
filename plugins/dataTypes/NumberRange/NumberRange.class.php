@@ -52,7 +52,7 @@ END;
 	public function getHelpDialogInfo() {
 		return array(
 			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => "<p>{$this->L["NumberRange_help"]}</p>"
+			"content"     => "<p>{$this->L["help"]}</p>"
 		);
 	}
 }

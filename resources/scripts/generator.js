@@ -27,7 +27,6 @@ define([
 	var MODULE_ID = "core-generator";
 	var _numRows  = 0;
 	var _numRowsToShowOnStart = 4;
-	var _currHelpDialogTab = 1;
 	var _countries = [];
 	var _currExportType = null; // populated onload
 	var _showExportTypeSettings = true;
@@ -56,7 +55,6 @@ define([
 		$("#gdBackButton").on("click", function() { return _showSubtab(1); });
 
 		$("#gdShowSettingsLink").bind("click", function() {
-			// if we're already showing it, hide it!
 			if (_showExportTypeSettings) {
 				_hideExportTypeSettingsSection();
 			} else {
@@ -102,26 +100,20 @@ define([
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdTextSize").on("click", "li", _changeTextSize);
-		$(".gdSectionHelp").on("click", _showHelpSection);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveIcon);
-		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
 		$("#gdSaveDataSet").on("click", _saveDataSet);
 		$("#gdEmptyForm").bind("click", _emptyForm);
-		$("#gdHelpLink").bind("click", function() { return _openMainDialog({ tab: 3 }); });
 
-		// main dialog
+		// ... TODO
 		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
-		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _markDataSetRowToDelete);
-		//$(".gdDeleteDataSetsBtn").bind("click", _deleteRows);
 
 
 		_initExportTypeTab();
 		_updateCountryChoice();
 		_addRows(_numRowsToShowOnStart);
 		_initInPageCodeMirror();
-		_initMainDialog();
 	};
 
 
@@ -174,7 +166,8 @@ define([
 
 		utils.stopProcessing();
 
-		_closeMainDialog();
+//TODO
+//		_closeMainDialog();
 	};
 
 
@@ -625,6 +618,7 @@ define([
 			}
 		}
 
+
 		var helpElement = $("#gdDataTypeHelp_" + choice);
 		var dataTypeHelpContent = helpElement.html();
 		var width = $(helpElement).data("dialogWidth");
@@ -922,70 +916,6 @@ define([
 		return $("#gdNumRowsToGenerate").val();
 	};
 
-
-	// --------------- main dialog -----------------
-
-	var _showHelpSection = function(e) {
-		_openMainDialog({ tab: 3 });
-
-		// highlight the appropriate help section to draw attention to it
-		var section = $(e.target).data("helpSection");
-		var helpEl = null;
-		if (section == "countryData") {
-			helpEl = "gdHelpSection_CountryData";
-		} else if (section == "dataTypes") {
-			helpEl = "gdHelpSection_DataSets";
-		} else if (section == "exportTypes") {
-			helpEl = "gdHelpSection_ExportTypes";
-		}
-		if (helpEl !== null) {
-			$("#" + helpEl).css("background-color", "#63A62F").animate({ backgroundColor: "#EBFEEB"}, 1500);
-		}
-	};
-
-	var _initMainDialog = function() {
-		$("#gdMainDialogTabs ul li").each(function() {
-			var newTab = parseInt($(this).attr("id").replace(/^gdMainDialogTab/, ""), 10);
-			$(this).bind("click", function() {
-				utils.selectTab({ tabGroup: "dialogTabs", tabIDPrefix: "gdMainDialogTab", newTab: newTab, oldTab: _currHelpDialogTab } );
-				_currHelpDialogTab = newTab;
-			});
-		});
-	};
-
-	var _openMainDialog = function(settings) {
-		var opts = $.extend({
-			tab: 1
-		}, settings);
-
-		// hide/show the appropriate tab
-		$("#gdMainDialogTab" + opts.tab).trigger("click");
-
-		// remove any custom styles
-		$(".gdHelpSection").removeAttr("style");
-
-		// open the dialog
-		$("#gdMainDialog").dialog({
-			title: "generatedata.com",
-			width: 800,
-			minHeight: 400,
-			modal: true,
-			buttons: [
-				{
-					text: "Close",
-					click: function() { $(this).dialog("close"); }
-				}
-			]
-		});
-
-		return false;
-	};
-
-	var _closeMainDialog = function() {
-		$("#gdMainDialog").dialog("close");
-	};
-
-
 	var _getVisibleRowOrderByRowNum = function(rowNum) {
 		var rowOrder = _getRowOrder();
 		var visibleRowNum = 1;
@@ -997,17 +927,6 @@ define([
 		}
 		return false;
 	};
-
-	var _markDataSetRowToDelete = function(e) {
-		var el = e.target;
-		var event = null;
-		if (el.checked) {
-			$(el).closest("tr").addClass("gdDeletedDataSetRow").effect("highlight", { color: "#cc0000" }, 1000);
-		} else {
-			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
-		}
-	};
-
 
 
 	// register our module
@@ -1064,13 +983,6 @@ define([
 		 * @function
 		 * @name Generator#getNumRowsToGenerate
 		 */
-		getNumRowsToGenerate: _getNumRowsToGenerate,
-
-		/**
-		 * Returns the number of rows to generate currently entered.
-		 * @function
-		 * @name Generator#openMainDialog
-		 */
-		openMainDialog: _openMainDialog
+		getNumRowsToGenerate: _getNumRowsToGenerate
 	};
 });

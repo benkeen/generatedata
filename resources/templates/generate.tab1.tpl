@@ -137,7 +137,8 @@
 				onmouseout="$(this).removeClass('ui-state-hover')"><span class="ui-icon ui-icon-help"></span></li>
 		</ul>
 	</div>
-	{data_type_resources}
+	{data_type_examples}
+	{data_type_options}
 </div>
 
 

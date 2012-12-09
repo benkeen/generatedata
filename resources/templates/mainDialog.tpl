@@ -16,15 +16,15 @@
 			Date created: <br />
 		</div>
 		<div id="gdMainDialogTab2Content" class="hidden">
-			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets" class="gdTableHeadings">
+			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets">
 				<thead>
 					<tr>
 						<th>Data Set Name</th>
 						<th>Data Created</th>
 						<th>Last Used</th>
-						<th>Rows Generated</th>
-						<th width="60">Load</th>
-						<th width="50"><input type="button" value="Delete" /></th>
+						<th align="center">Rows Generated</th>
+						<th width="60" align="center">Load</th>
+						<th width="30" align="center"><input type="button" value="Del" /></th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -66,7 +66,6 @@
 					the Generate button. You'll get the hang of it pretty fast. 
 				</p>
 			</div>
-
 			<div class="gdHelpSection" id="gdHelpSection_ExportTypes">
 				<h3>Export Types</h3>
 				<p>
@@ -76,6 +75,13 @@
 			</div>
 		</div>
 		<div id="gdMainDialogTab4Content" class="hidden">
+
+			<div id="gdDataSetHelpNav">
+				{data_types_list}
+			</div>
+			<div>
+				{data_type_help}
+			</div>
 		</div>
 	</div>
 </div>

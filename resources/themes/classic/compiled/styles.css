@@ -1044,17 +1044,26 @@ body.gdErrorPage #gdSeriousError {
   #gdMainDialog .ui-widget button {
     font-family: "lucida grande", verdana; }
   #gdMainDialog .gdDeletedDataSetRow {
-    background-color: #EBFEEB; }
+    background-color: #ffe9e9; }
+  #gdMainDialog h4 {
+    margin: 0px; }
 
 #gdMainDialogContent {
   padding: 6px;
-  clear: both; }
+  clear: both;
+  max-height: 420px;
+  overflow-x: hidden; }
 
 #gdAccountDataSets td a {
   display: block;
   color: #3366CC; }
   #gdAccountDataSets td a:hover {
-    background-color: #efefef; }
+    background-color: #3366CC;
+    border-radius: 2px;
+    color: white;
+    text-decoration: none; }
+#gdAccountDataSets tr:hover {
+  background-color: #f2f2f2; }
 
 #gdMainDialogTabs ul {
   margin: 0px;
@@ -1070,3 +1079,33 @@ body.gdErrorPage #gdSeriousError {
     cursor: pointer; }
     #gdMainDialogTabs ul li.gdSelected {
       background-color: white; }
+
+#gdDataSetHelpNav {
+  width: 200px;
+  margin-right: 20px;
+  padding-right: 20px;
+  border-right: 1px solid #efefef;
+  float: left; }
+  #gdDataSetHelpNav ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px; }
+    #gdDataSetHelpNav ul li {
+      padding: 0px;
+      margin: 0px; }
+      #gdDataSetHelpNav ul li.gdDataTypeHeader {
+        font-weight: bold;
+        margin-top: 4px; }
+      #gdDataSetHelpNav ul li a {
+        color: #3366cc;
+        display: block;
+        border-radius: 3px;
+        border: 1px solid #dddddd;
+        padding: 1px 7px;
+        margin-bottom: 2px; }
+        #gdDataSetHelpNav ul li a:hover, #gdDataSetHelpNav ul li a.gdSelected {
+          background-color: #3366cc;
+          color: white;
+          border-radius: 3px;
+          border: 1px solid #3366cc;
+          text-decoration: none; }
