@@ -86,11 +86,8 @@ EOF;
 		return $html;
 	}
 
-	public function getHelpDialogInfo() {
-		return array(
-			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => "<p>{$this->L["help_text"]}</p>"
-		);
+	public function getHelpHTML() {
+		return "<p>{$this->L["help_text"]}</p>";
 	}
 
 

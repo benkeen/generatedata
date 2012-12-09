@@ -93,7 +93,7 @@ END;
 		return $html;
 	}
 
-	public function getHelpDialogInfo() {
+	public function getHelpHTML() {
 		$html =<<<END
 			<p>
 				{$this->L["help_intro"]}
@@ -200,10 +200,7 @@ END;
 			</table>
 END;
 
-		return array(
-			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => $html
-		);
+		return $html;
 	}
 
 }

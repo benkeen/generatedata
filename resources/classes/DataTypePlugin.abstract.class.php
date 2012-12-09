@@ -15,7 +15,6 @@ abstract class DataTypePlugin {
 	// REQUIRED MEMBER VARS
 
 	protected $dataTypeName = "";
-	protected $hasHelpDialog; // boolean
 	protected $dataTypeFieldGroup; // string
 	protected $dataTypeFieldGroupOrder; // int
 	protected $processOrder = 1; // int
@@ -135,6 +134,14 @@ abstract class DataTypePlugin {
 	}
 
 	/**
+	 * Returns the help content for this Data Type (HTML / string).
+	 */
+	public function getHelpHTML() {
+		return "No help available.";
+	}
+
+
+	/**
 	 * Called during data generation. This determines what options the user selected in the user interface; it's
 	 * used to figure out what settings to pass to each Data Type to provide that function the information needed
 	 * to generate that particular data item.
@@ -168,18 +175,6 @@ abstract class DataTypePlugin {
 	}
 
 	/**
-	 * Returns information about the help dialog for this Data Type. It returns a hash with two keys:
-	 *    [dialogWidth]
-	 *    [content]
-	 *
-	 * [shouldn't be required... just like install(), but I'd like to mention it in this file for documentation purposes]
-	 *
-	 */
-	public function getHelpDialogInfo() {
-		return;
-	}
-
-	/**
 	 * For debugging and dev work.
 	 */
 	public function __toString() {
@@ -194,15 +189,6 @@ abstract class DataTypePlugin {
 	// TODO should return in current language...
 	final public function getName() {
 		return $this->dataTypeName;
-	}
-
-	/**
-	 * Returns true if this Data Type has a help dialog.
-	 *
-	 * @return boolean
-	 */
-	final public function hasHelpDialog() {
-		return $this->hasHelpDialog;
 	}
 
 	/**

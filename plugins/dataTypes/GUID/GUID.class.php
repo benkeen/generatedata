@@ -26,11 +26,8 @@ class DataType_GUID extends DataTypePlugin {
 		);
 	}
 
-	public function getHelpDialogInfo() {
-		return array(
-			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => "<p>{$this->L["help"]}</p>"
-		);
+	public function getHelpHTML() {
+		return "<p>{$this->L["help"]}</p>";
 	}
 
 	public function getDataTypeMetadata() {

@@ -29,7 +29,8 @@ define([
 		$("#gdHelpLink").bind("click", function() { return _openMainDialog({ tab: 3 }); });
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _markDataSetRowToDelete);
 		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
-		$("#gdDataSetHelpNav").on("click", "a", _showDataTypeHelp);
+		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
+		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
 
 		_initMainDialog();
 	};
@@ -59,15 +60,30 @@ define([
 			$(this).bind("click", function() {
 				utils.selectTab({ tabGroup: "dialogTabs", tabIDPrefix: "gdMainDialogTab", newTab: newTab, oldTab: _currHelpDialogTab } );
 				_currHelpDialogTab = newTab;
+
+				// if the user just clicked into the Data Type help tab, ensure the first Data Type listed is selected
+				if (newTab == 4 && _currDataTypeHelp === null) {
+					var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
+					_showDataTypeHelp(dataTypeItems[0]);
+				}
 			});
 		});
 	};
 
-	var _showDataTypeHelp = function(e) {
-		var dataType = $(e.target).closest("li").data("module");
+	var _onclickDataTypeHelpNav = function(e) {
+		var dataTypeNavItem = $(e.target).closest("li");
+		_showDataTypeHelp(dataTypeNavItem);
+	};
+
+	var _showDataTypeHelp = function(el) {
+		var dataType = $(el).data("module");
+		var link = $(el).find("a");
 
 		$("#gdDataSetHelpNav a").removeClass("gdSelected");
-		$(e.target).addClass("gdSelected");
+		$(link).addClass("gdSelected");
+
+		// set the header to the name of the Data Type
+		$("#gdFocusedDataTypeHeader").html($(link).html());
 
 		if (_currDataTypeHelp !== null) {
 			$("#gdDataTypeHelp_" + _currDataTypeHelp).addClass("hidden");
@@ -75,6 +91,22 @@ define([
 		$("#gdDataTypeHelp_" + dataType).removeClass("hidden");
 		_currDataTypeHelp = dataType;
 	};
+
+
+	var _onClickDataSetRowHelp = function(e) {
+		var row = $(e.target).closest(".gdTableRow");
+		var dataTypeDropdown = row.find(".gdDataType");
+		var choice = dataTypeDropdown.val();
+
+		_openMainDialog({ tab: 4, dataType: choice });
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN,
+			rowElement: row
+		});
+	};
+
 
 	var _openMainDialog = function(settings) {
 		var opts = $.extend({
@@ -85,10 +117,14 @@ define([
 		// hide/show the appropriate tab
 		$("#gdMainDialogTab" + opts.tab).trigger("click");
 
-		// if a Data Type help item was just clicked, ensure the appropriate help item is shown
-
 		// remove any custom styles
 		$(".gdHelpSection").removeAttr("style");
+
+		// if required, ensure the appropriate Data Type item is selected
+		if (opts.dataType !== null) {
+			var helpNavEl = ($("#gdDataSetHelpNav li[data-module='" + opts.dataType + "']"))[0];
+			_showDataTypeHelp(helpNavEl);
+		}
 
 		// open the dialog
 		$("#gdMainDialog").dialog({
@@ -126,6 +162,7 @@ define([
 	var _confirmDeleteDataSets = function() {
 
 	};
+
 
 
 	// register our module

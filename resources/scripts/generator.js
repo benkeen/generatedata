@@ -70,7 +70,6 @@ define([
 		$("#gdTableRows").on("change keyup", ".gdDataType", _onChangeDataType);
 		$("#gdTableRows").on("focus", ".gdDataType", _onFocusDataType);
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("click", ".ui-icon-help", _showDataSetHelp);
 		$("#gdTableRows").on("change", ".gdColExamples select", _publishExampleChange);
 
 		$("#gdTableRows").sortable({
@@ -604,55 +603,6 @@ define([
 		});
 
 		Queue.process({ context: "dataTypeChange: " + dataTypeModuleID });
-	};
-
-	var _showDataSetHelp = function(e) {
-		var row = $(e.target).closest(".gdTableRow");
-		var dataTypeDropdown = row.find(".gdDataType");
-		var choice = dataTypeDropdown.val();
-		var title = null;
-		var opts = $(dataTypeDropdown)[0].options;
-		for (var i=0; i<opts.length; i++) {
-			if (choice == opts[i].value) {
-				title = opts[i].text;
-			}
-		}
-
-
-		var helpElement = $("#gdDataTypeHelp_" + choice);
-		var dataTypeHelpContent = helpElement.html();
-		var width = $(helpElement).data("dialogWidth");
-
-		var myDialog = $('#gdHelpPopup').html(dataTypeHelpContent).dialog({
-			autoOpen:  false,
-			modal:     true,
-			resizable: false,
-			title:     title,
-			width:     width,
-			close:     function(e) {
-				manager.publish({
-					sender: MODULE_ID,
-					type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_CLOSE,
-					rowElement: row,
-					event: e
-				});
-			},
-			buttons: [
-				{
-					text: "Close",
-					click: function() {
-						$(this).dialog("close");
-					}
-				}
-			]
-		});
-		myDialog.dialog('open');
-
-		manager.publish({
-			sender: MODULE_ID,
-			type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN,
-			rowElement: row
-		});
 	};
 
 

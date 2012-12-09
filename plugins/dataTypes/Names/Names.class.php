@@ -227,7 +227,7 @@ END;
 	}
 
 
-	public function getHelpDialogInfo() {
+	public function getHelpHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 
 		$content =<<<EOF
@@ -259,9 +259,6 @@ END;
 	</table>
 EOF;
 
-		return array(
-			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => $content
-		);
+		return $content;
 	}
 }

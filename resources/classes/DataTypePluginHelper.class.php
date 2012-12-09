@@ -22,7 +22,7 @@ class DataTypePluginHelper {
 					"folder" => $dataType->folder,
 					"examples" => $dataType->getExampleColumnHTML(),
 					"options" => $dataType->getOptionsColumnHTML(),
-					"help" => $dataType->getHelpDialogInfo()
+					"help" => $dataType->getHelpHTML()
 				);
 			}
 		}

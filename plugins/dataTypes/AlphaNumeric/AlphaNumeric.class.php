@@ -10,11 +10,9 @@ class DataType_AlphaNumeric extends DataTypePlugin {
      * @access protected
      */
 	protected $dataTypeName = "Alphanumeric";
-	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("AlphaNumeric.js");
-	private $helpDialogWidth = 510;
 
 
 	public function generate($generator, $generationContextData) {
@@ -60,7 +58,7 @@ END;
 		);
 	}
 
-	public function getHelpDialogInfo() {
+	public function getHelpHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 		$content =<<<EOF
 			<p>
@@ -107,9 +105,6 @@ END;
 			</table>
 EOF;
 
-		return array(
-			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => $content
-		);
+		return $content;
 	}
 }

@@ -63,10 +63,7 @@ END;
 		return $html;
 	}
 
-	public function getHelpDialogInfo() {
-		return array(
-			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => "<p>This option generates a random number of words - the total number within the range that you specify (inclusive). As with the Fixed number option, the words are pulled the standard lorem ipsum latin text.</p>"
-		);
+	public function getHelpHTML() {
+		return "<p>This option generates a random number of words - the total number within the range that you specify (inclusive). As with the Fixed number option, the words are pulled the standard lorem ipsum latin text.</p>";
 	}
 }

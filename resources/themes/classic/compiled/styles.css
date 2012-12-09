@@ -1036,7 +1036,8 @@ body.gdErrorPage #gdSeriousError {
 #gdMainDialog {
   border: 1px solid #cccccc;
   padding: 0px;
-  margin: 3px 2px; }
+  margin: 3px 2px;
+  max-height: 420px; }
   #gdMainDialog div, #gdMainDialog p {
     line-height: 16pt; }
   #gdMainDialog h3 {
@@ -1049,10 +1050,13 @@ body.gdErrorPage #gdSeriousError {
     margin: 0px; }
 
 #gdMainDialogContent {
-  padding: 6px;
-  clear: both;
-  max-height: 420px;
-  overflow-x: hidden; }
+  clear: both; }
+  #gdMainDialogContent > div {
+    padding: 6px 10px; }
+  #gdMainDialogContent #gdMainDialogTab4Content {
+    padding: 0px 6px; }
+    #gdMainDialogContent #gdMainDialogTab4Content h3 {
+      padding-top: 10px; }
 
 #gdAccountDataSets td a {
   display: block;
@@ -1085,7 +1089,9 @@ body.gdErrorPage #gdSeriousError {
   margin-right: 20px;
   padding-right: 20px;
   border-right: 1px solid #efefef;
-  float: left; }
+  float: left;
+  height: 300px;
+  overflow-x: hidden; }
   #gdDataSetHelpNav ul {
     list-style: none;
     margin: 0px;
@@ -1105,6 +1111,9 @@ body.gdErrorPage #gdSeriousError {
         margin-bottom: 2px; }
         #gdDataSetHelpNav ul li a:hover, #gdDataSetHelpNav ul li a.gdSelected {
           background-color: #3366cc;
+          -webkit-transition: background-color .2s;
+          -moz-transition: background-color .2s;
+          transition: background-color .2s;
           color: white;
           border-radius: 3px;
           border: 1px solid #3366cc;

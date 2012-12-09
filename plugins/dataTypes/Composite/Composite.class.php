@@ -67,7 +67,7 @@ class DataType_Composite extends DataTypePlugin {
 		);
 	}
 
-	public function getHelpDialogInfo() {
+	public function getHelpHTML() {
 		$content =<<< END
 	<p>
 		{$this->L["Composite_help_1"]}
@@ -97,9 +97,6 @@ class DataType_Composite extends DataTypePlugin {
 	</p>
 END;
 
-		return array(
-			"dialogWidth" => $this->helpDialogWidth,
-			"content"     => $content
-		);
+		return $content;
 	}
 }

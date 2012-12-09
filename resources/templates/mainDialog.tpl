@@ -80,6 +80,7 @@
 				{data_types_list}
 			</div>
 			<div>
+				<h3 id="gdFocusedDataTypeHeader"></h3>
 				{data_type_help}
 			</div>
 		</div>

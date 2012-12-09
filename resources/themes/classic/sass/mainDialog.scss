@@ -18,13 +18,21 @@
 	h4 {
 		margin: 0px;
 	}
+	max-height: 420px;
 }
 
 #gdMainDialogContent {
-	padding: 6px;
 	clear: both;
-	max-height: 420px;
-	overflow-x: hidden;
+	&>div {
+		padding: 6px 10px;
+	}
+	#gdMainDialogTab4Content {
+		padding: 0px 6px;
+
+		h3 {
+			padding-top: 10px;
+		}
+	}
 }
 
 #gdAccountDataSets {
@@ -73,6 +81,8 @@
 	padding-right: 20px;
 	border-right: 1px solid #efefef;
 	float: left;
+	height: 300px;
+	overflow-x: hidden;
 
 	ul {
 		list-style: none;
@@ -97,6 +107,9 @@
 
 				&:hover, &.gdSelected {
 					background-color: #3366cc;
+					-webkit-transition: background-color .2s;
+					-moz-transition: background-color .2s;
+					transition: background-color .2s;
 					color: white;
 					border-radius: 3px;
 					border: 1px solid #3366cc;

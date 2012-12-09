@@ -10,6 +10,6 @@ function smarty_function_data_type_help($params, &$smarty) {
 	$resources = DataTypePluginHelper::getDataTypeResources();
 	for ($i=0; $i<count($resources); $i++) {
 		$currDataTypeResource = $resources[$i];
-		echo "<div id=\"gdDataTypeHelp_data-type-{$currDataTypeResource["folder"]}\" class=\"hidden\">{$currDataTypeResource["help"]["content"]}</div>";
+		echo "<div id=\"gdDataTypeHelp_data-type-{$currDataTypeResource["folder"]}\" class=\"hidden\">{$currDataTypeResource["help"]}</div>";
 	}
 }
