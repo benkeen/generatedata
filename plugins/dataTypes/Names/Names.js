@@ -65,11 +65,16 @@ define([
 	 */
 	var _loadRow = function(rowNum, data) {
 		return {
-			execute: function() {
-				$("#dtExample_" + rowNum).val(data.example);
-				$("#dtOption_" + rowNum).val(data.option);
-			},
-			isComplete: function() { return $("#dtOption_" + rowNum).length > 0; }
+			execute: function() { },
+			isComplete: function() {
+				if ($("#dtOption_" + rowNum).length) {
+					$("#dtExample_" + rowNum).val(data.example);
+					$("#dtOption_" + rowNum).val(data.option);
+					return true;
+				} else {
+					return false;
+				}
+			}
 		};
 	};
 

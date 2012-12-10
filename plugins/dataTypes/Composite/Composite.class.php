@@ -60,13 +60,6 @@ class DataType_Composite extends DataTypePlugin {
 		return '<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" style="height: 70px; width: 260px"></textarea>';
 	}
 
-	public function getDataTypeMetadata() {
-		return array(
-			"SQLField" => "TEXT default NULL",
-			"SQLField_Oracle" => "BLOB default NULL"
-		);
-	}
-
 	public function getHelpHTML() {
 		$content =<<< END
 	<p>
@@ -98,5 +91,12 @@ class DataType_Composite extends DataTypePlugin {
 END;
 
 		return $content;
+	}
+
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "TEXT default NULL",
+			"SQLField_Oracle" => "BLOB default NULL"
+		);
 	}
 }

@@ -34,10 +34,10 @@ define([
 	var _loadRow = function(rowNum, data) {
 		return [
 			function() {
-				$("#dt_" + rowNum).val(data.example);
-				$("#option_" + rowNum).val(data.option);
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtOption_" + rowNum).val(data.option);
 			},
-			function() { return $("#option_" + rowNum).length > 0; }
+			function() { return $("#dtOption_" + rowNum).length > 0; }
 		];
 	};
 
