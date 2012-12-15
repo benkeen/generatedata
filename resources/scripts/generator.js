@@ -153,7 +153,8 @@ define([
 				var currDataType = json.dataTypes[i];
 				var currRowID = orderedRowIDs[i];
 				$("#gdTitle_" + currRowID).val(currDataType.title);
-				$("#gdDataType_" + currRowID).val(currDataType.dataType).trigger("change");
+				$("#gdDataType_" + currRowID).val(currDataType.dataType);
+				_publishDataTypeChange($("#gdDataType_" + currRowID)[0]);
 
 				currDataType.rowID = currRowID;
 				data.push(currDataType);

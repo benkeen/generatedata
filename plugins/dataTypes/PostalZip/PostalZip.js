@@ -9,25 +9,44 @@ define([
 
 	var MODULE_ID = "data-type-PostalZip";
 	var LANG = L.dataTypePlugins.PostalZip;
-	var subscriptions = {};
+	var _currSelectedCountries = null;
 
 	var _init = function() {
+		var subscriptions = {};
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-	var _saveRow = function() {
+	var _saveRow = function(rowNum) {
+		var shownClassesSelectors = [];
+		for (var i=0; i<_currSelectedCountries.length; i++) {
+			shownClassesSelectors.push(".dtCountry_" + _currSelectedCountries[i] + " input");
+		}
+		var shownClassesSelector = shownClassesSelectors.join(",");
 
+		// find the checkboxes in this row
+		var visible = $("#gdColOptions_" + rowNum).find(shownClassesSelector);
+		var checked = [];
+		for (var i=0; i<visible.length; i++) {
+			if (visible[i].checked) {
+				checked.push($(visible[i]).data("country"));
+			}
+		}
+		return {
+			"checked": checked
+		};
 	};
 
-	var _loadRow = function() {
+	var _loadRow = function(rowNum, data) {
 		return [
 			function() { },
 			function() { return true; }
 		];
 	};
 
+	// N.B this also fires on page load, ensuring that _currSelectedCountries is initialized
 	var _countryChange = function(msg) {
+		_currSelectedCountries = msg.countries;
 		var shownClassesSelectors = [];
 		for (var i=0; i<msg.countries.length; i++) {
 			shownClassesSelectors.push(".dtCountry_" + msg.countries[i]);

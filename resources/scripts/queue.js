@@ -31,7 +31,7 @@ define([], function() {
 	 */
 
 	// if this is enabled, the module will output errors and information to the console
-	var _debugMode = true;
+	var _debugMode = false;
 
 
 	var _queue = {

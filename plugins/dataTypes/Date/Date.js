@@ -45,7 +45,7 @@ define([
 	var _saveRow = function(rowNum) {
 		return {
 			"fromDate": $("#dtFromDate_" + rowNum).val(),
-			"toDate":   $("#dtFtoDate_" + rowNum).val(),
+			"toDate":   $("#dtToDate_" + rowNum).val(),
 			"example":  $("#dtExample_" + rowNum).val(),
 			"option":   $("#dtOption_" + rowNum).val()
 		};
@@ -58,7 +58,7 @@ define([
 				if ($("#dtOption_" + rowNum).length > 0) {
 					$("#dtFromDate_" + rowNum).val(data.fromDate);
 					$("#dtToDate_" + rowNum).val(data.toDate);
-					$("#dtExample" + rowNum + "option[value='" + data.example + "']").attr("selected", "selected");
+					$("#dtExample_" + rowNum).val(data.example);
 					$("#dtOption_" + rowNum).val(data.option);
 					return true;
 				}
