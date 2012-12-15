@@ -217,7 +217,7 @@ define([
 		var buttons = [];
 		var newDataSetName = $("#gdDataSetName").val();
 
-		// if there's no Data Set name provided, do a special
+		// if there's no Data Set name provided, briefly highlight the field to draw attention to it
 		if (!newDataSetName) {
 			$("#gdDataSetName").css({
 				backgroundColor: "#770000",

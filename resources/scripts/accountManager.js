@@ -93,6 +93,7 @@ define([
 		$.ajax({
 			url:  "ajax.php",
 			type: "POST",
+			dataType: "json",
 			data: configuration,
 			success: function(response) {
 				if (response.success) {
