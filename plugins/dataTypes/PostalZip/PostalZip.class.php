@@ -83,6 +83,8 @@ class DataType_PostalZip extends DataTypePlugin {
 </div>
 EOF;
 		}
+		$html .= '<div id="dtCountry_Complete%ROW%"></div>';
+
 		return $html;
 	}
 

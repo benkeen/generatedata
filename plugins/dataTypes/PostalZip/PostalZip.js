@@ -27,9 +27,9 @@ define([
 		// find the checkboxes in this row
 		var visible = $("#gdColOptions_" + rowNum).find(shownClassesSelector);
 		var checked = [];
-		for (var i=0; i<visible.length; i++) {
-			if (visible[i].checked) {
-				checked.push($(visible[i]).data("country"));
+		for (var j=0; j<visible.length; j++) {
+			if (visible[j].checked) {
+				checked.push($(visible[j]).data("country"));
 			}
 		}
 		return {
@@ -38,10 +38,20 @@ define([
 	};
 
 	var _loadRow = function(rowNum, data) {
-		return [
-			function() { },
-			function() { return true; }
-		];
+		return {
+			execute: function() { },
+			isComplete: function() {
+				if ($("#dtCountry_Complete" + rowNum).length) {
+					$("#gdColOptions_" + rowNum + " input").removeAttr("checked");
+					for (var i=0; i<data.checked.length; i++) {
+						$("#dtCountryIncludeZip_" + data.checked[i] + "_" + rowNum).attr("checked", "checked");
+					}
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
 	};
 
 	// N.B this also fires on page load, ensuring that _currSelectedCountries is initialized

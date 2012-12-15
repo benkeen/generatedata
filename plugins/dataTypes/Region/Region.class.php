@@ -131,6 +131,8 @@ class DataType_Region extends DataTypePlugin {
 </div>
 EOF;
 		}
+		$html .= '<div id="dtRegionCountry_Complete%ROW%"></div>';
+
 		return $html;
 	}
 

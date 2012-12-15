@@ -18,6 +18,7 @@ define([
 	var MODULE_ID = "data-type-Region";
 	var LANG = L.dataTypePlugins.Region;
 	var subscriptions = {};
+	var _currSelectedCountries = null;
 
 	var _init = function() {
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
@@ -25,11 +26,27 @@ define([
 		$("#gdTableRows").on("click", ".dtRegionCountry", _toggleCountryRegion);
 	};
 
-	var _saveRow = function() {
+	var _saveRow = function(rowNum) {
+		var shownClassesSelectors = [];
+		for (var i=0; i<_currSelectedCountries.length; i++) {
+			shownClassesSelectors.push(".dtRegionCountry_" + _currSelectedCountries[i]);
+		}
+		var shownClassesSelector = shownClassesSelectors.join(",");
 
+		// find the checkboxes in this row
+		var visible = $("#gdColOptions_" + rowNum).find(shownClassesSelector);
+		var checked = [];
+		for (var j=0; j<visible.length; j++) {
+			if (visible[j].checked) {
+				checked.push($(visible[j]).data("country"));
+			}
+		}
+		return {
+			"checked": checked
+		};
 	};
 
-	var _loadRow = function() {
+	var _loadRow = function(rowNum, data) {
 		return [
 			function() { },
 			function() { return true; }
@@ -41,6 +58,7 @@ define([
 	 * regions are displayed.
 	 */
 	var _countryChange = function(msg) {
+		_currSelectedCountries = msg.countries;
 		var shownClassesSelectors = [];
 		for (var i=0; i<msg.countries.length; i++) {
 			shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i] + ",.dtIncludeRegion_" + msg.countries[i]);
@@ -66,53 +84,6 @@ define([
 		}
 	};
 
-
-	/*
-var StateProvince_ns = {
-	loadRow: function(rowNum, data)
-	{
-		var cleanData = [];
-		$(data.checked).each(function() {
-			cleanData.push(this.replace(/\d/g, ""));
-		});
-
-		return [
-			function() {
-				$("#options_" + rowNum + " input:checkbox").each(function() {
-					var nameWithoutNum = this.name.replace(/\d/g, "");
-					var isChecked = $.inArray(nameWithoutNum, cleanData) != -1;
-					$(this).attr("checked", isChecked);
-
-					// very kludgy
-					if (!isChecked && $(this).hasClass("main"))
-					{
-						var match = $(this).attr("id").match(/includeRegion_(.+)_\d+/);
-						var currCountry = match[1];
-						StateProvince_ns.hideShowStateProvCounty(rowNum, false, currCountry);
-					}
-				});
-			},
-			<?php
-			// find out how many checkboxes are in the generated markup: three for each country. Then,
-			// use that info to let the calling script know when the markup is fully generated.
-			$num_countries = count(gd_get_configurable_countries());
-			?>
-			function() { return ($("#options_" + rowNum + " input:checkbox").size() == (3 * <?=$num_countries ?>)); }
-		];
-	},
-
-	saveRow: function(rowNum)
-	{
-		var checked = [];
-		$("#options_" + rowNum + " input:checked").each(function() {
-			// strip out any row numbers from the name attributes. We're not interested in them. When
-			// it comes to reloading the content, they'll be in the way
-			checked.push(this.name.replace(/\d/g, ""));
-		});
-
-		return { "checked": checked };
-	}
-}*/
 
 	// register our module
 	manager.registerDataType(MODULE_ID, {
