@@ -1,24 +1,49 @@
-"use strict";
+/*global $:false*/
+define([
+	"manager",
+	"constants",
+	"lang"
+], function(manager, C, L) {
 
-/*
-var LatLng_ns = {
-  loadRow: function(rowNum, data)
-  {
-    return [
-      function() {
-	      $("#includeLat_" + rowNum).attr("checked", data.includeLat);
-	      $("#includeLng_" + rowNum).attr("checked", data.includeLng);
-      },
-      function() { return $("#includeLng_" + rowNum).length > 0; }
-    ];
-  },
+	"use strict";
 
-  saveRow: function(rowNum)
-  {
-    return {
-      "includeLat": $("#includeLat_" + rowNum).attr("checked"),
-      "includeLng": $("#includeLng_" + rowNum).attr("checked")
-    };
-  }
-}
-*/
+	/**
+	* @name Country
+	* @description JS code for the Country Data Type.
+	* @see DataType
+	* @namespace
+	*/
+
+	var MODULE_ID = "data-type-Country";
+
+	var _loadRow = function(rowNum, data) {
+		return {
+			execute: function() {},
+			isComplete: function() {
+				if ($("#dtOption_" + rowNum).length) {
+					if (data.checked) {
+						$("#dtOption_" + rowNum).attr("checked", "checked");
+					} else {
+						$("#dtOption_" + rowNum).removeAttr("checked");
+					}
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+	};
+
+	var _saveRow = function(rowNum) {
+		return {
+			"checked": ($("#dtOption_" + rowNum).attr("checked")) ? "checked" : ""
+		};
+	};
+
+	// register our module
+	manager.registerDataType(MODULE_ID, {
+		loadRow: _loadRow,
+		saveRow: _saveRow
+	});
+
+});

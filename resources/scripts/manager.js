@@ -22,7 +22,7 @@ define([
 	var _filterExportTypeMessages = (C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS === "") ? false : true;
 	var _permittedDataTypes = C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS.split(",");
 	var _permittedExportTypes = C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS.split(",");
-  
+
 
 	var _registerDataType = function(moduleID, module) {
 		if (_modules.hasOwnProperty(moduleID)) {

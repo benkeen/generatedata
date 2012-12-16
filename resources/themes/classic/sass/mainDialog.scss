@@ -14,7 +14,6 @@
 	.gdDeletedDataSetRow {
 		background-color: #ffe9e9;
 	}
-
 	h4 {
 		margin: 0px;
 	}
@@ -25,7 +24,10 @@
 	clear: both;
 	&>div {
 		padding: 6px 10px;
+		height: 300px;
+		overflow-y: scroll; 
 	}
+
 	#gdMainDialogTab4Content {
 		padding: 0px 6px;
 

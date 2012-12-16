@@ -23,34 +23,50 @@ define([
 	var _init = function() {
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
-		$("#gdTableRows").on("click", ".dtRegionCountry", _toggleCountryRegion);
+		$("#gdTableRows").on("click", ".dtIncludeRegion", _toggleCountryRegion);
 	};
 
 	var _saveRow = function(rowNum) {
-		var shownClassesSelectors = [];
+		var checked = [];
 		for (var i=0; i<_currSelectedCountries.length; i++) {
-			shownClassesSelectors.push(".dtRegionCountry_" + _currSelectedCountries[i]);
+			checked.push({
+				country: _currSelectedCountries[i],
+				regionSelected: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_" + rowNum).attr("checked") == "checked") ? 1 : 0,
+				regionFull: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Full_" + rowNum).attr("checked") == "checked") ? 1 : 0,
+				regionShort: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Short_" + rowNum).attr("checked") == "checked") ? 1 : 0
+			});
 		}
-		var shownClassesSelector = shownClassesSelectors.join(",");
 
 		// find the checkboxes in this row
-		var visible = $("#gdColOptions_" + rowNum).find(shownClassesSelector);
-		var checked = [];
-		for (var j=0; j<visible.length; j++) {
-			if (visible[j].checked) {
-				checked.push($(visible[j]).data("country"));
-			}
-		}
 		return {
 			"checked": checked
 		};
 	};
 
 	var _loadRow = function(rowNum, data) {
-		return [
-			function() { },
-			function() { return true; }
-		];
+		var rows = data.checked;
+		return {
+			execute: function() { },
+			isComplete: function() {
+				if ($("#dtRegionCountry_Complete" + rowNum).length) {
+					for (var i=0; i<rows.length; i++) {
+						var currCountry = rows[i].country;
+						if (rows[i].regionSelected == "0") {
+							$("#dtIncludeRegion_" + currCountry + "_" + rowNum).removeAttr("checked").trigger("click");
+						}
+						if (rows[i].regionFull == "0") {
+							$("#dtIncludeRegion_" + currCountry + "_Full_" + rowNum).removeAttr("checked");
+						}
+						if (rows[i].regionShort == "0") {
+							$("#dtIncludeRegion_" + currCountry + "_Short_" + rowNum).removeAttr("checked");
+						}
+					}
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
 	};
 
 	/**

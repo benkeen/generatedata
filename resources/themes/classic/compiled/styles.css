@@ -1052,7 +1052,9 @@ body.gdErrorPage #gdSeriousError {
 #gdMainDialogContent {
   clear: both; }
   #gdMainDialogContent > div {
-    padding: 6px 10px; }
+    padding: 6px 10px;
+    height: 300px;
+    overflow-y: scroll; }
   #gdMainDialogContent #gdMainDialogTab4Content {
     padding: 0px 6px; }
     #gdMainDialogContent #gdMainDialogTab4Content h3 {
