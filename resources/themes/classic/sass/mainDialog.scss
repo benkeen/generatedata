@@ -38,6 +38,9 @@
 }
 
 #gdAccountDataSets {
+	.leftAligned {
+		padding-left: 3px;
+	}
 	td a {
 		display: block;
 		color: #3366CC;
@@ -120,4 +123,8 @@
 			}
 		}
 	}
+}
+
+body .ui-widget-content .gdDeleteDataSetsBtn span {
+	color: #bb0000;
 }

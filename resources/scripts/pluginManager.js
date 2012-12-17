@@ -1,9 +1,5 @@
 /*global $:false*/
-define([
-	"lang",
-	"jquery-ui",
-	"jquery-json"
-], function(L) {
+define([], function() {
 
 	"use strict";
 
@@ -14,21 +10,21 @@ define([
 	 * It requires the page to contain the following markup, where it will be inserting the result of the
 	 * installation.
 	 *
-	 *  	<div id="pluginInstallationResults" class="hidden">
-	 *  		<div>
-	 *  			<h4>1. Data Types</h4>
-	 *  			<div id="gdDataTypeResponse" class="gdResponse"></div>
-	 *  		</div>
-	 *  		<div>
-	 *  			<h4>2. Export Types</h4>
-	 *  			<div id="gdExportTypeResponse" class="gdResponse"></div>
-	 *  		</div>
-	 *  		<div>
-	 *  			<h4>3. Countries</h4>
-	 *  			<div id="gdCountriesResponse" class="gdResponse"></div>
-	 *  		</div>
-	 *  	</div>
-	 *  	<div class="gdClear"></div>
+	 *		<div id="pluginInstallationResults" class="hidden">
+	 *			<div>
+	 *				<h4>1. Data Types</h4>
+	 *				<div id="gdDataTypeResponse" class="gdResponse"></div>
+	 *			</div>
+	 *			<div>
+	 *				<h4>2. Export Types</h4>
+	 *				<div id="gdExportTypeResponse" class="gdResponse"></div>
+	 *			</div>
+	 *			<div>
+	 *				<h4>3. Countries</h4>
+	 *				<div id="gdCountriesResponse" class="gdResponse"></div>
+	 *			</div>
+	 *		</div>
+	 *		<div class="gdClear"></div>
 	 */
 
 	// used as an iterator to install the plugins one by one

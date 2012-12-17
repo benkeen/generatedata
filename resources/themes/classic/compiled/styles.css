@@ -1060,6 +1060,8 @@ body.gdErrorPage #gdSeriousError {
     #gdMainDialogContent #gdMainDialogTab4Content h3 {
       padding-top: 10px; }
 
+#gdAccountDataSets .leftAligned {
+  padding-left: 3px; }
 #gdAccountDataSets td a {
   display: block;
   color: #3366CC; }
@@ -1120,3 +1122,6 @@ body.gdErrorPage #gdSeriousError {
           border-radius: 3px;
           border: 1px solid #3366cc;
           text-decoration: none; }
+
+body .ui-widget-content .gdDeleteDataSetsBtn span {
+  color: #bb0000; }

@@ -10,21 +10,35 @@
 
 	<div id="gdMainDialogContent">
 		<div id="gdMainDialogTab1Content">
-			Account type: admin/user/anonymous<br />
-			Num Data Sets saved: <br />
-			Total rows generated: <br />
-			Date created: <br />
+			<table>
+			<tr>
+				<td>Account type</td>
+				<td>admin/user/anonymous</td>
+			</tr>
+			<tr>
+				<td>Num Data Sets saved</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Total rows generated</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Date account created</td>
+				<td></td>
+			</tr>
+			</table>
 		</div>
 		<div id="gdMainDialogTab2Content" class="hidden">
 			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets">
 				<thead>
 					<tr>
-						<th>Data Set Name</th>
-						<th>Data Created</th>
-						<th>Last Used</th>
+						<th class="leftAligned">Data Set Name</th>
+						<th class="leftAligned">Data Created</th>
+						<th class="leftAligned">Last Used</th>
 						<th align="center">Rows Generated</th>
 						<th width="60" align="center">Load</th>
-						<th width="30" align="center"><input type="button" value="Del" /></th>
+						<th width="30" align="center"><input type="checkbox" id="gdSelectAllDataSets" /></th>
 					</tr>
 				</thead>
 				<tbody></tbody>

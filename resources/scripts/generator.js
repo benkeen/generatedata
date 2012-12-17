@@ -2,14 +2,13 @@
 define([
 	"manager",
 	"pluginManager",
-	"accountManager",
 	"utils",
 	"queue",
 	"constants",
 	"lang",
-	"jquery-ui",
-	"moment"
-], function(manager, pluginManager, accountManager, utils, Queue, C, L, moment) {
+	"moment",
+	"jquery-ui"
+], function(manager, pluginManager, utils, Queue, C, L, moment) {
 
 	"use strict";
 
@@ -42,6 +41,15 @@ define([
 	var _generateInPageData;
 	var _generateInPageContent = "";
 
+	var _currHelpDialogTab = 1;
+	var _currDataTypeHelp = null;
+
+	// accounts
+	var _isLoaded = false;
+	var _accountInfo = null;
+	var _dataSets = [];
+	var _currConfigurationID = null;
+
 
 	/**
 	 * Called when everything is loaded. This binds the appropriate event handlers and sets up the
@@ -49,6 +57,10 @@ define([
 	 */
 	var _run = function() {
 		utils.startProcessing();
+
+		// retrieve the data sets for the current user
+		_getDataSets();
+
 		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
 		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
@@ -105,10 +117,18 @@ define([
 		$("#gdSaveDataSet").on("click", _saveDataSet);
 		$("#gdEmptyForm").bind("click", _emptyForm);
 
-		// ... TODO
+		// main dialog
 		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
+		$(".gdSectionHelp").on("click", _showHelpSection);
+		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
+		$("#gdHelpLink").bind("click", function() { return _openMainDialog({ tab: 3 }); });
+		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _markDataSetRowToDelete);
+		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
+		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
+		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
+		$("#gdSelectAllDataSets").on("click", _onToggleSelectAllDataSets);
 
-
+		_initMainDialog();
 		_initExportTypeTab();
 		_updateCountryChoice();
 		_addRows(_numRowsToShowOnStart);
@@ -126,7 +146,7 @@ define([
 		utils.startProcessing();
 
 		var configurationID = $(e.target).closest("tr").data("id");
-		var configuration = accountManager.getConfiguration(configurationID);
+		var configuration = _getConfiguration(configurationID);
 		var json = $.evalJSON(configuration.content);
 		var numRows = json.hasOwnProperty("dataTypes") ? json.dataTypes.length : _numRowsToShowOnStart;
 
@@ -201,7 +221,7 @@ define([
 	 * based on whether it's a totally new data set, or if the user had loaded one already.
 	 */
 	var _onClickSaveIcon = function() {
-		if (accountManager.getCurrConfigurationID() === null) {
+		if (_getCurrConfigurationID() === null) { // TODO
 			_saveDataSet();
 		} else {
 			// confirm the overwrite
@@ -276,7 +296,7 @@ define([
 			selectedExportType: _currExportType
 		};
 
-		accountManager.saveConfiguration(configuration);
+		_saveConfiguration(configuration);
 	};
 
 
@@ -878,6 +898,281 @@ define([
 		}
 		return false;
 	};
+
+
+	// main dialog
+	var _showHelpSection = function(e) {
+		_openMainDialog({ tab: 3 });
+
+		// highlight the appropriate help section to draw attention to it
+		var section = $(e.target).data("helpSection");
+		var helpEl = null;
+		if (section == "countryData") {
+			helpEl = "gdHelpSection_CountryData";
+		} else if (section == "dataTypes") {
+			helpEl = "gdHelpSection_DataSets";
+		} else if (section == "exportTypes") {
+			helpEl = "gdHelpSection_ExportTypes";
+		}
+		if (helpEl !== null) {
+			$("#" + helpEl).css("background-color", "#63A62F").animate({ backgroundColor: "#EBFEEB"}, 1500);
+		}
+	};
+
+	var _initMainDialog = function() {
+		$("#gdMainDialogTabs ul li").each(function() {
+			var newTab = parseInt($(this).attr("id").replace(/^gdMainDialogTab/, ""), 10);
+			$(this).bind("click", function() {
+				utils.selectTab({ tabGroup: "dialogTabs", tabIDPrefix: "gdMainDialogTab", newTab: newTab, oldTab: _currHelpDialogTab } );
+				_currHelpDialogTab = newTab;
+
+				// if the user just clicked into the Data Type help tab, ensure the first Data Type listed is selected
+				if (newTab == 4 && _currDataTypeHelp === null) {
+					var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
+					_showDataTypeHelp(dataTypeItems[0]);
+				}
+			});
+		});
+	};
+
+	var _onclickDataTypeHelpNav = function(e) {
+		var dataTypeNavItem = $(e.target).closest("li");
+		_showDataTypeHelp(dataTypeNavItem);
+	};
+
+	var _showDataTypeHelp = function(el) {
+		var dataType = $(el).data("module");
+		var link = $(el).find("a");
+
+		$("#gdDataSetHelpNav a").removeClass("gdSelected");
+		$(link).addClass("gdSelected");
+
+		// set the header to the name of the Data Type
+		$("#gdFocusedDataTypeHeader").html($(link).html());
+
+		if (_currDataTypeHelp !== null) {
+			$("#gdDataTypeHelp_" + _currDataTypeHelp).addClass("hidden");
+		}
+		$("#gdDataTypeHelp_" + dataType).removeClass("hidden");
+		_currDataTypeHelp = dataType;
+	};
+
+
+	var _onClickDataSetRowHelp = function(e) {
+		var row = $(e.target).closest(".gdTableRow");
+		var dataTypeDropdown = row.find(".gdDataType");
+		var choice = dataTypeDropdown.val();
+
+		_openMainDialog({ tab: 4, dataType: choice });
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN,
+			rowElement: row
+		});
+	};
+
+
+	var _openMainDialog = function(settings) {
+		var opts = $.extend({
+			tab: 1,
+			dataType: null
+		}, settings);
+
+		// hide/show the appropriate tab
+		$("#gdMainDialogTab" + opts.tab).trigger("click");
+
+		// remove any custom styles
+		$(".gdHelpSection").removeAttr("style");
+
+		// if required, ensure the appropriate Data Type item is selected
+		if (opts.dataType !== null) {
+			var helpNavEl = ($("#gdDataSetHelpNav li[data-module='" + opts.dataType + "']"))[0];
+			_showDataTypeHelp(helpNavEl);
+		}
+
+		// open the dialog
+		$("#gdMainDialog").dialog({
+			title: "generatedata.com",
+			width: 800,
+			minHeight: 400,
+			modal: true,
+			buttons: [
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]
+		});
+
+		return false;
+	};
+
+	var _closeMainDialog = function() {
+		$("#gdMainDialog").dialog("close");
+	};
+
+	var _markDataSetRowToDelete = function(e) {
+		var el = e.target;
+		var event = null;
+		if (el.checked) {
+			$(el).closest("tr").addClass("gdDeletedDataSetRow").effect("highlight", { color: "#cc0000" }, 1000);
+		} else {
+			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
+		}
+		_toggleDeleteDataSetButton();
+	};
+
+	var _confirmDeleteDataSets = function() {
+
+	};
+
+	var _onToggleSelectAllDataSets = function(e) {
+		var isChecked = e.target.checked;
+		var cbs = $("#gdAccountDataSets tbody input");
+		for (var i=0; i<cbs.length; i++) {
+			cbs[i].checked = isChecked;
+		}
+		_toggleDeleteDataSetButton();
+	};
+
+
+	/**
+	 * Called whenever one or more rows is selected / unselected. This checks to see how
+	 * many rows are selected, and hides/shows a delete button.
+	 */
+	var _toggleDeleteDataSetButton = function() {
+		var cbs = $("#gdAccountDataSets tbody input:checked");
+		if (cbs.length) {
+			$("#gdMainDialog").dialog("option", "buttons", [
+				{
+					text: "Delete " + cbs.length + " Data Sets",
+					"class": "gdDeleteDataSetsBtn",
+					click: function() {
+						_onClickDeleteDataSets();
+					}
+				},
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]);
+		} else {
+			$("#gdMainDialog").dialog("option", "buttons", [
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]);
+		}
+	};
+
+	var _onClickDeleteDataSets = function() {
+		// get the configuration IDs of the selected rows
+		var configurationIDs = [];
+		var cbs = $("#gdAccountDataSets tbody input:checked");
+		for (var i=0; i<cbs.length; i++) {
+			configurationIDs.push($(cbs[i]).closest("tr").data("id"));
+		}
+		_deleteConfigurations(configurationIDs);
+	};
+
+
+	// account-related
+
+	var _getDataSets = function() {
+		utils.startProcessing();
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "JSON",
+			data: {
+				action: "getAccount"
+			},
+			success: _onRetrievingAccountInfo,
+			error: _onError
+		});
+	};
+
+	var _onRetrievingAccountInfo = function(response) {
+		utils.stopProcessing();
+
+		// enable the save, load and link icons
+		$("#gdActionIcons .loading").removeClass("loading");
+
+		_isLoaded = true;
+		_accountInfo = response.content;
+		_dataSets = response.content.configurations;
+
+		_displayDataSets();
+	};
+
+	var _displayDataSets = function() {
+		var html = "";
+		var row = "";
+		var currDataSet;
+		for (var i=0; i<_dataSets.length; i++) {
+			currDataSet = _dataSets[i];
+			var dateCreated = moment.unix(currDataSet.date_created_unix).format("MMM Do, YYYY");
+			var lastUpdated = moment.unix(currDataSet.last_updated_unix).format("MMM Do, YYYY");
+
+			row = '<tr data-id="' + currDataSet.configuration_id + '">' +
+				'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
+				'<td class="leftAligned">' + dateCreated + '</td>' +
+				'<td class="leftAligned">' + lastUpdated + '</td>' +
+				'<td align="center">' + currDataSet.num_rows_generated + '</td>' +
+				'<td align="center"><a href="#">load</a></td>' +
+				'<td align="center"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
+				'</tr>';
+			html += row;
+		}
+		$("#gdAccountDataSets tbody").html(html);
+	};
+
+	var _onError = function(response) {
+		console.log("on error");
+		console.log(response);
+	};
+
+
+	var _saveConfiguration = function(configuration) {
+		utils.startProcessing();
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: configuration,
+			success: function(response) {
+				if (response.success) {
+					_currConfigurationID = response.content;
+					_getDataSets();
+				} else {
+					// TODO
+				}
+			},
+
+			error: function() {
+				// alert(L.fatal_error);
+				// gd.stopProcessing();
+			}
+		});
+	};
+
+	var _getConfiguration = function(configurationID) {
+		var dataSet = {};
+		for (var i=0; i<_dataSets.length; i++) {
+			if (_dataSets[i].configuration_id != configurationID) {
+				continue;
+			}
+			dataSet = _dataSets[i];
+		}
+		return dataSet;
+	};
+
+	var _getAccount = function() {
+		return _accountInfo;
+	};
+
 
 
 	// register our module

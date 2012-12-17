@@ -51,8 +51,6 @@
 	require([
 		"manager",
 		"generator",
-		"mainDialog",
-		"accountManager",
 		{$exportTypeJSModules},
 		{$dataTypeJSModules},
 		"pageinit"
