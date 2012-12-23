@@ -252,21 +252,6 @@ define([
 			return false;
 		}
 
-		// if the name already exists, check with the user that it's okay to overwrite it
-		/*
-		var formExists = false;
-		for (var i=0; i<form_list_dd.length; i++) {
-			if (form_list_dd[i].text == newFormName) {
-				form_exists = true;
-			}
-		}
-		if (form_exists) {
-			if (!confirm(L.form_exists_overwrite_confirmation)) {
-				return false;
-			}
-		}
-		*/
-
 		var rowData = [];
 		var orderedRowIDs = _getRowOrder();
 		for (var i=0; i<orderedRowIDs.length; i++) {
@@ -1035,7 +1020,6 @@ define([
 	};
 
 	var _markDataSetRowToDelete = function(el) {
-		console.log(el.checked);
 		if (el.checked) {
 			$(el).closest("tr").addClass("gdDeletedDataSetRow").effect("highlight", { color: "#cc0000" }, 1000);
 		} else {
@@ -1111,13 +1095,24 @@ define([
 
 	var _onSuccessDeleteDataSets = function(response) {
 
-
 		// if the delete was successful
 		if (response.success) {
 
-			// update the first tab (Num Saved Data Sets, )
+			// update the first tab (Num Saved Data Sets)
+			var deletedConfigurationIDs = response.content;
 
-			// 
+			// var _accountInfo = null;
+			// var _dataSets = [];
+			var remainingDataSets = [];
+			for (var i=0; i<_dataSets.length; i++) {
+				if ($.inArray(_dataSets[i].configuration_id, response.content) == -1) {
+					remainingDataSets.push(_dataSets[i]);
+				}
+			}
+			_dataSets = remainingDataSets;
+			$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
+
+			_displayDataSets();
 		}
 	};
 
@@ -1140,9 +1135,6 @@ define([
 
 	var _onRetrievingAccountInfo = function(response) {
 		utils.stopProcessing();
-
-		console.log(response);
-		
 
 		// enable the save, load and link icons
 		$("#gdActionIcons .loading").removeClass("loading");

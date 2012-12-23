@@ -120,7 +120,7 @@ class Account {
 		$response = Core::$db->query("
 			DELETE FROM {$prefix}configurations 
 			WHERE account_id = {$accountID} AND
-				  configurastion_id IN ($configIDStr)
+				  configuration_id IN ($configIDStr)
 		");
 
 		if ($response["success"]) {
