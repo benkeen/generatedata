@@ -59,7 +59,7 @@ define([
 		utils.startProcessing();
 
 		// retrieve the data sets for the current user
-		_getDataSets();
+		_getAccount();
 
 		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
@@ -118,11 +118,12 @@ define([
 		$("#gdEmptyForm").bind("click", _emptyForm);
 
 		// main dialog
-		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
 		$(".gdSectionHelp").on("click", _showHelpSection);
 		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
 		$("#gdHelpLink").bind("click", function() { return _openMainDialog({ tab: 3 }); });
-		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _markDataSetRowToDelete);
+		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
+		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
+		$("#gdAccountDataSets").on("click", _onClickToggleDeleteRow);
 		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
 		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
 		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
@@ -183,11 +184,8 @@ define([
 			manager.loadDataTypeRows(data);
 		}
 
-
 		utils.stopProcessing();
-
-//TODO
-//		_closeMainDialog();
+		_closeMainDialog();
 	};
 
 
@@ -221,10 +219,10 @@ define([
 	 * based on whether it's a totally new data set, or if the user had loaded one already.
 	 */
 	var _onClickSaveIcon = function() {
-		if (_getCurrConfigurationID() === null) { // TODO
+		if (_currConfigurationID === null) {
 			_saveDataSet();
 		} else {
-			// confirm the overwrite
+			// confirm the overwrite (maybe)
 		}
 
 		return false;
@@ -936,6 +934,7 @@ define([
 	};
 
 	var _onclickDataTypeHelpNav = function(e) {
+		e.preventDefault();
 		var dataTypeNavItem = $(e.target).closest("li");
 		_showDataTypeHelp(dataTypeNavItem);
 	};
@@ -997,6 +996,7 @@ define([
 			width: 800,
 			minHeight: 400,
 			modal: true,
+			resizable: false,
 			buttons: [
 				{
 					text: "Close",
@@ -1012,19 +1012,36 @@ define([
 		$("#gdMainDialog").dialog("close");
 	};
 
-	var _markDataSetRowToDelete = function(e) {
+	var _onChangeMarkDataSetRowToDelete = function(e) {
 		var el = e.target;
-		var event = null;
+		_markDataSetRowToDelete(el);
+	};
+
+	var _onClickToggleDeleteRow = function(e) {
+		if (e.target.nodeName.toUpperCase() == "INPUT") {
+			return;
+		}
+
+		// reverse the checked-ness of the row
+		var el = $(e.target).closest("tr").find(".gdDeleteDataSets");
+		var isChecked = $(e.target).closest("tr").find(".gdDeleteDataSets").attr("checked");
+		if (isChecked) {
+			$(el).removeAttr("checked");
+		} else {
+			$(e.target).closest("tr").find(".gdDeleteDataSets").attr("checked", "checked");
+		}
+
+		_markDataSetRowToDelete(el[0]);
+	};
+
+	var _markDataSetRowToDelete = function(el) {
+		console.log(el.checked);
 		if (el.checked) {
 			$(el).closest("tr").addClass("gdDeletedDataSetRow").effect("highlight", { color: "#cc0000" }, 1000);
 		} else {
 			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
 		}
 		_toggleDeleteDataSetButton();
-	};
-
-	var _confirmDeleteDataSets = function() {
-
 	};
 
 	var _onToggleSelectAllDataSets = function(e) {
@@ -1036,6 +1053,9 @@ define([
 		_toggleDeleteDataSetButton();
 	};
 
+	var _confirmDeleteDataSets = function() {
+
+	};
 
 	/**
 	 * Called whenever one or more rows is selected / unselected. This checks to see how
@@ -1074,13 +1094,15 @@ define([
 		for (var i=0; i<cbs.length; i++) {
 			configurationIDs.push($(cbs[i]).closest("tr").data("id"));
 		}
-		_deleteConfigurations(configurationIDs);
+		console.log("to delete: ", configurationIDs);
+
+//		_deleteConfigurations(configurationIDs);
 	};
 
 
 	// account-related
 
-	var _getDataSets = function() {
+	var _getAccount = function() {
 		utils.startProcessing();
 		$.ajax({
 			url: "ajax.php",
@@ -1104,7 +1126,27 @@ define([
 		_accountInfo = response.content;
 		_dataSets = response.content.configurations;
 
+		_updateAccountInfoTab();
 		_displayDataSets();
+	};
+
+	var _updateAccountInfoTab = function() {
+		console.log(_accountInfo);
+
+		if (_accountInfo.isAnonymous) {
+			$("#gdAccount_AccountType").html("Anonymous admin account");
+		} else {
+
+		}
+
+		$("#gdAccount_NumSavedDataSets").html(_accountInfo.configurations.length);
+		$("#gdAccount_DateAccountCreated").html(moment.unix(_accountInfo.dateCreated).format("MMM Do, YYYY"));
+
+		var totalRowsGenerated = 0;
+		for (var i=0; i<_accountInfo.configurations.length; i++) {
+			totalRowsGenerated += parseInt(_accountInfo.configurations[i].num_rows_generated, 10);
+		}
+		$("#gdAccount_TotalRowsGenerated").html(totalRowsGenerated);
 	};
 
 	var _displayDataSets = function() {
@@ -1145,7 +1187,7 @@ define([
 			success: function(response) {
 				if (response.success) {
 					_currConfigurationID = response.content;
-					_getDataSets();
+					_getAccount();
 				} else {
 					// TODO
 				}
@@ -1168,11 +1210,6 @@ define([
 		}
 		return dataSet;
 	};
-
-	var _getAccount = function() {
-		return _accountInfo;
-	};
-
 
 
 	// register our module

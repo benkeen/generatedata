@@ -1054,9 +1054,10 @@ body.gdErrorPage #gdSeriousError {
   #gdMainDialogContent > div {
     padding: 6px 10px;
     height: 300px;
-    overflow-y: scroll; }
+    overflow-y: auto; }
   #gdMainDialogContent #gdMainDialogTab4Content {
-    padding: 0px 6px; }
+    padding: 0px 0px 0px 6px;
+    overflow: hidden; }
     #gdMainDialogContent #gdMainDialogTab4Content h3 {
       padding-top: 10px; }
 
@@ -1122,6 +1123,13 @@ body.gdErrorPage #gdSeriousError {
           border-radius: 3px;
           border: 1px solid #3366cc;
           text-decoration: none; }
+
+#gdDataSetHelpContent {
+  height: 300px;
+  float: left;
+  width: 541px;
+  padding-right: 6px;
+  overflow-y: auto; }
 
 body .ui-widget-content .gdDeleteDataSetsBtn span {
   color: #bb0000; }

@@ -25,12 +25,12 @@
 	&>div {
 		padding: 6px 10px;
 		height: 300px;
-		overflow-y: scroll; 
+		overflow-y: auto; 
 	}
 
 	#gdMainDialogTab4Content {
-		padding: 0px 6px;
-
+		padding: 0px 0px 0px 6px;
+		overflow: hidden;
 		h3 {
 			padding-top: 10px;
 		}
@@ -123,6 +123,14 @@
 			}
 		}
 	}
+}
+
+#gdDataSetHelpContent {
+	height: 300px;
+	float: left;
+	width: 541px;
+	padding-right: 6px;
+	overflow-y: auto;
 }
 
 body .ui-widget-content .gdDeleteDataSetsBtn span {

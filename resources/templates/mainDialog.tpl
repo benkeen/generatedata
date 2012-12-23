@@ -12,20 +12,20 @@
 		<div id="gdMainDialogTab1Content">
 			<table>
 			<tr>
-				<td>Account type</td>
-				<td>admin/user/anonymous</td>
+				<td width="200"><b>Account type</b></td>
+				<td id="gdAccount_AccountType"></td>
 			</tr>
 			<tr>
-				<td>Num Data Sets saved</td>
-				<td></td>
+				<td><b>Num Saved Data Sets</b></td>
+				<td id="gdAccount_NumSavedDataSets"></td>
 			</tr>
 			<tr>
-				<td>Total rows generated</td>
-				<td></td>
+				<td><b>Total rows generated</b></td>
+				<td id="gdAccount_TotalRowsGenerated"></td>
 			</tr>
 			<tr>
-				<td>Date account created</td>
-				<td></td>
+				<td><b>Date account created</b></td>
+				<td id="gdAccount_DateAccountCreated"></td>
 			</tr>
 			</table>
 		</div>
@@ -93,7 +93,7 @@
 			<div id="gdDataSetHelpNav">
 				{data_types_list}
 			</div>
-			<div>
+			<div id="gdDataSetHelpContent">
 				<h3 id="gdFocusedDataTypeHeader"></h3>
 				{data_type_help}
 			</div>
