@@ -146,8 +146,8 @@ define([
 
 		utils.startProcessing();
 
-		var configurationID = $(e.target).closest("tr").data("id");
-		var configuration = _getConfiguration(configurationID);
+		_currConfigurationID = $(e.target).closest("tr").data("id");
+		var configuration = _getConfiguration(_currConfigurationID);
 		var json = $.evalJSON(configuration.content);
 		var numRows = json.hasOwnProperty("dataTypes") ? json.dataTypes.length : _numRowsToShowOnStart;
 
@@ -714,7 +714,6 @@ define([
 			editor: _codeMirror
 		});
 
-		// TODO doesn't seem to work
 		if (exportTarget == "inPage") {
 			_generateInPage();
 			return false;
@@ -737,6 +736,9 @@ define([
 
 		// "action" added for AjaxRequest only
 		var data = formData + "&action=generateInPage&gdBatchSize=" + C.GENERATE_IN_PAGE_BATCH_SIZE;
+		if (_currConfigurationID !== null) {
+			data += "&configurationID=" + _currConfigurationID;
+		}
 		_showSubtab(2);
 
 		_codeMirror.setValue("");
@@ -753,7 +755,11 @@ define([
 	};
 
 	var _generateInPageBatch = function() {
+		$("#gdGenerationPanel a").removeClass("gdDisabledLink");
 		var data = _generateInPageData + "&gdCurrentBatchNum=" + _generateInPageBatchNum;
+		if (_currConfigurationID !== null) {
+			data += "&configurationID=" + _currConfigurationID;
+		}
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -781,8 +787,9 @@ define([
 			// now either continue processing, or indicate we're done
 			if (response.isComplete) {
 				//$("#gdGenerateInPageLoading").hide("fade");
-				// TODO disable "cancel" link
+				$("#gdGenerationPanel a").addClass("gdDisabledLink");
 
+				// TODO: update the "total rows generated info"
 			} else {
 				_generateInPageBatchNum++;
 				_generateInPageBatch();
@@ -1113,6 +1120,7 @@ define([
 			$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 
 			_displayDataSets();
+			_toggleDeleteDataSetButton();
 		}
 	};
 
@@ -1140,8 +1148,12 @@ define([
 		$("#gdActionIcons .loading").removeClass("loading");
 
 		_isLoaded = true;
-		_accountInfo = response.content;
 		_dataSets = response.content.configurations;
+		_accountInfo = response.content;
+
+		// remove configurations from the account Info object. This is just to prevent someone (like me) accidentally using
+		// that data in that object, and not in _dataSets.
+		delete _accountInfo.configurations;
 
 		_updateAccountInfoTab();
 		_displayDataSets();
@@ -1154,36 +1166,44 @@ define([
 
 		}
 
-		$("#gdAccount_NumSavedDataSets").html(_accountInfo.configurations.length);
+		$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 		$("#gdAccount_DateAccountCreated").html(moment.unix(_accountInfo.dateCreated).format("MMM Do, YYYY"));
 
 		var totalRowsGenerated = 0;
-		for (var i=0; i<_accountInfo.configurations.length; i++) {
-			totalRowsGenerated += parseInt(_accountInfo.configurations[i].num_rows_generated, 10);
+		for (var i=0; i<_dataSets.length; i++) {
+			totalRowsGenerated += parseInt(_dataSets[i].num_rows_generated, 10);
 		}
 		$("#gdAccount_TotalRowsGenerated").html(totalRowsGenerated);
 	};
 
 	var _displayDataSets = function() {
-		var html = "";
-		var row = "";
-		var currDataSet;
-		for (var i=0; i<_dataSets.length; i++) {
-			currDataSet = _dataSets[i];
-			var dateCreated = moment.unix(currDataSet.date_created_unix).format("MMM Do, YYYY");
-			var lastUpdated = moment.unix(currDataSet.last_updated_unix).format("MMM Do, YYYY");
+		if (_dataSets.length) {
+			$("#gdNoAccountDataSets").addClass("hidden");
+			var html = "";
+			var row = "";
+			var currDataSet;
+			for (var i=0; i<_dataSets.length; i++) {
+				currDataSet = _dataSets[i];
+				var dateCreated = moment.unix(currDataSet.date_created_unix).format("MMM Do, YYYY");
+				var lastUpdated = moment.unix(currDataSet.last_updated_unix).format("MMM Do, YYYY");
 
-			row = '<tr data-id="' + currDataSet.configuration_id + '">' +
-				'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
-				'<td class="leftAligned">' + dateCreated + '</td>' +
-				'<td class="leftAligned">' + lastUpdated + '</td>' +
-				'<td align="center">' + currDataSet.num_rows_generated + '</td>' +
-				'<td align="center"><a href="#">load</a></td>' +
-				'<td align="center"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
-				'</tr>';
-			html += row;
+				row = '<tr data-id="' + currDataSet.configuration_id + '">' +
+					'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
+					'<td class="leftAligned">' + dateCreated + '</td>' +
+					'<td class="leftAligned">' + lastUpdated + '</td>' +
+					'<td align="center">' + currDataSet.num_rows_generated + '</td>' +
+					'<td align="center"><a href="#">load</a></td>' +
+					'<td align="center"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
+					'</tr>';
+				html += row;
+			}
+			$("#gdAccountDataSets tbody").html(html);
+			$("#gdAccountDataSets").removeClass("hidden");
+		} else {
+			$("#gdAccountDataSets tbody").html("");
+			$("#gdNoAccountDataSets").removeClass("hidden");
+			$("#gdAccountDataSets").addClass("hidden");
 		}
-		$("#gdAccountDataSets tbody").html(html);
 	};
 
 	var _onError = function(response) {

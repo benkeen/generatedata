@@ -267,3 +267,6 @@ li.gdColDelete {
     color: #aaaaaa; }
   #gdDataSetName:-moz-placeholder {
     color: #aaaaaa; }
+
+a.gdDisabledLink {
+  color: #cccccc; }

@@ -129,7 +129,8 @@
   cursor: pointer;
   height: 36px;
   margin-left: 0px;
-  width: 68px; }
+  width: 68px;
+  outline: none; }
   #gdSaveBtn:hover {
     background-color: #7fbf4d;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));

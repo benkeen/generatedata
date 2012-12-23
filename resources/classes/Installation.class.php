@@ -152,7 +152,6 @@ END;
 				password_recovery_question varchar(100) default NULL,
 				password_recovery_answer varchar(100) default NULL,
 				max_records mediumint(9) default NULL,
-				num_records_generated int(11) NOT NULL default '0',
 				PRIMARY KEY (account_id)
 			)
 		";

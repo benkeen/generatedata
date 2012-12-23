@@ -29,7 +29,9 @@
 			</tr>
 			</table>
 		</div>
+
 		<div id="gdMainDialogTab2Content" class="hidden">
+			<p id="gdNoAccountDataSets" class="hidden">You don't have any saved data sets.</p>
 			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets">
 				<thead>
 					<tr>
@@ -44,6 +46,7 @@
 				<tbody></tbody>
 			</table>
 		</div>
+
 		<div id="gdMainDialogTab3Content" class="hidden">
 			<p>
 				The Data Generator provides a simple interface to let you quickly generate large volumes of custom data 

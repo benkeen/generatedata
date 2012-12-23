@@ -21,6 +21,11 @@ class Generator {
 	private $currentBatchFirstRow;
 	private $currentBatchLastRow;
 
+	// this may or may not exist. If the user is generating data from a saved data set, it will have a value. Otherwise
+	// it won't be included in $postData passed to the constructor
+	private $configurationID = null; 
+
+
 	/**
 	 * @param array $postdata everything from the form post. The Generator is used in 3 different
 	 * contexts: for in-page generation, new tab/window or for prompting download of the data.
@@ -40,6 +45,10 @@ class Generator {
 		$this->countries  = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
 		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 		$this->postData   = $postData;
+
+		if (isset($postData["configurationID"])) {
+			$this->configurationID = $postData["configurationID"];
+		}
 
 		// make a note of whether this batch is the first / last. This is useful information for the
 		// Export Types to know whether to output special content at the top or bottom
@@ -76,6 +85,11 @@ class Generator {
 		if ($this->exportTarget == "promptDownload") {
 			$response["promptDownloadFilename"] = $this->exportType->getDownloadFilename($this);
 		}
+
+		// if this is the last batch, and we're generating data for a saved data set, update the "total rows" count
+		if ($this->isLastBatch && $this->configurationID != null) {
+			Core::$user->updateRowsGeneratedCount($this->configurationID, $this->numResults);
+		} 
 
 		return $response;
 	}

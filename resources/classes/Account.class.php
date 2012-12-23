@@ -72,7 +72,7 @@ class Account {
 		return $this->isAnonymous;
 	}
 
-	public function getID() {
+	public function getAccountID() {
 		return $this->accountID;
 	}
 
@@ -155,27 +155,6 @@ class Account {
 
 		return $forms;
 	}
-
-
-	public function updateTotalRowCount($num_rows) {
-		// Ben, surely there's a way to do this in a single query...
-		$select_query = mysql_query("
-			SELECT num_records_generated
-			FROM   {$g_table_prefix}user_accounts
-			WHERE  account_id = $account_id
-				");
-
-		$result = mysql_fetch_assoc($select_query);
-		$num_generated = $result["num_records_generated"];
-
-		$new_total = $num_generated + $num_rows;
-
-		mysql_query("
-			UPDATE {$g_table_prefix}user_accounts
-			SET    num_records_generated = $new_total
-			WHERE  account_id = $account_id
-				");
-	}
 */
 
 	public function saveConfiguration($data) {
@@ -230,9 +209,27 @@ class Account {
 		$prefix = Core::getDbTablePrefix();
 		$result = Core::$db->query("
 			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, account_type,
-				first_name, last_name, email, password, num_records_generated)
+				first_name, last_name, email, password)
 			VALUES ('$now', '$now', '$now', '$accountType', '$firstName', '$lastName', '$email',
-				'$password', 0)
+				'$password')
+		");
+	}
+
+
+
+	public function updateRowsGeneratedCount($configurationID, $rowsGenerated) {
+		if (!is_numeric($rowsGenerated)) {
+			return;
+		}
+
+		$cleanRowsGenerated = mysql_real_escape_string($rowsGenerated);
+		$prefix    = Core::getDbTablePrefix();
+		$accountID = $this->accountID;
+		$response = Core::$db->query("
+			UPDATE {$prefix}configurations
+			SET num_rows_generated = num_rows_generated+$cleanRowsGenerated
+			WHERE  account_id = $accountID AND configuration_id = $configurationID
 		");
 	}
 }
+
