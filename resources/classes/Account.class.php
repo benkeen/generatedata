@@ -102,110 +102,42 @@ class Account {
 	}
 
 
-	/*
-	 * Saves a test data configuration.
-	 *
-	 * @param integer $account_id
-	 * @param string $form_name
-	 * @param string $form_content
-	 * @return string
-	public function saveConfiguration($form_name, $form_content) {
+	public function deleteConfigurations($configurationIDs) {
+		if (empty($configurationIDs)) {
+			return;
+		}
 
-		// find out if there's already a form with this name for this user
-		$count_query = mysql_query("
-			SELECT count(*)
-			FROM   {$g_table_prefix}forms
-			WHERE  account_id = $account_id
-			AND    form_name = '$form_name'
-				");
+		$cleanedConfigurationIDs = array();
+		for ($i=0; $i<count($configurationIDs); $i++) {
+			if (is_numeric($configurationIDs[$i])) {
+				$cleanedConfigurationIDs[] = $configurationIDs[$i];
+			}
+		}
 
-		$result = mysql_fetch_row($count_query);
-		$form_already_exists = ($result[0] == 0) ? false : true;
+		$configIDStr = implode(", ", $cleanedConfigurationIDs);
+		$accountID = $this->accountID;
+		$prefix = Core::getDbTablePrefix();
+		$response = Core::$db->query("
+			DELETE FROM {$prefix}configurations 
+			WHERE account_id = {$accountID} AND
+				  configurastion_id IN ($configIDStr)
+		");
 
-		if ($form_already_exists) {
-			$query = mysql_query("
-				UPDATE {$g_table_prefix}forms
-				SET    content = '$form_content'
-				WHERE  account_id = $account_id AND
-							 form_name = '$form_name'
-								 ");
-			echo '{ "success": "true",  "message": "Your form has been updated.", "form_name": "' . $form_name . '" }';
+		if ($response["success"]) {
+			return array(
+				"success" => true,
+				"message" => $cleanedConfigurationIDs
+			);
 		} else {
-			$query = mysql_query("
-				INSERT INTO {$g_table_prefix}forms (account_id, form_name, content)
-				VALUES ($account_id, '$form_name', '$form_content')
-								 ");
-			$form_id = mysql_insert_id();
-			echo '{ "success": "true",  "message": "Your form has been saved.", "form_id": "' . $form_id . '", "form_name": "' . $form_name . '" }';
+			return array(
+				"success" => false,
+				"message" => $response["errorMessage"]
+			);
 		}
 	}
 
 
-	public function loadConfiguration($form_id) {
-		global $g_table_prefix;
-
-		if (!isset($_SESSION["account_id"])) {
-			return;
-		}
-
-		$query = mysql_query("
-			SELECT *
-			FROM   {$g_table_prefix}forms
-			WHERE  form_id = $form_id
-				");
-
-		if (!$query || mysql_num_rows($query) == 0) {
-			echo '{ "success": "false", "message": "Sorry, this form isn\'t found. You might want to try logging out then logging back in." }';
-			return;
-		}
-
-		$result = mysql_fetch_assoc($query);
-		if ($result["account_id"] != $_SESSION["account_id"]) {
-			echo '{ "success": "false", "message": "Sorry, you don\'t have permission to view this form. Please re-login in and try again." }';
-			return;
-		}
-
-		// escape all double quotes
-	//  $clean_str = preg_replace("/^\{/", "", $result["content"]);
-	//  $clean_str = preg_replace("/\}$/", "", $clean_str);
-		$clean_str = addslashes($result["content"]);
-		echo '{ "success": "true", "form_content": ' . $result["content"] . ' }';
-	}
-
-
-	public function deleteConfiguration($form_id) {
-		global $g_table_prefix;
-
-		if (!isset($_SESSION["account_id"])) {
-			return;
-		}
-
-		$query = mysql_query("
-			SELECT *
-			FROM   {$g_table_prefix}forms
-			WHERE  form_id = $form_id
-				");
-
-		if (mysql_num_rows($query) == 0) {
-			echo '{ "success": "false",  "message": "Sorry, this form isn\'t found. You might want to try logging out then logging back in." }';
-			return;
-		}
-
-		$result = mysql_fetch_assoc($query);
-		if ($result["account_id"] != $_SESSION["account_id"]) {
-			echo '{ "success": "false", "message": "Sorry, you don\'t have permission to delete this form. Please re-login in and try again." }';
-			return;
-		}
-
-		mysql_query("
-			DELETE FROM {$g_table_prefix}forms
-			WHERE  form_id = $form_id
-				");
-
-		echo "{ \"success\": \"true\", \"form_id\": $form_id  }";
-	}
-
-
+/*
 	// private? part of constructor?
 	public function getConfigurations($account_id) {
 		global $g_table_prefix;
@@ -274,11 +206,6 @@ class Account {
 				"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
 			);
 		}
-	}
-
-
-	public static function loadAnonymousDataSet($configurationID) {
-
 	}
 
 

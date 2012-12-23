@@ -202,7 +202,6 @@ class AjaxRequest {
 			// USER ACCOUNTS
 			// ------------------------------------------------------------------------------------
 
-			// called onload 
 			case "getAccount":
 				Core::init();
 				$response = Core::$user->getAccount();
@@ -217,28 +216,19 @@ class AjaxRequest {
 				$this->response["content"] = $response["message"];
 				break;
 
+			case "deleteDataSets":
+				Core::init();
+				$configurationIDs = $post["configurationIDs"];
+				$response = Core::$user->deleteConfigurations($configurationIDs);
+				$this->response["success"] = $response["success"];
+				$this->response["content"] = $response["message"];
+				break;
+
 /*
 			case "login":
 				break;
 
 			case "logout":
-				break;
-
-			case "loadConfiguration":
-  		      $assertions = array(
-					"logged_in" => true,
-					"post" => array(
-						"required" => "form_id",
-						"numeric"  => "form_id"
-					)
-				);
-				Utils::assert($assertions);
-				$this->response = Core::$user->loadConfiguration($post["form_id"]);
-				break;
-
-			case "deleteConfiguration":
-				$form_id = $request["form_id"];
-				gd_delete_form($form_id);
 				break;
 */
 		}

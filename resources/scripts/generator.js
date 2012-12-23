@@ -1094,9 +1094,31 @@ define([
 		for (var i=0; i<cbs.length; i++) {
 			configurationIDs.push($(cbs[i]).closest("tr").data("id"));
 		}
-		console.log("to delete: ", configurationIDs);
 
-//		_deleteConfigurations(configurationIDs);
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "JSON",
+			data: {
+				action: "deleteDataSets",
+				configurationIDs: configurationIDs
+			},
+			success: _onSuccessDeleteDataSets,
+			error: _onError
+		});
+	};
+
+
+	var _onSuccessDeleteDataSets = function(response) {
+
+
+		// if the delete was successful
+		if (response.success) {
+
+			// update the first tab (Num Saved Data Sets, )
+
+			// 
+		}
 	};
 
 
@@ -1119,6 +1141,9 @@ define([
 	var _onRetrievingAccountInfo = function(response) {
 		utils.stopProcessing();
 
+		console.log(response);
+		
+
 		// enable the save, load and link icons
 		$("#gdActionIcons .loading").removeClass("loading");
 
@@ -1131,8 +1156,6 @@ define([
 	};
 
 	var _updateAccountInfoTab = function() {
-		console.log(_accountInfo);
-
 		if (_accountInfo.isAnonymous) {
 			$("#gdAccount_AccountType").html("Anonymous admin account");
 		} else {
