@@ -1057,7 +1057,7 @@ define([
 		if (cbs.length) {
 			$("#gdMainDialog").dialog("option", "buttons", [
 				{
-					text: "Delete " + cbs.length + " Data Sets",
+					text: "Delete " + cbs.length + " Data Set(s)",
 					"class": "gdDeleteDataSetsBtn",
 					click: function() {
 						_onClickDeleteDataSets();
