@@ -46,15 +46,18 @@ define([
 	var _initStartTab = function() {
 		if (window.location.href.match(/#/)) {
 			var tab = window.location.href.split("#")[1].replace(/^t/, "");
-			if (utils.isNumber(tab) && tab >= 1 && tab <= $("#gdMainTabs ul li").length) {
-				utils.selectTab({ tabIDPrefix: "gdTabs", tab: tab });
-				utils.currentTab = tab;
+
+			if (utils.isNumber(tab)) {
+				tab = parseInt(tab, 10);
+				if (tab >= 1) {
+					utils.selectTab({ tabGroup: "mainTabs", tabIDPrefix: "gdMainTab", newTab: tab, oldTab: 1 });
+					_currMainTab = tab;
+				}
 			}
 		}
 	};
 
 	var _initMainTabs = function() {
-		// ...
 		$("#gdMainTabs ul li").each(function() {
 			var newTab = parseInt($(this).attr("id").replace(/^gdMainTab/, ""), 10);
 			$(this).bind("click", function() {

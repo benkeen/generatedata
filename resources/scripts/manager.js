@@ -283,7 +283,7 @@ define([
 		var errors = [];
 
 		try {
-			console.log(_modules, exportTypeModuleID, info);
+//			console.log(_modules, exportTypeModuleID, info);
 			errors = _modules[exportTypeModuleID].validate(rows);
 		} catch (e) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
@@ -397,6 +397,13 @@ define([
 		return exportTypeData;
 	};
 
+	var _loadExportType = function(exportType, allSavedExportTypeData) {
+		var exportTypeModuleID = "export-type-" + exportType;
+		if (!_modules.hasOwnProperty(exportTypeModuleID) || !allSavedExportTypeData.hasOwnProperty(exportTypeModuleID)) {
+			return;
+		}
+		_modules[exportTypeModuleID].loadSettings(allSavedExportTypeData[exportTypeModuleID]);
+	};
 
 	var _loadDataTypeRows = function(rowData) {
 		for (var i=0; i<rowData.length; i++) {
@@ -414,7 +421,7 @@ define([
 
 
 	var _onDataTypesLoaded = function() {
-		console.log(":-)");
+		
 	};
 
 
@@ -543,6 +550,12 @@ define([
 		 * @name Manager#serializeExportTypes
 		 */
 		serializeExportTypes: _serializeExportTypes,
+
+		/**
+		 * @function
+		 * @name Manager#loadExportType
+		 */
+		loadExportType: _loadExportType,
 
 		/**
 		 * Activates the entire client-side code. This may only be executed once, and is done by the

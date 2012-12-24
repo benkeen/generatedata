@@ -27,7 +27,7 @@ define([
 	var _saveSettings = function() {
 		return {
 			"delimiter": $("#etCSV_delimiter").val(),
-			"eol": $("#etCSV_lineEndings").val()
+			"eol":       $("#etCSV_lineEndings").val()
 		};
 	};
 	

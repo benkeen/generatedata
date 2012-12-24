@@ -137,28 +137,14 @@ class Account {
 	}
 
 
-/*
-	// private? part of constructor?
-	public function getConfigurations($account_id) {
-		global $g_table_prefix;
-
-		$query = mysql_query("
-			SELECT form_id, form_name
-			FROM   {$g_table_prefix}forms
-			WHERE  account_id = $account_id
-			ORDER BY form_name
-				") or die(mysql_error());
-
-		$forms = array();
-		while ($result = mysql_fetch_assoc($query))
-			$forms[] = array($result["form_id"], $result["form_name"]);
-
-		return $forms;
-	}
-*/
-
 	public function saveConfiguration($data) {
 		$configurationName = Utils::sanitize($data["dataSetName"]);
+
+		$configurationID = null;
+		if (array_key_exists("configurationID", $data)) {
+			$configurationID = $data["configurationID"];
+			unset($data["configurationID"]);
+		}
 
 		unset($data["action"]);
 		unset($data["dataSetName"]);
@@ -168,22 +154,45 @@ class Account {
 		$prefix = Core::getDbTablePrefix();
 		$accountID = $this->accountID;
 
-		$response = Core::$db->query("
-			INSERT INTO {$prefix}configurations (date_created, last_updated, account_id, configuration_name, content)
-			VALUES ('$now', '$now', $accountID, '" . $configurationName . "', '" . $content . "')
-		");
+		if ($configurationID == null) {
+			$response = Core::$db->query("
+				INSERT INTO {$prefix}configurations (date_created, last_updated, account_id, configuration_name, content)
+				VALUES ('$now', '$now', $accountID, '" . $configurationName . "', '" . $content . "')
+			");
 
-		if ($response["success"]) {
-			$configurationID = mysql_insert_id();
-			return array(
-				"success" => true,
-				"message" => $configurationID
-			);
+			if ($response["success"]) {
+				$configurationID = mysql_insert_id();
+				return array(
+					"success" => true,
+					"message" => $configurationID
+				);
+			} else {
+				return array(
+					"success" => false,
+					"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
+				);
+			}
 		} else {
-			return array(
-				"success" => false,
-				"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
-			);
+			$response = Core::$db->query("
+				UPDATE {$prefix}configurations 
+				SET 	last_updated = '$now',
+						configuration_name = '" . $configurationName . "',
+						content = '" . $content . "'
+				WHERE account_id = $accountID AND
+						configuration_id = $configurationID
+			");
+
+			if ($response["success"]) {
+				return array(
+					"success" => true,
+					"message" => $configurationID
+				);
+			} else {
+				return array(
+					"success" => false,
+					"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
+				);
+			}
 		}
 	}
 

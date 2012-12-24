@@ -146,13 +146,16 @@ define([
 
 		utils.startProcessing();
 
-		_currConfigurationID = $(e.target).closest("tr").data("id");
-		var configuration = _getConfiguration(_currConfigurationID);
+		var configurationID = $(e.target).closest("tr").data("id");
+		var configuration = _getConfiguration(configurationID);
 		var json = $.evalJSON(configuration.content);
 		var numRows = json.hasOwnProperty("dataTypes") ? json.dataTypes.length : _numRowsToShowOnStart;
 
 		// clear the form
 		_clearForm(numRows);
+
+		// now the form's been cleared, store the new configuration ID
+		_currConfigurationID = configurationID;
 
 		// now start populating the page
 		$("#gdDataSetName").val(configuration.configuration_name);
@@ -161,10 +164,14 @@ define([
 
 		_updateCountries(json.countries);
 
+		// update the Export Types section
+		_selectExportTypeTab(json.selectedExportType);
+		manager.loadExportType(json.selectedExportType, json.exportTypes);
+
+
 		// now populate the rows. Do everything that we can: create the rows, populate the titles & select
 		// the data type. The remaining fields are custom to the data type, so we leave them to their
 		// .loadData function (if defined)
-
 		if (json.hasOwnProperty("dataTypes")) {
 			var numDataTypeRows = json.dataTypes.length;
 			var orderedRowIDs = _getRowOrder();
@@ -185,6 +192,7 @@ define([
 		}
 
 		utils.stopProcessing();
+
 		_closeMainDialog();
 	};
 
@@ -222,9 +230,9 @@ define([
 		if (_currConfigurationID === null) {
 			_saveDataSet();
 		} else {
-			// confirm the overwrite (maybe)
+			// confirmation...?
+			_saveDataSet();
 		}
-
 		return false;
 	};
 
@@ -237,6 +245,7 @@ define([
 		var newDataSetName = $("#gdDataSetName").val();
 
 		// if there's no Data Set name provided, briefly highlight the field to draw attention to it
+		// and halt the process
 		if (!newDataSetName) {
 			$("#gdDataSetName").css({
 				backgroundColor: "#770000",
@@ -279,9 +288,31 @@ define([
 			selectedExportType: _currExportType
 		};
 
-		_saveConfiguration(configuration);
-	};
+		if (_currConfigurationID !== null) {
+			configuration.configurationID = _currConfigurationID;
+		}
 
+		utils.startProcessing();
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: configuration,
+			success: function(response) {
+				if (response.success) {
+					_currConfigurationID = response.content;
+					_getAccount();
+				} else {
+					// TODO
+				}
+			},
+
+			error: function() {
+				// alert(L.fatal_error);
+				// gd.stopProcessing();
+			}
+		});
+	};
 
 
 	var _addRows = function(rows) {
@@ -410,6 +441,7 @@ define([
 		$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
 		_deleteRows();
 		_addRows(numDefaultRows);
+		_currConfigurationID = null;
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -695,6 +727,10 @@ define([
 			return false;
 		}
 
+
+		// ensure this is a number (now it's passed validation above)
+		_numRowsToGenerate = parseInt(_numRowsToGenerate, 10);
+
 		var exportTarget = _getExportTarget();
 		var rowOrder = _getRowOrder().toString();
 		$("#gdRowOrder").val(rowOrder);
@@ -786,10 +822,12 @@ define([
 
 			// now either continue processing, or indicate we're done
 			if (response.isComplete) {
-				//$("#gdGenerateInPageLoading").hide("fade");
 				$("#gdGenerationPanel a").addClass("gdDisabledLink");
 
-				// TODO: update the "total rows generated info"
+				// update the data in _dataSets
+				if (_currConfigurationID !== null) {
+					_incrementConfigurationRowGenerationCount(_currConfigurationID, _numRowsToGenerate);
+				}
 			} else {
 				_generateInPageBatchNum++;
 				_generateInPageBatch();
@@ -797,6 +835,32 @@ define([
 		} else {
 
 		}
+	};
+
+	var _incrementConfigurationRowGenerationCount = function(configurationID, numRows) {
+		// first, update the actual data set
+		var updatedDataSets = [];
+		var newNum = "";
+		for (var i=0; i<_dataSets.length; i++) {
+			if (_dataSets[i].configuration_id == configurationID) {
+				var currCount = parseInt(_dataSets[i].num_rows_generated, 10);
+				newNum = currCount + numRows;
+				_dataSets[i].num_rows_generated = newNum;
+			}
+		}
+
+
+		// second, update the displayed data. This does surgery on the Data Sets tab to just update the one DOM
+		// element rather than redraw everything
+		var rows = $("#gdAccountDataSets tbody tr");
+		for (var j=0; j<rows.length; j++) {
+			if ($(rows[j]).data("id") == configurationID) {
+				$(rows[j]).find(".gdDataSetNumRowsGenerated").html(utils.formatNumWithCommas(newNum));
+			}
+		}
+
+		// this updates the account info tab "total" count
+		_updateAccountInfoTab();
 	};
 
 	var _generateNewWindow = function() {
@@ -1010,7 +1074,7 @@ define([
 	};
 
 	var _onClickToggleDeleteRow = function(e) {
-		if (e.target.nodeName.toUpperCase() == "INPUT") {
+		if ($.inArray(e.target.nodeName.toUpperCase(), ["INPUT", "A"]) !== -1) {
 			return;
 		}
 
@@ -1159,6 +1223,7 @@ define([
 		_displayDataSets();
 	};
 
+
 	var _updateAccountInfoTab = function() {
 		if (_accountInfo.isAnonymous) {
 			$("#gdAccount_AccountType").html("Anonymous admin account");
@@ -1173,7 +1238,7 @@ define([
 		for (var i=0; i<_dataSets.length; i++) {
 			totalRowsGenerated += parseInt(_dataSets[i].num_rows_generated, 10);
 		}
-		$("#gdAccount_TotalRowsGenerated").html(totalRowsGenerated);
+		$("#gdAccount_TotalRowsGenerated").html(utils.formatNumWithCommas(totalRowsGenerated));
 	};
 
 	var _displayDataSets = function() {
@@ -1191,7 +1256,7 @@ define([
 					'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
 					'<td class="leftAligned">' + dateCreated + '</td>' +
 					'<td class="leftAligned">' + lastUpdated + '</td>' +
-					'<td align="center">' + currDataSet.num_rows_generated + '</td>' +
+					'<td class="gdDataSetNumRowsGenerated" align="center">' + currDataSet.num_rows_generated + '</td>' +
 					'<td align="center"><a href="#">load</a></td>' +
 					'<td align="center"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
 					'</tr>';
@@ -1211,29 +1276,6 @@ define([
 		console.log(response);
 	};
 
-
-	var _saveConfiguration = function(configuration) {
-		utils.startProcessing();
-		$.ajax({
-			url:  "ajax.php",
-			type: "POST",
-			dataType: "json",
-			data: configuration,
-			success: function(response) {
-				if (response.success) {
-					_currConfigurationID = response.content;
-					_getAccount();
-				} else {
-					// TODO
-				}
-			},
-
-			error: function() {
-				// alert(L.fatal_error);
-				// gd.stopProcessing();
-			}
-		});
-	};
 
 	var _getConfiguration = function(configurationID) {
 		var dataSet = {};
@@ -1297,7 +1339,7 @@ define([
 		getExportTarget: _getExportTarget,
 
 		/**
-		 * Returns the number of rows to generate currently entered.
+		 * Returns the number of rows to generate currently entered. Note: this returns a STRING.
 		 * @function
 		 * @name Generator#getNumRowsToGenerate
 		 */
