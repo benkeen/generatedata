@@ -87,11 +87,38 @@ define([
 	};
 
 	var _loadSettings = function(settings) {
+		$("#etSQL_tableName").val(settings.tableName);
+		$("#etSQL_databaseType").val(settings.databaseType);
+		if (settings.createTable == "1") {
+			$("#etSQL_createTable").attr("checked", "checked");
+		} else {
+			$("#etSQL_createTable").removeAttr("checked");
+		}
+		if (settings.dropTable == "1") {
+			$("#etSQL_dropTable").attr("checked", "checked");
+		} else {
+			$("#etSQL_dropTable").removeAttr("checked");
+		}
+		if (settings.encloseWithBackquotes == "1") {
+			$("#etSQL_encloseWithBackquotes").attr("checked", "checked");
+		} else {
+			$("#etSQL_encloseWithBackquotes").removeAttr("checked");
+		}
 
+		// statementType: $("input[name=etSQL_statementType]:checked").val(),
+		// primaryKey: $("input[name=etSQL_primaryKey]:checked").val()
 	};
 
 	var _saveSettings = function() {
-
+		return {
+			tableName:    $("#etSQL_tableName").val(),
+			databaseType: $("#etSQL_databaseType").val(),
+			createTable:  $("#etSQL_createTable").attr("checked") ? 1 : 0,
+			dropTable:    $("#etSQL_dropTable").attr("checked") ? 1 : 0,
+			encloseWithBackquotes: $("#etSQL_encloseWithBackquotes").attr("checked") ? 1 : 0,
+			statementType: $("input[name=etSQL_statementType]:checked").val(),
+			primaryKey:    $("input[name=etSQL_primaryKey]:checked").val()
+		};
 	};
 
 	manager.registerExportType(MODULE_ID, {

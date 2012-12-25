@@ -165,7 +165,7 @@ define([
 		_updateCountries(json.countries);
 
 		// update the Export Types section
-		_selectExportTypeTab(json.selectedExportType);
+		_selectExportTypeTab(json.selectedExportType, true);
 		manager.loadExportType(json.selectedExportType, json.exportTypes);
 
 
@@ -434,6 +434,7 @@ define([
 		} else {
 			_clearForm(opts.numRows);
 		}
+
 	};
 
 	var _clearForm = function(numDefaultRows) {
@@ -442,6 +443,7 @@ define([
 		_deleteRows();
 		_addRows(numDefaultRows);
 		_currConfigurationID = null;
+		_selectExportTypeTab($(".gdDefaultExportType").data("exportType"), true);
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -478,7 +480,7 @@ define([
 	 * hiding/showing and changing of the title column label "out-the-box" rather than force
 	 * the Export Type modules to have to do the work.
 	 */
-	var _selectExportTypeTab = function(newExportType) {
+	var _selectExportTypeTab = function(newExportType, showImmediately) {
 		if (newExportType == _currExportType) {
 			return;
 		}
@@ -502,18 +504,22 @@ define([
 		// hide and show the appropriate Export Type additional settings section (if the + showdata format options link
 		// has been clicked)
 		if (_showExportTypeSettings) {
-			_showExportTypeSettingsSection(newExportType);
+			_showExportTypeSettingsSection(newExportType, showImmediately);
 		}
 
 		_currExportType = newExportType;
 	};
 
 
-	var _showExportTypeSettingsSection = function(newExportType) {
+	var _showExportTypeSettingsSection = function(newExportType, showImmediately) {
 		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0 && _showExportTypeSettings) {
-			$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
+			if (showImmediately === true) {
+				$("#gdExportTypeAdditionalSettings_" + _currExportType).hide();
+			} else {
+				$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
+			}
 		}
-		if (_currExportType === null) {
+		if (_currExportType === null || showImmediately === true) {
 			$("#gdExportTypeAdditionalSettings_" + newExportType).show();
 		} else {
 			$("#gdExportTypeAdditionalSettings_" + newExportType).show(
