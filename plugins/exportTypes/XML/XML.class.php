@@ -93,21 +93,7 @@ an ordered array of values for each item of data.
 		<button class="gdPrimaryButton">Reset Custom HTML</button>
 	</div>
 	<div id="etXMLCustomContent">
-		<textarea name="etXMLCustomSmarty" id="etXMLCustomSmarty">{if \$isFirstBatch}
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<records>
-{/if}
-{foreach \$rowData as \$row}
-  <record>
-{foreach from=\$colData item=col name=c}
-	<{\$col}>{\$row[\$smarty.foreach.c.index]}</{\$col}>
-{/foreach}
-  </record>
-{/foreach}
-{if \$isLastBatch}
-</records>
-{/if}</textarea>
+		<textarea name="etXMLCustomSmarty" id="etXMLCustomSmarty"></textarea>
 	</div>
 </div>
 END;

@@ -105,8 +105,8 @@ define([
 			$("#etSQL_encloseWithBackquotes").removeAttr("checked");
 		}
 
-		// statementType: $("input[name=etSQL_statementType]:checked").val(),
-		// primaryKey: $("input[name=etSQL_primaryKey]:checked").val()
+		$("input[name=etSQL_statementType]:eq(" + settings.statementType + ")").attr("checked", "checked");
+		$("input[name=etSQL_primaryKey]:eq(" + settings.primaryKey + ")").attr("checked", "checked");
 	};
 
 	var _saveSettings = function() {

@@ -17,9 +17,23 @@ define([
 
 	var MODULE_ID = "export-type-XML";
 	var LANG = L.exportTypePlugins.XML;
-	var _dialog = null;
 	var _codeMirror = null;
 
+	// sucks to include this in the JS, but the <? .. ?> of the XML tag gets screwed up when embedding
+	// this in a hidden HTML element
+	var _defaultCustomXML = "{if $isFirstBatch}\n<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" +
+		"<records>\n" +
+		"{/if}\n" +
+		"{foreach $rowData as $row}\n" +
+		"\t<record>\n" +
+		"{foreach from=$colData item=col name=c}\n" +
+		"\t\t<{$col}>{$row[$smarty.foreach.c.index]}</{$col}>\n" +
+		"{/foreach}\n" +
+		"\t</record>\n" +
+		"{/foreach}\n" +
+		"{if $isLastBatch}\n" +
+		"</records>\n" +
+		"{/if}";
 
 	var _init = function() {
 		var subscriptions = {};
@@ -46,7 +60,18 @@ define([
 		if ($("#etXML_useCustomExportFormat").attr("checked")) {
 			$("#etXML_customFormat").removeAttr("disabled").removeClass("gdDisabled");
 		}
+
+		// initialize the CodeMirror field
+		_codeMirror = CodeMirror.fromTextArea($("#etXMLCustomSmarty")[0], {
+			mode: "xml",
+			lineNumbers: true
+		});
+		$("#etXMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
+
+		// initialize CodeMirror to contain the default content
+		_codeMirror.setValue(_defaultCustomXML);
 	};
+
 
 	var _validate = function(rowNums) {
 		var errors = [];
@@ -90,11 +115,31 @@ define([
 
 
 	var _loadSettings = function(settings) {
-
+		$("#etXMLRootNodeName").val(settings.rootNodeName);
+		$("#etXMLRecordNodeName").val(settings.recordNodeName);
+		if (settings.useCustomExportFormat == "1") {
+			$("#etXMLUseCustomExportFormat").attr("checked", "checked");
+		} else {
+			$("#etXMLUseCustomExportFormat").removeAttr("checked");
+		}
+		$("#etXMLUseCustomExportFormat").trigger("click");
+		_codeMirror.setValue(settings.customFormat);
 	};
 
 	var _saveSettings = function() {
+		return {
+			rootNodeName: $("#etXMLRootNodeName").val(),
+			recordNodeName: $("#etXMLRecordNodeName").val(),
+			useCustomExportFormat: $("#etXMLUseCustomExportFormat").attr("checked") ? 1 : 0,
+			customFormat: _codeMirror.getValue()
+		};
+	};
 
+	var _resetSettings = function() {
+		$("#etXMLRootNodeName").val("records");
+		$("#etXMLRecordNodeName").val("record");
+		$("#etXMLUseCustomExportFormat").removeAttr("checked").trigger("click");
+		_codeMirror.setValue(_defaultCustomXML);
 	};
 
 	/**
@@ -117,17 +162,11 @@ define([
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
 			open: function() {
-				if (_codeMirror === null) {
-					_codeMirror = CodeMirror.fromTextArea($("#etXMLCustomSmarty")[0], {
-						mode: "xml",
-						lineNumbers: true
-					});
-					$("#etXMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
-					$("#etXMLCustomContent .CodeMirror-scroll").css({
-						width: dimensions.contentWidth,
-						height: dimensions.contentHeight
-					});
-				}
+				$("#etXMLCustomContent .CodeMirror-scroll").css({
+					width: dimensions.contentWidth,
+					height: dimensions.contentHeight
+				});
+				_codeMirror.refresh();
 			},
 			buttons: [
 				{
@@ -189,7 +228,13 @@ define([
 		 * @function
 		 * @name XML#saveSettings
 		 */
-		saveSettings: _saveSettings
+		saveSettings: _saveSettings,
+
+		/**
+		 * @function
+		 * @name XML#resetSettings
+		 */
+		resetSettings: _resetSettings
 	});
 
 });

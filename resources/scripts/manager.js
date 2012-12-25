@@ -75,7 +75,7 @@ define([
 			return;
 		}
 
-		var optionalFuncs = ["init", "run", "validate", "saveSettings", "loadSettings"];
+		var optionalFuncs = ["init", "run", "validate", "saveSettings", "loadSettings", "resetSettings"];
 		for (var i=0; i<optionalFuncs.length; i++) {
 			if (module.hasOwnProperty(optionalFuncs[i]) && typeof module[optionalFuncs[i]] != "function") {
 				if (C.DEBUGGING.CONSOLE_WARN) {
@@ -91,6 +91,7 @@ define([
 			validate: function() { return []; },
 			saveSettings: function() { return {}; },
 			loadSettings: null,
+			resetSettings: function() { },
 			subscriptions: {}
 		}, module);
 
@@ -397,6 +398,13 @@ define([
 		return exportTypeData;
 	};
 
+	var _resetExportTypes = function() {
+		var exportTypes = _getModulesByPluginType("export-type");
+		for (var i=0; i<exportTypes.length; i++) {
+			exportTypes[i].resetSettings();
+		}
+	};
+
 	var _loadExportType = function(exportType, allSavedExportTypeData) {
 		var exportTypeModuleID = "export-type-" + exportType;
 		if (!_modules.hasOwnProperty(exportTypeModuleID) || !allSavedExportTypeData.hasOwnProperty(exportTypeModuleID)) {
@@ -422,6 +430,22 @@ define([
 
 	var _onDataTypesLoaded = function() {
 		
+	};
+
+	/**
+	 * Helper function to return an array of plugins, by plugin type.
+	 * @function
+	 * @private
+	 * @param {String} the type of plugin: "data-type", "core", "export-type"
+	 */
+	var _getModulesByPluginType = function(pluginType) {
+		var plugins = [];
+		for (var module in _modules) {
+			if (_modules[module].type == pluginType) {
+				plugins.push(_modules[module]);
+			}
+		}
+		return plugins;
 	};
 
 
@@ -556,6 +580,15 @@ define([
 		 * @name Manager#loadExportType
 		 */
 		loadExportType: _loadExportType,
+
+		/**
+		 * This is used whenever a user loads a new Data Set or clears the current form. It calls all
+		 * Export Type's resetSettings() function, to ensure the Export Types section returns to its
+		 * factory defaults.
+		 * @function
+		 * @name Manager#resetExportTypes
+		 */
+		resetExportTypes: _resetExportTypes,
 
 		/**
 		 * Activates the entire client-side code. This may only be executed once, and is done by the

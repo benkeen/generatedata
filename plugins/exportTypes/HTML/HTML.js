@@ -119,11 +119,16 @@
 			"customExportSmartyContent": $("#etHTMLCustomSmarty").val()
 		};
 	};
+
+	var _resetSettings = function() {
+
+	};
 	
 
 	manager.registerExportType(MODULE_ID, {
 		init: _init,
 		loadSettings: _loadSettings,
-		saveSettings: _saveSettings
+		saveSettings: _saveSettings,
+		resetSettings: _resetSettings
 	});
 });

@@ -444,6 +444,7 @@ define([
 		_addRows(numDefaultRows);
 		_currConfigurationID = null;
 		_selectExportTypeTab($(".gdDefaultExportType").data("exportType"), true);
+		manager.resetExportTypes();
 
 		manager.publish({
 			sender: MODULE_ID,

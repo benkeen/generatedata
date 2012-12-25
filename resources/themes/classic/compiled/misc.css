@@ -61,14 +61,14 @@ body .ui-widget-content {
   color: #555555; }
 
 body .ui-widget-overlay {
-  background: #333333 url(images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
+  background: #333333 url(../../../css/smoothness/images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
   opacity: .30;
   filter: Alpha(Opacity=30); }
 
 body .ui-widget-shadow {
   margin: -8px 0 0 -8px;
   padding: 8px;
-  background: #333333 url(images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
+  background: #333333 url(../../../css/smoothness/images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x;
   opacity: .30;
   filter: Alpha(Opacity=30);
   -moz-border-radius: 8px;
