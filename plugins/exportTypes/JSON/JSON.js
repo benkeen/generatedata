@@ -43,20 +43,30 @@ define([
 	};
 
 	var _loadSettings = function(settings) {
-		$("#etJSON_stripWhitespace").val(settings.stripWhitespace);
+		if (settings.stripWhitespace == "1") {
+			$("#etJSON_stripWhitespace").attr("checked", "checked");
+		} else {
+			$("#etJSON_stripWhitespace").removeAttr("checked");
+		}
 	};
 
 	var _saveSettings = function() {
 		return {
-			stripWhitespace: $("#etJSON_stripWhitespace")[0].checked
+			stripWhitespace: ($("#etJSON_stripWhitespace")[0].checked) ? 1 : 0
 		};
 	};
+
+	var _resetSettings = function() {
+		$("#etJSON_stripWhitespace").removeAttr("checked");
+	};
+
 
 	manager.registerExportType(MODULE_ID, {
 		init: _init,
 		validate: _validate,
 		loadSettings: _loadSettings,
-		saveSettings: _saveSettings
+		saveSettings: _saveSettings,
+		resetSettings: _resetSettings
 	});
 
 });

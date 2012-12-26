@@ -64,11 +64,16 @@ define([
 		};
 	};
 
+	var _resetSettings = function() {
+		$("#etProgrammingLanguage_language").val("JavaScript");
+	};
+
 	manager.registerExportType(MODULE_ID, {
 		init: _init,
 		validate: _validate,
 		loadSettings: _loadSettings,
-		saveSettings: _saveSettings
+		saveSettings: _saveSettings,
+		resetSettings: _resetSettings
 	});
 
 });

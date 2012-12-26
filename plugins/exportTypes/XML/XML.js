@@ -35,6 +35,7 @@ define([
 		"</records>\n" +
 		"{/if}";
 
+
 	var _init = function() {
 		var subscriptions = {};
 		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
@@ -70,6 +71,8 @@ define([
 
 		// initialize CodeMirror to contain the default content
 		_codeMirror.setValue(_defaultCustomXML);
+
+		$("#etXML_ResetCustomHTML").on("click", _resetCustomHTML);
 	};
 
 
@@ -181,6 +184,7 @@ define([
 		return false;
 	};
 
+
 	var _getDialogDimensions = function() {
 		var dialogHeight  = ($(window).height() / 100) * 90;
 		var dialogWidth   = ($(window).width() / 100) * 90;
@@ -199,6 +203,10 @@ define([
 		var dimensions = _getDialogDimensions();
 		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
 		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
+	};
+
+	var _resetCustomHTML = function() {
+		_codeMirror.setValue(_defaultCustomXML);
 	};
 
 

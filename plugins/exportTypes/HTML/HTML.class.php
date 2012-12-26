@@ -114,10 +114,11 @@ An ordered array of strings containing the column names.
 An ordered array of arrays. Each top level array contains the contents of the row; each child array contains
 an ordered array of values for each item of data.
 
-		<button class="gdPrimaryButton">Reset Custom HTML</button>
+		<button class="gdPrimaryButton" id="etHTML_ResetCustomHTML">Reset Custom HTML</button>
 	</div>
 	<div id="etHTMLCustomContent">
-		<textarea name="etHTMLCustomSmarty" id="etHTMLCustomSmarty">{if \$isFirstBatch}
+		<textarea name="etHTMLCustomSmarty" id="etHTMLCustomSmarty"></textarea>
+<script type="text/template" id="etHTMLCustomSmarty_Template">{if \$isFirstBatch}
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,7 +152,8 @@ an ordered array of values for each item of data.
 
 </body>
 </html>
-{/if}</textarea>
+{/if}</script>
+
 	</div>
 </div>
 END;

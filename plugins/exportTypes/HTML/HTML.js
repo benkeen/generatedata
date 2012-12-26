@@ -20,6 +20,35 @@
 	var _dialog = null;
 	var _codeMirror = null;
 
+	var _init = function() {
+		$(window).resize(_updateDialogDimensions);
+		$("#etHTMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
+		$("#etHTMLUseCustomExportFormat").bind("click", function() {
+			if (this.checked) {
+				$("#etHTMLEditCustomFormat").removeAttr("disabled");
+				$(".etHTMLDefaultFormats").attr("disabled", "disabled");
+				$(".etHTMLDefaultFormatLabels").addClass("gdDisabledText");
+			} else {
+				$("#etHTMLEditCustomFormat").attr("disabled", "disabled");
+				$(".etHTMLDefaultFormats").removeAttr("disabled");
+				$(".etHTMLDefaultFormatLabels").removeClass("gdDisabledText");
+			}
+		});
+
+		var subscriptions = {};
+		subscriptions[C.EVENT.GENERATE] = _onGenerate;
+		manager.subscribe(MODULE_ID, subscriptions);
+
+		$("#etHTMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
+		_codeMirror = CodeMirror.fromTextArea($("#etHTMLCustomSmarty")[0], {
+			mode: "xml",
+			lineNumbers: true
+		});
+		_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
+		$("#etHTML_ResetCustomHTML").on("click", _resetCustomHTML);
+	};
+
+
 	var _updateDialogDimensions = function() {
 		var dimensions = _getDialogDimensions();
 		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
@@ -36,17 +65,11 @@
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
 			open: function() {
-				if (_codeMirror === null) {
-					_codeMirror = CodeMirror.fromTextArea($("#etHTMLCustomSmarty")[0], {
-						mode: "xml",
-						lineNumbers: true
-					});
-					$("#etHTMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
-					$("#etHTMLCustomContent .CodeMirror-scroll").css({
-						width: dimensions.contentWidth,
-						height: dimensions.contentHeight
-					});
-				}
+				$("#etHTMLCustomContent .CodeMirror-scroll").css({
+					width: dimensions.contentWidth,
+					height: dimensions.contentHeight
+				});
+				_codeMirror.refresh();
 			},
 			buttons: [
 				{
@@ -57,7 +80,6 @@
 				}
 			]
 		});
-
 		return false;
 	};
 
@@ -86,44 +108,34 @@
 		msg.editor.setOption("mode", "xml");
 	};
 
-	var _init = function() {
-		$(window).resize(_updateDialogDimensions);
-		$("#etHTMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
-		$("#etHTMLUseCustomExportFormat").bind("click", function() {
-			if (this.checked) {
-				$("#etHTMLEditCustomFormat").removeAttr("disabled");
-				$(".etHTMLDefaultFormats").attr("disabled", "disabled");
-				$(".etHTMLDefaultFormatLabels").addClass("gdDisabledText");
-			} else {
-				$("#etHTMLEditCustomFormat").attr("disabled", "disabled");
-				$(".etHTMLDefaultFormats").removeAttr("disabled");
-				$(".etHTMLDefaultFormatLabels").removeClass("gdDisabledText");
-			}
-		});
-
-		var subscriptions = {};
-		subscriptions[C.EVENT.GENERATE] = _onGenerate;
-		manager.subscribe(MODULE_ID, subscriptions);
-	};
-
 	var _loadSettings = function(settings) {
-		$("input[name=etHTMLExportFormat]").val(settings.dataFormat); // TODO (check...)
-		$("#etHTMLUseCustomExportFormat").val(settings.useCustomExportFormat);
+		$("input[name=etHTMLExportFormat][value=" + settings.dataFormat + "]").attr("checked", "checked");
+		if (settings.useCustomExportFormat == "1") {
+			$("#etHTMLUseCustomExportFormat").attr("checked", "checked");
+		} else {
+			$("#etHTMLUseCustomExportFormat").removeAttr("checked");
+		}
 		$("#etHTMLCustomSmarty").val(settings.customExportSmartyContent);
 	};
 
 	var _saveSettings = function() {
 		return {
-			"dataFormat": $("input[name=etHTMLExportFormat]:checked").val(),
-			"useCustomExportFormat": $("#etHTMLUseCustomExportFormat")[0].checked,
-			"customExportSmartyContent": $("#etHTMLCustomSmarty").val()
+			dataFormat: $("input[name=etHTMLExportFormat]:checked").val(),
+			useCustomExportFormat: $("#etHTMLUseCustomExportFormat")[0].checked ? 1 : 0,
+			customExportSmartyContent: _codeMirror.getValue()
 		};
 	};
 
 	var _resetSettings = function() {
-
+		$("input[name=etHTMLExportFormat][value=table").attr("checked", "checked");
+		$("#etHTMLUseCustomExportFormat").removeAttr("disabled").trigger("click");
+		_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
 	};
 	
+	var _resetCustomHTML = function() {
+		_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
+	};
+
 
 	manager.registerExportType(MODULE_ID, {
 		init: _init,

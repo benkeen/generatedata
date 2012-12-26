@@ -121,6 +121,16 @@ define([
 		};
 	};
 
+	var _resetSettings = function() {
+		$("#etSQL_tableName").val("myTable");
+		$("#etSQL_databaseType").val("MySQL");
+		$("#etSQL_createTable").attr("checked", "checked");
+		$("#etSQL_dropTable").attr("checked", "checked");
+		$("#etSQL_encloseWithBackquotes").attr("checked", "checked");
+		$("input[name=etSQL_statementType][value=insert]").attr("checked", "checked");
+		$("input[name=etSQL_primaryKey][value=default]").attr("checked", "checked");
+	};
+
 	manager.registerExportType(MODULE_ID, {
 
 		/*
@@ -139,7 +149,8 @@ define([
 		 */
 		validate: _validate,
 		loadSettings: _loadSettings,
-		saveSettings: _saveSettings
+		saveSettings: _saveSettings,
+		resetSettings: _resetSettings
 	});
 
 });

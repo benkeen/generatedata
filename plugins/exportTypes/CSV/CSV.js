@@ -31,6 +31,11 @@ define([
 		};
 	};
 	
+	var _resetSettings = function() {
+		$("#etCSV_delimiter").val("|");
+		$("#etCSV_lineEndings").val("Windows");
+	};
+
 	var _validate = function() {
 		var delimiterField = $("#etCSV_delimiter");
 		var errors = [];
@@ -49,6 +54,7 @@ define([
 	manager.registerExportType(MODULE_ID, {
 		validate: _validate,
 		loadSettings: _loadSettings,
-		saveSettings: _saveSettings
+		saveSettings: _saveSettings,
+		resetSettings: _resetSettings
 	});
 });

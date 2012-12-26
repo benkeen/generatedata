@@ -90,7 +90,7 @@ An ordered array of strings containing the column names.
 An ordered array of arrays. Each top level array contains the contents of the row; each child array contains
 an ordered array of values for each item of data.
 
-		<button class="gdPrimaryButton">Reset Custom HTML</button>
+		<button class="gdPrimaryButton" id="etXML_ResetCustomHTML">Reset Custom HTML</button>
 	</div>
 	<div id="etXMLCustomContent">
 		<textarea name="etXMLCustomSmarty" id="etXMLCustomSmarty"></textarea>

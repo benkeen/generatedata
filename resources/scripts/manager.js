@@ -284,7 +284,6 @@ define([
 		var errors = [];
 
 		try {
-//			console.log(_modules, exportTypeModuleID, info);
 			errors = _modules[exportTypeModuleID].validate(rows);
 		} catch (e) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
@@ -352,7 +351,6 @@ define([
 		if (_isStarted) {
 			return;
 		}
-
         _initAll();
         _runAll();
         _isStarted = true;
@@ -375,7 +373,6 @@ define([
 		return type;
 	};
 
-
 	var _serializeDataTypeRow = function(rowDataType, rowNum) {
 		if (!_modules.hasOwnProperty(rowDataType)) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
@@ -386,13 +383,18 @@ define([
 		return _modules[rowDataType].saveRow(rowNum);
 	};
 
-
 	var _serializeExportTypes = function() {
 		var isExportType = new RegExp("^export-type-");
 		var exportTypeData = {};
 		for (var moduleID in _modules) {
 			if (isExportType.test(moduleID)) {
-				exportTypeData[moduleID] = _modules[moduleID].saveSettings();
+				try {
+					exportTypeData[moduleID] = _modules[moduleID].saveSettings();
+				} catch (e) {
+					if (C.DEBUGGING.CONSOLE_WARN) {
+						console.warn("Error in Export Type's saveSettings(): ", moduleID, e);
+					}
+				}
 			}
 		}
 		return exportTypeData;
@@ -401,7 +403,13 @@ define([
 	var _resetExportTypes = function() {
 		var exportTypes = _getModulesByPluginType("export-type");
 		for (var i=0; i<exportTypes.length; i++) {
-			exportTypes[i].resetSettings();
+			try {
+				exportTypes[i].resetSettings();
+			} catch (e) {
+				if (C.DEBUGGING.CONSOLE_WARN) {
+					console.warn("Error resetting export type: ", exportTypes[i], e);
+				}
+			}
 		}
 	};
 
@@ -410,7 +418,14 @@ define([
 		if (!_modules.hasOwnProperty(exportTypeModuleID) || !allSavedExportTypeData.hasOwnProperty(exportTypeModuleID)) {
 			return;
 		}
-		_modules[exportTypeModuleID].loadSettings(allSavedExportTypeData[exportTypeModuleID]);
+
+		try {
+			_modules[exportTypeModuleID].loadSettings(allSavedExportTypeData[exportTypeModuleID]);
+		} catch (e) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn("Error in Export Type's loadSettings(): ", exportTypeModuleID, e);
+			}
+		}
 	};
 
 	var _loadDataTypeRows = function(rowData) {
