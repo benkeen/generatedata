@@ -5,6 +5,7 @@
  */
 
 class DataType_Region extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "Region";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 40;

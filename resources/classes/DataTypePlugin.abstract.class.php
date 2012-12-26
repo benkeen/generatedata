@@ -14,6 +14,7 @@ abstract class DataTypePlugin {
 
 	// REQUIRED MEMBER VARS
 
+	protected $isEnabled = true;
 	protected $dataTypeName = "";
 	protected $dataTypeFieldGroup; // string
 	protected $dataTypeFieldGroupOrder; // int
@@ -252,5 +253,13 @@ abstract class DataTypePlugin {
 	 */
 	public final function getCSSFile() {
 		return $this->cssFile;
+	}
+
+	/**
+	 * Returns the isEnabled flag for this class.
+	 * @return boolean
+	 */
+	public final function isEnabled() {
+		return $this->isEnabled;
 	}
 }

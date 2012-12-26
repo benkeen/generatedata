@@ -108,7 +108,7 @@
 		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
 		<ul id="gdTextSize">
 			<li class="small">A</li>
-			<li class="medium selected">A</li>
+			<li class="medium gdSelected">A</li>
 			<li class="large">A</li>
 		</ul>
 		<button class="gdPrimaryButton" id="gdBackButton" title="Back">&laquo;</button>

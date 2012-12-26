@@ -5,6 +5,7 @@
  * @package ExportTypes
  */
 class JSON extends ExportTypePlugin {
+	protected $isEnabled = true;
 	protected $exportTypeName = "JSON";
 	protected $jsModules = array("JSON.js");
 	protected $codeMirrorModes = array("javascript");

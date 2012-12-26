@@ -5,6 +5,7 @@
  * @package ExportTypes
  */
 class ProgrammingLanguage extends ExportTypePlugin {
+	protected $isEnabled = true;
 	protected $exportTypeName = "Programming Language";
 	protected $jsModules = array("ProgrammingLanguage.js");
 	protected $codeMirrorModes = array("php", "perl", "htmlmixed", "xml", "javascript", "css", "clike", "ruby");

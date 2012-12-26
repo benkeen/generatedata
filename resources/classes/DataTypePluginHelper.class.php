@@ -133,7 +133,7 @@ class DataTypePluginHelper {
 				}
 				if (is_dir("$dataTypesFolder/$item")) {
 					$obj = self::instantiateDataType($runtimeContext, $dataTypesFolder, $item);
-					if ($obj != null) {
+					if ($obj != null && $obj !== false) {
 						$folders = explode(DIRECTORY_SEPARATOR, "$dataTypesFolder/$item");
 						$folders = array_reverse($folders);
 
@@ -182,7 +182,7 @@ class DataTypePluginHelper {
 			return false;
 		}
 
-		// now try to include and instantiate the class [bug...
+		// now try to include and instantiate the class [bug...]
 		try {
 			include("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName");
 		} catch (Exception $e) {
@@ -205,6 +205,11 @@ class DataTypePluginHelper {
 
 		// enforce inheritance of the abstract DataType class
 		if (!($instance instanceof DataTypePlugin)) {
+			return false;
+		}
+
+		// if the class enabled? If not, it's not ready for prime-time
+		if (!$instance->isEnabled()) {
 			return false;
 		}
 

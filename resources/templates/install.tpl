@@ -6,7 +6,7 @@
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
 	<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui-1.8.23.custom.css" />
+	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
 	<script src="resources/scripts/libs/jquery.js"></script>
 	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
 	<script data-main="resources/scripts/install" src="resources/scripts/libs/require.js"></script>

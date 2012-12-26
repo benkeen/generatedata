@@ -9,6 +9,7 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 	/**#@+
      * @access protected
      */
+	protected $isEnabled = true;
 	protected $dataTypeName = "Alphanumeric";
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 10;

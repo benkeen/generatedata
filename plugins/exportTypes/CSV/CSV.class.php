@@ -6,6 +6,7 @@
 
 
 class CSV extends ExportTypePlugin {
+	protected $isEnabled = true;
 	protected $exportTypeName = "CSV";
 	protected $jsModules = array("CSV.js");
 	protected $contentTypeHeader = "application/csv";

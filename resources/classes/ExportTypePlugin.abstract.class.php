@@ -12,6 +12,13 @@
 abstract class ExportTypePlugin {
 
 	/**
+	 * Used during development. Only Export Types that have $isEnabled == true will get listed in the Data
+	 * Generator for use.
+	 * @var boolean
+	 */
+	protected $isEnabled = true;
+
+	/**
 	 * The name of the export type "HTML", "XML" etc. This is always in English; even in different languages,
 	 * "JSON" is still "JSON", so having no translation is acceptable here.
 	 * @var string
@@ -204,5 +211,13 @@ abstract class ExportTypePlugin {
 	 */
 	public final function getCodeMirrorModes() {
 		return $this->codeMirrorModes;
+	}
+
+	/**
+	 * Returns the isEnabled flag for this class.
+	 * @return boolean
+	 */
+	public final function isEnabled() {
+		return $this->isEnabled;
 	}
 }

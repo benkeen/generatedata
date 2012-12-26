@@ -5,6 +5,7 @@
  */
 
 class DataType_List extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "Custom List";
 	protected $dataTypeFieldGroup = "other";
 	protected $dataTypeFieldGroupOrder = 40;

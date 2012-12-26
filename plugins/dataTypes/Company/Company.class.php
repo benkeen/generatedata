@@ -6,6 +6,7 @@
 
 class DataType_Company extends DataTypePlugin {
 
+	protected $isEnabled = true;
 	protected $dataTypeName = "Company Names";
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "human_data";

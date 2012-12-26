@@ -5,6 +5,7 @@
  * @package ExportTypes
  */
 class XML extends ExportTypePlugin {
+	protected $isEnabled = true;
 	protected $exportTypeName = "XML";
 	protected $jsModules = array("XML.js");
 	protected $codeMirrorModes = array("xml");

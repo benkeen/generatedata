@@ -6,6 +6,7 @@
 
 class DataType_Phone extends DataTypePlugin {
 
+	protected $isEnabled = true;
 	protected $dataTypeName = "Phone / Fax";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 20;

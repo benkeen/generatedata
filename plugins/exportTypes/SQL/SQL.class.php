@@ -14,6 +14,7 @@
  * @package ExportTypes
  */
 class SQL extends ExportTypePlugin {
+	protected $isEnabled = true;
 	protected $exportTypeName = "SQL";
 	protected $jsModules = array("SQL.js");
 	protected $codeMirrorModes = array("mysql");

@@ -6,6 +6,7 @@
 
 class DataType_Date extends DataTypePlugin {
 
+	protected $isEnabled = true;
 	protected $dataTypeName = "Date";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 40;

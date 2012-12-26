@@ -6,6 +6,7 @@
 
 class DataType_City extends DataTypePlugin {
 
+	protected $isEnabled = true;
 	protected $dataTypeName = "City";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 20;

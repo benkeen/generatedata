@@ -5,6 +5,7 @@
  * @package ExportTypes
  */
 class HTML extends ExportTypePlugin {
+	protected $isEnabled = true;
 	protected $exportTypeName = "HTML";
 	protected $jsModules = array("HTML.js");
 	protected $cssFile = "HTML.css";

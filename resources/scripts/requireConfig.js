@@ -9,7 +9,7 @@ require.config({
 		"io":             "io",
 		"utils":          "utils",
 		"jquery-json":    "libs/jquery.json-2.2.min",
-		"jquery-ui":      "libs/jquery-ui-1.8.23.custom.min",
+		"jquery-ui":      "libs/jquery-ui.min",
 		"moment":         "libs/moment.min",
 		"lang":           "lang.php?"
 	}

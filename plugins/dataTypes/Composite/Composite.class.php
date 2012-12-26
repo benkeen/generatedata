@@ -6,6 +6,7 @@
 
 class DataType_Composite extends DataTypePlugin {
 
+	protected $isEnabled = true;
 	protected $dataTypeName = "Composite";
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "other";

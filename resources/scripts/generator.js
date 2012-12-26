@@ -757,6 +757,11 @@ define([
 			editor: _codeMirror
 		});
 
+		// if the messages section is displayed, hide it - whatever old errors are no longer pertinent
+		if ($("#gdMessages").css("display") == "block") {
+			$("#gdMessages .gdMessageClose").trigger("click");
+		}
+
 		if (exportTarget == "inPage") {
 			_generateInPage();
 			return false;

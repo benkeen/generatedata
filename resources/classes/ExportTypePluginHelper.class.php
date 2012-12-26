@@ -88,6 +88,11 @@ class ExportTypePluginHelper {
 			return false;
 		}
 
+		// lastly, check the class is enabled
+		if (!$instance->isEnabled()) {
+			return false;
+		}
+
 		return $instance;
 	}
 
@@ -180,4 +185,5 @@ class ExportTypePluginHelper {
 		}
 		return implode("\n", $includes);
 	}
+
 }

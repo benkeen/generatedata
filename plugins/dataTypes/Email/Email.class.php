@@ -6,6 +6,7 @@
 
 
 class DataType_Email extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "Email";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 30;

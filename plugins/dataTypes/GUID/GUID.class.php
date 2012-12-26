@@ -5,6 +5,7 @@
  */
 
 class DataType_GUID extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "GUID";
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 50;

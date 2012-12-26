@@ -5,6 +5,7 @@
  */
 
 class DataType_Constant extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "Constant";
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "other";

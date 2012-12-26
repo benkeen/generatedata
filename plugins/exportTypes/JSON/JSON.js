@@ -38,10 +38,6 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-	var _validate = function() {
-
-	};
-
 	var _loadSettings = function(settings) {
 		if (settings.stripWhitespace == "1") {
 			$("#etJSON_stripWhitespace").attr("checked", "checked");
@@ -63,7 +59,6 @@ define([
 
 	manager.registerExportType(MODULE_ID, {
 		init: _init,
-		validate: _validate,
 		loadSettings: _loadSettings,
 		saveSettings: _saveSettings,
 		resetSettings: _resetSettings

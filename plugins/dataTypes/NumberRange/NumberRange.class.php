@@ -5,6 +5,7 @@
  */
 
 class DataType_NumberRange extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "Number Range";
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 30;

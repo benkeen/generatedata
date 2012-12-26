@@ -5,6 +5,7 @@
  */
 
 class DataType_Tree extends DataTypePlugin {
+	protected $isEnabled = false;
 	protected $dataTypeName = "Tree";
 	protected $dataTypeFieldGroup = "other";
 	protected $dataTypeFieldGroupOrder = 30;

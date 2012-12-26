@@ -5,6 +5,7 @@
  */
 
 class DataType_PostalZip extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "Postal / Zip";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 30;

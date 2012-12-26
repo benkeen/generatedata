@@ -5,6 +5,7 @@
  */
 
 class DataType_LatLng extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "Latitude / Longitude";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 100;

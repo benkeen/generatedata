@@ -7,6 +7,7 @@
 
 class DataType_AutoIncrement extends DataTypePlugin {
 
+	protected $isEnabled = true;
 	protected $dataTypeName = "AutoIncrement";
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "numeric";

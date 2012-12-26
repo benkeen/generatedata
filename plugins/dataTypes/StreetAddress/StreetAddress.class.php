@@ -5,6 +5,7 @@
  */
 
 class DataType_StreetAddress extends DataTypePlugin {
+	protected $isEnabled = true;
 	protected $dataTypeName = "Street Address";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 10;
