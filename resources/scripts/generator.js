@@ -40,6 +40,8 @@ define([
 	var _generateInPageBatchNum;
 	var _generateInPageData;
 	var _generateInPageContent = "";
+	var _isGenerating = false;
+	var _generationCancelled = false;
 
 	var _currHelpDialogTab = 1;
 	var _currDataTypeHelp = null;
@@ -64,7 +66,7 @@ define([
 		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
 		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
-		$("#gdBackButton").on("click", function() { return _showSubtab(1); });
+		$("#gdBackButton").on("click", _onClickBackButton);
 
 		$("#gdShowSettingsLink").bind("click", function() {
 			if (_showExportTypeSettings) {
@@ -111,6 +113,7 @@ define([
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdTextSize").on("click", "li", _changeTextSize);
+		$("#gdGenerationPanelCancel").on("click", _cancelGeneration);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveIcon);
@@ -786,6 +789,7 @@ define([
 		// reset CodeMirror (scrollTo not working ...)
 		_codeMirror.setOption("lineWrapping", false);
 		_codeMirror.scrollTo(0, 0);
+		_codeMirror.setValue("");
 
 		// now pass off the work to the appropriate generation function. Each works slightly differently.
 		manager.publish({
@@ -828,8 +832,10 @@ define([
 		}
 		_showSubtab(2);
 
-		_codeMirror.setValue("");
 		_generateInPageRunningCount = 0;
+		_isGenerating = true;
+		_generationCancelled = false;
+
 		$("#gdGenerateCount").html(utils.formatNumWithCommas(_generateInPageRunningCount));
 		$("#gdGenerateTotal").html(utils.formatNumWithCommas(_numRowsToGenerate));
 		$("#gdProgressMeter").attr("max", _numRowsToGenerate);
@@ -842,7 +848,7 @@ define([
 	};
 
 	var _generateInPageBatch = function() {
-		$("#gdGenerationPanel a").removeClass("gdDisabledLink");
+		$("#gdGenerationPanelCancel").removeClass("gdDisabledLink");
 		var data = _generateInPageData + "&gdCurrentBatchNum=" + _generateInPageBatchNum;
 		if (_currConfigurationID !== null) {
 			data += "&configurationID=" + _currConfigurationID;
@@ -854,6 +860,7 @@ define([
 			dataType: "json",
 			success: _generateInPageBatchResponse,
 			error: function(response) {
+				_isGenerating = false;
 				console.log("error response: ", response);
 			}
 		});
@@ -871,9 +878,18 @@ define([
 			_generateInPageContent += response.content;
 			_codeMirror.setValue(_generateInPageContent);
 
+			// check the process hasn't been interrupted
+			if (_generationCancelled) {
+				_isGenerating = false;
+				$("#gdGenerationPanelCancel").addClass("gdDisabledLink");
+				$("#gdProgressMeter").attr("value", _numRowsToGenerate);
+				return;
+			}
+
 			// now either continue processing, or indicate we're done
 			if (response.isComplete) {
-				$("#gdGenerationPanel a").addClass("gdDisabledLink");
+				_isGenerating = false;
+				$("#gdGenerationPanelCancel").addClass("gdDisabledLink");
 
 				// update the data in _dataSets
 				if (_currConfigurationID !== null) {
@@ -884,7 +900,8 @@ define([
 				_generateInPageBatch();
 			}
 		} else {
-
+			_isGenerating = false;
+			console.warn("response.success fail");
 		}
 	};
 
@@ -1332,6 +1349,28 @@ define([
         });
 	};
 
+	var _cancelGeneration = function(e) {
+		e.preventDefault();
+
+		if ($(e.target).hasClass("gdDisabledLink")) {
+			return;
+		}
+
+		if (!_isGenerating) {
+			return;
+		}
+		_generationCancelled = true;
+	};
+
+	var _onClickBackButton = function(e) {
+		e.preventDefault();
+		_showSubtab(1);
+
+		// if the user was in the process of generating a data set, cancel it
+		if (_isGenerating) {
+			_generationCancelled = true;
+		}
+	};
 
 	// register our module
 	manager.registerCoreModule(MODULE_ID, {

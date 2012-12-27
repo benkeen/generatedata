@@ -102,7 +102,7 @@
 				Generated <span id="gdGenerateCount"></span> of <span id="gdGenerateTotal"></span> results
 			</div>
 			<progress id="gdProgressMeter" max="" value=""></progress>
-			<a href="">cancel</a>
+			<a href="" id="gdGenerationPanelCancel">cancel</a>
 		</div>
 		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
 		<ul id="gdTextSize">
