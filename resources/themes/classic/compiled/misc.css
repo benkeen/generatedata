@@ -91,6 +91,9 @@ body .chzn-container-multi .chzn-choices {
   border: 1px solid #cccccc;
   background-color: #fafafa; }
 
+body .ui-tooltip {
+  text-align: left; }
+
 /* plugin installation */
 #gdPluginInstallationResults > div {
   padding: 4px 8px 8px;

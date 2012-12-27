@@ -18,12 +18,13 @@
 	{$codeMirrorIncludes}
 </head>
 <body>
+
 	<header>
 		<nav>
 			{if $settings.userAccountSetup != "anonymous"}<a href="#" id="gdUserAccountLink">Your Account</a> |{/if}
 			<a href="http://www.generatedata.com">{$L.website}</a> |
 			<a href="http://www.generatedata.com/forums/">{$L.forums}</a> <span class="gdHideNoJS">|</span>
-			{language_dropdown nameId="gdSelectLanguage"}
+			{language_dropdown nameId="gdSelectLanguage" disabled=true}
 		</nav>
 	</header>
 	<nav id="gdMainTabs">

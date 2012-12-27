@@ -2,7 +2,6 @@
 	<li id="gdLoadLink" class="loading"><img src="resources/themes/{$theme}/images/load.png" title="Your Data Sets" /></li>
 	<li id="gdEmptyForm"><img src="resources/themes/{$theme}/images/trash.png" title="Clear the page" /></li>
 	<li id="gdDataSetLink" class="loading"><img src="resources/themes/{$theme}/images/link.png" title="Link to this Data Set" /></li>
-	<li id="gdHelpLink"><img src="resources/themes/{$theme}/images/help.png" title="Argh, help!" /></li>
 </ul>
 
 <form id="gdData" method="post">
@@ -20,7 +19,7 @@
 
 		<h2>
 			COUNTRY-SPECIFIC DATA
-			<span data-help-section="countryData" class="gdSectionHelp"></span>
+			<span data-help-section="countryData" class="gdSectionHelp" title="This section lets you control what country data should be included in your generated data sets. The values you select here affect certain Data Types that you may select such as Region, Postal/Zip and City."></span>
 		</h2>
 
 		{country_list}
@@ -34,7 +33,7 @@
 
 		<h2>
 			DATA SET
-			<span data-help-section="dataTypes" class="gdSectionHelp"></span>
+			<span data-help-section="dataTypes" class="gdSectionHelp" title="This is where you define exactly what kind of data you want to generate. Try filling in a row or two and click the Generate button. You'll get the hang of it pretty fast."></span>
 		</h2>
 
 		<ul class="gdTableHeadings">
@@ -66,7 +65,7 @@
 
 		<h2>
 			EXPORT TYPES
-			<span data-help-section="exportTypes" class="gdSectionHelp"></span>
+			<span data-help-section="exportTypes" class="gdSectionHelp" title="This section lets you control the format of your generated data. Each format may provide different options to let you tailor the output to exactly what you want."></span>
 		</h2>
 
 		<div id="gdExportTypeTabs" class="gdSmallTabs">

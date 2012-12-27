@@ -118,9 +118,7 @@ define([
 		$("#gdEmptyForm").bind("click", _emptyForm);
 
 		// main dialog
-		$(".gdSectionHelp").on("click", _showHelpSection);
 		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
-		$("#gdHelpLink").bind("click", function() { return _openMainDialog({ tab: 3 }); });
 		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
 		$("#gdAccountDataSets").on("click", _onClickToggleDeleteRow);
@@ -134,6 +132,7 @@ define([
 		_updateCountryChoice();
 		_addRows(_numRowsToShowOnStart);
 		_initInPageCodeMirror();
+		_initTooltips();
 	};
 
 
@@ -591,8 +590,42 @@ define([
 			return;
 		}
 
+		// update the example + options divs
+		var exampleHTML = null;
+		var optionsHTML = null;
+		var dataTypeExampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html();
+		if (dataTypeExampleHTML !== "") {
+			exampleHTML = dataTypeExampleHTML.replace(/%ROW%/g, rowID);
+		} else {
+			exampleHTML = "&nbsp;" + L.no_examples_available;
+		}
+		$("#gdColExamples_" + rowID).html(exampleHTML);
+
+		var dataTypeOptionHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html();
+		if (dataTypeOptionHTML !== "") {
+			optionsHTML = dataTypeOptionHTML.replace(/%ROW%/g, rowID);
+		} else {
+			optionsHTML = L.no_options_available;
+		}
+		$("#gdColOptions_" + rowID).html(optionsHTML);
+
+		if ($("#gdDataTypeHelp_" + dataTypeModuleID).html() !== "") {
+			$('#gdColHelp_' + rowID).html($("#gdHelpIcon").html().replace(/%ROW%/g, rowID));
+		} else {
+			$('#gdColHelp_' + rowID).html(" ");
+		}
+
+		// now public the 
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
+			rowID: rowID,
+			dataTypeModuleID: dataTypeModuleID
+		});
+
+/*
 		// this is called whenever the row content (Options + Examples nodes) have been fully populated and the
-		// DOM is ready.
+		// DOM is ready
 		var onComplete = function() {
 			manager.publish({
 				sender: MODULE_ID,
@@ -607,6 +640,8 @@ define([
 			onComplete();
 			return true;
 		};
+
+		// this sucks!!
 		var hasOptionsTest = function() {
 			var isReady = (typeof $("#dtOption_" + rowID) != "undefined");
 			if (isReady) {
@@ -646,6 +681,8 @@ define([
 		});
 
 		Queue.process({ context: "dataTypeChange: " + dataTypeModuleID });
+*/
+
 	};
 
 
@@ -967,23 +1004,6 @@ define([
 
 
 	// main dialog
-	var _showHelpSection = function(e) {
-		_openMainDialog({ tab: 3 });
-
-		// highlight the appropriate help section to draw attention to it
-		var section = $(e.target).data("helpSection");
-		var helpEl = null;
-		if (section == "countryData") {
-			helpEl = "gdHelpSection_CountryData";
-		} else if (section == "dataTypes") {
-			helpEl = "gdHelpSection_DataSets";
-		} else if (section == "exportTypes") {
-			helpEl = "gdHelpSection_ExportTypes";
-		}
-		if (helpEl !== null) {
-			$("#" + helpEl).css("background-color", "#63A62F").animate({ backgroundColor: "#EBFEEB"}, 1500);
-		}
-	};
 
 	var _initMainDialog = function() {
 		$("#gdMainDialogTabs ul li").each(function() {
@@ -993,7 +1013,7 @@ define([
 				_currHelpDialogTab = newTab;
 
 				// if the user just clicked into the Data Type help tab, ensure the first Data Type listed is selected
-				if (newTab == 4 && _currDataTypeHelp === null) {
+				if (newTab == 3 && _currDataTypeHelp === null) {
 					var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
 					_showDataTypeHelp(dataTypeItems[0]);
 				}
@@ -1030,7 +1050,7 @@ define([
 		var dataTypeDropdown = row.find(".gdDataType");
 		var choice = dataTypeDropdown.val();
 
-		_openMainDialog({ tab: 4, dataType: choice });
+		_openMainDialog({ tab: 3, dataType: choice });
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -1268,7 +1288,7 @@ define([
 					'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
 					'<td class="leftAligned">' + dateCreated + '</td>' +
 					'<td class="leftAligned">' + lastUpdated + '</td>' +
-					'<td class="gdDataSetNumRowsGenerated" align="center">' + currDataSet.num_rows_generated + '</td>' +
+					'<td class="gdDataSetNumRowsGenerated" align="center">' + utils.formatNumWithCommas(currDataSet.num_rows_generated) + '</td>' +
 					'<td align="center"><a href="#">load</a></td>' +
 					'<td align="center"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
 					'</tr>';
@@ -1298,6 +1318,16 @@ define([
 			dataSet = _dataSets[i];
 		}
 		return dataSet;
+	};
+
+
+	var _initTooltips = function() {
+		$(document).tooltip({
+            position: {
+                my: "center bottom-6",
+                at: "center top"
+            }
+        });
 	};
 
 

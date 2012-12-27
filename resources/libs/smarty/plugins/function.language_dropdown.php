@@ -12,6 +12,7 @@ function smarty_function_language_dropdown($params, &$smarty) {
 	// default to whatever is explicitly supplied. Failing that, default to the global var
 	$defaultLanguage = isset($params["default"]) ? $params["default"] : Core::$language->getCurrentLanguageFile();
 	$nameId = isset($params["nameId"]) ? $params["nameId"] : "";
+	$disabled = (isset($params["disabled"]) && $params["disabled"] == true) ? true : false;
 
 	$translations        = Core::$translations->getList();
 	$currentLanguageFile = Core::$language->getCurrentLanguageFile();
@@ -24,8 +25,10 @@ function smarty_function_language_dropdown($params, &$smarty) {
 		$options .= "<option value=\"{$value}\"{$selected}>{$language}</option>\n";
 	}
 
-	echo <<<END
-	<select name="$nameId" id="$nameId" class="gdHideNoJS">
+	$disabledAttr = ($disabled) ? ' disabled="disabled"' : "";
+
+	echo <<< END
+	<select name="$nameId" id="$nameId" class="gdHideNoJS"$disabledAttr>
 		<option value="">{$L["select_language"]}</option>
 		{$options}
 	</select>

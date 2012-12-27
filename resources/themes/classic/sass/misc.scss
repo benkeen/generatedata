@@ -91,6 +91,10 @@ body .chzn-container-multi .chzn-choices {
 	background-color: #fafafa;
 }
 
+body .ui-tooltip {
+	text-align: left;
+}
+
 /* plugin installation */
 #gdPluginInstallationResults {
 	&>div {

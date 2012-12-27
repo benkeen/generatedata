@@ -11,7 +11,7 @@ hr.divider {
 		}
 	}
 	&>li:nth-child(even) {
-		background-color: #ebfeeb;
+		background-color: #eaffe6;
 	}
 	&>li:nth-child(odd) {
 		background-color: #f1f1f1;
@@ -35,6 +35,10 @@ body #gdTableRows li.gdDeletedRow {
 		color: #444444;
 		text-shadow: 1px 1px #f2f2f2;
 		font-weight: normal;
+
+		&.gdColDelete {
+			width: 39px;
+		}
 	}
 	thead {
 		tr {
@@ -231,7 +235,7 @@ li.gdColDelete {
 }
 
 #gdGenerateSection {
-	background-color: #E4FFE4;
+	background-color: #dcffd8;
 	border-radius: 6px;
 	padding: 20px;
 	border: 1px solid #bbbbbb;
@@ -304,7 +308,7 @@ li.gdColDelete {
 	border: 1px solid #cccccc; 
 	border-right: 0px;
 	padding: 6px; 
-	width: 690px;
+	width: 730px;
 	color: #555555;
 	float: left;
 	height: 22px;

@@ -20,19 +20,25 @@
     padding: 6px 10px;
     height: 300px;
     overflow-y: auto; }
-  #gdMainDialogContent #gdMainDialogTab4Content {
+  #gdMainDialogContent #gdMainDialogTab3Content {
     padding: 0px 0px 0px 6px;
     overflow: hidden; }
-    #gdMainDialogContent #gdMainDialogTab4Content h3 {
+    #gdMainDialogContent #gdMainDialogTab3Content h3 {
       padding-top: 10px; }
 
 #gdAccountDataSets .leftAligned {
   padding-left: 3px; }
 #gdAccountDataSets td a {
   display: block;
-  color: #3366CC; }
+  color: #189C1C; }
   #gdAccountDataSets td a:hover {
-    background-color: #3366CC;
+    background-color: #7fbf4d;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+    background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+    background-image: linear-gradient(top, #7fbf4d, #63a62f);
     border-radius: 2px;
     color: white;
     text-decoration: none; }
@@ -43,9 +49,9 @@
   margin: 0px;
   padding: 0px;
   list-style: none;
-  background-color: pink; }
+  background-color: #efefef; }
   #gdMainDialogTabs ul li {
-    width: 25%;
+    width: 33.3%;
     float: left;
     margin: 0px;
     background-color: #efefef;
@@ -57,7 +63,7 @@
 #gdDataSetHelpNav {
   width: 200px;
   margin-right: 20px;
-  padding-right: 20px;
+  padding-right: 10px;
   border-right: 1px solid #efefef;
   float: left;
   height: 300px;
@@ -71,28 +77,32 @@
       margin: 0px; }
       #gdDataSetHelpNav ul li.gdDataTypeHeader {
         font-weight: bold;
-        margin-top: 4px; }
+        margin: 7px 0px 0px 7px; }
       #gdDataSetHelpNav ul li a {
-        color: #3366cc;
+        color: #189c1c;
         display: block;
         border-radius: 3px;
-        border: 1px solid #dddddd;
         padding: 1px 7px;
         margin-bottom: 2px; }
         #gdDataSetHelpNav ul li a:hover, #gdDataSetHelpNav ul li a.gdSelected {
-          background-color: #3366cc;
-          -webkit-transition: background-color .2s;
-          -moz-transition: background-color .2s;
-          transition: background-color .2s;
+          background-color: #7fbf4d;
+          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+          background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+          background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+          background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+          background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+          background-image: linear-gradient(top, #7fbf4d, #63a62f);
+          -webkit-transition: background-image .2s;
+          -moz-transition: background-image .2s;
+          transition: background-image .2s;
           color: white;
           border-radius: 3px;
-          border: 1px solid #3366cc;
           text-decoration: none; }
 
 #gdDataSetHelpContent {
   height: 300px;
   float: left;
-  width: 541px;
+  width: 551px;
   padding-right: 6px;
   overflow-y: auto; }
 
