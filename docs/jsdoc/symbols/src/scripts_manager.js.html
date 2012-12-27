@@ -63,6 +63,10 @@
 		
 			<li><a href="../../symbols/CSV.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">CSV</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Composite.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Composite</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
+			<li><a href="../../symbols/Country.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Country</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Excel.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Excel</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -72,6 +76,8 @@
 			<li><a href="../../symbols/HTML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">HTML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/JSON.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">JSON</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
+		
+			<li><a href="../../symbols/LatLng.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">LatLng</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/List.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">List</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
@@ -126,7 +132,7 @@ define([
 	var _filterExportTypeMessages = (C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS === "") ? false : true;
 	var _permittedDataTypes = C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS.split(",");
 	var _permittedExportTypes = C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS.split(",");
-  
+
 
 	var _registerDataType = function(moduleID, module) {
 		if (_modules.hasOwnProperty(moduleID)) {
@@ -179,7 +185,7 @@ define([
 			return;
 		}
 
-		var optionalFuncs = ["init", "run", "validate", "saveSettings", "loadSettings"];
+		var optionalFuncs = ["init", "run", "validate", "saveSettings", "loadSettings", "resetSettings"];
 		for (var i=0; i&lt;optionalFuncs.length; i++) {
 			if (module.hasOwnProperty(optionalFuncs[i]) &amp;&amp; typeof module[optionalFuncs[i]] != "function") {
 				if (C.DEBUGGING.CONSOLE_WARN) {
@@ -195,6 +201,7 @@ define([
 			validate: function() { return []; },
 			saveSettings: function() { return {}; },
 			loadSettings: null,
+			resetSettings: function() { },
 			subscriptions: {}
 		}, module);
 
@@ -387,7 +394,6 @@ define([
 		var errors = [];
 
 		try {
-			console.log(_modules, exportTypeModuleID, info);
 			errors = _modules[exportTypeModuleID].validate(rows);
 		} catch (e) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
@@ -455,7 +461,6 @@ define([
 		if (_isStarted) {
 			return;
 		}
-
         _initAll();
         _runAll();
         _isStarted = true;
@@ -478,7 +483,6 @@ define([
 		return type;
 	};
 
-
 	var _serializeDataTypeRow = function(rowDataType, rowNum) {
 		if (!_modules.hasOwnProperty(rowDataType)) {
 			if (C.DEBUGGING.CONSOLE_WARN) {
@@ -489,18 +493,50 @@ define([
 		return _modules[rowDataType].saveRow(rowNum);
 	};
 
-
 	var _serializeExportTypes = function() {
 		var isExportType = new RegExp("^export-type-");
 		var exportTypeData = {};
 		for (var moduleID in _modules) {
 			if (isExportType.test(moduleID)) {
-				exportTypeData[moduleID] = _modules[moduleID].saveSettings();
+				try {
+					exportTypeData[moduleID] = _modules[moduleID].saveSettings();
+				} catch (e) {
+					if (C.DEBUGGING.CONSOLE_WARN) {
+						console.warn("Error in Export Type's saveSettings(): ", moduleID, e);
+					}
+				}
 			}
 		}
 		return exportTypeData;
 	};
 
+	var _resetExportTypes = function() {
+		var exportTypes = _getModulesByPluginType("export-type");
+		for (var i=0; i&lt;exportTypes.length; i++) {
+			try {
+				exportTypes[i].resetSettings();
+			} catch (e) {
+				if (C.DEBUGGING.CONSOLE_WARN) {
+					console.warn("Error resetting export type: ", exportTypes[i], e);
+				}
+			}
+		}
+	};
+
+	var _loadExportType = function(exportType, allSavedExportTypeData) {
+		var exportTypeModuleID = "export-type-" + exportType;
+		if (!_modules.hasOwnProperty(exportTypeModuleID) || !allSavedExportTypeData.hasOwnProperty(exportTypeModuleID)) {
+			return;
+		}
+
+		try {
+			_modules[exportTypeModuleID].loadSettings(allSavedExportTypeData[exportTypeModuleID]);
+		} catch (e) {
+			if (C.DEBUGGING.CONSOLE_WARN) {
+				console.warn("Error in Export Type's loadSettings(): ", exportTypeModuleID, e);
+			}
+		}
+	};
 
 	var _loadDataTypeRows = function(rowData) {
 		for (var i=0; i&lt;rowData.length; i++) {
@@ -518,7 +554,23 @@ define([
 
 
 	var _onDataTypesLoaded = function() {
-		console.log(":-)");
+		// for debugging
+	};
+
+	/**
+	 * Helper function to return an array of plugins, by plugin type.
+	 * @function
+	 * @private
+	 * @param {String} the type of plugin: "data-type", "core", "export-type"
+	 */
+	var _getModulesByPluginType = function(pluginType) {
+		var plugins = [];
+		for (var module in _modules) {
+			if (_modules[module].type == pluginType) {
+				plugins.push(_modules[module]);
+			}
+		}
+		return plugins;
 	};
 
 
@@ -649,6 +701,21 @@ define([
 		serializeExportTypes: _serializeExportTypes,
 
 		/**
+		 * @function
+		 * @name Manager#loadExportType
+		 */
+		loadExportType: _loadExportType,
+
+		/**
+		 * This is used whenever a user loads a new Data Set or clears the current form. It calls all
+		 * Export Type's resetSettings() function, to ensure the Export Types section returns to its
+		 * factory defaults.
+		 * @function
+		 * @name Manager#resetExportTypes
+		 */
+		resetExportTypes: _resetExportTypes,
+
+		/**
 		 * Activates the entire client-side code. This may only be executed once, and is done by the
 		 * Core code.
 		 * @function
@@ -668,7 +735,7 @@ define([
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Sat Dec 08 2012 17:40:00 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Wed Dec 26 2012 19:04:48 GMT-0800 (PST)</p>
 	</div>
 </footer>
 

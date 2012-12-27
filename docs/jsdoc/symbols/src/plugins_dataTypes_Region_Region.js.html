@@ -63,6 +63,10 @@
 		
 			<li><a href="../../symbols/CSV.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">CSV</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Composite.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Composite</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
+			<li><a href="../../symbols/Country.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Country</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Excel.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Excel</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -72,6 +76,8 @@
 			<li><a href="../../symbols/HTML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">HTML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/JSON.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">JSON</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
+		
+			<li><a href="../../symbols/LatLng.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">LatLng</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/List.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">List</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
@@ -122,22 +128,55 @@ define([
 	var MODULE_ID = "data-type-Region";
 	var LANG = L.dataTypePlugins.Region;
 	var subscriptions = {};
+	var _currSelectedCountries = null;
 
 	var _init = function() {
 		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
-		$("#gdTableRows").on("click", ".dtRegionCountry", _toggleCountryRegion);
+		$("#gdTableRows").on("click", ".dtIncludeRegion", _toggleCountryRegion);
 	};
 
-	var _saveRow = function() {
+	var _saveRow = function(rowNum) {
+		var checked = [];
+		for (var i=0; i&lt;_currSelectedCountries.length; i++) {
+			checked.push({
+				country: _currSelectedCountries[i],
+				regionSelected: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_" + rowNum).attr("checked") == "checked") ? 1 : 0,
+				regionFull: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Full_" + rowNum).attr("checked") == "checked") ? 1 : 0,
+				regionShort: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Short_" + rowNum).attr("checked") == "checked") ? 1 : 0
+			});
+		}
 
+		// find the checkboxes in this row
+		return {
+			"checked": checked
+		};
 	};
 
-	var _loadRow = function() {
-		return [
-			function() { },
-			function() { return true; }
-		];
+	var _loadRow = function(rowNum, data) {
+		var rows = data.checked;
+		return {
+			execute: function() { },
+			isComplete: function() {
+				if ($("#dtRegionCountry_Complete" + rowNum).length) {
+					for (var i=0; i&lt;rows.length; i++) {
+						var currCountry = rows[i].country;
+						if (rows[i].regionSelected == "0") {
+							$("#dtIncludeRegion_" + currCountry + "_" + rowNum).removeAttr("checked").trigger("click");
+						}
+						if (rows[i].regionFull == "0") {
+							$("#dtIncludeRegion_" + currCountry + "_Full_" + rowNum).removeAttr("checked");
+						}
+						if (rows[i].regionShort == "0") {
+							$("#dtIncludeRegion_" + currCountry + "_Short_" + rowNum).removeAttr("checked");
+						}
+					}
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
 	};
 
 	/**
@@ -145,6 +184,7 @@ define([
 	 * regions are displayed.
 	 */
 	var _countryChange = function(msg) {
+		_currSelectedCountries = msg.countries;
 		var shownClassesSelectors = [];
 		for (var i=0; i&lt;msg.countries.length; i++) {
 			shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i] + ",.dtIncludeRegion_" + msg.countries[i]);
@@ -171,53 +211,6 @@ define([
 	};
 
 
-	/*
-var StateProvince_ns = {
-	loadRow: function(rowNum, data)
-	{
-		var cleanData = [];
-		$(data.checked).each(function() {
-			cleanData.push(this.replace(/\d/g, ""));
-		});
-
-		return [
-			function() {
-				$("#options_" + rowNum + " input:checkbox").each(function() {
-					var nameWithoutNum = this.name.replace(/\d/g, "");
-					var isChecked = $.inArray(nameWithoutNum, cleanData) != -1;
-					$(this).attr("checked", isChecked);
-
-					// very kludgy
-					if (!isChecked &amp;&amp; $(this).hasClass("main"))
-					{
-						var match = $(this).attr("id").match(/includeRegion_(.+)_\d+/);
-						var currCountry = match[1];
-						StateProvince_ns.hideShowStateProvCounty(rowNum, false, currCountry);
-					}
-				});
-			},
-			&lt;?php
-			// find out how many checkboxes are in the generated markup: three for each country. Then,
-			// use that info to let the calling script know when the markup is fully generated.
-			$num_countries = count(gd_get_configurable_countries());
-			?&gt;
-			function() { return ($("#options_" + rowNum + " input:checkbox").size() == (3 * &lt;?=$num_countries ?&gt;)); }
-		];
-	},
-
-	saveRow: function(rowNum)
-	{
-		var checked = [];
-		$("#options_" + rowNum + " input:checked").each(function() {
-			// strip out any row numbers from the name attributes. We're not interested in them. When
-			// it comes to reloading the content, they'll be in the way
-			checked.push(this.name.replace(/\d/g, ""));
-		});
-
-		return { "checked": checked };
-	}
-}*/
-
 	// register our module
 	manager.registerDataType(MODULE_ID, {
 		init: _init,
@@ -238,7 +231,7 @@ var StateProvince_ns = {
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Sat Dec 08 2012 17:40:00 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Wed Dec 26 2012 19:04:48 GMT-0800 (PST)</p>
 	</div>
 </footer>
 

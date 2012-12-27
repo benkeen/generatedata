@@ -63,6 +63,10 @@
 		
 			<li><a href="../../symbols/CSV.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">CSV</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Composite.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Composite</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
+			<li><a href="../../symbols/Country.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Country</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Excel.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Excel</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -72,6 +76,8 @@
 			<li><a href="../../symbols/HTML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">HTML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/JSON.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">JSON</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
+		
+			<li><a href="../../symbols/LatLng.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">LatLng</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/List.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">List</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
@@ -106,14 +112,13 @@
 define([
 	"manager",
 	"pluginManager",
-	"accountManager",
 	"utils",
 	"queue",
 	"constants",
 	"lang",
-	"jquery-ui",
-	"moment"
-], function(manager, pluginManager, accountManager, utils, Queue, C, L, moment) {
+	"moment",
+	"jquery-ui"
+], function(manager, pluginManager, utils, Queue, C, L, moment) {
 
 	"use strict";
 
@@ -131,7 +136,6 @@ define([
 	var MODULE_ID = "core-generator";
 	var _numRows  = 0;
 	var _numRowsToShowOnStart = 4;
-	var _currHelpDialogTab = 1;
 	var _countries = [];
 	var _currExportType = null; // populated onload
 	var _showExportTypeSettings = true;
@@ -147,6 +151,15 @@ define([
 	var _generateInPageData;
 	var _generateInPageContent = "";
 
+	var _currHelpDialogTab = 1;
+	var _currDataTypeHelp = null;
+
+	// accounts
+	var _isLoaded = false;
+	var _accountInfo = null;
+	var _dataSets = [];
+	var _currConfigurationID = null;
+
 
 	/**
 	 * Called when everything is loaded. This binds the appropriate event handlers and sets up the
@@ -154,13 +167,16 @@ define([
 	 */
 	var _run = function() {
 		utils.startProcessing();
+
+		// retrieve the data sets for the current user
+		_getAccount();
+
 		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
 		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
 		$("#gdBackButton").on("click", function() { return _showSubtab(1); });
 
 		$("#gdShowSettingsLink").bind("click", function() {
-			// if we're already showing it, hide it!
 			if (_showExportTypeSettings) {
 				_hideExportTypeSettingsSection();
 			} else {
@@ -176,7 +192,6 @@ define([
 		$("#gdTableRows").on("change keyup", ".gdDataType", _onChangeDataType);
 		$("#gdTableRows").on("focus", ".gdDataType", _onFocusDataType);
 		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("click", ".ui-icon-help", _showDataSetHelp);
 		$("#gdTableRows").on("change", ".gdColExamples select", _publishExampleChange);
 
 		$("#gdTableRows").sortable({
@@ -206,23 +221,28 @@ define([
 		$(".gdDeleteRowsBtn").bind("click", _deleteRows);
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdTextSize").on("click", "li", _changeTextSize);
-		$(".gdSectionHelp").on("click", _showHelpSection);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveIcon);
-		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
 		$("#gdSaveDataSet").on("click", _saveDataSet);
 		$("#gdEmptyForm").bind("click", _emptyForm);
-		$("#gdHelpLink").bind("click", function() { return _openMainDialog({ tab: 3 }); });
 
-		//
+		// main dialog
+		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
 		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
+		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
+		$("#gdAccountDataSets").on("click", _onClickToggleDeleteRow);
+		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
+		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
+		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
+		$("#gdSelectAllDataSets").on("click", _onToggleSelectAllDataSets);
 
+		_initMainDialog();
 		_initExportTypeTab();
 		_updateCountryChoice();
 		_addRows(_numRowsToShowOnStart);
 		_initInPageCodeMirror();
-		_initMainDialog();
+		_initTooltips();
 	};
 
 
@@ -236,12 +256,15 @@ define([
 		utils.startProcessing();
 
 		var configurationID = $(e.target).closest("tr").data("id");
-		var configuration = accountManager.getConfiguration(configurationID);
+		var configuration = _getConfiguration(configurationID);
 		var json = $.evalJSON(configuration.content);
 		var numRows = json.hasOwnProperty("dataTypes") ? json.dataTypes.length : _numRowsToShowOnStart;
 
 		// clear the form
 		_clearForm(numRows);
+
+		// now the form's been cleared, store the new configuration ID
+		_currConfigurationID = configurationID;
 
 		// now start populating the page
 		$("#gdDataSetName").val(configuration.configuration_name);
@@ -250,10 +273,14 @@ define([
 
 		_updateCountries(json.countries);
 
+		// update the Export Types section
+		_selectExportTypeTab(json.selectedExportType, true);
+		manager.loadExportType(json.selectedExportType, json.exportTypes);
+
+
 		// now populate the rows. Do everything that we can: create the rows, populate the titles &amp; select
 		// the data type. The remaining fields are custom to the data type, so we leave them to their
 		// .loadData function (if defined)
-
 		if (json.hasOwnProperty("dataTypes")) {
 			var numDataTypeRows = json.dataTypes.length;
 			var orderedRowIDs = _getRowOrder();
@@ -263,7 +290,8 @@ define([
 				var currDataType = json.dataTypes[i];
 				var currRowID = orderedRowIDs[i];
 				$("#gdTitle_" + currRowID).val(currDataType.title);
-				$("#gdDataType_" + currRowID).val(currDataType.dataType).trigger("change");
+				$("#gdDataType_" + currRowID).val(currDataType.dataType);
+				_publishDataTypeChange($("#gdDataType_" + currRowID)[0]);
 
 				currDataType.rowID = currRowID;
 				data.push(currDataType);
@@ -271,7 +299,6 @@ define([
 
 			manager.loadDataTypeRows(data);
 		}
-
 
 		utils.stopProcessing();
 
@@ -309,12 +336,12 @@ define([
 	 * based on whether it's a totally new data set, or if the user had loaded one already.
 	 */
 	var _onClickSaveIcon = function() {
-		if (accountManager.getCurrConfigurationID() === null) {
+		if (_currConfigurationID === null) {
 			_saveDataSet();
 		} else {
-			// confirm the overwrite
+			// confirmation...?
+			_saveDataSet();
 		}
-
 		return false;
 	};
 
@@ -326,26 +353,22 @@ define([
 		var buttons = [];
 		var newDataSetName = $("#gdDataSetName").val();
 
-		/*if (!newFormName || newFormName == L.default_save_form_empty_str) {
-			errors = [];
-			gd.errors.push({ els: null, error: L.no_form_name });
-			utils.displayValidationErrors("#gdMessages");
+		// if there's no Data Set name provided, briefly highlight the field to draw attention to it
+		// and halt the process
+		if (!newDataSetName) {
+			$("#gdDataSetName").css({
+				backgroundColor: "#770000",
+				borderTopColor: "#550000",
+				borderLeftColor: "#550000",
+				borderBottomColor: "#550000"
+			}).animate({
+				backgroundColor: "#ffffff",
+				borderTopColor: "#cccccc",
+				borderLeftColor: "#cccccc",
+				borderBottomColor: "#cccccc"
+			}, 1500);
 			return false;
-		}*/
-		// if the name already exists, check with the user that it's okay to overwrite it
-		/*
-		var formExists = false;
-		for (var i=0; i&lt;form_list_dd.length; i++) {
-			if (form_list_dd[i].text == newFormName) {
-				form_exists = true;
-			}
 		}
-		if (form_exists) {
-			if (!confirm(L.form_exists_overwrite_confirmation)) {
-				return false;
-			}
-		}
-		*/
 
 		var rowData = [];
 		var orderedRowIDs = _getRowOrder();
@@ -374,9 +397,31 @@ define([
 			selectedExportType: _currExportType
 		};
 
-		accountManager.saveConfiguration(configuration);
-	};
+		if (_currConfigurationID !== null) {
+			configuration.configurationID = _currConfigurationID;
+		}
 
+		utils.startProcessing();
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: configuration,
+			success: function(response) {
+				if (response.success) {
+					_currConfigurationID = response.content;
+					_getAccount();
+				} else {
+					// TODO
+				}
+			},
+
+			error: function() {
+				// alert(L.fatal_error);
+				// gd.stopProcessing();
+			}
+		});
+	};
 
 
 	var _addRows = function(rows) {
@@ -498,6 +543,7 @@ define([
 		} else {
 			_clearForm(opts.numRows);
 		}
+
 	};
 
 	var _clearForm = function(numDefaultRows) {
@@ -505,6 +551,9 @@ define([
 		$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
 		_deleteRows();
 		_addRows(numDefaultRows);
+		_currConfigurationID = null;
+		_selectExportTypeTab($(".gdDefaultExportType").data("exportType"), true);
+		manager.resetExportTypes();
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -541,7 +590,7 @@ define([
 	 * hiding/showing and changing of the title column label "out-the-box" rather than force
 	 * the Export Type modules to have to do the work.
 	 */
-	var _selectExportTypeTab = function(newExportType) {
+	var _selectExportTypeTab = function(newExportType, showImmediately) {
 		if (newExportType == _currExportType) {
 			return;
 		}
@@ -565,18 +614,22 @@ define([
 		// hide and show the appropriate Export Type additional settings section (if the + showdata format options link
 		// has been clicked)
 		if (_showExportTypeSettings) {
-			_showExportTypeSettingsSection(newExportType);
+			_showExportTypeSettingsSection(newExportType, showImmediately);
 		}
 
 		_currExportType = newExportType;
 	};
 
 
-	var _showExportTypeSettingsSection = function(newExportType) {
+	var _showExportTypeSettingsSection = function(newExportType, showImmediately) {
 		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length &gt; 0 &amp;&amp; _showExportTypeSettings) {
-			$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
+			if (showImmediately === true) {
+				$("#gdExportTypeAdditionalSettings_" + _currExportType).hide();
+			} else {
+				$("#gdExportTypeAdditionalSettings_" + _currExportType).hide("blind", C.EXPORT_TYPE_SETTINGS_BLIND_SPEED);
+			}
 		}
-		if (_currExportType === null) {
+		if (_currExportType === null || showImmediately === true) {
 			$("#gdExportTypeAdditionalSettings_" + newExportType).show();
 		} else {
 			$("#gdExportTypeAdditionalSettings_" + newExportType).show(
@@ -647,8 +700,42 @@ define([
 			return;
 		}
 
+		// update the example + options divs
+		var exampleHTML = null;
+		var optionsHTML = null;
+		var dataTypeExampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html();
+		if (dataTypeExampleHTML !== "") {
+			exampleHTML = dataTypeExampleHTML.replace(/%ROW%/g, rowID);
+		} else {
+			exampleHTML = "&amp;nbsp;" + L.no_examples_available;
+		}
+		$("#gdColExamples_" + rowID).html(exampleHTML);
+
+		var dataTypeOptionHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html();
+		if (dataTypeOptionHTML !== "") {
+			optionsHTML = dataTypeOptionHTML.replace(/%ROW%/g, rowID);
+		} else {
+			optionsHTML = L.no_options_available;
+		}
+		$("#gdColOptions_" + rowID).html(optionsHTML);
+
+		if ($("#gdDataTypeHelp_" + dataTypeModuleID).html() !== "") {
+			$('#gdColHelp_' + rowID).html($("#gdHelpIcon").html().replace(/%ROW%/g, rowID));
+		} else {
+			$('#gdColHelp_' + rowID).html(" ");
+		}
+
+		// now public the 
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
+			rowID: rowID,
+			dataTypeModuleID: dataTypeModuleID
+		});
+
+/*
 		// this is called whenever the row content (Options + Examples nodes) have been fully populated and the
-		// DOM is ready.
+		// DOM is ready
 		var onComplete = function() {
 			manager.publish({
 				sender: MODULE_ID,
@@ -663,6 +750,8 @@ define([
 			onComplete();
 			return true;
 		};
+
+		// this sucks!!
 		var hasOptionsTest = function() {
 			var isReady = (typeof $("#dtOption_" + rowID) != "undefined");
 			if (isReady) {
@@ -702,54 +791,8 @@ define([
 		});
 
 		Queue.process({ context: "dataTypeChange: " + dataTypeModuleID });
-	};
+*/
 
-	var _showDataSetHelp = function(e) {
-		var row = $(e.target).closest(".gdTableRow");
-		var dataTypeDropdown = row.find(".gdDataType");
-		var choice = dataTypeDropdown.val();
-		var title = null;
-		var opts = $(dataTypeDropdown)[0].options;
-		for (var i=0; i&lt;opts.length; i++) {
-			if (choice == opts[i].value) {
-				title = opts[i].text;
-			}
-		}
-
-		var helpElement = $("#gdDataTypeHelp_" + choice);
-		var dataTypeHelpContent = helpElement.html();
-		var width = $(helpElement).data("dialogWidth");
-
-		var myDialog = $('#gdHelpPopup').html(dataTypeHelpContent).dialog({
-			autoOpen:  false,
-			modal:     true,
-			resizable: false,
-			title:     title,
-			width:     width,
-			close:     function(e) {
-				manager.publish({
-					sender: MODULE_ID,
-					type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_CLOSE,
-					rowElement: row,
-					event: e
-				});
-			},
-			buttons: [
-				{
-					text: "Close",
-					click: function() {
-						$(this).dialog("close");
-					}
-				}
-			]
-		});
-		myDialog.dialog('open');
-
-		manager.publish({
-			sender: MODULE_ID,
-			type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN,
-			rowElement: row
-		});
 	};
 
 
@@ -838,6 +881,10 @@ define([
 			return false;
 		}
 
+
+		// ensure this is a number (now it's passed validation above)
+		_numRowsToGenerate = parseInt(_numRowsToGenerate, 10);
+
 		var exportTarget = _getExportTarget();
 		var rowOrder = _getRowOrder().toString();
 		$("#gdRowOrder").val(rowOrder);
@@ -857,7 +904,11 @@ define([
 			editor: _codeMirror
 		});
 
-		// TODO doesn't seem to work
+		// if the messages section is displayed, hide it - whatever old errors are no longer pertinent
+		if ($("#gdMessages").css("display") == "block") {
+			$("#gdMessages .gdMessageClose").trigger("click");
+		}
+
 		if (exportTarget == "inPage") {
 			_generateInPage();
 			return false;
@@ -880,6 +931,9 @@ define([
 
 		// "action" added for AjaxRequest only
 		var data = formData + "&amp;action=generateInPage&amp;gdBatchSize=" + C.GENERATE_IN_PAGE_BATCH_SIZE;
+		if (_currConfigurationID !== null) {
+			data += "&amp;configurationID=" + _currConfigurationID;
+		}
 		_showSubtab(2);
 
 		_codeMirror.setValue("");
@@ -896,7 +950,11 @@ define([
 	};
 
 	var _generateInPageBatch = function() {
+		$("#gdGenerationPanel a").removeClass("gdDisabledLink");
 		var data = _generateInPageData + "&amp;gdCurrentBatchNum=" + _generateInPageBatchNum;
+		if (_currConfigurationID !== null) {
+			data += "&amp;configurationID=" + _currConfigurationID;
+		}
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -923,9 +981,12 @@ define([
 
 			// now either continue processing, or indicate we're done
 			if (response.isComplete) {
-				//$("#gdGenerateInPageLoading").hide("fade");
-				// TODO disable "cancel" link
+				$("#gdGenerationPanel a").addClass("gdDisabledLink");
 
+				// update the data in _dataSets
+				if (_currConfigurationID !== null) {
+					_incrementConfigurationRowGenerationCount(_currConfigurationID, _numRowsToGenerate);
+				}
 			} else {
 				_generateInPageBatchNum++;
 				_generateInPageBatch();
@@ -933,6 +994,32 @@ define([
 		} else {
 
 		}
+	};
+
+	var _incrementConfigurationRowGenerationCount = function(configurationID, numRows) {
+		// first, update the actual data set
+		var updatedDataSets = [];
+		var newNum = "";
+		for (var i=0; i&lt;_dataSets.length; i++) {
+			if (_dataSets[i].configuration_id == configurationID) {
+				var currCount = parseInt(_dataSets[i].num_rows_generated, 10);
+				newNum = currCount + numRows;
+				_dataSets[i].num_rows_generated = newNum;
+			}
+		}
+
+
+		// second, update the displayed data. This does surgery on the Data Sets tab to just update the one DOM
+		// element rather than redraw everything
+		var rows = $("#gdAccountDataSets tbody tr");
+		for (var j=0; j&lt;rows.length; j++) {
+			if ($(rows[j]).data("id") == configurationID) {
+				$(rows[j]).find(".gdDataSetNumRowsGenerated").html(utils.formatNumWithCommas(newNum));
+			}
+		}
+
+		// this updates the account info tab "total" count
+		_updateAccountInfoTab();
 	};
 
 	var _generateNewWindow = function() {
@@ -1013,26 +1100,20 @@ define([
 		return $("#gdNumRowsToGenerate").val();
 	};
 
-
-	// --------------- main dialog -----------------
-
-	var _showHelpSection = function(e) {
-		_openMainDialog({ tab: 3 });
-
-		// highlight the appropriate help section to draw attention to it
-		var section = $(e.target).data("helpSection");
-		var helpEl = null;
-		if (section == "countryData") {
-			helpEl = "gdHelpSection_CountryData";
-		} else if (section == "dataTypes") {
-			helpEl = "gdHelpSection_DataSets";
-		} else if (section == "exportTypes") {
-			helpEl = "gdHelpSection_ExportTypes";
+	var _getVisibleRowOrderByRowNum = function(rowNum) {
+		var rowOrder = _getRowOrder();
+		var visibleRowNum = 1;
+		for (var i=0; i&lt;rowOrder.length; i++) {
+			if (rowOrder[i] == rowNum) {
+				return visibleRowNum;
+			}
+			visibleRowNum++;
 		}
-		if (helpEl !== null) {
-			$("#" + helpEl).css("background-color", "#63A62F").animate({ backgroundColor: "#EBFEEB"}, 1500);
-		}
+		return false;
 	};
+
+
+	// main dialog
 
 	var _initMainDialog = function() {
 		$("#gdMainDialogTabs ul li").each(function() {
@@ -1040,13 +1121,59 @@ define([
 			$(this).bind("click", function() {
 				utils.selectTab({ tabGroup: "dialogTabs", tabIDPrefix: "gdMainDialogTab", newTab: newTab, oldTab: _currHelpDialogTab } );
 				_currHelpDialogTab = newTab;
+
+				// if the user just clicked into the Data Type help tab, ensure the first Data Type listed is selected
+				if (newTab == 3 &amp;&amp; _currDataTypeHelp === null) {
+					var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
+					_showDataTypeHelp(dataTypeItems[0]);
+				}
 			});
 		});
 	};
 
+	var _onclickDataTypeHelpNav = function(e) {
+		e.preventDefault();
+		var dataTypeNavItem = $(e.target).closest("li");
+		_showDataTypeHelp(dataTypeNavItem);
+	};
+
+	var _showDataTypeHelp = function(el) {
+		var dataType = $(el).data("module");
+		var link = $(el).find("a");
+
+		$("#gdDataSetHelpNav a").removeClass("gdSelected");
+		$(link).addClass("gdSelected");
+
+		// set the header to the name of the Data Type
+		$("#gdFocusedDataTypeHeader").html($(link).html());
+
+		if (_currDataTypeHelp !== null) {
+			$("#gdDataTypeHelp_" + _currDataTypeHelp).addClass("hidden");
+		}
+		$("#gdDataTypeHelp_" + dataType).removeClass("hidden");
+		_currDataTypeHelp = dataType;
+	};
+
+
+	var _onClickDataSetRowHelp = function(e) {
+		var row = $(e.target).closest(".gdTableRow");
+		var dataTypeDropdown = row.find(".gdDataType");
+		var choice = dataTypeDropdown.val();
+
+		_openMainDialog({ tab: 3, dataType: choice });
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN,
+			rowElement: row
+		});
+	};
+
+
 	var _openMainDialog = function(settings) {
 		var opts = $.extend({
-			tab: 1
+			tab: 1,
+			dataType: null
 		}, settings);
 
 		// hide/show the appropriate tab
@@ -1055,12 +1182,19 @@ define([
 		// remove any custom styles
 		$(".gdHelpSection").removeAttr("style");
 
+		// if required, ensure the appropriate Data Type item is selected
+		if (opts.dataType !== null) {
+			var helpNavEl = ($("#gdDataSetHelpNav li[data-module='" + opts.dataType + "']"))[0];
+			_showDataTypeHelp(helpNavEl);
+		}
+
 		// open the dialog
 		$("#gdMainDialog").dialog({
 			title: "generatedata.com",
 			width: 800,
 			minHeight: 400,
 			modal: true,
+			resizable: false,
 			buttons: [
 				{
 					text: "Close",
@@ -1076,19 +1210,235 @@ define([
 		$("#gdMainDialog").dialog("close");
 	};
 
-
-	var _getVisibleRowOrderByRowNum = function(rowNum) {
-		var rowOrder = _getRowOrder();
-		var visibleRowNum = 1;
-		for (var i=0; i&lt;rowOrder.length; i++) {
-			if (rowOrder[i] == rowNum) {
-				return visibleRowNum;
-			}
-			visibleRowNum++;
-		}
-		return false;
+	var _onChangeMarkDataSetRowToDelete = function(e) {
+		var el = e.target;
+		_markDataSetRowToDelete(el);
 	};
 
+	var _onClickToggleDeleteRow = function(e) {
+		if ($.inArray(e.target.nodeName.toUpperCase(), ["INPUT", "A"]) !== -1) {
+			return;
+		}
+
+		// reverse the checked-ness of the row
+		var el = $(e.target).closest("tr").find(".gdDeleteDataSets");
+		var isChecked = $(e.target).closest("tr").find(".gdDeleteDataSets").attr("checked");
+		if (isChecked) {
+			$(el).removeAttr("checked");
+		} else {
+			$(e.target).closest("tr").find(".gdDeleteDataSets").attr("checked", "checked");
+		}
+
+		_markDataSetRowToDelete(el[0]);
+	};
+
+	var _markDataSetRowToDelete = function(el) {
+		if (el.checked) {
+			$(el).closest("tr").addClass("gdDeletedDataSetRow").effect("highlight", { color: "#cc0000" }, 1000);
+		} else {
+			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
+		}
+		_toggleDeleteDataSetButton();
+	};
+
+	var _onToggleSelectAllDataSets = function(e) {
+		var isChecked = e.target.checked;
+		var cbs = $("#gdAccountDataSets tbody input");
+		for (var i=0; i&lt;cbs.length; i++) {
+			cbs[i].checked = isChecked;
+		}
+		_toggleDeleteDataSetButton();
+	};
+
+	var _confirmDeleteDataSets = function() {
+
+	};
+
+	/**
+	 * Called whenever one or more rows is selected / unselected. This checks to see how
+	 * many rows are selected, and hides/shows a delete button.
+	 */
+	var _toggleDeleteDataSetButton = function() {
+		var cbs = $("#gdAccountDataSets tbody input:checked");
+		if (cbs.length) {
+			$("#gdMainDialog").dialog("option", "buttons", [
+				{
+					text: "Delete " + cbs.length + " Data Set(s)",
+					"class": "gdDeleteDataSetsBtn",
+					click: function() {
+						_onClickDeleteDataSets();
+					}
+				},
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]);
+		} else {
+			$("#gdMainDialog").dialog("option", "buttons", [
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]);
+		}
+	};
+
+	var _onClickDeleteDataSets = function() {
+		// get the configuration IDs of the selected rows
+		var configurationIDs = [];
+		var cbs = $("#gdAccountDataSets tbody input:checked");
+		for (var i=0; i&lt;cbs.length; i++) {
+			configurationIDs.push($(cbs[i]).closest("tr").data("id"));
+		}
+
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "JSON",
+			data: {
+				action: "deleteDataSets",
+				configurationIDs: configurationIDs
+			},
+			success: _onSuccessDeleteDataSets,
+			error: _onError
+		});
+	};
+
+
+	var _onSuccessDeleteDataSets = function(response) {
+
+		// if the delete was successful
+		if (response.success) {
+
+			// update the first tab (Num Saved Data Sets)
+			var deletedConfigurationIDs = response.content;
+
+			// var _accountInfo = null;
+			// var _dataSets = [];
+			var remainingDataSets = [];
+			for (var i=0; i&lt;_dataSets.length; i++) {
+				if ($.inArray(_dataSets[i].configuration_id, response.content) == -1) {
+					remainingDataSets.push(_dataSets[i]);
+				}
+			}
+			_dataSets = remainingDataSets;
+			$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
+
+			_displayDataSets();
+			_toggleDeleteDataSetButton();
+		}
+	};
+
+
+	// account-related
+
+	var _getAccount = function() {
+		utils.startProcessing();
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "JSON",
+			data: {
+				action: "getAccount"
+			},
+			success: _onRetrievingAccountInfo,
+			error: _onError
+		});
+	};
+
+	var _onRetrievingAccountInfo = function(response) {
+		utils.stopProcessing();
+
+		// enable the save, load and link icons
+		$("#gdActionIcons .loading").removeClass("loading");
+
+		_isLoaded = true;
+		_dataSets = response.content.configurations;
+		_accountInfo = response.content;
+
+		// remove configurations from the account Info object. This is just to prevent someone (like me) accidentally using
+		// that data in that object, and not in _dataSets.
+		delete _accountInfo.configurations;
+
+		_updateAccountInfoTab();
+		_displayDataSets();
+	};
+
+
+	var _updateAccountInfoTab = function() {
+		if (_accountInfo.isAnonymous) {
+			$("#gdAccount_AccountType").html("Anonymous admin account");
+		} else {
+
+		}
+
+		$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
+		$("#gdAccount_DateAccountCreated").html(moment.unix(_accountInfo.dateCreated).format("MMM Do, YYYY"));
+
+		var totalRowsGenerated = 0;
+		for (var i=0; i&lt;_dataSets.length; i++) {
+			totalRowsGenerated += parseInt(_dataSets[i].num_rows_generated, 10);
+		}
+		$("#gdAccount_TotalRowsGenerated").html(utils.formatNumWithCommas(totalRowsGenerated));
+	};
+
+	var _displayDataSets = function() {
+		if (_dataSets.length) {
+			$("#gdNoAccountDataSets").addClass("hidden");
+			var html = "";
+			var row = "";
+			var currDataSet;
+			for (var i=0; i&lt;_dataSets.length; i++) {
+				currDataSet = _dataSets[i];
+				var dateCreated = moment.unix(currDataSet.date_created_unix).format("MMM Do, YYYY");
+				var lastUpdated = moment.unix(currDataSet.last_updated_unix).format("MMM Do, YYYY");
+
+				row = '&lt;tr data-id="' + currDataSet.configuration_id + '"&gt;' +
+					'&lt;td class="leftAligned"&gt;' + currDataSet.configuration_name + '&lt;/td&gt;' +
+					'&lt;td class="leftAligned"&gt;' + dateCreated + '&lt;/td&gt;' +
+					'&lt;td class="leftAligned"&gt;' + lastUpdated + '&lt;/td&gt;' +
+					'&lt;td class="gdDataSetNumRowsGenerated" align="center"&gt;' + utils.formatNumWithCommas(currDataSet.num_rows_generated) + '&lt;/td&gt;' +
+					'&lt;td align="center"&gt;&lt;a href="#"&gt;load&lt;/a&gt;&lt;/td&gt;' +
+					'&lt;td align="center"&gt;&lt;input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/&gt;&lt;/td&gt;' +
+					'&lt;/tr&gt;';
+				html += row;
+			}
+			$("#gdAccountDataSets tbody").html(html);
+			$("#gdAccountDataSets").removeClass("hidden");
+		} else {
+			$("#gdAccountDataSets tbody").html("");
+			$("#gdNoAccountDataSets").removeClass("hidden");
+			$("#gdAccountDataSets").addClass("hidden");
+		}
+	};
+
+	var _onError = function(response) {
+		console.log("on error");
+		console.log(response);
+	};
+
+
+	var _getConfiguration = function(configurationID) {
+		var dataSet = {};
+		for (var i=0; i&lt;_dataSets.length; i++) {
+			if (_dataSets[i].configuration_id != configurationID) {
+				continue;
+			}
+			dataSet = _dataSets[i];
+		}
+		return dataSet;
+	};
+
+
+	var _initTooltips = function() {
+		$(document).tooltip({
+            position: {
+                my: "center bottom-6",
+                at: "center top"
+            }
+        });
+	};
 
 
 	// register our module
@@ -1141,18 +1491,11 @@ define([
 		getExportTarget: _getExportTarget,
 
 		/**
-		 * Returns the number of rows to generate currently entered.
+		 * Returns the number of rows to generate currently entered. Note: this returns a STRING.
 		 * @function
 		 * @name Generator#getNumRowsToGenerate
 		 */
-		getNumRowsToGenerate: _getNumRowsToGenerate,
-
-		/**
-		 * Returns the number of rows to generate currently entered.
-		 * @function
-		 * @name Generator#openMainDialog
-		 */
-		openMainDialog: _openMainDialog
+		getNumRowsToGenerate: _getNumRowsToGenerate
 	};
 });</pre>
 			</div>
@@ -1165,7 +1508,7 @@ define([
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Sat Dec 08 2012 17:40:00 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Wed Dec 26 2012 19:04:48 GMT-0800 (PST)</p>
 	</div>
 </footer>
 

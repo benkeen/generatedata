@@ -213,9 +213,11 @@ define([
 		if (tab == 1) {
 			$("#gdGenerateSubtab1").show();
 			$("#gdGenerateSubtab2").hide();
+			$("#gdEmptyForm,#gdLoadLink").show();
 		} else {
 			$("#gdGenerateSubtab1").hide();
 			$("#gdGenerateSubtab2").show();
+			$("#gdEmptyForm,#gdLoadLink").hide();
 		}
 		return false;
 	};

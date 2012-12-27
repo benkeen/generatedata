@@ -63,6 +63,10 @@
 		
 			<li><a href="../../symbols/CSV.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">CSV</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Composite.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Composite</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
+			<li><a href="../../symbols/Country.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Country</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Excel.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Excel</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -72,6 +76,8 @@
 			<li><a href="../../symbols/HTML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">HTML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/JSON.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">JSON</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
+		
+			<li><a href="../../symbols/LatLng.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">LatLng</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/List.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">List</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
@@ -121,8 +127,23 @@ define([
 
 	var MODULE_ID = "export-type-XML";
 	var LANG = L.exportTypePlugins.XML;
-	var _dialog = null;
 	var _codeMirror = null;
+
+	// sucks to include this in the JS, but the &lt;? .. ?&gt; of the XML tag gets screwed up when embedding
+	// this in a hidden HTML element
+	var _defaultCustomXML = "{if $isFirstBatch}\n&lt;?xml version=\"1.0\" encoding=\"UTF-8\" ?&gt;\n" +
+		"&lt;records&gt;\n" +
+		"{/if}\n" +
+		"{foreach $rowData as $row}\n" +
+		"\t&lt;record&gt;\n" +
+		"{foreach from=$colData item=col name=c}\n" +
+		"\t\t&lt;{$col}&gt;{$row[$smarty.foreach.c.index]}&lt;/{$col}&gt;\n" +
+		"{/foreach}\n" +
+		"\t&lt;/record&gt;\n" +
+		"{/foreach}\n" +
+		"{if $isLastBatch}\n" +
+		"&lt;/records&gt;\n" +
+		"{/if}";
 
 
 	var _init = function() {
@@ -150,7 +171,20 @@ define([
 		if ($("#etXML_useCustomExportFormat").attr("checked")) {
 			$("#etXML_customFormat").removeAttr("disabled").removeClass("gdDisabled");
 		}
+
+		// initialize the CodeMirror field
+		_codeMirror = CodeMirror.fromTextArea($("#etXMLCustomSmarty")[0], {
+			mode: "xml",
+			lineNumbers: true
+		});
+		$("#etXMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
+
+		// initialize CodeMirror to contain the default content
+		_codeMirror.setValue(_defaultCustomXML);
+
+		$("#etXML_ResetCustomHTML").on("click", _resetCustomHTML);
 	};
+
 
 	var _validate = function(rowNums) {
 		var errors = [];
@@ -194,11 +228,31 @@ define([
 
 
 	var _loadSettings = function(settings) {
-
+		$("#etXMLRootNodeName").val(settings.rootNodeName);
+		$("#etXMLRecordNodeName").val(settings.recordNodeName);
+		if (settings.useCustomExportFormat == "1") {
+			$("#etXMLUseCustomExportFormat").attr("checked", "checked");
+		} else {
+			$("#etXMLUseCustomExportFormat").removeAttr("checked");
+		}
+		$("#etXMLUseCustomExportFormat").trigger("click");
+		_codeMirror.setValue(settings.customFormat);
 	};
 
 	var _saveSettings = function() {
+		return {
+			rootNodeName: $("#etXMLRootNodeName").val(),
+			recordNodeName: $("#etXMLRecordNodeName").val(),
+			useCustomExportFormat: $("#etXMLUseCustomExportFormat").attr("checked") ? 1 : 0,
+			customFormat: _codeMirror.getValue()
+		};
+	};
 
+	var _resetSettings = function() {
+		$("#etXMLRootNodeName").val("records");
+		$("#etXMLRecordNodeName").val("record");
+		$("#etXMLUseCustomExportFormat").removeAttr("checked").trigger("click");
+		_codeMirror.setValue(_defaultCustomXML);
 	};
 
 	/**
@@ -221,17 +275,11 @@ define([
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
 			open: function() {
-				if (_codeMirror === null) {
-					_codeMirror = CodeMirror.fromTextArea($("#etXMLCustomSmarty")[0], {
-						mode: "xml",
-						lineNumbers: true
-					});
-					$("#etXMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
-					$("#etXMLCustomContent .CodeMirror-scroll").css({
-						width: dimensions.contentWidth,
-						height: dimensions.contentHeight
-					});
-				}
+				$("#etXMLCustomContent .CodeMirror-scroll").css({
+					width: dimensions.contentWidth,
+					height: dimensions.contentHeight
+				});
+				_codeMirror.refresh();
 			},
 			buttons: [
 				{
@@ -245,6 +293,7 @@ define([
 
 		return false;
 	};
+
 
 	var _getDialogDimensions = function() {
 		var dialogHeight  = ($(window).height() / 100) * 90;
@@ -264,6 +313,10 @@ define([
 		var dimensions = _getDialogDimensions();
 		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
 		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
+	};
+
+	var _resetCustomHTML = function() {
+		_codeMirror.setValue(_defaultCustomXML);
 	};
 
 
@@ -293,7 +346,13 @@ define([
 		 * @function
 		 * @name XML#saveSettings
 		 */
-		saveSettings: _saveSettings
+		saveSettings: _saveSettings,
+
+		/**
+		 * @function
+		 * @name XML#resetSettings
+		 */
+		resetSettings: _resetSettings
 	});
 
 });</pre>
@@ -307,7 +366,7 @@ define([
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Sat Dec 08 2012 17:40:00 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Wed Dec 26 2012 19:04:48 GMT-0800 (PST)</p>
 	</div>
 </footer>
 

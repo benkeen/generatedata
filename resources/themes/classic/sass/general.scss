@@ -57,7 +57,7 @@ select, optgroup, option {
 optgroup {
 	font-weight: bold;
 }
-a:link, nav a:visited {
+a:link, a:visited, nav a:link, nav a:visited {
 	color: #2d99f5;
 	text-decoration: none;
 }
@@ -66,4 +66,8 @@ a:hover {
 }
 .gdDisabledText, .gdDisabledText label {
 	color: #cccccc;
+}
+ul  {
+	padding-left: 16px;
+	margin-left: 0px;
 }
