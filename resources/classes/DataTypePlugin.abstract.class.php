@@ -138,7 +138,7 @@ abstract class DataTypePlugin {
 	 * Returns the help content for this Data Type (HTML / string).
 	 */
 	public function getHelpHTML() {
-		return "No help available.";
+		return "<p>No help available.</p>";
 	}
 
 

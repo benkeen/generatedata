@@ -54,7 +54,7 @@ class DataType_Composite extends DataTypePlugin {
 
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
-		return $L["see_help_popup"];
+		return $L["see_help_dialog"];
 	}
 
 	public function getOptionsColumnHTML() {

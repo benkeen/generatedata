@@ -72,6 +72,10 @@ ul {
   padding-left: 16px;
   margin-left: 0px; }
 
+#gdReportBug {
+  background: transparent url(../images/bug.png) center right no-repeat;
+  padding: 5px 22px 5px 0px; }
+
 header {
   background-image: url(../images/siteHeader.jpg);
   background-repeat: no-repeat;
@@ -472,7 +476,8 @@ li.gdColDelete {
   font-weight: bold; }
 
 #gdNumRowsToGenerate {
-  width: 45px; }
+  width: 45px;
+  margin: 0px 5px; }
 
 #gdGenerationPanel {
   line-height: 10px;
@@ -1156,3 +1161,13 @@ body.gdErrorPage #gdSeriousError {
 
 body .ui-widget-content .gdDeleteDataSetsBtn span {
   color: #bb0000; }
+
+body .gdMainDialog .ui-dialog-titlebar {
+  padding: 2px; }
+
+body .gdMainDialog .ui-dialog-title span {
+  font-size: 14px; }
+
+.gdMainDialog .ui-dialog-title {
+  background: transparent url(../images/logoSmall.png) center left no-repeat;
+  padding: 4px 0px 3px 52px; }

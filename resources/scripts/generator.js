@@ -118,7 +118,8 @@ define([
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveIcon);
 		$("#gdSaveDataSet").on("click", _saveDataSet);
-		$("#gdEmptyForm").bind("click", _emptyForm);
+		$("#gdEmptyForm").on("click", _emptyForm);
+		$("#gdDataSetLink").on("click", _openDataSetLinkDialog);
 
 		// main dialog
 		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
@@ -415,7 +416,7 @@ define([
 		}, settings);
 
 		if (opts.requireConfirmation) {
-			$("#gdEmptyFormDialog").html(L.confirm_empty_form).dialog({
+			$("#gdEmptyFormDialog").html("<p>" + L.confirm_empty_form + "</p>").dialog({
 				title: "Please confirm",
 				modal: true,
 				width: 400,
@@ -1099,7 +1100,8 @@ define([
 
 		// open the dialog
 		$("#gdMainDialog").dialog({
-			title: "generatedata.com",
+			title: 'generate<span style="color:#48b34d">data</span>.com',
+			dialogClass: "gdMainDialog",
 			width: 800,
 			minHeight: 400,
 			modal: true,
@@ -1371,6 +1373,11 @@ define([
 			_generationCancelled = true;
 		}
 	};
+
+	var _openDataSetLinkDialog = function(e) {
+		
+	};
+
 
 	// register our module
 	manager.registerCoreModule(MODULE_ID, {

@@ -1,5 +1,4 @@
 <?php
-
 require_once(realpath(dirname(__FILE__) . "/../../library.php"));
 Core::init();
 
@@ -68,7 +67,7 @@ define([], function() {
 					HELP_DIALOG_OPEN: "event-data-table-help-dialog-open",
 					HELP_DIALOG_CLOSE: "event-data-table-help-dialog-close"
 				},
-				CLEAR: "event-data-table-clear",
+				CLEAR: "event-data-table-clear"
 			},
 			GENERATE: "event-generate",
 			IO: {

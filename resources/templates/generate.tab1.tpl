@@ -25,7 +25,7 @@
 		{country_list}
 
 		<div id="gdMessages" class="gdMessage">
-			<a class="gdMessageClose" title="{$L.hide_error}" href="#">X</a>
+			<a class="gdMessageClose" href="#">X</a>
 			<div></div>
 		</div>
 

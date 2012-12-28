@@ -149,3 +149,15 @@
 body .ui-widget-content .gdDeleteDataSetsBtn span {
 	color: #bb0000;
 }
+
+body .gdMainDialog .ui-dialog-titlebar {
+	padding: 2px;
+}
+body .gdMainDialog .ui-dialog-title span {
+	font-size: 14px;
+}
+.gdMainDialog .ui-dialog-title {
+	background: transparent url(../images/logoSmall.png) center left no-repeat;
+	padding: 4px 0px 3px 52px;
+}
+
