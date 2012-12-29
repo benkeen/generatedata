@@ -323,7 +323,7 @@ define([
 	var _addRows = function(rows) {
 		rows = rows.toString();
 		if (rows.match(/\D/) || rows === 0 || rows === "") {
-			utils.clearValidationErrors($("#gdTab1Content"));
+			utils.clearValidationErrors($("#gdMainTab1Content"));
 			utils.addValidationErrors({ els: [$("#gdNumRowsToAdd")], error: L.no_num_rows });
 			utils.displayValidationErrors("#gdMessages");
 			return false;
@@ -621,7 +621,7 @@ define([
 			$('#gdColHelp_' + rowID).html(" ");
 		}
 
-		// now public the 
+		// now publish the row change
 		manager.publish({
 			sender: MODULE_ID,
 			type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
@@ -688,7 +688,6 @@ define([
 
 		Queue.process({ context: "dataTypeChange: " + dataTypeModuleID });
 */
-
 	};
 
 
@@ -709,7 +708,7 @@ define([
 	 */
 	var _generateData = function() {
 		_numRowsToGenerate = _getNumRowsToGenerate();
-		utils.clearValidationErrors($("#gdTab1Content"));
+		utils.clearValidationErrors($("#gdMainTab1Content"));
 
 		// check the users specified a numeric value for the number of results
 		if (_numRowsToGenerate.match(/\D/) || _numRowsToGenerate === 0 || _numRowsToGenerate === "") {
@@ -1145,7 +1144,7 @@ define([
 
 	var _markDataSetRowToDelete = function(el) {
 		if (el.checked) {
-			$(el).closest("tr").addClass("gdDeletedDataSetRow").effect("highlight", { color: "#cc0000" }, 1000);
+			$(el).closest("tr").addClass("gdDeletedDataSetRow");
 		} else {
 			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
 		}
@@ -1157,6 +1156,7 @@ define([
 		var cbs = $("#gdAccountDataSets tbody input");
 		for (var i=0; i<cbs.length; i++) {
 			cbs[i].checked = isChecked;
+			_markDataSetRowToDelete(cbs[i]);
 		}
 		_toggleDeleteDataSetButton();
 	};

@@ -75,7 +75,7 @@ define([
 		// secondly, check the SQL fields have all been entered properly
 		var tableNameField = $("#etSQL_tableName");
 		var tableNameFieldVal = $.trim(tableNameField.val());
-		var validTableName = new RegExp("^[a-zA-Z_][0-9a-zA-Z_$]*");
+		var validTableName = new RegExp("^[a-zA-Z_][0-9a-zA-Z_$]*$");
 		if (tableNameFieldVal === "" || !validTableName.test(tableNameFieldVal)) {
 			errors.push({
 				els: tableNameField,

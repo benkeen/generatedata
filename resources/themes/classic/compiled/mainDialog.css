@@ -10,7 +10,7 @@
   #gdMainDialog .ui-widget button {
     font-family: "lucida grande", verdana; }
   #gdMainDialog .gdDeletedDataSetRow {
-    background-color: #ffe9e9; }
+    background-color: #efefef; }
   #gdMainDialog h4 {
     margin: 0px; }
 
@@ -42,7 +42,7 @@
     border-radius: 2px;
     color: white;
     text-decoration: none; }
-#gdAccountDataSets tr:hover {
+#gdAccountDataSets tbody tr:hover {
   background-color: #f2f2f2; }
 
 #gdMainDialogTabs ul {
@@ -105,6 +105,8 @@
   width: 551px;
   padding-right: 6px;
   overflow-y: auto; }
+  #gdDataSetHelpContent a:link, #gdDataSetHelpContent a:hover {
+    color: #3366CC; }
 
 body .ui-widget-content .gdDeleteDataSetsBtn span {
   color: #bb0000; }
