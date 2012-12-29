@@ -16,13 +16,12 @@
 	<script src="resources/scripts/libs/excanvas.js"></script>
 	<![endif]-->
 	<script type="text/javascript" src="resources/scripts/libs/spinners.js"></script>
-
 </head>
 <body class="gdInstallPage">
 	<header>
 		<nav>
 			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://forums.generatedata.com">{$L.forums}</a> <span class="gdHideNoJS">|</span>
+			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> <span class="gdHideNoJS">|</span>
 			<span class="hideNoJS">{language_dropdown nameId="gdSelectLanguage"}</span>
 		</nav>
 	</header>

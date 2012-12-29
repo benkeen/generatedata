@@ -151,6 +151,7 @@ class Account {
 		$content = addslashes(json_encode($data));
 
 		$now = Utils::getCurrentDatetime();
+		$nowUnixTime = Utils::convertDatetimeToTimestamp($now);
 		$prefix = Core::getDbTablePrefix();
 		$accountID = $this->accountID;
 
@@ -164,7 +165,8 @@ class Account {
 				$configurationID = mysql_insert_id();
 				return array(
 					"success" => true,
-					"message" => $configurationID
+					"message" => $configurationID,
+					"lastUpdated" => $nowUnixTime
 				);
 			} else {
 				return array(
@@ -185,7 +187,8 @@ class Account {
 			if ($response["success"]) {
 				return array(
 					"success" => true,
-					"message" => $configurationID
+					"message" => $configurationID,
+					"lastUpdated" => $nowUnixTime
 				);
 			} else {
 				return array(

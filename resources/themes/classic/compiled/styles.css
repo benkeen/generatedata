@@ -409,13 +409,17 @@ li.gdColDelete {
   width: 100%; }
 
 #gdProcessingIcon {
-  display: none;
   position: absolute;
-  top: 6px;
-  right: 0px;
-  background-image: url(../images/loading.gif);
-  width: 16px;
-  height: 16px; }
+  right: -1px;
+  top: 5px; }
+
+#gdDataSetStatusLine {
+  position: absolute;
+  right: 30px;
+  top: 5px;
+  font-style: italic;
+  color: #666666;
+  font-size: 7pt; }
 
 .gdSmallTabs {
   margin-bottom: 20px; }

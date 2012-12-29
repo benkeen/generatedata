@@ -50,7 +50,7 @@
 				<div class="gdError" id="tablePrefix_error"></div>
 				<div class="gdField">
 					<label for="defaultLanguage">{$L.default_language}</label>
-					{language_dropdown name_id="defaultLanguage" default="en"}
+					{language_dropdown name_id="defaultLanguage" default="en" disabled=true}
 				</div>
 				<div class="gdError" id="defaultLanguage_error"></div>
 			</div>
@@ -74,10 +74,8 @@
 
 	<div class="gdInstallSection{if $currentPage != 3} hidden{/if}" id="page3">
 		<p>
-			You have three choices for the way your installation handles user accounts.
+			You have three choices for the way your installation handles user accounts. <b>[Alpha! not available yet]</b>.
 		</p>
-
-		<!-- employUserAccounts -->
 
 		<form>
 			<div>

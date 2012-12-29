@@ -1,4 +1,5 @@
-/*global $:false*/
+/*jslint browser:true*/
+/*global $:false,define:false*/
 define([
 	"manager",
 	"utils",
@@ -32,6 +33,8 @@ define([
 		// for the Settings tab
 		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
 		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
+
+		utils.initMainSpinner();
 	};
 
 	var _changeLanguage = function() {

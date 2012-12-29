@@ -214,6 +214,9 @@ class AjaxRequest {
 				$response = Core::$user->saveConfiguration($post);
 				$this->response["success"] = $response["success"];
 				$this->response["content"] = $response["message"];
+				if (isset($response["lastUpdated"])) {
+					$this->response["lastUpdated"] = $response["lastUpdated"];
+				}
 				break;
 
 			case "deleteDataSets":

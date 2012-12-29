@@ -148,3 +148,4 @@ $L["country_specific_data"] = "Country-specific data";
 $L["data_set"] = "Data Set";
 $L["data_format"] = "Data Format";
 $L["no_additional_export_type_settings"] = "No additional export type settings.";
+$L["blog"] = "Blog";

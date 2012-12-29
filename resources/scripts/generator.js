@@ -1,4 +1,5 @@
-/*global $:false,CodeMirror:false,console:false */
+/*jslint browser:true*/
+/*global $:false,CodeMirror:false,console:false,define:false*/
 define([
 	"manager",
 	"pluginManager",
@@ -194,6 +195,10 @@ define([
 			manager.loadDataTypeRows(data);
 		}
 
+		// update the status line
+		var lastUpdated = moment.unix(configuration.last_updated_unix).format("h:mm A, MMM Do YYYY");
+		$("#gdDataSetStatusLine").html("Last edited " + lastUpdated);
+
 		utils.stopProcessing();
 
 		_closeMainDialog();
@@ -306,6 +311,10 @@ define([
 			success: function(response) {
 				if (response.success) {
 					_currConfigurationID = response.content;
+					console.log(response);
+					
+					var lastUpdated = moment.unix(response.lastUpdated).format("h:mm A, MMM Do YYYY");
+					$("#gdDataSetStatusLine").html("Last saved: " + lastUpdated);
 					_getAccount();
 				} else {
 					// TODO
@@ -831,6 +840,7 @@ define([
 			data += "&configurationID=" + _currConfigurationID;
 		}
 		_showSubtab(2);
+		utils.startProcessing();
 
 		_generateInPageRunningCount = 0;
 		_isGenerating = true;
@@ -861,6 +871,7 @@ define([
 			success: _generateInPageBatchResponse,
 			error: function(response) {
 				_isGenerating = false;
+				utils.stopProcessing();
 				console.log("error response: ", response);
 			}
 		});
@@ -881,6 +892,7 @@ define([
 			// check the process hasn't been interrupted
 			if (_generationCancelled) {
 				_isGenerating = false;
+				utils.stopProcessing();
 				$("#gdGenerationPanelCancel").addClass("gdDisabledLink");
 				$("#gdProgressMeter").attr("value", _numRowsToGenerate);
 				return;
@@ -889,6 +901,7 @@ define([
 			// now either continue processing, or indicate we're done
 			if (response.isComplete) {
 				_isGenerating = false;
+				utils.stopProcessing();
 				$("#gdGenerationPanelCancel").addClass("gdDisabledLink");
 
 				// update the data in _dataSets
@@ -901,6 +914,7 @@ define([
 			}
 		} else {
 			_isGenerating = false;
+			utils.stopProcessing();
 			console.warn("response.success fail");
 		}
 	};

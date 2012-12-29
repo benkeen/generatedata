@@ -1,4 +1,5 @@
-/*global $:false,console:false*/
+/*jslint browser:true*/
+/*global $:false,console:false,define:false*/
 define([
 	"constants",
 	"queue"

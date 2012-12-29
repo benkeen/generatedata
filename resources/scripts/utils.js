@@ -1,4 +1,5 @@
-/*global $:false*/
+/*jslint browser:true*/
+/*global $:false,Spinners:false,define:false*/
 define([
 	"manager",
 	"constants",
@@ -17,9 +18,9 @@ define([
 	 * @namespace
 	 */
 
-	var MODULE_ID       = "core-utils";
-	var _errors         = [];
-	
+	var MODULE_ID = "core-utils";
+	var _errors   = [];
+	var _spinner  = null;
 
 	var _queue = {
 		domChanges: [],
@@ -91,12 +92,35 @@ define([
 			return false;
 		},
 
+		/**
+		 * Called on page load, this initializes the main spinner canvas icon that appears
+		 * at the top right of the tabset.
+		 */
+		initMainSpinner: function() {
+			if (_spinner !== null) {
+				return;
+			}
+			_spinner = Spinners.create('#gdProcessingIcon', {
+				radius: 4,
+				height: 5,
+				width: 1.5,
+				dashes: 14,
+				opacity: 1,
+				padding: 0,
+				rotation: 1400,
+				fadeOutSpeed: 0,
+				color: '#006600',
+				pauseColor: '#aaaaaa',
+				pauseOpacity: 1
+			}).pause();
+		},
+
 		startProcessing: function() {
-			$("#gdProcessingIcon").show();
+			_spinner.play();
 		},
 
 		stopProcessing: function() {
-			$("#gdProcessingIcon").hide();
+			_spinner.pause();
 		},
 
 		/**

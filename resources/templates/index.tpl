@@ -27,11 +27,12 @@
 		<nav>
 			{if $settings.userAccountSetup != "anonymous"}<a href="#" id="gdUserAccountLink">Your Account</a> |{/if}
 			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://www.generatedata.com/forums/">{$L.forums}</a> <span class="gdHideNoJS">|</span>
+			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> <span class="gdHideNoJS">|</span>
 			{language_dropdown nameId="gdSelectLanguage" disabled=true}
 		</nav>
 	</header>
 	<nav id="gdMainTabs">
+		<span id="gdDataSetStatusLine">Not saved.</span>
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdMainTab1" class="gdSelected">{$L.generate}</li>
