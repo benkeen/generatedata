@@ -32,7 +32,6 @@ define([
 		// for the Settings tab
 		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
 		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
-
 	};
 
 	var _changeLanguage = function() {
@@ -76,6 +75,7 @@ define([
 			});
 		});
 	};
+
 
 	// register our module
 	manager.registerCoreModule(MODULE_ID, {

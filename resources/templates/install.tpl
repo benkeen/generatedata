@@ -11,6 +11,12 @@
 	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
 	<script data-main="resources/scripts/install" src="resources/scripts/libs/require.js"></script>
 	<script src="resources/scripts/requireConfig.js"></script>
+	<!--[if lt IE 9]>
+	<script src="resources/scripts/libs/html5shiv.js"></script>
+	<script src="resources/scripts/libs/excanvas.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="resources/scripts/libs/spinners.js"></script>
+
 </head>
 <body class="gdInstallPage">
 	<header>

@@ -102,16 +102,20 @@ END;
 
 			<table cellpadding="0" cellspacing="1">
 			<tr>
-				<td width="50"><h4>{$this->L["char"]}</h4></td>
-				<td>{$this->L["description"]}</td>
-				<td>{$this->L["example"]}</td>
+				<td width="50"><h2>{$this->L["char"]}</h2></td>
+				<td width="300"><h2>{$this->L["description"]}</h2></td>
+				<td><h2>{$this->L["example"]}</h2></td>
 			</tr>
+			</table>
+			<hr size="1" />
+
+			<h3 class="gdSubtitle">{$this->L["day"]}</h3>
+			<hr size="1" />
+
+			<table cellpadding="0" cellspacing="1">
 			<tr>
-				<td colspan="3"><h5>{$this->L["day"]}</h5></td>
-			</tr>
-			<tr>
-				<td><h4>d</h4></td>
-				<td>{$this->L["help_d"]}</td>
+				<td width="50"><h4>d</h4></td>
+				<td width="300">{$this->L["help_d"]}</td>
 				<td>{$this->L["help_d_example"]}</td>
 			</tr>
 			<tr>
@@ -130,35 +134,42 @@ END;
 				<td>{$this->L["help_l_example"]}</td>
 			</tr>
 			<tr>
-				<td><h4>S</h4></td>
+				<td valign="top"><h4>S</h4></td>
 				<td>{$this->L["help_S"]}</td>
-				<td>{$this->L["help_S_example"]}</td>
+				<td valign="top">{$this->L["help_S_example"]}</td>
 			</tr>
 			<tr>
-				<td><h4>w</h4></td>
-				<td>{$this->L["help_w"]}</td>
-				<td>{$this->L["help_w_example"]}</td>
+				<td valign="top"><h4>w</h4></td>
+				<td valign="top">{$this->L["help_w"]}</td>
+				<td valign="top">{$this->L["help_w_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>z</h4></td>
 				<td>{$this->L["help_z"]}</td>
 				<td>{$this->L["help_z_example"]}</td>
 			</tr>
+			</table>
+
+			<h3 class="gdSubtitle">{$this->L["week"]}</h3>
+			<hr size="1" />
+
+			<table cellpadding="0" cellspacing="1">
 			<tr>
-				<td colspan="3"><h5>{$this->L["week"]}</h5></td>
+				<td width="50" valign="top"><h4>W</h4></td>
+				<td width="300" valign="top">{$this->L["help_W"]}</td>
+				<td valign="top">{$this->L["help_W_example"]}</td>
 			</tr>
+			</table>
+
+
+			<h3 class="gdSubtitle">{$this->L["month"]}</h3>
+			<hr size="1" />
+
+			<table cellpadding="0" cellspacing="1">
 			<tr>
-				<td><h4>W</h4></td>
-				<td>{$this->L["help_W"]}</td>
-				<td>{$this->L["help_W_example"]}</td>
-			</tr>
-			<tr>
-				<td colspan="3"><h5>{$this->L["month"]}</h5></td>
-			</tr>
-			<tr>
-				<td><h4>F</h4></td>
-				<td>{$this->L["help_F"]}</td>
-				<td>{$this->L["help_F_example"]}</td>
+				<td width="50" valign="top"><h4>F</h4></td>
+				<td width="300">{$this->L["help_F"]}</td>
+				<td valign="top">{$this->L["help_F_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>m</h4></td>
@@ -171,21 +182,25 @@ END;
 				<td>{$this->L["help_M_example"]}</td>
 			</tr>
 			<tr>
-				<td><h4>n</h4></td>
+				<td valign="top"><h4>n</h4></td>
 				<td>{$this->L["help_n"]}</td>
-				<td>{$this->L["help_n_example"]}</td>
+				<td valign="top">{$this->L["help_n_example"]}</td>
 			</tr>
 			<tr>
 				<td><h4>t</h4></td>
 				<td>{$this->L["help_t"]}</td>
 				<td>{$this->L["help_t_example"]}</td>
 			</tr>
+			</table>
+
+
+			<h3 class="gdSubtitle">{$this->L["year"]}</h3>
+			<hr size="1" />
+
+			<table cellpadding="0" cellspacing="1">
 			<tr>
-				<td colspan="3"><h5>{$this->L["year"]}</h5></td>
-			</tr>
-			<tr>
-				<td><h4>L</h4></td>
-				<td>{$this->L["help_L"]}</td>
+				<td width="50"><h4>L</h4></td>
+				<td width="300">{$this->L["help_L"]}</td>
 				<td>{$this->L["help_L_example"]}</td>
 			</tr>
 			<tr>
@@ -199,6 +214,8 @@ END;
 				<td>{$this->L["help_y_example"]}</td>
 			</tr>
 			</table>
+
+			<br />
 END;
 
 		return $html;

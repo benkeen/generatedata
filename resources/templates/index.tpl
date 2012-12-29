@@ -9,17 +9,20 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
 	<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
-	<script src="resources/scripts/html5shiv.js"></script>
 	<script src="resources/libs/codemirror/lib/codemirror.js"></script>
 	<script src="resources/scripts/libs/jquery.js"></script>
 	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
 	<script src="resources/scripts/libs/require.js"></script>
 	<script src="resources/scripts/requireConfig.js"></script>
+	<!--[if lt IE 9]>
+	<script src="resources/scripts/libs/html5shiv.js"></script>
+	<script src="resources/scripts/libs/excanvas.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="resources/scripts/libs/spinners.js"></script>
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
 <body>
-
 	<header>
 		<nav>
 			{if $settings.userAccountSetup != "anonymous"}<a href="#" id="gdUserAccountLink">Your Account</a> |{/if}

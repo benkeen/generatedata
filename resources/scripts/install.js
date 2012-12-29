@@ -18,6 +18,8 @@ require([
 
 
 	$(function() {
+		manager.start();
+
 		$("#dbHostname").select();
 		$("form").bind("submit", submit);
 		$("input[name=userAccountSetup]").bind("click", _toggleAdminAccountSection);
