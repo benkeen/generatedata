@@ -161,7 +161,6 @@ END;
 			</tr>
 			</table>
 
-
 			<h3 class="gdSubtitle">{$this->L["month"]}</h3>
 			<hr size="1" />
 
