@@ -314,7 +314,7 @@ define([
 				if (response.success) {
 					_currConfigurationID = response.content;
 					var lastUpdated = moment.unix(response.lastUpdated).format("h:mm A, MMM Do YYYY");
-					$("#gdDataSetStatusLine").html("last saved: " + lastUpdated);
+					$("#gdDataSetStatusLine").html("last saved: " + lastUpdated).css("color", "#7fbcf8").animate({ color: "#666666" }, 1400);
 					_getAccount();
 				} else {
 					// TODO
