@@ -32,7 +32,7 @@
 		</nav>
 	</header>
 	<nav id="gdMainTabs">
-		<span id="gdDataSetStatusLine">Not saved.</span>
+		<span id="gdDataSetStatusLine"></span>
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdMainTab1" class="gdSelected">{$L.generate}</li>

@@ -117,7 +117,6 @@
 
 </form>
 
-<div id="gdEmptyFormDialog"></div>
 <div class="hidden">
 	<div id="gdTableRowTemplate">
 		<ul>
@@ -141,4 +140,4 @@
 </div>
 
 
-{include file="mainDialog.tpl"}
+{include file="dialogs.tpl"}

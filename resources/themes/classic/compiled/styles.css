@@ -1180,3 +1180,7 @@ body .gdMainDialog .ui-dialog-title span {
 .gdMainDialog .ui-dialog-title {
   background: transparent url(../images/logoSmall.png) center left no-repeat;
   padding: 4px 0px 3px 52px; }
+
+#gdLinkURL {
+  font-size: 16pt;
+  width: 100%; }

@@ -48,7 +48,7 @@
 
 	<div>
 		Theme
-		<input type="radio" name="theme" value="default" id="gdTheme1" {if $settings.theme == "default"}checked="checked"{/if} />
+		<input type="radio" name="theme" value="default" id="gdTheme1" {if $settings.theme == "default"}checked="checked"{/if} disabled="disabled" />
 			<label for="gdTheme1">Default</label>
 		<input type="radio" name="theme" value="classic" id="gdTheme2" {if $settings.theme == "classic"}checked="checked"{/if} />
 			<label for="gdTheme2">Classic</label>

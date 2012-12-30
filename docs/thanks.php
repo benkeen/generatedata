@@ -7,7 +7,8 @@ require_once("templates/header.php");
 		<h2>Thanks!</h2>
 
 		<p>
-			The Data Generator uses the work of a LOT of people. Thanks to the everybody involved in the following:
+			The Data Generator uses the work of a LOT of people. Thanks to the everybody involved in the following. You all rock. I would be <i>proud</i> 
+			if any of you wanted to marry my sister.
 		</p>
 
 		<ul>
@@ -19,6 +20,7 @@ require_once("templates/header.php");
 			<li><a href="http://harvesthq.github.com/chosen/" target="_blank">Chosen</a> - select box enhancement script</li>
 			<li><a href="http://code.google.com/p/jquery-json/" target="_blank">jQuery JSON plugin</a></li>
 			<li><a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a></li>
+			<li><a href="http://sass-lang.com/" target="_blank">Sass</a> - Syntactically Awesome Stylesheets</li>
 			<li><a href="http://excanvas.sourceforge.net/" target="_blank">ExplorerCanvas</a> - </li>
 			<li><a href="http://www.iconfinder.com/icondetails/50830/128/dice_icon" target="_blank">La Glanz Studio - dice icon (main logo)</a></li>
 			<li><a href="http://led24.de/iconset/" target="_blank">Nice bug icon</a></li>
@@ -26,7 +28,7 @@ require_once("templates/header.php");
 
 		<p>
 			And a big thanks to Addy Osmani for his excellent article: <a href="http://addyosmani.com/largescalejavascript/">Patterns For
-			Large-Scale JavaScript Application Architecture</a>. The client-side code was largely based on his article.
+			Large-Scale JavaScript Application Architecture</a>. The client-side code architecture was largely based on his article.
 		</p>
 	</div>
 

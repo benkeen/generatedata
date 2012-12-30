@@ -27,7 +27,7 @@ class Core {
 	private static $defaultTheme = "classic"; 
 
 	// non-overidable settings
-	private static $version = "3.0.0";
+	private static $version = "3.0.0 alpha 1";
 	private static $minimumPHPVersion = "5.2.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "other");

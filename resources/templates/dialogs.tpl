@@ -1,3 +1,5 @@
+<div id="gdEmptyFormDialog"></div>
+
 <div id="gdMainDialog" class="hidden">
 	<div id="gdMainDialogTabs">
 		<ul>
@@ -37,6 +39,7 @@
 						<th class="leftAligned">Data Set Name</th>
 						<th class="leftAligned">Data Created</th>
 						<th class="leftAligned">Last Used</th>
+						<th align="center">Public?</th>
 						<th align="center">Rows Generated</th>
 						<th width="60" align="center">Load</th>
 						<th width="30" align="center"><input type="checkbox" id="gdSelectAllDataSets" /></th>
@@ -54,5 +57,20 @@
 				{data_type_help}
 			</div>
 		</div>
+	</div>
+</div>
+
+<div id="gdLinkToDataSetDialog" class="hidden">
+	<div id="gdLinkToDataSet_incomplete">
+		<p>
+			De-<i>nied</i>. In order to share this Data Set with other people, you need to save it first.
+		</p>
+	</div>
+	<div id="gdLinkToDataSet_complete">
+		<p>
+			<input type="checkbox" id="gdDataSetPublic" /> 
+				<label for="gdDataSetPublic">Make this Data Set public.</label>
+		</p>
+		<input type="input" id="gdLinkURL" readonly="true" />
 	</div>
 </div>

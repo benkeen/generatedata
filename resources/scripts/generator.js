@@ -115,6 +115,7 @@ define([
 		$("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
 		$("#gdTextSize").on("click", "li", _changeTextSize);
 		$("#gdGenerationPanelCancel").on("click", _cancelGeneration);
+		$("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveIcon);
@@ -131,6 +132,7 @@ define([
 		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
 		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
 		$("#gdSelectAllDataSets").on("click", _onToggleSelectAllDataSets);
+		$("#gdDataSetStatusLine").html("not saved");
 
 		_initMainDialog();
 		_initExportTypeTab();
@@ -197,7 +199,7 @@ define([
 
 		// update the status line
 		var lastUpdated = moment.unix(configuration.last_updated_unix).format("h:mm A, MMM Do YYYY");
-		$("#gdDataSetStatusLine").html("Last edited " + lastUpdated);
+		$("#gdDataSetStatusLine").html("last edited " + lastUpdated);
 
 		utils.stopProcessing();
 
@@ -311,10 +313,8 @@ define([
 			success: function(response) {
 				if (response.success) {
 					_currConfigurationID = response.content;
-					console.log(response);
-					
 					var lastUpdated = moment.unix(response.lastUpdated).format("h:mm A, MMM Do YYYY");
-					$("#gdDataSetStatusLine").html("Last saved: " + lastUpdated);
+					$("#gdDataSetStatusLine").html("last saved: " + lastUpdated);
 					_getAccount();
 				} else {
 					// TODO
@@ -459,6 +459,8 @@ define([
 		_currConfigurationID = null;
 		_selectExportTypeTab($(".gdDefaultExportType").data("exportType"), true);
 		manager.resetExportTypes();
+
+		$("#gdDataSetStatusLine").html("not saved");
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -1232,8 +1234,6 @@ define([
 
 
 	var _onSuccessDeleteDataSets = function(response) {
-
-		// if the delete was successful
 		if (response.success) {
 
 			// update the first tab (Num Saved Data Sets)
@@ -1252,6 +1252,8 @@ define([
 
 			_displayDataSets();
 			_toggleDeleteDataSetButton();
+		} else {
+			// TODO
 		}
 	};
 
@@ -1295,17 +1297,13 @@ define([
 		if (_accountInfo.isAnonymous) {
 			$("#gdAccount_AccountType").html("Anonymous admin account");
 		} else {
-
+			// TODO
 		}
 
 		$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 		$("#gdAccount_DateAccountCreated").html(moment.unix(_accountInfo.dateCreated).format("MMM Do, YYYY"));
-
-		var totalRowsGenerated = 0;
-		for (var i=0; i<_dataSets.length; i++) {
-			totalRowsGenerated += parseInt(_dataSets[i].num_rows_generated, 10);
-		}
-		$("#gdAccount_TotalRowsGenerated").html(utils.formatNumWithCommas(totalRowsGenerated));
+		var numRowsGenerated = parseInt(_accountInfo.numRowsGenerated, 10);
+		$("#gdAccount_TotalRowsGenerated").html(utils.formatNumWithCommas(numRowsGenerated));
 	};
 
 	var _displayDataSets = function() {
@@ -1318,11 +1316,13 @@ define([
 				currDataSet = _dataSets[i];
 				var dateCreated = moment.unix(currDataSet.date_created_unix).format("MMM Do, YYYY");
 				var lastUpdated = moment.unix(currDataSet.last_updated_unix).format("MMM Do, YYYY");
+				var isPublic    = (currDataSet.status == "public") ? 'checked="checked"' : "";
 
 				row = '<tr data-id="' + currDataSet.configuration_id + '">' +
 					'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
 					'<td class="leftAligned">' + dateCreated + '</td>' +
 					'<td class="leftAligned">' + lastUpdated + '</td>' +
+					'<td align="center"><input type="checkbox" class="gdDataSetStatus" id="gdDataSetStatus_' + currDataSet.configuration_id + '" ' + isPublic + ' /></td>' +
 					'<td class="gdDataSetNumRowsGenerated" align="center">' + utils.formatNumWithCommas(currDataSet.num_rows_generated) + '</td>' +
 					'<td align="center"><a href="#">load</a></td>' +
 					'<td align="center"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
@@ -1389,7 +1389,55 @@ define([
 	};
 
 	var _openDataSetLinkDialog = function(e) {
-		
+		if (_currConfigurationID === null) {
+			$("#gdLinkToDataSet_incomplete").removeClass("hidden");
+			$("#gdLinkToDataSet_complete").addClass("hidden");
+		} else {
+			$("#gdLinkToDataSet_incomplete").addClass("hidden");
+			$("#gdLinkToDataSet_complete").removeClass("hidden");
+		}
+
+		$("#gdLinkToDataSetDialog").dialog({
+			title: 'Link to Data Set',
+			dialogClass: "gdMainDialog",
+			width: 500,
+			modal: true,
+			resizable: false,
+			open: function() {
+				if (_currConfigurationID !== null) {
+					var url = window.location.href.replace(/(#.*)/, "");
+					url = url.replace(/(\?.*)/, "") + "?load=" + _currConfigurationID;
+					$("#gdLinkURL").data("url", url);
+
+					var config = _getConfiguration(_currConfigurationID);
+					if (config.status == "public") {
+						$("#gdDataSetPublic").attr("checked", "checked");
+						$("#gdLinkURL").val(url + "?load=" + _currConfigurationID).removeClass("gdDisabled").removeAttr("disabled").select();
+					} else {
+						$("#gdDataSetPublic").removeAttr("checked");
+						$("#gdLinkURL").val("-").attr("disabled", "disabled").addClass("gdDisabled");
+					}
+				}
+			},
+			buttons: [
+				{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}
+			]
+		});
+
+		return false;
+	};
+
+
+	var _toggleDataSetVisibilityStatus = function(e) {
+		if (e.target.checked) {
+			var url = $("#gdLinkURL").data("url");
+			$("#gdLinkURL").removeClass("gdDisabled").removeAttr("disabled").val(url).select();
+		} else {
+			$("#gdLinkURL").addClass("gdDisabled").attr("disabled", "disabled").val("-");
+		}
 	};
 
 

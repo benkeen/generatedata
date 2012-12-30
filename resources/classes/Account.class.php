@@ -47,24 +47,25 @@ class Account {
 			$this->date_expires = date("U", strtotime($accountInfo["date_expires"]));
 			$this->firstName = $accountInfo["first_name"];
 			$this->lastName = $accountInfo["last_name"];
-			
 			$this->getConfigurations();
+			$this->numRowsGenerated = $accountInfo["num_rows_generated"];
 		}
 	}
 
 
 	public function getAccount() {
 		return array(
-			"isAnonymous"    => $this->isAnonymous,
-			"accountID"      => $this->accountID,
-			"accountType"    => $this->accountType,
-			"dateCreated"    => $this->dateCreated,
-			"lastUpdated"    => $this->lastUpdated,
-			"dateExpires"    => $this->dateExpires,
-			"firstName"      => $this->firstName,
-			"lastName"       => $this->lastName,
-			"email"          => $this->email,
-			"configurations" => $this->configurations
+			"isAnonymous"      => $this->isAnonymous,
+			"accountID"        => $this->accountID,
+			"accountType"      => $this->accountType,
+			"dateCreated"      => $this->dateCreated,
+			"lastUpdated"      => $this->lastUpdated,
+			"dateExpires"      => $this->dateExpires,
+			"firstName"        => $this->firstName,
+			"lastName"         => $this->lastName,
+			"email"            => $this->email,
+			"configurations"   => $this->configurations,
+			"numRowsGenerated" => $this->numRowsGenerated
 		);
 	}
 
@@ -157,8 +158,8 @@ class Account {
 
 		if ($configurationID == null) {
 			$response = Core::$db->query("
-				INSERT INTO {$prefix}configurations (date_created, last_updated, account_id, configuration_name, content)
-				VALUES ('$now', '$now', $accountID, '" . $configurationName . "', '" . $content . "')
+				INSERT INTO {$prefix}configurations (status, date_created, last_updated, account_id, configuration_name, content)
+				VALUES ('private', '$now', '$now', $accountID, '" . $configurationName . "', '" . $content . "')
 			");
 
 			if ($response["success"]) {
@@ -228,7 +229,6 @@ class Account {
 	}
 
 
-
 	public function updateRowsGeneratedCount($configurationID, $rowsGenerated) {
 		if (!is_numeric($rowsGenerated)) {
 			return;
@@ -241,6 +241,12 @@ class Account {
 			UPDATE {$prefix}configurations
 			SET num_rows_generated = num_rows_generated+$cleanRowsGenerated
 			WHERE  account_id = $accountID AND configuration_id = $configurationID
+		");
+
+		$response = Core::$db->query("
+			UPDATE {$prefix}user_accounts
+			SET num_rows_generated = num_rows_generated+$cleanRowsGenerated
+			WHERE account_id = $accountID
 		");
 	}
 }

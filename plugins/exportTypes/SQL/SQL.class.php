@@ -181,7 +181,7 @@ END;
 			}
 
 			if ($this->createTable) {
-				$content = "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
+				$content .= "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
 				if ($this->primaryKey == "default") {
 					$content .= "{$prefix}{$this->backquote}id{$this->backquote} mediumint(8) unsigned NOT NULL auto_increment,$endLineChar";
 				}
@@ -258,7 +258,7 @@ END;
 			}
 
 			if ($this->createTable) {
-				$content = "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
+				$content .= "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
 				if ($this->primaryKey == "default") {
 					$content .= "{$prefix}{$this->backquote}id{$this->backquote} number primary key,$endLineChar";
 				}
@@ -331,7 +331,7 @@ END;
 			}
 
 			if ($this->createTable) {
-				$content = "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
+				$content .= "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
 				if ($this->primaryKey == "default") {
 					$content .= "{$prefix}{$this->backquote}id{$this->backquote} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,$endLineChar";
 				}

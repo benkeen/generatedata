@@ -84,6 +84,7 @@ END;
 		$queries[] = "
 			CREATE TABLE {$prefix}configurations (
 				configuration_id mediumint(9) NOT NULL auto_increment,
+				status ENUM('public','private') NOT NULL,
 				date_created datetime NOT NULL,
 				last_updated datetime NOT NULL,
 				account_id mediumint(9) NOT NULL,
@@ -151,6 +152,7 @@ END;
 				password varchar(50) NOT NULL,
 				password_recovery_question varchar(100) default NULL,
 				password_recovery_answer varchar(100) default NULL,
+				num_rows_generated mediumint(9) default 0,
 				max_records mediumint(9) default NULL,
 				PRIMARY KEY (account_id)
 			)

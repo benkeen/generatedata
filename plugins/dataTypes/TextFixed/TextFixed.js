@@ -1,4 +1,4 @@
-/*global $:false*/
+/*global $:false,define:false*/
 define([
 	"manager",
 	"constants",
@@ -18,11 +18,24 @@ define([
 	var MODULE_ID = "data-type-TextFixed";
 	var LANG = L.dataTypePlugins.TextFixed;
 
-	var _saveRow = function() {
-
+	var _saveRow = function(rowNum) {
+		return {
+			numWords: $("dtNumWords_" + rowNum).val()
+		};
 	};
 
-	var _loadRow = function() {
+	var _loadRow = function(rowNum, data) {
+		return {
+			execute: function() { },
+			isComplete: function() {
+				if (data && $("#dtNumWords_" + rowNum).length) {
+					$("dtNumWords_" + rowNum).val(data.numWords);
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
 
 	};
 
