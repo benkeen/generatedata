@@ -1,4 +1,4 @@
-/*global $:false*/
+/*global $:false,define:false*/
 define([
 	"manager",
 	"constants",

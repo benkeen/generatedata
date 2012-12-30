@@ -33,22 +33,23 @@ class DataType_Constant extends DataTypePlugin {
 		);
 	}
 
-
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
 		if (!isset($postdata["dtOption_$colNum"]) || empty($postdata["dtOption_$colNum"])) {
 			return false;
 		}
-		if (!isset($postdata["dtLoopCount_$colNum"]) || empty($postdata["dtLoopCount_$colNum"])) {
+		if (!isset($postdata["dtConstantLoopCount_$colNum"]) || empty($postdata["dtConstantLoopCount_$colNum"])) {
 			return false;
 		}
-		if (!is_numeric($postdata["dtLoopCount_$colNum"]) || $postdata["dtLoopCount_$colNum"] <= 0) {
+		$loopCount = trim($postdata["dtConstantLoopCount_$colNum"]);
+		if (!is_numeric($loopCount) || $loopCount <= 0) {
 			return false;
 		}
 
 		$options = array(
-			"loopCount" => $postdata["dtLoopCount_$colNum"],
+			"loopCount" => $loopCount,
 			"values"    => explode("|", $postdata["dtOption_$colNum"])
 		);
+
 		return $options;
 	}
 
@@ -62,11 +63,11 @@ class DataType_Constant extends DataTypePlugin {
 <table cellspacing="0" cellpadding="0" width="260">
 	<tr>
 		<td>{$this->L["loop_count"]}</td>
-		<td><input type="text" name="dtLoopCount_%ROW%" id="dtLoopCount_%ROW%" size="5" value="10" /></td>
+		<td><input type="text" name="dtConstantLoopCount_%ROW%" id="dtConstantLoopCount_%ROW%" size="5" value="10" /></td>
 	</tr>
 	<tr>
 		<td>{$this->L["values"]}</td>
-		<td><input name="dtOption_%ROW%" id="option_%ROW%" style="width: 100%" /></td>
+		<td><input name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 100%" /></td>
 	</tr>
 </table>
 EOF;
