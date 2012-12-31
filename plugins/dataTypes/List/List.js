@@ -66,11 +66,11 @@ define([
 			visibleProblemRows: []
 		};
 
+		var intOnly = /^\d+$/;
 		for (var i=0; i<rows.length; i++) {
 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 
 			// check the At Most and Exactly fields
-			var intOnly = /^\d+$/;
 			var exactlyField = $("#dtListExactly_" + rows[i]);
 			var exactlyFieldValid = intOnly.test(exactlyField.val());
 			var atMostField = $("#dtListExactly_" + rows[i]);

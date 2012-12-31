@@ -1,4 +1,4 @@
-/*global $:false*/
+/*global $:false,define:false*/
 define([
 	"manager",
 	"constants",
@@ -11,33 +11,48 @@ define([
 	var MODULE_ID = "data-type-NumberRange";
 	var LANG = L.dataTypePlugins.NumberRange;
 
-	var _saveRow = function(rowNum) {
-		
-	};
 
 	var _loadRow = function(rowNum, data) {
+		return {
+			execute: function() {
+				$("#dtNumRangeMin_" + rowNum).val(data.rangeMin);
+				$("#dtNumRangeMax_" + rowNum).val(data.rangeMax);
+			},
+			isComplete: function() { return true; }
+		};
+	};
 
+	var _saveRow = function(rowNum) {
+		return {
+			rangeMin: $("#dtNumRangeMin_" + rowNum).val(),
+			rangeMax: $("#dtNumRangeMax_" + rowNum).val()
+		};
 	};
 
 	var _validate = function(rows) {
 		var visibleProblemRows = [];
 		var problemFields      = [];
 
+		var intOnly = /^\d+$/;
 		for (var i=0; i<rows.length; i++) {
 			var numWordsMin = $.trim($("#dtNumRangeMin_" + rows[i]).val());
 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-			if (numWordsMin === "") {
+
+			var hasError = false;
+			if (numWordsMin === "" || !intOnly.test(numWordsMin)) {
+				hasError = true;
 				problemFields.push($("#dtNumRangeMin_" + rows[i]));
 			}
 			var numWordsMax = $.trim($("#dtNumRangeMax_" + rows[i]).val());
-			if (numWordsMax === "") {
+			if (numWordsMax === "" || !intOnly.test(numWordsMax)) {
+				hasError = true;
 				problemFields.push($("#dtNumRangeMax_" + rows[i]));
 			}
-
-			if (numWordsMin === "" || numWordsMax === "") {
+			if (hasError) {
 				visibleProblemRows.push(visibleRowNum);
 			}
 		}
+
 		var errors = [];
 		if (visibleProblemRows.length) {
 			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
@@ -51,27 +66,3 @@ define([
 		saveRow: _saveRow
 	});
 });
-
-
-
-
-/*var NumberRange_ns = {
-  loadRow: function(rowNum, data)
-  {
-    return [
-      function() {
-        $("#numRangeMin_" + rowNum).val(data.numRangeMin);
-        $("#numRangeMax_" + rowNum).val(data.numRangeMax);
-      },
-      function() { return $("#numRangeMax_" + rowNum).length > 0; }
-    ];
-  },
-
-  saveRow: function(rowNum)
-  {
-    return {
-      "numRangeMin": $("#numRangeMin_" + rowNum).val(),
-      "numRangeMax": $("#numRangeMax_" + rowNum).val()
-    };
-  }
-}*/
