@@ -36,15 +36,15 @@ define([
 				}
 			}
 		};
-
 	};
 
 	var _validate = function(rows) {
 		var visibleProblemRows = [];
 		var problemFields      = [];
+		var isInt = /^\d+$/;
 		for (var i=0; i<rows.length; i++) {
 			var numWords = $.trim($("#dtNumWords_" + rows[i]).val());
-			if (numWords === "") {
+			if (numWords === "" || !isInt.test(numWords)) {
 				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 				visibleProblemRows.push(visibleRowNum);
 				problemFields.push($("#dtNumWords_" + rows[i]));

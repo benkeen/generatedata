@@ -547,6 +547,9 @@ li.gdColDelete {
 a.gdDisabledLink {
   color: #cccccc; }
 
+#gdSelectLanguage {
+  width: 150px; }
+
 /* buttons */
 .gdButton {
   border: 0px;

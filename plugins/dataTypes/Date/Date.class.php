@@ -84,8 +84,8 @@ EOF;
 		$lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));
 
 		$html =<<< END
-	{$this->L["from"]} <input type="text" name="dtFromDate_%ROW%" id="dtFromDate_%ROW%" size="10" value="$lastYear" />
-	{$this->L["to"]} <input type="text" name="dtToDate_%ROW%" id="dtToDate_%ROW%" size="10" value="$nextYear" />
+	{$this->L["from"]} <input type="text" name="dtFromDate_%ROW%" id="dtFromDate_%ROW%" size="10" value="$lastYear" readonly="readonly" />
+	{$this->L["to"]} <input type="text" name="dtToDate_%ROW%" id="dtToDate_%ROW%" size="10" value="$nextYear" readonly="readonly" />
 	<div>
 		{$this->L["format_code"]}&nbsp;<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 160px" />
 	</div>

@@ -27,14 +27,16 @@ define([
 
 	var _dataTypeChange = function(msg) {
 		$("#dtFromDate_" + msg.rowID).datepicker({
-			showOn:          'button',
-			buttonImage:     'resources/themes/' + C.THEME + '/images/calendarIcon.gif',
-			buttonImageOnly: true
+			showOn:          "both",
+			buttonImage:     "resources/themes/" + C.THEME + "/images/calendarIcon.gif",
+			buttonImageOnly: true,
+			buttonText:      "Choose date"
 		});
 		$("#dtToDate_" + msg.rowID).datepicker({
-			showOn:          'button',
-			buttonImage:     'resources/themes/' + C.THEME + '/images/calendarIcon.gif',
-			buttonImageOnly: true
+			showOn:          "both",
+			buttonImage:     "resources/themes/" + C.THEME + "/images/calendarIcon.gif",
+			buttonImageOnly: true,
+			buttonText:      "Choose date"
 		});
 	};
 
