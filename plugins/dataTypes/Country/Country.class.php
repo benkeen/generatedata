@@ -80,7 +80,7 @@ class DataType_Country extends DataTypePlugin {
 		} else {
 			// pick a random country from whatever countries were selected
 			$randomCountrySlug = $this->selectedCountrySlugs[rand(0, $this->numSelectedCountrySlugs-1)];
-			$randomCountry = $this->countryRegionData[$randomCountrySlug];
+			$randomCountry     = $this->countryRegionData[$randomCountrySlug];
 
 			$data = array(
 				"display" => $randomCountry["country"],
@@ -92,20 +92,26 @@ class DataType_Country extends DataTypePlugin {
 	}
 
 	/**
-	 * Called for each row. This figures out what country-data we're interested in generating for
-	 * this row - either a subset of the selected Country plugins, or ANY country name.
 	 * @see DataTypePlugin::getRowGenerationOptions()
 	 */
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
-		if (empty($selectedCountrySlugs)) {
-			$this->selectedCountrySlugs    = $generator->getCountries();
-			$this->numSelectedCountrySlugs = count($this->selectedCountrySlugs);
-		}
+		$selectedCountrySlugs = $generator->getCountries();
 
 		$option = "all";
 		if (isset($postdata["dtOption_$colNum"])) {
 			$option = "countryPluginsOnly";
 		}
+
+		// if the user didn't select any countries and they checked the "limit to those countries selected above
+		// option, there's nothing for us to generate. Just return false so the row is ignored. TODO: update the 
+		// JS code to throw an error 
+		if (empty($selectedCountrySlugs) && $option == "countryPluginsOnly") {
+			return false;
+		}
+
+		$this->selectedCountrySlugs    = $selectedCountrySlugs;
+		$this->numSelectedCountrySlugs = count($selectedCountrySlugs);
+
 		return $option;
 	}
 

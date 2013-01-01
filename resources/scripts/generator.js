@@ -202,7 +202,11 @@ define([
 		// now start populating the page
 		$("#gdDataSetName").val(configuration.configuration_name);
 		$("#gdNumRowsToGenerate").val(json.numResults);
-		$("input[name=gdExportTarget]").val(json.exportTarget);
+		$("input[name=gdExportTarget]").each(function() {
+			if (this.value == json.exportTarget) {
+				this.checked = true;
+			}
+		});
 
 		_updateCountries(json.countries);
 
@@ -1065,7 +1069,7 @@ define([
 	};
 
 	var _getExportTarget = function() {
-		return $("input[name=gdExportTarget]").val();
+		return $("input[name=gdExportTarget]:checked").val();
 	};
 
 	var _getNumRowsToGenerate = function() {
