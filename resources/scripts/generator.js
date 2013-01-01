@@ -118,7 +118,7 @@ define([
 		$("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
 
 		// icon actions
-		$("#gdSaveBtn").on("click", _onClickSaveIcon);
+		$("#gdSaveBtn").on("click", _onClickSaveButton);
 		$("#gdSaveDataSet").on("click", _saveDataSet);
 		$("#gdEmptyForm").on("click", _emptyForm);
 		$("#gdDataSetLink").on("click", _openDataSetLinkDialog);
@@ -161,7 +161,6 @@ define([
 				dataSetID: dataSetID
 			},
 			success: function(response) {
-				console.log(response);
 				if (response.success) {
 					_loadDataSet(response.content);
 				} else {
@@ -275,13 +274,27 @@ define([
 	 * Called when the user clicks the save icon. This intelligently decides how to save the information,
 	 * based on whether it's a totally new data set, or if the user had loaded one already.
 	 */
-	var _onClickSaveIcon = function() {
-		if (_currConfigurationID === null) {
-			_saveDataSet();
+	var _onClickSaveButton = function() {
+		if (C.DEMO_MODE) {
+			var content = '<p>This is a demo only. Please download the script to save your Data Sets.<br />' +
+				'<a href="https://github.com/benkeen/generatedata" target="_blank">https://github.com/benkeen/generatedata</a></p>';
+			$('<div>' + content + '</div>').dialog({
+				title: "Sorry!",
+				width: 500,
+				buttons: [{
+					text: "Close",
+					click: function() { $(this).dialog("close"); }
+				}]
+			});
 		} else {
-			// confirmation...?
-			_saveDataSet();
+			if (_currConfigurationID === null) {
+				_saveDataSet();
+			} else {
+				// confirmation...?
+				_saveDataSet();
+			}
 		}
+
 		return false;
 	};
 

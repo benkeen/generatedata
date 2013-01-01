@@ -12,6 +12,7 @@
 class Core {
 
 	// overridable settings that the user may define in settings.php
+	private static $demoMode = false;
 	private static $dbHostname;
 	private static $dbName;
 	private static $dbUsername;
@@ -24,7 +25,7 @@ class Core {
 	private static $defaultLanguageFile = "en";
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array("canada", "united_states");
-	private static $defaultTheme = "classic"; 
+	private static $defaultTheme = "classic";
 
 	// non-overidable settings
 	private static $version = "3.0.0 alpha 1";
@@ -100,6 +101,7 @@ class Core {
 		if (file_exists($settingsFilePath)) {
 			self::$settingsFileExists = true;
 			require_once($settingsFilePath);
+			self::$demoMode = (isset($demoMode)) ? $demoMode : null;
 			self::$dbHostname = (isset($dbHostname)) ? $dbHostname : null;
 			self::$dbName     = (isset($dbName)) ? $dbName : null;
 			self::$dbUsername = (isset($dbUsername)) ? $dbUsername : null;
@@ -107,6 +109,9 @@ class Core {
 			self::$dbTablePrefix = (isset($dbTablePrefix)) ? $dbTablePrefix : null;
 			self::$encryptionSalt = (isset($encryptionSalt)) ? $encryptionSalt : null;
 
+			if (isset($demoMode)) {
+				self::$demoMode = $demoMode;
+			}
 			if (isset($errorReporting)) {
 				self::$errorReporting = $errorReporting;
 			}
@@ -127,6 +132,13 @@ class Core {
 	 */
 	public function getDefaultExportType() {
 		return self::$defaultExportType;
+	}
+
+	/**
+	 * @access public
+	 */
+	public function checkSafeMode() {
+		return (self::$demoMode) ? "true" : "false";
 	}
 
 	/**
