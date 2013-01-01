@@ -35,4 +35,5 @@
 	<li><a href="https://github.com/benkeen/generatedata">Fork the code on github</a></li>
 	<li><a href="docs/">Read the developer documentation</a></li>
 	<li><a href="http://www.generatedata.com">Go to the website</a></li>
+	<li><a href="http://www.benjaminkeen.com/category/projects/data-generator/">Latest project news</a></li>
 </ul>
