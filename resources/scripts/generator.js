@@ -1048,24 +1048,22 @@ define([
 				utils.selectTab({ tabGroup: "dialogTabs", tabIDPrefix: "gdMainDialogTab", newTab: newTab, oldTab: _currHelpDialogTab } );
 				_currHelpDialogTab = newTab;
 
-				switch (newTab) {
-					case 1:
-					case 2:
-					case 3:
-						if (_currDataTypeHelp === null) {
-
-						}
-						break;
-				}
-
-				if (newTab == 1 || newTab == 3) {
-
-				}
-
-				// if the user just clicked into the Data Type help tab, ensure the first Data Type listed is selected
-				if (newTab == 3 && _currDataTypeHelp === null) {
-					var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
-					_showDataTypeHelp(dataTypeItems[0]);
+				if ($("#gdMainDialog").css("display") == "block") {
+					switch (newTab) {
+						case 1:
+							$("#gdMainDialog").dialog("option", "buttons", [{ text: "Close", click: function() { $(this).dialog("close"); } }]);
+							break;
+						case 2:
+							_updateMainDialogDeleteButton();
+							break;
+						case 3:
+							$("#gdMainDialog").dialog("option", "buttons", [{ text: "Close", click: function() { $(this).dialog("close"); } }]);
+							if (_currDataTypeHelp === null) {
+								var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
+								_showDataTypeHelp(dataTypeItems[0]);
+							}
+							break;
+					}
 				}
 			});
 		});
@@ -1144,6 +1142,10 @@ define([
 			]
 		});
 
+		if (opts.tab == 2) {
+			_updateMainDialogDeleteButton();
+		}
+
 		return false;
 	};
 
@@ -1179,7 +1181,7 @@ define([
 		} else {
 			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
 		}
-		_toggleDeleteDataSetButton();
+		_updateMainDialogDeleteButton();
 	};
 
 	var _onToggleSelectAllDataSets = function(e) {
@@ -1189,7 +1191,7 @@ define([
 			cbs[i].checked = isChecked;
 			_markDataSetRowToDelete(cbs[i]);
 		}
-		_toggleDeleteDataSetButton();
+		_updateMainDialogDeleteButton();
 	};
 
 	var _confirmDeleteDataSets = function() {
@@ -1200,7 +1202,7 @@ define([
 	 * Called whenever one or more rows is selected / unselected. This checks to see how
 	 * many rows are selected, and hides/shows a delete button.
 	 */
-	var _toggleDeleteDataSetButton = function() {
+	var _updateMainDialogDeleteButton = function() {
 		var cbs = $(".gdDeleteDataSets:checked");
 		if (cbs.length) {
 			$("#gdMainDialog").dialog("option", "buttons", [
@@ -1266,7 +1268,7 @@ define([
 			$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 
 			_displayDataSets();
-			_toggleDeleteDataSetButton();
+			_updateMainDialogDeleteButton();
 		} else {
 			// TODO
 		}
