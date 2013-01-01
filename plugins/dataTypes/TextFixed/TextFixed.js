@@ -20,7 +20,7 @@ define([
 
 	var _saveRow = function(rowNum) {
 		return {
-			numWords: $("dtNumWords_" + rowNum).val()
+			numWords: $("#dtNumWords_" + rowNum).val()
 		};
 	};
 
@@ -29,7 +29,7 @@ define([
 			execute: function() { },
 			isComplete: function() {
 				if (data && $("#dtNumWords_" + rowNum).length) {
-					$("dtNumWords_" + rowNum).val(data.numWords);
+					$("#dtNumWords_" + rowNum).val(data.numWords);
 					return true;
 				} else {
 					return false;
