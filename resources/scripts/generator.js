@@ -1048,6 +1048,20 @@ define([
 				utils.selectTab({ tabGroup: "dialogTabs", tabIDPrefix: "gdMainDialogTab", newTab: newTab, oldTab: _currHelpDialogTab } );
 				_currHelpDialogTab = newTab;
 
+				switch (newTab) {
+					case 1:
+					case 2:
+					case 3:
+						if (_currDataTypeHelp === null) {
+
+						}
+						break;
+				}
+
+				if (newTab == 1 || newTab == 3) {
+
+				}
+
 				// if the user just clicked into the Data Type help tab, ensure the first Data Type listed is selected
 				if (newTab == 3 && _currDataTypeHelp === null) {
 					var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
