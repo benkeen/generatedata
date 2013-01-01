@@ -133,6 +133,7 @@ define([
 		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
 		$("#gdSelectAllDataSets").on("click", _onToggleSelectAllDataSets);
 		$("#gdDataSetStatusLine").html("not saved");
+		$("#gdMainDialog").on("click", ".gdDataSetStatus", _onToggleSaveDataSetVisibilityStatus);
 
 		_initMainDialog();
 		_initExportTypeTab();
@@ -1169,7 +1170,7 @@ define([
 
 	var _onToggleSelectAllDataSets = function(e) {
 		var isChecked = e.target.checked;
-		var cbs = $("#gdAccountDataSets tbody input");
+		var cbs = $(".gdDeleteDataSets");
 		for (var i=0; i<cbs.length; i++) {
 			cbs[i].checked = isChecked;
 			_markDataSetRowToDelete(cbs[i]);
@@ -1186,7 +1187,7 @@ define([
 	 * many rows are selected, and hides/shows a delete button.
 	 */
 	var _toggleDeleteDataSetButton = function() {
-		var cbs = $("#gdAccountDataSets tbody input:checked");
+		var cbs = $(".gdDeleteDataSets:checked");
 		if (cbs.length) {
 			$("#gdMainDialog").dialog("option", "buttons", [
 				{
@@ -1325,7 +1326,7 @@ define([
 					'<td align="center"><input type="checkbox" class="gdDataSetStatus" id="gdDataSetStatus_' + currDataSet.configuration_id + '" ' + isPublic + ' /></td>' +
 					'<td class="gdDataSetNumRowsGenerated" align="center">' + utils.formatNumWithCommas(currDataSet.num_rows_generated) + '</td>' +
 					'<td align="center"><a href="#">load</a></td>' +
-					'<td align="center"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
+					'<td align="center" class="gdDelDataSetCell"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
 					'</tr>';
 				html += row;
 			}
@@ -1432,12 +1433,72 @@ define([
 
 
 	var _toggleDataSetVisibilityStatus = function(e) {
+		var status = null;
 		if (e.target.checked) {
+			status = "public";
 			var url = $("#gdLinkURL").data("url");
 			$("#gdLinkURL").removeClass("gdDisabled").removeAttr("disabled").val(url).select();
 		} else {
+			status = "private";
 			$("#gdLinkURL").addClass("gdDisabled").attr("disabled", "disabled").val("-");
 		}
+
+		_saveVisibilityStatus(_currConfigurationID, status);
+	};
+
+	/**
+	 * Called when the user checks/unchecks the "Public?" checkbox for a Data Set. This sends an Ajax request
+	 * to the server to store the value.
+	 */
+	var _onToggleSaveDataSetVisibilityStatus = function(e) {
+		utils.startProcessing();
+		var configurationID = $(e.target).closest("tr").data("id");
+		var status = (e.target.checked) ? "public" : "private";
+		_saveVisibilityStatus(configurationID, status);
+	};
+
+
+	var _saveVisibilityStatus = function(configurationID, status) {
+		var data = {
+			action: "saveDataSetVisibilityStatus",
+			configurationID: configurationID,
+			status: status,
+			time: Date.now()
+		};
+
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: data,
+			success: function(response) {
+				if (response.success) {
+					// update the status in memory for the appropriate Data Set
+					var configurationID = parseInt(response.content, 10);
+					var newStatus       = response.newStatus;
+					for (var i=0; i<_dataSets.length; i++) {
+						if (_dataSets[i].configuration_id != configurationID) {
+							continue;
+						}
+						_dataSets[i].status = newStatus;
+						break;
+					}
+
+					// ensure the Data Set table reflects this value
+					if ($("#gdDataSetStatus_" + configurationID).length) {
+						if (newStatus == "public") {
+							$("#gdDataSetStatus_" + configurationID).attr("checked", "checked");
+						} else {
+							$("#gdDataSetStatus_" + configurationID).removeAttr("checked");
+						}
+					}
+				}
+				utils.stopProcessing();
+			},
+			error: function() {
+				utils.stopProcessing();
+			}
+		});
 	};
 
 

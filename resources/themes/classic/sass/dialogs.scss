@@ -164,6 +164,14 @@ body .gdMainDialog .ui-dialog-title span {
 	padding: 4px 0px 3px 52px;
 }
 
+.gdDelDataSetCell {
+	background-color: #b33c3c;
+	border-radius: 2px;
+
+	input {
+		margin: 0px;
+	}
+}
 
 #gdLinkURL {
 	font-size: 16pt;

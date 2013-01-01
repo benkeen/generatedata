@@ -38,11 +38,11 @@
 					<tr>
 						<th class="leftAligned">Data Set Name</th>
 						<th class="leftAligned">Data Created</th>
-						<th class="leftAligned">Last Used</th>
+						<th class="leftAligned">Last Modified</th>
 						<th align="center">Public?</th>
 						<th align="center">Rows Generated</th>
 						<th width="60" align="center">Load</th>
-						<th width="30" align="center"><input type="checkbox" id="gdSelectAllDataSets" /></th>
+						<th width="24" align="center" class="gdDelDataSetCell"><input type="checkbox" id="gdSelectAllDataSets" /></th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -69,7 +69,7 @@
 	<div id="gdLinkToDataSet_complete">
 		<p>
 			<input type="checkbox" id="gdDataSetPublic" /> 
-				<label for="gdDataSetPublic">Make this Data Set public.</label>
+				<label for="gdDataSetPublic">I understand that to share this Data Set, I need to make it public.</label>
 		</p>
 		<input type="input" id="gdLinkURL" readonly="true" />
 	</div>

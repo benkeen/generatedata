@@ -249,5 +249,41 @@ class Account {
 			WHERE account_id = $accountID
 		");
 	}
+
+	/**
+	 * Time is currently passed but not used. It's going to be used to ensure that only NEWEST requests
+	 * actually update the record
+	 */
+	public function saveDataSetVisibilityStatus($configurationID, $status, $time) {
+		if (!is_numeric($configurationID)) {
+			return;
+		}
+
+		$prefix    = Core::getDbTablePrefix();
+		$accountID = $this->accountID;
+		$configurationID = mysql_real_escape_string($configurationID);
+		$status = mysql_real_escape_string($status);
+
+		$response = Core::$db->query("
+			UPDATE {$prefix}configurations
+			SET    status = '$status'
+			WHERE  account_id = $accountID AND 
+				   configuration_id = $configurationID
+		");
+
+		if ($response["success"]) {
+			return array(
+				"success" => true,
+				"message" => $configurationID,
+				"newStatus" => $status
+			);
+		} else {
+			return array(
+				"success" => false,
+				"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
+			);
+		}
+
+	}
 }
 
