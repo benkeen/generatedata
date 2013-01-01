@@ -81,6 +81,38 @@ class Account {
 		return $this->accountType;
 	}
 
+	/**
+	 * Loads ANY public data set.
+	 */
+	public function getPublicDataSet($configurationID) {
+		$success = false;
+		$message = "";
+
+		if (!empty($configurationID) && is_numeric($configurationID)) {
+			$prefix   = Core::getDbTablePrefix();		
+			$response = Core::$db->query("
+				SELECT *, unix_timestamp(date_created) as date_created_unix, unix_timestamp(last_updated) as last_updated_unix
+				FROM   {$prefix}configurations
+				WHERE  configuration_id = $configurationID AND
+					   status = 'public'
+			");
+
+			if ($response["success"]) {
+				if (mysql_num_rows($response["results"]) == 1) {
+					$success = true;
+					$message = mysql_fetch_assoc($response["results"]);
+				}
+			} else {	
+				$message = $response["errorMessage"];
+			}
+		}
+
+		return array(
+			"success" => $success,
+			"message" => $message
+		);
+	}
+
 	public function getConfigurations() {
 		$accountID = $this->accountID;
 		$prefix   = Core::getDbTablePrefix();		

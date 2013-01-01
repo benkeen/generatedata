@@ -240,6 +240,14 @@ class AjaxRequest {
 				}
 				break;
 
+			case "getPublicDataSet": 
+				Core::init();
+				$configurationID = $post["dataSetID"];
+				$response = Core::$user->getPublicDataSet($configurationID);
+				$this->response["success"] = $response["success"];
+				$this->response["content"] = $response["message"];
+				break;
+
 /*
 			case "login":
 				break;

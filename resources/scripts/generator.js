@@ -125,7 +125,7 @@ define([
 
 		// main dialog
 		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
-		$("#gdAccountDataSets").on("click", "a", _loadDataSet);
+		$("#gdAccountDataSets").on("click", "a", _onClickLoadDataSet);
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
 		$("#gdAccountDataSets").on("click", _onClickToggleDeleteRow);
 		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
@@ -141,6 +141,38 @@ define([
 		_addRows(_numRowsToShowOnStart);
 		_initInPageCodeMirror();
 		_initTooltips();
+
+		// finally, if the URL contains a Data Set ID, request it from the server
+		var loadDataSetID = utils.getParamByName("load");
+		if (loadDataSetID !== null && /^\d+$/.test(loadDataSetID)) {
+			_getPublicDataSet(loadDataSetID);
+		}
+	};
+
+
+	var _getPublicDataSet = function(dataSetID) {
+		utils.startProcessing();
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				action: "getPublicDataSet",
+				dataSetID: dataSetID
+			},
+			success: function(response) {
+				console.log(response);
+				if (response.success) {
+					_loadDataSet(response.content);
+				} else {
+					// TODO
+				}
+			},
+
+			error: function() {
+				utils.stopProcessing();
+			}
+		});
 	};
 
 
@@ -148,13 +180,17 @@ define([
 	 * Called when the user clicks the "LOAD" link for a particular data set. This queries the account Manager
 	 * to retrieve the data set, and then displays the information in the page.
 	 */
-	var _loadDataSet = function(e) {
+	var _onClickLoadDataSet = function(e) {
 		e.preventDefault();
+		var configurationID = $(e.target).closest("tr").data("id");
+		var dataSet = _getConfiguration(configurationID);
+		_loadDataSet(dataSet);
+	};
 
+
+	var _loadDataSet = function(configuration) {
 		utils.startProcessing();
 
-		var configurationID = $(e.target).closest("tr").data("id");
-		var configuration = _getConfiguration(configurationID);
 		var json = $.evalJSON(configuration.content);
 		var numRows = json.hasOwnProperty("dataTypes") ? json.dataTypes.length : _numRowsToShowOnStart;
 
@@ -162,7 +198,7 @@ define([
 		_clearForm(numRows);
 
 		// now the form's been cleared, store the new configuration ID
-		_currConfigurationID = configurationID;
+		_currConfigurationID = configuration.configuration_id;
 
 		// now start populating the page
 		$("#gdDataSetName").val(configuration.configuration_name);
@@ -254,7 +290,6 @@ define([
 	 * Serializes the current data set and passes it over to the Account Manager to actually save.
 	 */
 	var _saveDataSet = function() {
-		var buttons = [];
 		var newDataSetName = $("#gdDataSetName").val();
 
 		// if there's no Data Set name provided, briefly highlight the field to draw attention to it
@@ -924,7 +959,6 @@ define([
 
 	var _incrementConfigurationRowGenerationCount = function(configurationID, numRows) {
 		// first, update the actual data set
-		var updatedDataSets = [];
 		var newNum = "";
 		for (var i=0; i<_dataSets.length; i++) {
 			if (_dataSets[i].configuration_id == configurationID) {
@@ -933,7 +967,6 @@ define([
 				_dataSets[i].num_rows_generated = newNum;
 			}
 		}
-
 
 		// second, update the displayed data. This does surgery on the Data Sets tab to just update the one DOM
 		// element rather than redraw everything
@@ -1252,12 +1285,6 @@ define([
 
 	var _onSuccessDeleteDataSets = function(response) {
 		if (response.success) {
-
-			// update the first tab (Num Saved Data Sets)
-			var deletedConfigurationIDs = response.content;
-
-			// var _accountInfo = null;
-			// var _dataSets = [];
 			var remainingDataSets = [];
 			for (var i=0; i<_dataSets.length; i++) {
 				if ($.inArray(_dataSets[i].configuration_id, response.content) == -1) {
@@ -1423,7 +1450,7 @@ define([
 			open: function() {
 				if (_currConfigurationID !== null) {
 					var url = window.location.href.replace(/(#.*)/, "");
-					url = url.replace(/(\?.*)/, "") + "?load=" + _currConfigurationID;
+					url = url.replace(/(\?.*)/, "");
 					$("#gdLinkURL").data("url", url);
 
 					var config = _getConfiguration(_currConfigurationID);
