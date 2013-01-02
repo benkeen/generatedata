@@ -116,6 +116,7 @@ define([
 		$("#gdTextSize").on("click", "li", _changeTextSize);
 		$("#gdGenerationPanelCancel").on("click", _cancelGeneration);
 		$("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
+		$("#gdSettingsForm").on("submit", _submitSettingsForm);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveButton);
@@ -280,16 +281,7 @@ define([
 	 */
 	var _onClickSaveButton = function() {
 		if (C.DEMO_MODE) {
-			var content = '<p>This is a demo only. Please download the script to save your Data Sets.<br />' +
-				'<a href="https://github.com/benkeen/generatedata" target="_blank">https://github.com/benkeen/generatedata</a></p>';
-			$('<div>' + content + '</div>').dialog({
-				title: "Sorry!",
-				width: 500,
-				buttons: [{
-					text: "Close",
-					click: function() { $(this).dialog("close"); }
-				}]
-			});
+			_showDemoOnlyDialog();
 		} else {
 			if (_currConfigurationID === null) {
 				_saveDataSet();
@@ -1245,7 +1237,6 @@ define([
 	};
 
 	var _confirmDeleteDataSets = function() {
-
 	};
 
 	/**
@@ -1279,6 +1270,12 @@ define([
 	};
 
 	var _onClickDeleteDataSets = function() {
+		if (C.DEMO_MODE) {
+			_closeMainDialog();
+			_showDemoOnlyDialog();
+			return false;
+		}
+
 		// get the configuration IDs of the selected rows
 		var configurationIDs = [];
 		var cbs = $("#gdAccountDataSets tbody input:checked");
@@ -1559,6 +1556,27 @@ define([
 				utils.stopProcessing();
 			}
 		});
+	};
+
+	var _showDemoOnlyDialog = function() {
+		var content = '<p>This is a demo only. Please download the script to save your Data Sets.<br />' +
+			'<a href="https://github.com/benkeen/generatedata" target="_blank">https://github.com/benkeen/generatedata</a></p>';
+		$('<div>' + content + '</div>').dialog({
+			title: "Sorry!",
+			width: 500,
+			modal: true,
+			buttons: [{
+				text: "Close",
+				click: function() { $(this).dialog("close"); }
+			}]
+		});
+	};
+
+	var _submitSettingsForm = function(e) {
+		if (C.DEMO_MODE) {
+			_showDemoOnlyDialog();
+			e.preventDefault();
+		}
 	};
 
 

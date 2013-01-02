@@ -24,7 +24,7 @@ class AjaxRequest {
 		}
 
 		$this->action = $action;
-		$post = Utils::sanitize($post);
+		$post = Utils::cleanHash($post);
 
 		switch ($this->action) {
 

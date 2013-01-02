@@ -42,6 +42,13 @@ class Generator {
 		}
 
 		$this->numResults = $postData["gdNumRowsToGenerate"];
+
+		if (Core::checkDemoMode()) {
+			if ($this->numResults > 500) {
+				$this->numResults = 500;
+			}
+		}
+
 		$this->countries  = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
 		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 		$this->postData   = $postData;

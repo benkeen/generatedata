@@ -128,8 +128,8 @@ require([
 					},
 					success: function(json) {
 						utils.stopProcessing();
-						if (json.success === 0) {
-							_displayError(json.message);
+						if (!json.success) {
+							_displayError(json.content);
 						} else {
 							gotoNextStep(currentStep);
 						}

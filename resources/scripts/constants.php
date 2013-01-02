@@ -39,7 +39,7 @@ define([], function() {
 
 		GENERATE_IN_PAGE_BATCH_SIZE: 100,
 
-		DEMO_MODE: <?php echo Core::checkSafeMode(); ?>,
+		DEMO_MODE: <?php echo Core::checkDemoMode(); ?>,
 
 		THEME: "<?php Settings::safeDisplaySetting("theme") ?>",
 

@@ -69,11 +69,13 @@ class Utils {
 		if (is_array($input)) {
 			$output = array();
 			foreach ($input as $k=>$i) {
-				$output[$k] = self::sanitize($i);
+				$output[$k] = Utils::sanitize($i);
 			}
 		} else {
 			if (get_magic_quotes_gpc()) {
 				$output = stripslashes($input);
+			} else {
+				$output = $input;
 			}
 		}
 

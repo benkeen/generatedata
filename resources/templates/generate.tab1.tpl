@@ -84,7 +84,8 @@
 
 		<div id="gdGenerateSection">
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
-			Generate <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="1000" /> rows
+			Generate <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="500" 
+				{if $inDemoMode == "true"}readonly="readonly"{/if} /> rows
 			<span>
 				<input type="radio" name="gdExportTarget" id="gdExportTarget1" value="inPage" checked="checked" />
 					<label for="gdExportTarget1">Generate in-page</label>
