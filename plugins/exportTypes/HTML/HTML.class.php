@@ -33,7 +33,7 @@ class HTML extends ExportTypePlugin {
 		$htmlFormat = (isset($postData["etHTMLExportFormat"])) ? $postData["etHTMLExportFormat"] : "custom";
 
 		if ($htmlFormat == "custom") {
-			$smartyTemplate = (get_magic_quotes_gpc()) ? stripslashes($postData["etHTMLCustomSmarty"]) : $postData["etHTMLCustomSmarty"];
+			$smartyTemplate = (get_magic_quotes_gpc()) ? stripslashes($postData["etHTMLCustomHTMLSource"]) : $postData["etHTMLCustomHTMLSource"];
 			$content .= $this->genFormatCustom($data, $smartyTemplate);
 		} else {
 
@@ -99,6 +99,7 @@ class HTML extends ExportTypePlugin {
 	</td>
 </tr>
 </table>
+<input type="hidden" name="etHTMLCustomHTMLSource" id="etHTMLCustomHTMLSource" />
 
 <div id="etHTMLCustomFormatDialog" style="display:none">
 	<div style="width: 300px; float: left;">

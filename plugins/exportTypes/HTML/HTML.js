@@ -102,10 +102,12 @@
 	 * mode for the in-page editor.
 	 */
 	var _onGenerate = function(msg) {
+		$("#etHTMLCustomHTMLSource").val(_codeMirror.getValue());
 		if (msg.exportTarget != "inPage" || msg.exportType != "HTML") {
 			return;
 		}
 		msg.editor.setOption("mode", "xml");
+
 	};
 
 	var _loadSettings = function(settings) {

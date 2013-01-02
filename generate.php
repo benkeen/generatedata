@@ -6,6 +6,7 @@ Core::init("generation");
 $gen = new Generator($_POST);
 $response = $gen->generate();
 
+
 header("Cache-Control: private, no-cache, must-revalidate");
 header("Content-Type: {$response["contentTypeHeader"]}");
 
