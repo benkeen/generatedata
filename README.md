@@ -1,14 +1,23 @@
 # generatedata.com
-Ever needed custom formatted sample / test data, like, bad? Well, that's the idea of the Data
-Generator. It's a free, open source script written in JavaScript, PHP and MySQL that lets you
-quickly generate large volumes of custom data in a variety of formats for use in testing software,
-populating databases, and scoring with girls.
+Sometimes you need fake data for things like testing software, populating databases and creating 
+realistic-looking mockups. For text, we have lorem ipsum; but for everything else...? This tool was 
+written to provide a quick and simple way to let you generate large volumes of custom data in 
+whatever format you require. 
 
 ## Demo
+
+### Version 1.0.0 
 There's a free online version found on our website:
 http://www.generatedata.com/#generator
 
 The online demo is actually running a very old version of the code, no longer available.
+
+### Version 3.0.0 alpha
+http://alpha.generatedata.com
+
+Currently the 3.0.0 branch is in alpha phase, meaning it's not production ready - lots of bugs to squash!
+However, that's the version I'd suggest downloading and using. I'm working on this version currently 
+(Jan 2013) and hope to get it into Beta / final release fairly soon.
 
 ## Versions
 
