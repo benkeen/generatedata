@@ -1,7 +1,7 @@
 <ul id="gdActionIcons">
-	<li id="gdLoadLink" class="loading"><img src="resources/themes/{$theme}/images/load.png" title="Your Data Sets" /></li>
-	<li id="gdEmptyForm"><img src="resources/themes/{$theme}/images/trash.png" title="Clear the page" /></li>
-	<li id="gdDataSetLink" class="loading"><img src="resources/themes/{$theme}/images/link.png" title="Link to this Data Set" /></li>
+	<li id="gdLoadLink" class="loading"><img src="resources/themes/{$theme}/images/load.png" title="{$L.your_data_sets}" /></li>
+	<li id="gdEmptyForm"><img src="resources/themes/{$theme}/images/trash.png" title="{$L.clear_the_page}" /></li>
+	<li id="gdDataSetLink" class="loading"><img src="resources/themes/{$theme}/images/link.png" title="{$L.link_to_this_data_set}" /></li>
 </ul>
 
 <form id="gdData" method="post">
@@ -13,13 +13,13 @@
 	<input type="hidden" name="gdExportFormat" id="gdExportFormat" />
 
 	<div id="gdGenerateSubtab1">
-		<input type="text" id="gdDataSetName" placeholder="Your data set name here..." /><button id="gdSaveBtn">SAVE</button>
+		<input type="text" id="gdDataSetName" placeholder="{$L.your_data_set_name_here}" /><button id="gdSaveBtn">{$L.save|upper}</button>
 
 		<div class="gdClear" style="padding-bottom: 20px"></div>		
 
 		<h2>
-			COUNTRY-SPECIFIC DATA
-			<span data-help-section="countryData" class="gdSectionHelp" title="This section lets you control what country data should be included in your generated data sets. The values you select here affect certain Data Types that you may select such as Region, Postal/Zip and City."></span>
+			{$L.country_specific_data|upper}
+			<span data-help-section="countryData" class="gdSectionHelp" title="{$L.country_specific_data_help}"></span>
 		</h2>
 
 		{country_list}
@@ -32,8 +32,8 @@
 		<div class="gdClear" style="padding-bottom: 20px"></div>
 
 		<h2>
-			DATA SET
-			<span data-help-section="dataTypes" class="gdSectionHelp" title="This is where you define exactly what kind of data you want to generate. Try filling in a row or two and click the Generate button. You'll get the hang of it pretty fast."></span>
+			{$L.data_set}
+			<span data-help-section="dataTypes" class="gdSectionHelp" title="{$L.data_set_help}"></span>
 		</h2>
 
 		<ul class="gdTableHeadings">
@@ -64,14 +64,14 @@
 		<div class="gdClear" style="padding-bottom: 30px"></div>
 
 		<h2>
-			EXPORT TYPES
-			<span data-help-section="exportTypes" class="gdSectionHelp" title="This section lets you control the format of your generated data. Each format may provide different options to let you tailor the output to exactly what you want."></span>
+			{$L.export_types|upper}
+			<span data-help-section="exportTypes" class="gdSectionHelp" title="{$L.export_types_help}"></span>
 		</h2>
 
 		<div id="gdExportTypeTabs" class="gdSmallTabs">
 			<span id="gdShowSettingsLink">
 				<span>+</span>
-				<a href="#">hide data format options</a>
+				<a href="#">{$L.hide_data_format_options}</a>
 			</span>
 			{export_type_tabs}
 			{foreach from=$exportTypeAdditionalSettings key=k item=i}
@@ -84,15 +84,15 @@
 
 		<div id="gdGenerateSection">
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
-			Generate <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="500" 
-				{if $inDemoMode == "true"}readonly="readonly"{/if} /> rows
+			{$L.generate} <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="500" 
+				{if $inDemoMode == "true"}readonly="readonly"{/if} /> {$L.rows}
 			<span>
 				<input type="radio" name="gdExportTarget" id="gdExportTarget1" value="inPage" checked="checked" />
-					<label for="gdExportTarget1">Generate in-page</label>
+					<label for="gdExportTarget1">{$L.generate_in_page}</label>
 				<input type="radio" name="gdExportTarget" id="gdExportTarget2" value="newTab" />
-					<label for="gdExportTarget2">New window/tab</label>
+					<label for="gdExportTarget2">{$L.new_window_or_tab}</label>
 				<input type="radio" name="gdExportTarget" id="gdExportTarget3" value="promptDownload" />
-					<label for="gdExportTarget3">Prompt to download</label>
+					<label for="gdExportTarget3">{$L.prompt_to_download}</label>
 			</span>
 		</div>
 	</div>
@@ -100,10 +100,10 @@
 	<div id="gdGenerateSubtab2" class="hidden">
 		<div id="gdGenerationPanel">
 			<div>
-				Generated <span id="gdGenerateCount"></span> of <span id="gdGenerateTotal"></span> results
+				{$L.generated_X_of_Y_results}
 			</div>
 			<progress id="gdProgressMeter" max="" value=""></progress>
-			<a href="" id="gdGenerationPanelCancel">cancel</a>
+			<a href="" id="gdGenerationPanelCancel">{$L.cancel}</a>
 		</div>
 		<textarea id="gdGeneratedData" style="height: 600px"></textarea>
 		<ul id="gdTextSize">
@@ -112,7 +112,7 @@
 			<li class="large">A</li>
 		</ul>
 		<button class="gdPrimaryButton" id="gdBackButton" title="Back">&laquo;</button>
-		<button class="gdPrimaryButton" id="gdRegenerateButton">Regenerate</button>
+		<button class="gdPrimaryButton" id="gdRegenerateButton">{$L.regenerate}</button>
 		<div class="gdClear"></div>
 	</div>
 

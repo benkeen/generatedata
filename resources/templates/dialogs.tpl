@@ -3,9 +3,9 @@
 <div id="gdMainDialog" class="hidden">
 	<div id="gdMainDialogTabs">
 		<ul>
-			<li id="gdMainDialogTab1" class="gdSelected">Your Account</li>
-			<li id="gdMainDialogTab2">Your Data Sets</li>
-			<li id="gdMainDialogTab3">Data Types</li>
+			<li id="gdMainDialogTab1" class="gdSelected">{$L.your_account}</li>
+			<li id="gdMainDialogTab2">{$L.your_data_sets}</li>
+			<li id="gdMainDialogTab3">{$L.data_types}</li>
 		</ul>
 	</div>
 
@@ -13,35 +13,35 @@
 		<div id="gdMainDialogTab1Content">
 			<table>
 			<tr>
-				<td width="200"><b>Account type</b></td>
+				<td width="200"><b>{$L.account_type}</b></td>
 				<td id="gdAccount_AccountType"></td>
 			</tr>
 			<tr>
-				<td><b>Num Saved Data Sets</b></td>
+				<td><b>{$L.num_saved_data_sets}</b></td>
 				<td id="gdAccount_NumSavedDataSets"></td>
 			</tr>
 			<tr>
-				<td><b>Total rows generated</b></td>
+				<td><b>{$L.total_rows_generated}</b></td>
 				<td id="gdAccount_TotalRowsGenerated"></td>
 			</tr>
 			<tr>
-				<td><b>Date account created</b></td>
+				<td><b>{$L.date_account_created}</b></td>
 				<td id="gdAccount_DateAccountCreated"></td>
 			</tr>
 			</table>
 		</div>
 
 		<div id="gdMainDialogTab2Content" class="hidden">
-			<p id="gdNoAccountDataSets" class="hidden">You don't have any saved data sets.</p>
+			<p id="gdNoAccountDataSets" class="hidden">{$L.no_saved_data_sets}</p>
 			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets">
 				<thead>
 					<tr>
-						<th class="leftAligned">Data Set Name</th>
-						<th class="leftAligned">Data Created</th>
-						<th class="leftAligned">Last Modified</th>
-						<th align="center">Public?</th>
-						<th align="center">Rows Generated</th>
-						<th width="60" align="center">Load</th>
+						<th class="leftAligned">{$L.data_set_name}</th>
+						<th class="leftAligned">{$L.data_created}</th>
+						<th class="leftAligned">{$L.last_modified}</th>
+						<th align="center">{$L.public_q}</th>
+						<th align="center">{$L.rows_generated}</th>
+						<th width="60" align="center">{$L.load}</th>
 						<th width="24" align="center" class="gdDelDataSetCell"><input type="checkbox" id="gdSelectAllDataSets" /></th>
 					</tr>
 				</thead>
@@ -63,13 +63,13 @@
 <div id="gdLinkToDataSetDialog" class="hidden">
 	<div id="gdLinkToDataSet_incomplete">
 		<p>
-			De-<i>nied</i>. In order to share this Data Set with other people, you need to save it first.
+			{$L.save_data_set_to_link}
 		</p>
 	</div>
 	<div id="gdLinkToDataSet_complete">
 		<p>
 			<input type="checkbox" id="gdDataSetPublic" /> 
-				<label for="gdDataSetPublic">I understand that to share this Data Set, I need to make it public.</label>
+			<label for="gdDataSetPublic">{$L.make_data_set_public_agreement}</label>
 		</p>
 		<input type="input" id="gdLinkURL" readonly="true" />
 	</div>
