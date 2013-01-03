@@ -40,7 +40,7 @@
 				<div class="gdError" id="dbUsername_error"></div>
 				<div class="gdField">
 					<label for="dbPassword">{$L.mysql_password}</label>
-					<input type="text" id="dbPassword" value="" class="pwdField" size="12" />
+					<input type="text" id="dbPassword" value="" class="pwdField" size="12" autocomplete="off" />
 				</div>
 				<div class="gdError" id="dbPassword_error"></div>
 				<div class="gdField">

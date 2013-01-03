@@ -26,12 +26,29 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-	var _saveRow = function() {
-
+	var _saveRow = function(rowNum) {
+		return {
+			example: $("#dtExample_" + rowNum).val(),
+			incrementStart: $("#dtAutoIncrementStart_" + rowNum).val(),
+			incrementValue: $("#dtAutoIncrementValue_" + rowNum).val(),
+			incrementPlaceholder: $("#dtAutoIncrementPlaceholder_" + rowNum).val()
+		};
 	};
 
-	var _loadRow = function() {
-
+	var _loadRow = function(rowNum, data) {
+		return {
+			execute: function() { },
+			isComplete: function() {
+				if ($("#dtAutoIncrementPlaceholder_" + rowNum).length) {
+					$("#dtExample_" + rowNum).val(data.example);
+					$("#dtAutoIncrementStart_" + rowNum).val(data.incrementStart);
+					$("#dtAutoIncrementValue_" + rowNum).val(data.incrementValue);
+					$("#dtAutoIncrementPlaceholder_" + rowNum).val(data.incrementPlaceholder);
+					return true;
+				}
+				return false;
+			}
+		};
 	};
 
 	var _exampleChange = function(msg) {
@@ -73,31 +90,3 @@ define([
 		saveRow: _saveRow
 	});
 });
-
-
-/*
-var AutoIncrement_ns = {
-	loadRow: function(rowNum, data)
-	{
-		return [
-			function() {
-				$("#dt_" + rowNum).val(data.example);
-				$("#autoIncrementStart_" + rowNum).val(data.start);
-				$("#autoIncrementValue_" + rowNum).val(data.value);
-				$("#autoIncrementPlaceholder_" + rowNum).val(data.placeholder);
-			},
-			function() { return $("#autoIncrementPlaceholder_" + rowNum).length > 0; }
-		];
-	},
-
-	saveRow: function(rowNum)
-	{
-		return {
-			"example":     $("#dt_" + rowNum).val(),
-			"start":       $("#autoIncrementStart_" + rowNum).val(),
-			"value":       $("#autoIncrementValue_" + rowNum).val(),
-			"placeholder": $("#autoIncrementPlaceholder_" + rowNum).val()
-		};
-	}
-}
-*/

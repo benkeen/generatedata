@@ -43,6 +43,7 @@ class Core {
 	public static $exportTypePlugins;
 	public static $countryPlugins;
 	public static $geoData;
+	public static $allowThemes = false;
 
 
 	/**
@@ -123,6 +124,11 @@ class Core {
 			}
 			if (isset($defaultLanguageFile)) {
 				self::$defaultLanguageFile = $defaultLanguageFile;
+			}
+
+			// temporary, during alph
+			if (isset($allowThemes)) {
+				self::$allowThemes = $allowThemes;
 			}
 		}
 	}
