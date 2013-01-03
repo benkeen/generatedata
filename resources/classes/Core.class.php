@@ -86,6 +86,7 @@ class Core {
 			self::initExportTypes($runtimeContext);
 			self::initDataTypes($runtimeContext);
 			self::initUser();
+			self::initSessions();
 		}
 	}
 
@@ -353,5 +354,15 @@ class Core {
 			$setup = Settings::getSetting("userAccountSetup");
 			self::$user = new Account("anonymous");
 		}
+	}
+
+	private function initSessions() {
+		$sess = new SessionManager();
+		// if (!empty($g_session_save_path))
+		//   session_save_path($g_session_save_path);
+
+		session_start();
+		header("Cache-control: private");
+		//header("Content-Type: text/html; charset=utf-8");
 	}
 }

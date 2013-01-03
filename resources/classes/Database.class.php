@@ -121,6 +121,14 @@ class Database {
 			"results"      => $results
 		);
 	}
+
+	/**
+	 * Returns the database connection. Used by SessionManager.
+	 * @access public
+	 */
+	public function getDBLink() {
+		return $this->link;
+	}
 }
 
 

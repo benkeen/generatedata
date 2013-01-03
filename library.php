@@ -33,6 +33,7 @@ require_once(dirname(__FILE__) . "/resources/libs/smarty/Smarty.class.php");
 //require_once(dirname(__FILE__) . "/classes/Exceptions.class.php");
 //require_once(dirname(__FILE__) . "/classes/GDException.class.php");
 
+
 // handle magic quotes
 if (get_magic_quotes_gpc()) {
     $process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);

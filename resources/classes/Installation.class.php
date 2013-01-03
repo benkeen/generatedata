@@ -61,7 +61,10 @@ END;
 			"DROP TABLE {$prefix}cities",
 			"DROP TABLE {$prefix}configurations",
 			"DROP TABLE {$prefix}countries",
+			"DROP TABLE {$prefix}first_names",
+			"DROP TABLE {$prefix}last_names",
 			"DROP TABLE {$prefix}regions",
+			"DROP TABLE {$prefix}sessions",
 			"DROP TABLE {$prefix}settings",
 			"DROP TABLE {$prefix}user_accounts"
 		);
@@ -139,6 +142,16 @@ END;
 				('installedCountries', ''),
 				('theme', '$defaultTheme')
 		";
+
+		$queries[] = "
+			CREATE TABLE {$prefix}sessions (
+				session_id varchar(100) NOT NULL default '',
+				session_data text NOT NULL,
+				expires int(11) NOT NULL default '0',
+				PRIMARY KEY (session_id)
+			)
+		";
+
 		$queries[] = "
 			CREATE TABLE {$prefix}user_accounts (
 				account_id mediumint(8) unsigned NOT NULL auto_increment,
