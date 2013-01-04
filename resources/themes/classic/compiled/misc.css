@@ -32,12 +32,17 @@ div.gdClear {
 
 noscript {
   background-color: #ffffcc;
-  padding: 15px;
+  padding: 10px;
   font-size: 10pt;
   border-radius: 5px;
-  margin: 10px 0px;
+  margin: 0px auto;
   text-shadow: 0 1px 0 #fff;
-  box-shadow: 2px 4px 5px #666666; }
+  box-shadow: 2px 4px 5px #666666;
+  display: block;
+  width: 950px; }
+  noscript p {
+    font-size: 12pt;
+    color: #6d6d41; }
 
 /* jQuery UI style overrides */
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {

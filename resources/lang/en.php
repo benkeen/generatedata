@@ -175,6 +175,7 @@ $L["data_set_help"] = "This is where you define exactly what kind of data you wa
 $L["export_types"] = "Export Types";
 $L["export_types_help"] = "This section lets you control the format of your generated data. Each format may provide different options to let you tailor the output to exactly what you want.";
 $L["hide_data_format_options"] = "hide data format options";
+$L["show_data_format_options"] = "show data format options";
 $L["rows"] = "rows";
 $L["generate_in_page"] = "Generate in-page";
 $L["new_window_or_tab"] = "New window/tab";
@@ -196,3 +197,42 @@ $L["list_core_events"] = "List <b>core</b> events";
 $L["limit_pub_sub_console_messages"] = "Limit pub/sub console messages to specific modules:";
 $L["all_data_type_plugins"] = "All Data Type plugins";
 $L["all_export_type_plugins"] = "All Export Type plugins";
+$L["about_title"] = "What <i>is</i> this thing?";
+$L["about_para1"] = "Sometimes you need fake data for things like testing software, populating databases and creating realistic-looking mockups. For text, we have <i>lorem ipsum</i>; but for everything else...? This tool was written to provide a quick and simple way to let you generate large volumes of custom data in whatever format you require.";
+$L["about_para2"] = "The <b>Generate</b> page contains the entire script: just fill in the various fields in the page to construct the data set you're interested in, then click the Generate button. And hey presto! Easy, huh?";
+$L["extend_id"] = "Extend it";
+$L["about_para3"] = "The out-the-box script contains the sort of functionality you generally need. But nothing's ever complete - maybe you need to generate random esoteric math equations, pull random tweets or display random images from Flickr with the word \"Red-backed vole\" in the title. Who knows. Everyone's use-case is different.";
+$L["about_para4"] = "With this in mind, the new version of the script (3.0.0+) was designed to be fully extensible: developers can write their own Data Types to generate new types of random data, and even customize the Export Types - i.e. the format in which the data is output. For people interested in generating more accurate localized geographical data, they can also add new Country plugins that supply region names (states, provinces, territories etc), city names and postal/zip code formats for their country of choice.";
+$L["about_para5"] = "For more information on how to extend it, visit the <a href=\"docs/\">developer documentation</a>.";
+$L["a_few_links"] = "A few links";
+$L["fork_on_github"] = "Fork the code on github";
+$L["read_developer_doc"] = "Read the developer documentation";
+$L["goto_website"] = "Go to the website";
+$L["latest_project_news"] = "Latest project news";
+
+$L["last_edited"] = "last edited";
+$L["last_saved"] = "last saved";
+$L["please_confirm"] = "Please confirm";
+$L["yes"] = "Yes";
+$L["no"] = "No";
+$L["not_saved"] = "not saved";
+$L["please_enter_all"] = "Please enter all";
+$L["export_type_validate_error"] = "Ack! There was an error in the Export Type's validate() function. Sorry, we can't proceed - call a developer!";
+$L["refresh_page"] = "Refresh Page";
+$L["close"] = "Close";
+$L["anonymous_admin_account"] = "Anonymous admin account";
+$L["report_bug"] = "Report a bug";
+$L["developer_doc"] = "Developer doc";
+$L["no_data_types_found"] = "No Data Types found";
+$L["no_export_types_found"] = "No Export Types found";
+$L["installation_error"] = "Installation error";
+$L["continue_rightarrow"] = "Continue &raquo;";
+
+
+
+
+
+
+
+
+

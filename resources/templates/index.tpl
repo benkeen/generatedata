@@ -27,23 +27,23 @@
 		<nav>
 			{if $settings.userAccountSetup != "anonymous"}<a href="#" id="gdUserAccountLink">Your Account</a> |{/if}
 			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> <span class="gdHideNoJS">|</span>
+			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> |
 			{language_dropdown nameId="gdSelectLanguage" disabled=true}
 		</nav>
 	</header>
-	<nav id="gdMainTabs">
+	<nav id="gdMainTabs" class="gdHideNoJS">
 		<span id="gdDataSetStatusLine"></span>
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdMainTab1" class="gdSelected">{$L.generate}</li>
-			{if $settings.userAccountSetup == "multiple"}<li id="gdMainTab2" class="gdHideNoJS">{$L.accounts}</li>{/if}
-			<li id="gdMainTab3" class="gdHideNoJS">{$L.settings}</li>
-			<li id="gdMainTab4" class="gdHideNoJS">{$L.about}</li>
+			{if $settings.userAccountSetup == "multiple"}<li id="gdMainTab2">{$L.accounts}</li>{/if}
+			<li id="gdMainTab3">{$L.settings}</li>
+			<li id="gdMainTab4">{$L.about}</li>
 		</ul>
 	</nav>
-	<section>
-		<noscript><p>{$L.no_js}</p></noscript>
-		<div id="gdContent" class="gdHideNoJS">
+	<noscript><p>{$L.no_js}</p></noscript>
+	<section class="gdHideNoJS">
+		<div id="gdContent">
 			<ul class="gdMainTabContent">
 				<li id="gdMainTab1Content">{include file="generate.tab1.tpl"}</li>
 				{if $settings.userAccountSetup == "multiple"}<li id="gdMainTab2Content" style="display:none">{include file="generate.tab2.tpl"}</li>{/if}

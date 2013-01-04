@@ -28,7 +28,7 @@ function smarty_function_language_dropdown($params, &$smarty) {
 	$disabledAttr = ($disabled) ? ' disabled="disabled"' : "";
 
 	echo <<< END
-	<select name="$nameId" id="$nameId" class="gdHideNoJS"$disabledAttr>
+	<select name="$nameId" id="$nameId"$disabledAttr>
 		<option value="">{$L["select_language"]}</option>
 		{$options}
 	</select>

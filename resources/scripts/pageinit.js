@@ -3,9 +3,10 @@
 define([
 	"manager",
 	"utils",
+	"lang",
 	"jquery-ui",
 	"jquery-json"
-], function(manager, utils) {
+], function(manager, utils, L) {
 
 	"use strict";
 
@@ -22,18 +23,15 @@ define([
 	var _currMainTab = 1;
 
 	var _init = function() {
-
 		// show all those elements in the page that were marked as being hidden if no JS
-		$(".gdHideNoJS").show();
-
+		$(".gdHideNoJS").show("fade");
 		_initStartTab();
 		_initMainTabs();
 		$("#gdSelectLanguage").bind("change", _changeLanguage);
 
 		// for the Settings tab
-		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: "No Data Types found" });
-		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: "No Export Types found" });
-
+		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: L.no_data_types_found });
+		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: L.no_export_types_found });
 		utils.initMainSpinner();
 	};
 

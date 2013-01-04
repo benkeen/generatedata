@@ -52,7 +52,7 @@ require([
 			autoOpen:  true,
 			modal:     true,
 			resizable: false,
-			title:     "Installation error",
+			title:     L.installation_error,
 			width:     300
 		});
 	}
@@ -232,7 +232,7 @@ require([
 					pluginManager.installPlugins({
 						errorHandler: installError,
 						onCompleteHandler: function() {
-							$("#gdInstallPluginsBtn").html("Continue &raquo;").fadeIn();
+							$("#gdInstallPluginsBtn").html(L.continue_rightarrow).fadeIn();
 							_currStep++;
 							_pluginsInstalled = true;
 							utils.stopProcessing();

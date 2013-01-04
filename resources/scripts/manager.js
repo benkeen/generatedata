@@ -323,8 +323,6 @@ define([
 	 * Calls the initialization methods of all registered modules.
 	 */
 	var _initAll = function() {
-
-
 		for (var moduleID in _modules) {
 			if (_modules.hasOwnProperty(moduleID)) {
 				_init(moduleID);

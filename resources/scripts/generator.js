@@ -240,7 +240,7 @@ define([
 
 		// update the status line
 		var lastUpdated = moment.unix(configuration.last_updated_unix).format("h:mm A, MMM Do YYYY");
-		$("#gdDataSetStatusLine").html("last edited " + lastUpdated);
+		$("#gdDataSetStatusLine").html(L.last_edited + " " + lastUpdated);
 
 		utils.stopProcessing();
 
@@ -359,7 +359,7 @@ define([
 				if (response.success) {
 					_currConfigurationID = response.content;
 					var lastUpdated = moment.unix(response.lastUpdated).format("h:mm A, MMM Do YYYY");
-					$("#gdDataSetStatusLine").html("last saved: " + lastUpdated).css("color", "#7fbcf8").animate({ color: "#666666" }, 1400);
+					$("#gdDataSetStatusLine").html(L.last_saved + " " + lastUpdated).css("color", "#7fbcf8").animate({ color: "#666666" }, 1400);
 					_getAccount();
 				} else {
 					// TODO
@@ -471,19 +471,19 @@ define([
 
 		if (opts.requireConfirmation) {
 			$("#gdEmptyFormDialog").html("<p>" + L.confirm_empty_form + "</p>").dialog({
-				title: "Please confirm",
+				title: L.please_confirm,
 				modal: true,
 				width: 400,
 				buttons: [
 					{
-						text: "Yes",
+						text: L.yes,
 						click: function() {
 							_clearForm(opts.numRows);
 							$(this).dialog("close");
 						}
 					},
 					{
-						text: "No",
+						text: L.no,
 						click: function() {
 							$(this).dialog("close");
 						}
@@ -505,7 +505,7 @@ define([
 		_selectExportTypeTab($(".gdDefaultExportType").data("exportType"), true);
 		manager.resetExportTypes();
 
-		$("#gdDataSetStatusLine").html("not saved");
+		$("#gdDataSetStatusLine").html(L.not_saved);
 
 		manager.publish({
 			sender: MODULE_ID,
@@ -590,7 +590,7 @@ define([
 				function() {
 					_showExportTypeSettings = true;
 					$("#gdShowSettingsLink span").html("-");
-					$("#gdShowSettingsLink a").html("hide data format options");
+					$("#gdShowSettingsLink a").html(L.hide_data_format_options);
 				}
 			);
 		}
@@ -603,7 +603,7 @@ define([
 			function() {
 				_showExportTypeSettings = false;
 				$("#gdShowSettingsLink span").html("+");
-				$("#gdShowSettingsLink a").html("show data format options");
+				$("#gdShowSettingsLink a").html(L.show_data_format_options);
 			}
 		);
 	};
@@ -812,7 +812,7 @@ define([
 				if (L.exportTypePlugins[_currExportType].hasOwnProperty("row_label_plural")) {
 					label = L.exportTypePlugins[_currExportType].row_label_plural;
 				}
-				var message = "Please enter all " + label + ".";
+				var message = L.please_enter_all + " " + label + ".";
 				utils.addValidationErrors({ els: rowsMissingTitleEls, error: message });
 			}
 		}
@@ -821,7 +821,7 @@ define([
 
 		var exportTypeValidationErrors = manager.validateExportType({ exportType: _currExportType, rows: validRowIDs });
 		if (!$.isArray(exportTypeValidationErrors)) {
-			utils.addValidationErrors({ els: null, error: "Ack! There was an error in the Export Type's validate() function. Sorry, we can't proceed - call a developer!" });
+			utils.addValidationErrors({ els: null, error: L.export_type_validate_error });
 		} else {
 			utils.addValidationErrors(exportTypeValidationErrors);
 		}
@@ -919,7 +919,7 @@ define([
 			error: function(response) {
 				_isGenerating = false;
 				utils.stopProcessing();
-				console.log("error response: ", response);
+//				console.log("error response: ", response);
 			}
 		});
 	};
@@ -1017,7 +1017,7 @@ define([
 					onCompleteHandler: function() {
 						$("#gdPluginInstallation").dialog("option", "buttons", [
 							{
-								text: "Refresh Page",
+								text: L.refresh_page,
 								click: function() {
 									window.location.reload(true); // window.location.replace("index.php?message=plugins_reset#t3");
 								}
@@ -1028,7 +1028,7 @@ define([
 			},
 			buttons: [
 				{
-					text: "Close",
+					text: L.close,
 					click: function() {
 						$(this).dialog("close");
 					}
@@ -1093,13 +1093,13 @@ define([
 				if ($("#gdMainDialog").css("display") == "block") {
 					switch (newTab) {
 						case 1:
-							$("#gdMainDialog").dialog("option", "buttons", [{ text: "Close", click: function() { $(this).dialog("close"); } }]);
+							$("#gdMainDialog").dialog("option", "buttons", [{ text: L.close, click: function() { $(this).dialog("close"); } }]);
 							break;
 						case 2:
 							_updateMainDialogDeleteButton();
 							break;
 						case 3:
-							$("#gdMainDialog").dialog("option", "buttons", [{ text: "Close", click: function() { $(this).dialog("close"); } }]);
+							$("#gdMainDialog").dialog("option", "buttons", [{ text: L.close, click: function() { $(this).dialog("close"); } }]);
 							if (_currDataTypeHelp === null) {
 								var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
 								_showDataTypeHelp(dataTypeItems[0]);
@@ -1178,7 +1178,7 @@ define([
 			resizable: false,
 			buttons: [
 				{
-					text: "Close",
+					text: L.close,
 					click: function() { $(this).dialog("close"); }
 				}
 			]
@@ -1246,23 +1246,25 @@ define([
 	var _updateMainDialogDeleteButton = function() {
 		var cbs = $(".gdDeleteDataSets:checked");
 		if (cbs.length) {
+			var deleteButtonLabel = "Delete " + cbs.length + " Data Set(s)";
+
 			$("#gdMainDialog").dialog("option", "buttons", [
 				{
-					text: "Delete " + cbs.length + " Data Set(s)",
+					text: deleteButtonLabel,
 					"class": "gdDeleteDataSetsBtn",
 					click: function() {
 						_onClickDeleteDataSets();
 					}
 				},
 				{
-					text: "Close",
+					text: L.close,
 					click: function() { $(this).dialog("close"); }
 				}
 			]);
 		} else {
 			$("#gdMainDialog").dialog("option", "buttons", [
 				{
-					text: "Close",
+					text: L.close,
 					click: function() { $(this).dialog("close"); }
 				}
 			]);
@@ -1353,7 +1355,7 @@ define([
 
 	var _updateAccountInfoTab = function() {
 		if (_accountInfo.isAnonymous) {
-			$("#gdAccount_AccountType").html("Anonymous admin account");
+			$("#gdAccount_AccountType").html(L.anonymous_admin_account);
 		} else {
 			// TODO
 		}
