@@ -768,7 +768,12 @@ define([
 
 		// check the users specified a numeric value for the number of results
 		if (_numRowsToGenerate.match(/\D/) || _numRowsToGenerate === 0 || _numRowsToGenerate === "") {
-			utils.addValidationErrors({ el: $("#gdNumRowsToGenerate"), error: L.invalid_num_results });
+			utils.addValidationErrors({ els: $("#gdNumRowsToGenerate"), error: L.invalid_num_results });
+		}
+
+		// check the user selected at least one country plugin
+		if (_countries.length === 0) {
+			utils.addValidationErrors({ els: null, error: "Please select at least one country in the Country-Specific Data section." });
 		}
 
 		var orderedRowIDs = _getRowOrder();
