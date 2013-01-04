@@ -227,12 +227,14 @@ $L["no_data_types_found"] = "No Data Types found";
 $L["no_export_types_found"] = "No Export Types found";
 $L["installation_error"] = "Installation error";
 $L["continue_rightarrow"] = "Continue &raquo;";
+$L["check_database_info"] = "Check Database Info";
+$L["create_settings_file"] = "Create Settings File";
+$L["complete_excl"] = "Complete!";
+$L["installation_step2_intro"] = "So far so good! Now click the button below to create your <b>settings.php</b> file. This file is stored in the root folder of this application and is the only place (other than the database) that stores custom information about your installation.";
+$L["create_file_rightarrow"] = "Create File &raquo;";
+$L["installation_step3_intro"] = "You have three choices for the way your installation handles user accounts.";
 
-
-
-
-
-
-
-
-
+$L["single_anonymous_user_account"] = "Single, anonymous user account";
+$L["single_user_account_requires_login"] = "Single user account, requires login";
+$L["multiple_accounts"] = "Multiple accounts";
+$L["goto_script_rightarrow"] = "Go to script &raquo;";

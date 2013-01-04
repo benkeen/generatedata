@@ -8,6 +8,9 @@ class SessionManager {
 	private $dbLink;
 
 	function __construct() {
+		if (!Core::checkIsInstalled()) {
+			return;
+		}
 		$this->dbLink = Core::$db->getDBLink();
 		$this->dbPrefix = Core::getDbTablePrefix();
 

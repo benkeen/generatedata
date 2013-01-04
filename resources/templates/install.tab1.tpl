@@ -2,11 +2,11 @@
 
 	<nav id="gdInstallNav">
 		<ol>
-			<li id="nav1" class="{if $currentPage == 1}gdSelected{else}gdComplete{/if}">Check Database Info</li>
-			<li id="nav2" class="{if $currentPage == 2}gdSelected{elseif $currentPage > 2}gdComplete{/if}">Create Settings File</li>
+			<li id="nav1" class="{if $currentPage == 1}gdSelected{else}gdComplete{/if}">{$L.check_database_info}</li>
+			<li id="nav2" class="{if $currentPage == 2}gdSelected{elseif $currentPage > 2}gdComplete{/if}">{$L.create_settings_file}</li>
 			<li id="nav3" class="{if $currentPage == 3}gdSelected{elseif $currentPage > 3}gdComplete{/if}">{$L.user_accounts}</li>
-			<li id="nav4" class="{if $currentPage == 4}gdSelected{elseif $currentPage > 4}gdComplete{/if}">Plugins</li>
-			<li id="nav5" class="{if $currentPage == 5}gdSelected{/if}">Complete!</li>
+			<li id="nav4" class="{if $currentPage == 4}gdSelected{elseif $currentPage > 4}gdComplete{/if}">{$L.plugins}</li>
+			<li id="nav5" class="{if $currentPage == 5}gdSelected{/if}">{$L.complete_excl}</li>
 		</ol>
 	</nav>
 
@@ -57,73 +57,70 @@
 
 			<div class="gdClear"></div>
 
-			<button class="gdPrimaryButton">Continue &raquo;</button>
+			<button class="gdPrimaryButton">{$L.continue_rightarrow}</button>
 		</form>
 	</div>
 
 	<div class="gdInstallSection{if $currentPage != 2} hidden{/if}" id="page2">
 		<p>
-			So far so good! Now click the button below to create your <b>settings.php</b> file. This file is stored in
-			the root folder of this application and is the only place (other than the database) that stores custom information
-			about your installation.
+			{$L.installation_step2_intro}
 		</p>
 		<form>
-			<button class="gdPrimaryButton">Create File &raquo;</button>
+			<button class="gdPrimaryButton">{$L.create_file_rightarrow}</button>
 		</form>
 	</div>
 
 	<div class="gdInstallSection{if $currentPage != 3} hidden{/if}" id="page3">
 		<p>
-			You have three choices for the way your installation handles user accounts. <b>[Alpha! not available yet]</b>.
+			{$L.installation_step3_intro}
 		</p>
-
 		<form>
 			<div>
 				<input type="radio" name="userAccountSetup" id="acs1" value="anonymous" checked="checked" />
-					<label for="acs1">Single, anonymous user account</label>
+					<label for="acs1">{$L.single_anonymous_user_account}</label>
 			</div>
 			<div>
 				<input type="radio" name="userAccountSetup" id="acs2" value="single" disabled="disabled" />
-					<label for="acs2">Single user account, requires login</label>
+					<label for="acs2">{$L.single_user_account_requires_login}</label>
 			</div>
-			<div>
+			<div style="margin-bottom: 20px">
 				<input type="radio" name="userAccountSetup" id="acs3" value="multiple" disabled="disabled" />
-					<label for="acs3">Multiple accounts</label>
+					<label for="acs3">{$L.multiple_accounts}</label>
 			</div>
 
-			<div>
-				<!--
-				<div class="gdField gdAdminAccountHeading gdDisabledRow"><label for="firstName">Admin Account</label></div>
+			<div class="gdFields" id="gdInstallAccountDetails" style="display:none">
+				<p><i>Please enter your user account details below.</i></p>
+				<!-- please enter the administrator account details below -->
 
-				<div class="gdField gdFirstNameRow gdDisabledRow">
-					<label for="firstName">&#8212; {$L.first_name}</label>
-					<input type="text" id="firstName" value="" disabled="disabled" />
+				<div class="gdField gdFirstNameRow">
+					<label for="firstName">{$L.first_name}</label>
+					<input type="text" id="firstName" value="" />
 				</div>
 				<div class="gdError" id="firstName_error"></div>
 
-				<div class="gdField gdLastNameRow gdDisabledRow">
-					<label for="lastName">&#8212; {$L.last_name}</label>
-					<input type="text" id="lastName" value="" disabled="disabled" />
+				<div class="gdField gdLastNameRow">
+					<label for="lastName">{$L.last_name}</label>
+					<input type="text" id="lastName" value="" />
 				</div>
 				<div class="gdError" id="lastName_error"></div>
 
-				<div class="gdField gdEmailRow gdDisabledRow">
-					<label for="email">&#8212; {$L.email}</label>
-					<input type="text" id="email" value="" disabled="disabled" />
+				<div class="gdField gdEmailRow">
+					<label for="email">{$L.email}</label>
+					<input type="text" id="email" value="" />
 				</div>
 				<div class="gdError" id="email_error"></div>
 
-				<div class="gdField gdPasswordRow gdDisabledRow">
-					<label for="password">&#8212; {$L.password}</label>
-					<input type="text" id="password" value="{$randomPassword}" class="pwdField" disabled="disabled" />
+				<div class="gdField gdPasswordRow">
+					<label for="password">{$L.password}</label>
+					<input type="text" id="password" value="{$randomPassword}" class="pwdField" />
+					<span id="gdRefreshPassword"></span>
 				</div>
 				<div class="gdError" id="password_error"></div>
-			-->
 			</div>
 
 			<div class="gdClear"></div>
 
-			<button class="gdPrimaryButton">Continue &raquo;</button>
+			<button class="gdPrimaryButton">{$L.continue_rightarrow}</button>
 		</form>
 	</div>
 
@@ -136,15 +133,15 @@
 
 		<div id="gdPluginInstallationResults" class="hidden">
 			<div>
-				<h4>1. Data Types</h4>
+				<h4>1. {$L.data_types}</h4>
 				<div id="gdDataTypeResponse" class="gdResponse"></div>
 			</div>
 			<div>
-				<h4>2. Export Types</h4>
+				<h4>2. {$L.export_types}</h4>
 				<div id="gdExportTypeResponse" class="gdResponse"></div>
 			</div>
 			<div>
-				<h4>3. Countries</h4>
+				<h4>3. {$L.countries}</h4>
 				<div id="gdCountriesResponse" class="gdResponse"></div>
 			</div>
 		</div>
@@ -162,7 +159,7 @@
 		</p>
 
 		<form action="./">
-			<button class="gdPrimaryButton">Go to script &raquo;</button>
+			<button class="gdPrimaryButton">{$L.goto_script_rightarrow}</button>
 		</form>
 	</div>
 

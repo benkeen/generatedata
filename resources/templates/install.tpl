@@ -21,21 +21,20 @@
 	<header>
 		<nav>
 			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> <span class="gdHideNoJS">|</span>
-			<span class="hideNoJS">{language_dropdown nameId="gdSelectLanguage"}</span>
+			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> |
+			{language_dropdown nameId="gdSelectLanguage"}
 		</nav>
 	</header>
-	<nav id="gdMainTabs">
+	<nav id="gdMainTabs" class="gdHideNoJS">
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdMainTab1" class="gdSelected">{$L.install}</li>
 			<li id="gdMainTab2" class="gdHideNoJS">{$L.help}</li>
 		</ul>
 	</nav>
-	<section>
-		<noscript><p>{$L.no_js}</p></noscript>
-
-		<div id="gdContent" class="gdHideNoJS">
+	<noscript><p>{$L.no_js}</p></noscript>
+	<section class="gdHideNoJS">
+		<div id="gdContent">
 			<ul class="gdMainTabContent">
 				<li id="gdMainTab1Content">{include file="install.tab1.tpl"}</li>
 				<li id="gdMainTab2Content" style="display:none">{include file="install.tab2.tpl"}</li>

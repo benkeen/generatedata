@@ -133,9 +133,17 @@
 			background-image: url(../images/stop.png);
 		}
 	}
-
 	.gdInstallSuccess .gdIcon {
 		background-image: url(../images/info.png);
 	}
 
+	#gdRefreshPassword {
+		width: 16px;
+		height: 16px;
+		margin-bottom: -5px;
+		margin-left: 2px;
+		display: inline-block;
+		background-image: url(../images/refresh.png);
+		cursor: pointer;
+	}
 }

@@ -18,14 +18,14 @@
 	<script src="resources/scripts/libs/html5shiv.js"></script>
 	<script src="resources/scripts/libs/excanvas.js"></script>
 	<![endif]-->
-	<script type="text/javascript" src="resources/scripts/libs/spinners.js"></script>
+	<script src="resources/scripts/libs/spinners.js"></script>
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
 <body>
 	<header>
 		<nav>
-			{if $settings.userAccountSetup != "anonymous"}<a href="#" id="gdUserAccountLink">Your Account</a> |{/if}
+			{if $settings.userAccountSetup != "anonymous"}<a href="#" id="gdUserAccountLink">{$L.your_account}</a> |{/if}
 			<a href="http://www.generatedata.com">{$L.website}</a> |
 			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> |
 			{language_dropdown nameId="gdSelectLanguage" disabled=true}

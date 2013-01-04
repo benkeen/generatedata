@@ -64,6 +64,14 @@ define([
 		}
 	};
 
+	var _generateRandomAlphaNumericStr = function(len) {
+		var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		var result = '';
+		for (var i=len; i>0; --i) {
+			result += chars[Math.round(Math.random() * (chars.length - 1))];
+		}
+		return result;
+	};
 
 	return {
 
@@ -232,6 +240,8 @@ define([
 			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		},
 
-		getParamByName: _getParamByName
+		getParamByName: _getParamByName,
+
+		generateRandomAlphaNumericStr: _generateRandomAlphaNumericStr
 	};
 });

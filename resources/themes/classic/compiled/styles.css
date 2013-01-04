@@ -1065,6 +1065,14 @@ body.gdErrorPage #gdSeriousError {
     background-image: url(../images/stop.png); }
 .gdInstallPage .gdInstallSuccess .gdIcon {
   background-image: url(../images/info.png); }
+.gdInstallPage #gdRefreshPassword {
+  width: 16px;
+  height: 16px;
+  margin-bottom: -5px;
+  margin-left: 2px;
+  display: inline-block;
+  background-image: url(../images/refresh.png);
+  cursor: pointer; }
 
 #gdMainDialog {
   border: 1px solid #cccccc;

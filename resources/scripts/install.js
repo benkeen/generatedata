@@ -17,15 +17,31 @@ require([
 	var _currStep = null;
 
 
+	var _toggleAccountSection = function(e) {
+		console.log("wtf?");
+
+		// var value = $("input[name=userAccountSetup]:checked").val();
+		// console.log("...", value);
+
+		// if (value == "anonymous") {
+		// 	$("#gdInstallAccountDetails").hide("fade");
+		// } else {
+		// 	$("#gdInstallAccountDetails").show("fade");
+		// }
+	};
+
 	$(function() {
 		manager.start();
 
 		$("#dbHostname").select();
 		$("form").bind("submit", submit);
-		$("input[name=userAccountSetup]").bind("click", _toggleAdminAccountSection);
+		$("input[name=userAccountSetup]").on("click", _toggleAccountSection);
 		$("#pluginInstallationResults").on("click", ".gdError", _displayPluginInstallationError);
+		$("#gdRefreshPassword").on("click", _regeneratePassword);
 
-		_toggleAdminAccountSection();
+		
+		console.log($("input[name=userAccountSetup]"));
+
 
 		// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
 		// installing the script last time 'round, it will return them to the appropriate step.
@@ -36,18 +52,7 @@ require([
 	});
 
 
-	// TODO
-	function _toggleAdminAccountSection() {
-		var value = $("input[name=userAccountSetup]:checked").val();
-		var rowSelector = ".gdEmailRow,.gdPasswordRow,.gdFirstNameRow,.gdLastNameRow,.gdAdminAccountHeading";
-		if (value == "yes") {
-			$(rowSelector).removeClass("gdDisabledRow").find("input").removeAttr("disabled");
-		} else {
-			$(rowSelector).addClass("gdDisabledRow").find("input").attr("disabled", "disabled");
-		}
-	}
-
-	function _displayPluginInstallationError(e) {
+	var _displayPluginInstallationError = function(e) {
 		$("<div>" + $(e.target).data("error") + "</div>").dialog({
 			autoOpen:  true,
 			modal:     true,
@@ -55,7 +60,11 @@ require([
 			title:     L.installation_error,
 			width:     300
 		});
-	}
+	};
+
+	var _regeneratePassword = function() {
+		$("#password").val(utils.generateRandomAlphaNumericStr(8));
+	};
 
 	/**
 	 * Called for every step in the installation script. This figures out what page the user's on
