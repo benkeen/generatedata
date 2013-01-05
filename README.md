@@ -9,13 +9,12 @@ whatever format you require.
 ### Version 1.0.0 
 There's a free online version found on our website:
 http://www.generatedata.com/#generator
-
 The online demo is actually running a very old version of the code, no longer available.
 
 ### Version 2.x
 Version 2 was never fully completed. A proof of concept was gotten up and running back in 2010, which 
 added (basic) modularity and improved a few things, but I abandoned it in favour of some other projects
-I was working on at the time.
+I was working on at the time. However, the tag is available if you want a copy.
 
 ### Version 3.0.0 alpha
 http://alpha.generatedata.com

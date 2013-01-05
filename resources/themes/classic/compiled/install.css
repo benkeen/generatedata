@@ -4,30 +4,6 @@
   padding-bottom: 8px;
   margin-bottom: 8px;
   float: none; }
-.gdInstallPage .gdFields .gdField {
-  float: left;
-  width: 376px;
-  border-bottom: 1px solid #efefef;
-  clear: left; }
-.gdInstallPage .gdFields .gdRadioGroup input {
-  width: 20px;
-  float: left; }
-.gdInstallPage .gdFields .gdRadioGroup label {
-  width: inherit;
-  float: left; }
-.gdInstallPage .gdFields .gdDisabledRow label, .gdInstallPage .gdFields .gdDisabledRow input {
-  color: #cccccc; }
-.gdInstallPage .gdFields label {
-  float: left;
-  width: 160px;
-  color: #777777;
-  margin-top: 2px; }
-.gdInstallPage .gdFields input {
-  float: left;
-  width: 210px;
-  margin-top: 2px; }
-.gdInstallPage .gdFields div {
-  margin-top: 2px; }
 .gdInstallPage #dbTablePrefix {
   width: 60px; }
 .gdInstallPage input.pwdField {

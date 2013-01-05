@@ -18,7 +18,7 @@
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
-<body>
+<body class="gdLoginPage">
 	<header>
 		<nav>
 			<a href="http://www.generatedata.com">{$L.website}</a> |
@@ -39,9 +39,20 @@
 		<div id="gdContent">
 			<ul class="gdMainTabContent">
 				<li id="gdMainTab1Content">
-
-					<h2>Please login below</h2>
-
+					<h1>{$L.please_login}</h1>
+					<div class="gdFields">
+						<div class="gdField">
+							<label for="email">{$L.email}</label>
+							<input type="text" id="email" value="" />
+						</div>
+						<div class="gdError" id="dbHostname_error"></div>
+						<div class="gdField">
+							<label for="password">{$L.password}</label>
+							<input type="password" id="password" value="" />
+						</div>
+					</div>
+					<div class="gdClear"></div>
+					<button class="gdPrimaryButton">{$L.continue_rightarrow}</button>
 				</li>
 				<li id="gdMainTab2Content">
 
