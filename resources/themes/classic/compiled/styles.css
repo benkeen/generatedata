@@ -1073,6 +1073,8 @@ body.gdErrorPage #gdSeriousError {
   display: inline-block;
   background-image: url(../images/refresh.png);
   cursor: pointer; }
+.gdInstallPage #gdInstallAccountDetailsMessage {
+  font-style: italic; }
 
 #gdMainDialog {
   border: 1px solid #cccccc;

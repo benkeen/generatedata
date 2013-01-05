@@ -65,7 +65,7 @@ define([
 	};
 
 	var _generateRandomAlphaNumericStr = function(len) {
-		var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		var chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZ";
 		var result = '';
 		for (var i=len; i>0; --i) {
 			result += chars[Math.round(Math.random() * (chars.length - 1))];

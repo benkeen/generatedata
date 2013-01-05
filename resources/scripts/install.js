@@ -17,19 +17,6 @@ require([
 	var _currStep = null;
 
 
-	var _toggleAccountSection = function(e) {
-		console.log("wtf?");
-
-		// var value = $("input[name=userAccountSetup]:checked").val();
-		// console.log("...", value);
-
-		// if (value == "anonymous") {
-		// 	$("#gdInstallAccountDetails").hide("fade");
-		// } else {
-		// 	$("#gdInstallAccountDetails").show("fade");
-		// }
-	};
-
 	$(function() {
 		manager.start();
 
@@ -39,10 +26,6 @@ require([
 		$("#pluginInstallationResults").on("click", ".gdError", _displayPluginInstallationError);
 		$("#gdRefreshPassword").on("click", _regeneratePassword);
 
-		
-		console.log($("input[name=userAccountSetup]"));
-
-
 		// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
 		// installing the script last time 'round, it will return them to the appropriate step.
 		var selectedNavPage = $("#gdInstallNav li.gdSelected");
@@ -51,8 +34,24 @@ require([
 		}
 	});
 
+	function _toggleAccountSection(e) {
+		var value = $("input[name=userAccountSetup]:checked").val();
+		switch (value) {
+			case "anonymous":
+				$("#gdInstallAccountDetails").hide("fade");
+				break;
+			case "single":
+				$("#gdInstallAccountDetails").show("fade");
+				$("#gdInstallAccountDetailsMessage").html(L.enter_user_account_details);
+				break;
+			case "multiple":
+				$("#gdInstallAccountDetails").show("fade");
+				$("#gdInstallAccountDetailsMessage").html(L.enter_admin_user_account_details);
+				break;
+		}
+	}
 
-	var _displayPluginInstallationError = function(e) {
+	function _displayPluginInstallationError(e) {
 		$("<div>" + $(e.target).data("error") + "</div>").dialog({
 			autoOpen:  true,
 			modal:     true,
@@ -60,11 +59,11 @@ require([
 			title:     L.installation_error,
 			width:     300
 		});
-	};
+	}
 
-	var _regeneratePassword = function() {
+	function _regeneratePassword() {
 		$("#password").val(utils.generateRandomAlphaNumericStr(8));
-	};
+	}
 
 	/**
 	 * Called for every step in the installation script. This figures out what page the user's on
@@ -180,8 +179,7 @@ require([
 				var email = "";
 				var password = "";
 
-				/*
-				if (employUserAccounts == "yes") {
+				if (userAccountSetup == "single" || userAccountSetup == "multiple") {
 					firstName = $.trim($("#firstName").val());
 					if (firstName === "") {
 						errors.push({ fieldId: "firstName", error: L.validation_no_first_name });
@@ -202,12 +200,11 @@ require([
 
 				if (errors.length) {
 					$("#" + errors[0].fieldId).select();
-					for (var i=0; i<errors.length; i++) {
-						$("#" + errors[i].fieldId + "_error").html(errors[i].error).fadeIn(300);
+					for (var j=0; j<errors.length; j++) {
+						$("#" + errors[j].fieldId + "_error").html(errors[j].error).fadeIn(300);
 					}
 					return false;
 				}
-				*/
 
 				utils.startProcessing();
 				$.ajax({

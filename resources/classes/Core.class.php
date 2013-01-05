@@ -352,7 +352,11 @@ class Core {
 	private function initUser() {
 		if (self::checkIsInstalled()) {
 			$setup = Settings::getSetting("userAccountSetup");
-			self::$user = new Account("anonymous");
+			if ($setup == "anonymous") {
+				self::$user = new Account("anonymous");
+			} else {
+				// ...?
+			}
 		}
 	}
 

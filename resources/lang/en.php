@@ -209,7 +209,6 @@ $L["fork_on_github"] = "Fork the code on github";
 $L["read_developer_doc"] = "Read the developer documentation";
 $L["goto_website"] = "Go to the website";
 $L["latest_project_news"] = "Latest project news";
-
 $L["last_edited"] = "last edited";
 $L["last_saved"] = "last saved";
 $L["please_confirm"] = "Please confirm";
@@ -233,8 +232,12 @@ $L["complete_excl"] = "Complete!";
 $L["installation_step2_intro"] = "So far so good! Now click the button below to create your <b>settings.php</b> file. This file is stored in the root folder of this application and is the only place (other than the database) that stores custom information about your installation.";
 $L["create_file_rightarrow"] = "Create File &raquo;";
 $L["installation_step3_intro"] = "You have three choices for the way your installation handles user accounts.";
-
 $L["single_anonymous_user_account"] = "Single, anonymous user account";
 $L["single_user_account_requires_login"] = "Single user account, requires login";
 $L["multiple_accounts"] = "Multiple accounts";
 $L["goto_script_rightarrow"] = "Go to script &raquo;";
+$L["enter_user_account_details"] = "Please enter your user account details below.";
+$L["enter_admin_user_account_details"] = "Please enter the administrator account details below.";
+$L["installation_plugin_intro"] = "Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> - i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all the Country-specific data like regions and cities.";
+$L["install_plugins_rightarrow"] = "Install Plugins &raquo;";
+$L["installation_complete_text"] = "The Data Generator has been successfully installed! Click the button below to go to the script.";

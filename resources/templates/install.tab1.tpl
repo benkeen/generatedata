@@ -80,17 +80,16 @@
 					<label for="acs1">{$L.single_anonymous_user_account}</label>
 			</div>
 			<div>
-				<input type="radio" name="userAccountSetup" id="acs2" value="single" disabled="disabled" />
+				<input type="radio" name="userAccountSetup" id="acs2" value="single" />
 					<label for="acs2">{$L.single_user_account_requires_login}</label>
 			</div>
 			<div style="margin-bottom: 20px">
-				<input type="radio" name="userAccountSetup" id="acs3" value="multiple" disabled="disabled" />
+				<input type="radio" name="userAccountSetup" id="acs3" value="multiple" />
 					<label for="acs3">{$L.multiple_accounts}</label>
 			</div>
 
 			<div class="gdFields" id="gdInstallAccountDetails" style="display:none">
-				<p><i>Please enter your user account details below.</i></p>
-				<!-- please enter the administrator account details below -->
+				<p id="gdInstallAccountDetailsMessage"></p>
 
 				<div class="gdField gdFirstNameRow">
 					<label for="firstName">{$L.first_name}</label>
@@ -126,9 +125,7 @@
 
 	<div class="gdInstallSection{if $currentPage != 4} hidden{/if}" id="page4">
 		<p>
-			Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> -
-			i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all
-			the Country-specific data like regions and cities.
+			{$L.installation_plugin_intro}
 		</p>
 
 		<div id="gdPluginInstallationResults" class="hidden">
@@ -148,14 +145,14 @@
 		<div class="gdClear"></div>
 
 		<form>
-			<button class="gdPrimaryButton" id="gdInstallPluginsBtn">Install Plugins &raquo;</button>
+			<button class="gdPrimaryButton" id="gdInstallPluginsBtn">{$L.install_plugins_rightarrow}</button>
 		</form>
 	</div>
 
 	<div class="gdInstallSection{if $currentPage != 5} hidden{/if}" id="page5">
 
 		<p>
-			The Data Generator has been successfully installed! Click the button below to go to the script.
+			{$L.installation_complete_text}
 		</p>
 
 		<form action="./">
