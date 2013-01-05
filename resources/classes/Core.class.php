@@ -32,6 +32,7 @@ class Core {
 	private static $minimumPHPVersion = "5.2.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "other");
+	private static $isLoggedIn = false;
 
 	// left as public, because they're often modified / accessed, and it's just too fussy otherwise
 	public static $language;
@@ -245,6 +246,13 @@ class Core {
 	/**
 	 * @access public
 	 */
+	public function checkIsLoggedIn() {
+		return self::$isLoggedIn;
+	}
+
+	/**
+	 * @access public
+	 */
 	public function getDefaultLanguageFile() {
 		return self::$defaultLanguageFile;
 	}
@@ -354,6 +362,7 @@ class Core {
 			$setup = Settings::getSetting("userAccountSetup");
 			if ($setup == "anonymous") {
 				self::$user = new Account("anonymous");
+				self::$isLoggedIn = true;
 			} else {
 				// ...?
 			}

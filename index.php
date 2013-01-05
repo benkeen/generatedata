@@ -6,6 +6,11 @@ Core::init();
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();
 
+if (!Core::checkIsLoggedIn()) {
+	header("location: login.php");
+	exit;
+}
+
 $pageParams = array();
 if (isset($_POST["updateSettings"])) {
 	list($success, $message) = Settings::updateSettings($_POST);
