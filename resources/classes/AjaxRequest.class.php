@@ -248,10 +248,16 @@ class AjaxRequest {
 				$this->response["content"] = $response["message"];
 				break;
 
-/*
 			case "login":
+				Core::init();
+				$email = $post["email"];
+				$password = $post["password"];
+				$response = Account::login($email, $password);
+				$this->response["success"] = $response["success"];
+				$this->response["content"] = $response["message"];
 				break;
 
+/*
 			case "logout":
 				break;
 */

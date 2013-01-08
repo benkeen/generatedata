@@ -86,8 +86,8 @@ class Core {
 			self::initCountries();
 			self::initExportTypes($runtimeContext);
 			self::initDataTypes($runtimeContext);
-			self::initUser();
 			self::initSessions();
+			self::initUser();
 		}
 	}
 
@@ -364,7 +364,10 @@ class Core {
 				self::$user = new Account("anonymous");
 				self::$isLoggedIn = true;
 			} else {
-				// ...?
+				if (isset($_SESSION["account_id"])) {
+					self::$user = new Account($_SESSION["account_id"]);
+					self::$isLoggedIn = true;
+				}
 			}
 		}
 	}
@@ -376,6 +379,7 @@ class Core {
 
 		session_start();
 		header("Cache-control: private");
+
 		//header("Content-Type: text/html; charset=utf-8");
 	}
 }

@@ -21,7 +21,7 @@ class Account {
 
 	/**
 	 * Instantiates a user account. This is passed either "anonymous" or the Account ID
-	 * as the constructor parameter.
+	 * as the constructor parameter. User account login is done via the login method below.
  	 *
 	 * @param mixed $accountID
 	 */
@@ -31,7 +31,7 @@ class Account {
 			$this->isAnonymous = true;
 		}
 
-		$prefix = Core::getDbTablePrefix();		
+		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
 			SELECT * 
 			FROM {$prefix}user_accounts
@@ -52,6 +52,51 @@ class Account {
 		}
 	}
 
+	/**
+	 * Attempts to log a user in. If successful, it updates sessions and returns a success
+	 * message; otherwise, just returns the appropriate error
+	 */
+	public static function login($email, $password) {
+		$prefix = Core::getDbTablePrefix();
+		$email = Utils::sanitize($email);
+		$response = Core::$db->query("
+			SELECT * 
+			FROM {$prefix}user_accounts
+			WHERE email = '$email'
+			LIMIT 1
+		");
+
+		// shouldn't occur
+		if (!$response["success"]) {
+			return;
+		}
+
+		$data = mysql_fetch_assoc($response["results"]);
+		if (empty($data)) {
+			return array(
+				"success" => false,
+				"message" => "Sorry, we couldn't find your account."
+			);
+		}
+
+		// compare the passwords
+		$encryptionSalt    = Core::getEncryptionSalt();
+		$encryptedPassword = crypt($password, $encryptionSalt);
+		if ($encryptedPassword != $data["password"]) {
+			return array(
+				"success" => false,
+				"message" => "Sorry, that password is not correct. Please try again."
+			);
+		}
+
+		// store the account in sessions
+		$_SESSION["account_id"] = $data["account_id"];
+
+		return array(
+			"success" => true,
+			"message" => ""
+		);
+	}
 
 	public function getAccount() {
 		return array(

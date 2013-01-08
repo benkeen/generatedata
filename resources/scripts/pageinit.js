@@ -30,8 +30,12 @@ define([
 		$("#gdSelectLanguage").bind("change", _changeLanguage);
 
 		// for the Settings tab
-		$("#consoleEventsDataTypePlugins").chosen({ no_results_text: L.no_data_types_found });
-		$("#consoleEventsExportTypePlugins").chosen({ no_results_text: L.no_export_types_found });
+		if ($("#consoleEventsDataTypePlugins").length) {
+			$("#consoleEventsDataTypePlugins").chosen({ no_results_text: L.no_data_types_found });
+		}
+		if ($("#consoleEventsExportTypePlugins").length) {
+			$("#consoleEventsExportTypePlugins").chosen({ no_results_text: L.no_export_types_found });
+		}
 		utils.initMainSpinner();
 	};
 
