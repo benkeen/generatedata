@@ -247,6 +247,10 @@ class Core {
 	 * @access public
 	 */
 	public function checkIsLoggedIn() {
+		if (!isset($_SESSION["account_id"])) {
+			self::$isLoggedIn = false;
+		}
+
 		return self::$isLoggedIn;
 	}
 

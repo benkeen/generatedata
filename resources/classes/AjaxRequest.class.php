@@ -260,7 +260,9 @@ class AjaxRequest {
 			// for single 
 			case "logout":
 				Core::init();
-				if (!Core::$user->isAnonymous()) {
+				if (!Core::checkIsLoggedIn()) {
+					$this->response["success"] = true;
+				} else if (!Core::$user->isAnonymous()) {
 					Core::$user->logout();
 					$this->response["success"] = true;
 				}
