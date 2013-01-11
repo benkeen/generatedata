@@ -257,10 +257,14 @@ class AjaxRequest {
 				$this->response["content"] = $response["message"];
 				break;
 
-/*
+			// for single 
 			case "logout":
+				Core::init();
+				if (!Core::$user->isAnonymous()) {
+					Core::$user->logout();
+					$this->response["success"] = true;
+				}
 				break;
-*/
 		}
 	}
 

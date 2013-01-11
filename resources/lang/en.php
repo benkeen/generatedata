@@ -244,3 +244,5 @@ $L["install_plugins_rightarrow"] = "Install Plugins &raquo;";
 $L["installation_complete_text"] = "The Data Generator has been successfully installed! Click the button below to go to the script.";
 $L["please_login"] = "Please Login";
 $L["forgotten_your_password_q"] = "Forgotten your password?";
+$L["admin"] = "Admin";
+$L["logout"] = "Logout";

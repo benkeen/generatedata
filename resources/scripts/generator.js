@@ -125,7 +125,7 @@ define([
 		$("#gdDataSetLink").on("click", _openDataSetLinkDialog);
 
 		// main dialog
-		$("#gdUserAccountLink").on("click", function() { return _openMainDialog({ tab: 1 }); });
+		$("#gdLogout").on("click", function() { return _logout(); });
 		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
 		$("#gdAccountDataSets").on("click", "a", _onClickLoadDataSet);
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
@@ -1363,7 +1363,7 @@ define([
 		if (_accountInfo.isAnonymous) {
 			$("#gdAccount_AccountType").html(L.anonymous_admin_account);
 		} else {
-			// TODO
+			$("#gdAccount_AccountType").html(L.admin);
 		}
 
 		$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
@@ -1587,6 +1587,23 @@ define([
 		}
 	};
 
+	var _logout = function() {
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				action: "logout"
+			},
+			success: function(response) {
+				if (response.success) {
+					window.location = "login.php";
+				}
+			},
+			error: function() {
+			}
+		});
+	};
 
 	// register our module
 	manager.registerCoreModule(MODULE_ID, {

@@ -98,6 +98,10 @@ class Account {
 		);
 	}
 
+	public static function logout() {
+		session_destroy(); 
+	}
+
 	public function getAccount() {
 		return array(
 			"isAnonymous"      => $this->isAnonymous,
