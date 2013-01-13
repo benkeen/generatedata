@@ -59,6 +59,7 @@
 	require([
 		"manager",
 		"generator",
+		{if $settings.userAccountSetup == "multiple"}"accountManager",{/if}
 		{$exportTypeJSModules},
 		{$dataTypeJSModules},
 		"pageinit"

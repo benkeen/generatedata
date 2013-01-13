@@ -1607,8 +1607,7 @@ define([
 
 	// register our module
 	manager.registerCoreModule(MODULE_ID, {
-		run: _run,
-		skipDomReady: false
+		run: _run
 	});
 
 

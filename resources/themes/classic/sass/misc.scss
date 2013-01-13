@@ -169,11 +169,9 @@ body .CodeMirror {
 body .CodeMirror-lines div pre {
 	/*line-height: 14px;*/
 }
-
 body .CodeMirror-scroll {
 	height: 500px;
 }
-
 body .CodeMirror_small {
 	table, td, p, div, span {
 		line-height: 10px;
@@ -191,4 +189,20 @@ body .CodeMirror_large {
 		line-height: 22px;
 		font-size: 12pt;
 	}
+}
+
+#gdRefreshPassword {
+	width: 16px;
+	height: 16px;
+	margin-bottom: -5px;
+	margin-left: 2px;
+	display: inline-block;
+	background-image: url(../images/refresh.png);
+	cursor: pointer;
+}
+#gdManageAccount_firstName, #gdManageAccount_lastName, #gdManageAccount_email {
+	width: 200px;
+}
+#gdManageAccount_password {
+	width: 100px;
 }

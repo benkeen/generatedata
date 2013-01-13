@@ -880,6 +880,21 @@ body .CodeMirror_large table, body .CodeMirror_large td, body .CodeMirror_large 
   line-height: 22px;
   font-size: 12pt; }
 
+#gdRefreshPassword {
+  width: 16px;
+  height: 16px;
+  margin-bottom: -5px;
+  margin-left: 2px;
+  display: inline-block;
+  background-image: url(../images/refresh.png);
+  cursor: pointer; }
+
+#gdManageAccount_firstName, #gdManageAccount_lastName, #gdManageAccount_email {
+  width: 200px; }
+
+#gdManageAccount_password {
+  width: 100px; }
+
 .gdMessage {
   position: relative;
   display: none; }
@@ -1058,14 +1073,6 @@ body.gdErrorPage #gdSeriousError {
     background-image: url(../images/stop.png); }
 .gdInstallPage .gdInstallSuccess .gdIcon {
   background-image: url(../images/info.png); }
-.gdInstallPage #gdRefreshPassword {
-  width: 16px;
-  height: 16px;
-  margin-bottom: -5px;
-  margin-left: 2px;
-  display: inline-block;
-  background-image: url(../images/refresh.png);
-  cursor: pointer; }
 .gdInstallPage #gdInstallAccountDetailsMessage {
   font-style: italic; }
 
