@@ -1,23 +1,25 @@
 <div id="settingsTabMessage" class="gdMessage {if $success}gdNotify{elseif !$success}gdError{/if} gdMarginTop" {if $message}style="display:block"{/if}>
-	<a href="#" title="Hide" class="gdMessageClose">X</a>
+	<a href="#" class="gdMessageClose">X</a>
 	<p>{$message}</p>
 </div>
 
 <form action="./#t3" method="post" id="gdSettingsForm">
 	<input type="hidden" name="updateSettings" value="1" />
 
-<!--
-	<h3>Account Settings</h3>
+	{if $settings.userAccountSetup != "anonymous"}
+		<h3>Account Settings</h3>
 
-	<p>
-		<input type="text" size="3" maxlength="5" value="100" />
-			<label>Size of generated rows</label>
-		<div class="gdHint">
-			Most export types generate the results in a dialog window, which incrementally fills up as the data is generated. The larger
-			the data set, the longer generation can take. This setting controls the size of each chunk that's generated.
+		<div>
+			<div>
+				<input type="radio" name="userAccountSetup" id="acs2" value="single" {if $settings.userAccountSetup == "single"}checked="checked"{/if} />
+					<label for="acs2">{$L.single_user_account_requires_login}</label>
+			</div>
+			<div style="margin-bottom: 20px">
+				<input type="radio" name="userAccountSetup" id="acs3" value="multiple" {if $settings.userAccountSetup == "multiple"}checked="checked"{/if} />
+					<label for="acs3">{$L.multiple_accounts}</label>
+			</div>
 		</div>
-	</p>
--->
+	{/if}
 
 	<h3>{$L.plugins}</h3>
 

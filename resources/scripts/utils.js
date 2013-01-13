@@ -97,10 +97,14 @@ define([
 				return false;
 			}
 
-			$("#" + opts.tabIDPrefix + opts.oldTab).removeClass("gdSelected");
-			$("#" + opts.tabIDPrefix + opts.newTab).addClass("gdSelected");
-			$("#" + opts.tabIDPrefix + opts.oldTab + "Content").hide();
-			$("#" + opts.tabIDPrefix + opts.newTab + "Content").show();
+			if (opts.oldTab !== null) {
+				$("#" + opts.tabIDPrefix + opts.oldTab).removeClass("gdSelected");
+				$("#" + opts.tabIDPrefix + opts.oldTab + "Content").hide();
+			}
+			if (opts.newTab !== null) {
+				$("#" + opts.tabIDPrefix + opts.newTab).addClass("gdSelected");
+				$("#" + opts.tabIDPrefix + opts.newTab + "Content").show();
+			}
 
 			manager.publish({
 				sender: MODULE_ID,

@@ -10,6 +10,8 @@ require([
 
 	$(function() {
 		manager.start();
+
+		utils.selectTab({ tabGroup: "gdMainTabs", tabIDPrefix: "gdMainTab", newTab: 1 });
 		$("#email").focus();
 		$("#gdMainTab1Content button").on("click", _login);
 

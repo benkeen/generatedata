@@ -64,6 +64,10 @@ class Settings {
 	 * @param array $post
 	 */
 	public function updateSettings($post) {
+		$accountInfo = Core::$user->getAccount();
+		$accountType = $accountInfo["accountType"];
+		$isAnonymous = $accountInfo["isAnonymous"];
+
 		$L = Core::$language->getCurrentLanguageStrings();
 		if (!isset($post["consoleEventsDataTypePlugins"]) || empty($post["consoleEventsDataTypePlugins"])) {
 			$post["consoleEventsDataTypePlugins"] = array();
@@ -81,6 +85,12 @@ class Settings {
 			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"]),
 		    "theme" => $post["theme"]
 		);
+
+		if (!$isAnonymous && $accountType == "admin") {
+			if (isset($post["userAccountSetup"])) {
+				$settings["userAccountSetup"] = ($post["userAccountSetup"] == "single") ? "single" : "multiple";
+			}
+		}
 
 		$prefix = Core::getDbTablePrefix();
 		$errors = array();
