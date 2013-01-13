@@ -307,6 +307,13 @@ class Account {
 			VALUES ('$now', '$now', '$now', '$accountType', '$firstName', '$lastName', '$email',
 				'$password')
 		");
+
+		// if ($result["success"]) {
+		// 	$accountID = mysql_insert_id();;
+		// 	Core::initSessions();
+		// 	$_SESSION["account_id"] = $accountID;
+		// 	Core::initUser(true);
+		// }
 	}
 
 

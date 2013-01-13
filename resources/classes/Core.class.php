@@ -361,8 +361,8 @@ class Core {
 	 * Initializes the current logged in user and stores their Account object in Core::$user.
 	 * @access private
 	 */
-	private function initUser() {
-		if (self::checkIsInstalled()) {
+	public function initUser($bypass = false) {
+		if ($bypass || self::checkIsInstalled()) {
 			$setup = Settings::getSetting("userAccountSetup");
 			if ($setup == "anonymous") {
 				self::$user = new Account("anonymous");
@@ -376,7 +376,7 @@ class Core {
 		}
 	}
 
-	private function initSessions() {
+	public function initSessions() {
 		$sess = new SessionManager();
 		// if (!empty($g_session_save_path))
 		//   session_save_path($g_session_save_path);
