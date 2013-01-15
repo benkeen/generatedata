@@ -288,7 +288,7 @@ class Account {
 	 *
 	 * @param array $accountInfo
 	 */
-	public static function createUser($accountInfo) {
+	public static function createAccount($accountInfo) {
 		$accountInfo = Utils::sanitize($accountInfo);
 		$encryptionSalt = Core::getEncryptionSalt();
 
@@ -297,16 +297,20 @@ class Account {
 		$lastName    = $accountInfo["lastName"];
 		$email       = $accountInfo["email"];
 		$password    = crypt($accountInfo["password"], $encryptionSalt);
+		$autoEmail   = isset($accountInfo["accountType"]) ? $accountInfo["accountType"] : false;
 
 		$now = Utils::getCurrentDatetime();
 
 		$prefix = Core::getDbTablePrefix();
 		$result = Core::$db->query("
-			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, account_type,
-				first_name, last_name, email, password)
-			VALUES ('$now', '$now', '$now', '$accountType', '$firstName', '$lastName', '$email',
-				'$password')
+			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, account_type, first_name, last_name, email, password)
+			VALUES ('$now', '$now', '$now', '$accountType', '$firstName', '$lastName', '$email', '$password')
 		");
+
+		// TODO
+		if ($autoEmail) {
+
+		}
 
 		// if ($result["success"]) {
 		// 	$accountID = mysql_insert_id();;
@@ -316,6 +320,33 @@ class Account {
 		// }
 	}
 
+	public function getUsers() {
+		if ($this->accountType != "admin") {
+			return array(
+				"false" => false
+			);
+		}
+
+		$prefix = Core::getDbTablePrefix();
+		$response = Core::$db->query("
+			SELECT *
+			FROM {$prefix}user_accounts 
+			WHERE account_type = 'user'
+			ORDER BY last_name ASC
+		");
+
+		$data = array();
+		if ($response["success"]) {
+			while ($row = mysql_fetch_assoc($response["results"])) {
+				$data[] = $row;
+			}
+		}
+
+		return array(
+			"success" => true,
+			"accounts" => $data
+		);
+	}
 
 	public function updateRowsGeneratedCount($configurationID, $rowsGenerated) {
 		if (!is_numeric($rowsGenerated)) {

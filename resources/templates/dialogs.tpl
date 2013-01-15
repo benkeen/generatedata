@@ -46,7 +46,7 @@
 					</tr>
 				</thead>
 				<tbody></tbody>
-			</table>
+			</table> 
 		</div>
 		<div id="gdMainDialogTab3Content" class="hidden">
 			<div id="gdDataSetHelpNav">

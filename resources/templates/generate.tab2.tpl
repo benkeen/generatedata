@@ -5,8 +5,22 @@
 		the administrator, have permissions to create or delete accounts.
 	</p>
 
-	<div id="gdAccountList"></div>
-
+	<div id="gdAccountList" class="hidden">
+		<table cellpadding="0" cellspacing="1">
+		<thead>
+			<tr>
+				<td>First Name</td>
+				<td>Last Name</td>
+				<td>Email</td>
+				<td>Num Records Generated</td>
+				<td>Last Logged In</td>
+				<td>Date Created</td>
+				<td width="80">EDIT</td>
+			</tr>
+		</thead>
+		<tbody></tbody>
+		</table>
+	</div>
 
 	<button class="gdPrimaryButton" id="gdCreateAccount">Create Account &raquo;</button>
 
@@ -36,4 +50,9 @@
 			</td>
 		</tr>
 		</table>
+
+		<p>
+			<input type="checkbox" id="gdAutoEmailAccountDetails" checked="checked" />
+				<label for="gdAutoEmailAccountDetails">Email the user their login information</label>
+		</p>
 	</div>

@@ -157,6 +157,7 @@ END;
 				account_id mediumint(8) unsigned NOT NULL auto_increment,
 				date_created datetime NOT NULL,
 				last_updated datetime NOT NULL,
+				last_logged_in datetime NOT NULL,
 				date_expires datetime default NULL,
 				account_type ENUM('user', 'admin') NOT NULL,
 				first_name varchar(50) default NULL,

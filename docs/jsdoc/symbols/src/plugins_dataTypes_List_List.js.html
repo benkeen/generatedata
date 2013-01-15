@@ -65,6 +65,8 @@
 		
 			<li><a href="../../symbols/Composite.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Composite</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Constant.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Constant</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Country.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Country</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
@@ -93,6 +95,8 @@
 		
 			<li><a href="../../symbols/TextRandom.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">TextRandom</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Tree.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Tree</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Utils.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Utils</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_Core">Core</span></span></span></a></li>
 		
 			<li><a href="../../symbols/XML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">XML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -116,14 +120,14 @@ define([
   "generator"
 ], function(manager, C, L, generator) {
 
-  "use strict";
+	"use strict";
   
 	/**
-	 * @name List
-	 * @description JS code for the List Data Type.
-	 * @see DataType
-	 * @namespace
-	 */
+	* @name List
+	* @description JS code for the List Data Type.
+	* @see DataType
+	* @namespace
+	*/
 
 	/** @member */
 	var MODULE_ID = "data-type-List";
@@ -135,39 +139,93 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-  var _saveRow = function(rowNum) {
-    return {
-      "example":    $("#dt_" + rowNum).val(),
-      "list_type1": $("#list_type1_" + rowNum).attr("checked"),
-      "list_type2": $("#list_type2_" + rowNum).attr("checked"),
-      "exactly":    $("#exactly_" + rowNum).val(),
-      "at_most":    $("#at_most_" + rowNum).val(),
-      "option":     $("#option_" + rowNum).val()
-    };
-  };
+	var _saveRow = function(rowNum) {
+		return {
+			example:   $("#dtExample_" + rowNum).val(),
+			listType1: $("#dtListType1_" + rowNum).attr("checked"),
+			listType2: $("#dtListType2_" + rowNum).attr("checked"),
+			exactly:   $("#dtListExactly_" + rowNum).val(),
+			atMost:    $("#dtListAtMost_" + rowNum).val(),
+			option:    $("#dtOption_" + rowNum).val()
+		};
+	};
 
-  var _loadRow = function(rowNum, data) {
-    return [
-      function() {
-        $("#dt_" + rowNum).val(data.example);
-        $("#list_type1_" + rowNum).attr("checked", data.list_type1);
-        $("#list_type2_" + rowNum).attr("checked", data.list_type2);
-        $("#exactly_" + rowNum).val(data.exactly);
-        $("#at_most_" + rowNum).val(data.at_most);
-        $("#option_" + rowNum).val(data.option);
-      },
-      function() { return $("#option_" + rowNum).length &gt; 0; }
-    ];
-  };
+	var _loadRow = function(rowNum, data) {
+		return {
+			execute: function() {
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtListType1_" + rowNum).attr("checked", data.listType1);
+				$("#dtListType2_" + rowNum).attr("checked", data.listType2);
+				$("#dtListExactly_" + rowNum).val(data.exactly);
+				$("#dtListAtMost_" + rowNum).val(data.atMost);
+				$("#dtOption_" + rowNum).val(data.option);
+			},
+			isComplete: function() {
+				return $("#dtOption_" + rowNum).length &gt; 0;
+			}
+		};
+	};
+
+	/**
+	 * Confirm the "Exactly" and "At Most" fields are all integers, and the Options field has been filled in.
+	 *
+	 */
+	var _validate = function(rows) {
+		var missingOptions = {
+			fields: [],
+			visibleProblemRows: []
+		};
+		var invalidIntFields = {
+			fields: [],
+			visibleProblemRows: []
+		};
+
+		var intOnly = /^\d+$/;
+		for (var i=0; i&lt;rows.length; i++) {
+			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+
+			// check the At Most and Exactly fields
+			var exactlyField = $("#dtListExactly_" + rows[i]);
+			var exactlyFieldValid = intOnly.test(exactlyField.val());
+			var atMostField = $("#dtListExactly_" + rows[i]);
+			var atMostFieldValid  = intOnly.test(atMostField.val());
+
+			if (!exactlyFieldValid || !atMostFieldValid) {
+				if (!exactlyFieldValid) {
+					invalidIntFields.fields.push(exactlyField);
+				}
+				if (!atMostFieldValid) {
+					invalidIntFields.fields.push(atMostField);
+				}
+				invalidIntFields.visibleProblemRows.push(visibleRowNum);
+			}
+
+			// check the option is filled in
+			var option = $.trim($("#dtOption_" + rows[i]).val());
+			if (option === "") {
+				missingOptions.visibleProblemRows.push(visibleRowNum);
+				missingOptions.fields.push($("#dtOption_" + rows[i]));
+			}
+		}
+		var errors = [];
+		if (missingOptions.visibleProblemRows.length) {
+			errors.push({ els: missingOptions.fields, error: LANG.incomplete_fields + " &lt;b&gt;" + missingOptions.visibleProblemRows.join(", ") + "&lt;/b&gt;"});
+		}
+		if (invalidIntFields.visibleProblemRows.length) {
+			errors.push({ els: invalidIntFields.fields, error: LANG.invalid_int_fields + " &lt;b&gt;" + invalidIntFields.visibleProblemRows.join(", ") + "&lt;/b&gt;"});
+		}
+		return errors;
+	};
 
 	var _exampleChange = function(msg) {
 		$("#dtOption_" + msg.rowID).val(msg.value);
 	};
 
 	manager.registerDataType(MODULE_ID, {
-    init: _init,
-    loadRow: _loadRow,
-    saveRow: _saveRow
+		init: _init,
+		validate: _validate,
+		loadRow: _loadRow,
+		saveRow: _saveRow
 	});
 
 });</pre>
@@ -181,7 +239,7 @@ define([
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Wed Dec 26 2012 19:04:48 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Mon Jan 14 2013 21:02:12 GMT-0800 (PST)</p>
 	</div>
 </footer>
 

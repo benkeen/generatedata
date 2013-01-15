@@ -65,6 +65,8 @@
 		
 			<li><a href="../../symbols/Composite.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Composite</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Constant.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Constant</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Country.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Country</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
@@ -93,6 +95,8 @@
 		
 			<li><a href="../../symbols/TextRandom.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">TextRandom</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Tree.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Tree</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Utils.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Utils</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_Core">Core</span></span></span></a></li>
 		
 			<li><a href="../../symbols/XML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">XML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -108,9 +112,92 @@
 			<div id="content" class="span9">
 <!-- ============================== source code ============================ -->
 
-				<pre id="source-code" class="prettyprint linenums">"use strict";
+				<pre id="source-code" class="prettyprint linenums">/*global $:false,define:false*/
+define([
+	"manager",
+	"generator",
+	"constants",
+	"lang"
+], function(manager, generator, C, L) {
 
-/*var Constant_ns = {
+	"use strict";
+
+	/**
+	* @name Constant
+	* @description JS code for the Constant Data Type.
+	* @see DataType
+	* @namespace
+	*/
+
+	var MODULE_ID = "data-type-Constant";
+	var LANG = L.dataTypePlugins.Constant;
+
+
+	var _loadRow = function(rowNum, data) {
+		return {
+			execute: function() {},
+			isComplete: function() {
+				if ($("#dtOption_" + rowNum).length) {
+					$("#dtConstantLoopCount_" + rowNum).val(data.loopCount);
+					$("#dtOption_" + rowNum).val(data.values);
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+	};
+
+	var _saveRow = function(rowNum) {
+		return {
+			loopCount: $("#dtConstantLoopCount_" + rowNum).val(),
+			values: $("#dtOption_" + rowNum).val()
+		};
+	};
+
+	var _validate = function(rows) {
+		var invalidLoopCountFields = [];
+		var loopCountVisibleProblemRows = [];
+
+		var emptyFields = [];
+		var emptyFieldProblemRows = [];
+
+		for (var i=0; i&lt;rows.length; i++) {
+			var loopVal = $.trim($("#dtConstantLoopCount_" + rows[i]).val());
+			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+			if (loopVal === "" || !(/^\d+$/.test(loopVal))) {
+				loopCountVisibleProblemRows.push(visibleRowNum);
+				invalidLoopCountFields.push($("#dtConstantLoopCount_" + rows[i]));
+			}
+			if ($("#dtOption_" + rows[i]).val() === "") {
+				emptyFieldProblemRows.push(visibleRowNum);
+				emptyFields.push($("#dtOption_" + rows[i]));
+			}
+		}
+		var errors = [];
+		if (loopCountVisibleProblemRows.length) {
+			errors.push({ els: invalidLoopCountFields, error: LANG.invalid_loop_counts + " &lt;b&gt;" + loopCountVisibleProblemRows.join(", ") + "&lt;/b&gt;"});
+		}
+		if (emptyFields.length) {
+			errors.push({ els: emptyFields, error: LANG.incomplete_fields + " &lt;b&gt;" + emptyFieldProblemRows.join(", ") + "&lt;/b&gt;"});
+		}
+
+		return errors;
+	};
+
+	// register our module
+	manager.registerDataType(MODULE_ID, {
+		loadRow: _loadRow,
+		saveRow: _saveRow,
+		validate: _validate
+	});
+
+});
+
+
+
+/*
+var Constant_ns = {
   validate: function(rows)
   {
     var visibleProblemRows = [];
@@ -128,26 +215,8 @@
     if (visibleProblemRows.length)
       gd.errors.push({ els: problemFields, error: L.Constant_incomplete_fields + " &lt;b&gt;" + visibleProblemRows.join(", ") + "&lt;/b&gt;"});
   },
-
-  loadRow: function(rowNum, data)
-  {
-    return [
-      function() {
-        $("#loop_count_" + rowNum).val(data.loop_count);
-        $("#option_" + rowNum).val(data.option);
-      },
-      function() { return $("#option_" + rowNum).length &gt; 0; }
-    ];
-  },
-
-  saveRow: function(rowNum)
-  {
-    return {
-      "loop_count": $("#loop_count_" + rowNum).val(),
-      "option":     $("#option_" + rowNum).val()
-    };
-  }
-}*/</pre>
+}
+*/</pre>
 			</div>
 		</section>
 	</div>
@@ -158,7 +227,7 @@
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Wed Dec 26 2012 19:04:48 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Mon Jan 14 2013 21:02:12 GMT-0800 (PST)</p>
 	</div>
 </footer>
 

@@ -11,7 +11,14 @@ require([
 	$(function() {
 		manager.start();
 
-		utils.selectTab({ tabGroup: "gdMainTabs", tabIDPrefix: "gdMainTab", newTab: 1 });
+		// check the
+		if (window.location.href.match(/#/)) {
+			var tab = window.location.href.split("#")[1].replace(/^t/, "");
+			if (tab != 1 && tab != 2) {
+				utils.selectTab({ tabGroup: "gdMainTabs", tabIDPrefix: "gdMainTab", newTab: 1 });
+			}
+		}
+
 		$("#email").focus();
 		$("#gdMainTab1Content button").on("click", _login);
 

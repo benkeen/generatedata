@@ -71,7 +71,7 @@ class AjaxRequest {
 					"email"       => $post["email"],
 					"password"    => $post["password"]
 				);
-				Account::createUser($adminAccount);
+				Account::createAccount($adminAccount);
 
 				// make note of the fact that we've passed this installation step
 				Settings::setSetting("userAccountSetup", $post["userAccountSetup"]);
@@ -198,6 +198,7 @@ class AjaxRequest {
 				$this->response["isComplete"] = $response["isComplete"];
 				break;
 
+
 			// ------------------------------------------------------------------------------------
 			// USER ACCOUNTS
 			// ------------------------------------------------------------------------------------
@@ -207,6 +208,23 @@ class AjaxRequest {
 				$response = Core::$user->getAccount();
 				$this->response["success"] = true;
 				$this->response["content"] = $response;
+				break;
+
+			case "getUsers":
+				Core::init();
+				$response = Core::$user->getUsers();
+				$this->response["success"] = $response["success"];
+				if (isset($response["accounts"])) {
+					$this->response["content"] = $response["accounts"];
+				}
+				break;
+
+			case "createAccount":
+				Core::init();
+				$accountInfo = $post;
+				$accountInfo["accountType"] = "user";
+				$response = Account::createAccount($accountInfo);
+				$this->response["success"] = true;
 				break;
 
 			case "saveConfiguration":

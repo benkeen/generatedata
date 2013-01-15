@@ -65,6 +65,8 @@
 		
 			<li><a href="../../symbols/Composite.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Composite</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Constant.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Constant</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Country.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Country</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
@@ -93,6 +95,8 @@
 		
 			<li><a href="../../symbols/TextRandom.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">TextRandom</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Tree.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Tree</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Utils.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Utils</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_Core">Core</span></span></span></a></li>
 		
 			<li><a href="../../symbols/XML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">XML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -108,7 +112,7 @@
 			<div id="content" class="span9">
 <!-- ============================== source code ============================ -->
 
-				<pre id="source-code" class="prettyprint linenums">/*global $:false*/
+				<pre id="source-code" class="prettyprint linenums">/*global $:false,define:false*/
 define([
 	"manager",
 	"constants",
@@ -121,33 +125,48 @@ define([
 	var MODULE_ID = "data-type-NumberRange";
 	var LANG = L.dataTypePlugins.NumberRange;
 
-	var _saveRow = function(rowNum) {
-		
-	};
 
 	var _loadRow = function(rowNum, data) {
+		return {
+			execute: function() {
+				$("#dtNumRangeMin_" + rowNum).val(data.rangeMin);
+				$("#dtNumRangeMax_" + rowNum).val(data.rangeMax);
+			},
+			isComplete: function() { return true; }
+		};
+	};
 
+	var _saveRow = function(rowNum) {
+		return {
+			rangeMin: $("#dtNumRangeMin_" + rowNum).val(),
+			rangeMax: $("#dtNumRangeMax_" + rowNum).val()
+		};
 	};
 
 	var _validate = function(rows) {
 		var visibleProblemRows = [];
 		var problemFields      = [];
 
+		var intOnly = /^\d+$/;
 		for (var i=0; i&lt;rows.length; i++) {
 			var numWordsMin = $.trim($("#dtNumRangeMin_" + rows[i]).val());
 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-			if (numWordsMin === "") {
+
+			var hasError = false;
+			if (numWordsMin === "" || !intOnly.test(numWordsMin)) {
+				hasError = true;
 				problemFields.push($("#dtNumRangeMin_" + rows[i]));
 			}
 			var numWordsMax = $.trim($("#dtNumRangeMax_" + rows[i]).val());
-			if (numWordsMax === "") {
+			if (numWordsMax === "" || !intOnly.test(numWordsMax)) {
+				hasError = true;
 				problemFields.push($("#dtNumRangeMax_" + rows[i]));
 			}
-
-			if (numWordsMin === "" || numWordsMax === "") {
+			if (hasError) {
 				visibleProblemRows.push(visibleRowNum);
 			}
 		}
+
 		var errors = [];
 		if (visibleProblemRows.length) {
 			errors.push({ els: problemFields, error: LANG.incomplete_fields + " &lt;b&gt;" + visibleProblemRows.join(", ") + "&lt;/b&gt;"});
@@ -160,31 +179,7 @@ define([
 		loadRow: _loadRow,
 		saveRow: _saveRow
 	});
-});
-
-
-
-
-/*var NumberRange_ns = {
-  loadRow: function(rowNum, data)
-  {
-    return [
-      function() {
-        $("#numRangeMin_" + rowNum).val(data.numRangeMin);
-        $("#numRangeMax_" + rowNum).val(data.numRangeMax);
-      },
-      function() { return $("#numRangeMax_" + rowNum).length &gt; 0; }
-    ];
-  },
-
-  saveRow: function(rowNum)
-  {
-    return {
-      "numRangeMin": $("#numRangeMin_" + rowNum).val(),
-      "numRangeMax": $("#numRangeMax_" + rowNum).val()
-    };
-  }
-}*/</pre>
+});</pre>
 			</div>
 		</section>
 	</div>
@@ -195,7 +190,7 @@ define([
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Wed Dec 26 2012 19:04:48 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Mon Jan 14 2013 21:02:12 GMT-0800 (PST)</p>
 	</div>
 </footer>
 

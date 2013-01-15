@@ -65,6 +65,8 @@
 		
 			<li><a href="../../symbols/Composite.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Composite</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Constant.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Constant</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Country.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Country</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Date.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Date</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
@@ -93,6 +95,8 @@
 		
 			<li><a href="../../symbols/TextRandom.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">TextRandom</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
 		
+			<li><a href="../../symbols/Tree.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Tree</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/Utils.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Utils</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_Core">Core</span></span></span></a></li>
 		
 			<li><a href="../../symbols/XML.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">XML</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
@@ -108,7 +112,8 @@
 			<div id="content" class="span9">
 <!-- ============================== source code ============================ -->
 
-				<pre id="source-code" class="prettyprint linenums">/*global $:false*/
+				<pre id="source-code" class="prettyprint linenums">/*jslint browser:true*/
+/*global $:false,Spinners:false,define:false*/
 define([
 	"manager",
 	"constants",
@@ -127,9 +132,9 @@ define([
 	 * @namespace
 	 */
 
-	var MODULE_ID       = "core-utils";
-	var _errors         = [];
-	
+	var MODULE_ID = "core-utils";
+	var _errors   = [];
+	var _spinner  = null;
 
 	var _queue = {
 		domChanges: [],
@@ -161,6 +166,27 @@ define([
 	};
 
 
+	var _getParamByName = function(name) {
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		var regexS = "[\\?&amp;]" + name + "=([^&amp;#]*)";
+		var regex = new RegExp(regexS);
+		var results = regex.exec(window.location.search);
+		if (results === null) {
+			return "";
+		} else {
+			return decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+	};
+
+	var _generateRandomAlphaNumericStr = function(len) {
+		var chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+		var result = '';
+		for (var i=len; i&gt;0; --i) {
+			result += chars[Math.round(Math.random() * (chars.length - 1))];
+		}
+		return result;
+	};
+
 	return {
 
 		/**
@@ -185,10 +211,14 @@ define([
 				return false;
 			}
 
-			$("#" + opts.tabIDPrefix + opts.oldTab).removeClass("gdSelected");
-			$("#" + opts.tabIDPrefix + opts.newTab).addClass("gdSelected");
-			$("#" + opts.tabIDPrefix + opts.oldTab + "Content").hide();
-			$("#" + opts.tabIDPrefix + opts.newTab + "Content").show();
+			if (opts.oldTab !== null) {
+				$("#" + opts.tabIDPrefix + opts.oldTab).removeClass("gdSelected");
+				$("#" + opts.tabIDPrefix + opts.oldTab + "Content").hide();
+			}
+			if (opts.newTab !== null) {
+				$("#" + opts.tabIDPrefix + opts.newTab).addClass("gdSelected");
+				$("#" + opts.tabIDPrefix + opts.newTab + "Content").show();
+			}
 
 			manager.publish({
 				sender: MODULE_ID,
@@ -201,12 +231,35 @@ define([
 			return false;
 		},
 
+		/**
+		 * Called on page load, this initializes the main spinner canvas icon that appears
+		 * at the top right of the tabset.
+		 */
+		initMainSpinner: function() {
+			if (_spinner !== null) {
+				return;
+			}
+			_spinner = Spinners.create('#gdProcessingIcon', {
+				radius: 4,
+				height: 5,
+				width: 1.5,
+				dashes: 14,
+				opacity: 1,
+				padding: 0,
+				rotation: 1400,
+				fadeOutSpeed: 0,
+				color: '#006600',
+				pauseColor: '#aaaaaa',
+				pauseOpacity: 1
+			}).pause();
+		},
+
 		startProcessing: function() {
-			$("#gdProcessingIcon").show();
+			_spinner.play();
 		},
 
 		stopProcessing: function() {
-			$("#gdProcessingIcon").hide();
+			_spinner.pause();
 		},
 
 		/**
@@ -303,7 +356,11 @@ define([
 
 		formatNumWithCommas: function(num) {
 			return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
+		},
+
+		getParamByName: _getParamByName,
+
+		generateRandomAlphaNumericStr: _generateRandomAlphaNumericStr
 	};
 });</pre>
 			</div>
@@ -316,7 +373,7 @@ define([
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Wed Dec 26 2012 19:04:48 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Mon Jan 14 2013 21:02:12 GMT-0800 (PST)</p>
 	</div>
 </footer>
 
