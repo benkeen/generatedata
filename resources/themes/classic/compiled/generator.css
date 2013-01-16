@@ -272,3 +272,6 @@ a.gdDisabledLink {
 
 #gdSelectLanguage {
   width: 150px; }
+
+#gdAccountList table {
+  width: 100%; }
