@@ -29,6 +29,7 @@ define([
 	};
 
 	var _onClickCreateAccount = function() {
+
 		// check all fields have been entered
 		var firstNameField    = $("#gdManageAccount_firstName");
 		var firstNameFieldVal = $.trim(firstNameField.val());
@@ -115,22 +116,33 @@ define([
 	var _updateAccountsTable = function(data) {
 		var html = '';
 		for (var i=0; i<data.length; i++) {
-			var lastLoggedIn = data[i].last_logged_in;
-			var dateCreated = data[i].date_created;
+			var lastLoggedIn = moment.unix(data[i].last_logged_in).format("h:mm A, MMM Do YYYY");
+			var dateCreated  = data[i].date_created;
+
+// var lastUpdated = 
 
 			html += '<tr>' +
 					'<td>' + data[i].first_name + '</td>' +
 					'<td>' + data[i].last_name + '</td>' +
-					'<td>' + data[i].email + '</td>' +
+					'<td><a href="' + data[i].email + '">' + data[i].email + '</a></td>' +
 					'<td></td>' +
-					'<td>' + lastLoggedIn + '</td>' +
+					'<td>' + data[i].last_logged_in  + '</td>' +
 					'<td>' + dateCreated + '</td>' +
 					'<td align="center"><a href="">EDIT</a></td>' +
+					'<td align="center"><a href="">DELETE</a></td>' +
 				'</tr>';
 		}
 
 		$("#gdAccountList tbody").html(html);
 		$("#gdAccountList").removeClass("hidden");
+
+		if (data.length === 0) {
+			$("#gdAccountListEmpty").removeClass("hidden");
+			$("#gdAccountListNonEmpty").addClass("hidden");
+		} else {
+			$("#gdAccountListEmpty").addClass("hidden");
+			$("#gdAccountListNonEmpty").removeClass("hidden");
+		}
 	};
 
 	var _openCreateAccountDialog = function() {

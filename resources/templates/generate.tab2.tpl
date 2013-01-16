@@ -6,24 +6,31 @@
 	</p>
 
 	<div id="gdAccountList" class="hidden">
-		<table cellpadding="0" cellspacing="1">
-		<thead>
-			<tr>
-				<td>First Name</td>
-				<td>Last Name</td>
-				<td>Email</td>
-				<td>Num Records Generated</td>
-				<td>Last Logged In</td>
-				<td>Date Created</td>
-				<td width="80">EDIT</td>
-			</tr>
-		</thead>
-		<tbody></tbody>
-		</table>
+		<div id="gdAccountListEmpty">
+			<div class="gdMessage gdNotify" style="display:block">
+				<p>No user accounts defined.</p>
+			</div>
+		</div>
+		<div id="gdAccountListNonEmpty">
+			<table cellpadding="1" cellspacing="0">
+			<thead>
+				<tr>
+					<td>First Name</td>
+					<td>Last Name</td>
+					<td>Email</td>
+					<td>Num Records Generated</td>
+					<td>Last Logged In</td>
+					<td>Date Created</td>
+					<td align="center" width="80">EDIT</td>
+					<td align="center" width="80">DELETE</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+			</table>
+		</div>
 	</div>
 
 	<button class="gdPrimaryButton" id="gdCreateAccount">Create Account &raquo;</button>
-
 
 	<div id="gdManageAccountDialog" class="hidden">
 		<table>

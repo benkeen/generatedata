@@ -273,5 +273,8 @@ a.gdDisabledLink {
 #gdSelectLanguage {
   width: 150px; }
 
+#gdAccountList thead td {
+  border-bottom: 1px solid #cccccc;
+  font-weight: bold; }
 #gdAccountList table {
   width: 100%; }

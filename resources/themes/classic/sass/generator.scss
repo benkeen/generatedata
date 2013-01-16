@@ -324,6 +324,12 @@ a.gdDisabledLink {
 	width: 150px;
 }
 
-#gdAccountList table {
-	width: 100%;
+#gdAccountList {
+	thead td {
+		border-bottom: 1px solid #cccccc;
+		font-weight: bold;
+	}
+	table {
+		width: 100%;
+	}
 }
