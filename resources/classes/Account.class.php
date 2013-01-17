@@ -339,6 +339,9 @@ class Account {
 		$data = array();
 		if ($response["success"]) {
 			while ($row = mysql_fetch_assoc($response["results"])) {
+				$row["date_created"] = date("U", strtotime($row["date_created"]));
+				$row["last_updated"] = date("U", strtotime($row["last_updated"]));
+				$row["last_logged_in"] = date("U", strtotime($row["last_logged_in"]));
 				$data[] = $row;
 			}
 		}
@@ -348,6 +351,7 @@ class Account {
 			"accounts" => $data
 		);
 	}
+
 
 	public function updateRowsGeneratedCount($configurationID, $rowsGenerated) {
 		if (!is_numeric($rowsGenerated)) {

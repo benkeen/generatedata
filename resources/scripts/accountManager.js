@@ -117,16 +117,14 @@ define([
 		var html = '';
 		for (var i=0; i<data.length; i++) {
 			var lastLoggedIn = moment.unix(data[i].last_logged_in).format("h:mm A, MMM Do YYYY");
-			var dateCreated  = data[i].date_created;
-
-// var lastUpdated = 
+			var dateCreated  = moment.unix(data[i].date_created).format("h:mm A, MMM Do YYYY");
 
 			html += '<tr>' +
 					'<td>' + data[i].first_name + '</td>' +
 					'<td>' + data[i].last_name + '</td>' +
 					'<td><a href="' + data[i].email + '">' + data[i].email + '</a></td>' +
 					'<td></td>' +
-					'<td>' + data[i].last_logged_in  + '</td>' +
+					'<td>' + lastLoggedIn  + '</td>' +
 					'<td>' + dateCreated + '</td>' +
 					'<td align="center"><a href="">EDIT</a></td>' +
 					'<td align="center"><a href="">DELETE</a></td>' +

@@ -7,7 +7,7 @@ Core::init();
 Utils::maybeShowInstallationPage();
 
 if (!Core::checkIsLoggedIn()) {
-	header("location: login.php");
+	header("location: login.php#t1");
 	exit;
 }
 

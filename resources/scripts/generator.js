@@ -25,7 +25,7 @@ define([
 	 */
 
 	var MODULE_ID = "core-generator";
-	var _numRows  = 0;
+	var _numRows = 0;
 	var _numRowsToShowOnStart = 4;
 	var _countries = [];
 	var _currExportType = null; // populated onload
@@ -134,7 +134,7 @@ define([
 		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
 		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
 		$("#gdSelectAllDataSets").on("click", _onToggleSelectAllDataSets);
-		$("#gdDataSetStatusLine").html("not saved");
+		$("#gdDataSetStatusLine").html(L.not_saved);
 		$("#gdMainDialog").on("click", ".gdDataSetStatus", _onToggleSaveDataSetVisibilityStatus);
 
 		_initMainDialog();
