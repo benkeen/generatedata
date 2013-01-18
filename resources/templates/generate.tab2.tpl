@@ -18,7 +18,7 @@
 					<td>First Name</td>
 					<td>Last Name</td>
 					<td>Email</td>
-					<td>Num Records Generated</td>
+					<td align="center">Num Records Generated</td>
 					<td>Last Logged In</td>
 					<td>Date Created</td>
 					<td align="center" width="80">EDIT</td>

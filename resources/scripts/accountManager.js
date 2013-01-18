@@ -113,7 +113,10 @@ define([
 		});
 	};
 
+
 	var _updateAccountsTable = function(data) {
+		console.log(data);
+
 		var html = '';
 		for (var i=0; i<data.length; i++) {
 			var lastLoggedIn = moment.unix(data[i].last_logged_in).format("h:mm A, MMM Do YYYY");
@@ -123,7 +126,7 @@ define([
 					'<td>' + data[i].first_name + '</td>' +
 					'<td>' + data[i].last_name + '</td>' +
 					'<td><a href="' + data[i].email + '">' + data[i].email + '</a></td>' +
-					'<td></td>' +
+					'<td align="center">' + data[i].num_rows_generated + '</td>' +
 					'<td>' + lastLoggedIn  + '</td>' +
 					'<td>' + dateCreated + '</td>' +
 					'<td align="center"><a href="">EDIT</a></td>' +
