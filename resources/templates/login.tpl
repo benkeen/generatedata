@@ -39,46 +39,48 @@
 		<div id="gdContent">
 			<ul class="gdMainTabContent">
 				<li id="gdMainTab1Content">
-					<h1>{$L.please_login}</h1>
+					<form>
+						<h1>{$L.please_login}</h1>
 
-					<div id="gdMessages" class="gdMessage" style="margin-bottom: 12px">
-						<a class="gdMessageClose" href="#">X</a>
-						<div></div>
-					</div>
+						<div id="gdMessages" class="gdMessage" style="margin-bottom: 12px">
+							<a class="gdMessageClose" href="#">X</a>
+							<div></div>
+						</div>
 
-					<div class="gdFields">
-						<div class="gdField">
-							<label for="email">{$L.email}</label>
-							<input type="text" id="email" value="" />
+						<div class="gdFields">
+							<div class="gdField">
+								<label for="email">{$L.email}</label>
+								<input type="text" id="email" value="" />
+							</div>
+							<div class="gdError" id="email_error"></div>
+							<div class="gdField">
+								<label for="password">{$L.password}</label>
+								<input type="password" id="password" value="" />
+							</div>
+							<div class="gdError" id="password_error"></div>
 						</div>
-						<div class="gdError" id="email_error"></div>
-						<div class="gdField">
-							<label for="password">{$L.password}</label>
-							<input type="password" id="password" value="" />
-						</div>
-						<div class="gdError" id="password_error"></div>
-					</div>
-					<div class="gdClear"></div>
-					<button class="gdPrimaryButton">{$L.continue_rightarrow}</button>
+						<div class="gdClear"></div>
+						<button class="gdPrimaryButton">{$L.continue_rightarrow}</button>
+					</form>
 				</li>
 				<li id="gdMainTab2Content" class="hidden">
+					<form>
+						<h1>{$L.forgotten_your_password_q}</h1>
 
-					<h1>{$L.forgotten_your_password_q}</h1>
+						<p>
+							Enter your email address below to reset your password.
+						</p>
 
-					<p>
-
-					</p>
-
-					<div class="gdFields">
-						<div class="gdField">
-							<label for="email">{$L.email}</label>
-							<input type="text" id="email" value="" />
+						<div class="gdFields">
+							<div class="gdField">
+								<label for="email">{$L.email}</label>
+								<input type="text" id="email" value="" />
+							</div>
+							<div class="gdError" id="dbHostname_error"></div>
 						</div>
-						<div class="gdError" id="dbHostname_error"></div>
-					</div>
-					<div class="gdClear"></div>
-					<button class="gdPrimaryButton">{$L.continue_rightarrow}</button>
-
+						<div class="gdClear"></div>
+						<button class="gdPrimaryButton">{$L.continue_rightarrow}</button>
+					</form>
 				</li>
 			</ul>
 		</div>
