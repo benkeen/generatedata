@@ -81,21 +81,15 @@ require([
 		});
 	}
 
-	function _onSubmitLoginForm() {
+	function _onSubmitPasswordReminderForm() {
 		var errors = [];
-		var email = $.trim($("#email").val());
+		var email = $.trim($("#passwordReminderEmail").val());
 		$(".gdError").hide();
 
 		if (email === "") {
 			errors.push({ fieldId: "email", error: L.validation_no_email });
 		} else if (!utils.isValidEmail(email)) {
 			errors.push({ fieldId: "email", error: L.validation_invalid_email });
-		}
-
-		// the password is optional (e.g. for local environments)
-		var password = $.trim($("#password").val());
-		if (password === "") {
-			errors.push({ fieldId: "password", error: L.validation_no_password });
 		}
 
 		if (errors.length) {
