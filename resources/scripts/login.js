@@ -11,7 +11,6 @@ require([
 	$(function() {
 		manager.start();
 
-		// check the
 		if (window.location.href.match(/#/)) {
 			var tab = window.location.href.split("#")[1].replace(/^t/, "");
 			if (tab != 1 && tab != 2) {
@@ -30,7 +29,9 @@ require([
 	});
 
 
-	function _onSubmitLoginForm() {
+	function _onSubmitLoginForm(e) {
+		e.preventDefault();
+
 		var errors = [];
 		var email = $.trim($("#email").val());
 		$(".gdError").hide();
@@ -81,15 +82,17 @@ require([
 		});
 	}
 
-	function _onSubmitPasswordReminderForm() {
+	function _onSubmitPasswordReminderForm(e) {
+		e.preventDefault();
+
 		var errors = [];
-		var email = $.trim($("#passwordReminderEmail").val());
+		var email = $.trim($("#emailReminder").val());
 		$(".gdError").hide();
 
 		if (email === "") {
-			errors.push({ fieldId: "email", error: L.validation_no_email });
+			errors.push({ fieldId: "emailReminder", error: L.validation_no_email });
 		} else if (!utils.isValidEmail(email)) {
-			errors.push({ fieldId: "email", error: L.validation_invalid_email });
+			errors.push({ fieldId: "emailReminder", error: L.validation_invalid_email });
 		}
 
 		if (errors.length) {
@@ -107,17 +110,16 @@ require([
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "login",
-				email: email,
-				password: password
+				action: "resetPassword",
+				email: email
 			},
 			success: function(json) {
 				if (json.success) {
-					window.location = "./";
+					$("#gdMessagesReminder").addClass("gdMessage").find("div").html("<ul><li>" + json.content + "</li></ul>");
 				} else {
-					$("#gdMessages").addClass("gdErrors").find("div").html("<ul><li>" + json.content + "</li></ul>");
-					updateMessageBlock("#gdMessages");
+					$("#gdMessagesReminder").addClass("gdErrors").find("div").html("<ul><li>" + json.content + "</li></ul>");
 				}
+				updateMessageBlock("#gdMessagesReminder");
 				utils.stopProcessing();
 			},
 			error: function(json) {

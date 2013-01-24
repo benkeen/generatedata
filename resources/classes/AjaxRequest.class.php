@@ -285,6 +285,14 @@ class AjaxRequest {
 					$this->response["success"] = true;
 				}
 				break;
+
+			case "resetPassword":
+				Core::init();
+				$email = $post["email"];
+				$response = Account::resetPassword($email);
+				$this->response["success"] = $response["success"];
+				$this->response["content"] = $response["message"];
+				break;
 		}
 	}
 

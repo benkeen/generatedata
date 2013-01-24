@@ -67,16 +67,21 @@
 					<form>
 						<h1>{$L.forgotten_your_password_q}</h1>
 
+						<div id="gdMessagesReminder" class="gdMessage" style="margin-bottom: 12px">
+							<a class="gdMessageClose" href="#">X</a>
+							<div></div>
+						</div>
+
 						<p>
 							Enter your email address below to reset your password.
 						</p>
 
 						<div class="gdFields">
 							<div class="gdField">
-								<label for="email">{$L.email}</label>
-								<input type="text" id="email" value="" />
+								<label for="emailReminder">{$L.email}</label>
+								<input type="text" id="emailReminder" value="" />
 							</div>
-							<div class="gdError" id="dbHostname_error"></div>
+							<div class="gdError" id="emailReminder_error"></div>
 						</div>
 						<div class="gdClear"></div>
 						<button class="gdPrimaryButton">{$L.continue_rightarrow}</button>
