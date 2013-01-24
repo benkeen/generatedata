@@ -41,12 +41,10 @@
 				<li id="gdMainTab1Content">
 					<form>
 						<h1>{$L.please_login}</h1>
-
 						<div id="gdMessages" class="gdMessage" style="margin-bottom: 12px">
 							<a class="gdMessageClose" href="#">X</a>
 							<div></div>
 						</div>
-
 						<div class="gdFields">
 							<div class="gdField">
 								<label for="email">{$L.email}</label>
@@ -66,16 +64,13 @@
 				<li id="gdMainTab2Content" class="hidden">
 					<form>
 						<h1>{$L.forgotten_your_password_q}</h1>
-
 						<div id="gdMessagesReminder" class="gdMessage" style="margin-bottom: 12px">
 							<a class="gdMessageClose" href="#">X</a>
 							<div></div>
 						</div>
-
 						<p>
 							Enter your email address below to reset your password.
 						</p>
-
 						<div class="gdFields">
 							<div class="gdField">
 								<label for="emailReminder">{$L.email}</label>

@@ -66,7 +66,6 @@ class Account {
 			LIMIT 1
 		");
 
-		// shouldn't occur
 		if (!$response["success"]) {
 			return;
 		}
@@ -100,6 +99,54 @@ class Account {
 
 	public static function logout() {
 		session_destroy(); 
+	}
+
+	public static function resetPassword($email) {
+		$prefix = Core::getDbTablePrefix();
+		$email = Utils::sanitize($email);
+		$response = Core::$db->query("
+			SELECT * 
+			FROM {$prefix}user_accounts
+			WHERE email = '$email'
+			LIMIT 1
+		");
+
+		if (!$response["success"]) {
+			return;
+		}
+
+		$data = mysql_fetch_assoc($response["results"]);
+		if (empty($data)) {
+			return array(
+				"success" => false,
+				"message" => "Sorry, we were unable to identify you."
+			);
+		}
+
+		$randPassword = Utils::generateRandomAlphanumericStr("CXCXCX");
+
+		// now attempt to send the email. If it works, update the database
+		if (mail($email, "Reset Password", "Your password has been reset. You may use the following password to log in: $randPassword\n\nPlease change it once you've logged in.")) {
+			$encryptionSalt    = Core::getEncryptionSalt();
+			$encryptedPassword = crypt($randPassword, $encryptionSalt);
+			$response = Core::$db->query("
+				UPDATE {$prefix}user_accounts
+				SET password = '$encryptedPassword'
+				WHERE email = '$email'
+				LIMIT 1
+			");
+			if ($response["success"]) {
+				return array(
+					"success" => true,
+					"message" => "Your password has been reset and you have been emailed the new password."
+				);	
+			}
+		} else {
+			return array(
+				"success" => false,
+				"message" => "We were unable to send the email notification."
+			);
+		}
 	}
 
 	public function getAccount() {

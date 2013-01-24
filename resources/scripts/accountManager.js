@@ -24,6 +24,7 @@ define([
 
 	var _run = function() {
 		$("#gdCreateAccount").on("click", _openCreateAccountDialog);
+		$("#gdEditAccount").on("click", _openEditAccountDialog);
 		$("#gdRefreshPassword").on("click", _regeneratePassword);
 		_getAccountsList();
 	};
@@ -96,6 +97,13 @@ define([
 		}
 	};
 
+	var _openEditAccountDialog = function(e) {
+		e.preventDefault();
+		var accountID = $(e.target).closest("tr").data("id");
+		console.log(accountID);
+	};
+
+
 	var _getAccountsList = function() {
 		$.ajax({
 			url: "ajax.php",
@@ -115,14 +123,11 @@ define([
 
 
 	var _updateAccountsTable = function(data) {
-		console.log(data);
-
 		var html = '';
 		for (var i=0; i<data.length; i++) {
 			var lastLoggedIn = moment.unix(data[i].last_logged_in).format("h:mm A, MMM Do YYYY");
 			var dateCreated  = moment.unix(data[i].date_created).format("h:mm A, MMM Do YYYY");
-
-			html += '<tr>' +
+			html += '<tr data-accountID="' + data[i].account_id + '">' +
 					'<td>' + data[i].first_name + '</td>' +
 					'<td>' + data[i].last_name + '</td>' +
 					'<td><a href="' + data[i].email + '">' + data[i].email + '</a></td>' +

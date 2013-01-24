@@ -115,7 +115,7 @@ require([
 			},
 			success: function(json) {
 				if (json.success) {
-					$("#gdMessagesReminder").addClass("gdMessage").find("div").html("<ul><li>" + json.content + "</li></ul>");
+					$("#gdMessagesReminder").addClass("gdNotify").find("div").html("<p>" + json.content + "</p>");
 				} else {
 					$("#gdMessagesReminder").addClass("gdErrors").find("div").html("<ul><li>" + json.content + "</li></ul>");
 				}
