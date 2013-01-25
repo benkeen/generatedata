@@ -99,7 +99,7 @@ define([
 
 	var _openEditAccountDialog = function(e) {
 		e.preventDefault();
-		var accountID = $(e.target).closest("tr").data("id");
+		var accountID = $(e.target).closest("tr").data("accountID");
 		console.log(accountID);
 	};
 
