@@ -352,7 +352,7 @@ class Account {
 		$result = Core::$db->query("
 			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, last_logged_in, account_type, 
 				first_name, last_name, email, password)
-			VALUES ('$now', '$now', '$now', '$now', '$accountType', '$firstName', '$lastName', '$email', '$password')
+			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password')
 		");
 
 		// TODO
@@ -388,7 +388,7 @@ class Account {
 			while ($row = mysql_fetch_assoc($response["results"])) {
 				$row["date_created"] = date("U", strtotime($row["date_created"]));
 				$row["last_updated"] = date("U", strtotime($row["last_updated"]));
-				$row["last_logged_in"] = date("U", strtotime($row["last_logged_in"]));
+				$row["last_logged_in"] = (!empty($row["last_logged_in"])) ? date("U", strtotime($row["last_logged_in"])) : "";
 				$data[] = $row;
 			}
 		}

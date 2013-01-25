@@ -115,9 +115,9 @@ require([
 			},
 			success: function(json) {
 				if (json.success) {
-					$("#gdMessagesReminder").addClass("gdNotify").find("div").html("<p>" + json.content + "</p>");
+					$("#gdMessagesReminder").removeClass("gdErrors").addClass("gdNotify").find("div").html("<p>" + json.content + "</p>");
 				} else {
-					$("#gdMessagesReminder").addClass("gdErrors").find("div").html("<ul><li>" + json.content + "</li></ul>");
+					$("#gdMessagesReminder").removeClass("gdNotify").addClass("gdErrors").find("div").html("<ul><li>" + json.content + "</li></ul>");
 				}
 				updateMessageBlock("#gdMessagesReminder");
 				utils.stopProcessing();
@@ -127,6 +127,7 @@ require([
 			}
 		});
 	}
+
 	/**
 	 * Helper function to actually show / highlight a message block consistently. This assumes the message / error
 	 * is already in the element. It either blinds it quickly in, or does a highlight effect to draw attention to it.
@@ -138,5 +139,4 @@ require([
 			$(el).effect("highlight", { color: "#ffc9c9" }, 1500);
 		}
 	}
-
 });

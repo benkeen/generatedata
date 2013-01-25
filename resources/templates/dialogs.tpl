@@ -33,7 +33,7 @@
 
 		<div id="gdMainDialogTab2Content" class="hidden">
 			<p id="gdNoAccountDataSets" class="hidden">{$L.no_saved_data_sets}</p>
-			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets">
+			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets" class="highlightTableRows">
 				<thead>
 					<tr>
 						<th class="leftAligned">{$L.data_set_name}</th>

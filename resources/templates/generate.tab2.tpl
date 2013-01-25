@@ -1,28 +1,27 @@
-	<h3>User Accounts</h3>
+	<h3>{$L.user_accounts}</h3>
 
 	<p>
-		This section lets you create any number of users accounts to allow people access to the script. Only you,
-		the administrator, have permissions to create or delete accounts.
+		{$L.user_account_section_intro}
 	</p>
 
 	<div id="gdAccountList" class="hidden">
 		<div id="gdAccountListEmpty">
 			<div class="gdMessage gdNotify" style="display:block">
-				<p>No user accounts defined.</p>
+				<p>{$L.no_user_accounts_defined}</p>
 			</div>
 		</div>
 		<div id="gdAccountListNonEmpty">
-			<table cellpadding="1" cellspacing="0">
+			<table cellpadding="0" cellspacing="0" class="highlightTableRows">
 			<thead>
 				<tr>
-					<td>First Name</td>
-					<td>Last Name</td>
-					<td>Email</td>
-					<td align="center">Num Records Generated</td>
-					<td>Last Logged In</td>
-					<td>Date Created</td>
-					<td align="center" width="80">EDIT</td>
-					<td align="center" width="80">DELETE</td>
+					<td>{$L.first_name}</td>
+					<td>{$L.last_name}</td>
+					<td>{$L.email}</td>
+					<td align="center">{$L.num_records_generated}</td>
+					<td>{$L.last_logged_in}</td>
+					<td>{$L.date_created}</td>
+					<td align="center" width="70">{$L.edit|upper}</td>
+					<td align="center" width="70">{$L.delete|upper}</td>
 				</tr>
 			</thead>
 			<tbody></tbody>
@@ -30,7 +29,7 @@
 		</div>
 	</div>
 
-	<button class="gdPrimaryButton" id="gdCreateAccount">Create Account &raquo;</button>
+	<button class="gdPrimaryButton" id="gdCreateAccount">{$L.create_account_rightarrow}</button>
 
 	<div id="gdManageAccountDialog" class="hidden">
 		<table>
@@ -58,8 +57,8 @@
 		</tr>
 		</table>
 
-		<p>
+		<p id="gdManageAccountDialogEmailRow">
 			<input type="checkbox" id="gdAutoEmailAccountDetails" checked="checked" />
-				<label for="gdAutoEmailAccountDetails">Email the user their login information</label>
+				<label for="gdAutoEmailAccountDetails">{$L.email_user_login_info}</label>
 		</p>
 	</div>

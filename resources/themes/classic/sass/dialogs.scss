@@ -57,7 +57,9 @@
 			text-decoration: none;
 		}
 	}
+}
 
+.highlightTableRows {
 	tbody tr {
 		&:hover {
 			background-color: #f2f2f2;
@@ -176,4 +178,23 @@ body .gdMainDialog .ui-dialog-title span {
 #gdLinkURL {
 	font-size: 16pt;
 	width: 100%;
+}
+
+#gdAccountListNonEmpty {
+	td a {
+		display: block;
+		color: #189C1C;
+		&:hover {
+			background-color: #7fbf4d;
+			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+			background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+			background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+			background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+			background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+			background-image: linear-gradient(top, #7fbf4d, #63a62f);
+			border-radius: 2px;
+			color: white;
+			text-decoration: none;
+		}
+	}
 }
