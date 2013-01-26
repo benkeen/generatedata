@@ -32,6 +32,10 @@ require([
 		if (selectedNavPage.length) {
 			_currStep = parseInt(selectedNavPage.attr("id").replace(/^nav/, ""), 10);
 		}
+
+		// this prevents the browser from accidentally remembering a previously select radio, if the user 
+		// aborted the login process and started again
+		$("#acs1").attr("checked", "checked");
 	});
 
 	function _toggleAccountSection(e) {

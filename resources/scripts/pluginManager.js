@@ -31,7 +31,6 @@ define([], function() {
 	var _currIndex = 0;
 	var _errorHandler = null;
 	var _onCompleteHandler = null;
-
 	var _successfullyInstalledDataTypes = [];
 	var _successfullyInstalledExportTypes = [];
 	var _successfullyInstalledCountries = [];
@@ -40,7 +39,7 @@ define([], function() {
 	var _installPlugins = function(params) {
 		_errorHandler      = params.errorHandler;
 		_onCompleteHandler = params.onCompleteHandler;
-		$("#gdPluginInstallationResults").removeClass("hidden");
+		$("#gdPluginInstallationResults").removeClass("hidden").css("display", "none").show("fade");
 		$("#gdPluginInstallationResults .gdResponse").html("");
 		_installDataTypes();
 	};

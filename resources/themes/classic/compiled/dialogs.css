@@ -133,16 +133,35 @@ body .gdMainDialog .ui-dialog-title span {
   width: 100%; }
 
 #gdAccountListNonEmpty td a {
-  display: block;
-  color: #189C1C; }
-  #gdAccountListNonEmpty td a:hover {
-    background-color: #7fbf4d;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
-    background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
-    background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
-    background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
-    background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
-    background-image: linear-gradient(top, #7fbf4d, #63a62f);
-    border-radius: 2px;
-    color: white;
-    text-decoration: none; }
+  display: block; }
+  #gdAccountListNonEmpty td a.gdEditAccount {
+    color: #189C1C; }
+    #gdAccountListNonEmpty td a.gdEditAccount:hover {
+      background-color: #7fbf4d;
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+      background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+      background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+      background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+      background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+      background-image: linear-gradient(top, #7fbf4d, #63a62f);
+      border-radius: 2px;
+      color: white;
+      text-decoration: none; }
+  #gdAccountListNonEmpty td a.gdDeleteAccount {
+    color: #9c1818; }
+    #gdAccountListNonEmpty td a.gdDeleteAccount:hover {
+      background-color: #bf4d4d;
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bf4d4d), color-stop(100%, #a62f2f));
+      background-image: -webkit-linear-gradient(top, #bf4d4d, #a62f2f);
+      background-image: -moz-linear-gradient(top, #bf4d4d, #a62f2f);
+      background-image: -ms-linear-gradient(top, #bf4d4d, #a62f2f);
+      background-image: -o-linear-gradient(top, #bf4d4d, #a62f2f);
+      background-image: linear-gradient(top, #bf4d4d, #a62f2f);
+      border-radius: 2px;
+      color: white;
+      text-decoration: none; }
+
+.modalSpinner {
+  float: left;
+  margin-top: 2px;
+  height: 34px; }

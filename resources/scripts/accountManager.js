@@ -124,7 +124,6 @@ define([
 		// now pre-fill the fields in the dialog
 		var accountInfo = _getAccountByID(accountID);
 		if (accountInfo !== null) {
-			console.log(accountInfo);
 			$("#gdManageAccount_firstName").val(accountInfo.first_name);
 			$("#gdManageAccount_lastName").val(accountInfo.last_name);
 			$("#gdManageAccount_email").val(accountInfo.email);
@@ -224,6 +223,7 @@ define([
 		$("#gdManageAccount_pwdEdit").addClass("hidden");
 		_regeneratePassword();
 
+		$("#gdManageAccount_firstName,#gdManageAccount_lastName,#gdManageAccount_email").val("");
 		$("#gdManageAccountDialog").dialog({
 			title: L.create_account,
 			modal: true,
@@ -251,8 +251,8 @@ define([
 			return;
 		}
 
-		var dialogBottomRow = $("#gdManageAccountDialog").closest(".ui-dialog").find(".ui-dialog-buttonpane");
-		dialogBottomRow.prepend("<span></span>");
+		var dialogBottomRow = $('#gdManageAccountDialog').closest(".ui-dialog").find(".ui-dialog-buttonpane");
+		dialogBottomRow.prepend('<span class="modalSpinner"></span>');
 		var spinnerSpan = dialogBottomRow.children("span")[0];
 		_modalSpinner = Spinners.create(spinnerSpan, {
 			radius: 7,
@@ -260,7 +260,7 @@ define([
 			width: 2,
 			dashes: 20,
 			opacity: 1,
-			padding: 3,
+			padding: 0,
 			rotation: 1400,
 			fadeOutSpeed: 0,
 			color: '#333333',
