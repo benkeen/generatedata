@@ -21,8 +21,10 @@ define([
 	 */
 
 	var MODULE_ID = "core-accountManager";
-	var _modalSpinner = null;
+	var _modalSpinners = {}; // a hash of modal ID => Spinner element
 	var _accountList;
+	var _manageAccountModalID = "gdManageAccountDialog";
+	var _deleteAccountModalID = "gdDeleteAccountDialog";
 
 
 	var _run = function() {
@@ -31,6 +33,7 @@ define([
 
 		// event delegate the Edit and Delete clicks
 		$("#gdAccountList").on("click", ".gdEditAccount", _openEditAccountDialog);
+		$("#gdAccountList").on("click", ".gdDeleteAccount", _openDeleteAccountDialog);
 
 		_getAccountsList();
 	};
@@ -77,7 +80,7 @@ define([
 		}
 
 		if (!hasErrors) {
-			_modalSpinner.play();
+			_modalSpinner[""].play();
 			var data = {
 				action: "createAccount",
 				firstName: firstNameFieldVal,
@@ -100,7 +103,7 @@ define([
 						// we close the modal when it's complete`
 						_getAccountsList({
 							onComplete: function() {
-								$("#gdManageAccountDialog").dialog("close");
+								$("#" + _manageAccountModalID).dialog("close");
 								_modalSpinner.pause();
 							}
 						});
@@ -123,17 +126,20 @@ define([
 
 		// now pre-fill the fields in the dialog
 		var accountInfo = _getAccountByID(accountID);
-		if (accountInfo !== null) {
+		if (accountInfo === null) {
+			console.log("This shouldn't have happened. Couldn't find an account ID.");
+			return;
+		} else {
 			$("#gdManageAccount_firstName").val(accountInfo.first_name);
 			$("#gdManageAccount_lastName").val(accountInfo.last_name);
 			$("#gdManageAccount_email").val(accountInfo.email);
 		}
 
-		$("#gdManageAccountDialog").dialog({
+		$("#" + _manageAccountModalID).dialog({
 			title: "Update Account",
 			modal: true,
 			width: 600,
-			open: _insertModalSpinner,
+			open: function() { _insertModalSpinner({ modalID: _manageAccountModalID }); },
 			buttons: [
 				{
 					text: "Update",
@@ -141,6 +147,40 @@ define([
 				},
 				{
 					text: L.close,
+					click: function() { $(this).dialog("close"); }
+				}
+			]
+		});
+	};
+
+	var _openDeleteAccountDialog = function(e) {
+		e.preventDefault();
+		var accountID = $(e.target).closest("tr").data("account-id");
+
+		// now pre-fill the text in the dialog to make it totally transparent what the admin
+		// is about to delete
+		var accountInfo = _getAccountByID(accountID);
+		if (accountInfo === null) {
+			console.log("This shouldn't have happened. Couldn't find an account ID.");
+			return;
+		} else {
+			$("#gdDeleteAccount_firstName").html(accountInfo.first_name);
+			$("#gdDeleteAccount_lastName").html(accountInfo.last_name);
+			$("#gdDeleteAccount_email").html(accountInfo.email);
+		}
+
+		$("#" + _deleteAccountModalID).dialog({
+			title: L.delete_account,
+			modal: true,
+			width: 480,
+			open: function() { _insertModalSpinner({ modalID: _deleteAccountModalID }); },
+			buttons: [
+				{
+					text: L.yes,
+					click: _onClickCreateAccount
+				},
+				{
+					text: L.no,
 					click: function() { $(this).dialog("close"); }
 				}
 			]
@@ -224,11 +264,11 @@ define([
 		_regeneratePassword();
 
 		$("#gdManageAccount_firstName,#gdManageAccount_lastName,#gdManageAccount_email").val("");
-		$("#gdManageAccountDialog").dialog({
+		$("#" + _manageAccountModalID).dialog({
 			title: L.create_account,
 			modal: true,
 			width: 600,
-			open: _insertModalSpinner,
+			open: function() { _insertModalSpinner({ modalID: _manageAccountModalID }); },
 			buttons: [
 				{
 					text: L.create_account,
@@ -246,15 +286,25 @@ define([
 		$("#gdManageAccount_password").val(utils.generateRandomAlphaNumericStr(8));
 	};
 
-	var _insertModalSpinner = function() {
-		if (_modalSpinner !== null) {
+	var _insertModalSpinner = function(paramSettings) {
+		var settings = $.extend({
+			modalID: null
+		}, paramSettings);
+
+		if (settings.modalID === null) {
+			console.log("_insertModalSpinner needs to be passed the modal ID.");
 			return;
 		}
 
-		var dialogBottomRow = $('#gdManageAccountDialog').closest(".ui-dialog").find(".ui-dialog-buttonpane");
+		// if this modal's spinner has already been created, do nothing - we don't need to recreate it
+		if (_modalSpinners.hasOwnProperty(settings.modalID)) {
+			return;
+		}
+
+		var dialogBottomRow = $('#' + settings.modalEl).closest(".ui-dialog").find(".ui-dialog-buttonpane");
 		dialogBottomRow.prepend('<span class="modalSpinner"></span>');
 		var spinnerSpan = dialogBottomRow.children("span")[0];
-		_modalSpinner = Spinners.create(spinnerSpan, {
+		_modalSpinners[settings.modalID] = Spinners.create(spinnerSpan, {
 			radius: 7,
 			height: 9,
 			width: 2,

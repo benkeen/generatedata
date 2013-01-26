@@ -573,6 +573,15 @@ a.gdDisabledLink {
 #gdAccountList table {
   width: 100%; }
 
+#gdUserAccount {
+  background: transparent url(../images/user.png) top left no-repeat;
+  padding-left: 20px; }
+
+.gdIconWarning {
+  background: transparent url(../images/warning.png) top left no-repeat;
+  width: 48px;
+  height: 48px; }
+
 /* buttons */
 .gdButton {
   border: 0px;
@@ -1255,3 +1264,10 @@ body .gdMainDialog .ui-dialog-title span {
   float: left;
   margin-top: 2px;
   height: 34px; }
+
+#gdDeleteAccountDialog th {
+  text-align: left; }
+#gdDeleteAccountDialog .gdIconWarning {
+  margin-right: 15px;
+  float: left;
+  height: 100px; }

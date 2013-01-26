@@ -30,35 +30,3 @@
 	</div>
 
 	<button class="gdPrimaryButton" id="gdCreateAccount">{$L.create_account_rightarrow}</button>
-
-	<div id="gdManageAccountDialog" class="hidden">
-		<table>
-		<tr>
-			<td width="160">{$L.first_name}</td>
-			<td><input type="text" id="gdManageAccount_firstName" /></td>
-		</tr>
-		<tr>
-			<td>{$L.last_name}</td>
-			<td><input type="text" id="gdManageAccount_lastName" /></td>
-		</tr>
-		<tr>
-			<td>{$L.email}</td>
-			<td><input type="text" id="gdManageAccount_email" /></td>
-		</tr>
-		<tr>
-			<td>{$L.password}</td>
-			<td>
-				<div id="gdManageAccount_pwdCreate">
-					<input type="text" id="gdManageAccount_password" value="" />
-					<span id="gdRefreshPassword"></span>
-				</div>
-				<div id="gdManageAccount_pwdEdit">********</div>
-			</td>
-		</tr>
-		</table>
-
-		<p id="gdManageAccountDialogEmailRow">
-			<input type="checkbox" id="gdAutoEmailAccountDetails" checked="checked" />
-				<label for="gdAutoEmailAccountDetails">{$L.email_user_login_info}</label>
-		</p>
-	</div>

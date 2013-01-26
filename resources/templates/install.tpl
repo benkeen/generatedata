@@ -15,13 +15,11 @@
 	<script src="resources/scripts/libs/html5shiv.js"></script>
 	<script src="resources/scripts/libs/excanvas.js"></script>
 	<![endif]-->
-	<script type="text/javascript" src="resources/scripts/libs/spinners.js"></script>
+	<script src="resources/scripts/libs/spinners.js"></script>
 </head>
 <body class="gdInstallPage">
 	<header>
 		<nav>
-			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> |
 			{language_dropdown nameId="gdSelectLanguage"}
 		</nav>
 	</header>

@@ -221,3 +221,14 @@ body .gdMainDialog .ui-dialog-title span {
 	margin-top:2px;
 	height: 34px;
 }
+
+#gdDeleteAccountDialog {
+	th {
+		text-align: left;
+	}
+	.gdIconWarning {
+		margin-right: 15px;
+		float: left;
+		height: 100px;
+	}
+}

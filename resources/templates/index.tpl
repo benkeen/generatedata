@@ -25,9 +25,10 @@
 <body>
 	<header>
 		<nav>
-			{if $settings.userAccountSetup != "anonymous"}<a href="#" id="gdLogout">{$L.logout}</a> |{/if}
-			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> |
+			{if $settings.userAccountSetup != "anonymous"}
+				<a href="#" id="gdUserAccount">{$L.your_account}</a> |
+				<a href="#" id="gdLogout">{$L.logout}</a> |
+			{/if}
 			{language_dropdown nameId="gdSelectLanguage" disabled=true}
 		</nav>
 	</header>

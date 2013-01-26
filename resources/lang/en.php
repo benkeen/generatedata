@@ -256,3 +256,5 @@ $L["date_created"] = "Date Created";
 $L["user_account_section_intro"] = "This section lets you create any number of users accounts to allow people access to the script. Only you, the administrator, have permissions to create or delete accounts.";
 $L["email_user_login_info"] = "Email the user their login information";
 $L["create_account_rightarrow"] = "Create Account &raquo;";
+$L["delete_account"] = "Delete Account";
+$L["confirm_delete_user_account"] = "Are you sure you want to delete this user account?";

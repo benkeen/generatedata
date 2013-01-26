@@ -126,6 +126,7 @@ define([
 
 		// main dialog
 		$("#gdLogout").on("click", function() { return _logout(); });
+		$("#gdUserAccount").on("click", function() { return _openMainDialog({ tab: 1 }); });
 		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
 		$("#gdAccountDataSets").on("click", "a", _onClickLoadDataSet);
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);

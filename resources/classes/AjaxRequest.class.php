@@ -221,10 +221,33 @@ class AjaxRequest {
 
 			case "createAccount":
 				Core::init();
-				$accountInfo = $post;
-				$accountInfo["accountType"] = "user";
-				$response = Account::createAccount($accountInfo);
-				$this->response["success"] = true;
+				if (!Core::checkIsLoggedIn()) {
+					$this->response["success"] = false;
+					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
+				} else if (Core::$user->getAccountType() != "admin") {
+					$this->response["success"] = false;	
+					$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
+				} else {
+					$accountInfo = $post;
+					$accountInfo["accountType"] = "user";
+					$response = Account::createAccount($accountInfo);
+					$this->response["success"] = true;
+				}
+				break;
+
+			case "deleteAccount":
+				Core::init();
+				if (!Core::checkIsLoggedIn()) {
+					$this->response["success"] = false;
+					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
+				} else if (Core::$user->getAccountType() != "admin") {
+					$this->response["success"] = false;	
+					$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
+				} else {
+					$accountID = $post["accountID"];
+					$response = Account::deleteAccount($accountID);
+					$this->response["success"] = true;
+				}
 				break;
 
 			case "saveConfiguration":

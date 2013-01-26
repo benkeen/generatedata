@@ -278,3 +278,12 @@ a.gdDisabledLink {
   font-weight: bold; }
 #gdAccountList table {
   width: 100%; }
+
+#gdUserAccount {
+  background: transparent url(../images/user.png) top left no-repeat;
+  padding-left: 20px; }
+
+.gdIconWarning {
+  background: transparent url(../images/warning.png) top left no-repeat;
+  width: 48px;
+  height: 48px; }

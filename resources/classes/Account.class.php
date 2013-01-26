@@ -259,8 +259,9 @@ class Account {
 			);
 		} else {
 			return array(
-				"success" => false,
-				"message" => $response["errorMessage"]
+				"success"   => false,
+				"errorCode" => ErrorCodes::FAILED_SQL_STATEMENT,
+				"message"   => $response["errorMessage"]
 			);
 		}
 	}
@@ -333,6 +334,9 @@ class Account {
 	 * Used (currently) in the installation script. Note: this function relies on the settings file having
 	 * been defined, along with an arbitrary encryption salt.
 	 *
+	 * This is static because it's used during the installation process to create the default account. But in 
+	 * all other cases its used by the admin only.
+	 *
 	 * @param array $accountInfo
 	 */
 	public static function createAccount($accountInfo) {
@@ -347,7 +351,6 @@ class Account {
 		$autoEmail   = isset($accountInfo["accountType"]) ? $accountInfo["accountType"] : false;
 
 		$now = Utils::getCurrentDatetime();
-
 		$prefix = Core::getDbTablePrefix();
 		$result = Core::$db->query("
 			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, last_logged_in, account_type, 
@@ -368,10 +371,20 @@ class Account {
 		// }
 	}
 
+	public function deleteAccount($accountID) {
+		if ($this->accountType != "admin") {
+			return array(
+				"false" => false,
+				"errorCode" => ErrorCodes::NON_ADMIN
+			);
+		}
+	}
+
 	public function getUsers() {
 		if ($this->accountType != "admin") {
 			return array(
-				"false" => false
+				"success" => false,
+				"errorCode" => ErrorCodes::NON_ADMIN
 			);
 		}
 

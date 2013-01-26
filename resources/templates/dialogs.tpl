@@ -74,3 +74,60 @@
 		<input type="input" id="gdLinkURL" readonly="true" />
 	</div>
 </div>
+
+
+<div id="gdManageAccountDialog" class="hidden">
+	<table>
+	<tr>
+		<td width="160">{$L.first_name}</td>
+		<td><input type="text" id="gdManageAccount_firstName" /></td>
+	</tr>
+	<tr>
+		<td>{$L.last_name}</td>
+		<td><input type="text" id="gdManageAccount_lastName" /></td>
+	</tr>
+	<tr>
+		<td>{$L.email}</td>
+		<td><input type="text" id="gdManageAccount_email" /></td>
+	</tr>
+	<tr>
+		<td>{$L.password}</td>
+		<td>
+			<div id="gdManageAccount_pwdCreate">
+				<input type="text" id="gdManageAccount_password" value="" />
+				<span id="gdRefreshPassword"></span>
+			</div>
+			<div id="gdManageAccount_pwdEdit">********</div>
+		</td>
+	</tr>
+	</table>
+
+	<p id="gdManageAccountDialogEmailRow">
+		<input type="checkbox" id="gdAutoEmailAccountDetails" checked="checked" />
+			<label for="gdAutoEmailAccountDetails">{$L.email_user_login_info}</label>
+	</p>
+</div>
+
+
+<div id="gdDeleteAccountDialog" class="hidden">
+	<div class="gdIconWarning"></div>
+	<div>
+		<p>
+			{$L.confirm_delete_user_account}
+		</p>
+		<table>
+		<tr>
+			<th width="120">{$L.first_name}</th>
+			<td id="gdDeleteAccount_firstName"></td>
+		</tr>
+		<tr>
+			<th>{$L.last_name}</th>
+			<td id="gdDeleteAccount_lastName"></td>
+		</tr>
+		<tr>
+			<th>{$L.email}</th>
+			<td id="gdDeleteAccount_email"></td>
+		</tr>
+		</table>
+	</div>
+</div>
