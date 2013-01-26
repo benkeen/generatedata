@@ -126,8 +126,15 @@ class Account {
 		$randPassword = Utils::generateRandomAlphanumericStr("CXCXCX");
 
 		// now attempt to send the email. If it works, update the database
-		if (mail($email, "Reset Password", "Your password has been reset. You may use the following password to log in: $randPassword\n\nPlease change it once you've logged in.")) {
-			$encryptionSalt    = Core::getEncryptionSalt();
+
+		$response = Email::sendEmail(array(
+			"recipient" => $email,
+			"subject"   => "Reset Password",
+			"content"   => "Your password has been reset. You may use the following password to log in: $randPassword\n\nPlease change it once you've logged in."
+		));
+
+		if ($response) {
+			$encryptionSalt = Core::getEncryptionSalt();
 			$encryptedPassword = crypt($randPassword, $encryptionSalt);
 			$response = Core::$db->query("
 				UPDATE {$prefix}user_accounts
@@ -374,11 +381,25 @@ class Account {
 	public function deleteAccount($accountID) {
 		if ($this->accountType != "admin") {
 			return array(
-				"false" => false,
+				"success" => false,
 				"errorCode" => ErrorCodes::NON_ADMIN
 			);
+		} else if (!is_numeric($accountID)) {
+			return array(
+				"success" => false,
+				"errorCode" => ErrorCodes::INVALID_PARAMS,
+				"errorMsg" => "the Account ID is not valid."
+			);
 		}
+
+		$accountID = mysql_real_escape_string($accountID);
+		$prefix = Core::getDbTablePrefix();
+		Core::$db->query("DELETE FROM {$prefix}user_accounts WHERE account_id = $accountID");
+		Core::$db->query("DELETE FROM {$prefix}configurations WHERE account_id = $accountID");
+
+		return array("success" => true);
 	}
+
 
 	public function getUsers() {
 		if ($this->accountType != "admin") {

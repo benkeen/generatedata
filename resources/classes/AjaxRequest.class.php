@@ -245,7 +245,7 @@ class AjaxRequest {
 					$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
 				} else {
 					$accountID = $post["accountID"];
-					$response = Account::deleteAccount($accountID);
+					$response = Core::$user->deleteAccount($accountID);
 					$this->response["success"] = true;
 				}
 				break;
@@ -298,7 +298,7 @@ class AjaxRequest {
 				$this->response["content"] = $response["message"];
 				break;
 
-			// for single 
+			// for single
 			case "logout":
 				Core::init();
 				if (!Core::checkIsLoggedIn()) {

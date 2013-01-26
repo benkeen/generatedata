@@ -17,6 +17,7 @@ require_once(dirname(__FILE__) . "/resources/classes/CountryPluginHelper.class.p
 require_once(dirname(__FILE__) . "/resources/classes/Database.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/DataTypePlugin.abstract.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/DataTypePluginHelper.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Emails.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/ErrorCodes.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/ExportTypePlugin.abstract.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/ExportTypePluginHelper.class.php");

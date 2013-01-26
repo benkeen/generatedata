@@ -39,7 +39,6 @@ define([
 	};
 
 	var _onClickCreateAccount = function() {
-
 		// check all fields have been entered
 		var firstNameField    = $("#gdManageAccount_firstName");
 		var firstNameFieldVal = $.trim(firstNameField.val());
@@ -80,7 +79,7 @@ define([
 		}
 
 		if (!hasErrors) {
-			_modalSpinner[""].play();
+			_modalSpinners[_manageAccountModalID].play();
 			var data = {
 				action: "createAccount",
 				firstName: firstNameFieldVal,
@@ -96,7 +95,7 @@ define([
 				data: data,
 				dataType: "json",
 				success: function(response) {
-					_modalSpinner.pause();
+					_modalSpinners[_manageAccountModalID].pause();
 					if (response.success) {
 
 						// get a fresh list of accounts from the server, and add a callback so that
@@ -104,19 +103,50 @@ define([
 						_getAccountsList({
 							onComplete: function() {
 								$("#" + _manageAccountModalID).dialog("close");
-								_modalSpinner.pause();
+								_modalSpinners[_manageAccountModalID].pause();
 							}
 						});
 					}
 				},
 				error: function(response) {
-					_modalSpinner.pause();
+					_modalSpinners[_manageAccountModalID].pause();
 					console.log("error response: ", response);
 				}
 			});
 		}
 	};
 
+	var _onConfirmDeleteAccount = function(accountID) {
+		_modalSpinners[_deleteAccountModalID].play();
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			data: {
+				action: "deleteAccount",
+				accountID: accountID
+			},
+			dataType: "json",
+			success: function(response) {
+				if (response.success) {
+
+					// get a fresh list of accounts from the server, and add a callback so that
+					// we close the modal when it's complete`
+					_getAccountsList({
+						onComplete: function() {
+							$("#" + _deleteAccountModalID).dialog("close");
+							_modalSpinners[_deleteAccountModalID].pause();
+						}
+					});
+				} else {
+					// TODO
+				}
+			},
+			error: function(response) {
+				_modalSpinners[_deleteAccountModalID].pause();
+				console.log("error response: ", response);
+			}
+		});
+	};
 
 	var _openEditAccountDialog = function(e) {
 		e.preventDefault();
@@ -177,7 +207,7 @@ define([
 			buttons: [
 				{
 					text: L.yes,
-					click: _onClickCreateAccount
+					click: function() { _onConfirmDeleteAccount(accountID); }
 				},
 				{
 					text: L.no,
@@ -301,7 +331,7 @@ define([
 			return;
 		}
 
-		var dialogBottomRow = $('#' + settings.modalEl).closest(".ui-dialog").find(".ui-dialog-buttonpane");
+		var dialogBottomRow = $('#' + settings.modalID).closest(".ui-dialog").find(".ui-dialog-buttonpane");
 		dialogBottomRow.prepend('<span class="modalSpinner"></span>');
 		var spinnerSpan = dialogBottomRow.children("span")[0];
 		_modalSpinners[settings.modalID] = Spinners.create(spinnerSpan, {
