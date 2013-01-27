@@ -1,5 +1,5 @@
 /*jslint browser:true*/
-/*global $:false,Spinners:false,console:false,define:false*/
+/*global $:false,console:false,define:false*/
 define([
 	"manager",
 	"utils",
@@ -21,7 +21,6 @@ define([
 	 */
 
 	var MODULE_ID = "core-accountManager";
-	var _modalSpinners = {}; // a hash of modal ID => Spinner element
 	var _accountList;
 	var _manageAccountModalID = "gdManageAccountDialog";
 	var _deleteAccountModalID = "gdDeleteAccountDialog";
@@ -79,7 +78,7 @@ define([
 		}
 
 		if (!hasErrors) {
-			_modalSpinners[_manageAccountModalID].play();
+			utils.playModalSpinner(_manageAccountModalID);
 			var data = {
 				action: "createAccount",
 				firstName: firstNameFieldVal,
@@ -95,7 +94,6 @@ define([
 				data: data,
 				dataType: "json",
 				success: function(response) {
-					_modalSpinners[_manageAccountModalID].pause();
 					if (response.success) {
 
 						// get a fresh list of accounts from the server, and add a callback so that
@@ -103,13 +101,16 @@ define([
 						_getAccountsList({
 							onComplete: function() {
 								$("#" + _manageAccountModalID).dialog("close");
-								_modalSpinners[_manageAccountModalID].pause();
+								utils.pauseModalSpinner(_manageAccountModalID);
 							}
 						});
+					} else {
+						// TODO
+						utils.pauseModalSpinner(_manageAccountModalID);
 					}
 				},
 				error: function(response) {
-					_modalSpinners[_manageAccountModalID].pause();
+					utils.pauseModalSpinner(_manageAccountModalID);
 					console.log("error response: ", response);
 				}
 			});
@@ -117,7 +118,7 @@ define([
 	};
 
 	var _onConfirmDeleteAccount = function(accountID) {
-		_modalSpinners[_deleteAccountModalID].play();
+		utils.playModalSpinner(_deleteAccountModalID);
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -134,7 +135,7 @@ define([
 					_getAccountsList({
 						onComplete: function() {
 							$("#" + _deleteAccountModalID).dialog("close");
-							_modalSpinners[_deleteAccountModalID].pause();
+							utils.pauseModalSpinner(_deleteAccountModalID);
 						}
 					});
 				} else {
@@ -142,7 +143,7 @@ define([
 				}
 			},
 			error: function(response) {
-				_modalSpinners[_deleteAccountModalID].pause();
+				utils.pauseModalSpinner(_deleteAccountModalID);
 				console.log("error response: ", response);
 			}
 		});
@@ -169,7 +170,7 @@ define([
 			title: "Update Account",
 			modal: true,
 			width: 600,
-			open: function() { _insertModalSpinner({ modalID: _manageAccountModalID }); },
+			open: function() { utils.insertModalSpinner({ modalID: _manageAccountModalID }); },
 			buttons: [
 				{
 					text: "Update",
@@ -203,7 +204,7 @@ define([
 			title: L.delete_account,
 			modal: true,
 			width: 480,
-			open: function() { _insertModalSpinner({ modalID: _deleteAccountModalID }); },
+			open: function() { utils.insertModalSpinner({ modalID: _deleteAccountModalID }); },
 			buttons: [
 				{
 					text: L.yes,
@@ -298,7 +299,7 @@ define([
 			title: L.create_account,
 			modal: true,
 			width: 600,
-			open: function() { _insertModalSpinner({ modalID: _manageAccountModalID }); },
+			open: function() { utils.insertModalSpinner({ modalID: _manageAccountModalID }); },
 			buttons: [
 				{
 					text: L.create_account,
@@ -314,39 +315,6 @@ define([
 
 	var _regeneratePassword = function() {
 		$("#gdManageAccount_password").val(utils.generateRandomAlphaNumericStr(8));
-	};
-
-	var _insertModalSpinner = function(paramSettings) {
-		var settings = $.extend({
-			modalID: null
-		}, paramSettings);
-
-		if (settings.modalID === null) {
-			console.log("_insertModalSpinner needs to be passed the modal ID.");
-			return;
-		}
-
-		// if this modal's spinner has already been created, do nothing - we don't need to recreate it
-		if (_modalSpinners.hasOwnProperty(settings.modalID)) {
-			return;
-		}
-
-		var dialogBottomRow = $('#' + settings.modalID).closest(".ui-dialog").find(".ui-dialog-buttonpane");
-		dialogBottomRow.prepend('<span class="modalSpinner"></span>');
-		var spinnerSpan = dialogBottomRow.children("span")[0];
-		_modalSpinners[settings.modalID] = Spinners.create(spinnerSpan, {
-			radius: 7,
-			height: 9,
-			width: 2,
-			dashes: 20,
-			opacity: 1,
-			padding: 0,
-			rotation: 1400,
-			fadeOutSpeed: 0,
-			color: '#333333',
-			pauseColor: '#000000',
-			pauseOpacity: 0.14
-		}).pause();
 	};
 
 	// register our module

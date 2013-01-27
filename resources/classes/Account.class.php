@@ -379,6 +379,10 @@ class Account {
 		// }
 	}
 
+	public function updateAccount($info) {
+
+	}
+	
 	public function deleteAccount($accountID) {
 		if ($this->accountType != "admin") {
 			return array(

@@ -1,5 +1,5 @@
 /*jslint browser:true*/
-/*global $:false,Spinners:false,define:false*/
+/*global $:false,Spinners:false,define:false,console:false*/
 define([
 	"manager",
 	"constants",
@@ -21,6 +21,7 @@ define([
 	var MODULE_ID = "core-utils";
 	var _errors   = [];
 	var _spinner  = null;
+	var _modalSpinners = {}; // a hash of modal ID => Spinner element
 
 	var _queue = {
 		domChanges: [],
@@ -146,6 +147,47 @@ define([
 
 		stopProcessing: function() {
 			_spinner.pause();
+		},
+
+		insertModalSpinner: function(paramSettings) {
+			var settings = $.extend({
+				modalID: null
+			}, paramSettings);
+
+			if (settings.modalID === null) {
+				console.log("_insertModalSpinner needs to be passed the modal ID.");
+				return;
+			}
+
+			// if this modal's spinner has already been created, do nothing - we don't need to recreate it
+			if (_modalSpinners.hasOwnProperty(settings.modalID)) {
+				return;
+			}
+
+			var dialogBottomRow = $('#' + settings.modalID).closest(".ui-dialog").find(".ui-dialog-buttonpane");
+			dialogBottomRow.prepend('<span class="modalSpinner"></span>');
+			var spinnerSpan = dialogBottomRow.children("span")[0];
+			_modalSpinners[settings.modalID] = Spinners.create(spinnerSpan, {
+				radius: 7,
+				height: 9,
+				width: 2,
+				dashes: 20,
+				opacity: 1,
+				padding: 0,
+				rotation: 1400,
+				fadeOutSpeed: 0,
+				color: '#333333',
+				pauseColor: '#000000',
+				pauseOpacity: 0.14
+			}).pause();
+		},
+
+		playModalSpinner: function(modalID) {
+			_modalSpinners[modalID].play();
+		},
+
+		pauseModalSpinner: function(modalID) {
+			_modalSpinners[modalID].pause();
 		},
 
 		/**

@@ -36,13 +36,13 @@
 					<tr>
 						<td>{$L.password}</td>
 						<td>
-							<input type="text" id="gdUserAccount_password" value="" />
+							<input type="password" id="gdUserAccount_password" value="" />
 						</td>
 					</tr>
 					<tr>
 						<td>Re-enter password</td>
 						<td>
-							<input type="text" id="gdUserAccount_password2" value="" />
+							<input type="password" id="gdUserAccount_password2" value="" />
 						</td>
 					</tr>
 					</table>

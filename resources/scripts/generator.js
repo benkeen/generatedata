@@ -137,6 +137,7 @@ define([
 		$("#gdSelectAllDataSets").on("click", _onToggleSelectAllDataSets);
 		$("#gdDataSetStatusLine").html(L.not_saved);
 		$("#gdMainDialog").on("click", ".gdDataSetStatus", _onToggleSaveDataSetVisibilityStatus);
+		$("#gdUpdateAccountInfo").on("click", _updateAccountInfo);
 
 		_initMainDialog();
 		_initExportTypeTab();
@@ -1191,6 +1192,8 @@ define([
 			]
 		});
 
+		utils.insertModalSpinner({ modalID: "gdMainDialog" });
+
 		if (opts.tab == 2) {
 			_updateMainDialogDeleteButton();
 		}
@@ -1360,14 +1363,111 @@ define([
 	};
 
 
+	/**
+	 * Called when the user clicks the Update Account button on the first tab of the main dialog.
+	 */
+	var _updateAccountInfo = function(e) {
+		e.preventDefault();
+
+		// check all fields have been entered
+		var firstNameField    = $("#gdUserAccount_firstName");
+		var firstNameFieldVal = $.trim(firstNameField.val());
+		var lastNameField    = $("#gdUserAccount_lastName");
+		var lastNameFieldVal = $.trim(lastNameField.val());
+		var emailField    = $("#gdUserAccount_email");
+		var emailFieldVal = $.trim(emailField.val());
+		var passwordField    = $("#gdManageAccount_password");
+		var passwordFieldVal = $.trim(passwordField.val());
+		var passwordField2    = $("#gdManageAccount_password2");
+		var passwordField2Val = $.trim(passwordField2.val());
+
+		var hasErrors = false;
+		if (firstNameFieldVal === "") {
+			firstNameField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			firstNameField.removeClass("gdProblemField");
+		}
+
+		if (lastNameFieldVal === "") {
+			lastNameField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			lastNameField.removeClass("gdProblemField");
+		}
+
+		if (emailFieldVal === "") {
+			emailField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			emailField.removeClass("gdProblemField");
+		}
+
+		// if the users's entered a password, validate them too
+		if (passwordFieldVal !== "" || passwordField2Val !== "") {
+			if (passwordFieldVal === "") {
+				passwordField.addClass("gdProblemField");
+				hasErrors = true;
+			} else {
+				passwordField.removeClass("gdProblemField");
+			}
+			if (passwordField2Val === "") {
+				passwordField2.addClass("gdProblemField");
+				hasErrors = true;
+			} else {
+				passwordField2.removeClass("gdProblemField");
+			}
+			if (passwordFieldVal !== passwordField2Val) {
+				passwordField.addClass("gdProblemField");
+				passwordField2.addClass("gdProblemField");
+				hasErrors = true;
+			} else {
+				passwordField.removeClass("gdProblemField");
+				passwordField2.removeClass("gdProblemField");
+			}
+		}
+
+		if (!hasErrors) {
+			utils.playModalSpinner("gdMainDialog");
+			var data = {
+				action: "updateAccount",
+				firstName: firstNameFieldVal,
+				lastName:  lastNameFieldVal,
+				email: emailFieldVal
+			};
+			if (passwordFieldVal !== "") {
+				data.password = passwordFieldVal;
+			}
+
+			$.ajax({
+				url: "ajax.php",
+				type: "POST",
+				data: data,
+				dataType: "json",
+				success: function(response) {
+					utils.pauseModalSpinner("gdMainDialog");
+					if (response.success) {
+						// TODO
+					} else {
+						// TODO
+					}
+				},
+				error: function(response) {
+					utils.pauseModalSpinner("gdMainDialog");
+					console.log("error response: ", response);
+				}
+			});
+		}
+
+	};
+
+
 	var _updateAccountInfoTab = function() {
 		if (_accountInfo.isAnonymous) {
 			$("#gdAccount_AccountType").html(L.anonymous_admin_account);
 		} else {
 			$("#gdAccount_AccountType").html(L.admin);
 		}
-
-		console.log(_accountInfo);
 
 		$("#gdUserAccount_firstName").val(_accountInfo.firstName);
 		$("#gdUserAccount_lastName").val(_accountInfo.lastName);

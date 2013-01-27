@@ -250,6 +250,21 @@ class AjaxRequest {
 				}
 				break;
 
+			// updates the current logged in user's info
+			case "updateAccount":
+				Core::init();
+				if (!Core::checkIsLoggedIn()) {
+					$this->response["success"] = false;
+					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
+				} else if (Core::$user->isAnonymous()) {
+					$this->response["success"] = false;	
+					//$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
+				} else {
+					$response = Core::$user->updateAccount($post);
+					$this->response["success"] = true;
+				}
+				break;
+
 			case "saveConfiguration":
 				Core::init();
 				$response = Core::$user->saveConfiguration($post);
