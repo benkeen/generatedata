@@ -1367,6 +1367,12 @@ define([
 			$("#gdAccount_AccountType").html(L.admin);
 		}
 
+		console.log(_accountInfo);
+
+		$("#gdUserAccount_firstName").val(_accountInfo.firstName);
+		$("#gdUserAccount_lastName").val(_accountInfo.lastName);
+		$("#gdUserAccount_email").val(_accountInfo.email);
+
 		$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 		$("#gdAccount_DateAccountCreated").html(moment.unix(_accountInfo.dateCreated).format("MMM Do, YYYY"));
 		var numRowsGenerated = parseInt(_accountInfo.numRowsGenerated, 10);

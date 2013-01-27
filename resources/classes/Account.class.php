@@ -47,6 +47,7 @@ class Account {
 			$this->date_expires = date("U", strtotime($accountInfo["date_expires"]));
 			$this->firstName = $accountInfo["first_name"];
 			$this->lastName = $accountInfo["last_name"];
+			$this->email = $accountInfo["email"];
 			$this->getConfigurations();
 			$this->numRowsGenerated = $accountInfo["num_rows_generated"];
 		}

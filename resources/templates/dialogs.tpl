@@ -11,24 +11,69 @@
 
 	<div id="gdMainDialogContent">
 		<div id="gdMainDialogTab1Content">
-			<table>
-			<tr>
-				<td width="200"><b>{$L.account_type}</b></td>
-				<td id="gdAccount_AccountType"></td>
-			</tr>
-			<tr>
-				<td><b>{$L.num_saved_data_sets}</b></td>
-				<td id="gdAccount_NumSavedDataSets"></td>
-			</tr>
-			<tr>
-				<td><b>{$L.total_rows_generated}</b></td>
-				<td id="gdAccount_TotalRowsGenerated"></td>
-			</tr>
-			<tr>
-				<td><b>{$L.date_account_created}</b></td>
-				<td id="gdAccount_DateAccountCreated"></td>
-			</tr>
-			</table>
+			<div style="float:left; width: 400px">
+				<h2>Account Info</h2>
+				<form>
+					<table cellpadding="0" cellspacing="1">
+					<tr>
+						<td width="160">{$L.first_name}</td>
+						<td><input type="text" id="gdUserAccount_firstName" class="medium" /></td>
+					</tr>
+					<tr>
+						<td>{$L.last_name}</td>
+						<td><input type="text" id="gdUserAccount_lastName" class="medium" /></td>
+					</tr>
+					<tr>
+						<td>{$L.email}</td>
+						<td><input type="text" id="gdUserAccount_email" class="medium" /></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="mediumGrey">
+							<br />
+							<i>You only need to re-enter your password if you want to change it.</i>
+						</td>
+					</tr>
+					<tr>
+						<td>{$L.password}</td>
+						<td>
+							<input type="text" id="gdUserAccount_password" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td>Re-enter password</td>
+						<td>
+							<input type="text" id="gdUserAccount_password2" value="" />
+						</td>
+					</tr>
+					</table>
+					<p>
+						<button class="gdPrimaryButton" id="gdUpdateAccountInfo">{$L.update_account}</button>
+					</p>
+				</form>
+			</div>
+
+			<div style="float:left; width: 300px">
+				<h2>Info and Stats</h2>
+
+				<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="180">{$L.account_type}</td>
+					<td id="gdAccount_AccountType"></td>
+				</tr>
+				<tr>
+					<td>{$L.num_saved_data_sets}</td>
+					<td id="gdAccount_NumSavedDataSets"></td>
+				</tr>
+				<tr>
+					<td>{$L.total_rows_generated}</td>
+					<td id="gdAccount_TotalRowsGenerated"></td>
+				</tr>
+				<tr>
+					<td>{$L.date_account_created}</td>
+					<td id="gdAccount_DateAccountCreated"></td>
+				</tr>
+				</table>
+			</div>
 		</div>
 
 		<div id="gdMainDialogTab2Content" class="hidden">
@@ -80,15 +125,15 @@
 	<table>
 	<tr>
 		<td width="160">{$L.first_name}</td>
-		<td><input type="text" id="gdManageAccount_firstName" /></td>
+		<td><input type="text" id="gdManageAccount_firstName" class="medium" /></td>
 	</tr>
 	<tr>
 		<td>{$L.last_name}</td>
-		<td><input type="text" id="gdManageAccount_lastName" /></td>
+		<td><input type="text" id="gdManageAccount_lastName" class="medium" /></td>
 	</tr>
 	<tr>
 		<td>{$L.email}</td>
-		<td><input type="text" id="gdManageAccount_email" /></td>
+		<td><input type="text" id="gdManageAccount_email" class="medium" /></td>
 	</tr>
 	<tr>
 		<td>{$L.password}</td>

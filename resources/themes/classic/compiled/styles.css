@@ -904,7 +904,7 @@ body .CodeMirror_large table, body .CodeMirror_large td, body .CodeMirror_large 
   background-image: url(../images/refresh.png);
   cursor: pointer; }
 
-#gdManageAccount_firstName, #gdManageAccount_lastName, #gdManageAccount_email {
+input.medium {
   width: 200px; }
 
 #gdManageAccount_password {

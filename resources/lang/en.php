@@ -257,4 +257,5 @@ $L["user_account_section_intro"] = "This section lets you create any number of u
 $L["email_user_login_info"] = "Email the user their login information";
 $L["create_account_rightarrow"] = "Create Account &raquo;";
 $L["delete_account"] = "Delete Account";
+$L["update_account"] = "Update Account";
 $L["confirm_delete_user_account"] = "Are you sure you want to delete this user account?";
