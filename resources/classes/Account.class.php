@@ -26,6 +26,13 @@ class Account {
 	 * @param mixed $accountID
 	 */
 	public function __construct($accountID) {
+		$this->getCurrentUser($accountID);
+	}
+
+	/**
+	 * Called by the constructor and any time the user updates his user account. 
+	 */
+	private function getCurrentUser($accountID) {
 		if ($accountID == "anonymous") {
 			$accountID = 1;
 			$this->isAnonymous = true;
@@ -128,7 +135,7 @@ class Account {
 
 		// now attempt to send the email. If it works, update the database
 
-		$response = Email::sendEmail(array(
+		$response = Emails::sendEmail(array(
 			"recipient" => $email,
 			"subject"   => "Reset Password",
 			"content"   => "Your password has been reset. You may use the following password to log in: $randPassword\n\nPlease change it once you've logged in."
@@ -379,8 +386,46 @@ class Account {
 		// }
 	}
 
-	public function updateAccount($info) {
 
+	public function updateAccount($accountID, $info) {
+		$accountID = mysql_real_escape_string($accountID);
+		$prefix = Core::getDbTablePrefix();
+
+		if (empty($accountID) || !is_numeric($accountID)) {
+			return array(
+				"success" => false,
+				"errorCode" => ErrorCodes::INVALID_PARAMS,
+				"errorMsg" => "the Account ID is not valid."
+			);
+		}
+		$firstName = $info["firstName"];
+		$lastName  = $info["lastName"];
+		$email     = $info["email"];
+
+		$passwordClause = "";
+		if (isset($info["password"]) && !empty($info["password"])) {
+			$encryptionSalt    = Core::getEncryptionSalt();
+			$encryptedPassword = crypt($info["password"], $encryptionSalt);
+			$passwordClause = ", password = '$encryptedPassword'";
+		}
+
+		$response = Core::$db->query("
+			UPDATE {$prefix}user_accounts
+			SET first_name = '$firstName',
+				last_name = '$lastName',
+				email = '$email'
+				$passwordClause
+			WHERE account_id = $accountID
+		");
+
+		if ($response["success"]) { 
+			$this->getCurrentUser($accountID);
+			return array(
+				"success" => true
+			);
+		} else {
+			// TODO
+		}
 	}
 	
 	public function deleteAccount($accountID) {

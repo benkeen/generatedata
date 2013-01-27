@@ -12,6 +12,7 @@ class ErrorCodes {
 	const NON_ADMIN            = 2;
 	const FAILED_SQL_STATEMENT = 3;
 	const INVALID_PARAMS       = 4;
+	const INVALID_REQUEST      = 5;
 
 	// const SETTINGSFILEEXISTS = 2;
 	// const MISSINGFIELDS      = 3;

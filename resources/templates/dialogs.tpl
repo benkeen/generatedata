@@ -11,6 +11,11 @@
 
 	<div id="gdMainDialogContent">
 		<div id="gdMainDialogTab1Content">
+			<div style="display:none" class="gdMessage gdNotify gdMarginTop" id="gdMainDialogTab1Message">
+				<a class="gdMessageClose" href="#">X</a>
+				<p>Your account has been updated.</p>
+			</div>
+
 			<div style="float:left; width: 400px">
 				<h2>Account Info</h2>
 				<form>

@@ -128,7 +128,7 @@ class Core {
 				self::$defaultLanguageFile = $defaultLanguageFile;
 			}
 
-			// temporary, during alph
+			// temporary, during alpha dev
 			if (isset($allowThemes)) {
 				self::$allowThemes = $allowThemes;
 			}

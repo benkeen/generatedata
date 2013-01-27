@@ -1376,9 +1376,9 @@ define([
 		var lastNameFieldVal = $.trim(lastNameField.val());
 		var emailField    = $("#gdUserAccount_email");
 		var emailFieldVal = $.trim(emailField.val());
-		var passwordField    = $("#gdManageAccount_password");
+		var passwordField    = $("#gdUserAccount_password");
 		var passwordFieldVal = $.trim(passwordField.val());
-		var passwordField2    = $("#gdManageAccount_password2");
+		var passwordField2    = $("#gdUserAccount_password2");
 		var passwordField2Val = $.trim(passwordField2.val());
 
 		var hasErrors = false;
@@ -1431,6 +1431,7 @@ define([
 			utils.playModalSpinner("gdMainDialog");
 			var data = {
 				action: "updateAccount",
+				accountID: _accountInfo.accountID,
 				firstName: firstNameFieldVal,
 				lastName:  lastNameFieldVal,
 				email: emailFieldVal
@@ -1447,7 +1448,9 @@ define([
 				success: function(response) {
 					utils.pauseModalSpinner("gdMainDialog");
 					if (response.success) {
-						// TODO
+						$("#gdMainDialogTab1Message").show("blind");
+						$(passwordField).val("");
+						$(passwordField2).val("");
 					} else {
 						// TODO
 					}
@@ -1466,7 +1469,13 @@ define([
 		if (_accountInfo.isAnonymous) {
 			$("#gdAccount_AccountType").html(L.anonymous_admin_account);
 		} else {
-			$("#gdAccount_AccountType").html(L.admin);
+			var accountTypeStr = "";
+			if (_accountInfo.accountType == "admin") {
+				accountTypeStr = L.admin;
+			} else {
+				accountTypeStr = L.user;
+			}
+			$("#gdAccount_AccountType").html(accountTypeStr);
 		}
 
 		$("#gdUserAccount_firstName").val(_accountInfo.firstName);

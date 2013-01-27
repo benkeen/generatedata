@@ -245,6 +245,7 @@ $L["installation_complete_text"] = "The Data Generator has been successfully ins
 $L["please_login"] = "Please Login";
 $L["forgotten_your_password_q"] = "Forgotten your password?";
 $L["admin"] = "Admin";
+$L["user"] = "User";
 $L["logout"] = "Logout";
 $L["create_account"] = "Create Account";
 $L["edit"] = "Edit";

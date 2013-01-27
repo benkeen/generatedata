@@ -258,10 +258,10 @@ class AjaxRequest {
 					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
 				} else if (Core::$user->isAnonymous()) {
 					$this->response["success"] = false;	
-					//$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
+					$this->response["errorCode"] = ErrorCodes::INVALID_REQUEST;
 				} else {
-					$response = Core::$user->updateAccount($post);
-					$this->response["success"] = true;
+					$accountID = $post["accountID"];
+					$this->response = Core::$user->updateAccount($accountID, $post);
 				}
 				break;
 
