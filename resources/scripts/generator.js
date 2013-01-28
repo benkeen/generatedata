@@ -776,7 +776,7 @@ define([
 
 		// check the user selected at least one country plugin
 		if (_countries.length === 0) {
-			utils.addValidationErrors({ els: null, error: "Please select at least one country in the Country-Specific Data section." });
+			utils.addValidationErrors({ els: null, error: L.no_country_plugin_selected });
 		}
 
 		var orderedRowIDs = _getRowOrder();
@@ -1690,7 +1690,7 @@ define([
 			width: 500,
 			modal: true,
 			buttons: [{
-				text: "Close",
+				text: L.close,
 				click: function() { $(this).dialog("close"); }
 			}]
 		});

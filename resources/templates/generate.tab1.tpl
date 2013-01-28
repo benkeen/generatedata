@@ -57,7 +57,7 @@
 		</ul>
 		<div class="gdClear gdVerticalPad"></div>
 
-		<div style="background-color: #f2f2f2; border-radius: 3px; padding: 4px 4px 4px 8px; display:inline-block">
+		<div id="gdAddDataSetRowsSection">
 			{$L.add} <input type="text" name="gdNumRowsToAdd" id="gdNumRowsToAdd" value="1" size="2" />
 			<input type="button" value="{$L.row_sp}" class="gdAddRowsBtn" />
 		</div>

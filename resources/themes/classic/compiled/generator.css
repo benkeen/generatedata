@@ -287,3 +287,9 @@ a.gdDisabledLink {
   background: transparent url(../images/warning.png) top left no-repeat;
   width: 48px;
   height: 48px; }
+
+#gdAddDataSetRowsSection {
+  background-color: #f2f2f2;
+  border-radius: 3px;
+  padding: 4px 4px 4px 8px;
+  display: inline-block; }

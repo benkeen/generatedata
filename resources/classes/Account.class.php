@@ -93,7 +93,7 @@ class Account {
 		if ($encryptedPassword != $data["password"]) {
 			return array(
 				"success" => false,
-				"message" => "Sorry, that password is not correct. Please try again."
+				"message" => $L["invalid_password"]
 			);
 		}
 
@@ -124,22 +124,24 @@ class Account {
 			return;
 		}
 
+		$L = Core::$language->getCurrentLanguageStrings();
+
 		$data = mysql_fetch_assoc($response["results"]);
 		if (empty($data)) {
 			return array(
 				"success" => false,
-				"message" => "Sorry, we were unable to identify you."
+				"message" => $L["user_not_found"]
 			);
 		}
 
 		$randPassword = Utils::generateRandomAlphanumericStr("CXCXCX");
 
 		// now attempt to send the email. If it works, update the database
-
+		$emailContent = preg_replace("/%1/", $randPassword, $L["password_reset_email_content"]);
 		$response = Emails::sendEmail(array(
 			"recipient" => $email,
-			"subject"   => "Reset Password",
-			"content"   => "Your password has been reset. You may use the following password to log in: $randPassword\n\nPlease change it once you've logged in."
+			"subject"   => $L["reset_password"],
+			"content"   => $emailContent
 		));
 
 		if ($response) {
@@ -154,13 +156,13 @@ class Account {
 			if ($response["success"]) {
 				return array(
 					"success" => true,
-					"message" => "Your password has been reset and you have been emailed the new password."
+					"message" => $L["password_reset_complete"]
 				);	
 			}
 		} else {
 			return array(
 				"success" => false,
-				"message" => "We were unable to send the email notification."
+				"message" => $L["email_not_sent"]
 			);
 		}
 	}
@@ -366,6 +368,7 @@ class Account {
 		$password    = crypt($accountInfo["password"], $encryptionSalt);
 		$autoEmail   = isset($accountInfo["accountType"]) ? $accountInfo["accountType"] : false;
 
+		$L = Core::$language->getCurrentLanguageStrings();
 		$now = Utils::getCurrentDatetime();
 		$prefix = Core::getDbTablePrefix();
 		$result = Core::$db->query("
@@ -375,7 +378,7 @@ class Account {
 		");
 
 		if ($autoEmail) {
-			$content = "An account has been created for you.\n";
+			$content = $L["account_created_msg"] + "\n";
 			if (isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) {
 				$content .= "Login URL: {$_SERVER["HTTP_REFERER"]}\n";
 			}
@@ -383,7 +386,7 @@ class Account {
 
 			$response = Emails::sendEmail(array(
 				"recipient" => $email,
-				"subject"   => "Account Created",
+				"subject"   => $L["account_created"],
 				"content"   => $content
 			));
 		}
@@ -398,6 +401,7 @@ class Account {
 
 
 	public function updateAccount($accountID, $info) {
+		$L = Core::$language->getCurrentLanguageStrings();
 		$accountID = mysql_real_escape_string($accountID);
 		$prefix = Core::getDbTablePrefix();
 
@@ -405,7 +409,7 @@ class Account {
 			return array(
 				"success" => false,
 				"errorCode" => ErrorCodes::INVALID_PARAMS,
-				"errorMsg" => "the Account ID is not valid."
+				"errorMsg" => $L["invalid_account_id"]
 			);
 		}
 		$firstName = $info["firstName"];
@@ -439,6 +443,7 @@ class Account {
 	}
 	
 	public function deleteAccount($accountID) {
+		$L = Core::$language->getCurrentLanguageStrings();
 		if ($this->accountType != "admin") {
 			return array(
 				"success" => false,
@@ -448,7 +453,7 @@ class Account {
 			return array(
 				"success" => false,
 				"errorCode" => ErrorCodes::INVALID_PARAMS,
-				"errorMsg" => "the Account ID is not valid."
+				"errorMsg" => $L["invalid_account_id"]
 			);
 		}
 

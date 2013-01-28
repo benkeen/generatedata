@@ -13,11 +13,11 @@
 		<div id="gdMainDialogTab1Content">
 			<div style="display:none" class="gdMessage gdNotify gdMarginTop" id="gdMainDialogTab1Message">
 				<a class="gdMessageClose" href="#">X</a>
-				<p>Your account has been updated.</p>
+				<p>{$L.account_updated}</p>
 			</div>
 
 			<div style="float:left; width: 400px">
-				<h2>Account Info</h2>
+				<h2>{$L.account_info}</h2>
 				<form>
 					<table cellpadding="0" cellspacing="1">
 					<tr>
@@ -35,7 +35,7 @@
 					<tr>
 						<td colspan="2" class="mediumGrey">
 							<br />
-							<i>You only need to re-enter your password if you want to change it.</i>
+							<i>{$L.password_change_note}</i>
 						</td>
 					</tr>
 					<tr>
@@ -58,7 +58,7 @@
 			</div>
 
 			<div style="float:left; width: 300px">
-				<h2>Info and Stats</h2>
+				<h2>{$L.info_and_stats}</h2>
 
 				<table cellpadding="0" cellspacing="0">
 				<tr>

@@ -21,6 +21,6 @@
 <ul>
 	<li><a href="https://github.com/benkeen/generatedata">{$L.fork_on_github}</a></li>
 	<li><a href="docs/">{$L.read_developer_doc}</a></li>
-	<li><a href="http://www.generatedata.com">{$L.goto_website}</a></li>
-	<li><a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.latest_project_news}</a></li>
+	<li><a href="http://www.generatedata.com" target="_blank">{$L.goto_website}</a></li>
+	<li><a href="http://www.benjaminkeen.com/category/projects/data-generator/" target="_blank">{$L.latest_project_news}</a></li>
 </ul>

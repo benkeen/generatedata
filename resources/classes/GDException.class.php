@@ -1,7 +1,6 @@
 <?php
 
-
-/**
+/*
  * Our custom Exception class. This is pretty much just the native Exception class, with a few tweaks.
  *   1. It does away with the first $message param. That's constructed automatically based on
  *   2. It allows for additional, custom info relative to the current error to be stashed in $data. For example,
@@ -11,7 +10,6 @@
  *      format easily convertable to JSON, along with a custom generate human-friendly error string.
  * @author Ben Keen <ben.keen@gmail.com>
  * @package Core
- */
 class GDException extends Exception {
 	private $data;
 
@@ -44,3 +42,4 @@ class GDException extends Exception {
 		);
 	}
 }
+*/

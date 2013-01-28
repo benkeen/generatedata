@@ -30,7 +30,7 @@ div.gdClear {
 .gdHideNoJS {
   display: none; }
 
-noscript {
+noscript div {
   background-color: #ffffcc;
   padding: 10px;
   font-size: 10pt;
@@ -40,7 +40,7 @@ noscript {
   box-shadow: 2px 4px 5px #666666;
   display: block;
   width: 950px; }
-  noscript p {
+  noscript div p {
     font-size: 12pt;
     color: #6d6d41; }
 

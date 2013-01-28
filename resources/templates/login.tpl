@@ -10,7 +10,7 @@
 	<script src="resources/scripts/libs/jquery.js"></script>
 	<script data-main="resources/scripts/login" src="resources/scripts/libs/require.js"></script>
 	<script src="resources/scripts/requireConfig.js"></script>
-	<!--[if lt IE 9]>
+	<!--[if lt IE 9 ]>
 	<script src="resources/scripts/libs/html5shiv.js"></script>
 	<script src="resources/scripts/libs/excanvas.js"></script>
 	<![endif]-->
@@ -33,7 +33,7 @@
 			<li id="gdMainTab2">Forgot Password</li>
 		</ul>
 	</nav>
-	<noscript><p>{$L.no_js}</p></noscript>
+	<noscript><div><p>{$L.no_js}</p></div></noscript>
 
 	<section class="gdHideNoJS">
 		<div id="gdContent">
@@ -69,7 +69,7 @@
 							<div></div>
 						</div>
 						<p>
-							Enter your email address below to reset your password.
+							{$L.enter_email_address_to_reset_password}
 						</p>
 						<div class="gdFields">
 							<div class="gdField">

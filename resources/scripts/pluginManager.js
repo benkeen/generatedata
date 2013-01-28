@@ -79,10 +79,10 @@ define([], function() {
 		} else {
 			var str = "";
 			if (json.success) {
-				str = json.dataTypeName + " <span class=\"gdSuccess\">success</span>";
+				str = json.dataTypeName + " <span class=\"gdSuccess\">" + L.success + "</span>";
 				_successfullyInstalledDataTypes.push(json.dataTypeFolder);
 			} else {
-				str = json.dataTypeName + " <span class=\"gdError\" data-error=\"" + json.content + "\">error</span>";
+				str = json.dataTypeName + " <span class=\"gdError\" data-error=\"" + json.content + "\">" + L["error"] + "</span>";
 			}
 			$("#gdDataTypeResponse").append("<div>" + str + "</div>");
 
@@ -171,10 +171,10 @@ define([], function() {
 		} else {
 			var str = "";
 			if (json.success) {
-				str = json.countryName + " <span class=\"gdSuccess\">success</span>";
+				str = json.countryName + " <span class=\"gdSuccess\">" + L.success + "</span>";
 				_successfullyInstalledCountries.push(json.countryFolder);
 			} else {
-				str = json.countryName + " <span class=\"gdError\" data-error=\"" + json.content + "\">error</span>";
+				str = json.countryName + " <span class=\"gdError\" data-error=\"" + json.content + "\">" + L["error"] + "</span>";
 			}
 			$("#gdCountriesResponse").append("<div>" + str + "</div>");
 

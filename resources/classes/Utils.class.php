@@ -383,5 +383,4 @@ class Utils {
 		}
 		return $resultArray;
 	}
-
 }

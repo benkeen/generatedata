@@ -51,11 +51,9 @@
 		<div id="gdContent">
 			<ul class="gdMainTabContent">
 				<li id="gdMainTab1Content">{include file="generate.tab1.tpl"}</li>
-				
 				{if $settings.userAccountSetup == "multiple" && $accountType == "admin"}
 				<li id="gdMainTab2Content" style="display:none">{include file="generate.tab2.tpl"}</li>
 				{/if}
-
 				<li id="gdMainTab3Content" style="display:none">{include file="generate.tab3.tpl"}</li>
 				<li id="gdMainTab4Content" style="display:none">{include file="generate.tab4.tpl"}</li>
 			</ul>

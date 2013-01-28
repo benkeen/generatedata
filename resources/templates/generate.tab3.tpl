@@ -7,7 +7,7 @@
 	<input type="hidden" name="updateSettings" value="1" />
 
 	{if $settings.userAccountSetup != "anonymous"}
-		<h3>Account Settings</h3>
+		<h3>{$L.account_settings}</h3>
 
 		<div>
 			<div>
