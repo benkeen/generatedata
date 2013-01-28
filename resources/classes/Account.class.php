@@ -77,12 +77,13 @@ class Account {
 		if (!$response["success"]) {
 			return;
 		}
+		$L = Core::$language->getCurrentLanguageStrings();
 
 		$data = mysql_fetch_assoc($response["results"]);
 		if (empty($data)) {
 			return array(
 				"success" => false,
-				"message" => "Sorry, we couldn't find your account."
+				"message" => $L["no_account_found"]
 			);
 		}
 
@@ -373,9 +374,18 @@ class Account {
 			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password')
 		");
 
-		// TODO
 		if ($autoEmail) {
+			$content = "An account has been created for you.\n";
+			if (isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) {
+				$content .= "Login URL: {$_SERVER["HTTP_REFERER"]}\n";
+			}
+			$content .= "Email: $email\nPassword: {$accountInfo["password"]}\n";
 
+			$response = Emails::sendEmail(array(
+				"recipient" => $email,
+				"subject"   => "Account Created",
+				"content"   => $content
+			));
 		}
 
 		// if ($result["success"]) {
