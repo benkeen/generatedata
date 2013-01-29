@@ -5,7 +5,7 @@
  */
 
 class Excel extends ExportTypePlugin {
-	protected $isEnabled = false;
+	protected $isEnabled = true;
 	protected $exportTypeName = "Excel";
 	public $L = array();
 

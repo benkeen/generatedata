@@ -1,5 +1,7 @@
 /*global $:false*/
-define([], function() {
+define([
+	"lang"
+], function(L) {
 
 	"use strict";
 
