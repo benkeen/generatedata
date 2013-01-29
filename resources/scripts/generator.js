@@ -1020,9 +1020,12 @@ define([
 			width:     800,
 			height:    400,
 			open: function() {
+				utils.insertModalSpinner({ modalID: "gdPluginInstallation" });
+				utils.playModalSpinner("gdPluginInstallation");
 				pluginManager.installPlugins({
 					errorHandler: null,
 					onCompleteHandler: function() {
+						utils.pauseModalSpinner("gdPluginInstallation");
 						$("#gdPluginInstallation").dialog("option", "buttons", [
 							{
 								text: L.refresh_page,
