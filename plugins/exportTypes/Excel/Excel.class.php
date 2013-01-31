@@ -8,53 +8,42 @@ class Excel extends ExportTypePlugin {
 	protected $isEnabled = true;
 	protected $exportTypeName = "Excel";
 	protected $jsModules = array("Excel.js");
+	protected $compatibleExportTargets = array("promptDownload");
 	public $L = array();
+	private $chars;
+	private $charArray;
+
 
 	function generate($generator) {
 		require_once("PHPExcel.php");
 
 		$data = $generator->generateExportData();
+		$this->chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$this->charArray = str_split($this->chars, 1);
 
-print_r($data);
-exit;
-
-		// Create new PHPExcel object
 		$objPHPExcel = new PHPExcel();
 
-		// Set document properties
-		$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-		                             ->setLastModifiedBy("Maarten Balliauw")
-		                             ->setTitle("Office 2007 XLSX Test Document")
-		                             ->setSubject("Office 2007 XLSX Test Document")
-		                             ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-		                             ->setKeywords("office 2007 openxml php")
-		                             ->setCategory("Test result file");
+		// set document properties
+		$objPHPExcel->getProperties()->setTitle("Test Data");
 
-
-		// Create a first sheet
+		// create a first sheet and populate the headings
 		$objPHPExcel->setActiveSheetIndex(0);
-		$objPHPExcel->getActiveSheet()->setCellValue('A1', "Firstname");
-		$objPHPExcel->getActiveSheet()->setCellValue('B1', "Lastname");
-		$objPHPExcel->getActiveSheet()->setCellValue('C1', "Phone");
-		$objPHPExcel->getActiveSheet()->setCellValue('D1', "Fax");
-		$objPHPExcel->getActiveSheet()->setCellValue('E1', "Is Client ?");
 
-
-		// Add data
-		for ($i = 2; $i <= 1000; $i++) {
-		    $objPHPExcel->getActiveSheet()->setCellValue('A' . $i, "FName $i")
-		                                  ->setCellValue('B' . $i, "LName $i")
-		                                  ->setCellValue('C' . $i, "PhoneNo $i")
-		                                  ->setCellValue('D' . $i, "FaxNo $i")
-		                                  ->setCellValue('E' . $i, true);
+		// hardcoded limitation of 26 x 27 columns (right now)
+		$numCols = count($data["colData"]);
+		for ($i=0; $i<$numCols; $i++) {
+			$col = $this->getExcelCol($i, 1);
+			$objPHPExcel->getActiveSheet()->setCellValue($col, $data["colData"][$i]);
 		}
 
+		for ($i=0; $i<count($data["rowData"]); $i++) {
+			for ($j=0; $j<$numCols; $j++) {
+				$col = $this->getExcelCol($j, $i+2);
+				$objPHPExcel->getActiveSheet()->setCellValue($col, $data["rowData"][$i][$j]);
+			}
+		}
 
-		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
-		$objPHPExcel->setActiveSheetIndex(0);
-
-
-		// Redirect output to a client’s web browser (Excel5)
+		// redirect output to a client’s web browser (Excel5)
 		header('Content-Type: application/vnd.ms-excel');
 		header('Content-Disposition: attachment;filename="01simple.xls"');
 		header('Cache-Control: max-age=0');
@@ -62,7 +51,17 @@ exit;
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 		$objWriter->save('php://output');
 		exit;
+	}
 
+	private function getExcelCol($index, $row) {
+		$remainder = floor($index / 26) - 1;
+		if ($remainder == -1) {
+			$firstColChar = "";
+		} else {
+			$firstColChar = $this->charArray[$remainder];
+		}
+		$secondColChar = $this->charArray[$index % 26];
+		return "{$firstColChar}{$secondColChar}$row";
 	}
 
 	/**

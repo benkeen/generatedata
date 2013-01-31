@@ -100,6 +100,10 @@ class Account {
 		// store the account in sessions
 		$_SESSION["account_id"] = $data["account_id"];
 
+		// update the last login time for this user 
+		$now = Utils::getCurrentDatetime();
+		Core::$db->query("UPDATE {$prefix}user_accounts SET last_logged_in = '$now' WHERE account_id = {$data["account_id"]}");
+
 		return array(
 			"success" => true,
 			"message" => ""

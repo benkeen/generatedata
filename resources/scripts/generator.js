@@ -43,7 +43,6 @@ define([
 	var _generateInPageContent = "";
 	var _isGenerating = false;
 	var _generationCancelled = false;
-
 	var _currHelpDialogTab = 1;
 	var _currDataTypeHelp = null;
 
@@ -570,6 +569,25 @@ define([
 		// has been clicked)
 		if (_showExportTypeSettings) {
 			_showExportTypeSettingsSection(newExportType, showImmediately);
+		}
+
+		// now enable/disable the available export targets
+		var exportTargets = $("#gdExportType_" + newExportType).data("compatibleExportTargets").split(",");
+		$("input[name=gdExportTarget]").attr("disabled", "disabled");
+		$("#gdGenerateSection label").addClass("gdDisabled");
+		var firstNonDisabledExportTarget = null;
+		for (var i=0; i<exportTargets.length; i++) {
+			$("#gdExportTarget_" + exportTargets[i]).removeAttr("disabled");
+			$("#gdExportTarget_" + exportTargets[i] + "_label").removeClass("gdDisabled");
+			if (firstNonDisabledExportTarget === null) {
+				firstNonDisabledExportTarget = exportTargets[i];
+			}
+		}
+
+		// now, if the current selected export target is disabled, reset it to the first available non-disabled option
+		var sel = $("input[name=gdExportTarget]:checked:disabled");
+		if (sel.length) {
+			$("#gdExportTarget_" + firstNonDisabledExportTarget).attr("checked", "checked");
 		}
 
 		_currExportType = newExportType;

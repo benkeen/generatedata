@@ -15,7 +15,8 @@ function smarty_function_export_type_tabs($params, &$smarty) {
 		$name = $exportType->getName();
 		$exportTypeClass = get_class($exportType);
 		$class = ($defaultExportType == $exportTypeClass) ? "gdSelected gdDefaultExportType" : "";
-		echo "<li data-export-type=\"$exportTypeClass\" id=\"gdExportType_$exportTypeClass\" class=\"$class\">$name</li>";
+		$exportTargets = implode(",", $exportType->getCompatibleExportTargets());
+		echo "<li data-export-type=\"$exportTypeClass\" data-compatible-export-targets=\"$exportTargets\" id=\"gdExportType_$exportTypeClass\" class=\"$class\">$name</li>";
 	}
 	echo "</ul>";
 }

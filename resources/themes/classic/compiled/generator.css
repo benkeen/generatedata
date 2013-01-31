@@ -209,6 +209,8 @@ li.gdColDelete {
     margin-left: 60px; }
     #gdGenerateSection span label {
       margin-right: 8px; }
+  #gdGenerateSection .gdDisabled {
+    background-color: transparent; }
 
 #gdGenerateCount, #gdGenerateTotal {
   font-weight: bold; }

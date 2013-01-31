@@ -87,12 +87,12 @@
 			{$L.generate} <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="500" 
 				{if $inDemoMode == "true"}readonly="readonly"{/if} /> {$L.rows}
 			<span>
-				<input type="radio" name="gdExportTarget" id="gdExportTarget1" value="inPage" checked="checked" />
-					<label for="gdExportTarget1">{$L.generate_in_page}</label>
-				<input type="radio" name="gdExportTarget" id="gdExportTarget2" value="newTab" />
-					<label for="gdExportTarget2">{$L.new_window_or_tab}</label>
-				<input type="radio" name="gdExportTarget" id="gdExportTarget3" value="promptDownload" />
-					<label for="gdExportTarget3">{$L.prompt_to_download}</label>
+				<input type="radio" name="gdExportTarget" id="gdExportTarget_inPage" value="inPage" checked="checked" />
+					<label for="gdExportTarget_inPage" id="gdExportTarget_inPage_label">{$L.generate_in_page}</label>
+				<input type="radio" name="gdExportTarget" id="gdExportTarget_newTab" value="newTab" />
+					<label for="gdExportTarget_newTab" id="gdExportTarget_newTab_label">{$L.new_window_or_tab}</label>
+				<input type="radio" name="gdExportTarget" id="gdExportTarget_promptDownload" value="promptDownload" />
+					<label for="gdExportTarget_promptDownload" id="gdExportTarget_promptDownload_label">{$L.prompt_to_download}</label>
 			</span>
 		</div>
 	</div>

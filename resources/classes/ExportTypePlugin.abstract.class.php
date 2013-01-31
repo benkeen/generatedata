@@ -61,6 +61,14 @@ abstract class ExportTypePlugin {
 	protected $contentTypeHeader;
 
 	/**
+	 * Export Types *should* be able to handle all three Export Targets available in the page (in-page, new window/tab, 
+	 * prompt for download), but if they can't, they should specify this var. The system will automatically grey 
+	 * out those options that aren't selectable as soon as the user selects the Export Type.
+	 * @var string
+	 */
+	protected $compatibleExportTargets = array("inPage", "newTab", "promptDownload");
+
+	/**
 	 * Contains all strings for the current language. This is populated automatically on instantiation and
 	 * contains the strings for the currently selected language.
 	 * @var array
@@ -211,6 +219,13 @@ abstract class ExportTypePlugin {
 	 */
 	public final function getCodeMirrorModes() {
 		return $this->codeMirrorModes;
+	}
+
+	/**
+	 * @return array
+	 */
+	public final function getCompatibleExportTargets() {
+		return $this->compatibleExportTargets;
 	}
 
 	/**
