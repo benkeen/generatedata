@@ -29,7 +29,7 @@ class SQL extends ExportTypePlugin {
 	private $includeDropTable;
 	private $createTable;
 	private $databaseType;
-	private $tableName;
+	private $tableName; 
 	private $backquote;
 	private $sqlStatementType;
 	private $primaryKey;
@@ -64,6 +64,10 @@ class SQL extends ExportTypePlugin {
 			case "SQLite":
 				$content .= $this->generateCreateTableSQL_SQLite();
 				break;
+		}
+
+		if ($this->exportTarget == "newTab") {
+			$content = $this->wrapGeneratedContent($content);
 		}
 
 		return array(
@@ -171,12 +175,12 @@ END;
 	 */
 	private function generateCreateTableSQL_MySQL() {
 		$content = "";
-		$endLineChar = ($this->exportTarget == "inPage") ? "\n" : "<br />\n";
-		$prefix      = ($this->exportTarget == "inPage") ? "  " : "&nbsp;&nbsp;";
+		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
+		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
 
 		if ($this->isFirstBatch) {
 			if ($this->includeDropTable) {
-				$dropTableEndLine = ($this->exportTarget == "inPage") ? "\n\n" : "<br /><br /><hr size=\"1\" />\n";
+				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
 				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
 			}
 
@@ -248,12 +252,12 @@ END;
 	 */
 	private function generateCreateTableSQL_Oracle() {
 		$content = "";
-		$endLineChar = ($this->exportTarget == "inPage") ? "\n" : "<br />\n";
-		$prefix      = ($this->exportTarget == "inPage") ? "  " : "&nbsp;&nbsp;";
+		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
+		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
 
 		if ($this->isFirstBatch) {
 			if ($this->includeDropTable) {
-				$dropTableEndLine = ($this->exportTarget == "inPage") ? "\n\n" : "<br /><br /><hr size=\"1\" />\n";
+				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
 				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
 			}
 
@@ -321,12 +325,12 @@ END;
 
 	private function generateCreateTableSQL_SQLite() {
 		$content = "";
-		$endLineChar = ($this->exportTarget == "inPage") ? "\n" : "<br />\n";
-		$prefix      = ($this->exportTarget == "inPage") ? "  " : "&nbsp;&nbsp;";
+		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
+		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
 
 		if ($this->isFirstBatch) {
 			if ($this->includeDropTable) {
-				$dropTableEndLine = ($this->exportTarget == "inPage") ? "\n\n" : "<br /><br /><hr size=\"1\" />\n";
+				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n" ;
 				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
 			}
 
@@ -389,6 +393,23 @@ END;
 		}
 
 		return $content;
+	}
+
+	function wrapGeneratedContent($generatedContent) {
+		$html =<<< END
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	body { margin: 10px; font-family: "lucida grande", arial; font-size: 9pt; }
+	</style>
+</head>
+<body>
+$generatedContent
+</body>
+</html>
+END;
+		return $html;
 	}
 
 }
