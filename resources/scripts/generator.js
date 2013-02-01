@@ -942,10 +942,9 @@ define([
 			data: data,
 			dataType: "json",
 			success: _generateInPageBatchResponse,
-			error: function(response) {
+			error: function() {
 				_isGenerating = false;
 				utils.stopProcessing();
-//				console.log("error response: ", response);
 			}
 		});
 	};
@@ -1389,6 +1388,11 @@ define([
 	 */
 	var _updateAccountInfo = function(e) {
 		e.preventDefault();
+
+		if (C.DEMO_MODE) {
+			_showDemoOnlyDialog();
+			return;
+		}
 
 		// check all fields have been entered
 		var firstNameField    = $("#gdUserAccount_firstName");
