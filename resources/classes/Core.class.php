@@ -93,7 +93,7 @@ class Core {
 
 
 	/**
-     * Core::init()
+     * Core::loadSettingsFile()
      *
 	 * Attempts to load the settings file. If successful, it updates the various private member vars
 	 * with whatevers been defined.
@@ -119,7 +119,7 @@ class Core {
 				self::$errorReporting = $errorReporting;
 			}
 			if (isset($maxGeneratedRows)) {
-				self::$maxGeneratedRows = maxGeneratedRows;
+				self::$maxGeneratedRows = $maxGeneratedRows;
 			}
 			if (isset($defaultNumRows)) {
 				self::$defaultNumRows = $defaultNumRows;
@@ -250,7 +250,6 @@ class Core {
 		if (!isset($_SESSION["account_id"])) {
 			self::$isLoggedIn = false;
 		}
-
 		return self::$isLoggedIn;
 	}
 
@@ -355,7 +354,6 @@ class Core {
 		}
 		self::$exportTypePlugins = ExportTypePluginHelper::getExportTypePlugins($runtimeContext);
 	}
-
 
 	/**
 	 * Initializes the current logged in user and stores their Account object in Core::$user.

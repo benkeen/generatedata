@@ -36,6 +36,7 @@ class Account {
 		if ($accountID == "anonymous") {
 			$accountID = 1;
 			$this->isAnonymous = true;
+			$_SESSION["account_id"] = 1;
 		}
 
 		$prefix = Core::getDbTablePrefix();
