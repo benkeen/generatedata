@@ -76,9 +76,10 @@ class JSON extends ExportTypePlugin {
 	}
 
 	function getAdditionalSettingsHTML() {
+
 		$html =<<< END
 	<input type="checkbox" name="etJSON_stripWhitespace" id="etJSON_stripWhitespace" value="1" />
-		<label for="etJSON_stripWhitespace">Strip whitespace from generated results</label>
+		<label for="etJSON_stripWhitespace">{$this->L["strip_whitespace"]}</label>
 END;
 		return $html;
 	}
