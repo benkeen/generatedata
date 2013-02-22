@@ -134,7 +134,7 @@ class DataTypePluginHelper {
 				if (is_dir("$dataTypesFolder/$item")) {
 					$obj = self::instantiateDataType($runtimeContext, $dataTypesFolder, $item);
 					if ($obj != null && $obj !== false) {
-						$folders = explode(DIRECTORY_SEPARATOR, "$dataTypesFolder/$item");
+						$folders = explode(DIRECTORY_SEPARATOR, $dataTypesFolder . DIRECTORY_SEPARATOR . $item);
 						$folders = array_reverse($folders);
 
 						$obj->path = "{$folders[2]}/{$folders[1]}/{$folders[0]}";

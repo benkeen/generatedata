@@ -32,7 +32,7 @@ class ExportTypePluginHelper {
 					$obj = self::instantiateExportType($runtimeContext, $exportTypesFolder, $item);
 
 					if ($obj != null) {
-						$folders = explode(DIRECTORY_SEPARATOR, "$exportTypesFolder/$item");
+						$folders = explode(DIRECTORY_SEPARATOR, $exportTypesFolder . DIRECTORY_SEPARATOR . $item);
 						$folders = array_reverse($folders);
 
 						// interesting, this. This is extremely simple and makes access to these values really easy
