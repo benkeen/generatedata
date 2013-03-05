@@ -23,7 +23,7 @@ class Generator {
 
 	// this may or may not exist. If the user is generating data from a saved data set, it will have a value. Otherwise
 	// it won't be included in $postData passed to the constructor
-	private $configurationID = null; 
+	private $configurationID = null;
 
 
 	/**
@@ -96,7 +96,7 @@ class Generator {
 		// if this is the last batch, and we're generating data for a saved data set, update the "total rows" count
 		if ($this->isLastBatch && $this->configurationID != null) {
 			Core::$user->updateRowsGeneratedCount($this->configurationID, $this->numResults);
-		} 
+		}
 
 		return $response;
 	}
@@ -284,11 +284,11 @@ class Generator {
 		while (list($order, $dataTypes) = each($this->template)) {
 			foreach ($dataTypes as $dataType) {
 		    	$order = $dataType["colNum"];
-		    	$ordered["order$order"] = $dataType;
+		    	$ordered[$order] = $dataType;
 			}
 		}
 		reset($this->template);
-		ksort($ordered);
+		ksort($ordered, SORT_NUMERIC);
 		return array_values($ordered);
 	}
 
