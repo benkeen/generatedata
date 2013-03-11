@@ -45,7 +45,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Re-enter password</td>
+						<td>{$L.reenter_password}</td>
 						<td>
 							<input type="password" id="gdUserAccount_password2" value="" />
 						</td>
@@ -62,7 +62,7 @@
 
 				<table cellpadding="0" cellspacing="0">
 				<tr>
-					<td width="180">{$L.account_type}</td>
+					<td valign="top" width="180">{$L.account_type}</td>
 					<td id="gdAccount_AccountType"></td>
 				</tr>
 				<tr>
