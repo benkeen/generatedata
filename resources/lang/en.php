@@ -41,6 +41,7 @@ $L["generator"] = "Generator";
 $L["help"] = "Help";
 $L["hide_error"] = "Hide error";
 $L["human_data"] = "Human Data";
+$L["math"] = "Math";
 $L["include_create_table_query"] = "Include CREATE TABLE query";
 $L["include_drop_table_query"] = "Include DROP TABLE query";
 $L["invalid_custom_xml"] = "There&#39;s a problem with the custom XML markup you entered. Please consult the user documentation for more information.";

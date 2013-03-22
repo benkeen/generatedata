@@ -1,6 +1,9 @@
 settings.php
 cache/*
 .DS_Store
+.project
+.buildpath
+.settings/*
 resources/themes/classic/.sass-cache/*
 resources/themes/default/.sass-cache/*
 resources/themes/.sass-cache/*
