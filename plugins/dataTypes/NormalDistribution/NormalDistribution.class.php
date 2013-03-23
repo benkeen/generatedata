@@ -9,7 +9,7 @@ class DataType_NormalDistribution extends DataTypePlugin {
 	/**#@+
      * @access protected
      */
-	protected $isEnabled = true;
+	protected $isEnabled = false;
 	protected $dataTypeName = "Standard Normal Distribution";
 	protected $dataTypeFieldGroup = "math";
 	protected $dataTypeFieldGroupOrder = 10;
