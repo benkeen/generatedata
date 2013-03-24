@@ -9,7 +9,7 @@ class DataType_NormalDistribution extends DataTypePlugin {
 	/**#@+
      * @access protected
      */
-	protected $isEnabled = false;
+	protected $isEnabled = true;
 	protected $dataTypeName = "Standard Normal Distribution";
 	protected $dataTypeFieldGroup = "math";
 	protected $dataTypeFieldGroupOrder = 10;
@@ -18,15 +18,14 @@ class DataType_NormalDistribution extends DataTypePlugin {
 
 
 	public function generate($generator, $generationContextData) {
-		$mean  = (float) $generationContextData["generationOptions"]["mean"];
-		$sigma = (float) $generationContextData["generationOptions"]["sigma"];
-		$randNum = $this->getNormallyDistributedRandomNum();
-		$num = ($randNum * $sigma) + $mean;
+		$mean   = (float) $generationContextData["generationOptions"]["mean"];
+		$stddev = (float) $generationContextData["generationOptions"]["stddev"];
 
 		return array(
-			"display" => $num
+			"display" => $this->gauss_ms($mean, $stddev)
 		);
 	}
+
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
 		if ((empty($postdata["dtOptionMean_$colNum"]) && $postdata["dtOptionMean_$colNum"] !== "0") ||
@@ -36,8 +35,8 @@ class DataType_NormalDistribution extends DataTypePlugin {
 		$this->randMax = (float) getrandmax();
 
 		return array(
-			"mean"  => $postdata["dtOptionMean_$colNum"],
-			"sigma" => $postdata["dtOptionSigma_$colNum"]
+			"mean"   => $postdata["dtOptionMean_$colNum"],
+			"stddev" => $postdata["dtOptionSigma_$colNum"]
 		);
 	}
 
@@ -52,16 +51,45 @@ END;
 		return $options;
 	}
 
-
-	// returns random number with normal distribution
-	public function getNormallyDistributedRandomNum() {
-		$num1 = $this->getRandomNum();
-		$num2 = $this->getRandomNum();
-		return sqrt(-2 * log($num1)) * cos(2 * pi() * $num2);
+	//  returns random number using mt_rand() with a flat distribution from -1 to 1 inclusive
+	public function random_PN() {
+		return (2.0 * $this->random_0_1()) - 1.0;
 	}
 
-	// returns a random float from 0 to 1
-	public function getRandomNum() {
-		return (float) rand() / $this->randMax;
+	public function random_0_1() {
+		return (float) mt_rand() / (float) mt_getrandmax() ;
+	}
+
+	public function gauss() {
+		static $useExists = false;
+		static $useValue;
+
+		if ($useExists) {
+			//  Use value from a previous call to this function
+			$useExists = false;
+			return $useValue;
+		} else {
+			//  Polar form of the Box-Muller transformation
+			$w = 2.0 ;
+			while (($w >= 1.0) || ($w == 0.0)) {
+				$x = $this->random_PN();
+				$y = $this->random_PN();
+				$w = ($x * $x) + ($y * $y);
+			}
+			$w = sqrt((-2.0 * log($w)) / $w);
+
+			//  Set value for next call to this function
+			$useValue = $y * $w;
+			$useExists = true;
+
+			return $x * $w;
+		}
+	}
+
+	public function gauss_ms($mean, $stddev) {
+		//  Adjust our gaussian random to fit the mean and standard deviation
+		//  The division by 4 is an arbitrary value to help fit the distribution
+		//      within our required range, and gives a best fit for $stddev = 1.0
+		return $this->gauss() * ($stddev / 4) + $mean;
 	}
 }

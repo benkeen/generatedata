@@ -31,7 +31,7 @@ class Core {
 	private static $version = "3.0.0 alpha 2";
 	private static $minimumPHPVersion = "5.2.0";
 	private static $settingsFileExists = false;
-	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "other");
+	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
 	private static $isLoggedIn = false;
 
 	// left as public, because they're often modified / accessed, and it's just too fussy otherwise
