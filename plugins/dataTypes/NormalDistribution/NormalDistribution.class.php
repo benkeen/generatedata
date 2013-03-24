@@ -45,7 +45,7 @@ class DataType_NormalDistribution extends DataTypePlugin {
 			<label for="dtOptionMean_%ROW%">Mean</label>
 				<input type="text" name="dtOptionMean_%ROW%" id="dtOptionMean_%ROW%" style="width: 30px" value="0" />
 			<label for="dtOptionSigma_%ROW%">Standard Deviation</label>
-				<input type="text" name="dtOptionSigma_%ROW%" id="dtOptionSigma_%ROW%" style="width: 30px" value="10" />
+				<input type="text" name="dtOptionSigma_%ROW%" id="dtOptionSigma_%ROW%" style="width: 30px" value="1" />
 END;
 
 		return $options;
