@@ -47,6 +47,14 @@ class Templates {
 			Core::$smarty->assign($key, $value);
 		}
 
+		// "success" and "message" are special
+		if (!isset($pageVars["success"])) {
+			Core::$smarty->assign("success", null);
+		}
+		if (!isset($pageVars["message"])) {
+			Core::$smarty->assign("message", null);
+		}
+
 		try {
 			$templatePath = realpath(dirname(__FILE__) . "/../../$template");
 

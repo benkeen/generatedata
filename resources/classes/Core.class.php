@@ -99,7 +99,7 @@ class Core {
 	 * with whatevers been defined.
 	 * @access private
 	 */
-	private function loadSettingsFile() {
+	private static function loadSettingsFile() {
 		$settingsFilePath = realpath(dirname(__FILE__) . "/../../settings.php");
 		if (file_exists($settingsFilePath)) {
 			self::$settingsFileExists = true;

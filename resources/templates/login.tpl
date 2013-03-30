@@ -15,8 +15,6 @@
 	<script src="resources/scripts/libs/excanvas.js"></script>
 	<![endif]-->
 	<script src="resources/scripts/libs/spinners.js"></script>
-	{$cssIncludes}
-	{$codeMirrorIncludes}
 </head>
 <body class="gdLoginPage">
 	<header>

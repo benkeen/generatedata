@@ -280,3 +280,4 @@ $L["password_change_note"] = "You only need to fill the password fields in if yo
 $L["info_and_stats"] = "Info and Stats";
 $L["account_settings"] = "Account Settings";
 $L["enter_email_address_to_reset_password"] = "Enter your email address below to reset your password.";
+$L["extend_it"] = "Extend it";
