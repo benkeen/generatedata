@@ -1159,6 +1159,7 @@ define([
 
 		$("#gdDataSetHelpNav a").removeClass("gdSelected");
 		$(link).addClass("gdSelected");
+		$("#gdDataSetHelpNav").scrollTop($(link).offset().top);
 
 		// set the header to the name of the Data Type
 		$("#gdFocusedDataTypeHeader").html($(link).html());
@@ -1198,12 +1199,6 @@ define([
 		// remove any custom styles
 		$(".gdHelpSection").removeAttr("style");
 
-		// if required, ensure the appropriate Data Type item is selected
-		if (opts.dataType !== null) {
-			var helpNavEl = ($("#gdDataSetHelpNav li[data-module='" + opts.dataType + "']"))[0];
-			_showDataTypeHelp(helpNavEl);
-		}
-
 		// open the dialog
 		$("#gdMainDialog").dialog({
 			title: 'generate<span style="color:#48b34d">data</span>.com',
@@ -1219,6 +1214,15 @@ define([
 				}
 			]
 		});
+
+		// if required, ensure the appropriate Data Type item is selected. This is done after
+		// the dialog is opened because it needs to set the appropriate offset height of the 
+		// left sidebar to focus on the appropriate Data Type's help link. This can only be computed
+		// after it's been opened.
+		if (opts.dataType !== null) {
+			var helpNavEl = ($("#gdDataSetHelpNav li[data-module='" + opts.dataType + "']"))[0];
+			_showDataTypeHelp(helpNavEl);
+		}
 
 		utils.insertModalSpinner({ modalID: "gdMainDialog" });
 
