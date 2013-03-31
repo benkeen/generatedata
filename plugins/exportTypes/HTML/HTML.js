@@ -129,11 +129,11 @@
 	};
 
 	var _resetSettings = function() {
-		$("input[name=etHTMLExportFormat][value=table").attr("checked", "checked");
+		$("input[name=etHTMLExportFormat][value=table]").attr("checked", "checked");
 		$("#etHTMLUseCustomExportFormat").removeAttr("disabled").trigger("click");
 		_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
 	};
-	
+
 	var _resetCustomHTML = function() {
 		_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
 	};

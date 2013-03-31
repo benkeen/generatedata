@@ -25,7 +25,6 @@ define([
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-
 	/**
 	 * Called when the user changes the result type
 	 */

@@ -12,7 +12,7 @@ class HTML extends ExportTypePlugin {
 	protected $contentTypeHeader = "text/html";
 	protected $codeMirrorModes = array("xml");
 
-	function __construct($runtimeContext) {
+	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			$this->smarty = new Smarty();
@@ -24,7 +24,7 @@ class HTML extends ExportTypePlugin {
 	/**
 	 * @see ExportTypePlugin::generate()
 	 */
-	function generate($generator) {
+	public function generate($generator) {
 		$exportTarget = $generator->getExportTarget();
 		$postData     = $generator->getPostData();
 		$data         = $generator->generateExportData();
@@ -73,13 +73,12 @@ class HTML extends ExportTypePlugin {
 	 * @param Generator $generator
 	 * @return string
 	 */
-	function getDownloadFilename($generator) {
+	public function getDownloadFilename($generator) {
 		$time = date("U");
 		return "randomdata-{$time}.html";
 	}
 
-
-	function getAdditionalSettingsHTML() {
+	public function getAdditionalSettingsHTML() {
 		$html =<<< END
 <table cellspacing="0" cellpadding="0" width="100%">
 <tr>

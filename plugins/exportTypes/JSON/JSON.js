@@ -44,11 +44,17 @@ define([
 		} else {
 			$("#etJSON_stripWhitespace").removeAttr("checked");
 		}
+
+		// for backward compatibility with early alpha versions
+		if (settings.hasOwnProperty("dataStructureFormat")) {
+			$("input[name=etJSON_dataStructure][value=" + settings.dataStructureFormat + "]").attr("checked", "checked");
+		}
 	};
 
 	var _saveSettings = function() {
 		return {
-			stripWhitespace: ($("#etJSON_stripWhitespace")[0].checked) ? 1 : 0
+			stripWhitespace: ($("#etJSON_stripWhitespace")[0].checked) ? 1 : 0,
+			dataStructureFormat: $("#etJSON_dataStructureFormat").val()
 		};
 	};
 
@@ -56,12 +62,10 @@ define([
 		$("#etJSON_stripWhitespace").removeAttr("checked");
 	};
 
-
 	manager.registerExportType(MODULE_ID, {
 		init: _init,
 		loadSettings: _loadSettings,
 		saveSettings: _saveSettings,
 		resetSettings: _resetSettings
 	});
-
 });

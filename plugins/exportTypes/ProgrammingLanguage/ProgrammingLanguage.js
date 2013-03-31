@@ -47,6 +47,7 @@ define([
 	var _init = function() {
 		var subscriptions = {};
 		subscriptions[C.EVENT.GENERATE] = _onGenerate;
+		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
@@ -62,6 +63,15 @@ define([
 
 	var _resetSettings = function() {
 		$("#etProgrammingLanguage_language").val("JavaScript");
+	};
+
+	/**
+	 * Called when the user changes the result type
+	 */
+	var _resultTypeChanged = function(msg) {
+		if (msg.newExportType == "ProgrammingLanguage") {
+			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
+		}
 	};
 
 	manager.registerExportType(MODULE_ID, {
