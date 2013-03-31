@@ -30,7 +30,7 @@ define([
 			"eol":       $("#etCSV_lineEndings").val()
 		};
 	};
-	
+
 	var _resetSettings = function() {
 		$("#etCSV_delimiter").val("|");
 		$("#etCSV_lineEndings").val("Windows");

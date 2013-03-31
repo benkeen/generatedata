@@ -78,40 +78,44 @@ define([
 
 	var _validate = function(rowNums) {
 		var errors = [];
-
 		var invalidNodeNames  = [];
-
 		for (var i=0; i<rowNums.length; i++) {
 			var rowNum = rowNums[i];
-			var nodeField = $("#gdTitle_" + rowNum);
-			var nodeFieldVal = nodeField.val();
+			var nodeName = $("#gdTitle_" + rowNum);
+			var nodeNameVal = nodeName.val();
 
-			// if ($("#title_" + nodeNum).val().match(/\W/) ||  $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
-			// invalidNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
-			// }
+			if (nodeNameVal.match(/\W/) || nodeNameVal.match(/^[^a-zA-Z]/)) {
+				invalidNodeNames.push({
+					field: $("#gdTitle_" + rowNum),
+					visibleRowNum: generator.getVisibleRowOrderByRowNum(rowNum)
+				});
+			}
 		}
 
-/*		if (invalidNodeNames.length) {
+		if (invalidNodeNames.length) {
 			var problemFields = [];
 			var rowNumbers    = [];
-			for (var i=0; i<invalidNodeNames.length; i++) {
-				problemFields.push(invalidNodeNames[i][0]);
-				rowNumbers.push(invalidNodeNames[i][1]);
+			for (var j=0; j<invalidNodeNames.length; j++) {
+				problemFields.push(invalidNodeNames[j].field);
+				rowNumbers.push(invalidNodeNames[j].visibleRowNum);
 			}
-			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
-			Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
+			errors.push({ els: problemFields, error: LANG.invalid_node_names + " <b>" + rowNumbers.join(", ") + "</b>" });
 		}
 
-		if ($("#xml_root_node_name").val() == "") {
-			Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
-		} else if ($("#xml_root_node_name").val().match(/\W/)) {
-			Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
-		} else if ($("#xml_record_node_name").val() == "") {
-			Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
-		} else if ($("#xml_record_node_name").val().match(/\W/)) {
-			Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
+		var rootNode        = $("#etXMLRootNodeName");
+		var rootNodeValue   = $.trim(rootNode.val());
+		var recordNode      = $("#etXMLRecordNodeName");
+		var recordNodeValue = $.trim(recordNode.val());
+
+		if (rootNodeValue === "") {
+			errors.push({ els: [rootNode], error: LANG.missing_xml_root_node_name });
+		} else if (rootNodeValue.match(/\W/)) {
+			errors.push({ els: [rootNode], error: LANG.invalid_xml_root_node_name });
+		} else if (recordNodeValue === "") {
+			errors.push({ els: [recordNode], error: LANG.missing_xml_record_node_name });
+		} else if (recordNodeValue.match(/\W/)) {
+			errors.push({ els: [recordNode], error: LANG.invalid_xml_record_node_name });
 		}
-		*/
 
 		return errors;
 	};
@@ -211,7 +215,6 @@ define([
 
 
 	manager.registerExportType(MODULE_ID, {
-		
 		/**
 		 * @function
 		 * @name XML#init
