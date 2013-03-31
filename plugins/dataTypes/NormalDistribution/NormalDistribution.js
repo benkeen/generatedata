@@ -20,8 +20,6 @@ define([
 	var subscriptions = {};
 
 	var _init = function() {
-		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
-		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
 	var _saveRow = function(rowNum) {

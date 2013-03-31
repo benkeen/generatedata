@@ -52,13 +52,13 @@ define([
 		// first, check the Table Column names that have been entered are valid
 		var errorFields = [];
 		var errorFieldVisibleRowNums = [];
-		var validTableCol = new RegExp("^[a-zA-Z][0-9a-zA-Z_$]*");
-		for (var i=0; i<rowNums.length; rowNums++) {
+		var validTableCol = new RegExp("^[a-zA-Z][0-9a-zA-Z_$]*$");
+		for (var i=0; i<rowNums.length; i++) {
 			var tableColField = $("#gdTitle_" + rowNums[i]);
 			var tableColFieldVal = tableColField.val();
 
 			// we don't bother throwing an error if the field is empty, because that's caught by the Core script
-			if (tableColFieldVal !== "" && !validTableCol.test(tableColField.val())) {
+			if (tableColFieldVal !== "" && !validTableCol.test(tableColFieldVal)) {
 				errorFields.push(tableColField);
 				errorFieldVisibleRowNums.push(generator.getVisibleRowOrderByRowNum(rowNums[i]));
 			}

@@ -224,11 +224,10 @@ END;
 		$numCols = count($this->data["colData"]);
 		for ($i=0; $i<$numRows; $i++) {
 			if ($this->sqlStatementType == "insert") {
-				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "'");
+				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "\"");
 				$rowDataStr = implode(",", $quoted);
 				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
 			} else {
-
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
 					$colName  = $this->data["colData"][$j];
