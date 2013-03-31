@@ -13,7 +13,7 @@
 	<input type="hidden" name="gdExportFormat" id="gdExportFormat" />
 
 	<div id="gdGenerateSubtab1">
-		<input type="text" id="gdDataSetName" placeholder="{$L.your_data_set_name_here}" /><button id="gdSaveBtn">{$L.save|upper}</button>
+		<input type="text" id="gdDataSetName" placeholder="{$L.your_data_set_name_here}" /><button type="button" id="gdSaveBtn">{$L.save|upper}</button>
 
 		<div class="gdClear" style="padding-bottom: 20px"></div>		
 

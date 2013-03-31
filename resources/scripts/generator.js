@@ -32,6 +32,7 @@ define([
 	var _showExportTypeSettings = true;
 	var _codeMirror = null;
 	var _lastSelectedDataType = null;
+	var _isHighlightingDeleteRow;
 
 	// the number of results being generated
 	var _numRowsToGenerate;
@@ -443,12 +444,19 @@ define([
 	var _markRowToDelete = function(e) {
 		var el = e.target;
 		var event = null;
+		var tr = $(el).closest(".gdTableRow");
+
 		if (el.checked) {
-			$(el).closest(".gdTableRow").addClass("gdDeletedRow").effect("highlight", { color: "#cc0000" }, 1000);
+			_isHighlightingDeleteRow = true;
+			tr.addClass("gdDeletedRow").effect("highlight", { color: "#cc0000" }, 1000);
 			event = C.EVENT.DATA_TABLE.ROW.CHECK_TO_DELETE;
 		} else {
-			$(el).closest(".gdTableRow").removeClass("gdDeletedRow");
+			if (_isHighlightingDeleteRow) {
+				tr.stop(true, true);
+			}
+			tr.removeClass("gdDeletedRow");
 			event = C.EVENT.DATA_TABLE.ROW.UNCHECK_TO_DELETE;
+			_isHighlightingDeleteRow = false;
 		}
 		manager.publish({
 			sender: MODULE_ID,
