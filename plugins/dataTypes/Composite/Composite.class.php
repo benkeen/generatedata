@@ -20,7 +20,7 @@ class DataType_Composite extends DataTypePlugin {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			$this->smarty = new Smarty();
-			$this->smarty->template_dir = realpath(dirname(__FILE__) . "/../../../libs/smarty");
+			$this->smarty->template_dir = realpath(dirname(__FILE__) . "/../../../resources/libs/smarty");
 			$this->smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../../cache");
 		}
 	}
