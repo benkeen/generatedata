@@ -25,7 +25,6 @@ class DataType_Composite extends DataTypePlugin {
 		}
 	}
 
-
 	public function generate($generator, $generationContextData) {
 		$placeholders = array();
 		foreach ($generationContextData["existingRowData"] as $rowInfo) {
