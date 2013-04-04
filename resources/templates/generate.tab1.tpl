@@ -78,7 +78,6 @@
 					{if $defaultExportType == $k}style="display:block"{/if}>{$i}</div>
 			{/foreach}
 		</div>
-
 		<div class="gdClear"></div>
 
 		<div id="gdGenerateSection">

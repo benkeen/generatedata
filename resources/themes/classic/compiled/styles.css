@@ -481,7 +481,6 @@ li.gdColDelete {
         padding: 0px 15px; }
   .gdSmallTabs .gdExportTypeTabSettings {
     clear: both;
-    border-bottom: 1px solid #cccccc;
     border-top: 0px;
     padding: 6px;
     margin: 0px;
@@ -493,6 +492,9 @@ li.gdColDelete {
     .gdSmallTabs #gdShowSettingsLink a {
       font-size: 7pt;
       color: #3366CC; }
+
+#gdExportTypeTabs {
+  border-bottom: 1px solid #cccccc; }
 
 #gdGenerateSection {
   background-color: #dcffd8;

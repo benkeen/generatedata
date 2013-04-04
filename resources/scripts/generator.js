@@ -225,7 +225,7 @@ define([
 		if (json.hasOwnProperty("dataTypes")) {
 			var numDataTypeRows = json.dataTypes.length;
 			var orderedRowIDs = _getRowOrder();
-			
+
 			var data = [];
 			for (var i=0; i<numDataTypeRows; i++) {
 				var currDataType = json.dataTypes[i];

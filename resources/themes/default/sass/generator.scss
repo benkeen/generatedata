@@ -121,7 +121,6 @@ li.gdColDelete {
 	height: 400px;
 	width: 100%;
 }
-
 #gdProcessingIcon {
 	position: absolute;
 	top: 6px;
@@ -153,8 +152,8 @@ li.gdColDelete {
 			background: -ms-linear-gradient(top,  #f2f2f2 0%,#e1e1e1 100%);
 			background: linear-gradient(to bottom,  #f2f2f2 0%,#e1e1e1 100%);
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
-			cursor: pointer;
-			
+			cursor: pointer;			
+
 			.gdSelected { 
 				background: white;
 				background-color: white;
@@ -162,11 +161,9 @@ li.gdColDelete {
 				border-bottom: 0px;
 			}
 		}
-
 	}
 	.gdExportTypeTabSettings {
 		clear: both;
-		border-bottom: 1px solid #cccccc;
 		border-top: 0px;
 		padding: 6px;
 		margin: 0px;
