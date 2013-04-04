@@ -39,6 +39,7 @@ define([
 	var _init = function() {
 		var subscriptions = {};
 		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
+		subscriptions[C.EVENT.GENERATE] = _onGenerate;
 		manager.subscribe(MODULE_ID, subscriptions);
 
 		$(window).resize(_updateDialogDimensions);
@@ -188,7 +189,6 @@ define([
 		return false;
 	};
 
-
 	var _getDialogDimensions = function() {
 		var dialogHeight  = ($(window).height() / 100) * 90;
 		var dialogWidth   = ($(window).width() / 100) * 90;
@@ -211,6 +211,18 @@ define([
 
 	var _resetCustomHTML = function() {
 		_codeMirror.setValue(_defaultCustomXML);
+	};
+
+	/**
+	 * If the user is generating in-page data with this Export Type, enable the XML
+	 * mode for the in-page editor.
+	 */
+	var _onGenerate = function(msg) {
+		$("#etXMLCustomHTMLSource").val(_codeMirror.getValue());
+		if (msg.exportTarget != "inPage" || msg.exportType != "XML") {
+			return;
+		}
+		msg.editor.setOption("mode", "xml");
 	};
 
 

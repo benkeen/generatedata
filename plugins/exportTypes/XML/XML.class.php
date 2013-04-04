@@ -11,6 +11,16 @@ class XML extends ExportTypePlugin {
 	protected $codeMirrorModes = array("xml");
 	public $L = array();
 
+
+	public function __construct($runtimeContext) {
+		parent::__construct($runtimeContext);
+		if ($runtimeContext == "generation") {
+			$this->smarty = new Smarty();
+			$this->smarty->template_dir = realpath(dirname(__FILE__) . "/../../../resources/libs/smarty");
+			$this->smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../../cache");
+		}
+	}
+
 	/**
 	 * Generates the XML data.
 	 * @see ExportTypePlugin::generate()
@@ -23,7 +33,7 @@ class XML extends ExportTypePlugin {
 
 		$content = "";
 		if ($useCustomXMLFormat) {
-			$smartyTemplate = (get_magic_quotes_gpc()) ? stripslashes($postData["etXMLCustomSmarty"]) : $postData["etXMLCustomSmarty"];
+			$smartyTemplate = (get_magic_quotes_gpc()) ? stripslashes($postData["etXMLCustomHTMLSource"]) : $postData["etXMLCustomHTMLSource"];
 			$content = $this->generateCustomXML($generator, $smartyTemplate);
 		} else {
 			$content = $this->generateXML($generator, $postData);
@@ -75,6 +85,7 @@ class XML extends ExportTypePlugin {
 	</td>
 </tr>
 </table>
+<input type="hidden" name="etXMLCustomHTMLSource" id="etXMLCustomHTMLSource" />
 
 <div id="etXMLCustomFormatDialog" style="display:none">
 	<div style="width: 300px; float: left;">
@@ -117,7 +128,7 @@ END;
 		$content = "";
 		if ($generator->isFirstBatch()) {
 			$content .= '<?xml version="1.0" encoding="UTF-8" ?>';
-			$content .= "\n<{$rootNodeName}>\n";
+			$content .= "<{$rootNodeName}>\n";
 		}
 
 		$numCols = count($data["colData"]);

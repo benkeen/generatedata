@@ -107,7 +107,6 @@
 			return;
 		}
 		msg.editor.setOption("mode", "xml");
-
 	};
 
 	var _loadSettings = function(settings) {
