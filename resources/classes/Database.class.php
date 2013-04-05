@@ -21,6 +21,7 @@ class Database {
 
 		try {
 			@mysql_select_db($dbName);
+			@mysql_query("SET NAMES 'utf8'", $this->link);
 		} catch (Exception $e) {
 		 //  die ("couldn't find database '$g_db_name': " . mysql_error());
 		}

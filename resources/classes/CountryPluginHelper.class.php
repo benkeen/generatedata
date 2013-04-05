@@ -107,16 +107,21 @@ class CountryPluginHelper {
 	public static function populateDB($countryName, $countrySlug, $data) {
 		$prefix = Core::getDbTablePrefix();
 
+		$countryName = addslashes($countryName);
+		$countrySlug = addslashes($countrySlug);
+
 		// now insert the data
 		$queries = array();
 		$queries[] = "INSERT INTO {$prefix}countries (country, country_slug) VALUES ('$countryName', '$countrySlug')";
 
 		foreach ($data as $regionInfo) {
-			$currRegionName = $regionInfo["regionName"];
-			$currRegionSlug = $regionInfo["regionSlug"];
+			$currRegionName  = addslashes($regionInfo["regionName"]);
+			$currRegionSlug  = $regionInfo["regionSlug"];
+			$currRegionShort = addslashes($regionInfo["regionShort"]);
+
 			$queries[] = "
 				INSERT INTO {$prefix}regions (country_slug, region, region_slug, region_short, weight)
-				VALUES ('$countrySlug', '$currRegionName', '$currRegionSlug', '{$regionInfo["regionShort"]}', '{$regionInfo["weight"]}')
+				VALUES ('$countrySlug', '$currRegionName', '$currRegionSlug', '$currRegionShort', '{$regionInfo["weight"]}')
 			";
 
 			$rows = array();
@@ -132,9 +137,11 @@ class CountryPluginHelper {
 		}
 
 		$response = Core::$db->query($queries);
+
 		if ($response["success"]) {
 			return array(true, "");
 		} else {
+			print_r($response);
 			$this->uninstall();
 			return array(false, $response["errorMessage"]);
 		}
