@@ -7,6 +7,7 @@
 class Country_Belgium extends CountryPlugin {
 	protected $countryName = "Belgium";
 	protected $countrySlug = "belgium";
+	protected $continentSlug = "europe";
 	protected $regionNames = "Belgium Prov.";
 	protected $zipFormat = "Xxxx";
 

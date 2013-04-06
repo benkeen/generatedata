@@ -32,6 +32,7 @@ class Core {
 	private static $minimumPHPVersion = "5.2.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
+	private static $countryGroups = array("africa", "asia", "europe", "north_america", "oceania", "south_america");
 	private static $isLoggedIn = false;
 
 	// left as public, because they're often modified / accessed, and it's just too fussy otherwise

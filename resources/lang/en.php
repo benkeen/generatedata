@@ -276,3 +276,10 @@ $L["info_and_stats"] = "Info and Stats";
 $L["account_settings"] = "Account Settings";
 $L["enter_email_address_to_reset_password"] = "Enter your email address below to reset your password.";
 $L["extend_it"] = "Extend it";
+
+$L["africa"] = "Africa";
+$L["asia"] = "Asia";
+$L["europe"] = "Europe";
+$L["north_america"] = "North America";
+$L["oceania"] = "Oceania";
+$L["south_america"] = "South America";

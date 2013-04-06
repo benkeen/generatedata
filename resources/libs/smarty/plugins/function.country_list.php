@@ -9,7 +9,7 @@ function smarty_function_country_list() {
 	$countryPlugins = Core::$countryPlugins;
 	$defaultChecked = Core::getDefaultCountryPlugins();
 
-	echo "<select id=\"gdCountries\" name=\"gdCountries[]\" multiple style=\"width: 100%\" data-placeholder=\"Select a country or two\">";
+	echo "<select id=\"gdCountries\" name=\"gdCountries[]\" multiple style=\"width: 100%\" data-placeholder=\"All countries\">";
 	foreach ($countryPlugins as $obj) {
 		$countryName = $obj->getName();
 		$slug        = $obj->getSlug();
