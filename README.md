@@ -21,11 +21,7 @@ http://alpha.generatedata.com
 
 Currently the 3.0.0 branch is in alpha phase, meaning it's not production ready - lots of bugs to squash!
 However, that's the version I'd suggest downloading and using. I'm working on this version currently 
-(Jan 2013) and hope to get it into Beta / final release fairly soon.
-
-Please be warned: the trunk of the code is in flux. The UI, functionality, code architecture and other big
-stuff has all be settled, but any check-in may make the script unusable. So if you're downloading it, 
-*download the latest tag*.
+(April 2013) and expect to get it into Beta this month, and final release fairly soon after.
 
 ## Versions
 
