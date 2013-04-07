@@ -138,11 +138,7 @@ $L["settings"] = "Settings";
 $L["geo"] = "Geo";
 $L["numeric"] = "Numeric";
 $L["notify_settings_updated"] = "Your settings have been updated.";
-
-$L["tip_country_data"] = "This section lets you control what country-specific data should be included in your generated data sets. The values you select here affect certain Data Types that you may select, such as <i>Region</i>, <i>Postal/Zip</i> and <i>Country</i>.</p><p>To give you a better idea of what this means, try selecting the <i>Region</i> Data Type for one of your rows in the Data Set section, then add / remove countries from the Country-Specific Data section. You'll see that various options that appear in the row are directly affected by the countries you have selected: you can only ever generate a subset of the countries selected.";
-$L["tip_data_set"] = "</p>";
-$L["tip_data_format"] = "<p>This section controls the export format for the data.</p>";
-
+$L["tip_country_data"] = "This section lets you control what country-specific data should be included in your generated data sets. The values you select here affect certain Data Types that you may select, such as <i>Region</i>, <i>Postal/Zip</i> and <i>Country</i>.</p><p>To give you a better idea of what this means, try selecting the <i>Region</i> Data Type for one of your rows in the Data Set section, then add / remove countries from the Country-Specific Data section. You'll see that the row options that appear are directly affected by the countries you have selected: you can only ever generate a subset of the countries selected.";
 $L["country_specific_data"] = "Country-specific data";
 $L["data_set"] = "Data Set";
 $L["data_format"] = "Data Format";
@@ -167,7 +163,6 @@ $L["clear_the_page"] = "Clear the Page";
 $L["link_to_this_data_set"] = "Link to this Data Set";
 $L["save"] = "Save";
 $L["your_data_set_name_here"] = "Your data set name here...";
-$L["country_specific_data_help"] = "This section lets you control what country data should be included in your generated data sets. The values you select here affect certain Data Types that you may select such as Region, Postal/Zip and City.";
 $L["country_specific_data"] = "Country-Specific Data";
 $L["data_set_help"] = "This is where you define exactly what kind of data you want to generate. Try filling in a row or two and click the Generate button. You'll get the hang of it pretty fast.";
 $L["export_types"] = "Export Types";
@@ -283,3 +278,4 @@ $L["europe"] = "Europe";
 $L["north_america"] = "North America";
 $L["oceania"] = "Oceania";
 $L["south_america"] = "South America";
+$L["all_countries"] = "All countries";

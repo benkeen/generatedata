@@ -7,9 +7,9 @@
 class Country_Netherlands extends CountryPlugin {
 	protected $countryName = "Netherlands";
 	protected $countrySlug = "netherlands";
-	protected $continentSlug = "europe";
 	protected $regionNames = "Netherlands Prov.";
 	protected $zipFormat = "xxxxLL";
+	protected $continent = "europe";
 
 	public function install() {
 		$data = array(

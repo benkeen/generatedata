@@ -7,9 +7,9 @@
 class Country_France extends CountryPlugin {
 	protected $countryName = "France";
 	protected $countrySlug = "france";
-	protected $continentSlug = "europe";
 	protected $regionNames = "French Provinces";
 	protected $zipFormat = "xxxxx";
+	protected $continent = "europe";
 
 
 	public function install() {

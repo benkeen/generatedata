@@ -18,7 +18,7 @@
 
 		<h2>
 			{$L.country_specific_data|upper}
-			<span data-help-section="countryData" class="gdSectionHelp" title="{$L.country_specific_data_help}"></span>
+			<span data-help-section="countryData" class="gdSectionHelp" title="{$L.tip_country_data}"></span>
 		</h2>
 
 		{country_list}

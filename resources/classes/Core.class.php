@@ -24,7 +24,7 @@ class Core {
 	private static $defaultNumRows = 100;
 	private static $defaultLanguageFile = "en";
 	private static $defaultExportType = "HTML";
-	private static $defaultCountryPlugins = array("canada", "united_states");
+	private static $defaultCountryPlugins = array();
 	private static $defaultTheme = "classic";
 
 	// non-overidable settings
@@ -32,7 +32,7 @@ class Core {
 	private static $minimumPHPVersion = "5.2.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
-	private static $countryGroups = array("africa", "asia", "europe", "north_america", "oceania", "south_america");
+	private static $continents = array("africa", "asia", "europe", "north_america", "oceania", "south_america");
 	private static $isLoggedIn = false;
 
 	// left as public, because they're often modified / accessed, and it's just too fussy otherwise
@@ -269,6 +269,13 @@ class Core {
 	}
 
 	/**
+	 * @access public
+	 */
+	public function getContinents() {
+		return self::$continents;
+	}
+
+	/**
 	 * Returns the minimum PHP version required to run this script. Used during installation to ensure the
 	 * server environment is adequate.
 	 * @access public
@@ -284,7 +291,6 @@ class Core {
 	public function getDefaultTheme() {
 		return self::$defaultTheme;
 	}
-
 
 	// ------------------ private methods ------------------
 

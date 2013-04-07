@@ -7,9 +7,9 @@
 class Country_UK extends CountryPlugin {
 	protected $countryName = "United Kingdom";
 	protected $countrySlug = "united_kingdom";
-	protected $continentSlug = "europe";
 	protected $regionNames = "UK Counties";
 	protected $zipFormat = "Lx xLL|Lxx xLL|LxL xLL|LLx xLL|LLxx xLL|LLxL xLL";
+	protected $continent = "europe";
 
 	public function install() {
 		$data = array(

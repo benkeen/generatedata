@@ -7,9 +7,9 @@
 class Country_Canada extends CountryPlugin {
 	protected $countryName = "Canada";
 	protected $countrySlug = "canada";
-	protected $continentSlug = "north_america";
 	protected $regionNames = "Provinces";
 	protected $zipFormat = "LXL XLx";
+	protected $continent = "north_america";
 
 	public function install() {
 		$data = array(

@@ -7,9 +7,9 @@
 class Country_Australia extends CountryPlugin {
 	protected $countryName = "Australia";
 	protected $countrySlug = "australia";
-	protected $continentSlug = "oceania";
 	protected $regionNames = "Australian St./Terr.";
 	protected $zipFormat = "Xxxx";
+	protected $continent = "oceania";
 
 	public function install() {
 		$data = array(
