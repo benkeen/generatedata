@@ -9,10 +9,10 @@ require_once(realpath(dirname(__FILE__) . "/library.php"));
 // sessions needed here AFTER installation, to get access to $user [or should it be passed &
 // validated with all requests?]
 header("Cache-Control: private, no-cache, must-revalidate");
+header("Content-Type: application/json; charset=utf-8");
 
 $ajaxRequest = new AjaxRequest(@$_POST["action"], $_POST);
 $encoded = json_encode($ajaxRequest->getResponse());
-
 $errorCode = json_last_error();
 if ($errorCode) {
 	switch ($errorCode) {
