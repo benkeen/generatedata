@@ -9,15 +9,15 @@ require_once("templates/header.php");
 				<div class="hero-unit">
 					<h1>Developer Doc</h1>
 					<p>
-						This doc explains more than you ever wanted to know about the Data Generator:
+						This document explains more than you ever wanted to know about the Data Generator:
 						how it works, how it's structured, and how to extend it to add your own Data Types,
-						Export Types and Country-specific data. May the thrills commence. Hope you're wearing a diaper.
+						Export Types and Country-specific data. May the thrills commence.
 					</p>
 				</div>
 
-				<h3>Intro</h3>
+				<h2>Introduction</h2>
 				<p>
-					First off, if you haven't already done so check out the <a href="http://www.generatedata.com" target="_blank">script
+					If you haven't already done so check out the <a href="http://www.generatedata.com" target="_blank">script
 					online</a> and generate some data. You should have a general sense about what the script does
 					before you bother reading any further.
 				</p>

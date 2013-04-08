@@ -16,16 +16,17 @@ require_once("templates/header.php");
 		</div>
 		<div class="span9"> 
 
+			<a id="overview"></a>
 			<section>
-				<a id="overview"></a>
-
 				<div class="page-header">
 					<h1>Country Plugins</h1>
 				</div>
 				<p class="lead">
-					Allow the script to generate more realistic country-specific data.
+					Allow the script to generate realistic country-specific data.
 				</p>
+			</section>
 
+			<section>
 				<h2>Overview</h2>
 				<p>
 					The primary purpose of the script is to generate <i>realistic-looking</i> fake/test data. So when it comes 
@@ -41,8 +42,8 @@ require_once("templates/header.php");
 				</ol>
 			</section>
 
+			<a id="limitations"></a>
 			<section>
-				<a id="limitations"></a>
 				<h2>Limitations</h2>
 
 				<p>
@@ -66,8 +67,8 @@ require_once("templates/header.php");
 				</p>
 			</section>
 
+			<a id="add_your_own"></a>
 			<section>
-				<a id="add_your_own"></a>
 				<h2>Add your own</h2>
 
 				<p>
@@ -145,11 +146,19 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 
 			</section>
 
+			<a id="contribute"></a>
 			<section>
-				<a id="contribute"></a>
 				<h2>Contribute your plugin</h2>
 
-
+				<p>
+					Sharing is always welcome! To contribute your plugin, please just 
+					<a href="https://github.com/benkeen/generatedata" target="_blank">fork 
+					the project</a> on github and submit your changes via a pull request. This is certainly 
+					the preferred method to contribute code, but if you don't think you're up for it you can 
+					always <a href="mailto:ben.keen@gmail.com">email me</a> and I'll manually add it in. Please note, 
+					all contributions will be expected to be available under the GPL license and released along with the 
+					rest of the code. I'll be sure to add in your name as a contributor.
+				</p>
 
 			</section>
 

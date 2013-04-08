@@ -17,19 +17,19 @@ require_once("templates/header.php");
 				</div>
 				<div class="span9">
 
-					<a name="overview"></a>
-
+					<a id="overview"></a>
 					<section>
-						<div class="hero-unit">
-							<div>
-								<h1>Data Types</h1>
-							</div>
+						<div class="page-header">
+							<h1>Data Types</h1>
 						</div>
+						<p class="lead">
+							Provide new types of data for the user to generate.
+						</p>
 					</section>
+
 
 					<section>
 						<h2>Overview</h2>
-
 
 <!--
 							<p>
