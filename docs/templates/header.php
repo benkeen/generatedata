@@ -15,7 +15,7 @@ $page = (isset($page)) ? $page : "home";
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+  <body data-spy="scroll" data-target="#pagenav">
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -42,7 +42,7 @@ $page = (isset($page)) ? $page : "home";
               <li <?php if ($page == "core") echo 'class="active"'; ?>><a href="core.php">The Core Script</a></li>
               <li <?php if ($page == "dataTypes") echo 'class="active"'; ?>><a href="dataTypes.php">Data Types</a></li>
               <li <?php if ($page == "exportTypes") echo 'class="active"'; ?>><a href="exportTypes.php">Export Types</a></li>
-              <li <?php if ($page == "country") echo 'class="active"'; ?>><a href="countryData.php">Country Data</a></li>
+              <li <?php if ($page == "country") echo 'class="active"'; ?>><a href="countryPlugins.php">Country Plugins</a></li>
               <li <?php if ($page == "translations") echo 'class="active"'; ?>><a href="translations.php">Translations</a></li>
             </ul>
           </div>

@@ -6,8 +6,8 @@ require_once("templates/header.php");
 <div class="container">
 	<div class="row">
 
-		<div class="span3 bs-docs-sidebar">
-			<ul class="nav nav-list bs-docs-sidenav affix">
+		<div class="span3 bs-docs-sidebar" id="pagenav">
+			<ul class="nav nav-list bs-docs-sidenav" data-spy="affix">
 				<li><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
 				<li><a href="#anatomy"><i class="icon-chevron-right"></i> Anatomy of an Export Type</a></li>
 				<li><a href="#installation"><i class="icon-chevron-right"></i> Installation Script</a></li>
@@ -15,22 +15,18 @@ require_once("templates/header.php");
 				<li><a href="#i18n"><i class="icon-chevron-right"></i> I18N</a></li>
 			</ul>
 		</div>
-		<div class="span9">
-
-			<a name="overview"></a>
+		<div class="span9"> 
 
 			<section>
-				<div class="hero-unit">
-					<div>
-						<h1>Export Types</h1>
-					</div>
-					<p>
-						Constructing new ways to export the data.
-					</p>
+				<a id="overview"></a>
+
+				<div class="page-header">
+					<h1>Export Types</h1>
 				</div>
-			</section>
+				<p class="lead">
+					Construct new ways to export the data.
+				</p>
 
-			<section>
 				<h2>Overview</h2>
 				<p>
 					This document explains how to add your own data types so you can generate pretty much whatever information you want.
@@ -56,7 +52,7 @@ require_once("templates/header.php");
 			</section>
 
 			<section>
-				<a name="anatomy"></a>
+				<a id="anatomy"></a>
 				<h2>Anatomy of a Data Type</h2>
 
 				<p>
@@ -81,7 +77,7 @@ require_once("templates/header.php");
 					folders if you wish.
 				</p>
 
-				<a name="ui_php"></a>
+				<a id="ui_php"></a>
 				<h3>ui.php</h3>
 
 				<p>
@@ -379,9 +375,11 @@ var Names_ns = {
 </p>
 
 
-			</div>
+			</section>
+
 		</div>
 	</div>
+</div>
 
 <?php
 require_once("templates/footer.php");
