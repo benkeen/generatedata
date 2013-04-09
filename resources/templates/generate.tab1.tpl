@@ -21,7 +21,7 @@
 			<span data-help-section="countryData" class="gdSectionHelp" title="{$L.tip_country_data}"></span>
 		</h2>
 
-		{country_list}
+		{country_plugins}
 
 		<div id="gdMessages" class="gdMessage">
 			<a class="gdMessageClose" href="#">X</a>

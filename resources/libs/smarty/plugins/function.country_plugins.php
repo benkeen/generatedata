@@ -5,7 +5,7 @@
  * Used in the main generator page to display a list of country-specific data. This is used
  * for the Country, State/Province, Postal Code - and potentially other Data Types.
  */
-function smarty_function_country_list() {
+function smarty_function_country_plugins() {
 	$continents     = Core::getContinents();
 	$defaultChecked = Core::getDefaultCountryPlugins();
 	$countryPlugins = Core::$countryPlugins;
