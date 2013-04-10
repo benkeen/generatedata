@@ -10,9 +10,6 @@ require_once("templates/header.php");
 			<ul class="nav nav-list bs-docs-sidenav" data-spy="affix">
 				<li><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
 				<li><a href="#anatomy"><i class="icon-chevron-right"></i> Anatomy of an Export Type</a></li>
-				<li><a href="#installation"><i class="icon-chevron-right"></i> Installation Script</a></li>
-				<li><a href="#database"><i class="icon-chevron-right"></i> Database / raw Data</a></li>
-				<li><a href="#i18n"><i class="icon-chevron-right"></i> I18N</a></li>
 			</ul>
 		</div>
 		<div class="span9"> 

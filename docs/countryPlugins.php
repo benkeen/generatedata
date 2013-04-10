@@ -8,7 +8,7 @@ require_once("templates/header.php");
 
 		<div class="span3 bs-docs-sidebar" id="pagenav">
 			<ul class="nav nav-list bs-docs-sidenav" data-spy="affix">
-				<li><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
+				<li class="active"><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
 				<li><a href="#limitations"><i class="icon-chevron-right"></i> Limitations</a></li>
 				<li><a href="#add_your_own"><i class="icon-chevron-right"></i> Add your own</a></li>
 				<li><a href="#contribute"><i class="icon-chevron-right"></i> Contribute your plugin</a></li>
@@ -16,13 +16,12 @@ require_once("templates/header.php");
 		</div>
 		<div class="span9"> 
 
-			<a id="overview"></a>
-			<section>
+			<section id="overview">
 				<div class="page-header">
 					<h1>Country Plugins</h1>
 				</div>
 				<p class="lead">
-					Allow the script to generate realistic country-specific data.
+					Allow the script to generate more realistic, country-specific data.
 				</p>
 			</section>
 
@@ -42,8 +41,7 @@ require_once("templates/header.php");
 				</ol>
 			</section>
 
-			<a id="limitations"></a>
-			<section>
+			<section id="limitations">
 				<h2>Limitations</h2>
 
 				<p>
@@ -67,8 +65,7 @@ require_once("templates/header.php");
 				</p>
 			</section>
 
-			<a id="add_your_own"></a>
-			<section>
+			<section id="add_your_own">
 				<h2>Add your own</h2>
 
 				<p>
@@ -239,8 +236,7 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 			
 			</section>
 
-			<a id="contribute"></a>
-			<section>
+			<section id="contribute">
 				<h2>Contribute your plugin</h2>
 				<p>
 					Sharing is much appreciated! To contribute your plugin, please just 

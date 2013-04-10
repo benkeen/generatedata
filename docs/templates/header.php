@@ -43,6 +43,14 @@ $page = (isset($page)) ? $page : "home";
               <li <?php if ($page == "exportTypes") echo 'class="active"'; ?>><a href="exportTypes.php">Export Types</a></li>
               <li <?php if ($page == "country") echo 'class="active"'; ?>><a href="countryPlugins.php">Country Plugins</a></li>
               <li <?php if ($page == "translations") echo 'class="active"'; ?>><a href="translations.php">Translations</a></li>
+              <li class="dropdown<?php if ($page == "other") echo ' active'; ?>">
+              	<a href="#" data-toggle="dropdown">Other Stuff <b class="caret"></b></a>
+		        <ul class="dropdown-menu">
+		          <li><a href="contribute.php">How to Contribute</a></li>
+		          <li><a href="thanks.php">Scripts / tools used</a></li>
+		          <li><a href="contact.php">Contact me</a></li>
+		        </ul>
+              </li>
             </ul>
           </div>
         </div>
