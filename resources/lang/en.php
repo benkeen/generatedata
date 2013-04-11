@@ -2,12 +2,14 @@
 
 
 $L = array();
+$L["ENABLED"] = true;
 
 // Core language strings
 $L["language"] = "English";
 $L["title"] = "generatedata.com";
 $L["about"] = "About";
 $L["accounts"] = "Accounts";
+$L["back"] = "Back";
 $L["add"] = "Add";
 $L["add_default_auto_increment_col"] = "Add default auto-increment column";
 $L["confirm_delete_form"] = "Are you sure you want to delete this form?";
@@ -271,7 +273,6 @@ $L["info_and_stats"] = "Info and Stats";
 $L["account_settings"] = "Account Settings";
 $L["enter_email_address_to_reset_password"] = "Enter your email address below to reset your password.";
 $L["extend_it"] = "Extend it";
-
 $L["africa"] = "Africa";
 $L["asia"] = "Asia";
 $L["europe"] = "Europe";
@@ -279,3 +280,4 @@ $L["north_america"] = "North America";
 $L["oceania"] = "Oceania";
 $L["south_america"] = "South America";
 $L["all_countries"] = "All countries";
+$L["link_to_data_set"] = "Link to Data Set";

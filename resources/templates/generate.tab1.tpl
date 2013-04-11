@@ -31,7 +31,7 @@
 		<div class="gdClear" style="padding-bottom: 20px"></div>
 
 		<h2>
-			{$L.data_set}
+			{$L.data_set|upper}
 			<span data-help-section="dataTypes" class="gdSectionHelp" title="{$L.data_set_help}"></span>
 		</h2>
 
@@ -109,7 +109,7 @@
 			<li class="medium gdSelected">A</li>
 			<li class="large">A</li>
 		</ul>
-		<button class="gdPrimaryButton" id="gdBackButton" title="Back">&laquo;</button>
+		<button class="gdPrimaryButton" id="gdBackButton" title="{$L.back}">&laquo;</button>
 		<button class="gdPrimaryButton" id="gdRegenerateButton">{$L.regenerate}</button>
 		<div class="gdClear"></div>
 	</div>

@@ -50,7 +50,7 @@
 				<div class="gdError" id="tablePrefix_error"></div>
 				<div class="gdField">
 					<label for="defaultLanguage">{$L.default_language}</label>
-					{language_dropdown name_id="defaultLanguage" default="en" disabled=true}
+					{language_dropdown name_id="defaultLanguage" default="en"}
 				</div>
 				<div class="gdError" id="defaultLanguage_error"></div>
 			</div>

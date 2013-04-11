@@ -72,14 +72,18 @@ class Core {
 		error_reporting(self::$errorReporting);
 
 		self::$translations = new Translations();
-		self::$language     = new Language(self::$defaultLanguageFile);
-
-		self::initSmarty();
 
 		// the order is significant, here
 		if ($runtimeContext != "installation" || $runtimeContext != "installation_db_ready") {
 			self::initDatabase();
+			if ($runtimeContext == "ui" || $runtimeContext == "generation") {
+				self::initSessions(); // problem! Need this 
+			}
 		}
+		self::$language = new Language(self::$defaultLanguageFile);// needs Database, Sessions
+
+		self::initSmarty();
+
 		if ($runtimeContext == "generation") {
 			self::initGeoData();
 		}
@@ -87,7 +91,6 @@ class Core {
 			self::initCountries();
 			self::initExportTypes($runtimeContext);
 			self::initDataTypes($runtimeContext);
-			self::initSessions();
 			self::initUser();
 		}
 	}

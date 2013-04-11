@@ -23,9 +23,9 @@ class Translations {
 				}
 
 				if (is_file("$translationsFolder/$item") && preg_match("/php$/", $item)) {
-					$lang = $this->extractTranslationFileLanguage("$translationsFolder/$item");
-					if (!empty($lang)) {
-						$translations[$item] = $lang;
+					$validLanguage = $this->checkValidLangFile("$translationsFolder/$item");
+					if ($validLanguage !== false) {
+						$translations[$item] = $validLanguage;
 					}
 				}
 			}
@@ -39,9 +39,20 @@ class Translations {
 		return $this->list;
 	}
 
-	private function extractTranslationFileLanguage($file) {
+	private function checkValidLangFile($file) {
 		@include($file);
 		$info = get_defined_vars();
-		return (isset($info["L"]["language"])) ? $info["L"]["language"] : "";
+
+		if (!isset($info["L"])) {
+			return false;
+		}
+		if (!isset($info["L"]["language"])) {
+			return false;
+		}
+		if (!isset($info["L"]["ENABLED"]) || $info["L"]["ENABLED"] !== true) {
+			return false;
+		}
+
+		return $info["L"]["language"];
 	}
 }

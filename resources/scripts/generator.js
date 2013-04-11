@@ -1618,7 +1618,7 @@ define([
 		}
 
 		$("#gdLinkToDataSetDialog").dialog({
-			title: 'Link to Data Set',
+			title: L.link_to_data_set,
 			dialogClass: "gdMainDialog",
 			width: 500,
 			modal: true,
@@ -1641,7 +1641,7 @@ define([
 			},
 			buttons: [
 				{
-					text: "Close",
+					text: L.close,
 					click: function() { $(this).dialog("close"); }
 				}
 			]

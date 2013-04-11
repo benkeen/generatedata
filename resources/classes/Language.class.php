@@ -104,16 +104,23 @@ class Language {
 		$languageFile = $this->currentLanguageFile;
 
 		// if sessions are enabled, see if the current language is stashed in there
-
+		$overriddenLangFile = "";
 		if (isset($_GET["lang"])) {
-			$queryStringLangFile = strip_tags($_GET["lang"]);
-			$queryStringLangFile = preg_replace("/\W/", "", $queryStringLangFile);
-			$fileAndPath = realpath(dirname(__FILE__) . "/../lang/{$queryStringLangFile}.php");
+			$overriddenLangFile = strip_tags($_GET["lang"]);
+			$overriddenLangFile = preg_replace("/\W/", "", $overriddenLangFile);
+			$_SESSION["lang"] = $overriddenLangFile;
+		} else if (isset($_SESSION["lang"])) {
+			$overriddenLangFile = $_SESSION["lang"];
+		}
+
+		if (!empty($overriddenLangFile)) {
+			$fileAndPath = realpath(dirname(__FILE__) . "/../lang/{$overriddenLangFile}.php");
 			if (file_exists($fileAndPath)) {
-				$languageFile = $queryStringLangFile;
+				$languageFile = $overriddenLangFile;
 			}
 		}
 
 		$this->currentLanguageFile = $languageFile;
 	}
 }
+

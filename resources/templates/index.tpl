@@ -29,7 +29,7 @@
 				<a href="#" id="gdUserAccount">{$L.your_account}</a> |
 				<a href="#" id="gdLogout">{$L.logout}</a> |
 			{/if}
-			{language_dropdown nameId="gdSelectLanguage" disabled=true}
+			{language_dropdown nameId="gdSelectLanguage"}
 		</nav>
 	</header>
 	<nav id="gdMainTabs" class="gdHideNoJS">
