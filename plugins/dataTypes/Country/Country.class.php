@@ -118,8 +118,8 @@ class DataType_Country extends DataTypePlugin {
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END
-<input type="checkbox" name="dtOption_%ROW%" value="" id="dtOption_%ROW%" checked="checked" />
-	<label for="dtOption_%ROW%">{$this->L["limit_results"]}</label>
+<input type="checkbox" name="dtOption_%ROW%" class="dtCountry_allCountries" value="" id="dtOption_%ROW%" />
+	<label class="dtCountry_allCountriesLabel" for="dtOption_%ROW%">{$this->L["limit_results"]}</label>
 END;
 		return $html;
 	}

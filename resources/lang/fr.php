@@ -170,7 +170,6 @@ $L["mysql_username_desc"] = "Le nom du compte utilisateur de MySQL qui a accès 
 $L["new_window_or_tab"] = "Nouvelle fenêtre / onglet";
 $L["no"] = "Aucun";
 $L["no_additional_export_type_settings"] = "Pas de paramètres supplémentaires de type d'exportation.";
-$L["no_country_plugin_selected"] = "S'il vous plaît sélectionner au moins un pays dans la section de données spécifiques au pays.";
 $L["no_csv_delimiter"] = "S'il vous plaît entrez le délimiteur CSV.";
 $L["no_data"] = "Oups, rien à produire! Entrez des données à générer.";
 $L["no_data_types_found"] = "Aucun Types de données trouvé";

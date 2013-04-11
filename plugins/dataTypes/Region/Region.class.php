@@ -29,55 +29,68 @@ class DataType_Region extends DataTypePlugin {
 	 * by any other Data Type.
 	 */
 	public function generate($generator, $generationContextData) {
-		$options = $generationContextData["generationOptions"];
-
-		// see if this row has a country [N.B. This is something that could be calculated ONCE on the first row]
-		$rowCountryInfo = array();
-		while (list($key, $info) = each($generationContextData["existingRowData"])) {
-			if ($info["dataTypeFolder"] == "Country") {
-				$rowCountryInfo = $info;
-				break;
-			}
-		}
+		$generationOptions = $generationContextData["generationOptions"];
 
 		$regionInfo = array();
 		$keys = array("region", "region_short");
 
-		// if the data set didn't include a Country, just generate any old region pulled from any of the
-		// Country plugin data
-		if (empty($rowCountryInfo) || $rowCountryInfo["generationOptions"] == "all") {
-			$randCountrySlug = array_rand($options);
-			$index = $this->getRandIndex($options, $randCountrySlug);
-			if ($index === null) {
-				return;
-			}
-			$randCountry = $this->countryRegionHash[$randCountrySlug];
-			$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
-			$regionInfo["display"] = $regionInfo[$keys[$index]];
-			$regionInfo["country_slug"] = $randCountrySlug;
+		// if no country plugins were defined, we just randomly grab a region from what's available
+		if ($generationOptions["resultType"] == "any") {
 
-		// here, there *was* a country Data Type chosen and the Country row is pulling from the subset of
-		// Country plugins
+			$randRegionInfo = $this->getRandRegion($this->countryRegionHash);
+			$index = rand(0, 1);
+			$regionInfo["display"]      = $randRegionInfo[$keys[$index]];
+			$regionInfo["country_slug"] = $randRegionInfo["countrySlug"];
+
+		// here, one or more Country plugins were included
+		// 	- if there's a country row, pick a region within it.
+		// 	- if not, pick any region within the list of country plugins
 		} else {
-			$currRowCountrySlug = $rowCountryInfo["randomData"]["slug"];
 
-			// here, we've gotten the slug of the country for this particular row, but the user may have unselected
-			// it from the row's generation options. See if it's available and if so, use that; otherwise, display
-			// any old region
-			if (array_key_exists($currRowCountrySlug, $options)) {
-				$regions = $this->countryRegionHash[$currRowCountrySlug];
-				$regionInfo = $regions["regions"][rand(0, $regions["numRegions"]-1)];
-				$index = $this->getRandIndex($options, $currRowCountrySlug);
-				$regionInfo["display"] = $regionInfo[$keys[$index]];
-			} else {
-				$randCountrySlug = array_rand($options);
-				$index = $this->getRandIndex($options, $randCountrySlug);
-				$randCountry = $this->countryRegionHash[$randCountrySlug];
-				$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
-				$regionInfo["display"] = $regionInfo[$keys[$index]];
+			// see if this row has a country [N.B. This is something that could be calculated ONCE on the first row]
+			$rowCountryInfo = array();
+			while (list($key, $info) = each($generationContextData["existingRowData"])) {
+				if ($info["dataTypeFolder"] == "Country") {
+					$rowCountryInfo = $info;
+					break;
+				}
 			}
 
-			$regionInfo["country_slug"] = $currRowCountrySlug;
+			// if the data set didn't include a Country, just generate any old region pulled from any of the
+			// Country plugins selected
+			if (empty($rowCountryInfo)) {
+				$randRegionInfo = $this->getRandRegion($generationOptions["countries"]);
+				$randCountrySlug = $randRegionInfo["countrySlug"];
+
+				// pick a format (short / long) based on whatever the specified through the UI
+				$formatIndex = $this->getRandIndex($generationOptions["countries"], $randCountrySlug);
+				$regionInfo["display"]      = $randRegionInfo[$keys[$formatIndex]];
+				$regionInfo["country_slug"] = $randCountrySlug;
+
+			// here, there *was* a country Data Type chosen and the Country row is pulling from the subset of
+			// Country plugins
+			} else {
+				$currRowCountrySlug = $rowCountryInfo["randomData"]["slug"];
+
+				// here, we've gotten the slug of the country for this particular row, but the user may have unselected
+				// it from the row's generation options. See if it's available and if so, use that; otherwise, display
+				// any old region from the selected Country plugins
+				if (array_key_exists($currRowCountrySlug, $generationOptions["countries"])) {
+					$regions = $this->countryRegionHash[$currRowCountrySlug];
+					$regionInfo = $regions["regions"][rand(0, $regions["numRegions"]-1)];
+					$index = $this->getRandIndex($generationOptions["countries"], $currRowCountrySlug);
+					$regionInfo["display"] = $regionInfo[$keys[$index]];
+				} else {
+					$randRegionInfo = $this->getRandRegion($generationOptions["countries"]);
+					$randCountrySlug = $randRegionInfo["countrySlug"];
+					$formatIndex = $this->getRandIndex($generationOptions["countries"], $randCountrySlug);
+					$randCountry = $this->countryRegionHash[$randCountrySlug];
+					$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
+					$regionInfo["display"] = $regionInfo[$keys[$formatIndex]];
+				}
+
+				$regionInfo["country_slug"] = $currRowCountrySlug;
+			}
 		}
 
 		return $regionInfo;
@@ -86,21 +99,24 @@ class DataType_Region extends DataTypePlugin {
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
 		$countries = $generator->getCountries();
 		$generationOptions = array();
-		foreach ($countries as $slug) {
-			if (isset($postdata["dtIncludeRegion_{$slug}_$colNum"])) {
-				$region_full  = (isset($postdata["dtIncludeRegion_{$slug}_Full_$colNum"])) ? true : false;
-				$region_short = (isset($postdata["dtIncludeRegion_{$slug}_Short_$colNum"])) ? true : false;
-				$generationOptions[$slug] = array(
-					"full"  => $region_full,
-					"short" => $region_short
-				);
-			}
-		}
 
-		// if there were no generation options for this row, the user didn't select anything: return
-		// false to ensure the row won't appear in the generated data set
-		if (empty($generationOptions)) {
-			return false;
+		// if the user didn't select any Country plugins, they want ANY old region
+		if (empty($countries)) {
+			$generationOptions["resultType"] = "any";
+		} else {
+			$generationOptions["resultType"] = "specificCountries";
+			$generationOptions["countries"] = array();
+
+			foreach ($countries as $slug) {
+				if (isset($postdata["dtIncludeRegion_{$slug}_$colNum"])) {
+					$region_full  = (isset($postdata["dtIncludeRegion_{$slug}_Full_$colNum"])) ? true : false;
+					$region_short = (isset($postdata["dtIncludeRegion_{$slug}_Short_$colNum"])) ? true : false;
+					$generationOptions["countries"][$slug] = array(
+						"full"  => $region_full,
+						"short" => $region_short
+					);
+				}
+			}
 		}
 
 		return $generationOptions;
@@ -160,4 +176,11 @@ EOF;
 		return $index;
 	}
 
+	private function getRandRegion($countries) {
+		$randCountrySlug = array_rand($countries);
+		$randCountry = $this->countryRegionHash[$randCountrySlug];
+		$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
+		$regionInfo["countrySlug"] = $randCountrySlug;
+		return $regionInfo;
+	}
 }

@@ -254,7 +254,6 @@ $L["create_account_rightarrow"] = "Create Account &raquo;";
 $L["delete_account"] = "Delete Account";
 $L["update_account"] = "Update Account";
 $L["confirm_delete_user_account"] = "Are you sure you want to delete this user account?";
-$L["no_country_plugin_selected"] = "Please select at least one country in the Country-Specific Data section.";
 $L["success"] = "success";
 $L["error"] = "error";
 $L["invalid_password"] = "Sorry, that password is not correct. Please try again.";

@@ -14,7 +14,6 @@ class DataType_PostalZip extends DataTypePlugin {
 	private $helpDialogWidth = 370;
 	private $zipFormats;
 
-	//$g_countries = gd_get_configurable_countries();
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);

@@ -800,11 +800,6 @@ define([
 			utils.addValidationErrors({ els: $("#gdNumRowsToGenerate"), error: L.invalid_num_results });
 		}
 
-		// check the user selected at least one country plugin
-		if (_countries.length === 0) {
-			utils.addValidationErrors({ els: null, error: L.no_country_plugin_selected });
-		}
-
 		var orderedRowIDs = _getRowOrder();
 		var validRowIDs = [];
 
