@@ -97,11 +97,11 @@ class SQL extends ExportTypePlugin {
 
 		<table cellspacing="2" cellpadding="0" width="100%">
 		<tr>
-			<td width="150"><label for="etSQL_tableName">{$LANG["db_table_name"]}</label></td>
+			<td width="150"><label for="etSQL_tableName">{$this->L["db_table_name"]}</label></td>
 			<td><input type="text" size="40" name="etSQL_tableName" id="etSQL_tableName" value="myTable" /></td>
 		</tr>
 		<tr>
-			<td><label for="etSQL_databaseType">{$LANG["db_type"]}</label></td>
+			<td><label for="etSQL_databaseType">{$this->L["db_type"]}</label></td>
 			<td>
 				<select name="etSQL_databaseType" id="etSQL_databaseType">
 					<option value="MySQL">MySQL</option>
@@ -111,19 +111,19 @@ class SQL extends ExportTypePlugin {
 			</td>
 		</tr>
 		<tr>
-			<td valign="top"><label>{$LANG["misc_options"]}</label></td>
+			<td valign="top"><label>{$this->L["misc_options"]}</label></td>
 			<td>
 				<div>
 					<input type="checkbox" name="etSQL_createTable" id="etSQL_createTable" checked="checked" />
-					<label for="etSQL_createTable">{$LANG["include_create_table_query"]}</label>
+					<label for="etSQL_createTable">{$this->L["include_create_table_query"]}</label>
 				</div>
 				<div>
 					<input type="checkbox" name="etSQL_dropTable" id="etSQL_dropTable" checked="checked" />
-					<label for="etSQL_dropTable">{$LANG["include_drop_table_query"]}</label>
+					<label for="etSQL_dropTable">{$this->L["include_drop_table_query"]}</label>
 				</div>
 				<div>
 					<input type="checkbox" name="etSQL_encloseWithBackquotes" id="etSQL_encloseWithBackquotes" checked="checked" />
-					<label for="etSQL_encloseWithBackquotes">{$LANG["enclose_table_backquotes"]}</label>
+					<label for="etSQL_encloseWithBackquotes">{$this->L["enclose_table_backquotes"]}</label>
 				</div>
 			</td>
 		</tr>
@@ -134,7 +134,7 @@ class SQL extends ExportTypePlugin {
 
 		<table cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td valign="top"><label>{$LANG["statement_type"]}</label></td>
+			<td valign="top"><label>{$this->L["statement_type"]}</label></td>
 			<td>
 				<div>
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType1" value="insert" checked="checked" />
@@ -147,7 +147,7 @@ class SQL extends ExportTypePlugin {
 			</td>
 		</tr>
 		<tr>
-			<td valign="top"><label>{$LANG["primary_key"]}</label></td>
+			<td valign="top"><label>{$this->L["primary_key"]}</label></td>
 			<td>
 			<div>
 				<input type="radio" name="etSQL_primaryKey" id="etSQL_primaryKey1" value="none" />
@@ -155,7 +155,7 @@ class SQL extends ExportTypePlugin {
 			</div>
 			<div>
 				<input type="radio" name="etSQL_primaryKey" id="etSQL_primaryKey2" value="default" checked="checked" />
-				<label for="etSQL_primaryKey2">{$LANG["add_default_auto_increment_col"]}</label>
+				<label for="etSQL_primaryKey2">{$this->L["add_default_auto_increment_col"]}</label>
 			</div>
 			</td>
 		</tr>
