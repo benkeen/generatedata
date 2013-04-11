@@ -96,7 +96,7 @@ require_once("templates/header.php");
 						in the country name, like <code>PapuaNewGuinea</code>.
 					</li>
 					<li>Create a single file in that folder called <code>PapuaNewGuinea.class.php</code> (where PapuaNewGuinea 
-						is the name of the folder your just created) and add in the following PHP.</li>
+						is the name of the folder you just created) and add in the following PHP.</li>
 				</ol>
 
 <pre class="prettyprint linenums">
@@ -254,6 +254,5 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 </div>
 
 <?php
-$js = '$(function() { prettyPrint(); });';
 require_once("templates/footer.php");
 ?>

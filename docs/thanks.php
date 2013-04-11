@@ -1,5 +1,5 @@
 <?php
-$page = "";
+$page = "other";
 require_once("templates/header.php");
 ?>
 
@@ -8,7 +8,7 @@ require_once("templates/header.php");
 		<div class="span3 bs-docs-sidebar" id="pagenav">
 			<ul class="nav nav-list bs-docs-sidenav" data-spy="affix">
 				<li class="active"><a href="#scripts"><i class="icon-chevron-right"></i> Scripts / Tools Used</a></li>
-				<li><a href="#books"><i class="icon-chevron-right"></i> Books & Other Resources</a></li>
+				<li><a href="#books"><i class="icon-chevron-right"></i> Books &amp; Other Resources</a></li>
 			</ul>
 		</div>
 		<div class="span9">
@@ -39,7 +39,7 @@ require_once("templates/header.php");
 			</section>
 
 			<section id="books">
-				<h3>Books & Other Resources</h3>
+				<h3>Books &amp; Other Resources</h3>
 				<p>
 					A big thanks to Addy Osmani for his brilliant article 
 					<a href="http://addyosmani.com/largescalejavascript/" target="_blank">Patterns For Large-Scale JavaScript Application 

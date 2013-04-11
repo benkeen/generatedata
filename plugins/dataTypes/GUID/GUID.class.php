@@ -10,7 +10,6 @@ class DataType_GUID extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 50;
 	private $generatedGUIDs = array();
-	private $helpDialogWidth = 510;
 
 
 	public function generate($generator, $generationContextData) {

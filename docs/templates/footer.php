@@ -15,11 +15,7 @@
 	<script src="assets/js/bootstrap-typeahead.js"></script>
 	<script src="assets/js/bootstrap-affix.js"></script>
 
-<?php
-if (isset($js)) {
-	echo "<script>$js</script>";
-}
-?>
+	<script>$(function() { prettyPrint(); });</script>
 
 	</body>
 </html>

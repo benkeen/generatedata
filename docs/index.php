@@ -10,13 +10,13 @@ require_once("templates/header.php");
 				<li><a href="#modules"><i class="icon-chevron-right"></i> Module Types</a></li>
 				<li><a href="#code"><i class="icon-chevron-right"></i> Code Architecture</a></li>
 				<li><a href="#i18n"><i class="icon-chevron-right"></i> Translations / I18N</a></li>
+				<li><a href="#sasssss"><i class="icon-chevron-right"></i> SASS</a></li>
 				<li><a href="#generatingDoc"><i class="icon-chevron-right"></i> JSDoc and PHPDoc</a></li>
 			</ul>
 		</div>
 		<div class="span9">
 
-			<a id="intro"></a>
-			<section id="global">
+			<section id="intro">
 				<div class="hero-unit">
 					<h1>Developer Doc</h1>
 					<p>
@@ -46,8 +46,7 @@ require_once("templates/header.php");
 				</p>
 			</section>
 
-			<a id="modules"></a>
-			<section id="global">
+			<section id="modules">
 				<h2>Module Types</h2>
 
 				<p class="alert alert-info">
@@ -115,8 +114,7 @@ require_once("templates/header.php");
 				</table>
 			</section>
 
-			<a id="code"></a>
-			<section>
+			<section id="code">
 				<h2>Code Architecture</h2>
 
 				<p>
@@ -210,8 +208,7 @@ require_once("templates/header.php");
 				</p>
 			</section>
 
-			<a id="i18n"></a>
-			<section>
+			<section id="i18n">
 				<h2>Translations / I18N</h2>
 
 				<p>
@@ -239,8 +236,19 @@ require_once("templates/header.php");
 				</p>
 			</section>
 
-			<a id="generatingDoc"></a>
-			<section>
+			<section id="sasssss">
+				<h2>SASS</h2>
+				<p>
+					In the unlikely event of you needing to tweak the CSS for the Core script, bear in mind it's auto-generated
+					based on SASS templates so updating the CSS is the wrong way to go about it. You'll need to edit the 
+					SASS files at <code>/resources/themes/[theme]/sass/</code>. 
+				</p>
+				<p>
+					Check out <a href="http://sass-lang.com/">sass-lang.com</a> for more information.
+				</p>
+			</section>
+
+			<section id="generatingDoc">
 				<h2>JSDoc and PHPDoc</h2>
 				<p>
 					If you click on "Developer Doc" at the top left of this page, you'll notice two additional dropdown items appear: 
@@ -264,6 +272,7 @@ require_once("templates/header.php");
 
 				<h4>Updating the PHPDoc</h4>
 
+				<pre>php phpdoc.php --template=<b>[generatedata root path]</b>/docs/gdPHPDocTemplate -d <b>[generatedata root path]</b>/classes/ -d <b>[generatedata root path]</b>/plugins/countries/ -d <b>[generatedata root path]</b>/plugins/dataTypes/ -d <b>[generatedata root path]</b>/plugins/exportTypes/ -t <b>[generatedata root path]</b>/docs/phpdoc --sourcecode</pre>
 			</section>
 
 		</div>

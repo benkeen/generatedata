@@ -11,7 +11,6 @@ class DataType_Tree extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $processOrder = 2;
 	protected $jsModules = array("Tree.js");
-	private $helpDialogWidth = 450;
 	private $openTreeNodes = array();
 
 
