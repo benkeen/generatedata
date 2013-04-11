@@ -228,6 +228,7 @@ class DataType_GUID extends DataTypePlugin {
 					Let's look at each line in turn.
 				</p>
 
+
 			</section>
 
 			<section id="jsModule">

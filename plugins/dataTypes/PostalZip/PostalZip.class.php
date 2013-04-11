@@ -38,14 +38,30 @@ class DataType_PostalZip extends DataTypePlugin {
 			}
 		}
 
-		$randomZip = "";
+		// if there was no country, see if there's a region
+		$rowRegionInfo = array();
 		if (empty($rowCountryInfo)) {
+			reset($generationContextData["existingRowData"]);
+			while (list($key, $info) = each($generationContextData["existingRowData"])) {
+				if ($info["dataTypeFolder"] == "Region") {
+					$rowRegionInfo = $info;
+					break;
+				}
+			}
+		}
+
+		$randomZip = "";
+		if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
 			$randCountry = $options[rand(0, count($options)-1)];
 			$randomZip = $this->convert($this->zipFormats[$randCountry]);
 		} else {
 			// if this country is one of the formats that was selected, generate it in that format -
 			// otherwise just generate a zip in any selected format
-			$countrySlug = $rowCountryInfo["randomData"]["slug"];
+			if (!empty($rowCountryInfo)) {
+				$countrySlug = $rowCountryInfo["randomData"]["slug"];
+			} else {
+				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
+			}
 			if (in_array($countrySlug, $options)) {
 				$randomZip = $this->convert($this->zipFormats[$countrySlug]);
 			} else {

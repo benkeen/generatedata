@@ -296,6 +296,10 @@ hr.soften {
   margin-right: 10px;
 }
 
+footer {
+	border-top: 1px solid #dddddd;
+	padding-top: 20px;
+}
 
 
 /* Special grid styles
