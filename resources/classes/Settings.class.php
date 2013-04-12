@@ -34,6 +34,10 @@ class Settings {
 	public function getSetting($settingName) {
 		$prefix = Core::getDbTablePrefix();
 
+		if (!Core::$db) {
+			return;
+		}
+
 		$response = Core::$db->query("
 			SELECT setting_value
 			FROM {$prefix}settings
@@ -45,6 +49,7 @@ class Settings {
 			$data = mysql_fetch_assoc($response["results"]);
 			$value = $data["setting_value"];
 		}
+
 		return $value;
 	}
 

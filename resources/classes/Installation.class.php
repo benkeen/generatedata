@@ -135,6 +135,7 @@ END;
 				('consoleEventsExportTypePlugins', ''),
 				('consoleCoreEvents', ''),
 				('consoleWarnings', ''),
+				('defaultLanguage', ''),
 				('installationStepComplete_Core', 'no'),
 				('installationComplete', 'no'),
 				('installedDataTypes', ''),

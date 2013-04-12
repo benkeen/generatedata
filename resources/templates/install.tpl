@@ -17,7 +17,7 @@
 	<![endif]-->
 	<script src="resources/scripts/libs/spinners.js"></script>
 </head>
-<body class="gdInstallPage">
+<body class="gdInstallPage" data-lang="{$currLang}">
 	<header>
 		<nav>
 			{language_dropdown nameId="gdSelectLanguage"}

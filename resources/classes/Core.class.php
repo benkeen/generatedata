@@ -28,7 +28,7 @@ class Core {
 	private static $defaultTheme = "classic";
 
 	// non-overidable settings
-	private static $version = "3.0.0 alpha 2";
+	private static $version = "3.0.0 beta";
 	private static $minimumPHPVersion = "5.2.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
@@ -68,20 +68,23 @@ class Core {
 	 */
 	public static function init($runtimeContext = "ui") {
 		self::loadSettingsFile();
-
 		error_reporting(self::$errorReporting);
 
 		self::$translations = new Translations();
 
-		// the order is significant, here
+		// the order is significant in all of this
 		if ($runtimeContext != "installation" || $runtimeContext != "installation_db_ready") {
 			self::initDatabase();
 			if ($runtimeContext == "ui" || $runtimeContext == "generation") {
-				self::initSessions(); // problem! Need this 
+				self::initSessions();
+			}
+
+			$dbDefaultLanguage = Settings::getSetting("defaultLanguage");
+			if (!empty($dbDefaultLanguage)) {
+				self::$defaultLanguageFile = $dbDefaultLanguage;
 			}
 		}
-		self::$language = new Language(self::$defaultLanguageFile);// needs Database, Sessions
-
+		self::$language = new Language(self::$defaultLanguageFile);
 		self::initSmarty();
 
 		if ($runtimeContext == "generation") {

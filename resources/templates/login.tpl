@@ -19,16 +19,14 @@
 <body class="gdLoginPage">
 	<header>
 		<nav>
-			<a href="http://www.generatedata.com">{$L.website}</a> |
-			<a href="http://www.benjaminkeen.com/category/projects/data-generator/">{$L.blog}</a> |
-			{language_dropdown nameId="gdSelectLanguage" disabled=true}
+			{language_dropdown nameId="gdSelectLanguage"}
 		</nav>
 	</header>
 	<nav id="gdMainTabs" class="gdHideNoJS">
 		<span id="gdProcessingIcon"></span>
 		<ul>
-			<li id="gdMainTab1" class="gdSelected">Login</li>
-			<li id="gdMainTab2">Forgot Password</li>
+			<li id="gdMainTab1" class="gdSelected">{$L.login}</li>
+			<li id="gdMainTab2">{$L.forgot_password}</li>
 		</ul>
 	</nav>
 	<noscript><div><p>{$L.no_js}</p></div></noscript>

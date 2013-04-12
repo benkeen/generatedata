@@ -35,8 +35,9 @@ can [download it via the tag](https://github.com/benkeen/generatedata/tags).
 For (rather scanty) installation instructions of version 1 and 2 of the scripts, please see:
 http://www.generatedata.com/#download
 
-Version 3 has a built-in installation script. Much, much more documentation coming soon... first thing's
-first: finish 3.0.0!
+Version 3 has a built-in installation script and developer documentation. After installation, click 
+on the Developer Doc link in the footer for information on how to extend the script. This is still
+largely incomplete, but I'm working on it right now (April 2013).
 
 Ben Keen
 [@vancouverben](https://twitter.com/#!/vancouverben)

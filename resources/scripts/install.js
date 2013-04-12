@@ -2,12 +2,11 @@
 require([
 	"manager",
 	"pluginManager",
-	"lang",
 	"utils",
 	"pageinit",
 	"jquery-ui",
 	"jquery-json"
-], function(manager, pluginManager, L, utils) {
+], function(manager, pluginManager, utils) {
 
 	"use strict";
 
@@ -15,27 +14,38 @@ require([
 	var _dbSettings = {};
 	var _pluginsInstalled = false;
 	var _currStep = null;
+	var _L = null;
+	var _defaultLanguage = 'en';
 
 
-	$(function() {
-		manager.start();
+	// a nuisance, but since the DB isn't set up for the installation script, we need to explicitly pass
+	// the language to the lang.php file to return the appropriate language JS strings
+	var currLang = $("body").data("lang");
+	require([
+		'resources/scripts/lang.php?lang=' + currLang
+	], function(L) {
+		_L = L;
 
-		$("#dbHostname").select();
-		$("form").bind("submit", submit);
-		$("input[name=userAccountSetup]").on("click", _toggleAccountSection);
-		$("#pluginInstallationResults").on("click", ".gdError", _displayPluginInstallationError);
-		$("#gdRefreshPassword").on("click", _regeneratePassword);
+		$(function() {
+			manager.start();
 
-		// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
-		// installing the script last time 'round, it will return them to the appropriate step.
-		var selectedNavPage = $("#gdInstallNav li.gdSelected");
-		if (selectedNavPage.length) {
-			_currStep = parseInt(selectedNavPage.attr("id").replace(/^nav/, ""), 10);
-		}
+			$("#dbHostname").select();
+			$("form").bind("submit", submit);
+			$("input[name=userAccountSetup]").on("click", _toggleAccountSection);
+			$("#pluginInstallationResults").on("click", ".gdError", _displayPluginInstallationError);
+			$("#gdRefreshPassword").on("click", _regeneratePassword);
 
-		// this prevents the browser from accidentally remembering a previously select radio, if the user 
-		// aborted the login process and started again
-		$("#acs1").attr("checked", "checked");
+			// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
+			// installing the script last time 'round, it will return them to the appropriate step.
+			var selectedNavPage = $("#gdInstallNav li.gdSelected");
+			if (selectedNavPage.length) {
+				_currStep = parseInt(selectedNavPage.attr("id").replace(/^nav/, ""), 10);
+			}
+
+			// this prevents the browser from accidentally remembering a previously select radio, if the user 
+			// aborted the login process and started again
+			$("#acs1").attr("checked", "checked");
+		});
 	});
 
 	function _toggleAccountSection(e) {
@@ -46,11 +56,11 @@ require([
 				break;
 			case "single":
 				$("#gdInstallAccountDetails").show("fade");
-				$("#gdInstallAccountDetailsMessage").html(L.enter_user_account_details);
+				$("#gdInstallAccountDetailsMessage").html(_L.enter_user_account_details);
 				break;
 			case "multiple":
 				$("#gdInstallAccountDetails").show("fade");
-				$("#gdInstallAccountDetailsMessage").html(L.enter_admin_user_account_details);
+				$("#gdInstallAccountDetailsMessage").html(_L.enter_admin_user_account_details);
 				break;
 		}
 	}
@@ -60,7 +70,7 @@ require([
 			autoOpen:  true,
 			modal:     true,
 			resizable: false,
-			title:     L.installation_error,
+			title:     _L.installation_error,
 			width:     300
 		});
 	}
@@ -84,21 +94,21 @@ require([
 				var validChars = /[^a-zA-Z0-9_]/;
 				var dbHostname = $("#dbHostname").val();
 				if ($.trim(dbHostname) === "") {
-					errors.push({ fieldId: "dbHostname", error: L.validation_no_db_hostname });
+					errors.push({ fieldId: "dbHostname", error: _L.validation_no_db_hostname });
 				}
 
 				var dbName = $.trim($("#dbName").val());
 				if (dbName === "") {
-					errors.push({ fieldId: "dbName", error: L.validation_no_db_name });
+					errors.push({ fieldId: "dbName", error: _L.validation_no_db_name });
 				} else if (validChars.test(dbName)) {
-					errors.push({ fieldId: "dbName", error: L.validation_invalid_chars });
+					errors.push({ fieldId: "dbName", error: _L.validation_invalid_chars });
 				}
 
 				var dbUsername = $.trim($("#dbUsername").val());
 				if (dbUsername === "") {
-					errors.push({ fieldId: "dbUsername", error: L.validation_no_mysql_username });
+					errors.push({ fieldId: "dbUsername", error: _L.validation_no_mysql_username });
 				} else if (validChars.test(dbUsername)) {
-					errors.push({ fieldId: "dbUsername", error: L.validation_invalid_chars });
+					errors.push({ fieldId: "dbUsername", error: _L.validation_invalid_chars });
 				}
 
 				// the password is optional (e.g. for local environments)
@@ -106,7 +116,7 @@ require([
 
 				var dbTablePrefix = $.trim($("#dbTablePrefix").val());
 				if (validChars.test(dbTablePrefix)) {
-					errors.push({ fieldId: "dbTablePrefix", error: L.validation_invalid_chars });
+					errors.push({ fieldId: "dbTablePrefix", error: _L.validation_invalid_chars });
 				}
 
 				if (errors.length) {
@@ -125,6 +135,9 @@ require([
 					dbPassword: dbPassword,
 					dbTablePrefix: dbTablePrefix
 				};
+
+				// make a note of the default language they selected. We'll store this later 
+				_defaultLanguage = $("#gdDefaultLanguage").val();
 
 				utils.startProcessing();
 				$.ajax({
@@ -186,19 +199,19 @@ require([
 				if (userAccountSetup == "single" || userAccountSetup == "multiple") {
 					firstName = $.trim($("#firstName").val());
 					if (firstName === "") {
-						errors.push({ fieldId: "firstName", error: L.validation_no_first_name });
+						errors.push({ fieldId: "firstName", error: _L.validation_no_first_name });
 					}
 					lastName = $.trim($("#lastName").val());
 					if (lastName === "") {
-						errors.push({ fieldId: "lastName", error: L.validation_no_last_name });
+						errors.push({ fieldId: "lastName", error: _L.validation_no_last_name });
 					}
 					email = $.trim($("#email").val());
 					if (email === "") {
-						errors.push({ fieldId: "email", error: L.validation_no_email });
+						errors.push({ fieldId: "email", error: _L.validation_no_email });
 					}
 					password = $.trim($("#password").val());
 					if (password === "") {
-						errors.push({ fieldId: "password", error: L.validation_no_password });
+						errors.push({ fieldId: "password", error: _L.validation_no_password });
 					}
 				}
 
@@ -221,7 +234,10 @@ require([
 						firstName: firstName,
 						lastName: lastName,
 						email: email,
-						password: password
+						password: password,
+
+						// weird, because the field was on the first page
+						defaultLanguage: _defaultLanguage
 					},
 					success: function(json) {
 						utils.stopProcessing();
@@ -242,7 +258,7 @@ require([
 					pluginManager.installPlugins({
 						errorHandler: installError,
 						onCompleteHandler: function() {
-							$("#gdInstallPluginsBtn").html(L.continue_rightarrow).fadeIn();
+							$("#gdInstallPluginsBtn").html(_L.continue_rightarrow).fadeIn();
 							_currStep++;
 							_pluginsInstalled = true;
 							utils.stopProcessing();

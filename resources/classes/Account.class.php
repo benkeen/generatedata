@@ -142,7 +142,8 @@ class Account {
 		$randPassword = Utils::generateRandomAlphanumericStr("CXCXCX");
 
 		// now attempt to send the email. If it works, update the database
-		$emailContent = preg_replace("/%1/", $randPassword, $L["password_reset_email_content"]);
+		$emailContent = preg_replace("/%1/", $randPassword, $L["password_reset_email_content1"]);
+		$emailContent .= "\n\n" . $L["password_reset_email_content2"];
 		$response = Emails::sendEmail(array(
 			"recipient" => $email,
 			"subject"   => $L["reset_password"],

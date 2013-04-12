@@ -22,7 +22,7 @@
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
-<body>
+<body data-lang="{$currLang}">
 	<header>
 		<nav>
 			{if $settings.userAccountSetup != "anonymous"}

@@ -11,6 +11,7 @@ function smarty_function_language_dropdown($params, &$smarty) {
 
 	// default to whatever is explicitly supplied. Failing that, default to the global var
 	$defaultLanguage = isset($params["default"]) ? $params["default"] : Core::$language->getCurrentLanguageFile();
+
 	$nameId = isset($params["nameId"]) ? $params["nameId"] : "";
 	$disabled = (isset($params["disabled"]) && $params["disabled"] == true) ? true : false;
 
@@ -21,7 +22,7 @@ function smarty_function_language_dropdown($params, &$smarty) {
 	$options = "";
 	while (list($file, $language) = each($translations)) {
 		$value = preg_replace("/\.php$/", "", $file);
-		$selected = ($value == $currentLanguageFile) ? " selected" : "";
+		$selected = ($value == $currentLanguageFile) ? " selected=\"selected\"" : "";
 		$options .= "<option value=\"{$value}\"{$selected}>{$language}</option>\n";
 	}
 

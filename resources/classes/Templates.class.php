@@ -33,6 +33,7 @@ class Templates {
 		}
 
 		Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
+		Core::$smarty->assign("currLang", Core::$language->getCurrentLanguageFile());
 		Core::$smarty->assign("queryString", $_SERVER["QUERY_STRING"]);
 
 		// this sucks. Needs to cache the DB value

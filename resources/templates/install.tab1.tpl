@@ -11,7 +11,6 @@
 	</nav>
 
 	<div class="gdInstallSection{if $currentPage != 1} hidden{/if}" id="page1">
-
 		<div class="gdInstallTabMessage">
 			<div class="gdIcon"></div>
 			<h3>Uh-oh.</h3>
@@ -47,10 +46,10 @@
 					<label for="dbTablePrefix">{$L.table_prefix}</label>
 					<input type="text" id="dbTablePrefix" value="{$tablePrefix}" maxlength="10" />
 				</div>
-				<div class="gdError" id="tablePrefix_error"></div>
+				<div class="gdError" id="dbTablePrefix_error"></div>
 				<div class="gdField">
 					<label for="defaultLanguage">{$L.default_language}</label>
-					{language_dropdown name_id="defaultLanguage" default="en"}
+					{language_dropdown nameId="gdDefaultLanguage" default="en"}
 				</div>
 				<div class="gdError" id="defaultLanguage_error"></div>
 			</div>
@@ -150,7 +149,6 @@
 	</div>
 
 	<div class="gdInstallSection{if $currentPage != 5} hidden{/if}" id="page5">
-
 		<p>
 			{$L.installation_complete_text}
 		</p>

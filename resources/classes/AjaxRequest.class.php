@@ -73,9 +73,10 @@ class AjaxRequest {
 				);
 				Account::createAccount($adminAccount);
 
-				// make note of the fact that we've passed this installation step
+				// make note of the fact that we've passed this step of the installation process
 				Settings::setSetting("userAccountSetup", $post["userAccountSetup"]);
 				Settings::setSetting("installationStepComplete_Core", "yes");
+				Settings::setSetting("defaultLanguage", $post["defaultLanguage"]);
 
 				$this->response["success"] = 1;
 				$this->response["content"] = "";
