@@ -74,7 +74,7 @@
 			</span>
 			{export_type_tabs}
 			{foreach from=$exportTypeAdditionalSettings key=k item=i}
-				<div id="gdExportTypeAdditionalSettings_{$k|replace:' ':''}" class="gdExportTypeTabSettings"
+				<div id="gdExportTypeAdditionalSettings_{$k}" class="gdExportTypeTabSettings"
 					{if $defaultExportType == $k}style="display:block"{/if}>{$i}</div>
 			{/foreach}
 		</div>
@@ -113,7 +113,6 @@
 		<button class="gdPrimaryButton" id="gdRegenerateButton">{$L.regenerate}</button>
 		<div class="gdClear"></div>
 	</div>
-
 </form>
 
 <div class="hidden">

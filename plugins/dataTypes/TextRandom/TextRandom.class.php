@@ -4,7 +4,6 @@
  * @package DataTypes
  */
 
-
 class DataType_TextRandom extends DataTypePlugin {
 	protected $isEnabled = true;
 	protected $dataTypeName = "Random Number of Words";
@@ -54,17 +53,18 @@ class DataType_TextRandom extends DataTypePlugin {
 		$html =<<< END
 		<div>
 			<input type="checkbox" name="dtStartsWithLipsum_%ROW%" id="dtStartsWithLipsum_%ROW%" />
-			<label for="dtStartsWithLipsum_%ROW%">Start with "Lorem Ipsum..."</label>
+			<label for="dtStartsWithLipsum_%ROW%">{$this->L["start_with_lipsum"]}</label>
 		</div>
 		<div>
-			Generate #<input type="text" name="dtNumWordsMin_%ROW%" id="dtNumWordsMin_%ROW%" style="width: 40px" value="1" />
-			to #<input type="text" name="dtNumWordsMax_%ROW%" id="dtNumWordsMax_%ROW%" style="width: 40px" value="10" /> words
+			{$this->L["generate"]} #<input type="text" name="dtNumWordsMin_%ROW%" id="dtNumWordsMin_%ROW%" style="width: 40px" value="1" />
+			{$this->L["to"]} #<input type="text" name="dtNumWordsMax_%ROW%" id="dtNumWordsMax_%ROW%" style="width: 40px" value="10" /> 
+			{$this->L["words"]}
 		</div>
 END;
 		return $html;
 	}
 
 	public function getHelpHTML() {
-		return "<p>This option generates a random number of words - the total number within the range that you specify (inclusive). As with the Fixed number option, the words are pulled the standard lorem ipsum latin text.</p>";
+		return "<p>{$this->L["help"]}</p>";
 	}
 }

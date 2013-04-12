@@ -48,7 +48,6 @@
 		$("#etHTML_ResetCustomHTML").on("click", _resetCustomHTML);
 	};
 
-
 	var _updateDialogDimensions = function() {
 		var dimensions = _getDialogDimensions();
 		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
@@ -60,7 +59,7 @@
 
 		// calculate size of main content area
 		$("#etHTMLCustomFormatDialog").dialog({
-			title: "Custom HTML Format",
+			title: LANG.custom_html_format,
 			modal: true,
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
@@ -73,7 +72,7 @@
 			},
 			buttons: [
 				{
-					text: "Close",
+					text: L.close,
 					click: function() {
 						$(this).dialog("close");
 					}

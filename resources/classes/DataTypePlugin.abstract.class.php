@@ -34,7 +34,7 @@ abstract class DataTypePlugin {
 	 * A single CSS file for any additional CSS needed for the module. It's up to the developer to properly
 	 * name their CSS classes/IDs to prevent namespace collisions.
 	 */
-	protected $cssFile = "";
+	protected $cssFiles = array();
 
 	/**
 	 * Contains all strings for the current language. This is populated automatically on instantiation and
@@ -187,9 +187,8 @@ abstract class DataTypePlugin {
 	// - these are automatically inherited by all Data Types when they extend this abstract class.
 
 
-	// TODO should return in current language...
 	final public function getName() {
-		return $this->dataTypeName;
+		return (isset($this->L["DATA_TYPE_NAME"])) ? $this->L["DATA_TYPE_NAME"] : $this->dataTypeName;
 	}
 
 	/**
@@ -251,8 +250,8 @@ abstract class DataTypePlugin {
 	 * Returns the CSS filename for this Data Type (if included).
 	 * @return array
 	 */
-	public final function getCSSFile() {
-		return $this->cssFile;
+	public final function getCSSFiles() {
+		return $this->cssFiles;
 	}
 
 	/**

@@ -1,5 +1,4 @@
 <?php
 
 $L = array();
-
-$L["Emails_name"] = "Email";
+$L["DATA_TYPE_NAME"] = "Email";

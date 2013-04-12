@@ -12,7 +12,7 @@ function smarty_function_export_type_tabs($params, &$smarty) {
 
 	echo "<ul>";
 	foreach ($exportTypes as $exportType) {
-		$name = $exportType->getName();
+		$name       = $exportType->getName();
 		$exportTypeClass = get_class($exportType);
 		$class = ($defaultExportType == $exportTypeClass) ? "gdSelected gdDefaultExportType" : "";
 		$exportTargets = implode(",", $exportType->getCompatibleExportTargets());

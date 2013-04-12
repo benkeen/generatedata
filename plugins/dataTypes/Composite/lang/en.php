@@ -14,4 +14,3 @@ $L["Composite_multiplication"] = "multiplication";
 $L["Composite_na"] = "N/A";
 $L["Composite_name"] = "Composite";
 $L["Composite_subtraction"] = "subtraction";
-

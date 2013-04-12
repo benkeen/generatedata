@@ -60,7 +60,6 @@ END;
 	}
 
 	public function getHelpHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
 		$content =<<<EOF
 			<p>
 				{$this->L["help_intro"]}

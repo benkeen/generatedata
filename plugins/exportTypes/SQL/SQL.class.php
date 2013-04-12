@@ -98,7 +98,7 @@ class SQL extends ExportTypePlugin {
 		<table cellspacing="2" cellpadding="0" width="100%">
 		<tr>
 			<td width="150"><label for="etSQL_tableName">{$this->L["db_table_name"]}</label></td>
-			<td><input type="text" size="40" name="etSQL_tableName" id="etSQL_tableName" value="myTable" /></td>
+			<td valign="top"><input type="text" size="40" name="etSQL_tableName" id="etSQL_tableName" value="myTable" /></td>
 		</tr>
 		<tr>
 			<td><label for="etSQL_databaseType">{$this->L["db_type"]}</label></td>
@@ -149,14 +149,14 @@ class SQL extends ExportTypePlugin {
 		<tr>
 			<td valign="top"><label>{$this->L["primary_key"]}</label></td>
 			<td>
-			<div>
-				<input type="radio" name="etSQL_primaryKey" id="etSQL_primaryKey1" value="none" />
-				<label for="etSQL_primaryKey1">{$LANG["none"]}</label>
-			</div>
-			<div>
-				<input type="radio" name="etSQL_primaryKey" id="etSQL_primaryKey2" value="default" checked="checked" />
-				<label for="etSQL_primaryKey2">{$this->L["add_default_auto_increment_col"]}</label>
-			</div>
+				<div>
+					<input type="radio" name="etSQL_primaryKey" id="etSQL_primaryKey1" value="none" />
+					<label for="etSQL_primaryKey1">{$LANG["none"]}</label>
+				</div>
+				<div>
+					<input type="radio" name="etSQL_primaryKey" id="etSQL_primaryKey2" value="default" checked="checked" />
+					<label for="etSQL_primaryKey2">{$this->L["add_default_auto_increment_col"]}</label>
+				</div>
 			</td>
 		</tr>
 		</table>

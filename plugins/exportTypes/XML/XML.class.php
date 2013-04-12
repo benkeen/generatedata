@@ -57,21 +57,19 @@ class XML extends ExportTypePlugin {
 	}
 
 	public function getAdditionalSettingsHTML() {
-		$LANG = Core::$language->getCurrentLanguageStrings();
-
 		$html =<<< END
 <table cellspacing="0" cellpadding="0" width="100%">
 <tr>
 	<td width="40%" valign="top">
 		<table cellspacing="0" cellpadding="0">
 		<tr>
-			<td width="160" class="etXMLDefaultFormatLabels"><label for="etXMLRootNodeName">{$LANG["root_node_name"]}</label></td>
+			<td width="160" class="etXMLDefaultFormatLabels"><label for="etXMLRootNodeName">{$this->L["root_node_name"]}</label></td>
 			<td>
 				<input type="text" size="15" name="etXMLRootNodeName" id="etXMLRootNodeName" value="records" />
 			</td>
 		</tr>
 		<tr>
-			<td class="etXMLDefaultFormatLabels"><label for="etXMLRecordNodeName">{$LANG["record_node_name"]}</label></td>
+			<td class="etXMLDefaultFormatLabels"><label for="etXMLRecordNodeName">{$this->L["record_node_name"]}</label></td>
 			<td>
 				<input type="text" size="15" name="etXMLRecordNodeName" id="etXMLRecordNodeName" value="record" />
 			</td>
@@ -89,20 +87,18 @@ class XML extends ExportTypePlugin {
 
 <div id="etXMLCustomFormatDialog" style="display:none">
 	<div style="width: 300px; float: left;">
-		<h4>Available Smarty Vars</h4>
+		<h4>{$this->L["available_smarty_vars"]}</h4>
 
 <pre>{\$isFirstBatch}, {\$isLastBatch}</pre>
-Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for
-users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.
+{$this->L["batch_vars"]}
 
 <pre>{\$colData}</pre>
-An ordered array of strings containing the column names.
+{$this->L["col_names_array"]}
 
 <pre>{\$rowData}</pre>
-An ordered array of arrays. Each top level array contains the contents of the row; each child array contains
-an ordered array of values for each item of data.
+{$this->L["row_data_array"]}
 
-		<button class="gdPrimaryButton" id="etXML_ResetCustomHTML">Reset Custom HTML</button>
+		<button class="gdPrimaryButton" id="etXML_ResetCustomHTML">{$this->L["reset_custom_html"]}</button>
 	</div>
 	<div id="etXMLCustomContent">
 		<textarea name="etXMLCustomSmarty" id="etXMLCustomSmarty"></textarea>

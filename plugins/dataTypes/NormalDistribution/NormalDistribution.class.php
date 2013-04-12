@@ -42,9 +42,9 @@ class DataType_NormalDistribution extends DataTypePlugin {
 
 	public function getOptionsColumnHTML() {
 		$options =<<< END
-			<label for="dtOptionMean_%ROW%">Mean</label>
+			<label for="dtOptionMean_%ROW%">{$this->L["mean"]}</label>
 				<input type="text" name="dtOptionMean_%ROW%" id="dtOptionMean_%ROW%" style="width: 30px" value="0" />
-			<label for="dtOptionSigma_%ROW%">Standard Deviation</label>
+			<label for="dtOptionSigma_%ROW%">{$this->L["standard_deviation"]}</label>
 				<input type="text" name="dtOptionSigma_%ROW%" id="dtOptionSigma_%ROW%" style="width: 30px" value="1" />
 END;
 

@@ -55,7 +55,7 @@ class ProgrammingLanguage extends ExportTypePlugin {
 
 	public function getAdditionalSettingsHTML() {
 		$html =<<< END
-	Language:
+	{$this->L["language"]}:
 	<select name="etProgrammingLanguage_language" id="etProgrammingLanguage_language">
 		<option value="JavaScript">JavaScript</option>
 		<option value="Perl">Perl</option>

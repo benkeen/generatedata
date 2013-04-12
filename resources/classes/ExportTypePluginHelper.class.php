@@ -125,13 +125,13 @@ class ExportTypePluginHelper {
 	public function getExportTypeAdditionalSettingsHTML($exportTypes) {
 		$additionalSettings = array();
 		foreach ($exportTypes as $exportType) {
-			$name = $exportType->getName();
+			$folderName = $exportType->getFolder();
 			$settings = $exportType->getAdditionalSettingsHTML();
 			if (!empty($settings)) {
-				$additionalSettings[$name] = $settings;
+				$additionalSettings[$folderName] = $settings;
 			} else {
 				$lang = Core::$language->getCurrentLanguageStrings();
-				$additionalSettings[$name] = $lang["no_additional_export_type_settings"];
+				$additionalSettings[$folderName] = $lang["no_additional_export_type_settings"];
 			}
 		}
 
@@ -146,10 +146,12 @@ class ExportTypePluginHelper {
 	public function getExportTypeCSSIncludes($exportTypes) {
 		$files = array();
 		foreach ($exportTypes as $exportType) {
-			$cssFile = $exportType->getCSSFile();
-			if (!empty($cssFile)) {
+			$cssFiles = $exportType->getCSSFiles();
+			if (!empty($cssFiles)) {
 				$path = $exportType->getPath();
-				$files[] = "$path/$cssFile";
+				foreach ($cssFiles as $file) {
+					$files[] = "$path/$file";
+				}
 			}
 		}
 

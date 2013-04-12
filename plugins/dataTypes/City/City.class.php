@@ -135,5 +135,4 @@ class DataType_City extends DataTypePlugin {
 			"sqlField_Oracle" => "varchar2(255)"
 		);
 	}
-
 }

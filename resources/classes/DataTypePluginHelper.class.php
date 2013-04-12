@@ -96,10 +96,12 @@ class DataTypePluginHelper {
 	public function getDataTypeCSSIncludes($dataTypes) {
 		$files = array();
 		foreach ($dataTypes as $dataType) {
-			$cssFile = $dataType->getCSSFile();
-			if (!empty($cssFile)) {
+			$cssFiles = $dataType->getCSSFiles();
+			if (!empty($cssFiles)) {
 				$path = $dataType->getPath();
-				$files[] = "$path/$cssFile";
+				foreach ($cssFiles as $file) {
+					$files[] = "$path/$file";
+				}
 			}
 		}
 

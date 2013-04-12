@@ -36,7 +36,7 @@ abstract class ExportTypePlugin {
 	 * A single CSS file for any additional CSS needed for the module. It's up to the developer to properly
 	 * name their CSS classes/IDs to prevent namespace collisions.
 	 */
-	protected $cssFile = "";
+	protected $cssFiles = array();
 
 	/**
 	 * By default, the Data Generator opens a dialog window to display the results. This setting lets you choose
@@ -156,6 +156,7 @@ abstract class ExportTypePlugin {
 		return "";
 	}
 
+
 	// 3. NON-OVERRIDABLE FUNCTIONS
 
 	/**
@@ -170,8 +171,8 @@ abstract class ExportTypePlugin {
 	 * Returns the CSS filename for this Data Type (if included).
 	 * @return array
 	 */
-	public final function getCSSFile() {
-		return $this->cssFile;
+	public final function getCSSFiles() {
+		return $this->cssFiles;
 	}
 
 	/**
@@ -179,11 +180,11 @@ abstract class ExportTypePlugin {
 	 * @return string
 	 */
 	public final function getName() {
-		return $this->exportTypeName;
+		return (isset($this->L["EXPORT_TYPE_NAME"])) ? $this->L["EXPORT_TYPE_NAME"] : $this->exportTypeName;
 	}
 
 	/**
-	 * Returns the name of the Export Type in the current language.
+	 * Returns the Export Type folder.
 	 * @return string
 	 */
 	public final function getFolder() {

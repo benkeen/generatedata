@@ -68,7 +68,7 @@ class CSV extends ExportTypePlugin {
 	<td width="50%">
 		<table cellspacing="2" cellpadding="0" width="100%">
 		<tr>
-			<td width="160">{$LANG["delimiter_chars"]}</td>
+			<td width="160">{$this->L["delimiter_chars"]}</td>
 			<td>
 				<input type="text" size="2" name="etCSV_delimiter" id="etCSV_delimiter" value="|" />
 			</td>
@@ -78,7 +78,7 @@ class CSV extends ExportTypePlugin {
 	<td width="50%">
 		<table cellspacing="0" cellpadding="0" width="100%">
 		<tr>
-			<td width="160">{$LANG["eol_char"]}</td>
+			<td width="160">{$this->L["eol_char"]}</td>
 			<td>
 				<select name="etCSV_lineEndings" id="etCSV_lineEndings">
 					<option value="Windows">Windows</option>

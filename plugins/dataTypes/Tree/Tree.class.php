@@ -43,7 +43,6 @@ class DataType_Tree extends DataTypePlugin {
 
 		// hmm... needs fixing
 		if (empty($parentRowData)) {
-//			return $L["invalid_parent"];
 			return array("display" => "");
 		}
 

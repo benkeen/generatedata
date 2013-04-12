@@ -11,7 +11,7 @@ class DataType_Region extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $processOrder = 2;
 	protected $jsModules = array("Region.js");
-	protected $cssFile = "Region.css";
+	protected $cssFiles = array("Region.css");
 	private $helpDialogWidth = 410;
 	private $countryRegionHash;
 
@@ -138,12 +138,12 @@ class DataType_Region extends DataTypePlugin {
 	<span class="dtRegionFull">
 		<input type="checkbox" name="dtIncludeRegion_{$slug}_Full_%ROW%" id="dtIncludeRegion_{$slug}_Full_%ROW%"
 			checked="checked" /><label for="dtIncludeRegion_{$slug}_Full_%ROW%"
-		id="dtIncludeRegion_{$slug}_FullLabel_%ROW%" class="dtRegionSuboptionActive">Full</label>
+		id="dtIncludeRegion_{$slug}_FullLabel_%ROW%" class="dtRegionSuboptionActive">{$this->L["full"]}</label>
 	</span>
 	<span class="dtRegionShort">
 		<input type="checkbox" name="dtIncludeRegion_{$slug}_Short_%ROW%" id="dtIncludeRegion_{$slug}_Short_%ROW%" checked="checked"
 			/><label for="dtIncludeRegion_{$slug}_Short_%ROW%" id="dtIncludeRegion_{$slug}_ShortLabel_%ROW%"
-		class="dtRegionSuboptionActive">Short</label>
+		class="dtRegionSuboptionActive">{$this->L["short"]}</label>
 	</span>
 </div>
 EOF;

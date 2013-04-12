@@ -8,7 +8,7 @@ class HTML extends ExportTypePlugin {
 	protected $isEnabled = true;
 	protected $exportTypeName = "HTML";
 	protected $jsModules = array("HTML.js");
-	protected $cssFile = "HTML.css";
+	protected $cssFiles = array("HTML.css");
 	protected $contentTypeHeader = "text/html";
 	protected $codeMirrorModes = array("xml");
 
@@ -82,7 +82,7 @@ class HTML extends ExportTypePlugin {
 		$html =<<< END
 <table cellspacing="0" cellpadding="0" width="100%">
 <tr>
-	<td width="15%" valign="top" class="etHTMLDefaultFormatLabels">Data format</td>
+	<td width="15%" valign="top" class="etHTMLDefaultFormatLabels">{$this->L["data_format"]}</td>
 	<td width="35%" valign="top" class="etHTMLDefaultFormatLabels">
 		<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" class="etHTMLDefaultFormats" value="table" checked="checked" />
 			<label for="etHTMLExportFormat1">&lt;table&gt;</label>
@@ -102,20 +102,18 @@ class HTML extends ExportTypePlugin {
 
 <div id="etHTMLCustomFormatDialog" style="display:none">
 	<div style="width: 300px; float: left;">
-		<h4>Available Smarty Vars</h4>
+		<h4>{$this->L["available_smarty_vars"]}</h4>
 
 <pre>{\$isFirstBatch}, {\$isLastBatch}</pre>
-Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for
-users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.
+{$this->L["batch_vars"]}
 
 <pre>{\$colData}</pre>
-An ordered array of strings containing the column names.
+{$this->L["col_names_array"]}
 
 <pre>{\$rowData}</pre>
-An ordered array of arrays. Each top level array contains the contents of the row; each child array contains
-an ordered array of values for each item of data.
+{$this->L["row_data_array"]}
 
-		<button class="gdPrimaryButton" id="etHTML_ResetCustomHTML">Reset Custom HTML</button>
+		<button class="gdPrimaryButton" id="etHTML_ResetCustomHTML">{$this->L["reset_custom_html"]}</button>
 	</div>
 	<div id="etHTMLCustomContent">
 		<textarea name="etHTMLCustomSmarty" id="etHTMLCustomSmarty"></textarea>
