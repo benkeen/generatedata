@@ -2,6 +2,7 @@
 
 
 $L = array();
+$L["EXPORT_TYPE_NAME"] = "SQL";
 
 // Category: Lang Strings
 $L["add_default_auto_increment_col"] = "Fügen Sie Standard-Auto-Increment-Spalte";
