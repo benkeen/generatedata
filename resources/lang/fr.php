@@ -1,6 +1,5 @@
 <?php
 
-
 $L = array();
 $L["language"] = "Français";
 $L["ENABLED"] = true;
