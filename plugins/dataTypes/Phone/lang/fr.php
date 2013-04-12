@@ -3,7 +3,6 @@
 $L = array();
 $L["DATA_TYPE_NAME"] = "Téléphone / Fax";
 
-
 $L["australia"] = "Australie";
 $L["different_formats"] = "Différents formats";
 $L["example_1"] = "Canada (1)";

@@ -1,6 +1,7 @@
 <?php
 
 $L = array();
+$L["DATA_TYPE_NAME"] = "Custom List";
 
 $L["at_most"] = "At Most";
 $L["colours"] = "red|orange|yellow|green|blue|indigo|violet";
@@ -17,7 +18,6 @@ $L["example_7"] = "Title";
 $L["example_8"] = "Department Names";
 $L["example_9"] = "Company Names";
 $L["help"] = "Enter a list of items, separated by a pipe | character. Then select whether you want <b>Exactly</b> X number of items, or <b>At most</b> X items from the list. Multiple items are returned in a comma-delimited list in the results. If you want your data set to include empty values, just add one or more pipe characters at the end - the more pipes you enter, the greater the probability of an empty value being generated.";
-$L["name"] = "Custom List";
 $L["one_to_ten"] = "one|two|three|four|five|six|seven|eight|nine|ten";
 $L["prefix"] = "Dr.|Mr.|Mrs.|Ms.|";
 $L["relationship_states"] = "Single|Married|Divorced|Common-Law";

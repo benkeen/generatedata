@@ -1,6 +1,5 @@
 <?php
 
 $L = array();
-
-$L["name"] = "Country";
+$L["DATA_TYPE_NAME"] = "Country";
 $L["limit_results"] = "Limit countries to those selected above";
