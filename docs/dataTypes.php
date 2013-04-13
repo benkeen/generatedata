@@ -11,9 +11,13 @@ require_once("templates/header.php");
 				<li class="active"><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
 				<li><a href="#anatomy"><i class="icon-chevron-right"></i> Anatomy of a Data Type</a></li>
 				<li><a href="#filesAndFolders"><i class="icon-chevron-right"></i> &#8212; Files and Folders</a></li>
-				<li><a href="#js"><i class="icon-chevron-right"></i> &#8212; JS + PHP</a></li>
+				<li><a href="#js"><i class="icon-chevron-right"></i> &#8212; JavaScript</a></li>
+				<li><a href="#php"><i class="icon-chevron-right"></i> &#8212; PHP</a></li>
 				<li><a href="#languageFiles"><i class="icon-chevron-right"></i> &#8212; Language Files</a></li>
 				<li><a href="#phpClass"><i class="icon-chevron-right"></i> The PHP Class</a></li>
+				<li><a href="#phpClassExample"><i class="icon-chevron-right"></i> &#8212; Example: GUID Data Type</a></li>
+				<li><a href="#phpClassVars"><i class="icon-chevron-right"></i> &#8212; Class Vars</a></li>
+				<li><a href="#phpClassMethods"><i class="icon-chevron-right"></i> &#8212; Class Methods</a></li>
 				<li><a href="#jsModule"><i class="icon-chevron-right"></i> The JS Module</a></li>
 				<li><a href="#availableResources"><i class="icon-chevron-right"></i> Available JS Resources</a></li>
 				<li><a href="#updatingUI"><i class="icon-chevron-right"></i>Adding your Data Type</a></li>
@@ -70,11 +74,14 @@ require_once("templates/header.php");
 				</p>
 			</section>
 
+			<hr />
+
 			<section id="anatomy">
 				<h2>Anatomy of a Data Type</h2>
 				<p>
-					This section gives you a quick high-level view of what goes into a module: the files and folders, the JS + PHP components
-					and how the translations / internationalization works.
+					Now let's do a high-level view of what goes into a module: the files and folders, the JS + PHP components
+					and how the translations / internationalization works. We'll get into the details about the code in the following
+					sections.
 				</p>
 			</section>
 
@@ -105,7 +112,7 @@ require_once("templates/header.php");
 			</section>
 
 			<section id="js">
-				<h3>JS and PHP</h3>
+				<h3>JavaScript</h3>
 
 				<p>
 					The JS module for your Data Type does the following:
@@ -116,8 +123,13 @@ require_once("templates/header.php");
 						to interact with the Core script and detect when certain user interface events happen.</li>
 					<li>Save and load data for each row that has your Data Type selected.</li>
 					<li>Perform whatever validation is required to ensure the user fills in the Data Type row properly.</li>
+					<li>Perform any additional UI frills, like hiding/showing/disabling/enabling content based on information entered 
+						by the user in the page.</li>
 				</ul>
+			</section>
 
+			<section id="php">
+				<h3>PHP</h3>
 				<p>
 					The PHP class for your Data Type handles the following functionality:
 				</p>
@@ -163,12 +175,14 @@ $L["example_Password"] = "(Password)";
 				</p>
 			</section>
 
+			<hr />
+
 			<section id="phpClass">
 				<h2>The PHP Class</h2>
 				<p>
 					All plugins - <code>Data Types</code>, <code>Export Types</code> and <code>Country</code> plugins have to extend 
 					a base, abstract class defined by the core code. Hopefully you know what this means, but if not - time for some 
-					Googling! Basically, abstract classes are a mechanism to help ensure that the class being defined has a proper 
+					Googling! Simply put, abstract classes are a mechanism to help ensure that the class being defined has a proper 
 					footprint and contains all the functionality that's expected and required.
 				</p>
 
@@ -176,11 +190,19 @@ $L["example_Password"] = "(Password)";
 					For Data Types, take a look at this file: <code>/resources/classes/DataTypePlugin.class.php</code>. That's the 
 					class you'll need to extend.
 				</p>
+			</section>
 
+			<section id="phpClassExample">
+				<h3>Example: GUID Data Type</h3>
 				<p>
-					Now rather than blather on about your Data Type PHP class in the abstract, let's look at an actual implementation. 
-					This is the PHP class file for the <code>GUID</code> class. First, try it out in the script to get a sense of what 
-					it does.
+					Now rather than blather on about your Data Type PHP class in the abstract, let's look at an actual implementation
+					first. If you want to see the complete list of available variables and methods, check out the source code 
+					of the Data Type abstract class (<code>/resources/classes/DataTypePlugin.abstract.class.php</code>). It's well 
+					documented.
+				</p>
+				<p>
+					This is the PHP class for the <code>GUID</code> class. It's a simple Data Type that generates a random GUID string.
+					Maybe first try it out in the script to see what it does.
 				</p>
 
 <pre class="prettyprint linenums">
@@ -228,8 +250,63 @@ class DataType_GUID extends DataTypePlugin {
 					Let's look at each line in turn.
 				</p>
 
+				<ul>
+					<li><code>class DataType_GUID extends DataTypePlugin</code>: our class definition. All Data Type class names
+						must for of the following format: <code>DataType_[folder]</code> - where <i>folder</i> is the name
+						of the Data Type folder. Pretty straightforward. Also, note that it extends the DataTypePlugin base class.
+						That's required.</li>
+					<li><code>$isEnabled</code>: this isn't strictly necessary, but good to include. It explictly enables the module. 
+						In case you're tinkering around with a new Data Type, sometimes you may not want it to show up in the UI: in which 
+						case you'd just set this to <code>false</code>.</li>
+					<li><code>dataTypeName</code>: this is the human-readable name of your module. It can be in whatever
+						language you want, but we prefer English as the default language string. The value you enter in this variable
+						is <i>automatically overridden</i> if the current selected language has the following value in the language file:
+						<code>$L["DATA_TYPE_NAME"] = "New Name";</code> This provides a simple mechanism to provide alternative translations
+						of your Data Type names.</li>
+					<li><code>$dataTypeFieldGroup</code>: in the Data Type dropdowns in the generator, you'll notice that the Data 
+						Types are all grouped. This variable determines which group your Data Type should appear in. You can choose any of the 
+						following strings: <code>human_data</code>, <code>geo</code>, <code>text</code>, <code>numeric</code>, <code>math</code>, 
+						<code>other</code>. If you feel that you need a new group for your Data Type, <a href="contribute.php">drop me a line</a>.
+					</li>
+					<li><code>$dataTypeFieldGroupOrder</code>: this determines where in the list your Data Type should appear. Look at the 
+						the values for other Data Types to figure out what value to enter. I spaced them all out with 10 in between to allow you 
+						to insert your Data Type at any point in the list.</li>
+				</ul>	
+
+				<p>
+					So far so good. The next line, <code>$generatedGUIDs</code> is a custom private var for use by this Data Type only. Don't worry 
+					about it.
+				</p>
+
+				<p>
+					Now lets look at the methods:
+				</p>
+
+				<ul>
+					<li><code>public function generate($generator, $generationContextData)</code>: this is the main generation
+						function for the Data Type. It's passed two parameters:
+						<ol>
+							<li><b>The current Generator instance</b>. Behinds the scenes, the data generation is all managed by the 
+								<code>Generator</code> class, found here: <code>/resources/classes/Generator.class.php</code>. This is a very helpful class - 
+								it contains various utility methods for finding out about the current data set being generated. However, the 
+								<code>GUID</code> class doesn't need it.</li>
+							<li><b>The generation context data</b>. The <code>Generator</code> generates the data sets row by row. Each row contains 
+								one or more Data Types. This variable contains all the Data Types generated so far for the current 
+								row. Any Data Type can choose to return additional meta data for a particular generated atomic data - e.g. a 
+								Region could choose to return the <i>Country</i> to which is belongs. This second function param contains all that
+								information. Lastly, if a Data Type has dependencies on previous Data Types in the row, it needs to 
+								set the <code>protected $processOrder = X;</code> class variable. See the Data Type plugin abstract class
+								for more information about that advanced feature - or look at the <code>Region</code> plugin for an example
+								of how it's used.
+							</li>
+						</ol>
+					</li>
+					<li>public function getHelpHTML() {</li>
+				</ul>
 
 			</section>
+
+			<hr />
 
 			<section id="jsModule">
 				<h2>The JS Module</h2>
@@ -263,8 +340,7 @@ class DataType_GUID extends DataTypePlugin {
 
 				<p>
 					If you feel that your Data Type could be of use to other people, send it our way! I'd love to take a look at it,
-					and maybe even include it in the core script for others to download. Read the <a href="contribute.php">How to Contribute</a>
-					section for info on that.
+					and maybe even include it in the core script for others to download. Read the <a href="contribute.php">How to Contribute</a>.
 				</p>
 			</section>
 
