@@ -14,9 +14,9 @@ require_once("templates/header.php");
 		<div class="span9">
 
 			<section id="contribute">
-				<h2>Contribute</h2>
+				<h1>Contribute</h1>
 				<p>
-					Want to contribute your own code? We really appreciate new and interesting Data and Export Types! The 
+					Want to contribute your own code? I'm always interested in new and interesting Data and Export Types. The 
 					best way to send along your code is by doing a github pull request. That makes my life a whole lot simpler; 
 					if you don't know how about github, or haven't tried forking a project yet - now's your chance! It's a very
 					useful skill to have. You can find the <a href="https://github.com/benkeen/generatedata">project here</a>.
@@ -31,7 +31,7 @@ require_once("templates/header.php");
 				<h2>Contact Me</h2>
 
 				<p>
-					I get a lot of emails, so generally I prefer being contacted via github. But in case you need to reach me,
+					I get a lot of emails, so I generally prefer being contacted via github. But in case you need to reach me,
 					you can email me at <a href="ben.keen@gmail.com">ben.keen@gmail.com</a>.
 				</p>
 			</section>
