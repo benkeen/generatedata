@@ -13,15 +13,14 @@ abstract class DataTypePlugin {
 
 
 	// REQUIRED MEMBER VARS
-
-	protected $isEnabled = true;
 	protected $dataTypeName = "";
 	protected $dataTypeFieldGroup; // string
 	protected $dataTypeFieldGroupOrder; // int
-	protected $processOrder = 1; // int
 
 
 	// OPTIONAL MEMBER VARS
+	protected $isEnabled = true;
+	protected $processOrder = 1; // int
 
 	/**
 	 * An array of JS modules that need to be included for this module. They should be requireJS-friendly
@@ -49,7 +48,7 @@ abstract class DataTypePlugin {
 	/**
 	 * This is the main workhorse function: it does the work of actually generating a random data snippet.
 	 *
-	 * @param object $generator the main Generator object, through which a Data Type can call the various
+	 * @param object $generator the Generator object, through which a Data Type can call the various
 	 *     available public methods.
 	 * @param array $generationContextData a hash of information relating to the generation context. Namely:
 	 *     "rowNum"             => the row number in the generated content (indexed from 1)
@@ -57,8 +56,7 @@ abstract class DataTypePlugin {
 	 *                             whatever information was returned by getRowGenerationOptions(). This data
 	 *                             can be empty or contain anything needed - in whatever format. By default,
 	 *                             this is set to null.
-	 *     "existingRowData"    => depending on the Data Type's processOrder, this will contain all the data
-	 *                             from fields that have already been processed.
+	 *     "existingRowData"    => data already generated for the row.
 	 * @return array Data Types have to return a hash with at least one key: "display". They can also load up
 	 *     the hash with whatever else they want, if they want to provide additional meta data to other Data
 	 *     Types that are being generated on that row (e.g. Country, passing it's country_slug info to Region)

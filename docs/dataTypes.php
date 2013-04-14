@@ -10,14 +10,15 @@ require_once("templates/header.php");
 			<ul class="nav nav-list bs-docs-sidenav" data-spy="affix">
 				<li class="active"><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
 				<li><a href="#anatomy"><i class="icon-chevron-right"></i> Anatomy of a Data Type</a></li>
-				<li><a href="#filesAndFolders"><i class="icon-chevron-right"></i> &#8212; Files and Folders</a></li>
-				<li><a href="#js"><i class="icon-chevron-right"></i> &#8212; JavaScript</a></li>
-				<li><a href="#php"><i class="icon-chevron-right"></i> &#8212; PHP</a></li>
-				<li><a href="#languageFiles"><i class="icon-chevron-right"></i> &#8212; Language Files</a></li>
+				<li><a href="#filesAndFolders"><i class="icon-chevron-right"></i> - Files and Folders</a></li>
+				<li><a href="#js"><i class="icon-chevron-right"></i> - JavaScript</a></li>
+				<li><a href="#php"><i class="icon-chevron-right"></i> - PHP</a></li>
+				<li><a href="#languageFiles"><i class="icon-chevron-right"></i> - Language Files</a></li>
 				<li><a href="#phpClass"><i class="icon-chevron-right"></i> The PHP Class</a></li>
-				<li><a href="#phpClassExample"><i class="icon-chevron-right"></i> &#8212; Example: GUID Data Type</a></li>
-				<li><a href="#phpClassVars"><i class="icon-chevron-right"></i> &#8212; Class Vars</a></li>
-				<li><a href="#phpClassMethods"><i class="icon-chevron-right"></i> &#8212; Class Methods</a></li>
+				<li><a href="#phpClassExample"><i class="icon-chevron-right"></i> - Example: GUID Data Type</a></li>
+				<li><a href="#phpClassVars"><i class="icon-chevron-right"></i> - Overriddable Class Variables</a></li>
+				<li><a href="#phpClassMethods"><i class="icon-chevron-right"></i> - Overridable Class Methods</a></li>
+				<li><a href="#phpClassNonOverridableMethods"><i class="icon-chevron-right"></i> - Non-overridable Class Methods</a></li>
 				<li><a href="#jsModule"><i class="icon-chevron-right"></i> The JS Module</a></li>
 				<li><a href="#availableResources"><i class="icon-chevron-right"></i> Available JS Resources</a></li>
 				<li><a href="#updatingUI"><i class="icon-chevron-right"></i>Adding your Data Type</a></li>
@@ -255,9 +256,9 @@ class DataType_GUID extends DataTypePlugin {
 						must for of the following format: <code>DataType_[folder]</code> - where <i>folder</i> is the name
 						of the Data Type folder. Pretty straightforward. Also, note that it extends the DataTypePlugin base class.
 						That's required.</li>
-					<li><code>$isEnabled</code>: this isn't strictly necessary, but good to include. It explictly enables the module. 
-						In case you're tinkering around with a new Data Type, sometimes you may not want it to show up in the UI: in which 
-						case you'd just set this to <code>false</code>.</li>
+					<li><code>$isEnabled</code>: this var explicitly enables/disables the module. In case you're tinkering around with 
+						a new Data Type, sometimes you may not want it to show up in the UI - so you'd just set this to 
+						<code>false</code>.</li>
 					<li><code>dataTypeName</code>: this is the human-readable name of your module. It can be in whatever
 						language you want, but we prefer English as the default language string. The value you enter in this variable
 						is <i>automatically overridden</i> if the current selected language has the following value in the language file:
@@ -301,9 +302,388 @@ class DataType_GUID extends DataTypePlugin {
 							</li>
 						</ol>
 					</li>
-					<li>public function getHelpHTML() {</li>
+					<li>
+						<code>public function getHelpHTML()</code>: this optional function is used to return whatever help text you want for your 
+						Data Type. Note that the returned string references a <code>$L</code> class variable: <code>$this->L["help"]</code>. The 
+						<code>$L</code> variable is populated with the <i>current</i> language file automatically when the Data Type is instantiated.
+						This mechanism is taken care of for you - you can safely refer to <code>$this->L</code> throughout your own class.
+					</li>
+					<li>
+						<code>public function getDataTypeMetadata()</code>: this optional function returns additional meta information about 
+						your Data Type. Right now it's really only used for the <code>SQL</code> Export Type. When the user selects SQL, the code needs to 
+						know how large a database field should be created for the data. As such, this function returns that information - for both
+						generic SQL and Oracle SQL, so the Export Type can do it's job. As mentioned, this is not a required function. If it wasn't
+						supplied, the <code>SQL</code> Export Type would just provide its best guess. 
+					</li>
 				</ul>
 
+
+				<p>
+					And that's it for our example. The following sections go into greater depth regarding the class member vars and 
+					methods. There's a lot more you can do.
+				</p>
+
+			</section>
+
+			<section id="phpClassVars">
+				<h2>Class Variable List</h2>
+				<p>
+					Alright! Here's the full list of class vars that have special meaning.
+				</p>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Var</th>
+							<th>Req/Opt</th>
+							<th>Type</th>
+							<th>Explanation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$dataTypeName</td>
+							<td><span class="label label-success">required</span></td>
+							<td>string</td>
+							<td>The human-readable name of the Data Type used in the UI. Note: the <code>$L["DATA_TYPE_NAME"]</code>
+								defined in a language file will override this value.</td>
+						</tr>
+						<tr>
+							<td>$dataTypeFieldGroup</td>
+							<td><span class="label label-success">required</span></td>
+							<td>string</td>
+							<td>
+								Data Types are grouped together in the Data Type dropdowns in the UI. This variable lets the system
+								know to which group your Data Type should belong. Possible values are: <code>human_data</code>, 
+								<code>geo</code>, <code>text</code>, <code>numeric</code>, <code>math</code>, <code>other</code>. 
+								If you feel that you need a new group for your Data Type, <a href="contribute.php">drop me a line</a>.
+							</td>
+						</tr>
+						<tr>
+							<td>$dataTypeFieldGroupOrder</td>
+							<td><span class="label label-success">required</span></td>
+							<td>integer</td>
+							<td>The order in which the Data Type should appear within the group specified by the previous field.</td>
+						</tr>
+						<tr>
+							<td>$isEnabled</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>boolean</td>
+							<td>Hides / shows the module from the interface. Note, you'll need to refresh the list of 
+								plugins after changing this value.</td>
+						</tr>
+						<tr>
+							<td>$jsModules</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>array</td>
+							<td>An array of JS filenames, all found in the Data Type folder.</td>
+						</tr>
+						<tr>
+							<td>$cssFiles</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>array</td>
+							<td>An array of CSS filenames, all found in the Data Type folder.</td>
+						</tr>
+						<tr>
+							<td>$L</td>
+							<td><span class="label label-important">auto-generated</span></td>
+							<td>array</td>
+							<td>Do NOT define this variable. When the Data Type is instantiated, this variable
+								is auto-generated and populated with the appropriate language file.</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section id="phpClassMethods">
+				<h2>Class Method List</h2>
+
+
+				<h3>generate()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-success">required</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>
+								<ol>
+									<li>
+										<b>$generator</b>: the <code>Generator</code> object, through which a Data Type can call the various available 
+										public methods. See <code>/resources/classes/Generator.class.php</code>.
+									</li>
+									<li>
+										<b>$generationOptions</b>:
+										A hash of information relating to the generation context. Namely:<br />
+										<code>rowNum</code>: the row number in the generated content (indexed from 1)<br />
+										<code>generationOptions</code>: whatever options were passed for this particular 
+										row and data type; i.e. whatever information was returned by getRowGenerationOptions(). This data can 
+										be empty or contain anything needed - in whatever format. By default, this is set to null.<br />
+										<code>existingRowData</code>: data already generated for the row.
+									</li>
+								</ol>
+							</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								This does the work of actually generating a random data snippet. Data Types have to return a hash with at 
+								least one key: "display". They can also load up the hash with whatever else they want, if they want to 
+								provide additional meta data to other Data Types that are being generated on that row (e.g. Country, 
+								passing its country_slug info to Region)
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>__construct()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>
+								<b>$runtimeContext</b>: Data Types classes are instantiated at different times in the code. This parameter
+								is a string that describes the context in which it's being instantiated: <code>ui</code> / <code>generation</code>
+							</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								This does the work of actually generating a random data snippet. Data Types have to return a hash with at 
+								least one key: "display". They can also load up the hash with whatever else they want, if they want to 
+								provide additional meta data to other Data Types that are being generated on that row (e.g. Country, 
+								passing its country_slug info to Region)
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>install()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>None</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								This is called once during the initial installation of the script, or when the installation is reset (which 
+								is effectively a fresh install). It is called AFTER the Core tables are installed, and you can rely on 
+								<code>Core::$db</code> having been initialized and the database connection having been set up.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>getExampleColumnHTML()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>None</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								If the Data Type wants to include something in the Example column, it should return the raw HTML via this 
+								function. If this function isn't defined (or it returns an empty string), the string "No examples available." 
+								will be outputted in the cell. This is used for inserting static content into the appropriate spot in the 
+								table; if the Data Type needs something more dynamic, it should subscribe to the appropriate event.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>getOptionsColumnHTML()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>None</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								If the Data Type wants to include something in the Options column, it must return the HTML via this function. If 
+								this function isn't defined (or it returns an empty string), the string "No options available." will be outputted in 
+								the cell. This is used for inserting static content into the appropriate spot in the table; if the Data Type needs 
+								something more dynamic, it should subscribe to the appropriate event.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>getHelpHTML()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>None</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								Returns the help content for this Data Type (HTML / string).
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>getRowGenerationOptions()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>
+								<ol>
+									<li><b>$generator</b> (object): the instance of the <code>Generator</code>object, containing assorted public methods</li>
+									<li><b>$post</b> (array): the entire contents of $_POST</li>
+									<li><b>$colNum</b> (integer): the column number (<i>row</i> in the UI...!) of the item</li>
+									<li><b>$numCols</b> (integer): the number of columns in the data set</li>
+								</ol>
+							</td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>
+								<ul>
+									<li>false, if the Data Type doesn't have sufficient information to generate the row (i.e. things 
+										weren't filled in in the UI and the Data Type didn't add proper validation)</li>
+									<li>anything else. This can be any data structure needed by the Data Type. It'll be passed as-is
+										into the generateItem function as the second parameter.</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								Called during data generation. This determines what options the user selected in the user interface; it's
+								used to figure out what settings to pass to each Data Type to provide that function the information needed
+								to generate that particular data item. Note: if this function determines that the values entered by the 
+								user in the options column are invalid (most likely just incomplete) the function can explicitly return 
+								false to tell the core script to ignore this row.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>getDataTypeMetadata()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Returns</th>
+							<td>array</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								Used for providing additional metadata about the Data Type for use during generation. Right now this
+								is only used to pass additional data to the SQL Export Type so it can intelligently create a CREATE TABLE
+								statement with database column types and sizes that are appropriate to each field type.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section id="phpClassNonOverridableMethods">
+				<h2>Non-overridable Methods</h2>
+				<p>
+					The following methods are defined on the Data Plugin abstract class, for use when developing a Data Type.
+				</p>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Function</th>
+							<th>Explanation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>getName()</td>
+							<td>returns the Data Type name.</td>
+						</tr>
+						<tr>
+							<td>getIncludedFiles()</td>
+							<td>returns list (array) of included files.</td>
+						</tr>
+						<tr>
+							<td>getDataTypeFieldGroup()</td>
+							<td>returns the field type group to which this Data Type belongs.</td>
+						</tr>
+						<tr>
+							<td>getDataTypeFieldGroupOrder()</td>
+							<td>returns the order of the field type group.</td>
+						</tr>
+						<tr>
+							<td>getProcessOrder()</td>
+							<td>returns the Data Type process order.</td>
+						</tr>
+						<tr>
+							<td>getPath()</td>
+							<td>returns the path to the Data Type file.</td>
+						</tr>
+						<tr>
+							<td>getJSModules()</td>
+							<td>returns the array of JS modules.</td>
+						</tr>
+						<tr>
+							<td>getCSSFiles()</td>
+							<td>returns the array of CSS files for the Data Type.</td>
+						</tr>
+						<tr>
+							<td>isEnabled()</td>
+							<td>returns whether or not the Data Type is enabled or not.</td>
+						</tr>
+					</tbody>
+				</table>
 			</section>
 
 			<hr />
@@ -311,12 +691,30 @@ class DataType_GUID extends DataTypePlugin {
 			<section id="jsModule">
 				<h2>The JS Module</h2>
 				<p>
+					Each Data Type needs to have a JS component: a javascript module that performs certain functionality like 
+					saving/loading the data type data, running client-side validation on the user inputs (if required) and 
+					triggering whatever additional JS code 
+				</p>
+				<p>
+					Explaining how the Data Type JS module works can be a little abstract, so let's start with an example. 
 				</p>
 			</section>
+
 
 			<section id="availableResources">
 				<h2>Available Resources</h2>
 				<p>
+					There are several client-side code libraries already available in the page that can be used in your Data Type:
+				</p>
+				<ul>
+					<li>jQuery ($)</li>
+					<li>jQuery UI</li>
+					<li><a href="http://momentjs.com/" target="_blank">MomentJS</a>- date/time formatting script</li>
+					<li><a href="http://harvesthq.github.io/chosen/" target="_blank">Chosen</a> - dropdown enhancement</li>
+				</ul>
+
+				<p>
+					You can always include additional libraries should you wish, but do try to namespace them.
 				</p>
 			</section>
 
