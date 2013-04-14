@@ -16,19 +16,19 @@ Version 2 was never fully completed. A proof of concept was gotten up and runnin
 added (basic) modularity and improved a few things, but I abandoned it in favour of some other projects
 I was working on at the time. However, the tag is available if you want a copy.
 
-### Version 3.0.0 alpha
-http://alpha.generatedata.com
+### Version 3.0.0 beta
+http://beta.generatedata.com
 
-Currently the 3.0.0 branch is in alpha phase, meaning it's not production ready - lots of bugs to squash!
-However, that's the version I'd suggest downloading and using. I'm working on this version currently 
-(April 2013) and expect to get it into Beta this month, and final release fairly soon after.
+Currently the 3.0.0 branch is in beta, meaning it's <i>almost</i> production ready. The more feedback 
+I can get the better. This the version I'd suggest downloading and using. I'm working on this version 
+currently (April 2013) and expect to get it into final release in the next month or so.
 
 ## Versions
 
-* 1.0.0 - found on our [live site](http://www.generatedata.com/#generator), but now out of date.
+* 1.0.0 - found on our [live site](http://www.generatedata.com/#generator), but now very out of date.
 * 2.3.9 - a refactored version of 1.0.0 offering a lot more options. This is fully functional and you
 can [download it via the tag](https://github.com/benkeen/generatedata/tags).
-* 3.0.0 - _currently under development_. This version is a complete re-write of 2.3.9.
+* 3.0.0 - _currently in beta_. This version is a complete re-write of 2.3.9.
 
 ## Installation
 
@@ -37,7 +37,7 @@ http://www.generatedata.com/#download
 
 Version 3 has a built-in installation script and developer documentation. After installation, click 
 on the Developer Doc link in the footer for information on how to extend the script. This is still
-largely incomplete, but I'm working on it right now (April 2013).
+missing the Export Types doc section, but it'll be done very soon.
 
 Ben Keen
 [@vancouverben](https://twitter.com/#!/vancouverben)
