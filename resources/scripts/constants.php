@@ -76,15 +76,8 @@ define([], function() {
 				SAVE: "event-io-save",
 				LOAD: "event-io-load"
 			},
-			USER: {
-				LOGIN: "event-user-login",
-				LOGOUT: "event-user-logout"
-			},
 			TAB: {
 				CHANGE: "event-tab-change"
-			},
-			LANGUAGE: {
-				CHANGE: "event-language-change"
 			},
 			MODULE: {
 				REGISTER: "event-module-register",

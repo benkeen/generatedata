@@ -50,9 +50,8 @@ require_once("templates/header.php");
 				<h2>Module Types</h2>
 
 				<p class="alert alert-info">
-					Note: the words <b>plugin</b> and <b>module</b> are used synonymously throughout the doc.
+					Note: the words <b>plugin</b> and <b>module</b> are used synonymously.
 				</p>
-
 				<p>
 					The Data Generator accommodates the following types of module:
 				</p>

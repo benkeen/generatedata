@@ -24,7 +24,7 @@ require_once("templates/header.php");
 			</section>
 
 			<section>
-				<h2>Intro</h2>
+				<h2>About the Translations</h2>
 
 				<p>
 					Because I don't speak any other language besides English (and my English is pretty poor at that) 

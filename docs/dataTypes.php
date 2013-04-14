@@ -14,12 +14,17 @@ require_once("templates/header.php");
 				<li><a href="#js"><i class="icon-chevron-right"></i> - JavaScript</a></li>
 				<li><a href="#php"><i class="icon-chevron-right"></i> - PHP</a></li>
 				<li><a href="#languageFiles"><i class="icon-chevron-right"></i> - Language Files</a></li>
-				<li><a href="#phpClass"><i class="icon-chevron-right"></i> The PHP Class</a></li>
+				<li><a href="#phpClass"><i class="icon-chevron-right"></i> <b>The PHP Class</b></a></li>
 				<li><a href="#phpClassExample"><i class="icon-chevron-right"></i> - Example: GUID Data Type</a></li>
-				<li><a href="#phpClassVars"><i class="icon-chevron-right"></i> - Overriddable Class Variables</a></li>
+				<li><a href="#phpClassVars"><i class="icon-chevron-right"></i> - Overridable Class Variables</a></li>
 				<li><a href="#phpClassMethods"><i class="icon-chevron-right"></i> - Overridable Class Methods</a></li>
 				<li><a href="#phpClassNonOverridableMethods"><i class="icon-chevron-right"></i> - Non-overridable Class Methods</a></li>
-				<li><a href="#jsModule"><i class="icon-chevron-right"></i> The JS Module</a></li>
+				<li><a href="#jsModule"><i class="icon-chevron-right"></i> <b>The JS Module</b></a></li>
+				<li><a href="#jsModuleExample"><i class="icon-chevron-right"></i> - Example: Alphanumeric</a></li>
+				<li><a href="#jsModuleFunctions"><i class="icon-chevron-right"></i> - Registration Functions</a></li>
+				<li><a href="#jsModulePubSub"><i class="icon-chevron-right"></i> - Pub/Sub &amp; Event List</a></li>
+				<li><a href="#practicalTips"><i class="icon-chevron-right"></i> <b>Practical Tips</b></a></li>
+				<li><a href="#populatingCols"><i class="icon-chevron-right"></i> - Populating "Example" and "Options" columns</a></li>
 				<li><a href="#availableResources"><i class="icon-chevron-right"></i> Available JS Resources</a></li>
 				<li><a href="#updatingUI"><i class="icon-chevron-right"></i>Adding your Data Type</a></li>
 				<li><a href="#contribute"><i class="icon-chevron-right"></i> How to Contribute</a></li>
@@ -40,7 +45,8 @@ require_once("templates/header.php");
 			<section id="overview">
 				<h2>Overview</h2>
 				<p>
-					This document explains how to add your own data types so you can generate pretty much whatever you want.
+					This page explains how to add your own data types so you can use the Data Generator to generate pretty much whatever crazy 
+					stuff you want.
 				</p>
 				<p>
 					Data Types are <b>self-contained plugins</b> that generate a single random data item, like a name, email address, country name,
@@ -691,13 +697,390 @@ class DataType_GUID extends DataTypePlugin {
 			<section id="jsModule">
 				<h2>The JS Module</h2>
 				<p>
-					Each Data Type needs to have a JS component: a javascript module that performs certain functionality like 
-					saving/loading the data type data, running client-side validation on the user inputs (if required) and 
-					triggering whatever additional JS code 
+					Each Data Type may choose to have an optional JS component: a javascript module that performs certain functionality 
+					like saving/loading the data type data, running client-side validation on the user inputs (if required) and 
+					triggering whatever additional JS code is necessary.
+				</p>
+
+				<h4>Optional or required?</h4>
+
+				<p>
+					The JS module is optional. The Core script handles saving and loading the Column Title and Data Type for all Data 
+					Types, so if you don't need anything in the Example or Options columns, you don't need to include a JS module.
+				</p>
+
+				<p>
+					Explaining how the JS module works can be a little abstract, so let's start with an example. 
+				</p>
+			</section>
+
+			<section id="jsModuleExample">
+				<h3>Example: Alphanumeric Data Type</h3>
+
+				<p>
+					The following is the JS module for the <code>Alphanumeric</code> Data Type. Give it a look over, then we'll
+					pull it apart and explain each bit below.
+				</p>
+<pre class="prettyprint linenums">
+/*global $:false*/
+define([
+	"manager",
+	"constants",
+	"lang",
+	"generator"
+], function(manager, C, L, generator) {
+
+	"use strict";
+
+	/**
+	 * @name AlphaNumeric
+	 * @description JS code for the AlphaNumeric Data Type.
+	 * @see DataType
+	 * @namespace
+	 */
+
+	var MODULE_ID = "data-type-AlphaNumeric";
+	var LANG = L.dataTypePlugins.AlphaNumeric;
+	var subscriptions = {};
+
+	var _init = function() {
+		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
+		manager.subscribe(MODULE_ID, subscriptions);
+	};
+
+	var _saveRow = function(rowNum) {
+		return {
+			"example": $("#dtExample_" + rowNum).val(),
+			"option":  $("#dtOption_" + rowNum).val()
+		};
+	};
+
+	var _loadRow = function(rowNum, data) {
+		return {
+			execute: function() {
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtOption_" + rowNum).val(data.option);
+			},
+			isComplete: function() { return $("#dtOption_" + rowNum).length > 0; }
+		};
+	};
+
+	var _exampleChange = function(msg) {
+		$("#dtOption_" + msg.rowID).val(msg.value);
+	};
+
+	var _validate = function(rows) {
+		var visibleProblemRows = [];
+		var problemFields      = [];
+		for (var i=0; i&lt;rows.length; i++) {
+			var currEl = $("#dtOption_" + rows[i]);
+			if ($.trim(currEl.val()) === "") {
+				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+				visibleProblemRows.push(visibleRowNum);
+				problemFields.push(currEl);
+			}
+		}
+		var errors = [];
+		if (visibleProblemRows.length) {
+			errors.push({ els: problemFields, error: LANG.incomplete_fields + " &lt;b&gt;" + visibleProblemRows.join(", ") + "&lt;/b&gt;"});
+		}
+		return errors;
+	};
+
+	manager.registerDataType(MODULE_ID, {
+		init: _init,
+		validate: _validate,
+		saveRow: _saveRow,
+		loadRow: _loadRow
+	});
+});
+</pre>
+
+				<p>
+					Now let's go line by line.
+				</p>
+
+				<ul>
+					<li><code>/*global $:false*/</code> this first line is for jshint/jslint. In my local environment, I use jshint with strict mode
+						to catch problems. This line just tells the interpreter to ignore the dollar sign. It's a global, used by jQuery.</li>
+					<li>
+<pre class="prettyprint">define([
+	"manager",
+	"constants",
+	"lang",
+	"generator"
+], function(manager, C, L, generator) {
+	//...
+});
+</pre>
+						<p>
+							The outer code that wraps the entire JS module is called within requireJS's <core>define</code> function. This ensures
+							the code is defined as an AMD (Asynchronous Module Definition) for consumption by other code. The important thing 
+							to understand here is the parameters. The first array params define string labels to other modules: they all map to
+							specific JS files - you can find the mapping in <code>/resources/scripts/requireConfig.js</code>. Each of those 
+							discrete modules is in turn passed to the Data Type module via functions in the anonymous section param to define(). 
+							Whatever public API those modules reveal are now accessible via the four params: <code>manager</code>, <code>constants</code>,
+							<code>lang</code>, <code>generator</code>.
+						</p>
+
+						<p>
+							When defining your own Data Type module JS file, you'll want to include all four of those params. They all contain
+							useful functionality and data that you'll need. 
+						</p>
+					</li>
+					<li><code>"use strict";</code> - do it! JS strict mode is never a bad idea. :D</li>
+					<li>Here we're going to skip ahead to the very end of the code, to these lines:
+
+<pre class="prettyprint">
+	manager.registerDataType(MODULE_ID, {
+		init: _init,
+		validate: _validate,
+		saveRow: _saveRow,
+		loadRow: _loadRow
+	});
+</pre>
+						<p>
+							This chunk of code is <b>required</b> for your Data Type. What it does is register your Data Type with the core. That 
+							allows it to listen to published events, publish its own events for other code to listen to, tie into the validation
+							functionality and so on. It's pretty straightforward. The <code>manager.registerDataType()</code> function takes
+							two parameters: the unique MODULE_ID constant, defined above (see below) and an object containing certain required
+							and optional functions, whose property names have special values. Again, more on that below. Now let's go back to the 
+							top of the code again. 
+						</p>
+					</li>
+					<li>
+
+<pre class="prettyprint">
+	/**
+	 * @name AlphaNumeric
+	 * @description JS code for the AlphaNumeric Data Type.
+	 * @see DataType
+	 * @namespace
+	 */
+
+	var MODULE_ID = "data-type-AlphaNumeric";
+	var LANG = L.dataTypePlugins.AlphaNumeric;
+</pre>
+						<ul>
+							<li>
+								The comment is of a particular format for being understood by JSDoc. For more information 
+								on that, see the <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JS Doc project</a>.
+							</li>
+							<li>
+								The <code>MODULE_ID</code> variable is special. It must <i>always</i> be of the form <b>data-type-[FOLDER NAME]</b>.
+								That acts a unique identifier within the client-side code so the Manager can keep track of who's who.
+							</li>
+							<li>
+								As with the PHP code, the language strings for your Data Type are automatically accessible: you don't have to do 
+								any extra work to get access to them. The <code>L</code> function param fed to your Data Type contains all language
+								strings in the system - in whatever language is currently selected. To locate the strings for your own module, 
+								just reference it by your Data Type folder name, again: <code>L.dataTypePlugins.[FOLDER NAME]</code>
+							</li>
+						</ul>
+					</li>
+					<li>
+						The following lines all define special functions. Rather than explain the implementation details of each of these for the 
+						Alphanumeric type, we'll discuss these in a more abstract sense in the next section.
+					</li>
+				</ul>
+			</section>
+
+			<section id="jsModuleFunctions">
+				<h3>Registration Functions</h3>
+
+				<p>
+					As explained above, the second parameter of the <code>manager.registerDataType()</code> function is an object 
+					containing various predefined functions. This explains what are the properties for that object and what they're used 
+					for. Note: <i>all properties are optional</i>, but you'll almost certainly need one or more.
+				</p>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Property</th>
+							<th width="100">Params</th>
+							<th>Returns</th>
+							<th>Explanation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>init</td>
+							<td>&#8212;</td>
+							<td>&#8212;</td>
+							<td>If this is defined for your Data Type, it gets called on page load prior to any events being published. By "event"
+								I mean a custom published event, which I'll explain more thoroughly in the <a href="#jsModulePubSub">Pub/Sub</a>
+								section below.
+							</td>
+						</tr>
+						<tr>
+							<td>run</td>
+							<td>&#8212;</td>
+							<td>&#8212;</td>
+							<td>
+								The run() function gets called for all Data Types and Export Types after their init()'s are called. As such, 
+								run() can rely on all subscriptions being in place so events published at this juncture will have an 
+								audience. 
+							</td>
+						</tr>
+						<tr>
+							<td>saveRow</td>
+							<td>rowNum <span class="label label-success">int<span></th>
+							<td><span class="label label-info">object</span></td>
+							<td>
+								When the user saves a Data Set, the Data Generator examines the table and calls the appropriate Data Type's
+								saveRow() method. This method is responsible for determining what information it wants to save for the row. 
+								Generally all it does is examine the DOM and extract whatever values the user entered in custom fields 
+								that the Data Type field uses. It then returns an object of simple property-value pairs. The row number being 
+								passed to this function is the unique row number for the row - it may <i>not</i> be the visual row number seen 
+								in the UI. After a row is created, it can be re-ordered. The row number passed to this function can be used 
+								for DOM element identification.
+							</td>
+						</tr>
+						<tr>
+							<td>loadRow</td>
+							<td>
+								rowNum <span class="label label-success">int</span><br />
+								data <span class="label label-info">object</span>
+							</td>
+							<td>&#8212;</td>
+							<td>
+								When the user loads a saved data set, the script calls each Data Type's loadRow() function, passing the appropriate
+								row number and whatever data was originally returned by its saveRow() function. The row number should be sufficient
+								information to identify the appropriate elements in the DOM and re-enter the saved information.
+							</td>
+						</tr>
+						<tr>
+							<td>validate</td>
+							<td>rows <span class="label label-inverse">array</span></td>
+							<td>
+								<span class="label label-inverse">array</span>
+							</td>
+							<td>
+								<p>
+									When the user clicks on the Generate button, the core first validates the information they've entered. If a Data 
+									Type defines this function, it means they want to confirm the user input for one or more of their custom fields - 
+									mostly likely appearing in the Options column. The <b>rows</b> parameter is an array of row numbers that have this 
+									Data Set selected. As mentioned above, the row numbers may not be the <i>visual</i> row numbers, because rows 
+									may have been added / removed / resorted. However, it can be used to identify the appropriate DOM elements.
+								</p>
+								<p>
+									This function needs to return an array of errors to display - or an empty array if there are no errors. Each 
+									array index is an object of the following form: <code> { els: [], error: "error message here" }</code>. <b>els</b>
+									is an array of DOM elements that have problems with them; <b>error</b> is the error message that will be displayed.
+								</p>
+								<p>
+									Check out the Alphanumeric Data Type's validate() function above for an example of how this function can work.
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</section>
+
+			<section id="jsModulePubSub">
+				<h3>Pub/Sub &amp; Event List</h3>
+
+				<p>
+					As mentioned elsewhere, the client-side code revolves around the idea of publish/subscribe - or pub/sub. Different parts of 
+					the script can publish arbitrary events with arbitrary information associated with them, and any module can choose to listen
+					out for particular events and run code when they occur. This is a very elegant pattern: it allow us to keep our modules 
+					loosely coupled and reduce the likelihood of introducing dependencies that can break things. 
+				</p>
+
+				<p>
+					The core script publishes the following script for certain events that occur in the lifetime of the page. They're all 
+					found in <code>/resources/scripts/constants.php</code> (returned as JS). You can refer to them in your code via the 
+					<code>C</code> parameter, mapping to the <code>constants</code> module. The names are pretty descriptive so I won't 
+					bother explaining them any further.
+				</p>
+
+				<ul>
+					<li><code>C.EVENT.RESULT_TYPE.CHANGE</code></li>
+					<li><code>C.EVENT.COUNTRIES.CHANGE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ONLOAD_READY</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.CHECK_TO_DELETE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.UNCHECK_TO_DELETE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.DELETE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.ADD</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.RE_SORT</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_CLOSE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.CLEAR</code></li>
+					<li><code>C.EVENT.GENERATE</code></li>
+					<li><code>C.EVENT.IO.SAVE</code></li>
+					<li><code>C.EVENT.IO.LOAD</code></li>
+					<li><code>C.EVENT.TAB.CHANGE</code></li>
+					<li><code>C.EVENT.MODULE.REGISTER</code></li>
+					<li><code>C.EVENT.MODULE.UNREGISTER</code></li>
+				</ul>
+
+				<h4>How to subscribe to an event</h4>
+
+				<p>
+					Generally you'll want to set up your subscriptions in your module's <b>init()</b> function. Here's how it works:
+				</p>
+
+<pre class="prettyprint">
+...
+
+var _init = function() {
+	var subscriptions = {};
+	subscriptions[C.EVENT.COUNTRIES.CHANGE] = _onChangeCountries;
+	manager.subscribe(subscriptions);
+};
+
+var _onChangeCountries = function(msg) {
+	console.log(msg);
+};
+
+...
+
+manager.registerDataType(MODULE_ID, {
+	init: _init
+});
+
+...
+</pre>
+
+				<p>
+					That would subscribe to the <code>C.EVENT.COUNTRIES.CHANGE</code> event (which is where the user adds/removes a country 
+					from the Country List section in the UI) and attaches a callback function - <code>_onChangeCountries()</code>. The manager.subscribe()
+					function can be called at any time in any of your functions, so you can subscribe to events on the fly.
+				</p>
+			</section>
+
+			<section id="practicalTips">
+				<h2>Practical Tips</h2>
+				<p>
+					I thought maybe I'd include this section on how to achieve a few practical things. <a href="contribute.php">Let me know</a> if you're 
+					stuck on something and maybe I'll expand this section to explain how to do it.
+				</p>
+			</section>
+
+
+			<section id="populatingCols">
+				<h3>Populating "Example" and "Options" columns</h2>
+
+				<p>
+					If your Data Type is non-trivial, you'll probably want to include some custom HTML to appear in the Example and Options columns
+					in the generator table. Here's how that works.
+				</p>
+
+				<p>
+					First, your PHP class above needs to define the <code>getExampleColumnHTML()</code> and <code>getOptionsColumnHTML()</code> 
+					methods. They should return a block of generic markup that the client-side Core code will automatically insert into any 
+					row where the user selects your Data Type. Since that same block will be inserted for <i>every</i> row of your Data Type, 
+					for anything you need to be unique - e.g. input field names and IDs, include the <code>%ROW%</code> placeholder. When 
+					the HTML is inserted into the appropriate locations in the DOM, those placeholders will be replaced by the appropriate
+					row number, thus allowing you to uniquely pinpoint those fields.
 				</p>
 				<p>
-					Explaining how the Data Type JS module works can be a little abstract, so let's start with an example. 
 				</p>
+
 			</section>
 
 
