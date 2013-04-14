@@ -29,7 +29,7 @@ class Core {
 
 	// non-overidable settings
 	private static $version = "3.0.0 beta";
-	private static $minimumPHPVersion = "5.2.0";
+	private static $minimumPHPVersion = "5.3.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
 	private static $continents = array("africa", "asia", "europe", "north_america", "oceania", "south_america");
