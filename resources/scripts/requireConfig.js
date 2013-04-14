@@ -1,11 +1,11 @@
 require.config({
 	baseUrl: "resources/scripts/",
 	paths: {
-		"manager":        "manager",
+		"manager":        "manager.min",
 		"pluginManager":  "pluginManager",
 		"accountManager": "accountManager",
 		"constants":      "constants.php?",
-		"generator":      "generator",
+		"generator":      "generator.min",
 		"io":             "io",
 		"utils":          "utils",
 		"jquery-json":    "libs/jquery.json-2.2.min",
