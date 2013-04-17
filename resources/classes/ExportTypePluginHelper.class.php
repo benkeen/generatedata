@@ -98,24 +98,38 @@ class ExportTypePluginHelper {
 
 	/**
 	 * Used in the main page to generate a list of Export Type JS files.
+	 * @param array exportTypes
+	 * @param string format string / array / cached
 	 * @return string
 	 */
-	public function getExportTypeJSResources($exportTypes) {
-		$files = array();
-		foreach ($exportTypes as $exportType) {
-			$jsModules = $exportType->getJSModules();
-			$path      = $exportType->getPath();
-			for ($i=0; $i<count($jsModules); $i++) {
-				$files[] = "$path/{$jsModules[$i]}";
+	public function getExportTypeJSResources($exportTypes, $format = "string", $getCacheIfAvailable = false) {
+
+		$returnVal = "";
+		$cacheLocation = "plugins/exportTypes/exportTypes.grouped.min.js";
+		if ($getCacheIfAvailable && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
+			$returnVal = $cacheLocation;
+		} else {
+			$files = array();
+			foreach ($exportTypes as $exportType) {
+				$jsModules = $exportType->getJSModules();
+				$path      = $exportType->getPath();
+				for ($i=0; $i<count($jsModules); $i++) {
+					$files[] = "$path/{$jsModules[$i]}";
+				}
 			}
+
+			if ($format == "string") {
+				if (!empty($files)) {
+					$returnVal = "\"" . implode("\",\n\"", $files) . "\"";
+				}
+			} else {
+				$returnVal = $files;
+			}
+
+			$returnVal = "\"plugins/exportTypes/exportTypes.grouped.min.js\"";
 		}
 
-		$exportTypeJSModules = "";
-		if (!empty($files)) {
-			$exportTypeJSModules = "\"" . implode("\",\n\"", $files) . "\"";
-		}
-
-		return $exportTypeJSModules;
+		return $returnVal;
 	}
 
 	/**

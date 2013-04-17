@@ -67,24 +67,34 @@ class DataTypePluginHelper {
 	/**
 	 * Used in the main page to generate a list of Export Type JS files.
 	 * @param array the data types
-	 * @return array
+	 * @param string $format "array", "string"
+	 * @return mixed
 	 */
-	public function getDataTypeJSResources($dataTypes) {
-		$files = array();
-		foreach ($dataTypes as $dataType) {
-			$jsModules = $dataType->getJSModules();
-			$path      = $dataType->getPath();
-			for ($i=0; $i<count($jsModules); $i++) {
-				$files[] = "$path/{$jsModules[$i]}";
+	public function getDataTypeJSResources($dataTypes, $format = "string", $getCacheIfAvailable = false) {
+		$returnVal = "";
+		$cacheLocation = "plugins/dataTypes/dataTypes.grouped.min.js";
+		if ($getCacheIfAvailable && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
+			$returnVal = $cacheLocation;
+		} else {
+			$files = array();
+			foreach ($dataTypes as $dataType) {
+				$jsModules = $dataType->getJSModules();
+				$path      = $dataType->getPath();
+				for ($i=0; $i<count($jsModules); $i++) {
+					$files[] = "$path/{$jsModules[$i]}";
+				}
+			}
+
+			if ($format == "string") {
+				if (!empty($files)) {
+					$returnVal = "\"" . implode("\",\n\"", $files) . "\"";
+				}
+			} else {
+				$returnVal = $files;
 			}
 		}
 
-		$dataTypeJSModules = "";
-		if (!empty($files)) {
-			$dataTypeJSModules = "\"" . implode("\",\n\"", $files) . "\"";
-		}
-
-		return $dataTypeJSModules;
+		return $returnVal;
 	}
 
 
