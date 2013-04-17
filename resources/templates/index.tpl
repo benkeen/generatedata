@@ -66,11 +66,16 @@
 	require([
 		"manager",
 		"generator",
-		{if $settings.userAccountSetup == "multiple"}"accountManager",{/if}
-		{$exportTypeJSModules},
-		{$dataTypeJSModules},
+		{if $settings.userAccountSetup == "multiple"}"accountManager"{/if}
 		"pageinit"
-	], function(manager) { manager.start(); });
+	], function(manager) { 
+		require([
+			{$exportTypeJSModules},
+			{$dataTypeJSModules}
+		], function() { 
+			manager.start();
+		});
+	});
 	</script>
 
 </body>

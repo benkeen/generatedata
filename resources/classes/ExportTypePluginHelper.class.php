@@ -97,7 +97,7 @@ class ExportTypePluginHelper {
 	}
 
 	/**
-	 * Used in the main page to generate a list of Export Type JS files.
+	 * Used in the main page to generate a list of Export Type JS files. DREADFUL function.
 	 * @param array exportTypes
 	 * @param string format string / array / cached
 	 * @return string
@@ -107,7 +107,7 @@ class ExportTypePluginHelper {
 		$returnVal = "";
 		$cacheLocation = "plugins/exportTypes/exportTypes.grouped.min.js";
 		if ($getCacheIfAvailable && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
-			$returnVal = $cacheLocation;
+			$returnVal = "\"" . $cacheLocation . "\"";
 		} else {
 			$files = array();
 			foreach ($exportTypes as $exportType) {
@@ -117,7 +117,6 @@ class ExportTypePluginHelper {
 					$files[] = "$path/{$jsModules[$i]}";
 				}
 			}
-
 			if ($format == "string") {
 				if (!empty($files)) {
 					$returnVal = "\"" . implode("\",\n\"", $files) . "\"";
@@ -125,8 +124,6 @@ class ExportTypePluginHelper {
 			} else {
 				$returnVal = $files;
 			}
-
-			$returnVal = "\"plugins/exportTypes/exportTypes.grouped.min.js\"";
 		}
 
 		return $returnVal;

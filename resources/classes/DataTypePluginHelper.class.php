@@ -74,7 +74,7 @@ class DataTypePluginHelper {
 		$returnVal = "";
 		$cacheLocation = "plugins/dataTypes/dataTypes.grouped.min.js";
 		if ($getCacheIfAvailable && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
-			$returnVal = $cacheLocation;
+			$returnVal = "\"" . $cacheLocation . "\"";
 		} else {
 			$files = array();
 			foreach ($dataTypes as $dataType) {
