@@ -106,7 +106,7 @@ class ExportTypePluginHelper {
 
 		$returnVal = "";
 		$cacheLocation = "plugins/exportTypes/exportTypes.grouped.min.js";
-		if ($getCacheIfAvailable && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
+		if ($getCacheIfAvailable && Core::$useJSCache && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
 			$returnVal = "\"" . $cacheLocation . "\"";
 		} else {
 			$files = array();

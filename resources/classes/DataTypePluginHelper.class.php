@@ -73,7 +73,7 @@ class DataTypePluginHelper {
 	public function getDataTypeJSResources($dataTypes, $format = "string", $getCacheIfAvailable = false) {
 		$returnVal = "";
 		$cacheLocation = "plugins/dataTypes/dataTypes.grouped.min.js";
-		if ($getCacheIfAvailable && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
+		if ($getCacheIfAvailable && Core::$useJSCache && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
 			$returnVal = "\"" . $cacheLocation . "\"";
 		} else {
 			$files = array();

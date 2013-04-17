@@ -26,9 +26,8 @@ class Core {
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array();
 	private static $defaultTheme = "classic";
-	private static $useJSDataTypeGroupedCache = true;
-	private static $useJSExportTypeGroupedCache = true;
-
+	public static $useJSCache = false;
+	
 	// non-overidable settings
 	private static $version = "3.0.0 beta";
 	private static $minimumPHPVersion = "5.3.0";

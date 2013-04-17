@@ -5,7 +5,7 @@ require_once("library.php");
 Core::init();
 
 // remove this line whenever you want to generate the JS cache files
-exit;
+//exit;
 
 // EXPORT TYPES
 $exportTypes = Core::$exportTypePlugins;
