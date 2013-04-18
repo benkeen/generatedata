@@ -11,12 +11,7 @@
  */
 abstract class ExportTypePlugin {
 
-	/**
-	 * Used during development. Only Export Types that have $isEnabled == true will get listed in the Data
-	 * Generator for use.
-	 * @var boolean
-	 */
-	protected $isEnabled = true;
+	// REQUIRED MEMBER VARS
 
 	/**
 	 * The name of the export type "HTML", "XML" etc. This is always in English; even in different languages,
@@ -24,6 +19,16 @@ abstract class ExportTypePlugin {
 	 * @var string
 	 */
 	protected $exportTypeName = "";
+
+
+	// OPTIONAL MEMBER VARS
+
+	/**
+	 * Used during development. Only Export Types that have $isEnabled == true will get listed in the Data
+	 * Generator for use.
+	 * @var boolean
+	 */
+	protected $isEnabled = true;
 
 	/**
 	 * An array of JS modules that need to be included for this module. They should be requireJS-friendly
@@ -33,18 +38,10 @@ abstract class ExportTypePlugin {
 	protected $jsModules = array();
 
 	/**
-	 * A single CSS file for any additional CSS needed for the module. It's up to the developer to properly
+	 * An array of CSS files for any additional CSS needed for the module. It's up to the developer to properly
 	 * name their CSS classes/IDs to prevent namespace collisions.
 	 */
 	protected $cssFiles = array();
-
-	/**
-	 * By default, the Data Generator opens a dialog window to display the results. This setting lets you choose
-	 * to override that and just pass the Ajax request directly to the server. This is handy for export types like
-	 * Excel which just prompts for file download - not shows the results in the UI.
-	 * @var boolean
-	 */
-	protected $openResultsInDialog = true;
 
 	/**
 	 * An array of whatever CodeMirror modes (the syntax highlighter) this Export Type needs. This ensures they're
@@ -76,7 +73,8 @@ abstract class ExportTypePlugin {
 	public $L = array();
 
 
-	// 1. REQUIRED FUNCTIONS
+
+	// 1. REQUIRED METHODS
 
 	/**
 	 * This does the job of actually generating the data in the appropriate format. It's fed the instantiated
@@ -112,10 +110,10 @@ abstract class ExportTypePlugin {
 		$currClassFolder = dirname($currClass->getFileName());
 
 		$defaultLangFileStr = Core::getDefaultLanguageFile();
-		$currentLangFileStr = Core::$language->getCurrentLanguageFile();
-
-		$currentLangFile = $currClassFolder . "/lang/" . $currentLangFileStr . ".php";
 		$defaultLangFile = $currClassFolder . "/lang/" . $defaultLangFileStr . ".php";
+
+		$currentLangFileStr = Core::$language->getCurrentLanguageFile();
+		$currentLangFile = $currClassFolder . "/lang/" . $currentLangFileStr . ".php";
 
 		if (file_exists($currentLangFile)) {
 			require($currentLangFile);
@@ -138,13 +136,6 @@ abstract class ExportTypePlugin {
 	 */
 	static function install() {
 		return array(true, "");
-	}
-
-	/**
-	 * Outputs any additional headers, prior to the generator() call.
-	 */
-	public function outputHeaders() {
-		return;
 	}
 
 	/**

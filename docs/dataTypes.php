@@ -460,10 +460,7 @@ class DataType_GUID extends DataTypePlugin {
 						<tr>
 							<th>Explanation</th>
 							<td>
-								This does the work of actually generating a random data snippet. Data Types have to return a hash with at 
-								least one key: "display". They can also load up the hash with whatever else they want, if they want to 
-								provide additional meta data to other Data Types that are being generated on that row (e.g. Country, 
-								passing its country_slug info to Region)
+								An optional constructor. Note: this should always call <code>parent::__construct($runtimeContext);</code>.
 							</td>
 						</tr>
 					</tbody>

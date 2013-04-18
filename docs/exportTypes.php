@@ -165,14 +165,14 @@ $L["label2"] = "Label 2";
 			<section id="phpClassExample">
 				<h3>Example: CSV Export Type</h3>
 				<p>
-					Now rather than blather on about your Export Type PHP class in the abstract, let's look at an actual implementation. 
-					If you want to see the complete list of available variables and methods, check out the source code 
-					of the Export Type abstract class (<code>/resources/classes/ExportTypePlugin.abstract.class.php</code>). It's well 
-					documented.
+					Now let's look at an actual implementation. If you want to see the complete list of available variables and methods, 
+					check out the source code of the Export Type abstract class (<code>/resources/classes/ExportTypePlugin.abstract.class.php</code>). 
+					It's well documented.
 				</p>
 				<p>
-					This is the PHP class for the <code>CSV</code> class. It's a simple Data Type that generates a random GUID string.
-					Maybe first try it out in the script to see what it does.
+					This is the PHP class for the <code>CSV</code> class. It's a simple Export Type that outputs the randomly generated data in
+					CSV format. It provides the user with the option to choose the <b>line ending char</b> (Windows / Mac, Unix) and the 
+					<b>delimiter char</b>. Pretty straightforward.
 				</p>
 
 <pre class="prettyprint linenums">
@@ -305,7 +305,13 @@ END;
 
 				<ul>
 					<li><code>generate</code>: this is the main generation function of your class. It does the job of actually generating the 
-						final output data.
+						final output data. One important thing to know about Export Type generation is that is happens in different contexts.
+						For the <i>in-page</i> export type, the Export Type has to generate it in chunks - each chunk being (say) 100 rows at 
+						a time. That information is sent back by the Core script via an Ajax call. As such, if the Export Type supports 
+						that export type, the <code>generate</code> function needs to be able to handle both scenarios: generating the final 
+						result piece-meal, or in one big chunk. You can see how it works in the code above. It checks the <code>$data["isFirstBatch"]</code>
+						boolean to figure out whether to create the first row or not. Similarly, there's a <code>$data["isLastBatch"]</code>
+						key available as well (not used here).
 					</li>
 					<li><code>getDownloadFilename</code>: returns the filename for the downloadable content, used in the <i>Prompt to Download</i>
 						export format.</li>
@@ -333,11 +339,71 @@ END;
 					</thead>
 					<tbody>
 						<tr>
-							<td>$dataTypeName</td>
+							<td>$exportTypeName</td>
 							<td><span class="label label-success">required</span></td>
 							<td>string</td>
-							<td>The human-readable name of the Data Type used in the UI. Note: the <code>$L["DATA_TYPE_NAME"]</code>
-								defined in a language file will override this value.</td>
+							<td>The name of the export type "HTML", "XML" etc. This is always in English; even in different languages,
+								"JSON" is still "JSON", so having no translation is acceptable here. But if you do need it to be overridden
+								for different languages, add a <code>$L["EXPORT_TYPE_NAME"]</code> key to your lang files. That will override 
+								this default value.
+							</td>
+						</tr>
+						<tr>
+							<td>$isEnabled</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>boolean</td>
+							<td>Used during development. Only Export Types that have $isEnabled == true will get listed in the Data Generator for use.</td>
+						</tr>
+						<tr>
+							<td>$jsModules</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>array</td>
+							<td>An array of JS modules that need to be included for this module. They should be requireJS-friendly modules.</td>
+						</tr>
+						<tr>
+							<td>$cssFiles</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>array</td>
+							<td>A single CSS file for any additional CSS needed for the module. It's up to the developer to properly name their CSS classes/IDs to prevent namespace collisions.</td>
+						</tr>
+						<tr>
+							<td>$codeMirrorModes</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>array</td>
+							<td>An array of whatever CodeMirror modes (the syntax highlighter) this Export Type needs. This ensures they're all loaded at runtime for use in the generator.</td>
+						</tr>
+						<tr>
+							<td>$contentTypeHeader</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>string</td>
+							<td>Needed for the "prompt for download" export option. This should contain the standard Content-Type header value (like "text/html") of the generated content, so the browser knows what to do with the downloaded file.</td>
+						</tr>
+						<tr>
+							<td>$compatibleExportTypes</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>array</td>
+							<td>
+								Export Types *should* be able to handle all three Export Targets available in the page (in-page, new window/tab, prompt for download), but if they 
+								can't, they should specify this var. The system will automatically grey out those options that aren't selectable as soon as the user selects the 
+								Export Type. Possible values in array: <code>inPage</code>, <code>newTab</code>, <code>promptDownload</code> (all strings).
+							</td>
+						</tr>
+						<tr>
+							<td>$compatibleExportTypes</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>array</td>
+							<td>
+								Export Types *should* be able to handle all three Export Targets available in the page (in-page, new window/tab, prompt for download), but if they 
+								can't, they should specify this var. The system will automatically grey out those options that aren't selectable as soon as the user selects the 
+								Export Type. Possible values in array: <code>inPage</code>, <code>newTab</code>, <code>promptDownload</code> (all strings).
+							</td>
+						</tr>
+						<tr>
+							<td>$L</td>
+							<td><span class="label label-important">auto-generated</span></td>
+							<td>array</td>
+							<td>Do NOT define this variable. When your Export Type is instantiated, this variable
+								is auto-generated and populated with the appropriate language file.</td>
 						</tr>
 					</tbody>
 				</table>
@@ -345,13 +411,125 @@ END;
 
 			<section id="phpClassMethods">
 				<h2>Class Method List</h2>
+
+
+				<h3>generate()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-success">required</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>
+								<ol>
+									<li>
+										<b>$generator</b>: the <code>Generator</code> object, through which your Export Type can call the various available 
+										public methods. See <code>/resources/classes/Generator.class.php</code>.
+									</li>
+								</ol>
+							</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								As mentioned above, this is the main generation function of your Export Type class. It's responsible for generating the 
+								final outputted data. The <code>generate</code> function is required to handle all supported export types - i.e. 
+								<i>in-page</i>, <i>new window / tab</i> and <i>prompt for download</i>. The difference is that for the <i>in-page</i> 
+								export type, the Export Type has to generate it in chunks - each chunk being (say) 100 rows at a time. That 
+								information is sent back by the Core script via an Ajax call. As such, if the Export Type supports that export type, 
+								the <code>generate</code> function needs to be able to handle both scenarios: generating the final result piece-meal, 
+								or in one big chunk. You can see how it works in the code above. It checks the <code>$data["isFirstBatch"]</code> boolean 
+								to figure out whether to create the first row or not. Similarly, there's a <code>$data["isLastBatch"]</code> key available 
+								as well (not used here).
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>getDownloadFilename()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-success">required</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>
+								<ol>
+									<li>
+										<b>$generator</b>: the <code>Generator</code> object, through which your Export Type can call the various available 
+										public methods. See <code>/resources/classes/Generator.class.php</code>.
+									</li>
+								</ol>
+							</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>__construct()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>
+								<b>$runtimeContext</b>: Export Types classes are instantiated at different times in the code. This parameter
+								is a string that describes the context in which it's being instantiated: <code>ui</code> / <code>generation</code>
+							</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+								An optional constructor. Note: this should always call <code>parent::__construct($runtimeContext);</code>.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<h3>getAdditionalSettingsHTML()</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Req/Opt</th>
+							<td><span class="label label-info">optional</span></td>
+						</tr>
+						<tr>
+							<th>Params</th>
+							<td>
+							</td>
+						</tr>
+						<tr>
+							<th>Explanation</th>
+							<td>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</section>
 
 
 			<section id="phpClassNonOverridableMethods">
 				<h2>Non-overridable Methods</h2>
 				<p>
-					The following methods are defined on the Data Plugin abstract class, for use when developing a Data Type.
+					The following methods are defined on the Data Plugin abstract class, for use when developing an Export Type.
 				</p>
 			</section>
 
