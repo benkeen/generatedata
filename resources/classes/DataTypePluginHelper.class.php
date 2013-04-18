@@ -70,28 +70,23 @@ class DataTypePluginHelper {
 	 * @param string $format "array", "string"
 	 * @return mixed
 	 */
-	public function getDataTypeJSResources($dataTypes, $format = "string", $getCacheIfAvailable = false) {
-		$returnVal = "";
-		$cacheLocation = "plugins/dataTypes/dataTypes.grouped.min.js";
-		if ($getCacheIfAvailable && Core::$useJSCache && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
-			$returnVal = "\"" . $cacheLocation . "\"";
-		} else {
-			$files = array();
-			foreach ($dataTypes as $dataType) {
-				$jsModules = $dataType->getJSModules();
-				$path      = $dataType->getPath();
-				for ($i=0; $i<count($jsModules); $i++) {
-					$files[] = "$path/{$jsModules[$i]}";
-				}
+	public function getDataTypeJSResources($dataTypes, $format = "string") {
+		$files = array();
+		foreach ($dataTypes as $dataType) {
+			$jsModules = $dataType->getJSModules();
+			$path      = $dataType->getPath();
+			for ($i=0; $i<count($jsModules); $i++) {
+				$files[] = "$path/{$jsModules[$i]}";
 			}
+		}
 
-			if ($format == "string") {
-				if (!empty($files)) {
-					$returnVal = "\"" . implode("\",\n\"", $files) . "\"";
-				}
-			} else {
-				$returnVal = $files;
+		$returnVal = "";
+		if ($format == "string") {
+			if (!empty($files)) {
+				$returnVal = "\"" . implode("\",\n\"", $files) . "\"";
 			}
+		} else {
+			$returnVal = $files;
 		}
 
 		return $returnVal;

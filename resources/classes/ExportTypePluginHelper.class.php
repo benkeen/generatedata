@@ -102,28 +102,24 @@ class ExportTypePluginHelper {
 	 * @param string format string / array / cached
 	 * @return string
 	 */
-	public function getExportTypeJSResources($exportTypes, $format = "string", $getCacheIfAvailable = false) {
+	public function getExportTypeJSResources($exportTypes, $format = "string") {
+
+		$files = array();
+		foreach ($exportTypes as $exportType) {
+			$jsModules = $exportType->getJSModules();
+			$path      = $exportType->getPath();
+			for ($i=0; $i<count($jsModules); $i++) {
+				$files[] = "$path/{$jsModules[$i]}";
+			}
+		}
 
 		$returnVal = "";
-		$cacheLocation = "plugins/exportTypes/exportTypes.grouped.min.js";
-		if ($getCacheIfAvailable && Core::$useJSCache && is_file(realpath(dirname(__FILE__) . '/../../' . $cacheLocation))) {
-			$returnVal = "\"" . $cacheLocation . "\"";
+		if ($format == "string") {
+			if (!empty($files)) {
+				$returnVal = "\"" . implode("\",\n\"", $files) . "\"";
+			}
 		} else {
-			$files = array();
-			foreach ($exportTypes as $exportType) {
-				$jsModules = $exportType->getJSModules();
-				$path      = $exportType->getPath();
-				for ($i=0; $i<count($jsModules); $i++) {
-					$files[] = "$path/{$jsModules[$i]}";
-				}
-			}
-			if ($format == "string") {
-				if (!empty($files)) {
-					$returnVal = "\"" . implode("\",\n\"", $files) . "\"";
-				}
-			} else {
-				$returnVal = $files;
-			}
+			$returnVal = $files;
 		}
 
 		return $returnVal;

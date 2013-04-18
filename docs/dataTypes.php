@@ -61,8 +61,8 @@ require_once("templates/header.php");
 					creates a tree-like data structure by mapping the ID of each row to a single parent row ID.
 				</p>
 				<p>
-					<b>Data Types have both a PHP and JS component</b>. The PHP is used to do the actual generation; the JS is used for 
-					creating the UI and saving/loading the Data Type data.
+					<b>Data Types have both a PHP and (optional) JS component</b>. The PHP is used to do the actual generation; the JS is used 
+					for creating the UI and saving/loading the Data Type data.
 				</p>
 				<p>
 					When creating your new Data Type, you can add anything you need from client-side validation to custom dynamic JS/DOM 
@@ -120,11 +120,9 @@ require_once("templates/header.php");
 
 			<section id="js">
 				<h3>JavaScript</h3>
-
 				<p>
 					The JS module for your Data Type does the following:
 				</p>
-
 				<ul>
 					<li>Registers itself with the <code>Manager</code> JS component, to allow it to publish and subscribe to messages; i.e.
 						to interact with the Core script and detect when certain user interface events happen.</li>
@@ -168,8 +166,7 @@ require_once("templates/header.php");
 &lt;?php 
 
 $L = array();
-
-$L["name"] = "Alphanumeric";
+$L["DATA_TYPE_NAME"] = "Alphanumeric";
 $L["example_CanPostalCode"] = "(Can. Postal code)";
 $L["example_Password"] = "(Password)";
 
@@ -265,7 +262,7 @@ class DataType_GUID extends DataTypePlugin {
 					<li><code>$isEnabled</code>: this var explicitly enables/disables the module. In case you're tinkering around with 
 						a new Data Type, sometimes you may not want it to show up in the UI - so you'd just set this to 
 						<code>false</code>.</li>
-					<li><code>dataTypeName</code>: this is the human-readable name of your module. It can be in whatever
+					<li><code>$dataTypeName</code>: this is the human-readable name of your module. It can be in whatever
 						language you want, but we prefer English as the default language string. The value you enter in this variable
 						is <i>automatically overridden</i> if the current selected language has the following value in the language file:
 						<code>$L["DATA_TYPE_NAME"] = "New Name";</code> This provides a simple mechanism to provide alternative translations
@@ -403,7 +400,6 @@ class DataType_GUID extends DataTypePlugin {
 
 			<section id="phpClassMethods">
 				<h2>Class Method List</h2>
-
 
 				<h3>generate()</h3>
 
@@ -1118,10 +1114,10 @@ manager.registerDataType(MODULE_ID, {
 
 			<section id="contribute">
 				<h2>How to Contribute</h2>
-
 				<p>
 					If you feel that your Data Type could be of use to other people, send it our way! I'd love to take a look at it,
-					and maybe even include it in the core script for others to download. Read the <a href="contribute.php">How to Contribute</a>.
+					and maybe even include it in the core script for others to download. Read the <a href="contribute.php">How to Contribute</a>
+					page.
 				</p>
 			</section>
 

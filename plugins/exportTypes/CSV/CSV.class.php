@@ -4,7 +4,6 @@
  * @package ExportTypes
  */
 
-
 class CSV extends ExportTypePlugin {
 	protected $isEnabled = true;
 	protected $exportTypeName = "CSV";

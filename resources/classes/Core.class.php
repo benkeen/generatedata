@@ -26,7 +26,7 @@ class Core {
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array();
 	private static $defaultTheme = "classic";
-	public static $useJSCache = false;
+	public static $useJSCache = true;
 	
 	// non-overidable settings
 	private static $version = "3.0.0 beta";

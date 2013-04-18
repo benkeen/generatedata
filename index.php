@@ -22,9 +22,9 @@ $exportTypes = Core::$exportTypePlugins;
 $exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalSettingsHTML($exportTypes);
 $dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
 
-$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string", true);
+$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string");
 $exportTypeCssIncludes = ExportTypePluginHelper::getExportTypeCSSIncludes($exportTypes);
-$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string", true);
+$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string");
 $dataTypeCssIncludes = DataTypePluginHelper::getDataTypeCSSIncludes($dataTypes);
 $cssIncludes = $exportTypeCssIncludes . "\n" . $dataTypeCssIncludes;
 
