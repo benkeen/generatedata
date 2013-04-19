@@ -66,7 +66,7 @@
 	require([
 		"manager",
 		"generator",
-		{if $settings.userAccountSetup == "multiple"}"accountManager"{/if}
+		{if $settings.userAccountSetup == "multiple"}"accountManager",{/if}
 		"pageinit"
 	], function(manager) { 
 		require([
