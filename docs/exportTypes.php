@@ -16,11 +16,11 @@ require_once("templates/header.php");
 				<li><a href="#languageFiles"><i class="icon-chevron-right"></i> - Language Files</a></li>
 				<li><a href="#phpClass"><i class="icon-chevron-right"></i> <b>The PHP Class</b></a></li>
 				<li><a href="#phpClassExample"><i class="icon-chevron-right"></i> - Example: CSV Export Type</a></li>
-				<li><a href="#phpClassVars"><i class="icon-chevron-right"></i> - Overridable Class Variables</a></li>
+				<li><a href="#phpClassVars"><i class="icon-chevron-right"></i> - Overridable Class Vars</a></li>
 				<li><a href="#phpClassMethods"><i class="icon-chevron-right"></i> - Overridable Class Methods</a></li>
 				<li><a href="#phpClassNonOverridableMethods"><i class="icon-chevron-right"></i> - Non-overridable Class Methods</a></li>
 				<li><a href="#jsModule"><i class="icon-chevron-right"></i> <b>The JS Module</b></a></li>
-				<li><a href="#jsModuleExample"><i class="icon-chevron-right"></i> - Example: Alphanumeric</a></li>
+				<li><a href="#jsModuleExample"><i class="icon-chevron-right"></i> - Example: CSV</a></li>
 				<li><a href="#jsModuleFunctions"><i class="icon-chevron-right"></i> - Registration Functions</a></li>
 				<li><a href="#jsModulePubSub"><i class="icon-chevron-right"></i> - Pub/Sub &amp; Event List</a></li>
 				<li><a href="#availableResources"><i class="icon-chevron-right"></i> Available JS Resources</a></li>
@@ -529,8 +529,51 @@ END;
 			<section id="phpClassNonOverridableMethods">
 				<h2>Non-overridable Methods</h2>
 				<p>
-					The following methods are defined on the Data Plugin abstract class, for use when developing an Export Type.
+					The following methods are defined on the Export Plugin abstract class, which you can use when developing your Export Type.
 				</p>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Function</th>
+							<th>Explanation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>getName()</td>
+							<td>returns the Data Type name.</td>
+						</tr>
+						<tr>
+							<td>getJSModules()</td>
+							<td>returns the array of JS modules.</td>
+						</tr>
+						<tr>
+							<td>getCSSFiles()</td>
+							<td>returns the array of CSS files for the Data Type.</td>
+						</tr>
+						<tr>
+							<td>getFolder()</td>
+							<td>returns the Export Type folder.</td>
+						</tr>
+						<tr>
+							<td>getPath()</td>
+							<td>returns the path to the Export Type folder.</td>
+						</tr>
+						<tr>
+							<td>getContentTypeHeader()</td>
+							<td>returns the content type header specified in the <code>$contentTypeHeader</code> member variable.</td>
+						</tr>
+						<tr>
+							<td>getCodeMirrorModes()</td>
+							<td>returns the <code>$codeMirrorModes</code> member variable value.</td>
+						</tr>
+						<tr>
+							<td>isEnabled()</td>
+							<td>returns whether or not the Data Type is enabled or not.</td>
+						</tr>
+					</tbody>
+				</table>
 			</section>
 
 			<section id="jsModule">
@@ -554,7 +597,7 @@ END;
 			</section>
 
 			<section id="jsModuleExample">
-				<h3>Example: Alphanumeric Data Type</h3>
+				<h3>Example: CSV Export Type</h3>
 
 				<p>
 					The following is the JS module for the <code>Alphanumeric</code> Data Type. Give it a look over, then we'll
@@ -562,7 +605,7 @@ END;
 				</p>
 <pre class="prettyprint linenums">
 /*global $:false*/
-define([
+define([	
 	"manager",
 	"constants",
 	"lang",
@@ -623,6 +666,273 @@ define([
 });
 </pre>
 
+				<p>
+					Now let's go line by line.
+				</p>
+
+				<ul>
+					<li><code>/*global $:false*/</code> this first line is for jshint/jslint. In my local environment, I use jshint with strict mode
+						to catch problems. This line just tells the interpreter to ignore the jQuery dollar sign global.</li>
+					<li>
+<pre class="prettyprint">define([
+	"manager",
+	"constants",
+	"lang",
+	"generator"
+], function(manager, C, L, generator) {
+	//...
+});
+</pre>
+						<p>
+							The outer code that wraps the entire JS module is called within requireJS's <core>define</code> function. This ensures
+							the code is defined as an AMD (Asynchronous Module Definition) for consumption by other code. The important thing 
+							to understand here is the parameters. The first array params define string labels to other modules: they all map to
+							specific JS files - you can find the mapping in <code>/resources/scripts/requireConfig.js</code>. Each of those 
+							discrete modules is in turn passed to the Data Type module via functions in the anonymous section param to define(). 
+							Whatever public API those modules reveal are now accessible via the four params: <code>manager</code>, <code>constants</code>,
+							<code>lang</code>, <code>generator</code>.
+						</p>
+
+						<p>
+							When defining your own Export Type module JS file, you'll want to include all four of those params. They all contain
+							useful functionality and data that you'll need. 
+						</p>
+					</li>
+					<li><code>"use strict";</code> - do it! JS strict mode is never a bad idea. :D</li>
+					<li>Here we're going to skip ahead to the very end of the code, to these lines:
+
+<pre class="prettyprint">
+	manager.registerExportType(MODULE_ID, {
+		validate: _validate,
+		loadSettings: _loadSettings,
+		saveSettings: _saveSettings,
+		resetSettings: _resetSettings
+	});
+</pre>
+						<p>
+							This chunk of code is <b>required</b> for your Export Type JS Module. It registers your Export Type with the Core. That 
+							allows it to listen to published events, publish its own events for other code to listen to, tie into the validation
+							functionality and so on. It's pretty straightforward. The <code>manager.registerExportType()</code> function takes
+							two parameters: the unique MODULE_ID constant, (see below) and an object containing certain required
+							and optional functions, whose property names have special values. Again, more on that below. Now let's go back to the 
+							top of the code again. 
+						</p>
+					</li>
+					<li>
+
+<pre class="prettyprint">
+	/**
+	 * @name CSV
+	 * @see ExportType
+	 * @description Client-side code for the CSV Export Type.
+	 * @namespace
+	 */
+
+	var MODULE_ID = "export-type-CSV";
+	var LANG = L.exportTypePlugins.CSV;
+</pre>
+						<ul>
+							<li>
+								The comment is of a particular format for being understood by JSDoc. For more information 
+								on that, see the <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JS Doc project</a>.
+							</li>
+							<li>
+								The <code>MODULE_ID</code> variable is special. It must <i>always</i> be of the form <b>data-type-[FOLDER NAME]</b>.
+								That acts a unique identifier within the client-side code so the Manager can keep track of who's who.
+							</li>
+							<li>
+								As with the PHP code, the language strings for your Data Type are automatically accessible: you don't have to do 
+								any extra work to get access to them. The <code>L</code> function param fed to your Export Type contains all language
+								strings in the system - in whatever language is currently selected. To locate the strings for your own module, 
+								just reference it by your Export Type folder name, again: <code>L.exportTypePlugins.[FOLDER NAME]</code>
+							</li>
+						</ul>
+					</li>
+					<li>
+						The following lines all define special functions. Rather than explain the implementation details of each of these for the 
+						CSV type, we'll discuss these in a more abstract sense in the next section.
+					</li>
+				</ul>
+			</section>
+
+			<section id="jsModuleFunctions">
+				<h3>Registration Functions</h3>
+
+				<p>
+					As explained above, the second parameter of the <code>manager.registerExportType()</code> function is an object 
+					containing various predefined functions. This explains what are the properties for that object and what they're used 
+					for. Note: <i>all properties are optional</i>, but you'll almost certainly need one or more.
+				</p>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Property</th>
+							<th width="100">Params</th>
+							<th>Returns</th>
+							<th>Explanation</th>
+						</tr>
+					</thead>
+					<tbody>
+
+			validate: function() { return []; },
+			saveSettings: function() { return {}; },
+			loadSettings: null,
+			resetSettings: function() { },
+			subscriptions: {}
+
+						<tr>
+							<td>init</td>
+							<td>&#8212;</td>
+							<td>&#8212;</td>
+							<td>If this is defined for your Export Type, it gets called on page load prior to any events being published. By "event"
+								I mean a custom published event, which I'll explain more thoroughly in the <a href="#jsModulePubSub">Pub/Sub</a>
+								section below.
+							</td>
+						</tr>
+						<tr>
+							<td>run</td>
+							<td>&#8212;</td>
+							<td>&#8212;</td>
+							<td>
+								The run() function gets called for all Data Types and Export Types after their init()'s are called. As such, 
+								run() can rely on all subscriptions being in place so events published at this juncture will have an 
+								audience. 
+							</td>
+						</tr>
+						<tr>
+							<td>saveSettings</td>
+							<td>&#8212;</th>
+							<td><span class="label label-info">object</span></td>
+							<td>
+								When the user saves a data set, the Data Generator examines all Export Types - even those that aren't 
+								selected - and calls their saveSettings() method. This method is responsible for determining what information 
+								it wants to save for the row. Generally all it does is examine the DOM and extract whatever values the user 
+								entered in custom fields that the Export Type aded. It then returns an object of simple property-value pairs. 
+							</td>
+						</tr>
+						<tr>
+							<td>loadSettings</td>
+							<td>
+								data <span class="label label-info">object</span>
+							</td>
+							<td>&#8212;</td>
+							<td>
+								When a user loads a data set, each Export Type has their loadSettings() function called, with whatever
+								previous saved information passed as the single parameter.
+							</td>
+						</tr>
+						<tr>
+							<td>validate</td>
+							<td>&#8212;</td>
+							<td>
+								<span class="label label-inverse">array</span>
+							</td>
+							<td>
+								<p>
+									This function needs to return an array of errors to display - or an empty array if there are no errors. Each 
+									array index is an object of the following form: <code> { els: [], error: "error message here" }</code>. <b>els</b>
+									is an array of DOM elements that have problems with them; <b>error</b> is the error message that will be displayed.
+								</p>
+								<p>
+									Check out the CSV Data Type's validate() function above for an example of how this function can work.
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</section>
+
+			<section id="jsModulePubSub">
+				<h3>Pub/Sub &amp; Event List</h3>
+
+				<p>
+					As mentioned elsewhere, the client-side code revolves around the idea of publish/subscribe - or pub/sub. Different parts of 
+					the script can publish arbitrary events with arbitrary information associated with them, and any module can choose to listen
+					out for particular events and run code when they occur. This is a very elegant pattern: it allow us to keep our modules 
+					loosely coupled and reduce the likelihood of introducing dependencies that can break things. 
+				</p>
+
+				<p>
+					The core script publishes the following script for certain events that occur in the lifetime of the page. They're all 
+					found in <code>/resources/scripts/constants.php</code> (returned as JS). You can refer to them in your code via the 
+					<code>C</code> parameter, mapping to the <code>constants</code> module. The names are pretty descriptive so I won't 
+					bother explaining them any further.
+				</p>
+
+				<ul>
+					<li><code>C.EVENT.RESULT_TYPE.CHANGE</code></li>
+					<li><code>C.EVENT.COUNTRIES.CHANGE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ONLOAD_READY</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.CHECK_TO_DELETE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.UNCHECK_TO_DELETE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.DELETE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.ADD</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.RE_SORT</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_OPEN</code></li>
+					<li><code>C.EVENT.DATA_TABLE.ROW.HELP_DIALOG_CLOSE</code></li>
+					<li><code>C.EVENT.DATA_TABLE.CLEAR</code></li>
+					<li><code>C.EVENT.GENERATE</code></li>
+					<li><code>C.EVENT.IO.SAVE</code></li>
+					<li><code>C.EVENT.IO.LOAD</code></li>
+					<li><code>C.EVENT.TAB.CHANGE</code></li>
+					<li><code>C.EVENT.MODULE.REGISTER</code></li>
+					<li><code>C.EVENT.MODULE.UNREGISTER</code></li>
+				</ul>
+
+				<h4>How to subscribe to an event</h4>
+
+				<p>
+					Generally you'll want to set up your subscriptions in your module's <b>init()</b> function. Here's how it works:
+				</p>
+
+<pre class="prettyprint">
+...
+
+var _init = function() {
+	var subscriptions = {};
+	subscriptions[C.EVENT.COUNTRIES.CHANGE] = _onChangeCountries;
+	manager.subscribe(subscriptions);
+};
+
+var _onChangeCountries = function(msg) {
+	console.log(msg);
+};
+
+...
+
+manager.registerDataType(MODULE_ID, {
+	init: _init
+});
+
+...
+</pre>
+
+				<p>
+					That would subscribe to the <code>C.EVENT.COUNTRIES.CHANGE</code> event (which is where the user adds/removes a country 
+					from the Country List section in the UI) and attaches a callback function - <code>_onChangeCountries()</code>. The manager.subscribe()
+					function can be called at any time in any of your functions, so you can subscribe to events on the fly.
+				</p>
+			</section>
+
+			<section id="availableResources">
+				<h2>Available Resources</h2>
+				<p>
+					There are several client-side code libraries already available in the page that can be used in your Data Type:
+				</p>
+				<ul>
+					<li>jQuery ($)</li>
+					<li>jQuery UI</li>
+					<li><a href="http://momentjs.com/" target="_blank">MomentJS</a>- date/time formatting script</li>
+					<li><a href="http://harvesthq.github.io/chosen/" target="_blank">Chosen</a> - dropdown enhancement</li>
+				</ul>
+
+				<p>
+					You can always include additional libraries should you wish, but do try to namespace them.
+				</p>
 			</section>
 
 			<section id="updatingUI">

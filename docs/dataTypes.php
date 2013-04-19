@@ -634,7 +634,7 @@ class DataType_GUID extends DataTypePlugin {
 			<section id="phpClassNonOverridableMethods">
 				<h2>Non-overridable Methods</h2>
 				<p>
-					The following methods are defined on the Data Plugin abstract class, for use when developing a Data Type.
+					The following methods are defined on the Data Plugin abstract class, which you can use when developing your Data Type.
 				</p>
 
 				<table class="table table-striped">

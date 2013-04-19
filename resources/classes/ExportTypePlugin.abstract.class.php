@@ -151,6 +151,14 @@ abstract class ExportTypePlugin {
 	// 3. NON-OVERRIDABLE FUNCTIONS
 
 	/**
+	 * Returns the name of the Export Type in the current language.
+	 * @return string
+	 */
+	public final function getName() {
+		return (isset($this->L["EXPORT_TYPE_NAME"])) ? $this->L["EXPORT_TYPE_NAME"] : $this->exportTypeName;
+	}
+
+	/**
 	 * Returns a list of all javascript modules for this Export Type.
 	 * @return array
 	 */
@@ -167,27 +175,11 @@ abstract class ExportTypePlugin {
 	}
 
 	/**
-	 * Returns the name of the Export Type in the current language.
-	 * @return string
-	 */
-	public final function getName() {
-		return (isset($this->L["EXPORT_TYPE_NAME"])) ? $this->L["EXPORT_TYPE_NAME"] : $this->exportTypeName;
-	}
-
-	/**
 	 * Returns the Export Type folder.
 	 * @return string
 	 */
 	public final function getFolder() {
 		return $this->folder;
-	}
-
-	/**
-	 * Returns the name of the Export Type in the current language.
-	 * @return string
-	 */
-	public final function getRowLabelTranslationKey() {
-		return $this->rowLabelTranslationKey;
 	}
 
 	/**
