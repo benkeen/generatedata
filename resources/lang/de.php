@@ -77,7 +77,6 @@ $L["email_user_login_info"] = "E-Mail dem Nutzer ihre Login-Daten";
 $L["employ_user_accounts"] = "Beschäftigen Benutzerkonten";
 $L["employ_user_accounts_desc"] = "Standardmäßig speichert der Data Generator alle Formular-Konfigurationen an einem einzigen Speicherort, so dass jeder Besuch das Skript alle gespeicherten Konfigurationen sehen. Wenn Sie das Benutzerkonto zu aktivieren, kann zu jeder Zeit die Sie speichern möchten oder laden Sie eine Test-Konfiguration musst du eingeloggt Diese eingeloggt sein werde nützlich sein, wenn das Skript wird von mehreren Personen genutzt werden. Das Installationsskript können Sie ein einzelnes Benutzerkonto, aber Sie können später mehr zu schaffen.";
 $L["empty_form"] = "Leeres Formular";
-$L["enter_admin_user_account_details"] = "Bitte geben Sie das Administrator-Konto Details unten.";
 $L["enter_email_address_to_reset_password"] = "Geben Sie einfach Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen.";
 $L["enter_user_account_details"] = "Bitte geben Sie Ihr Benutzerkonto Details unten.";
 $L["error"] = "Fehler";

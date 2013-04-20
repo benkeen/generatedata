@@ -6,7 +6,16 @@
  * @author Ben Keen <ben.keen@gmail.com>
  */
 class Account {
-	private $isAnonymous = false;
+
+	/**
+	 * There are two types of anonymous users:
+	 * 1. Anonymous admin. This is when the generator is configured to have a single user account at all times.
+	 *    This account type has permission to do everything; there's a single user in the user_accounts DB table.
+	 * 2. Anonymous user. This is when the 
+	 */
+	private $isAnonymousAdmin = false;
+	private $isAnonymousUser = false;
+
 	private $accountID;
 	private $accountType;
 	private $dateCreated;
@@ -33,31 +42,35 @@ class Account {
 	 * Called by the constructor and any time the user updates his user account. 
 	 */
 	private function getCurrentUser($accountID) {
-		if ($accountID == "anonymous") {
+		if ($accountID == "anonymousAdmin") {
 			$accountID = 1;
-			$this->isAnonymous = true;
+			$this->isAnonymousAdmin = true;
 			$_SESSION["account_id"] = 1;
+		} else if ($accountID == "anonymousUser") {
+			$this->isAnonymousUser = true;
 		}
 
-		$prefix = Core::getDbTablePrefix();
-		$response = Core::$db->query("
-			SELECT * 
-			FROM {$prefix}user_accounts
-			WHERE account_id = $accountID
-		");
+		if (is_numeric($accountID)) {
+			$prefix = Core::getDbTablePrefix();
+			$response = Core::$db->query("
+				SELECT * 
+				FROM {$prefix}user_accounts
+				WHERE account_id = $accountID
+			");
 
-		if ($response["success"]) {
-			$accountInfo = mysql_fetch_assoc($response["results"]);
-			$this->accountID = $accountInfo["account_id"];
-			$this->accountType = $accountInfo["account_type"];
-			$this->dateCreated = date("U", strtotime($accountInfo["date_created"]));
-			$this->last_updated = date("U", strtotime($accountInfo["last_updated"]));
-			$this->date_expires = date("U", strtotime($accountInfo["date_expires"]));
-			$this->firstName = $accountInfo["first_name"];
-			$this->lastName = $accountInfo["last_name"];
-			$this->email = $accountInfo["email"];
-			$this->getConfigurations();
-			$this->numRowsGenerated = $accountInfo["num_rows_generated"];
+			if ($response["success"]) {
+				$accountInfo = mysql_fetch_assoc($response["results"]);
+				$this->accountID = $accountInfo["account_id"];
+				$this->accountType = $accountInfo["account_type"];
+				$this->dateCreated = date("U", strtotime($accountInfo["date_created"]));
+				$this->last_updated = date("U", strtotime($accountInfo["last_updated"]));
+				$this->date_expires = date("U", strtotime($accountInfo["date_expires"]));
+				$this->firstName = $accountInfo["first_name"];
+				$this->lastName = $accountInfo["last_name"];
+				$this->email = $accountInfo["email"];
+				$this->getConfigurations();
+				$this->numRowsGenerated = $accountInfo["num_rows_generated"];
+			}
 		}
 	}
 
@@ -175,7 +188,8 @@ class Account {
 
 	public function getAccount() {
 		return array(
-			"isAnonymous"      => $this->isAnonymous,
+			"isAnonymousAdmin" => $this->isAnonymousAdmin,
+			"isAnonymousAdmin" => $this->isAnonymousAdmin,
 			"accountID"        => $this->accountID,
 			"accountType"      => $this->accountType,
 			"dateCreated"      => $this->dateCreated,
@@ -189,8 +203,8 @@ class Account {
 		);
 	}
 
-	public function isAnonymous() {
-		return $this->isAnonymous;
+	public function isAnonymousAdmin() {
+		return $this->isAnonymousAdmin;
 	}
 
 	public function getAccountID() {

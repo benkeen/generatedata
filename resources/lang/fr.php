@@ -76,7 +76,6 @@ $L["email_user_login_info"] = "Envoyer à l'utilisateur ses informations de conn
 $L["employ_user_accounts"] = "Employer des comptes utilisateurs";
 $L["employ_user_accounts_desc"] = "Par défaut, le générateur de données enregistre toutes les configurations de formulaire à un seul endroit afin que toute personne visitant le script verrez toutes les configurations sauvegardées. Si vous activez la fonction de compte utilisateur, chaque fois que vous voulez sauvegarder ou de charger une configuration de test, vous devez être connecté po Cela peut être utile si le script va être utilisé par plusieurs personnes. Le script d'installation vous permet de créer un seul compte utilisateur, mais vous pouvez créer plus tard.";
 $L["empty_form"] = "Formulaire vide";
-$L["enter_admin_user_account_details"] = "S'il vous plaît entrer les informations du compte d'administrateur ci-dessous.";
 $L["enter_email_address_to_reset_password"] = "Entrez votre adresse e-mail ci-dessous pour réinitialiser votre mot de passe.";
 $L["enter_user_account_details"] = "S'il vous plaît entrer vos informations de compte d'utilisateur ci-dessous.";
 $L["error"] = "erreur";

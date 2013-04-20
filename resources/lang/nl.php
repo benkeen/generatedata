@@ -78,7 +78,6 @@ $L["email_user_login_info"] = "E-mail van de gebruiker hun login-gegevens";
 $L["employ_user_accounts"] = "Employ gebruikersaccounts";
 $L["employ_user_accounts_desc"] = "Standaard is de Data Generator slaat alle vormen configuraties op een locatie, zodat iedereen die een bezoek het script ziet alle opgeslagen configuraties. Als u de gebruikersaccount functie kunt wanneer je maar wilt op te slaan of te laden een testopstelling moet u ingelogd inch Dit handig zijn als het script zal worden gebruikt door meerdere mensen. De installatie script kunt u een enkele gebruiker account, maar u kunt later meer.";
 $L["empty_form"] = "Lege Formulier";
-$L["enter_admin_user_account_details"] = "Voer hieronder de beheerdersaccount details.";
 $L["enter_email_address_to_reset_password"] = "Vul uw e-mailadres hieronder in om uw wachtwoord opnieuw in te stellen.";
 $L["enter_user_account_details"] = "Vul hieronder uw gebruikersaccount details.";
 $L["eol_char"] = "Einde van de lijn karakter";

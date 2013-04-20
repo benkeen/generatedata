@@ -86,17 +86,6 @@ ul  {
 		border-bottom: 1px solid #efefef;
 		clear: left;
 	}
-	.gdRadioGroup {
-		input {
-			width: 20px;
-			float: left;
-		}
-		label {
-			width: inherit;
-			float: left;
-		}
-	}
-
 	.gdDisabledRow {
 		label, input {
 			color: #cccccc;
@@ -115,5 +104,39 @@ ul  {
 	}
 	div {
 		margin-top: 2px;
+	}
+
+	.gdCol {
+		float: left;
+		width: 350px;
+		h4 {
+			margin-top: 0px;
+		}
+		.rightBox {
+			float: right;
+			input {
+				width: auto;
+				float: none;
+			}
+			label {
+				width: auto;
+				float: none;
+			}
+		}
+		&:first-child {
+			margin-right: 20px;
+		}
+		.gdField {
+			width: 329px;
+		}
+		input { 
+			width: 160px;
+		}
+		textarea {
+			width: 100%;
+			height: 80px;
+			padding: 3px;
+			color: #555555;
+		}
 	}
 }

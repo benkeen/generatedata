@@ -378,14 +378,17 @@ class Core {
 	}
 
 	/**
-	 * Initializes the current logged in user and stores their Account object in Core::$user.
+	 * Initializes the current logged in user and stores their Account object in Core::$user. Note:
+	 * if self::allowDemoModeAnonymousUse is enabled and the user isn't logged in, this won't 
+	 * initialize the user - however, they can still access the script (just not save anything). You 
+	 * can always detect for this by checking self::$isLoggedIn
 	 * @access private
 	 */
-	public function initUser($bypass = false) {
+	private function initUser($bypass = false) {
 		if ($bypass || self::checkIsInstalled()) {
 			$setup = Settings::getSetting("userAccountSetup");
-			if ($setup == "anonymous") {
-				self::$user = new Account("anonymous");
+			if ($setup == "anonymousAdmin") {
+				self::$user = new Account($setup);
 				self::$isLoggedIn = true;
 			} else {
 				if (isset($_SESSION["account_id"])) {

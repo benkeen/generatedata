@@ -20,6 +20,7 @@
 		<p>
 			{$L.installation_intro}
 		</p>
+
 		<form>
 			<div class="gdFields">
 				<div class="gdField">
@@ -75,7 +76,7 @@
 		</p>
 		<form>
 			<div>
-				<input type="radio" name="userAccountSetup" id="acs1" value="anonymous" checked="checked" />
+				<input type="radio" name="userAccountSetup" id="acs1" value="anonymousAdmin" checked="checked" />
 					<label for="acs1">{$L.single_anonymous_user_account}</label>
 			</div>
 			<div>
@@ -87,33 +88,48 @@
 					<label for="acs3">{$L.multiple_accounts}</label>
 			</div>
 
-			<div class="gdFields" id="gdInstallAccountDetails" style="display:none">
-				<p id="gdInstallAccountDetailsMessage"></p>
+			<div class="gdFields">
 
-				<div class="gdField gdFirstNameRow">
-					<label for="firstName">{$L.first_name}</label>
-					<input type="text" id="firstName" value="" />
-				</div>
-				<div class="gdError" id="firstName_error"></div>
+				<div class="gdCol" id="gdInstallAccountDetails" style="display:none">
+					<h4 id="gdInstallAccountDetailsMessage"></h4>
 
-				<div class="gdField gdLastNameRow">
-					<label for="lastName">{$L.last_name}</label>
-					<input type="text" id="lastName" value="" />
-				</div>
-				<div class="gdError" id="lastName_error"></div>
+					<div class="gdError" id="firstName_error"></div>
+					<div class="gdError" id="lastName_error"></div>
+					<div class="gdError" id="email_error"></div>
+					<div class="gdError" id="password_error"></div>
 
-				<div class="gdField gdEmailRow">
-					<label for="email">{$L.email}</label>
-					<input type="text" id="email" value="" />
-				</div>
-				<div class="gdError" id="email_error"></div>
+					<div class="gdField gdFirstNameRow">
+						<label for="firstName">{$L.first_name}</label>
+						<input type="text" id="firstName" value="" />
+					</div>
 
-				<div class="gdField gdPasswordRow">
-					<label for="password">{$L.password}</label>
-					<input type="text" id="password" value="{$randomPassword}" class="pwdField" />
-					<span id="gdRefreshPassword"></span>
+					<div class="gdField gdLastNameRow">
+						<label for="lastName">{$L.last_name}</label>
+						<input type="text" id="lastName" value="" />
+					</div>
+
+					<div class="gdField gdEmailRow">
+						<label for="email">{$L.email}</label>
+						<input type="text" id="email" value="" />
+					</div>
+
+					<div class="gdField gdPasswordRow">
+						<label for="password">{$L.password}</label>
+						<input type="text" id="password" value="{$randomPassword}" class="pwdField" />
+						<span id="gdRefreshPassword"></span>
+					</div>
 				</div>
-				<div class="gdError" id="password_error"></div>
+
+				<div class="gdCol" id="gdInstallAnonymousUserSettings" style="display:none">
+					<span class="rightBox">
+						<input type="checkbox" id="allowAnonymousAccess" /><label for="allowAnonymousAccess">{$L.feature_enabled}</label>
+					</span>
+					<h4>{$L.anonymous_access}</h4>
+					<div>{$L.anonymous_user_desc}</div>
+					<div>{$L.anonymous_user_message}</div>
+					<textarea id="anonymousUserPermissionDeniedMsg" name="anonymousUserPermissionDeniedMsg" class="gdDisabled"
+						disabled="disabled">{$L.anonymous_user_default_message}</textarea>
+				</div>
 			</div>
 
 			<div class="gdClear"></div>

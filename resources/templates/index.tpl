@@ -25,7 +25,7 @@
 <body data-lang="{$currLang}">
 	<header>
 		<nav>
-			{if $settings.userAccountSetup != "anonymous"}
+			{if $isLoggedIn && $settings.userAccountSetup != "anonymousAdmin"}
 				<a href="#" id="gdUserAccount">{$L.your_account}</a> |
 				<a href="#" id="gdLogout">{$L.logout}</a> |
 			{/if}
@@ -40,7 +40,7 @@
 			{if $settings.userAccountSetup == "multiple" && $accountType == "admin"}
 			<li id="gdMainTab2">{$L.accounts}</li>
 			{/if}
-			{if $settings.userAccountSetup == "anonymous" || $accountType == "admin"}
+			{if $settings.userAccountSetup == "anonymousAdmin" || $accountType == "admin"}
 			<li id="gdMainTab3">{$L.settings}</li>
 			{/if}
 			<li id="gdMainTab4">{$L.about}</li>

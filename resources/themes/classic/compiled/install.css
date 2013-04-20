@@ -71,5 +71,3 @@
     background-image: url(../images/stop.png); }
 .gdInstallPage .gdInstallSuccess .gdIcon {
   background-image: url(../images/info.png); }
-.gdInstallPage #gdInstallAccountDetailsMessage {
-  font-style: italic; }

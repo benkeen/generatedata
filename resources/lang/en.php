@@ -218,7 +218,6 @@ $L["single_user_account_requires_login"] = "Single user account, requires login"
 $L["multiple_accounts"] = "Multiple accounts";
 $L["goto_script_rightarrow"] = "Go to script &raquo;";
 $L["enter_user_account_details"] = "Please enter your user account details below.";
-$L["enter_admin_user_account_details"] = "Please enter the administrator account details below.";
 $L["installation_plugin_intro"] = "Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> - i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all the Country-specific data like regions and cities.";
 $L["install_plugins_rightarrow"] = "Install Plugins &raquo;";
 $L["installation_complete_text"] = "The Data Generator has been successfully installed! Click the button below to go to the script.";
@@ -269,3 +268,11 @@ $L["all_countries"] = "All countries";
 $L["link_to_data_set"] = "Link to Data Set";
 $L["login"] = "Login";
 $L["forgot_password"] = "Forgot Password";
+
+// new
+$L["admin_account"] = "Admin account";
+$L["feature_enabled"] = "Enabled";
+$L["anonymous_access"] = "Anonymous access";
+$L["anonymous_user_desc"] = "Anonymous users can use the script but have limited access: they cannot save, link to their data sets or generate more than 200 rows at a time.";
+$L["anonymous_user_message"] = "Message to display to anonymous users when trying to save.";
+$L["anonymous_user_default_message"] = "Please email someone@yoursite.com to get a user account.";

@@ -32,6 +32,7 @@ require([
 			$("#dbHostname").select();
 			$("form").bind("submit", submit);
 			$("input[name=userAccountSetup]").on("click", _toggleAccountSection);
+			$("#allowAnonymousAccess").on("click", _toggleAnonymousAccess);
 			$("#pluginInstallationResults").on("click", ".gdError", _displayPluginInstallationError);
 			$("#gdRefreshPassword").on("click", _regeneratePassword);
 
@@ -51,17 +52,29 @@ require([
 	function _toggleAccountSection(e) {
 		var value = $("input[name=userAccountSetup]:checked").val();
 		switch (value) {
-			case "anonymous":
+			case "anonymousAdmin":
 				$("#gdInstallAccountDetails").hide("fade");
+				$("#gdInstallAnonymousUserSettings").hide("fade");
 				break;
 			case "single":
 				$("#gdInstallAccountDetails").show("fade");
+				$("#gdInstallAnonymousUserSettings").hide("fade");
 				$("#gdInstallAccountDetailsMessage").html(_L.enter_user_account_details);
 				break;
 			case "multiple":
 				$("#gdInstallAccountDetails").show("fade");
-				$("#gdInstallAccountDetailsMessage").html(_L.enter_admin_user_account_details);
+				$("#gdInstallAnonymousUserSettings").show("fade");
+				$("#gdInstallAccountDetailsMessage").html(_L.admin_account);
 				break;
+		}
+	}
+
+	function _toggleAnonymousAccess(e) {
+		console.log(e, e.target);
+		if (e.target.checked) {
+			$("#anonymousUserPermissionDeniedMsg").removeClass("gdDisabled").removeAttr("disabled");
+		} else {
+			$("#anonymousUserPermissionDeniedMsg").addClass("gdDisabled").attr("disabled", "disabled");
 		}
 	}
 

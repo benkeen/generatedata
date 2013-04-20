@@ -257,7 +257,7 @@ class AjaxRequest {
 				if (!Core::checkIsLoggedIn()) {
 					$this->response["success"] = false;
 					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
-				} else if (Core::$user->isAnonymous()) {
+				} else if (Core::$user->isAnonymousAdmin()) {
 					$this->response["success"] = false;	
 					$this->response["errorCode"] = ErrorCodes::INVALID_REQUEST;
 				} else {
@@ -319,7 +319,7 @@ class AjaxRequest {
 				Core::init();
 				if (!Core::checkIsLoggedIn()) {
 					$this->response["success"] = true;
-				} else if (!Core::$user->isAnonymous()) {
+				} else if (!Core::$user->isAnonymousAdmin()) {
 					Core::$user->logout();
 					$this->response["success"] = true;
 				}

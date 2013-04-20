@@ -84,12 +84,6 @@ ul {
   width: 376px;
   border-bottom: 1px solid #efefef;
   clear: left; }
-.gdFields .gdRadioGroup input {
-  width: 20px;
-  float: left; }
-.gdFields .gdRadioGroup label {
-  width: inherit;
-  float: left; }
 .gdFields .gdDisabledRow label, .gdFields .gdDisabledRow input {
   color: #cccccc; }
 .gdFields label {
@@ -103,6 +97,30 @@ ul {
   margin-top: 2px; }
 .gdFields div {
   margin-top: 2px; }
+.gdFields .gdCol {
+  float: left;
+  width: 350px; }
+  .gdFields .gdCol h4 {
+    margin-top: 0px; }
+  .gdFields .gdCol .rightBox {
+    float: right; }
+    .gdFields .gdCol .rightBox input {
+      width: auto;
+      float: none; }
+    .gdFields .gdCol .rightBox label {
+      width: auto;
+      float: none; }
+  .gdFields .gdCol:first-child {
+    margin-right: 20px; }
+  .gdFields .gdCol .gdField {
+    width: 329px; }
+  .gdFields .gdCol input {
+    width: 160px; }
+  .gdFields .gdCol textarea {
+    width: 100%;
+    height: 80px;
+    padding: 3px;
+    color: #555555; }
 
 header {
   background-image: url(../images/siteHeader.jpg);
@@ -1098,8 +1116,6 @@ body.gdErrorPage #gdSeriousError {
     background-image: url(../images/stop.png); }
 .gdInstallPage .gdInstallSuccess .gdIcon {
   background-image: url(../images/info.png); }
-.gdInstallPage #gdInstallAccountDetailsMessage {
-  font-style: italic; }
 
 .gdLoginPage h1 {
   float: none; }

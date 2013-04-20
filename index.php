@@ -35,6 +35,12 @@ $pageParams["settings"] = Settings::getSettings();
 $pageParams["cssIncludes"] = $cssIncludes;
 $pageParams["codeMirrorIncludes"] = ExportTypePluginHelper::getExportTypeCodeMirrorModes($exportTypes);
 $pageParams["defaultExportType"] = Core::getDefaultExportType();
-//$pageParams["accountType"] = Core::$user->getAccountType();
+
+if (Core::checkIsLoggedIn()) {	
+	$pageParams["isLoggedIn"] = true;
+	$pageParams["accountType"] = Core::$user->getAccountType();
+} else {
+	$pageParams["isLoggedIn"] = false;
+}
 
 Templates::displayPage("resources/templates/index.tpl", $pageParams);
