@@ -6,7 +6,7 @@ Core::init();
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();
 
-if (!Core::checkIsLoggedIn()) {
+if (!Core::checkIsLoggedIn() && !Core::checkDemoModeAllowAnonymousUse()) {
 	header("location: login.php#t1");
 	exit;
 }
@@ -35,6 +35,6 @@ $pageParams["settings"] = Settings::getSettings();
 $pageParams["cssIncludes"] = $cssIncludes;
 $pageParams["codeMirrorIncludes"] = ExportTypePluginHelper::getExportTypeCodeMirrorModes($exportTypes);
 $pageParams["defaultExportType"] = Core::getDefaultExportType();
-$pageParams["accountType"] = Core::$user->getAccountType();
+//$pageParams["accountType"] = Core::$user->getAccountType();
 
 Templates::displayPage("resources/templates/index.tpl", $pageParams);

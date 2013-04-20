@@ -13,6 +13,7 @@ class Core {
 
 	// overridable settings that the user may define in settings.php
 	private static $demoMode = false;
+	private static $allowDemoModeAnonymousUse = true;
 	private static $dbHostname;
 	private static $dbName;
 	private static $dbUsername;
@@ -29,7 +30,7 @@ class Core {
 	public static $useJSCache = true;
 	
 	// non-overidable settings
-	private static $version = "3.0.0 beta";
+	private static $version = "3.0.0 beta #2";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
@@ -155,6 +156,13 @@ class Core {
 	 */
 	public function checkDemoMode() {
 		return (self::$demoMode) ? "true" : "false";
+	}
+
+	/**
+	 * @access public
+	 */
+	public function checkDemoModeAllowAnonymousUse() {
+		return self::$allowDemoModeAnonymousUse;
 	}
 
 	/**

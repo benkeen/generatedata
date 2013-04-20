@@ -6,7 +6,8 @@ Core::init();
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();
 
-if (Core::checkIsLoggedIn()) {
+$isLoggedIn = Core::checkIsLoggedIn();
+if ($isLoggedIn || (!$isLoggedIn && Core::checkDemoModeAllowAnonymousUse())) {
 	header("location: ./");
 	exit;
 }
