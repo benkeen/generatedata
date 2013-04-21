@@ -279,3 +279,4 @@ $L["anonymous_user_default_message"] = "Please login or email someone@yoursite.c
 $L["login_url_c"] = "Login URL:";
 $L["email_c"] = "Email:";
 $L["password_c"] = "Password:";
+$L["no_account_found"] = "Sorry, that account wasn't found.";

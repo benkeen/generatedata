@@ -158,7 +158,6 @@
 	</p>
 </div>
 
-
 <div id="gdDeleteAccountDialog" class="hidden">
 	<div class="gdIconWarning"></div>
 	<div>
@@ -183,17 +182,25 @@
 </div>
 
 <div id="gdLoginDialog" class="hidden">
-	<div class="gdIconInfo"></div>
-	<div>
-		<table>
-		<tr>
-			<th width="120">{$L.email}</th>
-			<td><input type="text" id="gdLogin_email" style="width: 200px" /></td>
-		</tr>
-		<tr>
-			<th>{$L.password}</th>
-			<td><input type="password" id="gdLogin_password" /></td>
-		</tr>
-		</table>
+	<div class="gdMessage gdErrors" id="gdLoginError">
+		<a class="gdMessageClose" href="#">X</a>
+		<div></div>
+	</div>
+	<div style="margin-top: 8px">
+		<div class="gdIconInfo"></div>
+		<div>
+			<form>
+				<table>
+				<tr>
+					<th width="120">{$L.email}</th>
+					<td><input type="text" name="gdLogin_email" id="gdLogin_email" style="width: 200px" /></td>
+				</tr>
+				<tr>
+					<th>{$L.password}</th>
+					<td><input type="password" name="gdLogin_password" id="gdLogin_password" /></td>
+				</tr>
+				</table>
+			</form>
+		</div>
 	</div>
 </div>

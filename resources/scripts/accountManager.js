@@ -321,4 +321,8 @@ define([
 	manager.registerCoreModule(MODULE_ID, {
 		run: _run
 	});
+
+	return {
+		
+	}
 });

@@ -134,6 +134,7 @@ define([
 		// main dialog
 		$("#gdLogout").on("click", function() { return _logout(); });
 		$("#gdUserAccount").on("click", _onClickUserAccountLink);
+		$("#gdLogin").on("click", _onClickLoginLink);
 		$("#gdLoadLink").on("click", _onClickLoadDataSetIcon);
 		$("#gdAccountDataSets").on("click", "a", _onClickLoadDataSet);
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
@@ -208,11 +209,12 @@ define([
 
 	var _onClickUserAccountLink = function(e) {
 		e.preventDefault();
-		if (_isLoggedIn) {
-			_openMainDialog({ tab: 1 });
-		} else {
-			_openLoginDialog();
-		}
+		_openMainDialog({ tab: 1 });
+	};
+
+	var _onClickLoginLink = function(e) {
+		e.preventDefault();
+		_openLoginDialog();
 	};
 
 	var _loadDataSet = function(configuration) {
@@ -1384,7 +1386,11 @@ define([
 
 	// account-related
 
-	var _getAccount = function() {
+	var _getAccount = function(params) {
+		var settings = $.extend({
+			onComplete: function() { }
+		}, params);
+
 		utils.startProcessing();
 		$.ajax({
 			url: "ajax.php",
@@ -1393,12 +1399,21 @@ define([
 			data: {
 				action: "getAccount"
 			},
-			success: _onRetrievingAccountInfo,
+			success: function(data, textStatus, jqXHR) {
+				var params = {
+					data: data,
+					textStatus: textStatus,
+					jqXHR: jqXHR,
+					settings: settings
+				};
+				_onRetrievingAccountInfo(params);
+			},
 			error: _onError
 		});
 	};
 
-	var _onRetrievingAccountInfo = function(response) {
+	var _onRetrievingAccountInfo = function(params) {
+		var response = params.data;
 		utils.stopProcessing();
 
 		// enable the save, load and link icons
@@ -1414,6 +1429,8 @@ define([
 
 		_updateAccountInfoTab();
 		_displayDataSets();
+
+		params.settings.onComplete();
 	};
 
 
@@ -1775,8 +1792,7 @@ define([
 			modal: true,
 			buttons: [{
 				text: L.login,
-				click: function() {
-				}
+				click: _login
 			}]
 		});
 	};
@@ -1786,6 +1802,75 @@ define([
 			_showDemoOnlyDialog();
 			e.preventDefault();
 		}
+	};
+
+
+	var _login = function() {
+		var email    = $.trim($("#gdLogin_email").val());
+		var password = $.trim($("#gdLogin_password").val());
+
+		// validate
+		utils.clearValidationErrors($("#gdLoginDialog"));
+		if (email === "") {
+			utils.addValidationErrors({ els: [$("#gdLogin_email")], error: L.validation_no_email });
+		}
+		if (password === "") {
+			utils.addValidationErrors({ els: [$("#gdLogin_password")], error: L.validation_no_password });
+		}
+
+		var errors = utils.getValidationErrors();
+		if (errors.length) {
+			utils.displayValidationErrors("#gdLoginError");
+			return false;
+		}
+
+		utils.startProcessing();
+
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				action: "login",
+				email: email,
+				password: password
+			},
+			success: function(response) {
+				if (response.success) {
+					_getAccount({
+						onComplete: _onLoginComplete
+					});
+				} else {
+					utils.clearValidationErrors($("#gdLoginDialog"));
+					utils.addValidationErrors({ els: [], error: response.content });
+					utils.displayValidationErrors("#gdLoginError");
+					utils.stopProcessing();
+				}
+			}
+		});
+	};
+
+	// called after the
+	var _onLoginComplete = function() {
+		if (_accountInfo.accountType === "admin") {
+			$("#gdMainTab2,#gdMainTab3").show();
+			require(["accountManager"], function() {
+				//am.run(())
+			});
+		}
+		$("#gdMainDialogTabs ul").show();
+
+		_isLoggedIn = true;
+		$("#gdNumRowsToGenerate").removeAttr("readonly");
+		$("#gdDataSetStatusLine,#gdProcessingIcon").show();
+
+		// now show the links in the header
+		$("#gdUserAccount,#gdLogout").show();
+		$("#gdLogin").hide();
+
+		utils.stopProcessing();
+
+		$("#gdLoginDialog").dialog("close");
 	};
 
 	var _logout = function() {
@@ -1798,6 +1883,8 @@ define([
 			},
 			success: function(response) {
 				if (response.success) {
+					// always redirect to login.php. If the system is set up to allow anonymous 
+					// logins for multi-users it'll automatically redirect
 					window.location = "login.php";
 				}
 			},

@@ -25,13 +25,17 @@
 <body data-lang="{$currLang}" data-logged-in="{$isLoggedIn}">
 	<header>
 		<nav>
-			{if $isLoggedIn && $settings.userAccountSetup != "anonymousAdmin"}
-				<a href="#" id="gdUserAccount">{$L.your_account}</a> |
-				<a href="#" id="gdLogout">{$L.logout}</a> |
-			{/if}
-			{if !$isLoggedIn && $settings.userAccountSetup != "anonymousAdmin"}
-				<a href="#" id="gdUserAccount">{$L.login}</a> |
-			{/if}
+			<ul>
+				<li id="gdUserAccount"{if !$isLoggedIn || $settings.userAccountSetup == "anonymousAdmin"} style="display:none"{/if}>
+					<a href="#">{$L.your_account}</a> |
+				</li>
+				<li id="gdLogin"{if $isLoggedIn || $settings.userAccountSetup == "anonymousAdmin"} style="display:none"{/if}>
+					<a href="#">{$L.login}</a> |
+				</li>
+				<li id="gdLogout"{if !$isLoggedIn || $settings.userAccountSetup == "anonymousAdmin"} style="display:none"{/if}>
+					<a href="#">{$L.logout}</a> |
+				</li>
+			</ul>
 			{language_dropdown nameId="gdSelectLanguage"}
 		</nav>
 	</header>
@@ -40,12 +44,8 @@
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdMainTab1" class="gdSelected">{$L.generate}</li>
-			{if $settings.userAccountSetup == "multiple" && $accountType == "admin"}
-			<li id="gdMainTab2">{$L.accounts}</li>
-			{/if}
-			{if $settings.userAccountSetup == "anonymousAdmin" || $accountType == "admin"}
-			<li id="gdMainTab3">{$L.settings}</li>
-			{/if}
+			<li id="gdMainTab2" {if $settings.userAccountSetup != "multiple" || $accountType != "admin"}style="display:none"{/if}>{$L.accounts}</li>
+			<li id="gdMainTab3" {if $settings.userAccountSetup != "anonymousAdmin" && $accountType != "admin"}style="display:none"{/if}>{$L.settings}</li>
 			<li id="gdMainTab4">{$L.about}</li>
 		</ul>
 	</nav>
@@ -54,9 +54,7 @@
 		<div id="gdContent">
 			<ul class="gdMainTabContent">
 				<li id="gdMainTab1Content">{include file="generate.tab1.tpl"}</li>
-				{if $settings.userAccountSetup == "multiple" && $accountType == "admin"}
 				<li id="gdMainTab2Content" style="display:none">{include file="generate.tab2.tpl"}</li>
-				{/if}
 				<li id="gdMainTab3Content" style="display:none">{include file="generate.tab3.tpl"}</li>
 				<li id="gdMainTab4Content" style="display:none">{include file="generate.tab4.tpl"}</li>
 			</ul>

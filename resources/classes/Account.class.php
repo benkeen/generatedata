@@ -82,7 +82,7 @@ class Account {
 		$prefix = Core::getDbTablePrefix();
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
-			SELECT * 
+			SELECT *
 			FROM {$prefix}user_accounts
 			WHERE email = '$email'
 			LIMIT 1

@@ -10,6 +10,15 @@ header {
 	display: block;
 
 	nav {
+		ul {
+			margin: 0px;
+			padding: 0px;
+			display: inline;
+			list-style: none;
+			li {
+				display: inline;
+			}
+		}
 		position: absolute;
 		right: 0px;
 		top: 32px;

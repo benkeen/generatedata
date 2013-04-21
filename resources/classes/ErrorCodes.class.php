@@ -1,5 +1,6 @@
 <?php
 
+// NOT USED YET 
 
 /**
  * A storage class for all error codes. This provides a little more meaning than just embedding

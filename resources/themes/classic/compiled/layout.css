@@ -12,6 +12,13 @@ header {
     position: absolute;
     right: 0px;
     top: 32px; }
+    header nav ul {
+      margin: 0px;
+      padding: 0px;
+      display: inline;
+      list-style: none; }
+      header nav ul li {
+        display: inline; }
     header nav a:link, header nav a:visited {
       text-decoration: none; }
     header nav a:hover {
