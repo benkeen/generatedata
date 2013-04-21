@@ -29,6 +29,9 @@
 				<a href="#" id="gdUserAccount">{$L.your_account}</a> |
 				<a href="#" id="gdLogout">{$L.logout}</a> |
 			{/if}
+			{if !$isLoggedIn && $settings.userAccountSetup != "anonymousAdmin"}
+				<a href="#" id="gdUserAccount">{$L.login}</a> |
+			{/if}
 			{language_dropdown nameId="gdSelectLanguage"}
 		</nav>
 	</header>

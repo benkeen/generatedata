@@ -181,3 +181,19 @@
 		</table>
 	</div>
 </div>
+
+<div id="gdLoginDialog" class="hidden">
+	<div class="gdIconInfo"></div>
+	<div>
+		<table>
+		<tr>
+			<th width="120">{$L.email}</th>
+			<td><input type="text" id="gdLogin_email" style="width: 200px" /></td>
+		</tr>
+		<tr>
+			<th>{$L.password}</th>
+			<td><input type="password" id="gdLogin_password" /></td>
+		</tr>
+		</table>
+	</div>
+</div>

@@ -133,7 +133,7 @@ define([
 
 		// main dialog
 		$("#gdLogout").on("click", function() { return _logout(); });
-		$("#gdUserAccount").on("click", function() { return _openMainDialog({ tab: 1 }); });
+		$("#gdUserAccount").on("click", _onClickUserAccountLink);
 		$("#gdLoadLink").on("click", _onClickLoadDataSetIcon);
 		$("#gdAccountDataSets").on("click", "a", _onClickLoadDataSet);
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
@@ -203,6 +203,15 @@ define([
 			_openMainDialog({ tab: 2 });
 		} else {
 			_showPermissionDeniedDialog();
+		}
+	};
+
+	var _onClickUserAccountLink = function(e) {
+		e.preventDefault();
+		if (_isLoggedIn) {
+			_openMainDialog({ tab: 1 });
+		} else {
+			_openLoginDialog();
 		}
 	};
 
@@ -1755,6 +1764,19 @@ define([
 			buttons: [{
 				text: L.close,
 				click: function() { $(this).dialog("close"); }
+			}]
+		});
+	};
+
+	var _openLoginDialog = function() {
+		$("#gdLoginDialog").dialog({
+			title: L.please_login,
+			width: 500,
+			modal: true,
+			buttons: [{
+				text: L.login,
+				click: function() {
+				}
 			}]
 		});
 	};
