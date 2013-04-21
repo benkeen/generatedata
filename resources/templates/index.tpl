@@ -22,7 +22,7 @@
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
-<body data-lang="{$currLang}">
+<body data-lang="{$currLang}" data-logged-in="{$isLoggedIn}">
 	<header>
 		<nav>
 			{if $isLoggedIn && $settings.userAccountSetup != "anonymousAdmin"}
@@ -66,15 +66,12 @@
 	require([
 		"manager",
 		"generator",
-		{if $settings.userAccountSetup == "multiple"}"accountManager",{/if}
+		{if $isLoggedIn && $settings.userAccountSetup == "multiple"}"accountManager",{/if}
+		{$exportTypeJSModules},
+		{$dataTypeJSModules},
 		"pageinit"
 	], function(manager) { 
-		require([
-			{$exportTypeJSModules},
-			{$dataTypeJSModules}
-		], function() { 
-			manager.start();
-		});
+		manager.start();
 	});
 	</script>
 

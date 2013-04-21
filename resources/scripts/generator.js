@@ -48,6 +48,7 @@ define([
 	var _currDataTypeHelp = null;
 
 	// accounts
+	var _isLoggedIn = null;
 	var _isLoaded = false;
 	var _accountInfo = null;
 	var _dataSets = [];
@@ -59,10 +60,15 @@ define([
 	 * page.
 	 */
 	var _run = function() {
-		utils.startProcessing();
-
 		// retrieve the data sets for the current user
-		_getAccount();
+		if ($("body").data("loggedIn")) {
+			utils.startProcessing();
+			_isLoggedIn = true;
+			_getAccount();
+		} else {
+			_isLoggedIn = false;
+			$("#gdDataSetStatusLine,#gdProcessingIcon").hide();
+		}
 
 		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
