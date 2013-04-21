@@ -35,6 +35,7 @@ $pageParams["settings"] = Settings::getSettings();
 $pageParams["cssIncludes"] = $cssIncludes;
 $pageParams["codeMirrorIncludes"] = ExportTypePluginHelper::getExportTypeCodeMirrorModes($exportTypes);
 $pageParams["defaultExportType"] = Core::getDefaultExportType();
+$pageParams["defaultNumRows"] = Core::getDefaultNumRows();
 
 if (Core::checkIsLoggedIn()) {	
 	$pageParams["isLoggedIn"] = true;

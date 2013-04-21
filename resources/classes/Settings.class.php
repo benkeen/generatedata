@@ -176,6 +176,12 @@ class Settings {
 					echo Settings::getSetting("theme");
 				}
 				break;
+
+			case "anonymousUserPermissionDeniedMsg":
+				if (Core::checkIsInstalled()) {
+					echo addslashes(Settings::getSetting("anonymousUserPermissionDeniedMsg"));
+				}
+				break;
 		}
 	}
 }

@@ -26,6 +26,10 @@ define([], function() {
 			LIMIT_EXPORT_TYPE_EVENTS: "<?php Settings::safeDisplaySetting("consoleEventsExportTypePlugins") ?>"
 		},
 
+		SETTINGS: {
+			ANON_USER_PERMISSION_DENIED_MSG: "<?php Settings::safeDisplaySetting("anonymousUserPermissionDeniedMsg"); ?>"
+		},
+
 		/**
 		 * List of component types.
 		 */

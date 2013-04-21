@@ -12,8 +12,7 @@
 class Core {
 
 	// overridable settings that the user may define in settings.php
-	private static $demoMode = false;
-	private static $allowMultiUserAnonymousUse = true;
+	private static $demoMode = false;	
 	private static $dbHostname;
 	private static $dbName;
 	private static $dbUsername;
@@ -162,7 +161,11 @@ class Core {
 	 * @access public
 	 */
 	public function checkAllowMultiUserAnonymousUse() {
-		return self::$allowMultiUserAnonymousUse;
+		$allowAnonymousAccessSetting = Settings::getSetting("allowAnonymousAccess");
+		if (isset($allowAnonymousAccessSetting) || $allowAnonymousAccessSetting == "yes") {
+			return true;
+		}
+		return false;
 	}
 
 	/**

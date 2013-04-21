@@ -67,6 +67,7 @@ define([
 			_getAccount();
 		} else {
 			_isLoggedIn = false;
+			$("#gdMainDialogTabs ul").hide();
 			$("#gdDataSetStatusLine,#gdProcessingIcon").hide();
 		}
 
@@ -133,7 +134,7 @@ define([
 		// main dialog
 		$("#gdLogout").on("click", function() { return _logout(); });
 		$("#gdUserAccount").on("click", function() { return _openMainDialog({ tab: 1 }); });
-		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
+		$("#gdLoadLink").on("click", _onClickLoadDataSetIcon);
 		$("#gdAccountDataSets").on("click", "a", _onClickLoadDataSet);
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
 		$("#gdAccountDataSets").on("click", _onClickToggleDeleteRow);
@@ -196,6 +197,14 @@ define([
 		_loadDataSet(dataSet);
 	};
 
+	var _onClickLoadDataSetIcon = function(e) {
+		e.preventDefault();
+		if (_isLoggedIn) {
+			_openMainDialog({ tab: 2 });
+		} else {
+			_showPermissionDeniedDialog();
+		}
+	};
 
 	var _loadDataSet = function(configuration) {
 		utils.startProcessing();
@@ -289,7 +298,9 @@ define([
 	 * based on whether it's a totally new data set, or if the user had loaded one already.
 	 */
 	var _onClickSaveButton = function() {
-		if (C.DEMO_MODE) {
+		if (!_isLoggedIn) {
+			_showPermissionDeniedDialog();
+		} else if (C.DEMO_MODE) {
 			_showDemoOnlyDialog();
 		} else {
 			if (_currConfigurationID === null) {
@@ -1724,6 +1735,19 @@ define([
 	var _showDemoOnlyDialog = function() {
 		var content = '<p>This is a demo only. Please download the script to save your Data Sets.<br />' +
 			'<a href="https://github.com/benkeen/generatedata" target="_blank">https://github.com/benkeen/generatedata</a></p>';
+		$('<div>' + content + '</div>').dialog({
+			title: "Sorry!",
+			width: 500,
+			modal: true,
+			buttons: [{
+				text: L.close,
+				click: function() { $(this).dialog("close"); }
+			}]
+		});
+	};
+
+	var _showPermissionDeniedDialog = function() {
+		var content = C.SETTINGS.ANON_USER_PERMISSION_DENIED_MSG;
 		$('<div>' + content + '</div>').dialog({
 			title: "Sorry!",
 			width: 500,
