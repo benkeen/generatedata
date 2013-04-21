@@ -46,6 +46,7 @@ END;
 		if ($response["success"] == 1) {
 			return array(true, "");
 		} else {
+			print_r($response);
 			return array(false, "There was a problem creating the Core tables. Please report this problem.");
 		}
 	}
@@ -141,9 +142,10 @@ END;
 				('installedDataTypes', ''),
 				('installedExportTypes', ''),
 				('installedCountries', ''),
+				('allowAnonymousAccess', ''),
+				('anonymousUserPermissionDeniedMsg', ''),
 				('theme', '$defaultTheme')
 		";
-
 		$queries[] = "
 			CREATE TABLE {$prefix}sessions (
 				session_id varchar(100) NOT NULL default '',

@@ -13,7 +13,7 @@ class Core {
 
 	// overridable settings that the user may define in settings.php
 	private static $demoMode = false;
-	private static $allowDemoModeAnonymousUse = true;
+	private static $allowMultiUserAnonymousUse = true;
 	private static $dbHostname;
 	private static $dbName;
 	private static $dbUsername;
@@ -77,7 +77,7 @@ class Core {
 		// the order is significant in all of this
 		if ($runtimeContext != "installation" || $runtimeContext != "installation_db_ready") {
 			self::initDatabase();
-			if ($runtimeContext == "ui" || $runtimeContext == "generation") {
+			if ($runtimeContext == "installation_db_ready" || $runtimeContext == "ui" || $runtimeContext == "generation") {
 				self::initSessions();
 			}
 
@@ -161,8 +161,8 @@ class Core {
 	/**
 	 * @access public
 	 */
-	public function checkDemoModeAllowAnonymousUse() {
-		return self::$allowDemoModeAnonymousUse;
+	public function checkAllowMultiUserAnonymousUse() {
+		return self::$allowMultiUserAnonymousUse;
 	}
 
 	/**
@@ -342,7 +342,6 @@ class Core {
 		self::$geoData = new GeoData();
 	}
 
-
 	/**
 	 * Initializes the Database object and stores it in Core::$db.
 	 * @access private
@@ -382,9 +381,9 @@ class Core {
 	 * if self::allowDemoModeAnonymousUse is enabled and the user isn't logged in, this won't 
 	 * initialize the user - however, they can still access the script (just not save anything). You 
 	 * can always detect for this by checking self::$isLoggedIn
-	 * @access private
+	 * @access public
 	 */
-	private function initUser($bypass = false) {
+	public function initUser($bypass = false) {
 		if ($bypass || self::checkIsInstalled()) {
 			$setup = Settings::getSetting("userAccountSetup");
 			if ($setup == "anonymousAdmin") {

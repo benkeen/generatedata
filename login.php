@@ -7,7 +7,7 @@ Core::init();
 Utils::maybeShowInstallationPage();
 
 $isLoggedIn = Core::checkIsLoggedIn();
-if ($isLoggedIn || (!$isLoggedIn && Core::checkDemoModeAllowAnonymousUse())) {
+if ($isLoggedIn || (!$isLoggedIn && Core::checkAllowMultiUserAnonymousUse())) {
 	header("location: ./");
 	exit;
 }

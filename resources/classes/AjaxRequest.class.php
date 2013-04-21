@@ -77,6 +77,8 @@ class AjaxRequest {
 				Settings::setSetting("userAccountSetup", $post["userAccountSetup"]);
 				Settings::setSetting("installationStepComplete_Core", "yes");
 				Settings::setSetting("defaultLanguage", $post["defaultLanguage"]);
+				Settings::setSetting("allowAnonymousAccess", $post["allowAnonymousAccess"]);
+				Settings::setSetting("anonymousUserPermissionDeniedMsg", $post["anonymousUserPermissionDeniedMsg"]);
 
 				$this->response["success"] = 1;
 				$this->response["content"] = "";
@@ -106,6 +108,7 @@ class AjaxRequest {
 					} catch (Exception $e) {
 						$this->response["success"] = false;
 						$this->response["content"] = "Unknown error.";
+
 					}
 				}
 				break;

@@ -396,13 +396,13 @@ class Account {
 				first_name, last_name, email, password)
 			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password')
 		");
-
+		
 		if ($autoEmail) {
-			$content = $L["account_created_msg"] + "\n";
+			$content = $L["account_created_msg"] . "\n\n";
 			if (isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) {
-				$content .= "Login URL: {$_SERVER["HTTP_REFERER"]}\n";
+				$content .= "{$L["login_url_c"]} {$_SERVER["HTTP_REFERER"]}\n";
 			}
-			$content .= "Email: $email\nPassword: {$accountInfo["password"]}\n";
+			$content .= "{$L["email_c"]} $email\n{$L["password_c"]} {$accountInfo["password"]}\n";
 
 			$response = Emails::sendEmail(array(
 				"recipient" => $email,
@@ -411,12 +411,12 @@ class Account {
 			));
 		}
 
-		// if ($result["success"]) {
-		// 	$accountID = mysql_insert_id();;
-		// 	Core::initSessions();
-		// 	$_SESSION["account_id"] = $accountID;
-		// 	Core::initUser(true);
-		// }
+		if ($result["success"]) {
+			$accountID = mysql_insert_id();		
+			Core::initSessions();
+			$_SESSION["account_id"] = $accountID;
+			Core::initUser(true);
+		}
 	}
 
 

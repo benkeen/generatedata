@@ -6,7 +6,7 @@ Core::init();
 // if need be, redirect to the install instructions page
 Utils::maybeShowInstallationPage();
 
-if (!Core::checkIsLoggedIn() && !Core::checkDemoModeAllowAnonymousUse()) {
+if (!Core::checkIsLoggedIn() && !Core::checkAllowMultiUserAnonymousUse()) {
 	header("location: login.php#t1");
 	exit;
 }

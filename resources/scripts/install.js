@@ -70,7 +70,6 @@ require([
 	}
 
 	function _toggleAnonymousAccess(e) {
-		console.log(e, e.target);
 		if (e.target.checked) {
 			$("#anonymousUserPermissionDeniedMsg").removeClass("gdDisabled").removeAttr("disabled");
 		} else {
@@ -208,6 +207,8 @@ require([
 				var lastName = "";
 				var email = "";
 				var password = "";
+				var allowAnonymousAccess = "";
+				var anonymousUserPermissionDeniedMsg = "";
 
 				if (userAccountSetup == "single" || userAccountSetup == "multiple") {
 					firstName = $.trim($("#firstName").val());
@@ -225,6 +226,11 @@ require([
 					password = $.trim($("#password").val());
 					if (password === "") {
 						errors.push({ fieldId: "password", error: _L.validation_no_password });
+					}
+
+					if (userAccountSetup == "multiple") {
+						allowAnonymousAccess = $("#allowAnonymousAccess").attr("checked") ? "yes" : "no";
+						anonymousUserPermissionDeniedMsg = $("#anonymousUserPermissionDeniedMsg").val();
 					}
 				}
 
@@ -248,6 +254,8 @@ require([
 						lastName: lastName,
 						email: email,
 						password: password,
+						allowAnonymousAccess: allowAnonymousAccess,
+						anonymousUserPermissionDeniedMsg: anonymousUserPermissionDeniedMsg,
 
 						// weird, because the field was on the first page
 						defaultLanguage: _defaultLanguage
