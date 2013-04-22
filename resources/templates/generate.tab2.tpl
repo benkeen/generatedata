@@ -1,4 +1,4 @@
-<h3>{$L.user_accounts}</h3>
+<h3>{$L.user_accounts} <span id="gdNumUserAccounts"></span></h3>
 
 <p>
 	{$L.user_account_section_intro}
@@ -11,17 +11,18 @@
 		</div>
 	</div>
 	<div id="gdAccountListNonEmpty">
-		<table cellpadding="0" cellspacing="0" class="highlightTableRows">
+		<table cellpadding="0" cellspacing="0" class="tablesorter tablesorter-default">
 		<thead>
 			<tr>
-				<td>{$L.first_name}</td>
-				<td>{$L.last_name}</td>
-				<td>{$L.email}</td>
-				<td align="center">{$L.num_records_generated}</td>
-				<td>{$L.last_logged_in}</td>
-				<td>{$L.date_created}</td>
-				<td align="center" width="70">{$L.edit|upper}</td>
-				<td align="center" width="70">{$L.delete|upper}</td>
+				<th width="40">ID</th>
+				<th>{$L.first_name}</th>
+				<th>{$L.last_name}</th>
+				<th>{$L.email}</th>
+				<th align="center">{$L.num_records_generated}</th>
+				<th>{$L.last_logged_in}</th>
+				<th>{$L.date_created}</th>
+				<th data-sorter="false" width="18"></th>
+				<th data-sorter="false" width="18"></th>
 			</tr>
 		</thead>
 		<tbody></tbody>

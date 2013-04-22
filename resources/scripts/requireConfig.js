@@ -11,6 +11,12 @@ require.config({
 		"jquery-json":    "libs/jquery.json-2.2.min",
 		"jquery-ui":      "libs/jquery-ui.min",
 		"moment":         "libs/moment.min",
-		"lang":           "lang.php?"
+		"lang":           "lang.php?",
+		"tablesorter":    "libs/jquery.tablesorter.widgets.min"
+	},
+	shim: {
+		"tablesorter": {
+			deps: ['libs/jquery.tablesorter.min']
+		}
 	}
 });

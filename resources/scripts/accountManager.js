@@ -5,7 +5,8 @@ define([
 	"utils",
 	"constants",
 	"lang",
-	"moment"
+	"moment",
+	"tablesorter"
 ], function(manager, utils, C, L, moment) {
 
 	"use strict";
@@ -24,6 +25,7 @@ define([
 	var _accountList;
 	var _manageAccountModalID = "gdManageAccountDialog";
 	var _deleteAccountModalID = "gdDeleteAccountDialog";
+	var _userTableCreated = false;
 
 
 	var _run = function() {
@@ -244,7 +246,6 @@ define([
 			success: function(response) {
 				if (response.success) {
 					_accountList = response.content;
-					console.log(_accountList);
 					_updateAccountsTable();
 				}
 				if (opts.onComplete !== null) {
@@ -264,19 +265,21 @@ define([
 
 
 	var _updateAccountsTable = function() {
+
 		var html = '';
 		for (var i=0; i<_accountList.length; i++) {
-			var lastLoggedIn = (_accountList[i].last_logged_in !== '') ? moment.unix(_accountList[i].last_logged_in).format("h:mm A, MMM Do YYYY") : '&#8212;';
-			var dateCreated  = moment.unix(_accountList[i].date_created).format("h:mm A, MMM Do YYYY");
+			var lastLoggedIn = (_accountList[i].last_logged_in !== '') ? moment.unix(_accountList[i].last_logged_in).format("MMM D, YYYY h:mm A") : '&#8212;';
+			var dateCreated  = moment.unix(_accountList[i].date_created).format("MMM D, YYYY");
 			html += '<tr data-account-id="' + _accountList[i].account_id + '">' +
+					'<td>' + _accountList[i].account_id + '</td>' +
 					'<td>' + _accountList[i].first_name + '</td>' +
 					'<td>' + _accountList[i].last_name + '</td>' +
 					'<td><a href="mailto:' + _accountList[i].email + '">' + _accountList[i].email + '</a></td>' +
 					'<td align="center">' + _accountList[i].num_rows_generated + '</td>' +
 					'<td>' + lastLoggedIn  + '</td>' +
 					'<td>' + dateCreated + '</td>' +
-					'<td align="center"><a href="#" class="gdEditAccount">' + L.edit.toUpperCase() + '</a></td>' +
-					'<td align="center"><a href="#" class="gdDeleteAccount">' + L["delete"].toUpperCase() + '</a></td>' +
+					'<td class="gdEditAccount"><a href="#"></a></td>' +
+					'<td class="gdDeleteAccount"><a href="#"></a></td>' +
 				'</tr>';
 		}
 
@@ -289,6 +292,18 @@ define([
 		} else {
 			$("#gdAccountListEmpty").addClass("hidden");
 			$("#gdAccountListNonEmpty").removeClass("hidden");
+		}
+
+		$("#gdNumUserAccounts").html("<b>(" + _accountList.length + ")</b>");
+
+		if (!_userTableCreated) {
+			$(".tablesorter").tablesorter({
+				widgets: ["zebra", "columns"],
+				theme:   "default"
+			});
+			_userTableCreated = true;
+		} else {
+			$(".tablesorter").trigger("update");
 		}
 	};
 

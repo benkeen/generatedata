@@ -1270,34 +1270,22 @@ body .gdMainDialog .ui-dialog-title span {
   font-size: 16pt;
   width: 100%; }
 
-#gdAccountListNonEmpty td a {
-  display: block; }
-  #gdAccountListNonEmpty td a.gdEditAccount {
-    color: #189C1C; }
-    #gdAccountListNonEmpty td a.gdEditAccount:hover {
-      background-color: #7fbf4d;
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
-      background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
-      background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
-      background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
-      background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
-      background-image: linear-gradient(top, #7fbf4d, #63a62f);
-      border-radius: 2px;
-      color: white;
-      text-decoration: none; }
-  #gdAccountListNonEmpty td a.gdDeleteAccount {
-    color: #9c1818; }
-    #gdAccountListNonEmpty td a.gdDeleteAccount:hover {
-      background-color: #bf4d4d;
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bf4d4d), color-stop(100%, #a62f2f));
-      background-image: -webkit-linear-gradient(top, #bf4d4d, #a62f2f);
-      background-image: -moz-linear-gradient(top, #bf4d4d, #a62f2f);
-      background-image: -ms-linear-gradient(top, #bf4d4d, #a62f2f);
-      background-image: -o-linear-gradient(top, #bf4d4d, #a62f2f);
-      background-image: linear-gradient(top, #bf4d4d, #a62f2f);
-      border-radius: 2px;
-      color: white;
-      text-decoration: none; }
+#gdAccountListNonEmpty td.gdEditAccount {
+  background-image: url(../images/edit.png);
+  background-repeat: no-repeat;
+  background-position: center center; }
+  #gdAccountListNonEmpty td.gdEditAccount a {
+    display: block;
+    width: 18px;
+    height: 18px; }
+#gdAccountListNonEmpty td.gdDeleteAccount {
+  background-image: url(../images/delete.png);
+  background-repeat: no-repeat;
+  background-position: 2px center; }
+  #gdAccountListNonEmpty td.gdDeleteAccount a {
+    display: block;
+    width: 18px;
+    height: 18px; }
 
 .modalSpinner {
   float: left;

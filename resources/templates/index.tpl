@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
+	<link rel="stylesheet" type="text/css" href="resources/css/tablesorter.theme.css" />
 	<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
 	<script src="resources/libs/codemirror/lib/codemirror.min.js"></script>
 	<script src="resources/scripts/libs/jquery.js"></script>
