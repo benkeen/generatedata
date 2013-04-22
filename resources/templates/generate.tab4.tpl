@@ -1,3 +1,5 @@
+<a href="https://github.com/benkeen/generatedata" target="_blank"><img src="resources/themes/{$theme}/images/githubRibbon.png" id="githubRibbon" border="0" /></a>
+
 <h3>{$L.about_title}</h3>
 <p>
 	{$L.about_para1}

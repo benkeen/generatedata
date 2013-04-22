@@ -181,3 +181,9 @@ input.medium {
 
 #gdManageAccount_password {
   width: 100px; }
+
+#githubRibbon {
+  float: right;
+  top: 0px;
+  right: 0px;
+  margin: -20px -25px 0px 0px; }
