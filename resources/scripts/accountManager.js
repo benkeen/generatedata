@@ -102,6 +102,7 @@ define([
 							onComplete: function() {
 								$("#" + _manageAccountModalID).dialog("close");
 								utils.pauseModalSpinner(_manageAccountModalID);
+								_updateAccountsTable();
 							}
 						});
 					} else {
@@ -136,6 +137,7 @@ define([
 						onComplete: function() {
 							$("#" + _deleteAccountModalID).dialog("close");
 							utils.pauseModalSpinner(_deleteAccountModalID);
+							_updateAccountsTable();
 						}
 					});
 				} else {
@@ -167,13 +169,13 @@ define([
 		}
 
 		$("#" + _manageAccountModalID).dialog({
-			title: "Update Account",
+			title: L.update_account,
 			modal: true,
 			width: 600,
 			open: function() { utils.insertModalSpinner({ modalID: _manageAccountModalID }); },
 			buttons: [
 				{
-					text: "Update",
+					text: L.update,
 					click: _onClickCreateAccount
 				},
 				{
@@ -242,7 +244,8 @@ define([
 			success: function(response) {
 				if (response.success) {
 					_accountList = response.content;
-					_updateAccountsTable(_accountList);
+					console.log(_accountList);
+					_updateAccountsTable();
 				}
 				if (opts.onComplete !== null) {
 					opts.onComplete();
@@ -260,16 +263,16 @@ define([
 	};
 
 
-	var _updateAccountsTable = function(data) {
+	var _updateAccountsTable = function() {
 		var html = '';
-		for (var i=0; i<data.length; i++) {
-			var lastLoggedIn = (data[i].last_logged_in !== '') ? moment.unix(data[i].last_logged_in).format("h:mm A, MMM Do YYYY") : '&#8212;';
-			var dateCreated  = moment.unix(data[i].date_created).format("h:mm A, MMM Do YYYY");
-			html += '<tr data-account-id="' + data[i].account_id + '">' +
-					'<td>' + data[i].first_name + '</td>' +
-					'<td>' + data[i].last_name + '</td>' +
-					'<td><a href="mailto:' + data[i].email + '">' + data[i].email + '</a></td>' +
-					'<td align="center">' + data[i].num_rows_generated + '</td>' +
+		for (var i=0; i<_accountList.length; i++) {
+			var lastLoggedIn = (_accountList[i].last_logged_in !== '') ? moment.unix(_accountList[i].last_logged_in).format("h:mm A, MMM Do YYYY") : '&#8212;';
+			var dateCreated  = moment.unix(_accountList[i].date_created).format("h:mm A, MMM Do YYYY");
+			html += '<tr data-account-id="' + _accountList[i].account_id + '">' +
+					'<td>' + _accountList[i].first_name + '</td>' +
+					'<td>' + _accountList[i].last_name + '</td>' +
+					'<td><a href="mailto:' + _accountList[i].email + '">' + _accountList[i].email + '</a></td>' +
+					'<td align="center">' + _accountList[i].num_rows_generated + '</td>' +
 					'<td>' + lastLoggedIn  + '</td>' +
 					'<td>' + dateCreated + '</td>' +
 					'<td align="center"><a href="#" class="gdEditAccount">' + L.edit.toUpperCase() + '</a></td>' +
@@ -280,7 +283,7 @@ define([
 		$("#gdAccountList tbody").html(html);
 		$("#gdAccountList").removeClass("hidden");
 
-		if (data.length === 0) {
+		if (_accountList.length === 0) {
 			$("#gdAccountListEmpty").removeClass("hidden");
 			$("#gdAccountListNonEmpty").addClass("hidden");
 		} else {
@@ -323,6 +326,6 @@ define([
 	});
 
 	return {
-		
-	}
+		run: _run
+	};
 });

@@ -71,7 +71,7 @@ class AjaxRequest {
 					"email"       => $post["email"],
 					"password"    => $post["password"]
 				);
-				Account::createAccount($adminAccount);
+				Account::createAccount($adminAccount, true);
 
 				// make note of the fact that we've passed this step of the installation process
 				Settings::setSetting("userAccountSetup", $post["userAccountSetup"]);

@@ -1537,7 +1537,6 @@ define([
 				}
 			});
 		}
-
 	};
 
 
@@ -1601,7 +1600,6 @@ define([
 		console.log(response);
 	};
 
-
 	var _getConfiguration = function(configurationID) {
 		var dataSet = {};
 		for (var i=0; i<_dataSets.length; i++) {
@@ -1625,11 +1623,9 @@ define([
 
 	var _cancelGeneration = function(e) {
 		e.preventDefault();
-
 		if ($(e.target).hasClass("gdDisabledLink")) {
 			return;
 		}
-
 		if (!_isGenerating) {
 			return;
 		}
@@ -1850,12 +1846,11 @@ define([
 		});
 	};
 
-	// called after the
 	var _onLoginComplete = function() {
 		if (_accountInfo.accountType === "admin") {
 			$("#gdMainTab2,#gdMainTab3").show();
-			require(["accountManager"], function() {
-				//am.run(())
+			require(["accountManager"], function(am) {
+				am.run();
 			});
 		}
 		$("#gdMainDialogTabs ul").show();

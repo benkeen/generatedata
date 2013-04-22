@@ -377,7 +377,7 @@ class Account {
 	 *
 	 * @param array $accountInfo
 	 */
-	public static function createAccount($accountInfo) {
+	public static function createAccount($accountInfo, $isCurrentUser = false) {
 		$accountInfo = Utils::sanitize($accountInfo);
 		$encryptionSalt = Core::getEncryptionSalt();
 
@@ -411,8 +411,8 @@ class Account {
 			));
 		}
 
-		if ($result["success"]) {
-			$accountID = mysql_insert_id();		
+		if ($isCurrentUser && $result["success"]) {
+			$accountID = mysql_insert_id();
 			Core::initSessions();
 			$_SESSION["account_id"] = $accountID;
 			Core::initUser(true);
