@@ -1,0 +1,850 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___clone" title="__clone :: Implement PHP __clone to create a deep clone, not just a shallow copy."><span class="description">Implement PHP __clone to create a deep clone, not just a shallow copy.</span><pre>__clone()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Create a new PHPExcel with one Worksheet"><span class="description">Create a new PHPExcel with one Worksheet</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_addCellStyleXf" title="addCellStyleXf :: Add a cellStyleXf to the workbook"><span class="description">Add a cellStyleXf to the workbook</span><pre>addCellStyleXf()</pre></a></li>
+<li class="method public "><a href="#method_addCellXf" title="addCellXf :: Add a cellXf to the workbook"><span class="description">Add a cellXf to the workbook</span><pre>addCellXf()</pre></a></li>
+<li class="method public "><a href="#method_addExternalSheet" title="addExternalSheet :: Add external sheet"><span class="description">Add external sheet</span><pre>addExternalSheet()</pre></a></li>
+<li class="method public "><a href="#method_addNamedRange" title="addNamedRange :: Add named range"><span class="description">Add named range</span><pre>addNamedRange()</pre></a></li>
+<li class="method public "><a href="#method_addSheet" title="addSheet :: Add sheet"><span class="description">Add sheet</span><pre>addSheet()</pre></a></li>
+<li class="method public "><a href="#method_copy" title="copy :: Copy workbook (!= clone!)"><span class="description">Copy workbook (!= clone!)</span><pre>copy()</pre></a></li>
+<li class="method public "><a href="#method_createSheet" title="createSheet :: Create sheet and add it to this workbook"><span class="description">Create sheet and add it to this workbook</span><pre>createSheet()</pre></a></li>
+<li class="method public "><a href="#method_disconnectWorksheets" title="disconnectWorksheets :: Disconnect all worksheets from this PHPExcel workbook object,
+   typically so that the PHPExcel object can be unset"><span class="description">Disconnect all worksheets from this PHPExcel workbook object,
+   typically so that the PHPExcel object can be unset</span><pre>disconnectWorksheets()</pre></a></li>
+<li class="method public "><a href="#method_garbageCollect" title="garbageCollect :: Eliminate all unneeded cellXf and afterwards update the xfIndex for all cells
+and columns in the workbook"><span class="description">Eliminate all unneeded cellXf and afterwards update the xfIndex for all cells
+and columns in the workbook</span><pre>garbageCollect()</pre></a></li>
+<li class="method public "><a href="#method_getActiveSheet" title="getActiveSheet :: Get active sheet"><span class="description">Get active sheet</span><pre>getActiveSheet()</pre></a></li>
+<li class="method public "><a href="#method_getActiveSheetIndex" title="getActiveSheetIndex :: Get active sheet index"><span class="description">Get active sheet index</span><pre>getActiveSheetIndex()</pre></a></li>
+<li class="method public "><a href="#method_getAllSheets" title="getAllSheets :: Get all sheets"><span class="description">Get all sheets</span><pre>getAllSheets()</pre></a></li>
+<li class="method public "><a href="#method_getCellStyleXfByHashCode" title="getCellStyleXfByHashCode :: Get cellStyleXf by hash code"><span class="description">Get cellStyleXf by hash code</span><pre>getCellStyleXfByHashCode()</pre></a></li>
+<li class="method public "><a href="#method_getCellStyleXfByIndex" title="getCellStyleXfByIndex :: Get cellStyleXf by index"><span class="description">Get cellStyleXf by index</span><pre>getCellStyleXfByIndex()</pre></a></li>
+<li class="method public "><a href="#method_getCellStyleXfCollection" title="getCellStyleXfCollection :: Get the workbook collection of cellStyleXfs"><span class="description">Get the workbook collection of cellStyleXfs</span><pre>getCellStyleXfCollection()</pre></a></li>
+<li class="method public "><a href="#method_getCellXfByHashCode" title="getCellXfByHashCode :: Get cellXf by hash code"><span class="description">Get cellXf by hash code</span><pre>getCellXfByHashCode()</pre></a></li>
+<li class="method public "><a href="#method_getCellXfByIndex" title="getCellXfByIndex :: Get cellXf by index"><span class="description">Get cellXf by index</span><pre>getCellXfByIndex()</pre></a></li>
+<li class="method public "><a href="#method_getCellXfCollection" title="getCellXfCollection :: Get the workbook collection of cellXfs"><span class="description">Get the workbook collection of cellXfs</span><pre>getCellXfCollection()</pre></a></li>
+<li class="method public "><a href="#method_getCellXfSupervisor" title="getCellXfSupervisor :: Get the cellXf supervisor"><span class="description">Get the cellXf supervisor</span><pre>getCellXfSupervisor()</pre></a></li>
+<li class="method public "><a href="#method_getDefaultStyle" title="getDefaultStyle :: Get default style"><span class="description">Get default style</span><pre>getDefaultStyle()</pre></a></li>
+<li class="method public "><a href="#method_getIndex" title="getIndex :: Get index for sheet"><span class="description">Get index for sheet</span><pre>getIndex()</pre></a></li>
+<li class="method public "><a href="#method_getNamedRange" title="getNamedRange :: Get named range"><span class="description">Get named range</span><pre>getNamedRange()</pre></a></li>
+<li class="method public "><a href="#method_getNamedRanges" title="getNamedRanges :: Get named ranges"><span class="description">Get named ranges</span><pre>getNamedRanges()</pre></a></li>
+<li class="method public "><a href="#method_getProperties" title="getProperties :: Get properties"><span class="description">Get properties</span><pre>getProperties()</pre></a></li>
+<li class="method public "><a href="#method_getSecurity" title="getSecurity :: Get security"><span class="description">Get security</span><pre>getSecurity()</pre></a></li>
+<li class="method public "><a href="#method_getSheet" title="getSheet :: Get sheet by index"><span class="description">Get sheet by index</span><pre>getSheet()</pre></a></li>
+<li class="method public "><a href="#method_getSheetByName" title="getSheetByName :: Get sheet by name"><span class="description">Get sheet by name</span><pre>getSheetByName()</pre></a></li>
+<li class="method public "><a href="#method_getSheetCount" title="getSheetCount :: Get sheet count"><span class="description">Get sheet count</span><pre>getSheetCount()</pre></a></li>
+<li class="method public "><a href="#method_getSheetNames" title="getSheetNames :: Get sheet names"><span class="description">Get sheet names</span><pre>getSheetNames()</pre></a></li>
+<li class="method public "><a href="#method_getWorksheetIterator" title="getWorksheetIterator :: Get worksheet iterator"><span class="description">Get worksheet iterator</span><pre>getWorksheetIterator()</pre></a></li>
+<li class="method public "><a href="#method_removeCellStyleXfByIndex" title="removeCellStyleXfByIndex :: Remove cellStyleXf by index"><span class="description">Remove cellStyleXf by index</span><pre>removeCellStyleXfByIndex()</pre></a></li>
+<li class="method public "><a href="#method_removeCellXfByIndex" title="removeCellXfByIndex :: Remove cellXf by index."><span class="description">Remove cellXf by index.</span><pre>removeCellXfByIndex()</pre></a></li>
+<li class="method public "><a href="#method_removeNamedRange" title="removeNamedRange :: Remove named range"><span class="description">Remove named range</span><pre>removeNamedRange()</pre></a></li>
+<li class="method public "><a href="#method_removeSheetByIndex" title="removeSheetByIndex :: Remove sheet by index"><span class="description">Remove sheet by index</span><pre>removeSheetByIndex()</pre></a></li>
+<li class="method public "><a href="#method_setActiveSheetIndex" title="setActiveSheetIndex :: Set active sheet index"><span class="description">Set active sheet index</span><pre>setActiveSheetIndex()</pre></a></li>
+<li class="method public "><a href="#method_setActiveSheetIndexByName" title="setActiveSheetIndexByName :: Set active sheet index by name"><span class="description">Set active sheet index by name</span><pre>setActiveSheetIndexByName()</pre></a></li>
+<li class="method public "><a href="#method_setIndexByName" title="setIndexByName :: Set index for sheet by sheet name."><span class="description">Set index for sheet by sheet name.</span><pre>setIndexByName()</pre></a></li>
+<li class="method public "><a href="#method_setProperties" title="setProperties :: Set properties"><span class="description">Set properties</span><pre>setProperties()</pre></a></li>
+<li class="method public "><a href="#method_setSecurity" title="setSecurity :: Set security"><span class="description">Set security</span><pre>setSecurity()</pre></a></li>
+<li class="method public "><a href="#method_sheetNameExists" title="sheetNameExists :: Chech if a sheet with a specified name already exists"><span class="description">Chech if a sheet with a specified name already exists</span><pre>sheetNameExists()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__activeSheetIndex" title="$_activeSheetIndex :: Active sheet index"><span class="description"></span><pre>$_activeSheetIndex</pre></a></li>
+<li class="property private "><a href="#property__cellStyleXfCollection" title="$_cellStyleXfCollection :: CellStyleXf collection"><span class="description"></span><pre>$_cellStyleXfCollection</pre></a></li>
+<li class="property private "><a href="#property__cellXfCollection" title="$_cellXfCollection :: CellXf collection"><span class="description"></span><pre>$_cellXfCollection</pre></a></li>
+<li class="property private "><a href="#property__cellXfSupervisor" title="$_cellXfSupervisor :: CellXf supervisor"><span class="description"></span><pre>$_cellXfSupervisor</pre></a></li>
+<li class="property private "><a href="#property__namedRanges" title="$_namedRanges :: Named ranges"><span class="description"></span><pre>$_namedRanges</pre></a></li>
+<li class="property private "><a href="#property__properties" title="$_properties :: Document properties"><span class="description"></span><pre>$_properties</pre></a></li>
+<li class="property private "><a href="#property__security" title="$_security :: Document security"><span class="description"></span><pre>$_security</pre></a></li>
+<li class="property private "><a href="#property__workSheetCollection" title="$_workSheetCollection :: Collection of Worksheet objects"><span class="description"></span><pre>$_workSheetCollection</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel.html">PHPExcel</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.html">PHPExcel</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___clone"></a><div class="element clickable method public method___clone" data-toggle="collapse" data-target=".method___clone .collapse">
+<h2>Implement PHP __clone to create a deep clone, not just a shallow copy.</h2>
+<pre>__clone() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Create a new PHPExcel with one Worksheet</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_addCellStyleXf"></a><div class="element clickable method public method_addCellStyleXf" data-toggle="collapse" data-target=".method_addCellStyleXf .collapse">
+<h2>Add a cellStyleXf to the workbook</h2>
+<pre>addCellStyleXf(\PHPExcel_Style $pStyle) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pStyle</h4>
+<code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code>
+</div>
+</div></div>
+</div>
+<a id="method_addCellXf"></a><div class="element clickable method public method_addCellXf" data-toggle="collapse" data-target=".method_addCellXf .collapse">
+<h2>Add a cellXf to the workbook</h2>
+<pre>addCellXf(\PHPExcel_Style $style) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$style</h4>
+<code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code>
+</div>
+</div></div>
+</div>
+<a id="method_addExternalSheet"></a><div class="element clickable method public method_addExternalSheet" data-toggle="collapse" data-target=".method_addExternalSheet .collapse">
+<h2>Add external sheet</h2>
+<pre>addExternalSheet(\PHPExcel_Worksheet $pSheet, int | null $iSheetIndex) : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pSheet</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code><p>External sheet to add</p></div>
+<div class="subelement argument">
+<h4>$iSheetIndex</h4>
+<code>int</code><code>null</code><p>Index where sheet should go (0,1,..., or null for last)</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_addNamedRange"></a><div class="element clickable method public method_addNamedRange" data-toggle="collapse" data-target=".method_addNamedRange .collapse">
+<h2>Add named range</h2>
+<pre>addNamedRange(\PHPExcel_NamedRange $namedRange) : <a href="../classes/PHPExcel.html">\PHPExcel</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$namedRange</h4>
+<code><a href="../classes/PHPExcel_NamedRange.html">\PHPExcel_NamedRange</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel.html">\PHPExcel</a></code></div>
+</div></div>
+</div>
+<a id="method_addSheet"></a><div class="element clickable method public method_addSheet" data-toggle="collapse" data-target=".method_addSheet .collapse">
+<h2>Add sheet</h2>
+<pre>addSheet(\PHPExcel_Worksheet $pSheet, int | null $iSheetIndex) : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pSheet</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code>
+</div>
+<div class="subelement argument">
+<h4>$iSheetIndex</h4>
+<code>int</code><code>null</code><p>Index where sheet should go (0,1,..., or null for last)</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_copy"></a><div class="element clickable method public method_copy" data-toggle="collapse" data-target=".method_copy .collapse">
+<h2>Copy workbook (!= clone!)</h2>
+<pre>copy() : <a href="../classes/PHPExcel.html">\PHPExcel</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel.html">\PHPExcel</a></code></div>
+</div></div>
+</div>
+<a id="method_createSheet"></a><div class="element clickable method public method_createSheet" data-toggle="collapse" data-target=".method_createSheet .collapse">
+<h2>Create sheet and add it to this workbook</h2>
+<pre>createSheet(int | null $iSheetIndex) : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$iSheetIndex</h4>
+<code>int</code><code>null</code><p>Index where sheet should go (0,1,..., or null for last)</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_disconnectWorksheets"></a><div class="element clickable method public method_disconnectWorksheets" data-toggle="collapse" data-target=".method_disconnectWorksheets .collapse">
+<h2>Disconnect all worksheets from this PHPExcel workbook object,
+   typically so that the PHPExcel object can be unset</h2>
+<pre>disconnectWorksheets() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_garbageCollect"></a><div class="element clickable method public method_garbageCollect" data-toggle="collapse" data-target=".method_garbageCollect .collapse">
+<h2>Eliminate all unneeded cellXf and afterwards update the xfIndex for all cells
+and columns in the workbook</h2>
+<pre>garbageCollect() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getActiveSheet"></a><div class="element clickable method public method_getActiveSheet" data-toggle="collapse" data-target=".method_getActiveSheet .collapse">
+<h2>Get active sheet</h2>
+<pre>getActiveSheet() : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_getActiveSheetIndex"></a><div class="element clickable method public method_getActiveSheetIndex" data-toggle="collapse" data-target=".method_getActiveSheetIndex .collapse">
+<h2>Get active sheet index</h2>
+<pre>getActiveSheetIndex() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>Active sheet index</div>
+</div></div>
+</div>
+<a id="method_getAllSheets"></a><div class="element clickable method public method_getAllSheets" data-toggle="collapse" data-target=".method_getAllSheets .collapse">
+<h2>Get all sheets</h2>
+<pre>getAllSheets() : <a href="plugins.exportTypes.Excel.PHPExcel.Worksheet.html#%5CPHPExcel_Worksheet">\PHPExcel_Worksheet[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="plugins.exportTypes.Excel.PHPExcel.Worksheet.html#%5CPHPExcel_Worksheet">\PHPExcel_Worksheet[]</a></code></div>
+</div></div>
+</div>
+<a id="method_getCellStyleXfByHashCode"></a><div class="element clickable method public method_getCellStyleXfByHashCode" data-toggle="collapse" data-target=".method_getCellStyleXfByHashCode .collapse">
+<h2>Get cellStyleXf by hash code</h2>
+<pre>getCellStyleXfByHashCode(string $pValue) : <a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a> | false</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code><code>false</code>
+</div>
+</div></div>
+</div>
+<a id="method_getCellStyleXfByIndex"></a><div class="element clickable method public method_getCellStyleXfByIndex" data-toggle="collapse" data-target=".method_getCellStyleXfByIndex .collapse">
+<h2>Get cellStyleXf by index</h2>
+<pre>getCellStyleXfByIndex(int $pIndex) : <a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pIndex</h4>
+<code>int</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code></div>
+</div></div>
+</div>
+<a id="method_getCellStyleXfCollection"></a><div class="element clickable method public method_getCellStyleXfCollection" data-toggle="collapse" data-target=".method_getCellStyleXfCollection .collapse">
+<h2>Get the workbook collection of cellStyleXfs</h2>
+<pre>getCellStyleXfCollection() : <a href="plugins.exportTypes.Excel.PHPExcel.Style.html#%5CPHPExcel_Style">\PHPExcel_Style[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="plugins.exportTypes.Excel.PHPExcel.Style.html#%5CPHPExcel_Style">\PHPExcel_Style[]</a></code></div>
+</div></div>
+</div>
+<a id="method_getCellXfByHashCode"></a><div class="element clickable method public method_getCellXfByHashCode" data-toggle="collapse" data-target=".method_getCellXfByHashCode .collapse">
+<h2>Get cellXf by hash code</h2>
+<pre>getCellXfByHashCode(string $pValue) : <a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a> | false</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code><code>false</code>
+</div>
+</div></div>
+</div>
+<a id="method_getCellXfByIndex"></a><div class="element clickable method public method_getCellXfByIndex" data-toggle="collapse" data-target=".method_getCellXfByIndex .collapse">
+<h2>Get cellXf by index</h2>
+<pre>getCellXfByIndex(int $pIndex) : <a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pIndex</h4>
+<code>int</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code></div>
+</div></div>
+</div>
+<a id="method_getCellXfCollection"></a><div class="element clickable method public method_getCellXfCollection" data-toggle="collapse" data-target=".method_getCellXfCollection .collapse">
+<h2>Get the workbook collection of cellXfs</h2>
+<pre>getCellXfCollection() : <a href="plugins.exportTypes.Excel.PHPExcel.Style.html#%5CPHPExcel_Style">\PHPExcel_Style[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="plugins.exportTypes.Excel.PHPExcel.Style.html#%5CPHPExcel_Style">\PHPExcel_Style[]</a></code></div>
+</div></div>
+</div>
+<a id="method_getCellXfSupervisor"></a><div class="element clickable method public method_getCellXfSupervisor" data-toggle="collapse" data-target=".method_getCellXfSupervisor .collapse">
+<h2>Get the cellXf supervisor</h2>
+<pre>getCellXfSupervisor() : <a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code></div>
+</div></div>
+</div>
+<a id="method_getDefaultStyle"></a><div class="element clickable method public method_getDefaultStyle" data-toggle="collapse" data-target=".method_getDefaultStyle .collapse">
+<h2>Get default style</h2>
+<pre>getDefaultStyle() : <a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code></div>
+</div></div>
+</div>
+<a id="method_getIndex"></a><div class="element clickable method public method_getIndex" data-toggle="collapse" data-target=".method_getIndex .collapse">
+<h2>Get index for sheet</h2>
+<pre>getIndex(\PHPExcel_Worksheet $pSheet) : \Sheet</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pSheet</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Sheet</code>index</div>
+</div></div>
+</div>
+<a id="method_getNamedRange"></a><div class="element clickable method public method_getNamedRange" data-toggle="collapse" data-target=".method_getNamedRange .collapse">
+<h2>Get named range</h2>
+<pre>getNamedRange(string $namedRange, \PHPExcel_Worksheet $pSheet) : <a href="../classes/PHPExcel_NamedRange.html">\PHPExcel_NamedRange</a> | null</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$namedRange</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$pSheet</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code><code>null</code><p>Scope. Use null for global scope</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/PHPExcel_NamedRange.html">\PHPExcel_NamedRange</a></code><code>null</code>
+</div>
+</div></div>
+</div>
+<a id="method_getNamedRanges"></a><div class="element clickable method public method_getNamedRanges" data-toggle="collapse" data-target=".method_getNamedRanges .collapse">
+<h2>Get named ranges</h2>
+<pre>getNamedRanges() : <a href="plugins.exportTypes.Excel.PHPExcel.NamedRange.html#%5CPHPExcel_NamedRange">\PHPExcel_NamedRange[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="plugins.exportTypes.Excel.PHPExcel.NamedRange.html#%5CPHPExcel_NamedRange">\PHPExcel_NamedRange[]</a></code></div>
+</div></div>
+</div>
+<a id="method_getProperties"></a><div class="element clickable method public method_getProperties" data-toggle="collapse" data-target=".method_getProperties .collapse">
+<h2>Get properties</h2>
+<pre>getProperties() : <a href="../classes/PHPExcel_DocumentProperties.html">\PHPExcel_DocumentProperties</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_DocumentProperties.html">\PHPExcel_DocumentProperties</a></code></div>
+</div></div>
+</div>
+<a id="method_getSecurity"></a><div class="element clickable method public method_getSecurity" data-toggle="collapse" data-target=".method_getSecurity .collapse">
+<h2>Get security</h2>
+<pre>getSecurity() : <a href="../classes/PHPExcel_DocumentSecurity.html">\PHPExcel_DocumentSecurity</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_DocumentSecurity.html">\PHPExcel_DocumentSecurity</a></code></div>
+</div></div>
+</div>
+<a id="method_getSheet"></a><div class="element clickable method public method_getSheet" data-toggle="collapse" data-target=".method_getSheet .collapse">
+<h2>Get sheet by index</h2>
+<pre>getSheet(int $pIndex) : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pIndex</h4>
+<code>int</code><p>Sheet index</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_getSheetByName"></a><div class="element clickable method public method_getSheetByName" data-toggle="collapse" data-target=".method_getSheetByName .collapse">
+<h2>Get sheet by name</h2>
+<pre>getSheetByName(string $pName) : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pName</h4>
+<code>string</code><p>Sheet name</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_getSheetCount"></a><div class="element clickable method public method_getSheetCount" data-toggle="collapse" data-target=".method_getSheetCount .collapse">
+<h2>Get sheet count</h2>
+<pre>getSheetCount() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_getSheetNames"></a><div class="element clickable method public method_getSheetNames" data-toggle="collapse" data-target=".method_getSheetNames .collapse">
+<h2>Get sheet names</h2>
+<pre>getSheetNames() : string[]</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string[]</code></div>
+</div></div>
+</div>
+<a id="method_getWorksheetIterator"></a><div class="element clickable method public method_getWorksheetIterator" data-toggle="collapse" data-target=".method_getWorksheetIterator .collapse">
+<h2>Get worksheet iterator</h2>
+<pre>getWorksheetIterator() : <a href="../classes/PHPExcel_WorksheetIterator.html">\PHPExcel_WorksheetIterator</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_WorksheetIterator.html">\PHPExcel_WorksheetIterator</a></code></div>
+</div></div>
+</div>
+<a id="method_removeCellStyleXfByIndex"></a><div class="element clickable method public method_removeCellStyleXfByIndex" data-toggle="collapse" data-target=".method_removeCellStyleXfByIndex .collapse">
+<h2>Remove cellStyleXf by index</h2>
+<pre>removeCellStyleXfByIndex(int $pIndex) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pIndex</h4>
+<code>int</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_removeCellXfByIndex"></a><div class="element clickable method public method_removeCellXfByIndex" data-toggle="collapse" data-target=".method_removeCellXfByIndex .collapse">
+<h2>Remove cellXf by index.</h2>
+<pre>removeCellXfByIndex(int $pIndex) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It is ensured that all cells get their xf index updated.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pIndex</h4>
+<code>int</code><p>Index to cellXf</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_removeNamedRange"></a><div class="element clickable method public method_removeNamedRange" data-toggle="collapse" data-target=".method_removeNamedRange .collapse">
+<h2>Remove named range</h2>
+<pre>removeNamedRange(string $namedRange, \PHPExcel_Worksheet $pSheet) : <a href="../classes/PHPExcel.html">\PHPExcel</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$namedRange</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$pSheet</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code><code>null</code><p>Scope: use null for global scope.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel.html">\PHPExcel</a></code></div>
+</div></div>
+</div>
+<a id="method_removeSheetByIndex"></a><div class="element clickable method public method_removeSheetByIndex" data-toggle="collapse" data-target=".method_removeSheetByIndex .collapse">
+<h2>Remove sheet by index</h2>
+<pre>removeSheetByIndex(int $pIndex) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pIndex</h4>
+<code>int</code><p>Active sheet index</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setActiveSheetIndex"></a><div class="element clickable method public method_setActiveSheetIndex" data-toggle="collapse" data-target=".method_setActiveSheetIndex .collapse">
+<h2>Set active sheet index</h2>
+<pre>setActiveSheetIndex(int $pIndex) : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pIndex</h4>
+<code>int</code><p>Active sheet index</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_setActiveSheetIndexByName"></a><div class="element clickable method public method_setActiveSheetIndexByName" data-toggle="collapse" data-target=".method_setActiveSheetIndexByName .collapse">
+<h2>Set active sheet index by name</h2>
+<pre>setActiveSheetIndexByName(string $pValue) : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>string</code><p>Sheet title</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_setIndexByName"></a><div class="element clickable method public method_setIndexByName" data-toggle="collapse" data-target=".method_setIndexByName .collapse">
+<h2>Set index for sheet by sheet name.</h2>
+<pre>setIndexByName(string $sheetName, int $newIndex) : \New</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$sheetName</h4>
+<code>string</code><p>Sheet name to modify index for</p></div>
+<div class="subelement argument">
+<h4>$newIndex</h4>
+<code>int</code><p>New index for the sheet</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\New</code>sheet index</div>
+</div></div>
+</div>
+<a id="method_setProperties"></a><div class="element clickable method public method_setProperties" data-toggle="collapse" data-target=".method_setProperties .collapse">
+<h2>Set properties</h2>
+<pre>setProperties(\PHPExcel_DocumentProperties $pValue) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code><a href="../classes/PHPExcel_DocumentProperties.html">\PHPExcel_DocumentProperties</a></code>
+</div>
+</div></div>
+</div>
+<a id="method_setSecurity"></a><div class="element clickable method public method_setSecurity" data-toggle="collapse" data-target=".method_setSecurity .collapse">
+<h2>Set security</h2>
+<pre>setSecurity(\PHPExcel_DocumentSecurity $pValue) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code><a href="../classes/PHPExcel_DocumentSecurity.html">\PHPExcel_DocumentSecurity</a></code>
+</div>
+</div></div>
+</div>
+<a id="method_sheetNameExists"></a><div class="element clickable method public method_sheetNameExists" data-toggle="collapse" data-target=".method_sheetNameExists .collapse">
+<h2>Chech if a sheet with a specified name already exists</h2>
+<pre>sheetNameExists(string $pSheetName) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pSheetName</h4>
+<code>string</code><p>Name of the worksheet to check</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__activeSheetIndex"> </a><div class="element clickable property private property__activeSheetIndex" data-toggle="collapse" data-target=".property__activeSheetIndex .collapse">
+<h2></h2>
+<pre>$_activeSheetIndex : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__cellStyleXfCollection"> </a><div class="element clickable property private property__cellStyleXfCollection" data-toggle="collapse" data-target=".property__cellStyleXfCollection .collapse">
+<h2></h2>
+<pre>$_cellStyleXfCollection : <a href="plugins.exportTypes.Excel.PHPExcel.Style.html#%5CPHPExcel_Style">\PHPExcel_Style[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__cellXfCollection"> </a><div class="element clickable property private property__cellXfCollection" data-toggle="collapse" data-target=".property__cellXfCollection .collapse">
+<h2></h2>
+<pre>$_cellXfCollection : <a href="plugins.exportTypes.Excel.PHPExcel.Style.html#%5CPHPExcel_Style">\PHPExcel_Style[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__cellXfSupervisor"> </a><div class="element clickable property private property__cellXfSupervisor" data-toggle="collapse" data-target=".property__cellXfSupervisor .collapse">
+<h2></h2>
+<pre>$_cellXfSupervisor : <a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__namedRanges"> </a><div class="element clickable property private property__namedRanges" data-toggle="collapse" data-target=".property__namedRanges .collapse">
+<h2></h2>
+<pre>$_namedRanges : <a href="plugins.exportTypes.Excel.PHPExcel.NamedRange.html#%5CPHPExcel_NamedRange">\PHPExcel_NamedRange[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__properties"> </a><div class="element clickable property private property__properties" data-toggle="collapse" data-target=".property__properties .collapse">
+<h2></h2>
+<pre>$_properties : <a href="../classes/PHPExcel_DocumentProperties.html">\PHPExcel_DocumentProperties</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__security"> </a><div class="element clickable property private property__security" data-toggle="collapse" data-target=".property__security .collapse">
+<h2></h2>
+<pre>$_security : <a href="../classes/PHPExcel_DocumentSecurity.html">\PHPExcel_DocumentSecurity</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__workSheetCollection"> </a><div class="element clickable property private property__workSheetCollection" data-toggle="collapse" data-target=".property__workSheetCollection .collapse">
+<h2></h2>
+<pre>$_workSheetCollection : <a href="plugins.exportTypes.Excel.PHPExcel.Worksheet.html#%5CPHPExcel_Worksheet">\PHPExcel_Worksheet[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:19-07:00.<br></footer></div>
+</div>
+</body>
+</html>

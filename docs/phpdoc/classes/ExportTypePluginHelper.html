@@ -23,7 +23,38 @@
 <li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
 <li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
 <li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
 <li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -34,13 +65,18 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">654</span></a></li>
+                <span class="label label-info">1565</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul><li>todo 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
                 <span class="label label-info">10</span>
-</li></ul></a></li>
+</li>
+</ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">14</span></a></li>
 </ul>
 </li>
 </ul></div>
@@ -142,12 +178,18 @@ helper methods for interacting with Export Types as a whole. It's used by the Co
 </div>
 <a id="method_getExportTypeJSResources"></a><div class="element clickable method public method_getExportTypeJSResources" data-toggle="collapse" data-target=".method_getExportTypeJSResources .collapse">
 <h2>Used in the main page to generate a list of Export Type JS files.</h2>
-<pre>getExportTypeJSResources($exportTypes) : string</pre>
+<pre>getExportTypeJSResources(array $exportTypes, string $format) : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
+<div class="long_description"><p>DREADFUL function.</p></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$exportTypes</h4></div>
+<div class="subelement argument">
+<h4>$exportTypes</h4>
+<code>array</code><p>exportTypes</p></div>
+<div class="subelement argument">
+<h4>$format</h4>
+<code>string</code><p>format string / array / cached</p>
+</div>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
 </div></div>
@@ -185,7 +227,7 @@ helper methods for interacting with Export Types as a whole. It's used by the Co
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-11-28T22:03:12-08:00.<br></footer></div>
+            generated on 2013-04-22T17:30:09-07:00.<br></footer></div>
 </div>
 </body>
 </html>

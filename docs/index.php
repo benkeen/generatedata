@@ -267,11 +267,11 @@ require_once("templates/header.php");
 					<code>[generatedata root]/libs/jsdoc-toolkit/</code> folder and enter the following command:
 				</p>
 
-				<pre>java -jar jsrun.jar app/run.js -a -D="noGlobal:true" -t=templates/bootstrap -d=../../docs/jsdoc ../../scripts/generator.js ../../scripts/utils.js ../../scripts/manager.js -r=2 ../../plugins/*</pre>
+				<pre>java -jar jsrun.jar app/run.js -a -D="noGlobal:true" -t=templates/bootstrap -d=../../../docs/jsdoc ../../scripts/generator.js ../../scripts/utils.js ../../scripts/manager.js -r=2 ../../../plugins/*</pre>
 
 				<h4>Updating the PHPDoc</h4>
 
-				<pre>php phpdoc.php --template=<b>[generatedata root path]</b>/docs/gdPHPDocTemplate -d <b>[generatedata root path]</b>/classes/ -d <b>[generatedata root path]</b>/plugins/countries/ -d <b>[generatedata root path]</b>/plugins/dataTypes/ -d <b>[generatedata root path]</b>/plugins/exportTypes/ -t <b>[generatedata root path]</b>/docs/phpdoc --sourcecode</pre>
+				<pre>php phpdoc.php --template=<b>[generatedata root path]</b>/docs/gdPHPDocTemplate -d <b>[generatedata root path]</b>/resources/classes/ -d <b>[generatedata root path]</b>/plugins/countries/ -d <b>[generatedata root path]</b>/plugins/dataTypes/ -d <b>[generatedata root path]</b>/plugins/exportTypes/ -t <b>[generatedata root path]</b>/docs/phpdoc --sourcecode</pre>
 			</section>
 
 		</div>

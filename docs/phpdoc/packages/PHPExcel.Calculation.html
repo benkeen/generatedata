@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » PHPExcel\Calculation</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/PHPExcel.Calculation.html" title="Calculation"><i class="icon-folder-open"></i>Calculation</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-function"></i> Functions</li>
+<li class="function  "><a href="#function_acosh" title="acosh :: "><span class="description">acosh()
+        </span><pre>acosh</pre></a></li>
+<li class="function  "><a href="#function_asinh" title="asinh :: "><span class="description">asinh()
+        </span><pre>asinh</pre></a></li>
+<li class="function  "><a href="#function_atanh" title="atanh :: "><span class="description">atanh()
+        </span><pre>atanh</pre></a></li>
+<li class="function  "><a href="#function_mb_str_replace" title="mb_str_replace :: "><span class="description">mb_str_replace()
+        </span><pre>mb_str_replace</pre></a></li>
+<li class="function  "><a href="#function_money_format" title="money_format :: "><span class="description">money_format()
+        </span><pre>money_format</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#PHPExcel_Calculation_Database" title="PHPExcel_Calculation_Database">PHPExcel_Calculation_Database</a></li>
+<li><a href="#PHPExcel_Calculation_DateTime" title="PHPExcel_Calculation_DateTime">PHPExcel_Calculation_DateTime</a></li>
+<li><a href="#PHPExcel_Calculation_Engineering" title="PHPExcel_Calculation_Engineering">PHPExcel_Calculation_Engineering</a></li>
+<li><a href="#PHPExcel_Calculation_Exception" title="PHPExcel_Calculation_Exception">PHPExcel_Calculation_Exception</a></li>
+<li><a href="#PHPExcel_Calculation_ExceptionHandler" title="PHPExcel_Calculation_ExceptionHandler">PHPExcel_Calculation_ExceptionHandler</a></li>
+<li><a href="#PHPExcel_Calculation_Financial" title="PHPExcel_Calculation_Financial">PHPExcel_Calculation_Financial</a></li>
+<li><a href="#PHPExcel_Calculation_FormulaParser" title="PHPExcel_Calculation_FormulaParser">PHPExcel_Calculation_FormulaParser</a></li>
+<li><a href="#PHPExcel_Calculation_FormulaToken" title="PHPExcel_Calculation_FormulaToken">PHPExcel_Calculation_FormulaToken</a></li>
+<li><a href="#PHPExcel_Calculation_Function" title="PHPExcel_Calculation_Function">PHPExcel_Calculation_Function</a></li>
+<li><a href="#PHPExcel_Calculation_Functions" title="PHPExcel_Calculation_Functions">PHPExcel_Calculation_Functions</a></li>
+<li><a href="#PHPExcel_Calculation_Logical" title="PHPExcel_Calculation_Logical">PHPExcel_Calculation_Logical</a></li>
+<li><a href="#PHPExcel_Calculation_LookupRef" title="PHPExcel_Calculation_LookupRef">PHPExcel_Calculation_LookupRef</a></li>
+<li><a href="#PHPExcel_Calculation_MathTrig" title="PHPExcel_Calculation_MathTrig">PHPExcel_Calculation_MathTrig</a></li>
+<li><a href="#PHPExcel_Calculation_Statistical" title="PHPExcel_Calculation_Statistical">PHPExcel_Calculation_Statistical</a></li>
+<li><a href="#PHPExcel_Calculation_TextData" title="PHPExcel_Calculation_TextData">PHPExcel_Calculation_TextData</a></li>
+<li><a href="#PHPExcel_Calculation_Token_Stack" title="PHPExcel">PHPExcel_Calculation_Token_Stack</a></li>
+<li><a href="#PHPExcel_Calculation" title="PHPExcel_Calculation (Singleton)">PHPExcel_Calculation</a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_CELLREF" title="CALCULATION_REGEXP_CELLREF :: "><span class="description">CALCULATION_REGEXP_CELLREF</span><pre>CALCULATION_REGEXP_CELLREF</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_CELLREF" title="CALCULATION_REGEXP_CELLREF :: "><span class="description">CALCULATION_REGEXP_CELLREF</span><pre>CALCULATION_REGEXP_CELLREF</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_NAMEDRANGE" title="CALCULATION_REGEXP_NAMEDRANGE :: "><span class="description">CALCULATION_REGEXP_NAMEDRANGE</span><pre>CALCULATION_REGEXP_NAMEDRANGE</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_NAMEDRANGE" title="CALCULATION_REGEXP_NAMEDRANGE :: "><span class="description">CALCULATION_REGEXP_NAMEDRANGE</span><pre>CALCULATION_REGEXP_NAMEDRANGE</pre></a></li>
+<li class="constant  "><a href="#constant_EPS" title="EPS :: EPS"><span class="description">EPS</span><pre>EPS</pre></a></li>
+<li class="constant  "><a href="#constant_EULER" title="EULER :: EULER"><span class="description">EULER</span><pre>EULER</pre></a></li>
+<li class="constant  "><a href="#constant_FINANCIAL_MAX_ITERATIONS" title="FINANCIAL_MAX_ITERATIONS :: FINANCIAL_MAX_ITERATIONS"><span class="description">FINANCIAL_MAX_ITERATIONS</span><pre>FINANCIAL_MAX_ITERATIONS</pre></a></li>
+<li class="constant  "><a href="#constant_FINANCIAL_PRECISION" title="FINANCIAL_PRECISION :: FINANCIAL_PRECISION"><span class="description">FINANCIAL_PRECISION</span><pre>FINANCIAL_PRECISION</pre></a></li>
+<li class="constant  "><a href="#constant_LOG_GAMMA_X_MAX_VALUE" title="LOG_GAMMA_X_MAX_VALUE :: LOG_GAMMA_X_MAX_VALUE"><span class="description">LOG_GAMMA_X_MAX_VALUE</span><pre>LOG_GAMMA_X_MAX_VALUE</pre></a></li>
+<li class="constant  "><a href="#constant_MAX_ITERATIONS" title="MAX_ITERATIONS :: MAX_ITERATIONS"><span class="description">MAX_ITERATIONS</span><pre>MAX_ITERATIONS</pre></a></li>
+<li class="constant  "><a href="#constant_MAX_VALUE" title="MAX_VALUE :: MAX_VALUE"><span class="description">MAX_VALUE</span><pre>MAX_VALUE</pre></a></li>
+<li class="constant  "><a href="#constant_M_2DIVPI" title="M_2DIVPI :: 2 / PI"><span class="description">2 / PI</span><pre>M_2DIVPI</pre></a></li>
+<li class="constant  "><a href="#constant_PRECISION" title="PRECISION :: PRECISION"><span class="description">PRECISION</span><pre>PRECISION</pre></a></li>
+<li class="constant  "><a href="#constant_SQRT2PI" title="SQRT2PI :: SQRT2PI"><span class="description">SQRT2PI</span><pre>SQRT2PI</pre></a></li>
+<li class="constant  "><a href="#constant_XMININ" title="XMININ :: XMININ"><span class="description">XMININ</span><pre>XMININ</pre></a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Calculation.html">Calculation</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-function"></i> Functions</h3>
+<a id="function_acosh"></a><div class="element clickable function  function_acosh" data-toggle="collapse" data-target=".function_acosh .collapse">
+<h2>acosh()
+        </h2>
+<pre>acosh($x) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$x</h4></div>
+</div></div>
+</div>
+<a id="function_asinh"></a><div class="element clickable function  function_asinh" data-toggle="collapse" data-target=".function_asinh .collapse">
+<h2>asinh()
+        </h2>
+<pre>asinh($x) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$x</h4></div>
+</div></div>
+</div>
+<a id="function_atanh"></a><div class="element clickable function  function_atanh" data-toggle="collapse" data-target=".function_atanh .collapse">
+<h2>atanh()
+        </h2>
+<pre>atanh($x) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$x</h4></div>
+</div></div>
+</div>
+<a id="function_mb_str_replace"></a><div class="element clickable function  function_mb_str_replace" data-toggle="collapse" data-target=".function_mb_str_replace .collapse">
+<h2>mb_str_replace()
+        </h2>
+<pre>mb_str_replace($search, $replace, $subject) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$search</h4></div>
+<div class="subelement argument"><h4>$replace</h4></div>
+<div class="subelement argument"><h4>$subject</h4></div>
+</div></div>
+</div>
+<a id="function_money_format"></a><div class="element clickable function  function_money_format" data-toggle="collapse" data-target=".function_money_format .collapse">
+<h2>money_format()
+        </h2>
+<pre>money_format($format, $number) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$format</h4></div>
+<div class="subelement argument"><h4>$number</h4></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Calculation" class="element ajax clickable class">
+<h1>PHPExcel_Calculation<a href="../classes/PHPExcel_Calculation.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation (Singleton)</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Database" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Database<a href="../classes/PHPExcel_Calculation_Database.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Database</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Database.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_DateTime" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_DateTime<a href="../classes/PHPExcel_Calculation_DateTime.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_DateTime</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_DateTime.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Engineering" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Engineering<a href="../classes/PHPExcel_Calculation_Engineering.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Engineering</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Engineering.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Exception" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Exception<a href="../classes/PHPExcel_Calculation_Exception.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Exception.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_ExceptionHandler" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_ExceptionHandler<a href="../classes/PHPExcel_Calculation_ExceptionHandler.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_ExceptionHandler</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_ExceptionHandler.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Financial" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Financial<a href="../classes/PHPExcel_Calculation_Financial.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Financial</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Financial.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_FormulaParser" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_FormulaParser<a href="../classes/PHPExcel_Calculation_FormulaParser.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_FormulaParser</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_FormulaParser.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_FormulaToken" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_FormulaToken<a href="../classes/PHPExcel_Calculation_FormulaToken.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_FormulaToken</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_FormulaToken.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Function" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Function<a href="../classes/PHPExcel_Calculation_Function.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Function</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Function.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Functions" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Functions<a href="../classes/PHPExcel_Calculation_Functions.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Functions</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Functions.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Logical" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Logical<a href="../classes/PHPExcel_Calculation_Logical.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Logical</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Logical.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_LookupRef" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_LookupRef<a href="../classes/PHPExcel_Calculation_LookupRef.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_LookupRef</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_LookupRef.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_MathTrig" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_MathTrig<a href="../classes/PHPExcel_Calculation_MathTrig.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_MathTrig</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_MathTrig.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Statistical" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Statistical<a href="../classes/PHPExcel_Calculation_Statistical.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Statistical</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Statistical.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_TextData" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_TextData<a href="../classes/PHPExcel_Calculation_TextData.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_TextData</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_TextData.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Token_Stack" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Token_Stack<a href="../classes/PHPExcel_Calculation_Token_Stack.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Token_Stack.html" class="more">« More »</a>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_CALCULATION_REGEXP_CELLREF"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_CELLREF" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_CELLREF .collapse">
+<h2>CALCULATION_REGEXP_CELLREF</h2>
+<pre>CALCULATION_REGEXP_CELLREF </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_CELLREF"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_CELLREF" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_CELLREF .collapse">
+<h2>CALCULATION_REGEXP_CELLREF</h2>
+<pre>CALCULATION_REGEXP_CELLREF </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_NAMEDRANGE"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_NAMEDRANGE" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_NAMEDRANGE .collapse">
+<h2>CALCULATION_REGEXP_NAMEDRANGE</h2>
+<pre>CALCULATION_REGEXP_NAMEDRANGE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_NAMEDRANGE"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_NAMEDRANGE" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_NAMEDRANGE .collapse">
+<h2>CALCULATION_REGEXP_NAMEDRANGE</h2>
+<pre>CALCULATION_REGEXP_NAMEDRANGE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_EPS"> </a><div class="element clickable constant  constant_EPS" data-toggle="collapse" data-target=".constant_EPS .collapse">
+<h2>EPS</h2>
+<pre>EPS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_EULER"> </a><div class="element clickable constant  constant_EULER" data-toggle="collapse" data-target=".constant_EULER .collapse">
+<h2>EULER</h2>
+<pre>EULER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_FINANCIAL_MAX_ITERATIONS"> </a><div class="element clickable constant  constant_FINANCIAL_MAX_ITERATIONS" data-toggle="collapse" data-target=".constant_FINANCIAL_MAX_ITERATIONS .collapse">
+<h2>FINANCIAL_MAX_ITERATIONS</h2>
+<pre>FINANCIAL_MAX_ITERATIONS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_FINANCIAL_PRECISION"> </a><div class="element clickable constant  constant_FINANCIAL_PRECISION" data-toggle="collapse" data-target=".constant_FINANCIAL_PRECISION .collapse">
+<h2>FINANCIAL_PRECISION</h2>
+<pre>FINANCIAL_PRECISION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_LOG_GAMMA_X_MAX_VALUE"> </a><div class="element clickable constant  constant_LOG_GAMMA_X_MAX_VALUE" data-toggle="collapse" data-target=".constant_LOG_GAMMA_X_MAX_VALUE .collapse">
+<h2>LOG_GAMMA_X_MAX_VALUE</h2>
+<pre>LOG_GAMMA_X_MAX_VALUE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_MAX_ITERATIONS"> </a><div class="element clickable constant  constant_MAX_ITERATIONS" data-toggle="collapse" data-target=".constant_MAX_ITERATIONS .collapse">
+<h2>MAX_ITERATIONS</h2>
+<pre>MAX_ITERATIONS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_MAX_VALUE"> </a><div class="element clickable constant  constant_MAX_VALUE" data-toggle="collapse" data-target=".constant_MAX_VALUE .collapse">
+<h2>MAX_VALUE</h2>
+<pre>MAX_VALUE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_M_2DIVPI"> </a><div class="element clickable constant  constant_M_2DIVPI" data-toggle="collapse" data-target=".constant_M_2DIVPI .collapse">
+<h2>2 / PI</h2>
+<pre>M_2DIVPI </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PRECISION"> </a><div class="element clickable constant  constant_PRECISION" data-toggle="collapse" data-target=".constant_PRECISION .collapse">
+<h2>PRECISION</h2>
+<pre>PRECISION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_SQRT2PI"> </a><div class="element clickable constant  constant_SQRT2PI" data-toggle="collapse" data-target=".constant_SQRT2PI .collapse">
+<h2>SQRT2PI</h2>
+<pre>SQRT2PI </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_XMININ"> </a><div class="element clickable constant  constant_XMININ" data-toggle="collapse" data-target=".constant_XMININ .collapse">
+<h2>XMININ</h2>
+<pre>XMININ </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:09-07:00.<br></footer></div>
+</div>
+</body>
+</html>

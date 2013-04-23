@@ -1,0 +1,1343 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Calculation</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___clone" title="__clone :: __clone implementation."><span class="description">__clone implementation.</span><pre>__clone()</pre></a></li>
+<li class="method public "><a href="#method___destruct" title="__destruct :: "><span class="description">__destruct()
+        </span><pre>__destruct()</pre></a></li>
+<li class="method public "><a href="#method__calculateFormulaValue" title="_calculateFormulaValue :: Parse a cell formula and calculate its value"><span class="description">Parse a cell formula and calculate its value</span><pre>_calculateFormulaValue()</pre></a></li>
+<li class="method public "><a href="#method__getMatrixDimensions" title="_getMatrixDimensions :: Read the dimensions of a matrix, and re-index it with straight numeric keys starting from row 0, column 0"><span class="description">Read the dimensions of a matrix, and re-index it with straight numeric keys starting from row 0, column 0</span><pre>_getMatrixDimensions()</pre></a></li>
+<li class="method public "><a href="#method__localeFunc" title="_localeFunc :: "><span class="description">_localeFunc()
+        </span><pre>_localeFunc()</pre></a></li>
+<li class="method public "><a href="#method__translateFormulaToEnglish" title="_translateFormulaToEnglish :: "><span class="description">_translateFormulaToEnglish()
+        </span><pre>_translateFormulaToEnglish()</pre></a></li>
+<li class="method public "><a href="#method__translateFormulaToLocale" title="_translateFormulaToLocale :: "><span class="description">_translateFormulaToLocale()
+        </span><pre>_translateFormulaToLocale()</pre></a></li>
+<li class="method public "><a href="#method__translateSeparator" title="_translateSeparator :: "><span class="description">_translateSeparator()
+        </span><pre>_translateSeparator()</pre></a></li>
+<li class="method public "><a href="#method__unwrapResult" title="_unwrapResult :: Remove quotes used as a wrapper to identify string values"><span class="description">Remove quotes used as a wrapper to identify string values</span><pre>_unwrapResult()</pre></a></li>
+<li class="method public "><a href="#method__wrapResult" title="_wrapResult :: Wrap string values in quotes"><span class="description">Wrap string values in quotes</span><pre>_wrapResult()</pre></a></li>
+<li class="method public "><a href="#method_calculate" title="calculate :: Calculate cell value (using formula from a cell ID)
+Retained for backward compatibility"><span class="description">Calculate cell value (using formula from a cell ID)
+Retained for backward compatibility</span><pre>calculate()</pre></a></li>
+<li class="method public "><a href="#method_calculateCellValue" title="calculateCellValue :: Calculate the value of a cell formula"><span class="description">Calculate the value of a cell formula</span><pre>calculateCellValue()</pre></a></li>
+<li class="method public "><a href="#method_calculateFormula" title="calculateFormula :: Calculate the value of a formula"><span class="description">Calculate the value of a formula</span><pre>calculateFormula()</pre></a></li>
+<li class="method public "><a href="#method_clearCalculationCache" title="clearCalculationCache :: Clear calculation cache"><span class="description">Clear calculation cache</span><pre>clearCalculationCache()</pre></a></li>
+<li class="method public "><a href="#method_disableCalculationCache" title="disableCalculationCache :: Disable calculation cache"><span class="description">Disable calculation cache</span><pre>disableCalculationCache()</pre></a></li>
+<li class="method public "><a href="#method_enableCalculationCache" title="enableCalculationCache :: Enable calculation cache"><span class="description">Enable calculation cache</span><pre>enableCalculationCache()</pre></a></li>
+<li class="method public "><a href="#method_extractCellRange" title="extractCellRange :: Extract range values"><span class="description">Extract range values</span><pre>extractCellRange()</pre></a></li>
+<li class="method public "><a href="#method_extractNamedRange" title="extractNamedRange :: Extract range values"><span class="description">Extract range values</span><pre>extractNamedRange()</pre></a></li>
+<li class="method public "><a href="#method_flushInstance" title="flushInstance :: Flush the calculation cache for any existing instance of this class
+	but only if a PHPExcel_Calculation instance exists"><span class="description">Flush the calculation cache for any existing instance of this class
+	but only if a PHPExcel_Calculation instance exists</span><pre>flushInstance()</pre></a></li>
+<li class="method public "><a href="#method_getArrayReturnType" title="getArrayReturnType :: Return the Array Return Type (Array or Value of first element in the array)"><span class="description">Return the Array Return Type (Array or Value of first element in the array)</span><pre>getArrayReturnType()</pre></a></li>
+<li class="method public "><a href="#method_getCalculationCacheEnabled" title="getCalculationCacheEnabled :: Is calculation caching enabled?"><span class="description">Is calculation caching enabled?</span><pre>getCalculationCacheEnabled()</pre></a></li>
+<li class="method public "><a href="#method_getCalculationCacheExpirationTime" title="getCalculationCacheExpirationTime :: Get calculation cache expiration time"><span class="description">Get calculation cache expiration time</span><pre>getCalculationCacheExpirationTime()</pre></a></li>
+<li class="method public "><a href="#method_getFALSE" title="getFALSE :: Return the locale-specific translation of FALSE"><span class="description">Return the locale-specific translation of FALSE</span><pre>getFALSE()</pre></a></li>
+<li class="method public "><a href="#method_getInstance" title="getInstance :: Get an instance of this class"><span class="description">Get an instance of this class</span><pre>getInstance()</pre></a></li>
+<li class="method public "><a href="#method_getLocale" title="getLocale :: Get the currently defined locale code"><span class="description">Get the currently defined locale code</span><pre>getLocale()</pre></a></li>
+<li class="method public "><a href="#method_getTRUE" title="getTRUE :: Return the locale-specific translation of TRUE"><span class="description">Return the locale-specific translation of TRUE</span><pre>getTRUE()</pre></a></li>
+<li class="method public "><a href="#method_isImplemented" title="isImplemented :: Is a specific function implemented?"><span class="description">Is a specific function implemented?</span><pre>isImplemented()</pre></a></li>
+<li class="method public "><a href="#method_listAllFunctionNames" title="listAllFunctionNames :: Get a list of all Excel function names"><span class="description">Get a list of all Excel function names</span><pre>listAllFunctionNames()</pre></a></li>
+<li class="method public "><a href="#method_listFunctionNames" title="listFunctionNames :: Get a list of implemented Excel function names"><span class="description">Get a list of implemented Excel function names</span><pre>listFunctionNames()</pre></a></li>
+<li class="method public "><a href="#method_listFunctions" title="listFunctions :: Get a list of all implemented functions as an array of function objects"><span class="description">Get a list of all implemented functions as an array of function objects</span><pre>listFunctions()</pre></a></li>
+<li class="method public "><a href="#method_parseFormula" title="parseFormula :: Validate and parse a formula string"><span class="description">Validate and parse a formula string</span><pre>parseFormula()</pre></a></li>
+<li class="method public "><a href="#method_setArrayReturnType" title="setArrayReturnType :: Set the Array Return Type (Array or Value of first element in the array)"><span class="description">Set the Array Return Type (Array or Value of first element in the array)</span><pre>setArrayReturnType()</pre></a></li>
+<li class="method public "><a href="#method_setCalculationCacheEnabled" title="setCalculationCacheEnabled :: Enable/disable calculation cache"><span class="description">Enable/disable calculation cache</span><pre>setCalculationCacheEnabled()</pre></a></li>
+<li class="method public "><a href="#method_setCalculationCacheExpirationTime" title="setCalculationCacheExpirationTime :: Set calculation cache expiration time"><span class="description">Set calculation cache expiration time</span><pre>setCalculationCacheExpirationTime()</pre></a></li>
+<li class="method public "><a href="#method_setLocale" title="setLocale :: Set the locale code"><span class="description">Set the locale code</span><pre>setLocale()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="method protected "><a href="#method__raiseFormulaError" title="_raiseFormulaError :: "><span class="description">_raiseFormulaError()
+        </span><pre>_raiseFormulaError()</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="method private "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
+        </span><pre>__construct()</pre></a></li>
+<li class="method private "><a href="#method__checkMatrixOperands" title="_checkMatrixOperands :: Ensure that paired matrix operands are both matrices and of the same size"><span class="description">Ensure that paired matrix operands are both matrices and of the same size</span><pre>_checkMatrixOperands()</pre></a></li>
+<li class="method private "><a href="#method__convertMatrixReferences" title="_convertMatrixReferences :: "><span class="description">_convertMatrixReferences()
+        </span><pre>_convertMatrixReferences()</pre></a></li>
+<li class="method private "><a href="#method__dataTestReference" title="_dataTestReference :: "><span class="description">_dataTestReference()
+        </span><pre>_dataTestReference()</pre></a></li>
+<li class="method private "><a href="#method__executeBinaryComparisonOperation" title="_executeBinaryComparisonOperation :: "><span class="description">_executeBinaryComparisonOperation()
+        </span><pre>_executeBinaryComparisonOperation()</pre></a></li>
+<li class="method private "><a href="#method__executeNumericBinaryOperation" title="_executeNumericBinaryOperation :: "><span class="description">_executeNumericBinaryOperation()
+        </span><pre>_executeNumericBinaryOperation()</pre></a></li>
+<li class="method private "><a href="#method__mkMatrix" title="_mkMatrix :: "><span class="description">_mkMatrix()
+        </span><pre>_mkMatrix()</pre></a></li>
+<li class="method private "><a href="#method__parseFormula" title="_parseFormula :: "><span class="description">_parseFormula()
+        </span><pre>_parseFormula()</pre></a></li>
+<li class="method private "><a href="#method__processTokenStack" title="_processTokenStack :: "><span class="description">_processTokenStack()
+        </span><pre>_processTokenStack()</pre></a></li>
+<li class="method private "><a href="#method__resizeMatricesExtend" title="_resizeMatricesExtend :: Ensure that paired matrix operands are both matrices of the same size"><span class="description">Ensure that paired matrix operands are both matrices of the same size</span><pre>_resizeMatricesExtend()</pre></a></li>
+<li class="method private "><a href="#method__resizeMatricesShrink" title="_resizeMatricesShrink :: Ensure that paired matrix operands are both matrices of the same size"><span class="description">Ensure that paired matrix operands are both matrices of the same size</span><pre>_resizeMatricesShrink()</pre></a></li>
+<li class="method private "><a href="#method__showTypeDetails" title="_showTypeDetails :: Format type and details of an operand for display in the log (based on operand type)"><span class="description">Format type and details of an operand for display in the log (based on operand type)</span><pre>_showTypeDetails()</pre></a></li>
+<li class="method private "><a href="#method__showValue" title="_showValue :: Format details of an operand for display in the log (based on operand type)"><span class="description">Format details of an operand for display in the log (based on operand type)</span><pre>_showValue()</pre></a></li>
+<li class="method private "><a href="#method__translateFormula" title="_translateFormula :: "><span class="description">_translateFormula()
+        </span><pre>_translateFormula()</pre></a></li>
+<li class="method private "><a href="#method__validateBinaryOperand" title="_validateBinaryOperand :: "><span class="description">_validateBinaryOperand()
+        </span><pre>_validateBinaryOperand()</pre></a></li>
+<li class="method private "><a href="#method__writeDebug" title="_writeDebug :: "><span class="description">_writeDebug()
+        </span><pre>_writeDebug()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property__localeBoolean" title="$_localeBoolean :: "><span class="description"></span><pre>$_localeBoolean</pre></a></li>
+<li class="property public "><a href="#property_cyclicFormulaCount" title="$cyclicFormulaCount :: "><span class="description"></span><pre>$cyclicFormulaCount</pre></a></li>
+<li class="property public "><a href="#property_debugLog" title="$debugLog :: The debug log generated by the calculation engine"><span class="description"></span><pre>$debugLog</pre></a></li>
+<li class="property public "><a href="#property_echoDebugLog" title="$echoDebugLog :: Flag to determine whether a debug log should be echoed by the calculation engine
+	If true, then a debug log will be echoed
+	If false, then a debug log will not be echoed
+A debug log can only be echoed if it is generated"><span class="description"></span><pre>$echoDebugLog</pre></a></li>
+<li class="property public "><a href="#property_formulaError" title="$formulaError :: Error message for any error that was raised/thrown by the calculation engine"><span class="description"></span><pre>$formulaError</pre></a></li>
+<li class="property public "><a href="#property_suppressFormulaErrors" title="$suppressFormulaErrors :: Flag to determine how formula errors should be handled
+	If true, then a user error will be triggered
+	If false, then an exception will be thrown"><span class="description"></span><pre>$suppressFormulaErrors</pre></a></li>
+<li class="property public "><a href="#property_writeDebugLog" title="$writeDebugLog :: Flag to determine whether a debug log should be generated by the calculation engine
+	If true, then a debug log will be generated
+	If false, then a debug log will not be generated"><span class="description"></span><pre>$writeDebugLog</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__ExcelConstants" title="$_ExcelConstants :: "><span class="description"></span><pre>$_ExcelConstants</pre></a></li>
+<li class="property private "><a href="#property__PHPExcelFunctions" title="$_PHPExcelFunctions :: "><span class="description"></span><pre>$_PHPExcelFunctions</pre></a></li>
+<li class="property private "><a href="#property__binaryOperators" title="$_binaryOperators :: List of binary operators (those that expect two operands)"><span class="description"></span><pre>$_binaryOperators</pre></a></li>
+<li class="property private "><a href="#property__calculationCache" title="$_calculationCache :: Calculation cache"><span class="description"></span><pre>$_calculationCache</pre></a></li>
+<li class="property private "><a href="#property__calculationCacheEnabled" title="$_calculationCacheEnabled :: Calculation cache enabled"><span class="description"></span><pre>$_calculationCacheEnabled</pre></a></li>
+<li class="property private "><a href="#property__calculationCacheExpirationTime" title="$_calculationCacheExpirationTime :: Calculation cache expiration time"><span class="description"></span><pre>$_calculationCacheExpirationTime</pre></a></li>
+<li class="property private "><a href="#property__controlFunctions" title="$_controlFunctions :: "><span class="description"></span><pre>$_controlFunctions</pre></a></li>
+<li class="property private "><a href="#property__cyclicFormulaCell" title="$_cyclicFormulaCell :: "><span class="description"></span><pre>$_cyclicFormulaCell</pre></a></li>
+<li class="property private "><a href="#property__cyclicFormulaCount" title="$_cyclicFormulaCount :: "><span class="description"></span><pre>$_cyclicFormulaCount</pre></a></li>
+<li class="property private "><a href="#property__instance" title="$_instance :: Instance of this class"><span class="description"></span><pre>$_instance</pre></a></li>
+<li class="property private "><a href="#property__localeArgumentSeparator" title="$_localeArgumentSeparator :: "><span class="description"></span><pre>$_localeArgumentSeparator</pre></a></li>
+<li class="property private "><a href="#property__localeFunctions" title="$_localeFunctions :: "><span class="description"></span><pre>$_localeFunctions</pre></a></li>
+<li class="property private "><a href="#property__localeLanguage" title="$_localeLanguage :: "><span class="description"></span><pre>$_localeLanguage</pre></a></li>
+<li class="property private "><a href="#property__operators" title="$_operators :: List of operators that can be used within formulae
+The true/false value indicates whether it is a binary operator or a unary operator"><span class="description"></span><pre>$_operators</pre></a></li>
+<li class="property private "><a href="#property__savedPrecision" title="$_savedPrecision :: "><span class="description"></span><pre>$_savedPrecision</pre></a></li>
+<li class="property private "><a href="#property__validLocaleLanguages" title="$_validLocaleLanguages :: "><span class="description"></span><pre>$_validLocaleLanguages</pre></a></li>
+<li class="property private "><a href="#property_debugLogStack" title="$debugLogStack :: An array of the nested cell references accessed by the calculation engine, used for the debug log"><span class="description"></span><pre>$debugLogStack</pre></a></li>
+<li class="property private "><a href="#property_functionReplaceFromExcel" title="$functionReplaceFromExcel :: "><span class="description"></span><pre>$functionReplaceFromExcel</pre></a></li>
+<li class="property private "><a href="#property_functionReplaceFromLocale" title="$functionReplaceFromLocale :: "><span class="description"></span><pre>$functionReplaceFromLocale</pre></a></li>
+<li class="property private "><a href="#property_functionReplaceToExcel" title="$functionReplaceToExcel :: "><span class="description"></span><pre>$functionReplaceToExcel</pre></a></li>
+<li class="property private "><a href="#property_functionReplaceToLocale" title="$functionReplaceToLocale :: "><span class="description"></span><pre>$functionReplaceToLocale</pre></a></li>
+<li class="property private "><a href="#property_returnArrayAsType" title="$returnArrayAsType :: "><span class="description"></span><pre>$returnArrayAsType</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_CELLREF" title="CALCULATION_REGEXP_CELLREF :: "><span class="description">CALCULATION_REGEXP_CELLREF</span><pre>CALCULATION_REGEXP_CELLREF</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_ERROR" title="CALCULATION_REGEXP_ERROR :: "><span class="description">CALCULATION_REGEXP_ERROR</span><pre>CALCULATION_REGEXP_ERROR</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_FUNCTION" title="CALCULATION_REGEXP_FUNCTION :: "><span class="description">CALCULATION_REGEXP_FUNCTION</span><pre>CALCULATION_REGEXP_FUNCTION</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_NAMEDRANGE" title="CALCULATION_REGEXP_NAMEDRANGE :: "><span class="description">CALCULATION_REGEXP_NAMEDRANGE</span><pre>CALCULATION_REGEXP_NAMEDRANGE</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_NUMBER" title="CALCULATION_REGEXP_NUMBER :: "><span class="description">CALCULATION_REGEXP_NUMBER</span><pre>CALCULATION_REGEXP_NUMBER</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_OPENBRACE" title="CALCULATION_REGEXP_OPENBRACE :: "><span class="description">CALCULATION_REGEXP_OPENBRACE</span><pre>CALCULATION_REGEXP_OPENBRACE</pre></a></li>
+<li class="constant  "><a href="#constant_CALCULATION_REGEXP_STRING" title="CALCULATION_REGEXP_STRING :: "><span class="description">CALCULATION_REGEXP_STRING</span><pre>CALCULATION_REGEXP_STRING</pre></a></li>
+<li class="constant  "><a href="#constant_RETURN_ARRAY_AS_ARRAY" title="RETURN_ARRAY_AS_ARRAY :: "><span class="description">RETURN_ARRAY_AS_ARRAY</span><pre>RETURN_ARRAY_AS_ARRAY</pre></a></li>
+<li class="constant  "><a href="#constant_RETURN_ARRAY_AS_ERROR" title="RETURN_ARRAY_AS_ERROR :: constants"><span class="description">constants</span><pre>RETURN_ARRAY_AS_ERROR</pre></a></li>
+<li class="constant  "><a href="#constant_RETURN_ARRAY_AS_VALUE" title="RETURN_ARRAY_AS_VALUE :: "><span class="description">RETURN_ARRAY_AS_VALUE</span><pre>RETURN_ARRAY_AS_VALUE</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Calculation"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Calculation.html">PHPExcel_Calculation</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Calculation (Singleton)</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Calculation.html">PHPExcel_Calculation</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___clone"></a><div class="element clickable method public method___clone" data-toggle="collapse" data-target=".method___clone .collapse">
+<h2>__clone implementation.</h2>
+<pre>__clone() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Cloning should not be allowed in a Singleton!</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___destruct"></a><div class="element clickable method public method___destruct" data-toggle="collapse" data-target=".method___destruct .collapse">
+<h2>__destruct()
+        </h2>
+<pre>__destruct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method__calculateFormulaValue"></a><div class="element clickable method public method__calculateFormulaValue" data-toggle="collapse" data-target=".method__calculateFormulaValue .collapse">
+<h2>Parse a cell formula and calculate its value</h2>
+<pre>_calculateFormulaValue(string $formula, string $cellID, \PHPExcel_Cell $pCell) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$formula</h4>
+<code>string</code><p>The formula to parse and calculate</p></div>
+<div class="subelement argument">
+<h4>$cellID</h4>
+<code>string</code><p>The ID (e.g. A3) of the cell that we are calculating</p>
+</div>
+<div class="subelement argument">
+<h4>$pCell</h4>
+<code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code><p>Cell to calculate</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method__getMatrixDimensions"></a><div class="element clickable method public method__getMatrixDimensions" data-toggle="collapse" data-target=".method__getMatrixDimensions .collapse">
+<h2>Read the dimensions of a matrix, and re-index it with straight numeric keys starting from row 0, column 0</h2>
+<pre>_getMatrixDimensions(mixed $matrix) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$matrix</h4>
+<code>mixed</code><p>&$matrix matrix operand</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>An array comprising the number of rows, and number of columns</div>
+</div></div>
+</div>
+<a id="method__localeFunc"></a><div class="element clickable method public method__localeFunc" data-toggle="collapse" data-target=".method__localeFunc .collapse">
+<h2>_localeFunc()
+        </h2>
+<pre>_localeFunc($function) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$function</h4></div>
+</div></div>
+</div>
+<a id="method__translateFormulaToEnglish"></a><div class="element clickable method public method__translateFormulaToEnglish" data-toggle="collapse" data-target=".method__translateFormulaToEnglish .collapse">
+<h2>_translateFormulaToEnglish()
+        </h2>
+<pre>_translateFormulaToEnglish($formula) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$formula</h4></div>
+</div></div>
+</div>
+<a id="method__translateFormulaToLocale"></a><div class="element clickable method public method__translateFormulaToLocale" data-toggle="collapse" data-target=".method__translateFormulaToLocale .collapse">
+<h2>_translateFormulaToLocale()
+        </h2>
+<pre>_translateFormulaToLocale($formula) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$formula</h4></div>
+</div></div>
+</div>
+<a id="method__translateSeparator"></a><div class="element clickable method public method__translateSeparator" data-toggle="collapse" data-target=".method__translateSeparator .collapse">
+<h2>_translateSeparator()
+        </h2>
+<pre>_translateSeparator($fromSeparator, $toSeparator, $formula, $inBraces) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$fromSeparator</h4></div>
+<div class="subelement argument"><h4>$toSeparator</h4></div>
+<div class="subelement argument"><h4>$formula</h4></div>
+<div class="subelement argument"><h4>$inBraces</h4></div>
+</div></div>
+</div>
+<a id="method__unwrapResult"></a><div class="element clickable method public method__unwrapResult" data-toggle="collapse" data-target=".method__unwrapResult .collapse">
+<h2>Remove quotes used as a wrapper to identify string values</h2>
+<pre>_unwrapResult(mixed $value) : mixed</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method__wrapResult"></a><div class="element clickable method public method__wrapResult" data-toggle="collapse" data-target=".method__wrapResult .collapse">
+<h2>Wrap string values in quotes</h2>
+<pre>_wrapResult(mixed $value) : mixed</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_calculate"></a><div class="element clickable method public method_calculate" data-toggle="collapse" data-target=".method_calculate .collapse">
+<h2>Calculate cell value (using formula from a cell ID)
+Retained for backward compatibility</h2>
+<pre>calculate(\PHPExcel_Cell $pCell) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCell</h4>
+<code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code><p>Cell to calculate</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_calculateCellValue"></a><div class="element clickable method public method_calculateCellValue" data-toggle="collapse" data-target=".method_calculateCellValue .collapse">
+<h2>Calculate the value of a cell formula</h2>
+<pre>calculateCellValue(\PHPExcel_Cell $pCell, Boolean $resetLog) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCell</h4>
+<code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code><p>Cell to calculate</p></div>
+<div class="subelement argument">
+<h4>$resetLog</h4>
+<code>Boolean</code><p>Flag indicating whether the debug log should be reset or not</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_calculateFormula"></a><div class="element clickable method public method_calculateFormula" data-toggle="collapse" data-target=".method_calculateFormula .collapse">
+<h2>Calculate the value of a formula</h2>
+<pre>calculateFormula(string $formula, $cellID, \PHPExcel_Cell $pCell) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$formula</h4>
+<code>string</code><p>Formula to parse</p></div>
+<div class="subelement argument"><h4>$cellID</h4></div>
+<div class="subelement argument"><h4>$pCell</h4></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_clearCalculationCache"></a><div class="element clickable method public method_clearCalculationCache" data-toggle="collapse" data-target=".method_clearCalculationCache .collapse">
+<h2>Clear calculation cache</h2>
+<pre>clearCalculationCache() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_disableCalculationCache"></a><div class="element clickable method public method_disableCalculationCache" data-toggle="collapse" data-target=".method_disableCalculationCache .collapse">
+<h2>Disable calculation cache</h2>
+<pre>disableCalculationCache() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_enableCalculationCache"></a><div class="element clickable method public method_enableCalculationCache" data-toggle="collapse" data-target=".method_enableCalculationCache .collapse">
+<h2>Enable calculation cache</h2>
+<pre>enableCalculationCache() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_extractCellRange"></a><div class="element clickable method public method_extractCellRange" data-toggle="collapse" data-target=".method_extractCellRange .collapse">
+<h2>Extract range values</h2>
+<pre>extractCellRange(string $pRange, \PHPExcel_Worksheet $pSheet, $resetLog) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>string</code><p>&$pRange String based range representation</p>
+</div>
+<div class="subelement argument">
+<h4>$pSheet</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code><p>Worksheet</p></div>
+<div class="subelement argument"><h4>$resetLog</h4></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Array of values in range if range contains more than one element. Otherwise, a single value is returned.</div>
+</div></div>
+</div>
+<a id="method_extractNamedRange"></a><div class="element clickable method public method_extractNamedRange" data-toggle="collapse" data-target=".method_extractNamedRange .collapse">
+<h2>Extract range values</h2>
+<pre>extractNamedRange(string $pRange, \PHPExcel_Worksheet $pSheet, $resetLog) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>string</code><p>&$pRange String based range representation</p>
+</div>
+<div class="subelement argument">
+<h4>$pSheet</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code><p>Worksheet</p></div>
+<div class="subelement argument"><h4>$resetLog</h4></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Array of values in range if range contains more than one element. Otherwise, a single value is returned.</div>
+</div></div>
+</div>
+<a id="method_flushInstance"></a><div class="element clickable method public method_flushInstance" data-toggle="collapse" data-target=".method_flushInstance .collapse">
+<h2>Flush the calculation cache for any existing instance of this class
+	but only if a PHPExcel_Calculation instance exists</h2>
+<pre>flushInstance() : null</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>null</code></div>
+</div></div>
+</div>
+<a id="method_getArrayReturnType"></a><div class="element clickable method public method_getArrayReturnType" data-toggle="collapse" data-target=".method_getArrayReturnType .collapse">
+<h2>Return the Array Return Type (Array or Value of first element in the array)</h2>
+<pre>getArrayReturnType() : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>$returnType			Array return type</div>
+</div></div>
+</div>
+<a id="method_getCalculationCacheEnabled"></a><div class="element clickable method public method_getCalculationCacheEnabled" data-toggle="collapse" data-target=".method_getCalculationCacheEnabled .collapse">
+<h2>Is calculation caching enabled?</h2>
+<pre>getCalculationCacheEnabled() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_getCalculationCacheExpirationTime"></a><div class="element clickable method public method_getCalculationCacheExpirationTime" data-toggle="collapse" data-target=".method_getCalculationCacheExpirationTime .collapse">
+<h2>Get calculation cache expiration time</h2>
+<pre>getCalculationCacheExpirationTime() : float</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_getFALSE"></a><div class="element clickable method public method_getFALSE" data-toggle="collapse" data-target=".method_getFALSE .collapse">
+<h2>Return the locale-specific translation of FALSE</h2>
+<pre>getFALSE() : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>locale-specific translation of FALSE</div>
+</div></div>
+</div>
+<a id="method_getInstance"></a><div class="element clickable method public method_getInstance" data-toggle="collapse" data-target=".method_getInstance .collapse">
+<h2>Get an instance of this class</h2>
+<pre>getInstance() : <a href="../classes/PHPExcel_Calculation.html">\PHPExcel_Calculation</a></pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Calculation.html">\PHPExcel_Calculation</a></code></div>
+</div></div>
+</div>
+<a id="method_getLocale"></a><div class="element clickable method public method_getLocale" data-toggle="collapse" data-target=".method_getLocale .collapse">
+<h2>Get the currently defined locale code</h2>
+<pre>getLocale() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getTRUE"></a><div class="element clickable method public method_getTRUE" data-toggle="collapse" data-target=".method_getTRUE .collapse">
+<h2>Return the locale-specific translation of TRUE</h2>
+<pre>getTRUE() : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>locale-specific translation of TRUE</div>
+</div></div>
+</div>
+<a id="method_isImplemented"></a><div class="element clickable method public method_isImplemented" data-toggle="collapse" data-target=".method_isImplemented .collapse">
+<h2>Is a specific function implemented?</h2>
+<pre>isImplemented(string $pFunction) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pFunction</h4>
+<code>string</code><p>Function Name</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_listAllFunctionNames"></a><div class="element clickable method public method_listAllFunctionNames" data-toggle="collapse" data-target=".method_listAllFunctionNames .collapse">
+<h2>Get a list of all Excel function names</h2>
+<pre>listAllFunctionNames() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_listFunctionNames"></a><div class="element clickable method public method_listFunctionNames" data-toggle="collapse" data-target=".method_listFunctionNames .collapse">
+<h2>Get a list of implemented Excel function names</h2>
+<pre>listFunctionNames() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_listFunctions"></a><div class="element clickable method public method_listFunctions" data-toggle="collapse" data-target=".method_listFunctions .collapse">
+<h2>Get a list of all implemented functions as an array of function objects</h2>
+<pre>listFunctions() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of PHPExcel_Calculation_Function</div>
+</div></div>
+</div>
+<a id="method_parseFormula"></a><div class="element clickable method public method_parseFormula" data-toggle="collapse" data-target=".method_parseFormula .collapse">
+<h2>Validate and parse a formula string</h2>
+<pre>parseFormula(string $formula) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$formula</h4>
+<code>string</code><p>Formula to parse</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_setArrayReturnType"></a><div class="element clickable method public method_setArrayReturnType" data-toggle="collapse" data-target=".method_setArrayReturnType .collapse">
+<h2>Set the Array Return Type (Array or Value of first element in the array)</h2>
+<pre>setArrayReturnType(string $returnType) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$returnType</h4>
+<code>string</code><p>Array return type</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>Success or failure</div>
+</div></div>
+</div>
+<a id="method_setCalculationCacheEnabled"></a><div class="element clickable method public method_setCalculationCacheEnabled" data-toggle="collapse" data-target=".method_setCalculationCacheEnabled .collapse">
+<h2>Enable/disable calculation cache</h2>
+<pre>setCalculationCacheEnabled(boolean $pValue) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>boolean</code>
+</div>
+</div></div>
+</div>
+<a id="method_setCalculationCacheExpirationTime"></a><div class="element clickable method public method_setCalculationCacheExpirationTime" data-toggle="collapse" data-target=".method_setCalculationCacheExpirationTime .collapse">
+<h2>Set calculation cache expiration time</h2>
+<pre>setCalculationCacheExpirationTime(float $pValue) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>float</code>
+</div>
+</div></div>
+</div>
+<a id="method_setLocale"></a><div class="element clickable method public method_setLocale" data-toggle="collapse" data-target=".method_setLocale .collapse">
+<h2>Set the locale code</h2>
+<pre>setLocale($locale) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$locale</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method__raiseFormulaError"></a><div class="element clickable method protected method__raiseFormulaError" data-toggle="collapse" data-target=".method__raiseFormulaError .collapse">
+<h2>_raiseFormulaError()
+        </h2>
+<pre>_raiseFormulaError($errorMessage) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$errorMessage</h4></div>
+</div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method private method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>__construct()
+        </h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method__checkMatrixOperands"></a><div class="element clickable method private method__checkMatrixOperands" data-toggle="collapse" data-target=".method__checkMatrixOperands .collapse">
+<h2>Ensure that paired matrix operands are both matrices and of the same size</h2>
+<pre>_checkMatrixOperands(mixed $operand1, mixed $operand2, integer $resize) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$operand1</h4>
+<code>mixed</code><p>&$operand1 First matrix operand</p>
+</div>
+<div class="subelement argument">
+<h4>$operand2</h4>
+<code>mixed</code><p>&$operand2 Second matrix operand</p>
+</div>
+<div class="subelement argument">
+<h4>$resize</h4>
+<code>integer</code><p>Flag indicating whether the matrices should be resized to match and (if so), whether the smaller dimension should grow or the larger should shrink. 0 = no resize 1 = shrink to fit 2 = extend to fit</p>
+</div>
+</div></div>
+</div>
+<a id="method__convertMatrixReferences"></a><div class="element clickable method private method__convertMatrixReferences" data-toggle="collapse" data-target=".method__convertMatrixReferences .collapse">
+<h2>_convertMatrixReferences()
+        </h2>
+<pre>_convertMatrixReferences($formula) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$formula</h4></div>
+</div></div>
+</div>
+<a id="method__dataTestReference"></a><div class="element clickable method private method__dataTestReference" data-toggle="collapse" data-target=".method__dataTestReference .collapse">
+<h2>_dataTestReference()
+        </h2>
+<pre>_dataTestReference($operandData) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$operandData</h4></div>
+</div></div>
+</div>
+<a id="method__executeBinaryComparisonOperation"></a><div class="element clickable method private method__executeBinaryComparisonOperation" data-toggle="collapse" data-target=".method__executeBinaryComparisonOperation .collapse">
+<h2>_executeBinaryComparisonOperation()
+        </h2>
+<pre>_executeBinaryComparisonOperation($cellID, $operand1, $operand2, $operation, $stack, $recursingArrays) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$cellID</h4></div>
+<div class="subelement argument"><h4>$operand1</h4></div>
+<div class="subelement argument"><h4>$operand2</h4></div>
+<div class="subelement argument"><h4>$operation</h4></div>
+<div class="subelement argument"><h4>$stack</h4></div>
+<div class="subelement argument"><h4>$recursingArrays</h4></div>
+</div></div>
+</div>
+<a id="method__executeNumericBinaryOperation"></a><div class="element clickable method private method__executeNumericBinaryOperation" data-toggle="collapse" data-target=".method__executeNumericBinaryOperation .collapse">
+<h2>_executeNumericBinaryOperation()
+        </h2>
+<pre>_executeNumericBinaryOperation($cellID, $operand1, $operand2, $operation, $matrixFunction, $stack) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$cellID</h4></div>
+<div class="subelement argument"><h4>$operand1</h4></div>
+<div class="subelement argument"><h4>$operand2</h4></div>
+<div class="subelement argument"><h4>$operation</h4></div>
+<div class="subelement argument"><h4>$matrixFunction</h4></div>
+<div class="subelement argument"><h4>$stack</h4></div>
+</div></div>
+</div>
+<a id="method__mkMatrix"></a><div class="element clickable method private method__mkMatrix" data-toggle="collapse" data-target=".method__mkMatrix .collapse">
+<h2>_mkMatrix()
+        </h2>
+<pre>_mkMatrix() </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method__parseFormula"></a><div class="element clickable method private method__parseFormula" data-toggle="collapse" data-target=".method__parseFormula .collapse">
+<h2>_parseFormula()
+        </h2>
+<pre>_parseFormula($formula, \PHPExcel_Cell $pCell) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$formula</h4></div>
+<div class="subelement argument"><h4>$pCell</h4></div>
+</div></div>
+</div>
+<a id="method__processTokenStack"></a><div class="element clickable method private method__processTokenStack" data-toggle="collapse" data-target=".method__processTokenStack .collapse">
+<h2>_processTokenStack()
+        </h2>
+<pre>_processTokenStack($tokens, $cellID, \PHPExcel_Cell $pCell) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$tokens</h4></div>
+<div class="subelement argument"><h4>$cellID</h4></div>
+<div class="subelement argument"><h4>$pCell</h4></div>
+</div></div>
+</div>
+<a id="method__resizeMatricesExtend"></a><div class="element clickable method private method__resizeMatricesExtend" data-toggle="collapse" data-target=".method__resizeMatricesExtend .collapse">
+<h2>Ensure that paired matrix operands are both matrices of the same size</h2>
+<pre>_resizeMatricesExtend(mixed $matrix1, mixed $matrix2, $matrix1Rows, $matrix1Columns, $matrix2Rows, $matrix2Columns) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$matrix1</h4>
+<code>mixed</code><p>&$matrix1 First matrix operand</p>
+</div>
+<div class="subelement argument">
+<h4>$matrix2</h4>
+<code>mixed</code><p>&$matrix2 Second matrix operand</p>
+</div>
+<div class="subelement argument"><h4>$matrix1Rows</h4></div>
+<div class="subelement argument"><h4>$matrix1Columns</h4></div>
+<div class="subelement argument"><h4>$matrix2Rows</h4></div>
+<div class="subelement argument"><h4>$matrix2Columns</h4></div>
+</div></div>
+</div>
+<a id="method__resizeMatricesShrink"></a><div class="element clickable method private method__resizeMatricesShrink" data-toggle="collapse" data-target=".method__resizeMatricesShrink .collapse">
+<h2>Ensure that paired matrix operands are both matrices of the same size</h2>
+<pre>_resizeMatricesShrink(mixed $matrix1, mixed $matrix2, $matrix1Rows, $matrix1Columns, $matrix2Rows, $matrix2Columns) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$matrix1</h4>
+<code>mixed</code><p>&$matrix1 First matrix operand</p>
+</div>
+<div class="subelement argument">
+<h4>$matrix2</h4>
+<code>mixed</code><p>&$matrix2 Second matrix operand</p>
+</div>
+<div class="subelement argument"><h4>$matrix1Rows</h4></div>
+<div class="subelement argument"><h4>$matrix1Columns</h4></div>
+<div class="subelement argument"><h4>$matrix2Rows</h4></div>
+<div class="subelement argument"><h4>$matrix2Columns</h4></div>
+</div></div>
+</div>
+<a id="method__showTypeDetails"></a><div class="element clickable method private method__showTypeDetails" data-toggle="collapse" data-target=".method__showTypeDetails .collapse">
+<h2>Format type and details of an operand for display in the log (based on operand type)</h2>
+<pre>_showTypeDetails(mixed $value) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>First matrix operand</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method__showValue"></a><div class="element clickable method private method__showValue" data-toggle="collapse" data-target=".method__showValue .collapse">
+<h2>Format details of an operand for display in the log (based on operand type)</h2>
+<pre>_showValue(mixed $value) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>First matrix operand</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method__translateFormula"></a><div class="element clickable method private method__translateFormula" data-toggle="collapse" data-target=".method__translateFormula .collapse">
+<h2>_translateFormula()
+        </h2>
+<pre>_translateFormula($from, $to, $formula, $fromSeparator, $toSeparator) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$from</h4></div>
+<div class="subelement argument"><h4>$to</h4></div>
+<div class="subelement argument"><h4>$formula</h4></div>
+<div class="subelement argument"><h4>$fromSeparator</h4></div>
+<div class="subelement argument"><h4>$toSeparator</h4></div>
+</div></div>
+</div>
+<a id="method__validateBinaryOperand"></a><div class="element clickable method private method__validateBinaryOperand" data-toggle="collapse" data-target=".method__validateBinaryOperand .collapse">
+<h2>_validateBinaryOperand()
+        </h2>
+<pre>_validateBinaryOperand($cellID, $operand, $stack) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$cellID</h4></div>
+<div class="subelement argument"><h4>$operand</h4></div>
+<div class="subelement argument"><h4>$stack</h4></div>
+</div></div>
+</div>
+<a id="method__writeDebug"></a><div class="element clickable method private method__writeDebug" data-toggle="collapse" data-target=".method__writeDebug .collapse">
+<h2>_writeDebug()
+        </h2>
+<pre>_writeDebug($message) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$message</h4></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__localeBoolean"> </a><div class="element clickable property public property__localeBoolean" data-toggle="collapse" data-target=".property__localeBoolean .collapse">
+<h2></h2>
+<pre>$_localeBoolean </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_cyclicFormulaCount"> </a><div class="element clickable property public property_cyclicFormulaCount" data-toggle="collapse" data-target=".property_cyclicFormulaCount .collapse">
+<h2></h2>
+<pre>$cyclicFormulaCount </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_debugLog"> </a><div class="element clickable property public property_debugLog" data-toggle="collapse" data-target=".property_debugLog .collapse">
+<h2></h2>
+<pre>$debugLog : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_echoDebugLog"> </a><div class="element clickable property public property_echoDebugLog" data-toggle="collapse" data-target=".property_echoDebugLog .collapse">
+<h2></h2>
+<pre>$echoDebugLog : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_formulaError"> </a><div class="element clickable property public property_formulaError" data-toggle="collapse" data-target=".property_formulaError .collapse">
+<h2></h2>
+<pre>$formulaError : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_suppressFormulaErrors"> </a><div class="element clickable property public property_suppressFormulaErrors" data-toggle="collapse" data-target=".property_suppressFormulaErrors .collapse">
+<h2></h2>
+<pre>$suppressFormulaErrors : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_writeDebugLog"> </a><div class="element clickable property public property_writeDebugLog" data-toggle="collapse" data-target=".property_writeDebugLog .collapse">
+<h2></h2>
+<pre>$writeDebugLog : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__ExcelConstants"> </a><div class="element clickable property private property__ExcelConstants" data-toggle="collapse" data-target=".property__ExcelConstants .collapse">
+<h2></h2>
+<pre>$_ExcelConstants </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__PHPExcelFunctions"> </a><div class="element clickable property private property__PHPExcelFunctions" data-toggle="collapse" data-target=".property__PHPExcelFunctions .collapse">
+<h2></h2>
+<pre>$_PHPExcelFunctions </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__binaryOperators"> </a><div class="element clickable property private property__binaryOperators" data-toggle="collapse" data-target=".property__binaryOperators .collapse">
+<h2></h2>
+<pre>$_binaryOperators : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__calculationCache"> </a><div class="element clickable property private property__calculationCache" data-toggle="collapse" data-target=".property__calculationCache .collapse">
+<h2></h2>
+<pre>$_calculationCache : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__calculationCacheEnabled"> </a><div class="element clickable property private property__calculationCacheEnabled" data-toggle="collapse" data-target=".property__calculationCacheEnabled .collapse">
+<h2></h2>
+<pre>$_calculationCacheEnabled : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__calculationCacheExpirationTime"> </a><div class="element clickable property private property__calculationCacheExpirationTime" data-toggle="collapse" data-target=".property__calculationCacheExpirationTime .collapse">
+<h2></h2>
+<pre>$_calculationCacheExpirationTime : float</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__controlFunctions"> </a><div class="element clickable property private property__controlFunctions" data-toggle="collapse" data-target=".property__controlFunctions .collapse">
+<h2></h2>
+<pre>$_controlFunctions </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__cyclicFormulaCell"> </a><div class="element clickable property private property__cyclicFormulaCell" data-toggle="collapse" data-target=".property__cyclicFormulaCell .collapse">
+<h2></h2>
+<pre>$_cyclicFormulaCell </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__cyclicFormulaCount"> </a><div class="element clickable property private property__cyclicFormulaCount" data-toggle="collapse" data-target=".property__cyclicFormulaCount .collapse">
+<h2></h2>
+<pre>$_cyclicFormulaCount </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__instance"> </a><div class="element clickable property private property__instance" data-toggle="collapse" data-target=".property__instance .collapse">
+<h2></h2>
+<pre>$_instance : <a href="../classes/PHPExcel_Calculation.html">\PHPExcel_Calculation</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__localeArgumentSeparator"> </a><div class="element clickable property private property__localeArgumentSeparator" data-toggle="collapse" data-target=".property__localeArgumentSeparator .collapse">
+<h2></h2>
+<pre>$_localeArgumentSeparator </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__localeFunctions"> </a><div class="element clickable property private property__localeFunctions" data-toggle="collapse" data-target=".property__localeFunctions .collapse">
+<h2></h2>
+<pre>$_localeFunctions </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__localeLanguage"> </a><div class="element clickable property private property__localeLanguage" data-toggle="collapse" data-target=".property__localeLanguage .collapse">
+<h2></h2>
+<pre>$_localeLanguage </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__operators"> </a><div class="element clickable property private property__operators" data-toggle="collapse" data-target=".property__operators .collapse">
+<h2></h2>
+<pre>$_operators : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__savedPrecision"> </a><div class="element clickable property private property__savedPrecision" data-toggle="collapse" data-target=".property__savedPrecision .collapse">
+<h2></h2>
+<pre>$_savedPrecision </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__validLocaleLanguages"> </a><div class="element clickable property private property__validLocaleLanguages" data-toggle="collapse" data-target=".property__validLocaleLanguages .collapse">
+<h2></h2>
+<pre>$_validLocaleLanguages </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_debugLogStack"> </a><div class="element clickable property private property_debugLogStack" data-toggle="collapse" data-target=".property_debugLogStack .collapse">
+<h2></h2>
+<pre>$debugLogStack : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_functionReplaceFromExcel"> </a><div class="element clickable property private property_functionReplaceFromExcel" data-toggle="collapse" data-target=".property_functionReplaceFromExcel .collapse">
+<h2></h2>
+<pre>$functionReplaceFromExcel </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_functionReplaceFromLocale"> </a><div class="element clickable property private property_functionReplaceFromLocale" data-toggle="collapse" data-target=".property_functionReplaceFromLocale .collapse">
+<h2></h2>
+<pre>$functionReplaceFromLocale </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_functionReplaceToExcel"> </a><div class="element clickable property private property_functionReplaceToExcel" data-toggle="collapse" data-target=".property_functionReplaceToExcel .collapse">
+<h2></h2>
+<pre>$functionReplaceToExcel </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_functionReplaceToLocale"> </a><div class="element clickable property private property_functionReplaceToLocale" data-toggle="collapse" data-target=".property_functionReplaceToLocale .collapse">
+<h2></h2>
+<pre>$functionReplaceToLocale </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_returnArrayAsType"> </a><div class="element clickable property private property_returnArrayAsType" data-toggle="collapse" data-target=".property_returnArrayAsType .collapse">
+<h2></h2>
+<pre>$returnArrayAsType </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_CALCULATION_REGEXP_CELLREF"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_CELLREF" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_CELLREF .collapse">
+<h2>CALCULATION_REGEXP_CELLREF</h2>
+<pre>CALCULATION_REGEXP_CELLREF </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_ERROR"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_ERROR" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_ERROR .collapse">
+<h2>CALCULATION_REGEXP_ERROR</h2>
+<pre>CALCULATION_REGEXP_ERROR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_FUNCTION"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_FUNCTION" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_FUNCTION .collapse">
+<h2>CALCULATION_REGEXP_FUNCTION</h2>
+<pre>CALCULATION_REGEXP_FUNCTION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_NAMEDRANGE"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_NAMEDRANGE" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_NAMEDRANGE .collapse">
+<h2>CALCULATION_REGEXP_NAMEDRANGE</h2>
+<pre>CALCULATION_REGEXP_NAMEDRANGE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_NUMBER"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_NUMBER" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_NUMBER .collapse">
+<h2>CALCULATION_REGEXP_NUMBER</h2>
+<pre>CALCULATION_REGEXP_NUMBER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_OPENBRACE"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_OPENBRACE" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_OPENBRACE .collapse">
+<h2>CALCULATION_REGEXP_OPENBRACE</h2>
+<pre>CALCULATION_REGEXP_OPENBRACE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_STRING"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_STRING" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_STRING .collapse">
+<h2>CALCULATION_REGEXP_STRING</h2>
+<pre>CALCULATION_REGEXP_STRING </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_RETURN_ARRAY_AS_ARRAY"> </a><div class="element clickable constant  constant_RETURN_ARRAY_AS_ARRAY" data-toggle="collapse" data-target=".constant_RETURN_ARRAY_AS_ARRAY .collapse">
+<h2>RETURN_ARRAY_AS_ARRAY</h2>
+<pre>RETURN_ARRAY_AS_ARRAY </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_RETURN_ARRAY_AS_ERROR"> </a><div class="element clickable constant  constant_RETURN_ARRAY_AS_ERROR" data-toggle="collapse" data-target=".constant_RETURN_ARRAY_AS_ERROR .collapse">
+<h2>constants</h2>
+<pre>RETURN_ARRAY_AS_ERROR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_RETURN_ARRAY_AS_VALUE"> </a><div class="element clickable constant  constant_RETURN_ARRAY_AS_VALUE" data-toggle="collapse" data-target=".constant_RETURN_ARRAY_AS_VALUE .collapse">
+<h2>RETURN_ARRAY_AS_VALUE</h2>
+<pre>RETURN_ARRAY_AS_VALUE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:12-07:00.<br></footer></div>
+</div>
+</body>
+</html>

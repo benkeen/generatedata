@@ -23,7 +23,38 @@
 <li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
 <li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
 <li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
 <li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -34,13 +65,18 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">654</span></a></li>
+                <span class="label label-info">1565</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul><li>todo 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
                 <span class="label label-info">10</span>
-</li></ul></a></li>
+</li>
+</ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">14</span></a></li>
 </ul>
 </li>
 </ul></div>
@@ -61,28 +97,62 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
-        </span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_createUser" title="createUser :: Used (currently) in the installation script."><span class="description">Used (currently) in the installation script.</span><pre>createUser()</pre></a></li>
-<li class="method public "><a href="#method_deleteConfiguration" title="deleteConfiguration :: "><span class="description">deleteConfiguration()
-        </span><pre>deleteConfiguration()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Instantiates a user account."><span class="description">Instantiates a user account.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_createAccount" title="createAccount :: Used (currently) in the installation script."><span class="description">Used (currently) in the installation script.</span><pre>createAccount()</pre></a></li>
+<li class="method public "><a href="#method_deleteAccount" title="deleteAccount :: "><span class="description">deleteAccount()
+        </span><pre>deleteAccount()</pre></a></li>
+<li class="method public "><a href="#method_deleteConfigurations" title="deleteConfigurations :: "><span class="description">deleteConfigurations()
+        </span><pre>deleteConfigurations()</pre></a></li>
+<li class="method public "><a href="#method_getAccount" title="getAccount :: "><span class="description">getAccount()
+        </span><pre>getAccount()</pre></a></li>
+<li class="method public "><a href="#method_getAccountID" title="getAccountID :: "><span class="description">getAccountID()
+        </span><pre>getAccountID()</pre></a></li>
+<li class="method public "><a href="#method_getAccountType" title="getAccountType :: "><span class="description">getAccountType()
+        </span><pre>getAccountType()</pre></a></li>
 <li class="method public "><a href="#method_getConfigurations" title="getConfigurations :: "><span class="description">getConfigurations()
         </span><pre>getConfigurations()</pre></a></li>
-<li class="method public "><a href="#method_getID" title="getID :: "><span class="description">getID()
-        </span><pre>getID()</pre></a></li>
-<li class="method public "><a href="#method_loadConfiguration" title="loadConfiguration :: "><span class="description">loadConfiguration()
-        </span><pre>loadConfiguration()</pre></a></li>
-<li class="method public "><a href="#method_saveConfiguration" title="saveConfiguration :: Saves a test data configuration."><span class="description">Saves a test data configuration.</span><pre>saveConfiguration()</pre></a></li>
-<li class="method public "><a href="#method_updateTotalRowCount" title="updateTotalRowCount :: "><span class="description">updateTotalRowCount()
-        </span><pre>updateTotalRowCount()</pre></a></li>
+<li class="method public "><a href="#method_getPublicDataSet" title="getPublicDataSet :: Loads ANY public data set."><span class="description">Loads ANY public data set.</span><pre>getPublicDataSet()</pre></a></li>
+<li class="method public "><a href="#method_getUsers" title="getUsers :: "><span class="description">getUsers()
+        </span><pre>getUsers()</pre></a></li>
+<li class="method public "><a href="#method_isAnonymousAdmin" title="isAnonymousAdmin :: "><span class="description">isAnonymousAdmin()
+        </span><pre>isAnonymousAdmin()</pre></a></li>
+<li class="method public "><a href="#method_login" title="login :: Attempts to log a user in."><span class="description">Attempts to log a user in.</span><pre>login()</pre></a></li>
+<li class="method public "><a href="#method_logout" title="logout :: "><span class="description">logout()
+        </span><pre>logout()</pre></a></li>
+<li class="method public "><a href="#method_resetPassword" title="resetPassword :: "><span class="description">resetPassword()
+        </span><pre>resetPassword()</pre></a></li>
+<li class="method public "><a href="#method_saveConfiguration" title="saveConfiguration :: "><span class="description">saveConfiguration()
+        </span><pre>saveConfiguration()</pre></a></li>
+<li class="method public "><a href="#method_saveDataSetVisibilityStatus" title="saveDataSetVisibilityStatus :: Time is currently passed but not used."><span class="description">Time is currently passed but not used.</span><pre>saveDataSetVisibilityStatus()</pre></a></li>
+<li class="method public "><a href="#method_updateAccount" title="updateAccount :: "><span class="description">updateAccount()
+        </span><pre>updateAccount()</pre></a></li>
+<li class="method public "><a href="#method_updateRowsGeneratedCount" title="updateRowsGeneratedCount :: "><span class="description">updateRowsGeneratedCount()
+        </span><pre>updateRowsGeneratedCount()</pre></a></li>
 </ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private "><a href="#method_getCurrentUser" title="getCurrentUser :: Called by the constructor and any time the user updates his user account."><span class="description">Called by the constructor and any time the user updates his user account.</span><pre>getCurrentUser()</pre></a></li></ul>
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties
                     <ul></ul>
 </li>
 <li class="nav-header private">» Private
-                    <ul><li class="property private "><a href="#property_accountId" title="$accountId :: "><span class="description"></span><pre>$accountId</pre></a></li></ul>
+                    <ul>
+<li class="property private "><a href="#property_accountID" title="$accountID :: "><span class="description"></span><pre>$accountID</pre></a></li>
+<li class="property private "><a href="#property_accountType" title="$accountType :: "><span class="description"></span><pre>$accountType</pre></a></li>
+<li class="property private "><a href="#property_configurations" title="$configurations :: "><span class="description"></span><pre>$configurations</pre></a></li>
+<li class="property private "><a href="#property_dateCreated" title="$dateCreated :: "><span class="description"></span><pre>$dateCreated</pre></a></li>
+<li class="property private "><a href="#property_dateExpires" title="$dateExpires :: "><span class="description"></span><pre>$dateExpires</pre></a></li>
+<li class="property private "><a href="#property_email" title="$email :: "><span class="description"></span><pre>$email</pre></a></li>
+<li class="property private "><a href="#property_firstName" title="$firstName :: "><span class="description"></span><pre>$firstName</pre></a></li>
+<li class="property private "><a href="#property_isAnonymousAdmin" title="$isAnonymousAdmin :: There are two types of anonymous users:
+1."><span class="description"></span><pre>$isAnonymousAdmin</pre></a></li>
+<li class="property private "><a href="#property_isAnonymousUser" title="$isAnonymousUser :: "><span class="description"></span><pre>$isAnonymousUser</pre></a></li>
+<li class="property private "><a href="#property_lastName" title="$lastName :: "><span class="description"></span><pre>$lastName</pre></a></li>
+<li class="property private "><a href="#property_lastUpdated" title="$lastUpdated :: "><span class="description"></span><pre>$lastUpdated</pre></a></li>
+<li class="property private "><a href="#property_password" title="$password :: "><span class="description"></span><pre>$password</pre></a></li>
+</ul>
 </li>
 </ul>
 </div>
@@ -113,105 +183,272 @@
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>__construct()
-        </h2>
-<pre>__construct($accountId) </pre>
+<h2>Instantiates a user account.</h2>
+<pre>__construct(mixed $accountID) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
+<div class="long_description"><p>This is passed either "anonymous" or the Account ID
+as the constructor parameter. User account login is done via the login method below.</p></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$accountId</h4></div>
+<div class="subelement argument">
+<h4>$accountID</h4>
+<code>mixed</code>
+</div>
 </div></div>
 </div>
-<a id="method_createUser"></a><div class="element clickable method public method_createUser" data-toggle="collapse" data-target=".method_createUser .collapse">
+<a id="method_createAccount"></a><div class="element clickable method public method_createAccount" data-toggle="collapse" data-target=".method_createAccount .collapse">
 <h2>Used (currently) in the installation script.</h2>
-<pre>createUser(array $accountInfo) </pre>
+<pre>createAccount(array $accountInfo, $isCurrentUser) </pre>
 <div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"><p>Note: this function relies on the settings file having
-been defined, along with an arbitrary encryption salt.</p></div>
+been defined, along with an arbitrary encryption salt.</p>
+
+<p>This is static because it's used during the installation process to create the default account. But in
+all other cases its used by the admin only.</p></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$accountInfo</h4>
 <code>array</code>
 </div>
+<div class="subelement argument"><h4>$isCurrentUser</h4></div>
 </div></div>
 </div>
-<a id="method_deleteConfiguration"></a><div class="element clickable method public method_deleteConfiguration" data-toggle="collapse" data-target=".method_deleteConfiguration .collapse">
-<h2>deleteConfiguration()
+<a id="method_deleteAccount"></a><div class="element clickable method public method_deleteAccount" data-toggle="collapse" data-target=".method_deleteAccount .collapse">
+<h2>deleteAccount()
         </h2>
-<pre>deleteConfiguration($form_id) </pre>
+<pre>deleteAccount($accountID) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$form_id</h4></div>
+<div class="subelement argument"><h4>$accountID</h4></div>
 </div></div>
+</div>
+<a id="method_deleteConfigurations"></a><div class="element clickable method public method_deleteConfigurations" data-toggle="collapse" data-target=".method_deleteConfigurations .collapse">
+<h2>deleteConfigurations()
+        </h2>
+<pre>deleteConfigurations($configurationIDs) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$configurationIDs</h4></div>
+</div></div>
+</div>
+<a id="method_getAccount"></a><div class="element clickable method public method_getAccount" data-toggle="collapse" data-target=".method_getAccount .collapse">
+<h2>getAccount()
+        </h2>
+<pre>getAccount() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getAccountID"></a><div class="element clickable method public method_getAccountID" data-toggle="collapse" data-target=".method_getAccountID .collapse">
+<h2>getAccountID()
+        </h2>
+<pre>getAccountID() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getAccountType"></a><div class="element clickable method public method_getAccountType" data-toggle="collapse" data-target=".method_getAccountType .collapse">
+<h2>getAccountType()
+        </h2>
+<pre>getAccountType() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="method_getConfigurations"></a><div class="element clickable method public method_getConfigurations" data-toggle="collapse" data-target=".method_getConfigurations .collapse">
 <h2>getConfigurations()
         </h2>
-<pre>getConfigurations($account_id) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument"><h4>$account_id</h4></div>
-</div></div>
-</div>
-<a id="method_getID"></a><div class="element clickable method public method_getID" data-toggle="collapse" data-target=".method_getID .collapse">
-<h2>getID()
-        </h2>
-<pre>getID() </pre>
+<pre>getConfigurations() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-<a id="method_loadConfiguration"></a><div class="element clickable method public method_loadConfiguration" data-toggle="collapse" data-target=".method_loadConfiguration .collapse">
-<h2>loadConfiguration()
-        </h2>
-<pre>loadConfiguration($form_id) </pre>
+<a id="method_getPublicDataSet"></a><div class="element clickable method public method_getPublicDataSet" data-toggle="collapse" data-target=".method_getPublicDataSet .collapse">
+<h2>Loads ANY public data set.</h2>
+<pre>getPublicDataSet($configurationID) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$form_id</h4></div>
+<div class="subelement argument"><h4>$configurationID</h4></div>
+</div></div>
+</div>
+<a id="method_getUsers"></a><div class="element clickable method public method_getUsers" data-toggle="collapse" data-target=".method_getUsers .collapse">
+<h2>getUsers()
+        </h2>
+<pre>getUsers() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_isAnonymousAdmin"></a><div class="element clickable method public method_isAnonymousAdmin" data-toggle="collapse" data-target=".method_isAnonymousAdmin .collapse">
+<h2>isAnonymousAdmin()
+        </h2>
+<pre>isAnonymousAdmin() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_login"></a><div class="element clickable method public method_login" data-toggle="collapse" data-target=".method_login .collapse">
+<h2>Attempts to log a user in.</h2>
+<pre>login($email, $password) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If successful, it updates sessions and returns a success
+message; otherwise, just returns the appropriate error</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$email</h4></div>
+<div class="subelement argument"><h4>$password</h4></div>
+</div></div>
+</div>
+<a id="method_logout"></a><div class="element clickable method public method_logout" data-toggle="collapse" data-target=".method_logout .collapse">
+<h2>logout()
+        </h2>
+<pre>logout() </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_resetPassword"></a><div class="element clickable method public method_resetPassword" data-toggle="collapse" data-target=".method_resetPassword .collapse">
+<h2>resetPassword()
+        </h2>
+<pre>resetPassword($email) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$email</h4></div>
 </div></div>
 </div>
 <a id="method_saveConfiguration"></a><div class="element clickable method public method_saveConfiguration" data-toggle="collapse" data-target=".method_saveConfiguration .collapse">
-<h2>Saves a test data configuration.</h2>
-<pre>saveConfiguration(string $form_name, string $form_content) : string</pre>
+<h2>saveConfiguration()
+        </h2>
+<pre>saveConfiguration($data) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$form_name</h4>
-<code>string</code>
-</div>
-<div class="subelement argument">
-<h4>$form_content</h4>
-<code>string</code>
-</div>
-<h3>Returns</h3>
-<div class="subelement response"><code>string</code></div>
+<div class="subelement argument"><h4>$data</h4></div>
 </div></div>
 </div>
-<a id="method_updateTotalRowCount"></a><div class="element clickable method public method_updateTotalRowCount" data-toggle="collapse" data-target=".method_updateTotalRowCount .collapse">
-<h2>updateTotalRowCount()
+<a id="method_saveDataSetVisibilityStatus"></a><div class="element clickable method public method_saveDataSetVisibilityStatus" data-toggle="collapse" data-target=".method_saveDataSetVisibilityStatus .collapse">
+<h2>Time is currently passed but not used.</h2>
+<pre>saveDataSetVisibilityStatus($configurationID, $status, $time) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It's going to be used to ensure that only NEWEST requests
+actually update the record</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$configurationID</h4></div>
+<div class="subelement argument"><h4>$status</h4></div>
+<div class="subelement argument"><h4>$time</h4></div>
+</div></div>
+</div>
+<a id="method_updateAccount"></a><div class="element clickable method public method_updateAccount" data-toggle="collapse" data-target=".method_updateAccount .collapse">
+<h2>updateAccount()
         </h2>
-<pre>updateTotalRowCount($num_rows) </pre>
+<pre>updateAccount($accountID, $info) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$num_rows</h4></div>
+<div class="subelement argument"><h4>$accountID</h4></div>
+<div class="subelement argument"><h4>$info</h4></div>
+</div></div>
+</div>
+<a id="method_updateRowsGeneratedCount"></a><div class="element clickable method public method_updateRowsGeneratedCount" data-toggle="collapse" data-target=".method_updateRowsGeneratedCount .collapse">
+<h2>updateRowsGeneratedCount()
+        </h2>
+<pre>updateRowsGeneratedCount($configurationID, $rowsGenerated) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$configurationID</h4></div>
+<div class="subelement argument"><h4>$rowsGenerated</h4></div>
+</div></div>
+</div>
+<a id="method_getCurrentUser"></a><div class="element clickable method private method_getCurrentUser" data-toggle="collapse" data-target=".method_getCurrentUser .collapse">
+<h2>Called by the constructor and any time the user updates his user account.</h2>
+<pre>getCurrentUser($accountID) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$accountID</h4></div>
 </div></div>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_accountId"> </a><div class="element clickable property private property_accountId" data-toggle="collapse" data-target=".property_accountId .collapse">
+<a id="property_accountID"> </a><div class="element clickable property private property_accountID" data-toggle="collapse" data-target=".property_accountID .collapse">
 <h2></h2>
-<pre>$accountId </pre>
+<pre>$accountID </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_accountType"> </a><div class="element clickable property private property_accountType" data-toggle="collapse" data-target=".property_accountType .collapse">
+<h2></h2>
+<pre>$accountType </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_configurations"> </a><div class="element clickable property private property_configurations" data-toggle="collapse" data-target=".property_configurations .collapse">
+<h2></h2>
+<pre>$configurations </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_dateCreated"> </a><div class="element clickable property private property_dateCreated" data-toggle="collapse" data-target=".property_dateCreated .collapse">
+<h2></h2>
+<pre>$dateCreated </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_dateExpires"> </a><div class="element clickable property private property_dateExpires" data-toggle="collapse" data-target=".property_dateExpires .collapse">
+<h2></h2>
+<pre>$dateExpires </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_email"> </a><div class="element clickable property private property_email" data-toggle="collapse" data-target=".property_email .collapse">
+<h2></h2>
+<pre>$email </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_firstName"> </a><div class="element clickable property private property_firstName" data-toggle="collapse" data-target=".property_firstName .collapse">
+<h2></h2>
+<pre>$firstName </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_isAnonymousAdmin"> </a><div class="element clickable property private property_isAnonymousAdmin" data-toggle="collapse" data-target=".property_isAnonymousAdmin .collapse">
+<h2></h2>
+<pre>$isAnonymousAdmin </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Anonymous admin. This is when the generator is configured to have a single user account at all times.
+   This account type has permission to do everything; there's a single user in the user_accounts DB table.
+2. Anonymous user. This is when the</p></div></div></div>
+</div>
+<a id="property_isAnonymousUser"> </a><div class="element clickable property private property_isAnonymousUser" data-toggle="collapse" data-target=".property_isAnonymousUser .collapse">
+<h2></h2>
+<pre>$isAnonymousUser </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_lastName"> </a><div class="element clickable property private property_lastName" data-toggle="collapse" data-target=".property_lastName .collapse">
+<h2></h2>
+<pre>$lastName </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_lastUpdated"> </a><div class="element clickable property private property_lastUpdated" data-toggle="collapse" data-target=".property_lastUpdated .collapse">
+<h2></h2>
+<pre>$lastUpdated </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_password"> </a><div class="element clickable property private property_password" data-toggle="collapse" data-target=".property_password .collapse">
+<h2></h2>
+<pre>$password </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
@@ -222,7 +459,7 @@ been defined, along with an arbitrary encryption salt.</p></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-11-28T22:03:12-08:00.<br></footer></div>
+            generated on 2013-04-22T17:30:09-07:00.<br></footer></div>
 </div>
 </body>
 </html>

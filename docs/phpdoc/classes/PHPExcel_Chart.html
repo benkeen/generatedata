@@ -1,0 +1,772 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Chart</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Create a new PHPExcel_Chart"><span class="description">Create a new PHPExcel_Chart</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_getBottomRightCell" title="getBottomRightCell :: Get the cell address where the bottom right of the chart is fixed"><span class="description">Get the cell address where the bottom right of the chart is fixed</span><pre>getBottomRightCell()</pre></a></li>
+<li class="method public "><a href="#method_getBottomRightOffset" title="getBottomRightOffset :: "><span class="description">getBottomRightOffset()
+        </span><pre>getBottomRightOffset()</pre></a></li>
+<li class="method public "><a href="#method_getBottomRightPosition" title="getBottomRightPosition :: Get the bottom right position of the chart"><span class="description">Get the bottom right position of the chart</span><pre>getBottomRightPosition()</pre></a></li>
+<li class="method public "><a href="#method_getBottomRightXOffset" title="getBottomRightXOffset :: "><span class="description">getBottomRightXOffset()
+        </span><pre>getBottomRightXOffset()</pre></a></li>
+<li class="method public "><a href="#method_getBottomRightYOffset" title="getBottomRightYOffset :: "><span class="description">getBottomRightYOffset()
+        </span><pre>getBottomRightYOffset()</pre></a></li>
+<li class="method public "><a href="#method_getDisplayBlanksAs" title="getDisplayBlanksAs :: Get Display Blanks as"><span class="description">Get Display Blanks as</span><pre>getDisplayBlanksAs()</pre></a></li>
+<li class="method public "><a href="#method_getLegend" title="getLegend :: Get Legend"><span class="description">Get Legend</span><pre>getLegend()</pre></a></li>
+<li class="method public "><a href="#method_getName" title="getName :: Get Name"><span class="description">Get Name</span><pre>getName()</pre></a></li>
+<li class="method public "><a href="#method_getPlotArea" title="getPlotArea :: Get Plot Area"><span class="description">Get Plot Area</span><pre>getPlotArea()</pre></a></li>
+<li class="method public "><a href="#method_getPlotVisibleOnly" title="getPlotVisibleOnly :: Get Plot Visible Only"><span class="description">Get Plot Visible Only</span><pre>getPlotVisibleOnly()</pre></a></li>
+<li class="method public "><a href="#method_getTitle" title="getTitle :: Get Title"><span class="description">Get Title</span><pre>getTitle()</pre></a></li>
+<li class="method public "><a href="#method_getTopLeftCell" title="getTopLeftCell :: Get the cell address where the top left of the chart is fixed"><span class="description">Get the cell address where the top left of the chart is fixed</span><pre>getTopLeftCell()</pre></a></li>
+<li class="method public "><a href="#method_getTopLeftOffset" title="getTopLeftOffset :: "><span class="description">getTopLeftOffset()
+        </span><pre>getTopLeftOffset()</pre></a></li>
+<li class="method public "><a href="#method_getTopLeftPosition" title="getTopLeftPosition :: Get the top left position of the chart"><span class="description">Get the top left position of the chart</span><pre>getTopLeftPosition()</pre></a></li>
+<li class="method public "><a href="#method_getTopLeftXOffset" title="getTopLeftXOffset :: "><span class="description">getTopLeftXOffset()
+        </span><pre>getTopLeftXOffset()</pre></a></li>
+<li class="method public "><a href="#method_getTopLeftYOffset" title="getTopLeftYOffset :: "><span class="description">getTopLeftYOffset()
+        </span><pre>getTopLeftYOffset()</pre></a></li>
+<li class="method public "><a href="#method_getWorksheet" title="getWorksheet :: Get Worksheet"><span class="description">Get Worksheet</span><pre>getWorksheet()</pre></a></li>
+<li class="method public "><a href="#method_getXAxisLabel" title="getXAxisLabel :: Get X-Axis Label"><span class="description">Get X-Axis Label</span><pre>getXAxisLabel()</pre></a></li>
+<li class="method public "><a href="#method_getYAxisLabel" title="getYAxisLabel :: Get Y-Axis Label"><span class="description">Get Y-Axis Label</span><pre>getYAxisLabel()</pre></a></li>
+<li class="method public "><a href="#method_refresh" title="refresh :: "><span class="description">refresh()
+        </span><pre>refresh()</pre></a></li>
+<li class="method public "><a href="#method_render" title="render :: "><span class="description">render()
+        </span><pre>render()</pre></a></li>
+<li class="method public "><a href="#method_setBottomRightCell" title="setBottomRightCell :: "><span class="description">setBottomRightCell()
+        </span><pre>setBottomRightCell()</pre></a></li>
+<li class="method public "><a href="#method_setBottomRightOffset" title="setBottomRightOffset :: "><span class="description">setBottomRightOffset()
+        </span><pre>setBottomRightOffset()</pre></a></li>
+<li class="method public "><a href="#method_setBottomRightPosition" title="setBottomRightPosition :: Set the Bottom Right position of the chart"><span class="description">Set the Bottom Right position of the chart</span><pre>setBottomRightPosition()</pre></a></li>
+<li class="method public "><a href="#method_setBottomRightXOffset" title="setBottomRightXOffset :: "><span class="description">setBottomRightXOffset()
+        </span><pre>setBottomRightXOffset()</pre></a></li>
+<li class="method public "><a href="#method_setBottomRightYOffset" title="setBottomRightYOffset :: "><span class="description">setBottomRightYOffset()
+        </span><pre>setBottomRightYOffset()</pre></a></li>
+<li class="method public "><a href="#method_setDisplayBlanksAs" title="setDisplayBlanksAs :: Set Display Blanks as"><span class="description">Set Display Blanks as</span><pre>setDisplayBlanksAs()</pre></a></li>
+<li class="method public "><a href="#method_setLegend" title="setLegend :: Set Legend"><span class="description">Set Legend</span><pre>setLegend()</pre></a></li>
+<li class="method public "><a href="#method_setPlotVisibleOnly" title="setPlotVisibleOnly :: Set Plot Visible Only"><span class="description">Set Plot Visible Only</span><pre>setPlotVisibleOnly()</pre></a></li>
+<li class="method public "><a href="#method_setTitle" title="setTitle :: Set Title"><span class="description">Set Title</span><pre>setTitle()</pre></a></li>
+<li class="method public "><a href="#method_setTopLeftCell" title="setTopLeftCell :: Set the Top Left cell position for the chart"><span class="description">Set the Top Left cell position for the chart</span><pre>setTopLeftCell()</pre></a></li>
+<li class="method public "><a href="#method_setTopLeftOffset" title="setTopLeftOffset :: "><span class="description">setTopLeftOffset()
+        </span><pre>setTopLeftOffset()</pre></a></li>
+<li class="method public "><a href="#method_setTopLeftPosition" title="setTopLeftPosition :: Set the Top Left position for the chart"><span class="description">Set the Top Left position for the chart</span><pre>setTopLeftPosition()</pre></a></li>
+<li class="method public "><a href="#method_setTopLeftXOffset" title="setTopLeftXOffset :: "><span class="description">setTopLeftXOffset()
+        </span><pre>setTopLeftXOffset()</pre></a></li>
+<li class="method public "><a href="#method_setTopLeftYOffset" title="setTopLeftYOffset :: "><span class="description">setTopLeftYOffset()
+        </span><pre>setTopLeftYOffset()</pre></a></li>
+<li class="method public "><a href="#method_setWorksheet" title="setWorksheet :: Set Worksheet"><span class="description">Set Worksheet</span><pre>setWorksheet()</pre></a></li>
+<li class="method public "><a href="#method_setXAxisLabel" title="setXAxisLabel :: Set X-Axis Label"><span class="description">Set X-Axis Label</span><pre>setXAxisLabel()</pre></a></li>
+<li class="method public "><a href="#method_setYAxisLabel" title="setYAxisLabel :: Set Y-Axis Label"><span class="description">Set Y-Axis Label</span><pre>setYAxisLabel()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__bottomRightCellRef" title="$_bottomRightCellRef :: Bottom-Right Cell Position"><span class="description"></span><pre>$_bottomRightCellRef</pre></a></li>
+<li class="property private "><a href="#property__bottomRightXOffset" title="$_bottomRightXOffset :: Bottom-Right X-Offset"><span class="description"></span><pre>$_bottomRightXOffset</pre></a></li>
+<li class="property private "><a href="#property__bottomRightYOffset" title="$_bottomRightYOffset :: Bottom-Right Y-Offset"><span class="description"></span><pre>$_bottomRightYOffset</pre></a></li>
+<li class="property private "><a href="#property__displayBlanksAs" title="$_displayBlanksAs :: Display Blanks as"><span class="description"></span><pre>$_displayBlanksAs</pre></a></li>
+<li class="property private "><a href="#property__legend" title="$_legend :: Chart Legend"><span class="description"></span><pre>$_legend</pre></a></li>
+<li class="property private "><a href="#property__name" title="$_name :: Chart Name"><span class="description"></span><pre>$_name</pre></a></li>
+<li class="property private "><a href="#property__plotArea" title="$_plotArea :: Chart Plot Area"><span class="description"></span><pre>$_plotArea</pre></a></li>
+<li class="property private "><a href="#property__plotVisibleOnly" title="$_plotVisibleOnly :: Plot Visible Only"><span class="description"></span><pre>$_plotVisibleOnly</pre></a></li>
+<li class="property private "><a href="#property__title" title="$_title :: Chart Title"><span class="description"></span><pre>$_title</pre></a></li>
+<li class="property private "><a href="#property__topLeftCellRef" title="$_topLeftCellRef :: Top-Left Cell Position"><span class="description"></span><pre>$_topLeftCellRef</pre></a></li>
+<li class="property private "><a href="#property__topLeftXOffset" title="$_topLeftXOffset :: Top-Left X-Offset"><span class="description"></span><pre>$_topLeftXOffset</pre></a></li>
+<li class="property private "><a href="#property__topLeftYOffset" title="$_topLeftYOffset :: Top-Left Y-Offset"><span class="description"></span><pre>$_topLeftYOffset</pre></a></li>
+<li class="property private "><a href="#property__worksheet" title="$_worksheet :: Worksheet"><span class="description"></span><pre>$_worksheet</pre></a></li>
+<li class="property private "><a href="#property__xAxisLabel" title="$_xAxisLabel :: X-Axis Label"><span class="description"></span><pre>$_xAxisLabel</pre></a></li>
+<li class="property private "><a href="#property__yAxisLabel" title="$_yAxisLabel :: Y-Axis Label"><span class="description"></span><pre>$_yAxisLabel</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Chart"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Chart.html">PHPExcel_Chart</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Chart</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Chart.html">PHPExcel_Chart</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Create a new PHPExcel_Chart</h2>
+<pre>__construct($name, \PHPExcel_Chart_Title $title, \PHPExcel_Chart_Legend $legend, \PHPExcel_Chart_PlotArea $plotArea, $plotVisibleOnly, $displayBlanksAs, \PHPExcel_Chart_Title $xAxisLabel, \PHPExcel_Chart_Title $yAxisLabel) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$name</h4></div>
+<div class="subelement argument"><h4>$title</h4></div>
+<div class="subelement argument"><h4>$legend</h4></div>
+<div class="subelement argument"><h4>$plotArea</h4></div>
+<div class="subelement argument"><h4>$plotVisibleOnly</h4></div>
+<div class="subelement argument"><h4>$displayBlanksAs</h4></div>
+<div class="subelement argument"><h4>$xAxisLabel</h4></div>
+<div class="subelement argument"><h4>$yAxisLabel</h4></div>
+</div></div>
+</div>
+<a id="method_getBottomRightCell"></a><div class="element clickable method public method_getBottomRightCell" data-toggle="collapse" data-target=".method_getBottomRightCell .collapse">
+<h2>Get the cell address where the bottom right of the chart is fixed</h2>
+<pre>getBottomRightCell() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getBottomRightOffset"></a><div class="element clickable method public method_getBottomRightOffset" data-toggle="collapse" data-target=".method_getBottomRightOffset .collapse">
+<h2>getBottomRightOffset()
+        </h2>
+<pre>getBottomRightOffset() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getBottomRightPosition"></a><div class="element clickable method public method_getBottomRightPosition" data-toggle="collapse" data-target=".method_getBottomRightPosition .collapse">
+<h2>Get the bottom right position of the chart</h2>
+<pre>getBottomRightPosition() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>an associative array containing the cell address, X-Offset and Y-Offset from the top left of that cell</div>
+</div></div>
+</div>
+<a id="method_getBottomRightXOffset"></a><div class="element clickable method public method_getBottomRightXOffset" data-toggle="collapse" data-target=".method_getBottomRightXOffset .collapse">
+<h2>getBottomRightXOffset()
+        </h2>
+<pre>getBottomRightXOffset() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getBottomRightYOffset"></a><div class="element clickable method public method_getBottomRightYOffset" data-toggle="collapse" data-target=".method_getBottomRightYOffset .collapse">
+<h2>getBottomRightYOffset()
+        </h2>
+<pre>getBottomRightYOffset() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getDisplayBlanksAs"></a><div class="element clickable method public method_getDisplayBlanksAs" data-toggle="collapse" data-target=".method_getDisplayBlanksAs .collapse">
+<h2>Get Display Blanks as</h2>
+<pre>getDisplayBlanksAs() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getLegend"></a><div class="element clickable method public method_getLegend" data-toggle="collapse" data-target=".method_getLegend .collapse">
+<h2>Get Legend</h2>
+<pre>getLegend() : <a href="../classes/PHPExcel_Chart_Legend.html">\PHPExcel_Chart_Legend</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart_Legend.html">\PHPExcel_Chart_Legend</a></code></div>
+</div></div>
+</div>
+<a id="method_getName"></a><div class="element clickable method public method_getName" data-toggle="collapse" data-target=".method_getName .collapse">
+<h2>Get Name</h2>
+<pre>getName() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getPlotArea"></a><div class="element clickable method public method_getPlotArea" data-toggle="collapse" data-target=".method_getPlotArea .collapse">
+<h2>Get Plot Area</h2>
+<pre>getPlotArea() : <a href="../classes/PHPExcel_Chart_PlotArea.html">\PHPExcel_Chart_PlotArea</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart_PlotArea.html">\PHPExcel_Chart_PlotArea</a></code></div>
+</div></div>
+</div>
+<a id="method_getPlotVisibleOnly"></a><div class="element clickable method public method_getPlotVisibleOnly" data-toggle="collapse" data-target=".method_getPlotVisibleOnly .collapse">
+<h2>Get Plot Visible Only</h2>
+<pre>getPlotVisibleOnly() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_getTitle"></a><div class="element clickable method public method_getTitle" data-toggle="collapse" data-target=".method_getTitle .collapse">
+<h2>Get Title</h2>
+<pre>getTitle() : <a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></code></div>
+</div></div>
+</div>
+<a id="method_getTopLeftCell"></a><div class="element clickable method public method_getTopLeftCell" data-toggle="collapse" data-target=".method_getTopLeftCell .collapse">
+<h2>Get the cell address where the top left of the chart is fixed</h2>
+<pre>getTopLeftCell() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getTopLeftOffset"></a><div class="element clickable method public method_getTopLeftOffset" data-toggle="collapse" data-target=".method_getTopLeftOffset .collapse">
+<h2>getTopLeftOffset()
+        </h2>
+<pre>getTopLeftOffset() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getTopLeftPosition"></a><div class="element clickable method public method_getTopLeftPosition" data-toggle="collapse" data-target=".method_getTopLeftPosition .collapse">
+<h2>Get the top left position of the chart</h2>
+<pre>getTopLeftPosition() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>an associative array containing the cell address, X-Offset and Y-Offset from the top left of that cell</div>
+</div></div>
+</div>
+<a id="method_getTopLeftXOffset"></a><div class="element clickable method public method_getTopLeftXOffset" data-toggle="collapse" data-target=".method_getTopLeftXOffset .collapse">
+<h2>getTopLeftXOffset()
+        </h2>
+<pre>getTopLeftXOffset() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getTopLeftYOffset"></a><div class="element clickable method public method_getTopLeftYOffset" data-toggle="collapse" data-target=".method_getTopLeftYOffset .collapse">
+<h2>getTopLeftYOffset()
+        </h2>
+<pre>getTopLeftYOffset() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getWorksheet"></a><div class="element clickable method public method_getWorksheet" data-toggle="collapse" data-target=".method_getWorksheet .collapse">
+<h2>Get Worksheet</h2>
+<pre>getWorksheet() : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_getXAxisLabel"></a><div class="element clickable method public method_getXAxisLabel" data-toggle="collapse" data-target=".method_getXAxisLabel .collapse">
+<h2>Get X-Axis Label</h2>
+<pre>getXAxisLabel() : <a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></code></div>
+</div></div>
+</div>
+<a id="method_getYAxisLabel"></a><div class="element clickable method public method_getYAxisLabel" data-toggle="collapse" data-target=".method_getYAxisLabel .collapse">
+<h2>Get Y-Axis Label</h2>
+<pre>getYAxisLabel() : <a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></code></div>
+</div></div>
+</div>
+<a id="method_refresh"></a><div class="element clickable method public method_refresh" data-toggle="collapse" data-target=".method_refresh .collapse">
+<h2>refresh()
+        </h2>
+<pre>refresh() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_render"></a><div class="element clickable method public method_render" data-toggle="collapse" data-target=".method_render .collapse">
+<h2>render()
+        </h2>
+<pre>render($outputDestination) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$outputDestination</h4></div>
+</div></div>
+</div>
+<a id="method_setBottomRightCell"></a><div class="element clickable method public method_setBottomRightCell" data-toggle="collapse" data-target=".method_setBottomRightCell .collapse">
+<h2>setBottomRightCell()
+        </h2>
+<pre>setBottomRightCell($cell) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$cell</h4></div>
+</div></div>
+</div>
+<a id="method_setBottomRightOffset"></a><div class="element clickable method public method_setBottomRightOffset" data-toggle="collapse" data-target=".method_setBottomRightOffset .collapse">
+<h2>setBottomRightOffset()
+        </h2>
+<pre>setBottomRightOffset($xOffset, $yOffset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$xOffset</h4></div>
+<div class="subelement argument"><h4>$yOffset</h4></div>
+</div></div>
+</div>
+<a id="method_setBottomRightPosition"></a><div class="element clickable method public method_setBottomRightPosition" data-toggle="collapse" data-target=".method_setBottomRightPosition .collapse">
+<h2>Set the Bottom Right position of the chart</h2>
+<pre>setBottomRightPosition(string $cell, integer $xOffset, integer $yOffset) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$xOffset</h4>
+<code>integer</code>
+</div>
+<div class="subelement argument">
+<h4>$yOffset</h4>
+<code>integer</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setBottomRightXOffset"></a><div class="element clickable method public method_setBottomRightXOffset" data-toggle="collapse" data-target=".method_setBottomRightXOffset .collapse">
+<h2>setBottomRightXOffset()
+        </h2>
+<pre>setBottomRightXOffset($xOffset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$xOffset</h4></div>
+</div></div>
+</div>
+<a id="method_setBottomRightYOffset"></a><div class="element clickable method public method_setBottomRightYOffset" data-toggle="collapse" data-target=".method_setBottomRightYOffset .collapse">
+<h2>setBottomRightYOffset()
+        </h2>
+<pre>setBottomRightYOffset($yOffset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$yOffset</h4></div>
+</div></div>
+</div>
+<a id="method_setDisplayBlanksAs"></a><div class="element clickable method public method_setDisplayBlanksAs" data-toggle="collapse" data-target=".method_setDisplayBlanksAs .collapse">
+<h2>Set Display Blanks as</h2>
+<pre>setDisplayBlanksAs(string $displayBlanksAs) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$displayBlanksAs</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setLegend"></a><div class="element clickable method public method_setLegend" data-toggle="collapse" data-target=".method_setLegend .collapse">
+<h2>Set Legend</h2>
+<pre>setLegend(\PHPExcel_Chart_Legend $legend) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$legend</h4>
+<code><a href="../classes/PHPExcel_Chart_Legend.html">\PHPExcel_Chart_Legend</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setPlotVisibleOnly"></a><div class="element clickable method public method_setPlotVisibleOnly" data-toggle="collapse" data-target=".method_setPlotVisibleOnly .collapse">
+<h2>Set Plot Visible Only</h2>
+<pre>setPlotVisibleOnly(boolean $plotVisibleOnly) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plotVisibleOnly</h4>
+<code>boolean</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setTitle"></a><div class="element clickable method public method_setTitle" data-toggle="collapse" data-target=".method_setTitle .collapse">
+<h2>Set Title</h2>
+<pre>setTitle(\PHPExcel_Chart_Title $title) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$title</h4>
+<code><a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setTopLeftCell"></a><div class="element clickable method public method_setTopLeftCell" data-toggle="collapse" data-target=".method_setTopLeftCell .collapse">
+<h2>Set the Top Left cell position for the chart</h2>
+<pre>setTopLeftCell(string $cell) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setTopLeftOffset"></a><div class="element clickable method public method_setTopLeftOffset" data-toggle="collapse" data-target=".method_setTopLeftOffset .collapse">
+<h2>setTopLeftOffset()
+        </h2>
+<pre>setTopLeftOffset($xOffset, $yOffset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$xOffset</h4></div>
+<div class="subelement argument"><h4>$yOffset</h4></div>
+</div></div>
+</div>
+<a id="method_setTopLeftPosition"></a><div class="element clickable method public method_setTopLeftPosition" data-toggle="collapse" data-target=".method_setTopLeftPosition .collapse">
+<h2>Set the Top Left position for the chart</h2>
+<pre>setTopLeftPosition(string $cell, integer $xOffset, integer $yOffset) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$xOffset</h4>
+<code>integer</code>
+</div>
+<div class="subelement argument">
+<h4>$yOffset</h4>
+<code>integer</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setTopLeftXOffset"></a><div class="element clickable method public method_setTopLeftXOffset" data-toggle="collapse" data-target=".method_setTopLeftXOffset .collapse">
+<h2>setTopLeftXOffset()
+        </h2>
+<pre>setTopLeftXOffset($xOffset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$xOffset</h4></div>
+</div></div>
+</div>
+<a id="method_setTopLeftYOffset"></a><div class="element clickable method public method_setTopLeftYOffset" data-toggle="collapse" data-target=".method_setTopLeftYOffset .collapse">
+<h2>setTopLeftYOffset()
+        </h2>
+<pre>setTopLeftYOffset($yOffset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$yOffset</h4></div>
+</div></div>
+</div>
+<a id="method_setWorksheet"></a><div class="element clickable method public method_setWorksheet" data-toggle="collapse" data-target=".method_setWorksheet .collapse">
+<h2>Set Worksheet</h2>
+<pre>setWorksheet(\PHPExcel_Worksheet $pValue) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setXAxisLabel"></a><div class="element clickable method public method_setXAxisLabel" data-toggle="collapse" data-target=".method_setXAxisLabel .collapse">
+<h2>Set X-Axis Label</h2>
+<pre>setXAxisLabel(\PHPExcel_Chart_Title $label) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$label</h4>
+<code><a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<a id="method_setYAxisLabel"></a><div class="element clickable method public method_setYAxisLabel" data-toggle="collapse" data-target=".method_setYAxisLabel .collapse">
+<h2>Set Y-Axis Label</h2>
+<pre>setYAxisLabel(\PHPExcel_Chart_Title $label) : <a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$label</h4>
+<code><a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart.html">\PHPExcel_Chart</a></code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__bottomRightCellRef"> </a><div class="element clickable property private property__bottomRightCellRef" data-toggle="collapse" data-target=".property__bottomRightCellRef .collapse">
+<h2></h2>
+<pre>$_bottomRightCellRef : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__bottomRightXOffset"> </a><div class="element clickable property private property__bottomRightXOffset" data-toggle="collapse" data-target=".property__bottomRightXOffset .collapse">
+<h2></h2>
+<pre>$_bottomRightXOffset : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__bottomRightYOffset"> </a><div class="element clickable property private property__bottomRightYOffset" data-toggle="collapse" data-target=".property__bottomRightYOffset .collapse">
+<h2></h2>
+<pre>$_bottomRightYOffset : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__displayBlanksAs"> </a><div class="element clickable property private property__displayBlanksAs" data-toggle="collapse" data-target=".property__displayBlanksAs .collapse">
+<h2></h2>
+<pre>$_displayBlanksAs : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__legend"> </a><div class="element clickable property private property__legend" data-toggle="collapse" data-target=".property__legend .collapse">
+<h2></h2>
+<pre>$_legend : <a href="../classes/PHPExcel_Chart_Legend.html">\PHPExcel_Chart_Legend</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__name"> </a><div class="element clickable property private property__name" data-toggle="collapse" data-target=".property__name .collapse">
+<h2></h2>
+<pre>$_name : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotArea"> </a><div class="element clickable property private property__plotArea" data-toggle="collapse" data-target=".property__plotArea .collapse">
+<h2></h2>
+<pre>$_plotArea : <a href="../classes/PHPExcel_Chart_PlotArea.html">\PHPExcel_Chart_PlotArea</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotVisibleOnly"> </a><div class="element clickable property private property__plotVisibleOnly" data-toggle="collapse" data-target=".property__plotVisibleOnly .collapse">
+<h2></h2>
+<pre>$_plotVisibleOnly : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__title"> </a><div class="element clickable property private property__title" data-toggle="collapse" data-target=".property__title .collapse">
+<h2></h2>
+<pre>$_title : <a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__topLeftCellRef"> </a><div class="element clickable property private property__topLeftCellRef" data-toggle="collapse" data-target=".property__topLeftCellRef .collapse">
+<h2></h2>
+<pre>$_topLeftCellRef : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__topLeftXOffset"> </a><div class="element clickable property private property__topLeftXOffset" data-toggle="collapse" data-target=".property__topLeftXOffset .collapse">
+<h2></h2>
+<pre>$_topLeftXOffset : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__topLeftYOffset"> </a><div class="element clickable property private property__topLeftYOffset" data-toggle="collapse" data-target=".property__topLeftYOffset .collapse">
+<h2></h2>
+<pre>$_topLeftYOffset : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__worksheet"> </a><div class="element clickable property private property__worksheet" data-toggle="collapse" data-target=".property__worksheet .collapse">
+<h2></h2>
+<pre>$_worksheet : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__xAxisLabel"> </a><div class="element clickable property private property__xAxisLabel" data-toggle="collapse" data-target=".property__xAxisLabel .collapse">
+<h2></h2>
+<pre>$_xAxisLabel : <a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__yAxisLabel"> </a><div class="element clickable property private property__yAxisLabel" data-toggle="collapse" data-target=".property__yAxisLabel .collapse">
+<h2></h2>
+<pre>$_yAxisLabel : <a href="../classes/PHPExcel_Chart_Title.html">\PHPExcel_Chart_Title</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:13-07:00.<br></footer></div>
+</div>
+</body>
+</html>

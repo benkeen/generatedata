@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Style_Borders</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___clone" title="__clone :: Implement PHP __clone to create a deep clone, not just a shallow copy."><span class="description">Implement PHP __clone to create a deep clone, not just a shallow copy.</span><pre>__clone()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Create a new PHPExcel_Style_Borders"><span class="description">Create a new PHPExcel_Style_Borders</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_applyFromArray" title="applyFromArray :: Apply styles from array"><span class="description">Apply styles from array</span><pre>applyFromArray()</pre></a></li>
+<li class="method public "><a href="#method_bindParent" title="bindParent :: Bind parent."><span class="description">Bind parent.</span><pre>bindParent()</pre></a></li>
+<li class="method public "><a href="#method_getActiveCell" title="getActiveCell :: Get the currently active cell coordinate in currently active sheet."><span class="description">Get the currently active cell coordinate in currently active sheet.</span><pre>getActiveCell()</pre></a></li>
+<li class="method public "><a href="#method_getActiveSheet" title="getActiveSheet :: Get the currently active sheet."><span class="description">Get the currently active sheet.</span><pre>getActiveSheet()</pre></a></li>
+<li class="method public "><a href="#method_getAllBorders" title="getAllBorders :: Get AllBorders (pseudo-border)."><span class="description">Get AllBorders (pseudo-border).</span><pre>getAllBorders()</pre></a></li>
+<li class="method public "><a href="#method_getBottom" title="getBottom :: Get Bottom"><span class="description">Get Bottom</span><pre>getBottom()</pre></a></li>
+<li class="method public "><a href="#method_getDiagonal" title="getDiagonal :: Get Diagonal"><span class="description">Get Diagonal</span><pre>getDiagonal()</pre></a></li>
+<li class="method public "><a href="#method_getDiagonalDirection" title="getDiagonalDirection :: Get DiagonalDirection"><span class="description">Get DiagonalDirection</span><pre>getDiagonalDirection()</pre></a></li>
+<li class="method public "><a href="#method_getHashCode" title="getHashCode :: Get hash code"><span class="description">Get hash code</span><pre>getHashCode()</pre></a></li>
+<li class="method public "><a href="#method_getHorizontal" title="getHorizontal :: Get Horizontal (pseudo-border)."><span class="description">Get Horizontal (pseudo-border).</span><pre>getHorizontal()</pre></a></li>
+<li class="method public "><a href="#method_getInside" title="getInside :: Get Inside (pseudo-border)."><span class="description">Get Inside (pseudo-border).</span><pre>getInside()</pre></a></li>
+<li class="method public "><a href="#method_getIsSupervisor" title="getIsSupervisor :: Is this a supervisor or a real style component?"><span class="description">Is this a supervisor or a real style component?</span><pre>getIsSupervisor()</pre></a></li>
+<li class="method public "><a href="#method_getLeft" title="getLeft :: Get Left"><span class="description">Get Left</span><pre>getLeft()</pre></a></li>
+<li class="method public "><a href="#method_getOutline" title="getOutline :: Get Outline (pseudo-border)."><span class="description">Get Outline (pseudo-border).</span><pre>getOutline()</pre></a></li>
+<li class="method public "><a href="#method_getRight" title="getRight :: Get Right"><span class="description">Get Right</span><pre>getRight()</pre></a></li>
+<li class="method public "><a href="#method_getSelectedCells" title="getSelectedCells :: Get the currently active cell coordinate in currently active sheet."><span class="description">Get the currently active cell coordinate in currently active sheet.</span><pre>getSelectedCells()</pre></a></li>
+<li class="method public "><a href="#method_getSharedComponent" title="getSharedComponent :: Get the shared style component for the currently active cell in currently active sheet."><span class="description">Get the shared style component for the currently active cell in currently active sheet.</span><pre>getSharedComponent()</pre></a></li>
+<li class="method public "><a href="#method_getStyleArray" title="getStyleArray :: Build style array from subcomponents"><span class="description">Build style array from subcomponents</span><pre>getStyleArray()</pre></a></li>
+<li class="method public "><a href="#method_getTop" title="getTop :: Get Top"><span class="description">Get Top</span><pre>getTop()</pre></a></li>
+<li class="method public "><a href="#method_getVertical" title="getVertical :: Get Vertical (pseudo-border)."><span class="description">Get Vertical (pseudo-border).</span><pre>getVertical()</pre></a></li>
+<li class="method public "><a href="#method_setDiagonalDirection" title="setDiagonalDirection :: Set DiagonalDirection"><span class="description">Set DiagonalDirection</span><pre>setDiagonalDirection()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__allBorders" title="$_allBorders :: All borders psedo-border."><span class="description"></span><pre>$_allBorders</pre></a></li>
+<li class="property private "><a href="#property__bottom" title="$_bottom :: Bottom"><span class="description"></span><pre>$_bottom</pre></a></li>
+<li class="property private "><a href="#property__diagonal" title="$_diagonal :: Diagonal"><span class="description"></span><pre>$_diagonal</pre></a></li>
+<li class="property private "><a href="#property__diagonalDirection" title="$_diagonalDirection :: DiagonalDirection"><span class="description"></span><pre>$_diagonalDirection</pre></a></li>
+<li class="property private "><a href="#property__horizontal" title="$_horizontal :: Horizontal pseudo-border."><span class="description"></span><pre>$_horizontal</pre></a></li>
+<li class="property private "><a href="#property__inside" title="$_inside :: Inside psedo-border."><span class="description"></span><pre>$_inside</pre></a></li>
+<li class="property private "><a href="#property__isSupervisor" title="$_isSupervisor :: Supervisor?"><span class="description"></span><pre>$_isSupervisor</pre></a></li>
+<li class="property private "><a href="#property__left" title="$_left :: Left"><span class="description"></span><pre>$_left</pre></a></li>
+<li class="property private "><a href="#property__outline" title="$_outline :: Outline psedo-border."><span class="description"></span><pre>$_outline</pre></a></li>
+<li class="property private "><a href="#property__parent" title="$_parent :: Parent."><span class="description"></span><pre>$_parent</pre></a></li>
+<li class="property private "><a href="#property__parentPropertyName" title="$_parentPropertyName :: Parent Borders"><span class="description"></span><pre>$_parentPropertyName</pre></a></li>
+<li class="property private "><a href="#property__right" title="$_right :: Right"><span class="description"></span><pre>$_right</pre></a></li>
+<li class="property private "><a href="#property__top" title="$_top :: Top"><span class="description"></span><pre>$_top</pre></a></li>
+<li class="property private "><a href="#property__vertical" title="$_vertical :: Vertical pseudo-border."><span class="description"></span><pre>$_vertical</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_DIAGONAL_BOTH" title="DIAGONAL_BOTH :: "><span class="description">DIAGONAL_BOTH</span><pre>DIAGONAL_BOTH</pre></a></li>
+<li class="constant  "><a href="#constant_DIAGONAL_DOWN" title="DIAGONAL_DOWN :: "><span class="description">DIAGONAL_DOWN</span><pre>DIAGONAL_DOWN</pre></a></li>
+<li class="constant  "><a href="#constant_DIAGONAL_NONE" title="DIAGONAL_NONE :: "><span class="description">DIAGONAL_NONE</span><pre>DIAGONAL_NONE</pre></a></li>
+<li class="constant  "><a href="#constant_DIAGONAL_UP" title="DIAGONAL_UP :: "><span class="description">DIAGONAL_UP</span><pre>DIAGONAL_UP</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Style_Borders"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Style_Borders.html">PHPExcel_Style_Borders</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Style_Borders</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Style.html">PHPExcel_Style</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___clone"></a><div class="element clickable method public method___clone" data-toggle="collapse" data-target=".method___clone .collapse">
+<h2>Implement PHP __clone to create a deep clone, not just a shallow copy.</h2>
+<pre>__clone() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Create a new PHPExcel_Style_Borders</h2>
+<pre>__construct(boolean $isSupervisor, boolean $isConditional) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$isSupervisor</h4>
+<code>boolean</code><p>Flag indicating if this is a supervisor or not Leave this value at default unless you understand exactly what its ramifications are</p></div>
+<div class="subelement argument">
+<h4>$isConditional</h4>
+<code>boolean</code><p>Flag indicating if this is a conditional style or not Leave this value at default unless you understand exactly what its ramifications are</p></div>
+</div></div>
+</div>
+<a id="method_applyFromArray"></a><div class="element clickable method public method_applyFromArray" data-toggle="collapse" data-target=".method_applyFromArray .collapse">
+<h2>Apply styles from array</h2>
+<pre>applyFromArray(array $pStyles) : <a href="../classes/PHPExcel_Style_Borders.html">\PHPExcel_Style_Borders</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><pre><code>$objPHPExcel->getActiveSheet()->getStyle('B2')->getBorders()->applyFromArray(
+        array(
+            'bottom'     => array(
+                'style' => PHPExcel_Style_Border::BORDER_DASHDOT,
+                'color' => array(
+                    'rgb' => '808080'
+                )
+            ),
+            'top'     => array(
+                'style' => PHPExcel_Style_Border::BORDER_DASHDOT,
+                'color' => array(
+                    'rgb' => '808080'
+                )
+            )
+        )
+);
+</code></pre>
+
+<pre><code>$objPHPExcel->getActiveSheet()->getStyle('B2')->getBorders()->applyFromArray(
+        array(
+            'allborders' => array(
+                'style' => PHPExcel_Style_Border::BORDER_DASHDOT,
+                'color' => array(
+                    'rgb' => '808080'
+                )
+            )
+        )
+);
+</code></pre></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pStyles</h4>
+<code>array</code><p>Array containing style information</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Borders.html">\PHPExcel_Style_Borders</a></code></div>
+</div></div>
+</div>
+<a id="method_bindParent"></a><div class="element clickable method public method_bindParent" data-toggle="collapse" data-target=".method_bindParent .collapse">
+<h2>Bind parent.</h2>
+<pre>bindParent(<a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a> $parent) : <a href="../classes/PHPExcel_Style_Borders.html">\PHPExcel_Style_Borders</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only used for supervisor</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$parent</h4>
+<code><a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Borders.html">\PHPExcel_Style_Borders</a></code></div>
+</div></div>
+</div>
+<a id="method_getActiveCell"></a><div class="element clickable method public method_getActiveCell" data-toggle="collapse" data-target=".method_getActiveCell .collapse">
+<h2>Get the currently active cell coordinate in currently active sheet.</h2>
+<pre>getActiveCell() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only used for supervisor</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>E.g. 'A1'</div>
+</div></div>
+</div>
+<a id="method_getActiveSheet"></a><div class="element clickable method public method_getActiveSheet" data-toggle="collapse" data-target=".method_getActiveSheet .collapse">
+<h2>Get the currently active sheet.</h2>
+<pre>getActiveSheet() : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only used for supervisor</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_getAllBorders"></a><div class="element clickable method public method_getAllBorders" data-toggle="collapse" data-target=".method_getAllBorders .collapse">
+<h2>Get AllBorders (pseudo-border).</h2>
+<pre>getAllBorders() : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only applies to supervisor.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></code></div>
+</div></div>
+</div>
+<a id="method_getBottom"></a><div class="element clickable method public method_getBottom" data-toggle="collapse" data-target=".method_getBottom .collapse">
+<h2>Get Bottom</h2>
+<pre>getBottom() : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></code></div>
+</div></div>
+</div>
+<a id="method_getDiagonal"></a><div class="element clickable method public method_getDiagonal" data-toggle="collapse" data-target=".method_getDiagonal .collapse">
+<h2>Get Diagonal</h2>
+<pre>getDiagonal() : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></code></div>
+</div></div>
+</div>
+<a id="method_getDiagonalDirection"></a><div class="element clickable method public method_getDiagonalDirection" data-toggle="collapse" data-target=".method_getDiagonalDirection .collapse">
+<h2>Get DiagonalDirection</h2>
+<pre>getDiagonalDirection() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_getHashCode"></a><div class="element clickable method public method_getHashCode" data-toggle="collapse" data-target=".method_getHashCode .collapse">
+<h2>Get hash code</h2>
+<pre>getHashCode() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Hash code</div>
+</div></div>
+</div>
+<a id="method_getHorizontal"></a><div class="element clickable method public method_getHorizontal" data-toggle="collapse" data-target=".method_getHorizontal .collapse">
+<h2>Get Horizontal (pseudo-border).</h2>
+<pre>getHorizontal() : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only applies to supervisor.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></code></div>
+</div></div>
+</div>
+<a id="method_getInside"></a><div class="element clickable method public method_getInside" data-toggle="collapse" data-target=".method_getInside .collapse">
+<h2>Get Inside (pseudo-border).</h2>
+<pre>getInside() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only applies to supervisor.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_getIsSupervisor"></a><div class="element clickable method public method_getIsSupervisor" data-toggle="collapse" data-target=".method_getIsSupervisor .collapse">
+<h2>Is this a supervisor or a real style component?</h2>
+<pre>getIsSupervisor() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_getLeft"></a><div class="element clickable method public method_getLeft" data-toggle="collapse" data-target=".method_getLeft .collapse">
+<h2>Get Left</h2>
+<pre>getLeft() : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></code></div>
+</div></div>
+</div>
+<a id="method_getOutline"></a><div class="element clickable method public method_getOutline" data-toggle="collapse" data-target=".method_getOutline .collapse">
+<h2>Get Outline (pseudo-border).</h2>
+<pre>getOutline() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only applies to supervisor.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_getRight"></a><div class="element clickable method public method_getRight" data-toggle="collapse" data-target=".method_getRight .collapse">
+<h2>Get Right</h2>
+<pre>getRight() : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></code></div>
+</div></div>
+</div>
+<a id="method_getSelectedCells"></a><div class="element clickable method public method_getSelectedCells" data-toggle="collapse" data-target=".method_getSelectedCells .collapse">
+<h2>Get the currently active cell coordinate in currently active sheet.</h2>
+<pre>getSelectedCells() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only used for supervisor</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>E.g. 'A1'</div>
+</div></div>
+</div>
+<a id="method_getSharedComponent"></a><div class="element clickable method public method_getSharedComponent" data-toggle="collapse" data-target=".method_getSharedComponent .collapse">
+<h2>Get the shared style component for the currently active cell in currently active sheet.</h2>
+<pre>getSharedComponent() : <a href="../classes/PHPExcel_Style_Borders.html">\PHPExcel_Style_Borders</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only used for style supervisor</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Borders.html">\PHPExcel_Style_Borders</a></code></div>
+</div></div>
+</div>
+<a id="method_getStyleArray"></a><div class="element clickable method public method_getStyleArray" data-toggle="collapse" data-target=".method_getStyleArray .collapse">
+<h2>Build style array from subcomponents</h2>
+<pre>getStyleArray(array $array) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getTop"></a><div class="element clickable method public method_getTop" data-toggle="collapse" data-target=".method_getTop .collapse">
+<h2>Get Top</h2>
+<pre>getTop() : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></code></div>
+</div></div>
+</div>
+<a id="method_getVertical"></a><div class="element clickable method public method_getVertical" data-toggle="collapse" data-target=".method_getVertical .collapse">
+<h2>Get Vertical (pseudo-border).</h2>
+<pre>getVertical() : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only applies to supervisor.</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></code></div>
+</div></div>
+</div>
+<a id="method_setDiagonalDirection"></a><div class="element clickable method public method_setDiagonalDirection" data-toggle="collapse" data-target=".method_setDiagonalDirection .collapse">
+<h2>Set DiagonalDirection</h2>
+<pre>setDiagonalDirection(int $pValue) : <a href="../classes/PHPExcel_Style_Borders.html">\PHPExcel_Style_Borders</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>int</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Style_Borders.html">\PHPExcel_Style_Borders</a></code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__allBorders"> </a><div class="element clickable property private property__allBorders" data-toggle="collapse" data-target=".property__allBorders .collapse">
+<h2></h2>
+<pre>$_allBorders : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Only applies to supervisor.</p></div></div></div>
+</div>
+<a id="property__bottom"> </a><div class="element clickable property private property__bottom" data-toggle="collapse" data-target=".property__bottom .collapse">
+<h2></h2>
+<pre>$_bottom : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__diagonal"> </a><div class="element clickable property private property__diagonal" data-toggle="collapse" data-target=".property__diagonal .collapse">
+<h2></h2>
+<pre>$_diagonal : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__diagonalDirection"> </a><div class="element clickable property private property__diagonalDirection" data-toggle="collapse" data-target=".property__diagonalDirection .collapse">
+<h2></h2>
+<pre>$_diagonalDirection : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__horizontal"> </a><div class="element clickable property private property__horizontal" data-toggle="collapse" data-target=".property__horizontal .collapse">
+<h2></h2>
+<pre>$_horizontal : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Only applies to supervisor.</p></div></div></div>
+</div>
+<a id="property__inside"> </a><div class="element clickable property private property__inside" data-toggle="collapse" data-target=".property__inside .collapse">
+<h2></h2>
+<pre>$_inside : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Only applies to supervisor.</p></div></div></div>
+</div>
+<a id="property__isSupervisor"> </a><div class="element clickable property private property__isSupervisor" data-toggle="collapse" data-target=".property__isSupervisor .collapse">
+<h2></h2>
+<pre>$_isSupervisor : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__left"> </a><div class="element clickable property private property__left" data-toggle="collapse" data-target=".property__left .collapse">
+<h2></h2>
+<pre>$_left : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__outline"> </a><div class="element clickable property private property__outline" data-toggle="collapse" data-target=".property__outline .collapse">
+<h2></h2>
+<pre>$_outline : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Only applies to supervisor.</p></div></div></div>
+</div>
+<a id="property__parent"> </a><div class="element clickable property private property__parent" data-toggle="collapse" data-target=".property__parent .collapse">
+<h2></h2>
+<pre>$_parent : <a href="../classes/PHPExcel_Style.html">\PHPExcel_Style</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Only used for supervisor</p></div></div></div>
+</div>
+<a id="property__parentPropertyName"> </a><div class="element clickable property private property__parentPropertyName" data-toggle="collapse" data-target=".property__parentPropertyName .collapse">
+<h2></h2>
+<pre>$_parentPropertyName : \_parentPropertyName</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__right"> </a><div class="element clickable property private property__right" data-toggle="collapse" data-target=".property__right .collapse">
+<h2></h2>
+<pre>$_right : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__top"> </a><div class="element clickable property private property__top" data-toggle="collapse" data-target=".property__top .collapse">
+<h2></h2>
+<pre>$_top : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__vertical"> </a><div class="element clickable property private property__vertical" data-toggle="collapse" data-target=".property__vertical .collapse">
+<h2></h2>
+<pre>$_vertical : <a href="../classes/PHPExcel_Style_Border.html">\PHPExcel_Style_Border</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Only applies to supervisor.</p></div></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_DIAGONAL_BOTH"> </a><div class="element clickable constant  constant_DIAGONAL_BOTH" data-toggle="collapse" data-target=".constant_DIAGONAL_BOTH .collapse">
+<h2>DIAGONAL_BOTH</h2>
+<pre>DIAGONAL_BOTH </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_DIAGONAL_DOWN"> </a><div class="element clickable constant  constant_DIAGONAL_DOWN" data-toggle="collapse" data-target=".constant_DIAGONAL_DOWN .collapse">
+<h2>DIAGONAL_DOWN</h2>
+<pre>DIAGONAL_DOWN </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_DIAGONAL_NONE"> </a><div class="element clickable constant  constant_DIAGONAL_NONE" data-toggle="collapse" data-target=".constant_DIAGONAL_NONE .collapse">
+<h2>DIAGONAL_NONE</h2>
+<pre>DIAGONAL_NONE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_DIAGONAL_UP"> </a><div class="element clickable constant  constant_DIAGONAL_UP" data-toggle="collapse" data-target=".constant_DIAGONAL_UP .collapse">
+<h2>DIAGONAL_UP</h2>
+<pre>DIAGONAL_UP </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:16-07:00.<br></footer></div>
+</div>
+</body>
+</html>

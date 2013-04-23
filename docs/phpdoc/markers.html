@@ -20,9 +20,41 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
+<li><a href="packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
 <li><a href="packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
 <li><a href="packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
 <li><a href="packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -33,13 +65,18 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">476</span></a></li>
+                <span class="label label-info">1565</span></a></li>
 <li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul><li>todo 
-                <span class="label label-info">1</span>
-</li></ul></a></li>
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
 <li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">14</span></a></li>
 </ul>
 </li>
 </ul></div>
@@ -54,7 +91,24 @@
 <div class="row">
 <div class="span4"><ul class="side-nav nav nav-list">
 <li class="nav-header">Navigation</li>
-<li><a href="#dataTypes/City/City.class.php"><i class="icon-file"></i>dataTypes/City/City.class.php</a></li>
+<li><a href="#resources/classes/Account.class.php"><i class="icon-file"></i>resources/classes/Account.class.php</a></li>
+<li><a href="#resources/classes/DataTypePluginHelper.class.php"><i class="icon-file"></i>resources/classes/DataTypePluginHelper.class.php</a></li>
+<li><a href="#resources/classes/GeoData.class.php"><i class="icon-file"></i>resources/classes/GeoData.class.php</a></li>
+<li><a href="#resources/classes/Language.class.php"><i class="icon-file"></i>resources/classes/Language.class.php</a></li>
+<li><a href="#resources/classes/SessionManager.class.php"><i class="icon-file"></i>resources/classes/SessionManager.class.php</a></li>
+<li><a href="#resources/classes/Settings.class.php"><i class="icon-file"></i>resources/classes/Settings.class.php</a></li>
+<li><a href="#plugins/dataTypes/City/City.class.php"><i class="icon-file"></i>plugins/dataTypes/City/City.class.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Calculation/LookupRef.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Calculation/LookupRef.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Calculation/Statistical.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Calculation/Statistical.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Reader/Excel2007.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Reader/Excel2007.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Reader/Excel5.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Reader/Excel5.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Reader/HTML.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Reader/HTML.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Shared/JAMA/examples/Stats.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Shared/JAMA/examples/Stats.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Parser.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Parser.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Workbook.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Workbook.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Worksheet.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Worksheet.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Writer/HTML.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/HTML.php</a></li>
 </ul></div>
 <div class="span8">
 <ul class="breadcrumb">
@@ -65,13 +119,136 @@
 </ul>
 <div class="alert alert-info">
                         The following markers were found:
-                        <ul><li>todo 
-                <span class="label label-info">1</span>
-</li></ul>
+                        <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul>
 </div>
-<div id="marker-accordion"><div class="package-contents">
-<a name="dataTypes/City/City.class.php" id="dataTypes/City/City.class.php"></a><h3>
-<i class="icon-file"></i>dataTypes/City/City.class.php<small style="float: right;padding-right: 10px;">1</small>
+<div id="marker-accordion">
+<div class="package-contents">
+<a name="resources/classes/Account.class.php" id="resources/classes/Account.class.php"></a><h3>
+<i class="icon-file"></i>resources/classes/Account.class.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>267</td>
+<td></td>
+</tr>
+<tr>
+<td>todo</td>
+<td>461</td>
+<td></td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="resources/classes/DataTypePluginHelper.class.php" id="resources/classes/DataTypePluginHelper.class.php"></a><h3>
+<i class="icon-file"></i>resources/classes/DataTypePluginHelper.class.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>167</td>
+<td>this prevents two DataTypes using the same order, which leads to accidental bugs</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="resources/classes/GeoData.class.php" id="resources/classes/GeoData.class.php"></a><h3>
+<i class="icon-file"></i>resources/classes/GeoData.class.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>80</td>
+<td></td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="resources/classes/Language.class.php" id="resources/classes/Language.class.php"></a><h3>
+<i class="icon-file"></i>resources/classes/Language.class.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>15</td>
+<td>also add private var for human-readable string of current language</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>34</td>
+<td>exception handling here</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>45</td>
+<td>far too verbose</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="resources/classes/SessionManager.class.php" id="resources/classes/SessionManager.class.php"></a><h3>
+<i class="icon-file"></i>resources/classes/SessionManager.class.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>29</td>
+<td>?</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="resources/classes/Settings.class.php" id="resources/classes/Settings.class.php"></a><h3>
+<i class="icon-file"></i>resources/classes/Settings.class.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>17</td>
+<td>. work out standardized return format... Exception maybe</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/dataTypes/City/City.class.php" id="plugins/dataTypes/City/City.class.php"></a><h3>
+<i class="icon-file"></i>plugins/dataTypes/City/City.class.php<small style="float: right;padding-right: 10px;">1</small>
 </h3>
 <div><table class="table markers table-bordered">
 <tr>
@@ -85,13 +262,316 @@
 <td>bug here (when user unselected particular row regions)</td>
 </tr>
 </table></div>
-</div></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Calculation/LookupRef.php" id="plugins/exportTypes/Excel/PHPExcel/Calculation/LookupRef.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Calculation/LookupRef.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>279</td>
+<td>Support for the optional a1 parameter introduced in Excel 2010</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Calculation/Statistical.php" id="plugins/exportTypes/Excel/PHPExcel/Calculation/Statistical.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Calculation/Statistical.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>959</td>
+<td>Cumulative distribution function</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>1308</td>
+<td>Warning. This implementation differs from the algorithm detailed on the MS
+		web site in that $CumPGuessMinus1 = $CumPGuess - 1 rather than $CumPGuess - $PGuess
+		This eliminates a potential endless loop error, but may have an adverse affect on the
+		accuracy of the function (although all my tests have so far returned correct results).</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>2057</td>
+<td>Try implementing P J Acklam's refinement algorithm for greater
+		accuracy if I can get my head round the mathematics
+		(as described at) http://home.online.no/~pjacklam/notes/invnorm/</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php" id="plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>84</td>
+<td>Sanitize Rich-Text string (max. character count is 32,767)</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Reader/Excel2007.php" id="plugins/exportTypes/Excel/PHPExcel/Reader/Excel2007.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Reader/Excel2007.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>1517</td>
+<td>Autoshapes from twoCellAnchors!</td>
+</tr>
+<tr>
+<td>fixme</td>
+<td>1695</td>
+<td>what if sheetname contains comma?</td>
+</tr>
+<tr>
+<td>fixme</td>
+<td>1698</td>
+<td>what if sheetname contains exclamation mark?</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Reader/Excel5.php" id="plugins/exportTypes/Excel/PHPExcel/Reader/Excel5.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Reader/Excel5.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>fixme</td>
+<td>1077</td>
+<td>what if sheetname contains comma?</td>
+</tr>
+<tr>
+<td>fixme</td>
+<td>1085</td>
+<td>what if sheetname contains exclamation mark?</td>
+</tr>
+<tr>
+<td>fixme</td>
+<td>1109</td>
+<td>what if sheetname contains comma?</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>1162</td>
+<td>Provide support for named values</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>4668</td>
+<td>Investigate structure for .xls SHEETLAYOUT record as saved by MS Office Excel 2007</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>6026</td>
+<td>if cell range is just a single cell, should this funciton</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>6200</td>
+<td>external sheet support</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Reader/HTML.php" id="plugins/exportTypes/Excel/PHPExcel/Reader/HTML.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Reader/HTML.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>233</td>
+<td></td>
+</tr>
+<tr>
+<td>todo</td>
+<td>248</td>
+<td></td>
+</tr>
+<tr>
+<td>todo</td>
+<td>264</td>
+<td></td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Shared/JAMA/examples/Stats.php" id="plugins/exportTypes/Excel/PHPExcel/Shared/JAMA/examples/Stats.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Shared/JAMA/examples/Stats.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>1222</td>
+<td>need to double check the equation</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>1309</td>
+<td>need to double check the equation</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>1336</td>
+<td>need to double check the equation</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>1365</td>
+<td>need to double check generality of the algorithm</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Parser.php" id="plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Parser.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Parser.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>566</td>
+<td>use real error codes</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>641</td>
+<td>possible class value 0,1,2 check Formula.pm</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>646</td>
+<td>use real error codes</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>662</td>
+<td>use real error codes</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>734</td>
+<td>use real error codes</td>
+</tr>
+<tr>
+<td>fixme</td>
+<td>947</td>
+<td>change for BIFF8</td>
+</tr>
+<tr>
+<td>fixme</td>
+<td>983</td>
+<td>maximum possible value for Excel 5 (change this!!!)</td>
+</tr>
+<tr>
+<td>fixme</td>
+<td>985</td>
+<td>this changes for BIFF8</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Workbook.php" id="plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Workbook.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Workbook.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>fixme</td>
+<td>974</td>
+<td>only using internal SUPBOOK record</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Worksheet.php" id="plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Worksheet.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/Excel5/Worksheet.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>fixme</td>
+<td>1295</td>
+<td>!!!</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="plugins/exportTypes/Excel/PHPExcel/Writer/HTML.php" id="plugins/exportTypes/Excel/PHPExcel/Writer/HTML.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/HTML.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>1370</td>
+<td>Same for columns</td>
+</tr>
+</table></div>
+</div>
+</div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-12-28T20:03:34-08:00.<br></footer></div>
+            generated on 2013-04-22T17:30:20-07:00.<br></footer></div>
 </div>
 </body>
 </html>

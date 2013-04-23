@@ -1,0 +1,680 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Chart_DataSeries</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Create a new PHPExcel_Chart_DataSeries"><span class="description">Create a new PHPExcel_Chart_DataSeries</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_getPlotCategories" title="getPlotCategories :: Get Plot Categories"><span class="description">Get Plot Categories</span><pre>getPlotCategories()</pre></a></li>
+<li class="method public "><a href="#method_getPlotCategoryByIndex" title="getPlotCategoryByIndex :: Get Plot Category by Index"><span class="description">Get Plot Category by Index</span><pre>getPlotCategoryByIndex()</pre></a></li>
+<li class="method public "><a href="#method_getPlotDirection" title="getPlotDirection :: Get Plot Direction"><span class="description">Get Plot Direction</span><pre>getPlotDirection()</pre></a></li>
+<li class="method public "><a href="#method_getPlotGrouping" title="getPlotGrouping :: Get Plot Grouping Type"><span class="description">Get Plot Grouping Type</span><pre>getPlotGrouping()</pre></a></li>
+<li class="method public "><a href="#method_getPlotLabelByIndex" title="getPlotLabelByIndex :: Get Plot Label by Index"><span class="description">Get Plot Label by Index</span><pre>getPlotLabelByIndex()</pre></a></li>
+<li class="method public "><a href="#method_getPlotLabels" title="getPlotLabels :: Get Plot Labels"><span class="description">Get Plot Labels</span><pre>getPlotLabels()</pre></a></li>
+<li class="method public "><a href="#method_getPlotOrder" title="getPlotOrder :: Get Plot Order"><span class="description">Get Plot Order</span><pre>getPlotOrder()</pre></a></li>
+<li class="method public "><a href="#method_getPlotSeriesCount" title="getPlotSeriesCount :: Get Number of Plot Series"><span class="description">Get Number of Plot Series</span><pre>getPlotSeriesCount()</pre></a></li>
+<li class="method public "><a href="#method_getPlotStyle" title="getPlotStyle :: Get Plot Style"><span class="description">Get Plot Style</span><pre>getPlotStyle()</pre></a></li>
+<li class="method public "><a href="#method_getPlotType" title="getPlotType :: Get Plot Type"><span class="description">Get Plot Type</span><pre>getPlotType()</pre></a></li>
+<li class="method public "><a href="#method_getPlotValues" title="getPlotValues :: Get Plot Values"><span class="description">Get Plot Values</span><pre>getPlotValues()</pre></a></li>
+<li class="method public "><a href="#method_getPlotValuesByIndex" title="getPlotValuesByIndex :: Get Plot Values by Index"><span class="description">Get Plot Values by Index</span><pre>getPlotValuesByIndex()</pre></a></li>
+<li class="method public "><a href="#method_getSmoothLine" title="getSmoothLine :: Get Smooth Line"><span class="description">Get Smooth Line</span><pre>getSmoothLine()</pre></a></li>
+<li class="method public "><a href="#method_refresh" title="refresh :: "><span class="description">refresh()
+        </span><pre>refresh()</pre></a></li>
+<li class="method public "><a href="#method_setPlotDirection" title="setPlotDirection :: Set Plot Direction"><span class="description">Set Plot Direction</span><pre>setPlotDirection()</pre></a></li>
+<li class="method public "><a href="#method_setPlotGrouping" title="setPlotGrouping :: Set Plot Grouping Type"><span class="description">Set Plot Grouping Type</span><pre>setPlotGrouping()</pre></a></li>
+<li class="method public "><a href="#method_setPlotStyle" title="setPlotStyle :: Set Plot Style"><span class="description">Set Plot Style</span><pre>setPlotStyle()</pre></a></li>
+<li class="method public "><a href="#method_setPlotType" title="setPlotType :: Set Plot Type"><span class="description">Set Plot Type</span><pre>setPlotType()</pre></a></li>
+<li class="method public "><a href="#method_setSmoothLine" title="setSmoothLine :: Set Smooth Line"><span class="description">Set Smooth Line</span><pre>setSmoothLine()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__plotCategory" title="$_plotCategory :: Plot Category"><span class="description"></span><pre>$_plotCategory</pre></a></li>
+<li class="property private "><a href="#property__plotDirection" title="$_plotDirection :: Plot Direction"><span class="description"></span><pre>$_plotDirection</pre></a></li>
+<li class="property private "><a href="#property__plotGrouping" title="$_plotGrouping :: Plot Grouping Type"><span class="description"></span><pre>$_plotGrouping</pre></a></li>
+<li class="property private "><a href="#property__plotLabel" title="$_plotLabel :: Plot Label"><span class="description"></span><pre>$_plotLabel</pre></a></li>
+<li class="property private "><a href="#property__plotOrder" title="$_plotOrder :: Order of plots in Series"><span class="description"></span><pre>$_plotOrder</pre></a></li>
+<li class="property private "><a href="#property__plotStyle" title="$_plotStyle :: Plot Style"><span class="description"></span><pre>$_plotStyle</pre></a></li>
+<li class="property private "><a href="#property__plotType" title="$_plotType :: Series Plot Type"><span class="description"></span><pre>$_plotType</pre></a></li>
+<li class="property private "><a href="#property__plotValues" title="$_plotValues :: Plot Values"><span class="description"></span><pre>$_plotValues</pre></a></li>
+<li class="property private "><a href="#property__smoothLine" title="$_smoothLine :: Smooth Line"><span class="description"></span><pre>$_smoothLine</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_DIRECTION_BAR" title="DIRECTION_BAR :: "><span class="description">DIRECTION_BAR</span><pre>DIRECTION_BAR</pre></a></li>
+<li class="constant  "><a href="#constant_DIRECTION_COL" title="DIRECTION_COL :: "><span class="description">DIRECTION_COL</span><pre>DIRECTION_COL</pre></a></li>
+<li class="constant  "><a href="#constant_DIRECTION_COLUMN" title="DIRECTION_COLUMN :: "><span class="description">DIRECTION_COLUMN</span><pre>DIRECTION_COLUMN</pre></a></li>
+<li class="constant  "><a href="#constant_DIRECTION_HORIZONTAL" title="DIRECTION_HORIZONTAL :: "><span class="description">DIRECTION_HORIZONTAL</span><pre>DIRECTION_HORIZONTAL</pre></a></li>
+<li class="constant  "><a href="#constant_DIRECTION_VERTICAL" title="DIRECTION_VERTICAL :: "><span class="description">DIRECTION_VERTICAL</span><pre>DIRECTION_VERTICAL</pre></a></li>
+<li class="constant  "><a href="#constant_GROUPING_CLUSTERED" title="GROUPING_CLUSTERED :: "><span class="description">GROUPING_CLUSTERED</span><pre>GROUPING_CLUSTERED</pre></a></li>
+<li class="constant  "><a href="#constant_GROUPING_PERCENT_STACKED" title="GROUPING_PERCENT_STACKED :: "><span class="description">GROUPING_PERCENT_STACKED</span><pre>GROUPING_PERCENT_STACKED</pre></a></li>
+<li class="constant  "><a href="#constant_GROUPING_STACKED" title="GROUPING_STACKED :: "><span class="description">GROUPING_STACKED</span><pre>GROUPING_STACKED</pre></a></li>
+<li class="constant  "><a href="#constant_GROUPING_STANDARD" title="GROUPING_STANDARD :: "><span class="description">GROUPING_STANDARD</span><pre>GROUPING_STANDARD</pre></a></li>
+<li class="constant  "><a href="#constant_STYLE_FILLED" title="STYLE_FILLED :: "><span class="description">STYLE_FILLED</span><pre>STYLE_FILLED</pre></a></li>
+<li class="constant  "><a href="#constant_STYLE_LINEMARKER" title="STYLE_LINEMARKER :: "><span class="description">STYLE_LINEMARKER</span><pre>STYLE_LINEMARKER</pre></a></li>
+<li class="constant  "><a href="#constant_STYLE_MARKER" title="STYLE_MARKER :: "><span class="description">STYLE_MARKER</span><pre>STYLE_MARKER</pre></a></li>
+<li class="constant  "><a href="#constant_STYLE_SMOOTHMARKER" title="STYLE_SMOOTHMARKER :: "><span class="description">STYLE_SMOOTHMARKER</span><pre>STYLE_SMOOTHMARKER</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_AREACHART" title="TYPE_AREACHART :: "><span class="description">TYPE_AREACHART</span><pre>TYPE_AREACHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_AREACHART_3D" title="TYPE_AREACHART_3D :: "><span class="description">TYPE_AREACHART_3D</span><pre>TYPE_AREACHART_3D</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_BARCHART" title="TYPE_BARCHART :: "><span class="description">TYPE_BARCHART</span><pre>TYPE_BARCHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_BARCHART_3D" title="TYPE_BARCHART_3D :: "><span class="description">TYPE_BARCHART_3D</span><pre>TYPE_BARCHART_3D</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_BUBBLECHART" title="TYPE_BUBBLECHART :: "><span class="description">TYPE_BUBBLECHART</span><pre>TYPE_BUBBLECHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_DONUTCHART" title="TYPE_DONUTCHART :: "><span class="description">TYPE_DONUTCHART</span><pre>TYPE_DONUTCHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_DOUGHTNUTCHART" title="TYPE_DOUGHTNUTCHART :: "><span class="description">TYPE_DOUGHTNUTCHART</span><pre>TYPE_DOUGHTNUTCHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_LINECHART" title="TYPE_LINECHART :: "><span class="description">TYPE_LINECHART</span><pre>TYPE_LINECHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_LINECHART_3D" title="TYPE_LINECHART_3D :: "><span class="description">TYPE_LINECHART_3D</span><pre>TYPE_LINECHART_3D</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_PIECHART" title="TYPE_PIECHART :: "><span class="description">TYPE_PIECHART</span><pre>TYPE_PIECHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_PIECHART_3D" title="TYPE_PIECHART_3D :: "><span class="description">TYPE_PIECHART_3D</span><pre>TYPE_PIECHART_3D</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_RADARCHART" title="TYPE_RADARCHART :: "><span class="description">TYPE_RADARCHART</span><pre>TYPE_RADARCHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_SCATTERCHART" title="TYPE_SCATTERCHART :: "><span class="description">TYPE_SCATTERCHART</span><pre>TYPE_SCATTERCHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_STOCKCHART" title="TYPE_STOCKCHART :: "><span class="description">TYPE_STOCKCHART</span><pre>TYPE_STOCKCHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_SURFACECHART" title="TYPE_SURFACECHART :: "><span class="description">TYPE_SURFACECHART</span><pre>TYPE_SURFACECHART</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE_SURFACECHART_3D" title="TYPE_SURFACECHART_3D :: "><span class="description">TYPE_SURFACECHART_3D</span><pre>TYPE_SURFACECHART_3D</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Chart_DataSeries"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Chart_DataSeries.html">PHPExcel_Chart_DataSeries</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Chart_DataSeries</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Chart.html">PHPExcel_Chart</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Create a new PHPExcel_Chart_DataSeries</h2>
+<pre>__construct($plotType, $plotGrouping, $plotOrder, $plotLabel, $plotCategory, $plotValues, $smoothLine, $plotStyle) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$plotType</h4></div>
+<div class="subelement argument"><h4>$plotGrouping</h4></div>
+<div class="subelement argument"><h4>$plotOrder</h4></div>
+<div class="subelement argument"><h4>$plotLabel</h4></div>
+<div class="subelement argument"><h4>$plotCategory</h4></div>
+<div class="subelement argument"><h4>$plotValues</h4></div>
+<div class="subelement argument"><h4>$smoothLine</h4></div>
+<div class="subelement argument"><h4>$plotStyle</h4></div>
+</div></div>
+</div>
+<a id="method_getPlotCategories"></a><div class="element clickable method public method_getPlotCategories" data-toggle="collapse" data-target=".method_getPlotCategories .collapse">
+<h2>Get Plot Categories</h2>
+<pre>getPlotCategories() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of PHPExcel_Chart_DataSeriesValues</div>
+</div></div>
+</div>
+<a id="method_getPlotCategoryByIndex"></a><div class="element clickable method public method_getPlotCategoryByIndex" data-toggle="collapse" data-target=".method_getPlotCategoryByIndex .collapse">
+<h2>Get Plot Category by Index</h2>
+<pre>getPlotCategoryByIndex($index) : <a href="../classes/PHPExcel_Chart_DataSeriesValues.html">\PHPExcel_Chart_DataSeriesValues</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$index</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart_DataSeriesValues.html">\PHPExcel_Chart_DataSeriesValues</a></code></div>
+</div></div>
+</div>
+<a id="method_getPlotDirection"></a><div class="element clickable method public method_getPlotDirection" data-toggle="collapse" data-target=".method_getPlotDirection .collapse">
+<h2>Get Plot Direction</h2>
+<pre>getPlotDirection() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getPlotGrouping"></a><div class="element clickable method public method_getPlotGrouping" data-toggle="collapse" data-target=".method_getPlotGrouping .collapse">
+<h2>Get Plot Grouping Type</h2>
+<pre>getPlotGrouping() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getPlotLabelByIndex"></a><div class="element clickable method public method_getPlotLabelByIndex" data-toggle="collapse" data-target=".method_getPlotLabelByIndex .collapse">
+<h2>Get Plot Label by Index</h2>
+<pre>getPlotLabelByIndex($index) : <a href="../classes/PHPExcel_Chart_DataSeriesValues.html">\PHPExcel_Chart_DataSeriesValues</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$index</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart_DataSeriesValues.html">\PHPExcel_Chart_DataSeriesValues</a></code></div>
+</div></div>
+</div>
+<a id="method_getPlotLabels"></a><div class="element clickable method public method_getPlotLabels" data-toggle="collapse" data-target=".method_getPlotLabels .collapse">
+<h2>Get Plot Labels</h2>
+<pre>getPlotLabels() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of PHPExcel_Chart_DataSeriesValues</div>
+</div></div>
+</div>
+<a id="method_getPlotOrder"></a><div class="element clickable method public method_getPlotOrder" data-toggle="collapse" data-target=".method_getPlotOrder .collapse">
+<h2>Get Plot Order</h2>
+<pre>getPlotOrder() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getPlotSeriesCount"></a><div class="element clickable method public method_getPlotSeriesCount" data-toggle="collapse" data-target=".method_getPlotSeriesCount .collapse">
+<h2>Get Number of Plot Series</h2>
+<pre>getPlotSeriesCount() : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_getPlotStyle"></a><div class="element clickable method public method_getPlotStyle" data-toggle="collapse" data-target=".method_getPlotStyle .collapse">
+<h2>Get Plot Style</h2>
+<pre>getPlotStyle() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getPlotType"></a><div class="element clickable method public method_getPlotType" data-toggle="collapse" data-target=".method_getPlotType .collapse">
+<h2>Get Plot Type</h2>
+<pre>getPlotType() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getPlotValues"></a><div class="element clickable method public method_getPlotValues" data-toggle="collapse" data-target=".method_getPlotValues .collapse">
+<h2>Get Plot Values</h2>
+<pre>getPlotValues() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of PHPExcel_Chart_DataSeriesValues</div>
+</div></div>
+</div>
+<a id="method_getPlotValuesByIndex"></a><div class="element clickable method public method_getPlotValuesByIndex" data-toggle="collapse" data-target=".method_getPlotValuesByIndex .collapse">
+<h2>Get Plot Values by Index</h2>
+<pre>getPlotValuesByIndex($index) : <a href="../classes/PHPExcel_Chart_DataSeriesValues.html">\PHPExcel_Chart_DataSeriesValues</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$index</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Chart_DataSeriesValues.html">\PHPExcel_Chart_DataSeriesValues</a></code></div>
+</div></div>
+</div>
+<a id="method_getSmoothLine"></a><div class="element clickable method public method_getSmoothLine" data-toggle="collapse" data-target=".method_getSmoothLine .collapse">
+<h2>Get Smooth Line</h2>
+<pre>getSmoothLine() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_refresh"></a><div class="element clickable method public method_refresh" data-toggle="collapse" data-target=".method_refresh .collapse">
+<h2>refresh()
+        </h2>
+<pre>refresh(\PHPExcel_Worksheet $worksheet) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$worksheet</h4></div>
+</div></div>
+</div>
+<a id="method_setPlotDirection"></a><div class="element clickable method public method_setPlotDirection" data-toggle="collapse" data-target=".method_setPlotDirection .collapse">
+<h2>Set Plot Direction</h2>
+<pre>setPlotDirection(string $plotDirection) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plotDirection</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_setPlotGrouping"></a><div class="element clickable method public method_setPlotGrouping" data-toggle="collapse" data-target=".method_setPlotGrouping .collapse">
+<h2>Set Plot Grouping Type</h2>
+<pre>setPlotGrouping(string $groupingType) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$groupingType</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_setPlotStyle"></a><div class="element clickable method public method_setPlotStyle" data-toggle="collapse" data-target=".method_setPlotStyle .collapse">
+<h2>Set Plot Style</h2>
+<pre>setPlotStyle(string $plotStyle) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plotStyle</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_setPlotType"></a><div class="element clickable method public method_setPlotType" data-toggle="collapse" data-target=".method_setPlotType .collapse">
+<h2>Set Plot Type</h2>
+<pre>setPlotType(string $plotType) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plotType</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_setSmoothLine"></a><div class="element clickable method public method_setSmoothLine" data-toggle="collapse" data-target=".method_setSmoothLine .collapse">
+<h2>Set Smooth Line</h2>
+<pre>setSmoothLine(boolean $smoothLine) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$smoothLine</h4>
+<code>boolean</code>
+</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__plotCategory"> </a><div class="element clickable property private property__plotCategory" data-toggle="collapse" data-target=".property__plotCategory .collapse">
+<h2></h2>
+<pre>$_plotCategory : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotDirection"> </a><div class="element clickable property private property__plotDirection" data-toggle="collapse" data-target=".property__plotDirection .collapse">
+<h2></h2>
+<pre>$_plotDirection : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotGrouping"> </a><div class="element clickable property private property__plotGrouping" data-toggle="collapse" data-target=".property__plotGrouping .collapse">
+<h2></h2>
+<pre>$_plotGrouping : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotLabel"> </a><div class="element clickable property private property__plotLabel" data-toggle="collapse" data-target=".property__plotLabel .collapse">
+<h2></h2>
+<pre>$_plotLabel : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotOrder"> </a><div class="element clickable property private property__plotOrder" data-toggle="collapse" data-target=".property__plotOrder .collapse">
+<h2></h2>
+<pre>$_plotOrder : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotStyle"> </a><div class="element clickable property private property__plotStyle" data-toggle="collapse" data-target=".property__plotStyle .collapse">
+<h2></h2>
+<pre>$_plotStyle : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotType"> </a><div class="element clickable property private property__plotType" data-toggle="collapse" data-target=".property__plotType .collapse">
+<h2></h2>
+<pre>$_plotType : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__plotValues"> </a><div class="element clickable property private property__plotValues" data-toggle="collapse" data-target=".property__plotValues .collapse">
+<h2></h2>
+<pre>$_plotValues : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__smoothLine"> </a><div class="element clickable property private property__smoothLine" data-toggle="collapse" data-target=".property__smoothLine .collapse">
+<h2></h2>
+<pre>$_smoothLine : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_DIRECTION_BAR"> </a><div class="element clickable constant  constant_DIRECTION_BAR" data-toggle="collapse" data-target=".constant_DIRECTION_BAR .collapse">
+<h2>DIRECTION_BAR</h2>
+<pre>DIRECTION_BAR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_DIRECTION_COL"> </a><div class="element clickable constant  constant_DIRECTION_COL" data-toggle="collapse" data-target=".constant_DIRECTION_COL .collapse">
+<h2>DIRECTION_COL</h2>
+<pre>DIRECTION_COL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_DIRECTION_COLUMN"> </a><div class="element clickable constant  constant_DIRECTION_COLUMN" data-toggle="collapse" data-target=".constant_DIRECTION_COLUMN .collapse">
+<h2>DIRECTION_COLUMN</h2>
+<pre>DIRECTION_COLUMN </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_DIRECTION_HORIZONTAL"> </a><div class="element clickable constant  constant_DIRECTION_HORIZONTAL" data-toggle="collapse" data-target=".constant_DIRECTION_HORIZONTAL .collapse">
+<h2>DIRECTION_HORIZONTAL</h2>
+<pre>DIRECTION_HORIZONTAL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_DIRECTION_VERTICAL"> </a><div class="element clickable constant  constant_DIRECTION_VERTICAL" data-toggle="collapse" data-target=".constant_DIRECTION_VERTICAL .collapse">
+<h2>DIRECTION_VERTICAL</h2>
+<pre>DIRECTION_VERTICAL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_GROUPING_CLUSTERED"> </a><div class="element clickable constant  constant_GROUPING_CLUSTERED" data-toggle="collapse" data-target=".constant_GROUPING_CLUSTERED .collapse">
+<h2>GROUPING_CLUSTERED</h2>
+<pre>GROUPING_CLUSTERED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_GROUPING_PERCENT_STACKED"> </a><div class="element clickable constant  constant_GROUPING_PERCENT_STACKED" data-toggle="collapse" data-target=".constant_GROUPING_PERCENT_STACKED .collapse">
+<h2>GROUPING_PERCENT_STACKED</h2>
+<pre>GROUPING_PERCENT_STACKED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_GROUPING_STACKED"> </a><div class="element clickable constant  constant_GROUPING_STACKED" data-toggle="collapse" data-target=".constant_GROUPING_STACKED .collapse">
+<h2>GROUPING_STACKED</h2>
+<pre>GROUPING_STACKED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_GROUPING_STANDARD"> </a><div class="element clickable constant  constant_GROUPING_STANDARD" data-toggle="collapse" data-target=".constant_GROUPING_STANDARD .collapse">
+<h2>GROUPING_STANDARD</h2>
+<pre>GROUPING_STANDARD </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STYLE_FILLED"> </a><div class="element clickable constant  constant_STYLE_FILLED" data-toggle="collapse" data-target=".constant_STYLE_FILLED .collapse">
+<h2>STYLE_FILLED</h2>
+<pre>STYLE_FILLED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STYLE_LINEMARKER"> </a><div class="element clickable constant  constant_STYLE_LINEMARKER" data-toggle="collapse" data-target=".constant_STYLE_LINEMARKER .collapse">
+<h2>STYLE_LINEMARKER</h2>
+<pre>STYLE_LINEMARKER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STYLE_MARKER"> </a><div class="element clickable constant  constant_STYLE_MARKER" data-toggle="collapse" data-target=".constant_STYLE_MARKER .collapse">
+<h2>STYLE_MARKER</h2>
+<pre>STYLE_MARKER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STYLE_SMOOTHMARKER"> </a><div class="element clickable constant  constant_STYLE_SMOOTHMARKER" data-toggle="collapse" data-target=".constant_STYLE_SMOOTHMARKER .collapse">
+<h2>STYLE_SMOOTHMARKER</h2>
+<pre>STYLE_SMOOTHMARKER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_AREACHART"> </a><div class="element clickable constant  constant_TYPE_AREACHART" data-toggle="collapse" data-target=".constant_TYPE_AREACHART .collapse">
+<h2>TYPE_AREACHART</h2>
+<pre>TYPE_AREACHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_AREACHART_3D"> </a><div class="element clickable constant  constant_TYPE_AREACHART_3D" data-toggle="collapse" data-target=".constant_TYPE_AREACHART_3D .collapse">
+<h2>TYPE_AREACHART_3D</h2>
+<pre>TYPE_AREACHART_3D </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_BARCHART"> </a><div class="element clickable constant  constant_TYPE_BARCHART" data-toggle="collapse" data-target=".constant_TYPE_BARCHART .collapse">
+<h2>TYPE_BARCHART</h2>
+<pre>TYPE_BARCHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_BARCHART_3D"> </a><div class="element clickable constant  constant_TYPE_BARCHART_3D" data-toggle="collapse" data-target=".constant_TYPE_BARCHART_3D .collapse">
+<h2>TYPE_BARCHART_3D</h2>
+<pre>TYPE_BARCHART_3D </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_BUBBLECHART"> </a><div class="element clickable constant  constant_TYPE_BUBBLECHART" data-toggle="collapse" data-target=".constant_TYPE_BUBBLECHART .collapse">
+<h2>TYPE_BUBBLECHART</h2>
+<pre>TYPE_BUBBLECHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_DONUTCHART"> </a><div class="element clickable constant  constant_TYPE_DONUTCHART" data-toggle="collapse" data-target=".constant_TYPE_DONUTCHART .collapse">
+<h2>TYPE_DONUTCHART</h2>
+<pre>TYPE_DONUTCHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_DOUGHTNUTCHART"> </a><div class="element clickable constant  constant_TYPE_DOUGHTNUTCHART" data-toggle="collapse" data-target=".constant_TYPE_DOUGHTNUTCHART .collapse">
+<h2>TYPE_DOUGHTNUTCHART</h2>
+<pre>TYPE_DOUGHTNUTCHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_LINECHART"> </a><div class="element clickable constant  constant_TYPE_LINECHART" data-toggle="collapse" data-target=".constant_TYPE_LINECHART .collapse">
+<h2>TYPE_LINECHART</h2>
+<pre>TYPE_LINECHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_LINECHART_3D"> </a><div class="element clickable constant  constant_TYPE_LINECHART_3D" data-toggle="collapse" data-target=".constant_TYPE_LINECHART_3D .collapse">
+<h2>TYPE_LINECHART_3D</h2>
+<pre>TYPE_LINECHART_3D </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_PIECHART"> </a><div class="element clickable constant  constant_TYPE_PIECHART" data-toggle="collapse" data-target=".constant_TYPE_PIECHART .collapse">
+<h2>TYPE_PIECHART</h2>
+<pre>TYPE_PIECHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_PIECHART_3D"> </a><div class="element clickable constant  constant_TYPE_PIECHART_3D" data-toggle="collapse" data-target=".constant_TYPE_PIECHART_3D .collapse">
+<h2>TYPE_PIECHART_3D</h2>
+<pre>TYPE_PIECHART_3D </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_RADARCHART"> </a><div class="element clickable constant  constant_TYPE_RADARCHART" data-toggle="collapse" data-target=".constant_TYPE_RADARCHART .collapse">
+<h2>TYPE_RADARCHART</h2>
+<pre>TYPE_RADARCHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_SCATTERCHART"> </a><div class="element clickable constant  constant_TYPE_SCATTERCHART" data-toggle="collapse" data-target=".constant_TYPE_SCATTERCHART .collapse">
+<h2>TYPE_SCATTERCHART</h2>
+<pre>TYPE_SCATTERCHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_STOCKCHART"> </a><div class="element clickable constant  constant_TYPE_STOCKCHART" data-toggle="collapse" data-target=".constant_TYPE_STOCKCHART .collapse">
+<h2>TYPE_STOCKCHART</h2>
+<pre>TYPE_STOCKCHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_SURFACECHART"> </a><div class="element clickable constant  constant_TYPE_SURFACECHART" data-toggle="collapse" data-target=".constant_TYPE_SURFACECHART .collapse">
+<h2>TYPE_SURFACECHART</h2>
+<pre>TYPE_SURFACECHART </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE_SURFACECHART_3D"> </a><div class="element clickable constant  constant_TYPE_SURFACECHART_3D" data-toggle="collapse" data-target=".constant_TYPE_SURFACECHART_3D .collapse">
+<h2>TYPE_SURFACECHART_3D</h2>
+<pre>TYPE_SURFACECHART_3D </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:13-07:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -20,9 +20,41 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
 <li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
 <li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
 <li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -33,13 +65,18 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">476</span></a></li>
+                <span class="label label-info">1565</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul><li>todo 
-                <span class="label label-info">1</span>
-</li></ul></a></li>
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">14</span></a></li>
 </ul>
 </li>
 </ul></div>
@@ -60,16 +97,755 @@
 <li class="nav-header">
 <i class="icon-map-marker"></i> Packages</li>
 <li>
-<span class="empty-package"><i class="icon-folder-close"></i>Default</span><ul class="nav nav-list nav-packages"></ul>
+<a href="../packages/Default.html" title="Default"><i class="icon-folder-open"></i>Default</a><ul class="nav nav-list nav-packages"></ul>
 </li>
+<li class="nav-header">
+<i class="icon-custom icon-function"></i> Functions</li>
+<li class="function  "><a href="#function_PclZipUtilCopyBlock" title="PclZipUtilCopyBlock :: "><span class="description">PclZipUtilCopyBlock()
+        </span><pre>PclZipUtilCopyBlock</pre></a></li>
+<li class="function  "><a href="#function_PclZipUtilOptionText" title="PclZipUtilOptionText :: "><span class="description">PclZipUtilOptionText()
+        </span><pre>PclZipUtilOptionText</pre></a></li>
+<li class="function  "><a href="#function_PclZipUtilPathInclusion" title="PclZipUtilPathInclusion :: "><span class="description">PclZipUtilPathInclusion()
+        </span><pre>PclZipUtilPathInclusion</pre></a></li>
+<li class="function  "><a href="#function_PclZipUtilPathReduction" title="PclZipUtilPathReduction :: "><span class="description">PclZipUtilPathReduction()
+        </span><pre>PclZipUtilPathReduction</pre></a></li>
+<li class="function  "><a href="#function_PclZipUtilRename" title="PclZipUtilRename :: "><span class="description">PclZipUtilRename()
+        </span><pre>PclZipUtilRename</pre></a></li>
+<li class="function  "><a href="#function_PclZipUtilTranslateWinPath" title="PclZipUtilTranslateWinPath :: "><span class="description">PclZipUtilTranslateWinPath()
+        </span><pre>PclZipUtilTranslateWinPath</pre></a></li>
+<li class="function  "><a href="#function_polyfit" title="polyfit :: "><span class="description">polyfit()
+        </span><pre>polyfit</pre></a></li>
+<li class="function  "><a href="#function_printpoly" title="printpoly :: "><span class="description">printpoly()
+        </span><pre>printpoly</pre></a></li>
+<li class="function  "><a href="#function_tile" title="tile :: Tiling of matrix X in [rowWise by colWise] dimension."><span class="description">Tiling of matrix X in [rowWise by colWise] dimension.</span><pre>tile</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#Benchmark" title="Example of use of Matrix Class, featuring magic squares.">Benchmark</a></li>
+<li><a href="#LagrangeInterpolation" title="Given n points (x0,y0).">LagrangeInterpolation</a></li>
+<li><a href="#LagrangeInterpolation" title="Given n points (x0,y0).">LagrangeInterpolation</a></li>
+<li><a href="#LevenbergMarquardt" title="">LevenbergMarquardt</a></li>
+<li><a href="#LMQuadTest" title="quadratic (p-o)'S'S(p-o)
+solve for o, S
+S is a single scale factor">LMQuadTest</a></li>
+<li><a href="#MagicSquareExample" title="Example of use of Matrix Class, featuring magic squares.">MagicSquareExample</a></li>
+<li><a href="#PHPExcel_Shared_JAMA_Matrix" title="">PHPExcel_Shared_JAMA_Matrix</a></li>
+<li><a href="#TestMatrix" title="">TestMatrix</a></li>
+<li><a href="#PHPExcel_Shared_OLERead" title="">PHPExcel_Shared_OLERead</a></li>
+<li><a href="#PclZip" title="">PclZip</a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#constant_PCLZIP_ATT_FILE_COMMENT" title="PCLZIP_ATT_FILE_COMMENT :: "><span class="description">PCLZIP_ATT_FILE_COMMENT</span><pre>PCLZIP_ATT_FILE_COMMENT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ATT_FILE_CONTENT" title="PCLZIP_ATT_FILE_CONTENT :: "><span class="description">PCLZIP_ATT_FILE_CONTENT</span><pre>PCLZIP_ATT_FILE_CONTENT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ATT_FILE_MTIME" title="PCLZIP_ATT_FILE_MTIME :: "><span class="description">PCLZIP_ATT_FILE_MTIME</span><pre>PCLZIP_ATT_FILE_MTIME</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ATT_FILE_NAME" title="PCLZIP_ATT_FILE_NAME :: "><span class="description">PCLZIP_ATT_FILE_NAME</span><pre>PCLZIP_ATT_FILE_NAME</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ATT_FILE_NEW_FULL_NAME" title="PCLZIP_ATT_FILE_NEW_FULL_NAME :: "><span class="description">PCLZIP_ATT_FILE_NEW_FULL_NAME</span><pre>PCLZIP_ATT_FILE_NEW_FULL_NAME</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ATT_FILE_NEW_SHORT_NAME" title="PCLZIP_ATT_FILE_NEW_SHORT_NAME :: "><span class="description">PCLZIP_ATT_FILE_NEW_SHORT_NAME</span><pre>PCLZIP_ATT_FILE_NEW_SHORT_NAME</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_CB_POST_ADD" title="PCLZIP_CB_POST_ADD :: "><span class="description">PCLZIP_CB_POST_ADD</span><pre>PCLZIP_CB_POST_ADD</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_CB_POST_EXTRACT" title="PCLZIP_CB_POST_EXTRACT :: "><span class="description">PCLZIP_CB_POST_EXTRACT</span><pre>PCLZIP_CB_POST_EXTRACT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_CB_PRE_ADD" title="PCLZIP_CB_PRE_ADD :: "><span class="description">PCLZIP_CB_PRE_ADD</span><pre>PCLZIP_CB_PRE_ADD</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_CB_PRE_EXTRACT" title="PCLZIP_CB_PRE_EXTRACT :: "><span class="description">PCLZIP_CB_PRE_EXTRACT</span><pre>PCLZIP_CB_PRE_EXTRACT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERROR_EXTERNAL" title="PCLZIP_ERROR_EXTERNAL :: "><span class="description">PCLZIP_ERROR_EXTERNAL</span><pre>PCLZIP_ERROR_EXTERNAL</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_ALREADY_A_DIRECTORY" title="PCLZIP_ERR_ALREADY_A_DIRECTORY :: "><span class="description">PCLZIP_ERR_ALREADY_A_DIRECTORY</span><pre>PCLZIP_ERR_ALREADY_A_DIRECTORY</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_BAD_CHECKSUM" title="PCLZIP_ERR_BAD_CHECKSUM :: "><span class="description">PCLZIP_ERR_BAD_CHECKSUM</span><pre>PCLZIP_ERR_BAD_CHECKSUM</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_BAD_EXTENSION" title="PCLZIP_ERR_BAD_EXTENSION :: "><span class="description">PCLZIP_ERR_BAD_EXTENSION</span><pre>PCLZIP_ERR_BAD_EXTENSION</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_BAD_EXTRACTED_FILE" title="PCLZIP_ERR_BAD_EXTRACTED_FILE :: "><span class="description">PCLZIP_ERR_BAD_EXTRACTED_FILE</span><pre>PCLZIP_ERR_BAD_EXTRACTED_FILE</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_BAD_FORMAT" title="PCLZIP_ERR_BAD_FORMAT :: "><span class="description">PCLZIP_ERR_BAD_FORMAT</span><pre>PCLZIP_ERR_BAD_FORMAT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_DELETE_FILE_FAIL" title="PCLZIP_ERR_DELETE_FILE_FAIL :: "><span class="description">PCLZIP_ERR_DELETE_FILE_FAIL</span><pre>PCLZIP_ERR_DELETE_FILE_FAIL</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_DIRECTORY_RESTRICTION" title="PCLZIP_ERR_DIRECTORY_RESTRICTION :: "><span class="description">PCLZIP_ERR_DIRECTORY_RESTRICTION</span><pre>PCLZIP_ERR_DIRECTORY_RESTRICTION</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_DIR_CREATE_FAIL" title="PCLZIP_ERR_DIR_CREATE_FAIL :: "><span class="description">PCLZIP_ERR_DIR_CREATE_FAIL</span><pre>PCLZIP_ERR_DIR_CREATE_FAIL</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_FILENAME_TOO_LONG" title="PCLZIP_ERR_FILENAME_TOO_LONG :: "><span class="description">PCLZIP_ERR_FILENAME_TOO_LONG</span><pre>PCLZIP_ERR_FILENAME_TOO_LONG</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_INVALID_ARCHIVE_ZIP" title="PCLZIP_ERR_INVALID_ARCHIVE_ZIP :: "><span class="description">PCLZIP_ERR_INVALID_ARCHIVE_ZIP</span><pre>PCLZIP_ERR_INVALID_ARCHIVE_ZIP</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE" title="PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE :: "><span class="description">PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE</span><pre>PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_INVALID_OPTION_VALUE" title="PCLZIP_ERR_INVALID_OPTION_VALUE :: "><span class="description">PCLZIP_ERR_INVALID_OPTION_VALUE</span><pre>PCLZIP_ERR_INVALID_OPTION_VALUE</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_INVALID_PARAMETER" title="PCLZIP_ERR_INVALID_PARAMETER :: "><span class="description">PCLZIP_ERR_INVALID_PARAMETER</span><pre>PCLZIP_ERR_INVALID_PARAMETER</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_INVALID_ZIP" title="PCLZIP_ERR_INVALID_ZIP :: "><span class="description">PCLZIP_ERR_INVALID_ZIP</span><pre>PCLZIP_ERR_INVALID_ZIP</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_MISSING_FILE" title="PCLZIP_ERR_MISSING_FILE :: "><span class="description">PCLZIP_ERR_MISSING_FILE</span><pre>PCLZIP_ERR_MISSING_FILE</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_MISSING_OPTION_VALUE" title="PCLZIP_ERR_MISSING_OPTION_VALUE :: "><span class="description">PCLZIP_ERR_MISSING_OPTION_VALUE</span><pre>PCLZIP_ERR_MISSING_OPTION_VALUE</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_NO_ERROR" title="PCLZIP_ERR_NO_ERROR :: "><span class="description">PCLZIP_ERR_NO_ERROR</span><pre>PCLZIP_ERR_NO_ERROR</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_READ_OPEN_FAIL" title="PCLZIP_ERR_READ_OPEN_FAIL :: "><span class="description">PCLZIP_ERR_READ_OPEN_FAIL</span><pre>PCLZIP_ERR_READ_OPEN_FAIL</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_RENAME_FILE_FAIL" title="PCLZIP_ERR_RENAME_FILE_FAIL :: "><span class="description">PCLZIP_ERR_RENAME_FILE_FAIL</span><pre>PCLZIP_ERR_RENAME_FILE_FAIL</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_UNSUPPORTED_COMPRESSION" title="PCLZIP_ERR_UNSUPPORTED_COMPRESSION :: "><span class="description">PCLZIP_ERR_UNSUPPORTED_COMPRESSION</span><pre>PCLZIP_ERR_UNSUPPORTED_COMPRESSION</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_UNSUPPORTED_ENCRYPTION" title="PCLZIP_ERR_UNSUPPORTED_ENCRYPTION :: "><span class="description">PCLZIP_ERR_UNSUPPORTED_ENCRYPTION</span><pre>PCLZIP_ERR_UNSUPPORTED_ENCRYPTION</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_USER_ABORTED" title="PCLZIP_ERR_USER_ABORTED :: "><span class="description">PCLZIP_ERR_USER_ABORTED</span><pre>PCLZIP_ERR_USER_ABORTED</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_ERR_WRITE_OPEN_FAIL" title="PCLZIP_ERR_WRITE_OPEN_FAIL :: "><span class="description">PCLZIP_ERR_WRITE_OPEN_FAIL</span><pre>PCLZIP_ERR_WRITE_OPEN_FAIL</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_ADD_COMMENT" title="PCLZIP_OPT_ADD_COMMENT :: "><span class="description">PCLZIP_OPT_ADD_COMMENT</span><pre>PCLZIP_OPT_ADD_COMMENT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_ADD_PATH" title="PCLZIP_OPT_ADD_PATH :: "><span class="description">PCLZIP_OPT_ADD_PATH</span><pre>PCLZIP_OPT_ADD_PATH</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_ADD_TEMP_FILE_OFF" title="PCLZIP_OPT_ADD_TEMP_FILE_OFF :: "><span class="description">PCLZIP_OPT_ADD_TEMP_FILE_OFF</span><pre>PCLZIP_OPT_ADD_TEMP_FILE_OFF</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_ADD_TEMP_FILE_ON" title="PCLZIP_OPT_ADD_TEMP_FILE_ON :: "><span class="description">PCLZIP_OPT_ADD_TEMP_FILE_ON</span><pre>PCLZIP_OPT_ADD_TEMP_FILE_ON</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD" title="PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD :: "><span class="description">PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD</span><pre>PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_BY_EREG" title="PCLZIP_OPT_BY_EREG :: "><span class="description">PCLZIP_OPT_BY_EREG</span><pre>PCLZIP_OPT_BY_EREG</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_BY_INDEX" title="PCLZIP_OPT_BY_INDEX :: "><span class="description">PCLZIP_OPT_BY_INDEX</span><pre>PCLZIP_OPT_BY_INDEX</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_BY_NAME" title="PCLZIP_OPT_BY_NAME :: "><span class="description">PCLZIP_OPT_BY_NAME</span><pre>PCLZIP_OPT_BY_NAME</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_BY_PREG" title="PCLZIP_OPT_BY_PREG :: "><span class="description">PCLZIP_OPT_BY_PREG</span><pre>PCLZIP_OPT_BY_PREG</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_COMMENT" title="PCLZIP_OPT_COMMENT :: "><span class="description">PCLZIP_OPT_COMMENT</span><pre>PCLZIP_OPT_COMMENT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_EXTRACT_AS_STRING" title="PCLZIP_OPT_EXTRACT_AS_STRING :: "><span class="description">PCLZIP_OPT_EXTRACT_AS_STRING</span><pre>PCLZIP_OPT_EXTRACT_AS_STRING</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_EXTRACT_DIR_RESTRICTION" title="PCLZIP_OPT_EXTRACT_DIR_RESTRICTION :: "><span class="description">PCLZIP_OPT_EXTRACT_DIR_RESTRICTION</span><pre>PCLZIP_OPT_EXTRACT_DIR_RESTRICTION</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_EXTRACT_IN_OUTPUT" title="PCLZIP_OPT_EXTRACT_IN_OUTPUT :: "><span class="description">PCLZIP_OPT_EXTRACT_IN_OUTPUT</span><pre>PCLZIP_OPT_EXTRACT_IN_OUTPUT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_NO_COMPRESSION" title="PCLZIP_OPT_NO_COMPRESSION :: "><span class="description">PCLZIP_OPT_NO_COMPRESSION</span><pre>PCLZIP_OPT_NO_COMPRESSION</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_PATH" title="PCLZIP_OPT_PATH :: "><span class="description">PCLZIP_OPT_PATH</span><pre>PCLZIP_OPT_PATH</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_PREPEND_COMMENT" title="PCLZIP_OPT_PREPEND_COMMENT :: "><span class="description">PCLZIP_OPT_PREPEND_COMMENT</span><pre>PCLZIP_OPT_PREPEND_COMMENT</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_REMOVE_ALL_PATH" title="PCLZIP_OPT_REMOVE_ALL_PATH :: "><span class="description">PCLZIP_OPT_REMOVE_ALL_PATH</span><pre>PCLZIP_OPT_REMOVE_ALL_PATH</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_REMOVE_PATH" title="PCLZIP_OPT_REMOVE_PATH :: "><span class="description">PCLZIP_OPT_REMOVE_PATH</span><pre>PCLZIP_OPT_REMOVE_PATH</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_REPLACE_NEWER" title="PCLZIP_OPT_REPLACE_NEWER :: "><span class="description">PCLZIP_OPT_REPLACE_NEWER</span><pre>PCLZIP_OPT_REPLACE_NEWER</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_SET_CHMOD" title="PCLZIP_OPT_SET_CHMOD :: "><span class="description">PCLZIP_OPT_SET_CHMOD</span><pre>PCLZIP_OPT_SET_CHMOD</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_STOP_ON_ERROR" title="PCLZIP_OPT_STOP_ON_ERROR :: "><span class="description">PCLZIP_OPT_STOP_ON_ERROR</span><pre>PCLZIP_OPT_STOP_ON_ERROR</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_TEMP_FILE_OFF" title="PCLZIP_OPT_TEMP_FILE_OFF :: "><span class="description">PCLZIP_OPT_TEMP_FILE_OFF</span><pre>PCLZIP_OPT_TEMP_FILE_OFF</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_TEMP_FILE_ON" title="PCLZIP_OPT_TEMP_FILE_ON :: "><span class="description">PCLZIP_OPT_TEMP_FILE_ON</span><pre>PCLZIP_OPT_TEMP_FILE_ON</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_OPT_TEMP_FILE_THRESHOLD" title="PCLZIP_OPT_TEMP_FILE_THRESHOLD :: "><span class="description">PCLZIP_OPT_TEMP_FILE_THRESHOLD</span><pre>PCLZIP_OPT_TEMP_FILE_THRESHOLD</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_READ_BLOCK_SIZE" title="PCLZIP_READ_BLOCK_SIZE :: "><span class="description">PCLZIP_READ_BLOCK_SIZE</span><pre>PCLZIP_READ_BLOCK_SIZE</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_SEPARATOR" title="PCLZIP_SEPARATOR :: "><span class="description">PCLZIP_SEPARATOR</span><pre>PCLZIP_SEPARATOR</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_TEMPORARY_DIR" title="PCLZIP_TEMPORARY_DIR :: "><span class="description">PCLZIP_TEMPORARY_DIR</span><pre>PCLZIP_TEMPORARY_DIR</pre></a></li>
+<li class="constant  "><a href="#constant_PCLZIP_TEMPORARY_FILE_RATIO" title="PCLZIP_TEMPORARY_FILE_RATIO :: "><span class="description">PCLZIP_TEMPORARY_FILE_RATIO</span><pre>PCLZIP_TEMPORARY_FILE_RATIO</pre></a></li>
+<li class="constant  "><a href="#constant_STATS_BASIC" title="STATS_BASIC :: STATS_BASIC to generate the basic descriptive statistics"><span class="description">STATS_BASIC to generate the basic descriptive statistics</span><pre>STATS_BASIC</pre></a></li>
+<li class="constant  "><a href="#constant_STATS_DATA_CUMMULATIVE" title="STATS_DATA_CUMMULATIVE :: STATS_DATA_CUMMULATIVE for an associative array of frequency values,
+where in each array entry, the index is the data point and the
+value the count (frequency):
+e.g."><span class="description">STATS_DATA_CUMMULATIVE for an associative array of frequency values,
+where in each array entry, the index is the data point and the
+value the count (frequency):
+e.g.</span><pre>STATS_DATA_CUMMULATIVE</pre></a></li>
+<li class="constant  "><a href="#constant_STATS_DATA_SIMPLE" title="STATS_DATA_SIMPLE :: STATS_DATA_SIMPLE for an array of numeric values."><span class="description">STATS_DATA_SIMPLE for an array of numeric values.</span><pre>STATS_DATA_SIMPLE</pre></a></li>
+<li class="constant  "><a href="#constant_STATS_FULL" title="STATS_FULL :: STATS_FULL to generate also higher moments, mode, median, etc."><span class="description">STATS_FULL to generate also higher moments, mode, median, etc.</span><pre>STATS_FULL</pre></a></li>
+<li class="constant  "><a href="#constant_STATS_IGNORE_NULL" title="STATS_IGNORE_NULL :: STATS_IGNORE_NULL, ignore null values and prune them from the data."><span class="description">STATS_IGNORE_NULL, ignore null values and prune them from the data.</span><pre>STATS_IGNORE_NULL</pre></a></li>
+<li class="constant  "><a href="#constant_STATS_REJECT_NULL" title="STATS_REJECT_NULL :: STATS_REJECT_NULL, reject data sets with null values."><span class="description">STATS_REJECT_NULL, reject data sets with null values.</span><pre>STATS_REJECT_NULL</pre></a></li>
+<li class="constant  "><a href="#constant_STATS_USE_NULL_AS_ZERO" title="STATS_USE_NULL_AS_ZERO :: STATS_USE_NULL_AS_ZERO, assign the value of 0 (zero) to null values."><span class="description">STATS_USE_NULL_AS_ZERO, assign the value of 0 (zero) to null values.</span><pre>STATS_USE_NULL_AS_ZERO</pre></a></li>
 </ul>
 </div>
-<div class="span8 package-contents"></div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li class="active"><a href="../packages/Default.html">Default</a></li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-function"></i> Functions</h3>
+<a id="function_PclZipUtilCopyBlock"></a><div class="element clickable function  function_PclZipUtilCopyBlock" data-toggle="collapse" data-target=".function_PclZipUtilCopyBlock .collapse">
+<h2>PclZipUtilCopyBlock()
+        </h2>
+<pre>PclZipUtilCopyBlock($p_src, $p_dest, $p_size, $p_mode) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$p_src</h4></div>
+<div class="subelement argument"><h4>$p_dest</h4></div>
+<div class="subelement argument"><h4>$p_size</h4></div>
+<div class="subelement argument"><h4>$p_mode</h4></div>
+</div></div>
+</div>
+<a id="function_PclZipUtilOptionText"></a><div class="element clickable function  function_PclZipUtilOptionText" data-toggle="collapse" data-target=".function_PclZipUtilOptionText .collapse">
+<h2>PclZipUtilOptionText()
+        </h2>
+<pre>PclZipUtilOptionText($p_option) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$p_option</h4></div>
+</div></div>
+</div>
+<a id="function_PclZipUtilPathInclusion"></a><div class="element clickable function  function_PclZipUtilPathInclusion" data-toggle="collapse" data-target=".function_PclZipUtilPathInclusion .collapse">
+<h2>PclZipUtilPathInclusion()
+        </h2>
+<pre>PclZipUtilPathInclusion($p_dir, $p_path) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$p_dir</h4></div>
+<div class="subelement argument"><h4>$p_path</h4></div>
+</div></div>
+</div>
+<a id="function_PclZipUtilPathReduction"></a><div class="element clickable function  function_PclZipUtilPathReduction" data-toggle="collapse" data-target=".function_PclZipUtilPathReduction .collapse">
+<h2>PclZipUtilPathReduction()
+        </h2>
+<pre>PclZipUtilPathReduction($p_dir) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$p_dir</h4></div>
+</div></div>
+</div>
+<a id="function_PclZipUtilRename"></a><div class="element clickable function  function_PclZipUtilRename" data-toggle="collapse" data-target=".function_PclZipUtilRename .collapse">
+<h2>PclZipUtilRename()
+        </h2>
+<pre>PclZipUtilRename($p_src, $p_dest) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$p_src</h4></div>
+<div class="subelement argument"><h4>$p_dest</h4></div>
+</div></div>
+</div>
+<a id="function_PclZipUtilTranslateWinPath"></a><div class="element clickable function  function_PclZipUtilTranslateWinPath" data-toggle="collapse" data-target=".function_PclZipUtilTranslateWinPath .collapse">
+<h2>PclZipUtilTranslateWinPath()
+        </h2>
+<pre>PclZipUtilTranslateWinPath($p_path, $p_remove_disk_letter) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$p_path</h4></div>
+<div class="subelement argument"><h4>$p_remove_disk_letter</h4></div>
+</div></div>
+</div>
+<a id="function_polyfit"></a><div class="element clickable function  function_polyfit" data-toggle="collapse" data-target=".function_polyfit .collapse">
+<h2>polyfit()
+        </h2>
+<pre>polyfit($X, $Y, $n) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$X</h4></div>
+<div class="subelement argument"><h4>$Y</h4></div>
+<div class="subelement argument"><h4>$n</h4></div>
+</div></div>
+</div>
+<a id="function_printpoly"></a><div class="element clickable function  function_printpoly" data-toggle="collapse" data-target=".function_printpoly .collapse">
+<h2>printpoly()
+        </h2>
+<pre>printpoly($C) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$C</h4></div>
+</div></div>
+</div>
+<a id="function_tile"></a><div class="element clickable function  function_tile" data-toggle="collapse" data-target=".function_tile .collapse">
+<h2>Tiling of matrix X in [rowWise by colWise] dimension.</h2>
+<pre>tile(\X $X, \rowWise $rowWise, \colWise $colWise) : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Tiling
+creates a larger matrix than the original data X. Example, if
+X is to be tiled in a [3 x 4] manner, then:</p>
+
+<pre><code>/            \
+| X  X  X  X |
+</code></pre>
+
+<p>C = | X  X  X  X |
+    | X  X  X  X |
+    \           /</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$X</h4>
+<code>\X</code><p>Matrix</p></div>
+<div class="subelement argument">
+<h4>$rowWise</h4>
+<code>\rowWise</code><p>int</p></div>
+<div class="subelement argument">
+<h4>$colWise</h4>
+<code>\colWise</code><p>int</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Matrix</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="Benchmark" class="element ajax clickable class">
+<h1>Benchmark<a href="../classes/Benchmark.html">¶</a>
+</h1>
+<p class="short_description">Example of use of Matrix Class, featuring magic squares.</p>
+<div class="details collapse"></div>
+<a href="../classes/Benchmark.html" class="more">« More »</a>
+</div>
+<div id="LMQuadTest" class="element ajax clickable class">
+<h1>LMQuadTest<a href="../classes/LMQuadTest.html">¶</a>
+</h1>
+<p class="short_description">quadratic (p-o)'S'S(p-o)
+solve for o, S
+S is a single scale factor</p>
+<div class="details collapse"></div>
+<a href="../classes/LMQuadTest.html" class="more">« More »</a>
+</div>
+<div id="LagrangeInterpolation" class="element ajax clickable class">
+<h1>LagrangeInterpolation<a href="../classes/LagrangeInterpolation.html">¶</a>
+</h1>
+<p class="short_description">Given n points (x0,y0).</p>
+<div class="details collapse"></div>
+<a href="../classes/LagrangeInterpolation.html" class="more">« More »</a>
+</div>
+<div id="LagrangeInterpolation" class="element ajax clickable class">
+<h1>LagrangeInterpolation<a href="../classes/LagrangeInterpolation.html">¶</a>
+</h1>
+<p class="short_description">Given n points (x0,y0).</p>
+<div class="details collapse"></div>
+<a href="../classes/LagrangeInterpolation.html" class="more">« More »</a>
+</div>
+<div id="LevenbergMarquardt" class="element ajax clickable class">
+<h1>LevenbergMarquardt<a href="../classes/LevenbergMarquardt.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/LevenbergMarquardt.html" class="more">« More »</a>
+</div>
+<div id="MagicSquareExample" class="element ajax clickable class">
+<h1>MagicSquareExample<a href="../classes/MagicSquareExample.html">¶</a>
+</h1>
+<p class="short_description">Example of use of Matrix Class, featuring magic squares.</p>
+<div class="details collapse"></div>
+<a href="../classes/MagicSquareExample.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_JAMA_Matrix" class="element ajax clickable class">
+<h1>PHPExcel_Shared_JAMA_Matrix<a href="../classes/PHPExcel_Shared_JAMA_Matrix.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_JAMA_Matrix.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_OLERead" class="element ajax clickable class">
+<h1>PHPExcel_Shared_OLERead<a href="../classes/PHPExcel_Shared_OLERead.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_OLERead.html" class="more">« More »</a>
+</div>
+<div id="PclZip" class="element ajax clickable class">
+<h1>PclZip<a href="../classes/PclZip.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/PclZip.html" class="more">« More »</a>
+</div>
+<div id="TestMatrix" class="element ajax clickable class">
+<h1>TestMatrix<a href="../classes/TestMatrix.html">¶</a>
+</h1>
+<p class="short_description"></p>
+<div class="details collapse"></div>
+<a href="../classes/TestMatrix.html" class="more">« More »</a>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_PCLZIP_ATT_FILE_COMMENT"> </a><div class="element clickable constant  constant_PCLZIP_ATT_FILE_COMMENT" data-toggle="collapse" data-target=".constant_PCLZIP_ATT_FILE_COMMENT .collapse">
+<h2>PCLZIP_ATT_FILE_COMMENT</h2>
+<pre>PCLZIP_ATT_FILE_COMMENT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ATT_FILE_CONTENT"> </a><div class="element clickable constant  constant_PCLZIP_ATT_FILE_CONTENT" data-toggle="collapse" data-target=".constant_PCLZIP_ATT_FILE_CONTENT .collapse">
+<h2>PCLZIP_ATT_FILE_CONTENT</h2>
+<pre>PCLZIP_ATT_FILE_CONTENT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ATT_FILE_MTIME"> </a><div class="element clickable constant  constant_PCLZIP_ATT_FILE_MTIME" data-toggle="collapse" data-target=".constant_PCLZIP_ATT_FILE_MTIME .collapse">
+<h2>PCLZIP_ATT_FILE_MTIME</h2>
+<pre>PCLZIP_ATT_FILE_MTIME </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ATT_FILE_NAME"> </a><div class="element clickable constant  constant_PCLZIP_ATT_FILE_NAME" data-toggle="collapse" data-target=".constant_PCLZIP_ATT_FILE_NAME .collapse">
+<h2>PCLZIP_ATT_FILE_NAME</h2>
+<pre>PCLZIP_ATT_FILE_NAME </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ATT_FILE_NEW_FULL_NAME"> </a><div class="element clickable constant  constant_PCLZIP_ATT_FILE_NEW_FULL_NAME" data-toggle="collapse" data-target=".constant_PCLZIP_ATT_FILE_NEW_FULL_NAME .collapse">
+<h2>PCLZIP_ATT_FILE_NEW_FULL_NAME</h2>
+<pre>PCLZIP_ATT_FILE_NEW_FULL_NAME </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ATT_FILE_NEW_SHORT_NAME"> </a><div class="element clickable constant  constant_PCLZIP_ATT_FILE_NEW_SHORT_NAME" data-toggle="collapse" data-target=".constant_PCLZIP_ATT_FILE_NEW_SHORT_NAME .collapse">
+<h2>PCLZIP_ATT_FILE_NEW_SHORT_NAME</h2>
+<pre>PCLZIP_ATT_FILE_NEW_SHORT_NAME </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_CB_POST_ADD"> </a><div class="element clickable constant  constant_PCLZIP_CB_POST_ADD" data-toggle="collapse" data-target=".constant_PCLZIP_CB_POST_ADD .collapse">
+<h2>PCLZIP_CB_POST_ADD</h2>
+<pre>PCLZIP_CB_POST_ADD </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_CB_POST_EXTRACT"> </a><div class="element clickable constant  constant_PCLZIP_CB_POST_EXTRACT" data-toggle="collapse" data-target=".constant_PCLZIP_CB_POST_EXTRACT .collapse">
+<h2>PCLZIP_CB_POST_EXTRACT</h2>
+<pre>PCLZIP_CB_POST_EXTRACT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_CB_PRE_ADD"> </a><div class="element clickable constant  constant_PCLZIP_CB_PRE_ADD" data-toggle="collapse" data-target=".constant_PCLZIP_CB_PRE_ADD .collapse">
+<h2>PCLZIP_CB_PRE_ADD</h2>
+<pre>PCLZIP_CB_PRE_ADD </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_CB_PRE_EXTRACT"> </a><div class="element clickable constant  constant_PCLZIP_CB_PRE_EXTRACT" data-toggle="collapse" data-target=".constant_PCLZIP_CB_PRE_EXTRACT .collapse">
+<h2>PCLZIP_CB_PRE_EXTRACT</h2>
+<pre>PCLZIP_CB_PRE_EXTRACT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERROR_EXTERNAL"> </a><div class="element clickable constant  constant_PCLZIP_ERROR_EXTERNAL" data-toggle="collapse" data-target=".constant_PCLZIP_ERROR_EXTERNAL .collapse">
+<h2>PCLZIP_ERROR_EXTERNAL</h2>
+<pre>PCLZIP_ERROR_EXTERNAL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_ALREADY_A_DIRECTORY"> </a><div class="element clickable constant  constant_PCLZIP_ERR_ALREADY_A_DIRECTORY" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_ALREADY_A_DIRECTORY .collapse">
+<h2>PCLZIP_ERR_ALREADY_A_DIRECTORY</h2>
+<pre>PCLZIP_ERR_ALREADY_A_DIRECTORY </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_BAD_CHECKSUM"> </a><div class="element clickable constant  constant_PCLZIP_ERR_BAD_CHECKSUM" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_BAD_CHECKSUM .collapse">
+<h2>PCLZIP_ERR_BAD_CHECKSUM</h2>
+<pre>PCLZIP_ERR_BAD_CHECKSUM </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_BAD_EXTENSION"> </a><div class="element clickable constant  constant_PCLZIP_ERR_BAD_EXTENSION" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_BAD_EXTENSION .collapse">
+<h2>PCLZIP_ERR_BAD_EXTENSION</h2>
+<pre>PCLZIP_ERR_BAD_EXTENSION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_BAD_EXTRACTED_FILE"> </a><div class="element clickable constant  constant_PCLZIP_ERR_BAD_EXTRACTED_FILE" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_BAD_EXTRACTED_FILE .collapse">
+<h2>PCLZIP_ERR_BAD_EXTRACTED_FILE</h2>
+<pre>PCLZIP_ERR_BAD_EXTRACTED_FILE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_BAD_FORMAT"> </a><div class="element clickable constant  constant_PCLZIP_ERR_BAD_FORMAT" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_BAD_FORMAT .collapse">
+<h2>PCLZIP_ERR_BAD_FORMAT</h2>
+<pre>PCLZIP_ERR_BAD_FORMAT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_DELETE_FILE_FAIL"> </a><div class="element clickable constant  constant_PCLZIP_ERR_DELETE_FILE_FAIL" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_DELETE_FILE_FAIL .collapse">
+<h2>PCLZIP_ERR_DELETE_FILE_FAIL</h2>
+<pre>PCLZIP_ERR_DELETE_FILE_FAIL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_DIRECTORY_RESTRICTION"> </a><div class="element clickable constant  constant_PCLZIP_ERR_DIRECTORY_RESTRICTION" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_DIRECTORY_RESTRICTION .collapse">
+<h2>PCLZIP_ERR_DIRECTORY_RESTRICTION</h2>
+<pre>PCLZIP_ERR_DIRECTORY_RESTRICTION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_DIR_CREATE_FAIL"> </a><div class="element clickable constant  constant_PCLZIP_ERR_DIR_CREATE_FAIL" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_DIR_CREATE_FAIL .collapse">
+<h2>PCLZIP_ERR_DIR_CREATE_FAIL</h2>
+<pre>PCLZIP_ERR_DIR_CREATE_FAIL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_FILENAME_TOO_LONG"> </a><div class="element clickable constant  constant_PCLZIP_ERR_FILENAME_TOO_LONG" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_FILENAME_TOO_LONG .collapse">
+<h2>PCLZIP_ERR_FILENAME_TOO_LONG</h2>
+<pre>PCLZIP_ERR_FILENAME_TOO_LONG </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_INVALID_ARCHIVE_ZIP"> </a><div class="element clickable constant  constant_PCLZIP_ERR_INVALID_ARCHIVE_ZIP" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_INVALID_ARCHIVE_ZIP .collapse">
+<h2>PCLZIP_ERR_INVALID_ARCHIVE_ZIP</h2>
+<pre>PCLZIP_ERR_INVALID_ARCHIVE_ZIP </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE"> </a><div class="element clickable constant  constant_PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE .collapse">
+<h2>PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE</h2>
+<pre>PCLZIP_ERR_INVALID_ATTRIBUTE_VALUE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_INVALID_OPTION_VALUE"> </a><div class="element clickable constant  constant_PCLZIP_ERR_INVALID_OPTION_VALUE" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_INVALID_OPTION_VALUE .collapse">
+<h2>PCLZIP_ERR_INVALID_OPTION_VALUE</h2>
+<pre>PCLZIP_ERR_INVALID_OPTION_VALUE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_INVALID_PARAMETER"> </a><div class="element clickable constant  constant_PCLZIP_ERR_INVALID_PARAMETER" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_INVALID_PARAMETER .collapse">
+<h2>PCLZIP_ERR_INVALID_PARAMETER</h2>
+<pre>PCLZIP_ERR_INVALID_PARAMETER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_INVALID_ZIP"> </a><div class="element clickable constant  constant_PCLZIP_ERR_INVALID_ZIP" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_INVALID_ZIP .collapse">
+<h2>PCLZIP_ERR_INVALID_ZIP</h2>
+<pre>PCLZIP_ERR_INVALID_ZIP </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_MISSING_FILE"> </a><div class="element clickable constant  constant_PCLZIP_ERR_MISSING_FILE" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_MISSING_FILE .collapse">
+<h2>PCLZIP_ERR_MISSING_FILE</h2>
+<pre>PCLZIP_ERR_MISSING_FILE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_MISSING_OPTION_VALUE"> </a><div class="element clickable constant  constant_PCLZIP_ERR_MISSING_OPTION_VALUE" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_MISSING_OPTION_VALUE .collapse">
+<h2>PCLZIP_ERR_MISSING_OPTION_VALUE</h2>
+<pre>PCLZIP_ERR_MISSING_OPTION_VALUE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_NO_ERROR"> </a><div class="element clickable constant  constant_PCLZIP_ERR_NO_ERROR" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_NO_ERROR .collapse">
+<h2>PCLZIP_ERR_NO_ERROR</h2>
+<pre>PCLZIP_ERR_NO_ERROR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_READ_OPEN_FAIL"> </a><div class="element clickable constant  constant_PCLZIP_ERR_READ_OPEN_FAIL" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_READ_OPEN_FAIL .collapse">
+<h2>PCLZIP_ERR_READ_OPEN_FAIL</h2>
+<pre>PCLZIP_ERR_READ_OPEN_FAIL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_RENAME_FILE_FAIL"> </a><div class="element clickable constant  constant_PCLZIP_ERR_RENAME_FILE_FAIL" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_RENAME_FILE_FAIL .collapse">
+<h2>PCLZIP_ERR_RENAME_FILE_FAIL</h2>
+<pre>PCLZIP_ERR_RENAME_FILE_FAIL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_UNSUPPORTED_COMPRESSION"> </a><div class="element clickable constant  constant_PCLZIP_ERR_UNSUPPORTED_COMPRESSION" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_UNSUPPORTED_COMPRESSION .collapse">
+<h2>PCLZIP_ERR_UNSUPPORTED_COMPRESSION</h2>
+<pre>PCLZIP_ERR_UNSUPPORTED_COMPRESSION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_UNSUPPORTED_ENCRYPTION"> </a><div class="element clickable constant  constant_PCLZIP_ERR_UNSUPPORTED_ENCRYPTION" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_UNSUPPORTED_ENCRYPTION .collapse">
+<h2>PCLZIP_ERR_UNSUPPORTED_ENCRYPTION</h2>
+<pre>PCLZIP_ERR_UNSUPPORTED_ENCRYPTION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_USER_ABORTED"> </a><div class="element clickable constant  constant_PCLZIP_ERR_USER_ABORTED" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_USER_ABORTED .collapse">
+<h2>PCLZIP_ERR_USER_ABORTED</h2>
+<pre>PCLZIP_ERR_USER_ABORTED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_ERR_WRITE_OPEN_FAIL"> </a><div class="element clickable constant  constant_PCLZIP_ERR_WRITE_OPEN_FAIL" data-toggle="collapse" data-target=".constant_PCLZIP_ERR_WRITE_OPEN_FAIL .collapse">
+<h2>PCLZIP_ERR_WRITE_OPEN_FAIL</h2>
+<pre>PCLZIP_ERR_WRITE_OPEN_FAIL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_ADD_COMMENT"> </a><div class="element clickable constant  constant_PCLZIP_OPT_ADD_COMMENT" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_ADD_COMMENT .collapse">
+<h2>PCLZIP_OPT_ADD_COMMENT</h2>
+<pre>PCLZIP_OPT_ADD_COMMENT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_ADD_PATH"> </a><div class="element clickable constant  constant_PCLZIP_OPT_ADD_PATH" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_ADD_PATH .collapse">
+<h2>PCLZIP_OPT_ADD_PATH</h2>
+<pre>PCLZIP_OPT_ADD_PATH </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_ADD_TEMP_FILE_OFF"> </a><div class="element clickable constant  constant_PCLZIP_OPT_ADD_TEMP_FILE_OFF" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_ADD_TEMP_FILE_OFF .collapse">
+<h2>PCLZIP_OPT_ADD_TEMP_FILE_OFF</h2>
+<pre>PCLZIP_OPT_ADD_TEMP_FILE_OFF </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_ADD_TEMP_FILE_ON"> </a><div class="element clickable constant  constant_PCLZIP_OPT_ADD_TEMP_FILE_ON" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_ADD_TEMP_FILE_ON .collapse">
+<h2>PCLZIP_OPT_ADD_TEMP_FILE_ON</h2>
+<pre>PCLZIP_OPT_ADD_TEMP_FILE_ON </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD"> </a><div class="element clickable constant  constant_PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD .collapse">
+<h2>PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD</h2>
+<pre>PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_BY_EREG"> </a><div class="element clickable constant  constant_PCLZIP_OPT_BY_EREG" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_BY_EREG .collapse">
+<h2>PCLZIP_OPT_BY_EREG</h2>
+<pre>PCLZIP_OPT_BY_EREG </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_BY_INDEX"> </a><div class="element clickable constant  constant_PCLZIP_OPT_BY_INDEX" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_BY_INDEX .collapse">
+<h2>PCLZIP_OPT_BY_INDEX</h2>
+<pre>PCLZIP_OPT_BY_INDEX </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_BY_NAME"> </a><div class="element clickable constant  constant_PCLZIP_OPT_BY_NAME" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_BY_NAME .collapse">
+<h2>PCLZIP_OPT_BY_NAME</h2>
+<pre>PCLZIP_OPT_BY_NAME </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_BY_PREG"> </a><div class="element clickable constant  constant_PCLZIP_OPT_BY_PREG" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_BY_PREG .collapse">
+<h2>PCLZIP_OPT_BY_PREG</h2>
+<pre>PCLZIP_OPT_BY_PREG </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_COMMENT"> </a><div class="element clickable constant  constant_PCLZIP_OPT_COMMENT" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_COMMENT .collapse">
+<h2>PCLZIP_OPT_COMMENT</h2>
+<pre>PCLZIP_OPT_COMMENT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_EXTRACT_AS_STRING"> </a><div class="element clickable constant  constant_PCLZIP_OPT_EXTRACT_AS_STRING" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_EXTRACT_AS_STRING .collapse">
+<h2>PCLZIP_OPT_EXTRACT_AS_STRING</h2>
+<pre>PCLZIP_OPT_EXTRACT_AS_STRING </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_EXTRACT_DIR_RESTRICTION"> </a><div class="element clickable constant  constant_PCLZIP_OPT_EXTRACT_DIR_RESTRICTION" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_EXTRACT_DIR_RESTRICTION .collapse">
+<h2>PCLZIP_OPT_EXTRACT_DIR_RESTRICTION</h2>
+<pre>PCLZIP_OPT_EXTRACT_DIR_RESTRICTION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_EXTRACT_IN_OUTPUT"> </a><div class="element clickable constant  constant_PCLZIP_OPT_EXTRACT_IN_OUTPUT" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_EXTRACT_IN_OUTPUT .collapse">
+<h2>PCLZIP_OPT_EXTRACT_IN_OUTPUT</h2>
+<pre>PCLZIP_OPT_EXTRACT_IN_OUTPUT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_NO_COMPRESSION"> </a><div class="element clickable constant  constant_PCLZIP_OPT_NO_COMPRESSION" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_NO_COMPRESSION .collapse">
+<h2>PCLZIP_OPT_NO_COMPRESSION</h2>
+<pre>PCLZIP_OPT_NO_COMPRESSION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_PATH"> </a><div class="element clickable constant  constant_PCLZIP_OPT_PATH" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_PATH .collapse">
+<h2>PCLZIP_OPT_PATH</h2>
+<pre>PCLZIP_OPT_PATH </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_PREPEND_COMMENT"> </a><div class="element clickable constant  constant_PCLZIP_OPT_PREPEND_COMMENT" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_PREPEND_COMMENT .collapse">
+<h2>PCLZIP_OPT_PREPEND_COMMENT</h2>
+<pre>PCLZIP_OPT_PREPEND_COMMENT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_REMOVE_ALL_PATH"> </a><div class="element clickable constant  constant_PCLZIP_OPT_REMOVE_ALL_PATH" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_REMOVE_ALL_PATH .collapse">
+<h2>PCLZIP_OPT_REMOVE_ALL_PATH</h2>
+<pre>PCLZIP_OPT_REMOVE_ALL_PATH </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_REMOVE_PATH"> </a><div class="element clickable constant  constant_PCLZIP_OPT_REMOVE_PATH" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_REMOVE_PATH .collapse">
+<h2>PCLZIP_OPT_REMOVE_PATH</h2>
+<pre>PCLZIP_OPT_REMOVE_PATH </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_REPLACE_NEWER"> </a><div class="element clickable constant  constant_PCLZIP_OPT_REPLACE_NEWER" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_REPLACE_NEWER .collapse">
+<h2>PCLZIP_OPT_REPLACE_NEWER</h2>
+<pre>PCLZIP_OPT_REPLACE_NEWER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_SET_CHMOD"> </a><div class="element clickable constant  constant_PCLZIP_OPT_SET_CHMOD" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_SET_CHMOD .collapse">
+<h2>PCLZIP_OPT_SET_CHMOD</h2>
+<pre>PCLZIP_OPT_SET_CHMOD </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_STOP_ON_ERROR"> </a><div class="element clickable constant  constant_PCLZIP_OPT_STOP_ON_ERROR" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_STOP_ON_ERROR .collapse">
+<h2>PCLZIP_OPT_STOP_ON_ERROR</h2>
+<pre>PCLZIP_OPT_STOP_ON_ERROR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_TEMP_FILE_OFF"> </a><div class="element clickable constant  constant_PCLZIP_OPT_TEMP_FILE_OFF" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_TEMP_FILE_OFF .collapse">
+<h2>PCLZIP_OPT_TEMP_FILE_OFF</h2>
+<pre>PCLZIP_OPT_TEMP_FILE_OFF </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_TEMP_FILE_ON"> </a><div class="element clickable constant  constant_PCLZIP_OPT_TEMP_FILE_ON" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_TEMP_FILE_ON .collapse">
+<h2>PCLZIP_OPT_TEMP_FILE_ON</h2>
+<pre>PCLZIP_OPT_TEMP_FILE_ON </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_OPT_TEMP_FILE_THRESHOLD"> </a><div class="element clickable constant  constant_PCLZIP_OPT_TEMP_FILE_THRESHOLD" data-toggle="collapse" data-target=".constant_PCLZIP_OPT_TEMP_FILE_THRESHOLD .collapse">
+<h2>PCLZIP_OPT_TEMP_FILE_THRESHOLD</h2>
+<pre>PCLZIP_OPT_TEMP_FILE_THRESHOLD </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_READ_BLOCK_SIZE"> </a><div class="element clickable constant  constant_PCLZIP_READ_BLOCK_SIZE" data-toggle="collapse" data-target=".constant_PCLZIP_READ_BLOCK_SIZE .collapse">
+<h2>PCLZIP_READ_BLOCK_SIZE</h2>
+<pre>PCLZIP_READ_BLOCK_SIZE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_SEPARATOR"> </a><div class="element clickable constant  constant_PCLZIP_SEPARATOR" data-toggle="collapse" data-target=".constant_PCLZIP_SEPARATOR .collapse">
+<h2>PCLZIP_SEPARATOR</h2>
+<pre>PCLZIP_SEPARATOR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_TEMPORARY_DIR"> </a><div class="element clickable constant  constant_PCLZIP_TEMPORARY_DIR" data-toggle="collapse" data-target=".constant_PCLZIP_TEMPORARY_DIR .collapse">
+<h2>PCLZIP_TEMPORARY_DIR</h2>
+<pre>PCLZIP_TEMPORARY_DIR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PCLZIP_TEMPORARY_FILE_RATIO"> </a><div class="element clickable constant  constant_PCLZIP_TEMPORARY_FILE_RATIO" data-toggle="collapse" data-target=".constant_PCLZIP_TEMPORARY_FILE_RATIO .collapse">
+<h2>PCLZIP_TEMPORARY_FILE_RATIO</h2>
+<pre>PCLZIP_TEMPORARY_FILE_RATIO </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STATS_BASIC"> </a><div class="element clickable constant  constant_STATS_BASIC" data-toggle="collapse" data-target=".constant_STATS_BASIC .collapse">
+<h2>STATS_BASIC to generate the basic descriptive statistics</h2>
+<pre>STATS_BASIC </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STATS_DATA_CUMMULATIVE"> </a><div class="element clickable constant  constant_STATS_DATA_CUMMULATIVE" data-toggle="collapse" data-target=".constant_STATS_DATA_CUMMULATIVE .collapse">
+<h2>STATS_DATA_CUMMULATIVE for an associative array of frequency values,
+where in each array entry, the index is the data point and the
+value the count (frequency):
+e.g.</h2>
+<pre>STATS_DATA_CUMMULATIVE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>$data = array(3=>4, 2.3=>5, 1.25=>6, 0.5=>3)</p></div></div></div>
+</div>
+<a id="constant_STATS_DATA_SIMPLE"> </a><div class="element clickable constant  constant_STATS_DATA_SIMPLE" data-toggle="collapse" data-target=".constant_STATS_DATA_SIMPLE .collapse">
+<h2>STATS_DATA_SIMPLE for an array of numeric values.</h2>
+<pre>STATS_DATA_SIMPLE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>This is the default.
+e.g. $data = array(2,3,4,5,1,1,6);</p></div></div></div>
+</div>
+<a id="constant_STATS_FULL"> </a><div class="element clickable constant  constant_STATS_FULL" data-toggle="collapse" data-target=".constant_STATS_FULL .collapse">
+<h2>STATS_FULL to generate also higher moments, mode, median, etc.</h2>
+<pre>STATS_FULL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_STATS_IGNORE_NULL"> </a><div class="element clickable constant  constant_STATS_IGNORE_NULL" data-toggle="collapse" data-target=".constant_STATS_IGNORE_NULL .collapse">
+<h2>STATS_IGNORE_NULL, ignore null values and prune them from the data.</h2>
+<pre>STATS_IGNORE_NULL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Any non-numeric value is considered a null in this context.</p></div></div></div>
+</div>
+<a id="constant_STATS_REJECT_NULL"> </a><div class="element clickable constant  constant_STATS_REJECT_NULL" data-toggle="collapse" data-target=".constant_STATS_REJECT_NULL .collapse">
+<h2>STATS_REJECT_NULL, reject data sets with null values.</h2>
+<pre>STATS_REJECT_NULL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>This is the default.
+Any non-numeric value is considered a null in this context.</p></div></div></div>
+</div>
+<a id="constant_STATS_USE_NULL_AS_ZERO"> </a><div class="element clickable constant  constant_STATS_USE_NULL_AS_ZERO" data-toggle="collapse" data-target=".constant_STATS_USE_NULL_AS_ZERO .collapse">
+<h2>STATS_USE_NULL_AS_ZERO, assign the value of 0 (zero) to null values.</h2>
+<pre>STATS_USE_NULL_AS_ZERO </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Any non-numeric value is considered a null in this context.</p></div></div></div>
+</div>
+</div>
+</div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-12-28T20:03:34-08:00.<br></footer></div>
+            generated on 2013-04-22T17:30:06-07:00.<br></footer></div>
 </div>
 </body>
 </html>

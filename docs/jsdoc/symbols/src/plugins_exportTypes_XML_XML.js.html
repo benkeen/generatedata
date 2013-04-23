@@ -85,6 +85,8 @@
 		
 			<li><a href="../../symbols/Manager.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Manager</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_Core">Core</span></span></span></a></li>
 		
+			<li><a href="../../symbols/NormalDistribution.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">NormalDistribution</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/ProgrammingLanguage.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">ProgrammingLanguage</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Region.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Region</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
@@ -153,6 +155,7 @@ define([
 	var _init = function() {
 		var subscriptions = {};
 		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
+		subscriptions[C.EVENT.GENERATE] = _onGenerate;
 		manager.subscribe(MODULE_ID, subscriptions);
 
 		$(window).resize(_updateDialogDimensions);
@@ -192,40 +195,44 @@ define([
 
 	var _validate = function(rowNums) {
 		var errors = [];
-
 		var invalidNodeNames  = [];
-
 		for (var i=0; i&lt;rowNums.length; i++) {
 			var rowNum = rowNums[i];
-			var nodeField = $("#gdTitle_" + rowNum);
-			var nodeFieldVal = nodeField.val();
+			var nodeName = $("#gdTitle_" + rowNum);
+			var nodeNameVal = nodeName.val();
 
-			// if ($("#title_" + nodeNum).val().match(/\W/) ||  $("#title_" + nodeNum).val().match(/^[^a-zA-Z]/)) {
-			// invalidNodeNames.push([$("#title_" + nodeNum), visibleRowNum]);
-			// }
+			if (nodeNameVal.match(/\W/) || nodeNameVal.match(/^[^a-zA-Z]/)) {
+				invalidNodeNames.push({
+					field: $("#gdTitle_" + rowNum),
+					visibleRowNum: generator.getVisibleRowOrderByRowNum(rowNum)
+				});
+			}
 		}
 
-/*		if (invalidNodeNames.length) {
+		if (invalidNodeNames.length) {
 			var problemFields = [];
 			var rowNumbers    = [];
-			for (var i=0; i&lt;invalidNodeNames.length; i++) {
-				problemFields.push(invalidNodeNames[i][0]);
-				rowNumbers.push(invalidNodeNames[i][1]);
+			for (var j=0; j&lt;invalidNodeNames.length; j++) {
+				problemFields.push(invalidNodeNames[j].field);
+				rowNumbers.push(invalidNodeNames[j].visibleRowNum);
 			}
-			utils.addValidationErrors({ els: problemFields, error: L.missing_node_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
-			Generator.errors.push({ els: problemFields, error: L.invalid_node_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
+			errors.push({ els: problemFields, error: LANG.invalid_node_names + " &lt;b&gt;" + rowNumbers.join(", ") + "&lt;/b&gt;" });
 		}
 
-		if ($("#xml_root_node_name").val() == "") {
-			Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.missing_xml_root_node_name });
-		} else if ($("#xml_root_node_name").val().match(/\W/)) {
-			Generator.errors.push({ els: [$("#xml_root_node_name")], error: L.invalid_xml_root_node_name });
-		} else if ($("#xml_record_node_name").val() == "") {
-			Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.missing_xml_record_node_name });
-		} else if ($("#xml_record_node_name").val().match(/\W/)) {
-			Generator.errors.push({ els: [$("#xml_record_node_name")], error: L.invalid_xml_record_node_name });
+		var rootNode        = $("#etXMLRootNodeName");
+		var rootNodeValue   = $.trim(rootNode.val());
+		var recordNode      = $("#etXMLRecordNodeName");
+		var recordNodeValue = $.trim(recordNode.val());
+
+		if (rootNodeValue === "") {
+			errors.push({ els: [rootNode], error: LANG.missing_xml_root_node_name });
+		} else if (rootNodeValue.match(/\W/)) {
+			errors.push({ els: [rootNode], error: LANG.invalid_xml_root_node_name });
+		} else if (recordNodeValue === "") {
+			errors.push({ els: [recordNode], error: LANG.missing_xml_record_node_name });
+		} else if (recordNodeValue.match(/\W/)) {
+			errors.push({ els: [recordNode], error: LANG.invalid_xml_record_node_name });
 		}
-		*/
 
 		return errors;
 	};
@@ -298,7 +305,6 @@ define([
 		return false;
 	};
 
-
 	var _getDialogDimensions = function() {
 		var dialogHeight  = ($(window).height() / 100) * 90;
 		var dialogWidth   = ($(window).width() / 100) * 90;
@@ -323,9 +329,20 @@ define([
 		_codeMirror.setValue(_defaultCustomXML);
 	};
 
+	/**
+	 * If the user is generating in-page data with this Export Type, enable the XML
+	 * mode for the in-page editor.
+	 */
+	var _onGenerate = function(msg) {
+		$("#etXMLCustomHTMLSource").val(_codeMirror.getValue());
+		if (msg.exportTarget != "inPage" || msg.exportType != "XML") {
+			return;
+		}
+		msg.editor.setOption("mode", "xml");
+	};
+
 
 	manager.registerExportType(MODULE_ID, {
-		
 		/**
 		 * @function
 		 * @name XML#init
@@ -370,7 +387,7 @@ define([
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Mon Jan 14 2013 21:02:12 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Mon Apr 22 2013 17:16:43 GMT-0700 (PDT)</p>
 	</div>
 </footer>
 

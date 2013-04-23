@@ -1,0 +1,834 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Writer_Excel5_Parser</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: The class constructor"><span class="description">The class constructor</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method__advance" title="_advance :: Advance to the next valid token."><span class="description">Advance to the next valid token.</span><pre>_advance()</pre></a></li>
+<li class="method public "><a href="#method__cellToPackedRowcol" title="_cellToPackedRowcol :: pack() row and column into the required 3 or 4 byte format."><span class="description">pack() row and column into the required 3 or 4 byte format.</span><pre>_cellToPackedRowcol()</pre></a></li>
+<li class="method public "><a href="#method__cellToRowcol" title="_cellToRowcol :: Convert an Excel cell reference such as A1 or $B2 or C$3 or $D$4 to a zero
+indexed row and column number."><span class="description">Convert an Excel cell reference such as A1 or $B2 or C$3 or $D$4 to a zero
+indexed row and column number.</span><pre>_cellToRowcol()</pre></a></li>
+<li class="method public "><a href="#method__condition" title="_condition :: It parses a condition."><span class="description">It parses a condition.</span><pre>_condition()</pre></a></li>
+<li class="method public "><a href="#method__convert" title="_convert :: Convert a token to the proper ptg value."><span class="description">Convert a token to the proper ptg value.</span><pre>_convert()</pre></a></li>
+<li class="method public "><a href="#method__convertError" title="_convertError :: Convert an error code to a ptgErr"><span class="description">Convert an error code to a ptgErr</span><pre>_convertError()</pre></a></li>
+<li class="method public "><a href="#method__convertFunction" title="_convertFunction :: Convert a function to a ptgFunc or ptgFuncVarV depending on the number of
+args that it takes."><span class="description">Convert a function to a ptgFunc or ptgFuncVarV depending on the number of
+args that it takes.</span><pre>_convertFunction()</pre></a></li>
+<li class="method public "><a href="#method__convertNumber" title="_convertNumber :: Convert a number token to ptgInt or ptgNum"><span class="description">Convert a number token to ptgInt or ptgNum</span><pre>_convertNumber()</pre></a></li>
+<li class="method public "><a href="#method__convertRange2d" title="_convertRange2d :: Convert an Excel range such as A1:D4 to a ptgRefV."><span class="description">Convert an Excel range such as A1:D4 to a ptgRefV.</span><pre>_convertRange2d()</pre></a></li>
+<li class="method public "><a href="#method__convertRange3d" title='_convertRange3d :: Convert an Excel 3d range such as "Sheet1!A1:D4" or "Sheet1:Sheet2!A1:D4" to
+a ptgArea3d.'><span class="description">Convert an Excel 3d range such as "Sheet1!A1:D4" or "Sheet1:Sheet2!A1:D4" to
+a ptgArea3d.</span><pre>_convertRange3d()</pre></a></li>
+<li class="method public "><a href="#method__convertRef2d" title="_convertRef2d :: Convert an Excel reference such as A1, $B2, C$3 or $D$4 to a ptgRefV."><span class="description">Convert an Excel reference such as A1, $B2, C$3 or $D$4 to a ptgRefV.</span><pre>_convertRef2d()</pre></a></li>
+<li class="method public "><a href="#method__convertRef3d" title='_convertRef3d :: Convert an Excel 3d reference such as "Sheet1!A1" or "Sheet1:Sheet2!A1" to a
+ptgRef3d.'><span class="description">Convert an Excel 3d reference such as "Sheet1!A1" or "Sheet1:Sheet2!A1" to a
+ptgRef3d.</span><pre>_convertRef3d()</pre></a></li>
+<li class="method public "><a href="#method__convertString" title="_convertString :: Convert a string token to ptgStr"><span class="description">Convert a string token to ptgStr</span><pre>_convertString()</pre></a></li>
+<li class="method public "><a href="#method__createTree" title="_createTree :: Creates a tree."><span class="description">Creates a tree.</span><pre>_createTree()</pre></a></li>
+<li class="method public "><a href="#method__expression" title="_expression :: It parses a expression."><span class="description">It parses a expression.</span><pre>_expression()</pre></a></li>
+<li class="method public "><a href="#method__fact" title="_fact :: It parses a factor."><span class="description">It parses a factor.</span><pre>_fact()</pre></a></li>
+<li class="method public "><a href="#method__func" title="_func :: It parses a function call."><span class="description">It parses a function call.</span><pre>_func()</pre></a></li>
+<li class="method public "><a href="#method__getRefIndex" title="_getRefIndex :: Look up the REF index that corresponds to an external sheet name
+(or range)."><span class="description">Look up the REF index that corresponds to an external sheet name
+(or range).</span><pre>_getRefIndex()</pre></a></li>
+<li class="method public "><a href="#method__getSheetIndex" title="_getSheetIndex :: Look up the index that corresponds to an external sheet name."><span class="description">Look up the index that corresponds to an external sheet name.</span><pre>_getSheetIndex()</pre></a></li>
+<li class="method public "><a href="#method__initializeHashes" title="_initializeHashes :: Initialize the ptg and function hashes."><span class="description">Initialize the ptg and function hashes.</span><pre>_initializeHashes()</pre></a></li>
+<li class="method public "><a href="#method__match" title="_match :: Checks if it's a valid token."><span class="description">Checks if it's a valid token.</span><pre>_match()</pre></a></li>
+<li class="method public "><a href="#method__packExtRef" title='_packExtRef :: Convert the sheet name part of an external reference, for example "Sheet1" or
+"Sheet1:Sheet2", to a packed structure.'><span class="description">Convert the sheet name part of an external reference, for example "Sheet1" or
+"Sheet1:Sheet2", to a packed structure.</span><pre>_packExtRef()</pre></a></li>
+<li class="method public "><a href="#method__parenthesizedExpression" title="_parenthesizedExpression :: This function just introduces a ptgParen element in the tree, so that Excel
+doesn't get confused when working with a parenthesized formula afterwards."><span class="description">This function just introduces a ptgParen element in the tree, so that Excel
+doesn't get confused when working with a parenthesized formula afterwards.</span><pre>_parenthesizedExpression()</pre></a></li>
+<li class="method public "><a href="#method__rangeToPackedRange" title="_rangeToPackedRange :: pack() row range into the required 3 or 4 byte format."><span class="description">pack() row range into the required 3 or 4 byte format.</span><pre>_rangeToPackedRange()</pre></a></li>
+<li class="method public "><a href="#method__term" title="_term :: It parses a term."><span class="description">It parses a term.</span><pre>_term()</pre></a></li>
+<li class="method public "><a href="#method_parse" title="parse :: The parsing method."><span class="description">The parsing method.</span><pre>parse()</pre></a></li>
+<li class="method public "><a href="#method_setExtSheet" title="setExtSheet :: This method is used to update the array of sheet names."><span class="description">This method is used to update the array of sheet names.</span><pre>setExtSheet()</pre></a></li>
+<li class="method public "><a href="#method_toReversePolish" title="toReversePolish :: Builds a string containing the tree in reverse polish notation (What you
+would use in a HP calculator stack)."><span class="description">Builds a string containing the tree in reverse polish notation (What you
+would use in a HP calculator stack).</span><pre>toReversePolish()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property__current_char" title="$_current_char :: The index of the character we are currently looking at"><span class="description"></span><pre>$_current_char</pre></a></li>
+<li class="property public "><a href="#property__current_token" title="$_current_token :: The token we are working on."><span class="description"></span><pre>$_current_token</pre></a></li>
+<li class="property public "><a href="#property__ext_sheets" title="$_ext_sheets :: Array of external sheets"><span class="description"></span><pre>$_ext_sheets</pre></a></li>
+<li class="property public "><a href="#property__formula" title="$_formula :: The formula to parse"><span class="description"></span><pre>$_formula</pre></a></li>
+<li class="property public "><a href="#property__lookahead" title="$_lookahead :: The character ahead of the current char"><span class="description"></span><pre>$_lookahead</pre></a></li>
+<li class="property public "><a href="#property__parse_tree" title="$_parse_tree :: The parse tree to be generated"><span class="description"></span><pre>$_parse_tree</pre></a></li>
+<li class="property public "><a href="#property__references" title="$_references :: Array of sheet references in the form of REF structures"><span class="description"></span><pre>$_references</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_REGEX_SHEET_TITLE_QUOTED" title="REGEX_SHEET_TITLE_QUOTED :: "><span class="description">REGEX_SHEET_TITLE_QUOTED</span><pre>REGEX_SHEET_TITLE_QUOTED</pre></a></li>
+<li class="constant  "><a href="#constant_REGEX_SHEET_TITLE_UNQUOTED" title="REGEX_SHEET_TITLE_UNQUOTED :: "><span class="description">REGEX_SHEET_TITLE_UNQUOTED</span><pre>REGEX_SHEET_TITLE_UNQUOTED</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Writer_Excel5_Parser"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Writer_Excel5_Parser.html">PHPExcel_Writer_Excel5_Parser</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Writer_Excel5_Parser</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Writer.Excel5.html">PHPExcel_Writer_Excel5</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>The class constructor</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method__advance"></a><div class="element clickable method public method__advance" data-toggle="collapse" data-target=".method__advance .collapse">
+<h2>Advance to the next valid token.</h2>
+<pre>_advance() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method__cellToPackedRowcol"></a><div class="element clickable method public method__cellToPackedRowcol" data-toggle="collapse" data-target=".method__cellToPackedRowcol .collapse">
+<h2>pack() row and column into the required 3 or 4 byte format.</h2>
+<pre>_cellToPackedRowcol(string $cell) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code>string</code><p>The Excel cell reference to be packed</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Array containing the row and column in packed() format</div>
+</div></div>
+</div>
+<a id="method__cellToRowcol"></a><div class="element clickable method public method__cellToRowcol" data-toggle="collapse" data-target=".method__cellToRowcol .collapse">
+<h2>Convert an Excel cell reference such as A1 or $B2 or C$3 or $D$4 to a zero
+indexed row and column number.</h2>
+<pre>_cellToRowcol(string $cell) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Also returns two (0,1) values to indicate
+whether the row or column are relative references.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code>string</code><p>The Excel cell reference in A1 format.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method__condition"></a><div class="element clickable method public method__condition" data-toggle="collapse" data-target=".method__condition .collapse">
+<h2>It parses a condition.</h2>
+<pre>_condition() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It assumes the following rule:
+Cond -> Expr [(">" | "&lt;") Expr]</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The parsed ptg'd tree on success</div>
+</div></div>
+</div>
+<a id="method__convert"></a><div class="element clickable method public method__convert" data-toggle="collapse" data-target=".method__convert .collapse">
+<h2>Convert a token to the proper ptg value.</h2>
+<pre>_convert(mixed $token) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$token</h4>
+<code>mixed</code><p>The token to convert.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the converted token on success</div>
+</div></div>
+</div>
+<a id="method__convertError"></a><div class="element clickable method public method__convertError" data-toggle="collapse" data-target=".method__convertError .collapse">
+<h2>Convert an error code to a ptgErr</h2>
+<pre>_convertError(string $errorCode) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$errorCode</h4>
+<code>string</code><p>The error code for conversion to its ptg value</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The error code ptgErr</div>
+</div></div>
+</div>
+<a id="method__convertFunction"></a><div class="element clickable method public method__convertFunction" data-toggle="collapse" data-target=".method__convertFunction .collapse">
+<h2>Convert a function to a ptgFunc or ptgFuncVarV depending on the number of
+args that it takes.</h2>
+<pre>_convertFunction(string $token, integer $num_args) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$token</h4>
+<code>string</code><p>The name of the function for convertion to ptg value.</p></div>
+<div class="subelement argument">
+<h4>$num_args</h4>
+<code>integer</code><p>The number of arguments the function receives.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The packed ptg for the function</div>
+</div></div>
+</div>
+<a id="method__convertNumber"></a><div class="element clickable method public method__convertNumber" data-toggle="collapse" data-target=".method__convertNumber .collapse">
+<h2>Convert a number token to ptgInt or ptgNum</h2>
+<pre>_convertNumber(mixed $num) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$num</h4>
+<code>mixed</code><p>an integer or double for conversion to its ptg value</p></div>
+</div></div>
+</div>
+<a id="method__convertRange2d"></a><div class="element clickable method public method__convertRange2d" data-toggle="collapse" data-target=".method__convertRange2d .collapse">
+<h2>Convert an Excel range such as A1:D4 to a ptgRefV.</h2>
+<pre>_convertRange2d(string $range, int $class) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$range</h4>
+<code>string</code><p>An Excel range in the A1:A2</p></div>
+<div class="subelement argument">
+<h4>$class</h4>
+<code>int</code>
+</div>
+</div></div>
+</div>
+<a id="method__convertRange3d"></a><div class="element clickable method public method__convertRange3d" data-toggle="collapse" data-target=".method__convertRange3d .collapse">
+<h2>Convert an Excel 3d range such as "Sheet1!A1:D4" or "Sheet1:Sheet2!A1:D4" to
+a ptgArea3d.</h2>
+<pre>_convertRange3d(string $token) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$token</h4>
+<code>string</code><p>An Excel range in the Sheet1!A1:A2 format.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The packed ptgArea3d token on success.</div>
+</div></div>
+</div>
+<a id="method__convertRef2d"></a><div class="element clickable method public method__convertRef2d" data-toggle="collapse" data-target=".method__convertRef2d .collapse">
+<h2>Convert an Excel reference such as A1, $B2, C$3 or $D$4 to a ptgRefV.</h2>
+<pre>_convertRef2d(string $cell) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code>string</code><p>An Excel cell reference</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The cell in packed() format with the corresponding ptg</div>
+</div></div>
+</div>
+<a id="method__convertRef3d"></a><div class="element clickable method public method__convertRef3d" data-toggle="collapse" data-target=".method__convertRef3d .collapse">
+<h2>Convert an Excel 3d reference such as "Sheet1!A1" or "Sheet1:Sheet2!A1" to a
+ptgRef3d.</h2>
+<pre>_convertRef3d(string $cell) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code>string</code><p>An Excel cell reference</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The packed ptgRef3d token on success.</div>
+</div></div>
+</div>
+<a id="method__convertString"></a><div class="element clickable method public method__convertString" data-toggle="collapse" data-target=".method__convertString .collapse">
+<h2>Convert a string token to ptgStr</h2>
+<pre>_convertString(string $string) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$string</h4>
+<code>string</code><p>A string for conversion to its ptg value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the converted token on success</div>
+</div></div>
+</div>
+<a id="method__createTree"></a><div class="element clickable method public method__createTree" data-toggle="collapse" data-target=".method__createTree .collapse">
+<h2>Creates a tree.</h2>
+<pre>_createTree(mixed $value, mixed $left, mixed $right) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>In fact an array which may have one or two arrays (sub-trees)
+as elements.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>The value of this node.</p></div>
+<div class="subelement argument">
+<h4>$left</h4>
+<code>mixed</code><p>The left array (sub-tree) or a final node.</p>
+</div>
+<div class="subelement argument">
+<h4>$right</h4>
+<code>mixed</code><p>The right array (sub-tree) or a final node.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>A tree</div>
+</div></div>
+</div>
+<a id="method__expression"></a><div class="element clickable method public method__expression" data-toggle="collapse" data-target=".method__expression .collapse">
+<h2>It parses a expression.</h2>
+<pre>_expression() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It assumes the following rule:
+Expr -> Term [("+" | "-") Term]
+     -> "string"
+     -> "-" Term : Negative value
+     -> "+" Term : Positive value
+     -> Error code</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The parsed ptg'd tree on success</div>
+</div></div>
+</div>
+<a id="method__fact"></a><div class="element clickable method public method__fact" data-toggle="collapse" data-target=".method__fact .collapse">
+<h2>It parses a factor.</h2>
+<pre>_fact() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It assumes the following rule:
+Fact -> ( Expr )
+      | CellRef
+      | CellRange
+      | Number
+      | Function</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The parsed ptg'd tree on success</div>
+</div></div>
+</div>
+<a id="method__func"></a><div class="element clickable method public method__func" data-toggle="collapse" data-target=".method__func .collapse">
+<h2>It parses a function call.</h2>
+<pre>_func() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It assumes the following rule:
+Func -> ( Expr [,Expr]* )</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The parsed ptg'd tree on success</div>
+</div></div>
+</div>
+<a id="method__getRefIndex"></a><div class="element clickable method public method__getRefIndex" data-toggle="collapse" data-target=".method__getRefIndex .collapse">
+<h2>Look up the REF index that corresponds to an external sheet name
+(or range).</h2>
+<pre>_getRefIndex(string $ext_ref) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>If it doesn't exist yet add it to the workbook's references
+array. It assumes all sheet names given must exist.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ext_ref</h4>
+<code>string</code><p>The name of the external reference</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The reference index in packed() format on success</div>
+</div></div>
+</div>
+<a id="method__getSheetIndex"></a><div class="element clickable method public method__getSheetIndex" data-toggle="collapse" data-target=".method__getSheetIndex .collapse">
+<h2>Look up the index that corresponds to an external sheet name.</h2>
+<pre>_getSheetIndex(string $sheet_name) : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The hash of
+sheet names is updated by the addworksheet() method of the
+PHPExcel_Writer_Excel5_Workbook class.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$sheet_name</h4>
+<code>string</code><p>Sheet name</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code>The sheet index, -1 if the sheet was not found</div>
+</div></div>
+</div>
+<a id="method__initializeHashes"></a><div class="element clickable method public method__initializeHashes" data-toggle="collapse" data-target=".method__initializeHashes .collapse">
+<h2>Initialize the ptg and function hashes.</h2>
+<pre>_initializeHashes() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method__match"></a><div class="element clickable method public method__match" data-toggle="collapse" data-target=".method__match .collapse">
+<h2>Checks if it's a valid token.</h2>
+<pre>_match(mixed $token) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$token</h4>
+<code>mixed</code><p>The token to check.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The checked token or false on failure</div>
+</div></div>
+</div>
+<a id="method__packExtRef"></a><div class="element clickable method public method__packExtRef" data-toggle="collapse" data-target=".method__packExtRef .collapse">
+<h2>Convert the sheet name part of an external reference, for example "Sheet1" or
+"Sheet1:Sheet2", to a packed structure.</h2>
+<pre>_packExtRef(string $ext_ref) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$ext_ref</h4>
+<code>string</code><p>The name of the external reference</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The reference index in packed() format</div>
+</div></div>
+</div>
+<a id="method__parenthesizedExpression"></a><div class="element clickable method public method__parenthesizedExpression" data-toggle="collapse" data-target=".method__parenthesizedExpression .collapse">
+<h2>This function just introduces a ptgParen element in the tree, so that Excel
+doesn't get confused when working with a parenthesized formula afterwards.</h2>
+<pre>_parenthesizedExpression() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>private</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\_fact()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>The parsed ptg'd tree</div>
+</div></div>
+</div>
+<a id="method__rangeToPackedRange"></a><div class="element clickable method public method__rangeToPackedRange" data-toggle="collapse" data-target=".method__rangeToPackedRange .collapse">
+<h2>pack() row range into the required 3 or 4 byte format.</h2>
+<pre>_rangeToPackedRange(string $range) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Just using maximum col/rows, which is probably not the correct solution</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$range</h4>
+<code>string</code><p>The Excel range to be packed</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Array containing (row1,col1,row2,col2) in packed() format</div>
+</div></div>
+</div>
+<a id="method__term"></a><div class="element clickable method public method__term" data-toggle="collapse" data-target=".method__term .collapse">
+<h2>It parses a term.</h2>
+<pre>_term() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It assumes the following rule:
+Term -> Fact [("*" | "/") Fact]</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>The parsed ptg'd tree on success</div>
+</div></div>
+</div>
+<a id="method_parse"></a><div class="element clickable method public method_parse" data-toggle="collapse" data-target=".method_parse .collapse">
+<h2>The parsing method.</h2>
+<pre>parse(string $formula) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It parses a formula.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$formula</h4>
+<code>string</code><p>The formula to parse, without the initial equal sign (=).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>true on success</div>
+</div></div>
+</div>
+<a id="method_setExtSheet"></a><div class="element clickable method public method_setExtSheet" data-toggle="collapse" data-target=".method_setExtSheet .collapse">
+<h2>This method is used to update the array of sheet names.</h2>
+<pre>setExtSheet(string $name, integer $index) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It is
+called by the addWorksheet() method of the
+PHPExcel_Writer_Excel5_Workbook class.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\PHPExcel_Writer_Excel5_Workbook::addWorksheet()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code>string</code><p>The name of the worksheet being added</p></div>
+<div class="subelement argument">
+<h4>$index</h4>
+<code>integer</code><p>The index of the worksheet being added</p></div>
+</div></div>
+</div>
+<a id="method_toReversePolish"></a><div class="element clickable method public method_toReversePolish" data-toggle="collapse" data-target=".method_toReversePolish .collapse">
+<h2>Builds a string containing the tree in reverse polish notation (What you
+would use in a HP calculator stack).</h2>
+<pre>toReversePolish(array $tree) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The following tree:</p>
+
+<p>+
+  / \
+ 2   3</p>
+
+<p>produces: "23+"</p>
+
+<p>The following tree:</p>
+
+<p>+
+  / \
+ 3   *
+    / \
+   6   A1</p>
+
+<p>produces: "36A1*+"</p>
+
+<p>In fact all operands, functions, references, etc... are written as ptg's</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$tree</h4>
+<code>array</code><p>The optional tree to convert.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>The tree in reverse polish notation</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__current_char"> </a><div class="element clickable property public property__current_char" data-toggle="collapse" data-target=".property__current_char .collapse">
+<h2></h2>
+<pre>$_current_char : integer</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__current_token"> </a><div class="element clickable property public property__current_token" data-toggle="collapse" data-target=".property__current_token .collapse">
+<h2></h2>
+<pre>$_current_token : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__ext_sheets"> </a><div class="element clickable property public property__ext_sheets" data-toggle="collapse" data-target=".property__ext_sheets .collapse">
+<h2></h2>
+<pre>$_ext_sheets : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__formula"> </a><div class="element clickable property public property__formula" data-toggle="collapse" data-target=".property__formula .collapse">
+<h2></h2>
+<pre>$_formula : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__lookahead"> </a><div class="element clickable property public property__lookahead" data-toggle="collapse" data-target=".property__lookahead .collapse">
+<h2></h2>
+<pre>$_lookahead : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__parse_tree"> </a><div class="element clickable property public property__parse_tree" data-toggle="collapse" data-target=".property__parse_tree .collapse">
+<h2></h2>
+<pre>$_parse_tree : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__references"> </a><div class="element clickable property public property__references" data-toggle="collapse" data-target=".property__references .collapse">
+<h2></h2>
+<pre>$_references : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_REGEX_SHEET_TITLE_QUOTED"> </a><div class="element clickable constant  constant_REGEX_SHEET_TITLE_QUOTED" data-toggle="collapse" data-target=".constant_REGEX_SHEET_TITLE_QUOTED .collapse">
+<h2>REGEX_SHEET_TITLE_QUOTED</h2>
+<pre>REGEX_SHEET_TITLE_QUOTED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_REGEX_SHEET_TITLE_UNQUOTED"> </a><div class="element clickable constant  constant_REGEX_SHEET_TITLE_UNQUOTED" data-toggle="collapse" data-target=".constant_REGEX_SHEET_TITLE_UNQUOTED .collapse">
+<h2>REGEX_SHEET_TITLE_UNQUOTED</h2>
+<pre>REGEX_SHEET_TITLE_UNQUOTED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:19-07:00.<br></footer></div>
+</div>
+</body>
+</html>

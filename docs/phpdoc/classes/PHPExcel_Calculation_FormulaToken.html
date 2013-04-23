@@ -1,0 +1,433 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Calculation_FormulaToken</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Create a new PHPExcel_Calculation_FormulaToken"><span class="description">Create a new PHPExcel_Calculation_FormulaToken</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_getTokenSubType" title="getTokenSubType :: Get Token SubType (represented by TOKEN_SUBTYPE_*)"><span class="description">Get Token SubType (represented by TOKEN_SUBTYPE_*)</span><pre>getTokenSubType()</pre></a></li>
+<li class="method public "><a href="#method_getTokenType" title="getTokenType :: Get Token Type (represented by TOKEN_TYPE_*)"><span class="description">Get Token Type (represented by TOKEN_TYPE_*)</span><pre>getTokenType()</pre></a></li>
+<li class="method public "><a href="#method_getValue" title="getValue :: Get Value"><span class="description">Get Value</span><pre>getValue()</pre></a></li>
+<li class="method public "><a href="#method_setTokenSubType" title="setTokenSubType :: Set Token SubType"><span class="description">Set Token SubType</span><pre>setTokenSubType()</pre></a></li>
+<li class="method public "><a href="#method_setTokenType" title="setTokenType :: Set Token Type"><span class="description">Set Token Type</span><pre>setTokenType()</pre></a></li>
+<li class="method public "><a href="#method_setValue" title="setValue :: Set Value"><span class="description">Set Value</span><pre>setValue()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__tokenSubType" title="$_tokenSubType :: Token SubType (represented by TOKEN_SUBTYPE_*)"><span class="description"></span><pre>$_tokenSubType</pre></a></li>
+<li class="property private "><a href="#property__tokenType" title="$_tokenType :: Token Type (represented by TOKEN_TYPE_*)"><span class="description"></span><pre>$_tokenType</pre></a></li>
+<li class="property private "><a href="#property__value" title="$_value :: Value"><span class="description"></span><pre>$_value</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_CONCATENATION" title="TOKEN_SUBTYPE_CONCATENATION :: "><span class="description">TOKEN_SUBTYPE_CONCATENATION</span><pre>TOKEN_SUBTYPE_CONCATENATION</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_ERROR" title="TOKEN_SUBTYPE_ERROR :: "><span class="description">TOKEN_SUBTYPE_ERROR</span><pre>TOKEN_SUBTYPE_ERROR</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_INTERSECTION" title="TOKEN_SUBTYPE_INTERSECTION :: "><span class="description">TOKEN_SUBTYPE_INTERSECTION</span><pre>TOKEN_SUBTYPE_INTERSECTION</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_LOGICAL" title="TOKEN_SUBTYPE_LOGICAL :: "><span class="description">TOKEN_SUBTYPE_LOGICAL</span><pre>TOKEN_SUBTYPE_LOGICAL</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_MATH" title="TOKEN_SUBTYPE_MATH :: "><span class="description">TOKEN_SUBTYPE_MATH</span><pre>TOKEN_SUBTYPE_MATH</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_NOTHING" title="TOKEN_SUBTYPE_NOTHING :: "><span class="description">TOKEN_SUBTYPE_NOTHING</span><pre>TOKEN_SUBTYPE_NOTHING</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_NUMBER" title="TOKEN_SUBTYPE_NUMBER :: "><span class="description">TOKEN_SUBTYPE_NUMBER</span><pre>TOKEN_SUBTYPE_NUMBER</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_RANGE" title="TOKEN_SUBTYPE_RANGE :: "><span class="description">TOKEN_SUBTYPE_RANGE</span><pre>TOKEN_SUBTYPE_RANGE</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_START" title="TOKEN_SUBTYPE_START :: "><span class="description">TOKEN_SUBTYPE_START</span><pre>TOKEN_SUBTYPE_START</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_STOP" title="TOKEN_SUBTYPE_STOP :: "><span class="description">TOKEN_SUBTYPE_STOP</span><pre>TOKEN_SUBTYPE_STOP</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_TEXT" title="TOKEN_SUBTYPE_TEXT :: "><span class="description">TOKEN_SUBTYPE_TEXT</span><pre>TOKEN_SUBTYPE_TEXT</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_SUBTYPE_UNION" title="TOKEN_SUBTYPE_UNION :: "><span class="description">TOKEN_SUBTYPE_UNION</span><pre>TOKEN_SUBTYPE_UNION</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_ARGUMENT" title="TOKEN_TYPE_ARGUMENT :: "><span class="description">TOKEN_TYPE_ARGUMENT</span><pre>TOKEN_TYPE_ARGUMENT</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_FUNCTION" title="TOKEN_TYPE_FUNCTION :: "><span class="description">TOKEN_TYPE_FUNCTION</span><pre>TOKEN_TYPE_FUNCTION</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_NOOP" title="TOKEN_TYPE_NOOP :: "><span class="description">TOKEN_TYPE_NOOP</span><pre>TOKEN_TYPE_NOOP</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_OPERAND" title="TOKEN_TYPE_OPERAND :: "><span class="description">TOKEN_TYPE_OPERAND</span><pre>TOKEN_TYPE_OPERAND</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_OPERATORINFIX" title="TOKEN_TYPE_OPERATORINFIX :: "><span class="description">TOKEN_TYPE_OPERATORINFIX</span><pre>TOKEN_TYPE_OPERATORINFIX</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_OPERATORPOSTFIX" title="TOKEN_TYPE_OPERATORPOSTFIX :: "><span class="description">TOKEN_TYPE_OPERATORPOSTFIX</span><pre>TOKEN_TYPE_OPERATORPOSTFIX</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_OPERATORPREFIX" title="TOKEN_TYPE_OPERATORPREFIX :: "><span class="description">TOKEN_TYPE_OPERATORPREFIX</span><pre>TOKEN_TYPE_OPERATORPREFIX</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_SUBEXPRESSION" title="TOKEN_TYPE_SUBEXPRESSION :: "><span class="description">TOKEN_TYPE_SUBEXPRESSION</span><pre>TOKEN_TYPE_SUBEXPRESSION</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_UNKNOWN" title="TOKEN_TYPE_UNKNOWN :: "><span class="description">TOKEN_TYPE_UNKNOWN</span><pre>TOKEN_TYPE_UNKNOWN</pre></a></li>
+<li class="constant  "><a href="#constant_TOKEN_TYPE_WHITESPACE" title="TOKEN_TYPE_WHITESPACE :: "><span class="description">TOKEN_TYPE_WHITESPACE</span><pre>TOKEN_TYPE_WHITESPACE</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Calculation_FormulaToken"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Calculation_FormulaToken.html">PHPExcel_Calculation_FormulaToken</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Calculation_FormulaToken</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Calculation.html">PHPExcel_Calculation</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Create a new PHPExcel_Calculation_FormulaToken</h2>
+<pre>__construct(string $pValue, string $pTokenType, string $pTokenSubType) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$pTokenType</h4>
+<code>string</code><p>Token type (represented by TOKEN_TYPE_*)</p>
+</div>
+<div class="subelement argument">
+<h4>$pTokenSubType</h4>
+<code>string</code><p>Token Subtype (represented by TOKEN_SUBTYPE_*)</p>
+</div>
+</div></div>
+</div>
+<a id="method_getTokenSubType"></a><div class="element clickable method public method_getTokenSubType" data-toggle="collapse" data-target=".method_getTokenSubType .collapse">
+<h2>Get Token SubType (represented by TOKEN_SUBTYPE_*)</h2>
+<pre>getTokenSubType() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getTokenType"></a><div class="element clickable method public method_getTokenType" data-toggle="collapse" data-target=".method_getTokenType .collapse">
+<h2>Get Token Type (represented by TOKEN_TYPE_*)</h2>
+<pre>getTokenType() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getValue"></a><div class="element clickable method public method_getValue" data-toggle="collapse" data-target=".method_getValue .collapse">
+<h2>Get Value</h2>
+<pre>getValue() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_setTokenSubType"></a><div class="element clickable method public method_setTokenSubType" data-toggle="collapse" data-target=".method_setTokenSubType .collapse">
+<h2>Set Token SubType</h2>
+<pre>setTokenSubType(string $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_setTokenType"></a><div class="element clickable method public method_setTokenType" data-toggle="collapse" data-target=".method_setTokenType .collapse">
+<h2>Set Token Type</h2>
+<pre>setTokenType(string $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_setValue"></a><div class="element clickable method public method_setValue" data-toggle="collapse" data-target=".method_setValue .collapse">
+<h2>Set Value</h2>
+<pre>setValue(string $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__tokenSubType"> </a><div class="element clickable property private property__tokenSubType" data-toggle="collapse" data-target=".property__tokenSubType .collapse">
+<h2></h2>
+<pre>$_tokenSubType : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__tokenType"> </a><div class="element clickable property private property__tokenType" data-toggle="collapse" data-target=".property__tokenType .collapse">
+<h2></h2>
+<pre>$_tokenType : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__value"> </a><div class="element clickable property private property__value" data-toggle="collapse" data-target=".property__value .collapse">
+<h2></h2>
+<pre>$_value : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_TOKEN_SUBTYPE_CONCATENATION"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_CONCATENATION" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_CONCATENATION .collapse">
+<h2>TOKEN_SUBTYPE_CONCATENATION</h2>
+<pre>TOKEN_SUBTYPE_CONCATENATION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_ERROR"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_ERROR" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_ERROR .collapse">
+<h2>TOKEN_SUBTYPE_ERROR</h2>
+<pre>TOKEN_SUBTYPE_ERROR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_INTERSECTION"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_INTERSECTION" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_INTERSECTION .collapse">
+<h2>TOKEN_SUBTYPE_INTERSECTION</h2>
+<pre>TOKEN_SUBTYPE_INTERSECTION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_LOGICAL"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_LOGICAL" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_LOGICAL .collapse">
+<h2>TOKEN_SUBTYPE_LOGICAL</h2>
+<pre>TOKEN_SUBTYPE_LOGICAL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_MATH"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_MATH" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_MATH .collapse">
+<h2>TOKEN_SUBTYPE_MATH</h2>
+<pre>TOKEN_SUBTYPE_MATH </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_NOTHING"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_NOTHING" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_NOTHING .collapse">
+<h2>TOKEN_SUBTYPE_NOTHING</h2>
+<pre>TOKEN_SUBTYPE_NOTHING </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_NUMBER"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_NUMBER" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_NUMBER .collapse">
+<h2>TOKEN_SUBTYPE_NUMBER</h2>
+<pre>TOKEN_SUBTYPE_NUMBER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_RANGE"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_RANGE" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_RANGE .collapse">
+<h2>TOKEN_SUBTYPE_RANGE</h2>
+<pre>TOKEN_SUBTYPE_RANGE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_START"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_START" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_START .collapse">
+<h2>TOKEN_SUBTYPE_START</h2>
+<pre>TOKEN_SUBTYPE_START </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_STOP"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_STOP" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_STOP .collapse">
+<h2>TOKEN_SUBTYPE_STOP</h2>
+<pre>TOKEN_SUBTYPE_STOP </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_TEXT"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_TEXT" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_TEXT .collapse">
+<h2>TOKEN_SUBTYPE_TEXT</h2>
+<pre>TOKEN_SUBTYPE_TEXT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_SUBTYPE_UNION"> </a><div class="element clickable constant  constant_TOKEN_SUBTYPE_UNION" data-toggle="collapse" data-target=".constant_TOKEN_SUBTYPE_UNION .collapse">
+<h2>TOKEN_SUBTYPE_UNION</h2>
+<pre>TOKEN_SUBTYPE_UNION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_ARGUMENT"> </a><div class="element clickable constant  constant_TOKEN_TYPE_ARGUMENT" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_ARGUMENT .collapse">
+<h2>TOKEN_TYPE_ARGUMENT</h2>
+<pre>TOKEN_TYPE_ARGUMENT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_FUNCTION"> </a><div class="element clickable constant  constant_TOKEN_TYPE_FUNCTION" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_FUNCTION .collapse">
+<h2>TOKEN_TYPE_FUNCTION</h2>
+<pre>TOKEN_TYPE_FUNCTION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_NOOP"> </a><div class="element clickable constant  constant_TOKEN_TYPE_NOOP" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_NOOP .collapse">
+<h2>TOKEN_TYPE_NOOP</h2>
+<pre>TOKEN_TYPE_NOOP </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_OPERAND"> </a><div class="element clickable constant  constant_TOKEN_TYPE_OPERAND" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_OPERAND .collapse">
+<h2>TOKEN_TYPE_OPERAND</h2>
+<pre>TOKEN_TYPE_OPERAND </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_OPERATORINFIX"> </a><div class="element clickable constant  constant_TOKEN_TYPE_OPERATORINFIX" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_OPERATORINFIX .collapse">
+<h2>TOKEN_TYPE_OPERATORINFIX</h2>
+<pre>TOKEN_TYPE_OPERATORINFIX </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_OPERATORPOSTFIX"> </a><div class="element clickable constant  constant_TOKEN_TYPE_OPERATORPOSTFIX" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_OPERATORPOSTFIX .collapse">
+<h2>TOKEN_TYPE_OPERATORPOSTFIX</h2>
+<pre>TOKEN_TYPE_OPERATORPOSTFIX </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_OPERATORPREFIX"> </a><div class="element clickable constant  constant_TOKEN_TYPE_OPERATORPREFIX" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_OPERATORPREFIX .collapse">
+<h2>TOKEN_TYPE_OPERATORPREFIX</h2>
+<pre>TOKEN_TYPE_OPERATORPREFIX </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_SUBEXPRESSION"> </a><div class="element clickable constant  constant_TOKEN_TYPE_SUBEXPRESSION" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_SUBEXPRESSION .collapse">
+<h2>TOKEN_TYPE_SUBEXPRESSION</h2>
+<pre>TOKEN_TYPE_SUBEXPRESSION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_UNKNOWN"> </a><div class="element clickable constant  constant_TOKEN_TYPE_UNKNOWN" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_UNKNOWN .collapse">
+<h2>TOKEN_TYPE_UNKNOWN</h2>
+<pre>TOKEN_TYPE_UNKNOWN </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TOKEN_TYPE_WHITESPACE"> </a><div class="element clickable constant  constant_TOKEN_TYPE_WHITESPACE" data-toggle="collapse" data-target=".constant_TOKEN_TYPE_WHITESPACE .collapse">
+<h2>TOKEN_TYPE_WHITESPACE</h2>
+<pre>TOKEN_TYPE_WHITESPACE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:12-07:00.<br></footer></div>
+</div>
+</body>
+</html>

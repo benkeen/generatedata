@@ -1,0 +1,1781 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » PHPExcel</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/PHPExcel.html" title="PHPExcel"><i class="icon-folder-open"></i>PHPExcel</a><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/PHPExcel.CachedObjectStorage.html" title="CachedObjectStorage"><i class="icon-folder-open"></i>CachedObjectStorage</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Calculation.html" title="Calculation"><i class="icon-folder-open"></i>Calculation</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Cell.html" title="Cell"><i class="icon-folder-open"></i>Cell</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Chart.html" title="Chart"><i class="icon-folder-open"></i>Chart</a><ul class="nav nav-list nav-packages"><li>
+<a href="../packages/PHPExcel.Chart.Renderer.html" title="Renderer"><i class="icon-folder-open"></i>Renderer</a><ul class="nav nav-list nav-packages"></ul>
+</li></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Reader.html" title="Reader"><i class="icon-folder-open"></i>Reader</a><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/PHPExcel.Reader.Excel2007.html" title="Excel2007"><i class="icon-folder-open"></i>Excel2007</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Reader.Excel5.html" title="Excel5"><i class="icon-folder-open"></i>Excel5</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.RichText.html" title="RichText"><i class="icon-folder-open"></i>RichText</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Shared.html" title="Shared"><i class="icon-folder-open"></i>Shared</a><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/PHPExcel.Shared.Escher.html" title="Escher"><i class="icon-folder-open"></i>Escher</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Shared.OLE.html" title="OLE"><i class="icon-folder-open"></i>OLE</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Shared.Trend.html" title="Trend"><i class="icon-folder-open"></i>Trend</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Shared.ZipArchive.html" title="ZipArchive"><i class="icon-folder-open"></i>ZipArchive</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Style.html" title="Style"><i class="icon-folder-open"></i>Style</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Worksheet.html" title="Worksheet"><i class="icon-folder-open"></i>Worksheet</a><ul class="nav nav-list nav-packages"><li>
+<a href="../packages/PHPExcel.Worksheet.Drawing.html" title="Drawing"><i class="icon-folder-open"></i>Drawing</a><ul class="nav nav-list nav-packages"></ul>
+</li></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Writer.html" title="Writer"><i class="icon-folder-open"></i>Writer</a><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/PHPExcel.Writer.Excel2007.html" title="Excel2007"><i class="icon-folder-open"></i>Excel2007</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/PHPExcel.Writer.Excel5.html" title="Excel5"><i class="icon-folder-open"></i>Excel5</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-interface"></i> Interfaces</li>
+<li><a href="#PHPExcel_IComparable" title="PHPExcel_IComparable">PHPExcel_IComparable</a></li>
+<li class="nav-header">
+<i class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#PHPExcel_Autoloader" title="PHPExcel_Autoloader">PHPExcel_Autoloader</a></li>
+<li><a href="#PHPExcel_Comment" title="PHPExcel_Comment">PHPExcel_Comment</a></li>
+<li><a href="#PHPExcel_DocumentProperties" title="PHPExcel_DocumentProperties">PHPExcel_DocumentProperties</a></li>
+<li><a href="#PHPExcel_DocumentSecurity" title="PHPExcel_DocumentSecurity">PHPExcel_DocumentSecurity</a></li>
+<li><a href="#PHPExcel_Exception" title="PHPExcel_Exception">PHPExcel_Exception</a></li>
+<li><a href="#PHPExcel_HashTable" title="PHPExcel_HashTable">PHPExcel_HashTable</a></li>
+<li><a href="#PHPExcel_IOFactory" title="PHPExcel_IOFactory">PHPExcel_IOFactory</a></li>
+<li><a href="#PHPExcel_NamedRange" title="PHPExcel_NamedRange">PHPExcel_NamedRange</a></li>
+<li><a href="#PHPExcel_ReferenceHelper" title="PHPExcel_ReferenceHelper (Singleton)">PHPExcel_ReferenceHelper</a></li>
+<li><a href="#PHPExcel_WorksheetIterator" title="PHPExcel_WorksheetIterator">PHPExcel_WorksheetIterator</a></li>
+<li><a href="#PHPExcel" title="PHPExcel">PHPExcel</a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#constant_PHPEXCEL_ROOT" title="PHPEXCEL_ROOT :: "><span class="description">PHPEXCEL_ROOT</span><pre>PHPEXCEL_ROOT</pre></a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li class="active"><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_IComparable" class="element ajax clickable interface">
+<h1>PHPExcel_IComparable<a href="../classes/PHPExcel_IComparable.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_IComparable</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_IComparable.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel" class="element ajax clickable class">
+<h1>PHPExcel<a href="../classes/PHPExcel.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Autoloader" class="element ajax clickable class">
+<h1>PHPExcel_Autoloader<a href="../classes/PHPExcel_Autoloader.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Autoloader</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Autoloader.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Comment" class="element ajax clickable class">
+<h1>PHPExcel_Comment<a href="../classes/PHPExcel_Comment.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Comment</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Comment.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_DocumentProperties" class="element ajax clickable class">
+<h1>PHPExcel_DocumentProperties<a href="../classes/PHPExcel_DocumentProperties.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_DocumentProperties</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_DocumentProperties.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_DocumentSecurity" class="element ajax clickable class">
+<h1>PHPExcel_DocumentSecurity<a href="../classes/PHPExcel_DocumentSecurity.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_DocumentSecurity</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_DocumentSecurity.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Exception" class="element ajax clickable class">
+<h1>PHPExcel_Exception<a href="../classes/PHPExcel_Exception.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Exception.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_HashTable" class="element ajax clickable class">
+<h1>PHPExcel_HashTable<a href="../classes/PHPExcel_HashTable.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_HashTable</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_HashTable.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_IOFactory" class="element ajax clickable class">
+<h1>PHPExcel_IOFactory<a href="../classes/PHPExcel_IOFactory.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_IOFactory</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_IOFactory.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_NamedRange" class="element ajax clickable class">
+<h1>PHPExcel_NamedRange<a href="../classes/PHPExcel_NamedRange.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_NamedRange</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_NamedRange.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_ReferenceHelper" class="element ajax clickable class">
+<h1>PHPExcel_ReferenceHelper<a href="../classes/PHPExcel_ReferenceHelper.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_ReferenceHelper (Singleton)</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_ReferenceHelper.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_WorksheetIterator" class="element ajax clickable class">
+<h1>PHPExcel_WorksheetIterator<a href="../classes/PHPExcel_WorksheetIterator.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_WorksheetIterator</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_WorksheetIterator.html" class="more">« More »</a>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_PHPEXCEL_ROOT"> </a><div class="element clickable constant  constant_PHPEXCEL_ROOT" data-toggle="collapse" data-target=".constant_PHPEXCEL_ROOT .collapse">
+<h2>PHPEXCEL_ROOT</h2>
+<pre>PHPEXCEL_ROOT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.CachedObjectStorage.html">CachedObjectStorage</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_CachedObjectStorage_ICache" class="element ajax clickable interface">
+<h1>PHPExcel_CachedObjectStorage_ICache<a href="../classes/PHPExcel_CachedObjectStorage_ICache.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_ICache</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_ICache.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorageFactory" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorageFactory<a href="../classes/PHPExcel_CachedObjectStorageFactory.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorageFactory</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorageFactory.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_APC" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_APC<a href="../classes/PHPExcel_CachedObjectStorage_APC.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_APC</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_APC.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_CacheBase" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_CacheBase<a href="../classes/PHPExcel_CachedObjectStorage_CacheBase.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_CacheBase</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_CacheBase.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_DiscISAM" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_DiscISAM<a href="../classes/PHPExcel_CachedObjectStorage_DiscISAM.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_DiscISAM</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_DiscISAM.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_Igbinary" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_Igbinary<a href="../classes/PHPExcel_CachedObjectStorage_Igbinary.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_Igbinary</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_Igbinary.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_Memcache" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_Memcache<a href="../classes/PHPExcel_CachedObjectStorage_Memcache.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_Memcache</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_Memcache.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_Memory" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_Memory<a href="../classes/PHPExcel_CachedObjectStorage_Memory.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_Memory</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_Memory.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_MemoryGZip" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_MemoryGZip<a href="../classes/PHPExcel_CachedObjectStorage_MemoryGZip.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_MemoryGZip</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_MemoryGZip.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_MemorySerialized" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_MemorySerialized<a href="../classes/PHPExcel_CachedObjectStorage_MemorySerialized.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_MemorySerialized</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_MemorySerialized.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_PHPTemp" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_PHPTemp<a href="../classes/PHPExcel_CachedObjectStorage_PHPTemp.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_PHPTemp</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_PHPTemp.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_SQLite" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_SQLite<a href="../classes/PHPExcel_CachedObjectStorage_SQLite.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_SQLite</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_SQLite.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_SQLite3" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_SQLite3<a href="../classes/PHPExcel_CachedObjectStorage_SQLite3.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_SQLite3</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_SQLite3.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_CachedObjectStorage_Wincache" class="element ajax clickable class">
+<h1>PHPExcel_CachedObjectStorage_Wincache<a href="../classes/PHPExcel_CachedObjectStorage_Wincache.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_CachedObjectStorage_Wincache</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_CachedObjectStorage_Wincache.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Calculation.html">Calculation</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-function"></i> Functions</h3>
+<a id="function_acosh"></a><div class="element clickable function  function_acosh" data-toggle="collapse" data-target=".function_acosh .collapse">
+<h2>acosh()
+        </h2>
+<pre>acosh($x) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$x</h4></div>
+</div></div>
+</div>
+<a id="function_asinh"></a><div class="element clickable function  function_asinh" data-toggle="collapse" data-target=".function_asinh .collapse">
+<h2>asinh()
+        </h2>
+<pre>asinh($x) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$x</h4></div>
+</div></div>
+</div>
+<a id="function_atanh"></a><div class="element clickable function  function_atanh" data-toggle="collapse" data-target=".function_atanh .collapse">
+<h2>atanh()
+        </h2>
+<pre>atanh($x) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$x</h4></div>
+</div></div>
+</div>
+<a id="function_mb_str_replace"></a><div class="element clickable function  function_mb_str_replace" data-toggle="collapse" data-target=".function_mb_str_replace .collapse">
+<h2>mb_str_replace()
+        </h2>
+<pre>mb_str_replace($search, $replace, $subject) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$search</h4></div>
+<div class="subelement argument"><h4>$replace</h4></div>
+<div class="subelement argument"><h4>$subject</h4></div>
+</div></div>
+</div>
+<a id="function_money_format"></a><div class="element clickable function  function_money_format" data-toggle="collapse" data-target=".function_money_format .collapse">
+<h2>money_format()
+        </h2>
+<pre>money_format($format, $number) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$format</h4></div>
+<div class="subelement argument"><h4>$number</h4></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Calculation" class="element ajax clickable class">
+<h1>PHPExcel_Calculation<a href="../classes/PHPExcel_Calculation.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation (Singleton)</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Database" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Database<a href="../classes/PHPExcel_Calculation_Database.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Database</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Database.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_DateTime" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_DateTime<a href="../classes/PHPExcel_Calculation_DateTime.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_DateTime</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_DateTime.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Engineering" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Engineering<a href="../classes/PHPExcel_Calculation_Engineering.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Engineering</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Engineering.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Exception" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Exception<a href="../classes/PHPExcel_Calculation_Exception.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Exception.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_ExceptionHandler" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_ExceptionHandler<a href="../classes/PHPExcel_Calculation_ExceptionHandler.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_ExceptionHandler</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_ExceptionHandler.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Financial" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Financial<a href="../classes/PHPExcel_Calculation_Financial.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Financial</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Financial.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_FormulaParser" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_FormulaParser<a href="../classes/PHPExcel_Calculation_FormulaParser.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_FormulaParser</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_FormulaParser.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_FormulaToken" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_FormulaToken<a href="../classes/PHPExcel_Calculation_FormulaToken.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_FormulaToken</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_FormulaToken.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Function" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Function<a href="../classes/PHPExcel_Calculation_Function.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Function</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Function.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Functions" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Functions<a href="../classes/PHPExcel_Calculation_Functions.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Functions</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Functions.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Logical" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Logical<a href="../classes/PHPExcel_Calculation_Logical.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Logical</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Logical.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_LookupRef" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_LookupRef<a href="../classes/PHPExcel_Calculation_LookupRef.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_LookupRef</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_LookupRef.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_MathTrig" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_MathTrig<a href="../classes/PHPExcel_Calculation_MathTrig.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_MathTrig</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_MathTrig.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Statistical" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Statistical<a href="../classes/PHPExcel_Calculation_Statistical.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_Statistical</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Statistical.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_TextData" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_TextData<a href="../classes/PHPExcel_Calculation_TextData.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Calculation_TextData</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_TextData.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Calculation_Token_Stack" class="element ajax clickable class">
+<h1>PHPExcel_Calculation_Token_Stack<a href="../classes/PHPExcel_Calculation_Token_Stack.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Calculation_Token_Stack.html" class="more">« More »</a>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_CALCULATION_REGEXP_CELLREF"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_CELLREF" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_CELLREF .collapse">
+<h2>CALCULATION_REGEXP_CELLREF</h2>
+<pre>CALCULATION_REGEXP_CELLREF </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_CELLREF"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_CELLREF" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_CELLREF .collapse">
+<h2>CALCULATION_REGEXP_CELLREF</h2>
+<pre>CALCULATION_REGEXP_CELLREF </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_NAMEDRANGE"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_NAMEDRANGE" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_NAMEDRANGE .collapse">
+<h2>CALCULATION_REGEXP_NAMEDRANGE</h2>
+<pre>CALCULATION_REGEXP_NAMEDRANGE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_CALCULATION_REGEXP_NAMEDRANGE"> </a><div class="element clickable constant  constant_CALCULATION_REGEXP_NAMEDRANGE" data-toggle="collapse" data-target=".constant_CALCULATION_REGEXP_NAMEDRANGE .collapse">
+<h2>CALCULATION_REGEXP_NAMEDRANGE</h2>
+<pre>CALCULATION_REGEXP_NAMEDRANGE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_EPS"> </a><div class="element clickable constant  constant_EPS" data-toggle="collapse" data-target=".constant_EPS .collapse">
+<h2>EPS</h2>
+<pre>EPS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_EULER"> </a><div class="element clickable constant  constant_EULER" data-toggle="collapse" data-target=".constant_EULER .collapse">
+<h2>EULER</h2>
+<pre>EULER </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_FINANCIAL_MAX_ITERATIONS"> </a><div class="element clickable constant  constant_FINANCIAL_MAX_ITERATIONS" data-toggle="collapse" data-target=".constant_FINANCIAL_MAX_ITERATIONS .collapse">
+<h2>FINANCIAL_MAX_ITERATIONS</h2>
+<pre>FINANCIAL_MAX_ITERATIONS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_FINANCIAL_PRECISION"> </a><div class="element clickable constant  constant_FINANCIAL_PRECISION" data-toggle="collapse" data-target=".constant_FINANCIAL_PRECISION .collapse">
+<h2>FINANCIAL_PRECISION</h2>
+<pre>FINANCIAL_PRECISION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_LOG_GAMMA_X_MAX_VALUE"> </a><div class="element clickable constant  constant_LOG_GAMMA_X_MAX_VALUE" data-toggle="collapse" data-target=".constant_LOG_GAMMA_X_MAX_VALUE .collapse">
+<h2>LOG_GAMMA_X_MAX_VALUE</h2>
+<pre>LOG_GAMMA_X_MAX_VALUE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_MAX_ITERATIONS"> </a><div class="element clickable constant  constant_MAX_ITERATIONS" data-toggle="collapse" data-target=".constant_MAX_ITERATIONS .collapse">
+<h2>MAX_ITERATIONS</h2>
+<pre>MAX_ITERATIONS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_MAX_VALUE"> </a><div class="element clickable constant  constant_MAX_VALUE" data-toggle="collapse" data-target=".constant_MAX_VALUE .collapse">
+<h2>MAX_VALUE</h2>
+<pre>MAX_VALUE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_M_2DIVPI"> </a><div class="element clickable constant  constant_M_2DIVPI" data-toggle="collapse" data-target=".constant_M_2DIVPI .collapse">
+<h2>2 / PI</h2>
+<pre>M_2DIVPI </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PRECISION"> </a><div class="element clickable constant  constant_PRECISION" data-toggle="collapse" data-target=".constant_PRECISION .collapse">
+<h2>PRECISION</h2>
+<pre>PRECISION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_SQRT2PI"> </a><div class="element clickable constant  constant_SQRT2PI" data-toggle="collapse" data-target=".constant_SQRT2PI .collapse">
+<h2>SQRT2PI</h2>
+<pre>SQRT2PI </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_XMININ"> </a><div class="element clickable constant  constant_XMININ" data-toggle="collapse" data-target=".constant_XMININ .collapse">
+<h2>XMININ</h2>
+<pre>XMININ </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Cell.html">Cell</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Cell_IValueBinder" class="element ajax clickable interface">
+<h1>PHPExcel_Cell_IValueBinder<a href="../classes/PHPExcel_Cell_IValueBinder.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Cell_IValueBinder</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Cell_IValueBinder.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Cell" class="element ajax clickable class">
+<h1>PHPExcel_Cell<a href="../classes/PHPExcel_Cell.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Cell</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Cell.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Cell_AdvancedValueBinder" class="element ajax clickable class">
+<h1>PHPExcel_Cell_AdvancedValueBinder<a href="../classes/PHPExcel_Cell_AdvancedValueBinder.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Cell_AdvancedValueBinder</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Cell_AdvancedValueBinder.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Cell_DataType" class="element ajax clickable class">
+<h1>PHPExcel_Cell_DataType<a href="../classes/PHPExcel_Cell_DataType.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Cell_DataType</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Cell_DataType.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Cell_DataValidation" class="element ajax clickable class">
+<h1>PHPExcel_Cell_DataValidation<a href="../classes/PHPExcel_Cell_DataValidation.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Cell_DataValidation</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Cell_DataValidation.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Cell_DefaultValueBinder" class="element ajax clickable class">
+<h1>PHPExcel_Cell_DefaultValueBinder<a href="../classes/PHPExcel_Cell_DefaultValueBinder.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Cell_DefaultValueBinder</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Cell_DefaultValueBinder.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Cell_Hyperlink" class="element ajax clickable class">
+<h1>PHPExcel_Cell_Hyperlink<a href="../classes/PHPExcel_Cell_Hyperlink.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Cell_Hyperlink</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Cell_Hyperlink.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Chart.html">Chart</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Chart" class="element ajax clickable class">
+<h1>PHPExcel_Chart<a href="../classes/PHPExcel_Chart.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Chart_DataSeries" class="element ajax clickable class">
+<h1>PHPExcel_Chart_DataSeries<a href="../classes/PHPExcel_Chart_DataSeries.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart_DataSeries</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart_DataSeries.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Chart_DataSeriesValues" class="element ajax clickable class">
+<h1>PHPExcel_Chart_DataSeriesValues<a href="../classes/PHPExcel_Chart_DataSeriesValues.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart_DataSeriesValues</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart_DataSeriesValues.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Chart_Exception" class="element ajax clickable class">
+<h1>PHPExcel_Chart_Exception<a href="../classes/PHPExcel_Chart_Exception.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart_Exception</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart_Exception.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Chart_Layout" class="element ajax clickable class">
+<h1>PHPExcel_Chart_Layout<a href="../classes/PHPExcel_Chart_Layout.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart_Layout</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart_Layout.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Chart_Legend" class="element ajax clickable class">
+<h1>PHPExcel_Chart_Legend<a href="../classes/PHPExcel_Chart_Legend.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart_Legend</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart_Legend.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Chart_PlotArea" class="element ajax clickable class">
+<h1>PHPExcel_Chart_PlotArea<a href="../classes/PHPExcel_Chart_PlotArea.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart_PlotArea</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart_PlotArea.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Chart_Title" class="element ajax clickable class">
+<h1>PHPExcel_Chart_Title<a href="../classes/PHPExcel_Chart_Title.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart_Title</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart_Title.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Chart.html">Chart</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Chart.Renderer.html">Renderer</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Chart_Renderer_jpgraph" class="element ajax clickable class">
+<h1>PHPExcel_Chart_Renderer_jpgraph<a href="../classes/PHPExcel_Chart_Renderer_jpgraph.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Chart_Renderer_jpgraph</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Chart_Renderer_jpgraph.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Reader.html">Reader</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Reader_IReadFilter" class="element ajax clickable interface">
+<h1>PHPExcel_Reader_IReadFilter<a href="../classes/PHPExcel_Reader_IReadFilter.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_IReadFilter</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_IReadFilter.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_IReader" class="element ajax clickable interface">
+<h1>PHPExcel_Reader_IReader<a href="../classes/PHPExcel_Reader_IReader.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_IReader</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_IReader.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_CSV" class="element ajax clickable class">
+<h1>PHPExcel_Reader_CSV<a href="../classes/PHPExcel_Reader_CSV.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_CSV</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_CSV.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_DefaultReadFilter" class="element ajax clickable class">
+<h1>PHPExcel_Reader_DefaultReadFilter<a href="../classes/PHPExcel_Reader_DefaultReadFilter.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_DefaultReadFilter</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_DefaultReadFilter.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_Excel2003XML" class="element ajax clickable class">
+<h1>PHPExcel_Reader_Excel2003XML<a href="../classes/PHPExcel_Reader_Excel2003XML.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_Excel2003XML</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_Excel2003XML.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_Excel2007" class="element ajax clickable class">
+<h1>PHPExcel_Reader_Excel2007<a href="../classes/PHPExcel_Reader_Excel2007.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_Excel2007</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_Excel2007.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_Gnumeric" class="element ajax clickable class">
+<h1>PHPExcel_Reader_Gnumeric<a href="../classes/PHPExcel_Reader_Gnumeric.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_Gnumeric</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_Gnumeric.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_HTML" class="element ajax clickable class">
+<h1>PHPExcel_Reader_HTML<a href="../classes/PHPExcel_Reader_HTML.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_HTML</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_HTML.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_OOCalc" class="element ajax clickable class">
+<h1>PHPExcel_Reader_OOCalc<a href="../classes/PHPExcel_Reader_OOCalc.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_OOCalc</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_OOCalc.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_SYLK" class="element ajax clickable class">
+<h1>PHPExcel_Reader_SYLK<a href="../classes/PHPExcel_Reader_SYLK.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_SYLK</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_SYLK.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Reader.html">Reader</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Reader.Excel2007.html">Excel2007</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Reader_Excel2007_Chart" class="element ajax clickable class">
+<h1>PHPExcel_Reader_Excel2007_Chart<a href="../classes/PHPExcel_Reader_Excel2007_Chart.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_Excel2007_Chart</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_Excel2007_Chart.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_Excel2007_Theme" class="element ajax clickable class">
+<h1>PHPExcel_Reader_Excel2007_Theme<a href="../classes/PHPExcel_Reader_Excel2007_Theme.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_Excel2007_Theme</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_Excel2007_Theme.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Reader.html">Reader</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Reader.Excel5.html">Excel5</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Reader_Excel5" class="element ajax clickable class">
+<h1>PHPExcel_Reader_Excel5<a href="../classes/PHPExcel_Reader_Excel5.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_Excel5</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_Excel5.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Reader_Excel5_Escher" class="element ajax clickable class">
+<h1>PHPExcel_Reader_Excel5_Escher<a href="../classes/PHPExcel_Reader_Excel5_Escher.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Reader_Excel5_Escher</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Reader_Excel5_Escher.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.RichText.html">RichText</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_RichText_ITextElement" class="element ajax clickable interface">
+<h1>PHPExcel_RichText_ITextElement<a href="../classes/PHPExcel_RichText_ITextElement.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_RichText_ITextElement</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_RichText_ITextElement.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_RichText" class="element ajax clickable class">
+<h1>PHPExcel_RichText<a href="../classes/PHPExcel_RichText.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_RichText</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_RichText.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_RichText_Run" class="element ajax clickable class">
+<h1>PHPExcel_RichText_Run<a href="../classes/PHPExcel_RichText_Run.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_RichText_Run</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_RichText_Run.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_RichText_TextElement" class="element ajax clickable class">
+<h1>PHPExcel_RichText_TextElement<a href="../classes/PHPExcel_RichText_TextElement.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_RichText_TextElement</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_RichText_TextElement.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.html">Shared</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Shared_CodePage" class="element ajax clickable class">
+<h1>PHPExcel_Shared_CodePage<a href="../classes/PHPExcel_Shared_CodePage.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_CodePage</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_CodePage.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Date" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Date<a href="../classes/PHPExcel_Shared_Date.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Date</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Date.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Drawing" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Drawing<a href="../classes/PHPExcel_Shared_Drawing.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Drawing</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Drawing.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Excel5" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Excel5<a href="../classes/PHPExcel_Shared_Excel5.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Excel5</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Excel5.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_File" class="element ajax clickable class">
+<h1>PHPExcel_Shared_File<a href="../classes/PHPExcel_Shared_File.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_File</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_File.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Font" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Font<a href="../classes/PHPExcel_Shared_Font.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Font</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Font.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_PasswordHasher" class="element ajax clickable class">
+<h1>PHPExcel_Shared_PasswordHasher<a href="../classes/PHPExcel_Shared_PasswordHasher.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_PasswordHasher</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_PasswordHasher.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_String" class="element ajax clickable class">
+<h1>PHPExcel_Shared_String<a href="../classes/PHPExcel_Shared_String.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_String</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_String.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_XMLWriter" class="element ajax clickable class">
+<h1>PHPExcel_Shared_XMLWriter<a href="../classes/PHPExcel_Shared_XMLWriter.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_XMLWriter</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_XMLWriter.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_ZipStreamWrapper" class="element ajax clickable class">
+<h1>PHPExcel_Shared_ZipStreamWrapper<a href="../classes/PHPExcel_Shared_ZipStreamWrapper.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_ZipStreamWrapper</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_ZipStreamWrapper.html" class="more">« More »</a>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_DATE_W3C"> </a><div class="element clickable constant  constant_DATE_W3C" data-toggle="collapse" data-target=".constant_DATE_W3C .collapse">
+<h2>DATE_W3C</h2>
+<pre>DATE_W3C </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_DEBUGMODE_ENABLED"> </a><div class="element clickable constant  constant_DEBUGMODE_ENABLED" data-toggle="collapse" data-target=".constant_DEBUGMODE_ENABLED .collapse">
+<h2>DEBUGMODE_ENABLED</h2>
+<pre>DEBUGMODE_ENABLED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_IDENTIFIER_OLE"> </a><div class="element clickable constant  constant_IDENTIFIER_OLE" data-toggle="collapse" data-target=".constant_IDENTIFIER_OLE .collapse">
+<h2>IDENTIFIER_OLE</h2>
+<pre>IDENTIFIER_OLE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.html">Shared</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.Escher.html">Escher</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Shared_Escher" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Escher<a href="../classes/PHPExcel_Shared_Escher.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Escher.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Escher_DgContainer" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Escher_DgContainer<a href="../classes/PHPExcel_Shared_Escher_DgContainer.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher_DgContainer</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Escher_DgContainer.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Escher_DgContainer_SpgrContainer" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Escher_DgContainer_SpgrContainer<a href="../classes/PHPExcel_Shared_Escher_DgContainer_SpgrContainer.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher_DgContainer_SpgrContainer</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Escher_DgContainer_SpgrContainer.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Escher_DgContainer_SpgrContainer_SpContainer" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Escher_DgContainer_SpgrContainer_SpContainer<a href="../classes/PHPExcel_Shared_Escher_DgContainer_SpgrContainer_SpContainer.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher_DgContainer_SpgrContainer_SpContainer</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Escher_DgContainer_SpgrContainer_SpContainer.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Escher_DggContainer" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Escher_DggContainer<a href="../classes/PHPExcel_Shared_Escher_DggContainer.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher_DggContainer</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Escher_DggContainer.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Escher_DggContainer_BstoreContainer" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Escher_DggContainer_BstoreContainer<a href="../classes/PHPExcel_Shared_Escher_DggContainer_BstoreContainer.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher_DggContainer_BstoreContainer</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Escher_DggContainer_BstoreContainer.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE<a href="../classes/PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip" class="element ajax clickable class">
+<h1>PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip<a href="../classes/PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.html">Shared</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.OLE.html">OLE</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Shared_OLE" class="element ajax clickable class">
+<h1>PHPExcel_Shared_OLE<a href="../classes/PHPExcel_Shared_OLE.html">¶</a>
+</h1>
+<p class="short_description">OLE package base class.</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_OLE.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_OLE_ChainedBlockStream" class="element ajax clickable class">
+<h1>PHPExcel_Shared_OLE_ChainedBlockStream<a href="../classes/PHPExcel_Shared_OLE_ChainedBlockStream.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_OLE_ChainedBlockStream</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_OLE_ChainedBlockStream.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_OLE_PPS" class="element ajax clickable class">
+<h1>PHPExcel_Shared_OLE_PPS<a href="../classes/PHPExcel_Shared_OLE_PPS.html">¶</a>
+</h1>
+<p class="short_description">Class for creating PPS's for OLE containers</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_OLE_PPS.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_OLE_PPS_File" class="element ajax clickable class">
+<h1>PHPExcel_Shared_OLE_PPS_File<a href="../classes/PHPExcel_Shared_OLE_PPS_File.html">¶</a>
+</h1>
+<p class="short_description">Class for creating File PPS's for OLE containers</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_OLE_PPS_File.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Shared_OLE_PPS_Root" class="element ajax clickable class">
+<h1>PHPExcel_Shared_OLE_PPS_Root<a href="../classes/PHPExcel_Shared_OLE_PPS_Root.html">¶</a>
+</h1>
+<p class="short_description">Class for creating Root PPS's for OLE containers</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_OLE_PPS_Root.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.html">Shared</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.Trend.html">Trend</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Best_Fit" class="element ajax clickable class">
+<h1>PHPExcel_Best_Fit<a href="../classes/PHPExcel_Best_Fit.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Best_Fit</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Best_Fit.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Exponential_Best_Fit" class="element ajax clickable class">
+<h1>PHPExcel_Exponential_Best_Fit<a href="../classes/PHPExcel_Exponential_Best_Fit.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Exponential_Best_Fit</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Exponential_Best_Fit.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Linear_Best_Fit" class="element ajax clickable class">
+<h1>PHPExcel_Linear_Best_Fit<a href="../classes/PHPExcel_Linear_Best_Fit.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Linear_Best_Fit</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Linear_Best_Fit.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Logarithmic_Best_Fit" class="element ajax clickable class">
+<h1>PHPExcel_Logarithmic_Best_Fit<a href="../classes/PHPExcel_Logarithmic_Best_Fit.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Logarithmic_Best_Fit</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Logarithmic_Best_Fit.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Polynomial_Best_Fit" class="element ajax clickable class">
+<h1>PHPExcel_Polynomial_Best_Fit<a href="../classes/PHPExcel_Polynomial_Best_Fit.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Polynomial_Best_Fit</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Polynomial_Best_Fit.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Power_Best_Fit" class="element ajax clickable class">
+<h1>PHPExcel_Power_Best_Fit<a href="../classes/PHPExcel_Power_Best_Fit.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Power_Best_Fit</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Power_Best_Fit.html" class="more">« More »</a>
+</div>
+<div id="trendClass" class="element ajax clickable class">
+<h1>trendClass<a href="../classes/trendClass.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_trendClass</p>
+<div class="details collapse"></div>
+<a href="../classes/trendClass.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.html">Shared</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Shared.ZipArchive.html">ZipArchive</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Shared_ZipArchive" class="element ajax clickable class">
+<h1>PHPExcel_Shared_ZipArchive<a href="../classes/PHPExcel_Shared_ZipArchive.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_ZipArchive</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Shared_ZipArchive.html" class="more">« More »</a>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_PCLZIP_TEMPORARY_DIR"> </a><div class="element clickable constant  constant_PCLZIP_TEMPORARY_DIR" data-toggle="collapse" data-target=".constant_PCLZIP_TEMPORARY_DIR .collapse">
+<h2>PCLZIP_TEMPORARY_DIR</h2>
+<pre>PCLZIP_TEMPORARY_DIR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Style.html">Style</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Style" class="element ajax clickable class">
+<h1>PHPExcel_Style<a href="../classes/PHPExcel_Style.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_Alignment" class="element ajax clickable class">
+<h1>PHPExcel_Style_Alignment<a href="../classes/PHPExcel_Style_Alignment.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_Alignment</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_Alignment.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_Border" class="element ajax clickable class">
+<h1>PHPExcel_Style_Border<a href="../classes/PHPExcel_Style_Border.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_Border</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_Border.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_Borders" class="element ajax clickable class">
+<h1>PHPExcel_Style_Borders<a href="../classes/PHPExcel_Style_Borders.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_Borders</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_Borders.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_Color" class="element ajax clickable class">
+<h1>PHPExcel_Style_Color<a href="../classes/PHPExcel_Style_Color.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_Color</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_Color.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_Conditional" class="element ajax clickable class">
+<h1>PHPExcel_Style_Conditional<a href="../classes/PHPExcel_Style_Conditional.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_Conditional</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_Conditional.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_Fill" class="element ajax clickable class">
+<h1>PHPExcel_Style_Fill<a href="../classes/PHPExcel_Style_Fill.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_Fill</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_Fill.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_Font" class="element ajax clickable class">
+<h1>PHPExcel_Style_Font<a href="../classes/PHPExcel_Style_Font.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_Font</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_Font.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_NumberFormat" class="element ajax clickable class">
+<h1>PHPExcel_Style_NumberFormat<a href="../classes/PHPExcel_Style_NumberFormat.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_NumberFormat</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_NumberFormat.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Style_Protection" class="element ajax clickable class">
+<h1>PHPExcel_Style_Protection<a href="../classes/PHPExcel_Style_Protection.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Style_Protection</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Style_Protection.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Worksheet.html">Worksheet</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Worksheet" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet<a href="../classes/PHPExcel_Worksheet.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_AutoFilter" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_AutoFilter<a href="../classes/PHPExcel_Worksheet_AutoFilter.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_AutoFilter</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_AutoFilter.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_AutoFilter_Column" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_AutoFilter_Column<a href="../classes/PHPExcel_Worksheet_AutoFilter_Column.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_AutoFilter_Column</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_AutoFilter_Column.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_AutoFilter_Column_Rule" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_AutoFilter_Column_Rule<a href="../classes/PHPExcel_Worksheet_AutoFilter_Column_Rule.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_AutoFilter_Column_Rule</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_AutoFilter_Column_Rule.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_BaseDrawing" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_BaseDrawing<a href="../classes/PHPExcel_Worksheet_BaseDrawing.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_BaseDrawing</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_BaseDrawing.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_CellIterator" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_CellIterator<a href="../classes/PHPExcel_Worksheet_CellIterator.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_CellIterator</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_CellIterator.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_ColumnDimension" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_ColumnDimension<a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_ColumnDimension</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_ColumnDimension.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_HeaderFooter" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_HeaderFooter<a href="../classes/PHPExcel_Worksheet_HeaderFooter.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_HeaderFooter</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_HeaderFooter.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_HeaderFooterDrawing" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_HeaderFooterDrawing<a href="../classes/PHPExcel_Worksheet_HeaderFooterDrawing.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_HeaderFooterDrawing</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_HeaderFooterDrawing.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_MemoryDrawing" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_MemoryDrawing<a href="../classes/PHPExcel_Worksheet_MemoryDrawing.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_MemoryDrawing</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_MemoryDrawing.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_PageMargins" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_PageMargins<a href="../classes/PHPExcel_Worksheet_PageMargins.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_PageMargins</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_PageMargins.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_PageSetup" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_PageSetup<a href="../classes/PHPExcel_Worksheet_PageSetup.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_PageSetup</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_PageSetup.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_Protection" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_Protection<a href="../classes/PHPExcel_Worksheet_Protection.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_Protection</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_Protection.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_Row" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_Row<a href="../classes/PHPExcel_Worksheet_Row.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_Row</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_Row.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_RowDimension" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_RowDimension<a href="../classes/PHPExcel_Worksheet_RowDimension.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_RowDimension</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_RowDimension.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_RowIterator" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_RowIterator<a href="../classes/PHPExcel_Worksheet_RowIterator.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_RowIterator</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_RowIterator.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_SheetView" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_SheetView<a href="../classes/PHPExcel_Worksheet_SheetView.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_SheetView</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_SheetView.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Worksheet.html">Worksheet</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Worksheet.Drawing.html">Drawing</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Worksheet_Drawing" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_Drawing<a href="../classes/PHPExcel_Worksheet_Drawing.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_Drawing</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_Drawing.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Worksheet_Drawing_Shadow" class="element ajax clickable class">
+<h1>PHPExcel_Worksheet_Drawing_Shadow<a href="../classes/PHPExcel_Worksheet_Drawing_Shadow.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Worksheet_Drawing_Shadow</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Worksheet_Drawing_Shadow.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Writer.html">Writer</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Writer_IWriter" class="element ajax clickable interface">
+<h1>PHPExcel_Writer_IWriter<a href="../classes/PHPExcel_Writer_IWriter.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_IWriter</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_IWriter.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_CSV" class="element ajax clickable class">
+<h1>PHPExcel_Writer_CSV<a href="../classes/PHPExcel_Writer_CSV.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_CSV</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_CSV.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_HTML" class="element ajax clickable class">
+<h1>PHPExcel_Writer_HTML<a href="../classes/PHPExcel_Writer_HTML.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_HTML</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_HTML.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_PDF" class="element ajax clickable class">
+<h1>PHPExcel_Writer_PDF<a href="../classes/PHPExcel_Writer_PDF.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_PDF</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_PDF.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_PDF_Core" class="element ajax clickable class">
+<h1>PHPExcel_Writer_PDF_Core<a href="../classes/PHPExcel_Writer_PDF_Core.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_PDF_Core</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_PDF_Core.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_PDF_DomPDF" class="element ajax clickable class">
+<h1>PHPExcel_Writer_PDF_DomPDF<a href="../classes/PHPExcel_Writer_PDF_DomPDF.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_PDF_DomPDF</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_PDF_DomPDF.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_PDF_mPDF" class="element ajax clickable class">
+<h1>PHPExcel_Writer_PDF_mPDF<a href="../classes/PHPExcel_Writer_PDF_mPDF.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_PDF_mPDF</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_PDF_mPDF.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_PDF_tcPDF" class="element ajax clickable class">
+<h1>PHPExcel_Writer_PDF_tcPDF<a href="../classes/PHPExcel_Writer_PDF_tcPDF.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_PDF_tcPDF</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_PDF_tcPDF.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Writer.html">Writer</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Writer.Excel2007.html">Excel2007</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Writer_Excel2007" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007<a href="../classes/PHPExcel_Writer_Excel2007.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_Chart" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_Chart<a href="../classes/PHPExcel_Writer_Excel2007_Chart.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_Chart</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_Chart.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_Comments" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_Comments<a href="../classes/PHPExcel_Writer_Excel2007_Comments.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_Comments</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_Comments.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_ContentTypes" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_ContentTypes<a href="../classes/PHPExcel_Writer_Excel2007_ContentTypes.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_ContentTypes</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_ContentTypes.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_DocProps" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_DocProps<a href="../classes/PHPExcel_Writer_Excel2007_DocProps.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_DocProps</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_DocProps.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_Drawing" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_Drawing<a href="../classes/PHPExcel_Writer_Excel2007_Drawing.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_Drawing</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_Drawing.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_Rels" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_Rels<a href="../classes/PHPExcel_Writer_Excel2007_Rels.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_Rels</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_Rels.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_StringTable" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_StringTable<a href="../classes/PHPExcel_Writer_Excel2007_StringTable.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_StringTable</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_StringTable.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_Style" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_Style<a href="../classes/PHPExcel_Writer_Excel2007_Style.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_Style</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_Style.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_Theme" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_Theme<a href="../classes/PHPExcel_Writer_Excel2007_Theme.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_DocProps</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_Theme.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_Workbook" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_Workbook<a href="../classes/PHPExcel_Writer_Excel2007_Workbook.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_Workbook</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_Workbook.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_Worksheet" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_Worksheet<a href="../classes/PHPExcel_Writer_Excel2007_Worksheet.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_Worksheet</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_Worksheet.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel2007_WriterPart" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel2007_WriterPart<a href="../classes/PHPExcel_Writer_Excel2007_WriterPart.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel2007_WriterPart</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel2007_WriterPart.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/PHPExcel.html">PHPExcel</a></li>
+<li>
+<span class="divider">\</span><a href="../packages/PHPExcel.Writer.html">Writer</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/PHPExcel.Writer.Excel5.html">Excel5</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
+<div id="PHPExcel_Writer_Excel5" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel5<a href="../classes/PHPExcel_Writer_Excel5.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel5</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel5.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel5_BIFFwriter" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel5_BIFFwriter<a href="../classes/PHPExcel_Writer_Excel5_BIFFwriter.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel5_BIFFwriter</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel5_BIFFwriter.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel5_Escher" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel5_Escher<a href="../classes/PHPExcel_Writer_Excel5_Escher.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Shared_Escher_DggContainer_BstoreContainer</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel5_Escher.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel5_Font" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel5_Font<a href="../classes/PHPExcel_Writer_Excel5_Font.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel5_Font</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel5_Font.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel5_Parser" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel5_Parser<a href="../classes/PHPExcel_Writer_Excel5_Parser.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel5_Parser</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel5_Parser.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel5_Workbook" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel5_Workbook<a href="../classes/PHPExcel_Writer_Excel5_Workbook.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel5_Workbook</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel5_Workbook.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel5_Worksheet" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel5_Worksheet<a href="../classes/PHPExcel_Writer_Excel5_Worksheet.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel5_Worksheet</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel5_Worksheet.html" class="more">« More »</a>
+</div>
+<div id="PHPExcel_Writer_Excel5_Xf" class="element ajax clickable class">
+<h1>PHPExcel_Writer_Excel5_Xf<a href="../classes/PHPExcel_Writer_Excel5_Xf.html">¶</a>
+</h1>
+<p class="short_description">PHPExcel_Writer_Excel5_Xf</p>
+<div class="details collapse"></div>
+<a href="../classes/PHPExcel_Writer_Excel5_Xf.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:08-07:00.<br></footer></div>
+</div>
+</body>
+</html>

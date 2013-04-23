@@ -1,0 +1,1721 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Calculation_Financial</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method_ACCRINT" title="ACCRINT :: ACCRINT"><span class="description">ACCRINT</span><pre>ACCRINT()</pre></a></li>
+<li class="method public "><a href="#method_ACCRINTM" title="ACCRINTM :: ACCRINTM"><span class="description">ACCRINTM</span><pre>ACCRINTM()</pre></a></li>
+<li class="method public "><a href="#method_AMORDEGRC" title="AMORDEGRC :: AMORDEGRC"><span class="description">AMORDEGRC</span><pre>AMORDEGRC()</pre></a></li>
+<li class="method public "><a href="#method_AMORLINC" title="AMORLINC :: AMORLINC"><span class="description">AMORLINC</span><pre>AMORLINC()</pre></a></li>
+<li class="method public "><a href="#method_COUPDAYBS" title="COUPDAYBS :: COUPDAYBS"><span class="description">COUPDAYBS</span><pre>COUPDAYBS()</pre></a></li>
+<li class="method public "><a href="#method_COUPDAYS" title="COUPDAYS :: COUPDAYS"><span class="description">COUPDAYS</span><pre>COUPDAYS()</pre></a></li>
+<li class="method public "><a href="#method_COUPDAYSNC" title="COUPDAYSNC :: COUPDAYSNC"><span class="description">COUPDAYSNC</span><pre>COUPDAYSNC()</pre></a></li>
+<li class="method public "><a href="#method_COUPNCD" title="COUPNCD :: COUPNCD"><span class="description">COUPNCD</span><pre>COUPNCD()</pre></a></li>
+<li class="method public "><a href="#method_COUPNUM" title="COUPNUM :: COUPNUM"><span class="description">COUPNUM</span><pre>COUPNUM()</pre></a></li>
+<li class="method public "><a href="#method_COUPPCD" title="COUPPCD :: COUPPCD"><span class="description">COUPPCD</span><pre>COUPPCD()</pre></a></li>
+<li class="method public "><a href="#method_CUMIPMT" title="CUMIPMT :: CUMIPMT"><span class="description">CUMIPMT</span><pre>CUMIPMT()</pre></a></li>
+<li class="method public "><a href="#method_CUMPRINC" title="CUMPRINC :: CUMPRINC"><span class="description">CUMPRINC</span><pre>CUMPRINC()</pre></a></li>
+<li class="method public "><a href="#method_DB" title="DB :: DB"><span class="description">DB</span><pre>DB()</pre></a></li>
+<li class="method public "><a href="#method_DDB" title="DDB :: DDB"><span class="description">DDB</span><pre>DDB()</pre></a></li>
+<li class="method public "><a href="#method_DISC" title="DISC :: DISC"><span class="description">DISC</span><pre>DISC()</pre></a></li>
+<li class="method public "><a href="#method_DOLLARDE" title="DOLLARDE :: DOLLARDE"><span class="description">DOLLARDE</span><pre>DOLLARDE()</pre></a></li>
+<li class="method public "><a href="#method_DOLLARFR" title="DOLLARFR :: DOLLARFR"><span class="description">DOLLARFR</span><pre>DOLLARFR()</pre></a></li>
+<li class="method public "><a href="#method_EFFECT" title="EFFECT :: EFFECT"><span class="description">EFFECT</span><pre>EFFECT()</pre></a></li>
+<li class="method public "><a href="#method_FV" title="FV :: FV"><span class="description">FV</span><pre>FV()</pre></a></li>
+<li class="method public "><a href="#method_FVSCHEDULE" title="FVSCHEDULE :: FVSCHEDULE"><span class="description">FVSCHEDULE</span><pre>FVSCHEDULE()</pre></a></li>
+<li class="method public "><a href="#method_INTRATE" title="INTRATE :: INTRATE"><span class="description">INTRATE</span><pre>INTRATE()</pre></a></li>
+<li class="method public "><a href="#method_IPMT" title="IPMT :: IPMT"><span class="description">IPMT</span><pre>IPMT()</pre></a></li>
+<li class="method public "><a href="#method_IRR" title="IRR :: "><span class="description">IRR()
+        </span><pre>IRR()</pre></a></li>
+<li class="method public "><a href="#method_ISPMT" title="ISPMT :: ISPMT"><span class="description">ISPMT</span><pre>ISPMT()</pre></a></li>
+<li class="method public "><a href="#method_MIRR" title="MIRR :: "><span class="description">MIRR()
+        </span><pre>MIRR()</pre></a></li>
+<li class="method public "><a href="#method_NOMINAL" title="NOMINAL :: NOMINAL"><span class="description">NOMINAL</span><pre>NOMINAL()</pre></a></li>
+<li class="method public "><a href="#method_NPER" title="NPER :: NPER"><span class="description">NPER</span><pre>NPER()</pre></a></li>
+<li class="method public "><a href="#method_NPV" title="NPV :: NPV"><span class="description">NPV</span><pre>NPV()</pre></a></li>
+<li class="method public "><a href="#method_PMT" title="PMT :: PMT"><span class="description">PMT</span><pre>PMT()</pre></a></li>
+<li class="method public "><a href="#method_PPMT" title="PPMT :: PPMT"><span class="description">PPMT</span><pre>PPMT()</pre></a></li>
+<li class="method public "><a href="#method_PRICE" title="PRICE :: "><span class="description">PRICE()
+        </span><pre>PRICE()</pre></a></li>
+<li class="method public "><a href="#method_PRICEDISC" title="PRICEDISC :: PRICEDISC"><span class="description">PRICEDISC</span><pre>PRICEDISC()</pre></a></li>
+<li class="method public "><a href="#method_PRICEMAT" title="PRICEMAT :: PRICEMAT"><span class="description">PRICEMAT</span><pre>PRICEMAT()</pre></a></li>
+<li class="method public "><a href="#method_PV" title="PV :: PV"><span class="description">PV</span><pre>PV()</pre></a></li>
+<li class="method public "><a href="#method_RATE" title="RATE :: RATE"><span class="description">RATE</span><pre>RATE()</pre></a></li>
+<li class="method public "><a href="#method_RECEIVED" title="RECEIVED :: RECEIVED"><span class="description">RECEIVED</span><pre>RECEIVED()</pre></a></li>
+<li class="method public "><a href="#method_SLN" title="SLN :: SLN"><span class="description">SLN</span><pre>SLN()</pre></a></li>
+<li class="method public "><a href="#method_SYD" title="SYD :: SYD"><span class="description">SYD</span><pre>SYD()</pre></a></li>
+<li class="method public "><a href="#method_TBILLEQ" title="TBILLEQ :: TBILLEQ"><span class="description">TBILLEQ</span><pre>TBILLEQ()</pre></a></li>
+<li class="method public "><a href="#method_TBILLPRICE" title="TBILLPRICE :: TBILLPRICE"><span class="description">TBILLPRICE</span><pre>TBILLPRICE()</pre></a></li>
+<li class="method public "><a href="#method_TBILLYIELD" title="TBILLYIELD :: TBILLYIELD"><span class="description">TBILLYIELD</span><pre>TBILLYIELD()</pre></a></li>
+<li class="method public "><a href="#method_XIRR" title="XIRR :: "><span class="description">XIRR()
+        </span><pre>XIRR()</pre></a></li>
+<li class="method public "><a href="#method_XNPV" title="XNPV :: XNPV"><span class="description">XNPV</span><pre>XNPV()</pre></a></li>
+<li class="method public "><a href="#method_YIELDDISC" title="YIELDDISC :: YIELDDISC"><span class="description">YIELDDISC</span><pre>YIELDDISC()</pre></a></li>
+<li class="method public "><a href="#method_YIELDMAT" title="YIELDMAT :: YIELDMAT"><span class="description">YIELDMAT</span><pre>YIELDMAT()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="method private "><a href="#method__coupFirstPeriodDate" title="_coupFirstPeriodDate :: "><span class="description">_coupFirstPeriodDate()
+        </span><pre>_coupFirstPeriodDate()</pre></a></li>
+<li class="method private "><a href="#method__daysPerYear" title="_daysPerYear :: _daysPerYear"><span class="description">_daysPerYear</span><pre>_daysPerYear()</pre></a></li>
+<li class="method private "><a href="#method__firstDayOfMonth" title="_firstDayOfMonth :: _firstDayOfMonth"><span class="description">_firstDayOfMonth</span><pre>_firstDayOfMonth()</pre></a></li>
+<li class="method private "><a href="#method__interestAndPrincipal" title="_interestAndPrincipal :: "><span class="description">_interestAndPrincipal()
+        </span><pre>_interestAndPrincipal()</pre></a></li>
+<li class="method private "><a href="#method__lastDayOfMonth" title="_lastDayOfMonth :: _lastDayOfMonth"><span class="description">_lastDayOfMonth</span><pre>_lastDayOfMonth()</pre></a></li>
+<li class="method private "><a href="#method__validFrequency" title="_validFrequency :: "><span class="description">_validFrequency()
+        </span><pre>_validFrequency()</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Calculation_Financial"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Calculation_Financial.html">PHPExcel_Calculation_Financial</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Calculation_Financial</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Calculation.html">PHPExcel_Calculation</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_ACCRINT"></a><div class="element clickable method public method_ACCRINT" data-toggle="collapse" data-target=".method_ACCRINT .collapse">
+<h2>ACCRINT</h2>
+<pre>ACCRINT(mixed $issue, mixed $firstinterest, mixed $settlement, float $rate, float $par, integer $frequency, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the accrued interest for a security that pays periodic interest.</p>
+
+<p>Excel Function:
+    ACCRINT(issue,firstinterest,settlement,rate,par,frequency[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$issue</h4>
+<code>mixed</code><p>The security's issue date.</p>
+</div>
+<div class="subelement argument">
+<h4>$firstinterest</h4>
+<code>mixed</code><p>The security's first interest date.</p>
+</div>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>The security's annual coupon rate.</p>
+</div>
+<div class="subelement argument">
+<h4>$par</h4>
+<code>float</code><p>The security's par value. If you omit par, ACCRINT uses $1,000.</p>
+</div>
+<div class="subelement argument">
+<h4>$frequency</h4>
+<code>integer</code><p>the number of coupon payments per year. Valid frequency values are: 1 Annual 2 Semi-Annual 4 Quarterly If working in Gnumeric Mode, the following frequency options are also available 6 Bimonthly 12 Monthly</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_ACCRINTM"></a><div class="element clickable method public method_ACCRINTM" data-toggle="collapse" data-target=".method_ACCRINTM .collapse">
+<h2>ACCRINTM</h2>
+<pre>ACCRINTM(mixed $issue, mixed $settlement, float $rate, float $par, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the accrued interest for a security that pays interest at maturity.</p>
+
+<p>Excel Function:
+    ACCRINTM(issue,settlement,rate[,par[,basis]])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$issue</h4>
+<code>mixed</code><p>issue The security's issue date.</p>
+</div>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement (or maturity) date.</p>
+</div>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>rate The security's annual coupon rate.</p>
+</div>
+<div class="subelement argument">
+<h4>$par</h4>
+<code>float</code><p>par The security's par value. If you omit par, ACCRINT uses $1,000.</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_AMORDEGRC"></a><div class="element clickable method public method_AMORDEGRC" data-toggle="collapse" data-target=".method_AMORDEGRC .collapse">
+<h2>AMORDEGRC</h2>
+<pre>AMORDEGRC(float $cost, mixed $purchased, mixed $firstPeriod, mixed $salvage, float $period, float $rate, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the depreciation for each accounting period.
+This function is provided for the French accounting system. If an asset is purchased in
+the middle of the accounting period, the prorated depreciation is taken into account.
+The function is similar to AMORLINC, except that a depreciation coefficient is applied in
+the calculation depending on the life of the assets.
+This function will return the depreciation until the last period of the life of the assets
+or until the cumulated value of depreciation is greater than the cost of the assets minus
+the salvage value.</p>
+
+<p>Excel Function:
+    AMORDEGRC(cost,purchased,firstPeriod,salvage,period,rate[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cost</h4>
+<code>float</code><p>cost The cost of the asset.</p></div>
+<div class="subelement argument">
+<h4>$purchased</h4>
+<code>mixed</code><p>purchased Date of the purchase of the asset.</p></div>
+<div class="subelement argument">
+<h4>$firstPeriod</h4>
+<code>mixed</code><p>firstPeriod Date of the end of the first period.</p></div>
+<div class="subelement argument">
+<h4>$salvage</h4>
+<code>mixed</code><p>salvage The salvage value at the end of the life of the asset.</p></div>
+<div class="subelement argument">
+<h4>$period</h4>
+<code>float</code><p>period The period.</p></div>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>rate Rate of depreciation.</p></div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_AMORLINC"></a><div class="element clickable method public method_AMORLINC" data-toggle="collapse" data-target=".method_AMORLINC .collapse">
+<h2>AMORLINC</h2>
+<pre>AMORLINC(float $cost, mixed $purchased, mixed $firstPeriod, mixed $salvage, float $period, float $rate, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the depreciation for each accounting period.
+This function is provided for the French accounting system. If an asset is purchased in
+the middle of the accounting period, the prorated depreciation is taken into account.</p>
+
+<p>Excel Function:
+    AMORLINC(cost,purchased,firstPeriod,salvage,period,rate[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cost</h4>
+<code>float</code><p>cost The cost of the asset.</p></div>
+<div class="subelement argument">
+<h4>$purchased</h4>
+<code>mixed</code><p>purchased Date of the purchase of the asset.</p></div>
+<div class="subelement argument">
+<h4>$firstPeriod</h4>
+<code>mixed</code><p>firstPeriod Date of the end of the first period.</p></div>
+<div class="subelement argument">
+<h4>$salvage</h4>
+<code>mixed</code><p>salvage The salvage value at the end of the life of the asset.</p></div>
+<div class="subelement argument">
+<h4>$period</h4>
+<code>float</code><p>period The period.</p></div>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>rate Rate of depreciation.</p></div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_COUPDAYBS"></a><div class="element clickable method public method_COUPDAYBS" data-toggle="collapse" data-target=".method_COUPDAYBS .collapse">
+<h2>COUPDAYBS</h2>
+<pre>COUPDAYBS(mixed $settlement, mixed $maturity, mixed $frequency, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the number of days from the beginning of the coupon period to the settlement date.</p>
+
+<p>Excel Function:
+    COUPDAYBS(settlement,maturity,frequency[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$frequency</h4>
+<code>mixed</code><p>frequency the number of coupon payments per year. Valid frequency values are: 1 Annual 2 Semi-Annual 4 Quarterly If working in Gnumeric Mode, the following frequency options are also available 6 Bimonthly 12 Monthly</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_COUPDAYS"></a><div class="element clickable method public method_COUPDAYS" data-toggle="collapse" data-target=".method_COUPDAYS .collapse">
+<h2>COUPDAYS</h2>
+<pre>COUPDAYS(mixed $settlement, mixed $maturity, mixed $frequency, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the number of days in the coupon period that contains the settlement date.</p>
+
+<p>Excel Function:
+    COUPDAYS(settlement,maturity,frequency[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$frequency</h4>
+<code>mixed</code><p>frequency the number of coupon payments per year. Valid frequency values are: 1 Annual 2 Semi-Annual 4 Quarterly If working in Gnumeric Mode, the following frequency options are also available 6 Bimonthly 12 Monthly</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_COUPDAYSNC"></a><div class="element clickable method public method_COUPDAYSNC" data-toggle="collapse" data-target=".method_COUPDAYSNC .collapse">
+<h2>COUPDAYSNC</h2>
+<pre>COUPDAYSNC(mixed $settlement, mixed $maturity, mixed $frequency, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the number of days from the settlement date to the next coupon date.</p>
+
+<p>Excel Function:
+    COUPDAYSNC(settlement,maturity,frequency[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$frequency</h4>
+<code>mixed</code><p>frequency the number of coupon payments per year. Valid frequency values are: 1 Annual 2 Semi-Annual 4 Quarterly If working in Gnumeric Mode, the following frequency options are also available 6 Bimonthly 12 Monthly</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_COUPNCD"></a><div class="element clickable method public method_COUPNCD" data-toggle="collapse" data-target=".method_COUPNCD .collapse">
+<h2>COUPNCD</h2>
+<pre>COUPNCD(mixed $settlement, mixed $maturity, mixed $frequency, integer $basis) : mixed</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the next coupon date after the settlement date.</p>
+
+<p>Excel Function:
+    COUPNCD(settlement,maturity,frequency[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$frequency</h4>
+<code>mixed</code><p>frequency the number of coupon payments per year. Valid frequency values are: 1 Annual 2 Semi-Annual 4 Quarterly If working in Gnumeric Mode, the following frequency options are also available 6 Bimonthly 12 Monthly</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Excel date/time serial value, PHP date/time serial value or PHP date/time object,
+					depending on the value of the ReturnDateType flag</div>
+</div></div>
+</div>
+<a id="method_COUPNUM"></a><div class="element clickable method public method_COUPNUM" data-toggle="collapse" data-target=".method_COUPNUM .collapse">
+<h2>COUPNUM</h2>
+<pre>COUPNUM(mixed $settlement, mixed $maturity, mixed $frequency, integer $basis) : integer</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the number of coupons payable between the settlement date and maturity date,
+rounded up to the nearest whole coupon.</p>
+
+<p>Excel Function:
+    COUPNUM(settlement,maturity,frequency[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$frequency</h4>
+<code>mixed</code><p>frequency the number of coupon payments per year. Valid frequency values are: 1 Annual 2 Semi-Annual 4 Quarterly If working in Gnumeric Mode, the following frequency options are also available 6 Bimonthly 12 Monthly</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method_COUPPCD"></a><div class="element clickable method public method_COUPPCD" data-toggle="collapse" data-target=".method_COUPPCD .collapse">
+<h2>COUPPCD</h2>
+<pre>COUPPCD(mixed $settlement, mixed $maturity, mixed $frequency, integer $basis) : mixed</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the previous coupon date before the settlement date.</p>
+
+<p>Excel Function:
+    COUPPCD(settlement,maturity,frequency[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$frequency</h4>
+<code>mixed</code><p>frequency the number of coupon payments per year. Valid frequency values are: 1 Annual 2 Semi-Annual 4 Quarterly If working in Gnumeric Mode, the following frequency options are also available 6 Bimonthly 12 Monthly</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Excel date/time serial value, PHP date/time serial value or PHP date/time object,
+					depending on the value of the ReturnDateType flag</div>
+</div></div>
+</div>
+<a id="method_CUMIPMT"></a><div class="element clickable method public method_CUMIPMT" data-toggle="collapse" data-target=".method_CUMIPMT .collapse">
+<h2>CUMIPMT</h2>
+<pre>CUMIPMT(float $rate, integer $nper, float $pv, integer $start, integer $end, integer $type) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the cumulative interest paid on a loan between the start and end periods.</p>
+
+<p>Excel Function:
+    CUMIPMT(rate,nper,pv,start,end[,type])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>The Interest rate</p></div>
+<div class="subelement argument">
+<h4>$nper</h4>
+<code>integer</code><p>The total number of payment periods</p></div>
+<div class="subelement argument">
+<h4>$pv</h4>
+<code>float</code><p>Present Value</p></div>
+<div class="subelement argument">
+<h4>$start</h4>
+<code>integer</code><p>The first period in the calculation. Payment periods are numbered beginning with 1.</p></div>
+<div class="subelement argument">
+<h4>$end</h4>
+<code>integer</code><p>The last period in the calculation.</p></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>integer</code><p>A number 0 or 1 and indicates when payments are due: 0 or omitted At the end of the period. 1 At the beginning of the period.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_CUMPRINC"></a><div class="element clickable method public method_CUMPRINC" data-toggle="collapse" data-target=".method_CUMPRINC .collapse">
+<h2>CUMPRINC</h2>
+<pre>CUMPRINC(float $rate, integer $nper, float $pv, integer $start, integer $end, integer $type) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the cumulative principal paid on a loan between the start and end periods.</p>
+
+<p>Excel Function:
+    CUMPRINC(rate,nper,pv,start,end[,type])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>The Interest rate</p></div>
+<div class="subelement argument">
+<h4>$nper</h4>
+<code>integer</code><p>The total number of payment periods</p></div>
+<div class="subelement argument">
+<h4>$pv</h4>
+<code>float</code><p>Present Value</p></div>
+<div class="subelement argument">
+<h4>$start</h4>
+<code>integer</code><p>The first period in the calculation. Payment periods are numbered beginning with 1.</p></div>
+<div class="subelement argument">
+<h4>$end</h4>
+<code>integer</code><p>The last period in the calculation.</p></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>integer</code><p>A number 0 or 1 and indicates when payments are due: 0 or omitted At the end of the period. 1 At the beginning of the period.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_DB"></a><div class="element clickable method public method_DB" data-toggle="collapse" data-target=".method_DB .collapse">
+<h2>DB</h2>
+<pre>DB(float $cost, float $salvage, integer $life, integer $period, integer $month) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the depreciation of an asset for a specified period using the
+fixed-declining balance method.
+This form of depreciation is used if you want to get a higher depreciation value
+at the beginning of the depreciation (as opposed to linear depreciation). The
+depreciation value is reduced with every depreciation period by the depreciation
+already deducted from the initial cost.</p>
+
+<p>Excel Function:
+    DB(cost,salvage,life,period[,month])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cost</h4>
+<code>float</code><p>cost Initial cost of the asset.</p></div>
+<div class="subelement argument">
+<h4>$salvage</h4>
+<code>float</code><p>salvage Value at the end of the depreciation. (Sometimes called the salvage value of the asset)</p>
+</div>
+<div class="subelement argument">
+<h4>$life</h4>
+<code>integer</code><p>life Number of periods over which the asset is depreciated. (Sometimes called the useful life of the asset)</p>
+</div>
+<div class="subelement argument">
+<h4>$period</h4>
+<code>integer</code><p>period The period for which you want to calculate the depreciation. Period must use the same units as life.</p></div>
+<div class="subelement argument">
+<h4>$month</h4>
+<code>integer</code><p>month Number of months in the first year. If month is omitted, it defaults to 12.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_DDB"></a><div class="element clickable method public method_DDB" data-toggle="collapse" data-target=".method_DDB .collapse">
+<h2>DDB</h2>
+<pre>DDB(float $cost, float $salvage, integer $life, integer $period, float $factor) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the depreciation of an asset for a specified period using the
+double-declining balance method or some other method you specify.</p>
+
+<p>Excel Function:
+    DDB(cost,salvage,life,period[,factor])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cost</h4>
+<code>float</code><p>cost Initial cost of the asset.</p></div>
+<div class="subelement argument">
+<h4>$salvage</h4>
+<code>float</code><p>salvage Value at the end of the depreciation. (Sometimes called the salvage value of the asset)</p>
+</div>
+<div class="subelement argument">
+<h4>$life</h4>
+<code>integer</code><p>life Number of periods over which the asset is depreciated. (Sometimes called the useful life of the asset)</p>
+</div>
+<div class="subelement argument">
+<h4>$period</h4>
+<code>integer</code><p>period The period for which you want to calculate the depreciation. Period must use the same units as life.</p></div>
+<div class="subelement argument">
+<h4>$factor</h4>
+<code>float</code><p>factor The rate at which the balance declines. If factor is omitted, it is assumed to be 2 (the double-declining balance method).</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_DISC"></a><div class="element clickable method public method_DISC" data-toggle="collapse" data-target=".method_DISC .collapse">
+<h2>DISC</h2>
+<pre>DISC(mixed $settlement, mixed $maturity, integer $price, integer $redemption, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the discount rate for a security.</p>
+
+<p>Excel Function:
+    DISC(settlement,maturity,price,redemption[,basis])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$price</h4>
+<code>integer</code><p>price The security's price per $100 face value.</p>
+</div>
+<div class="subelement argument">
+<h4>$redemption</h4>
+<code>integer</code><p>redemption The security's redemption value per $100 face value.</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_DOLLARDE"></a><div class="element clickable method public method_DOLLARDE" data-toggle="collapse" data-target=".method_DOLLARDE .collapse">
+<h2>DOLLARDE</h2>
+<pre>DOLLARDE(float $fractional_dollar, integer $fraction) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Converts a dollar price expressed as an integer part and a fraction
+    part into a dollar price expressed as a decimal number.
+Fractional dollar numbers are sometimes used for security prices.</p>
+
+<p>Excel Function:
+    DOLLARDE(fractional_dollar,fraction)</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$fractional_dollar</h4>
+<code>float</code><p>Fractional Dollar</p></div>
+<div class="subelement argument">
+<h4>$fraction</h4>
+<code>integer</code><p>Fraction</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_DOLLARFR"></a><div class="element clickable method public method_DOLLARFR" data-toggle="collapse" data-target=".method_DOLLARFR .collapse">
+<h2>DOLLARFR</h2>
+<pre>DOLLARFR(float $decimal_dollar, integer $fraction) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Converts a dollar price expressed as a decimal number into a dollar price
+    expressed as a fraction.
+Fractional dollar numbers are sometimes used for security prices.</p>
+
+<p>Excel Function:
+    DOLLARFR(decimal_dollar,fraction)</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$decimal_dollar</h4>
+<code>float</code><p>Decimal Dollar</p></div>
+<div class="subelement argument">
+<h4>$fraction</h4>
+<code>integer</code><p>Fraction</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_EFFECT"></a><div class="element clickable method public method_EFFECT" data-toggle="collapse" data-target=".method_EFFECT .collapse">
+<h2>EFFECT</h2>
+<pre>EFFECT(float $nominal_rate, integer $npery) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the effective interest rate given the nominal rate and the number of
+    compounding payments per year.</p>
+
+<p>Excel Function:
+    EFFECT(nominal_rate,npery)</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$nominal_rate</h4>
+<code>float</code><p>Nominal interest rate</p></div>
+<div class="subelement argument">
+<h4>$npery</h4>
+<code>integer</code><p>Number of compounding payments per year</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_FV"></a><div class="element clickable method public method_FV" data-toggle="collapse" data-target=".method_FV .collapse">
+<h2>FV</h2>
+<pre>FV(float $rate, int $nper, float $pmt, float $pv, integer $type) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the Future Value of a cash flow with constant payments and interest rate (annuities).</p>
+
+<p>Excel Function:
+    FV(rate,nper,pmt[,pv[,type]])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>The interest rate per period</p></div>
+<div class="subelement argument">
+<h4>$nper</h4>
+<code>int</code><p>Total number of payment periods in an annuity</p></div>
+<div class="subelement argument">
+<h4>$pmt</h4>
+<code>float</code><p>The payment made each period: it cannot change over the life of the annuity. Typically, pmt contains principal and interest but no other fees or taxes.</p></div>
+<div class="subelement argument">
+<h4>$pv</h4>
+<code>float</code><p>Present Value, or the lump-sum amount that a series of future payments is worth right now.</p>
+</div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>integer</code><p>A number 0 or 1 and indicates when payments are due: 0 or omitted At the end of the period. 1 At the beginning of the period.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_FVSCHEDULE"></a><div class="element clickable method public method_FVSCHEDULE" data-toggle="collapse" data-target=".method_FVSCHEDULE .collapse">
+<h2>FVSCHEDULE</h2>
+<pre>FVSCHEDULE($principal, $schedule) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$principal</h4></div>
+<div class="subelement argument"><h4>$schedule</h4></div>
+</div></div>
+</div>
+<a id="method_INTRATE"></a><div class="element clickable method public method_INTRATE" data-toggle="collapse" data-target=".method_INTRATE .collapse">
+<h2>INTRATE</h2>
+<pre>INTRATE(mixed $settlement, mixed $maturity, integer $investment, integer $redemption, integer $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the interest rate for a fully invested security.</p>
+
+<p>Excel Function:
+    INTRATE(settlement,maturity,investment,redemption[,basis])</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$investment</h4>
+<code>integer</code><p>investment The amount invested in the security.</p></div>
+<div class="subelement argument">
+<h4>$redemption</h4>
+<code>integer</code><p>redemption The amount to be received at maturity.</p></div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_IPMT"></a><div class="element clickable method public method_IPMT" data-toggle="collapse" data-target=".method_IPMT .collapse">
+<h2>IPMT</h2>
+<pre>IPMT(float $rate, int $per, int $nper, float $pv, float $fv, int $type) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the interest payment for a given period for an investment based on periodic, constant payments and a constant interest rate.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>Interest rate per period</p></div>
+<div class="subelement argument">
+<h4>$per</h4>
+<code>int</code><p>Period for which we want to find the interest</p></div>
+<div class="subelement argument">
+<h4>$nper</h4>
+<code>int</code><p>Number of periods</p></div>
+<div class="subelement argument">
+<h4>$pv</h4>
+<code>float</code><p>Present Value</p></div>
+<div class="subelement argument">
+<h4>$fv</h4>
+<code>float</code><p>Future Value</p></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>int</code><p>Payment type: 0 = at the end of each period, 1 = at the beginning of each period</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_IRR"></a><div class="element clickable method public method_IRR" data-toggle="collapse" data-target=".method_IRR .collapse">
+<h2>IRR()
+        </h2>
+<pre>IRR($values, $guess) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$values</h4></div>
+<div class="subelement argument"><h4>$guess</h4></div>
+</div></div>
+</div>
+<a id="method_ISPMT"></a><div class="element clickable method public method_ISPMT" data-toggle="collapse" data-target=".method_ISPMT .collapse">
+<h2>ISPMT</h2>
+<pre>ISPMT() </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Returns the interest payment for an investment based on an interest rate and a constant payment schedule.</p>
+
+<pre><code> Excel Function:
+     =ISPMT(interest_rate, period, number_payments, PV)
+
+ interest_rate is the interest rate for the investment
+
+ period is the period to calculate the interest rate.  It must be betweeen 1 and number_payments.
+
+ number_payments is the number of payments for the annuity
+
+ PV is the loan amount or present value of the payments
+</code></pre></div></div></div>
+</div>
+<a id="method_MIRR"></a><div class="element clickable method public method_MIRR" data-toggle="collapse" data-target=".method_MIRR .collapse">
+<h2>MIRR()
+        </h2>
+<pre>MIRR($values, $finance_rate, $reinvestment_rate) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$values</h4></div>
+<div class="subelement argument"><h4>$finance_rate</h4></div>
+<div class="subelement argument"><h4>$reinvestment_rate</h4></div>
+</div></div>
+</div>
+<a id="method_NOMINAL"></a><div class="element clickable method public method_NOMINAL" data-toggle="collapse" data-target=".method_NOMINAL .collapse">
+<h2>NOMINAL</h2>
+<pre>NOMINAL(float $effect_rate, int $npery) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the nominal interest rate given the effective rate and the number of compounding payments per year.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$effect_rate</h4>
+<code>float</code><p>Effective interest rate</p></div>
+<div class="subelement argument">
+<h4>$npery</h4>
+<code>int</code><p>Number of compounding payments per year</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_NPER"></a><div class="element clickable method public method_NPER" data-toggle="collapse" data-target=".method_NPER .collapse">
+<h2>NPER</h2>
+<pre>NPER(float $rate, int $pmt, float $pv, float $fv, int $type) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the number of periods for a cash flow with constant periodic payments (annuities), and interest rate.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>Interest rate per period</p></div>
+<div class="subelement argument">
+<h4>$pmt</h4>
+<code>int</code><p>Periodic payment (annuity)</p>
+</div>
+<div class="subelement argument">
+<h4>$pv</h4>
+<code>float</code><p>Present Value</p></div>
+<div class="subelement argument">
+<h4>$fv</h4>
+<code>float</code><p>Future Value</p></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>int</code><p>Payment type: 0 = at the end of each period, 1 = at the beginning of each period</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_NPV"></a><div class="element clickable method public method_NPV" data-toggle="collapse" data-target=".method_NPV .collapse">
+<h2>NPV</h2>
+<pre>NPV() : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the Net Present Value of a cash flow series given a discount rate.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_PMT"></a><div class="element clickable method public method_PMT" data-toggle="collapse" data-target=".method_PMT .collapse">
+<h2>PMT</h2>
+<pre>PMT(float $rate, int $nper, float $pv, float $fv, int $type) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the constant payment (annuity) for a cash flow with a constant interest rate.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>Interest rate per period</p></div>
+<div class="subelement argument">
+<h4>$nper</h4>
+<code>int</code><p>Number of periods</p></div>
+<div class="subelement argument">
+<h4>$pv</h4>
+<code>float</code><p>Present Value</p></div>
+<div class="subelement argument">
+<h4>$fv</h4>
+<code>float</code><p>Future Value</p></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>int</code><p>Payment type: 0 = at the end of each period, 1 = at the beginning of each period</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_PPMT"></a><div class="element clickable method public method_PPMT" data-toggle="collapse" data-target=".method_PPMT .collapse">
+<h2>PPMT</h2>
+<pre>PPMT(float $rate, int $per, int $nper, float $pv, float $fv, int $type) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the interest payment for a given period for an investment based on periodic, constant payments and a constant interest rate.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>Interest rate per period</p></div>
+<div class="subelement argument">
+<h4>$per</h4>
+<code>int</code><p>Period for which we want to find the interest</p></div>
+<div class="subelement argument">
+<h4>$nper</h4>
+<code>int</code><p>Number of periods</p></div>
+<div class="subelement argument">
+<h4>$pv</h4>
+<code>float</code><p>Present Value</p></div>
+<div class="subelement argument">
+<h4>$fv</h4>
+<code>float</code><p>Future Value</p></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>int</code><p>Payment type: 0 = at the end of each period, 1 = at the beginning of each period</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_PRICE"></a><div class="element clickable method public method_PRICE" data-toggle="collapse" data-target=".method_PRICE .collapse">
+<h2>PRICE()
+        </h2>
+<pre>PRICE($settlement, $maturity, $rate, $yield, $redemption, $frequency, $basis) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$settlement</h4></div>
+<div class="subelement argument"><h4>$maturity</h4></div>
+<div class="subelement argument"><h4>$rate</h4></div>
+<div class="subelement argument"><h4>$yield</h4></div>
+<div class="subelement argument"><h4>$redemption</h4></div>
+<div class="subelement argument"><h4>$frequency</h4></div>
+<div class="subelement argument"><h4>$basis</h4></div>
+</div></div>
+</div>
+<a id="method_PRICEDISC"></a><div class="element clickable method public method_PRICEDISC" data-toggle="collapse" data-target=".method_PRICEDISC .collapse">
+<h2>PRICEDISC</h2>
+<pre>PRICEDISC(mixed $settlement, mixed $maturity, int $discount, int $redemption, int $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the price per $100 face value of a discounted security.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$discount</h4>
+<code>int</code><p>discount The security's discount rate.</p>
+</div>
+<div class="subelement argument">
+<h4>$redemption</h4>
+<code>int</code><p>redemption The security's redemption value per $100 face value.</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>int</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_PRICEMAT"></a><div class="element clickable method public method_PRICEMAT" data-toggle="collapse" data-target=".method_PRICEMAT .collapse">
+<h2>PRICEMAT</h2>
+<pre>PRICEMAT(mixed $settlement, mixed $maturity, mixed $issue, int $rate, int $yield, int $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the price per $100 face value of a security that pays interest at maturity.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security's settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$issue</h4>
+<code>mixed</code><p>issue The security's issue date.</p>
+</div>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>int</code><p>rate The security's interest rate at date of issue.</p>
+</div>
+<div class="subelement argument">
+<h4>$yield</h4>
+<code>int</code><p>yield The security's annual yield.</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>int</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_PV"></a><div class="element clickable method public method_PV" data-toggle="collapse" data-target=".method_PV .collapse">
+<h2>PV</h2>
+<pre>PV(float $rate, int $nper, float $pmt, float $fv, int $type) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the Present Value of a cash flow with constant payments and interest rate (annuities).</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>Interest rate per period</p></div>
+<div class="subelement argument">
+<h4>$nper</h4>
+<code>int</code><p>Number of periods</p></div>
+<div class="subelement argument">
+<h4>$pmt</h4>
+<code>float</code><p>Periodic payment (annuity)</p>
+</div>
+<div class="subelement argument">
+<h4>$fv</h4>
+<code>float</code><p>Future Value</p></div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>int</code><p>Payment type: 0 = at the end of each period, 1 = at the beginning of each period</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_RATE"></a><div class="element clickable method public method_RATE" data-toggle="collapse" data-target=".method_RATE .collapse">
+<h2>RATE</h2>
+<pre>RATE(float $nper, float $pmt, float $pv, float $fv, integer $type, float $guess) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the interest rate per period of an annuity.
+RATE is calculated by iteration and can have zero or more solutions.
+If the successive results of RATE do not converge to within 0.0000001 after 20 iterations,
+RATE returns the #NUM! error value.</p>
+
+<p>Excel Function:
+    RATE(nper,pmt,pv[,fv[,type[,guess]]])</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>category</th>
+<td>Financial Functions</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$nper</h4>
+<code>float</code><p>nper The total number of payment periods in an annuity.</p></div>
+<div class="subelement argument">
+<h4>$pmt</h4>
+<code>float</code><p>pmt The payment made each period and cannot change over the life of the annuity. Typically, pmt includes principal and interest but no other fees or taxes.</p></div>
+<div class="subelement argument">
+<h4>$pv</h4>
+<code>float</code><p>pv The present value - the total amount that a series of future payments is worth now.</p>
+</div>
+<div class="subelement argument">
+<h4>$fv</h4>
+<code>float</code><p>fv The future value, or a cash balance you want to attain after the last payment is made. If fv is omitted, it is assumed to be 0 (the future value of a loan, for example, is 0).</p>
+</div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>integer</code><p>type A number 0 or 1 and indicates when payments are due: 0 or omitted At the end of the period. 1 At the beginning of the period.</p></div>
+<div class="subelement argument">
+<h4>$guess</h4>
+<code>float</code><p>guess Your guess for what the rate will be. If you omit guess, it is assumed to be 10 percent.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_RECEIVED"></a><div class="element clickable method public method_RECEIVED" data-toggle="collapse" data-target=".method_RECEIVED .collapse">
+<h2>RECEIVED</h2>
+<pre>RECEIVED(mixed $settlement, mixed $maturity, int $investment, int $discount, int $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the price per $100 face value of a discounted security.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$investment</h4>
+<code>int</code><p>investment The amount invested in the security.</p></div>
+<div class="subelement argument">
+<h4>$discount</h4>
+<code>int</code><p>discount The security's discount rate.</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>int</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_SLN"></a><div class="element clickable method public method_SLN" data-toggle="collapse" data-target=".method_SLN .collapse">
+<h2>SLN</h2>
+<pre>SLN(\cost $cost, \salvage $salvage, \life $life) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the straight-line depreciation of an asset for one period</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cost</h4>
+<code>\cost</code><p>Initial cost of the asset</p></div>
+<div class="subelement argument">
+<h4>$salvage</h4>
+<code>\salvage</code><p>Value at the end of the depreciation</p></div>
+<div class="subelement argument">
+<h4>$life</h4>
+<code>\life</code><p>Number of periods over which the asset is depreciated</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_SYD"></a><div class="element clickable method public method_SYD" data-toggle="collapse" data-target=".method_SYD .collapse">
+<h2>SYD</h2>
+<pre>SYD(\cost $cost, \salvage $salvage, \life $life, \period $period) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the sum-of-years' digits depreciation of an asset for a specified period.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cost</h4>
+<code>\cost</code><p>Initial cost of the asset</p></div>
+<div class="subelement argument">
+<h4>$salvage</h4>
+<code>\salvage</code><p>Value at the end of the depreciation</p></div>
+<div class="subelement argument">
+<h4>$life</h4>
+<code>\life</code><p>Number of periods over which the asset is depreciated</p></div>
+<div class="subelement argument">
+<h4>$period</h4>
+<code>\period</code><p>Period</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_TBILLEQ"></a><div class="element clickable method public method_TBILLEQ" data-toggle="collapse" data-target=".method_TBILLEQ .collapse">
+<h2>TBILLEQ</h2>
+<pre>TBILLEQ(mixed $settlement, mixed $maturity, int $discount) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the bond-equivalent yield for a Treasury bill.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The Treasury bill's settlement date. The Treasury bill's settlement date is the date after the issue date when the Treasury bill is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The Treasury bill's maturity date. The maturity date is the date when the Treasury bill expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$discount</h4>
+<code>int</code><p>discount The Treasury bill's discount rate.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_TBILLPRICE"></a><div class="element clickable method public method_TBILLPRICE" data-toggle="collapse" data-target=".method_TBILLPRICE .collapse">
+<h2>TBILLPRICE</h2>
+<pre>TBILLPRICE(mixed $settlement, mixed $maturity, int $discount) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the yield for a Treasury bill.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The Treasury bill's settlement date. The Treasury bill's settlement date is the date after the issue date when the Treasury bill is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The Treasury bill's maturity date. The maturity date is the date when the Treasury bill expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$discount</h4>
+<code>int</code><p>discount The Treasury bill's discount rate.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_TBILLYIELD"></a><div class="element clickable method public method_TBILLYIELD" data-toggle="collapse" data-target=".method_TBILLYIELD .collapse">
+<h2>TBILLYIELD</h2>
+<pre>TBILLYIELD(mixed $settlement, mixed $maturity, int $price) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the yield for a Treasury bill.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The Treasury bill's settlement date. The Treasury bill's settlement date is the date after the issue date when the Treasury bill is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The Treasury bill's maturity date. The maturity date is the date when the Treasury bill expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$price</h4>
+<code>int</code><p>price The Treasury bill's price per $100 face value.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_XIRR"></a><div class="element clickable method public method_XIRR" data-toggle="collapse" data-target=".method_XIRR .collapse">
+<h2>XIRR()
+        </h2>
+<pre>XIRR($values, $dates, $guess) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$values</h4></div>
+<div class="subelement argument"><h4>$dates</h4></div>
+<div class="subelement argument"><h4>$guess</h4></div>
+</div></div>
+</div>
+<a id="method_XNPV"></a><div class="element clickable method public method_XNPV" data-toggle="collapse" data-target=".method_XNPV .collapse">
+<h2>XNPV</h2>
+<pre>XNPV(float $rate, array $values, array $dates) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the net present value for a schedule of cash flows that is not necessarily periodic.
+To calculate the net present value for a series of cash flows that is periodic, use the NPV function.</p>
+
+<p>Excel Function:
+    =XNPV(rate,values,dates)</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>float</code><p>The discount rate to apply to the cash flows.</p></div>
+<div class="subelement argument">
+<h4>$values</h4>
+<code>array</code><p>of float $values A series of cash flows that corresponds to a schedule of payments in dates. The first payment is optional and corresponds to a cost or payment that occurs at the beginning of the investment. If the first value is a cost or payment, it must be a negative value. All succeeding payments are discounted based on a 365-day year. The series of values must contain at least one positive value and one negative value.</p>
+</div>
+<div class="subelement argument">
+<h4>$dates</h4>
+<code>array</code><p>of mixed $dates A schedule of payment dates that corresponds to the cash flow payments. The first payment date indicates the beginning of the schedule of payments. All other dates must be later than this date, but they may occur in any order.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_YIELDDISC"></a><div class="element clickable method public method_YIELDDISC" data-toggle="collapse" data-target=".method_YIELDDISC .collapse">
+<h2>YIELDDISC</h2>
+<pre>YIELDDISC(mixed $settlement, mixed $maturity, int $price, int $redemption, int $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the annual yield of a security that pays interest at maturity.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security's settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$price</h4>
+<code>int</code><p>price The security's price per $100 face value.</p>
+</div>
+<div class="subelement argument">
+<h4>$redemption</h4>
+<code>int</code><p>redemption The security's redemption value per $100 face value.</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>int</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method_YIELDMAT"></a><div class="element clickable method public method_YIELDMAT" data-toggle="collapse" data-target=".method_YIELDMAT .collapse">
+<h2>YIELDMAT</h2>
+<pre>YIELDMAT(mixed $settlement, mixed $maturity, mixed $issue, int $rate, int $price, int $basis) : float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the annual yield of a security that pays interest at maturity.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$settlement</h4>
+<code>mixed</code><p>settlement The security's settlement date. The security's settlement date is the date after the issue date when the security is traded to the buyer.</p>
+</div>
+<div class="subelement argument">
+<h4>$maturity</h4>
+<code>mixed</code><p>maturity The security's maturity date. The maturity date is the date when the security expires.</p>
+</div>
+<div class="subelement argument">
+<h4>$issue</h4>
+<code>mixed</code><p>issue The security's issue date.</p>
+</div>
+<div class="subelement argument">
+<h4>$rate</h4>
+<code>int</code><p>rate The security's interest rate at date of issue.</p>
+</div>
+<div class="subelement argument">
+<h4>$price</h4>
+<code>int</code><p>price The security's price per $100 face value.</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>int</code><p>basis The type of day count to use. 0 or omitted US (NASD) 30/360 1 Actual/actual 2 Actual/360 3 Actual/365 4 European 30/360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>float</code></div>
+</div></div>
+</div>
+<a id="method__coupFirstPeriodDate"></a><div class="element clickable method private method__coupFirstPeriodDate" data-toggle="collapse" data-target=".method__coupFirstPeriodDate .collapse">
+<h2>_coupFirstPeriodDate()
+        </h2>
+<pre>_coupFirstPeriodDate($settlement, $maturity, $frequency, $next) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$settlement</h4></div>
+<div class="subelement argument"><h4>$maturity</h4></div>
+<div class="subelement argument"><h4>$frequency</h4></div>
+<div class="subelement argument"><h4>$next</h4></div>
+</div></div>
+</div>
+<a id="method__daysPerYear"></a><div class="element clickable method private method__daysPerYear" data-toggle="collapse" data-target=".method__daysPerYear .collapse">
+<h2>_daysPerYear</h2>
+<pre>_daysPerYear(integer $year, integer $basis) : integer</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns the number of days in a specified year, as defined by the "basis" value</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$year</h4>
+<code>integer</code><p>The year against which we're testing</p>
+</div>
+<div class="subelement argument">
+<h4>$basis</h4>
+<code>integer</code><p>The type of day count: 0 or omitted US (NASD) 360 1 Actual (365 or 366 in a leap year) 2 360 3 365 4 European 360</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>integer</code></div>
+</div></div>
+</div>
+<a id="method__firstDayOfMonth"></a><div class="element clickable method private method__firstDayOfMonth" data-toggle="collapse" data-target=".method__firstDayOfMonth .collapse">
+<h2>_firstDayOfMonth</h2>
+<pre>_firstDayOfMonth(<a href="http://php.net/manual/en/class.datetime.php">\DateTime</a> $testDate) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns a boolean TRUE/FALSE indicating if this date is the first date of the month</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$testDate</h4>
+<code><a href="http://php.net/manual/en/class.datetime.php">\DateTime</a></code><p>The date for testing</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method__interestAndPrincipal"></a><div class="element clickable method private method__interestAndPrincipal" data-toggle="collapse" data-target=".method__interestAndPrincipal .collapse">
+<h2>_interestAndPrincipal()
+        </h2>
+<pre>_interestAndPrincipal($rate, $per, $nper, $pv, $fv, $type) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$rate</h4></div>
+<div class="subelement argument"><h4>$per</h4></div>
+<div class="subelement argument"><h4>$nper</h4></div>
+<div class="subelement argument"><h4>$pv</h4></div>
+<div class="subelement argument"><h4>$fv</h4></div>
+<div class="subelement argument"><h4>$type</h4></div>
+</div></div>
+</div>
+<a id="method__lastDayOfMonth"></a><div class="element clickable method private method__lastDayOfMonth" data-toggle="collapse" data-target=".method__lastDayOfMonth .collapse">
+<h2>_lastDayOfMonth</h2>
+<pre>_lastDayOfMonth(<a href="http://php.net/manual/en/class.datetime.php">\DateTime</a> $testDate) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns a boolean TRUE/FALSE indicating if this date is the last date of the month</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$testDate</h4>
+<code><a href="http://php.net/manual/en/class.datetime.php">\DateTime</a></code><p>The date for testing</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method__validFrequency"></a><div class="element clickable method private method__validFrequency" data-toggle="collapse" data-target=".method__validFrequency .collapse">
+<h2>_validFrequency()
+        </h2>
+<pre>_validFrequency($frequency) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$frequency</h4></div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:12-07:00.<br></footer></div>
+</div>
+</body>
+</html>

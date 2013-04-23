@@ -171,8 +171,9 @@ define([
 			data: {
 				action: "getPublicDataSet",
 				dataSetID: dataSetID
-			},
-			success: function(response) {
+			}
+		}).then(
+			function(response) {
 				if (response.success) {
 					_loadDataSet(response.content);
 				} else {
@@ -180,12 +181,11 @@ define([
 				}
 			},
 
-			error: function() {
+			function() {
 				utils.stopProcessing();
 			}
-		});
+		);
 	};
-
 
 	/**
 	 * Called when the user clicks the "LOAD" link for a particular data set. This queries the account Manager
@@ -385,8 +385,9 @@ define([
 			url:  "ajax.php",
 			type: "POST",
 			dataType: "json",
-			data: configuration,
-			success: function(response) {
+			data: configuration
+		}).then(
+			function(response) {
 				if (response.success) {
 					_currConfigurationID = response.content;
 					var lastUpdated = moment.unix(response.lastUpdated).format("h:mm A, MMM Do YYYY");
@@ -396,14 +397,12 @@ define([
 					// TODO
 				}
 			},
-
-			error: function() {
+			function() {
 				// alert(L.fatal_error);
 				// gd.stopProcessing();
 			}
-		});
+		);
 	};
-
 
 	var _addRows = function(rows) {
 		rows = rows.toString();

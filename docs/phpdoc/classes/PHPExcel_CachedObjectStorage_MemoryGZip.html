@@ -1,0 +1,500 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_CachedObjectStorage_MemoryGZip</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method___construct" title="__construct :: Initialise this new cell collection"><span class="description">Initialise this new cell collection</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_addCacheData" title="addCacheData :: Add or Update a cell in cache identified by coordinate address"><span class="description">Add or Update a cell in cache identified by coordinate address</span><pre>addCacheData()</pre></a></li>
+<li class="method public inherited"><a href="#method_cacheMethodIsAvailable" title="cacheMethodIsAvailable :: Identify whether the caching method is currently available
+Some methods are dependent on the availability of certain extensions being enabled in the PHP build"><span class="description">Identify whether the caching method is currently available
+Some methods are dependent on the availability of certain extensions being enabled in the PHP build</span><pre>cacheMethodIsAvailable()</pre></a></li>
+<li class="method public inherited"><a href="#method_copyCellCollection" title="copyCellCollection :: Clone the cell collection"><span class="description">Clone the cell collection</span><pre>copyCellCollection()</pre></a></li>
+<li class="method public inherited"><a href="#method_deleteCacheData" title="deleteCacheData :: Delete a cell in cache identified by coordinate address"><span class="description">Delete a cell in cache identified by coordinate address</span><pre>deleteCacheData()</pre></a></li>
+<li class="method public "><a href="#method_getCacheData" title="getCacheData :: Get cell at a specific coordinate"><span class="description">Get cell at a specific coordinate</span><pre>getCacheData()</pre></a></li>
+<li class="method public inherited"><a href="#method_getCellList" title="getCellList :: Get a list of all cell addresses currently held in cache"><span class="description">Get a list of all cell addresses currently held in cache</span><pre>getCellList()</pre></a></li>
+<li class="method public inherited"><a href="#method_getHighestColumn" title="getHighestColumn :: Get highest worksheet column"><span class="description">Get highest worksheet column</span><pre>getHighestColumn()</pre></a></li>
+<li class="method public inherited"><a href="#method_getHighestRow" title="getHighestRow :: Get highest worksheet row"><span class="description">Get highest worksheet row</span><pre>getHighestRow()</pre></a></li>
+<li class="method public inherited"><a href="#method_getHighestRowAndColumn" title="getHighestRowAndColumn :: Get highest worksheet column and highest row that have cell records"><span class="description">Get highest worksheet column and highest row that have cell records</span><pre>getHighestRowAndColumn()</pre></a></li>
+<li class="method public inherited"><a href="#method_getSortedCellList" title="getSortedCellList :: Get the list of all cell addresses currently held in cache sorted by column and row"><span class="description">Get the list of all cell addresses currently held in cache sorted by column and row</span><pre>getSortedCellList()</pre></a></li>
+<li class="method public inherited"><a href="#method_isDataSet" title="isDataSet :: Is a value set in the current PHPExcel_CachedObjectStorage_ICache for an indexed cell?"><span class="description">Is a value set in the current PHPExcel_CachedObjectStorage_ICache for an indexed cell?</span><pre>isDataSet()</pre></a></li>
+<li class="method public "><a href="#method_unsetWorksheetCells" title="unsetWorksheetCells :: Clear the cell collection and disconnect from our parent"><span class="description">Clear the cell collection and disconnect from our parent</span><pre>unsetWorksheetCells()</pre></a></li>
+<li class="method public inherited"><a href="#method_updateCacheData" title="updateCacheData :: Add or Update a cell in cache"><span class="description">Add or Update a cell in cache</span><pre>updateCacheData()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="method protected inherited"><a href="#method__getUniqueID" title="_getUniqueID :: Generate a unique ID for cache referencing"><span class="description">Generate a unique ID for cache referencing</span><pre>_getUniqueID()</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private "><a href="#method__storeData" title="_storeData :: Store cell data in cache for the current cell object if it's &quot;dirty&quot;,
+    and the 'nullify' the current cell object"><span class="description">Store cell data in cache for the current cell object if it's "dirty",
+    and the 'nullify' the current cell object</span><pre>_storeData()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected inherited"><a href="#property__cellCache" title="$_cellCache :: An array of cells or cell pointers for the worksheet cells held in this cache,
+	and indexed by their coordinate address within the worksheet"><span class="description"></span><pre>$_cellCache</pre></a></li>
+<li class="property protected inherited"><a href="#property__currentCellIsDirty" title="$_currentCellIsDirty :: Flag indicating whether the currently active Cell requires saving"><span class="description"></span><pre>$_currentCellIsDirty</pre></a></li>
+<li class="property protected inherited"><a href="#property__currentObject" title="$_currentObject :: The currently active Cell"><span class="description"></span><pre>$_currentObject</pre></a></li>
+<li class="property protected inherited"><a href="#property__currentObjectID" title="$_currentObjectID :: Coordinate address of the currently active Cell"><span class="description"></span><pre>$_currentObjectID</pre></a></li>
+<li class="property protected inherited"><a href="#property__parent" title="$_parent :: Parent worksheet"><span class="description"></span><pre>$_parent</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_CachedObjectStorage_MemoryGZip"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_CachedObjectStorage_MemoryGZip.html">PHPExcel_CachedObjectStorage_MemoryGZip</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_CachedObjectStorage_MemoryGZip</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.CachedObjectStorage.html">PHPExcel_CachedObjectStorage</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Initialise this new cell collection</h2>
+<pre>__construct(\PHPExcel_Worksheet $parent) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$parent</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code><p>The worksheet for this cell collection</p></div>
+</div></div>
+</div>
+<a id="method_addCacheData"></a><div class="element clickable method public method_addCacheData" data-toggle="collapse" data-target=".method_addCacheData .collapse">
+<h2>Add or Update a cell in cache identified by coordinate address</h2>
+<pre>addCacheData(string $pCoord, \PHPExcel_Cell $cell) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCoord</h4>
+<code>string</code><p>Coordinate address of the cell to update</p></div>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code><p>Cell to update</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_cacheMethodIsAvailable"></a><div class="element clickable method public method_cacheMethodIsAvailable" data-toggle="collapse" data-target=".method_cacheMethodIsAvailable .collapse">
+<h2>Identify whether the caching method is currently available
+Some methods are dependent on the availability of certain extensions being enabled in the PHP build</h2>
+<pre>cacheMethodIsAvailable() : boolean</pre>
+<div class="labels">
+<span class="label">Inherited</span><span class="label">Static</span>
+</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_ICache::cacheMethodIsAvailable()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_copyCellCollection"></a><div class="element clickable method public method_copyCellCollection" data-toggle="collapse" data-target=".method_copyCellCollection .collapse">
+<h2>Clone the cell collection</h2>
+<pre>copyCellCollection(\PHPExcel_Worksheet $parent) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_ICache::copyCellCollection()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$parent</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code><p>The new worksheet</p></div>
+</div></div>
+</div>
+<a id="method_deleteCacheData"></a><div class="element clickable method public method_deleteCacheData" data-toggle="collapse" data-target=".method_deleteCacheData .collapse">
+<h2>Delete a cell in cache identified by coordinate address</h2>
+<pre>deleteCacheData(string $pCoord) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_ICache::deleteCacheData()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCoord</h4>
+<code>string</code><p>Coordinate address of the cell to delete</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getCacheData"></a><div class="element clickable method public method_getCacheData" data-toggle="collapse" data-target=".method_getCacheData .collapse">
+<h2>Get cell at a specific coordinate</h2>
+<pre>getCacheData(string $pCoord) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCoord</h4>
+<code>string</code><p>Coordinate of the cell</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code>Cell that was found, or null if not found</div>
+</div></div>
+</div>
+<a id="method_getCellList"></a><div class="element clickable method public method_getCellList" data-toggle="collapse" data-target=".method_getCellList .collapse">
+<h2>Get a list of all cell addresses currently held in cache</h2>
+<pre>getCellList() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_ICache::getCellList()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of string</div>
+</div></div>
+</div>
+<a id="method_getHighestColumn"></a><div class="element clickable method public method_getHighestColumn" data-toggle="collapse" data-target=".method_getHighestColumn .collapse">
+<h2>Get highest worksheet column</h2>
+<pre>getHighestColumn() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::getHighestColumn()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Highest column name</div>
+</div></div>
+</div>
+<a id="method_getHighestRow"></a><div class="element clickable method public method_getHighestRow" data-toggle="collapse" data-target=".method_getHighestRow .collapse">
+<h2>Get highest worksheet row</h2>
+<pre>getHighestRow() : int</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::getHighestRow()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>Highest row number</div>
+</div></div>
+</div>
+<a id="method_getHighestRowAndColumn"></a><div class="element clickable method public method_getHighestRowAndColumn" data-toggle="collapse" data-target=".method_getHighestRowAndColumn .collapse">
+<h2>Get highest worksheet column and highest row that have cell records</h2>
+<pre>getHighestRowAndColumn() : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::getHighestRowAndColumn()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Highest column name and highest row number</div>
+</div></div>
+</div>
+<a id="method_getSortedCellList"></a><div class="element clickable method public method_getSortedCellList" data-toggle="collapse" data-target=".method_getSortedCellList .collapse">
+<h2>Get the list of all cell addresses currently held in cache sorted by column and row</h2>
+<pre>getSortedCellList() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_ICache::getSortedCellList()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_isDataSet"></a><div class="element clickable method public method_isDataSet" data-toggle="collapse" data-target=".method_isDataSet .collapse">
+<h2>Is a value set in the current PHPExcel_CachedObjectStorage_ICache for an indexed cell?</h2>
+<pre>isDataSet(string $pCoord) : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_ICache::isDataSet()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCoord</h4>
+<code>string</code><p>Coordinate address of the cell to check</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_unsetWorksheetCells"></a><div class="element clickable method public method_unsetWorksheetCells" data-toggle="collapse" data-target=".method_unsetWorksheetCells .collapse">
+<h2>Clear the cell collection and disconnect from our parent</h2>
+<pre>unsetWorksheetCells() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_updateCacheData"></a><div class="element clickable method public method_updateCacheData" data-toggle="collapse" data-target=".method_updateCacheData .collapse">
+<h2>Add or Update a cell in cache</h2>
+<pre>updateCacheData(\PHPExcel_Cell $cell) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_ICache::updateCacheData()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cell</h4>
+<code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code><p>Cell to update</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method__getUniqueID"></a><div class="element clickable method protected method__getUniqueID" data-toggle="collapse" data-target=".method__getUniqueID .collapse">
+<h2>Generate a unique ID for cache referencing</h2>
+<pre>_getUniqueID() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::_getUniqueID()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Unique Reference</div>
+</div></div>
+</div>
+<a id="method__storeData"></a><div class="element clickable method private method__storeData" data-toggle="collapse" data-target=".method__storeData .collapse">
+<h2>Store cell data in cache for the current cell object if it's "dirty",
+    and the 'nullify' the current cell object</h2>
+<pre>_storeData() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__cellCache"> </a><div class="element clickable property protected property__cellCache" data-toggle="collapse" data-target=".property__cellCache .collapse">
+<h2></h2>
+<pre>$_cellCache : array</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::$$_cellCache</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__currentCellIsDirty"> </a><div class="element clickable property protected property__currentCellIsDirty" data-toggle="collapse" data-target=".property__currentCellIsDirty .collapse">
+<h2></h2>
+<pre>$_currentCellIsDirty : boolean</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::$$_currentCellIsDirty</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__currentObject"> </a><div class="element clickable property protected property__currentObject" data-toggle="collapse" data-target=".property__currentObject .collapse">
+<h2></h2>
+<pre>$_currentObject : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::$$_currentObject</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__currentObjectID"> </a><div class="element clickable property protected property__currentObjectID" data-toggle="collapse" data-target=".property__currentObjectID .collapse">
+<h2></h2>
+<pre>$_currentObjectID : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::$$_currentObjectID</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__parent"> </a><div class="element clickable property protected property__parent" data-toggle="collapse" data-target=".property__parent .collapse">
+<h2></h2>
+<pre>$_parent : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\PHPExcel_CachedObjectStorage_CacheBase::$$_parent</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:11-07:00.<br></footer></div>
+</div>
+</body>
+</html>

@@ -20,9 +20,41 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
+<li><a href="packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
 <li><a href="packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
 <li><a href="packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
 <li><a href="packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -33,13 +65,18 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">476</span></a></li>
+                <span class="label label-info">1565</span></a></li>
 <li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul><li>todo 
-                <span class="label label-info">1</span>
-</li></ul></a></li>
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
 <li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">14</span></a></li>
 </ul>
 </li>
 </ul></div>
@@ -52,7 +89,15 @@
                             if Javascript is enabled.
                         </div></noscript>
 <div class="row">
-<div class="span4"><ul class="side-nav nav nav-list"><li class="nav-header">Navigation</li></ul></div>
+<div class="span4"><ul class="side-nav nav nav-list">
+<li class="nav-header">Navigation</li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Cell.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Cell.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Style/Conditional.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Style/Conditional.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Style/Font.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Style/Font.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Worksheet.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Worksheet.php</a></li>
+<li><a href="#plugins/exportTypes/Excel/PHPExcel/Writer/Excel5.php"><i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/Excel5.php</a></li>
+</ul></div>
 <div class="span8">
 <ul class="breadcrumb">
 <li>
@@ -60,16 +105,144 @@
 </li>
 <li>Deprecated elements</li>
 </ul>
-<div class="alert alert-info">No deprecated elements have been
-                        found in this project.
-                    </div>
-<div id="marker-accordion"></div>
+<div id="marker-accordion">
+<a name="plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php" id="plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Cell/DataType.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>64</td>
+<td>Replaced by PHPExcel_Cell_IValueBinder infrastructure</td>
+</tr>
+</table></div>
+<a name="plugins/exportTypes/Excel/PHPExcel/Cell.php" id="plugins/exportTypes/Excel/PHPExcel/Cell.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Cell.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>283</td>
+<td>Since version 1.7.8 for planned changes to cell for array formula handling</td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>944</td>
+<td>Since version 1.7.8 for planned changes to cell for array formula handling</td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>953</td>
+<td>Since version 1.7.8 for planned changes to cell for array formula handling</td>
+</tr>
+</table></div>
+<a name="plugins/exportTypes/Excel/PHPExcel/Style/Conditional.php" id="plugins/exportTypes/Excel/PHPExcel/Style/Conditional.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Style/Conditional.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>166</td>
+<td>Deprecated, use getConditions instead</td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>180</td>
+<td>Deprecated, use setConditions instead</td>
+</tr>
+</table></div>
+<a name="plugins/exportTypes/Excel/PHPExcel/Style/Font.php" id="plugins/exportTypes/Excel/PHPExcel/Style/Font.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Style/Font.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>523</td>
+<td>Use getStrikethrough() instead.</td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>533</td>
+<td>Use setStrikethrough() instead.</td>
+</tr>
+</table></div>
+<a name="plugins/exportTypes/Excel/PHPExcel/Worksheet.php" id="plugins/exportTypes/Excel/PHPExcel/Worksheet.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Worksheet.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>1298</td>
+<td></td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>1310</td>
+<td></td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>1422</td>
+<td></td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>1559</td>
+<td></td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>2219</td>
+<td></td>
+</tr>
+</table></div>
+<a name="plugins/exportTypes/Excel/PHPExcel/Writer/Excel5.php" id="plugins/exportTypes/Excel/PHPExcel/Writer/Excel5.php"></a><h3>
+<i class="icon-file"></i>plugins/exportTypes/Excel/PHPExcel/Writer/Excel5.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>239</td>
+<td></td>
+</tr>
+</table></div>
+</div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-12-28T20:03:34-08:00.<br></footer></div>
+            generated on 2013-04-22T17:30:20-07:00.<br></footer></div>
 </div>
 </body>
 </html>

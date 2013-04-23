@@ -1,0 +1,965 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Cell</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___clone" title="__clone :: Implement PHP __clone to create a deep clone, not just a shallow copy."><span class="description">Implement PHP __clone to create a deep clone, not just a shallow copy.</span><pre>__clone()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Create a new Cell"><span class="description">Create a new Cell</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method___toString" title="__toString :: Convert to string"><span class="description">Convert to string</span><pre>__toString()</pre></a></li>
+<li class="method public "><a href="#method_absoluteCoordinate" title="absoluteCoordinate :: Make string coordinate absolute"><span class="description">Make string coordinate absolute</span><pre>absoluteCoordinate()</pre></a></li>
+<li class="method public "><a href="#method_absoluteReference" title="absoluteReference :: Make string row, column or cell coordinate absolute"><span class="description">Make string row, column or cell coordinate absolute</span><pre>absoluteReference()</pre></a></li>
+<li class="method public "><a href="#method_attach" title="attach :: "><span class="description">attach()
+        </span><pre>attach()</pre></a></li>
+<li class="method public "><a href="#method_buildRange" title="buildRange :: Build range from coordinate strings"><span class="description">Build range from coordinate strings</span><pre>buildRange()</pre></a></li>
+<li class="method public "><a href="#method_columnIndexFromString" title="columnIndexFromString :: Column index from string"><span class="description">Column index from string</span><pre>columnIndexFromString()</pre></a></li>
+<li class="method public "><a href="#method_compareCells" title="compareCells :: Compare 2 cells"><span class="description">Compare 2 cells</span><pre>compareCells()</pre></a></li>
+<li class="method public "><a href="#method_coordinateFromString" title="coordinateFromString :: Coordinate from string"><span class="description">Coordinate from string</span><pre>coordinateFromString()</pre></a></li>
+<li class="method public "><a href="#method_detach" title="detach :: "><span class="description">detach()
+        </span><pre>detach()</pre></a></li>
+<li class="method public "><a href="#method_extractAllCellReferencesInRange" title="extractAllCellReferencesInRange :: Extract all cell references in range"><span class="description">Extract all cell references in range</span><pre>extractAllCellReferencesInRange()</pre></a></li>
+<li class="method public "><a href="#method_getCalculatedValue" title="getCalculatedValue :: Get calculated cell value"><span class="description">Get calculated cell value</span><pre>getCalculatedValue()</pre></a></li>
+<li class="method public "><a href="#method_getColumn" title="getColumn :: Get cell coordinate column"><span class="description">Get cell coordinate column</span><pre>getColumn()</pre></a></li>
+<li class="method public "><a href="#method_getCoordinate" title="getCoordinate :: Get cell coordinate"><span class="description">Get cell coordinate</span><pre>getCoordinate()</pre></a></li>
+<li class="method public "><a href="#method_getDataType" title="getDataType :: Get cell data type"><span class="description">Get cell data type</span><pre>getDataType()</pre></a></li>
+<li class="method public "><a href="#method_getDataValidation" title="getDataValidation :: Get Data validation rules"><span class="description">Get Data validation rules</span><pre>getDataValidation()</pre></a></li>
+<li class="method public "><a href="#method_getFormattedValue" title="getFormattedValue :: Get cell value with formatting"><span class="description">Get cell value with formatting</span><pre>getFormattedValue()</pre></a></li>
+<li class="method public "><a href="#method_getFormulaAttributes" title="getFormulaAttributes :: "><span class="description">getFormulaAttributes()
+        </span><pre>getFormulaAttributes()</pre></a></li>
+<li class="method public "><a href="#method_getHyperlink" title="getHyperlink :: Get Hyperlink"><span class="description">Get Hyperlink</span><pre>getHyperlink()</pre></a></li>
+<li class="method public "><a href="#method_getOldCalculatedValue" title="getOldCalculatedValue :: Get old calculated value (cached)
+This returns the value last calculated by MS Excel or whichever spreadsheet program was used to
+	create the original spreadsheet file."><span class="description">Get old calculated value (cached)
+This returns the value last calculated by MS Excel or whichever spreadsheet program was used to
+	create the original spreadsheet file.</span><pre>getOldCalculatedValue()</pre></a></li>
+<li class="method public "><a href="#method_getParent" title="getParent :: Get parent worksheet"><span class="description">Get parent worksheet</span><pre>getParent()</pre></a></li>
+<li class="method public "><a href="#method_getRangeBoundaries" title="getRangeBoundaries :: Calculate range boundaries"><span class="description">Calculate range boundaries</span><pre>getRangeBoundaries()</pre></a></li>
+<li class="method public "><a href="#method_getRow" title="getRow :: Get cell coordinate row"><span class="description">Get cell coordinate row</span><pre>getRow()</pre></a></li>
+<li class="method public "><a href="#method_getValue" title="getValue :: Get cell value"><span class="description">Get cell value</span><pre>getValue()</pre></a></li>
+<li class="method public "><a href="#method_getValueBinder" title="getValueBinder :: Get value binder to use"><span class="description">Get value binder to use</span><pre>getValueBinder()</pre></a></li>
+<li class="method public "><a href="#method_getXfIndex" title="getXfIndex :: Get index to cellXf"><span class="description">Get index to cellXf</span><pre>getXfIndex()</pre></a></li>
+<li class="method public "><a href="#method_hasDataValidation" title="hasDataValidation :: Does this cell contain Data validation rules?"><span class="description">Does this cell contain Data validation rules?</span><pre>hasDataValidation()</pre></a></li>
+<li class="method public "><a href="#method_hasHyperlink" title="hasHyperlink :: Does this cell contain a Hyperlink?"><span class="description">Does this cell contain a Hyperlink?</span><pre>hasHyperlink()</pre></a></li>
+<li class="method public "><a href="#method_isInRange" title="isInRange :: Is cell in a specific range?"><span class="description">Is cell in a specific range?</span><pre>isInRange()</pre></a></li>
+<li class="method public "><a href="#method_notifyCacheController" title="notifyCacheController :: Send notification to the cache controller"><span class="description">Send notification to the cache controller</span><pre>notifyCacheController()</pre></a></li>
+<li class="method public "><a href="#method_rangeBoundaries" title="rangeBoundaries :: Calculate range boundaries"><span class="description">Calculate range boundaries</span><pre>rangeBoundaries()</pre></a></li>
+<li class="method public "><a href="#method_rangeDimension" title="rangeDimension :: Calculate range dimension"><span class="description">Calculate range dimension</span><pre>rangeDimension()</pre></a></li>
+<li class="method public "><a href="#method_rebindParent" title="rebindParent :: Re-bind parent"><span class="description">Re-bind parent</span><pre>rebindParent()</pre></a></li>
+<li class="method public "><a href="#method_setCalculatedValue" title="setCalculatedValue :: Set old calculated value (cached)"><span class="description">Set old calculated value (cached)</span><pre>setCalculatedValue()</pre></a></li>
+<li class="method public "><a href="#method_setDataType" title="setDataType :: Set cell data type"><span class="description">Set cell data type</span><pre>setDataType()</pre></a></li>
+<li class="method public "><a href="#method_setDataValidation" title="setDataValidation :: Set Data validation rules"><span class="description">Set Data validation rules</span><pre>setDataValidation()</pre></a></li>
+<li class="method public "><a href="#method_setFormulaAttributes" title="setFormulaAttributes :: "><span class="description">setFormulaAttributes()
+        </span><pre>setFormulaAttributes()</pre></a></li>
+<li class="method public "><a href="#method_setHyperlink" title="setHyperlink :: Set Hyperlink"><span class="description">Set Hyperlink</span><pre>setHyperlink()</pre></a></li>
+<li class="method public "><a href="#method_setValue" title="setValue :: Set cell value"><span class="description">Set cell value</span><pre>setValue()</pre></a></li>
+<li class="method public "><a href="#method_setValueBinder" title="setValueBinder :: Set value binder to use"><span class="description">Set value binder to use</span><pre>setValueBinder()</pre></a></li>
+<li class="method public "><a href="#method_setValueExplicit" title="setValueExplicit :: Set the value for a cell, with the explicit data type passed to the method (bypassing any use of the value binder)"><span class="description">Set the value for a cell, with the explicit data type passed to the method (bypassing any use of the value binder)</span><pre>setValueExplicit()</pre></a></li>
+<li class="method public "><a href="#method_setXfIndex" title="setXfIndex :: Set index to cellXf"><span class="description">Set index to cellXf</span><pre>setXfIndex()</pre></a></li>
+<li class="method public "><a href="#method_splitRange" title="splitRange :: Split range into coordinate strings"><span class="description">Split range into coordinate strings</span><pre>splitRange()</pre></a></li>
+<li class="method public "><a href="#method_stringFromColumnIndex" title="stringFromColumnIndex :: String from columnindex"><span class="description">String from columnindex</span><pre>stringFromColumnIndex()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__calculatedValue" title="$_calculatedValue :: Calculated value of the cell (used for caching)
+This returns the value last calculated by MS Excel or whichever spreadsheet program was used to
+	create the original spreadsheet file."><span class="description"></span><pre>$_calculatedValue</pre></a></li>
+<li class="property private "><a href="#property__column" title="$_column :: Column of the cell"><span class="description"></span><pre>$_column</pre></a></li>
+<li class="property private "><a href="#property__dataType" title="$_dataType :: Type of the cell data"><span class="description"></span><pre>$_dataType</pre></a></li>
+<li class="property private "><a href="#property__formulaAttributes" title="$_formulaAttributes :: Attributes of the formula"><span class="description"></span><pre>$_formulaAttributes</pre></a></li>
+<li class="property private "><a href="#property__parent" title="$_parent :: Parent worksheet"><span class="description"></span><pre>$_parent</pre></a></li>
+<li class="property private "><a href="#property__row" title="$_row :: Row of the cell"><span class="description"></span><pre>$_row</pre></a></li>
+<li class="property private "><a href="#property__value" title="$_value :: Value of the cell"><span class="description"></span><pre>$_value</pre></a></li>
+<li class="property private "><a href="#property__valueBinder" title="$_valueBinder :: Value binder to use"><span class="description"></span><pre>$_valueBinder</pre></a></li>
+<li class="property private "><a href="#property__xfIndex" title="$_xfIndex :: Index to cellXf"><span class="description"></span><pre>$_xfIndex</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul><li class="constant  "><a href="#constant_DEFAULT_RANGE" title="DEFAULT_RANGE :: Default range variable constant"><span class="description">Default range variable constant</span><pre>DEFAULT_RANGE</pre></a></li></ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Cell"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Cell.html">PHPExcel_Cell</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Cell</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Cell.html">PHPExcel_Cell</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___clone"></a><div class="element clickable method public method___clone" data-toggle="collapse" data-target=".method___clone .collapse">
+<h2>Implement PHP __clone to create a deep clone, not just a shallow copy.</h2>
+<pre>__clone() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Create a new Cell</h2>
+<pre>__construct(string $pColumn, int $pRow, mixed $pValue, string $pDataType, \PHPExcel_Worksheet $pSheet) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pColumn</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$pRow</h4>
+<code>int</code>
+</div>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>mixed</code>
+</div>
+<div class="subelement argument">
+<h4>$pDataType</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$pSheet</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method___toString"></a><div class="element clickable method public method___toString" data-toggle="collapse" data-target=".method___toString .collapse">
+<h2>Convert to string</h2>
+<pre>__toString() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_absoluteCoordinate"></a><div class="element clickable method public method_absoluteCoordinate" data-toggle="collapse" data-target=".method_absoluteCoordinate .collapse">
+<h2>Make string coordinate absolute</h2>
+<pre>absoluteCoordinate(string $pCoordinateString) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCoordinateString</h4>
+<code>string</code><p>e.g. 'A1'</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Absolute coordinate		e.g. '$A$1'</div>
+</div></div>
+</div>
+<a id="method_absoluteReference"></a><div class="element clickable method public method_absoluteReference" data-toggle="collapse" data-target=".method_absoluteReference .collapse">
+<h2>Make string row, column or cell coordinate absolute</h2>
+<pre>absoluteReference(string $pCoordinateString) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCoordinateString</h4>
+<code>string</code><p>e.g. 'A' or '1' or 'A1' Note that this value can be a row or column reference as well as a cell reference</p>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Absolute coordinate		e.g. '$A' or '$1' or '$A$1'</div>
+</div></div>
+</div>
+<a id="method_attach"></a><div class="element clickable method public method_attach" data-toggle="collapse" data-target=".method_attach .collapse">
+<h2>attach()
+        </h2>
+<pre>attach($parent) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$parent</h4></div>
+</div></div>
+</div>
+<a id="method_buildRange"></a><div class="element clickable method public method_buildRange" data-toggle="collapse" data-target=".method_buildRange .collapse">
+<h2>Build range from coordinate strings</h2>
+<pre>buildRange(array $pRange) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>array</code><p>Array containg one or more arrays containing one or two coordinate strings</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>String representation of $pRange</div>
+</div></div>
+</div>
+<a id="method_columnIndexFromString"></a><div class="element clickable method public method_columnIndexFromString" data-toggle="collapse" data-target=".method_columnIndexFromString .collapse">
+<h2>Column index from string</h2>
+<pre>columnIndexFromString(string $pString) : int</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pString</h4>
+<code>string</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>Column index (base 1 !!!)</div>
+</div></div>
+</div>
+<a id="method_compareCells"></a><div class="element clickable method public method_compareCells" data-toggle="collapse" data-target=".method_compareCells .collapse">
+<h2>Compare 2 cells</h2>
+<pre>compareCells(\PHPExcel_Cell $a, \PHPExcel_Cell $b) : int</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$a</h4>
+<code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code><p>Cell a</p></div>
+<div class="subelement argument"><h4>$b</h4></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>Result of comparison (always -1 or 1, never zero!)</div>
+</div></div>
+</div>
+<a id="method_coordinateFromString"></a><div class="element clickable method public method_coordinateFromString" data-toggle="collapse" data-target=".method_coordinateFromString .collapse">
+<h2>Coordinate from string</h2>
+<pre>coordinateFromString(string $pCoordinateString) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pCoordinateString</h4>
+<code>string</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Array containing column and row (indexes 0 and 1)</div>
+</div></div>
+</div>
+<a id="method_detach"></a><div class="element clickable method public method_detach" data-toggle="collapse" data-target=".method_detach .collapse">
+<h2>detach()
+        </h2>
+<pre>detach() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_extractAllCellReferencesInRange"></a><div class="element clickable method public method_extractAllCellReferencesInRange" data-toggle="collapse" data-target=".method_extractAllCellReferencesInRange .collapse">
+<h2>Extract all cell references in range</h2>
+<pre>extractAllCellReferencesInRange(string $pRange) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>string</code><p>Range (e.g. A1 or A1:C10 or A1:E10 A20:E25)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Array containing single cell references</div>
+</div></div>
+</div>
+<a id="method_getCalculatedValue"></a><div class="element clickable method public method_getCalculatedValue" data-toggle="collapse" data-target=".method_getCalculatedValue .collapse">
+<h2>Get calculated cell value</h2>
+<pre>getCalculatedValue($resetLog) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>deprecated</th>
+<td>Since version 1.7.8 for planned changes to cell for array formula handling</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$resetLog</h4></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_getColumn"></a><div class="element clickable method public method_getColumn" data-toggle="collapse" data-target=".method_getColumn .collapse">
+<h2>Get cell coordinate column</h2>
+<pre>getColumn() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getCoordinate"></a><div class="element clickable method public method_getCoordinate" data-toggle="collapse" data-target=".method_getCoordinate .collapse">
+<h2>Get cell coordinate</h2>
+<pre>getCoordinate() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getDataType"></a><div class="element clickable method public method_getDataType" data-toggle="collapse" data-target=".method_getDataType .collapse">
+<h2>Get cell data type</h2>
+<pre>getDataType() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getDataValidation"></a><div class="element clickable method public method_getDataValidation" data-toggle="collapse" data-target=".method_getDataValidation .collapse">
+<h2>Get Data validation rules</h2>
+<pre>getDataValidation() : <a href="../classes/PHPExcel_Cell_DataValidation.html">\PHPExcel_Cell_DataValidation</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell_DataValidation.html">\PHPExcel_Cell_DataValidation</a></code></div>
+</div></div>
+</div>
+<a id="method_getFormattedValue"></a><div class="element clickable method public method_getFormattedValue" data-toggle="collapse" data-target=".method_getFormattedValue .collapse">
+<h2>Get cell value with formatting</h2>
+<pre>getFormattedValue() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getFormulaAttributes"></a><div class="element clickable method public method_getFormulaAttributes" data-toggle="collapse" data-target=".method_getFormulaAttributes .collapse">
+<h2>getFormulaAttributes()
+        </h2>
+<pre>getFormulaAttributes() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>deprecated</th>
+<td>Since version 1.7.8 for planned changes to cell for array formula handling</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getHyperlink"></a><div class="element clickable method public method_getHyperlink" data-toggle="collapse" data-target=".method_getHyperlink .collapse">
+<h2>Get Hyperlink</h2>
+<pre>getHyperlink() : <a href="../classes/PHPExcel_Cell_Hyperlink.html">\PHPExcel_Cell_Hyperlink</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell_Hyperlink.html">\PHPExcel_Cell_Hyperlink</a></code></div>
+</div></div>
+</div>
+<a id="method_getOldCalculatedValue"></a><div class="element clickable method public method_getOldCalculatedValue" data-toggle="collapse" data-target=".method_getOldCalculatedValue .collapse">
+<h2>Get old calculated value (cached)
+This returns the value last calculated by MS Excel or whichever spreadsheet program was used to
+	create the original spreadsheet file.</h2>
+<pre>getOldCalculatedValue() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Note that this value is not guaranteed to refelect the actual calculated value because it is
+    possible that auto-calculation was disabled in the original spreadsheet, and underlying data
+    values used by the formula have changed since it was last calculated.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_getParent"></a><div class="element clickable method public method_getParent" data-toggle="collapse" data-target=".method_getParent .collapse">
+<h2>Get parent worksheet</h2>
+<pre>getParent() : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code></div>
+</div></div>
+</div>
+<a id="method_getRangeBoundaries"></a><div class="element clickable method public method_getRangeBoundaries" data-toggle="collapse" data-target=".method_getRangeBoundaries .collapse">
+<h2>Calculate range boundaries</h2>
+<pre>getRangeBoundaries(string $pRange) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>string</code><p>Cell range (e.g. A1:A1)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Range coordinates array(Start Cell, End Cell)
+				where Start Cell and End Cell are arrays (Column ID, Row Number)</div>
+</div></div>
+</div>
+<a id="method_getRow"></a><div class="element clickable method public method_getRow" data-toggle="collapse" data-target=".method_getRow .collapse">
+<h2>Get cell coordinate row</h2>
+<pre>getRow() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_getValue"></a><div class="element clickable method public method_getValue" data-toggle="collapse" data-target=".method_getValue .collapse">
+<h2>Get cell value</h2>
+<pre>getValue() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_getValueBinder"></a><div class="element clickable method public method_getValueBinder" data-toggle="collapse" data-target=".method_getValueBinder .collapse">
+<h2>Get value binder to use</h2>
+<pre>getValueBinder() : <a href="../classes/PHPExcel_Cell_IValueBinder.html">\PHPExcel_Cell_IValueBinder</a></pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell_IValueBinder.html">\PHPExcel_Cell_IValueBinder</a></code></div>
+</div></div>
+</div>
+<a id="method_getXfIndex"></a><div class="element clickable method public method_getXfIndex" data-toggle="collapse" data-target=".method_getXfIndex .collapse">
+<h2>Get index to cellXf</h2>
+<pre>getXfIndex() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_hasDataValidation"></a><div class="element clickable method public method_hasDataValidation" data-toggle="collapse" data-target=".method_hasDataValidation .collapse">
+<h2>Does this cell contain Data validation rules?</h2>
+<pre>hasDataValidation() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_hasHyperlink"></a><div class="element clickable method public method_hasHyperlink" data-toggle="collapse" data-target=".method_hasHyperlink .collapse">
+<h2>Does this cell contain a Hyperlink?</h2>
+<pre>hasHyperlink() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_isInRange"></a><div class="element clickable method public method_isInRange" data-toggle="collapse" data-target=".method_isInRange .collapse">
+<h2>Is cell in a specific range?</h2>
+<pre>isInRange(string $pRange) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>string</code><p>Cell range (e.g. A1:A1)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_notifyCacheController"></a><div class="element clickable method public method_notifyCacheController" data-toggle="collapse" data-target=".method_notifyCacheController .collapse">
+<h2>Send notification to the cache controller</h2>
+<pre>notifyCacheController() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_rangeBoundaries"></a><div class="element clickable method public method_rangeBoundaries" data-toggle="collapse" data-target=".method_rangeBoundaries .collapse">
+<h2>Calculate range boundaries</h2>
+<pre>rangeBoundaries(string $pRange) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>string</code><p>Cell range (e.g. A1:A1)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Range coordinates array(Start Cell, End Cell)
+				where Start Cell and End Cell are arrays (Column Number, Row Number)</div>
+</div></div>
+</div>
+<a id="method_rangeDimension"></a><div class="element clickable method public method_rangeDimension" data-toggle="collapse" data-target=".method_rangeDimension .collapse">
+<h2>Calculate range dimension</h2>
+<pre>rangeDimension(string $pRange) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>string</code><p>Cell range (e.g. A1:A1)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Range dimension (width, height)</div>
+</div></div>
+</div>
+<a id="method_rebindParent"></a><div class="element clickable method public method_rebindParent" data-toggle="collapse" data-target=".method_rebindParent .collapse">
+<h2>Re-bind parent</h2>
+<pre>rebindParent(\PHPExcel_Worksheet $parent) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$parent</h4>
+<code><a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code></div>
+</div></div>
+</div>
+<a id="method_setCalculatedValue"></a><div class="element clickable method public method_setCalculatedValue" data-toggle="collapse" data-target=".method_setCalculatedValue .collapse">
+<h2>Set old calculated value (cached)</h2>
+<pre>setCalculatedValue(mixed $pValue) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>mixed</code><p>Value</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code></div>
+</div></div>
+</div>
+<a id="method_setDataType"></a><div class="element clickable method public method_setDataType" data-toggle="collapse" data-target=".method_setDataType .collapse">
+<h2>Set cell data type</h2>
+<pre>setDataType(string $pDataType) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pDataType</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code></div>
+</div></div>
+</div>
+<a id="method_setDataValidation"></a><div class="element clickable method public method_setDataValidation" data-toggle="collapse" data-target=".method_setDataValidation .collapse">
+<h2>Set Data validation rules</h2>
+<pre>setDataValidation(\PHPExcel_Cell_DataValidation $pDataValidation) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pDataValidation</h4>
+<code><a href="../classes/PHPExcel_Cell_DataValidation.html">\PHPExcel_Cell_DataValidation</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code></div>
+</div></div>
+</div>
+<a id="method_setFormulaAttributes"></a><div class="element clickable method public method_setFormulaAttributes" data-toggle="collapse" data-target=".method_setFormulaAttributes .collapse">
+<h2>setFormulaAttributes()
+        </h2>
+<pre>setFormulaAttributes($pAttributes) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>deprecated</th>
+<td>Since version 1.7.8 for planned changes to cell for array formula handling</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$pAttributes</h4></div>
+</div></div>
+</div>
+<a id="method_setHyperlink"></a><div class="element clickable method public method_setHyperlink" data-toggle="collapse" data-target=".method_setHyperlink .collapse">
+<h2>Set Hyperlink</h2>
+<pre>setHyperlink(\PHPExcel_Cell_Hyperlink $pHyperlink) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pHyperlink</h4>
+<code><a href="../classes/PHPExcel_Cell_Hyperlink.html">\PHPExcel_Cell_Hyperlink</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code></div>
+</div></div>
+</div>
+<a id="method_setValue"></a><div class="element clickable method public method_setValue" data-toggle="collapse" data-target=".method_setValue .collapse">
+<h2>Set cell value</h2>
+<pre>setValue(mixed $pValue) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Sets the value for a cell, automatically determining the datatype using the value binder</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>mixed</code><p>Value</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code></div>
+</div></div>
+</div>
+<a id="method_setValueBinder"></a><div class="element clickable method public method_setValueBinder" data-toggle="collapse" data-target=".method_setValueBinder .collapse">
+<h2>Set value binder to use</h2>
+<pre>setValueBinder(\PHPExcel_Cell_IValueBinder $binder) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$binder</h4>
+<code><a href="../classes/PHPExcel_Cell_IValueBinder.html">\PHPExcel_Cell_IValueBinder</a></code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setValueExplicit"></a><div class="element clickable method public method_setValueExplicit" data-toggle="collapse" data-target=".method_setValueExplicit .collapse">
+<h2>Set the value for a cell, with the explicit data type passed to the method (bypassing any use of the value binder)</h2>
+<pre>setValueExplicit(mixed $pValue, string $pDataType) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>mixed</code><p>Value</p></div>
+<div class="subelement argument">
+<h4>$pDataType</h4>
+<code>string</code><p>Explicit data type</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="../classes/PHPExcel_Exception.html">\PHPExcel_Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code></div>
+</div></div>
+</div>
+<a id="method_setXfIndex"></a><div class="element clickable method public method_setXfIndex" data-toggle="collapse" data-target=".method_setXfIndex .collapse">
+<h2>Set index to cellXf</h2>
+<pre>setXfIndex(int $pValue) : <a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>int</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Cell.html">\PHPExcel_Cell</a></code></div>
+</div></div>
+</div>
+<a id="method_splitRange"></a><div class="element clickable method public method_splitRange" data-toggle="collapse" data-target=".method_splitRange .collapse">
+<h2>Split range into coordinate strings</h2>
+<pre>splitRange(string $pRange) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pRange</h4>
+<code>string</code><p>e.g. 'B4:D9' or 'B4:D9,H2:O11' or 'B4'</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Array containg one or more arrays containing one or two coordinate strings
+							e.g. array('B4','D9') or array(array('B4','D9'),array('H2','O11'))
+									or array('B4')</div>
+</div></div>
+</div>
+<a id="method_stringFromColumnIndex"></a><div class="element clickable method public method_stringFromColumnIndex" data-toggle="collapse" data-target=".method_stringFromColumnIndex .collapse">
+<h2>String from columnindex</h2>
+<pre>stringFromColumnIndex(int $pColumnIndex) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pColumnIndex</h4>
+<code>int</code><p>Column index (base 0 !!!)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__calculatedValue"> </a><div class="element clickable property private property__calculatedValue" data-toggle="collapse" data-target=".property__calculatedValue .collapse">
+<h2></h2>
+<pre>$_calculatedValue : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Note that this value is not guaranteed to reflect the actual calculated value because it is
+    possible that auto-calculation was disabled in the original spreadsheet, and underlying data
+    values used by the formula have changed since it was last calculated.</p></div></div></div>
+</div>
+<a id="property__column"> </a><div class="element clickable property private property__column" data-toggle="collapse" data-target=".property__column .collapse">
+<h2></h2>
+<pre>$_column : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__dataType"> </a><div class="element clickable property private property__dataType" data-toggle="collapse" data-target=".property__dataType .collapse">
+<h2></h2>
+<pre>$_dataType : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__formulaAttributes"> </a><div class="element clickable property private property__formulaAttributes" data-toggle="collapse" data-target=".property__formulaAttributes .collapse">
+<h2></h2>
+<pre>$_formulaAttributes </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__parent"> </a><div class="element clickable property private property__parent" data-toggle="collapse" data-target=".property__parent .collapse">
+<h2></h2>
+<pre>$_parent : <a href="../classes/PHPExcel_Worksheet.html">\PHPExcel_Worksheet</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__row"> </a><div class="element clickable property private property__row" data-toggle="collapse" data-target=".property__row .collapse">
+<h2></h2>
+<pre>$_row : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__value"> </a><div class="element clickable property private property__value" data-toggle="collapse" data-target=".property__value .collapse">
+<h2></h2>
+<pre>$_value : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__valueBinder"> </a><div class="element clickable property private property__valueBinder" data-toggle="collapse" data-target=".property__valueBinder .collapse">
+<h2></h2>
+<pre>$_valueBinder : <a href="../classes/PHPExcel_Cell_IValueBinder.html">\PHPExcel_Cell_IValueBinder</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__xfIndex"> </a><div class="element clickable property private property__xfIndex" data-toggle="collapse" data-target=".property__xfIndex .collapse">
+<h2></h2>
+<pre>$_xfIndex : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_DEFAULT_RANGE"> </a><div class="element clickable constant  constant_DEFAULT_RANGE" data-toggle="collapse" data-target=".constant_DEFAULT_RANGE .collapse">
+<h2>Default range variable constant</h2>
+<pre>DEFAULT_RANGE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>@var  string</p></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:13-07:00.<br></footer></div>
+</div>
+</body>
+</html>

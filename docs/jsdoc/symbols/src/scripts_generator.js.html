@@ -85,6 +85,8 @@
 		
 			<li><a href="../../symbols/Manager.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Manager</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_Core">Core</span></span></span></a></li>
 		
+			<li><a href="../../symbols/NormalDistribution.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">NormalDistribution</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
+		
 			<li><a href="../../symbols/ProgrammingLanguage.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">ProgrammingLanguage</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_ExportType">ExportType</span></span></span></a></li>
 		
 			<li><a href="../../symbols/Region.html"><span class="indent" style="padding-left:0px;"><i class="icon-jsdoc icon-jsdoc-namespace"></i><span class="jsdoc-class-index">Region</span> <span class="moduleTypeOuter"><span class="moduleType moduleType_DataType">DataType</span></span></span></a></li>
@@ -139,13 +141,14 @@ define([
 	 */
 
 	var MODULE_ID = "core-generator";
-	var _numRows  = 0;
+	var _numRows = 0;
 	var _numRowsToShowOnStart = 4;
 	var _countries = [];
 	var _currExportType = null; // populated onload
 	var _showExportTypeSettings = true;
 	var _codeMirror = null;
 	var _lastSelectedDataType = null;
+	var _isHighlightingDeleteRow;
 
 	// the number of results being generated
 	var _numRowsToGenerate;
@@ -157,11 +160,11 @@ define([
 	var _generateInPageContent = "";
 	var _isGenerating = false;
 	var _generationCancelled = false;
-
 	var _currHelpDialogTab = 1;
 	var _currDataTypeHelp = null;
 
 	// accounts
+	var _isLoggedIn = null;
 	var _isLoaded = false;
 	var _accountInfo = null;
 	var _dataSets = [];
@@ -173,10 +176,16 @@ define([
 	 * page.
 	 */
 	var _run = function() {
-		utils.startProcessing();
-
 		// retrieve the data sets for the current user
-		_getAccount();
+		if ($("body").data("loggedIn")) {
+			utils.startProcessing();
+			_isLoggedIn = true;
+			_getAccount();
+		} else {
+			_isLoggedIn = false;
+			$("#gdMainDialogTabs ul").hide();
+			$("#gdDataSetStatusLine,#gdProcessingIcon").hide();
+		}
 
 		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
@@ -240,7 +249,9 @@ define([
 
 		// main dialog
 		$("#gdLogout").on("click", function() { return _logout(); });
-		$("#gdLoadLink").on("click", function() { return _openMainDialog({ tab: 2 }); });
+		$("#gdUserAccount").on("click", _onClickUserAccountLink);
+		$("#gdLogin").on("click", _onClickLoginLink);
+		$("#gdLoadLink").on("click", _onClickLoadDataSetIcon);
 		$("#gdAccountDataSets").on("click", "a", _onClickLoadDataSet);
 		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
 		$("#gdAccountDataSets").on("click", _onClickToggleDeleteRow);
@@ -248,8 +259,9 @@ define([
 		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
 		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
 		$("#gdSelectAllDataSets").on("click", _onToggleSelectAllDataSets);
-		$("#gdDataSetStatusLine").html("not saved");
+		$("#gdDataSetStatusLine").html(L.not_saved);
 		$("#gdMainDialog").on("click", ".gdDataSetStatus", _onToggleSaveDataSetVisibilityStatus);
+		$("#gdUpdateAccountInfo").on("click", _updateAccountInfo);
 
 		_initMainDialog();
 		_initExportTypeTab();
@@ -275,8 +287,9 @@ define([
 			data: {
 				action: "getPublicDataSet",
 				dataSetID: dataSetID
-			},
-			success: function(response) {
+			}
+		}).then(
+			function(response) {
 				if (response.success) {
 					_loadDataSet(response.content);
 				} else {
@@ -284,12 +297,11 @@ define([
 				}
 			},
 
-			error: function() {
+			function() {
 				utils.stopProcessing();
 			}
-		});
+		);
 	};
-
 
 	/**
 	 * Called when the user clicks the "LOAD" link for a particular data set. This queries the account Manager
@@ -302,6 +314,24 @@ define([
 		_loadDataSet(dataSet);
 	};
 
+	var _onClickLoadDataSetIcon = function(e) {
+		e.preventDefault();
+		if (_isLoggedIn) {
+			_openMainDialog({ tab: 2 });
+		} else {
+			_showPermissionDeniedDialog();
+		}
+	};
+
+	var _onClickUserAccountLink = function(e) {
+		e.preventDefault();
+		_openMainDialog({ tab: 1 });
+	};
+
+	var _onClickLoginLink = function(e) {
+		e.preventDefault();
+		_openLoginDialog();
+	};
 
 	var _loadDataSet = function(configuration) {
 		utils.startProcessing();
@@ -337,7 +367,7 @@ define([
 		if (json.hasOwnProperty("dataTypes")) {
 			var numDataTypeRows = json.dataTypes.length;
 			var orderedRowIDs = _getRowOrder();
-			
+
 			var data = [];
 			for (var i=0; i&lt;numDataTypeRows; i++) {
 				var currDataType = json.dataTypes[i];
@@ -395,7 +425,9 @@ define([
 	 * based on whether it's a totally new data set, or if the user had loaded one already.
 	 */
 	var _onClickSaveButton = function() {
-		if (C.DEMO_MODE) {
+		if (!_isLoggedIn) {
+			_showPermissionDeniedDialog();
+		} else if (C.DEMO_MODE) {
 			_showDemoOnlyDialog();
 		} else {
 			if (_currConfigurationID === null) {
@@ -469,8 +501,9 @@ define([
 			url:  "ajax.php",
 			type: "POST",
 			dataType: "json",
-			data: configuration,
-			success: function(response) {
+			data: configuration
+		}).then(
+			function(response) {
 				if (response.success) {
 					_currConfigurationID = response.content;
 					var lastUpdated = moment.unix(response.lastUpdated).format("h:mm A, MMM Do YYYY");
@@ -480,14 +513,12 @@ define([
 					// TODO
 				}
 			},
-
-			error: function() {
+			function() {
 				// alert(L.fatal_error);
 				// gd.stopProcessing();
 			}
-		});
+		);
 	};
-
 
 	var _addRows = function(rows) {
 		rows = rows.toString();
@@ -556,12 +587,19 @@ define([
 	var _markRowToDelete = function(e) {
 		var el = e.target;
 		var event = null;
+		var tr = $(el).closest(".gdTableRow");
+
 		if (el.checked) {
-			$(el).closest(".gdTableRow").addClass("gdDeletedRow").effect("highlight", { color: "#cc0000" }, 1000);
+			_isHighlightingDeleteRow = true;
+			tr.addClass("gdDeletedRow").effect("highlight", { color: "#cc0000" }, 1000);
 			event = C.EVENT.DATA_TABLE.ROW.CHECK_TO_DELETE;
 		} else {
-			$(el).closest(".gdTableRow").removeClass("gdDeletedRow");
+			if (_isHighlightingDeleteRow) {
+				tr.stop(true, true);
+			}
+			tr.removeClass("gdDeletedRow");
 			event = C.EVENT.DATA_TABLE.ROW.UNCHECK_TO_DELETE;
+			_isHighlightingDeleteRow = false;
 		}
 		manager.publish({
 			sender: MODULE_ID,
@@ -682,6 +720,25 @@ define([
 		// has been clicked)
 		if (_showExportTypeSettings) {
 			_showExportTypeSettingsSection(newExportType, showImmediately);
+		}
+
+		// now enable/disable the available export targets
+		var exportTargets = $("#gdExportType_" + newExportType).data("compatibleExportTargets").split(",");
+		$("input[name=gdExportTarget]").attr("disabled", "disabled");
+		$("#gdGenerateSection label").addClass("gdDisabled");
+		var firstNonDisabledExportTarget = null;
+		for (var i=0; i&lt;exportTargets.length; i++) {
+			$("#gdExportTarget_" + exportTargets[i]).removeAttr("disabled");
+			$("#gdExportTarget_" + exportTargets[i] + "_label").removeClass("gdDisabled");
+			if (firstNonDisabledExportTarget === null) {
+				firstNonDisabledExportTarget = exportTargets[i];
+			}
+		}
+
+		// now, if the current selected export target is disabled, reset it to the first available non-disabled option
+		var sel = $("input[name=gdExportTarget]:checked:disabled");
+		if (sel.length) {
+			$("#gdExportTarget_" + firstNonDisabledExportTarget).attr("checked", "checked");
 		}
 
 		_currExportType = newExportType;
@@ -886,11 +943,6 @@ define([
 			utils.addValidationErrors({ els: $("#gdNumRowsToGenerate"), error: L.invalid_num_results });
 		}
 
-		// check the user selected at least one country plugin
-		if (_countries.length === 0) {
-			utils.addValidationErrors({ els: null, error: "Please select at least one country in the Country-Specific Data section." });
-		}
-
 		var orderedRowIDs = _getRowOrder();
 		var validRowIDs = [];
 
@@ -1035,11 +1087,11 @@ define([
 			type: "POST",
 			data: data,
 			dataType: "json",
+			contentType: "application/x-www-form-urlencoded;charset=utf-8",
 			success: _generateInPageBatchResponse,
-			error: function(response) {
+			error: function() {
 				_isGenerating = false;
 				utils.stopProcessing();
-//				console.log("error response: ", response);
 			}
 		});
 	};
@@ -1053,7 +1105,7 @@ define([
 			$("#gdProgressMeter").attr("value", _generateInPageRunningCount);
 
 			// 2. Update the actual content
-			_generateInPageContent += response.content;
+			_generateInPageContent += decodeURIComponent(escape(response.content));
 			_codeMirror.setValue(_generateInPageContent);
 
 			// check the process hasn't been interrupted
@@ -1132,9 +1184,12 @@ define([
 			width:     800,
 			height:    400,
 			open: function() {
+				utils.insertModalSpinner({ modalID: "gdPluginInstallation" });
+				utils.playModalSpinner("gdPluginInstallation");
 				pluginManager.installPlugins({
 					errorHandler: null,
 					onCompleteHandler: function() {
+						utils.pauseModalSpinner("gdPluginInstallation");
 						$("#gdPluginInstallation").dialog("option", "buttons", [
 							{
 								text: L.refresh_page,
@@ -1243,6 +1298,7 @@ define([
 
 		$("#gdDataSetHelpNav a").removeClass("gdSelected");
 		$(link).addClass("gdSelected");
+		$("#gdDataSetHelpNav").scrollTop($(link).offset().top);
 
 		// set the header to the name of the Data Type
 		$("#gdFocusedDataTypeHeader").html($(link).html());
@@ -1282,12 +1338,6 @@ define([
 		// remove any custom styles
 		$(".gdHelpSection").removeAttr("style");
 
-		// if required, ensure the appropriate Data Type item is selected
-		if (opts.dataType !== null) {
-			var helpNavEl = ($("#gdDataSetHelpNav li[data-module='" + opts.dataType + "']"))[0];
-			_showDataTypeHelp(helpNavEl);
-		}
-
 		// open the dialog
 		$("#gdMainDialog").dialog({
 			title: 'generate&lt;span style="color:#48b34d"&gt;data&lt;/span&gt;.com',
@@ -1303,6 +1353,17 @@ define([
 				}
 			]
 		});
+
+		// if required, ensure the appropriate Data Type item is selected. This is done after
+		// the dialog is opened because it needs to set the appropriate offset height of the 
+		// left sidebar to focus on the appropriate Data Type's help link. This can only be computed
+		// after it's been opened.
+		if (opts.dataType !== null) {
+			var helpNavEl = ($("#gdDataSetHelpNav li[data-module='" + opts.dataType + "']"))[0];
+			_showDataTypeHelp(helpNavEl);
+		}
+
+		utils.insertModalSpinner({ modalID: "gdMainDialog" });
 
 		if (opts.tab == 2) {
 			_updateMainDialogDeleteButton();
@@ -1440,7 +1501,11 @@ define([
 
 	// account-related
 
-	var _getAccount = function() {
+	var _getAccount = function(params) {
+		var settings = $.extend({
+			onComplete: function() { }
+		}, params);
+
 		utils.startProcessing();
 		$.ajax({
 			url: "ajax.php",
@@ -1449,12 +1514,21 @@ define([
 			data: {
 				action: "getAccount"
 			},
-			success: _onRetrievingAccountInfo,
+			success: function(data, textStatus, jqXHR) {
+				var params = {
+					data: data,
+					textStatus: textStatus,
+					jqXHR: jqXHR,
+					settings: settings
+				};
+				_onRetrievingAccountInfo(params);
+			},
 			error: _onError
 		});
 	};
 
-	var _onRetrievingAccountInfo = function(response) {
+	var _onRetrievingAccountInfo = function(params) {
+		var response = params.data;
 		utils.stopProcessing();
 
 		// enable the save, load and link icons
@@ -1470,6 +1544,114 @@ define([
 
 		_updateAccountInfoTab();
 		_displayDataSets();
+
+		params.settings.onComplete();
+	};
+
+
+	/**
+	 * Called when the user clicks the Update Account button on the first tab of the main dialog.
+	 */
+	var _updateAccountInfo = function(e) {
+		e.preventDefault();
+
+		if (C.DEMO_MODE) {
+			_showDemoOnlyDialog();
+			return;
+		}
+
+		// check all fields have been entered
+		var firstNameField    = $("#gdUserAccount_firstName");
+		var firstNameFieldVal = $.trim(firstNameField.val());
+		var lastNameField    = $("#gdUserAccount_lastName");
+		var lastNameFieldVal = $.trim(lastNameField.val());
+		var emailField    = $("#gdUserAccount_email");
+		var emailFieldVal = $.trim(emailField.val());
+		var passwordField    = $("#gdUserAccount_password");
+		var passwordFieldVal = $.trim(passwordField.val());
+		var passwordField2    = $("#gdUserAccount_password2");
+		var passwordField2Val = $.trim(passwordField2.val());
+
+		var hasErrors = false;
+		if (firstNameFieldVal === "") {
+			firstNameField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			firstNameField.removeClass("gdProblemField");
+		}
+
+		if (lastNameFieldVal === "") {
+			lastNameField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			lastNameField.removeClass("gdProblemField");
+		}
+
+		if (emailFieldVal === "") {
+			emailField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			emailField.removeClass("gdProblemField");
+		}
+
+		// if the users's entered a password, validate them too
+		if (passwordFieldVal !== "" || passwordField2Val !== "") {
+			if (passwordFieldVal === "") {
+				passwordField.addClass("gdProblemField");
+				hasErrors = true;
+			} else {
+				passwordField.removeClass("gdProblemField");
+			}
+			if (passwordField2Val === "") {
+				passwordField2.addClass("gdProblemField");
+				hasErrors = true;
+			} else {
+				passwordField2.removeClass("gdProblemField");
+			}
+			if (passwordFieldVal !== passwordField2Val) {
+				passwordField.addClass("gdProblemField");
+				passwordField2.addClass("gdProblemField");
+				hasErrors = true;
+			} else {
+				passwordField.removeClass("gdProblemField");
+				passwordField2.removeClass("gdProblemField");
+			}
+		}
+
+		if (!hasErrors) {
+			utils.playModalSpinner("gdMainDialog");
+			var data = {
+				action: "updateAccount",
+				accountID: _accountInfo.accountID,
+				firstName: firstNameFieldVal,
+				lastName:  lastNameFieldVal,
+				email: emailFieldVal
+			};
+			if (passwordFieldVal !== "") {
+				data.password = passwordFieldVal;
+			}
+
+			$.ajax({
+				url: "ajax.php",
+				type: "POST",
+				data: data,
+				dataType: "json",
+				success: function(response) {
+					utils.pauseModalSpinner("gdMainDialog");
+					if (response.success) {
+						$("#gdMainDialogTab1Message").show("blind");
+						$(passwordField).val("");
+						$(passwordField2).val("");
+					} else {
+						// TODO
+					}
+				},
+				error: function(response) {
+					utils.pauseModalSpinner("gdMainDialog");
+					console.log("error response: ", response);
+				}
+			});
+		}
 	};
 
 
@@ -1477,8 +1659,18 @@ define([
 		if (_accountInfo.isAnonymous) {
 			$("#gdAccount_AccountType").html(L.anonymous_admin_account);
 		} else {
-			$("#gdAccount_AccountType").html(L.admin);
+			var accountTypeStr = "";
+			if (_accountInfo.accountType == "admin") {
+				accountTypeStr = L.admin;
+			} else {
+				accountTypeStr = L.user;
+			}
+			$("#gdAccount_AccountType").html(accountTypeStr);
 		}
+
+		$("#gdUserAccount_firstName").val(_accountInfo.firstName);
+		$("#gdUserAccount_lastName").val(_accountInfo.lastName);
+		$("#gdUserAccount_email").val(_accountInfo.email);
 
 		$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 		$("#gdAccount_DateAccountCreated").html(moment.unix(_accountInfo.dateCreated).format("MMM Do, YYYY"));
@@ -1523,7 +1715,6 @@ define([
 		console.log(response);
 	};
 
-
 	var _getConfiguration = function(configurationID) {
 		var dataSet = {};
 		for (var i=0; i&lt;_dataSets.length; i++) {
@@ -1547,11 +1738,9 @@ define([
 
 	var _cancelGeneration = function(e) {
 		e.preventDefault();
-
 		if ($(e.target).hasClass("gdDisabledLink")) {
 			return;
 		}
-
 		if (!_isGenerating) {
 			return;
 		}
@@ -1578,7 +1767,7 @@ define([
 		}
 
 		$("#gdLinkToDataSetDialog").dialog({
-			title: 'Link to Data Set',
+			title: L.link_to_data_set,
 			dialogClass: "gdMainDialog",
 			width: 500,
 			modal: true,
@@ -1601,7 +1790,7 @@ define([
 			},
 			buttons: [
 				{
-					text: "Close",
+					text: L.close,
 					click: function() { $(this).dialog("close"); }
 				}
 			]
@@ -1688,8 +1877,33 @@ define([
 			width: 500,
 			modal: true,
 			buttons: [{
-				text: "Close",
+				text: L.close,
 				click: function() { $(this).dialog("close"); }
+			}]
+		});
+	};
+
+	var _showPermissionDeniedDialog = function() {
+		var content = C.SETTINGS.ANON_USER_PERMISSION_DENIED_MSG;
+		$('&lt;div&gt;' + content + '&lt;/div&gt;').dialog({
+			title: "Sorry!",
+			width: 500,
+			modal: true,
+			buttons: [{
+				text: L.close,
+				click: function() { $(this).dialog("close"); }
+			}]
+		});
+	};
+
+	var _openLoginDialog = function() {
+		$("#gdLoginDialog").dialog({
+			title: L.please_login,
+			width: 500,
+			modal: true,
+			buttons: [{
+				text: L.login,
+				click: _login
 			}]
 		});
 	};
@@ -1699,6 +1913,74 @@ define([
 			_showDemoOnlyDialog();
 			e.preventDefault();
 		}
+	};
+
+
+	var _login = function() {
+		var email    = $.trim($("#gdLogin_email").val());
+		var password = $.trim($("#gdLogin_password").val());
+
+		// validate
+		utils.clearValidationErrors($("#gdLoginDialog"));
+		if (email === "") {
+			utils.addValidationErrors({ els: [$("#gdLogin_email")], error: L.validation_no_email });
+		}
+		if (password === "") {
+			utils.addValidationErrors({ els: [$("#gdLogin_password")], error: L.validation_no_password });
+		}
+
+		var errors = utils.getValidationErrors();
+		if (errors.length) {
+			utils.displayValidationErrors("#gdLoginError");
+			return false;
+		}
+
+		utils.startProcessing();
+
+		$.ajax({
+			url:  "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				action: "login",
+				email: email,
+				password: password
+			},
+			success: function(response) {
+				if (response.success) {
+					_getAccount({
+						onComplete: _onLoginComplete
+					});
+				} else {
+					utils.clearValidationErrors($("#gdLoginDialog"));
+					utils.addValidationErrors({ els: [], error: response.content });
+					utils.displayValidationErrors("#gdLoginError");
+					utils.stopProcessing();
+				}
+			}
+		});
+	};
+
+	var _onLoginComplete = function() {
+		if (_accountInfo.accountType === "admin") {
+			$("#gdMainTab2,#gdMainTab3").show();
+			require(["accountManager"], function(am) {
+				am.run();
+			});
+		}
+		$("#gdMainDialogTabs ul").show();
+
+		_isLoggedIn = true;
+		$("#gdNumRowsToGenerate").removeAttr("readonly");
+		$("#gdDataSetStatusLine,#gdProcessingIcon").show();
+
+		// now show the links in the header
+		$("#gdUserAccount,#gdLogout").show();
+		$("#gdLogin").hide();
+
+		utils.stopProcessing();
+
+		$("#gdLoginDialog").dialog("close");
 	};
 
 	var _logout = function() {
@@ -1711,6 +1993,8 @@ define([
 			},
 			success: function(response) {
 				if (response.success) {
+					// always redirect to login.php. If the system is set up to allow anonymous 
+					// logins for multi-users it'll automatically redirect
 					window.location = "login.php";
 				}
 			},
@@ -1785,7 +2069,7 @@ define([
 <footer class="footer">
 	<div class="container">
 		
-		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Mon Jan 14 2013 21:02:12 GMT-0800 (PST)</p>
+		<p>Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Mon Apr 22 2013 17:16:43 GMT-0700 (PDT)</p>
 	</div>
 </footer>
 

@@ -1,0 +1,1811 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Base</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method_Math_Stats" title="Math_Stats :: Constructor for the class"><span class="description">Constructor for the class</span><pre>Math_Stats()</pre></a></li>
+<li class="method public "><a href="#method___calcAbsoluteDeviation" title="__calcAbsoluteDeviation :: Utility function to calculate the absolute deviation with or without
+a fixed mean"><span class="description">Utility function to calculate the absolute deviation with or without
+a fixed mean</span><pre>__calcAbsoluteDeviation()</pre></a></li>
+<li class="method public "><a href="#method___calcVariance" title="__calcVariance :: Utility function to calculate the variance with or without
+a fixed mean"><span class="description">Utility function to calculate the variance with or without
+a fixed mean</span><pre>__calcVariance()</pre></a></li>
+<li class="method public "><a href="#method___format" title="__format :: Utility function to format a PEAR_Error to be used by calc(),
+calcBasic() and calcFull()"><span class="description">Utility function to format a PEAR_Error to be used by calc(),
+calcBasic() and calcFull()</span><pre>__format()</pre></a></li>
+<li class="method public "><a href="#method___sumabsdev" title="__sumabsdev :: Utility function to calculate: SUM { | xi - mean | }"><span class="description">Utility function to calculate: SUM { | xi - mean | }</span><pre>__sumabsdev()</pre></a></li>
+<li class="method public "><a href="#method___sumdiff" title="__sumdiff :: Utility function to calculate: SUM { (xi - mean)^n }"><span class="description">Utility function to calculate: SUM { (xi - mean)^n }</span><pre>__sumdiff()</pre></a></li>
+<li class="method public "><a href="#method__validate" title="_validate :: Utility function to validate the data and modify it
+according to the current null handling option"><span class="description">Utility function to validate the data and modify it
+according to the current null handling option</span><pre>_validate()</pre></a></li>
+<li class="method public "><a href="#method_absDev" title="absDev :: Calculates the absolute deviation of the data points in the set
+Handles cummulative data sets correctly"><span class="description">Calculates the absolute deviation of the data points in the set
+Handles cummulative data sets correctly</span><pre>absDev()</pre></a></li>
+<li class="method public "><a href="#method_absDevWithMean" title="absDevWithMean :: Calculates the absolute deviation of the data points in the set
+given a fixed mean (average) value."><span class="description">Calculates the absolute deviation of the data points in the set
+given a fixed mean (average) value.</span><pre>absDevWithMean()</pre></a></li>
+<li class="method public "><a href="#method_calc" title="calc :: Calculates the basic or full statistics for the data set"><span class="description">Calculates the basic or full statistics for the data set</span><pre>calc()</pre></a></li>
+<li class="method public "><a href="#method_calcBasic" title="calcBasic :: Calculates a basic set of statistics"><span class="description">Calculates a basic set of statistics</span><pre>calcBasic()</pre></a></li>
+<li class="method public "><a href="#method_calcFull" title="calcFull :: Calculates a full set of statistics"><span class="description">Calculates a full set of statistics</span><pre>calcFull()</pre></a></li>
+<li class="method public "><a href="#method_center" title="center :: Transforms the data by substracting each entry from the mean."><span class="description">Transforms the data by substracting each entry from the mean.</span><pre>center()</pre></a></li>
+<li class="method public "><a href="#method_coeffOfVariation" title="coeffOfVariation :: Calculates the coefficient of variation of a data set."><span class="description">Calculates the coefficient of variation of a data set.</span><pre>coeffOfVariation()</pre></a></li>
+<li class="method public "><a href="#method_count" title="count :: Calculates the number of data points in the set
+Handles cummulative data sets correctly"><span class="description">Calculates the number of data points in the set
+Handles cummulative data sets correctly</span><pre>count()</pre></a></li>
+<li class="method public "><a href="#method_frequency" title="frequency :: Calculates the value frequency table of a data set."><span class="description">Calculates the value frequency table of a data set.</span><pre>frequency()</pre></a></li>
+<li class="method public "><a href="#method_geometricMean" title="geometricMean :: Calculates the geometrical mean of the data points in the set
+Handles cummulative data sets correctly"><span class="description">Calculates the geometrical mean of the data points in the set
+Handles cummulative data sets correctly</span><pre>geometricMean()</pre></a></li>
+<li class="method public "><a href="#method_getData" title="getData :: Returns the data which might have been modified
+according to the current null handling options."><span class="description">Returns the data which might have been modified
+according to the current null handling options.</span><pre>getData()</pre></a></li>
+<li class="method public "><a href="#method_harmonicMean" title="harmonicMean :: Calculates the harmonic mean of the data points in the set
+Handles cummulative data sets correctly"><span class="description">Calculates the harmonic mean of the data points in the set
+Handles cummulative data sets correctly</span><pre>harmonicMean()</pre></a></li>
+<li class="method public "><a href="#method_interquartileMean" title="interquartileMean :: The interquartile mean is defined as the mean of the values left
+after discarding the lower 25% and top 25% ranked values, i.e.:"><span class="description">The interquartile mean is defined as the mean of the values left
+after discarding the lower 25% and top 25% ranked values, i.e.:</span><pre>interquartileMean()</pre></a></li>
+<li class="method public "><a href="#method_interquartileRange" title="interquartileRange :: The interquartile range is the distance between the 75th and 25th
+percentiles."><span class="description">The interquartile range is the distance between the 75th and 25th
+percentiles.</span><pre>interquartileRange()</pre></a></li>
+<li class="method public "><a href="#method_kurtosis" title="kurtosis :: Calculates the kurtosis of the data distribution in the set
+The kurtosis measures the degrees of peakedness of a distribution."><span class="description">Calculates the kurtosis of the data distribution in the set
+The kurtosis measures the degrees of peakedness of a distribution.</span><pre>kurtosis()</pre></a></li>
+<li class="method public "><a href="#method_max" title="max :: Calculates the maximum of a data set."><span class="description">Calculates the maximum of a data set.</span><pre>max()</pre></a></li>
+<li class="method public "><a href="#method_mean" title="mean :: Calculates the mean (average) of the data points in the set
+Handles cummulative data sets correctly"><span class="description">Calculates the mean (average) of the data points in the set
+Handles cummulative data sets correctly</span><pre>mean()</pre></a></li>
+<li class="method public "><a href="#method_median" title="median :: Calculates the median of a data set."><span class="description">Calculates the median of a data set.</span><pre>median()</pre></a></li>
+<li class="method public "><a href="#method_midrange" title="midrange :: Calculates the midrange of a data set."><span class="description">Calculates the midrange of a data set.</span><pre>midrange()</pre></a></li>
+<li class="method public "><a href="#method_min" title="min :: Calculates the minimum of a data set."><span class="description">Calculates the minimum of a data set.</span><pre>min()</pre></a></li>
+<li class="method public "><a href="#method_mode" title="mode :: Calculates the mode of a data set."><span class="description">Calculates the mode of a data set.</span><pre>mode()</pre></a></li>
+<li class="method public "><a href="#method_percentile" title="percentile :: The pth percentile is the value such that p% of the a sorted data set
+is smaller than it, and (100 - p)% of the data is larger."><span class="description">The pth percentile is the value such that p% of the a sorted data set
+is smaller than it, and (100 - p)% of the data is larger.</span><pre>percentile()</pre></a></li>
+<li class="method public "><a href="#method_product" title="product :: Calculates PROD { (xi) }, (the product of all observations)
+Handles cummulative data sets correctly"><span class="description">Calculates PROD { (xi) }, (the product of all observations)
+Handles cummulative data sets correctly</span><pre>product()</pre></a></li>
+<li class="method public "><a href="#method_productN" title="productN :: Calculates PROD { (xi)^n }, which is the product of all observations
+Handles cummulative data sets correctly"><span class="description">Calculates PROD { (xi)^n }, which is the product of all observations
+Handles cummulative data sets correctly</span><pre>productN()</pre></a></li>
+<li class="method public "><a href="#method_quartileDeviation" title="quartileDeviation :: The quartile deviation is half of the interquartile range value"><span class="description">The quartile deviation is half of the interquartile range value</span><pre>quartileDeviation()</pre></a></li>
+<li class="method public "><a href="#method_quartileSkewnessCoefficient" title="quartileSkewnessCoefficient :: The quartile skewness coefficient (also known as Bowley Skewness),
+is defined as follows:"><span class="description">The quartile skewness coefficient (also known as Bowley Skewness),
+is defined as follows:</span><pre>quartileSkewnessCoefficient()</pre></a></li>
+<li class="method public "><a href="#method_quartileVariationCoefficient" title="quartileVariationCoefficient :: The quartile variation coefficient is defines as follows:"><span class="description">The quartile variation coefficient is defines as follows:</span><pre>quartileVariationCoefficient()</pre></a></li>
+<li class="method public "><a href="#method_quartiles" title="quartiles :: The quartiles are defined as the values that divide a sorted
+data set into four equal-sized subsets, and correspond to the
+25th, 50th, and 75th percentiles."><span class="description">The quartiles are defined as the values that divide a sorted
+data set into four equal-sized subsets, and correspond to the
+25th, 50th, and 75th percentiles.</span><pre>quartiles()</pre></a></li>
+<li class="method public "><a href="#method_range" title="range :: Calculates the range of the data set = max - min"><span class="description">Calculates the range of the data set = max - min</span><pre>range()</pre></a></li>
+<li class="method public "><a href="#method_sampleCentralMoment" title="sampleCentralMoment :: Calculates the nth central moment (m{n}) of a data set."><span class="description">Calculates the nth central moment (m{n}) of a data set.</span><pre>sampleCentralMoment()</pre></a></li>
+<li class="method public "><a href="#method_sampleRawMoment" title="sampleRawMoment :: Calculates the nth raw moment (m{n}) of a data set."><span class="description">Calculates the nth raw moment (m{n}) of a data set.</span><pre>sampleRawMoment()</pre></a></li>
+<li class="method public "><a href="#method_setData" title="setData :: Sets and verifies the data, checking for nulls and using
+the current null handling option"><span class="description">Sets and verifies the data, checking for nulls and using
+the current null handling option</span><pre>setData()</pre></a></li>
+<li class="method public "><a href="#method_setNullOption" title="setNullOption :: Sets the null handling option."><span class="description">Sets the null handling option.</span><pre>setNullOption()</pre></a></li>
+<li class="method public "><a href="#method_skewness" title="skewness :: Calculates the skewness of the data distribution in the set
+The skewness measures the degree of asymmetry of a distribution,
+and is related to the third central moment of a distribution."><span class="description">Calculates the skewness of the data distribution in the set
+The skewness measures the degree of asymmetry of a distribution,
+and is related to the third central moment of a distribution.</span><pre>skewness()</pre></a></li>
+<li class="method public "><a href="#method_stDev" title="stDev :: Calculates the standard deviation (unbiased) of the data points in the set
+Handles cummulative data sets correctly"><span class="description">Calculates the standard deviation (unbiased) of the data points in the set
+Handles cummulative data sets correctly</span><pre>stDev()</pre></a></li>
+<li class="method public "><a href="#method_stDevWithMean" title="stDevWithMean :: Calculates the standard deviation (unbiased) of the data points in the set
+given a fixed mean (average) value."><span class="description">Calculates the standard deviation (unbiased) of the data points in the set
+given a fixed mean (average) value.</span><pre>stDevWithMean()</pre></a></li>
+<li class="method public "><a href="#method_stdErrorOfMean" title="stdErrorOfMean :: Calculates the standard error of the mean."><span class="description">Calculates the standard error of the mean.</span><pre>stdErrorOfMean()</pre></a></li>
+<li class="method public "><a href="#method_studentize" title="studentize :: Transforms the data by substracting each entry from the mean and
+dividing by its standard deviation."><span class="description">Transforms the data by substracting each entry from the mean and
+dividing by its standard deviation.</span><pre>studentize()</pre></a></li>
+<li class="method public "><a href="#method_sum" title="sum :: Calculates SUM { xi }
+Handles cummulative data sets correctly"><span class="description">Calculates SUM { xi }
+Handles cummulative data sets correctly</span><pre>sum()</pre></a></li>
+<li class="method public "><a href="#method_sum2" title="sum2 :: Calculates SUM { (xi)^2 }
+Handles cummulative data sets correctly"><span class="description">Calculates SUM { (xi)^2 }
+Handles cummulative data sets correctly</span><pre>sum2()</pre></a></li>
+<li class="method public "><a href="#method_sumN" title="sumN :: Calculates SUM { (xi)^n }
+Handles cummulative data sets correctly"><span class="description">Calculates SUM { (xi)^n }
+Handles cummulative data sets correctly</span><pre>sumN()</pre></a></li>
+<li class="method public "><a href="#method_variance" title="variance :: Calculates the variance (unbiased) of the data points in the set
+Handles cummulative data sets correctly"><span class="description">Calculates the variance (unbiased) of the data points in the set
+Handles cummulative data sets correctly</span><pre>variance()</pre></a></li>
+<li class="method public "><a href="#method_varianceWithMean" title="varianceWithMean :: Calculates the variance (unbiased) of the data points in the set
+given a fixed mean (average) value."><span class="description">Calculates the variance (unbiased) of the data points in the set
+given a fixed mean (average) value.</span><pre>varianceWithMean()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property__calculatedValues" title="$_calculatedValues :: Array for caching result values, should be reset
+when using setData()"><span class="description"></span><pre>$_calculatedValues</pre></a></li>
+<li class="property public "><a href="#property__data" title="$_data :: The simple or cummulative data set."><span class="description"></span><pre>$_data</pre></a></li>
+<li class="property public "><a href="#property__dataExpanded" title="$_dataExpanded :: Expanded data set."><span class="description"></span><pre>$_dataExpanded</pre></a></li>
+<li class="property public "><a href="#property__dataOption" title="$_dataOption :: Flag for data type, one of STATS_DATA_SIMPLE or
+STATS_DATA_CUMMULATIVE."><span class="description"></span><pre>$_dataOption</pre></a></li>
+<li class="property public "><a href="#property__nullOption" title="$_nullOption :: Flag for null handling options."><span class="description"></span><pre>$_nullOption</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\Base"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Base.html">Base</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">A class to calculate descriptive statistics from a data set.</p>
+<div class="details">
+<div class="long_description"><p>Data sets can be simple arrays of data, or a cummulative hash.
+The second form is useful when passing large data set,
+for example the data set:</p>
+
+<pre>
+$data1 = array (1,2,1,1,1,1,3,3,4.1,3,2,2,4.1,1,1,2,3,3,2,2,1,1,2,2);
+</pre>
+
+<p>can be epxressed more compactly as:</p>
+
+<pre>
+$data2 = array('1'=>9, '2'=>8, '3'=>5, '4.1'=>2);
+</pre>
+
+<p>Example of use:</p>
+
+<pre>
+include_once 'Math/Stats.php';
+$s = new Math_Stats();
+$s->setData($data1);
+// or
+// $s->setData($data2, STATS_DATA_CUMMULATIVE);
+$stats = $s->calcBasic();
+echo 'Mean: '.$stats['mean'].' StDev: '.$stats['stdev'].' <br />\n';
+
+// using data with nulls
+// first ignoring them:
+$data3 = array(1.2, 'foo', 2.4, 3.1, 4.2, 3.2, null, 5.1, 6.2);
+$s->setNullOption(STATS_IGNORE_NULL);
+$s->setData($data3);
+$stats3 = $s->calcFull();
+
+// and then assuming nulls == 0
+$s->setNullOption(STATS_USE_NULL_AS_ZERO);
+$s->setData($data3);
+$stats3 = $s->calcFull();
+</pre>
+
+<p>Originally this class was part of NumPHP (Numeric PHP package)</p></div>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="mailto:jmcastagnetto@php.net">Jesus M. Castagnetto</a></td>
+</tr>
+<tr>
+<th>version</th>
+<td>0.8</td>
+</tr>
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Math.Stats.html">Math_Stats</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_Math_Stats"></a><div class="element clickable method public method_Math_Stats" data-toggle="collapse" data-target=".method_Math_Stats .collapse">
+<h2>Constructor for the class</h2>
+<pre>Math_Stats(\optional $nullOption) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$nullOption</h4>
+<code>\optional</code><p>int $nullOption how to handle null values</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>Math_Stats</div>
+</div></div>
+</div>
+<a id="method___calcAbsoluteDeviation"></a><div class="element clickable method public method___calcAbsoluteDeviation" data-toggle="collapse" data-target=".method___calcAbsoluteDeviation .collapse">
+<h2>Utility function to calculate the absolute deviation with or without
+a fixed mean</h2>
+<pre>__calcAbsoluteDeviation($mean) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>private</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\absDev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\absDevWithMean()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mean</h4><p>the fixed mean to use, null as default</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>a numeric value on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method___calcVariance"></a><div class="element clickable method public method___calcVariance" data-toggle="collapse" data-target=".method___calcVariance .collapse">
+<h2>Utility function to calculate the variance with or without
+a fixed mean</h2>
+<pre>__calcVariance($mean) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>private</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\variance()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\varianceWithMean()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mean</h4><p>the fixed mean to use, null as default</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>a numeric value on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method___format"></a><div class="element clickable method public method___format" data-toggle="collapse" data-target=".method___format .collapse">
+<h2>Utility function to format a PEAR_Error to be used by calc(),
+calcBasic() and calcFull()</h2>
+<pre>__format(mixed $v, $useErrorObject) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$v</h4>
+<code>mixed</code><p>value to be formatted</p></div>
+<div class="subelement argument"><h4>$useErrorObject</h4></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>if the value is a PEAR_Error object, and $useErrorObject
+             is false, then a string with the error message will be returned,
+             otherwise the value will not be modified and returned as passed.</div>
+</div></div>
+</div>
+<a id="method___sumabsdev"></a><div class="element clickable method public method___sumabsdev" data-toggle="collapse" data-target=".method___sumabsdev .collapse">
+<h2>Utility function to calculate: SUM { | xi - mean | }</h2>
+<pre>__sumabsdev(\optional $mean) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>private</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\absDev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\absDevWithMean()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mean</h4>
+<code>\optional</code><p>double $mean the mean value for the set or population</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the sum on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method___sumdiff"></a><div class="element clickable method public method___sumdiff" data-toggle="collapse" data-target=".method___sumdiff .collapse">
+<h2>Utility function to calculate: SUM { (xi - mean)^n }</h2>
+<pre>__sumdiff(\numeric $power, \optional $mean) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>private</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\stDev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\variaceWithMean();</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\skewness();</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\kurtosis();</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$power</h4>
+<code>\numeric</code><p>the exponent</p></div>
+<div class="subelement argument">
+<h4>$mean</h4>
+<code>\optional</code><p>double $mean the data set mean value</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the sum on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method__validate"></a><div class="element clickable method public method__validate" data-toggle="collapse" data-target=".method__validate .collapse">
+<h2>Utility function to validate the data and modify it
+according to the current null handling option</h2>
+<pre>_validate() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>private</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\setData()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>true on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_absDev"></a><div class="element clickable method public method_absDev" data-toggle="collapse" data-target=".method_absDev .collapse">
+<h2>Calculates the absolute deviation of the data points in the set
+Handles cummulative data sets correctly</h2>
+<pre>absDev() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\__sumabsdev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\absDevWithMean()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the absolute deviation on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_absDevWithMean"></a><div class="element clickable method public method_absDevWithMean" data-toggle="collapse" data-target=".method_absDevWithMean .collapse">
+<h2>Calculates the absolute deviation of the data points in the set
+given a fixed mean (average) value.</h2>
+<pre>absDevWithMean(\numeric $mean) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Not used in calcBasic(), calcFull()
+or calc().
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\__sumabsdev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\absDev()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mean</h4>
+<code>\numeric</code><p>the fixed mean value</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the absolute deviation on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_calc"></a><div class="element clickable method public method_calc" data-toggle="collapse" data-target=".method_calc .collapse">
+<h2>Calculates the basic or full statistics for the data set</h2>
+<pre>calc(int $mode, boolean $returnErrorObject) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calcBasic()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calcFull()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mode</h4>
+<code>int</code><p>one of STATS_BASIC or STATS_FULL</p></div>
+<div class="subelement argument">
+<h4>$returnErrorObject</h4>
+<code>boolean</code><p>whether the raw PEAR_Error (when true, default), or only the error message will be returned (when false), if an error happens.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>an associative array of statistics on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_calcBasic"></a><div class="element clickable method public method_calcBasic" data-toggle="collapse" data-target=".method_calcBasic .collapse">
+<h2>Calculates a basic set of statistics</h2>
+<pre>calcBasic(boolean $returnErrorObject) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calcFull()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$returnErrorObject</h4>
+<code>boolean</code><p>whether the raw PEAR_Error (when true, default), or only the error message will be returned (when false), if an error happens.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>an associative array of statistics on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_calcFull"></a><div class="element clickable method public method_calcFull" data-toggle="collapse" data-target=".method_calcFull .collapse">
+<h2>Calculates a full set of statistics</h2>
+<pre>calcFull(boolean $returnErrorObject) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calcBasic()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$returnErrorObject</h4>
+<code>boolean</code><p>whether the raw PEAR_Error (when true, default), or only the error message will be returned (when false), if an error happens.</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>an associative array of statistics on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_center"></a><div class="element clickable method public method_center" data-toggle="collapse" data-target=".method_center .collapse">
+<h2>Transforms the data by substracting each entry from the mean.</h2>
+<pre>center() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will reset all pre-calculated values to their original (unset) defaults.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\mean()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\setData()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>true on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_coeffOfVariation"></a><div class="element clickable method public method_coeffOfVariation" data-toggle="collapse" data-target=".method_coeffOfVariation .collapse">
+<h2>Calculates the coefficient of variation of a data set.</h2>
+<pre>coeffOfVariation() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The coefficient of variation measures the spread of a set of data
+as a proportion of its mean. It is often expressed as a percentage.
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\stDev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\mean()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the coefficient of variation on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_count"></a><div class="element clickable method public method_count" data-toggle="collapse" data-target=".method_count .collapse">
+<h2>Calculates the number of data points in the set
+Handles cummulative data sets correctly</h2>
+<pre>count() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the count on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_frequency"></a><div class="element clickable method public method_frequency" data-toggle="collapse" data-target=".method_frequency .collapse">
+<h2>Calculates the value frequency table of a data set.</h2>
+<pre>frequency() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\min()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\max()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>an associative array of value=>frequency items on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_geometricMean"></a><div class="element clickable method public method_geometricMean" data-toggle="collapse" data-target=".method_geometricMean .collapse">
+<h2>Calculates the geometrical mean of the data points in the set
+Handles cummulative data sets correctly</h2>
+<pre>geometricMean() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\product()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the geometrical mean value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_getData"></a><div class="element clickable method public method_getData" data-toggle="collapse" data-target=".method_getData .collapse">
+<h2>Returns the data which might have been modified
+according to the current null handling options.</h2>
+<pre>getData(boolean $expanded) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\_validate()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$expanded</h4>
+<code>boolean</code><p>whether to return a expanded list, default is false</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>array of data on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_harmonicMean"></a><div class="element clickable method public method_harmonicMean" data-toggle="collapse" data-target=".method_harmonicMean .collapse">
+<h2>Calculates the harmonic mean of the data points in the set
+Handles cummulative data sets correctly</h2>
+<pre>harmonicMean() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the harmonic mean value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_interquartileMean"></a><div class="element clickable method public method_interquartileMean" data-toggle="collapse" data-target=".method_interquartileMean .collapse">
+<h2>The interquartile mean is defined as the mean of the values left
+after discarding the lower 25% and top 25% ranked values, i.e.:</h2>
+<pre>interquartileMean() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>interquart mean = mean(&lt;P(25),P(75)>)</p>
+
+<p>where: P = percentile</p></div>
+<table class="table table-bordered">
+<tr>
+<th>todo</th>
+<td>need to double check the equation</td>
+</tr>
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\quartiles()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>a numeric value on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_interquartileRange"></a><div class="element clickable method public method_interquartileRange" data-toggle="collapse" data-target=".method_interquartileRange .collapse">
+<h2>The interquartile range is the distance between the 75th and 25th
+percentiles.</h2>
+<pre>interquartileRange() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Basically the range of the middle 50% of the data set,
+and thus is not affected by outliers or extreme values.</p>
+
+<p>interquart range = P(75) - P(25)</p>
+
+<p>where: P = percentile</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\quartiles()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>a numeric value on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_kurtosis"></a><div class="element clickable method public method_kurtosis" data-toggle="collapse" data-target=".method_kurtosis .collapse">
+<h2>Calculates the kurtosis of the data distribution in the set
+The kurtosis measures the degrees of peakedness of a distribution.</h2>
+<pre>kurtosis() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It is also called the "excess" or "excess coefficient", and is
+a normalized form of the fourth central moment of a distribution.
+A normal distributions has kurtosis = 0
+A narrow and peaked (leptokurtic) distribution has a
+kurtosis > 0
+A flat and wide (platykurtic) distribution has a kurtosis &lt; 0
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\__sumdiff()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\stDev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the kurtosis value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_max"></a><div class="element clickable method public method_max" data-toggle="collapse" data-target=".method_max .collapse">
+<h2>Calculates the maximum of a data set.</h2>
+<pre>max() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\min()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the maximum value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_mean"></a><div class="element clickable method public method_mean" data-toggle="collapse" data-target=".method_mean .collapse">
+<h2>Calculates the mean (average) of the data points in the set
+Handles cummulative data sets correctly</h2>
+<pre>mean() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sum()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the mean value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_median"></a><div class="element clickable method public method_median" data-toggle="collapse" data-target=".method_median .collapse">
+<h2>Calculates the median of a data set.</h2>
+<pre>median() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The median is the value such that half of the points are below it
+in a sorted data set.
+If the number of values is odd, it is the middle item.
+If the number of values is even, is the average of the two middle items.
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the median value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_midrange"></a><div class="element clickable method public method_midrange" data-toggle="collapse" data-target=".method_midrange .collapse">
+<h2>Calculates the midrange of a data set.</h2>
+<pre>midrange() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The midrange is the average of the minimum and maximum of the data set.
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\min()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\max()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the midrange value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_min"></a><div class="element clickable method public method_min" data-toggle="collapse" data-target=".method_min .collapse">
+<h2>Calculates the minimum of a data set.</h2>
+<pre>min() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\max()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the minimum value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_mode"></a><div class="element clickable method public method_mode" data-toggle="collapse" data-target=".method_mode .collapse">
+<h2>Calculates the mode of a data set.</h2>
+<pre>mode() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The mode is the value with the highest frequency in the data set.
+There can be more than one mode.
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\frequency()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>an array of mode value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_percentile"></a><div class="element clickable method public method_percentile" data-toggle="collapse" data-target=".method_percentile .collapse">
+<h2>The pth percentile is the value such that p% of the a sorted data set
+is smaller than it, and (100 - p)% of the data is larger.</h2>
+<pre>percentile(\numeric $p) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A quick algorithm to pick the appropriate value from a sorted data
+set is as follows:</p>
+
+<ul>
+<li>Count the number of values: n</li>
+<li>Calculate the position of the value in the data list: i = p * (n + 1)</li>
+<li>if i is an integer, return the data at that position</li>
+<li>if i &lt; 1, return the minimum of the data set</li>
+<li>if i > n, return the maximum of the data set</li>
+<li>otherwise, average the entries at adjacent positions to i</li>
+</ul>
+
+<p>The median is the 50th percentile value.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>todo</th>
+<td>need to double check generality of the algorithm</td>
+</tr>
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\quartiles()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\median()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$p</h4>
+<code>\numeric</code><p>the percentile to estimate, e.g. 25 for 25th percentile</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>a numeric value on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_product"></a><div class="element clickable method public method_product" data-toggle="collapse" data-target=".method_product .collapse">
+<h2>Calculates PROD { (xi) }, (the product of all observations)
+Handles cummulative data sets correctly</h2>
+<pre>product() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\productN()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the product on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_productN"></a><div class="element clickable method public method_productN" data-toggle="collapse" data-target=".method_productN .collapse">
+<h2>Calculates PROD { (xi)^n }, which is the product of all observations
+Handles cummulative data sets correctly</h2>
+<pre>productN(\numeric $n) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\product()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$n</h4>
+<code>\numeric</code><p>the exponent</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the product on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_quartileDeviation"></a><div class="element clickable method public method_quartileDeviation" data-toggle="collapse" data-target=".method_quartileDeviation .collapse">
+<h2>The quartile deviation is half of the interquartile range value</h2>
+<pre>quartileDeviation() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>quart dev = (P(75) - P(25)) / 2</p>
+
+<p>where: P = percentile</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\quartiles()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\interquartileRange()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>a numeric value on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_quartileSkewnessCoefficient"></a><div class="element clickable method public method_quartileSkewnessCoefficient" data-toggle="collapse" data-target=".method_quartileSkewnessCoefficient .collapse">
+<h2>The quartile skewness coefficient (also known as Bowley Skewness),
+is defined as follows:</h2>
+<pre>quartileSkewnessCoefficient() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>quart skewness coeff = (P(25) - 2*P(50) + P(75)) / (P(75) - P(25))</p>
+
+<p>where: P = percentile</p></div>
+<table class="table table-bordered">
+<tr>
+<th>todo</th>
+<td>need to double check the equation</td>
+</tr>
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\quartiles()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>a numeric value on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_quartileVariationCoefficient"></a><div class="element clickable method public method_quartileVariationCoefficient" data-toggle="collapse" data-target=".method_quartileVariationCoefficient .collapse">
+<h2>The quartile variation coefficient is defines as follows:</h2>
+<pre>quartileVariationCoefficient() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>quart var coeff = 100 * (P(75) - P(25)) / (P(75) + P(25))</p>
+
+<p>where: P = percentile</p></div>
+<table class="table table-bordered">
+<tr>
+<th>todo</th>
+<td>need to double check the equation</td>
+</tr>
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\quartiles()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>a numeric value on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_quartiles"></a><div class="element clickable method public method_quartiles" data-toggle="collapse" data-target=".method_quartiles .collapse">
+<h2>The quartiles are defined as the values that divide a sorted
+data set into four equal-sized subsets, and correspond to the
+25th, 50th, and 75th percentiles.</h2>
+<pre>quartiles() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\percentile()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>an associative array of quartiles on success, a PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_range"></a><div class="element clickable method public method_range" data-toggle="collapse" data-target=".method_range .collapse">
+<h2>Calculates the range of the data set = max - min</h2>
+<pre>range() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the value of the range on success, a PEAR_Error object otherwise.</div>
+</div></div>
+</div>
+<a id="method_sampleCentralMoment"></a><div class="element clickable method public method_sampleCentralMoment" data-toggle="collapse" data-target=".method_sampleCentralMoment .collapse">
+<h2>Calculates the nth central moment (m{n}) of a data set.</h2>
+<pre>sampleCentralMoment(integer $n) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The definition of a sample central moment is:</p>
+
+<pre><code>m{n} = 1/N * SUM { (xi - avg)^n }
+</code></pre>
+
+<p>where: N = sample size, avg = sample mean.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$n</h4>
+<code>integer</code><p>moment to calculate</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the numeric value of the moment on success, PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_sampleRawMoment"></a><div class="element clickable method public method_sampleRawMoment" data-toggle="collapse" data-target=".method_sampleRawMoment .collapse">
+<h2>Calculates the nth raw moment (m{n}) of a data set.</h2>
+<pre>sampleRawMoment(integer $n) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The definition of a sample central moment is:</p>
+
+<pre><code>m{n} = 1/N * SUM { xi^n }
+</code></pre>
+
+<p>where: N = sample size, avg = sample mean.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$n</h4>
+<code>integer</code><p>moment to calculate</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the numeric value of the moment on success, PEAR_Error otherwise</div>
+</div></div>
+</div>
+<a id="method_setData"></a><div class="element clickable method public method_setData" data-toggle="collapse" data-target=".method_setData .collapse">
+<h2>Sets and verifies the data, checking for nulls and using
+the current null handling option</h2>
+<pre>setData(array $arr, \optional $opt) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$arr</h4>
+<code>array</code><p>the data set</p></div>
+<div class="subelement argument">
+<h4>$opt</h4>
+<code>\optional</code><p>int $opt data format: STATS_DATA_CUMMULATIVE or STATS_DATA_SIMPLE (default)</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>true on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_setNullOption"></a><div class="element clickable method public method_setNullOption" data-toggle="collapse" data-target=".method_setNullOption .collapse">
+<h2>Sets the null handling option.</h2>
+<pre>setNullOption($nullOption) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Must be called before assigning a new data set containing null values</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\_validate()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$nullOption</h4></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>true on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_skewness"></a><div class="element clickable method public method_skewness" data-toggle="collapse" data-target=".method_skewness .collapse">
+<h2>Calculates the skewness of the data distribution in the set
+The skewness measures the degree of asymmetry of a distribution,
+and is related to the third central moment of a distribution.</h2>
+<pre>skewness() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A normal distribution has a skewness = 0
+A distribution with a tail off towards the high end of the scale
+(positive skew) has a skewness > 0
+A distribution with a tail off towards the low end of the scale
+(negative skew) has a skewness &lt; 0
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\__sumdiff()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\stDev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the skewness value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_stDev"></a><div class="element clickable method public method_stDev" data-toggle="collapse" data-target=".method_stDev .collapse">
+<h2>Calculates the standard deviation (unbiased) of the data points in the set
+Handles cummulative data sets correctly</h2>
+<pre>stDev() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\variance()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the standard deviation on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_stDevWithMean"></a><div class="element clickable method public method_stDevWithMean" data-toggle="collapse" data-target=".method_stDevWithMean .collapse">
+<h2>Calculates the standard deviation (unbiased) of the data points in the set
+given a fixed mean (average) value.</h2>
+<pre>stDevWithMean(\numeric $mean) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Not used in calcBasic(), calcFull()
+or calc().
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\varianceWithMean()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\stDev()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mean</h4>
+<code>\numeric</code><p>the fixed mean value</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the standard deviation on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_stdErrorOfMean"></a><div class="element clickable method public method_stdErrorOfMean" data-toggle="collapse" data-target=".method_stdErrorOfMean .collapse">
+<h2>Calculates the standard error of the mean.</h2>
+<pre>stdErrorOfMean() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>It is the standard deviation of the sampling distribution of
+the mean. The formula is:</p>
+
+<p>S.E. Mean = SD / (N)^(1/2)</p>
+
+<p>This formula does not assume a normal distribution, and shows
+that the size of the standard error of the mean is inversely
+proportional to the square root of the sample size.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\stDev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the standard error of the mean on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_studentize"></a><div class="element clickable method public method_studentize" data-toggle="collapse" data-target=".method_studentize .collapse">
+<h2>Transforms the data by substracting each entry from the mean and
+dividing by its standard deviation.</h2>
+<pre>studentize() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This will reset all pre-calculated
+values to their original (unset) defaults.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\mean()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\stDev()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\setData()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>true on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_sum"></a><div class="element clickable method public method_sum" data-toggle="collapse" data-target=".method_sum .collapse">
+<h2>Calculates SUM { xi }
+Handles cummulative data sets correctly</h2>
+<pre>sum() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sum2()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sumN()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the sum on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_sum2"></a><div class="element clickable method public method_sum2" data-toggle="collapse" data-target=".method_sum2 .collapse">
+<h2>Calculates SUM { (xi)^2 }
+Handles cummulative data sets correctly</h2>
+<pre>sum2() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sum()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sumN()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the sum on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_sumN"></a><div class="element clickable method public method_sumN" data-toggle="collapse" data-target=".method_sumN .collapse">
+<h2>Calculates SUM { (xi)^n }
+Handles cummulative data sets correctly</h2>
+<pre>sumN(\numeric $n) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sum()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\sum2()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$n</h4>
+<code>\numeric</code><p>the exponent</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the sum on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_variance"></a><div class="element clickable method public method_variance" data-toggle="collapse" data-target=".method_variance .collapse">
+<h2>Calculates the variance (unbiased) of the data points in the set
+Handles cummulative data sets correctly</h2>
+<pre>variance() : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\calc()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\__sumdiff()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the variance value on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<a id="method_varianceWithMean"></a><div class="element clickable method public method_varianceWithMean" data-toggle="collapse" data-target=".method_varianceWithMean .collapse">
+<h2>Calculates the variance (unbiased) of the data points in the set
+given a fixed mean (average) value.</h2>
+<pre>varianceWithMean(\numeric $mean) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Not used in calcBasic(), calcFull()
+or calc().
+Handles cummulative data sets correctly</p></div>
+<table class="table table-bordered">
+<tr>
+<th>access</th>
+<td>public</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\__sumdiff()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\count()</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="">\global\variance()</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mean</h4>
+<code>\numeric</code><p>the fixed mean value</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>the variance on success, a PEAR_Error object otherwise</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__calculatedValues"> </a><div class="element clickable property public property__calculatedValues" data-toggle="collapse" data-target=".property__calculatedValues .collapse">
+<h2></h2>
+<pre>$_calculatedValues : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__data"> </a><div class="element clickable property public property__data" data-toggle="collapse" data-target=".property__data .collapse">
+<h2></h2>
+<pre>$_data : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Null by default.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__dataExpanded"> </a><div class="element clickable property public property__dataExpanded" data-toggle="collapse" data-target=".property__dataExpanded .collapse">
+<h2></h2>
+<pre>$_dataExpanded : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Only set when cummulative data
+is being used. Null by default.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__dataOption"> </a><div class="element clickable property public property__dataOption" data-toggle="collapse" data-target=".property__dataOption .collapse">
+<h2></h2>
+<pre>$_dataOption : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Null by default.</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property__nullOption"> </a><div class="element clickable property public property__nullOption" data-toggle="collapse" data-target=".property__nullOption .collapse">
+<h2></h2>
+<pre>$_nullOption : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>One of STATS_REJECT_NULL,
+STATS_IGNORE_NULL or STATS_USE_NULL_AS_ZERO</p></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:15-07:00.<br></footer></div>
+</div>
+</body>
+</html>

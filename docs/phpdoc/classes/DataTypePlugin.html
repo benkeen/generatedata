@@ -23,7 +23,38 @@
 <li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
 <li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
 <li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
 <li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
 </ul>
 </li>
 <li class="dropdown" id="charts-menu">
@@ -34,13 +65,18 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">654</span></a></li>
+                <span class="label label-info">1565</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul><li>todo 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
                 <span class="label label-info">10</span>
-</li></ul></a></li>
+</li>
+</ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">14</span></a></li>
 </ul>
 </li>
 </ul></div>
@@ -64,12 +100,12 @@
 <li class="method public "><a href="#method___construct" title="__construct :: The default constructor."><span class="description">The default constructor.</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#method___toString" title="__toString :: For debugging and dev work."><span class="description">For debugging and dev work.</span><pre>__toString()</pre></a></li>
 <li class="method public "><a href="#method_generate" title="generate :: This is the main workhorse function: it does the work of actually generating a random data snippet."><span class="description">This is the main workhorse function: it does the work of actually generating a random data snippet.</span><pre>generate()</pre></a></li>
-<li class="method public "><a href="#method_getCSSFile" title="getCSSFile :: Returns the CSS filename for this Data Type (if included)."><span class="description">Returns the CSS filename for this Data Type (if included).</span><pre>getCSSFile()</pre></a></li>
+<li class="method public "><a href="#method_getCSSFiles" title="getCSSFiles :: Returns the CSS filename for this Data Type (if included)."><span class="description">Returns the CSS filename for this Data Type (if included).</span><pre>getCSSFiles()</pre></a></li>
 <li class="method public "><a href="#method_getDataTypeFieldGroup" title="getDataTypeFieldGroup :: This returns the field group that this Data Type should be listed in."><span class="description">This returns the field group that this Data Type should be listed in.</span><pre>getDataTypeFieldGroup()</pre></a></li>
 <li class="method public "><a href="#method_getDataTypeFieldGroupOrder" title="getDataTypeFieldGroupOrder :: Returns the order within the field group that this Data Type should appear."><span class="description">Returns the order within the field group that this Data Type should appear.</span><pre>getDataTypeFieldGroupOrder()</pre></a></li>
 <li class="method public "><a href="#method_getDataTypeMetadata" title="getDataTypeMetadata :: Used for providing additional metadata about the Data Type for use during generation."><span class="description">Used for providing additional metadata about the Data Type for use during generation.</span><pre>getDataTypeMetadata()</pre></a></li>
 <li class="method public "><a href="#method_getExampleColumnHTML" title="getExampleColumnHTML :: If the Data Type wants to include something in the Example column, it should return the raw HTML via this function."><span class="description">If the Data Type wants to include something in the Example column, it should return the raw HTML via this function.</span><pre>getExampleColumnHTML()</pre></a></li>
-<li class="method public "><a href="#method_getHelpDialogInfo" title="getHelpDialogInfo :: Returns information about the help dialog for this Data Type."><span class="description">Returns information about the help dialog for this Data Type.</span><pre>getHelpDialogInfo()</pre></a></li>
+<li class="method public "><a href="#method_getHelpHTML" title="getHelpHTML :: Returns the help content for this Data Type (HTML / string)."><span class="description">Returns the help content for this Data Type (HTML / string).</span><pre>getHelpHTML()</pre></a></li>
 <li class="method public "><a href="#method_getIncludedFiles" title="getIncludedFiles :: Returns an array of file names, which will be included ONCE in the main generator page."><span class="description">Returns an array of file names, which will be included ONCE in the main generator page.</span><pre>getIncludedFiles()</pre></a></li>
 <li class="method public "><a href="#method_getJSModules" title="getJSModules :: Returns a list of all javascript modules for this Data Type (if included)."><span class="description">Returns a list of all javascript modules for this Data Type (if included).</span><pre>getJSModules()</pre></a></li>
 <li class="method public "><a href="#method_getName" title="getName :: "><span class="description">getName()
@@ -78,10 +114,10 @@
 <li class="method public "><a href="#method_getPath" title="getPath :: Returns the path from the generatedata root folder."><span class="description">Returns the path from the generatedata root folder.</span><pre>getPath()</pre></a></li>
 <li class="method public "><a href="#method_getProcessOrder" title="getProcessOrder :: Returns the order in which this data type should be parsed."><span class="description">Returns the order in which this data type should be parsed.</span><pre>getProcessOrder()</pre></a></li>
 <li class="method public "><a href="#method_getRowGenerationOptions" title="getRowGenerationOptions :: Called during data generation."><span class="description">Called during data generation.</span><pre>getRowGenerationOptions()</pre></a></li>
-<li class="method public "><a href="#method_hasHelpDialog" title="hasHelpDialog :: Returns true if this Data Type has a help dialog."><span class="description">Returns true if this Data Type has a help dialog.</span><pre>hasHelpDialog()</pre></a></li>
 <li class="method public "><a href="#method_install" title="install :: This is called once during the initial installation of the script, or when the installation is reset (which is
 effectively a fresh install)."><span class="description">This is called once during the initial installation of the script, or when the installation is reset (which is
 effectively a fresh install).</span><pre>install()</pre></a></li>
+<li class="method public "><a href="#method_isEnabled" title="isEnabled :: Returns the isEnabled flag for this class."><span class="description">Returns the isEnabled flag for this class.</span><pre>isEnabled()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -90,11 +126,11 @@ effectively a fresh install).</span><pre>install()</pre></a></li>
 </li>
 <li class="nav-header protected">» Protected
                     <ul>
-<li class="property protected "><a href="#property_cssFile" title="$cssFile :: A single CSS file for any additional CSS needed for the module."><span class="description"></span><pre>$cssFile</pre></a></li>
+<li class="property protected "><a href="#property_cssFiles" title="$cssFiles :: A single CSS file for any additional CSS needed for the module."><span class="description"></span><pre>$cssFiles</pre></a></li>
 <li class="property protected "><a href="#property_dataTypeFieldGroup" title="$dataTypeFieldGroup :: "><span class="description"></span><pre>$dataTypeFieldGroup</pre></a></li>
 <li class="property protected "><a href="#property_dataTypeFieldGroupOrder" title="$dataTypeFieldGroupOrder :: "><span class="description"></span><pre>$dataTypeFieldGroupOrder</pre></a></li>
 <li class="property protected "><a href="#property_dataTypeName" title="$dataTypeName :: "><span class="description"></span><pre>$dataTypeName</pre></a></li>
-<li class="property protected "><a href="#property_hasHelpDialog" title="$hasHelpDialog :: "><span class="description"></span><pre>$hasHelpDialog</pre></a></li>
+<li class="property protected "><a href="#property_isEnabled" title="$isEnabled :: "><span class="description"></span><pre>$isEnabled</pre></a></li>
 <li class="property protected "><a href="#property_jsModules" title="$jsModules :: An array of JS modules that need to be included for this module."><span class="description"></span><pre>$jsModules</pre></a></li>
 <li class="property protected "><a href="#property_processOrder" title="$processOrder :: "><span class="description"></span><pre>$processOrder</pre></a></li>
 </ul>
@@ -160,10 +196,10 @@ $L is populated. ( parent::__construct($runtimeContext); )</p></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$generator</h4>
-<code>object</code><p>the main Generator object, through which a Data Type can call the various available public methods.</p></div>
+<code>object</code><p>the Generator object, through which a Data Type can call the various available public methods.</p></div>
 <div class="subelement argument">
 <h4>$generationContextData</h4>
-<code>array</code><p>a hash of information relating to the generation context. Namely: "rowNum" => the row number in the generated content (indexed from 1) "generationOptions" => whatever options were passed for this particular row and data type; i.e. whatever information was returned by getRowGenerationOptions(). This data can be empty or contain anything needed - in whatever format. By default, this is set to null. "existingRowData" => depending on the Data Type's processOrder, this will contain all the data from fields that have already been processed.</p>
+<code>array</code><p>a hash of information relating to the generation context. Namely: "rowNum" => the row number in the generated content (indexed from 1) "generationOptions" => whatever options were passed for this particular row and data type; i.e. whatever information was returned by getRowGenerationOptions(). This data can be empty or contain anything needed - in whatever format. By default, this is set to null. "existingRowData" => data already generated for the row.</p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
@@ -172,9 +208,9 @@ $L is populated. ( parent::__construct($runtimeContext); )</p></div>
     Types that are being generated on that row (e.g. Country, passing it's country_slug info to Region)</div>
 </div></div>
 </div>
-<a id="method_getCSSFile"></a><div class="element clickable method public method_getCSSFile" data-toggle="collapse" data-target=".method_getCSSFile .collapse">
+<a id="method_getCSSFiles"></a><div class="element clickable method public method_getCSSFiles" data-toggle="collapse" data-target=".method_getCSSFiles .collapse">
 <h2>Returns the CSS filename for this Data Type (if included).</h2>
-<pre>getCSSFile() : array</pre>
+<pre>getCSSFiles() : array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -223,15 +259,11 @@ statement with database column types and sizes that are appropriate to each fiel
 outputted in the cell. This is used for inserting static content into the appropriate spot in the table; if the
 Data Type needs something more dynamic, it should subscribe to the appropriate event.</p></div></div></div>
 </div>
-<a id="method_getHelpDialogInfo"></a><div class="element clickable method public method_getHelpDialogInfo" data-toggle="collapse" data-target=".method_getHelpDialogInfo .collapse">
-<h2>Returns information about the help dialog for this Data Type.</h2>
-<pre>getHelpDialogInfo() </pre>
+<a id="method_getHelpHTML"></a><div class="element clickable method public method_getHelpHTML" data-toggle="collapse" data-target=".method_getHelpHTML .collapse">
+<h2>Returns the help content for this Data Type (HTML / string).</h2>
+<pre>getHelpHTML() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"><p>It returns a hash with two keys:
-   [dialogWidth]
-   [content]</p>
-
-<p>[shouldn't be required... just like install(), but I'd like to mention it in this file for documentation purposes]</p></div></div></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="method_getIncludedFiles"></a><div class="element clickable method public method_getIncludedFiles" data-toggle="collapse" data-target=".method_getIncludedFiles .collapse">
 <h2>Returns an array of file names, which will be included ONCE in the main generator page.</h2>
@@ -322,16 +354,6 @@ this row.</p></div>
        into the generateItem function as the second parameter.</div>
 </div></div>
 </div>
-<a id="method_hasHelpDialog"></a><div class="element clickable method public method_hasHelpDialog" data-toggle="collapse" data-target=".method_hasHelpDialog .collapse">
-<h2>Returns true if this Data Type has a help dialog.</h2>
-<pre>hasHelpDialog() : boolean</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>boolean</code></div>
-</div></div>
-</div>
 <a id="method_install"></a><div class="element clickable method public method_install" data-toggle="collapse" data-target=".method_install .collapse">
 <h2>This is called once during the initial installation of the script, or when the installation is reset (which is
 effectively a fresh install).</h2>
@@ -346,6 +368,16 @@ on Core::$db having been initialized and the database connection having been set
 				 [1] the error message, if there was a problem</div>
 </div></div>
 </div>
+<a id="method_isEnabled"></a><div class="element clickable method public method_isEnabled" data-toggle="collapse" data-target=".method_isEnabled .collapse">
+<h2>Returns the isEnabled flag for this class.</h2>
+<pre>isEnabled() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_L"> </a><div class="element clickable property public property_L" data-toggle="collapse" data-target=".property_L .collapse">
@@ -355,9 +387,9 @@ on Core::$db having been initialized and the database connection having been set
 <div class="row collapse"><div class="detail-description"><div class="long_description"><p>This is populated automatically on instantiation and
 contains the strings for the currently selected language.</p></div></div></div>
 </div>
-<a id="property_cssFile"> </a><div class="element clickable property protected property_cssFile" data-toggle="collapse" data-target=".property_cssFile .collapse">
+<a id="property_cssFiles"> </a><div class="element clickable property protected property_cssFiles" data-toggle="collapse" data-target=".property_cssFiles .collapse">
 <h2></h2>
-<pre>$cssFile </pre>
+<pre>$cssFiles </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"><p>It's up to the developer to properly
 name their CSS classes/IDs to prevent namespace collisions.</p></div></div></div>
@@ -380,9 +412,9 @@ name their CSS classes/IDs to prevent namespace collisions.</p></div></div></div
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-<a id="property_hasHelpDialog"> </a><div class="element clickable property protected property_hasHelpDialog" data-toggle="collapse" data-target=".property_hasHelpDialog .collapse">
+<a id="property_isEnabled"> </a><div class="element clickable property protected property_isEnabled" data-toggle="collapse" data-target=".property_isEnabled .collapse">
 <h2></h2>
-<pre>$hasHelpDialog </pre>
+<pre>$isEnabled </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
@@ -406,7 +438,7 @@ modules.</p></div></div></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2012-11-28T22:03:12-08:00.<br></footer></div>
+            generated on 2013-04-22T17:30:09-07:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Shared_JAMA_Matrix</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Polymorphic constructor"><span class="description">Polymorphic constructor</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_arrayLeftDivide" title="arrayLeftDivide :: arrayLeftDivide"><span class="description">arrayLeftDivide</span><pre>arrayLeftDivide()</pre></a></li>
+<li class="method public "><a href="#method_arrayLeftDivideEquals" title="arrayLeftDivideEquals :: arrayLeftDivideEquals"><span class="description">arrayLeftDivideEquals</span><pre>arrayLeftDivideEquals()</pre></a></li>
+<li class="method public "><a href="#method_arrayRightDivide" title="arrayRightDivide :: arrayRightDivide"><span class="description">arrayRightDivide</span><pre>arrayRightDivide()</pre></a></li>
+<li class="method public "><a href="#method_arrayRightDivideEquals" title="arrayRightDivideEquals :: arrayRightDivideEquals"><span class="description">arrayRightDivideEquals</span><pre>arrayRightDivideEquals()</pre></a></li>
+<li class="method public "><a href="#method_arrayTimes" title="arrayTimes :: arrayTimes"><span class="description">arrayTimes</span><pre>arrayTimes()</pre></a></li>
+<li class="method public "><a href="#method_arrayTimesEquals" title="arrayTimesEquals :: arrayTimesEquals"><span class="description">arrayTimesEquals</span><pre>arrayTimesEquals()</pre></a></li>
+<li class="method public "><a href="#method_checkMatrixDimensions" title="checkMatrixDimensions :: checkMatrixDimensions"><span class="description">checkMatrixDimensions</span><pre>checkMatrixDimensions()</pre></a></li>
+<li class="method public "><a href="#method_concat" title="concat :: concat"><span class="description">concat</span><pre>concat()</pre></a></li>
+<li class="method public "><a href="#method_det" title="det :: det"><span class="description">det</span><pre>det()</pre></a></li>
+<li class="method public "><a href="#method_diagonal" title="diagonal :: diagonal"><span class="description">diagonal</span><pre>diagonal()</pre></a></li>
+<li class="method public "><a href="#method_get" title="get :: get"><span class="description">get</span><pre>get()</pre></a></li>
+<li class="method public "><a href="#method_getArray" title="getArray :: getArray"><span class="description">getArray</span><pre>getArray()</pre></a></li>
+<li class="method public "><a href="#method_getColumnDimension" title="getColumnDimension :: getColumnDimension"><span class="description">getColumnDimension</span><pre>getColumnDimension()</pre></a></li>
+<li class="method public "><a href="#method_getMatrix" title="getMatrix :: getMatrix"><span class="description">getMatrix</span><pre>getMatrix()</pre></a></li>
+<li class="method public "><a href="#method_getMatrixByCol" title="getMatrixByCol :: getMatrixByCol"><span class="description">getMatrixByCol</span><pre>getMatrixByCol()</pre></a></li>
+<li class="method public "><a href="#method_getMatrixByRow" title="getMatrixByRow :: getMatrixByRow"><span class="description">getMatrixByRow</span><pre>getMatrixByRow()</pre></a></li>
+<li class="method public "><a href="#method_getRowDimension" title="getRowDimension :: getRowDimension"><span class="description">getRowDimension</span><pre>getRowDimension()</pre></a></li>
+<li class="method public "><a href="#method_identity" title="identity :: identity"><span class="description">identity</span><pre>identity()</pre></a></li>
+<li class="method public "><a href="#method_inverse" title="inverse :: Matrix inverse or pseudoinverse."><span class="description">Matrix inverse or pseudoinverse.</span><pre>inverse()</pre></a></li>
+<li class="method public "><a href="#method_minus" title="minus :: minus"><span class="description">minus</span><pre>minus()</pre></a></li>
+<li class="method public "><a href="#method_minusEquals" title="minusEquals :: minusEquals"><span class="description">minusEquals</span><pre>minusEquals()</pre></a></li>
+<li class="method public "><a href="#method_plus" title="plus :: plus"><span class="description">plus</span><pre>plus()</pre></a></li>
+<li class="method public "><a href="#method_plusEquals" title="plusEquals :: plusEquals"><span class="description">plusEquals</span><pre>plusEquals()</pre></a></li>
+<li class="method public "><a href="#method_power" title="power :: power"><span class="description">power</span><pre>power()</pre></a></li>
+<li class="method public "><a href="#method_set" title="set :: set"><span class="description">set</span><pre>set()</pre></a></li>
+<li class="method public "><a href="#method_solve" title="solve :: Solve A*X = B."><span class="description">Solve A*X = B.</span><pre>solve()</pre></a></li>
+<li class="method public "><a href="#method_times" title="times :: times"><span class="description">times</span><pre>times()</pre></a></li>
+<li class="method public "><a href="#method_trace" title="trace :: trace"><span class="description">trace</span><pre>trace()</pre></a></li>
+<li class="method public "><a href="#method_transpose" title="transpose :: transpose"><span class="description">transpose</span><pre>transpose()</pre></a></li>
+<li class="method public "><a href="#method_uminus" title="uminus :: uminus"><span class="description">uminus</span><pre>uminus()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul><li class="property public "><a href="#property_A" title="$A :: Matrix storage"><span class="description"></span><pre>$A</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property_m" title="$m :: Matrix row dimension"><span class="description"></span><pre>$m</pre></a></li>
+<li class="property private "><a href="#property_n" title="$n :: Matrix column dimension"><span class="description"></span><pre>$n</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_ArgumentBoundsException" title="ArgumentBoundsException :: "><span class="description">ArgumentBoundsException</span><pre>ArgumentBoundsException</pre></a></li>
+<li class="constant  "><a href="#constant_ArgumentTypeException" title="ArgumentTypeException :: "><span class="description">ArgumentTypeException</span><pre>ArgumentTypeException</pre></a></li>
+<li class="constant  "><a href="#constant_ArrayLengthException" title="ArrayLengthException :: "><span class="description">ArrayLengthException</span><pre>ArrayLengthException</pre></a></li>
+<li class="constant  "><a href="#constant_MatrixDimensionException" title="MatrixDimensionException :: "><span class="description">MatrixDimensionException</span><pre>MatrixDimensionException</pre></a></li>
+<li class="constant  "><a href="#constant_PolymorphicArgumentException" title="PolymorphicArgumentException :: "><span class="description">PolymorphicArgumentException</span><pre>PolymorphicArgumentException</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Shared_JAMA_Matrix"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Shared_JAMA_Matrix.html">PHPExcel_Shared_JAMA_Matrix</a>
+</li>
+</ul>
+<div class="element class"><div class="details">
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Polymorphic constructor</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>As PHP has no support for polymorphic constructors, we hack our own sort of polymorphism using func_num_args, func_get_arg, and gettype. In essence, we're just implementing a simple RTTI filter and calling the appropriate constructor.</p></div></div></div>
+</div>
+<a id="method_arrayLeftDivide"></a><div class="element clickable method public method_arrayLeftDivide" data-toggle="collapse" data-target=".method_arrayLeftDivide .collapse">
+<h2>arrayLeftDivide</h2>
+<pre>arrayLeftDivide() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Element-by-element Left division
+A / B</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Division result</div>
+</div></div>
+</div>
+<a id="method_arrayLeftDivideEquals"></a><div class="element clickable method public method_arrayLeftDivideEquals" data-toggle="collapse" data-target=".method_arrayLeftDivideEquals .collapse">
+<h2>arrayLeftDivideEquals</h2>
+<pre>arrayLeftDivideEquals() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Element-by-element Left division
+Aij = Aij / Bij</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Matrix Aij</div>
+</div></div>
+</div>
+<a id="method_arrayRightDivide"></a><div class="element clickable method public method_arrayRightDivide" data-toggle="collapse" data-target=".method_arrayRightDivide .collapse">
+<h2>arrayRightDivide</h2>
+<pre>arrayRightDivide() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Element-by-element right division
+A / B</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Division result</div>
+</div></div>
+</div>
+<a id="method_arrayRightDivideEquals"></a><div class="element clickable method public method_arrayRightDivideEquals" data-toggle="collapse" data-target=".method_arrayRightDivideEquals .collapse">
+<h2>arrayRightDivideEquals</h2>
+<pre>arrayRightDivideEquals() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Element-by-element right division
+Aij = Aij / Bij</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Matrix Aij</div>
+</div></div>
+</div>
+<a id="method_arrayTimes"></a><div class="element clickable method public method_arrayTimes" data-toggle="collapse" data-target=".method_arrayTimes .collapse">
+<h2>arrayTimes</h2>
+<pre>arrayTimes() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Element-by-element multiplication
+Cij = Aij * Bij</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Matrix Cij</div>
+</div></div>
+</div>
+<a id="method_arrayTimesEquals"></a><div class="element clickable method public method_arrayTimesEquals" data-toggle="collapse" data-target=".method_arrayTimesEquals .collapse">
+<h2>arrayTimesEquals</h2>
+<pre>arrayTimesEquals() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Element-by-element multiplication
+Aij = Aij * Bij</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Matrix Aij</div>
+</div></div>
+</div>
+<a id="method_checkMatrixDimensions"></a><div class="element clickable method public method_checkMatrixDimensions" data-toggle="collapse" data-target=".method_checkMatrixDimensions .collapse">
+<h2>checkMatrixDimensions</h2>
+<pre>checkMatrixDimensions(\Matrix $B) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Is matrix B the same size?</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$B</h4>
+<code>\Matrix</code><p>Matrix B</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_concat"></a><div class="element clickable method public method_concat" data-toggle="collapse" data-target=".method_concat .collapse">
+<h2>concat</h2>
+<pre>concat() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A = A &amp; B</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Sum</div>
+</div></div>
+</div>
+<a id="method_det"></a><div class="element clickable method public method_det" data-toggle="collapse" data-target=".method_det .collapse">
+<h2>det</h2>
+<pre>det() : float</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Calculate determinant</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>float</code>Determinant</div>
+</div></div>
+</div>
+<a id="method_diagonal"></a><div class="element clickable method public method_diagonal" data-toggle="collapse" data-target=".method_diagonal .collapse">
+<h2>diagonal</h2>
+<pre>diagonal(int $m, int $n, mixed $c) : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Generate a diagonal matrix</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$m</h4>
+<code>int</code><p>Row dimension</p></div>
+<div class="subelement argument">
+<h4>$n</h4>
+<code>int</code><p>Column dimension</p></div>
+<div class="subelement argument">
+<h4>$c</h4>
+<code>mixed</code><p>Diagonal value</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Diagonal matrix</div>
+</div></div>
+</div>
+<a id="method_get"></a><div class="element clickable method public method_get" data-toggle="collapse" data-target=".method_get .collapse">
+<h2>get</h2>
+<pre>get(int $i, int $j) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Get the i,j-th element of the matrix.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$i</h4>
+<code>int</code><p>Row position</p></div>
+<div class="subelement argument">
+<h4>$j</h4>
+<code>int</code><p>Column position</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Element (int/float/double)</div>
+</div></div>
+</div>
+<a id="method_getArray"></a><div class="element clickable method public method_getArray" data-toggle="collapse" data-target=".method_getArray .collapse">
+<h2>getArray</h2>
+<pre>getArray() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Matrix array</div>
+</div></div>
+</div>
+<a id="method_getColumnDimension"></a><div class="element clickable method public method_getColumnDimension" data-toggle="collapse" data-target=".method_getColumnDimension .collapse">
+<h2>getColumnDimension</h2>
+<pre>getColumnDimension() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>Column dimension</div>
+</div></div>
+</div>
+<a id="method_getMatrix"></a><div class="element clickable method public method_getMatrix" data-toggle="collapse" data-target=".method_getMatrix .collapse">
+<h2>getMatrix</h2>
+<pre>getMatrix() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Get a submatrix</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Submatrix</div>
+</div></div>
+</div>
+<a id="method_getMatrixByCol"></a><div class="element clickable method public method_getMatrixByCol" data-toggle="collapse" data-target=".method_getMatrixByCol .collapse">
+<h2>getMatrixByCol</h2>
+<pre>getMatrixByCol($j0, $jF) : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Get a submatrix by column index/range</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$j0</h4></div>
+<div class="subelement argument"><h4>$jF</h4></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Submatrix</div>
+</div></div>
+</div>
+<a id="method_getMatrixByRow"></a><div class="element clickable method public method_getMatrixByRow" data-toggle="collapse" data-target=".method_getMatrixByRow .collapse">
+<h2>getMatrixByRow</h2>
+<pre>getMatrixByRow(int $i0, int $iF) : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Get a submatrix by row index/range</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$i0</h4>
+<code>int</code><p>Initial row index</p></div>
+<div class="subelement argument">
+<h4>$iF</h4>
+<code>int</code><p>Final row index</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Submatrix</div>
+</div></div>
+</div>
+<a id="method_getRowDimension"></a><div class="element clickable method public method_getRowDimension" data-toggle="collapse" data-target=".method_getRowDimension .collapse">
+<h2>getRowDimension</h2>
+<pre>getRowDimension() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>int</code>Row dimension</div>
+</div></div>
+</div>
+<a id="method_identity"></a><div class="element clickable method public method_identity" data-toggle="collapse" data-target=".method_identity .collapse">
+<h2>identity</h2>
+<pre>identity(int $m, int $n) : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Generate an identity matrix.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$m</h4>
+<code>int</code><p>Row dimension</p></div>
+<div class="subelement argument">
+<h4>$n</h4>
+<code>int</code><p>Column dimension</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Identity matrix</div>
+</div></div>
+</div>
+<a id="method_inverse"></a><div class="element clickable method public method_inverse" data-toggle="collapse" data-target=".method_inverse .collapse">
+<h2>Matrix inverse or pseudoinverse.</h2>
+<pre>inverse() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>... Inverse(A) if A is square, pseudoinverse otherwise.</div>
+</div></div>
+</div>
+<a id="method_minus"></a><div class="element clickable method public method_minus" data-toggle="collapse" data-target=".method_minus .collapse">
+<h2>minus</h2>
+<pre>minus() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A - B</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Sum</div>
+</div></div>
+</div>
+<a id="method_minusEquals"></a><div class="element clickable method public method_minusEquals" data-toggle="collapse" data-target=".method_minusEquals .collapse">
+<h2>minusEquals</h2>
+<pre>minusEquals() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A = A - B</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Sum</div>
+</div></div>
+</div>
+<a id="method_plus"></a><div class="element clickable method public method_plus" data-toggle="collapse" data-target=".method_plus .collapse">
+<h2>plus</h2>
+<pre>plus() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A + B</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Sum</div>
+</div></div>
+</div>
+<a id="method_plusEquals"></a><div class="element clickable method public method_plusEquals" data-toggle="collapse" data-target=".method_plusEquals .collapse">
+<h2>plusEquals</h2>
+<pre>plusEquals() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A = A + B</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Sum</div>
+</div></div>
+</div>
+<a id="method_power"></a><div class="element clickable method public method_power" data-toggle="collapse" data-target=".method_power .collapse">
+<h2>power</h2>
+<pre>power() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A = A ^ B</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Sum</div>
+</div></div>
+</div>
+<a id="method_set"></a><div class="element clickable method public method_set" data-toggle="collapse" data-target=".method_set .collapse">
+<h2>set</h2>
+<pre>set(int $i, int $j, mixed $c) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Set the i,j-th element of the matrix.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$i</h4>
+<code>int</code><p>Row position</p></div>
+<div class="subelement argument">
+<h4>$j</h4>
+<code>int</code><p>Column position</p></div>
+<div class="subelement argument">
+<h4>$c</h4>
+<code>mixed</code><p>Int/float/double value</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Element (int/float/double)</div>
+</div></div>
+</div>
+<a id="method_solve"></a><div class="element clickable method public method_solve" data-toggle="collapse" data-target=".method_solve .collapse">
+<h2>Solve A*X = B.</h2>
+<pre>solve(\Matrix $B) : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$B</h4>
+<code>\Matrix</code><p>Right hand side</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>... Solution if A is square, least squares solution otherwise</div>
+</div></div>
+</div>
+<a id="method_times"></a><div class="element clickable method public method_times" data-toggle="collapse" data-target=".method_times .collapse">
+<h2>times</h2>
+<pre>times() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Matrix multiplication</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Product</div>
+</div></div>
+</div>
+<a id="method_trace"></a><div class="element clickable method public method_trace" data-toggle="collapse" data-target=".method_trace .collapse">
+<h2>trace</h2>
+<pre>trace() : float</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Sum of diagonal elements</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>float</code>Sum of diagonal elements</div>
+</div></div>
+</div>
+<a id="method_transpose"></a><div class="element clickable method public method_transpose" data-toggle="collapse" data-target=".method_transpose .collapse">
+<h2>transpose</h2>
+<pre>transpose() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Tranpose matrix</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Transposed matrix</div>
+</div></div>
+</div>
+<a id="method_uminus"></a><div class="element clickable method public method_uminus" data-toggle="collapse" data-target=".method_uminus .collapse">
+<h2>uminus</h2>
+<pre>uminus() : \Matrix</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Unary minus matrix -A</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Matrix</code>Unary minus matrix</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_A"> </a><div class="element clickable property public property_A" data-toggle="collapse" data-target=".property_A .collapse">
+<h2></h2>
+<pre>$A : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>public</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_m"> </a><div class="element clickable property private property_m" data-toggle="collapse" data-target=".property_m .collapse">
+<h2></h2>
+<pre>$m : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_n"> </a><div class="element clickable property private property_n" data-toggle="collapse" data-target=".property_n .collapse">
+<h2></h2>
+<pre>$n : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>access</th>
+<td>private</td>
+</tr></table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_ArgumentBoundsException"> </a><div class="element clickable constant  constant_ArgumentBoundsException" data-toggle="collapse" data-target=".constant_ArgumentBoundsException .collapse">
+<h2>ArgumentBoundsException</h2>
+<pre>ArgumentBoundsException </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ArgumentTypeException"> </a><div class="element clickable constant  constant_ArgumentTypeException" data-toggle="collapse" data-target=".constant_ArgumentTypeException .collapse">
+<h2>ArgumentTypeException</h2>
+<pre>ArgumentTypeException </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_ArrayLengthException"> </a><div class="element clickable constant  constant_ArrayLengthException" data-toggle="collapse" data-target=".constant_ArrayLengthException .collapse">
+<h2>ArrayLengthException</h2>
+<pre>ArrayLengthException </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_MatrixDimensionException"> </a><div class="element clickable constant  constant_MatrixDimensionException" data-toggle="collapse" data-target=".constant_MatrixDimensionException .collapse">
+<h2>MatrixDimensionException</h2>
+<pre>MatrixDimensionException </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_PolymorphicArgumentException"> </a><div class="element clickable constant  constant_PolymorphicArgumentException" data-toggle="collapse" data-target=".constant_PolymorphicArgumentException .collapse">
+<h2>PolymorphicArgumentException</h2>
+<pre>PolymorphicArgumentException </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:15-07:00.<br></footer></div>
+</div>
+</body>
+</html>

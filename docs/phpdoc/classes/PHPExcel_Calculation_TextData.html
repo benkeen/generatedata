@@ -1,0 +1,512 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Calculation_TextData</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method_ASCIICODE" title="ASCIICODE :: ASCIICODE"><span class="description">ASCIICODE</span><pre>ASCIICODE()</pre></a></li>
+<li class="method public "><a href="#method_CHARACTER" title="CHARACTER :: CHARACTER"><span class="description">CHARACTER</span><pre>CHARACTER()</pre></a></li>
+<li class="method public "><a href="#method_CONCATENATE" title="CONCATENATE :: CONCATENATE"><span class="description">CONCATENATE</span><pre>CONCATENATE()</pre></a></li>
+<li class="method public "><a href="#method_DOLLAR" title="DOLLAR :: DOLLAR"><span class="description">DOLLAR</span><pre>DOLLAR()</pre></a></li>
+<li class="method public "><a href="#method_FIXEDFORMAT" title="FIXEDFORMAT :: FIXEDFORMAT"><span class="description">FIXEDFORMAT</span><pre>FIXEDFORMAT()</pre></a></li>
+<li class="method public "><a href="#method_LEFT" title="LEFT :: LEFT"><span class="description">LEFT</span><pre>LEFT()</pre></a></li>
+<li class="method public "><a href="#method_LOWERCASE" title="LOWERCASE :: LOWERCASE"><span class="description">LOWERCASE</span><pre>LOWERCASE()</pre></a></li>
+<li class="method public "><a href="#method_MID" title="MID :: MID"><span class="description">MID</span><pre>MID()</pre></a></li>
+<li class="method public "><a href="#method_PROPERCASE" title="PROPERCASE :: PROPERCASE"><span class="description">PROPERCASE</span><pre>PROPERCASE()</pre></a></li>
+<li class="method public "><a href="#method_REPLACE" title="REPLACE :: REPLACE"><span class="description">REPLACE</span><pre>REPLACE()</pre></a></li>
+<li class="method public "><a href="#method_RETURNSTRING" title="RETURNSTRING :: RETURNSTRING"><span class="description">RETURNSTRING</span><pre>RETURNSTRING()</pre></a></li>
+<li class="method public "><a href="#method_RIGHT" title="RIGHT :: RIGHT"><span class="description">RIGHT</span><pre>RIGHT()</pre></a></li>
+<li class="method public "><a href="#method_SEARCHINSENSITIVE" title="SEARCHINSENSITIVE :: SEARCHINSENSITIVE"><span class="description">SEARCHINSENSITIVE</span><pre>SEARCHINSENSITIVE()</pre></a></li>
+<li class="method public "><a href="#method_SEARCHSENSITIVE" title="SEARCHSENSITIVE :: SEARCHSENSITIVE"><span class="description">SEARCHSENSITIVE</span><pre>SEARCHSENSITIVE()</pre></a></li>
+<li class="method public "><a href="#method_STRINGLENGTH" title="STRINGLENGTH :: STRINGLENGTH"><span class="description">STRINGLENGTH</span><pre>STRINGLENGTH()</pre></a></li>
+<li class="method public "><a href="#method_SUBSTITUTE" title="SUBSTITUTE :: SUBSTITUTE"><span class="description">SUBSTITUTE</span><pre>SUBSTITUTE()</pre></a></li>
+<li class="method public "><a href="#method_TEXTFORMAT" title="TEXTFORMAT :: TEXTFORMAT"><span class="description">TEXTFORMAT</span><pre>TEXTFORMAT()</pre></a></li>
+<li class="method public "><a href="#method_TRIMNONPRINTABLE" title="TRIMNONPRINTABLE :: TRIMNONPRINTABLE"><span class="description">TRIMNONPRINTABLE</span><pre>TRIMNONPRINTABLE()</pre></a></li>
+<li class="method public "><a href="#method_TRIMSPACES" title="TRIMSPACES :: TRIMSPACES"><span class="description">TRIMSPACES</span><pre>TRIMSPACES()</pre></a></li>
+<li class="method public "><a href="#method_UPPERCASE" title="UPPERCASE :: UPPERCASE"><span class="description">UPPERCASE</span><pre>UPPERCASE()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private "><a href="#method__uniord" title="_uniord :: "><span class="description">_uniord()
+        </span><pre>_uniord()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private "><a href="#property__invalidChars" title="$_invalidChars :: "><span class="description"></span><pre>$_invalidChars</pre></a></li></ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Calculation_TextData"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Calculation_TextData.html">PHPExcel_Calculation_TextData</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Calculation_TextData</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Calculation.html">PHPExcel_Calculation</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_ASCIICODE"></a><div class="element clickable method public method_ASCIICODE" data-toggle="collapse" data-target=".method_ASCIICODE .collapse">
+<h2>ASCIICODE</h2>
+<pre>ASCIICODE($characters) : int</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$characters</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_CHARACTER"></a><div class="element clickable method public method_CHARACTER" data-toggle="collapse" data-target=".method_CHARACTER .collapse">
+<h2>CHARACTER</h2>
+<pre>CHARACTER(string $character) : int</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$character</h4>
+<code>string</code><p>Value</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_CONCATENATE"></a><div class="element clickable method public method_CONCATENATE" data-toggle="collapse" data-target=".method_CONCATENATE .collapse">
+<h2>CONCATENATE</h2>
+<pre>CONCATENATE() : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_DOLLAR"></a><div class="element clickable method public method_DOLLAR" data-toggle="collapse" data-target=".method_DOLLAR .collapse">
+<h2>DOLLAR</h2>
+<pre>DOLLAR(float $value, int $decimals) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This function converts a number to text using currency format, with the decimals rounded to the specified place.
+The format used is $#,##0.00_);($#,##0.00)..</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>float</code><p>The value to format</p></div>
+<div class="subelement argument">
+<h4>$decimals</h4>
+<code>int</code><p>The number of digits to display to the right of the decimal point. If decimals is negative, number is rounded to the left of the decimal point. If you omit decimals, it is assumed to be 2</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_FIXEDFORMAT"></a><div class="element clickable method public method_FIXEDFORMAT" data-toggle="collapse" data-target=".method_FIXEDFORMAT .collapse">
+<h2>FIXEDFORMAT</h2>
+<pre>FIXEDFORMAT(mixed $value, $decimals, $no_commas) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value to check</p></div>
+<div class="subelement argument"><h4>$decimals</h4></div>
+<div class="subelement argument"><h4>$no_commas</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_LEFT"></a><div class="element clickable method public method_LEFT" data-toggle="collapse" data-target=".method_LEFT .collapse">
+<h2>LEFT</h2>
+<pre>LEFT(string $value, int $chars) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>Value</p></div>
+<div class="subelement argument">
+<h4>$chars</h4>
+<code>int</code><p>Number of characters</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_LOWERCASE"></a><div class="element clickable method public method_LOWERCASE" data-toggle="collapse" data-target=".method_LOWERCASE .collapse">
+<h2>LOWERCASE</h2>
+<pre>LOWERCASE(string $mixedCaseString) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Converts a string value to upper case.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mixedCaseString</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_MID"></a><div class="element clickable method public method_MID" data-toggle="collapse" data-target=".method_MID .collapse">
+<h2>MID</h2>
+<pre>MID(string $value, int $start, int $chars) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>Value</p></div>
+<div class="subelement argument">
+<h4>$start</h4>
+<code>int</code><p>Start character</p></div>
+<div class="subelement argument">
+<h4>$chars</h4>
+<code>int</code><p>Number of characters</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_PROPERCASE"></a><div class="element clickable method public method_PROPERCASE" data-toggle="collapse" data-target=".method_PROPERCASE .collapse">
+<h2>PROPERCASE</h2>
+<pre>PROPERCASE(string $mixedCaseString) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Converts a string value to upper case.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mixedCaseString</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_REPLACE"></a><div class="element clickable method public method_REPLACE" data-toggle="collapse" data-target=".method_REPLACE .collapse">
+<h2>REPLACE</h2>
+<pre>REPLACE($oldText, int $start, int $chars, $newText) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$oldText</h4></div>
+<div class="subelement argument">
+<h4>$start</h4>
+<code>int</code><p>Start character</p></div>
+<div class="subelement argument">
+<h4>$chars</h4>
+<code>int</code><p>Number of characters</p></div>
+<div class="subelement argument"><h4>$newText</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_RETURNSTRING"></a><div class="element clickable method public method_RETURNSTRING" data-toggle="collapse" data-target=".method_RETURNSTRING .collapse">
+<h2>RETURNSTRING</h2>
+<pre>RETURNSTRING($testValue) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$testValue</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_RIGHT"></a><div class="element clickable method public method_RIGHT" data-toggle="collapse" data-target=".method_RIGHT .collapse">
+<h2>RIGHT</h2>
+<pre>RIGHT(string $value, int $chars) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>Value</p></div>
+<div class="subelement argument">
+<h4>$chars</h4>
+<code>int</code><p>Number of characters</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_SEARCHINSENSITIVE"></a><div class="element clickable method public method_SEARCHINSENSITIVE" data-toggle="collapse" data-target=".method_SEARCHINSENSITIVE .collapse">
+<h2>SEARCHINSENSITIVE</h2>
+<pre>SEARCHINSENSITIVE(string $needle, string $haystack, int $offset) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$needle</h4>
+<code>string</code><p>The string to look for</p></div>
+<div class="subelement argument">
+<h4>$haystack</h4>
+<code>string</code><p>The string in which to look</p></div>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code>int</code><p>Offset within $haystack</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_SEARCHSENSITIVE"></a><div class="element clickable method public method_SEARCHSENSITIVE" data-toggle="collapse" data-target=".method_SEARCHSENSITIVE .collapse">
+<h2>SEARCHSENSITIVE</h2>
+<pre>SEARCHSENSITIVE(string $needle, string $haystack, int $offset) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$needle</h4>
+<code>string</code><p>The string to look for</p></div>
+<div class="subelement argument">
+<h4>$haystack</h4>
+<code>string</code><p>The string in which to look</p></div>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code>int</code><p>Offset within $haystack</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_STRINGLENGTH"></a><div class="element clickable method public method_STRINGLENGTH" data-toggle="collapse" data-target=".method_STRINGLENGTH .collapse">
+<h2>STRINGLENGTH</h2>
+<pre>STRINGLENGTH(string $value) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>Value</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_SUBSTITUTE"></a><div class="element clickable method public method_SUBSTITUTE" data-toggle="collapse" data-target=".method_SUBSTITUTE .collapse">
+<h2>SUBSTITUTE</h2>
+<pre>SUBSTITUTE(string $text, string $fromText, string $toText, integer $instance) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$text</h4>
+<code>string</code><p>Value</p></div>
+<div class="subelement argument">
+<h4>$fromText</h4>
+<code>string</code><p>From Value</p></div>
+<div class="subelement argument">
+<h4>$toText</h4>
+<code>string</code><p>To Value</p></div>
+<div class="subelement argument">
+<h4>$instance</h4>
+<code>integer</code><p>Instance Number</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_TEXTFORMAT"></a><div class="element clickable method public method_TEXTFORMAT" data-toggle="collapse" data-target=".method_TEXTFORMAT .collapse">
+<h2>TEXTFORMAT</h2>
+<pre>TEXTFORMAT(mixed $value, $format) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code><p>Value to check</p></div>
+<div class="subelement argument"><h4>$format</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_TRIMNONPRINTABLE"></a><div class="element clickable method public method_TRIMNONPRINTABLE" data-toggle="collapse" data-target=".method_TRIMNONPRINTABLE .collapse">
+<h2>TRIMNONPRINTABLE</h2>
+<pre>TRIMNONPRINTABLE($stringValue) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$stringValue</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_TRIMSPACES"></a><div class="element clickable method public method_TRIMSPACES" data-toggle="collapse" data-target=".method_TRIMSPACES .collapse">
+<h2>TRIMSPACES</h2>
+<pre>TRIMSPACES($stringValue) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$stringValue</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_UPPERCASE"></a><div class="element clickable method public method_UPPERCASE" data-toggle="collapse" data-target=".method_UPPERCASE .collapse">
+<h2>UPPERCASE</h2>
+<pre>UPPERCASE(string $mixedCaseString) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Converts a string value to upper case.</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$mixedCaseString</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method__uniord"></a><div class="element clickable method private method__uniord" data-toggle="collapse" data-target=".method__uniord .collapse">
+<h2>_uniord()
+        </h2>
+<pre>_uniord($c) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$c</h4></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__invalidChars"> </a><div class="element clickable property private property__invalidChars" data-toggle="collapse" data-target=".property__invalidChars .collapse">
+<h2></h2>
+<pre>$_invalidChars </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:12-07:00.<br></footer></div>
+</div>
+</body>
+</html>

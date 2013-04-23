@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Worksheet_ColumnDimension</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___clone" title="__clone :: Implement PHP __clone to create a deep clone, not just a shallow copy."><span class="description">Implement PHP __clone to create a deep clone, not just a shallow copy.</span><pre>__clone()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Create a new PHPExcel_Worksheet_ColumnDimension"><span class="description">Create a new PHPExcel_Worksheet_ColumnDimension</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_getAutoSize" title="getAutoSize :: Get Auto Size"><span class="description">Get Auto Size</span><pre>getAutoSize()</pre></a></li>
+<li class="method public "><a href="#method_getCollapsed" title="getCollapsed :: Get Collapsed"><span class="description">Get Collapsed</span><pre>getCollapsed()</pre></a></li>
+<li class="method public "><a href="#method_getColumnIndex" title="getColumnIndex :: Get ColumnIndex"><span class="description">Get ColumnIndex</span><pre>getColumnIndex()</pre></a></li>
+<li class="method public "><a href="#method_getOutlineLevel" title="getOutlineLevel :: Get Outline Level"><span class="description">Get Outline Level</span><pre>getOutlineLevel()</pre></a></li>
+<li class="method public "><a href="#method_getVisible" title="getVisible :: Get Visible"><span class="description">Get Visible</span><pre>getVisible()</pre></a></li>
+<li class="method public "><a href="#method_getWidth" title="getWidth :: Get Width"><span class="description">Get Width</span><pre>getWidth()</pre></a></li>
+<li class="method public "><a href="#method_getXfIndex" title="getXfIndex :: Get index to cellXf"><span class="description">Get index to cellXf</span><pre>getXfIndex()</pre></a></li>
+<li class="method public "><a href="#method_setAutoSize" title="setAutoSize :: Set Auto Size"><span class="description">Set Auto Size</span><pre>setAutoSize()</pre></a></li>
+<li class="method public "><a href="#method_setCollapsed" title="setCollapsed :: Set Collapsed"><span class="description">Set Collapsed</span><pre>setCollapsed()</pre></a></li>
+<li class="method public "><a href="#method_setColumnIndex" title="setColumnIndex :: Set ColumnIndex"><span class="description">Set ColumnIndex</span><pre>setColumnIndex()</pre></a></li>
+<li class="method public "><a href="#method_setOutlineLevel" title="setOutlineLevel :: Set Outline Level"><span class="description">Set Outline Level</span><pre>setOutlineLevel()</pre></a></li>
+<li class="method public "><a href="#method_setVisible" title="setVisible :: Set Visible"><span class="description">Set Visible</span><pre>setVisible()</pre></a></li>
+<li class="method public "><a href="#method_setWidth" title="setWidth :: Set Width"><span class="description">Set Width</span><pre>setWidth()</pre></a></li>
+<li class="method public "><a href="#method_setXfIndex" title="setXfIndex :: Set index to cellXf"><span class="description">Set index to cellXf</span><pre>setXfIndex()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property__autoSize" title="$_autoSize :: Auto size?"><span class="description"></span><pre>$_autoSize</pre></a></li>
+<li class="property private "><a href="#property__collapsed" title="$_collapsed :: Collapsed"><span class="description"></span><pre>$_collapsed</pre></a></li>
+<li class="property private "><a href="#property__columnIndex" title="$_columnIndex :: Column index"><span class="description"></span><pre>$_columnIndex</pre></a></li>
+<li class="property private "><a href="#property__outlineLevel" title="$_outlineLevel :: Outline level"><span class="description"></span><pre>$_outlineLevel</pre></a></li>
+<li class="property private "><a href="#property__visible" title="$_visible :: Visible?"><span class="description"></span><pre>$_visible</pre></a></li>
+<li class="property private "><a href="#property__width" title="$_width :: Column width"><span class="description"></span><pre>$_width</pre></a></li>
+<li class="property private "><a href="#property__xfIndex" title="$_xfIndex :: Index to cellXf"><span class="description"></span><pre>$_xfIndex</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Worksheet_ColumnDimension"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">PHPExcel_Worksheet_ColumnDimension</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">PHPExcel_Worksheet_ColumnDimension</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>PHPExcel</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/PHPExcel.Worksheet.html">PHPExcel_Worksheet</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___clone"></a><div class="element clickable method public method___clone" data-toggle="collapse" data-target=".method___clone .collapse">
+<h2>Implement PHP __clone to create a deep clone, not just a shallow copy.</h2>
+<pre>__clone() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Create a new PHPExcel_Worksheet_ColumnDimension</h2>
+<pre>__construct(string $pIndex) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pIndex</h4>
+<code>string</code><p>Character column index</p></div>
+</div></div>
+</div>
+<a id="method_getAutoSize"></a><div class="element clickable method public method_getAutoSize" data-toggle="collapse" data-target=".method_getAutoSize .collapse">
+<h2>Get Auto Size</h2>
+<pre>getAutoSize() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a id="method_getCollapsed"></a><div class="element clickable method public method_getCollapsed" data-toggle="collapse" data-target=".method_getCollapsed .collapse">
+<h2>Get Collapsed</h2>
+<pre>getCollapsed() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a id="method_getColumnIndex"></a><div class="element clickable method public method_getColumnIndex" data-toggle="collapse" data-target=".method_getColumnIndex .collapse">
+<h2>Get ColumnIndex</h2>
+<pre>getColumnIndex() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getOutlineLevel"></a><div class="element clickable method public method_getOutlineLevel" data-toggle="collapse" data-target=".method_getOutlineLevel .collapse">
+<h2>Get Outline Level</h2>
+<pre>getOutlineLevel() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_getVisible"></a><div class="element clickable method public method_getVisible" data-toggle="collapse" data-target=".method_getVisible .collapse">
+<h2>Get Visible</h2>
+<pre>getVisible() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a id="method_getWidth"></a><div class="element clickable method public method_getWidth" data-toggle="collapse" data-target=".method_getWidth .collapse">
+<h2>Get Width</h2>
+<pre>getWidth() : double</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>double</code></div>
+</div></div>
+</div>
+<a id="method_getXfIndex"></a><div class="element clickable method public method_getXfIndex" data-toggle="collapse" data-target=".method_getXfIndex .collapse">
+<h2>Get index to cellXf</h2>
+<pre>getXfIndex() : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_setAutoSize"></a><div class="element clickable method public method_setAutoSize" data-toggle="collapse" data-target=".method_setAutoSize .collapse">
+<h2>Set Auto Size</h2>
+<pre>setAutoSize(bool $pValue) : <a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>bool</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></code></div>
+</div></div>
+</div>
+<a id="method_setCollapsed"></a><div class="element clickable method public method_setCollapsed" data-toggle="collapse" data-target=".method_setCollapsed .collapse">
+<h2>Set Collapsed</h2>
+<pre>setCollapsed(bool $pValue) : <a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>bool</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></code></div>
+</div></div>
+</div>
+<a id="method_setColumnIndex"></a><div class="element clickable method public method_setColumnIndex" data-toggle="collapse" data-target=".method_setColumnIndex .collapse">
+<h2>Set ColumnIndex</h2>
+<pre>setColumnIndex(string $pValue) : <a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></code></div>
+</div></div>
+</div>
+<a id="method_setOutlineLevel"></a><div class="element clickable method public method_setOutlineLevel" data-toggle="collapse" data-target=".method_setOutlineLevel .collapse">
+<h2>Set Outline Level</h2>
+<pre>setOutlineLevel(int $pValue) : <a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Value must be between 0 and 7</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>int</code>
+</div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></code></div>
+</div></div>
+</div>
+<a id="method_setVisible"></a><div class="element clickable method public method_setVisible" data-toggle="collapse" data-target=".method_setVisible .collapse">
+<h2>Set Visible</h2>
+<pre>setVisible(bool $pValue) : <a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>bool</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></code></div>
+</div></div>
+</div>
+<a id="method_setWidth"></a><div class="element clickable method public method_setWidth" data-toggle="collapse" data-target=".method_setWidth .collapse">
+<h2>Set Width</h2>
+<pre>setWidth(double $pValue) : <a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>double</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></code></div>
+</div></div>
+</div>
+<a id="method_setXfIndex"></a><div class="element clickable method public method_setXfIndex" data-toggle="collapse" data-target=".method_setXfIndex .collapse">
+<h2>Set index to cellXf</h2>
+<pre>setXfIndex(int $pValue) : <a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$pValue</h4>
+<code>int</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/PHPExcel_Worksheet_ColumnDimension.html">\PHPExcel_Worksheet_ColumnDimension</a></code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__autoSize"> </a><div class="element clickable property private property__autoSize" data-toggle="collapse" data-target=".property__autoSize .collapse">
+<h2></h2>
+<pre>$_autoSize : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__collapsed"> </a><div class="element clickable property private property__collapsed" data-toggle="collapse" data-target=".property__collapsed .collapse">
+<h2></h2>
+<pre>$_collapsed : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__columnIndex"> </a><div class="element clickable property private property__columnIndex" data-toggle="collapse" data-target=".property__columnIndex .collapse">
+<h2></h2>
+<pre>$_columnIndex : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__outlineLevel"> </a><div class="element clickable property private property__outlineLevel" data-toggle="collapse" data-target=".property__outlineLevel .collapse">
+<h2></h2>
+<pre>$_outlineLevel : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__visible"> </a><div class="element clickable property private property__visible" data-toggle="collapse" data-target=".property__visible .collapse">
+<h2></h2>
+<pre>$_visible : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__width"> </a><div class="element clickable property private property__width" data-toggle="collapse" data-target=".property__width .collapse">
+<h2></h2>
+<pre>$_width : double</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>When this is set to a negative value, the column width should be ignored by IWriter</p></div></div></div>
+</div>
+<a id="property__xfIndex"> </a><div class="element clickable property private property__xfIndex" data-toggle="collapse" data-target=".property__xfIndex .collapse">
+<h2></h2>
+<pre>$_xfIndex : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:17-07:00.<br></footer></div>
+</div>
+</body>
+</html>

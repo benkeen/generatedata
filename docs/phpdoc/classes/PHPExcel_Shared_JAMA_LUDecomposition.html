@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \PHPExcel_Shared_JAMA_LUDecomposition</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Core.html"><i class="icon-folder-open"></i> Core</a></li>
+<li><a href="../packages/Countries.html"><i class="icon-folder-open"></i> Countries</a></li>
+<li><a href="../packages/DataTypes.html"><i class="icon-folder-open"></i> DataTypes</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Emails.html"><i class="icon-folder-open"></i> Emails</a></li>
+<li><a href="../packages/ExportTypes.html"><i class="icon-folder-open"></i> ExportTypes</a></li>
+<li><a href="../packages/JAMA%0ACholesky%20decomposition%20class%0AFor%20a%20symmetric,%20positive%20definite%20matrix%20A,%20the%20Cholesky%20decomposition%0Ais%20an%20lower%20triangular%20matrix%20L%20so%20that%20A%20=%20L*L'.html"><i class="icon-folder-open"></i> JAMA
+Cholesky decomposition class
+For a symmetric, positive definite matrix A, the Cholesky decomposition
+is an lower triangular matrix L so that A = L*L'</a></li>
+<li><a href="../packages/JAMA%0AClass%20to%20obtain%20eigenvalues%20and%20eigenvectors%20of%20a%20real%20matrix.html"><i class="icon-folder-open"></i> JAMA
+Class to obtain eigenvalues and eigenvectors of a real matrix</a></li>
+<li><a href="../packages/JAMA%0AError%20handling.html"><i class="icon-folder-open"></i> JAMA
+Error handling</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20QR%20decomposition%20is%20an%20m-by-n%0Aorthogonal%20matrix%20Q%20and%20an%20n-by-n%20upper%20triangular%20matrix%20R%20so%20that%0AA%20=%20Q*R.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+A = Q*R</a></li>
+<li><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20singular%20value%20decomposition%20is%0Aan%20m-by-n%20orthogonal%20matrix%20U,%20an%20n-by-n%20diagonal%20matrix%20S,%20and%0Aan%20n-by-n%20orthogonal%20matrix%20V%20so%20that%20A%20=%20U*S*V'.html"><i class="icon-folder-open"></i> JAMA
+For an m-by-n matrix A with m &gt;= n, the singular value decomposition is
+an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+an n-by-n orthogonal matrix V so that A = U*S*V'</a></li>
+<li><a href="../packages/JAMA%0APythagorean%20Theorem:%0Aa%20=%203%0Ab%20=%204%0Ar%20=%20sqrt(square(a)%20+%20square(b))%0Ar%20=%205%0Ar%20=%20sqrt(a%5E2%20+%20b%5E2)%20without%20under.overflow.html"><i class="icon-folder-open"></i> JAMA
+Pythagorean Theorem:
+a = 3
+b = 4
+r = sqrt(square(a) + square(b))
+r = 5
+r = sqrt(a^2 + b^2) without under/overflow</a></li>
+<li><a href="../packages/Math.html"><i class="icon-folder-open"></i> Math</a></li>
+<li><a href="../packages/PHPExcel.html"><i class="icon-folder-open"></i> PHPExcel</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1565</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul>
+<li>todo 
+                <span class="label label-info">33</span>
+</li>
+<li>fixme 
+                <span class="label label-info">10</span>
+</li>
+</ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">14</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: LU Decomposition constructor."><span class="description">LU Decomposition constructor.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_det" title="det :: Count determinants"><span class="description">Count determinants</span><pre>det()</pre></a></li>
+<li class="method public "><a href="#method_getDoublePivot" title="getDoublePivot :: Alias for getPivot"><span class="description">Alias for getPivot</span><pre>getDoublePivot()</pre></a></li>
+<li class="method public "><a href="#method_getL" title="getL :: Get lower triangular factor."><span class="description">Get lower triangular factor.</span><pre>getL()</pre></a></li>
+<li class="method public "><a href="#method_getPivot" title="getPivot :: Return pivot permutation vector."><span class="description">Return pivot permutation vector.</span><pre>getPivot()</pre></a></li>
+<li class="method public "><a href="#method_getU" title="getU :: Get upper triangular factor."><span class="description">Get upper triangular factor.</span><pre>getU()</pre></a></li>
+<li class="method public "><a href="#method_isNonsingular" title="isNonsingular :: Is the matrix nonsingular?"><span class="description">Is the matrix nonsingular?</span><pre>isNonsingular()</pre></a></li>
+<li class="method public "><a href="#method_solve" title="solve :: Solve A*X = B"><span class="description">Solve A*X = B</span><pre>solve()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property_LU" title="$LU :: Decomposition storage"><span class="description"></span><pre>$LU</pre></a></li>
+<li class="property private "><a href="#property_m" title="$m :: Row dimension."><span class="description"></span><pre>$m</pre></a></li>
+<li class="property private "><a href="#property_n" title="$n :: Column dimension."><span class="description"></span><pre>$n</pre></a></li>
+<li class="property private "><a href="#property_piv" title="$piv :: Internal storage of pivot vector."><span class="description"></span><pre>$piv</pre></a></li>
+<li class="property private "><a href="#property_pivsign" title="$pivsign :: Pivot sign."><span class="description"></span><pre>$pivsign</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_MatrixSingularException" title="MatrixSingularException :: "><span class="description">MatrixSingularException</span><pre>MatrixSingularException</pre></a></li>
+<li class="constant  "><a href="#constant_MatrixSquareException" title="MatrixSquareException :: "><span class="description">MatrixSquareException</span><pre>MatrixSquareException</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\PHPExcel_Shared_JAMA_LUDecomposition"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/PHPExcel_Shared_JAMA_LUDecomposition.html">PHPExcel_Shared_JAMA_LUDecomposition</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description"></p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/JAMA%0AFor%20an%20m-by-n%20matrix%20A%20with%20m%20&gt;=%20n,%20the%20LU%20decomposition%20is%20an%20m-by-n%0Aunit%20lower%20triangular%20matrix%20L,%20an%20n-by-n%20upper%20triangular%20matrix%20U,%0Aand%20a%20permutation%20vector%20piv%20of%20length%20m%20so%20that%20A(piv,:)%20=%20L*U.%0AIf%20m%20&lt;%20n,%20then%20L%20is%20m-by-m%20and%20U%20is%20m-by-n.%0AThe%20LU%20decompostion%20with%20pivoting%20always%20exists,%20even%20if%20the%20matrix%20is%0Asingular,%20so%20the%20constructor%20will%20never%20fail.%20The%20primary%20use%20of%20the%0ALU%20decomposition%20is%20in%20the%20solution%20of%20square%20systems%20of%20simultaneous%0Alinear%20equations.%20This%20will%20fail%20if%20isNonsingular()%20returns%20false..html">JAMA
+For an m-by-n matrix A with m &gt;= n, the LU decomposition is an m-by-n
+unit lower triangular matrix L, an n-by-n upper triangular matrix U,
+and a permutation vector piv of length m so that A(piv,:) = L*U.
+If m &lt; n, then L is m-by-m and U is m-by-n.
+The LU decompostion with pivoting always exists, even if the matrix is
+singular, so the constructor will never fail. The primary use of the
+LU decomposition is in the solution of square systems of simultaneous
+linear equations. This will fail if isNonsingular() returns false.</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="">Paul Meagher</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="">Bartosz Matosiuk</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="">Michael Bommarito</a></td>
+</tr>
+<tr>
+<th>version</th>
+<td>1.1</td>
+</tr>
+<tr>
+<th>license</th>
+<td><a href="">PHP v3.0</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>LU Decomposition constructor.</h2>
+<pre>__construct($A) : \Structure</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$A</h4><p>Rectangular matrix</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Structure</code>to access L, U and piv.</div>
+</div></div>
+</div>
+<a id="method_det"></a><div class="element clickable method public method_det" data-toggle="collapse" data-target=".method_det .collapse">
+<h2>Count determinants</h2>
+<pre>det() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>d matrix deterninat</div>
+</div></div>
+</div>
+<a id="method_getDoublePivot"></a><div class="element clickable method public method_getDoublePivot" data-toggle="collapse" data-target=".method_getDoublePivot .collapse">
+<h2>Alias for getPivot</h2>
+<pre>getDoublePivot() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="">\global\getPivot</a></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getL"></a><div class="element clickable method public method_getL" data-toggle="collapse" data-target=".method_getL .collapse">
+<h2>Get lower triangular factor.</h2>
+<pre>getL() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Lower triangular factor</div>
+</div></div>
+</div>
+<a id="method_getPivot"></a><div class="element clickable method public method_getPivot" data-toggle="collapse" data-target=".method_getPivot .collapse">
+<h2>Return pivot permutation vector.</h2>
+<pre>getPivot() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Pivot vector</div>
+</div></div>
+</div>
+<a id="method_getU"></a><div class="element clickable method public method_getU" data-toggle="collapse" data-target=".method_getU .collapse">
+<h2>Get upper triangular factor.</h2>
+<pre>getU() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>Upper triangular factor</div>
+</div></div>
+</div>
+<a id="method_isNonsingular"></a><div class="element clickable method public method_isNonsingular" data-toggle="collapse" data-target=".method_isNonsingular .collapse">
+<h2>Is the matrix nonsingular?</h2>
+<pre>isNonsingular() : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if U, and hence A, is nonsingular.</div>
+</div></div>
+</div>
+<a id="method_solve"></a><div class="element clickable method public method_solve" data-toggle="collapse" data-target=".method_solve .collapse">
+<h2>Solve A*X = B</h2>
+<pre>solve($B) : \X</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>exception</th>
+<td>IllegalArgumentException Matrix row dimensions must agree.</td>
+</tr>
+<tr>
+<th>exception</th>
+<td>RuntimeException  Matrix is singular.</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$B</h4><p>A Matrix with as many rows as A and any number of columns.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\X</code>so that L*U*X = B(piv,:)</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_LU"> </a><div class="element clickable property private property_LU" data-toggle="collapse" data-target=".property_LU .collapse">
+<h2></h2>
+<pre>$LU : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_m"> </a><div class="element clickable property private property_m" data-toggle="collapse" data-target=".property_m .collapse">
+<h2></h2>
+<pre>$m : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_n"> </a><div class="element clickable property private property_n" data-toggle="collapse" data-target=".property_n .collapse">
+<h2></h2>
+<pre>$n : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_piv"> </a><div class="element clickable property private property_piv" data-toggle="collapse" data-target=".property_piv .collapse">
+<h2></h2>
+<pre>$piv : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_pivsign"> </a><div class="element clickable property private property_pivsign" data-toggle="collapse" data-target=".property_pivsign .collapse">
+<h2></h2>
+<pre>$pivsign : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_MatrixSingularException"> </a><div class="element clickable constant  constant_MatrixSingularException" data-toggle="collapse" data-target=".constant_MatrixSingularException .collapse">
+<h2>MatrixSingularException</h2>
+<pre>MatrixSingularException </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_MatrixSquareException"> </a><div class="element clickable constant  constant_MatrixSquareException" data-toggle="collapse" data-target=".constant_MatrixSquareException .collapse">
+<h2>MatrixSquareException</h2>
+<pre>MatrixSquareException </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-22T17:30:15-07:00.<br></footer></div>
+</div>
+</body>
+</html>

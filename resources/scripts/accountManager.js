@@ -37,6 +37,10 @@ define([
 		$("#gdAccountList").on("click", ".gdDeleteAccount", _openDeleteAccountDialog);
 
 		_getAccountsList();
+
+		var subscriptions = {};
+		subscriptions[C.EVENT.TAB.CHANGE] = _onChangeTab;
+		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
 	var _onClickCreateAccount = function() {
@@ -94,8 +98,9 @@ define([
 				url: "ajax.php",
 				type: "POST",
 				data: data,
-				dataType: "json",
-				success: function(response) {
+				dataType: "json"
+			}).then(
+				function(response) {
 					if (response.success) {
 
 						// get a fresh list of accounts from the server, and add a callback so that
@@ -108,15 +113,16 @@ define([
 							}
 						});
 					} else {
-						// TODO
 						utils.pauseModalSpinner(_manageAccountModalID);
 					}
 				},
-				error: function(response) {
+
+				function(response) {
 					utils.pauseModalSpinner(_manageAccountModalID);
 					console.log("error response: ", response);
 				}
-			});
+			);
+
 		}
 	};
 
@@ -129,10 +135,10 @@ define([
 				action: "deleteAccount",
 				accountID: accountID
 			},
-			dataType: "json",
-			success: function(response) {
+			dataType: "json"
+		}).then(
+			function(response) {
 				if (response.success) {
-
 					// get a fresh list of accounts from the server, and add a callback so that
 					// we close the modal when it's complete`
 					_getAccountsList({
@@ -146,11 +152,11 @@ define([
 					// TODO
 				}
 			},
-			error: function(response) {
+			function(response) {
 				utils.pauseModalSpinner(_deleteAccountModalID);
 				console.log("error response: ", response);
 			}
-		});
+		);
 	};
 
 	var _openEditAccountDialog = function(e) {
@@ -238,12 +244,13 @@ define([
 			onComplete: null
 		}, options);
 
-		var ajaxObj = {
+		$.ajax({
 			url: "ajax.php",
 			type: "POST",
 			data: { action: "getUsers" },
-			dataType: "json",
-			success: function(response) {
+			dataType: "json"
+		}).then(
+			function(response) {
 				if (response.success) {
 					_accountList = response.content;
 					_updateAccountsTable();
@@ -252,20 +259,17 @@ define([
 					opts.onComplete();
 				}
 			},
-			error: function(response) {
+			function(response) {
 				console.log("error response: ", response);
 				if (opts.onComplete !== null) {
 					opts.onComplete();
 				}
 			}
-		};
-
-		$.ajax(ajaxObj);
+		);
 	};
 
 
 	var _updateAccountsTable = function() {
-
 		var html = '';
 		for (var i=0; i<_accountList.length; i++) {
 			var lastLoggedIn = (_accountList[i].last_logged_in !== '') ? moment.unix(_accountList[i].last_logged_in).format("MMM D, YYYY h:mm A") : '&#8212;';
@@ -333,6 +337,12 @@ define([
 
 	var _regeneratePassword = function() {
 		$("#gdManageAccount_password").val(utils.generateRandomAlphaNumericStr(8));
+	};
+
+	var _onChangeTab = function(message) {
+		if (message.newTab == 2) {
+			$(".tablesorter").trigger("update");
+		}
 	};
 
 	// register our module
