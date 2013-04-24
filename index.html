@@ -1,138 +1,211 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>generatedata</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Data Generator</title>
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="assets/css/docs.css" rel="stylesheet">
+	<link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <p>Open Source random data generator in JS, PHP and MySQL.</p>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="dropdown"><a class="brand" href="index.html">generatedata.<span>com</span></a></li>
+						<li class="active"><a href="index.html">User Documentation</a></li>
+						<li class="dropdown">
+							<a href="developer.html" class="dropdown-toggle" data-toggle="dropdown">Developer Doc <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="developer.html">Introduction / Overview</a></li>
+								<li><a href="dataTypes.html">Data Types</a></li>
+								<li><a href="exportTypes.html">Export Types</a></li>
+								<li><a href="countryPlugins.html">Country Plugins</a></li>
+								<li><a href="translations.html">Translations</a></li>
+							</ul>
+						</li>
+						<li><a href="contribute.html">How to Contribute / Contact Me</a></li>
+						<li><a href="scriptsUsed.html">Scripts Used</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		<p class="view">
-			<a href="./"><b>User Documentation</b></a>
-		</p>
-		<p class="view">
-			<a href="install.html">How to Install</a>
-		</p>
-		<p class="view">
-			<a href="http://www.generatedata.com">Go to generatedata.com</a>
-		</p>
-		<p class="view">
-			<a href="http://beta.generatedata.com/docs/">Extend it! Developer Documentation</a>
-		</p>
-		<p class="view">
-			<a href="https://github.com/benkeen/generatedata">View the Project on GitHub <small>benkeen/generatedata</small></a>
-		</p>
+	<div class="container">
 
-        <br />
+		<div class="row">
+			<div class="span3" id="sidebar">
+				<ul id="userNav" class="nav">
+					<li class="active"><a href="#">User Documentation</a></li>
+					<li><a href="install.html">How to Install</a></li>
+					<li><a href="http://www.generatedata.com">Go to generatedata.com &raquo;</a></li>
+				</ul>
 
-        <ul>
-          <li><a href="https://github.com/benkeen/generatedata/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/benkeen/generatedata/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/benkeen/generatedata">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-
-      <section>
-		<h1>User Documentation</h1>
-
-		<p>
-			Sometimes you need fake data for things like testing software, populating databases and creating 
-			realistic-looking mockups. For text, we have lorem ipsum; but for everything else...? This tool was 
-			written to provide a quick and simple way to let you generate large volumes of custom data in 
-			whatever format you require.
-		</p>
-
-		<p>
-			<a href="http://beta.generatedata.com">View script online at generatedata.com</a>
-		</p>
-
-		<hr size="1" />
-
-		<h1>Installation Types</h1>
-		<p>
-			The script was written to be installed and used within a local environment. Because people's needs are different,
-			the <a href="install.php">installation script</a> lets you choose between the following installation types:
-		</p>
-		<ul>
-			<li>
-				<b>A single, anonymous user account</b> - all saved configurations will be on this single user. No-one needs to 
-				authenticate in order to access the script.
-			</li>
-			<li>
-				<b>A single user account, requires login</b> - the same as the previous option, except people need to log in
-				to use the script and save data sets.
-			</li>
-			<li>
-				<b>Multiple accounts</b> - this lets you set up any number of user accounts, each with their own login information.
-				This option is perfect if you have a team, all of whom need to use the script to maintain their own data sets.
-			</li>
-		</ul>
-
-		<hr size="1" />
-
-		<h1>Server Requirements</h1>
-		<ul>
-			<li>PHP 5.3 or later</li>
-			<li>MySQL 4 or later</li>
-		</ul>
-
-		<hr size="1" />
-
-		<h1>Github code vs. generatedata.com</h1>
-
-		<p>
-			The version of the script found at <a href="http://www.generatedata.com">generatedata.com</a> is a <b>private fork</b>
-			of the open source script. I added in a few frills here and there - such as the option to donate to the project - 
-			but the codebase is pretty much the same. The public site was written as a convenience for people who don't want to download and 
-			install the script themselves - and for those who are willing to donate to keep the project going.
-		</p>
+				<ul id="githubLinks">
+					<li><a href="https://github.com/benkeen/generatedata/zipball/master">Download <strong>ZIP File</strong></a></li>
+					<li><a href="https://github.com/benkeen/generatedata/tarball/master">Download <strong>TAR Ball</strong></a></li>
+					<li><a href="https://github.com/benkeen/generatedata">View On <strong>GitHub</strong></a></li>
+				</ul>
 
 
-		<hr size="1" />
-
-		<h1>A Brief History</h1>
-		<h3>Version 1.x</h3>
-
-		<p>
-			The first version of the script was completed back in 2005/2006. It was very basic, but in overall UI and design 
-			it hasn't changed all that much to this day.
-		</p>
-
-		<h3>Version 2.x</h3>
-
-		<p>Version 2 was never fully completed. A proof of concept was gotten up and running back in 2010, which 
-		added (basic) modularity and improved a few things, but I abandoned it in favour of some other projects
-		I was working on at the time. However, the tag is available on github if you want a copy.</p>
-
-		<h3>Version 3.0.0</h3>
-
-		<p><a href="http://beta.generatedata.com">http://beta.generatedata.com</a></p>
-
-		<p>
-			Currently the 3.0.0 branch is in beta, meaning it's <b>almost</b> production ready. The more feedback 
-			I can get the better. This the version you'll want to download and use - and this is the version that these 
-			documentation pages all cover. I'm working on this version currently (April 2013) and expect to get it 
-			into final release in the next month or so.
-		</p>
+				<p class="projectMaintainer">
+					This project is maintained by<br />
+					Ben Keen <a href="https://twitter.com/#!/vancouverben">@vancouverben</a>
+				</p>
 
 
-      </section>
-      <footer>
-        <p>This project is maintained by Ben Keen <a href="https://twitter.com/#!/vancouverben">@vancouverben</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+			</div>
+			<div class="span9">
+
+				<section>
+					<h1>User Documentation</h1>
+
+					<p class="alert alert-error">
+						This whole section, and the other links above ain't done. Nope, not by a long shot. Feel free to look around, prod things, 
+						click on things, etc. but don't be surprised when you get a 404 or other such stuff. It should be done in a day of two. Come back then.
+						(this was written on April 23rd, 2013).
+					</p>
+
+					<p>
+						This section contains a little meta info about the script. What it's all about, how to install it, where it 
+						came from and blah blah blah. If you're a dev and want to extend it, (a) <i>sweet</i> and (b) visit the 
+						<a href="developer.html">developer doc</a> section. It will <b>Blow. Your. Mind.</b> (not true).
+					</p>
+
+					<h3>What <i>is</i> this script again?</h3>
+					<p>
+						Sometimes you need fake data for things like testing software, populating databases and creating 
+						realistic-looking mockups. For text, we have lorem ipsum; but for everything else...? This tool was 
+						written to provide a quick and simple way to let you generate large volumes of custom data in 
+						whatever format you require.
+					</p>
+
+					<p>
+						<a href="http://beta.generatedata.com">Try the script online at generatedata.com</a>
+					</p>
+
+					<hr size="1" />
+
+					<h1>Installation Types</h1>
+					<p>
+						The script was written to be installed and used within a local environment. Because people's needs are different,
+						the <a href="install.php">installation script</a> lets you choose between the following installation types:
+					</p>
+					<ul>
+						<li>
+							<b>A single, anonymous user account</b> - all saved configurations will be on this single user. No-one needs to 
+							authenticate in order to access the script.
+						</li>
+						<li>
+							<b>A single user account, requires login</b> - the same as the previous option, except people need to log in
+							to use the script and save data sets.
+						</li>
+						<li>
+							<b>Multiple accounts</b> - this lets you set up any number of user accounts, each with their own login information.
+							This option is perfect if you have a team, all of whom need to use the script to maintain their own data sets.
+						</li>
+					</ul>
+
+					<hr size="1" />
+
+					<h1>Server Requirements</h1>
+					<ul>
+						<li>PHP 5.3 or later</li>
+						<li>MySQL 4 or later</li>
+					</ul>
+
+					<hr size="1" />
+
+					<h1>Github code vs. generatedata.com</h1>
+
+					<p>
+						The version of the script found at <a href="http://www.generatedata.com">generatedata.com</a> is a <b>private fork</b>
+						of the open source script. I added in a few frills here and there - such as the option to donate to the project - 
+						but the codebase is pretty much the same. The public site was written as a convenience for people who don't want to download and 
+						install the script themselves - and for those who are willing to donate to keep the project going. Good, solid, hardworking
+						people. Salt o' the earth.
+					</p>
+
+					<hr size="1" />
+
+					<h1>A Brief History</h1>
+					<h3>Version 1.x</h3>
+
+					<p>
+						The first version of the script was completed back in 2005/2006. It was very basic, but in overall UI and design 
+						it actually hasn't changed all that much to this day.
+					</p>
+
+					<h3>Version 2.x</h3>
+
+					<p>
+						Version 2 was never fully completed. A proof of concept was gotten up and running back in 2010, which 
+						added basic modularity and improved a few things, but I abandoned it in favour of some other projects
+						I was working on at the time. The tag is available on github if you want a copy, but I wouldn't bother.
+					</p>
+
+					<h3>Version 3.0.0</h3>
+
+					<p><a href="http://beta.generatedata.com">http://beta.generatedata.com</a></p>
+
+					<p>
+						Currently the 3.0.0 branch is in beta, meaning it's <b>almost</b> production ready. The more feedback 
+						I can get the better. This the version you'll want to download and use - and this is the version that these 
+						documentation pages all cover. I'm working on this version currently (April 2013) and expect to get it 
+						into final release in the next month or so.
+					</p>
+				</section>
+
+			</div>
+		</div>
+	</div>
+
+<!--
+	<script src="javascripts/scale.fix.js"></script>
+		<footer>
+			<p>This project is maintained by Ben Keen <a href="https://twitter.com/#!/vancouverben">@vancouverben</a></p>
+			<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+		</footer>
+	</div>
+-->
+
+<br />
+
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/google-code-prettify/prettify.js"></script>
+	<script src="assets/js/bootstrap-transition.js"></script>
+	<script src="assets/js/bootstrap-alert.js"></script>
+	<script src="assets/js/bootstrap-modal.js"></script>
+	<script src="assets/js/bootstrap-dropdown.js"></script>
+	<script src="assets/js/bootstrap-scrollspy.js"></script>
+	<script src="assets/js/bootstrap-tab.js"></script>
+	<script src="assets/js/bootstrap-tooltip.js"></script>
+	<script src="assets/js/bootstrap-popover.js"></script>
+	<script src="assets/js/bootstrap-button.js"></script>
+	<script src="assets/js/bootstrap-collapse.js"></script>
+	<script src="assets/js/bootstrap-carousel.js"></script>
+	<script src="assets/js/bootstrap-typeahead.js"></script>
+	<script src="assets/js/bootstrap-affix.js"></script>
+
+	<script>$(function() { prettyPrint(); });</script>
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					
+				</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
 </html>
