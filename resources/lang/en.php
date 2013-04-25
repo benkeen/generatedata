@@ -269,7 +269,6 @@ $L["link_to_data_set"] = "Link to Data Set";
 $L["login"] = "Login";
 $L["forgot_password"] = "Forgot Password";
 
-// new
 $L["admin_account"] = "Admin account";
 $L["feature_enabled"] = "Enabled";
 $L["anonymous_access"] = "Anonymous access";
@@ -281,3 +280,6 @@ $L["email_c"] = "Email:";
 $L["password_c"] = "Password:";
 $L["no_account_found"] = "Sorry, that account wasn't found.";
 $L["update"] = "Update";
+
+// new
+$L["documentation"] = "Documentation";
