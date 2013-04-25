@@ -10,3 +10,4 @@ $dbName        = '';
 $dbUsername    = '';
 $dbPassword    = '';
 $dbTablePrefix = '';
+$encryptionSalt = 'ABC'; // any 3 A-Z chars
