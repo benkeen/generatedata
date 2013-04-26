@@ -1011,3 +1011,8 @@ body pre {
 	border: none;
 	padding: 0px;
 }
+.screenshot {
+	float: right;
+	border: 1px solid #aaaaaa;
+	margin-left: 15px;
+}
