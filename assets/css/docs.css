@@ -1003,3 +1003,11 @@ body pre {
 .projectMaintainer {
 	margin-top: 80px;
 }
+
+#mainTitle a {
+	background-image: url(../img/logo.png);
+	width: 310px;
+	height: 40px;
+	border: none;
+	padding: 0px;
+}
