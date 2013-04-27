@@ -18,27 +18,52 @@
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li id="mainTitle"><a href="index.html"></a></li>
-						<li class="active"><a href="index.html">User Documentation</a></li>
-						<li class="dropdown">
-							<a href="developer.html" class="dropdown-toggle" data-toggle="dropdown">Developer Doc <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="developer.html">Introduction</a></li>
-								<li class="divider"></li>
-								<li class="nav-header">Module Types</li>
-								<li><a href="dataTypes.html">Data Types</a></li>
-								<li><a href="exportTypes.html">Export Types</a></li>
-								<li><a href="countryPlugins.html">Country Plugins</a></li>
-								<li class="divider"></li>
-								<li><a href="translations.html">Translations</a></li>
-							</ul>
-						</li>
-						<li><a href="contribute.html">How to Contribute / Contact Me</a></li>
-						<li><a href="scriptsUsed.html">Scripts Used</a></li>
-					</ul>
-				</div>
+				<ul class="nav">
+					<li id="mainTitle"><a href="index.html"></a></li>
+					<li>
+						<ul id="mainNav" class="nav">
+							<li class="active"><a href="index.html">User Documentation</a></li>
+							<li class="dropdown">
+								<a href="developer.html" class="dropdown-toggle" data-toggle="dropdown">Developer Doc <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="developer.html">Introduction</a></li>
+									<li class="divider"></li>
+									<li class="nav-header">Module Types</li>
+									<li><a href="dataTypes.html">Data Types</a></li>
+									<li><a href="exportTypes.html">Export Types</a></li>
+									<li><a href="countryPlugins.html">Country Plugins</a></li>
+									<li class="divider"></li>
+									<li><a href="translations.html">Translations</a></li>
+								</ul>
+							</li>
+							<li><a href="contribute.html">How to Contribute / Contact Me</a></li>
+							<li><a href="scriptsUsed.html">Scripts Used</a></li>
+						</ul>
+
+						<ul id="shortNav" class="nav">
+							<li class="dropdown">
+								<a href="developer.html" class="dropdown-toggle" data-toggle="dropdown"><span id="menuTitle">Menu</span> <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="index.html">User Documentation</a></li>
+									<li><a href="install.html">How to Install</a></li>
+									<li class="divider"></li>
+									<li class="nav-header">Developer Documentation</li>
+									<li><a href="developer.html">Introduction</a></li>
+									<li class="divider"></li>
+									<li class="nav-header">Module Types</li>
+									<li><a href="dataTypes.html">Data Types</a></li>
+									<li><a href="exportTypes.html">Export Types</a></li>
+									<li><a href="countryPlugins.html">Country Plugins</a></li>
+									<li class="divider"></li>
+									<li><a href="translations.html">Translations</a></li>
+									<li class="divider"></li>
+									<li><a href="contribute.html">How to Contribute / Contact Me</a></li>
+									<li><a href="scriptsUsed.html">Scripts Used</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -63,7 +88,6 @@
 					This project is maintained by<br />
 					Ben Keen <a href="https://twitter.com/#!/vancouverben">@vancouverben</a>
 				</p>
-
 			</div>
 			<div class="span9">
 
@@ -99,7 +123,7 @@
 					<h1>Installation Types</h1>
 					<p>
 						It's ready to be installed in any intranet or local environment to be used by teams of any size: a single 
-						person or a large team. The <a href="install.php">installation script</a> lets you choose between the following 
+						person or a large team. The <a href="install.html">installation script</a> lets you choose between the following 
 						installation types:
 					</p>
 					<ul>
@@ -171,16 +195,7 @@
 		</div>
 	</div>
 
-<!--
-	<script src="javascripts/scale.fix.js"></script>
-		<footer>
-			<p>This project is maintained by Ben Keen <a href="https://twitter.com/#!/vancouverben">@vancouverben</a></p>
-			<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-		</footer>
-	</div>
--->
-
-<br />
+	<br />
 
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/google-code-prettify/prettify.js"></script>

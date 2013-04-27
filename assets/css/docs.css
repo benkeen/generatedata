@@ -17,8 +17,6 @@ body {
   color: #444;
   font-weight: 400;
   position: relative;
-  padding-top: 40px;
-  padding-bottom: 60px;
 }
 
 /* Code in headings */
@@ -82,6 +80,8 @@ hr.soften {
   border: 0;
 }
 
+#mainNav { display: block; }
+#shortNav { display: none; }
 
 
 /* Jumbotrons
@@ -731,6 +731,9 @@ form.bs-docs-example {
 /* Desktop
 ------------------------- */
 @media (max-width: 980px) {
+	#mainNav { display: block; }
+	#shortNav { display: none; }
+
   /* Unfloat brand */
   body > .navbar-fixed-top .brand {
     float: left;
@@ -756,9 +759,12 @@ form.bs-docs-example {
 /* Tablet to desktop
 ------------------------- */
 @media (min-width: 768px) and (max-width: 980px) {
+	#mainNav { display: none; }
+	#shortNav { display: block; }
+
   /* Remove any padding from the body */
   body {
-    padding-top: 0;
+    padding: 0px;
   }
   /* Widen masthead and social buttons to fill body padding */
   .jumbotron {
@@ -772,6 +778,18 @@ form.bs-docs-example {
   .bs-docs-sidenav.affix {
     top: 0;
   }
+  .span9 {
+  	width: 450px;
+  }
+  .container {
+  	width: 830px;
+  }
+  .row {
+  	margin: 0px;
+  }
+  footer .span12 {
+	width: 790px;
+  }
 }
 
 /* Tablet
@@ -779,7 +797,7 @@ form.bs-docs-example {
 @media (max-width: 767px) {
   /* Remove any padding from the body */
   body {
-    padding-top: 0;
+    padding: 0px;
   }
 
   /* Widen masthead and social buttons to fill body padding */

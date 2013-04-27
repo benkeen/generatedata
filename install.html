@@ -57,6 +57,11 @@
 					<li><a href="https://github.com/benkeen/generatedata/tarball/master">Download <strong>TAR Ball</strong></a></li>
 					<li><a href="https://github.com/benkeen/generatedata">View On <strong>GitHub</strong></a></li>
 				</ul>
+
+				<p class="projectMaintainer">
+					This project is maintained by<br />
+					Ben Keen <a href="https://twitter.com/#!/vancouverben">@vancouverben</a>
+				</p>
 			</div>
 			<div class="span9">
 
@@ -99,15 +104,80 @@
 					</p>
 
 
-					<a href="assets/screenshots/step1.png" title="Installation: step 1" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step1_th.png" /></a>
+					<ol>
+						<li>
+							<a href="assets/screenshots/step1.png" title="Installation: step 1" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step1_th.png" /></a>
+							<p>
+								The first step is to specify your <b>database settings</b>. As with all web scripts, the Data Generator expects you to have 
+								created a database already - which can be blank or contain other tables. 
+							</p>
+							<p>
+								Most of the fields on this page are self-explanatory; if you're not sure about any of them, you'll need to speak to your
+								hosting provider, or do some googling to figure out how to get it working locally. 
+							</p>
+							<p class="alert alert-info">
+								The language dropdown at the top right changes the language for the current page - it doesn't, however, change it 
+								for your actual installation. For that, select the appropriate language in the <b>Default Language</b> field.
+							</p>
+						</li>
+						<li>
+							<a href="assets/screenshots/step2.png" title="Installation: step 2" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step2_th.png" /></a>
+							<p>
+								The second step of the installation script creates your <code>settings.php</code> file. This file is special: it's the only
+								file in your Data Generator installation that contains unique settings for your environment. The installation 
+								script attempts to create this file automatically, but in case it doesn't have the permissions to do so, it will throw
+								an error and show you the contents of the file that need to be created. If this occurs, you'll need to manually
+								create your <code>settings.php</code> file in the root folder of your Data Generator installation. Once you refresh the page
+								it will allow you to continue with the installation process.
+							</p>
+						</li>
+						<li>
+							<a href="assets/screenshots/step3.png" title="Installation: step 3" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step3_th.png" /></a>
+							<p>
+								Step 3 lets you choose how to handle your users. This is totally up to you and you can pick the one that best suits your needs. 
+								Exactly what options appear in the page depend on what you choose for the main user account type field. Here's what they each mean:
+								<ul>
+									<li>
+										<b>A single, anonymous user account</b> - all saved configurations will be on this single user. No-one needs to 
+										authenticate in order to access the script.
+									</li>
+									<li>
+										<b>A single user account, requires login</b> - the same as the previous option, except people need to log in
+										to use the script and save data sets.
+									</li>
+									<li>
+										<b>Multiple accounts</b> - this lets you set up any number of user accounts, each with their own login information.
+										This option is perfect if you have a team, all of whom need to use the script to maintain their own data sets.
+									</li>
+								</ul>
 
-					<a href="assets/screenshots/step1.png" title="Installation: step 2" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step2_th.png" /></a>
+								<p>
+									If you select the last option, the <b>Anonymous Access</b> section will appear, as shown in the screenshot. That let's
+									anyone get access to the script without having to log in, however they'll have limited access. The textarea field lets you
+									enter a custom message that will be shown to those users if they try to do something they don't have permission to do so - like
+									save a data set.
+								</p>
+							</p>
+						</li>
+						<li>
+							<a href="assets/screenshots/step4.png" title="Installation: step 4" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step4_th.png" /></a>
+							<p>
+								Step 4 installs all the plugins that came bundled with the script. All you need to do here is click the button. 
+								If there were any problems running the installation code for any module, it will show up.
+							</p>
+							<div style="clear:both"></div>
+						</li>
+						<li>
+							<a href="assets/screenshots/step5.png" title="Installation: step 5" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step5_th.png" /></a>
+							<p>
+								And we're done! Click the button to be taken to the script. For convenience, you've already been logged in. Have fun. :)
+							</p>
+							<div style="clear:both"></div>
+						</li>
+					</ol>
 
-					<a href="assets/screenshots/step1.png" title="Installation: step 3" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step3_th.png" /></a>
+					<hr size="1" />
 
-					<a href="assets/screenshots/step1.png" title="Installation: step 4" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step4_th.png" /></a>
-
-					<a href="assets/screenshots/step1.png" title="Installation: step 5" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step5_th.png" /></a>
 
 
 					<h2>Installation Problems?</h2>
