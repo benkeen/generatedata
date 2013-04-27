@@ -61,13 +61,47 @@
 					<h1>How to Install</h1>
 
 					<p>
-						The Data Generator comes with it's own installation script, so installing it should be a doddle. I tried 
-						to make the process as painless as possible.
+						The Data Generator comes with it's own browser-based installation script so installing it should be a doddle. 
+						I tried to make the process as painless as possible.
 					</p>
 
-					<p>
-						Coming soon...
+					<h4>Step 1: manual labour</h4>
+					<ol>
+						<li>
+							<a href="https://github.com/benkeen/generatedata/tags" target="_blank">Download the latest tag</a> from github.
+							This contains all the code you'll need.
+						</li>
+						<li>
+							Unzip/untar the file on whatever server you want the script to run, and somewhere within the webroot (i.e. 
+							somewhere that can be accessible by a web-browser) Note: this server must be meet the
+							(pretty basic) requirements outlined in the <a href="index.html">previous page</a>.
+						</li>
+						<li>
+							Boot up your web-browser (anything other than crappy old IE browsers is fine) and go to the 
+							Data Generator folder. You should be redirected to the installation script.
+						</li>
+					</ol>
+
+					<p class="alert alert-info">
+						If you get an error at this juncture, chances are the script is unable to write to your cache folder. This is more
+						likely to happen on a Windows server. Make sure the permissions on your <b>[generatedata folder]/cache/</b>
+						are full read-write. 
 					</p>
+
+					<h4>Step 2: installation script</h4>
+
+					<p>
+						At this point the installation script will lead your over. It should be pretty self-explanatory, but 
+						I'll explain each step just in case.
+					</p>
+
+
+					<h2>Installation Problems?</h2>
+
+					<p>
+						<a href="https://github.com/benkeen/generatedata/issues" target="_blank">Report them on github</a>. Thanks!
+					</p>
+
 				</section>
 
 			</div>
