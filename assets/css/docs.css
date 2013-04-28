@@ -81,7 +81,17 @@ hr.soften {
 }
 
 #mainNav { display: block; }
-#shortNav { display: none; }
+#tabletNav { display: none; }
+#mobileNav { 
+	display: none;
+	width: 100%;
+}
+#mobileNav .nav-header {
+	padding-left: 15px;
+	text-shadow: none;
+	font-size: 12px;
+}
+#mobileNavLink { display: none; }
 
 
 /* Jumbotrons
@@ -732,7 +742,9 @@ form.bs-docs-example {
 ------------------------- */
 @media (max-width: 980px) {
 	#mainNav { display: block; }
-	#shortNav { display: none; }
+	#tableNav { display: none; }
+	#mobileNav { display: none; }
+	#mobileNavLink { display: none; }
 
   /* Unfloat brand */
   body > .navbar-fixed-top .brand {
@@ -760,7 +772,9 @@ form.bs-docs-example {
 ------------------------- */
 @media (min-width: 768px) and (max-width: 980px) {
 	#mainNav { display: none; }
-	#shortNav { display: block; }
+	#tabletNav { display: block; }
+	#mobileNav { display: none; }
+	#mobileNavLink { display: none; }
 
   /* Remove any padding from the body */
   body {
@@ -772,11 +786,11 @@ form.bs-docs-example {
   }
   /* Adjust sidenav width */
   .bs-docs-sidenav {
-    width: 166px;
+    width: 220px;
     margin-top: 20px;
   }
   .bs-docs-sidenav.affix {
-    top: 0;
+    top: 40px;
   }
   .span9 {
   	width: 450px;
@@ -795,6 +809,12 @@ form.bs-docs-example {
 /* Tablet
 ------------------------- */
 @media (max-width: 767px) {
+	#mainNav { display: none; }
+	#tabletNav { display: block; }
+	#mobileNav { display: none; }
+	#mobileNavLink { display: none; }
+	#sidebar { display: none; }
+
   /* Remove any padding from the body */
   body {
     padding: 0px;
@@ -852,10 +872,22 @@ form.bs-docs-example {
 /* Landscape phones
 ------------------------- */
 @media (max-width: 480px) {
+
   /* Remove padding above jumbotron */
   body {
     padding-top: 0;
   }
+
+	#mainNav { display: none; }
+	#tabletNav { display: none; }
+	#mobileNav { display: block; }
+	#mobileNavLink { display: block; }
+	#sidebar { display: none; }
+
+	.hero-unit {
+		padding: 20px 25px;
+	}
+
 
   /* Change up some type stuff */
   h2 small {

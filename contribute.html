@@ -13,31 +13,84 @@
 	<![endif]-->
 </head>
 <body data-spy="scroll" data-target="#pagenav">
-
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li id="mainTitle"><a href="index.html"></a></li>
-						<li><a href="index.html">User Documentation</a></li>
-						<li class="dropdown">
-							<a href="developer.html" class="dropdown-toggle" data-toggle="dropdown">Developer Doc <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="developer.html">Introduction</a></li>
-								<li class="divider"></li>
-								<li class="nav-header">Module Types</li>
-								<li><a href="dataTypes.html">Data Types</a></li>
-								<li><a href="exportTypes.html">Export Types</a></li>
-								<li><a href="countryPlugins.html">Country Plugins</a></li>
-								<li class="divider"></li>
-								<li><a href="translations.html">Translations</a></li>
-							</ul>
-						</li>
-						<li class="active"><a href="contribute.html">How to Contribute / Contact Me</a></li>
-						<li><a href="scriptsUsed.html">Scripts Used</a></li>
-					</ul>
-				</div>
+				<ul class="nav">
+					<li id="mainTitle"><a href="index.html"></a></li>
+					<li id="mobileNavLink">
+						<button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</li>
+					<li>
+						<ul id="mainNav" class="nav">
+							<li><a href="index.html">User Documentation</a></li>
+							<li class="dropdown">
+								<a href="developer.html" class="dropdown-toggle" data-toggle="dropdown">Developer Doc <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="developer.html">Introduction</a></li>
+									<li class="divider"></li>
+									<li class="nav-header">Module Types</li>
+									<li><a href="dataTypes.html">Data Types</a></li>
+									<li><a href="exportTypes.html">Export Types</a></li>
+									<li><a href="countryPlugins.html">Country Plugins</a></li>
+									<li class="divider"></li>
+									<li><a href="translations.html">Translations</a></li>
+								</ul>
+							</li>
+							<li class="active"><a href="contribute.html">How to Contribute / Contact Me</a></li>
+							<li><a href="scriptsUsed.html">Scripts Used</a></li>
+						</ul>
+						<ul id="tabletNav" class="nav">
+							<li class="dropdown">
+								<a href="developer.html" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="index.html">User Documentation</a></li>
+									<li><a href="install.html">How to Install</a></li>
+									<li class="divider"></li>
+									<li class="nav-header">Developer Documentation</li>
+									<li><a href="developer.html">Introduction</a></li>
+									<li class="divider"></li>
+									<li class="nav-header">Module Types</li>
+									<li><a href="dataTypes.html">Data Types</a></li>
+									<li><a href="exportTypes.html">Export Types</a></li>
+									<li><a href="countryPlugins.html">Country Plugins</a></li>
+									<li class="divider"></li>
+									<li><a href="translations.html">Translations</a></li>
+									<li class="divider"></li>
+									<li><a href="contribute.html">How to Contribute / Contact Me</a></li>
+									<li><a href="scriptsUsed.html">Scripts Used</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul id="mobileNav" class="nav">
+							<li class="dropdown">
+								<div class="nav-collapse collapse">
+									<ul class="dropdown-menu">
+										<li><a href="index.html">User Documentation</a></li>
+										<li><a href="install.html">How to Install</a></li>
+										<li class="divider"></li>
+										<li class="nav-header">Developer Documentation</li>
+										<li><a href="developer.html">Introduction</a></li>
+										<li class="divider"></li>
+										<li class="nav-header">Module Types</li>
+										<li><a href="dataTypes.html">Data Types</a></li>
+										<li><a href="exportTypes.html">Export Types</a></li>
+										<li><a href="countryPlugins.html">Country Plugins</a></li>
+										<li class="divider"></li>
+										<li><a href="translations.html">Translations</a></li>
+										<li class="divider"></li>
+										<li><a href="contribute.html">How to Contribute / Contact Me</a></li>
+										<li><a href="scriptsUsed.html">Scripts Used</a></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
