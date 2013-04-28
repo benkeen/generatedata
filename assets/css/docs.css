@@ -91,7 +91,12 @@ hr.soften {
 	text-shadow: none;
 	font-size: 12px;
 }
-#mobileNavLink { display: none; }
+#mobileNavLink {
+	display: none; 
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
 
 
 /* Jumbotrons
