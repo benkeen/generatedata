@@ -17,7 +17,7 @@ class CountryPluginHelper {
 	 * @param boolean $installedOnly this determines
 	 * @return array
 	 */
-	public function getCountryPlugins($installedOnly = true) {
+	public static function getCountryPlugins($installedOnly = true) {
 		$allowedCountries = array();
 		if ($installedOnly) {
 			$installedCountries = Settings::getSetting("installedCountries");
@@ -141,8 +141,8 @@ class CountryPluginHelper {
 		if ($response["success"]) {
 			return array(true, "");
 		} else {
-			print_r($response);
-			$this->uninstall();
+			//print_r($response);
+			//$this->uninstall();// TODO
 			return array(false, $response["errorMessage"]);
 		}
 	}

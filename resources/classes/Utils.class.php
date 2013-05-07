@@ -321,7 +321,7 @@ class Utils {
 
 
 
-	public function maybeShowInstallationPage() {
+	public static function maybeShowInstallationPage() {
 		if (!Core::checkIsInstalled()) {
 			$query_string = (isset($_GET["source"]) && in_array($_GET["source"], array("fromerrorpage"))) ?
 				"?source={$_GET["source"]}" : "";

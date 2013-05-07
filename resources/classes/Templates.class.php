@@ -76,7 +76,7 @@ class Templates {
 	 * @param array $placeholders
 	 * @return string
 	 */
-	function evalSmartyTemplate($template, $placeholders) {
+	public static function evalSmartyTemplate($template, $placeholders) {
 		return Templates::displayPage($template, $placeholders, "return");
 	}
 
@@ -86,7 +86,7 @@ class Templates {
 	 * @param string $placeholderStr
 	 * @param array $placeholders
 	 */
-	function evalSmartyString($placeholderStr, $placeholders) {
+	public static function evalSmartyString($placeholderStr, $placeholders) {
 		$smarty = new Smarty();
 		$smarty->template_dir = realpath(dirname(__FILE__) . "/../libs/smarty");
 		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache");
@@ -110,7 +110,7 @@ class Templates {
 	 *
 	 * @param string $error
 	 */
-	static function displaySeriousError($error, $errorDetails = "") {
+	public static function displaySeriousError($error, $errorDetails = "") {
 		$notFixedMessage = "";
 		if (isset($_GET["source"])) {
 			$notFixedMessage = "<p id=\"gdNotFixed\">Nope, ain't fixed yet. Try again.</p>";

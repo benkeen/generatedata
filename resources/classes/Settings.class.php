@@ -10,7 +10,7 @@ class Settings {
 	 * Returns all settings in the database.
 	 * @return
 	 */
-	public function getSettings() {
+	public static function getSettings() {
 		$prefix = Core::getDbTablePrefix();
 		$query = Core::$db->query("SELECT * FROM {$prefix}settings");
 
@@ -31,7 +31,7 @@ class Settings {
 	 * @param string the unique setting name (setting_name column value in the Settings table)
 	 * @return if not found, null. Otherwise the string value
 	 */
-	public function getSetting($settingName) {
+	public static function getSetting($settingName) {
 		$prefix = Core::getDbTablePrefix();
 
 		if (!Core::$db) {
@@ -53,7 +53,7 @@ class Settings {
 		return $value;
 	}
 
-	public function setSetting($settingName, $settingValue) {
+	public static function setSetting($settingName, $settingValue) {
 		$prefix = Core::getDbTablePrefix();
 		$settingValue = Utils::sanitize($settingValue);
 		$response = Core::$db->query("
@@ -68,7 +68,7 @@ class Settings {
 	 * Used to update the settings on the Settings tab.
 	 * @param array $post
 	 */
-	public function updateSettings($post) {
+	public static function updateSettings($post) {
 		$accountInfo = Core::$user->getAccount();
 		$accountType = $accountInfo["accountType"];
 		$isAnonymous = $accountInfo["isAnonymous"];

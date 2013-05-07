@@ -146,21 +146,21 @@ class Core {
 	/**
 	 * @access public
 	 */
-	public function getDefaultExportType() {
+	public static function getDefaultExportType() {
 		return self::$defaultExportType;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function checkDemoMode() {
+	public static function checkDemoMode() {
 		return (self::$demoMode) ? "true" : "false";
 	}
 
 	/**
 	 * @access public
 	 */
-	public function checkAllowMultiUserAnonymousUse() {
+	public static function checkAllowMultiUserAnonymousUse() {
 		$allowAnonymousAccessSetting = Settings::getSetting("allowAnonymousAccess");
 		if (isset($allowAnonymousAccessSetting) || $allowAnonymousAccessSetting == "yes") {
 			return true;
@@ -171,77 +171,77 @@ class Core {
 	/**
 	 * @access public
 	 */
-	public function getDefaultCountryPlugins() {
+	public static function getDefaultCountryPlugins() {
 		return self::$defaultCountryPlugins;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getHostname() {
+	public static function getHostname() {
 		return self::$dbHostname;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getDbName() {
+	public static  function getDbName() {
 		return self::$dbName;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getDbUsername() {
+	public static  function getDbUsername() {
 		return self::$dbUsername;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getDbPassword() {
+	public static  function getDbPassword() {
 		return self::$dbPassword;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getDbTablePrefix() {
+	public static function getDbTablePrefix() {
 		return self::$dbTablePrefix;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getMaxGeneratedRows() {
+	public static function getMaxGeneratedRows() {
 		return self::$maxGeneratedRows;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getEncryptionSalt() {
+	public static function getEncryptionSalt() {
 		return self::$encryptionSalt;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getDefaultNumRows() {
+	public static function getDefaultNumRows() {
 		return self::$defaultNumRows;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getVersion() {
+	public static function getVersion() {
 		return self::$version;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function checkSettingsFileExists() {
+	public static function checkSettingsFileExists() {
 		return self::$settingsFileExists;
 	}
 
@@ -251,7 +251,7 @@ class Core {
 	 * the database connection in Core::$db has already been created.
 	 * @access public
 	 */
-	public function checkIsInstalled() {
+	public static function checkIsInstalled() {
 		if (!self::$settingsFileExists) {
 			return false;
 		}
@@ -275,21 +275,21 @@ class Core {
 	/**
 	 * @access public
 	 */
-	public function getDefaultLanguageFile() {
+	public static function getDefaultLanguageFile() {
 		return self::$defaultLanguageFile;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getDataTypeGroups() {
+	public static function getDataTypeGroups() {
 		return self::$dataTypeGroups;
 	}
 
 	/**
 	 * @access public
 	 */
-	public function getContinents() {
+	public static function getContinents() {
 		return self::$continents;
 	}
 
@@ -298,7 +298,7 @@ class Core {
 	 * server environment is adequate.
 	 * @access public
 	 */
-	public function getMinimumPHPVersion() {
+	public static function getMinimumPHPVersion() {
 		return self::$minimumPHPVersion;
 	}
 
@@ -306,7 +306,7 @@ class Core {
 	 * Used during the installation process only: it returns the default theme for new installations.
 	 * @access public
 	 */
-	public function getDefaultTheme() {
+	public static function getDefaultTheme() {
 		return self::$defaultTheme;
 	}
 
@@ -341,7 +341,7 @@ class Core {
 	 * returns an array of country data, contains regions and cities.
 	 * @access private
 	 */
-	private function initGeoData() {
+	private static function initGeoData() {
 		self::$geoData = new GeoData();
 	}
 
@@ -349,7 +349,7 @@ class Core {
 	 * Initializes the Database object and stores it in Core::$db.
 	 * @access private
 	 */
-	private function initDatabase() {
+	private static function initDatabase() {
 		if (Core::$settingsFileExists) {
 			self::$db = new Database();
 		}
@@ -359,7 +359,7 @@ class Core {
 	 * Called by Core::init(), this initializes Core::$dataTypePlugins.
 	 * @access private
 	 */
-	private function initDataTypes($runtimeContext) {
+	private static function initDataTypes($runtimeContext) {
 		if (!Core::$settingsFileExists) {
 			return;
 		}
@@ -372,7 +372,7 @@ class Core {
 	 * Called by Core::init(), this initializes Core::$exportTypePlugins.
 	 * @access private
 	 */
-	private function initExportTypes($runtimeContext) {
+	private static function initExportTypes($runtimeContext) {
 		if (!Core::$settingsFileExists) {
 			return;
 		}
@@ -386,7 +386,7 @@ class Core {
 	 * can always detect for this by checking self::$isLoggedIn
 	 * @access public
 	 */
-	public function initUser($bypass = false) {
+	public static function initUser($bypass = false) {
 		if ($bypass || self::checkIsInstalled()) {
 			$setup = Settings::getSetting("userAccountSetup");
 			if ($setup == "anonymousAdmin") {
@@ -401,7 +401,7 @@ class Core {
 		}
 	}
 
-	public function initSessions() {
+	public static function initSessions() {
 		$sess = new SessionManager();
 		// if (!empty($g_session_save_path))
 		//   session_save_path($g_session_save_path);

@@ -37,7 +37,7 @@ class DataTypePluginHelper {
 	 * @param array $groupedDataTypes
 	 * @return array
 	 */
-	public function getDataTypeList($groupedDataTypes) {
+	public static function getDataTypeList($groupedDataTypes) {
 		$list = array();
 		while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
 			foreach ($dataTypes as $dataType) {
@@ -53,7 +53,7 @@ class DataTypePluginHelper {
 	 * @param array $groupedDataTypes
 	 * @return array
 	 */
-	public function getDataTypeHash($groupedDataTypes) {
+	public static function getDataTypeHash($groupedDataTypes) {
 		$hash = array();
 		while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
 			foreach ($dataTypes as $dataType) {
@@ -70,7 +70,7 @@ class DataTypePluginHelper {
 	 * @param string $format "array", "string"
 	 * @return mixed
 	 */
-	public function getDataTypeJSResources($dataTypes, $format = "string") {
+	public static function getDataTypeJSResources($dataTypes, $format = "string") {
 		$files = array();
 		foreach ($dataTypes as $dataType) {
 			$jsModules = $dataType->getJSModules();
@@ -98,7 +98,7 @@ class DataTypePluginHelper {
 	 * @param array the data types
 	 * @param array
 	 */
-	public function getDataTypeCSSIncludes($dataTypes) {
+	public static function getDataTypeCSSIncludes($dataTypes) {
 		$files = array();
 		foreach ($dataTypes as $dataType) {
 			$cssFiles = $dataType->getCSSFiles();
@@ -119,9 +119,11 @@ class DataTypePluginHelper {
 
 	/**
 	 * Returns an array of available, grouped, instantiated Data Type objects.
+	 * @param string
+	 * @param boolean
 	 * @return array
 	 */
-	function getDataTypePlugins($runtimeContext, $installedOnly = true) {
+	public static function getDataTypePlugins($runtimeContext, $installedOnly = true) {
 		$allowedDataTypes = array();
 		if ($installedOnly) {
 			$installedDataTypes = Settings::getSetting("installedDataTypes");
@@ -179,8 +181,13 @@ class DataTypePluginHelper {
 	/**
 	 * Instantiates and returns a Data Type object.
 	 *
-	 * @param string $baseFolder
-	 * @param string $dataTypeFolderName
+	 * @param $runtimeContext
+	 * @param $baseFolder
+	 * @param $dataTypeFolderName
+	 * @internal param $string
+	 * @internal param $string
+	 * @internal param $string
+	 * @return object
 	 */
 	private function instantiateDataType($runtimeContext, $baseFolder, $dataTypeFolderName) {
 
@@ -200,7 +207,6 @@ class DataTypePluginHelper {
 		if (!class_exists($className)) {
 			return false;
 		}
-
 
 		$instance = null;
 		try {

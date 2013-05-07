@@ -12,7 +12,7 @@ class ExportTypePluginHelper {
 	/**
 	 * Returns an array of available, instantiated Export Type objects.
 	 */
-	function getExportTypePlugins($runtimeContext, $installedOnly = true) {
+	public static function getExportTypePlugins($runtimeContext, $installedOnly = true) {
 		$allowedExportTypes = array();
 		if ($installedOnly) {
 			$exportTypes = Settings::getSetting("installedExportTypes");
@@ -102,8 +102,7 @@ class ExportTypePluginHelper {
 	 * @param string format string / array / cached
 	 * @return string
 	 */
-	public function getExportTypeJSResources($exportTypes, $format = "string") {
-
+	public static function getExportTypeJSResources($exportTypes, $format = "string") {
 		$files = array();
 		foreach ($exportTypes as $exportType) {
 			$jsModules = $exportType->getJSModules();
@@ -129,7 +128,7 @@ class ExportTypePluginHelper {
 	 * Used in the main page to generate the tabset of additional settings for each Export Type.
 	 * @return array
 	 */
-	public function getExportTypeAdditionalSettingsHTML($exportTypes) {
+	public static function getExportTypeAdditionalSettingsHTML($exportTypes) {
 		$additionalSettings = array();
 		foreach ($exportTypes as $exportType) {
 			$folderName = $exportType->getFolder();
@@ -150,7 +149,7 @@ class ExportTypePluginHelper {
 	 * @param array the export types
 	 * @param string
 	 */
-	public function getExportTypeCSSIncludes($exportTypes) {
+	public static function getExportTypeCSSIncludes($exportTypes) {
 		$files = array();
 		foreach ($exportTypes as $exportType) {
 			$cssFiles = $exportType->getCSSFiles();
@@ -174,7 +173,7 @@ class ExportTypePluginHelper {
 	 * @param array $exportTypes
 	 * @return string
 	 */
-	public function getExportTypeCodeMirrorModes($exportTypes) {
+	public static function getExportTypeCodeMirrorModes($exportTypes) {
 		$files = array();
 		foreach ($exportTypes as $exportType) {
 			$modes = $exportType->getCodeMirrorModes();

@@ -18,10 +18,6 @@ class AjaxRequest {
 	 * program errors: not for user-entry errors.
 	 */
 	public function __construct($action, $post = array()) {
-		if (empty($action)) {
-			throw new Exception("no_action_specified");
-			return;
-		}
 
 		$this->action = $action;
 		$post = Utils::sanitize($post);
@@ -234,7 +230,8 @@ class AjaxRequest {
 				} else {
 					$accountInfo = $post;
 					$accountInfo["accountType"] = "user";
-					$response = Account::createAccount($accountInfo);
+					Account::createAccount($accountInfo);
+					$response = array();
 					$this->response["success"] = true;
 				}
 				break;
