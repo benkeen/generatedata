@@ -4,6 +4,7 @@ cache/*
 .project
 .buildpath
 .settings/*
+.idea*
 resources/themes/classic/.sass-cache/*
 resources/themes/default/.sass-cache/*
 resources/themes/.sass-cache/*
