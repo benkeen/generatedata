@@ -1,4 +1,4 @@
-/*global console:false,setTimeout:false,setInterval:false,clearInterval:false*/
+/*global console:false,setTimeout:false,setInterval:false,clearInterval:false,define:false*/
 define([], function() {
 
 	"use strict";
@@ -9,7 +9,7 @@ define([], function() {
 	 *     to perform on the DOM, each with a test to confirm when the DOM insertion is complete. The code then sequentially
 	 *     executes each action one by one, only performing the next action when the previous is compete. This ensures that
 	 *     the DOM will reliably contain the content you expect and you're not trying to read something the browser's HTML
-	 *     rendering engine has yet to finish inserting. For more info on the problen, see:  http://www.benjaminkeen.com/?p=136
+	 *     rendering engine has yet to finish inserting. For more info on the problem, see:  http://www.benjaminkeen.com/?p=136
 	 * @author Ben Keen <ben.keen@gmail.com>
 	 * @see Core
 	 * @example To use this in your own requireJS modules, there are two steps:
@@ -68,7 +68,7 @@ define([], function() {
 			var onError = null;
 			var reTestItemSpeed = 25;
 			var incompleteActionDuration = 5000;
-			if (typeof settings == 'object') {
+			if (typeof settings === 'object') {
 				if (settings.hasOwnProperty("onSuccess")) { onSuccess = settings.onSuccess; }
 				if (settings.hasOwnProperty("onError")) { onError = settings.onError; }
 				if (settings.hasOwnProperty("reTestItemSpeed")) { reTestItemSpeed = settings.reTestItemSpeed; }
