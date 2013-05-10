@@ -81,10 +81,10 @@ class Templates {
 	}
 
 	/**
-	 * A more lightweight version of evalSmartyTemplate, this evaluates a string containing Smarty
-	 * content.
-	 * @param string $placeholderStr
-	 * @param array $placeholders
+	 * A more lightweight version of evalSmartyTemplate, this evaluates a string containing Smarty content.
+	 * @param $placeholderStr
+	 * @param $placeholders
+	 * @return string
 	 */
 	public static function evalSmartyString($placeholderStr, $placeholders) {
 		$smarty = new Smarty();
@@ -107,8 +107,8 @@ class Templates {
 	 * that we're in the application root (otherwise they won't work).
 	 *
 	 * This function only handles English. For problems of this severity, I think that's okay.
-	 *
-	 * @param string $error
+	 * @param $error
+	 * @param string $errorDetails
 	 */
 	public static function displaySeriousError($error, $errorDetails = "") {
 		$notFixedMessage = "";

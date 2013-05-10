@@ -51,12 +51,13 @@ class ExportTypePluginHelper {
 		return $exportTypes;
 	}
 
-
 	/**
 	 * Instantiates and returns an Export Type object.
 	 *
-	 * @param string $baseFolder
-	 * @param string $exportTypeFileName this is the name of the folder AND the class name
+	 * @param $runtimeContext
+	 * @param $baseFolder
+	 * @param $exportTypeFolderName
+	 * @return bool|ExportTypePlugin
 	 */
 	private function instantiateExportType($runtimeContext, $baseFolder, $exportTypeFolderName) {
 
@@ -98,9 +99,9 @@ class ExportTypePluginHelper {
 
 	/**
 	 * Used in the main page to generate a list of Export Type JS files. DREADFUL function.
-	 * @param array exportTypes
-	 * @param string format string / array / cached
-	 * @return string
+	 * @param $exportTypes
+	 * @param string $format
+	 * @return array|string
 	 */
 	public static function getExportTypeJSResources($exportTypes, $format = "string") {
 		$files = array();

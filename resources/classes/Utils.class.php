@@ -85,9 +85,9 @@ class Utils {
 
 	/**
 	 * Returns a random subset of an array. The result may be empty, or the same set.
-	 *
-	 * @param array $set - the set of items
-	 * @param integer $num - the number of items in the set to return
+	 * @param $set the set of items
+	 * @param $num the number of items in the set to return
+	 * @return array
 	 */
 	public static function returnRandomSubset($set, $num) {
 		// check $num is no greater than the total set
@@ -98,9 +98,10 @@ class Utils {
 		return array_slice($set, 0, $num);
 	}
 
-
 	/**
 	 * Converts a datetime to a timestamp.
+	 * @param $datetime
+	 * @return int
 	 */
 	public static function convertDatetimeToTimestamp($datetime) {
 		list($date, $time) = explode(" ", $datetime);
@@ -109,7 +110,9 @@ class Utils {
 		return mktime($hours, $minutes, $seconds, $month, $day, $year);
 	}
 
-
+	/**
+	 * @return string
+	 */
 	public static function getCurrentDatetime() {
 		return date("Y-m-d H:i:s");
 	}
@@ -239,7 +242,7 @@ class Utils {
 	 *
 	 * @return array a large array of words
 	 */
-	function getLipsum() {
+	public static function getLipsum() {
 		$prefix = Core::getDbTablePrefix();
 
 		// grab all the words in the text files & put them in an array (1 word per index)
@@ -265,7 +268,7 @@ class Utils {
 	 * @param integer $min     - the minimum # of words to return OR the total number
 	 * @param integer $max     - the max # of words to return (or null for "fixed" type)
 	 */
-	public function generateRandomTextStr($words, $startsWithLipsum, $type, $min, $max = "") {
+	public static function generateRandomTextStr($words, $startsWithLipsum, $type, $min, $max = "") {
 		// determine the number of words to return
 		$index = 0;
 		if ($type == "fixed") {
@@ -292,7 +295,7 @@ class Utils {
 	/**
 	 * Converts all x's and X's in a string with a random digit. X's: 1-9, x's: 0-9.
 	 */
-	public function generateRandomNumStr($str) {
+	public static function generateRandomNumStr($str) {
 		// loop through each character and convert all unescaped X's to 1-9 and
 		// unescaped x's to 0-9.
 		$new_str = "";
@@ -320,7 +323,6 @@ class Utils {
 	}
 
 
-
 	public static function maybeShowInstallationPage() {
 		if (!Core::checkIsInstalled()) {
 			$query_string = (isset($_GET["source"]) && in_array($_GET["source"], array("fromerrorpage"))) ?
@@ -331,7 +333,7 @@ class Utils {
 		}
 	}
 
-	public function enquoteArray($arr, $char = "\"") {
+	public static function enquoteArray($arr, $char = "\"") {
 		$newArr = array();
 		foreach ($arr as $item) {
 			$newArr[] = "{$char}$item{$char}";

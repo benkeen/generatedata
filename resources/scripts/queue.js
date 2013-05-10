@@ -71,8 +71,8 @@ define([], function() {
 			if (typeof settings == 'object') {
 				if (settings.hasOwnProperty("onSuccess")) { onSuccess = settings.onSuccess; }
 				if (settings.hasOwnProperty("onError")) { onError = settings.onError; }
-				if (settings.hasOwnProperty("reTestItemSpeed")) { reTestItemSpeed = reTestItemSpeed; }
-				if (settings.hasOwnProperty("incompleteActionDuration")) { incompleteActionDuration = incompleteActionDuration; }
+				if (settings.hasOwnProperty("reTestItemSpeed")) { reTestItemSpeed = settings.reTestItemSpeed; }
+				if (settings.hasOwnProperty("incompleteActionDuration")) { incompleteActionDuration = settings.incompleteActionDuration; }
 			}
 
 			if (onSuccess) { _queue.onSuccess.push(onSuccess); }

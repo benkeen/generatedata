@@ -15,7 +15,6 @@ define([
 	* @namespace
 	*/
 
-	/** @member */
 	var MODULE_ID = "data-type-List";
 	var LANG = L.dataTypePlugins.List;
 
