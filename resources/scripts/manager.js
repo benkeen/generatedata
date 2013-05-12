@@ -16,8 +16,10 @@ define([
 	 * @namespace
 	 */
 
+    var MODULE_ID = "core-manager";
+    var _isStarted = false;
+
 	// stores all modules: Core, Data Types and Export Types. It's a hash of Module ID -> module info
-	var _isStarted = false;
 	var _modules = {};
 	var _filterDataTypeMessages = (C.DEBUGGING.LIMIT_DATA_TYPE_EVENTS === "") ? false : true;
 	var _filterExportTypeMessages = (C.DEBUGGING.LIMIT_EXPORT_TYPE_EVENTS === "") ? false : true;
@@ -355,7 +357,12 @@ define([
         _initAll();
         _runAll();
         _isStarted = true;
-	};
+
+        _publish({
+            sender: MODULE_ID,
+            type: C.EVENT.APP_START
+        });
+    };
 
 	var _getPluginType = function(moduleID) {
 		var isDataType   = new RegExp("^data-type-");

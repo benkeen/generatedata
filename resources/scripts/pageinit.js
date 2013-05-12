@@ -23,6 +23,8 @@ define([
 	var _currMainTab = 1;
 
 	var _init = function() {
+        utils.initMainSpinner();
+
 		// show all those elements in the page that were marked as being hidden if no JS
 		$(".gdHideNoJS").show("fade");
 		_initStartTab();
@@ -36,7 +38,6 @@ define([
 		if ($("#consoleEventsExportTypePlugins").length) {
 			$("#consoleEventsExportTypePlugins").chosen({ no_results_text: L.no_export_types_found });
 		}
-		utils.initMainSpinner();
 	};
 
 	var _changeLanguage = function() {

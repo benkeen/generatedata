@@ -51,6 +51,7 @@ define([], function() {
 		 * Contains all Core events.
 		 */
 		EVENT: {
+            APP_START: 'app-start',
 			RESULT_TYPE: {
 				CHANGE: "event-result-type-change"
 			},
