@@ -80,7 +80,7 @@ define([
 		 * @description This is a general tab-changer helper function for use by any tabbed group. It
 		 * needs to be passed the old tab number, new tab number, the CSS prefix used for to ID the tabs
 		 * and the name of the tab group (to be used in the publish message). For an example, see the
-		 * pageInit.js file, which initializes the main tabs.
+		 * pageInit2.js file, which initializes the main tabs.
 		 * @function
 		 * @public
 		 * @param {Object}

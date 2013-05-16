@@ -3,7 +3,7 @@ require([
 	"manager",
 	"pluginManager",
 	"utils",
-	"pageInit",
+	"pageInit2",
 	"jquery-ui",
 	"jquery-json"
 ], function(manager, pluginManager, utils) {

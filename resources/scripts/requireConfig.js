@@ -1,3 +1,4 @@
+/*global require:false*/
 require.config({
 	baseUrl: "resources/scripts/",
 	paths: {
