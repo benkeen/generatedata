@@ -31,20 +31,20 @@ class AjaxRequest {
 
 			// a fresh install assumes it's a blank slate: no database tables, no settings file
 			case "installationTestDbSettings":
+				Core::init("installation");
 				if (Core::checkIsInstalled()) {
 					return;
 				}
-				Core::init("installation");
 				list($success, $content) = Database::testDbSettings($this->post["dbHostname"], $this->post["dbName"], $this->post["dbUsername"], $this->post["dbPassword"]);
 				$this->response["success"] = $success;
 				$this->response["content"] = $content;
 				break;
 
 			case "installationCreateSettingsFile":
+				Core::init("installation");
 				if (Core::checkIsInstalled()) {
 					return;
 				}
-				Core::init("installation");
 				if (Core::checkSettingsFileExists()) {
 					$this->response["success"] = 0;
 					$this->response["content"] = "Your settings.php file already exists.";
@@ -58,10 +58,12 @@ class AjaxRequest {
 				break;
 
 			case "installationCreateDatabase":
+				Core::init("installationDatabaseReady");
 				if (Core::checkIsInstalled()) {
+					$this->response["success"] = 0;
+					$this->response["content"] = "It appears that the script is already installed. If the database already existed, you may need to delete the tables manually before being able to continue.";
 					return;
 				}
-				Core::init("installationDatabaseReady");
 				list($success, $content) = Installation::createDatabase();
 				if (!$success) {
 					$this->response["success"] = 0;
@@ -233,7 +235,7 @@ class AjaxRequest {
 				} else {
 					$accountInfo = $this->post;
 					$accountInfo["accountType"] = "user";
-					$response = Account::createAccount($accountInfo);
+					Account::createAccount($accountInfo);
 					$this->response["success"] = true;
 				}
 				break;

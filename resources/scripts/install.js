@@ -263,7 +263,7 @@ require([
 					success: function(json) {
 						utils.stopProcessing();
 						if (json.success === 0) {
-							_displayError(json.message);
+							_displayError(json.content);
 						} else {
 							gotoNextStep(currentStep);
 						}
@@ -317,7 +317,7 @@ require([
 	 */
 	function installError(json) {
 		utils.stopProcessing();
-		_displayError(json.message);
+		_displayError(json.content);
 	}
 
 });

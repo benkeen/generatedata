@@ -53,7 +53,9 @@ class Language {
 	public function getLanguageStringsJS() {
 		$lines = array();
 		while (list($key, $value) = each($this->currentLanguageStrings)) {
-			$lines[] = "\"$key\":\"" . addslashes($value) . "\"";
+			if (is_string($value)) {
+				$lines[] = "\"$key\":\"" . addslashes($value) . "\"";
+			}
 		}
 
 		// Export Types

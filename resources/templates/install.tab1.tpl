@@ -114,7 +114,7 @@
 
 					<div class="gdField gdPasswordRow">
 						<label for="password">{$L.password}</label>
-						<input type="text" id="password" value="{$randomPassword}" class="pwdField" />
+						<input type="text" id="password" value="{$randomPassword}" class="pwdField" autocomplete="off" />
 						<span id="gdRefreshPassword"></span>
 					</div>
 				</div>
