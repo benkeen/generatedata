@@ -3,7 +3,6 @@
 require_once(realpath(dirname(__FILE__) . "/../../library.php"));
 Core::init();
 
-//session_start();
 header("Cache-control: private");
 header("Cache-Control: no-cache, must-revalidate");
 header("Content-Type: text/javascript; charset=utf-8");

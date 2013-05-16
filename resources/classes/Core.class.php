@@ -29,7 +29,7 @@ class Core {
 	public static $useJSCache = true;
 	
 	// non-overridable settings
-	private static $version = "3.0.0 beta #2";
+	private static $version = "3.0.0";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
@@ -54,19 +54,19 @@ class Core {
 	 *
 	 * Our initialization function. This is called on all page requests to initialize the Core
 	 * object. Since it's also used during installation (when the database and/or plugins haven't been
-	 * installed), the optional parameter controls whether or not the database object and plugins should
-	 * be initialized.
+	 * installed), the optional parameter controls whether or not the database object, plugins, sessions and user
+	 * should be initialized. Different call contexts require different initialization.
 	 *
 	 * @access public
 	 * @static
 	 * @param string $runtimeContext This determines the context in which the Core is being initialized. This
 	 *          info is used to let plugins instantiate themselves differently, as well as prevent the loading
 	 *          of incomplete parts of the script.<br />
-	 *          <b>installation</b>:          a fresh installation, DB not installed yet<br />
-	 *          <b>installation_db_ready</b>: during installation after the DB has been installed<br />
-	 *          <b>ui</b>:                    (default) for the main generator page<br />
-	 *          <b>generation</b>:            when we're in the process of creating actual data
-	 *          <b>resetPlugins</b>:
+	 *          <b>installation</b>:              a fresh installation, DB not installed yet<br />
+	 *          <b>installationDatabaseReady</b>: during installation after the DB has been installed<br />
+	 *          <b>ui</b>:                        (default) for the main generator page<br />
+	 *          <b>generation</b>:                when we're in the process of creating actual data
+	 *          <b>resetPlugins</b>:              initialized everything except the plugins, which may be safely reset
 	 */
 	public static function init($runtimeContext = "ui") {
 		self::loadSettingsFile();
@@ -77,7 +77,7 @@ class Core {
 		// the order is significant in all of this
 		if ($runtimeContext != "installation") {
 			self::initDatabase();
-			if ($runtimeContext == "installation_db_ready" || $runtimeContext == "ui" || $runtimeContext == "generation") {
+			if (in_array($runtimeContext, array("installationDatabaseReady", "ui",  "generation", "resetPlugins"))) {
 				self::initSessions();
 			}
 
@@ -96,6 +96,8 @@ class Core {
 			self::initCountries();
 			self::initExportTypes($runtimeContext);
 			self::initDataTypes($runtimeContext);
+		}
+		if (in_array($runtimeContext, array("ui", "generation", "resetPlugins"))) {
 			self::initUser();
 		}
 	}
@@ -163,10 +165,7 @@ class Core {
 	 */
 	public static function checkAllowMultiUserAnonymousUse() {
 		$allowAnonymousAccessSetting = Settings::getSetting("allowAnonymousAccess");
-		if (isset($allowAnonymousAccessSetting) || $allowAnonymousAccessSetting == "yes") {
-			return true;
-		}
-		return false;
+		return ($allowAnonymousAccessSetting == "yes");
 	}
 
 	/**
@@ -381,11 +380,8 @@ class Core {
 	}
 
 	/**
-	 * Initializes the current logged in user and stores their Account object in Core::$user. Note:
-	 * if self::allowDemoModeAnonymousUse is enabled and the user isn't logged in, this won't 
-	 * initialize the user - however, they can still access the script (just not save anything). You 
-	 * can always detect for this by checking self::$isLoggedIn
-	 * @access public
+	 * Initializes the current logged in user and stores their Account object in Core::$user.
+	 * @param bool $bypass
 	 */
 	public static function initUser($bypass = false) {
 		if ($bypass || self::checkIsInstalled()) {
@@ -403,13 +399,10 @@ class Core {
 	}
 
 	public static function initSessions() {
-		$sess = new SessionManager();
-		// if (!empty($g_session_save_path))
-		//   session_save_path($g_session_save_path);
-
-		session_start();
-		header("Cache-control: private");
-
-		//header("Content-Type: text/html; charset=utf-8");
+		if (session_id() == '') {
+			new SessionManager();
+			session_start();
+			header("Cache-control: private");
+		}
 	}
 }

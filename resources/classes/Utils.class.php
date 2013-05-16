@@ -161,7 +161,7 @@ class Utils {
 	 *
 	 *     C, c, A - any consonant (Upper case, lower case, any)
 	 *     V, v, B - any vowel (Upper case, lower case, any)
-	 *     L, l, V - any letter (Upper case, lower case, any)
+	 *     L, l, D - any letter (Upper case, lower case, any)
 	 *     X       - 1-9
 	 *     x       - 0-9
 	 *     H       - 0-F

@@ -6,12 +6,14 @@
  */
 class SessionManager {
 	private $dbLink;
+	private $dbPrefix;
+
 
 	function __construct() {
 		if (!Core::checkIsInstalled()) {
 			return;
 		}
-		$this->dbLink = Core::$db->getDBLink();
+		$this->dbLink   = Core::$db->getDBLink();
 		$this->dbPrefix = Core::getDbTablePrefix();
 
 		// register this object as the session handler
@@ -26,8 +28,6 @@ class SessionManager {
 	}
 
 	function open($save_path, $session_name) {
-		// global $sess_save_path; // TODO?
-		// $sess_save_path = $save_path;
 		return true;
 	}
 
@@ -36,18 +36,17 @@ class SessionManager {
 	}
 
 	function read($id) {
-		$data = "";
-
 		// fetch session data from the selected database
-		$time = time();
-		$newid = mysql_real_escape_string($id, $this->dbLink);
-		$sql = "SELECT session_data FROM {$this->dbPrefix}sessions WHERE session_id = '$newid' AND expires > $time";
+		$time  = time();
+		$newID = mysql_real_escape_string($id, $this->dbLink);
+		$sql   = "SELECT session_data FROM {$this->dbPrefix}sessions WHERE session_id = '$newID' AND expires > $time";
 
-		$rs = mysql_query($sql, $this->dbLink);
-		$a  = mysql_num_rows($rs);
+		$response = mysql_query($sql, $this->dbLink);
+		$numRows  = mysql_num_rows($response);
 
-		if ($a > 0) {
-			$row = mysql_fetch_assoc($rs);
+		$data = "";
+		if ($numRows > 0) {
+			$row = mysql_fetch_assoc($response);
 			$data = $row["session_data"];
 		}
 
@@ -56,28 +55,20 @@ class SessionManager {
 
 	// this is only executed until after the output stream has been closed
 	function write($id, $data) {
-		global $g_table_prefix, $g_api_sessions_timeout;
-
 		$life_time = 3600;
-		// if (isset($_SESSION["ft"]["account"]["sessions_timeout"])) {
-		// 	$life_time = $_SESSION["ft"]["account"]["sessions_timeout"] * 60;
-		// } else {
-		// 	$life_time = $g_api_sessions_timeout;
-		// }
-
 		$time = time() + $life_time;
-		$newid   = mysql_real_escape_string($id, $this->dbLink);
-		$newdata = mysql_real_escape_string($data, $this->dbLink);
+		$newID   = mysql_real_escape_string($id, $this->dbLink);
+		$newData = mysql_real_escape_string($data, $this->dbLink);
 
-		$sql = "REPLACE {$this->dbPrefix}sessions (session_id, session_data, expires) VALUES('$newid', '$newdata', $time)";
+		$sql = "REPLACE {$this->dbPrefix}sessions (session_id, session_data, expires) VALUES('$newID', '$newData', $time)";
 		mysql_query($sql, $this->dbLink);
 
 		return true;
 	}
 
 	function destroy($id) {
-		$newid = mysql_real_escape_string($id);
-		$sql = "DELETE FROM {$this->dbPrefix}sessions WHERE session_id = '$newid'";
+		$newID = mysql_real_escape_string($id);
+		$sql = "DELETE FROM {$this->dbPrefix}sessions WHERE session_id = '$newID'";
 		mysql_query($sql, $this->dbLink);
 		return true;
 	}

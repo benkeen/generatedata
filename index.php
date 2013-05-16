@@ -37,11 +37,12 @@ $pageParams["codeMirrorIncludes"] = ExportTypePluginHelper::getExportTypeCodeMir
 $pageParams["defaultExportType"] = Core::getDefaultExportType();
 $pageParams["defaultNumRows"] = Core::getDefaultNumRows();
 
-if (Core::checkIsLoggedIn()) {	
+if (Core::checkIsLoggedIn()) {
 	$pageParams["isLoggedIn"] = true;
 	$pageParams["accountType"] = Core::$user->getAccountType();
 } else {
 	$pageParams["isLoggedIn"] = false;
+	$pageParams["accountType"] = "";
 }
 
 Templates::displayPage("resources/templates/index.tpl", $pageParams);

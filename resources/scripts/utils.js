@@ -80,7 +80,7 @@ define([
 		 * @description This is a general tab-changer helper function for use by any tabbed group. It
 		 * needs to be passed the old tab number, new tab number, the CSS prefix used for to ID the tabs
 		 * and the name of the tab group (to be used in the publish message). For an example, see the
-		 * pageinit.js file, which initializes the main tabs.
+		 * pageInit.js file, which initializes the main tabs.
 		 * @function
 		 * @public
 		 * @param {Object}
@@ -94,7 +94,7 @@ define([
 				tabIDPrefix: ""
 			}, settings);
 
-			if (opts.oldTab == opts.newTab) {
+			if (opts.oldTab === opts.newTab) {
 				return false;
 			}
 
@@ -103,8 +103,14 @@ define([
 				$("#" + opts.tabIDPrefix + opts.oldTab + "Content").hide();
 			}
 			if (opts.newTab !== null) {
-				$("#" + opts.tabIDPrefix + opts.newTab).addClass("gdSelected");
-				$("#" + opts.tabIDPrefix + opts.newTab + "Content").show();
+				var newTabEl = $("#" + opts.tabIDPrefix + opts.newTab);
+				if (newTabEl.length === 0) {
+					$("#" + opts.tabIDPrefix + "1").addClass("gdSelected");
+					$("#" + opts.tabIDPrefix + "1Content").show();
+				} else {
+					newTabEl.addClass("gdSelected");
+					$("#" + opts.tabIDPrefix + opts.newTab + "Content").show();
+				}
 			}
 
 			manager.publish({

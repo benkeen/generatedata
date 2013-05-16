@@ -207,6 +207,10 @@ class Account {
 		return $this->isAnonymousAdmin;
 	}
 
+	public function isAdmin() {
+		return $this->accountType == "admin";
+	}
+
 	public function getAccountID() {
 		return $this->accountID;
 	}
@@ -371,21 +375,24 @@ class Account {
 	/**
 	 * Used (currently) in the installation script. Note: this function relies on the settings file having
 	 * been defined, along with an arbitrary encryption salt.
-	 *
-	 * This is static because it's used during the installation process to create the default account. But in 
-	 * all other cases its used by the admin only.
-	 *
-	 * @param array $accountInfo
+	 * @param $accountInfo
+	 * @param bool $isCurrentUser
+	 * @return int
 	 */
 	public static function createAccount($accountInfo, $isCurrentUser = false) {
 		$accountInfo = Utils::sanitize($accountInfo);
 		$encryptionSalt = Core::getEncryptionSalt();
 
 		$accountType = $accountInfo["accountType"];
-		$firstName   = $accountInfo["firstName"];
-		$lastName    = $accountInfo["lastName"];
-		$email       = $accountInfo["email"];
-		$password    = crypt($accountInfo["password"], $encryptionSalt);
+		$firstName   = isset($accountInfo["firstName"]) && !empty($accountInfo["firstName"]) ? $accountInfo["firstName"] : "";
+		$lastName    = isset($accountInfo["lastName"]) && !empty($accountInfo["lastName"]) ? $accountInfo["lastName"] : "";
+		$email       = isset($accountInfo["email"]) && !empty($accountInfo["email"]) ? $accountInfo["email"] : "";
+		$password    = "";
+		if (isset($accountInfo["password"]) && !empty($accountInfo["password"])) {
+			$password = crypt($accountInfo["password"], $encryptionSalt);
+		}
+
+		// TODO - weird!
 		$autoEmail   = isset($accountInfo["accountType"]) ? $accountInfo["accountType"] : false;
 
 		$L = Core::$language->getCurrentLanguageStrings();
@@ -396,27 +403,35 @@ class Account {
 				first_name, last_name, email, password)
 			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password')
 		");
-		
+
 		if ($autoEmail) {
 			$content = $L["account_created_msg"] . "\n\n";
 			if (isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) {
 				$content .= "{$L["login_url_c"]} {$_SERVER["HTTP_REFERER"]}\n";
 			}
 			$content .= "{$L["email_c"]} $email\n{$L["password_c"]} {$accountInfo["password"]}\n";
-
-			$response = Emails::sendEmail(array(
+			Emails::sendEmail(array(
 				"recipient" => $email,
 				"subject"   => $L["account_created"],
 				"content"   => $content
 			));
 		}
 
-		if ($isCurrentUser && $result["success"]) {
+		$returnInfo = array(
+			"success" => $result["success"]
+		);
+
+		if ($result["success"]) {
 			$accountID = mysql_insert_id();
-			Core::initSessions();
-			$_SESSION["account_id"] = $accountID;
-			Core::initUser(true);
+			if ($isCurrentUser) {
+				Core::initSessions();
+				$_SESSION["account_id"] = $accountID;
+				Core::initUser(true);
+			}
+			$returnInfo["accountID"] = $accountID;
 		}
+
+		return $returnInfo;
 	}
 
 

@@ -1,16 +1,16 @@
-/*global $:false,browser:true*/
+/*global $:false,browser:true,require:false*/
 require([
 	"manager",
 	"pluginManager",
 	"utils",
-	"pageinit",
+	"pageInit",
 	"jquery-ui",
 	"jquery-json"
 ], function(manager, pluginManager, utils) {
 
 	"use strict";
 
-	// everything in this module is private, but we re-use the _ notation here just to signify scope
+	// everything in this module is private, but we use the _ notation here just to signify scope
 	var _dbSettings = {};
 	var _pluginsInstalled = false;
 	var _currStep = null;
@@ -228,7 +228,7 @@ require([
 						errors.push({ fieldId: "password", error: _L.validation_no_password });
 					}
 
-					if (userAccountSetup == "multiple") {
+					if (userAccountSetup === "multiple") {
 						allowAnonymousAccess = $("#allowAnonymousAccess").attr("checked") ? "yes" : "no";
 						anonymousUserPermissionDeniedMsg = $("#anonymousUserPermissionDeniedMsg").val();
 					}

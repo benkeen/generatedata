@@ -71,7 +71,7 @@
 		{if $isLoggedIn && $settings.userAccountSetup == "multiple"}"accountManager",{/if}
 		{$exportTypeJSModules},
 		{$dataTypeJSModules},
-		"pageinit"
+		"pageInit"
 	], function(manager) { 
 		manager.start();
 	});

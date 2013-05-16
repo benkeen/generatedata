@@ -11,7 +11,7 @@ class Installation {
 
 
 	public static function createSettingsFile($dbHostname, $dbName, $dbUsername, $dbPassword, $tablePrefix) {
-		$encryptionSalt = Utils::generateRandomAlphanumericStr("VVV");
+		$encryptionSalt = Utils::generateRandomAlphanumericStr("DDD");
 		$dbUsername = Utils::sanitize($dbUsername);
 		$dbPassword = Utils::sanitize($dbPassword);
 		$tablePrefix = Utils::sanitize($tablePrefix);
@@ -46,7 +46,7 @@ END;
 		if ($response["success"] == 1) {
 			return array(true, "");
 		} else {
-//			print_r($response);
+			print_r($response);
 			return array(false, "There was a problem creating the Core tables. Please report this problem.");
 		}
 	}
@@ -59,15 +59,15 @@ END;
 		$prefix = Core::getDbTablePrefix();
 
 		$rollbackQueries = array(
-			"DROP TABLE {$prefix}cities",
-			"DROP TABLE {$prefix}configurations",
-			"DROP TABLE {$prefix}countries",
-			"DROP TABLE {$prefix}first_names",
-			"DROP TABLE {$prefix}last_names",
-			"DROP TABLE {$prefix}regions",
-			"DROP TABLE {$prefix}sessions",
-			"DROP TABLE {$prefix}settings",
-			"DROP TABLE {$prefix}user_accounts"
+			"DROP TABLE IF EXISTS {$prefix}cities",
+			"DROP TABLE IF EXISTS {$prefix}configurations",
+			"DROP TABLE IF EXISTS {$prefix}countries",
+			"DROP TABLE IF EXISTS {$prefix}first_names",
+			"DROP TABLE IF EXISTS {$prefix}last_names",
+			"DROP TABLE IF EXISTS {$prefix}regions",
+			"DROP TABLE IF EXISTS {$prefix}sessions",
+			"DROP TABLE IF EXISTS {$prefix}settings",
+			"DROP TABLE IF EXISTS {$prefix}user_accounts"
 		);
 
 		// start off by clearing out the DB, just in case. For this, we just run the rollback queries (used
