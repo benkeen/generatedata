@@ -3,7 +3,7 @@ require([
 	"manager",
 	"lang",
 	"utils",
-	"pageInit2"
+	"pageInit"
 ], function(manager, L, utils) {
 
 	"use strict";
