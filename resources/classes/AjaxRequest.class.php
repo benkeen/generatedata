@@ -10,6 +10,7 @@
 class AjaxRequest {
 	private $action;
 	private $response;
+	private $post;
 
 	/**
 	 * AjaxRequest objects are automatically processed when they are created, based on the unique $action
@@ -18,9 +19,13 @@ class AjaxRequest {
 	 * program errors: not for user-entry errors.
 	 */
 	public function __construct($action, $post = array()) {
+		if (empty($action)) {
+			throw new Exception("no_action_specified");
+			return;
+		}
 
 		$this->action = $action;
-		$post = Utils::sanitize($post);
+		$this->post = Utils::sanitize($post);
 
 		switch ($this->action) {
 
@@ -30,26 +35,36 @@ class AjaxRequest {
 
 			// a fresh install assumes it's a blank slate: no database tables, no settings file
 			case "installationTestDbSettings":
+				if (Core::checkIsInstalled()) {
+					return;
+				}
 				Core::init("installation");
-				list($success, $content) = Database::testDbSettings($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"]);
+				list($success, $content) = Database::testDbSettings($this->post["dbHostname"], $this->post["dbName"], $this->post["dbUsername"], $this->post["dbPassword"]);
 				$this->response["success"] = $success;
 				$this->response["content"] = $content;
 				break;
 
 			case "installationCreateSettingsFile":
+				if (Core::checkIsInstalled()) {
+					return;
+				}
 				Core::init("installation");
 				if (Core::checkSettingsFileExists()) {
 					$this->response["success"] = 0;
 					$this->response["content"] = "Your settings.php file already exists.";
 					return;
 				} else {
-					list($success, $content) = Installation::createSettingsFile($post["dbHostname"], $post["dbName"], $post["dbUsername"], $post["dbPassword"], $post["dbTablePrefix"]);
+					list($success, $content) = Installation::createSettingsFile($this->post["dbHostname"],
+						$this->post["dbName"], $this->post["dbUsername"], $this->post["dbPassword"], $this->post["dbTablePrefix"]);
 					$this->response["success"] = $success;
 					$this->response["content"] = $content;
 				}
 				break;
 
 			case "installationCreateDatabase":
+				if (Core::checkIsInstalled()) {
+					return;
+				}
 				Core::init("installation_db_ready");
 				list($success, $content) = Installation::createDatabase();
 				if (!$success) {
@@ -62,29 +77,43 @@ class AjaxRequest {
 				// will be blank and all configurations will be associated with this (anonymous) user
 				$adminAccount = array(
 					"accountType" => "admin",
-					"firstName"   => $post["firstName"],
-					"lastName"    => $post["lastName"],
-					"email"       => $post["email"],
-					"password"    => $post["password"]
+					"firstName"   => $this->post["firstName"],
+					"lastName"    => $this->post["lastName"],
+					"email"       => $this->post["email"],
+					"password"    => $this->post["password"]
 				);
 				Account::createAccount($adminAccount, true);
 
 				// make note of the fact that we've passed this step of the installation process
-				Settings::setSetting("userAccountSetup", $post["userAccountSetup"]);
+				Settings::setSetting("userAccountSetup", $this->post["userAccountSetup"]);
 				Settings::setSetting("installationStepComplete_Core", "yes");
-				Settings::setSetting("defaultLanguage", $post["defaultLanguage"]);
-				Settings::setSetting("allowAnonymousAccess", $post["allowAnonymousAccess"]);
-				Settings::setSetting("anonymousUserPermissionDeniedMsg", $post["anonymousUserPermissionDeniedMsg"]);
+				Settings::setSetting("defaultLanguage", $this->post["defaultLanguage"]);
+				Settings::setSetting("allowAnonymousAccess", $this->post["allowAnonymousAccess"]);
+				Settings::setSetting("anonymousUserPermissionDeniedMsg", $this->post["anonymousUserPermissionDeniedMsg"]);
 
 				$this->response["success"] = 1;
 				$this->response["content"] = "";
 				break;
 
+
 			case "installationDataTypes":
 				Core::init("installation_db_ready");
-				$index = $post["index"];
-				$groupedDataTypes = DataTypePluginHelper::getDataTypePlugins("installion_db_ready", false);
-				$dataTypes = DataTypePluginHelper::getDataTypeList($groupedDataTypes);
+				if (!Core::checkIsInstalled()) {
+					$this->setDataTypes($this->post);
+				}
+				break;
+
+			case "resetDataTypes":
+				Core::init("ui");
+
+				//if (Core::checkIsLoggedIn() && Core::$user->isAdmin()) {
+				//$this->setDataTypes();
+				$index = $this->post["index"];
+				$groupedDataTypes = DataTypePluginHelper::getDataTypePlugins("installation_db_ready", false);
+				print_r($groupedDataTypes);
+				exit;
+
+				$dataTypes        = DataTypePluginHelper::getDataTypeList($groupedDataTypes);
 
 				if ($index >= count($dataTypes)) {
 					$this->response["success"] = 1;
@@ -104,94 +133,118 @@ class AjaxRequest {
 					} catch (Exception $e) {
 						$this->response["success"] = false;
 						$this->response["content"] = "Unknown error.";
-
 					}
 				}
+
+
+//				} else {
+//					$this->response["success"] = 0;
+//				}
 				break;
 
 			case "installationSaveDataTypes":
 				Core::init("installation_db_ready");
-				$folders = $post["folders"];
-				$response = Settings::setSetting("installedDataTypes", $folders);
-				$this->response["success"] = $response["success"];
-				$this->response["content"] = $response["errorMessage"];
+
+				// this option can only ever be called during installation. If it's installed, someone's trying to hack it
+				if (!Core::checkIsInstalled()) {
+					$folders = $this->post["folders"];
+					$response = Settings::setSetting("installedDataTypes", $folders);
+					$this->response["success"] = $response["success"];
+					$this->response["content"] = $response["errorMessage"];
+				}
 				break;
 
 			case "installationExportTypes":
 				Core::init("installation_db_ready");
-				$index = $post["index"];
-				$exportTypes = ExportTypePluginHelper::getExportTypePlugins("installation_db_ready", false);
 
-				if ($index >= count($exportTypes)) {
-					$this->response["success"] = 1;
-					$this->response["content"] = "";
-					$this->response["isComplete"] = true;
-				} else {
-					// attempt to install this data type
-					$currExportType = $exportTypes[$index];
-					$this->response["exportTypeName"] = $currExportType->getName();
-					$this->response["exportTypeFolder"] = $currExportType->folder;
-					$this->response["isComplete"] = false;
-					try {
-						list($success, $content) = $currExportType->install();
-						$this->response["success"] = $success;
-						$this->response["content"] = $content;
-					} catch (Exception $e) {
-						$this->response["success"] = false;
-						$this->response["content"] = "Unknown error.";
+				// this option can only ever be called during installation. If it's installed, someone's trying to hack it
+				if (!Core::checkIsInstalled()) {
+					$index = $this->post["index"];
+					$exportTypes = ExportTypePluginHelper::getExportTypePlugins("installation_db_ready", false);
+
+					if ($index >= count($exportTypes)) {
+						$this->response["success"] = 1;
+						$this->response["content"] = "";
+						$this->response["isComplete"] = true;
+					} else {
+						// attempt to install this data type
+						$currExportType = $exportTypes[$index];
+						$this->response["exportTypeName"] = $currExportType->getName();
+						$this->response["exportTypeFolder"] = $currExportType->folder;
+						$this->response["isComplete"] = false;
+						try {
+							list($success, $content) = $currExportType->install();
+							$this->response["success"] = $success;
+							$this->response["content"] = $content;
+						} catch (Exception $e) {
+							$this->response["success"] = false;
+							$this->response["content"] = "Unknown error.";
+						}
 					}
 				}
 				break;
 
 			case "installationSaveExportTypes":
 				Core::init("installation_db_ready");
-				$folders = $post["folders"];
-				$response = Settings::setSetting("installedExportTypes", $folders);
-				$this->response["success"] = $response["success"];
-				$this->response["content"] = $response["errorMessage"];
+
+				// this option can only ever be called during installation. If it's installed, someone's trying to hack it
+				if (!Core::checkIsInstalled()) {
+					$folders = $this->post["folders"];
+					$response = Settings::setSetting("installedExportTypes", $folders);
+					$this->response["success"] = $response["success"];
+					$this->response["content"] = $response["errorMessage"];
+				}
 				break;
 
 			case "installationCountries":
 				Core::init("installation_db_ready");
-				$index = $post["index"];
-				$countryPlugins = CountryPluginHelper::getCountryPlugins(false);
 
-				if ($index >= count($countryPlugins)) {
-					$this->response["success"] = 1;
-					$this->response["content"] = "";
-					$this->response["isComplete"] = true;
-				} else {
-					// attempt to install this data type
-					$currCountryPlugin = $countryPlugins[$index];
-					$this->response["countryName"] = $currCountryPlugin->getName();
-					$this->response["countryFolder"] = $currCountryPlugin->folder;
-					$this->response["isComplete"] = false;
-					try {
-						// always run the uninstallation function first to ensure any old data is all cleared out
-						$currCountryPlugin->uninstall();
+				// this option can only ever be called during installation. If it's installed, someone's trying to hack it
+				if (!Core::checkIsInstalled()) {
+					$index = $this->post["index"];
+					$countryPlugins = CountryPluginHelper::getCountryPlugins(false);
 
-						list($success, $content) = $currCountryPlugin->install();
-						$this->response["success"] = $success;
-						$this->response["content"] = $content;
-					} catch (Exception $e) {
-						$this->response["success"] = false;
-						$this->response["content"] = "Unknown error.";
+					if ($index >= count($countryPlugins)) {
+						$this->response["success"] = 1;
+						$this->response["content"] = "";
+						$this->response["isComplete"] = true;
+					} else {
+						// attempt to install this data type
+						$currCountryPlugin = $countryPlugins[$index];
+						$this->response["countryName"] = $currCountryPlugin->getName();
+						$this->response["countryFolder"] = $currCountryPlugin->folder;
+						$this->response["isComplete"] = false;
+						try {
+							// always run the uninstallation function first to ensure any old data is all cleared out
+							$currCountryPlugin->uninstall();
+
+							list($success, $content) = $currCountryPlugin->install();
+							$this->response["success"] = $success;
+							$this->response["content"] = $content;
+						} catch (Exception $e) {
+							$this->response["success"] = false;
+							$this->response["content"] = "Unknown error.";
+						}
 					}
 				}
 				break;
 
 			case "installationSaveCountries":
 				Core::init("installation_db_ready");
-				$folders = $post["folders"];
-				$response = Settings::setSetting("installedCountries", $folders);
-				$response = Settings::setSetting("installationComplete", "yes");
-				$this->response["success"] = $response["success"];
-				$this->response["content"] = $response["errorMessage"];
+
+				// this option can only ever be called during installation. If it's installed, someone's trying to hack it
+				if (!Core::checkIsInstalled()) {
+					$folders = $this->post["folders"];
+					$response = Settings::setSetting("installedCountries", $folders);
+					$response = Settings::setSetting("installationComplete", "yes");
+					$this->response["success"] = $response["success"];
+					$this->response["content"] = $response["errorMessage"];
+				}
 				break;
 
 			case "generateInPage":
 				Core::init("generation");
-				$gen = new Generator($_POST);
+				$gen = new Generator($this->post);
 				$response = $gen->generate();
 				$this->response["success"]    = $response["success"];
 				$this->response["content"]    = $response["content"];
@@ -225,13 +278,12 @@ class AjaxRequest {
 					$this->response["success"] = false;
 					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
 				} else if (Core::$user->getAccountType() != "admin") {
-					$this->response["success"] = false;	
+					$this->response["success"] = false;
 					$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
 				} else {
-					$accountInfo = $post;
+					$accountInfo = $this->post;
 					$accountInfo["accountType"] = "user";
-					Account::createAccount($accountInfo);
-					$response = array();
+					$response = Account::createAccount($accountInfo);
 					$this->response["success"] = true;
 				}
 				break;
@@ -242,10 +294,10 @@ class AjaxRequest {
 					$this->response["success"] = false;
 					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
 				} else if (Core::$user->getAccountType() != "admin") {
-					$this->response["success"] = false;	
+					$this->response["success"] = false;
 					$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
 				} else {
-					$accountID = $post["accountID"];
+					$accountID = $this->post["accountID"];
 					$response = Core::$user->deleteAccount($accountID);
 					$this->response["success"] = true;
 				}
@@ -258,17 +310,17 @@ class AjaxRequest {
 					$this->response["success"] = false;
 					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
 				} else if (Core::$user->isAnonymousAdmin()) {
-					$this->response["success"] = false;	
+					$this->response["success"] = false;
 					$this->response["errorCode"] = ErrorCodes::INVALID_REQUEST;
 				} else {
-					$accountID = $post["accountID"];
-					$this->response = Core::$user->updateAccount($accountID, $post);
+					$accountID = $this->post["accountID"];
+					$this->response = Core::$user->updateAccount($accountID, $this->post);
 				}
 				break;
 
 			case "saveConfiguration":
 				Core::init();
-				$response = Core::$user->saveConfiguration($post);
+				$response = Core::$user->saveConfiguration($this->post);
 				$this->response["success"] = $response["success"];
 				$this->response["content"] = $response["message"];
 				if (isset($response["lastUpdated"])) {
@@ -278,7 +330,7 @@ class AjaxRequest {
 
 			case "deleteDataSets":
 				Core::init();
-				$configurationIDs = $post["configurationIDs"];
+				$configurationIDs = $this->post["configurationIDs"];
 				$response = Core::$user->deleteConfigurations($configurationIDs);
 				$this->response["success"] = $response["success"];
 				$this->response["content"] = $response["message"];
@@ -286,9 +338,9 @@ class AjaxRequest {
 
 			case "saveDataSetVisibilityStatus":
 				Core::init();
-				$configurationID = $post["configurationID"];
-				$status = $post["status"];
-				$time = $post["time"];
+				$configurationID = $this->post["configurationID"];
+				$status = $this->post["status"];
+				$time   = $this->post["time"];
 				$response = Core::$user->saveDataSetVisibilityStatus($configurationID, $status, $time);
 				$this->response["success"] = $response["success"];
 				$this->response["content"] = $response["message"];
@@ -297,9 +349,9 @@ class AjaxRequest {
 				}
 				break;
 
-			case "getPublicDataSet": 
+			case "getPublicDataSet":
 				Core::init();
-				$configurationID = $post["dataSetID"];
+				$configurationID = $this->post["dataSetID"];
 				$response = Core::$user->getPublicDataSet($configurationID);
 				$this->response["success"] = $response["success"];
 				$this->response["content"] = $response["message"];
@@ -307,8 +359,8 @@ class AjaxRequest {
 
 			case "login":
 				Core::init();
-				$email = $post["email"];
-				$password = $post["password"];
+				$email = $this->post["email"];
+				$password = $this->post["password"];
 				$response = Account::login($email, $password);
 				$this->response["success"] = $response["success"];
 				$this->response["content"] = $response["message"];
@@ -327,7 +379,7 @@ class AjaxRequest {
 
 			case "resetPassword":
 				Core::init();
-				$email = $post["email"];
+				$email = $this->post["email"];
 				$response = Account::resetPassword($email);
 				$this->response["success"] = $response["success"];
 				$this->response["content"] = $response["message"];
@@ -338,4 +390,32 @@ class AjaxRequest {
 	public function getResponse() {
 		return Utils::utf8_encode_array($this->response);
 	}
+
+	private function setDataTypes() {
+		$index = $this->post["index"];
+		$groupedDataTypes = DataTypePluginHelper::getDataTypePlugins("installation_db_ready", false);
+		$dataTypes        = DataTypePluginHelper::getDataTypeList($groupedDataTypes);
+
+		if ($index >= count($dataTypes)) {
+			$this->response["success"] = 1;
+			$this->response["content"] = "";
+			$this->response["isComplete"] = true;
+		} else {
+			// attempt to install this data type
+			$currDataType = $dataTypes[$index];
+			$this->response["dataTypeName"] = $currDataType->getName();
+			$this->response["dataTypeFolder"] = $currDataType->folder;
+			$this->response["isComplete"] = false;
+
+			try {
+				list($success, $content) = $currDataType->install();
+				$this->response["success"] = $success;
+				$this->response["content"] = $content;
+			} catch (Exception $e) {
+				$this->response["success"] = false;
+				$this->response["content"] = "Unknown error.";
+			}
+		}
+	}
+
 }

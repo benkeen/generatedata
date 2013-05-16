@@ -28,7 +28,7 @@ class Core {
 	private static $defaultTheme = "classic";
 	public static $useJSCache = true;
 	
-	// non-overidable settings
+	// non-overridable settings
 	private static $version = "3.0.0 beta #2";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $settingsFileExists = false;
@@ -53,7 +53,7 @@ class Core {
 	 * Core::init()
 	 *
 	 * Our initialization function. This is called on all page requests to initialize the Core
-	 * object. Since it's also used during installation (when the databas and/or plugins haven't been
+	 * object. Since it's also used during installation (when the database and/or plugins haven't been
 	 * installed), the optional parameter controls whether or not the database object and plugins should
 	 * be initialized.
 	 *
@@ -66,6 +66,7 @@ class Core {
 	 *          <b>installation_db_ready</b>: during installation after the DB has been installed<br />
 	 *          <b>ui</b>:                    (default) for the main generator page<br />
 	 *          <b>generation</b>:            when we're in the process of creating actual data
+	 *          <b>resetPlugins</b>:
 	 */
 	public static function init($runtimeContext = "ui") {
 		self::loadSettingsFile();
@@ -74,7 +75,7 @@ class Core {
 		self::$translations = new Translations();
 
 		// the order is significant in all of this
-		if ($runtimeContext != "installation" || $runtimeContext != "installation_db_ready") {
+		if ($runtimeContext != "installation") {
 			self::initDatabase();
 			if ($runtimeContext == "installation_db_ready" || $runtimeContext == "ui" || $runtimeContext == "generation") {
 				self::initSessions();
@@ -104,7 +105,7 @@ class Core {
      * Core::loadSettingsFile()
      *
 	 * Attempts to load the settings file. If successful, it updates the various private member vars
-	 * with whatevers been defined.
+	 * with whatever's been defined.
 	 * @access private
 	 */
 	private static function loadSettingsFile() {

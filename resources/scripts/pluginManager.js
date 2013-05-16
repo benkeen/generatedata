@@ -1,4 +1,4 @@
-/*global $:false*/
+/*global $:false,define:false*/
 define([
 	"lang"
 ], function(L) {
@@ -31,14 +31,16 @@ define([
 
 	// used as an iterator to install the plugins one by one
 	var _currIndex = 0;
+	var _context = "reset"; // reset / installation
 	var _errorHandler = null;
 	var _onCompleteHandler = null;
 	var _successfullyInstalledDataTypes = [];
 	var _successfullyInstalledExportTypes = [];
 	var _successfullyInstalledCountries = [];
 
-	// TODO: ensure params should be required
+
 	var _installPlugins = function(params) {
+		_context = ($("body").hasClass("gdInstallPage")) ? "installation" : "reset";
 		_errorHandler      = params.errorHandler;
 		_onCompleteHandler = params.onCompleteHandler;
 		$("#gdPluginInstallationResults").removeClass("hidden").css("display", "none").show("fade");
@@ -52,7 +54,7 @@ define([
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installationDataTypes",
+				action: _context + "DataTypes",
 				index: _currIndex
 			},
 			success: _installDataTypeResponse,
@@ -68,7 +70,7 @@ define([
 				type: "POST",
 				dataType: "json",
 				data: {
-					action: "installationSaveDataTypes",
+					action: _context + "SaveDataTypes",
 					folders: _successfullyInstalledDataTypes.toString()
 				},
 				success: function() {
@@ -99,7 +101,7 @@ define([
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installationExportTypes",
+				action: _context + "ExportTypes",
 				index: _currIndex
 			},
 			success: _installExportTypesResponse,
@@ -114,7 +116,7 @@ define([
 				type: "POST",
 				dataType: "json",
 				data: {
-					action: "installationSaveExportTypes",
+					action: _context + "SaveExportTypes",
 					folders: _successfullyInstalledExportTypes.toString()
 				},
 				success: function() {
@@ -144,7 +146,7 @@ define([
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installationCountries",
+				action: _context + "Countries",
 				index: _currIndex
 			},
 			success: _installCountriesResponse,
@@ -159,7 +161,7 @@ define([
 				type: "POST",
 				dataType: "json",
 				data: {
-					action: "installationSaveCountries",
+					action: _context + "SaveCountries",
 					folders: _successfullyInstalledCountries.toString()
 				},
 				success: function() {

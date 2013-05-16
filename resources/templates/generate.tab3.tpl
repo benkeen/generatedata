@@ -6,7 +6,7 @@
 <form action="./#t3" method="post" id="gdSettingsForm">
 	<input type="hidden" name="updateSettings" value="1" />
 
-	{if $settings.userAccountSetup != "anonymous"}
+	{if $settings.userAccountSetup != "anonymousAdmin"}
 		<h3>{$L.account_settings}</h3>
 
 		<div>
