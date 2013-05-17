@@ -1,5 +1,4 @@
-/*jslint browser:true*/
-/*global $:false,CodeMirror:false,console:false,define:false*/
+/*global $:false,CodeMirror:false,console:false,define:false,require:false*/
 define([
 	"manager",
 	"pluginManager",
@@ -580,7 +579,7 @@ define([
 	 * the Export Type modules to have to do the work.
 	 */
 	var _selectExportTypeTab = function(newExportType, showImmediately) {
-		if (newExportType == _currExportType) {
+		if (newExportType === _currExportType) {
 			return;
 		}
 
@@ -1738,7 +1737,7 @@ define([
 
 					// ensure the Data Set table reflects this value
 					if ($("#gdDataSetStatus_" + configurationID).length) {
-						if (newStatus == "public") {
+						if (newStatus === "public") {
 							$("#gdDataSetStatus_" + configurationID).attr("checked", "checked");
 						} else {
 							$("#gdDataSetStatus_" + configurationID).removeAttr("checked");

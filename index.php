@@ -11,6 +11,7 @@ if (!Core::checkIsLoggedIn() && !Core::checkAllowMultiUserAnonymousUse()) {
 	exit;
 }
 
+// start piecing together all the various info we need to pass to the page
 $pageParams = array();
 if (isset($_POST["updateSettings"])) {
 	list($success, $message) = Settings::updateSettings($_POST);
@@ -21,7 +22,6 @@ if (isset($_POST["updateSettings"])) {
 $exportTypes = Core::$exportTypePlugins;
 $exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalSettingsHTML($exportTypes);
 $dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
-
 $exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string");
 $exportTypeCssIncludes = ExportTypePluginHelper::getExportTypeCSSIncludes($exportTypes);
 $dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string");

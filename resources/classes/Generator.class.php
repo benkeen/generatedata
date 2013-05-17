@@ -27,7 +27,7 @@ class Generator {
 
 
 	/**
-	 * @param array $postdata everything from the form post. The Generator is used in 3 different
+	 * @param $postData array everything from the form post. The Generator is used in 3 different
 	 * contexts: for in-page generation, new tab/window or for prompting download of the data.
 	 */
 	public function __construct($postData) {
@@ -44,8 +44,9 @@ class Generator {
 		$this->numResults = $postData["gdNumRowsToGenerate"];
 
 		if (Core::checkDemoMode()) {
-			if ($this->numResults > 500) {
-				$this->numResults = 500;
+			$maxDemoModeRows = Core::getMaxDemoModeRows();
+			if ($this->numResults > $maxDemoModeRows) {
+				$this->numResults = $maxDemoModeRows;
 			}
 		}
 

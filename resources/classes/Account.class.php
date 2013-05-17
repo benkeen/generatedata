@@ -500,6 +500,26 @@ class Account {
 		return array("success" => true);
 	}
 
+	/**
+	 * Helper function to determine if a user account exists, as determined by their email address.
+	 * @param $email
+	 * @return bool
+	 */
+	public static function checkAccountExists($email) {
+		$email = Utils::sanitize(trim($email));
+		$prefix = Core::getDbTablePrefix();
+
+		$response = Core::$db->query("
+			SELECT count(*) as c
+			FROM   {$prefix}user_accounts
+			WHERE email = '$email'
+		");
+
+		$result = mysql_fetch_assoc($response["results"]);
+
+		// shouldn't be necessary, but just in case, check for >= 1
+		return $result["c"] >= 1;
+	}
 
 	public function getUsers() {
 		if ($this->accountType != "admin") {

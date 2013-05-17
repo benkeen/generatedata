@@ -22,6 +22,7 @@ class Core {
 	private static $errorReporting = 1;
 	private static $maxGeneratedRows = 100000;
 	private static $defaultNumRows = 100;
+	private static $maxDemoModeRows = 100;
 	private static $defaultLanguageFile = "en";
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array();
@@ -135,6 +136,9 @@ class Core {
 			if (isset($defaultNumRows)) {
 				self::$defaultNumRows = $defaultNumRows;
 			}
+			if (isset($maxDemoModeRows)) {
+				self::$maxDemoModeRows = $maxDemoModeRows;
+			}
 			if (isset($defaultLanguageFile)) {
 				self::$defaultLanguageFile = $defaultLanguageFile;
 			}
@@ -234,6 +238,13 @@ class Core {
 	/**
 	 * @access public
 	 */
+	public static function getMaxDemoModeRows() {
+		return self::$maxDemoModeRows;
+	}
+
+	/**
+	 * @access public
+	 */
 	public static function getVersion() {
 		return self::$version;
 	}
@@ -309,6 +320,7 @@ class Core {
 	public static function getDefaultTheme() {
 		return self::$defaultTheme;
 	}
+
 
 	// ------------------ private methods ------------------
 

@@ -1,4 +1,4 @@
-/*global $:false,browser:true*/
+/*global $:false,browser:true,require:false*/
 require([
 	"manager",
 	"lang",

@@ -1,10 +1,8 @@
 <?php
 
-// NOT USED YET 
-
 /**
  * A storage class for all error codes. This provides a little more meaning than just embedding
- * numbers all over the place.
+ * magic numbers all over the place.
  * @author Ben Keen <ben.keen@gmail.com>
  * @package Core
  */

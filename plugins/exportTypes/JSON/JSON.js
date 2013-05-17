@@ -23,7 +23,7 @@ define([
 	 * mode for the in-page editor.
 	 */
 	var _onGenerate = function(msg) {
-		if (msg.exportTarget != "inPage" || msg.exportType != "JSON") {
+		if (msg.exportTarget !== "inPage" || msg.exportType !== "JSON") {
 			return;
 		}
 		msg.editor.setOption("mode", "javascript");
@@ -39,7 +39,7 @@ define([
 	};
 
 	var _loadSettings = function(settings) {
-		if (settings.stripWhitespace == "1") {
+		if (settings.stripWhitespace === "1") {
 			$("#etJSON_stripWhitespace").attr("checked", "checked");
 		} else {
 			$("#etJSON_stripWhitespace").removeAttr("checked");

@@ -9,13 +9,12 @@ class Templates {
 
 	/**
 	 * Used to generate the main index and install pages.
-	 *
 	 * @param string $template the path from the GD root to the template
-	 * @param array $params
+	 * @param array $pageVars
 	 * @param string $action "display" displays the result (default) or "return" to return the value
-	 * @return either outputs a string or returns it
+	 * @return mixed
 	 */
-	static function displayPage($template, $pageVars = array(), $action = "display") {
+	public static function displayPage($template, $pageVars = array(), $action = "display") {
 
 		// check the compile directory has the write permissions
 		if (!is_writable(Core::$smarty->compile_dir) && is_readable(Core::$smarty->compile_dir)) {
