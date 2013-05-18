@@ -63,8 +63,8 @@ class Account {
 				$this->accountID = $accountInfo["account_id"];
 				$this->accountType = $accountInfo["account_type"];
 				$this->dateCreated = date("U", strtotime($accountInfo["date_created"]));
-				$this->last_updated = date("U", strtotime($accountInfo["last_updated"]));
-				$this->date_expires = date("U", strtotime($accountInfo["date_expires"]));
+				$this->lastUpdated = date("U", strtotime($accountInfo["last_updated"]));
+				$this->dateExpires = date("U", strtotime($accountInfo["date_expires"]));
 				$this->firstName = $accountInfo["first_name"];
 				$this->lastName = $accountInfo["last_name"];
 				$this->email = $accountInfo["email"];

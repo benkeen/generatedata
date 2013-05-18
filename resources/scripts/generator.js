@@ -1819,7 +1819,6 @@ define([
 		}
 
 		utils.startProcessing();
-
 		$.ajax({
 			url:  "ajax.php",
 			type: "POST",

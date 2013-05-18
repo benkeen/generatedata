@@ -13,7 +13,7 @@ require([
 
 		if (window.location.href.match(/#/)) {
 			var tab = window.location.href.split("#")[1].replace(/^t/, "");
-			if (tab != 1 && tab != 2) {
+			if (tab !== "1" && tab !== "2") {
 				utils.selectTab({ tabGroup: "gdMainTabs", tabIDPrefix: "gdMainTab", newTab: 1 });
 			}
 		}
@@ -133,7 +133,7 @@ require([
 	 * is already in the element. It either blinds it quickly in, or does a highlight effect to draw attention to it.
 	 */
 	function updateMessageBlock(el) {
-		if ($(el).css("display") != "block") {
+		if ($(el).css("display") !== "block") {
 			$(el).show("blind", null, 500);
 		} else {
 			$(el).effect("highlight", { color: "#ffc9c9" }, 1500);
