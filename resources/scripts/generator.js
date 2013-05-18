@@ -88,12 +88,13 @@ define([
 		// republished. Only really an issue on Firefox, which publishes keyup and change events when
 		// changing the selected option via the keyboard (up and down). It also allows us to tab off the field
 		// into whatever field is displayed next.
-		$("#gdTableRows").on("change keyup", ".gdDataType", _onChangeDataType);
-		$("#gdTableRows").on("focus", ".gdDataType", _onFocusDataType);
-		$("#gdTableRows").on("change", ".gdDeleteRows", _markRowToDelete);
-		$("#gdTableRows").on("change", ".gdColExamples select", _publishExampleChange);
+        var $tableRows = $("#gdTableRows");
+        $tableRows.on("change keyup", ".gdDataType", _onChangeDataType);
+        $tableRows.on("focus", ".gdDataType", _onFocusDataType);
+        $tableRows.on("change", ".gdDeleteRows", _markRowToDelete);
+        $tableRows.on("change", ".gdColExamples select", _publishExampleChange);
 
-		$("#gdTableRows").sortable({
+        $tableRows.sortable({
 			handle: ".gdColOrder",
 			axis: "y",
 			update: function(event, ui) {
@@ -135,12 +136,14 @@ define([
 		$("#gdUserAccount").on("click", _onClickUserAccountLink);
 		$("#gdLogin").on("click", _onClickLoginLink);
 		$("#gdLoadLink").on("click", _onClickLoadDataSetIcon);
-		$("#gdAccountDataSets").on("click", "a", _onClickLoadDataSet);
-		$("#gdAccountDataSets").on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
-		$("#gdAccountDataSets").on("click", _onClickToggleDeleteRow);
+
+        var $accountDataSets = $("#gdAccountDataSets");
+        $accountDataSets.on("click", "a", _onClickLoadDataSet);
+        $accountDataSets.on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
+        $accountDataSets.on("click", _onClickToggleDeleteRow);
 		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
 		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
-		$("#gdTableRows").on("click", ".ui-icon-help", _onClickDataSetRowHelp);
+        $tableRows.on("click", ".ui-icon-help", _onClickDataSetRowHelp);
 		$("#gdSelectAllDataSets").on("click", _onToggleSelectAllDataSets);
 		$("#gdDataSetStatusLine").html(L.not_saved);
 		$("#gdMainDialog").on("click", ".gdDataSetStatus", _onToggleSaveDataSetVisibilityStatus);
@@ -818,8 +821,9 @@ define([
 	 * and starts the data generation process.
 	 */
 	var _generateData = function() {
-		_numRowsToGenerate = _getNumRowsToGenerate();
-		utils.clearValidationErrors($("#gdMainTab1Content"));
+        // TODO pretty poor. Validation should be performed on this var prior to setting it in the private var
+        _numRowsToGenerate = _getNumRowsToGenerate()
+        utils.clearValidationErrors($("#gdMainTab1Content"));
 
 		// check the users specified a numeric value for the number of results
 		if (_numRowsToGenerate.match(/\D/) || _numRowsToGenerate === 0 || _numRowsToGenerate === "") {
@@ -881,15 +885,19 @@ define([
 			utils.addValidationErrors(exportTypeValidationErrors);
 		}
 
+        // ensure the number of rows is an acceptable number
+        _numRowsToGenerate = parseInt(_numRowsToGenerate, 10);
+        if (_numRowsToGenerate > C.MAX_GENERATED_ROWS) {
+            var msg = L.num_rows_too_large.replace(/%1/, C.MAX_GENERATED_ROWS);
+            utils.addValidationErrors({ els: null, error: msg });
+            $("#gdNumRowsToGenerate").val(C.MAX_GENERATED_ROWS);
+        }
+
 		var errors = utils.getValidationErrors();
 		if (errors.length) {
 			utils.displayValidationErrors("#gdMessages");
 			return false;
 		}
-
-
-		// ensure this is a number (now it's passed validation above)
-		_numRowsToGenerate = parseInt(_numRowsToGenerate, 10);
 
 		var exportTarget = _getExportTarget();
 		var rowOrder = _getRowOrder().toString();

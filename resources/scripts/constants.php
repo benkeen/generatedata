@@ -43,6 +43,8 @@ define([], function() {
 
 		GENERATE_IN_PAGE_BATCH_SIZE: 100,
 
+		MAX_GENERATED_ROWS: <?php echo Core::getMaxGeneratedRows(); ?>,
+
 		DEMO_MODE: <?php echo Core::checkDemoMode(); ?>,
 
 		THEME: "<?php Settings::safeDisplaySetting("theme") ?>",

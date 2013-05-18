@@ -50,6 +50,13 @@ class Generator {
 			}
 		}
 
+        // always apply the max generated rows limitation. Technically this value could be lower than
+        // the $maxDemoModeRows value above, but it's extremely unlikely & an acceptable restriction
+        $maxGeneratedRows = Core::getMaxGeneratedRows();
+        if ($this->numResults > $maxGeneratedRows) {
+            $this->numResults = $maxGeneratedRows;
+        }
+
 		$this->countries  = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
 		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 		$this->postData   = $postData;

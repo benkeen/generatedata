@@ -157,9 +157,10 @@ class Core {
 		return self::$defaultExportType;
 	}
 
-	/**
-	 * @access public
-	 */
+    /**
+     * TODO Yuck! Why does this return a boolean as a frickin' string?! Was I drunk?
+     * @access public
+     */
 	public static function checkDemoMode() {
 		return (self::$demoMode) ? "true" : "false";
 	}

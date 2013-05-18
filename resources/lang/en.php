@@ -273,3 +273,4 @@ $L["update"] = "Update";
 // new
 $L["documentation"] = "Documentation";
 $L["install_user_doc_link"] = "For more detailed information about the installation process, check out our <a href=\"http://benkeen.github.io/generatedata/install.html\" target=\"_blank\">user documentation</a>.";
+$L["num_rows_too_large"] = "Sorry, you're limited to generating <b>%1</b> rows at a time. Click generate to continue.";
