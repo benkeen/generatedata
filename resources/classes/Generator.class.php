@@ -43,7 +43,7 @@ class Generator {
 
 		$this->numResults = $postData["gdNumRowsToGenerate"];
 
-		if (Core::checkDemoMode()) {
+		if (Core::checkDemoMode() && !Core::checkIsLoggedIn()) {
 			$maxDemoModeRows = Core::getMaxDemoModeRows();
 			if ($this->numResults > $maxDemoModeRows) {
 				$this->numResults = $maxDemoModeRows;
