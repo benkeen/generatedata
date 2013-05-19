@@ -44,6 +44,7 @@ define([
 	var _isGenerating = false;
 	var _generationCancelled = false;
 	var _currHelpDialogTab = 1;
+	var _currLoginDialogTab = 1;
 	var _currDataTypeHelp = null;
 
 	// accounts
@@ -150,6 +151,7 @@ define([
 		$("#gdUpdateAccountInfo").on("click", _updateAccountInfo);
 
 		_initMainDialog();
+		_initLoginDialog();
 		_initExportTypeTab();
 		_updateCountryChoice();
 		_addRows(_numRowsToShowOnStart);
@@ -1787,16 +1789,39 @@ define([
 		});
 	};
 
+	var _initLoginDialog = function() {
+		$("#gdLoginDialogTabs>ul>li").each(function() {
+			var newTab = parseInt($(this).attr("id").replace(/^gdLoginDialogTab/, ""), 10);
+			$(this).bind("click", function() {
+				utils.selectTab({ tabGroup: "dialogTabs", tabIDPrefix: "gdLoginDialogTab", newTab: newTab, oldTab: _currLoginDialogTab } );
+				_currLoginDialogTab = newTab;
+
+				if (newTab === 1) {
+					$("#gdLoginDialog").dialog("option", "buttons", [{ text: L.login, click: _login }]);
+					$("#gdLogin_email").focus();
+				} else {
+					$("#gdLoginDialog").dialog("option", "buttons", [{ text: L.email, click: _resetPassword }]);
+					$("#gdEmailReminder").focus();
+				}
+			});
+		});
+	};
+
 	var _openLoginDialog = function() {
+		var buttons = [];
+		if (_currLoginDialogTab === 1) {
+			buttons = [{ text: L.login, click: _login }];
+		} else {
+			buttons = [{ text: L.email, click: _resetPassword }];
+		}
 		$("#gdLoginDialog").dialog({
 			title: L.please_login,
 			width: 500,
 			modal: true,
-			buttons: [{
-				text: L.login,
-				click: _login
-			}]
+			buttons: buttons
 		});
+		$("#gdLoginError").hide();
+		$("#gdLoginDialogContent .gdProblemField").removeClass("gdProblemField");
 	};
 
 	var _submitSettingsForm = function(e) {
@@ -1889,6 +1914,53 @@ define([
 				}
 			},
 			error: function() {
+			}
+		});
+	};
+
+	var _resetPassword = function() {
+		var email = $.trim($("#gdEmailReminder").val());
+
+		utils.clearValidationErrors($("#gdLoginDialog"));
+		if (email === "") {
+			utils.addValidationErrors({ els: [$("#gdEmailReminder")], error: L.validation_no_email });
+		} else if (!utils.isValidEmail(email)) {
+			utils.addValidationErrors({ els: [$("#gdEmailReminder")], error: L.validation_invalid_email });
+		}
+
+		var errors = utils.getValidationErrors();
+		if (errors.length) {
+			utils.displayValidationErrors("#gdResetPasswordMessage");
+			return false;
+		}
+
+		utils.startProcessing();
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				action: "resetPassword",
+				email: email
+			},
+			success: function(json) {
+				var resetPasswordMessage = $("#gdResetPasswordMessage");
+				if (json.success) {
+					resetPasswordMessage.removeClass("gdErrors").addClass("gdNotify").find("div").html("<p>" + json.content + "</p>");
+				} else {
+					resetPasswordMessage.removeClass("gdNotify").addClass("gdErrors").find("div").html("<ul><li>" + json.content + "</li></ul>");
+				}
+
+				if (resetPasswordMessage.css("display") !== "block") {
+					resetPasswordMessage.show("blind", null, 500);
+				} else {
+					resetPasswordMessage.effect("highlight", { color: "#ffc9c9" }, 1500);
+				}
+
+				utils.stopProcessing();
+			},
+			error: function(json) {
+				utils.stopProcessing();
 			}
 		});
 	};

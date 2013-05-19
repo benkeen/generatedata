@@ -1,3 +1,4 @@
+/* the dialog CSS is a mess. TOTALLY in need of a refactor. */
 #gdMainDialog {
 	border: 1px solid #cccccc;
 	padding: 0px;
@@ -20,12 +21,21 @@
 	max-height: 420px;
 }
 
+#gdLoginDialog {
+	border: 1px solid #cccccc;
+	padding: 0px;
+	margin: 3px 2px;
+	div, p {
+		line-height: 16pt;
+	}
+}
+
 #gdMainDialogContent {
 	clear: both;
 	&>div {
 		padding: 6px 10px;
 		height: 300px;
-		overflow-y: auto; 
+		overflow-y: auto;
 	}
 
 	#gdMainDialogTab3Content {
@@ -35,6 +45,17 @@
 			padding-top: 10px;
 		}
 	}
+}
+
+#gdLoginDialogContent {
+	clear: both;
+}
+
+#gdLoginDialogTab1Content, #gdLoginDialogTab2Content {
+	padding: 2px;
+}
+#gdLoginError, #gdResetPasswordMessage {
+	margin: 6px;
 }
 
 #gdAccountDataSets {
@@ -58,7 +79,6 @@
 		}
 	}
 }
-
 .highlightTableRows {
 	tbody tr {
 		&:hover {
@@ -67,7 +87,13 @@
 	}
 }
 
-#gdMainDialogTabs {
+.gdModalTabs {
+	&.gdThreeCols li {
+		width: 33.3%;
+	}
+	&.gdTwoCols li {
+		width: 50%;
+	}
 	ul {
 		margin: 0px;
 		padding: 0px;
@@ -75,7 +101,6 @@
 		background-color: #efefef;
 
 		li {
-			width: 33.3%;
 			float: left;
 			margin: 0px;
 			background-color: #efefef;
@@ -210,7 +235,6 @@ body .gdMainDialog .ui-dialog-title span {
 	margin-top:2px;
 	height: 34px;
 }
-
 #gdDeleteAccountDialog {
 	th {
 		text-align: left;

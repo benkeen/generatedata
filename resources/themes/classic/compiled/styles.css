@@ -1136,6 +1136,7 @@ body.gdErrorPage #gdSeriousError {
 .gdLoginPage #password {
   width: 120px; }
 
+/* the dialog CSS is a mess. TOTALLY in need of a refactor. */
 #gdMainDialog {
   border: 1px solid #cccccc;
   padding: 0px;
@@ -1152,6 +1153,13 @@ body.gdErrorPage #gdSeriousError {
   #gdMainDialog h4 {
     margin: 0px; }
 
+#gdLoginDialog {
+  border: 1px solid #cccccc;
+  padding: 0px;
+  margin: 3px 2px; }
+  #gdLoginDialog div, #gdLoginDialog p {
+    line-height: 16pt; }
+
 #gdMainDialogContent {
   clear: both; }
   #gdMainDialogContent > div {
@@ -1163,6 +1171,15 @@ body.gdErrorPage #gdSeriousError {
     overflow: hidden; }
     #gdMainDialogContent #gdMainDialogTab3Content h3 {
       padding-top: 10px; }
+
+#gdLoginDialogContent {
+  clear: both; }
+
+#gdLoginDialogTab1Content, #gdLoginDialogTab2Content {
+  padding: 2px; }
+
+#gdLoginError, #gdResetPasswordMessage {
+  margin: 6px; }
 
 #gdAccountDataSets .leftAligned {
   padding-left: 3px; }
@@ -1184,19 +1201,22 @@ body.gdErrorPage #gdSeriousError {
 .highlightTableRows tbody tr:hover {
   background-color: #f2f2f2; }
 
-#gdMainDialogTabs ul {
+.gdModalTabs.gdThreeCols li {
+  width: 33.3%; }
+.gdModalTabs.gdTwoCols li {
+  width: 50%; }
+.gdModalTabs ul {
   margin: 0px;
   padding: 0px;
   list-style: none;
   background-color: #efefef; }
-  #gdMainDialogTabs ul li {
-    width: 33.3%;
+  .gdModalTabs ul li {
     float: left;
     margin: 0px;
     background-color: #efefef;
     text-align: center;
     cursor: pointer; }
-    #gdMainDialogTabs ul li.gdSelected {
+    .gdModalTabs ul li.gdSelected {
       background-color: white; }
 
 #gdDataSetHelpNav {

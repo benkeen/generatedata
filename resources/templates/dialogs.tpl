@@ -1,7 +1,7 @@
 <div id="gdEmptyFormDialog"></div>
 
 <div id="gdMainDialog" class="hidden">
-	<div id="gdMainDialogTabs">
+	<div id="gdMainDialogTabs" class="gdModalTabs gdThreeCols">
 		<ul>
 			<li id="gdMainDialogTab1" class="gdSelected">{$L.your_account}</li>
 			<li id="gdMainDialogTab2">{$L.your_data_sets}</li>
@@ -21,15 +21,15 @@
 				<form>
 					<table cellpadding="0" cellspacing="1">
 					<tr>
-						<td width="160">{$L.first_name}</td>
+						<td width="160"><label for="gdUserAccount_firstName">{$L.first_name}</label></td>
 						<td><input type="text" id="gdUserAccount_firstName" class="medium" /></td>
 					</tr>
 					<tr>
-						<td>{$L.last_name}</td>
+						<td><label for="gdUserAccount_lastName">{$L.last_name}</label></td>
 						<td><input type="text" id="gdUserAccount_lastName" class="medium" /></td>
 					</tr>
 					<tr>
-						<td>{$L.email}</td>
+						<td><label for="gdUserAccount_email">{$L.email}</label></td>
 						<td><input type="text" id="gdUserAccount_email" class="medium" /></td>
 					</tr>
 					<tr>
@@ -39,13 +39,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td>{$L.password}</td>
+						<td><label for="gdUserAccount_password">{$L.password}</label></td>
 						<td>
 							<input type="password" id="gdUserAccount_password" value="" />
 						</td>
 					</tr>
 					<tr>
-						<td>{$L.reenter_password}</td>
+						<td><label for="gdUserAccount_password2">{$L.reenter_password}</label></td>
 						<td>
 							<input type="password" id="gdUserAccount_password2" value="" />
 						</td>
@@ -182,25 +182,51 @@
 </div>
 
 <div id="gdLoginDialog" class="hidden">
-	<div class="gdMessage gdErrors" id="gdLoginError">
-		<a class="gdMessageClose" href="#">X</a>
-		<div></div>
+	<div id="gdLoginDialogTabs" class="gdModalTabs gdTwoCols">
+		<ul>
+			<li id="gdLoginDialogTab1" class="gdSelected">{$L.login}</li>
+			<li id="gdLoginDialogTab2">{$L.forgotten_your_password_q}</li>
+		</ul>
 	</div>
-	<div style="margin-top: 8px">
-		<div class="gdIconInfo"></div>
-		<div>
-			<form>
-				<table>
-				<tr>
-					<th width="120">{$L.email}</th>
-					<td><input type="text" name="gdLogin_email" id="gdLogin_email" style="width: 200px" /></td>
-				</tr>
-				<tr>
-					<th>{$L.password}</th>
-					<td><input type="password" name="gdLogin_password" id="gdLogin_password" /></td>
-				</tr>
-				</table>
-			</form>
+	<div id="gdLoginDialogContent">
+		<div id="gdLoginDialogTab1Content">
+			<div class="gdMessage gdErrors" id="gdLoginError">
+				<a class="gdMessageClose" href="#">X</a>
+				<div></div>
+			</div>
+			<div style="padding: 6px 10px;">
+				<form>
+					<table>
+						<tr>
+							<th width="120">{$L.email}</th>
+							<td><input type="text" name="gdLogin_email" id="gdLogin_email" style="width: 200px" /></td>
+						</tr>
+						<tr>
+							<th>{$L.password}</th>
+							<td><input type="password" name="gdLogin_password" id="gdLogin_password" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+		<div id="gdLoginDialogTab2Content" class="hidden">
+			<div class="gdMessage gdErrors" id="gdResetPasswordMessage">
+				<a class="gdMessageClose" href="#">X</a>
+				<div></div>
+			</div>
+			<div style="padding: 6px 10px;">
+				<div style="padding-bottom: 2px">
+					{$L.enter_email_address_to_reset_password}
+				</div>
+				<form>
+					<table>
+						<tr>
+							<th width="120">{$L.email}</th>
+							<td><input type="text" name="gdEmailReminder" id="gdEmailReminder" style="width: 200px" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
