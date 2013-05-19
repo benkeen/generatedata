@@ -37,16 +37,43 @@ class Core {
 	private static $continents = array("africa", "asia", "europe", "north_america", "oceania", "south_america");
 	private static $isLoggedIn = false;
 
-	// left as public, because they're often modified / accessed, and it's just too fussy otherwise
+
+	// left as public, because they're often modified / accessed, and it's just too fussy otherwise. The
+	// PHPDoc helps my IDE figure out what the hell each of them are
+
+	/**
+	 * @var Language
+	 */
 	public static $language;
+
+	/**
+	 * @var Database
+	 */
 	public static $db;
-	public static $smarty;
+
+	/**
+	 * @var Translations
+	 */
 	public static $translations;
+
+	/**
+	 * @var Account
+	 */
 	public static $user;
+
+	/**
+	 * @var GeoData
+	 */
+	public static $geoData;
+
+	/**
+	 * @var Smarty
+	 */
+	public static $smarty;
+
 	public static $dataTypePlugins;
 	public static $exportTypePlugins;
 	public static $countryPlugins;
-	public static $geoData;
 	public static $allowThemes = false;
 
 

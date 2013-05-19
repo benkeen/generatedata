@@ -234,7 +234,10 @@ footer {
         color: green;
         text-decoration: none; }
       #gdMainTabs ul li:hover {
-        background-color: #f5faf6; }
+        background-color: #f5faf6;
+        -moz-transition: background-color 150ms linear;
+        -webkit-transition: background-color 150ms linear;
+        -o-transition: background-color 150ms linear; }
     #gdMainTabs ul li.gdSelected {
       color: green;
       cursor: inherit;
