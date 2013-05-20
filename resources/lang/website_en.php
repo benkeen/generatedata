@@ -1,0 +1,33 @@
+<?php
+
+$L = array();
+$L["about_para1"] = "Ever needed custom formatted sample / test data, like, bad? Well, that's the idea of this script. It's a free, open source tool written in JavaScript, PHP and MySQL that lets you quickly generate large volumes of custom data in a variety of formats for use in testing software, populating databases, and... so on and so forth.";
+$L["about_para2"] = "This site offers an online demo where you're welcome to tinker around to get a sense of what the script does, what features it offers and how it works. Then, once you've whet your appetite, there's a free, fully functional, GNU-licensed version available for download. Alternatively, if you want to avoid the hassle of setting it up on your own server, you can donate $20 or more to get an account on this site, letting you generate up to 5,000 records at a time (instead of the maximum 100), and let you save your data sets. Click on the Donate tab for more information.";
+$L["about_para3"] = "For users who had an account with the old site, you can still <a href=\"http://old.generatedata.com\">find it here</a>: don't worry, you can still login and access your data sets. Unfortunately, for technical reasons, we couldn't port over your data sets to the new script (it's <i>really</i> different). However, you'll find that you have a valid user account on the new site as well, so you can start using the new version today.";
+$L["about_para4"] = "The out-the-box script contains the sort of functionality you generally need. But nothing's ever complete - maybe you need to generate random esoteric math equations, pull random tweets or display random images from Flickr with the word \"Red-backed vole\" in the title. Who knows. Everyone's use-case is different.";
+$L["about_para5"] = "With this in mind, the new version of the script (3.0.0+) was designed to be fully extensible: developers can write their own Data Types to generate new types of random data, and even customize the Export Types - i.e. the format in which the data is output. For people interested in generating more accurate localized geographical data, they can add new Country plugins that supply region names (states, provinces, territories etc), city names and postal/zip code formats for their country of choice. For more information on all this, visit the <a href=\"http://benkeen.github.io/generatedata/developer.html\" target=\"_blank\">Developer Documentation</a>.";
+$L["about_para6"] = "Click the button below to download the latest version of the script from github. For more information see the <a href=\"http://benkeen.github.io/generatedata/\" target=\"_blank\">User Documentation</a>.";
+$L["amount"] = "Amount";
+$L["date_account_expires"] = "Date account expires";
+$L["donate"] = "Donate";
+$L["donate_now"] = "Donate now!";
+$L["donate_para1"] = "If this has helped you in your work, a donation is always appreciated! If a general sense of do-goodery isn't enough to persuade you to donate, here are a few more material incentives:";
+$L["donate_para2"] = "Supporting the project leads to great new features! Honest!";
+$L["donate_para3"] = "Donating $20 or more will get you a user account on this website. With a user account you can:";
+$L["donate_para4"] = "Generate up to 5,000 rows at a time instead of the maximum 100.";
+$L["donate_para5"] = "Save your form configurations so you don't have to re-create your data sets every time you return to the site.";
+$L["donate_para6"] = "Every $20 you donate adds a <b>year</b> to your account. You may return at a later date to add more time to your account - it will be added to the end of your current time. Just be sure to donate with the same email address. If you have any trouble donating or with your user account, just <a href=\"mailto:ben.keen@gmail.com\">drop me a line</a>.";
+$L["error_creating_account_msg"] = "Sorry, there was a problem creating your user account. This shouldn't happen! Please try again later.";
+$L["extend_id"] = "Extend it";
+$L["incomplete_donation_msg"] = "Oops, it looks like you've already donated, but haven't finished setting up your account. <a href=\"{\$link}\">Click here</a> to set up your account.";
+$L["loading_ellipsis"] = "Loading...";
+$L["news"] = "News";
+$L["news_feed_error"] = "<p>Drat, there was a problem interacting with the news feed. Apologies!</p> <p>To browse the latest project news, <a href=\"http://www.benjaminkeen.com/category/projects/data-generator/\">goto my website.</a></p>";
+$L["project_news"] = "Project News";
+$L["user_account_exists_msg"] = "Oops! It looks like you already have a user account. Please login in first, then you can donate to add time to your account. Click the login link at the top of the page to login / reset your password.";
+$L["where_the_old_site"] = "Where's the old site?";
+$L["years1"] = "1 year";
+$L["years2"] = "2 years";
+$L["years3"] = "3 years";
+$L["years4"] = "4 years";
+$L["years5"] = "5 years";

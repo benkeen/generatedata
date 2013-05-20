@@ -107,7 +107,6 @@ $L["validation_no_last_name"] = "Please enter your last name.";
 $L["validation_no_password"] = "Please enter your password.";
 $L["install_invalid_db_info"] = "We were unable to connect to the database using the information you supplied. The error message the database returned is: <i>{\$db_connection_error}</i>";
 $L["install_no_db_connection"] = "Please check your database name and login information. Although we were able to connect to the database host, we could not connect to the database. The error message the database returned is: <i>{\$db_select_error}</i>";
-
 $L["settings_file_exists"] = "The settings file already exists. For new installations, the settings.php shouldn't exist. Either delete it and continue the installation script or try loading the script again with the existing settings file values.";
 $L["first_name"] = "First Name";
 $L["last_name"] = "Last Name";
@@ -257,7 +256,6 @@ $L["all_countries"] = "All countries";
 $L["link_to_data_set"] = "Link to Data Set";
 $L["login"] = "Login";
 $L["forgot_password"] = "Forgot Password";
-
 $L["admin_account"] = "Admin account";
 $L["feature_enabled"] = "Enabled";
 $L["anonymous_access"] = "Anonymous access";
@@ -269,8 +267,8 @@ $L["email_c"] = "Email:";
 $L["password_c"] = "Password:";
 $L["no_account_found"] = "Sorry, that account wasn't found.";
 $L["update"] = "Update";
-
-// new
 $L["documentation"] = "Documentation";
 $L["install_user_doc_link"] = "For more detailed information about the installation process, check out our <a href=\"http://benkeen.github.io/generatedata/install.html\" target=\"_blank\">user documentation</a>.";
 $L["num_rows_too_large"] = "Sorry, you're limited to generating <b>%1</b> rows at a time. Click generate to continue.";
+$L["fork_this_project_on_github"] = "Fork this project on Github";
+$L["download"] = "Download";
