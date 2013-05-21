@@ -16,19 +16,17 @@ Version 2 was never fully completed. A proof of concept was gotten up and runnin
 added (basic) modularity and improved a few things, but I abandoned it in favour of some other projects
 I was working on at the time. However, the tag is available if you want a copy.
 
-### Version 3.0.0 beta
-http://beta.generatedata.com
+### Version 3.0.0
+http://www.generatedata.com
 
-Currently the 3.0.0 branch is in beta, meaning it's <i>almost</i> production ready. The more feedback 
-I can get the better. This the version I'd suggest downloading and using. I'm working on this version 
-currently (April 2013) and expect to get it into final release in the next month or so.
+This is the main build, currently found on the public site.
 
 ## Versions
 
 * 1.0.0 - found on our [live site](http://www.generatedata.com/#generator), but now very out of date.
 * 2.3.9 - a refactored version of 1.0.0 offering a lot more options. This is fully functional and you
 can [download it via the tag](https://github.com/benkeen/generatedata/tags).
-* 3.0.0 - _currently in beta_. This version is a complete re-write of 2.3.9.
+* 3.0.0 - the current version.
 
 ## Installation
 
