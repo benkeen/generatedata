@@ -11,11 +11,10 @@ class Account {
 	 * There are two types of anonymous users:
 	 * 1. Anonymous admin. This is when the generator is configured to have a single user account at all times.
 	 *    This account type has permission to do everything; there's a single user in the user_accounts DB table.
-	 * 2. Anonymous user. This is when the 
+	 * 2. Anonymous user. This is when the user hasn't logged in, but MUST, in order to save and load stuff.
 	 */
 	private $isAnonymousAdmin = false;
 	private $isAnonymousUser = false;
-
 	private $accountID;
 	private $accountType;
 	private $dateCreated;
@@ -24,7 +23,6 @@ class Account {
 	private $firstName;
 	private $lastName;
 	private $email;
-	private $password;
 	private $configurations;
 
 
