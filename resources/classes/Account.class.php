@@ -542,7 +542,7 @@ class Account {
 			while ($row = mysql_fetch_assoc($response["results"])) {
 				$row["date_created"] = date("U", strtotime($row["date_created"]));
 				$row["last_updated"] = date("U", strtotime($row["last_updated"]));
-				$row["last_logged_in"] = (!empty($row["last_logged_in"])) ? date("U", strtotime($row["last_logged_in"])) : "";
+				$row["last_logged_in"] = (!empty($row["last_logged_in"]) && $row["last_logged_in"] != "0000-00-00 00:00:00") ? date("U", strtotime($row["last_logged_in"])) : "";
 				$data[] = $row;
 			}
 		}
