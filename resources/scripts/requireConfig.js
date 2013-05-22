@@ -19,5 +19,6 @@ require.config({
 		"tablesorter": {
 			deps: ['libs/jquery.tablesorter.min']
 		}
-	}
+	},
+	waitSeconds: 60
 });
