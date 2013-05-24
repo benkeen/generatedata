@@ -25,7 +25,7 @@
 </head>
 <body data-lang="{$currLang}" data-logged-in="{$isLoggedIn}">
 	<header>
-		<nav>
+		<nav class="gdHideNoJS">
 			<ul>
 				<li id="gdUserAccount"{if !$isLoggedIn || $settings.userAccountSetup == "anonymousAdmin"} style="display:none"{/if}>
 					<a href="#">{$L.your_account}</a> |
@@ -61,6 +61,8 @@
 			</ul>
 		</div>
 	</section>
+
+	<div id="gdPageLoad">Loading...</div>
 
 	{include file="footer.tpl"}
 

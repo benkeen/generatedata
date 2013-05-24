@@ -27,6 +27,7 @@ define([
 
 		// show all those elements in the page that were marked as being hidden if no JS
 		$(".gdHideNoJS").show("fade");
+		$("#gdPageLoad").hide();
 		_initStartTab();
 		_initMainTabs();
 		$("#gdSelectLanguage").bind("change", _changeLanguage);
