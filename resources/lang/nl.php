@@ -151,6 +151,7 @@ $L["list_core_events"] = "Lijst <b>kern</b>events";
 $L["list_module_publish_events"] = "Lijst module <b>publiceren</b> events";
 $L["list_module_subscribe_events"] = "Lijst module <b>subscribe</b> events";
 $L["load"] = "Laden";
+$L["loading"] = "Het Laden...";
 $L["load_uc"] = "LOAD";
 $L["login"] = "Inloggen";
 $L["login_url_c"] = "Inloggen URL:";

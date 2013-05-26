@@ -53,6 +53,7 @@ define([
 	var _accountInfo = null;
 	var _dataSets = [];
 	var _currConfigurationID = null;
+	var _loginModalID = "gdLoginDialog";
 
 
 	/**
@@ -1797,13 +1798,18 @@ define([
 				_currLoginDialogTab = newTab;
 
 				if (newTab === 1) {
-					$("#gdLoginDialog").dialog("option", "buttons", [{ text: L.login, click: _login }]);
+					$("#" + _loginModalID).dialog("option", "buttons", [{ text: L.login, click: _login }]);
 					$("#gdLogin_email").focus();
 				} else {
-					$("#gdLoginDialog").dialog("option", "buttons", [{ text: L.email, click: _resetPassword }]);
+					$("#" + _loginModalID).dialog("option", "buttons", [{ text: L.email, click: _resetPassword }]);
 					$("#gdEmailReminder").focus();
 				}
 			});
+		});
+		$("#" + _loginModalID).on("keyup", "#gdLogin_password", function(e) {
+			if (e.keyCode === $.ui.keyCode.ENTER) {
+				_login();
+			}
 		});
 	};
 
@@ -1814,10 +1820,12 @@ define([
 		} else {
 			buttons = [{ text: L.email, click: _resetPassword }];
 		}
-		$("#gdLoginDialog").dialog({
+
+		$("#" + _loginModalID).dialog({
 			title: L.please_login,
 			width: 500,
 			modal: true,
+			open: function() { utils.insertModalSpinner({ modalID: _loginModalID }); },
 			buttons: buttons
 		});
 		$("#gdLoginError").hide();
@@ -1851,7 +1859,7 @@ define([
 			return false;
 		}
 
-		utils.startProcessing();
+		utils.playModalSpinner(_loginModalID);
 		$.ajax({
 			url:  "ajax.php",
 			type: "POST",
@@ -1867,11 +1875,14 @@ define([
 						onComplete: _onLoginComplete
 					});
 				} else {
-					utils.clearValidationErrors($("#gdLoginDialog"));
+					utils.clearValidationErrors($("#" + _loginModalID));
 					utils.addValidationErrors({ els: [], error: response.content });
 					utils.displayValidationErrors("#gdLoginError");
-					utils.stopProcessing();
+					utils.pauseModalSpinner(_loginModalID);
 				}
+			},
+			error: function() {
+				utils.pauseModalSpinner(_loginModalID);
 			}
 		});
 	};
@@ -1893,9 +1904,9 @@ define([
 		$("#gdUserAccount,#gdLogout").show();
 		$("#gdLogin").hide();
 
-		utils.stopProcessing();
+		utils.pauseModalSpinner(_loginModalID);
 
-		$("#gdLoginDialog").dialog("close");
+		$("#" + _loginModalID).dialog("close");
 	};
 
 	var _logout = function() {
@@ -1921,7 +1932,7 @@ define([
 	var _resetPassword = function() {
 		var email = $.trim($("#gdEmailReminder").val());
 
-		utils.clearValidationErrors($("#gdLoginDialog"));
+		utils.clearValidationErrors($("#" + _loginModalID));
 		if (email === "") {
 			utils.addValidationErrors({ els: [$("#gdEmailReminder")], error: L.validation_no_email });
 		} else if (!utils.isValidEmail(email)) {

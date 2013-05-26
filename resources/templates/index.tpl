@@ -62,7 +62,7 @@
 		</div>
 	</section>
 
-	<div id="gdPageLoad">Loading...</div>
+	<div id="gdPageLoad">{$L.loading}</div>
 
 	{include file="footer.tpl"}
 

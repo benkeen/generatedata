@@ -33,10 +33,10 @@ define([
 		$("#gdSelectLanguage").bind("change", _changeLanguage);
 
 		// for the Settings tab
-		if ($("#consoleEventsDataTypePlugins").length) {
+		if ($("#consoleEventsDataTypePlugins").length > 0) {
 			$("#consoleEventsDataTypePlugins").chosen({ no_results_text: L.no_data_types_found });
 		}
-		if ($("#consoleEventsExportTypePlugins").length) {
+		if ($("#consoleEventsExportTypePlugins").length > 0) {
 			$("#consoleEventsExportTypePlugins").chosen({ no_results_text: L.no_export_types_found });
 		}
 	};
@@ -73,7 +73,7 @@ define([
 				_currMainTab = newTab;
 
 				// workaround for Chosen bug
-				if (newTab == 1) {
+				if (newTab === 1) {
 					$("#gdCountries_chzn, #gdCountries_chzn .chzn-drop").css({ width: "100%" });
 				}
 

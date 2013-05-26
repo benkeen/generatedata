@@ -150,6 +150,7 @@ $L["list_module_publish_events"] = "List-Modul <b>veröffentlichen</b> Veranstal
 $L["list_module_subscribe_events"] = "List-Modul <b>anmelden</b> Veranstaltungen";
 $L["load"] = "Laden";
 $L["load_uc"] = "LOAD";
+$L["loading"] = "Verladung...";
 $L["login"] = "Login";
 $L["login_url_c"] = "Einloggen URL:";
 $L["logout"] = "Abmelden";

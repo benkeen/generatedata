@@ -272,3 +272,4 @@ $L["install_user_doc_link"] = "For more detailed information about the installat
 $L["num_rows_too_large"] = "Sorry, you're limited to generating <b>%1</b> rows at a time. Click generate to continue.";
 $L["fork_this_project_on_github"] = "Fork this project on Github";
 $L["download"] = "Download";
+$L["loading"] = "Loading...";

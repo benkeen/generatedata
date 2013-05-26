@@ -148,6 +148,7 @@ $L["list_module_publish_events"] = "Liste des modules <b>publier</b> événement
 $L["list_module_subscribe_events"] = "Liste des modules <b>subscribe</b> événements";
 $L["load"] = "Charger";
 $L["load_uc"] = "CHARGE";
+$L["loading"] = "Chargement...";
 $L["login"] = "Login";
 $L["login_url_c"] = "Connexion URL:";
 $L["logout"] = "Déconnexion";
