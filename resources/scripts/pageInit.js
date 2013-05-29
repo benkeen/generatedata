@@ -78,7 +78,10 @@ define([
 				}
 
 				// hide any messages already open on the old tab
-				$("#gdMainTab" + _currMainTab + "Content" + " .gdMessage").hide();
+				var message = $("#gdMainTab" + _currMainTab + "Content" + " .gdMessage");
+				if (!message.hasClass("gdStickyMessage")) {
+					message.hide();
+				}
 			});
 		});
 	};
