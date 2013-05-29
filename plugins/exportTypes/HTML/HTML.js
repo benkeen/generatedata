@@ -63,6 +63,7 @@
 			modal: true,
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
+			resizable: false,
 			open: function() {
 				$("#etHTMLCustomContent .CodeMirror-scroll").css({
 					width: dimensions.contentWidth,
