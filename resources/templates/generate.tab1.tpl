@@ -11,6 +11,7 @@
 	<input type="hidden" name="gdExportType" id="gdExportType" />
 	<input type="hidden" name="gdNumCols" id="gdNumCols" />
 	<input type="hidden" name="gdExportFormat" id="gdExportFormat" />
+	<input type="hidden" name="configurationID" id="configurationID" /> {* TODO should have gd prefix! *}
 
 	<div id="gdGenerateSubtab1">
 		<input type="text" id="gdDataSetName" placeholder="{$L.your_data_set_name_here}" /><button type="button" id="gdSaveBtn">{$L.save|upper}</button>

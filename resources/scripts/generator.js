@@ -74,7 +74,7 @@ define([
 
 		$("#gdDataSetName").focus();
 		$("#gdCountries").chosen().change(_updateCountryChoice);
-		$("#gdGenerateButton,#gdRegenerateButton").on("click", _generateData);
+		$("#gdRegenerateButton").on("click", _generateData);
 		$("#gdBackButton").on("click", _onClickBackButton);
 
 		$("#gdShowSettingsLink").bind("click", function() {
@@ -231,8 +231,10 @@ define([
 		// clear the form
 		_clearForm(numRows);
 
-		// now the form's been cleared, store the new configuration ID
+		// now the form's been cleared, store the new configuration ID. We stash it in the page so that it's
+		// sent along for the
 		_currConfigurationID = configuration.configuration_id;
+		$("#configurationID").val(_currConfigurationID);
 
 		// now start populating the page
 		$("#gdDataSetName").val(configuration.configuration_name);
@@ -823,7 +825,8 @@ define([
 	 * Called when the user submits the main Generate tab. It performs all necessary validation
 	 * and starts the data generation process.
 	 */
-	var _generateData = function() {
+	var _generateData = function(e) {
+
         // TODO pretty poor. Validation should be performed on this var prior to setting it in the private var
         _numRowsToGenerate = _getNumRowsToGenerate()
         utils.clearValidationErrors($("#gdMainTab1Content"));
@@ -927,9 +930,10 @@ define([
 			$("#gdMessages .gdMessageClose").trigger("click");
 		}
 
+		// only the inPage choice prevents the default form submit event
 		if (exportTarget == "inPage") {
 			_generateInPage();
-			return false;
+			e.preventDefault();
 		} else if (exportTarget == "newTab") {
 			_generateNewWindow();
 		} else if (exportTarget == "promptDownload") {
@@ -1033,6 +1037,7 @@ define([
 	};
 
 	var _incrementConfigurationRowGenerationCount = function(configurationID, numRows) {
+
 		// first, update the actual data set
 		var newNum = "";
 		for (var i=0; i<_dataSets.length; i++) {
@@ -1061,6 +1066,7 @@ define([
 			"target": "blank",
 			"action": "generate.php"
 		});
+		_updateConfigurationRowGenerationCount();
 	};
 
 	var _generatePromptDownload = function() {
@@ -1068,6 +1074,14 @@ define([
 			"target": "blank",
 			"action": "generate.php"
 		});
+		_updateConfigurationRowGenerationCount();
+	};
+
+	var _updateConfigurationRowGenerationCount = function() {
+		var numRows = parseInt(_getNumRowsToGenerate(), 10);
+		if (_currConfigurationID !== null) {
+			_incrementConfigurationRowGenerationCount(_currConfigurationID, numRows);
+		}
 	};
 
 	var _resetPluginsDialog = function() {
@@ -1558,7 +1572,6 @@ define([
 		}
 	};
 
-
 	var _updateAccountInfoTab = function() {
 		if (_accountInfo.isAnonymous) {
 			$("#gdAccount_AccountType").html(L.anonymous_admin_account);
@@ -1575,11 +1588,14 @@ define([
 		$("#gdUserAccount_firstName").val(_accountInfo.firstName);
 		$("#gdUserAccount_lastName").val(_accountInfo.lastName);
 		$("#gdUserAccount_email").val(_accountInfo.email);
-
 		$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 		$("#gdAccount_DateAccountCreated").html(moment.unix(_accountInfo.dateCreated).format("MMM Do, YYYY"));
-		var numRowsGenerated = parseInt(_accountInfo.numRowsGenerated, 10);
-		$("#gdAccount_TotalRowsGenerated").html(utils.formatNumWithCommas(numRowsGenerated));
+
+		var totalRowsGenerated = 0;
+		for (var i=0; i<_dataSets.length; i++) {
+			totalRowsGenerated += parseInt(_dataSets[i].num_rows_generated, 10);
+		}
+		$("#gdAccount_TotalRowsGenerated").html(utils.formatNumWithCommas(totalRowsGenerated));
 	};
 
 	var _displayDataSets = function() {
