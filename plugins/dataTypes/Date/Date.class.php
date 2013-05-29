@@ -31,7 +31,8 @@ class DataType_Date extends DataTypePlugin {
 		return array(
 			"display" => $date,
 			"SQLField" => "varchar(100) default NULL",
-			"SQLField_Oracle" => "varchar2(100) default NULL"
+			"SQLField_Oracle" => "varchar2(100) default NULL",
+			"SQLField_MSSQL" => "datetime NULL"
 		);
 	}
 

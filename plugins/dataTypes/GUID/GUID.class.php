@@ -33,7 +33,8 @@ class DataType_GUID extends DataTypePlugin {
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "varchar(36) NOT NULL",
-			"SQLField_Oracle" => "varchar2(36) NOT NULL"
+			"SQLField_Oracle" => "varchar2(36) NOT NULL",
+			"SQLField_MSSQL" => "UNIQUEIDENTIFIER NULL"
 		);
 	}
 }

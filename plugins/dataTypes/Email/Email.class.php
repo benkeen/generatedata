@@ -49,6 +49,7 @@ class DataType_Email extends DataTypePlugin {
 		return array(
 			"SQLField" => "varchar(255) default NULL",
 			"SQLField_Oracle" => "varchar2(255) default NULL",
+			"SQLField_MSSQL" => "VARCHAR(255) NULL"
 		);
 	}
 }
