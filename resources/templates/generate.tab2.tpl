@@ -6,7 +6,7 @@
 
 <div id="gdAccountList" class="hidden">
 	<div id="gdAccountListEmpty">
-		<div class="gdMessage gdNotify" style="display:block">
+		<div class="gdMessage gdNotify gdStickyMessage" style="display:block">
 			<p>{$L.no_user_accounts_defined}</p>
 		</div>
 	</div>
