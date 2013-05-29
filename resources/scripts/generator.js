@@ -1191,8 +1191,18 @@ define([
 		var link = $(el).find("a");
 
 		$("#gdDataSetHelpNav a").removeClass("gdSelected");
-		$(link).addClass("gdSelected");
-		$("#gdDataSetHelpNav").scrollTop($(link).offset().top);
+		$(link).addClass("gdSelected").focus();
+
+		var linkPosition = $(link).position().top;
+		var dialogHeight = $("#gdMainDialogTab3Content").height();
+
+		// if the selected Data Type > the total dialog height, scroll to that point; otherwise
+		// scroll the top
+		var scrollPosition = 0;
+		if (linkPosition + 50 > dialogHeight) { // 50 is to handle the extra space by the tabs
+			scrollPosition = linkPosition;
+		}
+		$("#gdDataSetHelpNav").scrollTop(scrollPosition);
 
 		// set the header to the name of the Data Type
 		$("#gdFocusedDataTypeHeader").html($(link).html());
@@ -1251,7 +1261,7 @@ define([
 		// if required, ensure the appropriate Data Type item is selected. This is done after
 		// the dialog is opened because it needs to set the appropriate offset height of the 
 		// left sidebar to focus on the appropriate Data Type's help link. This can only be computed
-		// after it's been opened.
+		// after it's been opened
 		if (opts.dataType !== null) {
 			var helpNavEl = ($("#gdDataSetHelpNav li[data-module='" + opts.dataType + "']"))[0];
 			_showDataTypeHelp(helpNavEl);
@@ -1670,12 +1680,12 @@ define([
 				if (_currConfigurationID !== null) {
 					var url = window.location.href.replace(/(#.*)/, "");
 					url = url.replace(/(\?.*)/, "");
-					$("#gdLinkURL").data("url", url);
+					$("#gdLinkURL").data("url", url + "?load=" + _currConfigurationID);
 
 					var config = _getConfiguration(_currConfigurationID);
 					if (config.status == "public") {
 						$("#gdDataSetPublic").attr("checked", "checked");
-						$("#gdLinkURL").val(url + "?load=" + _currConfigurationID).removeClass("gdDisabled").removeAttr("disabled").select();
+						$("#gdLinkURL").val(url).removeClass("gdDisabled").removeAttr("disabled").select();
 					} else {
 						$("#gdDataSetPublic").removeAttr("checked");
 						$("#gdLinkURL").val("-").attr("disabled", "disabled").addClass("gdDisabled");
@@ -1702,7 +1712,7 @@ define([
 			$("#gdLinkURL").removeClass("gdDisabled").removeAttr("disabled").val(url).select();
 		} else {
 			status = "private";
-			$("#gdLinkURL").addClass("gdDisabled").attr("disabled", "disabled").val("-");
+			$("#gdLinkURL").addClass("gdDisabled").attr("disabled", "disabled").val("");
 		}
 
 		_saveVisibilityStatus(_currConfigurationID, status);
