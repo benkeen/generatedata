@@ -31,7 +31,8 @@ class DataType_Date extends DataTypePlugin {
 		return array(
 			"display" => $date,
 			"SQLField" => "varchar(100) default NULL",
-			"SQLField_Oracle" => "varchar2(100) default NULL"
+			"SQLField_Oracle" => "varchar2(100) default NULL",
+			"SQLField_MSSQL" => "datetime NULL"
 		);
 	}
 
@@ -47,6 +48,14 @@ class DataType_Date extends DataTypePlugin {
 		);
 
 		return $options;
+	}
+	
+	public function getDataTypeMetadata() {
+		return array(
+			"sqlField" => "varchar(255)",
+			"sqlField_Oracle" => "varchar2(255)",
+			"SQLField_MSSQL" => "DATETIME NULL"
+		);
 	}
 
 	public function getExampleColumnHTML() {

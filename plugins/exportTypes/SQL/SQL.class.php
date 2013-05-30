@@ -9,6 +9,7 @@
  * 		"sqlField_Oracle"   Used for Oracle only
  * 		"sqlField_MySQL"    Used for MySQL only
  * 		"sqlField_SQLite"   Used for SQLite only
+ *		"sqlField_MSSQL"	Used for MSSQL only
  *
  * @author Ben Keen <ben.keen@gmail.com>
  * @package ExportTypes
@@ -64,6 +65,9 @@ class SQL extends ExportTypePlugin {
 			case "SQLite":
 				$content .= $this->generateCreateTableSQL_SQLite();
 				break;
+			case "MSSQL":
+				$content .= $this->generateCreateTableSQL_MSSQL();
+				break;
 		}
 
 		if ($this->exportTarget == "newTab") {
@@ -107,6 +111,7 @@ class SQL extends ExportTypePlugin {
 					<option value="MySQL">MySQL</option>
 					<option value="SQLite">SQLite</option>
 					<option value="Oracle">Oracle</option>
+					<option value="MSSQL">SQL Server</option>
 				</select>
 			</td>
 		</tr>
@@ -394,6 +399,96 @@ END;
 		return $content;
 	}
 
+	private function generateCreateTableSQL_MSSQL() {
+		$content = "";
+		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
+		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;&nbsp;&nbsp;" : "    ";
+
+		if ($this->isFirstBatch) {
+			if ($this->includeDropTable) {
+				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n" ;
+				$content .= "IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('{$this->tableName}'))$endLineChar";
+				$content .= "BEGIN;$endLineChar";
+				$content .= "{$prefix}DROP TABLE {$this->tableName};$endLineChar";
+				$content .= "END;$endLineChar";
+				$content .= "GO{$dropTableEndLine}";
+			}
+
+			if ($this->createTable) {
+				$content .= "CREATE TABLE {$this->tableName} ($endLineChar";
+				if ($this->primaryKey == "default") {
+					$content .= "{$prefix}{$this->tableName}ID INTEGER NOT NULL IDENTITY(1, 1),$endLineChar";
+				}
+
+				$cols = array();
+				foreach ($this->template as $dataType) {
+					// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
+					$columnTypeInfo = "MEDIUMTEXT";
+					if (isset($dataType["columnMetadata"]["SQLField_MSSQL"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField_MSSQL"];
+					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
+					}
+					$cols[] = "{$prefix}{$dataType["title"]} $columnTypeInfo";
+				}
+
+				$content .= implode(",$endLineChar", $cols);
+
+				if ($this->primaryKey == "default") {
+					$content .= ",$endLineChar{$prefix}PRIMARY KEY ({$this->tableName}ID)$endLineChar);{$endLineChar}GO{$endLineChar}{$endLineChar}";
+				} else if ($this->primaryKey == "none") {
+					$content .= "$endLineChar);{$endLineChar}GO{$endLineChar}{$endLineChar}";
+				}
+			}
+		}
+
+		$colNamesStr = "";
+		$colNamesStr = implode(",", $this->data["colData"]);
+
+		$numRows = count($this->data["rowData"]);
+		$numCols = count($this->data["colData"]);
+		for ($i=0; $i<$numRows; $i++) {
+		
+			$currentRow = $i + 1;
+		
+			if ($this->sqlStatementType == "insert") {
+				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "'");
+				$rowDataStr = implode(",", $quoted);
+				$content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES($rowDataStr);$endLineChar";
+				
+				if (($currentRow % 1000) == 0) {
+					$content .= $endLineChar;
+					$content .= "PRINT 'Row {$currentRow} inserted';$endLineChar";
+					$content .= "GO";
+					$content .= $endLineChar;
+				}
+				
+			} else {
+
+				$pairs = array();
+				for ($j=0; $j<$numCols; $j++) {
+					$colName  = $this->data["colData"][$j];
+					$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					$pairs[]  = "{$colName} = $colValue";
+				}
+
+				$pairsStr = implode(", ", $pairs);
+				$rowNum = $this->currentBatchFirstRow + $i;
+				$content .= "UPDATE {$this->tableName} SET $pairsStr WHERE {$this->tableName}ID = $rowNum;$endLineChar";
+				
+				if (($currentRow % 1000) == 0) {
+					$content .= $endLineChar;
+					$content .= "PRINT 'Row {$currentRow} updated';$endLineChar";
+					$content .= "GO";
+					$content .= $endLineChar;
+				}
+			}
+		}
+
+		return $content;
+	}
+
+	
 	function wrapGeneratedContent($generatedContent) {
 		$html =<<< END
 <!DOCTYPE html>

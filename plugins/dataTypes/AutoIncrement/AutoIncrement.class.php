@@ -78,7 +78,8 @@ END;
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "mediumint",
-			"SQLField_Oracle" => "number default NULL"
+			"SQLField_Oracle" => "number default NULL",
+			"SQLField_MSSQL" => "INTEGER NULL"
 		);
 	}
 
