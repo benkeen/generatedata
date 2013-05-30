@@ -160,7 +160,8 @@ EOF;
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "varchar(50) default NULL",
-			"SQLField_Oracle" => "varchar2(50) default NULL"
+			"SQLField_Oracle" => "varchar2(50) default NULL",
+			"SQLField_MSSQL" => "VARCHAR(50) NULL"
 		);
 	}
 

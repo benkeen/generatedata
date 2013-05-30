@@ -50,7 +50,8 @@ class DataType_Company extends DataTypePlugin {
 	public function getDataTypeMetadata() {
 		return array(
 			"sqlField" => "varchar(255)",
-			"sqlField_Oracle" => "varchar2(255)"
+			"sqlField_Oracle" => "varchar2(255)",
+			"SQLField_MSSQL" => "VARCHAR(255) NULL"
 		);
 	}
 

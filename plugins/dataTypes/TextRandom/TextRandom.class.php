@@ -31,7 +31,8 @@ class DataType_TextRandom extends DataTypePlugin {
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "TEXT default NULL",
-			"SQLField_Oracle" => "BLOB default NULL"
+			"SQLField_Oracle" => "BLOB default NULL",
+			"SQLField_MSSQL" => "VARCHAR(MAX) NULL"
 		);
 	}
 
