@@ -18,6 +18,15 @@ This script is freely available under the GPL license.
 
 [Kent Chenery](https://github.com/kchenery)
 
+
+## Changelog
+
+3.0.1 - *not released yet*
+- MSSQL support added (thanks, @kchenery!)
+- Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1
+
+3.0.0 - current release
+
 *****
 
 Ben Keen
