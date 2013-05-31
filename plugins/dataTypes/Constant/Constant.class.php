@@ -12,7 +12,6 @@ class DataType_Constant extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("Constant.js");
 	protected $processOrder = 100;
-	private $helpDialogWidth = 460;
 
 
 	public function generate($generator, $generationContextData) {

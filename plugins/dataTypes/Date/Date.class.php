@@ -11,7 +11,6 @@ class DataType_Date extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("Date.js");
-	private $helpDialogWidth = 910;
 
 
 	public function generate($generator, $generationContextData) {
@@ -29,10 +28,7 @@ class DataType_Date extends DataTypePlugin {
 		// display the new date in the value specified
 		$date = date($options["formatCode"], $randDate);
 		return array(
-			"display" => $date,
-			"SQLField" => "varchar(100) default NULL",
-			"SQLField_Oracle" => "varchar2(100) default NULL",
-			"SQLField_MSSQL" => "datetime NULL"
+			"display" => $date
 		);
 	}
 

@@ -72,9 +72,7 @@ class DataType_City extends DataTypePlugin {
 		}
 
 		return array(
-			"display" => $randomCity,
-			"SQLField" => "varchar(100) default NULL",
-			"SQLField_Oracle" => "varchar2(100) default NULL"
+			"display" => $randomCity
 		);
 	}
 
@@ -129,8 +127,8 @@ class DataType_City extends DataTypePlugin {
 
 	public function getDataTypeMetadata() {
 		return array(
-			"sqlField" => "varchar(255)",
-			"sqlField_Oracle" => "varchar2(255)",
+			"SQLField" => "varchar(255)",
+			"SQLField_Oracle" => "varchar2(255)",
 			"SQLField_MSSQL" => "VARCHAR(255) NULL"
 		);
 	}

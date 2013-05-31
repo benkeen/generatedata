@@ -12,7 +12,6 @@ class DataType_Region extends DataTypePlugin {
 	protected $processOrder = 2;
 	protected $jsModules = array("Region.js");
 	protected $cssFiles = array("Region.css");
-	private $helpDialogWidth = 410;
 	private $countryRegionHash;
 
 

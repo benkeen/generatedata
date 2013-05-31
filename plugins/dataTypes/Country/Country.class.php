@@ -9,7 +9,7 @@
  *   is used to let the module know to either limit results to the Country plugin data, or to pull from a much
  *   larger list (hardcoded in the class below). The benefits to using the country-specific data mapping is that
  *   it allows the script to intelligently generate rows of data where the City, Region and Country fields are
- *   in synch (i.e. no cities that don't belong to a particular region, etc).
+ *   in sync (i.e. no cities that don't belong to a particular region, etc).
  *
  * @author Ben Keen <ben.keen@gmail.com>
  * @package DataTypes

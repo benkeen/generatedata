@@ -11,7 +11,6 @@ class DataType_Phone extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $jsModules = array("Phone.js");
-	private $helpDialogWidth = 500;
 
 
 	public function generate($generator, $generationContextData) {

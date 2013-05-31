@@ -10,7 +10,6 @@ class DataType_NumberRange extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 30;
 	protected $jsModules = array("NumberRange.js");
-	private $helpDialogWidth = 370;
 
 
 	public function generate($generator, $generationContextData) {

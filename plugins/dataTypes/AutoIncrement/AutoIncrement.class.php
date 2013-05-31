@@ -13,7 +13,6 @@ class DataType_AutoIncrement extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $jsModules = array("AutoIncrement.js");
-	private $helpDialogWidth = 530;
 
 
 	public function generate($generator, $generationContextData) {
