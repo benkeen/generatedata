@@ -13,6 +13,7 @@ about stability above all else, grab one of the tags. The trunk contains the lat
 
 This script is freely available under the GPL license.
 
+- - -
 
 ### Contributors
 
@@ -25,9 +26,10 @@ This script is freely available under the GPL license.
 - MSSQL support added (thanks, @kchenery!)
 - Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1
 
-3.0.0 - current release
+3.0.0 - May 21st, 2013
+- current release
 
-*****
+- - -
 
 Ben Keen
 [@vancouverben](https://twitter.com/#!/vancouverben)
