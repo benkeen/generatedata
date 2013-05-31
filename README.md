@@ -8,17 +8,19 @@ http://benkeen.github.io/generatedata/
 Generally the trunk is stable, but I haven't added continuous integration just yet (coming soon). If you're concerned
 about stability above all else, grab one of the tags. The trunk contains the latest and greatest bug fixes and changes.
 
+- - -
 
-### License
+## License
 
 This script is freely available under the GPL license.
 
 - - -
 
-### Contributors
+## Contributors
 
 [Kent Chenery](https://github.com/kchenery)
 
+- - -
 
 ## Changelog
 
