@@ -39,7 +39,9 @@ class DataType_Region extends DataTypePlugin {
 
 			$randRegionInfo = $this->getRandRegion($this->countryRegionHash);
 			$index = rand(0, 1);
+
 			$regionInfo["display"]      = $randRegionInfo[$keys[$index]];
+			$regionInfo["region_slug"]  = $randRegionInfo["region_slug"];
 			$regionInfo["country_slug"] = $randRegionInfo["countrySlug"];
 
 		// here, one or more Country plugins were included
@@ -65,6 +67,7 @@ class DataType_Region extends DataTypePlugin {
 				// pick a format (short / long) based on whatever the specified through the UI
 				$formatIndex = $this->getRandIndex($generationOptions["countries"], $randCountrySlug);
 				$regionInfo["display"]      = $randRegionInfo[$keys[$formatIndex]];
+				$regionInfo["region_slug"]  = $randRegionInfo["region_slug"];
 				$regionInfo["country_slug"] = $randCountrySlug;
 
 			// here, there *was* a country Data Type chosen and the Country row is pulling from the subset of

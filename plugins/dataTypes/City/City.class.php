@@ -27,8 +27,6 @@ class DataType_City extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		// see if this row has a region [N.B. This is something that could be calculated ONCE on the first row]
 		$rowRegionInfo = array();
-		$rowCountryInfo = array();
-
 		while (list($key, $info) = each($generationContextData["existingRowData"])) {
 			if ($info["dataTypeFolder"] == "Region") {
 				$rowRegionInfo = $info;
@@ -54,7 +52,7 @@ class DataType_City extends DataTypePlugin {
 			$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 			$regionSlug = $rowRegionInfo["randomData"]["region_slug"];
 
-			// now pick the random city in the country-region specified.
+			// now pick the random city in the country-region specified
 			// TODO bug here (when user unselected particular row regions)
 			$regionData = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug];
 			$numCitiesInRegion = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug]["numCities"];

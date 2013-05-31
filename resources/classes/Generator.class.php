@@ -102,7 +102,7 @@ class Generator {
 		}
 
 		// if this is the last batch, and we're generating data for a saved data set, update the "total rows" count
-		if ($this->isLastBatch && $this->configurationID != null) {
+		if ($this->isLastBatch && $this->configurationID != null && Core::checkIsLoggedIn()) {
 			Core::$user->updateRowsGeneratedCount($this->configurationID, $this->numResults);
 		}
 
