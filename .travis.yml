@@ -6,3 +6,4 @@ php:
 services: mysql
 before_script:
   - mysql -e 'create database generatedata_test;'
+script: phpunit --configuration tests/phpunit_config.xml --coverage-text
