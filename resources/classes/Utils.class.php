@@ -296,8 +296,7 @@ class Utils {
 	 * Converts all x's and X's in a string with a random digit. X's: 1-9, x's: 0-9.
 	 */
 	public static function generateRandomNumStr($str) {
-		// loop through each character and convert all unescaped X's to 1-9 and
-		// unescaped x's to 0-9.
+		// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9.
 		$new_str = "";
 		for ($i=0; $i<strlen($str); $i++) {
 			if ($str[$i] == '\\' && ($str[$i+1] == "X" || $str[$i+1] == "x")) {
