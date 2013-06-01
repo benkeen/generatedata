@@ -6,4 +6,3 @@ php:
 services: mysql
 before_script:
   - mysql -e 'create database generatedata_test;'
-script: ./tests/
