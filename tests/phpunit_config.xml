@@ -8,17 +8,8 @@
     </php>
 
     <testsuites>
-        <testsuite name="Test_Suite1">
-            <directory>./</directory>
+        <testsuite name="Helpers">
+            <file>UtilsTest.class.php</file>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>../</directory>
-            <exclude>
-                <directory>./</directory>
-            </exclude>
-        </whitelist>
-    </filter>
 </phpunit>
