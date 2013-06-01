@@ -2,12 +2,12 @@
 
 [![Build Status](https://travis-ci.org/benkeen/generatedata.png?branch=master)](https://travis-ci.org/benkeen/generatedata)
 
-This is the repo for the standalone, downloadable version of beta.generatedata.com.
+This is the repo for the standalone, downloadable version of [generatedata.com](http://www.generatedata.com).
 
 For the userdoc and developer doc, including installation instructions, check out:
 http://benkeen.github.io/generatedata/
 
-Generally the trunk is stable, but if you're concerned about stability above all else, grab one of the tags. The trunk contains the latest and greatest bug fixes and changes.
+Generally the trunk is pretty stable, but if you're concerned about stability above all else, grab one of the tags. The trunk contains the latest and greatest changes and bug fixes.
 
 ## Test Coverage
 
@@ -24,7 +24,7 @@ This script is freely available under the GPL license.
 
 ## Changelog
 
-3.0.1 - *not released yet*
+3.0.1 - June 1st, 2013
 - MSSQL support added (thanks, @kchenery!)
 - Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1
 

@@ -90,6 +90,12 @@ define([], function() {
 				REGISTER: "event-module-register",
 				UNREGISTER: "event-module-unregister"
 			}
+		},
+
+		ERROR_CODES: {
+			ACCOUNT_ALREADY_EXISTS: <?php echo ErrorCodes::ACCOUNT_ALREADY_EXISTS; ?>,
+			NOT_LOGGED_IN: <?php echo ErrorCodes::NOT_LOGGED_IN ?>,
+			NON_ADMIN: <?php echo ErrorCodes::NON_ADMIN ?>
 		}
 	}
 

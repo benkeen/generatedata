@@ -273,3 +273,6 @@ $L["num_rows_too_large"] = "Sorry, you're limited to generating <b>%1</b> rows a
 $L["fork_this_project_on_github"] = "Fork this project on Github";
 $L["download"] = "Download";
 $L["loading"] = "Loading...";
+$L["validation_account_already_exists"] = "Sorry, an account with that email address already exists.";
+$L["validation_not_logged_in"] = "You don't appear to be logged in. Please try logging in again.";
+$L["validation_invalid_permissions"] = "You don't have permissions to do this.";

@@ -232,6 +232,9 @@ class AjaxRequest {
 				} else if (Core::$user->getAccountType() != "admin") {
 					$this->response["success"] = false;
 					$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
+				} else if (Account::checkAccountExists($this->post["email"])) {
+					$this->response["success"] = false;
+					$this->response["errorCode"] = ErrorCodes::ACCOUNT_ALREADY_EXISTS;
 				} else {
 					$accountInfo = $this->post;
 					$accountInfo["accountType"] = "user";

@@ -7,13 +7,10 @@
  * @package Core
  */
 class ErrorCodes {
-	const NOT_LOGGED_IN        = 1;
-	const NON_ADMIN            = 2;
-	const FAILED_SQL_STATEMENT = 3;
-	const INVALID_PARAMS       = 4;
-	const INVALID_REQUEST      = 5;
-
-	// const SETTINGSFILEEXISTS = 2;
-	// const MISSINGFIELDS      = 3;
-	// const NOTNUMERICFIELD    = 4;
+	const NOT_LOGGED_IN          = 1;
+	const NON_ADMIN              = 2;
+	const FAILED_SQL_STATEMENT   = 3;
+	const INVALID_PARAMS         = 4;
+	const INVALID_REQUEST        = 5;
+	const ACCOUNT_ALREADY_EXISTS = 6;
 }

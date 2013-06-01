@@ -777,6 +777,9 @@ div.gdClear {
 .gdMarginTop {
   margin-top: 10px; }
 
+.gdMarginBottom {
+  margin-bottom: 10px; }
+
 .hidden {
   display: none; }
 

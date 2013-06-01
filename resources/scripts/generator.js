@@ -968,6 +968,8 @@ define([
 		$("#gdProgressMeter").attr("max", _numRowsToGenerate);
 		$("#gdProgressMeter").attr("value", 0);
 
+		_codeMirror.setValue("");
+
 		_generateInPageBatchNum = 1;
 		_generateInPageData = data;
 		_generateInPageContent = "";

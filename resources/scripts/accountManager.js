@@ -102,17 +102,30 @@ define([
 			}).then(
 				function(response) {
 					if (response.success) {
-
 						// get a fresh list of accounts from the server, and add a callback so that
-						// we close the modal when it's complete`
+						// we close the modal when it's complete
 						_getAccountsList({
 							onComplete: function() {
+								utils.clearValidationErrors($("#gdManageAccountDialogMessage"));
 								$("#" + _manageAccountModalID).dialog("close");
 								utils.pauseModalSpinner(_manageAccountModalID);
 								_updateAccountsTable();
 							}
 						});
 					} else {
+						var errorCode = response.errorCode;
+						switch (errorCode) {
+							case C.ERROR_CODES.ACCOUNT_ALREADY_EXISTS:
+								utils.addValidationErrors({ els: [$("#gdManageAccount_email")], error: L.validation_account_already_exists });
+								break;
+							case C.ERROR_CODES.NOT_LOGGED_IN:
+								utils.addValidationErrors({ els: [], error: L.validation_not_logged_in });
+								break;
+							case C.ERROR_CODES.NON_ADMIN:
+								utils.addValidationErrors({ els: [], error: L.validation_invalid_permissions });
+								break;
+						}
+						utils.displayValidationErrors("#gdManageAccountDialogMessage");
 						utils.pauseModalSpinner(_manageAccountModalID);
 					}
 				},

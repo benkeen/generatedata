@@ -127,6 +127,11 @@
 
 
 <div id="gdManageAccountDialog" class="hidden">
+	<div style="display:none" class="gdMessage gdNotify gdMarginTop gdMarginBottom" id="gdManageAccountDialogMessage">
+		<a class="gdMessageClose" href="#">X</a>
+		<div></div>
+	</div>
+
 	<table>
 	<tr>
 		<td width="160">{$L.first_name}</td>
