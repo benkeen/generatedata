@@ -85,11 +85,17 @@ class Utils {
 
 	/**
 	 * Returns a random subset of an array. The result may be empty, or the same set.
-	 * @param $set the set of items
-	 * @param $num the number of items in the set to return
+	 *
+	 * @param array $set set of items
+	 * @param integer $num the number of items in the set to return
 	 * @return array
+	 * @throws Exception
 	 */
 	public static function returnRandomSubset($set, $num) {
+		if (!is_array($set) || !is_numeric($num)) {
+			throw new Exception(ErrorCodes::INVALID_PARAMS);
+			return;
+		}
 		// check $num is no greater than the total set
 		if ($num > count($set)) {
 			$num = count($set);
@@ -344,7 +350,7 @@ class Utils {
 		if (!is_array($var)) {
 			return false;
 		}
-		return array_keys($var) !== range(0, sizeof($var)-1);
+		return array_keys($var) !== range(0, sizeof($var) - 1);
 	}
 
 	/**
