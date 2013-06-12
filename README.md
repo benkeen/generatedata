@@ -21,8 +21,8 @@ This script is freely available under the GPL license.
 
 In addition to the folks who submit bug reports, a big thanks to the following for their help extending the script:
 
-[Kent Chenery](https://github.com/kchenery) - MS SQL plugin
-[Roberto Aragón](https://github.com/robarago), Charo Baena - Spanish translation & Country plugin
+- [Roberto Aragón](https://github.com/robarago), Charo Baena - Spanish translation & Country plugin (3.0.2)
+- [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
 
