@@ -94,7 +94,7 @@ END;
 				account_id mediumint(9) NOT NULL,
 				configuration_name varchar(100) NOT NULL,
 				content mediumtext NOT NULL,
-				num_rows_generated MEDIUMINT NOT NULL,
+				num_rows_generated MEDIUMINT DEFAULT 0,
 				PRIMARY KEY (configuration_id)
 			)
 		";

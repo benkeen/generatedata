@@ -59,14 +59,18 @@ class DataType_City extends DataTypePlugin {
 			$citiesInRegion    = $this->citiesByCountryRegion[$countrySlug]["regions"][$regionSlug]["cities"];
 			$randomCity = $citiesInRegion[rand(0, $numCitiesInRegion-1)]["city"];
 		} else if (!empty($rowCountryInfo)) {
-			// pick a random region in this country
-			$countrySlug = $rowCountryInfo["randomData"]["slug"];
-			$countryRegions    = $this->citiesByCountryRegion[$countrySlug]["regions"];
-			$numCountryRegions = $this->citiesByCountryRegion[$countrySlug]["numRegions"];
-			$key = array_rand($countryRegions);
-			$cities = $countryRegions[$key]["cities"];
-			$numCities = $countryRegions[$key]["numCities"];
-			$randomCity = $cities[rand(0, $numCities-1)]["city"];
+			// pick a random region in this country. If the existing row data had a slug, it means there's
+			// a country-plugin for that country, so we can intelligently load a City
+			if (isset($rowCountryInfo["randomData"]["slug"])) {
+				$countrySlug = $rowCountryInfo["randomData"]["slug"];
+				$countryRegions    = $this->citiesByCountryRegion[$countrySlug]["regions"];
+				$key = array_rand($countryRegions);
+				$cities = $countryRegions[$key]["cities"];
+				$numCities = $countryRegions[$key]["numCities"];
+				$randomCity = $cities[rand(0, $numCities-1)]["city"];
+			} else {
+				$randomCity = $this->cities[rand(0, $this->numCities-1)];
+			}
 		} else {
 			$randomCity = $this->cities[rand(0, $this->numCities-1)];
 		}
