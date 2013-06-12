@@ -1,0 +1,33 @@
+<?php
+
+$L = array();
+$L["about_para1"] = "¿Necesitas personalizar el formato de los datos de ejemplo o prueba? Pues bien, esa es la idea de este programa. Es una herramienta libre y de código abierto escrita en JavaScript, PHP y MySQL que te permite generar rápidamente grandes volúmenes de datos personalizados en una variedad de formatos para su uso en pruebas de software, rellenar bases de datos, etc.";
+$L["about_para2"] = "Este sitio ofrece una demostración en línea donde te invitamos a juguetear para tener una idea de lo que hace este programa, las características que ofrece y cómo funciona. Luego, una vez que haya despertado tu interés, hay una versión gratuita y totalmente funcional, con licencia GNU, disponible para su descarga. Alternativamente, si deseas evitar la molestia de su puesta en marcha en tu propio servidor, puedes donar 20$ o más para obtener una cuenta en este sitio, lo que te permite generar hasta 5.000 registros a la vez (en lugar del máximo de 100), y guardar tus conjuntos de datos. Pinche en la pestaña Donar para más información.";
+$L["about_para3"] = "Para los usuarios que tengan una cuenta en el sitio antiguo, aun pueden <a href=\"http://old.generatedata.com\">encontrarla aquí</a>: no te preocupe, puedes iniciar sesión y acceder a tus conjuntos de datos. Lamentablemente, por razones técnicas, no podemos portar tus conjuntos de datos al nuevo programa (son <i>realmente</i> diferentes). Sin embargo, encontraras que tienes una cuenta de usuario válida en el nuevo sitio, así que podrás comenzar a utilizar la nueva versión.";
+$L["about_para4"] = "El programa viene pre-configurado con la funcionalidad general que necesitas, pero no está completa. Puede que necesites generar ecuaciones matemática aleatorias, poner tweets aleatorios o visualizar imágenes aleatorias desde Flickr con la palabra \"Petirojo\" en el título. ¿Quién sabe?, cada persona es un caso diferente.";
+$L["about_para5"] = "Con esto en mente, la nueva versión del programa (3.0.0+) ha sido diseñada para ser totalmente flexible: los desarrolladores pueden escribir sus propios tipos de datos para generar nuevos tipos de datos aleatorios e incluso personalizar los tipos de exportación, p.e. el formato de salida de los datos. Para las personas interesadas en la generación de datos de localización geográfica, se pueden añadir nuevos complementos para proporcionar nombres de regiones (estados, provincias, territorios, etc), nombres de ciudades y formatos de códigos postales para su país. Para obtener más información visita la <a href=\"http://benkeen.github.io/generatedata/developer.html\" target=\"_blank\">Documentación del desarrollador</a>";
+$L["about_para6"] = "Pincha en el botón de abajo para descargar la última versión del programa desde GitHup. Para obtener más información visita la <a href=\"http://benkeen.github.io/generatedata/\" target=\"_blank\">Documentación de usuario</a>.";
+$L["amount"] = "Cantidad";
+$L["date_account_expires"] = "Fecha de caducidad de cuenta";
+$L["donate"] = "Donar";
+$L["donate_now"] = "¡Donar ahora!";
+$L["donate_para1"] = "Si te hemos ayudado en tu trabajo, ¡una donación es siempre de agradecer!: si hacer una buena obra no es suficiente para persuadirte, aquí tienes más incentivos:";
+$L["donate_para2"] = "¡Apoyar el proyecto conduce a nuevas características!, !Honestidad!";
+$L["donate_para3"] = "La donación de 20$ o más te dará una cuenta de usuario de este sitio. Con la cuenta de usuario puedes:";
+$L["donate_para4"] = "Generar hasta 5.000 filas a la vez en lugar del máximo de 100.";
+$L["donate_para5"] = "Guardar tus configuraciones de forma que no tienes que volver a crear los conjuntos de datos cada vez que regreses al sitio.";
+$L["donate_para6"] = "Cada donación de 20$ añade un año más a tu cuenta. Puedes volver después y añadir más tiempo a tu cuenta, que es añadido al final de tu tiempo actual. Solo debes asegurarte de donar con la misma dirección de correo electrónico. Si tienes algún problema en la donación o con tu cuenta de usuario, simplemente <a href=\"mailto:ben.keen@gmail.com\">escribeme</a>.";
+$L["error_creating_account_msg"] = "Lo siento, hubo un problema al crear tu cuenta de usuario. ¡Esto no debería suceder!. Por favor, vuelve a intentarlo más tarde.";
+$L["extend_id"] = "Extiéndela";
+$L["incomplete_donation_msg"] = "¡Vaya!, parece que has donado pero no has terminado de configurar tu cuenta. <a href=\"{\$link}\">Pincha aquí</a> para configurar tu cuenta.";
+$L["loading_ellipsis"] = "Cargando...";
+$L["news"] = "Noticias";
+$L["news_feed_error"] = "<p>Maldición, ha habido un problema con el servicio de noticias. ¡Disculpa!</p> <p>Para ver las últimas noticias del proyecto <a href=\"http://www.benjaminkeen.com/category/projects/data-generator/\">ve a mi sitio Web</a>.</p>";
+$L["project_news"] = "Noticias del proyecto";
+$L["user_account_exists_msg"] = "¡Vaya!, parece que ya tienes una cuenta de usuario. Por favor inicia tu sesión primero y después puedes donar para añadir tiempo a tu cuenta. Pincha en el enlace de la parte superior de la página para iniciar sesión o reiniciar tu contraseña.";
+$L["where_the_old_site"] = "¿Dónde está el sitio antiguo?";
+$L["years1"] = "1 año";
+$L["years2"] = "2 años";
+$L["years3"] = "3 años";
+$L["years4"] = "4 años";
+$L["years5"] = "5 años";
