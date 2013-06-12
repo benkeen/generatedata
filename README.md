@@ -17,12 +17,18 @@ Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests
 
 This script is freely available under the GPL license.
 
-
 ## Contributors
 
-[Kent Chenery](https://github.com/kchenery)
+In addition to the folks who submit bug reports, a big thanks to the following for their help extending the script:
+
+[Kent Chenery](https://github.com/kchenery) - MS SQL plugin
+[Roberto Aragón](https://github.com/robarago), Charo Baena - Spanish translation & Country plugin
 
 ## Changelog
+
+3.0.2 - June 12, 2013
+- Spanish translation and Country plugin added (thanks, @robarago!)
+- bug fixes, other updates: https://github.com/benkeen/generatedata/issues?milestone=2
 
 3.0.1 - June 1st, 2013
 - MSSQL support added (thanks, @kchenery!)

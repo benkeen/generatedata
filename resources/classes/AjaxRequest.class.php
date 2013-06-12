@@ -193,13 +193,11 @@ class AjaxRequest {
 				break;
 
 			case "resetSaveCountries":
-				Core::init("installationDatabaseReady");
-				if (!Core::checkIsInstalled()) {
+				Core::init("resetPlugins");
+				if (Core::checkIsLoggedIn() && Core::$user->isAdmin()) {
 					$folders = $this->post["folders"];
 					Settings::setSetting("installedCountries", $folders);
-					$response = Settings::setSetting("installationComplete", "yes");
-					$this->response["success"] = $response["success"];
-					$this->response["content"] = $response["errorMessage"];
+					$this->response["success"] = true; // ...!
 				}
 				break;
 
@@ -400,7 +398,7 @@ class AjaxRequest {
 			$this->response["content"] = "";
 			$this->response["isComplete"] = true;
 		} else {
-			// attempt to install this data type
+			// attempt to install this export type
 			$currExportType = $exportTypes[$index];
 			$this->response["exportTypeName"] = $currExportType->getName();
 			$this->response["exportTypeFolder"] = $currExportType->folder;
@@ -425,7 +423,7 @@ class AjaxRequest {
 			$this->response["content"] = "";
 			$this->response["isComplete"] = true;
 		} else {
-			// attempt to install this data type
+			// attempt to install this country
 			$currCountryPlugin = $countryPlugins[$index];
 			$this->response["countryName"] = $currCountryPlugin->getName();
 			$this->response["countryFolder"] = $currCountryPlugin->folder;
