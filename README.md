@@ -12,7 +12,8 @@ For the installation instructions, user documentation and developer documentatio
 http://benkeen.github.io/generatedata/
 
 Installation is really, really simple. I deliberately wrote the script to be as self-contained as possible and not require
-additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later.
+additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See the documentation
+for more info.
 
 ## Test Coverage
 
@@ -20,7 +21,7 @@ Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests
 
 ## License
 
-This script is freely available under the GPL license.
+This script is freely available under the GPL 3 license. See license.txt in the root folder.
 
 ## Contributors
 
@@ -32,11 +33,11 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 ## Changelog
 
 3.0.2 - June 12, 2013
-- Spanish translation and Country plugin added (thanks, @robarago!)
+- Spanish translation and Country plugin added (thanks, [@robarago](https://github.com/robarago)!)
 - bug fixes, other updates: https://github.com/benkeen/generatedata/issues?milestone=2
 
 3.0.1 - June 1st, 2013
-- MSSQL support added (thanks, @kchenery!)
+- MSSQL support added (thanks, [Kent](https://github.com/kchenery)!)
 - Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1
 
 3.0.0 - May 21st, 2013
