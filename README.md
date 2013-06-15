@@ -4,10 +4,15 @@
 
 This is the repo for the standalone, downloadable version of [generatedata.com](http://www.generatedata.com).
 
-For the userdoc and developer doc, including installation instructions, check out:
+Generally the trunk is pretty stable, but if you're concerned about stability above all else, grab one of the tags. The trunk contains the latest and greatest changes and bug fixes.
+
+## How to Install / Documentation
+
+For the installation instructions, user documentation and developer documentation, check out:
 http://benkeen.github.io/generatedata/
 
-Generally the trunk is pretty stable, but if you're concerned about stability above all else, grab one of the tags. The trunk contains the latest and greatest changes and bug fixes.
+Installation is really, really simple. I deliberately wrote the script to be as self-contained as possible and not require
+additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later.
 
 ## Test Coverage
 
