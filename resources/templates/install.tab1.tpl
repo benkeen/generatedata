@@ -65,12 +65,43 @@
 		<p>
 			{$L.installation_step2_intro}
 		</p>
-		<form>
-			<button class="gdPrimaryButton">{$L.create_file_rightarrow}</button>
-		</form>
+
+		<div class="gdInstallTabMessage">
+			<div class="gdIcon"></div>
+			<h3>Uh-oh.</h3>
+			<div class="gdResponse"></div>
+		</div>
+
+		<div id="gdInstallCreateConfigFile">
+			<form>
+				<button class="gdPrimaryButton">{$L.create_file_rightarrow}</button>
+			</form>
+		</div>
+
+		<div id="gdInstallCreateConfigFileErrorScenario" class="hidden">
+			<p>
+				This usually occurs when it fails to have permissions to write to the folder. Please manually create
+				this file and place it in the base folder of the Data Generator. When you have done this, button below
+				to continue installing.
+			</p>
+
+			<textarea></textarea>
+
+			<form>
+				<button class="gdPrimaryButton">Confirm File Exists</button>
+			</form>
+		</div>
+
 	</div>
 
 	<div class="gdInstallSection{if $currentPage != 3} hidden{/if}" id="page3">
+
+		<div class="gdInstallTabMessage">
+			<div class="gdIcon"></div>
+			<h3>Uh-oh.</h3>
+			<div class="gdResponse"></div>
+		</div>
+
 		<p>
 			{$L.installation_step3_intro}
 		</p>

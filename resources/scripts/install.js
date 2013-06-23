@@ -192,7 +192,11 @@ require([
 					success: function(json) {
 						utils.stopProcessing();
 						if (json.success === 0) {
-							_displayError(json.message);
+							_displayError("The script was unable to create your <b>settings.php</b> file.");
+
+//							message += "<textarea>" + json.content + "</textarea>";
+
+
 						} else {
 							gotoNextStep(currentStep);
 						}

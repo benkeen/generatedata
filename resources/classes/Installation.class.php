@@ -28,7 +28,7 @@ class Installation {
 END;
 
 		$file = dirname(__FILE__) . "/../../settings.php";
-		$handle = fopen($file, "w");
+		$handle = @fopen($file, "w");
 		if ($handle) {
 			fwrite($handle, $content);
 			fclose($handle);

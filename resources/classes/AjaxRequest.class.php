@@ -52,8 +52,11 @@ class AjaxRequest {
 				} else {
 					list($success, $content) = Installation::createSettingsFile($this->post["dbHostname"],
 						$this->post["dbName"], $this->post["dbUsername"], $this->post["dbPassword"], $this->post["dbTablePrefix"]);
-					$this->response["success"] = $success;
+					$this->response["success"] = ($success) ? 1 : 0; // bah!
 					$this->response["content"] = $content;
+
+//					$this->response["success"] = 0;
+//					$this->response["content"] = "blah blah \n\nasdasda";
 				}
 				break;
 
