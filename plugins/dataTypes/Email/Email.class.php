@@ -26,14 +26,14 @@ class DataType_Email extends DataTypePlugin {
 		$numPrefixWords = rand(1, 3);
 		$offset = rand(0, $this->numWords - ($numPrefixWords + 1));
 		$words = array_slice($this->words, $offset, $numPrefixWords);
-		$words = preg_replace("/[,.:]/", "", $words);
+		$words = preg_replace("/[,.:;]/", "", $words);
 		$prefix = join(".", $words);
 
 		// domain
 		$numDomainWords = rand(1, 3);
 		$offset = rand(0, $this->numWords - ($numDomainWords + 1));
 		$words = array_slice($this->words, $offset, $numDomainWords);
-		$words = preg_replace("/[,.:]/", "", $words);
+		$words = preg_replace("/[,.:;]/", "", $words);
 		$domain = join("", $words);
 
 		// suffix
