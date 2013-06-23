@@ -1747,7 +1747,6 @@ define([
 		_saveVisibilityStatus(configurationID, status);
 	};
 
-
 	var _saveVisibilityStatus = function(configurationID, status) {
 		var data = {
 			action: "saveDataSetVisibilityStatus",
