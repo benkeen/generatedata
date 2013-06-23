@@ -25,11 +25,12 @@ define([
 		return {
 			execute: function() {},
 			isComplete: function() {
-				if ($("#dtOption_" + rowNum).length) {
+				var optionField = $("#dtOption_" + rowNum);
+				if (optionField.length) {
 					if (data.checked) {
-						$("#dtOption_" + rowNum).attr("checked", "checked");
+						optionField.attr("checked", "checked");
 					} else {
-						$("#dtOption_" + rowNum).removeAttr("checked");
+						optionField.removeAttr("checked");
 					}
 					return true;
 				} else {
@@ -53,10 +54,10 @@ define([
 	 */
 	var _countryChange = function(msg) {
 		if (msg.countries.length > 0) {
-			$(".dtCountry_allCountries").removeAttr("disabled").removeAttr("checked");
+			$(".dtCountry_allCountries").removeAttr("disabled");
 			$(".dtCountry_allCountriesLabel").removeClass("gdDisabled");
 		} else {
-			$(".dtCountry_allCountries").attr("disabled", "disabled");
+			$(".dtCountry_allCountries").attr("disabled", "disabled").removeAttr("checked");
 			$(".dtCountry_allCountriesLabel").addClass("gdDisabled");
 		}
 	};
