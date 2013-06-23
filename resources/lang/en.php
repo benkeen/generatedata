@@ -276,3 +276,6 @@ $L["loading"] = "Loading...";
 $L["validation_account_already_exists"] = "Sorry, an account with that email address already exists.";
 $L["validation_not_logged_in"] = "You don't appear to be logged in. Please try logging in again.";
 $L["validation_invalid_permissions"] = "You don't have permissions to do this.";
+$L["installation_failed_create_settings_file"] = "The script was unable to create your <b>settings.php</b> file.";
+$L["installation_failed_create_settings_file_msg"] = "This usually occurs when it fails to have permissions to write to the folder. Please manually create this file and place it in the base folder of the Data Generator. When you have done this, button below to continue installing.";
+$L["confirm_file_exists"] = "Confirm File Exists";

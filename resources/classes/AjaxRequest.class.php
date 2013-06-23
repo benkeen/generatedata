@@ -54,10 +54,13 @@ class AjaxRequest {
 						$this->post["dbName"], $this->post["dbUsername"], $this->post["dbPassword"], $this->post["dbTablePrefix"]);
 					$this->response["success"] = ($success) ? 1 : 0; // bah!
 					$this->response["content"] = $content;
-
-//					$this->response["success"] = 0;
-//					$this->response["content"] = "blah blah \n\nasdasda";
 				}
+				break;
+
+			case "confirmSettingsFileExists":
+				Core::init("installation");
+				$settingsFileExists = Core::checkSettingsFileExists();
+				$this->response["success"] = ($settingsFileExists) ? 1 : 0;
 				break;
 
 			case "installationCreateDatabase":
