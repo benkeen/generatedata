@@ -13,7 +13,7 @@ class DataType_GUID extends DataTypePlugin {
 
 
 	public function generate($generator, $generationContextData) {
-		$placeholderStr = "HHHHHHHH-HHHH-HHHH-HHHH-HHHH-HHHHHHHH";
+		$placeholderStr = "HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH";
 		$guid = Utils::generateRandomAlphanumericStr($placeholderStr);
 
 		// pretty sodding unlikely, but just in case!
