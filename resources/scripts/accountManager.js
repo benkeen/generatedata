@@ -33,8 +33,9 @@ define([
 		$("#gdRefreshPassword").on("click", _regeneratePassword);
 
 		// event delegate the Edit and Delete clicks
-		$("#gdAccountList").on("click", ".gdEditAccount", _openEditAccountDialog);
-		$("#gdAccountList").on("click", ".gdDeleteAccount", _openDeleteAccountDialog);
+		var accountList = $("#gdAccountList");
+		accountList.on("click", ".gdEditAccount", _openEditAccountDialog);
+		accountList.on("click", ".gdDeleteAccount", _openDeleteAccountDialog);
 
 		_getAccountsList();
 
