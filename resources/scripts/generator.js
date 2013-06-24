@@ -1258,6 +1258,9 @@ define([
 		// remove any custom styles
 		$(".gdHelpSection").removeAttr("style");
 
+		// close any messages that are open
+		$("#gdMainDialogTab1Message").hide();
+
 		// open the dialog
 		$("#gdMainDialog").dialog({
 			title: 'generate<span style="color:#48b34d">data</span>.com',

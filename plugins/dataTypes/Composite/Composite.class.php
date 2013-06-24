@@ -13,7 +13,6 @@ class DataType_Composite extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $jsModules = array("Composite.js");
 	protected $processOrder = 100;
-	private $helpDialogWidth = 520;
 	private $smarty;
 
 	public function __construct($runtimeContext) {

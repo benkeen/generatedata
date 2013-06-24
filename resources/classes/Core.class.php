@@ -19,7 +19,7 @@ class Core {
 	private static $dbPassword;
 	private static $dbTablePrefix = "gd_";
 	private static $encryptionSalt;
-	private static $errorReporting = 2047;
+	private static $errorReporting = 1;
 	private static $maxGeneratedRows = 100000;
 	private static $defaultNumRows = 100;
 	private static $maxDemoModeRows = 100;
@@ -28,7 +28,7 @@ class Core {
 	private static $defaultCountryPlugins = array();
 	private static $defaultTheme = "classic";
 	public static $useJSCache = true;
-	
+
 	// non-overridable settings
 	private static $version = "3.0.3";
 	private static $minimumPHPVersion = "5.3.0";
