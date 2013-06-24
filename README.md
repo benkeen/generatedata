@@ -32,6 +32,9 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 
 ## Changelog
 
+3.0.3 - June 23, 2013
+- Bug fixes. See: https://github.com/benkeen/generatedata/issues?milestone=3
+
 3.0.2 - June 12, 2013
 - Spanish translation and Country plugin added (thanks, [@robarago](https://github.com/robarago)!)
 - bug fixes, other updates: https://github.com/benkeen/generatedata/issues?milestone=2
@@ -41,7 +44,7 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 - Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1
 
 3.0.0 - May 21st, 2013
-- current release
+- initial release
 
 
 Ben Keen
