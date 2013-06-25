@@ -26,17 +26,27 @@ define([
 	};
 
 	var _dataTypeChange = function(msg) {
+		var currYear = _getCurrentYear();
+		var yearRangeFrom = (currYear - 200);
+		var yearRangeTo   = (currYear + 200);
+		var yearRange = yearRangeFrom + ":" + yearRangeTo;
 		$("#dtFromDate_" + msg.rowID).datepicker({
 			showOn:          "both",
 			buttonImage:     "resources/themes/" + C.THEME + "/images/calendarIcon.gif",
 			buttonImageOnly: true,
-			buttonText:      "Choose date"
+			buttonText:      "Choose date",
+			changeMonth: true,
+			changeYear: true,
+			yearRange: yearRange
 		});
 		$("#dtToDate_" + msg.rowID).datepicker({
 			showOn:          "both",
 			buttonImage:     "resources/themes/" + C.THEME + "/images/calendarIcon.gif",
 			buttonImageOnly: true,
-			buttonText:      "Choose date"
+			buttonText:      "Choose date",
+			changeMonth: true,
+			changeYear: true,
+			yearRange: yearRange
 		});
 	};
 
@@ -52,6 +62,10 @@ define([
 			"option":   $("#dtOption_" + rowNum).val()
 		};
 	};
+
+	var _getCurrentYear = function() {
+		return new Date().getFullYear();
+	}
 
 	var _loadRow = function(rowNum, data) {
 		return {
