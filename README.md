@@ -44,7 +44,7 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 - Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1
 
 3.0.0 - May 21st, 2013
-- initial release
+- Initial release.
 
 
 Ben Keen
