@@ -14,7 +14,6 @@ class DataType_Names extends DataTypePlugin {
 	protected $jsModules = array("Names.js");
 
 	// custom member vars for this Data Type
-	private $helpDialogWidth = 480;
 	private $maleNames    = array();
 	private $femaleNames  = array();
 	private $firstNames   = array();
