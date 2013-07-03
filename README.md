@@ -32,6 +32,10 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 
 ## Changelog
 
+3.0.4 - July 2nd, 2013
+- Italy Export Type, courtesy of [@marciuz](Marcello Verona)
+- Regional Names Data Type added, data for Italy and France from [@marciuz](Marcello Verona)
+
 3.0.3 - June 23, 2013
 - Bug fixes. See: https://github.com/benkeen/generatedata/issues?milestone=3
 

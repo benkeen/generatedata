@@ -125,6 +125,7 @@ class DataType_NamesRegional extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 		$placeholderStr = $generationContextData["generationOptions"];
+		$selectedCountryPlugins = $generator->getCountries();
 
 		$rowCountryInfo = array();
 		while (list($key, $info) = each($generationContextData["existingRowData"])) {
@@ -134,20 +135,31 @@ class DataType_NamesRegional extends DataTypePlugin {
 			}
 		}
 
-		$maleNames   = $this->maleNames;
-		$femaleNames = $this->femaleNames;
-		$firstNames  = $this->firstNames;
-		$lastNames   = $this->lastNames;
+		$maleNames   = $this->generalMaleNames;
+		$femaleNames = $this->generalFemaleNames;
+		$firstNames  = $this->generalFirstNames;
+		$lastNames   = $this->generalLastNames;
 
+		// if there's a country for this row,
+		$countrySlug = "";
 		if (!empty($rowCountryInfo) && isset($rowCountryInfo["randomData"]["slug"])) {
-			$slug = $rowCountryInfo["randomData"]["slug"];
-			if (array_key_exists($slug, $this->regionalNames)) {
-				$maleNames   = $this->regionalNames[$slug]["maleNames"];
-				$femaleNames = $this->regionalNames[$slug]["femaleNames"];
-				$lastNames   = $this->regionalNames[$slug]["lastNames"];
-
-				// if the
+			if (array_key_exists($rowCountryInfo["randomData"]["slug"], $this->regionalNames)) {
+				$countrySlug = $rowCountryInfo["randomData"]["slug"];
 			}
+		} else if (!empty($selectedCountryPlugins)) {
+			$availableRegionalCountries = array_keys($this->regionalNames);
+			$inBoth = array_intersect($availableRegionalCountries, $selectedCountryPlugins);
+
+			if (!empty($inBoth)) {
+				$countrySlug = $inBoth[rand(0, count($inBoth) - 1)];
+			}
+		}
+
+		if (!empty($countrySlug)) {
+			$maleNames   = $this->regionalNames[$countrySlug]["firstNamesMale"];
+			$femaleNames = $this->regionalNames[$countrySlug]["firstNamesFemale"];
+			$firstNames  = $this->regionalNames[$countrySlug]["firstNames"];
+			$lastNames   = $this->regionalNames[$countrySlug]["lastNames"];
 		}
 
 
@@ -285,10 +297,16 @@ END;
 	}
 
 	/**
-	 * Called on instantiation. This combines
+	 * Called on instantiation. This combines the male and female first names in the $regionalNames hash
+	 * into a single "first_names" key, for quick reference.
 	 */
 	private function combineRegionalFirstNames() {
-
+		$updatedRegionalNames = array();
+		while (list($country, $content) = each($this->regionalNames)) {
+			$content["firstNames"] = array_merge($content["firstNamesFemale"], $content["firstNamesMale"]);
+			$updatedRegionalNames[$country] = $content;
+		}
+		$this->regionalNames = $updatedRegionalNames;
 	}
 
 
