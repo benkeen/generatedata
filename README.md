@@ -27,14 +27,15 @@ This script is freely available under the GPL 3 license. See license.txt in the 
 
 In addition to the folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [Marcello Verona](https://github.com/marciuz) - Italy Country plugin (3.0.4)
 - [Roberto Aragón](https://github.com/robarago), Charo Baena - Spanish translation & Country plugin (3.0.2)
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
 
 3.0.4 - July 2nd, 2013
-- Italy Export Type, courtesy of [@marciuz](Marcello Verona)
-- Regional Names Data Type added, data for Italy and France from [@marciuz](Marcello Verona)
+- Italy Export Type, courtesy of [Marcello Verona](https://github.com/marciuz)
+- Regional Names Data Type added, data for Italy and France from [Marcello Verona](https://github.com/marciuz)
 
 3.0.3 - June 23, 2013
 - Bug fixes. See: https://github.com/benkeen/generatedata/issues?milestone=3
@@ -49,7 +50,6 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 
 3.0.0 - May 21st, 2013
 - Initial release.
-
 
 
 Ben Keen
