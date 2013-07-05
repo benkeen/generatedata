@@ -23,6 +23,7 @@ class SQL extends ExportTypePlugin {
 
 	// stores various info about the current generation set
 	private $template;
+	private $numericFields;
 	private $postData;
 	private $exportTarget;
 	private $isFirstBatch;
@@ -53,6 +54,10 @@ class SQL extends ExportTypePlugin {
 		$this->backquote        = isset($this->postData["etSQL_encloseWithBackquotes"]) ? "`" : "";
 		$this->sqlStatementType = isset($this->postData["etSQL_statementType"]) ? $this->postData["etSQL_statementType"] : "insert";
 		$this->primaryKey       = (isset($this->postData["etSQL_primaryKey"])) ? $this->postData["etSQL_primaryKey"] : "default";
+
+		foreach ($this->template as $item) {
+			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
+		}
 
 		$content = "";
 		switch ($this->databaseType) {
@@ -183,6 +188,7 @@ END;
 		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
 		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
 
+
 		if ($this->isFirstBatch) {
 			if ($this->includeDropTable) {
 				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
@@ -229,14 +235,25 @@ END;
 		$numCols = count($this->data["colData"]);
 		for ($i=0; $i<$numRows; $i++) {
 			if ($this->sqlStatementType == "insert") {
-				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "\"");
-				$rowDataStr = implode(",", $quoted);
+				$displayVals = array();
+				for ($j=0; $j<$numCols; $j++) {
+					if ($this->numericFields[$j]) {
+						$displayVals[] = $this->data["rowData"][$i][$j];
+					} else {
+						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
+				}
+				$rowDataStr = implode(",", $displayVals);
 				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
 					$colName  = $this->data["colData"][$j];
-					$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					if ($this->numericFields[$j]) {
+						$colValue = $this->data["rowData"][$i][$j];
+					} else {
+						$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
 					$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
 				}
 
@@ -448,7 +465,6 @@ END;
 		$numRows = count($this->data["rowData"]);
 		$numCols = count($this->data["colData"]);
 		for ($i=0; $i<$numRows; $i++) {
-		
 			$currentRow = $i + 1;
 		
 			if ($this->sqlStatementType == "insert") {

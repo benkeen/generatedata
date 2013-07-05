@@ -44,6 +44,7 @@ END;
 
 	public function getDataTypeMetadata() {
 		return array(
+			"type" => "numeric",
 			"SQLField" => "mediumint default NULL",
 			"SQLField_Oracle" => "varchar2(50) default NULL",
 			"SQLField_MSSQL" => "INTEGER NULL"
