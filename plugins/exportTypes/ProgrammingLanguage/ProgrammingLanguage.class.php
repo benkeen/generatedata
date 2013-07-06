@@ -10,15 +10,20 @@ class ProgrammingLanguage extends ExportTypePlugin {
 	protected $jsModules = array("ProgrammingLanguage.js");
 	protected $codeMirrorModes = array("php", "perl", "htmlmixed", "xml", "javascript", "css", "clike", "ruby");
 
-	//protected $contentTypeHeader = "text/json";
 	public $L = array();
+
+	private $numericFields;
 
 
 	public function generate($generator) {
 		$postData     = $generator->getPostData();
 		$data         = $generator->generateExportData();
-
+		$template     = $generator->getTemplateByDisplayOrder();
 		$language = $postData["etProgrammingLanguage_language"];
+
+		foreach ($template as $item) {
+			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
+		}
 
 		$content = "";
 		switch ($language) {
@@ -82,7 +87,11 @@ END;
 			$pairs = array();
 			for ($j=0; $j<$numCols; $j++) {
 				$varName = preg_replace('/"/', '\"', $data["colData"][$j]);
-				$pairs[] = "\"$varName\" => \"{$data["rowData"][$i][$j]}\"";
+				if ($this->numericFields[$j]) {
+					$pairs[] = "\"$varName\" => {$data["rowData"][$i][$j]}";
+				} else {
+					$pairs[] = "\"$varName\" => \"{$data["rowData"][$i][$j]}\"";
+				}
 			}
 			$content .= implode(",", $pairs);
 
@@ -114,7 +123,11 @@ END;
 
 			$pairs = array();
 			for ($j=0; $j<$numCols; $j++) {
-				$pairs[] = "\"{$data["colData"][$j]}\"=>\"{$data["rowData"][$i][$j]}\"";
+				if ($this->numericFields[$j]) {
+					$pairs[] = "\"{$data["colData"][$j]}\"=>{$data["rowData"][$i][$j]}";
+				} else {
+					$pairs[] = "\"{$data["colData"][$j]}\"=>\"{$data["rowData"][$i][$j]}\"";
+				}
 			}
 			$content .= implode(",", $pairs);
 
@@ -146,7 +159,11 @@ END;
 
 			$pairs = array();
 			for ($j=0; $j<$numCols; $j++) {
-				$pairs[] = "\"{$data["colData"][$j]}\": \"{$data["rowData"][$i][$j]}\"";
+				if ($this->numericFields[$j]) {
+					$pairs[] = "\"{$data["colData"][$j]}\": {$data["rowData"][$i][$j]}";
+				} else {
+					$pairs[] = "\"{$data["colData"][$j]}\": \"{$data["rowData"][$i][$j]}\"";
+				}
 			}
 			$content .= implode(", ", $pairs);
 
@@ -178,7 +195,11 @@ END;
 
 			$pairs = array();
 			for ($j=0; $j<$numCols; $j++) {
-				$pairs[] = "'{$data["colData"][$j]}': '{$data["rowData"][$i][$j]}'";
+				if ($this->numericFields[$j]) {
+					$pairs[] = "'{$data["colData"][$j]}': {$data["rowData"][$i][$j]}";
+				} else {
+					$pairs[] = "'{$data["colData"][$j]}': '{$data["rowData"][$i][$j]}'";
+				}
 			}
 			$content .= implode(", ", $pairs);
 

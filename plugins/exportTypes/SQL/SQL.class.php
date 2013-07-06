@@ -322,15 +322,25 @@ END;
 		$numCols = count($this->data["colData"]);
 		for ($i=0; $i<$numRows; $i++) {
 			if ($this->sqlStatementType == "insert") {
-				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "'");
-				$rowDataStr = implode(",", $quoted);
+				$displayVals = array();
+				for ($j=0; $j<$numCols; $j++) {
+					if ($this->numericFields[$j]) {
+						$displayVals[] = $this->data["rowData"][$i][$j];
+					} else {
+						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
+				}
+				$rowDataStr = implode(",", $displayVals);
 				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
 			} else {
-
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
 					$colName  = $this->data["colData"][$j];
-					$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					if ($this->numericFields[$j]) {
+						$colValue = $this->data["rowData"][$i][$j];
+					} else {
+						$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
 					$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
 				}
 
@@ -395,15 +405,25 @@ END;
 		$numCols = count($this->data["colData"]);
 		for ($i=0; $i<$numRows; $i++) {
 			if ($this->sqlStatementType == "insert") {
-				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "'");
-				$rowDataStr = implode(",", $quoted);
+				$displayVals = array();
+				for ($j=0; $j<$numCols; $j++) {
+					if ($this->numericFields[$j]) {
+						$displayVals[] = $this->data["rowData"][$i][$j];
+					} else {
+						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
+				}
+				$rowDataStr = implode(",", $displayVals);
 				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
 			} else {
-
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
 					$colName  = $this->data["colData"][$j];
-					$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					if ($this->numericFields[$j]) {
+						$colValue = $this->data["rowData"][$i][$j];
+					} else {
+						$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
 					$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
 				}
 
@@ -468,8 +488,15 @@ END;
 			$currentRow = $i + 1;
 		
 			if ($this->sqlStatementType == "insert") {
-				$quoted = Utils::enquoteArray($this->data["rowData"][$i], "'");
-				$rowDataStr = implode(",", $quoted);
+				$displayVals = array();
+				for ($j=0; $j<$numCols; $j++) {
+					if ($this->numericFields[$j]) {
+						$displayVals[] = $this->data["rowData"][$i][$j];
+					} else {
+						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
+				}
+				$rowDataStr = implode(",", $displayVals);
 				$content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES($rowDataStr);$endLineChar";
 				
 				if (($currentRow % 1000) == 0) {
@@ -478,13 +505,15 @@ END;
 					$content .= "GO";
 					$content .= $endLineChar;
 				}
-				
 			} else {
-
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
 					$colName  = $this->data["colData"][$j];
-					$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					if ($this->numericFields[$j]) {
+						$colValue = $this->data["rowData"][$i][$j];
+					} else {
+						$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
 					$pairs[]  = "{$colName} = $colValue";
 				}
 

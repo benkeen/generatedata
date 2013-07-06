@@ -12,14 +12,20 @@ class JSON extends ExportTypePlugin {
 	protected $contentTypeHeader = "text/json";
 	public $L = array();
 
+	private $numericFields;
+
 
 	public function generate($generator) {
-		$exportTarget = $generator->getExportTarget();
 		$postData     = $generator->getPostData();
 		$data         = $generator->generateExportData();
-
+		$template     = $generator->getTemplateByDisplayOrder();
 		$stripWhitespace     = isset($postData["etJSON_stripWhitespace"]);
 		$dataStructureFormat = isset($postData["etJSON_dataStructureFormat"]) ? $postData["etJSON_dataStructureFormat"] : "complex";
+
+		// figure out which fields are strictly numeric. We don't wrap those values in double quotes
+		foreach ($template as $item) {
+			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
+		}
 
 		$content = "";
 		if ($dataStructureFormat == "complex") {
@@ -52,7 +58,11 @@ class JSON extends ExportTypePlugin {
 			$pairs = array();
 			for ($j=0; $j<$numCols; $j++) {
 				$varName = preg_replace('/"/', '\"', $data["colData"][$j]);
-				$pairs[] = "{$tab}{$tab}\"$varName\":{$space}\"{$data["rowData"][$i][$j]}\"";
+				if ($this->numericFields[$j]) {
+					$pairs[] = "{$tab}{$tab}\"$varName\":{$space}{$data["rowData"][$i][$j]}";
+				} else {
+					$pairs[] = "{$tab}{$tab}\"$varName\":{$space}\"{$data["rowData"][$i][$j]}\"";
+				}
 			}
 			$content .= implode(",$newline", $pairs);
 
@@ -84,20 +94,28 @@ class JSON extends ExportTypePlugin {
 			}
 		}
 
-		$numItems = count($data["rowData"]);
-		for ($i=0; $i<$numItems; $i++) {
-			$rowValsArr = $data["rowData"][$i];
-			$quotedRow = Utils::enquoteArray($rowValsArr);
+		$numCols = count($data["colData"]);
+		$numRows = count($data["rowData"]);
+		for ($i=0; $i<$numRows; $i++) {
+			$rowValsArr = array();
+			for ($j=0; $j<$numCols; $j++) {
+				if ($this->numericFields[$j]) {
+					$rowValsArr[] = $data["rowData"][$i][$j];
+				} else {
+					$rowValsArr[] = "\"" . $data["rowData"][$i][$j] . "\"";
+				}
+			}
+
 			if ($stripWhitespace) {
-				$rowVals = implode(",", $quotedRow);
+				$rowVals = implode(",", $rowValsArr);
 				$content .= "[$rowVals]";
-				if ($i < $numItems - 1) {
+				if ($i < $numRows - 1) {
 					$content .= ",";
 				}
 			} else {
-				$rowVals = implode(",\n\t\t\t", $quotedRow);
+				$rowVals = implode(",\n\t\t\t", $rowValsArr);
 				$content .= "\t\t[\n\t\t\t$rowVals\n\t\t]";
-				if ($i < $numItems - 1) {
+				if ($i < $numRows - 1) {
 					$content .= ",\n";
 				}
 			}
