@@ -16,7 +16,30 @@ define([
 	var MODULE_ID = "data-type-Currency";
 
 	var _init = function() {
+		var subscriptions = {};
+		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
+		manager.subscribe(MODULE_ID, subscriptions);
+	};
 
+	var _exampleChange = function(msg) {
+		var format = "";
+		var rangeFrom = "";
+		var rangeTo = "";
+		var symbol = "";
+		var symbolLocation = "";
+		if (msg.value) {
+			var parts = msg.value.split("|");
+			format = parts[0];
+			rangeFrom = parts[1];
+			rangeTo = parts[2];
+			symbol = parts[3];
+			symbolLocation = parts[4];
+		}
+		$("#dtCurrencyFormat_" + msg.rowID).val(format);
+		$("#dtCurrencyRangeFrom_" + msg.rowID).val(rangeFrom);
+		$("#dtCurrencyRangeTo_" + msg.rowID).val(rangeTo);
+		$("#dtCurrencySymbol_" + msg.rowID).val(symbol);
+		$("#dtCurrencySymbolLocation_" + msg.rowID).val(symbolLocation);
 	};
 
 	var _loadRow = function(rowNum, data) {
@@ -40,7 +63,11 @@ define([
 
 	var _saveRow = function(rowNum) {
 		return {
-			"checked": ($("#dtOption_" + rowNum).attr("checked")) ? "checked" : ""
+			"format": $("#dtCurrencyFormat_" + rowNum).val(),
+			"rangeFrom": $("#dtCurrencyRangeFrom_" + rowNum).val(),
+			"rangeTo": $("#dtCurrencyRangeTo_" + rowNum).val(),
+			"symbol": $("#dtCurrencySymbol_" + rowNum).val(),
+			"symbolLocation": $("#dtCurrencySymbolLocation_" + rowNum).val()
 		};
 	};
 
