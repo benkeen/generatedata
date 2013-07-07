@@ -17,11 +17,14 @@ class DataType_Currency extends DataTypePlugin {
 		}
 	}
 
+	// meh. All this string manipulation code could be improved, I'm sure
 	public function generate($generator, $generationContextData) {
 
-		$rangeFrom = preg_replace("/\D/", "", $generationContextData["generationOptions"]["rangeFrom"]);
-		$rangeTo   = preg_replace("/\D/", "", $generationContextData["generationOptions"]["rangeTo"]);
-		$format    = $generationContextData["generationOptions"]["format"];
+		$rangeFrom    = preg_replace("/\D/", "", $generationContextData["generationOptions"]["rangeFrom"]);
+		$rangeTo      = preg_replace("/\D/", "", $generationContextData["generationOptions"]["rangeTo"]);
+		$format       = $generationContextData["generationOptions"]["format"];
+		$dollarSymbol = $generationContextData["generationOptions"]["symbol"];
+		$dollarSymbolLocation = $generationContextData["generationOptions"]["symbolLocation"];
 
 		$randString = (string) mt_rand($rangeFrom, $rangeTo);
 		$randStringRev = strrev($randString);
@@ -42,16 +45,43 @@ class DataType_Currency extends DataTypePlugin {
 				$display .= $reversedFormat[$i];
 			}
 		}
-
 		$display = strrev($display);
+
+		// if it's under 1 dollar (or whatever) and has cents, we need to fix really small generated
+		// nums. Pretty feeble logic here, and I'm not 100% sure this will work for all currency formats
+		$hasCents = preg_match("/\D/", $format[strlen($format)-3]);
+		$numChars = strlen($display);
+		if ($hasCents && $numChars < 4) {
+			$truncatedFormat = preg_replace("/X/", "0", substr($format, -4));
+
+			if ($numChars === 0) {
+				$display = $truncatedFormat;
+			} else if ($numChars == 1) {
+				$display = substr($truncatedFormat, 0, 3) . $display;
+			} else if ($numChars == 2) {
+				$display = substr($truncatedFormat, 0, 2) . $display;
+			} else if ($numChars == 3) {
+				$display = "0" . $display;
+			}
+		}
+
 
 		// if $display begins with a non-digit, we need to prefix it with a zero
 		if (preg_match("/\D/", $display[0])) {
 			$display = "0" . $display;
 		}
 
+		// apply the dollar symbol
+		if (!empty($dollarSymbol)) {
+			if ($dollarSymbolLocation == "prefix") {
+				$display = $dollarSymbol . $display;
+			} else {
+				$display = $display . $dollarSymbol;
+			}
+		}
+
 		return array(
-			"display" => "($randString) $display"
+			"display" => "$display"
 		);
 	}
 
@@ -74,13 +104,18 @@ class DataType_Currency extends DataTypePlugin {
 		$html =<<< END
 	<select name="dtExample_%ROW%" id="dtExample_%ROW%" style="width:98%">
 		<option value="">{$L["please_select"]}</option>
-		<option value="XXX.XX|0.00|100.00|$|prefix">$0.00 to $100.00</option>
-		<option value="XX,XXX|5000|10000|$|prefix">$5,000 to $10,000 (no cents)</option>
-		<option value="XXXXX.XX|1000.00|10000.00|$|prefix">$1000.00 to $10000.00 (no thousand delimiters)</option>
-		<option value="XXX,XXX.XX|-100000.00|100000.00|$|prefix">-$100,000.00 to $100,000.00</option>
-		<option value="X.XX|0.00|100.00||prefix">0.01 to 1.00</option>
-		<option value="X.XXX.XXX,XX|100000.00|1000000.00|$|suffix">100.000,00 $ to 1.000.000,00 $</option>
-		<option value="XXX XXX|10|100000||prefix">10 to 100 000</option>
+		<optgroup label="US/Canada">
+			<option value="XXX.XX|0.00|100.00|$|prefix">$0.00 to $100.00</option>
+			<option value="XX,XXX|5000|10000|$|prefix">$5,000 to $10,000 (no cents)</option>
+			<option value="XXXXX.XX|1000.00|10000.00|$|prefix">$1000.00 to $10000.00 (no thousand delimiters)</option>
+			<option value="XXX,XXX.XX|-100000.00|100000.00|$|prefix">-$100,000.00 to $100,000.00</option>
+			<option value="X.XX|0.00|100.00||prefix">0.01 to 1.00 (no dollar sign)</option>
+			<option value="X.XXX.XXX,XX|100.00|1000.00|$|suffix">100,00 $ to 1.000,00 $ (French Canadian)</option>
+			<option value="XXX XXX|10|100000||prefix">10 to 100 000</option>
+		</optgroup>
+		<optgroup label="UK">
+			<option value="XXX.XX|0.00|100.00|£|prefix">$0.00 to $100.00</option
+		</optgroup>
 	</select>
 END;
 		return $html;
