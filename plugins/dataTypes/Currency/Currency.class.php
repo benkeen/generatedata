@@ -65,7 +65,6 @@ class DataType_Currency extends DataTypePlugin {
 			}
 		}
 
-
 		// if $display begins with a non-digit, we need to prefix it with a zero
 		if (preg_match("/\D/", $display[0])) {
 			$display = "0" . $display;
@@ -81,7 +80,7 @@ class DataType_Currency extends DataTypePlugin {
 		}
 
 		return array(
-			"display" => "$display"
+			"display" => $display
 		);
 	}
 
@@ -96,6 +95,7 @@ class DataType_Currency extends DataTypePlugin {
 
 		return $generationOptions;
 	}
+
 
 
 	public function getExampleColumnHTML() {
@@ -114,7 +114,10 @@ class DataType_Currency extends DataTypePlugin {
 			<option value="XXX XXX|10|100000||prefix">10 to 100 000</option>
 		</optgroup>
 		<optgroup label="UK">
-			<option value="XXX.XX|0.00|100.00|£|prefix">$0.00 to $100.00</option
+			<option value="XXX.XX|0.00|100.00|£|prefix">£0.00 to £100.00</option
+		</optgroup>
+		<optgroup label="Euro">
+			<option value="XXX,XXX|100000|200000|€|prefix">€100,000 to €200,000</option
 		</optgroup>
 	</select>
 END;
@@ -150,5 +153,40 @@ END;
 			"SQLField_Oracle" => "varchar2(100) default NULL",
 			"SQLField_MSSQL" => "VARCHAR(100) NULL"
 		);
+	}
+
+	public function getHelpHTML() {
+		$L = Core::$language->getCurrentLanguageStrings();
+
+		$content =<<<EOF
+	<p>
+		{$this->L["help_intro"]}
+	</p>
+
+	<table cellpadding="0" cellspacing="1">
+	<tr>
+		<td width="120" valign="top"><h4>{$this->L["format"]}</h4></td>
+		<td>{$this->L["format_desc"]}</td>
+	</tr>
+	<tr>
+		<td valign="top"><h4>{$this->L["range_from"]}</h4></td>
+		<td>{$this->L["range_from_desc"]}</td>
+	</tr>
+	<tr>
+		<td valign="top"><h4>{$this->L["range_to"]}</h4></td>
+		<td>{$this->L["range_to_desc"]}</td>
+	</tr>
+	<tr>
+		<td valign="top"><h4>{$this->L["currency_symbol"]}</h4></td>
+		<td>{$this->L["currency_symbol_desc"]}</td>
+	</tr>
+	<tr>
+		<td valign="top"><h4>{$this->L["prefix_suffix"]}</h4></td>
+		<td>{$this->L["prefix_suffix_desc"]}</td>
+	</tr>
+	</table>
+EOF;
+
+		return $content;
 	}
 }

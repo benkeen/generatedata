@@ -14,6 +14,7 @@ define([
 	 */
 
 	var MODULE_ID = "data-type-Currency";
+	var LANG = null;
 
 	var _init = function() {
 		var subscriptions = {};
@@ -44,19 +45,15 @@ define([
 
 	var _loadRow = function(rowNum, data) {
 		return {
-			execute: function() {},
+			execute: function() {
+				$("#dtCurrencyFormat_" + rowNum).val(data.format);
+				$("#dtCurrencyRangeFrom_" + rowNum).val(data.rangeFrom);
+				$("#dtCurrencyRangeTo_" + rowNum).val(data.rangeTo);
+				$("#dtCurrencySymbol_" + rowNum).val(data.symbol);
+				$("#dtCurrencySymbolLocation_" + rowNum).val(data.symbolLocation);
+			},
 			isComplete: function() {
-				var optionField = $("#dtOption_" + rowNum);
-				if (optionField.length) {
-					if (data.checked) {
-						optionField.attr("checked", "checked");
-					} else {
-						optionField.removeAttr("checked");
-					}
-					return true;
-				} else {
-					return false;
-				}
+				return true;
 			}
 		};
 	};
@@ -71,12 +68,38 @@ define([
 		};
 	};
 
+	var _validate = function(rows) {
+		var problemFields      = [];
+		var invalidFormatRows = [];
+		for (var i=0; i<rows.length; i++) {
+			var format = $("#dtCurrencyFormat_" + rows[i]);
+			var from   = $("#dtCurrencyRangeFrom_" + rows[i]);
+			var to     = $("#dtCurrencyRangeTo_" + rows[i]);
+
+			if ($.trim(format.val()) === "") {
+				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+				invalidFormatRows.push(visibleRowNum);
+				problemFields.push(format);
+			}
+
+			if (from.val().match(/\D\./)) {
+				console.log("please only enter numbers in the range fields (0-9 and decimal point).");
+			}
+		}
+
+		var errors = [];
+		if (invalidFormatRows.length) {
+			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + invalidFormatRows.join(", ") + "</b>"});
+		}
+		return errors;
+	};
 
 	// register our module
 	manager.registerDataType(MODULE_ID, {
 		init: _init,
 		loadRow: _loadRow,
-		saveRow: _saveRow
+		saveRow: _saveRow,
+		validate: _validate
 	});
 
 });
