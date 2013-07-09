@@ -13,3 +13,14 @@ $L["currency_symbol"] = "Currency Symbol";
 $L["currency_symbol_desc"] = "Whatever currency symbol you want to use, e.g. <b>$</b>, <b>€</b>, etc.";
 $L["prefix_suffix"] = "Prefix/Suffix";
 $L["prefix_suffix_desc"] = "This determines where the currency symbol should appear.";
+
+$L["no_cents"] = "no cents";
+$L["no_thousand_delimiters"] = "no thousand delimiters";
+$L["no_dollar_sign"] = "no dollar sign";
+$L["range"] = "Range";
+$L["to"] = "To";
+$L["currency_symbol"] = "Currency Symbol";
+$L["prefix"] = "prefix";
+$L["suffix"] = "suffix";
+$L["incomplete_fields"] = "The Currency data type needs to have the format entered. Please fix the following rows:";
+$L["invalid_range_fields"] = "Please only enter numbers in the Currency range fields (0-9 and decimal point). Please fix the following rows: ";

@@ -105,19 +105,19 @@ class DataType_Currency extends DataTypePlugin {
 	<select name="dtExample_%ROW%" id="dtExample_%ROW%" style="width:98%">
 		<option value="">{$L["please_select"]}</option>
 		<optgroup label="US/Canada">
-			<option value="XXX.XX|0.00|100.00|$|prefix">$0.00 to $100.00</option>
-			<option value="XX,XXX|5000|10000|$|prefix">$5,000 to $10,000 (no cents)</option>
-			<option value="XXXXX.XX|1000.00|10000.00|$|prefix">$1000.00 to $10000.00 (no thousand delimiters)</option>
-			<option value="XXX,XXX.XX|-100000.00|100000.00|$|prefix">-$100,000.00 to $100,000.00</option>
-			<option value="X.XX|0.00|100.00||prefix">0.01 to 1.00 (no dollar sign)</option>
-			<option value="X.XXX.XXX,XX|100.00|1000.00|$|suffix">100,00 $ to 1.000,00 $ (French Canadian)</option>
-			<option value="XXX XXX|10|100000||prefix">10 to 100 000</option>
+			<option value="XXX.XX|0.00|100.00|$|prefix">$0.00 -> $100.00</option>
+			<option value="XX,XXX|5000|10000|$|prefix">$5,000 -> $10,000 ({$this->L["no_cents"]})</option>
+			<option value="XXXXX.XX|1000.00|10000.00|$|prefix">$1000.00 -> $10000.00 ({$this->L["no_thousand_delimiters"]})</option>
+			<option value="XXX,XXX.XX|-100000.00|100000.00|$|prefix">-$100,000.00 -> $100,000.00</option>
+			<option value="X.XX|0.00|100.00||prefix">0.01 -> 1.00 ({$this->L["no_dollar_sign"]})</option>
+			<option value="X.XXX.XXX,XX|100.00|1000.00|$|suffix">100,00 $ -> 1.000,00 $ (French Canadian)</option>
+			<option value="XXX XXX|10|100000||prefix">10 -> 100 000</option>
 		</optgroup>
 		<optgroup label="UK">
-			<option value="XXX.XX|0.00|100.00|£|prefix">£0.00 to £100.00</option
+			<option value="XXX.XX|0.00|100.00|£|prefix">£0.00 -> £100.00</option
 		</optgroup>
 		<optgroup label="Euro">
-			<option value="XXX,XXX|100000|200000|€|prefix">€100,000 to €200,000</option
+			<option value="XXX,XXX|100000|200000|€|prefix">€100,000 -> €200,000</option
 		</optgroup>
 	</select>
 END;
@@ -128,18 +128,18 @@ END;
 	public function getOptionsColumnHTML() {
 		$html =<<< END
 <div>
-	Format: <input type="text" id="dtCurrencyFormat_%ROW%" name="dtCurrencyFormat_%ROW%" style="width:160px" />
+	{$this->L["format"]}: <input type="text" id="dtCurrencyFormat_%ROW%" name="dtCurrencyFormat_%ROW%" style="width:160px" />
 </div>
 <div>
-	Range <input type="text" id="dtCurrencyRangeFrom_%ROW%" name="dtCurrencyRangeFrom_%ROW%" style="width:80px" />
-	to <input type="text" id="dtCurrencyRangeTo_%ROW%" name="dtCurrencyRangeTo_%ROW%" style="width:80px" />
+	{$this->L["range"]} <input type="text" id="dtCurrencyRangeFrom_%ROW%" name="dtCurrencyRangeFrom_%ROW%" style="width:80px" />
+	{$this->L["to"]} <input type="text" id="dtCurrencyRangeTo_%ROW%" name="dtCurrencyRangeTo_%ROW%" style="width:80px" />
 </div>
 <div>
-	Currency symbol
+	{$this->L["currency_symbol"]}
 	<input type="text" id="dtCurrencySymbol_%ROW%" name="dtCurrencySymbol_%ROW%" style="width: 20px" />
 	<select id="dtCurrencySymbolLocation_%ROW%" name="dtCurrencySymbolLocation_%ROW%">
-		<option value="prefix">prefix</option>
-		<option value="suffix">suffix</option>
+		<option value="prefix">{$this->L["prefix"]}</option>
+		<option value="suffix">{$this->L["suffix"]}</option>
 	</select>
 </div>
 
@@ -156,8 +156,6 @@ END;
 	}
 
 	public function getHelpHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
-
 		$content =<<<EOF
 	<p>
 		{$this->L["help_intro"]}

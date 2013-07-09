@@ -1,8 +1,10 @@
 /*global $:false,define:false*/
 define([
 	"manager",
-	"constants"
-], function(manager, C) {
+	"constants",
+	"lang",
+	"generator"
+], function(manager, C, L, generator) {
 
 	"use strict";
 
@@ -14,7 +16,8 @@ define([
 	 */
 
 	var MODULE_ID = "data-type-Currency";
-	var LANG = null;
+	var LANG = L.dataTypePlugins.Currency;
+
 
 	var _init = function() {
 		var subscriptions = {};
@@ -69,21 +72,29 @@ define([
 	};
 
 	var _validate = function(rows) {
-		var problemFields      = [];
+		var problemFields = [];
+		var problemFields2 = [];
+		var problemFields3 = [];
 		var invalidFormatRows = [];
+		var invalidFromRange = [];
+		var invalidToRange = [];
 		for (var i=0; i<rows.length; i++) {
 			var format = $("#dtCurrencyFormat_" + rows[i]);
 			var from   = $("#dtCurrencyRangeFrom_" + rows[i]);
 			var to     = $("#dtCurrencyRangeTo_" + rows[i]);
+			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 
 			if ($.trim(format.val()) === "") {
-				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 				invalidFormatRows.push(visibleRowNum);
 				problemFields.push(format);
 			}
-
-			if (from.val().match(/\D\./)) {
-				console.log("please only enter numbers in the range fields (0-9 and decimal point).");
+			if (from.val() === "" || from.val().match(/[^\d\.\-]/)) {
+				invalidFromRange.push(visibleRowNum);
+				problemFields2.push(from);
+			}
+			if (to.val() === "" || to.val().match(/[^\d\.\-]/)) {
+				invalidToRange.push(visibleRowNum);
+				problemFields3.push(to);
 			}
 		}
 
@@ -91,6 +102,13 @@ define([
 		if (invalidFormatRows.length) {
 			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + invalidFormatRows.join(", ") + "</b>"});
 		}
+		if (invalidFromRange.length) {
+			errors.push({ els: problemFields2, error: LANG.invalid_range_fields + " <b>" + invalidFromRange.join(", ") + "</b>"});
+		}
+		if (invalidToRange.length) {
+			errors.push({ els: problemFields3, error: "2" + LANG.invalid_range_fields + " <b>" + invalidToRange.join(", ") + "</b>"});
+		}
+
 		return errors;
 	};
 
