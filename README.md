@@ -35,7 +35,7 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 
 3.0.5 - July 13, 2013
 - Currency Data Type added.
-- Assorted bug fixes.
+- Assorted bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=5&page=1&state=closed
 
 3.0.4 - July 2nd, 2013
 - Italy Export Type, courtesy of [Marcello Verona](https://github.com/marciuz)
@@ -46,11 +46,11 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 
 3.0.2 - June 12, 2013
 - Spanish translation and Country plugin added (thanks, [@robarago](https://github.com/robarago)!)
-- bug fixes, other updates: https://github.com/benkeen/generatedata/issues?milestone=2
+- bug fixes, other updates: https://github.com/benkeen/generatedata/issues?milestone=2&state=closed
 
 3.0.1 - June 1st, 2013
 - MSSQL support added (thanks, [Kent](https://github.com/kchenery)!)
-- Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1
+- Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1&state=closed
 
 3.0.0 - May 21st, 2013
 - Initial release.
