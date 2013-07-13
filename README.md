@@ -33,6 +33,10 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 
 ## Changelog
 
+3.0.5 - July 13, 2013
+- Currency Data Type added.
+- Assorted bug fixes.
+
 3.0.4 - July 2nd, 2013
 - Italy Export Type, courtesy of [Marcello Verona](https://github.com/marciuz)
 - Regional Names Data Type added, data for Italy and France from [Marcello Verona](https://github.com/marciuz)
