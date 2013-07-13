@@ -8,7 +8,17 @@ class Country_Canada extends CountryPlugin {
 	protected $countryName = "Canada";
 	protected $countrySlug = "canada";
 	protected $regionNames = "Provinces";
-	protected $zipFormat = "LXL XLx";
+	protected $zipFormat = array(
+		"format" => "AXC XDX",
+		"replacements" => array(
+			"A" => "ABCEGHJKLMNPRSTVXY",
+			"X" => "123456789",
+			"C" => "ABCEGHJKLMNPRSTVWXYZ",
+			"D" => "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		)
+	);
+	protected $zipFormatAdvanced = true;
+
 	protected $continent = "north_america";
 
 	public function install() {
@@ -67,7 +77,7 @@ class Country_Canada extends CountryPlugin {
 				"regionSlug" => "new_brunswick",
 				"weight" => "2",
 				"cities" => array(
-					'Tracadie-Shelia', 'Shdiac', 'Shippagan', 'Saint-Lonard', 'Saint John', 'Saint Andr', 'Rothesay', 'Rexton',
+					'Tracadie-Shelia', 'Shï¿½diac', 'Shippagan', 'Saint-Lï¿½onard', 'Saint John', 'Saint Andrï¿½', 'Rothesay', 'Rexton',
 					'Quispamsis', 'Oromocto', 'New Maryland', 'Moncton', 'Miramichi', 'Grand Falls', 'Fredericton', 'Edmundston',
 					'Dieppe', 'Clare', 'Carlton'
 				)
@@ -147,19 +157,19 @@ class Country_Canada extends CountryPlugin {
 				"regionSlug" => "quebec",
 				"weight" => "23",
 				"cities" => array(
-					"Amqui", "Cabano", "Dgelis", "La Matapdia", "Price", "Rimouski", "Rivire-du-Loup", "Saint-Eugne-de-Ladrire",
-					"Sainte-Flavie", "Alma", "Chambord", "Chicoutimi", "Jonquire", "La Baie", "Labrecque", "Saguenay", "Saint-Honor",
+					"Amqui", "Cabano", "Dï¿½gelis", "La Matapï¿½dia", "Price", "Rimouski", "Riviï¿½re-du-Loup", "Saint-Eugï¿½ne-de-Ladriï¿½re",
+					"Sainte-Flavie", "Alma", "Chambord", "Chicoutimi", "Jonquiï¿½re", "La Baie", "Labrecque", "Saguenay", "Saint-Honorï¿½",
 					"Saint-Prime", "Shipshaw", "Baie-Saint-Paul", "Beauport", "Cap-Rouge", "Deschambault", "Isle-aux-Coudres", "Lac-Serent",
-					"Malbaie", "Neuville", "Pointe-au-Pic", "Qubec City", "Saint-Hilarion", "Saint-Urbain", "Batiscan",
-					"Cap-de-la-Madeleine", "Champlain", "Hrouxville", "Pointe-du-Lac", "Saint-Georges", "Shawinigan", "Trois-Rivires",
-					"Asbestos", "Richmond", "Sherbrooke", "Valcourt", "Anjou", "Baie-d'Urf", "Beaconsfield", "Côte-Saint-Luc",
+					"Malbaie", "Neuville", "Pointe-au-Pic", "Quï¿½bec City", "Saint-Hilarion", "Saint-Urbain", "Batiscan",
+					"Cap-de-la-Madeleine", "Champlain", "Hï¿½rouxville", "Pointe-du-Lac", "Saint-Georges", "Shawinigan", "Trois-Riviï¿½res",
+					"Asbestos", "Richmond", "Sherbrooke", "Valcourt", "Anjou", "Baie-d'Urfï¿½", "Beaconsfield", "Cï¿½te-Saint-Luc",
 					"Dollard-des-Ormeaux", "Dorval", "Hampstead", "Kirkland", "Lachine", "LaSalle", "Montreal", "Outremont", "Pierrefonds",
-					"Pointe-aux-Trembles", "Pointe-Claire", "Roxboro", "Saint-Laurent", "Saint-Lonard", "Saint-Pierre", "Senneville",
+					"Pointe-aux-Trembles", "Pointe-Claire", "Roxboro", "Saint-Laurent", "Saint-Lï¿½onard", "Saint-Pierre", "Senneville",
 					"Verdun", "Westmount", "Aylmer", "Buckingham", "Cantley", "Chelsea", "Collines-de-l'Outaouais", "Gatineau", "Hull",
 					"Ville de Maniwaki", "Mansfield-et-Pontefract", "Montebello", "Montpellier", "Namur", "Notre-Dame-de-la-Salette",
-					"Shawville", "Thurso", "Dubuisson", "Malartic", "Notre-Dame-du-Nord", "Rouyn-Noranda", "Saint-Eugne-de-Guigues",
-					"Baie-Comeau", "Fermont", "Kawawachikamach", "Matagami", "Caplan", "Carleton", "Gasp", "Gespeg", "Maria",
-					"Murdochville", "Cap-Saint-Ignace", "Charny", "Lvis"
+					"Shawville", "Thurso", "Dubuisson", "Malartic", "Notre-Dame-du-Nord", "Rouyn-Noranda", "Saint-Eugï¿½ne-de-Guigues",
+					"Baie-Comeau", "Fermont", "Kawawachikamach", "Matagami", "Caplan", "Carleton", "Gaspï¿½", "Gespeg", "Maria",
+					"Murdochville", "Cap-Saint-Ignace", "Charny", "Lï¿½vis"
 				)
 			),
 			array(

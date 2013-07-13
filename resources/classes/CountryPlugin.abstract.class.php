@@ -10,6 +10,7 @@ abstract class CountryPlugin {
 	protected $countrySlug;
 	protected $regionNames;
 	protected $zipFormat;
+	protected $zipFormatAdvanced = false;
 	protected $continent;
 
 
@@ -58,4 +59,9 @@ abstract class CountryPlugin {
 	final public function getZipFormat() {
 		return $this->zipFormat;
 	}
+
+	final public function isZipFormatAdvanced() {
+		return $this->zipFormatAdvanced;
+	}
+
 }
