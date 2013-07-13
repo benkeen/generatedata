@@ -9,16 +9,14 @@ class Country_Canada extends CountryPlugin {
 	protected $countrySlug = "canada";
 	protected $regionNames = "Provinces";
 	protected $zipFormat = array(
-		"format" => "AXC XDX",
+		"format" => "AXC XCX",
 		"replacements" => array(
 			"A" => "ABCEGHJKLMNPRSTVXY",
 			"X" => "123456789",
-			"C" => "ABCEGHJKLMNPRSTVWXYZ",
-			"D" => "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+			"C" => "ABCEGHJKLMNPRSTVWXYZ"
 		)
 	);
 	protected $zipFormatAdvanced = true;
-
 	protected $continent = "north_america";
 
 	public function install() {

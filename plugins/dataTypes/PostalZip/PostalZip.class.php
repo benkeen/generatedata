@@ -52,7 +52,7 @@ class DataType_PostalZip extends DataTypePlugin {
 		$randomZip = "";
 		if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
 			$randCountry = $options[rand(0, count($options)-1)];
-			$randomZip = $this->convert($this->zipFormats[$randCountry]);
+			$randomZip = $this->convert($randCountry);
 		} else {
 			// if this country is one of the formats that was selected, generate it in that format -
 			// otherwise just generate a zip in any selected format
@@ -62,10 +62,10 @@ class DataType_PostalZip extends DataTypePlugin {
 				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 			}
 			if (in_array($countrySlug, $options)) {
-				$randomZip = $this->convert($this->zipFormats[$countrySlug]);
+				$randomZip = $this->convert($countrySlug);
 			} else {
 				$randCountry = $options[rand(0, count($options)-1)];
-				$randomZip = $this->convert($this->zipFormats[$randCountry]);
+				$randomZip = $this->convert($randCountry);
 			}
 		}
 		return array(
@@ -114,22 +114,47 @@ EOF;
 		foreach ($countryPlugins as $countryInfo) {
 			$countrySlug = $countryInfo->getSlug();
 			$zipFormat   = $countryInfo->getZipFormat();
-			$formats[$countrySlug] = $zipFormat;
+			$zipFormatAdvanced = $countryInfo->isZipFormatAdvanced();
+			$formats[$countrySlug] = array(
+				"format"    => $zipFormat,
+				"isAdvanced"=> $zipFormatAdvanced
+			);
 		}
 
 		$this->zipFormats = $formats;
 	}
 
 
-	private function convert($str) {
-		$formats = explode("|", $str);
-		if (count($formats) == 1) {
-			$format = $formats[0];
+	private function convert($randCountry) {
+		$zipInfo = $this->zipFormats[$randCountry];
+
+		$result = "";
+		if ($zipInfo["isAdvanced"]) {
+			$customFormat = $zipInfo["format"]["format"];
+			$replacements = $zipInfo["format"]["replacements"];
+
+			// now iterate over $customFormat and do whatever replacements have been specified
+			for ($i=0; $i<strlen($customFormat); $i++) {
+				if (array_key_exists($customFormat[$i], $replacements)) {
+					$replacementKey = $replacements[$customFormat[$i]];
+					$randChar = $replacementKey[rand(0, strlen($replacementKey)-1)];
+					$result .= $randChar;
+				} else {
+					$result .= $customFormat[$i];
+				}
+			}
+
 		} else {
-			$format = $formats[rand(0, count($formats)-1)];
+			$formats = explode("|", $zipInfo["format"]);
+			if (count($formats) == 1) {
+				$format = $formats[0];
+			} else {
+				$format = $formats[rand(0, count($formats)-1)];
+			}
+			$result = Utils::generateRandomAlphanumericStr($format);
 		}
 
-		return Utils::generateRandomAlphanumericStr($format);
+		return $result;
 	}
 
 
