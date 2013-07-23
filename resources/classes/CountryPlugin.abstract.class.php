@@ -6,13 +6,13 @@
  * @abstract
  */
 abstract class CountryPlugin {
+	protected $continent;
 	protected $countryName;
 	protected $countrySlug;
 	protected $regionNames;
 	protected $zipFormat;
 	protected $zipFormatAdvanced = false;
-	protected $continent;
-
+	protected $zipFormatRegional = false;
 
 	/**
 	 * The installation function. This should populate the countries, regions and cities tables
@@ -31,14 +31,16 @@ abstract class CountryPlugin {
 		$prefix = Core::getDbTablePrefix();
 		$countrySlug = $this->countrySlug;
 		$queries = array();
-		$queries[] = "DELETE FROM {$prefix}countries WHERE country_slug = '$countrySlug'";
-		$queries[] = "DELETE FROM {$prefix}regions WHERE country_slug = '$countrySlug'";
-		$queries[] = "DELETE FROM {$prefix}cities WHERE country_slug = '$countrySlug'";
+		$queries[] = "DELETE FROM {$prefix}cities    WHERE country_slug = '{$countrySlug}'";
+		$queries[] = "DELETE FROM {$prefix}regions   WHERE country_slug = '{$countrySlug}'";
+		$queries[] = "DELETE FROM {$prefix}countries WHERE country_slug = '{$countrySlug}'";
 		Core::$db->query($queries);
 	}
 
-
 	// Non-overridable helper functions
+	final public function getContinent() {
+		return $this->continent;
+	}
 
 	final public function getName() {
         return $this->countryName;
@@ -52,10 +54,6 @@ abstract class CountryPlugin {
 		return $this->regionNames;
 	}
 
-	final public function getContinent() {
-		return $this->continent;
-	}
-
 	final public function getZipFormat() {
 		return $this->zipFormat;
 	}
@@ -64,4 +62,7 @@ abstract class CountryPlugin {
 		return $this->zipFormatAdvanced;
 	}
 
+	final public function isZipFormatRegional() {
+		return $this->zipFormatRegional;
+	}
 }
