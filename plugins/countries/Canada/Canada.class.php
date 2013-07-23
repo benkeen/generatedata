@@ -5,19 +5,141 @@
  */
 
 class Country_Canada extends CountryPlugin {
+	protected $continent   = "north_america";
 	protected $countryName = "Canada";
-	protected $countrySlug = "canada";
+	protected $countrySlug = "CA";
 	protected $regionNames = "Provinces";
-	protected $zipFormat = array(
-		"format" => "AXC XCX",
-		"replacements" => array(
-			"A" => "ABCEGHJKLMNPRSTVXY",
-			"X" => "123456789",
-			"C" => "ABCEGHJKLMNPRSTVWXYZ"
-		)
-	);
 	protected $zipFormatAdvanced = true;
-	protected $continent = "north_america";
+	protected $zipFormatRegional = true;
+	
+	protected $zipFormat = array(
+		array(
+			"area"   => "CA-CA",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "ABCEGHJKLMNPRSTVXY",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-AB",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "T",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-BC",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "V",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-MB",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "R",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-NB",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "E",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-NL",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "A",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-NS",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "B",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-NT",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "X",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-NU",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "X",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-ON",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "KLMNP",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-PE",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "C",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-QC",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "GHJ",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-SK",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "S",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+		array(
+			"area"   => "CA-YK",
+			"format" => "ZxY xCx",
+			"replacements" => array(
+				"Z" => "Y",
+				"x" => "0123456789",
+				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+	);
 
 	public function install() {
 		$data = array(
