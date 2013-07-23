@@ -5,12 +5,69 @@
  */
 
 class Country_US extends CountryPlugin {
+	protected $continent   = "north_america";
 	protected $countryName = "United States";
-	protected $countrySlug = "united_states";
+	protected $countrySlug = "US";
 	protected $regionNames = "US States";
-	protected $zipFormat = "xxxxx";
-	protected $continent = "north_america";
-
+	protected $zipFormatAdvanced = true;
+	protected $zipFormatRegional = true;
+	
+	protected $zipFormat = array(
+		array(
+			"area" => "US-US",
+			"format" => "Xxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789"
+			)
+		),
+		array(
+			"area" => "US-AL",
+			"format" => "ZYxxx",
+			"replacements" => array(
+				"Z" => "3",
+				"Y" => "56",
+				"x" => "0123456789"
+			)
+		),
+		array(
+			"area" => "US-AK",
+			"format" => "ZZYxx",
+			"replacements" => array(
+				"Z" => "9",
+				"Y" => "56789",
+				"x" => "0123456789"
+			)
+		),
+		array(
+			"area" => "US-AZ",
+			"format" => "ZYxxx",
+			"replacements" => array(
+				"Z" => "8",
+				"Y" => "56",
+				"x" => "0123456789"
+			)
+		),
+		array(
+			"area" => "US-AR",
+			"format" => "ZYxxx",
+			"replacements" => array(
+				"Z" => "7",
+				"Y" => "12",
+				"x" => "0123456789"
+			)
+		),
+		array(
+			"area" => "US-CA",
+			"format" => "ZYxxx",
+			"replacements" => array(
+				"Z" => "9",
+				"Y" => "0123456",
+				"x" => "0123456789"
+			)
+		)
+	);
+	
 	public function install() {
 		$data = array(
 			array(
@@ -42,7 +99,7 @@ class Country_US extends CountryPlugin {
 			),
 			array(
 				"regionName" => 'Arkansas',
-				"regionShort" => 'AK',
+				"regionShort" => 'AR',
 				"regionSlug" => 'arkansas',
 				"weight" => 2,
 				"cities" => array(
