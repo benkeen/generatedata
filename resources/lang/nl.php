@@ -37,6 +37,7 @@ $L["asia"] = "Azië";
 $L["back"] = "Terug";
 $L["blog"] = "Blog";
 $L["cancel"] = "annuleren";
+$L["central_america"] = "Centraal-Amerika";
 $L["check_database_info"] = "Check Database Info";
 $L["clear_the_page"] = "Moet u de pagina";
 $L["close"] = "Sluiten";
