@@ -32,15 +32,15 @@ class Country_CostaRica extends CountryPlugin {
 				"Alajuela", "Quesada", "San José de Alajuela", "San Rafael"
 			),
 			"zipFormat" => array(
-				"format" => "ZzxYx",
+				"format" => "2zxYx",
 				"replacements" => array(
-					"Z" => "2",
 					"z" => "01",
 					"Y" => "01",
 					"x" => "0123456789"
 				)
 			)
-		),
+		)
+		/*
 		array(
 			"regionName" => "Cartago",
 			"regionShort" => "C",
@@ -50,10 +50,8 @@ class Country_CostaRica extends CountryPlugin {
 				"Aguacaliente (San Francisco)", "Carmen", "Cartago", "Paraíso", "San Diego", "San Nicolás", "San Rafael", "Tejar", "Turrialba"
 			),
 			"zipFormat" => array(
-				"format" => "ZzxYx",
+				"format" => "30xYx",
 				"replacements" => array(
-					"Z" => "3",
-					"z" => "0",
 					"Y" => "01",
 					"x" => "0123456789"
 				)
@@ -68,9 +66,8 @@ class Country_CostaRica extends CountryPlugin {
 				"Cañas", "Liberia", "Nicoya"
 			),
 			"zipFormat" => array(
-				"format" => "ZzxYx",
+				"format" => "5zxYx",
 				"replacements" => array(
-					"Z" => "5",
 					"z" => "01",
 					"Y" => "01",
 					"x" => "0123456789"
@@ -86,9 +83,8 @@ class Country_CostaRica extends CountryPlugin {
 				"Heredia", "Mercedes", "San Francisco", "San Pablo", "Ulloa (Barrial)"
 			),
 			"zipFormat" => array(
-				"format" => "ZzxYx",
+				"format" => "4zxYx",
 				"replacements" => array(
-					"Z" => "4",
 					"z" => "01",
 					"Y" => "01",
 					"x" => "0123456789"
@@ -104,10 +100,8 @@ class Country_CostaRica extends CountryPlugin {
 				"Guápiles", "Limón (Puerto Limón)", "Siquirres"
 			),
 			"zipFormat" => array(
-				"format" => "ZzyYx",
+				"format" => "50yYx",
 				"replacements" => array(
-					"Z" => "5",
-					"z" => "0",
 					"y" => "12",
 					"Y" => "01",
 					"x" => "0123456789"
@@ -142,15 +136,15 @@ class Country_CostaRica extends CountryPlugin {
 				"San Juan (San Juan de Tibás)", "San Juan de Dios", "San Miguel", "San Pedro", "San Rafael", "San Rafael Abajo", "San Vicente", "Tirrases"
 			),
 			array(
-				"format" => "ZzxYx",
+				"format" => "1zxYx",
 				"replacements" => array(
-					"Z" => "1",
 					"z" => "012",
 					"Y" => "01",
 					"x" => "0123456789"
 				)
 			)
 		)
+		*/
 	);
 
 

@@ -72,6 +72,23 @@ abstract class CountryPlugin {
 		return $this->zipFormatAdvanced;
 	}
 
+	/**
+	 * Country plugins can choose to be as specific as they want to be with regard to the zip format. They can enter:
+	 *   (1) a single one for all data ($zipFormat is a string with placeholder chars defined by Utils::generateRandomAlphanumericStr())
+	 *   (2) a single one for all data, but with more control over the exact format of the zipcode ($zipFormatAdvanced == true"),
+	 *   (3) provide region-specific postal/zip info directly in the $countryData.
+	 * This function returns any data added in #3.
+	 */
+	final public function getCountryRegionSpecificPostalCodeFormats() {
+		$regionSpecificData = array();
+		foreach ($this->countryData as $regionInfo) {
+			if (array_key_exists("zipFormat", $regionInfo)) {
+				$regionSpecificData[$regionInfo["regionShort"]] = $regionInfo["zipFormat"];
+			}
+		}
+		return $regionSpecificData;
+	}
+
 	final public function getPhoneFormat() {
 		return $this->phoneFormat;
 	}
@@ -80,13 +97,22 @@ abstract class CountryPlugin {
 		return $this->phoneFormatAdvanced;
 	}
 
-	/*
-		final public function isZipFormatRegional() {
-			return $this->zipFormatRegional;
+	/**
+	 * Like with zipcode, Country plugins can choose to be as specific as they want to be with regard to the phone format.
+	 * They can enter:
+	 *   (1) a single one for all data ($phoneFormat is a string with placeholder chars defined by Utils::generateRandomAlphanumericStr())
+	 *   (2) a single one for all data, but with more control over the exact format of the phone number ($phoneFormatAdvanced == true),
+	 *   (3) provide region-specific phone number info directly in $countryData.
+	 * This function returns any data added in #3.
+	 */
+	final public function getCountryRegionSpecificPhoneFormats() {
+		$regionSpecificData = array();
+		foreach ($this->countryData as $regionInfo) {
+			if (array_key_exists("phoneFormat", $regionInfo)) {
+				$regionSpecificData[$regionInfo["regionShort"]] = $regionInfo["phoneFormat"];
+			}
 		}
+		return $regionSpecificData;
+	}
 
-		final public function isPhoneFormatRegional() {
-			return $this->phoneFormatRegional;
-		}
-	*/
 }

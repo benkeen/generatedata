@@ -189,7 +189,6 @@ END;
 
 			$formats[$countryInfo->getSlug()] = array(
 				"format"    => $countryInfo->getPhoneFormat(),
-				"isRegional"=> $countryInfo->isPhoneFormatRegional(),
 				"isAdvanced"=> $countryInfo->isPhoneFormatAdvanced()
 			);
 
