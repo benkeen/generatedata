@@ -73,6 +73,10 @@ class Core {
 
 	public static $dataTypePlugins;
 	public static $exportTypePlugins;
+
+	/**
+	 * @var CountryPlugin
+	 */
 	public static $countryPlugins;
 	public static $allowThemes = false;
 

@@ -83,7 +83,7 @@ abstract class CountryPlugin {
 		$regionSpecificData = array();
 		foreach ($this->countryData as $regionInfo) {
 			if (array_key_exists("zipFormat", $regionInfo)) {
-				$regionSpecificData[$regionInfo["regionShort"]] = $regionInfo["zipFormat"];
+				$regionSpecificData[$regionInfo["regionSlug"]] = $regionInfo["zipFormat"];
 			}
 		}
 		return $regionSpecificData;

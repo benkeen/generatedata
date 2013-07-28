@@ -121,6 +121,7 @@ class HTML extends ExportTypePlugin {
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<style type="text/css">
 	body { margin: 10px; }
 	table, th, td, li, dl { font-family: "lucida grande", arial; font-size: 8pt; }
@@ -247,6 +248,7 @@ END;
 <html>
 <head>
 	<title></title>
+	<meta charset="utf-8">
 	<style type="text/css">
 	body { margin: 10px; }
 	table, th, td, li, dl { font-family: "lucida grande", arial; font-size: 8pt; }

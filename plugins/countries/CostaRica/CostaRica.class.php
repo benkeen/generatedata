@@ -39,8 +39,7 @@ class Country_CostaRica extends CountryPlugin {
 					"x" => "0123456789"
 				)
 			)
-		)
-		/*
+		),
 		array(
 			"regionName" => "Cartago",
 			"regionShort" => "C",
@@ -144,7 +143,6 @@ class Country_CostaRica extends CountryPlugin {
 				)
 			)
 		)
-		*/
 	);
 
 
