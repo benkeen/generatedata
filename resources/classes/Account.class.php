@@ -187,7 +187,6 @@ class Account {
 	public function getAccount() {
 		return array(
 			"isAnonymousAdmin" => $this->isAnonymousAdmin,
-			"isAnonymousAdmin" => $this->isAnonymousAdmin,
 			"accountID"        => $this->accountID,
 			"accountType"      => $this->accountType,
 			"dateCreated"      => $this->dateCreated,
