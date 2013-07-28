@@ -109,10 +109,9 @@ abstract class CountryPlugin {
 		$regionSpecificData = array();
 		foreach ($this->countryData as $regionInfo) {
 			if (array_key_exists("phoneFormat", $regionInfo)) {
-				$regionSpecificData[$regionInfo["regionShort"]] = $regionInfo["phoneFormat"];
+				$regionSpecificData[$regionInfo["regionSlug"]] = $regionInfo["phoneFormat"];
 			}
 		}
 		return $regionSpecificData;
 	}
-
 }

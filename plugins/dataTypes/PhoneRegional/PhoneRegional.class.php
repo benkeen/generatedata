@@ -5,21 +5,18 @@
  */
 
 class DataType_PhoneRegional extends DataTypePlugin {
-
 	protected $isEnabled = true;
 	protected $dataTypeName = "Phone / Fax, Regional";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 25;
 	protected $jsModules = array("PhoneRegional.js");
-	protected $processOrder = 25;
+	protected $processOrder = 3;
 	private   $phoneFormats;
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 
-		// IF we're in the process of generating data THEN
-		//    Get all the initialize the private variable with the formats
-		//       of the selected country/region or all IF none are specified.
+		// initialize the phone number formats needed for this Data Type
 		if ($runtimeContext == "generation") {
 			self::initPhoneFormats();
 		}
@@ -27,60 +24,62 @@ class DataType_PhoneRegional extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
-		
+
+		// track the country info (this finds the FIRST country field listed)
 		$rowCountryInfo = array();
+		while (list($key, $info) = each($generationContextData["existingRowData"])) {
+			if ($info["dataTypeFolder"] == "Country") {
+				$rowCountryInfo = $info;
+				break;
+			}
+		}
+
+		// if there was no country, see if there's a region
+		$rowRegionInfo = array();
+		if (empty($rowCountryInfo)) {
+			reset($generationContextData["existingRowData"]);
+			while (list($key, $info) = each($generationContextData["existingRowData"])) {
+				if ($info["dataTypeFolder"] == "Region") {
+					$rowRegionInfo = $info;
+					break;
+				}
+			}
+		}
+
+
+		//
 		$countryCode    = '';
 		$rowRegionInfo  = '';
 		$regionCode     = '';
-		foreach( $generationContextData["existingRowData"] as $info) {
-			switch( $info["dataTypeFolder"] ) {
 
-				case "Country":
-					$rowCountryInfo = $info;
-					$countrySlug    = $rowCountryInfo["randomData"]["slug"];
-					break;
 
-				case "Region":
-					$rowRegionInfo = $info;
-					$regionCode    = $info["randomData"]["region_short"];
-					break;
-			}
-		}
-		
 		$randomPhone = "";
 
-		// IF there is no country AND no region, THEN
-		//    get a random country and generate a random zip/postal code in that format.
-		if (empty($rowCountryInfo) && empty($rowRegionInfo))
-		{
-			$phoneStr = Utils::generateRandomAlphanumericStr($generationContextData["generationOptions"]);
-			$formats = explode("|", $phoneStr);
+		// if the row contained neither a country nor a region, pick a random country and generate a
+		if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
+
 			$randomPhone = $formats[0];
 			if (count($formats) > 1) {
 				$randomPhone = $formats[rand(0, count($formats)-1)];
 			}
-		}
-		else 
-		{
+		} else  {
 			// if this country is one of the formats that was selected, generate it in that format -
 			// otherwise just generate a zip in any selected format
 			if (empty($rowCountryInfo)) {
 				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 			}
 							
-			if (in_array($countrySlug, $options))
-			{
+			if (in_array($countrySlug, $options)) {
 				//$randomPhone = $this->convert($countrySlug, $regionCode);
 				$randomPhone  = "02";
-			}
-			else
-			{
+			} else {
 				//$randCountry = $options[rand(0, count($options)-1)];
 				// Get the country code
 				$randomPhone = $this->convert( $countrySlug, $regionCode );
 			}
 		}
-		
+
+
 		if( '' == $randomPhone )
 		{
 			$phoneStr = Utils::generateRandomAlphanumericStr($generationContextData["generationOptions"]);		
@@ -131,43 +130,12 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		return $post["dtOption_$colNum"];
 	}
 
-	public function getExampleColumnHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
-
-		$html =<<<EOF
-	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
-		<option value="">{$L["please_select"]}</option>
-		<option value="1-Xxx-Xxx-xxxx">{$this->L["example_1"]}</option>
-		<option value="(Xxx) Xxx-xxxx">{$this->L["example_2"]}</option>
-		<option value="1 Xx Xxx Xxxx-xxxx">{$this->L["uk"]}</option>
-		<option value="0X xx xx xx xx">{$this->L["france"]}</option>
-		<option value="(0X) xxxx xxxx">{$this->L["australia"]}</option>
-		<option value="(0xx) xxxxxxxx|(0xxx) xxxxxxxx|(0xxxx) xxxxxxx|(03xxxx) xxxxxx">{$this->L["germany"]}</option>
-		<option value="0xx-xxx-xxxx">{$this->L["japan"]}</option>
-		<option value="1-Xxx-Xxx-xxxx|Xxx-xxxx">{$this->L["different_formats"]}</option>
-	</select>
-EOF;
-		return $html;
-	}
-
-	public function getOptionsColumnHTML() {
-		$html = '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
-		return $html;
-	}
-
 	public function getHelpHTML() {
 		$html =<<<END
 	<p>
 		{$this->L["help_text1"]}
 	</p>
-	<p>
-		{$this->L["help_text2"]}
-	</p>
-	<p>
-		{$this->L["help_text3"]}
-	</p>
 END;
-
 	    return $html;
 	}
 
@@ -179,22 +147,20 @@ END;
 		);
 	}
 
-	// Added by Andre from PostalZip class.
-	private function initPhoneFormats() 
-	{
+	// added by Andre from PostalZip class
+	private function initPhoneFormats() {
 		$countryPlugins = Core::$countryPlugins;
 		$formats = array();
-		foreach ( $countryPlugins as $countryInfo )
-		{
-
+		foreach ($countryPlugins as $countryInfo) {
 			$formats[$countryInfo->getSlug()] = array(
-				"format"    => $countryInfo->getPhoneFormat(),
-				"isAdvanced"=> $countryInfo->isPhoneFormatAdvanced()
+				"format"     => $countryInfo->getPhoneFormat(),
+				"isAdvanced" => $countryInfo->isPhoneFormatAdvanced(),
+				"regionSpecificFormat" => $countryInfo->getCountryRegionSpecificPhoneFormats()
 			);
-
 		}
 		$this->phoneFormats = $formats;
 	}
+
 
 	private function convert($countrySlug, $regionShort = '') 
 	{
@@ -272,7 +238,7 @@ END;
 							// Do nothing.
 					}
 				}
-				
+
 				// now iterate over $customFormat and do whatever replacements have been specified
 				for ($i=0; $i<strlen($customFormat); $i++) {
 					if (array_key_exists($customFormat[$i], $replacements)) {

@@ -34,11 +34,7 @@ class Country_Canada extends CountryPlugin {
 	protected $phoneFormat = array(
 		"areaCodes" => array(587, 603, 780, 205, 604, 778, 204, 431, 506, 709, 902, 867, 416, 647, 437, 519, 226, 613,
 			343, 705, 249, 807, 905, 289, 365, 902, 418, 581, 450, 579, 514, 438, 819, 873, 306),
-		"format" => "Xxxxxxx",
-		"replacements" => array(
-			"X" => "123456789",
-			"x" => "0123456789"
-		)
+		"defaultFormat" => "(A) Xxx-xxxx"
 	);
 
 	// our country-wide data, with info separated into regions
