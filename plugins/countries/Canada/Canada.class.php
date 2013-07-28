@@ -9,8 +9,11 @@ class Country_Canada extends CountryPlugin {
 	protected $countryName = "Canada";
 	protected $countrySlug = "CA";
 	protected $regionNames = "Provinces";
-	protected $zipFormatAdvanced = true;
-	protected $zipFormatRegional = true;
+	protected $zipFormatAdvanced   = true;
+	protected $zipFormatRegional   = true;
+	protected $phoneFormatAdvanced = true;
+	protected $phoneFormatRegional = true;
+	protected $phoneCountryCode    = '1';
 	
 	protected $zipFormat = array(
 		array(
@@ -137,6 +140,137 @@ class Country_Canada extends CountryPlugin {
 				"Z" => "Y",
 				"x" => "0123456789",
 				"Y" => "ABCEGHJKLMNPRSTVWXYZ"
+			)
+		),
+	);
+
+	protected $phoneFormat = array(
+		array(
+			"area"   => "CA-CA",
+			"npa"    => array( '587', '603', '780', '205', '604', '778', '204', '431', '506', '709', '902', '867', 
+				'416','647','437','519','226','613','343','705','249','807','905','289','365', '902',
+				'418', '581', '450', '579', '514', '438', '819', '873', '306' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-AB",
+			"npa"    => array( '587', '603', '780' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-BC",
+			"npa"    => array( '205', '604', '778' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-MB",
+			"npa"    => array( '204', '431' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-NB",
+			"npa"    => array( '506' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-NL",
+			"npa"    => array( '709' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-NS",
+			"npa"    => array( '902' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-NT",
+			"npa"    => array( '867' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-NU",
+			"npa"    => array( '867' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-ON",
+			"npa"    => array( '416','647','437','519','226','613','343','705','249','807','905','289','365' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-PE",
+			"npa"    => array( '902' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-QC",
+			"npa"    => array( '418', '581', '450', '579', '514', '438', '819', '873' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-SK",
+			"npa"    => array( '306' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+			)
+		),
+		array(
+			"area"   => "CA-YK",
+			"npa"    => array( '867' ),
+			"format" => "Xxxxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
 			)
 		),
 	);
