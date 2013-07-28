@@ -10,17 +10,15 @@ abstract class CountryPlugin {
 	protected $countryName;
 	protected $countrySlug;
 	protected $regionNames;
-	
-	// Used for PostalZip plugin.
-	protected $zipFormat;
-	protected $zipFormatAdvanced   = false;
-	protected $zipFormatRegional   = false;
+	protected $countryData;
 
-	// Used for PhoneRegional plugin.
+	// used for PostalZip plugin
+	protected $zipFormat;
+	protected $zipFormatAdvanced = false;
+
+	// used for PhoneRegional plugin
 	protected $phoneFormat;
 	protected $phoneFormatAdvanced = false;
-	protected $phoneFormatRegional = false;
-	protected $phoneCountryCode    = '';
 
 	/**
 	 * The installation function. This should populate the countries, regions and cities tables
@@ -45,7 +43,7 @@ abstract class CountryPlugin {
 		Core::$db->query($queries);
 	}
 
-	// Non-overridable helper functions
+	// non-overridable helper functions
 	final public function getContinent() {
 		return $this->continent;
 	}
@@ -56,6 +54,10 @@ abstract class CountryPlugin {
 
 	final public function getSlug() {
 		return $this->countrySlug;
+	}
+
+	final public function getCountryData() {
+		return $this->countryData;
 	}
 
 	final public function getRegionNames() {
@@ -70,10 +72,6 @@ abstract class CountryPlugin {
 		return $this->zipFormatAdvanced;
 	}
 
-	final public function isZipFormatRegional() {
-		return $this->zipFormatRegional;
-	}
-
 	final public function getPhoneFormat() {
 		return $this->phoneFormat;
 	}
@@ -82,7 +80,13 @@ abstract class CountryPlugin {
 		return $this->phoneFormatAdvanced;
 	}
 
-	final public function isPhoneFormatRegional() {
-		return $this->phoneFormatRegional;
-	}	
+	/*
+		final public function isZipFormatRegional() {
+			return $this->zipFormatRegional;
+		}
+
+		final public function isPhoneFormatRegional() {
+			return $this->phoneFormatRegional;
+		}
+	*/
 }

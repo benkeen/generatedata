@@ -6,33 +6,26 @@
 
 class DataType_PhoneRegional extends DataTypePlugin {
 
-  protected $isEnabled = true;
+	protected $isEnabled = true;
 	protected $dataTypeName = "Phone / Fax, Regional";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 25;
 	protected $jsModules = array("PhoneRegional.js");
 	protected $processOrder = 25;
 	private   $phoneFormats;
-	
+
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 
 		// IF we're in the process of generating data THEN
-		//    Get all the initialize the private variable with the formats 
+		//    Get all the initialize the private variable with the formats
 		//       of the selected country/region or all IF none are specified.
 		if ($runtimeContext == "generation") {
 			self::initPhoneFormats();
 		}
-		$fh = fopen( $myFile, 'w' );
 	}
 
-	public function __destroy()
-	{
-		 fclose( $fh );
-	}
-	
 	public function generate($generator, $generationContextData) {
-	
 		$options = $generationContextData["generationOptions"];
 		
 		$rowCountryInfo = array();
@@ -55,6 +48,7 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		}
 		
 		$randomPhone = "";
+
 		// IF there is no country AND no region, THEN
 		//    get a random country and generate a random zip/postal code in that format.
 		if (empty($rowCountryInfo) && empty($rowRegionInfo))

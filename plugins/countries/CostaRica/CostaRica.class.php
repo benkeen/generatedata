@@ -7,7 +7,7 @@
  */
 
 class Country_CostaRica extends CountryPlugin {
-  protected $continent   = "central_america";
+	protected $continent   = "central_america";
 	protected $countryName = "Costa Rica";
 	protected $countrySlug = "CR";
 	protected $regionNames = "Provinces";
@@ -26,52 +26,52 @@ class Country_CostaRica extends CountryPlugin {
 		),
 		array(
 			"area"   => "CR-A",
-  		"format" => "ZzxYx",
+			"format" => "ZzxYx",
 			"replacements" => array(
 				"Z" => "2",
-  			"z" => "01",
-  			"Y" => "01",
+				"z" => "01",
+				"Y" => "01",
 				"x" => "0123456789"
 			)
 		),
 		array(
 			"area"   => "CR-C",
-    	"format" => "ZzxYx",
+			"format" => "ZzxYx",
 			"replacements" => array(
 				"Z" => "3",
-  			"z" => "0",
-  			"Y" => "01",
+				"z" => "0",
+				"Y" => "01",
 				"x" => "0123456789"
 			)
 		),
 		array(
 			"area"   => "CR-G",
-    	"format" => "ZzxYx",
+			"format" => "ZzxYx",
 			"replacements" => array(
 				"Z" => "5",
-  			"z" => "01",
-  			"Y" => "01",
+				"z" => "01",
+				"Y" => "01",
 				"x" => "0123456789"
 			)
 		),
 		array(
 			"area"   => "CR-H",
-    	"format" => "ZzxYx",
+			"format" => "ZzxYx",
 			"replacements" => array(
 				"Z" => "4",
-  			"z" => "01",
-  			"Y" => "01",
+				"z" => "01",
+				"Y" => "01",
 				"x" => "0123456789"
 			)
 		),
 		array(
 			"area"   => "CR-L",
-    	"format" => "ZzyYx",
+			"format" => "ZzyYx",
 			"replacements" => array(
 				"Z" => "5",
-  			"z" => "0",
-    		"y" => "12",
-  			"Y" => "01",
+				"z" => "0",
+				"y" => "12",
+				"Y" => "01",
 				"x" => "0123456789"
 			)
 		),
@@ -89,8 +89,8 @@ class Country_CostaRica extends CountryPlugin {
 			"format" => "ZzxYx",
 			"replacements" => array(
 				"Z" => "1",
-  			"z" => "012",
-  			"Y" => "01",
+				"z" => "012",
+				"Y" => "01",
 				"x" => "0123456789"
 			)
 		)
