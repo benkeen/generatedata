@@ -126,13 +126,40 @@ EOF;
 		$countryPlugins = Core::$countryPlugins;
 		$formats = array();
 		foreach ($countryPlugins as $countryInfo) {
-			$formats[$countryInfo->getSlug()] = array(
-				"format"     => $countryInfo->getZipFormat(),
-				"isAdvanced" => $countryInfo->isZipFormatAdvanced(),
-				"regionSpecificFormat" => $countryInfo->getCountryRegionSpecificPostalCodeFormats()
+			$extendedData = $countryInfo->getExtendedData();
+
+			if (!isset($extendedData["zipFormat"])) {
+				continue;
+			}
+
+			$format = "";
+			$isAdvanced = false;
+			if (is_string($extendedData["zipFormat"])) {
+				$format = $extendedData["zipFormat"];
+			} else if (array_key_exists("format", $extendedData["zipFormat"]) && is_string($extendedData["zipFormat"]["format"])) {
+				$format = $extendedData["zipFormat"]["format"];
+				$isAdvanced = true;
+			}
+
+			if (empty($format)) {
+				continue;
+			}
+
+			$returnInfo = array(
+				"format"     => $format,
+				"isAdvanced" => $isAdvanced,
+				"regionSpecificFormat" => array()
 			);
+			if ($isAdvanced) {
+				$returnInfo["regionSpecificFormat"] = $countryInfo->getRegionalExtendedData("zipFormat");
+			}
+
+			$formats[$countryInfo->getSlug()] = $returnInfo;
 		}
 		$this->zipFormats = $formats;
+
+		print_r($zipFormats);
+		exit;
 	}
 
 
@@ -142,7 +169,7 @@ EOF;
 		$result = "";
 		if ($zipInfo["isAdvanced"]) {
 
-			// if the country plugin defined a custom zip format for this region, use that
+			// if the country plugin defined a custom zip format for this region, use it
 			if (!empty($regionShort) && !empty($zipInfo["regionSpecificFormat"]) && array_key_exists($regionShort, $zipInfo["regionSpecificFormat"])) {
 				$customFormat = isset($zipInfo["regionSpecificFormat"][$regionShort]["format"]) ? $zipInfo["regionSpecificFormat"][$regionShort]["format"]: "";
 				$replacements = isset($zipInfo["regionSpecificFormat"][$regionShort]["replacements"]) ? $zipInfo["regionSpecificFormat"][$regionShort]["replacements"] : "";

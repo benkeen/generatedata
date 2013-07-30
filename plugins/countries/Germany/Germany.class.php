@@ -8,8 +8,11 @@ class Country_Germany extends CountryPlugin {
 	protected $countryName = "Germany";
 	protected $countrySlug = "germany";
 	protected $regionNames = "German States";
-	protected $zipFormat = "xxxxx";
 	protected $continent = "europe";
+
+	protected $extendedData = array(
+		"zipFormat" => "xxxxx"
+	);
 
 	protected $countryData = array(
 		array(

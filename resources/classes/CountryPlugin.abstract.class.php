@@ -12,13 +12,11 @@ abstract class CountryPlugin {
 	protected $regionNames;
 	protected $countryData;
 
-	// used for PostalZip plugin
-	protected $zipFormat;
-	protected $zipFormatAdvanced = false;
+	// this may be optionally defined and extended as need be. It contains whatever custom information
+	// Data Types need and can be appended to in the individual Country classes over time without further
+	// modification of the abstract class
+	protected $extendedData;
 
-	// used for PhoneRegional plugin
-	protected $phoneFormat;
-	protected $phoneFormatAdvanced = false;
 
 	/**
 	 * The installation function. This should populate the countries, regions and cities tables
@@ -64,52 +62,20 @@ abstract class CountryPlugin {
 		return $this->regionNames;
 	}
 
-	final public function getZipFormat() {
-		return $this->zipFormat;
-	}
-
-	final public function isZipFormatAdvanced() {
-		return $this->zipFormatAdvanced;
+	final public function getExtendedData() {
+		return $this->extendedData;
 	}
 
 	/**
-	 * Country plugins can choose to be as specific as they want to be with regard to the zip format. They can enter:
-	 *   (1) a single one for all data ($zipFormat is a string with placeholder chars defined by Utils::generateRandomAlphanumericStr())
-	 *   (2) a single one for all data, but with more control over the exact format of the zipcode ($zipFormatAdvanced == true"),
-	 *   (3) provide region-specific postal/zip info directly in the $countryData.
-	 * This function returns any data added in #3.
+	 * A generalized function for returning any custom data defined in the region's extendedData section.
+	 * @param $key contains the top-level key
+	 * @return array
 	 */
-	final public function getCountryRegionSpecificPostalCodeFormats() {
+	final public function getRegionalExtendedData($key) {
 		$regionSpecificData = array();
 		foreach ($this->countryData as $regionInfo) {
-			if (array_key_exists("zipFormat", $regionInfo)) {
-				$regionSpecificData[$regionInfo["regionSlug"]] = $regionInfo["zipFormat"];
-			}
-		}
-		return $regionSpecificData;
-	}
-
-	final public function getPhoneFormat() {
-		return $this->phoneFormat;
-	}
-
-	final public function isPhoneFormatAdvanced() {
-		return $this->phoneFormatAdvanced;
-	}
-
-	/**
-	 * Like with zipcode, Country plugins can choose to be as specific as they want to be with regard to the phone format.
-	 * They can enter:
-	 *   (1) a single one for all data ($phoneFormat is a string with placeholder chars defined by Utils::generateRandomAlphanumericStr())
-	 *   (2) a single one for all data, but with more control over the exact format of the phone number ($phoneFormatAdvanced == true),
-	 *   (3) provide region-specific phone number info directly in $countryData.
-	 * This function returns any data added in #3.
-	 */
-	final public function getCountryRegionSpecificPhoneFormats() {
-		$regionSpecificData = array();
-		foreach ($this->countryData as $regionInfo) {
-			if (array_key_exists("phoneFormat", $regionInfo)) {
-				$regionSpecificData[$regionInfo["regionSlug"]] = $regionInfo["phoneFormat"];
+			if (array_key_exists($key, $regionInfo)) {
+				$regionSpecificData[$regionInfo["regionSlug"]] = $regionInfo[$key];
 			}
 		}
 		return $regionSpecificData;

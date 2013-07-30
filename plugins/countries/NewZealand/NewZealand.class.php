@@ -8,8 +8,11 @@ class Country_NewZealand extends CountryPlugin {
 	protected $countryName = "New Zealand";
 	protected $countrySlug = "newzealand";
 	protected $regionNames = "NZ Regions";
-	protected $zipFormat = "xxxx";
 	protected $continent = "oceania";
+
+	protected $extendedData = array(
+		"zipFormat" => "xxxx"
+	);
 
 	protected $countryData = array(
 		array(

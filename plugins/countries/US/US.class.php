@@ -10,12 +10,13 @@ class Country_US extends CountryPlugin {
 	protected $countrySlug = "US";
 	protected $regionNames = "US States";
 
-	protected $zipFormatAdvanced = true;
-	protected $zipFormat = array(
-		"format" => "Xxxxx",
-		"replacements" => array(
-			"X" => "123456789",
-			"x" => "0123456789"
+	protected $extendedData = array(
+		"zipFormat" => array(
+			"format" => "Xxxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789"
+			)
 		)
 	);
 

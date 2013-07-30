@@ -10,8 +10,11 @@ class Country_Spain extends CountryPlugin {
 	protected $countryName = "Spain";
 	protected $countrySlug = "spain";
 	protected $regionNames = "Spanish Autonomies";
-	protected $zipFormat = "xxxxx";
 	protected $continent = "europe";
+
+	protected $extendedData = array(
+		"zipFormat" => "xxxxx"
+	);
 
 	protected $countryData = array(
 		array(

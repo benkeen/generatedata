@@ -8,8 +8,11 @@ class Country_Belgium extends CountryPlugin {
 	protected $countryName = "Belgium";
 	protected $countrySlug = "belgium";
 	protected $regionNames = "Belgium Prov.";
-	protected $zipFormat = "Xxxx";
 	protected $continent = "europe";
+
+	protected $regionalData = array(
+		"zipFormat" => "Xxxx"
+	);
 
 	protected $countryData = array(
 		array(

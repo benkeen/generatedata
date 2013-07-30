@@ -10,6 +10,7 @@ class DataType_PhoneRegional extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 25;
 	protected $jsModules = array("PhoneRegional.js");
+	protected $cssFiles = array("PhoneRegional.css");
 	protected $processOrder = 3;
 	private   $phoneFormats;
 
@@ -46,12 +47,9 @@ class DataType_PhoneRegional extends DataTypePlugin {
 			}
 		}
 
-
-		//
 		$countryCode    = '';
 		$rowRegionInfo  = '';
 		$regionCode     = '';
-
 
 		$randomPhone = "";
 
@@ -123,11 +121,24 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		);
 	}
 
-	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {
-		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
-			return false;
+	public function getOptionsColumnHTML() {
+		$countryPlugins = Core::$countryPlugins;
+
+		$html = "";
+		foreach ($countryPlugins as $pluginInfo) {
+			$slug       = $pluginInfo->getSlug();
+			$regionName = $pluginInfo->getRegionNames();
+
+			$html .= <<<EOF
+<div class="dtPhoneRegionalCountry dtPhoneRegionalCountry_$slug">
+	<label for="dtPhoneRegional_{$slug}_%ROW%">$regionName</label>
+	<input type="input" name="dtPhoneRegional_{$slug}_%ROW%" id="dtPhoneRegional_{$slug}_%ROW%" />
+</div>
+EOF;
 		}
-		return $post["dtOption_$colNum"];
+		$html .= '<div id="dtPhoneRegional_Complete%ROW%"></div>';
+
+		return $html;
 	}
 
 	public function getHelpHTML() {
@@ -147,19 +158,43 @@ END;
 		);
 	}
 
-	// added by Andre from PostalZip class
 	private function initPhoneFormats() {
 		$countryPlugins = Core::$countryPlugins;
 		$formats = array();
 		foreach ($countryPlugins as $countryInfo) {
-			$formats[$countryInfo->getSlug()] = array(
-				"format"     => $countryInfo->getPhoneFormat(),
-				"isAdvanced" => $countryInfo->isPhoneFormatAdvanced(),
-				"regionSpecificFormat" => $countryInfo->getCountryRegionSpecificPhoneFormats()
+			$extendedData = $countryInfo->getExtendedData();
+
+			if (!isset($extendedData["phoneFormat"])) {
+				continue;
+			}
+
+			$format = "";
+			$isAdvanced = false;
+			if (is_string($extendedData["phoneFormat"])) {
+				$format = $extendedData["phoneFormat"];
+			} else if (array_key_exists("format", $extendedData["phoneFormat"]) && is_string($extendedData["phoneFormat"]["format"])) {
+				$format = $extendedData["phoneFormat"]["format"];
+				$isAdvanced = true;
+			}
+
+			if (empty($format)) {
+				continue;
+			}
+
+			$returnInfo = array(
+				"format"     => $format,
+				"isAdvanced" => $isAdvanced,
+				"regionSpecificFormat" => array()
 			);
+			if ($isAdvanced) {
+				$returnInfo["regionSpecificFormat"] = $countryInfo->getRegionalExtendedData("phoneFormat");
+			}
+
+			$formats[$countryInfo->getSlug()] = $returnInfo;
 		}
 		$this->phoneFormats = $formats;
 	}
+
 
 
 	private function convert($countrySlug, $regionShort = '') 

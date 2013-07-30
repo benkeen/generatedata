@@ -12,13 +12,14 @@ class Country_CostaRica extends CountryPlugin {
 	protected $countrySlug = "CR";
 	protected $regionNames = "Provinces";
 
-	protected $zipFormatAdvanced = true;
-	protected $zipFormat = array(
-		"format" => "ZYxYx",
-		"replacements" => array(
-			"Z" => "1234567",
-			"Y" => "01",
-			"x" => "0123456789"
+	protected $regionalData = array(
+		"zipFormat" => array(
+			"format" => "ZYxYx",
+			"replacements" => array(
+				"Z" => "1234567",
+				"Y" => "01",
+				"x" => "0123456789"
+			)
 		)
 	);
 

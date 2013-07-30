@@ -8,33 +8,35 @@ class Country_Canada extends CountryPlugin {
 	protected $continent   = "north_america";
 	protected $countryName = "Canada";
 	protected $countrySlug = "CA";
-	protected $regionNames = "Provinces";
+	protected $regionNames = "Canadian Provinces";
 
-	// the general zip format for the country. This may be optionally overridden for each region if a more
-	// specific format is desired. To prevent duplicate code, the replacements listed here cover ALL zip formats
-	// for each province
-	protected $zipFormatAdvanced = true;
-	protected $zipFormat = array(
-		"format" => "%*@ *@*",
-		"replacements" => array(
-			"%" => "ABCEGHJKLMNPRSTVXY",
-			"*" => "0123456789",
-			"@" => "ABCEGHJKLMNPRSTVWXYZ",
+	protected $extendedData = array(
+		// the general zip format for the country. This may be optionally overridden for each region if a more
+		// specific format is desired. To prevent duplicate code, the replacements listed here cover ALL zip formats
+		// for each province
+		"zipFormat" => array(
+			"format" => "%*@ *@*",
+			"replacements" => array(
+				"%" => "ABCEGHJKLMNPRSTVXY",
+				"*" => "0123456789",
+				"@" => "ABCEGHJKLMNPRSTVWXYZ",
 
-			// used in individual provinces below
-			"&" => "GHJ",
-			"^" => "KLMNP"
+				// used in individual provinces below
+				"&" => "GHJ",
+				"^" => "KLMNP"
+			)
+		),
+
+		// the general phone format and area codes for the country
+		"phoneFormat" => array(
+			"areaCodes" => array(587, 603, 780, 205, 604, 778, 204, 431, 506, 709, 902, 867, 416, 647, 437, 519, 226, 613,
+				343, 705, 249, 807, 905, 289, 365, 902, 418, 581, 450, 579, 514, 438, 819, 873, 306),
+			"displayFormats" => array(
+				"(AAA) Xxx-xxxx",
+				"1 (AAA) Xxx-xxxx",
+				"1-AAA-Xxx-xxxx"
+			)
 		)
-	);
-
-	// the general phone format for the country. This may be optionally overridden for each region if a more
-	// specific format is desired. Region may override any aspects of the phone format (areaCodes, format, replacements) -
-	// otherwise it will inherit from here
-	protected $phoneFormatAdvanced = true;
-	protected $phoneFormat = array(
-		"areaCodes" => array(587, 603, 780, 205, 604, 778, 204, 431, 506, 709, 902, 867, 416, 647, 437, 519, 226, 613,
-			343, 705, 249, 807, 905, 289, 365, 902, 418, 581, 450, 579, 514, 438, 819, 873, 306),
-		"defaultFormat" => "(A) Xxx-xxxx"
 	);
 
 	// our country-wide data, with info separated into regions
@@ -59,11 +61,13 @@ class Country_Canada extends CountryPlugin {
 				"Sunset Point", "Swan Hills", "Sylvan Lake", "Taber", "Tofield", "Trochu", "Valleyview", "Vegreville", "Vilna",
 				"Wabamun", "Warburg", "Warspite", "Westlock", "Wetaskiwin", "Wood Buffalo", "Woodlands County", "Yellowhead County"
 			),
-			"zipFormat" => array(
-				"format" => "T*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(587, 603, 780)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "T*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(587, 603, 780)
+				)
 			)
 		),
 		array(
@@ -83,11 +87,13 @@ class Country_Canada extends CountryPlugin {
 				"Sunshine Coast Regional District", "Surrey", "Terrance", "Tumbler Ridge", "Ucluelet", "Vancouver", "Vanderhoof",
 				"Victoria", "West Vancouver", "White Rock", "Williams Lake"
 			),
-			"zipFormat" => array(
-				"format" => "V*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(205, 604, 778)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "V*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(205, 604, 778)
+				)
 			)
 		),
 		array(
@@ -98,11 +104,13 @@ class Country_Canada extends CountryPlugin {
 			"cities" => array(
 				'Winnipeg', 'Stonewall', 'Minitonas', 'Lourdes', 'Flin Flon', 'Daly', 'Brandon', 'Beausejour'
 			),
-			"zipFormat" => array(
-				"format" => "R*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(204, 431)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "R*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(204, 431)
+				)
 			)
 		),
 		array(
@@ -115,11 +123,13 @@ class Country_Canada extends CountryPlugin {
 				'Quispamsis', 'Oromocto', 'New Maryland', 'Moncton', 'Miramichi', 'Grand Falls', 'Fredericton', 'Edmundston',
 				'Dieppe', 'Clare', 'Carlton'
 			),
-			"zipFormat" => array(
-				"format" => "E*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(506)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "E*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(506)
+				)
 			)
 		),
 		array(
@@ -131,11 +141,13 @@ class Country_Canada extends CountryPlugin {
 				'St. John\'s', 'Springdale', 'Spaniard\'s Bay', 'Rigolet', 'Paradise', 'Mount Pearl', 'McCallum', 'Marystown',
 				'Harbour Grace', 'Glovertown', 'Gander', 'Fogo', 'Fortune', 'Carbonear', 'Burin', 'Bonavista', 'Bay Roberts'
 			),
-			"zipFormat" => array(
-				"format" => "A*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(709)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "A*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(709)
+				)
 			)
 		),
 		array(
@@ -149,11 +161,13 @@ class Country_Canada extends CountryPlugin {
 				"Fort Smith", "Fort Simpson", "Fort Resolution", "Fort Providence", "Fort McPherson", "Fort Laird",
 				"Fort Good Hope", "Enterprise", "Deline", "Coleville Lake", "Aklavik"
 			),
-			"zipFormat" => array(
-				"format" => "X*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(867)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "X*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(867)
+				)
 			)
 		),
 		array(
@@ -166,11 +180,13 @@ class Country_Canada extends CountryPlugin {
 				'Halifax', 'Guysborough', 'Cumberland County', 'Cape Breton Island', 'Berwick', 'Baddeck', 'Argyle',
 				'Annapolis Royal', 'Annapolis County'
 			),
-			"zipFormat" => array(
-				"format" => "B*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(902)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "B*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(902)
+				)
 			)
 		),
 		array(
@@ -181,11 +197,13 @@ class Country_Canada extends CountryPlugin {
 			"cities" => array(
 				"Arviat", "Cambridge Bay", "Gjoa Haven", "Pangnirtung", "Iqaluit"
 			),
-			"zipFormat" => array(
-				"format" => "X*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(867)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "X*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(867)
+				)
 			)
 		),
 		array(
@@ -205,11 +223,13 @@ class Country_Canada extends CountryPlugin {
 				"Tay", "Thorold", "Thunder Bay", "Toronto", "Valley East", "Vanier", "Vaughan", "Warwick", "Welland",
 				"Whitby", "Whitchurch-Stouffville", "Whitewater Region Township", "Wilmont", "Windsor", "Woodstock"
 			),
-			"zipFormat" => array(
-				"format" => "^*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(416, 647, 437, 519, 226, 613, 343, 705, 249, 807, 905, 289, 365)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "^*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(416, 647, 437, 519, 226, 613, 343, 705, 249, 807, 905, 289, 365)
+				)
 			)
 		),
 		array(
@@ -220,11 +240,13 @@ class Country_Canada extends CountryPlugin {
 			"cities" => array(
 				"Charlottetown", "Montague", "Stratford"
 			),
-			"zipFormat" => array(
-				"format" => "C*@ *@*"
-			),
-			"phoneFormats" => array(
-				"areaCodes" => array(902)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "C*@ *@*"
+				),
+				"phoneFormats" => array(
+					"areaCodes" => array(902)
+				)
 			)
 		),
 		array(
@@ -247,11 +269,13 @@ class Country_Canada extends CountryPlugin {
 				"Baie-Comeau", "Fermont", "Kawawachikamach", "Matagami", "Caplan", "Carleton", "Gasp�", "Gespeg", "Maria",
 				"Murdochville", "Cap-Saint-Ignace", "Charny", "L�vis"
 			),
-			"zipFormat" => array(
-				"format" => "&*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(418, 581, 450, 579, 514, 438, 819, 873)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "&*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(418, 581, 450, 579, 514, 438, 819, 873)
+				)
 			)
 		),
 		array(
@@ -264,11 +288,13 @@ class Country_Canada extends CountryPlugin {
 				"Macklin", "Maple Creek", "Milestone", "Moose Jaw", "North Battleford", "Prince Albert", "Regina", "Saskatoon",
 				"Weyburn", "Yorkton"
 			),
-			"zipFormat" => array(
-				"format" => "S*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(306)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "S*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(306)
+				)
 			)
 		),
 		array(
@@ -279,11 +305,13 @@ class Country_Canada extends CountryPlugin {
 			"cities" => array(
 				"Whitehorse", "Watson Lake"
 			),
-			"zipFormat" => array(
-				"format" => "Y*@ *@*"
-			),
-			"phoneFormat" => array(
-				"areaCodes" => array(867)
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "Y*@ *@*"
+				),
+				"phoneFormat" => array(
+					"areaCodes" => array(867)
+				)
 			)
 		)
 	);

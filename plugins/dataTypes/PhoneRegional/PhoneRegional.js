@@ -1,46 +1,42 @@
-/*global $:false*/
+/*global define:false,$:false*/
 define([
-  "manager",
+	"manager",
 	"constants",
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
-
 	"use strict";
 
 	var MODULE_ID = "data-type-PhoneRegional";
 	var LANG = L.dataTypePlugins.PhoneRegional;
+	var _currSelectedCountries = null;
+
 
 	var _init = function() {
 		var subscriptions = {};
-		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
+		subscriptions[C.EVENT.COUNTRIES.CHANGE] = _countryChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
 	var _saveRow = function(rowNum) {
-		return {
-			"example":  $("#dtExample_" + rowNum).val(),
-			"option":   $("#dtOption_" + rowNum).val()
-		};
+		/*return {
+			"example": $("#dtExample_" + rowNum).val(),
+			"option":  $("#dtOption_" + rowNum).val()
+		};*/
 	};
 
 	var _loadRow = function(rowNum, data) {
-
-		return {
+/*		return {
 			execute: function() {
 				$("#dtExample_" + rowNum).val(data.example);
 				$("#dtOption_" + rowNum).val(data.option);
 			},
 			isComplete: function() { return $("#dtOption_" + rowNum).length > 0; }
-		};
-	};
-
-	var _exampleChange = function(msg) {
-		$("#dtOption_" + msg.rowID).val(msg.value);
+		};*/
 	};
 
 	var _validate = function(rows) {
-		var visibleProblemRows = [];
+		/*var visibleProblemRows = [];
 		var problemFields      = [];
 		for (var i=0; i<rows.length; i++) {
 			if ($("#dtOption_" + rows[i]).val() === "") {
@@ -54,6 +50,22 @@ define([
 			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 		}
 		return errors;
+		*/
+	};
+
+	/**
+	 * This is called any time the country list changes - including on load. It ensures only the appropriate
+	 * regions are displayed.
+	 */
+	var _countryChange = function(msg) {
+		_currSelectedCountries = msg.countries;
+		var shownClassesSelectors = [];
+		for (var i=0; i<msg.countries.length; i++) {
+			shownClassesSelectors.push(".dtPhoneRegionalCountry_" + msg.countries[i]);
+		}
+		var shownClassesSelector = shownClassesSelectors.join(",");
+		$(".dtPhoneRegionalCountry").hide();
+		$(shownClassesSelector).show();
 	};
 
 	manager.registerDataType(MODULE_ID, {
