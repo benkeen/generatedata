@@ -25,7 +25,8 @@ class DataType_PostalZip extends DataTypePlugin {
 	}
 
 	public function generate($generator, $generationContextData) {
-		$options = $generationContextData["generationOptions"];
+		$selectedCountrySlugs = $generationContextData["generationOptions"];
+
 
 		// track the country info (this finds the FIRST country field listed)
 		$rowCountryInfo = array();
@@ -58,12 +59,15 @@ class DataType_PostalZip extends DataTypePlugin {
 			}
 		}
 		
-		$randomZip = "";
-
 		// if there's neither a country nor a region, get a random country and generate a random zip/postal code
 		// in that format
+		$randomZip = "";
 		if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
-			$randCountrySlug = array_rand($this->zipFormats);
+			if (empty($selectedCountrySlugs)) {
+				$randCountrySlug = array_rand($this->zipFormats);
+			} else {
+				$randCountrySlug = $selectedCountrySlugs[rand(0, count($selectedCountrySlugs)-1)];
+			}
 			$randomZip = $this->convert($randCountrySlug, "");
 		} else {
 			if (!empty($rowCountryInfo)) {
@@ -72,13 +76,15 @@ class DataType_PostalZip extends DataTypePlugin {
 				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 			}
 
-			if (in_array($countrySlug, $options)) {
+			if (in_array($countrySlug, $selectedCountrySlugs)) {
 				$randomZip = $this->convert($countrySlug, $regionCode); // passing in CR, alajuela
 			} else {
 				$randCountrySlug = array_rand($this->zipFormats);
 				$randomZip = $this->convert($randCountrySlug, $regionCode);
 			}
 		}
+
+
 		return array(
 			"display" => $randomZip
 		);
@@ -134,10 +140,12 @@ EOF;
 
 			$format = "";
 			$isAdvanced = false;
+			$replacements = array();
 			if (is_string($extendedData["zipFormat"])) {
 				$format = $extendedData["zipFormat"];
 			} else if (array_key_exists("format", $extendedData["zipFormat"]) && is_string($extendedData["zipFormat"]["format"])) {
 				$format = $extendedData["zipFormat"]["format"];
+				$replacements = $extendedData["zipFormat"]["replacements"];
 				$isAdvanced = true;
 			}
 
@@ -146,20 +154,17 @@ EOF;
 			}
 
 			$returnInfo = array(
-				"format"     => $format,
-				"isAdvanced" => $isAdvanced,
+				"format"       => $format,
+				"replacements" => $replacements,
+				"isAdvanced"   => $isAdvanced,
 				"regionSpecificFormat" => array()
 			);
 			if ($isAdvanced) {
 				$returnInfo["regionSpecificFormat"] = $countryInfo->getRegionalExtendedData("zipFormat");
 			}
-
 			$formats[$countryInfo->getSlug()] = $returnInfo;
 		}
 		$this->zipFormats = $formats;
-
-		print_r($zipFormats);
-		exit;
 	}
 
 
@@ -174,8 +179,8 @@ EOF;
 				$customFormat = isset($zipInfo["regionSpecificFormat"][$regionShort]["format"]) ? $zipInfo["regionSpecificFormat"][$regionShort]["format"]: "";
 				$replacements = isset($zipInfo["regionSpecificFormat"][$regionShort]["replacements"]) ? $zipInfo["regionSpecificFormat"][$regionShort]["replacements"] : "";
 			}
-			$customFormat = !empty($customFormat) ? $customFormat : $zipInfo["format"]["format"];
-			$replacements = !empty($replacements) ? $replacements : $zipInfo["format"]["replacements"];
+			$customFormat = !empty($customFormat) ? $customFormat : $zipInfo["format"];
+			$replacements = !empty($replacements) ? $replacements : $zipInfo["replacements"];
 
 			// now iterate over $customFormat and do whatever replacements have been specified
 			for ($i=0; $i<strlen($customFormat); $i++) {

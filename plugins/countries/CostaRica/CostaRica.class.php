@@ -10,9 +10,9 @@ class Country_CostaRica extends CountryPlugin {
 	protected $continent   = "central_america";
 	protected $countryName = "Costa Rica";
 	protected $countrySlug = "CR";
-	protected $regionNames = "Provinces";
+	protected $regionNames = "Costa Rican Provinces";
 
-	protected $regionalData = array(
+	protected $extendedData = array(
 		"zipFormat" => array(
 			"format" => "ZYxYx",
 			"replacements" => array(

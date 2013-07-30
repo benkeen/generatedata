@@ -10,7 +10,7 @@ class Country_France extends CountryPlugin {
 	protected $regionNames = "French Provinces";
 	protected $continent = "europe";
 
-	protected $regionalData = array(
+	protected $extendedData = array(
 		"zipFormat" => "xxxxx"
 	);
 

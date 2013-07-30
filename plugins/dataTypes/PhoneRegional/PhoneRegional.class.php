@@ -196,7 +196,6 @@ END;
 	}
 
 
-
 	private function convert($countrySlug, $regionShort = '') 
 	{
 		$phoneInfo = $this->phoneFormats[$countrySlug];

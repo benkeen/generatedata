@@ -10,7 +10,7 @@ class Country_Brazil extends CountryPlugin {
 	protected $regionNames = "Brazilian States";
 	protected $continent = "south_america";
 
-	protected $regionalData = array(
+	protected $extendedData = array(
 		"zipFormat" => "xxxxx-xxx"
 	);
 

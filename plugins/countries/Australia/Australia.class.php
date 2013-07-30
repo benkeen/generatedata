@@ -10,7 +10,7 @@ class Country_Australia extends CountryPlugin {
 	protected $regionNames = "Australian St./Terr.";
 	protected $continent = "oceania";
 
-	protected $regionalData = array(
+	protected $extendedData = array(
 		"zipFormat" => "Xxxx"
 	);
 

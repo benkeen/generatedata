@@ -10,7 +10,7 @@ class Country_Belgium extends CountryPlugin {
 	protected $regionNames = "Belgium Prov.";
 	protected $continent = "europe";
 
-	protected $regionalData = array(
+	protected $extendedData = array(
 		"zipFormat" => "Xxxx"
 	);
 
