@@ -72,7 +72,9 @@ class DataType_Region extends DataTypePlugin {
 			// here, there *was* a country Data Type chosen and the Country row is pulling from the subset of
 			// Country plugins
 			} else {
-				$currRowCountrySlug = $rowCountryInfo["randomData"]["slug"];
+
+				// the slug exists if the row country was one of the Country plugins
+				$currRowCountrySlug = array_key_exists("slug", $rowCountryInfo["randomData"]) ? $rowCountryInfo["randomData"]["slug"] : "";
 
 				// here, we've gotten the slug of the country for this particular row, but the user may have unselected
 				// it from the row's generation options. See if it's available and if so, use that; otherwise, display

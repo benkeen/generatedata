@@ -69,7 +69,7 @@ abstract class CountryPlugin {
 	/**
 	 * A generalized function for returning any custom data defined in the region's extendedData section.
 	 * @param $key contains the top-level key
-	 * @return array
+	 * @return array a hash of [regionSlug] to whatever info is stored in the desired key
 	 */
 	final public function getRegionalExtendedData($key) {
 		$regionSpecificData = array();

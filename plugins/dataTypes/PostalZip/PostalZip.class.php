@@ -24,9 +24,9 @@ class DataType_PostalZip extends DataTypePlugin {
 		}
 	}
 
+	// this kind of sucks! Way too dense logic (too high cyclomatic complexity ;-) )
 	public function generate($generator, $generationContextData) {
 		$selectedCountrySlugs = $generationContextData["generationOptions"];
-
 
 		// track the country info (this finds the FIRST country field listed)
 		$rowCountryInfo = array();
@@ -70,13 +70,17 @@ class DataType_PostalZip extends DataTypePlugin {
 			}
 			$randomZip = $this->convert($randCountrySlug, "");
 		} else {
-			if (!empty($rowCountryInfo)) {
+
+			$countrySlug = "";
+			if (!empty($rowCountryInfo) && is_array($rowCountryInfo["randomData"]) && array_key_exists("slug", $rowCountryInfo["randomData"])) {
 				$countrySlug = $rowCountryInfo["randomData"]["slug"];
 			} else {
-				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
+				if (isset($rowRegionInfo["randomData"]) && is_array($rowRegionInfo["randomData"]) &&  array_key_exists("country_slug", $rowRegionInfo["randomData"])) {
+					$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
+				}
 			}
 
-			if (in_array($countrySlug, $selectedCountrySlugs)) {
+			if (!empty($countrySlug) && in_array($countrySlug, $selectedCountrySlugs)) {
 				$randomZip = $this->convert($countrySlug, $regionCode); // passing in CR, alajuela
 			} else {
 				$randCountrySlug = array_rand($this->zipFormats);
