@@ -20,6 +20,11 @@ class Country_CostaRica extends CountryPlugin {
 				"Y" => "01",
 				"x" => "0123456789"
 			)
+		),
+		"phoneFormat" => array(
+			"displayFormats" => array(
+				"xxxx-xxxx"
+			)
 		)
 	);
 
@@ -39,6 +44,9 @@ class Country_CostaRica extends CountryPlugin {
 					"Y" => "01",
 					"x" => "0123456789"
 				)
+			),
+			"phoneFormat" => array(
+				"format" => "24xx-xxxx"
 			)
 		),
 		array(
@@ -47,7 +55,8 @@ class Country_CostaRica extends CountryPlugin {
 			"regionSlug" => "cartago",
 			"weight" => 11,
 			"cities" => array(
-				"Aguacaliente (San Francisco)", "Carmen", "Cartago", "Paraíso", "San Diego", "San Nicolás", "San Rafael", "Tejar", "Turrialba"
+				"Aguacaliente (San Francisco)", "Carmen", "Cartago", "Paraíso", "San Diego", "San Nicolás",
+				"San Rafael", "Tejar", "Turrialba"
 			),
 			"zipFormat" => array(
 				"format" => "30xYx",
@@ -55,6 +64,9 @@ class Country_CostaRica extends CountryPlugin {
 					"Y" => "01",
 					"x" => "0123456789"
 				)
+			),
+			"phoneFormat" => array(
+				"format" => "25xx-xxxx"
 			)
 		),
 		array(
@@ -72,6 +84,9 @@ class Country_CostaRica extends CountryPlugin {
 					"Y" => "01",
 					"x" => "0123456789"
 				)
+			),
+			"phoneFormat" => array(
+				"format" => "26xx-xxxx"
 			)
 		),
 		array(
@@ -89,6 +104,9 @@ class Country_CostaRica extends CountryPlugin {
 					"Y" => "01",
 					"x" => "0123456789"
 				)
+			),
+			"phoneFormat" => array(
+				"format" => "25xx-xxxx"
 			)
 		),
 		array(
@@ -106,6 +124,9 @@ class Country_CostaRica extends CountryPlugin {
 					"Y" => "01",
 					"x" => "0123456789"
 				)
+			),
+			"phoneFormat" => array(
+				"format" => "27xx-xxxx"
 			)
 		),
 		array(
@@ -123,6 +144,9 @@ class Country_CostaRica extends CountryPlugin {
 					"Y" => "01",
 					"x" => "0123456789"
 				)
+			),
+			"phoneFormat" => array(
+				"format" => "27xx-xxxx"
 			)
 		),
 		array(
@@ -135,13 +159,16 @@ class Country_CostaRica extends CountryPlugin {
 				"Mata de Plátano", "Patalillo", "Patarrá", "Purral", "San Antonio", "San Felipe", "San Isidro", "San Isidro de El General",	"San José",
 				"San Juan (San Juan de Tibás)", "San Juan de Dios", "San Miguel", "San Pedro", "San Rafael", "San Rafael Abajo", "San Vicente", "Tirrases"
 			),
-			array(
+			"zipFormat" => array(
 				"format" => "1zxYx",
 				"replacements" => array(
 					"z" => "012",
 					"Y" => "01",
 					"x" => "0123456789"
 				)
+			),
+			"phoneFormat" => array(
+				"format" => "25xx-xxxx"
 			)
 		)
 	);

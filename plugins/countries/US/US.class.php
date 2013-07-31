@@ -17,6 +17,13 @@ class Country_US extends CountryPlugin {
 				"X" => "123456789",
 				"x" => "0123456789"
 			)
+		),
+		"phoneFormat" => array(
+			"displayFormats" => array(
+				"(AAA) Xxx-xxxx",
+				"1 (AAA) Xxx-xxxx",
+				"1-AAA-Xxx-xxxx"
+			)
 		)
 	);
 

@@ -10,3 +10,7 @@
     float: left;
     width: 115px;
 }
+.dtPhoneRegionalCountry select {
+    float: left;
+    width: 120px;
+}

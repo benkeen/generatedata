@@ -24,101 +24,63 @@ class DataType_PhoneRegional extends DataTypePlugin {
 	}
 
 	public function generate($generator, $generationContextData) {
-		$options = $generationContextData["generationOptions"];
 
-		// track the country info (this finds the FIRST country field listed)
+		// this contains the country-specific phone formats that the user selected in the UI
+		$countryPhoneFormats = $generationContextData["generationOptions"];
+
+		// see if this data set contains a country or a region
+		$rowCountryField = $this->getRowCountryField($generationContextData);
+		$rowRegionField  = $this->getRowRegionField($generationContextData);
+
+		$desiredCountryPhoneFormat = "";
+		$areaCodes = array();
+
+		// Remaining: get the area codes
+
+		if (empty($rowCountryField) && empty($rowRegionField)) {
+			$countrySlug = array_rand($countryPhoneFormats);
+			$desiredCountryPhoneFormat = $countryPhoneFormats[$countrySlug];
+		} else if (!empty($rowRegionField)) {
+			$countrySlug = $rowRegionField["randomData"]["country_slug"];
+			$regionSlug  = $rowRegionField["randomData"]["region_slug"];
+			if (array_key_exists($countrySlug, $this->phoneFormats) && array_key_exists($regionSlug, $this->phoneFormats[$countrySlug]["regionSpecificFormat"])) {
+				$desiredCountryPhoneFormat = $this->phoneFormats[$countrySlug]["regionSpecificFormat"][$regionSlug];
+			}
+		} else {
+			if (isset($rowCountryField["randomData"]["slug"]) && array_key_exists($rowCountryField["randomData"]["slug"], $countryPhoneFormats)) {
+				$countrySlug = $rowCountryField["randomData"]["slug"];
+			} else {
+				$countrySlug = array_rand($countryPhoneFormats);
+				$desiredCountryPhoneFormat = $countryPhoneFormats[$countrySlug];
+			}
+		}
+
+
+		return array(
+			"display" => $this->generatePhoneNumber($desiredCountryPhoneFormat, $areaCodes)
+		);
+	}
+
+	public function getRowCountryField($generationContextData) {
 		$rowCountryInfo = array();
-		while (list($key, $info) = each($generationContextData["existingRowData"])) {
-			if ($info["dataTypeFolder"] == "Country") {
-				$rowCountryInfo = $info;
+		foreach ($generationContextData["existingRowData"] as $row) {
+			if ($row["dataTypeFolder"] == "Country") {
+				$rowCountryInfo = $row;
 				break;
 			}
 		}
+		return $rowCountryInfo;
+	}
 
-		// if there was no country, see if there's a region
+	public function getRowRegionField($generationContextData) {
 		$rowRegionInfo = array();
-		if (empty($rowCountryInfo)) {
-			reset($generationContextData["existingRowData"]);
-			while (list($key, $info) = each($generationContextData["existingRowData"])) {
-				if ($info["dataTypeFolder"] == "Region") {
-					$rowRegionInfo = $info;
-					break;
-				}
+		foreach ($generationContextData["existingRowData"] as $row) {
+			if ($row["dataTypeFolder"] == "Region") {
+				$rowRegionInfo = $row;
+				break;
 			}
 		}
-
-		$countryCode    = '';
-		$rowRegionInfo  = '';
-		$regionCode     = '';
-
-		$randomPhone = "";
-
-		// if the row contained neither a country nor a region, pick a random country and generate a
-		if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
-
-			$randomPhone = $formats[0];
-			if (count($formats) > 1) {
-				$randomPhone = $formats[rand(0, count($formats)-1)];
-			}
-		} else  {
-			// if this country is one of the formats that was selected, generate it in that format -
-			// otherwise just generate a zip in any selected format
-			if (empty($rowCountryInfo)) {
-				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
-			}
-							
-			if (in_array($countrySlug, $options)) {
-				//$randomPhone = $this->convert($countrySlug, $regionCode);
-				$randomPhone  = "02";
-			} else {
-				//$randCountry = $options[rand(0, count($options)-1)];
-				// Get the country code
-				$randomPhone = $this->convert( $countrySlug, $regionCode );
-			}
-		}
-
-
-		if( '' == $randomPhone )
-		{
-			$phoneStr = Utils::generateRandomAlphanumericStr($generationContextData["generationOptions"]);		
-			$formats = explode("|", $phoneStr);
-			$randomPhone = $formats[0];
-			if (count($formats) > 1) {
-				$randomPhone = $formats[rand(0, count($formats)-1)];
-			}
-		}
-		else
-		{
-			$formatOutput = $generationContextData["generationOptions"];
-			$indexPhone   = 0;
-			$phoneNumber = '';
-			for( $x=0; $x<strlen( $formatOutput ); $x++ )
-			{
-				$char = $formatOutput[$x];			
-		
-				if( 'x' == $char || 'X' == $char )
-				{
-					if( strlen( $randomPhone ) < $indexPhone )
-					{
-						$phoneNumber = $phoneNumber.$char;
-					}
-					else
-					{
-						$phoneNumber = $phoneNumber.substr( $randomPhone, $indexPhone, 1 );
-					}
-					$indexPhone = $indexPhone +1;
-				}
-				else
-				{
-					$phoneNumber = $phoneNumber.$char;
-				}
-			}
-			$randomPhone = $phoneNumber;
-		}
-		
-		return array(
-			"display" => $randomPhone
-		);
+		return $rowRegionInfo;
 	}
 
 	public function getOptionsColumnHTML() {
@@ -128,11 +90,17 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		foreach ($countryPlugins as $pluginInfo) {
 			$slug       = $pluginInfo->getSlug();
 			$regionName = $pluginInfo->getRegionNames();
+			$extendedData = $pluginInfo->getExtendedData();
 
+			if (!isset($extendedData["phoneFormat"]) || !isset($extendedData["phoneFormat"]["displayFormats"])) {
+				continue;
+			}
+
+			$options = $this->getDisplayFormatOptions($slug, $extendedData["phoneFormat"]["displayFormats"]);
 			$html .= <<<EOF
 <div class="dtPhoneRegionalCountry dtPhoneRegionalCountry_$slug">
 	<label for="dtPhoneRegional_{$slug}_%ROW%">$regionName</label>
-	<input type="input" name="dtPhoneRegional_{$slug}_%ROW%" id="dtPhoneRegional_{$slug}_%ROW%" />
+	$options
 </div>
 EOF;
 		}
@@ -140,6 +108,52 @@ EOF;
 
 		return $html;
 	}
+
+	public function getDisplayFormatOptions($countrySlug, $displayFormats) {
+		$options = "";
+		$id = "dtPhoneRegional_{$countrySlug}_%ROW%";
+
+		if (is_string($displayFormats)) {
+			$options = "<input type=\"hidden\" name=\"$id\" id=\"$id\" value=\"$displayFormats\" />$displayFormats";
+		} else {
+			if (is_array($displayFormats) && count($displayFormats) == 1) {
+				$options = "<input type=\"hidden\" name=\"$id\" id=\"$id\" value=\"{$displayFormats[0]}\" />{$displayFormats[0]}";
+			} else {
+				$options = "<select name=\"$id\" id=\"$id\">";
+				for ($i=0; $i<count($displayFormats); $i++) {
+					$options .= "<option value=\"{$displayFormats[$i]}\">{$displayFormats[$i]}</option>";
+				}
+				$options .= "</select>";
+			}
+		}
+
+		return $options;
+	}
+
+	/**
+	 * Loop through the formats returned by the client for the supported country plugins and make a note of the
+	 * format chosen.
+	 * @param object $generator
+	 * @param $postdata
+	 * @param $colNum
+	 * @param $numCols
+	 * @return array|mixed
+	 */
+	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+		$countries = $generator->getCountries();
+
+		// if the user didn't select any Country plugins, they want ANY old region
+		$countryPhoneFormats = array();
+		foreach ($countries as $slug) {
+			$key = "dtPhoneRegional_{$slug}_$colNum";
+			if (array_key_exists($key, $postdata)) {
+				$countryPhoneFormats[$slug] = $postdata[$key];
+			}
+		}
+
+		return $countryPhoneFormats;
+	}
+
 
 	public function getHelpHTML() {
 		$html =<<<END
@@ -163,41 +177,26 @@ END;
 		$formats = array();
 		foreach ($countryPlugins as $countryInfo) {
 			$extendedData = $countryInfo->getExtendedData();
-
-			if (!isset($extendedData["phoneFormat"])) {
+			if (!isset($extendedData["phoneFormat"]) || !isset($extendedData["phoneFormat"]["displayFormats"])) {
 				continue;
 			}
 
-			$format = "";
-			$isAdvanced = false;
-			if (is_string($extendedData["phoneFormat"])) {
-				$format = $extendedData["phoneFormat"];
-			} else if (array_key_exists("format", $extendedData["phoneFormat"]) && is_string($extendedData["phoneFormat"]["format"])) {
-				$format = $extendedData["phoneFormat"]["format"];
-				$isAdvanced = true;
-			}
-
-			if (empty($format)) {
-				continue;
-			}
-
-			$returnInfo = array(
-				"format"     => $format,
-				"isAdvanced" => $isAdvanced,
-				"regionSpecificFormat" => array()
+			$formats[$countryInfo->getSlug()] = array(
+				"phoneFormat"=> $extendedData["phoneFormat"],
+				"regionSpecificFormat" => $countryInfo->getRegionalExtendedData("phoneFormat")
 			);
-			if ($isAdvanced) {
-				$returnInfo["regionSpecificFormat"] = $countryInfo->getRegionalExtendedData("phoneFormat");
-			}
-
-			$formats[$countryInfo->getSlug()] = $returnInfo;
 		}
 		$this->phoneFormats = $formats;
 	}
 
 
-	private function convert($countrySlug, $regionShort = '') 
-	{
+	private function generatePhoneNumber($format, $areaCodes) {
+
+	}
+
+
+/*
+	private function convert($countrySlug, $regionShort = "") {
 		$phoneInfo = $this->phoneFormats[$countrySlug];
 	
 		$result = "";
@@ -300,4 +299,6 @@ END;
 
 		return $result;
 	}
+*/
+
 }
