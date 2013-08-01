@@ -73,11 +73,17 @@ abstract class CountryPlugin {
 	 */
 	final public function getRegionalExtendedData($key) {
 		$regionSpecificData = array();
+
 		foreach ($this->countryData as $regionInfo) {
-			if (array_key_exists($key, $regionInfo)) {
-				$regionSpecificData[$regionInfo["regionSlug"]] = $regionInfo[$key];
+			if (!array_key_exists("extendedData", $regionInfo)) {
+				continue;
+			}
+
+			if (array_key_exists($key, $regionInfo["extendedData"])) {
+				$regionSpecificData[$regionInfo["regionSlug"]] = $regionInfo["extendedData"][$key];
 			}
 		}
+
 		return $regionSpecificData;
 	}
 }

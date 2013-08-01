@@ -36,12 +36,14 @@ class Country_US extends CountryPlugin {
 			"cities" => array(
 				"Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa", "Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa"
 			),
-			"zipFormat" => array(
-				"format" => "ZYxxx",
-				"replacements" => array(
-					"Z" => "3",
-					"Y" => "56",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "ZYxxx",
+					"replacements" => array(
+						"Z" => "3",
+						"Y" => "56",
+						"x" => "0123456789"
+					)
 				)
 			)
 		),
@@ -53,12 +55,14 @@ class Country_US extends CountryPlugin {
 			"cities" => array(
 				"Anchorage", "Fairbanks", "Juneau", "College", "Anchorage", "Fairbanks", "Juneau", "College", "Ketchikan"
 			),
-			"zipFormat" => array(
-				"format" => "ZZYxx",
-				"replacements" => array(
-					"Z" => "9",
-					"Y" => "56789",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "ZZYxx",
+					"replacements" => array(
+						"Z" => "9",
+						"Y" => "56789",
+						"x" => "0123456789"
+					)
 				)
 			)
 		),
@@ -70,12 +74,14 @@ class Country_US extends CountryPlugin {
 			"cities" => array(
 				"Phoenix", "Tucson", "Mesa", "Glendale", "Chandler"
 			),
-			"zipFormat" => array(
-				"format" => "ZYxxx",
-				"replacements" => array(
-					"Z" => "8",
-					"Y" => "56",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "ZYxxx",
+					"replacements" => array(
+						"Z" => "8",
+						"Y" => "56",
+						"x" => "0123456789"
+					)
 				)
 			)
 		),
@@ -87,12 +93,14 @@ class Country_US extends CountryPlugin {
 			"cities" => array(
 				"Little Rock", "Fort Smith", "Fayetteville", "Springdale", "Jonesboro"
 			),
-			"zipFormat" => array(
-				"format" => "ZYxxx",
-				"replacements" => array(
-					"Z" => "7",
-					"Y" => "12",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "ZYxxx",
+					"replacements" => array(
+						"Z" => "7",
+						"Y" => "12",
+						"x" => "0123456789"
+					)
 				)
 			)
 		),
@@ -104,13 +112,15 @@ class Country_US extends CountryPlugin {
 			"cities" => array(
 				"Los Angeles", "San Diego", "San Jose", "San Francisco", "Fresno", "Sacramento"
 			),
-			"zipFormat" => array(
-				"area" => "US-CA",
-				"format" => "ZYxxx",
-				"replacements" => array(
-					"Z" => "9",
-					"Y" => "0123456",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"area" => "US-CA",
+					"format" => "ZYxxx",
+					"replacements" => array(
+						"Z" => "9",
+						"Y" => "0123456",
+						"x" => "0123456789"
+					)
 				)
 			)
 		),

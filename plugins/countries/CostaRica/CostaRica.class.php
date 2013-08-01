@@ -23,7 +23,7 @@ class Country_CostaRica extends CountryPlugin {
 		),
 		"phoneFormat" => array(
 			"displayFormats" => array(
-				"xxxx-xxxx"
+				"xxxxxxxx"
 			)
 		)
 	);
@@ -37,16 +37,18 @@ class Country_CostaRica extends CountryPlugin {
 			"cities" => array(
 				"Alajuela", "Quesada", "San José de Alajuela", "San Rafael"
 			),
-			"zipFormat" => array(
-				"format" => "2zxYx",
-				"replacements" => array(
-					"z" => "01",
-					"Y" => "01",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "2zxYx",
+					"replacements" => array(
+						"z" => "01",
+						"Y" => "01",
+						"x" => "0123456789"
+					)
+				),
+				"phoneFormat" => array(
+					"format" => "24xxxxxx"
 				)
-			),
-			"phoneFormat" => array(
-				"format" => "24xx-xxxx"
 			)
 		),
 		array(
@@ -58,15 +60,17 @@ class Country_CostaRica extends CountryPlugin {
 				"Aguacaliente (San Francisco)", "Carmen", "Cartago", "Paraíso", "San Diego", "San Nicolás",
 				"San Rafael", "Tejar", "Turrialba"
 			),
-			"zipFormat" => array(
-				"format" => "30xYx",
-				"replacements" => array(
-					"Y" => "01",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "30xYx",
+					"replacements" => array(
+						"Y" => "01",
+						"x" => "0123456789"
+					)
+				),
+				"phoneFormat" => array(
+					"format" => "25xxxxxx"
 				)
-			),
-			"phoneFormat" => array(
-				"format" => "25xx-xxxx"
 			)
 		),
 		array(
@@ -77,16 +81,18 @@ class Country_CostaRica extends CountryPlugin {
 			"cities" => array(
 				"Cañas", "Liberia", "Nicoya"
 			),
-			"zipFormat" => array(
-				"format" => "5zxYx",
-				"replacements" => array(
-					"z" => "01",
-					"Y" => "01",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "5zxYx",
+					"replacements" => array(
+						"z" => "01",
+						"Y" => "01",
+						"x" => "0123456789"
+					)
+				),
+				"phoneFormat" => array(
+					"format" => "26xxxxxx"
 				)
-			),
-			"phoneFormat" => array(
-				"format" => "26xx-xxxx"
 			)
 		),
 		array(
@@ -97,16 +103,18 @@ class Country_CostaRica extends CountryPlugin {
 			"cities" => array(
 				"Heredia", "Mercedes", "San Francisco", "San Pablo", "Ulloa (Barrial)"
 			),
-			"zipFormat" => array(
-				"format" => "4zxYx",
-				"replacements" => array(
-					"z" => "01",
-					"Y" => "01",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "4zxYx",
+					"replacements" => array(
+						"z" => "01",
+						"Y" => "01",
+						"x" => "0123456789"
+					)
+				),
+				"phoneFormat" => array(
+					"format" => "25xxxxxx"
 				)
-			),
-			"phoneFormat" => array(
-				"format" => "25xx-xxxx"
 			)
 		),
 		array(
@@ -117,16 +125,18 @@ class Country_CostaRica extends CountryPlugin {
 			"cities" => array(
 				"Guápiles", "Limón (Puerto Limón)", "Siquirres"
 			),
-			"zipFormat" => array(
-				"format" => "50yYx",
-				"replacements" => array(
-					"y" => "12",
-					"Y" => "01",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "50yYx",
+					"replacements" => array(
+						"y" => "12",
+						"Y" => "01",
+						"x" => "0123456789"
+					)
+				),
+				"phoneFormat" => array(
+					"format" => "27xxxxxx"
 				)
-			),
-			"phoneFormat" => array(
-				"format" => "27xx-xxxx"
 			)
 		),
 		array(
@@ -137,16 +147,18 @@ class Country_CostaRica extends CountryPlugin {
 			"cities" => array(
 				"Barranca", "Puntarenas"
 			),
-			"zipFormat" => array(
-				"format" => "ZYxYx",
-				"replacements" => array(
-					"Z" => "1234567",
-					"Y" => "01",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "ZYxYx",
+					"replacements" => array(
+						"Z" => "1234567",
+						"Y" => "01",
+						"x" => "0123456789"
+					)
+				),
+				"phoneFormat" => array(
+					"format" => "27xxxxxx"
 				)
-			),
-			"phoneFormat" => array(
-				"format" => "27xx-xxxx"
 			)
 		),
 		array(
@@ -159,16 +171,18 @@ class Country_CostaRica extends CountryPlugin {
 				"Mata de Plátano", "Patalillo", "Patarrá", "Purral", "San Antonio", "San Felipe", "San Isidro", "San Isidro de El General",	"San José",
 				"San Juan (San Juan de Tibás)", "San Juan de Dios", "San Miguel", "San Pedro", "San Rafael", "San Rafael Abajo", "San Vicente", "Tirrases"
 			),
-			"zipFormat" => array(
-				"format" => "1zxYx",
-				"replacements" => array(
-					"z" => "012",
-					"Y" => "01",
-					"x" => "0123456789"
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "1zxYx",
+					"replacements" => array(
+						"z" => "012",
+						"Y" => "01",
+						"x" => "0123456789"
+					)
+				),
+				"phoneFormat" => array(
+					"format" => "25xxxxxx"
 				)
-			),
-			"phoneFormat" => array(
-				"format" => "25xx-xxxx"
 			)
 		)
 	);

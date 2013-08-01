@@ -25,40 +25,79 @@ class DataType_PhoneRegional extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 
-		// this contains the country-specific phone formats that the user selected in the UI
+		// this contains all the country-specific phone formats that the user selected in the UI
 		$countryPhoneFormats = $generationContextData["generationOptions"];
 
-		// see if this data set contains a country or a region
+		// 1. check the existing row data to see if this data set contains a country or a region
 		$rowCountryField = $this->getRowCountryField($generationContextData);
 		$rowRegionField  = $this->getRowRegionField($generationContextData);
 
-		$desiredCountryPhoneFormat = "";
-		$areaCodes = array();
+		// 2. again check the existing data set to get a (maybe) random country and a (maybe) region-specific phone format
+		list($countrySlug, $regionSlug, $regionSpecificCountryCodeFormat) = $this->getCountryAndRegionalFormat($countryPhoneFormats, $rowCountryField, $rowRegionField);
 
-		// Remaining: get the area codes
+		// 3. see if this country-region has any area codes to mess with. Returns an empty array if there are no area codes
+		$areaCodes = $this->getAreaCodes($countrySlug, $regionSlug);
 
+		// 4. now get the desired phone format entered in the UI
+		$desiredFormat = $this->getDesiredPhoneFormat($countrySlug, $countryPhoneFormats);
+
+		// now generate a phone number
+		$phoneNumber = $this->generatePhoneNumber($desiredFormat, $regionSpecificCountryCodeFormat, $areaCodes);
+
+		return array(
+			"display" => $phoneNumber
+		);
+	}
+
+
+	/**
+	 * Returns three things based on the data passed:
+	 *  - a random country slug
+	 *  - a region slug
+	 *  - the phone number format for the country-region
+	 */
+	private function getCountryAndRegionalFormat($countryPhoneFormats, $rowCountryField, $rowRegionField) {
+		$regionalFormat = "";
+		$countrySlug = "";
+		$regionSlug = "";
+
+		// now get the most specific format we have for this country-region
 		if (empty($rowCountryField) && empty($rowRegionField)) {
 			$countrySlug = array_rand($countryPhoneFormats);
-			$desiredCountryPhoneFormat = $countryPhoneFormats[$countrySlug];
+			$regionalFormat = $countryPhoneFormats[$countrySlug];
 		} else if (!empty($rowRegionField)) {
 			$countrySlug = $rowRegionField["randomData"]["country_slug"];
 			$regionSlug  = $rowRegionField["randomData"]["region_slug"];
-			if (array_key_exists($countrySlug, $this->phoneFormats) && array_key_exists($regionSlug, $this->phoneFormats[$countrySlug]["regionSpecificFormat"])) {
-				$desiredCountryPhoneFormat = $this->phoneFormats[$countrySlug]["regionSpecificFormat"][$regionSlug];
+
+			// if there's a custom format for this region, use it. Otherwise use the default format for the country
+			if (array_key_exists($countrySlug, $this->phoneFormats)) {
+				if (array_key_exists($regionSlug, $this->phoneFormats[$countrySlug]["regionSpecificFormat"])) {
+					if (array_key_exists("format", $this->phoneFormats[$countrySlug]["regionSpecificFormat"][$regionSlug])) {
+						$regionalFormat = $this->phoneFormats[$countrySlug]["regionSpecificFormat"][$regionSlug]["format"];
+					} else {
+						$regionalFormat = $countryPhoneFormats[$countrySlug];
+					}
+
+				} else {
+					$regionalFormat = $countryPhoneFormats[$countrySlug];
+				}
 			}
 		} else {
 			if (isset($rowCountryField["randomData"]["slug"]) && array_key_exists($rowCountryField["randomData"]["slug"], $countryPhoneFormats)) {
 				$countrySlug = $rowCountryField["randomData"]["slug"];
+				$regionalFormat = $countryPhoneFormats[$countrySlug];
 			} else {
 				$countrySlug = array_rand($countryPhoneFormats);
-				$desiredCountryPhoneFormat = $countryPhoneFormats[$countrySlug];
+				$regionalFormat = $countryPhoneFormats[$countrySlug];
 			}
 		}
 
+		return array($countrySlug, $regionSlug, $regionalFormat);
+	}
 
-		return array(
-			"display" => $this->generatePhoneNumber($desiredCountryPhoneFormat, $areaCodes)
-		);
+	// confirm
+	private function getDesiredPhoneFormat($countrySlug, $countryPhoneFormats) {
+		return $countryPhoneFormats[$countrySlug];
 	}
 
 	public function getRowCountryField($generationContextData) {
@@ -81,6 +120,28 @@ class DataType_PhoneRegional extends DataTypePlugin {
 			}
 		}
 		return $rowRegionInfo;
+	}
+
+	// it blows my mind how awful this method is
+	private function getAreaCodes($countrySlug, $regionSlug) {
+		if (!array_key_exists($countrySlug, $this->phoneFormats)) {
+			return array();
+		}
+		if (!array_key_exists("phoneFormat", $this->phoneFormats[$countrySlug])) {
+			return array();
+		}
+		if (!array_key_exists("areaCodes", $this->phoneFormats[$countrySlug]["phoneFormat"])) {
+			return array();
+		}
+		$areaCodes = $this->phoneFormats[$countrySlug]["phoneFormat"]["areaCodes"];
+
+		if (array_key_exists($regionSlug, $this->phoneFormats[$countrySlug]["regionSpecificFormat"])) {
+			if (array_key_exists("areaCodes", $this->phoneFormats[$countrySlug]["regionSpecificFormat"][$regionSlug])) {
+				$areaCodes = $this->phoneFormats[$countrySlug]["regionSpecificFormat"][$regionSlug]["areaCodes"];
+			}
+		}
+
+		return $areaCodes;
 	}
 
 	public function getOptionsColumnHTML() {
@@ -190,115 +251,8 @@ END;
 	}
 
 
-	private function generatePhoneNumber($format, $areaCodes) {
-
+	private function generatePhoneNumber($desiredFormat, $regionSpecificCountryCodeFormat, $areaCodes) {
+		return "$desiredFormat - $regionSpecificCountryCodeFormat (" . implode(",", $areaCodes) . ")";
 	}
-
-
-/*
-	private function convert($countrySlug, $regionShort = "") {
-		$phoneInfo = $this->phoneFormats[$countrySlug];
-	
-		$result = "";
-		if (true == $phoneInfo["isAdvanced"]) {
-		
-			// If we have regional postal/zip formats
-			if (true == $phoneInfo["isRegional"]) {
-			
-				$npaRange     = array();
-				$customFormat = "";
-				$replacements = "";
-
-				// Find the Regional postal/zip format
-				foreach ($phoneInfo["format"] as $format) {
-					switch ($format["area"]) {
-						case $countrySlug.'-'.$countrySlug:
-							$npaRange     = $format["npa"];
-							$customFormat = $format["format"];
-							$replacements = $format["replacements"];
-							if ('' == $regionShort) break 2;
-							break;
-						
-						case $countrySlug.'-'.$regionShort:
-							$npaRange     = $format["npa"];
-							$customFormat = $format["format"];
-							$replacements = $format["replacements"];
-							break 2;
-						
-						default:
-							// Do nothing.
-					}
-				}
-				
-				// now iterate over $customFormat and do whatever replacements have been specified
-				for ($i=0; $i<strlen($customFormat); $i++) {
-					if (array_key_exists($customFormat[$i], $replacements)) {
-						$replacementKey = $replacements[$customFormat[$i]];
-						$randChar = $replacementKey[rand(0, strlen($replacementKey)-1)];
-						$result .= $randChar;
-					} else {
-						$result .= $customFormat[$i];
-					}
-				}
-				
-				// pick a random NPA and add it to the front of the phone number.
-				$maxNpa = count( $npaRange );
-				$npa    = $npaRange[0];
-
-				if ( $maxNpa > 1) {
-					$index = rand(0, $maxNpa -1);
-					$npa   = $npaRange[$index];
-				}
-				$result = $npa.$result;
-				
-			} else {
-			
-				$npaRange     = array();
-				$customFormat = "";
-				$replacements = "";
-
-				// Find the Regional postal/zip format
-				foreach ($phoneInfo["format"] as $format) {
-					switch ($format["area"]) {
-						case $countrySlug.'-'.$countrySlug:
-							$npaRange     = $format["npa"];
-							$customFormat = $format["format"];
-							$replacements = $format["replacements"];
-							if ('' == $regionShort) break 2;
-							break;
-							
-						default:
-							// Do nothing.
-					}
-				}
-
-				// now iterate over $customFormat and do whatever replacements have been specified
-				for ($i=0; $i<strlen($customFormat); $i++) {
-					if (array_key_exists($customFormat[$i], $replacements)) {
-						$replacementKey = $replacements[$customFormat[$i]];
-						$randChar = $replacementKey[rand(0, strlen($replacementKey)-1)];
-						$result .= $randChar;
-					} else {
-						$result .= $customFormat[$i];
-					}
-				}
-		
-				// pick a random NPA and add it to the front of the phone number.
-				$maxNpa = count( $npaRange );
-				$npa    = $npaRange[0];
-				
-				if ( $maxNpa > 1) {
-					$index = rand(0, $maxNpa -1);
-					$npa   = $npaRange[$index];
-				}
-				$result = $npa.$result;					
-			}	
-		} else {
-			$result = '';
-		}
-
-		return $result;
-	}
-*/
 
 }
