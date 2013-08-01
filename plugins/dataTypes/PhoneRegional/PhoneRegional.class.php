@@ -252,7 +252,30 @@ END;
 
 
 	private function generatePhoneNumber($desiredFormat, $regionSpecificCountryCodeFormat, $areaCodes) {
+
+		// first off, get a random area code
+		$phoneNumber = $this->replaceRandomAreaCode($desiredFormat, $areaCodes);
+
 		return "$desiredFormat - $regionSpecificCountryCodeFormat (" . implode(",", $areaCodes) . ")";
+	}
+
+	private function replaceRandomAreaCode($desiredFormat, $areaCodes) {
+
+		// if the desired format doesn't contain an area code, shut down the party
+		if (!strstr("A", $desiredFormat)) {
+
+			return $desiredFormat;
+		}
+
+		$str = "";
+		if (!empty($areaCodes)) {
+			$areaCode = $areaCodes[rand(0, count($areaCodes)-1)];
+		} else {
+			// find the number of A's
+			preg_match("/[A]+/", $desiredFormat, $matches);
+		}
+
+		return $str;
 	}
 
 }
