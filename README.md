@@ -36,7 +36,7 @@ In addition to the folks who submit bug reports, a big thanks to the following f
 
 3.0.6 - Aug 1, 2013
 - Costa Rica Country plugin, Phone-Regional Data Type added, courtesy of [Andre Fortin](https://github.com/twindual)
-- bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=5&page=1&state=closed
+- bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=6&page=1&state=closed
 
 3.0.5 - July 13, 2013
 - Currency Data Type added.
