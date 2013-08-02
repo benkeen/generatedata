@@ -104,6 +104,7 @@
 					<li class="active"><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
 					<li><a href="#limitations"><i class="icon-chevron-right"></i> Limitations</a></li>
 					<li><a href="#add_your_own"><i class="icon-chevron-right"></i> Add your own</a></li>
+					<li><a href="#extended_data"><i class="icon-chevron-right"></i> Extended Data</a></li>
 					<li><a href="#contribute"><i class="icon-chevron-right"></i> Contribute your plugin</a></li>
 				</ul>
 			</div>
@@ -131,7 +132,14 @@
 				<ol>
 					<li>High-level geographical political groupings: regions / provinces / states / territories, etc.</li>
 					<li>City / town names for those regions</li>
-					<li>Zip / postal code format for the country</li>
+					<li>
+						<b>Extended Data</b> - as of 3.0.6, Country plugins may now contain an optional extended data section
+						that contains whatever additional information may be needed by any Data Types. This currently
+						includes zip codes and phone numbers. You can choose to make that data generic for the country as a whole,
+						or make it overridable per region. For example, some Country plugins define custom zip code formats
+						for each region; others define custom area codes for phone numbers. But the idea is that it's a generic
+						data structure that can be appended to over time without changing the structure of the Country class.
+					</li>
 				</ol>
 			</section>
 
@@ -150,15 +158,10 @@
 				<ul>
 					<li>If the user didn't select the "Limit countries to those selected above" for a <code>Country</code> row, it will randomly 
 					pick any country from the list (200 or so). If the country being outputted for a row doesn't have a corresponding
-					Country-plugin, it will arbitrarily pick any region, city and postal/zip code (since it can't know any better!)</li>
+					Country-plugin, it will arbitrarily pick any region, city and postal/zip code (since it won't know any better!)</li>
 					<li>If the data set being generated doesn't contain a <code>Country</code> or <code>Region</code> field, the cities 
 					will just be arbitrarily chosen.</li>
 				</ul>
-
-				<p>
-					One more limitation: the postal code format is currently only mapped to the country as a whole. So the actual
-					generated postal code value may not be correct for the particular region and city. 
-				</p>
 			</section>
 
 			<hr size="1" />
@@ -184,7 +187,7 @@
 				</p>
 
 				<p>
-					Now that's over with, here's how to do it.
+					Now that's over with, here's how to create a
 				</p>
 
 				<ol>
@@ -208,7 +211,6 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 	protected $countryName = "Papua New Guinea";
 	protected $countrySlug = "papuanewguinea";
 	protected $regionNames = "Papua New Guinean Provinces";
-	protected $zipFormat = "Xxx";
 	protected $continent = "oceania";
 
 	public function install() {
@@ -253,10 +255,6 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 							different ways. For example, Canada has provinces, the US has states, the UK has counties and 
 							so on. Just enter a string like "UK Counties"; this is used in the interface of the Region
 							Data Type to let users know what data they want to generate.
-						</li>
-						<li><b>$zipFormat</b>. This is a placeholder string that describes the format. Any of the following
-							characters will be converted to their equivalents, and randomized. Any other characters will just 
-							appear in the generated data unchanged.
 
 							<table>
 							<tbody><tr>
@@ -331,6 +329,22 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 			<p>
 				And that's it!
 			</p>
+			</section>
+
+			<hr size="1" />
+
+			<section id="extended_data">
+				<h2>Extended Data</h2>
+
+				<p>
+					You may have noticed that in the <code>PapuaNewGuinea</code> example above, there was no Zip / Postal code
+					data or Phone Number formats added for the country.
+				</p>
+
+				<p>
+					This doc section should be finished soon...! (written Aug 1, 2013)
+				</p>
+
 			</section>
 
 			<hr size="1" />
