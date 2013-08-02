@@ -13,6 +13,8 @@ class DataType_PhoneRegional extends DataTypePlugin {
 	protected $cssFiles = array("PhoneRegional.css");
 	protected $processOrder = 3;
 	private   $phoneFormats;
+	private   $unknownCountryPhoneFormat = "(Xxx) Xxx-xxxx";
+
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
@@ -87,9 +89,18 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		return array($countrySlug, $regionSlug, $customRegionalFormat);
 	}
 
-	// confirm
 	private function getDesiredPhoneFormat($countrySlug, $countryPhoneFormats) {
-		return $countryPhoneFormats[$countrySlug];
+		$phoneFormat = "";
+
+		if (array_key_exists($countrySlug, $countryPhoneFormats)) {
+			$phoneFormat = $countryPhoneFormats[$countrySlug];
+		} else {
+			// here we're generating a row for a country whose format we have NO idea. The whole purpose of the regional phone
+			// Data Type is for countries that we do, so in this case we simple
+			$phoneFormat = $this->unknownCountryPhoneFormat;
+		}
+
+		return $phoneFormat;
 	}
 
 	public function getRowCountryField($generationContextData) {
@@ -211,7 +222,7 @@ EOF;
 	public function getHelpHTML() {
 		$html =<<<END
 	<p>
-		{$this->L["help_text1"]}
+		{$this->L["help_text"]}
 	</p>
 END;
 	    return $html;

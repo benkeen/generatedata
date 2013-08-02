@@ -120,7 +120,7 @@ class Country_CostaRica extends CountryPlugin {
 		array(
 			"regionName" => "Limón",
 			"regionShort" => "L",
-			"regionSlug" => "limon",
+			"regionSlug" => "limón",
 			"weight" => 2,
 			"cities" => array(
 				"Guápiles", "Limón (Puerto Limón)", "Siquirres"
@@ -164,7 +164,7 @@ class Country_CostaRica extends CountryPlugin {
 		array(
 			"regionName" => "San José",
 			"regionShort" => "SJ",
-			"regionSlug" => "san_jose",
+			"regionSlug" => "san_josé",
 			"weight" => 33,
 			"cities" => array(
 				"Alajuelita", "Aserrí", "Calle Blancos", "Cinco Esquinas", "Concepción", "Curridabat", "Desamparados", "Gravilias", "Guadalupe", "Ipís",

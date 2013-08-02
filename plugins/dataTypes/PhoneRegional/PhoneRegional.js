@@ -19,38 +19,27 @@ define([
 	};
 
 	var _saveRow = function(rowNum) {
-		/*return {
-			"example": $("#dtExample_" + rowNum).val(),
-			"option":  $("#dtOption_" + rowNum).val()
-		};*/
+		var data = {};
+		for (var i=0; i<_currSelectedCountries.length; i++) {
+			var el = $("#dtPhoneRegional_" + _currSelectedCountries[i] + "_" + rowNum);
+			if (el.length) {
+				data[_currSelectedCountries[i]] = el.val();
+			}
+		}
+
+		// find the checkboxes in this row
+		return data;
 	};
 
 	var _loadRow = function(rowNum, data) {
-/*		return {
+		return {
 			execute: function() {
-				$("#dtExample_" + rowNum).val(data.example);
-				$("#dtOption_" + rowNum).val(data.option);
+				for (var countrySlug in data) {
+					$("#dtPhoneRegional_" + countrySlug + "_" + rowNum).val(data[countrySlug]);
+				}
 			},
-			isComplete: function() { return $("#dtOption_" + rowNum).length > 0; }
-		};*/
-	};
-
-	var _validate = function(rows) {
-		/*var visibleProblemRows = [];
-		var problemFields      = [];
-		for (var i=0; i<rows.length; i++) {
-			if ($("#dtOption_" + rows[i]).val() === "") {
-				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#dtOption_" + rows[i]));
-			}
+			isComplete: function() { return true; }
 		}
-		var errors = [];
-		if (visibleProblemRows.length) {
-			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-		}
-		return errors;
-		*/
 	};
 
 	/**
@@ -70,7 +59,6 @@ define([
 
 	manager.registerDataType(MODULE_ID, {
 		init: _init,
-		validate: _validate,
 		loadRow: _loadRow,
 		saveRow: _saveRow
 	});
