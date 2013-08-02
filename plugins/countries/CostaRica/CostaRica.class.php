@@ -23,7 +23,8 @@ class Country_CostaRica extends CountryPlugin {
 		),
 		"phoneFormat" => array(
 			"displayFormats" => array(
-				"xxxxxxxx"
+				"xxxxxxxx",
+				"xxxx-xxxx"
 			)
 		)
 	);
