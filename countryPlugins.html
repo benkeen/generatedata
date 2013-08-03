@@ -206,36 +206,39 @@
 /**
  * @package Countries
  */
-
 class Country_PapuaNewGuinea extends CountryPlugin {
 	protected $countryName = "Papua New Guinea";
 	protected $countrySlug = "papuanewguinea";
 	protected $regionNames = "Papua New Guinean Provinces";
 	protected $continent = "oceania";
+	protected $countryData = array(
+		array(
+			"regionName" => "Province Name 1",
+			"regionShort" => "PN1",
+			"regionSlug" => "province_name_1",
+			"weight" => 1,
+			"cities" => array(
+				"City Name 1", "City Name 2"
+			)
+		),
+		array(
+			"regionName" => "Province Name 2",
+			"regionShort" => "PN2",
+			"regionSlug" => "province_name_2",
+			"weight" => 1,
+			"cities" => array(
+				"City Name 3", "City Name 4"
+			)
+		)
+	);
+
 
 	public function install() {
-		$data = array(
-			array(
-				"regionName" => "Province Name 1",
-				"regionShort" => "PN1",
-				"regionSlug" => "province_name_1",
-				"weight" => "1",
-				"cities" => array(
-					"City Name 1", "City Name 2"
-				)
-			),
-			array(
-				"regionName" => "Province Name 2",
-				"regionShort" => "PN2",
-				"regionSlug" => "province_name_2",
-				"weight" => "1",
-				"cities" => array(
-					"City Name 3", "City Name 4"
-				)
-			)
+		return CountryPluginHelper::populateDB(
+			$this->countryName,
+			$this->countrySlug,
+			$this->countryData
 		);
-
-		return CountryPluginHelper::populateDB($this->countryName, $this->countrySlug, $data);
 	}
 }
 </pre>
@@ -255,55 +258,16 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 							different ways. For example, Canada has provinces, the US has states, the UK has counties and 
 							so on. Just enter a string like "UK Counties"; this is used in the interface of the Region
 							Data Type to let users know what data they want to generate.
-
-							<table>
-							<tbody><tr>
-									<td width="20"><h4>L</h4></td>
-									<td width="200">An uppercase <b>L</b>etter.</td>
-									<td width="20"><h4>V</h4></td>
-									<td>An uppercase <b>V</b>owel.</td>
-								</tr>
-								<tr>
-									<td><h4>l</h4></td>
-									<td>A lowercase <b>l</b>etter.</td>
-									<td><h4>v</h4></td>
-									<td>A lowercase <b>v</b>owel.</td>
-								</tr>
-								<tr>
-									<td><h4>D</h4></td>
-									<td>A letter (upper or lower).</td>
-									<td><h4>F</h4></td>
-									<td>A vowel (upper or lower).</td>
-								</tr>
-								<tr>
-									<td><h4>C</h4></td>
-									<td>An uppercase <b>C</b>onsonant.</td>
-									<td><h4>x</h4></td>
-									<td>Any number, 0-9.</td>
-								</tr>
-								<tr>
-									<td><h4>c</h4></td>
-									<td>A lowercase <b>c</b>onsonant.</td>
-									<td><h4>X</h4></td>
-									<td>Any number, 1-9.</td>
-								</tr>
-								<tr>
-									<td><h4>E</h4></td>
-									<td>A consonant (upper or lower).</td>
-									<td><h4>H</h4></td>
-									<td>An <b>H</b>exidecimal number (0-F)</td>
-								</tr>
-								</tbody>
-							</table>
 						</li>
 						<li><b>$continent</b>. This is the name of the continent. The following options are 
 							available (note: these must be entered <i>exactly</i> as written, otherwise your 
-							plugin won't show up: <code>africa</code>, <code>asia</code>, <code>europe</code>, 
-							<code>north_america</code>, <code>oceania</code>, <code>south_america</code>
+							plugin won't show up: <code>africa</code>, <code>asia</code>, <code>europe</code>,
+							<code>central_america</code>, <code>north_america</code>, <code>oceania</code>,
+							<code>south_america</code>.
 						</li>
 
 						<li>
-							<b>The actual data</b>. The regions and cities/towns are all stored in a single data 
+							<b>$countryData</b>. The regions and cities/towns are all stored in a single data
 							structure, grouped by region. Hopefully it's pretty self-explanatory from looking at the 
 							example above, but there are a couple of things to note:
 
@@ -338,11 +302,71 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 
 				<p>
 					You may have noticed that in the <code>PapuaNewGuinea</code> example above, there was no Zip / Postal code
-					data or Phone Number formats added for the country.
+					data or Phone Number formats added for the country. Country plugins are designed to be flexible enough to
+					add <i>any</i> country- or region-specific format.
 				</p>
 
 				<p>
-					This doc section should be finished soon...! (written Aug 1, 2013)
+					The basic pattern to adding extended data is to create two things:
+				</p>
+				<ol>
+					<li>
+						an <code>$extendedData</code>` protected member variable in the class that contains the default values
+						for the extended data.
+					</li>
+					<li>
+						Inside each region inside <code>$countryData</code>, define whatever region-specific data is needed.
+					</li>
+					<li>
+						Inside the Data Type, parse and interpret that data.
+					</li>
+				</ol>
+
+				<p>
+					Here's a couple of existing Data Types that use this feature.
+				</p>
+
+				<h3>Postal/Zip & Phone-Regional Data Types</h3>
+
+				<p>
+					Here's the Costa Rica Country Data Type. Take a look at the <code>$extendedData</code>
+					variable.
+				</p>
+
+<pre class="prettyprint linenums">
+&lt;?php
+
+/**
+ * @package Countries
+ */
+class Country_CostaRica extends CountryPlugin {
+	protected $continent   = "central_america";
+	protected $countryName = "Costa Rica";
+	protected $countrySlug = "CR";
+	protected $regionNames = "Costa Rican Provinces";
+
+	protected $extendedData = array(
+		"zipFormat" => array(
+			"format" => "ZYxYx",
+			"replacements" => array(
+				"Z" => "1234567",
+				"Y" => "01",
+				"x" => "0123456789"
+			)
+		),
+		"phoneFormat" => array(
+			"displayFormats" => array(
+				"xxxxxxxx",
+				"xxxx-xxxx"
+			)
+		)
+	);
+
+	// ...
+</pre>
+
+				<p>
+					
 				</p>
 
 			</section>
