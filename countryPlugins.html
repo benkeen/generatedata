@@ -329,8 +329,14 @@ class Country_PapuaNewGuinea extends CountryPlugin {
 				<h3>Postal/Zip & Phone-Regional Data Types</h3>
 
 				<p>
-					Here's the Costa Rica Country Data Type. Take a look at the <code>$extendedData</code>
-					variable.
+					At the time of writing, the only two Data Types that make use of country extended data
+					is the Postal/Zip and Phone-Regional data types. They both generate as appropriate a
+					value as they can, based on the selected countries and the value for the Country and
+					Region field in the data set.
+				</p>
+				<p>
+					Here's the first few lines of the Costa Rica Country Data Type. Take a look at
+					the <code>$extendedData</code> variable.
 				</p>
 
 <pre class="prettyprint linenums">
@@ -366,7 +372,61 @@ class Country_CostaRica extends CountryPlugin {
 </pre>
 
 				<p>
-					
+					The <code>$extendedData</code> variable can store whatever information is needed. For the zip format
+					it stores a general zip format for the whole country and a list of replacement values that are used
+					to generate the zip. The phone number needs a list (one is fine) of possible display formats for the
+					phone number. These are selectable via the UI.
+				</p>
+
+				<p class="alert alert-info">
+					Note: the Data Types are what handles all the actual data generation. The developers of those plugins
+					decide the structure of the extended data (for that section) and what info needs to be supplied. As a
+					Country plugin developer you just need to follow the pattern set out in other Country plugins.
+				</p>
+
+				<p>
+					To provide region-specific data, you'll need to include an <code>extendedData</code> key in the
+					region's data section, like as followed:
+				</p>
+
+<pre class="prettyprint linenums">
+protected $countryData = array(
+	array(
+		"regionName" => "Alajuela",
+		"regionShort" => "A",
+		"regionSlug" => "alajuela",
+		"weight" => 20,
+		"cities" => array(
+			"Alajuela", "Quesada", "San José de Alajuela", "San Rafael"
+		),
+		"extendedData" => array(
+			"zipFormat" => array(
+				"format" => "2zxYx",
+				"replacements" => array(
+					"z" => "01",
+					"Y" => "01",
+					"x" => "0123456789"
+				)
+			),
+			"phoneFormat" => array(
+				"format" => "24xxxxxx"
+			)
+		)
+	),
+	array(
+		// ...
+</pre>
+
+				<p>
+					That will be used by the various data types to override the default values and provide more realistic
+					data for the country.
+				</p>
+
+				<p>
+					To keep your Country plugin up to date with whatever extended data is generally used, I'd suggest looking
+					through the various existing Country plugins and seeing what's defined. Extended data <i>should</i>
+					be optional, but naturally you'll want to make your plugin as compatible with as many Data Types
+					as possible.
 				</p>
 
 			</section>
