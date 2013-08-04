@@ -11,7 +11,16 @@ class Country_Australia extends CountryPlugin {
 	protected $continent = "oceania";
 
 	protected $extendedData = array(
-		"zipFormat" => "Xxxx"
+		"zipFormat" => array(
+			"format" => "Xxxx"
+		),
+		"phoneFormat" => array(
+			"displayFormats" => array(
+				"xxxx-xxxx",
+				"(0x) xxxx xxxx",
+				"04xx xxx xxx"
+			)
+		)
 	);
 
 	protected $countryData = array(
