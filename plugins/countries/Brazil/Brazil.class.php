@@ -11,7 +11,22 @@ class Country_Brazil extends CountryPlugin {
 	protected $continent = "south_america";
 
 	protected $extendedData = array(
-		"zipFormat" => "xxxxx-xxx"
+		"zipFormat" => array(
+			"format" => "xxxxx-xxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789",
+				"Y" => "012345678",
+				"W" => "01234567",
+				"V" => "0123456",
+				"U" => "012345",
+				"T" => "01234",
+				"S" => "0123",
+				"R" => "678",
+				"Q" => "89",
+				"P" => "3456"
+			)
+		)
 	);
 
 
@@ -24,6 +39,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Guarulhos", "Campinas", "Osasco", "Ribeirão Preto", "Mauá", "Mogi das Cruzes", "Diadema",
 				"Jundiaí", "Carapicuíba", "Piracicaba"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "1Xxxx-xxx"
+				)
 			)
 		),
 		array(
@@ -35,6 +55,11 @@ class Country_Brazil extends CountryPlugin {
 				"Belo Horizonte", "Uberlândia", "Contagem", "Juiz de Fora", "Betim", "Montes Claros",
 				"Ribeirão das Neves", "Uberaba", "Governador Valadares", "Ipatinga", "Sete Lagoas",
 				"Divinópolis", "Santa Luzia"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "3xxxxxxx"
+				)
 			)
 		),
 		array(
@@ -45,6 +70,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Rio de Janeiro", "São Gonçalo", "Duque de Caxias", "Nova Iguaçu", "Niterói", "Belford Roxo",
 				"Campos dos Goytacazes", "São João de Meriti", "Petrópolis"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "2Yxxx-xxx"
+				)
 			)
 		),
 		array(
@@ -55,6 +85,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Salvador", "Feira de Santana", "Vitória da Conquista", "Camaçari", "Itabuna",
 				"Juazeiro", "Ilhéus", "Lauro de Freitas"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "4Yxxx-xxx"
+				)
 			)
 		),
 		array(
@@ -65,6 +100,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Porto Alegre", "Caxias do Sul", "Pelotas", "Canoas", "Santa Maria", "Gravataí",
 				"Novo Hamburgo", "Rio Grande"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "9xxxx-xxx"
+				)
 			)
 		),
 		array(
@@ -75,6 +115,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Curitiba", "Londrina", "Maringá", "Ponta Grossa", "Cascavel", "São José dos Pinhais",
 				"Foz do Iguaçu", "Colombo", "Guarapuava", "Paranaguá"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "8Wxxx-xxx"
+				)
 			)
 		),
 		array(
@@ -85,6 +130,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Recife", "Jaboatão dos Guararapes", "Olinda", "Caruaru", "Paulista", "Petrolina",
 				"Cabo de Santo Agostinho", "Camaragibe"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "5Vxxx-xxx"
+				)
 			)
 		),
 		array(
@@ -95,6 +145,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Fortaleza", "Caucaia", "Juazeiro do Norte", "Maracanaú", "Sobral", "Crato",
 				"Itapipoca", "Maranguape"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "6Sxxx-xxx"
+				)
 			)
 		),
 		array(
@@ -105,6 +160,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Belém", "Ananindeua", "Santarém", "Marabá", "Castanhal", "Parauapebas",
 				"Abaetetuba", "Cametá", "Bragança"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "6RYxx-xxx"
+				)
 			)
 		),
 		array(
@@ -115,6 +175,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"São Luís", "Imperatriz", "Timon", "Caxias", "Codó", "Paço do Lumiar", "Açailândia",
 				"Bacabal", "Santa Inês", "Balsas", "Chapadinha", "Barra do Corda"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "65xxx-xxx"
+				)
 			)
 		),
 		array(
@@ -124,6 +189,11 @@ class Country_Brazil extends CountryPlugin {
 			"weight" => 6,
 			"cities" => array(
 				"Joinville", "Florianópolis", "Blumenau", "São José", "Criciúma", "Chapecó", "Itajaí"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "8Qxxx-xxx"
+				)
 			)
 		),
 		array(
@@ -134,6 +204,11 @@ class Country_Brazil extends CountryPlugin {
 			"cities" => array(
 				"Goiânia", "Aparecida de Goiânia", "Anápolis", "Rio Verde", "Luziânia",
 				"Águas Lindas de Goiás", "Valparaíso de Goiás"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "7P7xx-xxx"
+				)
 			)
 		),
 		array(
@@ -143,6 +218,11 @@ class Country_Brazil extends CountryPlugin {
 			"weight" => 4,
 			"cities" => array(
 				"João Pessoa", "Campina Grande", "Santa Rita", "Patos",  "Bayeux", "Sousa", "Cajazeiras"
+			),
+			"extendedData" => array(
+				"zipFormat" => array(
+					"format" => "58xxx-xxx"
+				)
 			)
 		)
 	);
