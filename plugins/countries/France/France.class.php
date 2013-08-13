@@ -7,7 +7,7 @@
 class Country_France extends CountryPlugin {
 	protected $countryName = "France";
 	protected $countrySlug = "france";
-	protected $regionNames = "French Provinces";
+	protected $regionNames = "Régions Françaises";
 	protected $continent = "europe";
 
 	protected $extendedData = array(
@@ -39,8 +39,8 @@ class Country_France extends CountryPlugin {
 			)
 		),
 		array(
-			"regionName" => "Nord-Pas de Calais",
-			"regionShort" => "Nord-Pas de Calais",
+			"regionName" => "Nord-Pas-de-Calais",
+			"regionShort" => "Nord-Pas-de-Calais",
 			"regionSlug" => "nord_pas_de_calais",
 			"weight" => 7.6,
 			"cities" => array(
@@ -70,9 +70,9 @@ class Country_France extends CountryPlugin {
 			)
 		),
 		array(
-			"regionName" => "Brittany",
-			"regionShort" => "Brittany",
-			"regionSlug" => "brittany",
+			"regionName" => "Bretagne",
+			"regionShort" => "Bretagne",
+			"regionSlug" => "bretagne",
 			"weight" => 4.9,
 			"cities" => array(
 				"Rennes", "Brest", "Quimper", "Lorient", "Vannes", "Saint-Malo", "Saint-Brieuc", "Lanester"
@@ -116,9 +116,9 @@ class Country_France extends CountryPlugin {
 			)
 		),
 		array(
-			"regionName" => "Picardy",
-			"regionShort" => "Picardy",
-			"regionSlug" => "picardy",
+			"regionName" => "Picardie",
+			"regionShort" => "Picardie",
+			"regionSlug" => "picardie",
 			"weight" => 3,
 			"cities" => array(
 				"Amiens", "Saint-Quentin", "Beauvais", "Compiègne", "Creil", "Soissons", "Laon", "Abbeville"
@@ -134,9 +134,9 @@ class Country_France extends CountryPlugin {
 			)
 		),
 		array(
-			"regionName" => "Upper Normandy",
-			"regionShort" => "Upper Normandy",
-			"regionSlug" => "upper_normandy",
+			"regionName" => "Haute-Normandie",
+			"regionShort" => "Haute-Normandie",
+			"regionSlug" => "haute_normandie",
 			"weight" => 2.8,
 			"cities" => array(
 				"Le Havre", "Rouen", "Évreux", "Dieppe", "Sotteville-lès-Rouen", "Saint-Étienne-du-Rouvray", "Vernon",
@@ -162,9 +162,9 @@ class Country_France extends CountryPlugin {
 			)
 		),
 		array(
-			"regionName" => "Lower Normandy",
-			"regionShort" => "Lower Normandy",
-			"regionSlug" => "lower_normandy",
+			"regionName" => "Basse-Normandie",
+			"regionShort" => "Basse-Normandie",
+			"regionSlug" => "basse_normandie",
 			"weight" => 2.3,
 			"cities" => array(
 				"Caen", "Cherbourg-Octeville", "Alençon", "Lisieux", "Hérouville-Saint-Clair", "Saint-Lô"
