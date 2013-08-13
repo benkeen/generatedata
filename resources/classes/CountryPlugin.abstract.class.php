@@ -10,17 +10,13 @@ abstract class CountryPlugin {
 	protected $countryName;
 	protected $countrySlug;
 	protected $regionNames;
-	
-	// Used for PostalZip plugin.
-	protected $zipFormat;
-	protected $zipFormatAdvanced   = false;
-	protected $zipFormatRegional   = false;
+	protected $countryData;
 
-	// Used for PhoneRegional plugin.
-	protected $phoneFormat;
-	protected $phoneFormatAdvanced = false;
-	protected $phoneFormatRegional = false;
-	protected $phoneCountryCode    = '';
+	// this may be optionally defined and extended as need be. It contains whatever custom information
+	// Data Types need and can be appended to in the individual Country classes over time without further
+	// modification of the abstract class
+	protected $extendedData;
+
 
 	/**
 	 * The installation function. This should populate the countries, regions and cities tables
@@ -45,7 +41,7 @@ abstract class CountryPlugin {
 		Core::$db->query($queries);
 	}
 
-	// Non-overridable helper functions
+	// non-overridable helper functions
 	final public function getContinent() {
 		return $this->continent;
 	}
@@ -58,31 +54,36 @@ abstract class CountryPlugin {
 		return $this->countrySlug;
 	}
 
+	final public function getCountryData() {
+		return $this->countryData;
+	}
+
 	final public function getRegionNames() {
 		return $this->regionNames;
 	}
 
-	final public function getZipFormat() {
-		return $this->zipFormat;
+	final public function getExtendedData() {
+		return $this->extendedData;
 	}
 
-	final public function isZipFormatAdvanced() {
-		return $this->zipFormatAdvanced;
-	}
+	/**
+	 * A generalized function for returning any custom data defined in the region's extendedData section.
+	 * @param $key contains the top-level key
+	 * @return array a hash of [regionSlug] to whatever info is stored in the desired key
+	 */
+	final public function getRegionalExtendedData($key) {
+		$regionSpecificData = array();
 
-	final public function isZipFormatRegional() {
-		return $this->zipFormatRegional;
-	}
+		foreach ($this->countryData as $regionInfo) {
+			if (!array_key_exists("extendedData", $regionInfo)) {
+				continue;
+			}
 
-	final public function getPhoneFormat() {
-		return $this->phoneFormat;
-	}
+			if (array_key_exists($key, $regionInfo["extendedData"])) {
+				$regionSpecificData[$regionInfo["regionSlug"]] = $regionInfo["extendedData"][$key];
+			}
+		}
 
-	final public function isPhoneFormatAdvanced() {
-		return $this->phoneFormatAdvanced;
+		return $regionSpecificData;
 	}
-
-	final public function isPhoneFormatRegional() {
-		return $this->phoneFormatRegional;
-	}	
 }

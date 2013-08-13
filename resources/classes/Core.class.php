@@ -30,7 +30,7 @@ class Core {
 	public static $useJSCache = true;
 
 	// non-overridable settings
-	private static $version = "3.0.5";
+	private static $version = "3.0.6";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
@@ -73,6 +73,10 @@ class Core {
 
 	public static $dataTypePlugins;
 	public static $exportTypePlugins;
+
+	/**
+	 * @var CountryPlugin
+	 */
 	public static $countryPlugins;
 	public static $allowThemes = false;
 

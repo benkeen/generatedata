@@ -21,17 +21,22 @@ Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests
 
 ## License
 
-This script is freely available under the GPL 3 license. See license.txt in the root folder.
+This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all contributors agree that all code is released under this license.
 
 ## Contributors
 
 In addition to the folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [Andre Fortin](https://github.com/twindual) - original Costa Rica Country plugin & Phone-Regional Data Type (3.0.6)
 - [Marcello Verona](https://github.com/marciuz) - Italy Country plugin (3.0.4)
 - [Roberto Aragón](https://github.com/robarago), Charo Baena - Spanish translation & Country plugin (3.0.2)
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.0.6 - Aug 1, 2013
+- Costa Rica Country plugin, Phone-Regional Data Type added, courtesy of [Andre Fortin](https://github.com/twindual)
+- bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=6&page=1&state=closed
 
 3.0.5 - July 13, 2013
 - Currency Data Type added.

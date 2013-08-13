@@ -5,7 +5,6 @@ define([
 	"lang",
 	"generator"
 ], function(manager, C, L, generator) {
-
 	"use strict";
 
 	/**
@@ -16,7 +15,6 @@ define([
 	 */
 
 	var MODULE_ID = "data-type-Region";
-	var LANG = L.dataTypePlugins.Region;
 	var subscriptions = {};
 	var _currSelectedCountries = null;
 
@@ -31,9 +29,9 @@ define([
 		for (var i=0; i<_currSelectedCountries.length; i++) {
 			checked.push({
 				country: _currSelectedCountries[i],
-				regionSelected: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_" + rowNum).attr("checked") == "checked") ? 1 : 0,
-				regionFull: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Full_" + rowNum).attr("checked") == "checked") ? 1 : 0,
-				regionShort: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Short_" + rowNum).attr("checked") == "checked") ? 1 : 0
+				regionSelected: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_" + rowNum).attr("checked") === "checked") ? 1 : 0,
+				regionFull: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Full_" + rowNum).attr("checked") === "checked") ? 1 : 0,
+				regionShort: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Short_" + rowNum).attr("checked") === "checked") ? 1 : 0
 			});
 		}
 
@@ -51,13 +49,13 @@ define([
 				if ($("#dtRegionCountry_Complete" + rowNum).length) {
 					for (var i=0; i<rows.length; i++) {
 						var currCountry = rows[i].country;
-						if (rows[i].regionSelected == "0") {
+						if (rows[i].regionSelected === "0") {
 							$("#dtIncludeRegion_" + currCountry + "_" + rowNum).removeAttr("checked").trigger("click");
 						}
-						if (rows[i].regionFull == "0") {
+						if (rows[i].regionFull === "0") {
 							$("#dtIncludeRegion_" + currCountry + "_Full_" + rowNum).removeAttr("checked");
 						}
-						if (rows[i].regionShort == "0") {
+						if (rows[i].regionShort === "0") {
 							$("#dtIncludeRegion_" + currCountry + "_Short_" + rowNum).removeAttr("checked");
 						}
 					}
@@ -84,10 +82,6 @@ define([
 		$(shownClassesSelector).show();
 	};
 
-	var _validate = function() {
-
-	};
-
 	var _toggleCountryRegion = function(e) {
 		var el = e.target;
 		var parent = $(el).parent();
@@ -104,7 +98,6 @@ define([
 	// register our module
 	manager.registerDataType(MODULE_ID, {
 		init: _init,
-		validate: _validate,
 		loadRow: _loadRow,
 		saveRow: _saveRow
 	});

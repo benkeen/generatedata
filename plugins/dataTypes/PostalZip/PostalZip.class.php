@@ -9,7 +9,7 @@ class DataType_PostalZip extends DataTypePlugin {
 	protected $dataTypeName = "Postal / Zip";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 30;
-	protected $processOrder = 2;
+	protected $processOrder = 3;
 	protected $jsModules = array("PostalZip.js");
 	private $zipFormats;
 
@@ -17,17 +17,17 @@ class DataType_PostalZip extends DataTypePlugin {
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 
-		// IF we're in the process of generating data THEN
-		//    Get all the initialize the private variable with the formats 
-		//       of the selected country/region or all IF none are specified.
+		// if we're in the process of generating data then initialize a private var with the
+		// zip formats of all countries registered the system
 		if ($runtimeContext == "generation") {
 			self::initZipFormats();
 		}
 	}
-	
+
+	// this kind of sucks! Way too dense logic (too high cyclomatic complexity ;-) )
 	public function generate($generator, $generationContextData) {
-		$options = $generationContextData["generationOptions"];
-		
+		$selectedCountrySlugs = $generationContextData["generationOptions"];
+
 		// track the country info (this finds the FIRST country field listed)
 		$rowCountryInfo = array();
 		while (list($key, $info) = each($generationContextData["existingRowData"])) {
@@ -49,38 +49,46 @@ class DataType_PostalZip extends DataTypePlugin {
 			}
 		}
 		
-		// IF we have a region get the short code to use with the convert() function.
-		// *** This only works if the REGION appears before the POSTAL/ZIP row in the data.
-		$regionCode = '';
+		// if we have a region, get the short code to use with the convert() function
+		$regionCode = "";
 		reset($generationContextData["existingRowData"]);
 		while (list($key, $info) = each($generationContextData["existingRowData"])) {
 			if ($info["dataTypeFolder"] == "Region") {
-				$regionCode = $info["randomData"]["region_short"];
+				$regionCode = $info["randomData"]["region_slug"];
 				break;
 			}
 		}
 		
+		// if there's neither a country nor a region, get a random country and generate a random zip/postal code
+		// in that format
 		$randomZip = "";
-		// IF there is no country AND no region, THEN
-		//    get a random country and generate a random zip/postal code in that format.
 		if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
-			$randCountry = $options[rand(0, count($options)-1)];
-			$randomZip = $this->convert($randCountry, $regionCode);
+			if (empty($selectedCountrySlugs)) {
+				$randCountrySlug = array_rand($this->zipFormats);
+			} else {
+				$randCountrySlug = $selectedCountrySlugs[rand(0, count($selectedCountrySlugs)-1)];
+			}
+			$randomZip = $this->convert($randCountrySlug, "");
 		} else {
-			// if this country is one of the formats that was selected, generate it in that format -
-			// otherwise just generate a zip in any selected format
-			if (!empty($rowCountryInfo)) {
+
+			$countrySlug = "";
+			if (!empty($rowCountryInfo) && is_array($rowCountryInfo["randomData"]) && array_key_exists("slug", $rowCountryInfo["randomData"])) {
 				$countrySlug = $rowCountryInfo["randomData"]["slug"];
 			} else {
-				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
+				if (isset($rowRegionInfo["randomData"]) && is_array($rowRegionInfo["randomData"]) &&  array_key_exists("country_slug", $rowRegionInfo["randomData"])) {
+					$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
+				}
 			}
-			if (in_array($countrySlug, $options)) {
-				$randomZip = $this->convert($countrySlug, $regionCode);
+
+			if (!empty($countrySlug) && in_array($countrySlug, $selectedCountrySlugs)) {
+				$randomZip = $this->convert($countrySlug, $regionCode); // passing in CR, alajuela
 			} else {
-				$randCountry = $options[rand(0, count($options)-1)];
-				$randomZip = $this->convert($randCountry, $regionCode);
+				$randCountrySlug = array_rand($this->zipFormats);
+				$randomZip = $this->convert($randCountrySlug, $regionCode);
 			}
 		}
+
+
 		return array(
 			"display" => $randomZip
 		);
@@ -94,7 +102,6 @@ class DataType_PostalZip extends DataTypePlugin {
 				$options[] = $slug;
 			}
 		}
-
 		return $options;
 	}
 
@@ -121,79 +128,74 @@ EOF;
 		return "<p>{$this->L["help_text"]}</p>";
 	}
 
+	/**
+	 * This is called when data generation starts. It does the work of generating a data structure containing all
+	 * the info we need to intelligently generate a zip format for the country-region.
+	 */
 	private function initZipFormats() {
 		$countryPlugins = Core::$countryPlugins;
 		$formats = array();
 		foreach ($countryPlugins as $countryInfo) {
-			$formats[$countryInfo->getSlug()] = array(
-				"format"    => $countryInfo->getZipFormat(),
-				"isAdvanced"=> $countryInfo->isZipFormatAdvanced(),
-				"isRegional"=> $countryInfo->isZipFormatRegional()
-			);
-		}
+			$extendedData = $countryInfo->getExtendedData();
 
+			if (!isset($extendedData["zipFormat"])) {
+				continue;
+			}
+
+			$format = "";
+			$isAdvanced = false;
+			$replacements = array();
+			if (is_string($extendedData["zipFormat"])) {
+				$format = $extendedData["zipFormat"];
+			} else if (array_key_exists("format", $extendedData["zipFormat"]) && is_string($extendedData["zipFormat"]["format"])) {
+				$format = $extendedData["zipFormat"]["format"];
+				$replacements = $extendedData["zipFormat"]["replacements"];
+				$isAdvanced = true;
+			}
+
+			if (empty($format)) {
+				continue;
+			}
+
+			$returnInfo = array(
+				"format"       => $format,
+				"replacements" => $replacements,
+				"isAdvanced"   => $isAdvanced,
+				"regionSpecificFormat" => array()
+			);
+			if ($isAdvanced) {
+				$returnInfo["regionSpecificFormat"] = $countryInfo->getRegionalExtendedData("zipFormat");
+			}
+			$formats[$countryInfo->getSlug()] = $returnInfo;
+		}
 		$this->zipFormats = $formats;
 	}
 
-	private function convert($countrySlug, $regionShort = '') {
+
+	private function convert($countrySlug, $regionShort = "") {
 		$zipInfo = $this->zipFormats[$countrySlug];
+
 		$result = "";
-		
-		if (true == $zipInfo["isAdvanced"]) {
-		
-			// If we have regional postal/zip formats
-			if (true == $zipInfo["isRegional"]) {
-			
-				$customFormat = "";
-				$replacements = "";
+		if ($zipInfo["isAdvanced"]) {
 
-				// Find the Regional postal/zip format
-				foreach ($zipInfo["format"] as $format) {
-					switch ($format["area"]) {
-						case $countrySlug.'-'.$countrySlug:
-							$customFormat = $format["format"];
-							$replacements = $format["replacements"];
-							if ('' == $regionShort) break 2;
-							break;
-						
-						case $countrySlug.'-'.$regionShort:
-							$customFormat = $format["format"];
-							$replacements = $format["replacements"];
-							break 2;
-						
-						default:
-							// Do nothing.
-					}
-				}
-				
-				// now iterate over $customFormat and do whatever replacements have been specified
-				for ($i=0; $i<strlen($customFormat); $i++) {
-					if (array_key_exists($customFormat[$i], $replacements)) {
-						$replacementKey = $replacements[$customFormat[$i]];
-						$randChar = $replacementKey[rand(0, strlen($replacementKey)-1)];
-						$result .= $randChar;
-					} else {
-						$result .= $customFormat[$i];
-					}
-				}
-				
-			} else {
-				// Otherwise, there is a single postal/zip format for the country.
-				$customFormat = $zipInfo["format"]["format"];
-				$replacements = $zipInfo["format"]["replacements"];
+			// if the country plugin defined a custom zip format for this region, use it
+			if (!empty($regionShort) && !empty($zipInfo["regionSpecificFormat"]) && array_key_exists($regionShort, $zipInfo["regionSpecificFormat"])) {
+				$customFormat = isset($zipInfo["regionSpecificFormat"][$regionShort]["format"]) ? $zipInfo["regionSpecificFormat"][$regionShort]["format"]: "";
+				$replacements = isset($zipInfo["regionSpecificFormat"][$regionShort]["replacements"]) ? $zipInfo["regionSpecificFormat"][$regionShort]["replacements"] : "";
+			}
+			$customFormat = !empty($customFormat) ? $customFormat : $zipInfo["format"];
+			$replacements = !empty($replacements) ? $replacements : $zipInfo["replacements"];
 
-				// now iterate over $customFormat and do whatever replacements have been specified
-				for ($i=0; $i<strlen($customFormat); $i++) {
-					if (array_key_exists($customFormat[$i], $replacements)) {
-						$replacementKey = $replacements[$customFormat[$i]];
-						$randChar = $replacementKey[rand(0, strlen($replacementKey)-1)];
-						$result .= $randChar;
-					} else {
-						$result .= $customFormat[$i];
-					}
+			// now iterate over $customFormat and do whatever replacements have been specified
+			for ($i=0; $i<strlen($customFormat); $i++) {
+				if (array_key_exists($customFormat[$i], $replacements)) {
+					$replacementKey = $replacements[$customFormat[$i]];
+					$randChar = $replacementKey[rand(0, strlen($replacementKey)-1)];
+					$result .= $randChar;
+				} else {
+					$result .= $customFormat[$i];
 				}
 			}
-			
 		} else {
 			$formats = explode("|", $zipInfo["format"]);
 			if (count($formats) == 1) {
@@ -206,6 +208,7 @@ EOF;
 
 		return $result;
 	}
+
 
 	public function getDataTypeMetadata() {
 		return array(
