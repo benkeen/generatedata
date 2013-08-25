@@ -21,12 +21,68 @@
 		</div>
 	{/if}
 
+	<hr size="1" />
+
+	<button id="gdResetPluginsBtn" class="gdSecondaryButton">Detect Available Plugins</button>
+
+	<!--
+	{$L.plugins_intro}
+	-->
+
 	<h3>{$L.plugins}</h3>
 
+
+	{if $settings.userAccountSetup == "multiple"}
 	<p>
-		{$L.plugins_intro}
-		<button id="gdResetPluginsBtn" class="gdSecondaryButton">{$L.reset_plugins}</button>
+		<input type="checkbox" name="allowUserSelectModuleSubset" id="allowUserSelectModuleSubset"/>
+			<label for="allowUserSelectModuleSubset">Allow logged in user to select what modules they see in the Generator</label>
 	</p>
+
+	<!--
+	Over time, more and more Data Types, Export Types, Country-specific data and translations are being added. Most
+	users only need to use a subset of the available functionality. This option determines whether the users will
+	always see a specific list of module (defined below), or be able to customize their own list.
+
+	the below should save to
+	-->
+
+	<p>
+		<b>Default Modules</b>
+	</p>
+	<p>
+
+	</p>
+
+	<ul class="gdDefaultModules">
+		<li>
+			<h4>Countries</h4>
+			<div>
+				{*
+				{foreach from=$allCountryPlugins item=i}
+					<input type="checkbox" />
+						<label>{$i}</label>
+				{/foreach}
+				*}
+			</div>
+		</li>
+		<li>
+			<h4>Data Types</h4>
+			<div>
+			</div>
+		</li>
+		<li>
+			<h4>Export Types</h4>
+			<div>
+			</div>
+		</li>
+		<li>
+			<h4>Translations</h4>
+			<div>
+			</div>
+		</li>
+	</ul>
+	{/if}
+
 
 	<div id="gdPluginInstallation">
 		<div id="gdPluginInstallationResults" class="hidden">
@@ -46,6 +102,7 @@
 		<div class="gdClear"></div>
 	</div>
 
+	<!--
 	<h3>{$L.misc}</h3>
 
 	<div>
@@ -55,6 +112,9 @@
 		<input type="radio" name="theme" value="classic" id="gdTheme2" {if $settings.theme == "classic"}checked="checked"{/if} />
 			<label for="gdTheme2">Classic</label>
 	</div>
+	-->
+
+	<hr size="1" />
 
 	<h3>{$L.developer}</h3>
 

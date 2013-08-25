@@ -11,15 +11,16 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/tablesorter.theme.css" />
 	<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
 	<script src="resources/libs/codemirror/lib/codemirror.min.js"></script>
-	<script src="resources/scripts/libs/jquery.js"></script>
+	<script src="resources/scripts/libs/jquery.min.js"></script>
 	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
 	<script src="resources/scripts/libs/require.js"></script>
 	<script src="resources/scripts/requireConfig.js"></script>
+	<script src="resources/scripts/libs/spinners.js"></script>
+
 	<!--[if lt IE 9]>
 	<script src="resources/scripts/libs/html5shiv.js"></script>
 	<script src="resources/scripts/libs/excanvas.js"></script>
 	<![endif]-->
-	<script src="resources/scripts/libs/spinners.js"></script>
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>

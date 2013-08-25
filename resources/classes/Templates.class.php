@@ -125,7 +125,7 @@ class Templates {
 	<head>
 		<title>Things just ain't right.</title>
 		<link rel="stylesheet" type="text/css" href="resources/themes/classic/compiled/styles.css">
-		<script src="resources/scripts/libs/jquery.js"></script>
+		<script src="resources/scripts/libs/jquery.min.js"></script>
 		<script>
 		$(function() {
 			$("button").bind("click", function() { window.location = "index.php?source=fromerrorpage"; });

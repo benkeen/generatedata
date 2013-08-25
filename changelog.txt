@@ -1,0 +1,17 @@
+3.0.7
+-------
+
+- LDIF Export Type support
+- Full French translation
+- JS, CSS minimization and bundling via Grunt. This is turned off by default for all commits to allow
+for people to work locally without it. See help documentation for more information.
+- For multiple-user installations, new settings to allow administrator to define default visible modules
+(Countries, Data Types, Export Types, Translations), and option to allow users to customize their own list.
+- Bug fixes [see github]
+	- MSSQL single quote issue
+	- ...
+
+
+Problems:
+- how is Grunt going to detect the requireJS modules if they're outputted dynamically?
+- is really going to download them all, always? Seems like this is the only viable alternative...

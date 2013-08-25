@@ -19,6 +19,7 @@ if (isset($_POST["updateSettings"])) {
 	$pageParams["message"] = $message;
 }
 
+$settings = Settings::getSettings();
 $exportTypes = Core::$exportTypePlugins;
 $exportTypeAdditionalSettings = ExportTypePluginHelper::getExportTypeAdditionalSettingsHTML($exportTypes);
 $dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
@@ -28,10 +29,16 @@ $dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "s
 $dataTypeCssIncludes = DataTypePluginHelper::getDataTypeCSSIncludes($dataTypes);
 $cssIncludes = $exportTypeCssIncludes . "\n" . $dataTypeCssIncludes;
 
+// used in the settings page
+$pageParams["allCountryPlugins"] = Core::$countryPlugins;
+$pageParams["allExportTypes"] = $exportTypes;
+$pageParams["allDataTypes"] = $dataTypes;
+$pageParams["allTranslations"] = Core::$translations->getList();
+
 $pageParams["dataTypeJSModules"] = $dataTypeJSModules;
 $pageParams["exportTypeJSModules"] = $exportTypeJSModules;
 $pageParams["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
-$pageParams["settings"] = Settings::getSettings();
+$pageParams["settings"] = $settings;
 $pageParams["cssIncludes"] = $cssIncludes;
 $pageParams["codeMirrorIncludes"] = ExportTypePluginHelper::getExportTypeCodeMirrorModes($exportTypes);
 $pageParams["defaultExportType"] = Core::getDefaultExportType();

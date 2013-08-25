@@ -14,6 +14,8 @@ class CountryPluginHelper {
 	 * region info (province / state / county), postal code info AND a list of cities. These countries
 	 * have special functionality within the UI.
 	 *
+	 * TODO this pretty poor. It actually instantiates the country plugins
+	 *
 	 * @param boolean $installedOnly this determines
 	 * @return array
 	 */

@@ -1,0 +1,23 @@
+{
+	"name": "generatedata",
+	"version": "3.0.7",
+	"description": "free, GNU-licensed, random custom data generator for testing software",
+	"main": "gruntfile.js",
+	"directories": {
+		"test": "tests"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/benkeen/generatedata.git"
+	},
+	"author": "Ben Keen",
+	"license": "GPL",
+	"readmeFilename": "README.md",
+	"gitHead": "0c9c909be95a311f2d25efc0f3ed63a1f7f40574",
+	"bugs": {
+		"url": "https://github.com/benkeen/generatedata/issues"
+	}
+}
