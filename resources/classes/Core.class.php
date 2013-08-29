@@ -32,6 +32,7 @@ class Core {
 	// non-overridable settings
 	private static $version = "3.0.6";
 	private static $minimumPHPVersion = "5.3.0";
+	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
 	private static $continents = array("africa", "asia", "central_america", "europe", "north_america", "oceania", "south_america");
@@ -343,6 +344,15 @@ class Core {
 	 */
 	public static function getMinimumPHPVersion() {
 		return self::$minimumPHPVersion;
+	}
+
+	/**
+	 * Returns the minimum MySQL version required to run this script. Used during installation to ensure the
+	 * server environment is adequate.
+	 * @access public
+	 */
+	public static function getMinimumMySQLVersion() {
+		return self::$minimumMySQLVersion;
 	}
 
 	/**

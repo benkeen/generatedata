@@ -17,7 +17,7 @@ class Settings {
 		// TODO. work out standardized return format... Exception maybe
 		if ($query["success"]) {
 			$results = array();
-			while ($row = mysql_fetch_assoc($query["results"])) {
+			while ($row = mysqli_fetch_assoc($query["results"])) {
 				$results[$row["setting_name"]] = $row["setting_value"];
 			}
 			return $results;
@@ -46,7 +46,7 @@ class Settings {
 
 		$value = null;
 		if ($response["success"]) {
-			$data = mysql_fetch_assoc($response["results"]);
+			$data = mysqli_fetch_assoc($response["results"]);
 			$value = $data["setting_value"];
 		}
 
@@ -70,6 +70,7 @@ class Settings {
 	 */
 	public static function updateSettings($post) {
 		$accountInfo = Core::$user->getAccount();
+		$dbLink = Core::$db->getDBLink();
 		$accountType = $accountInfo["accountType"];
 		$isAnonymous = $accountInfo["isAnonymous"];
 
@@ -100,7 +101,7 @@ class Settings {
 		$prefix = Core::getDbTablePrefix();
 		$errors = array();
 		while (list($key, $value) = each($settings)) {
-			$value = mysql_real_escape_string($value);
+			$value = mysqli_real_escape_string($dbLink, $value);
 			$result = Core::$db->query("
 				UPDATE {$prefix}settings
 				SET    setting_value = '$value'

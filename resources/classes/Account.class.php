@@ -50,6 +50,7 @@ class Account {
 
 		if (is_numeric($accountID)) {
 			$prefix = Core::getDbTablePrefix();
+			$dbLink = Core::$db->getDBLink();
 			$response = Core::$db->query("
 				SELECT * 
 				FROM {$prefix}user_accounts
@@ -57,7 +58,7 @@ class Account {
 			");
 
 			if ($response["success"]) {
-				$accountInfo = mysql_fetch_assoc($response["results"]);
+				$accountInfo = mysqli_fetch_assoc($response["results"]);
 				$this->accountID = $accountInfo["account_id"];
 				$this->accountType = $accountInfo["account_type"];
 				$this->dateCreated = date("U", strtotime($accountInfo["date_created"]));
@@ -78,6 +79,7 @@ class Account {
 	 */
 	public static function login($email, $password) {
 		$prefix = Core::getDbTablePrefix();
+		$dbLink = Core::$db->getDBLink();
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
 			SELECT *
@@ -91,7 +93,7 @@ class Account {
 		}
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		$data = mysql_fetch_assoc($response["results"]);
+		$data = mysqli_fetch_assoc($response["results"]);
 		if (empty($data)) {
 			return array(
 				"success" => false,
@@ -128,6 +130,7 @@ class Account {
 
 	public static function resetPassword($email) {
 		$prefix = Core::getDbTablePrefix();
+		$dbLink = Core::$db->getDBLink();
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
 			SELECT * 
@@ -142,7 +145,7 @@ class Account {
 
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		$data = mysql_fetch_assoc($response["results"]);
+		$data = mysqli_fetch_assoc($dbLink, $response["results"]);
 		if (empty($data)) {
 			return array(
 				"success" => false,
@@ -233,9 +236,9 @@ class Account {
 			");
 
 			if ($response["success"]) {
-				if (mysql_num_rows($response["results"]) == 1) {
+				if (mysqli_num_rows($response["results"]) == 1) {
 					$success = true;
-					$message = mysql_fetch_assoc($response["results"]);
+					$message = mysqli_fetch_assoc($response["results"]);
 				}
 			} else {	
 				$message = $response["errorMessage"];
@@ -260,7 +263,7 @@ class Account {
 
 		if ($response["success"]) {
 			$data = array();
-			while ($row = mysql_fetch_assoc($response["results"])) {
+			while ($row = mysqli_fetch_assoc($response["results"])) {
 				$data[] = $row;
 			}
 			$this->configurations = $data;
@@ -331,7 +334,7 @@ class Account {
 			");
 
 			if ($response["success"]) {
-				$configurationID = mysql_insert_id();
+				$configurationID = mysqli_insert_id(Core::$db->getDBLink());
 				return array(
 					"success" => true,
 					"message" => $configurationID,
@@ -419,7 +422,7 @@ class Account {
 		);
 
 		if ($result["success"]) {
-			$accountID = mysql_insert_id();
+			$accountID = mysqli_insert_id(Core::$db->getDBLink());
 			if ($isCurrentUser) {
 				Core::initSessions();
 				$_SESSION["account_id"] = $accountID;
@@ -434,7 +437,8 @@ class Account {
 
 	public function updateAccount($accountID, $info) {
 		$L = Core::$language->getCurrentLanguageStrings();
-		$accountID = mysql_real_escape_string($accountID);
+		$dbLink = Core::$db->getDBLink();
+		$accountID = mysqli_real_escape_string($dbLink, $accountID);
 		$prefix = Core::getDbTablePrefix();
 
 		if (empty($accountID) || !is_numeric($accountID)) {
@@ -476,6 +480,7 @@ class Account {
 	
 	public function deleteAccount($accountID) {
 		$L = Core::$language->getCurrentLanguageStrings();
+		$dbLink = Core::$db->getDBLink();
 		if ($this->accountType != "admin") {
 			return array(
 				"success" => false,
@@ -489,7 +494,7 @@ class Account {
 			);
 		}
 
-		$accountID = mysql_real_escape_string($accountID);
+		$accountID = mysqli_real_escape_string($dbLink, $accountID);
 		$prefix = Core::getDbTablePrefix();
 		Core::$db->query("DELETE FROM {$prefix}user_accounts WHERE account_id = $accountID");
 		Core::$db->query("DELETE FROM {$prefix}configurations WHERE account_id = $accountID");
@@ -512,7 +517,7 @@ class Account {
 			WHERE email = '$email'
 		");
 
-		$result = mysql_fetch_assoc($response["results"]);
+		$result = mysqli_fetch_assoc($response["results"]);
 
 		// shouldn't be necessary, but just in case, check for >= 1
 		return $result["c"] >= 1;
@@ -536,7 +541,7 @@ class Account {
 
 		$data = array();
 		if ($response["success"]) {
-			while ($row = mysql_fetch_assoc($response["results"])) {
+			while ($row = mysqli_fetch_assoc($response["results"])) {
 				$row["date_created"] = date("U", strtotime($row["date_created"]));
 				$row["last_updated"] = date("U", strtotime($row["last_updated"]));
 				$row["last_logged_in"] = (!empty($row["last_logged_in"]) && $row["last_logged_in"] != "0000-00-00 00:00:00") ? date("U", strtotime($row["last_logged_in"])) : "";
@@ -555,8 +560,8 @@ class Account {
 		if (!is_numeric($rowsGenerated)) {
 			return;
 		}
-
-		$cleanRowsGenerated = mysql_real_escape_string($rowsGenerated);
+		$dbLink = Core::$db->getDBLink();
+		$cleanRowsGenerated = mysqli_real_escape_string($dbLink, $rowsGenerated);
 		$prefix    = Core::getDbTablePrefix();
 		$accountID = $this->accountID;
 		$response = Core::$db->query("
@@ -581,10 +586,11 @@ class Account {
 			return;
 		}
 
-		$prefix    = Core::getDbTablePrefix();
+		$prefix = Core::getDbTablePrefix();
+		$dbLink = Core::$db->getDBLink();
 		$accountID = $this->accountID;
-		$configurationID = mysql_real_escape_string($configurationID);
-		$status = mysql_real_escape_string($status);
+		$configurationID = mysqli_real_escape_string($dbLink, $configurationID);
+		$status = mysqli_real_escape_string($dbLink, $status);
 
 		$response = Core::$db->query("
 			UPDATE {$prefix}configurations
