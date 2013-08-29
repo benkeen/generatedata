@@ -46,7 +46,6 @@ END;
 		if ($response["success"] == 1) {
 			return array(true, "");
 		} else {
-			print_r($response);
 			return array(false, "There was a problem creating the Core tables. Please report this problem.");
 		}
 	}
