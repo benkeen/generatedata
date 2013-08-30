@@ -86,7 +86,7 @@ class Templates {
 	 * @return string
 	 */
 	public static function evalSmartyString($placeholderStr, $placeholders) {
-		$smarty = new Smarty();
+		$smarty = new SecureSmarty();
 		$smarty->template_dir = realpath(dirname(__FILE__) . "/../libs/smarty");
 		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache");
 

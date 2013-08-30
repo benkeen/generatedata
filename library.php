@@ -30,7 +30,10 @@ require_once(dirname(__FILE__) . "/resources/classes/Settings.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/Templates.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/Translations.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/Utils.class.php");
+
+// Smarty - use SecureSmarty!
 require_once(dirname(__FILE__) . "/resources/libs/smarty/Smarty.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/SecureSmarty.class.php");
 
 
 // handle magic quotes

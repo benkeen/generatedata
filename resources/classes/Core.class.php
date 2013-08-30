@@ -27,7 +27,9 @@ class Core {
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array();
 	private static $defaultTheme = "classic";
-	public static $useJSCache = true;
+	private static $enableSmartySecurity = true;
+
+	public static $useJSCache = true; // TODO remove
 
 	// non-overridable settings
 	private static $version = "3.0.6";
@@ -174,8 +176,11 @@ class Core {
 			if (isset($defaultLanguageFile)) {
 				self::$defaultLanguageFile = $defaultLanguageFile;
 			}
+			if (isset($enableSmartySecurity)) {
+				self::$enableSmartySecurity = $enableSmartySecurity;
+			}
 
-			// temporary, during alpha dev
+			// TODO temporary, during alpha dev
 			if (isset($allowThemes)) {
 				self::$allowThemes = $allowThemes;
 			}
@@ -364,6 +369,10 @@ class Core {
 	}
 
 
+	public static function isSmartySecurityEnabled() {
+		return self::$enableSmartySecurity;
+	}
+
 	// ------------------ private methods ------------------
 
 	/**
@@ -372,7 +381,7 @@ class Core {
 	 * @access private
 	 */
 	private function initSmarty() {
-		self::$smarty = new Smarty();
+		self::$smarty = new SecureSmarty();
 		self::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates/");
 		self::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache/");
 		self::$smarty->assign("version", self::getVersion());

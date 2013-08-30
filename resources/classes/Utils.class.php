@@ -30,10 +30,8 @@ class Utils {
 	 * A generic assertion function used to confirm the existence of things like the existence of values in $_POST,
 	 * $_GET, $_SESSIONS, whether the user is logged in and so on. If it fails anything, it throws a GDException,
 	 * otherwise it does nothing.
-	 *
-	 * TODO
-	 *
-	 * @param array $statements
+	 * @param $statements
+	 * @throws GDException
 	 */
 	public static function assert($statements) {
 		if (empty($statements)) {
