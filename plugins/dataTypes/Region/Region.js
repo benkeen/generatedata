@@ -35,13 +35,17 @@ define([
 			});
 		}
 
+		console.log(checked);
+
 		// find the checkboxes in this row
 		return {
-			"checked": checked
+			"test": checked
 		};
 	};
 
 	var _loadRow = function(rowNum, data) {
+		console.log(rowNum, data);
+
 		var rows = data.checked;
 		return {
 			execute: function() { },

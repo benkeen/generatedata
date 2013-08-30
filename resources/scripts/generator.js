@@ -24,6 +24,7 @@ define([
 	 */
 
 	var MODULE_ID = "core-generator";
+
 	var _numRows = 0;
 	var _numRowsToShowOnStart = 4;
 	var _countries = [];

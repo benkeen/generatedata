@@ -259,7 +259,7 @@ class Utils {
 		");
 
 		if ($response["success"]) {
-			$info = mysql_fetch_assoc($response["results"]);
+			$info = mysqli_fetch_assoc($response["results"]);
 			$words = preg_split("/\s+/", $info["setting_value"]);
 			return $words;
 		}

@@ -257,7 +257,7 @@ define([
 	var _validateDataTypes = function(rowValidationNeededGroupedByDataType) {
 		var errors = [];
 		for (var moduleID in _modules) {
-			if (_modules[moduleID].type != C.COMPONENT.DATA_TYPE) {
+			if (_modules[moduleID].type !== C.COMPONENT.DATA_TYPE) {
 				continue;
 			}
 
@@ -437,6 +437,9 @@ define([
 	};
 
 	var _loadDataTypeRows = function(rowData) {
+
+		console.log(rowData);
+		
 		for (var i=0; i<rowData.length; i++) {
 			var currDataType = rowData[i].dataType;
 			if (!_modules.hasOwnProperty(currDataType)) {

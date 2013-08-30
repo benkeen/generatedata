@@ -137,7 +137,7 @@ END;
 			$names = array();
 			$maleNames = array();
 			$femaleNames = array();
-			while ($row = mysql_fetch_assoc($response["results"])) {
+			while ($row = mysqli_fetch_assoc($response["results"])) {
 				$gender = $row["gender"];
 				$name   = $row["first_name"];
 
@@ -165,7 +165,7 @@ END;
 
 		if ($response["success"]) {
 			$lastNames = array();
-			while ($row = mysql_fetch_assoc($response["results"])) {
+			while ($row = mysqli_fetch_assoc($response["results"])) {
 				$lastNames[] = $row["last_name"];
 			}
 			$this->lastNames = $lastNames;

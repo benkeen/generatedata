@@ -98,7 +98,7 @@ class DataType_City extends DataTypePlugin {
 
 		$cities = array();
 		$citiesByCountryRegion = array();
-		while ($cityInfo = mysql_fetch_assoc($response["results"])) {
+		while ($cityInfo = mysqli_fetch_assoc($response["results"])) {
 			$currCountrySlug = $cityInfo["country_slug"];
 			$currRegionSlug  = $cityInfo["region_slug"];
 			if (!array_key_exists($currCountrySlug, $citiesByCountryRegion)) {
