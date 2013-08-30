@@ -1,14 +1,13 @@
 3.0.7
 -------
 
-- LDIF Export Type support
-- Proper French translation
+- LDIF Export Type support [thanks!]
+- Proper (genuine!) French translation courtesy of []
 - Optional JS, CSS minimization and bundling via Grunt. See help documentation for more information.
 - PHP 5.5 compatibility fixes: database connection now with mysqli; Generator class renamed to DataGenerator due
 to naming conflict.
-- Bug fixes [see github]
-	- MSSQL single quote issue
-	- ...
+- Bug fixes
+
 
 TODO
 - update doc for SecureSmarty() and for the $enableSmartySecurity config option.
