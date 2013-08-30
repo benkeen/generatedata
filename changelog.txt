@@ -4,8 +4,6 @@
 - LDIF Export Type support
 - Proper French translation
 - Optional JS, CSS minimization and bundling via Grunt. See help documentation for more information.
-- For multiple-user installations, new settings to allow administrator to define default visible modules
-(Countries, Data Types, Export Types, Translations), and option to allow users to customize their own list.
 - PHP 5.5 compatibility fixes: database connection now with mysqli; Generator class renamed to DataGenerator due
 to naming conflict.
 - Bug fixes [see github]

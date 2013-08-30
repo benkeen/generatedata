@@ -28,7 +28,6 @@ class Core {
 	private static $defaultCountryPlugins = array();
 	private static $defaultTheme = "classic";
 	private static $enableSmartySecurity = true;
-
 	public static $useJSCache = true; // TODO remove
 
 	// non-overridable settings

@@ -11,8 +11,8 @@ class LDIF extends ExportTypePlugin {
     protected $jsModules = array("LDIF.js");
 
     public function generate($generator) {
-        $postData     = $generator->getPostData();
-        $content = $this->generateLDIF($generator, $postData);
+        $postData = $generator->getPostData();
+        $content  = $this->generateLDIF($generator, $postData);
 
 		return array(
 			"success" => true,
@@ -25,18 +25,16 @@ class LDIF extends ExportTypePlugin {
 		return "data{$time}.ldif";
     }
     
-    	private function generateLDIF($generator, $postData) {
+	private function generateLDIF($generator, $postData) {
 		$data = $generator->generateExportData();
 		$numCols = count($data["colData"]);
+		$content = "";
 		foreach ($data["rowData"] as $row) {
 			for ($i=0; $i<$numCols; $i++) {
 				$content .= "{$data["colData"][$i]}:{$row[$i]}\n";
 			}
-            $content .= "\n";
+			$content .= "\n";
 		}
 		return $content;
 	}
-
 }
-
-?>
