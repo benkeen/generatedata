@@ -437,9 +437,6 @@ define([
 	};
 
 	var _loadDataTypeRows = function(rowData) {
-
-		console.log(rowData);
-		
 		for (var i=0; i<rowData.length; i++) {
 			var currDataType = rowData[i].dataType;
 			if (!_modules.hasOwnProperty(currDataType)) {
