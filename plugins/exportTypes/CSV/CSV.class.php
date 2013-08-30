@@ -44,7 +44,7 @@ class CSV extends ExportTypePlugin {
 			$cleanRow = array();
 			for ($i=0; $i<$numCols; $i++) {
 				if (strpos($row[$i], $csvDelimiter) !== false) {
-					$cleanRow[] = "\"" . preg_replace("/\"/", "\\", $row[$i]) . "\"";
+					$cleanRow[] = "\"" . preg_replace("/\"/", "\\\"", $row[$i]) . "\"";
 				} else {
 					$cleanRow[] = $row[$i];
 				}
