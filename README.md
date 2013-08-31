@@ -27,7 +27,6 @@ This script is freely available under the GPL 3 license. See license.txt in the 
 
 In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
-- LDIF Export Type
 - [Michel Roca](https://github.com/mRoca) - Full and correct French translation (3.0.7)
 - Marco Corona - LDIF Export Type added (3.0.7)
 - [Andre Fortin](https://github.com/twindual) - original Costa Rica Country plugin & Phone-Regional Data Type (3.0.6)

@@ -55,7 +55,7 @@ class Settings {
 
 	public static function setSetting($settingName, $settingValue) {
 		$prefix = Core::getDbTablePrefix();
-		$settingValue = Utils::sanitize($settingValue);
+		$settingValue = mysqli_real_escape_string(Core::$db->getDBLink(), $settingValue);
 		$response = Core::$db->query("
 			UPDATE {$prefix}settings
 			SET    setting_value = '$settingValue'
@@ -180,11 +180,12 @@ class Settings {
 
 			case "anonymousUserPermissionDeniedMsg":
 				if (Core::checkIsInstalled()) {
-
 					// this message is entered by the user during installation. It can contain any old thing, but we're outputting it
 					// into a JS var. So, handle newlines + double quotes.
 					$message = Settings::getSetting("anonymousUserPermissionDeniedMsg");
-					echo addslashes($message);
+					$message = addslashes($message);
+					$message = preg_replace("/\n/", "\\n", $message);
+					echo $message;
 				}
 				break;
 		}
