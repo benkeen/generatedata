@@ -180,7 +180,11 @@ class Settings {
 
 			case "anonymousUserPermissionDeniedMsg":
 				if (Core::checkIsInstalled()) {
-					echo addslashes(Settings::getSetting("anonymousUserPermissionDeniedMsg"));
+
+					// this message is entered by the user during installation. It can contain any old thing, but we're outputting it
+					// into a JS var. So, handle newlines + double quotes.
+					$message = Settings::getSetting("anonymousUserPermissionDeniedMsg");
+					echo addslashes($message);
 				}
 				break;
 		}
