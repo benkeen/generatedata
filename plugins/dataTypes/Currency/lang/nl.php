@@ -23,3 +23,4 @@ $L["prefix"] = "voorvoegsel";
 $L["suffix"] = "achtervoegsel";
 $L["incomplete_fields"] = "Het gegevenstype Valuta dient te hebben het formaat ingevoerd. Please fix de volgende regels:";
 $L["invalid_range_fields"] = "Gelieve enkel getallen in te voeren in de Valuta range velden (0-9 en decimale punt). Please fix de volgende regels:";
+$L["invalid_range"] = "Controleer het bereik gaat van klein tot groot. Please fix de volgende regels: ";

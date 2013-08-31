@@ -23,3 +23,4 @@ $L["prefix"] = "Préfixe";
 $L["suffix"] = "Suffixe";
 $L["incomplete_fields"] = "Le type de données monétaire nécessite un format. Corrigez les lignes suivantes:";
 $L["invalid_range_fields"] = "N'entrez que des chiffres dans les champs 'Fourchette' (0-9 et séparateur décimal). Corrigez les lignes suivantes:";
+$L["invalid_range"] = "Veuillez vérifier la gamme va du petit au grand. Corrigez les lignes suivantes:";
