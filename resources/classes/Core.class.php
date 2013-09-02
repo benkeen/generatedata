@@ -28,7 +28,7 @@ class Core {
 	private static $defaultCountryPlugins = array();
 	private static $defaultTheme = "classic";
 	private static $enableSmartySecurity = true;
-	public static $useJSCache = true; // TODO remove
+	private static $useMinifiedResources = false;
 
 	// non-overridable settings
 	private static $version = "3.0.6";
@@ -177,6 +177,9 @@ class Core {
 			}
 			if (isset($enableSmartySecurity)) {
 				self::$enableSmartySecurity = $enableSmartySecurity;
+			}
+			if (isset($useMinifiedResources)) {
+				self::$useMinifiedResources = $useMinifiedResources;
 			}
 
 			// TODO temporary, during alpha dev
@@ -357,6 +360,14 @@ class Core {
 	 */
 	public static function getMinimumMySQLVersion() {
 		return self::$minimumMySQLVersion;
+	}
+
+	/**
+	 * Returns a boolean signifying whether we should use the minified + bundled resources generated via Grunt.
+	 * @return bool
+	 */
+	public static function isUsingMinifiedResources() {
+		return self::$useMinifiedResources;
 	}
 
 	/**

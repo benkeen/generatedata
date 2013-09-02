@@ -5,11 +5,17 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
-	<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/tablesorter.theme.css" />
-	<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
+
+	{if $useMinifiedResources}
+		<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
+	{else}
+		<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/tablesorter.theme.css" />
+		<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
+	{/if}
+
 	<script src="resources/libs/codemirror/lib/codemirror.min.js"></script>
 	<script src="resources/scripts/libs/jquery.min.js"></script>
 	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
@@ -21,6 +27,7 @@
 	<script src="resources/scripts/libs/html5shiv.js"></script>
 	<script src="resources/scripts/libs/excanvas.js"></script>
 	<![endif]-->
+
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
@@ -66,6 +73,7 @@
 	<div id="gdPageLoad">{$L.loading}</div>
 
 	{include file="footer.tpl"}
+
 
 	<script>
 	require([
