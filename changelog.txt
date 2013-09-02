@@ -11,7 +11,7 @@ to naming conflict.
 
 TODO
 - update doc for SecureSmarty() and for the $enableSmartySecurity config option.
-
+- update doc to talk about minification and bundling.
 
 Problems:
 - how is Grunt going to detect the requireJS modules if they're outputted dynamically?

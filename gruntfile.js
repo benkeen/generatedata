@@ -73,9 +73,10 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('prod', [
 
-		// uglify the
+		// uglify the core CSS + JS
 		'uglify:coreCSS',
 		'uglify:coreJS',
+
 
 	]);
 

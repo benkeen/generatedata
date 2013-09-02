@@ -31,7 +31,7 @@
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
-<body data-lang="{$currLang}" data-logged-in="{$isLoggedIn}">
+<body data-lang="{$currLang}" data-logged-in="{$isLoggedIn}" data-user-account-setup="{$settings.userAccountSetup}">
 	<header>
 		<nav class="gdHideNoJS">
 			<ul>
@@ -74,12 +74,11 @@
 
 	{include file="footer.tpl"}
 
-
 	<script>
 	require([
 		"manager",
 		"generator",
-		{if $isLoggedIn && $settings.userAccountSetup == "multiple"}"accountManager",{/if}
+		"accountManager",
 		{$exportTypeJSModules},
 		{$dataTypeJSModules},
 		"pageInit"
