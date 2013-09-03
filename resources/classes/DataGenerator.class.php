@@ -6,7 +6,7 @@
  * @author Ben Keen <ben.keen@gmail.com>
  * @package Core
  */
-class Generator {
+class GeneratorX {
 	private $exportTarget;
 	private $batchNum;
 	private $batchSize;
