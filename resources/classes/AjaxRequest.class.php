@@ -350,7 +350,7 @@ class AjaxRequest {
 
 			case "generateInPage":
 				Core::init("generation");
-				$gen = new Generator($this->post);
+				$gen = new GeneratorX($this->post);
 				$response = $gen->generate();
 				$this->response["success"]    = $response["success"];
 				$this->response["content"]    = $response["content"];
