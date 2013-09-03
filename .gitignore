@@ -8,3 +8,4 @@ cache/*
 resources/themes/classic/.sass-cache/*
 resources/themes/default/.sass-cache/*
 resources/themes/.sass-cache/*
+node_modules*

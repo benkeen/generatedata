@@ -35,6 +35,7 @@ $pageParams["allExportTypes"] = $exportTypes;
 $pageParams["allDataTypes"] = $dataTypes;
 $pageParams["allTranslations"] = Core::$translations->getList();
 
+$pageParams["useMinifiedResources"] = Core::isUsingMinifiedResources();
 $pageParams["dataTypeJSModules"] = $dataTypeJSModules;
 $pageParams["exportTypeJSModules"] = $exportTypeJSModules;
 $pageParams["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
