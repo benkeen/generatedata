@@ -4,7 +4,7 @@
 
 This is the repo for the standalone, downloadable version of [generatedata.com](http://www.generatedata.com).
 
-Generally the trunk is pretty stable, but if you're concerned about stability above all else, grab one of the tags. The trunk contains the latest and greatest changes and bug fixes.
+Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting the most recent tag: https://github.com/benkeen/generatedata/releases
 
 ## How to Install / Documentation
 
