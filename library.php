@@ -25,6 +25,7 @@ require_once(dirname(__FILE__) . "/resources/classes/ExportTypePluginHelper.clas
 require_once(dirname(__FILE__) . "/resources/classes/GeoData.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/Installation.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/Language.class.php");
+require_once(dirname(__FILE__) . "/resources/classes/Minification.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/SessionManager.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/Settings.class.php");
 require_once(dirname(__FILE__) . "/resources/classes/Templates.class.php");
