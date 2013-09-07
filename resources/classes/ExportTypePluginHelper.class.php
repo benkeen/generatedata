@@ -103,13 +103,13 @@ class ExportTypePluginHelper {
 	 * @param string $format
 	 * @return array|string
 	 */
-	public static function getExportTypeJSResources($exportTypes, $format = "string") {
+	public static function getExportTypeJSResources($exportTypes, $format = "string", $pathRoot = "") {
 		$files = array();
 		foreach ($exportTypes as $exportType) {
 			$jsModules = $exportType->getJSModules();
 			$path      = $exportType->getPath();
 			for ($i=0; $i<count($jsModules); $i++) {
-				$files[] = "$path/{$jsModules[$i]}";
+				$files[] = "{$pathRoot}$path/{$jsModules[$i]}";
 			}
 		}
 

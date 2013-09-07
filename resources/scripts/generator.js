@@ -6,8 +6,7 @@ define([
 	"queue",
 	"constants",
 	"lang",
-	"moment",
-	"jquery-ui"
+	"moment"
 ], function(manager, pluginManager, utils, Queue, C, L, moment) {
 
 	"use strict";

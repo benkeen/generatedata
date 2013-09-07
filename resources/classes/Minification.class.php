@@ -26,14 +26,14 @@ class Minification {
 	 */
 	public static function createAppStartFile() {
 		$exportTypes = Core::$exportTypePlugins;
-		$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string");
+		$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string", "../../");
 
 		$dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
-		$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string");
+		$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string", "../../");
 
 		$js = 'require(["manager","generator","accountManager",' . $exportTypeJSModules . "," . $dataTypeJSModules . ',"pageInit"], function(manager) {manager.start(); });';
 
-		$file = realpath(dirname(__FILE__) . "/../../cache/") . "/appStart.js";
+		$file = realpath(dirname(__FILE__) . "/../../cache/") . "/appStartGenerated.js";
 		if (is_file($file)) {
 			unlink($file);
 		}

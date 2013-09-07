@@ -7,26 +7,42 @@
 	<meta name="keywords" content="{$L.meta_keywords}" />
 
 	{if $useMinifiedResources}
-		<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
+		<link rel="stylesheet" type="text/css" href="cache/core.css" />
+
+		<!-- wrap these suckers up! -->
+		<script src="resources/libs/codemirror/lib/codemirror.min.js"></script>
+		<script src="resources/scripts/libs/jquery.min.js"></script>
+		<script src="resources/scripts/libs/jquery-ui.min.js"></script>
+		<script src="resources/scripts/libs/jquery.json-2.2.min.js"></script>
+		<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
+		<script src="resources/scripts/libs/spinners.js"></script>
+
+		<!--[if lt IE 9]>
+		<script src="resources/scripts/libs/html5shiv.js"></script>
+		<script src="resources/scripts/libs/excanvas.js"></script>
+		<![endif]-->
+
 	{else}
 		<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
 		<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
 		<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="resources/css/tablesorter.theme.css" />
 		<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
+
+		<script src="resources/libs/codemirror/lib/codemirror.min.js"></script>
+		<script src="resources/scripts/libs/jquery.min.js"></script>
+		<script src="resources/scripts/libs/jquery-ui.min.js"></script>
+		<script src="resources/scripts/libs/jquery.json-2.2.min.js"></script>
+		<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
+		<script src="resources/scripts/libs/require.js"></script>
+		<script src="resources/scripts/requireConfig.js"></script>
+		<script src="resources/scripts/libs/spinners.js"></script>
+
+		<!--[if lt IE 9]>
+		<script src="resources/scripts/libs/html5shiv.js"></script>
+		<script src="resources/scripts/libs/excanvas.js"></script>
+		<![endif]-->
 	{/if}
-
-	<script src="resources/libs/codemirror/lib/codemirror.min.js"></script>
-	<script src="resources/scripts/libs/jquery.min.js"></script>
-	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
-	<script src="resources/scripts/libs/require.js"></script>
-	<script src="resources/scripts/requireConfig.js"></script>
-	<script src="resources/scripts/libs/spinners.js"></script>
-
-	<!--[if lt IE 9]>
-	<script src="resources/scripts/libs/html5shiv.js"></script>
-	<script src="resources/scripts/libs/excanvas.js"></script>
-	<![endif]-->
 
 	{$cssIncludes}
 	{$codeMirrorIncludes}
@@ -74,18 +90,24 @@
 
 	{include file="footer.tpl"}
 
-	<script>
-	require([
-		"manager",
-		"generator",
-		"accountManager",
-		{$exportTypeJSModules},
-		{$dataTypeJSModules},
-		"pageInit"
-	], function(manager) { 
-		manager.start();
-	});
-	</script>
+	{if $useMinifiedResources}
+		<script src="resources/scripts/libs/require.js" data-main="cache/appStartGenerated.min.js"></script>
+		<script src="resources/scripts/requireConfig.js"></script>
+	{else}
+		<script>
+		require([
+			"manager",
+			"generator",
+			"accountManager",
+			{$exportTypeJSModules},
+			{$dataTypeJSModules},
+			"pageInit"
+		], function(manager) {
+			manager.start();
+		});
+		</script>
+	{/if}
+
 
 </body>
 </html>

@@ -227,7 +227,7 @@ class AjaxRequest {
 
 			case "getUsers":
 				Core::init();
-				$response = Core::$user->getUsers();	
+				$response = Core::$user->getUsers();
 				$this->response["success"] = $response["success"];
 				if (isset($response["accounts"])) {
 					$this->response["content"] = $response["accounts"];

@@ -3,9 +3,7 @@ require([
 	"manager",
 	"pluginManager",
 	"utils",
-	"pageInit",
-	"jquery-ui",
-	"jquery-json"
+	"pageInit"
 ], function(manager, pluginManager, utils) {
 
 	"use strict";

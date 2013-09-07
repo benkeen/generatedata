@@ -66,17 +66,18 @@ class DataTypePluginHelper {
 
 	/**
 	 * Used in the main page to generate a list of Export Type JS files.
-	 * @param array the data types
-	 * @param string $format "array", "string"
-	 * @return mixed
+	 * @param $dataTypes
+	 * @param string $format
+	 * @param string $pathRoot
+	 * @return array|string
 	 */
-	public static function getDataTypeJSResources($dataTypes, $format = "string") {
+	public static function getDataTypeJSResources($dataTypes, $format = "string", $pathRoot = "") {
 		$files = array();
 		foreach ($dataTypes as $dataType) {
 			$jsModules = $dataType->getJSModules();
 			$path      = $dataType->getPath();
 			for ($i=0; $i<count($jsModules); $i++) {
-				$files[] = "$path/{$jsModules[$i]}";
+				$files[] = "{$pathRoot}$path/{$jsModules[$i]}";
 			}
 		}
 

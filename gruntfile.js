@@ -2,7 +2,6 @@ module.exports = function(grunt) {
 	"use strict";
 
 
-
 	var config = {
 		pkg: grunt.file.readJSON('package.json'),
 
@@ -46,10 +45,10 @@ module.exports = function(grunt) {
 		requirejs: {
 			compile: {
 				options: {
-					name: "cache/appStartStatic",
-					baseUrl: "./",
-					mainConfigFile: "core/requireConfig.js",
-					out: "./cache/appStart.min.js"
+					name: "appStartGenerated",
+					baseUrl: "resources/scripts",
+					mainConfigFile: "resources/scripts/requireConfig.js",
+					out: "cache/appStartGenerated.min.js"
 				}
 			}
 		},
@@ -92,7 +91,7 @@ module.exports = function(grunt) {
 		// time you click the "Reset Plugins" link
 		'requirejs'
 
-		// now create md5 versions of each, which then (re)-generates the /cache/minifiedResourcePaths.php file
+		// now create md5 versions of the main minified file, which (re)-generates the /cache/minifiedResourcePaths.php file
 		// with the latest file mapping
 		//'md5'
 	]);
