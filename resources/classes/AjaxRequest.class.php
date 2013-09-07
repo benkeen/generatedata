@@ -207,6 +207,12 @@ class AjaxRequest {
 				}
 				break;
 
+			// called anytime the plugins were updated (either via the installation or core script). This
+			// runs any post-processes that need to be done
+			case "updatedPluginsPostProcess":
+				Core::init();
+				$this->response["success"] = (Minification::createAppStartFile()) ? 1 : 0;
+				break;
 
 			// ------------------------------------------------------------------------------------
 			// USER ACCOUNTS
@@ -221,7 +227,7 @@ class AjaxRequest {
 
 			case "getUsers":
 				Core::init();
-				$response = Core::$user->getUsers();
+				$response = Core::$user->getUsers();	
 				$this->response["success"] = $response["success"];
 				if (isset($response["accounts"])) {
 					$this->response["content"] = $response["accounts"];

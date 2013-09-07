@@ -20,8 +20,10 @@ class Minification {
 
 	}
 
-	// create a /cache/appStart-unminified.js file. Grunt will handle the renaming of the file and the generation
-	// of the /cache/minifiedResourcePaths.php file
+	/**
+	 * create a /cache/appStart-unminified.js file. Grunt will handle the renaming of the file and the generation
+	 * of the /cache/minifiedResourcePaths.php file.
+	 */
 	public static function createAppStartFile() {
 		$exportTypes = Core::$exportTypePlugins;
 		$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string");
@@ -31,11 +33,16 @@ class Minification {
 
 		$js = 'require(["manager","generator","accountManager",' . $exportTypeJSModules . "," . $dataTypeJSModules . ',"pageInit"], function(manager) {manager.start(); });';
 
-		$file = realpath(dirname(__FILE__) . "../../cache/appStart.js");
+		$file = realpath(dirname(__FILE__) . "/../../cache/") . "/appStart.js";
 		if (is_file($file)) {
 			unlink($file);
 		}
-		file_put_contents($file, $js);
+
+		if (file_put_contents($file, $js)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
