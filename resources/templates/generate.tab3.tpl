@@ -28,11 +28,9 @@
 	</p>
 
 	{if $useMinifiedResources}
-		<div class="gdMessage gdNotify gdMarginTop" style="display:block">
+		<div class="gdNotify gdMarginTop" style="display:block">
 			<p>
-				<b>You have bundling/minification enabled</b>. After clicking this button you will need to run <i>grunt</i>
-				to recreate the bundles. For more information <a href="" target="_blank">read this documentation page</a>. If
-				you have any problems, you may want to turn off bundling.
+				{$L.reset_plugins_with_bundling}
 				<button id="gdResetPluginsBtn" class="gdSecondaryButton">{$L.reset_plugins}</button>
 			</p>
 		</div>

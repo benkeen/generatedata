@@ -222,6 +222,7 @@ $L["regenerate"] = "Regenerieren";
 $L["report_bug"] = "Einen Fehler melden";
 $L["reset_password"] = "Passwort zurücksetzen";
 $L["reset_plugins"] = "Zurücksetzen plugins";
+$L["reset_plugins_with_bundling"] = "<b>Sie haben Bündelung / Verkleinerung aktiviert</b>. Nach einem Klick auf diese Schaltfläche, müssen Sie <i>Grunt</i>, um die Pakete neu zu erstellen. Für weitere Informationen <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">Lesen Sie diese Dokumentation Seite</a>. Wenn Sie irgendwelche Probleme haben, können Sie deaktivieren möchten Bündelung.";
 $L["result_type"] = "Result Type";
 $L["row_label"] = "Column Titel";
 $L["row_label_plural"] = "Spaltentitel";

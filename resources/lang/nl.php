@@ -279,4 +279,4 @@ $L["yes"] = "Ja";
 $L["your_account"] = "Uw account";
 $L["your_data_set_name_here"] = "Uw dataset naam hier ...";
 $L["your_data_sets"] = "Uw gegevens Sets";
-
+$L["reset_plugins_with_bundling"] = "<b>Je hebt het bundelen / minification ingeschakeld</b>. Na het klikken op deze knop moet u <i>Grunt</i> om de bundels recreëren. Voor meer informatie <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">Lees deze documentatie pagina</a>. Als je problemen hebt, kunt u bundeling uitschakelen.";

@@ -72,7 +72,7 @@ class Settings {
 		$accountInfo = Core::$user->getAccount();
 		$dbLink = Core::$db->getDBLink();
 		$accountType = $accountInfo["accountType"];
-		$isAnonymous = $accountInfo["isAnonymous"];
+		$isAnonymous = isset($accountInfo["isAnonymous"]) ? $accountInfo["isAnonymous"] : "";
 
 		$L = Core::$language->getCurrentLanguageStrings();
 		if (!isset($post["consoleEventsDataTypePlugins"]) || empty($post["consoleEventsDataTypePlugins"])) {

@@ -8,6 +8,8 @@
 
 	{if $useMinifiedResources && $minifiedResourcePaths != false}
 		<link rel="stylesheet" type="text/css" href="{$minifiedResourcePaths.coreCSS}" />
+		<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
 		<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
 		<script src="{$minifiedResourcePaths.coreJS}"></script>
 	{else}

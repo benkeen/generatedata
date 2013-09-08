@@ -31,10 +31,8 @@ module.exports = function(grunt) {
 		cssmin: {
 			target: {
 				files: {
+					// it would be VERY nice to bundle all the CSS, but the various image paths make it impossible
 					'cache/core.css': [
-						'resources/themes/classic/compiled/styles.css',
-						'resources/css/smoothness/jquery-ui.min.css',
-						'resources/css/chosen/chosen.css',
 						'resources/css/tablesorter.theme.css',
 						'resources/libs/codemirror/lib/codemirror.css'
 					]

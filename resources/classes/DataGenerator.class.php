@@ -6,7 +6,7 @@
  * @author Ben Keen <ben.keen@gmail.com>
  * @package Core
  */
-class GeneratorX {
+class DataGenerator {
 	private $exportTarget;
 	private $batchNum;
 	private $batchSize;

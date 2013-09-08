@@ -280,3 +280,4 @@ $L["validation_invalid_permissions"] = "You don't have permissions to do this.";
 $L["installation_failed_create_settings_file"] = "The script was unable to create your <b>settings.php</b> file.";
 $L["installation_failed_create_settings_file_msg"] = "This usually occurs when it fails to have permissions to write to the folder. Please manually create this file and place it in the base folder of the Data Generator. When you have done this, button below to continue installing.";
 $L["confirm_file_exists"] = "Confirm File Exists";
+$L["reset_plugins_with_bundling"] = "<b>You have bundling/minification enabled</b>. After clicking this button you will need to run <i>grunt</i> to recreate the bundles. For more information <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">read this documentation page</a>. If you have any problems, you may want to turn off bundling.";

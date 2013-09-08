@@ -220,6 +220,7 @@ $L["regenerate"] = "Régénérer";
 $L["report_bug"] = "Signaler un bug";
 $L["reset_password"] = "Réinitialiser mot de passe";
 $L["reset_plugins"] = "Réinitialiser les plugins";
+$L["reset_plugins_with_bundling"] = "<b>Vous avez groupage / minification permis</b>. Après avoir cliqué sur ce bouton, vous devrez exécuter <i>Grunt</i> pour recréer les faisceaux. Pour plus d'informations <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">lire cette page de documentation</a>. Si vous avez des problèmes, vous pouvez éteindre regroupement.";
 $L["result_type"] = "Type de résultat";
 $L["row_label"] = "Titre de colonne";
 $L["row_label_plural"] = "Titres des colonnes";
