@@ -1004,8 +1004,6 @@ define([
 			$("#gdProgressMeter").attr("value", _generateInPageRunningCount);
 
 			// 2. Update the actual content
-			console.log(response.content);
-
 			_generateInPageContent += decodeURIComponent(response.content);
 			_codeMirror.setValue(_generateInPageContent);
 
