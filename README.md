@@ -40,7 +40,7 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - LDIF Export Type support - thanks, [Marco Corona](https://github.com/coronam)!
 - Proper (genuine!) French translation courtesy of [Michel Roca](https://github.com/mRoca)
 - Optional JS, CSS minimization and bundling via Grunt. See help documentation for more information:
-[benkeen.github.io/generatedata/developer.html#bundling](benkeen.github.io/generatedata/developer.html#bundling)
+[http://benkeen.github.io/generatedata/developer.html#bundling](http://benkeen.github.io/generatedata/developer.html#bundling)
 - PHP 5.5 compatibility fixes: database connection now with mysqli; Generator class renamed to DataGenerator due
 to naming conflict.
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=7&page=1&state=closed
