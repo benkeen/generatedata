@@ -130,7 +130,7 @@ class DataType_Region extends DataTypePlugin {
 	public function getOptionsColumnHTML() {
 		$countryPlugins = Core::$countryPlugins;
 
-		$html = "";
+		$html = "<div class=\"dtRegionCountry_noCountries\">{$this->L["no_countries_selected"]}</div>";
 		foreach ($countryPlugins as $pluginInfo) {
 			$slug       = $pluginInfo->getSlug();
 			$regionName = $pluginInfo->getRegionNames();

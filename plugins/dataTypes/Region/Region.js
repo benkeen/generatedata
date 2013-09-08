@@ -87,6 +87,12 @@ define([
 		var shownClassesSelector = shownClassesSelectors.join(",");
 		$(".dtRegionCountry").hide();
 		$(shownClassesSelector).show();
+
+		if (msg.countries.length > 0) {
+			$(".dtRegionCountry_noCountries").hide();
+		} else {
+			$(".dtRegionCountry_noCountries").show();
+		}
 	};
 
 	var _toggleCountryRegion = function(e) {
