@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
 	<script src="resources/scripts/libs/jquery.min.js"></script>
+	<script src="resources/scripts/libs/jquery-ui.min.js"></script>
+	<script src="resources/scripts/libs/jquery.json-2.2.min.js"></script>
 	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
 	<script src="resources/scripts/libs/require.js" data-main="resources/scripts/install"></script>
 	<script src="resources/scripts/requireConfig.js"></script>
