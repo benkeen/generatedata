@@ -16,8 +16,13 @@
  */
 class Minification {
 
-	public function getMinifiedResourcePaths() {
-
+	public static function getMinifiedResourcePaths() {
+		$result = self::checkMinifiedFileExists();
+		if ($result === false) {
+			return false;
+		} else {
+			return $result;
+		}
 	}
 
 	/**
@@ -26,10 +31,10 @@ class Minification {
 	 */
 	public static function createAppStartFile() {
 		$exportTypes = Core::$exportTypePlugins;
-		$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string", "../../");
+		$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string");
 
 		$dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
-		$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string", "../../");
+		$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string");
 
 		$js = 'require(["manager","generator","accountManager",' . $exportTypeJSModules . "," . $dataTypeJSModules . ',"pageInit"], function(manager) {manager.start(); });';
 
@@ -43,6 +48,16 @@ class Minification {
 		} else {
 			return false;
 		}
+	}
+
+	private static function checkMinifiedFileExists() {
+		@include(realpath(dirname(__FILE__) . "/../../cache/minifiedResourcePaths.php"));
+		$info = get_defined_vars();
+
+		if (!isset($info["MINIFIED"])) {
+			return false;
+		}
+		return $info["MINIFIED"];
 	}
 
 }

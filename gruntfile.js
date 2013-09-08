@@ -11,9 +11,9 @@ module.exports = function(grunt) {
 					'cache/core.js': [
 						'resources/libs/codemirror/lib/codemirror.min.js',
 						'resources/scripts/libs/jquery.min.js',
+						'resources/scripts/libs/jquery-ui.min.js',
+						'resources/scripts/libs/jquery.json-2.2.min.js',
 						'resources/scripts/libs/chosen.jquery.min.js',
-						'resources/scripts/libs/require.js',
-						'resources/scripts/requireConfig.js',
 						'resources/scripts/libs/spinners.js',
 
 						// pity, but now everyone gets them <!--[if lt IE 9]>
@@ -46,9 +46,9 @@ module.exports = function(grunt) {
 			compile: {
 				options: {
 					name: "appStartGenerated",
-					baseUrl: "resources/scripts",
+					baseUrl: "./", // necessary!
 					mainConfigFile: "resources/scripts/requireConfig.js",
-					out: "cache/appStartGenerated.min.js"
+					out: "cache/appStartGenerated.bundled.js"
 				}
 			}
 		},
@@ -58,25 +58,21 @@ module.exports = function(grunt) {
 				files: {
 					"cache/core.css": "cache/core.css",
 					"cache/core.js": "cache/core.js",
-					"cache/appStartGenerated.js": "cache/appStartGenerated.js"
+					"cache/appStartGenerated.bundled.js": "cache/appStartGenerated.bundled.js"
 				},
 				options: {
 					after: function(fileChanges) {
-						//config.template.prod.options.data.APP_START_PATH = fileChanges[0].newPath;
-
 						if (fileChanges.length !== 3) {
 							return;
 						}
 
 						// now create the cache/minifiedResourcePaths.php that contains the new, unique filenames
-						console.log(fileChanges);
-
 						var php = "<?php\n$MINIFIED = array();\n" +
-								"$MINIFIED['coreCSS']  = \"\";\n" +
-								"$MINIFIED['coreJS']   = \"\";\n" +
-								"$MINIFIED['appStart'] = \"\";\n";
+								"$MINIFIED['coreCSS']  = \"" + fileChanges[0].newPath + "\";\n" +
+								"$MINIFIED['coreJS']   = \"" + fileChanges[1].newPath + "\";\n" +
+								"$MINIFIED['appStart'] = \"" + fileChanges[2].newPath + "\";\n";
 
-						//grunt.file.write("cache/minifiedResourcePaths.php", php)
+						grunt.file.write("cache/minifiedResourcePaths.php", php);
 					}
 				}
 			}

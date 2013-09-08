@@ -25,8 +25,21 @@
 
 	<p>
 		{$L.plugins_intro}
-		<button id="gdResetPluginsBtn" class="gdSecondaryButton">{$L.reset_plugins}</button>
 	</p>
+
+	{if $useMinifiedResources}
+		<div class="gdMessage gdNotify gdMarginTop" style="display:block">
+			<p>
+				<b>You have bundling/minification enabled</b>. The button below attempts to recreate the minified CSS
+				and JS bundles, but requires that Node and Grunt have been installed and configured. For more
+				information <a href="" target="_blank">read this documentation page</a>. If the button below fails
+				to properly reset your plugins, you may want to turn off bundling.
+				<button id="gdResetPluginsBtn" class="gdSecondaryButton">{$L.reset_plugins}</button>
+			</p>
+		</div>
+	{else}
+		<button id="gdResetPluginsBtn" class="gdSecondaryButton">{$L.reset_plugins}</button>
+	{/if}
 
 	<div id="gdPluginInstallation">
 		<div id="gdPluginInstallationResults" class="hidden">
