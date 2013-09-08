@@ -41,7 +41,7 @@
 
 		$("#etHTMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
 		_codeMirror = CodeMirror.fromTextArea($("#etHTMLCustomSmarty")[0], {
-			mode: "smartymixed",
+			mode: "xml",
 			lineNumbers: true
 		});
 		_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
