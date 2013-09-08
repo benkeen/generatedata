@@ -36,6 +36,14 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
+3.0.7 - Sept 7, 2013
+- LDIF Export Type support - thanks, [Marco Corona](https://github.com/coronam)!
+- Proper (genuine!) French translation courtesy of [Michel Roca](https://github.com/mRoca)
+- Optional JS, CSS minimization and bundling via Grunt. See help documentation for more information: benkeen.github.io/generatedata/developer.html#bundling
+- PHP 5.5 compatibility fixes: database connection now with mysqli; Generator class renamed to DataGenerator due
+to naming conflict.
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=7&page=1&state=closed
+
 3.0.6 - Aug 1, 2013
 - Costa Rica Country plugin, Phone-Regional Data Type added, courtesy of [Andre Fortin](https://github.com/twindual)
 - bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=6&page=1&state=closed
