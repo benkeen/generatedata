@@ -5,25 +5,40 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="{$L.meta_description}" />
 	<meta name="keywords" content="{$L.meta_keywords}" />
-	<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/tablesorter.theme.css" />
-	<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
-	<script src="resources/libs/codemirror/lib/codemirror.min.js"></script>
-	<script src="resources/scripts/libs/jquery.js"></script>
-	<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
-	<script src="resources/scripts/libs/require.js"></script>
-	<script src="resources/scripts/requireConfig.js"></script>
-	<!--[if lt IE 9]>
-	<script src="resources/scripts/libs/html5shiv.js"></script>
-	<script src="resources/scripts/libs/excanvas.js"></script>
-	<![endif]-->
-	<script src="resources/scripts/libs/spinners.js"></script>
+
+	{if $useMinifiedResources && $minifiedResourcePaths != false}
+		<link rel="stylesheet" type="text/css" href="{$minifiedResourcePaths.coreCSS}" />
+		<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
+		<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
+		<script src="{$minifiedResourcePaths.coreJS}"></script>
+	{else}
+
+		<link rel="stylesheet" type="text/css" href="resources/css/smoothness/jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/chosen/chosen.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/tablesorter.theme.css" />
+		<link rel="stylesheet" type="text/css" href="resources/libs/codemirror/lib/codemirror.css" />
+		<link rel="stylesheet" type="text/css" href="resources/themes/{$theme}/compiled/styles.css" />
+
+		<script src="resources/libs/codemirror/lib/codemirror.min.js"></script>
+		<script src="resources/scripts/libs/jquery.min.js"></script>
+		<script src="resources/scripts/libs/jquery-ui.min.js"></script>
+		<script src="resources/scripts/libs/jquery.json-2.2.min.js"></script>
+		<script src="resources/scripts/libs/chosen.jquery.min.js"></script>
+		<script src="resources/scripts/libs/require.js"></script>
+		<script src="resources/scripts/requireConfig.js"></script>
+		<script src="resources/scripts/libs/spinners.js"></script>
+
+		<!--[if lt IE 9]>
+		<script src="resources/scripts/libs/html5shiv.js"></script>
+		<script src="resources/scripts/libs/excanvas.js"></script>
+		<![endif]-->
+	{/if}
+
 	{$cssIncludes}
 	{$codeMirrorIncludes}
 </head>
-<body data-lang="{$currLang}" data-logged-in="{$isLoggedIn}">
+<body data-lang="{$currLang}" data-logged-in="{$isLoggedIn}" data-user-account-setup="{$settings.userAccountSetup}">
 	<header>
 		<nav class="gdHideNoJS">
 			<ul>
@@ -66,18 +81,25 @@
 
 	{include file="footer.tpl"}
 
-	<script>
-	require([
-		"manager",
-		"generator",
-		{if $isLoggedIn && $settings.userAccountSetup == "multiple"}"accountManager",{/if}
-		{$exportTypeJSModules},
-		{$dataTypeJSModules},
-		"pageInit"
-	], function(manager) { 
-		manager.start();
-	});
-	</script>
+	{if $useMinifiedResources && $minifiedResourcePaths != false}
+		<script src="resources/scripts/libs/require.js"></script>
+		<script src="resources/scripts/requireConfig.js"></script>
+		<script>require(["{$minifiedResourcePaths.appStart}"], function() {});</script>
+	{else}
+		<script>
+		require([
+			"manager",
+			"generator",
+			"accountManager",
+			{$exportTypeJSModules},
+			{$dataTypeJSModules},
+			"pageInit"
+		], function(manager) {
+			manager.start();
+		});
+		</script>
+	{/if}
+
 
 </body>
 </html>

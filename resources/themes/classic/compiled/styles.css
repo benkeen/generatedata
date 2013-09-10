@@ -1348,3 +1348,20 @@ body .gdMainDialog .ui-dialog-title span {
   background: url(../images/info.png) no-repeat scroll left top transparent;
   width: 32px;
   height: 32px; }
+
+.gdDefaultModules {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px; }
+  .gdDefaultModules li {
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    width: 25%; }
+    .gdDefaultModules li h4 {
+      background-color: #efefef;
+      margin: 0px; }
+    .gdDefaultModules li > div {
+      height: 200px;
+      width: 98%;
+      border: 1px solid #efefef; }

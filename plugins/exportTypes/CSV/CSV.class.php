@@ -37,8 +37,19 @@ class CSV extends ExportTypePlugin {
 		if ($data["isFirstBatch"]) {
 			$content .= implode($csvDelimiter, $data["colData"]);
 		}
+		$numCols = count($data["colData"]);
 		foreach ($data["rowData"] as $row) {
-			$content .= $newline . implode($csvDelimiter, $row);
+
+			// see if any of the cells contains the delimiter. If it does, wrap it in double quotes.
+			$cleanRow = array();
+			for ($i=0; $i<$numCols; $i++) {
+				if (strpos($row[$i], $csvDelimiter) !== false) {
+					$cleanRow[] = "\"" . preg_replace("/\"/", "\\\"", $row[$i]) . "\"";
+				} else {
+					$cleanRow[] = $row[$i];
+				}
+			}
+			$content .= $newline . implode($csvDelimiter, $cleanRow);
 		}
 
 		return array(

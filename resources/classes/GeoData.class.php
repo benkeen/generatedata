@@ -32,7 +32,8 @@ class GeoData {
 	/**
 	 * Returns a hash of country_slug => country data. The regions are stored in a "regions"
 	 * key and the number of regions is additionally stored in a "numRegions" key, for convenience.
-	 * @param unknown_type $countrySlug
+	 * @param null $countrySlug
+	 * @return array
 	 */
 	public function getCountryRegionHash($countrySlug = null) {
 		$data = $this->countryRegions;
@@ -50,7 +51,6 @@ class GeoData {
 		foreach ($data as $countryRegion) {
 			$countrySlug = $countryRegion["country_slug"];
 			$countryRegion["numRegions"] = count($countryRegion["regions"]);
-			$countryRegion["regions"] = $countryRegion["regions"];
 			$countryRegionHash[$countrySlug] = $countryRegion;
 		}
 
@@ -77,13 +77,14 @@ class GeoData {
 			FROM   {$prefix}countries
 			ORDER BY country
 		");
+
 		// TODO
 		if (!$response["success"]) {
 			//throw new GDException();
 			return;
 		}
 		$countryData = array();
-		while ($row = mysql_fetch_assoc($response["results"])) {
+		while ($row = mysqli_fetch_assoc($response["results"])) {
 			$countryData[] = $row;
 		}
 
@@ -101,7 +102,7 @@ class GeoData {
 			return;
 		}
 		$regionData = array();
-		while ($row = mysql_fetch_assoc($response["results"])) {
+		while ($row = mysqli_fetch_assoc($response["results"])) {
 			$regionData[] = $row;
 		}
 		$this->regionData = $regionData;
@@ -118,7 +119,7 @@ class GeoData {
 			return;
 		}
 		$cityData = array();
-		while ($row = mysql_fetch_assoc($response["results"])) {
+		while ($row = mysqli_fetch_assoc($response["results"])) {
 			$cityData[] = $row;
 		}
 		$this->cityData = $cityData;

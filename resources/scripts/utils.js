@@ -3,9 +3,7 @@
 define([
 	"manager",
 	"constants",
-	"lang",
-	"jquery-ui",
-	"jquery-json"
+	"lang"
 ], function(manager, C, L) {
 
 	"use strict";

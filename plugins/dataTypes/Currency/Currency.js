@@ -76,8 +76,9 @@ define([
 		var problemFields2 = [];
 		var problemFields3 = [];
 		var invalidFormatRows = [];
-		var invalidFromRange = [];
-		var invalidToRange = [];
+		var rowsWithInvalidRange = [];
+		var fromRangeGreaterThanToRange = [];
+
 		for (var i=0; i<rows.length; i++) {
 			var format = $("#dtCurrencyFormat_" + rows[i]);
 			var from   = $("#dtCurrencyRangeFrom_" + rows[i]);
@@ -88,13 +89,32 @@ define([
 				invalidFormatRows.push(visibleRowNum);
 				problemFields.push(format);
 			}
+
+			var validFromRange = true;
+			var validToRange = true;
 			if (from.val() === "" || from.val().match(/[^\d\.\-]/)) {
-				invalidFromRange.push(visibleRowNum);
+				rowsWithInvalidRange.push(visibleRowNum);
+				validFromRange = false;
 				problemFields2.push(from);
 			}
 			if (to.val() === "" || to.val().match(/[^\d\.\-]/)) {
-				invalidToRange.push(visibleRowNum);
-				problemFields3.push(to);
+				if ($.inArray(visibleRowNum, rowsWithInvalidRange) === -1) {
+					rowsWithInvalidRange.push(visibleRowNum);
+				}
+				validToRange = false;
+				problemFields2.push(to);
+			}
+
+			if (validFromRange && validToRange) {
+				var fromNum = parseFloat(from.val());
+				var toNum   = parseFloat(to.val());
+
+				// allow the same value, just in case users want to have the same currency outputted for all
+				// rows (you never know)
+				if (fromNum > toNum) {
+					fromRangeGreaterThanToRange.push(visibleRowNum);
+					problemFields3.push(from);
+				}
 			}
 		}
 
@@ -102,12 +122,13 @@ define([
 		if (invalidFormatRows.length) {
 			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + invalidFormatRows.join(", ") + "</b>"});
 		}
-		if (invalidFromRange.length) {
-			errors.push({ els: problemFields2, error: LANG.invalid_range_fields + " <b>" + invalidFromRange.join(", ") + "</b>"});
+		if (rowsWithInvalidRange.length) {
+			errors.push({ els: problemFields2, error: LANG.invalid_range_fields + " <b>" + rowsWithInvalidRange.join(", ") + "</b>"});
 		}
-		if (invalidToRange.length) {
-			errors.push({ els: problemFields3, error: "2" + LANG.invalid_range_fields + " <b>" + invalidToRange.join(", ") + "</b>"});
+		if (fromRangeGreaterThanToRange.length) {
+			errors.push({ els: problemFields3, error: LANG.invalid_range + " <b>" + fromRangeGreaterThanToRange.join(", ") + "</b>"});
 		}
+
 
 		return errors;
 	};

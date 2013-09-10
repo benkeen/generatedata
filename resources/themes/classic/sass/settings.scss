@@ -1,0 +1,23 @@
+.gdDefaultModules {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+
+	li {
+		margin: 0px;
+		padding: 0px;
+		float: left;
+		width: 25%;
+
+		h4 {
+			background-color: #efefef;
+			margin: 0px;
+		}
+
+		&>div {
+			height: 200px;
+			width: 98%;
+			border: 1px solid #efefef;
+		}
+	}
+}

@@ -23,3 +23,4 @@ $L["prefix"] = "präfix";
 $L["suffix"] = "suffix";
 $L["incomplete_fields"] = "Der Currency-Datentyp haben muss das Format eingegeben. Bitte korrigieren Sie die folgenden Zeilen:";
 $L["invalid_range_fields"] = "Bitte geben Sie nur Zahlen in den Feldern Währung Bereich (0-9 und Dezimalpunkt). Bitte korrigieren Sie die folgenden Zeilen:";
+$L["invalid_range"] = "Bitte überprüfen Sie die Palette reicht von klein bis groß. Bitte korrigieren Sie die folgenden Zeilen:";

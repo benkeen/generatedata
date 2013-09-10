@@ -1,23 +1,24 @@
 /*global require:false*/
 require.config({
-	baseUrl: "resources/scripts/",
+	baseUrl: "",
 	paths: {
-		"manager":        "manager",
-		"pluginManager":  "pluginManager",
-		"accountManager": "accountManager",
-		"constants":      "constants.php?",
-		"generator":      "generator",
-		"io":             "io",
-		"utils":          "utils",
-		"jquery-json":    "libs/jquery.json-2.2.min",
-		"jquery-ui":      "libs/jquery-ui.min",
-		"moment":         "libs/moment.min",
-		"lang":           "lang.php?",
-		"tablesorter":    "libs/jquery.tablesorter.widgets.min"
+		manager:           "resources/scripts/manager",
+		appStartGenerated: "cache/appStartGenerated",
+		pluginManager:     "resources/scripts/pluginManager",
+		accountManager:    "resources/scripts/accountManager",
+		constants:         "resources/scripts/constants.php?",
+		generator:         "resources/scripts/generator",
+		io:                "resources/scripts/io",
+		utils:             "resources/scripts/utils",
+		moment:            "resources/scripts/libs/moment.min",
+		lang:              "resources/scripts/lang.php?",
+		queue:             "resources/scripts/queue",
+		pageInit:          "resources/scripts/pageInit",
+		tablesorter:       "resources/scripts/libs/jquery.tablesorter.widgets.min"
 	},
 	shim: {
 		"tablesorter": {
-			deps: ['libs/jquery.tablesorter.min']
+			deps: ['resources/scripts/libs/jquery.tablesorter.min']
 		}
 	},
 	waitSeconds: 60

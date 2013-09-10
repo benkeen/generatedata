@@ -149,7 +149,7 @@ EOF;
 				$format = $extendedData["zipFormat"];
 			} else if (array_key_exists("format", $extendedData["zipFormat"]) && is_string($extendedData["zipFormat"]["format"])) {
 				$format = $extendedData["zipFormat"]["format"];
-				$replacements = $extendedData["zipFormat"]["replacements"];
+				$replacements = isset($extendedData["zipFormat"]["replacements"]) ? $extendedData["zipFormat"]["replacements"] : array(); // TODO double check empty array is valid
 				$isAdvanced = true;
 			}
 

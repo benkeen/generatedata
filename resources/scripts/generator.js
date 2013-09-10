@@ -6,8 +6,7 @@ define([
 	"queue",
 	"constants",
 	"lang",
-	"moment",
-	"jquery-ui"
+	"moment"
 ], function(manager, pluginManager, utils, Queue, C, L, moment) {
 
 	"use strict";
@@ -24,6 +23,7 @@ define([
 	 */
 
 	var MODULE_ID = "core-generator";
+
 	var _numRows = 0;
 	var _numRowsToShowOnStart = 4;
 	var _countries = [];
@@ -537,7 +537,6 @@ define([
 		} else {
 			_clearForm(opts.numRows);
 		}
-
 	};
 
 	var _clearForm = function(numDefaultRows) {
@@ -1005,7 +1004,7 @@ define([
 			$("#gdProgressMeter").attr("value", _generateInPageRunningCount);
 
 			// 2. Update the actual content
-			_generateInPageContent += decodeURIComponent(escape(response.content));
+			_generateInPageContent += decodeURIComponent(response.content);
 			_codeMirror.setValue(_generateInPageContent);
 
 			// check the process hasn't been interrupted

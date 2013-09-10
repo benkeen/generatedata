@@ -29,6 +29,12 @@ define([
 
 
 	var _run = function() {
+		var isLoggedIn = $("body").data("loggedIn");
+		var userAccountSetup = $("body").data("userAccountSetup");
+		if (!isLoggedIn || userAccountSetup !== "multiple") {
+			return;
+		}
+
 		$("#gdCreateAccount").on("click", _openCreateAccountDialog);
 		$("#gdRefreshPassword").on("click", _regeneratePassword);
 

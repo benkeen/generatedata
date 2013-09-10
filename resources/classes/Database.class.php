@@ -14,14 +14,13 @@ class Database {
 		$dbName     = Core::getDbName();
 
 		try {
-			$this->link = mysql_connect($dbHostname, $dbUsername, $dbPassword);
+			$this->link = mysqli_connect($dbHostname, $dbUsername, $dbPassword, $dbName);
 		} catch (Exception $e) {
 			// or die("Couldn't connect to database: " . mysql_error());
 		}
 
 		try {
-			@mysql_select_db($dbName);
-			@mysql_query("SET NAMES 'utf8'", $this->link);
+			@mysqli_query("SET NAMES 'utf8'", $this->link);
 		} catch (Exception $e) {
 		 //  die ("couldn't find database '$g_db_name': " . mysql_error());
 		}
@@ -33,7 +32,7 @@ class Database {
 	 * @access public
 	 */
 	public function disconnect($link) {
-		@mysql_close($link);
+		@mysqli_close($link);
 	}
 
 
@@ -44,25 +43,17 @@ class Database {
 	public static function testDbSettings($dbHostname, $dbName, $dbUsername, $dbPassword) {
 		$dbConnectionError = "";
 		$lang = Core::$language->getCurrentLanguageStrings();
-		$link = @mysql_connect($dbHostname, $dbUsername, $dbPassword)
-			or $dbConnectionError = mysql_error();
+		$link = @mysqli_connect($dbHostname, $dbUsername, $dbPassword, $dbName);
+		if (mysqli_connect_errno($link)) {
+			$dbConnectionError = mysqli_connect_error();
+		}
 
 		if ($dbConnectionError) {
 			$placeholders = array("db_connection_error" => $dbConnectionError);
 			$error = Templates::evalSmartyString($lang["install_invalid_db_info"], $placeholders);
 			return array(false, $error);
 		} else {
-			$dbSelectError = "";
-			@mysql_select_db($dbName)
-				or $dbSelectError = mysql_error();
-
-			if ($dbSelectError) {
-				$placeholders = array("db_select_error" => $dbSelectError);
-				$error = Template::evalSmartyString($lang["install_no_db_connection"], $placeholders);
-				return array(false, $error);
-			} else {
-				@mysql_close($link);
-			}
+			@mysqli_close($link);
 		}
 
 		return array(true, "");
@@ -96,9 +87,9 @@ class Database {
 		$results = array();
 		$errorMessage = "";
 		foreach ($queries as $query) {
-			$result = mysql_query($query);
+			$result = mysqli_query($this->link, $query);
 			if (!$result) {
-				$errorMessage = mysql_error();
+				$errorMessage = mysqli_error($this->link);
 				break;
 			} else {
 				$results[] = $result;
@@ -107,7 +98,7 @@ class Database {
 
 		if (!empty($errorMessage)) {
 			foreach ($rollbackQueries as $query) {
-				@mysql_query($query);
+				@mysqli_query($this->link, $query);
 			}
 		}
 

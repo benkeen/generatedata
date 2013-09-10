@@ -479,21 +479,18 @@ END;
 			}
 		}
 
-		$colNamesStr = "";
 		$colNamesStr = implode(",", $this->data["colData"]);
-
 		$numRows = count($this->data["rowData"]);
 		$numCols = count($this->data["colData"]);
 		for ($i=0; $i<$numRows; $i++) {
 			$currentRow = $i + 1;
-		
 			if ($this->sqlStatementType == "insert") {
 				$displayVals = array();
 				for ($j=0; $j<$numCols; $j++) {
 					if ($this->numericFields[$j]) {
 						$displayVals[] = $this->data["rowData"][$i][$j];
 					} else {
-						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+						$displayVals[] = "'" . preg_replace("/'/", "\'", $this->data["rowData"][$i][$j]) . "'";
 					}
 				}
 				$rowDataStr = implode(",", $displayVals);
@@ -512,7 +509,7 @@ END;
 					if ($this->numericFields[$j]) {
 						$colValue = $this->data["rowData"][$i][$j];
 					} else {
-						$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+						$colValue = "'" . preg_replace("/'/", "\'", $this->data["rowData"][$i][$j]) . "'";
 					}
 					$pairs[]  = "{$colName} = $colValue";
 				}

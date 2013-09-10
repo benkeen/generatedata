@@ -207,6 +207,12 @@ class AjaxRequest {
 				}
 				break;
 
+			// called anytime the plugins were updated (either via the installation or core script). This
+			// runs any post-processes that need to be done
+			case "updatedPluginsPostProcess":
+				Core::init();
+				$this->response["success"] = (Minification::createAppStartFile()) ? 1 : 0;
+				break;
 
 			// ------------------------------------------------------------------------------------
 			// USER ACCOUNTS
@@ -350,7 +356,7 @@ class AjaxRequest {
 
 			case "generateInPage":
 				Core::init("generation");
-				$gen = new Generator($this->post);
+				$gen = new DataGenerator($this->post);
 				$response = $gen->generate();
 				$this->response["success"]    = $response["success"];
 				$this->response["content"]    = $response["content"];

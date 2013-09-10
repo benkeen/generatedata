@@ -156,7 +156,7 @@ END;
 		");
 
 		$countries = array();
-		while ($countryInfo = mysql_fetch_assoc($query)) {
+		while ($countryInfo = mysqli_fetch_assoc($query)) {
 			$countries[] = array(
 				"country" => $countryInfo['country'],
 				"id"      => $countryInfo['id'],
@@ -176,7 +176,7 @@ END;
 
 		if ($response["success"]) {
 			$regionInfo = array();
-			while ($row = mysql_fetch_assoc($response["results"])) {
+			while ($row = mysqli_fetch_assoc($response["results"])) {
 				$regionInfo[] = $row;
 			}
 		}

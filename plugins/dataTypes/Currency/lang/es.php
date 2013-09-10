@@ -23,3 +23,4 @@ $L["prefix"] = "prefijo";
 $L["suffix"] = "sufijo";
 $L["incomplete_fields"] = "El tipo de datos de moneda debe tener el formato introducido. Por favor, corrija los siguientes filas:";
 $L["invalid_range_fields"] = "Les rogamos introducir números en los campos de intervalo de Divisas (0-9 y el punto decimal). Por favor, corrija los siguientes filas: ";
+$L["invalid_range"] = "Por favor, compruebe el rango va desde pequeñas a grandes. Por favor, corrija los siguientes filas:";

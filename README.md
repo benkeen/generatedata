@@ -4,7 +4,7 @@
 
 This is the repo for the standalone, downloadable version of [generatedata.com](http://www.generatedata.com).
 
-Generally the trunk is pretty stable, but if you're concerned about stability above all else, grab one of the tags. The trunk contains the latest and greatest changes and bug fixes.
+Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting the most recent tag: https://github.com/benkeen/generatedata/releases
 
 ## How to Install / Documentation
 
@@ -25,14 +25,25 @@ This script is freely available under the GPL 3 license. See license.txt in the 
 
 ## Contributors
 
-In addition to the folks who submit bug reports, a big thanks to the following for their help extending the script:
+In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [Michel Roca](https://github.com/mRoca) - Full and correct French translation (3.0.7)
+- Marco Corona - LDIF Export Type added (3.0.7)
 - [Andre Fortin](https://github.com/twindual) - original Costa Rica Country plugin & Phone-Regional Data Type (3.0.6)
 - [Marcello Verona](https://github.com/marciuz) - Italy Country plugin (3.0.4)
 - [Roberto Aragón](https://github.com/robarago), Charo Baena - Spanish translation & Country plugin (3.0.2)
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.0.7 - Sept 7, 2013
+- LDIF Export Type support - thanks, [Marco Corona](https://github.com/coronam)!
+- Proper (genuine!) French translation courtesy of [Michel Roca](https://github.com/mRoca)
+- Optional JS, CSS minimization and bundling via Grunt. See help documentation for more information:
+[http://benkeen.github.io/generatedata/developer.html#bundling](http://benkeen.github.io/generatedata/developer.html#bundling)
+- PHP 5.5 compatibility fixes: database connection now with mysqli; Generator class renamed to DataGenerator due
+to naming conflict.
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=7&page=1&state=closed
 
 3.0.6 - Aug 1, 2013
 - Costa Rica Country plugin, Phone-Regional Data Type added, courtesy of [Andre Fortin](https://github.com/twindual)

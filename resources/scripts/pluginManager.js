@@ -74,7 +74,7 @@ define([
 					folders: _successfullyInstalledDataTypes.toString()
 				},
 				success: function() {
-					// now proceed to the Export Types
+					// now proceed to the Export Types!
 					_currIndex = 0;
 					_installExportTypes();
 				},
@@ -120,6 +120,8 @@ define([
 					folders: _successfullyInstalledExportTypes.toString()
 				},
 				success: function() {
+
+					// next, onto the Country plugins
 					_currIndex = 0;
 					_installCountries();
 				},
@@ -164,12 +166,7 @@ define([
 					action: _context + "SaveCountries",
 					folders: _successfullyInstalledCountries.toString()
 				},
-				success: function() {
-					_currIndex = 0;
-					if ($.isFunction(_onCompleteHandler)) {
-						_onCompleteHandler();
-					}
-				},
+				success: _runPostProcesses,
 				error: _errorHandler
 			});
 		} else {
@@ -186,6 +183,29 @@ define([
 			_installCountries();
 		}
 	};
+
+	/**
+	 * After all plugin information has been sent to the server, run whatever post-processes are needed.
+	 * @private
+	 */
+	var _runPostProcesses = function() {
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "json",
+			data: {
+				action: "updatedPluginsPostProcess"
+			},
+			success: function() {
+				_currIndex = 0;
+				if ($.isFunction(_onCompleteHandler)) {
+					_onCompleteHandler();
+				}
+			},
+			error: _errorHandler
+		});
+	};
+
 
 	/**
 	 * Our public API.

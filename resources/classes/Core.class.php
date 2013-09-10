@@ -19,7 +19,7 @@ class Core {
 	private static $dbPassword;
 	private static $dbTablePrefix = "gd_";
 	private static $encryptionSalt;
-	private static $errorReporting = 1;
+	private static $errorReporting = 2047;
 	private static $maxGeneratedRows = 100000;
 	private static $defaultNumRows = 100;
 	private static $maxDemoModeRows = 100;
@@ -27,11 +27,14 @@ class Core {
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array();
 	private static $defaultTheme = "classic";
-	public static $useJSCache = true;
+	private static $enableSmartySecurity = true;
+	private static $useMinifiedResources = false;
 
 	// non-overridable settings
-	private static $version = "3.0.6";
+	private static $version = "3.0.7";
+	private static $releaseDate = "2013-09-07";
 	private static $minimumPHPVersion = "5.3.0";
+	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
 	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
 	private static $continents = array("africa", "asia", "central_america", "europe", "north_america", "oceania", "south_america");
@@ -77,7 +80,7 @@ class Core {
 	/**
 	 * @var CountryPlugin
 	 */
-	public static $countryPlugins;
+	public static $countryPlugins; // TODO why plural?
 	public static $allowThemes = false;
 
 
@@ -173,8 +176,14 @@ class Core {
 			if (isset($defaultLanguageFile)) {
 				self::$defaultLanguageFile = $defaultLanguageFile;
 			}
+			if (isset($enableSmartySecurity)) {
+				self::$enableSmartySecurity = $enableSmartySecurity;
+			}
+			if (isset($useMinifiedResources)) {
+				self::$useMinifiedResources = $useMinifiedResources;
+			}
 
-			// temporary, during alpha dev
+			// TODO temporary, during alpha dev
 			if (isset($allowThemes)) {
 				self::$allowThemes = $allowThemes;
 			}
@@ -346,6 +355,23 @@ class Core {
 	}
 
 	/**
+	 * Returns the minimum MySQL version required to run this script. Used during installation to ensure the
+	 * server environment is adequate.
+	 * @access public
+	 */
+	public static function getMinimumMySQLVersion() {
+		return self::$minimumMySQLVersion;
+	}
+
+	/**
+	 * Returns a boolean signifying whether we should use the minified + bundled resources generated via Grunt.
+	 * @return bool
+	 */
+	public static function isUsingMinifiedResources() {
+		return self::$useMinifiedResources;
+	}
+
+	/**
 	 * Used during the installation process only: it returns the default theme for new installations.
 	 * @access public
 	 */
@@ -353,6 +379,10 @@ class Core {
 		return self::$defaultTheme;
 	}
 
+
+	public static function isSmartySecurityEnabled() {
+		return self::$enableSmartySecurity;
+	}
 
 	// ------------------ private methods ------------------
 
@@ -362,7 +392,7 @@ class Core {
 	 * @access private
 	 */
 	private function initSmarty() {
-		self::$smarty = new Smarty();
+		self::$smarty = new SecureSmarty();
 		self::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates/");
 		self::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache/");
 		self::$smarty->assign("version", self::getVersion());

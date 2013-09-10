@@ -35,6 +35,7 @@ define([
 			});
 		}
 
+
 		// find the checkboxes in this row
 		return {
 			"checked": checked
@@ -42,7 +43,13 @@ define([
 	};
 
 	var _loadRow = function(rowNum, data) {
-		var rows = data.checked;
+
+		// a real mystery here. On Chrome (and maybe other browsers) if _saveRow returns an empty array for "checkedRows",
+		// the object key-value pair is completely dropped. Hence the check here
+		var rows = [];
+		if (typeof data !== 'undefined') {
+			rows = data.checked;
+		}
 		return {
 			execute: function() { },
 			isComplete: function() {
@@ -80,6 +87,12 @@ define([
 		var shownClassesSelector = shownClassesSelectors.join(",");
 		$(".dtRegionCountry").hide();
 		$(shownClassesSelector).show();
+
+		if (msg.countries.length > 0) {
+			$(".dtRegionCountry_noCountries").hide();
+		} else {
+			$(".dtRegionCountry_noCountries").show();
+		}
 	};
 
 	var _toggleCountryRegion = function(e) {

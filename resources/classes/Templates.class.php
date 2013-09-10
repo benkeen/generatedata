@@ -86,7 +86,7 @@ class Templates {
 	 * @return string
 	 */
 	public static function evalSmartyString($placeholderStr, $placeholders) {
-		$smarty = new Smarty();
+		$smarty = new SecureSmarty();
 		$smarty->template_dir = realpath(dirname(__FILE__) . "/../libs/smarty");
 		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache");
 
@@ -125,7 +125,7 @@ class Templates {
 	<head>
 		<title>Things just ain't right.</title>
 		<link rel="stylesheet" type="text/css" href="resources/themes/classic/compiled/styles.css">
-		<script src="resources/scripts/libs/jquery.js"></script>
+		<script src="resources/scripts/libs/jquery.min.js"></script>
 		<script>
 		$(function() {
 			$("button").bind("click", function() { window.location = "index.php?source=fromerrorpage"; });

@@ -38,15 +38,15 @@ class SessionManager {
 	function read($id) {
 		// fetch session data from the selected database
 		$time  = time();
-		$newID = mysql_real_escape_string($id, $this->dbLink);
+		$newID = mysqli_real_escape_string($this->dbLink, $id);
 		$sql   = "SELECT session_data FROM {$this->dbPrefix}sessions WHERE session_id = '$newID' AND expires > $time";
 
-		$response = mysql_query($sql, $this->dbLink);
-		$numRows  = mysql_num_rows($response);
+		$response = mysqli_query($this->dbLink, $sql);
+		$numRows  = mysqli_num_rows($response);
 
 		$data = "";
 		if ($numRows > 0) {
-			$row = mysql_fetch_assoc($response);
+			$row = mysqli_fetch_assoc($response);
 			$data = $row["session_data"];
 		}
 
@@ -57,26 +57,26 @@ class SessionManager {
 	function write($id, $data) {
 		$life_time = 3600;
 		$time = time() + $life_time;
-		$newID   = mysql_real_escape_string($id, $this->dbLink);
-		$newData = mysql_real_escape_string($data, $this->dbLink);
+		$newID   = mysqli_real_escape_string($this->dbLink, $id);
+		$newData = mysqli_real_escape_string($this->dbLink, $data);
 
 		$sql = "REPLACE {$this->dbPrefix}sessions (session_id, session_data, expires) VALUES('$newID', '$newData', $time)";
-		mysql_query($sql, $this->dbLink);
+		mysqli_query($this->dbLink, $sql);
 
 		return true;
 	}
 
 	function destroy($id) {
-		$newID = mysql_real_escape_string($id);
+		$newID = mysqli_real_escape_string($this->dbLink, $id);
 		$sql = "DELETE FROM {$this->dbPrefix}sessions WHERE session_id = '$newID'";
-		mysql_query($sql, $this->dbLink);
+		mysqli_query($this->dbLink, $sql);
 		return true;
 	}
 
 	// delete all records who have passed the expiration time
 	function gc() {
 		$sql = "DELETE FROM {$this->dbPrefix}sessions WHERE expires < UNIX_TIMESTAMP()";
-		mysql_query($sql);
+		mysqli_query($this->dbLink, $sql);
 		return true;
 	}
 }

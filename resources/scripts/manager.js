@@ -257,7 +257,7 @@ define([
 	var _validateDataTypes = function(rowValidationNeededGroupedByDataType) {
 		var errors = [];
 		for (var moduleID in _modules) {
-			if (_modules[moduleID].type != C.COMPONENT.DATA_TYPE) {
+			if (_modules[moduleID].type !== C.COMPONENT.DATA_TYPE) {
 				continue;
 			}
 

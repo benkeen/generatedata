@@ -280,3 +280,4 @@ $L["validation_invalid_permissions"] = "No tienes permiso para hacer esto.";
 $L["installation_failed_create_settings_file"] = "El script no pudo crear el archivo <b>settings.php</b>.";
 $L["installation_failed_create_settings_file_msg"] = "Esto suele ocurrir cuando se deja de tener permisos para escribir en la carpeta. Por favor, cree manualmente este archivo y colocarlo en la carpeta base del generador de datos. Una vez hecho esto, el botón de abajo para continuar la instalación.";
 $L["confirm_file_exists"] = "Confirmar archivo existe";
+$L["reset_plugins_with_bundling"] = "<b>Has agrupación / minificación habilitado</b>. Después de hacer clic en este botón usted tendrá que ejecutar <i>Grunt</i> para volver a crear los paquetes. Para obtener más información <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">leer esta página de documentación</a>. Si tiene algún problema, es posible que desee desactivar la agrupación.";

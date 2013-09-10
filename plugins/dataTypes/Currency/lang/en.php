@@ -24,3 +24,4 @@ $L["prefix"] = "prefix";
 $L["suffix"] = "suffix";
 $L["incomplete_fields"] = "The Currency data type needs to have the format entered. Please fix the following rows:";
 $L["invalid_range_fields"] = "Please only enter numbers in the Currency range fields (0-9 and decimal point). Please fix the following rows: ";
+$L["invalid_range"] = "Please check the range goes from small to large. Please fix the following rows: ";

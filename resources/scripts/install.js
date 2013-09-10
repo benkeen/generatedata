@@ -3,9 +3,7 @@ require([
 	"manager",
 	"pluginManager",
 	"utils",
-	"pageInit",
-	"jquery-ui",
-	"jquery-json"
+	"pageInit"
 ], function(manager, pluginManager, utils) {
 
 	"use strict";
@@ -15,7 +13,7 @@ require([
 	var _pluginsInstalled = false;
 	var _currStep = null;
 	var _L = null;
-	var _defaultLanguage = 'en';
+	var _defaultLanguage = "en";
 	var _settingsFileCreationFailed = false;
 
 
