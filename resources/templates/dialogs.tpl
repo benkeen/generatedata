@@ -204,7 +204,7 @@
 					<table>
 						<tr>
 							<th width="120">{$L.email}</th>
-							<td><input type="text" name="gdLogin_email" id="gdLogin_email" style="width: 200px" /></td>
+							<td><input type="text" name="gdLogin_email" id="gdLogin_email" /></td>
 						</tr>
 						<tr>
 							<th>{$L.password}</th>
