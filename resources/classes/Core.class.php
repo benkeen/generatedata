@@ -107,6 +107,11 @@ class Core {
 		self::loadSettingsFile();
 		error_reporting(self::$errorReporting);
 
+		// ensure the timezone is set
+		if (ini_get("date.timezone") == "") {
+			ini_set("date.timezone", "Canada/Vancouver");
+		}
+
 		self::$translations = new Translations();
 
 		// the order is significant in all of this
