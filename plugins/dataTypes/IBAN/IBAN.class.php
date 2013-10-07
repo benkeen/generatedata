@@ -8,15 +8,10 @@
 class DataType_IBAN extends DataTypePlugin {
 
 	protected $isEnabled = true;
-	protected $dataTypeName = "IBAN";
+	protected $dataTypeName = "Bank Account Numbers (IBAN)";
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "human_data";
-	/**
-	 * @todo not sure what to enter here, but this worked
-	 * @var integer
-	 */
-	protected $dataTypeFieldGroupOrder = 1337;
-	private $helpDialogWidth = 340;
+	protected $dataTypeFieldGroupOrder = 100;
 	
 	/**
 	 * Template definition
@@ -112,8 +107,8 @@ class DataType_IBAN extends DataTypePlugin {
 		parent::__construct($runtimeContext);
 		$onlySepa = false;
 		if ($runtimeContext == "generation") {
-			foreach($this->allCountryCodes as $details) {
-				if( !$onlySepa || $details['sepa'] ) {
+			foreach ($this->allCountryCodes as $details) {
+				if (!$onlySepa || $details['sepa']) {
 					$this->countryCodes[] = $details;
 				}
 			}
@@ -121,8 +116,8 @@ class DataType_IBAN extends DataTypePlugin {
 	}
 	
 	public static function GenerateBic($countryCode) {
-		$withBranchCode = rand(0,1)==true;
-		$branchCode = $withBranchCode?'xxX':'';
+		$withBranchCode = rand(0,1) == true;
+		$branchCode = $withBranchCode ? 'xxX' : '';
 		$format = 'LLLL'.$countryCode.'LL'.$branchCode;
 		
 		return Utils::generateRandomAlphanumericStr($format);
@@ -133,21 +128,21 @@ class DataType_IBAN extends DataTypePlugin {
 		$bicPos = 0;
 		$len = strlen($template);
 		$unsigned = '';
-		for( $i= 0; $i < $len; $i++) {
+		for ($i=0; $i<$len; $i++) {
 			$c = $template[$i];
-			if( strtoupper($c) === $c) {
-				$unsigned.=$c;
+			if (strtoupper($c) === $c) {
+				$unsigned .= $c;
 				continue;
 			}
-			if( $c === 'i' ) {
-				$unsigned.=$bic{$bicPos++};
+			if ($c === 'i') {
+				$unsigned .= $bic{$bicPos++};
 				continue;
 			}
-			if( $c === 'k' ) {
-				$unsigned.='_';
+			if ($c === 'k') {
+				$unsigned .= '_';
 				continue;
 			}
-			$unsigned.=Utils::generateRandomAlphanumericStr('x');
+			$unsigned .= Utils::generateRandomAlphanumericStr('x');
 		}
 		return self::RecalculateChecksum($unsigned);
 	}
@@ -180,15 +175,15 @@ class DataType_IBAN extends DataTypePlugin {
 	}
 	
 	private static function Chr2Int($chr) {
-		if( strlen($chr) != 1 ) {
+		if (strlen($chr) != 1) {
 			throw new Exception("Requires a single character");
 		}
 		$ord = ord($chr);
 	
-		if( $ord <=57 && $ord >=48 ) { //48 = '0', 57 = '9'
+		if ($ord <=57 && $ord >=48) { //48 = '0', 57 = '9'
 			return $ord-48;
 		}
-		if( $ord <= 90 && $ord >= 65 ) { //90 = 'Z', 65 = 'A'
+		if ($ord <= 90 && $ord >= 65) { //90 = 'Z', 65 = 'A'
 			return 10 + ($ord - 65);
 		}
 		throw new Exception("Input character {$chr}({$ord}) does not map to an integer");
@@ -201,10 +196,10 @@ class DataType_IBAN extends DataTypePlugin {
 		$mod = '';
 	
 		do {
-			$a = intval($mod.substr( $x, 0, $take ));
+			$a = intval($mod.substr($x, 0, $take));
 			$x = substr( $x, $take );
 			$mod = $a % $y;
-		} while ( strlen($x) );
+		} while (strlen($x));
 	
 		return intval($mod);
 	}
@@ -212,22 +207,19 @@ class DataType_IBAN extends DataTypePlugin {
 	 * Removes the current checksum digits from an IBAN string, and replaces it with what it should have been.
 	 */
 	private static function RecalculateChecksum($ibanString) {
-		if( strlen($ibanString) < 6) {
+		if (strlen($ibanString) < 6) {
 			return $ibanString;
 		}
 		
-		$reordered =  substr($ibanString, 4).substr($ibanString,0,2);
+		$reordered =  substr($ibanString, 4).substr($ibanString, 0, 2);
 		$numerical = '';
-		for( $i = 0; $i < strlen($reordered); $i++ ) {
+		for ($i=0; $i<strlen($reordered); $i++) {
 			$numerical .= self::Chr2Int($reordered[$i]);
 		}
-		$numerical.='00';
+		$numerical .= '00';
 		
 		$checksum = 98 - self::BigMod($numerical, 97);
 		
 		return substr($ibanString, 0, 2).str_pad($checksum,2, '0', STR_PAD_LEFT).substr($ibanString, 4);
-		
-		
 	}
-	
 }

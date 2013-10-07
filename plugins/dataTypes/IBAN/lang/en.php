@@ -1,7 +1,7 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "IBAN";
+$L["DATA_TYPE_NAME"] = "Bank Account Nums (IBAN)";
 $L["help"] = <<<EOT
 	Generates IBAN (International Bank Account Number).<br />
 	The generated IBAN has a valid checksum, countrycode and length and the BIC is in the right place.<br/>

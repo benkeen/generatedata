@@ -11,7 +11,6 @@ class DataType_Company extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 50;
-	private $helpDialogWidth = 340;
 	private $companyTypes = array(
 		"Company", "Corp.", "Corporation", "Inc.", "Incorporated", "LLC", "LLP", "Ltd", "Limited",
 		"PC", "Foundation", "Institute", "Associates", "Industries", "Consulting"
