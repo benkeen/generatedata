@@ -11,7 +11,12 @@ class Country_UK extends CountryPlugin {
 	protected $continent = "europe";
 
 	protected $extendedData = array(
-		"zipFormat" => "Lx xLL|Lxx xLL|LxL xLL|LLx xLL|LLxx xLL|LLxL xLL"
+		"zipFormat" => "Lx xLL|Lxx xLL|LxL xLL|LLx xLL|LLxx xLL|LLxL xLL",
+		"phoneFormat" => array(
+			"displayFormats" => array(
+				"0xxxx xxxxxx"	
+			)	
+		)
 	);
 
 	protected $countryData = array(
