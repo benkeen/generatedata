@@ -151,6 +151,10 @@ class SQL extends ExportTypePlugin {
 					<label for="etSQL_statementType1">INSERT</label>
 				</div>
 				<div>
+					<input type="radio" name="etSQL_statementType" id="etSQL_statementType1.5" value="insertignore" />
+					<label for="etSQL_statementType1.5">INSERT IGNORE</label>
+				</div>
+				<div>
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType2" value="update" />
 					<label for="etSQL_statementType2">UPDATE</label>
 				</div>
@@ -245,6 +249,17 @@ END;
 				}
 				$rowDataStr = implode(",", $displayVals);
 				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+			}elseif ($this->sqlStatementType == "insertignore") {
+				$displayVals = array();
+				for ($j=0; $j<$numCols; $j++) {
+					if ($this->numericFields[$j]) {
+						$displayVals[] = $this->data["rowData"][$i][$j];
+					} else {
+						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
+				}
+				$rowDataStr = implode(",", $displayVals);
+				$content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
