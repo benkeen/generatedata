@@ -19,6 +19,7 @@ for more info.
 
 Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's going to be a little hairy for a while just yet.
 
+
 ## License
 
 This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all contributors agree that all code is released under this license.

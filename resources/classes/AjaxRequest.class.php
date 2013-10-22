@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * A generic class for handling all of the Core's Ajax requests. All requests are identified
  * through a unique "action" string, and (usually) arbitrary other info passed via POST.
