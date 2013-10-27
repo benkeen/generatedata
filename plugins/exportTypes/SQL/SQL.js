@@ -19,17 +19,42 @@ define([
 
 
 	var _init = function() {
+
+		$("#etSQL_databaseType").on("change", _onChangeDatabaseType);
+
 		var subscriptions = {};
+		subscriptions[C.EVENT.APP_START] = _onChangeSettings;
+		subscriptions[C.EVENT.IO.LOAD] = _onChangeSettings;
 		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
 		subscriptions[C.EVENT.GENERATE] = _onGenerate;
 		manager.subscribe(MODULE_ID, subscriptions);
+	};
+
+	var _onChangeDatabaseType = function(e) {
+		_updateAvailableSettings(e.target.value);
+	};
+
+	var _onChangeSettings = function() {
+		var dbType = $("#etSQL_databaseType").val();
+		_updateAvailableSettings(dbType);
+	};
+
+	var _updateAvailableSettings = function(dbType) {
+		if (dbType === "Postgres") {
+			$("#etSQL_encloseWithBackquotes").prop("disabled", true).prop("checked", false);
+			$("#etSQL_encloseWithBackquotes_group label").css("color", "#cccccc");
+
+		} else {
+			$("#etSQL_encloseWithBackquotes").prop("disabled", false);
+			$("#etSQL_encloseWithBackquotes_group label").css("color", "");
+		}
 	};
 
 	/**
 	 * Called when the user changes the result type
 	 */
 	var _resultTypeChanged = function(msg) {
-		if (msg.newExportType == "SQL") {
+		if (msg.newExportType === "SQL") {
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
 		}
 	};
@@ -40,7 +65,7 @@ define([
 	 * we just re-use MySQL for all of them: they're pretty similar, anyway.
 	 */
 	var _onGenerate = function(msg) {
-		if (msg.exportTarget != "inPage" || msg.exportType != "SQL") {
+		if (msg.exportTarget !== "inPage" || msg.exportType !== "SQL") {
 			return;
 		}
 		msg.editor.setOption("mode", "mysql");

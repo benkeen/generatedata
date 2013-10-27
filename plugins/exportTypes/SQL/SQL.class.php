@@ -64,6 +64,9 @@ class SQL extends ExportTypePlugin {
 			case "MySQL":
 				$content .= $this->generateCreateTableSQL_MySQL();
 				break;
+			case "Postgres":
+				$content .= $this->generateCreateTableSQL_Postgres();
+				break;
 			case "Oracle":
 				$content .= $this->generateCreateTableSQL_Oracle();
 				break;
@@ -114,6 +117,7 @@ class SQL extends ExportTypePlugin {
 			<td>
 				<select name="etSQL_databaseType" id="etSQL_databaseType">
 					<option value="MySQL">MySQL</option>
+					<option value="Postgres">Postgres</option>
 					<option value="SQLite">SQLite</option>
 					<option value="Oracle">Oracle</option>
 					<option value="MSSQL">SQL Server</option>
@@ -131,7 +135,7 @@ class SQL extends ExportTypePlugin {
 					<input type="checkbox" name="etSQL_dropTable" id="etSQL_dropTable" checked="checked" />
 					<label for="etSQL_dropTable">{$this->L["include_drop_table_query"]}</label>
 				</div>
-				<div>
+				<div id="etSQL_encloseWithBackquotes_group">
 					<input type="checkbox" name="etSQL_encloseWithBackquotes" id="etSQL_encloseWithBackquotes" checked="checked" />
 					<label for="etSQL_encloseWithBackquotes">{$this->L["enclose_table_backquotes"]}</label>
 				</div>
@@ -260,6 +264,82 @@ END;
 				$pairsStr = implode(", ", $pairs);
 				$rowNum = $this->currentBatchFirstRow + $i;
 				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
+			}
+		}
+
+		return $content;
+	}
+
+
+	/**
+	 * Generates a MySQL table with all the data.
+	 * @return string
+	 */
+	private function generateCreateTableSQL_Postgres() {
+		$content = "";
+		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
+		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
+
+		if ($this->isFirstBatch) {
+			if ($this->includeDropTable) {
+				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
+				$content .= "DROP TABLE IF EXISTS \"{$this->tableName}\";{$dropTableEndLine}";
+			}
+
+			if ($this->createTable) {
+				$content .= "CREATE TABLE \"{$this->tableName}\" ($endLineChar";
+				if ($this->primaryKey == "default") {
+					$content .= "{$prefix}id SERIAL PRIMARY KEY,$endLineChar";
+				}
+
+				$cols = array();
+				foreach ($this->template as $dataType) {
+					// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
+					$columnTypeInfo = "MEDIUMTEXT";
+					if (isset($dataType["columnMetadata"]["SQLField_Postgres"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField_Postgres"];
+					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
+						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
+					}
+					$cols[] = "{$prefix}{$dataType["title"]} $columnTypeInfo";
+				}
+
+				$content .= implode(",$endLineChar", $cols);
+				$content .= "$endLineChar);{$endLineChar}{$endLineChar}";
+			}
+		}
+
+		$colNamesStr = implode(",", $this->data["colData"]);
+
+		$numRows = count($this->data["rowData"]);
+		$numCols = count($this->data["colData"]);
+		for ($i=0; $i<$numRows; $i++) {
+			if ($this->sqlStatementType == "insert") {
+				$displayVals = array();
+				for ($j=0; $j<$numCols; $j++) {
+					if ($this->numericFields[$j]) {
+						$displayVals[] = $this->data["rowData"][$i][$j];
+					} else {
+						$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
+					}
+				}
+				$rowDataStr = implode(",", $displayVals);
+				$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+			} else {
+				$pairs = array();
+				for ($j=0; $j<$numCols; $j++) {
+					$colName  = $this->data["colData"][$j];
+					if ($this->numericFields[$j]) {
+						$colValue = $this->data["rowData"][$i][$j];
+					} else {
+						$colValue = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
+					}
+					$pairs[]  = "{$colName} = $colValue";
+				}
+
+				$pairsStr = implode(", ", $pairs);
+				$rowNum = $this->currentBatchFirstRow + $i;
+				$content .= "UPDATE \"{$this->tableName}\" SET $pairsStr WHERE id = $rowNum;$endLineChar";
 			}
 		}
 

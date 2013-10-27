@@ -51,6 +51,12 @@ END;
 		return $options;
 	}
 
+	public function getDataTypeMetadata() {
+		return array(
+			"SQLField" => "varchar(100)"
+		);
+	}
+
 	//  returns random number using mt_rand() with a flat distribution from -1 to 1 inclusive
 	public function random_PN() {
 		return (2.0 * $this->random_0_1()) - 1.0;

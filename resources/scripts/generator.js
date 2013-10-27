@@ -257,7 +257,6 @@ define([
 		_selectExportTypeTab(json.selectedExportType, true);
 		manager.loadExportType(json.selectedExportType, json.exportTypes);
 
-
 		// now populate the rows. Do everything that we can: create the rows, populate the titles & select
 		// the data type. The remaining fields are custom to the data type, so we leave them to their
 		// .loadData function (if defined)
@@ -285,8 +284,13 @@ define([
 		$("#gdDataSetStatusLine").html(L.last_edited + " " + lastUpdated);
 
 		utils.stopProcessing();
-
 		_closeMainDialog();
+
+		// publish the IO LOAD event
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.IO.LOAD
+		});
 	};
 
 

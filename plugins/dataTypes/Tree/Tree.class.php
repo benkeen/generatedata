@@ -126,7 +126,8 @@ END;
 		return array(
 			"SQLField" => "mediumint default NULL",
 			"SQLField_Oracle" => "number",
-			"SQLField_MSSQL" => "INTEGER NOT NULL"
+			"SQLField_MSSQL" => "INTEGER NULL",
+			"SQLField_Postgres" => "integer NULL",
 		);
 	}
 
