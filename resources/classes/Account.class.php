@@ -50,7 +50,6 @@ class Account {
 
 		if (is_numeric($accountID)) {
 			$prefix = Core::getDbTablePrefix();
-			$dbLink = Core::$db->getDBLink();
 			$response = Core::$db->query("
 				SELECT * 
 				FROM {$prefix}user_accounts
@@ -79,7 +78,6 @@ class Account {
 	 */
 	public static function login($email, $password) {
 		$prefix = Core::getDbTablePrefix();
-		$dbLink = Core::$db->getDBLink();
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
 			SELECT *
@@ -130,7 +128,6 @@ class Account {
 
 	public static function resetPassword($email) {
 		$prefix = Core::getDbTablePrefix();
-		$dbLink = Core::$db->getDBLink();
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
 			SELECT * 
@@ -145,7 +142,7 @@ class Account {
 
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		$data = mysqli_fetch_assoc($dbLink, $response["results"]);
+		$data = mysqli_fetch_assoc($response["results"]);
 		if (empty($data)) {
 			return array(
 				"success" => false,
@@ -156,7 +153,6 @@ class Account {
 		$randPassword = Utils::generateRandomAlphanumericStr("CXCXCX");
 
 		// now attempt to send the email
-		$emailSent = false;
 		try {
 			$emailContent = preg_replace("/%1/", $randPassword, $L["password_reset_email_content1"]);
 			$emailContent .= "\n\n" . $L["password_reset_email_content2"];
@@ -165,37 +161,38 @@ class Account {
 				"subject"   => $L["reset_password"],
 				"content"   => $emailContent
 			));
-		} catch (Exception $e) {
-		}
 
-		// even if the email didn't send, update the database. We'll notify the user right in the page
-		// if the email couldn't be sent
-		$encryptionSalt = Core::getEncryptionSalt();
-		$encryptedPassword = crypt($randPassword, $encryptionSalt);
-		$response = Core::$db->query("
-			UPDATE {$prefix}user_accounts
-			SET password = '$encryptedPassword'
-			WHERE email = '$email'
-			LIMIT 1
-		");
+			$encryptionSalt = Core::getEncryptionSalt();
+			$encryptedPassword = crypt($randPassword, $encryptionSalt);
+			$response = Core::$db->query("
+				UPDATE {$prefix}user_accounts
+				SET password = '$encryptedPassword'
+				WHERE email = '$email'
+				LIMIT 1
+			");
 
-
-		if ($emailSent) {
-			if ($response["success"]) {
+			if ($response && $emailSent) {
+				if ($response["success"]) {
+					return array(
+						"success" => true,
+						"message" => $L["password_reset_complete"]
+					);
+				}
+			} else {
 				return array(
-					"success" => true,
-					"message" => $L["password_reset_complete"]
+					"success" => false,
+					"message" => $L["email_not_sent"]
 				);
 			}
-		} else {
 
-			// TODO WILLBREAK
+		} catch (Exception $e) {
 			return array(
 				"success" => false,
 				"message" => $L["email_not_sent"]
 			);
 		}
 	}
+
 
 	public function getAccount() {
 		return array(
@@ -402,7 +399,7 @@ class Account {
 			$password = crypt($accountInfo["password"], $encryptionSalt);
 		}
 
-		// TODO - weird!
+		// TODO - this is weird!
 		$autoEmail   = isset($accountInfo["accountType"]) ? $accountInfo["accountType"] : false;
 
 		$L = Core::$language->getCurrentLanguageStrings();
@@ -414,17 +411,23 @@ class Account {
 			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password')
 		");
 
+		$emailSent = false; // not used yet, but we should notify the user via the interface
 		if ($autoEmail) {
-			$content = $L["account_created_msg"] . "\n\n";
-			if (isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) {
-				$content .= "{$L["login_url_c"]} {$_SERVER["HTTP_REFERER"]}\n";
+			try {
+				$content = $L["account_created_msg"] . "\n\n";
+				if (isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) {
+					$content .= "{$L["login_url_c"]} {$_SERVER["HTTP_REFERER"]}\n";
+				}
+				$content .= "{$L["email_c"]} $email\n{$L["password_c"]} {$accountInfo["password"]}\n";
+				Emails::sendEmail(array(
+					"recipient" => $email,
+					"subject"   => $L["account_created"],
+					"content"   => $content
+				));
+				$emailSent = true;
+			} catch (Exception $e) {
+				$emailSent = false;
 			}
-			$content .= "{$L["email_c"]} $email\n{$L["password_c"]} {$accountInfo["password"]}\n";
-			Emails::sendEmail(array(
-				"recipient" => $email,
-				"subject"   => $L["account_created"],
-				"content"   => $content
-			));
 		}
 
 		$returnInfo = array(
