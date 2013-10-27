@@ -37,6 +37,7 @@ $L["asia"] = "Asien";
 $L["back"] = "Zurück";
 $L["blog"] = "Blog";
 $L["cancel"] = "kündigen";
+$L["cannot_change_num_rows"] = "Sorry, du bist nicht berechtigt, die Anzahl der generierten Zeilen zu ändern.";
 $L["central_america"] = "Zentralamerika";
 $L["check_database_info"] = "Überprüfen Database Info";
 $L["clear_the_page"] = "Deaktivieren Sie die Seite";

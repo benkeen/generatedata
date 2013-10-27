@@ -126,6 +126,7 @@ define([
 		$("#gdGenerationPanelCancel").on("click", _cancelGeneration);
 		$("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
 		$("#gdSettingsForm").on("submit", _submitSettingsForm);
+		$("#gdNumRowsToGenerate").on("click", _onClickNumRowsField);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveButton);
@@ -166,6 +167,11 @@ define([
 		}
 	};
 
+	var _onClickNumRowsField = function() {
+		if (!_isLoggedIn) {
+			_showPermissionDeniedDialog(L.cannot_change_num_rows);
+		}
+	};
 
 	var _getPublicDataSet = function(dataSetID) {
 		utils.startProcessing();
@@ -1806,8 +1812,11 @@ define([
 		});
 	};
 
-	var _showPermissionDeniedDialog = function() {
+	var _showPermissionDeniedDialog = function(extraMsg) {
 		var content = C.SETTINGS.ANON_USER_PERMISSION_DENIED_MSG;
+		if (extraMsg) {
+			content = extraMsg + " " + content;
+		}
 		$('<div>' + content + '</div>').dialog({
 			title: "Sorry!",
 			width: 500,
