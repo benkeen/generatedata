@@ -155,31 +155,41 @@ class Account {
 
 		$randPassword = Utils::generateRandomAlphanumericStr("CXCXCX");
 
-		// now attempt to send the email. If it works, update the database
-		$emailContent = preg_replace("/%1/", $randPassword, $L["password_reset_email_content1"]);
-		$emailContent .= "\n\n" . $L["password_reset_email_content2"];
-		$response = Emails::sendEmail(array(
-			"recipient" => $email,
-			"subject"   => $L["reset_password"],
-			"content"   => $emailContent
-		));
+		// now attempt to send the email
+		$emailSent = false;
+		try {
+			$emailContent = preg_replace("/%1/", $randPassword, $L["password_reset_email_content1"]);
+			$emailContent .= "\n\n" . $L["password_reset_email_content2"];
+			$emailSent = Emails::sendEmail(array(
+				"recipient" => $email,
+				"subject"   => $L["reset_password"],
+				"content"   => $emailContent
+			));
+		} catch (Exception $e) {
+		}
 
-		if ($response) {
-			$encryptionSalt = Core::getEncryptionSalt();
-			$encryptedPassword = crypt($randPassword, $encryptionSalt);
-			$response = Core::$db->query("
-				UPDATE {$prefix}user_accounts
-				SET password = '$encryptedPassword'
-				WHERE email = '$email'
-				LIMIT 1
-			");
+		// even if the email didn't send, update the database. We'll notify the user right in the page
+		// if the email couldn't be sent
+		$encryptionSalt = Core::getEncryptionSalt();
+		$encryptedPassword = crypt($randPassword, $encryptionSalt);
+		$response = Core::$db->query("
+			UPDATE {$prefix}user_accounts
+			SET password = '$encryptedPassword'
+			WHERE email = '$email'
+			LIMIT 1
+		");
+
+
+		if ($emailSent) {
 			if ($response["success"]) {
 				return array(
 					"success" => true,
 					"message" => $L["password_reset_complete"]
-				);	
+				);
 			}
 		} else {
+
+			// TODO WILLBREAK
 			return array(
 				"success" => false,
 				"message" => $L["email_not_sent"]
