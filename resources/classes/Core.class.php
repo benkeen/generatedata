@@ -19,7 +19,7 @@ class Core {
 	private static $dbPassword;
 	private static $dbTablePrefix = "gd_";
 	private static $encryptionSalt;
-	private static $errorReporting = 2047;
+	private static $errorReporting = 1;
 	private static $maxGeneratedRows = 100000;
 	private static $defaultNumRows = 100;
 	private static $maxDemoModeRows = 100;
@@ -31,8 +31,8 @@ class Core {
 	private static $useMinifiedResources = false;
 
 	// non-overridable settings
-	private static $version = "3.0.7";
-	private static $releaseDate = "2013-09-07";
+	private static $version = "3.0.8";
+	private static $releaseDate = "2013-10-27";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;

@@ -19,7 +19,6 @@ for more info.
 
 Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's going to be a little hairy for a while just yet.
 
-
 ## License
 
 This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all contributors agree that all code is released under this license.
@@ -28,6 +27,7 @@ This script is freely available under the GPL 3 license. See license.txt in the 
 
 In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- Joeri Noort - IBAN numbers
 - [Michel Roca](https://github.com/mRoca) - Full and correct French translation (3.0.7)
 - Marco Corona - LDIF Export Type added (3.0.7)
 - [Andre Fortin](https://github.com/twindual) - original Costa Rica Country plugin & Phone-Regional Data Type (3.0.6)
@@ -36,6 +36,11 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.0.8 - Oct 28, 2013
+- International Bank Numbers - thanks, Joeri Noort!
+- PostgreSQL database support added to SQL Export Type
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=8&page=1&state=closed
 
 3.0.7 - Sept 7, 2013
 - LDIF Export Type support - thanks, [Marco Corona](https://github.com/coronam)!
