@@ -34,9 +34,7 @@ class DataType_Composite extends DataTypePlugin {
 		while (list($key, $value) = each($placeholders)) {
 			$this->smarty->assign($key, $value);
 		}
-
-		$this->smarty->assign("eval_str", $generationContextData["generationOptions"]);
-		$output = $this->smarty->fetch("eval.tpl");
+		$output = $this->smarty->fetch('string:' . $generationContextData["generationOptions"]);
 
 		return array(
 			"display" => $output

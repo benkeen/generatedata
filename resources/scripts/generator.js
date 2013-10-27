@@ -1014,7 +1014,7 @@ define([
 			$("#gdProgressMeter").attr("value", _generateInPageRunningCount);
 
 			// 2. Update the actual content
-			_generateInPageContent += decodeURIComponent(response.content);
+			_generateInPageContent += response.content;
 			_codeMirror.setValue(_generateInPageContent);
 
 			// check the process hasn't been interrupted

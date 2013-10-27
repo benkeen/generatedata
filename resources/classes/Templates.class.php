@@ -90,14 +90,12 @@ class Templates {
 		$smarty->template_dir = realpath(dirname(__FILE__) . "/../libs/smarty");
 		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache");
 
-		$smarty->assign("eval_str", $placeholderStr);
 		if (!empty($placeholders)) {
 			while (list($key, $value) = each($placeholders)) {
 				$smarty->assign($key, $value);
 			}
 		}
-
-		return $smarty->fetch("eval.tpl");
+		return $smarty->fetch("string:" . $placeholderStr);
 	}
 
 	/**
