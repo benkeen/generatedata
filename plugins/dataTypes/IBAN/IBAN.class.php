@@ -12,7 +12,7 @@ class DataType_IBAN extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 100;
-	
+
 	/**
 	 * Template definition
 	 * 	b :	NATIONAL_BANK_CODE
@@ -25,7 +25,7 @@ class DataType_IBAN extends DataTypePlugin {
 	 * 	t :	ACCOUNT_TYPE
 	 * 	p :	PERSONAL_NUMBER
 	 * 	n :	COUNTRY_CODE
-	 * 
+	 *
 	 * Based on http://en.wikipedia.org/wiki/International_Bank_Account_Number#IBAN_formats_by_country
 	 * Corrected using various sources
 	 * @var array
