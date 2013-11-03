@@ -9,6 +9,10 @@
  * automatically by the installation script.
  */
 
+// the script requires PHP 5.3+ (see resources/classes/Core.class.php), so this should be defined -
+// but just so the user will see a nice error, define it anyway
+(@__DIR__ == '__DIR__') && define('__DIR__', dirname(__FILE__));
+
 require_once(__DIR__ . "/resources/classes/Account.class.php");
 require_once(__DIR__ . "/resources/classes/AjaxRequest.class.php");
 require_once(__DIR__ . "/resources/classes/Core.class.php");
