@@ -357,10 +357,11 @@
 					<h2>Resource Minification and Bundling</h2>
 					<p>
 						In version 3.0.7, I added optional CSS and JS minification and bundling to speed up load times. I figure
-						in most scenarios you won't much care about this, since it'll be running in a local environment. However,
-						if you <i>do</i> want to improve page load times and reduce the total bandwidth for the script, here's how to
-						go about it. Please bear in mind I really only added this for the sake of the main website, so it's not as
-						simple as the rest of the script to get going. Apologies.
+						in most scenarios you won't much care about this, since it'll be running in a local environment
+						and will be pretty speedy to load anyway. But if you <i>do</i> want to improve page load times and
+						reduce the total bandwidth for the script, here's how to go about it. Please bear in mind I really
+						only added this for the sake of the <a href="http://www.generatedata.com">public website</a>, so
+						it's not as simple as the rest of the script to get going. Apologies.
 					</p>
 
 					<h4>How to set up</h4>
@@ -372,7 +373,11 @@
 						<li>
 							After installing it, in Terminal / the Windows command prompt, navigate to the generatedata
 							folder and type the following command: <code>npm install</code>. If node is configured, it
-							will download all the necessary.
+							will download all the necessary files.
+						</li>
+						<li>
+							Next, type <code>npm install -g grunt-cli</code>. That installs the grunt command line tools
+							so you can run grunt from the command line.
 						</li>
 						<li>
 							In Generate Data, click on the "Reset Plugins" button on the Settings tab.
@@ -389,7 +394,6 @@
 						And that should be it. It should have created a number of different files in your /cache folder
 						(CSS and JS), which should now be linked to in the script's webpages.
 					</p>
-
 				</section>
 
 			</div>

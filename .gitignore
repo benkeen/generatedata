@@ -2,3 +2,4 @@
 cache*
 settings.php
 .idea*
+node_modules*
