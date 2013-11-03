@@ -1,6 +1,6 @@
 <?php
 
-require_once(realpath(dirname(__FILE__) . "/library.php"));
+require_once(__DIR__ . "/library.php");
 
 Core::init("generation");
 $gen = new DataGenerator($_POST);

@@ -56,7 +56,7 @@ class Templates {
 		}
 
 		try {
-			$templatePath = realpath(dirname(__FILE__) . "/../../$template");
+			$templatePath = realpath(__DIR__ . "/../../$template");
 
 			if ($action == "display") {
 				Core::$smarty->display($templatePath);
@@ -87,8 +87,8 @@ class Templates {
 	 */
 	public static function evalSmartyString($placeholderStr, $placeholders) {
 		$smarty = new SecureSmarty();
-		$smarty->template_dir = realpath(dirname(__FILE__) . "/../libs/smarty");
-		$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache");
+		$smarty->template_dir = realpath(__DIR__ . "/../libs/smarty");
+		$smarty->compile_dir  = realpath(__DIR__ . "/../../cache");
 
 		if (!empty($placeholders)) {
 			while (list($key, $value) = each($placeholders)) {

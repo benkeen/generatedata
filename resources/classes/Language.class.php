@@ -33,7 +33,7 @@ class Language {
 
 		// TODO exception handling here
 
-		$fileAndPath = realpath(dirname(__FILE__) . "/../lang/" . $this->currentLanguageFile . ".php");
+		$fileAndPath = realpath(__DIR__ . "/../lang/" . $this->currentLanguageFile . ".php");
 		require($fileAndPath);
 		$this->currentLanguageStrings = $L;
 	}
@@ -116,7 +116,7 @@ class Language {
 		}
 
 		if (!empty($overriddenLangFile)) {
-			$fileAndPath = realpath(dirname(__FILE__) . "/../lang/{$overriddenLangFile}.php");
+			$fileAndPath = realpath(__DIR__ . "/../lang/{$overriddenLangFile}.php");
 			if (file_exists($fileAndPath)) {
 				$languageFile = $overriddenLangFile;
 			}

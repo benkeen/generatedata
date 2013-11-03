@@ -48,7 +48,7 @@ class Utils {
 					 break;
 
 				 case "noSettingsFile":
-					 $settingsFileAndPath = realpath(dirname(__FILE__) . "/../settings.php");
+					 $settingsFileAndPath = realpath(__DIR__ . "/../settings.php");
 					 $settingsFileExists = file_exists($settingsFileAndPath);
 					if ($values === true && $settingsFileExists) {
 						throw new GDException(Exceptions::SETTINGSFILEEXISTS);
