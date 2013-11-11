@@ -18,7 +18,7 @@ class DataType_Phone extends DataTypePlugin {
 		$formats = explode("|", $phoneStr);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {
-			$chosenFormat = $formats[rand(0, count($formats)-1)];
+			$chosenFormat = $formats[mt_rand(0, count($formats)-1)];
 		}
 		return array(
 			"display" => $chosenFormat

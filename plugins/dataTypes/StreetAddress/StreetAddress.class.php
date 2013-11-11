@@ -26,22 +26,22 @@ class DataType_StreetAddress extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 		$streetName = ucwords(Utils::generateRandomTextStr($this->words, false, "fixed", 1));
-		$streetType = $this->validStreetTypes[rand(0, $this->numValidStreetTypes-1)];
+		$streetType = $this->validStreetTypes[mt_rand(0, $this->numValidStreetTypes-1)];
 
-		$format = rand(1, 4);
+		$format = mt_rand(1, 4);
 		$streetAddress = "";
 		switch($format) {
 			case "1":
-				$streetAddress = $this->L["po_box"] . " " . rand(100, 999) . ", " . rand(100, 9999) . " $streetName " . $streetType;
+				$streetAddress = $this->L["po_box"] . " " . mt_rand(100, 999) . ", " . mt_rand(100, 9999) . " $streetName " . $streetType;
 				break;
 			case "2":
-				$streetAddress = rand(100, 999) . "-" . rand(100, 9999) . " $streetName $streetType";
+				$streetAddress = mt_rand(100, 999) . "-" . mt_rand(100, 9999) . " $streetName $streetType";
 				break;
 			case "3":
-				$streetAddress = $this->L["ap_num"] . rand(100, 999) . "-" . rand(100, 9999) . " $streetName " . $streetType;
+				$streetAddress = $this->L["ap_num"] . mt_rand(100, 999) . "-" . mt_rand(100, 9999) . " $streetName " . $streetType;
 				break;
 			case "4":
-				$streetAddress = rand(100, 9999) . " $streetName " . $streetType;
+				$streetAddress = mt_rand(100, 9999) . " $streetName " . $streetType;
 				break;
 		}
 

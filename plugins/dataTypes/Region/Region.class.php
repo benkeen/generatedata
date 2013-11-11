@@ -37,7 +37,7 @@ class DataType_Region extends DataTypePlugin {
 		if ($generationOptions["resultType"] == "any") {
 
 			$randRegionInfo = $this->getRandRegion($this->countryRegionHash);
-			$index = rand(0, 1);
+			$index = mt_rand(0, 1);
 
 			$regionInfo["display"]      = $randRegionInfo[$keys[$index]];
 			$regionInfo["region_slug"]  = $randRegionInfo["region_slug"];
@@ -81,7 +81,7 @@ class DataType_Region extends DataTypePlugin {
 				// any old region from the selected Country plugins
 				if (array_key_exists($currRowCountrySlug, $generationOptions["countries"])) {
 					$regions = $this->countryRegionHash[$currRowCountrySlug];
-					$regionInfo = $regions["regions"][rand(0, $regions["numRegions"]-1)];
+					$regionInfo = $regions["regions"][mt_rand(0, $regions["numRegions"]-1)];
 					$index = $this->getRandIndex($generationOptions["countries"], $currRowCountrySlug);
 					$regionInfo["display"] = $regionInfo[$keys[$index]];
 				} else {
@@ -89,7 +89,7 @@ class DataType_Region extends DataTypePlugin {
 					$randCountrySlug = $randRegionInfo["countrySlug"];
 					$formatIndex = $this->getRandIndex($generationOptions["countries"], $randCountrySlug);
 					$randCountry = $this->countryRegionHash[$randCountrySlug];
-					$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
+					$regionInfo = $randCountry["regions"][mt_rand(0, $randCountry["numRegions"]-1)];
 					$regionInfo["display"] = $regionInfo[$keys[$formatIndex]];
 				}
 
@@ -172,7 +172,7 @@ EOF;
 	private function getRandIndex($options, $randCountrySlug) {
 		$index = null;
 		if ($options[$randCountrySlug]["full"] == 1 && $options[$randCountrySlug]["short"] == 1) {
-			$index = rand(0, 1); // weird, rand()&1 doesn't work - always returns 1 0 1 0 1 0...
+			$index = mt_rand(0, 1); // weird, mt_rand()&1 doesn't work - always returns 1 0 1 0 1 0...
 		} else if ($options[$randCountrySlug]["full"] == 1) {
 			$index = 0;
 		} else if ($options[$randCountrySlug]["short"] == 1) {
@@ -184,7 +184,7 @@ EOF;
 	private function getRandRegion($countries) {
 		$randCountrySlug = array_rand($countries);
 		$randCountry = $this->countryRegionHash[$randCountrySlug];
-		$regionInfo = $randCountry["regions"][rand(0, $randCountry["numRegions"]-1)];
+		$regionInfo = $randCountry["regions"][mt_rand(0, $randCountry["numRegions"]-1)];
 		$regionInfo["countrySlug"] = $randCountrySlug;
 		return $regionInfo;
 	}

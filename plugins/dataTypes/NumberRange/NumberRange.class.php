@@ -15,7 +15,7 @@ class DataType_NumberRange extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 		return array(
-			"display" => rand($options["min"], $options["max"])
+			"display" => mt_rand($options["min"], $options["max"])
 		);
 	}
 

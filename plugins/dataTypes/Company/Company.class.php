@@ -35,11 +35,11 @@ class DataType_Company extends DataTypePlugin {
 	}
 
 	public function generate($generator, $generationContextData) {
-		$numCompanyNameWords = rand(1, 3);
-		$offset = rand(0, $this->numWords - ($numCompanyNameWords + 1));
+		$numCompanyNameWords = mt_rand(1, 3);
+		$offset = mt_rand(0, $this->numWords - ($numCompanyNameWords + 1));
 		$words = array_slice($this->words, $offset, $numCompanyNameWords);
 		$words = preg_replace("/[,.:]/", "", $words);
-		$companyType = $this->companyTypes[rand(0, $this->numCompanyTypes-1)];
+		$companyType = $this->companyTypes[mt_rand(0, $this->numCompanyTypes-1)];
 
 		return array(
 			"display" => ucwords(implode(" ", $words) . " " . $companyType)

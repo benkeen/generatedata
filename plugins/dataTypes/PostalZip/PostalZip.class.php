@@ -66,7 +66,7 @@ class DataType_PostalZip extends DataTypePlugin {
 			if (empty($selectedCountrySlugs)) {
 				$randCountrySlug = array_rand($this->zipFormats);
 			} else {
-				$randCountrySlug = $selectedCountrySlugs[rand(0, count($selectedCountrySlugs)-1)];
+				$randCountrySlug = $selectedCountrySlugs[mt_rand(0, count($selectedCountrySlugs)-1)];
 			}
 			$randomZip = $this->convert($randCountrySlug, "");
 		} else {
@@ -190,7 +190,7 @@ EOF;
 			for ($i=0; $i<strlen($customFormat); $i++) {
 				if (array_key_exists($customFormat[$i], $replacements)) {
 					$replacementKey = $replacements[$customFormat[$i]];
-					$randChar = $replacementKey[rand(0, strlen($replacementKey)-1)];
+					$randChar = $replacementKey[mt_rand(0, strlen($replacementKey)-1)];
 					$result .= $randChar;
 				} else {
 					$result .= $customFormat[$i];
@@ -201,7 +201,7 @@ EOF;
 			if (count($formats) == 1) {
 				$format = $formats[0];
 			} else {
-				$format = $formats[rand(0, count($formats)-1)];
+				$format = $formats[mt_rand(0, count($formats)-1)];
 			}
 			$result = Utils::generateRandomAlphanumericStr($format);
 		}

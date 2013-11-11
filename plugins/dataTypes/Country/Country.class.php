@@ -76,10 +76,10 @@ class DataType_Country extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$data = array();
 		if ($generationContextData["generationOptions"] == "all") {
-			$data["display"] = $this->countries[rand(0, $this->numCountries-1)];
+			$data["display"] = $this->countries[mt_rand(0, $this->numCountries-1)];
 		} else {
 			// pick a random country from whatever countries were selected
-			$randomCountrySlug = $this->selectedCountrySlugs[rand(0, $this->numSelectedCountrySlugs-1)];
+			$randomCountrySlug = $this->selectedCountrySlugs[mt_rand(0, $this->numSelectedCountrySlugs-1)];
 			$randomCountry     = $this->countryRegionData[$randomCountrySlug];
 
 			$data = array(

@@ -301,7 +301,7 @@ END;
 
 		$str = "";
 		if (!empty($areaCodes)) {
-			$areaCode = $areaCodes[rand(0, count($areaCodes)-1)];
+			$areaCode = $areaCodes[mt_rand(0, count($areaCodes)-1)];
 			$str = preg_replace("/A+/", $areaCode, $desiredFormat);
 		} else {
 			preg_match("/A+/", $desiredFormat, $matches);

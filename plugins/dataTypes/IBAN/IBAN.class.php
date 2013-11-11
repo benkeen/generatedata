@@ -116,7 +116,7 @@ class DataType_IBAN extends DataTypePlugin {
 	}
 	
 	public static function GenerateBic($countryCode) {
-		$withBranchCode = rand(0,1) == true;
+		$withBranchCode = mt_rand(0,1) == true;
 		$branchCode = $withBranchCode ? 'xxX' : '';
 		$format = 'LLLL'.$countryCode.'LL'.$branchCode;
 		
@@ -148,7 +148,7 @@ class DataType_IBAN extends DataTypePlugin {
 	}
 	
 	public function getRandomCountry() {
-		return $this->countryCodes[rand(0, count($this->countryCodes)-1)];
+		return $this->countryCodes[mt_rand(0, count($this->countryCodes)-1)];
 	}
 	
 	/**
