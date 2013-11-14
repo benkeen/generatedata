@@ -1,0 +1,19 @@
+{
+	"name": "benkeen/generatedata",
+	"type": "library",
+	"description": "Free, GNU-licensed, random custom data generator for testing software",
+	"keywords": ["Random Data", "Test Data", "Sample Data", "data generator", "testing"],
+	"homepage": "http://github.com/benkeen/generatedata",
+	"license": "GPL",
+	"authors": [
+		{
+			"name": "Ben Keen",
+			"email": "ben.keen@gmail.com",
+			"homepage": "https://github.com/benkeen/",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0"
+	}
+}

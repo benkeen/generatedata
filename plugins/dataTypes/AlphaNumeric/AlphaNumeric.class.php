@@ -112,6 +112,7 @@ EOF;
 
 	public function getRestOptionsFormat() {
 		return array(
+			"key" => "options",
 			"required" => true,
 			"type" => "mixed"
 		);
