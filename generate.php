@@ -10,7 +10,7 @@ if ($gen->getExportTarget() == "promptDownload") {
 	header("Cache-Control: private, no-cache, must-revalidate");
 	
 	//check if user selected the zip checkbox and zip
-	if($POST["gdExportTarget_promptDownload_zip"]=="true"){
+	if($_POST["gdExportTarget_promptDownload_zip"]=="DoZip"){
 		$filename=session_id()."_".$response["promptDownloadFilename"];
 		$filepath=$filename;
 		$zippath=$filepath.".zip";
