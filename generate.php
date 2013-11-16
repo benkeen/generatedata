@@ -9,8 +9,8 @@ $response = $gen->generate();
 if ($gen->getExportTarget() == "promptDownload") {
 	header("Cache-Control: private, no-cache, must-revalidate");
 	
-	//you could check if the file size is more than 500 KB and if so zip the file
-	if((strlen($response["content"]) / 1000) > 500){
+	//check if user selected the zip checkbox and zip
+	if($POST["gdExportTarget_promptDownload_zip"]=="true"){
 		$filename=session_id()."_".$response["promptDownloadFilename"];
 		$filepath=$filename;
 		$zippath=$filepath.".zip";
