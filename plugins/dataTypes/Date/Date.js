@@ -65,7 +65,7 @@ define([
 
 	var _getCurrentYear = function() {
 		return new Date().getFullYear();
-	}
+	};
 
 	var _loadRow = function(rowNum, data) {
 		return {
