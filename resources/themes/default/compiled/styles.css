@@ -610,19 +610,25 @@ body .ui-widget-shadow {
   border-radius: 3px; }
 
 /* overridden Chosen styles */
-body .chzn-container-multi .chzn-choices .search-choice {
+.chzn-container-multi .chzn-choices .search-choice {
   margin-left: 3px;
   padding: 0px 20px 2px 5px;
   margin-bottom: 1px; }
 
-body .chzn-container-multi .chzn-choices .search-field .default {
+.chzn-container-multi .chzn-choices .search-field .default {
   font: 11px Verdana, sans-serif; }
 
-body .chzn-container-multi .chzn-choices {
+.chzn-container-multi .chzn-choices {
   background-image: none;
   padding-bottom: 2px;
   border: 1px solid #E1E6E9;
   background-color: #F0F2F4; }
+
+#gdTableRows .chzn-container-multi .chzn-choices ul li {
+  padding: 0 20px 2px 5px; 
+  margin: 0 0 1px 3px;
+  float: none;
+  line-height: 13pt;}
 
 /* plugin installation */
 #gdPluginInstallationResults > div {
