@@ -56,7 +56,7 @@ class Excel extends ExportTypePlugin {
 			$objWriter->save(getDownloadFilename($generator));
 		}else{
 			//get the name of the save file
-			$filepath=this->getDownloadFilename($generator);
+			$filepath=$this->getDownloadFilename($generator);
 			//save the excel data to that file
 			$objWriter->save($filepath);
 			//create archive and send back
