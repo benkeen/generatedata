@@ -1313,11 +1313,8 @@ body .gdMainDialog .ui-dialog-title span {
   background: transparent url(../images/logoSmall.png) center left no-repeat;
   padding: 4px 0px 3px 52px; }
 
-.gdDelDataSetCell {
-  background-color: #b33c3c;
-  border-radius: 2px; }
-  .gdDelDataSetCell input {
-    margin: 0px; }
+.gdDataSetCheckRowCell input {
+  margin: 0px; }
 
 #gdLinkURL {
   font-size: 16pt;
