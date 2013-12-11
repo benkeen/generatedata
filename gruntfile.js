@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 			coreJS: {
 				files: {
 					'cache/core.js': [
-						'resources/libs/codemirror/lib/codemirror.min.js',
+						'resources/libs/codemirror/lib/codemirror.js',
 						'resources/scripts/libs/jquery.min.js',
 						'resources/scripts/libs/jquery-ui.min.js',
 						'resources/scripts/libs/jquery.json-2.2.min.js',

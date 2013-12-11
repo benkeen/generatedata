@@ -10,7 +10,7 @@ class HTML extends ExportTypePlugin {
 	protected $jsModules = array("HTML.js");
 	protected $cssFiles = array("HTML.css");
 	protected $contentTypeHeader = "text/html";
-	protected $codeMirrorModes = array("xml");
+	protected $codeMirrorModes = array("xml", "smarty", "smartymixed", "htmlmixed", "css");
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);

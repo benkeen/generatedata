@@ -65,7 +65,7 @@ define([
 
 		// initialize the CodeMirror field
 		_codeMirror = CodeMirror.fromTextArea($("#etXMLCustomSmarty")[0], {
-			mode: "xml",
+			mode: "smartymixed",
 			lineNumbers: true
 		});
 		$("#etXMLCustomContent .CodeMirror").addClass("CodeMirror_medium");

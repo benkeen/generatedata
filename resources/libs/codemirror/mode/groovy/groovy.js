@@ -1,4 +1,4 @@
-CodeMirror.defineMode("groovy", function(config, parserConfig) {
+CodeMirror.defineMode("groovy", function(config) {
   function words(str) {
     var obj = {}, words = str.split(" ");
     for (var i = 0; i < words.length; ++i) obj[words[i]] = true;
@@ -203,7 +203,8 @@ CodeMirror.defineMode("groovy", function(config, parserConfig) {
       else return ctx.indented + (closing ? 0 : config.indentUnit);
     },
 
-    electricChars: "{}"
+    electricChars: "{}",
+    fold: "brace"
   };
 });
 

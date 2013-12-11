@@ -68,7 +68,22 @@ define([
 		if (msg.exportTarget !== "inPage" || msg.exportType !== "SQL") {
 			return;
 		}
-		msg.editor.setOption("mode", "mysql");
+
+
+		// the default mode is a simple x-sql mime type. But if there's a specific one available for the
+		// chosen database type, use that instead
+		var selectedSQLMode = $("#etSQL_databaseType").val();
+		var mode = "text/x-sql";
+		switch (selectedSQLMode) {
+			case "MySQL":
+				mode = "text/x-mysql";
+				break;
+			case "MSSQL":
+				mode = "text/x-mssql";
+				break;
+		}
+
+		msg.editor.setOption("mode", mode);
 	};
 
 	var _validate = function(rowNums) {

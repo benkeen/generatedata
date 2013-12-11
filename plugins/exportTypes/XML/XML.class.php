@@ -8,7 +8,7 @@ class XML extends ExportTypePlugin {
 	protected $isEnabled = true;
 	protected $exportTypeName = "XML";
 	protected $jsModules = array("XML.js");
-	protected $codeMirrorModes = array("xml");
+	protected $codeMirrorModes = array("xml", "smarty", "smartymixed");
 	public $L = array();
 
 

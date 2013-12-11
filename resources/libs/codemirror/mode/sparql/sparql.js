@@ -6,10 +6,12 @@ CodeMirror.defineMode("sparql", function(config) {
     return new RegExp("^(?:" + words.join("|") + ")$", "i");
   }
   var ops = wordRegexp(["str", "lang", "langmatches", "datatype", "bound", "sameterm", "isiri", "isuri",
-                        "isblank", "isliteral", "union", "a"]);
+                        "isblank", "isliteral", "a"]);
   var keywords = wordRegexp(["base", "prefix", "select", "distinct", "reduced", "construct", "describe",
                              "ask", "from", "named", "where", "order", "limit", "offset", "filter", "optional",
-                             "graph", "by", "asc", "desc"]);
+                             "graph", "by", "asc", "desc", "as", "having", "undef", "values", "group",
+                             "minus", "in", "not", "service", "silent", "using", "insert", "delete", "union",
+                             "data", "copy", "to", "move", "add", "create", "drop", "clear", "load"]);
   var operatorChars = /[*+\-<>=&|]/;
 
   function tokenBase(stream, state) {
@@ -49,7 +51,7 @@ CodeMirror.defineMode("sparql", function(config) {
         stream.eatWhile(/[\w\d_\-]/);
         return "atom";
       }
-      var word = stream.current(), type;
+      var word = stream.current();
       if (ops.test(word))
         return null;
       else if (keywords.test(word))
@@ -82,7 +84,7 @@ CodeMirror.defineMode("sparql", function(config) {
   }
 
   return {
-    startState: function(base) {
+    startState: function() {
       return {tokenize: tokenBase,
               context: null,
               indent: 0,
@@ -117,7 +119,7 @@ CodeMirror.defineMode("sparql", function(config) {
           state.context.col = stream.column();
         }
       }
-      
+
       return style;
     },
 
