@@ -146,6 +146,7 @@ $L["last_name"] = "Nom de famille";
 $L["last_saved"] = "Dernier enregistrement";
 $L["latest_project_news"] = "Dernières nouvelles du projet";
 $L["limit_pub_sub_console_messages"] = "Limiter l'affichage des messages de la console pour des modules spécifiques:";
+$L["link_to_data_set"] = "Lien vers le jeu de données";
 $L["link_to_this_data_set"] = "Partager ce jeu de données";
 $L["list_console_warn_events"] = "Afficher les événements Console.warn()";
 $L["list_core_events"] = "Afficher les événements de la base du script";
@@ -277,5 +278,4 @@ $L["yes"] = "Oui";
 $L["your_account"] = "Votre compte";
 $L["your_data_set_name_here"] = "Nom du jeu de données...";
 $L["your_data_sets"] = "Vos jeux de données";
-$L["link_to_data_set"] = "Lien vers le jeu de données";
-
+$L["zip_q"] = "Zip?";

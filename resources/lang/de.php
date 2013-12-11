@@ -279,3 +279,4 @@ $L["yes"] = "Ja";
 $L["your_account"] = "Ihr Konto";
 $L["your_data_set_name_here"] = "Ihre Daten gesetzt Namen hier ...";
 $L["your_data_sets"] = "Ihre Datensätze";
+$L["zip_q"] = "Zip?";

@@ -21,8 +21,8 @@ class DataGenerator {
 	private $currentBatchFirstRow;
 	private $currentBatchLastRow;
 	
-	//compression flag - set as per user choice
-	private $isCompressionRequired;
+	// compression flag - set as per user choice
+	private $isCompressionRequired = false;
 
 	// this may or may not exist. If the user is generating data from a saved data set, it will have a value. Otherwise
 	// it won't be included in $postData passed to the constructor
@@ -89,9 +89,10 @@ class DataGenerator {
 			$this->exportType = $currExportType;
 			break;
 		}
-		//set the value of compressionflag
-		if($postData["gdExportType"] == "promptDownload" && $postData["gdExportTarget_promptDownload_zip"] == "DoZip"){
-			$isCompressionRequired = true;
+
+		// set the value of isCompressionRequired
+		if ($postData["gdExportTarget"] == "promptDownload" && $postData["gdExportTarget_promptDownload_zip"] == "doZip") {
+			$this->isCompressionRequired = true;
 		}
 	}
 

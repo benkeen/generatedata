@@ -128,6 +128,7 @@ define([
 		$("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
 		$("#gdSettingsForm").on("submit", _submitSettingsForm);
 		$("#gdNumRowsToGenerate").on("click", _onClickNumRowsField);
+		$("input[name=gdExportTarget]").on("change", _onChangeExportTarget);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveButton);
@@ -219,6 +220,10 @@ define([
 		}
 	};
 
+	var _onChangeExportTarget = function(e) {
+		_handleZipOption();
+	};
+
 	var _onClickUserAccountLink = function(e) {
 		e.preventDefault();
 		_openMainDialog({ tab: 1 });
@@ -247,7 +252,7 @@ define([
 		$("#gdDataSetName").val(configuration.configuration_name);
 		$("#gdNumRowsToGenerate").val(json.numResults);
 		$("input[name=gdExportTarget]").each(function() {
-			if (this.value == json.exportTarget) {
+			if (this.value === json.exportTarget) {
 				this.checked = true;
 			}
 		});
@@ -286,6 +291,8 @@ define([
 
 		utils.stopProcessing();
 		_closeMainDialog();
+
+		_handleZipOption();
 
 		// publish the IO LOAD event
 		manager.publish({
@@ -598,6 +605,7 @@ define([
 		_selectExportTypeTab(newExportType);
 	};
 
+
 	/**
 	 * Called whenever the user changes the result type (XML, HTML, CSV etc). This function publishes
 	 * the appropriate event in case a plugin needs to be aware of the event, but it handles the
@@ -649,10 +657,22 @@ define([
 		if (sel.length) {
 			$("#gdExportTarget_" + firstNonDisabledExportTarget).attr("checked", "checked");
 		}
+		_handleZipOption();
 
 		_currExportType = newExportType;
 	};
 
+	// only enable the Zip checkbox if the Prompt to Download export target is selected
+	var _handleZipOption = function() {
+		var selectedTarget = $("input[name=gdExportTarget]:checked").val();
+		if (selectedTarget === "promptDownload") {
+			$("#gdExportTarget_promptDownload_zip").removeAttr("disabled");
+			$("#gdExportTarget_promptDownload_zip_label").removeClass("gdDisabled");
+		} else {
+			$("#gdExportTarget_promptDownload_zip").attr("disabled", "disabled");
+			$("#gdExportTarget_promptDownload_zip_label").addClass("gdDisabled");
+		}
+	};
 
 	var _showExportTypeSettingsSection = function(newExportType, showImmediately) {
 		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0 && _showExportTypeSettings) {
@@ -765,66 +785,6 @@ define([
 			rowID: rowID,
 			dataTypeModuleID: dataTypeModuleID
 		});
-
-/*
-		// this is called whenever the row content (Options + Examples nodes) have been fully populated and the
-		// DOM is ready
-		var onComplete = function() {
-			manager.publish({
-				sender: MODULE_ID,
-				type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
-				rowID: rowID,
-				dataTypeModuleID: dataTypeModuleID
-			});
-		};
-
-		// our two "is ready" tests, which depend on the content for the current Data Type
-		var noOptionsTest = function() {
-			onComplete();
-			return true;
-		};
-
-		// this sucks!!
-		var hasOptionsTest = function() {
-			var isReady = (typeof $("#dtOption_" + rowID) != "undefined");
-			if (isReady) {
-				onComplete();
-			}
-			return isReady;
-		};
-		var readyTest = ($("#gdDataTypeOptions_" + dataTypeModuleID).length > 0) ? hasOptionsTest : noOptionsTest;
-
-		Queue.add({
-			execute: function() {
-				var exampleHTML = null;
-				var optionsHTML = null;
-				var dataTypeExampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html();
-				if (dataTypeExampleHTML !== "") {
-					exampleHTML = dataTypeExampleHTML.replace(/%ROW%/g, rowID);
-				} else {
-					exampleHTML = "&nbsp;" + L.no_examples_available;
-				}
-				$("#gdColExamples_" + rowID).html(exampleHTML);
-
-				var dataTypeOptionHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html();
-				if (dataTypeOptionHTML !== "") {
-					optionsHTML = dataTypeOptionHTML.replace(/%ROW%/g, rowID);
-				} else {
-					optionsHTML = L.no_options_available;
-				}
-				$("#gdColOptions_" + rowID).html(optionsHTML);
-
-				if ($("#gdDataTypeHelp_" + dataTypeModuleID).html() !== "") {
-					$('#gdColHelp_' + rowID).html($("#gdHelpIcon").html().replace(/%ROW%/g, rowID));
-				} else {
-					$('#gdColHelp_' + rowID).html(" ");
-				}
-			},
-			isComplete: readyTest
-		});
-
-		Queue.process({ context: "dataTypeChange: " + dataTypeModuleID });
-*/
 	};
 
 

@@ -92,8 +92,8 @@
 					<label for="gdExportTarget_newTab" id="gdExportTarget_newTab_label">{$L.new_window_or_tab}</label>
 				<input type="radio" name="gdExportTarget" id="gdExportTarget_promptDownload" value="promptDownload" />
 					<label for="gdExportTarget_promptDownload" id="gdExportTarget_promptDownload_label">{$L.prompt_to_download}</label>
-				<!-- Added by Manu Ullas. Checkbox for compressing output. requires translation! -->
-				<input type="checkbox" name="gdExportTarget_promptDownload_zip" value="DoZip">Zip?
+				<input type="checkbox" name="gdExportTarget_promptDownload_zip" id="gdExportTarget_promptDownload_zip" value="doZip" disabled="disabled" />
+					<label for="gdExportTarget_promptDownload_zip" id="gdExportTarget_promptDownload_zip_label" class="gdDisabled">{$L.zip_q}</label>
 			</span>
 		</div>
 	</div>
