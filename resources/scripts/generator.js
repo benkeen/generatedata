@@ -551,10 +551,18 @@ define([
 
 	var _clearForm = function(numDefaultRows) {
 		$("#gdDataSetName").val("");
+
+		// reset the countries
+		_updateCountries([]);
+
+		// remove the rows
 		$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
 		_deleteRows();
 		_addRows(numDefaultRows);
+
 		_currConfigurationID = null;
+
+		// set the default Export Type
 		_selectExportTypeTab($(".gdDefaultExportType").data("exportType"), true);
 		manager.resetExportTypes();
 
