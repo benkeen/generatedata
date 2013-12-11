@@ -1344,7 +1344,7 @@ define([
 						var existingDataSetId = parseInt(existingDataSet.data("id"), 10);
 						var existingDataSetName = existingDataSet.find(".dataSetName")[0].innerHTML;
 
-						var result = window.prompt("Please enter the name of the new data set.", existingDataSetName);
+						var result = window.prompt(L.please_enter_data_set_name, existingDataSetName);
 						if (result !== null) {
 							_copyDataSet(existingDataSetId, result);
 						}
@@ -1352,7 +1352,11 @@ define([
 				});
 			}
 
-			var deleteButtonLabel = "Delete " + cbs.length + " Data Set(s)";
+			var deleteButtonLabel = L.delete_1_data_set;
+			if (cbs.length > 1) {
+				deleteButtonLabel = L.delete_N_data_sets.replace(/%1/, cbs.length);
+			}
+
 			buttons.push({
 				text: deleteButtonLabel,
 				"class": "gdDeleteDataSetsBtn",
@@ -1368,12 +1372,10 @@ define([
 
 			$("#gdMainDialog").dialog("option", "buttons", buttons);
 		} else {
-			$("#gdMainDialog").dialog("option", "buttons", [
-				{
-					text: L.close,
-					click: function() { $(this).dialog("close"); }
-				}
-			]);
+			$("#gdMainDialog").dialog("option", "buttons", [{
+				text: L.close,
+				click: function() { $(this).dialog("close"); }
+			}]);
 		}
 	};
 
@@ -1395,7 +1397,6 @@ define([
 				newDataSetName: newDataSetName
 			},
 			success: function(response) {
-				// for simplicities, sake, just refresh the entire Data Set tab
 				_getAccount();
 			},
 			error: _onError

@@ -283,3 +283,6 @@ $L["confirm_file_exists"] = "Confirm File Exists";
 $L["reset_plugins_with_bundling"] = "<b>You have bundling/minification enabled</b>. After clicking this button you will need to run <i>grunt</i> to recreate the bundles. For more information <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">read this documentation page</a>. If you have any problems, you may want to turn off bundling.";
 $L["cannot_change_num_rows"] = "Sorry, you're not allowed to change the number of generated rows.";
 $L["zip_q"] = "Zip?";
+$L["please_enter_data_set_name"] = "Please enter the name of the new Data Set.";
+$L["delete_1_data_set"] = "Delete 1 Data Set";
+$L["delete_N_data_sets"] = "Delete %1 Data Sets";

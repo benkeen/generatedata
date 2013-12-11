@@ -283,3 +283,6 @@ $L["confirm_file_exists"] = "Confirmar archivo existe";
 $L["reset_plugins_with_bundling"] = "<b>Has agrupación / minificación habilitado</b>. Después de hacer clic en este botón usted tendrá que ejecutar <i>Grunt</i> para volver a crear los paquetes. Para obtener más información <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">leer esta página de documentación</a>. Si tiene algún problema, es posible que desee desactivar la agrupación.";
 $L["cannot_change_num_rows"] = "Lo sentimos, no tienes permiso para cambiar el número de filas generadas.";
 $L["zip_q"] = "Zip?";
+$L["please_enter_data_set_name"] = "Por favor, introduzca el nombre del nuevo conjunto de datos.";
+$L["delete_1_data_set"] = "Eliminar 1 Conjunto de Datos";
+$L["delete_N_data_sets"] = "Eliminar %1 Conjuntos de Datos";
