@@ -24,7 +24,7 @@ class DataType_PostalZip extends DataTypePlugin {
 		}
 	}
 
-	// this kind of sucks! Way too dense logic (too high cyclomatic complexity ;-) )
+	// this kind of sucks! Way too dense logic - too high cyclomatic complexity.
 	public function generate($generator, $generationContextData) {
 		$selectedCountrySlugs = $generationContextData["generationOptions"];
 
@@ -48,7 +48,7 @@ class DataType_PostalZip extends DataTypePlugin {
 				}
 			}
 		}
-		
+
 		// if we have a region, get the short code to use with the convert() function
 		$regionCode = "";
 		reset($generationContextData["existingRowData"]);
@@ -59,9 +59,10 @@ class DataType_PostalZip extends DataTypePlugin {
 			}
 		}
 		
+		$randomZip = "";
+
 		// if there's neither a country nor a region, get a random country and generate a random zip/postal code
 		// in that format
-		$randomZip = "";
 		if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
 			if (empty($selectedCountrySlugs)) {
 				$randCountrySlug = array_rand($this->zipFormats);
@@ -75,19 +76,18 @@ class DataType_PostalZip extends DataTypePlugin {
 			if (!empty($rowCountryInfo) && is_array($rowCountryInfo["randomData"]) && array_key_exists("slug", $rowCountryInfo["randomData"])) {
 				$countrySlug = $rowCountryInfo["randomData"]["slug"];
 			} else {
-				if (isset($rowRegionInfo["randomData"]) && is_array($rowRegionInfo["randomData"]) &&  array_key_exists("country_slug", $rowRegionInfo["randomData"])) {
+				if (isset($rowRegionInfo["randomData"]) && is_array($rowRegionInfo["randomData"]) && array_key_exists("country_slug", $rowRegionInfo["randomData"])) {
 					$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 				}
 			}
 
 			if (!empty($countrySlug) && in_array($countrySlug, $selectedCountrySlugs)) {
-				$randomZip = $this->convert($countrySlug, $regionCode); // passing in CR, alajuela
+				$randomZip = $this->convert($countrySlug, $regionCode);
 			} else {
 				$randCountrySlug = array_rand($this->zipFormats);
 				$randomZip = $this->convert($randCountrySlug, $regionCode);
 			}
 		}
-
 
 		return array(
 			"display" => $randomZip

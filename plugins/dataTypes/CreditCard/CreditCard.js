@@ -1,10 +1,8 @@
 /*global $:false*/
 define([
 	"manager",
-	"constants",
-	"lang",
-	"generator"
-], function(manager, C, L, generator) {
+	"constants"
+], function(manager, C) {
 
 	"use strict";
 
@@ -16,12 +14,10 @@ define([
 	 */
 
 	var MODULE_ID = "data-type-CreditCard";
-	var LANG = L.dataTypePlugins.CreditCard;
 	var subscriptions = {};
 
 	var _init = function() {
 		subscriptions[C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE] = _dataTypeChange;
-		//subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 

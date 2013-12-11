@@ -12,9 +12,13 @@ class Country_Australia extends CountryPlugin {
 
 	protected $extendedData = array(
 		"zipFormat" => array(
-			"format" => "Xxxx"
+			"format" => "Xxxx",
+			"replacements" => array(
+				"X" => "123456789",
+				"x" => "0123456789"
+			)
 		),
-		"phoneFormat" => array(
+ 		"phoneFormat" => array(
 			"displayFormats" => array(
 				"xxxx-xxxx",
 				"(0x) xxxx xxxx",
