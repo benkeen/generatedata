@@ -407,7 +407,7 @@ END;
 					if ($this->numericFields[$j]) {
 						$displayVals[] = $this->data["rowData"][$i][$j];
 					} else {
-						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+						$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
 					}
 				}
 				$rowDataStr = implode(",", $displayVals);
@@ -419,7 +419,7 @@ END;
 					if ($this->numericFields[$j]) {
 						$colValue = $this->data["rowData"][$i][$j];
 					} else {
-						$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+						$colValue = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
 					}
 					$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
 				}
