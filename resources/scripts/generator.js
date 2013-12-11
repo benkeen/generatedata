@@ -142,7 +142,7 @@ define([
 
         var $accountDataSets = $("#gdAccountDataSets");
         $accountDataSets.on("click", "a", _onClickLoadDataSet);
-        $accountDataSets.on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
+        $accountDataSets.on("change", ".gdSelectDataSets", _onChangeMarkDataSetRowToDelete);
         $accountDataSets.on("click", _onClickToggleDeleteRow);
 		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
 		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
@@ -1327,12 +1327,12 @@ define([
 		}
 
 		// reverse the checked-ness of the row
-		var el = $(e.target).closest("tr").find(".gdDeleteDataSets");
-		var isChecked = $(e.target).closest("tr").find(".gdDeleteDataSets").attr("checked");
+		var el = $(e.target).closest("tr").find(".gdSelectDataSets");
+		var isChecked = $(e.target).closest("tr").find(".gdSelectDataSets").attr("checked");
 		if (isChecked) {
 			$(el).removeAttr("checked");
 		} else {
-			$(e.target).closest("tr").find(".gdDeleteDataSets").attr("checked", "checked");
+			$(e.target).closest("tr").find(".gdSelectDataSets").attr("checked", "checked");
 		}
 
 		_markDataSetRowToDelete(el[0]);
@@ -1349,7 +1349,7 @@ define([
 
 	var _onToggleSelectAllDataSets = function(e) {
 		var isChecked = e.target.checked;
-		var cbs = $(".gdDeleteDataSets");
+		var cbs = $(".gdSelectDataSets");
 		for (var i=0; i<cbs.length; i++) {
 			cbs[i].checked = isChecked;
 			_markDataSetRowToDelete(cbs[i]);
@@ -1362,10 +1362,10 @@ define([
 
 	/**
 	 * Called whenever one or more rows is selected / unselected. This checks to see how
-	 * many rows are selected, and hides/shows a delete button.
+	 * many rows are selected, and hides/shows the delete/copy buttons.
 	 */
 	var _updateMainDialogDeleteButton = function() {
-		var cbs = $(".gdDeleteDataSets:checked");
+		var cbs = $(".gdSelectDataSets:checked");
 		if (cbs.length) {
 			var deleteButtonLabel = "Delete " + cbs.length + " Data Set(s)";
 
@@ -1630,7 +1630,7 @@ define([
 				currDataSet = _dataSets[i];
 				var dateCreated = moment.unix(currDataSet.date_created_unix).format("MMM Do, YYYY");
 				var lastUpdated = moment.unix(currDataSet.last_updated_unix).format("MMM Do, YYYY");
-				var isPublic    = (currDataSet.status == "public") ? 'checked="checked"' : "";
+				var isPublic    = (currDataSet.status === "public") ? 'checked="checked"' : "";
 
 				row = '<tr data-id="' + currDataSet.configuration_id + '">' +
 					'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
@@ -1639,7 +1639,7 @@ define([
 					'<td align="center"><input type="checkbox" class="gdDataSetStatus" id="gdDataSetStatus_' + currDataSet.configuration_id + '" ' + isPublic + ' /></td>' +
 					'<td class="gdDataSetNumRowsGenerated" align="center">' + utils.formatNumWithCommas(currDataSet.num_rows_generated) + '</td>' +
 					'<td align="center"><a href="#">load</a></td>' +
-					'<td align="center" class="gdDelDataSetCell"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
+					'<td align="center" class="gdDataSetCheckRowCell"><input type="checkbox" class="gdSelectDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
 					'</tr>';
 				html += row;
 			}
