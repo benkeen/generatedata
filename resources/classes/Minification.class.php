@@ -38,7 +38,7 @@ class Minification {
 
 		$js = 'require(["manager","generator","accountManager",' . $exportTypeJSModules . "," . $dataTypeJSModules . ',"pageInit"], function(manager) {manager.start(); });';
 
-		$file = realpath(dirname(__FILE__) . "/../../cache/") . "/appStartGenerated.js";
+		$file = realpath(__DIR__ . "/../../cache/") . "/appStartGenerated.js";
 		if (is_file($file)) {
 			unlink($file);
 		}
@@ -51,7 +51,7 @@ class Minification {
 	}
 
 	private static function checkMinifiedFileExists() {
-		@include(realpath(dirname(__FILE__) . "/../../cache/minifiedResourcePaths.php"));
+		@include(realpath(__DIR__ . "/../../cache/minifiedResourcePaths.php"));
 		$info = get_defined_vars();
 
 		if (!isset($info["MINIFIED"])) {

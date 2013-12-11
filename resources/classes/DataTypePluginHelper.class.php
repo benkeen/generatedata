@@ -131,7 +131,7 @@ class DataTypePluginHelper {
 			$allowedDataTypes = explode(",", $installedDataTypes);
 		}
 
-		$dataTypesFolder = realpath(dirname(__FILE__) . "/../../plugins/dataTypes");
+		$dataTypesFolder = realpath(__DIR__ . "/../../plugins/dataTypes");
 		$dataTypes = array();
 		if ($handle = opendir($dataTypesFolder)) {
 			while (false !== ($item = readdir($handle))) {

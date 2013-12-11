@@ -20,7 +20,7 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 		$formats = explode("|", $generationContextData["generationOptions"]);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {
-			$chosenFormat = $formats[rand(0, count($formats)-1)];
+			$chosenFormat = $formats[mt_rand(0, count($formats)-1)];
 		}
 		$val = Utils::generateRandomAlphanumericStr($chosenFormat);
 		return array(
@@ -107,5 +107,14 @@ END;
 EOF;
 
 		return $content;
+	}
+
+
+	public function getRestOptionsFormat() {
+		return array(
+			"key" => "options",
+			"required" => true,
+			"type" => "mixed"
+		);
 	}
 }

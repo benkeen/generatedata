@@ -50,7 +50,6 @@ class Account {
 
 		if (is_numeric($accountID)) {
 			$prefix = Core::getDbTablePrefix();
-			$dbLink = Core::$db->getDBLink();
 			$response = Core::$db->query("
 				SELECT * 
 				FROM {$prefix}user_accounts
@@ -79,7 +78,6 @@ class Account {
 	 */
 	public static function login($email, $password) {
 		$prefix = Core::getDbTablePrefix();
-		$dbLink = Core::$db->getDBLink();
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
 			SELECT *
@@ -130,7 +128,6 @@ class Account {
 
 	public static function resetPassword($email) {
 		$prefix = Core::getDbTablePrefix();
-		$dbLink = Core::$db->getDBLink();
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
 			SELECT * 
@@ -145,7 +142,7 @@ class Account {
 
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		$data = mysqli_fetch_assoc($dbLink, $response["results"]);
+		$data = mysqli_fetch_assoc($response["results"]);
 		if (empty($data)) {
 			return array(
 				"success" => false,
@@ -155,16 +152,16 @@ class Account {
 
 		$randPassword = Utils::generateRandomAlphanumericStr("CXCXCX");
 
-		// now attempt to send the email. If it works, update the database
-		$emailContent = preg_replace("/%1/", $randPassword, $L["password_reset_email_content1"]);
-		$emailContent .= "\n\n" . $L["password_reset_email_content2"];
-		$response = Emails::sendEmail(array(
-			"recipient" => $email,
-			"subject"   => $L["reset_password"],
-			"content"   => $emailContent
-		));
+		// now attempt to send the email
+		try {
+			$emailContent = preg_replace("/%1/", $randPassword, $L["password_reset_email_content1"]);
+			$emailContent .= "\n\n" . $L["password_reset_email_content2"];
+			$emailSent = Emails::sendEmail(array(
+				"recipient" => $email,
+				"subject"   => $L["reset_password"],
+				"content"   => $emailContent
+			));
 
-		if ($response) {
 			$encryptionSalt = Core::getEncryptionSalt();
 			$encryptedPassword = crypt($randPassword, $encryptionSalt);
 			$response = Core::$db->query("
@@ -173,19 +170,29 @@ class Account {
 				WHERE email = '$email'
 				LIMIT 1
 			");
-			if ($response["success"]) {
+
+			if ($response && $emailSent) {
+				if ($response["success"]) {
+					return array(
+						"success" => true,
+						"message" => $L["password_reset_complete"]
+					);
+				}
+			} else {
 				return array(
-					"success" => true,
-					"message" => $L["password_reset_complete"]
-				);	
+					"success" => false,
+					"message" => $L["email_not_sent"]
+				);
 			}
-		} else {
+
+		} catch (Exception $e) {
 			return array(
 				"success" => false,
 				"message" => $L["email_not_sent"]
 			);
 		}
 	}
+
 
 	public function getAccount() {
 		return array(
@@ -371,6 +378,43 @@ class Account {
 		}
 	}
 
+	public function copyConfiguration($data) {
+		$dataSetId         = Utils::sanitize($data["dataSetId"]);
+		$configurationName = Utils::sanitize($data["newDataSetName"]);
+
+		$prefix = Core::getDbTablePrefix();
+		$response = Core::$db->query("
+			INSERT INTO {$prefix}configurations (status, date_created, last_updated, account_id, configuration_name, content, num_rows_generated)
+				SELECT status, date_created, last_updated, account_id, configuration_name, content, num_rows_generated
+				FROM {$prefix}configurations
+				WHERE configuration_id = $dataSetId
+		");
+
+		// if it worked okay (it should!) update the last_updated and configuration_name fields
+		if ($response["success"]) {
+			$newConfigurationID = mysqli_insert_id(Core::$db->getDBLink());
+			$now = Utils::getCurrentDatetime();
+			$response2 = Core::$db->query("
+				UPDATE {$prefix}configurations
+				SET configuration_name = '$configurationName',
+					last_updated = '$now'
+				WHERE configuration_id = $newConfigurationID
+			");
+
+			if ($response2["success"]) {
+				return array(
+					"success" => true,
+					"message" => ""
+				);
+			}
+
+		} else {
+			return array(
+				"success" => false,
+				"message" => "There was a problem copying the Data Set: " . $response["errorMessage"]
+			);
+		}
+	}
 
 	/**
 	 * Used (currently) in the installation script. Note: this function relies on the settings file having
@@ -392,7 +436,7 @@ class Account {
 			$password = crypt($accountInfo["password"], $encryptionSalt);
 		}
 
-		// TODO - weird!
+		// TODO - this is weird!
 		$autoEmail   = isset($accountInfo["accountType"]) ? $accountInfo["accountType"] : false;
 
 		$L = Core::$language->getCurrentLanguageStrings();
@@ -404,17 +448,23 @@ class Account {
 			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password')
 		");
 
+		$emailSent = false; // not used yet, but we should notify the user via the interface
 		if ($autoEmail) {
-			$content = $L["account_created_msg"] . "\n\n";
-			if (isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) {
-				$content .= "{$L["login_url_c"]} {$_SERVER["HTTP_REFERER"]}\n";
+			try {
+				$content = $L["account_created_msg"] . "\n\n";
+				if (isset($_SERVER["HTTP_REFERER"]) && !empty($_SERVER["HTTP_REFERER"])) {
+					$content .= "{$L["login_url_c"]} {$_SERVER["HTTP_REFERER"]}\n";
+				}
+				$content .= "{$L["email_c"]} $email\n{$L["password_c"]} {$accountInfo["password"]}\n";
+				Emails::sendEmail(array(
+					"recipient" => $email,
+					"subject"   => $L["account_created"],
+					"content"   => $content
+				));
+				$emailSent = true;
+			} catch (Exception $e) {
+				$emailSent = false;
 			}
-			$content .= "{$L["email_c"]} $email\n{$L["password_c"]} {$accountInfo["password"]}\n";
-			Emails::sendEmail(array(
-				"recipient" => $email,
-				"subject"   => $L["account_created"],
-				"content"   => $content
-			));
 		}
 
 		$returnInfo = array(

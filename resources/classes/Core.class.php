@@ -19,7 +19,7 @@ class Core {
 	private static $dbPassword;
 	private static $dbTablePrefix = "gd_";
 	private static $encryptionSalt;
-	private static $errorReporting = 2047;
+	private static $errorReporting = 1;
 	private static $maxGeneratedRows = 100000;
 	private static $defaultNumRows = 100;
 	private static $maxDemoModeRows = 100;
@@ -31,8 +31,8 @@ class Core {
 	private static $useMinifiedResources = false;
 
 	// non-overridable settings
-	private static $version = "3.0.7";
-	private static $releaseDate = "2013-09-07";
+	private static $version = "3.0.8";
+	private static $releaseDate = "2013-10-27";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
@@ -107,6 +107,11 @@ class Core {
 		self::loadSettingsFile();
 		error_reporting(self::$errorReporting);
 
+		// ensure the timezone is set
+		if (ini_get("date.timezone") == "") {
+			ini_set("date.timezone", "Canada/Vancouver");
+		}
+
 		self::$translations = new Translations();
 
 		// the order is significant in all of this
@@ -146,7 +151,7 @@ class Core {
 	 * @access private
 	 */
 	private static function loadSettingsFile() {
-		$settingsFilePath = realpath(dirname(__FILE__) . "/../../settings.php");
+		$settingsFilePath = realpath(__DIR__ . "/../../settings.php");
 		if (file_exists($settingsFilePath)) {
 			self::$settingsFileExists = true;
 			require_once($settingsFilePath);
@@ -393,8 +398,8 @@ class Core {
 	 */
 	private function initSmarty() {
 		self::$smarty = new SecureSmarty();
-		self::$smarty->template_dir = realpath(dirname(__FILE__) . "/../templates/");
-		self::$smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../cache/");
+		self::$smarty->template_dir = realpath(__DIR__ . "/../templates/");
+		self::$smarty->compile_dir  = realpath(__DIR__ . "/../../cache/");
 		self::$smarty->assign("version", self::getVersion());
 		self::$smarty->assign("samePage", Utils::getCleanPhpSelf());
 	}

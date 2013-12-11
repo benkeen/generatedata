@@ -620,6 +620,10 @@ a.gdDisabledLink {
   padding: 4px 4px 4px 8px;
   display: inline-block; }
 
+/* Fix for https://github.com/benkeen/generatedata/issues/171 */
+.search-field input {
+  min-width: 150px; }
+
 /* buttons */
 .gdButton {
   border: 0px;
@@ -1159,6 +1163,12 @@ body.gdErrorPage #gdSeriousError {
 .gdLoginPage #password {
   width: 120px; }
 
+#gdLogin_password {
+  margin: 0px; }
+
+#gdLogin_email {
+  width: 200px; }
+
 /* the dialog CSS is a mess. TOTALLY in need of a refactor. */
 #gdMainDialog {
   border: 1px solid #cccccc;
@@ -1171,7 +1181,7 @@ body.gdErrorPage #gdSeriousError {
     margin: 2px 0px 0px; }
   #gdMainDialog .ui-widget button {
     font-family: "lucida grande", verdana; }
-  #gdMainDialog .gdDeletedDataSetRow {
+  #gdMainDialog .gdSelectedDataSetRow {
     background-color: #efefef; }
   #gdMainDialog h4 {
     margin: 0px; }
@@ -1303,11 +1313,8 @@ body .gdMainDialog .ui-dialog-title span {
   background: transparent url(../images/logoSmall.png) center left no-repeat;
   padding: 4px 0px 3px 52px; }
 
-.gdDelDataSetCell {
-  background-color: #b33c3c;
-  border-radius: 2px; }
-  .gdDelDataSetCell input {
-    margin: 0px; }
+.gdDataSetCheckRowCell input {
+  margin: 0px; }
 
 #gdLinkURL {
   font-size: 16pt;

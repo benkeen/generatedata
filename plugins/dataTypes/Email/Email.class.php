@@ -23,22 +23,22 @@ class DataType_Email extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 		// prefix
-		$numPrefixWords = rand(1, 3);
-		$offset = rand(0, $this->numWords - ($numPrefixWords + 1));
+		$numPrefixWords = mt_rand(1, 3);
+		$offset = mt_rand(0, $this->numWords - ($numPrefixWords + 1));
 		$words = array_slice($this->words, $offset, $numPrefixWords);
 		$words = preg_replace("/[,.:;]/", "", $words);
 		$prefix = join(".", $words);
 
 		// domain
-		$numDomainWords = rand(1, 3);
-		$offset = rand(0, $this->numWords - ($numDomainWords + 1));
+		$numDomainWords = mt_rand(1, 3);
+		$offset = mt_rand(0, $this->numWords - ($numDomainWords + 1));
 		$words = array_slice($this->words, $offset, $numDomainWords);
 		$words = preg_replace("/[,.:;]/", "", $words);
 		$domain = join("", $words);
 
 		// suffix
 		$validSuffixes = array("edu", "com", "org", "ca", "net", "co.uk");
-		$suffix = $validSuffixes[rand(0, count($validSuffixes)-1)];
+		$suffix = $validSuffixes[mt_rand(0, count($validSuffixes)-1)];
 
 		return array(
 			"display" => "$prefix@$domain.$suffix"

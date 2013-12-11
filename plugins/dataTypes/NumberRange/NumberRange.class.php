@@ -15,7 +15,7 @@ class DataType_NumberRange extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 		return array(
-			"display" => rand($options["min"], $options["max"])
+			"display" => mt_rand($options["min"], $options["max"])
 		);
 	}
 
@@ -47,7 +47,8 @@ END;
 			"type" => "numeric",
 			"SQLField" => "mediumint default NULL",
 			"SQLField_Oracle" => "varchar2(50) default NULL",
-			"SQLField_MSSQL" => "INTEGER NULL"
+			"SQLField_MSSQL" => "INTEGER NULL",
+			"SQLField_Postgres" => "integer NULL"
 		);
 	}
 

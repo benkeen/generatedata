@@ -19,8 +19,8 @@ class DataType_Composite extends DataTypePlugin {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
 			$this->smarty = new SecureSmarty();
-			$this->smarty->template_dir = realpath(dirname(__FILE__) . "/../../../resources/libs/smarty");
-			$this->smarty->compile_dir  = realpath(dirname(__FILE__) . "/../../../cache");
+			$this->smarty->template_dir = realpath(__DIR__ . "/../../../resources/libs/smarty");
+			$this->smarty->compile_dir  = realpath(__DIR__ . "/../../../cache");
 		}
 	}
 
@@ -34,9 +34,7 @@ class DataType_Composite extends DataTypePlugin {
 		while (list($key, $value) = each($placeholders)) {
 			$this->smarty->assign($key, $value);
 		}
-
-		$this->smarty->assign("eval_str", $generationContextData["generationOptions"]);
-		$output = $this->smarty->fetch("eval.tpl");
+		$output = $this->smarty->fetch('string:' . $generationContextData["generationOptions"]);
 
 		return array(
 			"display" => $output

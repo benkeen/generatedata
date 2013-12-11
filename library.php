@@ -9,32 +9,36 @@
  * automatically by the installation script.
  */
 
-require_once(dirname(__FILE__) . "/resources/classes/Account.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/AjaxRequest.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Core.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/CountryPlugin.abstract.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/CountryPluginHelper.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Database.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/DataGenerator.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/DataTypePlugin.abstract.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/DataTypePluginHelper.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Emails.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/ErrorCodes.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/ExportTypePlugin.abstract.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/ExportTypePluginHelper.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/GeoData.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Installation.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Language.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Minification.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/SessionManager.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Settings.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Templates.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Translations.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/Utils.class.php");
+// the script requires PHP 5.3+ (see resources/classes/Core.class.php), so this should be defined -
+// but just so the user will see a nice error, define it anyway
+(@__DIR__ == '__DIR__') && define('__DIR__', dirname(__FILE__));
+
+require_once(__DIR__ . "/resources/classes/Account.class.php");
+require_once(__DIR__ . "/resources/classes/AjaxRequest.class.php");
+require_once(__DIR__ . "/resources/classes/Core.class.php");
+require_once(__DIR__ . "/resources/classes/CountryPlugin.abstract.class.php");
+require_once(__DIR__ . "/resources/classes/CountryPluginHelper.class.php");
+require_once(__DIR__ . "/resources/classes/Database.class.php");
+require_once(__DIR__ . "/resources/classes/DataGenerator.class.php");
+require_once(__DIR__ . "/resources/classes/DataTypePlugin.abstract.class.php");
+require_once(__DIR__ . "/resources/classes/DataTypePluginHelper.class.php");
+require_once(__DIR__ . "/resources/classes/Emails.class.php");
+require_once(__DIR__ . "/resources/classes/ErrorCodes.class.php");
+require_once(__DIR__ . "/resources/classes/ExportTypePlugin.abstract.class.php");
+require_once(__DIR__ . "/resources/classes/ExportTypePluginHelper.class.php");
+require_once(__DIR__ . "/resources/classes/GeoData.class.php");
+require_once(__DIR__ . "/resources/classes/Installation.class.php");
+require_once(__DIR__ . "/resources/classes/Language.class.php");
+require_once(__DIR__ . "/resources/classes/Minification.class.php");
+require_once(__DIR__ . "/resources/classes/SessionManager.class.php");
+require_once(__DIR__ . "/resources/classes/Settings.class.php");
+require_once(__DIR__ . "/resources/classes/Templates.class.php");
+require_once(__DIR__ . "/resources/classes/Translations.class.php");
+require_once(__DIR__ . "/resources/classes/Utils.class.php");
 
 // Smarty - use SecureSmarty!
-require_once(dirname(__FILE__) . "/resources/libs/smarty/Smarty.class.php");
-require_once(dirname(__FILE__) . "/resources/classes/SecureSmarty.class.php");
+require_once(__DIR__ . "/resources/libs/smarty/Smarty.class.php");
+require_once(__DIR__ . "/resources/classes/SecureSmarty.class.php");
 
 
 // handle magic quotes

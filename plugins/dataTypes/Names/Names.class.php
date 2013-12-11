@@ -46,17 +46,17 @@ class DataType_Names extends DataTypePlugin {
 			$placeholderStr = preg_replace("/Name/", $this->getRandomFirstName($this->firstNames), $placeholderStr, 1);
 		}
 		while (preg_match("/Surname/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/Surname/", $this->lastNames[rand(0, count($this->lastNames)-1)], $placeholderStr, 1);
+			$placeholderStr = preg_replace("/Surname/", $this->lastNames[mt_rand(0, count($this->lastNames)-1)], $placeholderStr, 1);
 		}
 		while (preg_match("/Initial/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/Initial/", $this->letters[rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
+			$placeholderStr = preg_replace("/Initial/", $this->letters[mt_rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
 		}
 
 		// in case the user entered multiple | separated formats, pick one
 		$formats = explode("|", $placeholderStr);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {
-			$chosenFormat = $formats[rand(0, count($formats)-1)];
+			$chosenFormat = $formats[mt_rand(0, count($formats)-1)];
 		}
 
 		return array(
@@ -174,7 +174,7 @@ END;
 
 
 	private function getRandomFirstName($nameArray) {
-		return $nameArray[rand(0, count($nameArray)-1)];
+		return $nameArray[mt_rand(0, count($nameArray)-1)];
 	}
 
 
@@ -260,4 +260,12 @@ EOF;
 
 		return $content;
 	}
+
+	public function getRestOptionsFormat() {
+		return array(
+			"required" => true,
+			"type" => "string"
+		);
+	}
+
 }

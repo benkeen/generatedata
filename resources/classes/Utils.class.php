@@ -48,7 +48,7 @@ class Utils {
 					 break;
 
 				 case "noSettingsFile":
-					 $settingsFileAndPath = realpath(dirname(__FILE__) . "/../settings.php");
+					 $settingsFileAndPath = realpath(__DIR__ . "/../settings.php");
 					 $settingsFileExists = file_exists($settingsFileAndPath);
 					if ($values === true && $settingsFileExists) {
 						throw new GDException(Exceptions::SETTINGSFILEEXISTS);
@@ -185,47 +185,47 @@ class Utils {
 		for ($i=0; $i<strlen($str); $i++) {
 			switch ($str[$i]) {
 				// Numbers
-				case "X": $new_str .= rand(1,9);  break;
-				case "x": $new_str .= rand(0,9);  break;
+				case "X": $new_str .= mt_rand(1,9);  break;
+				case "x": $new_str .= mt_rand(0,9);  break;
 
 				// Letters
-				case "L": $new_str .= $letters[rand(0, strlen($letters)-1)]; break;
-				case "l": $new_str .= strtolower($letters[rand(0, strlen($letters)-1)]); break;
+				case "L": $new_str .= $letters[mt_rand(0, strlen($letters)-1)]; break;
+				case "l": $new_str .= strtolower($letters[mt_rand(0, strlen($letters)-1)]); break;
 				case "D":
-					$bool = rand()&1;
+					$bool = mt_rand()&1;
 					if ($bool) {
-						$new_str .= $letters[rand(0, strlen($letters)-1)];
+						$new_str .= $letters[mt_rand(0, strlen($letters)-1)];
 					} else {
-						$new_str .= strtolower($letters[rand(0, strlen($letters)-1)]);
+						$new_str .= strtolower($letters[mt_rand(0, strlen($letters)-1)]);
 					}
 					break;
 
 				// Consonants
-				case "C": $new_str .= $consonants[rand(0, strlen($consonants)-1)];      break;
-				case "c": $new_str .= strtolower($consonants[rand(0, strlen($consonants)-1)]);  break;
+				case "C": $new_str .= $consonants[mt_rand(0, strlen($consonants)-1)];      break;
+				case "c": $new_str .= strtolower($consonants[mt_rand(0, strlen($consonants)-1)]);  break;
 				case "E":
-					$bool = rand()&1;
+					$bool = mt_rand()&1;
 					if ($bool) {
-						$new_str .= $consonants[rand(0, strlen($consonants)-1)];
+						$new_str .= $consonants[mt_rand(0, strlen($consonants)-1)];
 					} else {
-						$new_str .= strtolower($consonants[rand(0, strlen($consonants)-1)]);
+						$new_str .= strtolower($consonants[mt_rand(0, strlen($consonants)-1)]);
 					}
 					break;
 
 				// Vowels
-				case "V": $new_str .= $vowels[rand(0, strlen($vowels)-1)];  break;
-				case "v": $new_str .= strtolower($vowels[rand(0, strlen($vowels)-1)]);  break;
+				case "V": $new_str .= $vowels[mt_rand(0, strlen($vowels)-1)];  break;
+				case "v": $new_str .= strtolower($vowels[mt_rand(0, strlen($vowels)-1)]);  break;
 				case "F":
-					$bool = rand()&1;
+					$bool = mt_rand()&1;
 					if ($bool) {
-						$new_str .= $vowels[rand(0, strlen($vowels)-1)];
+						$new_str .= $vowels[mt_rand(0, strlen($vowels)-1)];
 					} else {
-						$new_str .= strtolower($vowels[rand(0, strlen($vowels)-1)]);
+						$new_str .= strtolower($vowels[mt_rand(0, strlen($vowels)-1)]);
 					}
 					break;
 
 				case "H":
-					$new_str .= $hex[rand(0, strlen($hex)-1)];
+					$new_str .= $hex[mt_rand(0, strlen($hex)-1)];
 					break;
 
 				default:
@@ -278,7 +278,7 @@ class Utils {
 		if ($type == "fixed") {
 			$numWords = $min;
 		} else if ($type == "range") {
-			$numWords = rand($min, $max);
+			$numWords = mt_rand($min, $max);
 		}
 
 		if ($numWords > count($words)) {
@@ -288,7 +288,7 @@ class Utils {
 		// determine the offset
 		$offset = 0;
 		if (!$startsWithLipsum) {
-			$offset = rand(2, count($words) - ($numWords + 1));
+			$offset = mt_rand(2, count($words) - ($numWords + 1));
 		}
 		$wordArray = array_slice($words, $offset, $numWords);
 
@@ -309,13 +309,13 @@ class Utils {
 				if ($i != 0 && ($str[$i-1] == '\\')) {
 					$new_str .= "X";
 				} else {
-					$new_str .= rand(1,9);
+					$new_str .= mt_rand(1,9);
 				}
 			} else if ($str[$i] == "x") {
 				if ($i != 0 && ($str[$i-1] == '\\')) {
 					$new_str .= "x";
 				} else {
-					$new_str .= rand(0,9);
+					$new_str .= mt_rand(0,9);
 				}
 			} else {
 				$new_str .= $str[$i];

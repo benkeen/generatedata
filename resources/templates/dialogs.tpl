@@ -92,7 +92,7 @@
 						<th align="center">{$L.public_q}</th>
 						<th align="center">{$L.rows_generated}</th>
 						<th width="60" align="center">{$L.load}</th>
-						<th width="24" align="center" class="gdDelDataSetCell"><input type="checkbox" id="gdSelectAllDataSets" /></th>
+						<th width="24" align="center" class="gdDataSetCheckRowCell"><input type="checkbox" id="gdSelectAllDataSets" /></th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -204,7 +204,7 @@
 					<table>
 						<tr>
 							<th width="120">{$L.email}</th>
-							<td><input type="text" name="gdLogin_email" id="gdLogin_email" style="width: 200px" /></td>
+							<td><input type="text" name="gdLogin_email" id="gdLogin_email" /></td>
 						</tr>
 						<tr>
 							<th>{$L.password}</th>

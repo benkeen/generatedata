@@ -12,7 +12,7 @@
 	.ui-widget button {
 		font-family: "lucida grande", verdana;
 	}
-	.gdDeletedDataSetRow {
+	.gdSelectedDataSetRow {
 		background-color: #efefef;
 	}
 	h4 {
@@ -191,10 +191,7 @@ body .gdMainDialog .ui-dialog-title span {
 	padding: 4px 0px 3px 52px;
 }
 
-.gdDelDataSetCell {
-	background-color: #b33c3c;
-	border-radius: 2px;
-
+.gdDataSetCheckRowCell {
 	input {
 		margin: 0px;
 	}

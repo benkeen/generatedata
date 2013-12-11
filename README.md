@@ -6,6 +6,10 @@ This is the repo for the standalone, downloadable version of [generatedata.com](
 
 Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting the most recent tag: https://github.com/benkeen/generatedata/releases
 
+## Requirements
+- PHP 5.3 or later
+- MySQL 4.1.3 or later
+
 ## How to Install / Documentation
 
 For the installation instructions, user documentation and developer documentation, check out:
@@ -27,6 +31,7 @@ This script is freely available under the GPL 3 license. See license.txt in the 
 
 In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- Joeri Noort - IBAN numbers (3.0.8)
 - [Michel Roca](https://github.com/mRoca) - Full and correct French translation (3.0.7)
 - Marco Corona - LDIF Export Type added (3.0.7)
 - [Andre Fortin](https://github.com/twindual) - original Costa Rica Country plugin & Phone-Regional Data Type (3.0.6)
@@ -35,6 +40,11 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.0.8 - Oct 28, 2013
+- International Bank Numbers - thanks, Joeri Noort!
+- PostgreSQL database support added to SQL Export Type
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=8&page=1&state=closed
 
 3.0.7 - Sept 7, 2013
 - LDIF Export Type support - thanks, [Marco Corona](https://github.com/coronam)!

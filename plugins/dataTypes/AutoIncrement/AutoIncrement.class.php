@@ -79,7 +79,8 @@ END;
 			"type" => "numeric",
 			"SQLField" => "mediumint",
 			"SQLField_Oracle" => "number default NULL",
-			"SQLField_MSSQL" => "INTEGER NULL"
+			"SQLField_MSSQL" => "INTEGER NULL",
+			"SQLField_Postgres" => "integer NULL"
 		);
 	}
 

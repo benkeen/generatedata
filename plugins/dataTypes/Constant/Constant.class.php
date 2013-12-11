@@ -33,9 +33,16 @@ class DataType_Constant extends DataTypePlugin {
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
-		if (!isset($postdata["dtOption_$colNum"]) || empty($postdata["dtOption_$colNum"])) {
+		if (!isset($postdata["dtOption_$colNum"])) {
 			return false;
 		}
+
+		// fix for https://github.com/benkeen/generatedata/issues/166
+		$optionValue = trim($postdata["dtOption_$colNum"]);
+		if ($optionValue == "") {
+			return false;
+		}
+
 		if (!isset($postdata["dtConstantLoopCount_$colNum"]) || empty($postdata["dtConstantLoopCount_$colNum"])) {
 			return false;
 		}
@@ -77,7 +84,8 @@ EOF;
 		return array(
 			"SQLField" => "TEXT default NULL",
 			"SQLField_Oracle" => "BLOB default NULL",
-			"SQLField_MSSQL" => "VARCHAR(MAX) NULL"
+			"SQLField_MSSQL" => "VARCHAR(MAX) NULL",
+			"SQLField_Postgres" => "TEXT NULL"
 		);
 	}
 

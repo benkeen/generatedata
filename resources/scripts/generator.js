@@ -61,6 +61,7 @@ define([
 	 * page.
 	 */
 	var _run = function() {
+
 		// retrieve the data sets for the current user
 		if ($("body").data("loggedIn")) {
 			utils.startProcessing();
@@ -126,6 +127,7 @@ define([
 		$("#gdGenerationPanelCancel").on("click", _cancelGeneration);
 		$("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
 		$("#gdSettingsForm").on("submit", _submitSettingsForm);
+		$("#gdNumRowsToGenerate").on("click", _onClickNumRowsField);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveButton);
@@ -141,7 +143,7 @@ define([
 
         var $accountDataSets = $("#gdAccountDataSets");
         $accountDataSets.on("click", "a", _onClickLoadDataSet);
-        $accountDataSets.on("change", ".gdDeleteDataSets", _onChangeMarkDataSetRowToDelete);
+        $accountDataSets.on("change", ".gdSelectDataSets", _onChangeCheckDataSet);
         $accountDataSets.on("click", _onClickToggleDeleteRow);
 		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
 		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
@@ -166,6 +168,11 @@ define([
 		}
 	};
 
+	var _onClickNumRowsField = function() {
+		if (!_isLoggedIn) {
+			_showPermissionDeniedDialog(L.cannot_change_num_rows);
+		}
+	};
 
 	var _getPublicDataSet = function(dataSetID) {
 		utils.startProcessing();
@@ -251,7 +258,6 @@ define([
 		_selectExportTypeTab(json.selectedExportType, true);
 		manager.loadExportType(json.selectedExportType, json.exportTypes);
 
-
 		// now populate the rows. Do everything that we can: create the rows, populate the titles & select
 		// the data type. The remaining fields are custom to the data type, so we leave them to their
 		// .loadData function (if defined)
@@ -279,8 +285,13 @@ define([
 		$("#gdDataSetStatusLine").html(L.last_edited + " " + lastUpdated);
 
 		utils.stopProcessing();
-
 		_closeMainDialog();
+
+		// publish the IO LOAD event
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.IO.LOAD
+		});
 	};
 
 
@@ -541,10 +552,18 @@ define([
 
 	var _clearForm = function(numDefaultRows) {
 		$("#gdDataSetName").val("");
+
+		// reset the countries
+		_updateCountries([]);
+
+		// remove the rows
 		$("#gdTableRows .gdDeleteRows").attr("checked", "checked");
 		_deleteRows();
 		_addRows(numDefaultRows);
+
 		_currConfigurationID = null;
+
+		// set the default Export Type
 		_selectExportTypeTab($(".gdDefaultExportType").data("exportType"), true);
 		manager.resetExportTypes();
 
@@ -1004,7 +1023,7 @@ define([
 			$("#gdProgressMeter").attr("value", _generateInPageRunningCount);
 
 			// 2. Update the actual content
-			_generateInPageContent += decodeURIComponent(response.content);
+			_generateInPageContent += response.content;
 			_codeMirror.setValue(_generateInPageContent);
 
 			// check the process hasn't been interrupted
@@ -1180,7 +1199,7 @@ define([
 							$("#gdMainDialog").dialog("option", "buttons", [{ text: L.close, click: function() { $(this).dialog("close"); } }]);
 							break;
 						case 2:
-							_updateMainDialogDeleteButton();
+							_updateMainDialogDataSetButtons();
 							break;
 						case 3:
 							$("#gdMainDialog").dialog("option", "buttons", [{ text: L.close, click: function() { $(this).dialog("close"); } }]);
@@ -1288,7 +1307,7 @@ define([
 		utils.insertModalSpinner({ modalID: "gdMainDialog" });
 
 		if (opts.tab == 2) {
-			_updateMainDialogDeleteButton();
+			_updateMainDialogDataSetButtons();
 		}
 
 		return false;
@@ -1298,7 +1317,7 @@ define([
 		$("#gdMainDialog").dialog("close");
 	};
 
-	var _onChangeMarkDataSetRowToDelete = function(e) {
+	var _onChangeCheckDataSet = function(e) {
 		var el = e.target;
 		_markDataSetRowToDelete(el);
 	};
@@ -1309,34 +1328,38 @@ define([
 		}
 
 		// reverse the checked-ness of the row
-		var el = $(e.target).closest("tr").find(".gdDeleteDataSets");
-		var isChecked = $(e.target).closest("tr").find(".gdDeleteDataSets").attr("checked");
+		var el = $(e.target).closest("tr").find(".gdSelectDataSets");
+		var isChecked = $(e.target).closest("tr").find(".gdSelectDataSets").attr("checked");
 		if (isChecked) {
 			$(el).removeAttr("checked");
 		} else {
-			$(e.target).closest("tr").find(".gdDeleteDataSets").attr("checked", "checked");
+			$(e.target).closest("tr").find(".gdSelectDataSets").attr("checked", "checked");
 		}
 
 		_markDataSetRowToDelete(el[0]);
 	};
 
 	var _markDataSetRowToDelete = function(el) {
-		if (el.checked) {
-			$(el).closest("tr").addClass("gdDeletedDataSetRow");
-		} else {
-			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
+		if (!el) {
+			return;
 		}
-		_updateMainDialogDeleteButton();
+
+		if (el.checked) {
+			$(el).closest("tr").addClass("gdSelectedDataSetRow");
+		} else {
+			$(el).closest("tr").removeClass("gdSelectedDataSetRow");
+		}
+		_updateMainDialogDataSetButtons();
 	};
 
 	var _onToggleSelectAllDataSets = function(e) {
 		var isChecked = e.target.checked;
-		var cbs = $(".gdDeleteDataSets");
+		var cbs = $(".gdSelectDataSets");
 		for (var i=0; i<cbs.length; i++) {
 			cbs[i].checked = isChecked;
 			_markDataSetRowToDelete(cbs[i]);
 		}
-		_updateMainDialogDeleteButton();
+		_updateMainDialogDataSetButtons();
 	};
 
 	var _confirmDeleteDataSets = function() {
@@ -1344,26 +1367,46 @@ define([
 
 	/**
 	 * Called whenever one or more rows is selected / unselected. This checks to see how
-	 * many rows are selected, and hides/shows a delete button.
+	 * many rows are selected, and hides/shows the delete/copy buttons.
 	 */
-	var _updateMainDialogDeleteButton = function() {
-		var cbs = $(".gdDeleteDataSets:checked");
+	var _updateMainDialogDataSetButtons = function() {
+		var cbs = $(".gdSelectDataSets:checked");
 		if (cbs.length) {
-			var deleteButtonLabel = "Delete " + cbs.length + " Data Set(s)";
 
-			$("#gdMainDialog").dialog("option", "buttons", [
-				{
-					text: deleteButtonLabel,
-					"class": "gdDeleteDataSetsBtn",
+			var buttons = [];
+
+			// if there's only one row selected, show the Copy Data Set button
+			if (cbs.length === 1) {
+				buttons.push({
+					text: "Copy Data Set",
 					click: function() {
-						_onClickDeleteDataSets();
+						var existingDataSet = $(cbs[0]).closest("tr");
+						var existingDataSetId = parseInt(existingDataSet.data("id"), 10);
+						var existingDataSetName = existingDataSet.find(".dataSetName")[0].innerHTML;
+
+						var result = window.prompt("Please enter the name of the new data set.", existingDataSetName);
+						if (result !== null) {
+							_copyDataSet(existingDataSetId, result);
+						}
 					}
-				},
-				{
-					text: L.close,
-					click: function() { $(this).dialog("close"); }
+				});
+			}
+
+			var deleteButtonLabel = "Delete " + cbs.length + " Data Set(s)";
+			buttons.push({
+				text: deleteButtonLabel,
+				"class": "gdDeleteDataSetsBtn",
+				click: function() {
+					_onClickDeleteDataSets();
 				}
-			]);
+			});
+
+			buttons.push({
+				text: L.close,
+				click: function() { $(this).dialog("close"); }
+			});
+
+			$("#gdMainDialog").dialog("option", "buttons", buttons);
 		} else {
 			$("#gdMainDialog").dialog("option", "buttons", [
 				{
@@ -1373,6 +1416,32 @@ define([
 			]);
 		}
 	};
+
+	/**
+	 * Makes a copy of an existing Data Set.
+	 * @param dataSetId
+	 * @param newDataSetName
+	 * @private
+	 */
+	var _copyDataSet = function(dataSetId, newDataSetName) {
+		utils.startProcessing();
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "JSON",
+			data: {
+				action: "copyDataSet",
+				dataSetId: dataSetId,
+				newDataSetName: newDataSetName
+			},
+			success: function(response) {
+				// for simplicities, sake, just refresh the entire Data Set tab
+				_getAccount();
+			},
+			error: _onError
+		});
+	};
+
 
 	var _onClickDeleteDataSets = function() {
 		if (C.DEMO_MODE) {
@@ -1414,7 +1483,7 @@ define([
 			$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 
 			_displayDataSets();
-			_updateMainDialogDeleteButton();
+			_updateMainDialogDataSetButtons();
 		} else {
 			// TODO
 		}
@@ -1612,16 +1681,16 @@ define([
 				currDataSet = _dataSets[i];
 				var dateCreated = moment.unix(currDataSet.date_created_unix).format("MMM Do, YYYY");
 				var lastUpdated = moment.unix(currDataSet.last_updated_unix).format("MMM Do, YYYY");
-				var isPublic    = (currDataSet.status == "public") ? 'checked="checked"' : "";
+				var isPublic    = (currDataSet.status === "public") ? 'checked="checked"' : "";
 
 				row = '<tr data-id="' + currDataSet.configuration_id + '">' +
-					'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
+					'<td class="dataSetName leftAligned">' + currDataSet.configuration_name + '</td>' +
 					'<td class="leftAligned">' + dateCreated + '</td>' +
 					'<td class="leftAligned">' + lastUpdated + '</td>' +
 					'<td align="center"><input type="checkbox" class="gdDataSetStatus" id="gdDataSetStatus_' + currDataSet.configuration_id + '" ' + isPublic + ' /></td>' +
 					'<td class="gdDataSetNumRowsGenerated" align="center">' + utils.formatNumWithCommas(currDataSet.num_rows_generated) + '</td>' +
 					'<td align="center"><a href="#">load</a></td>' +
-					'<td align="center" class="gdDelDataSetCell"><input type="checkbox" class="gdDeleteDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
+					'<td align="center" class="gdDataSetCheckRowCell"><input type="checkbox" class="gdSelectDataSets" value="' + currDataSet.configuration_id + '"/></td>' +
 					'</tr>';
 				html += row;
 			}
@@ -1806,8 +1875,11 @@ define([
 		});
 	};
 
-	var _showPermissionDeniedDialog = function() {
+	var _showPermissionDeniedDialog = function(extraMsg) {
 		var content = C.SETTINGS.ANON_USER_PERMISSION_DENIED_MSG;
+		if (extraMsg) {
+			content = extraMsg + " " + content;
+		}
 		$('<div>' + content + '</div>').dialog({
 			title: "Sorry!",
 			width: 500,

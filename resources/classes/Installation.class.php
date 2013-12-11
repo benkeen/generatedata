@@ -27,7 +27,7 @@ class Installation {
 \$encryptionSalt = '$encryptionSalt';
 END;
 
-		$file = dirname(__FILE__) . "/../../settings.php";
+		$file = __DIR__ . "/../../settings.php";
 		$handle = @fopen($file, "w");
 		if ($handle) {
 			fwrite($handle, $content);

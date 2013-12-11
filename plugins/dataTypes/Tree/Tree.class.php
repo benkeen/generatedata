@@ -56,7 +56,7 @@ class DataType_Tree extends DataTypePlugin {
 			}
 
 			// randomly pick an open (non-full) node
-			$randIndex  = rand(0, count($this->openTreeNodes)-1);
+			$randIndex  = mt_rand(0, count($this->openTreeNodes)-1);
 			$randRow    = $this->openTreeNodes[$randIndex];
 			$randParentRowValue = $randRow[0];
 
@@ -79,7 +79,7 @@ class DataType_Tree extends DataTypePlugin {
 			}
 
 			// randomly pick an open (non-full) node
-			$randIndex  = rand(0, count($sessions_openTreeNodes)-1);
+			$randIndex  = mt_rand(0, count($sessions_openTreeNodes)-1);
 			$randRow    = $sessions_openTreeNodes[$randIndex];
 			$randParentRowValue = $randRow[0];
 
@@ -126,7 +126,8 @@ END;
 		return array(
 			"SQLField" => "mediumint default NULL",
 			"SQLField_Oracle" => "number",
-			"SQLField_MSSQL" => "INTEGER NOT NULL"
+			"SQLField_MSSQL" => "INTEGER NULL",
+			"SQLField_Postgres" => "integer NULL",
 		);
 	}
 

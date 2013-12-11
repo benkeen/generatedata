@@ -25,7 +25,6 @@ define([
 	};
 
 	var _loadRow = function(rowNum, data) {
-
 		return {
 			execute: function() {
 				$("#dtExample_" + rowNum).val(data.example);

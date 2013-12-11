@@ -65,6 +65,12 @@ a:link, nav a:visited {
 a:hover {
   text-decoration: underline; }
 
+#gdLogin_password {
+  margin: 0px; }
+
+#gdLogin_email {
+  width: 200px; }
+
 header {
   position: relative;
   width: 930px;
@@ -134,17 +140,17 @@ header nav {
     -o-transition: color .2s;
     transition: color .2s; }
 
-#gdTabs {
+#gdMainTabs {
   width: 930px;
   margin: 0 auto;
   position: relative; }
-  #gdTabs ul {
+  #gdMainTabs ul {
     list-style: none;
     margin: 0px;
     padding: 0px;
     font-size: 15px;
     line-height: 15px; }
-    #gdTabs ul li {
+    #gdMainTabs ul li {
       color: #CDD0D5;
       /*text-shadow: 3px 3px 8px rgba(64, 64, 64, 0.2);*/
       cursor: pointer;
@@ -155,7 +161,7 @@ header nav {
       background: linear-gradient(to bottom, #efefef 0%, #e1e1e1 100%) repeat scroll 0 0 transparent;
       height: 22px;
       text-align: left; }
-      #gdTabs ul li a:link, #gdTabs ul li a:visited {
+      #gdMainTabs ul li a:link, #gdMainTabs ul li a:visited {
         display: block;
         /*text-shadow: rgba(64, 64, 64, 0.2) 3px 3px 8px;*/
         color: #CDD0D5;
@@ -164,13 +170,13 @@ header nav {
         -moz-transition: color .2s;
         -o-transition: color .2s;
         transition: color .2s; }
-      #gdTabs ul li:hover {
+      #gdMainTabs ul li:hover {
         color: #70B32D;
         -webkit-transition: color .2s;
         -moz-transition: color .2s;
         -o-transition: color .2s;
         transition: color .2s; }
-    #gdTabs ul li.gdSelected {
+    #gdMainTabs ul li.gdSelected {
       color: #70B32D;
       cursor: inherit;
       border-bottom: 0px;
@@ -180,31 +186,31 @@ header nav {
       /*border: 1px solid #ffffff;*/
       border-bottom: 0px;
       line-height: 15px; }
-      #gdTabs ul li.gdSelected:hover {
+      #gdMainTabs ul li.gdSelected:hover {
         background-color: white; }
 
-.gdTabContent {
+.gdMainTabContent {
   padding: 0px;
   margin: 0px; }
-  .gdTabContent > li {
+  .gdMainTabContent > li {
     padding: 0px;
     margin: 0px;
     list-style: none; }
-  .gdTabContent h1 {
+  .gdMainTabContent h1 {
     float: left; }
-  .gdTabContent .gdSectionHelpTip {
+  .gdMainTabContent .gdSectionHelpTip {
     float: left;
     list-style: none;
     padding-left: 10px;
     padding-top: 17px; }
 
-#gdTab1Content {
+#gdMainTab1Content {
   display: block; }
-  #gdTab1Content h2 {
-    float: left;
-    width: 160px;
-    margin: 4px 0px; }
-  #gdTab1Content .gdFields {
+  #gdMainTab1Content h2 {
+    margin: 4px 0px;
+    font-size: 9px;
+    color: #999999; }
+  #gdMainTab1Content .gdFields {
     float: left; }
 
 #gdContent {
@@ -235,7 +241,7 @@ header nav {
   width: 725px; }
   .gdFields .gdError {
     margin-left: 6px;
-    background: transparent url(../../images/error.gif) left center no-repeat;
+    background: transparent url(../images/error.gif) left center no-repeat;
     float: left;
     width: 315px;
     padding-left: 24px;
@@ -355,21 +361,19 @@ li.gdColDelete {
   width: 100%; }
 
 #gdProcessingIcon {
-  display: none;
   position: absolute;
   top: 6px;
   right: 0px;
-  background-image: url(../../images/loading.gif);
   width: 16px;
   height: 16px; }
 
-#gdExportTypeTabs ul {
+.gdSmallTabs ul {
   list-style: none;
   margin: 0px;
   padding: 0px;
   height: 20px;
   border-bottom: 1px solid #e1e1e1; }
-  #gdExportTypeTabs ul li {
+  .gdSmallTabs ul li {
     line-height: 19px;
     height: 20px;
     float: left;
@@ -386,23 +390,22 @@ li.gdColDelete {
     background: linear-gradient(to bottom, #f2f2f2 0%, #e1e1e1 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
     cursor: pointer; }
-    #gdExportTypeTabs ul li.selected {
+    .gdSmallTabs ul li .gdSelected {
       background: white;
       background-color: white;
       border: 1px solid #cccccc;
       border-bottom: 0px; }
-#gdExportTypeTabs .gdExportTypeTabSettings {
+.gdSmallTabs .gdExportTypeTabSettings {
   clear: both;
-  border-bottom: 1px solid #cccccc;
   border-top: 0px;
   padding: 6px;
   margin: 0px;
   display: none; }
-#gdExportTypeTabs #gdShowSettingsLink {
+.gdSmallTabs #gdShowSettingsLink {
   float: right; }
-  #gdExportTypeTabs #gdShowSettingsLink span {
+  .gdSmallTabs #gdShowSettingsLink span {
     font-size: 7pt; }
-  #gdExportTypeTabs #gdShowSettingsLink a {
+  .gdSmallTabs #gdShowSettingsLink a {
     font-size: 7pt;
     color: #3366CC; }
 
@@ -411,6 +414,9 @@ li.gdColDelete {
   border-radius: 3px;
   padding: 20px;
   border: 1px solid #bbbbbb; }
+
+a.gdDisabledLink {
+  color: #cccccc; }
 
 /* buttons */
 .gdButton {
@@ -519,7 +525,7 @@ li.gdColDelete {
 #gdGenerateButton {
   display: inline;
   font-size: 11pt;
-  margin: 0px; }
+  margin: -2px 0px 0px 0px; }
 
 #gdBackButton {
   float: left;
@@ -557,7 +563,7 @@ div.gdClear {
 .gdHideNoJS {
   display: none; }
 
-.gdNoJS {
+noscript {
   background-color: #ffffcc;
   padding: 15px;
   font-size: 10pt;
@@ -604,19 +610,25 @@ body .ui-widget-shadow {
   border-radius: 3px; }
 
 /* overridden Chosen styles */
-body .chzn-container-multi .chzn-choices .search-choice {
+.chzn-container-multi .chzn-choices .search-choice {
   margin-left: 3px;
   padding: 0px 20px 2px 5px;
   margin-bottom: 1px; }
 
-body .chzn-container-multi .chzn-choices .search-field .default {
+.chzn-container-multi .chzn-choices .search-field .default {
   font: 11px Verdana, sans-serif; }
 
-body .chzn-container-multi .chzn-choices {
+.chzn-container-multi .chzn-choices {
   background-image: none;
   padding-bottom: 2px;
   border: 1px solid #E1E6E9;
   background-color: #F0F2F4; }
+
+#gdTableRows .chzn-container-multi .chzn-choices ul li {
+  padding: 0 20px 2px 5px; 
+  margin: 0 0 1px 3px;
+  float: none;
+  line-height: 13pt;}
 
 /* plugin installation */
 #gdPluginInstallationResults > div {
@@ -704,6 +716,11 @@ body .CodeMirror-scroll {
   .gdNotify a.gdMessageClose:hover {
     background-color: #3b82cb;
     color: white; }
+  .gdNotify div {
+    padding: 8px;
+    color: #cc0000 ul;
+      color-margin: 0px;
+      color-padding-left: 16px; }
 
 .gdErrors {
   background-color: #FFEDED;

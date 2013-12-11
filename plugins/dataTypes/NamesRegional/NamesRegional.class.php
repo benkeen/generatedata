@@ -151,7 +151,7 @@ class DataType_NamesRegional extends DataTypePlugin {
 			$inBoth = array_intersect($availableRegionalCountries, $selectedCountryPlugins);
 
 			if (!empty($inBoth)) {
-				$countrySlug = $inBoth[rand(0, count($inBoth) - 1)];
+				$countrySlug = $inBoth[mt_rand(0, count($inBoth) - 1)];
 			}
 		}
 
@@ -173,17 +173,17 @@ class DataType_NamesRegional extends DataTypePlugin {
 			$placeholderStr = preg_replace("/Name/", $this->getRandomFirstName($firstNames), $placeholderStr, 1);
 		}
 		while (preg_match("/Surname/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/Surname/", $lastNames[rand(0, count($lastNames)-1)], $placeholderStr, 1);
+			$placeholderStr = preg_replace("/Surname/", $lastNames[mt_rand(0, count($lastNames)-1)], $placeholderStr, 1);
 		}
 		while (preg_match("/Initial/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/Initial/", $this->letters[rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
+			$placeholderStr = preg_replace("/Initial/", $this->letters[mt_rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
 		}
 
 		// in case the user entered multiple | separated formats, pick one
 		$formats = explode("|", $placeholderStr);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {
-			$chosenFormat = $formats[rand(0, count($formats)-1)];
+			$chosenFormat = $formats[mt_rand(0, count($formats)-1)];
 		}
 
 		return array(
@@ -311,7 +311,7 @@ END;
 
 
 	private function getRandomFirstName($nameArray) {
-		return $nameArray[rand(0, count($nameArray)-1)];
+		return $nameArray[mt_rand(0, count($nameArray)-1)];
 	}
 
 	/**

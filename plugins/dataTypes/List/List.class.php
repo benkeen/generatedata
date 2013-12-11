@@ -21,7 +21,7 @@ class DataType_List extends DataTypePlugin {
 			$val = implode(", ", Utils::returnRandomSubset($allElements, $options["number"]));
 		} else {
 			// at MOST. So randomly calculate a number up to the num specified
-			$numItems = rand(0, $options["number"]);
+			$numItems = mt_rand(0, $options["number"]);
 			$val = implode(", ", Utils::returnRandomSubset($allElements, $numItems));
 		}
 
