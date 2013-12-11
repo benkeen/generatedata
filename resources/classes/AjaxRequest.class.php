@@ -292,6 +292,13 @@ class AjaxRequest {
 				}
 				break;
 
+			case "copyDataSet":
+				Core::init();
+				$response = Core::$user->copyConfiguration($this->post);
+				$this->response["success"] = $response["success"];
+				$this->response["content"] = $response["message"];
+				break;
+
 			case "deleteDataSets":
 				Core::init();
 				$configurationIDs = $this->post["configurationIDs"];

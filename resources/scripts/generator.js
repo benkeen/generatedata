@@ -61,6 +61,7 @@ define([
 	 * page.
 	 */
 	var _run = function() {
+
 		// retrieve the data sets for the current user
 		if ($("body").data("loggedIn")) {
 			utils.startProcessing();
@@ -142,7 +143,7 @@ define([
 
         var $accountDataSets = $("#gdAccountDataSets");
         $accountDataSets.on("click", "a", _onClickLoadDataSet);
-        $accountDataSets.on("change", ".gdSelectDataSets", _onChangeMarkDataSetRowToDelete);
+        $accountDataSets.on("change", ".gdSelectDataSets", _onChangeCheckDataSet);
         $accountDataSets.on("click", _onClickToggleDeleteRow);
 		$(".gdDeleteDataSetsBtn").bind("click", _confirmDeleteDataSets);
 		$("#gdDataSetHelpNav").on("click", "a", _onclickDataTypeHelpNav);
@@ -1198,7 +1199,7 @@ define([
 							$("#gdMainDialog").dialog("option", "buttons", [{ text: L.close, click: function() { $(this).dialog("close"); } }]);
 							break;
 						case 2:
-							_updateMainDialogDeleteButton();
+							_updateMainDialogDataSetButtons();
 							break;
 						case 3:
 							$("#gdMainDialog").dialog("option", "buttons", [{ text: L.close, click: function() { $(this).dialog("close"); } }]);
@@ -1306,7 +1307,7 @@ define([
 		utils.insertModalSpinner({ modalID: "gdMainDialog" });
 
 		if (opts.tab == 2) {
-			_updateMainDialogDeleteButton();
+			_updateMainDialogDataSetButtons();
 		}
 
 		return false;
@@ -1316,7 +1317,7 @@ define([
 		$("#gdMainDialog").dialog("close");
 	};
 
-	var _onChangeMarkDataSetRowToDelete = function(e) {
+	var _onChangeCheckDataSet = function(e) {
 		var el = e.target;
 		_markDataSetRowToDelete(el);
 	};
@@ -1339,12 +1340,16 @@ define([
 	};
 
 	var _markDataSetRowToDelete = function(el) {
-		if (el.checked) {
-			$(el).closest("tr").addClass("gdDeletedDataSetRow");
-		} else {
-			$(el).closest("tr").removeClass("gdDeletedDataSetRow");
+		if (!el) {
+			return;
 		}
-		_updateMainDialogDeleteButton();
+
+		if (el.checked) {
+			$(el).closest("tr").addClass("gdSelectedDataSetRow");
+		} else {
+			$(el).closest("tr").removeClass("gdSelectedDataSetRow");
+		}
+		_updateMainDialogDataSetButtons();
 	};
 
 	var _onToggleSelectAllDataSets = function(e) {
@@ -1354,7 +1359,7 @@ define([
 			cbs[i].checked = isChecked;
 			_markDataSetRowToDelete(cbs[i]);
 		}
-		_updateMainDialogDeleteButton();
+		_updateMainDialogDataSetButtons();
 	};
 
 	var _confirmDeleteDataSets = function() {
@@ -1364,24 +1369,44 @@ define([
 	 * Called whenever one or more rows is selected / unselected. This checks to see how
 	 * many rows are selected, and hides/shows the delete/copy buttons.
 	 */
-	var _updateMainDialogDeleteButton = function() {
+	var _updateMainDialogDataSetButtons = function() {
 		var cbs = $(".gdSelectDataSets:checked");
 		if (cbs.length) {
-			var deleteButtonLabel = "Delete " + cbs.length + " Data Set(s)";
 
-			$("#gdMainDialog").dialog("option", "buttons", [
-				{
-					text: deleteButtonLabel,
-					"class": "gdDeleteDataSetsBtn",
+			var buttons = [];
+
+			// if there's only one row selected, show the Copy Data Set button
+			if (cbs.length === 1) {
+				buttons.push({
+					text: "Copy Data Set",
 					click: function() {
-						_onClickDeleteDataSets();
+						var existingDataSet = $(cbs[0]).closest("tr");
+						var existingDataSetId = parseInt(existingDataSet.data("id"), 10);
+						var existingDataSetName = existingDataSet.find(".dataSetName")[0].innerHTML;
+
+						var result = window.prompt("Please enter the name of the new data set.", existingDataSetName);
+						if (result !== null) {
+							_copyDataSet(existingDataSetId, result);
+						}
 					}
-				},
-				{
-					text: L.close,
-					click: function() { $(this).dialog("close"); }
+				});
+			}
+
+			var deleteButtonLabel = "Delete " + cbs.length + " Data Set(s)";
+			buttons.push({
+				text: deleteButtonLabel,
+				"class": "gdDeleteDataSetsBtn",
+				click: function() {
+					_onClickDeleteDataSets();
 				}
-			]);
+			});
+
+			buttons.push({
+				text: L.close,
+				click: function() { $(this).dialog("close"); }
+			});
+
+			$("#gdMainDialog").dialog("option", "buttons", buttons);
 		} else {
 			$("#gdMainDialog").dialog("option", "buttons", [
 				{
@@ -1391,6 +1416,32 @@ define([
 			]);
 		}
 	};
+
+	/**
+	 * Makes a copy of an existing Data Set.
+	 * @param dataSetId
+	 * @param newDataSetName
+	 * @private
+	 */
+	var _copyDataSet = function(dataSetId, newDataSetName) {
+		utils.startProcessing();
+		$.ajax({
+			url: "ajax.php",
+			type: "POST",
+			dataType: "JSON",
+			data: {
+				action: "copyDataSet",
+				dataSetId: dataSetId,
+				newDataSetName: newDataSetName
+			},
+			success: function(response) {
+				// for simplicities, sake, just refresh the entire Data Set tab
+				_getAccount();
+			},
+			error: _onError
+		});
+	};
+
 
 	var _onClickDeleteDataSets = function() {
 		if (C.DEMO_MODE) {
@@ -1432,7 +1483,7 @@ define([
 			$("#gdAccount_NumSavedDataSets").html(_dataSets.length);
 
 			_displayDataSets();
-			_updateMainDialogDeleteButton();
+			_updateMainDialogDataSetButtons();
 		} else {
 			// TODO
 		}
@@ -1633,7 +1684,7 @@ define([
 				var isPublic    = (currDataSet.status === "public") ? 'checked="checked"' : "";
 
 				row = '<tr data-id="' + currDataSet.configuration_id + '">' +
-					'<td class="leftAligned">' + currDataSet.configuration_name + '</td>' +
+					'<td class="dataSetName leftAligned">' + currDataSet.configuration_name + '</td>' +
 					'<td class="leftAligned">' + dateCreated + '</td>' +
 					'<td class="leftAligned">' + lastUpdated + '</td>' +
 					'<td align="center"><input type="checkbox" class="gdDataSetStatus" id="gdDataSetStatus_' + currDataSet.configuration_id + '" ' + isPublic + ' /></td>' +

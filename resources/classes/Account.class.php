@@ -378,6 +378,43 @@ class Account {
 		}
 	}
 
+	public function copyConfiguration($data) {
+		$dataSetId         = Utils::sanitize($data["dataSetId"]);
+		$configurationName = Utils::sanitize($data["newDataSetName"]);
+
+		$prefix = Core::getDbTablePrefix();
+		$response = Core::$db->query("
+			INSERT INTO {$prefix}configurations (status, date_created, last_updated, account_id, configuration_name, content, num_rows_generated)
+				SELECT status, date_created, last_updated, account_id, configuration_name, content, num_rows_generated
+				FROM {$prefix}configurations
+				WHERE configuration_id = $dataSetId
+		");
+
+		// if it worked okay (it should!) update the last_updated and configuration_name fields
+		if ($response["success"]) {
+			$newConfigurationID = mysqli_insert_id(Core::$db->getDBLink());
+			$now = Utils::getCurrentDatetime();
+			$response2 = Core::$db->query("
+				UPDATE {$prefix}configurations
+				SET configuration_name = '$configurationName',
+					last_updated = '$now'
+				WHERE configuration_id = $newConfigurationID
+			");
+
+			if ($response2["success"]) {
+				return array(
+					"success" => true,
+					"message" => ""
+				);
+			}
+
+		} else {
+			return array(
+				"success" => false,
+				"message" => "There was a problem copying the Data Set: " . $response["errorMessage"]
+			);
+		}
+	}
 
 	/**
 	 * Used (currently) in the installation script. Note: this function relies on the settings file having

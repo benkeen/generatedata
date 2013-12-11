@@ -6,6 +6,10 @@ This is the repo for the standalone, downloadable version of [generatedata.com](
 
 Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting the most recent tag: https://github.com/benkeen/generatedata/releases
 
+## Requirements
+- PHP 5.3 or later
+- MySQL 4.1.3 or later
+
 ## How to Install / Documentation
 
 For the installation instructions, user documentation and developer documentation, check out:
