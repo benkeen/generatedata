@@ -349,3 +349,8 @@ a.gdDisabledLink {
 	padding: 4px 4px 4px 8px; 
 	display: inline-block;
 }
+
+/* Fix for https://github.com/benkeen/generatedata/issues/171 */
+.search-field input {
+	min-width: 150px;
+}
