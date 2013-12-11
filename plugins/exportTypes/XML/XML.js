@@ -155,7 +155,7 @@ define([
 	 * "Node Name" rather than the default "Column Title".
 	 */
 	var _resultTypeChanged = function(msg) {
-		if (msg.newExportType == "XML") {
+		if (msg.newExportType === "XML") {
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
 		}
 	};
@@ -170,7 +170,7 @@ define([
 			width: dimensions.dialogWidth,
 			height: dimensions.dialogHeight,
 			open: function() {
-				$("#etXMLCustomContent .CodeMirror-scroll").css({
+				$("#etXMLCustomContent .CodeMirror, #etXMLCustomContent .CodeMirror-scroll").css({
 					width: dimensions.contentWidth,
 					height: dimensions.contentHeight
 				});
