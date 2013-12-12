@@ -31,6 +31,7 @@ This script is freely available under the GPL 3 license. See license.txt in the 
 
 In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [Manu Ullas](https://github.com/unullmass) - compression option for downloads (3.0.9)
 - Joeri Noort - IBAN numbers (3.0.8)
 - [Michel Roca](https://github.com/mRoca) - Full and correct French translation (3.0.7)
 - Marco Corona - LDIF Export Type added (3.0.7)
@@ -40,6 +41,12 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.0.9 - Dec 11, 2013
+- Compression option added to reduce download sizes, courtesy of [Manu Ullas](https://github.com/unullmass) - thanks!
+- You can now make copies of Data Sets, via the main dialog window. Just check a single row and click "Copy Data Set" button.
+- CodeMirror updated to v3.2.0
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=9&page=1&state=closed
 
 3.0.8 - Oct 28, 2013
 - International Bank Numbers - thanks, Joeri Noort!

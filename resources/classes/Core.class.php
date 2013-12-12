@@ -31,8 +31,8 @@ class Core {
 	private static $useMinifiedResources = false;
 
 	// non-overridable settings
-	private static $version = "3.0.8";
-	private static $releaseDate = "2013-10-27";
+	private static $version = "3.0.9";
+	private static $releaseDate = "2013-12-11";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
@@ -80,7 +80,7 @@ class Core {
 	/**
 	 * @var CountryPlugin
 	 */
-	public static $countryPlugins; // TODO why plural?
+	public static $countryPlugins;
 	public static $allowThemes = false;
 
 
