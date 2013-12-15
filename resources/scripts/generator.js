@@ -169,6 +169,7 @@ define([
 		}
 	};
 
+
 	var _onClickNumRowsField = function() {
 		if (!_isLoggedIn) {
 			_showPermissionDeniedDialog(L.cannot_change_num_rows);
@@ -262,6 +263,7 @@ define([
 		// update the Export Types section
 		_selectExportTypeTab(json.selectedExportType, true);
 		manager.loadExportType(json.selectedExportType, json.exportTypes);
+
 
 		// now populate the rows. Do everything that we can: create the rows, populate the titles & select
 		// the data type. The remaining fields are custom to the data type, so we leave them to their
@@ -555,6 +557,7 @@ define([
 		} else {
 			_clearForm(opts.numRows);
 		}
+
 	};
 
 	var _clearForm = function(numDefaultRows) {

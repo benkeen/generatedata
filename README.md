@@ -44,6 +44,7 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 3.0.9 - Dec 11, 2013
 - Compression option added to reduce download sizes, courtesy of [Manu Ullas](https://github.com/unullmass) - thanks!
+- New credit card Data Type, thanks to [rsicher1](https://github.com/rsicher1)
 - You can now make copies of Data Sets, via the main dialog window. Just check a single row and click "Copy Data Set" button.
 - CodeMirror updated to v3.2.0
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=9&page=1&state=closed
