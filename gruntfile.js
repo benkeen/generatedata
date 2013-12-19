@@ -74,6 +74,25 @@ module.exports = function(grunt) {
 					}
 				}
 			}
+		},
+
+		search: {
+			short_tags: {
+				files: {
+					src: [
+						"resources/classes/**/*.php",
+						"plugins/**/*.php",
+						"*.php"
+					]
+				},
+				options: {
+					searchString: /(<\?[^p])|(<\?$)/,
+					logFile: "cache/short_tags.json",
+					logFormat: "json",
+					outputExaminedFiles: true,
+					failOnMatch: true
+				}
+			}
 		}
 	};
 
@@ -84,6 +103,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-md5');
 	grunt.loadNpmTasks('grunt-template');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-search');
 
 	/**
 	 * The default - and only - Grunt task simply recreates all the bundled resources. It doesn't alter the actual
