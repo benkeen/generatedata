@@ -43,6 +43,9 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
+3.1.0 - Dec 19, 2013
+- Bug fix for accidental short-tags that were introduced in earlier code
+
 3.0.9 - Dec 11, 2013
 - Compression option added to reduce download sizes, courtesy of [Manu Ullas](https://github.com/unullmass) - thanks!
 - New credit card Data Type, thanks to [rsicher1](https://github.com/rsicher1)
