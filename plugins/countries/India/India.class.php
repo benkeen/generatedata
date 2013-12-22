@@ -23,8 +23,7 @@ class Country_India extends CountryPlugin {
  		"phoneFormat" => array(
 			"displayFormats" => array(
 				"0xxxxxxxxxx",
-				"+91 ",
-				"04xx xxx xxx"
+				"+91 xxxxxxxxxx"
 			)
 		)
 	);
@@ -50,7 +49,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "arunachal_pradesh",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Itanagar"
 			)
 		),
 		array(
@@ -59,7 +58,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "assam",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Guwahati","Dibrugarh","Silchar","Nagaon",
 			)
 		),
 		array(
@@ -68,7 +67,8 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "bihar",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Patna","Gaya","Bhagalpur","Muzaffarpur","Darbhanga","Bihar Sharif",
+				"Arrah","Katihar","Munger","Chapra","Sasaram","Dehri","Bettiah"
 			)
 		),
 		array(
@@ -77,7 +77,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "chhattisgarh",
 			"weight" => 1,
 			"cities" => array(
-				
+				"name","Raipur","Bhilai","Bilaspur","Durg","Raj Nandgaon","Korba","Raigarh"
 			)
 		),
 		array(
@@ -86,7 +86,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "goa",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Panjim"
 			)
 		),
 		array(
@@ -95,7 +95,9 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "gujarat",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Ahmedabad","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar","Nadiad",
+				"Bharuch","Junagadh","Navsari","Gandhinagar","Veraval","Porbandar","Anand",
+				"Surendranagar","Gandhidham","Bhuj","Godhra","Patan","Morvi","Vejalpur"
 			)
 		),
 		array(
@@ -104,7 +106,8 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "haryana",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Ambala","Ambala Sadar","Bhiwani","Faridabad","Gurgaon","Hisar","Karnal",
+				"Panipat","Rohtak","Sirsa","Sonipat","Yamuna Nagar"
 			)
 		),
 		array(
@@ -113,7 +116,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "himachal_pradesh",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Shimla"
 			)
 		),
 		array(
@@ -122,7 +125,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "jammu_and_kashmir",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Jammu", "Srinagar"
 			)
 		),
 		array(
@@ -131,7 +134,8 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "jharkhand",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Bokaro Steel City","Dhanbad","Hazaribag","Jamshedpur","Mango","Purnea",
+				"Purulia","Ranchi"
 			)
 		),
 		array(
@@ -140,7 +144,9 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "karnataka",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Bangalore","Belgaum","Bellary","Bidar","Bijapur","Davangere","Gadag Betigeri",
+				"Gulbarga","Hassan","Hospet","Hubli","Mandya","Mangalore","Mysore","Raichur",
+				"Shimoga","Timkur"
 			)
 		),
 		array(
@@ -149,7 +155,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "kerala",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Allappuzha","Kozhikode","Cochin","Kollam","Palakkad","Thalassery","Trivandrum"
 			)
 		),
 		array(
@@ -158,7 +164,9 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "madhya_pradesh",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Bhind","Bhopal","Burhanpur","Chhindwara","Damoh","Dewas","Guna","Gwalior",
+				"Indore","Jabalpur","Khandwa","Mandasor","Morena","Murwara","Ratlam","Rewa",
+				"Sagar","Satna","Shivapuri","Ujjain","Vidisha"
 			)
 		),
 		array(
@@ -167,7 +175,11 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "maharastra",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Achalpur","Ahmadnagar","Akola","Amravati","Bhir","Bhiwandi","Bhusawal",
+				"Chandrapur","Dhule","Gondiya","Ichalkaranji","Jalgaon","Jalna","Kalyan",
+				"Kolhapur","Latur","Malegaon","Mira Bhayandar","Miraj","Mumbai","Nagpur",
+				"Nanded","Nashik","New Bombay","Parbhani","Pimpri-Chinchwad","Pune","Sangli",
+				"Satara","Aurangabad","Solapur","Thane","Ulhasnagar","Wardha","Yeotmal"
 			)
 		),
 		array(
@@ -176,7 +188,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "manipur",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Imphal"
 			)
 		),
 		array(
@@ -185,7 +197,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "meghalaya",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Shillong"
 			)
 		),
 		array(
@@ -194,7 +206,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "mizoram",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Aizwal"
 			)
 		),
 		array(
@@ -203,7 +215,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "nagaland",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Kohima"
 			)
 		),
 		array(
@@ -212,7 +224,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "odisha",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Bhubaneswar","Brahmapur","Cuttack","Puri","Raurkela","Raurkela Civil Township","Sambalpur"
 			)
 		),
 		array(
@@ -221,7 +233,13 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "punjab",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Abohar","Ahmadpur East","Amritsar","Bahawalnagar","Bahawalpur","Bhatinda","Chiniot",
+				"Chishtian Mandi","Daska","Dera Ghazi Khan","Faisalabad","Gojra","Gujranwala","Gujrat",
+				"Hafizabad","Hoshiarpur","Jalandhar (Jullundur)","Jaranwala","Jhang","Jhelum","Kamalia",
+				"Kamoke","Kasur","Khanewal","Khanpur","Lahore","Ludhiana","Mandi Bahauddin","Mandi Burewala",
+				"Moga","Multan","Muridke","Muzaffargarh","Okara","Pak Pattan","Pathankot","Patiala",
+				"Rahim Yar Khan","Rawalpindi","Sadiqabad","Sahiwal","Sargodha","Sheikhupura","Sialkot",
+				"Vihari","Wah","Wazirabad"
 			)
 		),
 		array(
@@ -230,7 +248,8 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "rajasthan",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Ajmer","Alwar","Beawar","Bharatpur","Bhilwara","Bikaner","Ganganagar",
+				"Jaipur","Jodhpur","Kota","Pali","Sikar","Tonk","Udaipur"	
 			)
 		),
 		array(
@@ -239,7 +258,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "sikkim",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Gangtok"
 			)
 		),
 		array(
@@ -248,7 +267,11 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "Tamil Nadu",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Alandur","Ambattur","Avadi","Chennai","Coimbatore","Cuddalore","Dindigul","Erode",
+				"Kanchipuram","Kumbakonam","Madurai","Nagarcoil","Neyveli","Palayankottai","Pallavaram",
+				"Pudukkottai","Rajapalaiyam","Salem","Tambaram","Thanjavur","Tiruchirapalli",
+				"Tirunelveli","Tiruppur","Tiruvannamalai","Tiruvarur","Tiruvottiyur","Tuticorin",
+				"Valparai","Vellore"
 			)
 		),
 		array(
@@ -257,7 +280,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "tripura",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Agartala"	
 			)
 		),
 		array(
@@ -266,7 +289,13 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "uttar_pradesh",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Agra","Aligarh","Allahabad","Amroha","Bahraich","Banda","Bareilly","Budaun",
+				"Bulandshahr","Etawah","Faizabad","Farrukhabad-cum-Fatehgarh","Fatehpur","Firozabad",
+				"Ghaziabad","Gonda","Gorakhpur","Hapur","Hathras","Jaunpur","Jhansi","Kanpur",
+				"Kanpur Cantonment","Lucknow","Mathura","Maunath Bhanjan","Meerut",
+				"Meerut Cantonment","Mirzapur-cum-Vindhyachal","Modinagar","Moradabad",
+				"Muzaffarnagar","Noida","Orai","Pilibhit","Rae Bareli","Rampur","Saharanpur",
+				"Sambhal","Shahjahanpur","Sitapur","Unnao","Varanasi"
 			)
 		),
 		array(
@@ -275,7 +304,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "uttarakhand",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Dehradun", "Haridwar"
 			)
 		),
 		array(
@@ -284,7 +313,14 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "west_bengal",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Asansol","Ashoknagar-Kalyangarh","Baidyabati","Bally","Balurghat","Bankura",
+				"Bansberia","Barahanagar","Barasat","Barddhaman","Barrackpur","Basirhat",
+				"Berhampore","Bhatpara","Burnpur","Kolkata","Champdani","Chandannagar","Dabgram",
+				"Durgapur","Habra","Haldia","Halisahar","Howrah","Hugli-Chinsurah","Ingraj Bazar",
+				"Kamarhati","Kanchrapara","Kharagpur","Krishnanagar","Kulti-Barakar","Midnapore",
+				"Naihati","Navadwip","North Barrackpur","North Dum Dum","Panihati","Raiganj",
+				"Rishra","Santipur","Serampore","Siliguri","South Dum Dum","Titagarh","Uluberia",
+				"Uttarpara-Kotrung"
 			)
 		),
 		//Union Territories
@@ -294,7 +330,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "andaman_and_nicobar_islands",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Port Blair"
 			)
 		),
 		array(
@@ -303,7 +339,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "Chandigarh",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Chandigarh"
 			)
 		),
 		array(
@@ -312,7 +348,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "dadra_and_nagar_haveli",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Silvassa"
 			)
 		),
 		array(
@@ -321,7 +357,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "Daman and Diu",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Daman"
 			)
 		),
 		array(
@@ -330,7 +366,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "lakshadweep",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Kavaratti"
 			)
 		),
 		array(
@@ -339,7 +375,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "delhi",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Delhi"
 			)
 		),
 		array(
@@ -348,7 +384,7 @@ class Country_India extends CountryPlugin {
 			"regionSlug" => "pondicherry",
 			"weight" => 1,
 			"cities" => array(
-				
+				"Pondicherry"
 			)
 		)
 	);
