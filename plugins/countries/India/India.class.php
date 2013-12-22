@@ -9,7 +9,7 @@
 class Country_India extends CountryPlugin {
 	protected $countryName = "India";
 	protected $countrySlug = "india";
-	protected $regionNames = "Indian States / Union Territories";
+	protected $regionNames = "Indian States & UT"; //Union Territories
 	protected $continent = "asia";
 
 	protected $extendedData = array(
@@ -22,8 +22,10 @@ class Country_India extends CountryPlugin {
 		),
  		"phoneFormat" => array(
 			"displayFormats" => array(
-				"0xxxxxxxxxx",
-				"+91 xxxxxxxxxx"
+				"+91 xxxxxxxxxx",
+				"0xx-xxxxxxxx",
+				"0xxx-xxxxxxx",
+				"0xxxx-xxxxxx",
 			)
 		)
 	);
@@ -33,7 +35,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Andhra Pradesh",
 			"regionShort" => "AP",
 			"regionSlug" => "andhra_pradesh",
-			"weight" => 1,
+			"weight" => 1314,
 			"cities" => array(
 				"Adoni","Anantapur","Bhimavaram","Chittoor","Cuddapah","Eluru","Gudivada",
 				"Guntakal","Guntur","Hindupur","Hyderabad","Kakinada","Karimnagar","Khammam",
@@ -47,7 +49,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Arunachal Pradesh",
 			"regionShort" => "AR",
 			"regionSlug" => "arunachal_pradesh",
-			"weight" => 1,
+			"weight" => 21,
 			"cities" => array(
 				"Itanagar"
 			)
@@ -56,7 +58,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Assam",
 			"regionShort" => "AS",
 			"regionSlug" => "assam",
-			"weight" => 1,
+			"weight" => 484,
 			"cities" => array(
 				"Guwahati","Dibrugarh","Silchar","Nagaon",
 			)
@@ -65,7 +67,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Bihar",
 			"regionShort" => "BR",
 			"regionSlug" => "bihar",
-			"weight" => 1,
+			"weight" => 1611,
 			"cities" => array(
 				"Patna","Gaya","Bhagalpur","Muzaffarpur","Darbhanga","Bihar Sharif",
 				"Arrah","Katihar","Munger","Chapra","Sasaram","Dehri","Bettiah"
@@ -75,16 +77,16 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Chhattisgarh",
 			"regionShort" => "CT",
 			"regionSlug" => "chhattisgarh",
-			"weight" => 1,
+			"weight" => 396,
 			"cities" => array(
-				"name","Raipur","Bhilai","Bilaspur","Durg","Raj Nandgaon","Korba","Raigarh"
+				"Raipur","Bhilai","Bilaspur","Durg","Raj Nandgaon","Korba","Raigarh"
 			)
 		),
 		array(
 			"regionName" => "Goa",
 			"regionShort" => "GA",
 			"regionSlug" => "goa",
-			"weight" => 1,
+			"weight" => 23,
 			"cities" => array(
 				"Panjim"
 			)
@@ -93,7 +95,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Gujarat",
 			"regionShort" => "GJ",
 			"regionSlug" => "gujarat",
-			"weight" => 1,
+			"weight" => 937,
 			"cities" => array(
 				"Ahmedabad","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar","Nadiad",
 				"Bharuch","Junagadh","Navsari","Gandhinagar","Veraval","Porbandar","Anand",
@@ -104,7 +106,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Haryana",
 			"regionShort" => "HR",
 			"regionSlug" => "haryana",
-			"weight" => 1,
+			"weight" => 394,
 			"cities" => array(
 				"Ambala","Ambala Sadar","Bhiwani","Faridabad","Gurgaon","Hisar","Karnal",
 				"Panipat","Rohtak","Sirsa","Sonipat","Yamuna Nagar"
@@ -114,7 +116,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Himachal Pradesh",
 			"regionShort" => "HP",
 			"regionSlug" => "himachal_pradesh",
-			"weight" => 1,
+			"weight" => 106,
 			"cities" => array(
 				"Shimla"
 			)
@@ -123,7 +125,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Jammu and Kashmir",
 			"regionShort" => "JK",
 			"regionSlug" => "jammu_and_kashmir",
-			"weight" => 1,
+			"weight" => 195,
 			"cities" => array(
 				"Jammu", "Srinagar"
 			)
@@ -132,7 +134,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Jharkhand",
 			"regionShort" => "JH",
 			"regionSlug" => "jharkhand",
-			"weight" => 1,
+			"weight" => 512,
 			"cities" => array(
 				"Bokaro Steel City","Dhanbad","Hazaribag","Jamshedpur","Mango","Purnea",
 				"Purulia","Ranchi"
@@ -142,7 +144,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Karnataka",
 			"regionShort" => "KA",
 			"regionSlug" => "karnataka",
-			"weight" => 1,
+			"weight" => 949,
 			"cities" => array(
 				"Bangalore","Belgaum","Bellary","Bidar","Bijapur","Davangere","Gadag Betigeri",
 				"Gulbarga","Hassan","Hospet","Hubli","Mandya","Mangalore","Mysore","Raichur",
@@ -153,7 +155,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Kerala",
 			"regionShort" => "KL",
 			"regionSlug" => "kerala",
-			"weight" => 1,
+			"weight" => 518,
 			"cities" => array(
 				"Allappuzha","Kozhikode","Cochin","Kollam","Palakkad","Thalassery","Trivandrum"
 			)
@@ -162,7 +164,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Madhya Pradesh",
 			"regionShort" => "MP",
 			"regionSlug" => "madhya_pradesh",
-			"weight" => 1,
+			"weight" => 1127,
 			"cities" => array(
 				"Bhind","Bhopal","Burhanpur","Chhindwara","Damoh","Dewas","Guna","Gwalior",
 				"Indore","Jabalpur","Khandwa","Mandasor","Morena","Murwara","Ratlam","Rewa",
@@ -173,7 +175,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Maharastra",
 			"regionShort" => "MH",
 			"regionSlug" => "maharastra",
-			"weight" => 1,
+			"weight" => 1744,
 			"cities" => array(
 				"Achalpur","Ahmadnagar","Akola","Amravati","Bhir","Bhiwandi","Bhusawal",
 				"Chandrapur","Dhule","Gondiya","Ichalkaranji","Jalgaon","Jalna","Kalyan",
@@ -186,7 +188,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Manipur",
 			"regionShort" => "MN",
 			"regionSlug" => "manipur",
-			"weight" => 1,
+			"weight" => 42,
 			"cities" => array(
 				"Imphal"
 			)
@@ -195,7 +197,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Meghalaya",
 			"regionShort" => "ML",
 			"regionSlug" => "meghalaya",
-			"weight" => 1,
+			"weight" => 46,
 			"cities" => array(
 				"Shillong"
 			)
@@ -204,7 +206,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Mizoram",
 			"regionShort" => "MZ",
 			"regionSlug" => "mizoram",
-			"weight" => 1,
+			"weight" => 17,
 			"cities" => array(
 				"Aizwal"
 			)
@@ -213,7 +215,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Nagaland",
 			"regionShort" => "NL",
 			"regionSlug" => "nagaland",
-			"weight" => 1,
+			"weight" => 31,
 			"cities" => array(
 				"Kohima"
 			)
@@ -222,7 +224,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Odisha",
 			"regionShort" => "OR",
 			"regionSlug" => "odisha",
-			"weight" => 1,
+			"weight" => 651,
 			"cities" => array(
 				"Bhubaneswar","Brahmapur","Cuttack","Puri","Raurkela","Raurkela Civil Township","Sambalpur"
 			)
@@ -231,7 +233,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Punjab",
 			"regionShort" => "PB",
 			"regionSlug" => "punjab",
-			"weight" => 1,
+			"weight" => 430,
 			"cities" => array(
 				"Abohar","Ahmadpur East","Amritsar","Bahawalnagar","Bahawalpur","Bhatinda","Chiniot",
 				"Chishtian Mandi","Daska","Dera Ghazi Khan","Faisalabad","Gojra","Gujranwala","Gujrat",
@@ -246,7 +248,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Rajasthan",
 			"regionShort" => "RJ",
 			"regionSlug" => "rajasthan",
-			"weight" => 1,
+			"weight" => 1065,
 			"cities" => array(
 				"Ajmer","Alwar","Beawar","Bharatpur","Bhilwara","Bikaner","Ganganagar",
 				"Jaipur","Jodhpur","Kota","Pali","Sikar","Tonk","Udaipur"	
@@ -256,7 +258,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Sikkim",
 			"regionShort" => "SK",
 			"regionSlug" => "sikkim",
-			"weight" => 1,
+			"weight" => 9,
 			"cities" => array(
 				"Gangtok"
 			)
@@ -265,7 +267,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Tamil Nadu",
 			"regionShort" => "TN",
 			"regionSlug" => "Tamil Nadu",
-			"weight" => 1,
+			"weight" => 1120,
 			"cities" => array(
 				"Alandur","Ambattur","Avadi","Chennai","Coimbatore","Cuddalore","Dindigul","Erode",
 				"Kanchipuram","Kumbakonam","Madurai","Nagarcoil","Neyveli","Palayankottai","Pallavaram",
@@ -278,7 +280,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Tripura",
 			"regionShort" => "TR",
 			"regionSlug" => "tripura",
-			"weight" => 1,
+			"weight" => 57,
 			"cities" => array(
 				"Agartala"	
 			)
@@ -287,7 +289,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Uttar Pradesh",
 			"regionShort" => "UP",
 			"regionSlug" => "uttar_pradesh",
-			"weight" => 1,
+			"weight" => 3098,
 			"cities" => array(
 				"Agra","Aligarh","Allahabad","Amroha","Bahraich","Banda","Bareilly","Budaun",
 				"Bulandshahr","Etawah","Faizabad","Farrukhabad-cum-Fatehgarh","Fatehpur","Firozabad",
@@ -302,7 +304,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Uttarakhand",
 			"regionShort" => "UT",
 			"regionSlug" => "uttarakhand",
-			"weight" => 1,
+			"weight" => 157,
 			"cities" => array(
 				"Dehradun", "Haridwar"
 			)
@@ -311,7 +313,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "West Bengal",
 			"regionShort" => "WB",
 			"regionSlug" => "west_bengal",
-			"weight" => 1,
+			"weight" => 1418,
 			"cities" => array(
 				"Asansol","Ashoknagar-Kalyangarh","Baidyabati","Bally","Balurghat","Bankura",
 				"Bansberia","Barahanagar","Barasat","Barddhaman","Barrackpur","Basirhat",
@@ -328,7 +330,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Andaman and Nicobar Islands",
 			"regionShort" => "AN",
 			"regionSlug" => "andaman_and_nicobar_islands",
-			"weight" => 1,
+			"weight" => 6,
 			"cities" => array(
 				"Port Blair"
 			)
@@ -337,7 +339,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Chandigarh",
 			"regionShort" => "CH",
 			"regionSlug" => "Chandigarh",
-			"weight" => 1,
+			"weight" => 16,
 			"cities" => array(
 				"Chandigarh"
 			)
@@ -346,7 +348,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Dadra and Nagar Haveli",
 			"regionShort" => "DN",
 			"regionSlug" => "dadra_and_nagar_haveli",
-			"weight" => 1,
+			"weight" => 5,
 			"cities" => array(
 				"Silvassa"
 			)
@@ -355,7 +357,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Daman and Diu",
 			"regionShort" => "DD",
 			"regionSlug" => "Daman and Diu",
-			"weight" => 1,
+			"weight" => 4,
 			"cities" => array(
 				"Daman"
 			)
@@ -373,7 +375,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Delhi",
 			"regionShort" => "DL",
 			"regionSlug" => "delhi",
-			"weight" => 1,
+			"weight" => 260,
 			"cities" => array(
 				"Delhi"
 			)
@@ -382,7 +384,7 @@ class Country_India extends CountryPlugin {
 			"regionName" => "Pondicherry",
 			"regionShort" => "PY",
 			"regionSlug" => "pondicherry",
-			"weight" => 1,
+			"weight" => 19,
 			"cities" => array(
 				"Pondicherry"
 			)
