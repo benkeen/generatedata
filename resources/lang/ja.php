@@ -2,7 +2,7 @@
 
 
 $L = array();
-$L["ENABLED"] = true;
+$L["ENABLED"] = false;
 
 // Core language strings
 $L["language"] = "日本語";
