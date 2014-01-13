@@ -43,8 +43,8 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-<!--
 Next release: v3.1.1 *(under development)*
+<!--
 - review fixes by apmuthu to the Excel download & SQL (“INSERT IGNORE”) data types
 - confirm Japanese and Tamil translations
 - add new Credit Card data type

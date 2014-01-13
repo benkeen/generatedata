@@ -286,3 +286,6 @@ $L["zip_q"] = "Zip?";
 $L["please_enter_data_set_name"] = "Please enter the name of the new Data Set.";
 $L["delete_1_data_set"] = "Delete 1 Data Set";
 $L["delete_N_data_sets"] = "Delete %1 Data Sets";
+
+// new in 3.1.1
+$L["credit_card_data"] = "Credit Card Data";
