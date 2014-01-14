@@ -15,7 +15,6 @@ class DataType_PAN extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("PAN.js");
 
-
 	private $visaPrefixList = array("4539", "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4");
 	private $visaelectronPrefixList = array("4026", "417500", "4508", "4844", "4913", "4917");
 	private $mastercardPrefixList = array("51", "52", "53", "54", "55");
@@ -31,21 +30,22 @@ class DataType_PAN extends DataTypePlugin {
 	private $switchPrefixList = array("4903", "4905", "4911", "4936", "564182", "633110", "6333", "6759");
 	private $laserPrefixList = array("6304", "6706", "6771", "6709");
 
-//for ($dpl=622126; $dpl <= 622925; $dpl++){
-//	$discoverPrefixList[] = $dpl;
-//}
 
-//JCB
-//for($jpl=3528; $jpl <= 3589; $jpl++){
-//	$jcb16PrefixList[] = $jpl;
-//}
+	public function __construct($runtimeContext) {
+		for ($dpl=622126; $dpl<=622925; $dpl++) {
+			$this->discoverPrefixList[] = $dpl;
+		}
 
+		for ($jpl=3528; $jpl<=3589; $jpl++) {
+			$this->jcb16PrefixList[] = $jpl;
+		}
+		parent::__construct($runtimeContext);
+	}
 
 	public function generate($generator, $generationContextData) {
 
-
-		//For random card brand give card length and card format for $str array to proceed further
-		If($str["cc_brand"] == "rand_card"){
+		// for random card brand give card length and card format for $str array to proceed further
+		if ($str["cc_brand"] == "rand_card"){
 			$rand_card_brand = array_rand($str["cc_random_card"]);
 			$str["cc_random_card"] = $str["cc_random_card"][$rand_card_brand];
 
@@ -187,6 +187,7 @@ class DataType_PAN extends DataTypePlugin {
 
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
+
 		$html =<<< END
 	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
 		<option value="">{$L["please_select"]}</option>
@@ -211,19 +212,19 @@ END;
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END
-<div id="Card_digit_\$ROW\$" style="display:inline;">
+<span id="dtOptionPAN_cardDigit_%ROW%">
 	{$this->L["digits"]}
-	<input type="text" name="digit_\$ROW\$" id="digit_\$ROW\$" style="width: 60px" readonly="readonly"/>
-</div>
+	<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style="width: 60px" readonly="readonly"/>
+</span>
 
-<div id="Card_seperator_\$ROW\$" style="display:inline;">
-	{$this->L["seperators"]}
-	<input type="text" name="sep_\$ROW\$" id="sep_\$ROW\$" style="width: 78px" value="C|A|P|D|H|S" title="C : Colon (:)\nA : Asterik (*)\nP : Pipe (|)\nD : Dot (.)\nH : Hyphen (-)\nS : Space ( )"/>
-</div>
+<span id="dtOptionPAN_cardSeparator_%ROW%">
+	{$this->L["separators"]}
+	<input type="text" name="sep_%ROW%" id="sep_%ROW%" style="width: 78px" value="C|A|P|D|H|S" title="C : Colon (:)\nA : Asterik (*)\nP : Pipe (|)\nD : Dot (.)\nH : Hyphen (-)\nS : Space ( )" />
+</span>
 
-<div id="Card_format_\$ROW\$">
+<span id="dtOptionPAN_cardFormat_%ROW%">
 	{$this->L["ccformats"]}
-	<textarea name="option_\$ROW\$" id="option_\$ROW\$" title="{$this->L["format_title"]}" style="height: 100px; width: 260px"></textarea>
+	<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" title="{$this->L["format_title"]}" style="height: 100px; width: 260px"></textarea>
 </div>
 
 <div id="Card_rand_select_\$ROW\$" style="display:none;">
@@ -438,7 +439,7 @@ EOF;
 		}
 		else{
 
-			//----------------From all user input seperators pick a random one--------------------
+			//----------------From all user input separators pick a random one--------------------
 			$get_sep = explode("|", $user_sel_seperator);
 			if (count($get_sep) >= 1)
 				$chosen_sep = $get_sep[rand(0, count($get_sep)-1)];

@@ -58,91 +58,91 @@ define([
 		*/
 	};
 
+
 	var _exampleChange = function(msg) {
 		var rowID = msg.rowID;
 		var value = msg.value;
+
+		var $digit         = $("#dtOptionsPAN_digit_" + rowID);
+		var $digitLength   = $("#dtOptionPAN_digit_" + rowID);
+		var $cardDigit     = $("#dtOptionPAN_cardDigit_" + rowID);
+		var $cardSeparator = $("#dtOptionPAN_cardSeparator_" + rowID);
+		var $cardFormat    = $("#dtOptionPAN_cardFormat_" + rowID);
+		var $option        = $("#dtOption_" + rowID);
+
+		$("#Card_rand_select_" + rowID).hide();
+		var formats = [];
 
 		switch (value) {
 			case "mastercard":
 			case "discover":
 			case "visa_electron":
-				$("#Card_digit_" + rowID).show();
-				$("#Card_format_" + rowID).show("blind", null, 500);
-				$("#Card_rand_select_" + rowID).hide();
-				$("#Card_digit_" + rowID).css("display", "inline");
-				$("#digit_" + rowID).val('16');
-				$("#option_" + rowID).val("XXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX");
+				$cardDigit.show();
+				$cardFormat.show("blind", null, 500);
+				$digitLength.val("16");
+				var formats = ["XXXXXXXXXXXXXXXX", "XXXX XXXX XXXX XXXX", "XXXXXX XXXXXX XXXX", "XXX XXXXX XXXXX XXX", "XXXXXX XXXXXXXXXX"];
+				$option.val(formats.join("\n"));
 				break;
 
 			case "visa":
-				$("#Card_digit_" + rowID).show();
-				$("#Card_format_" +rowID).show("blind", null, 500);
-				$("#Card_rand_select_" + rowID).hide();
-				$("#Card_digit_" + rowID).css("display", "inline");
-				$("#digit_" + rowID).val('13,16');
-				$("#option_" + rowID).val('XXXXXXXXXXXXX\\nXXXX XXX XX XXXX\\nXXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX');
+				$cardDigit.show();
+				$cardFormat.show("blind", null, 500);
+				$digitLength.val('13,16');
+				formats = ["XXXXXXXXXXXXX", "XXXX XXX XX XXXX", "XXXXXXXXXXXXXXXX", "XXXX XXXX XXXX XXXX", "XXXXXX XXXXXX XXXX", "XXX XXXXX XXXXX XXX", "XXXXXX XXXXXXXXXX"];
+				$option.val(formats.join("\n"));
 				break;
 
 			case "amex":
 			case "enroute":
-				$("#Card_digit_" + rowID).show();
-				$("#Card_format_" + rowID).show("blind", null, 500);
-				$("#Card_rand_select_" + rowID).hide();
-				$("#Card_digit_" + rowID).css("display", "inline");
-				$("#digit_" + rowID).val('15');
-				$('#option_\$ROW\$').val("XXXXXXXXXXXXXXX\\nXXXX XXXXXX XXXXX");
+				$cardDigit.show();
+				$cardFormat.show("blind", null, 500);
+				$digitLength.val('15');
+				formats = ["XXXXXXXXXXXXXXX", "XXXX XXXXXX XXXXX"];
+				$option.val(formats.join("\n"));
 				break;
 
 			case "carte_blanche":
 			case "diners_club_international":
-				$("#Card_digit_" + rowID).show();
-				$("#Card_format_" + rowID).show("blind", null, 500);
-				$("#Card_rand_select_" + rowID).hide();
-				$("#Card_digit_" + rowID).css("display", "inline");
-				$('#digit_\$ROW\$').val('14');
-				$('#option_\$ROW\$').val("XXXXXXXXXXXXXX\\nXXXX XXXXXX XXXX");
+				$cardDigit.show();
+				$cardFormat.show("blind", null, 500);
+				$digitLength.val('14');
+				formats = ["XXXXXXXXXXXXXX", "XXXX XXXXXX XXXX"];
+				$option.val(formats.join("\n"));
 				break;
 
 			case "jcb":
-				$("#Card_digit_" + rowID).show();
-				$("#Card_format_" + rowID).show("blind", null, 500);
-				$("#Card_rand_select_" + rowID).hide();
-				$("#Card_digit_" + rowID).css("display", "inline");
-				$('#digit_\$ROW\$').val('15,16')
-				$('#option_\$ROW\$').val("XXXXXXXXXXXXXXX\\nXXXX XXXXXX XXXXX\\nXXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX");
+				$cardDigit.show();
+				$cardFormat.show("blind", null, 500);
+				$digitLength.val("15,16");
+				formats = ["XXXXXXXXXXXXXXX", "XXXX XXXXXX XXXXX", "XXXXXXXXXXXXXXXX", "XXXX XXXX XXXX XXXX", "XXXXXX XXXXXX XXXX", "XXX XXXXX XXXXX XXX", "XXXXXX XXXXXXXXXX"];
+				$option.val(formats.join("\n"));
 				break;
 
 			case "maestro":
-				$("#Card_digit_" + rowID).show();
-				$("#Card_format_" + rowID).show("blind", null, 500);
-				$("#Card_rand_select_" + rowID).hide();
-				$("#Card_digit_" + rowID).css("display", "inline");
-				$('#digit_\$ROW\$').val('12-19')
-				$('#option_\$ROW\$').val("XXXXXXXXXXXX\\nXXXXXXXXXXXXX\\nXXXX XXX XX XXXX\\nXXXXXXXXXXXXXX\\nXXXX XXXXXX XXXX\\nXXXXXXXXXXXXXXX\\nXXXX XXXXXX XXXXX\\nXXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX\\nXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXXX\\nXXXXXX XX XXXX XXXX XXX");
+				$cardDigit.show();
+				$cardFormat.show("blind", null, 500);
+				$digitLength.val('12-19')
+				$option.val("XXXXXXXXXXXX\\nXXXXXXXXXXXXX\\nXXXX XXX XX XXXX\\nXXXXXXXXXXXXXX\\nXXXX XXXXXX XXXX\\nXXXXXXXXXXXXXXX\\nXXXX XXXXXX XXXXX\\nXXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX\\nXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXXX\\nXXXXXX XX XXXX XXXX XXX");
 				break;
 
 			case "solo":
 			case "switch":
-				$("#Card_digit_" + rowID).show();
-				$("#Card_format_" + rowID).show("blind", null, 500);
-				$("#Card_rand_select_" + rowID).hide();
-				$("#Card_digit_" + rowID).css("display", "inline");
-				$('#digit_\$ROW\$').val('16,18,19')
-				$('#option_\$ROW\$').val("XXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX\\nXXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXXX\\nXXXXXX XX XXXX XXXX XXX");
+				$cardDigit.show();
+				$cardFormat.show("blind", null, 500);
+				$digitLength.val('16,18,19');
+				$option.val("XXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX\\nXXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXXX\\nXXXXXX XX XXXX XXXX XXX");
 				break;
 
 			case "laser":
-				$("#Card_digit_" + rowID).show();
-				$("#Card_format_" + rowID).show("blind", null, 500);
-				$("#Card_rand_select_" + rowID).hide();
-				$("#Card_digit_" + rowID).css("display", "inline");
-				$('#digit_\$ROW\$').val('16-19')
-				$('#option_\$ROW\$').val("XXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX\\nXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXXX\\nXXXXXX XX XXXX XXXX XXX");
+				$cardDigit.show();
+				$cardFormat.show("blind", null, 500);
+				$digitLength.val("16-19");
+				$option.val("XXXXXXXXXXXXXXXX\\nXXXX XXXX XXXX XXXX\\nXXXXXX XXXXXX XXXX\\nXXX XXXXX XXXXX XXX\\nXXXXXX XXXXXXXXXX\\nXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXX\\nXXXXXXXXXXXXXXXXXXX\\nXXXXXX XX XXXX XXXX XXX");
 				break;
 
 			case "laser":
-				$("#Card_digit_" + rowID).hide();
-				$("#Card_format_" + rowID).hide("blind", null, 500);
+				$cardDigit.hide();
+				$cardFormat.hide("blind", null, 500);
 				$("#Card_rand_select_" + rowID).show("blind", null, 500);
 				break;
 		}
