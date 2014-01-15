@@ -41,7 +41,7 @@
 
 		$("#etHTMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
 		_codeMirror = CodeMirror.fromTextArea($("#etHTMLCustomSmarty")[0], {
-			mode: "xml",
+			mode: "smartymixed",
 			lineNumbers: true
 		});
 		_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
@@ -65,7 +65,7 @@
 			height: dimensions.dialogHeight,
 			resizable: false,
 			open: function() {
-				$("#etHTMLCustomContent .CodeMirror-scroll").css({
+				$("#etHTMLCustomContent .CodeMirror, #etHTMLCustomContent .CodeMirror-scroll").css({
 					width: dimensions.contentWidth,
 					height: dimensions.contentHeight
 				});

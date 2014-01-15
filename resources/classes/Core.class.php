@@ -31,12 +31,12 @@ class Core {
 	private static $useMinifiedResources = false;
 
 	// non-overridable settings
-	private static $version = "3.0.8";
-	private static $releaseDate = "2013-10-27";
+	private static $version = "3.1.0";
+	private static $releaseDate = "2013-12-19";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
-	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
+	private static $dataTypeGroups = array("human_data", "credit_card_data", "geo", "text", "numeric", "math", "other");
 	private static $continents = array("africa", "asia", "central_america", "europe", "north_america", "oceania", "south_america");
 	private static $isLoggedIn = false;
 
@@ -80,7 +80,7 @@ class Core {
 	/**
 	 * @var CountryPlugin
 	 */
-	public static $countryPlugins; // TODO why plural?
+	public static $countryPlugins;
 	public static $allowThemes = false;
 
 

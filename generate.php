@@ -9,35 +9,36 @@ $response = $gen->generate();
 if ($gen->getExportTarget() == "promptDownload") {
 	header("Cache-Control: private, no-cache, must-revalidate");
 	
-	//check if user selected the zip checkbox and zip
-	if($gen->isPromptDownloadZipped()){
-		$filename=session_id()."_".$response["promptDownloadFilename"];
-		$filepath=$filename;
-		$zippath=$filepath.".zip";
-		if(file_put_contents($filepath,$response["content"])){
-			//now that you've written the file proceed to zip it
+	// check if user opted to zip the generated data
+	if ($gen->isPromptDownloadZipped()) {
+		$randNum = mt_rand(0, 100000000);
+		$fileName = $randNum . "_" . $response["promptDownloadFilename"];
+		$zipPath  = $filePath . ".zip";
+
+		if (file_put_contents($fileName, $response["content"])) {
+
+			// now that we've written the file, zip it up
 			$zip = new ZipArchive();
-			//we'll use the session key of the user to keep it clean. no mixups of datasets. hopefully they won't try this with multiple tabs!
-			$zipfile = $zip->open($zippath,ZipArchive::CREATE);
-			if($zipfile){
-				if ($zip->addFile($filepath,$response["promptDownloadFilename"])){
-					//we've got our zip file now we may set the response header
-					$zip->close();
-					header("Content-type: application/zip"); 
-					header("Content-Disposition: attachment; filename=".$response["promptDownloadFilename"].".zip");
-					readfile($zippath);
-					unlink($zippath);
-					unlink($filepath);
-					//exit sending the zip back
-					exit;
-				}
+			$zipFile = $zip->open($zipPath, ZipArchive::CREATE);
+			if ($zipFile && $zip->addFile($fileName, $response["promptDownloadFilename"])) {
+
+				// we've got our zip file now we may set the response header
+				$zip->close();
+				header("Content-type: application/zip");
+				header("Content-Disposition: attachment; filename=" . $response["promptDownloadFilename"] . ".zip");
+				readfile($zipPath);
+				unlink($zipPath);
+				unlink($fileName);
+				exit;
 			}
 		}
-	}
-	else{//no compression, send the original data back
+
+	// no compression, send the original data back
+	} else {
 		header("Content-Type: {$response["contentTypeHeader"]}");
+
 		if (isset($response["promptDownloadFilename"]) && !empty($response["promptDownloadFilename"])) {
-        		header("Content-Disposition: attachment; filename={$response["promptDownloadFilename"]}");
+			header("Content-Disposition: attachment; filename={$response["promptDownloadFilename"]}");
 		}
 		echo $response["content"];
 	}

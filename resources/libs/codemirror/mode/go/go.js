@@ -1,4 +1,4 @@
-CodeMirror.defineMode("go", function(config, parserConfig) {
+CodeMirror.defineMode("go", function(config) {
   var indentUnit = config.indentUnit;
 
   var keywords = {
@@ -18,11 +18,6 @@ CodeMirror.defineMode("go", function(config, parserConfig) {
     "cap":true, "close":true, "complex":true, "copy":true, "imag":true,
     "len":true, "make":true, "new":true, "panic":true, "print":true,
     "println":true, "real":true, "recover":true
-  };
-
-  var blockKeywords = {
-    "else":true, "for":true, "func":true, "if":true, "interface":true,
-    "select":true, "struct":true, "switch":true
   };
 
   var isOperatorChar = /[+\-*&^%:=<>!|\/]/;
@@ -163,7 +158,10 @@ CodeMirror.defineMode("go", function(config, parserConfig) {
       else return ctx.indented + (closing ? 0 : indentUnit);
     },
 
-    electricChars: "{}:"
+    electricChars: "{}):",
+    blockCommentStart: "/*",
+    blockCommentEnd: "*/",
+    lineComment: "//"
   };
 });
 

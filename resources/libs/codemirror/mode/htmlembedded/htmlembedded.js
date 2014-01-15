@@ -1,12 +1,12 @@
 CodeMirror.defineMode("htmlembedded", function(config, parserConfig) {
-  
+
   //config settings
   var scriptStartRegex = parserConfig.scriptStartRegex || /^<%/i,
       scriptEndRegex = parserConfig.scriptEndRegex || /^%>/i;
-  
+
   //inner modes
   var scriptingMode, htmlMixedMode;
-  
+
   //tokenizer when in html mode
   function htmlDispatch(stream, state) {
       if (stream.match(scriptStartRegex, false)) {
@@ -32,10 +32,10 @@ CodeMirror.defineMode("htmlembedded", function(config, parserConfig) {
     startState: function() {
       scriptingMode = scriptingMode || CodeMirror.getMode(config, parserConfig.scriptingModeSpec);
       htmlMixedMode = htmlMixedMode || CodeMirror.getMode(config, "htmlmixed");
-      return { 
+      return {
           token :  parserConfig.startOpen ? scriptingDispatch : htmlDispatch,
-          htmlState : htmlMixedMode.startState(),
-          scriptState : scriptingMode.startState()
+          htmlState : CodeMirror.startState(htmlMixedMode),
+          scriptState : CodeMirror.startState(scriptingMode)
       };
     },
 
@@ -46,10 +46,10 @@ CodeMirror.defineMode("htmlembedded", function(config, parserConfig) {
     indent: function(state, textAfter) {
       if (state.token == htmlDispatch)
         return htmlMixedMode.indent(state.htmlState, textAfter);
-      else
+      else if (scriptingMode.indent)
         return scriptingMode.indent(state.scriptState, textAfter);
     },
-    
+
     copyState: function(state) {
       return {
        token : state.token,
@@ -57,7 +57,7 @@ CodeMirror.defineMode("htmlembedded", function(config, parserConfig) {
        scriptState : CodeMirror.copyState(scriptingMode, state.scriptState)
       };
     },
-    
+
     electricChars: "/{}:",
 
     innerMode: function(state) {
@@ -70,3 +70,4 @@ CodeMirror.defineMode("htmlembedded", function(config, parserConfig) {
 CodeMirror.defineMIME("application/x-ejs", { name: "htmlembedded", scriptingModeSpec:"javascript"});
 CodeMirror.defineMIME("application/x-aspx", { name: "htmlembedded", scriptingModeSpec:"text/x-csharp"});
 CodeMirror.defineMIME("application/x-jsp", { name: "htmlembedded", scriptingModeSpec:"text/x-java"});
+CodeMirror.defineMIME("application/x-erb", { name: "htmlembedded", scriptingModeSpec:"ruby"});

@@ -128,6 +128,7 @@ define([
 		$("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
 		$("#gdSettingsForm").on("submit", _submitSettingsForm);
 		$("#gdNumRowsToGenerate").on("click", _onClickNumRowsField);
+		$("input[name=gdExportTarget]").on("change", _onChangeExportTarget);
 
 		// icon actions
 		$("#gdSaveBtn").on("click", _onClickSaveButton);
@@ -167,6 +168,7 @@ define([
 			_getPublicDataSet(loadDataSetID);
 		}
 	};
+
 
 	var _onClickNumRowsField = function() {
 		if (!_isLoggedIn) {
@@ -219,6 +221,10 @@ define([
 		}
 	};
 
+	var _onChangeExportTarget = function(e) {
+		_handleZipOption();
+	};
+
 	var _onClickUserAccountLink = function(e) {
 		e.preventDefault();
 		_openMainDialog({ tab: 1 });
@@ -247,7 +253,7 @@ define([
 		$("#gdDataSetName").val(configuration.configuration_name);
 		$("#gdNumRowsToGenerate").val(json.numResults);
 		$("input[name=gdExportTarget]").each(function() {
-			if (this.value == json.exportTarget) {
+			if (this.value === json.exportTarget) {
 				this.checked = true;
 			}
 		});
@@ -257,6 +263,7 @@ define([
 		// update the Export Types section
 		_selectExportTypeTab(json.selectedExportType, true);
 		manager.loadExportType(json.selectedExportType, json.exportTypes);
+
 
 		// now populate the rows. Do everything that we can: create the rows, populate the titles & select
 		// the data type. The remaining fields are custom to the data type, so we leave them to their
@@ -286,6 +293,8 @@ define([
 
 		utils.stopProcessing();
 		_closeMainDialog();
+
+		_handleZipOption();
 
 		// publish the IO LOAD event
 		manager.publish({
@@ -548,6 +557,7 @@ define([
 		} else {
 			_clearForm(opts.numRows);
 		}
+
 	};
 
 	var _clearForm = function(numDefaultRows) {
@@ -597,6 +607,7 @@ define([
 		var newExportType = $("#gdExportTypeTabs li.gdSelected").data("exportType");
 		_selectExportTypeTab(newExportType);
 	};
+
 
 	/**
 	 * Called whenever the user changes the result type (XML, HTML, CSV etc). This function publishes
@@ -649,10 +660,22 @@ define([
 		if (sel.length) {
 			$("#gdExportTarget_" + firstNonDisabledExportTarget).attr("checked", "checked");
 		}
+		_handleZipOption();
 
 		_currExportType = newExportType;
 	};
 
+	// only enable the Zip checkbox if the Prompt to Download export target is selected
+	var _handleZipOption = function() {
+		var selectedTarget = $("input[name=gdExportTarget]:checked").val();
+		if (selectedTarget === "promptDownload") {
+			$("#gdExportTarget_promptDownload_zip").removeAttr("disabled");
+			$("#gdExportTarget_promptDownload_zip_label").removeClass("gdDisabled");
+		} else {
+			$("#gdExportTarget_promptDownload_zip").attr("disabled", "disabled");
+			$("#gdExportTarget_promptDownload_zip_label").addClass("gdDisabled");
+		}
+	};
 
 	var _showExportTypeSettingsSection = function(newExportType, showImmediately) {
 		if ($("#gdExportTypeAdditionalSettings_" + _currExportType).length > 0 && _showExportTypeSettings) {
@@ -765,66 +788,6 @@ define([
 			rowID: rowID,
 			dataTypeModuleID: dataTypeModuleID
 		});
-
-/*
-		// this is called whenever the row content (Options + Examples nodes) have been fully populated and the
-		// DOM is ready
-		var onComplete = function() {
-			manager.publish({
-				sender: MODULE_ID,
-				type: C.EVENT.DATA_TABLE.ROW.TYPE_CHANGE,
-				rowID: rowID,
-				dataTypeModuleID: dataTypeModuleID
-			});
-		};
-
-		// our two "is ready" tests, which depend on the content for the current Data Type
-		var noOptionsTest = function() {
-			onComplete();
-			return true;
-		};
-
-		// this sucks!!
-		var hasOptionsTest = function() {
-			var isReady = (typeof $("#dtOption_" + rowID) != "undefined");
-			if (isReady) {
-				onComplete();
-			}
-			return isReady;
-		};
-		var readyTest = ($("#gdDataTypeOptions_" + dataTypeModuleID).length > 0) ? hasOptionsTest : noOptionsTest;
-
-		Queue.add({
-			execute: function() {
-				var exampleHTML = null;
-				var optionsHTML = null;
-				var dataTypeExampleHTML = $("#gdDataTypeExamples_" + dataTypeModuleID).html();
-				if (dataTypeExampleHTML !== "") {
-					exampleHTML = dataTypeExampleHTML.replace(/%ROW%/g, rowID);
-				} else {
-					exampleHTML = "&nbsp;" + L.no_examples_available;
-				}
-				$("#gdColExamples_" + rowID).html(exampleHTML);
-
-				var dataTypeOptionHTML = $("#gdDataTypeOptions_" + dataTypeModuleID).html();
-				if (dataTypeOptionHTML !== "") {
-					optionsHTML = dataTypeOptionHTML.replace(/%ROW%/g, rowID);
-				} else {
-					optionsHTML = L.no_options_available;
-				}
-				$("#gdColOptions_" + rowID).html(optionsHTML);
-
-				if ($("#gdDataTypeHelp_" + dataTypeModuleID).html() !== "") {
-					$('#gdColHelp_' + rowID).html($("#gdHelpIcon").html().replace(/%ROW%/g, rowID));
-				} else {
-					$('#gdColHelp_' + rowID).html(" ");
-				}
-			},
-			isComplete: readyTest
-		});
-
-		Queue.process({ context: "dataTypeChange: " + dataTypeModuleID });
-*/
 	};
 
 
@@ -1384,7 +1347,7 @@ define([
 						var existingDataSetId = parseInt(existingDataSet.data("id"), 10);
 						var existingDataSetName = existingDataSet.find(".dataSetName")[0].innerHTML;
 
-						var result = window.prompt("Please enter the name of the new data set.", existingDataSetName);
+						var result = window.prompt(L.please_enter_data_set_name, existingDataSetName);
 						if (result !== null) {
 							_copyDataSet(existingDataSetId, result);
 						}
@@ -1392,7 +1355,11 @@ define([
 				});
 			}
 
-			var deleteButtonLabel = "Delete " + cbs.length + " Data Set(s)";
+			var deleteButtonLabel = L.delete_1_data_set;
+			if (cbs.length > 1) {
+				deleteButtonLabel = L.delete_N_data_sets.replace(/%1/, cbs.length);
+			}
+
 			buttons.push({
 				text: deleteButtonLabel,
 				"class": "gdDeleteDataSetsBtn",
@@ -1408,12 +1375,10 @@ define([
 
 			$("#gdMainDialog").dialog("option", "buttons", buttons);
 		} else {
-			$("#gdMainDialog").dialog("option", "buttons", [
-				{
-					text: L.close,
-					click: function() { $(this).dialog("close"); }
-				}
-			]);
+			$("#gdMainDialog").dialog("option", "buttons", [{
+				text: L.close,
+				click: function() { $(this).dialog("close"); }
+			}]);
 		}
 	};
 
@@ -1435,7 +1400,6 @@ define([
 				newDataSetName: newDataSetName
 			},
 			success: function(response) {
-				// for simplicities, sake, just refresh the entire Data Set tab
 				_getAccount();
 			},
 			error: _onError

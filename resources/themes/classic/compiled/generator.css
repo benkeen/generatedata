@@ -208,7 +208,7 @@ li.gdColDelete {
   padding: 20px;
   border: 1px solid #b8e2b3; }
   #gdGenerateSection span {
-    margin-left: 60px; }
+    margin-left: 55px; }
     #gdGenerateSection span label {
       margin-right: 8px; }
   #gdGenerateSection .gdDisabled {
@@ -297,3 +297,7 @@ a.gdDisabledLink {
   border-radius: 3px;
   padding: 4px 4px 4px 8px;
   display: inline-block; }
+
+/* Fix for https://github.com/benkeen/generatedata/issues/171 */
+.search-field input {
+  min-width: 150px; }
