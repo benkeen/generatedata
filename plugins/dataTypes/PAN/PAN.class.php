@@ -42,6 +42,7 @@ class DataType_PAN extends DataTypePlugin {
 		parent::__construct($runtimeContext);
 	}
 
+
 	public function generate($generator, $generationContextData) {
 
 		// for random card brand give card length and card format for $str array to proceed further
@@ -52,120 +53,97 @@ class DataType_PAN extends DataTypePlugin {
 			if ($str["cc_random_card"] == "mastercard" || $str["cc_random_card"] == "discover" || $str["cc_random_card"] == "visa_electron")  {
 				$str["cc_brand"] = $str["cc_random_card"];
 				$str["cc_length"] = "16";
-				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";}
-
-			else if($str["cc_random_card"] == "visa") {
+				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
+			} else if($str["cc_random_card"] == "visa") {
 				$str["cc_brand"] = $str["cc_random_card"];
 				$str["cc_length"] = "13,16";
-				$str["cc_format"] = "XXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";}
-
-			else if($str["cc_random_card"] == "amex" || $str["cc_random_card"] == "enroute") {
+				$str["cc_format"] = "XXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
+			} else if($str["cc_random_card"] == "amex" || $str["cc_random_card"] == "enroute") {
 				$str["cc_brand"] = $str["cc_random_card"];
 				$str["cc_length"] = "15";
-				$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX";}
-
-			else if($str["cc_random_card"] == "carte_blanche" || $str["cc_random_card"] == "diners_club_international") {
+				$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX";
+			} else if($str["cc_random_card"] == "carte_blanche" || $str["cc_random_card"] == "diners_club_international") {
 				$str["cc_brand"] = $str["cc_random_card"];
 				$str["cc_length"] = "14";
-				$str["cc_format"] = "XXXXXXXXXXXXXX\nXXXX XXXXXX XXXX";}
-
-			else if($str["cc_random_card"] == "jcb") {
+				$str["cc_format"] = "XXXXXXXXXXXXXX\nXXXX XXXXXX XXXX";
+			} else if($str["cc_random_card"] == "jcb") {
 				$str["cc_brand"] = $str["cc_random_card"];
 				$str["cc_length"] = "15,16";
-				$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";}
-
-			else if($str["cc_random_card"] == "maestro") {
+				$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
+			} else if($str["cc_random_card"] == "maestro") {
 				$str["cc_brand"] = $str["cc_random_card"];
 				$str["cc_length"] = "12-19";
-				$str["cc_format"] = "XXXXXXXXXXXX\nXXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXX\nXXXX XXXXXX XXXX\nXXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";}
-
-			else if($str["cc_random_card"] == "solo" || $str["cc_random_card"] == "switch") {
+				$str["cc_format"] = "XXXXXXXXXXXX\nXXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXX\nXXXX XXXXXX XXXX\nXXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
+			} else if($str["cc_random_card"] == "solo" || $str["cc_random_card"] == "switch") {
 				$str["cc_brand"] = $str["cc_random_card"];
 				$str["cc_length"] = "16,18,19";
-				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";}
-
-			else if ($str["cc_random_card"] == "laser") {
+				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
+			} else if ($str["cc_random_card"] == "laser") {
 				$str["cc_brand"] = $str["cc_random_card"];
 				$str["cc_length"] = "16-19";
-				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";}
-
+				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
+			}
 		}
 
-		global $mastercardPrefixList, $visaPrefixList, $visaelectronPrefixList, $americanexpressPrefixList, $discoverPrefixList, $dinersclubADPrefixList, $dinersclubCBPrefixList, $dinersclubIPrefixList, $dinersclubERPrefixList, $dinersclubERPrefixList, $jcb16PrefixList, $jcb15PrefixList, $maestroPrefixList, $soloPrefixList, $switchPrefixList, $laserPrefixList;
+		// TODO
+		global $mastercardPrefixList, $visaPrefixList, $visaelectronPrefixList, $americanexpressPrefixList,
+			   $discoverPrefixList, $dinersclubADPrefixList, $dinersclubCBPrefixList, $dinersclubIPrefixList,
+			   $dinersclubERPrefixList, $dinersclubERPrefixList, $jcb16PrefixList, $jcb15PrefixList, $maestroPrefixList,
+			   $soloPrefixList, $switchPrefixList, $laserPrefixList;
 
-		//add random length to array
-		$str["cc_length"] = pan_random_length($str["cc_length"]);
-		//add random format to array
-		$str["cc_format"] = pan_random_format($str["cc_format"], $str["cc_length"]);
-		//add random seperator to array
-		$str["cc_seperator"] = pan_random_seperator($str["cc_seperator"], $str["cc_format"]);
+		$str["cc_length"]    = self::getRandomPANLength($str["cc_length"]);
+		$str["cc_format"]    = self::getRandomPANFormat($str["cc_format"], $str["cc_length"]);
+		$str["cc_separator"] = self::getRandomPANSeparator($str["cc_separator"], $str["cc_format"]);
 
 
 		// echo "<pre>";
 		// print_r ($str);
 		// echo "</pre>";
-		if($str['cc_brand'] == "mastercard"){
-			$mastercard = pan_credit_card_number($mastercardPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $mastercard[0]);
-		}
-		else if($str['cc_brand'] == "visa"){
-			$visa = pan_credit_card_number($visaPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $visa[0]);
-		}
-		else if($str['cc_brand'] == "visa_electron"){
-			$visaelectron = pan_credit_card_number($visaelectronPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $visaelectron[0]);
-		}
-		else if($str['cc_brand'] == "amex"){
-			$americanexpress = pan_credit_card_number($americanexpressPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $americanexpress[0]);
-		}
-		else if($str['cc_brand'] == "discover"){
-			$discover = pan_credit_card_number($discoverPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $discover[0]);
-		}
-		// else if($str['cc_brand'] == "american_diners"){
-		// $dinersclubAD = pan_credit_card_number($dinersclubADPrefixList, $str["cc_length"], 1);
-		// $final_string = pan_convert_format($str, $dinersclubAD[0]);
-		// }
-		else if($str['cc_brand'] == "carte_blanche"){
-			$dinersclubCB = pan_credit_card_number($dinersclubCBPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $dinersclubCB[0]);
-		}
-		else if($str['cc_brand'] == "diners_club_international"){
-			$dinersclubI = pan_credit_card_number($dinersclubIPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $dinersclubI[0]);
-		}
-		else if($str['cc_brand'] == "enroute"){
-			$dinersclubER = pan_credit_card_number($dinersclubERPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $dinersclubER[0]);
-		}
-		else if($str['cc_brand'] == "jcb"){
+		if ($str['cc_brand'] == "mastercard") {
+			$mastercard = self::getCreditCardNumber($mastercardPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $mastercard[0]);
+		} else if ($str['cc_brand'] == "visa") {
+			$visa = self::getCreditCardNumber($visaPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $visa[0]);
+		} else if($str['cc_brand'] == "visa_electron") {
+			$visaelectron = self::getCreditCardNumber($visaelectronPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $visaelectron[0]);
+		} else if ($str['cc_brand'] == "amex") {
+			$americanexpress = self::getCreditCardNumber($americanexpressPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $americanexpress[0]);
+		} else if ($str['cc_brand'] == "discover") {
+			$discover = self::getCreditCardNumber($discoverPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $discover[0]);
+		} else if ($str['cc_brand'] == "carte_blanche") {
+			$dinersclubCB = self::getCreditCardNumber($dinersclubCBPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $dinersclubCB[0]);
+		} else if ($str['cc_brand'] == "diners_club_international") {
+			$dinersclubI = self::getCreditCardNumber($dinersclubIPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $dinersclubI[0]);
+		} else if ($str['cc_brand'] == "enroute") {
+			$dinersclubER = self::getCreditCardNumber($dinersclubERPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $dinersclubER[0]);
+		} else if ($str['cc_brand'] == "jcb") {
 			$jcbPrefixLists = "jcb". $str["cc_length"] ."PrefixList";
-			$jcb = pan_credit_card_number($$jcbPrefixLists, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $jcb[0]);
-		}
-		else if($str['cc_brand'] == "maestro"){
-			$maestro = pan_credit_card_number($maestroPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $maestro[0]);
-		}
-		else if($str['cc_brand'] == "solo"){
-			$solo = pan_credit_card_number($soloPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $solo[0]);
-		}
-		else if($str['cc_brand'] == "switch"){
-			$switch = pan_credit_card_number($switchPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $switch[0]);
-		}
-		else if($str['cc_brand'] == "laser"){
-			$laser = pan_credit_card_number($laserPrefixList, $str["cc_length"], 1);
-			$final_string = pan_convert_format($str, $laser[0]);
+			$jcb = self::getCreditCardNumber($$jcbPrefixLists, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $jcb[0]);
+		} else if ($str['cc_brand'] == "maestro") {
+			$maestro = self::getCreditCardNumber($maestroPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $maestro[0]);
+		} else if ($str['cc_brand'] == "solo") {
+			$solo = self::getCreditCardNumber($soloPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $solo[0]);
+		} else if ($str['cc_brand'] == "switch") {
+			$switch = self::getCreditCardNumber($switchPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $switch[0]);
+		} else if ($str['cc_brand'] == "laser") {
+			$laser = self::getCreditCardNumber($laserPrefixList, $str["cc_length"], 1);
+			$final_string = $this->pan_convert_format($str, $laser[0]);
 		}
 
-		if($final_string == "" || $final_string == false){
+		if ($final_string == "" || $final_string == false) {
 			echo "not generated</br>";
-		}
-		else{
+		} else {
 			return $final_string;
 		}
 
@@ -307,12 +285,12 @@ EOF;
 	private function pan_completed_number($prefix, $length) {
 		$ccnumber = $prefix;
 
-		# generate digits
-		while ( strlen($ccnumber) < ($length - 1) ) {
-			$ccnumber .= rand(0,9);
+		// generate digits
+		while (strlen($ccnumber)<($length-1)) {
+			$ccnumber .= mt_rand(0,9);
 		}
 
-		# Calculate sum
+		// Calculate sum
 		$sum = 0;
 		$pos = 0;
 
@@ -339,8 +317,10 @@ EOF;
 		return $ccnumber;
 	}
 
-	private function pan_credit_card_number($prefixList, $length, $howMany) {
-		for ($i = 0; $i < $howMany; $i++) {
+
+	private static function getCreditCardNumber($prefixList, $length, $howMany) {
+		$result = array();
+		for ($i=0; $i<$howMany; $i++) {
 			$ccnumber = $prefixList[ array_rand($prefixList) ];
 			$result[] = pan_completed_number($ccnumber, $length);
 		}
@@ -348,23 +328,20 @@ EOF;
 	}
 
 
-	private function pan_convert_format($all_options, $ccnumber){
-
-		// get user specified formats that too depend on the card length
-		if ($all_options["cc_length"] == strlen($ccnumber)){
+	private static function pan_convert_format($all_options, $ccnumber) {
+		if ($all_options["cc_length"] == strlen($ccnumber)) {
 			$a = pan_convertXtoN($all_options["cc_format"], $ccnumber);
-			If($a == $ccnumber){
+			if ($a == $ccnumber) {
 				return ($a);
+			} else {
+				return implode($all_options["cc_seperator"], $a);
 			}
-			Else{
-				return implode($all_options["cc_seperator"],$a);
-			}
+		} else {
+			return false;
 		}
-		Else{return false;}
-
 	}
 
-//Will convert all X's to the specified number
+	// will convert all X's to the specified number
 	private function pan_convertXtoN($chosen_format, $ccnumber){
 
 		$positions = array();
@@ -396,42 +373,45 @@ EOF;
 		return $result_f;
 	}
 
-//Will give a random format
-	private function pan_random_format($user_sel_format, $rand_card_length){
 
-		//If no format is selected then by default continous number of that length will be displayed.
-		if($user_sel_format == ""){
-			return str_repeat("X", $rand_card_length);
+	private static function getRandomPANFormat($userSelectedFormats, $randCardLength) {
+
+		// if no format is selected then by default continuous number of that length will be displayed
+		if ($userSelectedFormats == "") {
+			return str_repeat("X", $randCardLength);
 		}
 
-		//----------------From all user input formats pick a random one--------------------
-		$get_format = explode("\n", $user_sel_format);
-		$sorted_format = array();
-		$not_i = 0;//zero
-		for ($fc = 0; $fc < count($get_format); $fc++){
+		$formats = explode("\n", $userSelectedFormats);
 
-			//Get count of X's to match with the card length
-			$count_X="0";
+		$sortedFormat = array();
+		$not_i = 0;
 
-			for($i=0; $i<strlen($get_format[$fc]); $i=$i+1){
-				if(substr($get_format[$fc],$i,1)=="X"){
-					$count_X=$count_X+1;
+		for ($fc = 0; $fc < count($formats); $fc++){
+			$count_X = "0"; // get count of X's to match with the card length
+
+			for ($i=0; $i<strlen($formats[$fc]); $i++) {
+				if (substr($formats[$fc], $i, 1) == "X") {
+					$count_X++;
 				}
 			}
 
-			if($count_X == $rand_card_length){
-				$sorted_format[$not_i] = $get_format[$fc];
+			if ($count_X == $randCardLength) {
+				$sortedFormat[$not_i] = $formats[$fc];
 				$not_i++;
 			}
 		}
-		if (count($sorted_format) >= 1)
-			$chosen_format = $sorted_format[rand(0, count($sorted_format)-1)];
-		return Trim($chosen_format);
 
+		$chosenFormat = "";
+		if (count($sortedFormat) >= 1) {
+			$chosenFormat = $sortedFormat[mt_rand(0, count($sortedFormat)-1)];
+		}
+
+		return trim($chosenFormat);
 	}
 
-//Will give a random seperator
-	private function pan_random_seperator($user_sel_seperator, $rand_card_format){
+
+	// will give a random seperator
+	private static function getRandomPANSeparator($user_sel_seperator, $rand_card_format) {
 
 		//If card number is continous then there should be no seperator
 		if($rand_card_format == "XXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXXXX"){
@@ -445,30 +425,24 @@ EOF;
 				$chosen_sep = $get_sep[rand(0, count($get_sep)-1)];
 
 			//On selection, convert it
-			If($chosen_sep == "C"){
+			if ($chosen_sep == "C") {
 				$chosen_sep = ":";
-			}
-			Else if($chosen_sep == "A"){
+			} else if($chosen_sep == "A") {
 				$chosen_sep = "*";
-			}
-			Else if($chosen_sep == "P"){
+			} else if($chosen_sep == "P") {
 				$chosen_sep = "|";
-			}
-			Else if($chosen_sep == "D"){
+			} else if($chosen_sep == "D") {
 				$chosen_sep = ".";
-			}
-			Else if($chosen_sep == "H"){
+			} else if($chosen_sep == "H") {
 				$chosen_sep = "-";
-			}
-			Else if($chosen_sep == "S"){
+			} else if($chosen_sep == "S") {
 				$chosen_sep = " ";
-			}
-			Else{
+			} else {
 				$chosen_sep = " ";
 			}
 
 			//If no seperator is selected then by default space will be displayed.
-			if($user_sel_seperator == ""){
+			if($user_sel_seperator == "") {
 				$chosen_sep = " ";
 			}
 
@@ -480,23 +454,21 @@ EOF;
 		return $chosen_sep;
 	}
 
-	// Will give a random card length
-	private function pan_random_length($user_sel_length){
 
-		//----------------If there are more than 1 card length then pick a random one--------------------
-		if ($user_sel_length == "12-19"){
-			$user_sel_length = "12,13,14,15,16,17,18,19";
-		} else if($user_sel_length == "16-19"){
-			$user_sel_length = "16,17,18,19";
+	private static function getRandomPANLength($userSelectedLength) {
+
+		// if there's  more than 1 card length then pick a random one
+		if ($userSelectedLength == "12-19") {
+			$userSelectedLength = "12,13,14,15,16,17,18,19";
+		} else if ($userSelectedLength == "16-19") {
+			$userSelectedLength = "16,17,18,19";
 		}
 
-		$get_length = explode(",", $user_sel_length);
-		if (count($get_length) >= 1)
-			$chosen_length = $get_length[rand(0, count($get_length)-1)];
+		$lengths = explode(",", $userSelectedLength);
+		$chosenLength = 0;
+		if (count($lengths) >= 1)
+			$chosenLength = $lengths[mt_rand(0, count($lengths)-1)];
 
-		return $chosen_length;
+		return $chosenLength;
 	}
-
-
-
 }
