@@ -16,7 +16,7 @@ class DataType_PAN extends DataTypePlugin {
 	protected $jsModules = array("PAN.js");
 
 	private $visaPrefixList = array("4539", "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4");
-	private $visaelectronPrefixList = array("4026", "417500", "4508", "4844", "4913", "4917");
+	private $visaElectronPrefixList = array("4026", "417500", "4508", "4844", "4913", "4917");
 	private $mastercardPrefixList = array("51", "52", "53", "54", "55");
 	private $americanexpressPrefixList = array("34", "37");
 	private $discoverPrefixList = array("6011", "644", "645", "646", "647", "648", "649", "65");
@@ -45,7 +45,10 @@ class DataType_PAN extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 
+		print_r($generationContextData);
+
 		// for random card brand give card length and card format for $str array to proceed further
+		/*
 		if ($str["cc_brand"] == "rand_card"){
 			$rand_card_brand = array_rand($str["cc_random_card"]);
 			$str["cc_random_card"] = $str["cc_random_card"][$rand_card_brand];
@@ -84,12 +87,13 @@ class DataType_PAN extends DataTypePlugin {
 				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
 			}
 		}
+		*/
 
-		// TODO
-		global $mastercardPrefixList, $visaPrefixList, $visaelectronPrefixList, $americanexpressPrefixList,
+/*		global $mastercardPrefixList, $visaPrefixList, $visaelectronPrefixList, $americanexpressPrefixList,
 			   $discoverPrefixList, $dinersclubADPrefixList, $dinersclubCBPrefixList, $dinersclubIPrefixList,
 			   $dinersclubERPrefixList, $dinersclubERPrefixList, $jcb16PrefixList, $jcb15PrefixList, $maestroPrefixList,
 			   $soloPrefixList, $switchPrefixList, $laserPrefixList;
+*/
 
 		$str["cc_length"]    = self::getRandomPANLength($str["cc_length"]);
 		$str["cc_format"]    = self::getRandomPANFormat($str["cc_format"], $str["cc_length"]);
@@ -150,16 +154,16 @@ class DataType_PAN extends DataTypePlugin {
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
-		if (empty($postdata["dt_$colNum"])) {
-			return false;
-		}
+//		if (empty($postdata["dtOption_$colNum"])) {
+//			return false;
+//		}
 
 		return array(
-			"cc_brand"	     => $postdata["dt_$colNum"],
-			"cc_seperator"   => $postdata["sep_$colNum"],
-			"cc_format"      => $postdata["option_$colNum"],
-			"cc_length"      => $postdata["digit_$colNum"],
-			"cc_random_card" => $postdata["option_mselect_$colNum"]
+			"cc_brand"	     => $postdata["dtOption_$colNum"],
+			"cc_separator"   => $postdata["dtOptionPAN_sep_$colNum"],
+			"cc_format"      => $postdata["dtOption_cardFormat_$colNum"],
+			"cc_length"      => $postdata["dtOptionPAN_digitLength_$colNum"],
+			"cc_random_card" => $postdata["dtOptionPAN_randomCard_$colNum"]
 		);
 	}
 
@@ -190,24 +194,24 @@ END;
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END
-<span id="dtOptionPAN_cardDigit_%ROW%">
+<span id="dtOptionPAN_cardDigitSection_%ROW%">
 	{$this->L["digits"]}
-	<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style="width: 60px" readonly="readonly"/>
+	<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style="width: 60px" readonly="readonly" />
 </span>
 
 <span id="dtOptionPAN_cardSeparator_%ROW%">
 	{$this->L["separators"]}
-	<input type="text" name="sep_%ROW%" id="sep_%ROW%" style="width: 78px" value="C|A|P|D|H|S" title="C : Colon (:)\nA : Asterik (*)\nP : Pipe (|)\nD : Dot (.)\nH : Hyphen (-)\nS : Space ( )" />
+	<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style="width: 78px" value=" |:|*|.|-" />
 </span>
 
 <span id="dtOptionPAN_cardFormat_%ROW%">
 	{$this->L["ccformats"]}
 	<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" title="{$this->L["format_title"]}" style="height: 100px; width: 260px"></textarea>
-</div>
+</span>
 
-<div id="Card_rand_select_\$ROW\$" style="display:none;">
+<span id="dtOptionPAN_randomCardFormatSection_%ROW%" style="display:none;">
 	{$this->L["ccrandom"]}
-	<select multiple="multiple" name="option_mselect_\$ROW\$[]" id="option_mselect_\$ROW\$" title="{$this->L["rand_brand_title"]}" style="height: 100px; width: 260px">
+	<select multiple="multiple" name="dtOption_randomCardFormat_\$ROW\$[]" id="dtOption_randomCardFormat__\$ROW\$" title="{$this->L["rand_brand_title"]}" style="height: 100px; width: 260px">
 		<option value="mastercard">{$this->L["mastercard"]}</option>
 		<option value="visa">{$this->L["visa"]}</option>
 		<option value="visa_electron">{$this->L["visa_electron"]}</option>
@@ -222,7 +226,7 @@ END;
 		<option value="switch">{$this->L["switch"]}</option>
 		<option value="laser">{$this->L["laser"]}</option>
 	</select>
-</div>
+</span>
 END;
 		return $html;
 	}
@@ -282,7 +286,8 @@ EOF;
 		return $html;
 	}
 
-	private function pan_completed_number($prefix, $length) {
+
+	private static function pan_completed_number($prefix, $length) {
 		$ccnumber = $prefix;
 
 		// generate digits
@@ -310,7 +315,7 @@ EOF;
 			$pos += 2;
 		}
 
-		# Calculate check digit
+		// calculate check digit
 		$checkdigit = (( floor($sum/10) + 1) * 10 - $sum) % 10;
 		$ccnumber .= $checkdigit;
 
@@ -322,54 +327,54 @@ EOF;
 		$result = array();
 		for ($i=0; $i<$howMany; $i++) {
 			$ccnumber = $prefixList[ array_rand($prefixList) ];
-			$result[] = pan_completed_number($ccnumber, $length);
+			$result[] = self::pan_completed_number($ccnumber, $length);
 		}
 		return $result;
 	}
 
 
-	private static function pan_convert_format($all_options, $ccnumber) {
-		if ($all_options["cc_length"] == strlen($ccnumber)) {
-			$a = pan_convertXtoN($all_options["cc_format"], $ccnumber);
-			if ($a == $ccnumber) {
+	private static function pan_convert_format($allOptions, $ccNumber) {
+		if ($allOptions["cc_length"] == strlen($ccNumber)) {
+			$a = self::convertXtoNumber($allOptions["cc_format"], $ccNumber);
+			if ($a == $ccNumber) {
 				return ($a);
 			} else {
-				return implode($all_options["cc_seperator"], $a);
+				return implode($allOptions["cc_separator"], $a);
 			}
 		} else {
 			return false;
 		}
 	}
 
-	// will convert all X's to the specified number
-	private function pan_convertXtoN($chosen_format, $ccnumber){
-
+	/**
+	 * Convert X's to the specified number
+	 */
+	private static function convertXtoNumber($chosen_format, $ccnumber){
 		$positions = array();
-		$result =  array();
 		$pos = -1;
 		while (($pos = strpos($chosen_format, " ", $pos+1)) !== false) {
 			$positions[] = $pos;
 		}
 
-		if(empty($positions)){
+		if (empty($positions)) {
 			return $ccnumber;
 		}
 
-		$result =  array();
-		$result_f =  array();
+		$result   = array();
+		$result_f = array();
 		$j = 1;
-		for($i = 0 ;$i < count($positions) ; $i++)
-		{
-			$result[$i] = substr($ccnumber,0,$positions[$i]-$i);
+
+		for ($i=0; $i<count($positions); $i++) {
+			$result[$i] = substr($ccnumber, 0, $positions[$i]-$i);
 		}
 
 		$result_f[0] = ($result[0]);
-		for($i = 0 ;$i < count($positions)-1 ; $i++)
-		{
-			$result_f[$j] = substr($result[$j],$positions[$i]-$i);
+		for ($i=0; $i<count($positions)-1; $i++) {
+			$result_f[$j] = substr($result[$j], $positions[$i]-$i);
 			$j++;
 		}
-		$result_f[count($positions)] = substr($ccnumber,($positions[count($positions)-1])-(count($positions)-1));
+		$result_f[count($positions)] = substr($ccnumber, ($positions[count($positions)-1])-(count($positions)-1));
+
 		return $result_f;
 	}
 
@@ -410,21 +415,21 @@ EOF;
 	}
 
 
-	// will give a random seperator
+	// will give a random separator
 	private static function getRandomPANSeparator($user_sel_seperator, $rand_card_format) {
 
-		//If card number is continous then there should be no seperator
-		if($rand_card_format == "XXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXXXX"){
+		// if card number is continuous then there should be no separator
+
+		if ($rand_card_format == "XXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXXXX"){
 			$chosen_sep = "";
-		}
-		else{
+		} else{
 
 			//----------------From all user input separators pick a random one--------------------
 			$get_sep = explode("|", $user_sel_seperator);
 			if (count($get_sep) >= 1)
 				$chosen_sep = $get_sep[rand(0, count($get_sep)-1)];
 
-			//On selection, convert it
+			// on selection, convert it
 			if ($chosen_sep == "C") {
 				$chosen_sep = ":";
 			} else if($chosen_sep == "A") {
@@ -457,7 +462,7 @@ EOF;
 
 	private static function getRandomPANLength($userSelectedLength) {
 
-		// if there's  more than 1 card length then pick a random one
+		// if there's more than 1 card length then pick a random one
 		if ($userSelectedLength == "12-19") {
 			$userSelectedLength = "12,13,14,15,16,17,18,19";
 		} else if ($userSelectedLength == "16-19") {
@@ -466,8 +471,9 @@ EOF;
 
 		$lengths = explode(",", $userSelectedLength);
 		$chosenLength = 0;
-		if (count($lengths) >= 1)
+		if (count($lengths) >= 1) {
 			$chosenLength = $lengths[mt_rand(0, count($lengths)-1)];
+		}
 
 		return $chosenLength;
 	}
