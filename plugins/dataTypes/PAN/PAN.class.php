@@ -13,20 +13,6 @@ class DataType_PAN extends DataTypePlugin {
 	protected $jsModules = array("PAN.js");
 
 
-	private $discoverPrefixList = array("6011", "644", "645", "646", "647", "648", "649", "65");
-	private $dinersclubCBPrefixList = array("300", "301", "302", "303", "304", "305");
-	private $dinersclubIPrefixList = array("36");
-	private $dinersclubERPrefixList = array("2014", "2149");
-
-	private $jcb16PrefixList = array("31", "309");
-	private $jcb15PrefixList = array("2131", "1800");
-
-	private $maestroPrefixList = array("5018", "5020", "5038", "6304", "6759", "6761", "6762", "6763", "5893", "58", "56", "57");
-	private $soloPrefixList = array("6334", "6767");
-	private $switchPrefixList = array("4903", "4905", "4911", "4936", "564182", "633110", "6333", "6759");
-	private $laserPrefixList = array("6304", "6706", "6771", "6709");
-
-
 	public function __construct($runtimeContext) {
 		for ($dpl=622126; $dpl<=622925; $dpl++) {
 			$this->discoverPrefixList[] = $dpl;
@@ -42,112 +28,108 @@ class DataType_PAN extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 
+		/*
+			$rand_card_brand = array_rand($str["cc_random_card"]);
+			$str["cc_random_card"] = $str["cc_random_card"][$rand_card_brand];
+
+			// TODO
+			if ($str["cc_random_card"] == "mastercard" || $str["cc_random_card"] == "discover" || $str["cc_random_card"] == "visa_electron")  {
+				$str["cc_brand"] = $str["cc_random_card"];
+				$str["cc_length"] = "16";
+				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
+			} else if($str["cc_random_card"] == "visa") {
+				$str["cc_brand"] = $str["cc_random_card"];
+				$str["cc_length"] = "13,16";
+				$str["cc_format"] = "XXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
+			} else if($str["cc_random_card"] == "amex" || $str["cc_random_card"] == "enroute") {
+				$str["cc_brand"] = $str["cc_random_card"];
+				$str["cc_length"] = "15";
+				$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX";
+			} else if($str["cc_random_card"] == "carte_blanche" || $str["cc_random_card"] == "diners_club_international") {
+				$str["cc_brand"] = $str["cc_random_card"];
+				$str["cc_length"] = "14";
+				$str["cc_format"] = "XXXXXXXXXXXXXX\nXXXX XXXXXX XXXX";
+			} else if($str["cc_random_card"] == "jcb") {
+				$str["cc_brand"] = $str["cc_random_card"];
+				$str["cc_length"] = "15,16";
+				$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
+			} else if($str["cc_random_card"] == "maestro") {
+				$str["cc_brand"] = $str["cc_random_card"];
+				$str["cc_length"] = "12-19";
+				$str["cc_format"] = "XXXXXXXXXXXX\nXXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXX\nXXXX XXXXXX XXXX\nXXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
+			} else if($str["cc_random_card"] == "solo" || $str["cc_random_card"] == "switch") {
+				$str["cc_brand"] = $str["cc_random_card"];
+				$str["cc_length"] = "16,18,19";
+				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
+			} else if ($str["cc_random_card"] == "laser") {
+				$str["cc_brand"] = $str["cc_random_card"];
+				$str["cc_length"] = "16-19";
+				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
+			}
+		}
+*/
+
 		$ccLength    = self::getRandomPANLength($options["cc_length"]);
 		$ccFormat    = self::getRandomPANFormat($options["cc_format"], $options["cc_length"]);
 		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"], $options["cc_format"]);
 
 
+		$prefixList = array();
 		switch ($options["cc_brand"]) {
 			case "mastercard":
-				$mastercardPrefixList = array("51", "52", "53", "54", "55");
-				$card = self::getCreditCardNumber($mastercardPrefixList, $ccLength, 1);
+				$prefixList = array("51", "52", "53", "54", "55");
 				break;
 			case "visa":
-				$visaPrefixList = array("4539", "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4");
-				$card = self::getCreditCardNumber($visaPrefixList, $ccLength, 1);
+				$prefixList = array("4539", "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4");
 				break;
 			case "visa_electron":
-				$visaElectronPrefixList = array("4026", "417500", "4508", "4844", "4913", "4917");
-				$card = self::getCreditCardNumber($visaElectronPrefixList, $ccLength, 1);
+				$prefixList = array("4026", "417500", "4508", "4844", "4913", "4917");
 				break;
 			case "amex":
-				$amexPrefixList = array("34", "37");
-				$card = self::getCreditCardNumber($amexPrefixList, $ccLength, 1);
+				$prefixList = array("34", "37");
 				break;
 			case "discover":
-				$card = self::getCreditCardNumber($this->discoverPrefixList, $ccLength, 1);
+				$prefixList = array("6011", "644", "645", "646", "647", "648", "649", "65");
 				break;
 			case "carte_blanche":
-				$card = self::getCreditCardNumber($this->dinersclubCBPrefixList, $ccLength, 1);
+				$prefixList = array("300", "301", "302", "303", "304", "305");
 				break;
 			case "diners_club_international":
-				$card = self::getCreditCardNumber($this->dinersclubIPrefixList, $ccLength, 1);
+				$prefixList = array("36");
 				break;
 			case "enroute":
-				$card = self::getCreditCardNumber($this->dinersclubERPrefixList, $ccLength, 1);
+				$prefixList = array("2014", "2149");
 				break;
 			case "jcb":
-				$jcbPrefixLists = "jcb" . $ccLength . "PrefixList";
-				$card = self::getCreditCardNumber($jcbPrefixLists, $ccLength, 1);
+				if ($ccLength == 15) {
+					$prefixList = array("31", "309");
+				} else {
+					$prefixList = array("2131", "1800");
+				}
+				break;
+			case "maestro":
+				$prefixList = array("5018", "5020", "5038", "6304", "6759", "6761", "6762", "6763", "5893", "58", "56", "57");
+				break;
+			case "solo":
+				$prefixList = array("6334", "6767");
+				break;
+			case "switch":
+				$prefixList = array("4903", "4905", "4911", "4936", "564182", "633110", "6333", "6759");
+				break;
+			case "laser":
+				$prefixList = array("6304", "6706", "6771", "6709");
 				break;
 		}
 
-		$final_string = $this->pan_convert_format($options, $card[0]);
+		$card = self::getCreditCardNumber($prefixList, $ccLength);
+		$cardNumber = $this->pan_convert_format($ccLength, $ccFormat, $ccSeparator, $card[0]);
 
 
-
-		/*
-				} else if ($str['cc_brand'] == "jcb") {
-					$final_string = $this->pan_convert_format($str, $jcb[0]);
-				} else if ($str['cc_brand'] == "maestro") {
-					$maestro = self::getCreditCardNumber($this->maestroPrefixList, $str["cc_length"], 1);
-					$final_string = $this->pan_convert_format($str, $maestro[0]);
-				} else if ($str['cc_brand'] == "solo") {
-					$solo = self::getCreditCardNumber($this->soloPrefixList, $str["cc_length"], 1);
-					$final_string = $this->pan_convert_format($str, $solo[0]);
-				} else if ($str['cc_brand'] == "switch") {
-					$switch = self::getCreditCardNumber($this->switchPrefixList, $str["cc_length"], 1);
-					$final_string = $this->pan_convert_format($str, $switch[0]);
-				} else if ($str['cc_brand'] == "laser") {
-					$laser = self::getCreditCardNumber($this->laserPrefixList, $str["cc_length"], 1);
-					$final_string = $this->pan_convert_format($str, $laser[0]);
-				} else {
-					$rand_card_brand = array_rand($str["cc_random_card"]);
-					$str["cc_random_card"] = $str["cc_random_card"][$rand_card_brand];
-
-					// TODO
-					if ($str["cc_random_card"] == "mastercard" || $str["cc_random_card"] == "discover" || $str["cc_random_card"] == "visa_electron")  {
-						$str["cc_brand"] = $str["cc_random_card"];
-						$str["cc_length"] = "16";
-						$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
-					} else if($str["cc_random_card"] == "visa") {
-						$str["cc_brand"] = $str["cc_random_card"];
-						$str["cc_length"] = "13,16";
-						$str["cc_format"] = "XXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
-					} else if($str["cc_random_card"] == "amex" || $str["cc_random_card"] == "enroute") {
-						$str["cc_brand"] = $str["cc_random_card"];
-						$str["cc_length"] = "15";
-						$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX";
-					} else if($str["cc_random_card"] == "carte_blanche" || $str["cc_random_card"] == "diners_club_international") {
-						$str["cc_brand"] = $str["cc_random_card"];
-						$str["cc_length"] = "14";
-						$str["cc_format"] = "XXXXXXXXXXXXXX\nXXXX XXXXXX XXXX";
-					} else if($str["cc_random_card"] == "jcb") {
-						$str["cc_brand"] = $str["cc_random_card"];
-						$str["cc_length"] = "15,16";
-						$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
-					} else if($str["cc_random_card"] == "maestro") {
-						$str["cc_brand"] = $str["cc_random_card"];
-						$str["cc_length"] = "12-19";
-						$str["cc_format"] = "XXXXXXXXXXXX\nXXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXX\nXXXX XXXXXX XXXX\nXXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
-					} else if($str["cc_random_card"] == "solo" || $str["cc_random_card"] == "switch") {
-						$str["cc_brand"] = $str["cc_random_card"];
-						$str["cc_length"] = "16,18,19";
-						$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
-					} else if ($str["cc_random_card"] == "laser") {
-						$str["cc_brand"] = $str["cc_random_card"];
-						$str["cc_length"] = "16-19";
-						$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
-					}
-				}
-		*/
-
-		if ($final_string == "" || $final_string == false) {
+		if ($cardNumber == "" || $cardNumber == false) {
 			echo "not generated</br>";
 		} else {
-			return $final_string;
+			return $cardNumber;
 		}
-
 	}
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
@@ -156,11 +138,11 @@ class DataType_PAN extends DataTypePlugin {
 //		}
 
 		return array(
-			"cc_brand"	     => $postdata["dtOption_$colNum"],
+			"cc_brand"	     => $postdata["dtExample_$colNum"],
 			"cc_separator"   => $postdata["dtOptionPAN_sep_$colNum"],
-			"cc_format"      => $postdata["dtOption_cardFormat_$colNum"],
-			"cc_length"      => $postdata["dtOptionPAN_digitLength_$colNum"],
-			"cc_random_card" => $postdata["dtOptionPAN_randomCard_$colNum"]
+			"cc_format"      => $postdata["dtOption_$colNum"],
+			"cc_length"      => $postdata["dtOptionPAN_digit_$colNum"],
+			"cc_random_card" => $postdata["dtOptionPAN_randomCardFormat_$colNum"]
 		);
 	}
 
@@ -320,28 +302,26 @@ EOF;
 	}
 
 
-	private static function getCreditCardNumber($prefixList, $length, $howMany) {
-		$result = array();
-		for ($i=0; $i<$howMany; $i++) {
-			$ccnumber = $prefixList[ array_rand($prefixList) ];
-			$result[] = self::pan_completed_number($ccnumber, $length);
-		}
-		return $result;
+	private static function getCreditCardNumber($prefixList, $length) {
+		$ccNumber = $prefixList[array_rand($prefixList)];
+		return self::pan_completed_number($ccNumber, $length);
 	}
 
 
 	/**
-	 * @param $allOptions
+	 * @param $ccLength
+	 * @param $ccFormat
+	 * @param $ccSeparator
 	 * @param $ccNumber
 	 * @return array|bool|string
 	 */
-	private static function pan_convert_format($allOptions, $ccNumber) {
-		if ($allOptions["cc_length"] == strlen($ccNumber)) {
-			$a = self::convertXtoNumber($allOptions["cc_format"], $ccNumber);
+	private static function pan_convert_format($ccLength, $ccFormat, $ccSeparator, $ccNumber) {
+		if ($ccLength == strlen($ccNumber)) {
+			$a = self::convertXtoNumber($ccFormat, $ccNumber);
 			if ($a == $ccNumber) {
-				return ($a);
+				return ($a); // TODO interesting...
 			} else {
-				return implode($allOptions["cc_separator"], $a);
+				return implode($ccSeparator, $a);
 			}
 		} else {
 			return false;
