@@ -2,7 +2,7 @@
 
 /**
  * Our generator class. This does the work of interpreting the form data, passing the work off to the various
- * plugins and piecing the generateda data for returning to the client.
+ * plugins and piecing the generated data for returning to the client.
  * @author Ben Keen <ben.keen@gmail.com>
  * @package Core
  */
