@@ -122,15 +122,13 @@ class DataType_PAN extends DataTypePlugin {
 		}
 
 		$card = self::getCreditCardNumber($prefixList, $ccLength);
-		$cardNumber = $this->pan_convert_format($ccLength, $ccFormat, $ccSeparator, $card[0]);
+		$cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
 
-
-		if ($cardNumber == "" || $cardNumber == false) {
-			echo "not generated</br>";
-		} else {
-			return $cardNumber;
-		}
+		return array(
+			"display" => $cardNumber
+		);
 	}
+
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
 //		if (empty($postdata["dtOption_$colNum"])) {
@@ -266,45 +264,37 @@ EOF;
 	}
 
 
-	private static function pan_completed_number($prefix, $length) {
-		$ccnumber = $prefix;
+	private static function getCreditCardNumber($prefixList, $length) {
+		$ccNumber = $prefixList[array_rand($prefixList)];
 
 		// generate digits
-		while (strlen($ccnumber)<($length-1)) {
-			$ccnumber .= mt_rand(0,9);
+		while (strlen($ccNumber)<($length-1)) {
+			$ccNumber .= mt_rand(0,9);
 		}
 
-		// Calculate sum
+		// calculate sum
 		$sum = 0;
 		$pos = 0;
 
-		$reversedCCnumber = strrev( $ccnumber );
-		while ( $pos < $length - 1 ) {
-
-			$odd = $reversedCCnumber[ $pos ] * 2;
-			if ( $odd > 9 ) {
+		$reversedCCnumber = strrev($ccNumber);
+		while ($pos < $length - 1) {
+			$odd = $reversedCCnumber[$pos]*2;
+			if ($odd > 9) {
 				$odd -= 9;
 			}
 			$sum += $odd;
 
-			if ( $pos != ($length - 2) ) {
-
+			if ($pos != ($length - 2)) {
 				$sum += $reversedCCnumber[ $pos +1 ];
 			}
 			$pos += 2;
 		}
 
 		// calculate check digit
-		$checkdigit = (( floor($sum/10) + 1) * 10 - $sum) % 10;
-		$ccnumber .= $checkdigit;
+		$checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
+		$ccNumber .= $checkDigit;
 
-		return $ccnumber;
-	}
-
-
-	private static function getCreditCardNumber($prefixList, $length) {
-		$ccNumber = $prefixList[array_rand($prefixList)];
-		return self::pan_completed_number($ccNumber, $length);
+		return $ccNumber;
 	}
 
 
@@ -315,11 +305,14 @@ EOF;
 	 * @param $ccNumber
 	 * @return array|bool|string
 	 */
-	private static function pan_convert_format($ccLength, $ccFormat, $ccSeparator, $ccNumber) {
+	private static function convertFormat($ccLength, $ccFormat, $ccSeparator, $ccNumber) {
+
+		// TODO pity we need this extra test on each call
 		if ($ccLength == strlen($ccNumber)) {
 			$a = self::convertXtoNumber($ccFormat, $ccNumber);
+
 			if ($a == $ccNumber) {
-				return ($a); // TODO interesting...
+				return $a;
 			} else {
 				return implode($ccSeparator, $a);
 			}
@@ -398,47 +391,21 @@ EOF;
 
 
 	// will give a random separator
-	private static function getRandomPANSeparator($user_sel_seperator, $rand_card_format) {
+	private static function getRandomPANSeparator($separators, $randCardFormat) {
 
-		// if card number is continuous then there should be no separator
+		$chosenSep = "";
+		if (preg_match("/[^X]/", $randCardFormat)) {
 
-		if ($rand_card_format == "XXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXXX" || $rand_card_format == "XXXXXXXXXXXXXXXXXXX"){
-			$chosen_sep = "";
-		} else{
+			$separatorList = explode("|", $separators);
+			$chosenSep = $separatorList[rand(0, count($separatorList)-1)];
 
-			//----------------From all user input separators pick a random one--------------------
-			$get_sep = explode("|", $user_sel_seperator);
-			if (count($get_sep) >= 1)
-				$chosen_sep = $get_sep[rand(0, count($get_sep)-1)];
-
-			// on selection, convert it
-			if ($chosen_sep == "C") {
-				$chosen_sep = ":";
-			} else if($chosen_sep == "A") {
-				$chosen_sep = "*";
-			} else if($chosen_sep == "P") {
-				$chosen_sep = "|";
-			} else if($chosen_sep == "D") {
-				$chosen_sep = ".";
-			} else if($chosen_sep == "H") {
-				$chosen_sep = "-";
-			} else if($chosen_sep == "S") {
-				$chosen_sep = " ";
-			} else {
-				$chosen_sep = " ";
+			// if no separator was entered
+			if ($separators == "") {
+				$chosenSep = " ";
 			}
-
-			//If no seperator is selected then by default space will be displayed.
-			if($user_sel_seperator == "") {
-				$chosen_sep = " ";
-			}
-
-			// If card number is continous then there should be no seperator
-			// if($rand_card_format == "XXXXXXXXXXXX"){
-			// $chosen_sep = " ";
-			// }
 		}
-		return $chosen_sep;
+
+		return $chosenSep;
 	}
 
 
