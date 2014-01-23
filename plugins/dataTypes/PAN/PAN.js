@@ -197,51 +197,37 @@ define([
 
 
 	var _validate = function(rows) {
-		/*
-		var visibleProblemRows = [];
-		var problemFields      = [];
-		var err_flag = [];
-		for (var i=0; i<rows.length; i++)
-		{
-			//Check if Examples(card type) is blank.
-			if ($("#dt_" + rows[i]).val() == "")
-			{
-				var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
-				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#dt_" + rows[i]));
-				err_flag = "dt";
-			}
-			//Check if Seperator is of proper format.
-			var propersep = $("#sep_" + rows[i]).val();
-			if ($("#sep_" + rows[i]).val().match(/[a-z0-9\s\~\`\!\@\#\$\%\^\&\*\(\)\_\-\+\+\{\}\[\]\\\;\:\'\"\,\.\/\<\>\?]+|[^CPAHDS\|]\|/))
-			{
-				var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
-				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#sep_" + rows[i]));
-				err_flag = "sep";
-			}
-			//Check if card format is proper.
-			var properformat = $("#option_" + rows[i]).val();
-			if (properformat.match(/[a-z0-9\~\`\!\@\#\$\%\^\&\*\(\)\_\-\+\+\{\}\[\]\\\;\:\'\"\,\.\/\<\>\?]+|[^X\s]/g))
-			{
-				var visibleRowNum = gd._getVisibleRowOrderByRowNum(rows[i]);
-				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#option_" + rows[i]));
-				err_flag = "format";
+		var cardTypeProblemVisibleRows = [];
+		var cardTypeProblemFields      = [];
+		var cardFormatProblemVisibleRows = [];
+		var cardFormatProblemFields      = [];
+
+		for (var i=0; i<rows.length; i++) {
+
+			// check if the examples dropdown (card type) isn't blank
+			var $exampleField = $("#dtExample_" + rows[i]);
+			if ($exampleField.val() === "") {
+				cardTypeProblemVisibleRows.push(generator.getVisibleRowOrderByRowNum(rows[i]));
+				cardTypeProblemFields.push($exampleField);
 			}
 
+			// check if card format is proper
+			var format = $("#dtOption_" + rows[i]).val();
+			if (format.match(/[^X]/g)) {
+				cardFormatProblemVisibleRows.push(generator.getVisibleRowOrderByRowNum(rows[i]));
+				cardFormatProblemFields.push($("#dtOption_" + rows[i]));
+			}
 		}
 
-		if(err_flag == "dt")
-			if (visibleProblemRows.length)
-				gd.errors.push({ els: problemFields, error: L.Pan_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-		if(err_flag == "sep")
-			if (visibleProblemRows.length)
-				gd.errors.push({ els: problemFields, error: L.sep_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-		if(err_flag == "format")
-			if (visibleProblemRows.length)
-				gd.errors.push({ els: problemFields, error: L.format_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-		*/
+		var errors = [];
+		if (cardTypeProblemVisibleRows.length) {
+			errors.push({ els: cardTypeProblemFields, error: LANG.pan_incomplete_fields + " <b>" + cardTypeProblemVisibleRows.join(", ") + "</b>"});
+		}
+		if (cardFormatProblemVisibleRows.length) {
+			errors.push({ els: cardFormatProblemFields, error: LANG.format_incomplete_fields + " <b>" + cardFormatProblemVisibleRows.join(", ") + "</b>"});
+		}
+
+		return errors;
 	};
 
 
