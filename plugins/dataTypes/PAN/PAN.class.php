@@ -12,6 +12,7 @@ class DataType_PAN extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("PAN.js");
 
+	// Bah, this sucks. Defined both in the JS + PHP!!!!
 	private $data = array(
 		array(
 			"cards" => array("mastercard", "discover", "visa_electron"),
@@ -144,6 +145,7 @@ class DataType_PAN extends DataTypePlugin {
 		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"], $options["cc_format"]);
 
 
+		// TODO
 		$prefixList = array();
 		switch ($options["cc_brand"]) {
 			case "mastercard":
@@ -465,6 +467,11 @@ EOF;
 
 
 	private static function getRandomPANLength($userSelectedLength) {
+
+//		$groups = explode(",", $userSelectedLength);
+//		for ($i=0; $i<count($groups); $i++) {
+//			$groups = explode(",", $groups[$i]);
+//		}
 
 		// if there's more than 1 card length then pick a random one
 		if ($userSelectedLength == "12-19") {
