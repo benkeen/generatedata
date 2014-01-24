@@ -36,7 +36,7 @@ class Core {
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
-	private static $dataTypeGroups = array("human_data", "credit_card_data", "geo", "text", "numeric", "math", "other");
+	private static $dataTypeGroups = array("human_data", "geo", "credit_card_data", "text", "numeric", "math", "other");
 	private static $continents = array("africa", "asia", "central_america", "europe", "north_america", "oceania", "south_america");
 	private static $isLoggedIn = false;
 
