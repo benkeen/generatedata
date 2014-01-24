@@ -25,37 +25,49 @@ define([
 	};
 
 	var _saveRow = function(rowNum) {
-		/*
+		var randomBrands = $("#dtOption_randomCardFormat_" + rowNum).val();
+
 		return {
-			"example":  $("#dt_" + rowNum).val(),
-			"digit":   $("#digit_" + rowNum).val(),
-			"seperator": $('#sep_' + rowNum).val(),
-			"format":	$('#option_' + rowNum).val(),
-			"rand_brand": $('#option_mselect_' + rowNum).val()
+			example:      $("#dtExample_" + rowNum).val(),
+			digit:        $("#dtOptionPAN_digit_" + rowNum).val(),
+			separator:    $("#dtOptionPAN_sep_" + rowNum).val(),
+			format:       $("#dtOption_" + rowNum).val(),
+			randomBrands: randomBrands
 		};
-		*/
 	};
 
 	var _loadRow = function(rowNum, data) {
-		/*
-		return [
-			function() {
-				$("#dt_" + rowNum).val(data.example);
-				$("#digit_" + rowNum).val(data.digit);
-				$('#sep_' + rowNum).val(data.seperator);
-				$('#option_' + rowNum).val(data.format);
+		return {
+			execute: function() {
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtOptionPAN_digit_" + rowNum).val(data.digit);
+				$("#dtOptionPAN_sep_" + rowNum).val(data.separator);
+				$("#dtOption_" + rowNum).val(data.format);
 
-				if ($('#dt_' + rowNum).val() == "rand_card")  {
-					$("#Card_digit_" + rowNum).hide();
-					$("#Card_format_" + rowNum).hide();
-					$("#Card_rand_select_" + rowNum).show();
-					$('#option_mselect_' + rowNum).val(data.rand_brand);
+				var $cardFormat       = $("#dtOptionPAN_cardFormat_" + rowNum);
+				var $digitSection     = $("#dtOptionPAN_digitSection_" + rowNum);
+				var $randCardFormatSection = $("#dtOptionPAN_randomCardFormatSection_" + rowNum);
+
+				if (data.example === "rand_card") {
+					$digitSection.hide();
+					$cardFormat.hide();
+					$randCardFormatSection.show();
+
+					var options = $("#dtOptionPAN_randomCardFormat_" + rowNum).find("option");
+					for (var i=0; i<options.length; i++) {
+						if ($.inArray(options[i].value, data.randomBrands) !== -1) {
+							$(options[i]).prop("selected", "selected");
+						}
+					}
+
+				} else {
+					$cardFormat.show();
+					$digitSection.show();
+					$randCardFormatSection.hide();
 				}
-
 			},
-			function() { return $("#option_" + rowNum).length > 0; }
-		];
-		*/
+			isComplete: function() { return $("#dtOptionPAN_randomCardFormat_" + rowNum).length > 0; }
+		};
 	};
 
 

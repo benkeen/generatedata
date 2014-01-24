@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Ben Keen <ben.keen@gmail.com>
+ * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh
  * @package DataTypes
  */
 class DataType_PAN extends DataTypePlugin {
@@ -12,6 +12,112 @@ class DataType_PAN extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("PAN.js");
 
+	private $data = array(
+		array(
+			"cards" => array("mastercard", "discover", "visa_electron"),
+			"length" => "16",
+			"formats" => array(
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX"
+			)
+		),
+		array(
+			"cards" => array("visa"),
+			"length" => "13,16",
+			"formats" => array(
+				"XXXXXXXXXXXXX",
+				"XXXX XXX XX XXXX",
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX"
+			)
+		),
+		array(
+			"cards" => array("amex", "enroute"),
+			"length" => "15",
+			"formats" => array(
+				"XXXXXXXXXXXXXXX",
+				"XXXX XXXXXX XXXXX"
+			)
+		),
+		array(
+			"cards" => array("carte_blanche", "diners_club_international"),
+			"length" => "14",
+			"formats" => array(
+				"XXXXXXXXXXXXXXX",
+				"XXXX XXXXXX XXXXX"
+			)
+		),
+		array(
+			"cards" => array("jcb"),
+			"length" => "15,16",
+			"formats" => array(
+				"XXXXXXXXXXXXXXX",
+				"XXXX XXXXXX XXXXX",
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX"
+			)
+		),
+		array(
+			"cards" => array("maestro"),
+			"length" => "12-19",
+			"formats" => array(
+				"XXXXXXXXXXXX",
+				"XXXXXXXXXXXXX",
+				"XXXX XXX XX XXXX",
+				"XXXXXXXXXXXXXX",
+				"XXXX XXXXXX XXXX",
+				"XXXXXXXXXXXXXXX",
+				"XXXX XXXXXX XXXXX",
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXXXX",
+				"XXXXXX XX XXXX XXXX XXX"
+			)
+		),
+		array(
+			"cards" => array("solo", "switch"),
+			"length" => "16,18,19",
+			"formats" => array(
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXXXX",
+				"XXXXXX XX XXXX XXXX XXX"
+			)
+		),
+		array(
+			"cards" => array("laser"),
+			"length" => "16-19",
+			"formats" => array(
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXXXX",
+				"XXXXXX XX XXXX XXXX XXX"
+			)
+		)
+	);
 
 	public function __construct($runtimeContext) {
 		for ($dpl=622126; $dpl<=622925; $dpl++) {
@@ -28,46 +134,10 @@ class DataType_PAN extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 
-		/*
-			$rand_card_brand = array_rand($str["cc_random_card"]);
-			$str["cc_random_card"] = $str["cc_random_card"][$rand_card_brand];
-
-			// TODO
-			if ($str["cc_random_card"] == "mastercard" || $str["cc_random_card"] == "discover" || $str["cc_random_card"] == "visa_electron")  {
-				$str["cc_brand"] = $str["cc_random_card"];
-				$str["cc_length"] = "16";
-				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
-			} else if($str["cc_random_card"] == "visa") {
-				$str["cc_brand"] = $str["cc_random_card"];
-				$str["cc_length"] = "13,16";
-				$str["cc_format"] = "XXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
-			} else if($str["cc_random_card"] == "amex" || $str["cc_random_card"] == "enroute") {
-				$str["cc_brand"] = $str["cc_random_card"];
-				$str["cc_length"] = "15";
-				$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX";
-			} else if($str["cc_random_card"] == "carte_blanche" || $str["cc_random_card"] == "diners_club_international") {
-				$str["cc_brand"] = $str["cc_random_card"];
-				$str["cc_length"] = "14";
-				$str["cc_format"] = "XXXXXXXXXXXXXX\nXXXX XXXXXX XXXX";
-			} else if($str["cc_random_card"] == "jcb") {
-				$str["cc_brand"] = $str["cc_random_card"];
-				$str["cc_length"] = "15,16";
-				$str["cc_format"] = "XXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX";
-			} else if($str["cc_random_card"] == "maestro") {
-				$str["cc_brand"] = $str["cc_random_card"];
-				$str["cc_length"] = "12-19";
-				$str["cc_format"] = "XXXXXXXXXXXX\nXXXXXXXXXXXXX\nXXXX XXX XX XXXX\nXXXXXXXXXXXXXX\nXXXX XXXXXX XXXX\nXXXXXXXXXXXXXXX\nXXXX XXXXXX XXXXX\nXXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
-			} else if($str["cc_random_card"] == "solo" || $str["cc_random_card"] == "switch") {
-				$str["cc_brand"] = $str["cc_random_card"];
-				$str["cc_length"] = "16,18,19";
-				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
-			} else if ($str["cc_random_card"] == "laser") {
-				$str["cc_brand"] = $str["cc_random_card"];
-				$str["cc_length"] = "16-19";
-				$str["cc_format"] = "XXXXXXXXXXXXXXXX\nXXXX XXXX XXXX XXXX\nXXXXXX XXXXXX XXXX\nXXX XXXXX XXXXX XXX\nXXXXXX XXXXXXXXXX\nXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXX\nXXXXXXXXXXXXXXXXXXX\nXXXXXX XX XXXX XXXX XXX";
-			}
+		if ($options["cc_brand"] == "rand_card") {
+			$options = $this->setRandomCardInfo($options);
 		}
-*/
+
 
 		$ccLength    = self::getRandomPANLength($options["cc_length"]);
 		$ccFormat    = self::getRandomPANFormat($options["cc_format"], $options["cc_length"]);
@@ -129,12 +199,29 @@ class DataType_PAN extends DataTypePlugin {
 		);
 	}
 
+	public function setRandomCardInfo($options) {
+		$selectedCard = $options["cc_random_card"][array_rand($options["cc_random_card"])];
+
+		$cardData = array();
+		foreach ($this->data as $cardGroup) {
+			if (in_array($selectedCard, $cardGroup["cards"])) {
+				$cardData["length"] = $cardGroup["length"];
+				$cardData["formats"] = $cardGroup["formats"];
+				break;
+			}
+		}
+
+		if (empty($cardData)) {
+			return false;
+		}
+
+		$options["cc_format"] = $cardData["formats"][array_rand($cardData["formats"])];
+		$options["cc_length"] = self::getRandomPANLength($cardData["length"]);
+
+		return $options;
+	}
 
 	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
-//		if (empty($postdata["dtOption_$colNum"])) {
-//			return false;
-//		}
-
 		return array(
 			"cc_brand"	     => $postdata["dtExample_$colNum"],
 			"cc_separator"   => $postdata["dtOptionPAN_sep_$colNum"],
@@ -172,13 +259,13 @@ END;
 	public function getOptionsColumnHTML() {
 		$html =<<< END
 <span id="dtOptionPAN_cardDigitSection_%ROW%">
-	{$this->L["digits"]}
+	{$this->L["length"]}
 	<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style="width: 60px" readonly="readonly" />
 </span>
 
 <span id="dtOptionPAN_cardSeparator_%ROW%">
 	{$this->L["separators"]}
-	<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style="width: 78px" value=" |:|*|.|-" />
+	<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style="width: 78px" value=" |:|*|.|-" title="{$this->L["separator_help"]}" />
 </span>
 
 <span id="dtOptionPAN_cardFormat_%ROW%">
@@ -188,7 +275,7 @@ END;
 
 <span id="dtOptionPAN_randomCardFormatSection_%ROW%" style="display:none;">
 	{$this->L["ccrandom"]}
-	<select multiple="multiple" name="dtOption_randomCardFormat_\$ROW\$[]" id="dtOption_randomCardFormat__\$ROW\$" title="{$this->L["rand_brand_title"]}" style="height: 100px; width: 260px">
+	<select multiple="multiple" name="dtOptionPAN_randomCardFormat_%ROW%[]" id="dtOptionPAN_randomCardFormat_%ROW%" title="{$this->L["rand_brand_title"]}" style="height: 100px; width: 260px">
 		<option value="mastercard">{$this->L["mastercard"]}</option>
 		<option value="visa">{$this->L["visa"]}</option>
 		<option value="visa_electron">{$this->L["visa_electron"]}</option>
@@ -209,55 +296,23 @@ END;
 	}
 
 	public function getDataTypeMetadata() {
-		$info = "";
-		switch ($export_type) {
-			case "sql":
-				if ($options == "MySQL" || $options == "SQLite")
-					$info = "varchar(255) default NULL";
-				else if ($options == "Oracle")
-					$info = "varchar2(255) default NULL";
-				break;
-		}
-
-		return $info;
+		return array(
+			"SQLField" => "varchar(255)",
+			"SQLField_Oracle" => "varchar2(255)",
+			"SQLField_MSSQL" => "VARCHAR(255) NULL"
+		);
 	}
 
 	public function getHelpHTML() {
 		$html =<<<EOF
 <p>
 	{$this->L["pan_help_intro"]}
+	<b>{$this->L["mastercard"]}</b>, <b>{$this->L["visa"]}</b>, <b>{$this->L["visa_electron"]}</b>,
+	<b>{$this->L["americanexpress"]}</b>, <b>{$this->L["discover"]}</b>, <b>{$this->L["american_diners"]}</b>,
+	<b>{$this->L["carte_blanche"]}</b>, <b>{$this->L["diners_club_international"]}</b>, <b>{$this->L["enroute"]}</b>,
+	<b>{$this->L["jcb"]}</b>, <b>{$this->L["maestro"]}</b>, <b>{$this->L["solo"]}</b>,
+	<b>{$this->L["switch"]}</b>, <b>{$this->L["laser"]}</b>.
 </p>
-
-<table cellpadding="0" cellspacing="1">
-<tr>
-	<td>{$this->L["mastercard"]}</td>
-	<td>{$this->L["visa13"]}</td>
-</tr>
-<tr>
-	<td>{$this->L["visa16"]}</td>
-	<td>{$this->L["americanexpress"]}</td>
-</tr>
-<tr>
-	<td>{$this->L["discover"]}</td>
-	<td>{$this->L["american_diners"]}</td>
-</tr>
-<tr>
-	<td>{$this->L["carte_blanche"]}</td>
-	<td>{$this->L["diners_club_international"]}</td>
-</tr>
-<tr>
-	<td>{$this->L["enroute"]}</td>
-	<td>{$this->L["jcb15"]}</td>
-</tr>
-<tr>
-	<td>{$this->L["jcb16"]}</td>
-	<td>{$this->L["maestro"]}</td>
-</tr>
-<tr>
-	<td>{$this->L["solo"]}</td>
-	<td></td>
-</tr>
-</table>
 EOF;
 
 		return $html;
