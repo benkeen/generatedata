@@ -15,29 +15,6 @@ class DataType_Track1 extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 40;
 
 
-	// TODO move this to PAN, combine with "format" and "length". Make this the one and only central location for
-	// this data.
-	private $prefixList = array(
-		"visa" => array(
-			"prefix"  => array(4539, 4556, 4916, 4532, 4929, 40240071, 4485, 4716, 4),
-			"length"  => "",
-			"formats" => ""
-		),
-		"visaElectron"      => array(4026, 417500, 4508, 4844, 4913, 4917),
-		"mastercard"        => array(51, 52, 53, 54, 55),
-		"amex"              => array(34, 37),
-		"discover"          => array(6011, 644, 645, 646, 647, 648, 649, 65),
-		"carteBlanche"      => array(300, 301, 302, 303, 304, 305),
-		"dinersClubInt"     => array(36),
-		"dinersClubEnRoute" => array(2014, 2149),
-		"jcb15"             => array(2131, 1800),
-		"jcb16"             => array(31, 309),
-		"maestro"           => array(5018, 5038, 6304, 6759, 6761, 6762, 6763, 5893, 56, 57, 58),
-		"solo"              => array(6334, 6767),
-		"switch"            => array(4903, 4905, 4905, 4911, 4936, 564182, 633110, 6333, 6759),
-		"laser"             => array(6304, 6706, 6771, 6709)
-	);
-
 	public function __construct($runtimeContext) {
 		for ($i=622126; $i<=622925; $i++){
 			$this->prefixList["prefix"][] = $i;

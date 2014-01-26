@@ -6,28 +6,17 @@
  */
 class DataType_PAN extends DataTypePlugin {
 
-	protected $isEnabled = true;
+	protected $isEnabled = false;
 	protected $dataTypeName = "PAN";
 	protected $dataTypeFieldGroup = "credit_card_data";
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("PAN.js");
 
-	// Bah, this sucks. Defined both in the JS + PHP!!!!
-	private $data = array(
-		array(
-			"cards" => array("mastercard", "discover", "visa_electron"),
-			"length" => "16",
-			"formats" => array(
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX"
-			)
-		),
-		array(
-			"cards" => array("visa"),
-			"length" => "13,16",
+
+	private $creditCardData = array(
+		"visa" => array(
+			"prefix"  => array(4539, 4556, 4916, 4532, 4929, 40240071, 4485, 4716, 4),
+			"length"  => "13,16",
 			"formats" => array(
 				"XXXXXXXXXXXXX",
 				"XXXX XXX XX XXXX",
@@ -38,24 +27,73 @@ class DataType_PAN extends DataTypePlugin {
 				"XXXXXX XXXXXXXXXX"
 			)
 		),
-		array(
-			"cards" => array("amex", "enroute"),
+		"visaElectron" => array(
+			"prefix" => array(4026, 417500, 4508, 4844, 4913, 4917),
+			"length" => "16",
+			"formats" => array(
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX"
+			)
+		),
+		"mastercard" => array(
+			"prefix" => array(51, 52, 53, 54, 55),
+			"length" => "16",
+			"formats" => array(
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX"
+			)
+		),
+		"amex" => array(
+			"prefix" => array(34, 37),
 			"length" => "15",
 			"formats" => array(
 				"XXXXXXXXXXXXXXX",
 				"XXXX XXXXXX XXXXX"
 			)
 		),
-		array(
-			"cards" => array("carte_blanche", "diners_club_international"),
+		"discover" => array(
+			"prefix" => array(6011, 644, 645, 646, 647, 648, 649, 65),
+			"length" => "16",
+			"formats" => array(
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX"
+			)
+		),
+		"carteBlanche" => array(
+			"prefix" => array(300, 301, 302, 303, 304, 305),
 			"length" => "14",
 			"formats" => array(
 				"XXXXXXXXXXXXXXX",
 				"XXXX XXXXXX XXXXX"
 			)
 		),
-		array(
-			"cards" => array("jcb"),
+		"dinersClubInt" => array(
+			"prefix" => array(36),
+			"length" => "14",
+			"formats" => array(
+				"XXXXXXXXXXXXXXX",
+				"XXXX XXXXXX XXXXX"
+			)
+		),
+		"dinersClubEnRoute" => array(
+			"prefix" => array(2014, 2149),
+			"length" => "15",
+			"formats" => array(
+				"XXXXXXXXXXXXXXX",
+				"XXXX XXXXXX XXXXX"
+			)
+		),
+		"jcb15" => array(
+			"prefix" => array(2131, 1800),
 			"length" => "15,16",
 			"formats" => array(
 				"XXXXXXXXXXXXXXX",
@@ -67,8 +105,21 @@ class DataType_PAN extends DataTypePlugin {
 				"XXXXXX XXXXXXXXXX"
 			)
 		),
-		array(
-			"cards" => array("maestro"),
+		"jcb16" => array(
+			"prefix" => array(31, 309),
+			"length" => "15,16",
+			"formats" => array(
+				"XXXXXXXXXXXXXXX",
+				"XXXX XXXXXX XXXXX",
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX"
+			)
+		),
+		"maestro" => array(
+			"prefix" => array(5018, 5038, 6304, 6759, 6761, 6762, 6763, 5893, 56, 57, 58),
 			"length" => "12-19",
 			"formats" => array(
 				"XXXXXXXXXXXX",
@@ -89,8 +140,8 @@ class DataType_PAN extends DataTypePlugin {
 				"XXXXXX XX XXXX XXXX XXX"
 			)
 		),
-		array(
-			"cards" => array("solo", "switch"),
+		"solo" => array(
+			"prefix" => array(6334, 6767),
 			"length" => "16,18,19",
 			"formats" => array(
 				"XXXXXXXXXXXXXXXX",
@@ -103,8 +154,22 @@ class DataType_PAN extends DataTypePlugin {
 				"XXXXXX XX XXXX XXXX XXX"
 			)
 		),
-		array(
-			"cards" => array("laser"),
+		"switch" => array(
+			"prefix" => array(4903, 4905, 4905, 4911, 4936, 564182, 633110, 6333, 6759),
+			"length" => "16,18,19",
+			"formats" => array(
+				"XXXXXXXXXXXXXXXX",
+				"XXXX XXXX XXXX XXXX",
+				"XXXXXX XXXXXX XXXX",
+				"XXX XXXXX XXXXX XXX",
+				"XXXXXX XXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXXX",
+				"XXXXXXXXXXXXXXXXXXX",
+				"XXXXXX XX XXXX XXXX XXX"
+			)
+		),
+		"laser" => array(
+			"prefix" => array(6304, 6706, 6771, 6709),
 			"length" => "16-19",
 			"formats" => array(
 				"XXXXXXXXXXXXXXXX",
@@ -121,12 +186,11 @@ class DataType_PAN extends DataTypePlugin {
 	);
 
 	public function __construct($runtimeContext) {
-		for ($dpl=622126; $dpl<=622925; $dpl++) {
-			$this->discoverPrefixList[] = $dpl;
+		for ($i=622126; $i<=622925; $i++) {
+			$this->creditCardData["discover"] = $i;
 		}
-
-		for ($jpl=3528; $jpl<=3589; $jpl++) {
-			$this->jcb16PrefixList[] = $jpl;
+		for ($i=3528; $i<=3589; $i++) {
+			$this->creditCardData["jcb16"] = $i;
 		}
 		parent::__construct($runtimeContext);
 	}
@@ -139,18 +203,15 @@ class DataType_PAN extends DataTypePlugin {
 			$options = $this->setRandomCardInfo($options);
 		}
 
-
 		$ccLength    = self::getRandomPANLength($options["cc_length"]);
 		$ccFormat    = self::getRandomPANFormat($options["cc_format"], $options["cc_length"]);
 		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"], $options["cc_format"]);
 
 
 		// TODO
+		/*
 		$prefixList = array();
 		switch ($options["cc_brand"]) {
-			case "mastercard":
-				$prefixList = array("51", "52", "53", "54", "55");
-				break;
 			case "visa":
 				$prefixList = array("4539", "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4");
 				break;
@@ -192,6 +253,7 @@ class DataType_PAN extends DataTypePlugin {
 				$prefixList = array("6304", "6706", "6771", "6709");
 				break;
 		}
+		*/
 
 		$card = self::getCreditCardNumber($prefixList, $ccLength);
 		$cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
