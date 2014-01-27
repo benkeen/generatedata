@@ -1,5 +1,4 @@
 <?php
 
 $L = array();
-
-$L["track1_help_intro"] = "";
+$L["track1_help_intro"] = "Track 1 contains the cardholder's name as well as account number and other discretionary data.";

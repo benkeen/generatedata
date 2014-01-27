@@ -242,7 +242,7 @@ class Utils {
 	 * Returns an array of lorem ipsum words. Assumes that a file exists in a misc/ subfolder called
 	 * loremipsum.txt, containing lorem ipsum text.
 	 *
-	 * TODO this seems a good candidate to memoize...
+	 * TODO this seems a good candidate to memoize... (no kidding, yikes!)
 	 *
 	 * @return array a large array of words
 	 */

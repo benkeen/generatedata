@@ -13,7 +13,7 @@ class DataType_PAN extends DataTypePlugin {
 	protected $jsModules = array("PAN.js");
 
 
-	private $creditCardData = array(
+	private static $creditCardData = array(
 		"visa" => array(
 			"prefix"  => array(4539, 4556, 4916, 4532, 4929, 40240071, 4485, 4716, 4),
 			"length"  => "13,16",
@@ -208,10 +208,8 @@ class DataType_PAN extends DataTypePlugin {
 		$ccFormat    = self::getRandomPANFormat($options["cc_format"], $options["cc_length"]);
 		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"], $options["cc_format"]);
 
-		$ccData = $this->getCreditCardData($options["cc_brand"]);
-		$prefixList = $ccData["prefixList"];
-
-		$card = self::getCreditCardNumber($prefixList, $ccLength);
+		$ccData = self::getCreditCardData($options["cc_brand"]);
+		$card = self::generateCreditCardNumber($ccData["prefixList"], $ccLength);
 		$cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
 
 		if (empty($cardNumber)) {
@@ -231,7 +229,7 @@ class DataType_PAN extends DataTypePlugin {
 			$selectedCard = $jcbCards[mt_rand(0, 1)];
 		}
 
-		$cardData = $this->getCreditCardData($selectedCard);
+		$cardData = self::getCreditCardData($selectedCard);
 		$options["cc_format"] = $cardData["formats"][array_rand($cardData["formats"])];
 		$options["cc_length"] = self::getRandomPANLength($cardData["length"]);
 
@@ -333,40 +331,6 @@ END;
 EOF;
 
 		return $html;
-	}
-
-
-	private static function getCreditCardNumber($prefixList, $length) {
-		$ccNumber = $prefixList[array_rand($prefixList)];
-
-		// generate digits
-		while (strlen($ccNumber)<($length-1)) {
-			$ccNumber .= mt_rand(0,9);
-		}
-
-		// calculate sum
-		$sum = 0;
-		$pos = 0;
-
-		$reversedCCnumber = strrev($ccNumber);
-		while ($pos < $length - 1) {
-			$odd = $reversedCCnumber[$pos]*2;
-			if ($odd > 9) {
-				$odd -= 9;
-			}
-			$sum += $odd;
-
-			if ($pos != ($length - 2)) {
-				$sum += $reversedCCnumber[ $pos +1 ];
-			}
-			$pos += 2;
-		}
-
-		// calculate check digit
-		$checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
-		$ccNumber .= $checkDigit;
-
-		return $ccNumber;
 	}
 
 
@@ -483,6 +447,7 @@ EOF;
 
 	private static function getRandomPANLength($userSelectedLength) {
 
+		// this would be better
 //		$groups = explode(",", $userSelectedLength);
 //		for ($i=0; $i<count($groups); $i++) {
 //			$groups = explode(",", $groups[$i]);
@@ -507,10 +472,44 @@ EOF;
 	// --------------------------------------------------------------------------------------------
 	// Public functions
 
-	public function getCreditCardData($ccBrand) {
+	public static function generateCreditCardNumber($prefixList, $length) {
+		$ccNumber = $prefixList[array_rand($prefixList)];
+
+		// generate digits
+		while (strlen($ccNumber)<($length-1)) {
+			$ccNumber .= mt_rand(0,9);
+		}
+
+		// calculate sum
+		$sum = 0;
+		$pos = 0;
+
+		$reversedCCnumber = strrev($ccNumber);
+		while ($pos < $length - 1) {
+			$odd = $reversedCCnumber[$pos]*2;
+			if ($odd > 9) {
+				$odd -= 9;
+			}
+			$sum += $odd;
+
+			if ($pos != ($length - 2)) {
+				$sum += $reversedCCnumber[ $pos +1 ];
+			}
+			$pos += 2;
+		}
+
+		// calculate check digit
+		$checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
+		$ccNumber .= $checkDigit;
+
+		return $ccNumber;
+	}
+
+
+	public static function getCreditCardData($ccBrand) {
 		$data = array();
-		reset($this->creditCardData);
-		while (list($currBrand, $ccData) = each($this->creditCardData)) {
+		reset(self::$creditCardData);
+		while (list($currBrand, $ccData) = each(self::$creditCardData)) {
 			if ($ccBrand != $currBrand) {
 				continue;
 			}
@@ -519,4 +518,7 @@ EOF;
 		return $data;
 	}
 
+	public static function getAllCreditCardData() {
+		return self::$creditCardData;
+	}
 }
