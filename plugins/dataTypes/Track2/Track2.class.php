@@ -7,12 +7,12 @@
  * @description this class has a hard dependency on the PAN class. That class contains a few public
  *              helper functions.
  */
-class DataType_Track1 extends DataTypePlugin {
+class DataType_Track2 extends DataTypePlugin {
 	protected $isEnabled = true;
-	protected $dataTypeName = "Track 1";
+	protected $dataTypeName = "Track 2";
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "credit_card_data";
-	protected $dataTypeFieldGroupOrder = 40;
+	protected $dataTypeFieldGroupOrder = 50;
 
 
 	private $cardData;
@@ -33,24 +33,14 @@ class DataType_Track1 extends DataTypePlugin {
 		$cardData = $this->cardData[array_rand($this->cardData)];
 		$generatedCardNumber = DataType_PAN::generateCreditCardNumber($cardData["prefix"], $cardData["length"]);
 
-		$characters = array("A","B","C","D","E","F","G","H","J","K","L","M","N","P","Q","R","S","T","U","V","W","X","Y","Z");
-		$chars = array();
-		while (count($chars) < 4) {
-			$char = $characters[mt_rand(0, count($characters)-1)];
-			if (!in_array($char, $chars)) {
-				$chars[] = $char;
-			}
-		}
-		$randomChars = implode("", $chars);
-
 		$calendar = date("ym", mt_rand());
 		$serviceCode = mt_rand(111, 999);
-		$num1 = Utils::generateRandomAlphanumericStr(str_repeat("x", 26));
+		$num = Utils::generateRandomAlphanumericStr(str_repeat("x", 26));
 
-		$track1 = "%B$generatedCardNumber^CardUser/$randomChars^$calendar$serviceCode$num1?";
+		$track2 = ";$generatedCardNumber=$calendar$serviceCode$num?";
 
 		return array(
-			"display" => $track1
+			"display" => $track2
 		);
 	}
 
@@ -63,6 +53,6 @@ class DataType_Track1 extends DataTypePlugin {
 	}
 
 	public function getHelpHTML() {
-		return "<p>{$this->L["track1_help_intro"]}</p>";
+		return "<p>{$this->L["track2_help_intro"]}</p>";
 	}
 }
