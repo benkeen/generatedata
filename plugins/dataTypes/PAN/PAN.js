@@ -225,7 +225,7 @@ define([
 
 			// check if card format is proper
 			var format = $("#dtOption_" + rows[i]).val();
-			if (format.match(/[^X]/g)) {
+			if (format.match(/[^X\s]/g)) {
 				cardFormatProblemVisibleRows.push(generator.getVisibleRowOrderByRowNum(rows[i]));
 				cardFormatProblemFields.push($("#dtOption_" + rows[i]));
 			}

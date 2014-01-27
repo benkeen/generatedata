@@ -6,7 +6,7 @@
  */
 class DataType_PAN extends DataTypePlugin {
 
-	protected $isEnabled = false;
+	protected $isEnabled = true;
 	protected $dataTypeName = "PAN";
 	protected $dataTypeFieldGroup = "credit_card_data";
 	protected $dataTypeFieldGroupOrder = 10;
@@ -185,12 +185,13 @@ class DataType_PAN extends DataTypePlugin {
 		)
 	);
 
+
 	public function __construct($runtimeContext) {
 		for ($i=622126; $i<=622925; $i++) {
-			$this->creditCardData["discover"] = $i;
+			$this->creditCardData["discover"][] = $i;
 		}
 		for ($i=3528; $i<=3589; $i++) {
-			$this->creditCardData["jcb16"] = $i;
+			$this->creditCardData["jcb16"][] = $i;
 		}
 		parent::__construct($runtimeContext);
 	}
@@ -207,78 +208,30 @@ class DataType_PAN extends DataTypePlugin {
 		$ccFormat    = self::getRandomPANFormat($options["cc_format"], $options["cc_length"]);
 		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"], $options["cc_format"]);
 
-
-		// TODO
-		/*
-		$prefixList = array();
-		switch ($options["cc_brand"]) {
-			case "visa":
-				$prefixList = array("4539", "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4");
-				break;
-			case "visa_electron":
-				$prefixList = array("4026", "417500", "4508", "4844", "4913", "4917");
-				break;
-			case "amex":
-				$prefixList = array("34", "37");
-				break;
-			case "discover":
-				$prefixList = array("6011", "644", "645", "646", "647", "648", "649", "65");
-				break;
-			case "carte_blanche":
-				$prefixList = array("300", "301", "302", "303", "304", "305");
-				break;
-			case "diners_club_international":
-				$prefixList = array("36");
-				break;
-			case "enroute":
-				$prefixList = array("2014", "2149");
-				break;
-			case "jcb":
-				if ($ccLength == 15) {
-					$prefixList = array("31", "309");
-				} else {
-					$prefixList = array("2131", "1800");
-				}
-				break;
-			case "maestro":
-				$prefixList = array("5018", "5020", "5038", "6304", "6759", "6761", "6762", "6763", "5893", "58", "56", "57");
-				break;
-			case "solo":
-				$prefixList = array("6334", "6767");
-				break;
-			case "switch":
-				$prefixList = array("4903", "4905", "4911", "4936", "564182", "633110", "6333", "6759");
-				break;
-			case "laser":
-				$prefixList = array("6304", "6706", "6771", "6709");
-				break;
-		}
-		*/
+		$ccData = $this->getCreditCardData($options["cc_brand"]);
+		$prefixList = $ccData["prefixList"];
 
 		$card = self::getCreditCardNumber($prefixList, $ccLength);
 		$cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
 
+		if (empty($cardNumber)) {
+			$cardNumber = "$ccLength, $ccFormat, {$options["cc_brand"]}, {$options["cc_format"]}";
+		}
 		return array(
 			"display" => $cardNumber
 		);
 	}
 
+
 	public function setRandomCardInfo($options) {
 		$selectedCard = $options["cc_random_card"][array_rand($options["cc_random_card"])];
 
-		$cardData = array();
-		foreach ($this->data as $cardGroup) {
-			if (in_array($selectedCard, $cardGroup["cards"])) {
-				$cardData["length"] = $cardGroup["length"];
-				$cardData["formats"] = $cardGroup["formats"];
-				break;
-			}
+		if ($selectedCard == "jcb") {
+			$jcbCards = array("jcb15", "jcb16");
+			$selectedCard = $jcbCards[mt_rand(0, 1)];
 		}
 
-		if (empty($cardData)) {
-			return false;
-		}
-
+		$cardData = $this->getCreditCardData($selectedCard);
 		$options["cc_format"] = $cardData["formats"][array_rand($cardData["formats"])];
 		$options["cc_length"] = self::getRandomPANLength($cardData["length"]);
 
@@ -303,12 +256,12 @@ class DataType_PAN extends DataTypePlugin {
 		<option value="">{$L["please_select"]}</option>
 		<option value="mastercard">{$this->L["mastercard"]}</option>
 		<option value="visa">{$this->L["visa"]}</option>
-		<option value="visa_electron">{$this->L["visa_electron"]}</option>
+		<option value="visaElectron">{$this->L["visa_electron"]}</option>
 		<option value="amex">{$this->L["americanexpress"]}</option>
 		<option value="discover">{$this->L["discover"]}</option>
-		<option value="carte_blanche">{$this->L["carte_blanche"]}</option>
-		<option value="diners_club_international">{$this->L["diners_club_international"]}</option>
-		<option value="enroute">{$this->L["enroute"]}</option>
+		<option value="carteBlanche">{$this->L["carte_blanche"]}</option>
+		<option value="dinersClubInt">{$this->L["diners_club_international"]}</option>
+		<option value="dinersClubEnRoute">{$this->L["enroute"]}</option>
 		<option value="jcb">{$this->L["jcb"]}</option>
 		<option value="maestro">{$this->L["maestro"]}</option>
 		<option value="solo">{$this->L["solo"]}</option>
@@ -329,7 +282,7 @@ END;
 
 <span id="dtOptionPAN_cardSeparator_%ROW%">
 	{$this->L["separators"]}
-	<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style="width: 78px" value=" |:|*|.|-" title="{$this->L["separator_help"]}" />
+	<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style="width: 78px" value=" " title="{$this->L["separator_help"]}" />
 </span>
 
 <span id="dtOptionPAN_cardFormat_%ROW%">
@@ -342,12 +295,12 @@ END;
 	<select multiple="multiple" name="dtOptionPAN_randomCardFormat_%ROW%[]" id="dtOptionPAN_randomCardFormat_%ROW%" title="{$this->L["rand_brand_title"]}" style="height: 100px; width: 260px">
 		<option value="mastercard">{$this->L["mastercard"]}</option>
 		<option value="visa">{$this->L["visa"]}</option>
-		<option value="visa_electron">{$this->L["visa_electron"]}</option>
+		<option value="visaElectron">{$this->L["visa_electron"]}</option>
 		<option value="amex">{$this->L["americanexpress"]}</option>
 		<option value="discover">{$this->L["discover"]}</option>
-		<option value="carte_blanche">{$this->L["carte_blanche"]}</option>
-		<option value="diners_club_international">{$this->L["diners_club_international"]}</option>
-		<option value="enroute">{$this->L["enroute"]}</option>
+		<option value="carteBlanche">{$this->L["carte_blanche"]}</option>
+		<option value="dinersClubInt">{$this->L["diners_club_international"]}</option>
+		<option value="dinersClubEnRoute">{$this->L["enroute"]}</option>
 		<option value="jcb">{$this->L["jcb"]}</option>
 		<option value="maestro">{$this->L["maestro"]}</option>
 		<option value="solo">{$this->L["solo"]}</option>
@@ -550,4 +503,20 @@ EOF;
 
 		return $chosenLength;
 	}
+
+	// --------------------------------------------------------------------------------------------
+	// Public functions
+
+	public function getCreditCardData($ccBrand) {
+		$data = array();
+		reset($this->creditCardData);
+		while (list($currBrand, $ccData) = each($this->creditCardData)) {
+			if ($ccBrand != $currBrand) {
+				continue;
+			}
+			$data = $ccData;
+		}
+		return $data;
+	}
+
 }
