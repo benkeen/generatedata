@@ -2,10 +2,10 @@
 
 $L = array();
 
-$L["pan_incomplete_fields"] = "At least one card brand should be selected. Please fix the following rows:";
-$L["separator_help"] = "The characters you enter here will be used to replace the spaces in the Credit Card format field below. To enter more than one separator, just separate them with a pipe (|) character.";
-$L["format_incomplete_fields"] = "For PAN field CC Number formats, input <b>X's</b> and for separators input <b>spaces</b> according to the card length. Please fix the following rows:";
-$L["pan_help_intro"] = "This data type generates random, valid credit card numbers according to the format you specify. It is currently capable of generating numbers for the following brands: ";
+$L["pan_incomplete_fields"] = "Tenminste een kaart merk worden gekozen. Please fix de volgende regels:";
+$L["separator_help"] = "De tekens die u hier invoert, zal worden gebruikt om de ruimtes te vervangen in de Credit Card formaat veld hieronder. Om meer dan een separator te voeren, ze gewoon scheiden met een pijp (|) karakter.";
+$L["format_incomplete_fields"] = "Voor PAN veld CC Getalnotaties, ingang <b>X</b> en voor afscheider ingang <b>ruimtes</b> volgens de kaart lengte. Please fix de volgende regels:";
+$L["pan_help_intro"] = "Dit soort gegevens genereert willekeurig, geldige credit card nummers volgens de indeling die u opgeeft. Het is momenteel geschikt voor het genereren nummers voor de volgende merken: ";
 $L["mastercard"] = "Mastercard";
 $L["visa_electron"] = "Visa Electron";
 $L["visa"] = "Visa";
@@ -21,9 +21,9 @@ $L["solo"] = "Solo";
 $L["switch"] = "Switch";
 $L["laser"] = "Laser";
 $L["rand_card"] = "Random Credit Card";
-$L["ccrandom"] = "Select Card Brand:";
-$L["format_title"] = "If length of X is not equal to the card length then that format will not get generated.";
-$L["rand_brand_title"] = "The selected brand's card length and format are picked randomly.";
-$L["length"] = "Length:";
-$L["separators"] = "Separators:";
-$L["ccformats"] = "Credit Card Formats:";
+$L["ccrandom"] = "Selecteer Card Merk:";
+$L["format_title"] = "Indien de lengte van X niet gelijk is aan de kaart lengte dan dat formaat niet gegenereerd.";
+$L["rand_brand_title"] = "De geselecteerde merk kaart lengte en het formaat zijn willekeurig gekozen.";
+$L["length"] = "Lengte:";
+$L["separators"] = "Scheiders:";
+$L["ccformats"] = "Credit Card formaten:";
