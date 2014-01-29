@@ -90,7 +90,7 @@ define([
 		switch (selectedCard) {
 			case "mastercard":
 			case "discover":
-			case "visa_electron":
+			case "visaElectron":
 				$digitLengthField.val("16");
 				formats = [
 					"XXXXXXXXXXXXXXXX",
@@ -115,7 +115,7 @@ define([
 				break;
 
 			case "amex":
-			case "enroute":
+			case "dinersClubEnRoute":
 				$digitLengthField.val("15");
 				formats = [
 					"XXXXXXXXXXXXXXX",
@@ -123,8 +123,8 @@ define([
 				];
 				break;
 
-			case "carte_blanche":
-			case "diners_club_international":
+			case "carteBlanche":
+			case "dinersClubInt":
 				$digitLengthField.val('14');
 				formats = [
 					"XXXXXXXXXXXXXX",
@@ -146,7 +146,7 @@ define([
 				break;
 
 			case "maestro":
-				$digitLengthField.val("12-19")
+				$digitLengthField.val("12-19");
 				formats = [
 					"XXXXXXXXXXXX",
 					"XXXXXXXXXXXXX",

@@ -31,7 +31,6 @@ class DataType_Track1 extends DataTypePlugin {
 		}
 	}
 
-
 	public function generate($generator, $generationContextData) {
 		$cardData = $this->cardData[array_rand($this->cardData)];
 		$generatedCardNumber = DataType_PAN::generateCreditCardNumber($cardData["prefix"], $cardData["length"]);

@@ -259,7 +259,7 @@ class DataType_PAN extends DataTypePlugin {
 		<option value="discover">{$this->L["discover"]}</option>
 		<option value="carteBlanche">{$this->L["carte_blanche"]}</option>
 		<option value="dinersClubInt">{$this->L["diners_club_international"]}</option>
-		<option value="dinersClubEnRoute">{$this->L["enroute"]}</option>
+		<option value="dinersClubEnRoute">{$this->L["enRoute"]}</option>
 		<option value="jcb">{$this->L["jcb"]}</option>
 		<option value="maestro">{$this->L["maestro"]}</option>
 		<option value="solo">{$this->L["solo"]}</option>
@@ -298,7 +298,7 @@ END;
 		<option value="discover">{$this->L["discover"]}</option>
 		<option value="carteBlanche">{$this->L["carte_blanche"]}</option>
 		<option value="dinersClubInt">{$this->L["diners_club_international"]}</option>
-		<option value="dinersClubEnRoute">{$this->L["enroute"]}</option>
+		<option value="dinersClubEnRoute">{$this->L["enRoute"]}</option>
 		<option value="jcb">{$this->L["jcb"]}</option>
 		<option value="maestro">{$this->L["maestro"]}</option>
 		<option value="solo">{$this->L["solo"]}</option>
