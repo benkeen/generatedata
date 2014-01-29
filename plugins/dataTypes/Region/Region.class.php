@@ -48,7 +48,7 @@ class DataType_Region extends DataTypePlugin {
 		// 	- if not, pick any region within the list of country plugins
 		} else {
 
-			// see if this row has a country [N.B. This is something that could be calculated ONCE on the first row]
+			// see if this row has a country - TODO memoize
 			$rowCountryInfo = array();
 			while (list($key, $info) = each($generationContextData["existingRowData"])) {
 				if ($info["dataTypeFolder"] == "Country") {

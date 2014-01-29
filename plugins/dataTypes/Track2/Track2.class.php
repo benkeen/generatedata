@@ -25,7 +25,10 @@ class DataType_Track2 extends DataTypePlugin {
 			$this->prefixList["jcb16"][] = $i;
 		}
 		parent::__construct($runtimeContext);
-		$this->cardData = DataType_PAN::getAllCreditCardData();
+
+		if (class_exists("DataType_PAN")) {
+			$this->cardData = DataType_PAN::getAllCreditCardData();
+		}
 	}
 
 

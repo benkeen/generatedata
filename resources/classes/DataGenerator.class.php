@@ -60,9 +60,9 @@ class DataGenerator {
             $this->numResults = $maxGeneratedRows;
         }
 
-		$this->countries  = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
-		$this->dataTypes  = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
-		$this->postData   = $postData;
+		$this->countries = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
+		$this->dataTypes = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
+		$this->postData  = $postData;
 
 		if (isset($postData["configurationID"])) {
 			$this->configurationID = $postData["configurationID"];
