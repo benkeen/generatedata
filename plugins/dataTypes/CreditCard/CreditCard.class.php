@@ -6,7 +6,7 @@
 
 class DataType_CreditCard extends DataTypePlugin {
 
-	protected $isEnabled = true;
+	protected $isEnabled = false;
 	protected $dataTypeName = "Credit Card Nums";
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "human_data";

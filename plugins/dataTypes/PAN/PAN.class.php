@@ -209,7 +209,7 @@ class DataType_PAN extends DataTypePlugin {
 		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"], $options["cc_format"]);
 
 		$ccData = self::getCreditCardData($options["cc_brand"]);
-		$card = self::generateCreditCardNumber($ccData["prefixList"], $ccLength);
+		$card = self::generateCreditCardNumber($ccData["prefix"], $ccLength);
 		$cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
 
 		if (empty($cardNumber)) {
