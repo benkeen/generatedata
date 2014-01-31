@@ -102,6 +102,7 @@ class DataGenerator {
 	 */
 	public function generate() {
 		$response = $this->exportType->generate($this);
+
 		$response["contentTypeHeader"] = $this->exportType->getContentTypeHeader();
 		$response["isComplete"] = $this->isLastBatch;
 
