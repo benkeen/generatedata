@@ -37,8 +37,8 @@ class DataType_Region extends DataTypePlugin {
 		if ($generationOptions["resultType"] == "any") {
 
 			$randRegionInfo = $this->getRandRegion($this->countryRegionHash);
-			$index = mt_rand(0, 1);
 
+			$index = mt_rand(0, 1);
 			$regionInfo["display"]      = $randRegionInfo[$keys[$index]];
 			$regionInfo["region_slug"]  = $randRegionInfo["region_slug"];
 			$regionInfo["country_slug"] = $randRegionInfo["countrySlug"];
@@ -184,8 +184,17 @@ EOF;
 	private function getRandRegion($countries) {
 		$randCountrySlug = array_rand($countries);
 		$randCountry = $this->countryRegionHash[$randCountrySlug];
-		$regionInfo = $randCountry["regions"][mt_rand(0, $randCountry["numRegions"]-1)];
+
+		// now get a random region, taking into account it's weight
+		$weightedValues = array();
+		$regions = $randCountry["regions"];
+		for ($i=0; $i<count($regions); $i++) {
+			$weightedValues["{$i}"] = $regions[$i]["weight"];
+		}
+		$randomIndex = Utils::weightedRand($weightedValues);
+		$regionInfo = $regions[$randomIndex];
 		$regionInfo["countrySlug"] = $randCountrySlug;
+
 		return $regionInfo;
 	}
 }
