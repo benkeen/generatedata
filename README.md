@@ -43,14 +43,11 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-Next release: v3.1.1 *(under development)*
-<!--
+<!--3.1.1
 - review fixes by apmuthu to the Excel download & SQL (“INSERT IGNORE”) data types
-- confirm Japanese and Tamil translations
-- add new Credit Card data type
+- new Credit Card data type
 - Dutch language fixes (slipped)
-- India language added (fareez-ahamed)
--->
+- India language added (fareez-ahamed) -->
 
 3.1.0 - Dec 19, 2013
 - Bug fix for accidental short-tags that were introduced in earlier code

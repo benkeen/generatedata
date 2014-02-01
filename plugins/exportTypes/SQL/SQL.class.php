@@ -154,13 +154,13 @@ class SQL extends ExportTypePlugin {
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType1" value="insert" checked="checked" />
 					<label for="etSQL_statementType1">INSERT</label>
 				</div>
-				<div>
-					<input type="radio" name="etSQL_statementType" id="etSQL_statementType1.5" value="insertignore" />
-					<label for="etSQL_statementType1.5">INSERT IGNORE</label>
+				<div id="etSQL_insertIgnore">
+					<input type="radio" name="etSQL_statementType" id="etSQL_statementType2" value="insertignore" />
+					<label for="etSQL_statementType2">INSERT IGNORE</label>
 				</div>
 				<div>
-					<input type="radio" name="etSQL_statementType" id="etSQL_statementType2" value="update" />
-					<label for="etSQL_statementType2">UPDATE</label>
+					<input type="radio" name="etSQL_statementType" id="etSQL_statementType3" value="update" />
+					<label for="etSQL_statementType3">UPDATE</label>
 				</div>
 			</td>
 		</tr>
