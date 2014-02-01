@@ -32,6 +32,7 @@ This script is freely available under the GPL 3 license. See license.txt in the 
 In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
 - Zeeshan Shaikh - PAN, PIN, CVV, Track 1 and 2 Data Types (3.1.1)
+- [Ap.Mathu](https://github.com/apmuthu) - SQL Export Type updates (INSERT IGNORE)
 - [Manu Ullas](https://github.com/unullmass) - compression option for downloads (3.0.9)
 - [rsicher1](https://github.com/rsicher1) - credit card Data Type (3.0.9)
 - Joeri Noort - IBAN numbers (3.0.8)
@@ -45,8 +46,9 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 ## Changelog
 
 3.1.1 - Jan 31, 2014
-- new credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh.
-- bug fixes: https://github.com/benkeen/generatedata/issues?milestone=11&page=1&state=closed
+- New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh.
+- INSERT IGNORE option added to the SQL Export Type, thanks to [Ap.Mathu](https://github.com/apmuthu)
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=11&page=1&state=closed
 
 3.1.0 - Dec 19, 2013
 - Bug fix for accidental short-tags that were introduced in earlier code
