@@ -133,6 +133,7 @@ class Utils {
 
 	/**
 	 * This function is like rand, only allows it to be weighted.
+	 *
 	 * @param $weightedValues
 	 * @return int|string
 	 */

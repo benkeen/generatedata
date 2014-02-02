@@ -235,21 +235,21 @@ class Core {
 	/**
 	 * @access public
 	 */
-	public static  function getDbName() {
+    public static function getDbName() {
 		return self::$dbName;
 	}
 
 	/**
 	 * @access public
 	 */
-	public static  function getDbUsername() {
+    public static function getDbUsername() {
 		return self::$dbUsername;
 	}
 
 	/**
 	 * @access public
 	 */
-	public static  function getDbPassword() {
+    public static function getDbPassword() {
 		return self::$dbPassword;
 	}
 
@@ -408,7 +408,7 @@ class Core {
 	 * Called by Core::init(), this initializes Core::$countryPlugins.
 	 * @access private
 	 */
-	private function initCountries() {
+	private static function initCountries() {
 		if (!Core::$settingsFileExists) {
 			return;
 		}
