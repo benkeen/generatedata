@@ -25,8 +25,7 @@ define([
 	};
 
 	var _saveRow = function(rowNum) {
-		var randomBrands = $("#dtOption_randomCardFormat_" + rowNum).val();
-
+		var randomBrands = $("#dtOptionPAN_randomCardFormat_" + rowNum).val();
 		return {
 			example:      $("#dtExample_" + rowNum).val(),
 			digit:        $("#dtOptionPAN_digit_" + rowNum).val(),
