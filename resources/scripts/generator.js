@@ -2106,7 +2106,7 @@ define([
 		 * @function
 		 * @name Generator#getNumRowsToGenerate
 		 */
-		getNumRowsToGenerate: _getNumRowsToGenerate
+		getNumRowsToGenerate: _getNumRowsToGenerate,
 
 		/**
 		 * Returns the account information for the current logged in user (or null if they're not logged in).
