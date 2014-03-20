@@ -27,6 +27,7 @@
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-md5": "~0.1.11",
     "grunt-template": "~0.2.0",
-    "grunt-contrib-cssmin": "~0.6.1"
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-search": "~0.1.2"
   }
 }

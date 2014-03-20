@@ -131,24 +131,21 @@ class Utils {
 		return mktime($hours, $minutes, $seconds, $month, $day, $year+$yearsToAdd);
 	}
 
-
 	/**
 	 * This function is like rand, only allows it to be weighted.
 	 *
-	 * @param array $weights
-	 * @return integer
+	 * @param $weightedValues
+	 * @return int|string
 	 */
-	public static function weightedRand($weights) {
-		$r = mt_rand(1, 1000);
-		$offset = 0;
-		foreach ($weights as $k => $w) {
-			$offset += $w * 1000;
-			if ($r <= $offset) {
-				return $k;
+	public static function weightedRand($weightedValues) {
+		$rand = mt_rand(1, (int) array_sum($weightedValues));
+		foreach ($weightedValues as $key => $value) {
+			$rand -= $value;
+			if ($rand <= 0) {
+				return $key;
 			}
 		}
 	}
-
 
 	/**
 	 * A security-related function. This returns a clean version of PHP_SELF for use in the templates. This wards
@@ -242,7 +239,7 @@ class Utils {
 	 * Returns an array of lorem ipsum words. Assumes that a file exists in a misc/ subfolder called
 	 * loremipsum.txt, containing lorem ipsum text.
 	 *
-	 * TODO this seems a good candidate to memoize...
+	 * TODO this seems a good candidate to memoize... (no kidding, yikes!)
 	 *
 	 * @return array a large array of words
 	 */

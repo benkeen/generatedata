@@ -5,7 +5,7 @@ $L = array();
 $L["ENABLED"] = true;
 
 // Core language strings
-$L["language"] = "Spanish";
+$L["language"] = "Español";
 $L["title"] = "generatedata.com";
 $L["about"] = "Acerca de";
 $L["accounts"] = "Cuentas";

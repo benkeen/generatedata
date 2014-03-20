@@ -31,12 +31,12 @@ class Core {
 	private static $useMinifiedResources = false;
 
 	// non-overridable settings
-	private static $version = "3.0.9";
-	private static $releaseDate = "2013-12-11";
+	private static $version = "3.1.1";
+	private static $releaseDate = "2014-01-30";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
-	private static $dataTypeGroups = array("human_data", "geo", "text", "numeric", "math", "other");
+	private static $dataTypeGroups = array("human_data", "geo", "credit_card_data", "text", "numeric", "math", "other");
 	private static $continents = array("africa", "asia", "central_america", "europe", "north_america", "oceania", "south_america");
 	private static $isLoggedIn = false;
 
@@ -235,21 +235,21 @@ class Core {
 	/**
 	 * @access public
 	 */
-	public static  function getDbName() {
+    public static function getDbName() {
 		return self::$dbName;
 	}
 
 	/**
 	 * @access public
 	 */
-	public static  function getDbUsername() {
+    public static function getDbUsername() {
 		return self::$dbUsername;
 	}
 
 	/**
 	 * @access public
 	 */
-	public static  function getDbPassword() {
+    public static function getDbPassword() {
 		return self::$dbPassword;
 	}
 
@@ -408,7 +408,7 @@ class Core {
 	 * Called by Core::init(), this initializes Core::$countryPlugins.
 	 * @access private
 	 */
-	private function initCountries() {
+	private static function initCountries() {
 		if (!Core::$settingsFileExists) {
 			return;
 		}

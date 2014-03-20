@@ -299,7 +299,7 @@ class Country_Canada extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Yukon",
-			"regionShort" => "YK",
+			"regionShort" => "YT",
 			"regionSlug" => "yukon",
 			"weight" => 1,
 			"cities" => array(

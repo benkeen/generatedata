@@ -89,6 +89,10 @@ define([], function() {
 			MODULE: {
 				REGISTER: "event-module-register",
 				UNREGISTER: "event-module-unregister"
+			},
+			ACCOUNT: {
+				LOGGED_IN: "event-account-logged-in",
+				AVAILABLE: "event-account-available"
 			}
 		},
 

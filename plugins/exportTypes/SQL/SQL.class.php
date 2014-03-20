@@ -155,9 +155,13 @@ class SQL extends ExportTypePlugin {
 					<label for="etSQL_statementType1">INSERT</label>
                                         <input type="text" name="etSQL_insertBatchSize" value="100" disabled />
 				</div>
+				<div id="etSQL_insertIgnore">
+					<input type="radio" name="etSQL_statementType" id="etSQL_statementType2" value="insertignore" />
+					<label for="etSQL_statementType2">INSERT IGNORE</label>
+				</div>
 				<div>
-					<input type="radio" name="etSQL_statementType" id="etSQL_statementType2" value="update" />
-					<label for="etSQL_statementType2">UPDATE</label>
+					<input type="radio" name="etSQL_statementType" id="etSQL_statementType3" value="update" />
+					<label for="etSQL_statementType3">UPDATE</label>
 				</div>
 			</td>
 		</tr>
@@ -253,6 +257,21 @@ END;
                                     $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
                                     $rowDataStr = array();
                                 }
+			} elseif ($this->sqlStatementType == "insertignore") {
+				$displayVals = array();
+				for ($j=0; $j<$numCols; $j++) {
+					if ($this->numericFields[$j]) {
+						$displayVals[] = $this->data["rowData"][$i][$j];
+					} else {
+						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+					}
+				}
+				$rowDataStr[] = implode(",", $displayVals);
+                                if (count($rowDataStr) === 50) {
+                                    $content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                                    $rowDataStr = array();
+                                }
+				$content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {

@@ -17,7 +17,7 @@ class Country_France extends CountryPlugin {
 	protected $countryData = array(
 		array(
 			"regionName" => "Île-de-France",
-			"regionShort" => "Île-de-France",
+			"regionShort" => "IL",
 			"regionSlug" => "ile_de_france",
 			"weight" => 18.3,
 			"cities" => array(
@@ -29,7 +29,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Provence-Alpes-Côte d'Azur",
-			"regionShort" => "Provence-Alpes-Côte d'Azur",
+			"regionShort" => "PR",
 			"regionSlug" => "provence_alpes",
 			"weight" => 9.6,
 			"cities" => array(
@@ -40,7 +40,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Nord-Pas-de-Calais",
-			"regionShort" => "Nord-Pas-de-Calais",
+			"regionShort" => "NO",
 			"regionSlug" => "nord_pas_de_calais",
 			"weight" => 7.6,
 			"cities" => array(
@@ -51,7 +51,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Pays de la Loire",
-			"regionShort" => "Pays de la Loire",
+			"regionShort" => "PA",
 			"regionSlug" => "pays_de_la_loire",
 			"weight" => 6.3,
 			"cities" => array(
@@ -61,7 +61,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Aquitaine",
-			"regionShort" => "Aquitaine",
+			"regionShort" => "AQ",
 			"regionSlug" => "aquitaine",
 			"weight" => 5.5,
 			"cities" => array(
@@ -71,7 +71,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Bretagne",
-			"regionShort" => "Bretagne",
+			"regionShort" => "BR",
 			"regionSlug" => "bretagne",
 			"weight" => 4.9,
 			"cities" => array(
@@ -80,7 +80,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Midi-Pyrénées",
-			"regionShort" => "Midi-Pyrénées",
+			"regionShort" => "MI",
 			"regionSlug" => "midi_pyrenees",
 			"weight" => 4.4,
 			"cities" => array(
@@ -89,7 +89,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Languedoc-Roussillon",
-			"regionShort" => "Languedoc-Roussillon",
+			"regionShort" => "LA",
 			"regionSlug" => "languedoc_rousillon",
 			"weight" => 4.1,
 			"cities" => array(
@@ -98,7 +98,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Centre",
-			"regionShort" => "Centre",
+			"regionShort" => "CE",
 			"regionSlug" => "centre",
 			"weight" => 4,
 			"cities" => array(
@@ -107,7 +107,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Lorraine",
-			"regionShort" => "Lorraine",
+			"regionShort" => "LO",
 			"regionSlug" => "lorraine",
 			"weight" => 3.7,
 			"cities" => array(
@@ -117,7 +117,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Picardie",
-			"regionShort" => "Picardie",
+			"regionShort" => "PI",
 			"regionSlug" => "picardie",
 			"weight" => 3,
 			"cities" => array(
@@ -126,7 +126,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Alsace",
-			"regionShort" => "Alsace",
+			"regionShort" => "AL",
 			"regionSlug" => "alsace",
 			"weight" => 2.9,
 			"cities" => array(
@@ -135,7 +135,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Haute-Normandie",
-			"regionShort" => "Haute-Normandie",
+			"regionShort" => "HA",
 			"regionSlug" => "haute_normandie",
 			"weight" => 2.8,
 			"cities" => array(
@@ -145,7 +145,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Poitou-Charentes",
-			"regionShort" => "Poitou-Charentes",
+			"regionShort" => "PO",
 			"regionSlug" => "poitou_charentes",
 			"weight" => 2.7,
 			"cities" => array(
@@ -154,7 +154,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Bourgogne",
-			"regionShort" => "Bourgogne",
+			"regionShort" => "BO",
 			"regionSlug" => "bourgogne",
 			"weight" => 2.6,
 			"cities" => array(
@@ -163,7 +163,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Basse-Normandie",
-			"regionShort" => "Basse-Normandie",
+			"regionShort" => "BA",
 			"regionSlug" => "basse_normandie",
 			"weight" => 2.3,
 			"cities" => array(
@@ -172,7 +172,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Auvergne",
-			"regionShort" => "Auvergne",
+			"regionShort" => "AU",
 			"regionSlug" => "auvergne",
 			"weight" => 2.1,
 			"cities" => array(
@@ -181,7 +181,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Champagne-Ardenne",
-			"regionShort" => "Champagne-Ardenne",
+			"regionShort" => "CH",
 			"regionSlug" => "champagne_ardenne",
 			"weight" => 2.1,
 			"cities" => array(
@@ -190,7 +190,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Franche-Comté",
-			"regionShort" => "Franche-Comté",
+			"regionShort" => "FC",
 			"regionSlug" => "franche_comte",
 			"weight" => 1.8,
 			"cities" => array(
@@ -199,7 +199,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Limousin",
-			"regionShort" => "Limousin",
+			"regionShort" => "LI",
 			"regionSlug" => "limousin",
 			"weight" => 1.1,
 			"cities" => array(
@@ -208,7 +208,7 @@ class Country_France extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Corse",
-			"regionShort" => "Corse",
+			"regionShort" => "CO",
 			"regionSlug" => "corse",
 			"weight" => 0.5,
 			"cities" => array(

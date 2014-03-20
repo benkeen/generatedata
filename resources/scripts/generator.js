@@ -169,6 +169,7 @@ define([
 		}
 	};
 
+
 	var _onClickNumRowsField = function() {
 		if (!_isLoggedIn) {
 			_showPermissionDeniedDialog(L.cannot_change_num_rows);
@@ -262,6 +263,7 @@ define([
 		// update the Export Types section
 		_selectExportTypeTab(json.selectedExportType, true);
 		manager.loadExportType(json.selectedExportType, json.exportTypes);
+
 
 		// now populate the rows. Do everything that we can: create the rows, populate the titles & select
 		// the data type. The remaining fields are custom to the data type, so we leave them to their
@@ -555,6 +557,7 @@ define([
 		} else {
 			_clearForm(opts.numRows);
 		}
+
 	};
 
 	var _clearForm = function(numDefaultRows) {
@@ -1498,6 +1501,12 @@ define([
 		_displayDataSets();
 
 		params.settings.onComplete();
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.ACCOUNT.AVAILABLE,
+			accountInfo: _accountInfo
+		});
 	};
 
 
@@ -1969,6 +1978,12 @@ define([
 		utils.pauseModalSpinner(_loginModalID);
 
 		$("#" + _loginModalID).dialog("close");
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.ACCOUNT.LOGGED_IN,
+			accountInfo: _accountInfo
+		});
 	};
 
 	var _logout = function() {
@@ -2091,6 +2106,14 @@ define([
 		 * @function
 		 * @name Generator#getNumRowsToGenerate
 		 */
-		getNumRowsToGenerate: _getNumRowsToGenerate
+		getNumRowsToGenerate: _getNumRowsToGenerate,
+
+		/**
+		 * Returns the account information for the current logged in user (or null if they're not logged in).
+		 * @returns {null}
+		 */
+		getAccount: function() {
+			return _accountInfo;
+		}
 	};
 });
