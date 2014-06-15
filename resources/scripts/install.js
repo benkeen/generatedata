@@ -122,6 +122,7 @@ require([
 	function _checkDatabaseInfo() {
 		var errors = [];
 		var validChars = /[^a-zA-Z0-9_]/;
+		var validCharsUserField = /[^a-zA-Z0-9_\.]/;
 		var dbHostname = $("#dbHostname").val();
 		if ($.trim(dbHostname) === "") {
 			errors.push({ fieldId: "dbHostname", error: _L.validation_no_db_hostname });
@@ -137,7 +138,7 @@ require([
 		var dbUsername = $.trim($("#dbUsername").val());
 		if (dbUsername === "") {
 			errors.push({ fieldId: "dbUsername", error: _L.validation_no_mysql_username });
-		} else if (validChars.test(dbUsername)) {
+		} else if (validCharsUserField.test(dbUsername)) {
 			errors.push({ fieldId: "dbUsername", error: _L.validation_invalid_chars });
 		}
 
