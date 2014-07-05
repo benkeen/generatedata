@@ -45,6 +45,9 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
+3.1.2 - under development
+
+
 3.1.1 - Jan 31, 2014
 - New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh.
 - INSERT IGNORE option added to the SQL Export Type, thanks to [Ap.Mathu](https://github.com/apmuthu)
