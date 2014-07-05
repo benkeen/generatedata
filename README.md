@@ -4,7 +4,8 @@
 
 This is the repo for the standalone, downloadable version of [generatedata.com](http://www.generatedata.com).
 
-Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting the most recent tag: https://github.com/benkeen/generatedata/releases
+Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting
+the most recent tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
 - PHP 5.3 or later
@@ -21,11 +22,13 @@ for more info.
 
 ## Test Coverage
 
-Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's going to be a little hairy for a while just yet.
+Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's
+going to be a little hairy for a while just yet.
 
 ## License
 
-This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all contributors agree that all code is released under this license.
+This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all
+contributors agree that all code is released under this license.
 
 ## Contributors
 

@@ -31,6 +31,12 @@ class Templates {
 			exit;
 		}
 
+		// check the environment has mysqli
+		if (!function_exists("mysqli_connect")) {
+			Templates::displaySeriousError("Sorry, you must have the <b>mysqli</b> PHP extension installed in order to use this script.");
+			exit;
+		}
+
 		Core::$smarty->assign("L", Core::$language->getCurrentLanguageStrings());
 		Core::$smarty->assign("currLang", Core::$language->getCurrentLanguageFile());
 		Core::$smarty->assign("queryString", $_SERVER["QUERY_STRING"]);
