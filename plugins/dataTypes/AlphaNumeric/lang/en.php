@@ -18,5 +18,5 @@ $L["help_6"] = "A vowel (upper or lower).";
 $L["help_7"] = "An uppercase <b>C</b>onsonant.";
 $L["help_8"] = "Any number, 0-9.";
 $L["help_9"] = "A lowercase <b>c</b>onsonant.";
-$L["help_intro"] = "This data type lets you generate random alpha-numeric strings. The following table contains the character legend for this field. Any other characters you enter into this field will appear unescaped.";
+$L["help_intro"] = "This Data Type lets you generate random alpha-numeric strings. The following table contains the character legend for this field. Any other characters you enter into this field will appear unescaped.";
 $L["incomplete_fields"] = "Alphanumeric fields require you to enter the format in the Options text field. Please fix the following rows:";

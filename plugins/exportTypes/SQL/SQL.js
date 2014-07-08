@@ -19,7 +19,6 @@ define([
 
 
 	var _init = function() {
-
 		$("#etSQL_databaseType").on("change", _onChangeDatabaseType);
 
 		var subscriptions = {};
@@ -43,15 +42,22 @@ define([
 		if (dbType === "Postgres") {
 			$("#etSQL_encloseWithBackquotes").prop("disabled", true).prop("checked", false);
 			$("#etSQL_encloseWithBackquotes_group label").css("color", "#cccccc");
-
 		} else {
 			$("#etSQL_encloseWithBackquotes").prop("disabled", false);
 			$("#etSQL_encloseWithBackquotes_group label").css("color", "");
 		}
+
+		if (dbType === "MySQL") {
+			$("#etSQL_statementType2").prop("disabled", false);
+			$("#etSQL_insertIgnore label").css("color", "");
+		} else {
+			$("#etSQL_statementType2").prop("disabled", true).prop("checked", false);
+			$("#etSQL_insertIgnore label").css("color", "#cccccc");
+		}
 	};
 
 	/**
-	 * Called when the user changes the result type
+	 * Called when the user changes the result type.
 	 */
 	var _resultTypeChanged = function(msg) {
 		if (msg.newExportType === "SQL") {
@@ -68,7 +74,6 @@ define([
 		if (msg.exportTarget !== "inPage" || msg.exportType !== "SQL") {
 			return;
 		}
-
 
 		// the default mode is a simple x-sql mime type. But if there's a specific one available for the
 		// chosen database type, use that instead

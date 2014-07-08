@@ -42,4 +42,6 @@ if ($gen->getExportTarget() == "promptDownload") {
 		}
 		echo $response["content"];
 	}
+} else {
+	echo $response["content"];
 }

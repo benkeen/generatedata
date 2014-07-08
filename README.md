@@ -4,7 +4,8 @@
 
 This is the repo for the standalone, downloadable version of [generatedata.com](http://www.generatedata.com).
 
-Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting the most recent tag: https://github.com/benkeen/generatedata/releases
+Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting
+the most recent tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
 - PHP 5.3 or later
@@ -21,16 +22,20 @@ for more info.
 
 ## Test Coverage
 
-Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's going to be a little hairy for a while just yet.
+Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's
+going to be a little hairy for a while just yet.
 
 ## License
 
-This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all contributors agree that all code is released under this license.
+This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all
+contributors agree that all code is released under this license.
 
 ## Contributors
 
 In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- Zeeshan Shaikh - PAN, PIN, CVV, Track 1 and 2 Data Types (3.1.1)
+- [Ap.Mathu](https://github.com/apmuthu) - SQL Export Type updates (INSERT IGNORE)
 - [Manu Ullas](https://github.com/unullmass) - compression option for downloads (3.0.9)
 - [rsicher1](https://github.com/rsicher1) - credit card Data Type (3.0.9)
 - Joeri Noort - IBAN numbers (3.0.8)
@@ -43,14 +48,13 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-Next release: v3.1.1 *(under development)*
-<!--
-- review fixes by apmuthu to the Excel download & SQL (“INSERT IGNORE”) data types
-- confirm Japanese and Tamil translations
-- add new Credit Card data type
-- Dutch language fixes (slipped)
-- India language added (fareez-ahamed)
--->
+3.1.2 - under development
+
+
+3.1.1 - Jan 31, 2014
+- New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh.
+- INSERT IGNORE option added to the SQL Export Type, thanks to [Ap.Mathu](https://github.com/apmuthu)
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=11&page=1&state=closed
 
 3.1.0 - Dec 19, 2013
 - Bug fix for accidental short-tags that were introduced in earlier code

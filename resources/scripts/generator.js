@@ -1501,6 +1501,12 @@ define([
 		_displayDataSets();
 
 		params.settings.onComplete();
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.ACCOUNT.AVAILABLE,
+			accountInfo: _accountInfo
+		});
 	};
 
 
@@ -1972,6 +1978,12 @@ define([
 		utils.pauseModalSpinner(_loginModalID);
 
 		$("#" + _loginModalID).dialog("close");
+
+		manager.publish({
+			sender: MODULE_ID,
+			type: C.EVENT.ACCOUNT.LOGGED_IN,
+			accountInfo: _accountInfo
+		});
 	};
 
 	var _logout = function() {
@@ -2094,6 +2106,14 @@ define([
 		 * @function
 		 * @name Generator#getNumRowsToGenerate
 		 */
-		getNumRowsToGenerate: _getNumRowsToGenerate
+		getNumRowsToGenerate: _getNumRowsToGenerate,
+
+		/**
+		 * Returns the account information for the current logged in user (or null if they're not logged in).
+		 * @returns {null}
+		 */
+		getAccount: function() {
+			return _accountInfo;
+		}
 	};
 });
