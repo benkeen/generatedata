@@ -1,4 +1,4 @@
-# GenerateData.com
+# generatedata.com
 
 [![Build Status](https://travis-ci.org/benkeen/generatedata.png?branch=master)](https://travis-ci.org/benkeen/generatedata)
 
@@ -10,7 +10,6 @@ the most recent tag: https://github.com/benkeen/generatedata/releases
 ## Requirements
 - PHP 5.3 or later
 - MySQL 4.1.3 or later
-- PHPUnit [Version isn't stated, default is assumed]
 
 ## How to Install / Documentation
 
@@ -26,9 +25,10 @@ for more info.
 Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's
 going to be a little hairy for a while just yet.
 
-## TO-DO
+## To-Do
 
-Please see the [feature request] (https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open) for a list of things that are still left to complete on this project. 
+Please see the issues tagges as [feature requests] (https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open)
+for a list of things that are still left to complete on this project. Help is always welcome!
 
 ## License
 
@@ -53,8 +53,8 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-3.1.2 - under development
-
+3.1.2 - **under development**
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=12&page=1&state=closed
 
 3.1.1 - Jan 31, 2014
 - New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh.
