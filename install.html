@@ -155,21 +155,21 @@
 					<h4>Step 2: installation script</h4>
 
 					<p>
-						At this point the installation script will lead your over. It should be pretty self-explanatory, but 
-						I'll explain each step just in case.
+						At this point the installation script will lead you through the rest of the installation process. It should be
+						pretty self-explanatory, but I'll explain each step just in case.
 					</p>
-
 
 					<ol>
 						<li>
 							<a href="assets/screenshots/step1.png" title="Installation: step 1" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step1_th.png" /></a>
 							<p>
-								The first step is to specify your <b>database settings</b>. As with all web scripts, the Data Generator expects you to have 
-								created a database already - which can be blank or contain other tables. 
+								The first step is to specify your <b>database settings</b>. As with all web scripts, the Data Generator
+								expects you to have created a database already. That database can be completely new, or contain other
+								tables - it doesn't matter.
 							</p>
 							<p>
-								Most of the fields on this page are self-explanatory; if you're not sure about any of them, you'll need to speak to your
-								hosting provider, or do some googling to figure out how to get it working locally. 
+								Most of the fields on this page are self-explanatory; if you're not sure about any of them, you'll need
+								to speak to your hosting provider, or do some googling to figure out how to get it working locally.
 							</p>
 							<p class="alert alert-info">
 								The language dropdown at the top right changes the language for the current page - it doesn't, however, change it 
@@ -181,37 +181,40 @@
 							<p>
 								The second step of the installation script creates your <code>settings.php</code> file. This file is special: it's the only
 								file in your Data Generator installation that contains unique settings for your environment. The installation 
-								script attempts to create this file automatically, but in case it doesn't have the permissions to do so, it will throw
-								an error and show you the contents of the file that need to be created. If this occurs, you'll need to manually
-								create your <code>settings.php</code> file in the root folder of your Data Generator installation. Once you refresh the page
-								it will allow you to continue with the installation process.
+								script attempts to create this file automatically, but in case it doesn't have the permissions to do so, it will
+								let you know and show you the contents of the file that need to be created. If this occurs, you'll need to
+								manually create your <code>settings.php</code> file in the root folder of your Data Generator installation.
+								Once you refresh the page it will allow you to continue with the installation process.
 							</p>
 						</li>
 						<li>
 							<a href="assets/screenshots/step3.png" title="Installation: step 3" rel="lightbox[doc]" class="screenshot"><img src="assets/screenshots/step3_th.png" /></a>
 							<p>
-								Step 3 lets you choose how to handle your users. This is totally up to you and you can pick the one that best suits your needs. 
-								Exactly what options appear in the page depend on what you choose for the main user account type field. Here's what they each mean:
+								Step 3 lets you specify some details about who's actually going to be using this script. This is totally up
+								to you and you can pick the one that best suits your needs. Exactly what options appear in the page depend
+								on what you choose for the main user account type field. Here's what they each mean:
 								<ul>
 									<li>
-										<b>A single, anonymous user account</b> - all saved configurations will be on this single user. No-one needs to 
-										authenticate in order to access the script.
+										<b>A single, anonymous user account</b> - all saved configurations will be on this single user.
+										No-one needs to authenticate in order to access the script. This is the simplest setting - best for
+										single-person or very small teams where no security is a good thing.
 									</li>
 									<li>
-										<b>A single user account, requires login</b> - the same as the previous option, except people need to log in
-										to use the script and save data sets.
+										<b>A single user account, requires login</b> - the same as the previous option, except the user needs
+										to log in to use the script and save data sets.
 									</li>
 									<li>
-										<b>Multiple accounts</b> - this lets you set up any number of user accounts, each with their own login information.
-										This option is perfect if you have a team, all of whom need to use the script to maintain their own data sets.
+										<b>Multiple accounts</b> - this lets you set up any number of user accounts, each with their own
+										login information. This option is perfect if you have a team, all of whom need to use the script
+										to maintain their own data sets.
 									</li>
 								</ul>
 
 								<p>
-									If you select the last option, the <b>Anonymous Access</b> section will appear, as shown in the screenshot. That let's
-									anyone get access to the script without having to log in, however they'll have limited access. The textarea field lets you
-									enter a custom message that will be shown to those users if they try to do something they don't have permission to do so - like
-									save a data set.
+									If you select the last option, the <b>Anonymous Access</b> section will appear, as shown in the screenshot.
+									That let's anyone get access to the script without having to log in, however they'll have limited access.
+									The textarea field lets you enter a custom message that will be shown to those users if they try to do
+									something they don't have permission to do so - like save a data set.
 								</p>
 							</p>
 						</li>
