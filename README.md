@@ -53,7 +53,7 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-3.1.2 - **under development**
+3.1.2 - July 12, 2014
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=12&page=1&state=closed
 
 3.1.1 - Jan 31, 2014
