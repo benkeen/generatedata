@@ -34,7 +34,8 @@ class Country_US extends CountryPlugin {
 			"regionSlug" => 'alabama',
 			"weight" => 2,
 			"cities" => array(
-				"Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa", "Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa"
+				"Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa", "Birmingham", "Montgomery",
+				"Mobile", "Huntsville", "Tuscaloosa"
 			),
 			"extendedData" => array(
 				"zipFormat" => array(
