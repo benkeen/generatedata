@@ -1,4 +1,4 @@
-# generatedata.com
+# GenerateData.com
 
 [![Build Status](https://travis-ci.org/benkeen/generatedata.png?branch=master)](https://travis-ci.org/benkeen/generatedata)
 
@@ -10,6 +10,7 @@ the most recent tag: https://github.com/benkeen/generatedata/releases
 ## Requirements
 - PHP 5.3 or later
 - MySQL 4.1.3 or later
+- PHPUnit [Version isn't stated, default is assumed]
 
 ## How to Install / Documentation
 
@@ -24,6 +25,10 @@ for more info.
 
 Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's
 going to be a little hairy for a while just yet.
+
+## TO-DO
+
+Please see the [feature request] (https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open) for a list of things that are still left to complete on this project. 
 
 ## License
 
