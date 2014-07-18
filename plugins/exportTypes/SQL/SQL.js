@@ -20,6 +20,7 @@ define([
 
 	var _init = function() {
 		$("#etSQL_databaseType").on("change", _onChangeDatabaseType);
+                $('input[name="etSQL_statementType"]').on("change", _onChangeStatementType);
 
 		var subscriptions = {};
 		subscriptions[C.EVENT.APP_START] = _onChangeSettings;
@@ -32,6 +33,19 @@ define([
 	var _onChangeDatabaseType = function(e) {
 		_updateAvailableSettings(e.target.value);
 	};
+
+        var _onChangeStatementType = function(e) {
+                if (e.target.value === "insert") {
+                    $("#etSQL_insertBatchSize").prop("disabled", false);
+                    $("#etSQL_insertIgnoreBatchSize").prop("disabled", true);
+                } else if (e.target.value === "insertignore") {
+                    $("#etSQL_insertBatchSize").prop("disabled", true);
+                    $("#etSQL_insertIgnoreBatchSize").prop("disabled", false);
+                } else {
+                    $("#etSQL_insertBatchSize").prop("disabled", true);
+                    $("#etSQL_insertIgnoreBatchSize").prop("disabled", true);
+                }
+        };
 
 	var _onChangeSettings = function() {
 		var dbType = $("#etSQL_databaseType").val();
@@ -53,6 +67,7 @@ define([
 		} else {
 			$("#etSQL_statementType2").prop("disabled", true).prop("checked", false);
 			$("#etSQL_insertIgnore label").css("color", "#cccccc");
+                        $("#etSQL_insertIgnoreBatchSize").prop("disabled", true);
 		}
 	};
 
