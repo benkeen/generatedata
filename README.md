@@ -4,7 +4,8 @@
 
 This is the repo for the standalone, downloadable version of [generatedata.com](http://www.generatedata.com).
 
-Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting the most recent tag: https://github.com/benkeen/generatedata/releases
+Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting
+the most recent tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
 - PHP 5.3 or later
@@ -21,11 +22,18 @@ for more info.
 
 ## Test Coverage
 
-Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's going to be a little hairy for a while just yet.
+Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's
+going to be a little hairy for a while just yet.
+
+## To-Do
+
+Please see the issues tagges as [feature requests] (https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open)
+for a list of things that are still left to complete on this project. Help is always welcome!
 
 ## License
 
-This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all contributors agree that all code is released under this license.
+This script is freely available under the GPL 3 license. See license.txt in the root folder. Please note that all
+contributors agree that all code is released under this license.
 
 ## Contributors
 
@@ -44,6 +52,9 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.1.2 - July 12, 2014
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=12&page=1&state=closed
 
 3.1.1 - Jan 31, 2014
 - New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh.

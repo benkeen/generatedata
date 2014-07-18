@@ -35,7 +35,6 @@ class DataType_Region extends DataTypePlugin {
 
 		// if no country plugins were defined, we just randomly grab a region from what's available
 		if ($generationOptions["resultType"] == "any") {
-
 			$randRegionInfo = $this->getRandRegion($this->countryRegionHash);
 
 			$index = mt_rand(0, 1);
@@ -86,9 +85,9 @@ class DataType_Region extends DataTypePlugin {
 					$regionInfo["display"] = $regionInfo[$keys[$index]];
 				} else {
 					$randRegionInfo = $this->getRandRegion($generationOptions["countries"]);
-					$randCountrySlug = $randRegionInfo["countrySlug"];
-					$formatIndex = $this->getRandIndex($generationOptions["countries"], $randCountrySlug);
-					$randCountry = $this->countryRegionHash[$randCountrySlug];
+					$currRowCountrySlug = $randRegionInfo["countrySlug"];
+					$formatIndex = $this->getRandIndex($generationOptions["countries"], $currRowCountrySlug);
+					$randCountry = $this->countryRegionHash[$currRowCountrySlug];
 					$regionInfo = $randCountry["regions"][mt_rand(0, $randCountry["numRegions"]-1)];
 					$regionInfo["display"] = $regionInfo[$keys[$formatIndex]];
 				}

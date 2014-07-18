@@ -570,15 +570,15 @@ END;
 				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n" ;
 				$content .= "IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('{$this->tableName}'))$endLineChar";
 				$content .= "BEGIN;$endLineChar";
-				$content .= "{$prefix}DROP TABLE {$this->tableName};$endLineChar";
+				$content .= "{$prefix}DROP TABLE [{$this->tableName}];$endLineChar";
 				$content .= "END;$endLineChar";
 				$content .= "GO{$dropTableEndLine}";
 			}
 
 			if ($this->createTable) {
-				$content .= "CREATE TABLE {$this->tableName} ($endLineChar";
+				$content .= "CREATE TABLE [{$this->tableName}] ($endLineChar";
 				if ($this->primaryKey == "default") {
-					$content .= "{$prefix}{$this->tableName}ID INTEGER NOT NULL IDENTITY(1, 1),$endLineChar";
+					$content .= "{$prefix}[{$this->tableName}ID] INTEGER NOT NULL IDENTITY(1, 1),$endLineChar";
 				}
 
 				$cols = array();
@@ -590,20 +590,20 @@ END;
 					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
 						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
 					}
-					$cols[] = "{$prefix}{$dataType["title"]} $columnTypeInfo";
+					$cols[] = "{$prefix}[{$dataType["title"]}] $columnTypeInfo";
 				}
 
 				$content .= implode(",$endLineChar", $cols);
 
 				if ($this->primaryKey == "default") {
-					$content .= ",$endLineChar{$prefix}PRIMARY KEY ({$this->tableName}ID)$endLineChar);{$endLineChar}GO{$endLineChar}{$endLineChar}";
+					$content .= ",$endLineChar{$prefix}PRIMARY KEY ([{$this->tableName}ID])$endLineChar);{$endLineChar}GO{$endLineChar}{$endLineChar}";
 				} else if ($this->primaryKey == "none") {
 					$content .= "$endLineChar);{$endLineChar}GO{$endLineChar}{$endLineChar}";
 				}
 			}
 		}
 
-		$colNamesStr = implode(",", $this->data["colData"]);
+		$colNamesStr = "[" . implode("],[", $this->data["colData"]) . "]";
 		$numRows = count($this->data["rowData"]);
 		$numCols = count($this->data["colData"]);
 		for ($i=0; $i<$numRows; $i++) {
@@ -614,9 +614,10 @@ END;
 					if ($this->numericFields[$j]) {
 						$displayVals[] = $this->data["rowData"][$i][$j];
 					} else {
-						$displayVals[] = "'" . preg_replace("/'/", "\'", $this->data["rowData"][$i][$j]) . "'";
+						$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
 					}
 				}
+
 				$rowDataStr[] = implode(",", $displayVals);
                                 if (count($rowDataStr) === 50) {
                                     $content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES(" . implode('),(', $rowDataStr) . ");$endLineChar";
@@ -636,14 +637,14 @@ END;
 					if ($this->numericFields[$j]) {
 						$colValue = $this->data["rowData"][$i][$j];
 					} else {
-						$colValue = "'" . preg_replace("/'/", "\'", $this->data["rowData"][$i][$j]) . "'";
+						$colValue = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
 					}
-					$pairs[]  = "{$colName} = $colValue";
+					$pairs[]  = "[{$colName}] = $colValue";
 				}
 
 				$pairsStr = implode(", ", $pairs);
 				$rowNum = $this->currentBatchFirstRow + $i;
-				$content .= "UPDATE {$this->tableName} SET $pairsStr WHERE {$this->tableName}ID = $rowNum;$endLineChar";
+				$content .= "UPDATE [{$this->tableName}] SET $pairsStr WHERE [{$this->tableName}ID] = $rowNum;$endLineChar";
 				
 				if (($currentRow % 1000) == 0) {
 					$content .= $endLineChar;
