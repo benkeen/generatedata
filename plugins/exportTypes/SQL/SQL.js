@@ -142,6 +142,21 @@ define([
 			});
 		}
 
+                // check batch size if current statement type is "insert" or "insertignore"
+                var statementType = $.trim($('input[name="etSQL_statementType"]:checked').val());
+                var validBatchSize = new RegExp("^([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|300)$");
+                if (statementType === "insert" || statementType === "insertignore") {
+                    var statementType = statementType === "insertignore" ? "insertIgnore" : statementType;
+                    var batchSizeField = $('#etSQL_' + statementType + 'BatchSize');
+                    var batchSizeFieldVal = $.trim(batchSizeField.val());
+                    if (batchSizeFieldVal === "" || !validBatchSize.test(batchSizeFieldVal)) {
+                        errors.push({
+                                els: batchSizeField,
+                                error: LANG.validation_invalid_batch_size
+                        });
+                    }
+                }
+
 		return errors;
 	};
 

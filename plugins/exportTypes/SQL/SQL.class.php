@@ -164,12 +164,12 @@ class SQL extends ExportTypePlugin {
 				<div>
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType1" value="insert" checked="checked" />
 					<label for="etSQL_statementType1">INSERT</label>
-                                        <input type="text" name="etSQL_insertBatchSize" id="etSQL_insertBatchSize" value="25" />
+                                        <input type="text" name="etSQL_insertBatchSize" id="etSQL_insertBatchSize" value="25" title="{$this->L["batch_size"]}"/>
 				</div>
 				<div id="etSQL_insertIgnore">
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType2" value="insertignore" />
 					<label for="etSQL_statementType2">INSERT IGNORE</label>
-                                        <input type="text" name="etSQL_insertIgnoreBatchSize" id="etSQL_insertIgnoreBatchSize" value="25" disabled />
+                                        <input type="text" name="etSQL_insertIgnoreBatchSize" id="etSQL_insertIgnoreBatchSize" value="25" title="{$this->L["batch_size"]}" disabled />
 				</div>
 				<div>
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType3" value="update" />

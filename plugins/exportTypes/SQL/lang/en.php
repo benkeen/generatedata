@@ -5,6 +5,7 @@ $L["row_label"] = "Table Column";
 $L["row_label_plural"] = "Table Columns";
 $L["validation_invalid_col_name"] = "Please enter valid database column names for each row (a-Z and underscore characters). Please fix the following rows: ";
 $L["validation_invalid_table_name"] = "Please enter a valid database table name (a-Z and underscores only).";
+$L["validation_invalid_batch_size"] = "Please enter valid batch size (1 - 300)";
 
 $L["db_table_name"] = "Database table name";
 $L["db_type"] = "Database Type";
@@ -15,3 +16,4 @@ $L["enclose_table_backquotes"] = "Enclose table and field names with backquotes"
 $L["statement_type"] = "Statement Type";
 $L["primary_key"] = "Primary Key";
 $L["add_default_auto_increment_col"] = "Add default auto-increment column";
+$L["batch_size"] = "Number of rows to insert per one query (1 - 300)";
