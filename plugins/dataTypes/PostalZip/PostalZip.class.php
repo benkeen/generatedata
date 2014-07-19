@@ -187,7 +187,8 @@ EOF;
 			$replacements = !empty($replacements) ? $replacements : $zipInfo["replacements"];
 
 			// now iterate over $customFormat and do whatever replacements have been specified
-			for ($i=0; $i<strlen($customFormat); $i++) {
+			$customFormatLen = strlen($customFormat);
+			for ($i=0; $i<$customFormatLen; $i++) {
 				if (array_key_exists($customFormat[$i], $replacements)) {
 					$replacementKey = $replacements[$customFormat[$i]];
 					$randChar = $replacementKey[mt_rand(0, strlen($replacementKey)-1)];
@@ -198,10 +199,11 @@ EOF;
 			}
 		} else {
 			$formats = explode("|", $zipInfo["format"]);
-			if (count($formats) == 1) {
+			$numFormats = count($formats);
+			if ($numFormats == 1) {
 				$format = $formats[0];
 			} else {
-				$format = $formats[mt_rand(0, count($formats)-1)];
+				$format = $formats[mt_rand(0, $numFormats-1)];
 			}
 			$result = Utils::generateRandomAlphanumericStr($format);
 		}

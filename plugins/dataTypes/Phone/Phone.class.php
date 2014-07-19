@@ -17,8 +17,10 @@ class DataType_Phone extends DataTypePlugin {
 		$phoneStr = Utils::generateRandomAlphanumericStr($generationContextData["generationOptions"]);
 		$formats = explode("|", $phoneStr);
 		$chosenFormat = $formats[0];
-		if (count($formats) > 1) {
-			$chosenFormat = $formats[mt_rand(0, count($formats)-1)];
+
+		$numFormats = count($formats);
+		if ($numFormats > 1) {
+			$chosenFormat = $formats[mt_rand(0, $numFormats-1)];
 		}
 		return array(
 			"display" => $chosenFormat

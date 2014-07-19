@@ -19,7 +19,6 @@ class DataType_Currency extends DataTypePlugin {
 
 	// meh. All this string manipulation code could be improved, I'm sure
 	public function generate($generator, $generationContextData) {
-
 		$rangeFrom    = preg_replace("/\D/", "", $generationContextData["generationOptions"]["rangeFrom"]);
 		$rangeTo      = preg_replace("/\D/", "", $generationContextData["generationOptions"]["rangeTo"]);
 		$format       = $generationContextData["generationOptions"]["format"];
@@ -34,7 +33,8 @@ class DataType_Currency extends DataTypePlugin {
 		$display = "";
 
 		$randNumIndex = 0;
-		for ($i=0; $i<strlen($reversedFormat); $i++) {
+		$reversedFormatStrLen = strlen($reversedFormat);
+		for ($i=0; $i<$reversedFormatStrLen; $i++) {
 			if ($i > $randStringRevLength) {
 				break;
 			}
@@ -51,6 +51,7 @@ class DataType_Currency extends DataTypePlugin {
 		// nums. Pretty feeble logic here, and I'm not 100% sure this will work for all currency formats
 		$hasCents = preg_match("/\D/", $format[strlen($format)-3]);
 		$numChars = strlen($display);
+
 		if ($hasCents && $numChars < 4) {
 			$truncatedFormat = preg_replace("/X/", "0", substr($format, -4));
 

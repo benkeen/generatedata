@@ -162,7 +162,6 @@ class DataType_NamesRegional extends DataTypePlugin {
 			$lastNames   = $this->regionalNames[$countrySlug]["lastNames"];
 		}
 
-
 		while (preg_match("/MaleName/", $placeholderStr)) {
 			$placeholderStr = preg_replace("/MaleName/", $this->getRandomFirstName($maleNames), $placeholderStr, 1);
 		}

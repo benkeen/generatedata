@@ -110,8 +110,9 @@ class Utils {
 			return;
 		}
 		// check $num is no greater than the total set
-		if ($num > count($set)) {
-			$num = count($set);
+		$numInSet = count($set);
+		if ($num > $numInSet) {
+			$num = $numInSet;
 		}
 		shuffle($set);
 		return array_slice($set, 0, $num);
@@ -204,8 +205,8 @@ class Utils {
 		for ($i=0; $i<$strlen; $i++) {
 			switch ($str[$i]) {
 				// Numbers
-				case "X": $new_str .= mt_rand(1,9);  break;
-				case "x": $new_str .= mt_rand(0,9);  break;
+				case "X": $new_str .= mt_rand(1, 9);  break;
+				case "x": $new_str .= mt_rand(0, 9);  break;
 
 				// Letters
 				case "L": $new_str .= self::$letters[mt_rand(0, self::$lettersLen-1)]; break;

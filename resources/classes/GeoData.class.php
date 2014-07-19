@@ -122,6 +122,7 @@ class GeoData {
 		while ($row = mysqli_fetch_assoc($response["results"])) {
 			$cityData[] = $row;
 		}
+
 		$this->cityData = $cityData;
 	}
 

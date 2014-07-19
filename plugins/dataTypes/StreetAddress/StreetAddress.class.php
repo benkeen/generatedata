@@ -30,7 +30,7 @@ class DataType_StreetAddress extends DataTypePlugin {
 
 		$format = mt_rand(1, 4);
 		$streetAddress = "";
-		switch($format) {
+		switch ($format) {
 			case "1":
 				$streetAddress = $this->L["po_box"] . " " . mt_rand(100, 999) . ", " . mt_rand(100, 9999) . " $streetName " . $streetType;
 				break;

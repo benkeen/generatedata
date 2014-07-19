@@ -187,7 +187,8 @@ EOF;
 		// now get a random region, taking into account it's weight
 		$weightedValues = array();
 		$regions = $randCountry["regions"];
-		for ($i=0; $i<count($regions); $i++) {
+		$numRegions = count($regions);
+		for ($i=0; $i<$numRegions; $i++) {
 			$weightedValues["{$i}"] = $regions[$i]["weight"];
 		}
 		$randomIndex = Utils::weightedRand($weightedValues);
