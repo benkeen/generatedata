@@ -30,7 +30,7 @@ class DataType_IBAN extends DataTypePlugin {
 	 * Corrected using various sources
 	 * @var array
 	 */
-	private $allCountryCodes = array(
+	private static $allCountryCodes = array(
 		array('code'=>'AL',	'sepa'=>false,	'template'=>'ALkkbbbddddxcccccccccccccccc',		'name'=>'Albania'),
 		array('code'=>'AD',	'sepa'=>false,	'template'=>'ADkkbbbbddddcccccccccccc',			'name'=>'Andorra'),
 		array('code'=>'AT',	'sepa'=>true,	'template'=>'ATkkbbbbbccccccccccc',				'name'=>'Austria'),
@@ -96,8 +96,8 @@ class DataType_IBAN extends DataTypePlugin {
 		array('code'=>'VG',	'sepa'=>false,	'template'=>'VGkkbbbbcccccccccccccccc',			'name'=>'Virgin Islands, British')
 	);
 	
-	public $countryCodes;
-	public $numCountryCodes;
+	private static $countryCodes;
+	private static $numCountryCodes;
 
 
 	/**
@@ -109,18 +109,18 @@ class DataType_IBAN extends DataTypePlugin {
 		$onlySepa = false;
 		if ($runtimeContext == "generation") {
 			$numCountryCodes = 0;
-			foreach ($this->allCountryCodes as $details) {
+			foreach (self::$allCountryCodes as $details) {
 				if (!$onlySepa || $details['sepa']) {
-					$this->countryCodes[] = $details;
+					self::$countryCodes[] = $details;
 					$numCountryCodes++;
 				}
 			}
-			$this->numCountryCodes = $numCountryCodes;
+			self::$numCountryCodes = $numCountryCodes;
 		}
 	}
 	
 	public static function generateBic($countryCode) {
-		$withBranchCode = mt_rand(0,1) == true;
+		$withBranchCode = mt_rand(0, 1) == true;
 		$branchCode = $withBranchCode ? 'xxX' : '';
 		$format = 'LLLL' . $countryCode . 'LL' . $branchCode;
 		
@@ -130,11 +130,13 @@ class DataType_IBAN extends DataTypePlugin {
 	private static function fillTemplate($template, $countryCode) {
 		$bic = self::generateBic($countryCode);
 		$bicPos = 0;
-		$len = strlen($template);
 		$unsigned = '';
+		$len = strlen($template);
+
+		$uppercaseTemplate = strtoupper($template);
 		for ($i=0; $i<$len; $i++) {
 			$c = $template[$i];
-			if (strtoupper($c) === $c) {
+			if ($uppercaseTemplate[$i] === $c) {
 				$unsigned .= $c;
 				continue;
 			}
@@ -151,15 +153,15 @@ class DataType_IBAN extends DataTypePlugin {
 		return self::recalculateChecksum($unsigned);
 	}
 	
-	public function getRandomCountry() {
-		return $this->countryCodes[mt_rand(0, $this->numCountryCodes-1)];
+	public static function getRandomCountry() {
+		return self::$countryCodes[mt_rand(0, self::$numCountryCodes-1)];
 	}
 	
 	/**
 	 * @todo Respect the selected country.
 	 */
 	public function generate($generator, $generationContextData) {
-		$code = $this->getRandomCountry();
+		$code = self::getRandomCountry();
 		$IBAN = self::fillTemplate($code['template'], $code['code']);
 		return array(
 			"display" => $IBAN
@@ -186,7 +188,7 @@ class DataType_IBAN extends DataTypePlugin {
 //		}
 
 		$ord = ord($chr);
-	
+
 		if ($ord <=57 && $ord >= 48) { //48 = '0', 57 = '9'
 			return $ord-48;
 		}
@@ -228,6 +230,6 @@ class DataType_IBAN extends DataTypePlugin {
 		
 		$checksum = 98 - self::bigMod($numerical, 97);
 		
-		return substr($ibanString, 0, 2) . str_pad($checksum,2, '0', STR_PAD_LEFT) . substr($ibanString, 4);
+		return substr($ibanString, 0, 2) . str_pad($checksum, 2, '0', STR_PAD_LEFT) . substr($ibanString, 4);
 	}
 }

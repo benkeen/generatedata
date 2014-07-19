@@ -14,6 +14,9 @@ class DataType_Track1 extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "credit_card_data";
 	protected $dataTypeFieldGroupOrder = 40;
 
+	protected $characters = array("A","B","C","D","E","F","G","H","J","K","L","M","N","P","Q","R","S","T","U","V","W","X","Y","Z");
+	protected $totalChars;
+
 
 	private $cardData;
 
@@ -29,16 +32,17 @@ class DataType_Track1 extends DataTypePlugin {
 		if (class_exists("DataType_PAN")) {
 			$this->cardData = DataType_PAN::getAllCreditCardData();
 		}
+
+		$this->totalChars = count($this->characters);
 	}
 
 	public function generate($generator, $generationContextData) {
 		$cardData = $this->cardData[array_rand($this->cardData)];
 		$generatedCardNumber = DataType_PAN::generateCreditCardNumber($cardData["prefix"], $cardData["length"]);
 
-		$characters = array("A","B","C","D","E","F","G","H","J","K","L","M","N","P","Q","R","S","T","U","V","W","X","Y","Z");
 		$chars = array();
 		while (count($chars) < 4) {
-			$char = $characters[mt_rand(0, count($characters)-1)];
+			$char = $this->characters[mt_rand(0, $this->totalChars-1)];
 			if (!in_array($char, $chars)) {
 				$chars[] = $char;
 			}

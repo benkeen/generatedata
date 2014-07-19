@@ -184,7 +184,8 @@ EOF;
 				$options = "<input type=\"hidden\" name=\"$id\" id=\"$id\" value=\"{$displayFormats[0]}\" />{$displayFormats[0]}";
 			} else {
 				$options = "<select name=\"$id\" id=\"$id\">";
-				for ($i=0; $i<count($displayFormats); $i++) {
+				$numDisplayFormats = count($displayFormats);
+				for ($i=0; $i<$numDisplayFormats; $i++) {
 					$options .= "<option value=\"{$displayFormats[$i]}\">{$displayFormats[$i]}</option>";
 				}
 				$options .= "</select>";
@@ -271,7 +272,8 @@ END;
 			$replacementCharsRev = strrev($replacementChars);
 			$xIndex = 0;
 			$newPhoneNumber = "";
-			for ($i=0; $i<strlen($phoneNumberRev); $i++) {
+			$phoneNumLen = strlen($phoneNumberRev);
+			for ($i=0; $i<$phoneNumLen; $i++) {
 				$currChar = $phoneNumberRev[$i];
 				if ($currChar === "x") {
 					$newPhoneNumber .= $replacementCharsRev[$xIndex];
