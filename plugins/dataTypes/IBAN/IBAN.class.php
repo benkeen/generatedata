@@ -93,38 +93,42 @@ class DataType_IBAN extends DataTypePlugin {
 		array('code'=>'TR',	'sepa'=>false,	'template'=>'TRkkbbbbbxcccccccccccccccc',		'name'=>'Turkey'),
 		array('code'=>'AE',	'sepa'=>false,	'template'=>'AEkkbbbcccccccccccccccc',			'name'=>'United Arab Emirates'),
 		array('code'=>'GB',	'sepa'=>true,	'template'=>'GBkkiiiiddddddcccccccc',			'name'=>'United Kingdom'),
-		array('code'=>'VG',	'sepa'=>false,	'template'=>'VGkkbbbbcccccccccccccccc',			'name'=>'Virgin Islands, British'),	
+		array('code'=>'VG',	'sepa'=>false,	'template'=>'VGkkbbbbcccccccccccccccc',			'name'=>'Virgin Islands, British')
 	);
 	
 	public $countryCodes;
-	
+	public $numCountryCodes;
+
 
 	/**
-	 * @todo make the $onlySepa option variable
+	 * @TODO make the $onlySepa option variable
 	 * @param string $runtimeContext
 	 */
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 		$onlySepa = false;
 		if ($runtimeContext == "generation") {
+			$numCountryCodes = 0;
 			foreach ($this->allCountryCodes as $details) {
 				if (!$onlySepa || $details['sepa']) {
 					$this->countryCodes[] = $details;
+					$numCountryCodes++;
 				}
 			}
+			$this->numCountryCodes = $numCountryCodes;
 		}
 	}
 	
-	public static function GenerateBic($countryCode) {
+	public static function generateBic($countryCode) {
 		$withBranchCode = mt_rand(0,1) == true;
 		$branchCode = $withBranchCode ? 'xxX' : '';
-		$format = 'LLLL'.$countryCode.'LL'.$branchCode;
+		$format = 'LLLL' . $countryCode . 'LL' . $branchCode;
 		
 		return Utils::generateRandomAlphanumericStr($format);
 	}
 
-	private static function FillTemplate($template, $countryCode) {
-		$bic = self::GenerateBic($countryCode);
+	private static function fillTemplate($template, $countryCode) {
+		$bic = self::generateBic($countryCode);
 		$bicPos = 0;
 		$len = strlen($template);
 		$unsigned = '';
@@ -144,11 +148,11 @@ class DataType_IBAN extends DataTypePlugin {
 			}
 			$unsigned .= Utils::generateRandomAlphanumericStr('x');
 		}
-		return self::RecalculateChecksum($unsigned);
+		return self::recalculateChecksum($unsigned);
 	}
 	
 	public function getRandomCountry() {
-		return $this->countryCodes[mt_rand(0, count($this->countryCodes)-1)];
+		return $this->countryCodes[mt_rand(0, $this->numCountryCodes-1)];
 	}
 	
 	/**
@@ -156,7 +160,7 @@ class DataType_IBAN extends DataTypePlugin {
 	 */
 	public function generate($generator, $generationContextData) {
 		$code = $this->getRandomCountry();
-		$IBAN = self::FillTemplate($code['template'], $code['code']);
+		$IBAN = self::fillTemplate($code['template'], $code['code']);
 		return array(
 			"display" => $IBAN
 		);
@@ -174,24 +178,26 @@ class DataType_IBAN extends DataTypePlugin {
 		return "<p>{$this->L["help"]}</p>";
 	}
 	
-	private static function Chr2Int($chr) {
-		if (strlen($chr) != 1) {
-			throw new Exception("Requires a single character");
-		}
+	private static function chr2Int($chr) {
+
+		// this is a good idea for function robustness, but it slows down the code too much. Commenting out.
+//		if (strlen($chr) != 1) {
+//			throw new Exception("Requires a single character");
+//		}
+
 		$ord = ord($chr);
 	
-		if ($ord <=57 && $ord >=48) { //48 = '0', 57 = '9'
+		if ($ord <=57 && $ord >= 48) { //48 = '0', 57 = '9'
 			return $ord-48;
 		}
 		if ($ord <= 90 && $ord >= 65) { //90 = 'Z', 65 = 'A'
 			return 10 + ($ord - 65);
 		}
 		throw new Exception("Input character {$chr}({$ord}) does not map to an integer");
-	
 	}
 	
-	private static function BigMod( $x, $y ) {
-		// how many numbers to take at once? carefull not to exceed (int)
+	private static function bigMod( $x, $y ) {
+		// how many numbers to take at once? careful not to exceed (int)
 		$take = 5;
 		$mod = '';
 	
@@ -203,23 +209,25 @@ class DataType_IBAN extends DataTypePlugin {
 	
 		return intval($mod);
 	}
+
 	/**
-	 * Removes the current checksum digits from an IBAN string, and replaces it with what it should have been.
+	 * Removes the current checksum digit from an IBAN string, and replaces it with what it should have been.
 	 */
-	private static function RecalculateChecksum($ibanString) {
+	private static function recalculateChecksum($ibanString) {
 		if (strlen($ibanString) < 6) {
 			return $ibanString;
 		}
 		
-		$reordered =  substr($ibanString, 4).substr($ibanString, 0, 2);
+		$reordered = substr($ibanString, 4) . substr($ibanString, 0, 2);
 		$numerical = '';
-		for ($i=0; $i<strlen($reordered); $i++) {
-			$numerical .= self::Chr2Int($reordered[$i]);
+		$reorderedLength = strlen($reordered);
+		for ($i=0; $i<$reorderedLength; $i++) {
+			$numerical .= self::chr2Int($reordered[$i]);
 		}
 		$numerical .= '00';
 		
-		$checksum = 98 - self::BigMod($numerical, 97);
+		$checksum = 98 - self::bigMod($numerical, 97);
 		
-		return substr($ibanString, 0, 2).str_pad($checksum,2, '0', STR_PAD_LEFT).substr($ibanString, 4);
+		return substr($ibanString, 0, 2) . str_pad($checksum,2, '0', STR_PAD_LEFT) . substr($ibanString, 4);
 	}
 }

@@ -375,16 +375,17 @@ EOF;
 		$result_f = array();
 		$j = 1;
 
-		for ($i=0; $i<count($positions); $i++) {
+		$numPositions = count($positions);
+		for ($i=0; $i<$numPositions; $i++) {
 			$result[$i] = substr($ccnumber, 0, $positions[$i]-$i);
 		}
 
 		$result_f[0] = ($result[0]);
-		for ($i=0; $i<count($positions)-1; $i++) {
+		for ($i=0; $i<$numPositions-1; $i++) {
 			$result_f[$j] = substr($result[$j], $positions[$i]-$i);
 			$j++;
 		}
-		$result_f[count($positions)] = substr($ccnumber, ($positions[count($positions)-1])-(count($positions)-1));
+		$result_f[$numPositions] = substr($ccnumber, ($positions[$numPositions-1])-($numPositions-1));
 
 		return $result_f;
 	}
@@ -401,12 +402,13 @@ EOF;
 
 		$sortedFormat = array();
 		$not_i = 0;
-
-		for ($fc = 0; $fc < count($formats); $fc++){
+		$numFormats = count($formats);
+		for ($fc=0; $fc<$numFormats; $fc++){
 			$count_X = "0"; // get count of X's to match with the card length
 
-			for ($i=0; $i<strlen($formats[$fc]); $i++) {
-				if (substr($formats[$fc], $i, 1) == "X") {
+			$len = strlen($formats[$fc]);
+			for ($i=0; $i<$len; $i++) {
+				if ($formats[$fc][$i] == "X") { // PHP version of a charAt
 					$count_X++;
 				}
 			}
@@ -418,8 +420,9 @@ EOF;
 		}
 
 		$chosenFormat = "";
-		if (count($sortedFormat) >= 1) {
-			$chosenFormat = $sortedFormat[mt_rand(0, count($sortedFormat)-1)];
+		$sortedFormatCount = count($sortedFormat);
+		if ($sortedFormatCount >= 1) {
+			$chosenFormat = $sortedFormat[mt_rand(0, $sortedFormatCount-1)];
 		}
 
 		return trim($chosenFormat);
@@ -476,8 +479,10 @@ EOF;
 		$ccNumber = $prefixList[array_rand($prefixList)];
 
 		// generate digits
-		while (strlen($ccNumber)<($length-1)) {
-			$ccNumber .= mt_rand(0,9);
+		$count = strlen($ccNumber);
+		while ($count < ($length - 1)) {
+			$ccNumber .= mt_rand(0, 9);
+			$count++;
 		}
 
 		// calculate sum
@@ -493,7 +498,7 @@ EOF;
 			$sum += $odd;
 
 			if ($pos != ($length - 2)) {
-				$sum += $reversedCCnumber[ $pos +1 ];
+				$sum += $reversedCCnumber[$pos+1];
 			}
 			$pos += 2;
 		}

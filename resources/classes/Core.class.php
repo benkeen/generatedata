@@ -29,6 +29,7 @@ class Core {
 	private static $defaultTheme = "classic";
 	private static $enableSmartySecurity = true;
 	private static $useMinifiedResources = false;
+	private static $timeout = 300; // 5 minutes
 
 	// non-overridable settings
 	private static $version = "3.1.2";
@@ -140,6 +141,8 @@ class Core {
 		if (in_array($runtimeContext, array("ui", "generation", "resetPlugins"))) {
 			self::initUser();
 		}
+
+		set_time_limit(self::$timeout);
 	}
 
 
