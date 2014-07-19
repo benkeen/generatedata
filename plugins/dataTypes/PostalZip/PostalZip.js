@@ -32,6 +32,7 @@ define([
 				checked.push($(visible[j]).data("country"));
 			}
 		}
+
 		return {
 			"checked": checked
 		};
@@ -43,8 +44,11 @@ define([
 			isComplete: function() {
 				if ($("#dtCountry_Complete" + rowNum).length) {
 					$("#gdColOptions_" + rowNum + " input").removeAttr("checked");
-					for (var i=0; i<data.checked.length; i++) {
-						$("#dtCountryIncludeZip_" + data.checked[i] + "_" + rowNum).attr("checked", "checked");
+
+					if (data) {
+						for (var i=0; i<data.checked.length; i++) {
+							$("#dtCountryIncludeZip_" + data.checked[i] + "_" + rowNum).attr("checked", "checked");
+						}
 					}
 					return true;
 				} else {
