@@ -33,7 +33,7 @@ define([
 		var visibleProblemRows = [];
 		var problemFields      = [];
 
-		var intOnly = /^\d+$/;
+		var intOnly = /^[\-\d]+$/;
 		for (var i=0; i<rows.length; i++) {
 			var numWordsMin = $.trim($("#dtNumRangeMin_" + rows[i]).val());
 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
