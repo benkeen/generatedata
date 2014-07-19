@@ -18,3 +18,5 @@ $L["row_label_plural"] = "Table Columns";
 $L["statement_type"] = "Statement Type";
 $L["validation_invalid_col_name"] = "Bitte geben Sie eine gültige Datenbank Spaltennamen für jede Zeile (aZ und Unterstrich). Bitte beheben Sie die folgenden Zeilen:";
 $L["validation_invalid_table_name"] = "Bitte geben Sie eine gültige Datenbank-Tabelle Name (AZ und Unterstrichen).";
+$L["validation_invalid_batch_size"] = "Bitte geben Sie eine gültige Chargengröße (1 - 300)";
+$L["batch_size"] = "Anzahl der Zeilen, die pro Abfrage einfügen (1 - 300)";

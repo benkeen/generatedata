@@ -35,6 +35,8 @@ class SQL extends ExportTypePlugin {
 	private $backquote;
 	private $sqlStatementType;
 	private $primaryKey;
+        private $insertBatchSize;
+        private $insertIgnoreBatchSize;
 
 
 	function generate($generator) {
@@ -47,13 +49,15 @@ class SQL extends ExportTypePlugin {
 		$this->currentBatchFirstRow = $generator->getCurrentBatchFirstRow();
 
 		// grab whatever settings where chosen by the user
-		$this->includeDropTable = isset($this->postData["etSQL_dropTable"]);
-		$this->createTable      = isset($this->postData["etSQL_createTable"]);
-		$this->databaseType     = $this->postData["etSQL_databaseType"];
-		$this->tableName        = $this->postData["etSQL_tableName"];
-		$this->backquote        = isset($this->postData["etSQL_encloseWithBackquotes"]) ? "`" : "";
-		$this->sqlStatementType = isset($this->postData["etSQL_statementType"]) ? $this->postData["etSQL_statementType"] : "insert";
-		$this->primaryKey       = (isset($this->postData["etSQL_primaryKey"])) ? $this->postData["etSQL_primaryKey"] : "default";
+		$this->includeDropTable      = isset($this->postData["etSQL_dropTable"]);
+		$this->createTable           = isset($this->postData["etSQL_createTable"]);
+		$this->databaseType          = $this->postData["etSQL_databaseType"];
+		$this->tableName             = $this->postData["etSQL_tableName"];
+		$this->backquote             = isset($this->postData["etSQL_encloseWithBackquotes"]) ? "`" : "";
+		$this->sqlStatementType      = isset($this->postData["etSQL_statementType"]) ? $this->postData["etSQL_statementType"] : "insert";
+		$this->primaryKey            = (isset($this->postData["etSQL_primaryKey"])) ? $this->postData["etSQL_primaryKey"] : "default";
+                $this->insertBatchSize       = ($this->isBatchSizeValid($this->postData["etSQL_insertBatchSize"])) ? $this->postData["etSQL_insertBatchSize"] : 1;
+                $this->insertIgnoreBatchSize = ($this->isBatchSizeValid($this->postData["etSQL_insertIgnoreBatchSize"])) ? $this->postData["etSQL_insertIgnoreBatchSize"] : 1;
 
 		foreach ($this->template as $item) {
 			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
@@ -98,6 +102,13 @@ class SQL extends ExportTypePlugin {
 		$time = date("M-j-Y");
 		return "data{$time}.sql";
 	}
+
+        function isBatchSizeValid ($size) {
+                if (empty($size) || !is_numeric($size) || $size > 300) {
+                    return false;
+                }
+                return true;
+        }
 
 	function getAdditionalSettingsHTML() {
 		$LANG = Core::$language->getCurrentLanguageStrings();
@@ -153,10 +164,12 @@ class SQL extends ExportTypePlugin {
 				<div>
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType1" value="insert" checked="checked" />
 					<label for="etSQL_statementType1">INSERT</label>
+                                        <input type="text" name="etSQL_insertBatchSize" id="etSQL_insertBatchSize" value="25" title="{$this->L["batch_size"]}"/>
 				</div>
 				<div id="etSQL_insertIgnore">
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType2" value="insertignore" />
 					<label for="etSQL_statementType2">INSERT IGNORE</label>
+                                        <input type="text" name="etSQL_insertIgnoreBatchSize" id="etSQL_insertIgnoreBatchSize" value="25" title="{$this->L["batch_size"]}" disabled />
 				</div>
 				<div>
 					<input type="radio" name="etSQL_statementType" id="etSQL_statementType3" value="update" />
@@ -251,8 +264,11 @@ END;
 						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
 					}
 				}
-				$rowDataStr = implode(",", $displayVals);
-				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+				$rowDataStr[] = implode(",", $displayVals);
+                                if (count($rowDataStr) == $this->insertBatchSize) {
+                                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                                    $rowDataStr = array();
+                                }
 			} elseif ($this->sqlStatementType == "insertignore") {
 				$displayVals = array();
 				for ($j=0; $j<$numCols; $j++) {
@@ -262,8 +278,11 @@ END;
 						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
 					}
 				}
-				$rowDataStr = implode(",", $displayVals);
-				$content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+				$rowDataStr[] = implode(",", $displayVals);
+                                if (count($rowDataStr) == $this->insertIgnoreBatchSize) {
+                                    $content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                                    $rowDataStr = array();
+                                }
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
@@ -281,6 +300,9 @@ END;
 				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
 			}
 		}
+                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                }
 
 		return $content;
 	}
@@ -338,8 +360,11 @@ END;
 						$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
 					}
 				}
-				$rowDataStr = implode(",", $displayVals);
-				$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+				$rowDataStr[] = implode(",", $displayVals);
+                                if (count($rowDataStr) == $this->insertBatchSize) {
+                                    $content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                                    $rowDataStr = array();
+                                }
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
@@ -357,6 +382,9 @@ END;
 				$content .= "UPDATE \"{$this->tableName}\" SET $pairsStr WHERE id = $rowNum;$endLineChar";
 			}
 		}
+                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+                    $content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                }
 
 		return $content;
 	}
@@ -425,8 +453,11 @@ END;
 						$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
 					}
 				}
-				$rowDataStr = implode(",", $displayVals);
-				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+				$rowDataStr[] = implode(",", $displayVals);
+                                if (count($rowDataStr) == $this->insertBatchSize) {
+                                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                                    $rowDataStr = array();
+                                }
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
@@ -444,6 +475,9 @@ END;
 				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
 			}
 		}
+                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                }
 
 		return $content;
 	}
@@ -508,8 +542,11 @@ END;
 						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
 					}
 				}
-				$rowDataStr = implode(",", $displayVals);
-				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES ($rowDataStr);$endLineChar";
+				$rowDataStr[] = implode(",", $displayVals);
+                                if (count($rowDataStr) == $this->insertBatchSize) {
+                                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                                    $rowDataStr = array();
+                                }
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
@@ -527,6 +564,9 @@ END;
 				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
 			}
 		}
+                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+                }
 
 		return $content;
 	}
@@ -588,8 +628,12 @@ END;
 						$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
 					}
 				}
-				$rowDataStr = implode(",", $displayVals);
-				$content .= "INSERT INTO [{$this->tableName}]($colNamesStr) VALUES($rowDataStr);$endLineChar";
+
+				$rowDataStr[] = implode(",", $displayVals);
+                                if (count($rowDataStr) == $this->insertBatchSize) {
+                                    $content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES(" . implode('),(', $rowDataStr) . ");$endLineChar";
+                                    $rowDataStr = array();
+                                }
 				
 				if (($currentRow % 1000) == 0) {
 					$content .= $endLineChar;
@@ -621,6 +665,9 @@ END;
 				}
 			}
 		}
+                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+                    $content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES(" . implode('),(', $rowDataStr) . ");$endLineChar";
+                }
 
 		return $content;
 	}

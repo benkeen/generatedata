@@ -15,3 +15,5 @@ $L["row_label_plural"] = "Tabel Kolommen";
 $L["statement_type"] = "Verklaring Type";
 $L["validation_invalid_col_name"] = "Voer een geldige databank kolomnamen voor elke rij (aZ en onderstrepingstekens). Please fix de volgende rijen:";
 $L["validation_invalid_table_name"] = "Vul een geldige database tabel naam (az en onderstrepingstekens alleen).";
+$L["validation_invalid_batch_size"] = "Voer geldige seriegrootte (1-300)";
+$L["batch_size"] = "Aantal rijen in te voegen per een query (1-300)";
