@@ -54,8 +54,8 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-3.1.3 - July 20, 20134
-- Data generation efficiency improvements.
+3.1.3 - July 20, 2014
+- Misc data generation efficiency improvements
 - Batch Size SQL export option added by [Anton Nizhegorodov](https://github.com/an1zhegorodov)
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=13&page=1&state=closed
 
@@ -63,7 +63,7 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=12&page=1&state=closed
 
 3.1.1 - Jan 31, 2014
-- New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh.
+- New credit card data types: PAN, PIN, CVV, Track 1 and Track 2 courtesy of Zeeshan Shaikh
 - INSERT IGNORE option added to the SQL Export Type, thanks to [Ap.Mathu](https://github.com/apmuthu)
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=11&page=1&state=closed
 
@@ -88,7 +88,7 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - Optional JS, CSS minimization and bundling via Grunt. See help documentation for more information:
 [http://benkeen.github.io/generatedata/developer.html#bundling](http://benkeen.github.io/generatedata/developer.html#bundling)
 - PHP 5.5 compatibility fixes: database connection now with mysqli; Generator class renamed to DataGenerator due
-to naming conflict.
+to naming conflict
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=7&page=1&state=closed
 
 3.0.6 - Aug 1, 2013
@@ -96,7 +96,7 @@ to naming conflict.
 - bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=6&page=1&state=closed
 
 3.0.5 - July 13, 2013
-- Currency Data Type added.
+- Currency Data Type added
 - Assorted bug fixes, see: https://github.com/benkeen/generatedata/issues?milestone=5&page=1&state=closed
 
 3.0.4 - July 2nd, 2013
@@ -115,7 +115,7 @@ to naming conflict.
 - Assorted bug fixes / updates. See: https://github.com/benkeen/generatedata/issues?milestone=1&state=closed
 
 3.0.0 - May 21st, 2013
-- Initial release.
+- Initial release
 
 
 Ben Keen
