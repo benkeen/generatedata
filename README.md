@@ -39,6 +39,7 @@ contributors agree that all code is released under this license.
 
 In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [Anton Nizhegorodov](https://github.com/an1zhegorodov) - Batch size SQL export option (3.1.3)
 - Zeeshan Shaikh - PAN, PIN, CVV, Track 1 and 2 Data Types (3.1.1)
 - [Ap.Mathu](https://github.com/apmuthu) - SQL Export Type updates (INSERT IGNORE)
 - [Manu Ullas](https://github.com/unullmass) - compression option for downloads (3.0.9)
@@ -52,6 +53,11 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.1.3 - July 20, 20134
+- Data generation efficiency improvements.
+- Batch Size SQL export option added by [Anton Nizhegorodov](https://github.com/an1zhegorodov)
+- Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=13&page=1&state=closed
 
 3.1.2 - July 12, 2014
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=12&page=1&state=closed
