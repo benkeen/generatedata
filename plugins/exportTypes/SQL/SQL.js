@@ -5,7 +5,6 @@ define([
 	"constants",
 	"lang"
 ], function(manager, generator, C, L) {
-
 	"use strict";
 
 	/**
@@ -20,7 +19,7 @@ define([
 
 	var _init = function() {
 		$("#etSQL_databaseType").on("change", _onChangeDatabaseType);
-                $('input[name="etSQL_statementType"]').on("change", _onChangeStatementType);
+		$('input[name="etSQL_statementType"]').on("change", _onChangeStatementType);
 
 		var subscriptions = {};
 		subscriptions[C.EVENT.APP_START] = _onChangeSettings;
@@ -34,18 +33,15 @@ define([
 		_updateAvailableSettings(e.target.value);
 	};
 
-        var _onChangeStatementType = function(e) {
-                if (e.target.value === "insert") {
-                    $("#etSQL_insertBatchSize").prop("disabled", false);
-                    $("#etSQL_insertIgnoreBatchSize").prop("disabled", true);
-                } else if (e.target.value === "insertignore") {
-                    $("#etSQL_insertBatchSize").prop("disabled", true);
-                    $("#etSQL_insertIgnoreBatchSize").prop("disabled", false);
-                } else {
-                    $("#etSQL_insertBatchSize").prop("disabled", true);
-                    $("#etSQL_insertIgnoreBatchSize").prop("disabled", true);
-                }
-        };
+	var _onChangeStatementType = function(e) {
+		if (e.target.value === "insert" || e.target.value === "insertignore") {
+			$("#etSQL_batchSizeLabel").css("color", "");
+			$("#etSQL_insertBatchSize").prop("disabled", false).removeClass("gdDisabled");
+		} else {
+			$("#etSQL_insertBatchSize").prop("disabled", true).addClass("gdDisabled");
+			$("#etSQL_batchSizeLabel").css("color", "#cccccc");
+		}
+	};
 
 	var _onChangeSettings = function() {
 		var dbType = $("#etSQL_databaseType").val();
@@ -67,7 +63,6 @@ define([
 		} else {
 			$("#etSQL_statementType2").prop("disabled", true).prop("checked", false);
 			$("#etSQL_insertIgnore label").css("color", "#cccccc");
-                        $("#etSQL_insertIgnoreBatchSize").prop("disabled", true);
 		}
 	};
 
@@ -142,20 +137,19 @@ define([
 			});
 		}
 
-                // check batch size if current statement type is "insert" or "insertignore"
-                var statementType = $.trim($('input[name="etSQL_statementType"]:checked').val());
-                var validBatchSize = new RegExp("^([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|300)$");
-                if (statementType === "insert" || statementType === "insertignore") {
-                    var statementType = statementType === "insertignore" ? "insertIgnore" : statementType;
-                    var batchSizeField = $('#etSQL_' + statementType + 'BatchSize');
-                    var batchSizeFieldVal = $.trim(batchSizeField.val());
-                    if (batchSizeFieldVal === "" || !validBatchSize.test(batchSizeFieldVal)) {
-                        errors.push({
-                                els: batchSizeField,
-                                error: LANG.validation_invalid_batch_size
-                        });
-                    }
-                }
+		// check batch size if current statement type is "insert" or "insertignore"
+		var statementType = $.trim($('input[name="etSQL_statementType"]:checked').val());
+		if (statementType === "insert" || statementType === "insertignore") {
+			var validBatchSize = new RegExp("^([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|300)$");
+			var batchSizeField = $("#etSQL_insertBatchSize");
+			var batchSizeFieldVal = $.trim(batchSizeField.val());
+			if (batchSizeFieldVal === "" || !validBatchSize.test(batchSizeFieldVal)) {
+				errors.push({
+					els: batchSizeField,
+					error: LANG.validation_invalid_batch_size
+				});
+			}
+		}
 
 		return errors;
 	};
@@ -180,6 +174,10 @@ define([
 		}
 
 		$("input[name=etSQL_statementType]:eq(" + settings.statementType + ")").attr("checked", "checked");
+
+		if (settings.hasOwnProperty("insertBatchSize")) {
+			$("#etSQL_insertBatchSize").val(settings.insertBatchSize);
+		}
 		$("input[name=etSQL_primaryKey]:eq(" + settings.primaryKey + ")").attr("checked", "checked");
 	};
 
@@ -191,6 +189,7 @@ define([
 			dropTable:    $("#etSQL_dropTable").attr("checked") ? 1 : 0,
 			encloseWithBackquotes: $("#etSQL_encloseWithBackquotes").attr("checked") ? 1 : 0,
 			statementType: $("input[name=etSQL_statementType]:checked").val(),
+			insertBatchSize: $("#etSQL_insertBatchSize").val(),
 			primaryKey:    $("input[name=etSQL_primaryKey]:checked").val()
 		};
 	};
@@ -201,6 +200,7 @@ define([
 		$("#etSQL_createTable").attr("checked", "checked");
 		$("#etSQL_dropTable").attr("checked", "checked");
 		$("#etSQL_encloseWithBackquotes").attr("checked", "checked");
+		$("#etSQL_insertBatchSize").val(10);
 		$("input[name=etSQL_statementType][value=insert]").attr("checked", "checked");
 		$("input[name=etSQL_primaryKey][value=default]").attr("checked", "checked");
 	};
@@ -226,5 +226,4 @@ define([
 		saveSettings: _saveSettings,
 		resetSettings: _resetSettings
 	});
-
 });

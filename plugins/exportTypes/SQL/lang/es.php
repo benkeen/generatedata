@@ -16,4 +16,5 @@ $L["enclose_table_backquotes"] = "Entrecomillar nombres (tablas, columnas)";
 $L["statement_type"] = "Tipo de sentencia";
 $L["primary_key"] = "Clave primaria";
 $L["add_default_auto_increment_col"] = "Añadir columna auto-incrementada por defecto";
-$L["batch_size"] = "Número de filas a insertar por una consulta (1-300)";
+$L["insert_batch_size"] = "INSERT tamaño de lote";
+$L["batch_size_desc"] = "Número de filas a insertar por una consulta (1-300)";

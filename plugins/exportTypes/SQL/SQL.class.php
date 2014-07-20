@@ -18,7 +18,6 @@ class SQL extends ExportTypePlugin {
 	protected $isEnabled = true;
 	protected $exportTypeName = "SQL";
 	protected $jsModules = array("SQL.js");
-	protected $cssFiles = array("SQL.css");
 	protected $codeMirrorModes = array("sql");
 	public $L = array();
 
@@ -102,12 +101,12 @@ class SQL extends ExportTypePlugin {
 		return "data{$time}.sql";
 	}
 
-        function isBatchSizeValid ($size) {
-                if (empty($size) || !is_numeric($size) || $size > 300) {
-                    return false;
-                }
-                return true;
-        }
+	function isBatchSizeValid ($size) {
+		if (empty($size) || !is_numeric($size) || $size > 300) {
+			return false;
+		}
+		return true;
+	}
 
 	function getAdditionalSettingsHTML() {
 		$LANG = Core::$language->getCurrentLanguageStrings();
@@ -175,9 +174,9 @@ class SQL extends ExportTypePlugin {
 			</td>
 		</tr>
 		<tr>
-			<td valign="top"><label>{$this->L["insert_batch_size"]}</label></td>
+			<td valign="top"><label for="etSQL_insertBatchSize" id="etSQL_batchSizeLabel">{$this->L["insert_batch_size"]}</label></td>
 			<td>
-				<input type="text" name="etSQL_insertBatchSize" id="etSQL_insertBatchSize" value="25" size="3"
+				<input type="text" name="etSQL_insertBatchSize" id="etSQL_insertBatchSize" value="10" size="3"
 					title="{$this->L["batch_size_desc"]}"/>
 			</td>
 		</tr>
@@ -365,10 +364,10 @@ END;
 					}
 				}
 				$rowDataStr[] = implode(",", $displayVals);
-                                if (count($rowDataStr) == $this->insertBatchSize) {
-                                    $content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-                                    $rowDataStr = array();
-                                }
+				if (count($rowDataStr) == $this->insertBatchSize) {
+					$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+					$rowDataStr = array();
+				}
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
@@ -386,9 +385,9 @@ END;
 				$content .= "UPDATE \"{$this->tableName}\" SET $pairsStr WHERE id = $rowNum;$endLineChar";
 			}
 		}
-                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-                    $content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-                }
+		if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+			$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+		}
 
 		return $content;
 	}
