@@ -681,6 +681,7 @@ END;
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<style type="text/css">
 	body { margin: 10px; font-family: "lucida grande", arial; font-size: 9pt; }
 	</style>
