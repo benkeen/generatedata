@@ -11,21 +11,21 @@ body {
   border-top: 5px solid #4B5C66; }
 
 body, table, td, div, span, div, p {
-  font: 12px/1.35 "lucida grande", tahoma, verdana, arial, sans-serif;
+  font: 12px/1.35 'lucida grande', tahoma, verdana, arial, sans-serif;
   color: #4B5C66; }
 
 table, td, p, div, input, select, optgroup, noscript {
   line-height: 15px; }
 
 input, select, textarea, option {
-  font: 12px/1.35 "lucida grande", tahoma, verdana, arial, sans-serif;
+  font: 12px/1.35 'lucida grande', tahoma, verdana, arial, sans-serif;
   color: #222222; }
 
 h1 {
   color: #4B5C66;
   -webkit-font-smoothing: antialiased;
   text-shadow: 0 1px rgba(255, 255, 255, 0.5);
-  font: normal normal 20px/26px "lucida grande", tahoma, verdana, arial, sans-serif; }
+  font: normal normal 20px/26px  'lucida grande', tahoma, verdana, arial, sans-serif; }
 
 h2 {
   font-size: 0.81em;
@@ -610,25 +610,19 @@ body .ui-widget-shadow {
   border-radius: 3px; }
 
 /* overridden Chosen styles */
-.chzn-container-multi .chzn-choices .search-choice {
+body .chzn-container-multi .chzn-choices .search-choice {
   margin-left: 3px;
   padding: 0px 20px 2px 5px;
   margin-bottom: 1px; }
 
-.chzn-container-multi .chzn-choices .search-field .default {
+body .chzn-container-multi .chzn-choices .search-field .default {
   font: 11px Verdana, sans-serif; }
 
-.chzn-container-multi .chzn-choices {
+body .chzn-container-multi .chzn-choices {
   background-image: none;
   padding-bottom: 2px;
   border: 1px solid #E1E6E9;
   background-color: #F0F2F4; }
-
-#gdTableRows .chzn-container-multi .chzn-choices ul li {
-  padding: 0 20px 2px 5px; 
-  margin: 0 0 1px 3px;
-  float: none;
-  line-height: 13pt;}
 
 /* plugin installation */
 #gdPluginInstallationResults > div {

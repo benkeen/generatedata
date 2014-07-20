@@ -320,6 +320,14 @@ footer {
 #consoleEventsModuleList {
   width: 400px; }
 
+.gdLiCols {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px; }
+  .gdLiCols li {
+    display: inline-block;
+    margin-right: 10px; }
+
 /* contains styles for the generator table */
 hr.divider {
   color: #efefef;
@@ -476,13 +484,13 @@ li.gdColDelete {
 
 .gdSmallTabs {
   margin-bottom: 20px; }
-  .gdSmallTabs ul {
+  .gdSmallTabs > ul {
     list-style: none;
     margin: 0px;
     padding: 0px;
     height: 20px;
     border-bottom: 1px solid #e1e1e1; }
-    .gdSmallTabs ul li {
+    .gdSmallTabs > ul li {
       line-height: 20px;
       height: 20px;
       float: left;
@@ -500,7 +508,7 @@ li.gdColDelete {
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
       cursor: pointer;
       text-shadow: 1px 1px #f2f2f2; }
-      .gdSmallTabs ul li.gdSelected {
+      .gdSmallTabs > ul li.gdSelected {
         background: white;
         background-color: white;
         border: 1px solid #cccccc;
@@ -566,8 +574,7 @@ li.gdColDelete {
     -moz-transition: background-color .2s;
     transition: background-color .2s;
     border-radius: 3px;
-    cursor: pointer;
-    display: inline-block; }
+    cursor: pointer; }
     #gdActionIcons li:hover {
       background-color: #cccccc; }
     #gdActionIcons li.loading:hover {

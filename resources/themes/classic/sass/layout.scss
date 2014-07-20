@@ -230,3 +230,14 @@ footer {
 #consoleEventsModuleList {
 	width: 400px;
 }
+
+.gdLiCols {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+
+	li {
+		display: inline-block;
+		margin-right: 10px;
+	}
+}

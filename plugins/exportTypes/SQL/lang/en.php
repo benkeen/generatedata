@@ -16,4 +16,5 @@ $L["enclose_table_backquotes"] = "Enclose table and field names with backquotes"
 $L["statement_type"] = "Statement Type";
 $L["primary_key"] = "Primary Key";
 $L["add_default_auto_increment_col"] = "Add default auto-increment column";
-$L["batch_size"] = "Number of rows to insert per one query (1 - 300)";
+$L["insert_batch_size"] = "INSERT batch size";
+$L["batch_size_desc"] = "Number of rows to insert per query (1 - 300)";
