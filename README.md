@@ -57,6 +57,7 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 3.1.3 - July 20, 2014
 - Misc data generation efficiency improvements
 - Batch Size SQL export option added by [Anton Nizhegorodov](https://github.com/an1zhegorodov)
+- Poland Country plugin added
 - Bug fixes: https://github.com/benkeen/generatedata/issues?milestone=13&page=1&state=closed
 
 3.1.2 - July 12, 2014
