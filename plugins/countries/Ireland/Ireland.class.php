@@ -18,7 +18,7 @@ class Country_Ireland extends CountryPlugin {
 	protected $countryData = array(
 		array(
 			"regionName" => "Leinster",
-			"regionShort" => "",
+			"regionShort" => "L",
 			"regionSlug" => "leinster",
 			"weight" => 25,
 			"cities" => array(
@@ -27,7 +27,7 @@ class Country_Ireland extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Ulster",
-			"regionShort" => "",
+			"regionShort" => "U",
 			"regionSlug" => "ulster",
 			"weight" => 21,
 			"cities" => array(
@@ -36,7 +36,7 @@ class Country_Ireland extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Munster",
-			"regionShort" => "",
+			"regionShort" => "M",
 			"regionSlug" => "munster",
 			"weight" => 12,
 			"cities" => array(
@@ -45,7 +45,7 @@ class Country_Ireland extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Connacht",
-			"regionShort" => "",
+			"regionShort" => "C",
 			"regionSlug" => "connacht",
 			"weight" => 25,
 			"cities" => array(
