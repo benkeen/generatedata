@@ -30,7 +30,7 @@ class Country_Australia extends CountryPlugin {
 	protected $countryData = array(
 		array(
 			"regionName" => "Australian Capital Territories",
-			"regionShort" => "AC",
+			"regionShort" => "ACT",
 			"regionSlug" => "australian_capital_territories",
 			"weight" => 3,
 			"cities" => array(
@@ -39,7 +39,7 @@ class Country_Australia extends CountryPlugin {
 		),
 		array(
 			"regionName" => "New South Wales",
-			"regionShort" => "NS",
+			"regionShort" => "NSW",
 			"regionSlug" => "new_south_wales",
 			"weight" => 69,
 			"cities" => array(
@@ -60,7 +60,7 @@ class Country_Australia extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Queensland",
-			"regionShort" => "QL",
+			"regionShort" => "QLD",
 			"regionSlug" => "queensland",
 			"weight" => 42,
 			"cities" => array(
@@ -81,7 +81,7 @@ class Country_Australia extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Tasmania",
-			"regionShort" => "TA",
+			"regionShort" => "TAS",
 			"regionSlug" => "tasmania",
 			"weight" => 5,
 			"cities" => array(
@@ -90,7 +90,7 @@ class Country_Australia extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Victoria",
-			"regionShort" => "VI",
+			"regionShort" => "VIC",
 			"regionSlug" => "victoria",
 			"weight" => 52,
 			"cities" => array(
