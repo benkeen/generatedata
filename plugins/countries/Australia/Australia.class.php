@@ -20,7 +20,7 @@ class Country_Australia extends CountryPlugin {
 		),
  		"phoneFormat" => array(
 			"displayFormats" => array(
-				"xxxx-xxxx",
+				"Xxxx-xxxx",
 				"(0x) xxxx xxxx",
 				"04xx xxx xxx"
 			)
@@ -29,7 +29,7 @@ class Country_Australia extends CountryPlugin {
 
 	protected $countryData = array(
 		array(
-			"regionName" => "Australian Capital Territories",
+			"regionName" => "Australian Capital Territory",
 			"regionShort" => "ACT",
 			"regionSlug" => "australian_capital_territories",
 			"weight" => 3,
