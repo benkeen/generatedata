@@ -15,6 +15,7 @@
 
 require_once(__DIR__ . "/resources/classes/Account.class.php");
 require_once(__DIR__ . "/resources/classes/AjaxRequest.class.php");
+require_once(__DIR__ . "/resources/classes/Constants.class.php");
 require_once(__DIR__ . "/resources/classes/Core.class.php");
 require_once(__DIR__ . "/resources/classes/CountryPlugin.abstract.class.php");
 require_once(__DIR__ . "/resources/classes/CountryPluginHelper.class.php");

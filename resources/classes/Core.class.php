@@ -29,6 +29,7 @@ class Core {
 	private static $defaultTheme = "classic";
 	private static $enableSmartySecurity = true;
 	private static $useMinifiedResources = false;
+	private static $pluginSettings = array();
 	private static $timeout = 300; // 5 minutes
 
 	// non-overridable settings
@@ -108,7 +109,7 @@ class Core {
 		self::loadSettingsFile();
 		error_reporting(self::$errorReporting);
 
-		// ensure the timezone is set
+		// ensure the timezone is set. This is an arbitrary value (well, I live in Vancouver!) but it prevents warnings
 		if (ini_get("date.timezone") == "") {
 			ini_set("date.timezone", "Canada/Vancouver");
 		}
@@ -165,6 +166,7 @@ class Core {
 			self::$dbPassword = (isset($dbPassword)) ? $dbPassword : null;
 			self::$dbTablePrefix = (isset($dbTablePrefix)) ? $dbTablePrefix : null;
 			self::$encryptionSalt = (isset($encryptionSalt)) ? $encryptionSalt : null;
+			self::$pluginSettings = (isset($pluginSettings)) ? $pluginSettings : array();
 
 			if (isset($demoMode)) {
 				self::$demoMode = $demoMode;
@@ -189,6 +191,9 @@ class Core {
 			}
 			if (isset($useMinifiedResources)) {
 				self::$useMinifiedResources = $useMinifiedResources;
+			}
+			if (isset($pluginSettings)) {
+				self::$pluginSettings = $pluginSettings;
 			}
 
 			// TODO temporary, during alpha dev
@@ -387,6 +392,22 @@ class Core {
 		return self::$defaultTheme;
 	}
 
+	/**
+	 * Added in 3.1.4. This allows any plugins to have custom settings defined in $pluginSettings. This
+	 * function returns null if no settings exist for the plugin, or whatever settings have been provided.
+	 * @param $pluginType
+	 * @param $pluginFolder
+	 * @return mixed
+	 */
+	public static function getPluginSettings($pluginType, $pluginFolder) {
+		if (!array_key_exists($pluginType, self::$pluginSettings)) {
+			return null;
+		}
+		if (!array_key_exists($pluginFolder, self::$pluginSettings[$pluginType])) {
+			return null;
+		}
+		return self::$pluginSettings[$pluginType][$pluginFolder];
+	}
 
 	public static function isSmartySecurityEnabled() {
 		return self::$enableSmartySecurity;
