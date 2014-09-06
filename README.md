@@ -39,6 +39,7 @@ contributors agree that all code is released under this license.
 
 In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [Zhao Yang](https://github.com/jptiancai) - Chinese language file (3.1.4)
 - [Anton Nizhegorodov](https://github.com/an1zhegorodov) - Batch size SQL export option (3.1.3)
 - Zeeshan Shaikh - PAN, PIN, CVV, Track 1 and 2 Data Types (3.1.1)
 - [Ap.Mathu](https://github.com/apmuthu) - SQL Export Type updates (INSERT IGNORE)
@@ -53,6 +54,12 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.1.4 - Sept 6, 2014
+- Chinese language file added, thanks to [Zhao Yang](https://github.com/jptiancai)
+- PAN, Track 1 and Track 2 data type updates, courtesy of Zeeshan Shaikh
+- Turkey Country plugin added
+- Bug fixes: https://github.com/benkeen/generatedata/issues?q=milestone%3A3.1.4+is%3Aclosed
 
 3.1.3 - July 20, 2014
 - Misc data generation efficiency improvements
