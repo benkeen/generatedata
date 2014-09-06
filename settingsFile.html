@@ -225,7 +225,40 @@
                                 The default language file to use. Should be just "en" or "fr".
                             </td>
                         </tr>
-                    </tbody>
+						<tr>
+							<td>$pluginSettings</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>array</td>
+							<td>
+								<p>
+									Since the <code>settings.php</code> file is in the only place in your installation that
+									contains custom settings, plugins (Data Types and Export Types) that need to have custom
+									options need to store it there as well. Right now this $pluginSettings option is only needed
+									for the <code>Date</code> Data Type, to allow you to choose to generate "safe dates" (for
+									more info on that, see <a href="https://github.com/benkeen/generatedata/issues/246">this
+									github thread</a>).
+								</p>
+								<p>
+									The format of this setting is as follows. It's a bit verbose, but is fully extensible
+									down the road.
+								</p>
+
+<pre class="prettyprint linenums">
+$pluginSettings = array(
+  "dataType" => array(
+    "Date" => array(
+      "useSafeDates" => true
+    )
+  )
+);
+</pre>
+
+								<p>
+									The actual settings depend on the Data Type / Export Type.
+								</p>
+							</td>
+						</tr>
+					</tbody>
                 </table>
 			</section>
 
