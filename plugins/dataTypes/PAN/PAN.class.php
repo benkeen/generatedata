@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh
+ * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  * @package DataTypes
  */
 class DataType_PAN extends DataTypePlugin {
@@ -207,7 +207,7 @@ class DataType_PAN extends DataTypePlugin {
 		$ccLength    = self::getRandomPANLength($options["cc_length"]);
 		$ccFormat    = self::getRandomPANFormat($options["cc_format"], $options["cc_length"]);
 		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"], $options["cc_format"]);
-
+		
 		$ccData = self::getCreditCardData($options["cc_brand"]);
 		$card = self::generateCreditCardNumber($ccData["prefix"], $ccLength);
 		$cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
@@ -230,6 +230,8 @@ class DataType_PAN extends DataTypePlugin {
 		}
 
 		$cardData = self::getCreditCardData($selectedCard);
+		
+		$options["cc_brand"] = $selectedCard;
 		$options["cc_format"] = $cardData["formats"][array_rand($cardData["formats"])];
 		$options["cc_length"] = self::getRandomPANLength($cardData["length"]);
 
@@ -273,12 +275,12 @@ END;
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END
-<span id="dtOptionPAN_cardDigitSection_%ROW%">
+<span id="dtOptionPAN_cardDigitSection_%ROW%" style="display:inline;">
 	{$this->L["length"]}
 	<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style="width: 60px" readonly="readonly" />
 </span>
 
-<span id="dtOptionPAN_cardSeparator_%ROW%">
+<span id="dtOptionPAN_cardSeparator_%ROW%" style="display:inline;">
 	{$this->L["separators"]}
 	<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style="width: 78px" value=" " title="{$this->L["separator_help"]}" />
 </span>
@@ -288,7 +290,7 @@ END;
 	<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" title="{$this->L["format_title"]}" style="height: 100px; width: 260px"></textarea>
 </span>
 
-<span id="dtOptionPAN_randomCardFormatSection_%ROW%" style="display:none;">
+<div id="dtOptionPAN_randomCardFormatSection_%ROW%" style="display:none;">
 	{$this->L["ccrandom"]}
 	<select multiple="multiple" name="dtOptionPAN_randomCardFormat_%ROW%[]" id="dtOptionPAN_randomCardFormat_%ROW%" title="{$this->L["rand_brand_title"]}" style="height: 100px; width: 260px">
 		<option value="mastercard">{$this->L["mastercard"]}</option>
@@ -305,7 +307,7 @@ END;
 		<option value="switch">{$this->L["switch"]}</option>
 		<option value="laser">{$this->L["laser"]}</option>
 	</select>
-</span>
+</div>
 END;
 		return $html;
 	}

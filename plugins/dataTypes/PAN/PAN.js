@@ -74,7 +74,7 @@ define([
 		var rowID = msg.rowID;
 		var selectedCard = msg.value;
 
-		var $digitSection     = $("#dtOptionPAN_digitSection_" + rowID);
+		var $digitSection     = $("#dtOptionPAN_cardDigitSection_" + rowID);
 		var $digitLengthField = $("#dtOptionPAN_digit_" + rowID);
 		var $cardFormat       = $("#dtOptionPAN_cardFormat_" + rowID);
 		var $option           = $("#dtOption_" + rowID);
@@ -212,6 +212,8 @@ define([
 		var cardTypeProblemFields      = [];
 		var cardFormatProblemVisibleRows = [];
 		var cardFormatProblemFields      = [];
+		var randCardSelectProblemVisibleRows = [];
+		var randCardSelectProblemFields      = [];
 
 		for (var i=0; i<rows.length; i++) {
 
@@ -228,6 +230,15 @@ define([
 				cardFormatProblemVisibleRows.push(generator.getVisibleRowOrderByRowNum(rows[i]));
 				cardFormatProblemFields.push($("#dtOption_" + rows[i]));
 			}
+			
+			// check if random card is selected then at least one type should be selected
+			if ($exampleField.val() === "rand_card") {
+				var selected = $("#dtOptionPAN_randomCardFormat_" + rows[i]).val();
+				if (selected === null) {
+					randCardSelectProblemVisibleRows.push(generator.getVisibleRowOrderByRowNum(rows[i]));
+					randCardSelectProblemFields.push($("#dtOptionPAN_randomCardFormat_" + rows[i]));
+				}
+			}
 		}
 
 		var errors = [];
@@ -236,6 +247,9 @@ define([
 		}
 		if (cardFormatProblemVisibleRows.length) {
 			errors.push({ els: cardFormatProblemFields, error: LANG.format_incomplete_fields + " <b>" + cardFormatProblemVisibleRows.join(", ") + "</b>"});
+		}
+		if (randCardSelectProblemVisibleRows.length) {
+			errors.push({ els: randCardSelectProblemFields, error: LANG.pan_incomplete_fields + " <b>" + randCardSelectProblemVisibleRows.join(", ") + "</b>"});
 		}
 
 		return errors;

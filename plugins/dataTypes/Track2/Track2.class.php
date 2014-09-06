@@ -2,9 +2,9 @@
 
 
 /**
- * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh
+ * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  * @package DataTypes
- * @description this class has a hard dependency on the PAN class. That class contains a few public
+ * @description this class has a hard dependency on the PAN class NAMES class. That class contains a few public
  *              helper functions.
  */
 class DataType_Track2 extends DataTypePlugin {
@@ -13,9 +13,8 @@ class DataType_Track2 extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "credit_card_data";
 	protected $dataTypeFieldGroupOrder = 50;
-
-
 	private $cardData;
+
 
 	public function __construct($runtimeContext) {
 		for ($i=622126; $i<=622925; $i++){
@@ -38,9 +37,28 @@ class DataType_Track2 extends DataTypePlugin {
 
 		$calendar = date("ym", mt_rand());
 		$serviceCode = mt_rand(111, 999);
-		$num = Utils::generateRandomAlphanumericStr(str_repeat("x", 26));
+		$discretionaryData = array(rand(1, 9),rand(111, 999), rand(1111, 9999));
+		$discData = array_rand($discretionaryData);
+		$LRC_array = array(" ", rand(1, 9));
+		$LRC = array_rand($LRC_array);
 
-		$track2 = ";$generatedCardNumber=$calendar$serviceCode$num?";
+		/*
+			Source - http://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards
+			Start sentinel ó one character (generally ';')
+			Primary account number (PAN) ó up to 19 characters. Usually, but not always, matches the credit card
+				number printed on the front of the card.
+			Separator ó one char (generally '=')
+			Expiration date ó four characters in the form YYMM.
+			Service code ó three digits. The first digit specifies the interchange rules, the second specifies
+				authorisation processing and the third specifies the range of services
+			Discretionary data ó as in track one
+			End sentinel ó one character (generally '?')
+			Longitudinal redundancy check (LRC) ó it is one character and a validity character calculated from
+				other data on the track.
+			Most reader devices do not return this value when the card is swiped to the presentation layer, and
+				use it only to verify the input internally to the reader.
+		*/
+		$track2 = ";$generatedCardNumber={$calendar}{$serviceCode}$discretionaryData[$discData]?$LRC_array[$LRC]";
 
 		return array(
 			"display" => $track2
