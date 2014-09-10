@@ -5,7 +5,6 @@ require([
 	"utils",
 	"pageInit"
 ], function(manager, pluginManager, utils) {
-
 	"use strict";
 
 	// everything in this module is private, but we use the _ notation here just to signify scope
@@ -118,7 +117,6 @@ require([
 		return false;
 	}
 
-
 	function _checkDatabaseInfo() {
 		var errors = [];
 		var validChars = /[^a-zA-Z0-9_]/;
@@ -171,7 +169,7 @@ require([
 		_defaultLanguage = $("#gdDefaultLanguage").val();
 
 		utils.startProcessing();
-		$.ajax({
+		var testDbSettingsRequest = $.ajax({
 			url: "ajax.php",
 			type: "POST",
 			dataType: "json",
@@ -181,22 +179,29 @@ require([
 				dbName: dbName,
 				dbUsername: dbUsername,
 				dbPassword: dbPassword
-			},
-			success: function(json) {
-				utils.stopProcessing();
-				if (!json.success) {
-					_displayError(json.content);
-				} else {
-					gotoNextStep();
-				}
-			},
-			error: installError
+			}
 		});
+		testDbSettingsRequest.done(function(json) {
+			utils.stopProcessing();
+			if (!json.success) {
+				_displayError(json.content);
+			} else {
+				gotoNextStep();
+			}
+		});
+		testDbSettingsRequest.done(installError);
 	}
 
+	/**
+	 * Sorry for the inconsistent Ajax usage in this file. Just experimenting with the different ways to do an
+	 * Ajax request with done(), fail(), Deferred, Promises and the like.
+	 * @private
+	 */
 	function _createSettingsFile() {
 		utils.startProcessing();
-		$.ajax({
+
+		// let's use a jQuery promise for a change. I like the lack of nesting.
+		var createSettingsFileRequest = $.ajax({
 			url: "ajax.php",
 			type: "POST",
 			dataType: "json",
@@ -207,43 +212,65 @@ require([
 				dbUsername: _dbSettings.dbUsername,
 				dbPassword: _dbSettings.dbPassword,
 				dbTablePrefix: _dbSettings.dbTablePrefix
-			},
-			success: function(json) {
-				utils.stopProcessing();
-				if (json.success === 0) {
-					$("#gdInstallCreateSettingsFile").addClass("hidden");
-					$("#gdInstallCreateSettingsFileErrorScenario").removeClass("hidden");
-					_displayError(_L.installation_failed_create_settings_file);
-					$("#gdSettingsFileContents").html(json.content);
-					_settingsFileCreationFailed = true;
-				} else {
-					gotoNextStep();
-				}
-			},
-			error: installError
+			}
 		});
+
+		// yay, success!
+		createSettingsFileRequest.done(function(json) {
+			utils.stopProcessing();
+			if (json.success === 0) {
+				$("#gdInstallCreateSettingsFile").addClass("hidden");
+				$("#gdInstallCreateSettingsFileErrorScenario").removeClass("hidden");
+				_displayError(_L.installation_failed_create_settings_file);
+				$("#gdSettingsFileContents").html(json.content);
+				_settingsFileCreationFailed = true;
+			} else {
+				gotoNextStep();
+			}
+		});
+
+		// boo, failure!
+		createSettingsFileRequest.fail(installError);
 	}
 
+
+	/**
+	 * Now let's try the Deferred pattern.
+	 * @private
+	 */
 	function _testSettingsFileExists() {
 		utils.startProcessing();
-		$.ajax({
-			url: "ajax.php",
-			type: "POST",
-			dataType: "json",
-			data: {
-				action: "confirmSettingsFileExists"
-			},
-			success: function(json) {
+
+		// verbose name, but hey it's clear.
+		function getSettingsFileExistenceConfirmation() {
+			var d = $.Deferred();
+
+			$.ajax({
+				url: "ajax.php",
+				type: "POST",
+				dataType: "json",
+				data: {
+					action: "confirmSettingsFileExists"
+				}
+			}).done(function(response) {
+				d.resolve(response)
+			}).fail(function(response) {
+				d.reject(response);
+			});
+
+			return d.promise();
+		}
+
+		$.when(getSettingsFileExistenceConfirmation())
+			.done(function(json) {
 				utils.stopProcessing();
 				if (json.success === 0) {
 					_displayError("Sorry, the <b>settings.php</b> file still doesn't exist in the Data Generator root folder.");
 				} else {
 					gotoNextStep();
 				}
-			},
-			error: installError
-		});
-
+			})
+			.fail(installError);
 	}
 
 	function _setupUserAccounts() {
