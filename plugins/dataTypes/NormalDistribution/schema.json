@@ -1,0 +1,16 @@
+{
+	"title": "NormalDistribution",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+
+		// TODO need range validation on these... but what ARE the ranges???
+		"mean": {
+			"type": "number"
+		},
+		"sigma": {
+			"type": "number"
+		}
+	},
+	"required": ["mean", "sigma"]
+}
