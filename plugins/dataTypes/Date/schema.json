@@ -1,0 +1,20 @@
+{
+	"title": "Date",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"example": {
+			"type": "string"
+		},
+		"fromDate": {
+			"type": "string"
+		},
+		"toDate": {
+			"type": "string"
+		},
+		"option": {
+			"type": "string"
+		}
+	},
+	"required": ["fromDate", "toDate", "option"]
+}

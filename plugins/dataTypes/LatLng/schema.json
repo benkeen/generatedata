@@ -1,0 +1,14 @@
+{
+	"title": "LatLng",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"lat": {
+			"type": "string"
+		},
+		"lng": {
+			"type": "string"
+		}
+	},
+	"required": ["lat", "lng"]
+}
