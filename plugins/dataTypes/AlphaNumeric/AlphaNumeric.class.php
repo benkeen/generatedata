@@ -108,13 +108,4 @@ EOF;
 
 		return $content;
 	}
-
-
-	public function getRestOptionsFormat() {
-		return array(
-			"key" => "options",
-			"required" => true,
-			"type" => "mixed"
-		);
-	}
 }

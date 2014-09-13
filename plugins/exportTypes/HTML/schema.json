@@ -1,0 +1,14 @@
+{
+	"title": "HTML",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"delimiter": {
+			"type": "string"
+		},
+		"eol": { // TODO default?
+			"enum": ["Windows", "Unix", "Mac"]
+		}
+	},
+	"required": ["delimiter", "eol"]
+}

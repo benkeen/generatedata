@@ -260,12 +260,4 @@ EOF;
 
 		return $content;
 	}
-
-	public function getRestOptionsFormat() {
-		return array(
-			"required" => true,
-			"type" => "string"
-		);
-	}
-
 }
