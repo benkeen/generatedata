@@ -189,7 +189,7 @@ require([
 				gotoNextStep();
 			}
 		});
-		testDbSettingsRequest.done(installError);
+		testDbSettingsRequest.fail(installError);
 	}
 
 	/**

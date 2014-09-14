@@ -8,7 +8,6 @@ class LDIF extends ExportTypePlugin {
 
     protected $isEnabled = true;
     protected $exportTypeName = "LDIF";
-    protected $jsModules = array("LDIF.js");
 
     public function generate($generator) {
         $postData = $generator->getPostData();

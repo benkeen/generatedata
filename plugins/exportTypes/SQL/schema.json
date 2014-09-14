@@ -1,0 +1,34 @@
+{
+	"title": "SQL",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"tableName": {
+			"type": "string"
+		},
+        "databaseType": {
+            "enum": []
+        },
+        "createTable": {
+            "type": "boolean"
+        },
+        "dropTable": {
+            "type": "boolean"
+        },
+        "encloseWithBackquotes": {
+            "type": "boolean"
+        },
+        "statementType": {
+            "enum": ["insert", "insertignore", "update"]
+        },
+        "insertBatchSize": {
+            "type": "integer"
+        },
+
+        // the row number of an auto-incremenet field [TODO rename]
+        "primaryKey": {
+            "type": "integer"
+        }
+	},
+	"required": ["tableName", "databaseType"]
+}
