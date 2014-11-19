@@ -2,11 +2,13 @@
 
 $L = array();
 $L["DATA_TYPE_NAME"] = "SIRET";
-$L["help"] = <<<EOT
-	SIRET Genereren (Systeem voor de identificatie van de directory van de inrichtingen).<br>
-	Deze digitale identificatie van 14 cijfers is verwoord in twee delen(partijen):<br>
-		De eerste(nacht) is het nummer "SIRENE" (Systeem voor de identificatie van de directory van bedrijven) van de onderneming (ofwel juridische eenheid (eenheid) of rechtspersoon) die behoort de eenheid (eenheid) SIRET;<br>
-		de tweede, met de naam NIC (Aantal werkstudenten van indeling (classificatie)), bestaat uit een vier-cijferige sequentieel nummer toegeschreven(geplaatst) aan de vestiging en een afbeelding van de controle (sleutel van control), die het mogelijk maakt om te controleren of de geldigheid van het hele nummer SIRET.
-EOT;
-//meh. the page crashes on newlines in my help? odd.
-$L["help"]  = str_replace(array("\r","\n","\t"), " ", $L["help"]);
+
+// Category: Lang Strings
+$L["help_intro"] = "Dit datatype genereert willekeurig SIRET volgens het formaat dat u opgeeft.";
+$L["incomplete_fields"] = "De SIRET gegevenstype moet hebben het formaat in de Opties tekst veld. Verbeter de volgende rijen:";
+$L["example_SIRET"] = "50810281100009 (SIRET)";
+$L["example_SIREN"] = "508102811 (SIREN)";
+$L["example_NIC"] = "00009 (NIC)";
+$L["type_SIRET"] = " EEN willekeurige SIREN en NIC (50810281100009).";
+$L["type_SIREN"] = " EEN willekeurige SIREN (508102811).";
+$L["type_NIC"] = " EEN willekeurige NIC (00009).";

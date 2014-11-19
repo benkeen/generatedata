@@ -2,11 +2,12 @@
 
 $L = array();
 $L["DATA_TYPE_NAME"] = "SIRET";
-$L["help"] = <<<EOT
-	Generate SIRET (System of Identification of the Directory of Establishments).<br>
-	This digital identifier of 14 figures is articulated in two parts(parties):<br>
-		The first one(night) is the number SIREN (System of Identification of the Directory of COMPANIES) of the company (either legal unity(unit) or legal person) to which belongs the unity(unit) SIRET;<br>
-		The second, called NIC (Number Interns of Classification(Ranking)), consists of a four-digit sequential order number attributed(awarded) to the establishment and of a figure of control (key of control), which allows to verify the validity of the whole number SIRET.
-EOT;
-//meh. the page crashes on newlines in my help? odd.
-$L["help"]  = str_replace(array("\r","\n","\t"), " ", $L["help"]);
+
+$L["help_intro"] = "This data type randomly generates SIRET according to the format you specify.";
+$L["incomplete_fields"] = "The SIRET data type needs to have the format entered in the Options text field. Please fix the following rows:";
+$L["example_SIRET"] = "50810281100009 (SIRET)";
+$L["example_SIREN"] = "508102811 (SIREN)";
+$L["example_NIC"] = "00009 (NIC)";
+$L["type_SIRET"] = " A random SIREN and NIC (50810281100009).";
+$L["type_SIREN"] = " A random SIREN (508102811).";
+$L["type_NIC"]   = " A random NIC (00009).";

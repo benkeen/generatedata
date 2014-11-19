@@ -3,6 +3,7 @@
 /**
  * @package DataTypes
  * @author Fabrice Marquès <fabrice.marques@gmail.com>
+ * @version v0.0.2 - Split format of SIRET (SIRET / SIREN / NIC)
  */
 
 class DataType_SIRET extends DataTypePlugin {
@@ -12,8 +13,34 @@ class DataType_SIRET extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 100;
+	protected $jsModules = array("SIRET.js");
 
-	public static function generateSiret() {	    	 	
+	// custom member vars for this Data Type
+	private $rSIRET = '';
+	private $rSIREN = '';
+	private $rNIC = '';
+
+	public function generate($generator, $generationContextData) {
+		$myOption = $generationContextData["generationOptions"];		
+		self::generateSiret();
+		switch ($myOption) {
+		    case "SIRET":
+		        $myResult = self::getSIRET();
+		        break;
+		    case "SIREN":
+		        $myResult = self::getSIREN();
+		        break;
+		    case "NIC":
+		        $myResult = self::getNIC();
+		        break;
+		}
+
+		return array(
+			"display" => $myResult
+		);
+	}
+
+	private function generateSiret() {	    	 	
 		$sumSiren = 0;
 		$sumSiret = 0;
 		$cleSiren= 1;
@@ -99,14 +126,18 @@ class DataType_SIRET extends DataTypePlugin {
 
 		$siret .= $diffSiret;
 		
-		return $siret;
+		$this->rSIRET = $siret;
+		$this->rSIREN = substr($siret,0,9);
+		$this->rNIC = substr($siret,9,14);
+		
+		//return $siret;
 	}
 
-	public function generate($generator, $generationContextData) {
-		$SIRET = self::generateSiret();
-		return array(
-			"display" => $SIRET
-		);
+	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {
+		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
+			return false;
+		}
+		return $post["dtOption_$colNum"];
 	}
 
 	public function getDataTypeMetadata() {
@@ -117,9 +148,59 @@ class DataType_SIRET extends DataTypePlugin {
 		);
 	}
 
+	public function getSIRET() {
+		return $this->rSIRET;
+	}
+
+	public function getSIREN() {
+		return $this->rSIREN;
+	}
+
+	public function getNIC() {
+		return $this->rNIC;
+	}
+
 	public function getHelpHTML() {
-		return "<p>{$this->L["help"]}</p>";
+		$content =<<<EOF
+	<p>
+		{$this->L["help_intro"]}
+	</p>
+
+	<table cellpadding="0" cellspacing="1">
+	<tr>
+		<td><h4>SIRET &nbsp; : &nbsp;</h4></td>
+		<td>{$this->L["type_SIRET"]}</td>
+	</tr>
+	<tr>
+		<td><h4>SIREN &nbsp; : &nbsp;</h4></td>
+		<td>{$this->L["type_SIREN"]}</td>
+	</tr>
+	<tr>
+		<td><h4>NIC &nbsp; &nbsp; &nbsp; : &nbsp;</h4></td>
+		<td>{$this->L["type_NIC"]}</td>
+	</tr>
+	</table>
+EOF;
+
+		return $content;
 	}
 	
+	public function getExampleColumnHTML() {
+		$L = Core::$language->getCurrentLanguageStrings();
+
+		$html =<<< END
+	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
+		<option value="">{$L["please_select"]}</option>
+		<option value="SIRET">{$this->L["example_SIRET"]}</option>
+		<option value="SIREN">{$this->L["example_SIREN"]}</option>
+		<option value="NIC">{$this->L["example_NIC"]}</option>
+	</select>
+END;
+		return $html;
+	}
+
+	public function getOptionsColumnHTML() {
+		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
+	}
 	
 }

@@ -2,11 +2,13 @@
 
 $L = array();
 $L["DATA_TYPE_NAME"] = "SIRET";
-$L["help"] = <<<EOT
-	Genera a SIRET (Sistema de Identificación del Repertorio de los Establecimientos).<br>
-	Este identificador numérico de 14 cifras es articulado en dos partes(partidas):<br>
-		La primera es el número SIREN (Sistema de Identificación del Repertorio de las EMPRESAS) de la empresa (o unidad legal o persona jurídica) a la cual pertenece la unidad SIRET;<br>
-		El segundo, llamado NIC (Número Interna de Clasificación), consta de un número de orden secuencial a cuatro cifras atribuido(otorgado) al establecimiento y de una cifra de control (llave de control), que permite verificar la validez del conjunto del número SIRET.
-EOT;
-//meh. the page crashes on newlines in my help? odd.
-$L["help"]  = str_replace(array("\r","\n","\t"), " ", $L["help"]);
+
+// Category: Lang Strings
+$L["help_intro"] = "Este tipo de datos al azar genera SIRET según el formato que usted especifica.";
+$L["incomplete_fields"] = "El tipo de datos SIRET tiene que tener el formato entrado en el campo de texto de Opciones. Por favor fije las filas siguientes:";
+$L["example_SIRET"] = "50810281100009 (SIRET)";
+$L["example_SIREN"] = "508102811 (SIREN)";
+$L["example_NIC"] = "00009 (NIC)";
+$L["type_SIRET"] = " SIREN y NIC arbitrario (50810281100009).";
+$L["type_SIREN"] = " SIREN arbitrario (508102811).";
+$L["type_NIC"] = " NIC arbitrario (00009).";

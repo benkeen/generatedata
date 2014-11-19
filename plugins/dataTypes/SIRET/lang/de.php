@@ -2,11 +2,13 @@
 
 $L = array();
 $L["DATA_TYPE_NAME"] = "SIRET";
-$L["help"] = <<<EOT
-	Erzeuge SIRET (Identifizierungssystem des Registers(Repertoires) der Ausstellungen(Einrichtungen)).<br>
-		Dieser, Digitaltechnik von 14 Zahlen identifizierend, ist in den zwei Teilen(Seiten) ausgesprochen:<br>
-			Die Premiere ist die Nummer SIREN (Identifizierungssystem des Registers(Repertoires) der UNTERNEHMEN) des Unternehmens (entweder gesetzliche Einheit oder Rechtsperson) zu dem die Einheit SIRET gehört;<br>
-			Die Sekunde, die NIC genannt ist (Nummer Interniert Einordnens), stellt sich aus einer vierstelligen sequentiellen in der Ausstellung(Einrichtung) gewährten laufenden Nummer und aus einer Kontrollanzahl (ein Kontrollschlüssel) zusammen, der erlaubt, die Gültigkeit der Gesamtheit der Nummer SIRET zu überprüfen.
-EOT;
-//meh. the page crashes on newlines in my help? odd.
-$L["help"]  = str_replace(array("\r","\n","\t"), " ", $L["help"]);
+
+// Category: Lang Strings
+$L["help_intro"] = "Dieser Datentyp erzeugt zufällig SIRET nach dem Format, das Sie angeben.";
+$L["incomplete_fields"] = "Der SIRET Datentyp muß das im Optionstext-Feld eingegangene Format lassen. Befestigen Sie bitte die folgenden Reihen(Rudern):";
+$L["example_SIRET"] = "50810281100009 (SIRET)";
+$L["example_SIREN"] = "508102811 (SIREN)";
+$L["example_NIC"] = "00009 (NIC)";
+$L["type_SIRET"] = " Ein zufälliger SIREN und NIC (50810281100009).";
+$L["type_SIREN"] = " Ein zufälliger SIREN (508102811).";
+$L["type_NIC"] = " Ein zufälliger NIC (00009).";
