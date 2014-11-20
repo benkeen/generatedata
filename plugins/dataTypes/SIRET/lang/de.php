@@ -5,10 +5,9 @@ $L["DATA_TYPE_NAME"] = "SIRET";
 
 // Category: Lang Strings
 $L["help_intro"] = "Dieser Datentyp erzeugt zufällig SIRET nach dem Format, das Sie angeben.";
+$L["help_link"] = "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements";
 $L["incomplete_fields"] = "Der SIRET Datentyp muß das im Optionstext-Feld eingegangene Format lassen. Befestigen Sie bitte die folgenden Reihen(Rudern):";
-$L["example_SIRET"] = "50810281100009 (SIRET)";
+$L["example_SIRET"] = "508102811-00009 (SIRET : SIREN-NIC)";
 $L["example_SIREN"] = "508102811 (SIREN)";
-$L["example_NIC"] = "00009 (NIC)";
-$L["type_SIRET"] = " Ein zufälliger SIREN und NIC (50810281100009).";
-$L["type_SIREN"] = " Ein zufälliger SIREN (508102811).";
-$L["type_NIC"] = " Ein zufälliger NIC (00009).";
+$L["type_SIRET"] = " Ein zusammengesetzter unsicherer SIRET eines SIREN und NIC ( 508102811-00009).";
+$L["type_SIREN"] = " Ein SIREN unsicher (508102811).";

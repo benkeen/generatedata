@@ -3,7 +3,9 @@
 /**
  * @package DataTypes
  * @author Fabrice Marquès <fabrice.marques@gmail.com>
- * @version v0.0.2 - Split format of SIRET (SIRET / SIREN / NIC)
+ * @version v0.0.3 - add descript in help
+ *				   - del extract NIC
+ *				   - add split in SIRET
  */
 
 class DataType_SIRET extends DataTypePlugin {
@@ -16,7 +18,6 @@ class DataType_SIRET extends DataTypePlugin {
 	protected $jsModules = array("SIRET.js");
 
 	// custom member vars for this Data Type
-	private $rSIRET = '';
 	private $rSIREN = '';
 	private $rNIC = '';
 
@@ -25,13 +26,10 @@ class DataType_SIRET extends DataTypePlugin {
 		self::generateSiret();
 		switch ($myOption) {
 		    case "SIRET":
-		        $myResult = self::getSIRET();
+		        $myResult = self::getSIREN().'-'.self::getNIC();
 		        break;
 		    case "SIREN":
 		        $myResult = self::getSIREN();
-		        break;
-		    case "NIC":
-		        $myResult = self::getNIC();
 		        break;
 		}
 
@@ -126,11 +124,8 @@ class DataType_SIRET extends DataTypePlugin {
 
 		$siret .= $diffSiret;
 		
-		$this->rSIRET = $siret;
 		$this->rSIREN = substr($siret,0,9);
-		$this->rNIC = substr($siret,9,14);
-		
-		//return $siret;
+		$this->rNIC = substr($siret,9,14);	
 	}
 
 	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {
@@ -148,10 +143,6 @@ class DataType_SIRET extends DataTypePlugin {
 		);
 	}
 
-	public function getSIRET() {
-		return $this->rSIRET;
-	}
-
 	public function getSIREN() {
 		return $this->rSIREN;
 	}
@@ -165,7 +156,6 @@ class DataType_SIRET extends DataTypePlugin {
 	<p>
 		{$this->L["help_intro"]}
 	</p>
-
 	<table cellpadding="0" cellspacing="1">
 	<tr>
 		<td><h4>SIRET &nbsp; : &nbsp;</h4></td>
@@ -176,8 +166,11 @@ class DataType_SIRET extends DataTypePlugin {
 		<td>{$this->L["type_SIREN"]}</td>
 	</tr>
 	<tr>
-		<td><h4>NIC &nbsp; &nbsp; &nbsp; : &nbsp;</h4></td>
-		<td>{$this->L["type_NIC"]}</td>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><h4>Lien Wiki :  &nbsp;</h4></td>
+		<td><a href="{$this->L["help_link"]}" target="_blank">WIKI SIRET</a></td>
 	</tr>
 	</table>
 EOF;
@@ -193,7 +186,6 @@ EOF;
 		<option value="">{$L["please_select"]}</option>
 		<option value="SIRET">{$this->L["example_SIRET"]}</option>
 		<option value="SIREN">{$this->L["example_SIREN"]}</option>
-		<option value="NIC">{$this->L["example_NIC"]}</option>
 	</select>
 END;
 		return $html;
