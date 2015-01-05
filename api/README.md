@@ -1,8 +1,8 @@
-### generatedata REST API
+# generatedata REST API
 
 The purpose of the API is to allow you to programmatically generate data sets, rather than you to create them
-manually via the user interface. This would mean a big leap forward in letting you use the Data Generator in your
-automatic build tools. Useful for some. :)
+manually via the user interface. This would let you use the Data Generator in your automatic build tools. Useful
+for some. :)
 
 Right now it's a work in progress, but here's what I have planned.
 
@@ -48,6 +48,7 @@ to the Data Type / Export Type.
 Because all the components (Core, Data Types & Export Types) are all schema'd out, any API call that passes invalid
 or incomplete JSON will be easy to identify. I think I'll be able to provide some pretty decent error handling and
 error feedback here.
+
 
 ### Why not keep it RESTful and use GET?
 

@@ -2,11 +2,12 @@
 
 class MyAPI extends API
 {
-    protected $User;
+//    protected $User;
 
     public function __construct($request, $origin) {
-        parent::__construct($request);
 
+//        parent::__construct($request);
+/*
         // Abstracted out for example
         $APIKey = new Models\APIKey();
         $User = new Models\User();
@@ -22,13 +23,16 @@ class MyAPI extends API
         }
 
         $this->User = $User;
+*/
     }
 
     protected function example() {
-        if ($this->method == 'GET') {
-            return "Your name is " . $this->User->name;
-        } else {
-            return "Only accepts GET requests";
-        }
+		echo "in example.";
+
+//        if ($this->method == 'GET') {
+//            return "Your name is " . $this->User->name;
+//        } else {
+//            return "Only accepts GET requests";
+//        }
     }
 }

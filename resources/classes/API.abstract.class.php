@@ -66,7 +66,7 @@ abstract class API
             }
         }
 
-        switch($this->method) {
+        switch ($this->method) {
             case 'DELETE':
             case 'POST':
                 $this->request = $this->_cleanInputs($_POST);
