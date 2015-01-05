@@ -20,7 +20,13 @@ Installation is really, really simple. I deliberately wrote the script to be as 
 additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See the documentation
 for more info.
 
-## Test Coverage
+## Installation via Vagrant
+
+There's a prepackaged installation available via vagrant [found here](https://github.com/benkeen/generatedata-vagrant),
+courtesy of Daragh Courtney. If you're not familiar with Vagrant, basically it's a package that includes not just the
+generatedata script, but the entire development environment along with it: PHP, MySQL and Apache. Super handy.
+
+# Test Coverage
 
 Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's
 going to be a little hairy for a while just yet.
