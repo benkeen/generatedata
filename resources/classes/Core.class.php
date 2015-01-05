@@ -31,6 +31,7 @@ class Core {
 	private static $useMinifiedResources = false;
 	private static $pluginSettings = array();
 	private static $timeout = 300; // 5 minutes
+	private static $apiEnabled = false;
 
 	// non-overridable settings
 	private static $version = "3.1.4";
@@ -194,6 +195,9 @@ class Core {
 			}
 			if (isset($pluginSettings)) {
 				self::$pluginSettings = $pluginSettings;
+			}
+			if (isset($apiEnabled)) {
+				self::$apiEnabled = $apiEnabled;
 			}
 
 			// TODO temporary, during alpha dev
@@ -390,6 +394,14 @@ class Core {
 	 */
 	public static function getDefaultTheme() {
 		return self::$defaultTheme;
+	}
+
+	/**
+	 * Determines whether the REST API functionality is available or not.
+	 * @return bool
+	 */
+	public static function isApiEnabled() {
+		return self::$apiEnabled;
 	}
 
 	/**

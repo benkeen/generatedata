@@ -1,0 +1,19 @@
+{
+  "numRows": 100,
+  "countries": [],
+  "rows": [
+    {
+      "type": "Names",
+      "settings": {
+        "placeholder": "Name Initial. Surname"
+      }
+    }
+  ],
+  "export": {
+    "type": "JSON",
+    "settings": {
+      "stripWhitespace": false,
+      "dataStructureFormat": "simple"
+    }
+  }
+}

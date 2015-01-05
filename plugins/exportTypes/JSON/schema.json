@@ -3,7 +3,7 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {
-		"stripWhitespace": { // TODO 1/0
+		"stripWhitespace": {
 			"type": "boolean"
 		},
 		"dataStructureFormat": {
