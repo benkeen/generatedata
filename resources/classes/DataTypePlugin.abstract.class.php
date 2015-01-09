@@ -253,6 +253,24 @@ abstract class DataTypePlugin {
 	}
 
 	/**
+	 * The Data Type schema file defines the structure of the settings for this plugin to allow API requests
+	 * to query it and retrieve data.
+	 */
+	public final function getSchema() {
+		$currClass = new ReflectionClass(get_class($this));
+		$currClassFolder = dirname($currClass->getFileName());
+		$schemaFile = $currClassFolder . "/schema.json";
+
+		if (!file_exists($schemaFile)) {
+			return false;
+		}
+
+		// json_decode doesn't seem to throw an exception if the JSON's invalid. Awesome.
+		$json = json_decode(file_get_contents($schemaFile, true));
+		return $json;
+	}
+
+	/**
 	 * Returns the isEnabled flag for this class.
 	 * @return boolean
 	 */

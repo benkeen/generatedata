@@ -48,7 +48,7 @@ class DataTypePluginHelper {
 	}
 
 	/**
-	 * A second helper function to convert the data types that are grouepd in Core::$dataTypePlugins
+	 * A second helper function to convert the data types that are grouped in Core::$dataTypePlugins
 	 * into a hash of [Data Type Folder] => object
 	 * @param array $groupedDataTypes
 	 * @return array
@@ -96,8 +96,9 @@ class DataTypePluginHelper {
 
 	/**
 	 * Used in the main page to generate the Data Type CSS includes.
-	 * @param array the data types
+	 * @param array data types
 	 * @param array
+	 * @return string
 	 */
 	public static function getDataTypeCSSIncludes($dataTypes) {
 		$files = array();
@@ -178,6 +179,12 @@ class DataTypePluginHelper {
 		return $sortedDataTypes;
 	}
 
+	public static function getSchemaFiles($dataTypes) {
+		foreach ($dataTypes as $dataType) {
+			$json = $dataType->getSchema();
+		}
+	}
+
 
 	/**
 	 * Instantiates and returns a Data Type object.
@@ -191,7 +198,6 @@ class DataTypePluginHelper {
 	 * @return object
 	 */
 	private function instantiateDataType($runtimeContext, $baseFolder, $dataTypeFolderName) {
-
 		$dataTypeClassFileName = "{$dataTypeFolderName}.class.php";
 		if (!is_file("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName")) {
 			return false;
