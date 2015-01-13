@@ -77,11 +77,21 @@ class GenerateDataAPI extends API
         }
     }
 
+    /**
+     * Alrighty, now we get fancy! This examines the contents of the `rows` property, which is an array of data type
+     * rows. Each Data Type has its own settings schema which we need to validate against.
+     * @param $json
+     */
     private function validateDataTypeSettings($json) {
-
+        $rows = $json->rows;
     }
 
+    /**
+     * Examines the contents of the `export` property, which is an array of data type rows. Each Data Type has its own
+     * settings schema which we need to validate against.
+     * @param $json
+     */
     private function validateExportTypeSettings($json) {
-        
+        $export = $json->export;
     }
 }

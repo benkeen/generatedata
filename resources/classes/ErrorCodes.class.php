@@ -14,6 +14,9 @@ class ErrorCodes {
 	const INVALID_REQUEST        = 5;
 	const ACCOUNT_ALREADY_EXISTS = 6;
 
+	// settings for the API. These are used in the generated error responses when a user POSTs invalid JSON / JSON
+	// content to the API - hence the human-readable values.
 	const API_INVALID_JSON         = "API_INVALID_JSON";
 	const API_INVALID_JSON_CONTENT = "API_INVALID_JSON_CONTENT";
+	const API_UNKNOWN_DATA_TYPE    = "API_UNKNOWN_DATA_TYPE";
 }
