@@ -70,6 +70,9 @@ abstract class API
             case 'DELETE':
             case 'POST':
                 $this->request = $this->_cleanInputs($_POST);
+
+                // when we post raw JSON content, $_POST is empty. We need to access the information this way
+                $this->rawRequest = file_get_contents("php://input");
                 break;
             case 'GET':
                 $this->request = $this->_cleanInputs($_GET);
@@ -88,16 +91,16 @@ abstract class API
         if ((int)method_exists($this, $this->endpoint) > 0) {
             return $this->_response($this->{$this->endpoint}($this->args));
         }
-        return $this->_response("No Endpoint: $this->endpoint", 404);
+        return $this->_response("Sorry, that endpoint wasn't found.", 404);
     }
 
     private function _response($data, $status = 200) {
         header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
-        return json_encode($data);
+        return $data;
     }
 
     private function _cleanInputs($data) {
-        $clean_input = Array();
+        $clean_input = array();
         if (is_array($data)) {
             foreach ($data as $k => $v) {
                 $clean_input[$k] = $this->_cleanInputs($v);

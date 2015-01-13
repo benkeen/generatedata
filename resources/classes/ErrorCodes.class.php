@@ -13,4 +13,7 @@ class ErrorCodes {
 	const INVALID_PARAMS         = 4;
 	const INVALID_REQUEST        = 5;
 	const ACCOUNT_ALREADY_EXISTS = 6;
+
+	const API_INVALID_JSON         = "API_INVALID_JSON";
+	const API_INVALID_JSON_CONTENT = "API_INVALID_JSON_CONTENT";
 }
