@@ -58,6 +58,8 @@ if (Core::checkIsLoggedIn()) {
 	$pageParams["accountType"] = "";
 }
 
-//DataTypePluginHelper::getSchemaFiles($dataTypes);
+//$dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
+//$schemaFiles = DataTypePluginHelper::getSchemaFiles($dataTypes);
+//print_r($schemaFiles);
 
 Templates::displayPage("resources/templates/index.tpl", $pageParams);

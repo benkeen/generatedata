@@ -39,7 +39,8 @@ require_once(__DIR__ . "/resources/classes/Templates.class.php");
 require_once(__DIR__ . "/resources/classes/Translations.class.php");
 require_once(__DIR__ . "/resources/classes/Utils.class.php");
 
-// Smarty - use SecureSmarty!
+// External libs
+require_once(__DIR__ . "/resources/libs/json_validator/Validator.php");
 require_once(__DIR__ . "/resources/libs/smarty/Smarty.class.php");
 require_once(__DIR__ . "/resources/classes/SecureSmarty.class.php");
 

@@ -48,7 +48,22 @@ class DataTypePluginHelper {
 	}
 
 	/**
-	 * A second helper function to convert the data types that are grouped in Core::$dataTypePlugins
+	 * Helper function to return a list of Data Type folders.
+	 * @param array $groupedDataTypes
+	 * @return array
+	 */
+	public static function getDataTypeFolders($groupedDataTypes) {
+		$folders = array();
+		while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
+			foreach ($dataTypes as $dataType) {
+				$folders[] = $dataType->folder;
+			}
+		}
+		return $folders;
+	}
+
+	/**
+	 * Helper function to convert the data types that are grouped in Core::$dataTypePlugins
 	 * into a hash of [Data Type Folder] => object
 	 * @param array $groupedDataTypes
 	 * @return array
@@ -179,12 +194,21 @@ class DataTypePluginHelper {
 		return $sortedDataTypes;
 	}
 
+	/**
+	 * Returns a hash of Data Type folder => Data Type schema file content.
+	 * @param $dataTypes
+	 * @return array
+	 */
 	public static function getSchemaFiles($dataTypes) {
+		$map = array();
 		foreach ($dataTypes as $dataType) {
-			$json = $dataType->getSchema();
+			$schema = $dataType->getSchema();
+			if ($schema !== null) {
+				$map[$dataType->folder] = $schema;
+			}
 		}
+		return $map;
 	}
-
 
 	/**
 	 * Instantiates and returns a Data Type object.

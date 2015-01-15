@@ -189,6 +189,10 @@ abstract class DataTypePlugin {
 		return (isset($this->L["DATA_TYPE_NAME"])) ? $this->L["DATA_TYPE_NAME"] : $this->dataTypeName;
 	}
 
+//	final public function getDataTypeName() {
+//		return $dataTypeName;
+//	}
+
 	/**
 	 * Returns an array of file names, which will be included ONCE in the main generator page.
 	 *
@@ -266,8 +270,10 @@ abstract class DataTypePlugin {
 		}
 
 		// json_decode doesn't seem to throw an exception if the JSON's invalid. Awesome.
-		$json = json_decode(file_get_contents($schemaFile, true));
-		return $json;
+		$json = file_get_contents($schemaFile, true);
+
+		$error = Utils::validateJSON($json);
+		return (!$error) ? $json : null;
 	}
 
 	/**

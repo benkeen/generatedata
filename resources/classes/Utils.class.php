@@ -445,4 +445,14 @@ class Utils {
 
 		return (array_key_exists($errorCode, $map)) ? $map[$errorCode] : "Unknown JSON error" . JSON_ERROR_SYNTAX;
 	}
+
+
+	public static function validateJSON($json) {
+		// try decoding the input to see if it's valid or not
+		$data = @json_decode($json);
+		if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+			return Utils::getJSONErrorMessage(json_last_error());
+		}
+	}
+
 }
