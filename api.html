@@ -30,7 +30,7 @@
 					<li>
 						<ul id="mainNav" class="nav">
 							<li><a href="index.html">User Doc</a></li>
-							<li class="active dropdown">
+							<li class="dropdown">
 								<a href="developer.html" class="dropdown-toggle" data-toggle="dropdown">Developer Doc <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="developer.html">Introduction</a></li>
@@ -43,7 +43,7 @@
 									<li><a href="translations.html">Translations</a></li>
 								</ul>
 							</li>
-							<li><a href="api.html">API</a></li>
+							<li class="active"><a href="api.html">API</a></li>
 							<li><a href="contribute.html">Contributing</a></li>
 							<li><a href="scriptsUsed.html">Scripts Used</a></li>
 						</ul>
@@ -102,75 +102,27 @@
 		<div class="row">
 			<div class="span3 bs-docs-sidebar" id="pagenav">
 				<ul class="nav nav-list bs-docs-sidenav" data-spy="affix">
-					<li class="active"><a href="#about"><i class="icon-chevron-right"></i> About the Translations</a></li>
-					<li><a href="#help"><i class="icon-chevron-right"></i> Help Translate</a></li>
+					<li class="active"><a href="#intro"><i class="icon-chevron-right"></i> Introduction</a></li>
+					<li><a href="#modules"><i class="icon-chevron-right"></i> Module Types</a></li>
 				</ul>
 			</div>
 			<div class="span9">
 
-				<section id="about">
-					<div class="page-header">
-						<h1>Translations</h1>
+				<section id="intro">
+					<div class="hero-unit">
+						<h1>API</h1>
+						<p>
+							This page explains how to use the REST API to generate random data programmically.
+						</p>
 					</div>
-					<p class="lead">
-						Provide alternative translations for the user interface.
+
+					<h2>Introduction</h2>
+					<p>
+						The API was added in 3.2.0. 
 					</p>
 				</section>
 
-				<section>
-					<h2>About the Translations</h2>
-					<p>
-						Because I don't speak any other language besides English (and my English ain't exactly <i>great</i>) 
-						the available translations have been created by Google Translate. I decided that having 
-						some default, poor translations is better than no translations at all. 
-					</p>
-					<p>
-						The translations are stored in PHP files, each containing a single <code>$L</code> array containing 
-						all the language strings. They're found at the following locations:
-					</p>
-					<ul>
-						<li><code>/resources/lang/</code> - the translations for the Core script.</li>
-						<li><code>/plugins/dataTypes/[data type folder]/lang/</code> - this folder contains the translations for the 
-							Data Type.</li>
-						<li><code>/plugins/exportTypes/[export type folder]/lang/</code> - this folder contains the translations for the 
-							Export Type.</li>
-					</ul>
-					<p>
-						So, when you make a new translation, ideally you'd make translations for all locations: the Core, all current 
-						Data Types and all current Export Types.
-					</p>
-				</section>
-
-
-				<section id="help">
-					<h2>Help Translate</h2>
-
-					<p>
-						If you'd like to help translate, you can do one of two things depending on the scenario.
-					</p>
-					<ol>
-						<li><b>The translation already exists</b>, but needs improvement. In this case, the best way to proceed is 
-							to <a href="https://github.com/benkeen/generatedata/" target="_blank">fork the project on github</a>. It's 
-							really easy, honest. Once you've forked it you can just make your changes and submit a pull request for 
-							me to merge in your changes. This is my preferred method for integrating changes, but if you don't feel up 
-							to you can instead just make the changes directly to the PHP files and email them to me. 
-						</li>
-						<li><b>The translation doesn't exist yet.</b> If this is the case, the first option is to just forge ahead and 
-							add it from scratch - creating new files for your language. Alternatively, if you'd like to save time and have 
-							me first create a auto-translated version in your language, <a href="mailto:ben.keen@gmail.com">just let me 
-							know</a>. It's no problem: I've written a script to automate the translation generation and PHP file creation.
-						 </li>
-					</ol>
-
-					<p class="alert alert-info">
-						<b>Please Note:</b> I <i>don't</i> manually input translations sent to me in other formats, like Excel or via 
-						email. Sorry to sound mean, but having accomodated this in the past I know what a total pain it can be. Apologies.
-					</p>
-
-					<p>
-						Thanks for your help! 
-					</p>
-				</section>
+				<hr size="1" />
 
 			</div>
 		</div>
@@ -214,5 +166,6 @@
 		ga('send', 'pageview');
 
 	</script>
-</body>
+
+	</body>
 </html>
