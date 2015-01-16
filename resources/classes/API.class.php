@@ -1,7 +1,5 @@
 <?php
 
-use Json\Validator;
-
 
 class GenerateDataAPI extends API
 {
@@ -101,11 +99,12 @@ class GenerateDataAPI extends API
 
             if (property_exists($rows[$i], "settings") && array_key_exists($dataType, $schemaFiles)) {
 
-                // assumption is the our own schema files are valid. However, this will fail if they're not
-                //$validator = new Validator($schemaFiles[$dataType], "json");
+                // assumption is the our own schema files are valid
+                $schema = $schemaFiles[$dataType];
+                $json   = $rows[$i]->settings;
+                $result = Jsv4::validate($json, $schema);
 
-                //$result = $validator->validate($rows[$i]->settings);
-                return json_decode($schemaFiles[$dataType]); // $schemaFiles[$dataType];
+                return json_decode($result);
             }
         }
     }
