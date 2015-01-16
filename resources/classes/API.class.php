@@ -93,18 +93,30 @@ class GenerateDataAPI extends API
             if (!in_array($dataType, $dataTypeFolders)) {
                 return array(
                     "error" => ErrorCodes::API_UNKNOWN_DATA_TYPE,
-                    "error_details" => "invalid `type` attribute: `$dataType` on index $i of the `rows` array. This should be a Data Type folder name." . implode(", ", $dataTypeFolders) . "..."
+                    "error_details" => "invalid `type` attribute: `$dataType` on index $i of the `rows` array. This should be a Data Type folder name."
                 );
             }
 
             if (property_exists($rows[$i], "settings") && array_key_exists($dataType, $schemaFiles)) {
 
-                // assumption is the our own schema files are valid
-                $schema = $schemaFiles[$dataType];
+                // assumption is that our own schema files are valid
+                $schema = json_decode($schemaFiles[$dataType]);
                 $json   = $rows[$i]->settings;
                 $result = Jsv4::validate($json, $schema);
 
-                return json_decode($result);
+                if ($result->valid) {
+                    continue;
+                }
+
+                // ladies and gentleman, we have an error. Return as much user friendly information to the user
+                // to help them locate the problem
+                return array(
+                    "error" => ErrorCodes::API_INVALID_DATA_TYPE_JSON,
+                    "error_details" => "Invalid Data Type JSON `settings` content passed",
+                    "validation_error" => $result->errors[0]->message,
+                    "location" => "index $i of the `rows` array",
+                    "data_type" => $dataType
+                );
             }
         }
     }
