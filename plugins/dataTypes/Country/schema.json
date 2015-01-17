@@ -1,9 +1,5 @@
-// TODO - Backward-incompatible changes:
-//      "checked"
-// replaced with
-//      "limitCountriesToSelected"
 {
-	"title": "Country",
+  	"title": "Country",
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {

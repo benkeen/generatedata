@@ -24,8 +24,6 @@
         "insertBatchSize": {
             "type": "integer"
         },
-
-        // the row number of an auto-incremenet field [TODO rename]
         "primaryKey": {
             "type": "integer"
         }

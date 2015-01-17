@@ -52,6 +52,22 @@ class ExportTypePluginHelper {
 	}
 
 	/**
+	 * Returns a hash of Export Type folder => Export Type schema file content.
+	 * @param $exportTypes
+	 * @return array
+	 */
+	public static function getSchemaFiles($exportTypes) {
+		$map = array();
+		foreach ($exportTypes as $exportType) {
+			$schema = $exportType->getSchema();
+			if ($schema !== null) {
+				$map[$exportType->folder] = $schema;
+			}
+		}
+		return $map;
+	}
+
+	/**
 	 * Instantiates and returns an Export Type object.
 	 *
 	 * @param $runtimeContext
@@ -149,6 +165,7 @@ class ExportTypePluginHelper {
 	 * Used in the main page to generate the Export Type CSS includes.
 	 * @param array the export types
 	 * @param string
+	 * @return string
 	 */
 	public static function getExportTypeCSSIncludes($exportTypes) {
 		$files = array();

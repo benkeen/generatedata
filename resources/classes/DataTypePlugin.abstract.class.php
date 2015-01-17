@@ -189,10 +189,6 @@ abstract class DataTypePlugin {
 		return (isset($this->L["DATA_TYPE_NAME"])) ? $this->L["DATA_TYPE_NAME"] : $this->dataTypeName;
 	}
 
-//	final public function getDataTypeName() {
-//		return $dataTypeName;
-//	}
-
 	/**
 	 * Returns an array of file names, which will be included ONCE in the main generator page.
 	 *

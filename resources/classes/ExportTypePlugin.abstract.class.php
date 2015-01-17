@@ -175,6 +175,26 @@ abstract class ExportTypePlugin {
 	}
 
 	/**
+	 * The Data Type schema file defines the structure of the settings for this plugin to allow API requests
+	 * to query it and retrieve data.
+	 */
+	public final function getSchema() {
+		$currClass = new ReflectionClass(get_class($this));
+		$currClassFolder = dirname($currClass->getFileName());
+		$schemaFile = $currClassFolder . "/schema.json";
+
+		if (!file_exists($schemaFile)) {
+			return false;
+		}
+
+		// json_decode doesn't seem to throw an exception if the JSON's invalid. Awesome.
+		$json = file_get_contents($schemaFile, true);
+
+		$error = Utils::validateJSON($json);
+		return (!$error) ? $json : null;
+	}
+
+	/**
 	 * Returns the Export Type folder.
 	 * @return string
 	 */

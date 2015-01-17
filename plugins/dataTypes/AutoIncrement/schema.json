@@ -16,5 +16,5 @@
 			"type": "string"
 		}
 	},
-	"required": ["incrementStart", "incrementValue", "incrementPlaceholder"]
+	"required": ["incrementStart", "incrementValue"]
 }

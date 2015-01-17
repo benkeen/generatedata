@@ -6,9 +6,9 @@
 		"example": {
 			"type": "string"
 		},
-		"option": {
+		"placeholder": {
 			"type": "string"
 		}
 	},
-	"required": ["option"]
+	"required": ["placeholder"]
 }
