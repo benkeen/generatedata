@@ -10,6 +10,6 @@
 			"enum": ["simple", "complex"]
 		}
 	},
-	"required": ["stripWhitespace", "dataStructureFormat"]
+	"required": ["stripWhitespace"]
 }
 

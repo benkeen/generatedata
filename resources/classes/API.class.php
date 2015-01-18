@@ -77,12 +77,11 @@ class GenerateDataAPI extends API
      * @return array
      */
     private function validateDataTypeSettings($json) {
-        $rows = $json->rows;
-
         $dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
         $schemaFiles = DataTypePluginHelper::getSchemaFiles($dataTypes);
         $dataTypeFolders = DataTypePluginHelper::getDataTypeFolders(Core::$dataTypePlugins);
 
+        $rows = $json->rows;
         $numRows = count($rows);
         for ($i=0; $i<$numRows; $i++) {
             $dataType = $rows[$i]->type;
@@ -98,11 +97,10 @@ class GenerateDataAPI extends API
                 );
             }
 
-            if (property_exists($rows[$i], "settings") && array_key_exists($dataType, $schemaFiles)) {
-
-                // assumption is that our own schema files are valid
+            // if the schema file exists for the Data Type, validate against it
+            if (array_key_exists($dataType, $schemaFiles)) {
                 $schema = json_decode($schemaFiles[$dataType]);
-                $json   = $rows[$i]->settings;
+                $json   = property_exists($rows[$i], "settings") ? $rows[$i]->settings : json_decode("{}");
 
                 // verify the settings for this data type
                 $result = Jsv4::validate($json, $schema);
@@ -111,7 +109,7 @@ class GenerateDataAPI extends API
                     continue;
                 }
 
-                // ladies and gentleman, we have an error. Return as much user friendly information to the user
+                // ladies and gentleman, we have an error! Return as much user friendly information to the user
                 // to help them locate the problem
                 return array(
                     "error" => ErrorCodes::API_INVALID_DATA_TYPE_JSON,
@@ -125,11 +123,50 @@ class GenerateDataAPI extends API
     }
 
     /**
-     * Examines the contents of the `export` property, which is an array of data type rows. Each Data Type has its own
-     * settings schema which we need to validate against.
+     * Examines the contents of the `export` property, which is an object of the following form:
+     * { type: "N", settings: {} }. "N" is the folder name of the desired Export Type (see
+     * /plugins/axportTypes); `settings` is an object containing whatever settings have been specified by that
+     * Export Type's schema.json file.
      * @param $json
+     * @return array
      */
     private function validateExportTypeSettings($json) {
-        $export = $json->export;
+
+        // first, find the Export Type and check it's valid
+        if (!property_exists($json->export, "type")) {
+            return array(
+                "error" => ErrorCodes::API_INVALID_JSON_CONTENT,
+                "error_details" => "Missing `type` property in the `export` object"
+            );
+        }
+
+        $exportTypeFolders = ExportTypePluginHelper::getExportTypeFolders();
+        $exportType = $json->export->type;
+        if (!in_array($exportType, $exportTypeFolders)) {
+            return array(
+                "error" => ErrorCodes::API_UNKNOWN_EXPORT_TYPE,
+                "error_details" => "invalid `type` attribute of the `export` object: `$exportType`"
+            );
+        }
+
+        $exportType = ExportTypePluginHelper::getExportTypeByFolder($exportType);
+        $schema = json_decode($exportType->getSchema());
+
+        // only validate if there's actually a schema for this Export Type
+        if ($schema !== null) {
+            $json = property_exists($json->export, "settings") ? $json->export->settings : json_decode("{}");
+
+            // verify the settings for this data type
+            $result = Jsv4::validate($json, $schema);
+            if (!$result->valid) {
+                error_log(serialize($result->errors[0]));
+                return array(
+                    "error" => ErrorCodes::API_INVALID_EXPORT_TYPE_JSON,
+                    "error_details" => "Invalid Export Type JSON `settings` content passed",
+                    "path" => $result->errors[0]->dataPath,
+                    "validation_error" => $result->errors[0]->message
+                );
+            }
+        }
     }
 }

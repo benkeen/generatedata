@@ -32,7 +32,7 @@ abstract class API
      * case, an integer ID for the resource. eg: /<endpoint>/<verb>/<arg0>/<arg1>
      * or /<endpoint>/<arg0>
      */
-    protected $args = Array();
+    protected $args = array();
 
     /**
      * Property: file
