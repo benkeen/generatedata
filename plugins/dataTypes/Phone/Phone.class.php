@@ -27,7 +27,7 @@ class DataType_Phone extends DataTypePlugin {
 		);
 	}
 
-	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $post, $colNum, $numCols) {
 		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
 			return false;
 		}

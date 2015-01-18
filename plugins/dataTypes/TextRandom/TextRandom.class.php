@@ -35,7 +35,7 @@ class DataType_TextRandom extends DataTypePlugin {
 		);
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $column, $numCols) {
 		if (empty($postdata["dtNumWordsMin_$column"]) || empty($postdata["dtNumWordsMin_$column"])) {
 			return false;
 		}

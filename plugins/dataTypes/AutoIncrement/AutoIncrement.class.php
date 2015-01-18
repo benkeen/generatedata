@@ -31,7 +31,7 @@ class DataType_AutoIncrement extends DataTypePlugin {
 		);
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $col, $num_cols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $col, $num_cols) {
 		$start = isset($postdata["dtAutoIncrementStart_$col"]) ? $postdata["dtAutoIncrementStart_$col"] : null;
 		$end   = isset($postdata["dtAutoIncrementValue_$col"]) ? $postdata["dtAutoIncrementValue_$col"] : null;
 

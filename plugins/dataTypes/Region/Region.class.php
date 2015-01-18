@@ -99,7 +99,7 @@ class DataType_Region extends DataTypePlugin {
 		return $regionInfo;
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		$countries = $generator->getCountries();
 		$generationOptions = array();
 

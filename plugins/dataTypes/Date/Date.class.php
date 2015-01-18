@@ -45,7 +45,7 @@ class DataType_Date extends DataTypePlugin {
 		);
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		if (empty($postdata["dtFromDate_$colNum"]) || empty($postdata["dtToDate_$colNum"]) || empty($postdata["dtOption_$colNum"])) {
 			return false;
 		}

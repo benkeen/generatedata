@@ -53,9 +53,9 @@ abstract class DataTypePlugin {
 	 * @param array $generationContextData a hash of information relating to the generation context. Namely:
 	 *     "rowNum"             => the row number in the generated content (indexed from 1)
 	 *     "generationOptions"  => whatever options were passed for this particular row and data type; i.e.
-	 *                             whatever information was returned by getRowGenerationOptions(). This data
-	 *                             can be empty or contain anything needed - in whatever format. By default,
-	 *                             this is set to null.
+	 *                             whatever information was returned by getRowGenerationOptionsUI() /
+	 * 							   getRowGenerationOptionsAPI(). This data can be empty or contain anything needed -
+	 * 							   in whatever format. By default, this is set to null.
 	 *     "existingRowData"    => data already generated for the row.
 	 * @return array Data Types have to return a hash with at least one key: "display". They can also load up
 	 *     the hash with whatever else they want, if they want to provide additional meta data to other Data
@@ -141,16 +141,16 @@ abstract class DataTypePlugin {
 
 
 	/**
-	 * Called during data generation. This determines what options the user selected in the user interface; it's
-	 * used to figure out what settings to pass to each Data Type to provide that function the information needed
-	 * to generate that particular data item.
+	 * Called during data generation from within the UI. This determines what options the user selected in the user
+	 * interface; it's used to figure out what settings to pass to each Data Type to provide that function the
+	 * information needed to generate that particular data item.
 	 *
 	 * Note: if this function determines that the values entered by the user in the options column are invalid
 	 * (most likely just incomplete) the function can explicitly return false to tell the core script to ignore
 	 * this row.
 	 *
 	 * @param object $generator the instance of the Generator object, containing assorted public methods
-	 * @param array $post the entire contents of $_POST
+	 * @param array $postdata the entire contents of $_POST
 	 * @param integer the column number (*row* in the UI...!) of the item
 	 * @param integer the number of columns in the data set
 	 * @return mixed
@@ -159,7 +159,22 @@ abstract class DataTypePlugin {
 	 *        - anything else. This can be any data structure needed by the Data Type. It'll be passed as-is
 	 *        into the generateItem function as the second parameter.
 	 */
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
+		return null;
+	}
+
+	/**
+	 * The API counterpart function to getRowGenerationOptionsUI(). This does exactly the same thing as the previous
+	 * function, except the settings are defined in JSON, which was posted to the API. The names and values of the
+	 * setting properties are governed by the Data Types own schema.json file. Generally they'll contain exactly the
+	 * same fields as are offered via the UI, but the names may be different. In the case of the UI, all settings are
+	 * sent along in a giant POST request - so they're necessary namespaced with a prefix. With JSON it's much cleaner.
+	 * @param $generator
+	 * @param $rowJSON
+	 * @param $numCols
+	 * @return mixed
+	 */
+	public function getRowGenerationOptionsAPI($generator, $rowJSON, $numCols) {
 		return null;
 	}
 

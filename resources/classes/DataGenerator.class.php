@@ -39,7 +39,7 @@ class DataGenerator {
 		$this->dataTypes = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 
 		if ($environment === GEN_ENVIRONMENT_POST) {
-			$this->initPOSTGenerator($data);
+			$this->initUIGenerator($data);
 		} else if ($environment === GEN_ENVIRONMENT_API) {
 			$this->initAPIGenerator($data);
 		}
@@ -72,7 +72,7 @@ class DataGenerator {
 	 * Constructs the Data Generator ready for a generate() call for all data generated via the UI.
 	 * @param $postData
 	 */
-	private function initPOSTGenerator($postData) {
+	private function getRowGenerationOptions($postData) {
 		$this->exportTarget = $postData["gdExportTarget"]; // inPage, newTab or promptDownload
 
 		if ($this->exportTarget == "inPage") {
@@ -103,7 +103,7 @@ class DataGenerator {
 			$this->numResults : $this->currentBatchFirstRow + $this->batchSize - 1;
 
 		// figure out what we're going to need to generate
-		$this->createDataSetTemplatePOST($postData);
+		$this->createDataSetTemplateUI($postData);
 
 		$this->exportType = ExportTypePluginHelper::getExportTypeByFolder($postData["gdExportType"]);
 
@@ -183,7 +183,7 @@ class DataGenerator {
 	 * @param array $hash
 	 * @return array
 	 */
-	private function createDataSetTemplatePOST($hash) {
+	private function createDataSetTemplateUI($hash) {
 		$numCols  = $hash["gdNumCols"];
 		$rowOrder = $hash["gdRowOrder"];
 		$rowNums = explode(",", $rowOrder);
@@ -203,7 +203,7 @@ class DataGenerator {
 			$dataTypeFolder = preg_replace("/^data-type-/", "", $dataType);
 			$currDataType = $this->dataTypes[$dataTypeFolder];
 			$processOrder = $currDataType->getProcessOrder();
-			$options = $currDataType->getRowGenerationOptions($this, $hash, $i, $numCols);
+			$options = $currDataType->getRowGenerationOptionsUI($this, $hash, $i, $numCols);
 
 			// the only time $options is false is if this Data Type explicitly returned it, meaning
 			// that it was unable to determine the options needed. This could occur if the user didn't enter in
@@ -241,7 +241,7 @@ class DataGenerator {
 
 			$currDataType = $this->dataTypes[$dataTypeFolder];
 			$processOrder = $currDataType->getProcessOrder();
-			$options = $currDataType->getRowGenerationOptions($this, $hash, $i, $numCols);
+			$options = $currDataType->getRowGenerationOptionsAPI($this, $row, $numCols);
 
 			// the only time $options is false is if this Data Type explicitly returned it, meaning
 			// that it was unable to determine the options needed. This could occur if the user didn't enter in

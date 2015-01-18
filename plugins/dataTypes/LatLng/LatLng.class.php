@@ -47,7 +47,7 @@ class DataType_LatLng extends DataTypePlugin {
 	}
 
 
-	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $column, $numCols) {
 		if (!isset($postdata["dtLatLng_Lat$column"]) && empty($postdata["dtLatLng_Lng$column"])) {
 			return false;
 		}

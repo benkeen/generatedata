@@ -204,7 +204,7 @@ EOF;
 	 * @param $numCols
 	 * @return array|mixed
 	 */
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		$countries = $generator->getCountries();
 
 		// if the user didn't select any Country plugins, they want ANY old region

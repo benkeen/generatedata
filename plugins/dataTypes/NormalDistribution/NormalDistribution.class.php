@@ -27,7 +27,7 @@ class DataType_NormalDistribution extends DataTypePlugin {
 	}
 
 
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		if ((empty($postdata["dtOptionMean_$colNum"]) && $postdata["dtOptionMean_$colNum"] !== "0") ||
 			(empty($postdata["dtOptionSigma_$colNum"]) && $postdata["dtOptionSigma_$colNum"] !== "0")) {
 			return false;

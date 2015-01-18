@@ -92,9 +92,9 @@ class DataType_Country extends DataTypePlugin {
 	}
 
 	/**
-	 * @see DataTypePlugin::getRowGenerationOptions()
+	 * @see DataTypePlugin::getRowGenerationOptionsUI()
 	 */
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		$selectedCountrySlugs = $generator->getCountries();
 
 		$option = "all";

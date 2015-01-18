@@ -85,7 +85,7 @@ class DataType_Currency extends DataTypePlugin {
 		);
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		$generationOptions = array(
 			"format"         => $postdata["dtCurrencyFormat_$colNum"],
 			"rangeFrom"      => $postdata["dtCurrencyRangeFrom_$colNum"],

@@ -31,7 +31,7 @@ class DataType_List extends DataTypePlugin {
 	}
 
 
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		if (empty($postdata["dtOption_$colNum"])) {
 			return false;
 		}

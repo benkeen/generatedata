@@ -19,7 +19,7 @@ class DataType_NumberRange extends DataTypePlugin {
 		);
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $column, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $column, $numCols) {
 		if ((empty($postdata["dtNumRangeMin_$column"]) && $postdata["dtNumRangeMin_$column"] !== "0") ||
 			(empty($postdata["dtNumRangeMax_$column"]) && $postdata["dtNumRangeMax_$column"] !== "0")) {
 			return false;

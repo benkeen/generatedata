@@ -238,7 +238,7 @@ class DataType_PAN extends DataTypePlugin {
 		return $options;
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		return array(
 			"cc_brand"	     => $postdata["dtExample_$colNum"],
 			"cc_separator"   => $postdata["dtOptionPAN_sep_$colNum"],

@@ -32,7 +32,7 @@ class DataType_Constant extends DataTypePlugin {
 		);
 	}
 
-	public function getRowGenerationOptions($generator, $postdata, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		if (!isset($postdata["dtOption_$colNum"])) {
 			return false;
 		}
