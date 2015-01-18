@@ -30,69 +30,18 @@ class DataGenerator {
 
 
 	/**
-	 * @param $postData array everything from the form post. The Generator is used in 3 different
-	 * contexts: for in-page generation, new tab/window or for prompting download of the data.
+	 * @param $environment "POST" or "API"
+	 * @param $data Either the contents of POST sent from the main data generator UI, or the contents of a JSON
+	 *   POST sent to the API.
 	 */
-	public function __construct($postData) {
-		$this->exportTarget = $postData["gdExportTarget"]; // inPage, newTab or promptDownload
+	public function __construct($environment, $data) {
 
-		if ($this->exportTarget == "inPage") {
-			$this->batchSize  = $postData["gdBatchSize"];
-			$this->batchNum   = $postData["gdCurrentBatchNum"];
-		} else {
-			$this->batchSize = $postData["gdNumRowsToGenerate"];
-			$this->batchNum = 1;
-		}
-
-		$this->numResults = $postData["gdNumRowsToGenerate"];
-
-		if (Core::checkDemoMode() && !Core::checkIsLoggedIn()) {
-			$maxDemoModeRows = Core::getMaxDemoModeRows();
-			if ($this->numResults > $maxDemoModeRows) {
-				$this->numResults = $maxDemoModeRows;
-			}
-		}
-
-        // always apply the max generated rows limitation. Technically this value could be lower than
-        // the $maxDemoModeRows value above, but it's extremely unlikely & an acceptable restriction
-        $maxGeneratedRows = Core::getMaxGeneratedRows();
-        if ($this->numResults > $maxGeneratedRows) {
-            $this->numResults = $maxGeneratedRows;
-        }
-
-		$this->countries = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
 		$this->dataTypes = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
-		$this->postData  = $postData;
 
-		if (isset($postData["configurationID"])) {
-			$this->configurationID = $postData["configurationID"];
-		}
-
-		// make a note of whether this batch is the first / last. This is useful information for the
-		// Export Types to know whether to output special content at the top or bottom
-		$this->isFirstBatch = ($this->batchNum == 1);
-		$this->isLastBatch = (($this->batchNum * $this->batchSize) >= $this->numResults);
-		$this->currentBatchFirstRow = (($this->batchNum - 1) * $this->batchSize) + 1;
-		$this->currentBatchLastRow = ($this->currentBatchFirstRow + $this->batchSize > $this->numResults) ?
-			$this->numResults : $this->currentBatchFirstRow + $this->batchSize - 1;
-
-		// figure out what we're going to need to generate
-		$this->createDataSetTemplate($postData);
-		
-		// now we farm out the work of data generation to the selected Export Type
-		$exportTypes = Core::$exportTypePlugins;
-		$selectedExportType = null;
-		foreach ($exportTypes as $currExportType) {
-			if ($currExportType->getFolder() != $postData["gdExportType"]) {
-				continue;
-			}
-			$this->exportType = $currExportType;
-			break;
-		}
-
-		// set the value of isCompressionRequired
-		if ($postData["gdExportTarget"] == "promptDownload" && $postData["gdExportTarget_promptDownload_zip"] == "doZip") {
-			$this->isCompressionRequired = true;
+		if ($environment === GEN_ENVIRONMENT_POST) {
+			$this->initPOSTGenerator($data);
+		} else if ($environment === GEN_ENVIRONMENT_API) {
+			$this->initAPIGenerator($data);
 		}
 	}
 
@@ -120,6 +69,100 @@ class DataGenerator {
 
 
 	/**
+	 * Constructs the Data Generator ready for a generate() call for all data generated via the UI.
+	 * @param $postData
+	 */
+	private function initPOSTGenerator($postData) {
+		$this->exportTarget = $postData["gdExportTarget"]; // inPage, newTab or promptDownload
+
+		if ($this->exportTarget == "inPage") {
+			$this->batchSize  = $postData["gdBatchSize"];
+			$this->batchNum   = $postData["gdCurrentBatchNum"];
+		} else {
+			$this->batchSize = $postData["gdNumRowsToGenerate"];
+			$this->batchNum = 1;
+		}
+
+		$this->numResults = $postData["gdNumRowsToGenerate"];
+
+		$this->applyRowsGeneratedLimit();
+
+		$this->countries = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
+		$this->postData  = $postData;
+
+		if (isset($postData["configurationID"])) {
+			$this->configurationID = $postData["configurationID"];
+		}
+
+		// make a note of whether this batch is the first / last. This is useful information for the
+		// Export Types to know whether to output special content at the top or bottom
+		$this->isFirstBatch = ($this->batchNum == 1);
+		$this->isLastBatch = (($this->batchNum * $this->batchSize) >= $this->numResults);
+		$this->currentBatchFirstRow = (($this->batchNum - 1) * $this->batchSize) + 1;
+		$this->currentBatchLastRow = ($this->currentBatchFirstRow + $this->batchSize > $this->numResults) ?
+			$this->numResults : $this->currentBatchFirstRow + $this->batchSize - 1;
+
+		// figure out what we're going to need to generate
+		$this->createDataSetTemplatePOST($postData);
+
+		$this->exportType = ExportTypePluginHelper::getExportTypeByFolder($postData["gdExportType"]);
+
+		// set the value of isCompressionRequired
+		if ($postData["gdExportTarget"] == "promptDownload" && $postData["gdExportTarget_promptDownload_zip"] == "doZip") {
+			$this->isCompressionRequired = true;
+		}
+	}
+
+
+	private function initAPIGenerator($json) {
+		$this->exportTarget = "newTab"; // should be a constant
+		$this->batchSize = $json->numRows;
+		$this->batchNum = 1;
+		$this->numResults = $json->numRows;
+
+		$this->applyRowsGeneratedLimit();
+
+		$this->countries = isset($postData["gdCountries"]) ? $postData["gdCountries"] : array();
+		$this->postData  = $postData;
+
+		if (isset($postData["configurationID"])) {
+			$this->configurationID = $postData["configurationID"];
+		}
+
+		// make a note of whether this batch is the first / last. This is useful information for the
+		// Export Types to know whether to output special content at the top or bottom
+		$this->isFirstBatch = ($this->batchNum == 1);
+		$this->isLastBatch = (($this->batchNum * $this->batchSize) >= $this->numResults);
+		$this->currentBatchFirstRow = (($this->batchNum - 1) * $this->batchSize) + 1;
+		$this->currentBatchLastRow = ($this->currentBatchFirstRow + $this->batchSize > $this->numResults) ?
+			$this->numResults : $this->currentBatchFirstRow + $this->batchSize - 1;
+
+		// figure out what we're going to need to generate
+		$this->createDataSetTemplateAPI($json);
+
+		$this->exportType = ExportTypePluginHelper::getExportTypeByFolder($json->export->type);
+	}
+
+
+	/**
+	 * Helper to see if we're in demo mode, and limit the number of rows that can be generated.
+	 */
+	private function applyRowsGeneratedLimit() {
+		if (Core::checkDemoMode() && !Core::checkIsLoggedIn()) {
+			$maxDemoModeRows = Core::getMaxDemoModeRows();
+			if ($this->numResults > $maxDemoModeRows) {
+				$this->numResults = $maxDemoModeRows;
+			}
+		}
+		// always apply the max generated rows limitation. Technically this value could be lower than
+		// the $maxDemoModeRows value above, but it's extremely unlikely & an acceptable restriction
+		$maxGeneratedRows = Core::getMaxGeneratedRows();
+		if ($this->numResults > $maxGeneratedRows) {
+			$this->numResults = $maxGeneratedRows;
+		}
+	}
+
+	/**
 	 * This function creates a "template" of the data set to be generated by passing off work to the
 	 * various Data Types. The "template" that's returned is an ordered array of hashes, each hash being
 	 * of the following structure:
@@ -138,10 +181,9 @@ class DataGenerator {
 	 * the Data Type itself.
 	 *
 	 * @param array $hash
-	 * @param integer $numCols
 	 * @return array
 	 */
-	private function createDataSetTemplate($hash) {
+	private function createDataSetTemplatePOST($hash) {
 		$numCols  = $hash["gdNumCols"];
 		$rowOrder = $hash["gdRowOrder"];
 		$rowNums = explode(",", $rowOrder);
@@ -173,6 +215,44 @@ class DataGenerator {
 				$templatesByProcessOrder["$processOrder"][] = array(
 					"title"             => $title,
 				    "colNum"            => $order,
+					"dataTypeFolder"    => $dataTypeFolder,
+					"generationOptions" => $options,
+					"columnMetadata"    => $currDataType->getDataTypeMetaData()
+				);
+			}
+
+			$order++;
+		}
+
+		// sort by process order and return
+		ksort($templatesByProcessOrder, SORT_NUMERIC);
+		$this->template = $templatesByProcessOrder;
+	}
+
+
+	private function createDataSetTemplateAPI($json) {
+		$numCols = count($json->rows);
+
+		$templatesByProcessOrder = array();
+		$order = 1;
+		foreach ($json->rows as $row) {
+			$dataTypeFolder = $row->type;
+			$title          = $row->title;
+
+			$currDataType = $this->dataTypes[$dataTypeFolder];
+			$processOrder = $currDataType->getProcessOrder();
+			$options = $currDataType->getRowGenerationOptions($this, $hash, $i, $numCols);
+
+			// the only time $options is false is if this Data Type explicitly returned it, meaning
+			// that it was unable to determine the options needed. This could occur if the user didn't enter in
+			// appropriate values in the UI and the Data Type failed to catch it via the JS validation
+			if ($options !== false) {
+				if (!array_key_exists("$processOrder", $templatesByProcessOrder)) {
+					$templatesByProcessOrder["$processOrder"] = array();
+				}
+				$templatesByProcessOrder["$processOrder"][] = array(
+					"title"             => $title,
+					"colNum"            => $order,
 					"dataTypeFolder"    => $dataTypeFolder,
 					"generationOptions" => $options,
 					"columnMetadata"    => $currDataType->getDataTypeMetaData()

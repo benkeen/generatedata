@@ -30,6 +30,10 @@ class GenerateDataAPI extends API
         if ($errors) {
             return $errors;
         }
+
+        // okay! Now we generate whatever data was requested
+        $gen = new DataGenerator(GEN_ENVIRONMENT_API, $json);
+        //$response = $gen->generate();
     }
 
 
@@ -93,6 +97,15 @@ class GenerateDataAPI extends API
                 return array(
                     "error" => ErrorCodes::API_UNKNOWN_DATA_TYPE,
                     "error_details" => "invalid `type` attribute: `$dataType`",
+                    "location" => "index $i of the `rows` array"
+                );
+            }
+
+            // check the Data Type has a title
+            if (!property_exists($rows[$i], "title")) {
+                return array(
+                    "error" => ErrorCodes::API_MISSING_DATA_TYPE_TITLE,
+                    "error_details" => "Missing `title` attribute",
                     "location" => "index $i of the `rows` array"
                 );
             }

@@ -3,7 +3,7 @@
 require_once(__DIR__ . "/library.php");
 
 Core::init("generation");
-$gen = new DataGenerator($_POST);
+$gen = new DataGenerator(GEN_ENVIRONMENT_POST, $_POST);
 $response = $gen->generate();
 
 if ($gen->getExportTarget() == "promptDownload") {

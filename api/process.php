@@ -1,7 +1,7 @@
 <?php
 
 require_once("../library.php");
-Core::init();
+Core::init("generation");
 
 if (!Core::isApiEnabled()) {
 	echo "Sorry, the API is not enabled.";
@@ -13,6 +13,7 @@ if (!array_key_exists("HTTP_ORIGIN", $_SERVER)) {
     $_SERVER["HTTP_ORIGIN"] = $_SERVER["SERVER_NAME"];
 }
 
+// nope!
 header("Content-Type: application/json");
 
 try {
