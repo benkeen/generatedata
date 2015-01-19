@@ -58,7 +58,8 @@ class JSON extends ExportTypePlugin {
 			$pairs = array();
 			for ($j=0; $j<$numCols; $j++) {
 				$varName = preg_replace('/"/', '\"', $data["colData"][$j]);
-				if ($this->numericFields[$j]) {
+
+				if ($this->numericFields[$j] && is_numeric($data["rowData"][$i][$j])) {
 					$pairs[] = "{$tab}{$tab}\"$varName\":{$space}{$data["rowData"][$i][$j]}";
 				} else {
 					$pairs[] = "{$tab}{$tab}\"$varName\":{$space}\"{$data["rowData"][$i][$j]}\"";
