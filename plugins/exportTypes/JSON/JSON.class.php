@@ -163,7 +163,8 @@ END;
 	private function shouldStripWhitespace() {
 		$default = false;
 		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
-			$stripWhitespace = (property_exists($this->userSettings, "stripWhitespace")) ? $this->userSettings->stripWhitespace : $default;
+			$jsonSettings = $this->userSettings->export->settings;
+			$stripWhitespace = (property_exists($jsonSettings, "stripWhitespace")) ? $jsonSettings->stripWhitespace : $default;
 		} else {
 			$stripWhitespace = isset($userSettings["etJSON_whitespace"]);
 		}
@@ -177,7 +178,8 @@ END;
 	private function getDataStructureFormat() {
 		$default = "complex";
 		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
-			$format = (property_exists($this->userSettings, "dataStructureFormat")) ? $this->userSettings->dataStructureFormat : $default;
+			$jsonSettings = $this->userSettings->export->settings;
+			$format = (property_exists($jsonSettings, "dataStructureFormat")) ? $jsonSettings->dataStructureFormat : $default;
 		} else {
 			$format = isset($postData["etJSON_dataStructureFormat"]) ? $postData["etJSON_dataStructureFormat"] : $default;
 		}

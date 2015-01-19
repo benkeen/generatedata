@@ -1,18 +1,8 @@
-// TODO - Backward-incompatible changes:
-//        listType1: $("#dtListType1_" + rowNum).attr("checked"),
-//        listType2: $("#dtListType2_" + rowNum).attr("checked"),
-//
-// replaced with:
-//
-//        listType
 {
 	"title": "List",
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {
-		"example": {
-			"type": "string"
-		},
 		"listType": {
 			"enum": ["exactly", "atMost"]
 		},
@@ -26,7 +16,5 @@
 			"type": "string"
 		}
 	},
-
-	// insufficient. We really need conditional validation here.
 	"required": ["listType", "option"]
 }

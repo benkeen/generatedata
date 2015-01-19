@@ -4,7 +4,7 @@
 	"type": "object",
 	"properties": {
 		"startsWithLipsum": {
-			"type": "boolean" // TODO 1/0
+			"type": "boolean"
 		},
 		"minWords": {
 			"type": "integer",
