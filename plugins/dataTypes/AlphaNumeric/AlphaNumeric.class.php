@@ -35,6 +35,13 @@ class DataType_AlphaNumeric extends DataTypePlugin {
 		return $postdata["dtOption_$colNum"];
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		if (empty($json->settings->placeholder)) {
+			return false;
+		}
+		return $json->settings->placeholder;
+	}
+
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 		$html =<<< END
