@@ -9,7 +9,6 @@
 		"dataStructureFormat": {
 			"enum": ["simple", "complex"]
 		}
-	},
-	"required": ["stripWhitespace"]
+	}
 }
 

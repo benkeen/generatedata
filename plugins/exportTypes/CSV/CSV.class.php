@@ -14,7 +14,7 @@ class CSV extends ExportTypePlugin {
 
 	function generate($generator) {
 		$exportTarget = $generator->getExportTarget();
-		$postData     = $generator->getPostData();
+		$postData     = $generator->getUserSettings();
 		$data         = $generator->generateExportData();
 
 		$csvDelimiter = ($postData["etCSV_delimiter"] == '\t') ? "\t" : $postData["etCSV_delimiter"];

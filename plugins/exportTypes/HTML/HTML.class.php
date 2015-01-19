@@ -26,7 +26,7 @@ class HTML extends ExportTypePlugin {
 	 */
 	public function generate($generator) {
 		$exportTarget = $generator->getExportTarget();
-		$postData     = $generator->getPostData();
+		$postData     = $generator->getUserSettings();
 		$data         = $generator->generateExportData();
 
 		$content = "";

@@ -27,8 +27,7 @@ class XML extends ExportTypePlugin {
 	 * @return array
 	 */
 	function generate($generator) {
-		$exportTarget = $generator->getExportTarget();
-		$postData     = $generator->getPostData();
+		$postData     = $generator->getUserSettings();
 		$useCustomXMLFormat = isset($postData["etXMLUseCustomExportFormat"]);
 
 		$content = "";

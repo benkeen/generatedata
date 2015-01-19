@@ -40,7 +40,7 @@ class SQL extends ExportTypePlugin {
 
 	function generate($generator) {
 		$this->template     = $generator->getTemplateByDisplayOrder();
-		$this->postData     = $generator->getPostData();
+		$this->postData     = $generator->getUserSettings();
 		$this->exportTarget = $generator->getExportTarget();
 		$this->isFirstBatch = $generator->isFirstBatch();
 		$this->isLastBatch  = $generator->isLastBatch();

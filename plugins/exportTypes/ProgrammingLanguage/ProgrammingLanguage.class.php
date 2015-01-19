@@ -16,7 +16,7 @@ class ProgrammingLanguage extends ExportTypePlugin {
 
 
 	public function generate($generator) {
-		$postData     = $generator->getPostData();
+		$postData     = $generator->getUserSettings();
 		$data         = $generator->generateExportData();
 		$template     = $generator->getTemplateByDisplayOrder();
 		$language = $postData["etProgrammingLanguage_language"];

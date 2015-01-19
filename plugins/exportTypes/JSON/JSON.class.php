@@ -16,16 +16,16 @@ class JSON extends ExportTypePlugin {
 
 
 	public function generate($generator) {
-		$postData     = $generator->getPostData();
+		$this->genEnvironment = $generator->genEnvironment; // API / POST
+		$this->userSettings   = $generator->getUserSettings();
+
 		$data         = $generator->generateExportData();
 		$template     = $generator->getTemplateByDisplayOrder();
-		$stripWhitespace     = isset($postData["etJSON_stripWhitespace"]);
-		$dataStructureFormat = isset($postData["etJSON_dataStructureFormat"]) ? $postData["etJSON_dataStructureFormat"] : "complex";
+		$stripWhitespace     = $this->shouldStripWhitespace();
+		$dataStructureFormat = $this->getDataStructureFormat();
 
 		// figure out which fields are strictly numeric. We don't wrap those values in double quotes
-		foreach ($template as $item) {
-			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
-		}
+		$this->determineNumericFields($template);
 
 		$content = "";
 		if ($dataStructureFormat == "complex") {
@@ -153,5 +153,40 @@ class JSON extends ExportTypePlugin {
 			<label for="stJSON_dataStructureFormat2">{$this->L["simple"]}</label>
 END;
 		return $html;
+	}
+
+
+	/**
+	 * Wrapper function to find out whether the user wants whitespace to be enabled or not. The settings content
+	 * is either JSON or a POST array, depending on where the generation is taking place.
+	 */
+	private function shouldStripWhitespace() {
+		$default = false;
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$stripWhitespace = (property_exists($this->userSettings, "stripWhitespace")) ? $this->userSettings->stripWhitespace : $default;
+		} else {
+			$stripWhitespace = isset($userSettings["etJSON_whitespace"]);
+		}
+		return $stripWhitespace;
+	}
+
+	/**
+	 * Returns the desired JSON data structure format - simple or complex.
+	 * @return string
+	 */
+	private function getDataStructureFormat() {
+		$default = "complex";
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$format = (property_exists($this->userSettings, "dataStructureFormat")) ? $this->userSettings->dataStructureFormat : $default;
+		} else {
+			$format = isset($postData["etJSON_dataStructureFormat"]) ? $postData["etJSON_dataStructureFormat"] : $default;
+		}
+		return $format;
+	}
+
+	private function determineNumericFields($template) {
+		foreach ($template as $item) {
+			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
+		}
 	}
 }

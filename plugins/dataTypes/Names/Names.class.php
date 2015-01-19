@@ -72,6 +72,16 @@ class DataType_Names extends DataTypePlugin {
 		return $post["dtOption_$colNum"];
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+
+		// the JSON schema validation ensures the `placeholder` property is set, but NOT that it has any content
+		if (empty($json->settings->placeholder)) {
+			return false;
+		}
+
+		return $json->settings->placeholder;
+	}
+
 
 	public function getDataTypeMetadata() {
 		return array(

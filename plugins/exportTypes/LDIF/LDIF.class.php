@@ -10,7 +10,7 @@ class LDIF extends ExportTypePlugin {
     protected $exportTypeName = "LDIF";
 
     public function generate($generator) {
-        $postData = $generator->getPostData();
+        $postData = $generator->getUserSettings();
         $content  = $this->generateLDIF($generator, $postData);
 
 		return array(

@@ -18,7 +18,14 @@ header("Content-Type: application/json");
 
 try {
     $API = new GenerateDataAPI($_REQUEST["request"]);
-    echo json_encode($API->processAPI());
+    $response = $API->processAPI();
+
+    if ($response["error"]) {
+        echo json_encode($response);
+    } else {
+        echo $response["content"];
+    }
+
 } catch (Exception $e) {
     echo json_encode(array('error' => $e->getMessage()));
 }
