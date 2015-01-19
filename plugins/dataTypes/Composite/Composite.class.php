@@ -48,6 +48,13 @@ class DataType_Composite extends DataTypePlugin {
 		return $postdata["dtOption_$col"];
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		if (empty($json->settings->placeholder)) {
+			return false;
+		}
+		return $json->settings->placeholder;
+	}
+
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 		return $L["see_help_dialog"];

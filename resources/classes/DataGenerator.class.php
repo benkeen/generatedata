@@ -35,7 +35,6 @@ class DataGenerator {
 	 *   POST sent to the API.
 	 */
 	public function __construct($environment, $data) {
-
 		$this->genEnvironment = $environment;
 		$this->dataTypes = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 
@@ -45,7 +44,6 @@ class DataGenerator {
 			$this->initAPIGenerator($data);
 		}
 	}
-
 
 	/**
 	 * Calls the appropriate Export Type's generation function to actually generate the random data.
