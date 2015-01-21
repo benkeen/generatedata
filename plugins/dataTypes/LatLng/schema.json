@@ -4,10 +4,10 @@
 	"type": "object",
 	"properties": {
 		"lat": {
-			"type": "string"
+			"type": "boolean"
 		},
 		"lng": {
-			"type": "string"
+			"type": "boolean"
 		}
 	},
 	"required": ["lat", "lng"]

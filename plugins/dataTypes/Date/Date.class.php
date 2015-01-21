@@ -58,7 +58,16 @@ class DataType_Date extends DataTypePlugin {
 
 		return $options;
 	}
-	
+
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$options = array(
+			"formatCode" => $json->settings->placeholder,
+			"from"       => $json->settings->fromDate,
+			"to"         => $json->settings->toDate
+		);
+		return $options;
+	}
+
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "varchar(255)",

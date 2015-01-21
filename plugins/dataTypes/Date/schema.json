@@ -9,9 +9,9 @@
 		"toDate": {
 			"type": "string"
 		},
-		"option": {
+		"placeholder": {
 			"type": "string"
 		}
 	},
-	"required": ["fromDate", "toDate", "option"]
+	"required": ["fromDate", "toDate", "placeholder"]
 }

@@ -12,9 +12,9 @@
 		"atMost": {
 			"type": "number"
 		},
-		"option": {
+		"list": {
 			"type": "string"
 		}
 	},
-	"required": ["listType", "option"]
+	"required": ["listType", "list"]
 }

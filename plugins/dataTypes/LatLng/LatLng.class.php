@@ -46,7 +46,6 @@ class DataType_LatLng extends DataTypePlugin {
 		);
 	}
 
-
 	public function getRowGenerationOptionsUI($generator, $postdata, $column, $numCols) {
 		if (!isset($postdata["dtLatLng_Lat$column"]) && empty($postdata["dtLatLng_Lng$column"])) {
 			return false;
@@ -58,6 +57,13 @@ class DataType_LatLng extends DataTypePlugin {
 		return $options;
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$options = array(
+			"lat" => $json->settings->lat,
+			"lng" => $json->settings->lng
+		);
+		return $options;
+	}
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END

@@ -30,7 +30,6 @@ class DataType_List extends DataTypePlugin {
 		);
 	}
 
-
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		if (empty($postdata["dtOption_$colNum"])) {
 			return false;
@@ -47,6 +46,19 @@ class DataType_List extends DataTypePlugin {
 		return $options;
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$listType = $json->settings->listType; // exactly or atMost
+		$number   = ($listType == "exactly") ? $json->settings->exactly : $json->settings->atMost;
+		$options = array(
+			"listType" => $listType,
+			"number"   => $number,
+			"values"   => $json->settings->list
+		);
+
+		error_log(serialize($options));
+
+		return $options;
+	}
 
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
