@@ -3,12 +3,21 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {
-		"rangeMin": {
-			"type": "integer"
+		"brand": {
+			"type": "string"
 		},
-		"rangeMax": {
-			"type": "integer"
+		"separator": {
+			"type": "string"
+		},
+		"format": {
+			"type": "string"
+		},
+		"length": {
+			"type": "string"
+		},
+		"random_card": {
+			"type": "array"
 		}
 	},
-	"required": ["rangeMin", "rangeMax"]
+	"required": ["brand", "length"]
 }

@@ -248,6 +248,16 @@ class DataType_PAN extends DataTypePlugin {
 		);
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		return array(
+			"cc_brand"	     => $json->settings->brand,
+			"cc_separator"   => $json->settings->separator,
+			"cc_format"      => $json->settings->format,
+			"cc_length"      => $json->settings->length,
+			"cc_random_card" => $json->settings->random_card
+		);
+	}
+
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 

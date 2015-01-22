@@ -34,6 +34,14 @@ class DataType_NumberRange extends DataTypePlugin {
 		return $options;
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$options = array(
+			"min" => $json->settings->rangeMin,
+			"max" => $json->settings->rangeMax
+		);
+		return $options;
+	}
+
 	public function getOptionsColumnHTML() {
 		$html =<<<END
 &nbsp;{$this->L["between"]} <input type="text" name="dtNumRangeMin_%ROW%" id="dtNumRangeMin_%ROW%" style="width: 30px" value="1" />

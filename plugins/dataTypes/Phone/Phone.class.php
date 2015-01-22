@@ -34,6 +34,10 @@ class DataType_Phone extends DataTypePlugin {
 		return $post["dtOption_$colNum"];
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		return $json->settings->placeholder;
+	}
+
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 

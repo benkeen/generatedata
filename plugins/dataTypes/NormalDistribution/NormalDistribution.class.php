@@ -40,6 +40,15 @@ class DataType_NormalDistribution extends DataTypePlugin {
 		);
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$this->randMax = (float) getrandmax();
+
+		return array(
+			"mean"   => $json->settings->mean,
+			"stddev" => $json->settings->sigma
+		);
+	}
+
 	public function getOptionsColumnHTML() {
 		$options =<<< END
 			<label for="dtOptionMean_%ROW%">{$this->L["mean"]}</label>

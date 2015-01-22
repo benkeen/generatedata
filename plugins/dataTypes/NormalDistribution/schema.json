@@ -4,10 +4,10 @@
 	"type": "object",
 	"properties": {
 		"mean": {
-			"type": "number"
+			"type": "string"
 		},
 		"sigma": {
-			"type": "number"
+			"type": "string"
 		}
 	},
 	"required": ["mean", "sigma"]

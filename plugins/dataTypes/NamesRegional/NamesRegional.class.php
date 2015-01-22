@@ -203,6 +203,12 @@ class DataType_NamesRegional extends DataTypePlugin {
 		return $post["dtOption_$colNum"];
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		if (empty($json->settings->placeholder)) {
+			return false;
+		}
+		return $json->settings->placeholder;
+	}
 
 	public function getDataTypeMetadata() {
 		return array(
