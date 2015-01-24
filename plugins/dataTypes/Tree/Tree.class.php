@@ -114,6 +114,15 @@ class DataType_Tree extends DataTypePlugin {
 		return $options;
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$options = array(
+			"autoIncrementRowNum" => $json->settings->autoIncRowNum,
+			"maxSiblings"         => $json->settings->maxSiblings
+		);
+
+		return $options;
+	}
+
 	public function getOptionsColumnHTML() {
 		$html =<<<END
 <div>{$this->L["auto_increment_row_num"]} <input type="text" id="dtTreeAutoIncrementRowNum_%ROW%" name="dtTreeAutoIncrementRowNum_%ROW%" value="1" size="3" maxlength="3" /></div>

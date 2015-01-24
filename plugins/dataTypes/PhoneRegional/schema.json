@@ -4,7 +4,7 @@
 	"type": "object",
 	"properties": {
 		"regions": {
-			"type": "array",
+			"type": "object",
 			"minSize": 1
 		}
 	},

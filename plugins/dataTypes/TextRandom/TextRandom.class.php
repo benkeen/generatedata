@@ -49,6 +49,15 @@ class DataType_TextRandom extends DataTypePlugin {
 		return $options;
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$options = array(
+			"numWordsMin"      => $json->settings->minWords,
+			"numWordsMax"      => $json->settings->maxWords,
+			"startsWithLipsum" => $json->settings->startsWithLipsum
+		);
+		return $options;
+	}
+
 	public function getOptionsColumnHTML() {
 		$html =<<< END
 		<div>

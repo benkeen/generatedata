@@ -34,6 +34,10 @@ class DataType_TextFixed extends DataTypePlugin {
 		return $postdata["dtNumWords_$colNum"];
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		return $json->settings->numWords;
+	}
+
 	public function getOptionsColumnHTML() {
 		$html =<<<END
 &nbsp;{$this->L["TextFixed_generate"]} #<input type="text" name="dtNumWords_%ROW%" id="dtNumWords_%ROW%" style="width: 30px" value="10" />

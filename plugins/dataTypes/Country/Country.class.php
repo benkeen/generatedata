@@ -127,8 +127,7 @@ class DataType_Country extends DataTypePlugin {
 		$selectedCountrySlugs = $generator->getCountries();
 
 		// if the user didn't select any countries and they checked the "limit to those countries selected above
-		// option, there's nothing for us to generate. Just return false so the row is ignored. TODO: update the
-		// JS code to throw an error
+		// option, there's nothing for us to generate. Just return false so the row is ignored
 		if (empty($selectedCountrySlugs) && $json->settings->limitCountriesToSelectedPlugins == "countryPluginsOnly") {
 			return false;
 		}
