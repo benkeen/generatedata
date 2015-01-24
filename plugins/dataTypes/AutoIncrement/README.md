@@ -9,7 +9,7 @@ This example generates a couple of auto-increment values:
 - 1, 2, 3, 4, ...
 - 100B, 95B, 90B, 85B, ...
 
-. POST the following JSON content to `http://[your site]/[generate data folder]/api/v1/data`:
+POST the following JSON content to `http://[your site]/[generate data folder]/api/v1/data`:
 
 ```javascript
 {

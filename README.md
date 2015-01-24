@@ -2,7 +2,11 @@
 
 [![Build Status](https://travis-ci.org/benkeen/generatedata.png?branch=master)](https://travis-ci.org/benkeen/generatedata)
 
-This is the repo for the standalone, downloadable version of [generatedata.com](http://www.generatedata.com).
+This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
+script is basically an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
+so *Data Types* (types of data it generates), plus 8 *Export Types* (formats for the data), but it can be extended 
+in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
+for that.
 
 Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting
 the most recent tag: https://github.com/benkeen/generatedata/releases
@@ -13,12 +17,12 @@ the most recent tag: https://github.com/benkeen/generatedata/releases
 
 ## How to Install / Documentation
 
-For the installation instructions, user documentation and developer documentation, check out:
+For installation instructions, user and developer documentation, check out:
 http://benkeen.github.io/generatedata/
 
-Installation is really, really simple. I deliberately wrote the script to be as self-contained as possible and not require
-additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See the documentation
-for more info.
+Installation is really, really simple. I deliberately wrote the script to be as self-contained as possible and not 
+require additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See 
+the documentation for more info.
 
 ## Installation via Vagrant
 
@@ -60,6 +64,9 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.2.0 - In Development, Jan 2015
+- Adds a new REST API as an alternative way to generate data.
 
 3.1.4 - Sept 6, 2014
 - Chinese language file added, thanks to [Zhao Yang](https://github.com/jptiancai)
