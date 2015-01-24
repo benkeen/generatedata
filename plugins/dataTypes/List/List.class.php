@@ -55,8 +55,6 @@ class DataType_List extends DataTypePlugin {
 			"values"   => $json->settings->list
 		);
 
-		error_log(serialize($options));
-
 		return $options;
 	}
 

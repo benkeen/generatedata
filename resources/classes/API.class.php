@@ -176,7 +176,6 @@ class GenerateDataAPI extends API
             // verify the settings for this data type
             $result = Jsv4::validate($json, $schema);
             if (!$result->valid) {
-                error_log(serialize($result->errors[0]));
                 return array(
                     "error" => ErrorCodes::API_INVALID_EXPORT_TYPE_JSON,
                     "error_details" => "Invalid Export Type JSON `settings` content passed",

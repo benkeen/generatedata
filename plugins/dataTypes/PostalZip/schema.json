@@ -3,10 +3,10 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {
-		"regions": {
+		"countries": {
 			"type": "array",
 			"minSize": 1
 		}
 	},
-	"required": ["regions"]
+	"required": ["countries"]
 }

@@ -83,10 +83,6 @@ class DataType_Country extends DataTypePlugin {
 			$randomCountrySlug = $this->selectedCountrySlugs[mt_rand(0, $this->numSelectedCountrySlugs-1)];
 			$randomCountry     = $this->countryRegionData[$randomCountrySlug];
 
-			error_log($randomCountry["country"]);
-			error_log($randomCountry["country_slug"]);
-			error_log($randomCountry["id"]);
-
 			$data = array(
 				"display" => $randomCountry["country"],
 				"slug"    => $randomCountry["country_slug"],
@@ -128,14 +124,14 @@ class DataType_Country extends DataTypePlugin {
 
 		// if the user didn't select any countries and they checked the "limit to those countries selected above
 		// option, there's nothing for us to generate. Just return false so the row is ignored
-		if (empty($selectedCountrySlugs) && $json->settings->limitCountriesToSelectedPlugins == "countryPluginsOnly") {
+		if (empty($selectedCountrySlugs) && $json->settings->limitCountriesToSelectedPlugins) {
 			return false;
 		}
 
 		$this->selectedCountrySlugs    = $selectedCountrySlugs;
 		$this->numSelectedCountrySlugs = count($selectedCountrySlugs);
 
-		return $json->settings->limitCountriesToSelectedPlugins;
+		return ($json->settings->limitCountriesToSelectedPlugins) ? "countryPluginsOnly" : "all";
 	}
 
 	public function getOptionsColumnHTML() {

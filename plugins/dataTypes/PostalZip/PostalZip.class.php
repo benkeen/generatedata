@@ -105,6 +105,18 @@ class DataType_PostalZip extends DataTypePlugin {
 		return $options;
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$countries = $generator->getCountries();
+		$options = array();
+		foreach ($countries as $slug) {
+			if (in_array($slug, $json->settings->countries)) {
+				$options[] = $slug;
+			}
+		}
+
+		return $options;
+	}
+
 	public function getOptionsColumnHTML() {
 		$countryPlugins = Core::$countryPlugins;
 		$html = "";
