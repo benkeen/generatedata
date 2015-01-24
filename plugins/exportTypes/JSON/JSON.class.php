@@ -100,7 +100,7 @@ class JSON extends ExportTypePlugin {
 		for ($i=0; $i<$numRows; $i++) {
 			$rowValsArr = array();
 			for ($j=0; $j<$numCols; $j++) {
-				if ($this->numericFields[$j]) {
+				if ($this->numericFields[$j] && is_numeric($data["rowData"][$i][$j])) {
 					$rowValsArr[] = $data["rowData"][$i][$j];
 				} else {
 					$rowValsArr[] = "\"" . $data["rowData"][$i][$j] . "\"";

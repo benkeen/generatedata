@@ -1,11 +1,13 @@
-## AlphaNumeric API Usage
+## AlphaNumeric Data Type
 
-See the example below for how to use this Data Type. Note: for the placeholder values, check out the help 
-documentation for this Data Type in the generatedata UI. 
+This Data Type generates random alphanumeric strings according to whatever format you want. Note: for the 
+placeholder strings, documentation for this Data Type in the generatedata UI. That provides the list of available
+placeholders.
 
-### Example
+### Example API Usage
 
-POST the following JSON content to `http://[your site]/[generate data folder]/api/v2/data`:
+This example generates random passwords and US Zipcodes. POST the following JSON content to 
+`http://[your site]/[generate data folder]/api/v1/data`:
 
 ```javascript
 {

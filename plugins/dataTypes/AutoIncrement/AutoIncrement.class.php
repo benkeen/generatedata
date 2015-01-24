@@ -24,6 +24,7 @@ class DataType_AutoIncrement extends DataTypePlugin {
 		$val = (($generationContextData["rowNum"]-1) * $increment) + $start;
 
 		if (!empty($placeholder)) {
+			error_log("here: ", $placeholder, " - ", $val);
 			$val = preg_replace('/\{\$INCR\}/', $val, $placeholder);
 		}
 
@@ -51,6 +52,9 @@ class DataType_AutoIncrement extends DataTypePlugin {
 
 	// the API schema validation takes care of validation for us
 	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+
+		error_log("hmm: " . $json->settings->incrementPlaceholder);
+
 		return array(
 			"start"       => $json->settings->incrementStart,
 			"increment"   => $json->settings->incrementValue,
