@@ -197,6 +197,7 @@ class DataType_PAN extends DataTypePlugin {
 	}
 
 
+	// TODO why is `length` necessary? Very confusing.
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 
@@ -205,9 +206,9 @@ class DataType_PAN extends DataTypePlugin {
 		}
 
 		$ccLength    = self::getRandomPANLength($options["cc_length"]);
-		$ccFormat    = self::getRandomPANFormat($options["cc_format"], $options["cc_length"]);
-		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"], $options["cc_format"]);
-		
+		$ccFormat    = self::getRandomPANFormat($options["cc_format"], $ccLength);
+		$ccSeparator = self::getRandomPANSeparator($options["cc_separator"]);
+
 		$ccData = self::getCreditCardData($options["cc_brand"]);
 		$card = self::generateCreditCardNumber($ccData["prefix"], $ccLength);
 		$cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
@@ -251,7 +252,7 @@ class DataType_PAN extends DataTypePlugin {
 	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
 		return array(
 			"cc_brand"	     => $json->settings->brand,
-			"cc_separator"   => $json->settings->separator,
+			"cc_separator"   => property_exists($json->settings, "separator") ? $json->settings->separator : " ",
 			"cc_format"      => $json->settings->format,
 			"cc_length"      => $json->settings->length,
 			"cc_random_card" => $json->settings->random_card
@@ -403,57 +404,48 @@ EOF;
 	}
 
 
+	// very confusing function. What does this do exactly? Why is it necessary?
 	private static function getRandomPANFormat($userSelectedFormats, $randCardLength) {
 
 		// if no format is selected then by default continuous number of that length will be displayed
-		if ($userSelectedFormats == "") {
-			return str_repeat("X", $randCardLength);
+		$defaultFormat = str_repeat("X", $randCardLength);
+		if (empty($userSelectedFormats)) {
+			return $defaultFormat;
 		}
 
-		$formats = explode("\n", $userSelectedFormats);
+		// for ease of use, the API lets you pass formats as an array
+		$formats = (is_array($userSelectedFormats)) ? $userSelectedFormats : explode("\n", $userSelectedFormats);
 
-		$sortedFormat = array();
-		$not_i = 0;
-		$numFormats = count($formats);
-		for ($fc=0; $fc<$numFormats; $fc++){
-			$count_X = "0"; // get count of X's to match with the card length
+		$matchingFormats = array();
+		foreach ($formats as $currFormat) {
+			$count_X = 0; // get count of X's to match with the card length
 
-			$len = strlen($formats[$fc]);
+			$len = strlen($currFormat);
 			for ($i=0; $i<$len; $i++) {
-				if ($formats[$fc][$i] == "X") { // PHP version of a charAt
+				if ($currFormat[$i] == "X") { // PHP version of a charAt
 					$count_X++;
 				}
 			}
-
 			if ($count_X == $randCardLength) {
-				$sortedFormat[$not_i] = $formats[$fc];
-				$not_i++;
+				$matchingFormats[] = $currFormat;
 			}
 		}
 
-		$chosenFormat = "";
-		$sortedFormatCount = count($sortedFormat);
-		if ($sortedFormatCount >= 1) {
-			$chosenFormat = $sortedFormat[mt_rand(0, $sortedFormatCount-1)];
+		if (empty($matchingFormats)) {
+			return $defaultFormat;
+		} else {
+			$chosenFormat = $matchingFormats[mt_rand(0, count($matchingFormats)-1)];
+			return trim($chosenFormat);
 		}
-
-		return trim($chosenFormat);
 	}
 
+	private static function getRandomPANSeparator($separators) {
+		$separatorList = explode("|", $separators);
+		$chosenSep = $separatorList[rand(0, count($separatorList)-1)];
 
-	// will give a random separator
-	private static function getRandomPANSeparator($separators, $randCardFormat) {
-
-		$chosenSep = "";
-		if (preg_match("/[^X]/", $randCardFormat)) {
-
-			$separatorList = explode("|", $separators);
-			$chosenSep = $separatorList[rand(0, count($separatorList)-1)];
-
-			// if no separator was entered
-			if ($separators == "") {
-				$chosenSep = " ";
-			}
+		// if no separator was entered
+		if ($separators == "") {
+			$chosenSep = " ";
 		}
 
 		return $chosenSep;
@@ -462,11 +454,7 @@ EOF;
 
 	private static function getRandomPANLength($userSelectedLength) {
 
-		// this would be better
-//		$groups = explode(",", $userSelectedLength);
-//		for ($i=0; $i<count($groups); $i++) {
-//			$groups = explode(",", $groups[$i]);
-//		}
+		// TODO
 
 		// if there's more than 1 card length then pick a random one
 		if ($userSelectedLength == "12-19") {

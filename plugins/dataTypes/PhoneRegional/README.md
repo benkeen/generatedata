@@ -1,8 +1,7 @@
-## PhoneRegional API Usage
+## PhoneRegional
 
-Generating data for this Data Type via the API is a little fussy, compared to the UI. The idea of this data type is 
-to generate phone numbers in a format that's appropriate for a particular country. In other words, it lets you generate
-multiple rows of data where the random country name and phone number formats match, e.g.
+The idea of this data type is to generate phone numbers in a format that's appropriate for a particular country. In 
+other words, it lets you generate multiple rows of data where the random country name and phone number formats match, e.g.
  
 ```
 United Kingdom      01552 515219
@@ -10,7 +9,10 @@ Canada              (604) 264-2551
 United Kingdom      01512 215441
 ```
 
-### Example
+Generating data for this Data Type via the API is a little fussy, compared to the UI. Definitely needs some more thought.
+
+
+### Example API Usage
 
 ```javascript
 {
@@ -48,3 +50,9 @@ database's `[prefix]countries` table, or look at the top of the Country class fi
 (`/plugins/countries/[country]/[country].class.php`).
 - the `regions` object property keys are also *country slugs*, not the country names.
 - Like with the UI, if you don't enter any regions it will just show any old phone number format for any region.
+
+
+### API help
+
+For more information about the API, check out:
+[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)

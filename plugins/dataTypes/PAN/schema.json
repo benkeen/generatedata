@@ -10,7 +10,7 @@
 			"type": "string"
 		},
 		"format": {
-			"type": "string"
+			"type": "array"
 		},
 		"length": {
 			"type": "string"
