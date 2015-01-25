@@ -3,7 +3,8 @@
 This Data Type generates a random date in a particular format. 
 
 - the `fromDate` and `toDate` settings should be in the format DD/MM/YYYY
-- the `placeholder` setting should define a date format as per the (PHP date function)[http://php.net/manual/en/function.date.php]
+- the `placeholder` setting should define a date format as per the [PHP date function](http://php.net/manual/en/function.date.php).
+
 
 ### Example API Usage
 

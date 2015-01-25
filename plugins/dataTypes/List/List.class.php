@@ -47,10 +47,10 @@ class DataType_List extends DataTypePlugin {
 	}
 
 	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
-		$listType = $json->settings->listType; // exactly or atMost
+		$listType = $json->settings->listType; // Exactly or AtMost
 		$number   = ($listType == "exactly") ? $json->settings->exactly : $json->settings->atMost;
 		$options = array(
-			"listType" => $listType,
+			"listType" => ucfirst($listType),
 			"number"   => $number,
 			"values"   => $json->settings->list
 		);
