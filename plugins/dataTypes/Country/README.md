@@ -15,37 +15,37 @@ and that the city names belong to the region, which belongs to the country.
 
 ```javascript
 {
-    "numRows": 10,
-    "countries": ["canada", "US", "united_kingdom"],
+    "numRows": 20,
+    "countries": ["CA", "US", "united_kingdom"],
     "rows": [
         {
             "type": "Country",
-            "title": "Country (any old country)",
-            "settings": {
-                "limitCountriesToSelectedPlugins": false
-            }
-        },
-        {
-            "type": "Country",
-            "title": "Country (from plugin list)",
+            "title": "Country",
             "settings": {
                 "limitCountriesToSelectedPlugins": true
             }
         },
         {
             "type": "Region",
-            "title": "A region"
+            "title": "Region",
+            "settings": {
+                "countries": {
+                    "CA": { "full": true, "short": false },
+                    "US": { "full": true, "short": false },
+                    "united_kingdom": { "full": true, "short": false }
+                }
+            }
         },
         {
             "type": "City",
-            "title": "City name"
+            "title": "City"
         }
     ],
     "export": {
         "type": "JSON",
         "settings": {
             "stripWhitespace": false,
-            "dataStructureFormat": "complex"
+            "dataStructureFormat": "simple"
         }
     }
 }

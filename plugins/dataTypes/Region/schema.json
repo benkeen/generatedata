@@ -4,7 +4,7 @@
 	"type": "object",
 	"properties": {
 		"countries": {
-			"type": "array"
+			"type": "object"
 		}
 	}
 }

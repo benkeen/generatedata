@@ -4,7 +4,6 @@ This Data Type generates a constant value (any string / number) for N rows, then
 control the size of N and the list of constants to be inserted. Basically it lets you do things like give half your 
 generated data set one value for a field, and the second half a different value. 
 
-
 ### Example API Usage
 
 ```javascript

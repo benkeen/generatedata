@@ -125,6 +125,31 @@ class DataType_Region extends DataTypePlugin {
 		return $generationOptions;
 	}
 
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$countries = $generator->getCountries();
+		$generationOptions = array();
+
+		// if the user didn't select any Country plugins, they want ANY old region
+		if (!isset($json->settings->countries)) {
+			$generationOptions["resultType"] = "any";
+		} else {
+			$generationOptions["resultType"] = "specificCountries";
+			$generationOptions["countries"] = array();
+
+			$config = $json->settings->countries;
+			foreach ($countries as $slug) {
+				if (property_exists($config, $slug)) {
+					$regionFull  = property_exists($config->{$slug}, "full") ? $config->{$slug}->full : true;
+					$regionShort = property_exists($config->{$slug}, "short") ? $config->{$slug}->short : true;
+					$generationOptions["countries"][$slug] = array(
+						"full"  => $regionFull,
+						"short" => $regionShort
+					);
+				}
+			}
+		}
+		return $generationOptions;
+	}
 
 	public function getOptionsColumnHTML() {
 		$countryPlugins = Core::$countryPlugins;
