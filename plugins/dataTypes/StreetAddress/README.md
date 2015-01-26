@@ -1,32 +1,28 @@
-## PIN Data Type
+## StreetAddress Data Type
 
-This Data Type generates a four character PIN.
+This Data Type generates a street address. 
 
 
 ### Example API Usage
 
-Just POST the following JSON content to: 
-`http://[your site]/[generate data folder]/api/v1/data`
-
 ```javascript
 {
-    "numRows": 10,
+    "numRows": 20,
     "rows": [
         {
-            "type": "PIN",
-            "title": "pin"
+            "type": "StreetAddress",
+            "title": "Address"
         }
     ],
     "export": {
         "type": "JSON",
         "settings": {
             "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+            "dataStructureFormat": "complex"
         }
     }
 }
 ```
-
  
 ### API help
 

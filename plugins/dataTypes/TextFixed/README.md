@@ -1,32 +1,33 @@
-## PIN Data Type
+## TextFixed Data Type
 
-This Data Type generates a four character PIN.
+This Data Type generates a fixed number of random words.  
 
 
 ### Example API Usage
 
-Just POST the following JSON content to: 
-`http://[your site]/[generate data folder]/api/v1/data`
-
 ```javascript
 {
-    "numRows": 10,
+    "numRows": 20,
     "rows": [
         {
-            "type": "PIN",
-            "title": "pin"
+            "type": "TextRandom",
+            "title": "text",
+            "settings": {
+                "startsWithLipsum": false,
+                "minWords": 2,
+                "maxWords": 10
+            }
         }
     ],
     "export": {
         "type": "JSON",
         "settings": {
             "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+            "dataStructureFormat": "complex"
         }
     }
 }
 ```
-
  
 ### API help
 

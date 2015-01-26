@@ -41,3 +41,8 @@ United Kingdom      01512 215441
     }
 }
 ```
+
+### API help
+
+For more information about the API, check out:
+[http://benkeen.github.io/generatedata/api.html](http://benkeen.github.io/generatedata/api.html)

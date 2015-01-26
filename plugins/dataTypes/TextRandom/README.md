@@ -1,32 +1,32 @@
-## PIN Data Type
+## TextFixed Data Type
 
-This Data Type generates a four character PIN.
+This Data Type generates a random number of random words, taken from lorem ipsum. You can specify the min and max
+number of words. 
 
 
 ### Example API Usage
 
-Just POST the following JSON content to: 
-`http://[your site]/[generate data folder]/api/v1/data`
-
 ```javascript
 {
-    "numRows": 10,
+    "numRows": 20,
     "rows": [
         {
-            "type": "PIN",
-            "title": "pin"
+            "type": "TextFixed",
+            "title": "text",
+            "settings": {
+                "numWords": 5 
+            }
         }
     ],
     "export": {
         "type": "JSON",
         "settings": {
             "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+            "dataStructureFormat": "complex"
         }
     }
 }
 ```
-
  
 ### API help
 

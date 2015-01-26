@@ -1,32 +1,28 @@
-## PIN Data Type
+## Track1 Data Type
 
-This Data Type generates a four character PIN.
+This Data Type generates a random Track1 number.
 
 
 ### Example API Usage
-
-Just POST the following JSON content to: 
-`http://[your site]/[generate data folder]/api/v1/data`
 
 ```javascript
 {
     "numRows": 10,
     "rows": [
         {
-            "type": "PIN",
-            "title": "pin"
+            "type": "Track1",
+            "title": "track 1"
         }
     ],
     "export": {
         "type": "JSON",
         "settings": {
             "stripWhitespace": false,
-            "dataStructureFormat": "simple"
+            "dataStructureFormat": "complex"
         }
     }
 }
 ```
-
  
 ### API help
 
