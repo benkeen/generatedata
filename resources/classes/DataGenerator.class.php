@@ -145,6 +145,7 @@ class DataGenerator {
 		$this->createDataSetTemplateAPI($json);
 
 		$this->exportType = ExportTypePluginHelper::getExportTypeByFolder($json->export->type);
+		$this->isCompressionRequired = false;
 	}
 
 

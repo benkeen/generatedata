@@ -25,16 +25,20 @@ class HTML extends ExportTypePlugin {
 	 * @see ExportTypePlugin::generate()
 	 */
 	public function generate($generator) {
+		$this->genEnvironment = $generator->genEnvironment; // API / POST
+		$this->userSettings = $generator->getUserSettings();
+
 		$exportTarget = $generator->getExportTarget();
-		$postData     = $generator->getUserSettings();
 		$data         = $generator->generateExportData();
 
 		$content = "";
-		$htmlFormat = (isset($postData["etHTMLExportFormat"])) ? $postData["etHTMLExportFormat"] : "custom";
+		$format = $this->getExportFormat();
 
-		if ($htmlFormat == "custom") {
-			$smartyTemplate = (get_magic_quotes_gpc()) ? stripslashes($postData["etHTMLCustomHTMLSource"]) : $postData["etHTMLCustomHTMLSource"];
-			$content .= $this->genFormatCustom($data, $smartyTemplate);
+		if ($format == "custom") {
+			$template = $this->getCustomTemplate();
+			error_log($template);
+
+			$content .= $this->genFormatCustom($data, $template);
 		} else {
 
 			// if we're generating the data in the context of a new window/tab, include the additional
@@ -43,7 +47,7 @@ class HTML extends ExportTypePlugin {
 				$content .= $this->generateExportHeader();
 			}
 
-			switch ($htmlFormat) {
+			switch ($format) {
 				case "table":
 					$content .= $this->genFormatTable($data);
 					break;
@@ -237,6 +241,7 @@ END;
 	 * Generates the data in whatever Smarty content the user entered.
 	 * @param array $data
 	 * @param string $template
+	 * @return string
 	 */
 	private function genFormatCustom($data, $template) {
 		return Templates::evalSmartyString($template, $data);
@@ -265,5 +270,21 @@ END;
 
 	private function generateExportFooter() {
 		return "</body></html>";
+	}
+
+	private function getExportFormat() {
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			return $this->userSettings->export->settings->exportFormat;
+		} else {
+			return (isset($this->userSettings["etHTMLExportFormat"])) ? $this->userSettings["etHTMLExportFormat"] : "custom";
+		}
+	}
+
+	private function getCustomTemplate() {
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			return (property_exists($this->userSettings->export->settings, "customTemplate")) ? $this->userSettings->export->settings->customTemplate : "";
+		} else {
+			return (get_magic_quotes_gpc()) ? stripslashes($this->userSettings["etHTMLCustomHTMLSource"]) : $this->userSettings["etHTMLCustomHTMLSource"];
+		}
 	}
 }

@@ -58,8 +58,6 @@ class CSV extends ExportTypePlugin {
 	}
 
 	public function getAdditionalSettingsHTML() {
-		$LANG = Core::$language->getCurrentLanguageStrings();
-
 		$html =<<< END
 <table cellspacing="0" cellpadding="0" width="100%">
 <tr>

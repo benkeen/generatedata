@@ -36,7 +36,7 @@ class GenerateDataAPI extends API
         $response = $gen->generate();
 
         if ($response["success"]) {
-            echo $response["content"];
+            return $response;
         }
     }
 

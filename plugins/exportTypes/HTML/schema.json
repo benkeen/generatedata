@@ -3,12 +3,12 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {
-		"delimiter": {
-			"type": "string"
+		"exportFormat": {
+		  "enum": ["table", "ul", "dl", "custom"]
 		},
-		"eol": { // TODO default?
-			"enum": ["Windows", "Unix", "Mac"]
+		"customTemplate": {
+			"type": "string"
 		}
 	},
-	"required": ["delimiter", "eol"]
+	"required": ["exportFormat"]
 }

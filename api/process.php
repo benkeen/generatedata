@@ -25,11 +25,9 @@ try {
     } else {
 
         // Export Types may choose to return a "headers" string or array containing headers to output
-
-        // TODO think about when not exhausted
-//        if ($response["headers"]) {
-//            header("Content-Type: {$response["contentTypeHeader"]}");
-//        }
+        if ($response["contentTypeHeader"]) {
+            header("Content-Type: {$response["contentTypeHeader"]}");
+        }
         echo $response["content"];
     }
 
