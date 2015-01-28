@@ -6,7 +6,7 @@
 		"delimiter": {
 			"type": "string"
 		},
-		"eol": { // TODO default?
+		"eol": {
 			"enum": ["Windows", "Unix", "Mac"]
 		}
 	},

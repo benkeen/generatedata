@@ -24,7 +24,12 @@ try {
         echo json_encode($response);
     } else {
 
-        // don't output any headers. Export Types may be generating it in any sort of format, we don't know here.
+        // Export Types may choose to return a "headers" string or array containing headers to output
+
+        // TODO think about when not exhausted
+//        if ($response["headers"]) {
+//            header("Content-Type: {$response["contentTypeHeader"]}");
+//        }
         echo $response["content"];
     }
 

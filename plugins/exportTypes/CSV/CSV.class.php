@@ -12,26 +12,14 @@ class CSV extends ExportTypePlugin {
 	public $L = array();
 
 
-	function generate($generator) {
-		$exportTarget = $generator->getExportTarget();
-		$postData     = $generator->getUserSettings();
-		$data         = $generator->generateExportData();
+	public function generate($generator) {
+		$this->genEnvironment = $generator->genEnvironment; // API / POST
+		$this->userSettings = $generator->getUserSettings();
 
-		$csvDelimiter = ($postData["etCSV_delimiter"] == '\t') ? "\t" : $postData["etCSV_delimiter"];
-		$csvLineEndings = $postData["etCSV_lineEndings"];
+		$csvDelimiter = $this->getCSVDelimiter();
+		$newline      = $this->getLineEndingChar();
 
-		switch ($csvLineEndings) {
-			case "Windows":
-				$newline = "\r\n";
-				break;
-			case "Unix":
-				$newline = "\n";
-				break;
-			case "Mac":
-			default:
-				$newline = "\r";
-				break;
-		}
+		$data = $generator->generateExportData();
 
 		$content = "";
 		if ($data["isFirstBatch"]) {
@@ -64,12 +52,12 @@ class CSV extends ExportTypePlugin {
 	 * @param Generator $generator
 	 * @return string
 	 */
-	function getDownloadFilename($generator) {
+	public function getDownloadFilename($generator) {
 		$time = date("M-j-Y");
 		return "data{$time}.csv";
 	}
 
-	function getAdditionalSettingsHTML() {
+	public function getAdditionalSettingsHTML() {
 		$LANG = Core::$language->getCurrentLanguageStrings();
 
 		$html =<<< END
@@ -104,5 +92,41 @@ class CSV extends ExportTypePlugin {
 END;
 
 		return $html;
+	}
+
+	private function getCSVDelimiter() {
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$settings = $this->userSettings->export->settings;
+			$format = $settings->delimiter;
+		} else {
+			$format = ($this->userSettings["etCSV_delimiter"] == '\t') ? "\t" : $this->userSettings["etCSV_delimiter"];
+		}
+		return $format;
+	}
+
+
+	// return a string: "Windows", "Unix" or "Mac"
+	private function getLineEndingChar() {
+		$type = "";
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$type = $this->userSettings->export->eol;
+		} else {
+			$type = $this->userSettings["etCSV_lineEndings"];
+		}
+
+		$newline = "";
+		switch ($type) {
+			case "Windows":
+				$newline = "\r\n";
+				break;
+			case "Unix":
+				$newline = "\n";
+				break;
+			case "Mac":
+			default:
+				$newline = "\r";
+				break;
+		}
+		return $newline;
 	}
 }
