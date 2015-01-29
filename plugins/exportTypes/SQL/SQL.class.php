@@ -19,12 +19,15 @@ class SQL extends ExportTypePlugin {
 	protected $exportTypeName = "SQL";
 	protected $jsModules = array("SQL.js");
 	protected $codeMirrorModes = array("sql");
+	protected $contentTypeHeader = "application/octet-stream";
+
 	public $L = array();
 
 	// stores various info about the current generation set
+	private $genEnvironment; // "API" or "POST"
 	private $template;
 	private $numericFields;
-	private $postData;
+	private $userSettings;
 	private $exportTarget;
 	private $isFirstBatch;
 	private $isLastBatch;
@@ -39,23 +42,22 @@ class SQL extends ExportTypePlugin {
 
 
 	function generate($generator) {
+		$this->genEnvironment = $generator->genEnvironment;
 		$this->template     = $generator->getTemplateByDisplayOrder();
-		$this->postData     = $generator->getUserSettings();
+		$this->userSettings = $generator->getUserSettings();
 		$this->exportTarget = $generator->getExportTarget();
+
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$this->exportTarget = "promptDownload";
+		}
+
 		$this->isFirstBatch = $generator->isFirstBatch();
 		$this->isLastBatch  = $generator->isLastBatch();
 		$this->data         = $generator->generateExportData();
 		$this->currentBatchFirstRow = $generator->getCurrentBatchFirstRow();
 
 		// grab whatever settings where chosen by the user
-		$this->includeDropTable      = isset($this->postData["etSQL_dropTable"]);
-		$this->createTable           = isset($this->postData["etSQL_createTable"]);
-		$this->databaseType          = $this->postData["etSQL_databaseType"];
-		$this->tableName             = $this->postData["etSQL_tableName"];
-		$this->backquote             = isset($this->postData["etSQL_encloseWithBackquotes"]) ? "`" : "";
-		$this->sqlStatementType      = isset($this->postData["etSQL_statementType"]) ? $this->postData["etSQL_statementType"] : "insert";
-		$this->primaryKey            = (isset($this->postData["etSQL_primaryKey"])) ? $this->postData["etSQL_primaryKey"] : "default";
-		$this->insertBatchSize       = ($this->isBatchSizeValid($this->postData["etSQL_insertBatchSize"])) ? $this->postData["etSQL_insertBatchSize"] : 1;
+		$this->extractSettings();
 
 		foreach ($this->template as $item) {
 			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
@@ -211,7 +213,6 @@ END;
 		$content = "";
 		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
 		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
-
 
 		if ($this->isFirstBatch) {
 			if ($this->includeDropTable) {
@@ -457,10 +458,10 @@ END;
 					}
 				}
 				$rowDataStr[] = implode(",", $displayVals);
-                                if (count($rowDataStr) == $this->insertBatchSize) {
-                                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-                                    $rowDataStr = array();
-                                }
+				if (count($rowDataStr) == $this->insertBatchSize) {
+					$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+					$rowDataStr = array();
+				}
 			} else {
 				$pairs = array();
 				for ($j=0; $j<$numCols; $j++) {
@@ -478,9 +479,9 @@ END;
 				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
 			}
 		}
-                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-                }
+		if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+			$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+		}
 
 		return $content;
 	}
@@ -567,9 +568,9 @@ END;
 				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
 			}
 		}
-                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-                    $content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-                }
+		if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+			$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+		}
 
 		return $content;
 	}
@@ -668,15 +669,15 @@ END;
 				}
 			}
 		}
-                if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-                    $content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES(" . implode('),(', $rowDataStr) . ");$endLineChar";
-                }
+		if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+			$content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES(" . implode('),(', $rowDataStr) . ");$endLineChar";
+		}
 
 		return $content;
 	}
 
 	
-	function wrapGeneratedContent($generatedContent) {
+	private function wrapGeneratedContent($generatedContent) {
 		$html =<<< END
 <!DOCTYPE html>
 <html>
@@ -692,5 +693,41 @@ $generatedContent
 </html>
 END;
 		return $html;
+	}
+
+
+	private function extractSettings() {
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$settings = $this->userSettings->export->settings;
+
+			// these two are enforced as required by the schema file
+			$this->databaseType     = $settings->databaseType;
+			$this->tableName        = $settings->tableName;
+
+			// optional values. Note the default values for each
+			$this->includeDropTable = property_exists($settings, "dropTable") ? $settings->dropTable : false;
+			$this->createTable      = property_exists($settings, "createTable") ? $settings->createTable : true;
+			$backquote = property_exists($settings, "encloseWithBackquotes") ? $settings->encloseWithBackquotes : false;
+			$this->backquote = ($backquote) ? "`" : "";
+			$this->sqlStatementType = property_exists($settings, "statementType") ? $settings->statementType : "insert";
+
+			$addPrimaryKey = property_exists($settings, "addPrimaryKey") ? $settings->addPrimaryKey : null;
+			if ($addPrimaryKey == null) {
+				$this->primaryKey = false;
+			} else {
+				$this->primaryKey = ($addPrimaryKey) ? "default" : "none";
+			}
+
+			$this->insertBatchSize = property_exists($settings, "insertBatchSize") ? $settings->insertBatchSize : 1;
+		} else {
+			$this->includeDropTable = isset($this->userSettings["etSQL_dropTable"]);
+			$this->createTable = isset($this->userSettings["etSQL_createTable"]);
+			$this->databaseType = $this->userSettings["etSQL_databaseType"];
+			$this->tableName = $this->userSettings["etSQL_tableName"];
+			$this->backquote = isset($this->userSettings["etSQL_encloseWithBackquotes"]) ? "`" : "";
+			$this->sqlStatementType = isset($this->userSettings["etSQL_statementType"]) ? $this->userSettings["etSQL_statementType"] : "insert";
+			$this->primaryKey = (isset($this->userSettings["etSQL_primaryKey"])) ? $this->userSettings["etSQL_primaryKey"] : "default";
+			$this->insertBatchSize = ($this->isBatchSizeValid($this->userSettings["etSQL_insertBatchSize"])) ? $this->userSettings["etSQL_insertBatchSize"] : 1;
+		}
 	}
 }
