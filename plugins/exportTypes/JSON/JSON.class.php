@@ -167,7 +167,7 @@ END;
 			$jsonSettings = $this->userSettings->export->settings;
 			$stripWhitespace = (property_exists($jsonSettings, "stripWhitespace")) ? $jsonSettings->stripWhitespace : $default;
 		} else {
-			$stripWhitespace = isset($userSettings["etJSON_whitespace"]);
+			$stripWhitespace = isset($this->userSettings["etJSON_whitespace"]);
 		}
 		return $stripWhitespace;
 	}
@@ -182,7 +182,7 @@ END;
 			$jsonSettings = $this->userSettings->export->settings;
 			$format = (property_exists($jsonSettings, "dataStructureFormat")) ? $jsonSettings->dataStructureFormat : $default;
 		} else {
-			$format = isset($postData["etJSON_dataStructureFormat"]) ? $postData["etJSON_dataStructureFormat"] : $default;
+			$format = isset($this->userSettings["etJSON_dataStructureFormat"]) ? $this->userSettings["etJSON_dataStructureFormat"] : $default;
 		}
 		return $format;
 	}

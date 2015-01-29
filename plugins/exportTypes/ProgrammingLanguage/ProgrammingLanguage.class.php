@@ -16,10 +16,11 @@ class ProgrammingLanguage extends ExportTypePlugin {
 
 
 	public function generate($generator) {
-		$postData     = $generator->getUserSettings();
-		$data         = $generator->generateExportData();
-		$template     = $generator->getTemplateByDisplayOrder();
-		$language = $postData["etProgrammingLanguage_language"];
+		$this->genEnvironment = $generator->genEnvironment; // API / POST
+		$this->userSettings   = $generator->getUserSettings();
+		$data     = $generator->generateExportData();
+		$template = $generator->getTemplateByDisplayOrder();
+		$language = $this->getLanguage();
 
 		foreach ($template as $item) {
 			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
@@ -216,5 +217,14 @@ END;
 		return $content;
 	}
 
+	private function getLanguage() {
+		$language = "";
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$language = $this->userSettings->export->settings->language;
+		} else {
+			$language = $this->userSettings["etProgrammingLanguage_language"];
+		}
+		return $language;
+	}
 }
 

@@ -7,7 +7,7 @@
 			"type": "string"
 		},
         "databaseType": {
-            "enum": []
+            "enum": ["MySQL", "Postgres", "SQLite", "Oracle", "MSSQL"]
         },
         "createTable": {
             "type": "boolean"
@@ -24,8 +24,8 @@
         "insertBatchSize": {
             "type": "integer"
         },
-        "primaryKey": {
-            "type": "integer"
+        "addPrimaryKey": {
+            "type": "boolean"
         }
 	},
 	"required": ["tableName", "databaseType"]

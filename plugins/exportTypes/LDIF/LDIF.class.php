@@ -10,8 +10,7 @@ class LDIF extends ExportTypePlugin {
     protected $exportTypeName = "LDIF";
 
     public function generate($generator) {
-        $postData = $generator->getUserSettings();
-        $content  = $this->generateLDIF($generator, $postData);
+        $content  = $this->generateLDIF($generator);
 
 		return array(
 			"success" => true,
@@ -24,7 +23,7 @@ class LDIF extends ExportTypePlugin {
 		return "data{$time}.ldif";
     }
     
-	private function generateLDIF($generator, $postData) {
+	private function generateLDIF($generator) {
 		$data = $generator->generateExportData();
 		$numCols = count($data["colData"]);
 		$content = "";
