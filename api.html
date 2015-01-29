@@ -106,6 +106,7 @@
 					<li><a href="#enable"><i class="icon-chevron-right"></i> How to Enable</a></li>
 					<li><a href="#how_it_works"><i class="icon-chevron-right"></i> How the API Works</a></li>
 					<li><a href="#readme_files"><i class="icon-chevron-right"></i> README files</a></li>
+					<li><a href="#error_handling"><i class="icon-chevron-right"></i> Error Handling</a></li>
 				</ul>
 			</div>
 			<div class="span9">
@@ -139,32 +140,64 @@
 					<h2>How to Enable</h2>
 					<p>
 						The API is disabled by default. To enable it, first <a href="install.html" target="_blank">install the
-						script</a>, then edit your <code>settings.php</code> file and add the following line:
+						script</a>, then edit your <code>settings.php</code> file (found in the root folder of where you installed it)
+						and add the following line:
 					</p>
 
 <pre class="prettyprint linenums">
+$apiEnabled = true;
 </pre>
+
+					<p>
+						Once this is done, open up the following URL in your browser: <code>http://yoursite/api/v1/data</code> (you'll
+						need to replace the <code>yoursite</code> bit with whatever URL is appropriate. If it's working properly,
+						you should see the following:
+					</p>
+
+<pre class="prettyprint linenums">
+{
+  "error": "Sorry, this endpoint only accepts POST requests. Please see the help documentation."
+}
+</pre>
+
 				</section>
 
 				<hr size="1" />
 
-				<section id="">
+				<section id="how_it_works">
 					<h2>How to the API Works</h2>
 					<p>
+
 					</p>
 				</section>
 
 				<hr size="1" />
 
-				<section id="">
+				<section id="readme_files">
 					<h2>README files</h2>
+					<p>
+						All Data Types and Export Types have their own <code>README.md</code> files containing documentation about
+						how they can be called via the API. They all contain example JSON that you can POST to your API endpoint. This
+						should greatly help you get up to speed quickly! To find the READMEs, just browse on github to the appropriate
+						plugin folder. For example:
+					</p>
+
+					<ul>
+						<li>AutoIncrement Data Type README.md</li>
+						<li>JSON Export Type README.md</li>
+					</ul>
+				</section>
+
+				<hr size="1" />
+
+				<section id="error_handling">
+					<h2>Error Handling</h2>
 					<p>
 
 					</p>
 				</section>
 
 				<hr size="1" />
-
 			</div>
 		</div>
 	</div>
