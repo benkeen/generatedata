@@ -49,7 +49,8 @@ Post the following JSON content to the following API path:
     "export": {
         "type": "SQL",
         "settings" {
-            
+            "tableName": "myTable",
+            "databaseType": "MySQL"
         }
     }
 }

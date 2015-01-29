@@ -9,6 +9,7 @@ class XML extends ExportTypePlugin {
 	protected $exportTypeName = "XML";
 	protected $jsModules = array("XML.js");
 	protected $codeMirrorModes = array("xml", "smarty", "smartymixed");
+	protected $contentTypeHeader = "text/xml";
 	public $L = array();
 
 
@@ -23,19 +24,20 @@ class XML extends ExportTypePlugin {
 
 	/**
 	 * Generates the XML data.
-	 * @see ExportTypePlugin::generate()
+	 * @param $generator
 	 * @return array
 	 */
 	function generate($generator) {
-		$postData     = $generator->getUserSettings();
-		$useCustomXMLFormat = isset($postData["etXMLUseCustomExportFormat"]);
+		$this->genEnvironment = $generator->genEnvironment; // API / POST
+		$this->userSettings   = $generator->getUserSettings();
+		$useCustomXMLFormat   = $this->isUsingCustomXMLFormat();
 
 		$content = "";
 		if ($useCustomXMLFormat) {
-			$smartyTemplate = (get_magic_quotes_gpc()) ? stripslashes($postData["etXMLCustomHTMLSource"]) : $postData["etXMLCustomHTMLSource"];
+			$smartyTemplate = $this->getCustomTemplate();
 			$content = $this->generateCustomXML($generator, $smartyTemplate);
 		} else {
-			$content = $this->generateXML($generator, $postData);
+			$content = $this->generateXML($generator, $this->userSettings);
 		}
 
 		return array(
@@ -114,11 +116,12 @@ END;
 	 *
 	 * @param object $generator the Generator object
 	 * @param array $postData
+	 * @return string
 	 */
 	private function generateXML($generator, $postData) {
 		$data = $generator->generateExportData();
-		$rootNodeName   = $postData["etXMLRootNodeName"];
-		$recordNodeName = $postData["etXMLRecordNodeName"];
+		$rootNodeName   = $this->getXMLRootNodeName();
+		$recordNodeName = $this->getXMLRecordNodeName();
 
 		$content = "";
 		if ($generator->isFirstBatch()) {
@@ -146,11 +149,55 @@ END;
 	 * This is used to generate custom XML formats.
 	 *
 	 * @param object $generator the Generator object
-	 * @param string $smartyTemplate the Smarty content entered by
+	 * @param string $smartyTemplate the Smarty content
+	 * @return string
 	 */
 	private function generateCustomXML($generator, $smartyTemplate) {
 		$data = $generator->generateExportData();
 		return Templates::evalSmartyString($smartyTemplate, $data);
 	}
 
+	// TODO group these!
+
+	private function isUsingCustomXMLFormat() {
+		$usingXMLFormat = false;
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$settings = $this->userSettings->export->settings;
+			$usingXMLFormat = property_exists($settings, "useCustomExportFormat") ? $settings->useCustomExportFormat : false;
+		} else {
+			$usingXMLFormat = $this->userSettings["etXMLUseCustomExportFormat"];
+		}
+		return $usingXMLFormat;
+	}
+
+
+	private function getCustomTemplate() {
+		$template = "";
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$template = $this->userSettings->export->settings->customTemplate;
+		} else {
+			$template = (get_magic_quotes_gpc()) ? stripslashes($this->userSettings["etXMLCustomHTMLSource"]) : $this->userSettings["etXMLCustomHTMLSource"];
+		}
+		return $template;
+	}
+
+	private function getXMLRootNodeName() {
+		$name = "";
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$name = $this->userSettings->export->settings->rootNodeName;
+		} else {
+			$name = $this->userSettings["etXMLRootNodeName"];
+		}
+		return $name;
+	}
+
+	private function getXMLRecordNodeName() {
+		$name = "";
+		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+			$name = $this->userSettings->export->settings->recordNodeName;
+		} else {
+			$name = $this->userSettings["etXMLRecordNodeName"];
+		}
+		return $name;
+	}
 }

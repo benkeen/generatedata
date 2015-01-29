@@ -12,9 +12,8 @@
         "useCustomExportFormat": {
             "type": "boolean"
         },
-        "customFormat": {
+        "customTemplate": {
             "type": "string"
         }
-	},
-	"required": ["rootNodeName", "recordNodeName"]
+	}
 }
