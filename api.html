@@ -105,7 +105,7 @@
 					<li class="active"><a href="#intro"><i class="icon-chevron-right"></i> Introduction</a></li>
 					<li><a href="#enable"><i class="icon-chevron-right"></i> How to Enable</a></li>
 					<li><a href="#how_it_works"><i class="icon-chevron-right"></i> How the API Works</a></li>
-					<li><a href="#readme_files"><i class="icon-chevron-right"></i> README files</a></li>
+					<li><a href="#readme_files"><i class="icon-chevron-right"></i> Examples / README files</a></li>
 					<li><a href="#error_handling"><i class="icon-chevron-right"></i> Error Handling</a></li>
 				</ul>
 			</div>
@@ -115,8 +115,8 @@
 					<div class="hero-unit">
 						<h1>API</h1>
 						<p>
-							This page explains how to use the REST API to programmatically generate data rather than
-							via the UI.
+							This page explains how to use the REST API to programmatically generate data without having to use
+							the UI.
 						</p>
 					</div>
 
@@ -124,9 +124,9 @@
 					<p>
 						The API was added in 3.2.0. All currently available Data Types and Export Types were updated for
 						compatibility, so you can now generate custom data by calling a REST endpoint. At this stage the API
-						is quite basic: there's no user authentication and the API is either enabled or not. This page
-						explains how it all works: how to enable the API and how you can construct your requests to retrieve
-						precisely what data you need.
+						is quite basic: there's no user authentication and the API is either enabled or not. That's pretty much it.
+						This page explains how it all works: how to enable the API and how you can construct your requests to
+						retrieve precisely what data you need.
 					</p>
 					<p>
 						Please note: the API is only available for your own installations. It's not available via the main
@@ -138,9 +138,10 @@
 
 				<section id="enable">
 					<h2>How to Enable</h2>
+
 					<p>
 						The API is disabled by default. To enable it, first <a href="install.html" target="_blank">install the
-						script</a>, then edit your <code>settings.php</code> file (found in the root folder of where you installed it)
+						script</a> then edit your <code>settings.php</code> file (found in the root folder of where you installed it)
 						and add the following line:
 					</p>
 
@@ -165,16 +166,109 @@ $apiEnabled = true;
 				<hr size="1" />
 
 				<section id="how_it_works">
-					<h2>How to the API Works</h2>
-					<p>
+					<h2>How the API Works</h2>
 
+					<p>
+						Now for the fun stuff! The API works by allowing you to <b>POST JSON content to the /api/v1/data endpoint.</b>
+						The JSON content contains all the settings needed to generate the content you want. It's the JSON equivalent
+						of using the UI.
 					</p>
+
+					<h4>POST, to GET?! But this isn't RESTful!</h4>
+
+					<p>
+						Honestly, I couldn't care less. I've always found REST an <i>adequate-at-best</i> set of guidelines, so
+						believe me I'm not losing any sleep over this. The problem was that the range of settings offered by the
+						generatedata UI is <b>vast</b>. Offering the same functionality via REST ruled out passing all the info
+						via the query string since the URLs would become far too long. So instead, "REST Best Practices"
+						(i.e. "REST Least Awful practices") says you should use a POST. Sure.
+					</p>
+
+					<h4>Now back to regular scheduled programming</h4>
+
+					<p>
+						So! As I was saying, you need to POST some JSON content in the body of the request to the <b>/api/v1/data</b>
+						endpoint. The top-level JSON properties are of the following form:
+					</p>
+
+<pre class="prettyprint linenums">
+{
+	"numRows": N,
+	"countries": [],
+	"rows": [
+		// list of Data Types hear, each
+	],
+	"export": {
+		// export settings here
+	}
+}</pre>
+
+					<ul>
+						<li><code>numRows</code>: (<b>required</b>). The number of rows to generate.</li>
+						<li><code>countries</code>: (<b>optional</b>). An array of country slugs. These correspond to the Country
+						plugins section within the UI. To find the available country slugs, take a look at the folders in the
+						<b>/plugins/countries</b>. In those folders, each Country plugin has a <code>[Country].class.php</code>
+						file. At the top of those files, there's a <code>countrySlug</code> setting - that's the string value
+						you'll want to use.</li>
+						<li><code>rows</code>: (<b>required</b>). This is where you define what data you actually want to generate.
+						This is an array of objects, each object needs to be of the following form:
+
+<pre class="prettyprint linenums">
+{
+	"type": "DataTypeFolderName",
+	"title": "My title",
+	"settings": {
+	  // ...
+	}
+}
+</pre>
+
+							<ul>
+								<li><code>type</code>: (<b>required</b>). The folder name of the Data Type you want to use.</li>
+								<li><code>title</code>: (<b>required</b>). the label for the field. Depending on your Export Type, this will be used
+								for things like the XML node name, database column name, JSON property name, etc. </li>
+								<li><code>settings</code>: (<b>optional</b>). This object contains any arbitrary settings that belong to the
+								Data Type. Each Data Type is unique and has 0-N settings. For details about the available settings for each
+								Data Type, check out the <a href="#readme_files">README files</a> section below.</li>
+							</ul>
+						</li>
+						<li>
+							<code>export</code>: (<b>required</b>). This object specifies what format you want your generated data to be in.
+							In other words, it targets a particular Export Type. Structurally it looks very much like the Data Type object:
+
+<pre class="prettyprint linenums">
+{
+	"type": "ExportTypeFolderName",
+	"settings": {
+	  // ...
+	}
+}
+</pre>
+
+							<ul>
+								<li><code>type</code>: (<b>required</b>). The folder name of the Export Type you want to use.</li>
+								<li><code>settings</code>: (<b>optional</b>). This object contains any arbitrary settings that belong to the
+									Export Type. Like with Data Types, every Export Type is unique and has 0-N settings. For details about
+									the available settings for each Data Type, check out the <a href="#readme_files">README files</a> section below.</li>
+							</ul>
+
+						</li>
+					</ul>
+
+
+					<p>
+						Since generatedata.com is really just an <i>engine</i> designed to be extended, the vast bulk of the work being
+						done to generate the data is done by plugins: Data Types and Export Types. The API is made possible by
+						getting all plugins to be <b>well defined</b>. Any plugin that offers one or more custom settings defines a
+						<code>schema.json</code> file containing a schema of those settings.
+					</p>
+
 				</section>
 
 				<hr size="1" />
 
 				<section id="readme_files">
-					<h2>README files</h2>
+					<h2>Examples / README files</h2>
 					<p>
 						All Data Types and Export Types have their own <code>README.md</code> files containing documentation about
 						how they can be called via the API. They all contain example JSON that you can POST to your API endpoint. This
@@ -183,9 +277,15 @@ $apiEnabled = true;
 					</p>
 
 					<ul>
-						<li>AutoIncrement Data Type README.md</li>
-						<li>JSON Export Type README.md</li>
+						<li><a href="https://github.com/benkeen/generatedata/tree/master/plugins/dataTypes/AlphaNumeric">AutoIncrement Data Type README.md</a></li>
+						<li><a href="https://github.com/benkeen/generatedata/tree/master/plugins/exportTypes/JSON">JSON Export Type README.md</a></li>
 					</ul>
+
+					<p>
+						If something isn't clear, or you feel it's incomplete either create a github issue, or just fork the project
+						and fix the doc yourself. At the time of writing (Jan 2015), the doc is pretty complete, and I'll endeavor
+						to keep it up to date.
+					</p>
 				</section>
 
 				<hr size="1" />
@@ -193,8 +293,13 @@ $apiEnabled = true;
 				<section id="error_handling">
 					<h2>Error Handling</h2>
 					<p>
-
+						I've included a lot of (hopefully useful) error handling for the API to provide human-friendly feedback on
+						what's gone wrong. I'll just jot down a few notes here.
 					</p>
+
+					<h4>Syntax error</h4>
+
+					
 				</section>
 
 				<hr size="1" />
