@@ -107,6 +107,7 @@
 					<li><a href="#how_it_works"><i class="icon-chevron-right"></i> How the API Works</a></li>
 					<li><a href="#readme_files"><i class="icon-chevron-right"></i> Examples / README files</a></li>
 					<li><a href="#error_handling"><i class="icon-chevron-right"></i> Error Handling</a></li>
+					<li><a href="#questions_bugs"><i class="icon-chevron-right"></i> Questions / Bugs?</a></li>
 				</ul>
 			</div>
 			<div class="span9">
@@ -299,10 +300,51 @@ $apiEnabled = true;
 
 					<h4>Syntax error</h4>
 
-					
+					<p>
+						The most basic error is a JSON syntax error. That'll yield the following error:
+					</p>
+
+<pre class="prettyprint linenums">
+{"error":"API_INVALID_JSON","error_details":"Syntax error (JSON_ERROR_SYNTAX)"}
+</pre>
+
+					<p>
+						Unfortunately the JS validator being used doesn't contain any more info than that. So if you run into this problem
+						go online and find a JS validator like <a href="http://jsonlint.com/" target="_blank">JSONLint.com</a>.
+					</p>
+
+					<h4>Missing / Invalid Data Type / Export Type settings</h4>
+
+					<p>
+						The errors here are super clear. It tells you exactly where the error occurs and what type of error is
+						occurring. For example:
+					</p>
+
+
+<pre class="prettyprint linenums">
+{
+	"error": "API_INVALID_DATA_TYPE_JSON",
+	"error_details": "Invalid Data Type JSON `settings` content passed",
+	"validation_error": "Missing required property: placeholder",
+	"location": "index 1 of the `rows` array",
+	"data_type":"AlphaNumeric"
+}
+</pre>
+
+					<p>
+						Hopefully these sort of errors will be easily located based on the supplied errors. If not, let me know!
+					</p>
 				</section>
 
 				<hr size="1" />
+
+				<section id="questions_bugs">
+					<h2>Questions / Bugs?</h2>
+					<p>
+						Create an issue on github. That's by far the best way to reach me - and others - who may be able to respond.
+					</p>
+				</section>
+
 			</div>
 		</div>
 	</div>
