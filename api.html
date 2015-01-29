@@ -123,15 +123,15 @@
 
 					<h2>Introduction</h2>
 					<p>
-						The API was added in 3.2.0. All currently available Data Types and Export Types were updated for
-						compatibility, so you can now generate custom data by calling a REST endpoint. At this stage the API
-						is quite basic: there's no user authentication and the API is either enabled or not. That's pretty much it.
-						This page explains how it all works: how to enable the API and how you can construct your requests to
-						retrieve precisely what data you need.
+						The API was added in 3.2.0. All Data Types and Export Types were updated for compatibility, so you can
+						now generate custom data by calling a REST endpoint. At this stage the API is pretty basic: there's no
+						user authentication and the API is either enabled or not. That's pretty much it. This page explains how it
+						all works: how to enable the API and how you can construct your requests to retrieve precisely what data
+						you need.
 					</p>
 					<p>
 						Please note: the API is only available for your own installations. It's not available via the main
-						generatedata.com website due to bandwidth constraints.
+						generatedata.com website mainly due to bandwidth constraints.
 					</p>
 				</section>
 
@@ -161,6 +161,9 @@ $apiEnabled = true;
   "error": "Sorry, this endpoint only accepts POST requests. Please see the help documentation."
 }
 </pre>
+					<p>
+						So far so good!
+					</p>
 
 				</section>
 
@@ -175,11 +178,11 @@ $apiEnabled = true;
 						of using the UI.
 					</p>
 
-					<h4>POST, to GET?! But this isn't RESTful!</h4>
+					<h4>POST, to GET something?! But this isn't RESTful!</h4>
 
 					<p>
-						Honestly, I couldn't care less. I've always found REST an <i>adequate-at-best</i> set of guidelines, so
-						believe me I'm not losing any sleep over this. The problem was that the range of settings offered by the
+						Quite honestly, I couldn't care less. I've always found REST an <i>adequate-at-best</i> set of guidelines,
+						so believe me I'm not losing any sleep over this. The problem was that the range of settings offered by the
 						generatedata UI is <b>vast</b>. Offering the same functionality via REST ruled out passing all the info
 						via the query string since the URLs would become far too long. So instead, "REST Best Practices"
 						(i.e. "REST Least Awful practices") says you should use a POST. Sure.
