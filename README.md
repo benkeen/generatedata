@@ -66,8 +66,9 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-3.2.0 - In Development, Jan 2015
-- Adds a new REST API as an alternative way to generate data.
+3.2.0 - Jan 29, 2015
+- Adds a new REST API as an alternative way to generate data. See the [API Documentation](http://benkeen.github.io/generatedata/api.html)
+for more information.
 
 3.1.4 - Sept 6, 2014
 - Chinese language file added, thanks to [Zhao Yang](https://github.com/jptiancai)

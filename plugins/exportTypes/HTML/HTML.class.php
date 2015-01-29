@@ -36,8 +36,6 @@ class HTML extends ExportTypePlugin {
 
 		if ($format == "custom") {
 			$template = $this->getCustomTemplate();
-			error_log($template);
-
 			$content .= $this->genFormatCustom($data, $template);
 		} else {
 
