@@ -874,7 +874,7 @@ define([
 
         // ensure the number of rows is an acceptable number
         _numRowsToGenerate = parseInt(_numRowsToGenerate, 10);
-        if (_numRowsToGenerate > C.MAX_GENERATED_ROWS) {
+        if (C.MAX_GENERATED_ROWS > 0 && _numRowsToGenerate > C.MAX_GENERATED_ROWS) {
             var msg = L.num_rows_too_large.replace(/%1/, C.MAX_GENERATED_ROWS);
             utils.addValidationErrors({ els: null, error: msg });
             $("#gdNumRowsToGenerate").val(C.MAX_GENERATED_ROWS);

@@ -20,7 +20,8 @@ class Core {
 	private static $dbTablePrefix = "gd_";
 	private static $encryptionSalt;
 	private static $errorReporting = 1;
-	private static $maxGeneratedRows = 100000;
+	// -1 is unlimited for generated row number
+	private static $maxGeneratedRows = -1;
 	private static $defaultNumRows = 100;
 	private static $maxDemoModeRows = 100;
 	private static $defaultLanguageFile = "en";
