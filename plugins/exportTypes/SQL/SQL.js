@@ -107,19 +107,43 @@ define([
 		// first, check the Table Column names that have been entered are valid
 		var errorFields = [];
 		var errorFieldVisibleRowNums = [];
-		var validTableCol = new RegExp("^[a-zA-Z][0-9a-zA-Z_$]*$");
+
+    // as noted in issues/262, SQL Server allows spaces in the db names, hence the separate regexp
+    var validTableCol          = new RegExp("^[a-zA-Z][0-9a-zA-Z_$]*$");
+    var validTableColSQLServer = new RegExp("^[a-zA-Z][0-9a-zA-Z_\\s]*$");
+
+    var selectedSQLMode = $("#etSQL_databaseType").val();
+
 		for (var i=0; i<rowNums.length; i++) {
 			var tableColField = $("#gdTitle_" + rowNums[i]);
 			var tableColFieldVal = tableColField.val();
 
 			// we don't bother throwing an error if the field is empty, because that's caught by the Core script
-			if (tableColFieldVal !== "" && !validTableCol.test(tableColFieldVal)) {
-				errorFields.push(tableColField);
-				errorFieldVisibleRowNums.push(generator.getVisibleRowOrderByRowNum(rowNums[i]));
-			}
+			if (tableColFieldVal === "") {
+        continue;
+      }
+
+      var hasError = false;
+      if (selectedSQLMode === "MSSQL") {
+        if (!validTableColSQLServer.test(tableColFieldVal)) {
+          hasError = true;
+        }
+      } else {
+        if (!validTableCol.test(tableColFieldVal)) {
+          hasError = true;
+        }
+      }
+
+      if (hasError) {
+        errorFields.push(tableColField);
+        errorFieldVisibleRowNums.push(generator.getVisibleRowOrderByRowNum(rowNums[i]));
+      }
 		}
 
 		if (errorFields.length) {
+
+      // N.B. the error message here isn't quite right for SQL Server, which permits spaces. But frankly it's best if they
+      // don't know about it. The code will work (the PHP side will automatically detect the space and wrap it in brackets)
 			errors.push({
 				els: errorFields,
 				error: LANG.validation_invalid_col_name + "<b>" + errorFieldVisibleRowNums.join(", ") + "</b>"
