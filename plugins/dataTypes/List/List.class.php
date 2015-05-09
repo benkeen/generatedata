@@ -74,6 +74,7 @@ class DataType_List extends DataTypePlugin {
 		<option value="{$this->L["company_names"]}">{$this->L["example_8"]}</option>
 		<option value="{$this->L["companies"]}">{$this->L["example_9"]}</option>
 		<option value="{$this->L["drug_names"]}">{$this->L["example_10"]}</option>
+		<option value="{$this->L["food_types"]}">{$this->L["example_11"]}</option>
 	</select>
 	<div>
 		&nbsp;{$this->L["separated_by_pipe"]}
