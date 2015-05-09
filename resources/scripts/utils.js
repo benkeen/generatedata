@@ -72,6 +72,12 @@ define([
 		return result;
 	};
 
+  // not thrilled about this, but it's fully functional despite the deprecated function
+  var decodeUTF8 = function (str) {
+    return decodeURIComponent(escape(str));
+  };
+
+
 	return {
 
 		/**
@@ -296,7 +302,7 @@ define([
 		},
 
 		getParamByName: _getParamByName,
-
-		generateRandomAlphaNumericStr: _generateRandomAlphaNumericStr
+		generateRandomAlphaNumericStr: _generateRandomAlphaNumericStr,
+    decodeUTF8: decodeUTF8
 	};
 });

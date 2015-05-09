@@ -20,7 +20,7 @@ class Database {
 		}
 
 		try {
-			@mysqli_query("SET NAMES 'utf8'", $this->link);
+			@mysqli_query($this->link, "SET NAMES 'utf8'");
 		} catch (Exception $e) {
 		 //  die ("couldn't find database '$g_db_name': " . mysql_error());
 		}

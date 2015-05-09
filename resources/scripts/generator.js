@@ -1491,6 +1491,7 @@ define([
 
 		_isLoaded = true;
 		_dataSets = response.content.configurations;
+
 		_accountInfo = response.content;
 
 		// remove configurations from the account Info object. This is just to prevent someone (like me) accidentally using
@@ -1654,7 +1655,7 @@ define([
 				var isPublic    = (currDataSet.status === "public") ? 'checked="checked"' : "";
 
 				row = '<tr data-id="' + currDataSet.configuration_id + '">' +
-					'<td class="dataSetName leftAligned">' + currDataSet.configuration_name + '</td>' +
+					'<td class="dataSetName leftAligned">' + utils.decodeUTF8(currDataSet.configuration_name) + '</td>' +
 					'<td class="leftAligned">' + dateCreated + '</td>' +
 					'<td class="leftAligned">' + lastUpdated + '</td>' +
 					'<td align="center"><input type="checkbox" class="gdDataSetStatus" id="gdDataSetStatus_' + currDataSet.configuration_id + '" ' + isPublic + ' /></td>' +
