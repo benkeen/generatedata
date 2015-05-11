@@ -181,7 +181,7 @@ define([
 				radius: 7,
 				height: 9,
 				width: 2,
-				dashes: 20,
+				dashes: 18,
 				opacity: 1,
 				padding: 0,
 				rotation: 1400,

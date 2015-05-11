@@ -89,13 +89,19 @@ END;
 				configuration_id mediumint(9) NOT NULL auto_increment,
 				status ENUM('public','private') NOT NULL,
 				date_created datetime NOT NULL,
-				last_updated datetime NOT NULL,
 				account_id mediumint(9) NOT NULL,
-				configuration_name varchar(100) NOT NULL,
-				content mediumtext NOT NULL,
 				num_rows_generated MEDIUMINT DEFAULT 0,
 				PRIMARY KEY (configuration_id)
 			)
+		";
+        $queries[] = "
+			CREATE TABLE {$prefix}configuration_history (
+				history_id mediumint(9) NOT NULL auto_increment,
+                configuration_id mediumint(9) NOT NULL,
+				last_updated datetime NOT NULL,
+				configuration_name varchar(100) NOT NULL,
+				content text NOT NULL
+			) PRIMARY KEY (history_id)
 		";
 		$queries[] = "
 			CREATE TABLE {$prefix}countries (

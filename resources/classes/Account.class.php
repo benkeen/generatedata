@@ -193,7 +193,6 @@ class Account {
 		}
 	}
 
-
 	public function getAccount() {
 		return array(
 			"isAnonymousAdmin" => $this->isAnonymousAdmin,
@@ -258,15 +257,28 @@ class Account {
 		);
 	}
 
+    /**
+     * As of 3.2.1, configurations are now backed up for every time the user clicks save. This method continues
+     * to work the same, but only returns the most recent configuration version from the history table.
+     */
 	public function getConfigurations() {
 		$accountID = $this->accountID;
 		$prefix   = Core::getDbTablePrefix();		
-		$response = Core::$db->query("
-			SELECT *, unix_timestamp(date_created) as date_created_unix, unix_timestamp(last_updated) as last_updated_unix
-			FROM   {$prefix}configurations
-			WHERE  account_id = $accountID
-			ORDER BY last_updated DESC
-		");
+
+        $response = Core::$db->query("
+            SELECT  c.*, ch.*
+            FROM {$prefix}configurations c
+              INNER JOIN {$prefix}configuration_history ch
+                ON c.configuration_id = ch.configuration_id
+              INNER JOIN
+              (
+                SELECT *, MAX(last_updated) maxDateAdded
+                FROM gd_configuration_history ch
+                GROUP BY configuration_id
+              ) summary ON c.configuration_id = summary.configuration_id AND ch.last_updated = summary.maxDateAdded
+            WHERE account_id = $accountID
+            ORDER BY ch.last_updated DESC
+        ");
 
 		if ($response["success"]) {
 			$data = array();
@@ -300,8 +312,12 @@ class Account {
 			WHERE account_id = {$accountID} AND
 				  configuration_id IN ($configIDStr)
 		");
+        $response2 = Core::$db->query("
+			DELETE FROM {$prefix}configuration_history
+			WHERE configuration_id IN ($configIDStr)
+		");
 
-		if ($response["success"]) {
+		if ($response["success"] && $response2["success"]) {
 			return array(
 				"success" => true,
 				"message" => $cleanedConfigurationIDs
@@ -334,49 +350,40 @@ class Account {
 		$prefix = Core::getDbTablePrefix();
 		$accountID = $this->accountID;
 
+        // if this is a new configuration, create the main record
 		if ($configurationID == null) {
-			$response = Core::$db->query("
-				INSERT INTO {$prefix}configurations (status, date_created, last_updated, account_id, configuration_name, content)
-				VALUES ('private', '$now', '$now', $accountID, '" . $configurationName . "', '" . $content . "')
+            $response = Core::$db->query("
+				INSERT INTO {$prefix}configurations (status, date_created, account_id)
+				VALUES ('private', '$now', $accountID)
 			");
+            if ($response["success"]) {
+                $configurationID = mysqli_insert_id(Core::$db->getDBLink());
+            } else {
+                return array(
+                    "success" => false,
+                    "message" => "There was a problem saving the configuration: " . $response["errorMessage"]
+                );
+            }
+        }
 
-			if ($response["success"]) {
-				$configurationID = mysqli_insert_id(Core::$db->getDBLink());
-				return array(
-					"success" => true,
-					"message" => $configurationID,
-					"lastUpdated" => $nowUnixTime
-				);
-			} else {
-				return array(
-					"success" => false,
-					"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
-				);
-			}
-		} else {
-			$response = Core::$db->query("
-				UPDATE {$prefix}configurations 
-				SET 	last_updated = '$now',
-						configuration_name = '" . $configurationName . "',
-						content = '" . $content . "'
-				WHERE account_id = $accountID AND
-						configuration_id = $configurationID
-			");
-
-			if ($response["success"]) {
-				return array(
-					"success" => true,
-					"message" => $configurationID,
-					"lastUpdated" => $nowUnixTime
-				);
-			} else {
-				return array(
-					"success" => false,
-					"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
-				);
-			}
-		}
+        $response2 = Core::$db->query("
+            INSERT INTO {$prefix}configuration_history (configuration_id, last_updated, configuration_name, content)
+            VALUES ($configurationID, '$now', '" . $configurationName . "', '" . $content . "')
+        ");
+        if ($response2["success"]) {
+            return array(
+                "success" => true,
+                "message" => $configurationID,
+                "lastUpdated" => $nowUnixTime
+            );
+        } else {
+            return array(
+                "success" => false,
+                "message" => "There was a problem saving the configuration: " . $response["errorMessage"]
+            );
+        }
 	}
+
 
 	public function copyConfiguration($data) {
 		$dataSetId         = Utils::sanitize($data["dataSetId"]);
@@ -384,35 +391,52 @@ class Account {
 
 		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
-			INSERT INTO {$prefix}configurations (status, date_created, last_updated, account_id, configuration_name, content, num_rows_generated)
-				SELECT status, date_created, last_updated, account_id, configuration_name, content, num_rows_generated
-				FROM {$prefix}configurations
-				WHERE configuration_id = $dataSetId
+			INSERT INTO {$prefix}configurations (status, date_created, account_id, num_rows_generated)
+                SELECT status, date_created, account_id, num_rows_generated
+                FROM {$prefix}configurations
+                WHERE configuration_id = $dataSetId
 		");
 
-		// if it worked okay (it should!) update the last_updated and configuration_name fields
 		if ($response["success"]) {
-			$newConfigurationID = mysqli_insert_id(Core::$db->getDBLink());
-			$now = Utils::getCurrentDatetime();
-			$response2 = Core::$db->query("
-				UPDATE {$prefix}configurations
-				SET configuration_name = '$configurationName',
-					last_updated = '$now'
-				WHERE configuration_id = $newConfigurationID
-			");
+            return array(
+                "success" => false,
+                "message" => "There was a problem copying the Data Set: " . $response["errorMessage"]
+            );
+        }
 
-			if ($response2["success"]) {
-				return array(
-					"success" => true,
-					"message" => ""
-				);
-			}
+        // if it worked okay (it should!) update the last_updated and configuration_name fields
+        $newConfigurationID = mysqli_insert_id(Core::$db->getDBLink());
+        $response2 = Core::$db->query("
+            INSERT INTO {$prefix}configuration_history (configuration_id, last_updated, configuration_name, content)
+                SELECT $newConfigurationID as configuration_id, last_updated, configuration_name, content
+                FROM {$prefix}configuration_history
+                WHERE configuration_id = $dataSetId
+        ");
 
-		} else {
-			return array(
-				"success" => false,
-				"message" => "There was a problem copying the Data Set: " . $response["errorMessage"]
-			);
+        $now = Utils::getCurrentDatetime();
+        $response3 = Core::$db->query("
+            UPDATE {$prefix}configurations
+            SET date_created = '$now'
+            WHERE configuration_id = $newConfigurationID
+        ");
+        $response4 = Core::$db->query("
+            UPDATE {$prefix}configuration_history
+            SET configuration_name = '" . $configurationName . "'
+            WHERE configuration_id = $newConfigurationID
+            ORDER BY history_id DESC
+            LIMIT 1
+        ");
+
+        if ($response2["success"] && $response3["success"] && $response4["success"]) {
+            return array(
+                "success" => true,
+                "message" => ""
+            );
+        } else {
+            return array(
+                "success" => false,
+                "message" => "There was a problem copying the Data Set."
+            );
 		}
 	}
 
@@ -661,7 +685,6 @@ class Account {
 				"message" => "There was a problem saving the configuration: " . $response["errorMessage"]
 			);
 		}
-
 	}
 }
 
