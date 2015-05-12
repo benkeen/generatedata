@@ -328,6 +328,14 @@ class AjaxRequest {
 				$this->response["content"] = $response["message"];
 				break;
 
+            case "getDataSetHistory":
+                Core::init();
+                $configurationID = $this->post["dataSetID"];
+                $response = Core::$user->getDataSetHistory($configurationID);
+                $this->response["success"] = $response["success"];
+                $this->response["content"] = $response["message"];
+                break;
+
 			case "login":
 				Core::init();
 				$email = $this->post["email"];

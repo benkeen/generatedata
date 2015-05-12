@@ -91,12 +91,36 @@
 						<th class="leftAligned">{$L.last_modified}</th>
 						<th align="center">{$L.public_q}</th>
 						<th align="center">{$L.rows_generated}</th>
+                        <th width="80" align="center">{$L.history}</th>
 						<th width="60" align="center">{$L.load}</th>
 						<th width="24" align="center" class="gdDataSetCheckRowCell"><input type="checkbox" id="gdSelectAllDataSets" /></th>
 					</tr>
 				</thead>
 				<tbody></tbody>
-			</table> 
+			</table>
+
+            <div id="gdConfigurationHistory" class="hidden">
+                <p id="gdConfigurationHistoryLoading">
+                    Loading configuration history <span id="gdConfigurationHistoryLoader"></span>
+                </p>
+                <div id="gdConfigurationHistoryTable">
+                    <p class="gdConfigurationHistoryTable">
+                        <a href="#">&laquo; back to Data Sets</a>
+                    </p>
+
+                    <table width="100%" cellpadding="0" cellspacing="1" class="highlightTableRows">
+                        <thead>
+                        <tr>
+                            <th class="leftAligned">{$L.data_set_name}</th>
+                            <th class="leftAligned">{$L.last_modified}</th>
+                            <th width="60" align="center">{$L.load}</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+            </div>
 		</div>
 		<div id="gdMainDialogTab3Content" class="hidden">
 			<div id="gdDataSetHelpNav">

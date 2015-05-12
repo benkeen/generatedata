@@ -122,6 +122,13 @@ ul {
     padding: 3px;
     color: #555555; }
 
+#gdConfigurationHistoryLoader {
+  float: left;
+  margin: 7px 15px 0 5px; }
+
+#gdConfigurationHistoryLoading {
+  line-height: 32px; }
+
 header {
   background-image: url(../images/siteHeader.jpg);
   background-repeat: no-repeat;
@@ -505,7 +512,7 @@ li.gdColDelete {
       background: -o-linear-gradient(top, #f2f2f2 0%, #e1e1e1 100%);
       background: -ms-linear-gradient(top, #f2f2f2 0%, #e1e1e1 100%);
       background: linear-gradient(to bottom, #f2f2f2 0%, #e1e1e1 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
       cursor: pointer;
       text-shadow: 1px 1px #f2f2f2; }
       .gdSmallTabs > ul li.gdSelected {
@@ -1019,7 +1026,7 @@ input.medium {
     color: white; }
   .gdErrors div {
     padding: 8px;
-    color: #aa0000 ul;
+    color: #AA0000 ul;
       color-margin: 0px;
       color-padding-left: 16px; }
 
@@ -1179,23 +1186,23 @@ body.gdErrorPage #gdSeriousError {
 /* the dialog CSS is a mess. TOTALLY in need of a refactor. */
 #gdMainDialog {
   border: 1px solid #cccccc;
-  padding: 0px;
+  padding: 0;
   margin: 3px 2px;
   max-height: 420px; }
   #gdMainDialog div, #gdMainDialog p {
     line-height: 16pt; }
   #gdMainDialog h3 {
-    margin: 2px 0px 0px; }
+    margin: 2px 0 0; }
   #gdMainDialog .ui-widget button {
     font-family: "lucida grande", verdana; }
   #gdMainDialog .gdSelectedDataSetRow {
     background-color: #efefef; }
   #gdMainDialog h4 {
-    margin: 0px; }
+    margin: 0; }
 
 #gdLoginDialog {
   border: 1px solid #cccccc;
-  padding: 0px;
+  padding: 0;
   margin: 3px 2px; }
   #gdLoginDialog div, #gdLoginDialog p {
     line-height: 16pt; }
@@ -1207,7 +1214,7 @@ body.gdErrorPage #gdSeriousError {
     height: 300px;
     overflow-y: auto; }
   #gdMainDialogContent #gdMainDialogTab3Content {
-    padding: 0px 0px 0px 6px;
+    padding: 0 0 0 6px;
     overflow: hidden; }
     #gdMainDialogContent #gdMainDialogTab3Content h3 {
       padding-top: 10px; }
@@ -1246,13 +1253,13 @@ body.gdErrorPage #gdSeriousError {
 .gdModalTabs.gdTwoCols li {
   width: 50%; }
 .gdModalTabs ul {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   list-style: none;
   background-color: #efefef; }
   .gdModalTabs ul li {
     float: left;
-    margin: 0px;
+    margin: 0;
     background-color: #efefef;
     text-align: center;
     cursor: pointer; }
@@ -1379,3 +1386,5 @@ body .gdMainDialog .ui-dialog-title span {
       height: 200px;
       width: 98%;
       border: 1px solid #efefef; }
+
+/*# sourceMappingURL=styles.css.map */

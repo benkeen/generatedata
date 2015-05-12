@@ -266,7 +266,7 @@ class Account {
 		$prefix   = Core::getDbTablePrefix();		
 
         $response = Core::$db->query("
-            SELECT  c.*, ch.*
+            SELECT  c.*, ch.*, unix_timestamp(c.date_created) as date_created_unix, unix_timestamp(ch.last_updated) as last_updated_unix
             FROM {$prefix}configurations c
               INNER JOIN {$prefix}configuration_history ch
                 ON c.configuration_id = ch.configuration_id
@@ -290,6 +290,36 @@ class Account {
 			// TODO
 		}
 	}
+
+
+    public function getDataSetHistory() {
+        $accountID = $this->accountID;
+        $prefix   = Core::getDbTablePrefix();
+
+        $response = Core::$db->query("
+            SELECT  ch.*, unix_timestamp(ch.last_updated) as last_updated_unix
+            FROM    {$prefix}configuration_history ch, {$prefix}configurations c
+            WHERE c.account_id = $accountID AND
+                  c.configuration_id = ch.configuration_id
+            ORDER BY ch.last_updated DESC
+        ");
+
+        if ($response["success"]) {
+            $data = array();
+            while ($row = mysqli_fetch_assoc($response["results"])) {
+                $data[] = $row;
+            }
+            return array(
+                "success"   => true,
+                "message"   => $data
+            );
+        } else {
+            return array(
+                "success"   => false,
+                "message"   => $response["errorMessage"]
+            );
+        }
+    }
 
 
 	public function deleteConfigurations($configurationIDs) {

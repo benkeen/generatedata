@@ -289,3 +289,6 @@ $L["delete_N_data_sets"] = "Delete %1 Data Sets";
 
 // new in 3.1.1
 $L["credit_card_data"] = "Credit Card Data";
+
+// new in 3.2.1
+$L["history"] = "History";

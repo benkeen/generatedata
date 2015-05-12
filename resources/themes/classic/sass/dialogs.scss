@@ -1,13 +1,13 @@
 /* the dialog CSS is a mess. TOTALLY in need of a refactor. */
 #gdMainDialog {
 	border: 1px solid #cccccc;
-	padding: 0px;
+	padding: 0;
 	margin: 3px 2px;
 	div, p {
 		line-height: 16pt;
 	}
 	h3 {
-		margin: 2px 0px 0px;
+		margin: 2px 0 0;
 	}
 	.ui-widget button {
 		font-family: "lucida grande", verdana;
@@ -16,14 +16,14 @@
 		background-color: #efefef;
 	}
 	h4 {
-		margin: 0px;
+		margin: 0;
 	}
 	max-height: 420px;
 }
 
 #gdLoginDialog {
 	border: 1px solid #cccccc;
-	padding: 0px;
+	padding: 0;
 	margin: 3px 2px;
 	div, p {
 		line-height: 16pt;
@@ -39,7 +39,7 @@
 	}
 
 	#gdMainDialogTab3Content {
-		padding: 0px 0px 0px 6px;
+		padding: 0 0 0 6px;
 		overflow: hidden;
 		h3 {
 			padding-top: 10px;
@@ -95,14 +95,14 @@
 		width: 50%;
 	}
 	ul {
-		margin: 0px;
-		padding: 0px;
+		margin: 0;
+		padding: 0;
 		list-style: none;
 		background-color: #efefef;
 
 		li {
 			float: left;
-			margin: 0px;
+			margin: 0;
 			background-color: #efefef;
 			text-align: center;
 			cursor: pointer;
