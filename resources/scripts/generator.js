@@ -147,7 +147,7 @@ define([
     $("#gdLogin").on("click", _onClickLoginLink);
     $("#gdLoadLink").on("click", _onClickLoadDataSetIcon);
 
-    var $accountDataSets = $("#gdAccountDataSets");
+    var $accountDataSets = $(".gdDialogTable");
     $accountDataSets.on("click", "a.loadDataSet", _onClickLoadDataSet);
     $accountDataSets.on("click", "a.loadConfigurationHistory", _onClickLoadConfigurationHistory);
     $accountDataSets.on("change", ".gdSelectDataSets", _onChangeCheckDataSet);
@@ -168,7 +168,7 @@ define([
     _initInPageCodeMirror();
     _initTooltips();
 
-    history.initHistorySpinner();
+    history.init();
 
     // finally, if the URL contains a Data Set ID, request it from the server
     var loadDataSetID = utils.getParamByName("load");
@@ -1183,7 +1183,7 @@ define([
 
             case 2:
               _updateMainDialogDataSetButtons();
-              history.hideSection();
+              history.hideDataSetHistorySection();
               break;
 
             case 3:
@@ -1272,8 +1272,8 @@ define([
     $("#gdMainDialog").dialog({
       title: 'generate<span style="color:#48b34d">data</span>.com',
       dialogClass: "gdMainDialog",
-      width: 840,
-      minHeight: 400,
+      width: 860,
+      minHeight: 420,
       modal: true,
       resizable: false,
       buttons: [

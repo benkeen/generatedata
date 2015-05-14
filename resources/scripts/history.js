@@ -4,6 +4,16 @@ define([
 
   var _spinner = null;
 
+  var _init = function () {
+    _initHistorySpinner();
+    $("#gdConfigurationHistoryTable a").on("click", _returnToDataSet);
+  };
+
+  var _returnToDataSet = function (e) {
+    e.preventDefault();
+    _hideDataSetHistorySection();
+  };
+
   var _getHistory = function (configurationID) {
     $("#gdAccountDataSets,#gdConfigurationHistoryTable").addClass("hidden");
     $("#gdConfigurationHistory,#gdConfigurationHistoryLoading").removeClass("hidden");
@@ -24,8 +34,9 @@ define([
 
         if (response.success) {
           $("#gdConfigurationHistoryLoading").addClass("hidden");
-          $("#gdConfigurationHistoryTable").removeClass("hidden");
+
           _displayHistory(response.content);
+          $("#gdConfigurationHistoryTable").removeClass("hidden");
         }
       },
 
@@ -58,7 +69,7 @@ define([
   };
 
 
-  var hideSection = function () {
+  var _hideDataSetHistorySection = function () {
     $("#gdConfigurationHistory").addClass("hidden");
     $("#gdAccountDataSets").removeClass("hidden");
   };
@@ -92,8 +103,9 @@ define([
 
 
   return {
+    init: _init,
     getHistory: _getHistory,
     initHistorySpinner: _initHistorySpinner,
-    hideSection: hideSection
+    hideDataSetHistorySection: _hideDataSetHistorySection
   }
 });

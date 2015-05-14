@@ -83,7 +83,7 @@
 
 		<div id="gdMainDialogTab2Content" class="hidden">
 			<p id="gdNoAccountDataSets" class="hidden">{$L.no_saved_data_sets}</p>
-			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets" class="highlightTableRows">
+			<table width="100%" cellpadding="0" cellspacing="1" id="gdAccountDataSets" class="gdDialogTable highlightTableRows">
 				<thead>
 					<tr>
 						<th class="leftAligned">{$L.data_set_name}</th>
@@ -108,12 +108,12 @@
                         <a href="#">&laquo; back to Data Sets</a>
                     </p>
 
-                    <table width="100%" cellpadding="0" cellspacing="1" class="highlightTableRows">
+                    <table width="100%" cellpadding="0" cellspacing="1" class="gdDialogTable highlightTableRows">
                         <thead>
                         <tr>
                             <th class="leftAligned">{$L.data_set_name}</th>
                             <th class="leftAligned">{$L.last_modified}</th>
-                            <th width="60" align="center">{$L.load}</th>
+                            <th width="80" align="center">{$L.load}</th>
                         </tr>
                         </thead>
                         <tbody></tbody>

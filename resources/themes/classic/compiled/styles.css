@@ -129,6 +129,26 @@ ul {
 #gdConfigurationHistoryLoading {
   line-height: 32px; }
 
+.gdConfigurationHistoryTable {
+  border-bottom: 1px solid #cccccc;
+  padding: 0 0 6px; }
+
+#gdDataSetHistoryNav {
+  position: absolute;
+  right: 25px; }
+  #gdDataSetHistoryNav a {
+    padding: 4px;
+    background-color: #cccccc;
+    border-radius: 5px;
+    color: white;
+    text-shadow: none;
+    line-height: 9px;
+    height: 10px;
+    display: inline-block;
+    margin-top: 5px; }
+    #gdDataSetHistoryNav a#prevDataSetHistory {
+      margin-right: 3px; }
+
 header {
   background-image: url(../images/siteHeader.jpg);
   background-repeat: no-repeat;
@@ -479,11 +499,11 @@ li.gdColDelete {
 #gdProcessingIcon {
   position: absolute;
   right: -1px;
-  top: 5px; }
+  top: 4px; }
 
 #gdDataSetStatusLine {
   position: absolute;
-  right: 30px;
+  right: 64px;
   top: 5px;
   font-style: italic;
   color: #666666;
@@ -1228,12 +1248,12 @@ body.gdErrorPage #gdSeriousError {
 #gdLoginError, #gdResetPasswordMessage {
   margin: 6px; }
 
-#gdAccountDataSets .leftAligned {
+.gdDialogTable .leftAligned {
   padding-left: 3px; }
-#gdAccountDataSets td a {
+.gdDialogTable td a {
   display: block;
   color: #189C1C; }
-  #gdAccountDataSets td a:hover {
+  .gdDialogTable td a:hover {
     background-color: #7fbf4d;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
     background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);

@@ -57,6 +57,10 @@
 	</header>
 	<nav id="gdMainTabs" class="gdHideNoJS">
 		<span id="gdDataSetStatusLine"></span>
+        <span id="gdDataSetHistoryNav" class="hidden">
+            <a href="#" title="View previous version">&laquo;</a>
+            <a href="#" title="View next version">&raquo;</a>
+        </span>
 		<span id="gdProcessingIcon"></span>
 		<ul>
 			<li id="gdMainTab1" class="gdSelected">{$L.generate}</li>
