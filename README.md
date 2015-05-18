@@ -24,11 +24,18 @@ Installation is really, really simple. I deliberately wrote the script to be as 
 require additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See 
 the documentation for more info.
 
-## Installation via Vagrant
 
-There's a prepackaged installation available via vagrant [found here](https://github.com/benkeen/generatedata-vagrant),
-courtesy of Daragh Courtney. If you're not familiar with Vagrant, basically it's a package that includes not just the
-generatedata script, but the entire development environment along with it: PHP, MySQL and Apache. Super handy.
+## Pre-packaged solutions
+
+### - Docker
+
+Check out [Maxime Visonneau's repo](https://github.com/mvisonneau/docker-generatedata) for a Docker packaged version 
+of this script. Thanks Maxime! 
+
+### - Vagrant 
+There's also a pre-packaged Vagrant solution [found here](https://github.com/benkeen/generatedata-vagrant),
+courtesy of Daragh Courtney.
+
 
 # Test Coverage
 

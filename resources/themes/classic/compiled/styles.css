@@ -122,10 +122,6 @@ ul {
     padding: 3px;
     color: #555555; }
 
-#gdConfigurationHistoryLoader {
-  float: left;
-  margin: 7px 15px 0 5px; }
-
 #gdConfigurationHistoryLoading {
   line-height: 32px; }
 

@@ -266,17 +266,19 @@ class Account {
 		$prefix   = Core::getDbTablePrefix();		
 
         $response = Core::$db->query("
-            SELECT  c.*, ch.*, unix_timestamp(c.date_created) as date_created_unix, unix_timestamp(ch.last_updated) as last_updated_unix
+            SELECT c.*, ch.*, unix_timestamp(c.date_created) as date_created_unix, unix_timestamp(ch.last_updated) as last_updated_unix
             FROM {$prefix}configurations c
-              INNER JOIN {$prefix}configuration_history ch
-                ON c.configuration_id = ch.configuration_id
-              INNER JOIN
-              (
-                SELECT *, MAX(last_updated) maxDateAdded
-                FROM gd_configuration_history ch
-                GROUP BY configuration_id
-              ) summary ON c.configuration_id = summary.configuration_id AND ch.last_updated = summary.maxDateAdded
-            WHERE account_id = $accountID
+                LEFT JOIN {$prefix}configuration_history ch
+                    ON ch.configuration_id = c.configuration_id
+                    AND ch.history_id =
+                        (
+                            SELECT history_id
+                            FROM {$prefix}configuration_history ch2
+                            WHERE ch2.configuration_id = c.configuration_id
+                            ORDER BY history_id DESC
+                            LIMIT 1
+                        )
+                    AND account_id = $accountID
             ORDER BY ch.last_updated DESC
         ");
 
@@ -290,7 +292,6 @@ class Account {
 			// TODO
 		}
 	}
-
 
     public function getDataSetHistory() {
         $accountID = $this->accountID;
@@ -401,6 +402,9 @@ class Account {
             VALUES ($configurationID, '$now', '" . $configurationName . "', '" . $content . "')
         ");
         if ($response2["success"]) {
+
+            $this->truncateDataSetHistory($configurationID);
+
             return array(
                 "success" => true,
                 "message" => $configurationID,
@@ -413,7 +417,6 @@ class Account {
             );
         }
 	}
-
 
 	public function copyConfiguration($data) {
 		$dataSetId         = Utils::sanitize($data["dataSetId"]);
@@ -716,5 +719,41 @@ class Account {
 			);
 		}
 	}
+
+
+    /**
+     * Called after every save. This ensures the size of the history is truncated to whatever value is set (see
+     * the $maxDataSetHistorySize setting in Core.
+     * @param $configurationID
+     */
+    private function truncateDataSetHistory($configurationID) {
+        $prefix = Core::getDbTablePrefix();
+        $maxHistory = Core::getMaxDataSetHistorySize();
+
+        if (empty($maxHistory) || !is_numeric($maxHistory)) {
+            return;
+        }
+
+        // first, get the ID of the oldest saved history item, according to however large this
+        $response = Core::$db->query("
+            SELECT *
+            FROM  {$prefix}configuration_history
+            WHERE configuration_id = $configurationID
+            ORDER BY history_id DESC
+            LIMIT 1
+            OFFSET $maxHistory
+        ");
+
+        if ($response["success"] && !empty($response["results"])) {
+            $results = mysqli_fetch_assoc($response["results"]);
+            $historyID = $results["history_id"];
+
+            Core::$db->query("
+              DELETE FROM {$prefix}configuration_history
+              WHERE configuration_id = $configurationID AND history_id <= $historyID
+            ");
+        }
+    }
+
 }
 

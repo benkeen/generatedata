@@ -5,7 +5,6 @@ define([
   var _spinner = null;
 
   var _init = function () {
-    _initHistorySpinner();
     $("#gdConfigurationHistoryTable a").on("click", _returnToDataSet);
   };
 
@@ -18,7 +17,7 @@ define([
     $("#gdAccountDataSets,#gdConfigurationHistoryTable").addClass("hidden");
     $("#gdConfigurationHistory,#gdConfigurationHistoryLoading").removeClass("hidden");
 
-    _startProcessing();
+    utils.playModalSpinner("gdMainDialog");
 
     $.ajax({
       url: "ajax.php",
@@ -30,7 +29,7 @@ define([
       }
     }).then(
       function (response) {
-        _stopProcessing();
+        utils.pauseModalSpinner("gdMainDialog");
 
         if (response.success) {
           $("#gdConfigurationHistoryLoading").addClass("hidden");
@@ -74,38 +73,9 @@ define([
     $("#gdAccountDataSets").removeClass("hidden");
   };
 
-  var _initHistorySpinner = function() {
-    if (_spinner !== null) {
-      return;
-    }
-    _spinner = Spinners.create('#gdConfigurationHistoryLoader', {
-      radius: 4,
-      height: 5,
-      width: 1.5,
-      dashes: 14,
-      opacity: 1,
-      padding: 0,
-      rotation: 1400,
-      fadeOutSpeed: 0,
-      color: '#006600',
-      pauseColor: '#aaaaaa',
-      pauseOpacity: 1
-    }).pause();
-  };
-
-  var _startProcessing = function() {
-    _spinner.play();
-  };
-
-  var _stopProcessing = function() {
-    _spinner.pause();
-  };
-
-
   return {
     init: _init,
     getHistory: _getHistory,
-    initHistorySpinner: _initHistorySpinner,
     hideDataSetHistorySection: _hideDataSetHistorySection
   }
 });

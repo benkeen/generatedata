@@ -23,6 +23,7 @@ class Core {
 	private static $maxGeneratedRows = 100000;
 	private static $defaultNumRows = 100;
 	private static $maxDemoModeRows = 100;
+    private static $maxDataSetHistorySize = 10;
 	private static $defaultLanguageFile = "en";
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array();
@@ -184,6 +185,9 @@ class Core {
 			if (isset($maxDemoModeRows)) {
 				self::$maxDemoModeRows = $maxDemoModeRows;
 			}
+            if (isset($maxDataSetHistorySize)) {
+                self::$maxDataSetHistorySize = $maxDataSetHistorySize;
+            }
 			if (isset($defaultLanguageFile)) {
 				self::$defaultLanguageFile = $defaultLanguageFile;
 			}
@@ -299,6 +303,13 @@ class Core {
 	public static function getMaxDemoModeRows() {
 		return self::$maxDemoModeRows;
 	}
+
+    /**
+     * @access public
+     */
+    public static function getMaxDataSetHistorySize() {
+        return self::$maxDataSetHistorySize;
+    }
 
 	/**
 	 * @access public

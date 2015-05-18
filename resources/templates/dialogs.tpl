@@ -101,7 +101,7 @@
 
             <div id="gdConfigurationHistory" class="hidden">
                 <p id="gdConfigurationHistoryLoading">
-                    Loading configuration history <span id="gdConfigurationHistoryLoader"></span>
+                    Loading configuration history...
                 </p>
                 <div id="gdConfigurationHistoryTable">
                     <p class="gdConfigurationHistoryTable">
