@@ -428,7 +428,8 @@ define([
         if (response.success) {
           _currConfigurationID = response.content;
           var lastUpdated = moment.unix(response.lastUpdated).format("h:mm A, MMM Do YYYY");
-          $("#gdDataSetStatusLine").html(L.last_saved + " " + lastUpdated).css("color", "#7fbcf8").animate({color: "#666666"}, 1400);
+          $("#gdDataSetStatusLine").removeClass("hidden").html(L.last_saved + " " + lastUpdated).css("color", "#7fbcf8").animate({color: "#666666"}, 1400);
+          $("#gdDataSetHistoryNav").addClass("hidden");
           _getAccount();
         } else {
           // TODO
@@ -1164,7 +1165,8 @@ define([
   var _initMainDialog = function () {
     $("#gdMainDialogTabs ul li").each(function () {
       var newTab = parseInt($(this).attr("id").replace(/^gdMainDialogTab/, ""), 10);
-      $(this).bind("click", function () {
+
+      $(this).bind("click", function (e) {
         utils.selectTab({
           tabGroup: "dialogTabs",
           tabIDPrefix: "gdMainDialogTab",
@@ -1172,33 +1174,34 @@ define([
           oldTab: _currHelpDialogTab
         });
         _currHelpDialogTab = newTab;
+        var $dialog = $("#gdMainDialog");
 
-        if ($("#gdMainDialog").css("display") == "block") {
-          switch (newTab) {
-            case 1:
-              $("#gdMainDialog").dialog("option", "buttons", [{
-                text: L.close, click: function () {
-                  $(this).dialog("close");
-                }
-              }]);
-              break;
-
-            case 2:
-              _updateMainDialogDataSetButtons();
-              history.hideDataSetHistorySection();
-              break;
-
-            case 3:
-              $("#gdMainDialog").dialog("option", "buttons", [{
-                text: L.close, click: function () {
-                  $(this).dialog("close");
-                }
-              }]);
-              if (_currDataTypeHelp === null) {
-                var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
-                _showDataTypeHelp(dataTypeItems[0]);
+        if ($dialog.css("display") == "block") {
+          if (newTab == 1) {
+            $dialog.dialog("option", "buttons", [{
+              text: L.close, click: function () {
+                $(this).dialog("close");
               }
-              break;
+            }]);
+          } else if (newTab == 2) {
+            _updateMainDialogDataSetButtons();
+
+            // yuck! We want to hide the history section when a user clicks on a tab but NOT when the history content
+            // was opened and they close then re-open the main dialog. isTrigger is a native jQuery event property
+            if (!e.isTrigger) {
+              history.hideDataSetHistorySection();
+            }
+
+          } else if (newTab == 3) {
+            $dialog.dialog("option", "buttons", [{
+              text: L.close, click: function () {
+                $(this).dialog("close");
+              }
+            }]);
+            if (_currDataTypeHelp === null) {
+              var dataTypeItems = $("#gdDataSetHelpNav li").not(".gdDataTypeHeader");
+              _showDataTypeHelp(dataTypeItems[0]);
+            }
           }
         }
       });

@@ -134,7 +134,7 @@ ul {
   right: 25px; }
   #gdDataSetHistoryNav a {
     padding: 4px;
-    background-color: #cccccc;
+    background-color: #999999;
     border-radius: 5px;
     color: white;
     text-shadow: none;
@@ -144,6 +144,8 @@ ul {
     margin-top: 5px; }
     #gdDataSetHistoryNav a#prevDataSetHistory {
       margin-right: 3px; }
+    #gdDataSetHistoryNav a.disabled {
+      background-color: #cccccc; }
 
 header {
   background-image: url(../images/siteHeader.jpg);

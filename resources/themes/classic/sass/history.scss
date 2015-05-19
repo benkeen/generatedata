@@ -12,7 +12,7 @@
 
   a {
     padding: 4px;
-    background-color: #cccccc;
+    background-color: #999999;
     border-radius: 5px;
     color: white;
     text-shadow: none;
@@ -23,6 +23,10 @@
 
     &#prevDataSetHistory {
       margin-right: 3px;
+    }
+
+    &.disabled {
+      background-color: #cccccc;
     }
   }
 

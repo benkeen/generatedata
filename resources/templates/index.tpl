@@ -58,8 +58,9 @@
 	<nav id="gdMainTabs" class="gdHideNoJS">
 		<span id="gdDataSetStatusLine"></span>
         <span id="gdDataSetHistoryNav" class="hidden">
-            <a href="#" title="View previous version">&laquo;</a>
-            <a href="#" title="View next version">&raquo;</a>
+            <a href="#" title="newer version" id="gdDataSetHistoryNavPrev" data-dir="newer">&laquo;</a>
+            <select id="gdDataHistoryList"></select>
+            <a href="#" title="older version" id="gdDataSetHistoryNavNext" data-dir="older">&raquo;</a>
         </span>
 		<span id="gdProcessingIcon"></span>
 		<ul>

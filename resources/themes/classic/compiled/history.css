@@ -1,0 +1,24 @@
+#gdConfigurationHistoryLoading {
+  line-height: 32px; }
+
+#gdConfigurationHistoryHeader {
+  border-bottom: 1px solid #cccccc;
+  padding: 0 0 6px; }
+
+#gdDataSetHistoryNav {
+  position: absolute;
+  right: 25px; }
+  #gdDataSetHistoryNav a {
+    padding: 4px;
+    background-color: #cccccc;
+    border-radius: 5px;
+    color: white;
+    text-shadow: none;
+    line-height: 9px;
+    height: 10px;
+    display: inline-block;
+    margin-top: 5px; }
+    #gdDataSetHistoryNav a#prevDataSetHistory {
+      margin-right: 3px; }
+
+/*# sourceMappingURL=history.css.map */
