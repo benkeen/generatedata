@@ -104,13 +104,15 @@
                     Loading configuration history...
                 </p>
                 <div id="gdConfigurationHistoryTable">
-                    <p class="gdConfigurationHistoryTable">
+                    <p id="gdConfigurationHistoryHeader">
+                        <span style="float:right">History is limited to <b id="gdConfigurationHistorySize"></b> rows</span>
                         <a href="#">&laquo; back to Data Sets</a>
                     </p>
 
                     <table width="100%" cellpadding="0" cellspacing="1" class="gdDialogTable highlightTableRows">
                         <thead>
                         <tr>
+                            <th class="leftAligned" width="50">ID</th>
                             <th class="leftAligned">{$L.data_set_name}</th>
                             <th class="leftAligned">{$L.last_modified}</th>
                             <th width="80" align="center">{$L.load}</th>

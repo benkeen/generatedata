@@ -125,7 +125,7 @@ ul {
 #gdConfigurationHistoryLoading {
   line-height: 32px; }
 
-.gdConfigurationHistoryTable {
+#gdConfigurationHistoryHeader {
   border-bottom: 1px solid #cccccc;
   padding: 0 0 6px; }
 
@@ -499,7 +499,7 @@ li.gdColDelete {
 
 #gdDataSetStatusLine {
   position: absolute;
-  right: 64px;
+  right: 30px;
   top: 5px;
   font-style: italic;
   color: #666666;

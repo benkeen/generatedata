@@ -27,12 +27,12 @@ the documentation for more info.
 
 ## Pre-packaged solutions
 
-### - Docker
+### Docker
 
 Check out [Maxime Visonneau's repo](https://github.com/mvisonneau/docker-generatedata) for a Docker packaged version 
 of this script. Thanks Maxime! 
 
-### - Vagrant 
+### Vagrant 
 There's also a pre-packaged Vagrant solution [found here](https://github.com/benkeen/generatedata-vagrant),
 courtesy of Daragh Courtney.
 

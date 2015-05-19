@@ -23,7 +23,7 @@ class Core {
 	private static $maxGeneratedRows = 100000;
 	private static $defaultNumRows = 100;
 	private static $maxDemoModeRows = 100;
-    private static $maxDataSetHistorySize = 10;
+    private static $maxDataSetHistorySize = 200;
 	private static $defaultLanguageFile = "en";
 	private static $defaultExportType = "HTML";
 	private static $defaultCountryPlugins = array();

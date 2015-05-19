@@ -293,7 +293,7 @@ class Account {
 		}
 	}
 
-    public function getDataSetHistory() {
+    public function getDataSetHistory($configurationID) {
         $accountID = $this->accountID;
         $prefix   = Core::getDbTablePrefix();
 
@@ -301,14 +301,18 @@ class Account {
             SELECT  ch.*, unix_timestamp(ch.last_updated) as last_updated_unix
             FROM    {$prefix}configuration_history ch, {$prefix}configurations c
             WHERE c.account_id = $accountID AND
+                  c.configuration_id = $configurationID AND
                   c.configuration_id = ch.configuration_id
             ORDER BY ch.last_updated DESC
         ");
 
         if ($response["success"]) {
-            $data = array();
+            $data = array(
+                "maxResults" => Core::getMaxDataSetHistorySize(),
+                "results" => array()
+            );
             while ($row = mysqli_fetch_assoc($response["results"])) {
-                $data[] = $row;
+                $data["results"][] = $row;
             }
             return array(
                 "success"   => true,

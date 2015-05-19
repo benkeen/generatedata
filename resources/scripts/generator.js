@@ -168,7 +168,9 @@ define([
     _initInPageCodeMirror();
     _initTooltips();
 
-    history.init();
+    history.init({
+      loadDataSet: _loadDataSet
+    });
 
     // finally, if the URL contains a Data Set ID, request it from the server
     var loadDataSetID = utils.getParamByName("load");
