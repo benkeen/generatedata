@@ -7,8 +7,6 @@
  * @package Core
  */
 class Installation {
-	private $databaseCreationError = false;
-
 
 	public static function createSettingsFile($dbHostname, $dbName, $dbUsername, $dbPassword, $tablePrefix) {
 		$encryptionSalt = Utils::generateRandomAlphanumericStr("DDD");
@@ -46,7 +44,8 @@ END;
 		if ($response["success"] == 1) {
 			return array(true, "");
 		} else {
-			return array(false, "There was a problem creating the Core tables. Please report this problem.");
+			return array(false, "There was a problem creating the Core tables. Please report this problem. Details: " .
+                $response["errorMessage"]);
 		}
 	}
 
@@ -60,9 +59,8 @@ END;
 		$rollbackQueries = array(
 			"DROP TABLE IF EXISTS {$prefix}cities",
 			"DROP TABLE IF EXISTS {$prefix}configurations",
+            "DROP TABLE IF EXISTS {$prefix}configuration_history",
 			"DROP TABLE IF EXISTS {$prefix}countries",
-			"DROP TABLE IF EXISTS {$prefix}first_names",
-			"DROP TABLE IF EXISTS {$prefix}last_names",
 			"DROP TABLE IF EXISTS {$prefix}regions",
 			"DROP TABLE IF EXISTS {$prefix}sessions",
 			"DROP TABLE IF EXISTS {$prefix}settings",
@@ -100,8 +98,9 @@ END;
                 configuration_id mediumint(9) NOT NULL,
 				last_updated datetime NOT NULL,
 				configuration_name varchar(100) NOT NULL,
-				content text NOT NULL
-			) PRIMARY KEY (history_id)
+				content TEXT NOT NULL,
+                PRIMARY KEY (history_id)
+            )
 		";
 		$queries[] = "
 			CREATE TABLE {$prefix}countries (
@@ -129,6 +128,14 @@ END;
 				UNIQUE KEY setting_name (setting_name)
 			)
 		";
+        $queries[] = "
+			CREATE TABLE {$prefix}sessions (
+				session_id varchar(100) NOT NULL default '',
+				session_data text NOT NULL,
+				expires int(11) NOT NULL default '0',
+				PRIMARY KEY (session_id)
+			)
+		";
 		$defaultTheme = Core::getDefaultTheme();
 		$queries[] = "
 			INSERT INTO {$prefix}settings (setting_name, setting_value)
@@ -151,15 +158,6 @@ END;
 				('anonymousUserPermissionDeniedMsg', ''),
 				('theme', '$defaultTheme')
 		";
-		$queries[] = "
-			CREATE TABLE {$prefix}sessions (
-				session_id varchar(100) NOT NULL default '',
-				session_data text NOT NULL,
-				expires int(11) NOT NULL default '0',
-				PRIMARY KEY (session_id)
-			)
-		";
-
 		$queries[] = "
 			CREATE TABLE {$prefix}user_accounts (
 				account_id mediumint(8) unsigned NOT NULL auto_increment,
