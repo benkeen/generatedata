@@ -29,8 +29,10 @@ the documentation for more info.
 
 ### Docker
 
-Check out [Maxime Visonneau's repo](https://github.com/mvisonneau/docker-generatedata) for a Docker packaged version 
-of this script. Thanks Maxime! 
+- Check out [Maxime Visonneau's repo](https://github.com/mvisonneau/docker-generatedata) for a Docker packaged version 
+of this script.
+- Also: [@LaiNathaniel's repo](https://github.com/LaiNathaniel/docker-generatedata)
+- And [Andy Shinn's instructions](https://github.com/benkeen/generatedata/pull/269)
 
 ### Vagrant 
 There's also a pre-packaged Vagrant solution [found here](https://github.com/benkeen/generatedata-vagrant),
