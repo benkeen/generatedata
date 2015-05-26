@@ -11,6 +11,8 @@ for that.
 Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting
 the most recent tag: https://github.com/benkeen/generatedata/releases
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 ## Requirements
 - PHP 5.3 or later
 - MySQL 4.1.3 or later
