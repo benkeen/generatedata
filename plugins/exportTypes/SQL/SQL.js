@@ -64,6 +64,14 @@ define([
 			$("#etSQL_statementType2").prop("disabled", true).prop("checked", false);
 			$("#etSQL_insertIgnore label").css("color", "#cccccc");
 		}
+
+    if (dbType === "Oracle") {
+      $("#etSQL_insertBatchSize").prop("disabled", true).css("color", "#cccccc");
+      $("#etSQL_batchSizeLabel").css("color", "#cccccc");
+    } else {
+      $("#etSQL_insertBatchSize").prop("disabled", false).css("color", "");
+      $("#etSQL_batchSizeLabel").css("color", "");
+    }
 	};
 
 	/**
