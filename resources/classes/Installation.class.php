@@ -14,7 +14,7 @@ class Installation {
 		$dbPassword = Utils::sanitize($dbPassword);
 		$tablePrefix = Utils::sanitize($tablePrefix);
 
-		$content =<<< END
+		$content =<<<END
 <?php
 
 \$dbHostname     = '$dbHostname';
@@ -26,14 +26,24 @@ class Installation {
 END;
 
 		$file = __DIR__ . "/../../settings.php";
-		$handle = @fopen($file, "w");
+		$handle = @fopen($file, "w+");
 		if ($handle) {
 			fwrite($handle, $content);
 			fclose($handle);
-			return array(true, "");
 		}
 
-		// no such luck! we couldn't create the file on the server. The user will need to do it manually
+        // now check the file exists, and if it DOES, contains the right stuff
+        if (is_readable($file)) {
+            $result = self::validateSettingsFile($file);
+            if ($result["success"]) {
+                return array(true, "");
+            } else {
+                return array(false, $result["error"]);
+            }
+        }
+
+        // no such luck! we couldn't create the file on the server. The user will need to do it manually. Return
+        // the
 		return array(false, $content);
 	}
 
