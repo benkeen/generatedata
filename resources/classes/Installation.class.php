@@ -180,4 +180,37 @@ END;
 
 		return Core::$db->query($queries, $rollbackQueries);
 	}
+
+    public static function validateSettingsFile() {
+        $file = file(__DIR__ . "/../../settings.php");
+        $found = array(
+            "dbHostname"    => false,
+            "dbName"        => false,
+            "dbUsername"    => false,
+            "dbPassword"    => false,
+            "dbTablePrefix" => false
+        );
+
+        foreach ($file as $line) {
+            foreach ($found as $key => $value) {
+                preg_match("/$key/", $line, $matches);
+                if ($matches) {
+                    $found[$key] = true;
+                }
+            }
+        }
+
+        $allMatched = true;
+        foreach ($found as $key => $value) {
+            if (!$value) {
+                $allMatched = false;
+                break;
+            }
+        }
+
+        return array(
+            "success" => $allMatched,
+            "error" => "The settings file exists but doesn't contain all the required values. You'll need to remove the file and re-install the script."
+        );
+    }
 }

@@ -121,6 +121,7 @@ class Core {
 		// the order is significant in all of this
 		if ($runtimeContext != "installation") {
 			self::initDatabase();
+
 			if (in_array($runtimeContext, array("installationDatabaseReady", "ui",  "generation", "resetPlugins"))) {
 				self::initSessions();
 			}
@@ -335,10 +336,15 @@ class Core {
 		if (!self::$settingsFileExists) {
 			return false;
 		}
+
+        // attempt to make the connection
+        Core::initDatabase();
+
 		$installationComplete = Settings::getSetting("installationComplete");
 		if (!isset($installationComplete) || $installationComplete == "no") {
 			return false;
 		}
+
 		return true;
 	}
 

@@ -111,6 +111,12 @@ class AjaxRequest {
 				}
 				break;
 
+            case "installationValidateSettingsFile":
+                $response = Installation::validateSettingsFile();
+                $this->response["success"] = $response["success"];
+                $this->response["content"] = $response["errorMessage"];
+                break;
+
 			case "resetDataTypes":
 				Core::init("resetPlugins");
 				if (Core::checkIsLoggedIn() && Core::$user->isAdmin()) {

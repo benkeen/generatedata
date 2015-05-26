@@ -96,7 +96,6 @@ require([
 	function submit(e) {
 		var currentStep = parseInt($(e.target).closest(".gdInstallSection").attr("id").replace(/page/, ""), 10);
 		$(".gdError").hide();
-		var errors = [];
 
 		if (currentStep === 1) {
 			_checkDatabaseInfo();
