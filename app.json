@@ -1,6 +1,6 @@
 {
   "name": "generatadata.com",
-  "description": "This is the repo for the downloadable version of generatedata.com. The script is basically an engine to generate any sort of random data in any format.",
+  "description": "This is the repo for the downloadable version of generatedata.com",
   "repository": "https://github.com/benkeen/generatedata",
   "logo": "http://benkeen.github.io/generatedata/assets/img/logo.png",
   "keywords": ["data", "random", "sample"]
