@@ -72,7 +72,7 @@ class DataType_Date extends DataTypePlugin {
 		return array(
 			"SQLField" => "varchar(255)",
 			"SQLField_Oracle" => "varchar2(255)",
-			"SQLField_MSSQL" => "DATETIME NULL"
+			"SQLField_MSSQL" => "VARCHAR(255)"
 		);
 	}
 
