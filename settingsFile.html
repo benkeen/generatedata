@@ -103,7 +103,7 @@
 	<div class="row">
 		<div class="span3" id="sidebar">
 			<ul id="userNav" class="nav">
-				<li class="active"><a href="#">User Documentation</a></li>
+				<li><a href="#">User Documentation</a></li>
 				<li><a href="install.html">How to Install</a></li>
 				<li class="active">The settings.php file</li>
 				<li><a href="http://www.generatedata.com">Go to generatedata.com &raquo;</a></li>
@@ -259,6 +259,17 @@ $pluginSettings = array(
 								</p>
 							</td>
 						</tr>
+                        <tr>
+                            <td>$maxDataSetHistorySize</td>
+                            <td><span class="label label-info">optional</span></td>
+                            <td>number</td>
+                            <td>
+                                Added in <b>3.2.1</b>. Every time you save a data set, it stores a history of changes. In the
+                                user interface when you click on the Data Set icon it will show a <b>history</b> link
+                                for each data set: that will list the history of changes made to that data set. This
+                                setting lets you control the size of the history. Defaults to <code>200</code>.
+                            </td>
+                        </tr>
 					</tbody>
                 </table>
 			</section>
