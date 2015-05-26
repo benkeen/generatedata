@@ -434,7 +434,7 @@ class Account {
                 WHERE configuration_id = $dataSetId
 		");
 
-		if ($response["success"]) {
+		if (!$response["success"]) {
             return array(
                 "success" => false,
                 "message" => "There was a problem copying the Data Set: " . $response["errorMessage"]

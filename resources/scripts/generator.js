@@ -1706,6 +1706,7 @@ define([
       }
       $("#gdAccountDataSets tbody").html(html);
       $("#gdAccountDataSets").removeClass("hidden");
+      $("#gdConfigurationHistory").addClass("hidden");
     } else {
       $("#gdAccountDataSets tbody").html("");
       $("#gdNoAccountDataSets").removeClass("hidden");

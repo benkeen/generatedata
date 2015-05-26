@@ -73,6 +73,11 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
+3.2.1 - May 25, 2015
+- Configuration history option added to store the last 200 (this is configurable) versions of a data set. In case of data
+loss, you can now revert to an older version very simply.
+- Assorted bug fixes, including some improvements to the installation script.
+
 3.2.0 - Jan 29, 2015
 - Adds a new REST API as an alternative way to generate data. See the [API Documentation](http://benkeen.github.io/generatedata/api.html)
 for more information.
