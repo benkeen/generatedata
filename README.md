@@ -13,6 +13,13 @@ the most recent tag: https://github.com/benkeen/generatedata/releases
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+1. Click the button above to deploy to Heroku as a new app
+2. After deployment, add the free ClearDB MySQL Database add-on to the app
+3. Open the app, which should automatically launch the configuration wizard
+4. Enter the hostname, which can be obtained by inspecting the app's `CLEARDB_DATABASE_URL` config var
+5. Enter the database name, username and password, which can be obtained from the ClearDB dashboard or parsed from the `CLEARDB_DATABASE_URL` config var
+6. Select "Single, anonymous user account" when prompted to choose the way your installation handles user accounts. You may select a different option if you know what you're doing.
+
 ## Requirements
 - PHP 5.3 or later
 - MySQL 4.1.3 or later
