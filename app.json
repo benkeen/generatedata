@@ -3,5 +3,8 @@
   "description": "This is the repo for the downloadable version of generatedata.com",
   "repository": "https://github.com/benkeen/generatedata",
   "logo": "http://benkeen.github.io/generatedata/assets/img/logo.png",
-  "keywords": ["data", "random", "sample"]
+  "keywords": ["data", "random", "sample"],
+  "env": {
+    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-php"
+  }
 }
