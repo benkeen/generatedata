@@ -188,10 +188,10 @@ class DataType_PAN extends DataTypePlugin {
 
 	public function __construct($runtimeContext) {
 		for ($i=622126; $i<=622925; $i++) {
-			$this->creditCardData["discover"][] = $i;
+            self::$creditCardData["discover"][] = $i;
 		}
 		for ($i=3528; $i<=3589; $i++) {
-			$this->creditCardData["jcb16"][] = $i;
+            self::$creditCardData["jcb16"][] = $i;
 		}
 		parent::__construct($runtimeContext);
 	}

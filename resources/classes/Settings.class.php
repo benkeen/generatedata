@@ -126,7 +126,7 @@ class Settings {
 	 *
 	 * @param string $setting
 	 */
-	public function safeDisplaySetting($setting) {
+	public static function safeDisplaySetting($setting) {
 		switch ($setting) {
 			case "consoleWarnings":
 				if (!Core::checkIsInstalled()) {

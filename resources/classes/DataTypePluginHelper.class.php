@@ -13,7 +13,7 @@ class DataTypePluginHelper {
 	 *
 	 * @return array
 	 */
-	public function getDataTypeResources() {
+	public static function getDataTypeResources() {
 		$dataTypeGroups = Core::$dataTypePlugins;
 		$resources = array();
 		while (list($group, $dataTypes) = each($dataTypeGroups)) {
@@ -221,15 +221,15 @@ class DataTypePluginHelper {
 	 * @internal param $string
 	 * @return object
 	 */
-	private function instantiateDataType($runtimeContext, $baseFolder, $dataTypeFolderName) {
-		$dataTypeClassFileName = "{$dataTypeFolderName}.class.php";
-		if (!is_file("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName")) {
+	private static function instantiateDataType($runtimeContext, $baseFolder, $dataTypeFolderName) {
+		$dataTypeClass = "{$dataTypeFolderName}.class.php";
+		if (!is_file("$baseFolder/$dataTypeFolderName/$dataTypeClass")) {
 			return false;
 		}
 
 		// now try to include and instantiate the class [bug...]
 		try {
-			include("$baseFolder/$dataTypeFolderName/$dataTypeClassFileName");
+			include("$baseFolder/$dataTypeFolderName/$dataTypeClass");
 		} catch (Exception $e) {
 			return false;
 		}

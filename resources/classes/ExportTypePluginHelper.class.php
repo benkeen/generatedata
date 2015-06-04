@@ -94,7 +94,7 @@ class ExportTypePluginHelper {
 	 * @param $exportTypeFolderName
 	 * @return bool|ExportTypePlugin
 	 */
-	private function instantiateExportType($runtimeContext, $baseFolder, $exportTypeFolderName) {
+	private static function instantiateExportType($runtimeContext, $baseFolder, $exportTypeFolderName) {
 
 		$filename = "{$exportTypeFolderName}.class.php";
 		if (!is_file("$baseFolder/$exportTypeFolderName/$filename")) {
