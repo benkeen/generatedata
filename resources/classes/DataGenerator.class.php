@@ -38,9 +38,9 @@ class DataGenerator {
 		$this->genEnvironment = $environment;
 		$this->dataTypes = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);
 
-		if ($environment === GEN_ENVIRONMENT_POST) {
+		if ($environment === Constants::GEN_ENVIRONMENT_POST) {
 			$this->initUIGenerator($data);
-		} else if ($environment === GEN_ENVIRONMENT_API) {
+		} else if ($environment === Constants::GEN_ENVIRONMENT_API) {
 			$this->initAPIGenerator($data);
 		}
 	}
@@ -413,7 +413,7 @@ class DataGenerator {
 	 * @return mixed
 	 */
 	public function getUserSettings() {
-		if ($this->genEnvironment === GEN_ENVIRONMENT_POST) {
+		if ($this->genEnvironment === Constants::GEN_ENVIRONMENT_POST) {
 			return $this->postData;
 		} else {
 			return $this->apiData;
