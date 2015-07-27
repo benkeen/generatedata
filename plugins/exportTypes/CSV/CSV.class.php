@@ -93,7 +93,7 @@ END;
 	}
 
 	private function getCSVDelimiter() {
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$settings = $this->userSettings->export->settings;
 			$format = $settings->delimiter;
 		} else {
@@ -106,7 +106,7 @@ END;
 	// return a string: "Windows", "Unix" or "Mac"
 	private function getLineEndingChar() {
 		$type = "";
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$type = $this->userSettings->export->eol;
 		} else {
 			$type = $this->userSettings["etCSV_lineEndings"];

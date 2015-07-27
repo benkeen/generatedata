@@ -219,7 +219,7 @@ END;
 
 	private function getLanguage() {
 		$language = "";
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$language = $this->userSettings->export->settings->language;
 		} else {
 			$language = $this->userSettings["etProgrammingLanguage_language"];

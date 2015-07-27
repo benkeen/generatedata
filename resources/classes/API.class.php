@@ -32,7 +32,7 @@ class GenerateDataAPI extends API
         }
 
         // okay! Now we generate whatever data was requested
-        $gen = new DataGenerator(GEN_ENVIRONMENT_API, $json);
+        $gen = new DataGenerator(Constants::GEN_ENVIRONMENT_API, $json);
         $response = $gen->generate();
 
         if ($response["success"]) {

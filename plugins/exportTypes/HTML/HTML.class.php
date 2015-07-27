@@ -271,7 +271,7 @@ END;
 	}
 
 	private function getExportFormat() {
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			return $this->userSettings->export->settings->exportFormat;
 		} else {
 			return (isset($this->userSettings["etHTMLExportFormat"])) ? $this->userSettings["etHTMLExportFormat"] : "custom";
@@ -279,7 +279,7 @@ END;
 	}
 
 	private function getCustomTemplate() {
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			return (property_exists($this->userSettings->export->settings, "customTemplate")) ? $this->userSettings->export->settings->customTemplate : "";
 		} else {
 			return (get_magic_quotes_gpc()) ? stripslashes($this->userSettings["etHTMLCustomHTMLSource"]) : $this->userSettings["etHTMLCustomHTMLSource"];

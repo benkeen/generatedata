@@ -163,7 +163,7 @@ END;
 	 */
 	private function shouldStripWhitespace() {
 		$default = false;
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$jsonSettings = $this->userSettings->export->settings;
 			$stripWhitespace = (property_exists($jsonSettings, "stripWhitespace")) ? $jsonSettings->stripWhitespace : $default;
 		} else {
@@ -178,7 +178,7 @@ END;
 	 */
 	private function getDataStructureFormat() {
 		$default = "complex";
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$jsonSettings = $this->userSettings->export->settings;
 			$format = (property_exists($jsonSettings, "dataStructureFormat")) ? $jsonSettings->dataStructureFormat : $default;
 		} else {

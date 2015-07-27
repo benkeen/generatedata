@@ -47,7 +47,7 @@ class SQL extends ExportTypePlugin {
 		$this->userSettings = $generator->getUserSettings();
 		$this->exportTarget = $generator->getExportTarget();
 
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$this->exportTarget = "promptDownload";
 		}
 
@@ -697,7 +697,7 @@ END;
 
 
 	private function extractSettings() {
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$settings = $this->userSettings->export->settings;
 
 			// these two are enforced as required by the schema file

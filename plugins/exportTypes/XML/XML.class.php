@@ -161,7 +161,7 @@ END;
 
 	private function isUsingCustomXMLFormat() {
 		$usingXMLFormat = false;
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$settings = $this->userSettings->export->settings;
 			$usingXMLFormat = property_exists($settings, "useCustomExportFormat") ? $settings->useCustomExportFormat : false;
 		} else {
@@ -173,7 +173,7 @@ END;
 
 	private function getCustomTemplate() {
 		$template = "";
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$template = $this->userSettings->export->settings->customTemplate;
 		} else {
 			$template = (get_magic_quotes_gpc()) ? stripslashes($this->userSettings["etXMLCustomHTMLSource"]) : $this->userSettings["etXMLCustomHTMLSource"];
@@ -183,7 +183,7 @@ END;
 
 	private function getXMLRootNodeName() {
 		$name = "";
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$name = $this->userSettings->export->settings->rootNodeName;
 		} else {
 			$name = $this->userSettings["etXMLRootNodeName"];
@@ -193,7 +193,7 @@ END;
 
 	private function getXMLRecordNodeName() {
 		$name = "";
-		if ($this->genEnvironment == GEN_ENVIRONMENT_API) {
+		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$name = $this->userSettings->export->settings->recordNodeName;
 		} else {
 			$name = $this->userSettings["etXMLRecordNodeName"];

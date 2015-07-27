@@ -449,7 +449,7 @@ class Core {
 	 * /resources/templates/ - and for other misc uses.
 	 * @access private
 	 */
-	private function initSmarty() {
+	private static function initSmarty() {
 		self::$smarty = new SecureSmarty();
 		self::$smarty->template_dir = realpath(__DIR__ . "/../templates/");
 		self::$smarty->compile_dir  = realpath(__DIR__ . "/../../cache/");
