@@ -267,7 +267,21 @@ class DataType_NamesRegional extends DataTypePlugin {
 				"Palma", "Moreno", "Sanhueza", "Carvajal", "Navarrete", "Sáez", "Alvarado", "Donoso", "Poblete", "Bustamante",
 				"Toro", "Ortega", "Venegas", "Guerrero", "Paredes", "Farías", "San Martín"
 			)
-		)
+		),
+		"sweden" => array(
+			"firstNamesFemale" => array(
+				"Anna", "Maria", "Sofia", "Magdalena", "Sanna", "Sara", "Märta", "Eva", "Camilla",
+				"Catarina", "Elena", "Eleonor", "Lisa", "Emma", "Erica",
+				"Erika", "Silvia"
+			),
+			"firstNamesMale" => array(
+				"Erik", "Anders", "Per", "Pär", "Hans", "Peter", "Petter", "Stefan", "Henrik",
+				"Christian", "Kristian", "Fredrik", "Daniel", "Tomas", "Thomas"
+			),
+			"lastNames" => array(
+				"Andersson", "Ericsson", "Eriksson", "Samuelsson", "Svensson", "Persson", "Staffansson", "Carlsson", "Karlsson", "Bodin"
+			)
+		),
 	);
 	private $generalMaleNames   = array();
 	private $generalFemaleNames = array();
