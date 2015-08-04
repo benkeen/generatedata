@@ -9,11 +9,13 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	protected $dataTypeName = "PersonalNumber";
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 110;
+	protected $jsModules = array("PersonalNumber.js");
 	/*protected $processOrder = 2;
-	protected $jsModules = array("Region.js");
 	protected $cssFiles = array("Region.css");
 	private $countryRegionHash;*/
 	private $generatedPersonnrs = array();
+	// Separator in personal number
+	static $sep = "-";
 
 
 	/**
@@ -22,6 +24,13 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	 */
 	public function generate($generator, $generationContextData) {
 		$generationOptions = $generationContextData["generationOptions"];
+		
+		//if (preg_match("/PersonalNumberWithHyphen/", $generationOptions))
+			$self->sep = "-";
+		/*else if (preg_match("/PersonalNumberWithoutHyphen/", $generationOptions))
+			$self->sep = "";
+		else
+			$self->sep = "-";		// Default*/
 
 		// TODO: support several countries?
 		$personnr = $this->generateRandomSwedishPersonalNumber();
@@ -47,9 +56,9 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		// Default, 12 siffers + '-'
 		// TODO: Option for 12 siffers without '-'
 		// TODO: more options? (eg 10 siffers)
-		$strlen = 13;
+		$cnt = 13;
 		
-		for ($i=0; $i<$strlen; $i++) {
+		for ($i=0; $i<$cnt; $i++) {
 			switch ($i) {
 				case 2:
 					$rand = mt_rand(0, 99);
@@ -84,7 +93,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					$sum += $partSum;
 					$new_str .= sprintf("%02d", $rand);
 					break;
-				case 8: $new_str .= "-";  break;
+				case 8: $new_str .= $self->sep;  break;
 				case 9: 
 					$new_str .= "101";
 					$sum += 4;
@@ -102,41 +111,57 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	}
 
 
-	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
-		$countries = $generator->getCountries();
-		$generationOptions = array();
+	public function getExampleColumnHTML() {
+		$L = Core::$language->getCurrentLanguageStrings();
 
-		// if the user didn't select any Country plugins, they want ANY old region
-		if (empty($countries)) {
-			$generationOptions["resultType"] = "any";
-		} else {
-			$generationOptions["resultType"] = "specificCountries";
-			$generationOptions["countries"] = array();
-
-			foreach ($countries as $slug) {
-				if (isset($postdata["dtIncludeRegion_{$slug}_$colNum"])) {
-					$region_full  = (isset($postdata["dtIncludeRegion_{$slug}_Full_$colNum"])) ? true : false;
-					$region_short = (isset($postdata["dtIncludeRegion_{$slug}_Short_$colNum"])) ? true : false;
-					$generationOptions["countries"][$slug] = array(
-						"full"  => $region_full,
-						"short" => $region_short
-					);
-				}
-			}
-		}
-
-		return $generationOptions;
+		$html =<<< END
+	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
+		<option value="">{$L["please_select"]}</option>
+		<option value="PersonalNumberWithoutHyphen">{$this->L["example_PersonalNumberWithoutHyphen"]}</option>
+		<option value="PersonalNumberWithHyphen">{$this->L["example_PersonalNumberWithHyphen"]}</option>
+	</select>
+END;
+		return $html;
 	}
 
+	public function getOptionsColumnHTML() {
+		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
+	}
+
+	/*public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
+		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
+			return false;
+		}
+		return $post["dtOption_$colNum"];
+	}*/
+
 	public function getHelpHTML() {
-		return "<p>{$this->L["help_text"]}</p>";
+		$content =<<<EOF
+	<p>
+		{$this->L["help_text"]}
+	</p>
+
+	<table cellpadding="0" cellspacing="1">
+	<tr>
+		<td width="100"><h4>PersonalNumberWithoutHyphen</h4></td>
+		<td>{$this->L["type_PersonalNumberWithoutHyphen"]}</td>
+	</tr>
+	<tr>
+		<td><h4>PersonalNumberWithHyphen</h4></td>
+		<td>{$this->L["type_PersonalNumberWithHyphen"]}</td>
+	</tr>
+	</table>
+EOF;
+
+		return $content;
 	}
 
 	public function getDataTypeMetadata() {
+		$len = 12 + strlen($self->sep);
 		return array(
-			"SQLField" => "varchar(13) default NULL",
-			"SQLField_Oracle" => "varchar2(13) default NULL",
-			"SQLField_MSSQL" => "VARCHAR(13) NULL"
+			"SQLField" => "varchar(" . $len . ") default NULL",
+			"SQLField_Oracle" => "varchar2(" . $len . ") default NULL",
+			"SQLField_MSSQL" => "VARCHAR(" . $len . ") NULL"
 		);
 	}
 
