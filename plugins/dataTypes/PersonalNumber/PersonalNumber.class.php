@@ -23,18 +23,40 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$generationOptions = $generationContextData["generationOptions"];
 
-		$placeholderStr = "Xxxxxxxx-xxxx";
-		$personnr = Utils::generateRandomAlphanumericStr($placeholderStr);
+		// TODO: support several countries?
+		$personnr = generateRandomSwedishPersonalNumber();
 
 		// pretty sodding unlikely, but just in case!
 		while (in_array($personnr, $this->generatedPersonnrs)) {
-			$personnr = Utils::generateRandomAlphanumericStr($placeholderStr);
+			$personnr = generateRandomSwedishPersonalNumber();
 		}
 		$this->generatedPersonnrs[] = $personnr;
 		return array(
 			"display" => $personnr
 		);
 	}
+	
+	function generateRandomSwedishPersonalNumber() {
+
+		$new_str = "16";
+		$strlen = 13;	// Default, 12 siffers + '-'
+		for ($i=0; $i<$strlen; $i++) {
+			switch ($i) {
+				/*case 0: $new_str .= "1";  break;
+				case 1: $new_str .= "6";  break;*/
+				case 2: $new_str .= sprintf("%02d", mt_rand(0, 99));  break;
+				case 4: $new_str .= sprintf("%02d", mt_rand(1, 12));  break;
+				case 6: $new_str .= sprintf("%02d", mt_rand(1, 30));  break;
+				case 8: $new_str .= "-";  break;
+				case 9: $new_str .= "1010";  break;
+				default:
+					break;
+			}
+		}
+
+		return $new_str;
+	}
+
 
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		$countries = $generator->getCountries();
