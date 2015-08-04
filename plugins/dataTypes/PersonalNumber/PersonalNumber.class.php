@@ -37,18 +37,62 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	}
 	
 	public static function generateRandomSwedishPersonalNumber() {
-
 		$new_str = "16";
-		$strlen = 13;	// Default, 12 siffers + '-'
+		$sum = 0;
+		$rand = 0;
+		$partSum = 0;
+		$q = 0;
+		$r = 0;
+		
+		// Default, 12 siffers + '-'
+		// TODO: Option for 12 siffers without '-'
+		// TODO: more options? (eg 10 siffers)
+		$strlen = 13;
+		
 		for ($i=0; $i<$strlen; $i++) {
 			switch ($i) {
-				/*case 0: $new_str .= "1";  break;
-				case 1: $new_str .= "6";  break;*/
-				case 2: $new_str .= sprintf("%02d", mt_rand(0, 99));  break;
-				case 4: $new_str .= sprintf("%02d", mt_rand(1, 12));  break;
-				case 6: $new_str .= sprintf("%02d", mt_rand(1, 30));  break;
+				case 2:
+					$rand = mt_rand(0, 99);
+					$q = (int)($rand / 10);
+					$q *= 2;
+					if($q >= 10)
+						$q = (int)($q / 10) + ($q % 10);
+					$r = $rand % 10;
+					$partSum = $q + $r;
+					$sum += $partSum;
+					$new_str .= sprintf("%02d", $rand);
+					break;
+				case 4: 
+					$rand = mt_rand(1, 12);
+					$q = (int)($rand / 10);
+					$q *= 2;
+					if($q >= 10)
+						$q = (int)($q / 10) + ($q % 10);
+					$r = $rand % 10;
+					$partSum = $q + $r;
+					$sum += $partSum;
+					$new_str .= sprintf("%02d", $rand);
+					break;
+				case 6:
+					$rand = mt_rand(1, 30);
+					$q = (int)($rand / 10);
+					$q *= 2;
+					if($q >= 10)
+						$q = (int)($q / 10) + ($q % 10);
+					$r = $rand % 10;
+					$partSum = $q + $r;
+					$sum += $partSum;
+					$new_str .= sprintf("%02d", $rand);
+					break;
 				case 8: $new_str .= "-";  break;
-				case 9: $new_str .= "1010";  break;
+				case 9: 
+					$new_str .= "101";
+					$sum += 4;
+					break;
+				case 12:
+					$ctrl = (10 - ($sum % 10)) % 10;
+					$new_str .= sprintf("%01d", $ctrl);
+					break;
 				default:
 					break;
 			}
