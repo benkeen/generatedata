@@ -24,11 +24,11 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		$generationOptions = $generationContextData["generationOptions"];
 
 		// TODO: support several countries?
-		$personnr = generateRandomSwedishPersonalNumber();
+		$personnr = $this->generateRandomSwedishPersonalNumber();
 
 		// pretty sodding unlikely, but just in case!
 		while (in_array($personnr, $this->generatedPersonnrs)) {
-			$personnr = generateRandomSwedishPersonalNumber();
+			$personnr = $this->generateRandomSwedishPersonalNumber();
 		}
 		$this->generatedPersonnrs[] = $personnr;
 		return array(
@@ -36,7 +36,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		);
 	}
 	
-	function generateRandomSwedishPersonalNumber() {
+	public static function generateRandomSwedishPersonalNumber() {
 
 		$new_str = "16";
 		$strlen = 13;	// Default, 12 siffers + '-'
