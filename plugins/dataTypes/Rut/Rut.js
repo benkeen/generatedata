@@ -11,6 +11,23 @@ define([
 	var MODULE_ID = "data-type-Rut";
 	var LANG = L.dataTypePlugins.Names;
 
+	var _validate = function (rows) {
+	    var visibleProblemRows = [];
+	    var problemFields = [];
+	    for (var i = 0; i < rows.length; i++) {
+	        if ($("#dtExample_" + rows[i]).val() === "") {
+	            var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+	            visibleProblemRows.push(visibleRowNum);
+	            problemFields.push($("#dtExample_" + rows[i]));
+	        }
+	    }
+	    var errors = [];
+	    if (visibleProblemRows.length) {
+	        errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>" });
+	    }
+	    return errors;
+	};
+
 	var _loadRow = function(rowNum, data) {
 		return {
 			execute: function() {},
@@ -58,6 +75,7 @@ define([
 
 	// register our module
 	manager.registerDataType(MODULE_ID, {
+	    validate: _validate,
 		loadRow: _loadRow,
 		saveRow: _saveRow
 	});

@@ -23,55 +23,66 @@ class DataType_Rut extends DataTypePlugin {
 		$options = $generationContextData["generationOptions"];
 		
 		$rowRutInfo = array();
-		while (list($key, $info) = each($generationContextData["existingRowData"])) {
-			if ($info["dataTypeFolder"] == "Rut") {
-				
+		while (list($key, $info) = each($generationContextData["existingRowData"]))
+        {
+			if ($info["dataTypeFolder"] == "Rut")
+            {	
 				$rowRutInfo = $info;
 				break;
 			}
 		}
 		reset($generationContextData["existingRowData"]);
 		
-		/*if (!empty($rowRutInfo)) {
-        
+		if (!empty($rowRutInfo))
+        {
+            $rutn = $info["randomData"]["rut"];
+            $digit = $info["randomData"]["digit"];
 		}
-		else*/ {
+		else
+        {
 			$rutn = sprintf("%d%03d%03d", mt_rand(5, 50), mt_rand(0,999), mt_rand(0,999));
-            
-			$display = "";
+            $digit = $this->getDigit($rutn);
+        }
+
+		$display = "";
 			
-			if( strpos($options["formatCode"], "xxxxxxxx") !== false )
+        if( strpos($options["formatCode"], "xxxxxxxx") !== false )
+        {
+            if( $options["thousep"] )
+            {
+                $display = number_format($rutn, 0, ",", ".");
+            }
+            else
+            {
+                $display = $rutn;
+            }
+        }
+
+        if( strpos($options["formatCode"], "xxxxxxxx-y") !== false )
+        {
+            if( !$options["remdash"] )
+            {
+                $display .= "-";
+            }
+        }
+			
+		if( strpos($options["formatCode"], "y") !== false )
+		{
+			if( $options["upper"] )
 			{
-                    if( $options["thousep"] )
-                    {
-                            $display = number_format($rutn, 0, ",", ".");
-                        }
-                    else {
-                        $display = $rutn;
-                    }
-                }
-			if( strpos($options["formatCode"], "xxxxxxxx-y") !== false )
-			{
-				if( !$options["remdash"] )
-				{
-					$display .= "-";
-				}
+				$display .= strtoupper($digit);
 			}
-			
-			if( strpos($options["formatCode"], "y") !== false )
-			{
-				if( $options["upper"] )
-				{
-					$display .= strtoupper($this->getDigit($rutn));
-				}
-				else {
-					$display .= $this->getDigit($rutn);
-				}
+			else
+            {
+				$display .= $digit;
 			}
 		}
 		
-		return array(
-				"display" => $display
+		return array
+        (
+			"display" => $display,
+            "rut" => $rutn,
+            "digit" => $digit
 		);
     }
 	

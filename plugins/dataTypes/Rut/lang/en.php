@@ -4,6 +4,7 @@ $L = array();
 $L["DATA_TYPE_NAME"] = "Rut";
 
 $L["different_formats"] = "Different formats";
+$L["incomplete_fields"] = "The Rut data type needs to have the example field selected. Please fix the following rows:";
 $L["rut_default"] = "Default";
 $L["only_number"] = "Only number";
 $L["only_digit"] = "Only verification digit";
