@@ -52,6 +52,7 @@ define([
 	var _saveRow = function(rowNum) {
 		return {
 			"example": $("#dtExample_" + rowNum).val(),
+			"separator":    $("#dtOptionPersonalNumber_sep_" + rowNum).val(),
 			"option":  $("#dtOption_" + rowNum).val()
 		};
 	};
@@ -65,11 +66,13 @@ define([
 	 */
 	var _loadRow = function(rowNum, data) {
 		return {
-			execute: function() { },
+			execute: function() { 
+			},
 			isComplete: function() {
 				if ($("#dtOption_" + rowNum).length) {
 					$("#dtExample_" + rowNum).val(data.example);
 					$("#dtOption_" + rowNum).val(data.option);
+					$("#dtOptionPersonalNumber_sep_" + rowNum).val(data.separator);
 					return true;
 				} else {
 					return false;

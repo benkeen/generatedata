@@ -15,7 +15,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	private $countryRegionHash;*/
 	private $generatedPersonnrs = array();
 	// Separator in personal number
-	static $sep = "-";
+	// static $sep = "-";
 
 
 	/**
@@ -26,7 +26,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		$generationOptions = $generationContextData["generationOptions"];
 		
 		//if (preg_match("/PersonalNumberWithHyphen/", $generationOptions))
-			$self->sep = "-";
+			//$self->sep = "-";
 		/*else if (preg_match("/PersonalNumberWithoutHyphen/", $generationOptions))
 			$self->sep = "";
 		else
@@ -56,6 +56,8 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		// Default, 12 siffers + '-'
 		// TODO: Option for 12 siffers without '-'
 		// TODO: more options? (eg 10 siffers)
+		$ccSeparator = self::getPersonalNumberSeparator($options["cc_separator"]);
+
 		$cnt = 13;
 		
 		for ($i=0; $i<$cnt; $i++) {
@@ -93,7 +95,10 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					$sum += $partSum;
 					$new_str .= sprintf("%02d", $rand);
 					break;
-				case 8: $new_str .= $self->sep;  break;
+				case 8: 
+					//$new_str .= $self->sep;
+					$new_str .= $ccSeparator;
+					break;
 				case 9: 
 					$new_str .= "101";
 					$sum += 4;
@@ -110,6 +115,16 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		return $new_str;
 	}
 
+	private static function getPersonalNumberSeparator($separators) {
+		$separatorList = explode("|", $separators);
+		$chosenSep = $separatorList[rand(0, count($separatorList)-1)];
+
+		// if no separator was entered use '' as default
+		if ($separators == "") {
+			$chosenSep = "";
+		}
+		return $chosenSep;
+	}
 
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
@@ -125,7 +140,14 @@ END;
 	}
 
 	public function getOptionsColumnHTML() {
-		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
+		$html =<<< END
+<span id="dtOptionPersonalNumberSeparator_%ROW%" style="display:inline;">
+	{$this->L["separators"]}
+	<input type="text" name="dtOptionPersonalNumber_sep_%ROW%" id="dtOptionPersonalNumber_sep_%ROW%" style="width: 78px" value=" " title="{$this->L["separator_help"]}" />
+</span>
+END;
+		return $html;
+//		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 	}
 
 	/*public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
@@ -134,6 +156,12 @@ END;
 		}
 		return $post["dtOption_$colNum"];
 	}*/
+	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
+		return array(
+			"cc_separator"   => $postdata["dtOptionPersonalNumber_sep_$colNum"],
+			"cc_format"      => $postdata["dtOption_$colNum"],
+		);
+	}
 
 	public function getHelpHTML() {
 		$content =<<<EOF
