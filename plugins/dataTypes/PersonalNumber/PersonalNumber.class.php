@@ -25,19 +25,17 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$generationOptions = $generationContextData["generationOptions"];
 		
-		//if (preg_match("/PersonalNumberWithHyphen/", $generationOptions))
-			//$self->sep = "-";
-		/*else if (preg_match("/PersonalNumberWithoutHyphen/", $generationOptions))
-			$self->sep = "";
-		else
-			$self->sep = "-";		// Default*/
-
+		// Default, 12 siffers + '-'
+		// TODO: Option for 12 siffers without '-'
+		// TODO: more options? (not 10 siffers since it could generate real personal number)
 		// TODO: support several countries?
-		$personnr = $this->generateRandomSwedishPersonalNumber();
+		$ccSeparator = '-'; //self::getPersonalNumberSeparator($options["cc_separator"]);
+
+		$personnr = $this->generateRandomSwedishPersonalNumber($ccSeparator);
 
 		// pretty sodding unlikely, but just in case!
 		while (in_array($personnr, $this->generatedPersonnrs)) {
-			$personnr = $this->generateRandomSwedishPersonalNumber();
+			$personnr = $this->generateRandomSwedishPersonalNumber($ccSeparator);
 		}
 		$this->generatedPersonnrs[] = $personnr;
 		return array(
@@ -45,7 +43,9 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		);
 	}
 	
-	public static function generateRandomSwedishPersonalNumber() {
+	// TODO: add support for separator
+	// TODO: add support for organisation numbers
+	private static function generateRandomSwedishPersonalNumber($sep) {
 		$new_str = "16";
 		$sum = 0;
 		$rand = 0;
@@ -53,14 +53,10 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		$q = 0;
 		$r = 0;
 		
-		// Default, 12 siffers + '-'
-		// TODO: Option for 12 siffers without '-'
-		// TODO: more options? (eg 10 siffers)
-		$ccSeparator = self::getPersonalNumberSeparator($options["cc_separator"]);
 
-		$cnt = 13;
+		$cnt = 13;	// 12 siffers + 1 increment for separator
 		
-		for ($i=0; $i<$cnt; $i++) {
+		for ($i=2; $i<$cnt; $i++) {
 			switch ($i) {
 				case 2:
 					$rand = mt_rand(0, 99);
@@ -97,13 +93,18 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					break;
 				case 8: 
 					//$new_str .= $self->sep;
-					$new_str .= $ccSeparator;
+					$new_str .= $sep;
 					break;
 				case 9: 
 					$new_str .= "101";
 					$sum += 4;
 					break;
 				case 12:
+					/*$ctrl = $this->recalcCtrl($new_str . "0", "-");
+					if(($ctrl >= 0) && ($ctrl < 10)
+						$new_str .= sprintf("%01d", $ctrl);
+					else 
+						$new_str = "15991212-1218";*/
 					$ctrl = (10 - ($sum % 10)) % 10;
 					$new_str .= sprintf("%01d", $ctrl);
 					break;
@@ -114,6 +115,46 @@ class DataType_PersonalNumber extends DataTypePlugin {
 
 		return $new_str;
 	}
+	
+	// Function to recalculate control siffer in swedish personal number
+	/*private static function recalcCtrl($idNumber, $separator) {
+		$strArr = explode($separator, $idNumber);
+		$idNr = "";
+		for($i=0; $i<count($strArr); $i++)
+			$idNr .= $strArr[$i];
+		
+		$idNrArr = str_split($idNr);
+		
+		$ctrl = 0;
+		
+		// Ogiltig längd
+		if(!((strlen($idNr) == 12) || (strlen($idNr) == 10)))
+			return 99;
+		
+		// OK, 12 siffers (person) or 10 siffers (organisation), recalculate control siffer
+		$partSum=0;
+		$sum=0;
+		
+		for($i = strlen($idNr) - 10; $i< strlen($idNr) - 1; $i++)
+		{
+			if($i%2 == 0)
+			{
+				$siffra = intval($idNrArr[$i]);
+				$partSum = $siffra * 2;
+				if($partSum >= 10)
+					$partSum = (int)($partSum / 10) + ($partSum % 10);
+			}
+			else
+				$partSum = intval($idNrArr[$i]);
+			
+			$sum+= $partSum;
+		}
+		
+		$ctrl = (10 - ($sum % 10)) % 10;
+		
+		return $ctrl;
+	}*/
+
 
 	private static function getPersonalNumberSeparator($separators) {
 		$separatorList = explode("|", $separators);
