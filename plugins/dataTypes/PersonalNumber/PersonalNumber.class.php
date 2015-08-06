@@ -67,10 +67,11 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					$new_str .= $sep;
 					break;
 				case 9: 
-					$new_str .= "101";
+					$rand = mt_rand(0, 999);
+					$new_str .= sprintf("%03d", $rand);
 					break;
 				case 12:
-					$ctrl = self::recalcCtrl($new_str . "0", "-");
+					$ctrl = static::recalcCtrl($new_str . "0", "-");
 					$new_str .= sprintf("%01d", $ctrl);
 					break;
 				default:
@@ -82,7 +83,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	}
 	
 	// Function to recalculate control siffer in swedish personal number
-	private static function recalcCtrl($idNumber, $separator) {
+	public static function recalcCtrl($idNumber, $separator) {
 		$strArr = explode($separator, $idNumber);
 		$idNr = "";
 		for($i=0; $i<count($strArr); $i++)
@@ -191,7 +192,9 @@ EOF;
 	}
 
 	public function getDataTypeMetadata() {
-		$len = 12 + strlen($self->sep);
+		// TODO use selected separator
+		//$len = 12 + strlen($self->sep);
+		$len = 13;
 		return array(
 			"SQLField" => "varchar(" . $len . ") default NULL",
 			"SQLField_Oracle" => "varchar2(" . $len . ") default NULL",
