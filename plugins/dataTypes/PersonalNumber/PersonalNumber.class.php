@@ -10,9 +10,6 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "human_data";
 	protected $dataTypeFieldGroupOrder = 110;
 	protected $jsModules = array("PersonalNumber.js");
-	/*protected $processOrder = 2;
-	protected $cssFiles = array("Region.css");
-	private $countryRegionHash;*/
 	private $generatedPersonnrs = array();
 	// Separator in personal number
 	// static $sep = "-";
@@ -47,12 +44,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	// TODO: add support for organisation numbers
 	private static function generateRandomSwedishPersonalNumber($sep) {
 		$new_str = "16";
-		$sum = 0;
 		$rand = 0;
-		$partSum = 0;
-		$q = 0;
-		$r = 0;
-		
 
 		$cnt = 13;	// 12 siffers + 1 increment for separator
 		
@@ -60,35 +52,14 @@ class DataType_PersonalNumber extends DataTypePlugin {
 			switch ($i) {
 				case 2:
 					$rand = mt_rand(0, 99);
-					$q = (int)($rand / 10);
-					$q *= 2;
-					if($q >= 10)
-						$q = (int)($q / 10) + ($q % 10);
-					$r = $rand % 10;
-					$partSum = $q + $r;
-					$sum += $partSum;
 					$new_str .= sprintf("%02d", $rand);
 					break;
 				case 4: 
 					$rand = mt_rand(1, 12);
-					$q = (int)($rand / 10);
-					$q *= 2;
-					if($q >= 10)
-						$q = (int)($q / 10) + ($q % 10);
-					$r = $rand % 10;
-					$partSum = $q + $r;
-					$sum += $partSum;
 					$new_str .= sprintf("%02d", $rand);
 					break;
 				case 6:
 					$rand = mt_rand(1, 30);
-					$q = (int)($rand / 10);
-					$q *= 2;
-					if($q >= 10)
-						$q = (int)($q / 10) + ($q % 10);
-					$r = $rand % 10;
-					$partSum = $q + $r;
-					$sum += $partSum;
 					$new_str .= sprintf("%02d", $rand);
 					break;
 				case 8: 
@@ -97,15 +68,9 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					break;
 				case 9: 
 					$new_str .= "101";
-					$sum += 4;
 					break;
 				case 12:
 					$ctrl = self::recalcCtrl($new_str . "0", "-");
-					/*if(($ctrl >= 0) && ($ctrl < 10)
-						$new_str .= sprintf("%01d", $ctrl);
-					else 
-						$new_str = "15991212-1218";*/
-					//$ctrl = (10 - ($sum % 10)) % 10;
 					$new_str .= sprintf("%01d", $ctrl);
 					break;
 				default:
