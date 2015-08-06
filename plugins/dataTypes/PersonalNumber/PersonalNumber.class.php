@@ -100,12 +100,12 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					$sum += 4;
 					break;
 				case 12:
-					/*$ctrl = $this->recalcCtrl($new_str . "0", "-");
-					if(($ctrl >= 0) && ($ctrl < 10)
+					$ctrl = $this->recalcCtrl($new_str . "0", "-");
+					/*if(($ctrl >= 0) && ($ctrl < 10)
 						$new_str .= sprintf("%01d", $ctrl);
 					else 
-						$new_str = "15991212-1218";*/
-					$ctrl = (10 - ($sum % 10)) % 10;
+						$new_str = "15991212-1218";
+					$ctrl = (10 - ($sum % 10)) % 10;*/
 					$new_str .= sprintf("%01d", $ctrl);
 					break;
 				default:
@@ -117,7 +117,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	}
 	
 	// Function to recalculate control siffer in swedish personal number
-	/*private static function recalcCtrl($idNumber, $separator) {
+	private static function recalcCtrl($idNumber, $separator) {
 		$strArr = explode($separator, $idNumber);
 		$idNr = "";
 		for($i=0; $i<count($strArr); $i++)
@@ -153,7 +153,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		$ctrl = (10 - ($sum % 10)) % 10;
 		
 		return $ctrl;
-	}*/
+	}
 
 
 	private static function getPersonalNumberSeparator($separators) {
