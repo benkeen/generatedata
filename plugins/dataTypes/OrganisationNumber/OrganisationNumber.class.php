@@ -25,7 +25,7 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 		// Default, 10 siffers + '-'
 		// TODO: Option for 10 siffers without '-'
 		// TODO: support several countries?
-		$ccSeparator = '-'; //self::getOrganisationNumberSeparator($options["cc_separator"]);
+		$ccSeparator = self::getOrganisationNumberSeparator($generationOptions["cc_separator"]);
 
 		$orgnr = $this->generateRandomSwedishOrganisationNumber($ccSeparator);
 

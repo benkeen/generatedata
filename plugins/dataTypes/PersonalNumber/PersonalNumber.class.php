@@ -26,7 +26,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		// TODO: Option for 12 siffers without '-'
 		// TODO: more options? (not 10 siffers since it could generate real personal number)
 		// TODO: support several countries?
-		$ccSeparator = '-'; //self::getPersonalNumberSeparator($options["cc_separator"]);
+		$ccSeparator = self::getPersonalNumberSeparator($generationOptions["cc_separator"]);
 
 		$personnr = $this->generateRandomSwedishPersonalNumber($ccSeparator);
 
