@@ -11,8 +11,7 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 111;
 	protected $jsModules = array("OrganisationNumber.js");
 	private $generatedOrgNrs = array();
-	// Separator in personal number
-	// static $sep = "-";
+	static $sep = "-";
 
 
 	/**
@@ -23,15 +22,14 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 		$generationOptions = $generationContextData["generationOptions"];
 		
 		// Default, 10 siffers + '-'
-		// TODO: Option for 10 siffers without '-'
 		// TODO: support several countries?
-		$ccSeparator = self::getOrganisationNumberSeparator($generationOptions["cc_separator"]);
+                static::$sep = self::getOrganisationNumberSeparator($generationOptions["cc_separator"]);
 
-		$orgnr = $this->generateRandomSwedishOrganisationNumber($ccSeparator);
+		$orgnr = $this->generateRandomSwedishOrganisationNumber(static::$sep);
 
 		// pretty sodding unlikely, but just in case!
 		while (in_array($orgnr, $this->generatedOrgNrs)) {
-			$orgnr = $this->generateRandomSwedishOrganisationNumber($ccSeparator);
+			$orgnr = $this->generateRandomSwedishOrganisationNumber(static::$sep);
 		}
 		$this->generatedOrgNrs[] = $orgnr;
 		return array(
@@ -62,7 +60,6 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 					$new_str .= sprintf("%02d", $rand);
 					break;
 				case 6: 
-					//$new_str .= $self->sep;
 					$new_str .= $sep;
 					break;
 				case 7: 
@@ -72,7 +69,7 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 				case 10:
 					// Same calculation as for personal numbers
 					// TODO: move to Utils??
-					$ctrl = DataType_PersonalNumber::recalcCtrl($new_str . "0", "-");
+					$ctrl = DataType_PersonalNumber::recalcCtrl($new_str . "0", $sep);
 					$new_str .= sprintf("%01d", $ctrl);
 					break;
 				default:
@@ -155,9 +152,9 @@ EOF;
 	}
 
 	public function getDataTypeMetadata() {
-		// TODO use selected separator
-		//$len = 10 + strlen($self->sep);
-		$len = 11;
+		// Called before separator is set, so margin should be used
+		//$len = 10 + strlen(static::$sep);
+		$len = 11;  // Shoud be enough, allow for max one char sep
 		return array(
 			"SQLField" => "varchar(" . $len . ") default NULL",
 			"SQLField_Oracle" => "varchar2(" . $len . ") default NULL",

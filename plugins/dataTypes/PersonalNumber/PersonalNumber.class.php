@@ -12,7 +12,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	protected $jsModules = array("PersonalNumber.js");
 	private $generatedPersonnrs = array();
 	// Separator in personal number
-	// static $sep = "-";
+	static $sep = "-";
 
 
 	/**
@@ -26,13 +26,12 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		// TODO: Option for 12 siffers without '-'
 		// TODO: more options? (not 10 siffers since it could generate real personal number)
 		// TODO: support several countries?
-		$ccSeparator = self::getPersonalNumberSeparator($generationOptions["cc_separator"]);
-
-		$personnr = $this->generateRandomSwedishPersonalNumber($ccSeparator);
+                static::$sep = self::getPersonalNumberSeparator($generationOptions["cc_separator"]);
+		$personnr = $this->generateRandomSwedishPersonalNumber(static::$sep);
 
 		// pretty sodding unlikely, but just in case!
 		while (in_array($personnr, $this->generatedPersonnrs)) {
-			$personnr = $this->generateRandomSwedishPersonalNumber($ccSeparator);
+			$personnr = $this->generateRandomSwedishPersonalNumber(static::$sep);
 		}
 		$this->generatedPersonnrs[] = $personnr;
 		return array(
@@ -63,7 +62,6 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					$new_str .= sprintf("%02d", $rand);
 					break;
 				case 8: 
-					//$new_str .= $self->sep;
 					$new_str .= $sep;
 					break;
 				case 9: 
@@ -71,7 +69,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					$new_str .= sprintf("%03d", $rand);
 					break;
 				case 12:
-					$ctrl = static::recalcCtrl($new_str . "0", "-");
+					$ctrl = static::recalcCtrl($new_str . "0", $sep);
 					$new_str .= sprintf("%01d", $ctrl);
 					break;
 				default:
@@ -192,9 +190,9 @@ EOF;
 	}
 
 	public function getDataTypeMetadata() {
-		// TODO use selected separator
-		//$len = 12 + strlen($self->sep);
-		$len = 13;
+		// Called before separator is set, so margin should be used
+		//$len = 12 + strlen(static::$sep);
+		$len = 13;  // Shoud be enough, allow for max one char sep
 		return array(
 			"SQLField" => "varchar(" . $len . ") default NULL",
 			"SQLField_Oracle" => "varchar2(" . $len . ") default NULL",
