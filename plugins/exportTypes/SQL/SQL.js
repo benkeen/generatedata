@@ -210,7 +210,7 @@ define([
 		if (settings.hasOwnProperty("insertBatchSize")) {
 			$("#etSQL_insertBatchSize").val(settings.insertBatchSize);
 		}
-		$("input[name=etSQL_primaryKey]:eq(" + settings.primaryKey + ")").attr("checked", "checked");
+		$("input[name=etSQL_primaryKey][value=" + settings.primaryKey + "]").attr("checked", "checked");
 	};
 
 	var _saveSettings = function() {
