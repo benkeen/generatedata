@@ -1,4 +1,4 @@
-fr.php<?php
+<?php
 
 $L = array();
 
