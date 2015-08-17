@@ -1,10 +1,13 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Compuesto";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Compuesto",
+    "DESC" => "El tipo de dato Compueso permite combinar los datos de cualquier otra fila o filas y manipularlo, cambiarlo, combinar la información y mucho más. El contenido debería ser introducido en el lenguaje de plantillas Smarty."
+);
 
 $L["Composite_division"] = "división";
-$L["Composite_help_1"] = "El tipo de dato Compueso permite combinar los datos de cualquier otra fila o filas y manipularlo, cambiarlo, combinar la información y mucho más. El contenido debería ser introducido en el lenguaje de plantillas Smarty.";
 $L["Composite_help_2"] = "Para producir el valor de cualquier fila, basta usar los patrones de sustitución <b>{\$ROW1}</b>, <b>{\$ROW2}</b>, etc. No puedes hacer referencia a la fila actual, lo que podría fundir el servidor y/o hacer que el Universo explotara.";
 $L["Composite_help_3"] = "Aquí tienes algunos ejemplos:";
 $L["Composite_help_4"] = "Mostrar un valor de la fila 6: <b>{\$ROW6}</b>";

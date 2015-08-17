@@ -67,7 +67,7 @@ class DataType_Composite extends DataTypePlugin {
 	public function getHelpHTML() {
 		$content =<<< END
 	<p>
-		{$this->L["Composite_help_1"]}
+		{$this->L["DATA_TYPE"]["DESC"]}
 	</p>
 	<p>
 		{$this->L["Composite_help_2"]}

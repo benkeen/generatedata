@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE"] = "Constante";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Constante",
+    "DESC" => "Generates a column of data that has repeated values for multiple rows. You can make all rows have the same value, or assign the same value to groups of them."
+);
 
 $L["help_1"] = "Dit gegevenstype kunt u het genereren van een kolom met gegevens die waarden is het herhalen van rij tot rij. Hier volgt een aantal voorbeelden om u een idee van hoe dit werkt.";
 $L["help_2"] = "Als u wilt de waarde \"1\" voor elke rij geven, kunt u \"1\" in de Waarde (n) veld en elke waarde (> 0) in de Loop veld Aantal.";

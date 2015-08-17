@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Fecha";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Fecha",
+    "DESC" => "Este tipo de dato genera aleatoriamente una fecha entre las fechas especificadas, y permite un formato único del resultado."
+);
 
 $L["char"] = "Carácter";
 $L["day"] = "Día";
@@ -44,7 +48,6 @@ $L["help_z"] = "El día del año (comenzando en 0)";
 $L["help_z_example"] = "0 a 365";
 $L["incomplete_fields"] = "Es necesario que las fechas tengan el formato introducido en el campo de texto Opciones. Por favor, arregle las siguientes filas:";
 $L["month"] = "Mes";
-$L["name"] = "Fecha";
 $L["to"] = "A:";
 $L["week"] = "Semana";
 $L["year"] = "Año";

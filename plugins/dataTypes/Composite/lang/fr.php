@@ -1,10 +1,13 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Composite";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Composite",
+    "DESC" => "Le type de données composite permet de combiner les données de n'importe quel autre ligne ou lignes, de les manipuler, les modifier, combiner les informations et plus encore. Le contenu doit être entré dans le langage de templates Smarty."
+);
 
 $L["Composite_division"] = "Division";
-$L["Composite_help_1"] = "Le type de données composite permet de combiner les données de n'importe quel autre ligne ou lignes, de les manipuler, les modifier, combiner les informations et plus encore. Le contenu doit être entré dans le langage de templates Smarty.";
 $L["Composite_help_2"] = "Pour utiliser la valeur de n'importe quelle ligne, il suffit d'utiliser les chaînes complémentaires <b>{\$ROW1}</b>, <b>{\$ROW2}</b>, etc. Vous ne pouvez pas utiliser la ligne actuelle - ce qui ferait fondre le serveur et / ou imploser l'univers.";
 $L["Composite_help_3"] = "Voici quelques exemples:";
 $L["Composite_help_4"] = "Afficher la valeur de la ligne 6: <b>{\$ROW6}</b>";

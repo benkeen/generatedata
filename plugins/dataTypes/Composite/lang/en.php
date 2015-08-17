@@ -1,10 +1,13 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Composite";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Composite",
+    "DESC" => "The Composite data type lets you combine the data from any other row or rows, and manipulate it, change it, combine the information and more. The content should be entered in the Smarty templating language."
+);
 
 $L["Composite_division"] = "division";
-$L["Composite_help_1"] = "The Composite data type lets you combine the data from any other row or rows, and manipulate it, change it, combine the information and more. The content should be entered in the Smarty templating language.";
 $L["Composite_help_2"] = "To output the value from any row, just use the placeholders <b>{\$ROW1}</b>, <b>{\$ROW2}</b>, etc. You cannot refer to the current row - that would either melt the server and/or make the universe implode.";
 $L["Composite_help_3"] = "Here are a few examples:";
 $L["Composite_help_4"] = "Display a value from row 6: <b>{\$ROW6}</b>";

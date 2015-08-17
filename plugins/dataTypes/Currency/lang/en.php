@@ -2,6 +2,11 @@
 
 $L = array();
 
+$L["DATA_TYPE"] = array(
+    "NAME" => "Currency",
+    "DESC" => "Generates a random currency value in whatever format and range you need."
+);
+
 $L["help_intro"] = "This data type generates random currency values, in whatever format and range you want. The example dropdown contains several options so you can get a sense of how it works, but here's what each of the options means.";
 $L["format"] = "Format";
 $L["format_desc"] = "The format field governs exactly how the money value should be formatted. <b>X</b>'s are converted into a number: all other values are left as-is.";

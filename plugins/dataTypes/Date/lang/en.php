@@ -2,6 +2,11 @@
 
 $L = array();
 
+$L["DATA_TYPE"] = array(
+    "NAME" => "Date",
+    "DESC" => "This data type randomly generates a date between the dates specified, and allows for unique formatting of the result."
+);
+
 $L["char"] = "Char";
 $L["day"] = "Day";
 $L["description"] = "Description";
@@ -43,7 +48,6 @@ $L["help_z"] = "The day of the year (starting from 0)";
 $L["help_z_example"] = "0 through 365";
 $L["incomplete_fields"] = "Dates needs to have the format entered in the Options text field. Please fix the following rows:";
 $L["month"] = "Month";
-$L["name"] = "Date";
 $L["to"] = "To:";
 $L["week"] = "Week";
 $L["year"] = "Year";

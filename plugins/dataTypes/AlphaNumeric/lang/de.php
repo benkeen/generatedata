@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Alphanumerisch";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Alphanumerisch",
+    "DESC" => "Generates a custom random alphanumeric string or any length or format, defined by placeholder chars."
+);
 
 $L["example_CanPostalCode"] = "(Can. PLZ)";
 $L["example_Password"] = "(Password)";

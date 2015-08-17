@@ -177,7 +177,13 @@ class DataType_IBAN extends DataTypePlugin {
 	}
 
 	public function getHelpHTML() {
-		return "<p>{$this->L["help"]}</p>";
+		return <<< END
+            <p>
+                {$this->L["DATA_TYPE"]["DESC"]}<br />
+                {$this->L["help_1"]}<br />
+                {$this->L["help_2"]}<br />
+            </p>
+END;
 	}
 	
 	private static function chr2Int($chr) {

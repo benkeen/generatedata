@@ -27,6 +27,6 @@ class DataType_CVV extends DataTypePlugin {
 	}
 
 	public function getHelpHTML() {
-		return "<p>{$this->L["help"]}</p>";
+		return "<p>{$this->L["DATA_TYPE"]["DESC"]}</p>";
 	}
 }

@@ -1,10 +1,13 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Samengesteld";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Samengesteld",
+    "DESC" => "De Composite gegevenstype kunt u combineren de gegevens van een andere rij of rijen, en te manipuleren, wijzigen, combineren de informatie en meer. De inhoud moet worden opgenomen in de Smarty template taal."
+);
 
 $L["Composite_division"] = "divisie";
-$L["Composite_help_1"] = "De Composite gegevenstype kunt u combineren de gegevens van een andere rij of rijen, en te manipuleren, wijzigen, combineren de informatie en meer. De inhoud moet worden opgenomen in de Smarty template taal.";
 $L["Composite_help_2"] = "Om de waarde van een rij uit te voeren, gewoon gebruik maken van de tijdelijke aanduidingen <b>{\$ROW1}</b>, <b>{\$ROW2}</b>, enz. U kunt niet verwijzen naar de huidige rij - dat zou een smeltpunt de server en / of maak het universum imploderen.";
 $L["Composite_help_3"] = "Hier zijn een paar voorbeelden:";
 $L["Composite_help_4"] = "Geef een waarde van rij 6: <b>{\$ROW6}</b>";

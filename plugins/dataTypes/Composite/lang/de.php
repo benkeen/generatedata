@@ -1,10 +1,13 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Zusammengesetzt";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Zusammengesetzt",
+    "DESC" => "Der Composite-Datentyp können Sie kombinieren die Daten aus einer anderen Zeile oder Zeilen, und manipulieren, ändern, kombinieren die Informationen und vieles mehr. Der Inhalt sollte in der Smarty Template-Sprache eingegeben werden."
+);
 
 $L["Composite_division"] = "Teilung";
-$L["Composite_help_1"] = "Der Composite-Datentyp können Sie kombinieren die Daten aus einer anderen Zeile oder Zeilen, und manipulieren, ändern, kombinieren die Informationen und vieles mehr. Der Inhalt sollte in der Smarty Template-Sprache eingegeben werden.";
 $L["Composite_help_2"] = "Um den Wert von jeder Zeile ausgeben, verwenden Sie einfach die Platzhalter <b>{\$ROW1}</b>, <b>{\$ROW2}</b>, etc. Sie können nicht auf der aktuellen Zeile beziehen - das würde entweder schmelzen der Server und / oder das Universum implodieren.";
 $L["Composite_help_3"] = "Hier sind ein paar Beispiele:";
 $L["Composite_help_4"] = "Anzeige einen Wert aus Zeile 6: <b>{\$ROW6}</b>";

@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Constante";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Constante",
+    "DESC" => "Generates a column of data that has repeated values for multiple rows. You can make all rows have the same value, or assign the same value to groups of them."
+);
 
 $L["help_1"] = "Este tipo de dato permite generar una columna de datos que tiene valores repetidos de fila a fila. He aquí un par de ejemplos para darte una idea de cómo funciona.";
 $L["help_2"] = "Si quieres proveer el valor &quot;1&quot; para cada fila, para cada fila, puedes introducir &quot;1&quot; en el campo Valores y cualquier valor (>0) in el campo Contador de bucle.";

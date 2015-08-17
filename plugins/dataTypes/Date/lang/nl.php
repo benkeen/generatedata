@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Datum";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Datum",
+    "DESC" => "Dit gegevenstype genereert willekeurig een datum tussen de gespecificeerde data en zorgt voor een unieke opmaak van het resultaat."
+);
 
 $L["char"] = "Verkolen";
 $L["day"] = "Dag";

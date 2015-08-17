@@ -201,10 +201,19 @@ abstract class DataTypePlugin {
 
 
 	final public function getName() {
-		return (isset($this->L["DATA_TYPE_NAME"])) ? $this->L["DATA_TYPE_NAME"] : $this->dataTypeName;
+		return (isset($this->L["DATA_TYPE"]) && isset($this->L["DATA_TYPE"]["NAME"])) ? $this->L["DATA_TYPE"]["NAME"] : $this->dataTypeName;
 	}
 
-	/**
+
+    /**
+     * Added in 3.2.2, Data Types all provide a one-liner description of their purpose. This returns that value.
+     * @return string
+     */
+    final public function getDesc() {
+        return (isset($this->L["DATA_TYPE"]) && isset($this->L["DATA_TYPE"]["DESC"])) ? $this->L["DATA_TYPE"]["DESC"] : '';
+    }
+
+    /**
 	 * Returns an array of file names, which will be included ONCE in the main generator page.
 	 *
 	 * @return array

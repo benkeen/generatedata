@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Datum";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Datum",
+    "DESC" => "Dieser Datentyp zufällig generiert ein Datum zwischen den angegebenen Daten und ermöglicht einzigartige Formatierung des Ergebnisses."
+);
 
 $L["char"] = "Saibling";
 $L["day"] = "Tag";

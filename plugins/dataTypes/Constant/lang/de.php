@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Konstante";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Konstante",
+    "DESC" => "Generates a column of data that has repeated values for multiple rows. You can make all rows have the same value, or assign the same value to groups of them."
+);
 
 $L["help_1"] = "Dieser Datentyp können Sie erzeugen eine Spalte von Daten, die sich wiederholende Werte hat sich von Zeile zu Zeile. Hier eine paar Beispiele, um Ihnen eine Vorstellung davon, wie das funktioniert.";
 $L["help_2"] = "Wenn Sie möchten, um den Wert \"1\" für jede Zeile, die Sie auf den Wert \"1\" in der Value (s)-Feld und einem Wert (> 0) in der Loop Count Feld.";
@@ -11,5 +15,4 @@ $L["help_5"] = "Versuchen Sie bastelt herum. Sie bekommen die Idee.";
 $L["incomplete_fields"] = "The Constant Datentyp muss die Konstanten in den Wert (e) eingegeben werden müssen. Bitte beheben Sie die folgenden Zeilen:";
 $L["invalid_loop_counts"] = "Bitte geben Sie Zahlen für Constant Schleifenzähler Felder. Korrigieren Sie die folgende Zeile (n):";
 $L["loop_count"] = "Loop count:";
-$L["name"] = "Konstante";
 $L["values"] = "Wert (e):";
