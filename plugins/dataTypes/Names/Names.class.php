@@ -238,6 +238,7 @@ END;
 	public function getHelpHTML() {
 		$content =<<<EOF
 	<p>
+	    {$this->L["DATA_TYPE"]["DESC"]}
 		{$this->L["help_intro"]}
 	</p>
 

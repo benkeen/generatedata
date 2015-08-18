@@ -1,9 +1,13 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Names, Regional";
 
-$L["help_intro"] = "This data type randomly generates names. It works in the same way as the <b>Names</b> data type, except that it creates slightly more realistic data sets since the names are mapped to the country; e.g. Italian names appear when the data set row has Italy for the country field. Because of this additional complexity, however, the code runs slightly slower. You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:";
+$L["DATA_TYPE"] = array(
+    "NAME" => "Names, Regional",
+    "DESC" => "This data type randomly generates names. It works in the same way as the <b>Names</b> data type, except that it creates slightly more realistic data sets since the names are mapped to the country; e.g. Italian names appear when the data set row has Italy for the country field."
+);
+
+$L["help_intro"] = "Because of this additional complexity, however, the code runs slightly slower. You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:";
 $L["incomplete_fields"] = "The Name data type needs to have the format entered in the Options text field. Please fix the following rows:";
 $L["name"] = "Name";
 $L["example_FemaleName"] = "Jane (Female Name)";

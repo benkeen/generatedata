@@ -12,7 +12,6 @@ class DataType_LatLng extends DataTypePlugin {
 	protected $jsModules = array("LatLng.js");
 
 	// $this->cachedMath = array();
-	private $helpDialogWidth = 410;
 	private $cachedMath;
 
 
@@ -77,7 +76,7 @@ END;
 
 
 	public function getHelpHTML() {
-		return "<p>{$this->L["help"]}</p>";
+		return "<p>{$this->L["DATA_TYPE"]["DESC"]}</p>";
 	}
 
 	public function getDataTypeMetadata() {

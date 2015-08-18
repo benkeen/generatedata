@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
+ * @author Ben Keen <ben.keen@gmail.com>, original code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  * @package DataTypes
  */
 class DataType_PAN extends DataTypePlugin {
@@ -334,6 +334,7 @@ END;
 	public function getHelpHTML() {
 		$html =<<<EOF
 <p>
+    {$this->L["DATA_TYPE"]["DESC"]}
 	{$this->L["pan_help_intro"]}
 	<b>{$this->L["mastercard"]}</b>, <b>{$this->L["visa"]}</b>, <b>{$this->L["visa_electron"]}</b>,
 	<b>{$this->L["americanexpress"]}</b>, <b>{$this->L["discover"]}</b>, <b>{$this->L["american_diners"]}</b>,

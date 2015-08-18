@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Distribución normal";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Distribución normal",
+    "DESC" => "Generates random normally distributed values with a customizable mean and standard deviation"
+);
 
 $L["mean"] = "Media";
 $L["standard_deviation"] = "Desviación estándar";

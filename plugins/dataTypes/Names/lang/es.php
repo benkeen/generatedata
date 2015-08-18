@@ -1,9 +1,13 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Nombres";
 
-$L["help_intro"] = "Este tipo de dato genera aleatoriamente nombres de persona (mayoritariamente occidentales) de acuerdo al formato que especifiques. Pues especificar múltiples formatos separándolos con el carácter tubería, |. Las siguientes cadenas serán convertidas a su nombre aleatorio equivalente:";
+$L["DATA_TYPE"] = array(
+    "NAME" => "Nombres",
+    "DESC" => "Este tipo de dato genera aleatoriamente nombres de persona (mayoritariamente occidentales) de acuerdo al formato que especifiques."
+);
+
+$L["help_intro"] = "Pues especificar múltiples formatos separándolos con el carácter tubería, |. Las siguientes cadenas serán convertidas a su nombre aleatorio equivalente:";
 $L["incomplete_fields"] = "The Name data type needs to have the format entered in the Options text field. Please fix the following rows:";
 $L["name"] = "Nombre";
 $L["example_FemaleName"] = "Jane (Nombre de mujer)";

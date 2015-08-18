@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Noms";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Noms",
+    "DESC" => "Ce type de données génère aléatoirement des noms de personnes (principalement occidentaux) en fonction du format que vous spécifiez."
+);
 
 $L["example_FemaleName"] = "Jane (prénom féminin)";
 $L["example_FemaleName_Surname"] = "Jane Smith (nom complet féminin)";
@@ -14,7 +18,7 @@ $L["example_Name_Surname"] = "Alex Smith";
 $L["example_Surname_Name_Initial"] = "Smith, John P.";
 $L["example_fullnames"] = "Alex Smith ou Alex J. Smith";
 $L["example_surname"] = "Smith (nom de famille)";
-$L["help_intro"] = "Ce type de données génère aléatoirement des noms de personnes (principalement occidentaux) en fonction du format que vous spécifiez. Vous pouvez spécifier les formats multiples en les séparant par le caractère pipe (|). Les chaînes suivantes seront converties en leur équivalent aléatoire:";
+$L["help_intro"] = "Vous pouvez spécifier les formats multiples en les séparant par le caractère pipe (|). Les chaînes suivantes seront converties en leur équivalent aléatoire:";
 $L["incomplete_fields"] = "Le type de données Nom doit avoir un format précisé dans le champ de texte Options. Corrigez les lignes suivantes:";
 $L["name"] = "Nom";
 $L["type_FemaleName"] = "Un prénom féminin.";

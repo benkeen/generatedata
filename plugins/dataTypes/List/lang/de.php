@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Benutzerdefinierte Liste";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Benutzerdefinierte Liste",
+    "DESC" => "Generates one or more random values from an arbitrary list of items."
+);
 
 $L["at_most"] = "Am meisten";
 $L["colours"] = "red | orange | gelb | grün | blau | indigo | violett";

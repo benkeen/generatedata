@@ -1,9 +1,13 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Names";
 
-$L["help_intro"] = "This data type randomly generates human names (mostly Western) according to the format you specify. You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:";
+$L["DATA_TYPE"] = array(
+    "NAME" => "Names",
+    "DESC" => "This data type randomly generates human names (mostly Western) according to the format you specify."
+);
+
+$L["help_intro"] = "You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:";
 $L["incomplete_fields"] = "The Name data type needs to have the format entered in the Options text field. Please fix the following rows:";
 $L["name"] = "Name";
 $L["example_FemaleName"] = "Jane (Female Name)";

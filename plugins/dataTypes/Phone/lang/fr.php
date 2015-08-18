@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Téléphone / Fax";
+
+$L["DATA_TYPE"] = array(
+    "NAME" => "Téléphone / Fax",
+    "DESC" => "Generates a random phone/fax number in a variety of formats for different countries/regions."
+);
 
 $L["australia"] = "Australie";
 $L["different_formats"] = "Différents formats";

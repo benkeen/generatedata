@@ -7,7 +7,6 @@ $L["DATA_TYPE"] = array(
     "DESC" => "Generates a custom random alphanumeric string or any length or format, defined by placeholder chars."
 );
 
-$L["name"] = "Alfanumérico";
 $L["example_CanPostalCode"] = "(Código postal canadiense)";
 $L["example_Password"] = "(Contraseña)";
 $L["example_USZipCode"] = "(Código postal yankee)";

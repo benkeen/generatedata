@@ -2,10 +2,15 @@
 
 $L = array();
 
+$L["DATA_TYPE"] = array(
+    "NAME" => "PAN",
+    "DESC" => "Este tipo de datos genera números, tarjeta de crédito válida al azar de acuerdo con el formato que se especifique."
+);
+
 $L["pan_incomplete_fields"] = "Por lo menos una marca de la tarjeta debe ser seleccionado. Por favor, corrija los siguientes filas:";
 $L["separator_help"] = "Los caracteres que introduzca aquí se utilizarán para reemplazar los espacios en el campo de formato de tarjeta de crédito a continuación. Para introducir más de un separador, simplemente separarlos con una barra vertical (|) carácter.";
 $L["format_incomplete_fields"] = "Por campo PAN Formatos de número CC, entrada <b>X</b> de y para los separadores de entrada <b>espacios</b> de acuerdo a la longitud de la tarjeta. Por favor, corrija los siguientes filas:";
-$L["pan_help_intro"] = "Este tipo de datos genera números, tarjeta de crédito válida al azar de acuerdo con el formato que se especifique. Actualmente es capaz de generar los números de las siguientes marcas: ";
+$L["pan_help_intro"] = "Actualmente es capaz de generar los números de las siguientes marcas: ";
 $L["mastercard"] = "Mastercard";
 $L["visa_electron"] = "Visa Electron";
 $L["visa"] = "Visa";

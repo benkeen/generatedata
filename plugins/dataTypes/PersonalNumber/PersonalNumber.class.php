@@ -152,15 +152,8 @@ END;
 </span>
 END;
 		return $html;
-//		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 	}
 
-	/*public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
-		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
-			return false;
-		}
-		return $post["dtOption_$colNum"];
-	}*/
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		return array(
 			"cc_separator"   => $postdata["dtOptionPersonalNumber_sep_$colNum"],
@@ -171,6 +164,7 @@ END;
 	public function getHelpHTML() {
 		$content =<<<EOF
 	<p>
+	    {$this->L["DATA_TYPE"]["DESC"]}
 		{$this->L["help_text"]}
 	</p>
 

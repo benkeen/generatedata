@@ -244,7 +244,7 @@ EOF;
 	public function getHelpHTML() {
 		$html =<<<END
 	<p>
-		{$this->L["help_text"]}
+		{$this->L["DATA_TYPE"]["DESC"]}
 	</p>
 END;
 	    return $html;

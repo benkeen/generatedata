@@ -2,10 +2,15 @@
 
 $L = array();
 
+$L["DATA_TYPE"] = array(
+    "NAME" => "PAN",
+    "DESC" => "Dit soort gegevens genereert willekeurig, geldige credit card nummers volgens de indeling die u opgeeft."
+);
+
 $L["pan_incomplete_fields"] = "Tenminste een kaart merk worden gekozen. Please fix de volgende regels:";
 $L["separator_help"] = "De tekens die u hier invoert, zal worden gebruikt om de ruimtes te vervangen in de Credit Card formaat veld hieronder. Om meer dan een separator te voeren, ze gewoon scheiden met een pijp (|) karakter.";
 $L["format_incomplete_fields"] = "Voor PAN veld CC Getalnotaties, ingang <b>X</b> en voor afscheider ingang <b>ruimtes</b> volgens de kaart lengte. Please fix de volgende regels:";
-$L["pan_help_intro"] = "Dit soort gegevens genereert willekeurig, geldige credit card nummers volgens de indeling die u opgeeft. Het is momenteel geschikt voor het genereren nummers voor de volgende merken: ";
+$L["pan_help_intro"] = "Het is momenteel geschikt voor het genereren nummers voor de volgende merken: ";
 $L["mastercard"] = "Mastercard";
 $L["visa_electron"] = "Visa Electron";
 $L["visa"] = "Visa";
