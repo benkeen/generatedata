@@ -1,7 +1,10 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Adresse";
+$L["DATA_TYPE"] = array(
+    "NAME" => "Adresse",
+    "DESC" => "Generates random street addresses."
+);
 
 $L["ap_num"] = "Appartement ";
 $L["name"] = "Adresse";

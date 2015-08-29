@@ -182,7 +182,7 @@ EOF;
 	}
 
 	public function getHelpHTML() {
-		return "<p>{$this->L["help_text"]}</p>";
+		return "<p>{$this->L["DATA_TYPE"]["DESC"]} {$this->L["help_text"]}</p>";
 	}
 
 	public function getDataTypeMetadata() {

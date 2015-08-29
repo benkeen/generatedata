@@ -1,7 +1,10 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Rut";
+$L["DATA_TYPE"] = array(
+    "NAME" => "RUT chileno",
+    "DESC" => "Genera un RUT / RUN Número de Identificación Nacional de Chile ."
+);
 
 $L["different_formats"] = "Formatos diferentes";
 $L["incomplete_fields"] = "El tipo de dato Rut necesita tener seleccionado el campo ejemplo. Por favor arreglar las siguientes filas: ";
