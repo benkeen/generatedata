@@ -1,7 +1,10 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Texte - Longueur Aléatoire";
+$L["DATA_TYPE"] = array(
+    "NAME" => "Texte - Longueur Aléatoire",
+    "DESC" => "Cette option génère un nombre aléatoire de mots - le nombre total étant compris dans la plage que vous spécifiez (maximum inclus)."
+);
 
 $L["generate"] = "Générer entre";
 $L["help"] = "Cette option génère un nombre aléatoire de mots - le nombre total étant compris dans la plage que vous spécifiez (maximum inclus). Comme pour l'option Texte - Longueur fixe, les mots sont des mots aléatoires <a href=\"http://en.wikipedia.org/wiki/Lorem_ipsum\" target=\"_blank\">lorem ipsum</a> (faux texte latin).";

@@ -1,7 +1,10 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Texte - Longueur Fixe";
+$L["DATA_TYPE"] = array(
+    "NAME" => "Texte - Longueur Fixe",
+    "DESC" => "Cette option génère un nombre fixe de mots aléatoires lorem ipsum (faux texte latin)."
+);
 
 $L["TextFixed_generate"] = "Générer";
 $L["TextFixed_help"] = "Cette option génère un nombre fixe de mots aléatoires <a href=\"http://en.wikipedia.org/wiki/Lorem_ipsum\" target=\"_blank\">lorem ipsum</a> (faux texte latin).";

@@ -1,7 +1,10 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Feste Anzahl der Worte";
+$L["DATA_TYPE"] = array(
+    "NAME" => "Feste Anzahl der Worte",
+    "DESC" => "Diese Option erzeugt eine feste Anzahl von zufälligen Wörtern, von der Norm Lorem ipsum lateinischen Text."
+);
 
 $L["TextFixed_generate"] = "Erzeugen";
 $L["TextFixed_help"] = "Diese Option erzeugt eine feste Anzahl von zufälligen Wörtern, von der Norm <a href=\"http://en.wikipedia.org/wiki/Lorem_ipsum\" target=\"_blank\">Lorem ipsum</a> lateinischen Text.";
