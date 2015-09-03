@@ -18,7 +18,26 @@ define([
 	};
 
 	var _exampleChange = function(msg) {
-		$("#dtOption_" + msg.rowID).val(msg.value);
+		var rowID = msg.rowID;
+		var selectedFormat = msg.value;
+
+                var $separatorField = $("#dtOptionPersonalNumber_sep_" + rowID);	
+
+		switch (selectedFormat) {
+			case "PersonalNumberWithoutHyphen":
+				$separatorField.val("");
+				break;
+
+			case "PersonalNumberWithHyphen":
+				$separatorField.val("-");
+				break;
+                                
+                        default:
+                                //$separatorField.val(selectedFormat);            
+                                break;
+
+		}
+
 	};
 
 	/**
