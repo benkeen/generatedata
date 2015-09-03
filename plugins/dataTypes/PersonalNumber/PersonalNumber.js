@@ -51,9 +51,9 @@ define([
 	 */
 	var _saveRow = function(rowNum) {
 		return {
-			"example": $("#dtExample_" + rowNum).val(),
-			"separator":    $("#dtOptionPersonalNumber_sep_" + rowNum).val(),
-			"option":  $("#dtOption_" + rowNum).val()
+			example: $("#dtExample_" + rowNum).val(),
+			separator:    $("#dtOptionPersonalNumber_sep_" + rowNum).val()//,
+			// option:  $("#dtOption_" + rowNum).val()
 		};
 	};
 
@@ -66,18 +66,33 @@ define([
 	 */
 	var _loadRow = function(rowNum, data) {
 		return {
-			execute: function() { 
-			},
-			isComplete: function() {
-				if ($("#dtOption_" + rowNum).length) {
-					$("#dtExample_" + rowNum).val(data.example);
-					$("#dtOption_" + rowNum).val(data.option);
-					$("#dtOptionPersonalNumber_sep_" + rowNum).val(data.separator);
-					return true;
+			execute: function() {
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtOptionPersonalNumber_sep_" + rowNum).val(data.separator);
+
+				/*var $cardFormat       = $("#dtOptionPAN_cardFormat_" + rowNum);
+				var $digitSection     = $("#dtOptionPAN_digitSection_" + rowNum);
+				var $randCardFormatSection = $("#dtOptionPAN_randomCardFormatSection_" + rowNum);
+
+				if (data.example === "rand_card") {
+					$digitSection.hide();
+					$cardFormat.hide();
+					$randCardFormatSection.show();
+
+					var options = $("#dtOptionPAN_randomCardFormat_" + rowNum).find("option");
+					for (var i=0; i<options.length; i++) {
+						if ($.inArray(options[i].value, data.randomBrands) !== -1) {
+							$(options[i]).prop("selected", "selected");
+						}
+					}
+
 				} else {
-					return false;
-				}
-			}
+					$cardFormat.show();
+					$digitSection.show();
+					$randCardFormatSection.hide();
+				}*/
+			},
+			isComplete: function() { /*return $("#dtOptionPAN_randomCardFormat_" + rowNum).length > 0;*/ }
 		};
 	};
 
