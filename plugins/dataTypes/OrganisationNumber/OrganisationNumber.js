@@ -18,7 +18,26 @@ define([
 	};
 
 	var _exampleChange = function(msg) {
-		$("#dtOption_" + msg.rowID).val(msg.value);
+		var rowID = msg.rowID;
+		var selectedFormat = msg.value;
+
+                var $separatorField = $("#dtOptionOrganisationNumber_sep_" + rowID);	
+
+		switch (selectedFormat) {
+			case "OrganisationNumberWithoutHyphen":
+				$separatorField.val("");
+				break;
+
+			case "OrganisationNumberWithHyphen":
+				$separatorField.val("-");
+				break;
+                                
+                        default:
+                                //$separatorField.val(selectedFormat);            
+                                break;
+
+		}
+
 	};
 
 	/**
@@ -51,9 +70,8 @@ define([
 	 */
 	var _saveRow = function(rowNum) {
 		return {
-			"example": $("#dtExample_" + rowNum).val(),
-			"separator":    $("#dtOptionOrganisationNumber_sep_" + rowNum).val(),
-			"option":  $("#dtOption_" + rowNum).val()
+			example: $("#dtExample_" + rowNum).val(),
+			separator:    $("#dtOptionOrganisationNumber_sep_" + rowNum).val()//,
 		};
 	};
 
@@ -66,21 +84,14 @@ define([
 	 */
 	var _loadRow = function(rowNum, data) {
 		return {
-			execute: function() { 
+			execute: function() {
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtOptionOrganisationNumber_sep_" + rowNum).val(data.separator);
+
 			},
-			isComplete: function() {
-				if ($("#dtOption_" + rowNum).length) {
-					$("#dtExample_" + rowNum).val(data.example);
-					$("#dtOption_" + rowNum).val(data.option);
-					$("#dtOptionOrganisationNumber_sep_" + rowNum).val(data.separator);
-					return true;
-				} else {
-					return false;
-				}
-			}
+			isComplete: function() {  }
 		};
 	};
-
 
 	// register our module
 	manager.registerDataType(MODULE_ID, {
