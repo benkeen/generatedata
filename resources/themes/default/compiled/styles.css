@@ -158,7 +158,7 @@ header nav {
       padding: 0;
       float: left;
       width: 8em;
-      background: linear-gradient(to bottom, #efefef 0%, #e1e1e1 100%) repeat scroll 0 0 transparent;
+      background: linear-gradient(to bottom, #EFEFEF 0%, #E1E1E1 100%) repeat scroll 0 0 transparent;
       height: 22px;
       text-align: left; }
       #gdMainTabs ul li a:link, #gdMainTabs ul li a:visited {
@@ -388,7 +388,7 @@ li.gdColDelete {
     background: -o-linear-gradient(top, #f2f2f2 0%, #e1e1e1 100%);
     background: -ms-linear-gradient(top, #f2f2f2 0%, #e1e1e1 100%);
     background: linear-gradient(to bottom, #f2f2f2 0%, #e1e1e1 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 );
     cursor: pointer; }
     .gdSmallTabs ul li .gdSelected {
       background: white;
@@ -724,7 +724,7 @@ body .CodeMirror-scroll {
     color: white; }
   .gdErrors div {
     padding: 8px;
-    color: #aa0000 ul;
+    color: #AA0000 ul;
       color-margin: 0px;
       color-padding-left: 16px; }
 
@@ -887,3 +887,5 @@ body.gdErrorPage #gdSeriousError {
     background-image: url(../images/stop.png); }
 .gdInstallPage .gdInstallSuccess .gdIcon {
   background-image: url(../images/info.png); }
+
+/*# sourceMappingURL=styles.css.map */

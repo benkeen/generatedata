@@ -86,4 +86,13 @@ abstract class CountryPlugin {
 
 		return $regionSpecificData;
 	}
+
+    /**
+     * Returns the Export Type folder.
+     * @return string
+     */
+    public final function getFolder() {
+        return $this->folder;
+    }
+
 }

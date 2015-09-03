@@ -204,6 +204,13 @@ abstract class DataTypePlugin {
 		return (isset($this->L["DATA_TYPE"]) && isset($this->L["DATA_TYPE"]["NAME"])) ? $this->L["DATA_TYPE"]["NAME"] : $this->dataTypeName;
 	}
 
+    /**
+     * Returns the Export Type folder.
+     * @return string
+     */
+    public final function getFolder() {
+        return $this->folder;
+    }
 
     /**
      * Added in 3.2.2, Data Types all provide a one-liner description of their purpose. This returns that value.
