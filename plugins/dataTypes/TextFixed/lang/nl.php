@@ -1,7 +1,11 @@
 <?php
 
 $L = array();
-$L["DATA_TYPE_NAME"] = "Vast Aantal woorden";
+$L["DATA_TYPE"] = array(
+    "NAME" => "Vast Aantal woorden",
+    "DESC" => "Deze optie genereert een vast aantal willekeurige woorden, getrokken uit de standaard Lorem ipsum Latijnse tekst."
+);
+
 $L["TextFixed_generate"] = "Voortbrengen";
 $L["TextFixed_help"] = "Deze optie genereert een vast aantal willekeurige woorden, getrokken uit de standaard <a href=\"http://en.wikipedia.org/wiki/Lorem_ipsum\" target=\"_blank\">Lorem ipsum</a> Latijnse tekst.";
 $L["TextFixed_words"] = "tekst";
