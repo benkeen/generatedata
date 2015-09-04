@@ -38,44 +38,50 @@
     {/if}
 
     <div id="gdPlugins">
-        <div>
-            <section>
-                <input type="checkbox" class="" />
-                <h4>{$L.data_types}</h4>
-            </section>
-            <div id="gdDataTypeResponse" class="gdResponse">
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <input type="checkbox" id="gdDataTypePluginList" class="gdToggleAll" />
+                <label for="gdDataTypePluginList">{$L.data_types}</label>
+            </div>
+            <div id="gdDataTypeResponse">
                 <ul>
                     {foreach from=$allDataTypes key=k item=i}
                     <li>
-                        <input type="checkbox" id="plugin-{$i->getFolder()}" />
-                        <label for="plugin-{$i->getFolder()}">{$i->getName()}</label>
+                        <input type="checkbox" id="plugin-dt-{$i->getFolder()}" name="selectedDataTypes[]" value="{$i->getFolder()}" />
+                        <label for="plugin-dt-{$i->getFolder()}">{$i->getName()}</label>
                     </li>
                     {/foreach}
                 </ul>
             </div>
         </div>
-        <div>
-            <h4>{$L.export_types}</h4>
-            <div id="gdExportTypeResponse" class="gdResponse">
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <input type="checkbox" id="gdExportTypePluginList" class="gdToggleAll" />
+                <label for="gdExportTypePluginList">{$L.export_types}</label>
+            </div>
+            <div id="gdExportTypeResponse">
                 <ul>
                     {foreach from=$allExportTypes key=k item=i}
-                        <li>
-                            <input type="checkbox" id="plugin-{$i->getFolder()}" />
-                            <label for="plugin-{$i->getFolder()}">{$i->getName()}</label>
-                        </li>
+                    <li>
+                        <input type="checkbox" id="plugin-et-{$i->getFolder()}" name="selectedExportTypes[]" value="{$i->getFolder()}" />
+                        <label for="plugin-et-{$i->getFolder()}">{$i->getName()}</label>
+                    </li>
                     {/foreach}
                 </ul>
             </div>
         </div>
-        <div>
-            <h4>{$L.countries}</h4>
-            <div id="gdCountriesResponse" class="gdResponse">
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <input type="checkbox" id="gdCountryPluginList" class="gdToggleAll" />
+                <label for="gdCountryPluginList">{$L.countries}</label>
+            </div>
+            <div id="gdCountriesResponse">
                 <ul>
                     {foreach from=$allCountryPlugins key=k item=i}
-                        <li>
-                            <input type="checkbox" id="plugin-{$i->getFolder()}" />
-                            <label for="plugin-{$i->getFolder()}">{$i->getName()}</label>
-                        </li>
+                    <li>
+                        <input type="checkbox" id="plugin-c-{$i->getFolder()}" name="selectedCountries[]" value="{$i->getFolder()}" />
+                        <label for="plugin-c-{$i->getFolder()}">{$i->getName()}</label>
+                    </li>
                     {/foreach}
                 </ul>
             </div>
@@ -129,6 +135,5 @@
 
 	<p>
 		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.update_settings}</button>
-
 	</p>
 </form>

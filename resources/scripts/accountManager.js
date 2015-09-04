@@ -91,7 +91,7 @@ define([
 		}
 
 		if (!hasErrors) {
-			utils.playModalSpinner(_manageAccountModalID);
+			utils.playSpinner(_manageAccountModalID);
 			var data = {
 				action: "createAccount",
 				firstName: firstNameFieldVal,
@@ -115,7 +115,7 @@ define([
 							onComplete: function() {
 								utils.clearValidationErrors($("#gdManageAccountDialogMessage"));
 								$("#" + _manageAccountModalID).dialog("close");
-								utils.pauseModalSpinner(_manageAccountModalID);
+								utils.pauseSpinner(_manageAccountModalID);
 								_updateAccountsTable();
 							}
 						});
@@ -133,12 +133,12 @@ define([
 								break;
 						}
 						utils.displayValidationErrors("#gdManageAccountDialogMessage");
-						utils.pauseModalSpinner(_manageAccountModalID);
+						utils.pauseSpinner(_manageAccountModalID);
 					}
 				},
 
 				function(response) {
-					utils.pauseModalSpinner(_manageAccountModalID);
+					utils.pauseSpinner(_manageAccountModalID);
 					console.log("error response: ", response);
 				}
 			);
@@ -147,7 +147,7 @@ define([
 	};
 
 	var _onConfirmDeleteAccount = function(accountID) {
-		utils.playModalSpinner(_deleteAccountModalID);
+		utils.playSpinner(_deleteAccountModalID);
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -164,7 +164,7 @@ define([
 					_getAccountsList({
 						onComplete: function() {
 							$("#" + _deleteAccountModalID).dialog("close");
-							utils.pauseModalSpinner(_deleteAccountModalID);
+							utils.pauseSpinner(_deleteAccountModalID);
 							_updateAccountsTable();
 						}
 					});
@@ -173,7 +173,7 @@ define([
 				}
 			},
 			function(response) {
-				utils.pauseModalSpinner(_deleteAccountModalID);
+				utils.pauseSpinner(_deleteAccountModalID);
 				console.log("error response: ", response);
 			}
 		);

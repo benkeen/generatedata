@@ -30,7 +30,7 @@ define([
     $("#gdAccountDataSets,#gdConfigurationHistoryTable").addClass("hidden");
     $("#gdConfigurationHistory,#gdConfigurationHistoryLoading").removeClass("hidden");
 
-    utils.playModalSpinner("gdMainDialog");
+    utils.playSpinner("gdMainDialog");
 
     $.ajax({
       url: "ajax.php",
@@ -42,7 +42,7 @@ define([
       }
     }).then(
       function (response) {
-        utils.pauseModalSpinner("gdMainDialog");
+        utils.pauseSpinner("gdMainDialog");
 
         if (response.success) {
           $("#gdConfigurationHistoryLoading").addClass("hidden");

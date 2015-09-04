@@ -96,6 +96,7 @@
 			"manager",
 			"generator",
 			"accountManager",
+            "settings",
 			{$exportTypeJSModules},
 			{$dataTypeJSModules},
 			"pageInit"

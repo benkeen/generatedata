@@ -1,0 +1,101 @@
+/* CSS relating to the plugins: the installation + settings page */
+#gdPlugins {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+
+  &.hidden {
+    display: none;
+  }
+  .gdPluginCount {
+    background-color: green;
+    color: white;
+    padding: 3px 5px;
+    margin: 5px;
+    display: inline-block;
+    line-height: 10px;
+    border-radius: 4px;
+    font-size: 7px;
+    font-weight: bold;
+  }
+  .gdGroupName {
+    color: #999999;
+    padding: 7px 10px 1px;
+  }
+  h4 {
+    margin: 5px 10px 4px;
+  }
+
+  &>div {
+    margin: 0 5px 0 0;
+    flex: 1;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        border-bottom: 1px solid #dddddd;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+
+        input {
+          flex: 0 0 20px;
+          margin: 7px 6px 7px 8px;
+        }
+        label {
+          flex: 1;
+          margin: 3px;
+        }
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .gdPluginSectionHeader {
+    border-bottom: 1px solid #dddddd;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+
+    input {
+      flex: 0 0 20px;
+      margin: 7px 6px 7px 8px;
+    }
+    label {
+      flex: 1;
+      margin: 3px;
+      font-weight: bold;
+    }
+  }
+
+  &.loading .gdPluginSectionHeader {
+    border-bottom: 0;
+  }
+
+  .gdPluginIndicator {
+    line-height: 15px;
+    canvas {
+      margin: 4px 4px 0 0;
+    }
+  }
+}

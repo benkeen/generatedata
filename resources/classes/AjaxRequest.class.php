@@ -107,7 +107,7 @@ class AjaxRequest {
 			case "installationDataTypes":
 				Core::init("installationDatabaseReady");
 				if (!Core::checkIsInstalled()) {
-					$this->setDataTypes();
+                    $this->installDataTypes();
 				}
 				break;
 
@@ -124,15 +124,15 @@ class AjaxRequest {
 				}
 				break;
 
-			case "installationSaveDataTypes":
-				Core::init("installationDatabaseReady");
-				if (!Core::checkIsInstalled()) {
-					$folders = $this->post["folders"];
-					$response = Settings::setSetting("installedDataTypes", $folders);
-					$this->response["success"] = $response["success"];
-					$this->response["content"] = $response["errorMessage"];
-				}
-				break;
+//			case "installationSaveDataTypes":
+//				Core::init("installationDatabaseReady");
+//				if (!Core::checkIsInstalled()) {
+//					$folders = $this->post["folders"];
+//					$response = Settings::setSetting("installedDataTypes", $folders);
+//					$this->response["success"] = $response["success"];
+//					$this->response["content"] = $response["errorMessage"];
+//				}
+//				break;
 
 			case "resetSaveDataTypes":
 				Core::init("resetPlugins");
@@ -393,6 +393,47 @@ class AjaxRequest {
 		return Utils::utf8_encode_array($this->response);
 	}
 
+    private function installDataTypes() {
+        $groupedDataTypes = DataTypePluginHelper::getDataTypePlugins("installationDatabaseReady", false);
+        $L = Core::$language->getCurrentLanguageStrings();
+        $hasError = false;
+        $response = [];
+        $count = 0;
+
+        while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
+            $data = array();
+            foreach ($dataTypes as $currDataType) {
+                try {
+                    list($success, $content) = $currDataType->install();
+                    if (!$success) {
+                        $hasError = true;
+                        break;
+                    }
+                    $data[] = array(
+                        "name"   => $currDataType->getName(),
+                        "folder" => $currDataType->getFolder(),
+                        "desc"   => $currDataType->getDesc()
+                    );
+                    $count++;
+                } catch (Exception $e) {
+                    $hasError = true;
+                    break;
+                }
+            }
+
+            // organized in this data structure because objects lose their order
+            $response[] = array(
+                "group_name" => $L[$group_name],
+                "data_types" => $data
+            );
+        }
+
+        $this->response["success"] = !$hasError;
+        $this->response["content"] = array(
+            "total" => $count,
+            "results" => $response
+        );
+    }
 
 	private function setDataTypes() {
 		$index = $this->post["index"];

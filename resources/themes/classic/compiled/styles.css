@@ -349,32 +349,6 @@ footer {
     display: inline-block;
     margin-right: 10px; }
 
-#gdPlugins {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row; }
-  #gdPlugins h4 {
-    margin: 5px 10px 4px; }
-  #gdPlugins > div {
-    margin: 0 5px 0 0;
-    flex: 1;
-    background-color: #f2f2f2;
-    border-radius: 8px; }
-    #gdPlugins > div:last-child {
-      margin-right: 0; }
-    #gdPlugins > div ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0; }
-      #gdPlugins > div ul li {
-        border-bottom: 1px solid #dddddd;
-        padding: 3px 10px; }
-        #gdPlugins > div ul li:last-child {
-          border-bottom: 0; }
-
 /* contains styles for the generator table */
 hr.divider {
   color: #efefef;
@@ -926,49 +900,6 @@ body .chzn-container-multi .chzn-choices {
 body .ui-tooltip {
   text-align: left; }
 
-/* plugin installation */
-#gdPluginInstallationResults > div {
-  padding: 4px 8px 8px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  float: left;
-  width: 30%;
-  margin-right: 10px; }
-  #gdPluginInstallationResults > div:last-child {
-    margin-right: 0px; }
-#gdPluginInstallationResults h4 {
-  margin: 0px;
-  padding: 0px;
-  font-weight: normal;
-  color: #222222;
-  font-style: italic; }
-#gdPluginInstallationResults .gdResponse div {
-  font-size: 7pt;
-  line-height: 16px;
-  border-bottom: 1px solid #dddddd;
-  clear: both; }
-  #gdPluginInstallationResults .gdResponse div:first-child {
-    margin-top: 4px; }
-  #gdPluginInstallationResults .gdResponse div:last-child {
-    border-bottom: 0px; }
-#gdPluginInstallationResults .gdResponse .gdSuccess {
-  background-color: green;
-  color: white;
-  border-radius: 3px;
-  padding: 0px 4px;
-  float: right;
-  line-height: 16px;
-  font-size: 6.5pt; }
-#gdPluginInstallationResults .gdResponse .gdError {
-  background-color: #cc0000;
-  color: white;
-  border-radius: 3px;
-  padding: 0px 4px;
-  float: right;
-  line-height: 16px;
-  font-size: 6.5pt;
-  cursor: pointer; }
-
 /* overridden CodeMirror styles */
 body .CodeMirror {
   border: 1px solid #cccccc;
@@ -1426,5 +1357,79 @@ body .gdMainDialog .ui-dialog-title span {
       height: 200px;
       width: 98%;
       border: 1px solid #efefef; }
+
+/* CSS relating to the plugins: the installation + settings page */
+#gdPlugins {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row; }
+  #gdPlugins.hidden {
+    display: none; }
+  #gdPlugins .gdPluginCount {
+    background-color: green;
+    color: white;
+    padding: 3px 5px;
+    margin: 5px;
+    display: inline-block;
+    line-height: 10px;
+    border-radius: 4px;
+    font-size: 7px;
+    font-weight: bold; }
+  #gdPlugins .gdGroupName {
+    color: #999999;
+    padding: 7px 10px 1px; }
+  #gdPlugins h4 {
+    margin: 5px 10px 4px; }
+  #gdPlugins > div {
+    margin: 0 5px 0 0;
+    flex: 1;
+    background-color: #f2f2f2;
+    border-radius: 8px; }
+    #gdPlugins > div:last-child {
+      margin-right: 0; }
+    #gdPlugins > div ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0; }
+      #gdPlugins > div ul li {
+        border-bottom: 1px solid #dddddd;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row; }
+        #gdPlugins > div ul li input {
+          flex: 0 0 20px;
+          margin: 7px 6px 7px 8px; }
+        #gdPlugins > div ul li label {
+          flex: 1;
+          margin: 3px; }
+        #gdPlugins > div ul li:last-child {
+          border-bottom: 0; }
+  #gdPlugins .gdPluginSectionHeader {
+    border-bottom: 1px solid #dddddd;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row; }
+    #gdPlugins .gdPluginSectionHeader input {
+      flex: 0 0 20px;
+      margin: 7px 6px 7px 8px; }
+    #gdPlugins .gdPluginSectionHeader label {
+      flex: 1;
+      margin: 3px;
+      font-weight: bold; }
+  #gdPlugins.loading .gdPluginSectionHeader {
+    border-bottom: 0; }
+  #gdPlugins .gdPluginIndicator {
+    line-height: 15px; }
+    #gdPlugins .gdPluginIndicator canvas {
+      margin: 4px 4px 0 0; }
 
 /*# sourceMappingURL=styles.css.map */

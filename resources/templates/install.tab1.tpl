@@ -173,21 +173,32 @@
         {$L.installation_plugin_intro}
     </p>
 
-    <div id="gdPluginInstallationResults" class="hidden">
-        <div>
-            <h4>1. {$L.data_types}</h4>
-            <div id="gdDataTypeResponse" class="gdResponse"></div>
+    <div id="gdPlugins" class="hidden loading">
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <input type="checkbox" id="gdDataTypePluginList" class="gdToggleAll" disabled="disabled" />
+                <label for="gdDataTypePluginList">{$L.data_types}</label>
+                <div id="gdDataTypePluginListIndicator" class="gdPluginIndicator"></div>
+            </div>
+            <div id="gdDataTypeList" class="hidden"></div>
         </div>
-        <div>
-            <h4>2. {$L.export_types}</h4>
-            <div id="gdExportTypeResponse" class="gdResponse"></div>
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <input type="checkbox" id="gdExportTypePluginList" class="gdToggleAll" disabled="disabled" />
+                <label for="gdExportTypePluginList">{$L.export_types}</label>
+                <div id="gdExportTypePluginListIndicator" class="gdPluginIndicator"></div>
+            </div>
+            <div id="gdExportTypeResponse"></div>
         </div>
-        <div>
-            <h4>3. {$L.countries}</h4>
-            <div id="gdCountriesResponse" class="gdResponse"></div>
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <input type="checkbox" id="gdCountryPluginList" class="gdToggleAll" disabled="disabled" />
+                <label for="gdCountryPluginList">{$L.countries}</label>
+                <div id="gdCountryPluginListIndicator" class="gdPluginIndicator"></div>
+            </div>
+            <div id="gdCountriesResponse"></div>
         </div>
     </div>
-    <div class="gdClear"></div>
 
     <form>
         <button class="gdPrimaryButton" id="gdInstallPluginsBtn">{$L.install_plugins_rightarrow}</button>
