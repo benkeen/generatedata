@@ -346,14 +346,10 @@ require([
 
 	function _installPlugins() {
 		if (!_pluginsInstalled) {
-			utils.startProcessing();
-			$("#gdInstallPluginsBtn").hide();
 			pluginManager.installPlugins({
 				errorHandler: installError,
-				onCompleteHandler: function() {
-					$("#gdInstallPluginsBtn").html(_L.continue_rightarrow).fadeIn();
+				onCompleteHandler: function () {
 					_pluginsInstalled = true;
-					utils.stopProcessing();
 				}
 			});
 		} else {

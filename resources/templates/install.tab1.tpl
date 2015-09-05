@@ -176,7 +176,6 @@
     <div id="gdPlugins" class="hidden loading">
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">
-                <input type="checkbox" id="gdDataTypePluginList" class="gdToggleAll" disabled="disabled" />
                 <label for="gdDataTypePluginList">{$L.data_types}</label>
                 <div id="gdDataTypePluginListIndicator" class="gdPluginIndicator"></div>
             </div>
@@ -184,19 +183,19 @@
         </div>
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">
-                <input type="checkbox" id="gdExportTypePluginList" class="gdToggleAll" disabled="disabled" />
+                <input type="checkbox" id="gdExportTypePluginList" disabled="disabled" />
                 <label for="gdExportTypePluginList">{$L.export_types}</label>
                 <div id="gdExportTypePluginListIndicator" class="gdPluginIndicator"></div>
             </div>
-            <div id="gdExportTypeResponse"></div>
+            <div id="gdExportTypeList"></div>
         </div>
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">
-                <input type="checkbox" id="gdCountryPluginList" class="gdToggleAll" disabled="disabled" />
+                <input type="checkbox" id="gdCountryPluginList" disabled="disabled" />
                 <label for="gdCountryPluginList">{$L.countries}</label>
                 <div id="gdCountryPluginListIndicator" class="gdPluginIndicator"></div>
             </div>
-            <div id="gdCountriesResponse"></div>
+            <div id="gdCountryList"></div>
         </div>
     </div>
 

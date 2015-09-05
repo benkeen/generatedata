@@ -206,7 +206,7 @@ $L["single_user_account_requires_login"] = "Single user account, requires login"
 $L["multiple_accounts"] = "Multiple accounts";
 $L["goto_script_rightarrow"] = "Go to script &raquo;";
 $L["enter_user_account_details"] = "Please enter your user account details below.";
-$L["installation_plugin_intro"] = "Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> - i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all the Country-specific data like regions and cities.";
+$L["installation_plugin_intro"] = "Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> - i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all the Country-specific data like regions and cities. Select those rows you wish to use.";
 $L["install_plugins_rightarrow"] = "Install Plugins &raquo;";
 $L["installation_complete_text"] = "The Data Generator has been successfully installed! Click the button below to go to the script.";
 $L["please_login"] = "Please Login";
@@ -292,3 +292,8 @@ $L["credit_card_data"] = "Credit Card Data";
 
 // new in 3.2.1
 $L["history"] = "History";
+
+// 3.2.2
+$L["validation_no_data_types"] = "Please select at least one Data Type.";
+$L["validation_no_export_types"] = "Please select at least one Export Type.";
+$L["validation_no_countries"] = "Please select at least one Country Type.";

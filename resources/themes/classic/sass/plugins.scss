@@ -14,7 +14,7 @@
     background-color: green;
     color: white;
     padding: 3px 5px;
-    margin: 5px;
+    margin: 5px 0;
     display: inline-block;
     line-height: 10px;
     border-radius: 4px;
@@ -23,7 +23,7 @@
   }
   .gdGroupName {
     color: #999999;
-    padding: 7px 10px 1px;
+    font-weight: bold;
   }
   h4 {
     margin: 5px 10px 4px;
@@ -32,17 +32,18 @@
   &>div {
     margin: 0 5px 0 0;
     flex: 1;
-    background-color: #f2f2f2;
-    border-radius: 8px;
 
     &:last-child {
       margin-right: 0;
     }
 
     ul {
+      background-color: #f2f2f2;
+      border-radius: 8px;
       list-style-type: none;
-      margin: 0;
+      margin: 0 0 10px;
       padding: 0;
+
 
       li {
         border-bottom: 1px solid #dddddd;
@@ -60,6 +61,17 @@
         label {
           flex: 1;
           margin: 3px;
+        }
+        span.gdTooltip {
+          flex: 0 0 auto;
+
+          &.gdHasTooltip {
+            background: url(../images/info.png) no-repeat scroll left top transparent;
+            background-size: 16px 16px;
+            width: 16px;
+            height: 16px;
+            margin: 6px;
+          }
         }
         &:last-child {
           border-bottom: 0;
@@ -98,4 +110,10 @@
       margin: 4px 4px 0 0;
     }
   }
+}
+
+/* overrides styles in tooltips.scss */
+body .tooltip-right:after {
+  font-size: 11px;
+  line-height: 16px;
 }

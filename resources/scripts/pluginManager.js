@@ -1,30 +1,40 @@
 /*global $:false,define:false*/
 define([
+  "manager",
 	"lang",
   "constants",
   "utils"
-], function(L, C, utils) {
+], function(manager, L, C, utils) {
 
 	"use strict";
 
 	// used as an iterator to install the plugins one by one
-	var _context = "reset"; // reset / installation
+  var MODULE_ID = 'core-pluginManager';
 	var _errorHandler = null;
 	var _onCompleteHandler = null;
-	var _successfullyInstalledDataTypes = [];
-	var _successfullyInstalledExportTypes = [];
-	var _successfullyInstalledCountries = [];
+	var _dataTypes = [];
+	var _exportTypes = [];
+	var _countries = [];
 
+  var _run = function () {
+    $(document).on('change', '.toggleDataTypeSection', function (e) {
+      $(e.target).closest('ul').find("input").not('.toggleDataTypeSection').prop('checked', e.target.checked);
+    });
+    $(document).on('change', '#gdExportTypePluginList', function (e) {
+      $("#gdExportTypeList").find("input").prop('checked', e.target.checked);
+    });
+    $(document).on('change', '#gdCountryPluginList', function (e) {
+      $("#gdCountryList").find("input").prop('checked', e.target.checked);
+    });
+  };
 
 	var _installPlugins = function(params) {
-
-    // installing the plugins takes place in two places: initial installation + for an existing installation when
-    // the user wants to reset them
-		_context = ($("body").hasClass("gdInstallPage")) ? "installation" : "reset";
     _errorHandler      = params.errorHandler;
 		_onCompleteHandler = params.onCompleteHandler;
     var $pluginsSection = $("#gdPlugins");
 		$pluginsSection.removeClass("hidden").css("display", "none").show("fade");
+    $("#gdInstallPluginsBtn").hide();
+    $("#gdInstallPluginsBtn").on("click", _submit);
 
     // show the loading spinner for the three plugin types: data, export, country
     utils.insertSpinner('dtLoading', $("#gdDataTypePluginListIndicator")[0], C.SPINNERS.SMALL);
@@ -32,18 +42,66 @@ define([
     utils.insertSpinner('cLoading', $("#gdCountryPluginListIndicator")[0], C.SPINNERS.SMALL);
 
     //$("#gdPluginInstallationResults .gdResponse").html("");
+
     _installDataTypes();
 	};
 
+  function _displayError(message) {
+    $("#page" + _currStep + " .gdInstallTabMessage .gdResponse").html(message);
+    $("#page" + _currStep + " .gdInstallTabMessage").addClass("gdInstallError").show();
+  }
+
+  var _submit = function (e) {
+    e.preventDefault();
+
+    // check at least one of the different plugin types have been selected
+    var selectedDataTypes = [];
+    $(".selectedDataType").each(function (i, el) {
+      if (el.checked) {
+        selectedDataTypes.push(el.value);
+      }
+    });
+    if (selectedDataTypes.length === 0) {
+      _displayError(L.validation_no_data_types);
+      return;
+    }
+
+    var selectedExportTypes = [];
+    $(".selectedExportType").each(function (i, el) {
+      if (el.checked) {
+        selectedExportTypes.push(el.value);
+      }
+    });
+    if (selectedExportTypes.length === 0) {
+      _displayError(L.validation_no_export_types);
+      return;
+    }
+
+    $.ajax({
+      url: "ajax.php",
+      type: "POST",
+      dataType: "json",
+      data: {
+        action: "updatedPluginsPostProcess"
+      },
+      success: function() {
+        if ($.isFunction(_onCompleteHandler)) {
+          _onCompleteHandler();
+        }
+      },
+      error: _errorHandler
+    });
+
+  };
+
 	var _installDataTypes = function() {
     utils.playSpinner('dtLoading');
-
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: _context + "DataTypes"
+				action: "installDataTypes"
 			},
 			success: _installDataTypeResponse,
 			error: _errorHandler
@@ -51,21 +109,20 @@ define([
 	};
 
 	var _installDataTypeResponse = function(json) {
-    _successfullyInstalledDataTypes = json.content;
-
+    _dataTypes = json.content;
     $("#gdDataTypePluginListIndicator").html("<span class=\"gdPluginCount\">" + json.content.total + "</span>");
     _addDataTypeList();
-
-//    _installExportTypes();
+    _installExportTypes();
 	};
 
 	var _installExportTypes = function() {
-		$.ajax({
+    utils.playSpinner('etLoading');
+    $.ajax({
 			url: "ajax.php",
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: _context + "ExportTypes"
+				action: "installExportTypes"
 			},
 			success: _installExportTypesResponse,
 			error: _errorHandler
@@ -73,7 +130,11 @@ define([
 	};
 
 	var _installExportTypesResponse = function(json) {
-  //  _installCountries();
+    _exportTypes = json.content;
+    $("#gdExportTypePluginListIndicator").html("<span class=\"gdPluginCount\">" + json.content.total + "</span>");
+    $("#gdExportTypePluginList").removeProp("disabled").prop("checked", true);
+    _addExportTypeList();
+    _installCountries();
   };
 
 	var _installCountries = function() {
@@ -82,7 +143,7 @@ define([
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: _context + "Countries"
+				action: "installCountries"
 			},
 			success: _installCountriesResponse,
 			error: _errorHandler
@@ -90,49 +151,77 @@ define([
 	};
 
 	var _installCountriesResponse = function(json) {
-    //_runPostProcesses();
-	};
-
-	/**
-	 * After all plugin information has been sent to the server, run whatever post-processes are needed.
-	 * @private
-	 */
-	var _runPostProcesses = function() {
-		$.ajax({
-			url: "ajax.php",
-			type: "POST",
-			dataType: "json",
-			data: {
-				action: "updatedPluginsPostProcess"
-			},
-			success: function() {
-				if ($.isFunction(_onCompleteHandler)) {
-					_onCompleteHandler();
-				}
-			},
-			error: _errorHandler
-		});
+    _countries = json.content;
+    $("#gdCountryPluginListIndicator").html("<span class=\"gdPluginCount\">" + json.content.total + "</span>");
+    $("#gdCountryPluginList").removeProp("disabled").prop("checked", true);
+    _addCountryList();
+    _showContinueButton();
 	};
 
   var _addDataTypeList = function () {
     var html = '';
-    for (var i=0; i<_successfullyInstalledDataTypes.results.length; i++) {
-      var currGroup = _successfullyInstalledDataTypes.results[i];
-      html += '<li class="gdGroupName">' + currGroup.group_name + '</li>';
+    for (var i=0; i<_dataTypes.results.length; i++) {
+      var currGroup = _dataTypes.results[i];
+      html += '<ul>' +
+              '<li class="gdGroupName"><input type="checkbox" class="toggleDataTypeSection" id="dtGroup-' + i + '" checked="checked" />' +
+              '<label for="dtGroup-' + i + '">' + currGroup.group_name + '</label></li>';
 
       for (var j=0; j<currGroup.data_types.length; j++) {
         var currDataType = currGroup.data_types[j];
         html += '<li>' +
-            '<input type="checkbox" id="plugin-dt-' + currDataType.folder + '" name="selectedDataTypes[]" value="' + currDataType.folder + '" checked="checked" />' +
+            '<input type="checkbox" id="plugin-dt-' + currDataType.folder + '" name="selectedDataTypes" class="selectedDataType" ' +
+              'value="' + currDataType.folder + '" checked="checked" />' +
             '<label for="plugin-dt-' + currDataType.folder + '">' + currDataType.name + '</label>' +
-          '</li>';
+            '<span class="gdTooltip';
+
+        if (currDataType.desc) {
+          html += ' gdHasTooltip tooltip-right" data-tooltip="' + currDataType.desc + '">';
+        } else {
+          html += '">';
+        }
+        html += '</span></li>';
       }
+      html += '</ul>';
     }
-    $("#gdDataTypeList").html('<ul>' + html + '</ul>').removeClass("hidden").css("display", "none").show("fade");
+    $("#gdDataTypeList").html(html).removeClass("hidden").css("display", "none").show("fade");
   };
 
 
-	/**
+  var _addExportTypeList = function () {
+    var html = '';
+    for (var i=0; i<_exportTypes.results.length; i++) {
+      var currExportType = _exportTypes.results[i];
+      html += '<li>' +
+        '<input type="checkbox" id="plugin-et-' + currExportType.folder + '" name="selectedExportTypes" class="selectedExportType" value="' + currExportType.folder + '" checked="checked" />' +
+        '<label for="plugin-et-' + currExportType.folder + '">' + currExportType.name + '</label>' +
+      '</li>';
+    }
+    $("#gdExportTypeList").html('<ul>' + html + '</ul>').removeClass("hidden").css("display", "none").show("fade");
+  };
+
+
+  var _addCountryList = function () {
+    var html = '';
+    for (var i=0; i<_countries.results.length; i++) {
+      var currCountry = _countries.results[i];
+      html += '<li>' +
+      '<input type="checkbox" id="plugin-c-' + currCountry.folder + '" name="selectedCountry" class="selectedCountry" value="' + currCountry.folder + '" checked="checked" />' +
+      '<label for="plugin-c-' + currCountry.folder + '">' + currCountry.name + '</label>' +
+      '</li>';
+    }
+    $("#gdCountryList").html('<ul>' + html + '</ul>').removeClass("hidden").css("display", "none").show("fade");
+  };
+
+  var _showContinueButton = function () {
+    $("#gdInstallPluginsBtn").html(L.continue_rightarrow).show();
+  };
+
+  manager.registerCoreModule(MODULE_ID, {
+    run: _run
+  });
+
+
+  /**
 	 * Our public API.
 	 */
 	return {
