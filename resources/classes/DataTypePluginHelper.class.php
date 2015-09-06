@@ -135,7 +135,7 @@ class DataTypePluginHelper {
 	}
 
 	/**
-	 * Returns an array of available, grouped, instantiated Data Type objects.
+	 * Returns an array of all available, grouped, instantiated Data Type objects.
 	 * @param string
 	 * @param boolean
 	 * @return array

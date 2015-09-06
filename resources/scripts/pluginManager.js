@@ -47,8 +47,8 @@ define([
 	};
 
   function _displayError(message) {
-    $("#page" + _currStep + " .gdInstallTabMessage .gdResponse").html(message);
-    $("#page" + _currStep + " .gdInstallTabMessage").addClass("gdInstallError").show();
+    $("#page4 .gdInstallTabMessage .gdResponse").html(message);
+    $("#page4 .gdInstallTabMessage").addClass("gdInstallError").show();
   }
 
   var _submit = function (e) {
@@ -62,6 +62,7 @@ define([
       }
     });
     if (selectedDataTypes.length === 0) {
+      window.scrollTo(0, 0);
       _displayError(L.validation_no_data_types);
       return;
     }
@@ -73,7 +74,20 @@ define([
       }
     });
     if (selectedExportTypes.length === 0) {
+      window.scrollTo(0, 0);
       _displayError(L.validation_no_export_types);
+      return;
+    }
+
+    var selectedCountries = [];
+    $(".selectedCountry").each(function (i, el) {
+      if (el.checked) {
+        selectedCountries.push(el.value);
+      }
+    });
+    if (selectedCountries.length === 0) {
+      window.scrollTo(0, 0);
+      _displayError(L.validation_no_countries);
       return;
     }
 
@@ -82,7 +96,10 @@ define([
       type: "POST",
       dataType: "json",
       data: {
-        action: "updatedPluginsPostProcess"
+        action: "selectPlugins", // updatedPluginsPostProcess
+        dataTypes: selectedDataTypes,
+        exportTypes: selectedExportTypes,
+        countries: selectedCountries
       },
       success: function() {
         if ($.isFunction(_onCompleteHandler)) {

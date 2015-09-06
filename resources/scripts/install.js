@@ -350,6 +350,7 @@ require([
 				errorHandler: installError,
 				onCompleteHandler: function () {
 					_pluginsInstalled = true;
+					gotoNextStep();
 				}
 			});
 		} else {

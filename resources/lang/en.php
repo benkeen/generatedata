@@ -296,4 +296,4 @@ $L["history"] = "History";
 // 3.2.2
 $L["validation_no_data_types"] = "Please select at least one Data Type.";
 $L["validation_no_export_types"] = "Please select at least one Export Type.";
-$L["validation_no_countries"] = "Please select at least one Country Type.";
+$L["validation_no_countries"] = "Please select at least one Country.";

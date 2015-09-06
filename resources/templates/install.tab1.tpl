@@ -169,6 +169,13 @@
 </div>
 
 <div class="gdInstallSection{if $currentPage != 4} hidden{/if}" id="page4">
+
+    <div class="gdInstallTabMessage">
+        <div class="gdIcon"></div>
+        <h3>Uh-oh.</h3>
+        <div class="gdResponse"></div>
+    </div>
+
     <p>
         {$L.installation_plugin_intro}
     </p>
