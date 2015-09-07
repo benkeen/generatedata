@@ -743,8 +743,19 @@ class Account {
 		);
 	}
 
+    public function getSelectedDataTypes() {
+        return $this->selectedDataTypes;
+    }
 
-	public function updateRowsGeneratedCount($configurationID, $rowsGenerated) {
+    public function getSelectedExportTypes() {
+        return $this->selectedExportTypes;
+    }
+
+    public function getSelectedCountries() {
+        return $this->selectedCountries;
+    }
+
+    public function updateRowsGeneratedCount($configurationID, $rowsGenerated) {
 		if (!is_numeric($rowsGenerated)) {
 			return;
 		}

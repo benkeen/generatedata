@@ -153,7 +153,6 @@ $L["cancel"] = "cancel";
 $L["regenerate"] = "Regenerate";
 $L["generated_X_of_Y_results"] = "Generated <span id=\"gdGenerateCount\"></span> of <span id=\"gdGenerateTotal\"></span> results";
 $L["plugins"] = "Plugins";
-$L["plugins_intro"] = "Any time you add or remove a plugin, you need to reset the list here. You can choose which plugins appear in the UI by checking / unchecking the row.";
 $L["reset_plugins"] = "Reset plugins";
 $L["misc"] = "Misc";
 $L["theme"] = "Theme";
@@ -166,7 +165,7 @@ $L["list_core_events"] = "List <b>core</b> events";
 $L["limit_pub_sub_console_messages"] = "Limit pub/sub console messages to specific modules:";
 $L["all_data_type_plugins"] = "All Data Type plugins";
 $L["all_export_type_plugins"] = "All Export Type plugins";
-$L["about_title"] = "What <i>is</i> this thing?";
+$L["about_title"] = "About";
 $L["about_para1"] = "Sometimes you need fake data for things like testing software, populating databases and creating realistic-looking mockups. For text, we have <i>lorem ipsum</i>; but for everything else...? This tool was written to provide a quick and simple way to let you generate large volumes of custom data in whatever format you require.";
 $L["about_para2"] = "The <b>Generate</b> page contains the entire script: just fill in the various fields in the page to construct the data set you're interested in, then click the Generate button. And hey presto! Easy, huh?";
 $L["extend_id"] = "Extend it";
@@ -297,3 +296,6 @@ $L["history"] = "History";
 $L["validation_no_data_types"] = "Please select at least one Data Type.";
 $L["validation_no_export_types"] = "Please select at least one Export Type.";
 $L["validation_no_countries"] = "Please select at least one Country.";
+
+// changed
+$L["plugins_intro"] = "Check/uncheck the rows to determine which functionality you'd like to see in the interface.";

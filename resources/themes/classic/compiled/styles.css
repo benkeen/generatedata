@@ -37,7 +37,10 @@ h2 {
   font-family: inherit; }
 
 h3 {
-  margin: 10px 0px 7px; }
+  font-size: 15pt;
+  color: #777a77;
+  font-weight: normal;
+  margin: 20px 0px 12px; }
 
 h3.gdSubtitle {
   font-size: 12px; }
@@ -942,9 +945,9 @@ input.medium {
 
 #githubRibbon {
   float: right;
-  top: 0px;
-  right: 0px;
-  margin: -20px -25px 0px 0px; }
+  top: 0;
+  right: 0;
+  margin: -30px -25px 0px 0px; }
 
 #gdPageLoad {
   background-color: #cccccc;
@@ -1365,7 +1368,10 @@ body .gdMainDialog .ui-dialog-title span {
   display: flex;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
-  flex-direction: row; }
+  flex-direction: row;
+  /*&.loading .gdPluginSectionHeader {
+    border-bottom: 0;
+  }*/ }
   #gdPlugins.hidden {
     display: none; }
   #gdPlugins .gdPluginCount {
@@ -1419,7 +1425,7 @@ body .gdMainDialog .ui-dialog-title span {
         #gdPlugins > div ul li:last-child {
           border-bottom: 0; }
   #gdPlugins .gdPluginSectionHeader {
-    border-bottom: 1px solid #dddddd;
+    /* border-bottom: 1px solid #dddddd; */
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -1433,8 +1439,6 @@ body .gdMainDialog .ui-dialog-title span {
       flex: 1;
       margin: 3px;
       font-weight: bold; }
-  #gdPlugins.loading .gdPluginSectionHeader {
-    border-bottom: 0; }
   #gdPlugins .gdPluginIndicator {
     line-height: 15px; }
     #gdPlugins .gdPluginIndicator canvas {

@@ -32,6 +32,7 @@ $cssIncludes = $exportTypeCssIncludes . "\n" . $dataTypeCssIncludes;
 // used in the settings page
 $pageParams["allCountryPlugins"] = Core::$countryPlugins;
 $pageParams["allExportTypes"] = $exportTypes;
+$pageParams["groupedDataTypes"] = Core::$dataTypePlugins;
 $pageParams["allDataTypes"] = $dataTypes;
 $pageParams["allTranslations"] = Core::$translations->getList();
 
@@ -53,6 +54,9 @@ $pageParams["defaultNumRows"] = Core::getDefaultNumRows();
 if (Core::checkIsLoggedIn()) {
 	$pageParams["isLoggedIn"] = true;
 	$pageParams["accountType"] = Core::$user->getAccountType();
+    $pageParams["selectedDataTypes"] = Core::$user->getSelectedDataTypes();
+    $pageParams["selectedExportTypes"] = Core::$user->getSelectedExportTypes();
+    $pageParams["selectedCountries"] = Core::$user->getSelectedCountries();
 } else {
 	$pageParams["isLoggedIn"] = false;
 	$pageParams["accountType"] = "";

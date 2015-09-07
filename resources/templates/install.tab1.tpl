@@ -186,7 +186,7 @@
                 <label for="gdDataTypePluginList">{$L.data_types}</label>
                 <div id="gdDataTypePluginListIndicator" class="gdPluginIndicator"></div>
             </div>
-            <div id="gdDataTypeList" class="hidden"></div>
+            <div id="gdDataTypeList"></div>
         </div>
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">

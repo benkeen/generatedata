@@ -81,7 +81,7 @@
   }
 
   .gdPluginSectionHeader {
-    border-bottom: 1px solid #dddddd;
+    /* border-bottom: 1px solid #dddddd; */
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -100,9 +100,9 @@
     }
   }
 
-  &.loading .gdPluginSectionHeader {
+  /*&.loading .gdPluginSectionHeader {
     border-bottom: 0;
-  }
+  }*/
 
   .gdPluginIndicator {
     line-height: 15px;
