@@ -181,18 +181,18 @@ define([
       var currGroup = _dataTypes.results[i];
       html += '<ul>' +
               '<li class="gdGroupName"><input type="checkbox" class="toggleDataTypeSection" id="dtGroup-' + i + '" checked="checked" />' +
-              '<label for="dtGroup-' + i + '">' + currGroup.group_name + '</label></li>';
+              '<label for="dtGroup-' + i + '">' + utils.decodeUTF8(currGroup.group_name) + '</label></li>';
 
       for (var j=0; j<currGroup.data_types.length; j++) {
         var currDataType = currGroup.data_types[j];
         html += '<li>' +
             '<input type="checkbox" id="plugin-dt-' + currDataType.folder + '" name="selectedDataTypes" class="selectedDataType" ' +
               'value="' + currDataType.folder + '" checked="checked" />' +
-            '<label for="plugin-dt-' + currDataType.folder + '">' + currDataType.name + '</label>' +
+            '<label for="plugin-dt-' + currDataType.folder + '">' + utils.decodeUTF8(currDataType.name) + '</label>' +
             '<span class="gdTooltip';
 
         if (currDataType.desc) {
-          html += ' gdHasTooltip tooltip-right" data-tooltip="' + currDataType.desc + '">';
+          html += ' gdHasTooltip tooltip-right" data-tooltip="' + utils.decodeUTF8(currDataType.desc) + '">';
         } else {
           html += '">';
         }

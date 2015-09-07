@@ -421,7 +421,7 @@ class AjaxRequest {
         $groupedDataTypes = DataTypePluginHelper::getDataTypePlugins("installationDatabaseReady", false);
         $L = Core::$language->getCurrentLanguageStrings();
         $hasError = false;
-        $response = [];
+        $response = array();
         $count = 0;
         $folders = array();
 
