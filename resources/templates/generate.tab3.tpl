@@ -23,48 +23,103 @@
 
 	<h3>{$L.plugins}</h3>
 
-	<p>
+    <p>
 		{$L.plugins_intro}
 	</p>
 
-	{if $useMinifiedResources}
-		<div class="gdNotify gdMarginTop" style="display:block">
-			<p>
-				{$L.reset_plugins_with_bundling}
-				<button id="gdResetPluginsBtn" class="gdSecondaryButton">{$L.reset_plugins}</button>
-			</p>
-		</div>
-	{else}
-		<button id="gdResetPluginsBtn" class="gdSecondaryButton">{$L.reset_plugins}</button>
-	{/if}
+    {if $useMinifiedResources}
+        <div class="gdNotify gdMarginTop" style="display:block; margin-bottom: 15px">
+            <p>
+                {$L.reset_plugins_with_bundling}
+            </p>
+        </div>
+    {/if}
 
-	<div id="gdPluginInstallation">
-		<div id="gdPluginInstallationResults" class="hidden">
-			<div>
-				<h4>1. {$L.data_types}</h4>
-				<div id="gdDataTypeResponse" class="gdResponse"></div>
-			</div>
-			<div>
-				<h4>2. {$L.export_types}</h4>
-				<div id="gdExportTypeResponse" class="gdResponse"></div>
-			</div>
-			<div>
-				<h4>3. {$L.countries}</h4>
-				<div id="gdCountriesResponse" class="gdResponse"></div>
-			</div>
-		</div>
-		<div class="gdClear"></div>
-	</div>
+    <div id="gdPlugins">
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <label for="gdDataTypePluginList">{$L.data_types}</label>
+                <div id="gdDataTypePluginListIndicator" class="gdPluginIndicator">
+                    <span class="gdPluginCount">{$allDataTypes|count}</span>
+                </div>
+            </div>
+            <div id="gdDataTypeList">
+                {foreach from=$groupedDataTypes key=k item=i name=group}
+                    <ul>
+                        <li class="gdGroupName">
+                            <input type="checkbox" class="toggleDataTypeSection" id="dtGroup-{$smarty.foreach.group.index}" />
+                            <label for="dtGroup-{$smarty.foreach.group.index}">{$L[$k]}</label></li>
+                        </li>
+                        {foreach from=$i key=k2 item=currDataType name=data}
+                            {assign var="checked" value=""}
+                            {if (in_array($currDataType->getFolder(), $selectedDataTypes))}
+                                {assign var="checked" value='checked="checked"'}
+                            {/if}
 
-	<h3>{$L.misc}</h3>
+                            <li>
+                                <input type="checkbox" id="plugin-dt-{$currDataType->getFolder()}" name="selectedDataTypes" class="selectedDataType"
+                                    value="{$currDataType->getFolder()}" {$checked} />
+                                <label for="plugin-dt-{$currDataType->getFolder()}">{$currDataType->getName()}</label>
 
-	<div>
-		{$L.theme}
-		<input type="radio" name="theme" value="default" id="gdTheme1" {if $settings.theme == "default"}checked="checked"{/if} {if !$allowThemes}disabled="disabled"{/if} />
-		<label for="gdTheme1">Default</label>
-		<input type="radio" name="theme" value="classic" id="gdTheme2" {if $settings.theme == "classic"}checked="checked"{/if} />
-		<label for="gdTheme2">Classic</label>
-	</div>
+                                {if $currDataType->getDesc() == ''}
+                                    <span class="gdTooltip"></span>
+                                {else}
+                                    <span class="gdTooltip gdHasTooltip tooltip-right" data-tooltip="{$currDataType->getDesc()}"></span>
+                                {/if}
+                           </li>
+                        {/foreach}
+                    </ul>
+                {/foreach}
+            </div>
+        </div>
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <input type="checkbox" id="gdExportTypePluginList" />
+                <label for="gdExportTypePluginList">{$L.export_types}</label>
+                <div id="gdExportTypePluginListIndicator" class="gdPluginIndicator">
+                    <span class="gdPluginCount">{$allExportTypes|count}</span>
+                </div>
+            </div>
+            <div id="gdExportTypeList">
+                <ul>
+                    {foreach from=$allExportTypes key=k item=i}
+                        {assign var="checked" value=""}
+                        {if (in_array($i->getFolder(), $selectedExportTypes))}
+                            {assign var="checked" value='checked="checked"'}
+                        {/if}
+                        <li>
+                            <input type="checkbox" id="plugin-et-{$i->getFolder()}" name="selectedExportTypes[]" class="selectedExportType" value="{$i->getFolder()}" {$checked} />
+                            <label for="plugin-et-{$i->getFolder()}">{$i->getName()}</label>
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+        <div class="gdPluginSection">
+            <div class="gdPluginSectionHeader">
+                <input type="checkbox" id="gdCountryPluginList" />
+                <label for="gdCountryPluginList">{$L.countries}</label>
+                <div id="gdCountryPluginListIndicator" class="gdPluginIndicator">
+                    <span class="gdPluginCount">{$allCountryPlugins|count}</span>
+                </div>
+            </div>
+            <div id="gdCountryList">
+                <ul>
+                    {foreach from=$allCountryPlugins key=k item=i}
+                        {assign var="checked" value=""}
+                        {if (in_array($i->getFolder(), $selectedCountries))}
+                            {assign var="checked" value='checked="checked"'}
+                        {/if}
+                        <li>
+                            <input type="checkbox" id="plugin-c-{$i->getFolder()}" name="selectedCountries[]" class="selectedCountry" value="{$i->getFolder()}" {$checked} />
+                            <label for="plugin-c-{$i->getFolder()}">{$i->getName()}</label>
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+    </div>
+
 
 	<h3>{$L.developer}</h3>
 
@@ -110,7 +165,9 @@
 	</div>
 
 	<div class="gdClear"></div>
+
 	<p>
 		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.update_settings}</button>
+        <button class="gdPrimaryButton" id="gdResetPluginsBtn">{$L.reset_plugins}</button>
 	</p>
 </form>

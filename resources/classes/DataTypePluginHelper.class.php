@@ -135,7 +135,7 @@ class DataTypePluginHelper {
 	}
 
 	/**
-	 * Returns an array of available, grouped, instantiated Data Type objects.
+	 * Returns an array of all available, grouped, instantiated Data Type objects.
 	 * @param string
 	 * @param boolean
 	 * @return array
@@ -158,8 +158,8 @@ class DataTypePluginHelper {
 					continue;
 				}
 				if (is_dir("$dataTypesFolder/$item")) {
-					$obj = self::instantiateDataType($runtimeContext, $dataTypesFolder, $item);
-					if ($obj != null && $obj !== false) {
+        			$obj = self::instantiateDataType($runtimeContext, $dataTypesFolder, $item);
+        			if ($obj != null && $obj !== false) {
 						$folders = explode(DIRECTORY_SEPARATOR, $dataTypesFolder . DIRECTORY_SEPARATOR . $item);
 						$folders = array_reverse($folders);
 
@@ -243,7 +243,6 @@ class DataTypePluginHelper {
 		try {
 			$instance = new $className($runtimeContext);
 		} catch (Exception $e) {
-
 			return false;
 		}
 

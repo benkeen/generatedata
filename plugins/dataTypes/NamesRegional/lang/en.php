@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Names, Regional",
-    "DESC" => "This data type randomly generates names. It works in the same way as the <b>Names</b> data type, except that it creates slightly more realistic data sets since the names are mapped to the country; e.g. Italian names appear when the data set row has Italy for the country field."
+    "DESC" => "Similar to the Names data type, except it tries to generate names mapped to the country; e.g. Italian names appear when the data set row has Italy for the country field. Not as performant as Names."
 );
 
 $L["help_intro"] = "Because of this additional complexity, however, the code runs slightly slower. You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:";

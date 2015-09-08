@@ -35,8 +35,8 @@ class Core {
 	private static $apiEnabled = false;
 
 	// non-overridable settings
-	private static $version = "3.2.2-beta";
-	private static $releaseDate = "2015-09-03";
+	private static $version = "3.2.2";
+	private static $releaseDate = "2015-09-05";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
@@ -118,13 +118,20 @@ class Core {
 
 		self::$translations = new Translations();
 
-		// the order is significant in all of this
-		if ($runtimeContext != "installation") {
+        // for all pages
+		if ($runtimeContext == "installation") {
+            session_start();
+            $_SESSION["installing"] = true;
+        } else {
+            // the order is significant in all of this
 			self::initDatabase();
 
 			if (in_array($runtimeContext, array("installationDatabaseReady", "ui",  "generation", "resetPlugins"))) {
 				self::initSessions();
 			}
+            if ($runtimeContext == "installationDatabaseReady") {
+                $_SESSION["installing"] = true;
+            }
 
 			$dbDefaultLanguage = Settings::getSetting("defaultLanguage");
 			if (!empty($dbDefaultLanguage)) {
@@ -488,7 +495,9 @@ class Core {
 	}
 
 	/**
-	 * Called by Core::init(), this initializes Core::$dataTypePlugins.
+	 * Called by Core::init(), this initializes Core::$dataTypePlugins. Note that this will contain ALL installed
+     * plugins, not those that are selected by a particular user. In 3.2.2 that feature was added, so use
+     * Account::getDataTypePlugins() instead.
 	 * @access private
 	 */
 	private static function initDataTypes($runtimeContext) {
@@ -537,4 +546,8 @@ class Core {
 			header("Cache-control: private");
 		}
 	}
+
+    public static function isInstalling() {
+        return $_SESSION["installing"];
+    }
 }

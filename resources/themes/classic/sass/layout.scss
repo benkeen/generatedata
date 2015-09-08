@@ -11,8 +11,8 @@ header {
 
 	nav {
 		ul {
-			margin: 0px;
-			padding: 0px;
+			margin: 0;
+			padding: 0;
 			display: inline;
 			list-style: none;
 			li {
@@ -32,7 +32,6 @@ header {
 	}
 }
 section {
-	width: 500px;
 	border-top: none;
 	border-bottom: none;
 	background-color: white;
@@ -54,7 +53,7 @@ nav {
 footer {
 	width: 980px;
 	margin: 0 auto 15px;
-	padding: 5px 0px;
+	padding: 5px 0;
 	height: 20px;
 	font-size: 7pt;
 	background-color: #f5f5f5;
@@ -77,11 +76,11 @@ footer {
 
 	ul {
 		list-style: none;
-		padding: 0px;
-		margin: 0px;
+		padding: 0;
+		margin: 0;
 		li {
-			margin: 0px;
-			padding: 0px;
+			margin: 0;
+			padding: 0;
 			display: inline;
 			&:before {
 				content: " | ";
@@ -91,7 +90,7 @@ footer {
 				content: "";
 			}
 			span {
-				margin: 0px 6px;
+				margin: 0 6px;
 				font-size: inherit;
 			}
 		}
@@ -104,10 +103,9 @@ footer {
 	position: relative;
 	ul {
 		list-style: none;
-		margin: 0px;
-		padding: 0px;
+		margin: 0;
+		padding: 0;
 		li {
-			color: #222222;
 			font-size: 9pt;
 			cursor: pointer;
 			margin: 2px 1px 0 0;
@@ -116,8 +114,6 @@ footer {
 			width: 120px;
 			border-top-left-radius: 8px;
 			border-top-right-radius: 8px;
-			border-radius-topleft: 8px;
-			border-radius-topright: 8px;
 			background-color: #efefef;
 			height: 22px;
 			color: #666666;
@@ -147,11 +143,11 @@ footer {
 	}
 }
 .gdMainTabContent {
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	&>li {
-		padding: 0px;
-		margin: 0px;
+		padding: 0;
+		margin: 0;
 		list-style: none;
 	}
 	h1 {
@@ -168,17 +164,17 @@ footer {
 	display: block;
 	margin-top: 20px;
 	h2 {
-		margin: 0px 0px 4px;
+		margin: 0 0 4px;
 		font-size: 12px;
 		color: #777777;
-		padding: 1px 20px 0px 1px;
+		padding: 1px 20px 0 1px;
 		span.gdSectionHelp {
 			background: transparent url("../images/helpSmall.png") right center no-repeat;			
 			cursor: pointer;
 			width: 14px;
 			height: 14px;
 			display: inline-block;
-			margin: 0px 0px -2px 3px;
+			margin: 0 0 -2px 3px;
 		}
 	}
 	.gdFields {
@@ -233,8 +229,8 @@ footer {
 
 .gdLiCols {
 	list-style-type: none;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 
 	li {
 		display: inline-block;

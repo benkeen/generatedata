@@ -104,62 +104,6 @@ body .ui-tooltip {
 	text-align: left;
 }
 
-/* plugin installation */
-#gdPluginInstallationResults {
-	&>div {
-		padding: 4px 8px 8px;
-		background-color: #f2f2f2;
-		border-radius: 8px;
-		float: left;
-		width: 30%;
-		margin-right: 10px;
-		&:last-child {
-			margin-right: 0px;
-		}
-	}
-	h4 {
-		margin: 0px;
-		padding: 0px;
-		font-weight: normal;
-		color: #222222;
-		font-style: italic;
-	}
-	.gdResponse {
-		div {
-			font-size: 7pt;
-			line-height: 16px;
-			border-bottom: 1px solid #dddddd;
-			clear: both;
-
-			&:first-child {
-				margin-top: 4px;
-			}
-			&:last-child {
-				border-bottom: 0px;
-			}
-		}
-		.gdSuccess {
-			background-color: green;
-			color: white;
-			border-radius: 3px;
-			padding: 0px 4px;
-			float: right;
-			line-height: 16px;
-			font-size: 6.5pt;
-		}
-		.gdError {
-			background-color: #cc0000;
-			color: white;
-			border-radius: 3px;
-			padding: 0px 4px;
-			float: right;
-			line-height: 16px;
-			font-size: 6.5pt;
-			cursor: pointer;
-		}
-	}
-}
-
 /* overridden CodeMirror styles */
 body .CodeMirror {
 	border: 1px solid #cccccc;
@@ -210,9 +154,9 @@ input.medium {
 }
 #githubRibbon {
 	float: right;
-	top: 0px;
-	right: 0px;
-	margin: -20px -25px 0px 0px;
+	top: 0;
+	right: 0;
+	margin: -30px -25px 0px 0px;
 }
 #gdPageLoad {
 	background-color: #cccccc;

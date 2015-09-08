@@ -23,7 +23,11 @@ class Account {
 	private $firstName;
 	private $lastName;
 	private $email;
+    private $selectedDataTypes;
+    private $selectedExportTypes;
+    private $selectedCountries;
 	private $configurations;
+    private $numRowsGenerated = 0;
 
 
 	/**
@@ -37,7 +41,7 @@ class Account {
 	}
 
 	/**
-	 * Called by the constructor and any time the user updates his user account. 
+	 * Called by the constructor and any time the user updates his/her user account.
 	 */
 	private function getCurrentUser($accountID) {
 		if ($accountID == "anonymousAdmin") {
@@ -66,7 +70,10 @@ class Account {
 				$this->firstName = $accountInfo["first_name"];
 				$this->lastName = $accountInfo["last_name"];
 				$this->email = $accountInfo["email"];
-				$this->getConfigurations();
+                $this->selectedDataTypes = explode(",", $accountInfo["selected_data_types"]);
+                $this->selectedExportTypes = explode(",", $accountInfo["selected_export_types"]);
+                $this->selectedCountries = explode(",", $accountInfo["selected_countries"]);
+                $this->getConfigurations();
 				$this->numRowsGenerated = $accountInfo["num_rows_generated"];
 			}
 		}
@@ -193,21 +200,91 @@ class Account {
 		}
 	}
 
+    public static function updateSelectedPlugins($accountID, $dataTypes, $exportTypes, $countries) {
+        $prefix = Core::getDbTablePrefix();
+        $dbLink = Core::$db->getDBLink();
+
+        $dataTypes   = mysqli_real_escape_string($dbLink, implode(",", $dataTypes));
+        $exportTypes = mysqli_real_escape_string($dbLink, implode(",", $exportTypes));
+        $countries   = mysqli_real_escape_string($dbLink, implode(",", $countries));
+
+        return Core::$db->query("
+			UPDATE {$prefix}user_accounts
+			SET selected_data_types = '$dataTypes',
+				selected_export_types = '$exportTypes',
+				selected_countries = '$countries'
+			WHERE account_id = $accountID
+		");
+    }
+
 	public function getAccount() {
 		return array(
-			"isAnonymousAdmin" => $this->isAnonymousAdmin,
-			"accountID"        => $this->accountID,
-			"accountType"      => $this->accountType,
-			"dateCreated"      => $this->dateCreated,
-			"lastUpdated"      => $this->lastUpdated,
-			"dateExpires"      => $this->dateExpires,
-			"firstName"        => $this->firstName,
-			"lastName"         => $this->lastName,
-			"email"            => $this->email,
-			"configurations"   => $this->configurations,
-			"numRowsGenerated" => $this->numRowsGenerated
+			"isAnonymousAdmin"    => $this->isAnonymousAdmin,
+			"accountID"           => $this->accountID,
+			"accountType"         => $this->accountType,
+			"dateCreated"         => $this->dateCreated,
+			"lastUpdated"         => $this->lastUpdated,
+			"dateExpires"         => $this->dateExpires,
+			"firstName"           => $this->firstName,
+			"lastName"            => $this->lastName,
+			"email"               => $this->email,
+			"configurations"      => $this->configurations,
+            "selectedDataTypes"   => $this->selectedDataTypes,
+            "selectedExportTypes" => $this->selectedExportTypes,
+            "selectedCountries"   => $this->selectedCountries,
+			"numRowsGenerated"    => $this->numRowsGenerated
 		);
 	}
+
+    /**
+     * Returns the subset of Data Type plugins selected by this user.
+     */
+    public function getDataTypePlugins() {
+        $groupedDataTypes = Core::$dataTypePlugins;
+
+        $whitelistedGroupedDataTypes = array();
+        while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
+            $matched = array();
+            foreach ($dataTypes as $dataType) {
+                if (in_array($dataType->getFolder(), $this->selectedDataTypes)) {
+                    $matched[] = $dataType;
+                }
+            }
+            if (!empty($matched)) {
+                $whitelistedGroupedDataTypes[$group_name] = $matched;
+            }
+        }
+        return $whitelistedGroupedDataTypes;
+    }
+
+    /**
+     * Returns the subset of Export Type plugins selected by this user.
+     */
+    public function getExportTypePlugins() {
+        $exportTypes = Core::$exportTypePlugins;
+
+        $whitelistedExportTypes = array();
+        foreach ($exportTypes as $exportType) {
+            if (in_array($exportType->getFolder(), $this->selectedExportTypes)) {
+                $whitelistedExportTypes[] = $exportType;
+            }
+        }
+        return $whitelistedExportTypes;
+    }
+
+    /**
+     * Returns the subset of Country plugins selected by this user.
+     */
+    public function getCountryPlugins() {
+        $countryPlugins = Core::$countryPlugins;
+        $whitelistedCountryPlugins = array();
+        foreach ($countryPlugins as $countryPlugin) {
+            if (in_array($countryPlugin->getFolder(), $this->selectedCountries)) {
+                $whitelistedCountryPlugins[] = $countryPlugin;
+            }
+        }
+        return $whitelistedCountryPlugins;
+    }
 
 	public function isAnonymousAdmin() {
 		return $this->isAnonymousAdmin;
@@ -548,7 +625,7 @@ class Account {
 
 	public function updateAccount($accountID, $info) {
 		$L = Core::$language->getCurrentLanguageStrings();
-		$dbLink = Core::$db->getDBLink();
+                $dbLink = Core::$db->getDBLink();
 		$accountID = mysqli_real_escape_string($dbLink, $accountID);
 		$prefix = Core::getDbTablePrefix();
 
@@ -666,8 +743,19 @@ class Account {
 		);
 	}
 
+    public function getSelectedDataTypes() {
+        return $this->selectedDataTypes;
+    }
 
-	public function updateRowsGeneratedCount($configurationID, $rowsGenerated) {
+    public function getSelectedExportTypes() {
+        return $this->selectedExportTypes;
+    }
+
+    public function getSelectedCountries() {
+        return $this->selectedCountries;
+    }
+
+    public function updateRowsGeneratedCount($configurationID, $rowsGenerated) {
 		if (!is_numeric($rowsGenerated)) {
 			return;
 		}

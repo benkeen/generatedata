@@ -16,8 +16,8 @@ define([
 	 * @namespace
 	 */
 
-    var MODULE_ID = "core-manager";
-    var _isStarted = false;
+	var MODULE_ID = "core-manager";
+	var _isStarted = false;
 
 	// stores all modules: Core, Data Types and Export Types. It's a hash of Module ID -> module info
 	var _modules = {};
@@ -188,9 +188,9 @@ define([
 
 			var currMessage = messages[i].type;
 			for (var moduleID in _modules) {
-                if (_modules[moduleID].subscriptions.hasOwnProperty(currMessage)) {
+				if (_modules[moduleID].subscriptions.hasOwnProperty(currMessage)) {
 					_modules[moduleID].subscriptions[currMessage](messages[i]);
-                }
+				}
 			}
 		}
 	};

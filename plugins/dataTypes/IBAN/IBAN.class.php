@@ -152,7 +152,7 @@ class DataType_IBAN extends DataTypePlugin {
 		}
 		return self::recalculateChecksum($unsigned);
 	}
-	
+
 	public static function getRandomCountry() {
 		return self::$countryCodes[mt_rand(0, self::$numCountryCodes-1)];
 	}

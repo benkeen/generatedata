@@ -37,7 +37,10 @@ h2 {
   font-family: inherit; }
 
 h3 {
-  margin: 10px 0px 7px; }
+  font-size: 15pt;
+  color: #777a77;
+  font-weight: normal;
+  margin: 20px 0px 12px; }
 
 h3.gdSubtitle {
   font-size: 12px; }
@@ -162,8 +165,8 @@ header {
     right: 0px;
     top: 32px; }
     header nav ul {
-      margin: 0px;
-      padding: 0px;
+      margin: 0;
+      padding: 0;
       display: inline;
       list-style: none; }
       header nav ul li {
@@ -175,7 +178,6 @@ header {
       border-bottom: 1px solid #990000; }
 
 section {
-  width: 500px;
   border-top: none;
   border-bottom: none;
   background-color: white;
@@ -196,7 +198,7 @@ nav {
 footer {
   width: 980px;
   margin: 0 auto 15px;
-  padding: 5px 0px;
+  padding: 5px 0;
   height: 20px;
   font-size: 7pt;
   background-color: #f5f5f5;
@@ -215,11 +217,11 @@ footer {
       text-decoration: underline; }
   footer ul {
     list-style: none;
-    padding: 0px;
-    margin: 0px; }
+    padding: 0;
+    margin: 0; }
     footer ul li {
-      margin: 0px;
-      padding: 0px;
+      margin: 0;
+      padding: 0;
       display: inline; }
       footer ul li:before {
         content: " | ";
@@ -227,7 +229,7 @@ footer {
       footer ul li:first-child:before {
         content: ""; }
       footer ul li span {
-        margin: 0px 6px;
+        margin: 0 6px;
         font-size: inherit; }
 
 #gdMainTabs {
@@ -236,10 +238,9 @@ footer {
   position: relative; }
   #gdMainTabs ul {
     list-style: none;
-    margin: 0px;
-    padding: 0px; }
+    margin: 0;
+    padding: 0; }
     #gdMainTabs ul li {
-      color: #222222;
       font-size: 9pt;
       cursor: pointer;
       margin: 2px 1px 0 0;
@@ -248,8 +249,6 @@ footer {
       width: 120px;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      border-radius-topleft: 8px;
-      border-radius-topright: 8px;
       background-color: #efefef;
       height: 22px;
       color: #666666; }
@@ -273,11 +272,11 @@ footer {
         background-color: white; }
 
 .gdMainTabContent {
-  padding: 0px;
-  margin: 0px; }
+  padding: 0;
+  margin: 0; }
   .gdMainTabContent > li {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     list-style: none; }
   .gdMainTabContent h1 {
     float: left; }
@@ -291,17 +290,17 @@ footer {
   display: block;
   margin-top: 20px; }
   #gdMainTab1Content h2 {
-    margin: 0px 0px 4px;
+    margin: 0 0 4px;
     font-size: 12px;
     color: #777777;
-    padding: 1px 20px 0px 1px; }
+    padding: 1px 20px 0 1px; }
     #gdMainTab1Content h2 span.gdSectionHelp {
       background: transparent url("../images/helpSmall.png") right center no-repeat;
       cursor: pointer;
       width: 14px;
       height: 14px;
       display: inline-block;
-      margin: 0px 0px -2px 3px; }
+      margin: 0 0 -2px 3px; }
   #gdMainTab1Content .gdFields {
     float: left; }
 
@@ -347,8 +346,8 @@ footer {
 
 .gdLiCols {
   list-style-type: none;
-  margin: 0px;
-  padding: 0px; }
+  margin: 0;
+  padding: 0; }
   .gdLiCols li {
     display: inline-block;
     margin-right: 10px; }
@@ -904,49 +903,6 @@ body .chzn-container-multi .chzn-choices {
 body .ui-tooltip {
   text-align: left; }
 
-/* plugin installation */
-#gdPluginInstallationResults > div {
-  padding: 4px 8px 8px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  float: left;
-  width: 30%;
-  margin-right: 10px; }
-  #gdPluginInstallationResults > div:last-child {
-    margin-right: 0px; }
-#gdPluginInstallationResults h4 {
-  margin: 0px;
-  padding: 0px;
-  font-weight: normal;
-  color: #222222;
-  font-style: italic; }
-#gdPluginInstallationResults .gdResponse div {
-  font-size: 7pt;
-  line-height: 16px;
-  border-bottom: 1px solid #dddddd;
-  clear: both; }
-  #gdPluginInstallationResults .gdResponse div:first-child {
-    margin-top: 4px; }
-  #gdPluginInstallationResults .gdResponse div:last-child {
-    border-bottom: 0px; }
-#gdPluginInstallationResults .gdResponse .gdSuccess {
-  background-color: green;
-  color: white;
-  border-radius: 3px;
-  padding: 0px 4px;
-  float: right;
-  line-height: 16px;
-  font-size: 6.5pt; }
-#gdPluginInstallationResults .gdResponse .gdError {
-  background-color: #cc0000;
-  color: white;
-  border-radius: 3px;
-  padding: 0px 4px;
-  float: right;
-  line-height: 16px;
-  font-size: 6.5pt;
-  cursor: pointer; }
-
 /* overridden CodeMirror styles */
 body .CodeMirror {
   border: 1px solid #cccccc;
@@ -989,9 +945,9 @@ input.medium {
 
 #githubRibbon {
   float: right;
-  top: 0px;
-  right: 0px;
-  margin: -20px -25px 0px 0px; }
+  top: 0;
+  right: 0;
+  margin: -30px -25px 0px 0px; }
 
 #gdPageLoad {
   background-color: #cccccc;
@@ -1404,5 +1360,265 @@ body .gdMainDialog .ui-dialog-title span {
       height: 200px;
       width: 98%;
       border: 1px solid #efefef; }
+
+/* CSS relating to the plugins: the installation + settings page */
+#gdPlugins {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  /*&.loading .gdPluginSectionHeader {
+    border-bottom: 0;
+  }*/ }
+  #gdPlugins.hidden {
+    display: none; }
+  #gdPlugins .gdPluginCount {
+    background-color: green;
+    color: white;
+    padding: 3px 5px;
+    margin: 5px 0;
+    display: inline-block;
+    line-height: 10px;
+    border-radius: 4px;
+    font-size: 7px;
+    font-weight: bold; }
+  #gdPlugins .gdGroupName {
+    color: #999999;
+    font-weight: bold; }
+  #gdPlugins h4 {
+    margin: 5px 10px 4px; }
+  #gdPlugins > div {
+    margin: 0 5px 0 0;
+    flex: 1; }
+    #gdPlugins > div:last-child {
+      margin-right: 0; }
+    #gdPlugins > div ul {
+      background-color: #f2f2f2;
+      border-radius: 8px;
+      list-style-type: none;
+      margin: 0 0 10px;
+      padding: 0; }
+      #gdPlugins > div ul li {
+        border-bottom: 1px solid #dddddd;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row; }
+        #gdPlugins > div ul li input {
+          flex: 0 0 20px;
+          margin: 7px 6px 7px 8px; }
+        #gdPlugins > div ul li label {
+          flex: 1;
+          margin: 3px; }
+        #gdPlugins > div ul li span.gdTooltip {
+          flex: 0 0 auto; }
+          #gdPlugins > div ul li span.gdTooltip.gdHasTooltip {
+            background: url(../images/info.png) no-repeat scroll left top transparent;
+            background-size: 16px 16px;
+            width: 16px;
+            height: 16px;
+            margin: 6px; }
+        #gdPlugins > div ul li:last-child {
+          border-bottom: 0; }
+  #gdPlugins .gdPluginSectionHeader {
+    /* border-bottom: 1px solid #dddddd; */
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row; }
+    #gdPlugins .gdPluginSectionHeader input {
+      flex: 0 0 20px;
+      margin: 7px 6px 7px 8px; }
+    #gdPlugins .gdPluginSectionHeader label {
+      flex: 1;
+      margin: 3px;
+      font-weight: bold; }
+  #gdPlugins .gdPluginIndicator {
+    line-height: 15px; }
+    #gdPlugins .gdPluginIndicator canvas {
+      margin: 4px 4px 0 0; }
+
+/* overrides styles in tooltips.scss */
+body .tooltip-right:after {
+  font-size: 11px;
+  line-height: 16px; }
+
+/* CSS from http://cbracco.me/a-simple-css-tooltip/ */
+/* Base styles for the element that has a tooltip */
+[data-tooltip],
+.tooltip {
+  position: relative;
+  cursor: pointer; }
+
+/* Base styles for the entire tooltip */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after {
+  position: absolute;
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  pointer-events: none; }
+
+/* Show the entire tooltip on hover and focus */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+
+/* Base styles for the tooltip's directional arrow */
+.tooltip:before,
+[data-tooltip]:before {
+  z-index: 1001;
+  border: 6px solid transparent;
+  background: transparent;
+  content: ""; }
+
+/* Base styles for the tooltip's content area */
+.tooltip:after,
+[data-tooltip]:after {
+  z-index: 1000;
+  padding: 8px;
+  width: 160px;
+  background-color: #000;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 14px;
+  line-height: 1.2; }
+
+/* Directions */
+/* Top (default) */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after,
+.tooltip-top:before,
+.tooltip-top:after {
+  bottom: 100%;
+  left: 50%; }
+
+[data-tooltip]:before,
+.tooltip:before,
+.tooltip-top:before {
+  margin-left: -6px;
+  margin-bottom: -12px;
+  border-top-color: #000;
+  border-top-color: rgba(51, 51, 51, 0.9); }
+
+/* Horizontally align top/bottom tooltips */
+[data-tooltip]:after,
+.tooltip:after,
+.tooltip-top:after {
+  margin-left: -80px; }
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after,
+.tooltip-top:hover:before,
+.tooltip-top:hover:after,
+.tooltip-top:focus:before,
+.tooltip-top:focus:after {
+  -webkit-transform: translateY(-12px);
+  -moz-transform: translateY(-12px);
+  transform: translateY(-12px); }
+
+/* Left */
+.tooltip-left:before,
+.tooltip-left:after {
+  right: 100%;
+  bottom: 50%;
+  left: auto; }
+
+.tooltip-left:before {
+  margin-left: 0;
+  margin-right: -12px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-left-color: #000;
+  border-left-color: rgba(51, 51, 51, 0.9); }
+
+.tooltip-left:hover:before,
+.tooltip-left:hover:after,
+.tooltip-left:focus:before,
+.tooltip-left:focus:after {
+  -webkit-transform: translateX(-12px);
+  -moz-transform: translateX(-12px);
+  transform: translateX(-12px); }
+
+/* Bottom */
+.tooltip-bottom:before,
+.tooltip-bottom:after {
+  top: 100%;
+  bottom: auto;
+  left: 50%; }
+
+.tooltip-bottom:before {
+  margin-top: -12px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-bottom-color: #000;
+  border-bottom-color: rgba(51, 51, 51, 0.9); }
+
+.tooltip-bottom:hover:before,
+.tooltip-bottom:hover:after,
+.tooltip-bottom:focus:before,
+.tooltip-bottom:focus:after {
+  -webkit-transform: translateY(12px);
+  -moz-transform: translateY(12px);
+  transform: translateY(12px); }
+
+/* Right */
+.tooltip-right:before,
+.tooltip-right:after {
+  bottom: 50%;
+  left: 100%; }
+
+.tooltip-right:before {
+  margin-bottom: 0;
+  margin-left: -12px;
+  border-top-color: transparent;
+  border-right-color: #000;
+  border-right-color: rgba(51, 51, 51, 0.9); }
+
+.tooltip-right:hover:before,
+.tooltip-right:hover:after,
+.tooltip-right:focus:before,
+.tooltip-right:focus:after {
+  -webkit-transform: translateX(12px);
+  -moz-transform: translateX(12px);
+  transform: translateX(12px); }
+
+/* Move directional arrows down a bit for left/right tooltips */
+.tooltip-left:before,
+.tooltip-right:before {
+  top: 3px; }
+
+/* Vertically center tooltip content for left/right tooltips */
+.tooltip-left:after,
+.tooltip-right:after {
+  margin-left: 0;
+  margin-bottom: -16px; }
 
 /*# sourceMappingURL=styles.css.map */

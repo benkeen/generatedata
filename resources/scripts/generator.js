@@ -1089,16 +1089,16 @@ define([
       height: 400,
       open: function () {
         utils.insertModalSpinner({modalID: "gdPluginInstallation"});
-        utils.playModalSpinner("gdPluginInstallation");
+        utils.playSpinner("gdPluginInstallation");
         pluginManager.installPlugins({
           errorHandler: null,
           onCompleteHandler: function () {
-            utils.pauseModalSpinner("gdPluginInstallation");
+            utils.pauseSpinner("gdPluginInstallation");
             $("#gdPluginInstallation").dialog("option", "buttons", [
               {
                 text: L.refresh_page,
                 click: function () {
-                  window.location.reload(true); // window.location.replace("index.php?message=plugins_reset#t3");
+                  window.location.reload(true);
                 }
               }
             ]);
@@ -1619,7 +1619,7 @@ define([
     }
 
     if (!hasErrors) {
-      utils.playModalSpinner("gdMainDialog");
+      utils.playSpinner("gdMainDialog");
       var data = {
         action: "updateAccount",
         accountID: _accountInfo.accountID,
@@ -1637,7 +1637,7 @@ define([
         data: data,
         dataType: "json",
         success: function (response) {
-          utils.pauseModalSpinner("gdMainDialog");
+          utils.pauseSpinner("gdMainDialog");
           if (response.success) {
             $("#gdMainDialogTab1Message").show("blind");
             $(passwordField).val("");
@@ -1647,7 +1647,7 @@ define([
           }
         },
         error: function (response) {
-          utils.pauseModalSpinner("gdMainDialog");
+          utils.pauseSpinner("gdMainDialog");
           console.log("error response: ", response);
         }
       });
@@ -1984,7 +1984,7 @@ define([
       return false;
     }
 
-    utils.playModalSpinner(_loginModalID);
+    utils.playSpinner(_loginModalID);
     $.ajax({
       url: "ajax.php",
       type: "POST",
@@ -2003,11 +2003,11 @@ define([
           utils.clearValidationErrors($("#" + _loginModalID));
           utils.addValidationErrors({els: [], error: response.content});
           utils.displayValidationErrors("#gdLoginError");
-          utils.pauseModalSpinner(_loginModalID);
+          utils.pauseSpinner(_loginModalID);
         }
       },
       error: function () {
-        utils.pauseModalSpinner(_loginModalID);
+        utils.pauseSpinner(_loginModalID);
       }
     });
   };
@@ -2029,7 +2029,7 @@ define([
     $("#gdUserAccount,#gdLogout").show();
     $("#gdLogin").hide();
 
-    utils.pauseModalSpinner(_loginModalID);
+    utils.pauseSpinner(_loginModalID);
 
     $("#" + _loginModalID).dialog("close");
 
