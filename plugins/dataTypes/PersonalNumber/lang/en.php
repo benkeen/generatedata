@@ -14,5 +14,5 @@ $L["example_PersonalNumberWithHyphen"] = "16750224-1016";
 $L["type_PersonalNumberWithoutHyphen"] = "A (swedish) personal number with 12 siffers and no hyphen";
 $L["type_PersonalNumberWithHyphen"] = "A (swedish) personal number with 12 siffers and an hyphen";
 $L["separators"] = "Separators:";
-$L["separator_help"] = "The characters you enter here will be used as separator in the personal number fields";
+$L["separator_help"] = "The characters you enter here will be used as separator in the personal number fields. Note: you can mix several separators, use | to separate them (for example -|+).";
 

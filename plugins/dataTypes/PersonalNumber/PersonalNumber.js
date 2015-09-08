@@ -18,7 +18,26 @@ define([
 	};
 
 	var _exampleChange = function(msg) {
-		$("#dtOption_" + msg.rowID).val(msg.value);
+		var rowID = msg.rowID;
+		var selectedFormat = msg.value;
+
+                var $separatorField = $("#dtOptionPersonalNumber_sep_" + rowID);	
+
+		switch (selectedFormat) {
+			case "PersonalNumberWithoutHyphen":
+				$separatorField.val("");
+				break;
+
+			case "PersonalNumberWithHyphen":
+				$separatorField.val("-");
+				break;
+                                
+                        default:
+                                //$separatorField.val(selectedFormat);            
+                                break;
+
+		}
+
 	};
 
 	/**
@@ -51,9 +70,8 @@ define([
 	 */
 	var _saveRow = function(rowNum) {
 		return {
-			"example": $("#dtExample_" + rowNum).val(),
-			"separator":    $("#dtOptionPersonalNumber_sep_" + rowNum).val(),
-			"option":  $("#dtOption_" + rowNum).val()
+			example: $("#dtExample_" + rowNum).val(),
+			separator:    $("#dtOptionPersonalNumber_sep_" + rowNum).val()//,
 		};
 	};
 
@@ -66,18 +84,12 @@ define([
 	 */
 	var _loadRow = function(rowNum, data) {
 		return {
-			execute: function() { 
+			execute: function() {
+				$("#dtExample_" + rowNum).val(data.example);
+				$("#dtOptionPersonalNumber_sep_" + rowNum).val(data.separator);
+
 			},
-			isComplete: function() {
-				if ($("#dtOption_" + rowNum).length) {
-					$("#dtExample_" + rowNum).val(data.example);
-					$("#dtOption_" + rowNum).val(data.option);
-					$("#dtOptionPersonalNumber_sep_" + rowNum).val(data.separator);
-					return true;
-				} else {
-					return false;
-				}
-			}
+			isComplete: function() {  }
 		};
 	};
 
