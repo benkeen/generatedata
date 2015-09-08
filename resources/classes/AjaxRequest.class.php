@@ -495,7 +495,7 @@ class AjaxRequest {
     private function installExportTypes() {
         $exportTypes = ExportTypePluginHelper::getExportTypePlugins("installationDatabaseReady", false);
         $hasError = false;
-        $results = [];
+        $results = array();
         $count = 0;
         $folders = array();
 
@@ -533,7 +533,7 @@ class AjaxRequest {
     private function installCountries() {
         $countryPlugins = CountryPluginHelper::getCountryPlugins(false);
         $hasError = false;
-        $results = [];
+        $results = array();
         $count = 0;
         $folders = array();
 
