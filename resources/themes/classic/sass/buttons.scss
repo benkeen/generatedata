@@ -66,6 +66,10 @@
 		border-bottom: 1px solid #538c27;
 		box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee;
 	}
+
+  &.blue {
+    background-color: #0099cc;
+  }
 }
 .gdSecondaryButton {
 	display: block;
@@ -148,4 +152,10 @@
 		border: 1px solid #6ca341;
 		color: white;
 	}
+}
+
+.buttons-row {
+  button {
+    display: inline-block;
+  }
 }

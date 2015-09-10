@@ -129,7 +129,8 @@ define([
     $("#gdTextSize").on("click", "li", _changeTextSize);
     $("#gdGenerationPanelCancel").on("click", _cancelGeneration);
     $("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
-    $("#gdSettingsForm").on("submit", _submitSettingsForm);
+    $("#gdSettingsForm").on("submit", function (e) { e.preventDefault(); });
+    $("#updateSettingsBtn").on("click", _submitSettingsForm);
     $("#gdNumRowsToGenerate").on("click", _onClickNumRowsField);
     $("input[name=gdExportTarget]").on("change", _onChangeExportTarget);
 
@@ -1957,10 +1958,10 @@ define([
     $("#gdLoginDialogContent .gdProblemField").removeClass("gdProblemField");
   };
 
-  var _submitSettingsForm = function (e) {
+  var _submitSettingsForm = function () {
     if (C.DEMO_MODE) {
       _showDemoOnlyDialog();
-      e.preventDefault();
+      return;
     }
   };
 

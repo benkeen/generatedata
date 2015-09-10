@@ -720,6 +720,8 @@ a.gdDisabledLink {
     border: 1px solid #5b992b;
     border-bottom: 1px solid #538c27;
     box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee; }
+  .gdPrimaryButton.blue {
+    background-color: #0099cc; }
 
 .gdSecondaryButton {
   display: block;
@@ -798,6 +800,9 @@ a.gdDisabledLink {
     background-image: linear-gradient(top, #7fbf4d, #63a62f);
     border: 1px solid #6ca341;
     color: white; }
+
+.buttons-row button {
+  display: inline-block; }
 
 /* misc stuff */
 div.gdClear {

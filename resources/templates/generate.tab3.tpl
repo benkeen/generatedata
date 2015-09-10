@@ -27,14 +27,6 @@
 		{$L.plugins_intro}
 	</p>
 
-    {if $useMinifiedResources}
-        <div class="gdNotify gdMarginTop" style="display:block; margin-bottom: 15px">
-            <p>
-                {$L.reset_plugins_with_bundling}
-            </p>
-        </div>
-    {/if}
-
     <div id="gdPlugins">
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">
@@ -150,6 +142,7 @@
 				<label for="gdSettingsConsoleCoreEvents">{$L.list_core_events}</label>
 			</div>
 		</div>
+
 		<div class="col">
 			<label for="consoleEventsModuleList">{$L.limit_pub_sub_console_messages}</label>
 			{assign var=label1 value="data-placeholder=\"`$L.all_data_type_plugins`\""}
@@ -166,8 +159,15 @@
 
 	<div class="gdClear"></div>
 
-	<p>
+    <!--
+    move to a dialog
+    <p>
+        {$L.reset_plugins_with_bundling}
+    </p>
+    -->
+
+    <p class="buttons-row">
 		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.update_settings}</button>
-        <button class="gdPrimaryButton" id="gdResetPluginsBtn">{$L.reset_plugins}</button>
+        <button class="gdPrimaryButton blue" id="gdResetPluginsBtn" data-use-minified="{if $useMinifiedResources}true{else}false{/if}">{$L.reset_plugins}</button>
 	</p>
 </form>
