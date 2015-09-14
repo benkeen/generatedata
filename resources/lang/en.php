@@ -170,7 +170,7 @@ $L["about_para2"] = "The <b>Generate</b> page contains the entire script: just f
 $L["extend_id"] = "Extend it";
 $L["about_para3"] = "The out-the-box script contains the sort of functionality you generally need. But nothing's ever complete - maybe you need to generate random esoteric math equations, pull random tweets or display random images from Flickr with the word \"Red-backed vole\" in the title. Who knows. Everyone's use-case is different.";
 $L["about_para4"] = "With this in mind, the new version of the script (3.0.0+) was designed to be fully extensible: developers can write their own Data Types to generate new types of random data, and even customize the Export Types - i.e. the format in which the data is output. For people interested in generating more accurate localized geographical data, they can also add new Country plugins that supply region names (states, provinces, territories etc), city names and postal/zip code formats for their country of choice.";
-$L["about_para5"] = "For more information on how to extend it, visit the <a href=\"docs/\">developer documentation</a>.";
+$L["about_para5"] = "For more information on how to extend it, visit the <a href=\"http://benkeen.github.io/generatedata/developer.html\">developer documentation</a>.";
 $L["a_few_links"] = "A few links";
 $L["fork_on_github"] = "Fork the code on github";
 $L["read_developer_doc"] = "Read the developer documentation";

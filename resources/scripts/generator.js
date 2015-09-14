@@ -125,7 +125,6 @@ define([
       _addRows($("#gdNumRowsToAdd").val());
     });
     $(".gdDeleteRowsBtn").bind("click", _deleteRows);
-    $("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
     $("#gdTextSize").on("click", "li", _changeTextSize);
     $("#gdGenerationPanelCancel").on("click", _cancelGeneration);
     $("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
@@ -1081,6 +1080,7 @@ define([
     }
   };
 
+  /*
   var _resetPluginsDialog = function () {
     $("#gdPluginInstallation").dialog({
       modal: true,
@@ -1117,7 +1117,7 @@ define([
     });
     return false;
   };
-
+  */
 
   var _changeTextSize = function (e) {
     $("#gdTextSize li").removeClass("gdSelected");
@@ -1964,26 +1964,23 @@ define([
       return;
     }
 
+    utils.startProcessing();
     pluginManager.savePlugins({
       success: _saveSettings,
-      error: function () {
+      error: function (resp) {
         window.scrollTo(0, 0);
-        $("#settingsTabMessage").addClass("gdError").css({ display: 'block' }).find("p").html("error.");
+        $("#settingsTabMessage").addClass("gdErrors").removeClass("gdNotify").css({ display: 'block' })
+          .find("p").html("There was an error saving the plugins. Please report this on github.");
+        utils.stopProcessing();
       },
 
-      onValidationError: function () {
-
+      onValidationError: function (error) {
+        window.scrollTo(0, 0);
+        $("#settingsTabMessage").addClass("gdErrors").removeClass("gdNotify").css({ display: 'block' })
+          .find("p").html(error);
+        utils.stopProcessing();
       }
     });
-
-    //$("#gdPluginInstallation").dialog("option", "buttons", [
-    //  {
-    //    text: L.refresh_page,
-    //    click: function () {
-    //      window.location.reload(true);
-    //    }
-    //  }
-    //]);
   };
 
   var _saveSettings = function () {
@@ -1999,23 +1996,27 @@ define([
       consoleEventsExportTypePlugins: $("#consoleEventsExportTypePlugins").val()
     };
 
+    if ($(".gdUserAccountSetup").length > 0) {
+      console.log($("input[name=userAccountSetup]:checked").val());
+    }
+
     $.ajax({
       url: "ajax.php",
       type: "POST",
       dataType: "json",
       data: data,
       success: function (response) {
-
         if (response.success) {
           window.scrollTo(0, 0);
           var refreshButton = '<input type="button" value="Refresh Page" onClick="window.location.reload(true)" />';
-          $("#settingsTabMessage").addClass("gdNotify").css({ display: 'block' }).find("p").html(response.content + ' ' + refreshButton);
-
-          _getAccount({ onComplete: _onLoginComplete });
+          $("#settingsTabMessage").removeClass("gdErrors").addClass("gdNotify").css({ display: 'block' }).find("p").html(response.content + ' ' + refreshButton);
+          utils.stopProcessing();
+          //_getAccount({ onComplete: _onLoginComplete });
         }
       },
       error: function () {
 //        utils.pauseSpinner(_loginModalID);
+        utils.stopProcessing();
       }
     });
   };

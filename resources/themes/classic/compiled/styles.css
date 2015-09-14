@@ -980,19 +980,18 @@ input.medium {
     border-radius: 6px;
     font-size: 7pt;
     line-height: 16px;
-    border-radius: 6px;
     text-align: center; }
   .gdMessage ul {
-    margin: 0px;
-    padding: 0px 20px; }
+    margin: 0;
+    padding: 0 20px; }
 
 .gdNotify {
   background-color: #F2F8FF;
   border: 1px solid #0058DB; }
-  .gdNotify p {
+  .gdNotify p, .gdNotify div {
     padding: 8px;
     color: #0058DB;
-    margin: 0px; }
+    margin: 0; }
   .gdNotify a.gdMessageClose:hover {
     background-color: #3b82cb;
     color: white; }
@@ -1003,11 +1002,13 @@ input.medium {
   .gdErrors a.gdMessageClose:hover {
     background-color: #AA0000;
     color: white; }
-  .gdErrors div {
+  .gdErrors p, .gdErrors div {
     padding: 8px;
-    color: #AA0000 ul;
-      color-margin: 0px;
-      color-padding-left: 16px; }
+    margin: 0;
+    color: #AA0000; }
+    .gdErrors p ul, .gdErrors div ul {
+      margin: 0;
+      padding-left: 16px; }
 
 .gdProblemField {
   background-color: #990000;

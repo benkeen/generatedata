@@ -79,6 +79,14 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - **UNDER DEVELOPMENT**. Focusing on updating the installation process, reset plugins. Allowing custom selection of 
 plugins for each user. 
 
+Remaining:
+- re-examined installation for refactored Plugin Manager code
+- check all user account types
+- translations of new/changed text
+- security check all Ajax requests
+- minification warning in modal when resetting plugins w/ bundling enabled
+- browser checks
+
 3.2.1 - May 25, 2015
 - Configuration history option added to store the last 200 (this is configurable) versions of a data set. In case of data
 loss, you can now revert to an older version very simply.
