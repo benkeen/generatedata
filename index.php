@@ -13,11 +13,6 @@ if (!Core::checkIsLoggedIn() && !Core::checkAllowMultiUserAnonymousUse()) {
 
 // start piecing together all the various info we need to pass to the page
 $pageParams = array();
-if (isset($_POST["updateSettings"])) {
-	list($success, $message) = Settings::updateSettings($_POST);
-	$pageParams["success"] = $success;
-	$pageParams["message"] = $message;
-}
 
 $settings = Settings::getSettings();
 $exportTypes = Core::$exportTypePlugins;

@@ -46,6 +46,7 @@ define([
     _installDataTypes();
 	};
 
+  // TODO  ... this should be moved to the install js code
   function _displayError(message) {
     $("#page4 .gdInstallTabMessage .gdResponse").html(message);
     $("#page4 .gdInstallTabMessage").addClass("gdInstallError").show();
@@ -53,42 +54,29 @@ define([
 
   var _submit = function (e) {
     e.preventDefault();
+    _savePlugins(_onCompleteHandler, _errorHandler);
+  };
+
+
+  var _savePlugins = function (params) {
+    var opts = $.extend({
+      success: null,
+      error: null,
+      onValidationError: _displayError
+    }, params);
 
     // check at least one of the different plugin types have been selected
-    var selectedDataTypes = [];
-    $(".selectedDataType").each(function (i, el) {
-      if (el.checked) {
-        selectedDataTypes.push(el.value);
-      }
-    });
-    if (selectedDataTypes.length === 0) {
-      window.scrollTo(0, 0);
-      _displayError(L.validation_no_data_types);
-      return;
+    var selectedDataTypes = _getSelectedDataTypes();
+    if (!_validateDataTypes(selectedDataTypes, opts.onValidationError)) {
+      return false;
     }
-
-    var selectedExportTypes = [];
-    $(".selectedExportType").each(function (i, el) {
-      if (el.checked) {
-        selectedExportTypes.push(el.value);
-      }
-    });
-    if (selectedExportTypes.length === 0) {
-      window.scrollTo(0, 0);
-      _displayError(L.validation_no_export_types);
-      return;
+    var selectedExportTypes = _getSelectedExportTypes();
+    if (!_validateExportTypes(selectedExportTypes, opts.onValidationError)) {
+      return false;
     }
-
-    var selectedCountries = [];
-    $(".selectedCountry").each(function (i, el) {
-      if (el.checked) {
-        selectedCountries.push(el.value);
-      }
-    });
-    if (selectedCountries.length === 0) {
-      window.scrollTo(0, 0);
-      _displayError(L.validation_no_countries);
-      return;
+    var selectedCountries = _getSelectedCountries();
+    if (!_validateCountries(selectedCountries, opts.onValidationError)) {
+      return false;
     }
 
     $.ajax({
@@ -102,16 +90,76 @@ define([
         countries: selectedCountries
       },
       success: function() {
-        if ($.isFunction(_onCompleteHandler)) {
-          _onCompleteHandler();
+        if ($.isFunction(opts.success)) {
+          opts.success();
         }
       },
-      error: _errorHandler
+      error: function() {
+        if ($.isFunction(opts.error)) {
+          opts.error();
+        }
+      }
     });
-
   };
 
-	var _installDataTypes = function() {
+  var _getSelectedDataTypes = function () {
+    var selectedDataTypes = [];
+    $(".selectedDataType").each(function (i, el) {
+      if (el.checked) {
+        selectedDataTypes.push(el.value);
+      }
+    });
+    return selectedDataTypes;
+  };
+
+  var _validateDataTypes = function (selectedDataTypes, errorHandler) {
+    if (selectedDataTypes.length === 0) {
+      window.scrollTo(0, 0);
+      errorHandler(L.validation_no_data_types);
+      return false;
+    }
+    return true;
+  };
+
+  var _getSelectedExportTypes = function () {
+    var selectedExportTypes = [];
+    $(".selectedExportType").each(function (i, el) {
+      if (el.checked) {
+        selectedExportTypes.push(el.value);
+      }
+    });
+    return selectedExportTypes;
+  };
+
+  var _validateExportTypes = function (selectedExportTypes, errorHandler) {
+    if (selectedExportTypes.length === 0) {
+      window.scrollTo(0, 0);
+      errorHandler(L.validation_no_export_types);
+      return false;
+    }
+    return true;
+  };
+
+  var _getSelectedCountries = function () {
+    var selectedCountries = [];
+    $(".selectedCountry").each(function (i, el) {
+      if (el.checked) {
+        selectedCountries.push(el.value);
+      }
+    });
+    return selectedCountries;
+  };
+
+  var _validateCountries = function (selectedCountries, errorHandler) {
+    if (selectedCountries.length === 0) {
+      window.scrollTo(0, 0);
+      errorHandler(L.validation_no_countries);
+      return false;
+    }
+    return true;
+  };
+
+  var _installDataTypes = function() {
     utils.playSpinner('dtLoading');
 		$.ajax({
 			url: "ajax.php",
@@ -242,7 +290,14 @@ define([
 	 * Our public API.
 	 */
 	return {
-		installPlugins: _installPlugins
+		installPlugins: _installPlugins,
+    savePlugins: _savePlugins,
+    getSelectedDataTypes: _getSelectedDataTypes,
+    validateDataTypes: _validateDataTypes,
+    getSelectedExportTypes: _getSelectedExportTypes,
+    validateExportTypes: _validateExportTypes,
+    getSelectedCountries: _getSelectedCountries,
+    validateCountries: _validateCountries
 	};
 
 });

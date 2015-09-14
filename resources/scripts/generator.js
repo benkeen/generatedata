@@ -1963,6 +1963,61 @@ define([
       _showDemoOnlyDialog();
       return;
     }
+
+    pluginManager.savePlugins({
+      success: _saveSettings,
+      error: function () {
+        window.scrollTo(0, 0);
+        $("#settingsTabMessage").addClass("gdError").css({ display: 'block' }).find("p").html("error.");
+      },
+
+      onValidationError: function () {
+
+      }
+    });
+
+    //$("#gdPluginInstallation").dialog("option", "buttons", [
+    //  {
+    //    text: L.refresh_page,
+    //    click: function () {
+    //      window.location.reload(true);
+    //    }
+    //  }
+    //]);
+  };
+
+  var _saveSettings = function () {
+    var data = {
+      action: "saveSettings",
+
+      // dev options. These are always included in the request, regardless of account type
+      consoleWarnings: $("#gdSettingsConsoleWarnings").prop("checked"),
+      consoleEventsPublish: $("#gdSettingsConsoleEventsPublish").prop("checked"),
+      consoleEventsSubscribe: $("#gdSettingsConsoleEventsSubscribe").prop("checked"),
+      consoleCoreEvents: $("#gdSettingsConsoleCoreEvents").prop("checked"),
+      consoleEventsDataTypePlugins: $("#consoleEventsDataTypePlugins").val(),
+      consoleEventsExportTypePlugins: $("#consoleEventsExportTypePlugins").val()
+    };
+
+    $.ajax({
+      url: "ajax.php",
+      type: "POST",
+      dataType: "json",
+      data: data,
+      success: function (response) {
+
+        if (response.success) {
+          window.scrollTo(0, 0);
+          var refreshButton = '<input type="button" value="Refresh Page" onClick="window.location.reload(true)" />';
+          $("#settingsTabMessage").addClass("gdNotify").css({ display: 'block' }).find("p").html(response.content + ' ' + refreshButton);
+
+          _getAccount({ onComplete: _onLoginComplete });
+        }
+      },
+      error: function () {
+//        utils.pauseSpinner(_loginModalID);
+      }
+    });
   };
 
 

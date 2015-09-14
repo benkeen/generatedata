@@ -113,7 +113,6 @@ $L["last_name"] = "Last Name";
 $L["settings"] = "Settings";
 $L["geo"] = "Geo";
 $L["numeric"] = "Numeric";
-$L["notify_settings_updated"] = "Your settings have been updated.";
 $L["tip_country_data"] = "This section lets you control what country-specific data should be included in your generated data sets. The values you select here affect certain Data Types that you may select, such as <i>Region</i>, <i>Postal/Zip</i> and <i>Country</i>.</p><p>To give you a better idea of what this means, try selecting the <i>Region</i> Data Type for one of your rows in the Data Set section, then add / remove countries from the Country-Specific Data section. You'll see that the row options that appear are directly affected by the countries you have selected: you can only ever generate a subset of the countries selected.";
 $L["country_specific_data"] = "Country-specific data";
 $L["data_set"] = "Data Set";
@@ -299,3 +298,4 @@ $L["validation_no_countries"] = "Please select at least one Country.";
 
 // changed
 $L["plugins_intro"] = "Check/uncheck the rows to determine which functionality you'd like to see in the interface.";
+$L["notify_settings_updated"] = "Your settings have been updated. Refresh the page to ensure you have the latest content.";

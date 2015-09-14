@@ -1,27 +1,11 @@
-<div id="settingsTabMessage" class="gdMessage {if $success}gdNotify{elseif !$success}gdError{/if} gdMarginTop" {if $message}style="display:block"{/if}>
-	<a href="#" class="gdMessageClose">X</a>
-	<p>{$message}</p>
-</div>
-
-<form action="./#t3" method="post" id="gdSettingsForm">
-	<input type="hidden" name="updateSettings" value="1" />
-
-	{if $settings.userAccountSetup != "anonymousAdmin"}
-		<h3>{$L.account_settings}</h3>
-
-		<div>
-			<div>
-				<input type="radio" name="userAccountSetup" id="acs2" value="single" {if $settings.userAccountSetup == "single"}checked="checked"{/if} />
-				<label for="acs2">{$L.single_user_account_requires_login}</label>
-			</div>
-			<div style="margin-bottom: 20px">
-				<input type="radio" name="userAccountSetup" id="acs3" value="multiple" {if $settings.userAccountSetup == "multiple"}checked="checked"{/if} />
-				<label for="acs3">{$L.multiple_accounts}</label>
-			</div>
-		</div>
-	{/if}
+<form action="#" method="post" id="gdSettingsForm">
 
 	<h3>{$L.plugins}</h3>
+
+    <div id="settingsTabMessage" class="gdMessage gdMarginTop">
+        <a href="#" class="gdMessageClose">X</a>
+        <p></p>
+    </div>
 
     <p>
 		{$L.plugins_intro}
@@ -40,7 +24,7 @@
                     <ul>
                         <li class="gdGroupName">
                             <input type="checkbox" class="toggleDataTypeSection" id="dtGroup-{$smarty.foreach.group.index}" />
-                            <label for="dtGroup-{$smarty.foreach.group.index}">{$L[$k]}</label></li>
+                            <label for="dtGroup-{$smarty.foreach.group.index}">{$L[$k]}</label>
                         </li>
                         {foreach from=$i key=k2 item=currDataType name=data}
                             {assign var="checked" value=""}
@@ -112,6 +96,21 @@
         </div>
     </div>
 
+
+    {if $settings.userAccountSetup != "anonymousAdmin"}
+        <h3>{$L.account_settings}</h3>
+
+        <div>
+            <div>
+                <input type="radio" name="userAccountSetup" id="acs2" value="single" {if $settings.userAccountSetup == "single"}checked="checked"{/if} />
+                <label for="acs2">{$L.single_user_account_requires_login}</label>
+            </div>
+            <div style="margin-bottom: 20px">
+                <input type="radio" name="userAccountSetup" id="acs3" value="multiple" {if $settings.userAccountSetup == "multiple"}checked="checked"{/if} />
+                <label for="acs3">{$L.multiple_accounts}</label>
+            </div>
+        </div>
+    {/if}
 
 	<h3>{$L.developer}</h3>
 

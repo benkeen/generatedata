@@ -323,11 +323,18 @@ class AjaxRequest {
 				}
 				break;
 
+            case "saveSettings":
+                Core::init();
+                list($success, $message) = Settings::updateSettings($this->post);
+                $this->response["success"] = $success;
+                $this->response["content"] = $message;
+                break;
+
 			case "copyDataSet":
 				Core::init();
-				$response = Core::$user->copyConfiguration($this->post);
-				$this->response["success"] = $response["success"];
-				$this->response["content"] = $response["message"];
+                $response = Core::$user->copyConfiguration($this->post);
+                $this->response["success"] = $response["success"];
+                $this->response["content"] = $response["message"];
 				break;
 
 			case "deleteDataSets":
