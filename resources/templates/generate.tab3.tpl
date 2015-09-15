@@ -160,13 +160,6 @@
 
 	<div class="gdClear"></div>
 
-    <!--
-    move to a dialog
-    <p>
-        {$L.reset_plugins_with_bundling}
-    </p>
-    -->
-
     <p class="buttons-row">
 		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.update_settings}</button>
         <button class="gdPrimaryButton blue" id="gdResetPluginsBtn" data-use-minified="{if $useMinifiedResources}true{else}false{/if}">{$L.reset_plugins}</button>

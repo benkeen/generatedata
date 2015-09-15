@@ -130,6 +130,7 @@ define([
     $("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
     $("#gdSettingsForm").on("submit", function (e) { e.preventDefault(); });
     $("#updateSettingsBtn").on("click", _submitSettingsForm);
+    $("#gdResetPluginsBtn").on("click", _resetPlugins);
     $("#gdNumRowsToGenerate").on("click", _onClickNumRowsField);
     $("input[name=gdExportTarget]").on("change", _onChangeExportTarget);
 
@@ -1080,44 +1081,56 @@ define([
     }
   };
 
-  /*
-  var _resetPluginsDialog = function () {
-    $("#gdPluginInstallation").dialog({
-      modal: true,
-      resizable: true,
-      title: "Reset Plugins",
-      width: 800,
-      height: 400,
-      open: function () {
-        utils.insertModalSpinner({modalID: "gdPluginInstallation"});
-        utils.playSpinner("gdPluginInstallation");
-        pluginManager.installPlugins({
-          errorHandler: null,
-          onCompleteHandler: function () {
-            utils.pauseSpinner("gdPluginInstallation");
-            $("#gdPluginInstallation").dialog("option", "buttons", [
-              {
-                text: L.refresh_page,
-                click: function () {
-                  window.location.reload(true);
+  var _resetPlugins = function (e) {
+
+    var useMinified = $(e.target).data("useMinified");
+
+//    if (useMinified) {
+      $("#gdResetPluginsDialog").dialog({
+        modal: true,
+        resizable: true,
+        title: "Reset Plugins",
+        width: 480,
+        height: 200,
+        open: function () {
+          utils.insertModalSpinner({modalID: "gdPluginInstallation"});
+          utils.playSpinner("gdPluginInstallation");
+          pluginManager.installPlugins({
+            errorHandler: null,
+            onCompleteHandler: function () {
+              utils.pauseSpinner("gdPluginInstallation");
+              $("#gdPluginInstallation").dialog("option", "buttons", [
+                {
+                  text: L.refresh_page,
+                  click: function () {
+                    window.location.reload(true);
+                  }
                 }
-              }
-            ]);
+              ]);
+            }
+          });
+
+        },
+        buttons: [
+          {
+            text: L.close,
+            click: function () {
+              $(this).dialog("close");
+            }
+          },
+          {
+            text: L.reset_plugins,
+            click: function () {
+              $(this).dialog("close");
+            }
           }
-        });
-      },
-      buttons: [
-        {
-          text: L.close,
-          click: function () {
-            $(this).dialog("close");
-          }
-        }
-      ]
-    });
-    return false;
+        ]
+      });
+
+  //  } else {
+  //
+  //  }
   };
-  */
 
   var _changeTextSize = function (e) {
     $("#gdTextSize li").removeClass("gdSelected");

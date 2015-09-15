@@ -261,3 +261,9 @@
 		</div>
 	</div>
 </div>
+
+<div id="gdResetPluginsDialog">
+    <p>
+        {$L.reset_plugins_with_bundling}
+    </p>
+</div>
