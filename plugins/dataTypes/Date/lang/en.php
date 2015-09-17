@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Date",
-    "DESC" => "This data type randomly generates a date between the dates specified, and allows for unique formatting of the result."
+    "DESC" => "Generates a custom formatted date/datetime/time between whatever two dates you specify."
 );
 
 $L["char"] = "Char";
@@ -21,7 +21,7 @@ $L["help_L"] = "Whether it&#39;s a leap year";
 $L["help_L_example"] = "1 if it is a leap year, 0 otherwise.";
 $L["help_M"] = "A short textual representation of a month, three letters";
 $L["help_M_example"] = "Jan through Dec";
-$L["help_S"] = "English ordinal suffix for the day of the month, 2 characters	st, nd, rd or th. Works well with j";
+$L["help_S"] = "English ordinal suffix for the day of the month, 2 characters st, nd, rd or th. Works well with j";
 $L["help_S_example"] = "Sunday through Saturday";
 $L["help_W"] = "ISO-8601 week number of year, weeks starting on Monday";
 $L["help_W_example"] = "42 (the 42nd week in the year)";

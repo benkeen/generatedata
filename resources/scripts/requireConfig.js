@@ -6,6 +6,7 @@ require.config({
 		appStartGenerated: "cache/appStartGenerated",
 		pluginManager:     "resources/scripts/pluginManager",
 		accountManager:    "resources/scripts/accountManager",
+    settings:          "resources/scripts/settings",
     history:           "resources/scripts/history",
 		constants:         "resources/scripts/constants.php?",
 		generator:         "resources/scripts/generator",

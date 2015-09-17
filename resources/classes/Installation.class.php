@@ -184,6 +184,9 @@ END;
 				password_recovery_answer varchar(100) default NULL,
 				num_rows_generated mediumint(9) default 0,
 				max_records mediumint(9) default NULL,
+				selected_data_types TEXT NULL,
+				selected_export_types TEXT NULL,
+				selected_countries TEXT NULL,
 				PRIMARY KEY (account_id)
 			)
 		";

@@ -67,6 +67,7 @@ class Settings {
 	/**
 	 * Used to update the settings on the Settings tab.
 	 * @param array $post
+     * @return array
 	 */
 	public static function updateSettings($post) {
 		$accountInfo = Core::$user->getAccount();
@@ -89,7 +90,7 @@ class Settings {
 			"consoleCoreEvents"       => isset($post["consoleCoreEvents"]) ? "enabled" : "",
 			"consoleEventsDataTypePlugins"   => implode(",", $post["consoleEventsDataTypePlugins"]),
 			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"]),
-		    "theme" => $post["theme"]
+		    "theme" => "classic"
 		);
 
 		if (!$isAnonymous && $accountType == "admin") {

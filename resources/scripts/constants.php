@@ -100,7 +100,36 @@ define([], function() {
 			ACCOUNT_ALREADY_EXISTS: <?php echo ErrorCodes::ACCOUNT_ALREADY_EXISTS; ?>,
 			NOT_LOGGED_IN: <?php echo ErrorCodes::NOT_LOGGED_IN ?>,
 			NON_ADMIN: <?php echo ErrorCodes::NON_ADMIN ?>
-		}
+		},
+
+        SPINNERS: {
+            SMALL: {
+                radius: 4,
+                height: 5,
+                width: 1.5,
+                dashes: 14,
+                opacity: 1,
+                padding: 0,
+                rotation: 1400,
+                fadeOutSpeed: 0,
+                color: '#006600',
+                pauseColor: '#c6c6c6',
+                pauseOpacity: 1
+            },
+            LARGE: {
+                radius: 7,
+                height: 9,
+                width: 2,
+                dashes: 18,
+                opacity: 1,
+                padding: 0,
+                rotation: 1400,
+                fadeOutSpeed: 0,
+                color: '#333333',
+                pauseColor: '#000000',
+                pauseOpacity: 0.14
+            }
+        }
 	}
 
 	return CONSTANTS;

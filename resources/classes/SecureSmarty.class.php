@@ -11,7 +11,7 @@ class SecureSmarty extends Smarty {
 
 		if (Core::isSmartySecurityEnabled()) {
 			$securityPolicy = new Smarty_Security($this);
-			$securityPolicy->php_functions = null;
+			$securityPolicy->php_functions = array("in_array");
 			$securityPolicy->php_handling = Smarty::PHP_REMOVE;
 			$securityPolicy->disabled_tags = array("eval", "exec", "system");
 

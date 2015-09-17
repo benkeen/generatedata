@@ -153,7 +153,6 @@ $L["cancel"] = "cancel";
 $L["regenerate"] = "Regenerate";
 $L["generated_X_of_Y_results"] = "Generated <span id=\"gdGenerateCount\"></span> of <span id=\"gdGenerateTotal\"></span> results";
 $L["plugins"] = "Plugins";
-$L["plugins_intro"] = "Any time you add or remove a plugin, you need to reset the plugins. This will update the database and ensure you can access the plugins you require.";
 $L["reset_plugins"] = "Reset plugins";
 $L["misc"] = "Misc";
 $L["theme"] = "Theme";
@@ -166,7 +165,7 @@ $L["list_core_events"] = "List <b>core</b> events";
 $L["limit_pub_sub_console_messages"] = "Limit pub/sub console messages to specific modules:";
 $L["all_data_type_plugins"] = "All Data Type plugins";
 $L["all_export_type_plugins"] = "All Export Type plugins";
-$L["about_title"] = "What <i>is</i> this thing?";
+$L["about_title"] = "About";
 $L["about_para1"] = "Sometimes you need fake data for things like testing software, populating databases and creating realistic-looking mockups. For text, we have <i>lorem ipsum</i>; but for everything else...? This tool was written to provide a quick and simple way to let you generate large volumes of custom data in whatever format you require.";
 $L["about_para2"] = "The <b>Generate</b> page contains the entire script: just fill in the various fields in the page to construct the data set you're interested in, then click the Generate button. And hey presto! Easy, huh?";
 $L["extend_id"] = "Extend it";
@@ -206,7 +205,7 @@ $L["single_user_account_requires_login"] = "Single user account, requires login"
 $L["multiple_accounts"] = "Multiple accounts";
 $L["goto_script_rightarrow"] = "Go to script &raquo;";
 $L["enter_user_account_details"] = "Please enter your user account details below.";
-$L["installation_plugin_intro"] = "Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> - i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all the Country-specific data like regions and cities.";
+$L["installation_plugin_intro"] = "Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> - i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all the Country-specific data like regions and cities. Select those rows you wish to use.";
 $L["install_plugins_rightarrow"] = "Install Plugins &raquo;";
 $L["installation_complete_text"] = "The Data Generator has been successfully installed! Click the button below to go to the script.";
 $L["please_login"] = "Please Login";
@@ -280,7 +279,7 @@ $L["validation_invalid_permissions"] = "You don't have permissions to do this.";
 $L["installation_failed_create_settings_file"] = "The script was unable to create your <b>settings.php</b> file.";
 $L["installation_failed_create_settings_file_msg"] = "This usually occurs when it fails to have permissions to write to the folder. Please manually create this file and place it in the base folder of the Data Generator. When you have done this, button below to continue installing.";
 $L["confirm_file_exists"] = "Confirm File Exists";
-$L["reset_plugins_with_bundling"] = "<b>You have bundling/minification enabled</b>. After clicking this button you will need to run <i>grunt</i> to recreate the bundles. For more information <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">read this documentation page</a>. If you have any problems, you may want to turn off bundling.";
+$L["reset_plugins_with_bundling"] = "<b>You have bundling/minification enabled</b>. If you click the Reset Plugins button you will need to run <i>grunt</i> to recreate the bundles. For more information <a href=\"http://benkeen.github.io/generatedata/developer.html#bundling\" target=\"_blank\">read this documentation page</a>. If you have any problems, you may want to turn off bundling.";
 $L["cannot_change_num_rows"] = "Sorry, you're not allowed to change the number of generated rows.";
 $L["zip_q"] = "Zip?";
 $L["please_enter_data_set_name"] = "Please enter the name of the new Data Set.";
@@ -292,3 +291,11 @@ $L["credit_card_data"] = "Credit Card Data";
 
 // new in 3.2.1
 $L["history"] = "History";
+
+// 3.2.2
+$L["validation_no_data_types"] = "Please select at least one Data Type.";
+$L["validation_no_export_types"] = "Please select at least one Export Type.";
+$L["validation_no_countries"] = "Please select at least one Country.";
+
+// changed
+$L["plugins_intro"] = "Check/uncheck the rows to determine which functionality you'd like to see in the interface.";

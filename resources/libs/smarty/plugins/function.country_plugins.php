@@ -8,7 +8,8 @@
 function smarty_function_country_plugins() {
 	$continents     = Core::getContinents();
 	$defaultChecked = Core::getDefaultCountryPlugins();
-	$countryPlugins = Core::$countryPlugins;
+	$countryPlugins = Core::$user->getCountryPlugins();
+
 	$L = Core::$language->getCurrentLanguageStrings();
 
 	echo "<select id=\"gdCountries\" name=\"gdCountries[]\" multiple style=\"width: 100%\" data-placeholder=\"{$L["all_countries"]}\">";
@@ -16,7 +17,6 @@ function smarty_function_country_plugins() {
 
 		$countriesInCurrContinent = array();
 		foreach ($countryPlugins as $obj) {
-			//echo $obj->getContinent();
 			if ($obj->getContinent() != $continent) {
 				continue;
 			}

@@ -14,7 +14,8 @@ class DataType_Date extends DataTypePlugin {
 	private static $useSafeDates = false;
 
 
-	public function __construct() {
+	public function __construct($runtimeContext) {
+        parent::__construct($runtimeContext);
 		$customPluginSettings = Core::getPluginSettings(Constants::PLUGIN_DATA_TYPE, "Date");
 		if (isset($customPluginSettings["useSafeDates"]) && $customPluginSettings["useSafeDates"]) {
 			self::$useSafeDates = true;
@@ -22,8 +23,7 @@ class DataType_Date extends DataTypePlugin {
 	}
 
 	/**
-	 * This is somewhat more verbose than you'd expect because some Windows systems don't properly generate
-	 * dates before 1970 or after 2038. See:
+	 * This is verbose because some Windows systems don't properly generate dates before 1970 or after 2038. See:
 	 * 		https://github.com/benkeen/generatedata/issues/246
 	 * 		http://stackoverflow.com/questions/5879173/why-do-timestamps-have-a-limit-to-2038
 	 * @param object $generator
@@ -79,7 +79,7 @@ class DataType_Date extends DataTypePlugin {
 	public function getExampleColumnHTML() {
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		$html =<<<EOF
+		$html =<<<END
 			<select id="dtExample_%ROW%">
 				<option value="">{$L["please_select"]}</option>
 				<option value="M j, Y">Jan 1, 2012</option>
@@ -100,13 +100,11 @@ class DataType_Date extends DataTypePlugin {
 				<option value="r">RFC 2822 formatted date</option>
 				<option value="T">A timezone</option>
 			</select>
-EOF;
+END;
 		return $html;
 	}
 
 	public function getOptionsColumnHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
-
 		$nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
 		$lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));
 
