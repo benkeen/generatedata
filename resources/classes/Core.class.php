@@ -207,6 +207,9 @@ class Core {
 			if (isset($pluginSettings)) {
 				self::$pluginSettings = $pluginSettings;
 			}
+			if (isset($timeout)) {
+				self::$timeout = $timeout;
+			}
 			if (isset($apiEnabled)) {
 				self::$apiEnabled = $apiEnabled;
 			}
