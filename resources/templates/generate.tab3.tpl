@@ -23,7 +23,7 @@
                 {foreach from=$groupedDataTypes key=k item=i name=group}
                     <ul>
                         <li class="gdGroupName">
-                            <input type="checkbox" class="toggleDataTypeSection" id="dtGroup-{$smarty.foreach.group.index}" />
+                            <input type="checkbox" class="toggleDataTypeSection toggleGroup" id="dtGroup-{$smarty.foreach.group.index}" />
                             <label for="dtGroup-{$smarty.foreach.group.index}">{$L[$k]}</label>
                         </li>
                         {foreach from=$i key=k2 item=currDataType name=data}
@@ -50,7 +50,7 @@
         </div>
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">
-                <input type="checkbox" id="gdExportTypePluginList" />
+                <input type="checkbox" id="gdExportTypePluginList" class="toggleGroup" />
                 <label for="gdExportTypePluginList">{$L.export_types}</label>
                 <div id="gdExportTypePluginListIndicator" class="gdPluginIndicator">
                     <span class="gdPluginCount">{$allExportTypes|count}</span>
@@ -73,7 +73,7 @@
         </div>
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">
-                <input type="checkbox" id="gdCountryPluginList" />
+                <input type="checkbox" id="gdCountryPluginList" class="toggleGroup" />
                 <label for="gdCountryPluginList">{$L.countries}</label>
                 <div id="gdCountryPluginListIndicator" class="gdPluginIndicator">
                     <span class="gdPluginCount">{$allCountryPlugins|count}</span>

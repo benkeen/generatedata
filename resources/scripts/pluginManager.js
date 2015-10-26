@@ -17,14 +17,9 @@ define([
 	var _countries = [];
 
   var _run = function () {
-    $(document).on('change', '.toggleDataTypeSection', function (e) {
-      $(e.target).closest('ul').find("input").not('.toggleDataTypeSection').prop('checked', e.target.checked);
-    });
-    $(document).on('change', '#gdExportTypePluginList', function (e) {
-      $("#gdExportTypeList").find("input").prop('checked', e.target.checked);
-    });
-    $(document).on('change', '#gdCountryPluginList', function (e) {
-      $("#gdCountryList").find("input").prop('checked', e.target.checked);
+    $('#gdPlugins').on('change', 'input', _checkboxClicked);
+    $('#gdPlugins').find('ul').each(function () {
+      _updateSectionCbs(this);
     });
   };
 
@@ -45,6 +40,46 @@ define([
 
     _installDataTypes();
 	};
+
+
+  // handles the un/check action for any checkbox in the plugins section
+  var _checkboxClicked = function (e) {
+    var el = e.target;
+    if ($(el).hasClass('toggleDataTypeSection')) {
+      $(el).closest('ul').find("input").not('.toggleDataTypeSection').prop('checked', el.checked);
+      return;
+    }
+    if (el.id === 'gdExportTypePluginList') {
+      $("#gdExportTypeList").find("input").prop('checked', el.checked);
+      return;
+    }
+    if (el.id === 'gdCountryPluginList') {
+      $("#gdCountryList").find("input").prop('checked', el.checked);
+      return;
+    }
+
+    // find out if the parent
+    _updateSectionCbs($(e.target).closest("ul"));
+  };
+
+  // ensures the "check all" checkbox is checked/unchecked appropriately based on the checked state of all sub-checkboxes
+  var _updateSectionCbs = function (listEl) {
+    var allChecked = true;
+    $(listEl).find("input[type='checkbox']:not(.toggleGroup)").each(function () {
+      if (!this.checked) {
+        allChecked = false;
+        return;
+      }
+    });
+
+    // this accounts for the different markup structures, but it's klutzy
+    if ($(listEl).find(".toggleGroup").length) {
+      $(listEl).find(".toggleGroup").prop("checked", allChecked);
+    } else {
+      $(listEl).closest(".gdPluginSection").find(".toggleGroup").prop("checked", allChecked);
+    }
+  };
+
 
   // TODO  ... this should be moved to the install js code
   function _displayError(message) {
