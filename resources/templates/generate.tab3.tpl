@@ -162,6 +162,6 @@
 
     <p class="buttons-row">
 		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.update_settings}</button>
-        <button class="gdPrimaryButton blue" id="gdResetPluginsBtn" data-use-minified="{if $useMinifiedResources}true{else}false{/if}">{$L.reset_plugins}</button>
+        <button class="gdSecondaryButton" id="gdResetPluginsBtn" data-use-minified="{if $useMinifiedResources}true{else}false{/if}">{$L.reset_plugins}</button>
 	</p>
 </form>

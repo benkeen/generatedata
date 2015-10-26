@@ -12,26 +12,35 @@ define([
   var MODULE_ID = 'core-pluginManager';
 	var _errorHandler = null;
 	var _onCompleteHandler = null;
+  var _context = null;
 	var _dataTypes = [];
 	var _exportTypes = [];
 	var _countries = [];
 
   var _run = function () {
-    $('#gdPlugins').on('change', 'input', _checkboxClicked);
-    $('#gdPlugins').find('ul').each(function () {
-      _updateSectionCbs(this);
-    });
+    var $plugins = $("#gdPlugins");
+    $plugins.on('change', 'input', _checkboxClicked);
+    $plugins.find('ul').each(function () { _updateSectionCbs(this); });
   };
 
-	var _installPlugins = function(params) {
+
+  /**
+   * @param context "install" or "update"
+   * @param params
+   * @private
+   */
+	var _installPlugins = function(context, params) {
+    _context           = context;
     _errorHandler      = params.errorHandler;
 		_onCompleteHandler = params.onCompleteHandler;
+
     var $pluginsSection = $("#gdPlugins");
 		$pluginsSection.removeClass("hidden").css("display", "none").show("fade");
     $("#gdInstallPluginsBtn").hide();
     $("#gdInstallPluginsBtn").on("click", _submit);
 
     // show the loading spinner for the three plugin types: data, export, country
+    $("#gdDataTypePluginListIndicator,#gdExportTypePluginListIndicator,#gdCountryPluginListIndicator").html("");
     utils.insertSpinner('dtLoading', $("#gdDataTypePluginListIndicator")[0], C.SPINNERS.SMALL);
     utils.insertSpinner('etLoading', $("#gdExportTypePluginListIndicator")[0], C.SPINNERS.SMALL);
     utils.insertSpinner('cLoading', $("#gdCountryPluginListIndicator")[0], C.SPINNERS.SMALL);
@@ -114,12 +123,13 @@ define([
       return false;
     }
 
+//    var action = _context === "install" ? "savePluginList" : "resetPluginList";
     $.ajax({
       url: "ajax.php",
       type: "POST",
       dataType: "json",
       data: {
-        action: "selectPlugins", // updatedPluginsPostProcess
+        action: "savePluginList",
         dataTypes: selectedDataTypes,
         exportTypes: selectedExportTypes,
         countries: selectedCountries
@@ -196,12 +206,13 @@ define([
 
   var _installDataTypes = function() {
     utils.playSpinner('dtLoading');
+    var action = (_context === "install") ? "installDataTypes" : "resetDataTypes";
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installDataTypes"
+				action: action
 			},
 			success: _installDataTypeResponse,
 			error: _errorHandler
@@ -217,12 +228,13 @@ define([
 
 	var _installExportTypes = function() {
     utils.playSpinner('etLoading');
+    var action = (_context === "install") ? "installExportTypes" : "resetExportTypes";
     $.ajax({
 			url: "ajax.php",
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installExportTypes"
+				action: action
 			},
 			success: _installExportTypesResponse,
 			error: _errorHandler
@@ -238,12 +250,13 @@ define([
   };
 
 	var _installCountries = function() {
+    var action = (_context === "install") ? "installCountries" : "resetCountries";
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
 			dataType: "json",
 			data: {
-				action: "installCountries"
+				action: action
 			},
 			success: _installCountriesResponse,
 			error: _errorHandler

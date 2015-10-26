@@ -108,7 +108,7 @@ require([
 		} else if (currentStep === 3) {
 			_setupUserAccounts();
 		} else if (currentStep === 4) {
-			_installPlugins();
+			_installPlugins("install");
 		} else if (currentStep === 5) {
 			window.location = "./";
 		}

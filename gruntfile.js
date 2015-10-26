@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 				},
 				options: {
 					report: "min",
-					compress: true
+					compress: {}
 				}
 			}
 		},

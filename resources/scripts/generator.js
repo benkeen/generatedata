@@ -130,7 +130,7 @@ define([
     $("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
     $("#gdSettingsForm").on("submit", function (e) { e.preventDefault(); });
     $("#updateSettingsBtn").on("click", _submitSettingsForm);
-    $("#gdResetPluginsBtn").on("click", _resetPlugins);
+    $("#gdResetPluginsBtn").on("click", _onClickResetPlugins);
     $("#gdNumRowsToGenerate").on("click", _onClickNumRowsField);
     $("input[name=gdExportTarget]").on("change", _onChangeExportTarget);
 
@@ -1081,11 +1081,9 @@ define([
     }
   };
 
-  var _resetPlugins = function (e) {
-
+  var _onClickResetPlugins = function (e) {
     var useMinified = $(e.target).data("useMinified");
-
-//    if (useMinified) {
+    if (useMinified) {
       $("#gdResetPluginsDialog").dialog({
         modal: true,
         resizable: true,
@@ -1093,22 +1091,6 @@ define([
         width: 480,
         height: 200,
         open: function () {
-          utils.insertModalSpinner({modalID: "gdPluginInstallation"});
-          utils.playSpinner("gdPluginInstallation");
-          pluginManager.installPlugins({
-            errorHandler: null,
-            onCompleteHandler: function () {
-              utils.pauseSpinner("gdPluginInstallation");
-              $("#gdPluginInstallation").dialog("option", "buttons", [
-                {
-                  text: L.refresh_page,
-                  click: function () {
-                    window.location.reload(true);
-                  }
-                }
-              ]);
-            }
-          });
 
         },
         buttons: [
@@ -1122,14 +1104,32 @@ define([
             text: L.reset_plugins,
             click: function () {
               $(this).dialog("close");
+              _resetPlugins();
             }
           }
         ]
       });
+      return;
+    }
 
-  //  } else {
-  //
-  //  }
+    _resetPlugins();
+  };
+
+  var _resetPlugins = function () {
+    pluginManager.installPlugins("update", {
+      errorHandler: null,
+      onCompleteHandler: function () {
+        utils.pauseSpinner("gdPluginInstallation");
+        $("#gdPluginInstallation").dialog("option", "buttons", [
+          {
+            text: L.refresh_page,
+            click: function () {
+              window.location.reload(true);
+            }
+          }
+        ]);
+      }
+    });
   };
 
   var _changeTextSize = function (e) {
