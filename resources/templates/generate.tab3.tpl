@@ -46,6 +46,8 @@
                         {/foreach}
                     </ul>
                 {/foreach}
+                <div id="existingSelectedDataTypes">{$selectedDataTypeListStr}</div>
+
             </div>
         </div>
         <div class="gdPluginSection">

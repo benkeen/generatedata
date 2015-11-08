@@ -45,8 +45,6 @@ define([
     utils.insertSpinner('etLoading', $("#gdExportTypePluginListIndicator")[0], C.SPINNERS.SMALL);
     utils.insertSpinner('cLoading', $("#gdCountryPluginListIndicator")[0], C.SPINNERS.SMALL);
 
-    //$("#gdPluginInstallationResults .gdResponse").html("");
-
     _installDataTypes();
 	};
 
@@ -123,13 +121,13 @@ define([
       return false;
     }
 
-//    var action = _context === "install" ? "savePluginList" : "resetPluginList";
+    var action = _context === "install" ? "savePluginList" : "resetPluginList";
     $.ajax({
       url: "ajax.php",
       type: "POST",
       dataType: "json",
       data: {
-        action: "savePluginList",
+        action: action,
         dataTypes: selectedDataTypes,
         exportTypes: selectedExportTypes,
         countries: selectedCountries
@@ -273,6 +271,11 @@ define([
 
   var _addDataTypeList = function () {
     var html = '';
+    var existingSelectedDataTypes = [];
+    if ($("div.selectedDataTypes").length) {
+      existingSelectedDataTypes
+    }
+
     for (var i=0; i<_dataTypes.results.length; i++) {
       var currGroup = _dataTypes.results[i];
       html += '<ul>' +

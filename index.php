@@ -52,6 +52,7 @@ if (Core::checkIsLoggedIn()) {
     $pageParams["selectedDataTypes"] = Core::$user->getSelectedDataTypes();
     $pageParams["selectedExportTypes"] = Core::$user->getSelectedExportTypes();
     $pageParams["selectedCountries"] = Core::$user->getSelectedCountries();
+    //$pageParams["selectedDataTypeListStr"] = implode(",", $pageParams["selectedDataTypes"]);
 } else {
 	$pageParams["isLoggedIn"] = false;
 	$pageParams["accountType"] = "";

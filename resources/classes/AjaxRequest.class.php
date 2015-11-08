@@ -141,30 +141,31 @@ class AjaxRequest {
 
             // for new installations, we just update the (only) record in the database.
             case "savePluginList":
+                Core::init("installationDatabaseReady");
                 if (!Core::checkIsInstalled()) {
-                    Core::init("installationDatabaseReady");
                     $response = Account::updateSelectedPlugins(1, $this->post["dataTypes"], $this->post["exportTypes"], $this->post["countries"]);
 					$this->response["success"] = $response["success"];
 					$this->response["content"] = $response["errorMessage"];
+                    Settings::setSetting("installationComplete", "yes");
 
                     // at this point the user's finished the installation.
                     if (!Minification::createAppStartFile()) {
-                        // error handling here
+                        // need error handling here
                     }
-
-                    Settings::setSetting("installationComplete", "yes");
                     return;
                 }
                 break;
 
             // called anytime the plugins were updated
-//            case "resetPluginList":
-//                Core::init();
-//                if (Core::checkIsLoggedIn() && Core::$user->isAdmin()) {
-//
-//                    $this->response["success"] = (Minification::createAppStartFile()) ? 1 : 0;
-//                }
-//                break;
+            case "resetPluginList":
+                Core::init();
+                if (Core::checkIsLoggedIn() && Core::$user->isAdmin()) {
+                    $response = Account::updateSelectedPlugins(1, $this->post["dataTypes"], $this->post["exportTypes"], $this->post["countries"]);
+                    $this->response["success"] = $response["success"];
+                    $this->response["content"] = $response["errorMessage"];
+                    Minification::createAppStartFile();
+                }
+                break;
 
 			case "installCountries":
 				Core::init("installationDatabaseReady");
