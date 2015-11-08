@@ -39,8 +39,6 @@ define([
 
     var $pluginsSection = $("#gdPlugins");
 		$pluginsSection.removeClass("hidden").css("display", "none").show("fade");
-    $("#gdInstallPluginsBtn").hide();
-    $("#gdInstallPluginsBtn").on("click", _submit);
 
     // show the loading spinner for the three plugin types: data, export, country
     $("#gdDataTypePluginListIndicator,#gdExportTypePluginListIndicator,#gdCountryPluginListIndicator").html("");
@@ -96,14 +94,6 @@ define([
     $("#page4 .gdInstallTabMessage .gdResponse").html(message);
     $("#page4 .gdInstallTabMessage").addClass("gdInstallError").show();
   }
-
-  var _submit = function (e) {
-    e.preventDefault();
-    _savePlugins({
-      success: _settings.onCompleteHandler,
-      error: _settings.errorHandler
-    });
-  };
 
   var _savePlugins = function (params) {
     var opts = $.extend({
@@ -271,10 +261,6 @@ define([
     $("#gdCountryPluginListIndicator").html("<span class=\"gdPluginCount\">" + json.content.total + "</span>");
     $("#gdCountryPluginList").removeProp("disabled").prop("checked", true);
     _addCountryList();
-
-    _maybeShowContinueButton();
-
-    // TODO this won't work for initial install, right?
     _settings.onCompleteHandler();
 	};
 
@@ -288,7 +274,7 @@ define([
       var subsectionHTML = '';
       for (var j=0; j<currGroup.data_types.length; j++) {
         var currDataType = currGroup.data_types[j];
-        var isChecked = _settings.prefill.dataTypes === null || $.inArray(currDataType.folder, _settings.prefill.dataTypes) !== -1;
+        var isChecked = _settings.prefill.dataTypes === 'all' || $.inArray(currDataType.folder, _settings.prefill.dataTypes) !== -1;
 
         subsectionHTML += '<li>' +
             '<input type="checkbox" id="plugin-dt-' + currDataType.folder + '" name="selectedDataTypes" class="selectedDataType" ' +
@@ -328,7 +314,7 @@ define([
     var allChecked = true;
     for (var i=0; i<_exportTypes.results.length; i++) {
       var currExportType = _exportTypes.results[i];
-      var isChecked = _settings.prefill.exportTypes === null || $.inArray(currExportType.folder, _settings.prefill.exportTypes) !== -1;
+      var isChecked = _settings.prefill.exportTypes === 'all' || $.inArray(currExportType.folder, _settings.prefill.exportTypes) !== -1;
       if (!isChecked) {
         allChecked = false;
       }
@@ -355,7 +341,7 @@ define([
     var allChecked = true;
     for (var i=0; i<_countries.results.length; i++) {
       var currCountry = _countries.results[i];
-      var isChecked = _settings.prefill.countries === null || $.inArray(currCountry.folder, _settings.prefill.countries) !== -1;
+      var isChecked = _settings.prefill.countries === 'all' || $.inArray(currCountry.folder, _settings.prefill.countries) !== -1;
       if (!isChecked) {
         allChecked = false;
       }
@@ -372,11 +358,6 @@ define([
     }
     $("#gdCountryPluginList").prop("checked", allChecked);
     $("#gdCountryList").html('<ul>' + html + '</ul>').removeClass("hidden").css("display", "none").show("fade");
-  };
-
-  // used only on the installation phase, not the settings tab during an update
-  var _maybeShowContinueButton = function () {
-    $("#gdInstallPluginsBtn").html(L.continue_rightarrow).show();
   };
 
   manager.registerCoreModule(MODULE_ID, {

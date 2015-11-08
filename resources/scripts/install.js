@@ -1,10 +1,11 @@
 /*global $:false,browser:true,require:false*/
 require([
 	"manager",
+	"lang",
 	"pluginManager",
 	"utils",
 	"pageInit"
-], function(manager, pluginManager, utils) {
+], function(manager, L, pluginManager, utils) {
 	"use strict";
 
 	// everything in this module is private, but we use the _ notation here just to signify scope
@@ -33,6 +34,7 @@ require([
 			$("#allowAnonymousAccess").on("click", _toggleAnonymousAccess);
 			$("#pluginInstallationResults").on("click", ".gdError", _displayPluginInstallationError);
 			$("#gdRefreshPassword").on("click", _regeneratePassword);
+			//$("#gdInstallPluginsBtn").on("click", _submit);
 
 			// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
 			// installing the script last time 'round, it will return them to the appropriate step.
@@ -346,16 +348,21 @@ require([
 
 	function _installPlugins() {
 		if (!_pluginsInstalled) {
+			$("#gdInstallPluginsBtn").hide();
+
 			pluginManager.installPlugins({
 				context: "install",
 				errorHandler: installError,
 				onCompleteHandler: function () {
 					_pluginsInstalled = true;
-					gotoNextStep();
+					_showContinueButton();
 				}
 			});
 		} else {
-			gotoNextStep();
+      pluginManager.savePlugins({
+        success: gotoNextStep,
+        error: installError
+      });
 		}
 	}
 
@@ -374,6 +381,11 @@ require([
 
 		_currStep = nextStep;
 	}
+
+	var _showContinueButton = function () {
+		$("#gdInstallPluginsBtn").html(L.continue_rightarrow).show();
+	};
+
 
 	/**
 	 * In case of any Ajax error.

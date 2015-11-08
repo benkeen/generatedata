@@ -10,6 +10,20 @@ function smarty_function_export_type_tabs($params, &$smarty) {
 	$defaultExportType = Core::getDefaultExportType();
 	$exportTypes       = Core::$user->getExportTypePlugins();
 
+	// if the default export type isn't selected for this particular user, select the first in the list. Assumption
+	// if that there's always at least one Export Type
+	$found = false;
+	foreach ($exportTypes as $exportType) {
+		$exportTypeClass = get_class($exportType);
+		if ($exportTypeClass == $defaultExportType) {
+			$found = true;
+			break;
+		}
+	}
+	if (!$found) {
+		$defaultExportType = get_class($exportTypes[0]);
+	}
+
 	echo "<ul>";
 	foreach ($exportTypes as $exportType) {
 		$name       = $exportType->getName();

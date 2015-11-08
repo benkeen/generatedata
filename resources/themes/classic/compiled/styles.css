@@ -1078,6 +1078,9 @@ body.gdErrorPage #gdSeriousError {
   padding-bottom: 8px;
   margin-bottom: 8px;
   float: none; }
+.gdInstallPage h4 {
+  margin: 0 0 4px;
+  font-size: 12px; }
 .gdInstallPage #dbTablePrefix {
   width: 60px; }
 .gdInstallPage input.pwdField {
@@ -1098,10 +1101,10 @@ body.gdErrorPage #gdSeriousError {
   width: 200px;
   padding-top: 6px; }
   .gdInstallPage #gdInstallNav ol {
-    margin: 0px;
-    padding: 0px 0px 0px 20px; }
+    margin: 0;
+    padding: 0 0 0 20px; }
   .gdInstallPage #gdInstallNav ol li {
-    padding-left: 0px;
+    padding-left: 0;
     color: #cccccc; }
   .gdInstallPage #gdInstallNav ol li.gdSelected {
     font-weight: bold;
