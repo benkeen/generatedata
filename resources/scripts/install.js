@@ -108,7 +108,7 @@ require([
 		} else if (currentStep === 3) {
 			_setupUserAccounts();
 		} else if (currentStep === 4) {
-			_installPlugins("install");
+			_installPlugins({ context: "install" });
 		} else if (currentStep === 5) {
 			window.location = "./";
 		}
@@ -347,6 +347,7 @@ require([
 	function _installPlugins() {
 		if (!_pluginsInstalled) {
 			pluginManager.installPlugins({
+				context: "install",
 				errorHandler: installError,
 				onCompleteHandler: function () {
 					_pluginsInstalled = true;

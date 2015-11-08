@@ -75,7 +75,7 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-3.2.2 - Sept, 2015
+3.2.2 - Nov, 2015
 - **UNDER DEVELOPMENT**. Focusing on updating the installation process, reset plugins. Allowing custom selection of 
 plugins for each user. 
 
@@ -83,8 +83,6 @@ Remaining:
 - re-examined installation for refactored Plugin Manager code
 - check all user account types
 - translations of new/changed text
-- security check all Ajax requests
-- minification warning in modal when resetting plugins w/ bundling enabled
 - browser checks
 
 3.2.1 - May 25, 2015

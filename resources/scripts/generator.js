@@ -1090,9 +1090,6 @@ define([
         title: "Reset Plugins",
         width: 480,
         height: 200,
-        open: function () {
-
-        },
         buttons: [
           {
             text: L.close,
@@ -1116,18 +1113,22 @@ define([
   };
 
   var _resetPlugins = function () {
-    pluginManager.installPlugins("update", {
+
+
+    pluginManager.installPlugins({
+      context: "update",
       errorHandler: null,
+      prefill: {
+        dataTypes: pluginManager.getSelectedDataTypes(),
+        exportTypes: pluginManager.getSelectedExportTypes(),
+        countries: pluginManager.getSelectedCountries()
+      },
       onCompleteHandler: function () {
-        utils.pauseSpinner("gdPluginInstallation");
-        $("#gdPluginInstallation").dialog("option", "buttons", [
-          {
-            text: L.refresh_page,
-            click: function () {
-              window.location.reload(true);
-            }
-          }
-        ]);
+        window.scrollTo(0, 0);
+
+        // boy this is awful. Wrap it in a helper!
+        $("#settingsTabMessage").removeClass("gdErrors").addClass("gdNotify").css({ display: 'block' })
+          .find("p").html("The plugin list has been updated. Click the Save button below to save any changes.");
       }
     });
   };

@@ -10,12 +10,10 @@ define([
 
 	// used as an iterator to install the plugins one by one
   var MODULE_ID = 'core-pluginManager';
-	var _errorHandler = null;
-	var _onCompleteHandler = null;
-  var _context = null;
 	var _dataTypes = [];
 	var _exportTypes = [];
 	var _countries = [];
+  var _settings = {};
 
   var _run = function () {
     var $plugins = $("#gdPlugins");
@@ -24,15 +22,20 @@ define([
   };
 
 
-  /**
-   * @param context "install" or "update"
-   * @param params
-   * @private
-   */
-	var _installPlugins = function(context, params) {
-    _context           = context;
-    _errorHandler      = params.errorHandler;
-		_onCompleteHandler = params.onCompleteHandler;
+	var _installPlugins = function(params) {
+    _settings = $.extend({
+      context: "install",
+      errorHandler: params.errorHandler,
+      onCompleteHandler: params.onCompleteHandler,
+
+      // when calling the plugin installer for an existing installation within the settings tab. This is used to
+      // re-check the appropriate rows after the plugin list is refreshed
+      prefill: {
+        dataTypes: 'all',
+        exportTypes: 'all',
+        countries: 'all'
+      }
+    }, params);
 
     var $pluginsSection = $("#gdPlugins");
 		$pluginsSection.removeClass("hidden").css("display", "none").show("fade");
@@ -88,7 +91,7 @@ define([
   };
 
 
-  // TODO  ... this should be moved to the install js code
+  // TODO ... this should be moved to the install js code
   function _displayError(message) {
     $("#page4 .gdInstallTabMessage .gdResponse").html(message);
     $("#page4 .gdInstallTabMessage").addClass("gdInstallError").show();
@@ -96,9 +99,11 @@ define([
 
   var _submit = function (e) {
     e.preventDefault();
-    _savePlugins(_onCompleteHandler, _errorHandler);
+    _savePlugins({
+      success: _settings.onCompleteHandler,
+      error: _settings.errorHandler
+    });
   };
-
 
   var _savePlugins = function (params) {
     var opts = $.extend({
@@ -121,7 +126,7 @@ define([
       return false;
     }
 
-    var action = _context === "install" ? "savePluginList" : "resetPluginList";
+    var action = _settings.context === "install" ? "savePluginList" : "resetPluginList";
     $.ajax({
       url: "ajax.php",
       type: "POST",
@@ -204,7 +209,7 @@ define([
 
   var _installDataTypes = function() {
     utils.playSpinner('dtLoading');
-    var action = (_context === "install") ? "installDataTypes" : "resetDataTypes";
+    var action = (_settings.context === "install") ? "installDataTypes" : "resetDataTypes";
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -213,7 +218,7 @@ define([
 				action: action
 			},
 			success: _installDataTypeResponse,
-			error: _errorHandler
+			error: _settings.errorHandler
 		});
 	};
 
@@ -226,7 +231,7 @@ define([
 
 	var _installExportTypes = function() {
     utils.playSpinner('etLoading');
-    var action = (_context === "install") ? "installExportTypes" : "resetExportTypes";
+    var action = (_settings.context === "install") ? "installExportTypes" : "resetExportTypes";
     $.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -235,7 +240,7 @@ define([
 				action: action
 			},
 			success: _installExportTypesResponse,
-			error: _errorHandler
+			error: _settings.errorHandler
 		});
 	};
 
@@ -248,7 +253,7 @@ define([
   };
 
 	var _installCountries = function() {
-    var action = (_context === "install") ? "installCountries" : "resetCountries";
+    var action = (_settings.context === "install") ? "installCountries" : "resetCountries";
 		$.ajax({
 			url: "ajax.php",
 			type: "POST",
@@ -257,7 +262,7 @@ define([
 				action: action
 			},
 			success: _installCountriesResponse,
-			error: _errorHandler
+			error: _settings.errorHandler
 		});
 	};
 
@@ -266,38 +271,52 @@ define([
     $("#gdCountryPluginListIndicator").html("<span class=\"gdPluginCount\">" + json.content.total + "</span>");
     $("#gdCountryPluginList").removeProp("disabled").prop("checked", true);
     _addCountryList();
-    _showContinueButton();
+
+    _maybeShowContinueButton();
+
+    // TODO this won't work for initial install, right?
+    _settings.onCompleteHandler();
 	};
 
   var _addDataTypeList = function () {
     var html = '';
-    var existingSelectedDataTypes = [];
-    if ($("div.selectedDataTypes").length) {
-      existingSelectedDataTypes
-    }
 
     for (var i=0; i<_dataTypes.results.length; i++) {
       var currGroup = _dataTypes.results[i];
-      html += '<ul>' +
-              '<li class="gdGroupName"><input type="checkbox" class="toggleDataTypeSection" id="dtGroup-' + i + '" checked="checked" />' +
-              '<label for="dtGroup-' + i + '">' + utils.decodeUTF8(currGroup.group_name) + '</label></li>';
 
+      var allChecked = true;
+      var subsectionHTML = '';
       for (var j=0; j<currGroup.data_types.length; j++) {
         var currDataType = currGroup.data_types[j];
-        html += '<li>' +
+        var isChecked = _settings.prefill.dataTypes === null || $.inArray(currDataType.folder, _settings.prefill.dataTypes) !== -1;
+
+        subsectionHTML += '<li>' +
             '<input type="checkbox" id="plugin-dt-' + currDataType.folder + '" name="selectedDataTypes" class="selectedDataType" ' +
-              'value="' + currDataType.folder + '" checked="checked" />' +
-            '<label for="plugin-dt-' + currDataType.folder + '">' + utils.decodeUTF8(currDataType.name) + '</label>' +
+              'value="' + currDataType.folder + '"';
+
+        if (isChecked) {
+          subsectionHTML += ' checked="checked"';
+        } else {
+          allChecked = false;
+        }
+
+        subsectionHTML += ' /><label for="plugin-dt-' + currDataType.folder + '">' + utils.decodeUTF8(currDataType.name) + '</label>' +
             '<span class="gdTooltip';
 
         if (currDataType.desc) {
-          html += ' gdHasTooltip tooltip-right" data-tooltip="' + utils.decodeUTF8(currDataType.desc) + '">';
+          subsectionHTML += ' gdHasTooltip tooltip-right" data-tooltip="' + utils.decodeUTF8(currDataType.desc) + '">';
         } else {
-          html += '">';
+          subsectionHTML += '">';
         }
-        html += '</span></li>';
+        subsectionHTML += '</span></li>';
       }
-      html += '</ul>';
+
+      html += '<ul><li class="gdGroupName"><input type="checkbox" class="toggleDataTypeSection" id="dtGroup-' + i + '"';
+
+      if (allChecked) {
+        html += ' checked="checked"'
+      }
+      html += ' /><label for="dtGroup-' + i + '">' + utils.decodeUTF8(currGroup.group_name) + '</label></li>' + subsectionHTML + '</ul>';
     }
     $("#gdDataTypeList").html(html).removeClass("hidden").css("display", "none").show("fade");
   };
@@ -305,30 +324,58 @@ define([
 
   var _addExportTypeList = function () {
     var html = '';
+
+    var allChecked = true;
     for (var i=0; i<_exportTypes.results.length; i++) {
       var currExportType = _exportTypes.results[i];
-      html += '<li>' +
-        '<input type="checkbox" id="plugin-et-' + currExportType.folder + '" name="selectedExportTypes" class="selectedExportType" value="' + currExportType.folder + '" checked="checked" />' +
-        '<label for="plugin-et-' + currExportType.folder + '">' + currExportType.name + '</label>' +
-      '</li>';
+      var isChecked = _settings.prefill.exportTypes === null || $.inArray(currExportType.folder, _settings.prefill.exportTypes) !== -1;
+      if (!isChecked) {
+        allChecked = false;
+      }
+
+      html += '<li><input type="checkbox" id="plugin-et-' + currExportType.folder + '" name="selectedExportTypes" ' +
+        'class="selectedExportType" value="' + currExportType.folder + '"';
+
+      if (isChecked) {
+        html += ' checked="checked"';
+      } else {
+        allChecked = false;
+      }
+
+      html += ' /><label for="plugin-et-' + currExportType.folder + '">' + currExportType.name + '</label></li>';
     }
+
+    $("#gdExportTypePluginList").prop("checked", allChecked);
     $("#gdExportTypeList").html('<ul>' + html + '</ul>').removeClass("hidden").css("display", "none").show("fade");
   };
 
 
   var _addCountryList = function () {
     var html = '';
+    var allChecked = true;
     for (var i=0; i<_countries.results.length; i++) {
       var currCountry = _countries.results[i];
-      html += '<li>' +
-      '<input type="checkbox" id="plugin-c-' + currCountry.folder + '" name="selectedCountry" class="selectedCountry" value="' + currCountry.folder + '" checked="checked" />' +
-      '<label for="plugin-c-' + currCountry.folder + '">' + currCountry.name + '</label>' +
-      '</li>';
+      var isChecked = _settings.prefill.countries === null || $.inArray(currCountry.folder, _settings.prefill.countries) !== -1;
+      if (!isChecked) {
+        allChecked = false;
+      }
+
+      html += '<li><input type="checkbox" id="plugin-c-' + currCountry.folder + '" name="selectedCountry" '
+        + 'class="selectedCountry" value="' + currCountry.folder + '"';
+
+      if (isChecked) {
+        html += ' checked="checked"';
+      } else {
+        allChecked = false;
+      }
+      html += ' /><label for="plugin-c-' + currCountry.folder + '">' + currCountry.name + '</label></li>';
     }
+    $("#gdCountryPluginList").prop("checked", allChecked);
     $("#gdCountryList").html('<ul>' + html + '</ul>').removeClass("hidden").css("display", "none").show("fade");
   };
 
-  var _showContinueButton = function () {
+  // used only on the installation phase, not the settings tab during an update
+  var _maybeShowContinueButton = function () {
     $("#gdInstallPluginsBtn").html(L.continue_rightarrow).show();
   };
 

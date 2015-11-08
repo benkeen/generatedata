@@ -1456,7 +1456,9 @@ body .tooltip-right:after {
   line-height: 16px; }
 
 #gdResetPluginsBtn {
-  padding: 5px 15px; }
+  padding: 5px 15px;
+  float: right;
+  margin-top: 0; }
 
 /* CSS from http://cbracco.me/a-simple-css-tooltip/ */
 /* Base styles for the element that has a tooltip */

@@ -1,5 +1,7 @@
 <form action="#" method="post" id="gdSettingsForm">
 
+    <button class="gdSecondaryButton" id="gdResetPluginsBtn" data-use-minified="{if $useMinifiedResources}true{else}false{/if}">{$L.reset_plugins}</button>
+
 	<h3>{$L.plugins}</h3>
 
     <div id="settingsTabMessage" class="gdMessage gdMarginTop">
@@ -163,7 +165,6 @@
 	<div class="gdClear"></div>
 
     <p class="buttons-row">
-		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.update_settings}</button>
-        <button class="gdSecondaryButton" id="gdResetPluginsBtn" data-use-minified="{if $useMinifiedResources}true{else}false{/if}">{$L.reset_plugins}</button>
+		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.save}</button>
 	</p>
 </form>
