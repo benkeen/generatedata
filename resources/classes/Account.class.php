@@ -50,6 +50,12 @@ class Account {
 			$_SESSION["account_id"] = 1;
 		} else if ($accountID == "anonymousUser") {
 			$this->isAnonymousUser = true;
+
+			// anon users don't have an entry in the accounts table, so we populate the available plugins by pulling
+			// the full list of available plugins right from Settings
+			$this->selectedDataTypes = explode(",", Settings::getSetting("installedDataTypes"));
+			$this->selectedExportTypes = explode(",", Settings::getSetting("installedExportTypes"));
+			$this->selectedCountries = explode(",", Settings::getSetting("installedCountries"));
 		}
 
 		if (is_numeric($accountID)) {

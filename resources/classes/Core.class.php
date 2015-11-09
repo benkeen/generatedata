@@ -525,12 +525,17 @@ class Core {
 	public static function initUser($bypass = false) {
 		if ($bypass || self::checkIsInstalled()) {
 			$setup = Settings::getSetting("userAccountSetup");
+
 			if ($setup == "anonymousAdmin") {
 				self::$user = new Account($setup);
 				self::$isLoggedIn = true;
 			} else {
+				$allowMultiUserAnonUse = Core::checkAllowMultiUserAnonymousUse();
 				if (isset($_SESSION["account_id"])) {
 					self::$user = new Account($_SESSION["account_id"]);
+					self::$isLoggedIn = true;
+				} else if ($setup == "multiple" && $allowMultiUserAnonUse == "yes") {
+					self::$user = new Account("anonymousUser");
 					self::$isLoggedIn = true;
 				}
 			}

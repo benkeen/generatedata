@@ -80,8 +80,8 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 plugins for each user. 
 
 Remaining:
-- re-examined installation for refactored Plugin Manager code
-- check all user account types
+- multi-user setup needs to pull ALL available plugins for use by non-logged in users, assuming that feature is enabled
+- drop the option to change the account setup after an installation 
 - translations of new/changed text
 - browser checks
 
