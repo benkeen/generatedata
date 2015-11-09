@@ -2010,10 +2010,6 @@ define([
       consoleEventsExportTypePlugins: $("#consoleEventsExportTypePlugins").val()
     };
 
-    if ($(".gdUserAccountSetup").length > 0) {
-      console.log($("input[name=userAccountSetup]:checked").val());
-    }
-
     $.ajax({
       url: "ajax.php",
       type: "POST",
@@ -2025,11 +2021,9 @@ define([
           var refreshButton = '<input type="button" value="Refresh Page" onClick="window.location.reload(true)" />';
           $("#settingsTabMessage").removeClass("gdErrors").addClass("gdNotify").css({ display: 'block' }).find("p").html(response.content + ' ' + refreshButton);
           utils.stopProcessing();
-          //_getAccount({ onComplete: _onLoginComplete });
         }
       },
       error: function () {
-//        utils.pauseSpinner(_loginModalID);
         utils.stopProcessing();
       }
     });

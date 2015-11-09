@@ -101,23 +101,6 @@
     </div>
 
 
-    {if $settings.userAccountSetup != "anonymousAdmin"}
-        <h3>{$L.account_settings}</h3>
-
-        <div>
-            <div>
-                <input type="radio" name="userAccountSetup" class="gdUserAccountSetup" id="acs2" value="single"
-                    {if $settings.userAccountSetup == "single"}checked="checked"{/if} />
-                <label for="acs2">{$L.single_user_account_requires_login}</label>
-            </div>
-            <div style="margin-bottom: 20px">
-                <input type="radio" name="userAccountSetup" class="gdUserAccountSetup" id="acs3" value="multiple"
-                    {if $settings.userAccountSetup == "multiple"}checked="checked"{/if} />
-                <label for="acs3">{$L.multiple_accounts}</label>
-            </div>
-        </div>
-    {/if}
-
 	<h3>{$L.developer}</h3>
 
 	<p>
