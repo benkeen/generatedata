@@ -217,6 +217,7 @@ class Core {
 	}
 
 	/**
+	 * Returns the out-the-box default Export Type.
 	 * @access public
 	 */
 	public static function getDefaultExportType() {

@@ -43,7 +43,7 @@ $pageParams["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
 $pageParams["settings"] = $settings;
 $pageParams["cssIncludes"] = $cssIncludes;
 $pageParams["codeMirrorIncludes"] = ExportTypePluginHelper::getExportTypeCodeMirrorModes($exportTypes);
-$pageParams["defaultExportType"] = Core::getDefaultExportType();
+$pageParams["defaultExportType"] = Core::$user->getDefaultExportType();
 $pageParams["defaultNumRows"] = Core::getDefaultNumRows();
 
 if (Core::checkIsLoggedIn()) {
