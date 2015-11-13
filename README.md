@@ -75,13 +75,9 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-3.2.2 - Nov, 2015
-- **UNDER DEVELOPMENT**. Focusing on updating the installation process, reset plugins. Allowing custom selection of 
-plugins for each user. 
-
-Remaining:
-- translations of new/changed text
-- browser checks
+3.2.2 - Nov 12, 2015
+- The plugins (Data Types, Export Types, Countries) seen in the interface may not be configured on a per-user level.
+- Installation script updated to allow customization of plugin selection.
 
 3.2.1 - May 25, 2015
 - Configuration history option added to store the last 200 (this is configurable) versions of a data set. In case of data
