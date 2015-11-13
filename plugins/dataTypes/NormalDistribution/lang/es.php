@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Distribución normal",
-    "DESC" => "Generates random normally distributed values with a customizable mean and standard deviation"
+    "DESC" => "Genera valores normalmente distribuidos al azar con una desviación media y estándar adaptable ."
 );
 
 $L["mean"] = "Media";

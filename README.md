@@ -80,7 +80,6 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 plugins for each user. 
 
 Remaining:
-- logging in needs to now reload the page, to ensure the user-specific plugins are correct  
 - translations of new/changed text
 - browser checks
 

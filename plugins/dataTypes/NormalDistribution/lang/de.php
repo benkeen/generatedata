@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Standardabweichung",
-    "DESC" => "Generates random normally distributed values with a customizable mean and standard deviation"
+    "DESC" => "Erzeugt ZufallsnormalverteiltenWerten mit einem kundengerechten Mittelwert und Standardabweichung ."
 );
 
 $L["incomplete_fields"] = "Der Mittelwert und Sigma Felder sind für alle Normal Distribution Zeilen erforderlich. Bitte beheben Sie die folgenden Zeilen:";

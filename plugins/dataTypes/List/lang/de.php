@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Benutzerdefinierte Liste",
-    "DESC" => "Generates one or more random values from an arbitrary list of items."
+    "DESC" => "Erzeugt einen oder mehrere zufällige Werte aus einer beliebigen Liste von Elementen ."
 );
 
 $L["at_most"] = "Am meisten";

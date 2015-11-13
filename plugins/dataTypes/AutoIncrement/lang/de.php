@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Auto-Inkrement",
-    "DESC" => "Provides many variations on an standard auto-increment field: custom start value, customizable step sizes, arbitrary string inclusion, increment or decrement and more. "
+    "DESC" => "Bietet viele Variationen auf einem Standard- Auto-Inkrement- Bereich : benutzerdefinierte Startwert an, kundengerecht Schrittweiten , willkürliche Aufnahme string, Zunahme oder -abnahme und mehr."
 );
 
 $L["help_intro"] = "Erzeugt eine Spalte, die eine eindeutige Nummer in jeder Zeile enthält, Inkrementieren mit welchen Wert Sie eingeben. Diese Option kann hilfreich sein, zum Einsetzen der Daten in eine Datenbank Feld mit einem auto-increment Primärschlüssel.";

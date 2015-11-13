@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Lista personalizada",
-    "DESC" => "Generates one or more random values from an arbitrary list of items."
+    "DESC" => "Genera uno o más valores aleatorios a partir de una lista arbitraria de artículos."
 );
 
 $L["at_most"] = "Al menos";

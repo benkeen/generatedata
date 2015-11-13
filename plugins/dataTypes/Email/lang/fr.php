@@ -4,5 +4,5 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Email",
-    "DESC" => "Generates a random email address."
+    "DESC" => "Génère une adresse e-mail aléatoire ."
 );
