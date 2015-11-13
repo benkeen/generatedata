@@ -2061,15 +2061,15 @@ define([
       },
       success: function (response) {
         if (response.success) {
-          _getAccount({
-            onComplete: _onLoginComplete
-          });
+          // we explicitly reload the page because the user may have custom plugins selected (added in 3.2.2)
+          window.location = "./";
         } else {
           utils.clearValidationErrors($("#" + _loginModalID));
           utils.addValidationErrors({els: [], error: response.content});
           utils.displayValidationErrors("#gdLoginError");
           utils.pauseSpinner(_loginModalID);
         }
+
       },
       error: function () {
         utils.pauseSpinner(_loginModalID);
