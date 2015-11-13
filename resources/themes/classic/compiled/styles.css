@@ -1400,6 +1400,8 @@ body .gdMainDialog .ui-dialog-title span {
     margin: 5px 10px 4px; }
   #gdPlugins > div {
     margin: 0 5px 0 0;
+    -webkit-flex: 1;
+    -ms-flex: 1;
     flex: 1; }
     #gdPlugins > div:last-child {
       margin-right: 0; }
@@ -1421,6 +1423,8 @@ body .gdMainDialog .ui-dialog-title span {
           flex: 0 0 20px;
           margin: 7px 6px 7px 8px; }
         #gdPlugins > div ul li label {
+          -webkit-flex: 1;
+          -ms-flex: 1;
           flex: 1;
           margin: 3px; }
         #gdPlugins > div ul li span.gdTooltip {
@@ -1445,6 +1449,8 @@ body .gdMainDialog .ui-dialog-title span {
       flex: 0 0 20px;
       margin: 7px 6px 7px 8px; }
     #gdPlugins .gdPluginSectionHeader label {
+      -webkit-flex: 1;
+      -ms-flex: 1;
       flex: 1;
       margin: 3px;
       font-weight: bold; }
