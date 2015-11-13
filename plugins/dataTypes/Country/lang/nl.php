@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Land",
-    "DESC" => "Generates a random country name, with the option to limit the subset to those countries entered via the interface."
+    "DESC" => "Genereert een willekeurig land naam , met de optie om de subset beperken tot die landen ingevoerd via de interface ."
 );
 
 $L["limit_results"] = "Beperk landen met de hierboven geselecteerde";

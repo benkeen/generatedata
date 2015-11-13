@@ -3,7 +3,7 @@
 $L = array();
 $L["DATA_TYPE"] = array(
     "NAME" => "Adresse",
-    "DESC" => "Generates random street addresses."
+    "DESC" => "Génère des adresses aléatoires ."
 );
 
 $L["ap_num"] = "Appartement ";

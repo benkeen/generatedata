@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Aangepaste lijst",
-    "DESC" => "Generates one or more random values from an arbitrary list of items."
+    "DESC" => "Genereert een of meer willekeurige waarden uit een willekeurige lijst van items ."
 );
 
 $L["at_most"] = "Op zijn hoogst";
