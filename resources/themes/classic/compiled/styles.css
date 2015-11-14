@@ -1200,7 +1200,7 @@ body.gdErrorPage #gdSeriousError {
     padding: 0 0 0 6px;
     overflow: hidden; }
     #gdMainDialogContent #gdMainDialogTab3Content h3 {
-      padding-top: 10px; }
+      padding: 20px 0 5px; }
 
 #gdLoginDialogContent {
   clear: both; }
