@@ -105,6 +105,10 @@ class CountryPluginHelper {
 	 *          ),
 	 *          ...
 	 *      );
+	 * @param $countryName
+	 * @param $countrySlug
+	 * @param $data
+	 * @return array
 	 */
 	public static function populateDB($countryName, $countrySlug, $data) {
 		$prefix = Core::getDbTablePrefix();

@@ -370,6 +370,7 @@ class AjaxRequest {
         $count = 0;
         $folders = array();
 
+
         while (list($group_name, $dataTypes) = each($groupedDataTypes)) {
             $data = array();
             foreach ($dataTypes as $currDataType) {
@@ -455,6 +456,10 @@ class AjaxRequest {
         $folders = array();
 
         foreach ($countryPlugins as $currCountry) {
+
+			// ensure the country uninstalls itself first, 
+			$currCountry->uninstall();
+
             try {
                 list($success, $content) = $currCountry->install();
                 if (!$success) {
