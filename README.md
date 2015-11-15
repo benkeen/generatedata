@@ -8,8 +8,8 @@ so *Data Types* (types of data it generates), plus 8 *Export Types* (formats for
 in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
 for that.
 
-Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting
-the most recent tag: https://github.com/benkeen/generatedata/releases
+Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the script, get the most recent 
+tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
 - PHP 5.3 or later
@@ -76,7 +76,7 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 
 ## Changelog
 
-3.2.3 - ** In Development **
+3.2.3 - Nov 15, 2015
 - SIRET/SIREN Data Type added (French business numbers) added. Merci, [Fabrice Marquès](https://github.com/fmarques56)! 
 - Bug fixes: https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+
 
