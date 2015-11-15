@@ -608,13 +608,20 @@ class Account {
 		// TODO - this is weird!
 		$autoEmail   = isset($accountInfo["accountType"]) ? $accountInfo["accountType"] : false;
 
+
 		$L = Core::$language->getCurrentLanguageStrings();
 		$now = Utils::getCurrentDatetime();
 		$prefix = Core::getDbTablePrefix();
+
+		$selectedDataTypes = Settings::getSetting("installedDataTypes");
+		$selectedExportTypes = Settings::getSetting("installedExportTypes");
+		$selectedCountries = Settings::getSetting("installedCountries");
+
 		$result = Core::$db->query("
 			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, last_logged_in, account_type, 
-				first_name, last_name, email, password)
-			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password')
+				first_name, last_name, email, password, selected_data_types, selected_export_types, selected_countries)
+			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password',
+				'$selectedDataTypes', '$$selectedExportTypes', '$selectedCountries')
 		");
 
 		$emailSent = false; // not used yet, but we should notify the user via the interface
