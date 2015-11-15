@@ -27,7 +27,7 @@ class DataType_SIRET extends DataTypePlugin {
 		self::generateSiret();
 		switch ($myOption) {
 		    case "SIRET":
-		        $myResult = self::getSIREN().'-'.self::getNIC();
+		        $myResult = self::getSIREN() . '-' . self::getNIC();
 		        break;
 		    case "SIREN":
 		        $myResult = self::getSIREN();
