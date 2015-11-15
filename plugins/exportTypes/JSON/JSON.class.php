@@ -116,7 +116,10 @@ class JSON extends ExportTypePlugin {
 			} else {
 				$rowVals = implode(",\n\t\t\t", $rowValsArr);
 				$content .= "\t\t[\n\t\t\t$rowVals\n\t\t]";
+
 				if ($i < $numRows - 1) {
+					$content .= ",\n";
+				} else if (!$generator->isLastBatch()) {
 					$content .= ",\n";
 				}
 			}

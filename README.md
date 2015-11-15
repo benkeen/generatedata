@@ -56,8 +56,9 @@ contributors agree that all code is released under this license.
 
 ## Contributors
 
-In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
+In addition to the many fine folk who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [Fabrice Marquès](https://github.com/fmarques56) - French business numbers (SIRET/SIREN) 
 - [Daragh Courtney](https://github.com/daraghc) - [Data Generator Vagrant repo](https://github.com/benkeen/generatedata-vagrant)
 - [Zhao Yang](https://github.com/jptiancai) - Chinese language file (3.1.4)
 - [Anton Nizhegorodov](https://github.com/an1zhegorodov) - Batch size SQL export option (3.1.3)
@@ -74,6 +75,10 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.2.3 - ** In Development **
+- SIRET/SIREN Data Type added (French business numbers) added. Merci, [Fabrice Marquès](https://github.com/fmarques56)! 
+- Bug fixes: https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+
 
 3.2.2 - Nov 12, 2015
 - The plugins (Data Types, Export Types, Countries) seen in the interface may not be configured on a per-user level.
