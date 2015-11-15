@@ -8,6 +8,7 @@ class LDIF extends ExportTypePlugin {
 
     protected $isEnabled = true;
     protected $exportTypeName = "LDIF";
+	protected $contentTypeHeader = "text/plain";
 
     public function generate($generator) {
         $content  = $this->generateLDIF($generator);

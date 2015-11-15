@@ -20,6 +20,7 @@ class SQL extends ExportTypePlugin {
 	protected $jsModules = array("SQL.js");
 	protected $codeMirrorModes = array("sql");
 	protected $contentTypeHeader = "application/octet-stream";
+	protected $addHeadersInNewWindow = false;
 
 	public $L = array();
 

@@ -9,7 +9,7 @@ class JSON extends ExportTypePlugin {
 	protected $exportTypeName = "JSON";
 	protected $jsModules = array("JSON.js");
 	protected $codeMirrorModes = array("javascript");
-	protected $contentTypeHeader = "text/json";
+	protected $contentTypeHeader = "text/json; charset=utf-8";
 	public $L = array();
 
 	private $numericFields;

@@ -119,9 +119,7 @@ class Country_Canada extends CountryPlugin {
 			"regionSlug" => "new_brunswick",
 			"weight" => 2,
 			"cities" => array(
-				'Tracadie-Shelia', 'Sh�diac', 'Shippagan', 'Saint-L�onard', 'Saint John', 'Saint Andr�', 'Rothesay', 'Rexton',
-				'Quispamsis', 'Oromocto', 'New Maryland', 'Moncton', 'Miramichi', 'Grand Falls', 'Fredericton', 'Edmundston',
-				'Dieppe', 'Clare', 'Carlton'
+					"Bathurst", "Campbellton", "Dieppe", "Edmundston", "Fredericton", "Miramichi", "Moncton", "Saint John"
 			),
 			"extendedData" => array(
 				"zipFormat" => array(
@@ -255,19 +253,19 @@ class Country_Canada extends CountryPlugin {
 			"regionSlug" => "quebec",
 			"weight" => 23,
 			"cities" => array(
-				"Amqui", "Cabano", "D�gelis", "La Matap�dia", "Price", "Rimouski", "Rivi�re-du-Loup", "Saint-Eug�ne-de-Ladri�re",
-				"Sainte-Flavie", "Alma", "Chambord", "Chicoutimi", "Jonqui�re", "La Baie", "Labrecque", "Saguenay", "Saint-Honor�",
-				"Saint-Prime", "Shipshaw", "Baie-Saint-Paul", "Beauport", "Cap-Rouge", "Deschambault", "Isle-aux-Coudres", "Lac-Serent",
-				"Malbaie", "Neuville", "Pointe-au-Pic", "Qu�bec City", "Saint-Hilarion", "Saint-Urbain", "Batiscan",
-				"Cap-de-la-Madeleine", "Champlain", "H�rouxville", "Pointe-du-Lac", "Saint-Georges", "Shawinigan", "Trois-Rivi�res",
-				"Asbestos", "Richmond", "Sherbrooke", "Valcourt", "Anjou", "Baie-d'Urf�", "Beaconsfield", "C�te-Saint-Luc",
-				"Dollard-des-Ormeaux", "Dorval", "Hampstead", "Kirkland", "Lachine", "LaSalle", "Montreal", "Outremont", "Pierrefonds",
-				"Pointe-aux-Trembles", "Pointe-Claire", "Roxboro", "Saint-Laurent", "Saint-L�onard", "Saint-Pierre", "Senneville",
-				"Verdun", "Westmount", "Aylmer", "Buckingham", "Cantley", "Chelsea", "Collines-de-l'Outaouais", "Gatineau", "Hull",
-				"Ville de Maniwaki", "Mansfield-et-Pontefract", "Montebello", "Montpellier", "Namur", "Notre-Dame-de-la-Salette",
-				"Shawville", "Thurso", "Dubuisson", "Malartic", "Notre-Dame-du-Nord", "Rouyn-Noranda", "Saint-Eug�ne-de-Guigues",
-				"Baie-Comeau", "Fermont", "Kawawachikamach", "Matagami", "Caplan", "Carleton", "Gasp�", "Gespeg", "Maria",
-				"Murdochville", "Cap-Saint-Ignace", "Charny", "L�vis"
+				"Amqui", "Cabano", "Dégelis", "Price", "Rimouski", "Rivière-du-Loup", "Sainte-Flavie", "Alma", "Chambord",
+				"Chicoutimi", "La Baie", "Labrecque", "Saguenay", "Saint-Prime", "Shipshaw", "Baie-Saint-Paul", "Beauport",
+				"Cap-Rouge", "Deschambault", "Isle-aux-Coudres", "Lac-Serent", "Malbaie", "Neuville", "Pointe-au-Pic",
+				"Québec City", "Saint-Hilarion", "Saint-Urbain", "Batiscan", "Cap-de-la-Madeleine", "Champlain",
+				"Pointe-du-Lac", "Saint-Georges", "Shawinigan", "Trois-Rivières", "Asbestos", "Richmond", "Sherbrooke",
+				"Valcourt", "Anjou", "Baie-D'Urfé", "Beaconsfield", "Côte Saint-Luc", "Dollard-des-Ormeaux", "Dorval",
+				"Hampstead", "Kirkland", "Lachine", "LaSalle", "Montreal", "Outremont", "Pierrefonds", "Pointe-aux-Trembles",
+				"Pointe-Claire", "Roxboro", "Saint-Laurent", "Saint-Pierre", "Senneville", "Verdun", "Westmount", "Aylmer",
+				"Buckingham", "Cantley", "Chelsea", "Collines-de-l'Outaouais", "Gatineau", "Hull", "Ville de Maniwaki",
+				"Mansfield-et-Pontefract", "Montebello", "Montpellier", "Namur", "Notre-Dame-de-la-Salette", "Shawville",
+				"Thurso", "Dubuisson", "Malartic", "Notre-Dame-du-Nord", "Rouyn-Noranda", "Baie-Comeau", "Fermont",
+				"Kawawachikamach", "Matagami", "Caplan", "Carleton", "Gaspé", "Gespeg", "Maria", "Murdochville",
+				"Cap-Saint-Ignace", "Charny", "Lévis"
 			),
 			"extendedData" => array(
 				"zipFormat" => array(

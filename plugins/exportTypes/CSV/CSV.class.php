@@ -9,6 +9,7 @@ class CSV extends ExportTypePlugin {
 	protected $exportTypeName = "CSV";
 	protected $jsModules = array("CSV.js");
 	protected $contentTypeHeader = "application/csv";
+	protected $addHeadersInNewWindow = false;
 	public $L = array();
 
 
