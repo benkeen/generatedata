@@ -58,7 +58,7 @@ contributors agree that all code is released under this license.
 
 In addition to the many fine folk who submit bug reports, a big thanks to the following for their help extending the script:
 
-- [Fabrice Marquès](https://github.com/fmarques56) - French business numbers (SIRET/SIREN) 
+- [Fabrice Marquès](https://github.com/fmarques56) - French business numbers (SIRET/SIREN) (3.2.3)
 - [Daragh Courtney](https://github.com/daraghc) - [Data Generator Vagrant repo](https://github.com/benkeen/generatedata-vagrant)
 - [Zhao Yang](https://github.com/jptiancai) - Chinese language file (3.1.4)
 - [Anton Nizhegorodov](https://github.com/an1zhegorodov) - Batch size SQL export option (3.1.3)
