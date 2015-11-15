@@ -17,7 +17,6 @@
 
 	var MODULE_ID = "export-type-HTML";
 	var LANG = L.exportTypePlugins.HTML;
-	var _dialog = null;
 	var _codeMirror = null;
 
 	var _init = function() {
@@ -50,8 +49,11 @@
 
 	var _updateDialogDimensions = function() {
 		var dimensions = _getDialogDimensions();
-		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
-		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
+
+		if ($("#etHTMLCustomFormatDialog").hasClass("ui-dialog-content")) {
+			$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
+			$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
+		}
 	};
 
 	var _openEditCustomFormatDialog = function() {

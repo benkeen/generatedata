@@ -457,7 +457,7 @@ class AjaxRequest {
 
         foreach ($countryPlugins as $currCountry) {
 
-			// ensure the country uninstalls itself first, 
+			// ensure the country uninstalls itself first
 			$currCountry->uninstall();
 
             try {
