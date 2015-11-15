@@ -18,7 +18,8 @@ define([
 	};
 
 	var _exampleChange = function(msg) {
-		$("#dtOption_" + msg.rowID).val(msg.value);
+		console.log("input[name='dtOption_" + msg.rowID + "'][value='" + msg.value + "']");
+		$("input[name='dtOption_" + msg.rowID + "'][value='" + msg.value + "']").prop('checked', true);
 	};
 
 	/**

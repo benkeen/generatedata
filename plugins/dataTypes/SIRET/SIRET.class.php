@@ -3,9 +3,10 @@
 /**
  * @package DataTypes
  * @author Fabrice Marquès <fabrice.marques@gmail.com>
- * @version v0.0.3 - add descript in help
+ * @version v0.0.4 - add descript in help
  *				   - del extract NIC
  *				   - add split in SIRET
+ * Edited by Ben Keen for a few style & core compatibility fixes and to make the Options column contain radio buttons.
  */
 
 class DataType_SIRET extends DataTypePlugin {
@@ -25,13 +26,10 @@ class DataType_SIRET extends DataTypePlugin {
 		$myOption = $generationContextData["generationOptions"];
 
 		self::generateSiret();
-		switch ($myOption) {
-		    case "SIRET":
-		        $myResult = self::getSIREN() . '-' . self::getNIC();
-		        break;
-		    case "SIREN":
-		        $myResult = self::getSIREN();
-		        break;
+		if ($myOption == "SIRET") {
+			$myResult = self::getSIREN() . '-' . self::getNIC();
+		} else {
+			$myResult = self::getSIREN();
 		}
 
 		return array(
@@ -52,7 +50,7 @@ class DataType_SIRET extends DataTypePlugin {
 		for ($i=0; $i<8; $i++) {
 
 			// on génére un nombre entre 0 et 9 
-			$rand = mt_rand($minRan,$maxRan);
+			$rand = mt_rand($minRan, $maxRan);
 
 			// on concatène se nombre au siret
 			$siren .= $rand; 
@@ -125,8 +123,8 @@ class DataType_SIRET extends DataTypePlugin {
 
 		$siret .= $diffSiret;
 		
-		$this->rSIREN = substr($siret,0,9);
-		$this->rNIC = substr($siret,9,14);	
+		$this->rSIREN = substr($siret, 0, 9);
+		$this->rNIC = substr($siret, 9, 14);
 	}
 
 	public function getRowGenerationOptionsUI($generator, $post, $colNum, $numCols) {
@@ -200,7 +198,12 @@ END;
 	}
 
 	public function getOptionsColumnHTML() {
-		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
+		return <<<END
+<input type="radio" name="dtOption_%ROW%" id="dtOption_%ROW%_1" value="SIRET" checked="checked" style="margin-left: 4px" />
+	<label for="dtOption_%ROW%_1">SIRET</label>
+<input type="radio" name="dtOption_%ROW%" id="dtOption_%ROW%_2" value="SIREN" />
+	<label for="dtOption_%ROW%_2">SIREN</label>
+END;
 	}
 	
 }
