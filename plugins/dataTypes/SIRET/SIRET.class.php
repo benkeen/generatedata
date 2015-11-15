@@ -22,7 +22,8 @@ class DataType_SIRET extends DataTypePlugin {
 	private $rNIC = '';
 
 	public function generate($generator, $generationContextData) {
-		$myOption = $generationContextData["generationOptions"];		
+		$myOption = $generationContextData["generationOptions"];
+
 		self::generateSiret();
 		switch ($myOption) {
 		    case "SIRET":
@@ -46,10 +47,10 @@ class DataType_SIRET extends DataTypePlugin {
 		$minRan = 0;
 		$maxRan = 9;
 		$siren = '';
-		$siret = '';
 		
 		// generation d'un siren valide
-		for($i=0;$i<8;$i++) {
+		for ($i=0; $i<8; $i++) {
+
 			// on génére un nombre entre 0 et 9 
 			$rand = mt_rand($minRan,$maxRan);
 
@@ -68,24 +69,24 @@ class DataType_SIRET extends DataTypePlugin {
 			// Si la valeur obtenu et supérieur ou egale à 10 il faut décomposer en 1+0 
 			// ce qui équivaux à lui retirer 9
 			// contôle pour le siren
-			if($ctrlSiren > 9){
+			if ($ctrlSiren > 9) {
 				$sumSiren += ($ctrlSiren-9);
-			}else{
+			} else {
 				$sumSiren += $ctrlSiren;
 			}
 			
 			// contôle pour le siret
-			if($ctrlSiret > 9){
+			if ($ctrlSiret > 9) {
 				$sumSiret += ($ctrlSiret - 9);
-			}else{
+			} else {
 				$sumSiret += $ctrlSiret;
 			}
 			
 			// mise à jour des clés
-			if($cleSiren == 1){
+			if ($cleSiren == 1) {
 				$cleSiren = 2;
 				$cleSiret = 1;
-			}else{
+			} else {
 				$cleSiren = 1;
 				$cleSiret = 2;
 			}
@@ -93,9 +94,9 @@ class DataType_SIRET extends DataTypePlugin {
 
 		// la somme doit être congrue à zéro modulo 10
 		$moduloSiren = ($sumSiren % 10);
-		if($moduloSiren == 0){
+		if ($moduloSiren == 0) {
 			$diffSiren = 0;
-		}else{
+		} else {
 			$diffSiren = 10 - $moduloSiren;
 		}
 
@@ -105,9 +106,9 @@ class DataType_SIRET extends DataTypePlugin {
 		$ctrlSiret = $diffSiren * $cleSiret;
 
 		// contôle pour le siret
-		if($ctrlSiret > 9){
+		if ($ctrlSiret > 9) {
 			$sumSiret += ($ctrlSiret - 9);
-		}else{
+		} else {
 			$sumSiret += $ctrlSiret;
 		}
 		
@@ -116,9 +117,9 @@ class DataType_SIRET extends DataTypePlugin {
 
 		// la somme doit être congrue à zéro modulo 10
 		$moduloSiret = ($sumSiret % 10);
-		if($moduloSiret == 0){
+		if ($moduloSiret == 0) {
 			$diffSiret = 0;
-		}else{
+		} else {
 			$diffSiret = 10 - $moduloSiret;
 		}
 
@@ -128,7 +129,14 @@ class DataType_SIRET extends DataTypePlugin {
 		$this->rNIC = substr($siret,9,14);	
 	}
 
-	public function getRowGenerationOptions($generator, $post, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $post, $colNum, $numCols) {
+		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
+			return false;
+		}
+		return $post["dtOption_$colNum"];
+	}
+
+	public function getRowGenerationOptionsAPI($generator, $post, $colNum, $numCols) {
 		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
 			return false;
 		}
@@ -154,22 +162,22 @@ class DataType_SIRET extends DataTypePlugin {
 	public function getHelpHTML() {
 		$content =<<<EOF
 	<p>
-		{$this->L["help_intro"]}
+		{$this->L["DATA_TYPE"]["DESC"]}
 	</p>
 	<table cellpadding="0" cellspacing="1">
 	<tr>
-		<td><h4>SIRET &nbsp; : &nbsp;</h4></td>
+		<td><h4>{$this->L["SIRET"]}</h4></td>
 		<td>{$this->L["type_SIRET"]}</td>
 	</tr>
 	<tr>
-		<td><h4>SIREN &nbsp; : &nbsp;</h4></td>
+		<td><h4>{$this->L["SIREN"]}</h4></td>
 		<td>{$this->L["type_SIREN"]}</td>
 	</tr>
 	<tr>
 		<td colspan="2">&nbsp;</td>
 	</tr>
 	<tr>
-		<td><h4>Lien Wiki :  &nbsp;</h4></td>
+		<td><h4>{$this->L["more_info"]}</h4></td>
 		<td><a href="{$this->L["help_link"]}" target="_blank">WIKI SIRET</a></td>
 	</tr>
 	</table>
@@ -182,7 +190,7 @@ EOF;
 		$L = Core::$language->getCurrentLanguageStrings();
 
 		$html =<<< END
-	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
+	<select name="dtExample_%ROW%" id="dtExample_%ROW%" style="width:100%">
 		<option value="">{$L["please_select"]}</option>
 		<option value="SIRET">{$this->L["example_SIRET"]}</option>
 		<option value="SIREN">{$this->L["example_SIREN"]}</option>
