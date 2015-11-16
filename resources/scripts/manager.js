@@ -286,6 +286,11 @@ define([
 		var rows = info.rows;
 		var errors = [];
 
+		// Export Types don't necessarily have to have a JS file. If it's not defined, return a blank array: no errors assumed
+		if (!_modules[exportTypeModuleID]) {
+			return [];
+		}
+
 		try {
 			errors = _modules[exportTypeModuleID].validate(rows);
 		} catch (e) {

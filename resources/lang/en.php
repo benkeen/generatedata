@@ -113,7 +113,6 @@ $L["last_name"] = "Last Name";
 $L["settings"] = "Settings";
 $L["geo"] = "Geo";
 $L["numeric"] = "Numeric";
-$L["notify_settings_updated"] = "Your settings have been updated.";
 $L["tip_country_data"] = "This section lets you control what country-specific data should be included in your generated data sets. The values you select here affect certain Data Types that you may select, such as <i>Region</i>, <i>Postal/Zip</i> and <i>Country</i>.</p><p>To give you a better idea of what this means, try selecting the <i>Region</i> Data Type for one of your rows in the Data Set section, then add / remove countries from the Country-Specific Data section. You'll see that the row options that appear are directly affected by the countries you have selected: you can only ever generate a subset of the countries selected.";
 $L["country_specific_data"] = "Country-specific data";
 $L["data_set"] = "Data Set";
@@ -171,7 +170,7 @@ $L["about_para2"] = "The <b>Generate</b> page contains the entire script: just f
 $L["extend_id"] = "Extend it";
 $L["about_para3"] = "The out-the-box script contains the sort of functionality you generally need. But nothing's ever complete - maybe you need to generate random esoteric math equations, pull random tweets or display random images from Flickr with the word \"Red-backed vole\" in the title. Who knows. Everyone's use-case is different.";
 $L["about_para4"] = "With this in mind, the new version of the script (3.0.0+) was designed to be fully extensible: developers can write their own Data Types to generate new types of random data, and even customize the Export Types - i.e. the format in which the data is output. For people interested in generating more accurate localized geographical data, they can also add new Country plugins that supply region names (states, provinces, territories etc), city names and postal/zip code formats for their country of choice.";
-$L["about_para5"] = "For more information on how to extend it, visit the <a href=\"docs/\">developer documentation</a>.";
+$L["about_para5"] = "For more information on how to extend it, visit the <a href=\"http://benkeen.github.io/generatedata/developer.html\">developer documentation</a>.";
 $L["a_few_links"] = "A few links";
 $L["fork_on_github"] = "Fork the code on github";
 $L["read_developer_doc"] = "Read the developer documentation";
@@ -199,13 +198,13 @@ $L["create_settings_file"] = "Create Settings File";
 $L["complete_excl"] = "Complete!";
 $L["installation_step2_intro"] = "So far so good! Now click the button below to create your <b>settings.php</b> file. This file is stored in the root folder of this application and is the only place (other than the database) that stores custom information about your installation.";
 $L["create_file_rightarrow"] = "Create File &raquo;";
-$L["installation_step3_intro"] = "You have three choices for the way your installation handles user accounts.";
+$L["installation_step3_intro"] = "There are three types of user account.";
 $L["single_anonymous_user_account"] = "Single, anonymous user account";
 $L["single_user_account_requires_login"] = "Single user account, requires login";
 $L["multiple_accounts"] = "Multiple accounts";
 $L["goto_script_rightarrow"] = "Go to script &raquo;";
 $L["enter_user_account_details"] = "Please enter your user account details below.";
-$L["installation_plugin_intro"] = "Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> - i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all the Country-specific data like regions and cities. Select those rows you wish to use.";
+$L["installation_plugin_intro"] = "Almost done! Now we're going to install the plugins: these are what make the Data Generator actually <i>useful</i> - i.e. the type of data you can generate (Data Types), the format of the generated data (Export Types) and all the Country-specific data like regions and cities. Feel free to unselect anything you don't think you'll need.";
 $L["install_plugins_rightarrow"] = "Install Plugins &raquo;";
 $L["installation_complete_text"] = "The Data Generator has been successfully installed! Click the button below to go to the script.";
 $L["please_login"] = "Please Login";
@@ -299,3 +298,4 @@ $L["validation_no_countries"] = "Please select at least one Country.";
 
 // changed
 $L["plugins_intro"] = "Check/uncheck the rows to determine which functionality you'd like to see in the interface.";
+$L["notify_settings_updated"] = "Your settings have been updated. Refresh the page to ensure you have the latest content.";

@@ -50,6 +50,12 @@ class Account {
 			$_SESSION["account_id"] = 1;
 		} else if ($accountID == "anonymousUser") {
 			$this->isAnonymousUser = true;
+
+			// anon users don't have an entry in the accounts table, so we populate the available plugins by pulling
+			// the full list of available plugins right from Settings
+			$this->selectedDataTypes = explode(",", Settings::getSetting("installedDataTypes"));
+			$this->selectedExportTypes = explode(",", Settings::getSetting("installedExportTypes"));
+			$this->selectedCountries = explode(",", Settings::getSetting("installedCountries"));
 		}
 
 		if (is_numeric($accountID)) {
@@ -271,6 +277,31 @@ class Account {
         }
         return $whitelistedExportTypes;
     }
+
+
+	/**
+	 * With 3.2.2, users can now customize the plugins they want to use, so Core::getDefaultExportType() is no longer
+	 * sufficient to figure out what tab should be selected in the UI on page load. This is now used instead.
+	 */
+	public function getDefaultExportType () {
+		$defaultExportType = Core::getDefaultExportType();
+		$exportTypes = $this->getExportTypePlugins();
+
+		// if the default export type isn't selected for this particular user, select the first in the list. Assumption
+		// if that there's always at least one Export Type
+		$found = false;
+		foreach ($exportTypes as $exportType) {
+			$exportTypeClass = get_class($exportType);
+			if ($exportTypeClass == $defaultExportType) {
+				$found = true;
+				break;
+			}
+		}
+		if (!$found) {
+			$defaultExportType = get_class($exportTypes[0]);
+		}
+		return $defaultExportType;
+	}
 
     /**
      * Returns the subset of Country plugins selected by this user.
@@ -577,13 +608,20 @@ class Account {
 		// TODO - this is weird!
 		$autoEmail   = isset($accountInfo["accountType"]) ? $accountInfo["accountType"] : false;
 
+
 		$L = Core::$language->getCurrentLanguageStrings();
 		$now = Utils::getCurrentDatetime();
 		$prefix = Core::getDbTablePrefix();
+
+		$selectedDataTypes = Settings::getSetting("installedDataTypes");
+		$selectedExportTypes = Settings::getSetting("installedExportTypes");
+		$selectedCountries = Settings::getSetting("installedCountries");
+
 		$result = Core::$db->query("
 			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, last_logged_in, account_type, 
-				first_name, last_name, email, password)
-			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password')
+				first_name, last_name, email, password, selected_data_types, selected_export_types, selected_countries)
+			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password',
+				'$selectedDataTypes', '$$selectedExportTypes', '$selectedCountries')
 		");
 
 		$emailSent = false; // not used yet, but we should notify the user via the interface

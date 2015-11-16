@@ -720,6 +720,8 @@ a.gdDisabledLink {
     border: 1px solid #5b992b;
     border-bottom: 1px solid #538c27;
     box-shadow: inset 0 0 8px 4px #548c29, 0 1px 0 0 #eeeeee; }
+  .gdPrimaryButton.blue {
+    background-color: #0099cc; }
 
 .gdSecondaryButton {
   display: block;
@@ -798,6 +800,9 @@ a.gdDisabledLink {
     background-image: linear-gradient(top, #7fbf4d, #63a62f);
     border: 1px solid #6ca341;
     color: white; }
+
+.buttons-row button {
+  display: inline-block; }
 
 /* misc stuff */
 div.gdClear {
@@ -975,19 +980,18 @@ input.medium {
     border-radius: 6px;
     font-size: 7pt;
     line-height: 16px;
-    border-radius: 6px;
     text-align: center; }
   .gdMessage ul {
-    margin: 0px;
-    padding: 0px 20px; }
+    margin: 0;
+    padding: 0 20px; }
 
 .gdNotify {
   background-color: #F2F8FF;
   border: 1px solid #0058DB; }
-  .gdNotify p {
+  .gdNotify p, .gdNotify div {
     padding: 8px;
     color: #0058DB;
-    margin: 0px; }
+    margin: 0; }
   .gdNotify a.gdMessageClose:hover {
     background-color: #3b82cb;
     color: white; }
@@ -998,11 +1002,13 @@ input.medium {
   .gdErrors a.gdMessageClose:hover {
     background-color: #AA0000;
     color: white; }
-  .gdErrors div {
+  .gdErrors p, .gdErrors div {
     padding: 8px;
-    color: #AA0000 ul;
-      color-margin: 0px;
-      color-padding-left: 16px; }
+    margin: 0;
+    color: #AA0000; }
+    .gdErrors p ul, .gdErrors div ul {
+      margin: 0;
+      padding-left: 16px; }
 
 .gdProblemField {
   background-color: #990000;
@@ -1072,6 +1078,9 @@ body.gdErrorPage #gdSeriousError {
   padding-bottom: 8px;
   margin-bottom: 8px;
   float: none; }
+.gdInstallPage h4 {
+  margin: 0 0 4px;
+  font-size: 12px; }
 .gdInstallPage #dbTablePrefix {
   width: 60px; }
 .gdInstallPage input.pwdField {
@@ -1092,10 +1101,10 @@ body.gdErrorPage #gdSeriousError {
   width: 200px;
   padding-top: 6px; }
   .gdInstallPage #gdInstallNav ol {
-    margin: 0px;
-    padding: 0px 0px 0px 20px; }
+    margin: 0;
+    padding: 0 0 0 20px; }
   .gdInstallPage #gdInstallNav ol li {
-    padding-left: 0px;
+    padding-left: 0;
     color: #cccccc; }
   .gdInstallPage #gdInstallNav ol li.gdSelected {
     font-weight: bold;
@@ -1191,7 +1200,7 @@ body.gdErrorPage #gdSeriousError {
     padding: 0 0 0 6px;
     overflow: hidden; }
     #gdMainDialogContent #gdMainDialogTab3Content h3 {
-      padding-top: 10px; }
+      padding: 20px 0 5px; }
 
 #gdLoginDialogContent {
   clear: both; }
@@ -1391,6 +1400,8 @@ body .gdMainDialog .ui-dialog-title span {
     margin: 5px 10px 4px; }
   #gdPlugins > div {
     margin: 0 5px 0 0;
+    -webkit-flex: 1;
+    -ms-flex: 1;
     flex: 1; }
     #gdPlugins > div:last-child {
       margin-right: 0; }
@@ -1412,6 +1423,8 @@ body .gdMainDialog .ui-dialog-title span {
           flex: 0 0 20px;
           margin: 7px 6px 7px 8px; }
         #gdPlugins > div ul li label {
+          -webkit-flex: 1;
+          -ms-flex: 1;
           flex: 1;
           margin: 3px; }
         #gdPlugins > div ul li span.gdTooltip {
@@ -1436,6 +1449,8 @@ body .gdMainDialog .ui-dialog-title span {
       flex: 0 0 20px;
       margin: 7px 6px 7px 8px; }
     #gdPlugins .gdPluginSectionHeader label {
+      -webkit-flex: 1;
+      -ms-flex: 1;
       flex: 1;
       margin: 3px;
       font-weight: bold; }
@@ -1448,6 +1463,11 @@ body .gdMainDialog .ui-dialog-title span {
 body .tooltip-right:after {
   font-size: 11px;
   line-height: 16px; }
+
+#gdResetPluginsBtn {
+  padding: 5px 15px;
+  float: right;
+  margin-top: 0; }
 
 /* CSS from http://cbracco.me/a-simple-css-tooltip/ */
 /* Base styles for the element that has a tooltip */

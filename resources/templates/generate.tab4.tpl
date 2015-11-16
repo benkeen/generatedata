@@ -22,7 +22,7 @@
 <h3>{$L.a_few_links}</h3>
 <ul>
 	<li><a href="https://github.com/benkeen/generatedata">{$L.fork_on_github}</a></li>
-	<li><a href="docs/">{$L.read_developer_doc}</a></li>
+	<li><a href="http://benkeen.github.io/generatedata/developer.html">{$L.read_developer_doc}</a></li>
 	<li><a href="http://www.generatedata.com" target="_blank">{$L.goto_website}</a></li>
 	<li><a href="http://www.benjaminkeen.com/category/projects/data-generator/" target="_blank">{$L.latest_project_news}</a></li>
 </ul>

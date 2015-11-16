@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Liste",
-    "DESC" => "Generates one or more random values from an arbitrary list of items."
+    "DESC" => "Génère une ou plusieurs valeurs aléatoires à partir d'une liste d'objets arbitraire ."
 );
 
 $L["at_most"] = "Au maximum";

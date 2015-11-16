@@ -31,6 +31,8 @@
 
   &>div {
     margin: 0 5px 0 0;
+    -webkit-flex: 1;
+    -ms-flex: 1;
     flex: 1;
 
     &:last-child {
@@ -59,6 +61,8 @@
           margin: 7px 6px 7px 8px;
         }
         label {
+          -webkit-flex: 1;
+          -ms-flex: 1;
           flex: 1;
           margin: 3px;
         }
@@ -94,6 +98,8 @@
       margin: 7px 6px 7px 8px;
     }
     label {
+      -webkit-flex: 1;
+      -ms-flex: 1;
       flex: 1;
       margin: 3px;
       font-weight: bold;
@@ -116,4 +122,10 @@
 body .tooltip-right:after {
   font-size: 11px;
   line-height: 16px;
+}
+
+#gdResetPluginsBtn {
+  padding: 5px 15px;
+  float: right;
+  margin-top: 0;
 }

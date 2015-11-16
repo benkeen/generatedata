@@ -205,8 +205,10 @@ define([
 
 	var _updateDialogDimensions = function() {
 		var dimensions = _getDialogDimensions();
-		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
-		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
+		if ($("#etXMLCustomFormatDialog").hasClass("ui-dialog-content")) {
+			$("#etXMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
+			$("#etXMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
+		}
 	};
 
 	var _resetCustomHTML = function() {

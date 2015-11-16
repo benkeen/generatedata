@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Telefoon / Fax",
-    "DESC" => "Generates a random phone/fax number in a variety of formats for different countries/regions."
+    "DESC" => "Genereert een willekeurig telefoonnummer / faxnummer in een verscheidenheid van formaten voor verschillende landen / regio's."
 );
 
 $L["australia"] = "Australië";

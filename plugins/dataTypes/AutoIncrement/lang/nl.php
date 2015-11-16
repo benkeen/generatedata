@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Auto-increment",
-    "DESC" => "Provides many variations on an standard auto-increment field: custom start value, customizable step sizes, arbitrary string inclusion, increment or decrement and more. "
+    "DESC" => "Biedt een groot aantal variaties op een standaard auto- increment veld : aangepaste beginnen waarde , aanpasbare stap maten , willekeurige reeks opnemen , verhogen of verlagen en meer."
 );
 
 $L["help_intro"] = "Genereert een kolom die een uniek nummer op elke rij bevat, verhogen met welke waarde die u invoert. Deze optie kan nuttig zijn voor het inbrengen van de gegevens in een database veld met een auto-increment primaire sleutel.";

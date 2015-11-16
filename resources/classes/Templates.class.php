@@ -46,7 +46,6 @@ class Templates {
 
 		Core::$smarty->assign("theme", $theme);
 		Core::$smarty->assign("inDemoMode", Core::checkDemoMode());
-		Core::$smarty->assign("allowThemes", Core::$allowThemes);
 
 		// now add the custom variables for this template, as defined in $page_vars
 		foreach ($pageVars as $key=>$value) {

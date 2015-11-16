@@ -125,11 +125,12 @@ define([
       _addRows($("#gdNumRowsToAdd").val());
     });
     $(".gdDeleteRowsBtn").bind("click", _deleteRows);
-    $("#gdResetPluginsBtn").bind("click", _resetPluginsDialog);
     $("#gdTextSize").on("click", "li", _changeTextSize);
     $("#gdGenerationPanelCancel").on("click", _cancelGeneration);
     $("#gdDataSetPublic").on("click", _toggleDataSetVisibilityStatus);
-    $("#gdSettingsForm").on("submit", _submitSettingsForm);
+    $("#gdSettingsForm").on("submit", function (e) { e.preventDefault(); });
+    $("#updateSettingsBtn").on("click", _submitSettingsForm);
+    $("#gdResetPluginsBtn").on("click", _onClickResetPlugins);
     $("#gdNumRowsToGenerate").on("click", _onClickNumRowsField);
     $("input[name=gdExportTarget]").on("change", _onChangeExportTarget);
 
@@ -1080,43 +1081,57 @@ define([
     }
   };
 
-  var _resetPluginsDialog = function () {
-    $("#gdPluginInstallation").dialog({
-      modal: true,
-      resizable: true,
-      title: "Reset Plugins",
-      width: 800,
-      height: 400,
-      open: function () {
-        utils.insertModalSpinner({modalID: "gdPluginInstallation"});
-        utils.playSpinner("gdPluginInstallation");
-        pluginManager.installPlugins({
-          errorHandler: null,
-          onCompleteHandler: function () {
-            utils.pauseSpinner("gdPluginInstallation");
-            $("#gdPluginInstallation").dialog("option", "buttons", [
-              {
-                text: L.refresh_page,
-                click: function () {
-                  window.location.reload(true);
-                }
-              }
-            ]);
+  var _onClickResetPlugins = function (e) {
+    var useMinified = $(e.target).data("useMinified");
+    if (useMinified) {
+      $("#gdResetPluginsDialog").dialog({
+        modal: true,
+        resizable: true,
+        title: "Reset Plugins",
+        width: 480,
+        height: 200,
+        buttons: [
+          {
+            text: L.close,
+            click: function () {
+              $(this).dialog("close");
+            }
+          },
+          {
+            text: L.reset_plugins,
+            click: function () {
+              $(this).dialog("close");
+              _resetPlugins();
+            }
           }
-        });
-      },
-      buttons: [
-        {
-          text: L.close,
-          click: function () {
-            $(this).dialog("close");
-          }
-        }
-      ]
-    });
-    return false;
+        ]
+      });
+      return;
+    }
+
+    _resetPlugins();
   };
 
+  var _resetPlugins = function () {
+
+
+    pluginManager.installPlugins({
+      context: "update",
+      errorHandler: null,
+      prefill: {
+        dataTypes: pluginManager.getSelectedDataTypes(),
+        exportTypes: pluginManager.getSelectedExportTypes(),
+        countries: pluginManager.getSelectedCountries()
+      },
+      onCompleteHandler: function () {
+        window.scrollTo(0, 0);
+
+        // boy this is awful. Wrap it in a helper!
+        $("#settingsTabMessage").removeClass("gdErrors").addClass("gdNotify").css({ display: 'block' })
+          .find("p").html("The plugin list has been updated. Click the Save button below to save any changes.");
+      }
+    });
+  };
 
   var _changeTextSize = function (e) {
     $("#gdTextSize li").removeClass("gdSelected");
@@ -1957,11 +1972,61 @@ define([
     $("#gdLoginDialogContent .gdProblemField").removeClass("gdProblemField");
   };
 
-  var _submitSettingsForm = function (e) {
+  var _submitSettingsForm = function () {
     if (C.DEMO_MODE) {
       _showDemoOnlyDialog();
-      e.preventDefault();
+      return;
     }
+
+    utils.startProcessing();
+    pluginManager.savePlugins({
+      success: _saveSettings,
+      error: function (resp) {
+        window.scrollTo(0, 0);
+        $("#settingsTabMessage").addClass("gdErrors").removeClass("gdNotify").css({ display: 'block' })
+          .find("p").html("There was an error saving the plugins. Please report this on github.");
+        utils.stopProcessing();
+      },
+
+      onValidationError: function (error) {
+        window.scrollTo(0, 0);
+        $("#settingsTabMessage").addClass("gdErrors").removeClass("gdNotify").css({ display: 'block' })
+          .find("p").html(error);
+        utils.stopProcessing();
+      }
+    });
+  };
+
+  var _saveSettings = function () {
+    var data = {
+      action: "saveSettings",
+
+      // dev options. These are always included in the request, regardless of account type
+      consoleWarnings: $("#gdSettingsConsoleWarnings").prop("checked"),
+      consoleEventsPublish: $("#gdSettingsConsoleEventsPublish").prop("checked"),
+      consoleEventsSubscribe: $("#gdSettingsConsoleEventsSubscribe").prop("checked"),
+      consoleCoreEvents: $("#gdSettingsConsoleCoreEvents").prop("checked"),
+      consoleEventsDataTypePlugins: $("#consoleEventsDataTypePlugins").val(),
+      consoleEventsExportTypePlugins: $("#consoleEventsExportTypePlugins").val()
+    };
+
+    $.ajax({
+      url: "ajax.php",
+      type: "POST",
+      dataType: "json",
+      data: data,
+      success: function (response) {
+        if (response.success) {
+          window.scrollTo(0, 0);
+          var refreshButton = '<input type="button" value="Refresh Page" onClick="window.location.reload(true)" />';
+          $("#settingsTabMessage").removeClass("gdErrors").addClass("gdNotify").css({ display: 'block' }).find("p").html(response.content + ' ' + refreshButton);
+          utils.stopProcessing();
+        }
+      },
+      error: function () {
+        utils.stopProcessing();
+      }
+    });
   };
 
 
@@ -1996,15 +2061,15 @@ define([
       },
       success: function (response) {
         if (response.success) {
-          _getAccount({
-            onComplete: _onLoginComplete
-          });
+          // we explicitly reload the page because the user may have custom plugins selected (added in 3.2.2)
+          window.location = "./";
         } else {
           utils.clearValidationErrors($("#" + _loginModalID));
           utils.addValidationErrors({els: [], error: response.content});
           utils.displayValidationErrors("#gdLoginError");
           utils.pauseSpinner(_loginModalID);
         }
+
       },
       error: function () {
         utils.pauseSpinner(_loginModalID);

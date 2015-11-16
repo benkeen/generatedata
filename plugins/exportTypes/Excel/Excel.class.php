@@ -9,6 +9,7 @@ class Excel extends ExportTypePlugin {
 	protected $exportTypeName = "Excel";
 	protected $jsModules = array("Excel.js");
 	protected $compatibleExportTargets = array("promptDownload");
+	protected $addHeadersInNewWindow = false;
 	public $L = array();
 	private $chars;
 	private $charArray;

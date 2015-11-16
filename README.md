@@ -8,8 +8,8 @@ so *Data Types* (types of data it generates), plus 8 *Export Types* (formats for
 in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
 for that.
 
-Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the code, I'd suggest getting
-the most recent tag: https://github.com/benkeen/generatedata/releases
+Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the script, get the most recent 
+tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
 - PHP 5.3 or later
@@ -56,8 +56,9 @@ contributors agree that all code is released under this license.
 
 ## Contributors
 
-In addition to the many folks who submit bug reports, a big thanks to the following for their help extending the script:
+In addition to the many fine folk who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [Fabrice Marquès](https://github.com/fmarques56) - French business numbers (SIRET/SIREN) (3.2.3)
 - [Daragh Courtney](https://github.com/daraghc) - [Data Generator Vagrant repo](https://github.com/benkeen/generatedata-vagrant)
 - [Zhao Yang](https://github.com/jptiancai) - Chinese language file (3.1.4)
 - [Anton Nizhegorodov](https://github.com/an1zhegorodov) - Batch size SQL export option (3.1.3)
@@ -75,9 +76,13 @@ In addition to the many folks who submit bug reports, a big thanks to the follow
 
 ## Changelog
 
-3.2.2 - Sept, 2015
-- **UNDER DEVELOPMENT**. Focusing on updating the installation process, reset plugins. Allowing custom selection of 
-plugins for each user. 
+3.2.3 - Nov 15, 2015
+- SIRET/SIREN Data Type added (French business numbers) added. Merci, [Fabrice Marquès](https://github.com/fmarques56)! 
+- Bug fixes: https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+
+
+3.2.2 - Nov 12, 2015
+- The plugins (Data Types, Export Types, Countries) seen in the interface may not be configured on a per-user level.
+- Installation script updated to allow customization of plugin selection.
 
 3.2.1 - May 25, 2015
 - Configuration history option added to store the last 200 (this is configurable) versions of a data set. In case of data

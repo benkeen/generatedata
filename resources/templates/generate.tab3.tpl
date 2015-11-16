@@ -1,39 +1,17 @@
-<div id="settingsTabMessage" class="gdMessage {if $success}gdNotify{elseif !$success}gdError{/if} gdMarginTop" {if $message}style="display:block"{/if}>
-	<a href="#" class="gdMessageClose">X</a>
-	<p>{$message}</p>
-</div>
+<form action="#" method="post" id="gdSettingsForm">
 
-<form action="./#t3" method="post" id="gdSettingsForm">
-	<input type="hidden" name="updateSettings" value="1" />
-
-	{if $settings.userAccountSetup != "anonymousAdmin"}
-		<h3>{$L.account_settings}</h3>
-
-		<div>
-			<div>
-				<input type="radio" name="userAccountSetup" id="acs2" value="single" {if $settings.userAccountSetup == "single"}checked="checked"{/if} />
-				<label for="acs2">{$L.single_user_account_requires_login}</label>
-			</div>
-			<div style="margin-bottom: 20px">
-				<input type="radio" name="userAccountSetup" id="acs3" value="multiple" {if $settings.userAccountSetup == "multiple"}checked="checked"{/if} />
-				<label for="acs3">{$L.multiple_accounts}</label>
-			</div>
-		</div>
-	{/if}
+    <button class="gdSecondaryButton" id="gdResetPluginsBtn" data-use-minified="{if $useMinifiedResources}true{else}false{/if}">{$L.reset_plugins}</button>
 
 	<h3>{$L.plugins}</h3>
+
+    <div id="settingsTabMessage" class="gdMessage gdMarginTop">
+        <a href="#" class="gdMessageClose">X</a>
+        <p></p>
+    </div>
 
     <p>
 		{$L.plugins_intro}
 	</p>
-
-    {if $useMinifiedResources}
-        <div class="gdNotify gdMarginTop" style="display:block; margin-bottom: 15px">
-            <p>
-                {$L.reset_plugins_with_bundling}
-            </p>
-        </div>
-    {/if}
 
     <div id="gdPlugins">
         <div class="gdPluginSection">
@@ -47,8 +25,8 @@
                 {foreach from=$groupedDataTypes key=k item=i name=group}
                     <ul>
                         <li class="gdGroupName">
-                            <input type="checkbox" class="toggleDataTypeSection" id="dtGroup-{$smarty.foreach.group.index}" />
-                            <label for="dtGroup-{$smarty.foreach.group.index}">{$L[$k]}</label></li>
+                            <input type="checkbox" class="toggleDataTypeSection toggleGroup" id="dtGroup-{$smarty.foreach.group.index}" />
+                            <label for="dtGroup-{$smarty.foreach.group.index}">{$L[$k]}</label>
                         </li>
                         {foreach from=$i key=k2 item=currDataType name=data}
                             {assign var="checked" value=""}
@@ -70,11 +48,13 @@
                         {/foreach}
                     </ul>
                 {/foreach}
+                <div id="existingSelectedDataTypes">{$selectedDataTypeListStr}</div>
+
             </div>
         </div>
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">
-                <input type="checkbox" id="gdExportTypePluginList" />
+                <input type="checkbox" id="gdExportTypePluginList" class="toggleGroup" />
                 <label for="gdExportTypePluginList">{$L.export_types}</label>
                 <div id="gdExportTypePluginListIndicator" class="gdPluginIndicator">
                     <span class="gdPluginCount">{$allExportTypes|count}</span>
@@ -97,7 +77,7 @@
         </div>
         <div class="gdPluginSection">
             <div class="gdPluginSectionHeader">
-                <input type="checkbox" id="gdCountryPluginList" />
+                <input type="checkbox" id="gdCountryPluginList" class="toggleGroup" />
                 <label for="gdCountryPluginList">{$L.countries}</label>
                 <div id="gdCountryPluginListIndicator" class="gdPluginIndicator">
                     <span class="gdPluginCount">{$allCountryPlugins|count}</span>
@@ -150,6 +130,7 @@
 				<label for="gdSettingsConsoleCoreEvents">{$L.list_core_events}</label>
 			</div>
 		</div>
+
 		<div class="col">
 			<label for="consoleEventsModuleList">{$L.limit_pub_sub_console_messages}</label>
 			{assign var=label1 value="data-placeholder=\"`$L.all_data_type_plugins`\""}
@@ -166,8 +147,7 @@
 
 	<div class="gdClear"></div>
 
-	<p>
-		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.update_settings}</button>
-        <button class="gdPrimaryButton" id="gdResetPluginsBtn">{$L.reset_plugins}</button>
+    <p class="buttons-row">
+		<button class="gdPrimaryButton" id="updateSettingsBtn">{$L.save}</button>
 	</p>
 </form>

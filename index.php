@@ -13,11 +13,6 @@ if (!Core::checkIsLoggedIn() && !Core::checkAllowMultiUserAnonymousUse()) {
 
 // start piecing together all the various info we need to pass to the page
 $pageParams = array();
-if (isset($_POST["updateSettings"])) {
-	list($success, $message) = Settings::updateSettings($_POST);
-	$pageParams["success"] = $success;
-	$pageParams["message"] = $message;
-}
 
 $settings = Settings::getSettings();
 $exportTypes = Core::$exportTypePlugins;
@@ -48,7 +43,7 @@ $pageParams["exportTypeAdditionalSettings"] = $exportTypeAdditionalSettings;
 $pageParams["settings"] = $settings;
 $pageParams["cssIncludes"] = $cssIncludes;
 $pageParams["codeMirrorIncludes"] = ExportTypePluginHelper::getExportTypeCodeMirrorModes($exportTypes);
-$pageParams["defaultExportType"] = Core::getDefaultExportType();
+$pageParams["defaultExportType"] = Core::$user->getDefaultExportType();
 $pageParams["defaultNumRows"] = Core::getDefaultNumRows();
 
 if (Core::checkIsLoggedIn()) {

@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Currency",
-    "DESC" => "Generates a random currency value in whatever format and range you need."
+    "DESC" => "Genereert een willekeurige munt waarde in welk formaat en het bereik je nodig hebt."
 );
 
 $L["help_intro"] = "Dit gegevenstype genereert willekeurige valuta waarden, in welke vorm en bereik je wilt. Het voorbeeld dropdown bevat verschillende opties, zodat u een idee van hoe het werkt kan krijgen, maar hier is wat elk van de opties betekent.";

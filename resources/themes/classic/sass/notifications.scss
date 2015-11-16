@@ -13,22 +13,21 @@
 			border-radius: 6px;
 			font-size: 7pt;
 			line-height: 16px;
-			border-radius: 6px;
 			text-align: center;
 		}
 	}
 	ul {
-		margin: 0px;
-		padding: 0px 20px;
+		margin: 0;
+		padding: 0 20px;
 	}
 }
 .gdNotify {
 	background-color: #F2F8FF;
 	border: 1px solid #0058DB;
-	p {
+	p, div {
 		padding: 8px;
 		color: #0058DB;
-		margin: 0px;
+		margin: 0;
 	}
 	a.gdMessageClose:hover {
 		background-color: #3b82cb;
@@ -42,11 +41,12 @@
 		background-color: #AA0000;
 		color: white;
 	}
-	div {
+	p, div {
 		padding: 8px;
-		color: #AA0000
+        margin: 0;
+		color: #AA0000;
 		ul {
-			margin: 0px;
+			margin: 0;
 			padding-left: 16px;
 		}
 	}

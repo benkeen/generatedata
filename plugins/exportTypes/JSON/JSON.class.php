@@ -9,7 +9,7 @@ class JSON extends ExportTypePlugin {
 	protected $exportTypeName = "JSON";
 	protected $jsModules = array("JSON.js");
 	protected $codeMirrorModes = array("javascript");
-	protected $contentTypeHeader = "text/json";
+	protected $contentTypeHeader = "text/json; charset=utf-8";
 	public $L = array();
 
 	private $numericFields;
@@ -116,7 +116,10 @@ class JSON extends ExportTypePlugin {
 			} else {
 				$rowVals = implode(",\n\t\t\t", $rowValsArr);
 				$content .= "\t\t[\n\t\t\t$rowVals\n\t\t]";
+
 				if ($i < $numRows - 1) {
+					$content .= ",\n";
+				} else if (!$generator->isLastBatch()) {
 					$content .= ",\n";
 				}
 			}

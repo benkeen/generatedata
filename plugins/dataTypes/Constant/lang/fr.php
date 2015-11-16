@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Constante",
-    "DESC" => "Generates a column of data that has repeated values for multiple rows. You can make all rows have the same value, or assign the same value to groups of them."
+    "DESC" => "Génère une colonne de données qui a répétées valeurs pour plusieurs lignes . Vous pouvez faire toutes les lignes ont la même valeur , ou affecter la même valeur à des groupes d'entre eux."
 );
 
 $L["help_1"] = "Ce type de données permet de générer une colonne de données qui répète des valeurs de ligne en ligne. Voici une série d'exemples pour vous donner une idée de son fonctionnement.";

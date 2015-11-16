@@ -43,5 +43,8 @@ if ($gen->getExportTarget() == "promptDownload") {
 		echo $response["content"];
 	}
 } else {
+	if ($response["contentTypeHeader"] && $response["addHeadersInNewWindow"]) {
+		header("Content-Type: {$response["contentTypeHeader"]}");
+	}
 	echo $response["content"];
 }

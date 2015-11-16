@@ -172,7 +172,7 @@ $L["about_para2"] = "La página <b>Generar</b> contiene el programa completo: s�
 $L["extend_id"] = "Ampliarlo";
 $L["about_para3"] = "El programa viene pre-configurado con la funcionalidad general que necesitas, pero no está completo. Puede que necesites generar ecuaciones matemáticas aleatorias, poner tweets aleatorios o visualizar imágenes aleatorias desde Flickr con la palabra \"Petirrojo\" en el título. ¿Quién sabe?, cada persona es un caso diferente.";
 $L["about_para4"] = "Con esto en mente, la nueva versión del programa (3.0.0+) fue diseñada para ser totalmente extensible: los desarrolladores pueden escribir sus propios tipos de dato para generar nuevos tipos de datos aleatorios e incluso personalizar los tipos de exportación, es decir, el formato en que se salen los datos. Para gente interesada en datos de localización geográfica más precisos, también pueden añadir nuevos complementos de país que provean nombres de región (estados, provincias, territorios, etc.), nombres de ciudades y formatos de código postal para el país de su elección.";
-$L["about_para5"] = "Para más información sobre como ampliarlo, visita la <a href=\"docs/\">documentación de desarrollo</a>.";
+$L["about_para5"] = "Para más información sobre como ampliarlo, visita la <a href=\"http://benkeen.github.io/generatedata/developer.html\">documentación de desarrollo</a>.";
 $L["a_few_links"] = "Unos pocos enlaces";
 $L["fork_on_github"] = "Ver el código en Github";
 $L["read_developer_doc"] = "Leer la documentación de desarrollo";

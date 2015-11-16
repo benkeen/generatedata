@@ -52,6 +52,7 @@ class DataGenerator {
 		$response = $this->exportType->generate($this);
 
 		$response["contentTypeHeader"] = $this->exportType->getContentTypeHeader();
+		$response["addHeadersInNewWindow"] = $this->exportType->addHeadersInNewWindow();
 		$response["isComplete"] = $this->isLastBatch;
 
 		if ($this->exportTarget == "promptDownload") {

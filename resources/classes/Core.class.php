@@ -35,8 +35,8 @@ class Core {
 	private static $apiEnabled = false;
 
 	// non-overridable settings
-	private static $version = "3.2.2";
-	private static $releaseDate = "2015-09-05";
+	private static $version = "3.2.3";
+	private static $releaseDate = "2015-11-15";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
@@ -85,7 +85,6 @@ class Core {
 	 * @var CountryPlugin
 	 */
 	public static $countryPlugins;
-	public static $allowThemes = false;
 
 
 	/**
@@ -208,18 +207,17 @@ class Core {
 			if (isset($pluginSettings)) {
 				self::$pluginSettings = $pluginSettings;
 			}
+			if (isset($timeout)) {
+				self::$timeout = $timeout;
+			}
 			if (isset($apiEnabled)) {
 				self::$apiEnabled = $apiEnabled;
-			}
-
-			// TODO temporary, during alpha dev
-			if (isset($allowThemes)) {
-				self::$allowThemes = $allowThemes;
 			}
 		}
 	}
 
 	/**
+	 * Returns the out-the-box default Export Type.
 	 * @access public
 	 */
 	public static function getDefaultExportType() {
@@ -527,12 +525,17 @@ class Core {
 	public static function initUser($bypass = false) {
 		if ($bypass || self::checkIsInstalled()) {
 			$setup = Settings::getSetting("userAccountSetup");
+
 			if ($setup == "anonymousAdmin") {
 				self::$user = new Account($setup);
 				self::$isLoggedIn = true;
 			} else {
+				$allowMultiUserAnonUse = Core::checkAllowMultiUserAnonymousUse();
 				if (isset($_SESSION["account_id"])) {
 					self::$user = new Account($_SESSION["account_id"]);
+					self::$isLoggedIn = true;
+				} else if ($setup == "multiple" && $allowMultiUserAnonUse == "yes") {
+					self::$user = new Account("anonymousUser");
 					self::$isLoggedIn = true;
 				}
 			}

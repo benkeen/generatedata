@@ -3,5 +3,5 @@
 $L = array();
 $L["DATA_TYPE"] = array(
     "NAME" => "City",
-    "DESC" => "Displays a random city, or if data is available, displays a city for the appropriate country/region."
+    "DESC" => "Zeigt ein zufälliges Stadt , oder wenn Daten verfügbar sind , zeigt eine Stadt für das entsprechende Land / Region."
 );

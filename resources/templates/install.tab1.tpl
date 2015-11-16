@@ -121,7 +121,7 @@
 
         <div class="gdFields">
             <div class="gdCol" id="gdInstallAccountDetails" style="display:none">
-                <h3 id="gdInstallAccountDetailsMessage"></h3>
+                <h4 id="gdInstallAccountDetailsMessage"></h4>
 
                 <div class="gdError" id="firstName_error"></div>
                 <div class="gdError" id="lastName_error"></div>
@@ -154,7 +154,7 @@
                 <span class="rightBox">
                     <input type="checkbox" id="allowAnonymousAccess" /><label for="allowAnonymousAccess">{$L.feature_enabled}</label>
                 </span>
-                <h3>{$L.anonymous_access}</h3>
+                <h4>{$L.anonymous_access}</h4>
                 <div>{$L.anonymous_user_desc}</div>
                 <div><i>{$L.anonymous_user_message}</i></div>
                 <textarea id="anonymousUserPermissionDeniedMsg" name="anonymousUserPermissionDeniedMsg" class="gdDisabled"

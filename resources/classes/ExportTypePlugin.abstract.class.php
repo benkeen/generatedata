@@ -58,6 +58,14 @@ abstract class ExportTypePlugin {
 	protected $contentTypeHeader;
 
 	/**
+	 * Added in 3.2.4. For the new window/tab option, we now output header so the browser can display the generated
+	 * data as best it can. But for Export Types like Excel, CSV and SQL, this causes it to prompt a download. This
+	 * setting governs whether the headers are output for each Export Type.
+	 * @var bool
+	 */
+	protected $addHeadersInNewWindow = true;
+
+	/**
 	 * Export Types *should* be able to handle all three Export Targets available in the page (in-page, new window/tab, 
 	 * prompt for download), but if they can't, they should specify this var. The system will automatically grey 
 	 * out those options that aren't selectable as soon as the user selects the Export Type.
@@ -216,6 +224,13 @@ abstract class ExportTypePlugin {
 	 */
 	public final function getContentTypeHeader() {
 		return $this->contentTypeHeader;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public final function addHeadersInNewWindow() {
+		return $this->addHeadersInNewWindow;
 	}
 
 	/**

@@ -171,7 +171,7 @@ define([
     var dialogBottomRow = $('#' + settings.modalID).closest(".ui-dialog").find(".ui-dialog-buttonpane");
     dialogBottomRow.prepend('<span class="modalSpinner"></span>');
     var spinnerSpan = dialogBottomRow.children("span")[0];
-    var spinnerParams = $.extend(C.SPINNERS.LARGE, params);
+    var spinnerParams = $.extend(C.SPINNERS.LARGE, settings);
     _spinners[settings.modalID] = Spinners.create(spinnerSpan, spinnerParams).pause();
   };
 

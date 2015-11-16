@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Alfanumeriek",
-    "DESC" => "Generates a custom random alphanumeric string or any length or format, defined by placeholder chars."
+    "DESC" => "Genereert een aangepaste willekeurige alfanumerieke tekenreeks of een lengte of formaat , gedefinieerd door placeholder chars ."
 );
 
 $L["example_CanPostalCode"] = "(Can. Postcode)";

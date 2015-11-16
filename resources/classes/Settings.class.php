@@ -76,18 +76,18 @@ class Settings {
 		$isAnonymous = isset($accountInfo["isAnonymous"]) ? $accountInfo["isAnonymous"] : "";
 
 		$L = Core::$language->getCurrentLanguageStrings();
-		if (!isset($post["consoleEventsDataTypePlugins"]) || empty($post["consoleEventsDataTypePlugins"])) {
+		if (empty($post["consoleEventsDataTypePlugins"])) {
 			$post["consoleEventsDataTypePlugins"] = array();
 		}
-		if (!isset($post["consoleEventsExportTypePlugins"]) || empty($post["consoleEventsExportTypePlugins"])) {
+		if (empty($post["consoleEventsExportTypePlugins"])) {
 			$post["consoleEventsExportTypePlugins"] = array();
 		}
 
 		$settings = array(
-			"consoleWarnings"         => isset($post["consoleWarnings"]) ? "enabled" : "",
-			"consoleEventsPublish"    => isset($post["consoleEventsPublish"]) ? "enabled" : "",
-			"consoleEventsSubscribe"  => isset($post["consoleEventsSubscribe"]) ? "enabled" : "",
-			"consoleCoreEvents"       => isset($post["consoleCoreEvents"]) ? "enabled" : "",
+			"consoleWarnings"         => $post["consoleWarnings"] == "true" ? "enabled" : "",
+			"consoleEventsPublish"    => $post["consoleEventsPublish"] == "true" ? "enabled" : "",
+			"consoleEventsSubscribe"  => $post["consoleEventsSubscribe"] == "true" ? "enabled" : "",
+			"consoleCoreEvents"       => $post["consoleCoreEvents"] == "true" ? "enabled" : "",
 			"consoleEventsDataTypePlugins"   => implode(",", $post["consoleEventsDataTypePlugins"]),
 			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"]),
 		    "theme" => "classic"
