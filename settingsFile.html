@@ -270,6 +270,25 @@ $pluginSettings = array(
                                 setting lets you control the size of the history. Defaults to <code>200</code>.
                             </td>
                         </tr>
+						<tr>
+							<td>$apiEnabled</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>boolean</td>
+							<td>
+								If you want to enable the REST API, this needs to be set to <code>true</code>. Check
+								out the <a href="api.html">API Documentation</a> for more info.
+							</td>
+						</tr>
+						<tr>
+							<td>$timeout</td>
+							<td><span class="label label-info">optional</span></td>
+							<td>integer</td>
+							<td>
+								This defaults to <b>300</b> (5 minutes). If you have a slow/busy CPU or are generating
+								really large amounts of data (or a combination of the two), the generation requests
+								can sometimes timeout. This setting lets you override the default value.
+							</td>
+						</tr>
 					</tbody>
                 </table>
 			</section>
