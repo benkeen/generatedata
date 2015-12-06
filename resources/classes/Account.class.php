@@ -663,7 +663,7 @@ class Account {
 
 	public function updateAccount($accountID, $info) {
 		$L = Core::$language->getCurrentLanguageStrings();
-                $dbLink = Core::$db->getDBLink();
+		$dbLink = Core::$db->getDBLink();
 		$accountID = mysqli_real_escape_string($dbLink, $accountID);
 		$prefix = Core::getDbTablePrefix();
 

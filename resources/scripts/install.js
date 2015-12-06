@@ -34,7 +34,6 @@ require([
 			$("#allowAnonymousAccess").on("click", _toggleAnonymousAccess);
 			$("#pluginInstallationResults").on("click", ".gdError", _displayPluginInstallationError);
 			$("#gdRefreshPassword").on("click", _regeneratePassword);
-			//$("#gdInstallPluginsBtn").on("click", _submit);
 
 			// figure out what page we're on. In 99% of cases, it'll be page 1 - but in case the user didn't finish
 			// installing the script last time 'round, it will return them to the appropriate step.

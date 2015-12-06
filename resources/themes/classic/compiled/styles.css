@@ -980,6 +980,7 @@ input.medium {
     border-radius: 6px;
     font-size: 7pt;
     line-height: 16px;
+    border-radius: 6px;
     text-align: center; }
   .gdMessage ul {
     margin: 0;
