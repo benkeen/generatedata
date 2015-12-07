@@ -76,6 +76,9 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 
 ## Changelog
 
+3.2.4 - Dec 6, 2015
+- patch release for per-user settings.
+
 3.2.3 - Nov 15, 2015
 - SIRET/SIREN Data Type added (French business numbers) added. Merci, [Fabrice Marquès](https://github.com/fmarques56)! 
 - Bug fixes: https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+
