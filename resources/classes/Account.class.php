@@ -197,7 +197,6 @@ class Account {
 					"message" => $L["email_not_sent"]
 				);
 			}
-
 		} catch (Exception $e) {
 			return array(
 				"success" => false,
@@ -895,4 +894,3 @@ class Account {
     }
 
 }
-
