@@ -197,7 +197,6 @@ class Account {
 					"message" => $L["email_not_sent"]
 				);
 			}
-
 		} catch (Exception $e) {
 			return array(
 				"success" => false,
@@ -209,18 +208,27 @@ class Account {
     public static function updateSelectedPlugins($accountID, $dataTypes, $exportTypes, $countries) {
         $prefix = Core::getDbTablePrefix();
         $dbLink = Core::$db->getDBLink();
+		$L = Core::$language->getCurrentLanguageStrings();
 
         $dataTypes   = mysqli_real_escape_string($dbLink, implode(",", $dataTypes));
         $exportTypes = mysqli_real_escape_string($dbLink, implode(",", $exportTypes));
         $countries   = mysqli_real_escape_string($dbLink, implode(",", $countries));
 
-        return Core::$db->query("
+        $response = Core::$db->query("
 			UPDATE {$prefix}user_accounts
 			SET selected_data_types = '$dataTypes',
 				selected_export_types = '$exportTypes',
 				selected_countries = '$countries'
 			WHERE account_id = $accountID
 		");
+
+		if ($response["success"]) {
+			$response["message"] = $L["notify_settings_updated"];
+		} else {
+			$response["message"] = $response["errorMessage"];
+		}
+
+		return $response;
     }
 
 	public function getAccount() {
@@ -663,7 +671,7 @@ class Account {
 
 	public function updateAccount($accountID, $info) {
 		$L = Core::$language->getCurrentLanguageStrings();
-                $dbLink = Core::$db->getDBLink();
+		$dbLink = Core::$db->getDBLink();
 		$accountID = mysqli_real_escape_string($dbLink, $accountID);
 		$prefix = Core::getDbTablePrefix();
 
@@ -886,4 +894,3 @@ class Account {
     }
 
 }
-

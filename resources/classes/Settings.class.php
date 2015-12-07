@@ -8,7 +8,7 @@ class Settings {
 
 	/**
 	 * Returns all settings in the database.
-	 * @return
+	 * @return array|void
 	 */
 	public static function getSettings() {
 		$prefix = Core::getDbTablePrefix();
@@ -64,16 +64,14 @@ class Settings {
 		return $response;
 	}
 
+
 	/**
-	 * Used to update the settings on the Settings tab.
+	 * Used to update the settings on the Settings tab. Only ever called by administrators or anonymous admins.
 	 * @param array $post
      * @return array
 	 */
-	public static function updateSettings($post) {
-		$accountInfo = Core::$user->getAccount();
+	public static function updateGlobalSettings($post) {
 		$dbLink = Core::$db->getDBLink();
-		$accountType = $accountInfo["accountType"];
-		$isAnonymous = isset($accountInfo["isAnonymous"]) ? $accountInfo["isAnonymous"] : "";
 
 		$L = Core::$language->getCurrentLanguageStrings();
 		if (empty($post["consoleEventsDataTypePlugins"])) {
@@ -92,12 +90,6 @@ class Settings {
 			"consoleEventsExportTypePlugins" => implode(",", $post["consoleEventsExportTypePlugins"]),
 		    "theme" => "classic"
 		);
-
-		if (!$isAnonymous && $accountType == "admin") {
-			if (isset($post["userAccountSetup"])) {
-				$settings["userAccountSetup"] = ($post["userAccountSetup"] == "single") ? "single" : "multiple";
-			}
-		}
 
 		$prefix = Core::getDbTablePrefix();
 		$errors = array();

@@ -35,8 +35,8 @@ class Core {
 	private static $apiEnabled = false;
 
 	// non-overridable settings
-	private static $version = "3.2.3";
-	private static $releaseDate = "2015-11-15";
+	private static $version = "3.2.4";
+	private static $releaseDate = "2015-12-06";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;

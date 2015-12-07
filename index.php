@@ -52,9 +52,13 @@ if (Core::checkIsLoggedIn()) {
     $pageParams["selectedDataTypes"] = Core::$user->getSelectedDataTypes();
     $pageParams["selectedExportTypes"] = Core::$user->getSelectedExportTypes();
     $pageParams["selectedCountries"] = Core::$user->getSelectedCountries();
+	$pageParams["showSettingsTab"] = true;
+	$pageParams["showDeveloperSettings"] = Core::$user->isAdmin() || Core::$user->isAnonymousAdmin();
 } else {
 	$pageParams["isLoggedIn"] = false;
 	$pageParams["accountType"] = "";
+	$pageParams["showDeveloperSettings"] = false;
+	$pageParams["showSettingsTab"] = false;
 }
 
 Templates::displayPage("resources/templates/index.tpl", $pageParams);
