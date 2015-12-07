@@ -66,7 +66,7 @@
 		<ul>
 			<li id="gdMainTab1" class="gdSelected">{$L.generate}</li>
 			<li id="gdMainTab2" {if $settings.userAccountSetup != "multiple" || $accountType != "admin"}style="display:none"{/if}>{$L.accounts}</li>
-			<li id="gdMainTab3" {if $settings.userAccountSetup != "anonymousAdmin" && $accountType != "admin"}style="display:none"{/if}>{$L.settings}</li>
+			<li id="gdMainTab3" {if !$showSettingsTab}style="display:none"{/if}>{$L.settings}</li>
 			<li id="gdMainTab4">{$L.about}</li>
 		</ul>
 	</nav>
