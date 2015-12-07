@@ -184,7 +184,6 @@ $L["no"] = "No";
 $L["not_saved"] = "not saved";
 $L["please_enter_all"] = "Please enter all";
 $L["export_type_validate_error"] = "Ack! There was an error in the Export Type's validate() function. Sorry, we can't proceed - call a developer!";
-$L["refresh_page"] = "Refresh Page";
 $L["close"] = "Close";
 $L["anonymous_admin_account"] = "Anonymous admin account";
 $L["report_bug"] = "Report a bug";

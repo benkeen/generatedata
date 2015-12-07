@@ -95,6 +95,14 @@ define([
     $("#page4 .gdInstallTabMessage").addClass("gdInstallError").show();
   }
 
+
+  /**
+   * Bit kludgy because it does double-duty, but this is primarily to save a user's plugin selection. It's hacked a
+   * bit to be used in the preliminary installation script too, hence the two .context's being passed along.
+   * @param params
+   * @returns {boolean}
+   * @private
+   */
   var _savePlugins = function (params) {
     var opts = $.extend({
       success: null,
@@ -116,7 +124,7 @@ define([
       return false;
     }
 
-    var action = _settings.context === "install" ? "savePluginList" : "resetPluginList";
+    var action = _settings.context === "install" ? "completeInstallation" : "saveUserPlugins";
     $.ajax({
       url: "ajax.php",
       type: "POST",
@@ -127,14 +135,14 @@ define([
         exportTypes: selectedExportTypes,
         countries: selectedCountries
       },
-      success: function() {
+      success: function(resp) {
         if ($.isFunction(opts.success)) {
-          opts.success();
+          opts.success(resp);
         }
       },
-      error: function() {
+      error: function(resp) {
         if ($.isFunction(opts.error)) {
-          opts.error();
+          opts.error(resp);
         }
       }
     });

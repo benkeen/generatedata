@@ -139,13 +139,12 @@ class AjaxRequest {
 				}
 				break;
 
-            // for new installations, we just update the (only) record in the database.
-            case "savePluginList":
+            case "completeInstallation":
                 Core::init("installationDatabaseReady");
                 if (!Core::checkIsInstalled()) {
                     $response = Account::updateSelectedPlugins(1, $this->post["dataTypes"], $this->post["exportTypes"], $this->post["countries"]);
 					$this->response["success"] = $response["success"];
-					$this->response["content"] = $response["errorMessage"];
+					$this->response["content"] = $response["message"];
                     Settings::setSetting("installationComplete", "yes");
 
                     // at this point the user's finished the installation.
@@ -156,15 +155,17 @@ class AjaxRequest {
                 }
                 break;
 
-            // called anytime the plugins were updated
-            case "resetPluginList":
+            case "saveUserPlugins":
                 Core::init();
-                if (Core::checkIsLoggedIn() && Core::$user->isAdmin()) {
-                    $response = Account::updateSelectedPlugins(1, $this->post["dataTypes"], $this->post["exportTypes"], $this->post["countries"]);
+                if (Core::checkIsLoggedIn()) {
+                    $response = Account::updateSelectedPlugins(Core::$user->getAccountID(), $this->post["dataTypes"],
+							$this->post["exportTypes"], $this->post["countries"]);
                     $this->response["success"] = $response["success"];
-                    $this->response["content"] = $response["errorMessage"];
-                    Minification::createAppStartFile();
+					$this->response["content"] = $response["message"];
                 }
+				if (Core::$user->isAdmin()) {
+					Minification::createAppStartFile();
+				}
                 break;
 
 			case "installCountries":
@@ -261,11 +262,13 @@ class AjaxRequest {
 				}
 				break;
 
-            case "saveSettings":
+            case "saveGlobalSettings":
                 Core::init();
-                list($success, $message) = Settings::updateSettings($this->post);
-                $this->response["success"] = $success;
-                $this->response["content"] = $message;
+				if (Core::checkIsLoggedIn() && Core::$user->isAdmin() || Core::$user->isAnonymousAdmin()) {
+					list($success, $message) = Settings::updateGlobalSettings($this->post);
+					$this->response["success"] = $success;
+					$this->response["content"] = $message;
+				}
                 break;
 
 			case "copyDataSet":

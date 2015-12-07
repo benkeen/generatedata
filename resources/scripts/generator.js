@@ -1980,7 +1980,7 @@ define([
 
     utils.startProcessing();
     pluginManager.savePlugins({
-      success: _saveSettings,
+      success: _maybeSaveGlobalSettings,
       error: function (resp) {
         window.scrollTo(0, 0);
         $("#settingsTabMessage").addClass("gdErrors").removeClass("gdNotify").css({ display: 'block' })
@@ -1997,11 +1997,23 @@ define([
     });
   };
 
-  var _saveSettings = function () {
-    var data = {
-      action: "saveSettings",
 
-      // dev options. These are always included in the request, regardless of account type
+  // called after the user-specific settings are updated. If it's an admin, it updates the global settings as well
+  var _maybeSaveGlobalSettings = function (resp) {
+
+    function complete () {
+      window.scrollTo(0, 0);
+      var refreshButton = '<input type="button" value="Refresh Page" onClick="window.location.reload(true)" />'; // TODO translate
+      $("#settingsTabMessage").removeClass("gdErrors").addClass("gdNotify").css({ display: 'block' }).find("p").html(resp.content + ' ' + refreshButton);
+      utils.stopProcessing();
+    }
+
+    if (!_accountInfo.isAnonymous && _accountInfo.accountType != "admin") {
+      return complete();
+    }
+
+    var data = {
+      action: "saveGlobalSettings",
       consoleWarnings: $("#gdSettingsConsoleWarnings").prop("checked"),
       consoleEventsPublish: $("#gdSettingsConsoleEventsPublish").prop("checked"),
       consoleEventsSubscribe: $("#gdSettingsConsoleEventsSubscribe").prop("checked"),
@@ -2017,10 +2029,7 @@ define([
       data: data,
       success: function (response) {
         if (response.success) {
-          window.scrollTo(0, 0);
-          var refreshButton = '<input type="button" value="Refresh Page" onClick="window.location.reload(true)" />';
-          $("#settingsTabMessage").removeClass("gdErrors").addClass("gdNotify").css({ display: 'block' }).find("p").html(response.content + ' ' + refreshButton);
-          utils.stopProcessing();
+          complete();
         }
       },
       error: function () {

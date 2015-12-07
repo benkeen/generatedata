@@ -101,49 +101,51 @@
     </div>
 
 
-	<h3>{$L.developer}</h3>
+    {if $showDeveloperSettings}
+        <h3>{$L.developer}</h3>
 
-	<p>
-		{$L.developer_intro}
-	</p>
+        <p>
+            {$L.developer_intro}
+        </p>
 
-	<div class="cols2">
-		<div class="col">
-			<div>
-				<input type="checkbox" name="consoleWarnings" id="gdSettingsConsoleWarnings"
-					   value="enabled" {if $settings.consoleWarnings == "enabled"}checked="checked"{/if} />
-				<label for="gdSettingsConsoleWarnings">{$L.list_console_warn_events}</label>
-			</div>
-			<div>
-				<input type="checkbox" name="consoleEventsPublish" id="gdSettingsConsoleEventsPublish"
-					   value="enabled" {if $settings.consoleEventsPublish == "enabled"}checked="checked"{/if} />
-				<label for="gdSettingsConsoleEventsPublish">{$L.list_module_publish_events}</label>
-			</div>
-			<div>
-				<input type="checkbox" name="consoleEventsSubscribe" id="gdSettingsConsoleEventsSubscribe"
-					   value="enabled" {if $settings.consoleEventsSubscribe == "enabled"}checked="checked"{/if} />
-				<label for="gdSettingsConsoleEventsSubscribe">{$L.list_module_subscribe_events}</label>
-			</div>
-			<div>
-				<input type="checkbox" name="consoleCoreEvents" id="gdSettingsConsoleCoreEvents"
-					   value="enabled" {if $settings.consoleCoreEvents == "enabled"}checked="checked"{/if} />
-				<label for="gdSettingsConsoleCoreEvents">{$L.list_core_events}</label>
-			</div>
-		</div>
+        <div class="cols2">
+            <div class="col">
+                <div>
+                    <input type="checkbox" name="consoleWarnings" id="gdSettingsConsoleWarnings"
+                           value="enabled" {if $settings.consoleWarnings == "enabled"}checked="checked"{/if} />
+                    <label for="gdSettingsConsoleWarnings">{$L.list_console_warn_events}</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="consoleEventsPublish" id="gdSettingsConsoleEventsPublish"
+                           value="enabled" {if $settings.consoleEventsPublish == "enabled"}checked="checked"{/if} />
+                    <label for="gdSettingsConsoleEventsPublish">{$L.list_module_publish_events}</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="consoleEventsSubscribe" id="gdSettingsConsoleEventsSubscribe"
+                           value="enabled" {if $settings.consoleEventsSubscribe == "enabled"}checked="checked"{/if} />
+                    <label for="gdSettingsConsoleEventsSubscribe">{$L.list_module_subscribe_events}</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="consoleCoreEvents" id="gdSettingsConsoleCoreEvents"
+                           value="enabled" {if $settings.consoleCoreEvents == "enabled"}checked="checked"{/if} />
+                    <label for="gdSettingsConsoleCoreEvents">{$L.list_core_events}</label>
+                </div>
+            </div>
 
-		<div class="col">
-			<label for="consoleEventsModuleList">{$L.limit_pub_sub_console_messages}</label>
-			{assign var=label1 value="data-placeholder=\"`$L.all_data_type_plugins`\""}
-			{data_types_dropdown name="consoleEventsDataTypePlugins" id="consoleEventsDataTypePlugins"
-			style="width:500px" multiple=true extras=$label1
-			includeDefaultOption=false selected=$settings.consoleEventsDataTypePlugins}
+            <div class="col">
+                <label for="consoleEventsModuleList">{$L.limit_pub_sub_console_messages}</label>
+                {assign var=label1 value="data-placeholder=\"`$L.all_data_type_plugins`\""}
+                {data_types_dropdown name="consoleEventsDataTypePlugins" id="consoleEventsDataTypePlugins"
+                style="width:500px" multiple=true extras=$label1
+                includeDefaultOption=false selected=$settings.consoleEventsDataTypePlugins}
 
-			{assign var=label2 value="data-placeholder=\"`$L.all_export_type_plugins`\""}
-			{export_types_dropdown name="consoleEventsExportTypePlugins" id="consoleEventsExportTypePlugins"
-			style="width:500px" multiple=true extras=$label2
-			includeDefaultOption=false selected=$settings.consoleEventsExportTypePlugins}
-		</div>
-	</div>
+                {assign var=label2 value="data-placeholder=\"`$L.all_export_type_plugins`\""}
+                {export_types_dropdown name="consoleEventsExportTypePlugins" id="consoleEventsExportTypePlugins"
+                style="width:500px" multiple=true extras=$label2
+                includeDefaultOption=false selected=$settings.consoleEventsExportTypePlugins}
+            </div>
+        </div>
+    {/if}
 
 	<div class="gdClear"></div>
 
