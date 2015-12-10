@@ -6,9 +6,9 @@ This is the repo for the downloadable version of [generatedata.com](http://www.g
 script is basically an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
 so *Data Types* (types of data it generates), plus 8 *Export Types* (formats for the data), but it can be extended 
 in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
-for that.
+for that. If you need to generate random data programmatically rather than manually via a UI, you can use the [REST API](http://benkeen.github.io/generatedata/api.html).
 
-Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the script, get the most recent 
+Generally the trunk is pretty stable, but it's not guaranteed. If you're downloading the script, get the most recent 
 tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
