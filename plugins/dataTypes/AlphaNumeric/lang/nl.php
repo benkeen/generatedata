@@ -4,23 +4,23 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Alfanumeriek",
-    "DESC" => "Genereert een aangepaste willekeurige alfanumerieke tekenreeks of een lengte of formaat , gedefinieerd door placeholder chars ."
+    "DESC" => "Genereert een aangepaste willekeurige alfanumerieke tekenreeks van een bepaalde lengte in het opgegeven formaat, gedefinieerd door placeholder tekens."
 );
 
 $L["example_CanPostalCode"] = "(Can. Postcode)";
 $L["example_Password"] = "(Wachtwoord)";
-$L["example_USZipCode"] = "(US postcode)";
+$L["example_USZipCode"] = "(US Postcode)";
 $L["help_1"] = "Een hoofdletter <b>L</b>etter.";
-$L["help_10"] = "Elk aantal, 1-9.";
-$L["help_11"] = "Een medeklinker (boven of onder).";
-$L["help_12"] = "Een <b>H</b> exidecimal nummer (0-F)";
-$L["help_2"] = "Een hoofdletter <b>V</b> Owel.";
+$L["help_10"] = "Een getal, 1-9.";
+$L["help_11"] = "Een medeklinker (klein of groot geschreven).";
+$L["help_12"] = "Een <b>H</b> exidecimal getal (0-F)";
+$L["help_2"] = "<b>V</b> Een klinker in hoofdletter.";
 $L["help_3"] = "Een kleine letter <b>l</b> etter.";
-$L["help_4"] = "Een kleine <b>v</b>owel.";
-$L["help_5"] = "Een brief (boven of onder).";
-$L["help_6"] = "Een klinker (boven of onder).";
+$L["help_4"] = "<b>v</b> Een klinker, klein geschreven.";
+$L["help_5"] = "Een letter (klein of groot geschreven).";
+$L["help_6"] = "Een klinker (klein of groot geschreven).";
 $L["help_7"] = "Een hoofdletter <b>C</b>onsonant.";
-$L["help_8"] = "Elk nummer, 0-9.";
-$L["help_9"] = "Een kleine <b>c</b>onsonant.";
-$L["help_intro"] = "Dit gegevenstype kunt u het genereren van willekeurige alfanumerieke strings. De volgende tabel bevat het karakter legende voor dit veld. Alle andere tekens die u invoert in dit veld zal verschijnen beschermd en onbeschermd weergegeven.";
-$L["incomplete_fields"] = "Alfanumerieke velden moet u het formaat in het Opties tekstveld in te voeren. Please fix de volgende rijen:";
+$L["help_8"] = "Een getal, 0-9.";
+$L["help_9"] = "<b>c</b> Een klein geschreven medeklinker.";
+$L["help_intro"] = "Met dit gegevenstype kunt u een string genereren met willekeurige alfanumerieke tekens. De volgende tabel bevat de karakter legenda voor dit veld. Alle andere tekens die u in dit veld invoert zullen onveranderd in de string worden opgenomen.";
+$L["incomplete_fields"] = "Voor Alfanumerieke velden moet u het formaat in het Opties tekstveld in voeren. Pas AUB de volgende rijen aan:";
