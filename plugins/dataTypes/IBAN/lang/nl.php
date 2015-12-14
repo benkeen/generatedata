@@ -3,9 +3,9 @@
 $L = array();
 
 $L["DATA_TYPE"] = array(
-    "NAME" => "Bankrekening Nums`",
+    "NAME" => "Bankrekeningnummer`",
     "DESC" => "Genereert IBAN (International Bank Account Number)."
 );
 
-$L["help_1"] = "De gegenereerde IBAN heeft een geldige checksum, landcode en de lengte en de BIC is op de juiste plaats.";
-$L["help_2"] = "Het nummer is zeer onwaarschijnlijk om echt <i>geldig</i> tho zijn, aangezien er meestal een heleboel controles te doen, tegen specifieke landen.";
+$L["help_1"] = "Het gegenereerde IBAN nummer heeft een geldige checksum, landcode en lengte. De BIC code staat op de juiste plaats.";
+$L["help_2"] = "Het is zeer onwaarschijnlijk dat er een echt <i>geldige</i> IBAN code wordt gegenereerd, aangezien er meestal een heleboel, land specifieke controles worden uitgevoerd.";
