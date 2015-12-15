@@ -2,16 +2,16 @@
 
 $L = array();
 $L["DATA_TYPE"] = array(
-    "NAME" => "Chileense RUT nummer",
-    "DESC" => "Genereert een sleur / RUN Chileense Nationale Identification Number ."
+    "NAME" => "Chileens RUT/RUN nummer",
+    "DESC" => "Genereert een Chileens RUT/RUN Nationaal Identificatie Nummer ."
 );
 
-$L["different_formats"] = "verschillende formaten";
-$L["incomplete_fields"] = "Het type Rut gegevens dient te beschikken over het voorbeeld veld geselecteerd. Corrigeer de volgende rijen :";
+$L["different_formats"] = "Verschillende formaten";
+$L["incomplete_fields"] = "Bij dit type veld moet u een voorbeeld in het optieveld invoeren. Pas de volgende rij(en) aan:";
 $L["rut_default"] = "Standaard";
-$L["only_number"] = "Slechts nummer";
-$L["only_digit"] = "Alleen verificatie cijferige";
+$L["only_number"] = "Aleen nummer";
+$L["only_digit"] = "Alleen verificatie cijfers";
 
-$L["thousands_separator"] = "duizenden separator";
-$L["digit_uppercase"] = "hoofdletters cijferige";
-$L["remove_dash"] = "uitsluiten dash";
+$L["thousands_separator"] = "duizend separator";
+$L["digit_uppercase"] = "hoofdletter cijferis";
+$L["remove_dash"] = "Geen dash symbool";
