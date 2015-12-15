@@ -2,18 +2,18 @@
 
 $L = array();
 
-$L["available_smarty_vars"] = "Beschikbare Smarty Vars";
-$L["batch_vars"] = "Booleans voor het al dan niet de huidige batch van de resultaten die worden gegenereerd is de eerste of de laatste. Dit is alleen maar gebruikt voor gebruikers genereren van de data in-page, waarvan de resultaten in blokken genereert. Voor alle andere gevallen beide altijd waar.";
+$L["available_smarty_vars"] = "Beschikbare Smarty Variabelen";
+$L["batch_vars"] = "Booleans om aan te geven of de huidige batch van resultaten die worden gegenereerd de eerste of de laatste is. Dit wordt alleen gebruikt voor type in-page, waarvoor de resultaten in blokken worden genereerd. In alle andere gevallen is de waarde waar.";
 $L["col_names_array"] = "Een geordende array van tekenreeksen die de kolomnamen.";
-$L["invalid_node_names"] = "XML-node namen kunnen mag alleen bestaan ​​uit alfanumerieke tekens en moet beginnen met een letter. Please fix de volgende rijen:";
-$L["invalid_xml_record_node_name"] = "Vul een geldig XML-document knooppunt waarde.";
-$L["invalid_xml_root_node_name"] = "Vul een geldig XML root node waarde.";
-$L["missing_xml_record_node_name"] = "Gelieve een waarde in voor de XML opnemen knooppunt.";
-$L["missing_xml_root_node_name"] = "Gelieve een waarde in voor de XML root node.";
-$L["record_node_name"] = "Record knooppuntnaam";
+$L["invalid_node_names"] = "XML-node namen kunnen mogen alleen bestaan uit alfanumerieke tekens en moeten beginnen met een letter. Pas de volgende rij(en) aan:";
+$L["invalid_xml_record_node_name"] = "Geef een geldige waarde op voor de XML record node naam.";
+$L["invalid_xml_root_node_name"] = "Geef een geldige waarde op voor de XML root node naam.";
+$L["missing_xml_record_node_name"] = "Gelieve een waarde voor de XML record node naam.";
+$L["missing_xml_root_node_name"] = "Gelieve een waarde voor de XML root node naam.";
+$L["record_node_name"] = "Record nodenaam";
 $L["reset_custom_html"] = "Reset Aangepaste HTML";
-$L["root_node_name"] = "Root knooppuntnaam";
-$L["row_data_array"] = "Een geordende array van arrays. Elke topniveau array bevat de inhoud van de rij; elk kind array bevat een geordende array van waarden voor elk gegeven.";
-$L["row_label"] = "Knooppunt naam";
+$L["root_node_name"] = "Root node naam";
+$L["row_data_array"] = "Een geordende array van arrays. Elke topniveau array bevat de inhoud van de rij; elk gerelateerde array bevat een geordende array van waarden voor alle gegeven.";
+$L["row_label"] = "Node naam";
 $L["row_label_plural"] = "Node Namen";
-$L["use_custom_xml_format"] = "Aangepaste XML-formaat";
+$L["use_custom_xml_format"] = "Aangepast XML-formaat";

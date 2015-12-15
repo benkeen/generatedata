@@ -2,10 +2,10 @@
 
 $L = array();
 $L["DATA_TYPE"] = array(
-    "NAME" => "Straat en huisnummer",
-    "DESC" => "Genereert willekeurige adressen ."
+    "NAME" => "Straatnamen",
+    "DESC" => "Genereert willekeurige adressen."
 );
 
-$L["ap_num"] = "Ap #";
-$L["po_box"] = "PO Box";
-$L["street_types"] = "St., St., straat, weg, Rd., Rd., Ave, Av., Avenue";
+$L["ap_num"] = "Appartement #";
+$L["po_box"] = "Postbus";
+$L["street_types"] = "Street, St., Straat, Weg, Road, Rd., Ave, Av., Avenue";
