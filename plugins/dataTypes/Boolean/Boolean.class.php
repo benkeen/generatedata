@@ -8,20 +8,9 @@ class DataType_Boolean extends DataTypePlugin {
 
 	protected $isEnabled = true;
 	protected $dataTypeName = "Boolean";
-	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "numeric";
 	protected $dataTypeFieldGroupOrder = 11;
 	protected $jsModules = array("Boolean.js");
-
-
-	/**
-	 * @param string $runtimeContext "generation" or "ui"
-	 */
-	public function __construct($runtimeContext) {
-		parent::__construct($runtimeContext);
-		if ($runtimeContext == "generation") {		
-		}
-	}
 
 
 	public function generate($generator, $generationContextData) {

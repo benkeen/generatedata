@@ -1,4 +1,4 @@
-## AlphaNumeric Data Type
+## Boolan Data Type
 
 This Data Type generates random Boolean strings according to whatever format you want. Note: for the 
 placeholder strings, documentation for this Data Type in the generatedata UI. That provides the list of available
@@ -6,7 +6,7 @@ placeholders.
 
 ### Example API Usage
 
-This example generates random passwords and US Zipcodes. POST the following JSON content to 
+This example generates random Boolean. POST the following JSON content to 
 `http://[your site]/[generate data folder]/api/v1/data`:
 
 ```javascript
@@ -14,17 +14,17 @@ This example generates random passwords and US Zipcodes. POST the following JSON
     "numRows": 10,
     "rows": [
         {
-            "type": "AlphaNumeric",
-            "title": "Random Password",
+            "type": "Boolean",
+            "title": "Random False-True",
             "settings": {
-                "placeholder": "LLLxxLLLxLL"
+                "placeholder": "False|True"
             }
         },
         {
-            "type": "AlphaNumeric",
-            "title": "US Zipcode",
+            "type": "Boolean",
+            "title": "Random 0 or 1",
             "settings": {
-                "placeholder": "xxxxx"
+                "placeholder": "0|1"
             }
         }
     ],
