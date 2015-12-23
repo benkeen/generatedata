@@ -5,6 +5,7 @@ $L = array();
 $L["ENABLED"] = true;
 
 // Core language strings
+// Modified by Conrad Hagemans conrad@hagemans.com on 2015/12/20
 $L["language"] = "Nederlands";
 $L["title"] = "generatedata.com";
 $L["about"] = "Over";
