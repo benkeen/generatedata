@@ -6,9 +6,9 @@ This is the repo for the downloadable version of [generatedata.com](http://www.g
 script is basically an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
 so *Data Types* (types of data it generates), plus 8 *Export Types* (formats for the data), but it can be extended 
 in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
-for that.
+for that. If you need to generate random data programmatically rather than manually via the UI, you can use the [REST API](http://benkeen.github.io/generatedata/api.html).
 
-Generally the trunk is pretty stable, but it's never guaranteed. If you're downloading the script, get the most recent 
+Generally the trunk is pretty stable, but it's not guaranteed. If you're downloading the script, get the most recent 
 tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
@@ -75,6 +75,9 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.2.4 - Dec 6, 2015
+- patch release for per-user settings.
 
 3.2.3 - Nov 15, 2015
 - SIRET/SIREN Data Type added (French business numbers) added. Merci, [Fabrice Marquès](https://github.com/fmarques56)! 

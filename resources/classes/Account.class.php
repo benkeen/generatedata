@@ -394,8 +394,8 @@ class Account {
                             ORDER BY history_id DESC
                             LIMIT 1
                         )
-                    AND account_id = $accountID
-            ORDER BY ch.last_updated DESC
+			WHERE account_id = $accountID
+			ORDER BY ch.last_updated DESC
         ");
 
 		if ($response["success"]) {

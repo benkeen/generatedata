@@ -3,9 +3,9 @@
 $L = array();
 
 $L["DATA_TYPE"] = array(
-    "NAME" => "Latitude / Longitude",
-    "DESC" => "Dit gegevenstype genereert een willekeurig lengte-en / of lengte. Als beide zijn geselecteerd, geeft zowel een komma."
+    "NAME" => "Breedtegraad / Lengtegraad",
+    "DESC" => "Dit gegevenstype genereert een willekeurige lengte- en/of breedtegraad. Indien beide zijn geselecteerd worden beide weergegeven gescheiden door een komma."
 );
 
-$L["latitude"] = "Speelruimte";
-$L["longitude"] = "Lengte";
+$L["latitude"] = "Breedtegraad";
+$L["longitude"] = "Lengtegraad";

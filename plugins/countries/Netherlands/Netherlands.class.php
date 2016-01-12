@@ -11,7 +11,20 @@ class Country_Netherlands extends CountryPlugin {
 	protected $continent = "europe";
 
 	protected $extendedData = array(
-		"zipFormat" => "xxxxLL"
+		"zipFormat" => "xxxx LL",
+ 		"phoneFormat" => array(
+			"displayFormats" => array(
+				"0Xxx-xxxxxx",
+				"0Xx-xxxxxxx",
+				"06-Xxxxxxxxx",
+				"0Xxx xxxxxx",
+				"0Xx xxxxxxx",
+				"06 Xxxxxxxxx",
+				"+31 Xx xxxxxxx",
+				"+31 Xxx xxxxxx",
+				"+31 6 Xxxxxxxxx",
+			)
+		)		
 	);
 
 	protected $countryData = array(
