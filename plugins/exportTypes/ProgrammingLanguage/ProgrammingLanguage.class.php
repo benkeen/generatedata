@@ -13,6 +13,7 @@ class ProgrammingLanguage extends ExportTypePlugin {
 	public $L = array();
 
 	private $numericFields;
+	private $dateFields;
 
 
 	public function generate($generator) {
@@ -21,6 +22,11 @@ class ProgrammingLanguage extends ExportTypePlugin {
 		$data     = $generator->generateExportData();
 		$template = $generator->getTemplateByDisplayOrder();
 		$language = $this->getLanguage();
+
+
+		foreach ($template as $item) {
+			$this->dateFields[] =  isset($item["columnMetadata"]["type"]) && isset($item["columnMetadata"]["formatCode"]) && $item["columnMetadata"]["type"] == "date";
+		}
 
 		foreach ($template as $item) {
 			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
@@ -39,6 +45,9 @@ class ProgrammingLanguage extends ExportTypePlugin {
 				break;
 			case "Ruby":
 				$content .= $this->generateRuby($data);
+				break;
+			case "CSharp":
+				$content .= $this->generateCSharp($data);
 				break;
 		}
 
@@ -67,6 +76,7 @@ class ProgrammingLanguage extends ExportTypePlugin {
 		<option value="Perl">Perl</option>
 		<option value="PHP">PHP</option>
 		<option value="Ruby">Ruby</option>
+		<option value="CSharp">C#</option>
 	</select>
 END;
 		return $html;
@@ -213,6 +223,46 @@ END;
 
 		if ($data["isLastBatch"]) {
 			$content .= "];\n";
+		}
+		return $content;
+	}
+	
+	private function generateCSharp($data) {
+		$content = "";
+		if ($data["isFirstBatch"]) {
+			$content .= "var data = new [] {\n";
+		}
+
+		$numCols = count($data["colData"]);
+		$numRows = count($data["rowData"]);
+
+		for ($i=0; $i<$numRows; $i++) {
+			$content .= "\tnew { ";
+
+			$pairs = array();
+			for ($j=0; $j<$numCols; $j++) {
+				$propName = str_replace(' ', '', $data["colData"][$j]);
+				if ($this->numericFields[$j]) {
+					$pairs[] = "{$propName} = {$data["rowData"][$i][$j]}";
+				}
+				else if ($this->dateFields[$j]) {
+					$pairs[] = "{$propName} = DateTime.Parse(\"{$data["rowData"][$i][$j]}\")";
+				}  
+				else {
+					$pairs[] = "{$propName} = \"{$data["rowData"][$i][$j]}\"";
+				}
+			}
+			$content .= implode(", ", $pairs);
+
+			if ($data["isLastBatch"] && $i == $numRows - 1) {
+				$content .= " }\n";
+			} else {
+				$content .= " },\n";
+			}
+		}
+
+		if ($data["isLastBatch"]) {
+			$content .= "};\n";
 		}
 		return $content;
 	}
