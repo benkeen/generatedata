@@ -13,7 +13,7 @@ class ProgrammingLanguage extends ExportTypePlugin {
 	public $L = array();
 
 	private $numericFields;
-	private $dateFields;
+	private $dateFormats;
 
 
 	public function generate($generator) {
@@ -23,15 +23,19 @@ class ProgrammingLanguage extends ExportTypePlugin {
 		$template = $generator->getTemplateByDisplayOrder();
 		$language = $this->getLanguage();
 
-
-		foreach ($template as $item) {
-			$this->dateFields[] =  isset($item["columnMetadata"]["type"]) && isset($item["columnMetadata"]["formatCode"]) && $item["columnMetadata"]["type"] == "date";
-		}
-
 		foreach ($template as $item) {
 			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
+            
+            if(isset($item["columnMetadata"]["type"]) 
+                && isset($item["columnMetadata"]["formatCode"]) 
+                && $item["columnMetadata"]["type"] == "date") {
+			     $this->dateFormats[] = $item["columnMetadata"]["formatCode"];
+            } else { 
+                $this->dateFormats[] = "";
+            }
 		}
 
+		
 		$content = "";
 		switch ($language) {
 			case "JavaScript":
@@ -76,7 +80,7 @@ class ProgrammingLanguage extends ExportTypePlugin {
 		<option value="Perl">Perl</option>
 		<option value="PHP">PHP</option>
 		<option value="Ruby">Ruby</option>
-		<option value="CSharp">C#</option>
+		<option value="CSharp">C# (anonymous object)</option>
 	</select>
 END;
 		return $html;
@@ -227,6 +231,17 @@ END;
 		return $content;
 	}
 	
+    private $sharpDateFormats = array (
+        "m/d/Y" => "MM/dd/yyyy",
+        "d/m/Y" => "dd/MM/yyyy",
+        "m.d.y" => "MM.dd.yy",
+        "d.m.y" => "dd.MM.yy",
+        "d-m-y" => "dd-MM-yy",
+        "m-d-y" => "MM-dd-yy",
+        "d.m.Y" => "dd.MM.yyyy"
+    );
+
+    
 	private function generateCSharp($data) {
 		$content = "";
 		if ($data["isFirstBatch"]) {
@@ -244,11 +259,9 @@ END;
 				$propName = str_replace(' ', '', $data["colData"][$j]);
 				if ($this->numericFields[$j]) {
 					$pairs[] = "{$propName} = {$data["rowData"][$i][$j]}";
-				}
-				else if ($this->dateFields[$j]) {
-					$pairs[] = "{$propName} = DateTime.Parse(\"{$data["rowData"][$i][$j]}\")";
-				}  
-				else {
+				} else if (isset($this->sharpDateFormats[$this->dateFormats[$j]])) {
+					$pairs[] = "{$propName} = DateTime.ParseExact(\"{$data["rowData"][$i][$j]}\", \"{$this->sharpDateFormats[$this->dateFormats[$j]]}\", CultureInfo.InvariantCulture)";
+				} else {
 					$pairs[] = "{$propName} = \"{$data["rowData"][$i][$j]}\"";
 				}
 			}
