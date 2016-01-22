@@ -4,7 +4,7 @@
 	"type": "object",
 	"properties": {
 		"language": {
-			"enum": ["JavaScript", "Perl", "PHP", "Ruby"]
+			"enum": ["JavaScript", "Perl", "PHP", "Ruby", "CSharp"]
 		}
 	},
 	"required": ["language"]
