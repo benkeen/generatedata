@@ -12,6 +12,7 @@ class DataType_Date extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 40;
 	protected $jsModules = array("Date.js");
 	private static $useSafeDates = false;
+	private $formatCode;
 
 
 	public function __construct($runtimeContext) {
@@ -48,8 +49,8 @@ class DataType_Date extends DataTypePlugin {
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		if (empty($postdata["dtFromDate_$colNum"]) || empty($postdata["dtToDate_$colNum"]) || empty($postdata["dtOption_$colNum"])) {
 			return false;
-		}
-
+		}	
+		$this->formatCode = $postdata["dtOption_$colNum"];
 		$options = array(
 			"formatCode" => $postdata["dtOption_$colNum"],
 			"from"       => $postdata["dtFromDate_$colNum"],
@@ -60,6 +61,7 @@ class DataType_Date extends DataTypePlugin {
 	}
 
 	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+		$this->formatCode = $json->settings->placeholder;
 		$options = array(
 			"formatCode" => $json->settings->placeholder,
 			"from"       => $json->settings->fromDate,
@@ -70,6 +72,8 @@ class DataType_Date extends DataTypePlugin {
 
 	public function getDataTypeMetadata() {
 		return array(
+			"type" => "date",
+			"formatCode" => $this->formatCode,
 			"SQLField" => "varchar(255)",
 			"SQLField_Oracle" => "varchar2(255)",
 			"SQLField_MSSQL" => "VARCHAR(255)"

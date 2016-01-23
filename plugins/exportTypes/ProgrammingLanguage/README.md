@@ -8,6 +8,7 @@ There's only a single setting: `language`, which should be a string containing o
 - `Perl`
 - `JavaScript` (note that this and the other options are case-sensitive!)
 - `Ruby`
+- `CSharp`
 
 ### Example API Usage
 
