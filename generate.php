@@ -13,7 +13,7 @@ if ($gen->getExportTarget() == "promptDownload") {
 	if ($gen->isPromptDownloadZipped()) {
 		$randNum = mt_rand(0, 100000000);
 		$fileName = $randNum . "_" . $response["promptDownloadFilename"];
-		$zipPath  = $filePath . ".zip";
+		$zipPath  = "./cache/" . $fileName . ".zip";
 
 		if (file_put_contents($fileName, $response["content"])) {
 
