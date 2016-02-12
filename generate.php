@@ -8,11 +8,11 @@ $response = $gen->generate();
 
 if ($gen->getExportTarget() == "promptDownload") {
 	header("Cache-Control: private, no-cache, must-revalidate");
-	
+
 	// check if user opted to zip the generated data
 	if ($gen->isPromptDownloadZipped()) {
 		$randNum = mt_rand(0, 100000000);
-		$fileName = $randNum . "_" . $response["promptDownloadFilename"];
+		$fileName = "./cache/" . $randNum . "_" . $response["promptDownloadFilename"];
 		$zipPath  = "./cache/" . $fileName . ".zip";
 
 		if (file_put_contents($fileName, $response["content"])) {
