@@ -48,13 +48,14 @@ class Excel extends ExportTypePlugin {
 
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 		//get the name of the save file
-		$filepath=$this->getDownloadFilename($generator);
+		$filename=$this->getDownloadFilename($generator);
+		$filepath="./cache/" . $filename;
 		//save the excel data to that file
 		$objWriter->save($filepath);
 		if (!($generator->isPromptDownloadZipped())) {
 			// redirect output to a client’s web browser (Excel5)
 			header('Content-Type: application/vnd.ms-excel');
-			header('Content-Disposition: attachment;filename="' . $filepath . '"');
+			header('Content-Disposition: attachment;filename="' . $filename . '"');
 			header('Cache-Control: max-age=0');
 			readfile($filepath);
 			@unlink($filepath);
@@ -64,15 +65,15 @@ class Excel extends ExportTypePlugin {
 			$zip = new ZipArchive();
 			$zipfile = $zip->open($zippath, ZipArchive::CREATE);
 			if ($zipfile) {
-				if ($zip->addFile($filepath, $filepath)) {
+				if ($zip->addFile($filepath, $filename)) {
 					//we've got our zip file now we may set the response header
 					$zip->close();
 					header("Cache-Control: private, no-cache, must-revalidate");
-					header("Content-type: application/zip"); 
-					header('Content-Disposition: attachment; filename="' . $filepath . '.zip"');
+					header("Content-type: application/zip");
+					header('Content-Disposition: attachment; filename="' . $filename . '.zip"');
 					readfile($zippath);
 					unlink($zippath);
-					unlink($filepath);
+					unlink($filename);
 					exit;
 				}
 			}
