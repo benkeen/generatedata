@@ -8,19 +8,20 @@ $response = $gen->generate();
 
 if ($gen->getExportTarget() == "promptDownload") {
 	header("Cache-Control: private, no-cache, must-revalidate");
-	
+
 	// check if user opted to zip the generated data
 	if ($gen->isPromptDownloadZipped()) {
 		$randNum = mt_rand(0, 100000000);
 		$fileName = $randNum . "_" . $response["promptDownloadFilename"];
+		$filePath = "./cache/" . $fileName;
 		$zipPath  = "./cache/" . $fileName . ".zip";
 
-		if (file_put_contents($fileName, $response["content"])) {
+		if (file_put_contents($filePath, $response["content"])) {
 
 			// now that we've written the file, zip it up
 			$zip = new ZipArchive();
 			$zipFile = $zip->open($zipPath, ZipArchive::CREATE);
-			if ($zipFile && $zip->addFile($fileName, $response["promptDownloadFilename"])) {
+			if ($zipFile && $zip->addFile($filePath, $response["promptDownloadFilename"])) {
 
 				// we've got our zip file now we may set the response header
 				$zip->close();
@@ -28,7 +29,7 @@ if ($gen->getExportTarget() == "promptDownload") {
 				header("Content-Disposition: attachment; filename=" . $response["promptDownloadFilename"] . ".zip");
 				readfile($zipPath);
 				unlink($zipPath);
-				unlink($fileName);
+				unlink($filePath);
 				exit;
 			}
 		}
