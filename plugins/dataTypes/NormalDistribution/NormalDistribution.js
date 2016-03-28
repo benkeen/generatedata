@@ -25,7 +25,8 @@ define([
 	var _saveRow = function(rowNum) {
 		return {
 			"mean": $("#dtOptionMean_" + rowNum).val(),
-			"sigma": $("#dtOptionSigma_" + rowNum).val()
+			"sigma": $("#dtOptionSigma_" + rowNum).val(),
+			"precision": $("#dtOptionPrecision_" + rowNum).val()
 		};
 	};
 
@@ -34,6 +35,7 @@ define([
 			execute: function() {
 				$("#dtOptionMean_" + rowNum).val(data.mean);
 				$("#dtOptionSigma_" + rowNum).val(data.sigma);
+				$("#dtOptionPrecision_" + rowNum).val(data.precision);
 			},
 			isComplete: function() { return $("#dtOptionSigma_" + rowNum).length > 0; }
 		};
@@ -45,6 +47,7 @@ define([
 		for (var i=0; i<rows.length; i++) {
 			var currMean  = $("#dtOptionMean_" + rows[i]);
 			var currSigma = $("#dtOptionSigma_" + rows[i]);
+			var currPrecision = $("#dtOptionPrecision_" + rows[i]);
 
 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 			if ($.trim(currMean.val()) === "" || $.trim(currSigma.val()) === "") {
@@ -56,6 +59,9 @@ define([
 				if ($.trim(currSigma.val()) === "") {
 					problemFields.push(currSigma);
 				}
+                if ($.trim(currPrecision.val()) === "") {
+                    problemFields.push(currPrecision);
+                }
 			}
 		}
 		var errors = [];
