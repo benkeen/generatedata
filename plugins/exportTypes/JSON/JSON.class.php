@@ -199,7 +199,7 @@ END;
 			$jsonSettings = $this->userSettings->export->settings;
 			$stripWhitespace = (property_exists($jsonSettings, "stripWhitespace")) ? $jsonSettings->stripWhitespace : $default;
 		} else {
-			$stripWhitespace = isset($this->userSettings["etJSON_whitespace"]);
+			$stripWhitespace = isset($this->userSettings["etJSON_stripWhitespace"]);
 		}
 		return $stripWhitespace;
 	}
