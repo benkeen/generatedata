@@ -8,7 +8,10 @@
 		},
 		"sigma": {
 			"type": "string"
+		},
+		"precision": {
+			"type": "string"
 		}
 	},
-	"required": ["mean", "sigma"]
+	"required": ["mean", "sigma","precision"]
 }

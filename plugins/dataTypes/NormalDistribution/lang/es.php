@@ -9,4 +9,5 @@ $L["DATA_TYPE"] = array(
 
 $L["mean"] = "Media";
 $L["standard_deviation"] = "Desviación estándar";
+$L{"precision"} = "Precisión";
 $L["incomplete_fields"] = "Los campos Media y Sigma son obligatorios para todas las filas de Distribución normal. Por favor, corrija las siguientes filas:";
