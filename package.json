@@ -1,6 +1,6 @@
 {
   "name": "generatedata",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "description": "free, GNU-licensed, random custom data generator for testing software",
   "main": "gruntfile.js",
   "directories": {

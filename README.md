@@ -58,6 +58,8 @@ contributors agree that all code is released under this license.
 
 In addition to the many fine folk who submit bug reports, a big thanks to the following for their help extending the script:
 
+- [aevans84](https://github.com/aevans84) - Precision option for Normal Distribution (3.2.5)
+- [Tony OHagan](https://github.com/tohagan) - generation of complex JSON structures (3.2.5)
 - [Fabrice Marquès](https://github.com/fmarques56) - French business numbers (SIRET/SIREN) (3.2.3)
 - [Daragh Courtney](https://github.com/daraghc) - [Data Generator Vagrant repo](https://github.com/benkeen/generatedata-vagrant)
 - [Zhao Yang](https://github.com/jptiancai) - Chinese language file (3.1.4)
@@ -75,6 +77,12 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.2.5 - Apr 16, 2016 
+- bug fixes: https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+ - thanks for your help, 
+[Conrad Hagemans](https://github.com/conradhagemans)!
+- "Precision" option added to Normal Distribution Data Type - thanks [@aevans84](https://github.com/aevans84).
+- generation of complex JSON structures added by [Tony OHagan](https://github.com/tohagan). See: https://github.com/benkeen/generatedata/tree/master/plugins/exportTypes/JSON#generating-complex-objects
 
 3.2.4 - Dec 6, 2015
 - patch release for per-user settings.
