@@ -142,9 +142,93 @@ define([
 					console.log("error response: ", response);
 				}
 			);
-
 		}
 	};
+
+	var _onClickEditAccount = function() {
+		var firstNameField    = $("#gdManageAccount_firstName");
+		var firstNameFieldVal = $.trim(firstNameField.val());
+		var lastNameField    = $("#gdManageAccount_lastName");
+		var lastNameFieldVal = $.trim(lastNameField.val());
+		var emailField    = $("#gdManageAccount_email");
+		var emailFieldVal = $.trim(emailField.val());
+
+		var hasErrors = false;
+		if (firstNameFieldVal === "") {
+			firstNameField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			firstNameField.removeClass("gdProblemField");
+		}
+
+		if (lastNameFieldVal === "") {
+			lastNameField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			lastNameField.removeClass("gdProblemField");
+		}
+
+		if (emailFieldVal === "") {
+			emailField.addClass("gdProblemField");
+			hasErrors = true;
+		} else {
+			emailField.removeClass("gdProblemField");
+		}
+
+		if (!hasErrors) {
+			utils.playSpinner(_manageAccountModalID);
+			var data = {
+				action: "updateAccountByAdmin",
+				firstName: firstNameFieldVal,
+				lastName:  lastNameFieldVal,
+				email: emailFieldVal,
+				accountID: $("#gdManageAccount_accountID").val()
+			};
+
+			$.ajax({
+				url: "ajax.php",
+				type: "POST",
+				data: data,
+				dataType: "json"
+			}).then(
+					function(response) {
+						if (response.success) {
+							// get a fresh list of accounts from the server, and add a callback so that
+							// we close the modal when it's complete
+							_getAccountsList({
+								onComplete: function() {
+									utils.clearValidationErrors($("#gdManageAccountDialogMessage"));
+									$("#" + _manageAccountModalID).dialog("close");
+									utils.pauseSpinner(_manageAccountModalID);
+									_updateAccountsTable();
+								}
+							});
+						} else {
+							var errorCode = response.errorCode;
+							switch (errorCode) {
+								case C.ERROR_CODES.ACCOUNT_DOES_NOT_EXIST:
+									utils.addValidationErrors({ els: [$("#gdManageAccount_email")], error: L.validation_account_already_exists });
+									break;
+								case C.ERROR_CODES.NOT_LOGGED_IN:
+									utils.addValidationErrors({ els: [], error: L.validation_not_logged_in });
+									break;
+								case C.ERROR_CODES.NON_ADMIN:
+									utils.addValidationErrors({ els: [], error: L.validation_invalid_permissions });
+									break;
+							}
+							utils.displayValidationErrors("#gdManageAccountDialogMessage");
+							utils.pauseSpinner(_manageAccountModalID);
+						}
+					},
+
+					function(response) {
+						utils.pauseSpinner(_manageAccountModalID);
+						console.log("error response: ", response);
+					}
+			);
+		}
+	};
+
 
 	var _onConfirmDeleteAccount = function(accountID) {
 		utils.playSpinner(_deleteAccountModalID);
@@ -191,6 +275,7 @@ define([
 			console.log("This shouldn't have happened. Couldn't find an account ID.");
 			return;
 		} else {
+			$("#gdManageAccount_accountID").val(accountID);
 			$("#gdManageAccount_firstName").val(accountInfo.first_name);
 			$("#gdManageAccount_lastName").val(accountInfo.last_name);
 			$("#gdManageAccount_email").val(accountInfo.email);
@@ -204,7 +289,7 @@ define([
 			buttons: [
 				{
 					text: L.update,
-					click: _onClickCreateAccount
+					click: _onClickEditAccount
 				},
 				{
 					text: L.close,

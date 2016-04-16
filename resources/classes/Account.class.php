@@ -711,7 +711,41 @@ class Account {
 			// TODO
 		}
 	}
-	
+
+
+	// called by administrators to update a user's account
+	public function updateAccountByAdmin($info) {
+		$L = Core::$language->getCurrentLanguageStrings();
+		$dbLink = Core::$db->getDBLink();
+		$accountID = mysqli_real_escape_string($dbLink, $info["accountID"]);
+		$prefix = Core::getDbTablePrefix();
+
+		if (empty($accountID) || !is_numeric($accountID)) {
+			return array(
+				"success" => false,
+				"errorCode" => ErrorCodes::INVALID_PARAMS,
+				"errorMsg" => $L["invalid_account_id"]
+			);
+		}
+		$firstName = $info["firstName"];
+		$lastName  = $info["lastName"];
+		$email     = $info["email"];
+
+		$response = Core::$db->query("
+			UPDATE {$prefix}user_accounts
+			SET first_name = '$firstName',
+				last_name = '$lastName',
+				email = '$email'
+			WHERE account_id = $accountID
+		");
+
+		if ($response["success"]) {
+			return array(
+				"success" => true
+			);
+		}
+	}
+
 	public function deleteAccount($accountID) {
 		$L = Core::$language->getCurrentLanguageStrings();
 		$dbLink = Core::$db->getDBLink();

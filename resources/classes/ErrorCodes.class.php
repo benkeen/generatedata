@@ -13,6 +13,7 @@ class ErrorCodes {
 	const INVALID_PARAMS         = 4;
 	const INVALID_REQUEST        = 5;
 	const ACCOUNT_ALREADY_EXISTS = 6;
+	const ACCOUNT_DOES_NOT_EXIST = 7;
 
 	// settings for the API. These are used in the generated error responses when a user POSTs invalid JSON / JSON
 	// content to the API - hence the human-readable values.

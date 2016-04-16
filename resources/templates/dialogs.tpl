@@ -158,6 +158,7 @@
 		<div></div>
 	</div>
 
+	<input type="hidden" id="gdManageAccount_accountID" value="" />
 	<table>
 	<tr>
 		<td width="160">{$L.first_name}</td>

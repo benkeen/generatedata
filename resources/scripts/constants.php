@@ -98,6 +98,7 @@ define([], function() {
 
 		ERROR_CODES: {
 			ACCOUNT_ALREADY_EXISTS: <?php echo ErrorCodes::ACCOUNT_ALREADY_EXISTS; ?>,
+			ACCOUNT_DOES_NOT_EXIST: <?php echo ErrorCodes::ACCOUNT_DOES_NOT_EXIST; ?>,
 			NOT_LOGGED_IN: <?php echo ErrorCodes::NOT_LOGGED_IN ?>,
 			NON_ADMIN: <?php echo ErrorCodes::NON_ADMIN ?>
 		},

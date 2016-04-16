@@ -252,6 +252,21 @@ class AjaxRequest {
 				}
 				break;
 
+			// updates a different user account by an administrator
+			case "updateAccountByAdmin":
+				Core::init();
+				if (!Core::checkIsLoggedIn()) {
+					$this->response["success"] = false;
+					$this->response["errorCode"] = ErrorCodes::NOT_LOGGED_IN;
+				} else if (Core::$user->getAccountType() != "admin") {
+					$this->response["success"] = false;
+					$this->response["errorCode"] = ErrorCodes::NON_ADMIN;
+				} else {
+					Account::updateAccountByAdmin($this->post);
+					$this->response["success"] = true;
+				}
+				break;
+
 			case "saveConfiguration":
 				Core::init();
 				$response = Core::$user->saveConfiguration($this->post);
