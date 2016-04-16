@@ -42,45 +42,74 @@ class JSON extends ExportTypePlugin {
 
 	private function generateSimple($generator, $data, $stripWhitespace) {
 		$newline = ($stripWhitespace) ? "" : "\n";
-		$tab     = ($stripWhitespace) ? "" : "\t";
-		$space   = ($stripWhitespace) ? "" : " ";
+		$tab = ($stripWhitespace) ? "" : "\t";
+		$space = ($stripWhitespace) ? "" : " ";
+
+		$nested = array();
 
 		$content = "";
+		$comma = "";
 		if ($generator->isFirstBatch()) {
-			$content .= "[$newline";
+			$content .= "[";
+		} else {
+			$comma = ",";
 		}
+
 		$numCols = count($data["colData"]);
 		$numRows = count($data["rowData"]);
 
-		for ($i=0; $i<$numRows; $i++) {
-			$content .= "{$tab}{{$newline}";
+		for ($i = 0; $i < $numRows; $i++) {
+			$content .= "{$comma}{$newline}{$tab}{";
+			$comma = "";
 
-			$pairs = array();
-			for ($j=0; $j<$numCols; $j++) {
+			for ($j = 0; $j < $numCols; $j++) {
 				$varName = preg_replace('/"/', '\"', $data["colData"][$j]);
 
-				if ($this->numericFields[$j] && is_numeric($data["rowData"][$i][$j])) {
-					$pairs[] = "{$tab}{$tab}\"$varName\":{$space}{$data["rowData"][$i][$j]}";
-				} else {
-					$pairs[] = "{$tab}{$tab}\"$varName\":{$space}\"{$data["rowData"][$i][$j]}\"";
-				}
-			}
-			$content .= implode(",$newline", $pairs);
+				// x.y.z field names => Nested JSON
+				$levels = explode(".", $varName);
+				$fieldName = array_pop($levels);
 
-			if ($data["isLastBatch"] && $i == $numRows - 1) {
-				$content .= "{$newline}{$tab}}$newline";
-			} else {
-				$content .= "{$newline}{$tab}},$newline";
+				// How many nested levels match the previous column?
+				for ($k = 0; $k < count($levels) && $k < count($nested) && $nested[$k] === $levels[$k]; $k++) {
+				}
+
+				// Pop closing levels
+				while (count($nested) > $k) {
+					$content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
+					array_pop($nested);
+					$comma = ",";
+				}
+
+				// Push new nested levels
+				for ($l = $k; $l < count($levels); $l++) {
+					$lev = $levels[$l];
+					array_push($nested, $lev);
+					$content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
+					$comma = "";
+				}
+
+				$value = $data["rowData"][$i][$j];
+				if (!($this->numericFields[$j] && is_numeric($value))) $value = "\"$value\"";
+				$content .= "{$comma}{$newline}" . str_repeat($tab, count($nested) + 2) . "\"{$fieldName}\":{$space}{$value}";
+				$comma = ",";
 			}
+
+			// Pop all levels
+			while (count($nested) > 0) {
+				$content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
+				array_pop($nested);
+			}
+
+			$content .= "{$newline}{$tab}}";
+			$comma = ",";
 		}
 
 		if ($generator->isLastBatch()) {
-			$content .= "]";
+			$content .= "{$newline}]";
 		}
 
 		return $content;
 	}
-
 
 	private function generateComplex($generator, $data, $stripWhitespace) {
 		$content = "";
