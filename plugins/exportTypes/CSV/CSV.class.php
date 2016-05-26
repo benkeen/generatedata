@@ -108,7 +108,7 @@ END;
 	private function getLineEndingChar() {
 		$type = "";
 		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
-			$type = $this->userSettings->export->eol;
+			$type = $this->userSettings->export->settings->eol;
 		} else {
 			$type = $this->userSettings["etCSV_lineEndings"];
 		}
