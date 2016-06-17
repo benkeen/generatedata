@@ -4,7 +4,24 @@ This Data Type generates a random US social security number.
 
 ### Example API Usage
 
-Not available.
+```javascript
+{
+    "numRows": 20,
+    "rows": [
+        {
+            "type": "SocialSecurityNumber",
+            "title": "ssn"
+        }
+    ],
+    "export": {
+        "type": "JSON",
+        "settings": {
+            "stripWhitespace": false,
+            "dataStructureFormat": "complex"
+        }
+    }
+}
+```
 
 ### API help
 
