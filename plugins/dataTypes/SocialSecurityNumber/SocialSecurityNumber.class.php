@@ -17,12 +17,12 @@ class DataType_SocialSecurityNumber extends DataTypePlugin {
 	 */
 	public function generate($generator, $generationContextData) {
 		$ssn = "";
-		while ($ssn === "" || in_array($ssn, $this->generatedSSNs)) {
+		while ($ssn === "" || array_key_exists($ssn, $this->generatedSSNs)) {
 			$ssn = str_pad(mt_rand(1, 899), 3, "0", STR_PAD_LEFT) . "-" .
 					   str_pad(mt_rand(1, 99), 2, "0", STR_PAD_LEFT) . "-" .
 				     str_pad(mt_rand(1, 998), 4, "0", STR_PAD_LEFT);
 		}
-		$this->generatedSSNs[] = $ssn;
+		$this->generatedSSNs[$ssn] = true;
 
 		return array(
 			"display" => $ssn
