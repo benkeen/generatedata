@@ -12,7 +12,7 @@ class DataType_Email extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 30;
 	private $words;
 	private $numWords;
-	private $MAX_EMAIL_LENGTH = 40;
+	private $MAX_EMAIL_LENGTH = 254;
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
