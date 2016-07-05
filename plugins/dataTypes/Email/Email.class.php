@@ -12,6 +12,7 @@ class DataType_Email extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 30;
 	private $words;
 	private $numWords;
+	private $MAX_EMAIL_LENGTH = 40;
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
@@ -40,8 +41,18 @@ class DataType_Email extends DataTypePlugin {
 		$validSuffixes = array("edu", "com", "org", "ca", "net", "co.uk");
 		$suffix = $validSuffixes[mt_rand(0, count($validSuffixes)-1)];
 
+		// if the email exceeded 254 chars (the max valid number of chars), truncate it. This could be way
+		// more elegant, but it's SUCH a fringe case I don't much mind
+		$email = "$prefix@$domain.$suffix";
+		$length = strlen($email);
+		if ($length > $this->MAX_EMAIL_LENGTH) {
+			$prefixParts = str_split($prefix, ceil(strlen($prefix) / 2));
+			$domainParts = str_split($domain, ceil(strlen($domain) / 2));
+			$email = "{$prefixParts[0]}@${$domainParts[0]}.$suffix";
+		}
+
 		return array(
-			"display" => "$prefix@$domain.$suffix"
+			"display" => $email
 		);
 	}
 
