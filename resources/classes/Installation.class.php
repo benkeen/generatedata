@@ -125,7 +125,7 @@ END;
 				region_id mediumint(9) NOT NULL AUTO_INCREMENT,
 				country_slug varchar(100) NOT NULL,
 				region varchar(35) CHARACTER SET utf8 NOT NULL,
-				region_short char(3) CHARACTER SET utf8 DEFAULT NULL,
+				region_short char(35) CHARACTER SET utf8 DEFAULT NULL,
 				region_slug varchar(100) NOT NULL,
 				weight smallint(3) NOT NULL,
 				PRIMARY KEY (region_id)
