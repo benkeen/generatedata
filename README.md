@@ -12,7 +12,7 @@ Generally the trunk is pretty stable, but it's not guaranteed. If you're downloa
 tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
-- PHP 5.3 or any later version of PHP 5. *Doesn't currently support PHP 7.* 
+- PHP 5.3 or any later version of PHP 5. *Doesn't currently support PHP 7. 3.3.0 is currently in dev that will support it.* 
 - MySQL 4.1.3 or later
 
 ## How to Install / Documentation
@@ -78,6 +78,9 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.3.0 - April 2017 *In development*
+- moving to use PDO for database connection for PHP7 support.
 
 3.2.6 - Apr 17, 2017
 - misc bug fixes: https://github.com/benkeen/generatedata/milestone/20?closed=1

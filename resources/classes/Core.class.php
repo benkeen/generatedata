@@ -15,6 +15,7 @@ class Core {
 	private static $demoMode = false;	
 	private static $dbHostname;
 	private static $dbName;
+    private static $dbPort = "3306";
 	private static $dbUsername;
 	private static $dbPassword;
 	private static $dbTablePrefix = "gd_";
@@ -35,8 +36,8 @@ class Core {
 	private static $apiEnabled = false;
 
 	// non-overridable settings
-	private static $version = "3.2.6";
-	private static $releaseDate = "2017-04-17";
+	private static $version = "3.3.0-beta";
+	private static $releaseDate = "2017-04-21";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
@@ -171,6 +172,7 @@ class Core {
 			self::$demoMode = (isset($demoMode)) ? $demoMode : null;
 			self::$dbHostname = (isset($dbHostname)) ? $dbHostname : null;
 			self::$dbName     = (isset($dbName)) ? $dbName : null;
+            self::$dbPort     = (isset($dbPort)) ? $dbPort : null;
 			self::$dbUsername = (isset($dbUsername)) ? $dbUsername : null;
 			self::$dbPassword = (isset($dbPassword)) ? $dbPassword : null;
 			self::$dbTablePrefix = (isset($dbTablePrefix)) ? $dbTablePrefix : null;
@@ -218,7 +220,6 @@ class Core {
 
 	/**
 	 * Returns the out-the-box default Export Type.
-	 * @access public
 	 */
 	public static function getDefaultExportType() {
 		return self::$defaultExportType;
@@ -226,107 +227,68 @@ class Core {
 
     /**
      * TODO Yuck! Why does this return a boolean as a frickin' string?! Was I drunk?
-     * @access public
      */
 	public static function checkDemoMode() {
 		return (self::$demoMode) ? "true" : "false";
 	}
 
-	/**
-	 * @access public
-	 */
 	public static function checkAllowMultiUserAnonymousUse() {
 		$allowAnonymousAccessSetting = Settings::getSetting("allowAnonymousAccess");
 		return ($allowAnonymousAccessSetting == "yes");
 	}
 
-	/**
-	 * @access public
-	 */
 	public static function getDefaultCountryPlugins() {
 		return self::$defaultCountryPlugins;
 	}
 
-	/**
-	 * @access public
-	 */
 	public static function getHostname() {
 		return self::$dbHostname;
 	}
 
-	/**
-	 * @access public
-	 */
     public static function getDbName() {
 		return self::$dbName;
 	}
 
-	/**
-	 * @access public
-	 */
     public static function getDbUsername() {
 		return self::$dbUsername;
 	}
 
-	/**
-	 * @access public
-	 */
     public static function getDbPassword() {
 		return self::$dbPassword;
 	}
 
-	/**
-	 * @access public
-	 */
+    public static function getPort() {
+        return self::$dbPort;
+    }
+
 	public static function getDbTablePrefix() {
 		return self::$dbTablePrefix;
 	}
 
-	/**
-	 * @access public
-	 */
 	public static function getMaxGeneratedRows() {
 		return self::$maxGeneratedRows;
 	}
 
-	/**
-	 * @access public
-	 */
 	public static function getEncryptionSalt() {
 		return self::$encryptionSalt;
 	}
 
-	/**
-	 * @access public
-	 */
 	public static function getDefaultNumRows() {
 		return self::$defaultNumRows;
 	}
 
-	/**
-	 * @access public
-	 */
 	public static function getMaxDemoModeRows() {
 		return self::$maxDemoModeRows;
 	}
 
-    /**
-     * @access public
-     */
     public static function getMaxDataSetHistorySize() {
         return self::$maxDataSetHistorySize;
     }
 
-	/**
-	 * @access public
-	 */
 	public static function getVersion() {
 		return self::$version;
 	}
 
-	/**
-	 * @access public
-	 */
 	public static function checkSettingsFileExists() {
 		return self::$settingsFileExists;
 	}

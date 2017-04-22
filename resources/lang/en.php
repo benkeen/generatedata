@@ -19,6 +19,7 @@ $L["meta_keywords"] = "Random Data, Test Data, Sample Data, data generator, gene
 $L["row_label"] = "Column Title";
 $L["row_label_plural"] = "Column Titles";
 $L["update_settings"] = "Update Settings";
+$L["database_port"] = "Database Port";
 $L["data_type"] = "Data Type";
 $L["default_save_form_empty_str"] = "Enter form name here";
 $L["del"] = "Del";

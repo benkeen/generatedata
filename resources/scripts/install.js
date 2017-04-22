@@ -133,6 +133,13 @@ require([
 			errors.push({ fieldId: "dbName", error: _L.validation_invalid_chars });
 		}
 
+        var dbPort = $.trim($("#dbPort").val());
+        if (dbPort === "") {
+            errors.push({ fieldId: "dbPort", error: _L.validation_no_mysql_username });
+        } else if (validCharsUserField.test(dbPort)) {
+            errors.push({ fieldId: "dbPort", error: _L.validation_invalid_chars });
+        }
+
 		var dbUsername = $.trim($("#dbUsername").val());
 		if (dbUsername === "") {
 			errors.push({ fieldId: "dbUsername", error: _L.validation_no_mysql_username });

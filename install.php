@@ -21,6 +21,7 @@ $params = array();
 $params["theme"] = Core::getDefaultTheme();
 $params["randomPassword"] = Utils::generateRandomAlphanumericStr("CVxxCxV");
 $params["tablePrefix"]    = Core::getDbTablePrefix();
+$params["port"]           = Core::getPort();
 $params["currentPage"]    = $currentPage;
 
 Templates::displayPage("resources/templates/install.tpl", $params);

@@ -1,126 +1,206 @@
 <?php
 
-/**
+/*
  * @author Ben Keen <ben.keen@gmail.com>
  * @package Core
  */
-class Database {
-	private $link;
 
-	public function __construct() {
-		$dbHostname = Core::getHostname();
-		$dbUsername = Core::getDbUsername();
-		$dbPassword = Core::getDbPassword();
-		$dbName     = Core::getDbName();
-
-		try {
-			$this->link = mysqli_connect($dbHostname, $dbUsername, $dbPassword, $dbName);
-		} catch (Exception $e) {
-			// or die("Couldn't connect to database: " . mysql_error());
-		}
-
-		try {
-			@mysqli_query($this->link, "SET NAMES 'utf8'");
-		} catch (Exception $e) {
-		 //  die ("couldn't find database '$g_db_name': " . mysql_error());
-		}
-	}
+use PDO, PDOException;
 
 
-	/**
-	 * Disconnects from a database.
-	 * @access public
-	 */
-	public function disconnect($link) {
-		@mysqli_close($link);
-	}
+class Database
+{
+    private $dbh;
+    private $error;
+    private $statement;
+    private $table_prefix;
 
+    public function __construct() {
+        $hostname = Core::getHostname();
+        $username = Core::getDbUsername();
+        $password = Core::getDbPassword();
+        $db_name  = Core::getDbName();
+        $port     = Core::getPort();
+        $table_prefix = Core::getDbTablePrefix();
 
-	/**
-	 * Checks to see if the database information provided is valid or not.
-	 * @access public
-	 */
-	public static function testDbSettings($dbHostname, $dbName, $dbUsername, $dbPassword) {
-		$dbConnectionError = "";
-		$lang = Core::$language->getCurrentLanguageStrings();
-		$link = @mysqli_connect($dbHostname, $dbUsername, $dbPassword, $dbName);
-		if (mysqli_connect_errno($link)) {
-			$dbConnectionError = mysqli_connect_error();
-		}
+        $options = array(
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES => false
+        );
 
-		if ($dbConnectionError) {
-			$placeholders = array("db_connection_error" => $dbConnectionError);
-			$error = Templates::evalSmartyString($lang["install_invalid_db_info"], $placeholders);
-			return array(false, $error);
-		} else {
-			@mysqli_close($link);
-		}
+        // if required, set all queries as UTF-8 (enabled by default). N.B. we're supporting 5.3.0 so passing charset
+        // in the DSN isn't sufficient, as described here: https://phpdelusions.net/pdo
+        $attrInitCommands = array();
+        if (version_compare(PHP_VERSION, '5.3.6', '<')) {
+            $attrInitCommands[] = "Names utf8";
+        }
+        if (!empty($attrInitCommands)) {
+            $options[PDO::MYSQL_ATTR_INIT_COMMAND] = "SET " . implode(",", $attrInitCommands);
+        }
 
-		return array(true, "");
-	}
+        try {
+            $dsn = sprintf("mysql:host=%s;port=%s;dbname=%s;charset=utf8", $hostname, $port, $db_name);
+            $this->dbh = new PDO($dsn, $username, $password, $options);
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+        }
 
-	/**
-	 * Performs our actual database query/queries.  This accepts either a single query string or an array of queries
-	 * through the first param. The second optional param allows for a custom rollback. We don't use transactions
-	 * because it requires the InnoDB or BDB storage engines being available (and from my experience with formtools.org,
-	 * there are still a lot of environments that don't have it).
-	 *
-	 * This function works for any query type: INSERT, UPDATE, SELECT. But the returned info obviously only has
-	 * meaning with the SELECT query.
-	 *
-	 * @param mixed $queries
-	 * @param mixed $rollbackQueries
-	 * @return hash "success"      => boolean
-	 *              "errorMessage" => error string
-	 *              "results"      => the result of the MySQL query, or an array of results if an array was passed
-	 */
-	public function query($queries, $rollbackQueries = "") {
-		$singleQuery = false;
-		if (!is_array($queries)) {
-			$queries = array($queries);
-			$singleQuery = true;
-		}
-		if (!is_array($rollbackQueries)) {
-			$rollbackQueries = array($rollbackQueries);
-		}
+        $this->table_prefix = $table_prefix;
+    }
 
-		$results = array();
-		$errorMessage = "";
-		foreach ($queries as $query) {
-			$result = mysqli_query($this->link, $query);
-			if (!$result) {
-				$errorMessage = mysqli_error($this->link);
-				break;
-			} else {
-				$results[] = $result;
-			}
-		}
+    /**
+     * This is a convenience wrapper for PDO's prepare method. It replaces {PREFIX} with the database
+     * table prefix so you don't have to include it everywhere.
+     * @param $query
+     */
+    public function query($query) {
+        $query = str_replace('{PREFIX}', $this->table_prefix, $query);
+        $this->statement = $this->dbh->prepare($query);
+    }
 
-		if (!empty($errorMessage)) {
-			foreach ($rollbackQueries as $query) {
-				@mysqli_query($this->link, $query);
-			}
-		}
+    public function bind($param, $value, $type = null) {
+        if (is_null($type)) {
+            switch (true) {
+                case is_int($value):
+                    $type = PDO::PARAM_INT;
+                    break;
+                case is_bool($value):
+                    $type = PDO::PARAM_BOOL;
+                    break;
+                case is_null($value):
+                    $type = PDO::PARAM_NULL;
+                    break;
+                default:
+                    $type = PDO::PARAM_STR;
+            }
+        }
+        $this->statement->bindValue($param, $value, $type);
+    }
 
-		// if this was a single query, make $results
-		if ($singleQuery && isset($results[0])) {
-			$results = $results[0];
-		}
+    public function bindAll(array $data) {
+        foreach ($data as $k => $v) {
+            $this->bind($k, $v);
+        }
+    }
 
-		return array(
-			"success"      => empty($errorMessage),
-			"errorMessage" => $errorMessage,
-			"results"      => $results
-		);
-	}
+    public function beginTransaction() {
+        return $this->dbh->beginTransaction();
+    }
 
-	/**
-	 * Returns the database connection. Used by SessionManager.
-	 * @access public
-	 */
-	public function getDBLink() {
-		return $this->link;
-	}
+    public function processTransaction() {
+        return $this->dbh->commit();
+    }
+
+    public function rollbackTransaction() {
+        return $this->dbh->rollBack();
+    }
+
+    // method execution methods
+    public function execute() {
+        return $this->statement->execute();
+    }
+
+    public function fetch($fetch_style = PDO::FETCH_ASSOC) {
+        return $this->statement->fetch($fetch_style);
+    }
+
+    public function fetchColumn($fetch_style = PDO::FETCH_ASSOC) {
+        return $this->statement->fetchColumn($fetch_style);
+    }
+
+    public function fetchAll($fetch_style = PDO::FETCH_ASSOC) {
+        return $this->statement->fetchAll($fetch_style);
+    }
+
+    public function getResultsArray() {
+        $info = array();
+        foreach ($this->fetchAll() as $row) {
+            $info[] = $row;
+        }
+        return $info;
+    }
+
+    public function getInsertId() {
+        return $this->dbh->lastInsertId();
+    }
+
+    /**
+     * Checks to see if the database information provided is valid or not.
+     * @access public
+     */
+    public static function testDbSettings($dbHostname, $dbName, $dbUsername, $dbPassword) {
+//        $dbConnectionError = "";
+//        $lang = Core::$language->getCurrentLanguageStrings();
+//        $link = @mysqli_connect($dbHostname, $dbUsername, $dbPassword, $dbName);
+//        if (mysqli_connect_errno($link)) {
+//            $dbConnectionError = mysqli_connect_error();
+//        }
+//
+//        if ($dbConnectionError) {
+//            $placeholders = array("db_connection_error" => $dbConnectionError);
+//            $error = Templates::evalSmartyString($lang["install_invalid_db_info"], $placeholders);
+//            return array(false, $error);
+//        } else {
+//            @mysqli_close($link);
+//        }
+//
+//        return array(true, "");
+    }
+
+    /**
+     * Performs our actual database query/queries.  This accepts either a single query string or an array of queries
+     * through the first param. The second optional param allows for a custom rollback. We don't use transactions
+     * because it requires the InnoDB or BDB storage engines being available (and from my experience with formtools.org,
+     * there are still a lot of environments that don't have it).
+     *
+     * This function works for any query type: INSERT, UPDATE, SELECT. But the returned info obviously only has
+     * meaning with the SELECT query.
+     *
+     * @param mixed $queries
+     * @param mixed $rollbackQueries
+     * @return hash "success"      => boolean
+     *              "errorMessage" => error string
+     *              "results"      => the result of the MySQL query, or an array of results if an array was passed
+     */
+    public function processQuery($queries, $rollbackQueries = "") {
+        $singleQuery = false;
+        if (!is_array($queries)) {
+            $queries = array($queries);
+            $singleQuery = true;
+        }
+        if (!is_array($rollbackQueries)) {
+            $rollbackQueries = array($rollbackQueries);
+        }
+
+        $results = array();
+        $errorMessage = "";
+        foreach ($queries as $query) {
+            $result = mysqli_query($this->link, $query);
+            if (!$result) {
+                $errorMessage = mysqli_error($this->link);
+                break;
+            } else {
+                $results[] = $result;
+            }
+        }
+
+        if (!empty($errorMessage)) {
+            foreach ($rollbackQueries as $query) {
+                @mysqli_query($this->link, $query);
+            }
+        }
+
+        // if this was a single query, make $results
+        if ($singleQuery && isset($results[0])) {
+            $results = $results[0];
+        }
+
+        return array(
+            "success"      => empty($errorMessage),
+            "errorMessage" => $errorMessage,
+            "results"      => $results
+        );
+    }
 }
-
 
