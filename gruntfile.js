@@ -28,6 +28,17 @@ module.exports = function(grunt) {
 			}
 		},
 
+        sass: {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    'resources/themes/classic/compiled/styles.css': 'resources/themes/classic/sass/styles.scss'
+                }
+            }
+        },
+
 		cssmin: {
 			target: {
 				files: {
@@ -93,11 +104,23 @@ module.exports = function(grunt) {
 					failOnMatch: true
 				}
 			}
-		}
+		},
+
+        watch: {
+            scripts: {
+                files: ['**/*.scss'],
+                tasks: ['sass'],
+                options: {
+                    spawn: false
+                }
+            }
+        }
 	};
 
 	grunt.initConfig(config);
 
+    grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-md5');
@@ -106,13 +129,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-search');
 
 	/**
-	 * The default - and only - Grunt task simply recreates all the bundled resources. It doesn't alter the actual
+	 * The default Grunt task simply recreates all the bundled resources. It doesn't alter the actual
 	 * script at all. To use these bundled resources you need to add a $useMinifiedResources = true; var to your
 	 * settings.php file.
 	 */
 	grunt.registerTask('default', [
 
 		// uglify the core CSS + JS
+		'sass',
 		'uglify',
 		'cssmin',
 
@@ -125,4 +149,10 @@ module.exports = function(grunt) {
 		// with the latest file mapping
 		'md5'
 	]);
+
+    /**
+	 * For local dev work. Watches the sass files and regenerates the CSS.
+     */
+    grunt.registerTask('local', ['watch']);
+
 };

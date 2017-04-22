@@ -87,10 +87,9 @@ class DataType_City extends DataTypePlugin {
 	 * $citiesByCountryRegion private var.
 	 */
 	private function initCityList() {
-		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
 			SELECT *
-			FROM {$prefix}cities
+			FROM {PREFIX}cities
 		");
 
 		if (!$response["success"]) {

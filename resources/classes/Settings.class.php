@@ -11,8 +11,7 @@ class Settings {
 	 * @return array|void
 	 */
 	public static function getSettings() {
-		$prefix = Core::getDbTablePrefix();
-		$query = Core::$db->query("SELECT * FROM {$prefix}settings");
+		$query = Core::$db->query("SELECT * FROM {PREFIX}settings");
 
 		// TODO. work out standardized return format... Exception maybe
 		if ($query["success"]) {
@@ -32,15 +31,13 @@ class Settings {
 	 * @return if not found, null. Otherwise the string value
 	 */
 	public static function getSetting($settingName) {
-		$prefix = Core::getDbTablePrefix();
-
 		if (!Core::$db) {
 			return;
 		}
 
 		$response = Core::$db->query("
 			SELECT setting_value
-			FROM {$prefix}settings
+			FROM {PREFIX}settings
 			WHERE setting_name = '$settingName'
 		");
 
@@ -54,10 +51,9 @@ class Settings {
 	}
 
 	public static function setSetting($settingName, $settingValue) {
-		$prefix = Core::getDbTablePrefix();
 		$settingValue = mysqli_real_escape_string(Core::$db->getDBLink(), $settingValue);
 		$response = Core::$db->query("
-			UPDATE {$prefix}settings
+			UPDATE {PREFIX}settings
 			SET    setting_value = '$settingValue'
 			WHERE  setting_name = '$settingName'
 		");
@@ -91,12 +87,11 @@ class Settings {
 		    "theme" => "classic"
 		);
 
-		$prefix = Core::getDbTablePrefix();
 		$errors = array();
 		while (list($key, $value) = each($settings)) {
 			$value = mysqli_real_escape_string($dbLink, $value);
 			$result = Core::$db->query("
-				UPDATE {$prefix}settings
+				UPDATE {PREFIX}settings
 				SET    setting_value = '$value'
 				WHERE  setting_name = '$key'
 			");

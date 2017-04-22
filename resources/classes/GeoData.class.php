@@ -71,10 +71,9 @@ class GeoData {
 	}
 
 	private function initCountryData() {
-		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
 			SELECT *
-			FROM   {$prefix}countries
+			FROM   {PREFIX}countries
 			ORDER BY country
 		");
 
@@ -92,10 +91,9 @@ class GeoData {
 	}
 
 	private function initRegionData() {
-		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
 			SELECT *
-			FROM   {$prefix}regions
+			FROM   {PREFIX}regions
 			ORDER BY country_slug
 		");
 		if (!$response["success"]) {
@@ -109,10 +107,9 @@ class GeoData {
 	}
 
 	private function initCityData() {
-		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
 			SELECT *
-			FROM   {$prefix}cities
+			FROM   {PREFIX}cities
 			ORDER BY country_slug
 		");
 		if (!$response["success"]) {

@@ -34,7 +34,7 @@ class AjaxRequest {
 				if (Core::checkIsInstalled()) {
 					return;
 				}
-				list($success, $content) = Database::testDbSettings($this->post["dbHostname"], $this->post["dbName"], $this->post["dbUsername"], $this->post["dbPassword"]);
+				list($success, $content) = Database::testDbSettings($this->post["dbHostname"], $this->post["dbName"], $this->post["dbPort"], $this->post["dbUsername"], $this->post["dbPassword"]);
 				$this->response["success"] = $success;
 				$this->response["content"] = $content;
 				break;
@@ -49,8 +49,14 @@ class AjaxRequest {
 					$this->response["content"] = "Your settings.php file already exists.";
 					return;
 				} else {
-					list($success, $content) = Installation::createSettingsFile($this->post["dbHostname"],
-						$this->post["dbName"], $this->post["dbUsername"], $this->post["dbPassword"], $this->post["dbTablePrefix"]);
+					list($success, $content) = Installation::createSettingsFile(
+					    $this->post["dbHostname"],
+						$this->post["dbName"],
+                        $this->post["dbPort"],
+                        $this->post["dbUsername"],
+                        $this->post["dbPassword"],
+                        $this->post["dbTablePrefix"]
+                    );
 					$this->response["success"] = ($success) ? 1 : 0; // bah!
 					$this->response["content"] = $content;
 				}

@@ -32,12 +32,11 @@ abstract class CountryPlugin {
 	 * However, if need be, this function can be overridden.
 	 */
 	public function uninstall() {
-		$prefix = Core::getDbTablePrefix();
 		$countrySlug = $this->countrySlug;
 		$queries = array();
-		$queries[] = "DELETE FROM {$prefix}cities    WHERE country_slug = '{$countrySlug}'";
-		$queries[] = "DELETE FROM {$prefix}regions   WHERE country_slug = '{$countrySlug}'";
-		$queries[] = "DELETE FROM {$prefix}countries WHERE country_slug = '{$countrySlug}'";
+		$queries[] = "DELETE FROM {PREFIX}cities    WHERE country_slug = '{$countrySlug}'";
+		$queries[] = "DELETE FROM {PREFIX}regions   WHERE country_slug = '{$countrySlug}'";
+		$queries[] = "DELETE FROM {PREFIX}countries WHERE country_slug = '{$countrySlug}'";
 		Core::$db->query($queries);
 	}
 

@@ -87,19 +87,24 @@ ul {
   width: 378px;
   border-bottom: 1px solid #efefef;
   clear: left; }
+
 .gdFields .gdDisabledRow label, .gdFields .gdDisabledRow input {
   color: #cccccc; }
+
 .gdFields label {
   float: left;
   width: 160px;
   color: #777777;
   margin-top: 2px; }
+
 .gdFields input {
   float: left;
   width: 210px;
   margin-top: 2px; }
+
 .gdFields div {
   margin-top: 2px; }
+
 .gdFields .gdCol {
   float: left;
   width: 350px; }
@@ -361,8 +366,10 @@ hr.divider {
   color: #ffffcc; }
   #gdTableRows li.gdDeletedRow label, #gdTableRows li.gdDeletedRow div {
     color: #ffffcc; }
+
 #gdTableRows > li:nth-child(even) {
   background-color: #eaffe6; }
+
 #gdTableRows > li:nth-child(odd) {
   background-color: #f1f1f1; }
 
@@ -633,6 +640,7 @@ a.gdDisabledLink {
 #gdAccountList thead td {
   border-bottom: 1px solid #cccccc;
   font-weight: bold; }
+
 #gdAccountList table {
   width: 100%; }
 
@@ -1019,6 +1027,7 @@ input.medium {
 body.gdErrorPage h1 {
   margin: 0px 0px 12px 0px;
   font-weight: bold; }
+
 body.gdErrorPage #gdBox {
   font-family: verdana;
   font-size: 11pt;
@@ -1060,10 +1069,12 @@ body.gdErrorPage #gdBox {
     font-size: 11pt;
     line-height: 22px;
     margin-bottom: 12px; }
+
 body.gdErrorPage #gdNotFixed {
   color: #990000;
   margin-bottom: 8px;
   font-style: italic; }
+
 body.gdErrorPage #gdSeriousError {
   font-size: 8pt;
   max-height: 160px;
@@ -1079,24 +1090,31 @@ body.gdErrorPage #gdSeriousError {
   padding-bottom: 8px;
   margin-bottom: 8px;
   float: none; }
+
 .gdInstallPage h4 {
   margin: 0 0 4px;
   font-size: 12px; }
-.gdInstallPage #dbTablePrefix {
+
+.gdInstallPage #dbTablePrefix, .gdInstallPage #dbPort {
   width: 60px; }
+
 .gdInstallPage input.pwdField {
   width: 100px; }
+
 .gdInstallPage .doc label {
   float: left;
   width: 160px;
   color: #777777;
   margin-top: 2px;
   clear: right; }
+
 .gdInstallPage .doc > div {
   clear: both; }
+
 .gdInstallPage .doc div > div {
   float: right;
   width: 770px; }
+
 .gdInstallPage #gdInstallNav {
   float: left;
   width: 200px;
@@ -1112,6 +1130,7 @@ body.gdErrorPage #gdSeriousError {
     color: green; }
   .gdInstallPage #gdInstallNav ol li.gdComplete {
     color: #999999; }
+
 .gdInstallPage .gdInstallSection {
   float: right;
   width: 725px; }
@@ -1119,8 +1138,10 @@ body.gdErrorPage #gdSeriousError {
     margin-bottom: 12px; }
   .gdInstallPage .gdInstallSection button {
     margin-bottom: 10px; }
+
 .gdInstallPage .gdAdminAccountHeading {
   font-weight: bold; }
+
 .gdInstallPage .gdInstallTabMessage {
   border-radius: 5px;
   padding: 3px 10px 3px 54px;
@@ -1141,14 +1162,17 @@ body.gdErrorPage #gdSeriousError {
     font-size: 8pt; }
   .gdInstallPage .gdInstallTabMessage .gdResponse {
     color: #000000; }
+
 .gdInstallPage .gdInstallError {
   background-color: #ffe1e1; }
   .gdInstallPage .gdInstallError h3 {
     color: #cc0000; }
   .gdInstallPage .gdInstallError .gdIcon {
     background-image: url(../images/stop.png); }
+
 .gdInstallPage .gdInstallSuccess .gdIcon {
   background-image: url(../images/info.png); }
+
 .gdInstallPage #gdSettingsFileContents {
   width: 100%;
   height: 120px;
@@ -1214,6 +1238,7 @@ body.gdErrorPage #gdSeriousError {
 
 .gdDialogTable .leftAligned {
   padding-left: 3px; }
+
 .gdDialogTable td a {
   display: block;
   color: #189C1C; }
@@ -1234,8 +1259,10 @@ body.gdErrorPage #gdSeriousError {
 
 .gdModalTabs.gdThreeCols li {
   width: 33.3%; }
+
 .gdModalTabs.gdTwoCols li {
   width: 50%; }
+
 .gdModalTabs ul {
   margin: 0;
   padding: 0;
@@ -1326,6 +1353,7 @@ body .gdMainDialog .ui-dialog-title span {
     display: block;
     width: 18px;
     height: 18px; }
+
 #gdAccountListNonEmpty td.gdDeleteAccount {
   background-image: url(../images/delete.png);
   background-repeat: no-repeat;
@@ -1342,6 +1370,7 @@ body .gdMainDialog .ui-dialog-title span {
 
 #gdDeleteAccountDialog th {
   text-align: left; }
+
 #gdDeleteAccountDialog .gdIconWarning {
   margin-right: 15px;
   float: left;

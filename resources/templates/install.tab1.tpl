@@ -32,11 +32,12 @@
                 <label for="dbName">{$L.database_name}</label>
                 <input type="text" id="dbName" value="" />
             </div>
+            <div class="gdError" id="dbName_error"></div>
             <div class="gdField">
                 <label for="dbPort">{$L.database_port}</label>
                 <input type="text" id="dbPort" value="{$port}" maxlength="5" />
             </div>
-            <div class="gdError" id="dbName_error"></div>
+            <div class="gdError" id="dbPort_error"></div>
             <div class="gdField">
                 <label for="dbUsername">{$L.mysql_username}</label>
                 <input type="text" id="dbUsername" value="" />

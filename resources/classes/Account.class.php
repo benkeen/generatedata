@@ -59,12 +59,14 @@ class Account {
 		}
 
 		if (is_numeric($accountID)) {
-			$prefix = Core::getDbTablePrefix();
-			$response = Core::$db->query("
+			Core::$db->query("
 				SELECT * 
-				FROM {$prefix}user_accounts
-				WHERE account_id = $accountID
+				FROM {PREFIX}user_accounts
+				WHERE account_id = :account_id
 			");
+            Core::$db->bind("account_id", $accountID);
+            $response = Core::$db->execute();
+
 
 			if ($response["success"]) {
 				$accountInfo = mysqli_fetch_assoc($response["results"]);
@@ -90,11 +92,10 @@ class Account {
 	 * message; otherwise, just returns the appropriate error
 	 */
 	public static function login($email, $password) {
-		$prefix = Core::getDbTablePrefix();
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
 			SELECT *
-			FROM {$prefix}user_accounts
+			FROM {PREFIX}user_accounts
 			WHERE email = '$email'
 			LIMIT 1
 		");
@@ -127,7 +128,7 @@ class Account {
 
 		// update the last login time for this user 
 		$now = Utils::getCurrentDatetime();
-		Core::$db->query("UPDATE {$prefix}user_accounts SET last_logged_in = '$now' WHERE account_id = {$data["account_id"]}");
+		Core::$db->query("UPDATE {PREFIX}user_accounts SET last_logged_in = '$now' WHERE account_id = {$data["account_id"]}");
 
 		return array(
 			"success" => true,
@@ -144,7 +145,7 @@ class Account {
 		$email = Utils::sanitize($email);
 		$response = Core::$db->query("
 			SELECT * 
-			FROM {$prefix}user_accounts
+			FROM {PREFIX}user_accounts
 			WHERE email = '$email'
 			LIMIT 1
 		");
@@ -215,7 +216,7 @@ class Account {
         $countries   = mysqli_real_escape_string($dbLink, implode(",", $countries));
 
         $response = Core::$db->query("
-			UPDATE {$prefix}user_accounts
+			UPDATE {PREFIX}user_accounts
 			SET selected_data_types = '$dataTypes',
 				selected_export_types = '$exportTypes',
 				selected_countries = '$countries'
@@ -352,7 +353,7 @@ class Account {
 			$prefix   = Core::getDbTablePrefix();		
 			$response = Core::$db->query("
 				SELECT *, unix_timestamp(date_created) as date_created_unix, unix_timestamp(last_updated) as last_updated_unix
-				FROM   {$prefix}configurations
+				FROM   {PREFIX}configurations
 				WHERE  configuration_id = $configurationID AND
 					   status = 'public'
 			");
@@ -383,13 +384,13 @@ class Account {
 
         $response = Core::$db->query("
             SELECT c.*, ch.*, unix_timestamp(c.date_created) as date_created_unix, unix_timestamp(ch.last_updated) as last_updated_unix
-            FROM {$prefix}configurations c
-                LEFT JOIN {$prefix}configuration_history ch
+            FROM {PREFIX}configurations c
+                LEFT JOIN {PREFIX}configuration_history ch
                     ON ch.configuration_id = c.configuration_id
                     AND ch.history_id =
                         (
                             SELECT history_id
-                            FROM {$prefix}configuration_history ch2
+                            FROM {PREFIX}configuration_history ch2
                             WHERE ch2.configuration_id = c.configuration_id
                             ORDER BY history_id DESC
                             LIMIT 1
@@ -415,7 +416,7 @@ class Account {
 
         $response = Core::$db->query("
             SELECT  ch.*, unix_timestamp(ch.last_updated) as last_updated_unix
-            FROM    {$prefix}configuration_history ch, {$prefix}configurations c
+            FROM    {PREFIX}configuration_history ch, {PREFIX}configurations c
             WHERE c.account_id = $accountID AND
                   c.configuration_id = $configurationID AND
                   c.configuration_id = ch.configuration_id
@@ -459,12 +460,12 @@ class Account {
 		$accountID = $this->accountID;
 		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
-			DELETE FROM {$prefix}configurations 
+			DELETE FROM {PREFIX}configurations 
 			WHERE account_id = {$accountID} AND
 				  configuration_id IN ($configIDStr)
 		");
         $response2 = Core::$db->query("
-			DELETE FROM {$prefix}configuration_history
+			DELETE FROM {PREFIX}configuration_history
 			WHERE configuration_id IN ($configIDStr)
 		");
 
@@ -504,7 +505,7 @@ class Account {
         // if this is a new configuration, create the main record
 		if ($configurationID == null) {
             $response = Core::$db->query("
-				INSERT INTO {$prefix}configurations (status, date_created, account_id)
+				INSERT INTO {PREFIX}configurations (status, date_created, account_id)
 				VALUES ('private', '$now', $accountID)
 			");
             if ($response["success"]) {
@@ -518,7 +519,7 @@ class Account {
         }
 
         $response2 = Core::$db->query("
-            INSERT INTO {$prefix}configuration_history (configuration_id, last_updated, configuration_name, content)
+            INSERT INTO {PREFIX}configuration_history (configuration_id, last_updated, configuration_name, content)
             VALUES ($configurationID, '$now', '" . $configurationName . "', '" . $content . "')
         ");
         if ($response2["success"]) {
@@ -542,9 +543,8 @@ class Account {
 		$dataSetId         = Utils::sanitize($data["dataSetId"]);
 		$configurationName = Utils::sanitize($data["newDataSetName"]);
 
-		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
-			INSERT INTO {$prefix}configurations (status, date_created, account_id, num_rows_generated)
+			INSERT INTO {PREFIX}configurations (status, date_created, account_id, num_rows_generated)
                 SELECT status, date_created, account_id, num_rows_generated
                 FROM {$prefix}configurations
                 WHERE configuration_id = $dataSetId
@@ -560,7 +560,7 @@ class Account {
         // if it worked okay (it should!) update the last_updated and configuration_name fields
         $newConfigurationID = mysqli_insert_id(Core::$db->getDBLink());
         $response2 = Core::$db->query("
-            INSERT INTO {$prefix}configuration_history (configuration_id, last_updated, configuration_name, content)
+            INSERT INTO {PREFIX}configuration_history (configuration_id, last_updated, configuration_name, content)
                 SELECT $newConfigurationID as configuration_id, last_updated, configuration_name, content
                 FROM {$prefix}configuration_history
                 WHERE configuration_id = $dataSetId
@@ -568,12 +568,12 @@ class Account {
 
         $now = Utils::getCurrentDatetime();
         $response3 = Core::$db->query("
-            UPDATE {$prefix}configurations
+            UPDATE {PREFIX}configurations
             SET date_created = '$now'
             WHERE configuration_id = $newConfigurationID
         ");
         $response4 = Core::$db->query("
-            UPDATE {$prefix}configuration_history
+            UPDATE {PREFIX}configuration_history
             SET configuration_name = '" . $configurationName . "'
             WHERE configuration_id = $newConfigurationID
             ORDER BY history_id DESC
@@ -619,14 +619,13 @@ class Account {
 
 		$L = Core::$language->getCurrentLanguageStrings();
 		$now = Utils::getCurrentDatetime();
-		$prefix = Core::getDbTablePrefix();
 
 		$selectedDataTypes = Settings::getSetting("installedDataTypes");
 		$selectedExportTypes = Settings::getSetting("installedExportTypes");
 		$selectedCountries = Settings::getSetting("installedCountries");
 
 		$result = Core::$db->query("
-			INSERT INTO {$prefix}user_accounts (date_created, last_updated, date_expires, last_logged_in, account_type, 
+			INSERT INTO {PREFIX}user_accounts (date_created, last_updated, date_expires, last_logged_in, account_type, 
 				first_name, last_name, email, password, selected_data_types, selected_export_types, selected_countries)
 			VALUES ('$now', '$now', '$now', NULL, '$accountType', '$firstName', '$lastName', '$email', '$password',
 				'$selectedDataTypes', '$$selectedExportTypes', '$selectedCountries')
@@ -694,7 +693,7 @@ class Account {
 		}
 
 		$response = Core::$db->query("
-			UPDATE {$prefix}user_accounts
+			UPDATE {PREFIX}user_accounts
 			SET first_name = '$firstName',
 				last_name = '$lastName',
 				email = '$email'
@@ -732,7 +731,7 @@ class Account {
 		$email     = $info["email"];
 
 		$response = Core::$db->query("
-			UPDATE {$prefix}user_accounts
+			UPDATE {PREFIX}user_accounts
 			SET first_name = '$firstName',
 				last_name = '$lastName',
 				email = '$email'
@@ -763,9 +762,8 @@ class Account {
 		}
 
 		$accountID = mysqli_real_escape_string($dbLink, $accountID);
-		$prefix = Core::getDbTablePrefix();
-		Core::$db->query("DELETE FROM {$prefix}user_accounts WHERE account_id = $accountID");
-		Core::$db->query("DELETE FROM {$prefix}configurations WHERE account_id = $accountID");
+		Core::$db->query("DELETE FROM {PREFIX}user_accounts WHERE account_id = $accountID");
+		Core::$db->query("DELETE FROM {PREFIX}configurations WHERE account_id = $accountID");
 
 		return array("success" => true);
 	}
@@ -781,7 +779,7 @@ class Account {
 
 		$response = Core::$db->query("
 			SELECT count(*) as c
-			FROM   {$prefix}user_accounts
+			FROM   {PREFIX}user_accounts
 			WHERE email = '$email'
 		");
 
@@ -799,10 +797,9 @@ class Account {
 			);
 		}
 
-		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
 			SELECT *
-			FROM {$prefix}user_accounts 
+			FROM {PREFIX}user_accounts 
 			WHERE account_type = 'user'
 			ORDER BY last_name ASC
 		");
@@ -841,16 +838,15 @@ class Account {
 		}
 		$dbLink = Core::$db->getDBLink();
 		$cleanRowsGenerated = mysqli_real_escape_string($dbLink, $rowsGenerated);
-		$prefix    = Core::getDbTablePrefix();
 		$accountID = $this->accountID;
 		$response = Core::$db->query("
-			UPDATE {$prefix}configurations
+			UPDATE {PREFIX}configurations
 			SET num_rows_generated = num_rows_generated+$cleanRowsGenerated
 			WHERE  account_id = $accountID AND configuration_id = $configurationID
 		");
 
 		$response = Core::$db->query("
-			UPDATE {$prefix}user_accounts
+			UPDATE {PREFIX}user_accounts
 			SET num_rows_generated = num_rows_generated+$cleanRowsGenerated
 			WHERE account_id = $accountID
 		");
@@ -909,7 +905,7 @@ class Account {
         // first, get the ID of the oldest saved history item, according to however large this
         $response = Core::$db->query("
             SELECT *
-            FROM  {$prefix}configuration_history
+            FROM  {PREFIX}configuration_history
             WHERE configuration_id = $configurationID
             ORDER BY history_id DESC
             LIMIT 1
@@ -921,7 +917,7 @@ class Account {
             $historyID = $results["history_id"];
 
             Core::$db->query("
-              DELETE FROM {$prefix}configuration_history
+              DELETE FROM {PREFIX}configuration_history
               WHERE configuration_id = $configurationID AND history_id <= $historyID
             ");
         }

@@ -166,10 +166,9 @@ END;
 			$whereClause .= "AND $slugClause";
 		}
 
-		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
 			SELECT *
-			FROM   {$prefix}countries
+			FROM   {PREFIX}countries
 			$whereClause
 		");
 
@@ -185,10 +184,9 @@ END;
 	}
 
 	function getRegions($countryID) {
-		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
 			SELECT *
-			FROM  {$prefix}regions
+			FROM  {PREFIX}regions
 			WHERE country_id = $countryID
 		");
 

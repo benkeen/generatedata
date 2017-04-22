@@ -135,9 +135,7 @@ require([
 
         var dbPort = $.trim($("#dbPort").val());
         if (dbPort === "") {
-            errors.push({ fieldId: "dbPort", error: _L.validation_no_mysql_username });
-        } else if (validCharsUserField.test(dbPort)) {
-            errors.push({ fieldId: "dbPort", error: _L.validation_invalid_chars });
+            errors.push({ fieldId: "dbPort", error: _L.validation_no_database_port });
         }
 
 		var dbUsername = $.trim($("#dbUsername").val());
@@ -167,6 +165,7 @@ require([
 		_dbSettings = {
 			dbHostname: dbHostname,
 			dbName: dbName,
+            dbPort: dbPort,
 			dbUsername: dbUsername,
 			dbPassword: dbPassword,
 			dbTablePrefix: dbTablePrefix
@@ -184,6 +183,7 @@ require([
 				action: "installationTestDbSettings",
 				dbHostname: dbHostname,
 				dbName: dbName,
+                dbPort: dbPort,
 				dbUsername: dbUsername,
 				dbPassword: dbPassword
 			}
@@ -216,6 +216,7 @@ require([
 				action: "installationCreateSettingsFile",
 				dbHostname: _dbSettings.dbHostname,
 				dbName: _dbSettings.dbName,
+                dbPort: _dbSettings.dbPort,
 				dbUsername: _dbSettings.dbUsername,
 				dbPassword: _dbSettings.dbPassword,
 				dbTablePrefix: _dbSettings.dbTablePrefix

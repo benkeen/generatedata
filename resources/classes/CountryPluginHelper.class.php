@@ -137,7 +137,7 @@ class CountryPluginHelper {
 			}
 			$rowsStr = implode(",", $rows);
 			$queries[] = "
-				INSERT INTO {$prefix}cities (country_slug, region_slug, city)
+				INSERT INTO {PREFIX}cities (country_slug, region_slug, city)
 				VALUES $rowsStr
 			";
 		}

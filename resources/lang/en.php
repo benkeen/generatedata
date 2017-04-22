@@ -19,7 +19,6 @@ $L["meta_keywords"] = "Random Data, Test Data, Sample Data, data generator, gene
 $L["row_label"] = "Column Title";
 $L["row_label_plural"] = "Column Titles";
 $L["update_settings"] = "Update Settings";
-$L["database_port"] = "Database Port";
 $L["data_type"] = "Data Type";
 $L["default_save_form_empty_str"] = "Enter form name here";
 $L["del"] = "Del";
@@ -299,3 +298,8 @@ $L["validation_no_countries"] = "Please select at least one Country.";
 // changed
 $L["plugins_intro"] = "Check/uncheck the rows to determine which functionality you'd like to see in the interface.";
 $L["notify_settings_updated"] = "Your settings have been updated. Refresh the page to ensure you have the latest content.";
+
+// 3.3.0
+$L["database_port"] = "Database Port";
+$L["validation_no_database_port"] = "Please enter the database port.";
+

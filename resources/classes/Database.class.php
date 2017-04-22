@@ -96,9 +96,20 @@ class Database
         return $this->dbh->rollBack();
     }
 
-    // method execution methods
+    /**
+     * Executes our query/queries.
+     * @param mixed $queries
+     * @param mixed $rollbackQueries
+     * @return hash "success"      => boolean
+     *              "errorMessage" => error string
+     *              "results"      => the result of the MySQL query, or an array of results if an array was passed
+     */
     public function execute() {
-        return $this->statement->execute();
+        try {
+            $this->statement->execute();
+        } catch (\PDOException $e) {
+
+        }
     }
 
     public function fetch($fetch_style = PDO::FETCH_ASSOC) {
@@ -127,42 +138,22 @@ class Database
 
     /**
      * Checks to see if the database information provided is valid or not.
-     * @access public
      */
-    public static function testDbSettings($dbHostname, $dbName, $dbUsername, $dbPassword) {
-//        $dbConnectionError = "";
-//        $lang = Core::$language->getCurrentLanguageStrings();
-//        $link = @mysqli_connect($dbHostname, $dbUsername, $dbPassword, $dbName);
-//        if (mysqli_connect_errno($link)) {
-//            $dbConnectionError = mysqli_connect_error();
-//        }
-//
-//        if ($dbConnectionError) {
-//            $placeholders = array("db_connection_error" => $dbConnectionError);
-//            $error = Templates::evalSmartyString($lang["install_invalid_db_info"], $placeholders);
-//            return array(false, $error);
-//        } else {
-//            @mysqli_close($link);
-//        }
-//
-//        return array(true, "");
+    public static function testDbSettings($dbHostname, $dbName, $dbPort, $dbUsername, $dbPassword) {
+        $lang = Core::$language->getCurrentLanguageStrings();
+
+        try {
+            $dsn = sprintf("mysql:host=%s;port=%s;dbname=%s;charset=utf8", $dbHostname, $dbPort, $dbName);
+            new PDO($dsn, $dbUsername, $dbPassword, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        } catch (PDOException $e) {
+            $placeholders = array("db_connection_error" => $e->getMessage());
+            $error = Templates::evalSmartyString($lang["install_invalid_db_info"], $placeholders);
+            return array(false, $error);
+        }
+
+        return array(true, "");
     }
 
-    /**
-     * Performs our actual database query/queries.  This accepts either a single query string or an array of queries
-     * through the first param. The second optional param allows for a custom rollback. We don't use transactions
-     * because it requires the InnoDB or BDB storage engines being available (and from my experience with formtools.org,
-     * there are still a lot of environments that don't have it).
-     *
-     * This function works for any query type: INSERT, UPDATE, SELECT. But the returned info obviously only has
-     * meaning with the SELECT query.
-     *
-     * @param mixed $queries
-     * @param mixed $rollbackQueries
-     * @return hash "success"      => boolean
-     *              "errorMessage" => error string
-     *              "results"      => the result of the MySQL query, or an array of results if an array was passed
-     */
     public function processQuery($queries, $rollbackQueries = "") {
         $singleQuery = false;
         if (!is_array($queries)) {

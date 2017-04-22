@@ -266,12 +266,11 @@ class Utils {
 	 */
 	public static function getLipsum() {
 		if (!self::$lipsumMemoized) {
-			$prefix = Core::getDbTablePrefix();
 
 			// grab all the words in the text files & put them in an array (1 word per index)
 			$response = Core::$db->query("
 				SELECT *
-				FROM {$prefix}settings
+				FROM {PREFIX}settings
 				WHERE setting_name = 'lipsum'
 			");
 
