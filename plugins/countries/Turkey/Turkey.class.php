@@ -29,7 +29,7 @@ class Country_Turkey extends CountryPlugin {
 	protected $countryData = array(
 		array(
 			"regionName" => "Istanbul",
-			"regionShort" => "Istanbul",
+			"regionShort" => "Ist",
 			"regionSlug" => "istanbul",
 			"weight" => 14,
 			"cities" => array(
@@ -38,7 +38,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Ankara",
-			"regionShort" => "Ankara",
+			"regionShort" => "Ank",
 			"regionSlug" => "ankara",
 			"weight" => 5,
 			"cities" => array(
@@ -47,7 +47,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "İzmir",
-			"regionShort" => "İzmir",
+			"regionShort" => "İzm",
 			"regionSlug" => "izmir",
 			"weight" => 4,
 			"cities" => array(
@@ -56,7 +56,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Bursa",
-			"regionShort" => "Bursa",
+			"regionShort" => "Bur",
 			"regionSlug" => "bursa",
 			"weight" => 3,
 			"cities" => array(
@@ -65,7 +65,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Antalya",
-			"regionShort" => "Antalya",
+			"regionShort" => "Ant",
 			"regionSlug" => "antalya",
 			"weight" => 2,
 			"cities" => array(
@@ -74,7 +74,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Adana",
-			"regionShort" => "Adana",
+			"regionShort" => "Ada",
 			"regionSlug" => "adana",
 			"weight" => 2,
 			"cities" => array(
@@ -83,7 +83,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Konya",
-			"regionShort" => "Konya",
+			"regionShort" => "Kon",
 			"regionSlug" => "konya",
 			"weight" => 2,
 			"cities" => array(
@@ -92,7 +92,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Gaziantep",
-			"regionShort" => "Gaziantep",
+			"regionShort" => "Gaz",
 			"regionSlug" => "gaziantep",
 			"weight" => 2,
 			"cities" => array(
@@ -101,7 +101,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Şanlıurfa",
-			"regionShort" => "Şanlıurfa",
+			"regionShort" => "Şan",
 			"regionSlug" => "sanliurfa",
 			"weight" => 2,
 			"cities" => array(
@@ -110,7 +110,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Mersin",
-			"regionShort" => "Mersin",
+			"regionShort" => "Mer",
 			"regionSlug" => "mersin",
 			"weight" => 2,
 			"cities" => array(
@@ -119,7 +119,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Kocaeli",
-			"regionShort" => "Kocaeli",
+			"regionShort" => "Koc",
 			"regionSlug" => "kocaeli",
 			"weight" => 2,
 			"cities" => array(
@@ -128,7 +128,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Diyarbakır",
-			"regionShort" => "Diyarbakır",
+			"regionShort" => "Diy",
 			"regionSlug" => "diyarbakir",
 			"weight" => 2,
 			"cities" => array(
@@ -137,7 +137,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Hatay",
-			"regionShort" => "Hatay",
+			"regionShort" => "Hat",
 			"regionSlug" => "hatay",
 			"weight" => 2,
 			"cities" => array(
@@ -146,7 +146,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Manisa",
-			"regionShort" => "Manisa",
+			"regionShort" => "Man",
 			"regionSlug" => "manisa",
 			"weight" => 1,
 			"cities" => array(
@@ -155,7 +155,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Kayseri",
-			"regionShort" => "Kayseri",
+			"regionShort" => "Kay",
 			"regionSlug" => "kayseri",
 			"weight" => 1,
 			"cities" => array(
@@ -164,7 +164,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Samsun",
-			"regionShort" => "Samsun",
+			"regionShort" => "Sam",
 			"regionSlug" => "samsun",
 			"weight" => 1,
 			"cities" => array(
@@ -173,7 +173,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Balıkesir",
-			"regionShort" => "Balıkesir",
+			"regionShort" => "Bal",
 			"regionSlug" => "balikesir",
 			"weight" => 1,
 			"cities" => array(
@@ -182,7 +182,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Kahramanmaraş",
-			"regionShort" => "Kahramanmaraş",
+			"regionShort" => "Kah",
 			"regionSlug" => "kahramanmaras",
 			"weight" => 1,
 			"cities" => array(
@@ -200,7 +200,7 @@ class Country_Turkey extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Aydın",
-			"regionShort" => "Aydın",
+			"regionShort" => "Ayd",
 			"regionSlug" => "aydin",
 			"weight" => 1,
 			"cities" => array(

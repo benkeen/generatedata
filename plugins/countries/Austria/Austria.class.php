@@ -17,7 +17,7 @@ class Country_Austria extends CountryPlugin {
 	protected $countryData = array(
 		array(
 			"regionName" => "Vienna",
-			"regionShort" => "Wien",
+			"regionShort" => "Wie",
 			"regionSlug" => "vienna",
 			"weight" => 4113,
 			"cities" => array(
@@ -26,7 +26,7 @@ class Country_Austria extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Vorarlberg",
-			"regionShort" => "Vbg.",
+			"regionShort" => "Vbg",
 			"regionSlug" => "voralberg",
 			"weight" => 142,
 			"cities" => array(
@@ -59,7 +59,7 @@ class Country_Austria extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Salzburg",
-			"regionShort" => "Sbg.",
+			"regionShort" => "Sbg",
 			"regionSlug" => "salzburg",
 			"weight" => 74,
 			"cities" => array(
@@ -69,7 +69,7 @@ class Country_Austria extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Styria",
-			"regionShort" => "Stm.",
+			"regionShort" => "Stm",
 			"regionSlug" => "styria",
 			"weight" => 73,
 			"cities" => array(
@@ -79,7 +79,7 @@ class Country_Austria extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Burgenland",
-			"regionShort" => "Bgl.",
+			"regionShort" => "Bgl",
 			"regionSlug" => "burgenland",
 			"weight" => 72,
 			"cities" => array(
@@ -91,7 +91,7 @@ class Country_Austria extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Carinthia",
-			"regionShort" => "Ktn.",
+			"regionShort" => "Ktn",
 			"regionSlug" => "carinthia",
 			"weight" => 59,
 			"cities" => array(
@@ -102,7 +102,7 @@ class Country_Austria extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Tyrol",
-			"regionShort" => "Tirol",
+			"regionShort" => "Tir",
 			"regionSlug" => "tyrol",
 			"weight" => 56,
 			"cities" => array(

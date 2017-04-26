@@ -229,7 +229,7 @@ class Country_Chile extends CountryPlugin {
 		),
 		array(
 			"regionName" => "Biobío",
-			"regionShort" => "VII",
+			"regionShort" => "8",
 			"regionSlug" => "biobio",
 			"weight" => 1179,
 			"cities" => array(
