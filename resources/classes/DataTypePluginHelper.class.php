@@ -127,7 +127,7 @@ class DataTypePluginHelper {
 			}
 		}
 
-		$cssIncludes = "";
+		$cssIncludes = array();
 		foreach ($files as $file) {
 			$cssIncludes[] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"$file\" />";
 		}
