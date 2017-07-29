@@ -116,9 +116,10 @@ define([
 		var errorFields = [];
 		var errorFieldVisibleRowNums = [];
 
-    // as noted in issues/262, SQL Server allows spaces in the db names, hence the separate regexp
-    var validTableCol          = new RegExp("^[a-zA-Z][0-9a-zA-Z_$]*$");
-    var validTableColSQLServer = new RegExp("^[a-zA-Z][0-9a-zA-Z_\\s]*$");
+    // as noted in issues/262, SQL Server allows spaces in the db names, hence the separate regexp. issues/426 noted
+    // that MySQL tables can begin with _ (and 0-9 as it turns out).
+    var validTableCol          = new RegExp("^[0-9a-zA-Z_$]*$");
+    var validTableColSQLServer = new RegExp("^[_a-zA-Z][0-9a-zA-Z_\\s]*$");
 
     var selectedSQLMode = $("#etSQL_databaseType").val();
 
