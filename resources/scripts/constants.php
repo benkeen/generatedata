@@ -45,7 +45,7 @@ define([], function() {
 
 		MAX_GENERATED_ROWS: <?php echo Core::getMaxGeneratedRows(); ?>,
 
-		DEMO_MODE: <?php echo Core::checkDemoMode(); ?>,
+		DEMO_MODE: <?php echo Core::checkDemoMode() ? "true" : "false"; ?>,
 
 		THEME: "<?php Settings::safeDisplaySetting("theme") ?>",
 
