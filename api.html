@@ -105,7 +105,8 @@
 					<li class="active"><a href="#intro"><i class="icon-chevron-right"></i> Introduction</a></li>
 					<li><a href="#enable"><i class="icon-chevron-right"></i> How to Enable</a></li>
 					<li><a href="#how_it_works"><i class="icon-chevron-right"></i> How the API Works</a></li>
-					<li><a href="#readme_files"><i class="icon-chevron-right"></i> Examples / README files</a></li>
+					<li><a href="#readme_files"><i class="icon-chevron-right"></i> Data Type Examples / README files</a></li>
+                    <li><a href="#php_example"><i class="icon-chevron-right"></i> Full Example (PHP)</a></li>
 					<li><a href="#error_handling"><i class="icon-chevron-right"></i> Error Handling</a></li>
 					<li><a href="#questions_bugs"><i class="icon-chevron-right"></i> Questions / Bugs?</a></li>
 				</ul>
@@ -123,15 +124,15 @@
 
 					<h2>Introduction</h2>
 					<p>
-						The API was added in 3.2.0. All Data Types and Export Types were updated for compatibility, so you can
-						now generate custom data by calling a REST endpoint. At this stage the API is pretty basic: there's no
-						user authentication and the API is either enabled or not. That's pretty much it. This page explains how it
-						all works: how to enable the API and how you can construct your requests to retrieve precisely what data
-						you need.
+						The API was added in 3.2.0 to allow you to generate your data programmatically by calling a REST
+                        endpoint, instead of having to use the interface. The API is pretty basic: there's no
+						user authentication and there's a simple on/off setting to allow it to be called. That's pretty
+                        much it! Go simplicity! This page explains how it all works: how to enable the API and how you
+                        can construct your requests to generate exactly what data you need.
 					</p>
 					<p>
-						Please note: the API is only available for your own installations. It's not available via the main
-						generatedata.com website mainly due to bandwidth constraints.
+						Please note: the API is only available for your own installations. It's not available through the
+						generatedata.com website due to bandwidth constraints.
 					</p>
 				</section>
 
@@ -162,7 +163,7 @@ $apiEnabled = true;
 }
 </pre>
 					<p>
-						So far so good!
+						It's already whining at you! So far so good!
 					</p>
 
 				</section>
@@ -291,6 +292,78 @@ $apiEnabled = true;
 						to keep it up to date.
 					</p>
 				</section>
+
+                <hr size="1" />
+
+                <section id="php_example">
+                    <h2>Full Example (PHP)</h2>
+                    <p>
+                        Here's a full example in PHP using Curl. It generates 100 lines of JSON, containing 5 types of
+                        data: a first name, last name, email address, random password and US zipcode. Note that you'll need
+                        change the URL for your own installation.
+                    </p>
+
+                    <pre class="prettyprint linenums">
+require_once("library.php");
+
+$json =<<< END
+{
+    "numRows": 100,
+    "rows": [
+        {
+            "type": "Names",
+            "title": "First Name",
+            "settings": {
+                "placeholder": "Name"
+            }
+        },
+        {
+            "type": "Names",
+            "title": "Last Name",
+            "settings": {
+                "placeholder": "Surname"
+            }
+        },
+        {
+            "type": "Email",
+            "title": "Email"
+        },
+        {
+            "type": "AlphaNumeric",
+            "title": "Random Password",
+            "settings": {
+                "placeholder": "LLLxxLLLxLL"
+            }
+        },
+        {
+            "type": "AlphaNumeric",
+            "title": "US Zipcode",
+            "settings": {
+                "placeholder": "xxxxx"
+            }
+        }
+    ],
+    "export": {
+    "type": "JSON",
+    "settings": {
+        "stripWhitespace": false,
+            "dataStructureFormat": "simple"
+        }
+    }
+}
+END;
+
+$url = "http://yourpath/api/v1/data";
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+</pre>
+
+                </section>
 
 				<hr size="1" />
 
