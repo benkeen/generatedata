@@ -79,6 +79,10 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 
 ## Changelog
 
+3.2.7 - Jul 29, 2017
+- "Computed" Data Type added.
+- misc bug fixes
+
 3.2.6 - Apr 17, 2017
 - misc bug fixes: https://github.com/benkeen/generatedata/milestone/20?closed=1
 

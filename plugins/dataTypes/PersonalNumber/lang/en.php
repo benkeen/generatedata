@@ -4,7 +4,7 @@ $L = array();
 
 $L["DATA_TYPE"] = array(
     "NAME" => "Personal Number",
-    "DESC" => "Generates personal number, used in some countries for social security insurance."
+    "DESC" => "Generates a personal number, used in some countries for social security insurance."
 );
 
 $L["help_text"] = "At the present time only swedish ones are supported. The personal numbers are generated according to the format you specify:";

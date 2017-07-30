@@ -14,11 +14,12 @@ class DataType_Names extends DataTypePlugin {
 	protected $jsModules = array("Names.js");
 
 	// custom member vars for this Data Type
-	private $maleNames    = array();
-	private $femaleNames  = array();
-	private $firstNames   = array();
-	private $lastNames    = array();
-	private $letters      = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private $firstNames  = array();
+	private $maleNames   = array();
+	private $femaleNames = array();
+	private $lastNames   = array();
+	private $letters     = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private $genders     = array("male", "female");
 
 
 	/**
@@ -36,31 +37,56 @@ class DataType_Names extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$placeholderStr = $generationContextData["generationOptions"];
 
-		while (preg_match("/MaleName/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/MaleName/", $this->getRandomFirstName($this->maleNames), $placeholderStr, 1);
+        // in case the user entered multiple | separated formats, pick one first.
+        $formats = explode("|", $placeholderStr);
+        $chosenFormat = $formats[0];
+        if (count($formats) > 1) {
+            $chosenFormat = $formats[mt_rand(0, count($formats)-1)];
+        }
+
+        // the placeholder string with all the placeholders removed
+        $output = $chosenFormat;
+
+        // the user can enter any old thing in the place holder field. We do our best to return some "gender" metadata
+        // based on what we find. In case we find multiple genders, we return "unknown"
+        $found_genders = [];
+
+		while (preg_match("/MaleName/", $output)) {
+		    $found_genders[] = "male";
+			$output = preg_replace("/MaleName/", $this->getRandomFirstName($this->maleNames), $output, 1);
 		}
-		while (preg_match("/FemaleName/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/FemaleName/", $this->getRandomFirstName($this->femaleNames), $placeholderStr, 1);
+		while (preg_match("/FemaleName/", $output)) {
+            $found_genders[] = "female";
+            $output = preg_replace("/FemaleName/", $this->getRandomFirstName($this->femaleNames), $output, 1);
 		}
-		while (preg_match("/Name/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/Name/", $this->getRandomFirstName($this->firstNames), $placeholderStr, 1);
+		while (preg_match("/Name/", $output)) {
+		    // pick a random gender
+            $index = mt_rand(0, 1);
+            $gender = $this->genders[$index];
+            $found_genders[] = $gender;
+            $source = ($gender === "male") ? $this->maleNames : $this->femaleNames;
+            $output = preg_replace("/Name/", $this->getRandomFirstName($source), $output, 1);
 		}
-		while (preg_match("/Surname/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/Surname/", $this->lastNames[mt_rand(0, count($this->lastNames)-1)], $placeholderStr, 1);
+		while (preg_match("/Surname/", $output)) {
+			$output = preg_replace("/Surname/", $this->lastNames[mt_rand(0, count($this->lastNames)-1)], $output, 1);
 		}
-		while (preg_match("/Initial/", $placeholderStr)) {
-			$placeholderStr = preg_replace("/Initial/", $this->letters[mt_rand(0, strlen($this->letters)-1)], $placeholderStr, 1);
+		while (preg_match("/Initial/", $output)) {
+            $output = preg_replace("/Initial/", $this->letters[mt_rand(0, strlen($this->letters)-1)], $output, 1);
 		}
 
-		// in case the user entered multiple | separated formats, pick one
-		$formats = explode("|", $placeholderStr);
-		$chosenFormat = $formats[0];
-		if (count($formats) > 1) {
-			$chosenFormat = $formats[mt_rand(0, count($formats)-1)];
-		}
+        $gender = "unknown";
+        if (count($found_genders) == 1){
+		    $gender = $found_genders[0];
+        } else if (count($found_genders) > 1) {
+            $uniques = array_unique($found_genders);
+            if (count($uniques) == 1) {
+                $gender = $uniques[0];
+            }
+        }
 
 		return array(
-			"display" => trim($chosenFormat)
+			"display" => trim($output),
+            "gender" => $gender
 		);
 	}
 
@@ -78,7 +104,6 @@ class DataType_Names extends DataTypePlugin {
 		}
 		return $json->settings->placeholder;
 	}
-
 
 	public function getDataTypeMetadata() {
 		return array(
@@ -114,10 +139,6 @@ END;
 		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 	}
 
-	public function getNames() {
-		return $this->firstNames;
-	}
-
 	public function getFirstNames() {
 		return $this->firstNames;
 	}
@@ -141,7 +162,7 @@ END;
 		");
 
 		if ($response["success"]) {
-			$names = array();
+		    $names = array();
 			$maleNames = array();
 			$femaleNames = array();
 			while ($row = mysqli_fetch_assoc($response["results"])) {
@@ -156,9 +177,9 @@ END;
 				}
 			}
 
-			$this->firstNames  = $names;
 			$this->maleNames   = $maleNames;
 			$this->femaleNames = $femaleNames;
+			$this->firstNames  = $names;
 		}
 	}
 
