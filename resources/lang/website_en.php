@@ -15,6 +15,7 @@ $L["donate_para2"] = "Supporting the project leads to great new features! Honest
 $L["donate_para3"] = "Donating $20 or more will get you a user account on this website. With a user account you can:";
 $L["donate_para4"] = "Generate up to 5,000 rows at a time instead of the maximum 100.";
 $L["donate_para5"] = "Save your form configurations so you don't have to re-create your data sets every time you return to the site.";
+$L["donate_para5b"] = "No more ads!";
 $L["donate_para6"] = "Every $20 you donate adds a <b>year</b> to your account. You may return at a later date to add more time to your account - it will be added to the end of your current time. Just be sure to donate with the same email address. If you have any trouble donating or with your user account, just <a href=\"mailto:ben.keen@gmail.com\">drop me a line</a>.";
 $L["donate_para7"] = "After donating, you will be emailed with details about how to finish setting up your account (check your spam folder!). If you have any problems, please <a href=\"mailto:ben.keen@gmail.com\">contact me</a>.";
 $L["error_creating_account_msg"] = "Sorry, there was a problem creating your user account. This shouldn't happen! Please try again later.";
