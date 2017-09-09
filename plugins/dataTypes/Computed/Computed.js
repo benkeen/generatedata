@@ -41,8 +41,10 @@ define([
 	var _loadRow = function(rowNum, data) {
 		return {
 			execute: function() {
-				$("#dtExample_" + rowNum).val(data.example);
-				$("#dtOption_" + rowNum).val(data.option);
+			  // 3.2.7 didn't properly include the JS for saving/loading. As such, it's possible that `data` is empty here.
+        if (data) {
+          $("#dtOption_" + rowNum).val(data.option);
+        }
 			},
 			isComplete: function() { return $("#dtOption_" + rowNum).length > 0; }
 		};
@@ -50,8 +52,7 @@ define([
 
 	var _saveRow = function(rowNum) {
 		return {
-			"example":  $("#dtExample_" + rowNum).val(),
-			"option":   $("#dtOption_" + rowNum).val()
+			option: $("#dtOption_" + rowNum).val()
 		};
 	};
 

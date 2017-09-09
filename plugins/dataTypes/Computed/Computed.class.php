@@ -11,6 +11,7 @@ class DataType_Computed extends DataTypePlugin {
 	protected $hasHelpDialog = true;
 	protected $dataTypeFieldGroup = "other";
     protected $dataTypeFieldGroupOrder = 60;
+    protected $jsModules = array("Computed.js");
     private $smarty;
 
     // this should always be highest for all Data Types. Point is, this Data Type needs to be able to access the
