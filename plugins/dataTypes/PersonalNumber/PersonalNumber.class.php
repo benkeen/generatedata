@@ -45,7 +45,8 @@ class DataType_PersonalNumber extends DataTypePlugin {
 		$new_str = "16";
 		$rand = 0;
 
-		$cnt = 13;	// 12 siffers + 1 increment for separator
+		$seplen = strlen($sep);
+                $cnt = 12 + $seplen;
 		
 		for ($i=2; $i<$cnt; $i++) {
 			switch ($i) {
@@ -62,13 +63,22 @@ class DataType_PersonalNumber extends DataTypePlugin {
 					$new_str .= sprintf("%02d", $rand);
 					break;
 				case 8: 
-					$new_str .= $sep;
+					if($seplen>0)
+                                            $new_str .= $sep;
+                                        else
+                                        {
+					    $rand = mt_rand(0, 999);
+					    $new_str .= sprintf("%03d", $rand);
+                                        }
 					break;
-				case 9: 
-					$rand = mt_rand(0, 999);
-					$new_str .= sprintf("%03d", $rand);
+                                case 8 + $seplen: 
+					if($seplen>0)
+                                        {
+                                            $rand = mt_rand(0, 999);
+					    $new_str .= sprintf("%03d", $rand);
+                                        }
 					break;
-				case 12:
+                                case 11 + $seplen:
 					$ctrl = static::recalcCtrl($new_str . "0", $sep);
 					$new_str .= sprintf("%01d", $ctrl);
 					break;
@@ -82,8 +92,14 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	
 	// Function to recalculate control siffer in swedish personal number
 	public static function recalcCtrl($idNumber, $separator) {
-		$strArr = explode($separator, $idNumber);
+                $strArr = array ("");
 		$idNr = "";
+                
+                if(strlen($separator) > 0)
+                    $strArr = explode($separator, $idNumber);
+                else
+                    $strArr[0] = $idNumber;
+                
 		for($i=0; $i<count($strArr); $i++)
 			$idNr .= $strArr[$i];
 		

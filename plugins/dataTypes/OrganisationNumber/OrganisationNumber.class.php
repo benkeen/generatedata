@@ -43,7 +43,8 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 		$new_str = "";
 		$rand = 0;
 
-		$cnt = 11;	// 10 siffers + 1 increment for separator
+		$seplen = strlen($sep);
+                $cnt = 10 + $seplen;
 		
 		for ($i=0; $i<$cnt; $i++) {
 			switch ($i) {
@@ -60,13 +61,22 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 					$new_str .= sprintf("%02d", $rand);
 					break;
 				case 6: 
-					$new_str .= $sep;
+					if($seplen>0)
+                                            $new_str .= $sep;
+                                        else
+                                        {
+					    $rand = mt_rand(0, 999);
+					    $new_str .= sprintf("%03d", $rand);
+                                        }
 					break;
-				case 7: 
-					$rand = mt_rand(0, 999);
-					$new_str .= sprintf("%03d", $rand);
+				case 6 + $seplen: 
+					if($seplen>0)
+                                        {
+                                            $rand = mt_rand(0, 999);
+					    $new_str .= sprintf("%03d", $rand);
+                                        }
 					break;
-				case 10:
+				case 9 + $seplen:
 					// Same calculation as for personal numbers
 					// TODO: move to Utils??
 					$ctrl = DataType_PersonalNumber::recalcCtrl($new_str . "0", $sep);
