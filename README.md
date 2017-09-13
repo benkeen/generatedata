@@ -12,7 +12,7 @@ Generally the trunk is pretty stable, but it's not guaranteed. If you're downloa
 tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
-- PHP 5.3 or any later version of PHP 5. *Doesn't currently support PHP 7.* 
+- PHP 5.3 or any later version of PHP 5.
 - MySQL 4.1.3 or later
 
 ## How to Install / Documentation
