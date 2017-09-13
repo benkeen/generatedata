@@ -79,6 +79,9 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 
 ## Changelog
 
+3.2.8 - Sep 12, 2017
+- misc bug fixes
+
 3.2.7 - Jul 29, 2017
 - "Computed" Data Type added.
 - misc bug fixes
