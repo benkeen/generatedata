@@ -53,6 +53,7 @@ $L["create_account"] = "Créer un compte";
 $L["create_account_rightarrow"] = "Créer un compte »";
 $L["create_file_rightarrow"] = "Créer un fichier »";
 $L["create_settings_file"] = "Fichier de paramètres";
+$L["credit_card_data"] = "Données de carte de crédit";
 $L["data_created"] = "Données créées";
 $L["data_format"] = "Format des données";
 $L["data_set"] = "Jeu de données";

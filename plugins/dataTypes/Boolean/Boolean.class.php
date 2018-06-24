@@ -4,7 +4,8 @@
  * @package DataTypes
  */
 
-class DataType_Boolean extends DataTypePlugin {
+class DataType_Boolean extends DataTypePlugin
+{
 
 	protected $isEnabled = true;
 	protected $dataTypeName = "Boolean";
@@ -13,14 +14,15 @@ class DataType_Boolean extends DataTypePlugin {
 	protected $jsModules = array("Boolean.js");
 
 
-	public function generate($generator, $generationContextData) {
+	public function generate($generator, $generationContextData)
+	{
 		$placeholderStr = $generationContextData["generationOptions"];
 
 		// in case the user entered multiple | separated formats, pick one
 		$formats = explode("|", $placeholderStr);
 		$chosenFormat = $formats[0];
 		if (count($formats) > 1) {
-			$chosenFormat = $formats[mt_rand(0, count($formats)-1)];
+			$chosenFormat = $formats[mt_rand(0, count($formats) - 1)];
 		}
 
 		return array(
@@ -29,14 +31,16 @@ class DataType_Boolean extends DataTypePlugin {
 	}
 
 
-	public function getRowGenerationOptionsUI($generator, $post, $colNum, $numCols) {
+	public function getRowGenerationOptionsUI($generator, $post, $colNum, $numCols)
+	{
 		if (!isset($post["dtOption_$colNum"]) || empty($post["dtOption_$colNum"])) {
 			return false;
 		}
 		return $post["dtOption_$colNum"];
 	}
 
-	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
+	public function getRowGenerationOptionsAPI($generator, $json, $numCols)
+	{
 		if (empty($json->settings->placeholder)) {
 			return false;
 		}
@@ -44,18 +48,21 @@ class DataType_Boolean extends DataTypePlugin {
 	}
 
 
-	public function getDataTypeMetadata() {
+	public function getDataTypeMetadata()
+	{
 		return array(
+			"type" => "boolean",
 			"SQLField" => "varchar(255) default NULL",
 			"SQLField_Oracle" => "varchar2(255) default NULL",
 			"SQLField_MSSQL" => "VARCHAR(255) NULL"
 		);
 	}
 
-	public function getExampleColumnHTML() {
+	public function getExampleColumnHTML()
+	{
 		$L = Core::$language->getCurrentLanguageStrings();
 
-		$html =<<< END
+		$html = <<< END
 	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
 		<option value="">{$L["please_select"]}</option>
 		<option value="Yes|No">{$this->L["example_YesNo"]}</option>
@@ -69,18 +76,33 @@ END;
 		return $html;
 	}
 
-	public function getOptionsColumnHTML() {
+	public function getOptionsColumnHTML()
+	{
 		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 	}
 
 
-	public function getHelpHTML() {
-		$content =<<<EOF
+	public function getHelpHTML()
+	{
+		$content = <<< END
 	<p>
 	    {$this->L["DATA_TYPE"]["DESC"]}
 		{$this->L["help_intro"]}
 	</p>
-EOF;
+
+    <ul>
+		<li>{$this->L["example_YesNo"]}</li>
+		<li>{$this->L["example_FalseTrue"]}</li>
+		<li>{$this->L["example_ZeroOne"]}</li>
+		<li>{$this->L["example_YesNoShort"]}</li>
+		<li>{$this->L["example_FalseTrueShort"]}</li>
+		<li>{$this->L["example_FalseTrueLower"]}</li>
+    </ul>
+
+    <p>
+    	{$this->L["text_double_quotes"]}
+    </p>
+END;
 
 		return $content;
 	}

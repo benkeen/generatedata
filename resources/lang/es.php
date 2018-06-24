@@ -286,3 +286,4 @@ $L["zip_q"] = "Zip?";
 $L["please_enter_data_set_name"] = "Por favor, introduzca el nombre del nuevo conjunto de datos.";
 $L["delete_1_data_set"] = "Eliminar 1 Conjunto de Datos";
 $L["delete_N_data_sets"] = "Eliminar %1 Conjuntos de Datos";
+$L["credit_card_data"] = "Datos de tarjetas de crédito";

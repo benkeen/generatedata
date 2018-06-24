@@ -15,3 +15,5 @@ $L["example_ZeroOne"] = "0 of 1";
 $L["example_YesNoShort"] = "Y of N";
 $L["example_FalseTrueShort"] = "F of T";
 $L["example_FalseTrueLower"] = "false of true";
+
+$L["text_double_quotes"] = "Los valores <code>true</code> y <code>false</code> son especiales. Dependiendo del tipo de exportación, estos pueden salir sin comillas dobles.";

@@ -4,7 +4,8 @@
  * @author Ben Keen <ben.keen@gmail.com>
  * @package ExportTypes
  */
-class JSON extends ExportTypePlugin {
+class JSON extends ExportTypePlugin
+{
 	protected $isEnabled = true;
 	protected $exportTypeName = "JSON";
 	protected $jsModules = array("JSON.js");
@@ -13,21 +14,25 @@ class JSON extends ExportTypePlugin {
 	public $L = array();
 
 	private $numericFields;
+	private $booleanFields;
+	private $genEnvironment;
+	private $userSettings;
 
 
-	public function generate($generator) {
+	public function generate($generator)
+	{
 		$this->genEnvironment = $generator->genEnvironment; // API / POST
-		$this->userSettings   = $generator->getUserSettings();
+		$this->userSettings = $generator->getUserSettings();
 
-		$data         = $generator->generateExportData();
-		$template     = $generator->getTemplateByDisplayOrder();
-		$stripWhitespace     = $this->shouldStripWhitespace();
+		$data = $generator->generateExportData();
+		$template = $generator->getTemplateByDisplayOrder();
+		$stripWhitespace = $this->shouldStripWhitespace();
 		$dataStructureFormat = $this->getDataStructureFormat();
 
-		// figure out which fields are strictly numeric. We don't wrap those values in double quotes
+		// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 		$this->determineNumericFields($template);
+		$this->determineBooleanFields($template);
 
-		$content = "";
 		if ($dataStructureFormat == "complex") {
 			$content = $this->generateComplex($generator, $data, $stripWhitespace);
 		} else {
@@ -40,7 +45,8 @@ class JSON extends ExportTypePlugin {
 		);
 	}
 
-	private function generateSimple($generator, $data, $stripWhitespace) {
+	private function generateSimple($generator, $data, $stripWhitespace)
+	{
 		$newline = ($stripWhitespace) ? "" : "\n";
 		$tab = ($stripWhitespace) ? "" : "\t";
 		$space = ($stripWhitespace) ? "" : " ";
@@ -88,8 +94,11 @@ class JSON extends ExportTypePlugin {
 					$comma = "";
 				}
 
+				// encase all values in double quotes unless it's a number column, or it's a boolean column and it's a valid JS boolean
 				$value = $data["rowData"][$i][$j];
-				if (!($this->numericFields[$j] && is_numeric($value))) $value = "\"$value\"";
+				if (!$this->isNumeric($j, $value) && !$this->isJavascriptBoolean($j, $value)) {
+					$value = "\"$value\"";
+				}
 				$content .= "{$comma}{$newline}" . str_repeat($tab, count($nested) + 2) . "\"{$fieldName}\":{$space}{$value}";
 				$comma = ",";
 			}
@@ -111,7 +120,8 @@ class JSON extends ExportTypePlugin {
 		return $content;
 	}
 
-	private function generateComplex($generator, $data, $stripWhitespace) {
+	private function generateComplex($generator, $data, $stripWhitespace)
+	{
 		$content = "";
 		if ($generator->isFirstBatch()) {
 			$quotedCols = Utils::enquoteArray($data["colData"]);
@@ -126,10 +136,11 @@ class JSON extends ExportTypePlugin {
 
 		$numCols = count($data["colData"]);
 		$numRows = count($data["rowData"]);
-		for ($i=0; $i<$numRows; $i++) {
+		for ($i = 0; $i < $numRows; $i++) {
 			$rowValsArr = array();
-			for ($j=0; $j<$numCols; $j++) {
-				if ($this->numericFields[$j] && is_numeric($data["rowData"][$i][$j])) {
+			for ($j = 0; $j < $numCols; $j++) {
+				$currValue = $data["rowData"][$i][$j];
+				if ($this->isNumeric($j, $currValue) || $this->isJavascriptBoolean($j, $currValue)) {
 					$rowValsArr[] = $data["rowData"][$i][$j];
 				} else {
 					$rowValsArr[] = "\"" . $data["rowData"][$i][$j] . "\"";
@@ -170,13 +181,15 @@ class JSON extends ExportTypePlugin {
 	 * @param Generator $generator
 	 * @return string
 	 */
-	public function getDownloadFilename($generator) {
+	public function getDownloadFilename($generator)
+	{
 		$time = date("M-j-Y");
 		return "data{$time}.json";
 	}
 
-	public function getAdditionalSettingsHTML() {
-		$html =<<< END
+	public function getAdditionalSettingsHTML()
+	{
+		$html = <<< END
 	<input type="checkbox" name="etJSON_stripWhitespace" id="etJSON_stripWhitespace" value="1" />
 		<label for="etJSON_stripWhitespace">{$this->L["strip_whitespace"]}</label><br />
 	{$this->L["data_structure_format"]}
@@ -193,7 +206,8 @@ END;
 	 * Wrapper function to find out whether the user wants whitespace to be enabled or not. The settings content
 	 * is either JSON or a POST array, depending on where the generation is taking place.
 	 */
-	private function shouldStripWhitespace() {
+	private function shouldStripWhitespace()
+	{
 		$default = false;
 		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$jsonSettings = $this->userSettings->export->settings;
@@ -208,7 +222,8 @@ END;
 	 * Returns the desired JSON data structure format - simple or complex.
 	 * @return string
 	 */
-	private function getDataStructureFormat() {
+	private function getDataStructureFormat()
+	{
 		$default = "complex";
 		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$jsonSettings = $this->userSettings->export->settings;
@@ -219,9 +234,27 @@ END;
 		return $format;
 	}
 
-	private function determineNumericFields($template) {
+	private function determineNumericFields($template)
+	{
 		foreach ($template as $item) {
 			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
 		}
+	}
+
+	private function determineBooleanFields($template)
+	{
+		foreach ($template as $item) {
+			$this->booleanFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "boolean";
+		}
+	}
+
+	private function isNumeric($index, $value)
+	{
+		return $this->numericFields[$index] && is_numeric($value);
+	}
+
+	private function isJavascriptBoolean($index, $value)
+	{
+		return $this->booleanFields[$index] && ($value === "true" || $value === "false");
 	}
 }

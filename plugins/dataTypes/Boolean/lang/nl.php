@@ -15,3 +15,5 @@ $L["example_ZeroOne"] = "0 of 1";
 $L["example_YesNoShort"] = "Y of N";
 $L["example_FalseTrueShort"] = "F of T";
 $L["example_FalseTrueLower"] = "false of true";
+
+$L["text_double_quotes"] = "<code>true</code> en <code>false</code> waarden zijn speciaal. Afhankelijk van het exporttype kunnen deze worden uitgevoerd zonder dubbele aanhalingstekens.";

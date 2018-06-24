@@ -4,7 +4,8 @@
  * @author Ben Keen <ben.keen@gmail.com>
  * @package ExportTypes
  */
-class ProgrammingLanguage extends ExportTypePlugin {
+class ProgrammingLanguage extends ExportTypePlugin
+{
 	protected $isEnabled = true;
 	protected $exportTypeName = "Programming Language";
 	protected $jsModules = array("ProgrammingLanguage.js");
@@ -13,29 +14,34 @@ class ProgrammingLanguage extends ExportTypePlugin {
 	public $L = array();
 
 	private $numericFields;
+	private $booleanFields;
 	private $dateFormats;
+	private $genEnvironment;
+	private $userSettings;
 
 
-	public function generate($generator) {
+	public function generate($generator)
+	{
 		$this->genEnvironment = $generator->genEnvironment; // API / POST
-		$this->userSettings   = $generator->getUserSettings();
-		$data     = $generator->generateExportData();
+		$this->userSettings = $generator->getUserSettings();
+		$data = $generator->generateExportData();
 		$template = $generator->getTemplateByDisplayOrder();
 		$language = $this->getLanguage();
 
 		foreach ($template as $item) {
 			$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
-            
-            if(isset($item["columnMetadata"]["type"]) 
-                && isset($item["columnMetadata"]["formatCode"]) 
-                && $item["columnMetadata"]["type"] == "date") {
-			     $this->dateFormats[] = $item["columnMetadata"]["formatCode"];
-            } else { 
-                $this->dateFormats[] = "";
-            }
+			$this->booleanFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "boolean";
+
+			if (isset($item["columnMetadata"]["type"])
+				&& isset($item["columnMetadata"]["formatCode"])
+				&& $item["columnMetadata"]["type"] == "date") {
+				$this->dateFormats[] = $item["columnMetadata"]["formatCode"];
+			} else {
+				$this->dateFormats[] = "";
+			}
 		}
 
-		
+
 		$content = "";
 		switch ($language) {
 			case "JavaScript":
@@ -67,13 +73,15 @@ class ProgrammingLanguage extends ExportTypePlugin {
 	 * @param Generator $generator
 	 * @return string
 	 */
-	public function getDownloadFilename($generator) {
+	public function getDownloadFilename($generator)
+	{
 		$time = date("M-j-Y");
 		return "data{$time}.";
 	}
 
-	public function getAdditionalSettingsHTML() {
-		$html =<<< END
+	public function getAdditionalSettingsHTML()
+	{
+		$html = <<< END
 	{$this->L["language"]}:
 	<select name="etProgrammingLanguage_language" id="etProgrammingLanguage_language">
 		<option value="JavaScript">JavaScript</option>
@@ -87,7 +95,8 @@ END;
 	}
 
 
-	private function generatePerl($data) {
+	private function generatePerl($data)
+	{
 		$content = "";
 		if ($data["isFirstBatch"]) {
 			$content .= "@data = (\n";
@@ -96,16 +105,17 @@ END;
 		$numCols = count($data["colData"]);
 		$numRows = count($data["rowData"]);
 
-		for ($i=0; $i<$numRows; $i++) {
+		for ($i = 0; $i < $numRows; $i++) {
 			$content .= "\t{";
 
 			$pairs = array();
-			for ($j=0; $j<$numCols; $j++) {
+			for ($j = 0; $j < $numCols; $j++) {
 				$varName = preg_replace('/"/', '\"', $data["colData"][$j]);
-				if ($this->numericFields[$j]) {
-					$pairs[] = "\"$varName\" => {$data["rowData"][$i][$j]}";
+				$currValue = $data["rowData"][$i][$j];
+				if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
+					$pairs[] = "\"$varName\" => {$currValue}";
 				} else {
-					$pairs[] = "\"$varName\" => \"{$data["rowData"][$i][$j]}\"";
+					$pairs[] = "\"$varName\" => \"{$currValue}\"";
 				}
 			}
 			$content .= implode(",", $pairs);
@@ -124,7 +134,8 @@ END;
 	}
 
 
-	private function generatePHP($data) {
+	private function generatePHP($data)
+	{
 		$content = "";
 		if ($data["isFirstBatch"]) {
 			$content .= "<?" . "php\n\n\$data = array(\n";
@@ -133,15 +144,16 @@ END;
 		$numCols = count($data["colData"]);
 		$numRows = count($data["rowData"]);
 
-		for ($i=0; $i<$numRows; $i++) {
+		for ($i = 0; $i < $numRows; $i++) {
 			$content .= "\tarray(";
 
 			$pairs = array();
-			for ($j=0; $j<$numCols; $j++) {
-				if ($this->numericFields[$j]) {
-					$pairs[] = "\"{$data["colData"][$j]}\"=>{$data["rowData"][$i][$j]}";
+			for ($j = 0; $j < $numCols; $j++) {
+				$currValue = $data["rowData"][$i][$j];
+				if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
+					$pairs[] = "\"{$data["colData"][$j]}\"=>{$currValue}";
 				} else {
-					$pairs[] = "\"{$data["colData"][$j]}\"=>\"{$data["rowData"][$i][$j]}\"";
+					$pairs[] = "\"{$data["colData"][$j]}\"=>\"{$currValue}\"";
 				}
 			}
 			$content .= implode(",", $pairs);
@@ -160,7 +172,8 @@ END;
 	}
 
 
-	private function generateJS($data) {
+	private function generateJS($data)
+	{
 		$content = "";
 		if ($data["isFirstBatch"]) {
 			$content .= "var data = [\n";
@@ -169,15 +182,16 @@ END;
 		$numCols = count($data["colData"]);
 		$numRows = count($data["rowData"]);
 
-		for ($i=0; $i<$numRows; $i++) {
+		for ($i = 0; $i < $numRows; $i++) {
 			$content .= "\t{";
 
 			$pairs = array();
-			for ($j=0; $j<$numCols; $j++) {
-				if ($this->numericFields[$j]) {
-					$pairs[] = "\"{$data["colData"][$j]}\": {$data["rowData"][$i][$j]}";
+			for ($j = 0; $j < $numCols; $j++) {
+				$currValue = $data["rowData"][$i][$j];
+				if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
+					$pairs[] = "\"{$data["colData"][$j]}\": {$currValue}";
 				} else {
-					$pairs[] = "\"{$data["colData"][$j]}\": \"{$data["rowData"][$i][$j]}\"";
+					$pairs[] = "\"{$data["colData"][$j]}\": \"{$currValue}\"";
 				}
 			}
 			$content .= implode(", ", $pairs);
@@ -196,7 +210,8 @@ END;
 	}
 
 
-	private function generateRuby($data) {
+	private function generateRuby($data)
+	{
 		$content = "";
 		if ($data["isFirstBatch"]) {
 			$content .= "data = [\n";
@@ -205,15 +220,16 @@ END;
 		$numCols = count($data["colData"]);
 		$numRows = count($data["rowData"]);
 
-		for ($i=0; $i<$numRows; $i++) {
+		for ($i = 0; $i < $numRows; $i++) {
 			$content .= "\t{";
 
 			$pairs = array();
-			for ($j=0; $j<$numCols; $j++) {
-				if ($this->numericFields[$j]) {
-					$pairs[] = "'{$data["colData"][$j]}': {$data["rowData"][$i][$j]}";
+			for ($j = 0; $j < $numCols; $j++) {
+				$currValue = $data["rowData"][$i][$j];
+				if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
+					$pairs[] = "'{$data["colData"][$j]}': {$currValue}";
 				} else {
-					$pairs[] = "'{$data["colData"][$j]}': '{$data["rowData"][$i][$j]}'";
+					$pairs[] = "'{$data["colData"][$j]}': '{$currValue}'";
 				}
 			}
 			$content .= implode(", ", $pairs);
@@ -230,19 +246,20 @@ END;
 		}
 		return $content;
 	}
-	
-    private $sharpDateFormats = array (
-        "m/d/Y" => "MM/dd/yyyy",
-        "d/m/Y" => "dd/MM/yyyy",
-        "m.d.y" => "MM.dd.yy",
-        "d.m.y" => "dd.MM.yy",
-        "d-m-y" => "dd-MM-yy",
-        "m-d-y" => "MM-dd-yy",
-        "d.m.Y" => "dd.MM.yyyy"
-    );
 
-    
-	private function generateCSharp($data) {
+	private $sharpDateFormats = array(
+		"m/d/Y" => "MM/dd/yyyy",
+		"d/m/Y" => "dd/MM/yyyy",
+		"m.d.y" => "MM.dd.yy",
+		"d.m.y" => "dd.MM.yy",
+		"d-m-y" => "dd-MM-yy",
+		"m-d-y" => "MM-dd-yy",
+		"d.m.Y" => "dd.MM.yyyy"
+	);
+
+
+	private function generateCSharp($data)
+	{
 		$content = "";
 		if ($data["isFirstBatch"]) {
 			$content .= "var data = new [] {\n";
@@ -251,13 +268,14 @@ END;
 		$numCols = count($data["colData"]);
 		$numRows = count($data["rowData"]);
 
-		for ($i=0; $i<$numRows; $i++) {
+		for ($i = 0; $i < $numRows; $i++) {
 			$content .= "\tnew { ";
 
 			$pairs = array();
-			for ($j=0; $j<$numCols; $j++) {
+			for ($j = 0; $j < $numCols; $j++) {
 				$propName = str_replace(' ', '', $data["colData"][$j]);
-				if ($this->numericFields[$j]) {
+				$currValue = $data["rowData"][$i][$j];
+				if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
 					$pairs[] = "{$propName} = {$data["rowData"][$i][$j]}";
 				} else if (isset($this->sharpDateFormats[$this->dateFormats[$j]])) {
 					$pairs[] = "{$propName} = DateTime.ParseExact(\"{$data["rowData"][$i][$j]}\", \"{$this->sharpDateFormats[$this->dateFormats[$j]]}\", CultureInfo.InvariantCulture)";
@@ -280,8 +298,8 @@ END;
 		return $content;
 	}
 
-	private function getLanguage() {
-		$language = "";
+	private function getLanguage()
+	{
 		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
 			$language = $this->userSettings->export->settings->language;
 		} else {
@@ -289,5 +307,16 @@ END;
 		}
 		return $language;
 	}
+
+	private function isNumeric($index, $value)
+	{
+		return $this->numericFields[$index] && is_numeric($value);
+	}
+
+	private function isBoolean($index, $value)
+	{
+		return $this->booleanFields[$index] && ($value === "true" || $value === "false");
+	}
+
 }
 
