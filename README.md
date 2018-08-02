@@ -47,7 +47,7 @@ going to be a little hairy for a while just yet.
 
 ## To-Do
 
-Please see the issues tagges as [feature requests] (https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open)
+Please see the issues tagges as [feature requests](https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open)
 for a list of things that are still left to complete on this project. Help is always welcome!
 
 ## License
