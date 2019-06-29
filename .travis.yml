@@ -3,6 +3,7 @@ php:
   - "5.6"
   - "5.4"
 services: mysql
+dist: trusty
 before_script:
   - mysql -e 'create database generatedata_test;'
 script: phpunit --configuration tests/phpunit_config.xml --coverage-text
