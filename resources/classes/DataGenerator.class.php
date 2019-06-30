@@ -20,7 +20,7 @@ class DataGenerator {
 	private $isLastBatch;
 	private $currentBatchFirstRow;
 	private $currentBatchLastRow;
-	
+
 	// compression flag - set as per user choice
 	private $isCompressionRequired = false;
 
@@ -162,6 +162,7 @@ class DataGenerator {
 				$this->numResults = $maxDemoModeRows;
 			}
 		}
+
 		// always apply the max generated rows limitation. Technically this value could be lower than
 		// the $maxDemoModeRows value above, but it's extremely unlikely & an acceptable restriction
 		$maxGeneratedRows = Core::getMaxGeneratedRows();
@@ -438,7 +439,7 @@ class DataGenerator {
 	public function getCurrentBatchLastRow() {
 		return $this->currentBatchLastRow;
 	}
-	
+
 	public function isPromptDownloadZipped(){
 		return $this->isCompressionRequired;
 	}
