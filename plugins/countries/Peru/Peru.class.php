@@ -11,31 +11,16 @@ class Country_Peru extends CountryPlugin
 	protected $countrySlug = "peru";
 	protected $regionNames = "Peruvian regions";
 
-//	protected $extendedData = array(
-//		"zipFormat" => array(
-//			"format" => "%*@ *@*",
-//			"replacements" => array(
-//				"%" => "ABCEGHJKLMNPRSTVXY",
-//				"*" => "0123456789",
-//				"@" => "ABCEGHJKLMNPRSTVWXYZ",
-//
-//				// used in individual provinces below
-//				"&" => "GHJ",
-//				"^" => "KLMNP"
-//			)
-//		),
-//
-//		// the general phone format and area codes for the country
-//		"phoneFormat" => array(
-//			"areaCodes" => array(587, 603, 780, 205, 604, 778, 204, 431, 506, 709, 902, 867, 416, 647, 437, 519, 226, 613,
-//				343, 705, 249, 807, 905, 289, 365, 902, 418, 581, 450, 579, 514, 438, 819, 873, 306),
-//			"displayFormats" => array(
-//				"(AAA) Xxx-xxxx",
-//				"1 (AAA) Xxx-xxxx",
-//				"1-AAA-Xxx-xxxx"
-//			)
-//		)
-//	);
+	protected $extendedData = array(
+		"zipFormat" => array(
+			"format" => "Zxxxx",
+			"replacements" => array(
+				"A" => "1234",
+				"x" => "0123456789"
+			)
+		),
+		"phoneFormat" => "Xxx xxx xxx"
+	);
 
 	// our country-wide data, with info separated into regions
 	protected $countryData = array(
