@@ -22,7 +22,8 @@ define([
 		return {
 			startsWithLipsum: $("#dtStartsWithLipsum_" + rowNum).attr("checked") ? 1 : 0,
 			minWords: $("#dtNumWordsMin_" + rowNum).val(),
-			maxWords: $("#dtNumWordsMax_" + rowNum).val()
+			maxWords: $("#dtNumWordsMax_" + rowNum).val(),
+			maxChars: $("#dtmaxChars_" + rowNum).val()
 		};
 	};
 
@@ -38,6 +39,7 @@ define([
 					}
 					$("#dtNumWordsMin_" + rowNum).val(data.minWords);
 					$("#dtNumWordsMax_" + rowNum).val(data.maxWords);
+					$("#dtmaxChars_" + rowNum).val(data.maxChars);
 					return true;
 				}
 				return false;

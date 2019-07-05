@@ -21,7 +21,7 @@ class DataType_TextRandom extends DataTypePlugin {
 
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
-		$textStr = Utils::generateRandomTextStr($this->words, $options["startsWithLipsum"], "range", $options["numWordsMin"], $options["numWordsMax"]);
+		$textStr = Utils::generateRandomTextStr($this->words, $options["startsWithLipsum"], "range", $options["numWordsMin"], $options["numWordsMax"], $options['maxChars']);
 		return array(
 			"display" => $textStr
 		);
@@ -43,7 +43,8 @@ class DataType_TextRandom extends DataTypePlugin {
 		$options = array(
 			"numWordsMin"      => $postdata["dtNumWordsMin_$column"],
 			"numWordsMax"      => $postdata["dtNumWordsMax_$column"],
-			"startsWithLipsum" => isset($postdata["dtStartsWithLipsum_$column"]) ? true : false
+			"startsWithLipsum" => isset($postdata["dtStartsWithLipsum_$column"]) ? true : false,
+                        "maxChars"         => $postdata["maxChars"]
 		);
 
 		return $options;
@@ -53,7 +54,8 @@ class DataType_TextRandom extends DataTypePlugin {
 		$options = array(
 			"numWordsMin"      => $json->settings->minWords,
 			"numWordsMax"      => $json->settings->maxWords,
-			"startsWithLipsum" => $json->settings->startsWithLipsum
+			"startsWithLipsum" => $json->settings->startsWithLipsum,
+                        "maxChars"         => $json->settings->maxChars
 		);
 		return $options;
 	}
@@ -68,6 +70,7 @@ class DataType_TextRandom extends DataTypePlugin {
 			{$this->L["generate"]} #<input type="text" name="dtNumWordsMin_%ROW%" id="dtNumWordsMin_%ROW%" style="width: 40px" value="1" />
 			{$this->L["to"]} #<input type="text" name="dtNumWordsMax_%ROW%" id="dtNumWordsMax_%ROW%" style="width: 40px" value="10" /> 
 			{$this->L["words"]}
+			{$this->L["maxChars"]} up to <input type="text" name="dtmaxChars_%ROW%" id="dtmaxChars_%ROW%" style="width: 40px" value="50" /> max chars
 		</div>
 END;
 		return $html;

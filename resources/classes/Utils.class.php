@@ -294,7 +294,7 @@ class Utils {
 	 * @param integer $min     - the minimum # of words to return OR the total number
 	 * @param integer $max     - the max # of words to return (or null for "fixed" type)
 	 */
-	public static function generateRandomTextStr($words, $startsWithLipsum, $type, $min, $max = "") {
+	public static function generateRandomTextStr($words, $startsWithLipsum, $type, $min, $max = "", $maxChars = 0) {
 
 		// determine the number of words to return
 		if ($type == "fixed") {
@@ -315,7 +315,15 @@ class Utils {
 		}
 		$wordArray = array_slice($words, $offset, $numWords);
 
-		return join(" ", $wordArray);
+//		return join(" ", $wordArray);
+		$return_str = join(" ", $wordArray);
+                if ( $maxChars > 0 ) {
+                    error_log( "maxChars: $maxChars" );
+                    $return_str = substr( $return_str, 0, $maxChars );
+                } else {
+                    error_log( "No maxChars" );
+                }
+                return $return_str;
 	}
 
 
