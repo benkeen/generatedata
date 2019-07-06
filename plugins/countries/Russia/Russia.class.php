@@ -74,9 +74,9 @@ class Country_Russia extends CountryPlugin
 				382, 		// Tomsk Oblast (Tomsk)
 				383, 		// Novosibirsk Oblast (Novosibirsk)
 				384, 		// Kemerovo Oblast (Kemerovo)
-				385,		// Altai territory (Barnaul)
-			//	387, 		// Altai Krai
-				388, 		// Republic of Altai (Gorno-Altaisk)
+				385,		// Altai Krai (Barnaul)
+				387, 		// Altai Krai
+				388, 		// Altai Krai (Gorno-Altaisk)
 				390, 		// Republic of Khakassia (Abakan)
 				391, 		// Krasnoyarsk Krai in conjunction with the Evenk Oblast and Taimyr (Dolgan-Nenets) Oblast (Krasnoyarsk)
 				394, 		// Republic of Tyva (Kyzyl)
@@ -145,7 +145,7 @@ class Country_Russia extends CountryPlugin
 				872, 		// Republic of Dagestan (Makhachkala)
 				873, 		// Republic of Ingushetia (Nazran)
 				877,		// Republic of Adygea (Maikop)
-				878 		// Republic of Karachayevo-Cherkessia (Cherkessk)
+				878, 		// Republic of Karachayevo-Cherkessia (Cherkessk)
 				879,		// Stavropol Krai (Mineralnye Vody)
 				900, 901, 902, 903, 904, 905, 906, 907, 908, 909,	// Mobile networks
 				910, 911, 912, 913, 914, 915, 916, 917, 918, 919,	// Mobile networks
