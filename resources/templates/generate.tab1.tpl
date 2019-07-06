@@ -15,7 +15,7 @@
 
 	<div id="gdGenerateSubtab1">
 		<input type="text" id="gdDataSetName" placeholder="{$L.your_data_set_name_here}" /><button type="button" id="gdSaveBtn">{$L.save|upper}</button>
-		<div class="gdClear" style="padding-bottom: 20px"></div>		
+		<div class="gdClear" style="padding-bottom: 20px"></div>
 
 		<h2>
 			{$L.country_specific_data|upper}
@@ -81,10 +81,10 @@
 		</div>
 		<div class="gdClear"></div>
 
-		<div id="gdGenerateSection">
+        <div id="gdGenerateSection">
 			<button style="float: right" class="gdPrimaryButton" id="gdGenerateButton">{$L.generate}</button>
-			{$L.generate} <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="{$defaultNumRows}" 
-				{if $inDemoMode == "true" || !$isLoggedIn}readonly="readonly"{/if} /> {$L.rows}
+			{$L.generate} <input type="text" name="gdNumRowsToGenerate" id="gdNumRowsToGenerate" value="{$defaultNumRows}"
+				{if $inDemoMode && !$isLoggedIn}readonly="readonly"{/if} /> {$L.rows}
 			<span>
 				<input type="radio" name="gdExportTarget" id="gdExportTarget_inPage" value="inPage" checked="checked" />
 					<label for="gdExportTarget_inPage" id="gdExportTarget_inPage_label">{$L.generate_in_page}</label>

@@ -286,3 +286,4 @@ $L['zip_q'] = 'Zip?';
 $L['please_enter_data_set_name'] = 'புதிய தரவு தொகுப்பு பெயரை உள்ளிடவும்.';
 $L['delete_1_data_set'] = '1 தரவு அமை நீக்கு';
 $L['delete_N_data_sets'] = '% 1 தரவு தொகுதிகள் நீக்கு';
+$L["credit_card_data"] = "Credit Card Data";

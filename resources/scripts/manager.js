@@ -464,7 +464,7 @@ define([
 	 * Helper function to return an array of plugins, by plugin type.
 	 * @function
 	 * @private
-	 * @param {String} the type of plugin: "data-type", "core", "export-type"
+	 * @param {String} type of plugin: "data-type", "core", "export-type"
 	 */
 	var _getModulesByPluginType = function(pluginType) {
 		var plugins = [];

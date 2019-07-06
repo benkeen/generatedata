@@ -198,7 +198,7 @@ class ExportTypePluginHelper {
 			}
 		}
 
-		$cssIncludes = "";
+		$cssIncludes = array();
 		foreach ($files as $file) {
 			$cssIncludes[] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"$file\" />";
 		}
@@ -224,7 +224,7 @@ class ExportTypePluginHelper {
 		// remove duplicated
 		$files = array_unique($files);
 
-		$includes = "";
+		$includes = array();
 		foreach ($files as $file) {
 			$includes[] = "<script src=\"$file\"></script>";
 		}

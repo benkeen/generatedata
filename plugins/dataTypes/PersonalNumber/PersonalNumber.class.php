@@ -11,6 +11,7 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 110;
 	protected $jsModules = array("PersonalNumber.js");
 	private $generatedPersonnrs = array();
+
 	// Separator in personal number
 	static $sep = "-";
 
@@ -43,8 +44,6 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	// TODO: add support for organisation numbers
 	private static function generateRandomSwedishPersonalNumber($sep) {
 		$new_str = "16";
-		$rand = 0;
-
 		$cnt = 13;	// 12 siffers + 1 increment for separator
 		
 		for ($i=2; $i<$cnt; $i++) {
@@ -84,38 +83,35 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	public static function recalcCtrl($idNumber, $separator) {
 		$strArr = explode($separator, $idNumber);
 		$idNr = "";
-		for($i=0; $i<count($strArr); $i++)
-			$idNr .= $strArr[$i];
+		for ($i=0; $i<count($strArr); $i++) {
+            $idNr .= $strArr[$i];
+        }
 		
 		$idNrArr = str_split($idNr);
 		
-		$ctrl = 0;
-		
 		// Ogiltig längd
-		if(!((strlen($idNr) == 12) || (strlen($idNr) == 10)))
-			return 99;
+		if (!((strlen($idNr) == 12) || (strlen($idNr) == 10))) {
+            return 99;
+        }
 		
 		// OK, 12 siffers (person) or 10 siffers (organisation), recalculate control siffer
-		$partSum=0;
-		$sum=0;
+		$sum = 0;
 		
-		for($i = strlen($idNr) - 10; $i< strlen($idNr) - 1; $i++)
-		{
-			if($i%2 == 0)
-			{
+		for ($i = strlen($idNr) - 10; $i< strlen($idNr) - 1; $i++) {
+			if ($i%2 == 0) {
 				$siffra = intval($idNrArr[$i]);
 				$partSum = $siffra * 2;
-				if($partSum >= 10)
-					$partSum = (int)($partSum / 10) + ($partSum % 10);
-			}
-			else
-				$partSum = intval($idNrArr[$i]);
-			
-			$sum+= $partSum;
+				if ($partSum >= 10) {
+                    $partSum = (int)($partSum / 10) + ($partSum % 10);
+                }
+			} else {
+                $partSum = intval($idNrArr[$i]);
+            }
+			$sum += $partSum;
 		}
 		
 		$ctrl = (10 - ($sum % 10)) % 10;
-		
+
 		return $ctrl;
 	}
 
@@ -146,18 +142,18 @@ END;
 
 	public function getOptionsColumnHTML() {
 		$html =<<< END
-<span id="dtOptionPersonalNumberSeparator_%ROW%" style="display:inline;">
+<div>
 	{$this->L["separators"]}
-	<input type="text" name="dtOptionPersonalNumber_sep_%ROW%" id="dtOptionPersonalNumber_sep_%ROW%" style="width: 78px" value=" " title="{$this->L["separator_help"]}" />
-</span>
+	<input type="text" name="dtOptionPersonalNumber_sep_%ROW%" id="dtOptionPersonalNumber_sep_%ROW%" style="width: 78px" value=" " 
+	    title="{$this->L["separator_help"]}" />
+</div>
 END;
 		return $html;
 	}
 
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		return array(
-			"cc_separator"   => $postdata["dtOptionPersonalNumber_sep_$colNum"],
-			"cc_format"      => $postdata["dtOption_$colNum"],
+			"cc_separator" => $postdata["dtOptionPersonalNumber_sep_$colNum"]
 		);
 	}
 

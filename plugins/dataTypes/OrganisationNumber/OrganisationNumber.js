@@ -4,24 +4,24 @@ define([
 	"constants",
 	"lang",
 	"generator"
-], function(manager, C, L, generator) {
+], function (manager, C, L, generator) {
 
 	"use strict";
 
 	var MODULE_ID = "data-type-OrganisationNumber";
 	var LANG = L.dataTypePlugins.OrganisationNumber;
 
-	var _init = function() {
+	var _init = function () {
 		var subscriptions = {};
 		subscriptions[C.EVENT.DATA_TABLE.ROW.EXAMPLE_CHANGE + "__" + MODULE_ID] = _exampleChange;
 		manager.subscribe(MODULE_ID, subscriptions);
 	};
 
-	var _exampleChange = function(msg) {
+	var _exampleChange = function (msg) {
 		var rowID = msg.rowID;
 		var selectedFormat = msg.value;
 
-                var $separatorField = $("#dtOptionOrganisationNumber_sep_" + rowID);	
+		var $separatorField = $("#dtOptionOrganisationNumber_sep_" + rowID);
 
 		switch (selectedFormat) {
 			case "OrganisationNumberWithoutHyphen":
@@ -31,13 +31,12 @@ define([
 			case "OrganisationNumberWithHyphen":
 				$separatorField.val("-");
 				break;
-                                
-                        default:
-                                //$separatorField.val(selectedFormat);            
-                                break;
+
+			default:
+				//$separatorField.val(selectedFormat);
+				break;
 
 		}
-
 	};
 
 	/**
@@ -47,10 +46,10 @@ define([
 	 * user has re-sorted or deleted some rows. So to get the visible row number for a row, call
 	 * gen._getVisibleRowOrderByRowNum(row)
 	 */
-	var _validate = function(rows) {
+	var _validate = function (rows) {
 		var visibleProblemRows = [];
-		var problemFields      = [];
-		for (var i=0; i<rows.length; i++) {
+		var problemFields = [];
+		for (var i = 0; i < rows.length; i++) {
 			if ($("#dtOption_" + rows[i]).val() === "") {
 				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
 				visibleProblemRows.push(visibleRowNum);
@@ -59,7 +58,10 @@ define([
 		}
 		var errors = [];
 		if (visibleProblemRows.length) {
-			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+			errors.push({
+				els: problemFields,
+				error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"
+			});
 		}
 		return errors;
 	};
@@ -68,10 +70,10 @@ define([
 	 * Called when the user saves a form. This function is passed the row number of the row to
 	 * save. It should return a JSON object (of whatever structure is relevant).
 	 */
-	var _saveRow = function(rowNum) {
+	var _saveRow = function (rowNum) {
 		return {
 			example: $("#dtExample_" + rowNum).val(),
-			separator:    $("#dtOptionOrganisationNumber_sep_" + rowNum).val()//,
+			separator: $("#dtOptionOrganisationNumber_sep_" + rowNum).val()//,
 		};
 	};
 
@@ -82,14 +84,15 @@ define([
 	 *  [0] code to execute (generally inserting data into fields)
 	 *  [1] a boolean test to determine WHEN the content has been inserted.
 	 */
-	var _loadRow = function(rowNum, data) {
+	var _loadRow = function (rowNum, data) {
 		return {
-			execute: function() {
+			execute: function () {
 				$("#dtExample_" + rowNum).val(data.example);
 				$("#dtOptionOrganisationNumber_sep_" + rowNum).val(data.separator);
-
 			},
-			isComplete: function() {  }
+			isComplete: function () {
+				return $("#dtOptionOrganisationNumber_sep_" + rowNum).length > 0;
+			}
 		};
 	};
 

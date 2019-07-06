@@ -479,10 +479,6 @@ END;
 		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
 	}
 
-	public function getNames() {
-		return $this->firstNames;
-	}
-
 	public function getFirstNames() {
 		return $this->firstNames;
 	}

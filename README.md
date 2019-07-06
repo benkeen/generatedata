@@ -12,7 +12,7 @@ Generally the trunk is pretty stable, but it's not guaranteed. If you're downloa
 tag: https://github.com/benkeen/generatedata/releases
 
 ## Requirements
-- PHP 5.3 or later
+- PHP 5.3 or any later version of PHP 5.
 - MySQL 4.1.3 or later
 
 ## How to Install / Documentation
@@ -34,6 +34,7 @@ of this script.
 - Also: [@LaiNathaniel's repo](https://github.com/LaiNathaniel/docker-generatedata)
 - And [Andy Shinn's instructions](https://github.com/benkeen/generatedata/pull/269)
 
+
 ### Vagrant 
 There's also a pre-packaged Vagrant solution [found here](https://github.com/benkeen/generatedata-vagrant),
 courtesy of Daragh Courtney.
@@ -46,7 +47,7 @@ going to be a little hairy for a while just yet.
 
 ## To-Do
 
-Please see the issues tagges as [feature requests] (https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open)
+Please see the issues tagges as [feature requests](https://github.com/benkeen/generatedata/issues?labels=Feature+Request%21&page=1&state=open)
 for a list of things that are still left to complete on this project. Help is always welcome!
 
 ## License
@@ -77,6 +78,16 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 - [Kent Chenery](https://github.com/kchenery) - MS SQL plugin (3.0.1)
 
 ## Changelog
+
+3.2.8 - Sep 12, 2017
+- misc bug fixes
+
+3.2.7 - Jul 29, 2017
+- "Computed" Data Type added.
+- misc bug fixes
+
+3.2.6 - Apr 17, 2017
+- misc bug fixes: https://github.com/benkeen/generatedata/milestone/20?closed=1
 
 3.2.5 - Apr 16, 2016 
 - bug fixes: https://github.com/benkeen/generatedata/issues?utf8=%E2%9C%93&q=milestone%3A3.2.3+ - thanks for your help, 

@@ -196,7 +196,7 @@ EOF;
 	private function getRandIndex($options, $randCountrySlug) {
 		$index = null;
 		if ($options[$randCountrySlug]["full"] == 1 && $options[$randCountrySlug]["short"] == 1) {
-			$index = mt_rand(0, 1); // weird, mt_rand()&1 doesn't work - always returns 1 0 1 0 1 0...
+			$index = mt_rand(0, 1);
 		} else if ($options[$randCountrySlug]["full"] == 1) {
 			$index = 0;
 		} else if ($options[$randCountrySlug]["short"] == 1) {

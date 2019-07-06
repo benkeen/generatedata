@@ -12,7 +12,7 @@ class DataType_Composite extends DataTypePlugin {
 	protected $dataTypeFieldGroup = "other";
 	protected $dataTypeFieldGroupOrder = 20;
 	protected $jsModules = array("Composite.js");
-	protected $processOrder = 100;
+	protected $processOrder = 150;
 	private $smarty;
 
 	public function __construct($runtimeContext) {

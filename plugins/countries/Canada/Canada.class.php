@@ -4,8 +4,9 @@
  * @package Countries
  */
 
-class Country_Canada extends CountryPlugin {
-	protected $continent   = "north_america";
+class Country_Canada extends CountryPlugin
+{
+	protected $continent = "north_america";
 	protected $countryName = "Canada";
 	protected $countrySlug = "CA";
 	protected $regionNames = "Canadian Provinces";
@@ -119,7 +120,7 @@ class Country_Canada extends CountryPlugin {
 			"regionSlug" => "new_brunswick",
 			"weight" => 2,
 			"cities" => array(
-					"Bathurst", "Campbellton", "Dieppe", "Edmundston", "Fredericton", "Miramichi", "Moncton", "Saint John"
+				"Bathurst", "Campbellton", "Dieppe", "Edmundston", "Fredericton", "Miramichi", "Moncton", "Saint John"
 			),
 			"extendedData" => array(
 				"zipFormat" => array(
@@ -315,7 +316,8 @@ class Country_Canada extends CountryPlugin {
 	);
 
 
-	public function install() {
+	public function install()
+	{
 		return CountryPluginHelper::populateDB($this->countryName, $this->countrySlug, $this->countryData);
 	}
 }

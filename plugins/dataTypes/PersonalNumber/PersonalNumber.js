@@ -21,47 +21,18 @@ define([
 		var rowID = msg.rowID;
 		var selectedFormat = msg.value;
 
-                var $separatorField = $("#dtOptionPersonalNumber_sep_" + rowID);	
-
-		switch (selectedFormat) {
-			case "PersonalNumberWithoutHyphen":
-				$separatorField.val("");
-				break;
-
-			case "PersonalNumberWithHyphen":
-				$separatorField.val("-");
-				break;
-                                
-                        default:
-                                //$separatorField.val(selectedFormat);            
-                                break;
-
-		}
-
+		var optionValue = "";
+		if (selectedFormat === "PersonalNumberWithHyphen") {
+      optionValue = "-";
+    }
+    $("#dtOptionPersonalNumber_sep_" + rowID).val(optionValue);
 	};
 
 	/**
-	 * Called when the user submits the form to generate some data. If the selected data set contains
-	 * one or more rows of this data type, this function is called with the list of row numbers. Note that
-	 * the row numbers passed are the *original* row numbers of the rows on creation. It's possible that the
-	 * user has re-sorted or deleted some rows. So to get the visible row number for a row, call
-	 * gen._getVisibleRowOrderByRowNum(row)
+	 * No validation currently required.
 	 */
-	var _validate = function(rows) {
-		var visibleProblemRows = [];
-		var problemFields      = [];
-		for (var i=0; i<rows.length; i++) {
-			if ($("#dtOption_" + rows[i]).val() === "") {
-				var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-				visibleProblemRows.push(visibleRowNum);
-				problemFields.push($("#dtOption_" + rows[i]));
-			}
-		}
-		var errors = [];
-		if (visibleProblemRows.length) {
-			errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-		}
-		return errors;
+	var _validate = function() {
+	  return [];
 	};
 
 	/**
@@ -70,8 +41,8 @@ define([
 	 */
 	var _saveRow = function(rowNum) {
 		return {
-			example: $("#dtExample_" + rowNum).val(),
-			separator:    $("#dtOptionPersonalNumber_sep_" + rowNum).val()//,
+			example:   $("#dtExample_" + rowNum).val(),
+			separator: $("#dtOptionPersonalNumber_sep_" + rowNum).val()
 		};
 	};
 
@@ -87,9 +58,10 @@ define([
 			execute: function() {
 				$("#dtExample_" + rowNum).val(data.example);
 				$("#dtOptionPersonalNumber_sep_" + rowNum).val(data.separator);
-
 			},
-			isComplete: function() {  }
+			isComplete: function() {
+			  return $("#dtOptionPersonalNumber_sep_" + rowNum).length > 0;
+      }
 		};
 	};
 

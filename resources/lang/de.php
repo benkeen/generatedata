@@ -54,6 +54,7 @@ $L["create_account"] = "Konto erstellen";
 $L["create_account_rightarrow"] = "Konto erstellen »";
 $L["create_file_rightarrow"] = "Datei erstellen »";
 $L["create_settings_file"] = "settings.php erstellen";
+$L["credit_card_data"] = "Kreditkartendaten";
 $L["data_created"] = "Daten erstellt";
 $L["data_format"] = "Daten-Format";
 $L["data_set"] = "Datensatz";

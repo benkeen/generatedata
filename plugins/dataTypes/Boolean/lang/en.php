@@ -15,3 +15,5 @@ $L["example_FalseTrueLower"] = "false or true";
 $L["example_ZeroOne"] = "0 or 1";
 $L["example_YesNoShort"] = "Y or N";
 $L["example_FalseTrueShort"] = "F or T";
+
+$L["text_double_quotes"] = "<code>true</code> and <code>false</code> values are special. Depending on the export type, these may be output without double quotes.";

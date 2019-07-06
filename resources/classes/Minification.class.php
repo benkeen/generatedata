@@ -32,7 +32,6 @@ class Minification {
 	public static function createAppStartFile() {
 		$exportTypes = Core::$exportTypePlugins;
 		$exportTypeJSModules = ExportTypePluginHelper::getExportTypeJSResources($exportTypes, "string");
-
 		$dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
 		$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string");
 

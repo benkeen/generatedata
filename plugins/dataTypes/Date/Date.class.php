@@ -325,7 +325,7 @@ END;
 		list($month, $day, $year) = explode("/", $options["from"]);
 		$fromDate = mktime(0, 0, 0, $month, $day, $year);
 		list($month, $day, $year) = explode("/", $options["to"]);
-		$toDate = mktime(0, 0, 0, $month, $day, $year);
+		$toDate = mktime(23, 59, 59, $month, $day, $year);
 
 		// randomly pick a date between those dates
 		$randDate = mt_rand($fromDate, $toDate);

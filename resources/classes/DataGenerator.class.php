@@ -20,7 +20,7 @@ class DataGenerator {
 	private $isLastBatch;
 	private $currentBatchFirstRow;
 	private $currentBatchLastRow;
-	
+
 	// compression flag - set as per user choice
 	private $isCompressionRequired = false;
 
@@ -154,12 +154,15 @@ class DataGenerator {
 	 * Helper to see if we're in demo mode, and limit the number of rows that can be generated.
 	 */
 	private function applyRowsGeneratedLimit() {
+
+	    // first limit the number of results in case demo mode is enabled
 		if (Core::checkDemoMode() && !Core::checkIsLoggedIn()) {
 			$maxDemoModeRows = Core::getMaxDemoModeRows();
 			if ($this->numResults > $maxDemoModeRows) {
 				$this->numResults = $maxDemoModeRows;
 			}
 		}
+
 		// always apply the max generated rows limitation. Technically this value could be lower than
 		// the $maxDemoModeRows value above, but it's extremely unlikely & an acceptable restriction
 		$maxGeneratedRows = Core::getMaxGeneratedRows();
@@ -436,7 +439,7 @@ class DataGenerator {
 	public function getCurrentBatchLastRow() {
 		return $this->currentBatchLastRow;
 	}
-	
+
 	public function isPromptDownloadZipped(){
 		return $this->isCompressionRequired;
 	}

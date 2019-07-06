@@ -12,7 +12,7 @@
 class Core {
 
 	// overridable settings that the user may define in settings.php
-	private static $demoMode = false;	
+	private static $isInDemoMode = false;
 	private static $dbHostname;
 	private static $dbName;
 	private static $dbUsername;
@@ -35,8 +35,8 @@ class Core {
 	private static $apiEnabled = false;
 
 	// non-overridable settings
-	private static $version = "3.2.5";
-	private static $releaseDate = "2016-04-16";
+	private static $version = "3.3.0";
+	private static $releaseDate = "2019-06-30";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
@@ -168,7 +168,7 @@ class Core {
 		if (file_exists($settingsFilePath)) {
 			self::$settingsFileExists = true;
 			require_once($settingsFilePath);
-			self::$demoMode = (isset($demoMode)) ? $demoMode : null;
+			self::$isInDemoMode = (isset($demoMode) && is_bool($demoMode)) ? $demoMode : null;
 			self::$dbHostname = (isset($dbHostname)) ? $dbHostname : null;
 			self::$dbName     = (isset($dbName)) ? $dbName : null;
 			self::$dbUsername = (isset($dbUsername)) ? $dbUsername : null;
@@ -177,8 +177,8 @@ class Core {
 			self::$encryptionSalt = (isset($encryptionSalt)) ? $encryptionSalt : null;
 			self::$pluginSettings = (isset($pluginSettings)) ? $pluginSettings : array();
 
-			if (isset($demoMode)) {
-				self::$demoMode = $demoMode;
+			if (isset($isInDemoMode)) {
+				self::$isInDemoMode = $isInDemoMode;
 			}
 			if (isset($errorReporting)) {
 				self::$errorReporting = $errorReporting;
@@ -225,11 +225,10 @@ class Core {
 	}
 
     /**
-     * TODO Yuck! Why does this return a boolean as a frickin' string?! Was I drunk?
      * @access public
      */
 	public static function checkDemoMode() {
-		return (self::$demoMode) ? "true" : "false";
+		return self::$isInDemoMode;
 	}
 
 	/**

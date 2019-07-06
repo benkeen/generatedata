@@ -286,3 +286,4 @@ $L["zip_q"] = "Zip?";
 $L["please_enter_data_set_name"] = "请输入新数据集的名称.";
 $L["delete_1_data_set"] = "删除1个数据集";
 $L["delete_N_data_sets"] = "删除 %1 个数据集";
+$L["credit_card_data"] = "信用卡数据";
