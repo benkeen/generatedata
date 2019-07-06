@@ -5,7 +5,7 @@
  */
 
 // https://en.wikipedia.org/wiki/Category:Cities_and_towns_in_Russia_by_federal_subject
-class Country_Russion extends CountryPlugin
+class Country_Russia extends CountryPlugin
 {
 	protected $continent = "europe";
 	protected $countryName = "Russian Federation";
