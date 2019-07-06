@@ -23,15 +23,27 @@ class Country_Canada extends CountryPlugin
 				"@" => "ABCEGHJKLMNPRSTVWXYZ",
 
 				// used in individual provinces below
-				"&" => "GHJ",
-				"^" => "KLMNP"
+				"&" => "GHJ",   // QC
+				"^" => "KLMNP"  // ON
 			)
 		),
 
 		// the general phone format and area codes for the country
+		// http://cnac.ca/area_code_maps/canadian_area_codes.htm
 		"phoneFormat" => array(
-			"areaCodes" => array(587, 603, 780, 205, 604, 778, 204, 431, 506, 709, 902, 867, 416, 647, 437, 519, 226, 613,
-				343, 705, 249, 807, 905, 289, 365, 902, 418, 581, 450, 579, 514, 438, 819, 873, 306),
+			"areaCodes" => array(
+				403, 587, 780, 825,		// AB
+				236, 250, 604, 672, 778,	// BC
+				204, 431,			// MB
+				428, 506,			// NB
+				709, 879,			// NL
+				867,				// NT, NU, YK
+				782, 902,			// NS
+				416, 437, 647, 289, 365, 905, 343, 613, 226, 519, 548, 249, 705, 807,	// ON
+				782, 902,			// PE
+				367, 418, 581, 450, 579, 438, 514, 819, 873,				// QC
+				306, 639			// SK
+			),
 			"displayFormats" => array(
 				"(AAA) Xxx-xxxx",
 				"1 (AAA) Xxx-xxxx",
@@ -67,7 +79,7 @@ class Country_Canada extends CountryPlugin
 					"format" => "T*@ *@*"
 				),
 				"phoneFormat" => array(
-					"areaCodes" => array(587, 603, 780)
+					"areaCodes" => array(403, 587, 780, 825)
 				)
 			)
 		),
@@ -93,7 +105,7 @@ class Country_Canada extends CountryPlugin
 					"format" => "V*@ *@*"
 				),
 				"phoneFormat" => array(
-					"areaCodes" => array(205, 604, 778)
+					"areaCodes" => array(236, 250, 604, 672, 778)
 				)
 			)
 		),
@@ -127,7 +139,7 @@ class Country_Canada extends CountryPlugin
 					"format" => "E*@ *@*"
 				),
 				"phoneFormat" => array(
-					"areaCodes" => array(506)
+					"areaCodes" => array(428, 506)
 				)
 			)
 		),
@@ -145,7 +157,7 @@ class Country_Canada extends CountryPlugin
 					"format" => "A*@ *@*"
 				),
 				"phoneFormat" => array(
-					"areaCodes" => array(709)
+					"areaCodes" => array(709, 879)
 				)
 			)
 		),
@@ -184,7 +196,7 @@ class Country_Canada extends CountryPlugin
 					"format" => "B*@ *@*"
 				),
 				"phoneFormat" => array(
-					"areaCodes" => array(902)
+					"areaCodes" => array(782, 902)
 				)
 			)
 		),
@@ -244,7 +256,7 @@ class Country_Canada extends CountryPlugin
 					"format" => "C*@ *@*"
 				),
 				"phoneFormats" => array(
-					"areaCodes" => array(902)
+					"areaCodes" => array(782, 902)
 				)
 			)
 		),
@@ -292,7 +304,7 @@ class Country_Canada extends CountryPlugin
 					"format" => "S*@ *@*"
 				),
 				"phoneFormat" => array(
-					"areaCodes" => array(306)
+					"areaCodes" => array(306, 639)
 				)
 			)
 		),
