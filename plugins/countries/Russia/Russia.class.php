@@ -169,6 +169,72 @@ class Country_Russia extends CountryPlugin
 
 	// our country-wide data, with info separated into regions
 	protected $countryData = array(
+    /*
+    array(
+			"regionName" => "North Caucasian",
+			"regionShort" => "NC",
+			"regionSlug" => "north_caucasian",
+			"weight" => 1,
+			"cities" => array(
+
+			)
+		),
+		array(
+			"regionName" => "Volga",
+			"regionShort" => "VO",
+			"regionSlug" => "volga",
+			"weight" => 1,
+			"cities" => array(
+
+			)
+		),
+		array(
+			"regionName" => "Central",
+			"regionShort" => "CE",
+			"regionSlug" => "central",
+			"weight" => 1,
+			"cities" => array(
+
+			)
+		),
+		array(
+			"regionName" => "Siberian",
+			"regionShort" => "SI",
+			"regionSlug" => "siberian",
+			"weight" => 1,
+			"cities" => array(
+
+			)
+		),
+		array(
+			"regionName" => "Northwestern",
+			"regionShort" => "NW",
+			"regionSlug" => "northwestern",
+			"weight" => 1,
+			"cities" => array(
+
+			)
+		),
+		array(
+			"regionName" => "Southern",
+			"regionShort" => "SO",
+			"regionSlug" => "southern",
+			"weight" => 1,
+			"cities" => array(
+
+			)
+		),
+		array(
+			"regionName" => "Ural",
+			"regionShort" => "CE",
+			"regionSlug" => "ural",
+			"weight" => 1,
+			"cities" => array(
+				"Canberra"
+			)
+		)
+    */
+    
 		// Federal Cities
 		array(
 			"regionName" => "Moscow City",
@@ -958,9 +1024,7 @@ class Country_Russia extends CountryPlugin
 		// TODO: Add Autonomous Oblast
 	);
 
-
-	public function install()
-	{
+	public function install() {
 		return CountryPluginHelper::populateDB($this->countryName, $this->countrySlug, $this->countryData);
 	}
 }
