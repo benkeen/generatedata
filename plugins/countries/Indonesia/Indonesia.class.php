@@ -14,6 +14,18 @@ class Country_Indonesia extends CountryPlugin {
 	protected $continent = "asia";
 
 	protected $extendedData = array(
+		"zipFormat" => array(
+			"format" => "*%%%%",
+			"replacements" => array(
+				"*" => "123456789",
+				"%" => "0123456789"
+			)
+		),
+		"phoneFormat" => array(
+			"displayFormats" => array(
+				"62 Xx xxx xxxx"
+			)
+		)
 	);
 
 	protected $countryData = array(
