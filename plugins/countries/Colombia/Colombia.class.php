@@ -10,7 +10,7 @@
 class Country_Colombia extends CountryPlugin {
 	protected $countryName = "Colombia";
 	protected $countrySlug = "colombia";
-	protected $regionNames = "Australian St./Terr.";
+	protected $regionNames = "Colombian Departments";
 	protected $continent = "south_america";
 
 //	protected $extendedData = array(
@@ -37,7 +37,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "amazonas",
 			"weight" => 5,
 			"cities" => array(
-
+				"Leticia", "Puerto Nariño"
 			)
 		),
 		array(
@@ -46,7 +46,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "antioquia",
 			"weight" => 560,
 			"cities" => array(
-
+				"Medellín", "Bello", "Itagüí", "Envigado", "Apartadó", "Turbo", "Rionegro"
 			)
 		),
 		array(
@@ -55,7 +55,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "arauca",
 			"weight" => 15,
 			"cities" => array(
-
+				"Arauca", "Tame", "Saravena"
 			)
 		),
 		array(
@@ -64,7 +64,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "atlantico",
 			"weight" => 211,
 			"cities" => array(
-
+				"Barranquilla", "Soledad", "Malambo", "Sabanalarga"
 			)
 		),
 		array(
@@ -73,7 +73,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "bolivar",
 			"weight" => 210,
 			"cities" => array(
-
+				"Cartagena", "Magangué", "Carmen de Bolivar"
 			)
 		),
 		array(
@@ -82,7 +82,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "boyaca",
 			"weight" => 3,
 			"cities" => array(
-
+				"Tunja", "Duitama", "Sogamoso", "Chiquinquirá"
 			)
 		),
 		array(
@@ -91,7 +91,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "caldas",
 			"weight" => 3,
 			"cities" => array(
-
+				"Manizales", "La Dorada", "Riosucio"
 			)
 		),
 		array(
@@ -100,7 +100,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "caqueta",
 			"weight" => 3,
 			"cities" => array(
-
+				"Florencia", "San Vicente del Caguán", "Cartagena del Chairá"
 			)
 		),
 		array(
