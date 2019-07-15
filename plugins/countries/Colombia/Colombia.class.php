@@ -109,7 +109,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "casanare",
 			"weight" => 3,
 			"cities" => array(
-
+				"Yopal", "Aguazul", "Paz de Ariporo"
 			)
 		),
 		array(
@@ -118,7 +118,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "cauca",
 			"weight" => 3,
 			"cities" => array(
-
+				"Popayán", "Santander de Quilichao", "El Tambo"
 			)
 		),
 		array(
@@ -127,7 +127,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "cesar",
 			"weight" => 3,
 			"cities" => array(
-
+				"Valledupar", "Aguachica", "Agustín Codazzi"
 			)
 		),
 		array(
@@ -136,7 +136,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "choco",
 			"weight" => 3,
 			"cities" => array(
-
+				"Quibdó", "Alto Baudó", "Medio Atrato", "Istmina"
 			)
 		),
 		array(
@@ -145,7 +145,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "cordoba",
 			"weight" => 3,
 			"cities" => array(
-
+				"Montería", "Santa Cruz de Lorica", "Tierralta", "Cereté", "Sahagún", "Montelíbano"
 			)
 		),
 		array(
@@ -154,7 +154,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "cundinamarca",
 			"weight" => 3,
 			"cities" => array(
-
+				"Soacha", "Fusagasugá", "Facatativá", "Chía", "Zipaquirá", "Girardot", "Mosquera"
 			)
 		),
 		array(
@@ -163,7 +163,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "distrito_capital",
 			"weight" => 3,
 			"cities" => array(
-
+				"Bogotá"
 			)
 		),
 		array(
@@ -172,7 +172,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "guainia",
 			"weight" => 3,
 			"cities" => array(
-
+				"Inírida", "Puerto Colombia", "Barranco Minas", "Mapiripana"
 			)
 		),
 		array(
@@ -181,7 +181,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "guaviare",
 			"weight" => 3,
 			"cities" => array(
-
+				"San José del Guaviare", "El Retorno", "Miraflores", "Calamar"
 			)
 		),
 		array(
@@ -190,7 +190,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "huila",
 			"weight" => 3,
 			"cities" => array(
-
+				"Neiva", "Pitalito", "Garzón", "La Plata"
 			)
 		),
 		array(
