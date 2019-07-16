@@ -10,25 +10,22 @@
 class Country_Colombia extends CountryPlugin {
 	protected $countryName = "Colombia";
 	protected $countrySlug = "colombia";
-	protected $regionNames = "Colombian Departments";
+	protected $regionNames = "Col. Departments";
 	protected $continent = "south_america";
 
-//	protected $extendedData = array(
-//		"zipFormat" => array(
-//			"format" => "Xxxx",
-//			"replacements" => array(
-//				"X" => "123456789",
-//				"x" => "0123456789"
-//			)
-//		),
-// 		"phoneFormat" => array(
-//			"displayFormats" => array(
-//				"Xxxx-xxxx",
-//				"(0x) xxxx xxxx",
-//				"04xx xxx xxx"
-//			)
-//		)
-//	);
+	protected $extendedData = array(
+		"zipFormat" => array(
+			"replacements" => array(
+				"X" => "0123456789"
+			),
+			"format" => "XXXXXX",
+		),
+ 		"phoneFormat" => array(
+			"displayFormats" => array(
+				"0xx-xxx-xxxx"
+			)
+		)
+	);
 
 	protected $countryData = array(
 		array(
@@ -199,7 +196,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "la_guajira",
 			"weight" => 3,
 			"cities" => array(
-
+				"Riohacha", "Uribia", "Maicao", "Manaure", "San Juan del Cesar"
 			)
 		),
 		array(
@@ -208,7 +205,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "magdalena",
 			"weight" => 3,
 			"cities" => array(
-
+				"Santa Marta", "Ciénaga", "Zona Bananera", "Plato", "Fundación"
 			)
 		),
 		array(
@@ -217,7 +214,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "meta",
 			"weight" => 3,
 			"cities" => array(
-
+				"Villavicencio", "Acacías", "Granada", "Puerto López"
 			)
 		),
 		array(
@@ -226,7 +223,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "narino",
 			"weight" => 3,
 			"cities" => array(
-
+				"San Juan de Pasto", "Tumaco", "Ipiales", "Samaniego"
 			)
 		),
 		array(
@@ -235,7 +232,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "norte_de_santander",
 			"weight" => 3,
 			"cities" => array(
-
+				"Cúcuta", "Ocaña", "Villa del Rosario", "Los Patios", "Pamplona"
 			)
 		),
 		array(
@@ -244,7 +241,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "putumayo",
 			"weight" => 3,
 			"cities" => array(
-
+				"Puerto Asís", "Orito", "Valle del Guamuez", "Mocoa", "Puerto Guzmán"
 			)
 		),
 		array(
@@ -253,7 +250,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "quindio",
 			"weight" => 3,
 			"cities" => array(
-
+				"Armenia", "Calarcá", "La Tebaida", "Montenegro", "Quimbaya"
 			)
 		),
 		array(
@@ -262,7 +259,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "risaralda",
 			"weight" => 3,
 			"cities" => array(
-
+				"Pereira", "Dosquebradas", "Santa Rosa de Cabal"
 			)
 		),
 		array(
@@ -271,7 +268,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "san_andres",
 			"weight" => 3,
 			"cities" => array(
-
+				"San Andrés"
 			)
 		),
 		array(
@@ -280,7 +277,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "santander",
 			"weight" => 3,
 			"cities" => array(
-
+				"Bucaramanga", "Floridablanca", "San Juan de Girón", "Barrancabermeja", "Piedecuesta"
 			)
 		),
 		array(
@@ -289,7 +286,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "sucre",
 			"weight" => 3,
 			"cities" => array(
-
+				"Sincelejo", "Corozal", "San Marcos"
 			)
 		),
 		array(
@@ -298,16 +295,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "tolima",
 			"weight" => 3,
 			"cities" => array(
-
-			)
-		),
-		array(
-			"regionName" => "Tolima",
-			"regionShort" => "TOL",
-			"regionSlug" => "tolima",
-			"weight" => 3,
-			"cities" => array(
-
+				"Ibagué",
 			)
 		),
 		array(
@@ -316,7 +304,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "valle_del_cauca",
 			"weight" => 3,
 			"cities" => array(
-
+				"Cali", "Buenaventura", "Palmira", "Tuluá"
 			)
 		),
 		array(
@@ -325,7 +313,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "vaupes",
 			"weight" => 3,
 			"cities" => array(
-
+				"Mitú", "Pacoa"
 			)
 		),
 		array(
@@ -334,7 +322,7 @@ class Country_Colombia extends CountryPlugin {
 			"regionSlug" => "vichada",
 			"weight" => 3,
 			"cities" => array(
-
+				"Cumaribo", "Puerto Carreño"
 			)
 		)
 	);
