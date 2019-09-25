@@ -23,6 +23,7 @@ class Installation {
 \$dbPassword     = '$dbPassword';
 \$dbTablePrefix  = '$tablePrefix';
 \$encryptionSalt = '$encryptionSalt';
+\$apiEnabled     = true;
 END;
 
 		$file = __DIR__ . "/../../settings.php";
