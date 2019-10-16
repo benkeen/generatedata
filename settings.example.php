@@ -12,3 +12,5 @@ $dbPassword     = '';
 $dbTablePrefix  = '';
 $encryptionSalt = 'ABC'; // any 3 A-Z chars
 $apiEnabled     = false;
+$importSqlFeatureEnabled = true;
+$importSqlListDatabase = false;

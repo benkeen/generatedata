@@ -370,6 +370,33 @@ class AjaxRequest {
 				$this->response["content"]    = $response["content"];
 				$this->response["isComplete"] = $response["isComplete"];
 				break;
+
+            // --------------------------------------------
+            // IMPORT SQL
+            // --------------------------------------------
+            case 'getAllDatabases':
+                Core::init();
+                $response = ImportSql::getAllDatabases();
+                $this->response["success"]    = $response["success"];
+                $this->response["content"]    = $response["content"];
+                break;
+
+            case 'getTables':
+                Core::init();
+                $db = Utils::sanitize($this->post['db']);
+                $response = ImportSql::getTables($db);
+                $this->response["success"]    = $response["success"];
+                $this->response["content"]    = $response["content"];
+                break;
+
+            case 'getCreateTablesSql':
+                Core::init();
+                $db = Utils::sanitize($this->post['db']);
+                $table = Utils::sanitize($this->post['table']);
+                $response = ImportSql::getCreateSql($db,$table);
+                $this->response["success"]    = $response["success"];
+                $this->response["content"]    = $response["content"];
+                break;
 		}
 	}
 

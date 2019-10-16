@@ -98,7 +98,8 @@
 			"accountManager",
 			{$exportTypeJSModules},
 			{$dataTypeJSModules},
-			"pageInit"
+			"pageInit",
+			"importSql"
 		], function(manager) {
 			manager.start();
 		});
