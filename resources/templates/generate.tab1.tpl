@@ -41,14 +41,14 @@
 
 		{if Core::isImportSqlFeatureEnabled()}
 		<div id="dialogSql" title="{$L.import_sql_input_placeholder}">
-			{if Core::isImportSqlListDatabase()}
+			{if Core::isImportSqlListDatabases()}
 			<div>
 				<label>{$L.import_sql_select_db_tbl}</label>
 				<div>
-					<select name="m_sel_databases" id="m_sel_databases" style="width: 48%;">
+					<select name="mSelDatabases" id="mSelDatabases" style="width: 48%;">
 						<option value="" disabled>{$L.import_sql_select_db_option_hint}</option>
 					</select>
-					<select name="m_sel_table" id="m_sel_table" style="width: 48%;">
+					<select name="mSelTable" id="mSelTable" style="width: 48%;">
 						<option value="" disabled selected>{$L.import_sql_select_table_option_hint}</option>
 					</select>
 				</div>

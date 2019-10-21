@@ -16,10 +16,10 @@ define([
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             success: function (result) {
                 if (result.success) {
-                    $("#m_sel_databases").html('<option value="" disabled selected>' + L.import_sql_select_db_option_hint + "</option>");
+                    $("#mSelDatabases").html('<option value="" disabled selected>' + L.import_sql_select_db_option_hint + "</option>");
                     result.content.forEach(function (rs) {
                         var option = $("<option></option>").text(rs);
-                        $("#m_sel_databases").append(option);
+                        $("#mSelDatabases").append(option);
                     });
                 }
             }
@@ -38,10 +38,10 @@ define([
             contentType: "application/x-www-form-urlencoded;charset=utf-8",
             success: function (result) {
                 if (result.success) {
-                    $("#m_sel_table").html('<option value="" disabled selected>' + L.import_sql_select_table_option_hint + "</option>");
+                    $("#mSelTable").html('<option value="" disabled selected>' + L.import_sql_select_table_option_hint + "</option>");
                     result.content.forEach(function (tbl) {
                         var option = $("<option></option>").text(tbl.table_name);
-                        $("#m_sel_table").append(option);
+                        $("#mSelTable").append(option);
                     });
                 }
             }
@@ -68,16 +68,16 @@ define([
 
     //////Select DB & Table to generate Sql
     //load all databases
-    if ($("#m_sel_databases").length > 0) {
+    if ($("#mSelDatabases").length > 0) {
         loadDatabases();
 
         //on db selected
-        $("#m_sel_databases").on('change', function () {
-            loadTables($("#m_sel_databases").val());
+        $("#mSelDatabases").on('change', function () {
+            loadTables($("#mSelDatabases").val());
         });
         //on table selected
-        $("#m_sel_table").on('change', function () {
-            loadCreateSql($("#m_sel_databases").val(), $("#m_sel_table").val());
+        $("#mSelTable").on('change', function () {
+            loadCreateSql($("#mSelDatabases").val(), $("#mSelTable").val());
         });
     }
     //////////////////////////

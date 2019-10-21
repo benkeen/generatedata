@@ -34,7 +34,7 @@ class Core {
 	private static $timeout = 300; // 5 minutes
 	private static $apiEnabled = false;
 	private static $importSqlFeatureEnabled=true;
-	private static $importSqlListDatabase=false;
+	private static $importSqlListDatabases=false;
 
 	// non-overridable settings
 	private static $version = "3.3.1";
@@ -179,7 +179,7 @@ class Core {
 			self::$encryptionSalt = (isset($encryptionSalt)) ? $encryptionSalt : null;
 			self::$pluginSettings = (isset($pluginSettings)) ? $pluginSettings : array();
 			self::$importSqlFeatureEnabled = (isset($importSqlFeatureEnabled)) ? $importSqlFeatureEnabled : true;
-			self::$importSqlListDatabase = (isset($importSqlListDatabase)) ? $importSqlListDatabase : false;
+			self::$importSqlListDatabases = (isset($importSqlListDatabases)) ? $importSqlListDatabases : false;
 
 			if (isset($isInDemoMode)) {
 				self::$isInDemoMode = $isInDemoMode;
@@ -345,9 +345,9 @@ class Core {
     /**
      * @return bool
      */
-    public static function isImportSqlListDatabase()
+    public static function isImportSqlListDatabases()
     {
-        return self::$importSqlListDatabase;
+        return self::$importSqlListDatabases;
     }
 
 	/**

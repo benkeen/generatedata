@@ -58,7 +58,7 @@ class ImportSql
     private static function isEverythingOk()
     {
         return Core::isImportSqlFeatureEnabled()
-            && Core::isImportSqlListDatabase()
+            && Core::isImportSqlListDatabases()
             && !Core::checkDemoMode()
             && Core::checkIsLoggedIn()
             && Core::checkIsInstalled()
