@@ -31,10 +31,42 @@
 
 		<div class="gdClear" style="padding-bottom: 20px"></div>
 
-		<h2>
+		<h2 style="padding: 0;">
 			{$L.data_set|upper}
 			<span data-help-section="dataTypes" class="gdSectionHelp" title="{$L.data_set_help}"></span>
+			{if Core::isImportSqlFeatureEnabled()}
+			<button id="btnImportSql" class="gdSecondaryButton" style="display: inline; float: right;margin: 0;padding: 4px;" type="button">{$L.import_sql}</button>
+			{/if}
 		</h2>
+
+		{if Core::isImportSqlFeatureEnabled()}
+		<div id="dialogSql" title="{$L.import_sql_input_placeholder}">
+			{if Core::isImportSqlListDatabases()}
+			<div>
+				<label>{$L.import_sql_select_db_tbl}</label>
+				<div>
+					<select name="mSelDatabases" id="mSelDatabases" style="width: 48%;">
+						<option value="" disabled>{$L.import_sql_select_db_option_hint}</option>
+					</select>
+					<select name="mSelTable" id="mSelTable" style="width: 48%;">
+						<option value="" disabled selected>{$L.import_sql_select_table_option_hint}</option>
+					</select>
+				</div>
+				<hr>
+			</div>
+			{/if}
+			<textarea name="inputImportSql" id="inputImportSql" style="width: 98%;" rows="25" class="text ui-widget-content ui-corner-all" placeholder="{$L.import_sql_input_placeholder_detail}"></textarea>
+			<div id="accordionsqlnote" style="background: #eee; margin-bottom: 6px;">
+				<h3 style="font-weight: bold;">{$L.import_sql_beautify_note_title}</h3>
+				<div>
+					{$L.import_sql_beautify_note}
+				</div>
+			</div>
+			<span style="float: right;padding-bottom: 5px;">
+				<button style="display:inline;margin: 0;" id="btnImportSqlSubmit" type="button" class="gdPrimaryButton">{$L.import_sql}</button>
+			</span>
+		</div>
+		{/if}
 
 		<ul class="gdTableHeadings">
 			<li class="gdColOrder">{$L.order}</li>

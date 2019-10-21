@@ -33,6 +33,8 @@ class Core {
 	private static $pluginSettings = array();
 	private static $timeout = 300; // 5 minutes
 	private static $apiEnabled = false;
+	private static $importSqlFeatureEnabled=true;
+	private static $importSqlListDatabases=false;
 
 	// non-overridable settings
 	private static $version = "3.3.1";
@@ -176,6 +178,8 @@ class Core {
 			self::$dbTablePrefix = (isset($dbTablePrefix)) ? $dbTablePrefix : null;
 			self::$encryptionSalt = (isset($encryptionSalt)) ? $encryptionSalt : null;
 			self::$pluginSettings = (isset($pluginSettings)) ? $pluginSettings : array();
+			self::$importSqlFeatureEnabled = (isset($importSqlFeatureEnabled)) ? $importSqlFeatureEnabled : true;
+			self::$importSqlListDatabases = (isset($importSqlListDatabases)) ? $importSqlListDatabases : false;
 
 			if (isset($isInDemoMode)) {
 				self::$isInDemoMode = $isInDemoMode;
@@ -329,6 +333,22 @@ class Core {
 	public static function checkSettingsFileExists() {
 		return self::$settingsFileExists;
 	}
+
+    /**
+     * @return bool
+     */
+    public static function isImportSqlFeatureEnabled()
+    {
+        return self::$importSqlFeatureEnabled;
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isImportSqlListDatabases()
+    {
+        return self::$importSqlListDatabases;
+    }
 
 	/**
 	 * Full installation of the program is determined by (a) the settings.php file existing and (b)

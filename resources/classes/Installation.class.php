@@ -23,6 +23,8 @@ class Installation {
 \$dbPassword     = '$dbPassword';
 \$dbTablePrefix  = '$tablePrefix';
 \$encryptionSalt = '$encryptionSalt';
+\$importSqlFeatureEnabled = true;
+\$importSqlListDatabases = false;
 END;
 
 		$file = __DIR__ . "/../../settings.php";

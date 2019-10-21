@@ -16,7 +16,8 @@ require.config({
 		lang: "resources/scripts/lang.php?",
 		queue: "resources/scripts/queue",
 		pageInit: "resources/scripts/pageInit",
-		tablesorter: "resources/scripts/libs/jquery.tablesorter.widgets.min"
+		tablesorter: "resources/scripts/libs/jquery.tablesorter.widgets.min",
+		importSql: "resources/scripts/importSql"
 	},
 	shim: {
 		"tablesorter": {
