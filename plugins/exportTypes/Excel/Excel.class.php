@@ -1,4 +1,6 @@
 <?php
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;	
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 /**
  * @package ExportTypes
@@ -16,13 +18,14 @@ class Excel extends ExportTypePlugin {
 
 
 	function generate($generator) {
-		require_once("PHPExcel.php");
+		require("vendor/autoload.php");
+		require_once("PhpOffice/PhpSpreadsheet/Spreadsheet.php");
 
 		$data = $generator->generateExportData();
 		$this->chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		$this->charArray = str_split($this->chars, 1);
 
-		$objPHPExcel = new PHPExcel();
+		$objPHPExcel = new Spreadsheet();
 
 		// set document properties
 		$objPHPExcel->getProperties()->setTitle("Test Data");
@@ -46,7 +49,8 @@ class Excel extends ExportTypePlugin {
 		
 		// we'll need to check if the compression option is turned on. And then execute this code - unullmass
 
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'xlsx');
+		$objWriter = new Xlsx($objPHPExcel);
 		//get the name of the save file
 		$filename=$this->getDownloadFilename($generator);
 		$filepath="./cache/" . $filename;
@@ -99,6 +103,6 @@ class Excel extends ExportTypePlugin {
 	 */
 	function getDownloadFilename($generator) {
 		$time = date("M-j-Y");
-		return session_id()."data{$time}.xls";
+		return session_id()."data{$time}.xlsx";
 	}
 }
