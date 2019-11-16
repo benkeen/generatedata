@@ -79,6 +79,12 @@ In addition to the many fine folk who submit bug reports, a big thanks to the fo
 
 ## Changelog
 
+3.3.1 - July 18, 2019
+- https://github.com/benkeen/generatedata/milestone/23?closed=1
+
+3.3.0 - July 1, 2019
+- misc bug fixes
+
 3.2.8 - Sep 12, 2017
 - misc bug fixes
 
