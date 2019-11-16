@@ -33,8 +33,8 @@ class Core {
 	private static $pluginSettings = array();
 	private static $timeout = 300; // 5 minutes
 	private static $apiEnabled = false;
-	private static $importSqlFeatureEnabled=true;
-	private static $importSqlListDatabases=false;
+	private static $importSqlFeatureEnabled = true;
+	private static $importSqlListDatabases = false;
 
 	// non-overridable settings
 	private static $version = "3.3.1";
