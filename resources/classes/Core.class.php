@@ -37,8 +37,8 @@ class Core {
 	private static $importSqlListDatabases = false;
 
 	// non-overridable settings
-	private static $version = "3.3.1";
-	private static $releaseDate = "2019-07-18";
+	private static $version = "3.4.0";
+	private static $releaseDate = "2019-11-16";
 	private static $minimumPHPVersion = "5.3.0";
 	private static $minimumMySQLVersion = "4.1.3";
 	private static $settingsFileExists = false;
