@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "grunt"
   },
   "repository": {
     "type": "git",
@@ -21,13 +22,13 @@
     "url": "https://github.com/benkeen/generatedata/issues"
   },
   "devDependencies": {
-    "grunt-cli": "~0.1.9",
-    "grunt": "~0.4.1",
+    "grunt": "^1.0.4",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-requirejs": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-uglify": "^4.0.1",
     "grunt-md5": "~0.1.11",
-    "grunt-template": "~0.2.0",
-    "grunt-contrib-cssmin": "~0.6.1",
-    "grunt-search": "~0.1.2"
+    "grunt-search": "~0.1.2",
+    "grunt-template": "~0.2.0"
   }
 }
