@@ -64,7 +64,6 @@ https://github.com/benkeen/generatedata/graphs/contributors
 
 3.4.0 - Nov 16, 2019
 - Misc updates, 
-- Pakistan country data added, thanks [@MoAli191](https://github.com/MoAli191)
 - new inject SQL feature added. Great work, [@harish81](https://github.com/harish81)!
 - https://github.com/benkeen/generatedata/milestone/25?closed=1
 

@@ -10,7 +10,7 @@ class Country_Pakistan extends CountryPlugin {
 	protected $countryName = "Pakistan";
 	protected $countrySlug = "pakistan";
 	protected $regionNames = "South Asia"; //Union Territories
-	protected $continent = "Asia";
+	protected $continent = "asia";
 
 	protected $extendedData = array(
 		"zipFormat" => array(
@@ -63,7 +63,7 @@ class Country_Pakistan extends CountryPlugin {
 			"regionSlug" => "khyber_pakhtoonkhwa",
 			"weight" => 20,
 			"cities" => array(
-				"Abbottabad","Bannu","Battagram","Buner","Charsadda","Chitral","Dera Ismail Khan","Dir","Hangu","Haripur","Karak","Kohat","Kohistan","Lakki Marwat","Malakand","Mansehra","Mardan","Nowshera","Peshawar","Shangla","Swabi","Swat","Tank","Torghar"			
+				"Abbottabad","Bannu","Battagram","Buner","Charsadda","Chitral","Dera Ismail Khan","Dir","Hangu","Haripur","Karak","Kohat","Kohistan","Lakki Marwat","Malakand","Mansehra","Mardan","Nowshera","Peshawar","Shangla","Swabi","Swat","Tank","Torghar"
 			)
 		),
 		array(
@@ -72,7 +72,7 @@ class Country_Pakistan extends CountryPlugin {
 			"regionSlug" => "gilgit_baltistan",
 			"weight" => 15,
 			"cities" => array(
-				"Astore","Diamer","Ghanche","Ghizer","Gilgit","Gojal Upper Hunza","Kharmang","Nagar","Shigar","Skardu"			
+				"Astore","Diamer","Ghanche","Ghizer","Gilgit","Gojal Upper Hunza","Kharmang","Nagar","Shigar","Skardu"
 			)
 		),
 		array(
