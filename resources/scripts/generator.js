@@ -2010,9 +2010,6 @@ define([
 
 	// called after the user-specific settings are updated. If it's an admin, it updates the global settings as well
 	var _maybeSaveGlobalSettings = function (resp) {
-
-		debugger;
-
 		function complete () {
 			window.scrollTo(0, 0);
 			var refreshButton = '<input type="button" value="Refresh Page" onClick="window.location.reload(true)" />'; // TODO translate

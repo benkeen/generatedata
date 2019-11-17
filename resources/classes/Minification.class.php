@@ -35,7 +35,7 @@ class Minification {
 		$dataTypes = DataTypePluginHelper::getDataTypeList(Core::$dataTypePlugins);
 		$dataTypeJSModules = DataTypePluginHelper::getDataTypeJSResources($dataTypes, "string");
 
-		$js = 'require(["manager","generator","accountManager",' . $exportTypeJSModules . "," . $dataTypeJSModules . ',"pageInit"], function(manager) {manager.start(); });';
+		$js = 'require(["manager","generator","accountManager","importSql",' . $exportTypeJSModules . "," . $dataTypeJSModules . ',"pageInit"], function(manager) {manager.start(); });';
 
 		$file = realpath(__DIR__ . "/../../cache/") . "/appStartGenerated.js";
 		if (is_file($file)) {
