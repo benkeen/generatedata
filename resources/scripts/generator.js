@@ -184,7 +184,7 @@ define([
 
 
 	var _onClickNumRowsField = function () {
-		if (!_isLoggedIn) {
+		if (!_isLoggedIn && C.DEMO_MODE) {
 			_showPermissionDeniedDialog(L.cannot_change_num_rows);
 		}
 	};
@@ -825,7 +825,7 @@ define([
 	var _generateData = function (e) {
 
 		// TODO pretty poor. Validation should be performed on this var prior to setting it in the private var
-		_numRowsToGenerate = _getNumRowsToGenerate()
+		_numRowsToGenerate = _getNumRowsToGenerate();
 		utils.clearValidationErrors($("#gdMainTab1Content"));
 
 		// check the users specified a numeric value for the number of results
@@ -1161,7 +1161,15 @@ define([
 	};
 
 	var _getNumRowsToGenerate = function () {
-		return $("#gdNumRowsToGenerate").val();
+		var numRows = $("#gdNumRowsToGenerate").val();
+
+		if (C.DEMO_MODE && !_isLoggedIn) {
+			if (numRows > C.MAX_DEMO_GENERATED_ROWS) {
+				numRows = C.MAX_DEMO_GENERATED_ROWS.toString(); // yuck
+			}
+		}
+
+		return numRows;
 	};
 
 	var _getVisibleRowOrderByRowNum = function (rowNum) {
@@ -2002,9 +2010,6 @@ define([
 
 	// called after the user-specific settings are updated. If it's an admin, it updates the global settings as well
 	var _maybeSaveGlobalSettings = function (resp) {
-
-		debugger;
-
 		function complete () {
 			window.scrollTo(0, 0);
 			var refreshButton = '<input type="button" value="Refresh Page" onClick="window.location.reload(true)" />'; // TODO translate

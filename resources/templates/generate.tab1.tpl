@@ -42,7 +42,7 @@
 		{if Core::isImportSqlFeatureEnabled()}
 		<div id="dialogSql" title="{$L.import_sql_input_placeholder}">
 			{if Core::isImportSqlListDatabases()}
-			<div>
+			<div id="mDialogSqlSelectDbFields">
 				<label>{$L.import_sql_select_db_tbl}</label>
 				<div>
 					<select name="mSelDatabases" id="mSelDatabases" style="width: 48%;">

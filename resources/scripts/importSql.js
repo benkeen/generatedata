@@ -21,6 +21,11 @@ define([
                         var option = $("<option></option>").text(rs);
                         $("#mSelDatabases").append(option);
                     });
+
+                // for whatever reason, here we weren't able to get the list of databases (e.g the user is in demo mode)
+	            // so hide the DB and Tables dropdown fields
+                } else {
+					$("#mDialogSqlSelectDbFields").hide();
                 }
             }
         });
@@ -112,7 +117,7 @@ define([
         } else {
             //display error
             utils.clearValidationErrors($("#gdMainTab1Content"));
-            utils.addValidationErrors({els: [$("#btnImportSql")], error: L.import_sql_error});
+            utils.addValidationErrors({els: [], error: L.import_sql_error});
             utils.displayValidationErrors("#gdMessages");
         }
         $("#dialogSql").dialog("close");
@@ -151,8 +156,10 @@ define([
 
     var _parseCreateSql = function (query) {
         query = query.replace(';', '');
+
         //match the single line sql comments
         var sqlCommentsSingle = /(--.*?\n)/ig;
+
         //match multiline sql comments
         var sqlMultilineComments = /\/\*([\s\S]*?)\*\//gms;
 
@@ -165,6 +172,7 @@ define([
         if (query === "" || !query.startsWith(create_table_word))
             return null;
         var table = {};
+
         //find table name
         if (query.startsWith(create_table_if_not_word)) {
             table["table"] =
@@ -309,3 +317,5 @@ define([
         }
     };
 });
+});
+

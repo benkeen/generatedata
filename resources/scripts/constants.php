@@ -47,6 +47,8 @@ define([], function() {
 
 		DEMO_MODE: <?php echo Core::checkDemoMode() ? "true" : "false"; ?>,
 
+        MAX_DEMO_GENERATED_ROWS: <?php echo Core::getMaxDemoModeRows(); ?>,
+
 		THEME: "<?php Settings::safeDisplaySetting("theme") ?>",
 
 		/**

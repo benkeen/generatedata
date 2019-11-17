@@ -22,6 +22,7 @@ class ImportSql
                 'content' => array()
             );
         }
+
         $db = Core::$db;
         $response = $db->query("SHOW DATABASES");
         if ($response['success']) {
@@ -103,12 +104,13 @@ class ImportSql
             );
         }
         $db = Core::$db;
-        $response = $db->query("desc $dbName.$tableName");
+        $response = $db->query("DESC `$dbName`.`$tableName`"); // escape db & table names in case they contain wacky chars
+
         $response['content'] = "";
         if ($response['success']) {
             $create_statement = mysqli_fetch_all($response['results'], MYSQLI_NUM);
             if ($create_statement) {
-                $sql_stmt = "create table $tableName( \n";
+                $sql_stmt = "CREATE TABLE $tableName( \n";
                 foreach ($create_statement as $field) {
                     $sql_stmt .= "\t $field[0] $field[1] ";
                     $sql_stmt .= $field[2] == 'NO' ? 'NOT NULL' : 'DEFAULT NULL';
@@ -118,6 +120,7 @@ class ImportSql
                 $response['content'] = $sql_stmt;
             }
         }
+
         return $response;
     }
 }
