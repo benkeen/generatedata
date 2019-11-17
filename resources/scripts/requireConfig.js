@@ -20,7 +20,7 @@ require.config({
 		importSql: "resources/scripts/importSql"
 	},
 	shim: {
-		"tablesorter": {
+		tablesorter: {
 			deps: ['resources/scripts/libs/jquery.tablesorter.min']
 		}
 	},
