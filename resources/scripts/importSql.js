@@ -110,6 +110,9 @@ define([
             setDataSetName(sql_tabel.table);
             sql_tabel.fields.forEach(function (field) {
                 addRow(field);
+                if ($("#isFieldGuesserEnable").is(":checked")) {
+                    guessTypes(getLastRowOrder(), field.name, field.type);
+                }
             });
         } else {
             //display error
@@ -211,4 +214,107 @@ define([
         var words = ["UNIQUE", "PRIMARY", "CONSTRAINT"];
         return words.includes(word.trim().toUpperCase());
     };
+
+    /**
+     * Guess The Type based on name or type.
+     * @param num row number
+     * @param name field name
+     * @param type field type
+     */
+    var guessTypes = function (num, name, type) {
+        //fallback values based on type
+        var typeValues = {
+            string: 'gdDataType_{num}||data-type-TextFixed#dtNumWords_{num}||1',
+            varchar: 'gdDataType_{num}||data-type-TextFixed#dtNumWords_{num}||1',
+            text: 'gdDataType_{num}||data-type-TextRandom',
+            longtext: 'gdDataType_{num}||data-type-TextRandom',
+            date: 'gdDataType_{num}||data-type-Date#dtOption_{num}||Y-m-d',
+            time: 'gdDataType_{num}||data-type-Date#dtOption_{num}||H:i:s',
+            guid: 'gdDataType_{num}||data-type-GUID',
+            datetimetz: 'gdDataType_{num}||data-type-Date#dtOption_{num}||Y-m-d H:i:s',
+            datetime: 'gdDataType_{num}||data-type-Date#dtOption_{num}||Y-m-d H:i:s',
+            timestamp: 'gdDataType_{num}||data-type-Date#dtOption_{num}||Y-m-d H:i:s',
+            integer: 'gdDataType_{num}||data-type-NumberRange',
+            int: 'gdDataType_{num}||data-type-NumberRange',
+            bigint: 'gdDataType_{num}||data-type-NumberRange',
+            smallint: 'gdDataType_{num}||data-type-NumberRange',
+            decimal: 'gdDataType_{num}||data-type-Currency#dtCurrencyFormat_{num}||XXXXX.XX#dtCurrencyRangeFrom_{num}||1000.00#dtCurrencyRangeTo_{num}||10000.00',
+            float: 'gdDataType_{num}||data-type-Currency#dtCurrencyFormat_{num}||XXXXX.XX#dtCurrencyRangeFrom_{num}||1000.00#dtCurrencyRangeTo_{num}||10000.00',
+            boolean: 'gdDataType_{num}||data-type-Boolean#dtOption_{num}||false|true'
+        };
+
+        //common fields name
+        var commonNames = {
+            /*Auto increment field*/
+            id: "gdDataType_{num}||data-type-AutoIncrement",
+
+            /*Names*/
+            name: "gdDataType_{num}||data-type-NamesRegional#dtOption_{num}||MaleName",
+            full_name: "gdDataType_{num}||data-type-NamesRegional#dtOption_{num}||MaleName Surname",
+            fullname: "gdDataType_{num}||data-type-NamesRegional#dtOption_{num}||MaleName Surname",
+            first_name: "gdDataType_{num}||data-type-NamesRegional#dtOption_{num}||MaleName",
+            firstname: "gdDataType_{num}||data-type-NamesRegional#dtOption_{num}||MaleName",
+            last_name: "gdDataType_{num}||data-type-NamesRegional#dtOption_{num}||Surname",
+            lastname: "gdDataType_{num}||data-type-NamesRegional#dtOption_{num}||Surname",
+
+            /*Localization*/
+            address: "gdDataType_{num}||data-type-StreetAddress",
+            street: "gdDataType_{num}||data-type-StreetAddress",
+            city: "gdDataType_{num}||data-type-City",
+            state: "gdDataType_{num}||data-type-Region",
+            region: "gdDataType_{num}||data-type-Region",
+            country: "gdDataType_{num}||data-type-Country",
+            pincode: "gdDataType_{num}||data-type-PostalZip",
+            pin_code: "gdDataType_{num}||data-type-PostalZip",
+            zip: "gdDataType_{num}||data-type-PostalZip",
+            zipcode: "gdDataType_{num}||data-type-PostalZip",
+            postal: "gdDataType_{num}||data-type-PostalZip",
+            postalcode: "gdDataType_{num}||data-type-PostalZip",
+            latitude: "gdDataType_{num}||data-type-LatLng",
+            longitude: "gdDataType_{num}||data-type-LatLng",
+
+            /*email*/
+            email: "gdDataType_{num}||data-type-Email",
+
+            /*phone*/
+            mobile: "gdDataType_{num}||data-type-PhoneRegional",
+            phone: "gdDataType_{num}||data-type-PhoneRegional",
+
+            /*guid*/
+            guid: "gdDataType_{num}||data-type-GUID",
+            uuid: "gdDataType_{num}||data-type-GUID",
+
+
+        };
+        var nValue = commonNames[name];
+        if (typeof nValue != "undefined") {
+            chooseGuess(nValue, num);
+        } else {
+            var tValue = typeValues[type];
+            if (typeof tValue != "undefined") {
+                chooseGuess(tValue, num);
+            }
+        }
+    };
+
+    /**
+     * Choose Type based on given value template.
+     * @param template a value template
+     * @param num row number
+     */
+    var chooseGuess = function (template, num) {
+        try {
+            template = template.replace(/{num}/g, num);
+            var controls = template.split("#");
+            for (var i = 0; i < controls.length; i++) {
+                var meta = controls[i].split("||");
+                var element = $("#" + meta[0]);
+                element.val("").trigger('change');//reset old value
+                element.val(meta[1]).trigger('change');
+            }
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
 });
+

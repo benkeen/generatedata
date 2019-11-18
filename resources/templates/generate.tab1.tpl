@@ -55,7 +55,8 @@
 				<hr>
 			</div>
 			{/if}
-			<textarea name="inputImportSql" id="inputImportSql" style="width: 98%;" rows="25" class="text ui-widget-content ui-corner-all" placeholder="{$L.import_sql_input_placeholder_detail}"></textarea>
+			<textarea name="inputImportSql" id="inputImportSql" style="width: 98%;" rows="22" class="text ui-widget-content ui-corner-all" placeholder="{$L.import_sql_input_placeholder_detail}"></textarea>
+			<label for="isFieldGuesserEnable"><input type="checkbox" name="isFieldGuesserEnable" id="isFieldGuesserEnable" value="1"> {$L.import_sql_field_guesser_chk}</label>
 			<div id="accordionsqlnote" style="background: #eee; margin-bottom: 6px;">
 				<h3 style="font-weight: bold;">{$L.import_sql_beautify_note_title}</h3>
 				<div>
