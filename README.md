@@ -24,6 +24,9 @@ Installation is really, really simple. I deliberately wrote the script to be as 
 require additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See 
 the documentation for more info.
 
+## v4 
+
+I'll soon be starting on a new version of this application and moving the current codebase to a `v3` branch. I'll expand upon the goals of the new version at a later date.
 
 ## Pre-packaged solutions
 
