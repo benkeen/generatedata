@@ -31,9 +31,9 @@ class DataType_SocialSecurityNumber extends DataTypePlugin {
 
 	public function getDataTypeMetadata() {
 		return array(
-			"SQLField" => "varchar(9) default NULL",
-			"SQLField_Oracle" => "varchar2(9) default NULL",
-			"SQLField_MSSQL" => "VARCHAR(9) NULL"
+			"SQLField" => "varchar(11) default NULL",
+			"SQLField_Oracle" => "varchar2(11) default NULL",
+			"SQLField_MSSQL" => "VARCHAR(11) NULL"
 		);
 	}
 
