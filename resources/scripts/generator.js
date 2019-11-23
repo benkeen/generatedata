@@ -351,13 +351,10 @@ define([
 	var _onClickSaveButton = function () {
 		if (!_isLoggedIn) {
 			_showPermissionDeniedDialog();
-		} else if (C.DEMO_MODE) {
-			_showDemoOnlyDialog();
 		} else {
 			if (_currConfigurationID === null) {
 				_saveDataSet();
 			} else {
-				// confirmation...?
 				_saveDataSet();
 			}
 		}
@@ -1470,7 +1467,7 @@ define([
 
 
 	var _onClickDeleteDataSets = function () {
-		if (C.DEMO_MODE) {
+		if (!_isLoggedIn && C.DEMO_MODE) {
 			_closeMainDialog();
 			_showDemoOnlyDialog();
 			return false;
