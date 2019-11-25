@@ -22,7 +22,7 @@ const Header = ({ isLoggedIn }) => {
 				<ul>
 					{navOptions}
 				</ul>
-				<select id="gdSelectLanguage">
+				<select>
 					<option value="">Select Language</option>
 					<option value="de">Deutsch</option>
 					<option value="en" selected="selected">English</option>

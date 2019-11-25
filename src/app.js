@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './components/header/Header.component';
+import Page from './components/page/Page.component';
+
 
 const App = () => (
 	<Router>
-		<div>
-			<Header />
+		<Page>
 			<Switch>
 				<Route path="/about">
 					<div>About</div>
@@ -17,7 +17,7 @@ const App = () => (
 					<div>HOME</div>
 				</Route>
 			</Switch>
-		</div>
+		</Page>
 	</Router>
 );
 

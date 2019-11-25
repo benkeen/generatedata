@@ -1,0 +1,16 @@
+.dtPhoneRegionalCountry {
+    clear: both;
+}
+
+.dtPhoneRegionalCountry label {
+    float: left;
+    width: 150px;
+}
+.dtPhoneRegionalCountry input {
+    float: left;
+    width: 115px;
+}
+.dtPhoneRegionalCountry select {
+    float: left;
+    width: 120px;
+}

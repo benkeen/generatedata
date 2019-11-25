@@ -1,0 +1,20 @@
+#gdTableRows .chzn-container-multi .chzn-choices .search-choice {
+  padding: 0 20px 2px 5px; 
+  margin: 3px 0 3px 3px;
+  line-height: 13px;}
+ 
+#gdTableRows .chzn-container-multi .chzn-choices {
+  border: 1px solid #b7b7b7;} 
+
+#gdTableRows .chzn-container .chzn-results li {
+  line-height: 15px;
+  list-style: none outside none;
+  margin: 0;
+  padding: 5px 6px;
+  float: none;}
+  
+#gdTableRows .chzn-container .chzn-results .group-option {
+  padding-left: 15px;}
+    
+#gdTableRows .chzn-container-multi .chzn-choices .search-field input {
+	margin-bottom:2px; }

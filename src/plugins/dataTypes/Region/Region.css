@@ -1,0 +1,22 @@
+/** supplementary styles to display the Options section properly */
+.dtRegionCountry {
+	position: relative;
+}
+.dtRegionSuboptionActive {
+	color: #555555;
+	line-height: 17pt;
+}
+.dtRegionSuboptionInactive {
+	color: #cccccc;
+	line-height: 17pt;
+}
+.dtRegionFull {
+	position: absolute;
+	left: 125px;
+	border-left: 1px solid #dddddd;
+	margin-left: 5px;
+}
+.dtRegionShort {
+	position: absolute;
+	left: 175px;
+}
