@@ -1,6 +1,10 @@
 <?php
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;	
+
+require_once("vendor/autoload.php");
+
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
 
 /**
  * @package ExportTypes
@@ -18,9 +22,6 @@ class Excel extends ExportTypePlugin {
 
 
 	function generate($generator) {
-		require("vendor/autoload.php");
-		require_once("PhpOffice/PhpSpreadsheet/Spreadsheet.php");
-
 		$data = $generator->generateExportData();
 		$this->chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		$this->charArray = str_split($this->chars, 1);
@@ -46,7 +47,7 @@ class Excel extends ExportTypePlugin {
 				$objPHPExcel->getActiveSheet()->setCellValue($col, $data["rowData"][$i][$j]);
 			}
 		}
-		
+
 		// we'll need to check if the compression option is turned on. And then execute this code - unullmass
 
 		//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'xlsx');

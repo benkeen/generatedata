@@ -1,6 +1,6 @@
 ## Excel Export Type
 
-This Export Type generates the random data in Excel format. It uses the `PHPExcel` library to handle the 
+This Export Type generates the random data in Excel format. It uses the `PHPOffice/PHPSpreadsheet` library to handle the 
 actual file generation.
 
 It's super-simple, and doesn't offer any additional settings to control any aspects of the generated Excel file.
