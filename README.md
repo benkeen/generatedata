@@ -24,9 +24,14 @@ Installation is really, really simple. I deliberately wrote the script to be as 
 require additional PHP/Server configuration when setting it up. That said, it *does* require PHP 5.3.0 or later. See 
 the documentation for more info.
 
-## v4 
+## `master` = v4 rewrite
 
-I'll soon be starting on a new version of this application and moving the current codebase to a `v3` branch. I'll expand upon the goals of the new version at a later date.
+The master branch of this repo now contains the ongoing work for the v4 rewrite. The generatedata.com site, the 
+documentation and everything else is for up to the v3 branch. You can find that code in the `v3` branch. 
+
+Although I'm no longer working on that branch, PRs and bug fixes are very welcome! Just branch off `v3` and put 
+your PRs in against that.
+
 
 ## Pre-packaged solutions
 
