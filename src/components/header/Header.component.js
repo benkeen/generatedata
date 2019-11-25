@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react';
-// import styles from './Header.scss';
-
-const styles = {};
+import styles from './Header.scss';
 
 const Header = ({ isLoggedIn }) => {
-
 	let navOptions;
 	if (isLoggedIn) {
 		navOptions = (

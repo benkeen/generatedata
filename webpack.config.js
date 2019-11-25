@@ -14,6 +14,35 @@ module.exports = {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				exclude: '/node_modules'
+			},
+			{
+				test: /\.scss$/,
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							modules: {
+								localIdentName: '[name]_[local]_[hash:base64:5]',
+							},
+							// url: false,
+							// sourceMap: true
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							// sourceMap: true
+						}
+					}
+				]
+			},
+			{
+				test: /\.css$/,
+				use: [
+					'style-loader',
+					'css-loader'
+				]
 			}
 		]
 	},
