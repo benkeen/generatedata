@@ -7,30 +7,49 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "grunt"
+    "start": "webpack-dev-server",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/benkeen/generatedata.git"
   },
   "author": "Ben Keen",
-  "license": "GPL",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "0c9c909be95a311f2d25efc0f3ed63a1f7f40574",
   "bugs": {
     "url": "https://github.com/benkeen/generatedata/issues"
   },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4"
+  },
   "devDependencies": {
-    "grunt": "^1.0.4",
-    "grunt-cli": "^1.3.2",
-    "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-requirejs": "~0.4.1",
-    "grunt-contrib-uglify": "^4.0.1",
-    "grunt-md5": "~0.1.11",
-    "grunt-sass": "^3.1.0",
-    "grunt-search": "~0.1.2",
-    "grunt-template": "~0.2.0",
-    "node-sass": "^4.13.0"
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "autoprefixer": "6.7.2",
+    "babel-loader": "^8.0.6",
+    "css-loader": "0.26.1",
+    "extract-text-webpack-plugin": "1.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "18.1.0",
+    "json-loader": "0.5.4",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "1.2.2",
+    "promise": "7.1.1",
+    "sass-loader": "^8.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-manifest-plugin": "1.1.0"
   }
 }
