@@ -65,6 +65,11 @@ https://github.com/benkeen/generatedata/graphs/contributors
 
 ## Changelog
 
+3.4.1 - Nov 24, 2019 
+- Excel Export Type updated for new PHP lib, thanks [@adibaby](https://github.com/adibaby)!
+- Bug fix for SocialSecurityNumber, courtesy of [@guzzisti](https://github.com/guzzisti). 
+- https://github.com/benkeen/generatedata/milestone/26?closed=1
+
 3.4.0 - Nov 16, 2019
 - Misc updates, 
 - new inject SQL feature added. Great work, [@harish81](https://github.com/harish81)!
