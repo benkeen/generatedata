@@ -21,12 +21,10 @@ var _init = function() {
 	manager.subscribe(MODULE_ID, subscriptions);
 };
 
-var _saveRow = function(rowNum) {
-	return {
-		"example": $("#dtExample_" + rowNum).val(),
-		"option":  $("#dtOption_" + rowNum).val()
-	};
-};
+const saveRow = (rowNum) => ({
+	example: $("#dtExample_" + rowNum).val(),
+	option:  $("#dtOption_" + rowNum).val()
+});
 
 var _loadRow = function(rowNum, data) {
 	return {

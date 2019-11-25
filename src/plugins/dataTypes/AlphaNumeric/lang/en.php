@@ -3,8 +3,8 @@
 $L = array();
 
 $L["DATA_TYPE"] = array(
-    "NAME" => "Alphanumeric",
-    "DESC" => "Generates a custom random alphanumeric string or any length or format, defined by placeholder chars."
+	"NAME" => "Alphanumeric",
+	"DESC" => "Generates a custom random alphanumeric string or any length or format, defined by placeholder chars."
 );
 
 $L["example_CanPostalCode"] = "(Can. Postal code)";
