@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const Example = ({ coreI18n, i18n }) => (
-	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
+export const Example = ({ coreI18n, i18n, data }) => (
+	<select>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="LxL xLx">V6M 4C1 {i18n.example_CanPostalCode}</option>
 		<option value="xxxxx">90210 {i18n.example_USZipCode}</option>
@@ -9,8 +9,8 @@ export const Example = ({ coreI18n, i18n }) => (
 	</select>
 );
 
-export const Options = ({ value }) => (
-	<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" />
+export const Options = ({ data, onUpdate }) => (
+	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })} />
 );
 
 export const Help = ({ coreI18n, i18n }) => (

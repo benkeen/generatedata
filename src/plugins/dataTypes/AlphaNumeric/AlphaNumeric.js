@@ -17,20 +17,18 @@
 // 	manager.subscribe(MODULE_ID, subscriptions);
 // };
 
-const saveRow = (rowNum) => ({
-	example: $("#dtExample_" + rowNum).val(),
-	option:  $("#dtOption_" + rowNum).val()
-});
-
-const loadRow = (rowNum, data) => ({
-	execute: () => {
-		$("#dtExample_" + rowNum).val(data.example);
-		$("#dtOption_" + rowNum).val(data.option);
-	},
-	isComplete: () => $("#dtOption_" + rowNum).length > 0
-});
-
-const exampleChange = (msg) => $("#dtOption_" + msg.rowID).val(msg.value);
+// const saveRow = (rowNum) => ({
+// 	example: $("#dtExample_" + rowNum).val(),
+// 	option:  $("#dtOption_" + rowNum).val()
+// });
+//
+// const loadRow = (rowNum, data) => ({
+// 	execute: () => {
+// 		$("#dtExample_" + rowNum).val(data.example);
+// 		$("#dtOption_" + rowNum).val(data.option);
+// 	},
+// 	isComplete: () => $("#dtOption_" + rowNum).length > 0
+// });
 
 const validate = (rows) => {
 	var visibleProblemRows = [];
