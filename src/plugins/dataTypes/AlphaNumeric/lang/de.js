@@ -1,0 +1,21 @@
+export default lang = {
+	"NAME": "Alphanumerisch",
+	"DESC": "Erzeugt eine benutzerdefinierte zufällige alphanumerische Zeichenfolge oder Länge oder Format , durch Platzhalter Zeichen definiert.",
+	"example_CanPostalCode": "(Can. PLZ)",
+	"example_Password": "(Password)",
+	"example_USZipCode": "(US Postleitzahl)",
+	"help_1": "Ein Groß-<b>L</b> etter.",
+	"help_10": "Jede Anzahl, 1-9.",
+	"help_11": "Ein Konsonant (obere oder untere).",
+	"help_12": "Ein <b>H</b> exidecimal Nummer (0-F)",
+	"help_2": "Ein Groß-<b>V</b>owel.",
+	"help_3": "Ein Kleinbuchstaben <b>l</b> etter.",
+	"help_4": "Ein Kleinbuchstaben <b>v</b> owel.",
+	"help_5": "Ein Brief (oben oder unten).",
+	"help_6": "Ein Vokal (obere oder untere).",
+	"help_7": "Ein Groß-<b>C</b> onsonant.",
+	"help_8": "Jede Zahl, 0-9.",
+	"help_9": "Ein Kleinbuchstaben <b>c</b> onsonant.",
+	"help_intro": "Dieser Datentyp können Sie zufällige alphanumerische Zeichenfolgen. Die folgende Tabelle enthält die Zeichenlegende für dieses Feld. Alle anderen Zeichen, die Sie in diesem Feld erscheint unescaped.",
+	"incomplete_fields": "Alphanumerische Felder müssen Sie das Format, in dem Optionen Textfeld eingeben. Bitte beheben Sie die folgenden Zeilen:"
+};

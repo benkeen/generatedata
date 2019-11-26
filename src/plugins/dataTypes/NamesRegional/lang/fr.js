@@ -1,0 +1,23 @@
+export default lang = {
+	"NAME": "Noms régionaux",
+	"DESC": "Ce type de données génère aléatoirement des noms. Il fonctionne comme le type de données <b>Noms</b>, à l'exception du fait qu'il génère des noms plus réalistes en fonction des pays précisés.",
+	"example_FemaleName": "Jane (prénom féminin)",
+	"example_FemaleName_Surname": "Jane Smith (nom complet féminin)",
+	"example_MaleName": "John (prénom masculin)",
+	"example_MaleName_Surname": "John Smith (nom complet masculin)",
+	"example_Name": "Alex (prénom masculin ou féminin)",
+	"example_Name4": "Jenny, Toby, Ben, Peter",
+	"example_Name_Initial_Surname": "Alex J. Smith",
+	"example_Name_Surname": "Alex Smith",
+	"example_Surname_Name_Initial": "Smith, John P.",
+	"example_fullnames": "Alex Smith ou Alex J. Smith",
+	"example_surname": "Smith (nom de famille)",
+	"help_intro": "Par exemple des noms italiens seront générés si le pays Italie est sélectionné dans le champs 'Pays'. A cause de cette difficulté supplémentaire le script risque de fonctionner un peut plus lentement. Vous pouvez spécifier les formats multiples en les séparant par le caractère pipe (|). Les chaînes suivantes seront converties en leur équivalent aléatoire:",
+	"incomplete_fields": "Le type de données Nom doit avoir un format précisé dans le champ de texte Options. Corrigez les lignes suivantes:",
+	"name": "Nom",
+	"type_FemaleName": "Un prénom féminin.",
+	"type_Initial": "Une lettre majuscule, AZ.",
+	"type_MaleName": "Un prénom masculin.",
+	"type_Name": "Un prénom majuscule ou féminin.",
+	"type_Surname": "Un nom aléatoire."
+};

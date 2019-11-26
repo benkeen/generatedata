@@ -35,7 +35,7 @@ const findLocaleFiles = () => {
 			const files = fs.readdirSync(langFolder);
 
 			files.forEach((file) => {
-				const [filename, extension] = file.explode('.');
+				const [filename, extension] = file.split('.');
 				const content = fs.readFileSync(`${langFolder}/${file}`, 'utf8');
 				const json = convert(content);
 				fs.writeFileSync(`${langFolder}/${filename}.js`, generateLangFileContents(json));
