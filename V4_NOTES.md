@@ -1,9 +1,11 @@
-### v4 notes
+# v4 notes
 
 Lots is going to change. 
 
-- we will be using react & redux. 
-- I haven't settled on Material UI yet - or even a theme. For now I'm just using it for what it provides.
+- react & redux baby!
+- express. 
+- I haven't settled on Material UI yet - or even a general style (no more unnecessary themes). For now I'm just using
+it for what it provides.
 
 
 ### Site/installation configuration 
