@@ -19,6 +19,11 @@ const convert = (str) => {
 	return map;
 };
 
+const generateLangFileContents = (data) => {
+	const json = JSON.stringify(data, null, '\t');
+	return `export default lang = ` + json + ';\n';
+};
+
 
 const findLocaleFiles = () => {
 	const baseFolder = '../src/plugins/dataTypes/';
@@ -30,9 +35,10 @@ const findLocaleFiles = () => {
 			const files = fs.readdirSync(langFolder);
 
 			files.forEach((file) => {
+				const [filename, extension] = file.explode('.');
 				const content = fs.readFileSync(`${langFolder}/${file}`, 'utf8');
-
-				
+				const json = convert(content);
+				fs.writeFileSync(`${langFolder}/${filename}.js`, generateLangFileContents(json));
 			});
 		}
 	});
