@@ -43,6 +43,6 @@ controlled components: they get fed a `data` prop containing any arbitrary data 
 
 Second, the generation code:
     `ComponentName.generate.js`
-    
+
 
 

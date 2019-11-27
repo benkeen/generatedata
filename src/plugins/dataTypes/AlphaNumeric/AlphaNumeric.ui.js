@@ -59,3 +59,22 @@ export const Help = ({ coreI18n, i18n }) => (
 		</table>
 	</>
 );
+
+
+const validate = (rows) => {
+	var visibleProblemRows = [];
+	var problemFields      = [];
+	for (var i=0; i<rows.length; i++) {
+		var currEl = $("#dtOption_" + rows[i]);
+		if ($.trim(currEl.val()) === "") {
+			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+			visibleProblemRows.push(visibleRowNum);
+			problemFields.push(currEl);
+		}
+	}
+	var errors = [];
+	if (visibleProblemRows.length) {
+		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+	}
+	return errors;
+};
