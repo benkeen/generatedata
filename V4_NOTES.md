@@ -58,4 +58,4 @@ Second, the generation code:
 ### TODO
 
 - add base component generation script task.
-
+- verification task to find missing schemas
