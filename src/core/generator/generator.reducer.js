@@ -6,20 +6,31 @@ import * as actions from './generator.actions';
  * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
  */
 const reducer = (state = {
-	rows: []
+	rows: [],
+	dataTypes: [],
+	exportTypes: [],
+	countries: []
 }, action) => {
 	switch (action.type) {
-		case actions.ADD_ROW:
+		case actions.ADD_ROWS:
+			const newRows = [];
+			for (let i=0; i<action.payload.numRows; i++) {
+				newRows.push({
+					dataType: null,
+					options: null,
+					example: null
+				});
+			}
 			return {
 				rows: [
 					...state.rows,
-					{
-						dataType: null,
-						options: null,
-						example: null
-					}
+					...newRows
 				]
 			};
+
+		case actions.DELETE_ROW:
+			break;
+
 		default:
 			return state;
 	}

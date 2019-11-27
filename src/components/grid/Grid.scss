@@ -1,0 +1,29 @@
+.gridRow {
+  display: flex;
+  flex-direction: row;
+  &>div {
+
+  }
+}
+
+.orderCol {
+  flex: 0 0 30px;
+}
+.titleCol {
+  flex: 0 0 150px;
+}
+.dataTypeCol {
+  flex: 0 0 120px;
+}
+.examplesCol {
+  flex: 1 0 80px;
+}
+.optionsCol {
+  flex: 1;
+}
+.helpCol {
+  flex: 0 0 30px;
+}
+.deleteCol {
+  flex: 0 0 30px;
+}

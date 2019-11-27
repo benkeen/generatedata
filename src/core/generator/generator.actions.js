@@ -1,3 +1,10 @@
-export const ADD_ROW = 'ADD_ROW';
+export const ADD_ROWS = 'ADD_ROWS';
 
-export const addRow = () => ({ type: ADD_ROW });
+export const addRows = (numRows) => ({
+	type: ADD_ROWS,
+	payload: {
+		numRows
+	}
+});
+
+export const DELETE_ROW = 'DELETE_ROW';

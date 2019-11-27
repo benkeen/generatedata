@@ -4,15 +4,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { actions } from './core/generator';
 import store from './store';
 import Page from './components/page/Page.component';
-
+import Grid from './components/grid/Grid.container'
 
 // initialization
 const init = () => {
-	store.dispatch(actions.addRow());
-	store.dispatch(actions.addRow());
-	store.dispatch(actions.addRow());
-	store.dispatch(actions.addRow());
-	store.dispatch(actions.addRow());
+	store.dispatch(actions.addRows(5));
 };
 
 init();
@@ -30,7 +26,7 @@ const App = () => (
 						<div>Users</div>
 					</Route>
 					<Route path="/">
-						<div>HOME</div>
+						<Grid />
 					</Route>
 				</Switch>
 			</Page>

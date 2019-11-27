@@ -1,5 +1,5 @@
 export default {
-	dataTypeName: "Alphanumeric",
-	dataTypeFieldGroup: "numeric",
-	dataTypeFieldGroupOrder: 10
+	name: "Alphanumeric",
+	fieldGroup: "numeric",
+	fieldGroupOrder: 10
 };
