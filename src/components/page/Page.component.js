@@ -8,7 +8,7 @@ import styles from './Page.scss';
 const Page = ({ children }) => (
 	<div className={styles.page}>
 		<Header />
-		<Paper rounded>
+		<Paper key="rounded">
 			<Tabs />
 			<div className={styles.content}>
 				{children}
