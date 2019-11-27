@@ -14,6 +14,10 @@ it for what it provides.
 - **config.js** - contains whatever overridden settings for the particular installation. This'll serve the 
 same role as `settings.php` in previous versions of the script. 
 
+At this point neither file does anything but that'll change very soon. 
+
+
+
 
 ### Bundling
 
@@ -22,11 +26,17 @@ The following sections will be generated into single bundles.
 - locale files. 
 - core 
 
-For Data Types, Export Types, make two bundles:
+For Data Types, Export Types, maybe make two bundles:
 - ALL UI code
 - All code generation code. 
 
-We need the UI to appear immediately but the generation code can be loaded async.  
+We need the UI to appear immediately but the generation code can be loaded async. That said, perhaps experiment: see
+how large the UI code is in particular. Be nicer to load them async, but 30-odd requests when you first boot up kinda
+sucks. Alternatively we could flag the most common ones and load them when the user first selects the data type...? Meh.    
+
+Each module will have a `[module name].config.js` file containing high-level info about the module: name, order. We'll 
+have a grunt task that parses all the dependencies and generates a single JS file from them all which will be included
+in the main script. 
 
 
 ### Data Type design
@@ -45,4 +55,7 @@ Second, the generation code:
     `ComponentName.generate.js`
 
 
+### TODO
+
+- add base component generation script task.
 

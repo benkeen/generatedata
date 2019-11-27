@@ -1,4 +1,4 @@
-// converter script to change the PHP locale files from v3 to JS files for v4
+// converter script to change the PHP locale files from v3 to JS files for v4. This can be removed soon.
 var fs = require('fs');
 
 const convert = (str) => {

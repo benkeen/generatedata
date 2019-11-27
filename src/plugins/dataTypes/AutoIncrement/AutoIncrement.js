@@ -1,13 +1,3 @@
-/*global $:false*/
-define([
-	"manager",
-	"constants",
-	"lang",
-	"generator"
-], function(manager, C, L, generator) {
-
-	"use strict";
-
 	/**
 	 * @name AutoIncrement
 	 * @description JS code for the AutoIncrement Data Type.
@@ -82,11 +72,3 @@ define([
 		}
 		return errors;
 	};
-
-	manager.registerDataType(MODULE_ID, {
-		init: _init,
-		validate: _validate,
-		loadRow: _loadRow,
-		saveRow: _saveRow
-	});
-});
