@@ -22,16 +22,15 @@ const findDataTypeConfigFiles = () => {
 			return;
 		}
 	});
-
 	return dataTypeInfo;
 };
 
 const generateDataTypesConfigBundle = () => {
 	const data = findDataTypeConfigFiles();
 
-	console.log(data);
-
 	// generate file here
+	fs.writeFileSync(`${langFolder}/${filename}.js`, generateLangFileContents(json));
+
 };
 
 
