@@ -1,12 +1,3 @@
-/*global $:false*/
-define([
-	"manager",
-	"constants",
-	"lang",
-	"generator"
-], function (manager, C, L, generator) {
-
-	"use strict";
 
 	var MODULE_ID = "data-type-OrganisationNumber";
 	var LANG = L.dataTypePlugins.OrganisationNumber;
@@ -95,13 +86,3 @@ define([
 			}
 		};
 	};
-
-	// register our module
-	manager.registerDataType(MODULE_ID, {
-		init: _init,
-		validate: _validate,
-		loadRow: _loadRow,
-		saveRow: _saveRow
-	});
-
-});
