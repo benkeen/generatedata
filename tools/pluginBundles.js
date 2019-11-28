@@ -14,8 +14,13 @@ const findDataTypeConfigFiles = () => {
 		}
 
 		// TODO error handling here. Validate data too
-		const { name, fieldGroup, fieldGroupOrder } = JSON.parse(fs.readFileSync(`${configFile}`, 'utf8'));
-		dataTypeInfo.push({ name, fieldGroup, fieldGroupOrder })
+		try {
+			const { name, fieldGroup, fieldGroupOrder } = JSON.parse(fs.readFileSync(`${configFile}`, 'utf8'));
+			dataTypeInfo.push({ name, fieldGroup, fieldGroupOrder })
+		} catch (e) {
+			console.log('Error parsing ', configFile);
+			return;
+		}
 	});
 
 	return dataTypeInfo;
