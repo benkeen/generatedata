@@ -1,0 +1,16 @@
+#etHTMLCustomFormatDialog pre {
+	margin-bottom: 0px;
+}
+#etHTMLCustomFormatDialog h4 {
+	margin: 0px 0px 4px;
+}
+#etHTMLCustomContent {
+	float:left;
+	border-left: 1px solid #efefef;
+	padding-left: 12px;
+	margin-left: 12px;
+}
+#etHTMLCustomSmarty {
+	width: 100%;
+	height: 100%;
+}

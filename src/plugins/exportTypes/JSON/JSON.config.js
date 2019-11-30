@@ -1,0 +1,17 @@
+export default {
+	exportTypeName: "JSON",
+	schema: {
+		"title": "JSON",
+		"$schema": "http://json-schema.org/draft-04/schema#",
+		"type": "object",
+		"properties": {
+			"stripWhitespace": {
+				"type": "boolean"
+			},
+			"dataStructureFormat": {
+				"enum": ["simple", "complex"]
+			}
+		}
+
+
+};

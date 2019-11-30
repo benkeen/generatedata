@@ -1,0 +1,22 @@
+export default {
+	exportTypeName: "XML",
+	schema: {
+		"title": "XML",
+		"$schema": "http://json-schema.org/draft-04/schema#",
+		"type": "object",
+		"properties": {
+			"rootNodeName": {
+				"type": "string"
+			},
+			"recordNodeName": {
+				"type": "string"
+			},
+			"useCustomExportFormat": {
+				"type": "boolean"
+			},
+			"customTemplate": {
+				"type": "string"
+			}
+		}
+	}
+};

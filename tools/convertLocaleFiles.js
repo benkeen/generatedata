@@ -26,11 +26,13 @@ const generateLangFileContents = (data) => {
 
 
 const findLocaleFiles = () => {
-	const baseFolder = '../src/plugins/dataTypes/';
+	const baseFolder = '../src/plugins/exportTypes';
 
 	const folders = fs.readdirSync(baseFolder);
 	folders.forEach((folder) => {
-		const langFolder = `${baseFolder}/${folder}/lang`;
+		const langFolder = `${baseFolder}/${folder}/i18n`;
+
+
 		if (fs.existsSync(langFolder)) {
 			const files = fs.readdirSync(langFolder);
 
