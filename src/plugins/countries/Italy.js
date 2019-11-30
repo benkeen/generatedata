@@ -3,22 +3,22 @@
  */
 
 export default {
-	protected $countryName = "Italy";
-	protected $countrySlug = "italy";
-	protected $regionNames = "Regioni";
-	protected $continent = "europe";
+	countryName: "Italy",
+	countrySlug: "italy",
+	regionNames: "Regioni",
+	continent: "europe",
 
-	protected $extendedData = array(
-		"zipFormat" => "xxxxx"
-	);
+	extendedData: {
+		"zipFormat": "xxxxx"
+	},
 
-	protected $countryData = array(
-		array(
-			"regionName" => "Piemonte",
-			"regionShort" => "PIE",
-			"regionSlug" => "piemonte",
-			"weight" => 7,
-			"cities" => array(
+	data: [
+		{
+			"regionName": "Piemonte",
+			"regionShort": "PIE",
+			"regionSlug": "piemonte",
+			"weight": 7,
+			"cities": [
 				"Alessandria",
 				"Asti",
 				"Barbania",
@@ -69,15 +69,15 @@ export default {
 				"Villafranca d'Asti",
 				"Villar Pellice",
 				"Villata",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Valle d'Aosta",
-			"regionShort" => "VDA",
-			"regionSlug" => "valledaosta",
-			"weight" => 1,
-			"cities" => array(
+		{
+			"regionName": "Valle d'Aosta",
+			"regionShort": "VDA",
+			"regionSlug": "valledaosta",
+			"weight": 1,
+			"cities": [
 				"Allein",
 				"Antey-Saint-Andrè",
 				"Aosta",
@@ -128,15 +128,15 @@ export default {
 				"Valtournenche",
 				"Verrayes",
 				"Verrès",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Lombardia",
-			"regionShort" => "LOM",
-			"regionSlug" => "lombardia",
-			"weight" => 16,
-			"cities" => array(
+		{
+			"regionName": "Lombardia",
+			"regionShort": "LOM",
+			"regionSlug": "lombardia",
+			"weight": 16,
+			"cities": [
 				"Acquafredda",
 				"Annone di Brianza",
 				"Asso",
@@ -187,15 +187,15 @@ export default {
 				"Val Rezzo",
 				"Valera Fratta",
 				"Villa Cortese",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Trentino-Alto Adige",
-			"regionShort" => "TAA",
-			"regionSlug" => "trentinoaltoadige",
-			"weight" => 2,
-			"cities" => array(
+		{
+			"regionName": "Trentino-Alto Adige",
+			"regionShort": "TAA",
+			"regionSlug": "trentinoaltoadige",
+			"weight": 2,
+			"cities": [
 				"Albiano",
 				"Andalo",
 				"Bedollo",
@@ -246,15 +246,15 @@ export default {
 				"Varna/Vahrn",
 				"Villa Agnedo",
 				"Ziano di Fiemme",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Veneto",
-			"regionShort" => "VEN",
-			"regionSlug" => "veneto",
-			"weight" => 8,
-			"cities" => array(
+		{
+			"regionName": "Veneto",
+			"regionShort": "VEN",
+			"regionSlug": "veneto",
+			"weight": 8,
+			"cities": [
 				"Adria",
 				"Arsiè",
 				"Asigliano Veneto",
@@ -305,15 +305,15 @@ export default {
 				"Tezze sul Brenta",
 				"Venezia",
 				"Verona",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Friuli-Venezia Giulia",
-			"regionShort" => "FVG",
-			"regionSlug" => "friuliveneziagiulia",
-			"weight" => 2,
-			"cities" => array(
+		{
+			"regionName": "Friuli-Venezia Giulia",
+			"regionShort": "FVG",
+			"regionSlug": "friuliveneziagiulia",
+			"weight": 2,
+			"cities": [
 				"Amaro",
 				"Attimis",
 				"Bertiolo",
@@ -364,15 +364,15 @@ export default {
 				"Turriaco",
 				"Verzegnis",
 				"Vito d'Asio",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Liguria",
-			"regionShort" => "LIG",
-			"regionSlug" => "liguria",
-			"weight" => 3,
-			"cities" => array(
+		{
+			"regionName": "Liguria",
+			"regionShort": "LIG",
+			"regionSlug": "liguria",
+			"weight": 3,
+			"cities": [
 				"Alassio",
 				"Albisola Superiore",
 				"Aquila d'Arroscia",
@@ -423,15 +423,15 @@ export default {
 				"Villanova d'Albenga",
 				"Zignago",
 				"Zuccarello",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Emilia-Romagna",
-			"regionShort" => "ERM",
-			"regionSlug" => "emiliaromagna",
-			"weight" => 7,
-			"cities" => array(
+		{
+			"regionName": "Emilia-Romagna",
+			"regionShort": "ERM",
+			"regionSlug": "emiliaromagna",
+			"weight": 7,
+			"cities": [
 				"Baiso",
 				"Baricella",
 				"Bazzano",
@@ -482,15 +482,15 @@ export default {
 				"Tresigallo",
 				"Viano",
 				"Zerba",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Toscana",
-			"regionShort" => "TOS",
-			"regionSlug" => "toscana",
-			"weight" => 6,
-			"cities" => array(
+		{
+			"regionName": "Toscana",
+			"regionShort": "TOS",
+			"regionSlug": "toscana",
+			"weight": 6,
+			"cities": [
 				"Anghiari",
 				"Bientina",
 				"Buti",
@@ -541,15 +541,15 @@ export default {
 				"Vergemoli",
 				"Villafranca in Lunigiana",
 				"Vinci",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Umbria",
-			"regionShort" => "UMB",
-			"regionSlug" => "umbria",
-			"weight" => 1,
-			"cities" => array(
+		{
+			"regionName": "Umbria",
+			"regionShort": "UMB",
+			"regionSlug": "umbria",
+			"weight": 1,
+			"cities": [
 				"Acquasparta",
 				"Allerona",
 				"Alviano",
@@ -600,15 +600,15 @@ export default {
 				"Torgiano",
 				"Umbertide",
 				"Valfabbrica",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Marche",
-			"regionShort" => "MAR",
-			"regionSlug" => "marche",
-			"weight" => 3,
-			"cities" => array(
+		{
+			"regionName": "Marche",
+			"regionShort": "MAR",
+			"regionSlug": "marche",
+			"weight": 3,
+			"cities": [
 				"Acquasanta Terme",
 				"Altidona",
 				"Ancona",
@@ -659,15 +659,15 @@ export default {
 				"Serrungarina",
 				"Tolentino",
 				"Visso",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Lazio",
-			"regionShort" => "LAZ",
-			"regionSlug" => "lazio",
-			"weight" => 9,
-			"cities" => array(
+		{
+			"regionName": "Lazio",
+			"regionShort": "LAZ",
+			"regionSlug": "lazio",
+			"weight": 9,
+			"cities": [
 				"Acquafondata",
 				"Allumiere",
 				"Alvito",
@@ -718,15 +718,15 @@ export default {
 				"Vico nel Lazio",
 				"Villa Latina",
 				"Villa Santo Stefano",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Abruzzo",
-			"regionShort" => "ABR",
-			"regionSlug" => "abruzzo",
-			"weight" => 2,
-			"cities" => array(
+		{
+			"regionName": "Abruzzo",
+			"regionShort": "ABR",
+			"regionSlug": "abruzzo",
+			"weight": 2,
+			"cities": [
 				"Abbateggio",
 				"Acciano",
 				"Ancarano",
@@ -777,15 +777,15 @@ export default {
 				"Torrevecchia Teatina",
 				"Treglio",
 				"Vicoli",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Molise",
-			"regionShort" => "MOL",
-			"regionSlug" => "molise",
-			"weight" => 1,
-			"cities" => array(
+		{
+			"regionName": "Molise",
+			"regionShort": "MOL",
+			"regionSlug": "molise",
+			"weight": 1,
+			"cities": [
 				"Baranello",
 				"Belmonte del Sannio",
 				"Bojano",
@@ -836,15 +836,15 @@ export default {
 				"Tufara",
 				"Ururi",
 				"Vastogirardi",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Campania",
-			"regionShort" => "CAM",
-			"regionSlug" => "campania",
-			"weight" => 10,
-			"cities" => array(
+		{
+			"regionName": "Campania",
+			"regionShort": "CAM",
+			"regionSlug": "campania",
+			"weight": 10,
+			"cities": [
 				"Acerra",
 				"Altavilla Irpina",
 				"Arzano",
@@ -895,15 +895,15 @@ export default {
 				"Santomenna",
 				"Sorbo Serpico",
 				"Tufo",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Puglia",
-			"regionShort" => "PUG",
-			"regionSlug" => "puglia",
-			"weight" => 7,
-			"cities" => array(
+		{
+			"regionName": "Puglia",
+			"regionShort": "PUG",
+			"regionSlug": "puglia",
+			"weight": 7,
+			"cities": [
 				"Accadia",
 				"Altamura",
 				"Arnesano",
@@ -954,15 +954,15 @@ export default {
 				"Vernole",
 				"Vico del Gargano",
 				"Vieste",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Basilicata",
-			"regionShort" => "BAS",
-			"regionSlug" => "basilicata",
-			"weight" => 1,
-			"cities" => array(
+		{
+			"regionName": "Basilicata",
+			"regionShort": "BAS",
+			"regionSlug": "basilicata",
+			"weight": 1,
+			"cities": [
 				"Albano di Lucania",
 				"Aliano",
 				"Anzi",
@@ -1013,15 +1013,15 @@ export default {
 				"Vietri di Potenza",
 				"Viggianello",
 				"Viggiano",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Calabria",
-			"regionShort" => "CAL",
-			"regionSlug" => "calabria",
-			"weight" => 3,
-			"cities" => array(
+		{
+			"regionName": "Calabria",
+			"regionShort": "CAL",
+			"regionSlug": "calabria",
+			"weight": 3,
+			"cities": [
 				"Aiello Calabro",
 				"Aieta",
 				"Benestare",
@@ -1072,15 +1072,15 @@ export default {
 				"Strongoli",
 				"Tarsia",
 				"Tropea",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Sicilia",
-			"regionShort" => "SIC",
-			"regionSlug" => "sicilia",
-			"weight" => 8,
-			"cities" => array(
+		{
+			"regionName": "Sicilia",
+			"regionShort": "SIC",
+			"regionSlug": "sicilia",
+			"weight": 8,
+			"cities": [
 				"Acireale",
 				"Acquedolci",
 				"Adrano",
@@ -1131,15 +1131,15 @@ export default {
 				"Termini Imerese",
 				"Valverde",
 				"Villafranca Tirrena",
-			)
-		),
+			]
+		},
 
-		array(
-			"regionName" => "Sardegna",
-			"regionShort" => "SAR",
-			"regionSlug" => "sardegna",
-			"weight" => 3,
-			"cities" => array(
+		{
+			"regionName": "Sardegna",
+			"regionShort": "SAR",
+			"regionSlug": "sardegna",
+			"weight": 3,
+			"cities": [
 				"Albagiara",
 				"Armungia",
 				"Birori",
@@ -1190,11 +1190,7 @@ export default {
 				"Villa Verde",
 				"Villamassargia",
 				"Villanovafranca",
-			)
-		),
-	);
-
-	public function install() {
-		return CountryPluginHelper::populateDB($this->countryName, $this->countrySlug, $this->countryData);
-	}
+			]
+		}
+	]
 }
