@@ -1,8 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const configDefaults = require('../config.defaults');
+const helpers = require('./helpers');
 
-// ah, commonJS! Ain't you handy
+// ah commonJS, ain't you handy with your dynamic imports
 let overrides = {};
 const configFile = path.join(__dirname, '..', 'config.js');
 if (fs.existsSync(configFile)) {
@@ -14,5 +15,4 @@ const completeConfigFile = {
 	...overrides
 };
 
-console.log(completeConfigFile);
-
+helpers.createBuildFile('config.js', `export default ${JSON.stringify(completeConfigFile, null, '\t')}`);

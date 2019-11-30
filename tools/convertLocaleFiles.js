@@ -31,8 +31,6 @@ const findLocaleFiles = () => {
 	const folders = fs.readdirSync(baseFolder);
 	folders.forEach((folder) => {
 		const langFolder = `${baseFolder}/${folder}/i18n`;
-
-
 		if (fs.existsSync(langFolder)) {
 			const files = fs.readdirSync(langFolder);
 

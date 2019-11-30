@@ -1,13 +1,20 @@
 const fs = require('fs');
+const path = require('path');
 
-const createBuildFile = (filename) => {
-	if (!fs.existsSync(folder)) {
-		fs.mkdirSync(folder, { recursive: true });
+const createBuildFile = (filename, content) => {
+	const buildFolder = path.join(__dirname, '..', 'build');
+	if (!fs.existsSync(buildFolder)) {
+		fs.mkdirSync(buildFolder, { recursive: true });
 	}
 
-	const file = path.join(__dirname, '..', 'build', 'dataTypes.js');
+	const file = path.join(__dirname, '..', 'build', filename);
 	if (fs.exists(file)) {
 		fs.unlinkSync(file);
 	}
-	fs.writeFileSync(file, `export default ${JSON.stringify(data, null, '\t')}`);
+	fs.writeFileSync(file, content);
+};
+
+
+module.exports = {
+	createBuildFile
 };

@@ -61,3 +61,9 @@ Second, the generation code:
 - verification task to find missing schemas
 - revise schemas to make the entire config file schema based, not just the generation schema
 - Minimum node version? 8?
+- The script shouldn't have any trace of website content. Drop the website_i18n files.
+
+
+### Documentation TODO
+
+- explain what's es6 and what's commonJS. 
