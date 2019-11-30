@@ -3,3 +3,4 @@ cache/*
 .buildpath
 .idea*
 node_modules*
+build/*

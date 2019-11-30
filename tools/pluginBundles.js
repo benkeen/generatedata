@@ -1,5 +1,6 @@
 // converter script to change the PHP locale files from v3 to JS files for v4
-var fs = require('fs');
+const fs = require('fs');
+const path = require('path');
 
 // parses the data type folder and finds
 const findDataTypeConfigFiles = () => {
@@ -27,10 +28,17 @@ const findDataTypeConfigFiles = () => {
 
 const generateDataTypesConfigBundle = () => {
 	const data = findDataTypeConfigFiles();
+	const folder = path.join(__dirname, '..', 'build');
 
-	// generate file here
-	fs.writeFileSync(`${langFolder}/${filename}.js`, generateLangFileContents(json));
+	if (!fs.existsSync(folder)) {
+		fs.mkdirSync(folder, { recursive: true });
+	}
 
+	const file = path.join(__dirname, '..', 'build', 'dataTypes.js');
+	if (fs.exists(file)) {
+		fs.unlinkSync(file);
+	}
+	fs.writeFileSync(file, `export default ${JSON.stringify(data, null, '\t')}`);
 };
 
 

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "init": "node ./tools/pluginBundles.js",
+    "dev": "node ./tools/pluginBundles.js",
     "test": "jest"
   },
   "repository": {
