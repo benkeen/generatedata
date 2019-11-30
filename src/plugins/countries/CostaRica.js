@@ -9,7 +9,6 @@ export default {
 	"countryName": "Costa Rica",
 	"countrySlug": "CR",
 	"regionNames": "Costa Rican Provinces",
-
 	"extendedData": {
 		"zipFormat": {
 			"format": "ZYxYx",
@@ -26,8 +25,7 @@ export default {
 			]
 		}
 	},
-
-	"countryData": [
+	"data": [
 		{
 			"regionName": "Alajuela",
 			"regionShort": "A",

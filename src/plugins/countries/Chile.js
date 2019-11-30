@@ -5,16 +5,16 @@
 * Author: Gonzalo "NioZero" Hidalgo <ghidalgo@frostdisk.com>
 */
 export default {
-	"countryName": "Chile",
-	"countrySlug": "chile",
-	"regionNames": "Chilean Regions",
-	"continent": "south_america",
+	countryName: "Chile",
+	countrySlug: "chile",
+	regionNames: "Chilean Regions",
+	continent: "south_america",
 
-	"extendedData": {
+	extendedData: {
 		"zipFormat": "xxxxxx"
 	},
 
-	"countryData": [
+	data: [
 		{
 			"regionName": "Arica y Parinacota",
 			"regionShort": "XV",

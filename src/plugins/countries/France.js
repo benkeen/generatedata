@@ -8,7 +8,7 @@ export default {
 		"zipFormat": "xxxxx"
 	},
 
-	"countryData": [
+	"data": [
 		{
 			"regionName": "Île-de-France",
 			"regionShort": "IL",

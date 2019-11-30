@@ -1,9 +1,9 @@
 export default {
-	"countryName": "Australia",
-	"countrySlug": "australia",
-	"regionNames": "Australian St./Terr.",
-	"continent": "oceania",
-	"extendedData": {
+	countryName: "Australia",
+	countrySlug: "australia",
+	regionNames: "Australian St./Terr.",
+	continent: "oceania",
+	extendedData: {
 		"zipFormat": {
 			"format": "Xxxx",
 			"replacements": {
@@ -19,7 +19,7 @@ export default {
 			]
 		}
 	},
-	"data": [
+	data: [
 		{
 			"regionName": "Australian Capital Territory",
 			"regionShort": "ACT",
