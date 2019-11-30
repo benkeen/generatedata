@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from './store';
 import Page from './components/page/Page.component';
 import Grid from './components/grid/Grid.container'
-import core from './core';
-
+import * as core from './core';
 
 core.init();
 

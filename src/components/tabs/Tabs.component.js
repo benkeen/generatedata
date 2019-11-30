@@ -1,7 +1,7 @@
 import React from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { config } from '../../../config.defaults';
+import { coreConfig } from '../../core';
 
 export default function PrimaryTabs() {
 	const [value, setValue] = React.useState(2);
@@ -10,7 +10,7 @@ export default function PrimaryTabs() {
 		setValue(newValue);
 	};
 
-	const tabs = config.tabs.map((tab) => <Tab label={tab.label} key={tab.label} />);
+	const tabs = coreConfig.tabs.map((tab) => <Tab label={tab.label} key={tab.label} />);
 
 	return (
 			<Tabs
