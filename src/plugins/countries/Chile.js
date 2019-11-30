@@ -1,41 +1,38 @@
-<?php
-
 /**
 * Ciudades y Regiones de Chile
 * Weight: Porcentaje de Población de la Región respecto al total nacional * 100, segun Censo 2012
 * Source: http://datos.gob.cl/datasets/ver/29596
-* @package Countries
-* @author Gonzalo "NioZero" Hidalgo <ghidalgo@frostdisk.com>
+* Author: Gonzalo "NioZero" Hidalgo <ghidalgo@frostdisk.com>
 */
-class Country_Chile extends CountryPlugin {
-	protected $countryName = "Chile";
-	protected $countrySlug = "chile";
-	protected $regionNames = "Chilean Regions";
-	protected $continent = "south_america";
+export default {
+	"countryName": "Chile",
+	"countrySlug": "chile",
+	"regionNames": "Chilean Regions",
+	"continent": "south_america",
 
-	protected $extendedData = array(
-		"zipFormat" => "xxxxxx"
-	);
+	"extendedData": {
+		"zipFormat": "xxxxxx"
+	},
 
-	protected $countryData = array(
-		array(
-			"regionName" => "Arica y Parinacota",
-			"regionShort" => "XV",
-			"regionSlug" => "arica_y_parinacota",
-			"weight" => 132,
-			"cities" => array(
+	"countryData": [
+		{
+			"regionName": "Arica y Parinacota",
+			"regionShort": "XV",
+			"regionSlug": "arica_y_parinacota",
+			"weight": 132,
+			"cities": [
 				"Arica",
 				"Camarones",
 				"Putre",
 				"General Lagos"
-			)
-		),
-		array(
-			"regionName" => "Tarapacá",
-			"regionShort" => "I",
-			"regionSlug" => "tarapaca",
-			"weight" => 185,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Tarapacá",
+			"regionShort": "I",
+			"regionSlug": "tarapaca",
+			"weight": 185,
+			"cities": [
 				"Iquique",
 				"Alto Hospicio",
 				"Pozo Almonte",
@@ -43,14 +40,14 @@ class Country_Chile extends CountryPlugin {
 				"Colchane",
 				"Huara",
 				"Pica"
-			)
-		),
-		array(
-			"regionName" => "Antofagasta",
-			"regionShort" => "II",
-			"regionSlug" => "antofagasta",
-			"weight" => 344,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Antofagasta",
+			"regionShort": "II",
+			"regionSlug": "antofagasta",
+			"weight": 344,
+			"cities": [
 				"Antofagasta",
 				"Mejillones",
 				"Sierra Gorda",
@@ -60,14 +57,14 @@ class Country_Chile extends CountryPlugin {
 				"San Pedro de Atacama",
 				"Tocopilla",
 				"María Elena"
-			)
-		),
-		array(
-			"regionName" => "Atacama",
-			"regionShort" => "III",
-			"regionSlug" => "atacama",
-			"weight" => 173,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Atacama",
+			"regionShort": "III",
+			"regionSlug": "atacama",
+			"weight": 173,
+			"cities": [
 				"Copiapó",
 				"Caldera",
 				"Tierra Amarilla",
@@ -77,14 +74,14 @@ class Country_Chile extends CountryPlugin {
 				"Alto del Carmen",
 				"Freirina",
 				"Huasco"
-			)
-		),
-		array(
-			"regionName" => "Coquimbo",
-			"regionShort" => "IV",
-			"regionSlug" => "coquimbo",
-			"weight" => 426,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Coquimbo",
+			"regionShort": "IV",
+			"regionSlug": "coquimbo",
+			"weight": 426,
+			"cities": [
 				"La Serena",
 				"Coquimbo",
 				"Andacollo",
@@ -100,14 +97,14 @@ class Country_Chile extends CountryPlugin {
 				"Monte Patria",
 				"Punitaqui",
 				"Río Hurtado"
-			)
-		),
-		array(
-			"regionName" => "Valparaíso",
-			"regionShort" => "V",
-			"regionSlug" => "valparaiso",
-			"weight" => 1015,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Valparaíso",
+			"regionShort": "V",
+			"regionSlug": "valparaiso",
+			"weight": 1015,
+			"cities": [
 				"Valparaíso",
 				"Casablanca",
 				"Concón",
@@ -146,14 +143,14 @@ class Country_Chile extends CountryPlugin {
 				"Limache",
 				"Olmué",
 				"Villa Alemana"
-			)
-		),
-		array(
-			"regionName" => "O'Higgins",
-			"regionShort" => "VI",
-			"regionSlug" => "ohiggins",
-			"weight" => 511,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "O'Higgins",
+			"regionShort": "VI",
+			"regionSlug": "ohiggins",
+			"weight": 511,
+			"cities": [
 				"Rancagua",
 				"Codegua",
 				"Coinco",
@@ -187,14 +184,14 @@ class Country_Chile extends CountryPlugin {
 				"Placilla",
 				"Pumanque",
 				"Santa Cruz"
-			)
-		),
-		array(
-			"regionName" => "Maule",
-			"regionShort" => "VII",
-			"regionSlug" => "maule",
-			"weight" => 581,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Maule",
+			"regionShort": "VII",
+			"regionSlug": "maule",
+			"weight": 581,
+			"cities": [
 				"Talca",
 				"Constitución",
 				"Curepto",
@@ -225,14 +222,14 @@ class Country_Chile extends CountryPlugin {
 				"San Javier",
 				"Villa Alegre",
 				"Yerbas Buenas"
-			)
-		),
-		array(
-			"regionName" => "Biobío",
-			"regionShort" => "VII",
-			"regionSlug" => "biobio",
-			"weight" => 1179,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Biobío",
+			"regionShort": "VII",
+			"regionSlug": "biobio",
+			"weight": 1179,
+			"cities": [
 				"Concepción",
 				"Coronel",
 				"Chiguayante",
@@ -287,14 +284,14 @@ class Country_Chile extends CountryPlugin {
 				"San Nicolás",
 				"Treguaco",
 				"Yungay"
-			)
-		),
-		array(
-			"regionName" => "Araucanía",
-			"regionShort" => "IX",
-			"regionSlug" => "araucania",
-			"weight" => 552,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Araucanía",
+			"regionShort": "IX",
+			"regionSlug": "araucania",
+			"weight": 552,
+			"cities": [
 				"Temuco",
 				"Carahue",
 				"Cunco",
@@ -327,14 +324,14 @@ class Country_Chile extends CountryPlugin {
 				"Renaico",
 				"Traiguén",
 				"Victoria"
-			)
-		),
-		array(
-			"regionName" => "Los Ríos",
-			"regionShort" => "XIV",
-			"regionSlug" => "los_rios",
-			"weight" => 225,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Los Ríos",
+			"regionShort": "XIV",
+			"regionSlug": "los_rios",
+			"weight": 225,
+			"cities": [
 				"Valdivia",
 				"Corral",
 				"Lanco",
@@ -347,14 +344,14 @@ class Country_Chile extends CountryPlugin {
 				"Futrono",
 				"Lago Ranco",
 				"Río Bueno"
-			)
-		),
-		array(
-			"regionName" => "Los Lagos",
-			"regionShort" => "X",
-			"regionSlug" => "los_lagos",
-			"weight" => 468,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Los Lagos",
+			"regionShort": "X",
+			"regionSlug": "los_lagos",
+			"weight": 468,
+			"cities": [
 				"Puerto Montt",
 				"Calbuco",
 				"Cochamó",
@@ -385,14 +382,14 @@ class Country_Chile extends CountryPlugin {
 				"Futaleufú",
 				"Hualaihué",
 				"Palena"
-			)
-		),
-		array(
-			"regionName" => "Aisén",
-			"regionShort" => "XIV",
-			"regionSlug" => "aisen",
-			"weight" => 60,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Aisén",
+			"regionShort": "XIV",
+			"regionSlug": "aisen",
+			"weight": 60,
+			"cities": [
 				"Coihaique",
 				"Lago Verde",
 				"Aisén",
@@ -403,14 +400,14 @@ class Country_Chile extends CountryPlugin {
 				"Tortel",
 				"Chile Chico",
 				"Río Ibáñez"
-			)
-		),
-		array(
-			"regionName" => "Magallanes y Antártica Chilena",
-			"regionShort" => "XII",
-			"regionSlug" => "magallanes_y_antartica_chilena",
-			"weight" => 92,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Magallanes y Antártica Chilena",
+			"regionShort": "XII",
+			"regionSlug": "magallanes_y_antartica_chilena",
+			"weight": 92,
+			"cities": [
 				"Punta Arenas",
 				"Laguna Blanca",
 				"Río Verde",
@@ -422,14 +419,14 @@ class Country_Chile extends CountryPlugin {
 				"Timaukel",
 				"Natales",
 				"Torres del Paine"
-			)
-		),
-		array(
-			"regionName" => "Metropolitana de Santiago",
-			"regionShort" => "RM",
-			"regionSlug" => "metropolitana_de_santiago",
-			"weight" => 4057,
-			"cities" => array(
+			]
+		},
+		{
+			"regionName": "Metropolitana de Santiago",
+			"regionShort": "RM",
+			"regionSlug": "metropolitana_de_santiago",
+			"weight": 4057,
+			"cities": [
 				"Santiago",
 				"Cerrillos",
 				"Cerro Navia",
@@ -482,11 +479,7 @@ class Country_Chile extends CountryPlugin {
 				"Isla de Maipo",
 				"Padre Hurtado",
 				"Peñaflor"
-			)
-		)
-	);
-
-	public function install() {
-		return CountryPluginHelper::populateDB($this->countryName, $this->countrySlug, $this->countryData);
-	}
+			]
+		}
+	]
 }

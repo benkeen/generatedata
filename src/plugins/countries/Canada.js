@@ -1,8 +1,8 @@
 export default {
-	"countryName": "Brazil",
-	"countrySlug": "brazil",
-	"regionNames": "Brazilian States",
-	"continent": "south_america",
+	"countryName": "Canada",
+	"countrySlug": "canada",
+	"regionNames": "Canadian prov.",
+	"continent": "north_america",
 	"extendedData": {
 
 		// the general zip format for the country. This may be optionally overridden for each region if a more

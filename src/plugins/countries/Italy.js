@@ -1,10 +1,8 @@
-<?php
-
 /**
  * @package Countries
  */
 
-class Country_Italy extends CountryPlugin {
+export default {
 	protected $countryName = "Italy";
 	protected $countrySlug = "italy";
 	protected $regionNames = "Regioni";
