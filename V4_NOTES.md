@@ -10,7 +10,7 @@ it for what it provides.
 
 ### Site/installation configuration 
 
-- **config.defaults.js** - contains all the default settings. 
+- **config.client.defaults.js** - contains all the default settings. 
 - **config.js** - contains whatever overridden settings for the particular installation. This'll serve the 
 same role as `settings.php` in previous versions of the script. 
 
@@ -62,7 +62,8 @@ Second, the generation code:
 - revise schemas to make the entire config file schema based, not just the generation schema
 - Minimum node version? 8?
 - The script shouldn't have any trace of website content. Drop the website_i18n files.
-
+- split config into config.web.js, config.server.js. config.server.js is never included in any bundle. Best way to 
+validate this? Kinnnnnda important.
 
 ### Documentation TODO
 

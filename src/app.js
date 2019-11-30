@@ -1,20 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { actions } from './core/generator';
 import store from './store';
 import Page from './components/page/Page.component';
 import Grid from './components/grid/Grid.container'
 import core from './core';
 
-// initialization
-const init = () => {
-	core.init();
-	store.dispatch(actions.addRows(5));
-};
 
-init();
-
+core.init();
 
 const App = () => (
 	<Provider store={store}>

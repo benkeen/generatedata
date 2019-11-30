@@ -6,11 +6,6 @@
  */
 const defaultConfig = {
 	isInDemoMode: false,
-	dbHostname: '',
-	dbName: '',
-	dbUsername: '',
-	dbPassword: '',
-	dbTablePrefix: 'gd_',
 	encryptionSalt: '',
 	errorReporting: '',
 	maxGeneratedRows: 100000,
@@ -72,7 +67,10 @@ const defaultConfig = {
 			label: 'Settings',
 			requiresAuth: true
 		}
-	]
+	],
+
+	// custom settings that plugins may want to add. Just call core.getPluginSettings() to get them in your plugin
+	pluginSettings: {}
 };
 
 module.exports = defaultConfig;

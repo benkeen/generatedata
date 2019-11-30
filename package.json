@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "build & webpack-dev-server",
-    "build": "node ./tools/pluginBundles.js & node ./tools/generateConfigFile.js",
+    "build": "node ./server/pluginBundles.js & node ./server/generateConfigFile.js",
     "test": "jest"
   },
   "repository": {
