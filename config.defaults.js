@@ -1,6 +1,10 @@
-export const config = {
-
-	// overridable settings
+/**
+ * This contains the default settings for the Data Generator. The installation script will lead you through the
+ * steps to create a config.js file in the root (one folder above the dist/ webroot so never publicly accessible)
+ * and that'll contain the necessary overrides like DB settings. But this setting contains every one that can
+ * be overwritten by the script.
+ */
+const defaultConfig = {
 	isInDemoMode: false,
 	dbHostname: '',
 	dbName: '',
@@ -13,23 +17,24 @@ export const config = {
 	defaultNumRows: 100,
 	maxDemoModeRows: 100,
 	maxDataSetHistorySize: 200,
-	defaultLanguageFile: 'en',
-	defaultExportType: "HTML",
+	defaultLocale: 'en',
+	defaultExportType: 'HTML',
 	defaultCountryPlugins: [],
-	defaultTheme: "classic",
-	enableSmartySecurity: true,
 	useMinifiedResources: false,
 	pluginSettings: [],
 	timeout: 300, // 5 minutes
 	apiEnabled: false,
-	importSqlFeatureEnabled: true,
-	importSqlListDatabases: false,
+	// importSqlFeatureEnabled: true,
+	// importSqlListDatabases: false,
 
-	// non-overridable settings - move these elsewhere
-	releaseDate: "2019-11-16",
-	settingsFileExists: false,
 	dataTypeGroups: [
-		"human_data", "geo", "credit_card_data", "text", "numeric", "math", "other"
+		"human_data",
+		"geo",
+		"credit_card_data",
+		"text",
+		"numeric",
+		"math",
+		"other"
 	],
 	continents: [
 		"africa",
@@ -45,11 +50,11 @@ export const config = {
 		'en', 'fr', 'de', 'es', 'ja', 'nl', 'ta'
 	],
 
-	// controls the top-level tabs seen in the application
+	// controls the top-level tabs seen in the application.
 	tabs: [
 		{
 			id: 'generate',
-			label: 'Generate', // TODO move to locale string
+			label: 'Generate',
 			file: '...'
 		},
 		{
@@ -69,3 +74,5 @@ export const config = {
 		}
 	]
 };
+
+module.exports = defaultConfig;

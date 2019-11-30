@@ -7,8 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "webpack-dev-server",
-    "dev": "node ./tools/pluginBundles.js",
+    "start": "build & webpack-dev-server",
+    "build": "node ./tools/pluginBundles.js & node ./tools/generateConfigFile.js",
     "test": "jest"
   },
   "repository": {
@@ -31,6 +31,7 @@
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "react-select": "^3.0.8",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0"
   },

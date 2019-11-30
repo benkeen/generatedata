@@ -60,3 +60,4 @@ Second, the generation code:
 - add base component generation script task.
 - verification task to find missing schemas
 - revise schemas to make the entire config file schema based, not just the generation schema
+- Minimum node version? 8?

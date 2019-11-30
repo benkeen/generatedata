@@ -5,9 +5,11 @@ import { actions } from './core/generator';
 import store from './store';
 import Page from './components/page/Page.component';
 import Grid from './components/grid/Grid.container'
+import core from './core';
 
 // initialization
 const init = () => {
+	core.init();
 	store.dispatch(actions.addRows(5));
 };
 
