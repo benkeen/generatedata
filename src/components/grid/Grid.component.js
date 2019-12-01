@@ -1,5 +1,9 @@
 import React from 'react';
+import Select from 'react-select';
 import styles from './Grid.scss';
+import { getSortedGroupedDataTypes } from '../../utils/dataTypes';
+
+const dataTypes = getSortedGroupedDataTypes();
 
 const Grid = ({ rows }) => {
 
@@ -11,7 +15,7 @@ const Grid = ({ rows }) => {
 					<input type="text" />
 				</div>
 				<div className={styles.dataTypeCol}>
-					<select></select>
+					<Select options={dataTypes} />
 				</div>
 				<div className={styles.examplesCol}>
 				</div>
