@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"a_few_links": "Quelques liens",
 	"about": "A propos",
 	"about_para1": "Il peut arriver que vous ayez besoin de fausses données pour tester un logiciel, remplir et créer des bases de données réalistes, ... Pour le texte nous avons <i>lorem ipsum</i>, mais pour tout le reste ...? Cet outil a été créé afin de fournir un moyen rapide et simple de générer d'importants volumes de données personnalisées dans n'importe quel format.",

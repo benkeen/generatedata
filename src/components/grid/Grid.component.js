@@ -3,13 +3,16 @@ import Select from 'react-select';
 import styles from './Grid.scss';
 import { getSortedGroupedDataTypes } from '../../utils/dataTypes';
 
-const dataTypes = getSortedGroupedDataTypes();
 
-const Grid = ({ rows }) => {
+const Grid = ({ rows, onRemove }) => {
+
+	// memoize. I guess moving the locale into
+	const dataTypes = getSortedGroupedDataTypes();
 
 	const getRows = (rows) => {
+		console.log(rows);
 		return rows.map((row, index) => (
-			<div className={styles.gridRow} key={index}>
+			<div className={styles.gridRow} key={row.id}>
 				<div className={styles.orderCol}>{index+1}</div>
 				<div className={styles.titleCol}>
 					<input type="text" />
@@ -24,7 +27,7 @@ const Grid = ({ rows }) => {
 				<div className={styles.helpCol}>
 				</div>
 				<div className={styles.deleteCol}>
-					x
+					<span onClick={() => onRemove(row.id)}>x</span>
 				</div>
 			</div>
 		));

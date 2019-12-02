@@ -7,4 +7,5 @@ export const addRows = (numRows) => ({
 	}
 });
 
-export const DELETE_ROW = 'DELETE_ROW';
+export const REMOVE_ROW = 'REMOVE_ROW';
+export const removeRow = (id) => ({ type: REMOVE_ROW, payload: { id }});

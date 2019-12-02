@@ -4,11 +4,12 @@ import { actions, selectors } from '../../core/generator';
 import Grid from './grid.component';
 
 const mapStateToProps = (state) => ({
-	rows: selectors.getRows(state)
+	rows: selectors.getSortedRowsArray(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	addRows: (numRows) => dispatch(actions.addRows(numRows))
+	addRows: (numRows) => dispatch(actions.addRows(numRows)),
+	onRemove: (id) => dispatch(actions.removeRow(id))
 });
 
 export default connect(

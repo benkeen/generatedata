@@ -5,6 +5,8 @@
 import config from '../../build/config.client';
 import store from '../store';
 import { actions } from './generator';
+import * as langUtils from '../utils/langUtils';
+import en from '../../i18n/en';
 
 // just expose the entire config as is with a suitable name. No pointer adding separate getters, I don't think. The
 // data structure has hardly changed in 15 years and is unlikely to in the future
@@ -12,7 +14,9 @@ export const coreConfig = { ...config };
 
 export const init = () => {
 
-	// init language
+	// init language. This'll need to be async and set something in the store to prevent rendering until loaded
+	langUtils.setLocale('en', en);
+
 	// init store
 	// init blah de blah
 

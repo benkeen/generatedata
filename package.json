@@ -52,6 +52,7 @@
     "node-sass": "^4.13.0",
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
+    "reselect": "^4.0.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",

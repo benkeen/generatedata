@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"a_few_links": "Unos pocos enlaces",
 	"about": "Acerca de",
 	"about_para1": "Algunas veces necesitas datos falsos para cosas como probar programas, rellenar bases de datos y crear maquetas de aspecto realista. Para texto, tenemos el <i>lorem ipsum</i> pero, ¿y para todo lo demás? Esta herramienta fue escrita para proveer de una forma sencilla y rápida de generar grandes volúmenes de datos personalizados en cualquier formato que requieras.",

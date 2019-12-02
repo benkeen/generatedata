@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"a_few_links": "Ein paar Links",
 	"about": "Über",
 	"about_para1": "Manchmal braucht man gefälschte Daten für Dinge wie Prüfsoftware, bevölkern Datenbanken und Erstellung realistischer aussehende Mockups. Für Text, haben wir <i>Lorem ipsum</i>, aber für alles andere ...? Dieses Tool wurde geschrieben, um eine schnelle und einfache Möglichkeit, um Sie erzeugen große Mengen von benutzerdefinierten Daten in welchem ​​Format Sie benötigen.",

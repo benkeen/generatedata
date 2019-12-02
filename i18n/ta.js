@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"country": "நாடு",
 	"country_specific_data": "நாட்டை குறிக்கும் புள்ளிவிவரங்கள்",
 	"credit_card_data": "Credit Card Data",

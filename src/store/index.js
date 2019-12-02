@@ -42,11 +42,10 @@ function initStore (initialState) {
 	return store;
 }
 
-
 const store = initStore({});
 
 // allows dynamically changing the redux store
-reducerRegistry.setChangeListener(reducers => store.replaceReducer(combine(reducers)));
+reducerRegistry.setChangeListener((reducers) => store.replaceReducer(combine(reducers)));
 
 export default store;
 

@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"a_few_links": "A few links",
 	"about": "About",
 	"about_para1": "Sometimes you need fake data for things like testing software, populating databases and creating realistic-looking mockups. For text, we have <i>lorem ipsum</i>; but for everything else...? This tool was written to provide a quick and simple way to let you generate large volumes of custom data in whatever format you require.",
