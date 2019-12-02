@@ -161,7 +161,7 @@ define([
         var sqlCommentsSingle = /(--.*?\n)/ig;
 
         //match multiline sql comments
-        var sqlMultilineComments = /\/\*([\s\S]*?)\*\//gms;
+        var sqlMultilineComments = /\/\*([\s\S]*?)\*\//gm;
 
         query = query.replace(sqlCommentsSingle, "").replace(sqlMultilineComments, "");
 
