@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	addRows: (numRows) => dispatch(actions.addRows(numRows)),
+	onAddRows: (numRows) => dispatch(actions.addRows(numRows)),
 	onRemove: (id) => dispatch(actions.removeRow(id))
 });
 
