@@ -13,10 +13,10 @@ export const Options = ({ data, onUpdate }) => (
 	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })} />
 );
 
-export const Help = ({ coreI18n, i18n }) => (
+export const Help = ({ i18n }) => (
 	<>
 		<p>
-			{coreI18n.help_intro}
+			{i18n.help_intro}
 		</p>
 
 		<table cellPadding="0" cellSpacing="1" width="100%">
@@ -61,9 +61,10 @@ export const Help = ({ coreI18n, i18n }) => (
 );
 
 
-const validate = (rows) => {
+export const validate = (rows, coreI18n) => {
 	var visibleProblemRows = [];
 	var problemFields      = [];
+
 	for (var i=0; i<rows.length; i++) {
 		var currEl = $("#dtOption_" + rows[i]);
 		if ($.trim(currEl.val()) === "") {
@@ -74,7 +75,7 @@ const validate = (rows) => {
 	}
 	var errors = [];
 	if (visibleProblemRows.length) {
-		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+		errors.push({ els: problemFields, error: i18n.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
 	}
 	return errors;
 };

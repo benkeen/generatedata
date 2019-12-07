@@ -9,5 +9,10 @@
 
   nav {
     float: right;
+
+    ul {
+      display: inline-block;
+      list-style: none;
+    }
   }
 }

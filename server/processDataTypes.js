@@ -1,4 +1,7 @@
-// converter script to change the PHP locale files from v3 to JS files for v4
+/**
+ * This script:
+ * - generates a ./build/dataTypes.js file containing all the FE UI code for the Data Types
+ */
 const fs = require('fs');
 const helpers = require('./helpers');
 
@@ -26,10 +29,10 @@ const findDataTypeConfigFiles = () => {
 	return dataTypeInfo;
 };
 
-const generateDataTypesConfigBundle = () => {
+const processDataTypes = () => {
 	const data = findDataTypeConfigFiles();
 	helpers.createBuildFile('dataTypes.js', `export default ${JSON.stringify(data, null, '\t')}`);
 };
 
 
-generateDataTypesConfigBundle();
+processDataTypes();
