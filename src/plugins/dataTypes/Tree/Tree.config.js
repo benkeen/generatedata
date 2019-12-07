@@ -1,0 +1,23 @@
+export default {
+	"name": "Tree",
+	"fieldGroup": "other",
+	"fieldGroupOrder": 30,
+	"schema": {
+		"title": "Tree",
+		"$schema": "http://json-schema.org/draft-04/schema#",
+		"type": "object",
+		"properties": {
+			"autoIncRowNum": {
+				"type": "integer"
+			},
+			"maxSiblings": {
+				"type": "integer",
+				"minimum": 1
+			}
+		},
+		"required": [
+			"autoIncRowNum",
+			"maxSiblings"
+		]
+	}
+}

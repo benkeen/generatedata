@@ -1,25 +1,31 @@
 export default {
-	"name": "AutoIncrement",
-	"fieldGroup": "numeric",
-	"fieldGroupOrder": 20,
+	"name": "Custom List",
+	"fieldGroup": "other",
+	"fieldGroupOrder": 40,
 	"schema": {
-		"title": "AutoIncrement",
+		"title": "List",
 		"$schema": "http://json-schema.org/draft-04/schema#",
 		"type": "object",
 		"properties": {
-			"incrementStart": {
+			"listType": {
+				"enum": [
+					"exactly",
+					"atMost"
+				]
+			},
+			"exactly": {
 				"type": "number"
 			},
-			"incrementValue": {
+			"atMost": {
 				"type": "number"
 			},
-			"incrementPlaceholder": {
+			"list": {
 				"type": "string"
 			}
 		},
 		"required": [
-			"incrementStart",
-			"incrementValue"
+			"listType",
+			"list"
 		]
 	}
 }

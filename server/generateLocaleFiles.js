@@ -16,8 +16,24 @@
  *
  * The core script handles pulling out the various sections and passing them to the Data/Export Type via props.
  */
+require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const helpers = require('./helpers');
+
+const getCoreI18n = () => {
+	const en = require('../i18n/en.js');
+	console.log(en);
+};
+
+const getDataTypeI18n = () => {
+
+};
+
+const getExportTypeI18n = () => {
+
+};
+
+getCoreI18n();
 
 
 // // parses the data type folder and finds

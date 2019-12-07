@@ -4,7 +4,7 @@
  * and that'll contain the necessary overrides like DB settings. But this setting contains every one that can
  * be overwritten by the script.
  */
-const defaultConfig = {
+export default {
 	isInDemoMode: false,
 	encryptionSalt: '',
 	errorReporting: '',
@@ -16,7 +16,6 @@ const defaultConfig = {
 	defaultExportType: 'HTML',
 	defaultCountryPlugins: [],
 	useMinifiedResources: false,
-	pluginSettings: [],
 	timeout: 300, // 5 minutes
 	apiEnabled: false,
 	// importSqlFeatureEnabled: true,
@@ -72,5 +71,3 @@ const defaultConfig = {
 	// custom settings that plugins may want to add. Just call core.getPluginSettings() to get them in your plugin
 	pluginSettings: {}
 };
-
-module.exports = defaultConfig;

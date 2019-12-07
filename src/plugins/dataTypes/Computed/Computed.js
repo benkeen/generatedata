@@ -1,12 +1,3 @@
-/*global $:false*/
-define([
-	"manager",
-	"constants",
-	"lang",
-	"generator"
-], function(manager, C, L, generator) {
-
-	"use strict";
 
 	/**
 	 * @name Computed
@@ -55,12 +46,3 @@ define([
 			option: $("#dtOption_" + rowNum).val()
 		};
 	};
-
-
-	manager.registerDataType(MODULE_ID, {
-		validate: _validate,
-		loadRow: _loadRow,
-		saveRow: _saveRow
-	});
-});
-

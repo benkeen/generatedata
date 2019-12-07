@@ -1,25 +1,22 @@
 export default {
-	"name": "AutoIncrement",
+	"name": "Number Range",
 	"fieldGroup": "numeric",
-	"fieldGroupOrder": 20,
+	"fieldGroupOrder": 30,
 	"schema": {
-		"title": "AutoIncrement",
+		"title": "NumberRange",
 		"$schema": "http://json-schema.org/draft-04/schema#",
 		"type": "object",
 		"properties": {
-			"incrementStart": {
+			"rangeMin": {
 				"type": "number"
 			},
-			"incrementValue": {
+			"rangeMax": {
 				"type": "number"
-			},
-			"incrementPlaceholder": {
-				"type": "string"
 			}
 		},
 		"required": [
-			"incrementStart",
-			"incrementValue"
+			"rangeMin",
+			"rangeMax"
 		]
 	}
 }

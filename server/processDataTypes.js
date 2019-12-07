@@ -2,6 +2,7 @@
  * This script:
  * - generates a ./build/dataTypes.js file containing all the FE UI code for the Data Types
  */
+require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const helpers = require('./helpers');
 

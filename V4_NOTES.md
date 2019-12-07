@@ -64,7 +64,3 @@ Second, the generation code:
 - The script shouldn't have any trace of website content. Drop the website_i18n files.
 - split config into config.web.js, config.server.js. config.server.js is never included in any bundle. Best way to 
 validate this? Kinnnnnda important.
-
-### Documentation TODO
-
-- explain what's es6 and what's commonJS. 

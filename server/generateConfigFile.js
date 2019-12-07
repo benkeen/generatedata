@@ -1,3 +1,4 @@
+require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const path = require('path');
 const configDefaults = require('../config/config.client.defaults');
