@@ -22,26 +22,26 @@ export default {
 	// importSqlListDatabases: false,
 
 	dataTypeGroups: [
-		"human_data",
-		"geo",
-		"credit_card_data",
-		"text",
-		"numeric",
-		"math",
-		"other"
+		'human_data',
+		'geo',
+		'credit_card_data',
+		'text',
+		'numeric',
+		'math',
+		'other'
 	],
 	continents: [
-		"africa",
-		"asia",
-		"central_america",
-		"europe",
-		"north_america",
-		"oceania",
-		"south_america"
+		'africa',
+		'asia',
+		'central_america',
+		'europe',
+		'north_america',
+		'oceania',
+		'south_america'
 	],
 
 	locales: [
-		'en', 'fr', 'de', 'es', 'ja', 'nl', 'ta'
+		'de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'
 	],
 
 	// controls the top-level tabs seen in the application.

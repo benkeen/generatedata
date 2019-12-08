@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.7.0",
+    "@material-ui/icons": "^4.5.1",
     "esm": "^3.2.25",
     "jest-cli": "^24.9.0",
     "react": "^16.12.0",

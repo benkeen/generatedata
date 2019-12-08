@@ -16,22 +16,24 @@ const Header = ({ isLoggedIn }) => {
 
 	return (
 		<header className={styles.header}>
-			<h1>generatedata.com</h1>
+			<div>
+				<h1>generatedata.com</h1>
 
-			<nav>
-				<ul>
-					{navOptions}
-				</ul>
-				<select defaultValue="en">
-					<option value="">Select Language</option>
-					<option value="de">Deutsch</option>
-					<option value="en">English</option>
-					<option value="es">Español</option>
-					<option value="fr">Français</option>
-					<option value="nl">Nederlands</option>
-					<option value="zh">中文</option>
-				</select>
-			</nav>
+				<nav>
+					<ul>
+						{navOptions}
+					</ul>
+					<select defaultValue="en">
+						<option value="">Select Language</option>
+						<option value="de">Deutsch</option>
+						<option value="en">English</option>
+						<option value="es">Español</option>
+						<option value="fr">Français</option>
+						<option value="nl">Nederlands</option>
+						<option value="zh">中文</option>
+					</select>
+				</nav>
+			</div>
 		</header>
 	)
 };

@@ -1,5 +1,5 @@
 export default {
-	"name": "Email",
+	"name": "GUID",
 	"fieldGroup": "numeric",
 	"fieldGroupOrder": 50,
 	"schema": {}

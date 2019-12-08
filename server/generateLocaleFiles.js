@@ -1,6 +1,8 @@
 /**
- * This script:
- * - generates i18n files for the FE code containing the core, data types + export type strings. Structure:
+ *
+ * *** requires processDataTypes, processExportTypes to have been run first. ***
+ *
+ * This script generates i18n files for the FE code containing the core, data types + export type strings. Structure:
  *    {
  *        core: {...},
  *        dataTypes {
@@ -19,51 +21,37 @@
 require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const helpers = require('./helpers');
+const defaultConfig = require('../config/config.client.defaults.js');
+const dataTypes = require('../build/dataTypes.js');
 
-const getCoreI18n = () => {
-	const en = require('../i18n/en.js');
-	console.log(en);
+const getCoreI18n = (locales) => {
+	const content = {};
+	locales.forEach((locale) => {
+		const file = require(`../i18n/${locale}.js`);
+		content[locale] = file.default;
+	});
+	return map;
 };
 
-const getDataTypeI18n = () => {
+const getDataTypeI18n = (locales) => {
+	// get list of data types...
+
+	console.log(dataTypes);
+};
+
+const getExportTypeI18n = (locales) => {
 
 };
 
-const getExportTypeI18n = () => {
+const generateLocaleFiles = () => {
+	const locales = defaultConfig.default.locales;
 
+	return {
+		core: getCoreI18n(locales),
+		dataTypes: getDataTypeI18n(locales),
+		exportTypes: getExportTypeI18n(locales)
+	};
 };
 
-getCoreI18n();
 
-
-// // parses the data type folder and finds
-// const findDataTypeConfigFiles = () => {
-// 	const baseFolder = './src/plugins/dataTypes'; // note this has to be run from the root. add a -cwd option
-//
-// 	const folders = fs.readdirSync(baseFolder);
-// 	const dataTypeInfo = [];
-// 	folders.forEach((folder) => {
-// 		const configFile = `${baseFolder}/${folder}/${folder}.config.json`;
-// 		if (!fs.existsSync(configFile)) {
-// 			return;
-// 		}
-// 		try {
-// 			const { name, fieldGroup, fieldGroupOrder } = JSON.parse(fs.readFileSync(`${configFile}`, 'utf8'));
-// 			dataTypeInfo.push({ name, fieldGroup, fieldGroupOrder })
-// 		} catch (e) {
-// 			console.log('Error parsing ', configFile);
-// 			return;
-// 		}
-// 	});
-// 	return dataTypeInfo;
-// };
-//
-// const processDataTypes = () => {
-// 	const data = findDataTypeConfigFiles();
-// 	helpers.createBuildFile('dataTypes.js', `export default ${JSON.stringify(data, null, '\t')}`);
-// };
-//
-//
-// processDataTypes();
-
-//
+generateLocaleFiles();

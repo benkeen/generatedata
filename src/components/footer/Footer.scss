@@ -1,0 +1,10 @@
+.footer {
+  flex: 0 0 60px;
+  border-top: 1px solid #cccccc;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+}

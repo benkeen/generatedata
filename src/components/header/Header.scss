@@ -1,4 +1,11 @@
 .header {
+  border-bottom: 1px solid #cccccc;
+
+  &>div {
+    width: 950px;
+    margin: 0 auto;
+  }
+
   h1 {
     display: inline-block;
   }

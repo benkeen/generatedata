@@ -1,19 +1,31 @@
 .gridRow {
   display: flex;
   flex-direction: row;
-  &>div {
+  min-height: 35px;
+  align-items: center;
+  border-radius: 4px;
 
+  &>div {
+    margin-right: 4px;
+  }
+  transition: background-color 0.1s ease-in-out;
+  &:hover {
+    background-color: #ebf6fa;
   }
 }
 
 .orderCol {
-  flex: 0 0 30px;
+  flex: 0 0 22px;
+  padding-left: 2px;
 }
 .titleCol {
   flex: 0 0 150px;
+  input {
+    width: 100%;
+  }
 }
 .dataTypeCol {
-  flex: 0 0 120px;
+  flex: 0 0 200px;
 }
 .examplesCol {
   flex: 1 0 80px;
@@ -26,4 +38,16 @@
 }
 .deleteCol {
   flex: 0 0 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.grid {
+  margin-bottom: 10px;
+}
+.addRows {
+  span, input {
+    margin-right: 6px;
+  }
 }
