@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Date",
 	"DESC": "Generates a custom formatted date/datetime/time between whatever two dates you specify.",
 	"char": "Char",

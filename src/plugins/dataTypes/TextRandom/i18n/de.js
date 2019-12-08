@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Beliebige Anzahl von Wörtern",
 	"DESC": "Wie bei der Festnetznummer Option werden die Worte der Standard Lorem ipsum lateinischen Text gezogen.",
 	"generate": "Erzeugen",

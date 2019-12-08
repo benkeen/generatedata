@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Names, Regional",
 	"DESC": "Similar to the Names data type, except it tries to generate names mapped to the country; e.g. Italian names appear when the data set row has Italy for the country field. Not as performant as Names.",
 	"help_intro": "Because of this additional complexity, however, the code runs slightly slower. You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:",

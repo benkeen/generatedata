@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Zusammengesetzt",
 	"DESC": "Der Composite-Datentyp können Sie kombinieren die Daten aus einer anderen Zeile oder Zeilen, und manipulieren, ändern, kombinieren die Informationen und vieles mehr. Der Inhalt sollte in der Smarty Template-Sprache eingegeben werden.",
 	"Composite_division": "Teilung",

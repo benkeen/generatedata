@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Nombres",
 	"DESC": "Este tipo de dato genera aleatoriamente nombres de persona (mayoritariamente occidentales) de acuerdo al formato que especifiques.",
 	"help_intro": "Pues especificar múltiples formatos separándolos con el carácter tubería, |. Las siguientes cadenas serán convertidas a su nombre aleatorio equivalente:",

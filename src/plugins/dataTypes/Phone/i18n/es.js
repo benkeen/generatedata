@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Teléfono / Fax",
 	"DESC": "Genera un número de teléfono / fax al azar en una variedad de formatos para diferentes países / regiones.",
 	"different_formats": "Formatos diferentes",

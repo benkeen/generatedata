@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Staat / Provinz / Kreis",
 	"DESC": "Generiert zufällige kanadischen Provinzen, Staaten, Territorien oder Landkreise, auf den von Ihnen gewählten Optionen basiert.",
 	"full": "Voll",

@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Chileens RUT/RUN nummer",
 	"DESC": "Genereert een Chileens RUT/RUN Nationaal Identificatie Nummer .",
 	"different_formats": "Verschillende formaten",

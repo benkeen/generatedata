@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Aangepaste lijst",
 	"DESC": "Genereert een of meer willekeurige waarden uit een willekeurige lijst van items\t.",
 	"at_most": "Maximaal",

@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Nombre d' Organisation",
 	"DESC": "Génère des numéros de l'organisation , utilisées dans certains pays pour l'enregistrement des entreprises , associations, etc.",
 	"help_text": "À l'heure actuelle seuls suédoises sont pris en charge . Les numéros de l'organisation sont générées selon le format que vous spécifiez :",

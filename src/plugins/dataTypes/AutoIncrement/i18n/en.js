@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Auto-increment",
 	"DESC": "Provides many variations on an standard auto-increment field: custom start value, customizable step sizes, arbitrary string inclusion, increment or decrement and more. ",
 	"help_intro": "Generates a column that contains a unique number on each row, incrementing by whatever value you enter. This option can be helpful for inserting the data into a database field with an auto-increment primary key.",

@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Nums de cuenta bancaria (IBAN)",
 	"DESC": "Genera IBAN (International Bank Account Number).",
 	"help_1": "El IBAN generado tiene una suma de comprobación válida, código del país, la longitud, el BIC se encuentra en el lugar correcto.",

@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Número Organización",
 	"DESC": "Genera números de organización , que se utiliza en algunos países para el registro de empresas , asociaciones , etc.",
 	"help_text": "En la actualidad sólo se admiten los suecos. Los números de la organización se generan de acuerdo con el formato que se especifica :",

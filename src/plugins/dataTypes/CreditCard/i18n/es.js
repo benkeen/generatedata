@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Boolean",
 	"DESC": "Este tipo de dato genera aleatoriamente Boolean de acuerdo al formato que especifiques.",
 	"help_intro": "Pues especificar múltiples formatos separándolos con el carácter tubería, |. Las siguientes cadenas serán convertidas a su Boolean aleatorio equivalente:",

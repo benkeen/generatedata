@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Distribución normal",
 	"DESC": "Genera valores normalmente distribuidos al azar con una desviación media y estándar adaptable .",
 	"mean": "Media",

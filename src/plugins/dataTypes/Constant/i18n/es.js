@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Constante",
 	"DESC": "Genera una columna de datos que se ha repetido valores para varias filas. Usted puede hacer todas las filas tienen el mismo valor o asignar el mismo valor a los grupos de ellos .",
 	"help_1": "Este tipo de dato permite generar una columna de datos que tiene valores repetidos de fila a fila. He aquí un par de ejemplos para darte una idea de cómo funciona.",

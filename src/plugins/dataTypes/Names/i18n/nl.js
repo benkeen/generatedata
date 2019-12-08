@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Namen",
 	"DESC": "Genereerd (voornamelijk westerse) menselijke namen in elk gewenst formaat.",
 	"help_intro": "U kunt meerdere formaten opgeven gescheiden door een (|) karakter. De volgende Waarden worden gebruikt om een willekeurige Naam te genereren:",

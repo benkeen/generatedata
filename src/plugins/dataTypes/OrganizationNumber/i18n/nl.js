@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Organisatie Nummer",
 	"DESC": "Genereert een organisatienummer, dat in sommige landen voor de registratie van bedrijven, verenigingen etc. wordt gebruikt.",
 	"help_text": "Op dit moment wordt alleen het Zweedse organisatienummer ondersteund. De organisatienummers worden gegenereerd volgens het formaat dat u opgeeft :",

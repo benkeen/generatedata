@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Alfanumérico",
 	"DESC": "Genera una cadena alfanumérica personalizada azar o cualquier longitud o formato, definida por caracteres de marcador de posición .",
 	"example_CanPostalCode": "(Código postal canadiense)",

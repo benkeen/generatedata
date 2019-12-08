@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Fixed Number of Words",
 	"DESC": "This option generates a fixed number of random words, pulled from the standard lorem ipsum latin text.",
 	"TextFixed_generate": "Generate",

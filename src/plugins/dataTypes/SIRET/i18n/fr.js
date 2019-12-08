@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "SIRET",
 	"DESC": "Ce type de données produit aléatoirement des SIRET selon le format que vous spécifiez.",
 	"help_link": "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements",

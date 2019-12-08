@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Alfanumeriek",
 	"DESC": "Genereert een aangepaste willekeurige alfanumerieke tekenreeks van een bepaalde lengte in het opgegeven formaat, gedefinieerd door placeholder tekens.",
 	"example_CanPostalCode": "(Canadese Postcode)",

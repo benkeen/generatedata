@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Número aleatorio de palabras",
 	"DESC": "Esta opción genera un número aleatorio de palabras, el número total dentro del rango que especifiques (inclusivo).",
 	"incomplete_fields": "Por favor, introduce el número mínimo y máximo de palabras que quieres generar para todos los campos Número aleatorio de palabras. Revise las filas:",

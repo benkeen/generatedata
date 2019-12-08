@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Valuta",
 	"DESC": "Genereert een willekeurige valuta waarde in het juiste formaat en binnen het opgegeven bereik.",
 	"help_intro": "Dit gegevenstype genereert willekeurige valuta waarden, in het juiste formaat en bereik dat je opgeeft. In de dropdown staan verschillende voorbeelden, zodat u een goed idee krijgt van de werking.",

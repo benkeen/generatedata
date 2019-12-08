@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Alphanumerisch",
 	"DESC": "Erzeugt eine benutzerdefinierte zufällige alphanumerische Zeichenfolge oder Länge oder Format , durch Platzhalter Zeichen definiert.",
 	"example_CanPostalCode": "(Can. PLZ)",

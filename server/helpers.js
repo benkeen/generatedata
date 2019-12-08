@@ -14,7 +14,33 @@ const createBuildFile = (filename, content) => {
 	fs.writeFileSync(file, content);
 };
 
+const getDataTypes = () => {
+	const baseFolder = path.join(__dirname, '..', '/src/plugins/dataTypes');
+	const folders = fs.readdirSync(baseFolder);
+	const dataTypeInfo = [];
+
+	folders.forEach((folder) => {
+		const configFile = `${baseFolder}/${folder}/${folder}.config.js`;
+		if (!fs.existsSync(configFile)) {
+			return;
+		}
+		try {
+			const file = require(configFile).default;
+			dataTypeInfo.push({
+				name: file.name,
+				folder,
+				folderPath: `${baseFolder}/${folder}`,
+				fieldGroup: file.fieldGroup,
+				fieldGroupOrder: file.fieldGroupOrder
+			});
+		} catch (e) {
+			console.log('Error parsing ', configFile);
+		}
+	});
+	return dataTypeInfo;
+};
 
 module.exports = {
-	createBuildFile
+	createBuildFile,
+	getDataTypes
 };

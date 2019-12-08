@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Telefon / Fax",
 	"DESC": "Erzeugt eine Zufalls Telefon- / Faxnummer in einer Vielzahl von Formaten für verschiedene Länder / Regionen .",
 	"australia": "Australien",

@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Telefoon / Faxnummer",
 	"DESC": "Genereert een willekeurig telefoonnummer of faxnummer in een verscheidenheid van formaten voor verschillende landen of regio's.",
 	"australia": "Australië",

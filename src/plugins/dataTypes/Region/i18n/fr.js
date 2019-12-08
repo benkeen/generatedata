@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "État / Province / Régions",
 	"DESC": "Génère au hasard des provinces, États, territoires, régions ou départements, en fonction des options que vous sélectionnez.",
 	"full": "Complet",

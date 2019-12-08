@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Boolean",
 	"DESC": "Genereerd een Boolean waarde in elk gewenst formaat.",
 	"help_intro": "U kunt meerdere formaten opgeven gescheiden door een (|) karakter. De volgende Waarden worden gebruikt om een willekeurige Boolean te genereren:",

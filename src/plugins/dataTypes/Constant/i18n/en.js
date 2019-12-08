@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Constant",
 	"DESC": "Generates a column of data that has repeated values for multiple rows. You can make all rows have the same value, or assign the same value to groups of them.",
 	"help_1": "This data type lets you generate a column of data that has repeating values from row to row. Here&#39;s a couple of examples to give you an idea of how this works.",

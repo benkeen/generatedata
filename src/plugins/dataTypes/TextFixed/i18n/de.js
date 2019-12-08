@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Feste Anzahl der Worte",
 	"DESC": "Diese Option erzeugt eine feste Anzahl von zufälligen Wörtern, von der Norm Lorem ipsum lateinischen Text.",
 	"TextFixed_generate": "Erzeugen",

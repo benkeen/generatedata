@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Datum",
 	"DESC": "Dit gegevenstype genereert een willekeurige datum tussen de gespecificeerde data en zorgt voor een juiste opmaak.",
 	"char": "Karakter",

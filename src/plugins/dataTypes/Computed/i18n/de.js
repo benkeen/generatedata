@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Berechnet",
 	"DESC": "Hier können Sie programmatisch die Werte und Metadaten aus anderen Bereichen in der Reihe und gibt, was Sie wollen erzeugt zugreifen.",
 	"see_help_dialog": "&nbsp;Siehe Hilfe-Dialog.",

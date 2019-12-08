@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Fecha",
 	"DESC": "Este tipo de dato genera aleatoriamente una fecha entre las fechas especificadas, y permite un formato único del resultado.",
 	"char": "Carácter",

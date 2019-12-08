@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Auto-increment",
 	"DESC": "Biedt een groot aantal variaties op een standaard auto-increment veld : aangepaste begin waarde , aanpasbare stap maten , willekeurige reeks opnemen , verhogen of verlagen en meer.",
 	"help_intro": "Genereert een kolom die een uniek nummer in elke rij opneemt, verhoogt met de waarde die u hebt ingevoerd. Deze optie kan nuttig zijn voor het inlezen van de gegevens in een database dat een veld met een auto-increment bevat (unieke sleutel).",

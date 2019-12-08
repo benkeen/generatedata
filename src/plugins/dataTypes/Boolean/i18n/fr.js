@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Boolean",
 	"DESC": "Ce type de données génère aléatoirement des noms de personnes (principalement occidentaux) en fonction du format que vous spécifiez.",
 	"help_intro": "Vous pouvez spécifier les formats multiples en les séparant par le caractère pipe (|). Les chaînes suivantes seront converties en leur équivalent Boolean:",

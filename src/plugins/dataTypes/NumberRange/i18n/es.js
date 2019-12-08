@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Rango numérico",
 	"DESC": "Este tipo genera un número aleatorio entre los valores que especifiques. Ambos campos permite introducir números negativos.",
 	"and": "y",

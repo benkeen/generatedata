@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Auto-incrémentation",
 	"DESC": "Fournit beaucoup de variations sur un champ à incrémentation automatique norme : commencer personnalisé valeur , tailles de pas personnalisables , l'inclusion arbitraire de chaîne , augmentation ou la diminution et plus encore. ",
 	"help_intro": "Génère une colonne qui contient un numéro unique sur chaque ligne, quel que soit la valeur d'incrémentation que vous entrez. Cette option peut être utile pour insérer les données dans un champ de base de données avec une clé primaire auto-incrémentée.",

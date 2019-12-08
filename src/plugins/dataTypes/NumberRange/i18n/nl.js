@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Nummer Range",
 	"DESC": "Dit genereert een willekeurig getal tussen de waarden die u opgeeft. In beide velden kunt u een negatieve waarde invoeren.",
 	"and": "en",

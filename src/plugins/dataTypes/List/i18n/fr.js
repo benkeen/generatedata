@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Liste",
 	"DESC": "Génère une ou plusieurs valeurs aléatoires à partir d'une liste d'objets arbitraire .",
 	"at_most": "Au maximum",

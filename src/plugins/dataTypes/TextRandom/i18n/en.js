@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Random Number of Words",
 	"DESC": "This option generates a random number of words - the total number within the range that you specify (inclusive).",
 	"incomplete_fields": "Please enter the min and max number of words you want to generate for all Random Number of Words fields. See rows: ",

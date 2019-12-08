@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Árbol (Id. de fila padre)",
 	"DESC": "Este tipo de dato te permite generar datos en forma de árbol en los cuales cada fila es un hijo de otra fila, excepto la primera fila que es la raíz del árbol.",
 	"auto_increment_row_num": "Número de fila auto-incrementada:",

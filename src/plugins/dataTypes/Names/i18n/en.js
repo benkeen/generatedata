@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Names",
 	"DESC": "Generates human names (mostly Western) in any format you need.",
 	"help_intro": "You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:",

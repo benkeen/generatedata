@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Straatnamen",
 	"DESC": "Genereert willekeurige adressen.",
 	"ap_num": "Appartement #",

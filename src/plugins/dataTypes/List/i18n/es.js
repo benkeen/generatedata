@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Lista personalizada",
 	"DESC": "Genera uno o más valores aleatorios a partir de una lista arbitraria de artículos.",
 	"at_most": "Al menos",

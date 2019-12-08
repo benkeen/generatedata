@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Plage de numéros",
 	"DESC": "Cela génère au hasard un nombre entre les valeurs que vous spécifiez. Les deux champs vous permettent d'entrer des nombres négatifs.",
 	"and": "et",

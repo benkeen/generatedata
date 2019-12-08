@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Constante",
 	"DESC": "Génère une colonne de données qui a répétées valeurs pour plusieurs lignes . Vous pouvez faire toutes les lignes ont la même valeur , ou affecter la même valeur à des groupes d'entre eux.",
 	"help_1": "Ce type de données permet de générer une colonne de données qui répète des valeurs de ligne en ligne. Voici une série d'exemples pour vous donner une idée de son fonctionnement.",

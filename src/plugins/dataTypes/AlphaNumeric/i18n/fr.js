@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Alphanumérique",
 	"DESC": "Génère une chaîne alphanumérique aléatoire coutume ou toute longueur ou le format , définie par les caractères d'espace réservé .",
 	"example_CanPostalCode": "(Code postal Canada)",

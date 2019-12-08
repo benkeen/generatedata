@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Organisation Anzahl",
 	"DESC": "Erzeugt Organisation Zahlen in einigen Ländern für die Registrierung von Unternehmen, Verbänden , etc. verwendet",
 	"help_text": "In der heutigen Zeit nur schwedische diejenigen unterstützt werden. Die Organisation Zahlen werden nach dem Format, das Sie angeben, generiert:",

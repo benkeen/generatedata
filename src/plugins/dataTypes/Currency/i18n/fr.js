@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Currency",
 	"DESC": "Génère une valeur de la monnaie aléatoire dans le format et la gamme dont vous avez besoin .",
 	"help_intro": "Ce type de données génère des valeurs monétaires au hasard, dans n'importe quel format et dans la fourchette que vous souhaitez. La colonne Exemples contient déjà plusieurs options afin que vous puissiez avoir une idée du fonctionnement, mais voici la signification de chacune des options.",

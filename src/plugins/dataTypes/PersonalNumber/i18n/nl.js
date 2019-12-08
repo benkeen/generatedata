@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Persoonsnummer",
 	"DESC": "Genereert persoonlijke nummers die in sommige landen worden gebruikt voor de sociale verzekering .",
 	"help_text": "Op dit moment worden alleen de Zweedse persoonsnummers ondersteund. De persoonlijke nummers worden gegenereerd volgens het formaat dat u opgeeft :",

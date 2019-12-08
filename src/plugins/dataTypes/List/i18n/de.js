@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Benutzerdefinierte Liste",
 	"DESC": "Erzeugt einen oder mehrere zufällige Werte aus einer beliebigen Liste von Elementen .",
 	"at_most": "Am meisten",

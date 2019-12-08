@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Berekende",
 	"DESC": "Hiermee kunt u programmatisch toegang tot de meerwaarden en metadata gegenereerd uit andere velden in de rij en uitgang wat je wilt.",
 	"see_help_dialog": "&nbsp;Zie dialoog hulp.",

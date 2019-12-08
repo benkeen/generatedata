@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Arborescence",
 	"DESC": "Ce type de données permet de générer des arbres dans laquelle chaque ligne est un enfant d'une autre ligne - sauf la toute première ligne, qui est la racine de l'arbre.",
 	"auto_increment_row_num": "Numéro de la ligne d'auto-incrémentation:",

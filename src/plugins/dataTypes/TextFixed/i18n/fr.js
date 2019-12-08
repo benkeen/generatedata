@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Texte - Longueur Fixe",
 	"DESC": "Cette option génère un nombre fixe de mots aléatoires lorem ipsum (faux texte latin).",
 	"TextFixed_generate": "Générer",

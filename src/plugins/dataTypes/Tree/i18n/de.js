@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Tree (übergeordnete Zeile ID)",
 	"DESC": "Dieser Datentyp können Sie erzeugen eine Baum-wie Daten, in denen jede Zeile ist ein Kind von einer anderen Zeile - mit Ausnahme der ersten Zeile, die den Stamm des Baumes ist.",
 	"auto_increment_row_num": "Auto-increment Zeilennummer:",

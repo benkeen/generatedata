@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Texte - Longueur Aléatoire",
 	"DESC": "Cette option génère un nombre aléatoire de mots - le nombre total étant compris dans la plage que vous spécifiez (maximum inclus).",
 	"generate": "Générer entre",

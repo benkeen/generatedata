@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "PAN",
 	"DESC": "Hiermee kunt u een willekeurig geldig creditcardnummer genereren.",
 	"pan_incomplete_fields": "Tenminste een kaartmerk moet worden gekozen. Pas de volgende rij(en) aan:",

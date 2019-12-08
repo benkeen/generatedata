@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Tree (parent row ID)",
 	"DESC": "This data type lets you generate tree-like data in which every row is a child of another row - except the very first row, which is the trunk of the tree.",
 	"auto_increment_row_num": "Auto-increment row number:",

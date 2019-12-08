@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "PAN",
 	"DESC": "This data type generates random, valid credit card numbers according to the format you specify.",
 	"pan_incomplete_fields": "At least one card brand should be selected. Please fix the following rows:",

@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Computed",
 	"DESC": "Lets you programmatically access the values and metadata generated from other fields in the row and output whatever you want.",
 	"see_help_dialog": "&nbsp;See help dialog.",

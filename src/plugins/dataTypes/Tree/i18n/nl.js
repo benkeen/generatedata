@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Boom (met gerelateerde rij ID)",
 	"DESC": "Met dit gegevenstype kunt u boom-achtige structuur data genereren waarin elke rij is een kind is van een andere rij - met uitzondering van de eerste rij, dat is de stam van de boom.",
 	"auto_increment_row_num": "Auto-increment rijnummer:",

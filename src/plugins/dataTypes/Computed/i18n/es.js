@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Cpmputarizada",
 	"DESC": "Le permite tener acceso mediante programación los valores y los metadatos generados a partir de otros campos de la fila y salidas lo que quieras.",
 	"see_help_dialog": "&nbsp;Ver diálogo de ayuda.",

@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Bank Account Nums (IBAN)",
 	"DESC": "Generates IBAN (International Bank Account Number).",
 	"help_1": "The generated IBAN has a valid checksum, countrycode and length and the BIC is in the right place.",

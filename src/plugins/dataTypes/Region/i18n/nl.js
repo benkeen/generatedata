@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Regio",
 	"DESC": "Genereert een willekeurige Provincie, Staat, Gebied of Provincie, op basis van de opties die u heeft geselecteerd.",
 	"full": "Lange versie",

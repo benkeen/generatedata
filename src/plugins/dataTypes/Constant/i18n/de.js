@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Konstante",
 	"DESC": "Erzeugt eine Spalte mit Daten , die Werte für mehrere Zeilen wiederholt hat . Sie können machen alle Zeilen den gleichen Wert haben , oder den gleichen Wert auf Gruppen von ihnen zuweisen.",
 	"help_1": "Dieser Datentyp können Sie erzeugen eine Spalte von Daten, die sich wiederholende Werte hat sich von Zeile zu Zeile. Hier eine paar Beispiele, um Ihnen eine Vorstellung davon, wie das funktioniert.",

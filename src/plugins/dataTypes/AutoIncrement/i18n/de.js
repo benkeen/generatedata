@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Auto-Inkrement",
 	"DESC": "Bietet viele Variationen auf einem Standard- Auto-Inkrement- Bereich : benutzerdefinierte Startwert an, kundengerecht Schrittweiten , willkürliche Aufnahme string, Zunahme oder -abnahme und mehr.",
 	"help_intro": "Erzeugt eine Spalte, die eine eindeutige Nummer in jeder Zeile enthält, Inkrementieren mit welchen Wert Sie eingeben. Diese Option kann hilfreich sein, zum Einsetzen der Daten in eine Datenbank Feld mit einem auto-increment Primärschlüssel.",

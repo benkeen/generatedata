@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Namen",
 	"DESC": "Dieser Datentyp zufällig generiert menschlichen Namen (meist Western) nach dem Format, das Sie angeben.",
 	"example_FemaleName": "Jane (Female Name)",

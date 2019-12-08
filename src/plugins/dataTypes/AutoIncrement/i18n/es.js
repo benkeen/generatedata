@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Auto-incrementado",
 	"DESC": "Proporciona muchas variaciones en un campo de incremento automático estándar : se inicia la costumbre de valor, tamaños de paso personalizables , la inclusión cadena arbitraria , incremento o decremento y más.",
 	"help_intro": "Genera una columna que contiene un número único en cada fila, incrementándolo en el valor que introduzcas. Esta opción puede ser de ayuda para insertar los datos en una columna de base de datos con una clave primaria auto-incrementada.",

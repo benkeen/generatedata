@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Alphanumeric",
 	"DESC": "Generates a custom random alphanumeric string or any length or format, defined by placeholder chars.",
 	"example_CanPostalCode": "(Can. Postal code)",

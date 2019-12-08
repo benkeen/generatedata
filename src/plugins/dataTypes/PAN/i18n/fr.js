@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "PAN",
 	"DESC": "Este tipo de datos genera números, tarjeta de crédito válida al azar de acuerdo con el formato que se especifique.",
 	"pan_incomplete_fields": "Au moins une marque de la carte doit être sélectionné. S'il vous plaît corriger les lignes suivantes:",

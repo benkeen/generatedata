@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Namen, Regionaal",
 	"DESC": "Vergelijkbaar met het datatype Namen. Nu wordt er echter geprobeert een passende naam te generen die hoort bij het gegenereerde landenveld. Minder snel dan het datatype Namen.",
 	"help_intro": "Door de extra complexiteit zal de code wat langzamer zijn. U kunt meerdere formaten opgeven gescheiden door een (|) karakter. De volgende Waarden worden gebruikt om een willekeurige Naam te genereren:",

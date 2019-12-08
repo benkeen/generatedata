@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "SIRET",
 	"DESC": "This Data Type generates a random SIRET/SIREN French business identification number.",
 	"help_link": "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements",

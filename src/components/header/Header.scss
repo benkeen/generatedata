@@ -4,10 +4,14 @@
   &>div {
     width: 950px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   h1 {
     display: inline-block;
+    flex: 1;
   }
 
   section {
@@ -15,11 +19,16 @@
   }
 
   nav {
-    float: right;
+    flex: 0 0 auto;
 
     ul {
       display: inline-block;
       list-style: none;
     }
   }
+}
+
+.selectLocale {
+  width: 130px;
+  display: inline-block;
 }

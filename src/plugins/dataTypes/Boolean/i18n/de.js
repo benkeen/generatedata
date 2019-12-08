@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Boolean",
 	"DESC": "Dieser Datentyp zufällig generiert eine Boolean nach dem Format, das Sie angeben.",
 	"help_intro": "Zeichen (|) können Sie mehrere Formate, indem Sie sie mit dem Rohr geben. Die folgenden Zeichenfolgen werden auf die Boolean umgerechnet werden:",

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import Dropdown from '../dropdown/Dropdown';
 import styles from './Header.scss';
 
 const Header = ({ isLoggedIn }) => {
@@ -23,15 +24,18 @@ const Header = ({ isLoggedIn }) => {
 					<ul>
 						{navOptions}
 					</ul>
-					<select defaultValue="en">
-						<option value="">Select Language</option>
-						<option value="de">Deutsch</option>
-						<option value="en">English</option>
-						<option value="es">Español</option>
-						<option value="fr">Français</option>
-						<option value="nl">Nederlands</option>
-						<option value="zh">中文</option>
-					</select>
+					<Dropdown
+						className={styles.selectLocale}
+						options={[
+							{ value: "", label: 'Select language' },
+							{ value: "de", label: 'Deutsch' },
+							{ value: "en", label: 'English' },
+							{ value: "es", label: 'Español' },
+							{ value: "fr", label: 'Français' },
+							{ value: "nl", label: 'Nederlands' },
+							{ value: "zh", label: '中文' }
+						]}
+					/>
 				</nav>
 			</div>
 		</header>

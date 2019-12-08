@@ -41,6 +41,16 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
+
+  svg {
+    fill: #111111;
+  }
+
+  &:hover {
+    svg {
+      fill: #99091A;
+    }
+  }
 }
 
 .grid {
@@ -49,5 +59,8 @@
 .addRows {
   span, input {
     margin-right: 6px;
+  }
+  input {
+    width: 42px;
   }
 }

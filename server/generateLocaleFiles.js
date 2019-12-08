@@ -1,7 +1,4 @@
 /**
- *
- * *** requires processDataTypes, processExportTypes to have been run first. ***
- *
  * This script generates i18n files for the FE code containing the core, data types + export type strings. Structure:
  *    {
  *        core: {...},
@@ -22,7 +19,6 @@ require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const helpers = require('./helpers');
 const defaultConfig = require('../config/config.client.defaults.js');
-const dataTypes = require('../build/dataTypes.js');
 
 const getCoreI18n = (locales) => {
 	const content = {};
@@ -30,27 +26,51 @@ const getCoreI18n = (locales) => {
 		const file = require(`../i18n/${locale}.js`);
 		content[locale] = file.default;
 	});
-	return map;
+	return content;
 };
 
 const getDataTypeI18n = (locales) => {
-	// get list of data types...
-
-	console.log(dataTypes);
+	const dataTypes = helpers.getDataTypes();
+	const dataTypeI18n = {};
+	dataTypes.forEach(({ folder, folderPath }) => {
+		const localeInfo = {};
+		locales.forEach((locale) => {
+			const localeFile = `${folderPath}/i18n/${locale}.js`;
+			if (fs.existsSync(localeFile)) {
+				localeInfo[locale] = require(localeFile).default;
+			}
+		});
+		dataTypeI18n[folder] = localeInfo;
+	});
+	return dataTypeI18n;
 };
 
 const getExportTypeI18n = (locales) => {
-
+	return {};
 };
 
 const generateLocaleFiles = () => {
 	const locales = defaultConfig.default.locales;
+	const core = getCoreI18n(locales);
+	const dataTypes = getDataTypeI18n(locales);
+	const dataTypeFolders = Object.keys(dataTypes);
 
-	return {
-		core: getCoreI18n(locales),
-		dataTypes: getDataTypeI18n(locales),
-		exportTypes: getExportTypeI18n(locales)
-	};
+	locales.forEach((locale) => {
+		const content = {
+			core: core[locale],
+			dataTypes: {}
+		};
+
+		dataTypeFolders.forEach((dataType) => {
+			if (!dataTypes[dataType][locale]) {
+				// console.log('missing: ', dataType, locale);
+				return;
+			}
+			content.dataTypes[dataType] = dataTypes[dataType][locale];
+		});
+
+		helpers.createBuildFile(`${locale}.js`, `export default ${JSON.stringify(content, null, '\t')}`);
+	});
 };
 
 

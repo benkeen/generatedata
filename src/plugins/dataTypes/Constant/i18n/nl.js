@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Constante",
 	"DESC": "Genereert een kolom die een waarde bevat die voor meerdere rijen hetzelfde is. Alle rijen hebben dezelfde waarde of een (herhalend) blok of groep van rijen heeft dezelfde waarde",
 	"help_1": "Met dit gegevenstype kunt u een waarde genereren voor een kolom. De waarde kan voor elke rij gelden of voor een herhalend blok van rijen. Hier volgen een aantal voorbeelden om u een idee te geven hoe dit werkt.",

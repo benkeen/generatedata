@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Currency",
 	"DESC": "Generates a random currency value in whatever format and range you need.",
 	"help_intro": "This data type generates random currency values, in whatever format and range you want. The example dropdown contains several options so you can get a sense of how it works, but here's what each of the options means.",

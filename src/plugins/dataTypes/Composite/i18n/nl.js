@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Samengesteldveld",
 	"DESC": "Met het Composite (samengesteld) veldtype kunt u de gegevens van een andere rij of rijen combineren, manipuleren, wijzigen of zelfs nog meer. De inhoud moet worden opgenomen in de Smarty template taal.",
 	"Composite_division": "delen",

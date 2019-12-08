@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Datum",
 	"DESC": "Dieser Datentyp zufällig generiert ein Datum zwischen den angegebenen Daten und ermöglicht einzigartige Formatierung des Ergebnisses.",
 	"char": "Saibling",

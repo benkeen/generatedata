@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Willekeurig Aantal Woorden",
 	"DESC": "Deze optie genereert een willekeurig aantal woorden - het totale aantal ligt binnen het bereik dat u opgeeft (inclusief).",
 	"generate": "Genereren",

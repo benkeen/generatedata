@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Boolean",
 	"DESC": "Generates a Boolean value in the format you need.",
 	"help_intro": "You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their Boolean equivalent:",

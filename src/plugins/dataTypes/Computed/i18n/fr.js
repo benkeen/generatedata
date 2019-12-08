@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Calculé",
 	"DESC": "Permet d'accéder par programmation les valeurs et les métadonnées générées à partir d'autres champs de la ligne et des sorties tout ce que vous voulez.",
 	"see_help_dialog": "&nbsp;Voir boîte de dialogue d'aide.",

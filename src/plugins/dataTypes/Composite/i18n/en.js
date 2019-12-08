@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Composite",
 	"DESC": "The Composite data type lets you combine the data from any other row or rows, and manipulate it, change it, combine the information and more. The content should be entered in the Smarty templating language.",
 	"Composite_division": "division",

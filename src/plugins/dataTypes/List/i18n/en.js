@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Custom List",
 	"DESC": "Generates one or more random values from an arbitrary list of items.",
 	"at_most": "At Most",

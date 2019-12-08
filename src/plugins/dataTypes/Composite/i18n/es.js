@@ -1,4 +1,4 @@
-export default lang = {
+export default {
 	"NAME": "Compuesto",
 	"DESC": "El tipo de dato Compueso permite combinar los datos de cualquier otra fila o filas y manipularlo, cambiarlo, combinar la información y mucho más. El contenido debería ser introducido en el lenguaje de plantillas Smarty.",
 	"Composite_division": "división",
