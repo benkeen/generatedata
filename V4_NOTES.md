@@ -17,8 +17,6 @@ same role as `settings.php` in previous versions of the script.
 At this point neither file does anything but that'll change very soon. 
 
 
-
-
 ### Bundling
 
 The following sections will be generated into single bundles.

@@ -1,13 +1,28 @@
 import React from 'react';
 
-export const Example = ({ coreI18n, i18n, data }) => (
-	<select>
-		<option value="">{coreI18n.please_select}</option>
-		<option value="LxL xLx">V6M 4C1 {i18n.example_CanPostalCode}</option>
-		<option value="xxxxx">90210 {i18n.example_USZipCode}</option>
-		<option value="LLLxxLLLxLL">eZg29gdF5K1 {i18n.example_Password}</option>
-	</select>
-);
+// allow users to define a default data structure for all new rows
+export const state = {
+	example: '',
+	value: ''
+};
+
+export const Example = ({ coreI18n, i18n, data, onUpdate }) => {
+	const onChange = (e) => {
+		const value = e.target.value;
+		onUpdate({
+			example: value,
+			value: value
+		});
+	};
+	return (
+		<select onChange={onChange} defaultValue={data.example}>
+			<option value="">{coreI18n.please_select}</option>
+			<option value="LxL xLx">V6M 4C1 {i18n.example_CanPostalCode}</option>
+			<option value="xxxxx">90210 {i18n.example_USZipCode}</option>
+			<option value="LLLxxLLLxLL">eZg29gdF5K1 {i18n.example_Password}</option>
+		</select>
+	);
+};
 
 export const Options = ({ data, onUpdate }) => (
 	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })} />

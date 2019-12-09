@@ -6,9 +6,9 @@ import config from '../../build/config.client';
 import store from '../store';
 import { actions } from './generator';
 import * as langUtils from '../utils/langUtils';
-import en from '../i18n/core/en';
+import en from '../../build/en'; // TODO
 
-// just expose the entire config as is with a suitable name. No pointer adding separate getters, I don't think. The
+// just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
 // data structure has hardly changed in 15 years and is unlikely to in the future
 export const coreConfig = { ...config };
 

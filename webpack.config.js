@@ -1,15 +1,24 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const locales = ['en', 'fr', 'de', 'es', 'ja', 'nl', 'ta', 'zh'].map((locale) => `./build/${locale}.js`);
 
 module.exports = {
 	entry: {
 		app: [
-			'./src/index.js'
+			'./src/index.js',
+
+			// locale bundles
+			...locales
 		]
 	},
+	output: {
+		path: __dirname + '/dist',
+		filename: '[name].js'
+	},
+
 	module: {
 		rules: [
 			{
@@ -45,10 +54,7 @@ module.exports = {
 			}
 		]
 	},
-	output: {
-		path: __dirname + '/dist',
-		filename: '[name].js'
-	},
+
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html'
