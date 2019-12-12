@@ -60,41 +60,4 @@ class DataType_Computed extends DataTypePlugin {
         }
         return $json->settings->placeholder;
     }
-
-    public function getExampleColumnHTML() {
-        $L = Core::$language->getCurrentLanguageStrings();
-        return $L["see_help_dialog"];
-    }
-
-    public function getOptionsColumnHTML() {
-        return '<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" style="height: 70px; width: 260px"></textarea>';
-    }
-
-	public function getHelpHTML() {
-        $content =<<<EOF
-	<p>
-	    {$this->L["help_para1"]}          
-	</p>
-	
-    <p>
-        {$this->L["help_para2"]} 
-    </p>
-    
-    <ul>
-        <li>{$this->L["help_prop1"]}</li>
-        <li>{$this->L["help_prop2"]}</li>
-        <li>{$this->L["help_prop3"]}</li>
-        <li>{$this->L["help_prop4"]}</li>
-    </ul>
-
-    <b>{$this->L["example"]}</b>
-
-    <ul>
-        <li>{$this->L["example1"]}</li>
-    </ul>
-
-EOF;
-
-        return $content;
-	}
 }
