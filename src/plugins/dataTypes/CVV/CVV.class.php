@@ -25,8 +25,4 @@ class DataType_CVV extends DataTypePlugin {
 			"SQLField_MSSQL" => "VARCHAR(255) NULL"
 		);
 	}
-
-	public function getHelpHTML() {
-		return "<p>{$this->L["DATA_TYPE"]["DESC"]}</p>";
-	}
 }

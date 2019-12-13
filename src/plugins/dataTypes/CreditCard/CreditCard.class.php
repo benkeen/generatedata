@@ -33,11 +33,11 @@ class DataType_CreditCard extends DataTypePlugin {
 	public function generate($generator, $generationContextData) {
 		$creditCardTypeCodes = implode(",",$generationContextData["generationOptions"]["creditCardTypeCodes"]);
 		$creditCardTypeCodes = str_replace(",","','",$creditCardTypeCodes);
-		
+
 		self::initCreditCards($creditCardTypeCodes);
-		
+
 		$CCnumber = self::generateRandomCreditCardNumber();
-		
+
 		return array(
 			"display" => $CCnumber
 		);
@@ -69,11 +69,11 @@ class DataType_CreditCard extends DataTypePlugin {
 		$this->creditCardTypeCodes = array();
 		$this->creditCardTypes 		 = array();
 		$this->totalWeight     		 = 0.0;
-		
+
 		$prefix = Core::getDbTablePrefix();
-		
+
 		$query = "SELECT * FROM {$prefix}credit_cards";
-		
+
 		if (!empty($creditCardTypeCodes)) {
 			$query .= " WHERE type_code IN ('" . $creditCardTypeCodes . "')";
 		}
@@ -98,10 +98,10 @@ class DataType_CreditCard extends DataTypePlugin {
 
 		// picks card type, prefix, and number length, at random
 		$weightedIndex = mt_rand (0, $this->totalWeight*10) / 10;
-		
+
 		$index = 0;
 		$currWeight = $weightedIndex - $this->weights[$index];
-		
+
 		while ($currWeight > 0.0) {
 			if ($currWeight <= 0.0) {
 				break;
@@ -113,18 +113,18 @@ class DataType_CreditCard extends DataTypePlugin {
 			}
 			$index += 1;
 		}
-	
-		
+
+
 		// generates next [card number length] - [card prefix length] - 1 digits
 		$CCdigitsLeft = $this->numberLengths[$index] - strlen(trim($this->prefixes[$index])) - 1;
 		$CCremainingDigitsPartial = rand(pow(10, $CCdigitsLeft-1), pow(10, $CCdigitsLeft)-1);
 		$CCnumberPartial = $this->prefixes[$index] . $CCremainingDigitsPartial;
 		$CCnumberPartialRev = strrev($CCnumberPartial);
 		$CCnumberPartialRevArray = str_split($CCnumberPartialRev);
-		
+
 		//Generates last digit that ensures the card number passes Luhn algorithm validation
 		$runningSum = 0;
-		
+
 		for ($i = 0; $i < count($CCnumberPartialRevArray); $i++) {
 			$CCdigit = intval($CCnumberPartialRevArray[$i]);
 			if ($i % 2 == 0) {
@@ -137,10 +137,10 @@ class DataType_CreditCard extends DataTypePlugin {
 		}
 
 		$CClastDigit = strval($runningSum % 10);
-		
+
 		// final card number
 		$CCnumber = $CCnumberPartial . $CClastDigit;
-		
+
 		return $CCnumber;
 	}
 
@@ -181,7 +181,7 @@ class DataType_CreditCard extends DataTypePlugin {
 			('MC','Mastercard','53',16,0.20),			
 			('MC','Mastercard','54',16,0.20),	
 			('MC','Mastercard','55',16,0.20)";
-	
+
 		$response = Core::$db->query($queries, $rollbackQueries);
 
 		if ($response["success"]) {
@@ -190,28 +190,19 @@ class DataType_CreditCard extends DataTypePlugin {
 			return array(false, $response["errorMessage"]);
 		}
 	}
-	
-	public function getOptionsColumnHTML() {
-		$html ="<select id='dtCreditCardType_%ROW%' name='dtCreditCardType_%ROW%[]' multiple='' data-placeholder='" . $this->L['allCreditCardText'] . "' style='width:100%;'>";
-		$creditCardTypes = self::getDistinctCreditCardTypes();
-		foreach ($creditCardTypes as $creditCardType) {
-			$html .= "<option value='" . $creditCardType["type_code"] . "'>" . $creditCardType["type"] . "</option>";
-		}
-		$html .= "</select>";
-		return $html;
-	}
-	
+
+
 	/**
 	 * Called during getHelpHTML() and getOptionsColumnHTML(). Gets unique credit card types from credit_cards table.
 	 */
 	private function getDistinctCreditCardTypes() {
 		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("SELECT DISTINCT type_code, type FROM {$prefix}credit_cards");
-		
+
 		if ($response["success"]) {
 			return $response["results"];
 		}
-			
+
 		return false;
 	}
 
@@ -221,18 +212,5 @@ class DataType_CreditCard extends DataTypePlugin {
 		);
 		return $generationOptions;
 	}
-	
-	public function getHelpHTML() {
-		$creditCardTypes = self::getDistinctCreditCardTypes();
-		
-		$content ="<p>{$this->L['help']}</p><table cellpadding='0' cellspacing='1'><tr><td width='160'><h2>{$this->L['cardType']}</h2></td><td><h2>{$this->L['example']}</h2></td></tr>";
-			
-		foreach ($creditCardTypes as $creditCardType) {
-			self::initCreditCards($creditCardType['type_code']);
-			$content .= "<tr><td><h4>{$creditCardType['type']}</h4></td><td>" . self::generateRandomCreditCardNumber() ."</td></tr>";
-		}
-		$content .= "</table>";
 
-		return $content;
-	}
 }

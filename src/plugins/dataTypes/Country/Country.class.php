@@ -104,8 +104,8 @@ class DataType_Country extends DataTypePlugin {
 		}
 
 		// if the user didn't select any countries and they checked the "limit to those countries selected above
-		// option, there's nothing for us to generate. Just return false so the row is ignored. TODO: update the 
-		// JS code to throw an error 
+		// option, there's nothing for us to generate. Just return false so the row is ignored. TODO: update the
+		// JS code to throw an error
 		if (empty($selectedCountrySlugs) && $option == "countryPluginsOnly") {
 			return false;
 		}
@@ -132,14 +132,6 @@ class DataType_Country extends DataTypePlugin {
 		$this->numSelectedCountrySlugs = count($selectedCountrySlugs);
 
 		return ($json->settings->limitCountriesToSelectedPlugins) ? "countryPluginsOnly" : "all";
-	}
-
-	public function getOptionsColumnHTML() {
-		$html =<<< END
-<input type="checkbox" name="dtOption_%ROW%" class="dtCountry_allCountries" value="" id="dtOption_%ROW%" /><label
-	class="dtCountry_allCountriesLabel" for="dtOption_%ROW%">{$this->L["limit_results"]}</label>
-END;
-		return $html;
 	}
 
 	public function getDataTypeMetadata() {
