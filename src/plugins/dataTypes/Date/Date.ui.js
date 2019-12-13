@@ -101,74 +101,67 @@ export const Help = ({ i18n }) => (
 		<h3 className="gdSubtitle">{i18n.week}</h3>
 		<hr size="1" />
 
-		<table cellpadding="0" cellspacing="1">
+		<table cellPadding="0" cellSpacing="1">
 		<tr>
-		<td width="50" valign="top"><h4>W</h4></td>
-	<td width="300" valign="top">{$this->L["help_W"]}</td>
-<td valign="top">{$this->L["help_W_example"]}</td>
-</tr>
-</table>
+			<td width="50" valign="top"><h4>W</h4></td>
+			<td width="300" valign="top">{i18n.help_W}</td>
+			<td valign="top">{i18n.help_W_example}</td>
+		</tr>
+		</table>
 
-<h3 class="gdSubtitle">{$this->L["month"]}</h3>
-<hr size="1" />
+		<h3 className="gdSubtitle">{i18n.month}</h3>
+		<hr size="1" />
 
-		<table cellpadding="0" cellspacing="1">
+		<table cellPadding="0" cellSpacing="1">
 		<tr>
-		<td width="50" valign="top"><h4>F</h4></td>
-	<td width="300">{$this->L["help_F"]}</td>
-<td valign="top">{$this->L["help_F_example"]}</td>
-</tr>
-	<tr>
-		<td><h4>m</h4></td>
-		<td>{$this->L["help_m"]}</td>
-		<td>{$this->L["help_m_example"]}</td>
-	</tr>
-	<tr>
-	<td><h4>M</h4></td>
-	<td>{$this->L["help_M"]}</td>
-<td>{$this->L["help_M_example"]}</td>
-</tr>
-	<tr>
-		<td valign="top"><h4>n</h4></td>
-		<td>{$this->L["help_n"]}</td>
-		<td valign="top">{$this->L["help_n_example"]}</td>
-	</tr>
-	<tr>
-	<td><h4>t</h4></td>
-	<td>{$this->L["help_t"]}</td>
-<td>{$this->L["help_t_example"]}</td>
-</tr>
-</table>
-
-
-<h3 class="gdSubtitle">{$this->L["year"]}</h3>
-<hr size="1" />
-
-		<table cellpadding="0" cellspacing="1">
+			<td width="50" valign="top"><h4>F</h4></td>
+			<td width="300">{i18n.help_F}</td>
+			<td valign="top">{i18n.help_F_example}</td>
+		</tr>
 		<tr>
-		<td width="50"><h4>L</h4></td>
-	<td width="300">{$this->L["help_L"]}</td>
-<td>{$this->L["help_L_example"]}</td>
-</tr>
-	<tr>
-		<td><h4>Y</h4></td>
-		<td>{$this->L["help_Y"]}</td>
-		<td>{$this->L["help_Y_example"]}</td>
-	</tr>
-	<tr>
-	<td><h4>y</h4></td>
-	<td>{$this->L["help_y"]}</td>
-<td>{$this->L["help_y_example"]}</td>
-</tr>
-</table>
+			<td><h4>m</h4></td>
+			<td>{i18n.help_m}</td>
+			<td>{i18n.help_m_example}</td>
+		</tr>
+		<tr>
+			<td><h4>M</h4></td>
+			<td>{i18n.help_M}</td>
+			<td>{i18n.help_M_example}</td>
+		</tr>
+		<tr>
+			<td valign="top"><h4>n</h4></td>
+			<td>{i18n.help_n}</td>
+			<td valign="top">{i18n.help_n_example}</td>
+		</tr>
+		<tr>
+			<td><h4>t</h4></td>
+			<td>{i18n.help_t}</td>
+			<td>{i18n.help_t_example}</td>
+		</tr>
+		</table>
 
-<br />
-	END;
+		<h3 className="gdSubtitle">{i18n.year}</h3>
+		<hr size="1" />
 
-	return $html;
-}
-
-
+		<table cellPadding="0" cellSpacing="1">
+		<tr>
+			<td width="50"><h4>L</h4></td>
+			<td width="300">{i18n.help_L}</td>
+			<td>{i18n.help_L_example}</td>
+		</tr>
+		<tr>
+			<td><h4>Y</h4></td>
+			<td>{i18n.help_Y}</td>
+			<td>{i18n.help_Y_example}</td>
+		</tr>
+		<tr>
+			<td><h4>y</h4></td>
+			<td>{i18n.help_y}</td>
+			<td>{i18n.help_y_example}</td>
+		</tr>
+		</table>
+	</>
+);
 
 
 var _dataTypeChange = function(msg) {

@@ -95,7 +95,7 @@ class DataType_IBAN extends DataTypePlugin {
 		array('code'=>'GB',	'sepa'=>true,	'template'=>'GBkkiiiiddddddcccccccc',			'name'=>'United Kingdom'),
 		array('code'=>'VG',	'sepa'=>false,	'template'=>'VGkkbbbbcccccccccccccccc',			'name'=>'Virgin Islands, British')
 	);
-	
+
 	private static $countryCodes;
 	private static $numCountryCodes;
 
@@ -118,12 +118,12 @@ class DataType_IBAN extends DataTypePlugin {
 			self::$numCountryCodes = $numCountryCodes;
 		}
 	}
-	
+
 	public static function generateBic($countryCode) {
 		$withBranchCode = mt_rand(0, 1) == true;
 		$branchCode = $withBranchCode ? 'xxX' : '';
 		$format = 'LLLL' . $countryCode . 'LL' . $branchCode;
-		
+
 		return Utils::generateRandomAlphanumericStr($format);
 	}
 
@@ -156,7 +156,7 @@ class DataType_IBAN extends DataTypePlugin {
 	public static function getRandomCountry() {
 		return self::$countryCodes[mt_rand(0, self::$numCountryCodes-1)];
 	}
-	
+
 	/**
 	 * @todo Respect the selected country.
 	 */
@@ -176,16 +176,6 @@ class DataType_IBAN extends DataTypePlugin {
 		);
 	}
 
-	public function getHelpHTML() {
-		return <<< END
-            <p>
-                {$this->L["DATA_TYPE"]["DESC"]}<br />
-                {$this->L["help_1"]}<br />
-                {$this->L["help_2"]}<br />
-            </p>
-END;
-	}
-	
 	private static function chr2Int($chr) {
 
 		// this is a good idea for function robustness, but it slows down the code too much. Commenting out.
@@ -203,18 +193,18 @@ END;
 		}
 		throw new Exception("Input character {$chr}({$ord}) does not map to an integer");
 	}
-	
+
 	private static function bigMod( $x, $y ) {
 		// how many numbers to take at once? careful not to exceed (int)
 		$take = 5;
 		$mod = '';
-	
+
 		do {
 			$a = intval($mod.substr($x, 0, $take));
 			$x = substr( $x, $take );
 			$mod = $a % $y;
 		} while (strlen($x));
-	
+
 		return intval($mod);
 	}
 
@@ -225,7 +215,7 @@ END;
 		if (strlen($ibanString) < 6) {
 			return $ibanString;
 		}
-		
+
 		$reordered = substr($ibanString, 4) . substr($ibanString, 0, 2);
 		$numerical = '';
 		$reorderedLength = strlen($reordered);
@@ -233,9 +223,9 @@ END;
 			$numerical .= self::chr2Int($reordered[$i]);
 		}
 		$numerical .= '00';
-		
+
 		$checksum = 98 - self::bigMod($numerical, 97);
-		
+
 		return substr($ibanString, 0, 2) . str_pad($checksum, 2, '0', STR_PAD_LEFT) . substr($ibanString, 4);
 	}
 }

@@ -26,10 +26,6 @@ class DataType_GUID extends DataTypePlugin {
 		);
 	}
 
-	public function getHelpHTML() {
-		return "<p>{$this->L["help"]}</p>";
-	}
-
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "varchar(36) NOT NULL",

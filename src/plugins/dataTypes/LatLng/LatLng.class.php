@@ -64,21 +64,6 @@ class DataType_LatLng extends DataTypePlugin {
 		return $options;
 	}
 
-	public function getOptionsColumnHTML() {
-		$html =<<< END
-<input type="checkbox" name="dtLatLng_Lat%ROW%" id="dtLatLng_Lat%ROW%" checked="checked" />
-	<label for="dtLatLng_Lat%ROW%">{$this->L["latitude"]}</label>&nbsp;
-<input type="checkbox" name="dtLatLng_Lng%ROW%" id="dtLatLng_Lng%ROW%" checked="checked" />
-	<label for="dtLatLng_Lng%ROW%">{$this->L["longitude"]}</label>
-END;
-		return $html;
-	}
-
-
-	public function getHelpHTML() {
-		return "<p>{$this->L["DATA_TYPE"]["DESC"]}</p>";
-	}
-
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "varchar(30) default NULL",
