@@ -187,21 +187,6 @@ class JSON extends ExportTypePlugin
 		return "data{$time}.json";
 	}
 
-	public function getAdditionalSettingsHTML()
-	{
-		$html = <<< END
-	<input type="checkbox" name="etJSON_stripWhitespace" id="etJSON_stripWhitespace" value="1" />
-		<label for="etJSON_stripWhitespace">{$this->L["strip_whitespace"]}</label><br />
-	{$this->L["data_structure_format"]}
-		<input type="radio" name="etJSON_dataStructureFormat" value="complex" id="stJSON_dataStructureFormat1" checked="checked" />
-			<label for="stJSON_dataStructureFormat1">{$this->L["complex"]}</label>
-		<input type="radio" name="etJSON_dataStructureFormat" value="simple" id="stJSON_dataStructureFormat2" />
-			<label for="stJSON_dataStructureFormat2">{$this->L["simple"]}</label>
-END;
-		return $html;
-	}
-
-
 	/**
 	 * Wrapper function to find out whether the user wants whitespace to be enabled or not. The settings content
 	 * is either JSON or a POST array, depending on where the generation is taking place.

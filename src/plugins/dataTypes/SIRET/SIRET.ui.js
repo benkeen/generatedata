@@ -32,7 +32,7 @@ export const Example = ({ i18n, coreI18n }) => (
 	</select>
 );
 
-export const Options = ({ id, }) => (
+export const Options = ({ id }) => (
 	<>
 		<input type="radio" name="dtOption_%ROW%" id="dtOption_%ROW%_1" value="SIRET" checked="checked" style="margin-left: 4px" />
 			<label for="dtOption_%ROW%_1">SIRET</label>

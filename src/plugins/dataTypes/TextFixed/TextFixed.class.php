@@ -38,18 +38,6 @@ class DataType_TextFixed extends DataTypePlugin {
 		return $json->settings->numWords;
 	}
 
-	public function getOptionsColumnHTML() {
-		$html =<<<END
-&nbsp;{$this->L["TextFixed_generate"]} #<input type="text" name="dtNumWords_%ROW%" id="dtNumWords_%ROW%" style="width: 30px" value="10" />
-{$this->L["TextFixed_words"]}
-END;
-		return $html;
-	}
-
-	public function getHelpHTML() {
-		return "<p>{$this->L["TextFixed_help"]}</p>";
-	}
-
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "TEXT default NULL",

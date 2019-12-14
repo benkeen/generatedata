@@ -15,10 +15,10 @@ class DataType_Tree extends DataTypePlugin {
 
 
 	/**
-	 * Our generation function. Unlike other Data Types, the Tree Data type relies on knowing about 
-	 * previously generated rows. Since the Data Generator provides the option to generate the data 
+	 * Our generation function. Unlike other Data Types, the Tree Data type relies on knowing about
+	 * previously generated rows. Since the Data Generator provides the option to generate the data
 	 * sets all at once ("New Window/Tab", "Prompt to Download") or in pieces, we need to accommodate
-	 * each scenario. 
+	 * each scenario.
 	 * (1) If we're generating in batches, store the relevant info in sessions.
 	 * (2) Otherwise, store in $openTreeNodes private var.
 	 */
@@ -123,14 +123,6 @@ class DataType_Tree extends DataTypePlugin {
 		return $options;
 	}
 
-	public function getOptionsColumnHTML() {
-		$html =<<<END
-<div>{$this->L["auto_increment_row_num"]} <input type="text" id="dtTreeAutoIncrementRowNum_%ROW%" name="dtTreeAutoIncrementRowNum_%ROW%" value="1" size="3" maxlength="3" /></div>
-<div>{$this->L["max_num_sibling_nodes"]} <input type="text" id="dtTreeMaxSiblings_%ROW%" name="dtTreeMaxSiblings_%ROW%" value="2" size="3" maxlength="3" /></div>
-END;
-		return $html;
-	}
-
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "mediumint default NULL",
@@ -138,17 +130,5 @@ END;
 			"SQLField_MSSQL" => "INTEGER NULL",
 			"SQLField_Postgres" => "integer NULL",
 		);
-	}
-
-	public function getHelpHTML() {
-		$html =<<<END
-	<p>
-		{$this->L["help_1"]}
-	</p>
-	<p>
-		{$this->L["help_2"]}
-	</p>
-END;
-		return $html;
 	}
 }

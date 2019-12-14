@@ -57,23 +57,4 @@ class DataType_TextRandom extends DataTypePlugin {
 		);
 		return $options;
 	}
-
-	public function getOptionsColumnHTML() {
-		$html =<<< END
-		<div>
-			<input type="checkbox" name="dtStartsWithLipsum_%ROW%" id="dtStartsWithLipsum_%ROW%" />
-			<label for="dtStartsWithLipsum_%ROW%">{$this->L["start_with_lipsum"]}</label>
-		</div>
-		<div>
-			{$this->L["generate"]} #<input type="text" name="dtNumWordsMin_%ROW%" id="dtNumWordsMin_%ROW%" style="width: 40px" value="1" />
-			{$this->L["to"]} #<input type="text" name="dtNumWordsMax_%ROW%" id="dtNumWordsMax_%ROW%" style="width: 40px" value="10" /> 
-			{$this->L["words"]}
-		</div>
-END;
-		return $html;
-	}
-
-	public function getHelpHTML() {
-		return "<p>{$this->L["help"]}</p>";
-	}
 }

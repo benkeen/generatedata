@@ -72,8 +72,4 @@ class DataType_Track2 extends DataTypePlugin {
 			"SQLField_MSSQL" => "VARCHAR(255) NULL"
 		);
 	}
-
-	public function getHelpHTML() {
-		return "<p>{$this->L["track2_help_intro"]}</p>";
-	}
 }
