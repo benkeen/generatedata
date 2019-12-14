@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './core/init/init.reducer';
 
 import store from './store';
-import Page from './components/page/Page.component';
+import Page from './components/page/Page.container';
 import Grid from './components/grid/Grid.container'
 import * as core from './core';
 

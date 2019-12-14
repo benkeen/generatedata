@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "build & webpack-dev-server",
+    "dev": "webpack --config ./webpack.config.js --mode=development --watch",
     "build": "node ./server/pluginBundles.js & node ./server/generateConfigFile.js",
     "test": "jest"
   },
@@ -25,7 +25,9 @@
   "dependencies": {
     "@material-ui/core": "^4.7.0",
     "@material-ui/icons": "^4.5.1",
+    "axios": "^0.19.0",
     "esm": "^3.2.25",
+    "express": "^4.17.1",
     "jest-cli": "^24.9.0",
     "react": "^16.12.0",
     "react-beautiful-dnd": "^12.1.1",
@@ -60,7 +62,6 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-dev-server": "^3.9.0",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-manifest-plugin": "1.1.0"
   }

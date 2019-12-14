@@ -4,8 +4,7 @@ Lots is going to change.
 
 - react & redux baby!
 - express. 
-- I haven't settled on Material UI yet - or even a general style (no more unnecessary themes). For now I'm just using
-it for what it provides.
+- I haven't settled on Material UI yet - or even a general style (no more unnecessary themes)
 
 
 ### Site/installation configuration 
@@ -43,7 +42,7 @@ Just hammering this out.
 
 First, the visual aspect: the options column, examples column, help modal content. For this, just create
 React components in:  
-    `ComponentName.components.js`
+    `ComponentName.ui.js`
 
 - dump the saveRow, loadRow. Now the component data will be housed in redux. Options + Examples column should be 
 controlled components: they get fed a `data` prop containing any arbitrary data needed for the component plus a single
@@ -62,3 +61,13 @@ Second, the generation code:
 - The script shouldn't have any trace of website content. Drop the website_i18n files.
 - split config into config.web.js, config.server.js. config.server.js is never included in any bundle. Best way to 
 validate this? Kinnnnnda important.
+
+
+How about a SINGLE generated build/plugins.js file that exports all plugin info.
+
+
+----------------------------------------
+
+Core:
+    - includes 
+

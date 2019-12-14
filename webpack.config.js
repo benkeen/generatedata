@@ -3,17 +3,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const locales = ['en', 'fr', 'de', 'es', 'ja', 'nl', 'ta', 'zh'].map((locale) => `./build/${locale}.js`);
+const localeEntries = {};
+const locales = ['en', 'fr', 'de', 'es', 'ja', 'nl', 'ta', 'zh'];
+locales.forEach((locale) => {
+	localeEntries[locale] = `./build/${locale}.js`;
+});
 
 module.exports = {
 	entry: {
-		app: [
-			'./src/index.js',
-
-			// locale bundles
-			...locales
-		]
+		app: './src/index.js',
+		...localeEntries
 	},
+
 	output: {
 		path: __dirname + '/dist',
 		filename: '[name].js'
@@ -57,7 +58,14 @@ module.exports = {
 
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './src/index.html'
+			template: './src/index.html',
+			excludeChunks: locales
 		})
-	]
+	],
+
+	optimization: {
+		splitChunks: {
+			chunks: 'all'
+		}
+	}
 };

@@ -23,7 +23,7 @@ const defaultConfig = require('../config/config.client.defaults.js');
 const getCoreI18n = (locales) => {
 	const content = {};
 	locales.forEach((locale) => {
-		const file = require(`../i18n/${locale}.js`);
+		const file = require(`../src/i18n/${locale}.js`);
 		content[locale] = file.default;
 	});
 	return content;
@@ -69,9 +69,10 @@ const generateLocaleFiles = () => {
 			content.dataTypes[dataType] = dataTypes[dataType][locale];
 		});
 
-		helpers.createBuildFile(`${locale}.js`, `export default ${JSON.stringify(content, null, '\t')}`);
+		helpers.createBuildFile(`${locale}.js`, `import { setLocale } from '../src/utils/langUtils';
+setLocale('${locale}', ${JSON.stringify(content, null, '\t')});
+window.gdLocaleFileLoaded = true;`);
 	});
 };
-
 
 generateLocaleFiles();

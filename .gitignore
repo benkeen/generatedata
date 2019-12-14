@@ -4,5 +4,5 @@ cache/*
 .idea*
 node_modules*
 build/*
-config.client.js
-config.server.js
+config/config.client.js
+server/config.server.js
