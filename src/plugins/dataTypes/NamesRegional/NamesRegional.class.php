@@ -453,31 +453,6 @@ class DataType_NamesRegional extends DataTypePlugin {
 		);
 	}
 
-	public function getExampleColumnHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
-
-		$html =<<< END
-	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
-		<option value="">{$L["please_select"]}</option>
-		<option value="MaleName">{$this->L["example_MaleName"]}</option>
-		<option value="FemaleName">{$this->L["example_FemaleName"]}</option>
-		<option value="Name">{$this->L["example_Name"]}</option>
-		<option value="MaleName Surname">{$this->L["example_MaleName_Surname"]}</option>
-		<option value="FemaleName Surname">{$this->L["example_FemaleName_Surname"]}</option>
-		<option value="Name Surname">{$this->L["example_Name_Surname"]}</option>
-		<option value="Name Initial. Surname">{$this->L["example_Name_Initial_Surname"]}</option>
-		<option value="Surname">{$this->L["example_surname"]}</option>
-		<option value="Surname, Name Initial.">{$this->L["example_Surname_Name_Initial"]}</option>
-		<option value="Name, Name, Name, Name">{$this->L["example_Name4"]}</option>
-		<option value="Name Surname|Name Initial. Surname">{$this->L["example_fullnames"]}</option>
-	</select>
-END;
-		return $html;
-	}
-
-	public function getOptionsColumnHTML() {
-		return '<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px" />';
-	}
 
 	public function getFirstNames() {
 		return $this->firstNames;
@@ -602,41 +577,5 @@ END;
 		} else {
 			return array(false, $response["errorMessage"]);
 		}
-	}
-
-
-	public function getHelpHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
-
-		$content =<<<EOF
-	<p>
-		{$this->L["help_intro"]}
-	</p>
-
-	<table cellpadding="0" cellspacing="1">
-	<tr>
-		<td width="100"><h4>Name</h4></td>
-		<td>{$this->L["type_Name"]}</td>
-	</tr>
-	<tr>
-		<td><h4>MaleName</h4></td>
-		<td>{$this->L["type_MaleName"]}</td>
-	</tr>
-	<tr>
-		<td><h4>FemaleName</h4></td>
-		<td>{$this->L["type_FemaleName"]}</td>
-	</tr>
-	<tr>
-		<td><h4>Initial</h4></td>
-		<td>{$this->L["type_Initial"]}</td>
-	</tr>
-	<tr>
-		<td><h4>Surname</h4></td>
-		<td>{$this->L["type_Surname"]}</td>
-	</tr>
-	</table>
-EOF;
-
-		return $content;
 	}
 }
