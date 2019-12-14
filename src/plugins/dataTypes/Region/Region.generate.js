@@ -151,40 +151,6 @@ class DataType_Region extends DataTypePlugin {
 		return $generationOptions;
 	}
 
-	public function getOptionsColumnHTML() {
-		$countryPlugins = Core::$countryPlugins;
-
-		$html = "<div class=\"dtRegionCountry_noCountries\">{$this->L["no_countries_selected"]}</div>";
-		foreach ($countryPlugins as $pluginInfo) {
-			$slug       = $pluginInfo->getSlug();
-			$regionName = $pluginInfo->getRegionNames();
-
-			$html .= <<<EOF
-<div class="dtRegionCountry dtRegionCountry_$slug">
-	<input type="checkbox" name="dtIncludeRegion_{$slug}_%ROW%" id="dtIncludeRegion_{$slug}_%ROW%" class="dtIncludeRegion dtIncludeRegion_{$slug}"
-		checked="checked" /><label for="dtIncludeRegion_{$slug}_%ROW%">$regionName</label>
-	<span class="dtRegionFull">
-		<input type="checkbox" name="dtIncludeRegion_{$slug}_Full_%ROW%" id="dtIncludeRegion_{$slug}_Full_%ROW%"
-			checked="checked" /><label for="dtIncludeRegion_{$slug}_Full_%ROW%"
-		id="dtIncludeRegion_{$slug}_FullLabel_%ROW%" class="dtRegionSuboptionActive">{$this->L["full"]}</label>
-	</span>
-	<span class="dtRegionShort">
-		<input type="checkbox" name="dtIncludeRegion_{$slug}_Short_%ROW%" id="dtIncludeRegion_{$slug}_Short_%ROW%" checked="checked"
-			/><label for="dtIncludeRegion_{$slug}_Short_%ROW%" id="dtIncludeRegion_{$slug}_ShortLabel_%ROW%"
-		class="dtRegionSuboptionActive">{$this->L["short"]}</label>
-	</span>
-</div>
-EOF;
-		}
-		$html .= '<div id="dtRegionCountry_Complete%ROW%"></div>';
-
-		return $html;
-	}
-
-	public function getHelpHTML() {
-		return "<p>{$this->L["DATA_TYPE"]["DESC"]} {$this->L["help_text"]}</p>";
-	}
-
 	public function getDataTypeMetadata() {
 		return array(
 			"SQLField" => "varchar(50) default NULL",

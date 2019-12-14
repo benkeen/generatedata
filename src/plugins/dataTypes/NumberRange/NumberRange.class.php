@@ -63,15 +63,6 @@ class DataType_NumberRange extends DataTypePlugin
 		return $numbers;
 	}
 
-	public function getOptionsColumnHTML()
-	{
-		$html = <<<END
-&nbsp;{$this->L["between"]} <input type="text" name="dtNumRangeMin_%ROW%" id="dtNumRangeMin_%ROW%" style="width: 30px" value="1" />
-{$this->L["and"]} <input type="text" name="dtNumRangeMax_%ROW%" id="dtNumRangeMax_%ROW%" style="width: 30px" value="10" />
-END;
-		return $html;
-	}
-
 	public function getDataTypeMetadata()
 	{
 		return array(
@@ -81,10 +72,5 @@ END;
 			"SQLField_MSSQL" => "INTEGER NULL",
 			"SQLField_Postgres" => "integer NULL"
 		);
-	}
-
-	public function getHelpHTML()
-	{
-		return "<p>{$this->L["DATA_TYPE"]["DESC"]}</p>";
 	}
 }

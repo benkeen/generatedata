@@ -25,7 +25,6 @@ class DataType_NormalDistribution extends DataTypePlugin {
 		);
 	}
 
-
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		if ((empty($postdata["dtOptionMean_$colNum"]) && $postdata["dtOptionMean_$colNum"] !== "0") ||
 			(empty($postdata["dtOptionSigma_$colNum"]) && $postdata["dtOptionSigma_$colNum"] !== "0")) {
@@ -50,18 +49,6 @@ class DataType_NormalDistribution extends DataTypePlugin {
 		);
 	}
 
-	public function getOptionsColumnHTML() {
-		$options =<<< END
-			<label for="dtOptionMean_%ROW%">{$this->L["mean"]}</label>
-				<input type="text" name="dtOptionMean_%ROW%" id="dtOptionMean_%ROW%" style="width: 25px" value="0" />
-			<label for="dtOptionSigma_%ROW%">{$this->L["standard_deviation"]}</label>
-				<input type="text" name="dtOptionSigma_%ROW%" id="dtOptionSigma_%ROW%" style="width: 25px" value="1" />
-			<label for="dtOptionPrecision_%ROW%" title="Number of decimal places.">{$this->L["precision"]}</label>
-				<input type="text" name="dtOptionPrecision_%ROW%" id="dtOptionPrecision_%ROW%" style="width: 25px" value="10" />
-END;
-
-		return $options;
-	}
 
 	public function getDataTypeMetadata() {
 		return array(

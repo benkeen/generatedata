@@ -36,7 +36,7 @@ class DataType_PostalZip extends DataTypePlugin {
 				break;
 			}
 		}
-		
+
 		// if there was no country, see if there's a region
 		$rowRegionInfo = array();
 		if (empty($rowCountryInfo)) {
@@ -58,7 +58,7 @@ class DataType_PostalZip extends DataTypePlugin {
 				break;
 			}
 		}
-		
+
 		$randomZip = "";
 
 		// if there's neither a country nor a region, get a random country and generate a random zip/postal code
@@ -115,29 +115,6 @@ class DataType_PostalZip extends DataTypePlugin {
 		}
 
 		return $options;
-	}
-
-	public function getOptionsColumnHTML() {
-		$countryPlugins = Core::$countryPlugins;
-		$html = "";
-		foreach ($countryPlugins as $pluginInfo) {
-			$slug       = $pluginInfo->getSlug();
-			$regionName = $pluginInfo->getRegionNames();
-
-			$html .= <<<EOF
-<div class="dtCountry dtCountry_$slug">
-	<input type="checkbox" name="dtCountryIncludeZip_{$slug}_%ROW%"
-	id="dtCountryIncludeZip_{$slug}_%ROW%" checked="checked" data-country="{$slug}" /><label for="dtCountryIncludeZip_{$slug}_%ROW%">$regionName</label>
-</div>
-EOF;
-		}
-		$html .= '<div id="dtCountry_Complete%ROW%"></div>';
-
-		return $html;
-	}
-
-	public function getHelpHTML() {
-		return "<p>{$this->L["help_text"]}</p>";
 	}
 
 	/**

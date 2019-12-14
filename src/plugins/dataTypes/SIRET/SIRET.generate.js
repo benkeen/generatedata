@@ -1,23 +1,4 @@
-<?php
-
-/**
- * @package DataTypes
- * @author Fabrice Marquès <fabrice.marques@gmail.com>
- * @version v0.0.4 - add descript in help
- *				   - del extract NIC
- *				   - add split in SIRET
- * Edited by Ben Keen for a few style & core compatibility fixes and to make the Options column contain radio buttons.
- */
-
-class DataType_SIRET extends DataTypePlugin {
-
-	protected $isEnabled = true;
-	protected $dataTypeName = "SIRET";
-	protected $hasHelpDialog = true;
-	protected $dataTypeFieldGroup = "human_data";
-	protected $dataTypeFieldGroupOrder = 100;
-	protected $jsModules = array("SIRET.js");
-
+/*
 	// custom member vars for this Data Type
 	private $rSIREN = '';
 	private $rNIC = '';
@@ -37,7 +18,7 @@ class DataType_SIRET extends DataTypePlugin {
 		);
 	}
 
-	private function generateSiret() {	    	 	
+	private function generateSiret() {
 		$sumSiren = 0;
 		$sumSiret = 0;
 		$cleSiren= 1;
@@ -45,15 +26,15 @@ class DataType_SIRET extends DataTypePlugin {
 		$minRan = 0;
 		$maxRan = 9;
 		$siren = '';
-		
+
 		// generation d'un siren valide
 		for ($i=0; $i<8; $i++) {
 
-			// on génére un nombre entre 0 et 9 
+			// on génére un nombre entre 0 et 9
 			$rand = mt_rand($minRan, $maxRan);
 
 			// on concatène se nombre au siret
-			$siren .= $rand; 
+			$siren .= $rand;
 
 			/* Le numéro SIRET est composé de 14 chiffres,
 			 *  dont un chiffre de contrôle (le dernier) qui permet de vérifier la validité du numéro de SIRET (SIREN + NIC).
@@ -64,7 +45,7 @@ class DataType_SIRET extends DataTypePlugin {
 			$ctrlSiren = $rand * $cleSiren;
 			$ctrlSiret = $rand * $cleSiret;
 
-			// Si la valeur obtenu et supérieur ou egale à 10 il faut décomposer en 1+0 
+			// Si la valeur obtenu et supérieur ou egale à 10 il faut décomposer en 1+0
 			// ce qui équivaux à lui retirer 9
 			// contôle pour le siren
 			if ($ctrlSiren > 9) {
@@ -72,14 +53,14 @@ class DataType_SIRET extends DataTypePlugin {
 			} else {
 				$sumSiren += $ctrlSiren;
 			}
-			
+
 			// contôle pour le siret
 			if ($ctrlSiret > 9) {
 				$sumSiret += ($ctrlSiret - 9);
 			} else {
 				$sumSiret += $ctrlSiret;
 			}
-			
+
 			// mise à jour des clés
 			if ($cleSiren == 1) {
 				$cleSiren = 2;
@@ -88,7 +69,7 @@ class DataType_SIRET extends DataTypePlugin {
 				$cleSiren = 1;
 				$cleSiret = 2;
 			}
-		}  
+		}
 
 		// la somme doit être congrue à zéro modulo 10
 		$moduloSiren = ($sumSiren % 10);
@@ -109,7 +90,7 @@ class DataType_SIRET extends DataTypePlugin {
 		} else {
 			$sumSiret += $ctrlSiret;
 		}
-		
+
 		// aon ajoute un début de NIC au siren
 		$siret = $siren . "0000";
 
@@ -122,7 +103,7 @@ class DataType_SIRET extends DataTypePlugin {
 		}
 
 		$siret .= $diffSiret;
-		
+
 		$this->rSIREN = substr($siret, 0, 9);
 		$this->rNIC = substr($siret, 9, 14);
 	}
@@ -157,53 +138,4 @@ class DataType_SIRET extends DataTypePlugin {
 		return $this->rNIC;
 	}
 
-	public function getHelpHTML() {
-		$content =<<<EOF
-	<p>
-		{$this->L["DATA_TYPE"]["DESC"]}
-	</p>
-	<table cellpadding="0" cellspacing="1">
-	<tr>
-		<td><h4>{$this->L["SIRET"]}</h4></td>
-		<td>{$this->L["type_SIRET"]}</td>
-	</tr>
-	<tr>
-		<td><h4>{$this->L["SIREN"]}</h4></td>
-		<td>{$this->L["type_SIREN"]}</td>
-	</tr>
-	<tr>
-		<td colspan="2">&nbsp;</td>
-	</tr>
-	<tr>
-		<td><h4>{$this->L["more_info"]}</h4></td>
-		<td><a href="{$this->L["help_link"]}" target="_blank">WIKI SIRET</a></td>
-	</tr>
-	</table>
-EOF;
-
-		return $content;
-	}
-	
-	public function getExampleColumnHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
-
-		$html =<<< END
-	<select name="dtExample_%ROW%" id="dtExample_%ROW%" style="width:100%">
-		<option value="">{$L["please_select"]}</option>
-		<option value="SIRET">{$this->L["example_SIRET"]}</option>
-		<option value="SIREN">{$this->L["example_SIREN"]}</option>
-	</select>
-END;
-		return $html;
-	}
-
-	public function getOptionsColumnHTML() {
-		return <<<END
-<input type="radio" name="dtOption_%ROW%" id="dtOption_%ROW%_1" value="SIRET" checked="checked" style="margin-left: 4px" />
-	<label for="dtOption_%ROW%_1">SIRET</label>
-<input type="radio" name="dtOption_%ROW%" id="dtOption_%ROW%_2" value="SIREN" />
-	<label for="dtOption_%ROW%_2">SIREN</label>
-END;
-	}
-	
-}
+*/

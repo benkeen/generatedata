@@ -20,7 +20,7 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 	 */
 	public function generate($generator, $generationContextData) {
 		$generationOptions = $generationContextData["generationOptions"];
-		
+
 		// Default, 10 siffers + '-'
 		// TODO: support several countries?
                 static::$sep = self::getOrganisationNumberSeparator($generationOptions["cc_separator"]);
@@ -36,7 +36,7 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 			"display" => $orgnr
 		);
 	}
-	
+
 	// TODO: add support for separator
 	// TODO: add support for organisation numbers
 	private static function generateRandomSwedishOrganisationNumber($sep) {
@@ -44,14 +44,14 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 		$rand = 0;
 
 		$cnt = 11;	// 10 siffers + 1 increment for separator
-		
+
 		for ($i=0; $i<$cnt; $i++) {
 			switch ($i) {
 				case 0:
 					$rand = mt_rand(0, 99);
 					$new_str .= sprintf("%02d", $rand);
 					break;
-				case 2: 
+				case 2:
 					$rand = mt_rand(20, 99);
 					$new_str .= sprintf("%02d", $rand);
 					break;
@@ -59,10 +59,10 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 					$rand = mt_rand(0, 99);
 					$new_str .= sprintf("%02d", $rand);
 					break;
-				case 6: 
+				case 6:
 					$new_str .= $sep;
 					break;
-				case 7: 
+				case 7:
 					$rand = mt_rand(0, 999);
 					$new_str .= sprintf("%03d", $rand);
 					break;
@@ -79,8 +79,6 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 
 		return $new_str;
 	}
-	
-
 
 	private static function getOrganisationNumberSeparator($separators) {
 		$separatorList = explode("|", $separators);
@@ -93,56 +91,11 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 		return $chosenSep;
 	}
 
-	public function getExampleColumnHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
-
-		$html =<<< END
-	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
-		<option value="">{$L["please_select"]}</option>
-		<option value="OrganisationNumberWithoutHyphen">{$this->L["example_OrganisationNumberWithoutHyphen"]}</option>
-		<option value="OrganisationNumberWithHyphen">{$this->L["example_OrganisationNumberWithHyphen"]}</option>
-	</select>
-END;
-		return $html;
-	}
-
-	public function getOptionsColumnHTML() {
-		$html =<<< END
-<span id="dtOptionOrganisationNumberSeparator_%ROW%" style="display:inline;">
-	{$this->L["separators"]}
-	<input type="text" name="dtOptionOrganisationNumber_sep_%ROW%" id="dtOptionOrganisationNumber_sep_%ROW%" style="width: 78px" value=" " title="{$this->L["separator_help"]}" />
-</span>
-END;
-		return $html;
-	}
-
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		return array(
 			"cc_separator"   => $postdata["dtOptionOrganisationNumber_sep_$colNum"],
 			"cc_format"      => $postdata["dtOption_$colNum"],
 		);
-	}
-
-	public function getHelpHTML() {
-		$content =<<<EOF
-	<p>
-	    {$this->L["DATA_TYPE"]["DESC"]}
-		{$this->L["help_text"]}
-	</p>
-
-	<table cellpadding="0" cellspacing="1">
-	<tr>
-		<td width="100"><h4>OrganisationNumberWithoutHyphen</h4></td>
-		<td>{$this->L["type_OrganisationNumberWithoutHyphen"]}</td>
-	</tr>
-	<tr>
-		<td><h4>OrganisationNumberWithHyphen</h4></td>
-		<td>{$this->L["type_OrganisationNumberWithHyphen"]}</td>
-	</tr>
-	</table>
-EOF;
-
-		return $content;
 	}
 
 	public function getDataTypeMetadata() {

@@ -147,32 +147,6 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		return $areaCodes;
 	}
 
-	public function getOptionsColumnHTML() {
-		$countryPlugins = Core::$countryPlugins;
-
-		$html = "";
-		foreach ($countryPlugins as $pluginInfo) {
-			$slug       = $pluginInfo->getSlug();
-			$regionName = $pluginInfo->getRegionNames();
-			$extendedData = $pluginInfo->getExtendedData();
-
-			if (!isset($extendedData["phoneFormat"]) || !isset($extendedData["phoneFormat"]["displayFormats"])) {
-				continue;
-			}
-
-			$options = $this->getDisplayFormatOptions($slug, $extendedData["phoneFormat"]["displayFormats"]);
-			$html .= <<<EOF
-<div class="dtPhoneRegionalCountry dtPhoneRegionalCountry_$slug">
-	<label for="dtPhoneRegional_{$slug}_%ROW%">$regionName</label>
-	$options
-</div>
-EOF;
-		}
-		$html .= '<div id="dtPhoneRegional_Complete%ROW%"></div>';
-
-		return $html;
-	}
-
 	public function getDisplayFormatOptions($countrySlug, $displayFormats) {
 		$options = "";
 		$id = "dtPhoneRegional_{$countrySlug}_%ROW%";
@@ -241,14 +215,6 @@ EOF;
 		return $countryPhoneFormats;
 	}
 
-	public function getHelpHTML() {
-		$html =<<<END
-	<p>
-		{$this->L["DATA_TYPE"]["DESC"]}
-	</p>
-END;
-	    return $html;
-	}
 
 	public function getDataTypeMetadata() {
 		return array(

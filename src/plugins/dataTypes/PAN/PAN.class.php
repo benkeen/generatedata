@@ -12,7 +12,6 @@ class DataType_PAN extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("PAN.js");
 
-
 	private static $creditCardData = array(
 		"visa" => array(
 			"prefix"  => array(4539, 4556, 4916, 4532, 4929, 40240071, 4485, 4716, 4),
@@ -231,7 +230,7 @@ class DataType_PAN extends DataTypePlugin {
 		}
 
 		$cardData = self::getCreditCardData($selectedCard);
-		
+
 		$options["cc_brand"] = $selectedCard;
 		$options["cc_format"] = $cardData["formats"][array_rand($cardData["formats"])];
 		$options["cc_length"] = self::getRandomPANLength($cardData["length"]);
@@ -259,69 +258,7 @@ class DataType_PAN extends DataTypePlugin {
 		);
 	}
 
-	public function getExampleColumnHTML() {
-		$L = Core::$language->getCurrentLanguageStrings();
 
-		$html =<<< END
-	<select name="dtExample_%ROW%" id="dtExample_%ROW%">
-		<option value="">{$L["please_select"]}</option>
-		<option value="mastercard">{$this->L["mastercard"]}</option>
-		<option value="visa">{$this->L["visa"]}</option>
-		<option value="visaElectron">{$this->L["visa_electron"]}</option>
-		<option value="amex">{$this->L["americanexpress"]}</option>
-		<option value="discover">{$this->L["discover"]}</option>
-		<option value="carteBlanche">{$this->L["carte_blanche"]}</option>
-		<option value="dinersClubInt">{$this->L["diners_club_international"]}</option>
-		<option value="dinersClubEnRoute">{$this->L["enRoute"]}</option>
-		<option value="jcb">{$this->L["jcb"]}</option>
-		<option value="maestro">{$this->L["maestro"]}</option>
-		<option value="solo">{$this->L["solo"]}</option>
-		<option value="switch">{$this->L["switch"]}</option>
-		<option value="laser">{$this->L["laser"]}</option>
-		<option value="rand_card">{$this->L["rand_card"]}</option>
-	</select>
-END;
-		return $html;
-	}
-
-	public function getOptionsColumnHTML() {
-		$html =<<< END
-<span id="dtOptionPAN_cardDigitSection_%ROW%" style="display:inline;">
-	{$this->L["length"]}
-	<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style="width: 60px" readonly="readonly" />
-</span>
-
-<span id="dtOptionPAN_cardSeparator_%ROW%" style="display:inline;">
-	{$this->L["separators"]}
-	<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style="width: 78px" value=" " title="{$this->L["separator_help"]}" />
-</span>
-
-<span id="dtOptionPAN_cardFormat_%ROW%">
-	{$this->L["ccformats"]}
-	<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" title="{$this->L["format_title"]}" style="height: 100px; width: 260px"></textarea>
-</span>
-
-<div id="dtOptionPAN_randomCardFormatSection_%ROW%" style="display:none;">
-	{$this->L["ccrandom"]}
-	<select multiple="multiple" name="dtOptionPAN_randomCardFormat_%ROW%[]" id="dtOptionPAN_randomCardFormat_%ROW%" title="{$this->L["rand_brand_title"]}" style="height: 100px; width: 260px">
-		<option value="mastercard">{$this->L["mastercard"]}</option>
-		<option value="visa">{$this->L["visa"]}</option>
-		<option value="visaElectron">{$this->L["visa_electron"]}</option>
-		<option value="amex">{$this->L["americanexpress"]}</option>
-		<option value="discover">{$this->L["discover"]}</option>
-		<option value="carteBlanche">{$this->L["carte_blanche"]}</option>
-		<option value="dinersClubInt">{$this->L["diners_club_international"]}</option>
-		<option value="dinersClubEnRoute">{$this->L["enRoute"]}</option>
-		<option value="jcb">{$this->L["jcb"]}</option>
-		<option value="maestro">{$this->L["maestro"]}</option>
-		<option value="solo">{$this->L["solo"]}</option>
-		<option value="switch">{$this->L["switch"]}</option>
-		<option value="laser">{$this->L["laser"]}</option>
-	</select>
-</div>
-END;
-		return $html;
-	}
 
 	public function getDataTypeMetadata() {
 		return array(
@@ -330,23 +267,6 @@ END;
 			"SQLField_MSSQL" => "VARCHAR(255) NULL"
 		);
 	}
-
-	public function getHelpHTML() {
-		$html =<<<EOF
-<p>
-    {$this->L["DATA_TYPE"]["DESC"]}
-	{$this->L["pan_help_intro"]}
-	<b>{$this->L["mastercard"]}</b>, <b>{$this->L["visa"]}</b>, <b>{$this->L["visa_electron"]}</b>,
-	<b>{$this->L["americanexpress"]}</b>, <b>{$this->L["discover"]}</b>, <b>{$this->L["american_diners"]}</b>,
-	<b>{$this->L["carte_blanche"]}</b>, <b>{$this->L["diners_club_international"]}</b>, <b>{$this->L["enroute"]}</b>,
-	<b>{$this->L["jcb"]}</b>, <b>{$this->L["maestro"]}</b>, <b>{$this->L["solo"]}</b>,
-	<b>{$this->L["switch"]}</b>, <b>{$this->L["laser"]}</b>.
-</p>
-EOF;
-
-		return $html;
-	}
-
 
 	/**
 	 * @param $ccLength
