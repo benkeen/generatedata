@@ -5,8 +5,6 @@ import { getStrings } from './langUtils';
 export const getSortedGroupedDataTypes = () => {
 	const i18n = getStrings();
 
-	console.log(i18n);
-
 	let groupedOptions = [];
 	coreConfig.dataTypeGroups.map((group) => {
 		const options = dataTypes.filter((dataType) => dataType.fieldGroup === group).map((i) => ({

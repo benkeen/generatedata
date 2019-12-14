@@ -61,11 +61,5 @@ module.exports = {
 			template: './src/index.html',
 			excludeChunks: locales
 		})
-	],
-
-	optimization: {
-		splitChunks: {
-			chunks: 'all'
-		}
-	}
+	]
 };

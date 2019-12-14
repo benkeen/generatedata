@@ -70,8 +70,7 @@ const generateLocaleFiles = () => {
 		});
 
 		helpers.createBuildFile(`${locale}.js`, `import { setLocale } from '../src/utils/langUtils';
-setLocale('${locale}', ${JSON.stringify(content, null, '\t')});
-window.gdLocaleFileLoaded = true;`);
+window.gd = { locale: '${locale}', strings: ${JSON.stringify(content, null, '\t')} };`);
 	});
 };
 

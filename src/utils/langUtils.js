@@ -5,8 +5,6 @@ let langStrings = {};
 export const setLocale = (locale, localeStrings) => {
 	currentLocale = locale;
 	langStrings[locale] = localeStrings;
-
-	console.log('set!!!!!', locale, localeStrings);
 };
 
-export const getStrings = () => langStrings[currentLocale];
+export const getStrings = (locale) => langStrings[locale ? locale : currentLocale];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Header from '../header/Header.component';
+import Header from '../header/Header.container';
 import Footer from '../footer/Footer.component';
 import styles from './Page.scss';
 

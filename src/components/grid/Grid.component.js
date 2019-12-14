@@ -4,7 +4,7 @@ import styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes } from '../../utils/dataTypes';
 
-const Grid = ({ rows, onRemove, onAddRows }) => {
+const Grid = ({ rows, onRemove, onAddRows, i18n }) => {
 	const [numRows, setNumRows] = useState(1);
 
 	// memoize
@@ -42,10 +42,10 @@ const Grid = ({ rows, onRemove, onAddRows }) => {
 			</div>
 			<div className={styles.addRows}>
 				<form onSubmit={(e) => e.preventDefault()}>
-					<span>Add</span>
+					<span>{i18n.add}</span>
 					<input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
 						min={1} max={1000} step={1} />
-					<button onClick={() => onAddRows(numRows)}>Row(s)</button>
+					<button onClick={() => onAddRows(numRows)}>{i18n.row_sp}</button>
 				</form>
 			</div>
 		</div>
