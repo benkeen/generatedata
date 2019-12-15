@@ -14,6 +14,10 @@ const createBuildFile = (filename, content) => {
 	fs.writeFileSync(file, content);
 };
 
+// again....
+// generate file just containing import { } for files.
+// I guess webpack then bundles them? May as well...
+
 const getDataTypes = () => {
 	const baseFolder = path.join(__dirname, '..', '/src/plugins/dataTypes');
 	const folders = fs.readdirSync(baseFolder);
@@ -24,18 +28,29 @@ const getDataTypes = () => {
 		if (!fs.existsSync(configFile)) {
 			return;
 		}
+		let row;
 		try {
 			const file = require(configFile).default;
-			dataTypeInfo.push({
+			row = {
 				name: file.name,
 				folder,
 				folderPath: `${baseFolder}/${folder}`,
 				fieldGroup: file.fieldGroup,
 				fieldGroupOrder: file.fieldGroupOrder
-			});
+			};
 		} catch (e) {
 			console.log('Error parsing ', configFile);
 		}
+
+		const uiFile = `${baseFolder}/${folder}/${folder}.ui.js`;
+		if (!fs.existsSync(uiFile)) {
+			dataTypeInfo.push(row);
+			return;
+		}
+
+		const blah = require(uiFile);
+		console.log(blah);
+
 	});
 	return dataTypeInfo;
 };

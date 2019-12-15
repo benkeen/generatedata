@@ -4,35 +4,57 @@ import styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes } from '../../utils/dataTypes';
 
+const getComponentsWithFallback = (component) => ({
+	Example: component.example ? component.example : null,
+	Options: component.options ? component.options : null,
+	Help: component.help ? component.help : null
+});
+
 const Grid = ({ rows, onRemove, onAddRows, i18n }) => {
 	const [numRows, setNumRows] = useState(1);
+	const [visible, showHelpDialog] = useState(false);
 
-	// memoize
+	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 
 	const getRows = (rows) => {
-		return rows.map((row, index) => (
-			<div className={styles.gridRow} key={row.id}>
-				<div className={styles.orderCol}>{index+1}</div>
-				<div className={styles.titleCol}>
-					<input type="text" />
+		return rows.map((row, index) => {
+			const { Example, Options, Help } = getComponentsWithFallback(row);
+
+			return (
+				<div className={styles.gridRow} key={row.id}>
+					<div className={styles.orderCol}>{index + 1}</div>
+					<div className={styles.titleCol}>
+						<input type="text"/>
+					</div>
+					<div className={styles.dataTypeCol}>
+						<Dropdown
+							options={dataTypes}
+						/>
+					</div>
+					<div className={styles.examplesCol}>
+						<Example
+							id={row.id}
+							options={row.options}
+							example={row.example}
+						/>
+					</div>
+					<div className={styles.optionsCol}>
+						<Options
+							id={row.id}
+							options={row.options}
+							example={row.example}
+						/>
+					</div>
+					<div className={styles.helpCol}>
+
+					</div>
+					<div className={styles.deleteCol} onClick={() => onRemove(row.id)}>
+						<HighlightOffIcon />
+					</div>
 				</div>
-				<div className={styles.dataTypeCol}>
-					<Dropdown
-						options={dataTypes}
-					/>
-				</div>
-				<div className={styles.examplesCol}>
-				</div>
-				<div className={styles.optionsCol}>
-				</div>
-				<div className={styles.helpCol}>
-				</div>
-				<div className={styles.deleteCol} onClick={() => onRemove(row.id)}>
-					<HighlightOffIcon />
-				</div>
-			</div>
-		));
+			);
+		});
 	};
 
 	return (

@@ -60,6 +60,21 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './src/index.html',
 			excludeChunks: locales
-		})
-	]
+		}),
+	],
+
+	optimization: {
+		chunkIds: 'named',
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					test: /node_modules/,
+					chunks: 'initial',
+					name: 'vendor',
+					priority: 10,
+					enforce: true
+				}
+			}
+		}
+	}
 };

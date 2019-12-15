@@ -21,6 +21,7 @@ const reducer = (state = {
 			for (let i=0; i<action.payload.numRows; i++) {
 				const rowId = generate();
 				newRows[rowId] = {
+					id: rowId,
 					dataType: null,
 					options: null,
 					example: null
