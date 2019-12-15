@@ -1,19 +1,20 @@
 import * as langUtils from '../../utils/langUtils';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
-export const setLocaleFileLoaded = (locale, i18n) => ({
+export const setLocaleFileLoaded = (locale) => ({
 	type: LOCALE_FILE_LOADED,
 	payload: {
-		locale,
-		i18n
+		locale
 	}
 });
 
 export const SELECT_LOCALE = 'SELECT_LOCALE';
 export const selectLocale = (locale) => (dispatch) => {
+	dispatch({ type: 'WTF', payload: { locale }});
+
 	loadLocaleFile(`./${locale}.js`, (locale, strings) => {
 		langUtils.setLocale(locale, strings);
-		dispatch(setLocaleFileLoaded(locale, strings));
+		dispatch(setLocaleFileLoaded(locale));
 	});
 };
 

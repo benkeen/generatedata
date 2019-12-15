@@ -15,6 +15,7 @@ const reducer = (state = {
 	countries: []
 }, action) => {
 	switch (action.type) {
+
 		case actions.ADD_ROWS:
 			const newRows = {};
 			const newRowIDs = [];
@@ -40,13 +41,10 @@ const reducer = (state = {
 			};
 
 		case actions.REMOVE_ROW:
-			// const { [action.payload.id], ...remainderRows } = state.rows;
-
 			return {
 				...state,
 				sortedRows: state.sortedRows.filter((i) => i !== action.payload.id)
 			};
-			break;
 
 		default:
 			return state;

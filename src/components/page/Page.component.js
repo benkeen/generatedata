@@ -14,13 +14,19 @@ const useStyles = makeStyles(theme => ({
 const Page = ({ localeFileLoaded, children }) => {
 	const classes = useStyles();
 
-	return (
-		<div className={styles.page}>
+	const content = localeFileLoaded ? (
+		<>
 			<Header />
 			<div className={styles.content}>
-				{localeFileLoaded ? children : <CircularProgress className={classes.progress} />}
+				{children}
 			</div>
 			<Footer />
+		</>
+	) : <CircularProgress className={classes.progress} />;
+
+	return (
+		<div className={styles.page}>
+			{content}
 		</div>
 	);
 };

@@ -90,23 +90,10 @@
 /*!*********************!*\
   !*** ./build/ta.js ***!
   \*********************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_utils_langUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/utils/langUtils */ \"./src/utils/langUtils.js\");\n\nwindow.gd = {\n  locale: 'ta',\n  strings: {\n    \"core\": {\n      \"country\": \"நாடு\",\n      \"country_specific_data\": \"நாட்டை குறிக்கும் புள்ளிவிவரங்கள்\",\n      \"credit_card_data\": \"Credit Card Data\",\n      \"no\": \"இல்லை\",\n      \"refresh_page\": \"பக்கம் புதுப்பிப்பு\",\n      \"select_country\": \"நாட்டினை தேர்வுசெய்\",\n      \"yes\": \"ஆம்\"\n    },\n    \"dataTypes\": {}\n  }\n};\n\n//# sourceURL=webpack:///./build/ta.js?");
-
-/***/ }),
-
-/***/ "./src/utils/langUtils.js":
-/*!********************************!*\
-  !*** ./src/utils/langUtils.js ***!
-  \********************************/
-/*! exports provided: setLocale, getStrings */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setLocale\", function() { return setLocale; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getStrings\", function() { return getStrings; });\n// standalone location for the selected locale. Keeping this out of redux lets us just import it wherever\nvar currentLocale = null;\nvar langStrings = {};\nvar setLocale = (locale, localeStrings) => {\n  currentLocale = locale;\n  langStrings[locale] = localeStrings;\n};\nvar getStrings = locale => langStrings[locale ? locale : currentLocale];\n\n//# sourceURL=webpack:///./src/utils/langUtils.js?");
+eval("window.gd = {\n  locale: 'ta',\n  strings: {\n    \"core\": {\n      \"country\": \"நாடு\",\n      \"country_specific_data\": \"நாட்டை குறிக்கும் புள்ளிவிவரங்கள்\",\n      \"credit_card_data\": \"Credit Card Data\",\n      \"no\": \"இல்லை\",\n      \"refresh_page\": \"பக்கம் புதுப்பிப்பு\",\n      \"select_country\": \"நாட்டினை தேர்வுசெய்\",\n      \"yes\": \"ஆம்\"\n    },\n    \"dataTypes\": {}\n  }\n};\n\n//# sourceURL=webpack:///./build/ta.js?");
 
 /***/ })
 

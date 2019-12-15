@@ -37,6 +37,7 @@
     "react-router-dom": "^5.1.2",
     "react-select": "^3.0.8",
     "redux": "^4.0.4",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {

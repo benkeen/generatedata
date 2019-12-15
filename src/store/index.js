@@ -1,8 +1,16 @@
 import thunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist';
 import reducerRegistry from './reducerRegistry';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import storage from 'redux-persist/lib/storage';
 
 const initialState = {};
+
+const persistConfig = {
+	key: 'root',
+	storage: storage,
+	blacklist: ['init']
+};
 
 // preserve initial state for not-yet-loaded reducers
 const combine = (reducers) => {
@@ -15,7 +23,7 @@ const combine = (reducers) => {
 	return combineReducers(reducers);
 };
 
-
+let persistor;
 function initStore (initialState) {
 	let middleware = [thunk];
 	let enhancers = [];
@@ -29,8 +37,10 @@ function initStore (initialState) {
 	}
 
 	const topLevelReducer = combine(reducerRegistry.getReducers());
+	const persistedReducer = persistReducer(persistConfig, topLevelReducer);
+
 	const store = createStore(
-		topLevelReducer,
+		persistedReducer,
 		initialState,
 		composeEnhancers(
 			applyMiddleware(...middleware),
@@ -38,14 +48,18 @@ function initStore (initialState) {
 		)
 	);
 	store.asyncReducers = {};
+	persistor = persistStore(store);
 
 	return store;
 }
 
 const store = initStore({});
 
-// allows dynamically changing the redux store
-reducerRegistry.setChangeListener((reducers) => store.replaceReducer(combine(reducers)));
+// allows dynamically changing the redux store as content is loaded async
+reducerRegistry.setChangeListener((reducers) => {
+	store.replaceReducer(persistReducer(persistConfig, combine(reducers)));
+});
 
 export default store;
 
+export { persistor };

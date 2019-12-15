@@ -63,14 +63,12 @@ const generateLocaleFiles = () => {
 
 		dataTypeFolders.forEach((dataType) => {
 			if (!dataTypes[dataType][locale]) {
-				// console.log('missing: ', dataType, locale);
 				return;
 			}
 			content.dataTypes[dataType] = dataTypes[dataType][locale];
 		});
 
-		helpers.createBuildFile(`${locale}.js`, `import { setLocale } from '../src/utils/langUtils';
-window.gd = { locale: '${locale}', strings: ${JSON.stringify(content, null, '\t')} };`);
+		helpers.createBuildFile(`${locale}.js`, `window.gd = { locale: '${locale}', strings: ${JSON.stringify(content, null, '\t')} };`);
 	});
 };
 
