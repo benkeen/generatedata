@@ -1,7 +1,6 @@
 import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
-
-let rowID = 1;
+import { generate } from 'shortid';
 
 /**
  * This houses the content of the generator. The actual content of each row is dependent based on the
@@ -20,14 +19,15 @@ const reducer = (state = {
 			const newRows = {};
 			const newRowIDs = [];
 			for (let i=0; i<action.payload.numRows; i++) {
-				newRows[rowID] = {
+				const rowId = generate();
+				newRows[rowId] = {
 					dataType: null,
 					options: null,
 					example: null
 				};
-				newRowIDs.push(rowID);
-				rowID++;
+				newRowIDs.push(rowId);
 			}
+
 			return {
 				...state,
 				rows: {

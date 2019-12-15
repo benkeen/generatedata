@@ -16,7 +16,7 @@ export const init = () => {
 
 	store.dispatch(initActions.selectLocale(locale));
 
-	// if there are no records, load 'em!
+	// if there are no rows, load a few
 	if (numRows === 0) {
 		store.dispatch(generatorActions.addRows(5));
 	}
