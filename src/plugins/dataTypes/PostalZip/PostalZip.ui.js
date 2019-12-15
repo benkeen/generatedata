@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-
 export const Options = () => {
 	// $countryPlugins = Core::$countryPlugins;
 	// $html = "";

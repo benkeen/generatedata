@@ -1,7 +1,9 @@
+import React from 'react';
+
 export const state = {
 	example: '1,1',
-	incrementStart: '1',
-	incrementValue: '1',
+	incrementStart: 1,
+	incrementValue: 1,
 	incrementPlaceholder: ''
 };
 
@@ -32,15 +34,15 @@ export const Example = ({ data, onUpdate }) => {
 	)
 };
 
-export const Options = ({ i18n }) => {
+export const Options = ({ i18n, data }) => {
 	return (
 		<>
 			{i18n.start_at_c}
-			<input type="text" style="width: 40px" value={data.incrementStart} />
+			<input type="text" style={{ width: 40 }} value={data.incrementStart} />
 			{i18n.increment_c}
-			<input type="text" style="width: 40px" value={data.incrementValue}  />
+			<input type="text" style={{ width: 40 }} value={data.incrementValue}  />
 			{i18n.placeholder_str}
-			<input type="text" style="width: 140px" value={data.incrementPlaceholder} />
+			<input type="text" style={{ width: 140 }} value={data.incrementPlaceholder} />
 		</>
 	)
 };
@@ -60,7 +62,6 @@ export const Help = ({ i18n }) => (
 	</>
 );
 
-//
 // var _validate = function(rows) {
 // 	var visibleProblemRows = [];
 // 	var problemFields      = [];

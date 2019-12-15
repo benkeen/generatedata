@@ -1,3 +1,6 @@
+import React from 'react';
+
+
 export const Options = ({ i18n }) => (
 	<>
 		<div>

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const state = {
 	fromDate: '', // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
 	toDate: '', // $lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));

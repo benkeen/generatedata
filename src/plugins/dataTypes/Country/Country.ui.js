@@ -1,4 +1,4 @@
-// provider helper here to supply an ID
+import React from 'react';
 
 export const state = {
 	allCountries: true
