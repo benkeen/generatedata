@@ -47,6 +47,15 @@ const reducer = (state = {
 				sortedRows: state.sortedRows.filter((i) => i !== action.payload.id)
 			};
 
+		case actions.CHANGE_DATA_TYPE:
+			return {
+				...rows,
+				[action.payload.id]: {
+					...rows[action.payload.id],
+					dataType: action.payload.value
+				}
+			};
+
 		default:
 			return state;
 	}

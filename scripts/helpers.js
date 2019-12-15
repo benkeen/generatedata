@@ -14,9 +14,6 @@ const createBuildFile = (filename, content) => {
 	fs.writeFileSync(file, content);
 };
 
-// again....
-// generate file just containing import { } for files.
-// I guess webpack then bundles them? May as well...
 
 const getDataTypes = () => {
 	const baseFolder = path.join(__dirname, '..', '/src/plugins/dataTypes');
@@ -43,10 +40,6 @@ const getDataTypes = () => {
 		}
 
 		dataTypeInfo.push(row);
-
-		// const blah = require(uiFile);
-		// console.log(blah);
-
 	});
 	return dataTypeInfo;
 };

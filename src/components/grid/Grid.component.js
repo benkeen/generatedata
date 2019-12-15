@@ -4,13 +4,13 @@ import styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes } from '../../utils/dataTypes';
 
-const getComponentsWithFallback = (component) => ({
-	Example: component.example ? component.example : () => null,
-	Options: component.options ? component.options : () => null,
-	Help: component.help ? component.help : () => null
+const getComponentsWithFallback = (hasDataType, component) => ({
+	Example: hasDataType && component.Example ? component.Example : () => null,
+	Options: hasDataType && component.Options ? component.Options : () => null,
+	Help: hasDataType && component.Help ? component.Help : () => null
 });
 
-const Grid = ({ rows, onRemove, onAddRows, i18n }) => {
+const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n }) => {
 	const [numRows, setNumRows] = useState(1);
 	const [visible, showHelpDialog] = useState(false);
 
@@ -19,18 +19,20 @@ const Grid = ({ rows, onRemove, onAddRows, i18n }) => {
 
 	const getRows = (rows) => {
 		return rows.map((row, index) => {
+			const { Example, Options, Help } = getComponentsWithFallback(row.dataType !== null, row);
 
-			console.log('->', row);
-			const { Example, Options, Help } = getComponentsWithFallback(row);
-
+			// getReactSelectValue(i.value, dataTypes)
+			
 			return (
 				<div className={styles.gridRow} key={row.id}>
 					<div className={styles.orderCol}>{index + 1}</div>
 					<div className={styles.titleCol}>
-						<input type="text"/>
+						<input type="text" />
 					</div>
 					<div className={styles.dataTypeCol}>
 						<Dropdown
+							value={}
+							onChange={(i) => onChangeDataType(i.id, i.value)}
 							options={dataTypes}
 						/>
 					</div>
