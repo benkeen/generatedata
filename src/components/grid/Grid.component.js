@@ -5,9 +5,9 @@ import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes } from '../../utils/dataTypes';
 
 const getComponentsWithFallback = (component) => ({
-	Example: component.example ? component.example : null,
-	Options: component.options ? component.options : null,
-	Help: component.help ? component.help : null
+	Example: component.example ? component.example : () => null,
+	Options: component.options ? component.options : () => null,
+	Help: component.help ? component.help : () => null
 });
 
 const Grid = ({ rows, onRemove, onAddRows, i18n }) => {
@@ -19,6 +19,8 @@ const Grid = ({ rows, onRemove, onAddRows, i18n }) => {
 
 	const getRows = (rows) => {
 		return rows.map((row, index) => {
+
+			console.log('->', row);
 			const { Example, Options, Help } = getComponentsWithFallback(row);
 
 			return (

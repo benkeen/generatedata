@@ -42,14 +42,10 @@ const getDataTypes = () => {
 			console.log('Error parsing ', configFile);
 		}
 
-		const uiFile = `${baseFolder}/${folder}/${folder}.ui.js`;
-		if (!fs.existsSync(uiFile)) {
-			dataTypeInfo.push(row);
-			return;
-		}
+		dataTypeInfo.push(row);
 
-		const blah = require(uiFile);
-		console.log(blah);
+		// const blah = require(uiFile);
+		// console.log(blah);
 
 	});
 	return dataTypeInfo;

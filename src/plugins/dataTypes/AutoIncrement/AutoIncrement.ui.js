@@ -54,33 +54,33 @@ export const Help = ({ i18n }) => (
 			{i18n.help_para2}
 		</p>
 		<ul>
-			<li><b>ROW-{\$INCR}</b> -> ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
-			<li><b>{\$INCR}F</b> -> 1F, 2F, 3F, 4F, ...</li>
+			<li><b>ROW-{$INCR}</b> -> ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
+			<li><b>{$INCR}F</b> -> 1F, 2F, 3F, 4F, ...</li>
 		</ul>
 	</>
 );
 
-
-var _validate = function(rows) {
-	var visibleProblemRows = [];
-	var problemFields      = [];
-	for (var i=0; i<rows.length; i++) {
-		var autoIncrementStart = $.trim($("#dtAutoIncrementStart_" + rows[i]).val());
-		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-		if (autoIncrementStart === "") {
-			problemFields.push($("#dtAutoIncrementStart_" + rows[i]));
-		}
-		var autoIncrementEnd = $.trim($("#dtAutoIncrementValue_" + rows[i]).val());
-		if (autoIncrementEnd === "") {
-			problemFields.push($("#dtAutoIncrementValue_" + rows[i]));
-		}
-		if (autoIncrementStart === "" || autoIncrementEnd === "") {
-			visibleProblemRows.push(visibleRowNum);
-		}
-	}
-	var errors = [];
-	if (visibleProblemRows.length) {
-		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-	}
-	return errors;
-};
+//
+// var _validate = function(rows) {
+// 	var visibleProblemRows = [];
+// 	var problemFields      = [];
+// 	for (var i=0; i<rows.length; i++) {
+// 		var autoIncrementStart = $.trim($("#dtAutoIncrementStart_" + rows[i]).val());
+// 		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+// 		if (autoIncrementStart === "") {
+// 			problemFields.push($("#dtAutoIncrementStart_" + rows[i]));
+// 		}
+// 		var autoIncrementEnd = $.trim($("#dtAutoIncrementValue_" + rows[i]).val());
+// 		if (autoIncrementEnd === "") {
+// 			problemFields.push($("#dtAutoIncrementValue_" + rows[i]));
+// 		}
+// 		if (autoIncrementStart === "" || autoIncrementEnd === "") {
+// 			visibleProblemRows.push(visibleRowNum);
+// 		}
+// 	}
+// 	var errors = [];
+// 	if (visibleProblemRows.length) {
+// 		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+// 	}
+// 	return errors;
+// };
