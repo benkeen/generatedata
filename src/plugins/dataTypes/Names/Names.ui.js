@@ -6,7 +6,7 @@ export const state = {
 };
 
 
-export const Example = ({ i18n, coreI18n }) => (
+export const Example = ({ i18n, data, coreI18n }) => (
 	<select defaultValue={data.example}>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="MaleName">{i18n.example_MaleName}</option>

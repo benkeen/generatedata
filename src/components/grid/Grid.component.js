@@ -2,15 +2,10 @@ import React, { useState } from 'react';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
-import { getSortedGroupedDataTypes } from '../../utils/dataTypes';
+import { getSortedGroupedDataTypes, getDataTypeComponentsWithFallback } from '../../utils/dataTypeUtils';
 
-const getComponentsWithFallback = (hasDataType, component) => ({
-	Example: hasDataType && component.Example ? component.Example : () => null,
-	Options: hasDataType && component.Options ? component.Options : () => null,
-	Help: hasDataType && component.Help ? component.Help : () => null
-});
 
-const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n }) => {
+const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n, dataTypeI18n }) => {
 	const [numRows, setNumRows] = useState(1);
 	const [visible, showHelpDialog] = useState(false);
 
@@ -19,10 +14,8 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n }) => {
 
 	const getRows = (rows) => {
 		return rows.map((row, index) => {
-			const { Example, Options, Help } = getComponentsWithFallback(row.dataType !== null, row);
+			const { Example, Options, Help } = getDataTypeComponentsWithFallback(row.dataType);
 
-			// getReactSelectValue(i.value, dataTypes)
-			
 			return (
 				<div className={styles.gridRow} key={row.id}>
 					<div className={styles.orderCol}>{index + 1}</div>
@@ -31,23 +24,26 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n }) => {
 					</div>
 					<div className={styles.dataTypeCol}>
 						<Dropdown
-							value={}
-							onChange={(i) => onChangeDataType(i.id, i.value)}
+							isGrouped={true}
+							value={row.dataType}
+							onChange={(i) => onChangeDataType(row.id, i.value)}
 							options={dataTypes}
 						/>
 					</div>
 					<div className={styles.examplesCol}>
 						<Example
+							coreI18n={i18n}
+							i18n={dataTypeI18n[row.dataType]}
 							id={row.id}
-							options={row.options}
-							example={row.example}
+							data={row.data}
 						/>
 					</div>
 					<div className={styles.optionsCol}>
 						<Options
+							coreI18n={i18n}
+							i18n={dataTypeI18n[row.dataType]}
 							id={row.id}
-							options={row.options}
-							example={row.example}
+							data={row.data}
 						/>
 					</div>
 					<div className={styles.helpCol}>

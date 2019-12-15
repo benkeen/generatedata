@@ -11,3 +11,11 @@ export const getCoreI18n = createSelector(
 );
 
 export const localeFileLoaded = (state) => state.init.localeFileLoaded;
+
+export const getDataTypeI18n = createSelector(
+	getLocale,
+	(locale) => {
+		const strings = langUtils.getStrings(locale);
+		return strings ? strings.dataTypes : null;
+	}
+);

@@ -10,8 +10,6 @@ export const setLocaleFileLoaded = (locale) => ({
 
 export const SELECT_LOCALE = 'SELECT_LOCALE';
 export const selectLocale = (locale) => (dispatch) => {
-	dispatch({ type: 'WTF', payload: { locale }});
-
 	loadLocaleFile(`./${locale}.js`, (locale, strings) => {
 		langUtils.setLocale(locale, strings);
 		dispatch(setLocaleFileLoaded(locale));

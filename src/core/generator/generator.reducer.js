@@ -1,6 +1,7 @@
 import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
 import { generate } from 'shortid';
+import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
 
 /**
  * This houses the content of the generator. The actual content of each row is dependent based on the
@@ -23,8 +24,7 @@ const reducer = (state = {
 				newRows[rowId] = {
 					id: rowId,
 					dataType: null,
-					options: null,
-					example: null
+					data: null
 				};
 				newRowIDs.push(rowId);
 			}
@@ -49,11 +49,15 @@ const reducer = (state = {
 
 		case actions.CHANGE_DATA_TYPE:
 			return {
-				...rows,
-				[action.payload.id]: {
-					...rows[action.payload.id],
-					dataType: action.payload.value
-				}
+				...state,
+				rows: {
+					...state.rows,
+					[action.payload.id]: {
+						...state.rows[action.payload.id],
+						dataType: action.payload.value,
+						data: getDataTypeDefaultState(action.payload.value)
+					}
+				},
 			};
 
 		default:

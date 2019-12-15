@@ -6,6 +6,7 @@ import Grid from './Grid.component';
 
 const mapStateToProps = (state) => ({
 	i18n: initSelectors.getCoreI18n(state),
+	dataTypeI18n: initSelectors.getDataTypeI18n(state),
 	rows: selectors.getSortedRowsArray(state)
 });
 

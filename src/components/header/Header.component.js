@@ -24,7 +24,6 @@ const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }) => {
 		{ value: 'nl', label: 'Nederlands' },
 		{ value: 'zh', label: '中文' }
 	];
-	const selected = options.find((row) => row.value === locale);
 
 	return (
 		<header className={styles.header}>
@@ -38,7 +37,7 @@ const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }) => {
 					<Dropdown
 						className={styles.selectLocale}
 						onChange={(item) => onChangeLocale(item.value)}
-						value={selected}
+						value={locale}
 						options={options}
 					/>
 				</nav>
