@@ -23,31 +23,30 @@ export const Help = ({ i18n }) => (
 	</>
 );
 
-
-var _validate = function(rows) {
-	var visibleProblemRows = [];
-	var problemFields      = [];
-	var isInt = /^\d+$/;
-	for (var i=0; i<rows.length; i++) {
-		var autoIncRowNum = $.trim($("#dtTreeAutoIncrementRowNum_" + rows[i]).val());
-		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-		if (autoIncRowNum === "" || !isInt.test(autoIncRowNum)) {
-			visibleProblemRows.push(visibleRowNum);
-			problemFields.push($("#dtTreeAutoIncrementRowNum_" + rows[i]));
-		}
-		var maxSiblings = $.trim($("#dtTreeMaxSiblings_" + rows[i]).val());
-		if (maxSiblings === "" || !isInt.test(maxSiblings)) {
-			if ($.inArray(visibleRowNum, visibleProblemRows) == -1) {
-				visibleProblemRows.push(visibleRowNum);
-			}
-			problemFields.push($("#dtTreeMaxSiblings_" + rows[i]));
-		}
-	}
-
-	var errors = [];
-	if (visibleProblemRows.length) {
-		errors.push({ els: problemFields, error: LANG.invalid_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-	}
-	return errors;
-};
-
+// var _validate = function(rows) {
+// 	var visibleProblemRows = [];
+// 	var problemFields      = [];
+// 	var isInt = /^\d+$/;
+// 	for (var i=0; i<rows.length; i++) {
+// 		var autoIncRowNum = $.trim($("#dtTreeAutoIncrementRowNum_" + rows[i]).val());
+// 		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+// 		if (autoIncRowNum === "" || !isInt.test(autoIncRowNum)) {
+// 			visibleProblemRows.push(visibleRowNum);
+// 			problemFields.push($("#dtTreeAutoIncrementRowNum_" + rows[i]));
+// 		}
+// 		var maxSiblings = $.trim($("#dtTreeMaxSiblings_" + rows[i]).val());
+// 		if (maxSiblings === "" || !isInt.test(maxSiblings)) {
+// 			if ($.inArray(visibleRowNum, visibleProblemRows) == -1) {
+// 				visibleProblemRows.push(visibleRowNum);
+// 			}
+// 			problemFields.push($("#dtTreeMaxSiblings_" + rows[i]));
+// 		}
+// 	}
+//
+// 	var errors = [];
+// 	if (visibleProblemRows.length) {
+// 		errors.push({ els: problemFields, error: LANG.invalid_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+// 	}
+// 	return errors;
+// };
+//
