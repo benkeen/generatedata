@@ -48,7 +48,7 @@ const reducer = (state = {
 				sortedRows: state.sortedRows.filter((i) => i !== action.payload.id)
 			};
 
-		case actions.CHANGE_DATA_TYPE:
+		case actions.SELECT_DATA_TYPE:
 			return {
 				...state,
 				rows: {
@@ -60,6 +60,10 @@ const reducer = (state = {
 					}
 				},
 			};
+
+		case actions.CONFIGURE_DATA_TYPE: {
+			return state;
+		}
 
 		default:
 			return state;

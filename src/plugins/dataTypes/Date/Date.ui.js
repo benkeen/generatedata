@@ -37,7 +37,7 @@ export const Options = ({ data, i18n }) => {
 			{i18n.from} <input type="text" size="10" value={data.fromDate} readOnly="readonly"/>
 			{i18n.to} <input type="text" size="10" value={data.toDate} readOnly="readonly"/>
 			<div>
-				{i18n.format_code}&nbsp;<input type="text" value={i18n.option} style="width: 160px"/>
+				{i18n.format_code}&nbsp;<input type="text" value={i18n.option} style={{ width: 160 }} />
 			</div>
 		</>
 	);

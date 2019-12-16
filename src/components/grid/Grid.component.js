@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import HelpIcon from '@material-ui/icons/Help';
 import styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeComponentsWithFallback } from '../../utils/dataTypeUtils';
+import HelpDialog from '../helpDialog/HelpDialog.container';
 
 
-const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n, dataTypeI18n }) => {
+const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, i18n, dataTypeI18n }) => {
 	const [numRows, setNumRows] = useState(1);
-	// const [visible, showHelpDialog] = useState(false);
+	const [helpDialogSection, showHelpDialogSection] = useState(null);
 
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
@@ -26,7 +28,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n, dataTypeI18n 
 						<Dropdown
 							isGrouped={true}
 							value={row.dataType}
-							onChange={(i) => onChangeDataType(row.id, i.value)}
+							onChange={(i) => onSelectDataType(row.id, i.value)}
 							options={dataTypes}
 						/>
 					</div>
@@ -36,6 +38,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n, dataTypeI18n 
 							i18n={dataTypeI18n[row.dataType]}
 							id={row.id}
 							data={row.data}
+							onUpdate={}
 						/>
 					</div>
 					<div className={styles.optionsCol}>
@@ -46,8 +49,8 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n, dataTypeI18n 
 							data={row.data}
 						/>
 					</div>
-					<div className={styles.helpCol}>
-
+					<div className={styles.helpCol} onClick={() => showHelpDialogSection(row.dataType)}>
+						{row.dataType ? <HelpIcon/> : null}
 					</div>
 					<div className={styles.deleteCol} onClick={() => onRemove(row.id)}>
 						<HighlightOffIcon />
@@ -70,6 +73,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n, dataTypeI18n 
 					<button onClick={() => onAddRows(numRows)}>{i18n.row_sp}</button>
 				</form>
 			</div>
+			<HelpDialog section={helpDialogSection} />
 		</div>
 	);
 };

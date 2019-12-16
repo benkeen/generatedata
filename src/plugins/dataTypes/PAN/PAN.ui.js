@@ -29,43 +29,55 @@ export const Example = ({ i18n, coreI18n }) => (
 	</select>
 );
 
-export const Options = ({ i18n }) => (
-	<>
-		<span id="dtOptionPAN_cardDigitSection_%ROW%" style="display:inline;">
-			{i18n.length}
-			<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style="width: 60px" readOnly="readonly" />
-		</span>
+export const Options = ({ i18n, data }) => {
+	// const onChange = () => {
+	// 	onUpdate({
+	// 		...data
+	// 	});
+	// };
 
-		<span id="dtOptionPAN_cardSeparator_%ROW%" style="display:inline;">
-			{i18n.separators}
-			<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style="width: 78px" value=" " title={i18n.separator_help} />
-		</span>
+	return (
+		<>
+			<span id="dtOptionPAN_cardDigitSection_%ROW%" style={{ display: 'inline' }}>
+				{i18n.length}
+				<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style={{ width: 60 }}
+				       readOnly />
+			</span>
 
-		<span id="dtOptionPAN_cardFormat_%ROW%">
-			{i18n.ccformats}
-			<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" title={i18n.format_title} style="height: 100px; width: 260px" />
-		</span>
+			<span id="dtOptionPAN_cardSeparator_%ROW%" style={{ display: 'inline' }}>
+				{i18n.separators}
+				<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style={{ width: 78 }} value=" "
+				       title={i18n.separator_help}/>
+			</span>
 
-		<div id="dtOptionPAN_randomCardFormatSection_%ROW%" style="display:none;">
-			{i18n.ccrandom}
-			<select multiple="multiple" name="dtOptionPAN_randomCardFormat_%ROW%[]" id="dtOptionPAN_randomCardFormat_%ROW%" title={i18n.rand_brand_title} style="height: 100px; width: 260px">
-				<option value="mastercard">{i18n.mastercard}</option>
-				<option value="visa">{i18n.visa}</option>
-				<option value="visaElectron">{i18n.visa_electron}</option>
-				<option value="amex">{i18n.americanexpress}</option>
-				<option value="discover">{i18n.discover}</option>
-				<option value="carteBlanche">{i18n.carte_blanche}</option>
-				<option value="dinersClubInt">{i18n.diners_club_international}</option>
-				<option value="dinersClubEnRoute">{i18n.enRoute}</option>
-				<option value="jcb">{i18n.jcb}</option>
-				<option value="maestro">{i18n.maestro}</option>
-				<option value="solo">{i18n.solo}</option>
-				<option value="switch">{i18n.switch}</option>
-				<option value="laser">{i18n.laser}</option>
-			</select>
-		</div>
-	</>
-);
+			<span id="dtOptionPAN_cardFormat_%ROW%">
+				{i18n.ccformats}
+				<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" title={i18n.format_title}
+				          style={{ height: 100, width: 260 }}/>
+			</span>
+
+			<div id="dtOptionPAN_randomCardFormatSection_%ROW%" style={{ display: 'none' }}>
+				{i18n.ccrandom}
+				<select multiple name="dtOptionPAN_randomCardFormat_%ROW%[]" id="dtOptionPAN_randomCardFormat_%ROW%"
+				        title={i18n.rand_brand_title} style={{ height: 100, width: 260 }}>
+					<option value="mastercard">{i18n.mastercard}</option>
+					<option value="visa">{i18n.visa}</option>
+					<option value="visaElectron">{i18n.visa_electron}</option>
+					<option value="amex">{i18n.americanexpress}</option>
+					<option value="discover">{i18n.discover}</option>
+					<option value="carteBlanche">{i18n.carte_blanche}</option>
+					<option value="dinersClubInt">{i18n.diners_club_international}</option>
+					<option value="dinersClubEnRoute">{i18n.enRoute}</option>
+					<option value="jcb">{i18n.jcb}</option>
+					<option value="maestro">{i18n.maestro}</option>
+					<option value="solo">{i18n.solo}</option>
+					<option value="switch">{i18n.switch}</option>
+					<option value="laser">{i18n.laser}</option>
+				</select>
+			</div>
+		</>
+	);
+};
 
 export const Help = ({ i18n }) => (
 	<p>

@@ -6,8 +6,8 @@ export const state = {
 
 export const Options = ({ i18n, data }) => (
 	<>
-		<input type="checkbox" checked={data.allCountries}/>
-		<label>{i18n.limit_results}</label>
+		<input type="checkbox" checked={data.allCountries} onChange={() => onUpdate({ allCountries: !data.allCountries })} />
+			<label>{i18n.limit_results}</label>
 	</>
 );
 

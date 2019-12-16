@@ -30,23 +30,23 @@ export const Help = ({ i18n }) => (
 	</>
 );
 
+export const Options = ({ id, data, onUpdate }) => {
+	const onChange = (e) => {
+		onUpdate({
+			...data,
+			option: e.target.value
+		});
+	};
 
-export const Example = ({ i18n, coreI18n, data }) => (
-	<select defaultValue={data.example}>
-		<option value="">{coreI18n.please_select}</option>
-		<option value="SIRET">{i18n.example_SIRET}</option>
-		<option value="SIREN">{i18n.example_SIREN}</option>
-	</select>
-);
-
-export const Options = ({ id, data }) => (
-	<>
-		<input type="radio" id={`${id}-siret`} value="SIRET" checked={data.option === 'SIRET'} style={{ marginLeft: 4 }}/>
-		<label htmlFor={`${id}-siret`}>SIRET</label>
-		<input type="radio" id={`${id}-siren`} value="SIREN" checked={data.option === 'SIREN'} />
-		<label htmlFor={`${id}-siren`}>SIREN</label>
-	</>
-);
+	return (
+		<>
+			<input type="radio" id={`${id}-siret`} value="SIRET" checked={data.option === 'SIRET'} onChange={onChange} />
+			<label htmlFor={`${id}-siret`}>SIRET</label>
+			<input type="radio" id={`${id}-siren`} value="SIREN" checked={data.option === 'SIREN'} onChange={onChange} />
+			<label htmlFor={`${id}-siren`}>SIREN</label>
+		</>
+	);
+};
 
 
 // var _exampleChange = function (msg) {

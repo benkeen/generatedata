@@ -16,16 +16,28 @@ export const Example = ({ coreI18n, i18n }) => (
 	</select>
 );
 
-export const Options = ({ i18n, id, data }) => (
-	<>
-		<input type="checkbox" id={`${id}-thousandSep`} checked={data.thousandSep} />
-		<label htmlFor={`${id}-thousandSep`}>{i18n.thousands_separator}</label><br/>
-		<input type="checkbox" id={`${id}-upper`} checked={data.upper} />
-		<label htmlFor={`${id}-upper`}>{i18n.digit_uppercase}</label><br/>
-		<input type="checkbox" id={`${id}-remDash`} checked={data.remDash} />
-		<label htmlFor={`${id}-remDash`}>{i18n.remove_dash}</label>
-	</>
-);
+export const Options = ({ i18n, id, data, onUpdate }) => {
+	const onChange = (field, value) => {
+		onUpdate({
+			...data,
+			[field]: value
+		});
+	};
+
+	return (
+		<>
+			<input type="checkbox" id={`${id}-thousandSep`} checked={data.thousandSep}
+				onChange={(e) => onChange('thousandSep', e.target.value)} />
+			<label htmlFor={`${id}-thousandSep`}>{i18n.thousands_separator}</label><br/>
+			<input type="checkbox" id={`${id}-upper`} checked={data.upper}
+				onChange={(e) => onChange('upper', e.target.value)} />
+			<label htmlFor={`${id}-upper`}>{i18n.digit_uppercase}</label><br/>
+			<input type="checkbox" id={`${id}-remDash`} checked={data.remDash}
+				onChange={(e) => onChange('remDash', e.target.value)} />
+			<label htmlFor={`${id}-remDash`}>{i18n.remove_dash}</label>
+		</>
+	);
+};
 
 
 // var _validate = function (rows) {

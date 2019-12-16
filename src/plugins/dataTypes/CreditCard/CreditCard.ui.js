@@ -7,7 +7,7 @@ export const state = {};
 export const Options = ({ i18n }) => {
 
 	return (
-		<select multiple data-placeholder={i18n.allCreditCardText} style='width:100%;'>
+		<select multiple data-placeholder={i18n.allCreditCardText} style={{ width: '100%' }}>
 
 			{/*$creditCardTypes = self::getDistinctCreditCardTypes();*/}
 			{/*foreach ($creditCardTypes as $creditCardType) {*/}
