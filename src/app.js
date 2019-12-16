@@ -8,7 +8,7 @@ import './core/init/init.reducer';
 
 import store, { persistor } from './store';
 import Page from './components/page/Page.container';
-import Grid from './components/grid/Grid.container'
+import Grid from './components/grid/Grid.container';
 import * as core from './core';
 
 const App = () => (

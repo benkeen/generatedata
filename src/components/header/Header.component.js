@@ -43,7 +43,7 @@ const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }) => {
 				</nav>
 			</div>
 		</header>
-	)
+	);
 };
 
 export default Header;

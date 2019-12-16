@@ -15,4 +15,4 @@ const completeConfigFile = {
 	...overrides
 };
 
-helpers.createBuildFile('config.client.js', `export default ${JSON.stringify(completeConfigFile, null, '\t')}`);
+helpers.createBuildFile('config.client.js', `export default ${JSON.stringify(completeConfigFile, null, '\t')};`);

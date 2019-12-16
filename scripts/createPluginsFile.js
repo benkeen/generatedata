@@ -23,7 +23,7 @@ const processDataTypes = () => {
 		fieldGroup: i.fieldGroup,
 		fieldGroupOrder: i.fieldGroupOrder
 	}));
-	helpers.createBuildFile('dataTypes.js', `export default ${JSON.stringify(data, null, '\t')}`);
+	helpers.createBuildFile('dataTypes.js', `export default ${JSON.stringify(data, null, '\t')};`);
 };
 
 processDataTypes();

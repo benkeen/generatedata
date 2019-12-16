@@ -16,7 +16,7 @@ const processDataTypes = () => {
 	});
 
 	let content = rows.join('\n') + `\n\nexport const dataTypes = {\n\t${exportList.join(',\n\t')}\n};`;
-	content += `\n\nexport const dataTypeNames = [\n\t'${exportList.join('\',\n\t\'')}'\n]`;
+	content += `\n\nexport const dataTypeNames = [\n\t'${exportList.join('\',\n\t\'')}'\n];`;
 
 	helpers.createBuildFile('dataTypesListUI.js', content);
 };

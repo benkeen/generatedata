@@ -24,7 +24,7 @@ export const Example = ({ i18n, data, coreI18n }) => (
 );
 
 export const Options = ({ data, onUpdate }) => (
-	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })} />
+	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })}/>
 );
 
 export const Help = ({ i18n }) => (
@@ -35,26 +35,26 @@ export const Help = ({ i18n }) => (
 		</p>
 
 		<table cellPadding="0" cellSpacing="1">
-		<tr>
-			<td width="100"><h4>Name</h4></td>
-			<td>{i18n.type_Name}</td>
-		</tr>
-		<tr>
-			<td><h4>MaleName</h4></td>
-			<td>{i18n.type_MaleName}</td>
-		</tr>
-		<tr>
-			<td><h4>FemaleName</h4></td>
-			<td>{i18n.type_FemaleName}</td>
-		</tr>
-		<tr>
-			<td><h4>Initial</h4></td>
-			<td>{i18n.type_Initial}</td>
-		</tr>
-		<tr>
-			<td><h4>Surname</h4></td>
-			<td>{i18n.type_Surname}</td>
-		</tr>
+			<tr>
+				<td width="100"><h4>Name</h4></td>
+				<td>{i18n.type_Name}</td>
+			</tr>
+			<tr>
+				<td><h4>MaleName</h4></td>
+				<td>{i18n.type_MaleName}</td>
+			</tr>
+			<tr>
+				<td><h4>FemaleName</h4></td>
+				<td>{i18n.type_FemaleName}</td>
+			</tr>
+			<tr>
+				<td><h4>Initial</h4></td>
+				<td>{i18n.type_Initial}</td>
+			</tr>
+			<tr>
+				<td><h4>Surname</h4></td>
+				<td>{i18n.type_Surname}</td>
+			</tr>
 		</table>
 	</>
 );
@@ -67,19 +67,22 @@ export const Help = ({ i18n }) => (
  * user has re-sorted or deleted some rows. So to get the visible row number for a row, call
  * gen._getVisibleRowOrderByRowNum(row)
  */
-var _validate = function(rows) {
-	var visibleProblemRows = [];
-	var problemFields      = [];
-	for (var i=0; i<rows.length; i++) {
-		if ($("#dtOption_" + rows[i]).val() === "") {
-			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-			visibleProblemRows.push(visibleRowNum);
-			problemFields.push($("#dtOption_" + rows[i]));
-		}
-	}
-	var errors = [];
-	if (visibleProblemRows.length) {
-		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-	}
-	return errors;
-};
+// var _validate = function (rows) {
+// 	var visibleProblemRows = [];
+// 	var problemFields = [];
+// 	for (var i = 0; i < rows.length; i++) {
+// 		if ($("#dtOption_" + rows[i]).val() === "") {
+// 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+// 			visibleProblemRows.push(visibleRowNum);
+// 			problemFields.push($("#dtOption_" + rows[i]));
+// 		}
+// 	}
+// 	var errors = [];
+// 	if (visibleProblemRows.length) {
+// 		errors.push({
+// 			els: problemFields,
+// 			error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"
+// 		});
+// 	}
+// 	return errors;
+// };

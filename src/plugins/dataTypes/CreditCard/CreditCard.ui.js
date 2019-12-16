@@ -1,20 +1,18 @@
 import React from 'react';
 
 
-export const state = {
-
-};
+export const state = {};
 
 
-export const Options = ({ i18n, data, onUpdate }) => {
+export const Options = ({ i18n }) => {
 
 	return (
-		<select multiple='' data-placeholder={i18n.allCreditCardText} style='width:100%;'>
+		<select multiple data-placeholder={i18n.allCreditCardText} style='width:100%;'>
 
-{/*$creditCardTypes = self::getDistinctCreditCardTypes();*/}
-	{/*foreach ($creditCardTypes as $creditCardType) {*/}
-		{/*$html .= "<option value='" . $creditCardType["type_code"] . "'>" . $creditCardType["type"] . "</option>";*/}
-	{/*}*/}
+			{/*$creditCardTypes = self::getDistinctCreditCardTypes();*/}
+			{/*foreach ($creditCardTypes as $creditCardType) {*/}
+			{/*$html .= "<option value='" . $creditCardType["type_code"] . "'>" . $creditCardType["type"] . "</option>";*/}
+			{/*}*/}
 
 		</select>
 	);

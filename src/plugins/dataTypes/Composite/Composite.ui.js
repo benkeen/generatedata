@@ -25,14 +25,14 @@ export const Help = ({ i18n }) => (
 			<li>{i18n.Composite_help_4}</li>
 			<li>{i18n.Composite_help_5}
 				<ul>
-					<li><b>{$ROW2-$ROW1}</b> - {i18n.Composite_subtraction}</li>
-					<li><b>{$ROW2*$ROW1}</b> - {i18n.Composite_multiplication}</li>
-					<li><b>{$ROW2/$ROW1}</b> - {i18n.Composite_division}</li>
+					<li><b>ROW2-ROW</b> - {i18n.Composite_subtraction}</li>
+					<li><b>ROW2*ROW</b> - {i18n.Composite_multiplication}</li>
+					<li><b>ROW2/ROW</b> - {i18n.Composite_division}</li>
 				</ul>
 			</li>
 			<li>
 				{i18n.Composite_help_6}
-				<b>if $ROW1 == 5 i18n.Composite_na else $ROW1</b>
+				<b>if ROW1 == 5 i18n.Composite_na else ROW1</b>
 			</li>
 		</ul>
 		<p>
@@ -42,6 +42,6 @@ export const Help = ({ i18n }) => (
 );
 
 
-var _validate = function() {
-	return [];
-};
+// var _validate = function() {
+// 	return [];
+// };

@@ -16,10 +16,10 @@ const reducer = (state = {
 }, action) => {
 	switch (action.type) {
 
-		case actions.ADD_ROWS:
+		case actions.ADD_ROWS: {
 			const newRows = {};
 			const newRowIDs = [];
-			for (let i=0; i<action.payload.numRows; i++) {
+			for (let i = 0; i < action.payload.numRows; i++) {
 				const rowId = generate();
 				newRows[rowId] = {
 					id: rowId,
@@ -40,6 +40,7 @@ const reducer = (state = {
 					...newRowIDs
 				]
 			};
+		}
 
 		case actions.REMOVE_ROW:
 			return {

@@ -7,14 +7,14 @@ import { getSortedGroupedDataTypes, getDataTypeComponentsWithFallback } from '..
 
 const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n, dataTypeI18n }) => {
 	const [numRows, setNumRows] = useState(1);
-	const [visible, showHelpDialog] = useState(false);
+	// const [visible, showHelpDialog] = useState(false);
 
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 
 	const getRows = (rows) => {
 		return rows.map((row, index) => {
-			const { Example, Options, Help } = getDataTypeComponentsWithFallback(row.dataType);
+			const { Example, Options } = getDataTypeComponentsWithFallback(row.dataType);
 
 			return (
 				<div className={styles.gridRow} key={row.id}>
@@ -71,7 +71,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeDataType, i18n, dataTypeI18n 
 				</form>
 			</div>
 		</div>
-	)
+	);
 };
 
 export default Grid;

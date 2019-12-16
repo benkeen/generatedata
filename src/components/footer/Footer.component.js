@@ -6,10 +6,9 @@ const Footer = () => {
 		<footer className={styles.footer}>
 			<ul>
 				<li>4.0.0</li>
-				<li></li>
 			</ul>
 		</footer>
-	)
+	);
 };
 
 export default Footer;

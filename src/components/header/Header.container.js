@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import * as initActions from '../../core/init/init.actions';
 import * as initSelectors from '../../core/init/init.selectors';

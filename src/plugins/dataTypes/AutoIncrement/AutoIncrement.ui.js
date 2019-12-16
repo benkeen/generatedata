@@ -31,7 +31,7 @@ export const Example = ({ data, onUpdate }) => {
 			<option value="1,1,ROW-{\$INCR}">ROW-1, ROW-2, ROW-3,...</option>
 			<option value="2,4,{\$INCR}i">2i, 4i, 6i, 8i...</option>
 		</select>
-	)
+	);
 };
 
 export const Options = ({ i18n, data }) => {
@@ -40,11 +40,11 @@ export const Options = ({ i18n, data }) => {
 			{i18n.start_at_c}
 			<input type="text" style={{ width: 40 }} value={data.incrementStart} />
 			{i18n.increment_c}
-			<input type="text" style={{ width: 40 }} value={data.incrementValue}  />
+			<input type="text" style={{ width: 40 }} value={data.incrementValue} />
 			{i18n.placeholder_str}
 			<input type="text" style={{ width: 140 }} value={data.incrementPlaceholder} />
 		</>
-	)
+	);
 };
 
 export const Help = ({ i18n }) => (
@@ -56,8 +56,8 @@ export const Help = ({ i18n }) => (
 			{i18n.help_para2}
 		</p>
 		<ul>
-			<li><b>ROW-{$INCR}</b> -> ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
-			<li><b>{$INCR}F</b> -> 1F, 2F, 3F, 4F, ...</li>
+			<li><b>ROW-INCR</b> -&gt; ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
+			<li><b>INCR F</b> -&gt; 1F, 2F, 3F, 4F, ...</li>
 		</ul>
 	</>
 );

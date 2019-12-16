@@ -35,10 +35,10 @@ export const Options = ({ i18n, data }) => (
 	<>
 		<div>
 			<input type="radio" name="dtListType_%ROW%" id="dtListType1_%ROW%" value="Exactly" checked="checked" />
-			<label for="dtListType1_%ROW%">{i18n.exactly}</label>
+			<label htmlFor="dtListType1_%ROW%">{i18n.exactly}</label>
 			<input type="text" size="2" name="dtListExactly_%ROW%" id="dtListExactly_%ROW%" value="1" />&nbsp;&nbsp;
 			<input type="radio" name="dtListType_%ROW%" id="dtListType2_%ROW%" value="AtMost" />
-			<label for="dtListType2_%ROW%">{i18n.at_most}</label>
+			<label htmlFor="dtListType2_%ROW%">{i18n.at_most}</label>
 			<input type="text" size="2" name="dtListAtMost_%ROW%" id="dtListAtMost_%ROW%" value="1" />
 		</div>
 		<div>
@@ -50,50 +50,49 @@ export const Options = ({ i18n, data }) => (
 export const Help = ({ i18n }) => <p>{i18n.help}</p>;
 
 
-var _validate = function(rows) {
-	var missingOptions = {
-		fields: [],
-		visibleProblemRows: []
-	};
-	var invalidIntFields = {
-		fields: [],
-		visibleProblemRows: []
-	};
-
-	var intOnly = /^\d+$/;
-	for (var i=0; i<rows.length; i++) {
-		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-
-		// check the At Most and Exactly fields
-		var exactlyField = $("#dtListExactly_" + rows[i]);
-		var exactlyFieldValid = intOnly.test(exactlyField.val());
-		var atMostField = $("#dtListExactly_" + rows[i]);
-		var atMostFieldValid  = intOnly.test(atMostField.val());
-
-		if (!exactlyFieldValid || !atMostFieldValid) {
-			if (!exactlyFieldValid) {
-				invalidIntFields.fields.push(exactlyField);
-			}
-			if (!atMostFieldValid) {
-				invalidIntFields.fields.push(atMostField);
-			}
-			invalidIntFields.visibleProblemRows.push(visibleRowNum);
-		}
-
-		// check the option is filled in
-		var option = $.trim($("#dtOption_" + rows[i]).val());
-		if (option === "") {
-			missingOptions.visibleProblemRows.push(visibleRowNum);
-			missingOptions.fields.push($("#dtOption_" + rows[i]));
-		}
-	}
-	var errors = [];
-	if (missingOptions.visibleProblemRows.length) {
-		errors.push({ els: missingOptions.fields, error: LANG.incomplete_fields + " <b>" + missingOptions.visibleProblemRows.join(", ") + "</b>"});
-	}
-	if (invalidIntFields.visibleProblemRows.length) {
-		errors.push({ els: invalidIntFields.fields, error: LANG.invalid_int_fields + " <b>" + invalidIntFields.visibleProblemRows.join(", ") + "</b>"});
-	}
-	return errors;
-};
-
+// var _validate = function(rows) {
+// 	var missingOptions = {
+// 		fields: [],
+// 		visibleProblemRows: []
+// 	};
+// 	var invalidIntFields = {
+// 		fields: [],
+// 		visibleProblemRows: []
+// 	};
+//
+// 	var intOnly = /^\d+$/;
+// 	for (var i=0; i<rows.length; i++) {
+// 		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+//
+// 		// check the At Most and Exactly fields
+// 		var exactlyField = $("#dtListExactly_" + rows[i]);
+// 		var exactlyFieldValid = intOnly.test(exactlyField.val());
+// 		var atMostField = $("#dtListExactly_" + rows[i]);
+// 		var atMostFieldValid  = intOnly.test(atMostField.val());
+//
+// 		if (!exactlyFieldValid || !atMostFieldValid) {
+// 			if (!exactlyFieldValid) {
+// 				invalidIntFields.fields.push(exactlyField);
+// 			}
+// 			if (!atMostFieldValid) {
+// 				invalidIntFields.fields.push(atMostField);
+// 			}
+// 			invalidIntFields.visibleProblemRows.push(visibleRowNum);
+// 		}
+//
+// 		// check the option is filled in
+// 		var option = $.trim($("#dtOption_" + rows[i]).val());
+// 		if (option === "") {
+// 			missingOptions.visibleProblemRows.push(visibleRowNum);
+// 			missingOptions.fields.push($("#dtOption_" + rows[i]));
+// 		}
+// 	}
+// 	var errors = [];
+// 	if (missingOptions.visibleProblemRows.length) {
+// 		errors.push({ els: missingOptions.fields, error: LANG.incomplete_fields + " <b>" + missingOptions.visibleProblemRows.join(", ") + "</b>"});
+// 	}
+// 	if (invalidIntFields.visibleProblemRows.length) {
+// 		errors.push({ els: invalidIntFields.fields, error: LANG.invalid_int_fields + " <b>" + invalidIntFields.visibleProblemRows.join(", ") + "</b>"});
+// 	}
+// 	return errors;
+// };

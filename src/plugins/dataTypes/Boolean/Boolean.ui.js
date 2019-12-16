@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const state = {
 	value: ''
@@ -18,10 +18,10 @@ export const Example = ({ i18n, data }) => (
 );
 
 export const Options = ({ data, onUpdate }) => (
-	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })} />
+	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })}/>
 );
 
-export const Help = () => (
+export const Help = ({ i18n }) => (
 	<>
 		<p>
 			{i18n["DATA_TYPE"]["DESC"]}
@@ -50,22 +50,22 @@ export const Help = () => (
  * user has re-sorted or deleted some rows. So to get the visible row number for a row, call
  * gen._getVisibleRowOrderByRowNum(row)
  */
-const _validate = function (rows) {
-	var visibleProblemRows = [];
-	var problemFields = [];
-	for (var i = 0; i < rows.length; i++) {
-		if ($("#dtOption_" + rows[i]).val() === "") {
-			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-			visibleProblemRows.push(visibleRowNum);
-			problemFields.push($("#dtOption_" + rows[i]));
-		}
-	}
-	var errors = [];
-	if (visibleProblemRows.length) {
-		errors.push({
-			els: problemFields,
-			error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"
-		});
-	}
-	return errors;
-};
+// const _validate = function (rows) {
+// 	var visibleProblemRows = [];
+// 	var problemFields = [];
+// 	for (var i = 0; i < rows.length; i++) {
+// 		if ($("#dtOption_" + rows[i]).val() === "") {
+// 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+// 			visibleProblemRows.push(visibleRowNum);
+// 			problemFields.push($("#dtOption_" + rows[i]));
+// 		}
+// 	}
+// 	var errors = [];
+// 	if (visibleProblemRows.length) {
+// 		errors.push({
+// 			els: problemFields,
+// 			error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"
+// 		});
+// 	}
+// 	return errors;
+// };

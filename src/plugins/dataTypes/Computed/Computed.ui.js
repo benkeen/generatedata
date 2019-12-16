@@ -36,22 +36,22 @@ export const Help = ({ i18n }) => (
 );
 
 
-var _validate = function(rows) {
-	var visibleProblemRows = [];
-	var problemFields      = [];
-	for (var i=0; i<rows.length; i++) {
-		if ($("#dtOption_" + rows[i]).val() === "") {
-			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-			visibleProblemRows.push(visibleRowNum);
-			problemFields.push($("#option_" + rows[i]));
-		}
-	}
-
-	var errors = [];
-	if (visibleProblemRows.length) {
-		errors.push({ els: problemFields, error: L.AlphaNumeric_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-	}
-
-	return errors;
-};
-
+// var _validate = function(rows) {
+// 	var visibleProblemRows = [];
+// 	var problemFields      = [];
+// 	for (var i=0; i<rows.length; i++) {
+// 		if ($("#dtOption_" + rows[i]).val() === "") {
+// 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
+// 			visibleProblemRows.push(visibleRowNum);
+// 			problemFields.push($("#option_" + rows[i]));
+// 		}
+// 	}
+//
+// 	var errors = [];
+// 	if (visibleProblemRows.length) {
+// 		errors.push({ els: problemFields, error: L.AlphaNumeric_incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
+// 	}
+//
+// 	return errors;
+// };
+//
