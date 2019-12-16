@@ -24,55 +24,55 @@ export const Options = () => {
 export const Help = ({ i18n }) => <p>{i18n.help_text}</p>;
 
 
-var _saveRow = function(rowNum) {
-	var shownClassesSelectors = [];
-	for (var i=0; i<_currSelectedCountries.length; i++) {
-		shownClassesSelectors.push(".dtCountry_" + _currSelectedCountries[i] + " input");
-	}
-	var shownClassesSelector = shownClassesSelectors.join(",");
+// var _saveRow = function(rowNum) {
+// 	var shownClassesSelectors = [];
+// 	for (var i=0; i<_currSelectedCountries.length; i++) {
+// 		shownClassesSelectors.push(".dtCountry_" + _currSelectedCountries[i] + " input");
+// 	}
+// 	var shownClassesSelector = shownClassesSelectors.join(",");
+//
+// 	// find the checkboxes in this row
+// 	var visible = $("#gdColOptions_" + rowNum).find(shownClassesSelector);
+// 	var checked = [];
+// 	for (var j=0; j<visible.length; j++) {
+// 		if (visible[j].checked) {
+// 			checked.push($(visible[j]).data("country"));
+// 		}
+// 	}
+//
+// 	return {
+// 		"checked": checked
+// 	};
+// };
 
-	// find the checkboxes in this row
-	var visible = $("#gdColOptions_" + rowNum).find(shownClassesSelector);
-	var checked = [];
-	for (var j=0; j<visible.length; j++) {
-		if (visible[j].checked) {
-			checked.push($(visible[j]).data("country"));
-		}
-	}
-
-	return {
-		"checked": checked
-	};
-};
-
-var _loadRow = function(rowNum, data) {
-	return {
-		execute: function() { },
-		isComplete: function() {
-			if ($("#dtCountry_Complete" + rowNum).length) {
-				$("#gdColOptions_" + rowNum + " input").removeAttr("checked");
-
-				if (data) {
-					for (var i=0; i<data.checked.length; i++) {
-						$("#dtCountryIncludeZip_" + data.checked[i] + "_" + rowNum).attr("checked", "checked");
-					}
-				}
-				return true;
-			} else {
-				return false;
-			}
-		}
-	};
-};
+// var _loadRow = function(rowNum, data) {
+// 	return {
+// 		execute: function() { },
+// 		isComplete: function() {
+// 			if ($("#dtCountry_Complete" + rowNum).length) {
+// 				$("#gdColOptions_" + rowNum + " input").removeAttr("checked");
+//
+// 				if (data) {
+// 					for (var i=0; i<data.checked.length; i++) {
+// 						$("#dtCountryIncludeZip_" + data.checked[i] + "_" + rowNum).attr("checked", "checked");
+// 					}
+// 				}
+// 				return true;
+// 			} else {
+// 				return false;
+// 			}
+// 		}
+// 	};
+// };
 
 // N.B this also fires on page load, ensuring that _currSelectedCountries is initialized
-var _countryChange = function(msg) {
-	_currSelectedCountries = msg.countries;
-	var shownClassesSelectors = [];
-	for (var i=0; i<msg.countries.length; i++) {
-		shownClassesSelectors.push(".dtCountry_" + msg.countries[i]);
-	}
-	var shownClassesSelector = shownClassesSelectors.join(",");
-	$(".dtCountry").hide();
-	$(shownClassesSelector).show();
-};
+// var _countryChange = function(msg) {
+// 	_currSelectedCountries = msg.countries;
+// 	var shownClassesSelectors = [];
+// 	for (var i=0; i<msg.countries.length; i++) {
+// 		shownClassesSelectors.push(".dtCountry_" + msg.countries[i]);
+// 	}
+// 	var shownClassesSelector = shownClassesSelectors.join(",");
+// 	$(".dtCountry").hide();
+// 	$(shownClassesSelector).show();
+// };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Options = ({ }) => {
+export const Options = () => {
 	// $countryPlugins = Core::$countryPlugins;
 	//
 	// $html = "";
@@ -29,7 +29,7 @@ export const Options = ({ }) => {
 
 export const Help = ({ i18n }) => <p>{i18n.DATA_TYPE.DESC}</p>;
 
-//
+
 // var _saveRow = function(rowNum) {
 // 	var data = {};
 // 	for (var i=0; i<_currSelectedCountries.length; i++) {
