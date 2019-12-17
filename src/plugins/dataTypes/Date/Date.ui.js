@@ -1,4 +1,6 @@
 import React from 'react';
+import { format } from 'date-fns';
+import Dropdown from '../../../components/dropdown/Dropdown';
 
 export const state = {
 	fromDate: '', // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
@@ -8,28 +10,58 @@ export const state = {
 };
 
 
-export const Example = ({ coreI18n, data }) => (
-	<select defaultValue={data.example}>
-		<option value="">{coreI18n.please_select}</option>
-		<option value="M j, Y">Jan 1, 2012</option>
-		<option value="F jS, Y">January 1st, 2012</option>
-		<option value="D, M d">Mon, Jan 01</option>
-		<option value="D, jS, Y">Mon, Jan 1st, 2012</option>
-		<option value="m.d.y">03.25.06</option>
-		<option value="m-d-y">03-25-06</option>
-		<option value="m/d/y">03/25/06</option>
-		<option value="m/d/Y">03/25/2012</option>
-		<option value="d.m.y">25.03.06</option>
-		<option value="d-m-y">25-03-06</option>
-		<option value="d/m/y">25/03/06</option>
-		<option value="d/m/Y">25/03/2012</option>
-		<option value="Y-m-d H:i:s">MySQL datetime</option>
-		<option value="U">UNIX timestamp</option>
-		<option value="c">ISO 8601 date</option>
-		<option value="r">RFC 2822 formatted date</option>
-		<option value="T">A timezone</option>
-	</select>
-);
+export const Example = ({ coreI18n, data, onUpdate }) => {
+	const onChange = ({ value }) => {
+		onUpdate({
+			...data,
+			example: value,
+			options: value
+		});
+	};
+
+	const options = [
+		{ value: '', label: coreI18n.please_select }
+	];
+
+	const formats = [
+		'MMM L, y', // Jan 1, 2020
+		'MMMM Lo, y', // January 1st, 2020
+		'EEE, MMM LL', // Mon, Jan 01
+		'EEE, Lo, y', // Mon, Jan 1st, 2012
+		'LL.dd.yy', // 03.25.20
+		'LL-dd-yy', // 03-25-06
+		'LL/dd/yy', // 03/25/06,
+		'LL/dd/y', // 03/25/2012
+		'dd.LL.yy', // 25.03.2020
+		'dd-LL-yy', // 25-03-06
+		'dd/LL/y' //25/03/2012
+	];
+
+	const now = new Date();
+	formats.forEach((currFormat) => {
+		options.push({
+			label: format(new Date(now.getFullYear(), now.getMonth(), now.getDay()), currFormat),
+			value: currFormat
+		});
+	});
+
+	/*
+	// Y-m-d H:i:s">MySQL datetime
+	<option value="Y-m-d H:i:s">MySQL datetime</option>
+	<option value="U">UNIX timestamp</option>
+	<option value="c">ISO 8601 date</option>
+	<option value="r">RFC 2822 formatted date</option>
+	<option value="T">A timezone</option>
+	*/
+
+	return (
+		<Dropdown
+			value={data.example}
+			options={options}
+			onChange={onChange}
+		/>
+	);
+};
 
 export const Options = ({ data, i18n }) => {
 	return (

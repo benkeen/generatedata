@@ -6,7 +6,6 @@ export const state = {
 	options: ''
 };
 
-
 export const Example = ({ i18n, data, coreI18n, onUpdate }) => {
 	const onChange = ({ value }) => {
 		onUpdate({
@@ -40,12 +39,9 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }) => {
 	);
 };
 
-export const Options = ({ data, onUpdate }) => {
-	console.log(data);
-	return (
-		<input type="text" value={data.options} onChange={(e) => onUpdate({ ...data, options: e.target.value })} />
-	);
-};
+export const Options = ({ data, onUpdate }) => (
+	<input type="text" value={data.options} onChange={(e) => onUpdate({ ...data, options: e.target.value })} />
+);
 
 export const Help = ({ i18n }) => (
 	<>

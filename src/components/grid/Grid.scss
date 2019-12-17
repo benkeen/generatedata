@@ -31,10 +31,12 @@
   flex: 1 0 80px;
 }
 .optionsCol {
-  flex: 1;
+  flex: 2;
 }
 .helpCol {
   flex: 0 0 30px;
+  display: flex;
+  justify-content: center;
 }
 .deleteCol {
   flex: 0 0 30px;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import HelpIcon from '@material-ui/icons/HelpOutline';
 import styles from './Grid.scss';
@@ -71,10 +72,23 @@ const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, onConfigureDataType
 					<span>{i18n.add}</span>
 					<input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
 						min={1} max={1000} step={1} />
-					<button onClick={() => onAddRows(numRows)}>{i18n.row_sp}</button>
+					<Button onClick={() => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
 				</form>
 			</div>
-			<HelpDialog section={helpDialogSection} />
+
+			<HelpDialog
+				visible={helpDialogSection}
+				dataTypeSelector={
+					<Dropdown
+						isGrouped={true}
+						value={helpDialogSection}
+						options={dataTypes}
+					/>
+				}
+				onClose={() => showHelpDialogSection(false)}
+				coreI18n={i18n}
+				content={"..."}
+			/>
 		</div>
 	);
 };
