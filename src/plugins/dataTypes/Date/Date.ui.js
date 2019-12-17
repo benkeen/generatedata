@@ -12,6 +12,28 @@ export const state = {
 
 export const Example = ({ coreI18n, data, onUpdate }) => {
 	const onChange = ({ value }) => {
+
+		var currYear = _getCurrentYear();
+		var yearRangeFrom = (currYear - 200);
+		var yearRangeTo = (currYear + 200);
+		var yearRange = yearRangeFrom + ":" + yearRangeTo;
+		$("#dtFromDate_" + msg.rowID).datepicker({
+			showOn: "both",
+			buttonImageOnly: true,
+			buttonText: "Choose date",
+			changeMonth: true,
+			changeYear: true,
+			yearRange: yearRange
+		});
+		$("#dtToDate_" + msg.rowID).datepicker({
+			showOn: "both",
+			buttonImageOnly: true,
+			buttonText: "Choose date",
+			changeMonth: true,
+			changeYear: true,
+			yearRange: yearRange
+		});
+
 		onUpdate({
 			...data,
 			example: value,
@@ -198,33 +220,6 @@ export const Help = ({ i18n }) => (
 );
 
 
-// var _dataTypeChange = function (msg) {
-// 	var currYear = _getCurrentYear();
-// 	var yearRangeFrom = (currYear - 200);
-// 	var yearRangeTo = (currYear + 200);
-// 	var yearRange = yearRangeFrom + ":" + yearRangeTo;
-// 	$("#dtFromDate_" + msg.rowID).datepicker({
-// 		showOn: "both",
-// 		buttonImage: "resources/themes/" + C.THEME + "/images/calendarIcon.gif",
-// 		buttonImageOnly: true,
-// 		buttonText: "Choose date",
-// 		changeMonth: true,
-// 		changeYear: true,
-// 		yearRange: yearRange
-// 	});
-// 	$("#dtToDate_" + msg.rowID).datepicker({
-// 		showOn: "both",
-// 		buttonImage: "resources/themes/" + C.THEME + "/images/calendarIcon.gif",
-// 		buttonImageOnly: true,
-// 		buttonText: "Choose date",
-// 		changeMonth: true,
-// 		changeYear: true,
-// 		yearRange: yearRange
-// 	});
-// };
-//
-// const getCurrentYear = () => new Date().getFullYear();
-//
 //
 // var _validate = function (rows) {
 // 	var visibleProblemRows = [];
