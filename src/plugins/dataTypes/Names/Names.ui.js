@@ -1,4 +1,5 @@
 import React from 'react';
+import Dropdown from '../../../components/dropdown/Dropdown';
 
 export const state = {
 	example: '',
@@ -6,26 +7,45 @@ export const state = {
 };
 
 
-export const Example = ({ i18n, data, coreI18n }) => (
-	<select defaultValue={data.example}>
-		<option value="">{coreI18n.please_select}</option>
-		<option value="MaleName">{i18n.example_MaleName}</option>
-		<option value="FemaleName">{i18n.example_FemaleName}</option>
-		<option value="Name">{i18n.example_Name}</option>
-		<option value="MaleName Surname">{i18n.example_MaleName_Surname}</option>
-		<option value="FemaleName Surname">{i18n.example_FemaleName_Surname}</option>
-		<option value="Name Surname">{i18n.example_Name_Surname}</option>
-		<option value="Name Initial. Surname">{i18n.example_Name_Initial_Surname}</option>
-		<option value="Surname">{i18n.example_surname}</option>
-		<option value="Surname, Name Initial.">{i18n.example_Surname_Name_Initial}</option>
-		<option value="Name, Name, Name, Name">{i18n.example_Name4}</option>
-		<option value="Name Surname|Name Initial. Surname">{i18n.example_fullnames}</option>
-	</select>
-);
+export const Example = ({ i18n, data, coreI18n, onUpdate }) => {
+	const onChange = ({ value }) => {
+		onUpdate({
+			...data,
+			example: value,
+			options: value
+		});
+	};
 
-export const Options = ({ data, onUpdate }) => (
-	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })}/>
-);
+	const options = [
+		{ value: '', label: coreI18n.please_select },
+		{ value: 'MaleName', label: i18n.example_MaleName },
+		{ value: 'FemaleName', label: i18n.example_FemaleName },
+		{ value: 'Name', label: i18n.example_Name },
+		{ value: 'MaleName Surname', label: i18n.example_MaleName_Surname },
+		{ value: 'FemaleName Surname', label: i18n.example_FemaleName_Surname },
+		{ value: 'Name Surname', label: i18n.example_Name_Surname },
+		{ value: 'Name Initial. Surname', label: i18n.example_Name_Initial_Surname },
+		{ value: 'Surname', label: i18n.example_surname },
+		{ value: 'Surname, Name Initial.', label: i18n.example_Surname_Name_Initial },
+		{ value: 'Name, Name, Name, Name', label: i18n.example_Name4 },
+		{ value: 'Name Surname|Name Initial. Surname', label: i18n.example_fullnames },
+	];
+
+	return (
+		<Dropdown
+			value={data.example}
+			options={options}
+			onChange={onChange}
+		/>
+	);
+};
+
+export const Options = ({ data, onUpdate }) => {
+	console.log(data);
+	return (
+		<input type="text" value={data.options} onChange={(e) => onUpdate({ ...data, options: e.target.value })} />
+	);
+};
 
 export const Help = ({ i18n }) => (
 	<>

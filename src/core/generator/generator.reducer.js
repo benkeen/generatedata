@@ -61,9 +61,17 @@ const reducer = (state = {
 				},
 			};
 
-		case actions.CONFIGURE_DATA_TYPE: {
-			return state;
-		}
+		case actions.CONFIGURE_DATA_TYPE:
+			return {
+				...state,
+				rows: {
+					...state.rows,
+					[action.payload.id]: {
+						...state.rows[action.payload.id],
+						data: action.payload.data
+					}
+				},
+			};
 
 		default:
 			return state;

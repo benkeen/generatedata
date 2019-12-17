@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import HelpIcon from '@material-ui/icons/Help';
+import HelpIcon from '@material-ui/icons/HelpOutline';
 import styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeComponentsWithFallback } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.container';
 
 
-const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, i18n, dataTypeI18n }) => {
+const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, onConfigureDataType, i18n, dataTypeI18n }) => {
 	const [numRows, setNumRows] = useState(1);
 	const [helpDialogSection, showHelpDialogSection] = useState(null);
 
@@ -38,7 +38,7 @@ const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, i18n, dataTypeI18n 
 							i18n={dataTypeI18n[row.dataType]}
 							id={row.id}
 							data={row.data}
-							onUpdate={}
+							onUpdate={(data) => onConfigureDataType(row.id, data)}
 						/>
 					</div>
 					<div className={styles.optionsCol}>
@@ -47,10 +47,11 @@ const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, i18n, dataTypeI18n 
 							i18n={dataTypeI18n[row.dataType]}
 							id={row.id}
 							data={row.data}
+							onUpdate={(data) => onConfigureDataType(row.id, data)}
 						/>
 					</div>
 					<div className={styles.helpCol} onClick={() => showHelpDialogSection(row.dataType)}>
-						{row.dataType ? <HelpIcon/> : null}
+						{row.dataType ? <HelpIcon /> : null}
 					</div>
 					<div className={styles.deleteCol} onClick={() => onRemove(row.id)}>
 						<HighlightOffIcon />

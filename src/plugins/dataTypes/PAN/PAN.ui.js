@@ -29,7 +29,7 @@ export const Example = ({ i18n, coreI18n }) => (
 	</select>
 );
 
-export const Options = ({ i18n, data }) => {
+export const Options = ({ i18n }) => {
 	// const onChange = () => {
 	// 	onUpdate({
 	// 		...data
@@ -40,26 +40,22 @@ export const Options = ({ i18n, data }) => {
 		<>
 			<span id="dtOptionPAN_cardDigitSection_%ROW%" style={{ display: 'inline' }}>
 				{i18n.length}
-				<input type="text" name="dtOptionPAN_digit_%ROW%" id="dtOptionPAN_digit_%ROW%" style={{ width: 60 }}
-				       readOnly />
+				<input type="text" id="dtOptionPAN_digit_%ROW%" style={{ width: 60 }} readOnly />
 			</span>
 
 			<span id="dtOptionPAN_cardSeparator_%ROW%" style={{ display: 'inline' }}>
 				{i18n.separators}
-				<input type="text" name="dtOptionPAN_sep_%ROW%" id="dtOptionPAN_sep_%ROW%" style={{ width: 78 }} value=" "
-				       title={i18n.separator_help}/>
+				<input type="text" id="dtOptionPAN_sep_%ROW%" style={{ width: 78 }} value=" " title={i18n.separator_help} />
 			</span>
 
 			<span id="dtOptionPAN_cardFormat_%ROW%">
 				{i18n.ccformats}
-				<textarea name="dtOption_%ROW%" id="dtOption_%ROW%" title={i18n.format_title}
-				          style={{ height: 100, width: 260 }}/>
+				<textarea id="dtOption_%ROW%" title={i18n.format_title} style={{ height: 100, width: 260 }} />
 			</span>
 
 			<div id="dtOptionPAN_randomCardFormatSection_%ROW%" style={{ display: 'none' }}>
 				{i18n.ccrandom}
-				<select multiple name="dtOptionPAN_randomCardFormat_%ROW%[]" id="dtOptionPAN_randomCardFormat_%ROW%"
-				        title={i18n.rand_brand_title} style={{ height: 100, width: 260 }}>
+				<select multiple id="dtOptionPAN_randomCardFormat_%ROW%" title={i18n.rand_brand_title} style={{ height: 100, width: 260 }}>
 					<option value="mastercard">{i18n.mastercard}</option>
 					<option value="visa">{i18n.visa}</option>
 					<option value="visaElectron">{i18n.visa_electron}</option>

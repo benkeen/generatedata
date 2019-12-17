@@ -1,6 +1,8 @@
 import React from 'react';
-import DIalog from '@material-ui/core/Dialog';
+// import Dialog from '@material-ui/core/Dialog';
 
-export const HelpDialog = () => {
-
+const HelpDialog = () => {
+	return <div>...</div>;
 };
+
+export default HelpDialog;
