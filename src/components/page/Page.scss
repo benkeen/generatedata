@@ -5,6 +5,10 @@ html, body {
   font-family: 'Alegreya', serif;
   font-size: 13px;
 }
+input, select, textarea {
+  font-family: 'Alegreya', serif;
+  font-size: 13px;
+}
 
 * {
   box-sizing: border-box;
@@ -34,7 +38,7 @@ html, body {
 input {
   border-radius: 4px;
   border: 1px solid #cccccc;
-  padding: 7px 6px 8px;
+  padding: 6px;
   outline: none;
 
   &:focus {

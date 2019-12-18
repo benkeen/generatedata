@@ -15,6 +15,8 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }) => {
 		});
 	};
 
+	console.log(i18n);
+
 	const options = [
 		{ value: '', label: coreI18n.please_select },
 		{ value: 'MaleName', label: i18n.example_MaleName },

@@ -78,16 +78,9 @@ const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, onConfigureDataType
 
 			<HelpDialog
 				visible={helpDialogSection}
-				dataTypeSelector={
-					<Dropdown
-						isGrouped={true}
-						value={helpDialogSection}
-						options={dataTypes}
-					/>
-				}
+				initialSection={helpDialogSection}
 				onClose={() => showHelpDialogSection(false)}
 				coreI18n={i18n}
-				content={"..."}
 			/>
 		</div>
 	);
