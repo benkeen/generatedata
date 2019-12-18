@@ -15,8 +15,6 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }) => {
 		});
 	};
 
-	console.log(i18n);
-
 	const options = [
 		{ value: '', label: coreI18n.please_select },
 		{ value: 'MaleName', label: i18n.example_MaleName },
@@ -48,11 +46,12 @@ export const Options = ({ data, onUpdate }) => (
 export const Help = ({ i18n }) => (
 	<>
 		<p>
-			{i18n.DATA_TYPE.DESC}
+			{i18n.DESC}
 			{i18n.help_intro}
 		</p>
 
 		<table cellPadding="0" cellSpacing="1">
+			<tbody>
 			<tr>
 				<td width="100"><h4>Name</h4></td>
 				<td>{i18n.type_Name}</td>
@@ -73,6 +72,7 @@ export const Help = ({ i18n }) => (
 				<td><h4>Surname</h4></td>
 				<td>{i18n.type_Surname}</td>
 			</tr>
+			</tbody>
 		</table>
 	</>
 );

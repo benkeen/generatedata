@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,8 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Dropdown from '../dropdown/Dropdown';
-import { getSortedGroupedDataTypes } from '../../utils/dataTypeUtils';
-import styles from './HelpDialog.scss';
+import { getSortedGroupedDataTypes, getDataTypeHelpComponent } from '../../utils/dataTypeUtils';
+// import styles from './HelpDialog.scss';
 
 
 const dialogStyles = theme => ({
@@ -54,23 +54,35 @@ const DialogActions = withStyles(theme => ({
 	}
 }))(MuiDialogActions);
 
-const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, content }) => {
-	const [dataType, setDataType] = useState(initialDataType);
+
+const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }) => {
+	const [dataType, setDataType] = useState();
+
+	useEffect(() => {
+		setDataType(initialDataType);
+	}, [initialDataType]);
+
 	const dataTypes = getSortedGroupedDataTypes();
+	const Help = getDataTypeHelpComponent(dataType);
+
+	console.log(i18n);
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
-			<DialogTitle className={styles.dialogTitle} onClose={onClose}>
+			<DialogTitle onClose={onClose}>
 				{coreI18n.help}
+			</DialogTitle>
+			<DialogContent dividers>
 				<Dropdown
 					isGrouped={true}
 					value={dataType}
 					onChange={(i) => setDataType(i.value)}
 					options={dataTypes}
 				/>
-			</DialogTitle>
-			<DialogContent dividers>
-				{content}
+				<Help
+					coreI18n={coreI18n}
+					i18n={i18n}
+				/>
 			</DialogContent>
 			<DialogActions>
 				<Button autoFocus onClick={onClose} color="primary">

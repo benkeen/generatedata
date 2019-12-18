@@ -77,10 +77,11 @@ const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, onConfigureDataType
 			</div>
 
 			<HelpDialog
-				visible={helpDialogSection}
-				initialSection={helpDialogSection}
+				visible={!!helpDialogSection}
+				initialDataType={helpDialogSection}
 				onClose={() => showHelpDialogSection(false)}
 				coreI18n={i18n}
+				i18n={dataTypeI18n[helpDialogSection]}
 			/>
 		</div>
 	);

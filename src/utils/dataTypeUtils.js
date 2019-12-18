@@ -45,3 +45,8 @@ export const getDataTypeComponentsWithFallback = (dataType) => {
 export const getDataTypeDefaultState = (dataType) => {
 	return dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].state ? dataTypes[dataType].state : null;
 };
+
+
+export const getDataTypeHelpComponent = (dataType) => {
+	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : () => {};
+};
