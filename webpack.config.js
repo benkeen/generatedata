@@ -23,6 +23,10 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.tsx?$/,
+				loader: 'ts-loader'
+			},
+			{
 				test: /\.js$/,
 				loader: ['babel-loader', 'eslint-loader'],
 				exclude: '/node_modules'
@@ -62,6 +66,10 @@ module.exports = {
 			excludeChunks: locales
 		}),
 	],
+
+	resolve: {
+		extensions: ['.ts', '.tsx', '.js']
+	},
 
 	optimization: {
 		chunkIds: 'named',

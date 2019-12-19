@@ -40,7 +40,7 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }) => {
 };
 
 export const Options = ({ data, onUpdate }) => (
-	<input type="text" value={data.options} onChange={(e) => onUpdate({ ...data, options: e.target.value })} />
+	<input type="text" value={data.options} onChange={(e) => onUpdate({ ...data, options: e.target.value })}/>
 );
 
 export const Help = ({ i18n }) => (
@@ -52,26 +52,26 @@ export const Help = ({ i18n }) => (
 
 		<table cellPadding="0" cellSpacing="1">
 			<tbody>
-			<tr>
-				<td width="100"><h4>Name</h4></td>
-				<td>{i18n.type_Name}</td>
-			</tr>
-			<tr>
-				<td><h4>MaleName</h4></td>
-				<td>{i18n.type_MaleName}</td>
-			</tr>
-			<tr>
-				<td><h4>FemaleName</h4></td>
-				<td>{i18n.type_FemaleName}</td>
-			</tr>
-			<tr>
-				<td><h4>Initial</h4></td>
-				<td>{i18n.type_Initial}</td>
-			</tr>
-			<tr>
-				<td><h4>Surname</h4></td>
-				<td>{i18n.type_Surname}</td>
-			</tr>
+				<tr>
+					<td width="100"><h4>Name</h4></td>
+					<td>{i18n.type_Name}</td>
+				</tr>
+				<tr>
+					<td><h4>MaleName</h4></td>
+					<td>{i18n.type_MaleName}</td>
+				</tr>
+				<tr>
+					<td><h4>FemaleName</h4></td>
+					<td>{i18n.type_FemaleName}</td>
+				</tr>
+				<tr>
+					<td><h4>Initial</h4></td>
+					<td>{i18n.type_Initial}</td>
+				</tr>
+				<tr>
+					<td><h4>Surname</h4></td>
+					<td>{i18n.type_Surname}</td>
+				</tr>
 			</tbody>
 		</table>
 	</>
