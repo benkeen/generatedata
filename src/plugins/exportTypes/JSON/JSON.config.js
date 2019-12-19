@@ -12,6 +12,5 @@ export default {
 				"enum": ["simple", "complex"]
 			}
 		}
-
-
+	}
 };

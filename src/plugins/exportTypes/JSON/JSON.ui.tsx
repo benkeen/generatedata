@@ -1,21 +1,29 @@
-import React from 'react';
+import * as React from 'react';
+
+export type DataStructureFormat = 'simple' | 'complex';
+export type JSONSettings = {
+    stripWhitespace: boolean;
+    dataStructureFormat: DataStructureFormat;
+}
 
 export const state = {
 	stripWhitespace: false,
 	dataStructureFormat: 'simple'
 };
 
-export const Settings = ({ i18n, id }) => (
-	<>
-		<input type="checkbox" id={`${id}-etJSON_stripWhitespace`} value="1" />
-			<label htmlFor={`${id}-etJSON_stripWhitespace`}>{i18n.strip_whitespace}</label><br />
-			{i18n.data_structure_format}
-		<input type="radio" value="complex" id="stJSON_dataStructureFormat1" checked="checked" />
-			<label for="stJSON_dataStructureFormat1">{i18n.complex}</label>
-		<input type="radio" value="simple" id="stJSON_dataStructureFormat2" />
-			<label for="stJSON_dataStructureFormat2">{i18n.simple}</label>
-	</>
-);
+export const Settings = ({ i18n, id }: { i18n: any, id: string }) => {
+    return (
+        <>
+            <input type="checkbox" id={`${id}-stripWhitespace`} value="1"/>
+            <label htmlFor={`${id}-stripWhitespace`}>{i18n.strip_whitespace}</label><br/>
+            {i18n.data_structure_format}
+            <input type="radio" value="complex" id={`${id}-complex`}/>
+            <label htmlFor={`${id}-complex`}>{i18n.complex}</label>
+            <input type="radio" value="simple" id={`${id}-simple`}/>
+            <label htmlFor={`${id}-simple`}>{i18n.simple}</label>
+        </>
+    );
+};
 
 
 /**
