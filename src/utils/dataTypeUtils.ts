@@ -7,9 +7,9 @@ import { getStrings } from './langUtils';
 export const getSortedGroupedDataTypes = () => {
 	const i18n = getStrings();
 
-	let groupedOptions = [];
+	let groupedOptions: any = [];
 	coreConfig.dataTypeGroups.map((group) => {
-		const options = dataTypeInfo.filter((dataType) => dataType.fieldGroup === group).map((i) => {
+		const options = dataTypeInfo.filter((dataType: string) => dataType.fieldGroup === group).map((i) => {
 			return {
 				value: i.name,
 				label: i.name
@@ -24,7 +24,7 @@ export const getSortedGroupedDataTypes = () => {
 };
 
 
-export const getDataTypeComponentsWithFallback = (dataType) => {
+export const getDataTypeComponentsWithFallback = (dataType: string) => {
 	let Options = () => null;
 	let Example = () => null;
 	let Help = () => null;

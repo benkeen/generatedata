@@ -19,8 +19,6 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 		return rows.map((row, index) => {
 			const { Example, Options } = getDataTypeComponentsWithFallback(row.dataType);
 
-			console.log(row);
-
 			return (
 				<div className={styles.gridRow} key={row.id}>
 					<div className={styles.orderCol}>{index + 1}</div>
