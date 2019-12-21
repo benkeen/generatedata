@@ -1,3 +1,7 @@
+declare global {
+    interface Window { gd: any; }
+}
+
 export type GDLocale = 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
 
 export type GenEnvironment = 'API' | 'UI';

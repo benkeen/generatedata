@@ -1,5 +1,7 @@
 import { coreConfig } from '../core';
+// @ts-ignore-line
 import dataTypeInfo from '../../build/dataTypes';
+// @ts-ignore-line
 import { dataTypes, dataTypeNames } from '../../build/dataTypesListUI';
 import { getStrings } from './langUtils';
 

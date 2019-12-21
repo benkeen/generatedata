@@ -1,3 +1,4 @@
+// @ts-ignore-line
 import config from '../../build/config.client';
 import store from '../store';
 import * as initActions from './init/init.actions';

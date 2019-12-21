@@ -2,6 +2,7 @@ import { persistReducer } from 'redux-persist';
 import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './init.actions';
 import storage from 'redux-persist/lib/storage';
+import { ActionType } from '../../../types/general';
 
 /**
  * This houses the content of the generator. The actual content of each row is dependent based on the
@@ -10,7 +11,7 @@ import storage from 'redux-persist/lib/storage';
 const reducer = (state = {
 	localeFileLoaded: false,
 	locale: 'en'
-}, action) => {
+}, action: ActionType) => {
 	switch (action.type) {
 		case actions.LOCALE_FILE_LOADED:
 			return {

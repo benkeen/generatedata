@@ -1,22 +1,24 @@
+import { Dispatch } from 'redux';
 import * as langUtils from '../../utils/langUtils';
+import { GDLocale } from '../../../types/general';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
-export const setLocaleFileLoaded = (locale) => ({
+export const setLocaleFileLoaded = (locale: GDLocale) => ({
 	type: LOCALE_FILE_LOADED,
 	payload: {
 		locale
 	}
 });
 
-export const SELECT_LOCALE = 'SELECT_LOCALE';
-export const selectLocale = (locale) => (dispatch) => {
-	loadLocaleFile(`./${locale}.js`, (locale, strings) => {
+export const selectLocale = (locale: GDLocale) => (dispatch: Dispatch) => {
+	loadLocaleFile(`./${locale}.js`, (locale: GDLocale, strings: any) => {
 		langUtils.setLocale(locale, strings);
 		dispatch(setLocaleFileLoaded(locale));
 	});
 };
 
-export const loadLocaleFile = (src, callback) => {
+// kludgy, but simple
+export const loadLocaleFile = (src: string, callback: Function) => {
 	var s = document.createElement('script');
 	s.src = src;
 	document.body.appendChild(s);
