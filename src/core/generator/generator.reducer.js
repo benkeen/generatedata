@@ -3,6 +3,7 @@ import * as actions from './generator.actions';
 import { generate } from 'shortid';
 import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
 
+
 /**
  * This houses the content of the generator. The actual content of each row is dependent based on the
  * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
@@ -23,6 +24,7 @@ const reducer = (state = {
 				const rowId = generate();
 				newRows[rowId] = {
 					id: rowId,
+					title: '',
 					dataType: null,
 					data: null
 				};
@@ -48,6 +50,18 @@ const reducer = (state = {
 				sortedRows: state.sortedRows.filter((i) => i !== action.payload.id)
 			};
 
+		case actions.CHANGE_TITLE:
+			return {
+				...state,
+				rows: {
+					...state.rows,
+					[action.payload.id]: {
+						...state.rows[action.payload.id],
+						title: action.payload.value
+					}
+				}
+			};
+
 		case actions.SELECT_DATA_TYPE:
 			return {
 				...state,
@@ -58,7 +72,7 @@ const reducer = (state = {
 						dataType: action.payload.value,
 						data: getDataTypeDefaultState(action.payload.value)
 					}
-				},
+				}
 			};
 
 		case actions.CONFIGURE_DATA_TYPE:

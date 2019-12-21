@@ -5,3 +5,5 @@ export type Generator = {
     rowData: any[];
 };
 
+export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
+

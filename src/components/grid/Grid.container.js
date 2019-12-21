@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	onAddRows: (numRows) => dispatch(actions.addRows(numRows)),
 	onRemove: (id) => dispatch(actions.removeRow(id)),
+	onChangeTitle: (id, value) => dispatch(actions.onChangeTitle(id, value)),
 	onSelectDataType: (id, value) => dispatch(actions.onSelectDataType(id, value)),
 	onConfigureDataType: (id, data) => dispatch(actions.onConfigureDataType(id, data))
 });

@@ -8,7 +8,7 @@ import './core/init/init.reducer';
 
 import store, { persistor } from './store';
 import Page from './components/page/Page.container';
-import Grid from './components/grid/Grid.container';
+import GeneratePage from './pages/GeneratePage.container';
 import * as core from './core';
 
 const App = () => (
@@ -34,7 +34,7 @@ const App = () => (
 									<div>Users</div>
 								</Route>
 								<Route path="/">
-									<Grid />
+									<GeneratePage />
 								</Route>
 							</Switch>
 						</Page>

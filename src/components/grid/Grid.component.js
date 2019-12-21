@@ -8,7 +8,7 @@ import { getSortedGroupedDataTypes, getDataTypeComponentsWithFallback } from '..
 import HelpDialog from '../helpDialog/HelpDialog.container';
 
 
-const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, onConfigureDataType, i18n, dataTypeI18n }) => {
+const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, i18n, dataTypeI18n }) => {
 	const [numRows, setNumRows] = useState(1);
 	const [helpDialogSection, showHelpDialogSection] = useState(null);
 
@@ -19,11 +19,13 @@ const Grid = ({ rows, onRemove, onAddRows, onSelectDataType, onConfigureDataType
 		return rows.map((row, index) => {
 			const { Example, Options } = getDataTypeComponentsWithFallback(row.dataType);
 
+			console.log(row);
+
 			return (
 				<div className={styles.gridRow} key={row.id}>
 					<div className={styles.orderCol}>{index + 1}</div>
 					<div className={styles.titleCol}>
-						<input type="text" />
+						<input type="text" value={row.title} onChange={(e) => onChangeTitle(row.id, e.target.value)} />
 					</div>
 					<div className={styles.dataTypeCol}>
 						<Dropdown
