@@ -1,5 +1,3 @@
-// TODO refactor, drop the class
-
 // see: http://nicolasgallagher.com/redux-modules-and-code-splitting/
 
 export class ReducerRegistry {

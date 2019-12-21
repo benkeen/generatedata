@@ -2,24 +2,40 @@ import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
 import { generate } from 'shortid';
 import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
+import { ActionType } from '../../../types/general';
 
+export type DataRow = {
+    id: string;
+    title: string;
+    dataType: string;
+    data: any;
+};
+
+export type DataRows = {
+    [id: string]: DataRow;
+}
+
+export type ReducerState = {
+    rows: DataRows;
+    sortedRows: string[];
+};
 
 /**
  * This houses the content of the generator. The actual content of each row is dependent based on the
  * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
  */
-const reducer = (state = {
+const reducer = (state: ReducerState = {
 	rows: {},
 	sortedRows: [],
-	dataTypes: [],
-	exportTypes: [],
-	countries: []
-}, action) => {
+	// dataTypes: [],
+	// exportTypes: [],
+	// countries: []
+}, action: ActionType) => {
 	switch (action.type) {
 
 		case actions.ADD_ROWS: {
-			const newRows = {};
-			const newRowIDs = [];
+			const newRows: DataRows = {};
+			const newRowIDs: string[] = [];
 			for (let i = 0; i < action.payload.numRows; i++) {
 				const rowId = generate();
 				newRows[rowId] = {

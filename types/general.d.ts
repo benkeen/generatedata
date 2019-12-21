@@ -7,3 +7,7 @@ export type Generator = {
 
 export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
 
+export type ActionType = {
+    type: string;
+    payload: any;
+}

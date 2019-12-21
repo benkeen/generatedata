@@ -25,6 +25,7 @@
   "dependencies": {
     "@material-ui/core": "^4.7.0",
     "@material-ui/icons": "^4.5.1",
+    "@types/shortid": "^0.0.29",
     "axios": "^0.19.0",
     "date-fns": "^2.8.1",
     "esm": "^3.2.25",
