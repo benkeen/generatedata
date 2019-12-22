@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import * as langUtils from '../../utils/langUtils';
 import { GDLocale } from '../../../types/general';
 
@@ -10,11 +10,13 @@ export const setLocaleFileLoaded = (locale: GDLocale) => ({
 	}
 });
 
-export const selectLocale = (locale: GDLocale) => (dispatch: Dispatch) => {
-	loadLocaleFile(`./${locale}.js`, (locale: GDLocale, strings: any) => {
-		langUtils.setLocale(locale, strings);
-		dispatch(setLocaleFileLoaded(locale));
-	});
+export const selectLocale = (locale: GDLocale) => {
+    return (dispatch: ThunkDispatch<any, any, any>) => {
+        loadLocaleFile(`./${locale}.js`, (locale: GDLocale, strings: any) => {
+            langUtils.setLocale(locale, strings);
+            dispatch(setLocaleFileLoaded(locale));
+        });
+    }
 };
 
 // kludgy, but simple

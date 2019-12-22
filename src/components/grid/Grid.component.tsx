@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import HelpIcon from '@material-ui/icons/HelpOutline';
-import styles from './Grid.scss';
+import * as styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeComponentsWithFallback } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.container';
+import { DataRow } from '../../core/generator/generator.reducer';
 
+type GridProps = {
+    rows: DataRow[];
+    onRemove: (id: string) => void;
+    onAddRows: (numRows: number) => void;
+    onChangeTitle: (id: string, value: string) => void;
+    onSelectDataType: (id: string, value: string) => void;
+    onConfigureDataType: (id: string, value: string) => void;
+    i18n: any;
+    dataTypeI18n: any;
+}
 
-const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, i18n, dataTypeI18n }) => {
-	const [numRows, setNumRows] = useState(1);
-	const [helpDialogSection, showHelpDialogSection] = useState(null);
+const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, i18n, dataTypeI18n }: GridProps) => {
+	const [numRows, setNumRows] = React.useState(1);
+	const [helpDialogSection, showHelpDialogSection] = React.useState(false);
 
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 
-	const getRows = (rows) => {
+	const getRows = (rows: DataRow[]) => {
 		return rows.map((row, index) => {
 			const { Example, Options } = getDataTypeComponentsWithFallback(row.dataType);
 
@@ -29,7 +40,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 						<Dropdown
 							isGrouped={true}
 							value={row.dataType}
-							onChange={(i) => onSelectDataType(row.id, i.value)}
+							onChange={(i: any) => onSelectDataType(row.id, i.value)}
 							options={dataTypes}
 						/>
 					</div>
@@ -39,7 +50,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 							i18n={dataTypeI18n[row.dataType]}
 							id={row.id}
 							data={row.data}
-							onUpdate={(data) => onConfigureDataType(row.id, data)}
+							onUpdate={(data: any) => onConfigureDataType(row.id, data)}
 						/>
 					</div>
 					<div className={styles.optionsCol}>
@@ -48,7 +59,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 							i18n={dataTypeI18n[row.dataType]}
 							id={row.id}
 							data={row.data}
-							onUpdate={(data) => onConfigureDataType(row.id, data)}
+							onUpdate={(data: any) => onConfigureDataType(row.id, data)}
 						/>
 					</div>
 					<div className={styles.helpCol} onClick={() => showHelpDialogSection(row.dataType)}>

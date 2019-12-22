@@ -13,20 +13,20 @@ const persistConfig = {
 };
 
 // preserve initial state for not-yet-loaded reducers
-const combine = (reducers) => {
+const combine = (reducers: any) => {
 	const reducerNames = Object.keys(reducers);
 	Object.keys(initialState).forEach(item => {
 		if (reducerNames.indexOf(item) === -1) {
-			reducers[item] = (state = null) => state;
+			reducers[item] = (state: any = null) => state;
 		}
 	});
 	return combineReducers(reducers);
 };
 
 let persistor;
-function initStore (initialState) {
+function initStore (initialState: any) {
 	let middleware = [thunk];
-	let enhancers = [];
+	let enhancers: any = [];
 	let composeEnhancers = compose;
 
 	if (process.env.NODE_ENV === 'development') {
@@ -47,6 +47,8 @@ function initStore (initialState) {
 			...enhancers
 		)
 	);
+
+	// @ts-ignore-line
 	store.asyncReducers = {};
 	persistor = persistStore(store);
 
@@ -56,7 +58,7 @@ function initStore (initialState) {
 const store = initStore({});
 
 // allows dynamically changing the redux store as content is loaded async
-reducerRegistry.setChangeListener((reducers) => {
+reducerRegistry.setChangeListener((reducers: any) => {
 	store.replaceReducer(persistReducer(persistConfig, combine(reducers)));
 });
 

@@ -8,7 +8,7 @@ const vowelsLen = vowels.length;
 const hexLen = hex.length;
 
 
-export const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+export const getRandomNum = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 export const getRandomBool = () => Math.random() < 0.5;
 
 /**
@@ -20,11 +20,8 @@ export const getRandomBool = () => Math.random() < 0.5;
  *     X       - 1-9
  *     x       - 0-9
  *     H       - 0-F
- *
- * @param string
- * @return string
  */
-const generateRandomAlphanumericStr = (str) => {
+const generateRandomAlphanumericStr = (str: string) => {
 
 	// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9
 	let newStr = '';

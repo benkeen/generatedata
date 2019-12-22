@@ -1,5 +1,8 @@
 declare global {
-    interface Window { gd: any; }
+    interface Window {
+        gd: any;
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
+    }
 }
 
 export type GDLocale = 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
@@ -12,8 +15,3 @@ export type Generator = {
 };
 
 export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
-
-export type ActionType = {
-    type: string;
-    payload: any;
-}

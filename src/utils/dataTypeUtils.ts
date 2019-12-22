@@ -10,8 +10,8 @@ export const getSortedGroupedDataTypes = () => {
 	const i18n = getStrings();
 
 	let groupedOptions: any = [];
-	coreConfig.dataTypeGroups.map((group) => {
-		const options = dataTypeInfo.filter((dataType: string) => dataType.fieldGroup === group).map((i) => {
+	coreConfig.dataTypeGroups.map((group: string) => {
+		const options = dataTypeInfo.filter((dataType: any) => dataType.fieldGroup === group).map((i: any) => {
 			return {
 				value: i.name,
 				label: i.name
@@ -27,9 +27,9 @@ export const getSortedGroupedDataTypes = () => {
 
 
 export const getDataTypeComponentsWithFallback = (dataType: string) => {
-	let Options = () => null;
-	let Example = () => null;
-	let Help = () => null;
+	let Options = (): any => null;
+	let Example = (): any => null;
+	let Help = (): any => null;
 
 	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Options) {
 		Options = dataTypes[dataType].Options;
@@ -44,11 +44,11 @@ export const getDataTypeComponentsWithFallback = (dataType: string) => {
 	return { Options, Example, Help };
 };
 
-export const getDataTypeDefaultState = (dataType) => {
+export const getDataTypeDefaultState = (dataType: string) => {
 	return dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].state ? dataTypes[dataType].state : null;
 };
 
 
-export const getDataTypeHelpComponent = (dataType) => {
+export const getDataTypeHelpComponent = (dataType: string) => {
 	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : () => {};
 };

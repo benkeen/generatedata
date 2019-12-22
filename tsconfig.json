@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
+    "lib": ["es6", "dom"],
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "module": "commonjs",
     "target": "es6",
     "jsx": "react"
   }
 }
+

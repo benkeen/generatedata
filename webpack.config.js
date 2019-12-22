@@ -36,16 +36,21 @@ module.exports = {
 				use: [
 					'style-loader',
 					{
-						loader: 'css-loader',
+						loader: '@teamsupercell/typings-for-css-modules-loader',
+						// options: {
+						//
+						// }
+					},
+					{
+						loader: "css-loader",
 						options: {
-							modules: {
-								localIdentName: '[name]_[local]_[hash:base64:5]',
-							}
+							modules: true
 						}
 					},
 					{
 						loader: 'sass-loader',
 						options: {
+
 						}
 					}
 				]

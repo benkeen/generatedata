@@ -15,6 +15,7 @@ export const init = () => {
 	const locale = initSelectors.getLocale(state);
 	const numRows = generatorSelectors.getNumRows(state);
 
+	// @ts-ignore-line
 	store.dispatch(initActions.selectLocale(locale));
 
 	// if there are no rows, load a few

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import * as langUtils from '../../utils/langUtils';
 
-export const getLocale = (state) => state.init.locale;
+export const getLocale = (state: any) => state.init.locale;
 export const getCoreI18n = createSelector(
 	getLocale,
 	(locale) => {
@@ -10,7 +10,7 @@ export const getCoreI18n = createSelector(
 	}
 );
 
-export const localeFileLoaded = (state) => state.init.localeFileLoaded;
+export const localeFileLoaded = (state: any) => state.init.localeFileLoaded;
 
 export const getDataTypeI18n = createSelector(
 	getLocale,
@@ -21,4 +21,3 @@ export const getDataTypeI18n = createSelector(
 		return strings ? strings.dataTypes : null;
 	}
 );
-

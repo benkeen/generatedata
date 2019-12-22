@@ -211,7 +211,7 @@ private function shouldStripWhitespace()
 // {
 // 	return $this->booleanFields[$index] && ($value === "true" || $value === "false");
 // }
-
+*/
 
 const getDownloadFilename = () => {
 	// $time = date("M-j-Y");

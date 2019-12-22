@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,7 +13,7 @@ import { getSortedGroupedDataTypes, getDataTypeHelpComponent } from '../../utils
 // import styles from './HelpDialog.scss';
 
 
-const dialogStyles = theme => ({
+const dialogStyles = (theme: any) => ({
 	root: {
 		margin: 0,
 		padding: theme.spacing(2),
@@ -22,11 +22,12 @@ const dialogStyles = theme => ({
 		position: 'absolute',
 		right: theme.spacing(1),
 		top: theme.spacing(1),
-		color: theme.palette.grey[500],
-	},
+		color: theme.palette.grey[500]
+	}
 });
 
-const DialogTitle = withStyles(dialogStyles)(props => {
+// @ts-ignore-line
+const DialogTitle = withStyles(dialogStyles)((props: any) => {
 	const { children, classes, onClose, ...other } = props;
 	return (
 		<MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -54,18 +55,23 @@ const DialogActions = withStyles(theme => ({
 	}
 }))(MuiDialogActions);
 
+export type HelpDialogProps = {
+    initialDataType: string;
+    visible: boolean;
+    onClose: any;
+    coreI18n: any;
+    i18n: any;
+}
 
-const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }) => {
-	const [dataType, setDataType] = useState();
+const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpDialogProps) => {
+	const [dataType, setDataType] = React.useState();
 
-	useEffect(() => {
+    React.useEffect(() => {
 		setDataType(initialDataType);
 	}, [initialDataType]);
 
 	const dataTypes = getSortedGroupedDataTypes();
 	const Help = getDataTypeHelpComponent(dataType);
-
-	console.log(i18n);
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
@@ -76,7 +82,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }) => {
 				<Dropdown
 					isGrouped={true}
 					value={dataType}
-					onChange={(i) => setDataType(i.value)}
+					onChange={(i: any) => setDataType(i.value)}
 					options={dataTypes}
 				/>
 				<Help

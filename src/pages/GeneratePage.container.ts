@@ -1,12 +1,15 @@
+import { Dispatch } from "redux";
 import { connect } from 'react-redux';
 import Page from './GeneratePage.component';
 import * as actions from '../core/generator/generator.actions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
 
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+
+    // @ts-ignore-line
 	generate: () => dispatch(actions.generate())
 });
 

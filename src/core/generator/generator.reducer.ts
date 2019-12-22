@@ -1,8 +1,8 @@
+import { AnyAction } from 'redux';
 import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
 import { generate } from 'shortid';
 import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
-import { ActionType } from '../../../types/general';
 
 export type DataRow = {
     id: string;
@@ -30,7 +30,7 @@ const reducer = (state: ReducerState = {
 	// dataTypes: [],
 	// exportTypes: [],
 	// countries: []
-}, action: ActionType) => {
+}, action: AnyAction) => {
 	switch (action.type) {
 
 		case actions.ADD_ROWS: {
