@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIOptionsProps, DataTypeUIHelpProps } from '../../../../types/general';
 
 // allow users to define a default data structure for all new rows
 export const state = {
@@ -6,9 +7,9 @@ export const state = {
 	value: ''
 };
 
-export const Example = ({ coreI18n, i18n, data, onUpdate }) => {
-	const onChange = (e) => {
-		const value = e.target.value;
+export const Example = ({ coreI18n, i18n, data, onUpdate }: DataTypeUIExampleProps) => {
+	const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
+		const value = (e.target as HTMLSelectElement).value;
 		onUpdate({
 			example: value,
 			value: value
@@ -24,21 +25,21 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }) => {
 	);
 };
 
-export const Options = ({ data, onUpdate }) => (
+export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
 	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })}/>
 );
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}
 		</p>
 
-		<table cellPadding="0" cellSpacing="1" width="100%">
+		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="20"><h4>L</h4></td>
-				<td width="200">{i18n.help_1}</td>
-				<td width="20"><h4>V</h4></td>
+				<td><h4>L</h4></td>
+				<td>{i18n.help_1}</td>
+				<td><h4>V</h4></td>
 				<td>{i18n.help_2}</td>
 			</tr>
 			<tr>
@@ -74,7 +75,6 @@ export const Help = ({ i18n }) => (
 		</table>
 	</>
 );
-
 
 // export const validate = (rows, coreI18n) => {
 // 	var visibleProblemRows = [];

@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	example: '1,1',
@@ -7,12 +8,13 @@ export const state = {
 	incrementPlaceholder: ''
 };
 
-export const Example = ({ data, onUpdate }) => {
-	const onChange = (e) => {
-		const [incrementStart, incrementValue, incrementPlaceholder] = e.target.value.split(',');
+export const Example = ({ data, onUpdate }: DataTypeUIExampleProps) => {
+    const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
+        const value = (e.target as HTMLSelectElement).value;
+        const [incrementStart, incrementValue, incrementPlaceholder] = value.split(',');
 
 		onUpdate({
-			example: e.target.value,
+			example: value,
 			incrementStart,
 			incrementValue,
 			incrementPlaceholder
@@ -34,7 +36,7 @@ export const Example = ({ data, onUpdate }) => {
 	);
 };
 
-export const Options = ({ i18n, data }) => {
+export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => {
 	return (
 		<>
 			{i18n.start_at_c}
@@ -47,7 +49,7 @@ export const Options = ({ i18n, data }) => {
 	);
 };
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}

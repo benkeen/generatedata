@@ -1,16 +1,17 @@
-import React from 'react';
+import * as React from 'react';
+import {DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps} from '../../../../types/general';
 
 export const state = {
 	value: ''
 };
 
-export const Example = ({ i18n }) => i18n.see_help_dialog;
+export const Example = ({ i18n }: DataTypeUIExampleProps) => i18n.see_help_dialog;
 
-export const Options = ({ data, onUpdate }) => (
+export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
 	<textarea onChange={(e) => onUpdate({ value: e.target.value })}>{data.value}</textarea>
 );
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}

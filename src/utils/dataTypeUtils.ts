@@ -4,6 +4,7 @@ import dataTypeInfo from '../../build/dataTypes';
 // @ts-ignore-line
 import { dataTypes, dataTypeNames } from '../../build/dataTypesListUI';
 import { getStrings } from './langUtils';
+import {DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps} from "../../types/general";
 
 // used for the Data Type selection dropdown
 export const getSortedGroupedDataTypes = () => {
@@ -26,7 +27,7 @@ export const getSortedGroupedDataTypes = () => {
 };
 
 
-export const getDataTypeComponentsWithFallback = (dataType: string) => {
+export const getDataTypeComponentsWithFallback = (dataType: string | null) => {
 	let Options = (): any => null;
 	let Example = (): any => null;
 	let Help = (): any => null;

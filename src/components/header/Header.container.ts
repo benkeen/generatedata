@@ -7,7 +7,8 @@ import { GDLocale } from '../../../types/general';
 
 const mapStateToProps = (state: any) => ({
 	i18n: initSelectors.getCoreI18n(state),
-	locale: initSelectors.getLocale(state)
+	locale: initSelectors.getLocale(state),
+    isLoggedIn: true // TODO
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

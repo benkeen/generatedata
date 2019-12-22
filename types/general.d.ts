@@ -15,3 +15,30 @@ export type Generator = {
 };
 
 export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
+
+
+export type AnyObject = {
+    [key: string]: any;
+}
+
+// Data Type <Example /> props
+export type DataTypeUIExampleProps = {
+    coreI18n: any;
+    i18n: any;
+    data: any;
+    onUpdate: (data: AnyObject) => void;
+};
+
+// Data Type <Options /> props
+export type DataTypeUIOptionsProps = {
+    coreI18n: any;
+    i18n: any;
+    data: any;
+    onUpdate: (data: AnyObject) => void;
+};
+
+// Data Type <Help /> props
+export type DataTypeUIHelpProps = {
+    coreI18n: any;
+    i18n: any;
+};

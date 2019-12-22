@@ -1,11 +1,12 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	value: ''
 };
 
 
-export const Example = ({ i18n, data }) => (
+export const Example = ({ i18n, data }: DataTypeUIExampleProps) => (
 	<select defaultValue={data.example}>
 		<option value="">{i18n.please_select}</option>
 		<option value="Yes|No">{i18n.example_YesNo}</option>
@@ -17,11 +18,11 @@ export const Example = ({ i18n, data }) => (
 	</select>
 );
 
-export const Options = ({ data, onUpdate }) => (
+export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
 	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })}/>
 );
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n["DATA_TYPE"]["DESC"]}

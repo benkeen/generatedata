@@ -47,7 +47,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 					<div className={styles.examplesCol}>
 						<Example
 							coreI18n={i18n}
-							i18n={dataTypeI18n[row.dataType]}
+							i18n={row.dataType ? dataTypeI18n[row.dataType] : null}
 							id={row.id}
 							data={row.data}
 							onUpdate={(data: any) => onConfigureDataType(row.id, data)}
@@ -56,7 +56,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 					<div className={styles.optionsCol}>
 						<Options
 							coreI18n={i18n}
-							i18n={dataTypeI18n[row.dataType]}
+                            i18n={row.dataType ? dataTypeI18n[row.dataType] : null}
 							id={row.id}
 							data={row.data}
 							onUpdate={(data: any) => onConfigureDataType(row.id, data)}

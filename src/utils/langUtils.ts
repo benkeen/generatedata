@@ -1,7 +1,7 @@
 import { GDLocale } from '../../types/general';
 
 // standalone location for the selected locale. Keeping this out of redux lets us just import it wherever
-let currentLocale: GDLocale = null;
+let currentLocale: GDLocale;
 const langStrings: any = {};
 
 

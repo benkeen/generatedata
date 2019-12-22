@@ -7,7 +7,7 @@ import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
 export type DataRow = {
     id: string;
     title: string;
-    dataType: string;
+    dataType: string | null;
     data: any;
 };
 
