@@ -33,7 +33,7 @@ export const getDataTypeComponentsWithFallback = (dataType: string | null) => {
 	let Help = (): any => null;
 
 	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Options) {
-		Options = dataTypes[dataType].Options;
+		Options = dataTypes[dataType].Options ;
 	}
 	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Example) {
 		Example = dataTypes[dataType].Example;

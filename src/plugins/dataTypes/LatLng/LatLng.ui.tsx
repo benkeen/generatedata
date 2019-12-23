@@ -1,11 +1,12 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	lat: true,
 	lng: true
 };
 
-export const Options = ({ i18n, data, id }) => (
+export const Options = ({ i18n, data, id }: DataTypeUIOptionsProps) => (
 	<>
 		<input type="checkbox" id={`${id}-lat`} checked={data.lat}/>
 		<label htmlFor={`${id}-lat`}>{i18n.latitude}</label>&nbsp;
@@ -15,7 +16,7 @@ export const Options = ({ i18n, data, id }) => (
 );
 
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<p>{i18n.DATA_TYPE.DESC}</p>
 );
 

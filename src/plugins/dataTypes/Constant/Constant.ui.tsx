@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	loopCount: 10,
@@ -6,28 +7,28 @@ export const state = {
 };
 
 
-export const Example = ({ i18n }) => i18n.see_help_dialog;
+export const Example = ({ i18n }: DataTypeUIExampleProps) => i18n.see_help_dialog;
 
-export const Options = ({ i18n, data, onUpdate }) => {
-	const onChange = (field, value) => {
+export const Options = ({ i18n, data, onUpdate }: DataTypeUIOptionsProps) => {
+	const onChange = (field: string, value: string) => {
 		onUpdate({
 			...data,
 			[field]: value
 		});
 	};
 	return (
-		<table cellSpacing="0" cellPadding="0" width="260">
+		<table cellSpacing="0" cellPadding="0">
 			<tr>
 				<td>{i18n.loop_count}</td>
 				<td>
-					<input type="text" value={data.loopCount} size="5"
+					<input type="text" value={data.loopCount} size={5}
 						onChange={(e) => onChange('loopCount', e.target.value)} />
 				</td>
 			</tr>
 			<tr>
 				<td>{i18n.values}</td>
 				<td>
-					<input value={data.values} style="width: 100%"
+					<input value={data.values} style={{ width: '100%' }}
 						onChange={(e) => onChange('values', e.target.value)} />
 				</td>
 			</tr>
@@ -35,7 +36,7 @@ export const Options = ({ i18n, data, onUpdate }) => {
 	);
 };
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.help_1}

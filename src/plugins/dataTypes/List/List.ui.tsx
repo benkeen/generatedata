@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	example: '',
@@ -9,7 +10,7 @@ export const state = {
 	option: ''
 };
 
-export const Example = ({ coreI18n, i18n }) => (
+export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
 	<>
 		<select>
 			<option value="">{coreI18n.please_select}</option>
@@ -31,24 +32,23 @@ export const Example = ({ coreI18n, i18n }) => (
 	</>
 );
 
-export const Options = ({ i18n, data }) => (
+export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => (
 	<>
 		<div>
-			<input type="radio" name="dtListType_%ROW%" id="dtListType1_%ROW%" value="Exactly" checked="checked" />
+			<input type="radio" name="dtListType_%ROW%" id="dtListType1_%ROW%" value="Exactly" checked />
 			<label htmlFor="dtListType1_%ROW%">{i18n.exactly}</label>
-			<input type="text" size="2" name="dtListExactly_%ROW%" id="dtListExactly_%ROW%" value="1" />&nbsp;&nbsp;
+			<input type="text" size={2} name="dtListExactly_%ROW%" id="dtListExactly_%ROW%" value="1" />&nbsp;&nbsp;
 			<input type="radio" name="dtListType_%ROW%" id="dtListType2_%ROW%" value="AtMost" />
 			<label htmlFor="dtListType2_%ROW%">{i18n.at_most}</label>
-			<input type="text" size="2" name="dtListAtMost_%ROW%" id="dtListAtMost_%ROW%" value="1" />
+			<input type="text" size={2} name="dtListAtMost_%ROW%" id="dtListAtMost_%ROW%" value="1" />
 		</div>
 		<div>
-			<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style="width: 267px;" value={data.option} />
+			<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style={{ width: 267 }} value={data.option} />
 		</div>
 	</>
 );
 
-export const Help = ({ i18n }) => <p>{i18n.help}</p>;
-
+export const Help = ({ i18n }: DataTypeUIHelpProps) => <p>{i18n.help}</p>;
 
 // var _validate = function(rows) {
 // 	var missingOptions = {

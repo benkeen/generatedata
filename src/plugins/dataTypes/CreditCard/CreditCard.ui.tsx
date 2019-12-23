@@ -1,30 +1,28 @@
-import React from 'react';
+import * as React from 'react';
+import {DataTypeUIHelpProps, DataTypeUIOptionsProps} from "../../../../types/general";
 
 
 export const state = {};
 
 
-export const Options = ({ i18n }) => {
-
+export const Options = ({ i18n }: DataTypeUIOptionsProps) => {
 	return (
 		<select multiple data-placeholder={i18n.allCreditCardText} style={{ width: '100%' }}>
-
 			{/*$creditCardTypes = self::getDistinctCreditCardTypes();*/}
 			{/*foreach ($creditCardTypes as $creditCardType) {*/}
 			{/*$html .= "<option value='" . $creditCardType["type_code"] . "'>" . $creditCardType["type"] . "</option>";*/}
 			{/*}*/}
-
 		</select>
 	);
 };
 
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>{i18n.help}</p>
 		<table cellPadding="0" cellSpacing="0">
 			<tr>
-				<td width='160'>
+				<td>
 					<h2>{i18n.cardType}</h2>
 				</td>
 				<td>

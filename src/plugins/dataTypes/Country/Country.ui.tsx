@@ -1,10 +1,11 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	allCountries: true
 };
 
-export const Options = ({ i18n, data, onUpdate }) => (
+export const Options = ({ i18n, data, onUpdate }: DataTypeUIOptionsProps) => (
 	<>
 		<input type="checkbox" checked={data.allCountries} onChange={() => onUpdate({ allCountries: !data.allCountries })} />
 		<label>{i18n.limit_results}</label>

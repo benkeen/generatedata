@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { format } from 'date-fns';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	fromDate: '', // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
@@ -10,8 +11,8 @@ export const state = {
 };
 
 
-export const Example = ({ coreI18n, data, onUpdate }) => {
-	const onChange = ({ value }) => {
+export const Example = ({ coreI18n, data, onUpdate }: DataTypeUIExampleProps) => {
+	const onChange = ({ value }: { value: string }) => {
 
 		// var currYear = _getCurrentYear();
 		// var yearRangeFrom = (currYear - 200);
@@ -86,11 +87,12 @@ export const Example = ({ coreI18n, data, onUpdate }) => {
 	);
 };
 
-export const Options = ({ data, i18n }) => {
+export const Options = ({ data, i18n }: DataTypeUIOptionsProps) => {
+    // readOnly="readonly"
 	return (
 		<>
-			{i18n.from} <input type="text" size="10" value={data.fromDate} readOnly="readonly"/>
-			{i18n.to} <input type="text" size="10" value={data.toDate} readOnly="readonly"/>
+			{i18n.from} <input type="text" value={data.fromDate} />
+			{i18n.to} <input type="text" value={data.toDate} />
 			<div>
 				{i18n.format_code}&nbsp;<input type="text" value={i18n.option} style={{ width: 160 }} />
 			</div>
@@ -98,7 +100,7 @@ export const Options = ({ data, i18n }) => {
 	);
 };
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}
@@ -106,21 +108,21 @@ export const Help = ({ i18n }) => (
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="50"><h2>{i18n.char}</h2></td>
-				<td width="300"><h2>{i18n.description}</h2></td>
+				<td><h2>{i18n.char}</h2></td>
+				<td><h2>{i18n.description}</h2></td>
 				<td><h2>{i18n.example}</h2></td>
 			</tr>
 		</table>
 
-		<hr size="1"/>
+        <hr />
 
 		<h3 className="gdSubtitle">{i18n.day}</h3>
-		<hr size="1"/>
+        <hr />
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="50"><h4>d</h4></td>
-				<td width="300">{i18n.help_d}</td>
+				<td><h4>d</h4></td>
+				<td>{i18n.help_d}</td>
 				<td>{i18n.help_d_example}</td>
 			</tr>
 			<tr>
@@ -156,23 +158,23 @@ export const Help = ({ i18n }) => (
 		</table>
 
 		<h3 className="gdSubtitle">{i18n.week}</h3>
-		<hr size="1"/>
+        <hr />
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="50" valign="top"><h4>W</h4></td>
-				<td width="300" valign="top">{i18n.help_W}</td>
+				<td valign="top"><h4>W</h4></td>
+				<td valign="top">{i18n.help_W}</td>
 				<td valign="top">{i18n.help_W_example}</td>
 			</tr>
 		</table>
 
 		<h3 className="gdSubtitle">{i18n.month}</h3>
-		<hr size="1"/>
+        <hr />
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="50" valign="top"><h4>F</h4></td>
-				<td width="300">{i18n.help_F}</td>
+				<td valign="top"><h4>F</h4></td>
+				<td>{i18n.help_F}</td>
 				<td valign="top">{i18n.help_F_example}</td>
 			</tr>
 			<tr>
@@ -198,12 +200,12 @@ export const Help = ({ i18n }) => (
 		</table>
 
 		<h3 className="gdSubtitle">{i18n.year}</h3>
-		<hr size="1"/>
+		<hr />
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="50"><h4>L</h4></td>
-				<td width="300">{i18n.help_L}</td>
+				<td><h4>L</h4></td>
+				<td>{i18n.help_L}</td>
 				<td>{i18n.help_L_example}</td>
 			</tr>
 			<tr>
@@ -221,7 +223,6 @@ export const Help = ({ i18n }) => (
 );
 
 
-//
 // var _validate = function (rows) {
 // 	var visibleProblemRows = [];
 // 	var problemFields = [];

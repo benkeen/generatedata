@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	example: '',
@@ -9,11 +10,12 @@ export const state = {
 	currencySymbolLocation: 'prefix'
 };
 
-export const Example = ({ i18n, data, onUpdate }) => {
-	const onChange = (e) => {
+export const Example = ({ i18n, data, onUpdate }: DataTypeUIExampleProps) => {
+    const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
+        const value = (e.target as HTMLSelectElement).value;
 		onUpdate({
 			...data,
-			example: e.target.value
+			example: value
 		});
 	};
 
@@ -39,18 +41,18 @@ export const Example = ({ i18n, data, onUpdate }) => {
 	);
 };
 
-export const Options = ({ i18n, data }) => (
+export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => (
 	<>
 		<div>
 			{i18n.format}: <input type="text" id="dtCurrencyFormat_%ROW%" name="dtCurrencyFormat_%ROW%" style={{ width: 160 }} />
 		</div>
 		<div>
-			{i18n.range} <input type="text" value={data.from} style="width:80px"/>
-			{i18n.to} <input type="text" value={data.to} style="width:80px"/>
+			{i18n.range} <input type="text" value={data.from} style={{ width: 80 }} />
+			{i18n.to} <input type="text" value={data.to} style={{ width: 80 }} />
 		</div>
 		<div>
 			{i18n.currency_symbol}
-			<input type="text" value={data.currencySymbol} style="width: 20px"/>
+			<input type="text" value={data.currencySymbol} style={{ width: 20 }} />
 			<select defaultValue={data.currencySymbolLocation}>
 				<option value="prefix">{i18n.prefix}</option>
 				<option value="suffix">{i18n.suffix}</option>
@@ -59,7 +61,7 @@ export const Options = ({ i18n, data }) => (
 	</>
 );
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}
@@ -67,7 +69,7 @@ export const Help = ({ i18n }) => (
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="120" valign="top"><h4>{i18n.format}</h4></td>
+				<td valign="top"><h4>{i18n.format}</h4></td>
 				<td>{i18n.format_desc}</td>
 			</tr>
 			<tr>

@@ -26,6 +26,7 @@ export type DataTypeUIExampleProps = {
     coreI18n: any;
     i18n: any;
     data: any;
+    id: string;
     onUpdate: (data: AnyObject) => void;
 };
 
@@ -34,6 +35,7 @@ export type DataTypeUIOptionsProps = {
     coreI18n: any;
     i18n: any;
     data: any;
+    id: string;
     onUpdate: (data: AnyObject) => void;
 };
 

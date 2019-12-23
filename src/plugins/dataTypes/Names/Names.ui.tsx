@@ -1,13 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	example: '',
 	options: ''
 };
 
-export const Example = ({ i18n, data, coreI18n, onUpdate }) => {
-	const onChange = ({ value }) => {
+export const Example = ({ i18n, data, coreI18n, onUpdate }: DataTypeUIExampleProps) => {
+    const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
+        const value = (e.target as HTMLSelectElement).value;
 		onUpdate({
 			...data,
 			example: value,
@@ -39,11 +41,11 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }) => {
 	);
 };
 
-export const Options = ({ data, onUpdate }) => (
+export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
 	<input type="text" value={data.options} onChange={(e) => onUpdate({ ...data, options: e.target.value })}/>
 );
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.DESC}
@@ -53,7 +55,7 @@ export const Help = ({ i18n }) => (
 		<table cellPadding="0" cellSpacing="1">
 			<tbody>
 				<tr>
-					<td width="100"><h4>Name</h4></td>
+					<td><h4>Name</h4></td>
 					<td>{i18n.type_Name}</td>
 				</tr>
 				<tr>
