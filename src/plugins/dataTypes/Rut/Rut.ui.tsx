@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	example: '',
@@ -7,7 +8,7 @@ export const state = {
 	remDash: true
 };
 
-export const Example = ({ coreI18n, i18n }) => (
+export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
 	<select>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="xxxxxxxx-y">12345678-9 ({i18n.rut_default})</option>
@@ -16,8 +17,8 @@ export const Example = ({ coreI18n, i18n }) => (
 	</select>
 );
 
-export const Options = ({ i18n, id, data, onUpdate }) => {
-	const onChange = (field, value) => {
+export const Options = ({ i18n, id, data, onUpdate }: DataTypeUIOptionsProps) => {
+	const onChange = (field: string, value: boolean) => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -27,13 +28,13 @@ export const Options = ({ i18n, id, data, onUpdate }) => {
 	return (
 		<>
 			<input type="checkbox" id={`${id}-thousandSep`} checked={data.thousandSep}
-				onChange={(e) => onChange('thousandSep', e.target.value)} />
+				onChange={(e) => onChange('thousandSep', e.target.checked)} />
 			<label htmlFor={`${id}-thousandSep`}>{i18n.thousands_separator}</label><br/>
 			<input type="checkbox" id={`${id}-upper`} checked={data.upper}
-				onChange={(e) => onChange('upper', e.target.value)} />
+				onChange={(e) => onChange('upper', e.target.checked)} />
 			<label htmlFor={`${id}-upper`}>{i18n.digit_uppercase}</label><br/>
 			<input type="checkbox" id={`${id}-remDash`} checked={data.remDash}
-				onChange={(e) => onChange('remDash', e.target.value)} />
+				onChange={(e) => onChange('remDash', e.target.checked)} />
 			<label htmlFor={`${id}-remDash`}>{i18n.remove_dash}</label>
 		</>
 	);

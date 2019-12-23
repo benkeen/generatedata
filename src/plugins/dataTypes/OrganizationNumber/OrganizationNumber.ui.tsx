@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	example: '',
@@ -6,7 +7,7 @@ export const state = {
 };
 
 
-export const Example = ({ coreI18n, i18n, data }) => (
+export const Example = ({ coreI18n, i18n, data }: DataTypeUIExampleProps) => (
 	<select defaultValue={data.example}>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="OrganisationNumberWithoutHyphen">{i18n.example_OrganisationNumberWithoutHyphen}</option>
@@ -14,15 +15,15 @@ export const Example = ({ coreI18n, i18n, data }) => (
 	</select>
 );
 
-export const Options = ({ i18n }) => (
-	<span id="dtOptionOrganisationNumberSeparator_%ROW%" style="display:inline;">
+export const Options = ({ id, i18n }: DataTypeUIOptionsProps) => (
+	<span id="dtOptionOrganisationNumberSeparator_%ROW%" style={{ display: 'inline' }}>
 		{i18n.separators}
-		<input type="text" name="dtOptionOrganisationNumber_sep_%ROW%" id="dtOptionOrganisationNumber_sep_%ROW%"
+		<input type="text" id={`${id}-seperator`}
 			style={{ width: 78 }} value=" " title={i18n.separator_help} />
 	</span>
 );
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}
@@ -31,7 +32,7 @@ export const Help = ({ i18n }) => (
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="100"><h4>OrganisationNumberWithoutHyphen</h4></td>
+				<td><h4>OrganisationNumberWithoutHyphen</h4></td>
 				<td>{i18n.type_OrganisationNumberWithoutHyphen}</td>
 			</tr>
 			<tr>

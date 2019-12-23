@@ -1,18 +1,19 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	min: '',
 	max: ''
 };
 
-export const Options = ({ i18n }) => (
+export const Options = ({ i18n }: DataTypeUIOptionsProps) => (
 	<div>
-		{i18n.between} <input type="text" name="dtNumRangeMin_%ROW%" id="dtNumRangeMin_%ROW%" style="width: 30px" value="1" />
-		{i18n.and} <input type="text" name="dtNumRangeMax_%ROW%" id="dtNumRangeMax_%ROW%" style="width: 30px" value="10" />
+		{i18n.between} <input type="text" name="dtNumRangeMin_%ROW%" id="dtNumRangeMin_%ROW%" style={{ width: 30 }} value="1" />
+		{i18n.and} <input type="text" name="dtNumRangeMax_%ROW%" id="dtNumRangeMax_%ROW%" style={{ width: 30 }} value="10" />
 	</div>
 );
 
-export const Help = ({ i18n }) => <p>{i18n.DATA_TYPE.DESC}</p>;
+export const Help = ({ i18n }: DataTypeUIHelpProps) => <p>{i18n.DATA_TYPE.DESC}</p>;
 
 
 // var _validate = function(rows) {

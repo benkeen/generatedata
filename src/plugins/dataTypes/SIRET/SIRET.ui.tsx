@@ -1,11 +1,12 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	example: '',
 	option: ''
 };
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}
@@ -20,7 +21,7 @@ export const Help = ({ i18n }) => (
 				<td>{i18n.type_SIREN}</td>
 			</tr>
 			<tr>
-				<td colSpan="2">&nbsp;</td>
+				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td><h4>{i18n.more_info}</h4></td>
@@ -30,11 +31,12 @@ export const Help = ({ i18n }) => (
 	</>
 );
 
-export const Options = ({ id, data, onUpdate }) => {
-	const onChange = (e) => {
+export const Options = ({ id, data, onUpdate }: DataTypeUIOptionsProps) => {
+    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+        const value = (e.target as HTMLSelectElement).value;
 		onUpdate({
 			...data,
-			option: e.target.value
+			option: value
 		});
 	};
 

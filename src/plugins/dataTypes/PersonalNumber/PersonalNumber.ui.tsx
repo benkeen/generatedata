@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 
 export const state = {
@@ -6,7 +7,7 @@ export const state = {
 	separator: ' '
 };
 
-export const Example = ({ coreI18n, i18n }) => (
+export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
 	<select>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="PersonalNumberWithoutHyphen">{i18n.example_PersonalNumberWithoutHyphen}</option>
@@ -14,14 +15,14 @@ export const Example = ({ coreI18n, i18n }) => (
 	</select>
 );
 
-export const Options = ({ i18n, data }) => (
+export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => (
 	<div>
 		{i18n.separators}
 		<input type="text" style={{ width: 78 }} value={data.separator} title={i18n.separator_help} />
 	</div>
 );
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}
@@ -30,7 +31,7 @@ export const Help = ({ i18n }) => (
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
-				<td width="100"><h4>PersonalNumberWithoutHyphen</h4></td>
+				<td><h4>PersonalNumberWithoutHyphen</h4></td>
 				<td>{i18n.type_PersonalNumberWithoutHyphen}</td>
 			</tr>
 			<tr>
@@ -52,12 +53,3 @@ export const Help = ({ i18n }) => (
 // 	}
 // 	$("#dtOptionPersonalNumber_sep_" + rowID).val(optionValue);
 // };
-
-
-/**
- * No validation currently required.
- */
-// var _validate = function () {
-// 	return [];
-// };
-
