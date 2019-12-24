@@ -35,11 +35,3 @@ export const onConfigureDataType = (id: string, data: any) => ({
 		id, data
 	}
 });
-
-export const generate = () => {
-	return (dispatch: any, getState: any) => {
-		const state = getState();
-
-		console.log(selectors.getSortedRowsArray(state));
-	};
-};

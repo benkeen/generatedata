@@ -1,17 +1,31 @@
 import * as React from 'react';
-import Grid from '../components/grid/Grid.container';
 import Button from '@material-ui/core/Button';
+import Grid from '../components/grid/Grid.container';
+import ResultsPanel from '../components/resultsPanel/ResultsPanel.container';
 
-type GeneratePageProps = {
-    generate: () => void;
-}
+type SubPage = 'grid' | 'results';
 
-const GeneratePage = ({ generate }: GeneratePageProps) => {
+const GeneratePage = () => {
+    const [subPage, setSubpage] = React.useState<SubPage>('grid');
+
+    let content;
+    if (subPage === 'grid') {
+        content = (
+            <>
+                <Grid />
+                <br />
+                <Button onClick={() => setSubpage('results')} variant="contained" color="primary" disableElevation>Generate</Button>
+            </>
+        );
+    } else {
+        content = (
+            <ResultsPanel />
+        );
+    }
+
 	return (
 		<>
-			<Grid />
-			<br />
-			<Button onClick={generate} variant="contained" color="primary" disableElevation>Generate</Button>
+            {content}
 		</>
 	);
 };

@@ -29,11 +29,9 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 
-
 	const getRows = (rows: DataRow[]) => {
 		return rows.map((row, index) => {
 			const { Example, Options } = getDataTypeComponents(row.dataType);
-			// : { Example: React.FC<DataTypeUIExampleProps>, Options: React.FC<DataTypeUIOptionsProps> }
 
             let example = null;
             let option = null;

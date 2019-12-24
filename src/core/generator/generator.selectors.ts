@@ -14,4 +14,7 @@ export const getSortedRowsArray = createSelector(
 	(rows, sorted) => sorted.map((id: string) => ({ ...rows[id], id }))
 );
 
-
+export const getRowsForExportType = createSelector(
+    getSortedRowsArray,
+    (rows) => rows
+)

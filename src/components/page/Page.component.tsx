@@ -27,7 +27,11 @@ const Page = ({ localeFileLoaded, children }: PageProps) => {
 			</div>
 			<Footer />
 		</>
-	) : <CircularProgress />;
+	) : (
+        <div style={{ display: 'flex', height: 40, justifyContent: 'center', margin: 'auto' }}>
+            <CircularProgress />
+        </div>
+    );
 
 	return (
 		<div className={styles.page}>
