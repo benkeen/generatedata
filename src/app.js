@@ -3,8 +3,9 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-// tmp. We need at least 1 reducer registered prior to the store instantiation
+// Need to be imported prior to below
 import './core/init/init.reducer';
+import './core/generator/generator.reducer';
 
 import store, { persistor } from './store';
 import Page from './components/page/Page.container';

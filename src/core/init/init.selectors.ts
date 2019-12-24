@@ -16,8 +16,6 @@ export const getDataTypeI18n = createSelector(
 	getLocale,
 	(locale) => {
 		const strings = langUtils.getStrings(locale);
-		console.log(strings);
-
 		return strings ? strings.dataTypes : null;
 	}
 );

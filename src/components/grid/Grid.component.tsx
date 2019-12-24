@@ -7,6 +7,7 @@ import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeComponentsWithFallback } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.container';
 import { DataRow } from '../../core/generator/generator.reducer';
+import { DataTypeUIExampleProps, DataTypeUIOptionsProps } from '../../../types/general';
 
 type GridProps = {
     rows: DataRow[];
@@ -21,14 +22,15 @@ type GridProps = {
 
 const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, i18n, dataTypeI18n }: GridProps) => {
 	const [numRows, setNumRows] = React.useState(1);
-	const [helpDialogSection, showHelpDialogSection] = React.useState(false);
+	const [helpDialogVisible, showHelpDialogSection] = React.useState(false);
+    const [initialHelpSection, setInitialDialogSection] = React.useState('');
 
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 
 	const getRows = (rows: DataRow[]) => {
 		return rows.map((row, index) => {
-			const { Example, Options } = getDataTypeComponentsWithFallback(row.dataType);
+			const { Example, Options }: { Example: React.FC<DataTypeUIExampleProps>, Options: React.FC<DataTypeUIOptionsProps> } = getDataTypeComponentsWithFallback(row.dataType);
 
 			return (
 				<div className={styles.gridRow} key={row.id}>
@@ -62,7 +64,13 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 							onUpdate={(data: any) => onConfigureDataType(row.id, data)}
 						/>
 					</div>
-					<div className={styles.helpCol} onClick={() => showHelpDialogSection(row.dataType)}>
+					<div className={styles.helpCol} onClick={() => {
+					    if (row.dataType === null) {
+					        return;
+                        }
+                        setInitialDialogSection(row.dataType);
+					    showHelpDialogSection(true);
+                    }}>
 						{row.dataType ? <HelpIcon /> : null}
 					</div>
 					<div className={styles.deleteCol} onClick={() => onRemove(row.id)}>
@@ -88,11 +96,11 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 			</div>
 
 			<HelpDialog
-				visible={!!helpDialogSection}
-				initialDataType={helpDialogSection}
+				visible={helpDialogVisible}
+				initialDataType={initialHelpSection}
 				onClose={() => showHelpDialogSection(false)}
 				coreI18n={i18n}
-				i18n={dataTypeI18n[helpDialogSection]}
+				i18n={dataTypeI18n[initialHelpSection]}
 			/>
 		</div>
 	);
