@@ -11,7 +11,7 @@ const ResultsPanel = ({ rows }: ResultsPanelProps) => {
     }, []);
 
     return (
-        <div>
+        <div style={{ border: '1px solid black', flex: 1 }}>
 
         </div>
     );

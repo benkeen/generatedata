@@ -19,7 +19,10 @@ const GeneratePage = () => {
         );
     } else {
         content = (
-            <ResultsPanel />
+            <>
+                <span onClick={() => setSubpage('grid')}>&laquo; back</span>
+                <ResultsPanel />
+            </>
         );
     }
 

@@ -7,8 +7,6 @@ import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeComponents } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.container';
 import { DataRow } from '../../core/generator/generator.reducer';
-import { DataTypeUIExampleProps, DataTypeUIOptionsProps } from '../../../types/general';
-import { getStrings } from '../../utils/langUtils';
 
 type GridProps = {
     rows: DataRow[];
