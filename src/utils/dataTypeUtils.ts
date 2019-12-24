@@ -4,7 +4,6 @@ import dataTypeInfo from '../../build/dataTypes';
 // @ts-ignore-line
 import { dataTypes, dataTypeNames } from '../../build/dataTypesListUI';
 import { getStrings } from './langUtils';
-import {DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps} from "../../types/general";
 
 // used for the Data Type selection dropdown
 export const getSortedGroupedDataTypes = () => {
@@ -27,13 +26,13 @@ export const getSortedGroupedDataTypes = () => {
 };
 
 
-export const getDataTypeComponentsWithFallback = (dataType: string | null) => {
-	let Options = (): any => null;
-	let Example = (): any => null;
-	let Help = (): any => null;
+export const getDataTypeComponents = (dataType: string | null) => {
+	let Options = null;
+	let Example = null;
+	let Help = null;
 
 	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Options) {
-		Options = dataTypes[dataType].Options ;
+		Options = dataTypes[dataType].Options;
 	}
 	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Example) {
 		Example = dataTypes[dataType].Example;

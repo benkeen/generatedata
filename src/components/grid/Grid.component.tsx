@@ -4,10 +4,11 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import HelpIcon from '@material-ui/icons/HelpOutline';
 import * as styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
-import { getSortedGroupedDataTypes, getDataTypeComponentsWithFallback } from '../../utils/dataTypeUtils';
+import { getSortedGroupedDataTypes, getDataTypeComponents } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.container';
 import { DataRow } from '../../core/generator/generator.reducer';
 import { DataTypeUIExampleProps, DataTypeUIOptionsProps } from '../../../types/general';
+import { getStrings } from '../../utils/langUtils';
 
 type GridProps = {
     rows: DataRow[];
@@ -28,9 +29,43 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 
+
 	const getRows = (rows: DataRow[]) => {
 		return rows.map((row, index) => {
-			const { Example, Options }: { Example: React.FC<DataTypeUIExampleProps>, Options: React.FC<DataTypeUIOptionsProps> } = getDataTypeComponentsWithFallback(row.dataType);
+			const { Example, Options } = getDataTypeComponents(row.dataType);
+			// : { Example: React.FC<DataTypeUIExampleProps>, Options: React.FC<DataTypeUIOptionsProps> }
+
+            let example = null;
+            let option = null;
+            if (row.dataType) {
+                if (Example) {
+                    example = (
+                        <Example
+                            coreI18n={i18n}
+                            i18n={row.dataType ? dataTypeI18n[row.dataType] : null}
+                            id={row.id}
+                            data={row.data}
+                            onUpdate={(data: any) => onConfigureDataType(row.id, data)}
+                        />
+                    );
+                } else {
+                    example = i18n.no_examples_available;
+                }
+
+                if (Options) {
+                    option = (
+                        <Options
+                            coreI18n={i18n}
+                            i18n={row.dataType ? dataTypeI18n[row.dataType] : null}
+                            id={row.id}
+                            data={row.data}
+                            onUpdate={(data: any) => onConfigureDataType(row.id, data)}
+                        />
+                    );
+                } else {
+                    option = i18n.no_examples_available;
+                }
+            }
 
 			return (
 				<div className={styles.gridRow} key={row.id}>
@@ -46,24 +81,8 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 							options={dataTypes}
 						/>
 					</div>
-					<div className={styles.examplesCol}>
-						<Example
-							coreI18n={i18n}
-							i18n={row.dataType ? dataTypeI18n[row.dataType] : null}
-							id={row.id}
-							data={row.data}
-							onUpdate={(data: any) => onConfigureDataType(row.id, data)}
-						/>
-					</div>
-					<div className={styles.optionsCol}>
-						<Options
-							coreI18n={i18n}
-                            i18n={row.dataType ? dataTypeI18n[row.dataType] : null}
-							id={row.id}
-							data={row.data}
-							onUpdate={(data: any) => onConfigureDataType(row.id, data)}
-						/>
-					</div>
+					<div className={styles.examplesCol}>{example}</div>
+					<div className={styles.optionsCol}>{option}</div>
 					<div className={styles.helpCol} onClick={() => {
 					    if (row.dataType === null) {
 					        return;

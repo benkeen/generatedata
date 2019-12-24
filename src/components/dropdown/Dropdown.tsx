@@ -1,6 +1,11 @@
 import * as React from 'react';
 import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
 
+export type ChangeEvent = {
+    value: string;
+    label: string;
+};
+
 const selectStyles = {
 	control: (provided: ControlProps<OptionTypeBase>) => ({
 		...provided,

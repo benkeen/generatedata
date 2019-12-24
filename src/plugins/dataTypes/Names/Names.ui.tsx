@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dropdown from '../../../components/dropdown/Dropdown';
+import Dropdown, { ChangeEvent } from '../../../components/dropdown/Dropdown';
 import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
@@ -8,12 +8,11 @@ export const state = {
 };
 
 export const Example = ({ i18n, data, coreI18n, onUpdate }: DataTypeUIExampleProps) => {
-    const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
-        const value = (e.target as HTMLSelectElement).value;
+    const onChange = (selected: ChangeEvent) => {
 		onUpdate({
 			...data,
-			example: value,
-			options: value
+			example: selected.value,
+			options: selected.value
 		});
 	};
 
