@@ -200,7 +200,7 @@ type ConfigData = {
  * the Data Type itself.
  */
 
-// TODO this can be retrieved from the store now.
+// TODO this can be retrieved from the store now
 // const createDataSetTemplateUI = (hash) => {
 // 	$numCols  = $hash["gdNumCols"];
 // 	$rowOrder = $hash["gdRowOrder"];

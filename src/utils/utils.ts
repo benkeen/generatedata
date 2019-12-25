@@ -26,7 +26,7 @@ export const getRandomCharInString = (str: string) => {
  *     x       - 0-9
  *     H       - 0-F
  */
-const generateRandomAlphanumericStr = (str: string) => {
+export const generateRandomAlphanumericStr = (str: string) => {
 
 	// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9
 	let newStr = '';
