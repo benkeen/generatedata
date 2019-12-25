@@ -7,9 +7,10 @@ import * as generator from '../../core/generator/generator';
 
 
 const mapStateToProps = (state: any) => {
-    // first step. Let's just create a basic generator
 
-    const data = selectors.getRowsForExportType(state);
+    // first step. Let's just create a basic generator. This is very much imperative & belongs in an ACTION not here.
+
+    const data = selectors.getDataForExportType(state);
     generator.generate(data);
 
     return {

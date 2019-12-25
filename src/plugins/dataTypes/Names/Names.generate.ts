@@ -4,10 +4,10 @@ import { getUnique } from '../../../utils/arrayUtils';
 import { maleNames, femaleNames, lastNames } from './Names.data';
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const genders = ["male", "female"];
-
+const genders = ['male', 'female'];
 
 const getRandomGender = () => getRandomBool() ? genders[0] : genders[1];
+
 
 export const generate = (data: DataTypeGenerateType) => {
     const placeholderStr = data.generationOptions;
@@ -36,7 +36,6 @@ export const generate = (data: DataTypeGenerateType) => {
         output = output.replace(/FemaleName/, getRandomArrayValue(maleNames));
     }
 
-    // pick a random gender
     while (/Name/.test(output)) {
         const gender = getRandomGender();
         foundGenders.push(gender);
@@ -66,3 +65,10 @@ export const generate = (data: DataTypeGenerateType) => {
         gender
     };
 };
+
+export const getDataTypeMetadata = () => ({
+    SQLField: 'varchar(255) default NULL',
+    SQLField_Oracle: 'varchar2(255) default NULL',
+    SQLField_MSSQL: 'VARCHAR(255) NULL'
+});
+

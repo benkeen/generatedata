@@ -2,17 +2,17 @@ import * as React from 'react';
 
 
 export type ResultsPanelProps = {
-    rows: any;
+    batchedData?: any;
 }
 
-const ResultsPanel = ({ rows }: ResultsPanelProps) => {
+const ResultsPanel = ({ batchedData }: ResultsPanelProps) => {
     React.useEffect(() => {
 
     }, []);
 
     return (
         <div style={{ border: '1px solid black', flex: 1 }}>
-
+            &nbsp;
         </div>
     );
 };

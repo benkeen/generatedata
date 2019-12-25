@@ -3,7 +3,6 @@
  * generated data for returning to the client.
  */
 
-// import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
 import { ExportTarget } from '../../../types/general';
 
 // let exportTarget: ExportTarget;
@@ -33,6 +32,19 @@ export const generate = (data: []) => {
 
     console.log(data);
 
+    /*
+    numResults (& batch num etc)
+
+    // ordered
+    template: [
+        {
+            title: 'blah',
+            generateFunc: ...,  (from DataType)
+            dataTypeState: ..., (from DataType)
+            metadata: ...       (from DataType)
+        }
+    ]
+    */
 };
 
 
