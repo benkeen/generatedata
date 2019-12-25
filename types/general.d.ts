@@ -44,3 +44,9 @@ export type DataTypeUIHelpProps = {
     coreI18n: any;
     i18n: any;
 };
+
+
+export type DataTypeGenerateType = {
+    generationOptions: any; // this is actually whatever the `state` structure is exported by their UI layer
+};
+

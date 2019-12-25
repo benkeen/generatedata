@@ -22,16 +22,16 @@ class DataType_Names extends DataTypePlugin {
 	private $genders     = array("male", "female");
 
 
-	/**
-	 * @param string $runtimeContext "generation" or "ui"
-	 */
-	public function __construct($runtimeContext) {
-		parent::__construct($runtimeContext);
-		if ($runtimeContext == "generation") {
-			self::initFirstNames();
-			self::initLastNames();
-		}
-	}
+//	/**
+//	 * @param string $runtimeContext "generation" or "ui"
+//	 */
+//	public function __construct($runtimeContext) {
+//		parent::__construct($runtimeContext);
+//		if ($runtimeContext == "generation") {
+//			self::initFirstNames();
+//			self::initLastNames();
+//		}
+//	}
 
 
 	public function generate($generator, $generationContextData) {
@@ -124,56 +124,6 @@ class DataType_Names extends DataTypePlugin {
 
 
 	// -------- private member functions ---------
-
-	/**
-	 * Called when instantiating the plugin during data generation. Set the firstNames, maleNames and
-	 * femaleNames.
-	 */
-	private function initFirstNames() {
-		$prefix = Core::getDbTablePrefix();
-		$response = Core::$db->query("
-			SELECT *
-			FROM   {$prefix}first_names
-		");
-
-		if ($response["success"]) {
-		    $names = array();
-			$maleNames = array();
-			$femaleNames = array();
-			while ($row = mysqli_fetch_assoc($response["results"])) {
-				$gender = $row["gender"];
-				$name   = $row["first_name"];
-
-				$names[] = $name;
-				if ($gender == "male") {
-					$maleNames[] = $name;
-				} else {
-					$femaleNames[] = $name;
-				}
-			}
-
-			$this->maleNames   = $maleNames;
-			$this->femaleNames = $femaleNames;
-			$this->firstNames  = $names;
-		}
-	}
-
-
-	private function initLastNames() {
-		$prefix = Core::getDbTablePrefix();
-		$response = Core::$db->query("
-			SELECT *
-			FROM   {$prefix}last_names
-		");
-
-		if ($response["success"]) {
-			$lastNames = array();
-			while ($row = mysqli_fetch_assoc($response["results"])) {
-				$lastNames[] = $row["last_name"];
-			}
-			$this->lastNames = $lastNames;
-		}
-	}
 
 
 	private function getRandomFirstName($nameArray) {

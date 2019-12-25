@@ -10,6 +10,11 @@ const hexLen = hex.length;
 
 export const getRandomNum = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 export const getRandomBool = () => Math.random() < 0.5;
+export const getRandomArrayValue = (arr: any[]) => arr[Math.floor(Math.random() * arr.length)];
+export const getRandomCharInString = (str: string) => {
+    const index = getRandomNum(0, str.length-1);
+    return str[index];
+};
 
 /**
  * Converts the following characters in the parameter string and returns it:
