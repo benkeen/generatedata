@@ -16,5 +16,7 @@ export const getSortedRowsArray = createSelector(
 
 export const getRowsForExportType = createSelector(
     getSortedRowsArray,
-    (rows) => rows
+    (rows) => {
+        return rows.map(({ title, dataType, data }: any, colIndex: number) => ({ colIndex, title, dataType, data }))
+    }
 )

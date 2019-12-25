@@ -1,9 +1,9 @@
 /**
- * Our generator class. This does the work of interpreting the form data, passing the work off to the various
- * plugins and piecing the generated data for returning to the client.
+ * Our generator class. This does the work of passing off the work off to the selected plugins and piecing the
+ * generated data for returning to the client.
  */
 
-import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
+// import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
 import { ExportTarget } from '../../../types/general';
 
 // let exportTarget: ExportTarget;
@@ -30,6 +30,8 @@ import { ExportTarget } from '../../../types/general';
 
 // get data types
 export const generate = (data: []) => {
+
+    console.log(data);
 
 };
 
@@ -84,10 +86,8 @@ type ConfigData = {
 // 		$this->isCompressionRequired = true;
 // 	}
 // }
-//
 
 
-//
 // 	public function __construct($environment, $data) {
 // 		$this->genEnvironment = $environment;
 // 		$this->dataTypes = DataTypePluginHelper::getDataTypeHash(Core::$dataTypePlugins);

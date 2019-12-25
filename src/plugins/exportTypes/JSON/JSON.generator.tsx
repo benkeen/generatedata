@@ -25,11 +25,14 @@ export const generate = (props: GenerateProps) => {
 	// 	$content = $this->generateSimple($generator, $data, $stripWhitespace);
 	// }
 
+    // const content = generateSimple();
+
 	return {
 		success: true,
 		content: ''
 	};
 };
+
 
 const generateSimple = (data: any, stripWhitespace: boolean) => {
     const newline = (stripWhitespace) ? '' : '\n';
@@ -41,13 +44,13 @@ const generateSimple = (data: any, stripWhitespace: boolean) => {
     let content = '';
     let comma = '';
 
-    //
     // if ($generator->isFirstBatch()) {
     //     $content .= "[";
     // } else {
     //     $comma = ",";
     // }
 
+    //
     const numCols = data.colData.length;
     const numRows = data.rowData.length;
 
@@ -105,7 +108,8 @@ const generateSimple = (data: any, stripWhitespace: boolean) => {
     // }
 
     return content;
-}
+};
+
 
 /*
 
@@ -188,12 +192,7 @@ private function shouldStripWhitespace()
 // 	return $format;
 // }
 //
-// private function determineNumericFields($template)
-// {
-// 	foreach ($template as $item) {
-// 	$this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
-// }
-// }
+
 //
 // private function determineBooleanFields($template)
 // {
@@ -212,6 +211,14 @@ private function shouldStripWhitespace()
 // 	return $this->booleanFields[$index] && ($value === "true" || $value === "false");
 // }
 */
+
+// const determineNumericFields = ($template) => {
+// {
+//     // foreach ($template as $item){
+//     //     $this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
+//     // }
+// }
+
 
 const getDownloadFilename = () => {
 	// $time = date("M-j-Y");
