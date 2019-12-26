@@ -30,21 +30,31 @@ export const Example = ({ data, onUpdate }: DataTypeUIExampleProps) => {
 			<option value="1000,-1,">1000, 999, 998, 997...</option>
 			<option value="0,-1,">0, -1, -2, -3, -4...</option>
 			<option value="0,0.5,">0, 0.5, 1, 1.5, 2...</option>
-			<option value="1,1,ROW-{\$INCR}">ROW-1, ROW-2, ROW-3,...</option>
-			<option value="2,4,{\$INCR}i">2i, 4i, 6i, 8i...</option>
+			<option value="1,1,ROW-${INCR}">ROW-1, ROW-2, ROW-3,...</option>
+			<option value="2,4,${INCR}i">2i, 4i, 6i, 8i...</option>
 		</select>
 	);
 };
 
-export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => {
+export const Options = ({ i18n, data, onUpdate }: DataTypeUIOptionsProps) => {
+    const onChange = (field: string, value: string) => {
+        onUpdate({
+            ...data,
+            [field]: value
+        });
+    };
+
 	return (
 		<>
 			{i18n.start_at_c}
-			<input type="text" style={{ width: 40 }} value={data.incrementStart} />
+			<input type="text" style={{ width: 40 }} value={data.incrementStart}
+                onChange={(e) => onChange('incrementStart', e.target.value)} />
 			{i18n.increment_c}
-			<input type="text" style={{ width: 40 }} value={data.incrementValue} />
+			<input type="text" style={{ width: 40 }} value={data.incrementValue}
+                onChange={(e) => onChange('incrementValue', e.target.value)} />
 			{i18n.placeholder_str}
-			<input type="text" style={{ width: 140 }} value={data.incrementPlaceholder} />
+			<input type="text" style={{ width: 140 }} value={data.incrementPlaceholder}
+                onChange={(e) => onChange('incrementPlaceholder', e.target.value)} />
 		</>
 	);
 };

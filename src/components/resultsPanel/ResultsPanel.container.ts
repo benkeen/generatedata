@@ -11,7 +11,8 @@ const mapStateToProps = (state: any) => {
     // first step. Let's just create a basic generator. This is very much imperative & belongs in an ACTION not here.
 
     const data = selectors.getDataForExportType(state);
-    generator.generate(data);
+    console.log(data);
+    // generator.generate(data);
 
     return {
 

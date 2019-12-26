@@ -11,7 +11,7 @@ export const generate = (data: DataTypeGenerateType) => {
 	return { display: val };
 };
 
-export const getDataTypeMetadata = () => ({
+export const getMetadata = () => ({
 	SQLField: 'varchar(255)',
 	SQLField_Oracle: 'varchar2(255)',
 	SQLField_MSSQL: 'VARCHAR(255) NULL'

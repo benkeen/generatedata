@@ -1,8 +1,5 @@
 import { createSelector } from 'reselect';
-
-// TODO
-import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
-
+import { getGenerationOptionsByDataType } from '../../utils/dataTypeGenerationUtils';
 
 export const getRows = (state: any) => state.generator.rows;
 export const getSortedRows = (state: any) => state.generator.sortedRows;
@@ -19,31 +16,25 @@ export const getSortedRowsArray = createSelector(
 );
 
 
-/*
-    numResults (& batch num etc)
-
-    // ordered
-    template: [
-        {
-            title: 'blah',
-            generateFunc: ...,  (from DataType)
-            dataTypeState: ..., (from DataType)
-            metadata: ...       (from DataType)
-        }
-    ]
-*/
-
+// TODO this would be in a separate bundle loaded async along with the export, dataType + country generation code
 export const getDataForExportType = createSelector(
     getSortedRowsArray,
     (rows) => {
         return {
             numResults: 500,
-            template: rows.map(({ title, dataType, data }: any) => ({
-                title,
-                dataTypeRowSettings: data,
-                generateFunc: null,
-                metadata: null
-            }))
+            template: rows.map(({ title, dataType, data }: any) => {
+
+                // TODO another assumption here. Maybe validate the whole component right-up front during the
+                // build step and throw a nice error saying what's missing
+                const { generate, getMetadata } = getGenerationOptionsByDataType(dataType);
+
+                return {
+                    title,
+                    dataTypeRowSettings: data,
+                    generateFunc: generate,
+                    metadata: getMetadata()
+                };
+            })
         };
     }
 );

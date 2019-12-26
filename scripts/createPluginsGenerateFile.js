@@ -10,15 +10,16 @@ const processDataTypes = () => {
 		const key = i.folder;
 		const file = `${i.folderPath}/${i.folder}.generate.ts`;
 		if (fs.existsSync(file)) {
-			rows.push(`import * as ${key} from '${file}';`);
+			const fileWithoutExtension = file.replace(/\.ts$/, '');
+			rows.push(`import * as ${key} from '${fileWithoutExtension}';`);
 			exportList.push(key);
 		}
 	});
 
-	let content = rows.join('\n') + `\n\nexport const dataTypesGnerate = {\n\t${exportList.join(',\n\t')}\n};`;
-	content += `\n\nexport const dataTypeNames = [\n\t'${exportList.join('\',\n\t\'')}'\n];`;
+	let content = rows.join('\n') + `\n\nexport const dataTypesGenerate: any = {\n\t${exportList.join(',\n\t')}\n};`;
+	content += `\n\nexport const dataTypeNames: string[] = [\n\t'${exportList.join('\',\n\t\'')}'\n];`;
 
-	helpers.createBuildFile('dataTypesListGenerate.js', content);
+	helpers.createBuildFile('dataTypesListGenerate.ts', content);
 };
 
 processDataTypes();

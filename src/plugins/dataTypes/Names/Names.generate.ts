@@ -66,7 +66,7 @@ export const generate = (data: DataTypeGenerateType) => {
     };
 };
 
-export const getDataTypeMetadata = () => ({
+export const getMetadata = () => ({
     SQLField: 'varchar(255) default NULL',
     SQLField_Oracle: 'varchar2(255) default NULL',
     SQLField_MSSQL: 'VARCHAR(255) NULL'

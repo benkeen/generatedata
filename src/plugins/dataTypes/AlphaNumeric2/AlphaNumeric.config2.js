@@ -3,7 +3,7 @@ export default {
 	"fieldGroup": "numeric",
 	"fieldGroupOrder": 10,
 	"schema": {
-		"title": "AlphaNumeric",
+		"title": "Alphanumeric",
 		"$schema": "http://json-schema.org/draft-04/schema#",
 		"type": "object",
 		"properties": {
