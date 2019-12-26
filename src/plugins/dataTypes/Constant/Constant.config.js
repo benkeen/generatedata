@@ -2,6 +2,7 @@ export default {
 	"name": "Constant",
 	"fieldGroup": "other",
 	"fieldGroupOrder": 10,
+	processOrder: 100,
 	"schema": {
 		"title": "Constant",
 		"$schema": "http://json-schema.org/draft-04/schema#",

@@ -1,6 +1,6 @@
 import { coreConfig } from '../core';
 // @ts-ignore-line
-import dataTypeInfo from '../../build/dataTypes';
+import dataTypeConfig from '../../build/dataTypeConfig';
 // @ts-ignore-line
 import { dataTypes, dataTypeNames } from '../../build/dataTypesListUI';
 import { getStrings } from './langUtils';
@@ -11,7 +11,7 @@ export const getSortedGroupedDataTypes = () => {
 
 	let groupedOptions: any = [];
 	coreConfig.dataTypeGroups.map((group: string) => {
-		const options = dataTypeInfo.filter((dataType: any) => dataType.fieldGroup === group).map((i: any) => {
+		const options = dataTypeConfig.filter((dataType: any) => dataType.fieldGroup === group).map((i: any) => {
 			return {
 				value: i.name,
 				label: i.name
@@ -51,4 +51,9 @@ export const getDataTypeDefaultState = (dataType: string) => {
 
 export const getDataTypeHelpComponent = (dataType: string) => {
 	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : () => {};
+};
+
+
+export const getFieldGroupOrders = () => {
+    return dataTypeConfig.map((row) => ({ folder: row.folder, })
 };

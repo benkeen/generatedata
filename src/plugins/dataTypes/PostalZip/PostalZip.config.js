@@ -2,6 +2,7 @@ export default {
 	"name": "Postal / Zip",
 	"fieldGroup": "geo",
 	"fieldGroupOrder": 30,
+	processOrder: 3,
 	"schema": {
 		"title": "PostalZip",
 		"$schema": "http://json-schema.org/draft-04/schema#",

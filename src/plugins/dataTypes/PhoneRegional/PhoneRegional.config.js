@@ -2,6 +2,7 @@ export default {
 	"name": "Phone / Fax, Regional",
 	"fieldGroup": "human_data",
 	"fieldGroupOrder": 25,
+	processOrder: 3,
 	"schema": {
 		"title": "PhoneRegional",
 		"$schema": "http://json-schema.org/draft-04/schema#",

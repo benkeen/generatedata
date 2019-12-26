@@ -229,7 +229,7 @@ type ConfigData = {
 //             if (!array_key_exists("$processOrder", $templatesByProcessOrder)) {
 //                 $templatesByProcessOrder["$processOrder"] = array();
 //             }
-// 	        $templatesByProcessOrder["$processOrder"][] = array(
+// 	           $templatesByProcessOrder["$processOrder"][] = array(
 //                 "title"             => $title,
 //                 "colNum"            => $order,
 //                 "dataTypeFolder"    => $dataTypeFolder,

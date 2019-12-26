@@ -24,8 +24,7 @@ export const generate = (data: GenerateProps) => {
 	// } else {
 	// 	$content = $this->generateSimple($generator, $data, $stripWhitespace);
 	// }
-
-    const content = generateSimple(data);
+    // const content = generateSimple(data);
 
 	return {
 		success: true,
