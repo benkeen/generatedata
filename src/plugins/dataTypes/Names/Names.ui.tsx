@@ -41,7 +41,7 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }: DataTypeUIExamplePro
 };
 
 export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
-	<input type="text" value={data.options} onChange={(e) => onUpdate({ ...data, options: e.target.value })}/>
+	<input type="text" value={data.options} onChange={(e) => onUpdate({ ...data, options: e.target.value })} />
 );
 
 export const Help = ({ i18n }: DataTypeUIHelpProps) => (

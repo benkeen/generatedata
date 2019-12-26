@@ -7,8 +7,8 @@ type GenerateProps = {
     userSettings: JSONSettings;
 }
 
-export const generate = (props: GenerateProps) => {
-	const { genEnvironment, userSettings } = props;
+export const generate = (data: GenerateProps) => {
+	const { genEnvironment, userSettings } = data;
 
 	// $data = $generator->generateExportData();
 	// $template = $generator->getTemplateByDisplayOrder();
@@ -25,7 +25,7 @@ export const generate = (props: GenerateProps) => {
 	// 	$content = $this->generateSimple($generator, $data, $stripWhitespace);
 	// }
 
-    // const content = generateSimple();
+    const content = generateSimple(data);
 
 	return {
 		success: true,

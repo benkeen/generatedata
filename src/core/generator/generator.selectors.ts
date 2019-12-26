@@ -25,13 +25,15 @@ export const getDataForExportType = createSelector(
     getNonEmptySortedRows,
     (rows) => {
 
-        console.log(rows);
+        // ordered array of data types to generate
+        // orderedDataTypeRows: []
+        //
+        // ordered array of
+        // processOrder: []
 
         return {
             numResults: 500,
             template: rows.map(({ title, dataType, data }: any) => {
-
-                console.log('data type? ', dataType);
 
                 // TODO another assumption here. Maybe validate the whole component right-up front during the
                 // build step and throw a nice error saying what's missing

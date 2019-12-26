@@ -71,4 +71,3 @@ export const getMetadata = () => ({
     SQLField_Oracle: 'varchar2(255) default NULL',
     SQLField_MSSQL: 'VARCHAR(255) NULL'
 });
-

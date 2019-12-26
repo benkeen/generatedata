@@ -45,8 +45,18 @@ export type DataTypeUIHelpProps = {
     i18n: any;
 };
 
-
 export type DataTypeGenerateType = {
     generationOptions: any; // this is actually whatever the `state` structure is exported by their UI layer
 };
 
+type ExportTypeTemplate = {
+    title: string;
+    dataTypeRowSettings: any;
+    generateFunc: Function; // DataTypeGenerateType
+    metadata: () => any;
+};
+
+export type ExportTypeGenerateType = {
+    numResults: number;
+    template: ExportTypeTemplate[];
+};

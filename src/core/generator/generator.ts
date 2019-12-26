@@ -3,7 +3,8 @@
  * generated data for returning to the client.
  */
 
-import { ExportTarget } from '../../../types/general';
+import { ExportTarget, ExportTypeGenerateType } from '../../../types/general';
+import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
 
 // let exportTarget: ExportTarget;
 // let batchNum: number;
@@ -28,23 +29,9 @@ import { ExportTarget } from '../../../types/general';
 
 
 // get data types
-export const generate = (data: []) => {
+export const generate = (data: ExportTypeGenerateType) => {
 
-    console.log(data);
-
-    /*
-    numResults (& batch num etc)
-
-    // ordered
-    template: [
-        {
-            title: 'blah',
-            generateFunc: ...,  (from DataType)
-            dataTypeState: ..., (from DataType)
-            metadata: ...       (from DataType)
-        }
-    ]
-    */
+    const str = JSON.generate(data);
 };
 
 

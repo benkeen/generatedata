@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "webpack --config ./webpack.config.js --mode=development --watch",
-    "build": "node ./scripts/pluginBundles.js & node ./scripts/generateConfigFile.js",
+    "build": "node ./scripts/createPluginsFile.js & node ./scripts/createPluginsGenerateFile.js & node ./scripts/createPluginsListFile.js",
     "test": "jest"
   },
   "repository": {
