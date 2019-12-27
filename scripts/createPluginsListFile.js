@@ -8,17 +8,18 @@ const processDataTypes = () => {
 	let exportList = [];
 	helpers.getDataTypes().map((i) => {
 		const key = i.folder;
-		const uiFile = `${i.folderPath}/${i.folder}.ui.js`;
-		if (fs.existsSync(uiFile)) {
-			rows.push(`import * as ${key} from '${uiFile}';`);
+		const file = `${i.folderPath}/${i.folder}.ui.tsx`;
+		const fileWithoutExtension = file.replace(/\.tsx$/, '');
+		if (fs.existsSync(file)) {
+			rows.push(`import * as ${key} from '${fileWithoutExtension}';`);
 			exportList.push(key);
 		}
 	});
 
-	let content = rows.join('\n') + `\n\nexport const dataTypes = {\n\t${exportList.join(',\n\t')}\n};`;
-	content += `\n\nexport const dataTypeNames = [\n\t'${exportList.join('\',\n\t\'')}'\n];`;
+	let content = rows.join('\n') + `\n\nexport const dataTypes: any = {\n\t${exportList.join(',\n\t')}\n};`;
+	content += `\n\nexport const dataTypeNames: string[] = [\n\t'${exportList.join('\',\n\t\'')}'\n];`;
 
-	helpers.createBuildFile('dataTypesListUI.js', content);
+	helpers.createBuildFile('dataTypesListUI.ts', content);
 };
 
 processDataTypes();

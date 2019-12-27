@@ -54,6 +54,6 @@ export const getDataTypeHelpComponent = (dataType: string) => {
 };
 
 
-export const getFieldGroupOrders = () => {
-    return dataTypeConfig.map((row) => ({ folder: row.folder, })
+export const getDataTypeProcessOrders = () => {
+    return dataTypeConfig.map((row) => ({ folder: row.folder }));
 };

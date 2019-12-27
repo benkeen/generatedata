@@ -33,7 +33,8 @@ const getDataTypes = () => {
 				folder,
 				folderPath: `${baseFolder}/${folder}`,
 				fieldGroup: file.fieldGroup,
-				fieldGroupOrder: file.fieldGroupOrder
+				fieldGroupOrder: file.fieldGroupOrder,
+				processOrder: file.processOrder ? file.processOrder : 1
 			};
 		} catch (e) {
 			console.log('Error parsing ', configFile);

@@ -1,18 +1,19 @@
-import React from 'react';
+import * as React from 'react';
+import { DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
 export const state = {
 	autoIncRowNum: '',
 	maxSiblings: ''
 };
 
-export const Options = ({ i18n }) => (
+export const Options = ({ i18n }: DataTypeUIOptionsProps) => (
 	<>
 		<div>{i18n.auto_increment_row_num} <input type="text" id="dtTreeAutoIncrementRowNum_%ROW%" name="dtTreeAutoIncrementRowNum_%ROW%" value="1" size="3" maxLength="3" /></div>
 		<div>{i18n.max_num_sibling_nodes} <input type="text" id="dtTreeMaxSiblings_%ROW%" name="dtTreeMaxSiblings_%ROW%" value="2" size="3" maxLength="3" /></div>
 	</>
 );
 
-export const Help = ({ i18n }) => (
+export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	<>
 		<p>
 			{i18n.help_1}

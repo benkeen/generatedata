@@ -6,7 +6,8 @@ const processDataTypes = () => {
 		name: i.name,
 		folder: i.folder,
 		fieldGroup: i.fieldGroup,
-		fieldGroupOrder: i.fieldGroupOrder
+		fieldGroupOrder: i.fieldGroupOrder,
+		processOrder: i.processOrder
 	}));
 	helpers.createBuildFile('dataTypeConfig.ts', `export default ${JSON.stringify(data, null, '\t')};`);
 };
