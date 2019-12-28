@@ -1,7 +1,5 @@
 import { coreConfig } from '../core';
-// @ts-ignore-line
 import dataTypeConfig from '../../build/dataTypeConfig';
-// @ts-ignore-line
 import { dataTypes, dataTypeNames } from '../../build/dataTypesListUI';
 import { getStrings } from './langUtils';
 
@@ -31,13 +29,13 @@ export const getDataTypeComponents = (dataType: string | null) => {
 	let Example = null;
 	let Help = null;
 
-	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Options) {
+	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Options) {
 		Options = dataTypes[dataType].Options;
 	}
-	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Example) {
+	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Example) {
 		Example = dataTypes[dataType].Example;
 	}
-	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Help) {
+	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Help) {
 		Help = dataTypes[dataType].Help;
 	}
 
@@ -55,5 +53,9 @@ export const getDataTypeHelpComponent = (dataType: string) => {
 
 
 export const getDataTypeProcessOrders = () => {
-    return dataTypeConfig.map((row) => ({ folder: row.folder }));
+    const processOrders: any = {};
+    dataTypeConfig.map((row) => {
+        processOrders[row.folder] = row.processOrder;
+    });
+    return processOrders;
 };

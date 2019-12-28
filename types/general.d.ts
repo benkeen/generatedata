@@ -59,4 +59,9 @@ type ExportTypeTemplate = {
 export type ExportTypeGenerateType = {
     numResults: number;
     template: ExportTypeTemplate[];
+
+    // "rowNum"            => $rowNum,
+    // "generationOptions" => $genInfo["generationOptions"],
+    // "existingRowData"   => $currRowData
+
 };

@@ -28,10 +28,10 @@ import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
 // let configurationID = null;
 
 
-// get data types
 export const generate = (data: ExportTypeGenerateType) => {
 
-    const str = JSON.generate(data);
+    // const str = JSON.generate();
+
 };
 
 
