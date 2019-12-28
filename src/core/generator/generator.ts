@@ -3,7 +3,7 @@
  * generated data for returning to the client.
  */
 
-import { ExportTarget, ExportTypeGenerateType } from '../../../types/general';
+import { ExportTarget, ExportTypeGenerateType, GenerationTemplate } from '../../../types/general';
 import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
 
 // let exportTarget: ExportTarget;
@@ -30,7 +30,7 @@ import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
 
 export const generate = (data: ExportTypeGenerateType) => {
 
-    // const str = JSON.generate();
+    const generatedData = generateExportData(data);
 
 };
 
@@ -40,6 +40,91 @@ type ConfigData = {
     batchSize: number;
     currentBatchNumber: number;
 };
+
+
+const generateExportData = (data: ExportTypeGenerateType) => {
+	const colNames = getColumnNames(data);
+    const generationTemplate = data.template;
+
+    // 	$firstRowNum  = $this->getCurrentBatchFirstRow();
+// 	$lastRowNum   = $this->getCurrentBatchLastRow();
+    const firstRowNum = 1;
+    const lastRowNum = data.numResults;
+
+
+ 	// contains only the information needed for display purposes
+	const displayData = [];
+	const processOrders = Object.keys(generationTemplate);
+	for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
+        // the generationTemplate is already grouped by process order. Just loop through each one, passing off the
+        // actual data generation to the appropriate Data Type. Note that we pass all previously generated
+        // data (including any metadata returned by the Data Type).
+        const currRowData: any = [];
+
+        processOrders.forEach((processOrder: string) => {
+
+            // @ts-ignore
+            for (let i = 0; i < generationTemplate[processOrder].length; i++) {
+                // @ts-ignore
+                const currCell = generationTemplate[processOrder][i];
+
+                // $currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
+                currRowData[currCell.colIndex] = currCell.generateFunc({
+                    rowNum,
+                    cellSettings: currCell.cellSettings,
+                    existingRowData: currRowData
+                });
+            }
+        });
+
+        console.log(currRowData);
+    }
+
+
+    //     // now we have all the info we need for this row, filter out the display value
+    //     const currRowDisplayData = [];
+    //     foreach ($currRowData as $orderedRowData) {
+    //         $currRowDisplayData[] = $orderedRowData["randomData"]["display"];
+    //     }
+	// $displayData[] = $currRowDisplayData;
+    //
+    // }
+
+    // 	// now sort the row columns in the desired order
+// 	ksort($currRowData, SORT_NUMERIC);
+
+
+// }
+//
+// 	$data = array(
+// 	"isFirstBatch" => $this->isFirstBatch(),
+// 	"isLastBatch"  => $this->isLastBatch(),
+// 	"colData"      => $cols,
+// 	"rowData"      => $displayData
+// 	);
+//
+// 	return $data;
+};
+
+
+const getColumnNames = (data: ExportTypeGenerateType) => {
+
+    // 	public function getTemplateByDisplayOrder() {
+// 	$ordered = array();
+//
+// 	while (list($order, $dataTypes) = each($this->template)) {
+// 	foreach ($dataTypes as $dataType) {
+// 	$order = $dataType["colNum"];
+// 	$ordered[$order] = $dataType;
+// }
+// }
+// 	reset($this->template);
+// 	ksort($ordered, SORT_NUMERIC);
+// 	return array_values($ordered);
+// }
+
+};
+
 
 /**
  * Constructs the Data Generator ready for a generate() call for all data generated via the UI.
@@ -297,88 +382,6 @@ type ConfigData = {
 	 * Using this function is completely optional - it's just provided for convenience.
 	 * @return array
 	 */
-// 	public function generateExportData() {
-// 	$columns      = $this->getTemplateByDisplayOrder();
-// 	$template     = $this->getTemplateByProcessOrder();
-// 	$dataTypes    = $this->getDataTypes();
-// 	$firstRowNum  = $this->getCurrentBatchFirstRow();
-// 	$lastRowNum   = $this->getCurrentBatchLastRow();
-//
-// 	// first, generate the (ordered) list of table headings
-// 	$cols = array();
-// 	foreach ($columns as $colInfo) {
-// 	$cols[] = $colInfo["title"];
-// }
-//
-// 	// contains only the information needed for display purposes
-// 	$displayData = array();
-// 	for ($rowNum=$firstRowNum; $rowNum<=$lastRowNum; $rowNum++) {
-//
-// 	// $template is already grouped by process order. Just loop through each one, passing off the
-// 	// actual data generation to the appropriate Data Type. Note that we pass all previously generated
-// 	// data (including any metadata returned by the Data Type).
-// 	$currRowData = array();
-//
-// 	while (list($order, $dataTypeGenerationInfo) = each($template)) {
-// 	foreach ($dataTypeGenerationInfo as $genInfo) {
-// 	$colNum = $genInfo["colNum"];
-// 	$currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
-// 	$generationContextData = array(
-// 	"rowNum"            => $rowNum,
-// 	"generationOptions" => $genInfo["generationOptions"],
-// 	"existingRowData"   => $currRowData
-// 	);
-//
-// 	$genInfo["randomData"] = $currDataType->generate($this, $generationContextData);
-// 	$currRowData["$colNum"] = $genInfo;
-// }
-// }
-// 	reset($template);
-//
-// 	// now sort the row columns in the desired order
-// 	ksort($currRowData, SORT_NUMERIC);
-//
-// 	// now we have all the info we need for this row, filter out the display value
-// 	$currRowDisplayData = array();
-// 	foreach ($currRowData as $orderedRowData) {
-// 	$currRowDisplayData[] = $orderedRowData["randomData"]["display"];
-// }
-// 	$displayData[] = $currRowDisplayData;
-// }
-//
-// 	$data = array(
-// 	"isFirstBatch" => $this->isFirstBatch(),
-// 	"isLastBatch"  => $this->isLastBatch(),
-// 	"colData"      => $cols,
-// 	"rowData"      => $displayData
-// 	);
-//
-// 	return $data;
-// }
-//
-//
-//
-// 	/**
-// 	 * this->template contains the entire data set to be generated by the Export Type, grouped
-// 	 * by the priority in which they should be generated. This flattens the info.
-// 	 *
-// 	 * This is generally used for producing the list of headings in the expected order.
-// 	 *
-// 	 * @return array
-// 	 */
-// 	public function getTemplateByDisplayOrder() {
-// 	$ordered = array();
-//
-// 	while (list($order, $dataTypes) = each($this->template)) {
-// 	foreach ($dataTypes as $dataType) {
-// 	$order = $dataType["colNum"];
-// 	$ordered[$order] = $dataType;
-// }
-// }
-// 	reset($this->template);
-// 	ksort($ordered, SORT_NUMERIC);
-// 	return array_values($ordered);
-// }
 //
 //
 // 	/**

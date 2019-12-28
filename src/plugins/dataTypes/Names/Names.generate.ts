@@ -2,15 +2,18 @@ import { DataTypeGenerateType } from '../../../../types/general';
 import { getRandomArrayValue, getRandomBool, getRandomCharInString } from '../../../utils/utils';
 import { getUnique } from '../../../utils/arrayUtils';
 import { maleNames, femaleNames, lastNames } from './Names.data';
+import { NamesState } from './Names.ui';
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const genders = ['male', 'female'];
+
+export const getGenerationState = (state: NamesState) => state.options;
 
 const getRandomGender = () => getRandomBool() ? genders[0] : genders[1];
 
 
 export const generate = (data: DataTypeGenerateType) => {
-    const placeholderStr = data.generationOptions;
+    const placeholderStr = data.cellSettings;
 
     // in case the user entered multiple | separated formats, pick one first
     const formats = placeholderStr.split('|');

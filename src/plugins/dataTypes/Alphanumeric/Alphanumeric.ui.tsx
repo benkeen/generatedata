@@ -2,8 +2,12 @@ import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { DataTypeUIExampleProps, DataTypeUIOptionsProps, DataTypeUIHelpProps } from '../../../../types/general';
 
-// allow users to define a default data structure for all new rows
-export const state = {
+export type AlphanumericState = {
+    example: string;
+    value: string;
+}
+
+export const state: AlphanumericState = {
 	example: '',
 	value: ''
 };

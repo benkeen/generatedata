@@ -1,8 +1,12 @@
 import { generateRandomAlphanumericStr, getRandomNum } from '../../../utils/utils';
 import { DataTypeGenerateType } from '../../../../types/general';
+import { AlphanumericState } from './Alphanumeric.ui';
+
+export const getGenerationState = (state: AlphanumericState) => state.value;
+
 
 export const generate = (data: DataTypeGenerateType) => {
-	const formats = data.generationOptions.split('|');
+	const formats = data.cellSettings.split('|');
 	let chosenFormat = formats[0];
 	if (formats.length > 1) {
 		chosenFormat = formats[getRandomNum(0, formats.length-1)];

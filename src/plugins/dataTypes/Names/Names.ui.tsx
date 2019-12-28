@@ -2,7 +2,12 @@ import * as React from 'react';
 import Dropdown, { ChangeEvent } from '../../../components/dropdown/Dropdown';
 import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
 
-export const state = {
+export type NamesState = {
+    example: string;
+    options: string;
+};
+
+export const state: NamesState = {
 	example: '',
 	options: ''
 };

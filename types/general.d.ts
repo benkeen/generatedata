@@ -46,22 +46,29 @@ export type DataTypeUIHelpProps = {
 };
 
 export type DataTypeGenerateType = {
-    generationOptions: any; // this is actually whatever the `state` structure is exported by their UI layer
+    rowNum: number;
+    cellSettings: any; // this is actually whatever the `state` structure is exported by their UI layer
+    existingRowData: any[];
 };
 
-type ExportTypeTemplate = {
+export type GenerationTemplateRow = {
     title: string;
-    dataTypeRowSettings: any;
+    dataType: string;
+    cellSettings: any;
     generateFunc: Function; // DataTypeGenerateType
-    metadata: () => any;
+    colMetadata: () => any;
+}
+
+export type GenerationTemplate = {
+    [n: number]: GenerationTemplateRow[];
 };
+
 
 export type ExportTypeGenerateType = {
     numResults: number;
-    template: ExportTypeTemplate[];
+    template: GenerationTemplate;
 
     // "rowNum"            => $rowNum,
     // "generationOptions" => $genInfo["generationOptions"],
     // "existingRowData"   => $currRowData
-
 };

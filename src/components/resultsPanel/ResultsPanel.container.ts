@@ -9,11 +9,14 @@ import * as generator from '../../core/generator/generator';
 const mapStateToProps = (state: any) => {
 
     // TODO first step. Let's just create a basic generator. This is very much imperative & belongs in an ACTION not here.
+    const template = selectors.getGenerationTemplate(state);
 
-    const data = selectors.getDataForExportType(state);
+    console.log(selectors.getColumnTitles(state));
 
-    console.log(data);
-    generator.generate(data);
+    generator.generate({
+        numResults: 500,
+        template
+    });
 
     return {
 
