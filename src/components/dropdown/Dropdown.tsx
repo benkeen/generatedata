@@ -21,25 +21,29 @@ const selectStyles = {
 	})
 };
 
-const Dropdown = ({ value, isGrouped, ...props }: any) => {
+const Dropdown = ({ value, isGrouped, options, ...props }: any) => {
 	// react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.
 	// instead, our component use the `value` prop, which is converted here
-	let selectedValue;
+    let selectedValue;
 	if (isGrouped) {
-		props.options.find((group: any) => {
-			const found = group.options.find((row: any) => row.value === value);
-			if (found !== -1) {
+		options.find((group: any) => {
+			const found = group.options.find((row: any) => {
+			    return row.value === value;
+            });
+			if (found && found !== -1) {
 				selectedValue = found;
 				return true;
 			}
+			return false;
 		});
-	} else {
-		selectedValue = props.options.find((row: any) => row.value === value);
-	}
 
+	} else {
+		selectedValue = options.find((row: any) => row.value === value);
+	}
 	return (
 		<Select
 			{...props}
+            options={options}
 			value={selectedValue}
 			styles={selectStyles}
 		/>

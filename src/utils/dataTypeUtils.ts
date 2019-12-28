@@ -21,8 +21,6 @@ export const getSortedGroupedDataTypes = () => {
 		});
 	});
 
-	console.log(groupedOptions);
-	
 	return groupedOptions;
 };
 

@@ -33,7 +33,12 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: DataTypeUIExamplePro
 };
 
 export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
-	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })}/>
+	<input
+        type="text"
+        value={data.value}
+        onChange={(e) => onUpdate({ ...data, value: e.target.value })}
+        style={{ width: '100%' }}
+    />
 );
 
 export const Help = ({ i18n }: DataTypeUIHelpProps) => (

@@ -64,6 +64,9 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                 }
             }
 
+
+            console.log('in grid: ', row.dataType);
+
 			return (
 				<div className={styles.gridRow} key={row.id}>
 					<div className={styles.orderCol}>{index + 1}</div>
