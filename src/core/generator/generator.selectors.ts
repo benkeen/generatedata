@@ -25,29 +25,36 @@ export const getNonEmptySortedRows = createSelector(
 export const getDataForExportType = createSelector(
     getNonEmptySortedRows,
     (rows) => {
+        const processOrders = getDataTypeProcessOrders();
 
-        // processOrder: []
+        const templateByProcessOrder: any = {};
+        rows.map(({ title, dataType, data }: any) => {
 
-        console.log('--->', getDataTypeProcessOrders());
+            const processOrder = processOrders[dataType];
 
-        const template = rows.map(({ title, dataType, data }: any) => {
             // TODO another assumption here. We need to validate the whole component right-up front during the
             // build step and throw a nice error saying what's missing
             const { generate, getMetadata } = getGenerationOptionsByDataType(dataType);
 
-            return {
+            if (!templateByProcessOrder[processOrder]) {
+                templateByProcessOrder[processOrder] = [];
+            }
+
+            templateByProcessOrder[processOrder].push({
                 title,
+
+                // data for the DT row
                 dataTypeRowState: data,
 
+                // actual DT methods
                 generateFunc: generate,
                 metadata: getMetadata()
-            };
+            });
         });
-
 
         return {
             numResults: 500,
-            template
+            template: templateByProcessOrder
         };
     }
 );

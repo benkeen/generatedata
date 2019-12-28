@@ -12,6 +12,7 @@ const mapStateToProps = (state: any) => {
 
     const data = selectors.getDataForExportType(state);
 
+    console.log(data);
     generator.generate(data);
 
     return {

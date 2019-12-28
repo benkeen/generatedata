@@ -27,6 +27,8 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 
+	console.log(i18n);
+
 	const getRows = (rows: DataRow[]) => {
 		return rows.map((row, index) => {
 			const { Example, Options } = getDataTypeComponents(row.dataType);
@@ -35,6 +37,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
             let option = null;
             if (row.dataType) {
                 if (Example) {
+                    console.log('.....', row.dataType);
                     example = (
                         <Example
                             coreI18n={i18n}
@@ -59,7 +62,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                         />
                     );
                 } else {
-                    option = i18n.no_examples_available;
+                    option = i18n.no_options_available;
                 }
             }
 
