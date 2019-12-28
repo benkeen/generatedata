@@ -11,7 +11,7 @@ export const getSortedGroupedDataTypes = () => {
 	coreConfig.dataTypeGroups.map((group: string) => {
 		const options = dataTypeConfig.filter((dataType: any) => dataType.fieldGroup === group).map((i: any) => {
 			return {
-				value: i.name,
+				value: i.folder,
 				label: i.name
 			};
 		});
@@ -20,6 +20,9 @@ export const getSortedGroupedDataTypes = () => {
 			options
 		});
 	});
+
+	console.log(groupedOptions);
+	
 	return groupedOptions;
 };
 

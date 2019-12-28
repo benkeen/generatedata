@@ -8,7 +8,7 @@ This plugin generates data in LDIF (LDAP Data Exchange Format).
 Post the following JSON content to the following API path: 
 `http://[your site]/[generate data folder]/api/v1/data`
 
-Here's an example pulled from the AlphaNumeric Data Type example:
+Here's an example pulled from the Alphanumeric Data Type example:
 
 ```javascript
 {

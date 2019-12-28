@@ -14,14 +14,14 @@ This example generates random passwords and US Zipcodes. POST the following JSON
     "numRows": 10,
     "rows": [
         {
-            "type": "AlphaNumeric",
+            "type": "Alphanumeric",
             "title": "Random Password",
             "settings": {
                 "placeholder": "LLLxxLLLxLL"
             }
         },
         {
-            "type": "AlphaNumeric",
+            "type": "Alphanumeric",
             "title": "US Zipcode",
             "settings": {
                 "placeholder": "xxxxx"

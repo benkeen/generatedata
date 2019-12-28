@@ -47,21 +47,21 @@ To generate JSON data using the API, you need to specify the JSON Export Type in
 JSON content to here: 
 `http://[your site]/[generate data folder]/api/v1/data`
 
-Here's an example pulled from the AlphaNumeric Data Type example:
+Here's an example pulled from the Alphanumeric Data Type example:
 
 ```javascript
 {
     "numRows": 10,
     "rows": [
         {
-            "type": "AlphaNumeric",
+            "type": "Alphanumeric",
             "title": "Random Password",
             "settings": {
                 "placeholder": "LLLxxLLLxLL"
             }
         },
         {
-            "type": "AlphaNumeric",
+            "type": "Alphanumeric",
             "title": "US Zipcode",
             "settings": {
                 "placeholder": "xxxxx"

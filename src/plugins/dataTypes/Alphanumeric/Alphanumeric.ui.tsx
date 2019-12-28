@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Dropdown from '../../../components/dropdown/Dropdown';
 import { DataTypeUIExampleProps, DataTypeUIOptionsProps, DataTypeUIHelpProps } from '../../../../types/general';
 
 // allow users to define a default data structure for all new rows
@@ -8,21 +9,27 @@ export const state = {
 };
 
 export const Example = ({ coreI18n, i18n, data, onUpdate }: DataTypeUIExampleProps) => {
-	const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
-		const value = (e.target as HTMLSelectElement).value;
+	const onChange = (value: any) => {
 		onUpdate({
 			example: value,
 			value: value
 		});
 	};
+
+	const options = [
+        { value: '', label: coreI18n.please_select },
+        { value: 'LxL xLx', label: `V6M 4C1 ${i18n.example_CanPostalCode}` },
+        { value: 'xxxxx', label: `90210 ${i18n.example_USZipCode}` },
+        { value: 'LLLxxLLLxLL', label: `eZg29gdF5K1 ${i18n.example_Password}` }
+    ];
+
 	return (
-		<select onChange={onChange} defaultValue={data.example}>
-			<option value="">{coreI18n.please_select}</option>
-			<option value="LxL xLx">V6M 4C1 {i18n.example_CanPostalCode}</option>
-			<option value="xxxxx">90210 {i18n.example_USZipCode}</option>
-			<option value="LLLxxLLLxLL">eZg29gdF5K1 {i18n.example_Password}</option>
-		</select>
-	);
+		<Dropdown
+			value={data.example}
+			onChange={(i: any) => onChange(i.value)}
+			options={options}
+		/>
+    );
 };
 
 export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
