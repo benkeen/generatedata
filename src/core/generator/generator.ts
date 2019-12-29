@@ -4,7 +4,10 @@
  */
 
 import { ExportTarget, ExportTypeGenerateType, GenerationTemplate } from '../../../types/general';
+
+// temporary of course
 import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
+import { DataStructureFormat, JSONSettings } from '../../plugins/exportTypes/JSON/JSON.ui';
 
 // let exportTarget: ExportTarget;
 // let batchNum: number;
@@ -31,7 +34,15 @@ import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
 export const generate = (data: ExportTypeGenerateType) => {
 
     const generatedData = generateExportData(data);
+    console.log(generatedData);
 
+    const tmpExportTypeSettings: JSONSettings = {
+        stripWhitespace: false,
+        dataStructureFormat: 'simple'
+    };
+
+    // here we offload the generated data to the Export Type
+    JSON.generate('UI', tmpExportTypeSettings, generatedData);
 };
 
 
@@ -53,7 +64,7 @@ const generateExportData = (data: ExportTypeGenerateType) => {
 
 
  	// contains only the information needed for display purposes
-	const displayData = [];
+	const displayData: any = [];
 	const processOrders = Object.keys(generationTemplate);
 	for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
         // the generationTemplate is already grouped by process order. Just loop through each one, passing off the
@@ -71,45 +82,29 @@ const generateExportData = (data: ExportTypeGenerateType) => {
                 // $currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
                 currRowData[currCell.colIndex] = currCell.generateFunc({
                     rowNum,
-                    cellSettings: currCell.cellSettings,
+                    generationSettings: currCell.generationSettings,
                     existingRowData: currRowData
                 });
             }
         });
 
-        console.log(currRowData);
+        displayData.push(currRowData.map((i: any) => i.display));
+
+        // 	// now sort the row columns in the desired order
+        // 	ksort($currRowData, SORT_NUMERIC);
     }
 
-
-    //     // now we have all the info we need for this row, filter out the display value
-    //     const currRowDisplayData = [];
-    //     foreach ($currRowData as $orderedRowData) {
-    //         $currRowDisplayData[] = $orderedRowData["randomData"]["display"];
-    //     }
-	// $displayData[] = $currRowDisplayData;
-    //
-    // }
-
-    // 	// now sort the row columns in the desired order
-// 	ksort($currRowData, SORT_NUMERIC);
-
-
-// }
-//
-// 	$data = array(
-// 	"isFirstBatch" => $this->isFirstBatch(),
-// 	"isLastBatch"  => $this->isLastBatch(),
-// 	"colData"      => $cols,
-// 	"rowData"      => $displayData
-// 	);
-//
-// 	return $data;
+	return {
+        isFirstBatch: true,
+        isLastBatch: true,
+        colData: colNames,
+        rowData: displayData
+    };
 };
 
 
 const getColumnNames = (data: ExportTypeGenerateType) => {
-
-    // 	public function getTemplateByDisplayOrder() {
+// 	public function getTemplateByDisplayOrder() {
 // 	$ordered = array();
 //
 // 	while (list($order, $dataTypes) = each($this->template)) {
@@ -122,7 +117,6 @@ const getColumnNames = (data: ExportTypeGenerateType) => {
 // 	ksort($ordered, SORT_NUMERIC);
 // 	return array_values($ordered);
 // }
-
 };
 
 

@@ -47,7 +47,7 @@ export type DataTypeUIHelpProps = {
 
 export type DataTypeGenerateType = {
     rowNum: number;
-    cellSettings: any; // this is actually whatever the `state` structure is exported by their UI layer
+    generationSettings: any;
     existingRowData: any[];
 };
 

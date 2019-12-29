@@ -2,18 +2,11 @@ import * as React from 'react';
 import { GenEnvironment } from '../../../../types/general';
 import { JSONSettings } from './JSON.ui';
 
-type GenerateProps = {
-    genEnvironment: GenEnvironment;
-    userSettings: JSONSettings;
-}
+// TODO will also need to pass in a whole thwack of other stuff previous assigned to $generator instance.
+// maybe change first param to $generationContext & include genEnvironment & everything else
+export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generatedData: any) => {
 
-export const generate = (data: GenerateProps) => {
-	const { genEnvironment, userSettings } = data;
-
-	// $data = $generator->generateExportData();
 	// $template = $generator->getTemplateByDisplayOrder();
-	// $stripWhitespace = $this->shouldStripWhitespace();
-	// $dataStructureFormat = $this->getDataStructureFormat();
 
 	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 	// $this->determineNumericFields($template);
@@ -25,6 +18,8 @@ export const generate = (data: GenerateProps) => {
 	// 	$content = $this->generateSimple($generator, $data, $stripWhitespace);
 	// }
     // const content = generateSimple(data);
+
+    generateSimple(generatedData, jsonSettings.stripWhitespace);
 
 	return {
 		success: true,
@@ -100,7 +95,6 @@ const generateSimple = (data: any, stripWhitespace: boolean) => {
         // $content .= "{$newline}{$tab}}";
         // $comma = ",";
     });
-
 
     // if ($generator->isLastBatch()) {
     //     $content .= "{$newline}]";

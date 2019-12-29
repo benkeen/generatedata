@@ -40,7 +40,7 @@ export const getGenerationTemplate = createSelector(
 
             // TODO another assumption here. We need to validate the whole component right-up front during the
             // build step and throw a nice error saying what's missing
-            const { generate, getMetadata, getGenerationState } = getGenerationOptionsByDataType(dataType);
+            const { generate, getMetadata, getGenerationSettings } = getGenerationOptionsByDataType(dataType);
 
             if (!templateByProcessOrder[processOrder]) {
                 templateByProcessOrder[processOrder] = [];
@@ -52,7 +52,7 @@ export const getGenerationTemplate = createSelector(
                 colIndex,
 
                 // settings for the DT cell
-                cellSettings: getGenerationState(data),
+                generationSettings: getGenerationSettings(data),
 
                 // DT methods for the actual generation of this cell
                 generateFunc: generate,

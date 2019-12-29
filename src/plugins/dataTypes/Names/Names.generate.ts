@@ -7,13 +7,13 @@ import { NamesState } from './Names.ui';
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const genders = ['male', 'female'];
 
-export const getGenerationState = (state: NamesState) => state.options;
+export const getGenerationSettings = (state: NamesState) => state.options;
 
 const getRandomGender = () => getRandomBool() ? genders[0] : genders[1];
 
 
 export const generate = (data: DataTypeGenerateType) => {
-    const placeholderStr = data.cellSettings;
+    const placeholderStr = data.generationSettings;
 
     // in case the user entered multiple | separated formats, pick one first
     const formats = placeholderStr.split('|');

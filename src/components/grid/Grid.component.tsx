@@ -35,7 +35,6 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
             let option = null;
             if (row.dataType) {
                 if (Example) {
-                    console.log('.....', row.dataType);
                     example = (
                         <Example
                             coreI18n={i18n}
@@ -63,9 +62,6 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                     option = i18n.no_options_available;
                 }
             }
-
-
-            console.log('in grid: ', row.dataType);
 
 			return (
 				<div className={styles.gridRow} key={row.id}>
