@@ -29,50 +29,45 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 };
 
 
-const generateSimple = (data: ExportTypeGenerationData, stripWhitespace: boolean) => {
-    const newline = (stripWhitespace) ? '' : '\n';
-    const tab = (stripWhitespace) ? '' : '\t';
-    const space = (stripWhitespace) ? '' : ' ';
+export const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean) => {
 
     let content = '';
-    let comma = '';
 
-    // generating a nested data structure is necessary slower than just a plain JSON structure (see the README
-    // for details on how the nested data structure works).
-    const nested = isNested(data.columnTitles);
-
-    // if ($generator->isFirstBatch()) {
-    content += '[';
-    // } else {
-    //     $comma = ",";
-    // }
+    // generating a nested data structure is slower than just a plain JSON structure (see the README
+    // for details on how the nested data structure works). So rather than slow everyone down, we pass that
+    // off to a separate function
+    const nested = isNested(generationData.columnTitles);
 
     if (nested) {
-
         // TODO
-
     } else {
-        content += getNonNestedData(data, comma, newline, tab, space);
+        content += getNonNestedData(generationData, stripWhitespace);
     }
-
-    // if ($generator->isLastBatch()) {
-        content += `${newline}]`;
-    // }
-
-    console.log(content);
 
     return content;
 };
 
 
-export const getNonNestedData = (data, comma: string, newline: string, tab: string, space: string) => {
+const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitespace: boolean) => {
     let content = '';
-    data.rowData.forEach((row: any) => {
+    let comma = '';
+
+    const newline = (stripWhitespace) ? '' : '\n';
+    const tab = (stripWhitespace) ? '' : '\t';
+    const space = (stripWhitespace) ? '' : ' ';
+
+    if (generationData.isFirstBatch) {
+        content += '[';
+    } else {
+        comma = ",";
+    }
+
+    generationData.rows.forEach((row: any) => {
         content += `${comma}${newline}${tab}{`;
         comma = '';
 
-        data.colData.forEach((col: any, colIndex: number) => {
-            const propName: string = col.replace(/"/, '\"');
+        generationData.columnTitles.forEach((columnTitle: any, colIndex: number) => {
+            const propName: string = columnTitle.replace(/"/, '\"');
 
             // encase all values in double quotes unless it's a number column, or it's a boolean column and it's a
             // valid JS boolean
@@ -80,22 +75,22 @@ export const getNonNestedData = (data, comma: string, newline: string, tab: stri
             if (!isNumeric(value) && !isJavascriptBoolean(value)) {
                 value = `"${value}"`;
             }
-            content += `${comma}${newline}\t\t"${propName}":${space}${value}`;
+            content += `${comma}${newline}${tab}${tab}"${propName}":${space}${value}`;
             comma = ',';
         });
 
         content += `${newline}${tab}}`;
-        comma = ',';
     });
+
+    if (generationData.isLastBatch) {
+        content += `${newline}]`;
+    }
 
     return content;
 };
 
-// returns:
-// "propname": "value"
-//    or
-// "propname: {
-// }
+
+
 const getColumnValue = (prop: string, value: any) => {
     const propName: string = prop.replace(/"/, '\"');
 
@@ -290,5 +285,5 @@ const getDownloadFilename = () => {
 };
 
 
-export const isJavascriptBoolean = (n: any) => n === 'true' || n === 'false';
+export const isJavascriptBoolean = (n: any) => n === 'true' || n === 'false' || n === true || n === false;
 export const isNested = (columnTitles: string[]) => columnTitles.some((i: string) => /\./.test(i));
