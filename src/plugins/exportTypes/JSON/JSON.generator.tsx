@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { GenEnvironment } from '../../../../types/general';
+import { ExportTypeGenerationData, GenEnvironment } from '../../../../types/general';
 import { JSONSettings } from './JSON.ui';
+import { isNumeric } from '../../../utils/utils';
 
 // TODO will also need to pass in a whole thwack of other stuff previous assigned to $generator instance.
 // maybe change first param to $generationContext & include genEnvironment & everything else
-export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generatedData: any) => {
+export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generatedData: ExportTypeGenerationData) => {
 
 	// $template = $generator->getTemplateByDisplayOrder();
 
@@ -28,84 +29,154 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 };
 
 
-const generateSimple = (data: any, stripWhitespace: boolean) => {
+const generateSimple = (data: ExportTypeGenerationData, stripWhitespace: boolean) => {
     const newline = (stripWhitespace) ? '' : '\n';
     const tab = (stripWhitespace) ? '' : '\t';
     const space = (stripWhitespace) ? '' : ' ';
 
-    const nested = [];
-
     let content = '';
     let comma = '';
 
+    // generating a nested data structure is necessary slower than just a plain JSON structure (see the README
+    // for details on how the nested data structure works).
+    const nested = isNested(data.columnTitles);
+
     // if ($generator->isFirstBatch()) {
-    //     $content .= "[";
+    content += '[';
     // } else {
     //     $comma = ",";
     // }
 
-    //
-    const numCols = data.colData.length;
-    const numRows = data.rowData.length;
+    if (nested) {
 
-    numRows.forEach((row: any, rowIndex: number) => {
-        content += `${comma}${newline}${tab}{`;
-        comma = '';
+        // TODO
 
-        numCols.forEach((col: any, colIndex: number) => {
-            // $varName = preg_replace('/"/', '\"', $data["colData"][$j]);
-            //
-            // // x.y.z field names => Nested JSON
-            // $levels = explode(".", $varName);
-            // $fieldName = array_pop($levels);
-            //
-            // // How many nested levels match the previous column?
-            // for ($k = 0; $k < count($levels) && $k < count($nested) && $nested[$k] === $levels[$k]; $k++) {
-            // }
-            //
-            // // Pop closing levels
-            // while (count($nested) > $k) {
-            //     $content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
-            //     array_pop($nested);
-            //     $comma = ",";
-            // }
-            //
-            // // Push new nested levels
-            // for ($l = $k; $l < count($levels); $l++) {
-            //     $lev = $levels[$l];
-            //     array_push($nested, $lev);
-            //     $content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
-            //     $comma = "";
-            // }
-            //
-            // // encase all values in double quotes unless it's a number column, or it's a boolean column and it's a valid JS boolean
-            // $value = $data["rowData"][$i][$j];
-            // if (!$this->isNumeric($j, $value) && !$this->isJavascriptBoolean($j, $value)) {
-            //     $value = "\"$value\"";
-            // }
-            // $content .= "{$comma}{$newline}" . str_repeat($tab, count($nested) + 2) . "\"{$fieldName}\":{$space}{$value}";
-            // $comma = ",";
-        });
-
-        // while (count($nested) > 0) {
-        //     $content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
-        //     array_pop($nested);
-        // }
-        //
-        // $content .= "{$newline}{$tab}}";
-        // $comma = ",";
-    });
+    } else {
+        content += getNonNestedData(data, comma, newline, tab, space);
+    }
 
     // if ($generator->isLastBatch()) {
-    //     $content .= "{$newline}]";
+        content += `${newline}]`;
     // }
+
+    console.log(content);
 
     return content;
 };
 
 
-/*
+export const getNonNestedData = (data, comma: string, newline: string, tab: string, space: string) => {
+    let content = '';
+    data.rowData.forEach((row: any) => {
+        content += `${comma}${newline}${tab}{`;
+        comma = '';
 
+        data.colData.forEach((col: any, colIndex: number) => {
+            const propName: string = col.replace(/"/, '\"');
+
+            // encase all values in double quotes unless it's a number column, or it's a boolean column and it's a
+            // valid JS boolean
+            let value = row[colIndex];
+            if (!isNumeric(value) && !isJavascriptBoolean(value)) {
+                value = `"${value}"`;
+            }
+            content += `${comma}${newline}\t\t"${propName}":${space}${value}`;
+            comma = ',';
+        });
+
+        content += `${newline}${tab}}`;
+        comma = ',';
+    });
+
+    return content;
+};
+
+// returns:
+// "propname": "value"
+//    or
+// "propname: {
+// }
+const getColumnValue = (prop: string, value: any) => {
+    const propName: string = prop.replace(/"/, '\"');
+
+    // x.y.z field names => nested JSON
+    const levels = propName.split('.');
+    const fieldName = levels[levels.length-1];
+
+    // // How many nested levels match the previous column?
+    // for ($k = 0; $k < count($levels) && $k < count($nested) && $nested[$k] === $levels[$k]; $k++) {
+    // }
+    //
+    // // Pop closing levels
+    // while (count($nested) > $k) {
+    //     $content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
+    //     array_pop($nested);
+    //     $comma = ",";
+    // }
+    //
+    // // Push new nested levels
+    // for ($l = $k; $l < count($levels); $l++) {
+    //     $lev = $levels[$l];
+    //     array_push($nested, $lev);
+    //     $content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
+    //     $comma = "";
+    // }
+};
+
+
+/*
+[
+    {
+        prop: 'a',
+        value: 'whatever',
+        children: []
+    },
+    {
+        prop: 'b',
+        children: [
+            {
+                prop: 'c':
+                value: 'whatever',
+            },
+            {
+                prop: 'd',
+                children: [
+
+                ]
+            }
+        ]
+    },
+]
+*/
+
+
+/*
+- a
+- b.c
+- b.d.e
+- b.d.f
+- b.p.a
+- b.p.b
+
+	[
+		{
+			"a": "et.commodo@amet.org",
+			"b": {
+				"c": "vestibulum.neque.sed@nuncsedlibero.org",
+				"d": {
+					"e": "ac@musAeneaneget.ca",
+					"f": "tellus.Suspendisse@etpedeNunc.ca"
+				},
+				"p": {
+					"a": "est.ac@nostra.ca",
+					"b": "et.tristique@rutrum.org"
+				}
+			}
+		}
+    */
+
+
+/*
 private function generateComplex($generator, $data, $stripWhitespace)
 {
 	$content = "";
@@ -217,3 +288,7 @@ const getDownloadFilename = () => {
 	// $time = date("M-j-Y");
 	// return "data{$time}.json";
 };
+
+
+export const isJavascriptBoolean = (n: any) => n === 'true' || n === 'false';
+export const isNested = (columnTitles: string[]) => columnTitles.some((i: string) => /\./.test(i));

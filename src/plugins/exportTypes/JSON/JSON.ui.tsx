@@ -56,3 +56,6 @@ export const Settings = ({ i18n, id }: { i18n: any, id: string }) => {
 // var _resetSettings = function() {
 // 	$("#etJSON_stripWhitespace").removeAttr("checked");
 // };
+
+
+// VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)

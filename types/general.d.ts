@@ -64,11 +64,20 @@ export type GenerationTemplate = {
 };
 
 
+// needed?
 export type ExportTypeGenerateType = {
     numResults: number;
+    columnTitles: string[];
     template: GenerationTemplate;
 
     // "rowNum"            => $rowNum,
     // "generationOptions" => $genInfo["generationOptions"],
     // "existingRowData"   => $currRowData
 };
+
+export type ExportTypeGenerationData = {
+    columnTitles: string[];
+    rows: []; // TODO see how this settles. Right now it's just an array of strings too: i.e. the generated values
+    isFirstBatch: boolean;
+    isLastBatch: boolean;
+}

@@ -3,7 +3,7 @@
  * generated data for returning to the client.
  */
 
-import { ExportTarget, ExportTypeGenerateType, GenerationTemplate } from '../../../types/general';
+import { ExportTarget, ExportTypeGenerateType, ExportTypeGenerationData } from '../../../types/general';
 
 // temporary of course
 import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
@@ -32,10 +32,7 @@ import { DataStructureFormat, JSONSettings } from '../../plugins/exportTypes/JSO
 
 
 export const generate = (data: ExportTypeGenerateType) => {
-
     const generatedData = generateExportData(data);
-    console.log(generatedData);
-
     const tmpExportTypeSettings: JSONSettings = {
         stripWhitespace: false,
         dataStructureFormat: 'simple'
@@ -53,15 +50,13 @@ type ConfigData = {
 };
 
 
-const generateExportData = (data: ExportTypeGenerateType) => {
-	const colNames = getColumnNames(data);
+const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
     const generationTemplate = data.template;
 
     // 	$firstRowNum  = $this->getCurrentBatchFirstRow();
 // 	$lastRowNum   = $this->getCurrentBatchLastRow();
     const firstRowNum = 1;
     const lastRowNum = data.numResults;
-
 
  	// contains only the information needed for display purposes
 	const displayData: any = [];
@@ -97,26 +92,9 @@ const generateExportData = (data: ExportTypeGenerateType) => {
 	return {
         isFirstBatch: true,
         isLastBatch: true,
-        colData: colNames,
-        rowData: displayData
+        columnTitles: data.columnTitles,
+        rows: displayData
     };
-};
-
-
-const getColumnNames = (data: ExportTypeGenerateType) => {
-// 	public function getTemplateByDisplayOrder() {
-// 	$ordered = array();
-//
-// 	while (list($order, $dataTypes) = each($this->template)) {
-// 	foreach ($dataTypes as $dataType) {
-// 	$order = $dataType["colNum"];
-// 	$ordered[$order] = $dataType;
-// }
-// }
-// 	reset($this->template);
-// 	ksort($ordered, SORT_NUMERIC);
-// 	return array_values($ordered);
-// }
 };
 
 
