@@ -103,6 +103,15 @@ const reducer = (state: ReducerState = {
 				},
 			};
 
+        case actions.REPOSITION_ROW: {
+            const newArray = state.sortedRows.filter((i) => i !== action.payload.id);
+            newArray.splice(action.payload.newIndex, 0, action.payload.id);
+            return {
+                ...state,
+                sortedRows: newArray
+            };
+        }
+
 		default:
 			return state;
 	}

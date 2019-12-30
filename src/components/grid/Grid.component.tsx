@@ -1,4 +1,6 @@
 import * as React from 'react';
+// @ts-ignore-line
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import HelpIcon from '@material-ui/icons/HelpOutline';
@@ -15,11 +17,35 @@ type GridProps = {
     onChangeTitle: (id: string, value: string) => void;
     onSelectDataType: (id: string, value: string) => void;
     onConfigureDataType: (id: string, value: string) => void;
+    onSort: (id: string, newIndex: number) => void;
     i18n: any;
     dataTypeI18n: any;
 }
 
-const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, i18n, dataTypeI18n }: GridProps) => {
+let grid = 0;
+
+// const getListStyle = (isDraggingOver: boolean) => ({
+//     background: isDraggingOver ? "lightblue" : "lightgrey",
+//     padding: 8, // ...
+//     width: 250 //....
+// });
+
+const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+
+    // some basic styles to make the items look a bit nicer
+    userSelect: "none",
+    padding: grid * 2,
+    margin: `0 0 ${grid}px 0`,
+
+    // change background colour if dragging
+    background: isDragging ? "lightgreen" : '#ffffff',
+
+    // styles we need to apply on draggables
+    ...draggableStyle
+});
+
+
+const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, dataTypeI18n }: GridProps) => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialogSection] = React.useState(false);
     const [initialHelpSection, setInitialDialogSection] = React.useState('');
@@ -31,8 +57,8 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 		return rows.map((row, index) => {
 			const { Example, Options } = getDataTypeComponents(row.dataType);
 
-            let example = null;
-            let option = null;
+            let example: any = null;
+            let option: any = null;
             if (row.dataType) {
                 if (Example) {
                     example = (
@@ -64,43 +90,67 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
             }
 
 			return (
-				<div className={styles.gridRow} key={row.id}>
-					<div className={styles.orderCol}>{index + 1}</div>
-					<div className={styles.titleCol}>
-						<input type="text" value={row.title} onChange={(e) => onChangeTitle(row.id, e.target.value)} />
-					</div>
-					<div className={styles.dataTypeCol}>
-						<Dropdown
-							isGrouped={true}
-							value={row.dataType}
-							onChange={(i: any) => onSelectDataType(row.id, i.value)}
-							options={dataTypes}
-						/>
-					</div>
-					<div className={styles.examplesCol}>{example}</div>
-					<div className={styles.optionsCol}>{option}</div>
-					<div className={styles.helpCol} onClick={() => {
-					    if (row.dataType === null) {
-					        return;
-                        }
-                        setInitialDialogSection(row.dataType);
-					    showHelpDialogSection(true);
-                    }}>
-						{row.dataType ? <HelpIcon /> : null}
-					</div>
-					<div className={styles.deleteCol} onClick={() => onRemove(row.id)}>
-						<HighlightOffIcon />
-					</div>
-				</div>
+                <Draggable key={row.id} draggableId={row.id} index={index}>
+                    {(provided: any, snapshot: any) => (
+                        <div className={styles.gridRow} key={row.id}
+                             ref={provided.innerRef}
+                             {...provided.draggableProps}
+                             style={getItemStyle(
+                                 snapshot.isDragging,
+                                 provided.draggableProps.style
+                             )}
+                        >
+                            <div className={styles.orderCol}{...provided.dragHandleProps}>
+                                {index + 1}
+                            </div>
+                            <div className={styles.titleCol}>
+                                <input type="text" value={row.title} onChange={(e) => onChangeTitle(row.id, e.target.value)} />
+                            </div>
+                            <div className={styles.dataTypeCol}>
+                                <Dropdown
+                                    isGrouped={true}
+                                    value={row.dataType}
+                                    onChange={(i: any) => onSelectDataType(row.id, i.value)}
+                                    options={dataTypes}
+                                />
+                            </div>
+                            <div className={styles.examplesCol}>{example}</div>
+                            <div className={styles.optionsCol}>{option}</div>
+                            <div className={styles.helpCol} onClick={() => {
+                                if (row.dataType === null) {
+                                    return;
+                                }
+                                setInitialDialogSection(row.dataType);
+                                showHelpDialogSection(true);
+                            }}>
+                                {row.dataType ? <HelpIcon /> : null}
+                            </div>
+                            <div className={styles.deleteCol} onClick={() => onRemove(row.id)}>
+                                <HighlightOffIcon />
+                            </div>
+                        </div>
+                    )}
+                </Draggable>
 			);
 		});
 	};
 
 	return (
 		<div>
-			<div className={styles.grid}>
-				{getRows(rows)}
-			</div>
+            <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
+                <Droppable droppableId="droppable">
+                    {(provided: any, snapshot: any) => (
+                        <div
+                            className={styles.grid} {...provided.droppableProps}
+                            ref={provided.innerRef}
+                        >
+                            {getRows(rows)}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
+
 			<div className={styles.addRows}>
 				<form onSubmit={(e) => e.preventDefault()}>
 					<span>{i18n.add}</span>

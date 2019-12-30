@@ -45,7 +45,7 @@
     "express": "^4.17.1",
     "jest-cli": "^24.9.0",
     "react": "^16.12.0",
-    "react-beautiful-dnd": "^12.1.1",
+    "react-beautiful-dnd": "^12.2.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",

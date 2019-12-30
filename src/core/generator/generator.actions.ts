@@ -35,3 +35,11 @@ export const onConfigureDataType = (id: string, data: any) => ({
 		id, data
 	}
 });
+
+export const REPOSITION_ROW = 'REPOSITION_ROW';
+export const repositionRow = (id: string, newIndex: number) => ({
+    type: REPOSITION_ROW,
+    payload: {
+        id, newIndex
+    }
+});

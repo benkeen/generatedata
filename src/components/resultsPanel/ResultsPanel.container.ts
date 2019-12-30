@@ -12,18 +12,18 @@ const mapStateToProps = (state: any) => {
     const template = selectors.getGenerationTemplate(state);
 
     const str = generator.generate({
-        numResults: 100,
+        numResults: 100000,
         columnTitles: selectors.getColumnTitles(state),
         template
     });
 
-    console.log(str);
     return {
         batchedData: str
     }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+
 });
 
 export default connect(
