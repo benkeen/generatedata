@@ -47,7 +47,9 @@ export const generate = (data: ExportTypeGenerateType) => {
     };
 
     // here we offload the generated data to the Export Type
-    JSON.generate('UI', tmpExportTypeSettings, generatedData);
+    const { success, content } = JSON.generate('UI', tmpExportTypeSettings, generatedData);
+
+    return content;
 };
 
 

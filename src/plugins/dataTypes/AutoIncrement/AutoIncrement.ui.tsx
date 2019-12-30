@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Dropdown from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export type AutoIncrementState = {
@@ -16,8 +17,7 @@ export const state: AutoIncrementState = {
 };
 
 export const Example = ({ data, onUpdate }: ExampleProps) => {
-    const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
-        const value = (e.target as HTMLSelectElement).value;
+    const onChange = (value: string) => {
         const [incrementStart, incrementValue, incrementPlaceholder] = value.split(',');
 
 		onUpdate({
@@ -28,19 +28,25 @@ export const Example = ({ data, onUpdate }: ExampleProps) => {
 		});
 	};
 
-	return (
-		<select onChange={onChange} defaultValue={data.example}>
-			<option value="1,1,">1, 2, 3, 4, 5, 6...</option>
-			<option value="100,1,">100, 101, 102, 103, 104...</option>
-			<option value="0,2,">0, 2, 4, 6, 8, 10...</option>
-			<option value="0,5,">0, 5, 10, 15, 20, 25...</option>
-			<option value="1000,-1,">1000, 999, 998, 997...</option>
-			<option value="0,-1,">0, -1, -2, -3, -4...</option>
-			<option value="0,0.5,">0, 0.5, 1, 1.5, 2...</option>
-			<option value="1,1,ROW-${INCR}">ROW-1, ROW-2, ROW-3,...</option>
-			<option value="2,4,${INCR}i">2i, 4i, 6i, 8i...</option>
-		</select>
-	);
+    const options = [
+        { value: '1,1,', label: '1, 2, 3, 4, 5, 6...' },
+        { value: '100,1,', label: '100, 101, 102, 103, 104...' },
+        { value: '0,2,', label: '0, 2, 4, 6, 8, 10...' },
+        { value: '0,5,', label: '0, 5, 10, 15, 20, 25...' },
+        { value: '1000,-1,', label: '1000, 999, 998, 997...' },
+        { value: '0,-1,', label: '0, -1, -2, -3, -4...' },
+        { value: '0,0.5,', label: '0, 0.5, 1, 1.5, 2...' },
+        { value: '1,1,ROW-${INCR}', label: 'ROW-1, ROW-2, ROW-3,...' },
+        { value: '2,4,${INCR}i', label: '2i, 4i, 6i, 8i...' }
+    ];
+
+    return (
+        <Dropdown
+            value={data.example}
+            onChange={(i: any) => onChange(i.value)}
+            options={options}
+        />
+    );
 };
 
 export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
@@ -59,8 +65,10 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
 			{i18n.increment_c}
 			<input type="text" style={{ width: 40 }} value={data.incrementValue}
                 onChange={(e) => onChange('incrementValue', parseFloat(e.target.value))} />
+
+            <br />
 			{i18n.placeholder_str}
-			<input type="text" style={{ width: 140 }} value={data.incrementPlaceholder}
+			<input type="text" style={{ width: 100 }} value={data.incrementPlaceholder}
                 onChange={(e) => onChange('incrementPlaceholder', e.target.value)} />
 		</>
 	);

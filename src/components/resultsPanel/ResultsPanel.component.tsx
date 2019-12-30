@@ -1,4 +1,6 @@
 import * as React from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 
 export type ResultsPanelProps = {
@@ -6,13 +8,9 @@ export type ResultsPanelProps = {
 }
 
 const ResultsPanel = ({ batchedData }: ResultsPanelProps) => {
-    React.useEffect(() => {
-
-    }, []);
-
     return (
         <div style={{ border: '1px solid black', flex: 1 }}>
-            &nbsp;
+            <SyntaxHighlighter language="json" style={docco}>{batchedData}</SyntaxHighlighter>
         </div>
     );
 };

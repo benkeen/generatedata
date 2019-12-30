@@ -1,25 +1,46 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import Dropdown from '../../../components/dropdown/Dropdown';
 
-export const state = {
+export type BooleanState = {
+    example: string;
+    value: string;
+};
+
+export const state: BooleanState = {
     example: '',
 	value: ''
 };
 
-export const Example = ({ i18n, data }: ExampleProps) => (
-	<select defaultValue={data.example}>
-		<option value="">{i18n.please_select}</option>
-		<option value="Yes|No">{i18n.example_YesNo}</option>
-		<option value="False|True">{i18n.example_FalseTrue}</option>
-		<option value="0|1">{i18n.example_ZeroOne}</option>
-		<option value="Y|N">{i18n.example_YesNoShort}</option>
-		<option value="F|T">{i18n.example_FalseTrueShort}</option>
-		<option value="false|true">{i18n.example_FalseTrueLower}</option>
-	</select>
-);
+export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
+    const onChange = (value: any) => {
+        onUpdate({
+            example: value,
+            value: value
+        });
+    };
+
+    const options = [
+        { value: '', label: coreI18n.please_select },
+        { value: 'Yes|No', label: i18n.example_YesNo },
+        { value: 'False|True', label: i18n.example_FalseTrue },
+        { value: 'false|true', label: i18n.example_FalseTrueLower },
+        { value: '0|1', label: i18n.example_ZeroOne },
+        { value: 'Y|N', label: i18n.example_YesNoShort },
+        { value: 'F|T', label: i18n.example_FalseTrueShort }
+    ];
+
+    return (
+        <Dropdown
+            value={data.example}
+            onChange={(i: any) => onChange(i.value)}
+            options={options}
+        />
+    );
+};
 
 export const Options = ({ data, onUpdate }: OptionsProps) => (
-	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })}/>
+	<input type="text" value={data.value} onChange={(e) => onUpdate({ ...data, value: e.target.value })} style={{ width: '100%' }}/>
 );
 
 export const Help = ({ i18n }: HelpProps) => (

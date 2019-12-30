@@ -2,6 +2,8 @@ import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { AutoIncrementState } from './AutoIncrement.ui';
 import { GenerationData } from '../../../../types/dataTypes';
 
+// TODO: perhaps put the parseFloat()'s here. It'll only execute once prior to generation, so it's performant - and will
+// be more forgiving than on every key change on the UI
 export const getGenerationSettings = (state: AutoIncrementState) => ({
     incrementStart: state.incrementStart,
     incrementValue: state.incrementValue,
@@ -12,10 +14,7 @@ export const generate = (data: GenerationData) => {
     const rowNum = data.rowNum;
     const { incrementStart, incrementValue, incrementPlaceholder } = data.generationSettings;
 
-    console.log(data.generationSettings);
-
     let value = ((rowNum-1) * incrementValue) + incrementStart;
-
     if (incrementPlaceholder) {
         value = value.replace(/\${INCR}/g, value);
     }

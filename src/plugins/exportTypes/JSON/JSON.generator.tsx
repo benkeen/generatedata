@@ -11,8 +11,6 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 	// $this->determineNumericFields($template);
 	// $this->determineBooleanFields($template);
 
-    console.log(generatedData);
-
 	// if ($dataStructureFormat == "complex") {
 	// 	$content = $this->generateComplex($generator, $data, $stripWhitespace);
 	// } else {
@@ -20,11 +18,11 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 	// }
     // const content = generateSimple(data);
 
-    generateSimple(generatedData, jsonSettings.stripWhitespace);
+    const content = generateSimple(generatedData, jsonSettings.stripWhitespace);
 
 	return {
 		success: true,
-		content: ''
+		content: content
 	};
 };
 

@@ -11,14 +11,15 @@ const mapStateToProps = (state: any) => {
     // TODO first step. Let's just create a basic generator. This is very much imperative & belongs in an ACTION not here.
     const template = selectors.getGenerationTemplate(state);
 
-    generator.generate({
-        numResults: 500,
+    const str = generator.generate({
+        numResults: 100,
         columnTitles: selectors.getColumnTitles(state),
         template
     });
 
+    console.log(str);
     return {
-
+        batchedData: str
     }
 };
 
