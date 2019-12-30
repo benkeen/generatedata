@@ -7,12 +7,12 @@ import { isNumeric } from '../../../utils/utils';
 // maybe change first param to $generationContext & include genEnvironment & everything else
 export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generatedData: ExportTypeGenerationData) => {
 
-	// $template = $generator->getTemplateByDisplayOrder();
-
 	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 	// $this->determineNumericFields($template);
 	// $this->determineBooleanFields($template);
-    //
+
+    console.log(generatedData);
+
 	// if ($dataStructureFormat == "complex") {
 	// 	$content = $this->generateComplex($generator, $data, $stripWhitespace);
 	// } else {
@@ -30,7 +30,6 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 
 
 export const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean) => {
-
     let content = '';
 
     // generating a nested data structure is slower than just a plain JSON structure (see the README
@@ -87,6 +86,11 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
     }
 
     return content;
+};
+
+
+const getNestedData = () => {
+
 };
 
 

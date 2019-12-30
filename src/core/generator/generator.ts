@@ -32,11 +32,22 @@ import { DataStructureFormat, JSONSettings } from '../../plugins/exportTypes/JSO
 
 
 export const generate = (data: ExportTypeGenerateType) => {
+
+    // the actual generated data that needs to be formatted by the export type
     const generatedData = generateExportData(data);
+
+    //
     const tmpExportTypeSettings: JSONSettings = {
         stripWhitespace: false,
         dataStructureFormat: 'simple'
     };
+
+    const generationContext = {
+        environment: 'UI'
+    };
+
+    console.log(data);
+    return;
 
     // here we offload the generated data to the Export Type
     JSON.generate('UI', tmpExportTypeSettings, generatedData);
