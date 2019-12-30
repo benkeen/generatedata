@@ -139,7 +139,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 		<div>
             <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
                 <Droppable droppableId="droppable">
-                    {(provided: any, snapshot: any) => (
+                    {(provided: any) => (
                         <div
                             className={styles.grid} {...provided.droppableProps}
                             ref={provided.innerRef}

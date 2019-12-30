@@ -1,5 +1,3 @@
-import * as selectors from './generator.selectors';
-
 export const ADD_ROWS = 'ADD_ROWS';
 
 export const addRows = (numRows: number) => ({
