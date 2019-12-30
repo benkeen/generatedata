@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	example: '',
@@ -10,7 +10,7 @@ export const state = {
 };
 
 
-export const Example = ({ i18n, coreI18n }: DataTypeUIExampleProps) => (
+export const Example = ({ i18n, coreI18n }: ExampleProps) => (
 	<select>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="mastercard">{i18n.mastercard}</option>
@@ -30,7 +30,7 @@ export const Example = ({ i18n, coreI18n }: DataTypeUIExampleProps) => (
 	</select>
 );
 
-export const Options = ({ i18n }: DataTypeUIOptionsProps) => {
+export const Options = ({ i18n }: OptionsProps) => {
 	// const onChange = () => {
 	// 	onUpdate({
 	// 		...data
@@ -76,7 +76,7 @@ export const Options = ({ i18n }: DataTypeUIOptionsProps) => {
 	);
 };
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<p>
 		{i18n.DATA_TYPE.DESC}
 		{i18n.pan_help_intro}

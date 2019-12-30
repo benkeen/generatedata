@@ -1,14 +1,21 @@
 import * as React from 'react';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+export type AutoIncrementState = {
+    example: string;
+    incrementStart: number;
+    incrementValue: number;
+    incrementPlaceholder: string;
+}
+
+export const state: AutoIncrementState = {
 	example: '1,1',
 	incrementStart: 1,
 	incrementValue: 1,
 	incrementPlaceholder: ''
 };
 
-export const Example = ({ data, onUpdate }: DataTypeUIExampleProps) => {
+export const Example = ({ data, onUpdate }: ExampleProps) => {
     const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
         const value = (e.target as HTMLSelectElement).value;
         const [incrementStart, incrementValue, incrementPlaceholder] = value.split(',');
@@ -36,7 +43,7 @@ export const Example = ({ data, onUpdate }: DataTypeUIExampleProps) => {
 	);
 };
 
-export const Options = ({ i18n, data, onUpdate }: DataTypeUIOptionsProps) => {
+export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
     const onChange = (field: string, value: string) => {
         onUpdate({
             ...data,
@@ -59,7 +66,7 @@ export const Options = ({ i18n, data, onUpdate }: DataTypeUIOptionsProps) => {
 	);
 };
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	example: '',
@@ -10,7 +10,7 @@ export const state = {
 	option: ''
 };
 
-export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
+export const Example = ({ coreI18n, i18n }: ExampleProps) => (
 	<>
 		<select>
 			<option value="">{coreI18n.please_select}</option>
@@ -32,7 +32,7 @@ export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
 	</>
 );
 
-export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => (
+export const Options = ({ i18n, data }: OptionsProps) => (
 	<>
 		<div>
 			<input type="radio" name="dtListType_%ROW%" id="dtListType1_%ROW%" value="Exactly" checked />
@@ -48,7 +48,7 @@ export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => (
 	</>
 );
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => <p>{i18n.help}</p>;
+export const Help = ({ i18n }: HelpProps) => <p>{i18n.help}</p>;
 
 // var _validate = function(rows) {
 // 	var missingOptions = {

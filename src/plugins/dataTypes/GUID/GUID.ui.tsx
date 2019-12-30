@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { DataTypeUIHelpProps } from '../../../../types/general';
+import { HelpProps } from '../../../../types/dataTypes';
 
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<p>{i18n.help}</p>
 );

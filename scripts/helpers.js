@@ -8,7 +8,7 @@ const createBuildFile = (filename, content) => {
 	}
 
 	const file = path.join(__dirname, '..', 'build', filename);
-	if (fs.exists(file)) {
+	if (fs.existsSync(file)) {
 		fs.unlinkSync(file);
 	}
 	fs.writeFileSync(file, content);

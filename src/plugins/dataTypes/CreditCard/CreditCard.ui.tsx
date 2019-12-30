@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {DataTypeUIHelpProps, DataTypeUIOptionsProps} from "../../../../types/general";
+import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 
 export const state = {};
 
 
-export const Options = ({ i18n }: DataTypeUIOptionsProps) => {
+export const Options = ({ i18n }: OptionsProps) => {
 	return (
 		<select multiple data-placeholder={i18n.allCreditCardText} style={{ width: '100%' }}>
 			{/*$creditCardTypes = self::getDistinctCreditCardTypes();*/}
@@ -17,7 +17,7 @@ export const Options = ({ i18n }: DataTypeUIOptionsProps) => {
 };
 
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>{i18n.help}</p>
 		<table cellPadding="0" cellSpacing="0">

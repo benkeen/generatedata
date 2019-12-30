@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIOptionsProps } from '../../../../types/general';
+import { OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	mean: '',
@@ -7,7 +7,7 @@ export const state = {
 	precision: 10
 };
 
-export const Options = ({ i18n, id, data }: DataTypeUIOptionsProps) => (
+export const Options = ({ i18n, id, data }: OptionsProps) => (
 	<>
 		<label htmlFor={`${id}-mean`}>{i18n.mean}</label>
 		<input type="text" id={`${id}-mean`} style={{ width: 25 }} value={data.mean} />

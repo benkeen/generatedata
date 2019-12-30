@@ -9,6 +9,7 @@ const processDataTypes = () => {
 		fieldGroupOrder: i.fieldGroupOrder,
 		processOrder: i.processOrder
 	}));
+
 	helpers.createBuildFile('dataTypeConfig.ts', `export default ${JSON.stringify(data, null, '\t')};`);
 };
 

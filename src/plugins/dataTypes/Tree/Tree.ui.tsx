@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	autoIncRowNum: '',
 	maxSiblings: ''
 };
 
-export const Options = ({ data, id, onUpdate, i18n }: DataTypeUIOptionsProps) => {
+export const Options = ({ data, id, onUpdate, i18n }: OptionsProps) => {
     const onChange = (field: string, value: string) => {
         onUpdate({
             ...data,
@@ -30,7 +30,7 @@ export const Options = ({ data, id, onUpdate, i18n }: DataTypeUIOptionsProps) =>
     );
 };
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.help_1}

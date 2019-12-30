@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIHelpProps } from '../../../../types/general';
+import { HelpProps } from '../../../../types/dataTypes';
 
 export const Options = () => {
 	// $countryPlugins = Core::$countryPlugins;
@@ -28,7 +28,7 @@ export const Options = () => {
 	return '';
 };
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => <p>{i18n.DATA_TYPE.DESC}</p>;
+export const Help = ({ i18n }: HelpProps) => <p>{i18n.DATA_TYPE.DESC}</p>;
 
 
 // var _saveRow = function(rowNum) {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	example: '',
@@ -7,7 +7,7 @@ export const state = {
 };
 
 
-export const Example = ({ coreI18n, i18n, data }: DataTypeUIExampleProps) => (
+export const Example = ({ coreI18n, i18n, data }: ExampleProps) => (
 	<select defaultValue={data.example}>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="OrganisationNumberWithoutHyphen">{i18n.example_OrganisationNumberWithoutHyphen}</option>
@@ -15,7 +15,7 @@ export const Example = ({ coreI18n, i18n, data }: DataTypeUIExampleProps) => (
 	</select>
 );
 
-export const Options = ({ id, i18n }: DataTypeUIOptionsProps) => (
+export const Options = ({ id, i18n }: OptionsProps) => (
 	<span id="dtOptionOrganisationNumberSeparator_%ROW%" style={{ display: 'inline' }}>
 		{i18n.separators}
 		<input type="text" id={`${id}-seperator`}
@@ -23,7 +23,7 @@ export const Options = ({ id, i18n }: DataTypeUIOptionsProps) => (
 	</span>
 );
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}

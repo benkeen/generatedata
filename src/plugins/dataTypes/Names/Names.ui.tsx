@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dropdown, { ChangeEvent } from '../../../components/dropdown/Dropdown';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export type NamesState = {
     example: string;
@@ -12,7 +12,7 @@ export const state: NamesState = {
 	options: ''
 };
 
-export const Example = ({ i18n, data, coreI18n, onUpdate }: DataTypeUIExampleProps) => {
+export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps) => {
     const onChange = (selected: ChangeEvent) => {
 		onUpdate({
 			...data,
@@ -45,7 +45,7 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }: DataTypeUIExamplePro
 	);
 };
 
-export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
+export const Options = ({ data, onUpdate }: OptionsProps) => (
 	<input
         type="text"
         value={data.options}
@@ -54,7 +54,7 @@ export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
     />
 );
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.DESC}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	startsWithLipsum: false,
@@ -7,7 +7,7 @@ export const state = {
 	maxWords: 10
 };
 
-export const Options = ({ i18n, id, data }: DataTypeUIOptionsProps) => (
+export const Options = ({ i18n, id, data }: OptionsProps) => (
 	<>
 		<div>
 			<input type="checkbox" id={`${id}-startsWithLipsum`} />
@@ -23,7 +23,7 @@ export const Options = ({ i18n, id, data }: DataTypeUIOptionsProps) => (
 	</>
 );
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => <p>{i18n.help}</p>;
+export const Help = ({ i18n }: HelpProps) => <p>{i18n.help}</p>;
 
 
 // var _loadRow = function(rowNum, data) {

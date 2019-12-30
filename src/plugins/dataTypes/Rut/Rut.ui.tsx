@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIExampleProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	example: '',
@@ -8,7 +8,7 @@ export const state = {
 	remDash: true
 };
 
-export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
+export const Example = ({ coreI18n, i18n }: ExampleProps) => (
 	<select>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="xxxxxxxx-y">12345678-9 ({i18n.rut_default})</option>
@@ -17,7 +17,7 @@ export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
 	</select>
 );
 
-export const Options = ({ i18n, id, data, onUpdate }: DataTypeUIOptionsProps) => {
+export const Options = ({ i18n, id, data, onUpdate }: OptionsProps) => {
 	const onChange = (field: string, value: boolean) => {
 		onUpdate({
 			...data,

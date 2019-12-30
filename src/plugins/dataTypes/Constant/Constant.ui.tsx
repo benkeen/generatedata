@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	loopCount: 10,
@@ -7,9 +7,9 @@ export const state = {
 };
 
 
-export const Example = ({ i18n }: DataTypeUIExampleProps) => i18n.see_help_dialog;
+export const Example = ({ i18n }: ExampleProps) => i18n.see_help_dialog;
 
-export const Options = ({ i18n, data, onUpdate }: DataTypeUIOptionsProps) => {
+export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
 	const onChange = (field: string, value: string) => {
 		onUpdate({
 			...data,
@@ -36,7 +36,7 @@ export const Options = ({ i18n, data, onUpdate }: DataTypeUIOptionsProps) => {
 	);
 };
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.help_1}

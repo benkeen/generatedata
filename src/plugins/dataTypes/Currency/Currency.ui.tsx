@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	example: '',
@@ -10,7 +10,7 @@ export const state = {
 	currencySymbolLocation: 'prefix'
 };
 
-export const Example = ({ i18n, data, onUpdate }: DataTypeUIExampleProps) => {
+export const Example = ({ i18n, data, onUpdate }: ExampleProps) => {
     const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
         const value = (e.target as HTMLSelectElement).value;
 		onUpdate({
@@ -41,7 +41,7 @@ export const Example = ({ i18n, data, onUpdate }: DataTypeUIExampleProps) => {
 	);
 };
 
-export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => (
+export const Options = ({ i18n, data }: OptionsProps) => (
 	<>
 		<div>
 			{i18n.format}: <input type="text" id="dtCurrencyFormat_%ROW%" name="dtCurrencyFormat_%ROW%" style={{ width: 160 }} />
@@ -61,7 +61,7 @@ export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => (
 	</>
 );
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}

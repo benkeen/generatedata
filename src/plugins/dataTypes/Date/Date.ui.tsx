@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { format } from 'date-fns';
 import Dropdown from '../../../components/dropdown/Dropdown';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	fromDate: '', // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
@@ -11,7 +11,7 @@ export const state = {
 };
 
 
-export const Example = ({ coreI18n, data, onUpdate }: DataTypeUIExampleProps) => {
+export const Example = ({ coreI18n, data, onUpdate }: ExampleProps) => {
 	const onChange = ({ value }: { value: string }) => {
 
 		// var currYear = _getCurrentYear();
@@ -87,7 +87,7 @@ export const Example = ({ coreI18n, data, onUpdate }: DataTypeUIExampleProps) =>
 	);
 };
 
-export const Options = ({ data, i18n }: DataTypeUIOptionsProps) => {
+export const Options = ({ data, i18n }: OptionsProps) => {
     // readOnly="readonly"
 	return (
 		<>
@@ -100,7 +100,7 @@ export const Options = ({ data, i18n }: DataTypeUIOptionsProps) => {
 	);
 };
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}

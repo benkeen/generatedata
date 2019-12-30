@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
-import { DataTypeUIExampleProps, DataTypeUIOptionsProps, DataTypeUIHelpProps } from '../../../../types/general';
+import { ExampleProps, OptionsProps, HelpProps } from '../../../../types/dataTypes';
 
 export type AlphanumericState = {
     example: string;
@@ -12,7 +12,7 @@ export const state: AlphanumericState = {
 	value: ''
 };
 
-export const Example = ({ coreI18n, i18n, data, onUpdate }: DataTypeUIExampleProps) => {
+export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
 	const onChange = (value: any) => {
 		onUpdate({
 			example: value,
@@ -36,7 +36,7 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: DataTypeUIExamplePro
     );
 };
 
-export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
+export const Options = ({ data, onUpdate }: OptionsProps) => (
 	<input
         type="text"
         value={data.value}
@@ -45,7 +45,7 @@ export const Options = ({ data, onUpdate }: DataTypeUIOptionsProps) => (
     />
 );
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}

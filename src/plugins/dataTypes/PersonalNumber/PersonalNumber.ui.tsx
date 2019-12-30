@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTypeUIExampleProps, DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 
 export const state = {
@@ -7,7 +7,7 @@ export const state = {
 	separator: ' '
 };
 
-export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
+export const Example = ({ coreI18n, i18n }: ExampleProps) => (
 	<select>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="PersonalNumberWithoutHyphen">{i18n.example_PersonalNumberWithoutHyphen}</option>
@@ -15,14 +15,14 @@ export const Example = ({ coreI18n, i18n }: DataTypeUIExampleProps) => (
 	</select>
 );
 
-export const Options = ({ i18n, data }: DataTypeUIOptionsProps) => (
+export const Options = ({ i18n, data }: OptionsProps) => (
 	<div>
 		{i18n.separators}
 		<input type="text" style={{ width: 78 }} value={data.separator} title={i18n.separator_help} />
 	</div>
 );
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}

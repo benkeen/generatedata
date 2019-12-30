@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { DataTypeUIHelpProps, DataTypeUIOptionsProps } from '../../../../types/general';
+import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	example: '',
 	option: ''
 };
 
-export const Help = ({ i18n }: DataTypeUIHelpProps) => (
+export const Help = ({ i18n }: HelpProps) => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}
@@ -31,7 +31,7 @@ export const Help = ({ i18n }: DataTypeUIHelpProps) => (
 	</>
 );
 
-export const Options = ({ id, data, onUpdate }: DataTypeUIOptionsProps) => {
+export const Options = ({ id, data, onUpdate }: OptionsProps) => {
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLSelectElement).value;
 		onUpdate({
