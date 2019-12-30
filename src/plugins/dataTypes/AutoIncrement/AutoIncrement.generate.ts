@@ -12,6 +12,8 @@ export const generate = (data: GenerationData) => {
     const rowNum = data.rowNum;
     const { incrementStart, incrementValue, incrementPlaceholder } = data.generationSettings;
 
+    console.log(data.generationSettings);
+
     let value = ((rowNum-1) * incrementValue) + incrementStart;
 
     if (incrementPlaceholder) {

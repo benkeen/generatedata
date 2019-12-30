@@ -22,8 +22,8 @@ export const Example = ({ data, onUpdate }: ExampleProps) => {
 
 		onUpdate({
 			example: value,
-			incrementStart,
-			incrementValue,
+			incrementStart: parseFloat(incrementStart),
+			incrementValue: parseFloat(incrementValue),
 			incrementPlaceholder
 		});
 	};
@@ -44,7 +44,7 @@ export const Example = ({ data, onUpdate }: ExampleProps) => {
 };
 
 export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
-    const onChange = (field: string, value: string) => {
+    const onChange = (field: string, value: number | string) => {
         onUpdate({
             ...data,
             [field]: value
@@ -55,10 +55,10 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
 		<>
 			{i18n.start_at_c}
 			<input type="text" style={{ width: 40 }} value={data.incrementStart}
-                onChange={(e) => onChange('incrementStart', e.target.value)} />
+                onChange={(e) => onChange('incrementStart', parseFloat(e.target.value))} />
 			{i18n.increment_c}
 			<input type="text" style={{ width: 40 }} value={data.incrementValue}
-                onChange={(e) => onChange('incrementValue', e.target.value)} />
+                onChange={(e) => onChange('incrementValue', parseFloat(e.target.value))} />
 			{i18n.placeholder_str}
 			<input type="text" style={{ width: 140 }} value={data.incrementPlaceholder}
                 onChange={(e) => onChange('incrementPlaceholder', e.target.value)} />
