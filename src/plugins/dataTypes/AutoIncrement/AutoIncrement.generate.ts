@@ -1,12 +1,8 @@
-<?php
-
-/**
- * @package DataTypes
- */
+import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
 
+/*
 class DataType_AutoIncrement extends DataTypePlugin {
-
 	protected $isEnabled = true;
 	protected $dataTypeName = "AutoIncrement";
 	protected $hasHelpDialog = true;
@@ -57,16 +53,17 @@ class DataType_AutoIncrement extends DataTypePlugin {
 			"placeholder" => property_exists($json->settings, "incrementPlaceholder") ? $json->settings->incrementPlaceholder : ""
 		);
 	}
-
-
-
-	public function getDataTypeMetadata() {
-		return array(
-			"type" => "numeric",
-			"SQLField" => "mediumint",
-			"SQLField_Oracle" => "number default NULL",
-			"SQLField_MSSQL" => "INTEGER NULL",
-			"SQLField_Postgres" => "integer NULL"
-		);
-	}
 }
+*/
+
+export const getMetadata = (): ExportTypeMetadata => ({
+    general: {
+        dataType: 'number'
+    },
+    sql: {
+        field: 'mediumint',
+        field_Oracle: 'number default NULL',
+        field_MSSQL: 'INTEGER NULL',
+        field_Postgres: 'integer NULL'
+    }
+});

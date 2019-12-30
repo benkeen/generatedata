@@ -18,8 +18,8 @@ export const generate = (data: DataTypeGenerateType) => {
 
 export const getMetadata = (): ExportTypeMetadata => ({
 	sql: {
-	    SQLField: 'varchar(255)',
-        SQLField_Oracle: 'varchar2(255)',
-        SQLField_MSSQL: 'VARCHAR(255) NULL'
+	    field: 'varchar(255)',
+        field_Oracle: 'varchar2(255)',
+        field_MSSQL: 'VARCHAR(255) NULL'
     }
 });

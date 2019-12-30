@@ -5,7 +5,7 @@ export type GeneralMetadataTypes = {
 }
 
 export type ExportTypeMetadata = {
-    general?: GeneralMetadataTypes,
-    sql?: DatabaseTypes
+    general?: GeneralMetadataTypes;
+    sql?: DatabaseTypes;
 };
 

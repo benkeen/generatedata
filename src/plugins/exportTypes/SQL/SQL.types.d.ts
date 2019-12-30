@@ -1,6 +1,12 @@
-
+// this type is for Data Types to describe how their field should be described for the SQL database table creation
+// statement
 export type DatabaseTypes = {
-    SQLField: string;
-    SQLField_Oracle: string;
-    SQLField_MSSQL: string;
+
+    // e.g. "varchar(50)". This is the default
+    field?: string;
+
+    // database type-specific field descriptions
+    field_Oracle?: string;
+    field_MSSQL?: string;
+    field_Postgres?: string;
 };
