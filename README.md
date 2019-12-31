@@ -5,12 +5,13 @@
 
 This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
 script is basically an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
-so *Data Types* (types of data it generates), plus 8 *Export Types* (formats for the data), but it can be extended 
-in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
-for that. If you need to generate random data programmatically rather than manually via the UI, you can use the [REST API](http://benkeen.github.io/generatedata/api.html).
+so *Data Types* (types of data it generates), 8 *Export Types* (formats for the data), plus around 30 data sets for specific countries (city names, regions etc). But more importantly it can be extended in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
+for more information on that. If you need to generate random data programmatically rather than manually via the UI, you can use the [REST API](http://benkeen.github.io/generatedata/api.html).
 
 The master branch now contains the incomplete v4 rewrite, so if you're downloading the script, get the most recent 
 tag: https://github.com/benkeen/generatedata/releases
+
+*This README file still contains information about the v3 code. It will stay that way until v4 is in alpha stage.*
 
 ## Requirements
 - PHP 5.3 or any later version of PHP 5.
@@ -45,14 +46,9 @@ of this script.
 
 
 ### Vagrant 
+
 There's also a pre-packaged Vagrant solution [found here](https://github.com/benkeen/generatedata-vagrant),
 courtesy of Daragh Courtney.
-
-
-# Test Coverage
-
-Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's
-going to be a little hairy for a while just yet.
 
 ## To-Do
 
