@@ -12,6 +12,8 @@ for that. If you need to generate random data programmatically rather than manua
 The master branch now contains the incomplete v4 rewrite, so if you're downloading the script, get the most recent 
 tag: https://github.com/benkeen/generatedata/releases
 
+*This README file still contains information about the v3 code. It will stay that way until v4 is in alpha stage.*
+
 ## Requirements
 - PHP 5.3 or any later version of PHP 5.
 - MySQL 4.1.3 or later
@@ -45,14 +47,9 @@ of this script.
 
 
 ### Vagrant 
+
 There's also a pre-packaged Vagrant solution [found here](https://github.com/benkeen/generatedata-vagrant),
 courtesy of Daragh Courtney.
-
-
-# Test Coverage
-
-Test coverage is pretty weak right now! I'm in the midst of adding phpunit tests and integrating it with Travis, but it's
-going to be a little hairy for a while just yet.
 
 ## To-Do
 
