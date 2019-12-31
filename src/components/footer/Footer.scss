@@ -1,16 +1,21 @@
 .footer {
   flex: 0 0 60px;
-  display: flex;
-  align-content: space-between;
   border-top: 1px solid #cccccc;
   padding: 20px;
 
-  ul {
-    flex: 1;
+  div {
+    margin: 0 auto;
     display: flex;
-    flex-direction: row;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    align-content: space-between;
+    max-width: 1024px;
+
+    ul {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
   }
 }
