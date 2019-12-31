@@ -32,4 +32,3 @@ export const loadLocaleFile = (src: string, callback: Function) => {
 		}
 	}, 100);
 };
-

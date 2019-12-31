@@ -5,6 +5,7 @@ html, body {
   font-family: 'Alegreya', serif;
   font-size: 13px;
 }
+
 input, select, textarea {
   font-family: 'Alegreya', serif;
   font-size: 13px;
@@ -22,7 +23,8 @@ input, select, textarea {
   height: 100%;
   display: flex;
   flex-direction: column;
-  &>div {
+
+  & > div {
     height: 100%;
   }
 }
