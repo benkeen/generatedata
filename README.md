@@ -1,6 +1,7 @@
 # generatedata.com
 
-[![Build Status](https://travis-ci.org/benkeen/generatedata.png?branch=master)](https://travis-ci.org/benkeen/generatedata)
+[![Build Status](https://travis-ci.org/benkeen/generatedata.png?branch=master)](https://travis-ci.org/benkeen/generatedata.svg?branch=master)
+
 
 This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
 script is basically an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
