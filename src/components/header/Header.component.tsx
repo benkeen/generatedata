@@ -16,12 +16,12 @@ const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }: HeaderProps) => {
 	if (isLoggedIn) {
 		navOptions = (
 			<>
-				<li id="gdUserAccount"><a href="#">{i18n.your_account}</a> |</li>
-				<li id="gdLogout"><a href="#">{i18n.logout}</a> |</li>
+				<li id="gdUserAccount"><a href="#">{i18n.your_account}</a></li>
+				<li id="gdLogout"><a href="#">{i18n.logout}</a></li>
 			</>
 		);
 	} else {
-		navOptions = <li id="gdLogin"><a href="#">{i18n.login}</a> |</li>;
+		navOptions = <li id="gdLogin"><a href="#">{i18n.login}</a></li>;
 	}
 
 	const options = [
