@@ -11,7 +11,7 @@ if (fs.existsSync(configFile)) {
 }
 
 const completeConfigFile = {
-	...configDefaults,
+	...configDefaults.default,
 	...overrides
 };
 

@@ -7,6 +7,18 @@ Lots is going to change.
 - I haven't settled on Material UI yet - or even a general style (no more unnecessary themes)
 
 
+### Quick start 
+
+This will change. But to get running:
+
+- `yarn install`
+- `yarn build`
+- `node app.js`
+- in another tab: `yarn dev`
+
+Then open up http://localhost:8080/ in your web browser.
+
+
 ### Site/installation configuration 
 
 - **config.client.defaults.js** - contains all the default settings. 
