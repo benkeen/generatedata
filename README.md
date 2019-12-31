@@ -1,6 +1,6 @@
 # generatedata.com
 
-[![Build Status](https://travis-ci.org/benkeen/generatedata.png?branch=master)](https://travis-ci.org/benkeen/generatedata.svg?branch=master)
+[![Build Status](https://travis-ci.org/benkeen/generatedata.svg?branch=master)](https://travis-ci.org/benkeen/generatedata)
 
 
 This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
