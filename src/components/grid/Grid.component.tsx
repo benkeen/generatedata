@@ -24,12 +24,6 @@ type GridProps = {
 
 let grid = 0;
 
-// const getListStyle = (isDraggingOver: boolean) => ({
-//     background: isDraggingOver ? "lightblue" : "lightgrey",
-//     padding: 8, // ...
-//     width: 250 //....
-// });
-
 const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
 
     // some basic styles to make the items look a bit nicer

@@ -4,15 +4,15 @@ export default {
 	regionNames: "Australian St./Terr.",
 	continent: "oceania",
 	extendedData: {
-		"zipFormat": {
-			"format": "Xxxx",
-			"replacements": {
-				"X": "123456789",
-				"x": "0123456789"
+		zipFormat: {
+			format: "Xxxx",
+			replacements: {
+				X: "123456789",
+				x: "0123456789"
 			}
 		},
-		"phoneFormat": {
-			"displayFormats": [
+		phoneFormat: {
+			displayFormats: [
 				"Xxxx-xxxx",
 				"(0x) xxxx xxxx",
 				"04xx xxx xxx"
