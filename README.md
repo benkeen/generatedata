@@ -5,9 +5,8 @@
 
 This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
 script is basically an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
-so *Data Types* (types of data it generates), plus 8 *Export Types* (formats for the data), but it can be extended 
-in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
-for that. If you need to generate random data programmatically rather than manually via the UI, you can use the [REST API](http://benkeen.github.io/generatedata/api.html).
+so *Data Types* (types of data it generates), 8 *Export Types* (formats for the data), plus around 30 data sets for specific countries (city names, regions etc). But more importantly it can be extended in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
+for more information on that. If you need to generate random data programmatically rather than manually via the UI, you can use the [REST API](http://benkeen.github.io/generatedata/api.html).
 
 The master branch now contains the incomplete v4 rewrite, so if you're downloading the script, get the most recent 
 tag: https://github.com/benkeen/generatedata/releases
