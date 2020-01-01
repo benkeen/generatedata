@@ -1,19 +1,22 @@
 import * as React from 'react';
 import { format } from 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { getCurrentDatetime } from '../../../utils/dateUtils';
+
 
 export const state = {
-	fromDate: '', // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
-	toDate: '', // $lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));
+	fromDate: getCurrentDatetime(), // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
+	toDate: getCurrentDatetime(), // $lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));
 	example: '',
 	option: ''
 };
 
-
 export const Example = ({ coreI18n, data, onUpdate }: ExampleProps) => {
-	const onChange = ({ value }: { value: string }) => {
 
+    const onChange = ({ value }: { value: string }) => {
 		// var currYear = _getCurrentYear();
 		// var yearRangeFrom = (currYear - 200);
 		// var yearRangeTo = (currYear + 200);
@@ -90,13 +93,27 @@ export const Example = ({ coreI18n, data, onUpdate }: ExampleProps) => {
 export const Options = ({ data, i18n }: OptionsProps) => {
     // readOnly="readonly"
 	return (
-		<>
-			{i18n.from} <input type="text" value={data.fromDate} />
-			{i18n.to} <input type="text" value={data.toDate} />
-			<div>
-				{i18n.format_code}&nbsp;<input type="text" value={i18n.option} style={{ width: 160 }} />
-			</div>
-		</>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <div>
+                {i18n.from}
+                <KeyboardDatePicker
+                    margin="normal"
+                    format="MM/dd/yyyy"
+                    value={new Date(data.fromDate)}
+                    onChange={() => {}}
+                />
+
+                {i18n.to}
+                <KeyboardDatePicker
+                    format="MM/dd/yyyy"
+                    value={new Date(data.toDate)}
+                    onChange={() => {}}
+                />
+                <div>
+                    {i18n.format_code}&nbsp;<input type="text" value={i18n.option} style={{ width: 160 }} />
+                </div>
+            </div>
+        </MuiPickersUtilsProvider>
 	);
 };
 

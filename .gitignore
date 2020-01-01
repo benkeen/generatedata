@@ -2,7 +2,7 @@ cache/*
 .DS_Store
 .buildpath
 .idea*
-node_modules*
+node_modules/*
 build/*
 config/config.client.js
 server/config.server.js

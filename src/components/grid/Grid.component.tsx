@@ -24,19 +24,17 @@ type GridProps = {
 
 let grid = 0;
 
-const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
-
-    // some basic styles to make the items look a bit nicer
-    userSelect: "none",
-    padding: grid * 2,
-    margin: `0 0 ${grid}px 0`,
-
-    // change background colour if dragging
-    background: isDragging ? "lightgreen" : '#ffffff',
-
-    // styles we need to apply on draggables
-    ...draggableStyle
-});
+const getItemStyle = (isDragging: boolean, draggableStyle: any) => {
+    const styles: React.CSSProperties = {
+        ...draggableStyle,
+        userSelect: 'none',
+        margin: `0 0 ${grid}px 0`,
+    };
+    if (isDragging) {
+        styles.background = '#0077cc';
+    }
+    return styles;
+};
 
 
 const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, dataTypeI18n }: GridProps) => {
@@ -150,7 +148,8 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 					<span>{i18n.add}</span>
 					<input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
 						min={1} max={1000} step={1} />
-					<Button onClick={() => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
+					<Button size="small"
+                            onClick={() => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
 				</form>
 			</div>
 

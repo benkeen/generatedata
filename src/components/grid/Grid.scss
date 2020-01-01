@@ -2,21 +2,24 @@
   display: flex;
   flex-direction: row;
   min-height: 35px;
-  align-items: center;
+  align-items: flex-start;
   border-radius: 4px;
+  transition: background-color 0.1s ease-in-out;
 
   &>div {
     margin-right: 4px;
+    padding-top: 2px;
   }
-  transition: background-color 0.1s ease-in-out;
   &:hover {
     background-color: #ebf6fa;
   }
 }
 
-.orderCol {
+div.orderCol {
   flex: 0 0 22px;
   padding-left: 2px;
+  padding-top: 8px;
+  color: #999999;
 }
 .titleCol {
   flex: 0 0 150px;
