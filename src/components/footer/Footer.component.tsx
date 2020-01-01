@@ -11,7 +11,7 @@ const Footer = () => {
                 </ul>
 
                 <div>
-                    JSON
+                    <Button onClick={() => {}} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>JSON</Button>
                     <Button onClick={() => {}} variant="contained" color="primary" disableElevation>Generate &raquo;</Button>
                 </div>
             </div>

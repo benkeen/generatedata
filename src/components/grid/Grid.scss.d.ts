@@ -3,12 +3,15 @@ declare namespace GridScssModule {
     addRows: string;
     dataTypeCol: string;
     deleteCol: string;
+    emptyCol: string;
     examplesCol: string;
     grid: string;
+    gridHeader: string;
     gridRow: string;
     helpCol: string;
     optionsCol: string;
     orderCol: string;
+    scrollableGridRows: string;
     titleCol: string;
   }
 }

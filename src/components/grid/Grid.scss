@@ -1,17 +1,42 @@
+.grid {
+  margin-bottom: 10px;
+}
+div.gridHeader {
+  font-weight: bold;
+  color: #666666;
+  min-height: 26px;
+  font-size: 15px;
+  font-style: italic;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+}
+
+.scrollableGridRows {
+  flex: 1;
+  overflow: scroll;
+  position: relative;
+  padding-top: 4px;
+  //&:after {
+  //  position: fixed;
+  //  top: 0;
+  //  height: 10px;
+  //  width: 100%;
+  //  content: "";
+  //  background: linear-gradient(to bottom, rgba(255,255,255, 1) 20%, rgba(255,255,255, 0) 80%);
+  //  pointer-events: none; /* so the text is still selectable */
+  //}
+}
+
 .gridRow {
   display: flex;
   flex-direction: row;
   min-height: 35px;
   align-items: flex-start;
   border-radius: 4px;
-  transition: background-color 0.1s ease-in-out;
 
   &>div {
     margin-right: 4px;
     padding-top: 2px;
-  }
-  &:hover {
-    background-color: #ebf6fa;
   }
 }
 
@@ -36,31 +61,25 @@ div.orderCol {
 .optionsCol {
   flex: 2;
 }
-.helpCol {
-  flex: 0 0 30px;
-  display: flex;
-  justify-content: center;
-}
-.deleteCol {
+
+div.deleteCol, div.helpCol {
   flex: 0 0 30px;
   cursor: pointer;
   display: flex;
   justify-content: center;
+  padding-top: 7px;
 
   svg {
-    fill: #111111;
+    fill: #333333;
   }
 
   &:hover {
     svg {
-      fill: #99091A;
+      fill: #000000;
     }
   }
 }
 
-.grid {
-  margin-bottom: 10px;
-}
 .addRows {
   span, input {
     margin-right: 6px;
@@ -68,4 +87,9 @@ div.orderCol {
   input {
     width: 42px;
   }
+}
+
+.emptyCol {
+  color: #999999;
+  padding: 7px 2px;
 }

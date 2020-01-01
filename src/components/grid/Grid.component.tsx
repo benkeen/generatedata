@@ -31,7 +31,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any) => {
         margin: `0 0 ${grid}px 0`,
     };
     if (isDragging) {
-        styles.background = '#0077cc';
+        styles.background = '#0099cc';
     }
     return styles;
 };
@@ -63,7 +63,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                         />
                     );
                 } else {
-                    example = i18n.no_examples_available;
+                    example = <div className={styles.emptyCol}>{i18n.no_examples_available}</div>
                 }
 
                 if (Options) {
@@ -77,7 +77,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                         />
                     );
                 } else {
-                    option = i18n.no_options_available;
+                    option = <div className={styles.emptyCol}>{i18n.no_options_available}</div>;
                 }
             }
 
@@ -128,30 +128,42 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 	};
 
 	return (
-		<div>
-            <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
-                <Droppable droppableId="droppable">
-                    {(provided: any) => (
-                        <div
-                            className={styles.grid} {...provided.droppableProps}
-                            ref={provided.innerRef}
-                        >
-                            {getRows(rows)}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </DragDropContext>
+		<div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+            <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
+                <div className={styles.orderCol} />
+                <div className={styles.titleCol}>Title</div>
+                <div className={styles.dataTypeCol}>Data Type</div>
+                <div className={styles.examplesCol}>Examples</div>
+                <div className={styles.optionsCol}>Options</div>
+                <div className={styles.helpCol} />
+                <div className={styles.deleteCol} />
+            </div>
 
-			<div className={styles.addRows}>
-				<form onSubmit={(e) => e.preventDefault()}>
-					<span>{i18n.add}</span>
-					<input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
-						min={1} max={1000} step={1} />
-					<Button size="small"
-                            onClick={() => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
-				</form>
-			</div>
+            <div className={styles.scrollableGridRows}>
+                <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
+                    <Droppable droppableId="droppable">
+                        {(provided: any) => (
+                            <div
+                                className={styles.grid} {...provided.droppableProps}
+                                ref={provided.innerRef}
+                            >
+                                {getRows(rows)}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
+
+                <div className={styles.addRows}>
+                    <form onSubmit={(e) => e.preventDefault()}>
+                        <span>{i18n.add}</span>
+                        <input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
+                            min={1} max={1000} step={1} />
+                        <Button size="small"
+                                onClick={() => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
+                    </form>
+                </div>
+            </div>
 
 			<HelpDialog
 				visible={helpDialogVisible}
