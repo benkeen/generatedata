@@ -1,6 +1,9 @@
 .grid {
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
+  //margin-bottom: 10px;
+  max-width: 1024px;
 }
+
 div.gridHeader {
   font-weight: bold;
   color: #666666;
@@ -9,6 +12,14 @@ div.gridHeader {
   font-style: italic;
   border-bottom: 1px solid black;
   border-radius: 0;
+}
+
+.gridWrapper {
+  display: flex;
+  flex-direction: column;
+  //height: 100%;
+  width: 100%;
+  border: 1px solid red;
 }
 
 .scrollableGridRows {

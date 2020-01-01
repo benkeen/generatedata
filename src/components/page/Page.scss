@@ -24,17 +24,15 @@ input, select, textarea {
   display: flex;
   flex-direction: column;
 
-  & > div {
-    height: 100%;
-  }
+  //& > div {
+  //  height: 100%;
+  //}
 }
 
 .content {
   flex: 1;
-  width: 950px;
-  margin: auto;
-  padding: 15px;
-  overflow: scroll;
+  //margin: auto;
+  //padding: 15px;
 }
 
 input {

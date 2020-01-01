@@ -128,7 +128,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 	};
 
 	return (
-		<div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+		<div className={styles.gridWrapper}>
             <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
                 <div className={styles.orderCol} />
                 <div className={styles.titleCol}>Title</div>
