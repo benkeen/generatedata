@@ -138,7 +138,6 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                 <div className={styles.helpCol} />
                 <div className={styles.deleteCol} />
             </div>
-
             <div className={styles.scrollableGridRows}>
                 <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
                     <Droppable droppableId="droppable">

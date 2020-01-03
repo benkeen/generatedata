@@ -29,5 +29,4 @@ const GeneratePage = () => {
 		</>
 	);
 };
-
 export default GeneratePage;
