@@ -1,19 +1,39 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import Dropdown from '../../../components/dropdown/Dropdown';
 
+
+// TODO: figure out what this component IS. Is it for specific countries? Sweden has 12 chars...
+// https://en.wikipedia.org/wiki/Personal_identity_number_%28Sweden%29
 
 export const state = {
 	example: '',
 	separator: ' '
 };
 
-export const Example = ({ coreI18n, i18n }: ExampleProps) => (
-	<select>
-		<option value="">{coreI18n.please_select}</option>
-		<option value="PersonalNumberWithoutHyphen">{i18n.example_PersonalNumberWithoutHyphen}</option>
-		<option value="PersonalNumberWithHyphen">{i18n.example_PersonalNumberWithHyphen}</option>
-	</select>
-);
+export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
+
+    const onChange = (value: any) => {
+        onUpdate({
+            example: value,
+            value: value
+        });
+    };
+
+    const options = [
+        { value: '', label: coreI18n.please_select },
+        { value: 'PersonalNumberWithoutHyphen', label: i18n.example_PersonalNumberWithoutHyphen },
+        { value: 'PersonalNumberWithHyphen', label: i18n.example_PersonalNumberWithHyphen }
+    ];
+
+    return (
+        <Dropdown
+            value={data.example}
+            onChange={(i: any) => onChange(i.value)}
+            options={options}
+        />
+    );
+};
 
 export const Options = ({ i18n, data }: OptionsProps) => (
 	<div>

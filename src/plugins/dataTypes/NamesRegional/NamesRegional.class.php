@@ -8,6 +8,8 @@
  * current country, it defaults to loading ANY name pulled from the database - just like with the Names plugin.
  */
 
+// TODO drop this component and combine with Names. Add a "[x] regional"
+
 class DataType_NamesRegional extends DataTypePlugin {
 
 	protected $isEnabled = true;

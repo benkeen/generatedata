@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import Dropdown from '../../../components/dropdown/Dropdown';
 
 export const state = {
 	example: '',
@@ -12,32 +13,48 @@ export const state = {
 
 export const Example = ({ i18n, data, onUpdate }: ExampleProps) => {
     const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
-        const value = (e.target as HTMLSelectElement).value;
-		onUpdate({
-			...data,
-			example: value
-		});
+        // const value = (e.target as HTMLSelectElement).value;
+		// onUpdate({
+		// 	...data,
+		// 	example: value
+		// });
 	};
 
+    const examples = [
+        { label: i18n.please_select, value: '' },
+        {
+            label: 'US/Canada',
+            options: [
+                { label: 'XXX.XX|0.00|100.00|$|prefix', value: '$0.00 -&gt; $100.00' },
+                { label: 'XX,XXX|5000|10000|$|prefix', value: `$5,000 -&gt; $10,000 (${i18n.no_cents})` },
+                { label: 'XXXXX.XX|1000.00|10000.00|$|prefix', value: `$1000.00 -&gt; $10000.00 (${i18n.no_thousand_delimiters})` },
+                { label: 'XXX,XXX.XX|-100000.00|100000.00|$|prefix', value: '-$100,000.00 -&gt; $100,000.00' },
+                { label: 'X.XX|0.00|100.00||prefix', value: `0.01 -&gt; 1.00 (${i18n.no_dollar_sign})` },
+                { label: 'X.XXX.XXX,XX|100.00|1000.00|$|suffix', value: '100,00 $ -&gt; 1.000,00 $ (French Canadian)' },
+                { label: 'XXX XXX|10|100000||prefix', value: '10 -&gt; 100 000' }
+            ]
+        },
+        {
+            label: 'UK',
+            options: [
+                { label: 'XXX.XX|0.00|100.00|£|prefix', value: '£0.00 -&gt; £100.00' }
+            ]
+        },
+        {
+            label: 'Euro',
+            options: [
+                { label: 'XXX,XXX|100000|200000|€|prefix', value: '€100,000 -&gt; €200,000' }
+            ]
+        }
+    ];
+
 	return (
-		<select defaultValue={data.example} onChange={onChange}>
-			<option value="">{i18n.please_select}</option>
-			<optgroup label="US/Canada">
-				<option value="XXX.XX|0.00|100.00|$|prefix">$0.00 -&gt; $100.00</option>
-				<option value="XX,XXX|5000|10000|$|prefix">$5,000 -&gt; $10,000 ({i18n.no_cents})</option>
-				<option value="XXXXX.XX|1000.00|10000.00|$|prefix">$1000.00 -&gt; $10000.00 ({i18n.no_thousand_delimiters})</option>
-				<option value="XXX,XXX.XX|-100000.00|100000.00|$|prefix">-$100,000.00 -&gt; $100,000.00</option>
-				<option value="X.XX|0.00|100.00||prefix">0.01 -&gt; 1.00 ({i18n.no_dollar_sign})</option>
-				<option value="X.XXX.XXX,XX|100.00|1000.00|$|suffix">100,00 $ -&gt; 1.000,00 $ (French Canadian)</option>
-				<option value="XXX XXX|10|100000||prefix">10 -&gt; 100 000</option>
-			</optgroup>
-			<optgroup label="UK">
-				<option value="XXX.XX|0.00|100.00|£|prefix">£0.00 -&gt; £100.00</option>
-			</optgroup>
-			<optgroup label="Euro">
-				<option value="XXX,XXX|100000|200000|€|prefix">€100,000 -&gt; €200,000</option>
-			</optgroup>
-		</select>
+		<Dropdown
+			isGrouped={true}
+			value={data.example}
+			onChange={onChange}
+			options={examples}
+		/>
 	);
 };
 

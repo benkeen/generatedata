@@ -30,7 +30,7 @@ input, select, textarea {
   overflow: hidden;
 }
 
-input {
+input, textarea, select {
   border-radius: 4px;
   border: 1px solid #cccccc;
   padding: 6px;
