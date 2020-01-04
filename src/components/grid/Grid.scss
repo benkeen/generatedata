@@ -1,10 +1,20 @@
-.grid {
-  margin: 0 auto 10px;
-  //margin-bottom: 10px;
+.gridWrapper {
+  width: 100%;
+  padding: 0 10px;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.gridHeaderWrapper {
   max-width: 1024px;
+  margin: 0 auto;
 }
 
 div.gridHeader {
+  width: 100%;
   font-weight: bold;
   color: #666666;
   min-height: 26px;
@@ -14,28 +24,17 @@ div.gridHeader {
   border-radius: 0;
 }
 
-.gridWrapper {
-  display: flex;
-  flex-direction: column;
-  //height: 100%;
-  width: 100%;
-  border: 1px solid red;
-}
-
 .scrollableGridRows {
+  width: 100%;
   flex: 1;
   overflow: scroll;
   position: relative;
   padding-top: 4px;
-  //&:after {
-  //  position: fixed;
-  //  top: 0;
-  //  height: 10px;
-  //  width: 100%;
-  //  content: "";
-  //  background: linear-gradient(to bottom, rgba(255,255,255, 1) 20%, rgba(255,255,255, 0) 80%);
-  //  pointer-events: none; /* so the text is still selectable */
-  //}
+}
+
+.gridRowsWrapper {
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 .gridRow {

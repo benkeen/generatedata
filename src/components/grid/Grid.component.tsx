@@ -129,38 +129,45 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 
 	return (
 		<div className={styles.gridWrapper}>
-            <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
-                <div className={styles.orderCol} />
-                <div className={styles.titleCol}>Title</div>
-                <div className={styles.dataTypeCol}>Data Type</div>
-                <div className={styles.examplesCol}>Examples</div>
-                <div className={styles.optionsCol}>Options</div>
-                <div className={styles.helpCol} />
-                <div className={styles.deleteCol} />
+            <div>
+                <div className={styles.gridHeaderWrapper}>
+                    <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
+                        <div className={styles.orderCol} />
+                        <div className={styles.titleCol}>Title</div>
+                        <div className={styles.dataTypeCol}>Data Type</div>
+                        <div className={styles.examplesCol}>Examples</div>
+                        <div className={styles.optionsCol}>Options</div>
+                        <div className={styles.helpCol} />
+                        <div className={styles.deleteCol} />
+                    </div>
+                </div>
             </div>
-            <div className={styles.scrollableGridRows}>
-                <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
-                    <Droppable droppableId="droppable">
-                        {(provided: any) => (
-                            <div
-                                className={styles.grid} {...provided.droppableProps}
-                                ref={provided.innerRef}
-                            >
-                                {getRows(rows)}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
 
-                <div className={styles.addRows}>
-                    <form onSubmit={(e) => e.preventDefault()}>
-                        <span>{i18n.add}</span>
-                        <input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
-                            min={1} max={1000} step={1} />
-                        <Button size="small"
+            <div className={styles.scrollableGridRows}>
+                <div className={styles.gridRowsWrapper}>
+                    <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
+                        <Droppable droppableId="droppable">
+                            {(provided: any) => (
+                                <div
+                                    {...provided.droppableProps}
+                                    ref={provided.innerRef}
+                                >
+                                    {getRows(rows)}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
+
+                    <div className={styles.addRows}>
+                        <form onSubmit={(e) => e.preventDefault()}>
+                            <span>{i18n.add}</span>
+                            <input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
+                                min={1} max={1000} step={1} />
+                            <Button size="small"
                                 onClick={() => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
 

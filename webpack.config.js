@@ -42,9 +42,11 @@ module.exports = {
 						// }
 					},
 					{
-						loader: "css-loader",
+						loader: 'css-loader',
 						options: {
-							modules: true
+							modules: {
+								localIdentName: '[name]__[local]--[hash:base64:3]'
+							}
 						}
 					},
 					{
