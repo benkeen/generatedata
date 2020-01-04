@@ -12,38 +12,41 @@ export const state = {
 };
 
 export const Example = ({ i18n, data, onUpdate }: ExampleProps) => {
-    const onChange = (e: React.FormEvent<HTMLSelectElement>) => {
-        // const value = (e.target as HTMLSelectElement).value;
-		// onUpdate({
-		// 	...data,
-		// 	example: value
-		// });
+    const onChange = (i: any) => {
+        const [format, from, to, currencySymbol, currencySymbolLocation] = i.value.split('|');
+		onUpdate({
+			example: i.value,
+            format,
+            from,
+            to,
+            currencySymbol,
+            currencySymbolLocation
+		});
 	};
 
     const examples = [
-        { label: i18n.please_select, value: '' },
         {
             label: 'US/Canada',
             options: [
-                { label: 'XXX.XX|0.00|100.00|$|prefix', value: '$0.00 -&gt; $100.00' },
-                { label: 'XX,XXX|5000|10000|$|prefix', value: `$5,000 -&gt; $10,000 (${i18n.no_cents})` },
-                { label: 'XXXXX.XX|1000.00|10000.00|$|prefix', value: `$1000.00 -&gt; $10000.00 (${i18n.no_thousand_delimiters})` },
-                { label: 'XXX,XXX.XX|-100000.00|100000.00|$|prefix', value: '-$100,000.00 -&gt; $100,000.00' },
-                { label: 'X.XX|0.00|100.00||prefix', value: `0.01 -&gt; 1.00 (${i18n.no_dollar_sign})` },
-                { label: 'X.XXX.XXX,XX|100.00|1000.00|$|suffix', value: '100,00 $ -&gt; 1.000,00 $ (French Canadian)' },
-                { label: 'XXX XXX|10|100000||prefix', value: '10 -&gt; 100 000' }
+                { value: 'XXX.XX|0.00|100.00|$|prefix', label: '$0.00 -> $100.00' },
+                { value: 'XX,XXX|5000|10000|$|prefix', label: `$5,000 -> $10,000 (${i18n.no_cents})` },
+                { value: 'XXXXX.XX|1000.00|10000.00|$|prefix', label: `$1000.00 -> $10000.00 (${i18n.no_thousand_delimiters})` },
+                { value: 'XXX,XXX.XX|-100000.00|100000.00|$|prefix', label: '-$100,000.00 -> $100,000.00' },
+                { value: 'X.XX|0.00|100.00||prefix', label: `0.01 -> 1.00 (${i18n.no_dollar_sign})` },
+                { value: 'X.XXX.XXX,XX|100.00|1000.00|$|suffix', label: '100,00 $ -> 1.000,00 $ (French Canadian)' },
+                { value: 'XXX XXX|10|100000||prefix', label: '10 -> 100 000' }
             ]
         },
         {
             label: 'UK',
             options: [
-                { label: 'XXX.XX|0.00|100.00|£|prefix', value: '£0.00 -&gt; £100.00' }
+                { label: 'XXX.XX|0.00|100.00|£|prefix', value: '£0.00 -> £100.00' }
             ]
         },
         {
             label: 'Euro',
             options: [
-                { label: 'XXX,XXX|100000|200000|€|prefix', value: '€100,000 -&gt; €200,000' }
+                { label: 'XXX,XXX|100000|200000|€|prefix', value: '€100,000 -> €200,000' }
             ]
         }
     ];
@@ -61,7 +64,7 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps) => {
 export const Options = ({ i18n, data }: OptionsProps) => (
 	<>
 		<div>
-			{i18n.format}: <input type="text" id="dtCurrencyFormat_%ROW%" name="dtCurrencyFormat_%ROW%" style={{ width: 160 }} />
+			{i18n.format}: <input type="text" value={data.format} style={{ width: 160 }} />
 		</div>
 		<div>
 			{i18n.range} <input type="text" value={data.from} style={{ width: 80 }} />
