@@ -3,6 +3,7 @@ import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
 import { generate } from 'shortid';
 import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
+import { BuilderLayout } from '../../components/builder/Builder.component';
 
 export type DataRow = {
     id: string;
@@ -18,6 +19,9 @@ export type DataRows = {
 export type ReducerState = {
     rows: DataRows;
     sortedRows: string[];
+    showGrid: boolean;
+    showPreview: boolean;
+    builderLayout: BuilderLayout;
 };
 
 /**
@@ -27,6 +31,9 @@ export type ReducerState = {
 const reducer = (state: ReducerState = {
 	rows: {},
 	sortedRows: [],
+    showGrid: true,
+    showPreview: true,
+    builderLayout: 'vertical'
 	// dataTypes: [],
 	// exportTypes: [],
 	// countries: []

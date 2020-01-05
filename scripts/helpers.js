@@ -21,6 +21,11 @@ const getDataTypes = () => {
 	const dataTypeInfo = [];
 
 	folders.forEach((folder) => {
+		// ignore all Data Types folders that begin with an _. Quick convenient way to remove them without removing them.
+		if (/^_/.test(folder)) {
+			return;
+		}
+
 		const configFile = `${baseFolder}/${folder}/${folder}.config.js`;
 		if (!fs.existsSync(configFile)) {
 			return;

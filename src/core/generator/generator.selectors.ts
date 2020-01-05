@@ -5,6 +5,9 @@ import { GenerationTemplate } from '../../../types/general';
 
 export const getRows = (state: any) => state.generator.rows;
 export const getSortedRows = (state: any) => state.generator.sortedRows;
+export const isGridVisible = (state: any) => state.generator.showGrid;
+export const isPreviewVisible = (state: any) => state.generator.showPreview;
+export const getBuilderLayout = (state: any) => state.generator.builderLayout;
 
 export const getNumRows = createSelector(
 	getSortedRows,
