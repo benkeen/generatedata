@@ -5,13 +5,21 @@ export const state = {
 	numWords: 10
 };
 
+export const Options = ({ i18n, id, data, onUpdate }: OptionsProps) => {
+    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+        const value = (e.target as HTMLSelectElement).value;
+        onUpdate({
+            numWords: value
+        });
+    };
 
-export const Options = ({ i18n, id }: OptionsProps) => (
-	<>
-		{i18n.TextFixed_generate} #<input type="text" id={`${id}-numWords`} style={{ width: 30 }} value="10" />
-		{i18n.TextFixed_words}
-	</>
-);
+    return (
+        <>
+            {i18n.TextFixed_generate} #<input type="text" style={{ width: 30 }} value={data.numWords} onChange={onChange}/>
+            {i18n.TextFixed_words}
+        </>
+    );
+};
 
 export const Help = ({ i18n }: HelpProps) => <p>{i18n.TextFixed_help}</p>;
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '../components/grid/Grid.container';
+import Preview from '../components/previewPanel/PreviewPanel.container';
 import ResultsPanel from '../components/resultsPanel/ResultsPanel.container';
 
 type SubPage = 'grid' | 'results';
@@ -21,6 +22,7 @@ const GeneratePage = () => {
                 </div>
 
                 <Grid />
+                <Preview />
             </>
         );
     } else {
