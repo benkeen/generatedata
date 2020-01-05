@@ -127,6 +127,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 		});
 	};
 
+    // TODO move layout outside of grid
 	return (
 		<div className={styles.gridWrapper}>
             <div>
