@@ -119,6 +119,18 @@ const reducer = (state: ReducerState = {
             };
         }
 
+        case actions.TOGGLE_GRID:
+            return {
+                ...state,
+                showGrid: !state.showGrid
+            };
+
+        case actions.TOGGLE_PREVIEW:
+            return {
+                ...state,
+                showPreview: !state.showPreview
+            };
+
 		default:
 			return state;
 	}

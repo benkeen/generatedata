@@ -5,32 +5,15 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 type HeaderProps = {
+    toggleGrid: () => void;
+    togglePreview: () => void;
     isLoggedIn: boolean;
     onChangeLocale: Function;
     locale: GDLocale;
     i18n: any;
 }
 
-const Header = ({ isLoggedIn, i18n }: HeaderProps) => {
-	let navOptions = [
-        <li><a href="#">About</a></li>,
-        <li><a href="#">Doc</a></li>,
-        <li><a href="#">News</a></li>,
-        <li><a href="#">Donate!</a></li>,
-        <li><a href="#">Login</a></li>
-    ];
-
-	// if (isLoggedIn) {
-	// 	navOptions = (
-	// 		<>
-	// 			<li id="gdUserAccount"><a href="#">{i18n.your_account}</a></li>
-	// 			<li id="gdLogout"><a href="#">{i18n.logout}</a></li>
-	// 		</>
-	// 	);
-	// } else {
-	// 	navOptions = <li id="gdLogin"><a href="#">{i18n.login}</a></li>;
-	// }
-
+const Header = ({ toggleGrid, togglePreview, isLoggedIn, i18n }: HeaderProps) => {
 	return (
 		<header className={styles.header}>
 			<div>
@@ -38,11 +21,15 @@ const Header = ({ isLoggedIn, i18n }: HeaderProps) => {
 
 				<nav>
 					<ul>
-						{navOptions}
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Doc</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Donate!</a></li>
+                        <li><a href="#">Login</a></li>
 					</ul>
                     <ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>
-                        <Button>Grid</Button>
-                        <Button>Preview</Button>
+                        <Button onClick={toggleGrid}>Grid</Button>
+                        <Button onClick={togglePreview}>Preview</Button>
                     </ButtonGroup>
 				</nav>
 			</div>

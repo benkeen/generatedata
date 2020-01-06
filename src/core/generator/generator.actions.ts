@@ -41,3 +41,9 @@ export const repositionRow = (id: string, newIndex: number) => ({
         id, newIndex
     }
 });
+
+export const TOGGLE_GRID = 'TOGGLE_GRID';
+export const toggleGrid = () => ({ type: TOGGLE_GRID });
+
+export const TOGGLE_PREVIEW = 'TOGGLE_PREVIEW';
+export const togglePreview = () => ({ type: TOGGLE_PREVIEW });

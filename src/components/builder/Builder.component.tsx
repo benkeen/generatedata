@@ -31,12 +31,26 @@ const Builder = ({ isGridVisible, isPreviewVisible }: BuilderProps) => {
     //     );
     // }
 
+    const getContent = () => {
+        if (isGridVisible && isPreviewVisible) {
+            return (
+                <SplitPane split="horizontal" minSize={50} defaultSize="50%">
+                    <Grid />
+                    <Preview />
+                </SplitPane>
+            );
+        }
+
+        if (isGridVisible) {
+            return <Grid />;
+        }
+
+        return <Preview />;
+    };
+
 	return (
         <div style={{ height: '100%', position: 'relative' }}>
-            <SplitPane split="horizontal" minSize={50} defaultSize="50%">
-                <Grid />
-                <Preview />
-            </SplitPane>
+            {getContent()}
         </div>
 	);
 };
