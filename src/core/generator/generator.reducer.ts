@@ -125,11 +125,19 @@ const reducer = (state: ReducerState = {
                 showGrid: !state.showGrid
             };
 
-        case actions.TOGGLE_PREVIEW:
-            return {
+        case actions.TOGGLE_PREVIEW: {
+            const newState = {
                 ...state,
                 showPreview: !state.showPreview
             };
+
+            // if the preview panel was the only one open, re-open the grid
+            if (!state.showGrid) {
+                newState.showGrid = true;
+            }
+
+            return newState;
+        }
 
         case actions.TOGGLE_LAYOUT:
             return {
