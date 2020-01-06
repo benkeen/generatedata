@@ -152,6 +152,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                         <Droppable droppableId="droppable">
                             {(provided: any) => (
                                 <div
+                                    className={styles.grid}
                                     {...provided.droppableProps}
                                     ref={provided.innerRef}
                                 >

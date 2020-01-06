@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Dropdown from '../dropdown/Dropdown';
 import * as styles from './Header.scss';
 import { GDLocale } from '../../../types/general';
 import Button from '@material-ui/core/Button';
@@ -12,7 +11,7 @@ type HeaderProps = {
     i18n: any;
 }
 
-const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }: HeaderProps) => {
+const Header = ({ isLoggedIn, i18n }: HeaderProps) => {
 	let navOptions = [
         <li><a href="#">About</a></li>,
         <li><a href="#">News</a></li>,
@@ -31,15 +30,6 @@ const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }: HeaderProps) => {
 	// 	navOptions = <li id="gdLogin"><a href="#">{i18n.login}</a></li>;
 	// }
 
-	const options = [
-		{ value: 'de', label: 'Deutsch' },
-		{ value: 'en', label: 'English' },
-		{ value: 'es', label: 'Español' },
-		{ value: 'fr', label: 'Français' },
-		{ value: 'nl', label: 'Nederlands' },
-		{ value: 'zh', label: '中文' }
-	];
-
 	return (
 		<header className={styles.header}>
 			<div>
@@ -49,18 +39,10 @@ const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }: HeaderProps) => {
 					<ul>
 						{navOptions}
 					</ul>
-                    <ButtonGroup aria-label="" style={{ margin: '0 6px' }}>
+                    <ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>
                         <Button>Grid</Button>
                         <Button>Preview</Button>
                     </ButtonGroup>
-
-                    <Dropdown
-                        style={{ marginTop: 2 }}
-						className={styles.selectLocale}
-						onChange={(item: any) => onChangeLocale(item.value)}
-						value={locale}
-						options={options}
-					/>
 				</nav>
 			</div>
 		</header>

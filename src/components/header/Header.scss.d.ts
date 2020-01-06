@@ -1,7 +1,6 @@
 declare namespace HeaderScssModule {
   export interface IHeaderScss {
     header: string;
-    selectLocale: string;
   }
 }
 

@@ -5,6 +5,7 @@ declare namespace GridScssModule {
     deleteCol: string;
     emptyCol: string;
     examplesCol: string;
+    grid: string;
     gridHeader: string;
     gridHeaderWrapper: string;
     gridRow: string;

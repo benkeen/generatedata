@@ -1,6 +1,7 @@
 declare namespace FooterScssModule {
   export interface IFooterScss {
     footer: string;
+    selectLocale: string;
   }
 }
 
