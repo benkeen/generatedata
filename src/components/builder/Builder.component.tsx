@@ -3,7 +3,6 @@ import Grid from '../grid/Grid.container';
 import Preview from '../previewPanel/PreviewPanel.container';
 import SplitPane from 'react-split-pane';
 // import ResultsPanel from '../resultsPanel/ResultsPanel.container';
-import ControlRow from './ControlRow.component';
 import './Builder.scss';
 
 // type SubPage = 'grid' | 'results';
@@ -33,9 +32,8 @@ const Builder = ({ isGridVisible, isPreviewVisible }: BuilderProps) => {
     // }
 
 	return (
-        <div style={{ height: '100%' }}>
-            <ControlRow />
-            <SplitPane split="vertical" minSize={50} defaultSize="50%">
+        <div style={{ height: '100%', position: 'relative' }}>
+            <SplitPane split="horizontal" minSize={50} defaultSize="50%">
                 <Grid />
                 <Preview />
             </SplitPane>

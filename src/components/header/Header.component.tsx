@@ -2,6 +2,8 @@ import * as React from 'react';
 import Dropdown from '../dropdown/Dropdown';
 import * as styles from './Header.scss';
 import { GDLocale } from "../../../types/general";
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 type HeaderProps = {
     isLoggedIn: boolean;
@@ -42,7 +44,13 @@ const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }: HeaderProps) => {
 					<ul>
 						{navOptions}
 					</ul>
-					<Dropdown
+
+                    <ButtonGroup aria-label="" style={{ marginRight: 6 }}>
+                        <Button>Grid</Button>
+                        <Button>Preview</Button>
+                    </ButtonGroup>
+
+                    <Dropdown
 						className={styles.selectLocale}
 						onChange={(item: any) => onChangeLocale(item.value)}
 						value={locale}

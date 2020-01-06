@@ -11,7 +11,9 @@ const Footer = () => {
                 </ul>
 
                 <div>
+                    <Button onClick={() => {}} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>Countries (all)</Button>
                     <Button onClick={() => {}} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>JSON</Button>
+                    <span style={{ padding: '6px 12px 0 6px', color: '#dddddd' }}>|</span>
                     <Button onClick={() => {}} variant="contained" color="primary" disableElevation>Generate &raquo;</Button>
                 </div>
             </div>
