@@ -9,7 +9,7 @@ import './core/generator/generator.reducer';
 
 import store, { persistor } from './store';
 import Page from './components/page/Page.container';
-import BuilderLayout from './components/builder/BuilderLayout.container';
+import Builder from './components/builder/Builder.container';
 import * as core from './core';
 
 const App = () => (
@@ -35,7 +35,7 @@ const App = () => (
 									<div>Users</div>
 								</Route>
 								<Route path="/">
-									<BuilderLayout />
+									<Builder />
 								</Route>
 							</Switch>
 						</Page>

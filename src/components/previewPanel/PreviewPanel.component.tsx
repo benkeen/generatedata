@@ -1,8 +1,10 @@
 import * as React from 'react';
 
 
-export default () => {
+const PreviewPanel = () => {
     return (
         <div>Preview</div>
     )
 };
+
+export default PreviewPanel;

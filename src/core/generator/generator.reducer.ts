@@ -33,7 +33,7 @@ const reducer = (state: ReducerState = {
 	sortedRows: [],
     showGrid: true,
     showPreview: true,
-    builderLayout: 'vertical'
+    builderLayout: 'horizontal'
 	// dataTypes: [],
 	// exportTypes: [],
 	// countries: []
