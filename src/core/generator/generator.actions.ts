@@ -47,3 +47,6 @@ export const toggleGrid = () => ({ type: TOGGLE_GRID });
 
 export const TOGGLE_PREVIEW = 'TOGGLE_PREVIEW';
 export const togglePreview = () => ({ type: TOGGLE_PREVIEW });
+
+export const TOGGLE_LAYOUT = 'TOGGLE_LAYOUT';
+export const toggleLayout = () => ({ type: TOGGLE_LAYOUT });

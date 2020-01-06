@@ -131,6 +131,12 @@ const reducer = (state: ReducerState = {
                 showPreview: !state.showPreview
             };
 
+        case actions.TOGGLE_LAYOUT:
+            return {
+                ...state,
+                builderLayout: state.builderLayout === 'horizontal' ? 'vertical' : 'horizontal'
+            };
+
 		default:
 			return state;
 	}

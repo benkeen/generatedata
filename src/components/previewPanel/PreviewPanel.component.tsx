@@ -3,12 +3,18 @@ import CloseIcon from '@material-ui/icons/Close';
 import * as styles from './PreviewPanel.scss';
 
 
-const PreviewPanel = () => {
+export type PreviewPanelProps = {
+    togglePreview: () => void;
+    toggleLayout: () => void;
+};
+
+
+const PreviewPanel = ({ togglePreview, toggleLayout }: PreviewPanelProps) => {
     return (
         <div className={styles.previewPanel}>
             <div className={styles.topRow}>
-                <span>horizontal/vertical</span>
-                <CloseIcon fontSize="large" />
+                <span onClick={toggleLayout}>horizontal/vertical</span>
+                <span onClick={togglePreview}><CloseIcon fontSize="large" /></span>
             </div>
         </div>
     );

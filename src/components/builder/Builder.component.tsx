@@ -15,7 +15,7 @@ export type BuilderProps = {
     builderLayout: BuilderLayout;
 }
 
-const Builder = ({ isGridVisible, isPreviewVisible }: BuilderProps) => {
+const Builder = ({ isGridVisible, isPreviewVisible, builderLayout }: BuilderProps) => {
     // const [subPage, setSubpage] = React.useState<SubPage>('grid');
 
     // let content;
@@ -34,7 +34,7 @@ const Builder = ({ isGridVisible, isPreviewVisible }: BuilderProps) => {
     const getContent = () => {
         if (isGridVisible && isPreviewVisible) {
             return (
-                <SplitPane split="horizontal" minSize={50} defaultSize="50%">
+                <SplitPane split={builderLayout} minSize={50} defaultSize="50%">
                     <Grid />
                     <Preview />
                 </SplitPane>
