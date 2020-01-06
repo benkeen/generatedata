@@ -16,7 +16,16 @@
       list-style: none;
       margin: 0;
       padding: 0;
+      align-items: center;
+
+      li {
+        margin-right: 6px;
+      }
     }
+  }
+
+  svg {
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0,0,0,0.60)));
   }
 }
 

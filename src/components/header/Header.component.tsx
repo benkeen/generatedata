@@ -14,8 +14,9 @@ type HeaderProps = {
 const Header = ({ isLoggedIn, i18n }: HeaderProps) => {
 	let navOptions = [
         <li><a href="#">About</a></li>,
+        <li><a href="#">Doc</a></li>,
         <li><a href="#">News</a></li>,
-        <li><a href="#">Donate</a></li>,
+        <li><a href="#">Donate!</a></li>,
         <li><a href="#">Login</a></li>
     ];
 
