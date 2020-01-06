@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Dropdown from '../dropdown/Dropdown';
 import * as styles from './Header.scss';
-import { GDLocale } from "../../../types/general";
+import { GDLocale } from '../../../types/general';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
@@ -13,18 +13,23 @@ type HeaderProps = {
 }
 
 const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }: HeaderProps) => {
-	let navOptions;
+	let navOptions = [
+        <li><a href="#">About</a></li>,
+        <li><a href="#">News</a></li>,
+        <li><a href="#">Donate</a></li>,
+        <li><a href="#">Login</a></li>
+    ];
 
-	if (isLoggedIn) {
-		navOptions = (
-			<>
-				<li id="gdUserAccount"><a href="#">{i18n.your_account}</a></li>
-				<li id="gdLogout"><a href="#">{i18n.logout}</a></li>
-			</>
-		);
-	} else {
-		navOptions = <li id="gdLogin"><a href="#">{i18n.login}</a></li>;
-	}
+	// if (isLoggedIn) {
+	// 	navOptions = (
+	// 		<>
+	// 			<li id="gdUserAccount"><a href="#">{i18n.your_account}</a></li>
+	// 			<li id="gdLogout"><a href="#">{i18n.logout}</a></li>
+	// 		</>
+	// 	);
+	// } else {
+	// 	navOptions = <li id="gdLogin"><a href="#">{i18n.login}</a></li>;
+	// }
 
 	const options = [
 		{ value: 'de', label: 'Deutsch' },
@@ -44,13 +49,13 @@ const Header = ({ isLoggedIn, onChangeLocale, locale, i18n }: HeaderProps) => {
 					<ul>
 						{navOptions}
 					</ul>
-
-                    <ButtonGroup aria-label="" style={{ marginRight: 6 }}>
+                    <ButtonGroup aria-label="" style={{ margin: '0 6px' }}>
                         <Button>Grid</Button>
                         <Button>Preview</Button>
                     </ButtonGroup>
 
                     <Dropdown
+                        style={{ marginTop: 2 }}
 						className={styles.selectLocale}
 						onChange={(item: any) => onChangeLocale(item.value)}
 						value={locale}

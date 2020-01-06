@@ -46,6 +46,8 @@ const Dropdown = ({ value, isGrouped, options, ...props }: any) => {
             options={options}
 			value={selectedValue}
 			styles={selectStyles}
+            menuPlacement="auto"
+            menuPortalTarget={document.body}
 		/>
 	);
 };

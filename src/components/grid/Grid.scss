@@ -52,10 +52,14 @@ div.gridHeader {
 }
 
 div.orderCol {
-  flex: 0 0 22px;
+  flex: 0 0 40px;
+  display: flex;
   padding-left: 2px;
   padding-top: 8px;
   color: #999999;
+  svg {
+    color: #cccccc;
+  }
 }
 .titleCol {
   flex: 0 0 150px;

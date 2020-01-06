@@ -4,6 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import HelpIcon from '@material-ui/icons/HelpOutline';
+import DragIndicator from '@material-ui/icons/DragIndicator';
 import * as styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeComponents } from '../../utils/dataTypeUtils';
@@ -93,6 +94,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                              )}
                         >
                             <div className={styles.orderCol}{...provided.dragHandleProps}>
+                                <DragIndicator fontSize="small" />
                                 {index + 1}
                             </div>
                             <div className={styles.titleCol}>
@@ -134,10 +136,10 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                 <div className={styles.gridHeaderWrapper}>
                     <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
                         <div className={styles.orderCol} />
-                        <div className={styles.titleCol}>Title</div>
-                        <div className={styles.dataTypeCol}>Data Type</div>
-                        <div className={styles.examplesCol}>Examples</div>
-                        <div className={styles.optionsCol}>Options</div>
+                        <div className={styles.titleCol}>{i18n.row_label}</div>
+                        <div className={styles.dataTypeCol}>{i18n.data_type}</div>
+                        <div className={styles.examplesCol}>{i18n.examples}</div>
+                        <div className={styles.optionsCol}>{i18n.options}</div>
                         <div className={styles.helpCol} />
                         <div className={styles.deleteCol} />
                     </div>
