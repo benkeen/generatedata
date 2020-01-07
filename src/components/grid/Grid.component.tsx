@@ -53,7 +53,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 
 	const HelpColIcon = (gridWidth < BREAKPOINT) ? SettingsIcon : HelpIcon;
 
-	
+
 	const getRows = (rows: DataRow[]) => {
 		return rows.map((row, index) => {
 			const { Example, Options } = getDataTypeComponents(row.dataType);

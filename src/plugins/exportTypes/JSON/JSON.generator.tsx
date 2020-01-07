@@ -121,6 +121,23 @@ const getColumnValue = (prop: string, value: any) => {
 };
 
 
+// passed in rows right from the builder
+export const Preview = ({ rows }: any) => {
+
+    // monitor changes. When a specific row changes, regenerate it. Otherwise do nuthin'.
+    React.useEffect(() => {
+
+    }, [rows]);
+
+    return (
+        <div>
+            ...
+        </div>
+    );
+};
+
+
+
 /*
 [
     {

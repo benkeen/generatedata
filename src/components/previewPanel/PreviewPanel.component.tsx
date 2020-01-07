@@ -14,7 +14,7 @@ const PreviewPanel = ({ togglePreview, toggleLayout }: PreviewPanelProps) => {
         <div className={styles.previewPanel}>
             <div className={styles.topRow}>
                 <span onClick={toggleLayout}>horizontal/vertical</span>
-                <span onClick={togglePreview}><CloseIcon fontSize="large" /></span>
+                <span className={styles.closePanel} onClick={togglePreview}><CloseIcon fontSize="large" /></span>
             </div>
         </div>
     );
