@@ -1,19 +1,22 @@
-<?php
+import { GenerationData } from '../../../../types/dataTypes';
+import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-/**
- * @package DataTypes
- */
+export const generate = (data: GenerationData) => {
 
-class DataType_LatLng extends DataTypePlugin {
-	protected $isEnabled = true;
-	protected $dataTypeName = "Latitude / Longitude";
-	protected $dataTypeFieldGroup = "geo";
-	protected $dataTypeFieldGroupOrder = 100;
-	protected $jsModules = array("LatLng.js");
+};
 
+export const getMetadata = (): ExportTypeMetadata => ({
+    sql: {
+        field: 'varchar(30) default NULL',
+        field_Oracle: 'varchar2(30) default NULL',
+        field_MSSQL: 'VARCHAR(30) NULL'
+    }
+});
+
+
+/*
 	// $this->cachedMath = array();
 	private $cachedMath;
-
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
@@ -22,11 +25,9 @@ class DataType_LatLng extends DataTypePlugin {
 		}
 	}
 
-	/**
-	 * Valid ranges:
-	 *   Lat: -90 -> + 90
-	 *   Lng: -180 -> +180
-	 */
+    // Valid ranges:
+    // Lat: -90 -> + 90
+    // Lng: -180 -> +180
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 
@@ -64,14 +65,6 @@ class DataType_LatLng extends DataTypePlugin {
 		return $options;
 	}
 
-	public function getDataTypeMetadata() {
-		return array(
-			"SQLField" => "varchar(30) default NULL",
-			"SQLField_Oracle" => "varchar2(30) default NULL",
-			"SQLField_MSSQL" => "VARCHAR(30) NULL"
-		);
-	}
-
 	private function initVars() {
 		// to 5 D.P. Arbitrary - should be configurable, but it should be good enough for most cases
 		$decimalPlaces = 5;
@@ -83,4 +76,4 @@ class DataType_LatLng extends DataTypePlugin {
 			"divisor"    => pow(10, $decimalPlaces)
 		);
 	}
-}
+*/

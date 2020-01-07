@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import Dropdown from '../../../components/dropdown/Dropdown';
 
 export const state = {
 	example: '',
@@ -10,43 +11,64 @@ export const state = {
 	option: ''
 };
 
-export const Example = ({ coreI18n, i18n }: ExampleProps) => (
-	<>
-		<select>
-			<option value="">{coreI18n.please_select}</option>
-			<option value="1|3|5|7|9|11|13|15|17|19|21|23|25|27|29|31|33|35|37|39|41|43|45|47|49">{i18n.example_1}</option>
-			<option value="2|4|6|8|10|12|14|16|18|20|22|24|26|28|30|32|34|36|38|40|42|44|46|48|50">{i18n.example_2}</option>
-			<option value="1|2|3|4|5|6|7|8|9|10">1-10</option>
-			<option value={i18n.one_to_ten}>{i18n.example_3}</option>
-			<option value="1|2|3|5|7|11|13|17|19|23|29|31|37|41|43|47|53|59|61|67|71|73|79|83|89|97">{i18n.example_4}</option>
-			<option value={i18n.colours}>{i18n.example_5}</option>
-			<option value={i18n.relationship_states}>{i18n.example_6}</option>
-			<option value={i18n.prefix}>{i18n.example_7}</option>
-			<option value={i18n.company_names}>{i18n.example_8}</option>
-			<option value={i18n.companies}>{i18n.example_9}</option>
-			<option value={i18n.drug_names}>{i18n.example_10}</option>
-			<option value={i18n.food_types}>{i18n.example_11}</option>
-			<option value={i18n.car_brands}>{i18n.example_12}</option>
-		</select>
-		<div>{i18n.separated_by_pipe}</div>
-	</>
-);
+export const Example = ({ data, onUpdate, coreI18n, i18n }: ExampleProps) => {
+    const onChange = (value: any) => {
+        onUpdate({
+            example: value,
+            value: value
+        });
+    };
 
-export const Options = ({ i18n, data }: OptionsProps) => (
-	<>
-		<div>
-			<input type="radio" name="dtListType_%ROW%" id="dtListType1_%ROW%" value="Exactly" checked />
-			<label htmlFor="dtListType1_%ROW%">{i18n.exactly}</label>
-			<input type="text" size={2} name="dtListExactly_%ROW%" id="dtListExactly_%ROW%" value="1" />&nbsp;&nbsp;
-			<input type="radio" name="dtListType_%ROW%" id="dtListType2_%ROW%" value="AtMost" />
-			<label htmlFor="dtListType2_%ROW%">{i18n.at_most}</label>
-			<input type="text" size={2} name="dtListAtMost_%ROW%" id="dtListAtMost_%ROW%" value="1" />
-		</div>
-		<div>
-			<input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style={{ width: 267 }} value={data.option} />
-		</div>
-	</>
-);
+    const options = [
+        { value: '1|3|5|7|9|11|13|15|17|19|21|23|25|27|29|31|33|35|37|39|41|43|45|47|49', label: i18n.example_1 },
+        { value: '2|4|6|8|10|12|14|16|18|20|22|24|26|28|30|32|34|36|38|40|42|44|46|48|50', label: i18n.example_2 },
+        { value: '1|2|3|4|5|6|7|8|9|10', label: '1-10' },
+        { value: i18n.one_to_ten, label: i18n.example_3 },
+        { value: '1|2|3|5|7|11|13|17|19|23|29|31|37|41|43|47|53|59|61|67|71|73|79|83|89|97', label: i18n.example_4 },
+        { value: i18n.colours, label: i18n.example_5 },
+        { value: i18n.relationship_states, label: i18n.example_6 },
+        { value: i18n.prefix, label: i18n.example_7 },
+        { value: i18n.company_names, label: i18n.example_8 },
+        { value: i18n.companies, label: i18n.example_9 },
+        { value: i18n.drug_names, label: i18n.example_10 },
+        { value: i18n.food_types, label: i18n.example_11 },
+        { value: i18n.car_brands, label: i18n.example_12 }
+    ];
+
+    return (
+        <>
+            <Dropdown
+                value={data.example}
+                onChange={(i: any) => onChange(i.value)}
+                options={options}
+            />
+            <div>{i18n.separated_by_pipe}</div>
+        </>
+    );
+};
+
+export const Options = ({ i18n, data, id }: OptionsProps) => {
+    const onChange = () => {
+
+    };
+
+    return (
+        <>
+            <div>
+                <input type="radio" name={`listType-${id}`} id={`listType1-${id}`} value="Exactly" checked />
+                <label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
+                <input type="text" size={2} name="dtListExactly_%ROW%" id="dtListExactly_%ROW%" value={data.exactly} />
+
+                <input type="radio" name={`listType-${id}`} id={`listType2-${id}`} value="AtMost" />
+                <label htmlFor={`listType2-${id}`}>{i18n.at_most}</label>
+                <input type="text" size={2} name="dtListAtMost_%ROW%" id="dtListAtMost_%ROW%" value={data.atMost} />
+            </div>
+            <div>
+                <input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style={{width: 267}} value={data.option} />
+            </div>
+        </>
+    );
+};
 
 export const Help = ({ i18n }: HelpProps) => <p>{i18n.help}</p>;
 

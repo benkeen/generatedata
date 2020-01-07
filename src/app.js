@@ -12,6 +12,17 @@ import Page from './components/page/Page.container';
 import Builder from './components/builder/Builder.container';
 import * as core from './core';
 
+
+/*
+routes:
+	welcome (?)
+	tour (?)
+	about
+	documentation (?)
+	news
+	donate
+ */
+
 const App = () => (
 	<Provider store={store}>
 		<PersistGate loading={null} persistor={persistor}>
