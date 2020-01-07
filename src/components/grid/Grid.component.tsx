@@ -1,15 +1,19 @@
 import * as React from 'react';
 // @ts-ignore-line
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import useDimensions from 'react-use-dimensions';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import HelpIcon from '@material-ui/icons/HelpOutline';
 import DragIndicator from '@material-ui/icons/DragIndicator';
+import SettingsIcon from '@material-ui/icons/Settings';
 import * as styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeComponents } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.container';
 import { DataRow } from '../../core/generator/generator.reducer';
+
+const BREAKPOINT = 700;
 
 type GridProps = {
     rows: DataRow[];
@@ -42,10 +46,14 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialogSection] = React.useState(false);
     const [initialHelpSection, setInitialDialogSection] = React.useState('');
+    const [ref, { width: gridWidth }] = useDimensions();
 
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 
+	const HelpColIcon = (gridWidth < BREAKPOINT) ? SettingsIcon : HelpIcon;
+
+	
 	const getRows = (rows: DataRow[]) => {
 		return rows.map((row, index) => {
 			const { Example, Options } = getDataTypeComponents(row.dataType);
@@ -117,7 +125,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                                 setInitialDialogSection(row.dataType);
                                 showHelpDialogSection(true);
                             }}>
-                                {row.dataType ? <HelpIcon /> : null}
+                                {row.dataType ? <HelpColIcon /> : null}
                             </div>
                             <div className={styles.deleteCol} onClick={() => onRemove(row.id)}>
                                 <HighlightOffIcon />
@@ -129,9 +137,13 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 		});
 	};
 
-    // TODO move layout outside of grid
+    let gridSizeClass = '';
+    if (gridWidth < BREAKPOINT) {
+        gridSizeClass = styles.gridSmall;
+    }
+
 	return (
-		<div className={styles.gridWrapper}>
+		<div className={`${styles.gridWrapper} ${gridSizeClass}`} ref={ref}>
             <div>
                 <div className={styles.gridHeaderWrapper}>
                     <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>

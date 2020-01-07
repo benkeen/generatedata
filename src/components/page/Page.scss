@@ -40,3 +40,10 @@ input, textarea, select {
     border: 1px solid #2684ff;
   }
 }
+
+a {
+  color: #3f51b5;
+  &:hover {
+    border-bottom: 1px solid #3f51b5;
+  }
+}
