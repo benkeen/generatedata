@@ -33,9 +33,8 @@ import { DataStructureFormat, JSONSettings } from '../../plugins/exportTypes/JSO
 
 export const generate = (data: ExportTypeGenerateType) => {
 
-
     // TODO: again, perhaps move back to what it was like in 3.x and call this from within the export type.
-    // That would allow the Preview component to also generate the needed data 
+    // That would allow the Preview component to also generate the needed data
 
     // the actual generated data that needs to be formatted by the export type
     const generatedData: ExportTypeGenerationData = generateExportData(data);
