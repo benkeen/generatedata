@@ -1,4 +1,3 @@
-// single item mode.
 .gridWrapper {
   width: 100%;
   padding: 0 10px;
@@ -66,19 +65,19 @@ div.orderCol {
   }
 }
 .titleCol {
-  flex: 0 0 170px;
+  flex: 2; // 0 170px;
   input {
     width: 100%;
   }
 }
 .dataTypeCol {
-  flex: 0 0 200px;
+  flex: 2; // 0 200px;
 }
 .examplesCol {
-  flex: 1 0 80px;
+  flex: 2; // 0 80px;
 }
 .optionsCol {
-  flex: 2;
+  flex: 3;
 }
 
 div.deleteCol, div.helpCol {
@@ -115,14 +114,23 @@ div.deleteCol, div.helpCol {
 }
 
 
+//.gridMedium {
+//  .titleCol {
+//    flex: 2 0 80px;
+//  }
+//  .dataTypeCol {
+//    flex: 3 0 80px;
+//  }
+//}
+
 .gridSmall {
   .examplesCol, .optionsCol {
     display: none;
   }
-  .titleCol {
-    flex: 2 0 80px;
-  }
-  .dataTypeCol {
-    flex: 3 0 80px;
-  }
+  //.titleCol {
+  //  flex: 2 0 80px;
+  //}
+  //.dataTypeCol {
+  //  flex: 3 0 80px;
+  //}
 }

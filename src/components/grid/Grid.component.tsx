@@ -1,7 +1,7 @@
 import * as React from 'react';
 // @ts-ignore-line
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import useDimensions from 'react-use-dimensions';
+import Measure from 'react-measure';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import HelpIcon from '@material-ui/icons/HelpOutline';
@@ -13,7 +13,8 @@ import { getSortedGroupedDataTypes, getDataTypeComponents } from '../../utils/da
 import HelpDialog from '../helpDialog/HelpDialog.container';
 import { DataRow } from '../../core/generator/generator.reducer';
 
-const BREAKPOINT = 700;
+
+const SMALL_BREAKPOINT = 650;
 
 type GridProps = {
     rows: DataRow[];
@@ -46,13 +47,13 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialogSection] = React.useState(false);
     const [initialHelpSection, setInitialDialogSection] = React.useState('');
-    const [ref, { width: gridWidth }] = useDimensions();
+    const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
+
+    console.log(dimensions);
 
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
-
-	const HelpColIcon = (gridWidth < BREAKPOINT) ? SettingsIcon : HelpIcon;
-
+	const HelpColIcon = (dimensions.width < SMALL_BREAKPOINT) ? SettingsIcon : HelpIcon;
 
 	const getRows = (rows: DataRow[]) => {
 		return rows.map((row, index) => {
@@ -138,63 +139,70 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
 	};
 
     let gridSizeClass = '';
-    if (gridWidth < BREAKPOINT) {
+    if (dimensions.width < SMALL_BREAKPOINT) {
         gridSizeClass = styles.gridSmall;
     }
 
 	return (
-		<div className={`${styles.gridWrapper} ${gridSizeClass}`} ref={ref}>
-            <div>
-                <div className={styles.gridHeaderWrapper}>
-                    <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
-                        <div className={styles.orderCol} />
-                        <div className={styles.titleCol}>{i18n.row_label}</div>
-                        <div className={styles.dataTypeCol}>{i18n.data_type}</div>
-                        <div className={styles.examplesCol}>{i18n.examples}</div>
-                        <div className={styles.optionsCol}>{i18n.options}</div>
-                        <div className={styles.helpCol} />
-                        <div className={styles.deleteCol} />
+        <Measure
+            bounds
+            onResize={(contentRect: any) => { setDimensions(contentRect.bounds); }}
+        >
+            {({ measureRef }) => (
+                <div className={`${styles.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
+                    <div>
+                        <div className={styles.gridHeaderWrapper}>
+                            <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
+                                <div className={styles.orderCol} />
+                                <div className={styles.titleCol}>{i18n.row_label}</div>
+                                <div className={styles.dataTypeCol}>{i18n.data_type}</div>
+                                <div className={styles.examplesCol}>{i18n.examples}</div>
+                                <div className={styles.optionsCol}>{i18n.options}</div>
+                                <div className={styles.helpCol} />
+                                <div className={styles.deleteCol} />
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div className={styles.scrollableGridRows}>
-                <div className={styles.gridRowsWrapper}>
-                    <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
-                        <Droppable droppableId="droppable">
-                            {(provided: any) => (
-                                <div
-                                    className={styles.grid}
-                                    {...provided.droppableProps}
-                                    ref={provided.innerRef}
-                                >
-                                    {getRows(rows)}
-                                    {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
-                    </DragDropContext>
+                    <div className={styles.scrollableGridRows}>
+                        <div className={styles.gridRowsWrapper}>
+                            <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
+                                <Droppable droppableId="droppable">
+                                    {(provided: any) => (
+                                        <div
+                                            className={styles.grid}
+                                            {...provided.droppableProps}
+                                            ref={provided.innerRef}
+                                        >
+                                            {getRows(rows)}
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
 
-                    <div className={styles.addRows}>
-                        <form onSubmit={(e) => e.preventDefault()}>
-                            <span>{i18n.add}</span>
-                            <input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
-                                min={1} max={1000} step={1} />
-                            <Button size="small"
-                                onClick={() => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
-                        </form>
+                            <div className={styles.addRows}>
+                                <form onSubmit={(e) => e.preventDefault()}>
+                                    <span>{i18n.add}</span>
+                                    <input type="number" value={numRows} onChange={(e) => setNumRows(parseInt(e.target.value, 10))}
+                                        min={1} max={1000} step={1} />
+                                    <Button size="small"
+                                        onClick={() => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-			<HelpDialog
-				visible={helpDialogVisible}
-				initialDataType={initialHelpSection}
-				onClose={() => showHelpDialogSection(false)}
-				coreI18n={i18n}
-				i18n={dataTypeI18n[initialHelpSection]}
-			/>
-		</div>
+                    <HelpDialog
+                        visible={helpDialogVisible}
+                        initialDataType={initialHelpSection}
+                        onClose={() => showHelpDialogSection(false)}
+                        coreI18n={i18n}
+                        i18n={dataTypeI18n[initialHelpSection]}
+                    />
+                </div>
+            )}
+        </Measure>
 	);
 };
 
