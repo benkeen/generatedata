@@ -1,4 +1,4 @@
-import { getRandomArrayValue, getRandomBool, getRandomCharInString } from '../../../utils/utils';
+import { getRandomArrayValue, getRandomBool, getRandomCharInString } from '../../../utils/randomUtils';
 import { getUnique } from '../../../utils/arrayUtils';
 import { maleNames, femaleNames, lastNames } from './Names.data';
 import { NamesState } from './Names.ui';

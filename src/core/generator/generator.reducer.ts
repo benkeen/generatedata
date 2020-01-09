@@ -22,6 +22,7 @@ export type ReducerState = {
     showGrid: boolean;
     showPreview: boolean;
     builderLayout: BuilderLayout;
+    numPreviewRows: number;
 };
 
 /**
@@ -33,10 +34,8 @@ const reducer = (state: ReducerState = {
 	sortedRows: [],
     showGrid: true,
     showPreview: true,
-    builderLayout: 'horizontal'
-	// dataTypes: [],
-	// exportTypes: [],
-	// countries: []
+    builderLayout: 'horizontal',
+    numPreviewRows: 3
 }, action: AnyAction) => {
 	switch (action.type) {
 
@@ -143,6 +142,12 @@ const reducer = (state: ReducerState = {
             return {
                 ...state,
                 builderLayout: state.builderLayout === 'horizontal' ? 'vertical' : 'horizontal'
+            };
+
+        case actions.UPDATE_NUM_PREVIEW_ROWS:
+            return {
+                ...state,
+                numPreviewRows: action.payload.numRows
             };
 
 		default:

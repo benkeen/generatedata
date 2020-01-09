@@ -1,4 +1,4 @@
-import { generateRandomAlphanumericStr, getRandomNum } from '../../../utils/utils';
+import { generateRandomAlphanumericStr, getRandomNum } from '../../../utils/randomUtils';
 import { GenerationData } from '../../../../types/dataTypes';
 import { AlphanumericState } from './Alphanumeric.ui';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';

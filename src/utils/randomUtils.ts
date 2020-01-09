@@ -82,5 +82,3 @@ export const generateRandomAlphanumericStr = (str: string) => {
 	return newStr.trim();
 };
 
-
-export const isNumeric = (n: any) => !isNaN(parseFloat(n)) && isFinite(n);

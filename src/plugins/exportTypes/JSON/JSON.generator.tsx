@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ExportTypeGenerationData, GenEnvironment } from '../../../../types/general';
 import { JSONSettings } from './JSON.ui';
-import { isNumeric } from '../../../utils/utils';
+import { isNumeric } from '../../../utils/generalUtils';
 
 // TODO will also need to pass in a whole thwack of other stuff previous assigned to $generator instance.
 // maybe change first param to $generationContext & include genEnvironment & everything else

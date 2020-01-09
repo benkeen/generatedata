@@ -1,4 +1,4 @@
-import { getRandomNum } from '../../../utils/utils';
+import { getRandomNum } from '../../../utils/randomUtils';
 
 export const generate = () => ({ display: getRandomNum(1111, 9999) });
 

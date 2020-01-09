@@ -49,8 +49,6 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
     const [initialHelpSection, setInitialDialogSection] = React.useState('');
     const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 
-    console.log(dimensions);
-
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
 	const HelpColIcon = (dimensions.width < SMALL_BREAKPOINT) ? SettingsIcon : HelpIcon;
@@ -163,7 +161,6 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                             </div>
                         </div>
                     </div>
-
                     <div className={styles.scrollableGridRows}>
                         <div className={styles.gridRowsWrapper}>
                             <DragDropContext onDragEnd={({ draggableId, destination }: any) => onSort(draggableId, destination.index)}>
@@ -180,7 +177,6 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                                     )}
                                 </Droppable>
                             </DragDropContext>
-
                             <div className={styles.addRows}>
                                 <form onSubmit={(e) => e.preventDefault()}>
                                     <span>{i18n.add}</span>
@@ -192,7 +188,6 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                             </div>
                         </div>
                     </div>
-
                     <HelpDialog
                         visible={helpDialogVisible}
                         initialDataType={initialHelpSection}

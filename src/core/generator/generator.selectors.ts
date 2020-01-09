@@ -8,6 +8,7 @@ export const getSortedRows = (state: any) => state.generator.sortedRows;
 export const isGridVisible = (state: any) => state.generator.showGrid;
 export const isPreviewVisible = (state: any) => state.generator.showPreview;
 export const getBuilderLayout = (state: any) => state.generator.builderLayout;
+export const getNumPreviewRows = (state: any) => state.generator.numPreviewRows;
 
 export const getNumRows = createSelector(
 	getSortedRows,

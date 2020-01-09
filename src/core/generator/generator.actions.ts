@@ -50,3 +50,7 @@ export const togglePreview = () => ({ type: TOGGLE_PREVIEW });
 
 export const TOGGLE_LAYOUT = 'TOGGLE_LAYOUT';
 export const toggleLayout = () => ({ type: TOGGLE_LAYOUT });
+
+export const UPDATE_NUM_PREVIEW_ROWS = 'UPDATE_NUM_PREVIEW_ROWS';
+export const updateNumPreviewRows = (numRows: number) => ({ type: UPDATE_NUM_PREVIEW_ROWS, payload: { numRows }})
+

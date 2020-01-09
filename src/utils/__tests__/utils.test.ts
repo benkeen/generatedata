@@ -1,4 +1,4 @@
-import * as utils from '../utils';
+import * as utils from '../randomUtils';
 
 describe('getRandomNum', () => {
     it('generates numbers in expected range #1', () => {
