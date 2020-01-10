@@ -43,6 +43,7 @@ export const getDataTypeComponents = (dataType: string | null) => {
 	return { Options, Example, Help };
 };
 
+
 export const getDataTypeDefaultState = (dataType: string) => {
 	return dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].state ? dataTypes[dataType].state : null;
 };
