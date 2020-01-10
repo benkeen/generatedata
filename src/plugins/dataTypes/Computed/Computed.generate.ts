@@ -1,9 +1,4 @@
-<?php
-
-/**
- * @package DataTypes
- */
-
+/*
 class DataType_Computed extends DataTypePlugin {
 
 	protected $isEnabled = true;
@@ -61,3 +56,4 @@ class DataType_Computed extends DataTypePlugin {
         return $json->settings->placeholder;
     }
 }
+*/

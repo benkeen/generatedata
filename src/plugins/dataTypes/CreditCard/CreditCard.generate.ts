@@ -1,9 +1,4 @@
-<?php
-
-/**
- * @package DataTypes
- */
-
+/*
 class DataType_CreditCard extends DataTypePlugin {
 
 	protected $isEnabled = true;
@@ -22,10 +17,6 @@ class DataType_CreditCard extends DataTypePlugin {
 	private $creditCardTypes;
 	private $totalWeight;
 
-
-	/**
-	 * @param string $runtimeContext "generation" or "ui"
-	*/
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 	}
@@ -59,9 +50,7 @@ class DataType_CreditCard extends DataTypePlugin {
 
 	// -------- private member functions ---------
 
-	/**
-	 * Called when instantiating the plugin during data generation. Set the credit card types, prefix, number length, weighting.
-	 */
+    // Called when instantiating the plugin during data generation. Set the credit card types, prefix, number length, weighting.
 	private function initCreditCards($creditCardTypeCodes = null) {
 		$this->prefixes    		 		 = array();
 		$this->numberLengths   		 = array();
@@ -91,9 +80,7 @@ class DataType_CreditCard extends DataTypePlugin {
 		}
 	}
 
-	/**
-	 * Called during data generation. Generates a random, realistic credit card number.
-	 */
+	// Called during data generation. Generates a random, realistic credit card number.
 	private function generateRandomCreditCardNumber() {
 
 		// picks card type, prefix, and number length, at random
@@ -145,12 +132,7 @@ class DataType_CreditCard extends DataTypePlugin {
 	}
 
 
-	/**
-	 * Called during installation. This creates and populates the cardit_cards DB tables.
-	 *
-	 * @return array [0] success / error (boolean)
-	 *               [1] the error message, if there was an error
-	 */
+	// Called during installation. This creates and populates the cardit_cards DB tables.
 	public static function install() {
 		$prefix = Core::getDbTablePrefix();
 
@@ -173,13 +155,13 @@ class DataType_CreditCard extends DataTypePlugin {
 		";
 		$queries[] = "
 			INSERT INTO {$prefix}credit_cards (type_code, type, prefix, number_length,weight)
-			VALUES ('AX','American Express','34',15,0.5),		
-			('AX','American Express','37',15,0.5),	
-			('VI','Visa','4',16,1.0),	
-			('MC','Mastercard','51',16,0.20),	
-			('MC','Mastercard','52',16,0.20),					
-			('MC','Mastercard','53',16,0.20),			
-			('MC','Mastercard','54',16,0.20),	
+			VALUES ('AX','American Express','34',15,0.5),
+			('AX','American Express','37',15,0.5),
+			('VI','Visa','4',16,1.0),
+			('MC','Mastercard','51',16,0.20),
+			('MC','Mastercard','52',16,0.20),
+			('MC','Mastercard','53',16,0.20),
+			('MC','Mastercard','54',16,0.20),
 			('MC','Mastercard','55',16,0.20)";
 
 		$response = Core::$db->query($queries, $rollbackQueries);
@@ -191,10 +173,7 @@ class DataType_CreditCard extends DataTypePlugin {
 		}
 	}
 
-
-	/**
-	 * Called during getHelpHTML() and getOptionsColumnHTML(). Gets unique credit card types from credit_cards table.
-	 */
+	// Called during getHelpHTML() and getOptionsColumnHTML(). Gets unique credit card types from credit_cards table.
 	private function getDistinctCreditCardTypes() {
 		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("SELECT DISTINCT type_code, type FROM {$prefix}credit_cards");
@@ -212,5 +191,5 @@ class DataType_CreditCard extends DataTypePlugin {
 		);
 		return $generationOptions;
 	}
-
 }
+*/

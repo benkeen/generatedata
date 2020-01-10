@@ -1,9 +1,4 @@
-<?php
-
-/**
- * @author Ben Keen <ben.keen@gmail.com>
- * @package DataTypes
- */
+/*
 class DataType_Currency extends DataTypePlugin {
 	protected $dataTypeName = "Currency";
 	protected $dataTypeFieldGroup = "numeric";
@@ -118,5 +113,6 @@ class DataType_Currency extends DataTypePlugin {
 			"SQLField_MSSQL" => "VARCHAR(100) NULL"
 		);
 	}
-
 }
+*/
+

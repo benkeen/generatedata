@@ -1,11 +1,5 @@
-<?php
-
-/**
- * @package DataTypes
- */
-
+/*
 class DataType_Composite extends DataTypePlugin {
-
 	protected $isEnabled = true;
 	protected $dataTypeName = "Composite";
 	protected $hasHelpDialog = true;
@@ -64,3 +58,4 @@ class DataType_Composite extends DataTypePlugin {
 		);
 	}
 }
+*/

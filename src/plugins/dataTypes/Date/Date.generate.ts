@@ -1,11 +1,4 @@
-<?php
-
-/**
- * @package DataTypes
- */
-
-class DataType_Date extends DataTypePlugin {
-
+/*
 	protected $isEnabled = true;
 	protected $dataTypeName = "Date";
 	protected $dataTypeFieldGroup = "human_data";
@@ -13,7 +6,6 @@ class DataType_Date extends DataTypePlugin {
 	protected $jsModules = array("Date.js");
 	private static $useSafeDates = false;
 	private $formatCode;
-
 
 	public function __construct($runtimeContext) {
         parent::__construct($runtimeContext);
@@ -23,14 +15,12 @@ class DataType_Date extends DataTypePlugin {
 		}
 	}
 
-	/**
 	 * This is verbose because some Windows systems don't properly generate dates before 1970 or after 2038. See:
 	 * 		https://github.com/benkeen/generatedata/issues/246
 	 * 		http://stackoverflow.com/questions/5879173/why-do-timestamps-have-a-limit-to-2038
 	 * @param object $generator
 	 * @param array $generationContextData
 	 * @return array
-	 */
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 
@@ -164,3 +154,4 @@ class DataType_Date extends DataTypePlugin {
 		return date($options["formatCode"], $randDate);
 	}
 }
+*/
