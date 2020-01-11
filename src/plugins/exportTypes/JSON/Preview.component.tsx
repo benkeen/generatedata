@@ -1,22 +1,73 @@
 import * as React from 'react';
 import { BuilderLayout } from '../../../components/builder/Builder.component';
-import { GenerationTemplate } from '../../../../types/general';
+import { generateSimple } from './JSON.generator';
+import './Preview.scss';
+
+import { Controlled as CodeMirror } from 'react-codemirror2';
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/xml/xml');
+require('codemirror/mode/markdown/markdown');
 
 type PreviewProps = {
     numPreviewRows: number;
     builderLayout: BuilderLayout;
-    generationTemplate: GenerationTemplate;
+    data: any;
 }
 
-const Preview = ({ numPreviewRows, builderLayout, generationTemplate }: PreviewProps) => {
+const Preview = ({ numPreviewRows, builderLayout, data }: PreviewProps) => {
+    const [code, setCode] = React.useState('');
 
-    console.log(generationTemplate);
+    React.useEffect(() => {
+        const content = generateSimple(data, false);
+        setCode(content);
+    }, [data, setCode]);
+
+    // re-generate everything any time it changes, then do a diff on the changes
+    console.log(code);
 
     return (
         <div>
-            Preview!!!
+            <CodeMirror
+                value={code}
+                onBeforeChange={(editor, data, value) => {
+                    setCode(value);
+                }}
+                options={{
+                    mode: 'application/ld+json'
+                }}
+            />
         </div>
     );
 };
 
 export default Preview;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

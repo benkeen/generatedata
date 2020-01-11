@@ -3,12 +3,20 @@ import { connect } from 'react-redux';
 import PreviewPanel from './PreviewPanel.component';
 import * as generatorSelectors from '../../core/generator/generator.selectors';
 import * as generatorActions from '../../core/generator/generator.actions';
+import { generateExportData } from '../../core/generator/generator';
 
-const mapStateToProps = (state: any) => ({
-    numPreviewRows: generatorSelectors.getNumPreviewRows(state),
-    builderLayout: generatorSelectors.getBuilderLayout(state),
-    generationTemplate: generatorSelectors.getGenerationTemplate(state)
-});
+const mapStateToProps = (state: any) => {
+    const numPreviewRows = generatorSelectors.getNumPreviewRows(state);
+    return {
+        numPreviewRows,
+        builderLayout: generatorSelectors.getBuilderLayout(state),
+        data: generateExportData({
+            numResults: numPreviewRows,
+            columnTitles: generatorSelectors.getColumnTitles(state),
+            template: generatorSelectors.getGenerationTemplate(state)
+        })
+    }
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     toggleLayout: () => dispatch(generatorActions.toggleLayout()),

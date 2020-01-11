@@ -60,10 +60,10 @@ type ConfigData = {
 };
 
 
-const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
+export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
     const generationTemplate = data.template;
 
-    // 	$firstRowNum  = $this->getCurrentBatchFirstRow();
+// 	$firstRowNum  = $this->getCurrentBatchFirstRow();
 // 	$lastRowNum   = $this->getCurrentBatchLastRow();
     const firstRowNum = 1;
     const lastRowNum = data.numResults;

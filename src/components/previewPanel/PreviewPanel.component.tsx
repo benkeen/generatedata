@@ -10,7 +10,6 @@ import { BuilderLayout } from '../builder/Builder.component';
 
 // TODO
 import ExportTypePreview from '../../plugins/exportTypes/JSON/Preview.container';
-import { GenerationTemplate } from '../../../types/general';
 
 export type PreviewPanelProps = {
     numPreviewRows: number;
@@ -18,12 +17,12 @@ export type PreviewPanelProps = {
     togglePreview: () => void;
     toggleLayout: () => void;
     updateNumPreviewRows: (numRows: number) => void;
-    generationTemplate: GenerationTemplate
+    data: any;
 };
 
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1}));
 
-const PreviewPanel = ({ builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, generationTemplate }: PreviewPanelProps) => {
+const PreviewPanel = ({ builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data }: PreviewPanelProps) => {
     const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
     return (
         <div className={styles.previewPanel}>
@@ -49,7 +48,7 @@ const PreviewPanel = ({ builderLayout, togglePreview, toggleLayout, numPreviewRo
             <ExportTypePreview
                 numPreviewRows={numPreviewRows}
                 builderLayout={builderLayout}
-                generationTemplate={generationTemplate}
+                data={data}
             />
         </div>
     );
