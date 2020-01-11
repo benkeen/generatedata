@@ -2,8 +2,12 @@ import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
+export type PhoneState = {
+    example: string;
+    option: string;
+};
 
-export const state = {
+export const state: PhoneState = {
 	example: '',
 	option: ''
 };

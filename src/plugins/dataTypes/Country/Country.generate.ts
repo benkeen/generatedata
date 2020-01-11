@@ -1,6 +1,12 @@
-<?php
+import { GenerationData } from '../../../../types/dataTypes';
 
-/**
+export const generate = (data: GenerationData) => {
+
+};
+
+
+/*
+
  * This data type generates a random country name. A few things to know:
  * - The Core script comes with three database tables for country, region and city.
  * - The only countries listed in the country table are those for the Country-Specific Data plugins.
@@ -12,7 +18,6 @@
  *
  * @author Ben Keen <ben.keen@gmail.com>
  * @package DataTypes
- */
 class DataType_Country extends DataTypePlugin {
 	protected $dataTypeName = "Country";
 	protected $dataTypeFieldGroup = "geo";
@@ -58,12 +63,9 @@ class DataType_Country extends DataTypePlugin {
 	private $countryRegionData;
 	private $numCountryRegionData;
 
-
-	/**
-	 * For convenience, the constructor gets ALL country-plugin installed and stores all their data locally.
-	 * The individual generate() calls for each row filter out the country data it's not interested in.
-	 * @param string $runtimeContext
-	 */
+	 For convenience, the constructor gets ALL country-plugin installed and stores all their data locally.
+	 The individual generate() calls for each row filter out the country data it's not interested in.
+	 @param string $runtimeContext
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
@@ -92,9 +94,7 @@ class DataType_Country extends DataTypePlugin {
 		return $data;
 	}
 
-	/**
 	 * @see DataTypePlugin::getRowGenerationOptionsUI()
-	 */
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		$selectedCountrySlugs = $generator->getCountries();
 
@@ -116,9 +116,7 @@ class DataType_Country extends DataTypePlugin {
 		return $option;
 	}
 
-	/**
 	 * @see DataTypePlugin::getRowGenerationOptionsAPI()
-	 */
 	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
 		$selectedCountrySlugs = $generator->getCountries();
 
@@ -142,9 +140,6 @@ class DataType_Country extends DataTypePlugin {
 		);
 	}
 
-	/**
-	 * Returns an array of countries.
-	 */
 	public function getCountries($countrySlugs) {
 		$whereClause = "";
 		if (!empty($countrySlugs)) {
@@ -194,3 +189,4 @@ class DataType_Country extends DataTypePlugin {
 		return $regionInfo;
 	}
 }
+*/

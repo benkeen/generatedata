@@ -31,7 +31,9 @@ export const getColumnTitles = createSelector(
     (rows) => rows.map((row: any) => row.title)
 );
 
-// TODO this will be in a separate bundle loaded async along with the export, dataType + country generation code.
+
+// TODO need to sort this out now!! We need this immediately as the user selects
+// this will be in a separate bundle loaded async along with the export, dataType + country generation code
 export const getGenerationTemplate = createSelector(
     getNonEmptySortedRows,
     (rows): GenerationTemplate => {
@@ -39,7 +41,6 @@ export const getGenerationTemplate = createSelector(
 
         const templateByProcessOrder: any = {};
         rows.map(({ title, dataType, data }: any, colIndex: number) => {
-
             const processOrder = processOrders[dataType];
 
             // TODO another assumption here. We need to validate the whole component right-up front during the

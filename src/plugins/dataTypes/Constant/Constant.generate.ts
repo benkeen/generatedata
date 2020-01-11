@@ -1,9 +1,10 @@
-<?php
+import { GenerationData } from '../../../../types/dataTypes';
 
-/**
- * @package DataTypes
- */
+export const generate = (data: GenerationData) => {
 
+};
+
+/*
 class DataType_Constant extends DataTypePlugin {
 	protected $isEnabled = true;
 	protected $dataTypeName = "Constant";
@@ -12,7 +13,6 @@ class DataType_Constant extends DataTypePlugin {
 	protected $dataTypeFieldGroupOrder = 10;
 	protected $jsModules = array("Constant.js");
 	protected $processOrder = 100;
-
 
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
@@ -82,3 +82,4 @@ class DataType_Constant extends DataTypePlugin {
 		);
 	}
 }
+*/

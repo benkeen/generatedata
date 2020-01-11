@@ -1,9 +1,10 @@
-<?php
+import { GenerationData } from '../../../../types/dataTypes';
 
-/**
- * @package DataTypes
- */
+export const generate = (data: GenerationData) => {
 
+};
+
+/*
 class DataType_Company extends DataTypePlugin {
 
 	protected $isEnabled = true;
@@ -19,12 +20,6 @@ class DataType_Company extends DataTypePlugin {
 	private $words;
 	private $numWords;
 
-
-	/**
-	 * Our custom constructor. This instantiates $words and $numWords for use by the generate() function.
-	 *
-	 * @param string $runtimeContext
-	 */
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
@@ -58,3 +53,4 @@ class DataType_Company extends DataTypePlugin {
 		return "<p>{$this->L["DATA_TYPE"]["DESC"]}</p>";
 	}
 }
+*/
