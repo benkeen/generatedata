@@ -10,6 +10,7 @@ const lipsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabi
 const words = lipsum.split(/\s+/);
 const numWords = words.length;
 
+
 export const generate = (data: GenerationData) => {
     const numPrefixWords = getRandomNum(1, 3);
     const offset = getRandomNum(0, numWords - (numPrefixWords + 1));

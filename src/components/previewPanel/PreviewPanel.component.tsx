@@ -28,12 +28,7 @@ const PreviewPanel = ({ builderLayout, togglePreview, toggleLayout, numPreviewRo
         <div className={styles.previewPanel}>
             <div className={styles.topRow}>
                 <span style={{ display: 'flex', flexDirection: 'row' }}>
-                    <span onClick={toggleLayout}>
-                        <IconButton size="small" aria-label="Toggle layout">
-                            <ToggleDirectionIcon fontSize="large" />
-                        </IconButton>
-                    </span>
-                    <span>
+                    <span style={{ display: 'flex', alignItems: 'center' }}>
                         Num rows:
                         <Dropdown
                             value={numPreviewRows}
@@ -42,7 +37,18 @@ const PreviewPanel = ({ builderLayout, togglePreview, toggleLayout, numPreviewRo
                         />
                     </span>
                 </span>
-                <span className={styles.closePanel} onClick={togglePreview}><CloseIcon fontSize="large" /></span>
+                <span>
+                    <span onClick={toggleLayout}>
+                        <IconButton size="small" aria-label="Toggle layout">
+                            <ToggleDirectionIcon fontSize="large" />
+                        </IconButton>
+                    </span>
+                    <span className={styles.closePanel} onClick={togglePreview}>
+                        <IconButton size="small" aria-label="Toggle layout">
+                            <CloseIcon fontSize="large" />
+                        </IconButton>
+                    </span>
+                </span>
             </div>
 
             <ExportTypePreview
