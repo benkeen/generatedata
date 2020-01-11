@@ -1,6 +1,7 @@
 // @ts-ignore-line
 import config from '../../build/config.client';
 import store from '../store';
+import C from './constants';
 import * as initActions from './init/init.actions';
 import * as initSelectors from './init/init.selectors';
 import * as generatorActions from './generator/generator.actions';
@@ -18,8 +19,8 @@ export const init = () => {
 	// @ts-ignore-line
 	store.dispatch(initActions.selectLocale(locale));
 
-	// if there are no rows, load a few
+	// if there are no rows, load some
 	if (numRows === 0) {
-		store.dispatch(generatorActions.addRows(5));
+		store.dispatch(generatorActions.addRows(C.NUM_DEFAULT_ROWS));
 	}
 };

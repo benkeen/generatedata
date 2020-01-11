@@ -1,3 +1,10 @@
+import { GenerationData } from '../../../../types/dataTypes';
+
+export const generate = (data: GenerationData) => {
+
+};
+
+
 /*
 class DataType_Currency extends DataTypePlugin {
 	protected $dataTypeName = "Currency";

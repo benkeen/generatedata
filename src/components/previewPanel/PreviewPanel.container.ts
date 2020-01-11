@@ -6,7 +6,8 @@ import * as generatorActions from '../../core/generator/generator.actions';
 
 const mapStateToProps = (state: any) => ({
     numPreviewRows: generatorSelectors.getNumPreviewRows(state),
-    builderLayout: generatorSelectors.getBuilderLayout(state)
+    builderLayout: generatorSelectors.getBuilderLayout(state),
+    generationTemplate: generatorSelectors.getGenerationTemplate(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

@@ -3,9 +3,10 @@ import { ExportTypeGenerationData, GenEnvironment } from '../../../../types/gene
 import { JSONSettings } from './JSON.ui';
 import { isNumeric } from '../../../utils/generalUtils';
 
+
 // TODO will also need to pass in a whole thwack of other stuff previous assigned to $generator instance.
 // maybe change first param to $generationContext & include genEnvironment & everything else
-export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generatedData: ExportTypeGenerationData) => {
+export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generator: any) => {
 
 	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 	// $this->determineNumericFields($template);
@@ -18,6 +19,7 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 	// }
     // const content = generateSimple(data);
 
+    const generatedData = generator.generateExportData(generator.data);
     const content = generateSimple(generatedData, jsonSettings.stripWhitespace);
 
 	return {
@@ -118,22 +120,6 @@ const getColumnValue = (prop: string, value: any) => {
     //     $content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
     //     $comma = "";
     // }
-};
-
-
-// passed in rows right from the builder
-export const Preview = ({ rows }: any) => {
-
-    // monitor changes. When a specific row changes, regenerate it. Otherwise do nuthin'.
-    React.useEffect(() => {
-
-    }, [rows]);
-
-    return (
-        <div>
-            ...
-        </div>
-    );
 };
 
 

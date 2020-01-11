@@ -1,3 +1,10 @@
+import { GenerationData } from '../../../../types/dataTypes';
+
+export const generate = (data: GenerationData) => {
+
+};
+
+
 /*
 	protected $isEnabled = true;
 	protected $dataTypeName = "Date";

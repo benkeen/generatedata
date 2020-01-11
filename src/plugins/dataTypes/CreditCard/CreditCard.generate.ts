@@ -1,3 +1,9 @@
+import { GenerationData } from '../../../../types/dataTypes';
+
+export const generate = (data: GenerationData) => {
+
+};
+
 /*
 class DataType_CreditCard extends DataTypePlugin {
 

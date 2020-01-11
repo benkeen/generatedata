@@ -33,12 +33,6 @@ import { DataStructureFormat, JSONSettings } from '../../plugins/exportTypes/JSO
 
 export const generate = (data: ExportTypeGenerateType) => {
 
-    // TODO: again, perhaps move back to what it was like in 3.x and call this from within the export type.
-    // That would allow the Preview component to also generate the needed data
-
-    // the actual generated data that needs to be formatted by the export type
-    const generatedData: ExportTypeGenerationData = generateExportData(data);
-
     // will be pulled from UI
     const tmpExportTypeSettings: JSONSettings = {
         stripWhitespace: false,
@@ -50,7 +44,10 @@ export const generate = (data: ExportTypeGenerateType) => {
     };
 
     // here we offload the generated data to the Export Type
-    const { success, content } = JSON.generate('UI', tmpExportTypeSettings, generatedData);
+    const { success, content } = JSON.generate('UI', tmpExportTypeSettings, {
+        data,
+        generateExportData
+    });
 
     return content;
 };
