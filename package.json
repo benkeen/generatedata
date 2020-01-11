@@ -29,7 +29,7 @@
       "js"
     ],
     "transform": {
-      "\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+      "\\.(ts|tsx)$": "ts-jest"
     },
     "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
   },
@@ -73,6 +73,7 @@
     "@types/react-redux": "^7.1.5",
     "@types/react-select": "^3.0.8",
     "@types/react-syntax-highlighter": "^11.0.3",
+    "@types/sinon": "^7.5.1",
     "autoprefixer": "6.7.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -95,6 +96,7 @@
     "promise": "7.1.1",
     "reselect": "^4.0.0",
     "sass-loader": "^8.0.0",
+    "sinon": "^8.0.4",
     "style-loader": "^1.0.0",
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
