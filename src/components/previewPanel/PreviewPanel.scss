@@ -25,8 +25,7 @@
   flex-direction: column;
   padding: 0 30px;
 
-  // yuck
-  &>div, &>div>div, &>div>div>div {
+  &>div, &>div>div {
     display: flex;
     flex-direction: column;
     flex: 1;

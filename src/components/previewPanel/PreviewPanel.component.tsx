@@ -9,7 +9,7 @@ import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
 
 // TODO
-import ExportTypePreview from '../../plugins/exportTypes/JSON/JSONPreview.container';
+// import ExportTypePreview from '../../plugins/exportTypes/JSON/JSONPreview.container';
 
 export type PreviewPanelProps = {
     numPreviewRows: number;
@@ -27,6 +27,8 @@ const PreviewPanel = ({
         builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data, exportTypeSettings
 }: PreviewPanelProps) => {
     const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
+
+    const ExportTypePreview = React.lazy(() => import('../../plugins/exportTypes/JSON/JSONPreview.container'));
 
     return (
         <div className={styles.previewPanel}>
@@ -56,12 +58,14 @@ const PreviewPanel = ({
             </div>
 
             <div className={styles.preview}>
-                <ExportTypePreview
-                    numPreviewRows={numPreviewRows}
-                    builderLayout={builderLayout}
-                    exportTypeSettings={exportTypeSettings}
-                    data={data}
-                />
+                <React.Suspense fallback={<div>loading...</div>}>
+                    <ExportTypePreview
+                        numPreviewRows={numPreviewRows}
+                        builderLayout={builderLayout}
+                        exportTypeSettings={exportTypeSettings}
+                        data={data}
+                    />
+                </React.Suspense>
             </div>
         </div>
     );
