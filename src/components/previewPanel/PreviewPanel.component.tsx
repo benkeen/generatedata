@@ -9,7 +9,7 @@ import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
 
 // TODO
-import ExportTypePreview from '../../plugins/exportTypes/JSON/Preview.container';
+import ExportTypePreview from '../../plugins/exportTypes/JSON/JSONPreview.container';
 
 export type PreviewPanelProps = {
     numPreviewRows: number;
@@ -17,13 +17,17 @@ export type PreviewPanelProps = {
     togglePreview: () => void;
     toggleLayout: () => void;
     updateNumPreviewRows: (numRows: number) => void;
+    exportTypeSettings: any; // TODO
     data: any;
 };
 
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1}));
 
-const PreviewPanel = ({ builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data }: PreviewPanelProps) => {
+const PreviewPanel = ({
+        builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data, exportTypeSettings
+}: PreviewPanelProps) => {
     const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
+
     return (
         <div className={styles.previewPanel}>
             <div className={styles.topRow}>
@@ -55,6 +59,7 @@ const PreviewPanel = ({ builderLayout, togglePreview, toggleLayout, numPreviewRo
                 <ExportTypePreview
                     numPreviewRows={numPreviewRows}
                     builderLayout={builderLayout}
+                    exportTypeSettings={exportTypeSettings}
                     data={data}
                 />
             </div>

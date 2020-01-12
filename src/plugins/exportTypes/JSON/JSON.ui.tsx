@@ -4,9 +4,9 @@ export type DataStructureFormat = 'simple' | 'complex';
 export type JSONSettings = {
     stripWhitespace: boolean;
     dataStructureFormat: DataStructureFormat;
-}
+};
 
-export const state = {
+const state = {
 	stripWhitespace: false,
 	dataStructureFormat: 'simple'
 };
@@ -15,7 +15,7 @@ export const Settings = ({ i18n, id }: { i18n: any, id: string }) => {
     return (
         <>
             <input type="checkbox" id={`${id}-stripWhitespace`} value="1"/>
-            <label htmlFor={`${id}-stripWhitespace`}>{i18n.strip_whitespace}</label><br/>
+            <label htmlFor={`${id}-stripWhitespace`}>{i18n.strip_whitespace}</label><br />
             {i18n.data_structure_format}
             <input type="radio" value="complex" id={`${id}-complex`}/>
             <label htmlFor={`${id}-complex`}>{i18n.complex}</label>
@@ -24,6 +24,7 @@ export const Settings = ({ i18n, id }: { i18n: any, id: string }) => {
         </>
     );
 };
+
 
 
 /**

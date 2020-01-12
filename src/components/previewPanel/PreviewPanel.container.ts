@@ -10,6 +10,7 @@ const mapStateToProps = (state: any) => {
     return {
         numPreviewRows,
         builderLayout: generatorSelectors.getBuilderLayout(state),
+        exportTypeSettings: {},
         data: generateExportData({
             numResults: numPreviewRows,
             columnTitles: generatorSelectors.getColumnTitles(state),

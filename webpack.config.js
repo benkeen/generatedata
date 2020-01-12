@@ -3,16 +3,21 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const localeEntries = {};
+const localeFiles = {};
 const locales = ['en', 'fr', 'de', 'es', 'ja', 'nl', 'ta', 'zh'];
 locales.forEach((locale) => {
-	localeEntries[locale] = `./build/${locale}.js`;
+	localeFiles[locale] = `./build/${locale}.js`;
 });
+
+const exportTypes = {
+	JSON: './src/plugins/exportTypes/JSON/bundle.ts'
+};
 
 module.exports = {
 	entry: {
 		app: './src/index.js',
-		...localeEntries
+		...localeFiles,
+		...exportTypes
 	},
 
 	output: {

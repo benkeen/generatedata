@@ -11,7 +11,7 @@
  
 The JSON Export Type generates the random data in JSON format. It provides a couple of simple options:
 
-- `stripWhitespace` to keep file size down 
+- `stripWhitespace` to keep file size down
 - `dataStructureFormat`: this should be set to a string, and can be `simple` or `complex` - `simple` means that it 
 outputs a simple array of objects, with each object being grouped in key-value pairs based on whatever title you entered
 for the row; `complex` arranges the generated content differently: it groups the generated data into two top level 

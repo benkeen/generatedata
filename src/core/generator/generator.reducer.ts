@@ -23,6 +23,8 @@ export type ReducerState = {
     showPreview: boolean;
     builderLayout: BuilderLayout;
     numPreviewRows: number;
+    selectedExportType: string;
+    exportTypeSettings: any;
 };
 
 /**
@@ -35,7 +37,9 @@ const reducer = (state: ReducerState = {
     showGrid: true,
     showPreview: true,
     builderLayout: 'horizontal',
-    numPreviewRows: 3
+    numPreviewRows: 3,
+    selectedExportType: 'JSON',
+    exportTypeSettings: null
 }, action: AnyAction) => {
 	switch (action.type) {
 

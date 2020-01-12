@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "webpack --config ./webpack.config.js --mode=development --watch",
+    "dev": "yarn build & yarn webpack",
+    "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
     "build": "node ./scripts/createPluginsFile.js & node ./scripts/createPluginsGenerateFile.js & node ./scripts/createPluginsListFile.js & node ./scripts/generateLocaleFiles.js & node ./scripts/generateConfigFile.js",
     "test": "jest"
   },

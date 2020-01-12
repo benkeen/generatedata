@@ -13,7 +13,7 @@ export default {
 	maxDemoModeRows: 100,
 	maxDataSetHistorySize: 200,
 	defaultLocale: 'en',
-	defaultExportType: 'HTML',
+	defaultExportType: 'JSON', // has to map to the Export Type folder name
 	defaultCountryPlugins: [],
 	useMinifiedResources: false,
 	timeout: 300, // 5 minutes

@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "dom"],
+    "lib": ["es6", "dom", "esnext"],
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "module": "commonjs",
+    "moduleResolution": "node",
+    "module": "esnext",
     "target": "es6",
     "jsx": "react"
   }

@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import Preview from './Preview.component';
+import Preview from './JSONPreview.component';
 // import * as generatorSelectors from '../../../core/generator/generator.selectors';
 
 const mapStateToProps = (state: any) => ({
