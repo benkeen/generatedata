@@ -7,11 +7,13 @@ export const getGenerationSettings = (state: PhoneState) => state.option;
 
 export const generate = (data: GenerationData) => {
     const phoneStr = generateRandomAlphanumericStr(data.generationSettings);
+
+    console.log(phoneStr);
+
     const formats = phoneStr.split('|');
     let chosenFormat = formats[0];
 
-    const numFormats = formats.length;
-    if (numFormats > 1) {
+    if (formats.length > 1) {
         chosenFormat = getRandomArrayValue(formats);
     }
     return { display: chosenFormat };

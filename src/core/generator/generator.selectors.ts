@@ -28,7 +28,7 @@ export const getNonEmptySortedRows = createSelector(
 
 export const getColumnTitles = createSelector(
     getSortedRowsArray,
-    (rows) => rows.map((row: any) => row.title)
+    (rows) => rows.filter((row: any) => row.dataType !== null && row.title !== '').map((row: any) => row.title)
 );
 
 

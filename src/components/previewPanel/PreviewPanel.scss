@@ -1,17 +1,31 @@
 .previewPanel {
   background-color: #f2f2f2;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .topRow {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
+  flex: 0 0 auto;
 }
 
 .closePanel {
   cursor: pointer;
   &:hover svg {
     fill: #999999;
+  }
+}
+
+.preview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  &>div, &>div>div, &>div>div>div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 }

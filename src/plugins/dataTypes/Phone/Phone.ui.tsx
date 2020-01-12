@@ -16,7 +16,7 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
     const onChange = (value: any) => {
         onUpdate({
             example: value,
-            value: value
+            option: value
         });
     };
 
@@ -44,8 +44,8 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
 export const Options = ({ data, onUpdate }: OptionsProps) => (
 	<input
         type="text"
-        value={data.value}
-        onChange={(e) => onUpdate({ value: e.target.value })}
+        value={data.option}
+        onChange={(e) => onUpdate({ ...state, option: e.target.value })}
         style={{ width: '100%' }}
     />
 );

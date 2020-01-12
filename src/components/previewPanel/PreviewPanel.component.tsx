@@ -51,11 +51,13 @@ const PreviewPanel = ({ builderLayout, togglePreview, toggleLayout, numPreviewRo
                 </span>
             </div>
 
-            <ExportTypePreview
-                numPreviewRows={numPreviewRows}
-                builderLayout={builderLayout}
-                data={data}
-            />
+            <div className={styles.preview}>
+                <ExportTypePreview
+                    numPreviewRows={numPreviewRows}
+                    builderLayout={builderLayout}
+                    data={data}
+                />
+            </div>
         </div>
     );
 };

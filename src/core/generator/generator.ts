@@ -52,13 +52,11 @@ export const generate = (data: ExportTypeGenerateType) => {
     return content;
 };
 
-
 type ConfigData = {
     exportTarget: ExportTarget;
     batchSize: number;
     currentBatchNumber: number;
 };
-
 
 export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
     const generationTemplate = data.template;
@@ -78,13 +76,10 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
         const currRowData: any = [];
 
         processOrders.forEach((processOrder: string) => {
-
             // @ts-ignore
             for (let i = 0; i < generationTemplate[processOrder].length; i++) {
                 // @ts-ignore
                 const currCell = generationTemplate[processOrder][i];
-
-                // $currDataType = $dataTypes[$genInfo["dataTypeFolder"]];
                 currRowData[currCell.colIndex] = currCell.generateFunc({
                     rowNum,
                     generationSettings: currCell.generationSettings,

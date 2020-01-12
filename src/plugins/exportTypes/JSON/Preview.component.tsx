@@ -18,14 +18,11 @@ const Preview = ({ numPreviewRows, builderLayout, data }: PreviewProps) => {
     const [code, setCode] = React.useState('');
 
     React.useEffect(() => {
-
         // re-generate everything any time it changes, then do a diff on the changes. NOPE! WE need to do a diff
         // on the generation template to see what changed THERE.
-
         const content = generateSimple(data, false);
         setCode(content);
     }, [data, setCode]);
-
 
     return (
         <div>
@@ -35,7 +32,8 @@ const Preview = ({ numPreviewRows, builderLayout, data }: PreviewProps) => {
                     setCode(value);
                 }}
                 options={{
-                    mode: 'application/ld+json'
+                    mode: 'application/ld+json',
+                    readOnly: true
                 }}
             />
         </div>

@@ -18,7 +18,8 @@ const selectStyles = {
 	indicatorContainer: (provided: IndicatorProps<OptionTypeBase>) => ({
 		...provided,
 		padding: 5
-	})
+	}),
+    menuPortal: (base: any) => ({ ...base, zIndex: 10 })
 };
 
 const Dropdown = ({ value, isGrouped, options, ...props }: any) => {
@@ -53,3 +54,24 @@ const Dropdown = ({ value, isGrouped, options, ...props }: any) => {
 };
 
 export default Dropdown;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
