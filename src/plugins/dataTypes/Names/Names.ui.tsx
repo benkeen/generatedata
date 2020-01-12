@@ -9,7 +9,7 @@ export type NamesState = {
 
 export const state: NamesState = {
 	example: '',
-	options: ''
+	options: 'Name Surname'
 };
 
 export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps) => {
@@ -22,7 +22,6 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps) => {
 	};
 
 	const options = [
-		{ value: '', label: coreI18n.please_select },
 		{ value: 'MaleName', label: i18n.example_MaleName },
 		{ value: 'FemaleName', label: i18n.example_FemaleName },
 		{ value: 'Name', label: i18n.example_Name },
