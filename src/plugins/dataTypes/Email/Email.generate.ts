@@ -1,5 +1,4 @@
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { GenerationData } from '../../../../types/dataTypes';
 import { getRandomNum } from '../../../utils/randomUtils';
 
 const MAX_EMAIL_LENGTH = 254;
@@ -31,25 +30,23 @@ export const getRandomEmail = (wordsArr = words, suffixes = ["edu", "com", "org"
     // if the email exceeded 254 chars (the max valid number of chars), truncate it. This could be way
     // more elegant, but it's SUCH a fringe case I don't much mind
     let email = `${prefix}@${domain}.${suffix}`;
-    // $length = strlen($email);
-    // if ($length > $this->MAX_EMAIL_LENGTH) {
-    //     $prefixParts = str_split($prefix, ceil(strlen($prefix) / 2));
-    //     $domainParts = str_split($domain, ceil(strlen($domain) / 2));
-    //     $email = "{$prefixParts[0]}@${$domainParts[0]}.$suffix";
-    // }
+    const length = email.length;
+    if (length > MAX_EMAIL_LENGTH) {
+        const prefixChunk = prefix.slice(0, Math.ceil(prefix.length / 2));
+        const domainChunk = domain.slice(0, Math.ceil(domain.length / 2));
+        email = `${prefixChunk}@${domainChunk}.${suffix}`;
+    }
 
     return email;
 };
 
 
-export const generate = (data: GenerationData) => {
-    //
-    // return array(
-    //     "display" => $email
-    // );
-};
+export const generate = () => ({ display: getRandomEmail() });
 
 export const getMetadata = (): ExportTypeMetadata => ({
+    general: {
+        dataType: 'string'
+    },
     sql: {
         field: 'varchar(255) default NULL',
         field_Oracle: 'varchar2(255) default NULL',

@@ -73,4 +73,17 @@ describe('getRandomEmail', () => {
 
         expect(generation.getRandomEmail(words, ['co', 'ca', 'com'])).toEqual('one@three.ca');
     });
+
+    it('truncates the email if it is over 254 chars', () => {
+        const words = ['a'.repeat(150), 'b'.repeat(150)];
+        sinon.stub(randomUtils, 'getRandomNum')
+            .onCall(0).returns(1) // number of prefixed words
+            .onCall(1).returns(0) // prefix word offset
+            .onCall(2).returns(1) // number of domain words
+            .onCall(3).returns(1) // domain word offset
+            .onCall(4).returns(0); // suffix
+
+        expect(generation.getRandomEmail(words, ['ca'])).toEqual(`${'a'.repeat(75)}@${'b'.repeat(75)}.ca`);
+    });
+
 });
