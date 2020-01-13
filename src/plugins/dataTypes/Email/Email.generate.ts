@@ -1,9 +1,10 @@
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { getRandomNum } from '../../../utils/randomUtils';
-import { lipsum } from '../../../resources/lipsum';
+import { getLipsumWords } from '../../../utils/stringUtils';
+
 
 const MAX_EMAIL_LENGTH = 254;
-const words = lipsum.split(/\s+/);
+const { words } = getLipsumWords();
 
 const removePunctuation = (arr: string[]) => arr.map((i: string) => i.replace(/[.,:;]/g, ''));
 

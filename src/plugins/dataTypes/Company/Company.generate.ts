@@ -1,11 +1,9 @@
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { getRandomNum } from '../../../utils/randomUtils';
-import { lipsum } from '../../../resources/lipsum';
 import { uppercaseWords } from '../../../utils/generalUtils';
+import { getLipsumWords } from '../../../utils/stringUtils';
 
-const wordsArr = lipsum.split(/\s+/);
-const numWords = wordsArr.length;
-
+const { words } = getLipsumWords();
 const companyTypes = [
     'Company', 'Corp.', 'Corporation', 'Inc.', 'Incorporated', 'LLC', 'LLP', 'Ltd', 'Limited',
     'PC', 'Foundation', 'Institute', 'Associates', 'Industries', 'Consulting'
@@ -13,16 +11,16 @@ const companyTypes = [
 
 const removePunctuation = (arr: string[]) => arr.map((i: string) => i.replace(/[.,:;]/g, ''));
 
-export const generate = () => {
+export const generateCompanyName = (wordsArr = words, types = companyTypes) => {
     const numCompanyNameWords = getRandomNum(1, 3);
-    const offset = getRandomNum(0, numWords - (numCompanyNameWords + 1));
+    const offset = getRandomNum(0, wordsArr.length - (numCompanyNameWords + 1));
     const selectedWords = removePunctuation(wordsArr.slice(offset, offset + numCompanyNameWords));
-    const companyType = companyTypes[getRandomNum(0, companyTypes.length)];
+    const companyType = types[getRandomNum(0, types.length)];
 
-    return {
-        display: uppercaseWords(selectedWords.join(' ')) + ' ' + companyType
-    };
+    return uppercaseWords(selectedWords.join(' ')) + ' ' + companyType;
 };
+
+export const generate = () => ({ display: generateCompanyName() });
 
 export const getMetadata = (): ExportTypeMetadata => ({
     sql: {
