@@ -57,11 +57,11 @@ export const getGenerationTemplate = createSelector(
                 colIndex,
 
                 // settings for the DT cell
-                generationSettings: getGenerationSettings(data),
+                generationSettings: getGenerationSettings ? getGenerationSettings(data) : null,
 
                 // DT methods for the actual generation of this cell
                 generateFunc: generate,
-                colMetadata: getMetadata()
+                colMetadata: getMetadata ? getMetadata() : null
             });
         });
 
