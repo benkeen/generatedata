@@ -15,7 +15,7 @@ export const generateCompanyName = (wordsArr = words, types = companyTypes) => {
     const numCompanyNameWords = getRandomNum(1, 3);
     const offset = getRandomNum(0, wordsArr.length - (numCompanyNameWords + 1));
     const selectedWords = removePunctuation(wordsArr.slice(offset, offset + numCompanyNameWords));
-    const companyType = types[getRandomNum(0, types.length)];
+    const companyType = types[getRandomNum(0, types.length-1)];
 
     return uppercaseWords(selectedWords.join(' ')) + ' ' + companyType;
 };
