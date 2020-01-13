@@ -1,5 +1,6 @@
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
+import { Persistor } from "redux-persist/es/types";
 import reducerRegistry from './reducerRegistry';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import storage from 'redux-persist/lib/storage';
@@ -23,7 +24,7 @@ const combine = (reducers: any) => {
 	return combineReducers(reducers);
 };
 
-let persistor;
+let persistor: Persistor;
 function initStore (initialState: any) {
 	let middleware = [thunk];
 	let enhancers: any = [];
