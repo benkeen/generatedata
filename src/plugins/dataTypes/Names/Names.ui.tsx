@@ -8,7 +8,7 @@ export type NamesState = {
 };
 
 export const state: NamesState = {
-	example: '',
+	example: 'Name Surname',
 	options: 'Name Surname'
 };
 

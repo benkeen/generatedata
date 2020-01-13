@@ -9,15 +9,10 @@ locales.forEach((locale) => {
 	localeFiles[locale] = `./build/${locale}.js`;
 });
 
-const exportTypes = {
-	JSON: './src/plugins/exportTypes/JSON/bundle.ts'
-};
-
 module.exports = {
 	entry: {
 		app: './src/index.js',
-		...localeFiles,
-		...exportTypes
+		...localeFiles
 	},
 
 	output: {

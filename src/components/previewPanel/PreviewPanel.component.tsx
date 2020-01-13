@@ -28,6 +28,8 @@ const PreviewPanel = ({
 }: PreviewPanelProps) => {
     const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
 
+    // TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - maybe drop the fallback altogether
+    // so we can fade the spinner out when the content is loaded
     const ExportTypePreview = React.lazy(() => import('../../plugins/exportTypes/JSON/JSONPreview.container'));
 
     return (
