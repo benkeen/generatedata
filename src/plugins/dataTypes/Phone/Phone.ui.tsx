@@ -8,7 +8,7 @@ export type PhoneState = {
 };
 
 export const state: PhoneState = {
-	example: '',
+	example: '1-Xxx-Xxx-xxxx',
 	option: '1-Xxx-Xxx-xxxx'
 };
 

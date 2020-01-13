@@ -1,4 +1,5 @@
 import * as React from 'react';
+import loadable from '@loadable/component';
 import Dropdown from '../dropdown/Dropdown';
 import CloseIcon from '@material-ui/icons/Close';
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
@@ -7,9 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { getArrayOfSize } from '../../utils/arrayUtils';
 import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
-
-// TODO
-// import ExportTypePreview from '../../plugins/exportTypes/JSON/JSONPreview.container';
 
 export type PreviewPanelProps = {
     numPreviewRows: number;
@@ -28,9 +26,12 @@ const PreviewPanel = ({
 }: PreviewPanelProps) => {
     const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
 
-    // TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - maybe drop the fallback altogether
+    // TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - drop the fallback altogether
     // so we can fade the spinner out when the content is loaded
-    const ExportTypePreview = React.lazy(() => import('../../plugins/exportTypes/JSON/JSONPreview.container'));
+    const ExportTypePreview = loadable(() => import(
+        /* webpackChunkName: "exportType-[index]" */
+        '../../plugins/exportTypes/JSON/JSONPreview.container')
+    );
 
     return (
         <div className={styles.previewPanel}>
