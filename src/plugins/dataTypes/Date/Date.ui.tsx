@@ -11,45 +11,21 @@ export const state = {
 	fromDate: getCurrentDatetime(), // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
 	toDate: getCurrentDatetime(), // $lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));
 	example: '',
-	option: ''
+	format: ''
 };
 
 export const Example = ({ coreI18n, data, onUpdate }: ExampleProps) => {
 
     const onChange = ({ value }: { value: string }) => {
-		// var currYear = _getCurrentYear();
-		// var yearRangeFrom = (currYear - 200);
-		// var yearRangeTo = (currYear + 200);
-		// var yearRange = yearRangeFrom + ":" + yearRangeTo;
-		//
-		// $("#dtFromDate_" + msg.rowID).datepicker({
-		// 	showOn: "both",
-		// 	buttonImageOnly: true,
-		// 	buttonText: "Choose date",
-		// 	changeMonth: true,
-		// 	changeYear: true,
-		// 	yearRange: yearRange
-		// });
-		// $("#dtToDate_" + msg.rowID).datepicker({
-		// 	showOn: "both",
-		// 	buttonImageOnly: true,
-		// 	buttonText: "Choose date",
-		// 	changeMonth: true,
-		// 	changeYear: true,
-		// 	yearRange: yearRange
-		// });
-
 		onUpdate({
 			...data,
 			example: value,
-			options: value
+			format: value
 		});
 	};
 
-	const options = [
-		{ value: '', label: coreI18n.please_select }
-	];
-
+	const options: any = [];
+    const now = new Date();
 	const formats = [
 		'MMM L, y', // Jan 1, 2020
 		'MMMM Lo, y', // January 1st, 2020
@@ -63,8 +39,6 @@ export const Example = ({ coreI18n, data, onUpdate }: ExampleProps) => {
 		'dd-LL-yy', // 25-03-06
 		'dd/LL/y' //25/03/2012
 	];
-
-	const now = new Date();
 	formats.forEach((currFormat) => {
 		options.push({
 			label: format(new Date(now.getFullYear(), now.getMonth(), now.getDay()), currFormat),
@@ -72,36 +46,43 @@ export const Example = ({ coreI18n, data, onUpdate }: ExampleProps) => {
 		});
 	});
 
-	/*
-	// Y-m-d H:i:s">MySQL datetime
-	<option value="Y-m-d H:i:s">MySQL datetime</option>
-	<option value="U">UNIX timestamp</option>
-	<option value="c">ISO 8601 date</option>
-	<option value="r">RFC 2822 formatted date</option>
-	<option value="T">A timezone</option>
-	*/
+	const fullOptions = options.concat([
+        { label: 'MySQL datetime', value: 'Y-m-d H:i:s' },
+        { label: 'Unix timestamp', value: 'U' },
+        { label: 'ISO 8601 date', value: 'c' },
+        { label: 'RFC 2822 formatted date', value: 'r' },
+        { label: 'A timezone', value: 'T' },
+    ]);
 
 	return (
 		<Dropdown
 			value={data.example}
-			options={options}
+			options={fullOptions}
 			onChange={onChange}
 		/>
 	);
 };
 
-export const Options = ({ data, i18n }: OptionsProps) => {
-    // readOnly="readonly"
+export const Options = ({ data, onUpdate, i18n }: OptionsProps) => {
+
+    const onChange = (field: string, value: any) => {
+        onUpdate({
+            ...data,
+            [field]: value
+        });
+    };
+
 	return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <div>
                 <div className={styles.dateRow}>
-                    {i18n.from}
+                    <label>{i18n.from}</label>
                     <KeyboardDatePicker
+                        className={styles.dateField}
                         margin="none"
                         format="MM/dd/yyyy"
                         value={new Date(data.fromDate)}
-                        onChange={() => {}}
+                        onChange={(date) => onChange('fromDate', date)}
                         InputProps={{
                             style: {
                                 width: 120
@@ -109,8 +90,9 @@ export const Options = ({ data, i18n }: OptionsProps) => {
                         }}
                     />
 
-                    {i18n.to}
+                    <label>{i18n.to}</label>
                     <KeyboardDatePicker
+                        className={styles.dateField}
                         margin="none"
                         format="MM/dd/yyyy"
                         value={new Date(data.toDate)}
@@ -123,7 +105,10 @@ export const Options = ({ data, i18n }: OptionsProps) => {
                     />
                 </div>
                 <div>
-                    {i18n.format_code}&nbsp;<input type="text" value={i18n.option} style={{ width: 160 }} />
+                    {i18n.format_code}
+                    <input type="text" value={data.format} style={{ width: 160 }}
+                        onChange={(e) => onChange('format', e.target.value)}
+                    />
                 </div>
             </div>
         </MuiPickersUtilsProvider>
