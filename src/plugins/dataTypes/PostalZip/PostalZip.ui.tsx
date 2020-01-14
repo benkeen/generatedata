@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { HelpProps } from '../../../../types/dataTypes';
 
+export type PostalZipState = {
+
+}
 
 export const Options = () => {
 	// $countryPlugins = Core::$countryPlugins;

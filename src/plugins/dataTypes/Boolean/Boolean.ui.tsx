@@ -8,8 +8,8 @@ export type BooleanState = {
 };
 
 export const state: BooleanState = {
-    example: '',
-	value: ''
+    example: 'false',
+	value: 'true'
 };
 
 export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
@@ -23,8 +23,8 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
     const options = [
         { value: '', label: coreI18n.please_select },
         { value: 'Yes|No', label: i18n.example_YesNo },
-        { value: 'False|True', label: i18n.example_FalseTrue },
-        { value: 'false|true', label: i18n.example_FalseTrueLower },
+        { value: 'True|False', label: i18n.example_TrueFalse },
+        { value: 'true|false', label: i18n.example_TrueFalseLower },
         { value: '0|1', label: i18n.example_ZeroOne },
         { value: 'Y|N', label: i18n.example_YesNoShort },
         { value: 'F|T', label: i18n.example_FalseTrueShort }
