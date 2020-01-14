@@ -5,7 +5,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 import { getCurrentDatetime } from '../../../utils/dateUtils';
-
+import * as styles from './Date.scss';
 
 export const state = {
 	fromDate: getCurrentDatetime(), // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
@@ -95,20 +95,33 @@ export const Options = ({ data, i18n }: OptionsProps) => {
 	return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <div>
-                {i18n.from}
-                <KeyboardDatePicker
-                    margin="normal"
-                    format="MM/dd/yyyy"
-                    value={new Date(data.fromDate)}
-                    onChange={() => {}}
-                />
+                <div className={styles.dateRow}>
+                    {i18n.from}
+                    <KeyboardDatePicker
+                        margin="none"
+                        format="MM/dd/yyyy"
+                        value={new Date(data.fromDate)}
+                        onChange={() => {}}
+                        InputProps={{
+                            style: {
+                                width: 120
+                            }
+                        }}
+                    />
 
-                {i18n.to}
-                <KeyboardDatePicker
-                    format="MM/dd/yyyy"
-                    value={new Date(data.toDate)}
-                    onChange={() => {}}
-                />
+                    {i18n.to}
+                    <KeyboardDatePicker
+                        margin="none"
+                        format="MM/dd/yyyy"
+                        value={new Date(data.toDate)}
+                        onChange={() => {}}
+                        InputProps={{
+                            style: {
+                                width: 120
+                            }
+                        }}
+                    />
+                </div>
                 <div>
                     {i18n.format_code}&nbsp;<input type="text" value={i18n.option} style={{ width: 160 }} />
                 </div>
