@@ -17,10 +17,10 @@ export const generate = (data: GenerationData) => {
     return { display: format(fromUnixTime(date), displayFormat) };
 };
 
-// 			"formatCode" => $this->formatCode
+// 	TODO: formatCode: $this->formatCode
 export const getMetadata = (): ExportTypeMetadata => ({
 	general: {
-		dataType: 'date'
+		dataType: 'date',
 	},
 	sql: {
 	    field: 'varchar(255)',

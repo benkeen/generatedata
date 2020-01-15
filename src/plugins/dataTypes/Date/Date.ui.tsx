@@ -20,8 +20,7 @@ export const state: DateState = {
 	format: 'MMM L, y'
 };
 
-
-const getOptions = () => {
+export const getOptions = () => {
 	const now = new Date();
 
 	const options: any = [];
@@ -44,6 +43,8 @@ const getOptions = () => {
 			value: currFormat
 		});
 	});
+
+	// console.log(options);
 
 	return options.concat([
         { label: 'MySQL datetime', value: 'Y-m-d H:i:s' },
