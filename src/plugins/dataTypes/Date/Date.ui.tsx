@@ -1,43 +1,42 @@
 import * as React from 'react';
-import { format } from 'date-fns';
+import { format, subYears, addYears } from 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
-import { getCurrentDatetime } from '../../../utils/dateUtils';
 import * as styles from './Date.scss';
 
-export const state = {
-	fromDate: getCurrentDatetime(), // $nextYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")+1));
-	toDate: getCurrentDatetime(), // $lastYear = date("m/d/Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")-1));
-	example: '',
-	format: ''
+export type DateState = {
+	fromDate: number;
+	toDate: number;
+	example: string;
+	format: string;
 };
 
-export const Example = ({ coreI18n, data, onUpdate }: ExampleProps) => {
+export const state: DateState = {
+	fromDate: parseInt(format(subYears(new Date(), 1), 't'), 10),
+	toDate: parseInt(format(addYears(new Date(), 1), 't'), 10),
+	example: '',
+	format: 'MMM L, y'
+};
 
-    const onChange = ({ value }: { value: string }) => {
-		onUpdate({
-			...data,
-			example: value,
-			format: value
-		});
-	};
+
+const getOptions = () => {
+	const now = new Date();
 
 	const options: any = [];
-    const now = new Date();
 	const formats = [
-		'MMM L, y', // Jan 1, 2020
-		'MMMM Lo, y', // January 1st, 2020
+		'MMM L, y',    // Jan 1, 2020
+		'MMMM Lo, y',  // January 1st, 2020
 		'EEE, MMM LL', // Mon, Jan 01
-		'EEE, Lo, y', // Mon, Jan 1st, 2012
-		'LL.dd.yy', // 03.25.20
-		'LL-dd-yy', // 03-25-06
-		'LL/dd/yy', // 03/25/06,
-		'LL/dd/y', // 03/25/2012
-		'dd.LL.yy', // 25.03.2020
-		'dd-LL-yy', // 25-03-06
-		'dd/LL/y' //25/03/2012
+		'EEE, Lo, y',  // Mon, Jan 1st, 2012
+		'LL.dd.yy',    // 03.25.20
+		'LL-dd-yy',    // 03-25-06
+		'LL/dd/yy',    // 03/25/06,
+		'LL/dd/y',     // 03/25/2012
+		'dd.LL.yy',    // 25.03.2020
+		'dd-LL-yy',    // 25-03-06
+		'dd/LL/y'      // 25/03/2012
 	];
 	formats.forEach((currFormat) => {
 		options.push({
@@ -46,25 +45,34 @@ export const Example = ({ coreI18n, data, onUpdate }: ExampleProps) => {
 		});
 	});
 
-	const fullOptions = options.concat([
+	return options.concat([
         { label: 'MySQL datetime', value: 'Y-m-d H:i:s' },
         { label: 'Unix timestamp', value: 'U' },
         { label: 'ISO 8601 date', value: 'c' },
         { label: 'RFC 2822 formatted date', value: 'r' },
         { label: 'A timezone', value: 'T' },
-    ]);
+	]);
+};
+
+export const Example = ({ data, onUpdate }: ExampleProps) => {
+    const onChange = ({ value }: { value: string }) => {
+		onUpdate({
+			...data,
+			example: value,
+			format: value
+		});
+	};
 
 	return (
 		<Dropdown
 			value={data.example}
-			options={fullOptions}
+			options={getOptions()}
 			onChange={onChange}
 		/>
 	);
 };
 
 export const Options = ({ data, onUpdate, i18n }: OptionsProps) => {
-
     const onChange = (field: string, value: any) => {
         onUpdate({
             ...data,
@@ -89,7 +97,6 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps) => {
                             }
                         }}
                     />
-
                     <label>{i18n.to}</label>
                     <KeyboardDatePicker
                         className={styles.dateField}

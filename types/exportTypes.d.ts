@@ -15,7 +15,7 @@ export type ExportTypeType = {
 }
 
 export type GeneralMetadataTypes = {
-    dataType: 'number' | 'string' | 'boolean';
+    dataType: 'number' | 'string' | 'boolean' | 'date';
 }
 
 export type ExportTypeMetadata = {

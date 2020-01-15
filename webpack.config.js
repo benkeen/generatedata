@@ -36,10 +36,7 @@ module.exports = {
 				use: [
 					'style-loader',
 					{
-						loader: '@teamsupercell/typings-for-css-modules-loader',
-						// options: {
-						//
-						// }
+						loader: '@teamsupercell/typings-for-css-modules-loader'
 					},
 					{
 						loader: 'css-loader',
