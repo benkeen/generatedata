@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { format, subYears, addYears } from 'date-fns';
+import { format, subYears, addYears, fromUnixTime } from 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import Dropdown from '../../../components/dropdown/Dropdown';
@@ -39,17 +39,15 @@ export const getOptions = () => {
 	];
 	formats.forEach((currFormat) => {
 		options.push({
-			label: format(new Date(now.getFullYear(), now.getMonth(), now.getDay()), currFormat),
+			label: format(new Date(now.getFullYear(), now.getMonth(), now.getDate()), currFormat),
 			value: currFormat
 		});
 	});
 
 	return options.concat([
         { label: 'MySQL datetime', value: 'y-LL-dd HH:mm:ss' },
-        { label: 'Unix timestamp', value: 'U' },
-        { label: 'ISO 8601 date', value: 'c' },
-        { label: 'RFC 2822 formatted date', value: 'r' },
-        { label: 'A timezone', value: 'T' },
+		{ label: 'Unix timestamp (secs)', value: 't' },
+		{ label: 'Unix timestamp (millisecs)', value: 'T' }
 	]);
 };
 
@@ -88,7 +86,7 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps) => {
                         className={styles.dateField}
                         margin="none"
                         format="MM/dd/yyyy"
-                        value={new Date(data.fromDate)}
+                        value={fromUnixTime(data.fromDate)}
                         onChange={(date) => onChange('fromDate', date)}
                         InputProps={{
                             style: {
@@ -101,7 +99,7 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps) => {
                         className={styles.dateField}
                         margin="none"
                         format="MM/dd/yyyy"
-                        value={new Date(data.toDate)}
+                        value={fromUnixTime(data.toDate)}
                         onChange={() => {}}
                         InputProps={{
                             style: {
