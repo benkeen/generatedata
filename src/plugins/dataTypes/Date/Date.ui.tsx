@@ -25,10 +25,10 @@ export const getOptions = () => {
 
 	const options: any = [];
 	const formats = [
-		'MMM L, y',    // Jan 1, 2020
-		'MMMM Lo, y',  // January 1st, 2020
-		'EEE, MMM LL', // Mon, Jan 01
-		'EEE, Lo, y',  // Mon, Jan 1st, 2012
+		'MMM d, y',    // Jan 1, 2020
+		'MMMM do, y',  // January 1st, 2020
+		'EEE, MMM dd', // Wed, Jan 01
+		'EEE, MMM do, y',  // Wed, Jan 1st, 2012
 		'LL.dd.yy',    // 03.25.20
 		'LL-dd-yy',    // 03-25-06
 		'LL/dd/yy',    // 03/25/06,
@@ -43,8 +43,6 @@ export const getOptions = () => {
 			value: currFormat
 		});
 	});
-
-	// console.log(options);
 
 	return options.concat([
         { label: 'MySQL datetime', value: 'Y-m-d H:i:s' },
