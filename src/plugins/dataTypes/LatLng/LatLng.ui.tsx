@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+export type LatLngState = {
+	lat: boolean;
+	lng: boolean;
+};
+
+export const state: LatLngState = {
 	lat: true,
 	lng: true
 };
@@ -25,7 +30,6 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps) => {
         </>
     );
 };
-
 
 export const Help = ({ i18n }: HelpProps) => (
 	<p>{i18n.DATA_TYPE.DESC}</p>
