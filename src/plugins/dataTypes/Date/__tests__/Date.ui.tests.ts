@@ -13,23 +13,15 @@ describe('getOptions', () => {
 			'LL.dd.yy': '01.03.20',
 			'LL-dd-yy': '01-03-20',
 			'LL/dd/yy': '01/03/20',
-			// 'LL/dd/y': '03/25/2012',
-			// 'dd.LL.yy': '25.03.2020',
-			// 'dd-LL-yy': '25-03-06',
-			// 'dd/LL/y': '25/03/2012',
-
-			// 'Y-m-d H:i:s': ''
-			// 'Unix timestamp', value: 'U' },
-			// 'ISO 8601 date', value: 'c' },
-			// 'RFC 2822 formatted date', value: 'r' },
-			// 'A timezone', value: 'T' },	
+			'LL/dd/y': '01/03/2020',
+			'dd.LL.yy': '03.01.20',
+			'dd-LL-yy': '03-01-20',
+			'dd/LL/y': '03/01/2020',
+			'y-LL-dd HH:mm:ss': '2020-01-03 00:00:00'
 		};
 
 		ui.getOptions().forEach(({ value }: any) => {
-			if (!expected.hasOwnProperty(value)) {
-				console.log('missing: ', value);
-			} else {
-				console.log('TESTING. ', date, value, expected[value]);
+			if (expected.hasOwnProperty(value)) {
 				expect(format(date, value)).toEqual(expected[value]);
 			}
 		});

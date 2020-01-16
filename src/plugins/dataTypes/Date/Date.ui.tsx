@@ -45,7 +45,7 @@ export const getOptions = () => {
 	});
 
 	return options.concat([
-        { label: 'MySQL datetime', value: 'Y-m-d H:i:s' },
+        { label: 'MySQL datetime', value: 'y-LL-dd HH:mm:ss' },
         { label: 'Unix timestamp', value: 'U' },
         { label: 'ISO 8601 date', value: 'c' },
         { label: 'RFC 2822 formatted date', value: 'r' },
