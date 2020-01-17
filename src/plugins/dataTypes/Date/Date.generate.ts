@@ -4,12 +4,12 @@ import { DateState } from './Date.ui';
 import { getRandomNum } from '../../../utils/randomUtils';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-export const getGenerationSettings = ({ fromDate, toDate, format }: DateState) => ({
+export const rowStateReducer = ({ fromDate, toDate, format }: DateState) => ({
 	fromDate, toDate, format
 });
 
 export const generate = (data: GenerationData) => {
-	const { fromDate, toDate, format: displayFormat } = data.generationSettings;
+	const { fromDate, toDate, format: displayFormat } = data.rowState;
 	if (!displayFormat) {
 		return { display: '' };
 	}

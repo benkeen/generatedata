@@ -11,24 +11,33 @@ export const state: NumberRangeState = {
 	max: 10
 };
 
-export const Options = ({ data, i18n }: OptionsProps) => (
-	<div>
-		{i18n.between}
-		<input
-			type="text"
-			id="dtNumRangeMin_%ROW%"
-			style={{ width: 30 }}
-			value={data.min}
-		/>
-		{i18n.and}
-		<input
-			type="text"
-			id="dtNumRangeMax_%ROW%"
-			style={{ width: 30 }}
-			value={data.max}
-		/>
-	</div>
-);
+export const Options = ({ data, i18n, onUpdate }: OptionsProps) => {
+	const onChange = (field: string, value: string) => {
+		onUpdate({
+			...data,
+			[field]: value
+		});
+	};
+
+	return (
+		<div>
+			{i18n.between}
+			<input
+				type="text"
+				style={{ width: 30 }}
+				value={data.min}
+				onChange={(e: any) => onChange('min', e.target.value)}
+			/>
+			{i18n.and}
+			<input
+				type="text"
+				style={{ width: 30 }}
+				value={data.max}
+				onChange={(e: any) => onChange('max', e.target.value)}
+			/>
+		</div>
+	);
+};
 
 export const Help = ({ i18n }: HelpProps) => <p>{i18n.DATA_TYPE.DESC}</p>;
 

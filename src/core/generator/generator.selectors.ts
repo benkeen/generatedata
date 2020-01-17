@@ -45,7 +45,7 @@ export const getGenerationTemplate = createSelector(
 
             // TODO another assumption here. We need to validate the whole component right-up front during the
             // build step and throw a nice error saying what's missing
-            const { generate, getMetadata, getGenerationSettings } = getGenerationOptionsByDataType(dataType);
+            const { generate, getMetadata, rowStateReducer } = getGenerationOptionsByDataType(dataType);
 
             if (!templateByProcessOrder[processOrder]) {
                 templateByProcessOrder[processOrder] = [];
@@ -56,8 +56,9 @@ export const getGenerationTemplate = createSelector(
                 dataType,
                 colIndex,
 
-                // settings for the DT cell
-                generationSettings: getGenerationSettings ? getGenerationSettings(data) : null,
+				// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row 
+				// state into something friendlier for the generation step
+                rowStateReducer: rowStateReducer ? rowStateReducer(data) : data,
 
                 // DT methods for the actual generation of this cell
                 generateFunc: generate,

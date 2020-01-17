@@ -7,13 +7,13 @@ import { GenerationData } from '../../../../types/dataTypes';
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const genders = ['male', 'female'];
 
-export const getGenerationSettings = (state: NamesState) => state.options;
+export const rowStateReducer = (state: NamesState) => state.options;
 
 const getRandomGender = () => getRandomBool() ? genders[0] : genders[1];
 
 
 export const generate = (data: GenerationData) => {
-    const placeholderStr = data.generationSettings;
+    const placeholderStr = data.rowState;
 
     // in case the user entered multiple | separated formats, pick one first
     const formats = placeholderStr.split('|');

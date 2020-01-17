@@ -28,6 +28,6 @@ export type HelpProps = {
 
 export type GenerationData = {
     rowNum: number;
-    generationSettings: any;
+    rowState: any;
     existingRowData: any[];
 };

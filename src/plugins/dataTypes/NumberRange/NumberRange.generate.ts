@@ -1,9 +1,16 @@
 import { getRandomNum } from '../../../utils/randomUtils'; 
 import { GenerationData } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { NumberRangeState } from './NumberRange.ui';
+
+export const rowStateReducer = (state: NumberRangeState) => {
+	console.log('...', state);
+	return state;
+}
 
 export const generate = (data: GenerationData) => {
-	const { min, max } = data.generationSettings;
+	console.log(data);
+	const { min, max } = data.rowState;
 	return {
 		display: getRandomNum(min, max)
 	};

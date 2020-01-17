@@ -3,11 +3,10 @@ import { GenerationData } from '../../../../types/dataTypes';
 import { AlphanumericState } from './Alphanumeric.ui';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-export const getGenerationSettings = (state: AlphanumericState) => state.value;
-
+export const rowStateReducer = (state: AlphanumericState) => state.value;
 
 export const generate = (data: GenerationData) => {
-	const formats = data.generationSettings.split('|');
+	const formats = data.rowState.split('|');
 	let chosenFormat = formats[0];
 	if (formats.length > 1) {
 		chosenFormat = formats[getRandomNum(0, formats.length-1)];

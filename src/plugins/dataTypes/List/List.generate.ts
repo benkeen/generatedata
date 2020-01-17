@@ -3,12 +3,12 @@ import { ListState, ListType } from './List.ui';
 import { getRandomSubset, getRandomNum } from '../../../utils/randomUtils';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-export const getGenerationSettings = ({ example, listType, exactly, atMost, values }: ListState) => ({
+export const rowStateReducer = ({ example, listType, exactly, atMost, values }: ListState) => ({
 	example, listType, exactly, atMost, values
 });	
 
 export const generate = (data: GenerationData) => {
-	const { listType, values, exactly, atMost } = data.generationSettings;
+	const { listType, values, exactly, atMost } = data.rowState;
 	const allElements = values.split('|');
 
 	let val = '';

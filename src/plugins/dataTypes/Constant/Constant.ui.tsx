@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
+export type ConstantType = {
+	loopCount: number;
+	values: string;
+}
+
 export const state = {
 	loopCount: 10,
 	values: ''

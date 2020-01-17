@@ -10,7 +10,7 @@ describe('generation method', () => {
 	it('generates a single item when only lat is selected', () => {
 		const result = latlng.generate({ 
 			...defaultSettings,
-    		generationSettings: { lat: true, lng: false }
+    		rowState: { lat: true, lng: false }
 		 });
 		 expect(result.lat).toBeTruthy();
 		 expect(result.lng).toBeFalsy();
@@ -20,7 +20,7 @@ describe('generation method', () => {
 	it('generates a single item when only lat is selected', () => {
 		const result = latlng.generate({ 
 			...defaultSettings,
-    		generationSettings: { lat: false, lng: true }
+    		rowState: { lat: false, lng: true }
 		 });
 		 expect(result.lat).toBeFalsy();
 		 expect(result.lng).toBeTruthy();
@@ -30,7 +30,7 @@ describe('generation method', () => {
 	it('generates two item when both lat and lng are selected', () => {
 		const result = latlng.generate({ 
 			...defaultSettings,
-    		generationSettings: { lat: true, lng: true }
+    		rowState: { lat: true, lng: true }
 		 });
 		 expect(result.lat).toBeTruthy();
 		 expect(result.lng).toBeTruthy();
@@ -40,7 +40,7 @@ describe('generation method', () => {
 	it('generates an empty string when neither lat nor lng is selected', () => {
 		const result = latlng.generate({ 
 			...defaultSettings,
-    		generationSettings: { lat: false, lng: false }
+    		rowState: { lat: false, lng: false }
 		 });
 		 expect(result.lat).toBeFalsy();
 		 expect(result.lng).toBeFalsy();

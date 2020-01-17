@@ -3,7 +3,7 @@ import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { LatLngState } from './LatLng.ui';
 import { getRandomNum } from '../../../utils/randomUtils';
 
-export const getGenerationSettings = (state: LatLngState) => state;
+export const rowStateReducer = (state: LatLngState) => state;
 
 const DECIMAL_PLACES = 5;
 
@@ -21,15 +21,15 @@ let cachedMath = {
 export const generate = (data: GenerationData) => {
 	const coords = [];
 	let lat, lng;
-	if (data.generationSettings.lat && data.generationSettings.lng) {
+	if (data.rowState.lat && data.rowState.lng) {
 		lat = getRandomNum(cachedMath.minLat, cachedMath.maxLat) / cachedMath.divisor;
 		coords.push(lat);
 		lng = getRandomNum(cachedMath.minLng, cachedMath.maxLng) / cachedMath.divisor;
 		coords.push(lng);
-	} else if (data.generationSettings.lat) {
+	} else if (data.rowState.lat) {
 		lat = getRandomNum(cachedMath.minLat, cachedMath.maxLat) / cachedMath.divisor;
 		coords.push(lat);
-	} else if (data.generationSettings.lng) {
+	} else if (data.rowState.lng) {
 		lng = getRandomNum(cachedMath.minLng, cachedMath.maxLng) / cachedMath.divisor;
 		coords.push(lng);
 	}

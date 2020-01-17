@@ -3,10 +3,10 @@ import { generateRandomAlphanumericStr, getRandomArrayValue } from '../../../uti
 import { PhoneState } from './Phone.ui';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-export const getGenerationSettings = (state: PhoneState) => state.option;
+export const rowStateReducer = (state: PhoneState) => state.option;
 
 export const generate = (data: GenerationData) => {
-    const phoneStr = generateRandomAlphanumericStr(data.generationSettings);
+    const phoneStr = generateRandomAlphanumericStr(data.rowState);
     const formats = phoneStr.split('|');
     let chosenFormat = formats[0];
 

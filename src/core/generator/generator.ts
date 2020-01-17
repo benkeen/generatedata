@@ -82,7 +82,7 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
                 const currCell = generationTemplate[processOrder][i];
                 currRowData[currCell.colIndex] = currCell.generateFunc({
                     rowNum,
-                    generationSettings: currCell.generationSettings,
+                    rowState: currCell.rowState,
                     existingRowData: currRowData
                 });
             }

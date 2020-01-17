@@ -1,6 +1,5 @@
 import { GenerationData } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { BooleanState } from '../Boolean/Boolean.ui';
 
 
 // private $countryRegions;
@@ -13,12 +12,6 @@ import { BooleanState } from '../Boolean/Boolean.ui';
 //         $this->countryRegions = Core::$geoData->getCountryRegionHash();
 //     }
 // }
-
-// this Data Type doesn't have any custom generation settings, but
-export const getGenerationSettings = (state: BooleanState) => {
-
-};
-
 
 export const generate = (data: GenerationData) => {
 
