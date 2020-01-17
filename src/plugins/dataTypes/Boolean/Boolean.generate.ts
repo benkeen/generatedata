@@ -1,6 +1,6 @@
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { GenerationData } from '../../../../types/dataTypes';
-import { getRandomNum } from '../../../utils/randomUtils';
+import { getRandomNum } from '../../../utils/randomUtils'; 
 import { BooleanState } from './Boolean.ui';
 
 export const getGenerationSettings = (state: BooleanState) => state.value;

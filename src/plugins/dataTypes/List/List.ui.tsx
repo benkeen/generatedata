@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
-import { ListTypeMap } from '@material-ui/core';
+import Chip from '@material-ui/core/Chip';
 
 export const enum ListType {
 	EXACTLY = 'EXACTLY',
@@ -27,6 +27,7 @@ export const state: ListState = {
 export const Example = ({ data, onUpdate, coreI18n, i18n }: ExampleProps) => {
     const onChange = (example: any) => {
         onUpdate({
+			...data,
             example: example,
             values: example
         });

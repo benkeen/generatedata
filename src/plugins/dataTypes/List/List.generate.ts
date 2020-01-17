@@ -10,6 +10,7 @@ export const getGenerationSettings = ({ example, listType, exactly, atMost, valu
 export const generate = (data: GenerationData) => {
 	const { listType, values, exactly, atMost } = data.generationSettings;
 	const allElements = values.split('|');
+
 	let val = '';
 	if (listType === ListType.EXACTLY) {
 		val = getRandomSubset(allElements, exactly).join(', ');
