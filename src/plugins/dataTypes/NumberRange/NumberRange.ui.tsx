@@ -1,15 +1,32 @@
 import * as React from 'react';
 import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
-	min: '',
-	max: ''
+export type NumberRangeState = {
+	min: number;
+	max: number;
 };
 
-export const Options = ({ i18n }: OptionsProps) => (
+export const state: NumberRangeState = {
+	min: 0,
+	max: 10
+};
+
+export const Options = ({ data, i18n }: OptionsProps) => (
 	<div>
-		{i18n.between} <input type="text" name="dtNumRangeMin_%ROW%" id="dtNumRangeMin_%ROW%" style={{ width: 30 }} value="1" />
-		{i18n.and} <input type="text" name="dtNumRangeMax_%ROW%" id="dtNumRangeMax_%ROW%" style={{ width: 30 }} value="10" />
+		{i18n.between}
+		<input
+			type="text"
+			id="dtNumRangeMin_%ROW%"
+			style={{ width: 30 }}
+			value={data.min}
+		/>
+		{i18n.and}
+		<input
+			type="text"
+			id="dtNumRangeMax_%ROW%"
+			style={{ width: 30 }}
+			value={data.max}
+		/>
 	</div>
 );
 
