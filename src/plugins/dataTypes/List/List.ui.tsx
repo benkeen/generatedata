@@ -1,21 +1,34 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import { ListTypeMap } from '@material-ui/core';
 
-export const state = {
+export const enum ListType {
+	EXACTLY = 'EXACTLY',
+	AT_MOST = 'AT_MOST'
+}
+
+export type ListState = {
+	example: String;
+	listType: ListType;
+	exactly: string;
+	atMost: string;
+	values: string;
+};
+
+export const state: ListState = {
 	example: '',
-	listType1: '',
-	listType2: '',
+	listType: ListType.EXACTLY,
 	exactly: '',
 	atMost: '',
-	option: ''
+	values: ''
 };
 
 export const Example = ({ data, onUpdate, coreI18n, i18n }: ExampleProps) => {
-    const onChange = (value: any) => {
+    const onChange = (example: any) => {
         onUpdate({
-            example: value,
-            value: value
+            example: example,
+            values: example
         });
     };
 
@@ -47,24 +60,61 @@ export const Example = ({ data, onUpdate, coreI18n, i18n }: ExampleProps) => {
     );
 };
 
-export const Options = ({ i18n, data, id }: OptionsProps) => {
-    const onChange = () => {
+export const Options = ({ i18n, data, id, onUpdate }: OptionsProps) => {
+	// const [] = React.useRef();
+    const onChange = (field: string, value: string) => {
+		onUpdate({
+			...data,
+			[field]: value
+		});
 
+		if (field === ListType.EXACTLY) {
+			
+		} else if (field === ListType.AT_MOST) {
+
+		}
     };
 
     return (
         <>
             <div>
-                <input type="radio" name={`listType-${id}`} id={`listType1-${id}`} value="Exactly" checked />
+				<input
+					type="radio"
+					id={`listType1-${id}`}
+					value={ListType.EXACTLY}
+					checked={data.listType === ListType.EXACTLY}
+					onChange={() => onChange('listType', ListType.EXACTLY)}
+				/>
                 <label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
-                <input type="text" size={2} name="dtListExactly_%ROW%" id="dtListExactly_%ROW%" value={data.exactly} />
-
-                <input type="radio" name={`listType-${id}`} id={`listType2-${id}`} value="AtMost" />
+                <input
+					type="text"
+					size={2}
+					id={`dtListExactly_${id}`}
+					value={data.exactly}
+					onChange={(e) => onChange('exactly', e.target.value)}
+				/>
+                <input
+					type="radio"
+					id={`listType2-${id}`}
+					value={ListType.AT_MOST}
+					checked={data.listType === ListType.AT_MOST}
+					onChange={() => onChange('listType', ListType.AT_MOST)}
+				/>
                 <label htmlFor={`listType2-${id}`}>{i18n.at_most}</label>
-                <input type="text" size={2} name="dtListAtMost_%ROW%" id="dtListAtMost_%ROW%" value={data.atMost} />
+                <input
+					type="text"
+					size={2}
+					id={`dtListAtMost_${id}`}
+					value={data.atMost}
+					onChange={(e) => onChange('atMost', e.target.value)}
+				/>
             </div>
             <div>
-                <input type="text" name="dtOption_%ROW%" id="dtOption_%ROW%" style={{width: 267}} value={data.option} />
+                <input
+					type="text"
+					value={data.values}
+					onChange={(e) => onChange('values', e.target.value)}
+				/>
             </div>
         </>
     );

@@ -85,3 +85,15 @@ export const generateRandomAlphanumericStr = (str: string) => {
 	return newStr.trim();
 };
 
+// Returns a random subset of an array. The result may be empty, or the same set.
+export const getRandomSubset = (arr: any[], num: number) => {
+	if (num > arr.length) {
+		num = arr.length;
+	}
+	// shuffle($set);
+
+	// what's the most efficient way to do this method...?
+
+	// return array_slice($set, 0, $num);
+	return arr;
+}
