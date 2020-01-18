@@ -22,8 +22,8 @@ export const getRandomNum = (min: number, max: number) => {
 export const getRandomBool = () => Math.random() < 0.5;
 export const getRandomArrayValue = (arr: any[]) => arr[Math.floor(Math.random() * arr.length)];
 export const getRandomCharInString = (str: string) => {
-    const index = getRandomNum(0, str.length-1);
-    return str[index];
+	const index = getRandomNum(0, str.length - 1);
+	return str[index];
 };
 
 /**
@@ -37,53 +37,53 @@ export const getRandomCharInString = (str: string) => {
  *     H       - 0-F
  */
 export const generateRandomAlphanumericStr = (str: string) => {
-    if (!str) {
-        return '';
-    }
+	if (!str) {
+		return '';
+	}
 
 	// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9
 	let newStr = '';
-	for (let i=0, j=str.length; i<j; i++) {
+	for (let i = 0, j = str.length; i < j; i++) {
 		switch (str[i]) {
 			// Numbers
 			case 'X': newStr += getRandomNum(1, 9); break;
 			case 'x': newStr += getRandomNum(0, 9); break;
 
 			// Letters
-			case 'L': newStr += letters[getRandomNum(0, lettersLen-1)]; break;
-			case 'l': newStr += letters[getRandomNum(0, lettersLen-1)].toLowerCase(); break;
+			case 'L': newStr += letters[getRandomNum(0, lettersLen - 1)]; break;
+			case 'l': newStr += letters[getRandomNum(0, lettersLen - 1)].toLowerCase(); break;
 			case 'D':
 				if (getRandomBool()) {
-					newStr += letters[getRandomNum(0, lettersLen-1)];
+					newStr += letters[getRandomNum(0, lettersLen - 1)];
 				} else {
-					newStr += letters[getRandomNum(0, lettersLen-1)].toLowerCase();
+					newStr += letters[getRandomNum(0, lettersLen - 1)].toLowerCase();
 				}
 				break;
 
 			// Consonants
-			case 'C': newStr += consonants[getRandomNum(0, consonantsLen-1)]; break;
-			case 'c': newStr += consonants[getRandomNum(0, consonantsLen-1)].toLowerCase(); break;
+			case 'C': newStr += consonants[getRandomNum(0, consonantsLen - 1)]; break;
+			case 'c': newStr += consonants[getRandomNum(0, consonantsLen - 1)].toLowerCase(); break;
 			case 'E':
 				if (getRandomBool()) {
-					newStr += consonants[getRandomNum(0, consonantsLen-1)];
+					newStr += consonants[getRandomNum(0, consonantsLen - 1)];
 				} else {
-					newStr += consonants[getRandomNum(0, consonantsLen-1)].toLowerCase();
+					newStr += consonants[getRandomNum(0, consonantsLen - 1)].toLowerCase();
 				}
 				break;
 
 			// Vowels
-			case 'V': newStr += vowels[getRandomNum(0, vowelsLen-1)]; break;
-			case 'v': newStr += vowels[getRandomNum(0, vowelsLen-1)].toLowerCase(); break;
+			case 'V': newStr += vowels[getRandomNum(0, vowelsLen - 1)]; break;
+			case 'v': newStr += vowels[getRandomNum(0, vowelsLen - 1)].toLowerCase(); break;
 			case 'F':
 				if (getRandomBool()) {
-					newStr += vowels[getRandomNum(0, vowelsLen-1)];
+					newStr += vowels[getRandomNum(0, vowelsLen - 1)];
 				} else {
-					newStr += vowels[getRandomNum(0, vowelsLen-1)].toLowerCase();
+					newStr += vowels[getRandomNum(0, vowelsLen - 1)].toLowerCase();
 				}
 				break;
 
 			case 'H':
-				newStr += hex[getRandomNum(0, hexLen-1)];
+				newStr += hex[getRandomNum(0, hexLen - 1)];
 				break;
 
 			default:
@@ -97,13 +97,16 @@ export const generateRandomAlphanumericStr = (str: string) => {
 
 // Returns a random subset of an array. The result may be empty, or the same set.
 export const getRandomSubset = (arr: any[], size: number) => {
-    var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;
-    while (i-- > min) {
-        index = Math.floor((i + 1) * Math.random());
-        temp = shuffled[index];
-        shuffled[index] = shuffled[i];
-        shuffled[i] = temp;
-    }
+	const shuffled = arr.slice(0);
+	let i = arr.length;
+	const min = i - size;
+
+	while (i-- > min) {
+		const index = Math.floor((i + 1) * Math.random());
+		const temp = shuffled[index];
+		shuffled[index] = shuffled[i];
+		shuffled[i] = temp;
+	}
 	return shuffled.slice(min);
 };
 
@@ -127,7 +130,8 @@ export const generateRandomTextStr = (words: string[], startsWithLipsum: boolean
 
 
 // Converts all x's and X's in a string with a random digit. X's: 1-9, x's: 0-9.
-/*public static function generateRandomNumStr($str) {
+/*
+public static function generateRandomNumStr($str) {
 	// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9.
 	$new_str = "";
 	$strlen = strlen($str);
@@ -152,5 +156,5 @@ export const generateRandomTextStr = (words: string[], startsWithLipsum: boolean
 	}
 
 	return trim($new_str);
-}*/
-
+}
+*/

@@ -24,11 +24,11 @@ module.exports = {
 		rules: [
 			{
 				test: /\.tsx?$/,
-				loader: 'ts-loader'
+				loader: ['ts-loader', 'eslint-loader']
 			},
 			{
 				test: /\.js$/,
-				loader: ['babel-loader', 'eslint-loader'],
+				loader: ['babel-loader'],
 				exclude: '/node_modules'
 			},
 			{

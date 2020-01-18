@@ -1,6 +1,6 @@
 const presets = [
 	{
-		"presets": [
+		presets: [
 			[
 				"@babel/preset-env",
 				{

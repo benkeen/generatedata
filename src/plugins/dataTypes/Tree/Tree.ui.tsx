@@ -7,27 +7,27 @@ export const state = {
 };
 
 export const Options = ({ data, id, onUpdate, i18n }: OptionsProps) => {
-    const onChange = (field: string, value: string) => {
-        onUpdate({
-            ...data,
-            [field]: value
-        });
-    };
+	const onChange = (field: string, value: string) => {
+		onUpdate({
+			...data,
+			[field]: value
+		});
+	};
 
-    return (
-        <>
-            <div>
-                {i18n.auto_increment_row_num}
-                <input type="text" id={`${id}-rowNum`} value="1" size={3} maxLength={3}
-                    onChange={(e) => onChange('rowNum', e.target.value)} />
-            </div>
-            <div>
-                {i18n.max_num_sibling_nodes}
-                <input type="text" id={`${id}-maxSiblings`} value="2" size={3} maxLength={3}
-                    onChange={(e) => onChange('maxSiblings', e.target.value)} />
-            </div>
-        </>
-    );
+	return (
+		<>
+			<div>
+				{i18n.auto_increment_row_num}
+				<input type="text" id={`${id}-rowNum`} value="1" size={3} maxLength={3}
+					onChange={(e) => onChange('rowNum', e.target.value)} />
+			</div>
+			<div>
+				{i18n.max_num_sibling_nodes}
+				<input type="text" id={`${id}-maxSiblings`} value="2" size={3} maxLength={3}
+					onChange={(e) => onChange('maxSiblings', e.target.value)} />
+			</div>
+		</>
+	);
 };
 
 export const Help = ({ i18n }: HelpProps) => (

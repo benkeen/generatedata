@@ -22,12 +22,12 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps) => {
 	};
 
 	const options = [
+		{ value: 'Name Surname', label: i18n.example_Name_Surname },
+		{ value: 'Name', label: i18n.example_Name },
 		{ value: 'MaleName', label: i18n.example_MaleName },
 		{ value: 'FemaleName', label: i18n.example_FemaleName },
-		{ value: 'Name', label: i18n.example_Name },
 		{ value: 'MaleName Surname', label: i18n.example_MaleName_Surname },
 		{ value: 'FemaleName Surname', label: i18n.example_FemaleName_Surname },
-		{ value: 'Name Surname', label: i18n.example_Name_Surname },
 		{ value: 'Name Initial. Surname', label: i18n.example_Name_Initial_Surname },
 		{ value: 'Surname', label: i18n.example_surname },
 		{ value: 'Surname, Name Initial.', label: i18n.example_Surname_Name_Initial },

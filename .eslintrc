@@ -1,37 +1,59 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  },
-  "plugins": [
-    "react"
-  ],
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true,
-      "experimentalObjectRestSpread": true
-    }
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
-  "rules": {
-    "semi": [2, "always"],
-    "indent": ["error", "tab", { "SwitchCase": 1 }],
-    "object-curly-spacing": ["error", "always"],
-    "no-extra-parens": ["off"],
-    "max-len": ["off"],
-    "no-multi-spaces": "error",
-    "react/prop-types": ["off"]
-  },
-  "settings": {
-    "react": {
-      "version": "16.8"
-    }
-  }
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true,
+			"experimentalObjectRestSpread": true
+		}
+	},
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true
+	},
+	"plugins": [
+		"react"
+	],
+	"extends": [
+		"airbnb",
+    	"eslint:recommended",
+		"plugin:react/recommended"
+	],
+	"rules": {
+		"semi": [
+			2,
+			"always"
+		],
+		"indent": [
+			"error",
+			"tab",
+			{ "SwitchCase": 1 }
+		],
+		"object-curly-spacing": [
+			"error",
+			"always"
+		],
+		"allowIndentationTabs": true,
+		"no-extra-parens": [
+			"off"
+		],
+		"max-len": [
+			"off"
+		],
+		"no-multi-spaces": "error",
+		"react/prop-types": [
+			"off"
+		],
+		"comma-dangle": "off",
+		"no-tabs": "off",
+		"no-multiple-empty-lines": "off",
+		"no-plusplus": "off"
+	},
+	"settings": {
+		"react": {
+			"version": "16.8"
+		}
+	}
 }

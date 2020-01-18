@@ -3,6 +3,6 @@ const words = lipsum.split(/\s+/);
 const numWords = words.length;
 
 export const getLipsumWords = () => ({
-    words,
-    numWords
+	words,
+	numWords
 });
