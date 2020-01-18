@@ -1,5 +1,6 @@
 declare namespace HeaderScssModule {
   export interface IHeaderScss {
+    btnSelected: string;
     header: string;
   }
 }

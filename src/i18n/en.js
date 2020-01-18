@@ -282,5 +282,8 @@ export default {
 	"your_account": "Your Account",
 	"your_data_set_name_here": "Your data set name here...",
 	"your_data_sets": "Your Data Sets",
-	"zip_q": "Zip?"
+	"zip_q": "Zip?",
+
+	"grid": "Grid",
+	"preview": "Preview"
 };

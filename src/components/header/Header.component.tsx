@@ -35,8 +35,8 @@ const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, is
                         <li><a href="#">Login</a></li>
 					</ul>
                     <ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>
-                        <Button onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>Grid</Button>
-                        <Button onClick={togglePreview} startIcon={<PreviewIcon />}>Preview</Button>
+                        <Button className={isGridVisible ? styles.btnSelected : ''} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>{i18n.grid}</Button>
+                        <Button className={isPreviewVisible ? styles.btnSelected : ''}onClick={togglePreview} startIcon={<PreviewIcon />}>{i18n.preview}</Button>
                     </ButtonGroup>
 				</nav>
 			</div>

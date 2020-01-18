@@ -31,7 +31,7 @@ export type ReducerState = {
  * This houses the content of the generator. The actual content of each row is dependent based on the
  * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
  */
-const reducer = (state: ReducerState = {
+export const reducer = (state: ReducerState = {
 	rows: {},
 	sortedRows: [],
     showGrid: true,
@@ -122,23 +122,25 @@ const reducer = (state: ReducerState = {
             };
         }
 
-        case actions.TOGGLE_GRID:
-            return {
+        case actions.TOGGLE_GRID: {
+            const newState = {
                 ...state,
                 showGrid: !state.showGrid
             };
+            if (!state.showPreview) {
+                newState.showPreview = true;
+            }
+			return newState;
+		}
 
         case actions.TOGGLE_PREVIEW: {
             const newState = {
                 ...state,
                 showPreview: !state.showPreview
             };
-
-            // if the preview panel was the only one open, re-open the grid
             if (!state.showGrid) {
                 newState.showGrid = true;
             }
-
             return newState;
         }
 

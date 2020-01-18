@@ -56,12 +56,16 @@ function initStore (initialState: any) {
 	return store;
 }
 
-const store = initStore({});
-
-// allows dynamically changing the redux store as content is loaded async
-reducerRegistry.setChangeListener((reducers: any) => {
-	store.replaceReducer(persistReducer(persistConfig, combine(reducers)));
-});
+// for testing we set up our own mock stores with the subset of whatever we want to examine
+let store: any;
+if (process.env.NODE_ENV !== 'test') {
+	store = initStore({});
+	
+	// allows dynamically changing the redux store as content is loaded async
+	reducerRegistry.setChangeListener((reducers: any) => {
+		store.replaceReducer(persistReducer(persistConfig, combine(reducers)));
+	});
+}
 
 export default store;
 
