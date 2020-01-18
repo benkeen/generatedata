@@ -10,7 +10,13 @@ const hexLen = hex.length;
 // TODO should accommodate negative numbers
 export const getRandomNum = (min: number, max: number) => {
 	const range = Math.abs(max - min);
-	return Math.round(Math.random() * range) - Math.abs(min);
+	let val = Math.round(Math.random() * range);
+	if (min < 0) {
+		val -= Math.abs(min);
+	} else {
+		val += Math.abs(min);
+	}
+	return val;
 };
 
 export const getRandomBool = () => Math.random() < 0.5;
