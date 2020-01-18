@@ -3,13 +3,9 @@ import { GenerationData } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { NumberRangeState } from './NumberRange.ui';
 
-export const rowStateReducer = (state: NumberRangeState) => {
-	console.log('...', state);
-	return state;
-}
+export const rowStateReducer = (state: NumberRangeState) => state;
 
 export const generate = (data: GenerationData) => {
-	console.log(data);
 	const { min, max } = data.rowState;
 	return {
 		display: getRandomNum(min, max)

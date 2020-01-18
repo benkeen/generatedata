@@ -23,15 +23,15 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps) => {
 		<div>
 			{i18n.between}
 			<input
-				type="text"
-				style={{ width: 30 }}
+				type="number"
+				style={{ width: 50 }}
 				value={data.min}
 				onChange={(e: any) => onChange('min', e.target.value)}
 			/>
 			{i18n.and}
 			<input
-				type="text"
-				style={{ width: 30 }}
+				type="number"
+				style={{ width: 50 }}
 				value={data.max}
 				onChange={(e: any) => onChange('max', e.target.value)}
 			/>

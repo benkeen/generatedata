@@ -4,7 +4,9 @@ import Dropdown from '../dropdown/Dropdown';
 import CloseIcon from '@material-ui/icons/Close';
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
+import Refresh from '@material-ui/icons/Refresh';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import { getArrayOfSize } from '../../utils/arrayUtils';
 import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
@@ -47,6 +49,11 @@ const PreviewPanel = ({
                     </span>
                 </span>
                 <span>
+					<span onClick={() => {}}>
+                        <IconButton size="small" aria-label="Refresh">
+                            <Refresh fontSize="large" />
+                        </IconButton>
+                    </span>
                     <span onClick={toggleLayout}>
                         <IconButton size="small" aria-label="Toggle layout">
                             <ToggleDirectionIcon fontSize="large" />
@@ -75,25 +82,4 @@ const PreviewPanel = ({
 };
 
 export default PreviewPanel;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

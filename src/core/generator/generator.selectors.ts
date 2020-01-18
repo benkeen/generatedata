@@ -58,7 +58,7 @@ export const getGenerationTemplate = createSelector(
 
 				// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row 
 				// state into something friendlier for the generation step
-                rowStateReducer: rowStateReducer ? rowStateReducer(data) : data,
+                rowState: rowStateReducer ? rowStateReducer(data) : data,
 
                 // DT methods for the actual generation of this cell
                 generateFunc: generate,
