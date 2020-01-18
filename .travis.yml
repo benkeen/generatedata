@@ -5,6 +5,7 @@ node_js:
 
 script:
   - yarn install
+  - yarn build
   - yarn test
 
 jobs:
