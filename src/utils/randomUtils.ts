@@ -100,3 +100,51 @@ export const getRandomSubset = (arr: any[], size: number) => {
     }
 	return shuffled.slice(min);
 };
+
+
+/**
+ * Generates a string of lorem ipsum words.
+ */
+export const generateRandomTextStr = (words: string[], startsWithLipsum: boolean, min: number, max?: number) => {
+	let numWords = (max) ? getRandomNum(min, max) : min;
+
+	const totalWords = words.length;
+	if (numWords > totalWords) {
+		numWords = totalWords;
+	}
+	let offset = 0;
+	if (!startsWithLipsum) {
+		offset = getRandomNum(2, totalWords - (numWords + 1));
+	}
+	return words.slice(offset, numWords).join(' ');
+};
+
+
+// Converts all x's and X's in a string with a random digit. X's: 1-9, x's: 0-9.
+/*public static function generateRandomNumStr($str) {
+	// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9.
+	$new_str = "";
+	$strlen = strlen($str);
+	for ($i=0; $i<$strlen; $i++) {
+		if ($str[$i] == '\\' && ($str[$i+1] == "X" || $str[$i+1] == "x")) {
+			continue;
+		} else if ($str[$i] == "X") {
+			if ($i != 0 && ($str[$i-1] == '\\')) {
+				$new_str .= "X";
+			} else {
+				$new_str .= mt_rand(1, 9);
+			}
+		} else if ($str[$i] == "x") {
+			if ($i != 0 && ($str[$i-1] == '\\')) {
+				$new_str .= "x";
+			} else {
+				$new_str .= mt_rand(0, 9);
+			}
+		} else {
+			$new_str .= $str[$i];
+		}
+	}
+
+	return trim($new_str);
+}*/
+

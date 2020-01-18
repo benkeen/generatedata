@@ -1,10 +1,4 @@
-<?php
-
-/**
- * @package DataTypes
- */
-
-class DataType_PersonalNumber extends DataTypePlugin {
+/*
 	protected $isEnabled = true;
 	protected $dataTypeName = "PersonalNumber";
 	protected $dataTypeFieldGroup = "human_data";
@@ -16,10 +10,8 @@ class DataType_PersonalNumber extends DataTypePlugin {
 	static $sep = "-";
 
 
-	/**
-	 * Generate a random personal number, and return the display string and additional meta data for use
-	 * by any other Data Type.
-	 */
+	// Generate a random personal number, and return the display string and additional meta data for use
+	// by any other Data Type.
 	public function generate($generator, $generationContextData) {
 		$generationOptions = $generationContextData["generationOptions"];
 
@@ -143,5 +135,4 @@ class DataType_PersonalNumber extends DataTypePlugin {
 			"SQLField_MSSQL" => "VARCHAR(" . $len . ") NULL"
 		);
 	}
-
-}
+*/

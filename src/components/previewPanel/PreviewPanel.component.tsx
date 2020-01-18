@@ -50,9 +50,11 @@ const PreviewPanel = ({
                 </span>
                 <span>
 					<span onClick={() => {}}>
-                        <IconButton size="small" aria-label="Refresh">
-                            <Refresh fontSize="large" />
-                        </IconButton>
+						<Tooltip title="Refresh panel" placement="bottom">
+							<IconButton size="small" aria-label="Refresh">
+								<Refresh fontSize="large" />
+							</IconButton>
+						</Tooltip>
                     </span>
                     <span onClick={toggleLayout}>
                         <IconButton size="small" aria-label="Toggle layout">

@@ -1,21 +1,25 @@
 import * as React from 'react';
 import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+export type TextFixedState = {
+	numWords: number;
+};
+
+export const state: TextFixedState = {
 	numWords: 10
 };
 
-export const Options = ({ i18n, id, data, onUpdate }: OptionsProps) => {
+export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
     const onChange = (e: React.FormEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLSelectElement).value;
         onUpdate({
             numWords: value
         });
     };
-
     return (
         <>
-            {i18n.TextFixed_generate} #<input type="text" style={{ width: 30 }} value={data.numWords} onChange={onChange}/>
+            {i18n.TextFixed_generate}
+			#<input type="text" style={{ width: 30 }} value={data.numWords} onChange={onChange} />
             {i18n.TextFixed_words}
         </>
     );
