@@ -151,7 +151,7 @@ const Grid = ({ rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onCo
                     <div>
                         <div className={styles.gridHeaderWrapper}>
                             <div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
-                                <div className={styles.orderCol} />
+                                <div className={styles.orderCol}>{rows.length}</div>
                                 <div className={styles.titleCol}>{i18n.row_label}</div>
                                 <div className={styles.dataTypeCol}>{i18n.data_type}</div>
                                 <div className={styles.examplesCol}>{i18n.examples}</div>

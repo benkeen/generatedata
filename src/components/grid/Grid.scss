@@ -22,6 +22,12 @@ div.gridHeader {
   font-style: italic;
   border-bottom: 1px solid black;
   border-radius: 0;
+
+  .orderCol {
+	  font-style: italic;
+	  color: #cccccc;
+	  padding: 0 0 0 17px;
+  }
 }
 
 .scrollableGridRows {
@@ -113,24 +119,8 @@ div.deleteCol, div.helpCol {
   padding: 7px 2px;
 }
 
-
-//.gridMedium {
-//  .titleCol {
-//    flex: 2 0 80px;
-//  }
-//  .dataTypeCol {
-//    flex: 3 0 80px;
-//  }
-//}
-
 .gridSmall {
   .examplesCol, .optionsCol {
     display: none;
   }
-  //.titleCol {
-  //  flex: 2 0 80px;
-  //}
-  //.dataTypeCol {
-  //  flex: 3 0 80px;
-  //}
 }

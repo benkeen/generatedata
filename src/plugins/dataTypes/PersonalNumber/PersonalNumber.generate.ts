@@ -1,3 +1,5 @@
+export const generate = () => {};
+
 /*
 	protected $isEnabled = true;
 	protected $dataTypeName = "PersonalNumber";
