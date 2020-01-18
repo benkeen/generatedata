@@ -61,4 +61,25 @@ describe('generator section', () => {
 		expect(selectors.isGridVisible(store.getState())).toEqual(true);
 	});
 
+	it('layout is horizontal by default', () => {
+		expect(selectors.getBuilderLayout(store.getState())).toEqual('horizontal');
+	});
+
+	it('toggling the layout', () => {
+		store.dispatch(actions.toggleLayout());
+		expect(selectors.getBuilderLayout(store.getState())).toEqual('vertical');
+
+		store.dispatch(actions.toggleLayout());
+		expect(selectors.getBuilderLayout(store.getState())).toEqual('horizontal');
+	});
+
+	it('sets the default number of rows to 5', () => {
+		expect(selectors.getNumPreviewRows(store.getState())).toEqual(5);
+	});
+
+	it('updates the number of preview rows', () => {
+		store.dispatch(actions.updateNumPreviewRows(10));
+		expect(selectors.getNumPreviewRows(store.getState())).toEqual(10);
+	});
+
 });

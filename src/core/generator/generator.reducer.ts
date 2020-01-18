@@ -37,7 +37,7 @@ export const reducer = (state: ReducerState = {
     showGrid: true,
     showPreview: true,
     builderLayout: 'horizontal',
-    numPreviewRows: 3,
+    numPreviewRows: 5,
     selectedExportType: 'JSON',
     exportTypeSettings: null
 }, action: AnyAction) => {
