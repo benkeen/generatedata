@@ -7,21 +7,18 @@ import { getStrings } from './langUtils';
 export const getSortedGroupedDataTypes = () => {
 	const i18n = getStrings();
 
-	let groupedOptions: any = [];
-	coreConfig.dataTypeGroups.map((group: string) => {
+	return coreConfig.dataTypeGroups.map((group: string) => {
 		const options = dataTypeConfig.filter((dataType: any) => dataType.fieldGroup === group).map((i: any) => {
 			return {
 				value: i.folder,
 				label: i.name
 			};
 		});
-		groupedOptions.push({
+		return {
 			label: i18n.core[group],
 			options
-		});
+		};
 	});
-
-	return groupedOptions;
 };
 
 
@@ -50,14 +47,14 @@ export const getDataTypeDefaultState = (dataType: string) => {
 
 
 export const getDataTypeHelpComponent = (dataType: string) => {
-	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : () => {};
+	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : () => { };
 };
 
 
 export const getDataTypeProcessOrders = () => {
-    const processOrders: any = {};
-    dataTypeConfig.map((row) => {
-        processOrders[row.folder] = row.processOrder;
-    });
-    return processOrders;
+	const processOrders: any = {};
+	dataTypeConfig.forEach((row) => {
+		processOrders[row.folder] = row.processOrder;
+	});
+	return processOrders;
 };

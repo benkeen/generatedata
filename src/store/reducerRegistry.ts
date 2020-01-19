@@ -1,26 +1,26 @@
 // see: http://nicolasgallagher.com/redux-modules-and-code-splitting/
 export class ReducerRegistry {
-	constructor () {
-		this._emitChange = null;
-		this._reducers = {};
+	constructor() {
+		this.emitChange = null;
+		this.reducers = {};
 	}
 
-    _emitChange: any;
-	_reducers: any;
+	emitChange: any;
+	reducers: any;
 
-	getReducers () {
-		return { ...this._reducers };
+	getReducers() {
+		return { ...this.reducers };
 	}
 
-	register (name: string, reducer: any) {
-		this._reducers = { ...this._reducers, [name]: reducer };
-		if (this._emitChange) {
-			this._emitChange(this.getReducers());
+	register(name: string, reducer: any) {
+		this.reducers = { ...this.reducers, [name]: reducer };
+		if (this.emitChange) {
+			this.emitChange(this.getReducers());
 		}
 	}
 
-	setChangeListener (listener: any) {
-		this._emitChange = listener;
+	setChangeListener(listener: any) {
+		this.emitChange = listener;
 	}
 }
 

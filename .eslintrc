@@ -17,8 +17,7 @@
 		"react"
 	],
 	"extends": [
-		"airbnb",
-    	"eslint:recommended",
+		"eslint:recommended",
 		"plugin:react/recommended"
 	],
 	"rules": {
@@ -29,7 +28,9 @@
 		"indent": [
 			"error",
 			"tab",
-			{ "SwitchCase": 1 }
+			{
+				"SwitchCase": 1
+			}
 		],
 		"object-curly-spacing": [
 			"error",
@@ -49,7 +50,17 @@
 		"comma-dangle": "off",
 		"no-tabs": "off",
 		"no-multiple-empty-lines": "off",
-		"no-plusplus": "off"
+		"no-plusplus": "off",
+		"import/no-unresolved": "off",
+		"arrow-body-style": "off",
+		"import/extensions": "off",
+		"import/prefer-default-export": "off",
+		"lines-between-class-members": "off",
+		"object-curly-newline": "off",
+		"import/no-mutable-exports": "off",
+		"react/no-unused-prop-types": "off",
+		"react/jsx-indent": [2, "tab"],
+        "react/jsx-indent-props": [2, "tab"]
 	},
 	"settings": {
 		"react": {

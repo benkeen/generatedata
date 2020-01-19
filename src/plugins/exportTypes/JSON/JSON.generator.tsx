@@ -17,10 +17,10 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 	// } else {
 	// 	$content = $this->generateSimple($generator, $data, $stripWhitespace);
 	// }
-    // const content = generateSimple(data);
+	// const content = generateSimple(data);
 
-    const generatedData = generator.generateExportData(generator.data);
-    const content = generateSimple(generatedData, jsonSettings.stripWhitespace);
+	const generatedData = generator.generateExportData(generator.data);
+	const content = generateSimple(generatedData, jsonSettings.stripWhitespace);
 
 	return {
 		success: true,
@@ -30,62 +30,62 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 
 
 export const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean) => {
-    let content = '';
+	let content = '';
 
-    // generating a nested data structure is slower than just a plain JSON structure (see the README
-    // for details on how the nested data structure works). So rather than slow everyone down, we pass that
-    // off to a separate function
-    const nested = isNested(generationData.columnTitles);
+	// generating a nested data structure is slower than just a plain JSON structure (see the README
+	// for details on how the nested data structure works). So rather than slow everyone down, we pass that
+	// off to a separate function
+	const nested = isNested(generationData.columnTitles);
 
-    if (nested) {
-        // TODO
-    } else {
-        content += getNonNestedData(generationData, stripWhitespace);
-    }
+	if (nested) {
+		// TODO
+	} else {
+		content += getNonNestedData(generationData, stripWhitespace);
+	}
 
-    return content;
+	return content;
 };
 
 
 const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitespace: boolean) => {
-    let content = '';
-    let comma = '';
+	let content = '';
+	let comma = '';
 
-    const newline = (stripWhitespace) ? '' : '\n';
-    const tab = (stripWhitespace) ? '' : '\t';
-    const space = (stripWhitespace) ? '' : ' ';
+	const newline = (stripWhitespace) ? '' : '\n';
+	const tab = (stripWhitespace) ? '' : '\t';
+	const space = (stripWhitespace) ? '' : ' ';
 
-    if (generationData.isFirstBatch) {
-        content += '[';
-    } else {
-        comma = ",";
-    }
+	if (generationData.isFirstBatch) {
+		content += '[';
+	} else {
+		comma = ",";
+	}
 
-    generationData.rows.forEach((row: any) => {
-        content += `${comma}${newline}${tab}{`;
-        comma = '';
+	generationData.rows.forEach((row: any) => {
+		content += `${comma}${newline}${tab}{`;
+		comma = '';
 
-        generationData.columnTitles.forEach((columnTitle: any, colIndex: number) => {
-            const propName: string = columnTitle.replace(/"/, '\"');
+		generationData.columnTitles.forEach((columnTitle: any, colIndex: number) => {
+			const propName: string = columnTitle.replace(/"/, '\"');
 
-            // encase all values in double quotes unless it's a number column, or it's a boolean column and it's a
-            // valid JS boolean
-            let value = row[colIndex];
-            if (!isNumeric(value) && !isJavascriptBoolean(value)) {
-                value = `"${value}"`;
-            }
-            content += `${comma}${newline}${tab}${tab}"${propName}":${space}${value}`;
-            comma = ',';
-        });
+			// encase all values in double quotes unless it's a number column, or it's a boolean column and it's a
+			// valid JS boolean
+			let value = row[colIndex];
+			if (!isNumeric(value) && !isJavascriptBoolean(value)) {
+				value = `"${value}"`;
+			}
+			content += `${comma}${newline}${tab}${tab}"${propName}":${space}${value}`;
+			comma = ',';
+		});
 
-        content += `${newline}${tab}}`;
-    });
+		content += `${newline}${tab}}`;
+	});
 
-    if (generationData.isLastBatch) {
-        content += `${newline}]`;
-    }
+	if (generationData.isLastBatch) {
+		content += `${newline}]`;
+	}
 
-    return content;
+	return content;
 };
 
 
@@ -96,30 +96,30 @@ const getNestedData = () => {
 
 
 const getColumnValue = (prop: string, value: any) => {
-    const propName: string = prop.replace(/"/, '\"');
+	const propName: string = prop.replace(/"/, '\"');
 
-    // x.y.z field names => nested JSON
-    const levels = propName.split('.');
-    const fieldName = levels[levels.length-1];
+	// x.y.z field names => nested JSON
+	const levels = propName.split('.');
+	const fieldName = levels[levels.length - 1];
 
-    // // How many nested levels match the previous column?
-    // for ($k = 0; $k < count($levels) && $k < count($nested) && $nested[$k] === $levels[$k]; $k++) {
-    // }
-    //
-    // // Pop closing levels
-    // while (count($nested) > $k) {
-    //     $content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
-    //     array_pop($nested);
-    //     $comma = ",";
-    // }
-    //
-    // // Push new nested levels
-    // for ($l = $k; $l < count($levels); $l++) {
-    //     $lev = $levels[$l];
-    //     array_push($nested, $lev);
-    //     $content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
-    //     $comma = "";
-    // }
+	// // How many nested levels match the previous column?
+	// for ($k = 0; $k < count($levels) && $k < count($nested) && $nested[$k] === $levels[$k]; $k++) {
+	// }
+	//
+	// // Pop closing levels
+	// while (count($nested) > $k) {
+	//     $content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
+	//     array_pop($nested);
+	//     $comma = ",";
+	// }
+	//
+	// // Push new nested levels
+	// for ($l = $k; $l < count($levels); $l++) {
+	//     $lev = $levels[$l];
+	//     array_push($nested, $lev);
+	//     $content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
+	//     $comma = "";
+	// }
 };
 
 

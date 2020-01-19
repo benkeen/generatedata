@@ -1,4 +1,4 @@
-import { GDLocale } from '../../types/general';
+import { GDLocale } from '../../types/general.d';
 
 // standalone location for the selected locale. Keeping this out of redux lets us just import it wherever
 let currentLocale: GDLocale;

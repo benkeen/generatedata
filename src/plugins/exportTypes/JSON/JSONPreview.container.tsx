@@ -1,19 +1,15 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Preview from './JSONPreview.component';
-// import * as generatorSelectors from '../../../core/generator/generator.selectors';
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = () => ({});
 
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    // toggleLayout: () => dispatch(generatorActions.toggleLayout()),
-    // togglePreview: () => dispatch(generatorActions.togglePreview()),
-    // updateNumPreviewRows: (numRows: number) => dispatch(generatorActions.updateNumPreviewRows(numRows))
+const mapDispatchToProps = () => ({
+	// toggleLayout: () => dispatch(generatorActions.toggleLayout()),
+	// togglePreview: () => dispatch(generatorActions.togglePreview()),
+	// updateNumPreviewRows: (numRows: number) => dispatch(generatorActions.updateNumPreviewRows(numRows))
 });
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(Preview);
