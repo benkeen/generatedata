@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
-import Chip from '@material-ui/core/Chip';
 
-export const enum ListType {
-	EXACTLY = 'EXACTLY',
-	AT_MOST = 'AT_MOST'
-}
+export type ListType = 'EXACTLY' | 'AT_MOST';
 
 export type ListState = {
 	example: String;
@@ -18,110 +14,110 @@ export type ListState = {
 
 export const state: ListState = {
 	example: '',
-	listType: ListType.EXACTLY,
+	listType: 'EXACTLY',
 	exactly: '',
 	atMost: '',
 	values: ''
 };
 
-export const Example = ({ data, onUpdate, coreI18n, i18n }: ExampleProps) => {
-    const onChange = (example: any) => {
-        onUpdate({
+export const Example = ({ data, onUpdate, i18n }: ExampleProps): React.ReactNode => {
+	const onChange = (example: any) => {
+		onUpdate({
 			...data,
-            example: example,
-            values: example
-        });
-    };
+			example: example,
+			values: example
+		});
+	};
 
-    const options = [
-        { value: '1|3|5|7|9|11|13|15|17|19|21|23|25|27|29|31|33|35|37|39|41|43|45|47|49', label: i18n.example_1 },
-        { value: '2|4|6|8|10|12|14|16|18|20|22|24|26|28|30|32|34|36|38|40|42|44|46|48|50', label: i18n.example_2 },
-        { value: '1|2|3|4|5|6|7|8|9|10', label: '1-10' },
-        { value: i18n.one_to_ten, label: i18n.example_3 },
-        { value: '1|2|3|5|7|11|13|17|19|23|29|31|37|41|43|47|53|59|61|67|71|73|79|83|89|97', label: i18n.example_4 },
-        { value: i18n.colours, label: i18n.example_5 },
-        { value: i18n.relationship_states, label: i18n.example_6 },
-        { value: i18n.prefix, label: i18n.example_7 },
-        { value: i18n.company_names, label: i18n.example_8 },
-        { value: i18n.companies, label: i18n.example_9 },
-        { value: i18n.drug_names, label: i18n.example_10 },
-        { value: i18n.food_types, label: i18n.example_11 },
-        { value: i18n.car_brands, label: i18n.example_12 }
-    ];
+	const options = [
+		{ value: '1|3|5|7|9|11|13|15|17|19|21|23|25|27|29|31|33|35|37|39|41|43|45|47|49', label: i18n.example_1 },
+		{ value: '2|4|6|8|10|12|14|16|18|20|22|24|26|28|30|32|34|36|38|40|42|44|46|48|50', label: i18n.example_2 },
+		{ value: '1|2|3|4|5|6|7|8|9|10', label: '1-10' },
+		{ value: i18n.one_to_ten, label: i18n.example_3 },
+		{ value: '1|2|3|5|7|11|13|17|19|23|29|31|37|41|43|47|53|59|61|67|71|73|79|83|89|97', label: i18n.example_4 },
+		{ value: i18n.colours, label: i18n.example_5 },
+		{ value: i18n.relationship_states, label: i18n.example_6 },
+		{ value: i18n.prefix, label: i18n.example_7 },
+		{ value: i18n.company_names, label: i18n.example_8 },
+		{ value: i18n.companies, label: i18n.example_9 },
+		{ value: i18n.drug_names, label: i18n.example_10 },
+		{ value: i18n.food_types, label: i18n.example_11 },
+		{ value: i18n.car_brands, label: i18n.example_12 }
+	];
 
-    return (
-        <>
-            <Dropdown
-                value={data.example}
-                onChange={(i: any) => onChange(i.value)}
-                options={options}
-            />
-            <div>{i18n.separated_by_pipe}</div>
-        </>
-    );
+	return (
+		<>
+			<Dropdown
+				value={data.example}
+				onChange={(i: any) => onChange(i.value)}
+				options={options}
+			/>
+			<div>{i18n.separated_by_pipe}</div>
+		</>
+	);
 };
 
-export const Options = ({ i18n, data, id, onUpdate }: OptionsProps) => {
+export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): React.ReactNode => {
 	// const [] = React.useRef();
-    const onChange = (field: string, value: string) => {
+	const onChange = (field: string, value: string) => {
 		onUpdate({
 			...data,
 			[field]: value
 		});
 
-		if (field === ListType.EXACTLY) {
-			
-		} else if (field === ListType.AT_MOST) {
+		if (field === 'EXACTLY') {
+
+		} else if (field === 'AT_MOST') {
 
 		}
-    };
+	};
 
-    return (
-        <>
-            <div>
+	return (
+		<>
+			<div>
 				<input
 					type="radio"
 					id={`listType1-${id}`}
-					value={ListType.EXACTLY}
-					checked={data.listType === ListType.EXACTLY}
-					onChange={() => onChange('listType', ListType.EXACTLY)}
+					value="EXACTLY"
+					checked={data.listType === 'EXACTLY'}
+					onChange={() => onChange('listType', 'EXACTLY')}
 				/>
-                <label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
-                <input
+				<label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
+				<input
 					type="text"
 					size={2}
 					id={`dtListExactly_${id}`}
 					value={data.exactly}
 					onChange={(e) => onChange('exactly', e.target.value)}
 				/>
-                <input
+				<input
 					type="radio"
 					id={`listType2-${id}`}
-					value={ListType.AT_MOST}
-					checked={data.listType === ListType.AT_MOST}
-					onChange={() => onChange('listType', ListType.AT_MOST)}
+					value="AT_MOST"
+					checked={data.listType === 'AT_MOST'}
+					onChange={() => onChange('listType', 'AT_MOST')}
 				/>
-                <label htmlFor={`listType2-${id}`}>{i18n.at_most}</label>
-                <input
+				<label htmlFor={`listType2-${id}`}>{i18n.at_most}</label>
+				<input
 					type="text"
 					size={2}
 					id={`dtListAtMost_${id}`}
 					value={data.atMost}
 					onChange={(e) => onChange('atMost', e.target.value)}
 				/>
-            </div>
-            <div>
-                <input
+			</div>
+			<div>
+				<input
 					type="text"
 					value={data.values}
 					onChange={(e) => onChange('values', e.target.value)}
 				/>
-            </div>
-        </>
-    );
+			</div>
+		</>
+	);
 };
 
-export const Help = ({ i18n }: HelpProps) => <p>{i18n.help}</p>;
+export const Help = ({ i18n }: HelpProps): React.ReactNode => <p>{i18n.help}</p>;
 
 // var _validate = function(rows) {
 // 	var missingOptions = {

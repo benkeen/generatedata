@@ -4,7 +4,7 @@ import { dataTypes, dataTypeNames } from '../../build/dataTypesListUI';
 import { getStrings } from './langUtils';
 
 // used for the Data Type selection dropdown
-export const getSortedGroupedDataTypes = () => {
+export const getSortedGroupedDataTypes = (): any => {
 	const i18n = getStrings();
 
 	return coreConfig.dataTypeGroups.map((group: string) => {
@@ -22,7 +22,7 @@ export const getSortedGroupedDataTypes = () => {
 };
 
 
-export const getDataTypeComponents = (dataType: string | null) => {
+export const getDataTypeComponents = (dataType: string | null): any => {
 	let Options = null;
 	let Example = null;
 	let Help = null;
@@ -41,17 +41,17 @@ export const getDataTypeComponents = (dataType: string | null) => {
 };
 
 
-export const getDataTypeDefaultState = (dataType: string) => {
+export const getDataTypeDefaultState = (dataType: string): any => {
 	return dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].state ? dataTypes[dataType].state : null;
 };
 
 
-export const getDataTypeHelpComponent = (dataType: string) => {
-	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : () => { };
+export const getDataTypeHelpComponent = (dataType: string): any => {
+	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : () => {};
 };
 
 
-export const getDataTypeProcessOrders = () => {
+export const getDataTypeProcessOrders = (): any => {
 	const processOrders: any = {};
 	dataTypeConfig.forEach((row) => {
 		processOrders[row.folder] = row.processOrder;

@@ -6,7 +6,7 @@ export const state = {
 	option: ''
 };
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}
@@ -31,9 +31,10 @@ export const Help = ({ i18n }: HelpProps) => (
 	</>
 );
 
-export const Options = ({ id, data, onUpdate }: OptionsProps) => {
-    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-        const value = (e.target as HTMLSelectElement).value;
+export const Options = ({ id, data, onUpdate }: OptionsProps): React.ReactNode => {
+	const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+		// @ts-ignore
+		const value = e.target.value;
 		onUpdate({
 			...data,
 			option: value

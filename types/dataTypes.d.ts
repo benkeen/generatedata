@@ -31,3 +31,8 @@ export type GenerationData = {
     rowState: any;
     existingRowData: any[];
 };
+
+export type DTGenerateReturnType = {
+	display: string | number | boolean;
+	[key: string]: any;
+}

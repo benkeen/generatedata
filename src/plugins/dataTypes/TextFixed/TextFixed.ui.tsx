@@ -10,19 +10,20 @@ export const state: TextFixedState = {
 };
 
 export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
-    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-        const value = (e.target as HTMLSelectElement).value;
-        onUpdate({
-            numWords: value
-        });
-    };
-    return (
-        <>
-            {i18n.TextFixed_generate}
+	const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+		// @ts-ignore
+		const value = e.target.value;
+		onUpdate({
+			numWords: value
+		});
+	};
+	return (
+		<>
+			{i18n.TextFixed_generate}
 			#<input type="text" style={{ width: 30 }} value={data.numWords} onChange={onChange} />
-            {i18n.TextFixed_words}
-        </>
-    );
+			{i18n.TextFixed_words}
+		</>
+	);
 };
 
 export const Help = ({ i18n }: HelpProps) => <p>{i18n.TextFixed_help}</p>;

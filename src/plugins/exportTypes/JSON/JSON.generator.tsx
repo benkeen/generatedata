@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ExportTypeGenerationData, GenEnvironment } from '../../../../types/general';
 import { JSONSettings } from './JSON.ui';
 import { isNumeric } from '../../../utils/generalUtils';
@@ -6,7 +5,7 @@ import { isNumeric } from '../../../utils/generalUtils';
 
 // TODO will also need to pass in a whole thwack of other stuff previous assigned to $generator instance.
 // maybe change first param to $generationContext & include genEnvironment & everything else
-export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generator: any) => {
+export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generator: any): any => {
 
 	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 	// $this->determineNumericFields($template);
@@ -29,7 +28,7 @@ export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSetti
 };
 
 
-export const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean) => {
+export const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
 	let content = '';
 
 	// generating a nested data structure is slower than just a plain JSON structure (see the README
@@ -47,7 +46,7 @@ export const generateSimple = (generationData: ExportTypeGenerationData, stripWh
 };
 
 
-const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitespace: boolean) => {
+const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
 	let content = '';
 	let comma = '';
 
@@ -66,7 +65,7 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 		comma = '';
 
 		generationData.columnTitles.forEach((columnTitle: any, colIndex: number) => {
-			const propName: string = columnTitle.replace(/"/, '\"');
+			const propName: string = columnTitle.replace(/"/, '"');
 
 			// encase all values in double quotes unless it's a number column, or it's a boolean column and it's a
 			// valid JS boolean
@@ -89,40 +88,37 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 };
 
 
-const getNestedData = () => {
+// const getNestedData = () => {
 
-};
-
-
-
-const getColumnValue = (prop: string, value: any) => {
-	const propName: string = prop.replace(/"/, '\"');
-
-	// x.y.z field names => nested JSON
-	const levels = propName.split('.');
-	const fieldName = levels[levels.length - 1];
-
-	// // How many nested levels match the previous column?
-	// for ($k = 0; $k < count($levels) && $k < count($nested) && $nested[$k] === $levels[$k]; $k++) {
-	// }
-	//
-	// // Pop closing levels
-	// while (count($nested) > $k) {
-	//     $content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
-	//     array_pop($nested);
-	//     $comma = ",";
-	// }
-	//
-	// // Push new nested levels
-	// for ($l = $k; $l < count($levels); $l++) {
-	//     $lev = $levels[$l];
-	//     array_push($nested, $lev);
-	//     $content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
-	//     $comma = "";
-	// }
-};
+// };
 
 
+// const getColumnValue = (prop: string, value: any) => {
+// 	const propName: string = prop.replace(/"/, '\"');
+
+// 	// x.y.z field names => nested JSON
+// 	const levels = propName.split('.');
+// 	const fieldName = levels[levels.length - 1];
+
+// // How many nested levels match the previous column?
+// for ($k = 0; $k < count($levels) && $k < count($nested) && $nested[$k] === $levels[$k]; $k++) {
+// }
+//
+// // Pop closing levels
+// while (count($nested) > $k) {
+//     $content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
+//     array_pop($nested);
+//     $comma = ",";
+// }
+//
+// // Push new nested levels
+// for ($l = $k; $l < count($levels); $l++) {
+//     $lev = $levels[$l];
+//     array_push($nested, $lev);
+//     $content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
+//     $comma = "";
+// }
+// };
 
 /*
 [
@@ -284,11 +280,10 @@ private function shouldStripWhitespace()
 // }
 
 
-const getDownloadFilename = () => {
-	// $time = date("M-j-Y");
-	// return "data{$time}.json";
-};
+// const getDownloadFilename = () => {
+// 	// $time = date("M-j-Y");
+// 	// return "data{$time}.json";
+// };
 
-
-export const isJavascriptBoolean = (n: any) => n === 'true' || n === 'false' || n === true || n === false;
-export const isNested = (columnTitles: string[]) => columnTitles.some((i: string) => /\./.test(i));
+export const isJavascriptBoolean = (n: any): boolean => n === 'true' || n === 'false' || n === true || n === false;
+export const isNested = (columnTitles: string[]): boolean => columnTitles.some((i: string) => /\./.test(i));

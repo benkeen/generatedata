@@ -20,22 +20,22 @@ export const state: DateState = {
 	format: 'MMM L, y'
 };
 
-export const getOptions = () => {
+export const getOptions = (): any[] => {
 	const now = new Date();
 
 	const options: any = [];
 	const formats = [
-		'MMM d, y',    // Jan 1, 2020
-		'MMMM do, y',  // January 1st, 2020
+		'MMM d, y', // Jan 1, 2020
+		'MMMM do, y',// January 1st, 2020
 		'EEE, MMM dd', // Wed, Jan 01
-		'EEE, MMM do, y',  // Wed, Jan 1st, 2012
-		'LL.dd.yy',    // 03.25.20
-		'LL-dd-yy',    // 03-25-06
-		'LL/dd/yy',    // 03/25/06,
-		'LL/dd/y',     // 03/25/2012
-		'dd.LL.yy',    // 25.03.2020
-		'dd-LL-yy',    // 25-03-06
-		'dd/LL/y'      // 25/03/2012
+		'EEE, MMM do, y', // Wed, Jan 1st, 2012
+		'LL.dd.yy', // 03.25.20
+		'LL-dd-yy', // 03-25-06
+		'LL/dd/yy', // 03/25/06,
+		'LL/dd/y', // 03/25/2012
+		'dd.LL.yy', // 25.03.2020
+		'dd-LL-yy', // 25-03-06
+		'dd/LL/y' // 25/03/2012
 	];
 	formats.forEach((currFormat) => {
 		options.push({
@@ -45,14 +45,14 @@ export const getOptions = () => {
 	});
 
 	return options.concat([
-        { label: 'MySQL datetime', value: 'y-LL-dd HH:mm:ss' },
+		{ label: 'MySQL datetime', value: 'y-LL-dd HH:mm:ss' },
 		{ label: 'Unix timestamp (secs)', value: 't' },
 		{ label: 'Unix timestamp (millisecs)', value: 'T' }
 	]);
 };
 
-export const Example = ({ data, onUpdate }: ExampleProps) => {
-    const onChange = ({ value }: { value: string }) => {
+export const Example = ({ data, onUpdate }: ExampleProps): React.ReactNode => {
+	const onChange = ({ value }: { value: string }) => {
 		onUpdate({
 			...data,
 			example: value,
@@ -69,57 +69,57 @@ export const Example = ({ data, onUpdate }: ExampleProps) => {
 	);
 };
 
-export const Options = ({ data, onUpdate, i18n }: OptionsProps) => {
-    const onChange = (field: string, value: any) => {
-        onUpdate({
-            ...data,
-            [field]: value
-        });
-    };
+export const Options = ({ data, onUpdate, i18n }: OptionsProps): React.ReactNode => {
+	const onChange = (field: string, value: any) => {
+		onUpdate({
+			...data,
+			[field]: value
+		});
+	};
 
 	return (
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <div>
-                <div className={styles.dateRow}>
-                    <label>{i18n.from}</label>
-                    <KeyboardDatePicker
-                        className={styles.dateField}
-                        margin="none"
-                        format="MM/dd/yyyy"
-                        value={fromUnixTime(data.fromDate)}
-                        onChange={(date) => onChange('fromDate', date)}
-                        InputProps={{
-                            style: {
-                                width: 120
-                            }
-                        }}
-                    />
-                    <label>{i18n.to}</label>
-                    <KeyboardDatePicker
-                        className={styles.dateField}
-                        margin="none"
-                        format="MM/dd/yyyy"
-                        value={fromUnixTime(data.toDate)}
-                        onChange={() => {}}
-                        InputProps={{
-                            style: {
-                                width: 120
-                            }
-                        }}
-                    />
-                </div>
-                <div>
-                    {i18n.format_code}
-                    <input type="text" value={data.format} style={{ width: 160 }}
-                        onChange={(e) => onChange('format', e.target.value)}
-                    />
-                </div>
-            </div>
-        </MuiPickersUtilsProvider>
+		<MuiPickersUtilsProvider utils={DateFnsUtils}>
+			<div>
+				<div className={styles.dateRow}>
+					<label>{i18n.from}</label>
+					<KeyboardDatePicker
+						className={styles.dateField}
+						margin="none"
+						format="MM/dd/yyyy"
+						value={fromUnixTime(data.fromDate)}
+						onChange={(date) => onChange('fromDate', date)}
+						InputProps={{
+							style: {
+								width: 120
+							}
+						}}
+					/>
+					<label>{i18n.to}</label>
+					<KeyboardDatePicker
+						className={styles.dateField}
+						margin="none"
+						format="MM/dd/yyyy"
+						value={fromUnixTime(data.toDate)}
+						onChange={() => { }}
+						InputProps={{
+							style: {
+								width: 120
+							}
+						}}
+					/>
+				</div>
+				<div>
+					{i18n.format_code}
+					<input type="text" value={data.format} style={{ width: 160 }}
+						onChange={(e) => onChange('format', e.target.value)}
+					/>
+				</div>
+			</div>
+		</MuiPickersUtilsProvider>
 	);
 };
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.help_intro}
@@ -133,10 +133,10 @@ export const Help = ({ i18n }: HelpProps) => (
 			</tr>
 		</table>
 
-        <hr />
+		<hr />
 
 		<h3 className="gdSubtitle">{i18n.day}</h3>
-        <hr />
+		<hr />
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
@@ -177,7 +177,7 @@ export const Help = ({ i18n }: HelpProps) => (
 		</table>
 
 		<h3 className="gdSubtitle">{i18n.week}</h3>
-        <hr />
+		<hr />
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>
@@ -188,7 +188,7 @@ export const Help = ({ i18n }: HelpProps) => (
 		</table>
 
 		<h3 className="gdSubtitle">{i18n.month}</h3>
-        <hr />
+		<hr />
 
 		<table cellPadding="0" cellSpacing="1">
 			<tr>

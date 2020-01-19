@@ -11,38 +11,38 @@ export const state = {
 	separator: ' '
 };
 
-export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
+export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
 
-    const onChange = (value: any) => {
-        onUpdate({
-            example: value,
-            value: value
-        });
-    };
+	const onChange = (value: any) => {
+		onUpdate({
+			example: value,
+			value: value
+		});
+	};
 
-    const options = [
-        { value: '', label: coreI18n.please_select },
-        { value: 'PersonalNumberWithoutHyphen', label: i18n.example_PersonalNumberWithoutHyphen },
-        { value: 'PersonalNumberWithHyphen', label: i18n.example_PersonalNumberWithHyphen }
-    ];
+	const options = [
+		{ value: '', label: coreI18n.please_select },
+		{ value: 'PersonalNumberWithoutHyphen', label: i18n.example_PersonalNumberWithoutHyphen },
+		{ value: 'PersonalNumberWithHyphen', label: i18n.example_PersonalNumberWithHyphen }
+	];
 
-    return (
-        <Dropdown
-            value={data.example}
-            onChange={(i: any) => onChange(i.value)}
-            options={options}
-        />
-    );
+	return (
+		<Dropdown
+			value={data.example}
+			onChange={(i: any) => onChange(i.value)}
+			options={options}
+		/>
+	);
 };
 
-export const Options = ({ i18n, data }: OptionsProps) => (
+export const Options = ({ i18n, data }: OptionsProps): React.ReactNode => (
 	<div>
 		{i18n.separators}
 		<input type="text" style={{ width: 78 }} value={data.separator} title={i18n.separator_help} />
 	</div>
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}

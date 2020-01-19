@@ -1,4 +1,4 @@
-import { GenerationData } from '../../../../types/dataTypes';
+import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
 
@@ -13,55 +13,55 @@ import { ExportTypeMetadata } from '../../../../types/exportTypes';
 //     }
 // }
 
-export const generate = (data: GenerationData) => {
-
+export const generate = (data: GenerationData): DTGenerateReturnType => {
+	return { display: '' };
 };
 
 
 // Called when the plugin is initialized during data generation. Initializes the
 // $citiesByCountryRegion private var.
-const initCityList = () => {
+// const initCityList = () => {
 
-    // $cities = array();
-    // $citiesByCountryRegion = array();
-    // while ($cityInfo = mysqli_fetch_assoc($response["results"])) {
-    //     $currCountrySlug = $cityInfo["country_slug"];
-    //     $currRegionSlug  = $cityInfo["region_slug"];
-    //     if (!array_key_exists($currCountrySlug, $citiesByCountryRegion)) {
-    //         $citiesByCountryRegion[$currCountrySlug] = array(
-    //             "numRegions" => 0,
-    //             "regions" => array()
-    //     );
-    //     }
-    //     if (!array_key_exists($currRegionSlug, $citiesByCountryRegion[$currCountrySlug]["regions"])) {
-    //         $citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug] = array(
-    //             "numCities" => 0,
-    //             "cities" => array()
-    //     );
-    //         $citiesByCountryRegion[$currCountrySlug]["numRegions"]++;
-    //     }
-    //     $citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug]["cities"][] = array(
-    //         "city"    => $cityInfo["city"],
-    //         "city_id" => $cityInfo["city_id"]
-    // );
-    //     $citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug]["numCities"]++;
-    //     $cities[] = $cityInfo["city"];
-    // }
-    //
-    // // now we've put together all the info, add in "numRegions" and "numCities" hash keys
-    // // at the appropriate spots in the data structure. This'll help speed up the data generation
-    // $this->citiesByCountryRegion = $citiesByCountryRegion;
-    // $this->cities = $cities;
-    // $this->numCities = count($cities);
-};
+// $cities = array();
+// $citiesByCountryRegion = array();
+// while ($cityInfo = mysqli_fetch_assoc($response["results"])) {
+//     $currCountrySlug = $cityInfo["country_slug"];
+//     $currRegionSlug  = $cityInfo["region_slug"];
+//     if (!array_key_exists($currCountrySlug, $citiesByCountryRegion)) {
+//         $citiesByCountryRegion[$currCountrySlug] = array(
+//             "numRegions" => 0,
+//             "regions" => array()
+//     );
+//     }
+//     if (!array_key_exists($currRegionSlug, $citiesByCountryRegion[$currCountrySlug]["regions"])) {
+//         $citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug] = array(
+//             "numCities" => 0,
+//             "cities" => array()
+//     );
+//         $citiesByCountryRegion[$currCountrySlug]["numRegions"]++;
+//     }
+//     $citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug]["cities"][] = array(
+//         "city"    => $cityInfo["city"],
+//         "city_id" => $cityInfo["city_id"]
+// );
+//     $citiesByCountryRegion[$currCountrySlug]["regions"][$currRegionSlug]["numCities"]++;
+//     $cities[] = $cityInfo["city"];
+// }
+//
+// // now we've put together all the info, add in "numRegions" and "numCities" hash keys
+// // at the appropriate spots in the data structure. This'll help speed up the data generation
+// $this->citiesByCountryRegion = $citiesByCountryRegion;
+// $this->cities = $cities;
+// $this->numCities = count($cities);
+// };
 
 
 export const getMetadata = (): ExportTypeMetadata => ({
-    sql: {
-        field: 'varchar(255)',
-        field_Oracle: 'varchar2(255)',
-        field_MSSQL: 'VARCHAR(255) NULL'
-    }
+	sql: {
+		field: 'varchar(255)',
+		field_Oracle: 'varchar2(255)',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
 });
 
 /*

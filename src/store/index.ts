@@ -14,19 +14,19 @@ const persistConfig = {
 };
 
 // preserve initial state for not-yet-loaded reducers
-const combine = (reducers: any) => {
+const combine = (reducers: any): any => {
 	const foundReducers = reducers;
 	const reducerNames = Object.keys(reducers);
 	Object.keys(initialState).forEach((item) => {
 		if (reducerNames.indexOf(item) === -1) {
-			foundReducers[item] = (state: any = null) => state;
+			foundReducers[item] = (state: any = null): any => state;
 		}
 	});
 	return combineReducers(reducers);
 };
 
 let persistor: Persistor;
-function initStore(state: any) {
+function initStore(state: any): any {
 	const middleware = [thunk];
 	const enhancers: any = [];
 	let composeEnhancers = compose;

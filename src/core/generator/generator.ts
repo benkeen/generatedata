@@ -7,7 +7,7 @@ import { ExportTarget, ExportTypeGenerateType, ExportTypeGenerationData } from '
 
 // temporary of course
 import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
-import { DataStructureFormat, JSONSettings } from '../../plugins/exportTypes/JSON/JSON.ui';
+import { JSONSettings } from '../../plugins/exportTypes/JSON/JSON.ui';
 
 // let exportTarget: ExportTarget;
 // let batchNum: number;
@@ -33,73 +33,73 @@ import { DataStructureFormat, JSONSettings } from '../../plugins/exportTypes/JSO
 
 export const generate = (data: ExportTypeGenerateType) => {
 
-    // will be pulled from UI
-    const tmpExportTypeSettings: JSONSettings = {
-        stripWhitespace: false,
-        dataStructureFormat: 'simple'
-    };
+	// will be pulled from UI
+	const tmpExportTypeSettings: JSONSettings = {
+		stripWhitespace: false,
+		dataStructureFormat: 'simple'
+	};
 
-    const generationContext = {
-        environment: 'UI'
-    };
+	// const generationContext = {
+	// 	environment: 'UI'
+	// };
 
-    // here we offload the generated data to the Export Type
-    const { success, content } = JSON.generate('UI', tmpExportTypeSettings, {
-        data,
-        generateExportData
-    });
+	// here we offload the generated data to the Export Type
+	const { content } = JSON.generate('UI', tmpExportTypeSettings, {
+		data,
+		generateExportData
+	});
 
-    return content;
+	return content;
 };
 
 type ConfigData = {
-    exportTarget: ExportTarget;
-    batchSize: number;
-    currentBatchNumber: number;
+	exportTarget: ExportTarget;
+	batchSize: number;
+	currentBatchNumber: number;
 };
 
 export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
-    const generationTemplate = data.template;
+	const generationTemplate = data.template;
 
-// 	$firstRowNum  = $this->getCurrentBatchFirstRow();
-// 	$lastRowNum   = $this->getCurrentBatchLastRow();
-    const firstRowNum = 1;
-    const lastRowNum = data.numResults;
+	// 	$firstRowNum  = $this->getCurrentBatchFirstRow();
+	// 	$lastRowNum   = $this->getCurrentBatchLastRow();
+	const firstRowNum = 1;
+	const lastRowNum = data.numResults;
 
- 	// contains only the information needed for display purposes
+	// contains only the information needed for display purposes
 	const displayData: any = [];
 	const processOrders = Object.keys(generationTemplate);
-	for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
-        // the generationTemplate is already grouped by process order. Just loop through each one, passing off the
-        // actual data generation to the appropriate Data Type. Note that we pass all previously generated
-        // data (including any metadata returned by the Data Type).
-        const currRowData: any = [];
+	for (let rowNum = firstRowNum; rowNum <= lastRowNum; rowNum++) {
+		// the generationTemplate is already grouped by process order. Just loop through each one, passing off the
+		// actual data generation to the appropriate Data Type. Note that we pass all previously generated
+		// data (including any metadata returned by the Data Type).
+		const currRowData: any = [];
 
-        processOrders.forEach((processOrder: string) => {
-            // @ts-ignore
-            for (let i = 0; i < generationTemplate[processOrder].length; i++) {
-                // @ts-ignore
-                const currCell = generationTemplate[processOrder][i];
-                currRowData[currCell.colIndex] = currCell.generateFunc({
-                    rowNum,
-                    rowState: currCell.rowState,
-                    existingRowData: currRowData
-                });
-            }
-        });
+		processOrders.forEach((processOrder: string) => {
+			// @ts-ignore
+			for (let i = 0; i < generationTemplate[processOrder].length; i++) {
+				// @ts-ignore
+				const currCell = generationTemplate[processOrder][i];
+				currRowData[currCell.colIndex] = currCell.generateFunc({
+					rowNum,
+					rowState: currCell.rowState,
+					existingRowData: currRowData
+				});
+			}
+		});
 
-        displayData.push(currRowData.map((i: any) => i.display));
+		displayData.push(currRowData.map((i: any) => i.display));
 
-        // 	// now sort the row columns in the desired order
-        // 	ksort($currRowData, SORT_NUMERIC);
-    }
+		// 	// now sort the row columns in the desired order
+		// 	ksort($currRowData, SORT_NUMERIC);
+	}
 
 	return {
-        isFirstBatch: true,
-        isLastBatch: true,
-        columnTitles: data.columnTitles,
-        rows: displayData
-    };
+		isFirstBatch: true,
+		isLastBatch: true,
+		columnTitles: data.columnTitles,
+		rows: displayData
+	};
 };
 
 
@@ -346,19 +346,19 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 // }
 
 
-	/**
-	 * This is a helper function for use by the Export Types. It sifts through all the data and returns a hash containing
-	 * the information most likely to be needed for generation, namely:
-	 * 	  array(
-	 *       "isFirstBatch" => (boolean),
-	 *       "isLastBatch" => (boolean),
-	 *       "colData" => ordered array of the column names,
-	 *       "rowData" => an array of arrays. Each top level array
-	 *    );
-	 *
-	 * Using this function is completely optional - it's just provided for convenience.
-	 * @return array
-	 */
+/**
+ * This is a helper function for use by the Export Types. It sifts through all the data and returns a hash containing
+ * the information most likely to be needed for generation, namely:
+ * 	  array(
+ *       "isFirstBatch" => (boolean),
+ *       "isLastBatch" => (boolean),
+ *       "colData" => ordered array of the column names,
+ *       "rowData" => an array of arrays. Each top level array
+ *    );
+ *
+ * Using this function is completely optional - it's just provided for convenience.
+ * @return array
+ */
 //
 //
 // 	/**

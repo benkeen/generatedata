@@ -3,47 +3,46 @@ import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTyp
 import Dropdown from '../../../components/dropdown/Dropdown';
 
 export type BooleanState = {
-    example: string;
-    value: string;
+	example: string;
+	value: string;
 };
 
 export const state: BooleanState = {
-    example: 'false',
+	example: 'false',
 	value: 'true'
 };
 
-export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
-    const onChange = (value: any) => {
-        onUpdate({
-            example: value,
-            value: value
-        });
-    };
+export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
+	const onChange = (value: any) => {
+		onUpdate({
+			example: value,
+			value: value
+		});
+	};
 
-    const options = [
-        { value: '', label: coreI18n.please_select },
-        { value: 'Yes|No', label: i18n.example_YesNo },
-        { value: 'True|False', label: i18n.example_TrueFalse },
-        { value: 'true|false', label: i18n.example_TrueFalseLower },
-        { value: '0|1', label: i18n.example_ZeroOne },
-        { value: 'Y|N', label: i18n.example_YesNoShort },
-        { value: 'F|T', label: i18n.example_FalseTrueShort }
-    ];
+	const options = [
+		{ value: 'Yes|No', label: i18n.example_YesNo },
+		{ value: 'True|False', label: i18n.example_TrueFalse },
+		{ value: 'true|false', label: i18n.example_TrueFalseLower },
+		{ value: '0|1', label: i18n.example_ZeroOne },
+		{ value: 'Y|N', label: i18n.example_YesNoShort },
+		{ value: 'F|T', label: i18n.example_FalseTrueShort }
+	];
 
-    return (
-        <Dropdown
-            value={data.example}
-            onChange={(i: any) => onChange(i.value)}
-            options={options}
-        />
-    );
+	return (
+		<Dropdown
+			value={data.example}
+			onChange={(i: any) => onChange(i.value)}
+			options={options}
+		/>
+	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps) => (
-	<input type="text" value={data.value} onChange={(e) => onUpdate({ ...data, value: e.target.value })} style={{ width: '100%' }}/>
+export const Options = ({ data, onUpdate }: OptionsProps): React.ReactNode => (
+	<input type="text" value={data.value} onChange={(e) => onUpdate({ ...data, value: e.target.value })} style={{ width: '100%' }} />
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}

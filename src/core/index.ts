@@ -20,19 +20,19 @@ export const init = () => {
 	store.dispatch(initActions.selectLocale(locale));
 
 	// how to add the default export type? We'll know on load (say a config setting). Perhaps after loading, an Export
-    // Type should register itself.
-    //console.log(config);
+	// Type should register itself.
+	//console.log(config);
 
-    // const hmm = 'JSON';
-    // type ModuleType = typeof import(`../../dist/${hmm}`);
-    //
-    // // @ts-ignore-line
-    // import(`../../dist/${hmm}`)
-    //     .then((a) => {
-    //         console.log(a);
-    //     });
+	// const hmm = 'JSON';
+	// type ModuleType = typeof import(`../../dist/${hmm}`);
+	//
+	// // @ts-ignore-line
+	// import(`../../dist/${hmm}`)
+	//     .then((a) => {
+	//         console.log(a);
+	//     });
 
-    // defaultExportType
+	// defaultExportType
 
 	// if there are no rows, load some
 	if (numRows === 0) {

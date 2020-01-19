@@ -3,8 +3,8 @@ import Dropdown from '../../../components/dropdown/Dropdown';
 import { ExampleProps, OptionsProps, HelpProps } from '../../../../types/dataTypes';
 
 export type AlphanumericState = {
-    example: string;
-    value: string;
+	example: string;
+	value: string;
 }
 
 export const state: AlphanumericState = {
@@ -12,7 +12,7 @@ export const state: AlphanumericState = {
 	value: ''
 };
 
-export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
+export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
 	const onChange = (value: any) => {
 		onUpdate({
 			example: value,
@@ -21,11 +21,11 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
 	};
 
 	const options = [
-        { value: '', label: coreI18n.please_select },
-        { value: 'LxL xLx', label: `V6M 4C1 ${i18n.example_CanPostalCode}` },
-        { value: 'xxxxx', label: `90210 ${i18n.example_USZipCode}` },
-        { value: 'LLLxxLLLxLL', label: `eZg29gdF5K1 ${i18n.example_Password}` }
-    ];
+		{ value: '', label: coreI18n.please_select },
+		{ value: 'LxL xLx', label: `V6M 4C1 ${i18n.example_CanPostalCode}` },
+		{ value: 'xxxxx', label: `90210 ${i18n.example_USZipCode}` },
+		{ value: 'LLLxxLLLxLL', label: `eZg29gdF5K1 ${i18n.example_Password}` }
+	];
 
 	return (
 		<Dropdown
@@ -33,19 +33,19 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
 			onChange={(i: any) => onChange(i.value)}
 			options={options}
 		/>
-    );
+	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps) => (
+export const Options = ({ data, onUpdate }: OptionsProps): React.ReactNode => (
 	<input
-        type="text"
-        value={data.value}
-        onChange={(e) => onUpdate({ ...data, value: e.target.value })}
-        style={{ width: '100%' }}
-    />
+		type="text"
+		value={data.value}
+		onChange={(e) => onUpdate({ ...data, value: e.target.value })}
+		style={{ width: '100%' }}
+	/>
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.help_intro}

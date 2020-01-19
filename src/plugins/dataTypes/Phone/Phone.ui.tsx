@@ -3,8 +3,8 @@ import Dropdown from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export type PhoneState = {
-    example: string;
-    option: string;
+	example: string;
+	option: string;
 };
 
 export const state: PhoneState = {
@@ -12,44 +12,44 @@ export const state: PhoneState = {
 	option: '1-Xxx-Xxx-xxxx'
 };
 
-export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps) => {
-    const onChange = (value: any) => {
-        onUpdate({
-            example: value,
-            option: value
-        });
-    };
+export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
+	const onChange = (value: any) => {
+		onUpdate({
+			example: value,
+			option: value
+		});
+	};
 
-    const options = [
-        { value: '1-Xxx-Xxx-xxxx', label: i18n.example_1 },
-        { value: '(Xxx) Xxx-xxxx', label: i18n.example_2 },
-        { value: '(01xxxx) xxxxx|(01xxx) xxxxxx|(01x1) xxx xxxx|(011x) xxx xxxx|(02x) xxxx xxxx|03xx xxx xxxx|055 xxxx xxxx|056 xxxx xxxx|070 xxxx xxxx|07624 xxxxxx|076 xxxx xxxx|07xxx xxxxxx|0800 xxx xxxx|08xx xxx xxxx|09xx xxx xxxx|(016977) xxxx|(01xxx) xxxxx|0500 xxxxxx|0800 xxxxxx|0800 1111|0845 46 4x', label: i18n.uk },
-        { value: '0X xx xx xx xx', label: i18n.france },
-        { value: '(0X) xxxx xxxx', label: i18n.australia },
-        { value: '(0xx) xxxxxxxx|(0xxx) xxxxxxxx|(0xxxx) xxxxxxx|(03xxxx) xxxxxx', label: i18n.germany },
-        { value: '0xx-xxx-xxxx', label: i18n.japan },
-        { value: '1-Xxx-Xxx-xxxx|Xxx-xxxx', label: i18n.different_formats }
-    ];
+	const options = [
+		{ value: '1-Xxx-Xxx-xxxx', label: i18n.example_1 },
+		{ value: '(Xxx) Xxx-xxxx', label: i18n.example_2 },
+		{ value: '(01xxxx) xxxxx|(01xxx) xxxxxx|(01x1) xxx xxxx|(011x) xxx xxxx|(02x) xxxx xxxx|03xx xxx xxxx|055 xxxx xxxx|056 xxxx xxxx|070 xxxx xxxx|07624 xxxxxx|076 xxxx xxxx|07xxx xxxxxx|0800 xxx xxxx|08xx xxx xxxx|09xx xxx xxxx|(016977) xxxx|(01xxx) xxxxx|0500 xxxxxx|0800 xxxxxx|0800 1111|0845 46 4x', label: i18n.uk },
+		{ value: '0X xx xx xx xx', label: i18n.france },
+		{ value: '(0X) xxxx xxxx', label: i18n.australia },
+		{ value: '(0xx) xxxxxxxx|(0xxx) xxxxxxxx|(0xxxx) xxxxxxx|(03xxxx) xxxxxx', label: i18n.germany },
+		{ value: '0xx-xxx-xxxx', label: i18n.japan },
+		{ value: '1-Xxx-Xxx-xxxx|Xxx-xxxx', label: i18n.different_formats }
+	];
 
-    return (
-        <Dropdown
-            value={data.example}
-            onChange={(i: any) => onChange(i.value)}
-            options={options}
-        />
-    );
+	return (
+		<Dropdown
+			value={data.example}
+			onChange={(i: any) => onChange(i.value)}
+			options={options}
+		/>
+	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps) => (
+export const Options = ({ data, onUpdate }: OptionsProps): React.ReactNode => (
 	<input
-        type="text"
-        value={data.option}
-        onChange={(e) => onUpdate({ ...state, option: e.target.value })}
-        style={{ width: '100%' }}
-    />
+		type="text"
+		value={data.option}
+		onChange={(e) => onUpdate({ ...state, option: e.target.value })}
+		style={{ width: '100%' }}
+	/>
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.help_text1}

@@ -3,8 +3,8 @@ import Dropdown, { ChangeEvent } from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export type NamesState = {
-    example: string;
-    options: string;
+	example: string;
+	options: string;
 };
 
 export const state: NamesState = {
@@ -12,8 +12,8 @@ export const state: NamesState = {
 	options: 'Name Surname'
 };
 
-export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps) => {
-    const onChange = (selected: ChangeEvent) => {
+export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps): React.ReactNode => {
+	const onChange = (selected: ChangeEvent) => {
 		onUpdate({
 			...data,
 			example: selected.value,
@@ -44,16 +44,16 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps) => {
 	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps) => (
+export const Options = ({ data, onUpdate }: OptionsProps): React.ReactNode => (
 	<input
-        type="text"
-        value={data.options}
-        onChange={(e) => onUpdate({ ...data, options: e.target.value })}
-        style={{ width: '100%' }}
-    />
+		type="text"
+		value={data.options}
+		onChange={(e) => onUpdate({ ...data, options: e.target.value })}
+		style={{ width: '100%' }}
+	/>
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.DESC}

@@ -11,6 +11,11 @@ export type GenEnvironment = 'API' | 'UI';
 
 export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
 
+export type GDAction = {
+	type: string;
+	payload?: any
+}
+
 export type GenerationTemplateRow = {
     title: string;
     dataType: string;
@@ -23,8 +28,6 @@ export type GenerationTemplate = {
     [n: number]: GenerationTemplateRow[];
 };
 
-
-// needed?
 export type ExportTypeGenerateType = {
     numResults: number;
     columnTitles: string[];

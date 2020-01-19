@@ -17,8 +17,8 @@
 		"react"
 	],
 	"extends": [
-		"eslint:recommended",
-		"plugin:react/recommended"
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended"
 	],
 	"rules": {
 		"semi": [
@@ -60,7 +60,20 @@
 		"import/no-mutable-exports": "off",
 		"react/no-unused-prop-types": "off",
 		"react/jsx-indent": [2, "tab"],
-        "react/jsx-indent-props": [2, "tab"]
+		"react/jsx-indent-props": [2, "tab"],
+		"@typescript-eslint/no-empty-function": "off",
+		"@typescript-eslint/ban-ts-ignore": "off",
+		"@typescript-eslint/no-use-before-define": "off",
+		"@typescript-eslint/camelcase": [
+			"error",
+			{ 
+				"allow": [
+					"field_Oracle",
+					"field_MSSQL",
+					"field_Postgres"
+				]
+			}
+		]
 	},
 	"settings": {
 		"react": {

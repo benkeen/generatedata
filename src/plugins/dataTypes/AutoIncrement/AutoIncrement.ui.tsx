@@ -3,10 +3,10 @@ import Dropdown from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export type AutoIncrementState = {
-    example: string;
-    incrementStart: number;
-    incrementValue: number;
-    incrementPlaceholder: string;
+	example: string;
+	incrementStart: number;
+	incrementValue: number;
+	incrementPlaceholder: string;
 }
 
 export const state: AutoIncrementState = {
@@ -16,9 +16,9 @@ export const state: AutoIncrementState = {
 	incrementPlaceholder: ''
 };
 
-export const Example = ({ data, onUpdate }: ExampleProps) => {
-    const onChange = (value: string) => {
-        const [incrementStart, incrementValue, incrementPlaceholder] = value.split(',');
+export const Example = ({ data, onUpdate }: ExampleProps): React.ReactNode => {
+	const onChange = (value: string) => {
+		const [incrementStart, incrementValue, incrementPlaceholder] = value.split(',');
 
 		onUpdate({
 			example: value,
@@ -28,53 +28,53 @@ export const Example = ({ data, onUpdate }: ExampleProps) => {
 		});
 	};
 
-    const options = [
-        { value: '1,1,', label: '1, 2, 3, 4, 5, 6...' },
-        { value: '100,1,', label: '100, 101, 102, 103, 104...' },
-        { value: '0,2,', label: '0, 2, 4, 6, 8, 10...' },
-        { value: '0,5,', label: '0, 5, 10, 15, 20, 25...' },
-        { value: '1000,-1,', label: '1000, 999, 998, 997...' },
-        { value: '0,-1,', label: '0, -1, -2, -3, -4...' },
-        { value: '0,0.5,', label: '0, 0.5, 1, 1.5, 2...' },
-        { value: '1,1,ROW-${INCR}', label: 'ROW-1, ROW-2, ROW-3,...' },
-        { value: '2,4,${INCR}i', label: '2i, 4i, 6i, 8i...' }
-    ];
+	const options = [
+		{ value: '1,1,', label: '1, 2, 3, 4, 5, 6...' },
+		{ value: '100,1,', label: '100, 101, 102, 103, 104...' },
+		{ value: '0,2,', label: '0, 2, 4, 6, 8, 10...' },
+		{ value: '0,5,', label: '0, 5, 10, 15, 20, 25...' },
+		{ value: '1000,-1,', label: '1000, 999, 998, 997...' },
+		{ value: '0,-1,', label: '0, -1, -2, -3, -4...' },
+		{ value: '0,0.5,', label: '0, 0.5, 1, 1.5, 2...' },
+		{ value: '1,1,ROW-${INCR}', label: 'ROW-1, ROW-2, ROW-3,...' },
+		{ value: '2,4,${INCR}i', label: '2i, 4i, 6i, 8i...' }
+	];
 
-    return (
-        <Dropdown
-            value={data.example}
-            onChange={(i: any) => onChange(i.value)}
-            options={options}
-        />
-    );
+	return (
+		<Dropdown
+			value={data.example}
+			onChange={(i: any) => onChange(i.value)}
+			options={options}
+		/>
+	);
 };
 
-export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
-    const onChange = (field: string, value: number | string) => {
-        onUpdate({
-            ...data,
-            [field]: value
-        });
-    };
+export const Options = ({ i18n, data, onUpdate }: OptionsProps): React.ReactNode => {
+	const onChange = (field: string, value: number | string) => {
+		onUpdate({
+			...data,
+			[field]: value
+		});
+	};
 
 	return (
 		<>
 			{i18n.start_at_c}
 			<input type="text" style={{ width: 40 }} value={data.incrementStart}
-                onChange={(e) => onChange('incrementStart', parseFloat(e.target.value))} />
+				onChange={(e) => onChange('incrementStart', parseFloat(e.target.value))} />
 			{i18n.increment_c}
 			<input type="text" style={{ width: 40 }} value={data.incrementValue}
-                onChange={(e) => onChange('incrementValue', parseFloat(e.target.value))} />
+				onChange={(e) => onChange('incrementValue', parseFloat(e.target.value))} />
 
-            <br />
+			<br />
 			{i18n.placeholder_str}
 			<input type="text" style={{ width: 100 }} value={data.incrementPlaceholder}
-                onChange={(e) => onChange('incrementPlaceholder', e.target.value)} />
+				onChange={(e) => onChange('incrementPlaceholder', e.target.value)} />
 		</>
 	);
 };
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.help_intro}

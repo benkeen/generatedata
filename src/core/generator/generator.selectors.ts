@@ -22,52 +22,52 @@ export const getSortedRowsArray = createSelector(
 );
 
 export const getNonEmptySortedRows = createSelector(
-    getSortedRowsArray,
-    (rows) => rows.filter((row: any) => row.dataType !== null)
+	getSortedRowsArray,
+	(rows) => rows.filter((row: any) => row.dataType !== null)
 );
 
 export const getColumnTitles = createSelector(
-    getSortedRowsArray,
-    (rows) => rows.filter((row: any) => row.dataType !== null && row.title !== '').map((row: any) => row.title)
+	getSortedRowsArray,
+	(rows) => rows.filter((row: any) => row.dataType !== null && row.title !== '').map((row: any) => row.title)
 );
 
 
 // TODO need to sort this out now!! We need this immediately as the user selects
 // this will be in a separate bundle loaded async along with the export, dataType + country generation code
 export const getGenerationTemplate = createSelector(
-    getNonEmptySortedRows,
-    (rows): GenerationTemplate => {
-        const processOrders = getDataTypeProcessOrders();
+	getNonEmptySortedRows,
+	(rows): GenerationTemplate => {
+		const processOrders = getDataTypeProcessOrders();
 
-        const templateByProcessOrder: any = {};
-        rows.map(({ title, dataType, data }: any, colIndex: number) => {
-            const processOrder = processOrders[dataType];
+		const templateByProcessOrder: any = {};
+		rows.map(({ title, dataType, data }: any, colIndex: number) => {
+			const processOrder = processOrders[dataType];
 
-            // TODO another assumption here. We need to validate the whole component right-up front during the
-            // build step and throw a nice error saying what's missing
-            const { generate, getMetadata, rowStateReducer } = getGenerationOptionsByDataType(dataType);
+			// TODO another assumption here. We need to validate the whole component right-up front during the
+			// build step and throw a nice error saying what's missing
+			const { generate, getMetadata, rowStateReducer } = getGenerationOptionsByDataType(dataType);
 
-            if (!templateByProcessOrder[processOrder]) {
-                templateByProcessOrder[processOrder] = [];
-            }
+			if (!templateByProcessOrder[processOrder]) {
+				templateByProcessOrder[processOrder] = [];
+			}
 
-            templateByProcessOrder[processOrder].push({
-                title,
-                dataType,
-                colIndex,
+			templateByProcessOrder[processOrder].push({
+				title,
+				dataType,
+				colIndex,
 
 				// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row 
 				// state into something friendlier for the generation step
-                rowState: rowStateReducer ? rowStateReducer(data) : data,
+				rowState: rowStateReducer ? rowStateReducer(data) : data,
 
-                // DT methods for the actual generation of this cell
-                generateFunc: generate,
-                colMetadata: getMetadata ? getMetadata() : null
-            });
-        });
+				// DT methods for the actual generation of this cell
+				generateFunc: generate,
+				colMetadata: getMetadata ? getMetadata() : null
+			});
+		});
 
-        // TODO sort by process order (keys) here
+		// TODO sort by process order (keys) here
 
-        return templateByProcessOrder;
-    }
+		return templateByProcessOrder;
+	}
 );

@@ -6,25 +6,25 @@ import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 
 export type DataRow = {
-    id: string;
-    title: string;
-    dataType: string | null;
-    data: any;
+	id: string;
+	title: string;
+	dataType: string | null;
+	data: any;
 };
 
 export type DataRows = {
-    [id: string]: DataRow;
+	[id: string]: DataRow;
 }
 
 export type ReducerState = {
-    rows: DataRows;
-    sortedRows: string[];
-    showGrid: boolean;
-    showPreview: boolean;
-    builderLayout: BuilderLayout;
-    numPreviewRows: number;
-    selectedExportType: string;
-    exportTypeSettings: any;
+	rows: DataRows;
+	sortedRows: string[];
+	showGrid: boolean;
+	showPreview: boolean;
+	builderLayout: BuilderLayout;
+	numPreviewRows: number;
+	selectedExportType: string;
+	exportTypeSettings: any;
 };
 
 /**
@@ -34,13 +34,13 @@ export type ReducerState = {
 export const reducer = (state: ReducerState = {
 	rows: {},
 	sortedRows: [],
-    showGrid: true,
-    showPreview: true,
-    builderLayout: 'horizontal',
-    numPreviewRows: 5,
-    selectedExportType: 'JSON',
-    exportTypeSettings: null
-}, action: AnyAction) => {
+	showGrid: true,
+	showPreview: true,
+	builderLayout: 'horizontal',
+	numPreviewRows: 5,
+	selectedExportType: 'JSON',
+	exportTypeSettings: null
+}, action: AnyAction): ReducerState => {
 	switch (action.type) {
 
 		case actions.ADD_ROWS: {
@@ -113,48 +113,48 @@ export const reducer = (state: ReducerState = {
 				},
 			};
 
-        case actions.REPOSITION_ROW: {
-            const newArray = state.sortedRows.filter((i) => i !== action.payload.id);
-            newArray.splice(action.payload.newIndex, 0, action.payload.id);
-            return {
-                ...state,
-                sortedRows: newArray
-            };
-        }
+		case actions.REPOSITION_ROW: {
+			const newArray = state.sortedRows.filter((i) => i !== action.payload.id);
+			newArray.splice(action.payload.newIndex, 0, action.payload.id);
+			return {
+				...state,
+				sortedRows: newArray
+			};
+		}
 
-        case actions.TOGGLE_GRID: {
-            const newState = {
-                ...state,
-                showGrid: !state.showGrid
-            };
-            if (!state.showPreview) {
-                newState.showPreview = true;
-            }
+		case actions.TOGGLE_GRID: {
+			const newState = {
+				...state,
+				showGrid: !state.showGrid
+			};
+			if (!state.showPreview) {
+				newState.showPreview = true;
+			}
 			return newState;
 		}
 
-        case actions.TOGGLE_PREVIEW: {
-            const newState = {
-                ...state,
-                showPreview: !state.showPreview
-            };
-            if (!state.showGrid) {
-                newState.showGrid = true;
-            }
-            return newState;
-        }
+		case actions.TOGGLE_PREVIEW: {
+			const newState = {
+				...state,
+				showPreview: !state.showPreview
+			};
+			if (!state.showGrid) {
+				newState.showGrid = true;
+			}
+			return newState;
+		}
 
-        case actions.TOGGLE_LAYOUT:
-            return {
-                ...state,
-                builderLayout: state.builderLayout === 'horizontal' ? 'vertical' : 'horizontal'
-            };
+		case actions.TOGGLE_LAYOUT:
+			return {
+				...state,
+				builderLayout: state.builderLayout === 'horizontal' ? 'vertical' : 'horizontal'
+			};
 
-        case actions.UPDATE_NUM_PREVIEW_ROWS:
-            return {
-                ...state,
-                numPreviewRows: action.payload.numRows
-            };
+		case actions.UPDATE_NUM_PREVIEW_ROWS:
+			return {
+				...state,
+				numPreviewRows: action.payload.numRows
+			};
 
 		default:
 			return state;

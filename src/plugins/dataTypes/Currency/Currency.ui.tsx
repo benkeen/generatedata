@@ -11,45 +11,45 @@ export const state = {
 	currencySymbolLocation: 'prefix'
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps) => {
-    const onChange = (i: any) => {
-        const [format, from, to, currencySymbol, currencySymbolLocation] = i.value.split('|');
+export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
+	const onChange = (i: any) => {
+		const [format, from, to, currencySymbol, currencySymbolLocation] = i.value.split('|');
 		onUpdate({
 			example: i.value,
-            format,
-            from,
-            to,
-            currencySymbol,
-            currencySymbolLocation
+			format,
+			from,
+			to,
+			currencySymbol,
+			currencySymbolLocation
 		});
 	};
 
-    const examples = [
-        {
-            label: 'US/Canada',
-            options: [
-                { value: 'XXX.XX|0.00|100.00|$|prefix', label: '$0.00 -> $100.00' },
-                { value: 'XX,XXX|5000|10000|$|prefix', label: `$5,000 -> $10,000 (${i18n.no_cents})` },
-                { value: 'XXXXX.XX|1000.00|10000.00|$|prefix', label: `$1000.00 -> $10000.00 (${i18n.no_thousand_delimiters})` },
-                { value: 'XXX,XXX.XX|-100000.00|100000.00|$|prefix', label: '-$100,000.00 -> $100,000.00' },
-                { value: 'X.XX|0.00|100.00||prefix', label: `0.01 -> 1.00 (${i18n.no_dollar_sign})` },
-                { value: 'X.XXX.XXX,XX|100.00|1000.00|$|suffix', label: '100,00 $ -> 1.000,00 $ (French Canadian)' },
-                { value: 'XXX XXX|10|100000||prefix', label: '10 -> 100 000' }
-            ]
-        },
-        {
-            label: 'UK',
-            options: [
-                { label: 'XXX.XX|0.00|100.00|£|prefix', value: '£0.00 -> £100.00' }
-            ]
-        },
-        {
-            label: 'Euro',
-            options: [
-                { label: 'XXX,XXX|100000|200000|€|prefix', value: '€100,000 -> €200,000' }
-            ]
-        }
-    ];
+	const examples = [
+		{
+			label: 'US/Canada',
+			options: [
+				{ value: 'XXX.XX|0.00|100.00|$|prefix', label: '$0.00 -> $100.00' },
+				{ value: 'XX,XXX|5000|10000|$|prefix', label: `$5,000 -> $10,000 (${i18n.no_cents})` },
+				{ value: 'XXXXX.XX|1000.00|10000.00|$|prefix', label: `$1000.00 -> $10000.00 (${i18n.no_thousand_delimiters})` },
+				{ value: 'XXX,XXX.XX|-100000.00|100000.00|$|prefix', label: '-$100,000.00 -> $100,000.00' },
+				{ value: 'X.XX|0.00|100.00||prefix', label: `0.01 -> 1.00 (${i18n.no_dollar_sign})` },
+				{ value: 'X.XXX.XXX,XX|100.00|1000.00|$|suffix', label: '100,00 $ -> 1.000,00 $ (French Canadian)' },
+				{ value: 'XXX XXX|10|100000||prefix', label: '10 -> 100 000' }
+			]
+		},
+		{
+			label: 'UK',
+			options: [
+				{ label: 'XXX.XX|0.00|100.00|£|prefix', value: '£0.00 -> £100.00' }
+			]
+		},
+		{
+			label: 'Euro',
+			options: [
+				{ label: 'XXX,XXX|100000|200000|€|prefix', value: '€100,000 -> €200,000' }
+			]
+		}
+	];
 
 	return (
 		<Dropdown
@@ -61,7 +61,7 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps) => {
 	);
 };
 
-export const Options = ({ i18n, data }: OptionsProps) => (
+export const Options = ({ i18n, data }: OptionsProps): React.ReactNode => (
 	<>
 		<div>
 			{i18n.format}: <input type="text" value={data.format} style={{ width: 160 }} />
@@ -81,7 +81,7 @@ export const Options = ({ i18n, data }: OptionsProps) => (
 	</>
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 	<>
 		<p>
 			{i18n.help_intro}
