@@ -12,7 +12,6 @@ import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeHelpComponent } from '../../utils/dataTypeUtils';
 // import styles from './HelpDialog.scss';
 
-
 const dialogStyles = (theme: any) => ({
 	root: {
 		margin: 0,
@@ -27,7 +26,7 @@ const dialogStyles = (theme: any) => ({
 });
 
 // @ts-ignore-line
-const DialogTitle = withStyles(dialogStyles)((props: any) => {
+const DialogTitle = withStyles(dialogStyles)((props: any): React.ReactNode => {
 	const { children, classes, onClose, ...other } = props;
 	return (
 		<MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -56,17 +55,17 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 export type HelpDialogProps = {
-    initialDataType: string;
-    visible: boolean;
-    onClose: any;
-    coreI18n: any;
-    i18n: any;
+	initialDataType: string;
+	visible: boolean;
+	onClose: any;
+	coreI18n: any;
+	i18n: any;
 }
 
-const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpDialogProps) => {
+const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpDialogProps): React.ReactNode => {
 	const [dataType, setDataType] = React.useState();
 
-    React.useEffect(() => {
+	React.useEffect(() => {
 		setDataType(initialDataType);
 	}, [initialDataType]);
 

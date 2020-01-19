@@ -8,7 +8,7 @@ const vowelsLen = vowels.length;
 const hexLen = hex.length;
 
 // TODO should accommodate negative numbers
-export const getRandomNum = (min: number, max: number) => {
+export const getRandomNum = (min: number, max: number): number => {
 	const range = Math.abs(max - min);
 	let val = Math.round(Math.random() * range);
 	if (min < 0) {
@@ -19,9 +19,9 @@ export const getRandomNum = (min: number, max: number) => {
 	return val;
 };
 
-export const getRandomBool = () => Math.random() < 0.5;
-export const getRandomArrayValue = (arr: any[]) => arr[Math.floor(Math.random() * arr.length)];
-export const getRandomCharInString = (str: string) => {
+export const getRandomBool = (): boolean => Math.random() < 0.5;
+export const getRandomArrayValue = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
+export const getRandomCharInString = (str: string): string => {
 	const index = getRandomNum(0, str.length - 1);
 	return str[index];
 };
@@ -36,7 +36,7 @@ export const getRandomCharInString = (str: string) => {
  *     x       - 0-9
  *     H       - 0-F
  */
-export const generateRandomAlphanumericStr = (str: string) => {
+export const generateRandomAlphanumericStr = (str: string): string => {
 	if (!str) {
 		return '';
 	}
@@ -96,7 +96,7 @@ export const generateRandomAlphanumericStr = (str: string) => {
 };
 
 // Returns a random subset of an array. The result may be empty, or the same set.
-export const getRandomSubset = (arr: any[], size: number) => {
+export const getRandomSubset = <T> (arr: T[], size: number): T[] => {
 	const shuffled = arr.slice(0);
 	let i = arr.length;
 	const min = i - size;
@@ -114,7 +114,7 @@ export const getRandomSubset = (arr: any[], size: number) => {
 /**
  * Generates a string of lorem ipsum words.
  */
-export const generateRandomTextStr = (words: string[], startsWithLipsum: boolean, min: number, max?: number) => {
+export const generateRandomTextStr = (words: string[], startsWithLipsum: boolean, min: number, max?: number): string => {
 	let numWords = (max) ? getRandomNum(min, max) : min;
 
 	const totalWords = words.length;

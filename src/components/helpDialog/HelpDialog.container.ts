@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import HelpDialog from './HelpDialog.component';
 
-const mapStateToProps = () => ({
+const mapStateToProps = (): any => ({
 });
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (): any => ({
 });
 
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
+	// @ts-ignore
 )(HelpDialog);

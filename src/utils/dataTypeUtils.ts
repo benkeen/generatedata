@@ -47,7 +47,7 @@ export const getDataTypeDefaultState = (dataType: string): any => {
 
 
 export const getDataTypeHelpComponent = (dataType: string): any => {
-	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : () => {};
+	return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : (): any => null;
 };
 
 

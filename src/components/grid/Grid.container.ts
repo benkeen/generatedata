@@ -14,7 +14,7 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
 	onAddRows: (numRows: number) => dispatch(actions.addRows(numRows)),
 	onRemove: (id: string) => dispatch(actions.removeRow(id)),
-    onSort: (id: string, newIndex: number) => dispatch(actions.repositionRow(id, newIndex)),
+	onSort: (id: string, newIndex: number) => dispatch(actions.repositionRow(id, newIndex)),
 	onChangeTitle: (id: string, value: string) => dispatch(actions.onChangeTitle(id, value)),
 	onSelectDataType: (id: string, value: string) => dispatch(actions.onSelectDataType(id, value)),
 	onConfigureDataType: (id: string, data: any) => dispatch(actions.onConfigureDataType(id, data))

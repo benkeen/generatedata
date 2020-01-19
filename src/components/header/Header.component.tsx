@@ -7,17 +7,17 @@ import CheckBox from '@material-ui/icons/Checkbox';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 
 type HeaderProps = {
-    toggleGrid: () => void;
-    togglePreview: () => void;
-    isLoggedIn: boolean;
+	toggleGrid: () => void;
+	togglePreview: () => void;
+	isLoggedIn: boolean;
 	onChangeLocale: Function;
 	isGridVisible: boolean;
 	isPreviewVisible: boolean;
-    locale: GDLocale;
-    i18n: any;
+	locale: GDLocale;
+	i18n: any;
 }
 
-const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, isLoggedIn, i18n }: HeaderProps) => {
+const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, isLoggedIn, i18n }: HeaderProps): JSX.Element => {
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
 
@@ -28,16 +28,16 @@ const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, is
 
 				<nav>
 					<ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Doc</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Donate!</a></li>
-                        <li><a href="#">Login</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Doc</a></li>
+						<li><a href="#">News</a></li>
+						<li><a href="#">Donate!</a></li>
+						<li><a href="#">Login</a></li>
 					</ul>
-                    <ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>
-                        <Button className={isGridVisible ? styles.btnSelected : ''} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>{i18n.grid}</Button>
-                        <Button className={isPreviewVisible ? styles.btnSelected : ''}onClick={togglePreview} startIcon={<PreviewIcon />}>{i18n.preview}</Button>
-                    </ButtonGroup>
+					<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>
+						<Button className={isGridVisible ? styles.btnSelected : ''} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>{i18n.grid}</Button>
+						<Button className={isPreviewVisible ? styles.btnSelected : ''} onClick={togglePreview} startIcon={<PreviewIcon />}>{i18n.preview}</Button>
+					</ButtonGroup>
 				</nav>
 			</div>
 		</header>

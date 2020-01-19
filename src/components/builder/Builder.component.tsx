@@ -10,48 +10,48 @@ import './Builder.scss';
 export type BuilderLayout = 'horizontal' | 'vertical';
 
 export type BuilderProps = {
-    isGridVisible: boolean;
-    isPreviewVisible: boolean;
-    builderLayout: BuilderLayout;
+	isGridVisible: boolean;
+	isPreviewVisible: boolean;
+	builderLayout: BuilderLayout;
 }
 
 const Builder = ({ isGridVisible, isPreviewVisible, builderLayout }: BuilderProps) => {
-    // const [subPage, setSubpage] = React.useState<SubPage>('grid');
+	// const [subPage, setSubpage] = React.useState<SubPage>('grid');
 
-    // let content;
-    // if (subPage === 'grid') {
-    //     content = (
-    //     );
-    // } else {
-    //     content = (
-    //         <>
-    //             <span onClick={() => setSubpage('grid')}>&laquo; back</span>
-    //             <ResultsPanel />
-    //         </>
-    //     );
-    // }
+	// let content;
+	// if (subPage === 'grid') {
+	//     content = (
+	//     );
+	// } else {
+	//     content = (
+	//         <>
+	//             <span onClick={() => setSubpage('grid')}>&laquo; back</span>
+	//             <ResultsPanel />
+	//         </>
+	//     );
+	// }
 
-    const getContent = () => {
-        if (isGridVisible && isPreviewVisible) {
-            return (
-                <SplitPane split={builderLayout} minSize={50} defaultSize="50%">
-                    <Grid />
-                    <Preview />
-                </SplitPane>
-            );
-        }
+	const getContent = () => {
+		if (isGridVisible && isPreviewVisible) {
+			return (
+				<SplitPane split={builderLayout} minSize={50} defaultSize="50%">
+					<Grid />
+					<Preview />
+				</SplitPane>
+			);
+		}
 
-        if (isGridVisible) {
-            return <Grid />;
-        }
+		if (isGridVisible) {
+			return <Grid />;
+		}
 
-        return <Preview />;
-    };
+		return <Preview />;
+	};
 
 	return (
-        <div style={{ height: '100%', position: 'relative' }}>
-            {getContent()}
-        </div>
+		<div style={{ height: '100%', position: 'relative' }}>
+			{getContent()}
+		</div>
 	);
 };
 export default Builder;

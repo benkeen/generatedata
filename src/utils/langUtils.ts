@@ -5,9 +5,9 @@ let currentLocale: GDLocale;
 const langStrings: any = {};
 
 
-export const setLocale = (locale: GDLocale, localeStrings: any) => {
+export const setLocale = (locale: GDLocale, localeStrings: any): void => {
 	currentLocale = locale;
 	langStrings[locale] = localeStrings;
 };
 
-export const getStrings = (locale?: GDLocale) => langStrings[locale || currentLocale];
+export const getStrings = (locale?: GDLocale): any => langStrings[locale || currentLocale];

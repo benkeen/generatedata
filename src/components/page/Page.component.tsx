@@ -5,11 +5,11 @@ import Footer from '../footer/Footer.container';
 import * as styles from './Page.scss';
 
 type PageProps = {
-    localeFileLoaded: boolean;
-    children: any;
+	localeFileLoaded: boolean;
+	children: any;
 }
 
-const Page = ({ localeFileLoaded, children }: PageProps) => {
+const Page = ({ localeFileLoaded, children }: PageProps): JSX.Element => {
 	const content = localeFileLoaded ? (
 		<>
 			<Header />
@@ -19,10 +19,10 @@ const Page = ({ localeFileLoaded, children }: PageProps) => {
 			<Footer />
 		</>
 	) : (
-        <div style={{ display: 'flex', height: 40, justifyContent: 'center', margin: 'auto' }}>
-            <CircularProgress />
-        </div>
-    );
+		<div style={{ display: 'flex', height: 40, justifyContent: 'center', margin: 'auto' }}>
+			<CircularProgress />
+		</div>
+	);
 
 	return (
 		<div className={styles.page}>

@@ -2,8 +2,8 @@ import * as React from 'react';
 import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
 
 export type ChangeEvent = {
-    value: string;
-    label: string;
+	value: string;
+	label: string;
 };
 
 const selectStyles = {
@@ -19,18 +19,18 @@ const selectStyles = {
 		...provided,
 		padding: 5
 	}),
-    menuPortal: (base: any) => ({ ...base, zIndex: 10 })
+	menuPortal: (base: any) => ({ ...base, zIndex: 10 })
 };
 
-const Dropdown = ({ value, isGrouped, options, ...props }: any) => {
+const Dropdown = ({ value, isGrouped, options, ...props }: any): JSX.Element => {
 	// react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.
 	// instead, our component use the `value` prop, which is converted here
-    let selectedValue;
+	let selectedValue;
 	if (isGrouped) {
 		options.find((group: any) => {
 			const found = group.options.find((row: any) => {
-			    return row.value === value;
-            });
+				return row.value === value;
+			});
 			if (found && found !== -1) {
 				selectedValue = found;
 				return true;
@@ -44,11 +44,11 @@ const Dropdown = ({ value, isGrouped, options, ...props }: any) => {
 	return (
 		<Select
 			{...props}
-            options={options}
+			options={options}
 			value={selectedValue}
 			styles={selectStyles}
-            menuPlacement="auto"
-            menuPortalTarget={document.body}
+			menuPlacement="auto"
+			menuPortalTarget={document.body}
 		/>
 	);
 };
