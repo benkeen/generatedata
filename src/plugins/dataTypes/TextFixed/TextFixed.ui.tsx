@@ -9,8 +9,8 @@ export const state: TextFixedState = {
 	numWords: 10
 };
 
-export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
-	const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => {
+	const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
 		// @ts-ignore
 		const value = e.target.value;
 		onUpdate({
@@ -26,7 +26,7 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
 	);
 };
 
-export const Help = ({ i18n }: HelpProps) => <p>{i18n.TextFixed_help}</p>;
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.TextFixed_help}</p>;
 
 // var _validate = function(rows) {
 // 	var visibleProblemRows = [];

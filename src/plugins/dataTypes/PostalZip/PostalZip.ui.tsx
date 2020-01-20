@@ -3,9 +3,9 @@ import { HelpProps } from '../../../../types/dataTypes';
 
 export type PostalZipState = {
 
-}
+};
 
-export const Options = () => {
+export const Options = (): JSX.Element => {
 	// $countryPlugins = Core::$countryPlugins;
 	// $html = "";
 	// foreach ($countryPlugins as $pluginInfo) {
@@ -22,10 +22,10 @@ export const Options = () => {
 	// $html .= '<div id="dtCountry_Complete%ROW%"></div>';
 	//
 	// return $html;
-	return '';
+	return <div />;
 };
 
-export const Help = ({ i18n }: HelpProps) => <p>{i18n.help_text}</p>;
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.help_text}</p>;
 
 
 // var _saveRow = function(rowNum) {

@@ -11,8 +11,8 @@ export const state = {
 	currencySymbolLocation: 'prefix'
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
-	const onChange = (i: any) => {
+export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+	const onChange = (i: any): void => {
 		const [format, from, to, currencySymbol, currencySymbolLocation] = i.value.split('|');
 		onUpdate({
 			example: i.value,
@@ -61,7 +61,7 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode
 	);
 };
 
-export const Options = ({ i18n, data }: OptionsProps): React.ReactNode => (
+export const Options = ({ i18n, data }: OptionsProps): JSX.Element => (
 	<>
 		<div>
 			{i18n.format}: <input type="text" value={data.format} style={{ width: 160 }} />
@@ -81,7 +81,7 @@ export const Options = ({ i18n, data }: OptionsProps): React.ReactNode => (
 	</>
 );
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_intro}

@@ -1,4 +1,4 @@
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
 
@@ -13,7 +13,7 @@ import { ExportTypeMetadata } from '../../../../types/exportTypes';
 //     }
 // }
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
+export const generate = (): DTGenerateReturnType => {
 	return { display: '' };
 };
 

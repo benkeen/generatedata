@@ -1,12 +1,10 @@
-import { GenerationData } from '../../../../types/dataTypes';
+import { DTGenerateReturnType } from '../../../../types/dataTypes';
 
-export const generate = (data: GenerationData) => {
-
+export const generate = (): DTGenerateReturnType => {
+	return { display: '' };
 };
 
-
 /*
-
  * This data type generates a random country name. A few things to know:
  * - The Core script comes with three database tables for country, region and city.
  * - The only countries listed in the country table are those for the Country-Specific Data plugins.

@@ -4,7 +4,7 @@ import Header from '../header/Header.container';
 import Footer from '../footer/Footer.container';
 import * as styles from './Page.scss';
 
-type PageProps = {
+export type PageProps = {
 	localeFileLoaded: boolean;
 	children: any;
 }

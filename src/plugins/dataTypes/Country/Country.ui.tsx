@@ -5,9 +5,9 @@ export const state = {
 	allCountries: true
 };
 
-export const Options = ({ i18n, data, onUpdate }: OptionsProps) => (
+export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => (
 	<>
-		<input type="checkbox" checked={data.allCountries} onChange={() => onUpdate({ allCountries: !data.allCountries })} />
+		<input type="checkbox" checked={data.allCountries} onChange={(): void => onUpdate({ allCountries: !data.allCountries })} />
 		<label>{i18n.limit_results}</label>
 	</>
 );

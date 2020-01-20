@@ -10,9 +10,8 @@ export const state = {
 };
 
 
-export const Example = ({ i18n, coreI18n }: ExampleProps) => (
+export const Example = ({ i18n }: ExampleProps): JSX.Element => (
 	<select>
-		<option value="">{coreI18n.please_select}</option>
 		<option value="mastercard">{i18n.mastercard}</option>
 		<option value="visa">{i18n.visa}</option>
 		<option value="visaElectron">{i18n.visa_electron}</option>
@@ -30,7 +29,7 @@ export const Example = ({ i18n, coreI18n }: ExampleProps) => (
 	</select>
 );
 
-export const Options = ({ i18n }: OptionsProps) => {
+export const Options = ({ i18n }: OptionsProps): JSX.Element => {
 	// const onChange = () => {
 	// 	onUpdate({
 	// 		...data
@@ -76,7 +75,7 @@ export const Options = ({ i18n }: OptionsProps) => {
 	);
 };
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<p>
 		{i18n.DATA_TYPE.DESC}
 		{i18n.pan_help_intro}

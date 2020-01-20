@@ -6,12 +6,13 @@ import LanguageIcon from '@material-ui/icons/Language';
 import { Github } from '../icons';
 import { GDLocale } from '../../../types/general';
 
-type FooterProps = {
+export type FooterProps = {
 	locale: GDLocale,
-	onChangeLocale: (a: any) => void;
-}
+	i18n: any,
+	onChangeLocale: (a: any) => void
+};
 
-const Footer = ({ locale, onChangeLocale }: FooterProps): React.ReactNode => {
+const Footer = ({ locale, onChangeLocale }: FooterProps): JSX.Element => {
 	const options = [
 		{ value: 'de', label: 'Deutsch' },
 		{ value: 'en', label: 'English' },
@@ -34,7 +35,7 @@ const Footer = ({ locale, onChangeLocale }: FooterProps): React.ReactNode => {
 					<li>
 						<Dropdown
 							className={styles.selectLocale}
-							onChange={(item: any) => onChangeLocale(item.value)}
+							onChange={(item: any): void => onChangeLocale(item.value)}
 							value={locale}
 							options={options}
 						/>
@@ -43,10 +44,10 @@ const Footer = ({ locale, onChangeLocale }: FooterProps): React.ReactNode => {
 				</ul>
 
 				<div>
-					<Button onClick={() => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>Countries (30)</Button>
-					<Button onClick={() => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>JSON</Button>
+					<Button onClick={(): void => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>Countries (30)</Button>
+					<Button onClick={(): void => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>JSON</Button>
 					<span style={{ padding: '6px 12px 0 6px', color: '#dddddd' }}>|</span>
-					<Button onClick={() => { }} variant="contained" color="primary" disableElevation>Generate &raquo;</Button>
+					<Button onClick={(): void => { }} variant="contained" color="primary" disableElevation>Generate &raquo;</Button>
 				</div>
 			</div>
 		</footer>

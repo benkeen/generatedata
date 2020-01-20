@@ -8,7 +8,7 @@ export const state = {
 	remDash: true
 };
 
-export const Example = ({ coreI18n, i18n }: ExampleProps) => (
+export const Example = ({ coreI18n, i18n }: ExampleProps): JSX.Element => (
 	<select>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="xxxxxxxx-y">12345678-9 ({i18n.rut_default})</option>
@@ -17,8 +17,8 @@ export const Example = ({ coreI18n, i18n }: ExampleProps) => (
 	</select>
 );
 
-export const Options = ({ i18n, id, data, onUpdate }: OptionsProps) => {
-	const onChange = (field: string, value: boolean) => {
+export const Options = ({ i18n, id, data, onUpdate }: OptionsProps): JSX.Element => {
+	const onChange = (field: string, value: boolean): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -28,13 +28,13 @@ export const Options = ({ i18n, id, data, onUpdate }: OptionsProps) => {
 	return (
 		<>
 			<input type="checkbox" id={`${id}-thousandSep`} checked={data.thousandSep}
-				onChange={(e) => onChange('thousandSep', e.target.checked)} />
+				onChange={(e): void => onChange('thousandSep', e.target.checked)} />
 			<label htmlFor={`${id}-thousandSep`}>{i18n.thousands_separator}</label><br/>
 			<input type="checkbox" id={`${id}-upper`} checked={data.upper}
-				onChange={(e) => onChange('upper', e.target.checked)} />
+				onChange={(e): void => onChange('upper', e.target.checked)} />
 			<label htmlFor={`${id}-upper`}>{i18n.digit_uppercase}</label><br/>
 			<input type="checkbox" id={`${id}-remDash`} checked={data.remDash}
-				onChange={(e) => onChange('remDash', e.target.checked)} />
+				onChange={(e): void => onChange('remDash', e.target.checked)} />
 			<label htmlFor={`${id}-remDash`}>{i18n.remove_dash}</label>
 		</>
 	);

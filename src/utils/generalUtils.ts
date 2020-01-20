@@ -1,4 +1,5 @@
-export const isNumeric = (n: any): boolean => !Number.isNaN(parseFloat(n)) && Number.isFinite(n);
+// @ts-ignore
+export const isNumeric = (n: any): boolean => !isNaN(parseFloat(n)) && isFinite(n);
 
 export const uppercaseWords = (str: string): string => {
 	return str.split(' ')

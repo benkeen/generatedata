@@ -11,7 +11,7 @@ import * as generatorSelectors from './generator/generator.selectors';
 // data structure has hardly changed in 15 years and is unlikely to in the future
 export const coreConfig = { ...config };
 
-export const init = () => {
+export const init = (): void => {
 	const state = store.getState();
 	const locale = initSelectors.getLocale(state);
 	const numRows = generatorSelectors.getNumRows(state);

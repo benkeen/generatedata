@@ -11,8 +11,8 @@ export const state: LatLngState = {
 	lng: true
 };
 
-export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): React.ReactNode => {
-	const onChange = (field: string, checked: boolean) => {
+export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element => {
+	const onChange = (field: string, checked: boolean): void => {
 		onUpdate({
 			...data,
 			[field]: checked
@@ -22,15 +22,13 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): React.React
 	return (
 		<>
 			<input type="checkbox" id={`${id}-lat`} checked={data.lat}
-				onChange={(e) => onChange('lat', e.target.checked)} />
+				onChange={(e): void => onChange('lat', e.target.checked)} />
 			<label htmlFor={`${id}-lat`}>{i18n.latitude}</label>
 			<input type="checkbox" id={`${id}-lng`} checked={data.lng}
-				onChange={(e) => onChange('lng', e.target.checked)} />
+				onChange={(e): void => onChange('lng', e.target.checked)} />
 			<label htmlFor={`${id}-lng`}>{i18n.longitude}</label>
 		</>
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
-	<p>{i18n.DATA_TYPE.DESC}</p>
-);
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DATA_TYPE.DESC}</p>;

@@ -7,7 +7,7 @@ export const state = {
 };
 
 
-export const Example = ({ coreI18n, i18n, data }: ExampleProps) => (
+export const Example = ({ coreI18n, i18n, data }: ExampleProps): JSX.Element => (
 	<select defaultValue={data.example}>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="OrganisationNumberWithoutHyphen">{i18n.example_OrganisationNumberWithoutHyphen}</option>
@@ -15,7 +15,7 @@ export const Example = ({ coreI18n, i18n, data }: ExampleProps) => (
 	</select>
 );
 
-export const Options = ({ id, i18n }: OptionsProps) => (
+export const Options = ({ id, i18n }: OptionsProps): JSX.Element => (
 	<span id="dtOptionOrganisationNumberSeparator_%ROW%" style={{ display: 'inline' }}>
 		{i18n.separators}
 		<input type="text" id={`${id}-seperator`}
@@ -23,7 +23,7 @@ export const Options = ({ id, i18n }: OptionsProps) => (
 	</span>
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}

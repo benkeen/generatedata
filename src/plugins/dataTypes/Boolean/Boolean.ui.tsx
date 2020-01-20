@@ -12,8 +12,8 @@ export const state: BooleanState = {
 	value: 'true'
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
-	const onChange = (value: any) => {
+export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,
 			value: value
@@ -32,14 +32,14 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode
 	return (
 		<Dropdown
 			value={data.example}
-			onChange={(i: any) => onChange(i.value)}
+			onChange={(i: any): void => onChange(i.value)}
 			options={options}
 		/>
 	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps): React.ReactNode => (
-	<input type="text" value={data.value} onChange={(e) => onUpdate({ ...data, value: e.target.value })} style={{ width: '100%' }} />
+export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
+	<input type="text" value={data.value} onChange={(e): void => onUpdate({ ...data, value: e.target.value })} style={{ width: '100%' }} />
 );
 
 export const Help = ({ i18n }: HelpProps): React.ReactNode => (

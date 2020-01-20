@@ -1,4 +1,8 @@
-export const generate = () => {};
+import { DTGenerateReturnType } from '../../../../types/dataTypes';
+
+export const generate = (): DTGenerateReturnType => {
+	return { display: '' };
+};
 
 /*
 	protected $isEnabled = true;

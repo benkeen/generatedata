@@ -3,7 +3,7 @@ import { GenerationData, DTGenerateReturnType } from '../../../../types/dataType
 import { getRandomNum } from '../../../utils/randomUtils';
 import { BooleanState } from './Boolean.ui';
 
-export const rowStateReducer = (state: BooleanState) => state.value;
+export const rowStateReducer = (state: BooleanState): string => state.value;
 
 export const generate = (data: GenerationData): DTGenerateReturnType => {
 	const placeholderStr: string = data.rowState;

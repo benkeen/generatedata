@@ -11,8 +11,8 @@ export const state: NumberRangeState = {
 	max: 10
 };
 
-export const Options = ({ data, i18n, onUpdate }: OptionsProps) => {
-	const onChange = (field: string, value: string) => {
+export const Options = ({ data, i18n, onUpdate }: OptionsProps): JSX.Element => {
+	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -26,20 +26,20 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps) => {
 				type="number"
 				style={{ width: 50 }}
 				value={data.min}
-				onChange={(e: any) => onChange('min', e.target.value)}
+				onChange={(e: any): void => onChange('min', e.target.value)}
 			/>
 			{i18n.and}
 			<input
 				type="number"
 				style={{ width: 50 }}
 				value={data.max}
-				onChange={(e: any) => onChange('max', e.target.value)}
+				onChange={(e: any): void => onChange('max', e.target.value)}
 			/>
 		</div>
 	);
 };
 
-export const Help = ({ i18n }: HelpProps) => <p>{i18n.DATA_TYPE.DESC}</p>;
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DATA_TYPE.DESC}</p>;
 
 
 // var _validate = function(rows) {

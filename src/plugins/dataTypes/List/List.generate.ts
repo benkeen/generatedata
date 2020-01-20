@@ -1,9 +1,9 @@
 import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ListState, ListType } from './List.ui';
+import { ListState } from './List.ui';
 import { getRandomSubset, getRandomNum } from '../../../utils/randomUtils';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-export const rowStateReducer = ({ example, listType, exactly, atMost, values }: ListState) => ({
+export const rowStateReducer = ({ example, listType, exactly, atMost, values }: ListState): Partial<ListState> => ({
 	example, listType, exactly, atMost, values
 });	
 

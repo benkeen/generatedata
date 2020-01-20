@@ -16,13 +16,12 @@ type PreviewProps = {
 	data: any;
 }
 
-const Preview = ({ data }: PreviewProps) => {
+const Preview = ({ data }: PreviewProps): JSX.Element => {
 	const [code, setCode] = React.useState('');
 
 	React.useEffect(() => {
 		// re-generate everything any time it changes, then do a diff on the changes. NOPE! WE need to do a diff
 		// on the generation template to see what changed THERE.
-
 		const content = generateSimple(data, false);
 		setCode(content);
 	}, [data, setCode]);
@@ -30,7 +29,7 @@ const Preview = ({ data }: PreviewProps) => {
 	return (
 		<CodeMirror
 			value={code}
-			onBeforeChange={(value) => {
+			onBeforeChange={(value): void => {
 				setCode(value);
 			}}
 			options={{

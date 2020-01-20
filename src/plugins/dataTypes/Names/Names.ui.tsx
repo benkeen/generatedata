@@ -12,8 +12,8 @@ export const state: NamesState = {
 	options: 'Name Surname'
 };
 
-export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps): React.ReactNode => {
-	const onChange = (selected: ChangeEvent) => {
+export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+	const onChange = (selected: ChangeEvent): void => {
 		onUpdate({
 			...data,
 			example: selected.value,
@@ -44,16 +44,16 @@ export const Example = ({ i18n, data, coreI18n, onUpdate }: ExampleProps): React
 	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps): React.ReactNode => (
+export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
 	<input
 		type="text"
 		value={data.options}
-		onChange={(e) => onUpdate({ ...data, options: e.target.value })}
+		onChange={(e): void => onUpdate({ ...data, options: e.target.value })}
 		style={{ width: '100%' }}
 	/>
 );
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DESC}

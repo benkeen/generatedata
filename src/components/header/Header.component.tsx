@@ -6,7 +6,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import CheckBox from '@material-ui/icons/Checkbox';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 
-type HeaderProps = {
+export type HeaderProps = {
 	toggleGrid: () => void;
 	togglePreview: () => void;
 	isLoggedIn: boolean;
@@ -17,7 +17,7 @@ type HeaderProps = {
 	i18n: any;
 }
 
-const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, isLoggedIn, i18n }: HeaderProps): JSX.Element => {
+const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, i18n }: HeaderProps): JSX.Element => {
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
 

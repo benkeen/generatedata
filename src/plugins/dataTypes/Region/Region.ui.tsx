@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { HelpProps } from '../../../../types/dataTypes';
 
-
-export const Options = () => {
+export const Options = (): JSX.Element => {
 	// $countryPlugins = Core::$countryPlugins;
 	//
 	// $html = "<div class=\"dtRegionCountry_noCountries\">{$this->L["no_countries_selected"]}</div>";
@@ -28,10 +27,10 @@ export const Options = () => {
 	// 	EOF;
 	// }
 	// $html .= '<div id="dtRegionCountry_Complete%ROW%"></div>';
-	return '';
+	return <div />;
 };
 
-export const Help = ({ i18n }: HelpProps) => <p>{i18n.DATA_TYPE.DESC} {i18n.help_text}</p>;
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DATA_TYPE.DESC} {i18n.help_text}</p>;
 
 
 // var _saveRow = function(rowNum) {

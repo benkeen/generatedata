@@ -16,8 +16,8 @@ export const state: AutoIncrementState = {
 	incrementPlaceholder: ''
 };
 
-export const Example = ({ data, onUpdate }: ExampleProps): React.ReactNode => {
-	const onChange = (value: string) => {
+export const Example = ({ data, onUpdate }: ExampleProps): JSX.Element => {
+	const onChange = (value: string): void => {
 		const [incrementStart, incrementValue, incrementPlaceholder] = value.split(',');
 
 		onUpdate({
@@ -43,14 +43,14 @@ export const Example = ({ data, onUpdate }: ExampleProps): React.ReactNode => {
 	return (
 		<Dropdown
 			value={data.example}
-			onChange={(i: any) => onChange(i.value)}
+			onChange={(i: any): void => onChange(i.value)}
 			options={options}
 		/>
 	);
 };
 
-export const Options = ({ i18n, data, onUpdate }: OptionsProps): React.ReactNode => {
-	const onChange = (field: string, value: number | string) => {
+export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => {
+	const onChange = (field: string, value: number | string): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -61,20 +61,20 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps): React.ReactNode
 		<>
 			{i18n.start_at_c}
 			<input type="text" style={{ width: 40 }} value={data.incrementStart}
-				onChange={(e) => onChange('incrementStart', parseFloat(e.target.value))} />
+				onChange={(e): void => onChange('incrementStart', parseFloat(e.target.value))} />
 			{i18n.increment_c}
 			<input type="text" style={{ width: 40 }} value={data.incrementValue}
-				onChange={(e) => onChange('incrementValue', parseFloat(e.target.value))} />
+				onChange={(e): void => onChange('incrementValue', parseFloat(e.target.value))} />
 
 			<br />
 			{i18n.placeholder_str}
 			<input type="text" style={{ width: 100 }} value={data.incrementPlaceholder}
-				onChange={(e) => onChange('incrementPlaceholder', e.target.value)} />
+				onChange={(e): void => onChange('incrementPlaceholder', e.target.value)} />
 		</>
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_intro}

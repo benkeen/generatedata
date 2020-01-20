@@ -11,9 +11,9 @@ export const state = {
 	separator: ' '
 };
 
-export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
+export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps): JSX.Element => {
 
-	const onChange = (value: any) => {
+	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,
 			value: value
@@ -29,20 +29,20 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps): React
 	return (
 		<Dropdown
 			value={data.example}
-			onChange={(i: any) => onChange(i.value)}
+			onChange={(i: any): void => onChange(i.value)}
 			options={options}
 		/>
 	);
 };
 
-export const Options = ({ i18n, data }: OptionsProps): React.ReactNode => (
+export const Options = ({ i18n, data }: OptionsProps): JSX.Element => (
 	<div>
 		{i18n.separators}
 		<input type="text" style={{ width: 78 }} value={data.separator} title={i18n.separator_help} />
 	</div>
 );
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DATA_TYPE.DESC}

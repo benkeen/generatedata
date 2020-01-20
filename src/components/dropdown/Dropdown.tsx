@@ -7,19 +7,19 @@ export type ChangeEvent = {
 };
 
 const selectStyles = {
-	control: (provided: ControlProps<OptionTypeBase>) => ({
+	control: (provided: ControlProps<OptionTypeBase>): any => ({
 		...provided,
 		minHeight: 20
 	}),
-	indicatorsContainer: (provided: IndicatorProps<OptionTypeBase>) => ({
+	indicatorsContainer: (provided: IndicatorProps<OptionTypeBase>): any => ({
 		...provided,
 		height: 28
 	}),
-	indicatorContainer: (provided: IndicatorProps<OptionTypeBase>) => ({
+	indicatorContainer: (provided: IndicatorProps<OptionTypeBase>): any => ({
 		...provided,
 		padding: 5
 	}),
-	menuPortal: (base: any) => ({ ...base, zIndex: 10 })
+	menuPortal: (base: any): any => ({ ...base, zIndex: 10 })
 };
 
 const Dropdown = ({ value, isGrouped, options, ...props }: any): JSX.Element => {
@@ -39,7 +39,7 @@ const Dropdown = ({ value, isGrouped, options, ...props }: any): JSX.Element => 
 		});
 
 	} else {
-		selectedValue = options.find((row: any) => row.value === value);
+		selectedValue = options.find((row: any): any => row.value === value);
 	}
 	return (
 		<Select

@@ -2,13 +2,14 @@ import { createSelector } from 'reselect';
 import { getGenerationOptionsByDataType } from '../../utils/dataTypeGenerationUtils';
 import { getDataTypeProcessOrders } from '../../utils/dataTypeUtils';
 import { GenerationTemplate } from '../../../types/general';
+import { BuilderLayout } from '../../components/builder/Builder.component';
 
-export const getRows = (state: any) => state.generator.rows;
-export const getSortedRows = (state: any) => state.generator.sortedRows;
-export const isGridVisible = (state: any) => state.generator.showGrid;
-export const isPreviewVisible = (state: any) => state.generator.showPreview;
-export const getBuilderLayout = (state: any) => state.generator.builderLayout;
-export const getNumPreviewRows = (state: any) => state.generator.numPreviewRows;
+export const getRows = (state: any): any => state.generator.rows;
+export const getSortedRows = (state: any): any[] => state.generator.sortedRows;
+export const isGridVisible = (state: any): boolean => state.generator.showGrid;
+export const isPreviewVisible = (state: any): boolean => state.generator.showPreview;
+export const getBuilderLayout = (state: any): BuilderLayout => state.generator.builderLayout;
+export const getNumPreviewRows = (state: any): number => state.generator.numPreviewRows;
 
 export const getNumRows = createSelector(
 	getSortedRows,

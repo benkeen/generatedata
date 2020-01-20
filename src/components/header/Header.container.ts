@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import * as initActions from '../../core/init/init.actions';
 import * as initSelectors from '../../core/init/init.selectors';
-import Header from './Header.component';
+import Header, { HeaderProps } from './Header.component';
 import { GDLocale } from '../../../types/general';
 import * as generatorSelectors from '../../core/generator/generator.selectors';
 import * as generatorActions from '../../core/generator/generator.actions';
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	i18n: initSelectors.getCoreI18n(state),
 	locale: initSelectors.getLocale(state),
 	isGridVisible: generatorSelectors.isGridVisible(state),
@@ -15,14 +15,16 @@ const mapStateToProps = (state: any) => ({
 	isLoggedIn: false // TODO
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	// @ts-ignore
-	onChangeLocale: (locale: GDLocale) => dispatch(initActions.selectLocale(locale)),
-	toggleGrid: () => dispatch(generatorActions.toggleGrid()),
-	togglePreview: () => dispatch(generatorActions.togglePreview())
+	onChangeLocale: (locale: GDLocale): any => dispatch(initActions.selectLocale(locale)),
+	toggleGrid: (): any => dispatch(generatorActions.toggleGrid()),
+	togglePreview: (): any => dispatch(generatorActions.togglePreview())
 });
 
-export default connect(
+const container: any = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(Header);
+
+export default container;

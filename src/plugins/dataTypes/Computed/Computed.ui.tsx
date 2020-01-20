@@ -5,13 +5,13 @@ export const state = {
 	value: ''
 };
 
-export const Example = ({ i18n }: ExampleProps) => i18n.see_help_dialog;
+export const Example = ({ i18n }: ExampleProps): JSX.Element => i18n.see_help_dialog;
 
-export const Options = ({ data, onUpdate }: OptionsProps) => (
-	<textarea onChange={(e) => onUpdate({ value: e.target.value })}>{data.value}</textarea>
+export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
+	<textarea onChange={(e): void => onUpdate({ value: e.target.value })}>{data.value}</textarea>
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_para1}

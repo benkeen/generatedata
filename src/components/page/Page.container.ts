@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
-import Page from './Page.component';
+import Page, { PageProps } from './Page.component';
 import * as initSelectors from '../../core/init/init.selectors';
 
-const mapStateToProps = (state: any): any => ({
+const mapStateToProps = (state: any): Partial<PageProps> => ({
 	localeFileLoaded: initSelectors.localeFileLoaded(state)
 });
 
-const mapDispatchToProps = (): any => ({});
+const mapDispatchToProps = (): Partial<PageProps> => ({});
 
-export default connect(
+const con: any = connect(
 	mapStateToProps,
 	mapDispatchToProps
-
-// @ts-ignore
 )(Page);
+
+export default con;

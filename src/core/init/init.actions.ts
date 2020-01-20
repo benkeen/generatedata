@@ -11,8 +11,8 @@ export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
 });
 
 export const selectLocale = (locale: GDLocale) => {
-	return (dispatch: ThunkDispatch<any, any, any>) => {
-		loadLocaleFile(`./${locale}.js`, (locale: GDLocale, strings: any) => {
+	return (dispatch: ThunkDispatch<any, any, any>): any => {
+		loadLocaleFile(`./${locale}.js`, (locale: GDLocale, strings: any): any => {
 			langUtils.setLocale(locale, strings);
 			dispatch(setLocaleFileLoaded(locale));
 		});
@@ -20,7 +20,7 @@ export const selectLocale = (locale: GDLocale) => {
 };
 
 // kludgy, but simple
-export const loadLocaleFile = (src: string, callback: Function) => {
+export const loadLocaleFile = (src: string, callback: Function): void => {
 	const s = document.createElement('script');
 	s.src = src;
 	document.body.appendChild(s);

@@ -23,10 +23,10 @@ routes:
 	donate
  */
 
-const App = () => (
+const App = (): JSX.Element => (
 	<Provider store={store}>
 		<PersistGate loading={null} persistor={persistor}>
-			{(bootstrapped) => {
+			{(bootstrapped): JSX.Element => {
 
 				// PersistGate handles repopulating the redux store, but it takes a little time. Core.init()
 				// re-initializes everything else we need, including loading the appropriate locale file based

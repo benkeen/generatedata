@@ -12,8 +12,8 @@ export const state: PhoneState = {
 	option: '1-Xxx-Xxx-xxxx'
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
-	const onChange = (value: any) => {
+export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,
 			option: value
@@ -34,22 +34,22 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode
 	return (
 		<Dropdown
 			value={data.example}
-			onChange={(i: any) => onChange(i.value)}
+			onChange={(i: any): void => onChange(i.value)}
 			options={options}
 		/>
 	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps): React.ReactNode => (
+export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
 	<input
 		type="text"
 		value={data.option}
-		onChange={(e) => onUpdate({ ...state, option: e.target.value })}
+		onChange={(e): void => onUpdate({ ...state, option: e.target.value })}
 		style={{ width: '100%' }}
 	/>
 );
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_text1}

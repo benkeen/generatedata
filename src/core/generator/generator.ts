@@ -2,8 +2,7 @@
  * Our generator class. This does the work of passing off the work off to the selected plugins and piecing the
  * generated data for returning to the client.
  */
-
-import { ExportTarget, ExportTypeGenerateType, ExportTypeGenerationData } from '../../../types/general';
+import { ExportTypeGenerateType, ExportTypeGenerationData } from '../../../types/general';
 
 // temporary of course
 import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
@@ -31,7 +30,7 @@ import { JSONSettings } from '../../plugins/exportTypes/JSON/JSON.ui';
 // let configurationID = null;
 
 
-export const generate = (data: ExportTypeGenerateType) => {
+export const generate = (data: ExportTypeGenerateType): string => {
 
 	// will be pulled from UI
 	const tmpExportTypeSettings: JSONSettings = {
@@ -52,11 +51,11 @@ export const generate = (data: ExportTypeGenerateType) => {
 	return content;
 };
 
-type ConfigData = {
-	exportTarget: ExportTarget;
-	batchSize: number;
-	currentBatchNumber: number;
-};
+// type ConfigData = {
+// 	exportTarget: ExportTarget;
+// 	batchSize: number;
+// 	currentBatchNumber: number;
+// };
 
 export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
 	const generationTemplate = data.template;

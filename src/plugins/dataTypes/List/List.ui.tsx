@@ -20,8 +20,8 @@ export const state: ListState = {
 	values: ''
 };
 
-export const Example = ({ data, onUpdate, i18n }: ExampleProps): React.ReactNode => {
-	const onChange = (example: any) => {
+export const Example = ({ data, onUpdate, i18n }: ExampleProps): JSX.Element => {
+	const onChange = (example: any): void => {
 		onUpdate({
 			...data,
 			example: example,
@@ -49,7 +49,7 @@ export const Example = ({ data, onUpdate, i18n }: ExampleProps): React.ReactNode
 		<>
 			<Dropdown
 				value={data.example}
-				onChange={(i: any) => onChange(i.value)}
+				onChange={(i: any): void => onChange(i.value)}
 				options={options}
 			/>
 			<div>{i18n.separated_by_pipe}</div>
@@ -57,9 +57,9 @@ export const Example = ({ data, onUpdate, i18n }: ExampleProps): React.ReactNode
 	);
 };
 
-export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): React.ReactNode => {
+export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element => {
 	// const [] = React.useRef();
-	const onChange = (field: string, value: string) => {
+	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -80,7 +80,7 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): React.React
 					id={`listType1-${id}`}
 					value="EXACTLY"
 					checked={data.listType === 'EXACTLY'}
-					onChange={() => onChange('listType', 'EXACTLY')}
+					onChange={(): void => onChange('listType', 'EXACTLY')}
 				/>
 				<label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
 				<input
@@ -88,14 +88,14 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): React.React
 					size={2}
 					id={`dtListExactly_${id}`}
 					value={data.exactly}
-					onChange={(e) => onChange('exactly', e.target.value)}
+					onChange={(e): void => onChange('exactly', e.target.value)}
 				/>
 				<input
 					type="radio"
 					id={`listType2-${id}`}
 					value="AT_MOST"
 					checked={data.listType === 'AT_MOST'}
-					onChange={() => onChange('listType', 'AT_MOST')}
+					onChange={(): void => onChange('listType', 'AT_MOST')}
 				/>
 				<label htmlFor={`listType2-${id}`}>{i18n.at_most}</label>
 				<input
@@ -103,21 +103,21 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): React.React
 					size={2}
 					id={`dtListAtMost_${id}`}
 					value={data.atMost}
-					onChange={(e) => onChange('atMost', e.target.value)}
+					onChange={(e): void => onChange('atMost', e.target.value)}
 				/>
 			</div>
 			<div>
 				<input
 					type="text"
 					value={data.values}
-					onChange={(e) => onChange('values', e.target.value)}
+					onChange={(e): void => onChange('values', e.target.value)}
 				/>
 			</div>
 		</>
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => <p>{i18n.help}</p>;
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.help}</p>;
 
 // var _validate = function(rows) {
 // 	var missingOptions = {

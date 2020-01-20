@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
-	autoIncRowNum: '',
-	maxSiblings: ''
+export type TreeState = {
+	autoIncRowNum: number | null,
+	maxSiblings: number | null
 };
 
-export const Options = ({ data, id, onUpdate, i18n }: OptionsProps) => {
-	const onChange = (field: string, value: string) => {
+export const state: TreeState = {
+	autoIncRowNum: null,
+	maxSiblings: null
+};
+
+export const Options = ({ data, id, onUpdate, i18n }: OptionsProps): JSX.Element => {
+	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -19,18 +24,18 @@ export const Options = ({ data, id, onUpdate, i18n }: OptionsProps) => {
 			<div>
 				{i18n.auto_increment_row_num}
 				<input type="text" id={`${id}-rowNum`} value="1" size={3} maxLength={3}
-					onChange={(e) => onChange('rowNum', e.target.value)} />
+					onChange={(e): void => onChange('rowNum', e.target.value)} />
 			</div>
 			<div>
 				{i18n.max_num_sibling_nodes}
 				<input type="text" id={`${id}-maxSiblings`} value="2" size={3} maxLength={3}
-					onChange={(e) => onChange('maxSiblings', e.target.value)} />
+					onChange={(e): void => onChange('maxSiblings', e.target.value)} />
 			</div>
 		</>
 	);
 };
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_1}

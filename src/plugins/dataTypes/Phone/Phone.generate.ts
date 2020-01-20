@@ -3,7 +3,7 @@ import { generateRandomAlphanumericStr, getRandomArrayValue } from '../../../uti
 import { PhoneState } from './Phone.ui';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-export const rowStateReducer = (state: PhoneState) => state.option;
+export const rowStateReducer = (state: PhoneState): string => state.option;
 
 export const generate = (data: GenerationData): DTGenerateReturnType => {
 	const phoneStr = generateRandomAlphanumericStr(data.rowState);

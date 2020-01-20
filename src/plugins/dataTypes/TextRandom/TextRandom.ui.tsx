@@ -7,7 +7,7 @@ export const state = {
 	maxWords: 10
 };
 
-export const Options = ({ i18n, id, data }: OptionsProps) => (
+export const Options = ({ i18n, id, data }: OptionsProps): JSX.Element => (
 	<>
 		<div>
 			<input type="checkbox" id={`${id}-startsWithLipsum`} />
@@ -23,8 +23,7 @@ export const Options = ({ i18n, id, data }: OptionsProps) => (
 	</>
 );
 
-export const Help = ({ i18n }: HelpProps) => <p>{i18n.help}</p>;
-
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.help}</p>;
 
 // var _loadRow = function(rowNum, data) {
 // 	return {

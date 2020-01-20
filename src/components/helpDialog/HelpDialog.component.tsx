@@ -12,7 +12,7 @@ import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeHelpComponent } from '../../utils/dataTypeUtils';
 // import styles from './HelpDialog.scss';
 
-const dialogStyles = (theme: any) => ({
+const dialogStyles = (theme: any): any => ({
 	root: {
 		margin: 0,
 		padding: theme.spacing(2),
@@ -62,7 +62,7 @@ export type HelpDialogProps = {
 	i18n: any;
 }
 
-const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpDialogProps): React.ReactNode => {
+const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpDialogProps): JSX.Element => {
 	const [dataType, setDataType] = React.useState();
 
 	React.useEffect(() => {
@@ -81,7 +81,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpD
 				<Dropdown
 					isGrouped={true}
 					value={dataType}
-					onChange={(i: any) => setDataType(i.value)}
+					onChange={(i: any): void => setDataType(i.value)}
 					options={dataTypes}
 				/>
 				<Help

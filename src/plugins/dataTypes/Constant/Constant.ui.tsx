@@ -6,16 +6,15 @@ export type ConstantType = {
 	values: string;
 }
 
-export const state = {
+export const state: ConstantType = {
 	loopCount: 10,
 	values: ''
 };
 
+export const Example = ({ i18n }: ExampleProps): string => i18n.see_help_dialog;
 
-export const Example = ({ i18n }: ExampleProps) => i18n.see_help_dialog;
-
-export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
-	const onChange = (field: string, value: string) => {
+export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => {
+	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -27,21 +26,21 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps) => {
 				<td>{i18n.loop_count}</td>
 				<td>
 					<input type="text" value={data.loopCount} size={5}
-						onChange={(e) => onChange('loopCount', e.target.value)} />
+						onChange={(e): void => onChange('loopCount', e.target.value)} />
 				</td>
 			</tr>
 			<tr>
 				<td>{i18n.values}</td>
 				<td>
 					<input value={data.values} style={{ width: '100%' }}
-						onChange={(e) => onChange('values', e.target.value)} />
+						onChange={(e): void => onChange('values', e.target.value)} />
 				</td>
 			</tr>
 		</table>
 	);
 };
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_1}

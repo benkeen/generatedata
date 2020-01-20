@@ -8,18 +8,18 @@ export class ReducerRegistry {
 	emitChange: any;
 	reducers: any;
 
-	getReducers() {
+	getReducers(): any {
 		return { ...this.reducers };
 	}
 
-	register(name: string, reducer: any) {
+	register(name: string, reducer: any): void {
 		this.reducers = { ...this.reducers, [name]: reducer };
 		if (this.emitChange) {
 			this.emitChange(this.getReducers());
 		}
 	}
 
-	setChangeListener(listener: any) {
+	setChangeListener(listener: any): void {
 		this.emitChange = listener;
 	}
 }

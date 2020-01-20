@@ -51,8 +51,8 @@ export const getOptions = (): any[] => {
 	]);
 };
 
-export const Example = ({ data, onUpdate }: ExampleProps): React.ReactNode => {
-	const onChange = ({ value }: { value: string }) => {
+export const Example = ({ data, onUpdate }: ExampleProps): JSX.Element => {
+	const onChange = ({ value }: { value: string }): void => {
 		onUpdate({
 			...data,
 			example: value,
@@ -69,8 +69,8 @@ export const Example = ({ data, onUpdate }: ExampleProps): React.ReactNode => {
 	);
 };
 
-export const Options = ({ data, onUpdate, i18n }: OptionsProps): React.ReactNode => {
-	const onChange = (field: string, value: any) => {
+export const Options = ({ data, onUpdate, i18n }: OptionsProps): JSX.Element => {
+	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -87,7 +87,7 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps): React.ReactNode
 						margin="none"
 						format="MM/dd/yyyy"
 						value={fromUnixTime(data.fromDate)}
-						onChange={(date) => onChange('fromDate', date)}
+						onChange={(date): void => onChange('fromDate', date)}
 						InputProps={{
 							style: {
 								width: 120
@@ -100,7 +100,7 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps): React.ReactNode
 						margin="none"
 						format="MM/dd/yyyy"
 						value={fromUnixTime(data.toDate)}
-						onChange={() => { }}
+						onChange={(): void => { }}
 						InputProps={{
 							style: {
 								width: 120
@@ -111,7 +111,7 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps): React.ReactNode
 				<div>
 					{i18n.format_code}
 					<input type="text" value={data.format} style={{ width: 160 }}
-						onChange={(e) => onChange('format', e.target.value)}
+						onChange={(e): void => onChange('format', e.target.value)}
 					/>
 				</div>
 			</div>
@@ -119,7 +119,7 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps): React.ReactNode
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_intro}
