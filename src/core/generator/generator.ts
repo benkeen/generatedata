@@ -51,12 +51,6 @@ export const generate = (data: ExportTypeGenerateType): string => {
 	return content;
 };
 
-// type ConfigData = {
-// 	exportTarget: ExportTarget;
-// 	batchSize: number;
-// 	currentBatchNumber: number;
-// };
-
 export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
 	const generationTemplate = data.template;
 
@@ -68,7 +62,16 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 	// contains only the information needed for display purposes
 	const displayData: any = [];
 	const processOrders = Object.keys(generationTemplate);
+
+	let index = 0;
 	for (let rowNum = firstRowNum; rowNum <= lastRowNum; rowNum++) {
+
+
+		if (!data.columnTitles[index]) {
+			index++;
+			continue;
+		}
+
 		// the generationTemplate is already grouped by process order. Just loop through each one, passing off the
 		// actual data generation to the appropriate Data Type. Note that we pass all previously generated
 		// data (including any metadata returned by the Data Type).
