@@ -83,3 +83,53 @@ describe('generator section', () => {
 	});
 
 });
+
+describe('grid rows', () => {
+	let store: any;
+	beforeEach(() => {
+		store = createStore(combineReducers({
+			generator: reducer
+		}));
+	});
+
+	it('adds rows, well, adds rows', () => {
+		expect(selectors.getNumRows(store.getState())).toEqual(0);
+		store.dispatch(actions.addRows(10));
+		expect(selectors.getNumRows(store.getState())).toEqual(10);
+	});
+
+	it('added rows get listed as sortable', () => {
+		store.dispatch(actions.addRows(5));
+		const rows = selectors.getRows(store.getState());
+		const rowKeys = Object.keys(rows);
+		expect(rowKeys.length).toEqual(5);
+		expect(selectors.getSortedRows(store.getState()).length).toEqual(5);
+	});
+
+	it('added second batch of rows appends to end', () => {
+		store.dispatch(actions.addRows(5));
+		store.dispatch(actions.addRows(5));
+		
+		const rows = selectors.getRows(store.getState());
+		const rowKeys = Object.keys(rows);
+		expect(rowKeys.length).toEqual(10);
+		expect(selectors.getSortedRows(store.getState()).length).toEqual(10);
+	});
+
+	it('removing a row removes it from both rows and sorted rows', () => {
+		store.dispatch(actions.addRows(5));
+		const rows = selectors.getRows(store.getState());
+		const rowKeys = Object.keys(rows);
+		store.dispatch(actions.removeRow(rowKeys[0]));
+
+		// check the `rows` property is updated
+		const updatedRows = selectors.getRows(store.getState());
+		const updateRowKeys = Object.keys(updatedRows);
+		expect(updateRowKeys.length).toEqual(4);
+
+		// check the `sortedRows` property is also updated
+		const sortedRows = selectors.getSortedRows(store.getState());
+		expect(sortedRows.length).toEqual(4);
+	});
+
+});

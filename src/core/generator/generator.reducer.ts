@@ -70,11 +70,18 @@ export const reducer = (state: ReducerState = {
 			};
 		}
 
-		case actions.REMOVE_ROW:
+		case actions.REMOVE_ROW: {
+			const trimmedRowIds = state.sortedRows.filter((i) => i !== action.payload.id);
+			const updatedRows: DataRows = {};
+			trimmedRowIds.forEach((id) => {
+				updatedRows[id] = state.rows[id]
+			});
 			return {
 				...state,
-				sortedRows: state.sortedRows.filter((i) => i !== action.payload.id)
+				rows: updatedRows,
+				sortedRows: trimmedRowIds
 			};
+		}
 
 		case actions.CHANGE_TITLE:
 			return {
