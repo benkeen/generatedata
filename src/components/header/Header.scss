@@ -12,7 +12,15 @@
 
   h1 {
     display: inline-block;
-    flex: 1;
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	svg { 
+		fill: #000000;
+		transform: rotate(-10deg);
+		margin-right: 10px;
+	}
   }
 
   section {
@@ -20,7 +28,9 @@
   }
 
   nav {
-    flex: 0 0 auto;
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
 
     ul {
       display: inline-block;

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as styles from './Header.scss';
 import { GDLocale } from '../../../types/general';
 import Button from '@material-ui/core/Button';
+import Dice from '@material-ui/icons/Casino';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import CheckBox from '@material-ui/icons/Checkbox';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
@@ -24,7 +25,10 @@ const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, i1
 	return (
 		<header className={styles.header}>
 			<div>
-				<h1>generatedata.com</h1>
+				<h1>
+					<Dice fontSize="large" />
+					generatedata.com
+				</h1>
 
 				<nav>
 					<ul>

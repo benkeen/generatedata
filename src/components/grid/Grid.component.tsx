@@ -4,9 +4,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import HelpIcon from '@material-ui/icons/HelpOutline';
 import DragIndicator from '@material-ui/icons/DragIndicator';
-import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import * as styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataTypeComponents } from '../../utils/dataTypeUtils';
@@ -51,7 +50,6 @@ const Grid = ({
 
 	// TODO memoize
 	const dataTypes = getSortedGroupedDataTypes();
-	const HelpColIcon = (dimensions.width < SMALL_BREAKPOINT) ? SettingsIcon : HelpIcon;
 
 	const getRows = (rows: DataRow[]): JSX.Element[] => {
 		return rows.map((row, index) => {
@@ -124,7 +122,7 @@ const Grid = ({
 								setInitialDialogSection(row.dataType);
 								showHelpDialogSection(true);
 							}}>
-								{row.dataType ? <HelpColIcon /> : null}
+								{row.dataType ? <SettingsIcon /> : null}
 							</div>
 							<div className={styles.deleteCol} onClick={(): void => onRemove(row.id)}>
 								<HighlightOffIcon />

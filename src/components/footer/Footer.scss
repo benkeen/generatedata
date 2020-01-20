@@ -12,7 +12,7 @@
     ul {
       flex: 1;
       display: flex;
-      flex-direction: row;
+	  flex-direction: row;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -20,8 +20,16 @@
 
       li {
         margin-right: 6px;
-      }
+	  }
+
+	  svg {
+		  cursor: pointer;
+	  }
     }
+  }
+
+  a:hover {
+	  border-bottom: 0;
   }
 
   svg {
@@ -32,4 +40,8 @@
 div.selectLocale {
   width: 130px;
   display: inline-block;
+}
+
+.selectedLocale span {
+	font-weight: bold;
 }

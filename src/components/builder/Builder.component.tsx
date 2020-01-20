@@ -16,21 +16,6 @@ export type BuilderProps = {
 }
 
 const Builder = ({ isGridVisible, isPreviewVisible, builderLayout }: BuilderProps): JSX.Element => {
-	// const [subPage, setSubpage] = React.useState<SubPage>('grid');
-
-	// let content;
-	// if (subPage === 'grid') {
-	//     content = (
-	//     );
-	// } else {
-	//     content = (
-	//         <>
-	//             <span onClick={() => setSubpage('grid')}>&laquo; back</span>
-	//             <ResultsPanel />
-	//         </>
-	//     );
-	// }
-
 	const getContent = (): JSX.Element => {
 		if (isGridVisible && isPreviewVisible) {
 			return (

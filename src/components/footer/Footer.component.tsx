@@ -1,10 +1,17 @@
 import * as React from 'react';
+import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import * as styles from './Footer.scss';
-import Dropdown from '../dropdown/Dropdown';
+import Tooltip from '@material-ui/core/Tooltip';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
+import * as styles from './Footer.scss';
 import { Github } from '../icons';
 import { GDLocale } from '../../../types/general';
+import C from '../../core/constants';
+
 
 export type FooterProps = {
 	locale: GDLocale,
@@ -12,33 +19,78 @@ export type FooterProps = {
 	onChangeLocale: (a: any) => void
 };
 
+const HtmlTooltip = withStyles(() => ({
+	tooltip: {
+		backgroundColor: '#f5f5f9',
+		color: 'rgba(0, 0, 0, 0.87)',
+		maxWidth: 220,
+		// fontSize: theme.typography.pxToRem(12),
+		border: '1px solid #dadde9',
+	},
+}))(Tooltip);
+
+const options = [
+	{ value: 'de', label: 'Deutsch' },
+	{ value: 'en', label: 'English' },
+	{ value: 'es', label: 'Español' },
+	{ value: 'fr', label: 'Français' },
+	{ value: 'nl', label: 'Nederlands' },
+	{ value: 'zh', label: '中文' }
+];
+
+
+const useListStyles = makeStyles(() =>
+	createStyles({
+		root: {
+			width: '100%',
+			maxWidth: 360,
+			// backgroundColor: theme.palette.background.paper,
+		},
+	}),
+);
+
+
 const Footer = ({ locale, onChangeLocale }: FooterProps): JSX.Element => {
-	const options = [
-		{ value: 'de', label: 'Deutsch' },
-		{ value: 'en', label: 'English' },
-		{ value: 'es', label: 'Español' },
-		{ value: 'fr', label: 'Français' },
-		{ value: 'nl', label: 'Nederlands' },
-		{ value: 'zh', label: '中文' }
-	];
+	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
+	const listClasses = useListStyles();
 
 	return (
 		<footer className={styles.footer}>
 			<div>
 				<ul>
 					<li>
-						<Github />
+						<a href={C.GITHUB_URL} target="_blank" rel="noopener noreferrer">
+							<Github />
+						</a>
 					</li>
 					<li>
-						<LanguageIcon fontSize="large" />
-					</li>
-					<li>
-						<Dropdown
-							className={styles.selectLocale}
-							onChange={(item: any): void => onChangeLocale(item.value)}
-							value={locale}
-							options={options}
-						/>
+						<ClickAwayListener onClickAway={(): void => setLocaleTooltipVisibility(false)}>
+							<HtmlTooltip
+								arrow
+								open={localeTooltipVisible}
+								placement="top"
+								disableFocusListener
+								disableTouchListener
+								onClose={(): void => setLocaleTooltipVisibility(false)}
+								title={
+									<div className={listClasses.root}>
+										<List>
+											{options.map((currLocale: any): JSX.Element => (
+												<ListItem
+													button
+													key={currLocale.value}
+													className={locale === currLocale.value ? styles.selectedLocale : ''}
+													onClick={(): void => onChangeLocale(currLocale.value)}>
+													<ListItemText primary={currLocale.label} />
+												</ListItem>
+											))}
+										</List>
+									</div>
+								}
+							>
+								<LanguageIcon fontSize="large" onClick={(): void=> setLocaleTooltipVisibility(true)} />
+							</HtmlTooltip>
+						</ClickAwayListener>
 					</li>
 					<li>4.0.0</li>
 				</ul>

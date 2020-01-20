@@ -5,6 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
 import Refresh from '@material-ui/icons/Refresh';
+import Settings from '@material-ui/icons/SettingsOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { getArrayOfSize } from '../../utils/arrayUtils';
@@ -21,6 +22,7 @@ export type PreviewPanelProps = {
 	data: any;
 };
 
+
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
 
 const PreviewPanel = ({
@@ -35,12 +37,14 @@ const PreviewPanel = ({
 		'../../plugins/exportTypes/JSON/JSONPreview.container')
 	);
 
+	// const hasData = data.rows.length > 0;
+
 	return (
 		<div className={styles.previewPanel}>
 			<div className={styles.topRow}>
 				<span style={{ display: 'flex', flexDirection: 'row' }}>
 					<span style={{ display: 'flex', alignItems: 'center' }}>
-						Num rows: 
+						Preview rows: 
 						<Dropdown
 							value={numPreviewRows}
 							onChange={(item: any): any => updateNumPreviewRows(item.value)}
@@ -50,6 +54,13 @@ const PreviewPanel = ({
 				</span>
 				<span>
 					<span onClick={(): any => { }}>
+						<Tooltip title="Preview panel settings" placement="bottom">
+							<IconButton size="small" aria-label="Settings">
+								<Settings fontSize="large" />
+							</IconButton>
+						</Tooltip>
+					</span>
+					<span onClick={(): any => { }}>
 						<Tooltip title="Refresh panel" placement="bottom">
 							<IconButton size="small" aria-label="Refresh">
 								<Refresh fontSize="large" />
@@ -57,14 +68,18 @@ const PreviewPanel = ({
 						</Tooltip>
 					</span>
 					<span onClick={toggleLayout}>
-						<IconButton size="small" aria-label="Toggle layout">
-							<ToggleDirectionIcon fontSize="large" />
-						</IconButton>
+						<Tooltip title="Toggle grid/preview panel layout" placement="bottom">
+							<IconButton size="small" aria-label="Toggle layout">
+								<ToggleDirectionIcon fontSize="large" />
+							</IconButton>
+						</Tooltip>
 					</span>
 					<span className={styles.closePanel} onClick={togglePreview}>
-						<IconButton size="small" aria-label="Toggle layout">
-							<CloseIcon fontSize="large" />
-						</IconButton>
+						<Tooltip title="Close panel" placement="bottom">
+							<IconButton size="small" aria-label="Close panel">
+								<CloseIcon fontSize="large" />
+							</IconButton>
+						</Tooltip>
 					</span>
 				</span>
 			</div>

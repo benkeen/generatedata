@@ -87,7 +87,9 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 			}
 		});
 
-		displayData.push(currRowData.map((i: any) => i.display));
+		if (currRowData.length) {
+			displayData.push(currRowData.map((i: any): string => i.display));
+		}
 
 		// 	// now sort the row columns in the desired order
 		// 	ksort($currRowData, SORT_NUMERIC);
