@@ -69,6 +69,7 @@ const Footer = ({ locale, onChangeLocale }: FooterProps): JSX.Element => {
 								placement="top"
 								disableFocusListener
 								disableTouchListener
+								interactive
 								onClose={(): void => setLocaleTooltipVisibility(false)}
 								title={
 									<div className={listClasses.root}>

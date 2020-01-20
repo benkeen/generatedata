@@ -1,7 +1,9 @@
 import { createStore, combineReducers } from 'redux';
+import * as sinon from 'sinon';
 import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
 import { reducer } from '../generator.reducer';
+import * as dateTypeUtils from '../../../utils/dataTypeUtils';
 
 describe('generator section', () => {
 	let store: any;
@@ -162,9 +164,22 @@ describe('grid rows', () => {
 		expect(updatedRows[2].dataType).toEqual(null);
 	});
 	
-	// it('updates whatever info the data type wants', () => {
-	// 	store.dispatch(actions.addRows(3));
-	// 	const rows = selectors.getSortedRowsArray(store.getState());
-	// 	store.dispatch(actions.onSelectDataType(rows[1].id, 'JSON'));
-	// });
+	it('initializes the default data type state when selecting data type', () => {
+		const defaultState = { 
+			arbitrary: 1,
+			content: true
+		};
+
+		sinon.stub(dateTypeUtils, 'getDataTypeDefaultState')
+			.onCall(0).returns(defaultState)
+
+		store.dispatch(actions.addRows(1));
+		const rows = selectors.getSortedRowsArray(store.getState());
+		store.dispatch(actions.onSelectDataType(rows[0].id, 'JSON'));
+
+		const updatedRows = selectors.getSortedRowsArray(store.getState());
+		expect(updatedRows[0].data).toEqual(defaultState);
+
+		sinon.restore();
+	});
 });

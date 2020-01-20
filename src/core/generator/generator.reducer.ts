@@ -74,7 +74,7 @@ export const reducer = (state: ReducerState = {
 			const trimmedRowIds = state.sortedRows.filter((i) => i !== action.payload.id);
 			const updatedRows: DataRows = {};
 			trimmedRowIds.forEach((id) => {
-				updatedRows[id] = state.rows[id]
+				updatedRows[id] = state.rows[id];
 			});
 			return {
 				...state,
