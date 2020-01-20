@@ -81,7 +81,6 @@ describe('generator section', () => {
 		store.dispatch(actions.updateNumPreviewRows(10));
 		expect(selectors.getNumPreviewRows(store.getState())).toEqual(10);
 	});
-
 });
 
 describe('grid rows', () => {
@@ -132,4 +131,40 @@ describe('grid rows', () => {
 		expect(sortedRows.length).toEqual(4);
 	});
 
+	it('changes the row title', () => {
+		store.dispatch(actions.addRows(3));
+
+		// should be blank by default
+		const rows = selectors.getSortedRowsArray(store.getState());
+		expect(rows[0].title).toEqual('');
+		expect(rows[1].title).toEqual('');
+		expect(rows[2].title).toEqual('');
+
+		store.dispatch(actions.onChangeTitle(rows[1].id, 'new value!'));
+		const updatedRows = selectors.getSortedRowsArray(store.getState());
+		expect(updatedRows[0].title).toEqual('');
+		expect(updatedRows[1].title).toEqual('new value!');
+		expect(updatedRows[2].title).toEqual('');
+	});
+	
+	it('changes the data type', () => {
+		store.dispatch(actions.addRows(3));
+
+		const rows = selectors.getSortedRowsArray(store.getState());
+		expect(rows[0].dataType).toEqual(null);
+		expect(rows[1].dataType).toEqual(null);
+		expect(rows[2].dataType).toEqual(null);
+
+		store.dispatch(actions.onSelectDataType(rows[1].id, 'JSON'));
+		const updatedRows = selectors.getSortedRowsArray(store.getState());
+		expect(updatedRows[0].dataType).toEqual(null);
+		expect(updatedRows[1].dataType).toEqual('JSON');
+		expect(updatedRows[2].dataType).toEqual(null);
+	});
+	
+	// it('updates whatever info the data type wants', () => {
+	// 	store.dispatch(actions.addRows(3));
+	// 	const rows = selectors.getSortedRowsArray(store.getState());
+	// 	store.dispatch(actions.onSelectDataType(rows[1].id, 'JSON'));
+	// });
 });
