@@ -65,8 +65,6 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 
 	let index = 0;
 	for (let rowNum = firstRowNum; rowNum <= lastRowNum; rowNum++) {
-
-
 		if (!data.columnTitles[index]) {
 			index++;
 			continue;

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
+import HtmlTooltip from '../tooltip/HtmlTooltip';
 import * as styles from './Footer.scss';
 import { Github } from '../icons';
 import { GDLocale } from '../../../types/general';
@@ -18,15 +18,6 @@ export type FooterProps = {
 	onChangeLocale: (a: any) => void
 };
 
-const HtmlTooltip = withStyles(() => ({
-	tooltip: {
-		backgroundColor: '#f5f5f9',
-		color: 'rgba(0, 0, 0, 0.87)',
-		maxWidth: 220,
-		border: '1px solid #dadde9',
-	}
-}))(Tooltip);
-
 const options = [
 	{ value: 'de', label: 'Deutsch' },
 	{ value: 'en', label: 'English' },
@@ -36,17 +27,14 @@ const options = [
 	{ value: 'zh', label: '中文' }
 ];
 
-
 const useListStyles = makeStyles(() =>
 	createStyles({
 		root: {
 			width: '100%',
-			maxWidth: 360,
-			// backgroundColor: theme.palette.background.paper,
-		},
-	}),
+			maxWidth: 360
+		}
+	})
 );
-
 
 const Footer = ({ locale, onChangeLocale }: FooterProps): JSX.Element => {
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);

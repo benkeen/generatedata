@@ -55,3 +55,9 @@ export const toggleLayout = (): GDAction => ({ type: TOGGLE_LAYOUT });
 
 export const UPDATE_NUM_PREVIEW_ROWS = 'UPDATE_NUM_PREVIEW_ROWS';
 export const updateNumPreviewRows = (numRows: number): GDAction => ({ type: UPDATE_NUM_PREVIEW_ROWS, payload: { numRows } });
+
+export const CHANGE_THEME = 'CHANGE_THEME';
+export const changeTheme = (theme: string): GDAction => ({ type: CHANGE_THEME, payload: { theme } });
+
+export const TOGGLE_SHOW_ROW_NUMBERS = 'TOGGLE_SHOW_ROW_NUMBERS';
+export const toggleShowRowNumbers = (): GDAction => ({ type: TOGGLE_SHOW_ROW_NUMBERS });

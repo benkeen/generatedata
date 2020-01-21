@@ -22,9 +22,11 @@ export type ReducerState = {
 	showGrid: boolean;
 	showPreview: boolean;
 	builderLayout: BuilderLayout;
-	numPreviewRows: number;
 	selectedExportType: string;
 	exportTypeSettings: any;
+	numPreviewRows: number;
+	showRowNumbers: boolean;
+	theme: string;
 };
 
 /**
@@ -37,9 +39,11 @@ export const reducer = (state: ReducerState = {
 	showGrid: true,
 	showPreview: true,
 	builderLayout: 'horizontal',
-	numPreviewRows: 5,
 	selectedExportType: 'JSON',
-	exportTypeSettings: null
+	exportTypeSettings: null,
+	numPreviewRows: 5,
+	showRowNumbers: false,
+	theme: 'lucario'
 }, action: AnyAction): ReducerState => {
 	switch (action.type) {
 
@@ -161,6 +165,18 @@ export const reducer = (state: ReducerState = {
 			return {
 				...state,
 				numPreviewRows: action.payload.numRows
+			};
+
+		case actions.CHANGE_THEME:
+			return {
+				...state,
+				theme: action.payload.theme
+			};
+
+		case actions.TOGGLE_SHOW_ROW_NUMBERS:
+			return {
+				...state,
+				showRowNumbers: !state.showRowNumbers
 			};
 
 		default:

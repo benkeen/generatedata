@@ -8,7 +8,10 @@ import Refresh from '@material-ui/icons/Refresh';
 import Settings from '@material-ui/icons/SettingsOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import PreviewPanelSettingsContainer from './PreviewPanelSettings.container';
 import { getArrayOfSize } from '../../utils/arrayUtils';
+import HtmlTooltip from '../tooltip/HtmlTooltip';
 import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
 
@@ -28,6 +31,8 @@ const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label:
 const PreviewPanel = ({
 	builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data, exportTypeSettings
 }: PreviewPanelProps): React.ReactNode => {
+	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
+
 	const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
 
 	// TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - drop the fallback altogether
@@ -53,12 +58,23 @@ const PreviewPanel = ({
 					</span>
 				</span>
 				<span>
-					<span onClick={(): any => { }}>
-						<Tooltip title="Preview panel settings" placement="bottom">
-							<IconButton size="small" aria-label="Settings">
-								<Settings fontSize="large" />
-							</IconButton>
-						</Tooltip>
+					<span>
+						<ClickAwayListener onClickAway={(): void => setPreviewSettingsVisibility(false)}>
+							<HtmlTooltip
+								arrow
+								open={previewSettingsVisible}
+								placement="left"
+								disableFocusListener
+								disableTouchListener
+								interactive
+								onClose={(): void => setPreviewSettingsVisibility(false)}
+								title={<PreviewPanelSettingsContainer />}
+							>
+								<IconButton size="small" aria-label="Settings" onClick={(): void=> setPreviewSettingsVisibility(true)}>
+									<Settings fontSize="large" />
+								</IconButton>
+							</HtmlTooltip>
+						</ClickAwayListener>
 					</span>
 					<span onClick={(): any => { }}>
 						<Tooltip title="Refresh panel" placement="bottom">

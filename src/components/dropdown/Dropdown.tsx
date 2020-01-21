@@ -54,24 +54,3 @@ const Dropdown = ({ value, isGrouped, options, ...props }: any): JSX.Element => 
 };
 
 export default Dropdown;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
