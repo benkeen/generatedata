@@ -183,3 +183,19 @@ describe('grid rows', () => {
 		sinon.restore();
 	});
 });
+
+
+describe('preview panel settings', () => {
+	let store: any;
+	beforeEach(() => {
+		store = createStore(combineReducers({
+			generator: reducer
+		}));
+	});
+
+	it('adds rows, well, adds rows', () => {
+		expect(selectors.getNumRows(store.getState())).toEqual(0);
+		store.dispatch(actions.addRows(10));
+		expect(selectors.getNumRows(store.getState())).toEqual(10);
+	});
+});

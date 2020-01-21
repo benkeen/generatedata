@@ -13,10 +13,11 @@ type PreviewProps = {
 	numPreviewRows: number;
 	builderLayout: BuilderLayout;
 	exportTypeSettings: JSONSettings;
+	showRowNumbers: boolean;
 	data: any;
 }
 
-const Preview = ({ data }: PreviewProps): JSX.Element => {
+const Preview = ({ data, showRowNumbers }: PreviewProps): JSX.Element => {
 	const [code, setCode] = React.useState('');
 
 	React.useEffect(() => {
@@ -34,6 +35,7 @@ const Preview = ({ data }: PreviewProps): JSX.Element => {
 			}}
 			options={{
 				mode: 'application/ld+json',
+				lineNumbers: showRowNumbers,
 				readOnly: true
 			}}
 		/>

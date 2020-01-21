@@ -11,6 +11,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		numPreviewRows,
 		builderLayout: generatorSelectors.getBuilderLayout(state),
 		exportTypeSettings: {},
+		showRowNumbers: generatorSelectors.shouldShowRowNumbers(state),
 		data: generateExportData({
 			numResults: numPreviewRows,
 			columnTitles: generatorSelectors.getColumnTitles(state),

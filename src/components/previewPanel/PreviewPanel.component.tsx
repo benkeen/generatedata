@@ -22,6 +22,7 @@ export type PreviewPanelProps = {
 	toggleLayout: () => void;
 	updateNumPreviewRows: (numRows: number) => void;
 	exportTypeSettings: any; // TODO
+	showRowNumbers: boolean;
 	data: any;
 };
 
@@ -29,7 +30,8 @@ export type PreviewPanelProps = {
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
 
 const PreviewPanel = ({
-	builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data, exportTypeSettings
+	builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data, exportTypeSettings,
+	showRowNumbers
 }: PreviewPanelProps): React.ReactNode => {
 	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
 
@@ -67,7 +69,6 @@ const PreviewPanel = ({
 								disableFocusListener
 								disableTouchListener
 								interactive
-								onClose={(): void => setPreviewSettingsVisibility(false)}
 								title={<PreviewPanelSettingsContainer />}
 							>
 								<IconButton size="small" aria-label="Settings" onClick={(): void=> setPreviewSettingsVisibility(true)}>
@@ -106,6 +107,7 @@ const PreviewPanel = ({
 						numPreviewRows={numPreviewRows}
 						builderLayout={builderLayout}
 						exportTypeSettings={exportTypeSettings}
+						showRowNumbers={showRowNumbers}
 						data={data}
 					/>
 				</React.Suspense>

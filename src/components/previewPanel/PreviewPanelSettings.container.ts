@@ -11,7 +11,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelSettingsProps> => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelSettingsProps> => ({
 	onChangeTheme: (theme: string): any => dispatch(generatorActions.changeTheme(theme)),
-	toggleRowNumbers: (): any => dispatch(generatorActions.toggleRowNumbers())
+	toggleRowNumbers: (): any => dispatch(generatorActions.toggleShowRowNumbers())
 });
 
 export default connect(
