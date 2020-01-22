@@ -7,7 +7,7 @@
 			"type": "boolean"
 		},
 		"dataStructureFormat": {
-			"enum": ["simple", "complex"]
+			"enum": ["simple", "complex", "lines"]
 		}
 	}
 }

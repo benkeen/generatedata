@@ -6,4 +6,5 @@ $L = array();
 $L["complex"] = "Complexe";
 $L["data_structure_format"] = "Format de la structure des données";
 $L["simple"] = "Simple";
+$L["lines"] = "Lignes";
 $L["strip_whitespace"] = "Enlever les espaces dans les résultats générés";
