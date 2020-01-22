@@ -15,6 +15,7 @@ type PreviewProps = {
 	exportTypeSettings: JSONSettings;
 	showRowNumbers: boolean;
 	data: any;
+	theme: string;
 }
 
 const Preview = ({ data, showRowNumbers }: PreviewProps): JSX.Element => {
@@ -35,6 +36,7 @@ const Preview = ({ data, showRowNumbers }: PreviewProps): JSX.Element => {
 			}}
 			options={{
 				mode: 'application/ld+json',
+				theme: 'material',
 				lineNumbers: showRowNumbers,
 				readOnly: true
 			}}
