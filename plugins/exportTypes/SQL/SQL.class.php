@@ -218,7 +218,7 @@ END;
 		if ($this->isFirstBatch) {
 			if ($this->includeDropTable) {
 				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
-				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
+				$content .= "DROP TABLE IF EXISTS {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
 			}
 
 			if ($this->createTable) {
@@ -407,7 +407,7 @@ END;
 		if ($this->isFirstBatch) {
 			if ($this->includeDropTable) {
 				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
-				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
+				$content .= "DROP TABLE IF EXISTS {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
 			}
 
 			if ($this->createTable) {
@@ -496,7 +496,7 @@ END;
 		if ($this->isFirstBatch) {
 			if ($this->includeDropTable) {
 				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n" ;
-				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
+				$content .= "DROP TABLE IF EXISTS {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
 			}
 
 			if ($this->createTable) {
