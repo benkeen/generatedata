@@ -24,14 +24,14 @@ export type PreviewPanelProps = {
 	exportTypeSettings: any; // TODO
 	showRowNumbers: boolean;
 	data: any;
+	theme: string;
 };
-
 
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
 
 const PreviewPanel = ({
-	builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data, exportTypeSettings,
-	showRowNumbers
+	theme, builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data,
+	exportTypeSettings, showRowNumbers
 }: PreviewPanelProps): React.ReactNode => {
 	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
 
@@ -115,6 +115,7 @@ const PreviewPanel = ({
 						exportTypeSettings={exportTypeSettings}
 						showRowNumbers={showRowNumbers}
 						data={data}
+						theme={theme}
 					/>
 				</React.Suspense>
 			</div>

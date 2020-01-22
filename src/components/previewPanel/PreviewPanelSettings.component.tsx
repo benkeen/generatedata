@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 import Dropdown from '../dropdown/Dropdown';
+import C from '../../core/constants';
 
 export type PreviewPanelSettingsProps = {
 	theme: string;
@@ -9,21 +10,15 @@ export type PreviewPanelSettingsProps = {
 	toggleRowNumbers: Function;
 }
 
-const themes = [
-	{ value: 'ambiance', label: 'Ambience' },
-	{ value: 'cobalt', label: 'Cobalt' },
-	{ value: 'darcula', label: 'Darcula' },
-	{ value: 'lucario', label: 'Lucario' }
-];
-
-export const PreviewPanelSettings = ({ theme, showRowNumbers, toggleRowNumbers }: PreviewPanelSettingsProps): React.ReactElement => {
+export const PreviewPanelSettings = ({ theme, onChangeTheme, showRowNumbers, toggleRowNumbers }: PreviewPanelSettingsProps): React.ReactElement => {
 	return (
 		<div className="previewPanelSettings">
 			<div>
 				Theme: 
 				<Dropdown
 					value={theme}
-					options={themes}
+					options={C.THEMES}
+					onChange={({ value }: any): void => onChangeTheme(value)}
 				/>
 			</div>
 			<div>

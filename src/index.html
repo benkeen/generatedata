@@ -353,9 +353,11 @@
         span.CodeMirror-selectedtext { background: none; }
 
         .Select-menu-outer {
-            z-index: 1000;
-        }
-
+            z-index: 10000 !important;
+		}
+		body .MuiTooltip-popper {
+			z-index: 2;
+		}
     </style>
 </head>
 <body>
