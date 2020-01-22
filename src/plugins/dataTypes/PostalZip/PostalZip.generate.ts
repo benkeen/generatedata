@@ -1,99 +1,77 @@
-<?php
+import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
+import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-/**
- * @package DataTypes
- */
+export const generate = (data: GenerationData): DTGenerateReturnType => {
+	/*
+	$selectedCountrySlugs = $generationContextData["generationOptions"];
 
-class DataType_PostalZip extends DataTypePlugin {
-	protected $isEnabled = true;
-	protected $dataTypeName = "Postal / Zip";
-	protected $dataTypeFieldGroup = "geo";
-	protected $dataTypeFieldGroupOrder = 30;
-	protected $processOrder = 3;
-	protected $jsModules = array("PostalZip.js");
-	private $zipFormats;
-
-
-	public function __construct($runtimeContext) {
-		parent::__construct($runtimeContext);
-
-		// if we're in the process of generating data then initialize a private var with the
-		// zip formats of all countries registered the system
-		if ($runtimeContext == "generation") {
-			self::initZipFormats();
+	// track the country info (this finds the FIRST country field listed)
+	$rowCountryInfo = array();
+	while (list($key, $info) = each($generationContextData["existingRowData"])) {
+		if ($info["dataTypeFolder"] == "Country") {
+			$rowCountryInfo = $info;
+			break;
 		}
 	}
 
-	// this kind of sucks! Way too dense logic - too high cyclomatic complexity.
-	public function generate($generator, $generationContextData) {
-		$selectedCountrySlugs = $generationContextData["generationOptions"];
-
-		// track the country info (this finds the FIRST country field listed)
-		$rowCountryInfo = array();
-		while (list($key, $info) = each($generationContextData["existingRowData"])) {
-			if ($info["dataTypeFolder"] == "Country") {
-				$rowCountryInfo = $info;
-				break;
-			}
-		}
-
-		// if there was no country, see if there's a region
-		$rowRegionInfo = array();
-		if (empty($rowCountryInfo)) {
-			reset($generationContextData["existingRowData"]);
-			while (list($key, $info) = each($generationContextData["existingRowData"])) {
-				if ($info["dataTypeFolder"] == "Region") {
-					$rowRegionInfo = $info;
-					break;
-				}
-			}
-		}
-
-		// if we have a region, get the short code to use with the convert() function
-		$regionCode = "";
+	// if there was no country, see if there's a region
+	$rowRegionInfo = array();
+	if (empty($rowCountryInfo)) {
 		reset($generationContextData["existingRowData"]);
 		while (list($key, $info) = each($generationContextData["existingRowData"])) {
 			if ($info["dataTypeFolder"] == "Region") {
-				$regionCode = $info["randomData"]["region_slug"];
+				$rowRegionInfo = $info;
 				break;
 			}
 		}
+	}
 
-		$randomZip = "";
+	// if we have a region, get the short code to use with the convert() function
+	$regionCode = "";
+	reset($generationContextData["existingRowData"]);
+	while (list($key, $info) = each($generationContextData["existingRowData"])) {
+		if ($info["dataTypeFolder"] == "Region") {
+			$regionCode = $info["randomData"]["region_slug"];
+			break;
+		}
+	}
 
-		// if there's neither a country nor a region, get a random country and generate a random zip/postal code
-		// in that format
-		if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
-			if (empty($selectedCountrySlugs)) {
-				$randCountrySlug = array_rand($this->zipFormats);
-			} else {
-				$randCountrySlug = $selectedCountrySlugs[mt_rand(0, count($selectedCountrySlugs)-1)];
-			}
-			$randomZip = $this->convert($randCountrySlug, "");
+	$randomZip = "";
+
+	// if there's neither a country nor a region, get a random country and generate a random zip/postal code
+	// in that format
+	if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
+		if (empty($selectedCountrySlugs)) {
+			$randCountrySlug = array_rand($this->zipFormats);
 		} else {
+			$randCountrySlug = $selectedCountrySlugs[mt_rand(0, count($selectedCountrySlugs)-1)];
+		}
+		$randomZip = $this->convert($randCountrySlug, "");
+	} else {
 
-			$countrySlug = "";
-			if (!empty($rowCountryInfo) && is_array($rowCountryInfo["randomData"]) && array_key_exists("slug", $rowCountryInfo["randomData"])) {
-				$countrySlug = $rowCountryInfo["randomData"]["slug"];
-			} else {
-				if (isset($rowRegionInfo["randomData"]) && is_array($rowRegionInfo["randomData"]) && array_key_exists("country_slug", $rowRegionInfo["randomData"])) {
-					$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
-				}
-			}
-
-			if (!empty($countrySlug) && in_array($countrySlug, $selectedCountrySlugs)) {
-				$randomZip = $this->convert($countrySlug, $regionCode);
-			} else {
-				$randCountrySlug = array_rand($this->zipFormats);
-				$randomZip = $this->convert($randCountrySlug, $regionCode);
+		$countrySlug = "";
+		if (!empty($rowCountryInfo) && is_array($rowCountryInfo["randomData"]) && array_key_exists("slug", $rowCountryInfo["randomData"])) {
+			$countrySlug = $rowCountryInfo["randomData"]["slug"];
+		} else {
+			if (isset($rowRegionInfo["randomData"]) && is_array($rowRegionInfo["randomData"]) && array_key_exists("country_slug", $rowRegionInfo["randomData"])) {
+				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 			}
 		}
 
-		return array(
-			"display" => $randomZip
-		);
+		if (!empty($countrySlug) && in_array($countrySlug, $selectedCountrySlugs)) {
+			$randomZip = $this->convert($countrySlug, $regionCode);
+		} else {
+			$randCountrySlug = array_rand($this->zipFormats);
+			$randomZip = $this->convert($randCountrySlug, $regionCode);
+		}
 	}
+	*/
 
+	return { display: '' }; // $randomZip
+};
+
+
+/*
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		$countries = $generator->getCountries();
 		$options = array();
@@ -117,10 +95,6 @@ class DataType_PostalZip extends DataTypePlugin {
 		return $options;
 	}
 
-	/**
-	 * This is called when data generation starts. It does the work of generating a data structure containing all
-	 * the info we need to intelligently generate a zip format for the country-region.
-	 */
 	private function initZipFormats() {
 		$countryPlugins = Core::$countryPlugins;
 		$formats = array();
@@ -199,13 +173,12 @@ class DataType_PostalZip extends DataTypePlugin {
 
 		return $result;
 	}
+*/
 
-
-	public function getDataTypeMetadata() {
-		return array(
-			"SQLField" => "varchar(10) default NULL",
-			"SQLField_Oracle" => "varchar2(10) default NULL",
-			"SQLField_MSSQL" => "VARCHAR(10) NULL"
-		);
+export const getMetadata = (): ExportTypeMetadata => ({
+	sql: {
+		field: 'varchar(10) default NULL',
+		field_Oracle: 'varchar2(10) default NULL',
+		field_MSSQL: 'VARCHAR(10) NULL'
 	}
-}
+});
