@@ -60,8 +60,14 @@ const PreviewPanel = ({
 					</span>
 				</span>
 				<span>
-					<span>
-						<ClickAwayListener onClickAway={(): void => setPreviewSettingsVisibility(false)}>
+					<span className="test123">
+						<ClickAwayListener onClickAway={(e): void => {
+							// TODO see if there's a more idiomatic way to do this with Material UI
+							// @ts-ignore
+							if (!e.target.closest('.previewPanelSettings')) {
+								setPreviewSettingsVisibility(false);
+							}
+						}}>
 							<HtmlTooltip
 								arrow
 								open={previewSettingsVisible}

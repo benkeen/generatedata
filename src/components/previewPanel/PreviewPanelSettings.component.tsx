@@ -18,7 +18,7 @@ const themes = [
 
 export const PreviewPanelSettings = ({ theme, showRowNumbers, toggleRowNumbers }: PreviewPanelSettingsProps): React.ReactElement => {
 	return (
-		<div>
+		<div className="previewPanelSettings">
 			<div>
 				Theme: 
 				<Dropdown
@@ -27,7 +27,7 @@ export const PreviewPanelSettings = ({ theme, showRowNumbers, toggleRowNumbers }
 				/>
 			</div>
 			<div>
-				Show row numbers
+				Show line numbers
 				<Switch
 					checked={showRowNumbers}
 					value="checked"
