@@ -42,7 +42,7 @@ export const PreviewPanelSettings = ({
 					type="number"
 					value={previewTextSize}
 					style={{ width: 60 }}
-					onChange={(e: any) => onChangePreviewTextSize(e.target.value)}
+					onChange={(e: any): void => onChangePreviewTextSize(e.target.value)}
 				/>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 export default {
-	"NAME": "Dirección",
-	"DESC": "Genera direcciones de calles al azar .",
-	"ap_num": "Apdo.:",
-	"po_box": "Apartado núm.:",
-	"street_types": "C/,C.,Calle,Carretera,Ctra.,,Av.,Avda.,Avenida"
+	NAME: "Dirección",
+	DESC: "Genera direcciones de calles al azar .",
+	apNum: "Apdo.:",
+	poBox: "Apartado núm.:",
+	streetTypes: "C/,C.,Calle,Carretera,Ctra.,,Av.,Avda.,Avenida"
 };

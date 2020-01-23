@@ -2,6 +2,9 @@ import { GenerationData, DTGenerateReturnType } from '../../../../types/dataType
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
 export const generate = (data: GenerationData): DTGenerateReturnType => {
+	
+	console.log(data);
+	
 	/*
 	$selectedCountrySlugs = $generationContextData["generationOptions"];
 

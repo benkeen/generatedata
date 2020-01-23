@@ -1,7 +1,7 @@
 export default {
-	"NAME": "Street Address",
-	"DESC": "Generates random street addresses.",
-	"ap_num": "Ap #",
-	"po_box": "P.O. Box",
-	"street_types": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
+	NAME: "Street Address",
+	DESC: "Generates random street addresses.",
+	apNum: "Ap #",
+	poBox: "P.O. Box",
+	streetTypes: "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
 };
