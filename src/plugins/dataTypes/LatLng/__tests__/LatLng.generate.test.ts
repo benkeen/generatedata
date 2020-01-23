@@ -5,8 +5,10 @@ describe('generation method', () => {
 
 	const defaultSettings = {
 		rowNum: 1, 
-		existingRowData: []
-	}
+		existingRowData: [],
+		i18n: {}
+	};
+	
 	it('generates a single item when only lat is selected', () => {
 		const result = latlng.generate({ 
 			...defaultSettings,

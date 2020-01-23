@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "yarn build & yarn webpack",
+	"dev": "grunt & yarn build & yarn webpack",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
     "build": "node ./scripts/createPluginsFile.js & node ./scripts/createPluginsGenerateFile.js & node ./scripts/createPluginsListFile.js & node ./scripts/generateLocaleFiles.js & node ./scripts/generateConfigFile.js",
     "test": "env NODE_ENV=test jest"
@@ -98,6 +98,7 @@
     "extract-text-webpack-plugin": "1.0.1",
     "grunt": "^1.0.4",
     "grunt-cli": "^1.3.2",
+    "grunt-contrib-cssmin": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
     "jest-css-modules": "^2.1.0",

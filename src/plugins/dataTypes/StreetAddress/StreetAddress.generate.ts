@@ -7,13 +7,13 @@ const { words } = getLipsumWords();
 
 export const generate = (data: GenerationData): DTGenerateReturnType => {
 
-/*
-	private $validStreetTypes;
-	private $numValidStreetTypes;
-
-	$this->validStreetTypes = explode(",", $this->L["street_types"]);
-	$this->numValidStreetTypes = count($this->validStreetTypes);
-*/
+	/*
+		private $validStreetTypes;
+		private $numValidStreetTypes;
+	
+		$this->validStreetTypes = explode(",", $this->L["street_types"]);
+		$this->numValidStreetTypes = count($this->validStreetTypes);
+	*/
 
 	const streetName = toTitleCase(generateRandomTextStr(words, false, 1));
 	// $streetType = $this->validStreetTypes[mt_rand(0, $this->numValidStreetTypes-1)];
@@ -38,7 +38,7 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 	return {
 		display: '' // streetAddress
 	};
-}
+};
 
 export const getMetadata = (): ExportTypeMetadata => ({
 	sql: {

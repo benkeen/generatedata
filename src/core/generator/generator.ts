@@ -3,6 +3,7 @@
  * generated data for returning to the client.
  */
 import { ExportTypeGenerateType, ExportTypeGenerationData } from '../../../types/general';
+import { getStrings } from '../../utils/langUtils';
 
 // temporary of course
 import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
@@ -53,6 +54,7 @@ export const generate = (data: ExportTypeGenerateType): string => {
 
 export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
 	const generationTemplate = data.template;
+	const i18n = getStrings();
 
 	// 	$firstRowNum  = $this->getCurrentBatchFirstRow();
 	// 	$lastRowNum   = $this->getCurrentBatchLastRow();
@@ -80,8 +82,10 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 			for (let i = 0; i < generationTemplate[processOrder].length; i++) {
 				// @ts-ignore
 				const currCell = generationTemplate[processOrder][i];
+
 				currRowData[currCell.colIndex] = currCell.generateFunc({
 					rowNum,
+					i18n: i18n.dataTypes[currCell.dataType],
 					rowState: currCell.rowState,
 					existingRowData: currRowData
 				});
