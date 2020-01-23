@@ -12,6 +12,7 @@ export const getBuilderLayout = (state: any): BuilderLayout => state.generator.b
 export const getNumPreviewRows = (state: any): number => state.generator.numPreviewRows;
 export const shouldShowRowNumbers = (state: any): boolean => state.generator.showRowNumbers;
 export const getTheme = (state: any): string => state.generator.theme;
+export const getPreviewTextSize = (state: any): number => state.generator.previewTextSize;
 
 export const getNumRows = createSelector(
 	getSortedRows,

@@ -25,16 +25,17 @@ export type PreviewPanelProps = {
 	showRowNumbers: boolean;
 	data: any;
 	theme: string;
+	previewTextSize: number;
 };
 
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
+const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
 	theme, builderLayout, togglePreview, toggleLayout, numPreviewRows, updateNumPreviewRows, data,
-	exportTypeSettings, showRowNumbers
+	exportTypeSettings, showRowNumbers, previewTextSize
 }: PreviewPanelProps): React.ReactNode => {
 	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
-
 	const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
 
 	// TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - drop the fallback altogether
@@ -44,10 +45,11 @@ const PreviewPanel = ({
 		'../../plugins/exportTypes/JSON/JSONPreview.container')
 	);
 
-	// const hasData = data.rows.length > 0;
+	console.log('...', previewTextSize);
 
+	const themeName = getThemeName(theme);
 	return (
-		<div className={styles.previewPanel}>
+		<div className={`${styles.previewPanel} ${themeName}`}>
 			<div className={styles.topRow}>
 				<span style={{ display: 'flex', flexDirection: 'row' }}>
 					<span style={{ display: 'flex', alignItems: 'center' }}>
@@ -60,7 +62,7 @@ const PreviewPanel = ({
 					</span>
 				</span>
 				<span>
-					<span className="test123">
+					<span>
 						<ClickAwayListener onClickAway={(e): void => {
 							// TODO see if there's a more idiomatic way to do this with Material UI
 							// @ts-ignore
@@ -107,7 +109,7 @@ const PreviewPanel = ({
 				</span>
 			</div>
 
-			<div className={styles.preview}>
+			<div className={styles.preview} style={{ fontSize: `${previewTextSize}px` }}>
 				<React.Suspense fallback={<div>loading...</div>}>
 					<ExportTypePreview
 						numPreviewRows={numPreviewRows}

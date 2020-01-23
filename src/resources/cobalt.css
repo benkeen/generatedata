@@ -70,3 +70,15 @@
   outline: 1px solid grey;
   color: white !important;
 }
+
+/* ---------------- */
+
+.themeCobalt {
+	background-color: #002240;
+}
+.themeCobalt {
+	color: #cccccc;
+}
+.themeCobalt svg {
+	fill: #cccccc;
+}

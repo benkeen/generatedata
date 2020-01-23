@@ -18,7 +18,7 @@ type PreviewProps = {
 	theme: string;
 }
 
-const Preview = ({ data, showRowNumbers }: PreviewProps): JSX.Element => {
+const Preview = ({ data, theme, showRowNumbers }: PreviewProps): JSX.Element => {
 	const [code, setCode] = React.useState('');
 
 	React.useEffect(() => {
@@ -36,7 +36,7 @@ const Preview = ({ data, showRowNumbers }: PreviewProps): JSX.Element => {
 			}}
 			options={{
 				mode: 'application/ld+json',
-				theme: 'material',
+				theme,
 				lineNumbers: showRowNumbers,
 				readOnly: true
 			}}

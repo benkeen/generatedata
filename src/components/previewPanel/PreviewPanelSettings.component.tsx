@@ -6,15 +6,21 @@ import C from '../../core/constants';
 export type PreviewPanelSettingsProps = {
 	theme: string;
 	showRowNumbers: boolean;
+	previewTextSize: number;
+	textSize: number;
 	onChangeTheme: Function;
 	toggleRowNumbers: Function;
+	onChangePreviewTextSize: Function;
 }
 
-export const PreviewPanelSettings = ({ theme, onChangeTheme, showRowNumbers, toggleRowNumbers }: PreviewPanelSettingsProps): React.ReactElement => {
+export const PreviewPanelSettings = ({
+	theme, previewTextSize, onChangeTheme, showRowNumbers, toggleRowNumbers, onChangePreviewTextSize
+}: PreviewPanelSettingsProps): React.ReactElement => {
+
 	return (
 		<div className="previewPanelSettings">
 			<div>
-				Theme: 
+				Theme:
 				<Dropdown
 					value={theme}
 					options={C.THEMES}
@@ -28,6 +34,15 @@ export const PreviewPanelSettings = ({ theme, onChangeTheme, showRowNumbers, tog
 					value="checked"
 					color="default"
 					onChange={(): void => toggleRowNumbers()}
+				/>
+			</div>
+			<div>
+				Text size
+				<input
+					type="number"
+					value={previewTextSize}
+					style={{ width: 60 }}
+					onChange={(e: any) => onChangePreviewTextSize(e.target.value)}
 				/>
 			</div>
 		</div>

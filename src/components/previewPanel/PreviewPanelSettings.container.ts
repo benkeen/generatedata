@@ -6,12 +6,14 @@ import * as generatorActions from '../../core/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<PreviewPanelSettingsProps> => ({
 	showRowNumbers: generatorSelectors.shouldShowRowNumbers(state),
-	theme: generatorSelectors.getTheme(state)
+	theme: generatorSelectors.getTheme(state),
+	previewTextSize: generatorSelectors.getPreviewTextSize(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelSettingsProps> => ({
 	onChangeTheme: (theme: string): any => dispatch(generatorActions.changeTheme(theme)),
-	toggleRowNumbers: (): any => dispatch(generatorActions.toggleShowRowNumbers())
+	toggleRowNumbers: (): any => dispatch(generatorActions.toggleShowRowNumbers()),
+	onChangePreviewTextSize: (size: number): any => dispatch(generatorActions.setPreviewTextSize(size))
 });
 
 export default connect(

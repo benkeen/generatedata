@@ -27,6 +27,7 @@ export type ReducerState = {
 	numPreviewRows: number;
 	showRowNumbers: boolean;
 	theme: string;
+	previewTextSize: number;
 };
 
 /**
@@ -43,7 +44,8 @@ export const reducer = (state: ReducerState = {
 	exportTypeSettings: null,
 	numPreviewRows: 5,
 	showRowNumbers: false,
-	theme: 'lucario'
+	theme: 'lucario',
+	previewTextSize: 12
 }, action: AnyAction): ReducerState => {
 	switch (action.type) {
 
@@ -177,6 +179,12 @@ export const reducer = (state: ReducerState = {
 			return {
 				...state,
 				showRowNumbers: !state.showRowNumbers
+			};
+
+		case actions.SET_PREVIEW_TEXT_SIZE:
+			return {
+				...state,
+				previewTextSize: action.payload.previewTextSize	
 			};
 
 		default:

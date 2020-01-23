@@ -1,11 +1,3 @@
-.themeLucario {
-  /*
-    Name:       lucario
-    Author:     Raphael Amorim
-
-    Original Lucario color scheme (https://github.com/raphamorim/lucario)
-  */
-}
 .themeLucario .cm-s-lucario.CodeMirror, .themeLucario .cm-s-lucario .CodeMirror-gutters {
   background-color: #2b3e50 !important;
   color: #f8f8f2 !important;
@@ -83,4 +75,16 @@
 .themeLucario .cm-s-lucario .CodeMirror-matchingbracket {
   text-decoration: underline;
   color: white !important;
+}
+
+/* ---------------- */
+
+.themeLucario {
+	background-color: #2b3e50;
+}
+.themeLucario {
+	color: #cccccc;
+}
+.themeLucario svg {
+	fill: #cccccc;
 }
