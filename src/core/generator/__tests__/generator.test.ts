@@ -171,7 +171,7 @@ describe('grid rows', () => {
 		};
 
 		sinon.stub(dateTypeUtils, 'getDataTypeDefaultState')
-			.onCall(0).returns(defaultState)
+			.onCall(0).returns(defaultState);
 
 		store.dispatch(actions.addRows(1));
 		const rows = selectors.getSortedRowsArray(store.getState());

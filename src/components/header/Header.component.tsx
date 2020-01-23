@@ -43,7 +43,6 @@ const Header = ({
 						<li><a href="#">About</a></li>
 						<li><a href="#">Doc</a></li>
 						<li><a href="#">News</a></li>
-						<li><a href="#">Donate!</a></li>
 						<li><a href="#">Login</a></li>
 					</ul>
 					<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>
