@@ -6,21 +6,29 @@ import Dice from '@material-ui/icons/Casino';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import CheckBox from '@material-ui/icons/Checkbox';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
+import SwapHoriz from '@material-ui/icons/SwapHoriz';
+import SwapVert from '@material-ui/icons/SwapVert';
+import { BuilderLayout } from '../builder/Builder.component';
 
 export type HeaderProps = {
 	toggleGrid: () => void;
 	togglePreview: () => void;
+	toggleLayout: () => void;
 	isLoggedIn: boolean;
 	onChangeLocale: Function;
 	isGridVisible: boolean;
 	isPreviewVisible: boolean;
 	locale: GDLocale;
+	builderLayout: BuilderLayout;
 	i18n: any;
 }
 
-const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, i18n }: HeaderProps): JSX.Element => {
+const Header = ({
+	isGridVisible, isPreviewVisible, toggleGrid, togglePreview, toggleLayout, i18n, builderLayout
+}: HeaderProps): JSX.Element => {
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
+	const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
 
 	return (
 		<header className={styles.header}>
@@ -29,7 +37,6 @@ const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, i1
 					<Dice fontSize="large" />
 					generatedata.com
 				</h1>
-
 				<nav>
 					<ul>
 						<li><a href="#">About</a></li>
@@ -41,6 +48,9 @@ const Header = ({ isGridVisible, isPreviewVisible, toggleGrid, togglePreview, i1
 					<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>
 						<Button className={isGridVisible ? styles.btnSelected : ''} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>{i18n.grid}</Button>
 						<Button className={isPreviewVisible ? styles.btnSelected : ''} onClick={togglePreview} startIcon={<PreviewIcon />}>{i18n.preview}</Button>
+						<Button onClick={toggleLayout}>
+							<ToggleDirectionIcon />
+						</Button>
 					</ButtonGroup>
 				</nav>
 			</div>

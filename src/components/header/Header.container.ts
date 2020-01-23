@@ -12,6 +12,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	locale: initSelectors.getLocale(state),
 	isGridVisible: generatorSelectors.isGridVisible(state),
 	isPreviewVisible: generatorSelectors.isPreviewVisible(state),
+	builderLayout: generatorSelectors.getBuilderLayout(state),
 	isLoggedIn: false // TODO
 });
 
@@ -19,7 +20,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	// @ts-ignore
 	onChangeLocale: (locale: GDLocale): any => dispatch(initActions.selectLocale(locale)),
 	toggleGrid: (): any => dispatch(generatorActions.toggleGrid()),
-	togglePreview: (): any => dispatch(generatorActions.togglePreview())
+	togglePreview: (): any => dispatch(generatorActions.togglePreview()),
+	toggleLayout: (): any => dispatch(generatorActions.toggleLayout())
 });
 
 const container: any = connect(
