@@ -39,6 +39,7 @@ const Header = ({
 				</h1>
 				<nav>
 					<ul>
+						<li className={styles.current}><a href="#">Generator</a></li>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Doc</a></li>
 						<li><a href="#">News</a></li>

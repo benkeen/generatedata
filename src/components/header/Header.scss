@@ -39,7 +39,10 @@
 
       li {
         display: inline-block;
-        margin: 0 8px;
+		margin: 0 8px;
+		&.current a {
+			color: green;
+		}
       }
     }
   }
@@ -50,10 +53,10 @@
   svg {
 	  fill: #dddddd;
   }
+}
 
-  .btnSelected {
-	  svg {
-		  fill: #aaaaaa;
-	  }
-  }
+.btnSelected {
+	svg {
+		fill: #aaaaaa;
+	}
 }
