@@ -61,7 +61,7 @@ describe('generate method converts all placeholders', () => {
 		});
 	});
 
-	fit('generates male and female names', () => {
+	it('generates male and female names', () => {
 		data.rowState = 'FemaleName,MaleName';
 		sinon.stub(randomUtils, 'getRandomArrayValue')
 			.onCall(0).returns('Thomas')
@@ -72,4 +72,27 @@ describe('generate method converts all placeholders', () => {
 			gender: 'unknown'
 		});
 	});
+
+	it('generates surnames', () => {
+		data.rowState = 'Surname';
+		sinon.stub(randomUtils, 'getRandomArrayValue')
+			.onCall(0).returns('Whatever')
+
+		expect(generate(data)).toEqual({
+			display: 'Whatever',
+			gender: 'unknown'
+		});
+	});
+
+	it('generates surnames', () => {
+		data.rowState = 'Initial';
+		sinon.stub(randomUtils, 'getRandomCharInString')
+			.onCall(0).returns('A')
+
+		expect(generate(data)).toEqual({
+			display: 'A',
+			gender: 'unknown'
+		});
+	});
+
 });

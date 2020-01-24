@@ -23,8 +23,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => ({
-	togglePreview: (): any => dispatch(generatorActions.togglePreview()),
-	updateNumPreviewRows: (numRows: number): any => dispatch(generatorActions.updateNumPreviewRows(numRows))
+	togglePreview: (): any => dispatch(generatorActions.togglePreview())
 });
 
 export default connect(

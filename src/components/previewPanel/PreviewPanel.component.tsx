@@ -1,6 +1,5 @@
 import * as React from 'react';
 import loadable from '@loadable/component';
-import Dropdown from '../dropdown/Dropdown';
 import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
 import Settings from '@material-ui/icons/SettingsOutlined';
@@ -8,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import PreviewPanelSettingsContainer from './PreviewPanelSettings.container';
-import { getArrayOfSize } from '../../utils/arrayUtils';
 import HtmlTooltip from '../tooltip/HtmlTooltip';
 import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
@@ -17,7 +15,6 @@ export type PreviewPanelProps = {
 	numPreviewRows: number;
 	builderLayout: BuilderLayout;
 	togglePreview: () => void;
-	updateNumPreviewRows: (numRows: number) => void;
 	exportTypeSettings: any; // TODO
 	showRowNumbers: boolean;
 	data: any;
@@ -25,11 +22,10 @@ export type PreviewPanelProps = {
 	previewTextSize: number;
 };
 
-const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	theme, builderLayout, togglePreview, numPreviewRows, updateNumPreviewRows, data,
+	theme, builderLayout, togglePreview, numPreviewRows, data,
 	exportTypeSettings, showRowNumbers, previewTextSize
 }: PreviewPanelProps): React.ReactNode => {
 	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
@@ -45,54 +41,42 @@ const PreviewPanel = ({
 	return (
 		<div className={`${styles.previewPanel} ${themeName}`}>
 			<div className={styles.topRow}>
-				<span style={{ display: 'flex', flexDirection: 'row' }}>
-					<span style={{ display: 'flex', alignItems: 'center' }}>
-						Preview rows: 
-						<Dropdown
-							value={numPreviewRows}
-							onChange={(item: any): any => updateNumPreviewRows(item.value)}
-							options={options}
-						/>
-					</span>
-				</span>
 				<span>
-					<span>
-						<ClickAwayListener onClickAway={(e): void => {
-							// TODO see if there's a more idiomatic way to do this with Material UI
-							// @ts-ignore
-							if (!e.target.closest('.previewPanelSettings')) {
-								setPreviewSettingsVisibility(false);
-							}
-						}}>
-							<HtmlTooltip
-								arrow
-								open={previewSettingsVisible}
-								placement="left"
-								disableFocusListener
-								disableTouchListener
-								interactive
-								title={<PreviewPanelSettingsContainer />}
-							>
-								<IconButton size="small" aria-label="Settings" onClick={(): void=> setPreviewSettingsVisibility(true)}>
-									<Settings fontSize="large" />
-								</IconButton>
-							</HtmlTooltip>
-						</ClickAwayListener>
-					</span>
-					<span onClick={(): any => { }}>
-						<Tooltip title="Refresh panel" placement="bottom">
-							<IconButton size="small" aria-label="Refresh">
-								<Refresh fontSize="large" />
+					<ClickAwayListener onClickAway={(e): void => {
+						// TODO see if there's a more idiomatic way to do this with Material UI
+						// @ts-ignore
+						if (!e.target.closest('.previewPanelSettings')) {
+							setPreviewSettingsVisibility(false);
+						}
+					}}>
+						<HtmlTooltip
+							arrow
+							open={previewSettingsVisible}
+							placement="left"
+							disableFocusListener
+							disableTouchListener
+							interactive
+							title={<PreviewPanelSettingsContainer />}
+						>
+							<IconButton size="small" aria-label="Settings" onClick={(): void=> setPreviewSettingsVisibility(true)}>
+								<Settings fontSize="large" />
 							</IconButton>
-						</Tooltip>
-					</span>
-					<span className={styles.closePanel} onClick={togglePreview}>
-						<Tooltip title="Close panel" placement="bottom">
-							<IconButton size="small" aria-label="Close panel">
-								<CloseIcon fontSize="large" />
-							</IconButton>
-						</Tooltip>
-					</span>
+						</HtmlTooltip>
+					</ClickAwayListener>
+				</span>
+				<span onClick={(): any => { }}>
+					<Tooltip title="Refresh panel" placement="bottom">
+						<IconButton size="small" aria-label="Refresh">
+							<Refresh fontSize="large" />
+						</IconButton>
+					</Tooltip>
+				</span>
+				<span className={styles.closePanel} onClick={togglePreview}>
+					<Tooltip title="Close panel" placement="bottom">
+						<IconButton size="small" aria-label="Close panel">
+							<CloseIcon fontSize="large" />
+						</IconButton>
+					</Tooltip>
 				</span>
 			</div>
 

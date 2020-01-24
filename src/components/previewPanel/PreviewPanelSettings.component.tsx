@@ -1,20 +1,26 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 import Dropdown from '../dropdown/Dropdown';
+import { getArrayOfSize } from '../../utils/arrayUtils';
 import C from '../../core/constants';
 
 export type PreviewPanelSettingsProps = {
 	theme: string;
+	numPreviewRows: number;
 	showRowNumbers: boolean;
 	previewTextSize: number;
 	textSize: number;
 	onChangeTheme: Function;
 	toggleRowNumbers: Function;
 	onChangePreviewTextSize: Function;
+	updateNumPreviewRows: Function;
 }
 
+const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
+
 export const PreviewPanelSettings = ({
-	theme, previewTextSize, onChangeTheme, showRowNumbers, toggleRowNumbers, onChangePreviewTextSize
+	theme, previewTextSize, onChangeTheme, showRowNumbers, toggleRowNumbers, onChangePreviewTextSize,
+	numPreviewRows, updateNumPreviewRows
 }: PreviewPanelSettingsProps): React.ReactElement => {
 
 	return (
@@ -43,6 +49,14 @@ export const PreviewPanelSettings = ({
 					value={previewTextSize}
 					style={{ width: 60 }}
 					onChange={(e: any): void => onChangePreviewTextSize(e.target.value)}
+				/>
+			</div>
+			<div>
+				Preview rows: 
+				<Dropdown
+					value={numPreviewRows}
+					onChange={(item: any): any => updateNumPreviewRows(item.value)}
+					options={options}
 				/>
 			</div>
 		</div>
