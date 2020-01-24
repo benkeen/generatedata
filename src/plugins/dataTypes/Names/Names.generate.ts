@@ -37,7 +37,7 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 
 	while (/FemaleName/.test(output)) {
 		foundGenders.push('female');
-		output = output.replace(/FemaleName/, getRandomArrayValue(maleNames));
+		output = output.replace(/FemaleName/, getRandomArrayValue(femaleNames));
 	}
 
 	while (/Name/.test(output)) {
