@@ -21,7 +21,7 @@ export const generate = ({ i18n }: GenerationData): DTGenerateReturnType => {
 			streetAddress = `${getRandomNum(100, 999)}-${getRandomNum(100, 9999)} ${streetName} ${streetType}`;
 			break;
 		case 3:
-			streetAddress = `${apNum} ${getRandomNum(100, 999)}-${getRandomNum(100, 9999)} ${streetName} ${streetType}`;
+			streetAddress = `${apNum}${getRandomNum(100, 999)}-${getRandomNum(100, 9999)} ${streetName} ${streetType}`;
 			break;
 		case 4:
 			streetAddress = `${getRandomNum(100, 9999)} ${streetName} ${streetType}`;
