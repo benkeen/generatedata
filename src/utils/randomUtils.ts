@@ -114,18 +114,21 @@ export const getRandomSubset = <T> (arr: T[], size: number): T[] => {
 /**
  * Generates a string of lorem ipsum words.
  */
-export const generateRandomTextStr = (words: string[], startsWithLipsum: boolean, min: number, max?: number): string => {
+export const generateRandomTextStr = (words: string[], startsWithLorem: boolean, min: number, max?: number): string => {
 	let numWords = (max) ? getRandomNum(min, max) : min;
 
 	const totalWords = words.length;
 	if (numWords > totalWords) {
 		numWords = totalWords;
 	}
-	let offset = 0;
-	if (!startsWithLipsum) {
-		offset = getRandomNum(2, totalWords - (numWords + 1));
+
+	if (startsWithLorem) {
+		return words.slice(0, numWords).join(' ');
+	} else {
+		const withoutLorem = words.slice(1);
+		const offset = getRandomNum(0, totalWords - 1 - numWords);
+		return withoutLorem.slice(offset, offset + numWords).join(' ');
 	}
-	return words.slice(offset, numWords).join(' ');
 };
 
 

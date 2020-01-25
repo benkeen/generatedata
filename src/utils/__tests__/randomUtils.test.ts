@@ -24,7 +24,7 @@ describe('getRandomNum', () => {
         }
     });
 
-    it('generates numbers in expected range #3', () => {
+    it('generates numbers in expected range #4', () => {
         const expected = [-2, -1, 0, 1, 2];
         for (let i=0; i<50; i++) {
             expect(expected.indexOf(randomUtils.getRandomNum(-2, 2)) !== -1).toBeTruthy();
@@ -53,15 +53,31 @@ describe('generateRandomTextStr', () => {
         sinon.restore();
     });
 
-	it('generates a single word', () => {
+	it('generates a single word starting from the first word', () => {
 		expect(randomUtils.generateRandomTextStr(words, true, 1)).toEqual('one');
+
+	});
+	it('generates multiple words starting from the first word', () => {
+		expect(randomUtils.generateRandomTextStr(words, true, 2)).toEqual('one two');
+		expect(randomUtils.generateRandomTextStr(words, true, 3)).toEqual('one two three');
 	});
 
-	// it('generates a random word', () => {
-    //     sinon.stub(randomUtils, 'getRandomNum')
-    //         .onCall(0).returns(1) // num words to show
-    //         .onCall(1).returns(2); // word index
-	// 	expect(randomUtils.generateRandomTextStr(words, false, 1)).toEqual('three');
-	// });
+	it('generates a random word', () => {
+        sinon.stub(randomUtils, 'getRandomNum')
+			.onCall(0).returns(0);
+
+		expect(randomUtils.generateRandomTextStr(words, false, 1)).toEqual('two');
+	});
+
+	it('generates another random word', () => {
+        sinon.stub(randomUtils, 'getRandomNum')
+			.onCall(0).returns(1);
+
+		expect(randomUtils.generateRandomTextStr(words, false, 1)).toEqual('three');
+	});
+
+	it('generates two random words (has to be last 2)', () => {
+		expect(randomUtils.generateRandomTextStr(words, false, 2)).toEqual('two three');
+	});
 
 });

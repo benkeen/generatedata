@@ -14,3 +14,16 @@ describe('isNumeric', () => {
         expect(generalUtils.isNumeric("blah")).toEqual(false);
     });
 });
+
+describe('uppercaseWords', () => {
+	it('uppercases a single word', () => {
+		expect(generalUtils.uppercaseWords('one')).toEqual('One');
+		expect(generalUtils.uppercaseWords('ONE')).toEqual('One');
+	});
+
+	it('uppercases multiple word', () => {
+		expect(generalUtils.uppercaseWords('one two')).toEqual('One Two');
+		expect(generalUtils.uppercaseWords('ONE TWO')).toEqual('One Two');
+		expect(generalUtils.uppercaseWords('ONE-TWO')).toEqual('One-two');
+	});
+});
