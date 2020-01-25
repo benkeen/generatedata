@@ -134,3 +134,41 @@ describe('generateRandomAlphanumericStr', () => {
 		}
 	});
 });
+
+describe('getRandomCharInString', () => {
+	afterEach(function () {
+        sinon.restore();
+    });
+
+	it('returns a random char', () => {
+        sinon.stub(randomUtils, 'getRandomNum')
+			.onCall(0).returns(1);
+
+		expect(randomUtils.getRandomCharInString('abc')).toEqual('b');
+	});
+
+	it('returns a random char', () => {
+        sinon.stub(randomUtils, 'getRandomNum')
+			.onCall(0).returns(2);
+
+		expect(randomUtils.getRandomCharInString('abc')).toEqual('c');
+	});
+});
+
+describe('getRandomSubset', () => {
+	it('returns an array of the expected size', () => {
+		expect(randomUtils.getRandomSubset([1,2,3,4,5], 1).length).toEqual(1);
+		expect(randomUtils.getRandomSubset([1,2,3,4,5], 2).length).toEqual(2);
+		expect(randomUtils.getRandomSubset([1,2,3,4,5], 3).length).toEqual(3);
+		expect(randomUtils.getRandomSubset([1,2,3,4,5], 4).length).toEqual(4);
+		expect(randomUtils.getRandomSubset([1,2,3,4,5], 5).length).toEqual(5);
+	});
+
+	it('returns an array of size no greater than the original size', () => {
+		expect(randomUtils.getRandomSubset([1,2,3,4,5], 10).length).toEqual(5);
+	});
+
+	it('returns the same content when passing a full array', () => {
+		expect(randomUtils.getRandomSubset([1,2,3], 3).sort()).toEqual([1,2,3].sort());
+	});
+});
