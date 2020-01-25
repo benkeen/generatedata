@@ -1,7 +1,6 @@
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { getRandomNum } from '../../../utils/randomUtils';
-import { uppercaseWords } from '../../../utils/generalUtils';
-import { getLipsumWords } from '../../../utils/stringUtils';
+import { getLipsumWords, uppercaseWords } from '../../../utils/stringUtils';
 import { DTGenerateReturnType } from '../../../../types/dataTypes';
 
 const { words } = getLipsumWords();

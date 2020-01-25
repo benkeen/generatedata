@@ -7,6 +7,6 @@ export const getLipsumWords = (): { words: string[], numWords: number } => ({
 	numWords
 });
 
-export const toTitleCase = (str: string): string => {
+export const uppercaseWords = (str: string): string => {
 	return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase());
 };
