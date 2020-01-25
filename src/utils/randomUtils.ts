@@ -1,7 +1,11 @@
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const consonants = 'BCDFGHJKLMNPQRSTVWXYZ';
-const vowels = 'AEIOU';
-const hex = '0123456789ABCDEF';
+export const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const lowercaseLetters = letters.toLowerCase();
+export const consonants = 'BCDFGHJKLMNPQRSTVWXYZ';
+export const lowercaseConsonants = consonants.toLowerCase();
+export const vowels = 'AEIOU';
+export const lowercaseVowels = vowels.toLowerCase();
+export const hex = '0123456789ABCDEF';
+
 const lettersLen = letters.length;
 const consonantsLen = consonants.length;
 const vowelsLen = vowels.length;
@@ -29,8 +33,8 @@ export const getRandomCharInString = (str: string): string => {
 /**
  * Converts the following characters in the parameter string and returns it:
  *
- *     C, c, A - any consonant (Upper case, lower case, any)
- *     V, v, B - any vowel (Upper case, lower case, any)
+ *     C, c, E - any consonant (Upper case, lower case, any)
+ *     V, v, F - any vowel (Upper case, lower case, any)
  *     L, l, D - any letter (Upper case, lower case, any)
  *     X       - 1-9
  *     x       - 0-9
@@ -51,34 +55,34 @@ export const generateRandomAlphanumericStr = (str: string): string => {
 
 			// Letters
 			case 'L': newStr += letters[getRandomNum(0, lettersLen - 1)]; break;
-			case 'l': newStr += letters[getRandomNum(0, lettersLen - 1)].toLowerCase(); break;
+			case 'l': newStr += lowercaseLetters[getRandomNum(0, lettersLen - 1)]; break;
 			case 'D':
 				if (getRandomBool()) {
 					newStr += letters[getRandomNum(0, lettersLen - 1)];
 				} else {
-					newStr += letters[getRandomNum(0, lettersLen - 1)].toLowerCase();
+					newStr += lowercaseLetters[getRandomNum(0, lettersLen - 1)];
 				}
 				break;
 
 			// Consonants
 			case 'C': newStr += consonants[getRandomNum(0, consonantsLen - 1)]; break;
-			case 'c': newStr += consonants[getRandomNum(0, consonantsLen - 1)].toLowerCase(); break;
+			case 'c': newStr += lowercaseConsonants[getRandomNum(0, consonantsLen - 1)]; break;
 			case 'E':
 				if (getRandomBool()) {
 					newStr += consonants[getRandomNum(0, consonantsLen - 1)];
 				} else {
-					newStr += consonants[getRandomNum(0, consonantsLen - 1)].toLowerCase();
+					newStr += lowercaseConsonants[getRandomNum(0, consonantsLen - 1)];
 				}
 				break;
 
 			// Vowels
 			case 'V': newStr += vowels[getRandomNum(0, vowelsLen - 1)]; break;
-			case 'v': newStr += vowels[getRandomNum(0, vowelsLen - 1)].toLowerCase(); break;
+			case 'v': newStr += lowercaseVowels[getRandomNum(0, vowelsLen - 1)]; break;
 			case 'F':
 				if (getRandomBool()) {
 					newStr += vowels[getRandomNum(0, vowelsLen - 1)];
 				} else {
-					newStr += vowels[getRandomNum(0, vowelsLen - 1)].toLowerCase();
+					newStr += lowercaseVowels[getRandomNum(0, vowelsLen - 1)];
 				}
 				break;
 

@@ -55,8 +55,8 @@ describe('generateRandomTextStr', () => {
 
 	it('generates a single word starting from the first word', () => {
 		expect(randomUtils.generateRandomTextStr(words, true, 1)).toEqual('one');
-
 	});
+
 	it('generates multiple words starting from the first word', () => {
 		expect(randomUtils.generateRandomTextStr(words, true, 2)).toEqual('one two');
 		expect(randomUtils.generateRandomTextStr(words, true, 3)).toEqual('one two three');
@@ -80,4 +80,57 @@ describe('generateRandomTextStr', () => {
 		expect(randomUtils.generateRandomTextStr(words, false, 2)).toEqual('two three');
 	});
 
+});
+
+describe('generateRandomAlphanumericStr', () => {
+	afterEach(function () {
+        sinon.restore();
+    });
+
+	it('whitespace is trimmed', () => {
+		expect(randomUtils.generateRandomAlphanumericStr('    ')).toEqual('');
+	});
+
+	it('special characters are converted as expected', () => {
+		const str = 'CcEVvFLlDXxH';
+		for (let i=0; i<50; i++) {
+			const generated = randomUtils.generateRandomAlphanumericStr(str);
+
+			// C = uppercase consonant
+			expect(randomUtils.consonants.indexOf(generated[0]) !== -1).toBeTruthy();
+			
+			// c = lowercase consonant
+			expect(randomUtils.lowercaseConsonants.indexOf(generated[1]) !== -1).toBeTruthy();
+
+			// A = any case consonant
+			expect(randomUtils.consonants.concat(randomUtils.lowercaseConsonants).indexOf(generated[2]) !== -1).toBeTruthy();
+
+			// V = uppercase vowel
+			expect(randomUtils.vowels.indexOf(generated[3]) !== -1).toBeTruthy();
+
+			// v = uppercase vowel
+			expect(randomUtils.lowercaseVowels.indexOf(generated[4]) !== -1).toBeTruthy();
+
+			// F = any case vowel
+			expect(randomUtils.vowels.concat(randomUtils.lowercaseVowels).indexOf(generated[5]) !== -1).toBeTruthy();
+
+			// L = uppercase letter
+			expect(randomUtils.letters.indexOf(generated[6]) !== -1).toBeTruthy();
+
+			// l = lowercase letter
+			expect(randomUtils.lowercaseLetters.indexOf(generated[7]) !== -1).toBeTruthy();
+
+			// D = any case letter
+			expect(randomUtils.letters.concat(randomUtils.lowercaseLetters).indexOf(generated[8]) !== -1).toBeTruthy();
+
+			// X = 1-9
+			expect(['1','2','3','4','5','6','7','8','9'].indexOf(generated[9]) !== -1).toBeTruthy();
+
+			// x = 0-9
+			expect(['0', '1','2','3','4','5','6','7','8','9'].indexOf(generated[10]) !== -1).toBeTruthy();
+
+			// H = 0-F
+			expect(['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'].indexOf(generated[11]) !== -1).toBeTruthy();
+		}
+	});
 });
