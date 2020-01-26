@@ -6,7 +6,7 @@ export type JSONSettings = {
     dataStructureFormat: DataStructureFormat;
 };
 
-const state = {
+const state: JSONSettings = {
 	stripWhitespace: false,
 	dataStructureFormat: 'simple'
 };

@@ -69,7 +69,7 @@ export const Example = ({ data, onUpdate }: ExampleProps): JSX.Element => {
 	);
 };
 
-export const Options = ({ data, onUpdate, i18n }: OptionsProps): JSX.Element => {
+export const Options = ({ data, dimensions, onUpdate, i18n }: OptionsProps): JSX.Element => {
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
@@ -77,23 +77,35 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps): JSX.Element => 
 		});
 	};
 
+	// only ever show the full 
+	const StartDatePicker = (dimensions.width < 1024) ? (
+		<DatePicker
+			label="Basic example"
+			value={selectedDate}
+			onChange={handleDateChange}
+			animateYearScrolling
+		/>
+	) : (
+		<KeyboardDatePicker
+			className={styles.dateField}
+			margin="none"
+			format="MM/dd/yyyy"
+			value={fromUnixTime(data.fromDate)}
+			onChange={(date): void => onChange('fromDate', date)}
+			InputProps={{
+				style: {
+					width: 120
+				}
+			}}
+		/>
+	);
+
 	return (
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 			<div>
 				<div className={styles.dateRow}>
 					<label>{i18n.from}</label>
-					<KeyboardDatePicker
-						className={styles.dateField}
-						margin="none"
-						format="MM/dd/yyyy"
-						value={fromUnixTime(data.fromDate)}
-						onChange={(date): void => onChange('fromDate', date)}
-						InputProps={{
-							style: {
-								width: 120
-							}
-						}}
-					/>
+					<StartDatePicker />
 					<label>{i18n.to}</label>
 					<KeyboardDatePicker
 						className={styles.dateField}

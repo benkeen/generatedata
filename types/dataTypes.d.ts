@@ -2,12 +2,18 @@ export type AnyObject = {
     [key: string]: any;
 }
 
+export type Dimensions = {
+	width: number;
+	height: number;
+};
+
 // Data Type <Example /> props
 export type ExampleProps = {
     coreI18n: any;
     i18n: any;
     data: any;
-    id: string;
+	id: string;
+	dimensions: Dimensions;
     onUpdate: (data: AnyObject) => void;
 };
 
@@ -16,7 +22,8 @@ export type OptionsProps = {
     coreI18n: any;
     i18n: any;
     data: any;
-    id: string;
+	id: string;
+	dimensions: Dimensions;
     onUpdate: (data: AnyObject) => void;
 };
 

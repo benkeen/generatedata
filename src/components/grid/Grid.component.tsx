@@ -66,6 +66,7 @@ const Grid = ({
 							id={row.id}
 							data={row.data}
 							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+							dimensions={{ height: dimensions.height, width: dimensions.width }}
 						/>
 					);
 				} else {
@@ -80,6 +81,7 @@ const Grid = ({
 							id={row.id}
 							data={row.data}
 							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+							dimensions={{ height: dimensions.height, width: dimensions.width }}
 						/>
 					);
 				} else {
