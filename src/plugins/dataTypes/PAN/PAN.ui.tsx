@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import { creditCardFormats } from './formats';
 
 export const state = {
 	example: 'mastercard',
@@ -13,9 +14,14 @@ export const state = {
 
 export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
 	const onChange = (value: string): void => {
+
+		// @ts-ignore-line
+		const format = (value === 'rand_card') ? '' : creditCardFormats[value];
+
 		onUpdate({
 			...data,
-			example: value
+			example: value,
+			format
 		});
 	};
 
@@ -52,18 +58,17 @@ export const Options = ({ data, i18n }: OptionsProps): React.ReactNode => {
 	// 	});
 	// };
 
-	return (
-		<>
-			<span>
-				{i18n.separators}
-				<input type="text" style={{ width: 78 }} value={data.separator} title={i18n.separator_help} />
-			</span>
-
+	const getCCFormats = () => {
+		return (
 			<div>
 				{i18n.ccformats}
 				<textarea title={i18n.format_title} style={{ height: 80, width: '100%' }} />
 			</div>
+		);
+	}
 
+	const getRandomOption = () => {
+		return (
 			<div>
 				{i18n.ccrandom}
 				<select multiple title={i18n.rand_brand_title} style={{ height: 100, width: '100%' }}>
@@ -82,6 +87,17 @@ export const Options = ({ data, i18n }: OptionsProps): React.ReactNode => {
 					<option value="laser">{i18n.laser}</option>
 				</select>
 			</div>
+		);
+	};
+
+	return (
+		<>
+			<div>
+				{i18n.separators}
+				<input type="text" style={{ width: 78 }} value={data.separator} title={i18n.separator_help} />
+			</div>
+			{getCCFormats()}
+			{getRandomOption()}
 		</>
 	);
 };
@@ -97,143 +113,6 @@ export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 		<b>{i18n.switch}</b>, <b>{i18n.laser}</b>.
 	</p>
 );
-
-
-// var _exampleChange = function(msg) {
-// 	var rowID = msg.rowID;
-// 	var selectedCard = msg.value;
-//
-// 	var $digitSection     = $("#dtOptionPAN_cardDigitSection_" + rowID);
-// 	var $digitLengthField = $("#dtOptionPAN_digit_" + rowID);
-// 	var $cardFormat       = $("#dtOptionPAN_cardFormat_" + rowID);
-// 	var $option           = $("#dtOption_" + rowID);
-// 	var $randCardFormatSection = $("#dtOptionPAN_randomCardFormatSection_" + rowID);
-//
-// 	// default states shared by most options
-// 	$cardFormat.show();
-// 	$digitSection.show();
-// 	$randCardFormatSection.hide();
-//
-// 	var formats = [];
-// 	switch (selectedCard) {
-// 		case "mastercard":
-// 		case "discover":
-// 		case "visaElectron":
-// 			$digitLengthField.val("16");
-// 			formats = [
-// 				"XXXXXXXXXXXXXXXX",
-// 				"XXXX XXXX XXXX XXXX",
-// 				"XXXXXX XXXXXX XXXX",
-// 				"XXX XXXXX XXXXX XXX",
-// 				"XXXXXX XXXXXXXXXX"
-// 			];
-// 			break;
-//
-// 		case "visa":
-// 			$digitLengthField.val("13,16");
-// 			formats = [
-// 				"XXXXXXXXXXXXX",
-// 				"XXXX XXX XX XXXX",
-// 				"XXXXXXXXXXXXXXXX",
-// 				"XXXX XXXX XXXX XXXX",
-// 				"XXXXXX XXXXXX XXXX",
-// 				"XXX XXXXX XXXXX XXX",
-// 				"XXXXXX XXXXXXXXXX"
-// 			];
-// 			break;
-//
-// 		case "amex":
-// 		case "dinersClubEnRoute":
-// 			$digitLengthField.val("15");
-// 			formats = [
-// 				"XXXXXXXXXXXXXXX",
-// 				"XXXX XXXXXX XXXXX"
-// 			];
-// 			break;
-//
-// 		case "carteBlanche":
-// 		case "dinersClubInt":
-// 			$digitLengthField.val('14');
-// 			formats = [
-// 				"XXXXXXXXXXXXXX",
-// 				"XXXX XXXXXX XXXX"
-// 			];
-// 			break;
-//
-// 		case "jcb":
-// 			$digitLengthField.val("15,16");
-// 			formats = [
-// 				"XXXXXXXXXXXXXXX",
-// 				"XXXX XXXXXX XXXXX",
-// 				"XXXXXXXXXXXXXXXX",
-// 				"XXXX XXXX XXXX XXXX",
-// 				"XXXXXX XXXXXX XXXX",
-// 				"XXX XXXXX XXXXX XXX",
-// 				"XXXXXX XXXXXXXXXX"
-// 			];
-// 			break;
-//
-// 		case "maestro":
-// 			$digitLengthField.val("12-19");
-// 			formats = [
-// 				"XXXXXXXXXXXX",
-// 				"XXXXXXXXXXXXX",
-// 				"XXXX XXX XX XXXX",
-// 				"XXXXXXXXXXXXXX",
-// 				"XXXX XXXXXX XXXX",
-// 				"XXXXXXXXXXXXXXX",
-// 				"XXXX XXXXXX XXXXX",
-// 				"XXXXXXXXXXXXXXXX",
-// 				"XXXX XXXX XXXX XXXX",
-// 				"XXXXXX XXXXXX XXXX",
-// 				"XXX XXXXX XXXXX XXX",
-// 				"XXXXXX XXXXXXXXXX",
-// 				"XXXXXXXXXXXXXXXXX",
-// 				"XXXXXXXXXXXXXXXXXX",
-// 				"XXXXXXXXXXXXXXXXXXX",
-// 				"XXXXXX XX XXXX XXXX XXX"
-// 			];
-// 			break;
-//
-// 		case "solo":
-// 		case "switch":
-// 			$digitLengthField.val("16,18,19");
-// 			formats = [
-// 				"XXXXXXXXXXXXXXXX",
-// 				"XXXX XXXX XXXX XXXX",
-// 				"XXXXXX XXXXXX XXXX",
-// 				"XXX XXXXX XXXXX XXX",
-// 				"XXXXXX XXXXXXXXXX",
-// 				"XXXXXXXXXXXXXXXXXX",
-// 				"XXXXXXXXXXXXXXXXXXX",
-// 				"XXXXXX XX XXXX XXXX XXX"
-// 			];
-// 			break;
-//
-// 		case "laser":
-// 			$digitLengthField.val("16-19");
-// 			formats = [
-// 				"XXXXXXXXXXXXXXXX",
-// 				"XXXX XXXX XXXX XXXX",
-// 				"XXXXXX XXXXXX XXXX",
-// 				"XXX XXXXX XXXXX XXX",
-// 				"XXXXXX XXXXXXXXXX",
-// 				"XXXXXXXXXXXXXXXXX",
-// 				"XXXXXXXXXXXXXXXXXX",
-// 				"XXXXXXXXXXXXXXXXXXX",
-// 				"XXXXXX XX XXXX XXXX XXX"
-// 			];
-// 			break;
-//
-// 		case "rand_card":
-// 			$digitSection.hide();
-// 			$cardFormat.hide();
-// 			$randCardFormatSection.show();
-// 			break;
-// 	}
-//
-// 	$option.val(formats.join("\n"));
-// };
 
 
 // var _validate = function(rows) {
