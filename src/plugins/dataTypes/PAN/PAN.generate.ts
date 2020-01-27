@@ -1,190 +1,172 @@
-<?php
-
-/**
- * @author Ben Keen <ben.keen@gmail.com>, original code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
- * @package DataTypes
- */
-class DataType_PAN extends DataTypePlugin {
-
-	protected $isEnabled = true;
-	protected $dataTypeName = "PAN";
-	protected $dataTypeFieldGroup = "credit_card_data";
-	protected $dataTypeFieldGroupOrder = 10;
-	protected $jsModules = array("PAN.js");
-
-	private static $creditCardData = array(
-		"visa" => array(
-			"prefix"  => array(4539, 4556, 4916, 4532, 4929, 40240071, 4485, 4716, 4),
-			"length"  => "13,16",
-			"formats" => array(
-				"XXXXXXXXXXXXX",
-				"XXXX XXX XX XXXX",
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX"
-			)
-		),
-		"visaElectron" => array(
-			"prefix" => array(4026, 417500, 4508, 4844, 4913, 4917),
-			"length" => "16",
-			"formats" => array(
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX"
-			)
-		),
-		"mastercard" => array(
-			"prefix" => array(51, 52, 53, 54, 55),
-			"length" => "16",
-			"formats" => array(
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX"
-			)
-		),
-		"amex" => array(
-			"prefix" => array(34, 37),
-			"length" => "15",
-			"formats" => array(
-				"XXXXXXXXXXXXXXX",
-				"XXXX XXXXXX XXXXX"
-			)
-		),
-		"discover" => array(
-			"prefix" => array(6011, 644, 645, 646, 647, 648, 649, 65),
-			"length" => "16",
-			"formats" => array(
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX"
-			)
-		),
-		"carteBlanche" => array(
-			"prefix" => array(300, 301, 302, 303, 304, 305),
-			"length" => "14",
-			"formats" => array(
-				"XXXXXXXXXXXXXXX",
-				"XXXX XXXXXX XXXXX"
-			)
-		),
-		"dinersClubInt" => array(
-			"prefix" => array(36),
-			"length" => "14",
-			"formats" => array(
-				"XXXXXXXXXXXXXXX",
-				"XXXX XXXXXX XXXXX"
-			)
-		),
-		"dinersClubEnRoute" => array(
-			"prefix" => array(2014, 2149),
-			"length" => "15",
-			"formats" => array(
-				"XXXXXXXXXXXXXXX",
-				"XXXX XXXXXX XXXXX"
-			)
-		),
-		"jcb15" => array(
-			"prefix" => array(2131, 1800),
-			"length" => "15,16",
-			"formats" => array(
-				"XXXXXXXXXXXXXXX",
-				"XXXX XXXXXX XXXXX",
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX"
-			)
-		),
-		"jcb16" => array(
-			"prefix" => array(31, 309),
-			"length" => "15,16",
-			"formats" => array(
-				"XXXXXXXXXXXXXXX",
-				"XXXX XXXXXX XXXXX",
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX"
-			)
-		),
-		"maestro" => array(
-			"prefix" => array(5018, 5038, 6304, 6759, 6761, 6762, 6763, 5893, 56, 57, 58),
-			"length" => "12-19",
-			"formats" => array(
-				"XXXXXXXXXXXX",
-				"XXXXXXXXXXXXX",
-				"XXXX XXX XX XXXX",
-				"XXXXXXXXXXXXXX",
-				"XXXX XXXXXX XXXX",
-				"XXXXXXXXXXXXXXX",
-				"XXXX XXXXXX XXXXX",
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXXXX",
-				"XXXXXX XX XXXX XXXX XXX"
-			)
-		),
-		"solo" => array(
-			"prefix" => array(6334, 6767),
-			"length" => "16,18,19",
-			"formats" => array(
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXXXX",
-				"XXXXXX XX XXXX XXXX XXX"
-			)
-		),
-		"switch" => array(
-			"prefix" => array(4903, 4905, 4905, 4911, 4936, 564182, 633110, 6333, 6759),
-			"length" => "16,18,19",
-			"formats" => array(
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXXXX",
-				"XXXXXX XX XXXX XXXX XXX"
-			)
-		),
-		"laser" => array(
-			"prefix" => array(6304, 6706, 6771, 6709),
-			"length" => "16-19",
-			"formats" => array(
-				"XXXXXXXXXXXXXXXX",
-				"XXXX XXXX XXXX XXXX",
-				"XXXXXX XXXXXX XXXX",
-				"XXX XXXXX XXXXX XXX",
-				"XXXXXX XXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXXX",
-				"XXXXXXXXXXXXXXXXXXX",
-				"XXXXXX XX XXXX XXXX XXX"
-			)
-		)
-	);
+import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
+import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
 
+const creditCardData = {
+	visa: {
+		prefix: [4539, 4556, 4916, 4532, 4929, 40240071, 4485, 4716, 4],
+		formats: [
+			'XXXXXXXXXXXXX',
+			'XXXX XXX XX XXXX',
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX'
+		]
+	},
+	visaElectron: {
+		prefix: [4026, 417500, 4508, 4844, 4913, 4917],
+		formats: [
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX'
+		]
+	},
+	mastercard: {
+		prefix: [51, 52, 53, 54, 55],
+		formats: [
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX'
+		]
+	},
+	amex: {
+		prefix: [34, 37],
+		formats: [
+			'XXXXXXXXXXXXXXX',
+			'XXXX XXXXXX XXXXX'
+		]
+	},
+	discover: {
+		prefix: [6011, 644, 645, 646, 647, 648, 649, 65],
+		formats: [
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX'
+		]
+	},
+	carteBlanche: {
+		prefix: [300, 301, 302, 303, 304, 305],
+		formats: [
+			'XXXXXXXXXXXXXXX',
+			'XXXX XXXXXX XXXXX'
+		]
+	},
+	dinersClubInt: {
+		prefix: [36],
+		formats: [
+			'XXXXXXXXXXXXXXX',
+			'XXXX XXXXXX XXXXX'
+		]
+	},
+	dinersClubEnRoute: {
+		prefix: [2014, 2149],
+		formats: [
+			'XXXXXXXXXXXXXXX',
+			'XXXX XXXXXX XXXXX'
+		]
+	},
+	jcb15: {
+		prefix: [2131, 1800],
+		formats: [
+			'XXXXXXXXXXXXXXX',
+			'XXXX XXXXXX XXXXX',
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX'
+		]
+	},
+	jcb16: {
+		prefix: [31, 309],
+		formats: [
+			'XXXXXXXXXXXXXXX',
+			'XXXX XXXXXX XXXXX',
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX'
+		]
+	},
+	maestro: {
+		prefix: [5018, 5038, 6304, 6759, 6761, 6762, 6763, 5893, 56, 57, 58],
+		formats: [
+			'XXXXXXXXXXXX',
+			'XXXXXXXXXXXXX',
+			'XXXX XXX XX XXXX',
+			'XXXXXXXXXXXXXX',
+			'XXXX XXXXXX XXXX',
+			'XXXXXXXXXXXXXXX',
+			'XXXX XXXXXX XXXXX',
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXXXX',
+			'XXXXXX XX XXXX XXXX XXX'
+		]
+	},
+	solo: {
+		prefix: [6334, 6767],
+		formats: [
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXXXX',
+			'XXXXXX XX XXXX XXXX XXX'
+		]
+	},
+	switch: {
+		prefix: [4903, 4905, 4905, 4911, 4936, 564182, 633110, 6333, 6759],
+		formats: [
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXXXX',
+			'XXXXXX XX XXXX XXXX XXX'
+		]
+	},
+	laser: {
+		prefix: [6304, 6706, 6771, 6709],
+		formats: [
+			'XXXXXXXXXXXXXXXX',
+			'XXXX XXXX XXXX XXXX',
+			'XXXXXX XXXXXX XXXX',
+			'XXX XXXXX XXXXX XXX',
+			'XXXXXX XXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXXX',
+			'XXXXXXXXXXXXXXXXXXX',
+			'XXXXXX XX XXXX XXXX XXX'
+		]
+	}
+};
+
+// data: GenerationData
+export const generate = (): DTGenerateReturnType => {
+	return { display: '' };
+};
+
+
+/*
 	public function __construct($runtimeContext) {
 		for ($i=622126; $i<=622925; $i++) {
             self::$creditCardData["discover"][] = $i;
@@ -194,7 +176,6 @@ class DataType_PAN extends DataTypePlugin {
 		}
 		parent::__construct($runtimeContext);
 	}
-
 
 	// TODO why is `length` necessary? Very confusing.
 	public function generate($generator, $generationContextData) {
@@ -258,23 +239,11 @@ class DataType_PAN extends DataTypePlugin {
 		);
 	}
 
-
-
-	public function getDataTypeMetadata() {
-		return array(
-			"SQLField" => "varchar(255)",
-			"SQLField_Oracle" => "varchar2(255)",
-			"SQLField_MSSQL" => "VARCHAR(255) NULL"
-		);
-	}
-
-	/**
-	 * @param $ccLength
+	* @param $ccLength
 	 * @param $ccFormat
 	 * @param $ccSeparator
 	 * @param $ccNumber
 	 * @return array|bool|string
-	 */
 	private static function convertFormat($ccLength, $ccFormat, $ccSeparator, $ccNumber) {
 
 		// TODO pity we need this extra test on each call
@@ -291,9 +260,7 @@ class DataType_PAN extends DataTypePlugin {
 		}
 	}
 
-	/**
 	 * Convert X's to the specified number
-	 */
 	private static function convertXtoNumber($chosen_format, $ccnumber){
 		$positions = array();
 		$pos = -1;
@@ -374,9 +341,6 @@ class DataType_PAN extends DataTypePlugin {
 
 
 	private static function getRandomPANLength($userSelectedLength) {
-
-		// TODO
-
 		// if there's more than 1 card length then pick a random one
 		if ($userSelectedLength == "12-19") {
 			$userSelectedLength = "12,13,14,15,16,17,18,19";
@@ -447,4 +411,13 @@ class DataType_PAN extends DataTypePlugin {
 	public static function getAllCreditCardData() {
 		return self::$creditCardData;
 	}
-}
+*/
+
+
+export const getMetadata = (): ExportTypeMetadata => ({
+	sql: {
+		field: 'varchar(255)',
+		field_Oracle: 'varchar2(255)',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});

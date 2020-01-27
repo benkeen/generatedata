@@ -1,23 +1,16 @@
-<?php
+import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
 
-/**
- * @package DataTypes
- */
+export const generate = (data: GenerationData): DTGenerateReturnType => {
+	return { display: '' };
+};
 
-class DataType_OrganisationNumber extends DataTypePlugin {
-	protected $isEnabled = true;
-	protected $dataTypeName = "OrganisationNumber";
-	protected $dataTypeFieldGroup = "human_data";
-	protected $dataTypeFieldGroupOrder = 111;
-	protected $jsModules = array("OrganisationNumber.js");
+/*
 	private $generatedOrgNrs = array();
 	static $sep = "-";
 
 
-	/**
 	 * Generate a random personal number, and return the display string and additional meta data for use
 	 * by any other Data Type.
-	 */
 	public function generate($generator, $generationContextData) {
 		$generationOptions = $generationContextData["generationOptions"];
 
@@ -108,5 +101,4 @@ class DataType_OrganisationNumber extends DataTypePlugin {
 			"SQLField_MSSQL" => "VARCHAR(" . $len . ") NULL"
 		);
 	}
-
-}
+*/

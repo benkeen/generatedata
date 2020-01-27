@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+export type OrganizationNumberState = {
+	example: string;
+	separator: string;
+};
+
+export const state: OrganizationNumberState = {
 	example: '',
 	separator: ''
 };
-
 
 export const Example = ({ coreI18n, i18n, data }: ExampleProps): JSX.Element => (
 	<select defaultValue={data.example}>
