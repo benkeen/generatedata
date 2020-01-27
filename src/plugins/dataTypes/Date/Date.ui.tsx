@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { format, subYears, addYears, fromUnixTime } from 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
+import Button from '@material-ui/core/Button';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import Event from '@material-ui/icons/Event';
+import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 import * as styles from './Date.scss';
 
@@ -69,7 +72,9 @@ export const Example = ({ data, onUpdate }: ExampleProps): JSX.Element => {
 	);
 };
 
-export const Options = ({ data, dimensions, onUpdate, i18n }: OptionsProps): JSX.Element => {
+export const Options = ({ data, onUpdate, i18n }: OptionsProps): JSX.Element => {
+	const [isOpen, setOpen] = React.useState(false);
+	const [selectedDatePicker, setDatePicker] = React.useState('fromDate'); // fromDate / toDate
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
@@ -77,53 +82,44 @@ export const Options = ({ data, dimensions, onUpdate, i18n }: OptionsProps): JSX
 		});
 	};
 
-	// only ever show the full 
-	const StartDatePicker = (dimensions.width < 1024) ? (
-		<DatePicker
-			label="Basic example"
-			value={selectedDate}
-			onChange={handleDateChange}
-			animateYearScrolling
-		/>
-	) : (
-		<KeyboardDatePicker
-			className={styles.dateField}
-			margin="none"
-			format="MM/dd/yyyy"
-			value={fromUnixTime(data.fromDate)}
-			onChange={(date): void => onChange('fromDate', date)}
-			InputProps={{
-				style: {
-					width: 120
-				}
-			}}
-		/>
-	);
+	const onBtnClick = (btn: string): void => {
+		setOpen(true);
+		setDatePicker(btn);
+	};
+
+	const onSelectDate = (btn: string, value: any): void => {
+		onChange(btn, value);
+		setOpen(false);
+	};
 
 	return (
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 			<div>
 				<div className={styles.dateRow}>
-					<label>{i18n.from}</label>
-					<StartDatePicker />
-					<label>{i18n.to}</label>
-					<KeyboardDatePicker
-						className={styles.dateField}
-						margin="none"
-						format="MM/dd/yyyy"
-						value={fromUnixTime(data.toDate)}
-						onChange={(): void => { }}
-						InputProps={{
-							style: {
-								width: 120
-							}
-						}}
-					/>
+					<Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation>
+						{format(fromUnixTime(data.fromDate), 'MMM d, y')}
+						<Event />
+					</Button>
+					<ArrowRightAlt />
+					<Button onClick={(): void => onBtnClick('toDate')} variant="outlined" disableElevation>
+						{format(fromUnixTime(data.toDate), 'MMM d, y')}
+						<Event />
+					</Button>
 				</div>
 				<div>
-					{i18n.format_code}
-					<input type="text" value={data.format} style={{ width: 160 }}
+					<span className={styles.formatCodeLabel}>{i18n.format_code}</span>
+					<input type="text" value={data.format} style={{ width: 140 }}
 						onChange={(e): void => onChange('format', e.target.value)}
+					/>
+				</div>
+				<div style={{ display: 'none' }}>
+					<DatePicker
+						autoOk
+						open={isOpen}
+						className={styles.dateField}
+						value={fromUnixTime(selectedDatePicker === 'fromDate' ? data.toDate : data.fromDate)}
+						onChange={(val: any): void => onSelectDate(selectedDatePicker, format(val, 't'))}
+						onClose={(): void => setOpen(false)}
 					/>
 				</div>
 			</div>

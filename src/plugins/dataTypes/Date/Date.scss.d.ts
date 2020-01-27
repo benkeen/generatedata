@@ -2,6 +2,7 @@ declare namespace DateScssModule {
   export interface IDateScss {
     dateField: string;
     dateRow: string;
+    formatCodeLabel: string;
   }
 }
 
