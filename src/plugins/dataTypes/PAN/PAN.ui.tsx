@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
-import Dropdown from '../../../components/dropdown/Dropdown';
-import { creditCardFormats } from './formats';
+import Dropdown, { ChangeEvent } from '../../../components/dropdown/Dropdown';
+import { creditCardList, creditCardFormats } from './formats';
 
 export const state = {
 	example: 'mastercard',
@@ -11,36 +11,28 @@ export const state = {
 	randomBrands: '' // check type
 };
 
+export const getCreditCardOptions = (formats: string[], i18n: any): ChangeEvent[] => {
+	return formats.map((format) => ({
+		value: format, label: i18n[format]
+	}));
+};
 
 export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
 	const onChange = (value: string): void => {
-
 		// @ts-ignore-line
-		const format = (value === 'rand_card') ? '' : creditCardFormats[value];
-
+		const format = (value === 'rand_card') ? '' : creditCardFormats[value].formats;
 		onUpdate({
 			...data,
 			example: value,
-			format
+			format: format.join('\n')
 		});
 	};
 
-	const options = [
-		{ value: 'mastercard', label: i18n.mastercard },
-		{ value: 'visa', label: i18n.visa_electron },
-		{ value: 'visaElectron', label: i18n.visa_electron },
-		{ value: 'amex', label: i18n.americanexpress },
-		{ value: 'discover', label: i18n.discover },
-		{ value: 'carteBlanche', label: i18n.carte_blanche },
-		{ value: 'dinersClubInt', label: i18n.diners_club_international },
-		{ value: 'dinersClubEnRoute', label: i18n.enRoute },
-		{ value: 'jcb', label: i18n.jcb },
-		{ value: 'maestro', label: i18n.maestro },
-		{ value: 'solo', label: i18n.solo },
-		{ value: 'switch', label: i18n.switch },
-		{ value: 'laser', label: i18n.laser },
-		{ value: 'rand_card', label: i18n.rand_card }
-	];
+	const options = getCreditCardOptions(creditCardList, i18n);
+	options.push({
+		value: 'rand_card',
+		label: i18n.rand_card
+	});
 
 	return (
 		<Dropdown
@@ -51,41 +43,51 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode
 	);
 };
 
-export const Options = ({ data, i18n }: OptionsProps): React.ReactNode => {
-	// const onChange = () => {
-	// 	onUpdate({
-	// 		...data
-	// 	});
-	// };
+export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode => {
+	const options = getCreditCardOptions(creditCardList, i18n);
 
-	const getCCFormats = () => {
+	const onChangeRandomOption = (randomBrands: any): void => {
+		onUpdate({
+			...data,
+			randomBrands: randomBrands === null ? [] : randomBrands.map((row: any) => row.value)
+		});
+	};
+
+	const getCCFormats = (): JSX.Element | null => {
+		if (data.example === 'rand_card') {
+			return null;
+		}
 		return (
 			<div>
 				{i18n.ccformats}
-				<textarea title={i18n.format_title} style={{ height: 80, width: '100%' }} />
+				<textarea
+					title={i18n.format_title}
+					style={{ height: 80, width: '100%' }} 
+					value={data.format}
+					onChange={(e: any) => onUpdate({
+						...data,
+						format: e.target.value
+					})}
+				/>
 			</div>
 		);
-	}
+	};
 
-	const getRandomOption = () => {
+	const getRandomOption = (): JSX.Element | null => {
+		if (data.example !== 'rand_card') {
+			return null;
+		}
+		// title={i18n.rand_brand_title} style={{ height: 100, width: '100%' }}
 		return (
 			<div>
 				{i18n.ccrandom}
-				<select multiple title={i18n.rand_brand_title} style={{ height: 100, width: '100%' }}>
-					<option value="mastercard">{i18n.mastercard}</option>
-					<option value="visa">{i18n.visa}</option>
-					<option value="visaElectron">{i18n.visa_electron}</option>
-					<option value="amex">{i18n.americanexpress}</option>
-					<option value="discover">{i18n.discover}</option>
-					<option value="carteBlanche">{i18n.carte_blanche}</option>
-					<option value="dinersClubInt">{i18n.diners_club_international}</option>
-					<option value="dinersClubEnRoute">{i18n.enRoute}</option>
-					<option value="jcb">{i18n.jcb}</option>
-					<option value="maestro">{i18n.maestro}</option>
-					<option value="solo">{i18n.solo}</option>
-					<option value="switch">{i18n.switch}</option>
-					<option value="laser">{i18n.laser}</option>
-				</select>
+				<Dropdown
+					isMulti
+					isClearable={false}
+					value={data.example}
+					onChange={onChangeRandomOption}
+					options={options}
+				/>
 			</div>
 		);
 	};
@@ -93,8 +95,17 @@ export const Options = ({ data, i18n }: OptionsProps): React.ReactNode => {
 	return (
 		<>
 			<div>
-				{i18n.separators}
-				<input type="text" style={{ width: 78 }} value={data.separator} title={i18n.separator_help} />
+				<span>{i18n.separators}</span>
+				<input
+					type="text"
+					style={{ width: 30 }}
+					value={data.separator}
+					title={i18n.separator_help}
+					onChange={(e: any) => onUpdate({
+						...data,
+						separator: e.target.value
+					})}
+				/>
 			</div>
 			{getCCFormats()}
 			{getRandomOption()}
@@ -162,4 +173,3 @@ export const Help = ({ i18n }: HelpProps): React.ReactNode => (
 //
 // 	return errors;
 // };
-

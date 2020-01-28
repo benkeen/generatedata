@@ -32,6 +32,11 @@ const formatGroup4 = [
 	'XXXXXX XX XXXX XXXX XXX'
 ];
 
+export const creditCardList = [
+	'mastercard', 'visa', 'visaElectron', 'amex', 'discover', 'carteBlanche', 'dinersClubInt',
+	'dinersClubEnRoute', 'jcb', 'maestro', 'solo', 'switch', 'laser'
+];
+
 export const creditCardFormats = {
 	visa: {
 		prefix: [4539, 4556, 4916, 4532, 4929, 40240071, 4485, 4716, 4],

@@ -1,4 +1,4 @@
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
 
