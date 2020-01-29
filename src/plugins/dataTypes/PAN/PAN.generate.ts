@@ -1,8 +1,12 @@
 import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
-	
+export const getRowReducer = ({ formats, example }: any) => ({
+	formats,
+	ccCard: example
+});
+
+export const generate = (data: GenerationData): DTGenerateReturnType => {	
 	console.log(data);
 
 	return { display: '' };

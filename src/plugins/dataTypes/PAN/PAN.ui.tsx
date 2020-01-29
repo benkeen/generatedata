@@ -5,15 +5,13 @@ import { creditCardList, creditCardFormats } from './formats';
 
 export type PanState = {
 	example: string;
-	digit: string;
 	separator: string;
 	formats: string;
 	randomBrands: string[]
 };
 
-export const state = {
+export const state: PanState = {
 	example: 'mastercard',
-	digit: '',
 	separator: ' ',
 	formats: '',
 	randomBrands: []
@@ -90,7 +88,7 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode
 					value={data.formats}
 					onChange={(e: any): void => onUpdate({
 						...data,
-						format: e.target.value
+						formats: e.target.value
 					})}
 				/>
 			</div>
