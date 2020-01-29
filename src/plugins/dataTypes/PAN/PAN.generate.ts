@@ -1,5 +1,8 @@
 import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { creditCardFormats } from './formats';
+import { getRandomArrayValue } from '../../../utils/randomUtils';
+
 
 export const getRowReducer = ({ formats, example }: any) => ({
 	formats,
@@ -8,6 +11,8 @@ export const getRowReducer = ({ formats, example }: any) => ({
 
 export const generate = (data: GenerationData): DTGenerateReturnType => {	
 	console.log(data);
+
+	// creditCardFormats[data.example]
 
 	return { display: '' };
 };
@@ -23,7 +28,6 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 		parent::__construct($runtimeContext);
 	}
 
-	// TODO why is `length` necessary? Very confusing.
 	public function generate($generator, $generationContextData) {
 		$options = $generationContextData["generationOptions"];
 
@@ -62,26 +66,6 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 		$options["cc_length"] = self::getRandomPANLength($cardData["length"]);
 
 		return $options;
-	}
-
-	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
-		return array(
-			"cc_brand"	     => $postdata["dtExample_$colNum"],
-			"cc_separator"   => $postdata["dtOptionPAN_sep_$colNum"],
-			"cc_format"      => $postdata["dtOption_$colNum"],
-			"cc_length"      => $postdata["dtOptionPAN_digit_$colNum"],
-			"cc_random_card" => $postdata["dtOptionPAN_randomCardFormat_$colNum"]
-		);
-	}
-
-	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
-		return array(
-			"cc_brand"	     => $json->settings->brand,
-			"cc_separator"   => property_exists($json->settings, "separator") ? $json->settings->separator : " ",
-			"cc_format"      => $json->settings->format,
-			"cc_length"      => $json->settings->length,
-			"cc_random_card" => $json->settings->random_card
-		);
 	}
 
 	* @param $ccLength
@@ -180,10 +164,8 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 		if ($separators == "") {
 			$chosenSep = " ";
 		}
-
 		return $chosenSep;
 	}
-
 
 	private static function getRandomPANLength($userSelectedLength) {
 		// if there's more than 1 card length then pick a random one
@@ -205,42 +187,6 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 	// --------------------------------------------------------------------------------------------
 	// Public functions
 
-	public static function generateCreditCardNumber($prefixList, $length) {
-		$ccNumber = $prefixList[array_rand($prefixList)];
-
-		// generate digits
-		$count = strlen($ccNumber);
-		while ($count < ($length - 1)) {
-			$ccNumber .= mt_rand(0, 9);
-			$count++;
-		}
-
-		// calculate sum
-		$sum = 0;
-		$pos = 0;
-
-		$reversedCCnumber = strrev($ccNumber);
-		while ($pos < $length - 1) {
-			$odd = $reversedCCnumber[$pos]*2;
-			if ($odd > 9) {
-				$odd -= 9;
-			}
-			$sum += $odd;
-
-			if ($pos != ($length - 2)) {
-				$sum += $reversedCCnumber[$pos+1];
-			}
-			$pos += 2;
-		}
-
-		// calculate check digit
-		$checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
-		$ccNumber .= $checkDigit;
-
-		return $ccNumber;
-	}
-
-
 	public static function getCreditCardData($ccBrand) {
 		$data = array();
 		reset(self::$creditCardData);
@@ -258,6 +204,42 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 	}
 */
 
+const generateCreditCardNumber = (prefixList: string[], length: number) => {
+
+	// why is this call ccNumber? It was a prefix...
+	const ccNumber = getRandomArrayValue(prefixList);
+
+	// // generate digits
+	// $count = strlen($ccNumber);
+	// while ($count < ($length - 1)) {
+	// 	$ccNumber .= mt_rand(0, 9);
+	// 	$count++;
+	// }
+
+	// // calculate sum
+	// $sum = 0;
+	// $pos = 0;
+
+	// $reversedCCnumber = strrev($ccNumber);
+	// while ($pos < $length - 1) {
+	// 	$odd = $reversedCCnumber[$pos]*2;
+	// 	if ($odd > 9) {
+	// 		$odd -= 9;
+	// 	}
+	// 	$sum += $odd;
+
+	// 	if ($pos != ($length - 2)) {
+	// 		$sum += $reversedCCnumber[$pos+1];
+	// 	}
+	// 	$pos += 2;
+	// }
+
+	// // calculate check digit
+	// $checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
+	// $ccNumber .= $checkDigit;
+
+	// return $ccNumber;
+}
 
 export const getMetadata = (): ExportTypeMetadata => ({
 	sql: {
