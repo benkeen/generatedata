@@ -3,12 +3,20 @@ import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTyp
 import Dropdown, { ChangeEvent } from '../../../components/dropdown/Dropdown';
 import { creditCardList, creditCardFormats } from './formats';
 
+export type PanState = {
+	example: string;
+	digit: string;
+	separator: string;
+	formats: string;
+	randomBrands: string[]
+};
+
 export const state = {
 	example: 'mastercard',
 	digit: '',
 	separator: ' ',
-	format: '',
-	randomBrands: '' // check type
+	formats: '',
+	randomBrands: []
 };
 
 export const getCreditCardOptions = (formats: string[], i18n: any): ChangeEvent[] => {
@@ -17,22 +25,27 @@ export const getCreditCardOptions = (formats: string[], i18n: any): ChangeEvent[
 	}));
 };
 
+export const getFormattedCreditCardFormats = (ccType: string, separator: string) => {
+	// @ts-ignore-line
+	return creditCardFormats[ccType].formats.join('\n').replace(/ /g, separator);
+};
+
 export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
 	const onChange = (value: string): void => {
-		// @ts-ignore-line
-		const format = (value === 'rand_card') ? '' : creditCardFormats[value].formats;
-		onUpdate({
+		const newData: Partial<PanState> = {
 			...data,
-			example: value,
-			format: format.join('\n')
-		});
+			example: value
+		};
+		if (value === 'rand_card') { 
+			newData.randomBrands = creditCardList;
+		} else {
+			newData.formats = getFormattedCreditCardFormats(value, data.separator);
+		}
+		onUpdate(newData);
 	};
 
 	const options = getCreditCardOptions(creditCardList, i18n);
-	options.push({
-		value: 'rand_card',
-		label: i18n.rand_card
-	});
+	options.push({ value: 'rand_card', label: i18n.rand_card });
 
 	return (
 		<Dropdown
@@ -53,6 +66,17 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode
 		});
 	};
 
+	const onChangeSeparator = (separator: string): void => {
+		const newData = {
+			...data,
+			separator
+		};
+		if (data.example !== 'rand_data') {
+			newData.formats = getFormattedCreditCardFormats(data.example, separator);
+		}
+		onUpdate(newData);
+	};
+
 	const getCCFormats = (): JSX.Element | null => {
 		if (data.example === 'rand_card') {
 			return null;
@@ -63,8 +87,8 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode
 				<textarea
 					title={i18n.format_title}
 					style={{ height: 80, width: '100%' }} 
-					value={data.format}
-					onChange={(e: any) => onUpdate({
+					value={data.formats}
+					onChange={(e: any): void => onUpdate({
 						...data,
 						format: e.target.value
 					})}
@@ -73,42 +97,39 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode
 		);
 	};
 
-	const getRandomOption = (): JSX.Element | null => {
+	const getRandomOptions = (): JSX.Element | null => {
 		if (data.example !== 'rand_card') {
 			return null;
 		}
+		const selected = getCreditCardOptions(data.randomBrands, i18n);
+
 		// title={i18n.rand_brand_title} style={{ height: 100, width: '100%' }}
 		return (
-			<div>
-				{i18n.ccrandom}
-				<Dropdown
-					isMulti
-					isClearable={false}
-					value={data.example}
-					onChange={onChangeRandomOption}
-					options={options}
-				/>
-			</div>
+			<Dropdown
+				isMulti
+				isClearable={false}
+				defaultValue={selected}
+				value={selected}
+				onChange={onChangeRandomOption}
+				options={options}
+			/>
 		);
 	};
 
 	return (
 		<>
-			<div>
+			<div style={{ marginBottom: 4 }}>
 				<span>{i18n.separators}</span>
 				<input
 					type="text"
 					style={{ width: 30 }}
 					value={data.separator}
 					title={i18n.separator_help}
-					onChange={(e: any) => onUpdate({
-						...data,
-						separator: e.target.value
-					})}
+					onChange={(e: any): void => onChangeSeparator(e.target.value)}
 				/>
 			</div>
 			{getCCFormats()}
-			{getRandomOption()}
+			{getRandomOptions()}
 		</>
 	);
 };

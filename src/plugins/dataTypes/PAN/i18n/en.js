@@ -25,5 +25,5 @@ export default {
 	"rand_brand_title": "The selected brand's card length and format are picked randomly.",
 	"length": "Length:",
 	"separators": "Separators:",
-	"ccformats": "Credit Card Formats:"
+	"ccformats": "Credit Card Format(s):"
 };

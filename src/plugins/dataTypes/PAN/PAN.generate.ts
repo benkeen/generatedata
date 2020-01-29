@@ -1,12 +1,12 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
+export const generate = (data: GenerationData): DTGenerateReturnType => {
+	
+	console.log(data);
 
-// data: GenerationData
-export const generate = (): DTGenerateReturnType => {
 	return { display: '' };
 };
-
 
 /*
 	public function __construct($runtimeContext) {
