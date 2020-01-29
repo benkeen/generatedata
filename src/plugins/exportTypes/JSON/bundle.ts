@@ -5,7 +5,6 @@ import Preview from './JSONPreview.container';
 
 
 export const exportType: ExportTypeType = {
-    test123: 'chicken',
     generate: generator.generate,
     settingsComponent: Settings,
     previewComponent: Preview

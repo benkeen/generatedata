@@ -1,9 +1,9 @@
 export default {
-	"name": "Tree",
-	"fieldGroup": "other",
-	"fieldGroupOrder": 30,
+	name: "Tree",
+	fieldGroup: "other",
+	fieldGroupOrder: 30,
 	processOrder: 2,
-	"schema": {
+	schema: {
 		"title": "Tree",
 		"$schema": "http://json-schema.org/draft-04/schema#",
 		"type": "object",

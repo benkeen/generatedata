@@ -26,7 +26,6 @@ export const Settings = ({ i18n, id }: { i18n: any, id: string }) => {
 };
 
 
-
 /**
  * If the user is generating in-page data with this Export Type, enable the javascript
  * mode for the in-page editor.

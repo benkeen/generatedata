@@ -2,8 +2,6 @@ import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 
 export type ExportTypeType = {
 
-    test123: any;
-
     // the main generation function for the Export Type
     generate: any;
 
