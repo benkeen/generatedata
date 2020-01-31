@@ -8,7 +8,7 @@ export type OrganizationNumberState = {
 
 export const state: OrganizationNumberState = {
 	example: '',
-	separator: ''
+	separator: ' '
 };
 
 export const Example = ({ coreI18n, i18n, data }: ExampleProps): JSX.Element => (
@@ -19,13 +19,26 @@ export const Example = ({ coreI18n, i18n, data }: ExampleProps): JSX.Element => 
 	</select>
 );
 
-export const Options = ({ id, i18n }: OptionsProps): JSX.Element => (
-	<span id="dtOptionOrganisationNumberSeparator_%ROW%" style={{ display: 'inline' }}>
-		{i18n.separators}
-		<input type="text" id={`${id}-seperator`}
-			style={{ width: 78 }} value=" " title={i18n.separator_help} />
-	</span>
-);
+export const Options = ({ id, data, onUpdate, i18n }: OptionsProps): JSX.Element => {
+	const onChange = (separator: string) => {
+		onUpdate({
+			...data,
+			separator
+		});
+	};
+
+	return (
+		<span>
+			{i18n.separators}
+			<input type="text" id={`${id}-separator`}
+				style={{ width: 78 }}
+				value={data.separator}
+				title={i18n.separator_help}
+				onChange={(e): void => onChange(e.target.value)}
+			/>
+		</span>
+	);
+};
 
 export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>

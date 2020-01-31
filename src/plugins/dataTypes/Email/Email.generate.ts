@@ -1,5 +1,5 @@
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { getRandomNum } from '../../../utils/randomUtils';
+import { getRandomNum, getRandomArrayValue } from '../../../utils/randomUtils';
 import { getLipsumWords } from '../../../utils/stringUtils';
 import { DTGenerateReturnType } from '../../../../types/dataTypes';
 
@@ -23,7 +23,7 @@ export const getRandomEmail = (wordsArr = words, suffixes = ["edu", "com", "org"
 	const domain = selectedDomainWords.join('');
 
 	// suffix
-	const suffix = suffixes[getRandomNum(0, suffixes.length)];
+	const suffix = getRandomArrayValue(suffixes);
 
 	// if the email exceeded 254 chars (the max valid number of chars), truncate it. This could be way
 	// more elegant, but it's SUCH a fringe case I don't much mind

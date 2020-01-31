@@ -9,7 +9,6 @@ export const generate = (): DTGenerateReturnType => {
 	private $generatedOrgNrs = array();
 	static $sep = "-";
 
-
 	 * Generate a random personal number, and return the display string and additional meta data for use
 	 * by any other Data Type.
 	public function generate($generator, $generationContextData) {

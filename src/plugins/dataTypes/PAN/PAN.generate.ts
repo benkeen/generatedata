@@ -1,17 +1,18 @@
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { creditCardFormats } from './formats';
+// import { creditCardFormats } from './formats';
 import { getRandomArrayValue } from '../../../utils/randomUtils';
+import { PanState } from './PAN.ui';
 
 
-export const getRowReducer = ({ formats, example }: any) => ({
+export const getRowReducer = ({ formats, example }: PanState): any => ({
 	formats,
 	ccCard: example
 });
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {	
-	console.log(data);
-
+// data: GenerationData
+export const generate = (): DTGenerateReturnType => {
+	// console.log(data);
 	// creditCardFormats[data.example]
 
 	return { display: '' };
@@ -204,42 +205,42 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 	}
 */
 
-const generateCreditCardNumber = (prefixList: string[], length: number) => {
+// const generateCreditCardNumber = (prefixList: string[], length: number) => {
 
-	// why is this call ccNumber? It was a prefix...
-	const ccNumber = getRandomArrayValue(prefixList);
+// 	// why is this call ccNumber? It was a prefix...
+// 	const ccNumber = getRandomArrayValue(prefixList);
 
-	// // generate digits
-	// $count = strlen($ccNumber);
-	// while ($count < ($length - 1)) {
-	// 	$ccNumber .= mt_rand(0, 9);
-	// 	$count++;
-	// }
+// // generate digits
+// $count = strlen($ccNumber);
+// while ($count < ($length - 1)) {
+// 	$ccNumber .= mt_rand(0, 9);
+// 	$count++;
+// }
 
-	// // calculate sum
-	// $sum = 0;
-	// $pos = 0;
+// // calculate sum
+// $sum = 0;
+// $pos = 0;
 
-	// $reversedCCnumber = strrev($ccNumber);
-	// while ($pos < $length - 1) {
-	// 	$odd = $reversedCCnumber[$pos]*2;
-	// 	if ($odd > 9) {
-	// 		$odd -= 9;
-	// 	}
-	// 	$sum += $odd;
+// $reversedCCnumber = strrev($ccNumber);
+// while ($pos < $length - 1) {
+// 	$odd = $reversedCCnumber[$pos]*2;
+// 	if ($odd > 9) {
+// 		$odd -= 9;
+// 	}
+// 	$sum += $odd;
 
-	// 	if ($pos != ($length - 2)) {
-	// 		$sum += $reversedCCnumber[$pos+1];
-	// 	}
-	// 	$pos += 2;
-	// }
+// 	if ($pos != ($length - 2)) {
+// 		$sum += $reversedCCnumber[$pos+1];
+// 	}
+// 	$pos += 2;
+// }
 
-	// // calculate check digit
-	// $checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
-	// $ccNumber .= $checkDigit;
+// // calculate check digit
+// $checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
+// $ccNumber .= $checkDigit;
 
-	// return $ccNumber;
-}
+// return $ccNumber;
+// }
 
 export const getMetadata = (): ExportTypeMetadata => ({
 	sql: {

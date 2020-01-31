@@ -105,6 +105,7 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode
 		return (
 			<Dropdown
 				isMulti
+				closeMenuOnSelect={false}
 				isClearable={false}
 				defaultValue={selected}
 				value={selected}

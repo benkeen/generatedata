@@ -11,7 +11,7 @@ const state: SQLSettings = {
 	databaseType: 'MySQL'
 };
 
-export const Settings = ({ coreI18n, i18n, data }: any) => {
+export const Settings = ({ coreI18n, i18n, data }: { coreI18n: any, i18n: any, data: any }) => {
 	const onChange = (value: string) => {
 
 	};

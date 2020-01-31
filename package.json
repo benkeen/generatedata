@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-	"dev": "grunt & yarn build & yarn webpack",
+    "dev": "grunt & yarn build & yarn webpack",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
     "build": "node ./scripts/createPluginsFile.js & node ./scripts/createPluginsGenerateFile.js & node ./scripts/createPluginsListFile.js & node ./scripts/generateLocaleFiles.js & node ./scripts/generateConfigFile.js",
     "test": "env NODE_ENV=test jest"
