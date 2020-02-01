@@ -1,7 +1,7 @@
 import { DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
 // import { creditCardFormats } from './formats';
-import { getRandomArrayValue } from '../../../utils/randomUtils';
+// import { getRandomArrayValue } from '../../../utils/randomUtils';
 import { PanState } from './PAN.ui';
 
 

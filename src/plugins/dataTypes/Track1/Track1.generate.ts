@@ -1,8 +1,9 @@
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateReturnType } from '../../../../types/dataTypes';
 import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { getRandomArrayValue } from '../../../utils/randomUtils';
+// import { getRandomArrayValue } from '../../../utils/randomUtils';
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
+// data: GenerationData
+export const generate = (): DTGenerateReturnType => {
 	// const selectedCardData = getRandomArrayValue(cardData);
 	// $generatedCardNumber = DataType_PAN::generateCreditCardNumber($cardData["prefix"], $cardData["length"]);
 

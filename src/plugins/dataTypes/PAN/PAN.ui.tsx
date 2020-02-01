@@ -23,7 +23,7 @@ export const getCreditCardOptions = (formats: string[], i18n: any): ChangeEvent[
 	}));
 };
 
-export const getFormattedCreditCardFormats = (ccType: string, separator: string) => {
+export const getFormattedCreditCardFormats = (ccType: string, separator: string): string => {
 	// @ts-ignore-line
 	return creditCardFormats[ccType].formats.join('\n').replace(/ /g, separator);
 };

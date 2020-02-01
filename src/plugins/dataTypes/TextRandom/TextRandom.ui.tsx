@@ -8,7 +8,7 @@ export const state = {
 };
 
 export const Options = ({ i18n, id, data, onUpdate }: OptionsProps): JSX.Element => {
-	const onChange = (field: string, value: string) => {
+	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -21,7 +21,7 @@ export const Options = ({ i18n, id, data, onUpdate }: OptionsProps): JSX.Element
 				<input
 					type="checkbox"
 					id={`${id}-startsWithLipsum`}
-					onChange={(e) => onChange('startsWithLipsum', e.target.value)}
+					onChange={(e): void => onChange('startsWithLipsum', e.target.value)}
 				/>
 				<label htmlFor={`${id}-startsWithLipsum`}>{i18n.start_with_lipsum}</label>
 			</div>
@@ -32,7 +32,7 @@ export const Options = ({ i18n, id, data, onUpdate }: OptionsProps): JSX.Element
 					id={`${id}-minWords`}
 					style={{ width: 40 }}
 					value={data.minWords}
-					onChange={(e) => onChange('minWords', e.target.value)}
+					onChange={(e): void => onChange('minWords', e.target.value)}
 				/>
 				{i18n.to}
 				#<input
@@ -40,7 +40,7 @@ export const Options = ({ i18n, id, data, onUpdate }: OptionsProps): JSX.Element
 					id={`${id}-maxWords`}
 					style={{ width: 40 }}
 					value={data.maxWords}
-					onChange={(e) => onChange('maxWords', e.target.value)}
+					onChange={(e): void => onChange('maxWords', e.target.value)}
 				/>
 				{i18n.words}
 			</div>

@@ -20,7 +20,7 @@ export const Example = ({ coreI18n, i18n, data }: ExampleProps): JSX.Element => 
 );
 
 export const Options = ({ id, data, onUpdate, i18n }: OptionsProps): JSX.Element => {
-	const onChange = (separator: string) => {
+	const onChange = (separator: string): void => {
 		onUpdate({
 			...data,
 			separator

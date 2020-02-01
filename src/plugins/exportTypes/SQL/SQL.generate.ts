@@ -1,20 +1,9 @@
-<?php
+export const generate = (): any => {
 
-/**
- * For Data Types to properly integrate with the SQL Export Type, they should return additional metadata
- * that lets this module know about the database column type. That value is used in the initial CREATE TABLE
- * statement.
- *
- * 		"sqlField"          This is used for all SQL database types.
- * 		"sqlField_Oracle"   Used for Oracle only
- * 		"sqlField_MySQL"    Used for MySQL only
- * 		"sqlField_SQLite"   Used for SQLite only
- *		"sqlField_MSSQL"	Used for MSSQL only
- *
- * @author Ben Keen <ben.keen@gmail.com>
- * @package ExportTypes
- */
-class SQL extends ExportTypePlugin {
+};
+
+
+/*
 	protected $isEnabled = true;
 	protected $exportTypeName = "SQL";
 	protected $jsModules = array("SQL.js");
@@ -93,12 +82,10 @@ class SQL extends ExportTypePlugin {
 		);
 	}
 
-	/**
 	 * Used for constructing the filename of the filename when downloading.
 	 * @see ExportTypePlugin::getDownloadFilename()
 	 * @param Generator $generator
 	 * @return string
-	 */
 	function getDownloadFilename($generator) {
 		$time = date("M-j-Y");
 		return "data{$time}.sql";
@@ -111,11 +98,8 @@ class SQL extends ExportTypePlugin {
 		return true;
 	}
 
-
-	/**
 	 * Generates a MySQL table with all the data.
 	 * @return string
-	 */
 	private function generateCreateTableSQL_MySQL() {
 		$content = "";
 		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
@@ -218,11 +202,8 @@ class SQL extends ExportTypePlugin {
 		return $content;
 	}
 
-
-	/**
 	 * Generates a MySQL table with all the data.
 	 * @return string
-	 */
 	private function generateCreateTableSQL_Postgres() {
 		$content = "";
 		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
@@ -301,10 +282,8 @@ class SQL extends ExportTypePlugin {
 	}
 
 
-	/**
 	 * Generates an Oracle table with all the data.
 	 * @return string
-	 */
 	private function generateCreateTableSQL_Oracle() {
 		$content = "";
 		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
@@ -638,3 +617,4 @@ END;
 		}
 	}
 }
+*/
