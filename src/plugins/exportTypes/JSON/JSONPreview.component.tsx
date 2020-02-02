@@ -18,7 +18,7 @@ type PreviewProps = {
 	theme: string;
 }
 
-const Preview = ({ data, theme, showRowNumbers }: PreviewProps): JSX.Element => {
+const Preview = ({ data, theme, showRowNumbers }: PreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
 
 	React.useEffect(() => {
@@ -27,6 +27,10 @@ const Preview = ({ data, theme, showRowNumbers }: PreviewProps): JSX.Element => 
 		const content = generateSimple(data, false);
 		setCode(content);
 	}, [data, setCode]);
+
+	if (!data.rows.length) {
+		return null;
+	}
 
 	return (
 		<CodeMirror

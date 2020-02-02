@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as styles from './Header.scss';
 import { GDLocale } from '../../../types/general';
 import Button from '@material-ui/core/Button';
-import Dice from '@material-ui/icons/Casino';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import CheckBox from '@material-ui/icons/Checkbox';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
@@ -34,15 +33,10 @@ const Header = ({
 		<header className={styles.header}>
 			<div>
 				<h1>
-					<Dice fontSize="large" />
 					generatedata.com
 				</h1>
 				<nav>
 					<ul>
-						<li className={styles.current}><a href="#">Generator</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Doc</a></li>
-						<li><a href="#">News</a></li>
 						<li><a href="#">Login</a></li>
 					</ul>
 					<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>

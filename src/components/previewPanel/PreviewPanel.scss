@@ -1,16 +1,18 @@
 .previewPanel {
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-.topRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-  flex: 0 0 auto;
-  justify-content: flex-end;
+.controls {
+	position: absolute;
+	right: 0;
+	padding: 10px;
+	z-index: 5000;
+}
+
+.previewPanelContent {
+	height: 100%;
+	display: flex;
+	flex-direction: column;  
 }
 
 .closePanel {
@@ -24,11 +26,16 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 0 30px;
 
   &>div, &>div>div {
     display: flex;
     flex-direction: column;
     flex: 1;
   }
+}
+
+.noResults {
+	// flex: 1;
+	// display: flex;
+	color: white;
 }

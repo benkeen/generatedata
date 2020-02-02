@@ -3,6 +3,7 @@ import loadable from '@loadable/component';
 import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
 import Settings from '@material-ui/icons/SettingsOutlined';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -34,13 +35,29 @@ const PreviewPanel = ({
 	// so we can fade the spinner out when the content is loaded
 	const ExportTypePreview = loadable(() => import(
 		/* webpackChunkName: "exportType-[index]" */
-		'../../plugins/exportTypes/JSON/JSONPreview.container')
+		'../../plugins/exportTypes/JSON/JSONPreview.component')
 	);
+ 
+	const getNoResults = (): JSX.Element | null => {
+		if (data.rows.length > 0) {
+			return null;
+		}
+
+		return (
+			<div className={styles.noResults}>
+				<ArrowDropUp style={{ fontSize: 300, position: 'absolute' }} />
+				<div style={{ height: '100%', margin: 'auto' }}>
+					<h1>Nothing to show!</h1>
+					<p>Add some data to generate in the Grid panel above</p>
+				</div>
+			</div>
+		);
+	};
 
 	const themeName = getThemeName(theme);
 	return (
 		<div className={`${styles.previewPanel} ${themeName}`}>
-			<div className={styles.topRow}>
+			<div className={styles.controls}>
 				<span>
 					<ClickAwayListener onClickAway={(e): void => {
 						// TODO see if there's a more idiomatic way to do this with Material UI
@@ -80,7 +97,12 @@ const PreviewPanel = ({
 				</span>
 			</div>
 
-			<div className={styles.preview} style={{ fontSize: `${previewTextSize}px` }}>
+			{getNoResults()}
+
+			<div className={styles.preview} style={{
+				fontSize: `${previewTextSize}px`,
+				lineHeight: `${parseInt(previewTextSize, 10) + 5}px`
+			}}>
 				<React.Suspense fallback={<div>loading...</div>}>
 					<ExportTypePreview
 						numPreviewRows={numPreviewRows}
