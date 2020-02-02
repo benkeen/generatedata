@@ -26,6 +26,7 @@ export type ReducerState = {
 	exportTypeSettings: any;
 	numPreviewRows: number;
 	showRowNumbers: boolean;
+	enableLineWrapping: boolean;
 	theme: string;
 	previewTextSize: number;
 };
@@ -44,6 +45,7 @@ export const reducer = (state: ReducerState = {
 	exportTypeSettings: null,
 	numPreviewRows: 5,
 	showRowNumbers: false,
+	enableLineWrapping: true,
 	theme: 'lucario',
 	previewTextSize: 12
 }, action: AnyAction): ReducerState => {
@@ -161,6 +163,12 @@ export const reducer = (state: ReducerState = {
 			return {
 				...state,
 				builderLayout: state.builderLayout === 'horizontal' ? 'vertical' : 'horizontal'
+			};
+
+		case actions.TOGGLE_LINE_WRAPPING: 
+			return {
+				...state,
+				enableLineWrapping: !state.enableLineWrapping
 			};
 
 		case actions.UPDATE_NUM_PREVIEW_ROWS:

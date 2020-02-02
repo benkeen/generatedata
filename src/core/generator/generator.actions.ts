@@ -62,6 +62,9 @@ export const changeTheme = (theme: string): GDAction => ({ type: CHANGE_THEME, p
 export const TOGGLE_SHOW_ROW_NUMBERS = 'TOGGLE_SHOW_ROW_NUMBERS';
 export const toggleShowRowNumbers = (): GDAction => ({ type: TOGGLE_SHOW_ROW_NUMBERS });
 
+export const TOGGLE_LINE_WRAPPING = 'TOGGLE_LINE_WRAPPING';
+export const toggleLineWrapping = (): GDAction => ({ type: TOGGLE_LINE_WRAPPING });
+
 export const SET_PREVIEW_TEXT_SIZE = 'SET_PREVIEW_TEXT_SIZE';
 export const setPreviewTextSize = (previewTextSize: number): GDAction => ({
 	type: SET_PREVIEW_TEXT_SIZE,

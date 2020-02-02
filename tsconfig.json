@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es6",
-    "jsx": "react"
+	"jsx": "react",
+	"allowSyntheticDefaultImports": true
   }
 }

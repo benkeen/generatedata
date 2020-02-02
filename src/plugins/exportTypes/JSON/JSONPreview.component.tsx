@@ -14,11 +14,12 @@ type PreviewProps = {
 	builderLayout: BuilderLayout;
 	exportTypeSettings: JSONSettings;
 	showRowNumbers: boolean;
+	enableLineWrapping: boolean;
 	data: any;
 	theme: string;
 }
 
-const Preview = ({ data, theme, showRowNumbers }: PreviewProps): JSX.Element | null => {
+const Preview = ({ data, theme, showRowNumbers, enableLineWrapping }: PreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
 
 	React.useEffect(() => {
@@ -32,6 +33,8 @@ const Preview = ({ data, theme, showRowNumbers }: PreviewProps): JSX.Element | n
 		return null;
 	}
 
+	console.log(enableLineWrapping);
+
 	return (
 		<CodeMirror
 			value={code}
@@ -42,6 +45,7 @@ const Preview = ({ data, theme, showRowNumbers }: PreviewProps): JSX.Element | n
 				mode: 'application/ld+json',
 				theme,
 				lineNumbers: showRowNumbers,
+				lineWrapping: enableLineWrapping,
 				readOnly: true
 			}}
 		/>

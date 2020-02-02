@@ -18,6 +18,7 @@ export type PreviewPanelProps = {
 	togglePreview: () => void;
 	exportTypeSettings: any; // TODO
 	showRowNumbers: boolean;
+	enableLineWrapping: boolean;
 	data: any;
 	theme: string;
 	previewTextSize: number;
@@ -26,8 +27,8 @@ export type PreviewPanelProps = {
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	theme, builderLayout, togglePreview, numPreviewRows, data,
-	exportTypeSettings, showRowNumbers, previewTextSize
+	theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers, enableLineWrapping, 
+	previewTextSize
 }: PreviewPanelProps): React.ReactNode => {
 	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
 
@@ -62,7 +63,7 @@ const PreviewPanel = ({
 					<ClickAwayListener onClickAway={(e): void => {
 						// TODO see if there's a more idiomatic way to do this with Material UI
 						// @ts-ignore
-						if (!e.target.closest('.previewPanelSettings')) {
+						if (!e.target.closest(`.${styles.previewPanelSettings}`)) {
 							setPreviewSettingsVisibility(false);
 						}
 					}}>
@@ -88,7 +89,7 @@ const PreviewPanel = ({
 						</IconButton>
 					</Tooltip>
 				</span>
-				<span className={styles.closePanel} onClick={togglePreview}>
+				<span onClick={togglePreview}>
 					<Tooltip title="Close panel" placement="bottom">
 						<IconButton size="small" aria-label="Close panel">
 							<CloseIcon fontSize="large" />
@@ -101,7 +102,7 @@ const PreviewPanel = ({
 
 			<div className={styles.preview} style={{
 				fontSize: `${previewTextSize}px`,
-				lineHeight: `${parseInt(previewTextSize, 10) + 5}px`
+				lineHeight: `${previewTextSize + 7}px`
 			}}>
 				<React.Suspense fallback={<div>loading...</div>}>
 					<ExportTypePreview
@@ -109,6 +110,7 @@ const PreviewPanel = ({
 						builderLayout={builderLayout}
 						exportTypeSettings={exportTypeSettings}
 						showRowNumbers={showRowNumbers}
+						enableLineWrapping={enableLineWrapping}
 						data={data}
 						theme={theme}
 					/>

@@ -11,6 +11,7 @@ export const isPreviewVisible = (state: any): boolean => state.generator.showPre
 export const getBuilderLayout = (state: any): BuilderLayout => state.generator.builderLayout;
 export const getNumPreviewRows = (state: any): number => state.generator.numPreviewRows;
 export const shouldShowRowNumbers = (state: any): boolean => state.generator.showRowNumbers;
+export const shouldEnableLineWrapping = (state: any): boolean => state.generator.enableLineWrapping;
 export const getTheme = (state: any): string => state.generator.theme;
 export const getPreviewTextSize = (state: any): number => state.generator.previewTextSize;
 

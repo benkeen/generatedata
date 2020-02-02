@@ -20,7 +20,12 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => 
 	return (
 		<>
 			{i18n.TextFixed_generate}
-			#<input type="text" style={{ width: 30 }} value={data.numWords} onChange={onChange} />
+			<input
+				type="number"
+				style={{ width: 50, margin: '0 2px' }}
+				value={data.numWords}
+				onChange={onChange}
+			/>
 			{i18n.TextFixed_words}
 		</>
 	);

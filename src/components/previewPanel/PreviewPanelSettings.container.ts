@@ -14,6 +14,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelSettingsProps> => ({
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelSettingsProps> => ({
 	onChangeTheme: (theme: string): any => dispatch(generatorActions.changeTheme(theme)),
 	toggleRowNumbers: (): any => dispatch(generatorActions.toggleShowRowNumbers()),
+	toggleLineWrapping: (): any => dispatch(generatorActions.toggleLineWrapping()),
 	onChangePreviewTextSize: (size: number): any => dispatch(generatorActions.setPreviewTextSize(size)),
 	updateNumPreviewRows: (numRows: number): any => dispatch(generatorActions.updateNumPreviewRows(numRows))
 });

@@ -1,41 +1,45 @@
 .previewPanel {
-  height: 100%;
+    height: 100%;
 }
 
 .controls {
-	position: absolute;
-	right: 0;
-	padding: 10px;
-	z-index: 5000;
+    position: fixed;
+    right: 0;
+    padding: 10px;
+    z-index: 5000;
+
+    button {
+        cursor: pointer;
+
+        &:hover svg {
+            fill: #999999;
+        }
+    }
 }
 
 .previewPanelContent {
-	height: 100%;
-	display: flex;
-	flex-direction: column;  
-}
-
-.closePanel {
-  cursor: pointer;
-  &:hover svg {
-    fill: #999999;
-  }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .preview {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  &>div, &>div>div {
-    display: flex;
-    flex-direction: column;
+	height: 100%;
     flex: 1;
-  }
+	display: flex;
+    flex-direction: column;
+
+    & > div, & > div > div {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
 }
 
 .noResults {
-	// flex: 1;
-	// display: flex;
-	color: white;
+    color: white;
+}
+
+.previewPanelSettings {
+    font-size: 12px;
 }
