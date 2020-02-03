@@ -1,4 +1,9 @@
-import { GDAction } from "../../../types/general";
+import { GDAction } from '../../../types/general';
+import { getGenerationOptionsByDataType } from '../../utils/dataTypeGenerationUtils';
+import * as selectors from './generator.selectors';
+import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
+import { generateExportData } from './generator';
+
 
 export const ADD_ROWS = 'ADD_ROWS';
 
@@ -21,12 +26,60 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 });
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
-export const onSelectDataType = (id: string, value: string): GDAction => ({
-	type: SELECT_DATA_TYPE,
-	payload: {
-		id, value
-	}
-});
+export const onSelectDataType = (id: string, dataType: string): any => {
+	return (dispatch: any, getState: any): any => {
+		const state = getState();
+		const dataTypeDefaultState = getDataTypeDefaultState(dataType);
+
+		// complex bit! We have interdependencies between the data types. A region field will change the value of a 
+		// city field, for example. So we DO need to regenerate everything here and not just the row that just 
+		// changes. We also need to map dependencies explicitly in the Data Type export settings, so we can later on 
+		// ALSO update any other affected fields by this change
+		const template = selectors.getGenerationTemplate(state);
+		console.log('template: ', template, dataTypeDefaultState);
+
+		const { generate, getMetadata, rowStateReducer } = getGenerationOptionsByDataType(dataType);
+
+		// *** update the row in template here for dataTypeDefaultState *** 
+		Object.keys(template).forEach((processOrder: any) => {
+			template[processOrder].forEach((row: any, index: number) => {
+				if (row.id !== id) {
+					return;
+				}
+				template[processOrder][index] = {
+					...row,
+					dataType,
+					rowState: rowStateReducer ? rowStateReducer(dataTypeDefaultState) : dataTypeDefaultState,
+					generateFunc: generate,
+					colMetadata: getMetadata ? getMetadata() : null
+				};
+			});
+		});
+
+		// now regenerate the whole data set again (this could be smarter once we figure out dependencies)
+		const data = generateExportData({
+			numResults: selectors.getNumPreviewRows(state),
+			columnTitles: selectors.getColumnTitles(state),
+			template
+		});
+		const sortedRows = selectors.getSortedRows(state);
+		const dataIndex = sortedRows.indexOf(id);
+
+		// pull out the generated values for this index
+		const generatedPreviewData: any[] = data.rows.map((i) => i[dataIndex]);
+
+		// now update the store in one go
+		dispatch({
+			type: SELECT_DATA_TYPE,
+			payload: {
+				id,
+				value: dataType,
+				data: dataTypeDefaultState,
+				generatedPreviewData
+			}
+		});
+	};
+};
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
 export const onConfigureDataType = (id: string, data: any): GDAction => ({

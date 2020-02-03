@@ -2,7 +2,6 @@ import { AnyAction } from 'redux';
 import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
 import { generate } from 'shortid';
-import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 
 export type DataRow = {
@@ -14,7 +13,11 @@ export type DataRow = {
 
 export type DataRows = {
 	[id: string]: DataRow;
-}
+};
+
+export type PreviewData = {
+	[id: string]: any[]
+};
 
 export type ReducerState = {
 	rows: DataRows;
@@ -29,6 +32,7 @@ export type ReducerState = {
 	enableLineWrapping: boolean;
 	theme: string;
 	previewTextSize: number;
+	generatedPreviewData: PreviewData;
 };
 
 /**
@@ -47,7 +51,8 @@ export const reducer = (state: ReducerState = {
 	showRowNumbers: false,
 	enableLineWrapping: true,
 	theme: 'lucario',
-	previewTextSize: 12
+	previewTextSize: 12,
+	generatedPreviewData: {}
 }, action: AnyAction): ReducerState => {
 	switch (action.type) {
 
@@ -103,18 +108,20 @@ export const reducer = (state: ReducerState = {
 				}
 			};
 
-		case actions.SELECT_DATA_TYPE:
+		case actions.SELECT_DATA_TYPE: {
+			const { id, value, data } = action.payload;
 			return {
 				...state,
 				rows: {
 					...state.rows,
-					[action.payload.id]: {
-						...state.rows[action.payload.id],
-						dataType: action.payload.value,
-						data: getDataTypeDefaultState(action.payload.value)
+					[id]: {
+						...state.rows[id],
+						dataType: value,
+						data
 					}
 				}
 			};
+		}
 
 		case actions.CONFIGURE_DATA_TYPE:
 			return {

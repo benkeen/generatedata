@@ -17,7 +17,44 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		template: generatorSelectors.getGenerationTemplate(state)
 	});
 
-	console.log(data);
+	/*
+	{
+		"isFirstBatch": true,
+		"isLastBatch": true,
+		"columnTitles": [
+		  "Namesss",
+		  "another name",
+		  "Phone Nmber "
+		],
+		"rows": [
+		  [
+			"Iola Ewing",
+			"Karly Rocha",
+			"1-134-444-8215",
+		  ],
+		  [
+			"Connor Marks",
+			"Josiah Elliott",
+			"1-687-601-3536",
+		  ],
+		  [
+			"Laith Diaz",
+			"Whilemina Jordan",
+			"1-167-522-4637",
+		  ],
+		  [
+			"Kellie Kirkland",
+			"Laura Haynes",
+			"1-648-747-5294",
+		  ],
+		  [
+			"Herman Campbell",
+			"Denise Stanley",
+			"1-633-953-8360",
+		  ]
+		]
+	  }
+	  */
 
 	return {
 		numPreviewRows,
