@@ -36,8 +36,6 @@ export const onSelectDataType = (id: string, dataType: string): any => {
 		// changes. We also need to map dependencies explicitly in the Data Type export settings, so we can later on 
 		// ALSO update any other affected fields by this change
 		const template = selectors.getGenerationTemplate(state);
-		console.log('template: ', template, dataTypeDefaultState);
-
 		const { generate, getMetadata, rowStateReducer } = getGenerationOptionsByDataType(dataType);
 
 		// *** update the row in template here for dataTypeDefaultState *** 

@@ -52,11 +52,6 @@ export const generate = (data: ExportTypeGenerateType): string => {
 	return content;
 };
 
-// generates the data for a 
-export const generateSingleRow = () => {
-
-};
-
 
 // drop this for the preview panel. Use the one above instead
 export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {

@@ -109,7 +109,7 @@ export const reducer = (state: ReducerState = {
 			};
 
 		case actions.SELECT_DATA_TYPE: {
-			const { id, value, data } = action.payload;
+			const { id, value, data, generatedPreviewData } = action.payload;
 			return {
 				...state,
 				rows: {
@@ -119,6 +119,10 @@ export const reducer = (state: ReducerState = {
 						dataType: value,
 						data
 					}
+				},
+				generatedPreviewData: {
+					...state.generatedPreviewData,
+					[id]: generatedPreviewData
 				}
 			};
 		}

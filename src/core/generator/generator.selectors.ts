@@ -3,6 +3,7 @@ import { getGenerationOptionsByDataType } from '../../utils/dataTypeGenerationUt
 import { getDataTypeProcessOrders } from '../../utils/dataTypeUtils';
 import { GenerationTemplate } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
+import { DataRow } from './generator.reducer';
 
 export const getRows = (state: any): any => state.generator.rows;
 export const getSortedRows = (state: any): any[] => state.generator.sortedRows;
@@ -14,6 +15,7 @@ export const shouldShowRowNumbers = (state: any): boolean => state.generator.sho
 export const shouldEnableLineWrapping = (state: any): boolean => state.generator.enableLineWrapping;
 export const getTheme = (state: any): string => state.generator.theme;
 export const getPreviewTextSize = (state: any): number => state.generator.previewTextSize;
+export const getGeneratedPreviewData = (state: any): any => state.generator.generatedPreviewData;
 
 export const getNumRows = createSelector(
 	getSortedRows,
@@ -28,12 +30,27 @@ export const getSortedRowsArray = createSelector(
 
 export const getNonEmptySortedRows = createSelector(
 	getSortedRowsArray,
-	(rows) => rows.filter((row: any) => row.dataType !== null)
+	(rows) => rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
 );
 
 export const getColumnTitles = createSelector(
 	getSortedRowsArray,
 	(rows) => rows.filter((row: any) => row.dataType !== null && row.title !== '').map((row: any) => row.title)
+);
+
+// TODO check for discrepancies between data sets here
+export const getPreviewData = createSelector(
+	getNonEmptySortedRows,
+	getGeneratedPreviewData,
+	(rows, data) => {
+		const numRows = rows.length;
+		const temporary: any[] = [];
+		for (var i=0; i<numRows; i++) {
+			const rowData = rows.map(({ id }: DataRow) => data[id][i]);
+			temporary.push(rowData);
+		}
+		return temporary;
+	}
 );
 
 export const getGenerationTemplate = createSelector(
