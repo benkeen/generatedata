@@ -101,6 +101,34 @@ export const toggleGrid = (): GDAction => ({ type: TOGGLE_GRID });
 export const TOGGLE_PREVIEW = 'TOGGLE_PREVIEW';
 export const togglePreview = (): GDAction => ({ type: TOGGLE_PREVIEW });
 
+export const REFRESH_PREVIEW = 'REFRESH_PREVIEW';
+export const refreshPreview = (): any => {
+
+	return (dispatch: any, getState: any): any => {
+		const state = getState();
+		const template = selectors.getGenerationTemplate(state);
+
+		const data = generateExportData({
+			numResults: selectors.getNumPreviewRows(state),
+			columnTitles: selectors.getColumnTitles(state),
+			template
+		});
+
+		console.log('!!!', data);
+
+		// now update the store in one go
+		// dispatch({
+		// 	type: SELECT_DATA_TYPE,
+		// 	payload: {
+		// 		id,
+		// 		value: dataType,
+		// 		data: dataTypeDefaultState,
+		// 		generatedPreviewData
+		// 	}
+		// });
+	};
+};
+
 export const TOGGLE_LAYOUT = 'TOGGLE_LAYOUT';
 export const toggleLayout = (): GDAction => ({ type: TOGGLE_LAYOUT });
 

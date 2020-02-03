@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import PreviewPanel, { PreviewPanelProps } from './PreviewPanel.component';
+import * as initSelectors from '../../core/init/init.selectors';
 import * as selectors from '../../core/generator/generator.selectors';
 import * as actions from '../../core/generator/generator.actions';
-import { generateExportData } from '../../core/generator/generator';
 
 const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 	const data = { 
@@ -14,6 +14,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 	};
 
 	return {
+		i18n: initSelectors.getCoreI18n(state),
 		numPreviewRows: selectors.getNumPreviewRows(state),
 		builderLayout: selectors.getBuilderLayout(state),
 		previewTextSize: selectors.getPreviewTextSize(state),
@@ -26,7 +27,8 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => ({
-	togglePreview: (): any => dispatch(actions.togglePreview())
+	togglePreview: (): any => dispatch(actions.togglePreview()),
+	refreshPreview: (): any => dispatch(actions.refreshPreview())
 });
 
 export default connect(

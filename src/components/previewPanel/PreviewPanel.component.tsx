@@ -13,6 +13,7 @@ import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
 
 export type PreviewPanelProps = {
+	i18n: any;
 	numPreviewRows: number;
 	builderLayout: BuilderLayout;
 	togglePreview: () => void;
@@ -27,8 +28,8 @@ export type PreviewPanelProps = {
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers, enableLineWrapping, 
-	previewTextSize
+	i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers, enableLineWrapping, 
+	previewTextSize, refreshPreview
 }: PreviewPanelProps): React.ReactNode => {
 	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
 
@@ -49,7 +50,7 @@ const PreviewPanel = ({
 				<ArrowDropUp style={{ fontSize: 300, position: 'absolute' }} />
 				<div style={{ height: '100%', margin: 'auto' }}>
 					<h1>Nothing to show!</h1>
-					<p>Add some data to generate in the Grid panel above</p>
+					<p>Add some rows in the Grid panel above</p>
 				</div>
 			</div>
 		);
@@ -82,7 +83,7 @@ const PreviewPanel = ({
 						</HtmlTooltip>
 					</ClickAwayListener>
 				</span>
-				<span onClick={(): any => { }}>
+				<span onClick={refreshPreview}>
 					<Tooltip title="Refresh panel" placement="bottom">
 						<IconButton size="small" aria-label="Refresh">
 							<Refresh fontSize="large" />
