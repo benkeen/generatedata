@@ -2,6 +2,9 @@ import * as React from 'react';
 // @ts-ignore-line
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DragIndicator from '@material-ui/icons/DragIndicator';
@@ -23,6 +26,7 @@ export type GridProps = {
 	onSelectDataType: (id: string, value: string) => void;
 	onConfigureDataType: (id: string, value: string) => void;
 	onSort: (id: string, newIndex: number) => void;
+	toggleGrid: () => void;
 	i18n: any;
 	dataTypeI18n: any;
 }
@@ -41,7 +45,8 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProper
 
 
 const Grid = ({
-	rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, dataTypeI18n
+	rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, dataTypeI18n,
+	toggleGrid
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialogSection] = React.useState(false);
@@ -142,62 +147,72 @@ const Grid = ({
 	}
 
 	return (
-		<Measure
-			bounds
-			onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
-		>
-			{({ measureRef }): any => (
-				<div className={`${styles.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
-					<div>
-						<div className={styles.gridHeaderWrapper}>
-							<div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
-								<div className={styles.orderCol}>{rows.length}</div>
-								<div className={styles.titleCol}>{i18n.row_label}</div>
-								<div className={styles.dataTypeCol}>{i18n.data_type}</div>
-								<div className={styles.examplesCol}>{i18n.examples}</div>
-								<div className={styles.optionsCol}>{i18n.options}</div>
-								<div className={styles.helpCol} />
-								<div className={styles.deleteCol} />
+		<>
+			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={toggleGrid}>
+				<Tooltip title="Close panel" placement="bottom">
+					<IconButton size="small" aria-label="Close panel">
+						<CloseIcon fontSize="large" />
+					</IconButton>
+				</Tooltip>
+			</div>
+
+			<Measure
+				bounds
+				onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
+			>
+				{({ measureRef }): any => (
+					<div className={`${styles.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
+						<div>
+							<div className={styles.gridHeaderWrapper}>
+								<div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
+									<div className={styles.orderCol}>{rows.length}</div>
+									<div className={styles.titleCol}>{i18n.row_label}</div>
+									<div className={styles.dataTypeCol}>{i18n.data_type}</div>
+									<div className={styles.examplesCol}>{i18n.examples}</div>
+									<div className={styles.optionsCol}>{i18n.options}</div>
+									<div className={styles.helpCol} />
+									<div className={styles.deleteCol} />
+								</div>
 							</div>
 						</div>
-					</div>
-					<div className={styles.scrollableGridRows}>
-						<div className={styles.gridRowsWrapper}>
-							<DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
-								<Droppable droppableId="droppable">
-									{(provided: any): any => (
-										<div
-											className={styles.grid}
-											{...provided.droppableProps}
-											ref={provided.innerRef}
-										>
-											{getRows(rows)}
-											{provided.placeholder}
-										</div>
-									)}
-								</Droppable>
-							</DragDropContext>
-							<div className={styles.addRows}>
-								<form onSubmit={(e): any => e.preventDefault()}>
-									<span>{i18n.add}</span>
-									<input type="number" value={numRows} onChange={(e): void => setNumRows(parseInt(e.target.value, 10))}
-										min={1} max={1000} step={1} />
-									<Button size="small"
-										onClick={(): void => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
-								</form>
+						<div className={styles.scrollableGridRows}>
+							<div className={styles.gridRowsWrapper}>
+								<DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
+									<Droppable droppableId="droppable">
+										{(provided: any): any => (
+											<div
+												className={styles.grid}
+												{...provided.droppableProps}
+												ref={provided.innerRef}
+											>
+												{getRows(rows)}
+												{provided.placeholder}
+											</div>
+										)}
+									</Droppable>
+								</DragDropContext>
+								<div className={styles.addRows}>
+									<form onSubmit={(e): any => e.preventDefault()}>
+										<span>{i18n.add}</span>
+										<input type="number" value={numRows} onChange={(e): void => setNumRows(parseInt(e.target.value, 10))}
+											min={1} max={1000} step={1} />
+										<Button size="small"
+											onClick={(): void => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
+									</form>
+								</div>
 							</div>
 						</div>
+						<HelpDialog
+							visible={helpDialogVisible}
+							initialDataType={initialHelpSection}
+							onClose={(): any => showHelpDialogSection(false)}
+							coreI18n={i18n}
+							i18n={dataTypeI18n[initialHelpSection]}
+						/>
 					</div>
-					<HelpDialog
-						visible={helpDialogVisible}
-						initialDataType={initialHelpSection}
-						onClose={(): any => showHelpDialogSection(false)}
-						coreI18n={i18n}
-						i18n={dataTypeI18n[initialHelpSection]}
-					/>
-				</div>
-			)}
-		</Measure>
+				)}
+			</Measure>
+		</>
 	);
 };
 

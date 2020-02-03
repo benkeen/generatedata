@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	onSort: (id: string, newIndex: number): any => dispatch(actions.repositionRow(id, newIndex)),
 	onChangeTitle: (id: string, value: string): any => dispatch(actions.onChangeTitle(id, value)),
 	onSelectDataType: (id: string, value: string): any => dispatch(actions.onSelectDataType(id, value)),
-	onConfigureDataType: (id: string, data: any): any => dispatch(actions.onConfigureDataType(id, data))
+	onConfigureDataType: (id: string, data: any): any => dispatch(actions.onConfigureDataType(id, data)),
+	toggleGrid: () => dispatch(actions.toggleGrid())
 });
 
 const container: any = connect(
