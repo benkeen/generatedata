@@ -7,6 +7,18 @@ import { generateExportData } from '../../core/generator/generator';
 
 const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 	const numPreviewRows = generatorSelectors.getNumPreviewRows(state);
+
+	// this has to be smarter. It should only regenerate data for SPECIFIC rows that change, and not the column title
+	// column. How about simply regenerate it on demand?
+
+	const data = generateExportData({
+		numResults: numPreviewRows,
+		columnTitles: generatorSelectors.getColumnTitles(state),
+		template: generatorSelectors.getGenerationTemplate(state)
+	});
+
+	console.log(data);
+
 	return {
 		numPreviewRows,
 		builderLayout: generatorSelectors.getBuilderLayout(state),
@@ -15,11 +27,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		showRowNumbers: generatorSelectors.shouldShowRowNumbers(state),
 		enableLineWrapping: generatorSelectors.shouldEnableLineWrapping(state),
 		theme: generatorSelectors.getTheme(state),
-		data: generateExportData({
-			numResults: numPreviewRows,
-			columnTitles: generatorSelectors.getColumnTitles(state),
-			template: generatorSelectors.getGenerationTemplate(state)
-		})
+		data
 	};
 };
 

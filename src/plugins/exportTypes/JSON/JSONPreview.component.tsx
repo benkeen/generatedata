@@ -33,8 +33,6 @@ const Preview = ({ data, theme, showRowNumbers, enableLineWrapping }: PreviewPro
 		return null;
 	}
 
-	console.log(enableLineWrapping);
-
 	return (
 		<CodeMirror
 			value={code}

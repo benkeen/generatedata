@@ -36,13 +36,14 @@ export const getColumnTitles = createSelector(
 	(rows) => rows.filter((row: any) => row.dataType !== null && row.title !== '').map((row: any) => row.title)
 );
 
-
 // TODO need to sort this out now!! We need this immediately as the user selects
 // this will be in a separate bundle loaded async along with the export, dataType + country generation code
 export const getGenerationTemplate = createSelector(
 	getNonEmptySortedRows,
 	(rows): GenerationTemplate => {
 		const processOrders = getDataTypeProcessOrders();
+
+		console.log(rows);
 
 		const templateByProcessOrder: any = {};
 		rows.map(({ title, dataType, data }: any, colIndex: number) => {
