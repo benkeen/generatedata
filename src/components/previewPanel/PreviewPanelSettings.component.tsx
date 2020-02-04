@@ -3,7 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import Dropdown from '../dropdown/Dropdown';
 import { getArrayOfSize } from '../../utils/arrayUtils';
 import C from '../../core/constants';
-import styles from './PreviewPanel.scss';
+import * as styles from './PreviewPanel.scss';
 
 export type PreviewPanelSettingsProps = {
 	theme: string;

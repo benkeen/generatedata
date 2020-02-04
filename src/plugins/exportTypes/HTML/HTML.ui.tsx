@@ -1,3 +1,6 @@
+import * as React from 'react';
+
+
 export const Settings = ({ i18n }) => (
 	<>
 		<table cellSpacing="0" cellPadding="0" width="100%">

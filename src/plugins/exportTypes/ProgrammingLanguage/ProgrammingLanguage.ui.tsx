@@ -1,28 +1,45 @@
-/*global $:false*/
-define([
-	"manager",
-	"constants",
-	"lang",
-	"generator"
-], function(manager, C, L, generator) {
+import * as React from 'react';
+import Dropdown from '../../../components/dropdown/Dropdown';
 
-	"use strict";
+export type ProgrammingLanguageState = {
+	language: 'JavaScript' | 'Perl' | 'PHP' | 'Ruby' | 'CSharp'
+};
 
-	/**
-	 * @name ProgrammingLanguage
-	 * @see ExportType
-	 * @description Client-side code for the Programming Language Export Type.
-	 * @namespace
-	 */
+export const state: ProgrammingLanguageState = {
+	language: 'Perl'
+};
 
-	var MODULE_ID = "export-type-ProgrammingLanguage";
-	var LANG = L.exportTypePlugins.ProgrammingLanguage;
+const options = [
+	{ value: 'JavaScript', label: 'JavaScript' },
+	{ value: 'Perl', label: 'Perl' },
+	{ value: 'PHP', label: 'PHP' },
+	{ value: 'Ruby', label: 'Ruby' },
+	{ value: 'CSharp', label: 'C# (anonymous object)' }
+];
 
+export const Settings = ({ i18n, data, onUpdate }: any): JSX.Element => {
+	const onChange = (language: string): void => {
+		onUpdate({
+			...data,
+			language
+		});
+	};
 
-	/**
+	return (
+		<>
+			{i18n.language}
+			<Dropdown
+				value={data.language}
+				onChange={(item: any): any => onChange(item.value)}
+				options={options}
+			/>
+		</>
+	);
+}
+
+/*
 	 * If the user is generating in-page data with this Export Type, enable the javascript
 	 * mode for the in-page editor.
-	 */
 	var _onGenerate = function(msg) {
 		if (msg.exportTarget != "inPage" || msg.exportType != "ProgrammingLanguage") {
 			return;
@@ -65,20 +82,10 @@ define([
 		$("#etProgrammingLanguage_language").val("JavaScript");
 	};
 
-	/**
-	 * Called when the user changes the result type
-	 */
 	var _resultTypeChanged = function(msg) {
 		if (msg.newExportType == "ProgrammingLanguage") {
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
 		}
 	};
+*/
 
-	manager.registerExportType(MODULE_ID, {
-		init: _init,
-		loadSettings: _loadSettings,
-		saveSettings: _saveSettings,
-		resetSettings: _resetSettings
-	});
-
-});

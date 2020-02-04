@@ -1,7 +1,7 @@
-/**
- * @author Ben Keen <ben.keen@gmail.com>
- * @package ExportTypes
- */
+export const generate = (): any => {
+
+};
+
 /*
 class ProgrammingLanguage extends ExportTypePlugin
 {
@@ -74,21 +74,6 @@ class ProgrammingLanguage extends ExportTypePlugin
 	{
 		$time = date("M-j-Y");
 		return "data{$time}.";
-	}
-
-	public function getAdditionalSettingsHTML()
-	{
-		$html = <<< END
-	{$this->L["language"]}:
-	<select name="etProgrammingLanguage_language" id="etProgrammingLanguage_language">
-		<option value="JavaScript">JavaScript</option>
-		<option value="Perl">Perl</option>
-		<option value="PHP">PHP</option>
-		<option value="Ruby">Ruby</option>
-		<option value="CSharp">C# (anonymous object)</option>
-	</select>
-END;
-		return $html;
 	}
 
 	private function getLanguage()

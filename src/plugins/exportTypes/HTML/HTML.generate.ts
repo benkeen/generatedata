@@ -1,9 +1,8 @@
-<?php
+export const generate = (): any => {
 
-/**
- * @author Ben Keen <ben.keen@gmail.com>
- * @package ExportTypes
- */
+};
+
+/*
 class HTML extends ExportTypePlugin {
 	protected $isEnabled = true;
 	protected $exportTypeName = "HTML";
@@ -21,9 +20,7 @@ class HTML extends ExportTypePlugin {
 		}
 	}
 
-	/**
 	 * @see ExportTypePlugin::generate()
-	 */
 	public function generate($generator) {
 		$this->genEnvironment = $generator->genEnvironment; // API / POST
 		$this->userSettings = $generator->getUserSettings();
@@ -68,24 +65,19 @@ class HTML extends ExportTypePlugin {
 		);
 	}
 
-
-	/**
 	 * Used for constructing the filename of the filename when downloading.
 	 * @see ExportTypePlugin::getDownloadFilename()
 	 * @param Generator $generator
 	 * @return string
-	 */
 	public function getDownloadFilename($generator) {
 		$time = date("U");
 		return "randomdata-{$time}.html";
 	}
 
-	/**
 	 * Generates the data in <table> format. Technically we should probably pass this and the other markup generation
 	 * logic to Smarty, but this is faster.
 	 * @param array $data
 	 * @return string
-	 */
 	private function genFormatTable($data) {
 		$content = "";
 		if ($data["isFirstBatch"]) {
@@ -109,11 +101,9 @@ class HTML extends ExportTypePlugin {
 		return $content;
 	}
 
-	/**
 	 * Generates the data in <ul> format.
 	 * @param array $data
 	 * @return string
-	 */
 	private function genFormatUl($data) {
 		$content = "";
 		if ($data["isFirstBatch"]) {
@@ -133,11 +123,9 @@ class HTML extends ExportTypePlugin {
 		return $content;
 	}
 
-	/**
 	 * Generates the data in <dl> format.
 	 * @param array $data
 	 * @return string
-	 */
 	private function genFormatDl($data) {
 		$numCols = count($data["colData"]);
 		$content = "";
@@ -152,12 +140,10 @@ class HTML extends ExportTypePlugin {
 		return $content;
 	}
 
-	/**
 	 * Generates the data in whatever Smarty content the user entered.
 	 * @param array $data
 	 * @param string $template
 	 * @return string
-	 */
 	private function genFormatCustom($data, $template) {
 		return Templates::evalSmartyString($template, $data);
 	}
@@ -203,3 +189,4 @@ END;
 		}
 	}
 }
+*/
