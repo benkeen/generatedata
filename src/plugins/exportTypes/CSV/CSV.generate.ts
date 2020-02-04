@@ -1,3 +1,8 @@
+export const generate = (): any => {
+
+};
+
+
 /*
 protected $exportTypeName = "CSV";
 protected $contentTypeHeader = "application/csv";
@@ -38,12 +43,10 @@ public function generate($generator) {
 	);
 }
 
-/**
  * Used for constructing the filename of the filename when downloading.
  * @see ExportTypePlugin::getDownloadFilename()
  * @param Generator $generator
  * @return string
- */
 public function getDownloadFilename($generator) {
 	$time = date("M-j-Y");
 	return "data{$time}.csv";
@@ -84,3 +87,4 @@ private function getLineEndingChar() {
 	}
 	return $newline;
 }
+*/

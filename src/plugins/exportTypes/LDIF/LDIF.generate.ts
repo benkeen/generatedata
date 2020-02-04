@@ -1,7 +1,8 @@
-/**
- * @author Marco Corona <coronam@allegheny.edu>
- * @package ExportTypes
- */
+// Original author: Marco Corona <coronam@allegheny.edu>
+
+export const generate = (): any => {
+
+};
 
 /*
 protected $contentTypeHeader = "text/plain";
