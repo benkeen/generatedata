@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from 'redux';
+import { Thunk } from 'redux-testkit';
 import * as sinon from 'sinon';
 import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
@@ -149,39 +150,41 @@ describe('grid rows', () => {
 		expect(updatedRows[2].title).toEqual('');
 	});
 	
-	it('changes the data type', () => {
-		store.dispatch(actions.addRows(3));
+	// it('changes the data type', () => {
+	// 	store.dispatch(actions.addRows(3));
 
-		const rows = selectors.getSortedRowsArray(store.getState());
-		expect(rows[0].dataType).toEqual(null);
-		expect(rows[1].dataType).toEqual(null);
-		expect(rows[2].dataType).toEqual(null);
+	// 	const rows = selectors.getSortedRowsArray(store.getState());
+	// 	expect(rows[0].dataType).toEqual(null);
+	// 	expect(rows[1].dataType).toEqual(null);
+	// 	expect(rows[2].dataType).toEqual(null);
 
-		store.dispatch(actions.onSelectDataType(rows[1].id, 'JSON'));
-		const updatedRows = selectors.getSortedRowsArray(store.getState());
-		expect(updatedRows[0].dataType).toEqual(null);
-		expect(updatedRows[1].dataType).toEqual('JSON');
-		expect(updatedRows[2].dataType).toEqual(null);
-	});
+		// const dispatches = Thunk(actions.onSelectDataType(rows[1].id, 'JSON')).execute();
+		// console.log(dispatches);
+
+		// const updatedRows = selectors.getSortedRowsArray(store.getState());
+		// expect(updatedRows[0].dataType).toEqual(null);
+		// expect(updatedRows[1].dataType).toEqual('JSON');
+		// expect(updatedRows[2].dataType).toEqual(null);
+	// });
 	
-	it('initializes the default data type state when selecting data type', () => {
-		const defaultState = { 
-			arbitrary: 1,
-			content: true
-		};
+	// it('initializes the default data type state when selecting data type', () => {
+	// 	const defaultState = { 
+	// 		arbitrary: 1,
+	// 		content: true
+	// 	};
 
-		sinon.stub(dateTypeUtils, 'getDataTypeDefaultState')
-			.onCall(0).returns(defaultState);
+	// 	sinon.stub(dateTypeUtils, 'getDataTypeDefaultState')
+	// 		.onCall(0).returns(defaultState);
 
-		store.dispatch(actions.addRows(1));
-		const rows = selectors.getSortedRowsArray(store.getState());
-		store.dispatch(actions.onSelectDataType(rows[0].id, 'JSON'));
+	// 	store.dispatch(actions.addRows(1));
+	// 	const rows = selectors.getSortedRowsArray(store.getState());
+	// 	store.dispatch(actions.onSelectDataType(rows[0].id, 'JSON'));
 
-		const updatedRows = selectors.getSortedRowsArray(store.getState());
-		expect(updatedRows[0].data).toEqual(defaultState);
+	// 	const updatedRows = selectors.getSortedRowsArray(store.getState());
+	// 	expect(updatedRows[0].data).toEqual(defaultState);
 
-		sinon.restore();
-	});
+	// 	sinon.restore();
+	// });
 });
 
 
