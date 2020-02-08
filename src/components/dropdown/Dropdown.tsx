@@ -9,7 +9,8 @@ export type ChangeEvent = {
 const selectStyles = {
 	control: (provided: ControlProps<OptionTypeBase>): any => ({
 		...provided,
-		minHeight: 20
+		minHeight: 20,
+		boxShadow: 'none'
 	}),
 	indicatorsContainer: (provided: IndicatorProps<OptionTypeBase>): any => ({
 		...provided,
@@ -21,6 +22,15 @@ const selectStyles = {
 	}),
 	menuPortal: (base: any): any => ({ ...base, zIndex: 10 })
 };
+
+// const style = {
+// control: base => ({
+// ...base,
+// // border: 0
+// // This line disable the blue border
+// boxShadow: "none"
+// })
+// };
 
 const Dropdown = ({ value, isGrouped, options, ...props }: any): JSX.Element => {
 	// react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.

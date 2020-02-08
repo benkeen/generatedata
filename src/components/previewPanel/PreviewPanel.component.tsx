@@ -17,6 +17,7 @@ export type PreviewPanelProps = {
 	numPreviewRows: number;
 	builderLayout: BuilderLayout;
 	togglePreview: () => void;
+	refreshPreview: () => void;
 	exportTypeSettings: any; // TODO
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
@@ -44,13 +45,12 @@ const PreviewPanel = ({
 		if (data.rows.length > 0) {
 			return null;
 		}
-
 		return (
 			<div className={styles.noResults}>
 				<ArrowDropUp style={{ fontSize: 300, position: 'absolute' }} />
 				<div style={{ height: '100%', margin: 'auto' }}>
-					<h1>Nothing to show!</h1>
-					<p>Add some rows in the Grid panel above</p>
+					<h1>{i18n.no_data}</h1>
+					<p>{i18n.add_some_data_desc}</p>
 				</div>
 			</div>
 		);

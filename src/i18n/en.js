@@ -283,7 +283,8 @@ export default {
 	"your_data_set_name_here": "Your data set name here...",
 	"your_data_sets": "Your Data Sets",
 	"zip_q": "Zip?",
-
 	"grid": "Grid",
-	"preview": "Preview"
+	"preview": "Preview",
+	no_data: "No data!",
+	add_some_data_desc: 'Add some rows in the Grid panel above'
 };

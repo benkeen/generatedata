@@ -1,47 +1,24 @@
 import * as React from 'react';
 
+/*
+<div id="etHTMLCustomFormatDialog" style="display:none">
+	<div style="width: 300px; float: left;">
+		<h4>{i18n.available_smarty_vars}</h4>
 
-export const Settings = ({ i18n }) => (
-	<>
-		<table cellSpacing="0" cellPadding="0" width="100%">
-		<tr>
-			<td width="15%" valign="top" className="etHTMLDefaultFormatLabels">{i18n.data_format}</td>
-			<td width="35%" valign="top" className="etHTMLDefaultFormatLabels">
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat1" className="etHTMLDefaultFormats" value="table" checked="checked" />
-					<label for="etHTMLExportFormat1">&lt;table&gt;</label>
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat2" className="etHTMLDefaultFormats" value="ul" />
-					<label for="etHTMLExportFormat2">&lt;ul&gt;</label>
-				<input type="radio" name="etHTMLExportFormat" id="etHTMLExportFormat3" className="etHTMLDefaultFormats" value="dl" />
-					<label for="etHTMLExportFormat3">&lt;dl&gt;</label>
-			</td>
-			<td width="50%" valign="top">
-				<input type="checkbox" name="etHTMLUseCustomExportFormat" id="etHTMLUseCustomExportFormat" />
-					<label for="etHTMLUseCustomExportFormat">{i18n.use_custom_html_format}</label>
-				<input type="button" id="etHTMLEditCustomFormat" value="edit" disabled="disabled" />
-			</td>
-		</tr>
-		</table>
+		<pre>{\$isFirstBatch}, {\$isLastBatch}</pre>
+		{i18n.batch_vars}
 
-		<input type="hidden" name="etHTMLCustomHTMLSource" id="etHTMLCustomHTMLSource" />
+		<pre>{\$colData}</pre>
+		{i18n.col_names_array}
 
-		<div id="etHTMLCustomFormatDialog" style="display:none">
-			<div style="width: 300px; float: left;">
-				<h4>{i18n.available_smarty_vars}</h4>
+		<pre>{\$rowData}</pre>
+		{i18n.row_data_array}
 
-				<pre>{\$isFirstBatch}, {\$isLastBatch}</pre>
-				{i18n.batch_vars}
-
-				<pre>{\$colData}</pre>
-				{i18n.col_names_array}
-
-				<pre>{\$rowData}</pre>
-				{i18n.row_data_array}
-
-				<button className="gdPrimaryButton" id="etHTML_ResetCustomHTML">{i18n.reset_custom_html}</button>
-			</div>
-			<div id="etHTMLCustomContent">
-				<textarea name="etHTMLCustomSmarty" id="etHTMLCustomSmarty"></textarea>
-					<script type="text/template" id="etHTMLCustomSmarty_Template">{if \$isFirstBatch}
+		<button className="gdPrimaryButton" id="etHTML_ResetCustomHTML">{i18n.reset_custom_html}</button>
+	</div>
+	<div id="etHTMLCustomContent">
+		<textarea name="etHTMLCustomSmarty" id="etHTMLCustomSmarty"></textarea>
+			<script type="text/template" id="etHTMLCustomSmarty_Template">{if \$isFirstBatch}
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,127 +57,160 @@ export const Settings = ({ i18n }) => (
 
 	</div>
 </div>
-END;
-		return $html;
-	}
+*/
 
-
-var _init = function() {
-	$(window).resize(_updateDialogDimensions);
-	$("#etHTMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
-	$("#etHTMLUseCustomExportFormat").bind("click", function() {
-		if (this.checked) {
-			$("#etHTMLEditCustomFormat").removeAttr("disabled");
-			$(".etHTMLDefaultFormats").attr("disabled", "disabled");
-			$(".etHTMLDefaultFormatLabels").addClass("gdDisabledText");
-		} else {
-			$("#etHTMLEditCustomFormat").attr("disabled", "disabled");
-			$(".etHTMLDefaultFormats").removeAttr("disabled");
-			$(".etHTMLDefaultFormatLabels").removeClass("gdDisabledText");
-		}
-	});
-
-	var subscriptions = {};
-	subscriptions[C.EVENT.GENERATE] = _onGenerate;
-	manager.subscribe(MODULE_ID, subscriptions);
-
-	$("#etHTMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
-	_codeMirror = CodeMirror.fromTextArea($("#etHTMLCustomSmarty")[0], {
-		mode: "smartymixed",
-		lineNumbers: true
-	});
-	_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
-	$("#etHTML_ResetCustomHTML").on("click", _resetCustomHTML);
+export type ExportFormatState = {
+	exportFormat: 'table' | 'ul' | 'dl'
 };
 
-var _updateDialogDimensions = function() {
-	var dimensions = _getDialogDimensions();
-
-	if ($("#etHTMLCustomFormatDialog").hasClass("ui-dialog-content")) {
-		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
-		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
-	}
+export const state = {
+	exportFormat: 'table'
 };
 
-var _openEditCustomFormatDialog = function() {
-	var dimensions = _getDialogDimensions();
+export const Settings = ({ i18n, data }: any): JSX.Element => {
 
-	// calculate size of main content area
-	$("#etHTMLCustomFormatDialog").dialog({
-		title: LANG.custom_html_format,
-		modal: true,
-		width: dimensions.dialogWidth,
-		height: dimensions.dialogHeight,
-		resizable: false,
-		open: function() {
-			$("#etHTMLCustomContent .CodeMirror, #etHTMLCustomContent .CodeMirror-scroll").css({
-				width: dimensions.contentWidth,
-				height: dimensions.contentHeight
-			});
-			_codeMirror.refresh();
-		},
-		buttons: [
-			{
-				text: L.close,
-				click: function() {
-					$(this).dialog("close");
-				}
-			}
-		]
-	});
-	return false;
+	return (
+		<>
+			<table cellSpacing="0" cellPadding="0">
+			<tr>
+				<td>{i18n.data_format}</td>
+				<td>
+					<input type="radio" id="etHTMLExportFormat1" value="table" checked={data.exportFormat === 'table'} />
+						<label htmlFor="etHTMLExportFormat1">&lt;table&gt;</label>
+					<input type="radio" id="etHTMLExportFormat2" value="ul" checked={data.exportFormat === 'ul'} />
+						<label htmlFor="etHTMLExportFormat2">&lt;ul&gt;</label>
+					<input type="radio" id="etHTMLExportFormat3" value="dl" checked={data.exportFormat === 'dl'} />
+						<label htmlFor="etHTMLExportFormat3">&lt;dl&gt;</label>
+				</td>
+				<td>
+					<input type="checkbox" id="etHTMLUseCustomExportFormat" />
+						<label htmlFor="etHTMLUseCustomExportFormat">{i18n.use_custom_html_format}</label>
+					<input type="button" id="etHTMLEditCustomFormat" value="edit" disabled />
+				</td>
+			</tr>
+			</table>
+		</>
+	);
+
+	// 			<input type="hidden" name="etHTMLCustomHTMLSource" id="etHTMLCustomHTMLSource" />
 };
 
-var _getDialogDimensions = function() {
-	var dialogHeight  = ($(window).height() / 100) * 90;
-	var dialogWidth   = ($(window).width() / 100) * 90;
-	var contentHeight = dialogHeight - 110;
-	var contentWidth  = dialogWidth - 370;
 
-	return {
-		dialogHeight: dialogHeight,
-		dialogWidth: dialogWidth,
-		contentHeight: contentHeight,
-		contentWidth: contentWidth
-	};
-};
+// var _init = function() {
+// 	$("#etHTMLEditCustomFormat").bind("click", function() { _openEditCustomFormatDialog(); return false; });
+// 	$("#etHTMLUseCustomExportFormat").bind("click", function() {
+// 		if (this.checked) {
+// 			$("#etHTMLEditCustomFormat").removeAttr("disabled");
+// 			$(".etHTMLDefaultFormats").attr("disabled", "disabled");
+// 			$(".etHTMLDefaultFormatLabels").addClass("gdDisabledText");
+// 		} else {
+// 			$("#etHTMLEditCustomFormat").attr("disabled", "disabled");
+// 			$(".etHTMLDefaultFormats").removeAttr("disabled");
+// 			$(".etHTMLDefaultFormatLabels").removeClass("gdDisabledText");
+// 		}
+// 	});
+
+// 	var subscriptions = {};
+// 	subscriptions[C.EVENT.GENERATE] = _onGenerate;
+// 	manager.subscribe(MODULE_ID, subscriptions);
+
+// 	$("#etHTMLCustomContent .CodeMirror").addClass("CodeMirror_medium");
+// 	_codeMirror = CodeMirror.fromTextArea($("#etHTMLCustomSmarty")[0], {
+// 		mode: "smartymixed",
+// 		lineNumbers: true
+// 	});
+// 	_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
+// 	$("#etHTML_ResetCustomHTML").on("click", _resetCustomHTML);
+// };
+
+// var _updateDialogDimensions = function() {
+// 	var dimensions = _getDialogDimensions();
+
+// 	if ($("#etHTMLCustomFormatDialog").hasClass("ui-dialog-content")) {
+// 		$("#etHTMLCustomFormatDialog").dialog("option", "width", dimensions.dialogWidth);
+// 		$("#etHTMLCustomFormatDialog").dialog("option", "height", dimensions.dialogHeight);
+// 	}
+// };
+
+// var _openEditCustomFormatDialog = function() {
+// 	var dimensions = _getDialogDimensions();
+
+// 	// calculate size of main content area
+// 	$("#etHTMLCustomFormatDialog").dialog({
+// 		title: LANG.custom_html_format,
+// 		modal: true,
+// 		width: dimensions.dialogWidth,
+// 		height: dimensions.dialogHeight,
+// 		resizable: false,
+// 		open: function() {
+// 			$("#etHTMLCustomContent .CodeMirror, #etHTMLCustomContent .CodeMirror-scroll").css({
+// 				width: dimensions.contentWidth,
+// 				height: dimensions.contentHeight
+// 			});
+// 			_codeMirror.refresh();
+// 		},
+// 		buttons: [
+// 			{
+// 				text: L.close,
+// 				click: function() {
+// 					$(this).dialog("close");
+// 				}
+// 			}
+// 		]
+// 	});
+// 	return false;
+// };
+
+// var _getDialogDimensions = function() {
+// 	var dialogHeight  = ($(window).height() / 100) * 90;
+// 	var dialogWidth   = ($(window).width() / 100) * 90;
+// 	var contentHeight = dialogHeight - 110;
+// 	var contentWidth  = dialogWidth - 370;
+
+// 	return {
+// 		dialogHeight: dialogHeight,
+// 		dialogWidth: dialogWidth,
+// 		contentHeight: contentHeight,
+// 		contentWidth: contentWidth
+// 	};
+// };
 
 /**
  * If the user is generating in-page data with this Export Type, enable the XML
  * mode for the in-page editor.
  */
-var _onGenerate = function(msg) {
-	$("#etHTMLCustomHTMLSource").val(_codeMirror.getValue());
-	if (msg.exportTarget != "inPage" || msg.exportType != "HTML") {
-		return;
-	}
-	msg.editor.setOption("mode", "xml");
-};
+// var _onGenerate = function(msg) {
+// 	$("#etHTMLCustomHTMLSource").val(_codeMirror.getValue());
+// 	if (msg.exportTarget != "inPage" || msg.exportType != "HTML") {
+// 		return;
+// 	}
+// 	msg.editor.setOption("mode", "xml");
+// };
 
-var _loadSettings = function(settings) {
-	$("input[name=etHTMLExportFormat][value=" + settings.dataFormat + "]").attr("checked", "checked");
-	if (settings.useCustomExportFormat == "1") {
-		$("#etHTMLUseCustomExportFormat").attr("checked", "checked");
-	} else {
-		$("#etHTMLUseCustomExportFormat").removeAttr("checked");
-	}
-	$("#etHTMLCustomSmarty").val(settings.customExportSmartyContent);
-};
+// var _loadSettings = function(settings) {
+// 	$("input[name=etHTMLExportFormat][value=" + settings.dataFormat + "]").attr("checked", "checked");
+// 	if (settings.useCustomExportFormat == "1") {
+// 		$("#etHTMLUseCustomExportFormat").attr("checked", "checked");
+// 	} else {
+// 		$("#etHTMLUseCustomExportFormat").removeAttr("checked");
+// 	}
+// 	$("#etHTMLCustomSmarty").val(settings.customExportSmartyContent);
+// };
 
-var _saveSettings = function() {
-	return {
-		dataFormat: $("input[name=etHTMLExportFormat]:checked").val(),
-		useCustomExportFormat: $("#etHTMLUseCustomExportFormat")[0].checked ? 1 : 0,
-		customExportSmartyContent: _codeMirror.getValue()
-	};
-};
+// var _saveSettings = function() {
+// 	return {
+// 		dataFormat: $("input[name=etHTMLExportFormat]:checked").val(),
+// 		useCustomExportFormat: $("#etHTMLUseCustomExportFormat")[0].checked ? 1 : 0,
+// 		customExportSmartyContent: _codeMirror.getValue()
+// 	};
+// };
 
-var _resetSettings = function() {
-	$("input[name=etHTMLExportFormat][value=table]").attr("checked", "checked");
-	$("#etHTMLUseCustomExportFormat").removeAttr("disabled").trigger("click");
-	_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
-};
+// var _resetSettings = function() {
+// 	$("input[name=etHTMLExportFormat][value=table]").attr("checked", "checked");
+// 	$("#etHTMLUseCustomExportFormat").removeAttr("disabled").trigger("click");
+// 	_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
+// };
 
-var _resetCustomHTML = function() {
-	_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
-};
+// var _resetCustomHTML = function() {
+// 	_codeMirror.setValue($("#etHTMLCustomSmarty_Template").html());
+// };

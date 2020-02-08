@@ -45,7 +45,7 @@ export const getPreviewData = createSelector(
 	(rows, data) => {
 		const numRows = rows.length;
 		const temporary: any[] = [];
-		for (var i=0; i<numRows; i++) {
+		for (let i=0; i<numRows; i++) {
 			const rowData = rows.map(({ id }: DataRow) => data[id][i]);
 			temporary.push(rowData);
 		}
