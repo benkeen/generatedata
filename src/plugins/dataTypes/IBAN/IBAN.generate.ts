@@ -1,19 +1,23 @@
-<?php
-
 /**
- * @package DataTypes
- * @author Joeri Noort <joert@joert.net>
+ * Original author (PHP): Joeri Noort <joert@joert.net>
  */
+import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTGenerateReturnType } from '../../../../types/dataTypes';
 
-class DataType_IBAN extends DataTypePlugin {
+export const generate = (): DTGenerateReturnType => {
+	return { display: '' };
+};
 
-	protected $isEnabled = true;
-	protected $dataTypeName = "Bank Account Numbers (IBAN)";
-	protected $hasHelpDialog = true;
-	protected $dataTypeFieldGroup = "human_data";
-	protected $dataTypeFieldGroupOrder = 100;
+export const getMetadata = (): ExportTypeMetadata => ({
+	sql: {
+		field: 'varchar(34)',
+		field_Oracle: 'varchar2(34) NULL',
+		field_MSSQL: 'VARCHAR(34) NULL'
+	}
+});
 
-	/**
+
+/*
 	 * Template definition
 	 * 	b :	NATIONAL_BANK_CODE
 	 * 	i :	BIC_CODE
@@ -29,7 +33,6 @@ class DataType_IBAN extends DataTypePlugin {
 	 * Based on http://en.wikipedia.org/wiki/International_Bank_Account_Number#IBAN_formats_by_country
 	 * Corrected using various sources
 	 * @var array
-	 */
 	private static $allCountryCodes = array(
 		array('code'=>'AL',	'sepa'=>false,	'template'=>'ALkkbbbddddxcccccccccccccccc',		'name'=>'Albania'),
 		array('code'=>'AD',	'sepa'=>false,	'template'=>'ADkkbbbbddddcccccccccccc',			'name'=>'Andorra'),
@@ -99,11 +102,8 @@ class DataType_IBAN extends DataTypePlugin {
 	private static $countryCodes;
 	private static $numCountryCodes;
 
-
-	/**
 	 * @TODO make the $onlySepa option variable
 	 * @param string $runtimeContext
-	 */
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 		$onlySepa = false;
@@ -157,22 +157,12 @@ class DataType_IBAN extends DataTypePlugin {
 		return self::$countryCodes[mt_rand(0, self::$numCountryCodes-1)];
 	}
 
-	/**
 	 * @todo Respect the selected country.
-	 */
 	public function generate($generator, $generationContextData) {
 		$code = self::getRandomCountry();
 		$IBAN = self::fillTemplate($code['template'], $code['code']);
 		return array(
 			"display" => $IBAN
-		);
-	}
-
-	public function getDataTypeMetadata() {
-		return array(
-			"SQLField" => "varchar(34)",
-			"SQLField_Oracle" => "varchar2(34)",
-			"SQLField_MSSQL" => "VARCHAR(34) NULL"
 		);
 	}
 
@@ -208,9 +198,7 @@ class DataType_IBAN extends DataTypePlugin {
 		return intval($mod);
 	}
 
-	/**
 	 * Removes the current checksum digit from an IBAN string, and replaces it with what it should have been.
-	 */
 	private static function recalculateChecksum($ibanString) {
 		if (strlen($ibanString) < 6) {
 			return $ibanString;
@@ -228,4 +216,5 @@ class DataType_IBAN extends DataTypePlugin {
 
 		return substr($ibanString, 0, 2) . str_pad($checksum, 2, '0', STR_PAD_LEFT) . substr($ibanString, 4);
 	}
-}
+*/
+

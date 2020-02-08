@@ -1,9 +1,6 @@
-<?php
+// *** TODO drop this component and combine with Phone. Add a "[x] regional" option.
 
 /**
- * @package DataTypes
- */
-
 class DataType_PhoneRegional extends DataTypePlugin {
 	protected $isEnabled = true;
 	protected $dataTypeName = "Phone / Fax, Regional";
@@ -52,12 +49,10 @@ class DataType_PhoneRegional extends DataTypePlugin {
 	}
 
 
-	/**
 	 * Returns three things based on the data passed:
 	 *  - a random country slug
 	 *  - a region slug
 	 *  - the phone number format for the country-region. If one isn't defined, it returns an empty string.
-	 */
 	private function getCountryAndRegionalFormat($countryPhoneFormats, $rowCountryField, $rowRegionField) {
 		$customRegionalFormat = "";
 		$countrySlug = "";
@@ -169,7 +164,6 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		return $options;
 	}
 
-	/**
 	 * Loop through the formats returned by the client for the supported country plugins and make a note of the
 	 * format chosen.
 	 * @param object $generator
@@ -177,7 +171,6 @@ class DataType_PhoneRegional extends DataTypePlugin {
 	 * @param $colNum
 	 * @param $numCols
 	 * @return array|mixed
-	 */
 	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
 		$countries = $generator->getCountries();
 
@@ -193,14 +186,12 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		return $countryPhoneFormats;
 	}
 
-	/**
 	 * Loop through the formats returned by the client for the supported country plugins and make a note of the
 	 * format chosen.
 	 * @param object $generator
 	 * @param $json
 	 * @param $numCols
 	 * @return array|mixed
-	 */
 	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
 		$countries = $generator->getCountries();
 
@@ -214,7 +205,6 @@ class DataType_PhoneRegional extends DataTypePlugin {
 
 		return $countryPhoneFormats;
 	}
-
 
 	public function getDataTypeMetadata() {
 		return array(
@@ -275,12 +265,10 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		return $phoneNumber;
 	}
 
-	/**
 	 * Assumption: the area code is in a single block of A's.
 	 * @param $desiredFormat
 	 * @param $areaCodes
 	 * @return mixed|string
-	 */
 	private function replaceRandomAreaCode($desiredFormat, $areaCodes) {
 
 		// if the desired format doesn't contain an area code, shut down the party
@@ -300,5 +288,6 @@ class DataType_PhoneRegional extends DataTypePlugin {
 		}
 		return $str;
 	}
-
 }
+*/
+

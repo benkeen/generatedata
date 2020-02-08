@@ -1,14 +1,11 @@
-<?php
+// *** TODO drop this component and combine with Names. Add a "[x] regional" option.
 
-/**
+/*
  * @package DataTypes
  *
  * This Data Type provides some more fine-tuning of names (first + last) so that they're mapped to whatever
  * country the row happens to contain. If the $regionalNames private var doesn't contain names for the
  * current country, it defaults to loading ANY name pulled from the database - just like with the Names plugin.
- */
-
-// TODO drop this component and combine with Names. Add a "[x] regional"
 
 class DataType_NamesRegional extends DataTypePlugin {
 
@@ -347,10 +344,7 @@ class DataType_NamesRegional extends DataTypePlugin {
 	private $generalFirstNames  = array();
 	private $generalLastNames   = array();
 
-
-	/**
 	 * @param string $runtimeContext "generation" or "ui"
-	 */
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);
 		if ($runtimeContext == "generation") {
@@ -464,10 +458,8 @@ class DataType_NamesRegional extends DataTypePlugin {
 		return $this->lastNames;
 	}
 
-	/**
 	 * Called when instantiating the plugin during data generation. Set the firstNames, maleNames and
 	 * femaleNames.
-	 */
 	private function initFirstNames() {
 		$prefix = Core::getDbTablePrefix();
 		$response = Core::$db->query("
@@ -514,10 +506,8 @@ class DataType_NamesRegional extends DataTypePlugin {
 		}
 	}
 
-	/**
 	 * Called on instantiation. This combines the male and female first names in the $regionalNames hash
 	 * into a single "first_names" key, for quick reference.
-	 */
 	private function combineRegionalFirstNames() {
 		$updatedRegionalNames = array();
 		while (list($country, $content) = each($this->regionalNames)) {
@@ -532,12 +522,10 @@ class DataType_NamesRegional extends DataTypePlugin {
 		return $nameArray[mt_rand(0, count($nameArray)-1)];
 	}
 
-	/**
 	 * Called during installation. This creates and populates the first_names and last_names DB tables.
 	 *
 	 * @return array [0] success / error (boolean)
 	 *               [1] the error message, if there was an error
-	 */
 	public static function install() {
 		$prefix = Core::getDbTablePrefix();
 
@@ -581,3 +569,4 @@ class DataType_NamesRegional extends DataTypePlugin {
 		}
 	}
 }
+*/
