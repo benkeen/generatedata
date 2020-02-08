@@ -286,5 +286,7 @@ export default {
 	"grid": "Grid",
 	"preview": "Preview",
 	no_data: "No data!",
-	add_some_data_desc: 'Add some rows in the Grid panel above'
+	add_some_data_desc: 'Add some rows in the Grid panel above',
+	refresh_panel: 'Refresh Panel',
+	close_panel: 'Close panel'
 };

@@ -54,7 +54,7 @@ export const onSelectDataType = (id: string, dataType: string): any => {
 			});
 		});
 
-		// now regenerate the whole data set again (this could be smarter once we figure out dependencies)
+		// now regenerate the whole data set again (this has to be smarter once we figure out dependencies)
 		const data = generateExportData({
 			numResults: selectors.getNumPreviewRows(state),
 			columnTitles: selectors.getColumnTitles(state),
@@ -101,12 +101,13 @@ export const toggleGrid = (): GDAction => ({ type: TOGGLE_GRID });
 export const TOGGLE_PREVIEW = 'TOGGLE_PREVIEW';
 export const togglePreview = (): GDAction => ({ type: TOGGLE_PREVIEW });
 
-export const REFRESH_PREVIEW = 'REFRESH_PREVIEW';
+export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 export const refreshPreview = (): any => {
 
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
 		const template = selectors.getGenerationTemplate(state);
+		const sortedRows = selectors.getSortedRows(state);
 
 		const data = generateExportData({
 			numResults: selectors.getNumPreviewRows(state),
@@ -114,18 +115,17 @@ export const refreshPreview = (): any => {
 			template
 		});
 
-		console.log('!!!', data);
+		const previewData: any = {};
+		sortedRows.forEach((id: string, index: number) => {
+			previewData[id] = data.rows.map((row: any): any => row[index]);
+		});
 
-		// now update the store in one go
-		// dispatch({
-		// 	type: SELECT_DATA_TYPE,
-		// 	payload: {
-		// 		id,
-		// 		value: dataType,
-		// 		data: dataTypeDefaultState,
-		// 		generatedPreviewData
-		// 	}
-		// });
+		dispatch({
+			type: REFRESH_PREVIEW_DATA,
+			payload: {
+				previewData
+			}
+		});
 	};
 };
 

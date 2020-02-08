@@ -127,6 +127,13 @@ export const reducer = (state: ReducerState = {
 			};
 		}
 
+		case actions.REFRESH_PREVIEW_DATA: {
+			return {
+				...state,
+				generatedPreviewData: action.payload.previewData
+			};
+		};
+
 		case actions.CONFIGURE_DATA_TYPE:
 			return {
 				...state,
