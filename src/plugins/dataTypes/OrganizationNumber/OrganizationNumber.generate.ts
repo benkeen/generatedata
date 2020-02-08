@@ -5,6 +5,7 @@ export const generate = (): DTGenerateReturnType => {
 	return { display: '' };
 };
 
+
 /*
 	private $generatedOrgNrs = array();
 	static $sep = "-";

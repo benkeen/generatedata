@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import Dropdown from '../../../components/dropdown/Dropdown';
 
 export type OrganizationNumberState = {
 	example: string;
@@ -11,13 +12,27 @@ export const state: OrganizationNumberState = {
 	separator: ' '
 };
 
-export const Example = ({ coreI18n, i18n, data }: ExampleProps): JSX.Element => (
-	<select defaultValue={data.example}>
-		<option value="">{coreI18n.please_select}</option>
-		<option value="OrganisationNumberWithoutHyphen">{i18n.example_OrganisationNumberWithoutHyphen}</option>
-		<option value="OrganisationNumberWithHyphen">{i18n.example_OrganisationNumberWithHyphen}</option>
-	</select>
-);
+export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+	const onChange = (value: any): void => {
+		onUpdate({
+			example: value,
+			value: value
+		});
+	};
+
+	const options = [
+		{ value: 'OrganisationNumberWithoutHyphen', label: i18n.example_OrganisationNumberWithoutHyphen },
+		{ value: 'OrganisationNumberWithHyphen', label: i18n.example_OrganisationNumberWithHyphen }
+	];
+
+	return (
+		<Dropdown
+			value={data.example}
+			onChange={(i: any): void => onChange(i.value)}
+			options={options}
+		/>
+	);
+};
 
 export const Options = ({ id, data, onUpdate, i18n }: OptionsProps): JSX.Element => {
 	const onChange = (separator: string): void => {
