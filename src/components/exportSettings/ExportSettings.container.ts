@@ -1,17 +1,17 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { PreviewPanelSettings, PreviewPanelSettingsProps } from './PreviewPanelSettings.component';
+import { ExportSettings, ExportSettingsProps } from './ExportSettings.component';
 import * as generatorSelectors from '../../core/generator/generator.selectors';
 import * as generatorActions from '../../core/generator/generator.actions';
 
-const mapStateToProps = (state: any): Partial<PreviewPanelSettingsProps> => ({
+const mapStateToProps = (state: any): Partial<ExportSettingsProps> => ({
 	numPreviewRows: generatorSelectors.getNumPreviewRows(state),
 	showRowNumbers: generatorSelectors.shouldShowRowNumbers(state),
 	theme: generatorSelectors.getTheme(state),
 	previewTextSize: generatorSelectors.getPreviewTextSize(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelSettingsProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportSettingsProps> => ({
 	onChangeTheme: (theme: string): any => dispatch(generatorActions.changeTheme(theme)),
 	toggleRowNumbers: (): any => dispatch(generatorActions.toggleShowRowNumbers()),
 	toggleLineWrapping: (): any => dispatch(generatorActions.toggleLineWrapping()),
@@ -24,4 +24,4 @@ export default connect(
 	mapDispatchToProps
 
 // @ts-ignore
-)(PreviewPanelSettings);
+)(ExportSettings);

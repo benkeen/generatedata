@@ -33,6 +33,7 @@ export type ReducerState = {
 	theme: string;
 	previewTextSize: number;
 	generatedPreviewData: PreviewData;
+	previewPanelDimensions: object;
 };
 
 /**
@@ -52,7 +53,8 @@ export const reducer = (state: ReducerState = {
 	enableLineWrapping: true,
 	theme: 'elegant',
 	previewTextSize: 12,
-	generatedPreviewData: {}
+	generatedPreviewData: {},
+	previewPanelDimensions: {}
 }, action: AnyAction): ReducerState => {
 	switch (action.type) {
 
@@ -212,6 +214,10 @@ export const reducer = (state: ReducerState = {
 				previewTextSize: action.payload.previewTextSize
 			};
 
+		case actions.SET_PREVIEW_PANEL_DIMENSIONS: {
+			console.log('!!!!', action.payload);
+			return state;	
+		}
 		default:
 			return state;
 	}

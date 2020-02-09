@@ -117,3 +117,11 @@ export const setPreviewTextSize = (previewTextSize: number): GDAction => ({
 		previewTextSize
 	}
 });
+
+export const SET_PREVIEW_PANEL_DIMENSIONS = 'SET_PREVIEW_PANEL_DIMENSIONS';
+export const setPreviewPanelDimensions = (dimensions: any): GDAction => ({
+	type: SET_PREVIEW_PANEL_DIMENSIONS,
+	payload: {
+		dimensions
+	}
+});

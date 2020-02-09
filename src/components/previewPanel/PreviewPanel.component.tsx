@@ -6,9 +6,6 @@ import Settings from '@material-ui/icons/SettingsOutlined';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import PreviewPanelSettingsContainer from './PreviewPanelSettings.container';
-import HtmlTooltip from '../tooltip/HtmlTooltip';
 import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
 
@@ -24,13 +21,14 @@ export type PreviewPanelProps = {
 	data: any;
 	theme: string;
 	previewTextSize: number;
+	previewRef: any;
 };
 
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
 	i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers, enableLineWrapping, 
-	previewTextSize, refreshPreview
+	previewTextSize, refreshPreview, previewRef
 }: PreviewPanelProps): React.ReactNode => {
 	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
 
@@ -58,30 +56,12 @@ const PreviewPanel = ({
 
 	const themeName = getThemeName(theme);
 	return (
-		<div className={`${styles.previewPanel} ${themeName}`}>
+		<div className={`${styles.previewPanel} ${themeName}`} ref={previewRef}>
 			<div className={styles.controls}>
 				<span>
-					<ClickAwayListener onClickAway={(e): void => {
-						// TODO see if there's a more idiomatic way to do this with Material UI
-						// @ts-ignore
-						if (!e.target.closest(`.${styles.previewPanelSettings}`)) {
-							setPreviewSettingsVisibility(false);
-						}
-					}}>
-						<HtmlTooltip
-							arrow
-							open={previewSettingsVisible}
-							placement="left"
-							disableFocusListener
-							disableTouchListener
-							interactive
-							title={<PreviewPanelSettingsContainer />}
-						>
-							<IconButton size="small" aria-label="Settings" onClick={(): void=> setPreviewSettingsVisibility(true)}>
-								<Settings fontSize="large" />
-							</IconButton>
-						</HtmlTooltip>
-					</ClickAwayListener>
+					<IconButton size="small" aria-label="Settings" onClick={(): void=> setPreviewSettingsVisibility(true)}>
+						<Settings fontSize="large" />
+					</IconButton>
 				</span>
 				<span onClick={refreshPreview}>
 					<Tooltip title={i18n.refresh_panel} placement="bottom">
