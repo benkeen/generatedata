@@ -45,8 +45,11 @@ export const getPreviewData = createSelector(
 	(rows, data) => {
 		const numRows = rows.length;
 		const temporary: any[] = [];
-		for (let i=0; i<numRows; i++) {
-			const rowData = rows.map(({ id }: DataRow) => data[id][i]);
+
+		for (let i = 0; i < numRows; i++) {
+			const rowData = rows.map(({ id }: DataRow) => {
+				return data[id] ? data[id][i] : null;
+			});
 			temporary.push(rowData);
 		}
 		return temporary;
@@ -57,7 +60,7 @@ export const getGenerationTemplate = createSelector(
 	getNonEmptySortedRows,
 	(rows): GenerationTemplate => {
 		const processOrders = getDataTypeProcessOrders();
-		
+
 		const templateByProcessOrder: any = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
 			const processOrder = processOrders[dataType];
@@ -76,7 +79,7 @@ export const getGenerationTemplate = createSelector(
 				dataType,
 				colIndex,
 
-				// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row 
+				// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row
 				// state into something friendlier for the generation step
 				rowState: rowStateReducer ? rowStateReducer(data) : data,
 
@@ -90,4 +93,15 @@ export const getGenerationTemplate = createSelector(
 
 		return templateByProcessOrder;
 	}
+);
+
+export const getPreviewPanelData = createSelector(
+	getColumnTitles,
+	getPreviewData,
+	(columnTitles, rows) => ({
+		isFirstBatch: true,
+		isLastBatch: true,
+		columnTitles,
+		rows
+	})
 );

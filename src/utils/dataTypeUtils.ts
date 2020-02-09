@@ -51,10 +51,13 @@ export const getDataTypeHelpComponent = (dataType: string): any => {
 };
 
 
+// should be memoized. Never changes. 
+const processOrders: any = {};
 export const getDataTypeProcessOrders = (): any => {
-	const processOrders: any = {};
 	dataTypeConfig.forEach((row) => {
 		processOrders[row.folder] = row.processOrder;
 	});
 	return processOrders;
 };
+
+export const getDataTypeProcessOrder = (dataType: string): number => processOrders[dataType];

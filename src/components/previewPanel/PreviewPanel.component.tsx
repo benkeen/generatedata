@@ -84,14 +84,14 @@ const PreviewPanel = ({
 					</ClickAwayListener>
 				</span>
 				<span onClick={refreshPreview}>
-					<Tooltip title="Refresh panel" placement="bottom">
+					<Tooltip title={i18n.refresh_panel} placement="bottom">
 						<IconButton size="small" aria-label="Refresh">
 							<Refresh fontSize="large" />
 						</IconButton>
 					</Tooltip>
 				</span>
 				<span onClick={togglePreview}>
-					<Tooltip title="Close panel" placement="bottom">
+					<Tooltip title={i18n.close_panel} placement="bottom">
 						<IconButton size="small" aria-label="Close panel">
 							<CloseIcon fontSize="large" />
 						</IconButton>

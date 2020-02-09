@@ -17,9 +17,10 @@ export type GDAction = {
 }
 
 export type GenerationTemplateRow = {
+	id: string;
     title: string;
     dataType: string;
-    cellSettings: any;
+	rowState: any;
     generateFunc: Function;
     colMetadata: () => any;
 }

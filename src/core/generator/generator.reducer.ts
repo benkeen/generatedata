@@ -109,7 +109,7 @@ export const reducer = (state: ReducerState = {
 			};
 
 		case actions.SELECT_DATA_TYPE: {
-			const { id, value, data, generatedPreviewData } = action.payload;
+			const { id, value, data } = action.payload;
 			return {
 				...state,
 				rows: {
@@ -119,10 +119,6 @@ export const reducer = (state: ReducerState = {
 						dataType: value,
 						data
 					}
-				},
-				generatedPreviewData: {
-					...state.generatedPreviewData,
-					[id]: generatedPreviewData
 				}
 			};
 		}
@@ -130,7 +126,10 @@ export const reducer = (state: ReducerState = {
 		case actions.REFRESH_PREVIEW_DATA: {
 			return {
 				...state,
-				generatedPreviewData: action.payload.previewData
+				generatedPreviewData: {
+					...state.generatedPreviewData,
+					...action.payload.previewData
+				}
 			};
 		};
 
@@ -183,7 +182,7 @@ export const reducer = (state: ReducerState = {
 				builderLayout: state.builderLayout === 'horizontal' ? 'vertical' : 'horizontal'
 			};
 
-		case actions.TOGGLE_LINE_WRAPPING: 
+		case actions.TOGGLE_LINE_WRAPPING:
 			return {
 				...state,
 				enableLineWrapping: !state.enableLineWrapping
@@ -210,7 +209,7 @@ export const reducer = (state: ReducerState = {
 		case actions.SET_PREVIEW_TEXT_SIZE:
 			return {
 				...state,
-				previewTextSize: action.payload.previewTextSize	
+				previewTextSize: action.payload.previewTextSize
 			};
 
 		default:

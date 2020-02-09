@@ -6,13 +6,6 @@ import * as selectors from '../../core/generator/generator.selectors';
 import * as actions from '../../core/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
-	const data = { 
-		isFirstBatch: true,
-		isLastBatch: true,
-		columnTitles: selectors.getColumnTitles(state),
-		rows: selectors.getPreviewData(state)
-	};
-
 	return {
 		i18n: initSelectors.getCoreI18n(state),
 		numPreviewRows: selectors.getNumPreviewRows(state),
@@ -22,7 +15,10 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		showRowNumbers: selectors.shouldShowRowNumbers(state),
 		enableLineWrapping: selectors.shouldEnableLineWrapping(state),
 		theme: selectors.getTheme(state),
-		data
+
+		// this'll need to change. It returns a fresh object on every keystroke, even if it was the same. That
+		// causes the preview panel to do a (slow) repaint every time
+		data: selectors.getPreviewPanelData(state)
 	};
 };
 
