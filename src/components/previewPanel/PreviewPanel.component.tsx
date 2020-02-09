@@ -40,7 +40,7 @@ const PreviewPanel = ({
 		/* webpackChunkName: "exportType-[index]" */
 		'../../plugins/exportTypes/JSON/JSONPreview.component')
 	);
- 
+
 	const getNoResults = (): JSX.Element | null => {
 		if (data.rows.length > 0) {
 			return null;

@@ -50,7 +50,7 @@ export const reducer = (state: ReducerState = {
 	numPreviewRows: 5,
 	showRowNumbers: false,
 	enableLineWrapping: true,
-	theme: 'lucario',
+	theme: 'elegant',
 	previewTextSize: 12,
 	generatedPreviewData: {}
 }, action: AnyAction): ReducerState => {

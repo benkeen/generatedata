@@ -25,10 +25,9 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (id: string, dataType: string): any => {
-	return (dispatch: any, getState: any): any => {
+	return (dispatch: any): any => {
 		const dataTypeDefaultState = getDataTypeDefaultState(dataType);
-
-		const selectDataType = (disp: any) => new Promise((resolve: any) => {
+		const selectDataType = (disp: any): any => new Promise((resolve: any) => {
 			disp({
 				type: SELECT_DATA_TYPE,
 				payload: {
@@ -39,9 +38,6 @@ export const onSelectDataType = (id: string, dataType: string): any => {
 			});
 			resolve();
 		});
-
-		// this ensures the new data type has been set in the store so it's a proper state 
-		// when refreshPreview is executed
 		selectDataType(dispatch).then(() => dispatch(refreshPreview([id])));
 	};
 };

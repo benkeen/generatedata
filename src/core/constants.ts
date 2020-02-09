@@ -5,6 +5,7 @@ export default {
 		{ value: 'ambiance', label: 'Ambiance' },
 		{ value: 'cobalt', label: 'Cobalt' },
 		{ value: 'darcula', label: 'Darcula' },
+		{ value: 'elegant', label: 'Elegant' },
 		{ value: 'lucario', label: 'Lucario' }
 	]
 };

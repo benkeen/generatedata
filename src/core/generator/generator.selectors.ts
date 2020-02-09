@@ -38,21 +38,29 @@ export const getColumnTitles = createSelector(
 	(rows) => rows.filter((row: any) => row.dataType !== null && row.title !== '').map((row: any) => row.title)
 );
 
-// TODO check for discrepancies between data sets here
 export const getPreviewData = createSelector(
+	getNumPreviewRows,
 	getNonEmptySortedRows,
 	getGeneratedPreviewData,
-	(rows, data) => {
+	(numPreviewRows, rows, data) => {
 		const numRows = rows.length;
-		const temporary: any[] = [];
+		const formattedData: any[] = [];
 
-		for (let i = 0; i < numRows; i++) {
-			const rowData = rows.map(({ id }: DataRow) => {
-				return data[id] ? data[id][i] : null;
-			});
-			temporary.push(rowData);
+		for (let j=0; j<numPreviewRows; j++) {
+			const rowData = [];
+			for (let i=0; i<numRows; i++) {
+				const id = rows[i].id;
+				// this can occur when a new row is first added. The data is generated AFTERWARDS (see logic in onSelectDataType() action)
+				// @ts-ignore
+				if (!data[id]) {
+					console.log('id not found', id, data);
+					continue;
+				}
+				rowData.push(data[id][j]);
+			}
+			formattedData.push(rowData);
 		}
-		return temporary;
+		return formattedData;
 	}
 );
 
