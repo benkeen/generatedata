@@ -1,10 +1,9 @@
 declare namespace ExportSettingsScssModule {
   export interface IExportSettingsScss {
-    bg: string;
-    container: string;
-    content: string;
-    fade: string;
-    fadeInOut: string;
+    field: string;
+    label: string;
+    row: string;
+    tabContent: string;
   }
 }
 

@@ -34,7 +34,6 @@ export type ReducerState = {
 	theme: string;
 	previewTextSize: number;
 	generatedPreviewData: PreviewData;
-	previewPanelDimensions: object;
 };
 
 /**
@@ -56,7 +55,6 @@ export const reducer = (state: ReducerState = {
 	theme: 'elegant',
 	previewTextSize: 12,
 	generatedPreviewData: {},
-	previewPanelDimensions: {}
 }, action: AnyAction): ReducerState => {
 	switch (action.type) {
 
@@ -214,12 +212,6 @@ export const reducer = (state: ReducerState = {
 			return {
 				...state,
 				previewTextSize: action.payload.previewTextSize
-			};
-
-		case actions.SET_PREVIEW_PANEL_DIMENSIONS:
-			return {
-				...state,
-				previewPanelDimensions: action.payload.dimensions
 			};
 
 		case actions.TOGGLE_EXPORT_SETTINGS:

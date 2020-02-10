@@ -1,36 +1,18 @@
-.container {
-    font-size: 12px;
-    position: absolute;
-	width: 100%;
-	opacity: 0;
+.tabContent {
+	padding: 15px;
 }
 
-.content {
-	position: relative;
-	padding: 10px;
+.row {
+	display: flex;
+	flex-direction: row;
+	height: 40px;
+	align-items: center;
 }
 
-.bg {
-	position: absolute;
-	top: 0; 
-	bottom: 0;
-    background-color: black;
-	opacity: 0.7;
-	height: 100%;
-	width: 100%;
+.label {
+	flex: 0 0 160px;
 }
 
-.fadeInOut {
-    opacity: 1;
-    animation: fade .3s linear;
-}
-
-@keyframes fade {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+.field {
+	flex: 1;
 }

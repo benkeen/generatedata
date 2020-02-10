@@ -14,24 +14,12 @@ export type BuilderProps = {
 }
 
 const Builder = ({ isGridVisible, isPreviewVisible, builderLayout, setPreviewPanelDimensions }: BuilderProps): JSX.Element => {
-	const splitPreviewRef = React.useRef();
-	
-	React.useEffect(() => {
-		onResize();
-	}, []);
-	
-	const onResize = (): void => {
-		// @ts-ignore
-		const { top, left, width, height } = splitPreviewRef.current.getBoundingClientRect();
-		setPreviewPanelDimensions({ top, left, width, height });
-	};
-
 	const getContent = (): JSX.Element => {
 		if (isGridVisible && isPreviewVisible) {
 			return (
-				<SplitPane split={builderLayout} minSize={50} defaultSize="50%" onDragFinished={onResize}>
+				<SplitPane split={builderLayout} minSize={50} defaultSize="50%">
 					<Grid />
-					<Preview previewRef={splitPreviewRef} />
+					<Preview />
 				</SplitPane>
 			);
 		}
