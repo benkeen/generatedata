@@ -1,9 +1,14 @@
 import * as React from 'react';
+import Drawer from '@material-ui/core/Drawer';
 import Switch from '@material-ui/core/Switch';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Paper from '@material-ui/core/Paper';
 import Dropdown from '../dropdown/Dropdown';
 import { getArrayOfSize } from '../../utils/arrayUtils';
 import C from '../../core/constants';
 import * as styles from './ExportSettings.scss';
+import { ExportSettingsPosition } from '../../core/generator/generator.selectors';
 // import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 // import PreviewPanelSettingsContainer from '../exportSettings/ExportSettings.container';
 // import HtmlTooltip from '../tooltip/HtmlTooltip';
@@ -20,22 +25,37 @@ export type ExportSettingsProps = {
 	toggleLineWrapping: Function;
 	onChangePreviewTextSize: Function;
 	updateNumPreviewRows: Function;
+	showExportSettings: boolean;
+	exportSettingsPosition: ExportSettingsPosition
 }
 
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
 
 export const ExportSettings = ({
-	theme, previewTextSize, onChangeTheme, showRowNumbers, enableLineWrapping, toggleRowNumbers, toggleLineWrapping, 
-	onChangePreviewTextSize, numPreviewRows, updateNumPreviewRows
+	theme, previewTextSize, onChangeTheme, showRowNumbers, enableLineWrapping, toggleRowNumbers, toggleLineWrapping,
+	onChangePreviewTextSize, numPreviewRows, updateNumPreviewRows, showExportSettings
 }: ExportSettingsProps): React.ReactElement => {
 
+	/*
+				<Tabs
+					value={value}
+					indicatorColor="primary"
+					textColor="primary"
+					onChange={handleChange}
+					aria-label="disabled tabs example"
+				>
+					<Tab label="Export Type" />
+					<Tab label="Preview Panel" />
+				</Tabs>
+*/
+
 	return (
-		<div className={styles.container}>
-			<div className={styles.bg}></div>
-			<div className={styles.content}>
+		<Drawer open={showExportSettings} anchor="top" onClose={() => {}}>
+			<Paper square style={{ backgroundColor: 'white', borderRadius: 4 }}>
+
 				<div>
 					Theme:
-					<Dropdown
+				<Dropdown
 						value={theme}
 						options={C.THEMES}
 						onChange={({ value }: any): void => onChangeTheme(value)}
@@ -69,14 +89,14 @@ export const ExportSettings = ({
 					/>
 				</div>
 				<div>
-					Preview rows: 
+					Preview rows:
 					<Dropdown
 						value={numPreviewRows}
 						onChange={(item: any): any => updateNumPreviewRows(item.value)}
 						options={options}
 					/>
 				</div>
-			</div>
-		</div>
+			</Paper>
+		</Drawer>
 	);
 };

@@ -26,6 +26,7 @@ export type ReducerState = {
 	showPreview: boolean;
 	builderLayout: BuilderLayout;
 	selectedExportType: string;
+	showExportSettings: boolean;
 	exportTypeSettings: any;
 	numPreviewRows: number;
 	showRowNumbers: boolean;
@@ -47,6 +48,7 @@ export const reducer = (state: ReducerState = {
 	showPreview: true,
 	builderLayout: 'horizontal',
 	selectedExportType: 'JSON',
+	showExportSettings: false,
 	exportTypeSettings: null,
 	numPreviewRows: 5,
 	showRowNumbers: false,
@@ -214,10 +216,18 @@ export const reducer = (state: ReducerState = {
 				previewTextSize: action.payload.previewTextSize
 			};
 
-		case actions.SET_PREVIEW_PANEL_DIMENSIONS: {
-			console.log('!!!!', action.payload);
-			return state;	
-		}
+		case actions.SET_PREVIEW_PANEL_DIMENSIONS:
+			return {
+				...state,
+				previewPanelDimensions: action.payload.dimensions
+			};
+
+		case actions.TOGGLE_EXPORT_SETTINGS:
+			return {
+				...state,
+				showExportSettings: !state.showExportSettings
+			};
+
 		default:
 			return state;
 	}

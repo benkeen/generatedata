@@ -1,18 +1,36 @@
 .container {
-	font-size: 12px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	display: none;
+    font-size: 12px;
+    position: absolute;
+	width: 100%;
+	opacity: 0;
 }
 
 .content {
-	background-color: white;
-	margin: 10px;
+	position: relative;
+	padding: 10px;
 }
 
 .bg {
-	background-color: black;
-	opacity: 0.1;
+	position: absolute;
+	top: 0; 
+	bottom: 0;
+    background-color: black;
+	opacity: 0.7;
+	height: 100%;
+	width: 100%;
+}
+
+.fadeInOut {
+    opacity: 1;
+    animation: fade .3s linear;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

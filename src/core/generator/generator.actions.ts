@@ -125,3 +125,6 @@ export const setPreviewPanelDimensions = (dimensions: any): GDAction => ({
 		dimensions
 	}
 });
+
+export const TOGGLE_EXPORT_SETTINGS = 'TOGGLE_EXPORT_SETTINGS';
+export const toggleExportSettings = (): GDAction => ({ type: TOGGLE_EXPORT_SETTINGS });

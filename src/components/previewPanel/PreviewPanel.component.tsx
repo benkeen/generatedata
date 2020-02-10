@@ -15,6 +15,7 @@ export type PreviewPanelProps = {
 	builderLayout: BuilderLayout;
 	togglePreview: () => void;
 	refreshPreview: () => void;
+	toggleExportSettings: () => void;
 	exportTypeSettings: any; // TODO
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
@@ -27,10 +28,9 @@ export type PreviewPanelProps = {
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers, enableLineWrapping, 
-	previewTextSize, refreshPreview, previewRef
+	i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
+	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, previewRef
 }: PreviewPanelProps): React.ReactNode => {
-	const [previewSettingsVisible, setPreviewSettingsVisibility] = React.useState(false);
 
 	// TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - drop the fallback altogether
 	// so we can fade the spinner out when the content is loaded
@@ -58,21 +58,23 @@ const PreviewPanel = ({
 	return (
 		<div className={`${styles.previewPanel} ${themeName}`} ref={previewRef}>
 			<div className={styles.controls}>
-				<span>
-					<IconButton size="small" aria-label="Settings" onClick={(): void=> setPreviewSettingsVisibility(true)}>
-						<Settings fontSize="large" />
-					</IconButton>
+				<span onClick={toggleExportSettings}>
+					<Tooltip title="Settings" placement="bottom">
+						<IconButton size="small" aria-label="Settings">
+							<Settings fontSize="large" />
+						</IconButton>
+					</Tooltip>
 				</span>
 				<span onClick={refreshPreview}>
 					<Tooltip title={i18n.refresh_panel} placement="bottom">
-						<IconButton size="small" aria-label="Refresh">
+						<IconButton size="small" aria-label={i18n.refresh_panel}>
 							<Refresh fontSize="large" />
 						</IconButton>
 					</Tooltip>
 				</span>
 				<span onClick={togglePreview}>
 					<Tooltip title={i18n.close_panel} placement="bottom">
-						<IconButton size="small" aria-label="Close panel">
+						<IconButton size="small" aria-label={i18n.close_panel}>
 							<CloseIcon fontSize="large" />
 						</IconButton>
 					</Tooltip>

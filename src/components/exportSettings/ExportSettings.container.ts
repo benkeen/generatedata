@@ -8,7 +8,9 @@ const mapStateToProps = (state: any): Partial<ExportSettingsProps> => ({
 	numPreviewRows: generatorSelectors.getNumPreviewRows(state),
 	showRowNumbers: generatorSelectors.shouldShowRowNumbers(state),
 	theme: generatorSelectors.getTheme(state),
-	previewTextSize: generatorSelectors.getPreviewTextSize(state)
+	previewTextSize: generatorSelectors.getPreviewTextSize(state),
+	showExportSettings: generatorSelectors.shouldShowExportSettings(state),
+	exportSettingsPosition: generatorSelectors.getExportSettingsPosition(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportSettingsProps> => ({

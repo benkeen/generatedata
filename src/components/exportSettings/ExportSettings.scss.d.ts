@@ -3,6 +3,8 @@ declare namespace ExportSettingsScssModule {
     bg: string;
     container: string;
     content: string;
+    fade: string;
+    fadeInOut: string;
   }
 }
 
