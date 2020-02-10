@@ -1,4 +1,5 @@
-protected $isEnabled = true;
+
+/*protected $isEnabled = true;
 protected $exportTypeName = "Excel";
 protected $jsModules = array("Excel.js");
 protected $compatibleExportTargets = array("promptDownload");
@@ -84,13 +85,12 @@ private function getExcelCol($index, $row) {
 	return "{$firstColChar}{$secondColChar}$row";
 }
 
-/**
  * Used for constructing the filename of the filename when downloading.
  * @see ExportTypePlugin::getDownloadFilename()
  * @param Generator $generator
  * @return string
- */
 function getDownloadFilename($generator) {
 	$time = date("M-j-Y");
 	return session_id()."data{$time}.xls";
 }
+*/

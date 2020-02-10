@@ -1,4 +1,4 @@
 export default {
-	exportTypeName: "Excel",
+	name: "Excel",
 	schema: {}
 };

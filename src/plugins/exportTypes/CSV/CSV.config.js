@@ -1,7 +1,7 @@
 export default {
-	exportTypeName: "CSV",
+	name: "CSV",
 	schema: {
-		"title": "CSV",
+		title: "CSV",
 		"$schema": "http://json-schema.org/draft-04/schema#",
 		"type": "object",
 		"properties": {

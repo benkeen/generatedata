@@ -50,7 +50,39 @@ const getDataTypes = () => {
 	return dataTypeInfo;
 };
 
+const getExportTypes = () => {
+	const baseFolder = path.join(__dirname, '..', '/src/plugins/exportTypes');
+	const folders = fs.readdirSync(baseFolder);
+	const exportTypeInfo = [];
+
+	folders.forEach((folder) => {
+		// ignore all Data Types folders that begin with an _. Quick convenient way to remove them without removing them.
+		if (/^_/.test(folder)) {
+			return;
+		}
+		const configFile = `${baseFolder}/${folder}/${folder}.config.js`;
+		if (!fs.existsSync(configFile)) {
+			return;
+		}
+		let row;
+		try {
+			const file = require(configFile).default;
+			row = {
+				name: file.name,
+				folder,
+				folderPath: `${baseFolder}/${folder}`
+			};
+		} catch (e) {
+			console.log('Error parsing ', configFile);
+		}
+		exportTypeInfo.push(row);
+	});
+	return exportTypeInfo;
+};
+
+
 module.exports = {
 	createBuildFile,
-	getDataTypes
+	getDataTypes,
+	getExportTypes
 };

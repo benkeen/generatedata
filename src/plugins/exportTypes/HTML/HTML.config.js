@@ -1,5 +1,5 @@
 export default {
-	exportTypeName: "HTML",
+	name: "HTML",
 	schema: {
 		"title": "HTML",
 		"$schema": "http://json-schema.org/draft-04/schema#",

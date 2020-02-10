@@ -24,4 +24,4 @@ export default connect(
 	mapDispatchToProps
 
 // @ts-ignore
-)(PreviewSettings);
+)(PreviewSettingsTab);

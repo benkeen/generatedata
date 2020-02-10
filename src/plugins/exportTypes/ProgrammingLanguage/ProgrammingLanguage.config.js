@@ -1,5 +1,5 @@
 export default {
-	exportTypeName: "ProgrammingLanguage",
+	name: "Programming Language",
 	schema: {
 		"title": "ProgrammingLanguage",
 		"$schema": "http://json-schema.org/draft-04/schema#",

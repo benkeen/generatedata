@@ -1,3 +1,3 @@
 export default {
-	exportTypeName: "LDIF"
+	name: "LDIF"
 };

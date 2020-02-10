@@ -1,5 +1,5 @@
 export default {
-	exportTypeName: "SQL",
+	name: "SQL",
 	schema: {
 		"title": "SQL",
 		"$schema": "http://json-schema.org/draft-04/schema#",

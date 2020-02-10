@@ -1,5 +1,5 @@
 export default {
-	exportTypeName: "XML",
+	name: "XML",
 	schema: {
 		"title": "XML",
 		"$schema": "http://json-schema.org/draft-04/schema#",

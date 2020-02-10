@@ -5,7 +5,7 @@ import { GenerationTemplate } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { DataRow } from './generator.reducer';
 
-export const getExportType = (state: any) => state.generator.exportType;
+export const getExportType = (state: any): any => state.generator.exportType;
 export const getRows = (state: any): any => state.generator.rows;
 export const getSortedRows = (state: any): any[] => state.generator.sortedRows;
 export const isGridVisible = (state: any): boolean => state.generator.showGrid;

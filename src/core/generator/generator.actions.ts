@@ -123,4 +123,9 @@ export const toggleExportSettings = (): GDAction => ({ type: TOGGLE_EXPORT_SETTI
 
 
 export const CHANGE_EXPORT_TYPE = 'CHANGE_EXPORT_TYPE';
-export const changeExportType = () => ({ type: CHANGE_EXPORT_TYPE });
+export const changeExportType = (exportType: string): GDAction => ({
+	type: CHANGE_EXPORT_TYPE,
+	payload: {
+		exportType
+	}
+});
