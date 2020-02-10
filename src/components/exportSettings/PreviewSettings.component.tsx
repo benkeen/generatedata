@@ -11,7 +11,6 @@ export type PreviewSettingsProps = {
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
 	previewTextSize: number;
-	textSize: number;
 	onChangeTheme: Function;
 	toggleRowNumbers: Function;
 	toggleLineWrapping: Function;
@@ -22,7 +21,7 @@ export type PreviewSettingsProps = {
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
 
 export const PreviewSettings = ({
-	theme, numPreviewRows, showRowNumbers, enableLineWrapping, previewTextSize, textSize, onChangeTheme,
+	theme, numPreviewRows, showRowNumbers, enableLineWrapping, previewTextSize, onChangeTheme,
 	toggleRowNumbers, toggleLineWrapping, onChangePreviewTextSize, updateNumPreviewRows
 }: PreviewSettingsProps): JSX.Element => {
 	return (
@@ -73,11 +72,13 @@ export const PreviewSettings = ({
 			<div className={styles.row}>
 				<div className={styles.label}>Preview rows</div>
 				<div className={styles.field}>
-					<Dropdown
-						value={numPreviewRows}
-						onChange={(item: any): any => updateNumPreviewRows(item.value)}
-						options={options}
-					/>
+					<div style={{ width: 180 }}>
+						<Dropdown
+							value={numPreviewRows}
+							onChange={(item: any): any => updateNumPreviewRows(item.value)}
+							options={options}
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

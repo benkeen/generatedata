@@ -118,13 +118,5 @@ export const setPreviewTextSize = (previewTextSize: number): GDAction => ({
 	}
 });
 
-export const SET_PREVIEW_PANEL_DIMENSIONS = 'SET_PREVIEW_PANEL_DIMENSIONS';
-export const setPreviewPanelDimensions = (dimensions: any): GDAction => ({
-	type: SET_PREVIEW_PANEL_DIMENSIONS,
-	payload: {
-		dimensions
-	}
-});
-
 export const TOGGLE_EXPORT_SETTINGS = 'TOGGLE_EXPORT_SETTINGS';
 export const toggleExportSettings = (): GDAction => ({ type: TOGGLE_EXPORT_SETTINGS });

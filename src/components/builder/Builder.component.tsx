@@ -10,10 +10,9 @@ export type BuilderProps = {
 	isGridVisible: boolean;
 	isPreviewVisible: boolean;
 	builderLayout: BuilderLayout;
-	setPreviewPanelDimensions: (dimensions: any) => void;
 }
 
-const Builder = ({ isGridVisible, isPreviewVisible, builderLayout, setPreviewPanelDimensions }: BuilderProps): JSX.Element => {
+const Builder = ({ isGridVisible, isPreviewVisible, builderLayout }: BuilderProps): JSX.Element => {
 	const getContent = (): JSX.Element => {
 		if (isGridVisible && isPreviewVisible) {
 			return (

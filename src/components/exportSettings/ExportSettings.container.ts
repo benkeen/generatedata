@@ -5,6 +5,7 @@ import * as selectors from '../../core/generator/generator.selectors';
 import * as actions from '../../core/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<ExportSettingsProps> => ({
+	builderLayout: selectors.getBuilderLayout(state),
 	showExportSettings: selectors.shouldShowExportSettings(state)
 });
 
