@@ -5,7 +5,7 @@ import { getArrayOfSize } from '../../utils/arrayUtils';
 import C from '../../core/constants';
 import * as styles from './ExportSettings.scss';
 
-export type PreviewSettingsProps = {
+export type PreviewSettingsTabProps = {
 	theme: string;
 	numPreviewRows: number;
 	showRowNumbers: boolean;
@@ -20,20 +20,22 @@ export type PreviewSettingsProps = {
 
 const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
 
-export const PreviewSettings = ({
+export const PreviewSettingsTab = ({
 	theme, numPreviewRows, showRowNumbers, enableLineWrapping, previewTextSize, onChangeTheme,
 	toggleRowNumbers, toggleLineWrapping, onChangePreviewTextSize, updateNumPreviewRows
-}: PreviewSettingsProps): JSX.Element => {
+}: PreviewSettingsTabProps): JSX.Element => {
 	return (
 		<div className={styles.tabContent}>
 			<div className={styles.row}>
 				<div className={styles.label}>Theme</div>
 				<div className={styles.field}>
-					<Dropdown
-						value={theme}
-						options={C.THEMES}
-						onChange={({ value }: any): void => onChangeTheme(value)}
-					/>
+					<div style={{ width: 180 }}>
+						<Dropdown
+							value={theme}
+							options={C.THEMES}
+							onChange={({ value }: any): void => onChangeTheme(value)}
+						/>
+					</div>
 				</div>
 			</div>
 			<div className={styles.row}>
@@ -72,7 +74,7 @@ export const PreviewSettings = ({
 			<div className={styles.row}>
 				<div className={styles.label}>Preview rows</div>
 				<div className={styles.field}>
-					<div style={{ width: 180 }}>
+					<div style={{ width: 120 }}>
 						<Dropdown
 							value={numPreviewRows}
 							onChange={(item: any): any => updateNumPreviewRows(item.value)}

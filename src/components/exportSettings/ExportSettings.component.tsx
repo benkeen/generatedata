@@ -2,7 +2,8 @@ import * as React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PreviewSettings from './PreviewSettings.container';
+import PreviewSettingsTab from './PreviewSettingsTab.container';
+import ExportTypeTab from './ExportTypeTab.container';
 import { BuilderLayout } from '../builder/Builder.component';
 
 export type ExportSettingsProps = {
@@ -16,14 +17,12 @@ export const ExportSettings = ({ builderLayout, showExportSettings, toggleExport
 	const handleChange = (e: React.ChangeEvent<{}>, newValue: number): void => setSelectedTabIndex(newValue);
 	const getTab = (): JSX.Element | null => {
 		if (selectedTabIndex === 0) {
-			return null;
+			return <ExportTypeTab />;
 		} else {
-			return <PreviewSettings />;
+			return <PreviewSettingsTab />;
 		}
 	};
 
-	console.log(builderLayout);
-	
 	const anchor = builderLayout === 'horizontal' ? 'top' : 'left';
 	return (
 		<Drawer open={showExportSettings} anchor={anchor} onClose={toggleExportSettings}>

@@ -20,12 +20,12 @@ export type PreviewData = {
 };
 
 export type ReducerState = {
+	exportType: string;
 	rows: DataRows;
 	sortedRows: string[];
 	showGrid: boolean;
 	showPreview: boolean;
 	builderLayout: BuilderLayout;
-	selectedExportType: string;
 	showExportSettings: boolean;
 	exportTypeSettings: any;
 	numPreviewRows: number;
@@ -41,12 +41,12 @@ export type ReducerState = {
  * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
  */
 export const reducer = (state: ReducerState = {
+	exportType: 'JSON',
 	rows: {},
 	sortedRows: [],
 	showGrid: true,
 	showPreview: true,
 	builderLayout: 'horizontal',
-	selectedExportType: 'JSON',
 	showExportSettings: false,
 	exportTypeSettings: null,
 	numPreviewRows: 5,
