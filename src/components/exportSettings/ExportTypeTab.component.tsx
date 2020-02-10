@@ -1,13 +1,12 @@
 import React from 'react';
-import Dropdown from '../dropdown/Dropdown';
-import C from '../../core/constants';
+import Dropdown, { DropdownOption } from '../dropdown/Dropdown';
+import { exportTypeOptions } from '../../utils/exportTypeUtils';
 import * as styles from './ExportSettings.scss';
 
 export type ExportTypeTabProps = {
 	exportType: string;
 	onChangeExportType: (exportType: string) => void;
 };
-
 
 export const ExportTypeTab = ({
 	exportType, onChangeExportType
@@ -20,8 +19,8 @@ export const ExportTypeTab = ({
 					<div style={{ width: 180 }}>
 						<Dropdown
 							value={exportType}
-							options={C.THEMES}
-							onChange={({ value }: any): void => onChangeExportType(value)}
+							options={exportTypeOptions}
+							onChange={({ value }: DropdownOption): any => onChangeExportType(value)}
 						/>
 					</div>
 				</div>

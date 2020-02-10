@@ -1,16 +1,16 @@
 import * as React from 'react';
-import loadable from '@loadable/component';
+import loadable, { LoadableComponent } from '@loadable/component';
 import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
 import Settings from '@material-ui/icons/SettingsOutlined';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import * as styles from './PreviewPanel.scss';
 import { BuilderLayout } from '../builder/Builder.component';
+import * as styles from './PreviewPanel.scss';
 
 export type PreviewPanelProps = {
-	i18n: any;
+	exportType: string;
 	numPreviewRows: number;
 	builderLayout: BuilderLayout;
 	togglePreview: () => void;
@@ -22,21 +22,23 @@ export type PreviewPanelProps = {
 	data: any;
 	theme: string;
 	previewTextSize: number;
-	previewRef: any;
+	i18n: any;
 };
 
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
-	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, previewRef
+	exportType, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
+	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings
 }: PreviewPanelProps): React.ReactNode => {
 
 	// TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - drop the fallback altogether
 	// so we can fade the spinner out when the content is loaded
-	const ExportTypePreview = loadable(() => import(
+
+	// @ts-ignore
+	const ExportTypePreview: LoadableComponent = loadable(() => import(
 		/* webpackChunkName: "exportType-[index]" */
-		'../../plugins/exportTypes/JSON/JSONPreview.component')
+		`../../plugins/exportTypes/${exportType}/${exportType}.preview`)
 	);
 
 	const getNoResults = (): JSX.Element | null => {
@@ -56,7 +58,7 @@ const PreviewPanel = ({
 
 	const themeName = getThemeName(theme);
 	return (
-		<div className={`${styles.previewPanel} ${themeName}`} ref={previewRef}>
+		<div className={`${styles.previewPanel} ${themeName}`}>
 			<div className={styles.controls}>
 				<span onClick={toggleExportSettings}>
 					<Tooltip title="Settings" placement="bottom">

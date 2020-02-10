@@ -1,20 +1,20 @@
 import * as React from 'react';
-import Dropdown from '../../../components/dropdown/Dropdown';
+import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 
 export type ProgrammingLanguageState = {
-	language: 'JavaScript' | 'Perl' | 'PHP' | 'Ruby' | 'CSharp'
+	language: 'CSharp' | 'JavaScript' | 'Perl' | 'PHP' | 'Ruby'
 };
 
 export const state: ProgrammingLanguageState = {
 	language: 'Perl'
 };
 
-const options = [
+const options: DropdownOption[] = [
+	{ value: 'CSharp', label: 'C# (anonymous object)' },
 	{ value: 'JavaScript', label: 'JavaScript' },
 	{ value: 'Perl', label: 'Perl' },
 	{ value: 'PHP', label: 'PHP' },
-	{ value: 'Ruby', label: 'Ruby' },
-	{ value: 'CSharp', label: 'C# (anonymous object)' }
+	{ value: 'Ruby', label: 'Ruby' }
 ];
 
 export const Settings = ({ i18n, data, onUpdate }: any): JSX.Element => {
@@ -24,7 +24,6 @@ export const Settings = ({ i18n, data, onUpdate }: any): JSX.Element => {
 			language
 		});
 	};
-
 	return (
 		<>
 			{i18n.language}

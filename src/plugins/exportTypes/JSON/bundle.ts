@@ -1,7 +1,7 @@
 import { ExportTypeType } from '../../../../types/exportTypes';
 import * as generator from './JSON.generator';
 import { Settings } from './JSON.ui';
-import Preview from './JSONPreview.component';
+import Preview from './JSON.preview';
 
 
 export const exportType: ExportTypeType = {

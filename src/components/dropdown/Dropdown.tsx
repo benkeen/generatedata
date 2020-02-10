@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
 
-export type ChangeEvent = {
+export type DropdownOption = {
 	value: string;
 	label: string;
 };

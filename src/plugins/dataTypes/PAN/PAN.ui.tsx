@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
-import Dropdown, { ChangeEvent } from '../../../components/dropdown/Dropdown';
+import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { creditCardList, creditCardFormats } from './formats';
 
 export type PanState = {
@@ -17,7 +17,7 @@ export const state: PanState = {
 	randomBrands: []
 };
 
-export const getCreditCardOptions = (formats: string[], i18n: any): ChangeEvent[] => {
+export const getCreditCardOptions = (formats: string[], i18n: any): DropdownOption[] => {
 	return formats.map((format) => ({
 		value: format, label: i18n[format]
 	}));

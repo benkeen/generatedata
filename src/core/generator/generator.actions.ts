@@ -121,7 +121,6 @@ export const setPreviewTextSize = (previewTextSize: number): GDAction => ({
 export const TOGGLE_EXPORT_SETTINGS = 'TOGGLE_EXPORT_SETTINGS';
 export const toggleExportSettings = (): GDAction => ({ type: TOGGLE_EXPORT_SETTINGS });
 
-
 export const CHANGE_EXPORT_TYPE = 'CHANGE_EXPORT_TYPE';
 export const changeExportType = (exportType: string): GDAction => ({
 	type: CHANGE_EXPORT_TYPE,

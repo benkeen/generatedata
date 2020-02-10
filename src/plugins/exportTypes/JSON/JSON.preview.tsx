@@ -3,7 +3,7 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import { BuilderLayout } from '../../../components/builder/Builder.component';
 import { generateSimple } from './JSON.generator';
 import { JSONSettings } from './JSON.ui';
-import './JSONPreview.scss';
+import './JSON.scss';
 
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');

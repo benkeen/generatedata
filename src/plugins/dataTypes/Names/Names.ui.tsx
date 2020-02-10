@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dropdown, { ChangeEvent } from '../../../components/dropdown/Dropdown';
+import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 
 export type NamesState = {
@@ -13,7 +13,7 @@ export const state: NamesState = {
 };
 
 export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
-	const onChange = (selected: ChangeEvent): void => {
+	const onChange = (selected: DropdownOption): void => {
 		onUpdate({
 			...data,
 			example: selected.value,

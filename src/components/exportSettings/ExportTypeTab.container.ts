@@ -15,6 +15,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportTypeTabProps> => 
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-
-// @ts-ignore
 )(ExportTypeTab);
