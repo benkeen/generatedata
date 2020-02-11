@@ -16,6 +16,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportSettingsProps> =>
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-
-// @ts-ignore
 )(ExportSettings);
