@@ -15,6 +15,7 @@ import C from '../../core/constants';
 export type FooterProps = {
 	locale: GDLocale,
 	i18n: any,
+	openExportTypeSettings: () => void;
 	onChangeLocale: (a: any) => void
 };
 
@@ -36,7 +37,7 @@ const useListStyles = makeStyles(() =>
 	})
 );
 
-const Footer = ({ locale, onChangeLocale }: FooterProps): JSX.Element => {
+const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale }: FooterProps): JSX.Element => {
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
 
@@ -83,10 +84,10 @@ const Footer = ({ locale, onChangeLocale }: FooterProps): JSX.Element => {
 				</ul>
 
 				<div>
-					<Button onClick={(): void => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>Countries (30)</Button>
-					<Button onClick={(): void => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>JSON</Button>
+					<Button onClick={(): void => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>{i18n.countries} (30)</Button>
+					<Button onClick={openExportTypeSettings} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>JSON</Button>
 					<span style={{ padding: '6px 12px 0 6px', color: '#dddddd' }}>|</span>
-					<Button onClick={(): void => { }} variant="contained" color="primary" disableElevation>Generate &raquo;</Button>
+					<Button onClick={(): void => { }} variant="contained" color="primary" disableElevation>{i18n.generate_arrow}</Button>
 				</div>
 			</div>
 		</footer>

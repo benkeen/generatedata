@@ -3,6 +3,7 @@ import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
 import { generate } from 'shortid';
 import { BuilderLayout } from '../../components/builder/Builder.component';
+import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
 
 export type DataRow = {
 	id: string;
@@ -34,6 +35,7 @@ export type ReducerState = {
 	theme: string;
 	previewTextSize: number;
 	generatedPreviewData: PreviewData;
+	exportSettingsTab: ExportSettingsTab
 };
 
 /**
@@ -55,6 +57,7 @@ export const reducer = (state: ReducerState = {
 	theme: 'elegant',
 	previewTextSize: 12,
 	generatedPreviewData: {},
+	exportSettingsTab: 'exportType'
 }, action: AnyAction): ReducerState => {
 	switch (action.type) {
 
@@ -214,11 +217,16 @@ export const reducer = (state: ReducerState = {
 				previewTextSize: action.payload.previewTextSize
 			};
 
-		case actions.TOGGLE_EXPORT_SETTINGS:
-			return {
+		case actions.TOGGLE_EXPORT_SETTINGS: {
+			const newState = { 
 				...state,
 				showExportSettings: !state.showExportSettings
 			};
+			if (action.payload.tab) {
+				newState.exportSettingsTab = action.payload.tab;
+			}
+			return newState;
+		}
 
 		default:
 			return state;

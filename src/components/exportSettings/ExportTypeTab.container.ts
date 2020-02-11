@@ -5,7 +5,8 @@ import * as selectors from '../../core/generator/generator.selectors';
 import * as actions from '../../core/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<ExportTypeTabProps> => ({
-	exportType: selectors.getExportType(state)
+	exportType: selectors.getExportType(state),
+	exportSettingsTab: selectors.getExportSettingsTab(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportTypeTabProps> => ({

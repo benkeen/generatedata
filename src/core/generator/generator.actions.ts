@@ -2,6 +2,7 @@ import { GDAction } from '../../../types/general';
 import * as selectors from './generator.selectors';
 import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
 import { generateExportData } from './generator';
+import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
 
 
 export const ADD_ROWS = 'ADD_ROWS';
@@ -119,7 +120,12 @@ export const setPreviewTextSize = (previewTextSize: number): GDAction => ({
 });
 
 export const TOGGLE_EXPORT_SETTINGS = 'TOGGLE_EXPORT_SETTINGS';
-export const toggleExportSettings = (): GDAction => ({ type: TOGGLE_EXPORT_SETTINGS });
+export const toggleExportSettings = (tab?: ExportSettingsTab): GDAction => ({
+	type: TOGGLE_EXPORT_SETTINGS,
+	payload: {
+		tab
+	}
+});
 
 export const CHANGE_EXPORT_TYPE = 'CHANGE_EXPORT_TYPE';
 export const changeExportType = (exportType: string): GDAction => ({

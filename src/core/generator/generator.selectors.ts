@@ -19,6 +19,7 @@ export const getPreviewTextSize = (state: any): number => state.generator.previe
 export const getGeneratedPreviewData = (state: any): any => state.generator.generatedPreviewData;
 export const shouldShowExportSettings = (state: any): any => state.generator.showExportSettings;
 export const getPreviewPanelDimensions = (state: any): any => state.generator.previewPanelDimensions;
+export const getExportSettingsTab = (state: any): any => state.generator.exportSettingsTab;
 
 export const getNumRows = createSelector(
 	getSortedRows,
