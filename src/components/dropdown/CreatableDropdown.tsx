@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 
 const components = {
@@ -7,23 +6,59 @@ const components = {
 };
 
 const selectStyles = {
-	control: (base: React.CSSProperties): any => ({
+	// control: (base: React.CSSProperties): any => ({
+	// 	...base,
+	// 	minHeight: 20,
+	// 	height: 30,
+	// 	boxShadow: 'none',
+	// 	padding: 0,
+	// 	margin: 0
+	// }),
+	// // container: (base: React.CSSProperties): any => ({
+	// // 	...base,
+	// // 	height: 30
+	// // }),
+	// // menu: (base: React.CSSProperties) => ({
+	// // 	...base,
+	// // 	margin: 0
+	// // }),
+	// menuList: (base: React.CSSProperties) => ({
+	// 	...base,
+	// 	paddingTop: 0,
+	// 	paddingBottom: 0
+	// }),
+	// multiValue: (base: React.CSSProperties) => ({
+	// 	...base,
+	// 	margin: 0
+	// }),
+	// menuPortal: (base: any): any => ({ ...base, zIndex: 1400 }) // drawer is 1300
+
+	control: (base: React.CSSProperties) => ({
 		...base,
-		minHeight: 20,
 		boxShadow: 'none',
-		padding: 0,
-		margin: 0
+		minHeight: 30
 	}),
-	menu: (base: React.CSSProperties) => ({
+	dropdownIndicator: (base: React.CSSProperties) => ({
 		...base,
-		margin: 0
+		padding: 4
 	}),
-	menuList: (base: React.CSSProperties) => ({
+	clearIndicator: (base: React.CSSProperties) => ({
 		...base,
-		paddingTop: 0,
-		paddingBottom: 0
+		padding: 4
 	}),
-	menuPortal: (base: any): any => ({ ...base, zIndex: 1400 }) // drawer is 1300
+	multiValue: (base: React.CSSProperties) => ({
+		...base,
+		// backgroundColor: variables.colorPrimaryLighter
+	}),
+	valueContainer: (base: React.CSSProperties) => ({
+		...base,
+		padding: '0px 2px'
+	}),
+	input: (base: React.CSSProperties) => ({
+		...base,
+		margin: 0,
+		padding: 0
+	})
 };
 
 const createOption = (label: string) => ({
