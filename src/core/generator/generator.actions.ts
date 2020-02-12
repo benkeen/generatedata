@@ -44,12 +44,20 @@ export const onSelectDataType = (id: string, dataType: string): any => {
 };
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
-export const onConfigureDataType = (id: string, data: any): GDAction => ({
-	type: CONFIGURE_DATA_TYPE,
-	payload: {
-		id, data
-	}
-});
+export const onConfigureDataType = (id: string, data: any): any => {
+	return (dispatch: any): any => {
+		const configureDataType = (disp: any): any => new Promise((resolve: any) => {
+			disp({
+				type: CONFIGURE_DATA_TYPE,
+				payload: {
+					id, data
+				}
+			});
+			resolve();
+		});
+		configureDataType(dispatch).then(() => dispatch(refreshPreview([id])));
+	};
+};
 
 export const REPOSITION_ROW = 'REPOSITION_ROW';
 export const repositionRow = (id: string, newIndex: number): GDAction => ({
@@ -67,7 +75,6 @@ export const togglePreview = (): GDAction => ({ type: TOGGLE_PREVIEW });
 
 export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 export const refreshPreview = (idsToRefresh: string[] = []): any => {
-
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
 		const template = selectors.getGenerationTemplate(state);

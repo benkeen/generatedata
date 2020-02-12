@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import CreatableDropdown from '../../../components/dropdown/CreatableDropdown';
 
 export type ListType = 'EXACTLY' | 'AT_MOST';
 
@@ -46,19 +47,15 @@ export const Example = ({ data, onUpdate, i18n }: ExampleProps): JSX.Element => 
 	];
 
 	return (
-		<>
-			<Dropdown
-				value={data.example}
-				onChange={(i: any): void => onChange(i.value)}
-				options={options}
-			/>
-			<div>{i18n.separated_by_pipe}</div>
-		</>
+		<Dropdown
+			value={data.example}
+			onChange={(i: any): void => onChange(i.value)}
+			options={options}
+		/>
 	);
 };
 
 export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element => {
-	// const [] = React.useRef();
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
@@ -74,7 +71,7 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element
 
 	return (
 		<>
-			<div>
+			<div style={{ margin: 4 }}>
 				<input
 					type="radio"
 					id={`listType1-${id}`}
@@ -88,6 +85,7 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element
 					size={2}
 					id={`dtListExactly_${id}`}
 					value={data.exactly}
+					style={{ margin: '0 6px 0 4px' }}
 					onChange={(e): void => onChange('exactly', e.target.value)}
 				/>
 				<input
@@ -103,18 +101,24 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element
 					size={2}
 					id={`dtListAtMost_${id}`}
 					value={data.atMost}
+					style={{ margin: '0 6px 0 4px' }}
 					onChange={(e): void => onChange('atMost', e.target.value)}
 				/>
 			</div>
 			<div>
-				<input
-					type="text"
-					value={data.values}
-					onChange={(e): void => onChange('values', e.target.value)}
-				/>
+				<CreatableDropdown />
 			</div>
 		</>
 	);
+
+	/*
+		<input
+			type="text"
+			value={data.values}
+			onChange={(e): void => onChange('values', e.target.value)}
+			style={{ width: '100%' }}
+		/>
+	*/
 };
 
 export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.help}</p>;
