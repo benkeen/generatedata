@@ -3,6 +3,8 @@ import { JSONSettings } from './JSON.ui';
 import { isNumeric } from '../../../utils/generalUtils';
 
 
+// VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)
+
 // TODO will also need to pass in a whole thwack of other stuff previous assigned to $generator instance.
 // maybe change first param to $generationContext & include genEnvironment & everything else
 export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generator: any): any => {

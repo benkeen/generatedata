@@ -5,6 +5,8 @@ import { generateSimple } from './JSON.generator';
 import { JSONSettings } from './JSON.ui';
 import './JSON.scss';
 
+// TODO maybe provide these in the config definition & move codemirror/SyntaxHighlighter completely to the root. 
+// --- I guess the build would handle the importing of the CSS 
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
@@ -51,33 +53,3 @@ const Preview = ({ data, theme, showRowNumbers, enableLineWrapping }: PreviewPro
 };
 
 export default Preview;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

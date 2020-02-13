@@ -12,6 +12,10 @@ locales.forEach((locale) => {
 module.exports = {
 	entry: {
 		app: './src/index.tsx',
+
+		// TODO maybe here.
+
+		jsonBundle: './src/plugins/exportTypes/JSON/bundle.ts',
 		...localeFiles
 	},
 
@@ -77,6 +81,7 @@ module.exports = {
 
 	optimization: {
 		chunkIds: 'named',
+
 		splitChunks: {
 			cacheGroups: {
 				vendor: {

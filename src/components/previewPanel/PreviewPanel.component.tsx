@@ -31,7 +31,7 @@ const PreviewPanel = ({
 	exportType, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
 	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings
 }: PreviewPanelProps): React.ReactNode => {
-
+	
 	// TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - drop the fallback altogether
 	// so we can fade the spinner out when the content is loaded
 

@@ -23,6 +23,21 @@ export const init = (): void => {
 	// Type should register itself.
 	//console.log(config);
 
+	// *************************************************************************************** 
+	// - need central bundler loader.
+	// 		- Preview panel spinner
+	//		- Export Type settings panel spinner
+	// ***************************************************************************************
+
+	/*
+	Bundle content:
+	- All code: UI, generator
+	- i18n
+	- CSS.........?
+	
+	*/
+
+
 	// const hmm = 'JSON';
 	// type ModuleType = typeof import(`../../dist/${hmm}`);
 	//

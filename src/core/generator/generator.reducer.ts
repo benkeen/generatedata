@@ -35,7 +35,7 @@ export type ReducerState = {
 	theme: string;
 	previewTextSize: number;
 	generatedPreviewData: PreviewData;
-	exportSettingsTab: ExportSettingsTab
+	exportSettingsTab: ExportSettingsTab;
 };
 
 /**
@@ -50,7 +50,7 @@ export const reducer = (state: ReducerState = {
 	showPreview: true,
 	builderLayout: 'horizontal',
 	showExportSettings: false,
-	exportTypeSettings: null,
+	exportTypeSettings: {},
 	numPreviewRows: 5,
 	showRowNumbers: false,
 	enableLineWrapping: true,

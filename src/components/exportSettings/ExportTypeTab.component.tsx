@@ -1,4 +1,5 @@
 import React from 'react';
+import loadable, { LoadableComponent } from '@loadable/component';
 import Dropdown, { DropdownOption } from '../dropdown/Dropdown';
 import { exportTypeOptions } from '../../utils/exportTypeUtils';
 import * as styles from './ExportSettings.scss';
@@ -13,6 +14,13 @@ export type ExportTypeTabProps = {
 export const ExportTypeTab = ({
 	exportType, onChangeExportType
 }: ExportTypeTabProps): JSX.Element => {
+
+	// @ts-ignore
+	const ExportTypeSettings: LoadableComponent = loadable(() => import(
+		/* webpackChunkName: "exportType-[index]" */
+		`../../plugins/exportTypes/${exportType}/${exportType}.ui`)
+	);
+
 	return (
 		<div className={styles.tabContent}>
 			<div className={styles.row}>
@@ -27,6 +35,11 @@ export const ExportTypeTab = ({
 					</div>
 				</div>
 			</div>
+			<React.Suspense fallback={<div>loading...</div>}>
+				<ExportTypeSettings
+					onUpdate={() => {}}
+				/>
+			</React.Suspense>
 		</div>
 	);
 };

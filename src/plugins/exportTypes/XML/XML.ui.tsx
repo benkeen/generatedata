@@ -20,29 +20,29 @@ export const Settings = ({ data, i18n }: any): JSX.Element => {
 	return (
 		<>
 			<table cellSpacing="0" cellPadding="0">
-			<tr>
-				<td valign="top">
-					<table cellSpacing="0" cellPadding="0">
-					<tr>
-						<td className="etXMLDefaultFormatLabels"><label htmlFor="etXMLRootNodeName">{i18n.root_node_name}</label></td>
-						<td>
-							<input type="text" name="etXMLRootNodeName" id="etXMLRootNodeName" value={data.rootNodeName} />
-						</td>
-					</tr>
-					<tr>
-						<td className="etXMLDefaultFormatLabels"><label htmlFor="etXMLRecordNodeName">{i18n.record_node_name}</label></td>
-						<td>
-							<input type="text" name="etXMLRecordNodeName" id="etXMLRecordNodeName" value={data.recordNodeName} />
-						</td>
-					</tr>
-					</table>
-				</td>
-				<td valign="top">
-					<input type="checkbox" name="etXMLUseCustomExportFormat" id="etXMLUseCustomExportFormat" />
+				<tr>
+					<td valign="top">
+						<table cellSpacing="0" cellPadding="0">
+							<tr>
+								<td className="etXMLDefaultFormatLabels"><label htmlFor="etXMLRootNodeName">{i18n.root_node_name}</label></td>
+								<td>
+									<input type="text" name="etXMLRootNodeName" id="etXMLRootNodeName" value={data.rootNodeName} />
+								</td>
+							</tr>
+							<tr>
+								<td className="etXMLDefaultFormatLabels"><label htmlFor="etXMLRecordNodeName">{i18n.record_node_name}</label></td>
+								<td>
+									<input type="text" name="etXMLRecordNodeName" id="etXMLRecordNodeName" value={data.recordNodeName} />
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td valign="top">
+						<input type="checkbox" name="etXMLUseCustomExportFormat" id="etXMLUseCustomExportFormat" />
 						<label htmlFor="etXMLUseCustomExportFormat">{i18n.use_custom_xml_format}</label>
 						<input type="button" id="etXMLEditCustomFormat" value="edit" disabled={true} />
-				</td>
-			</tr>
+					</td>
+				</tr>
 			</table>
 
 			<input type="hidden" name="etXMLCustomHTMLSource" id="etXMLCustomHTMLSource" />
@@ -71,21 +71,21 @@ export const Settings = ({ data, i18n }: any): JSX.Element => {
 }
 
 
-	// sucks to include this in the JS, but the <? .. ?> of the XML tag gets screwed up when embedding
-	// this in a hidden HTML element
-	var _defaultCustomXML = "{if $isFirstBatch}\n<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" +
-		"<records>\n" +
-		"{/if}\n" +
-		"{foreach $rowData as $row}\n" +
-		"\t<record>\n" +
-		"{foreach from=$colData item=col name=c}\n" +
-		"\t\t<{$col}>{$row[$smarty.foreach.c.index]}</{$col}>\n" +
-		"{/foreach}\n" +
-		"\t</record>\n" +
-		"{/foreach}\n" +
-		"{if $isLastBatch}\n" +
-		"</records>\n" +
-		"{/if}";
+// sucks to include this in the JS, but the <? .. ?> of the XML tag gets screwed up when embedding
+// this in a hidden HTML element
+var _defaultCustomXML = "{if $isFirstBatch}\n<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" +
+	"<records>\n" +
+	"{/if}\n" +
+	"{foreach $rowData as $row}\n" +
+	"\t<record>\n" +
+	"{foreach from=$colData item=col name=c}\n" +
+	"\t\t<{$col}>{$row[$smarty.foreach.c.index]}</{$col}>\n" +
+	"{/foreach}\n" +
+	"\t</record>\n" +
+	"{/foreach}\n" +
+	"{if $isLastBatch}\n" +
+	"</records>\n" +
+	"{/if}";
 
 
 	// var _init = function() {
@@ -174,10 +174,10 @@ export const Settings = ({ data, i18n }: any): JSX.Element => {
 	// };
 
 
-	/**
-	 * Called when the user changes the result type. This just changes the 2nd column heading to be
-	 * "Node Name" rather than the default "Column Title".
-	 */
+/**
+ * Called when the user changes the result type. This just changes the 2nd column heading to be
+ * "Node Name" rather than the default "Column Title".
+ */
 	// var _resultTypeChanged = function(msg) {
 	// 	if (msg.newExportType === "XML") {
 	// 		$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
