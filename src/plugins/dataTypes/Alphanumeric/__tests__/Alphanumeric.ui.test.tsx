@@ -1,9 +1,8 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react';
-
 // @ts-ignore
 import * as i18n from '../i18n/en';
-import { state, Options } from '../Alphanumeric.ui';
+import { state, Options, Help, Example } from '../Alphanumeric.ui';
 
 const defaultProps = {
 	coreI18n: {},
@@ -11,6 +10,22 @@ const defaultProps = {
 	id: 'id',
 	dimensions: { width: 100, height: 100 }
 };
+
+describe('Example', () => {
+	it('renders', () => {
+		const data = { ...state };
+		const onUpdate = jest.fn();
+		const { container } = render(
+			<Example 
+				{...defaultProps}
+				data={data}
+				onUpdate={onUpdate}
+			/>
+		);
+		// TODO should test change
+		expect(container).toBeTruthy();
+	});
+});
 
 describe('Options', () => {
 	it('changing the content should call callback', () => {
@@ -36,5 +51,12 @@ describe('Options', () => {
 			...state,
 			value: 'new value!!'
 		});
+	});
+});
+
+describe('Help', () => {
+	it('renders', () => {
+		const { container } = render(<Help {...defaultProps}/>);
+		expect(container).toBeTruthy();
 	});
 });

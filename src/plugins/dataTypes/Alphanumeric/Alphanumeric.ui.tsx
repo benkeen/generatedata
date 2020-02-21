@@ -51,6 +51,7 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 		</p>
 
 		<table cellPadding="0" cellSpacing="1">
+			<tbody>
 			<tr>
 				<td><h4>L</h4></td>
 				<td>{i18n.help_1}</td>
@@ -87,6 +88,7 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 				<td><h4>H</h4></td>
 				<td>{i18n.help_12}</td>
 			</tr>
+			</tbody>
 		</table>
 	</>
 );
