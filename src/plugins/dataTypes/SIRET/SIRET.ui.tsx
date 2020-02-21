@@ -9,9 +9,10 @@ export const state = {
 export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.DATA_TYPE.DESC}
+			{i18n.DESC}
 		</p>
 		<table cellPadding="0" cellSpacing="1">
+			<tbody>
 			<tr>
 				<td><h4>{i18n.SIRET}</h4></td>
 				<td>{i18n.type_SIRET}</td>
@@ -27,6 +28,7 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 				<td><h4>{i18n.more_info}</h4></td>
 				<td><a href={i18n.help_link} target="_blank" rel="noopener noreferrer">WIKI SIRET</a></td>
 			</tr>
+			</tbody>
 		</table>
 	</>
 );

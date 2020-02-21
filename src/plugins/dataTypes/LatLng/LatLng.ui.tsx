@@ -31,4 +31,4 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DATA_TYPE.DESC}</p>;
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DESC}</p>;

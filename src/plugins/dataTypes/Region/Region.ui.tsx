@@ -30,7 +30,7 @@ export const Options = (): JSX.Element => {
 	return <div />;
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DATA_TYPE.DESC} {i18n.help_text}</p>;
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DESC} {i18n.help_text}</p>;
 
 
 // var _saveRow = function(rowNum) {

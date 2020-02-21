@@ -39,7 +39,7 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): JSX.Element => 
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DATA_TYPE.DESC}</p>;
+export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DESC}</p>;
 
 
 // var _validate = function(rows) {

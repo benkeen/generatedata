@@ -133,9 +133,9 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<p>
-		{i18n.DATA_TYPE.DESC}
+		{i18n.DESC}
 		{i18n.pan_help_intro}
 		<b>{i18n.mastercard}</b>, <b>{i18n.visa}</b>, <b>{i18n.visa_electron}</b>,
 		<b>{i18n.americanexpress}</b>, <b>{i18n.discover}</b>, <b>{i18n.american_diners}</b>,

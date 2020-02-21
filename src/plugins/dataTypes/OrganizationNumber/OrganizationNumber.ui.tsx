@@ -58,11 +58,12 @@ export const Options = ({ id, data, onUpdate, i18n }: OptionsProps): JSX.Element
 export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.DATA_TYPE.DESC}
+			{i18n.DESC}
 			{i18n.help_text}
 		</p>
 
 		<table cellPadding="0" cellSpacing="1">
+			<tbody>
 			<tr>
 				<td><h4>OrganisationNumberWithoutHyphen</h4></td>
 				<td>{i18n.type_OrganisationNumberWithoutHyphen}</td>
@@ -71,6 +72,7 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 				<td><h4>OrganisationNumberWithHyphen</h4></td>
 				<td>{i18n.type_OrganisationNumberWithHyphen}</td>
 			</tr>
+			</tbody>
 		</table>
 	</>
 );
