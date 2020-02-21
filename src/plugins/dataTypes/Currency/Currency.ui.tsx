@@ -88,6 +88,7 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 		</p>
 
 		<table cellPadding="0" cellSpacing="1">
+			<tbody>
 			<tr>
 				<td valign="top"><h4>{i18n.format}</h4></td>
 				<td>{i18n.format_desc}</td>
@@ -108,6 +109,7 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 				<td valign="top"><h4>{i18n.prefix_suffix}</h4></td>
 				<td>{i18n.prefix_suffix_desc}</td>
 			</tr>
+			</tbody>
 		</table>
 	</>
 );

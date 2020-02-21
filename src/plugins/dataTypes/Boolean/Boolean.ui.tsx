@@ -42,10 +42,10 @@ export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
 	<input type="text" value={data.value} onChange={(e): void => onUpdate({ ...data, value: e.target.value })} style={{ width: '100%' }} />
 );
 
-export const Help = ({ i18n }: HelpProps): React.ReactNode => (
+export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.DATA_TYPE.DESC}
+			{i18n.DESC}
 			{i18n.help_intro}
 		</p>
 

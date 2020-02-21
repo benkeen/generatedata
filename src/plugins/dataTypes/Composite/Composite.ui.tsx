@@ -14,7 +14,7 @@ export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
 export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.DATA_TYPE.DESC}
+			{i18n.DESC}
 		</p>
 		<p>
 			{i18n.Composite_help_2}
