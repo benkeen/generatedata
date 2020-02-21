@@ -22,6 +22,7 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => 
 	};
 	return (
 		<table cellSpacing="0" cellPadding="0">
+			<tbody>
 			<tr>
 				<td>{i18n.loop_count}</td>
 				<td>
@@ -36,6 +37,7 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => 
 						onChange={(e): void => onChange('values', e.target.value)} />
 				</td>
 			</tr>
+			</tbody>
 		</table>
 	);
 };

@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react';
 // @ts-ignore
 import * as i18n from '../i18n/en';
-import { state, Help, Options } from '../Boolean.ui';
+import { state, Options } from '../Country.ui';
 
 const defaultProps = {
 	coreI18n: {},
@@ -22,25 +22,8 @@ describe('Options', () => {
 				onUpdate={onUpdate}
 			/>
 		);
-		const field = container.querySelector('input');
-
-		// @ts-ignore
-		fireEvent.change(field, {
-			target: {
-				value: 'new value!!'
-			}
-		});
-
-		expect(onUpdate).toBeCalledWith({
-			...state,
-			value: 'new value!!'
-		});
-	});
-});
-
-describe('Help', () => {
-	it('renders', () => {
-		const { container } = render(<Help {...defaultProps}/>);
-		expect(container).toBeTruthy();
+		const field = container.querySelector('input') as HTMLInputElement;
+		fireEvent.click(field);
+		expect(onUpdate).toBeCalledWith({ allCountries: false });
 	});
 });

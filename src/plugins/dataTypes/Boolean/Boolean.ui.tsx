@@ -39,7 +39,12 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => 
 };
 
 export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
-	<input type="text" value={data.value} onChange={(e): void => onUpdate({ ...data, value: e.target.value })} style={{ width: '100%' }} />
+	<input
+		type="text"
+		value={data.value}
+		onChange={(e): void => onUpdate({ ...data, value: e.target.value })}
+		style={{ width: '100%' }}
+	/>
 );
 
 export const Help = ({ i18n }: HelpProps): JSX.Element => (
