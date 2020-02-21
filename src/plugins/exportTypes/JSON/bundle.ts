@@ -5,7 +5,7 @@ import Preview from './JSON.preview';
 
 export const exportType: ETBundle = {
 	initialState,
-    generate,
-    Settings,
-    Preview
+	generate,
+	Settings,
+	Preview
 };

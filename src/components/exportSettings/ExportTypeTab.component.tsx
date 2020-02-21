@@ -16,10 +16,12 @@ export const ExportTypeTab = ({
 }: ExportTypeTabProps): JSX.Element => {
 
 	// @ts-ignore
-	const ExportTypeSettings: LoadableComponent = loadable(() => import(
-		/* webpackChunkName: "exportType-[index]" */
-		`../../plugins/exportTypes/${exportType}/${exportType}.ui`)
-	);
+	// const ExportTypeSettings: LoadableComponent = loadable(() => import(
+	// 	/* webpackChunkName: "exportType-[index]" */
+	// 	`../../plugins/exportTypes/${exportType}/${exportType}.ui`)
+	// );
+
+	const ExportTypeSettings = () => null;
 
 	return (
 		<div className={styles.tabContent}>
@@ -37,7 +39,6 @@ export const ExportTypeTab = ({
 			</div>
 			<React.Suspense fallback={<div>loading...</div>}>
 				<ExportTypeSettings
-					onUpdate={() => {}}
 				/>
 			</React.Suspense>
 		</div>
