@@ -2,7 +2,8 @@
   "compilerOptions": {
     "lib": ["es6", "dom", "esnext"],
     "outDir": "./dist/",
-    "sourceMap": true,
+	"sourceMap": true,
+	"esModuleInterop": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
@@ -11,5 +12,6 @@
     "target": "es6",
 	"jsx": "react",
 	"allowSyntheticDefaultImports": true
-  }
+  },
+  "exclude": ["node_modules"]
 }

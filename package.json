@@ -71,6 +71,7 @@
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "@teamsupercell/typings-for-css-modules-loader": "^2.1.0",
+    "@testing-library/react": "^9.4.0",
     "@types/jest": "^24.0.25",
     "@types/loadable__component": "^5.10.0",
     "@types/node": "^12.12.21",

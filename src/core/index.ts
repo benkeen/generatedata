@@ -34,9 +34,7 @@ export const init = (): void => {
 	- All code: UI, generator
 	- i18n
 	- CSS.........?
-	
 	*/
-
 
 	// const hmm = 'JSON';
 	// type ModuleType = typeof import(`../../dist/${hmm}`);

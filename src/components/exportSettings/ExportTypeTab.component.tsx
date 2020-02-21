@@ -39,7 +39,7 @@ export const ExportTypeTab = ({
 			</div>
 			<React.Suspense fallback={<div>loading...</div>}>
 				<ExportTypeSettings
-				/>
+ 				/>
 			</React.Suspense>
 		</div>
 	);
