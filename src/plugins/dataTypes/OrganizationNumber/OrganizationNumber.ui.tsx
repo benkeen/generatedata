@@ -64,14 +64,14 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 
 		<table cellPadding="0" cellSpacing="1">
 			<tbody>
-			<tr>
-				<td><h4>OrganisationNumberWithoutHyphen</h4></td>
-				<td>{i18n.type_OrganisationNumberWithoutHyphen}</td>
-			</tr>
-			<tr>
-				<td><h4>OrganisationNumberWithHyphen</h4></td>
-				<td>{i18n.type_OrganisationNumberWithHyphen}</td>
-			</tr>
+				<tr>
+					<td><h4>OrganisationNumberWithoutHyphen</h4></td>
+					<td>{i18n.type_OrganisationNumberWithoutHyphen}</td>
+				</tr>
+				<tr>
+					<td><h4>OrganisationNumberWithHyphen</h4></td>
+					<td>{i18n.type_OrganisationNumberWithHyphen}</td>
+				</tr>
 			</tbody>
 		</table>
 	</>

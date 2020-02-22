@@ -13,21 +13,21 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 		</p>
 		<table cellPadding="0" cellSpacing="1">
 			<tbody>
-			<tr>
-				<td><h4>{i18n.SIRET}</h4></td>
-				<td>{i18n.type_SIRET}</td>
-			</tr>
-			<tr>
-				<td><h4>{i18n.SIREN}</h4></td>
-				<td>{i18n.type_SIREN}</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><h4>{i18n.more_info}</h4></td>
-				<td><a href={i18n.help_link} target="_blank" rel="noopener noreferrer">WIKI SIRET</a></td>
-			</tr>
+				<tr>
+					<td><h4>{i18n.SIRET}</h4></td>
+					<td>{i18n.type_SIRET}</td>
+				</tr>
+				<tr>
+					<td><h4>{i18n.SIREN}</h4></td>
+					<td>{i18n.type_SIREN}</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><h4>{i18n.more_info}</h4></td>
+					<td><a href={i18n.help_link} target="_blank" rel="noopener noreferrer">WIKI SIRET</a></td>
+				</tr>
 			</tbody>
 		</table>
 	</>

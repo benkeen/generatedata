@@ -51,14 +51,14 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 
 		<table cellPadding="0" cellSpacing="1">
 			<tbody>
-			<tr>
-				<td><h4>PersonalNumberWithoutHyphen</h4></td>
-				<td>{i18n.type_PersonalNumberWithoutHyphen}</td>
-			</tr>
-			<tr>
-				<td><h4>PersonalNumberWithHyphen</h4></td>
-				<td>{i18n.type_PersonalNumberWithHyphen}</td>
-			</tr>
+				<tr>
+					<td><h4>PersonalNumberWithoutHyphen</h4></td>
+					<td>{i18n.type_PersonalNumberWithoutHyphen}</td>
+				</tr>
+				<tr>
+					<td><h4>PersonalNumberWithHyphen</h4></td>
+					<td>{i18n.type_PersonalNumberWithHyphen}</td>
+				</tr>
 			</tbody>
 		</table>
 	</>

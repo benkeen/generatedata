@@ -61,25 +61,28 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => 
 	);
 };
 
-export const Options = ({ i18n, data }: OptionsProps): JSX.Element => (
-	<>
-		<div>
-			{i18n.format}: <input type="text" value={data.format} style={{ width: 160 }} />
-		</div>
-		<div>
-			{i18n.range} <input type="text" value={data.from} style={{ width: 80 }} />
-			{i18n.to} <input type="text" value={data.to} style={{ width: 80 }} />
-		</div>
-		<div>
-			{i18n.currency_symbol}
-			<input type="text" value={data.currencySymbol} style={{ width: 20 }} />
-			<select defaultValue={data.currencySymbolLocation}>
-				<option value="prefix">{i18n.prefix}</option>
-				<option value="suffix">{i18n.suffix}</option>
-			</select>
-		</div>
-	</>
-);
+export const Options = ({ i18n, data }: OptionsProps): JSX.Element => {
+
+	return (
+		<>
+			<div>
+				{i18n.format}: <input type="text" value={data.format} style={{ width: 160 }} />
+			</div>
+			<div>
+				{i18n.range} <input type="text" value={data.from} style={{ width: 80 }} />
+				{i18n.to} <input type="text" value={data.to} style={{ width: 80 }} />
+			</div>
+			<div>
+				{i18n.currency_symbol}
+				<input type="text" value={data.currencySymbol} style={{ width: 20 }} />
+				<select defaultValue={data.currencySymbolLocation}>
+					<option value="prefix">{i18n.prefix}</option>
+					<option value="suffix">{i18n.suffix}</option>
+				</select>
+			</div>
+		</>
+	);
+};
 
 export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	<>
@@ -89,26 +92,26 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 
 		<table cellPadding="0" cellSpacing="1">
 			<tbody>
-			<tr>
-				<td valign="top"><h4>{i18n.format}</h4></td>
-				<td>{i18n.format_desc}</td>
-			</tr>
-			<tr>
-				<td valign="top"><h4>{i18n.range_from}</h4></td>
-				<td>{i18n.range_from_desc}</td>
-			</tr>
-			<tr>
-				<td valign="top"><h4>{i18n.range_to}</h4></td>
-				<td>{i18n.range_to_desc}</td>
-			</tr>
-			<tr>
-				<td valign="top"><h4>{i18n.currency_symbol}</h4></td>
-				<td>{i18n.currency_symbol_desc}</td>
-			</tr>
-			<tr>
-				<td valign="top"><h4>{i18n.prefix_suffix}</h4></td>
-				<td>{i18n.prefix_suffix_desc}</td>
-			</tr>
+				<tr>
+					<td valign="top"><h4>{i18n.format}</h4></td>
+					<td>{i18n.format_desc}</td>
+				</tr>
+				<tr>
+					<td valign="top"><h4>{i18n.range_from}</h4></td>
+					<td>{i18n.range_from_desc}</td>
+				</tr>
+				<tr>
+					<td valign="top"><h4>{i18n.range_to}</h4></td>
+					<td>{i18n.range_to_desc}</td>
+				</tr>
+				<tr>
+					<td valign="top"><h4>{i18n.currency_symbol}</h4></td>
+					<td>{i18n.currency_symbol_desc}</td>
+				</tr>
+				<tr>
+					<td valign="top"><h4>{i18n.prefix_suffix}</h4></td>
+					<td>{i18n.prefix_suffix_desc}</td>
+				</tr>
 			</tbody>
 		</table>
 	</>

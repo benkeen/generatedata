@@ -23,20 +23,20 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => 
 	return (
 		<table cellSpacing="0" cellPadding="0">
 			<tbody>
-			<tr>
-				<td>{i18n.loop_count}</td>
-				<td>
-					<input type="text" value={data.loopCount} size={5}
-						onChange={(e): void => onChange('loopCount', e.target.value)} />
-				</td>
-			</tr>
-			<tr>
-				<td>{i18n.values}</td>
-				<td>
-					<input value={data.values} style={{ width: '100%' }}
-						onChange={(e): void => onChange('values', e.target.value)} />
-				</td>
-			</tr>
+				<tr>
+					<td>{i18n.loop_count}</td>
+					<td>
+						<input type="text" value={data.loopCount} size={5}
+							onChange={(e): void => onChange('loopCount', e.target.value)} />
+					</td>
+				</tr>
+				<tr>
+					<td>{i18n.values}</td>
+					<td>
+						<input value={data.values} style={{ width: '100%' }}
+							onChange={(e): void => onChange('values', e.target.value)} />
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	);
