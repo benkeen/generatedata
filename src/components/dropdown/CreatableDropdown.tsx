@@ -1,5 +1,6 @@
 import * as React from 'react';
 import CreatableSelect from 'react-select/creatable';
+import { DropdownOption } from './Dropdown';
 
 const components = {
 	DropdownIndicator: null,
@@ -33,35 +34,35 @@ const selectStyles = {
 	// }),
 	// menuPortal: (base: any): any => ({ ...base, zIndex: 1400 }) // drawer is 1300
 
-	control: (base: React.CSSProperties) => ({
+	control: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
 		boxShadow: 'none',
 		minHeight: 30
 	}),
-	dropdownIndicator: (base: React.CSSProperties) => ({
+	dropdownIndicator: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
 		padding: 4
 	}),
-	clearIndicator: (base: React.CSSProperties) => ({
+	clearIndicator: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
 		padding: 4
 	}),
-	multiValue: (base: React.CSSProperties) => ({
+	multiValue: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
 		// backgroundColor: variables.colorPrimaryLighter
 	}),
-	valueContainer: (base: React.CSSProperties) => ({
+	valueContainer: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
 		padding: '0px 2px'
 	}),
-	input: (base: React.CSSProperties) => ({
+	input: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
 		margin: 0,
 		padding: 0
 	})
 };
 
-const createOption = (label: string) => ({
+const createOption = (label: string): DropdownOption => ({
 	label,
 	value: label,
 });
@@ -72,7 +73,7 @@ export default class CreatableInputOnly extends React.Component<any, any> {
 		value: [],
 	};
 
-	handleChange = (value: any, actionMeta: any) => {
+	handleChange = (value: any, actionMeta: any): void => {
 		console.group('Value Changed');
 		console.log(value);
 		console.log(`action: ${actionMeta.action}`);
@@ -80,11 +81,11 @@ export default class CreatableInputOnly extends React.Component<any, any> {
 		this.setState({ value });
 	};
 
-	handleInputChange = (inputValue: string) => {
+	handleInputChange = (inputValue: string): void => {
 		this.setState({ inputValue });
 	};
 
-	handleKeyDown = (event: any) => {
+	handleKeyDown = (event: any): void => {
 		const { inputValue, value } = this.state;
 		if (!inputValue) {
 			return;
@@ -102,7 +103,7 @@ export default class CreatableInputOnly extends React.Component<any, any> {
 		}
 	};
 
-	render() {
+	render(): JSX.Element {
 		const { inputValue, value } = this.state;
 		return (
 			<CreatableSelect

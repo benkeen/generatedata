@@ -7,6 +7,7 @@ import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { BuilderLayout } from '../builder/Builder.component';
+import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
 import * as styles from './PreviewPanel.scss';
 
 export type PreviewPanelProps = {
@@ -40,6 +41,9 @@ const PreviewPanel = ({
 		/* webpackChunkName: "exportType-[index]" */
 		`../../plugins/exportTypes/${exportType}/${exportType}.preview`)
 	);
+
+	console.log('!!!');
+	loadExportTypeBundle('JSON');
 
 	const getNoResults = (): JSX.Element | null => {
 		console.log(data);

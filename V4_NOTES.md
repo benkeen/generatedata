@@ -83,3 +83,10 @@ How about a SINGLE generated build/plugins.js file that exports all plugin info.
 Core:
     - includes 
 
+
+
+
+Bundling
+
+https://github.com/webpack/webpack/issues/7526
+

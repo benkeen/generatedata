@@ -1,6 +1,9 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { BuilderLayout } from '../src/components/builder/Builder.component';
 
+// dynamically construct a type? Perhaps via the build script would be best.
+// export type ET = 'JSON' | 'XML' | ...
+
 export type ETBundle = {
 
 	initialState: any;
