@@ -1,8 +1,4 @@
-import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { BuilderLayout } from '../src/components/builder/Builder.component';
-
-// dynamically construct a type? Perhaps via the build script would be best.
-// export type ET = 'JSON' | 'XML' | ...
 
 export type ETBundle = {
 
@@ -17,15 +13,6 @@ export type ETBundle = {
     // the preview component
     Preview?: React.ReactNode;
 }
-
-export type GeneralMetadataTypes = {
-    dataType: 'number' | 'string' | 'boolean' | 'date';
-}
-
-export type ExportTypeMetadata = {
-    general?: GeneralMetadataTypes;
-    sql?: DatabaseTypes;
-};
 
 export type ETSettings = {
 	onUpdate: Function; // from container

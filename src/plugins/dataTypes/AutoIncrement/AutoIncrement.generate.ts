@@ -1,4 +1,4 @@
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { ETMetadata } from '../../../../types/exportTypes';
 import { AutoIncrementState } from './AutoIncrement.ui';
 import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
 
@@ -21,7 +21,7 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 	return { display: value };
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): ETMetadata => ({
 	general: {
 		dataType: 'number'
 	},

@@ -14,7 +14,11 @@ export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
 export type GDAction = {
 	type: string;
 	payload?: any
-}
+};
+
+export type AnyObject = {
+    [key: string]: any;
+};
 
 export type GenerationTemplateRow = {
 	id: string;

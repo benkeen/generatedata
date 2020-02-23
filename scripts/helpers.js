@@ -26,23 +26,25 @@ const getDataTypes = () => {
 			return;
 		}
 
-		const configFile = `${baseFolder}/${folder}/${folder}.config.js`;
-		if (!fs.existsSync(configFile)) {
+		const bundle = `${baseFolder}/${folder}/bundle.ts`;
+		if (!fs.existsSync(bundle)) {
 			return;
 		}
 		let row;
 		try {
-			const file = require(configFile).default;
+			const blah = require(bundle).default;
+			console.log('--->', blah);
+
 			row = {
-				name: file.name,
+				name: config.name,
 				folder,
 				folderPath: `${baseFolder}/${folder}`,
-				fieldGroup: file.fieldGroup,
-				fieldGroupOrder: file.fieldGroupOrder,
-				processOrder: file.processOrder ? file.processOrder : 1
+				fieldGroup: config.fieldGroup,
+				fieldGroupOrder: config.fieldGroupOrder,
+				processOrder: config.processOrder ? config.processOrder : 1
 			};
 		} catch (e) {
-			console.log('Error parsing ', configFile);
+			console.log('Error parsing ', blah);
 		}
 
 		dataTypeInfo.push(row);

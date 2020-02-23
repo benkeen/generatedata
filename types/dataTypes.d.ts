@@ -1,6 +1,33 @@
-export type AnyObject = {
-    [key: string]: any;
+import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
+export { DataType } from '../build/dataTypesListUI';
+
+export type DTDefinition = {
+	name: string;
+	fieldGroup: DTFieldGroup;
+	fieldGroupOrder: number;
+	schema: any;
+};
+
+export type DTFieldGroup = 'numeric';
+
+export type DTBundle = {
+	definition: DTDefinition;
+	generate: any;
+	Example?: any;
+	Options?: any;
+	Help?: any;
+	rowStateReducer?: () => any;
+	getMetadata?: () => DTMetadata;
+};
+
+export type GeneralMetadataTypes = {
+    dataType: 'number' | 'string' | 'boolean' | 'date';
 }
+
+export type DTMetadata = {
+    general?: GeneralMetadataTypes;
+    sql?: DatabaseTypes;
+};
 
 export type Dimensions = {
 	width: number;
@@ -8,7 +35,7 @@ export type Dimensions = {
 };
 
 // Data Type <Example /> props
-export type ExampleProps = {
+export type DTExampleProps = {
     coreI18n: any;
     i18n: any;
     data: any;
