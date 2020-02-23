@@ -42,6 +42,8 @@ const PreviewPanel = ({
 	);
 
 	const getNoResults = (): JSX.Element | null => {
+		console.log(data);
+
 		if (data.rows.length > 0) {
 			return null;
 		}

@@ -7,7 +7,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
 import HtmlTooltip from '../tooltip/HtmlTooltip';
-import * as styles from './Footer.scss';
+import styles from './Footer.scss';
 import { Github } from '../icons';
 import { GDLocale } from '../../../types/general';
 import C from '../../core/constants';
@@ -87,7 +87,9 @@ const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale }: Footer
 					<Button onClick={(): void => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>{i18n.countries} (30)</Button>
 					<Button onClick={openExportTypeSettings} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>JSON</Button>
 					<span style={{ padding: '6px 12px 0 6px', color: '#dddddd' }}>|</span>
-					<Button onClick={(): void => { }} variant="contained" color="primary" disableElevation dangerouslySetInnerHTML={{ __html: i18n.generate_arrow }} />
+					<Button onClick={(): void => { }} variant="contained" color="primary" disableElevation>
+						<span dangerouslySetInnerHTML={{ __html: i18n.generate_arrow }} />
+					</Button>
 				</div>
 			</div>
 		</footer>

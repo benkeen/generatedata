@@ -60,8 +60,12 @@ export const getPreviewData = createSelector(
 				}
 				rowData.push(data[id][j]);
 			}
-			formattedData.push(rowData);
+
+			if (rowData.length) {
+				formattedData.push(rowData);
+			}
 		}
+
 		return formattedData;
 	}
 );
