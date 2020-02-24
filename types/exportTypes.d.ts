@@ -1,16 +1,9 @@
 import { BuilderLayout } from '../src/components/builder/Builder.component';
 
 export type ETBundle = {
-
 	initialState: any;
-
-    // the main generation function for the Export Type
     generate: any;
-
-    // the component used for rendering the Export Type settings
     Settings?: React.ReactNode;
-
-    // the preview component
     Preview?: React.ReactNode;
 }
 

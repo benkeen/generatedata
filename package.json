@@ -10,7 +10,8 @@
     "dev": "grunt & yarn build & yarn webpack",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
     "build": "node ./scripts/createPluginsFile.js & node ./scripts/generateLocaleFiles.js & node ./scripts/generateConfigFile.js",
-    "test": "env NODE_ENV=test jest"
+	"test": "env NODE_ENV=test jest",
+	"build2": "tsc ./scripts/yak.ts && node ./scripts/yak.js"
   },
   "repository": {
     "type": "git",

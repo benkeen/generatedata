@@ -1,11 +1,11 @@
 import { DTDefinition } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './Alphanumeric.ui';
-import { rowStateReducer, generate, getMetadata } from './Alphanumeric.generate';
+import { generate, getMetadata } from './City.generate';
 
 const config: DTDefinition = {
-	name: 'Boolean',
-	fieldGroup: 'numeric',
-	fieldGroupOrder: 10,
+	name: 'City',
+	fieldGroup: 'geo',
+	fieldGroupOrder: 20,
+	processOrder: 3,
 
 	// could we just use TS here? Rethink this.
 	schema: {
@@ -24,10 +24,6 @@ const config: DTDefinition = {
 
 export default {
 	config,
-	Example,
-	Options,
-	Help,
-	rowStateReducer,
 	generate,
 	getMetadata
 };
