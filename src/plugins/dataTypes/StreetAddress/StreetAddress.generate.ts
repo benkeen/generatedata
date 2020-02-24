@@ -1,12 +1,11 @@
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
 import { getLipsumWords, uppercaseWords } from '../../../utils/stringUtils';
 import { generateRandomTextStr } from '../../../utils/randomUtils';
 import { getRandomNum, getRandomArrayValue } from '../../../utils/randomUtils';
 
 const { words } = getLipsumWords();
 
-export const generate = ({ i18n }: GenerationData): DTGenerateReturnType => {
+export const generate = ({ i18n }: DTGenerationData): DTGenerateResult => {
 	const { streetTypes, poBox, apNum } = i18n;
 	const streetName = uppercaseWords(generateRandomTextStr(words, false, 1));
 	const streetType = getRandomArrayValue(streetTypes);
@@ -33,7 +32,7 @@ export const generate = ({ i18n }: GenerationData): DTGenerateReturnType => {
 	};
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(255) default NULL',
 		field_Oracle: 'varchar2(255) default NULL',

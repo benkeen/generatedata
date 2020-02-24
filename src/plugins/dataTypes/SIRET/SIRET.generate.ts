@@ -5,7 +5,7 @@ export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 	
-	
+
 /*
 	// custom member vars for this Data Type
 	private $rSIREN = '';
