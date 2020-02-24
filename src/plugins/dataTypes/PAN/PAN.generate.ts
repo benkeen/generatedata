@@ -1,5 +1,4 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 // import { creditCardFormats } from './formats';
 // import { getRandomArrayValue } from '../../../utils/randomUtils';
 import { PanState } from './PAN.ui';
@@ -11,7 +10,7 @@ export const getRowReducer = ({ formats, example }: PanState): any => ({
 });
 
 // data: GenerationData
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	// console.log(data);
 	// creditCardFormats[data.example]
 
@@ -242,7 +241,7 @@ export const generate = (): DTGenerateReturnType => {
 // return $ccNumber;
 // }
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(255)',
 		field_Oracle: 'varchar2(255)',

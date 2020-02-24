@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
 
 export type OrganizationNumberState = {
@@ -12,7 +12,7 @@ export const state: OrganizationNumberState = {
 	separator: ' '
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,
@@ -34,7 +34,7 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => 
 	);
 };
 
-export const Options = ({ id, data, onUpdate, i18n }: OptionsProps): JSX.Element => {
+export const Options = ({ id, data, onUpdate, i18n }: DTOptionsProps): JSX.Element => {
 	const onChange = (separator: string): void => {
 		onUpdate({
 			...data,
@@ -55,7 +55,7 @@ export const Options = ({ id, data, onUpdate, i18n }: OptionsProps): JSX.Element
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DESC}

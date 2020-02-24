@@ -1,18 +1,17 @@
 import { getRandomNum } from '../../../utils/randomUtils';
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
 import { NumberRangeState } from './NumberRange.ui';
 
 export const rowStateReducer = (state: NumberRangeState): NumberRangeState => state;
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { min, max } = data.rowState;
 	return {
 		display: getRandomNum(min, max)
 	};
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	general: {
 		dataType: 'number'
 	},

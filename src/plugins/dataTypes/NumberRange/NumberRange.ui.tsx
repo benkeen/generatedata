@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export type NumberRangeState = {
 	min: number;
@@ -11,7 +11,7 @@ export const state: NumberRangeState = {
 	max: 10
 };
 
-export const Options = ({ data, i18n, onUpdate }: OptionsProps): JSX.Element => {
+export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
@@ -39,7 +39,7 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): JSX.Element => 
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.DESC}</p>;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
 
 
 // var _validate = function(rows) {

@@ -1,9 +1,22 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateResult, DTMetadata } from '../../../../types/dataTypes';
 
 // data: GenerationData
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
+
+export const getMetadata = (): DTMetadata => {
+	// Called before separator is set, so margin should be used
+	//$len = 10 + strlen(static::$sep);
+	let len = 11;  // Shoud be enough, allow for max one char sep
+	return {
+		sql: {
+			field: `varchar(${len}) default NULL`,
+			field_Oracle: `varchar2(${len}) default NULL`,
+			field_MSSQL: `VARCHAR(${len}) NULL`
+		}
+	};
+}
 
 
 /*
@@ -92,14 +105,4 @@ export const generate = (): DTGenerateReturnType => {
 		);
 	}
 
-	public function getDataTypeMetadata() {
-		// Called before separator is set, so margin should be used
-		//$len = 10 + strlen(static::$sep);
-		$len = 11;  // Shoud be enough, allow for max one char sep
-		return array(
-			"SQLField" => "varchar(" . $len . ") default NULL",
-			"SQLField_Oracle" => "varchar2(" . $len . ") default NULL",
-			"SQLField_MSSQL" => "VARCHAR(" . $len . ") NULL"
-		);
-	}
 */
