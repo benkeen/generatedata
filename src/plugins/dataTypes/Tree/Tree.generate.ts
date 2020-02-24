@@ -1,5 +1,4 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 
 // private $openTreeNodes = array();
 
@@ -11,7 +10,7 @@ import { ExportTypeMetadata } from '../../../../types/exportTypes';
  * (1) If we're generating in batches, store the relevant info in sessions.
  * (2) Otherwise, store in $openTreeNodes private var.
  */
-export const generate = (): DTGenerateReturnType => { // data: GenerationData
+export const generate = (): DTGenerateResult => { // data: GenerationData
 
 	/*
 	$options = $generationContextData["generationOptions"];
@@ -93,7 +92,7 @@ export const generate = (): DTGenerateReturnType => { // data: GenerationData
 	return { display: '' };
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'mediumint default NULL',
 		field_Oracle: 'number',

@@ -4,10 +4,9 @@
  * @description this class has a hard dependency on the PAN class NAMES class. That class contains a few public
  *              helper functions.
  */ 
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 
-export const generate = (): DTGenerateReturnType => { // data: GenerationData
+export const generate = (): DTGenerateResult => { // data: GenerationData
 	return { display: '' };
 };
 
@@ -63,7 +62,7 @@ export const generate = (): DTGenerateReturnType => { // data: GenerationData
 	}
 */
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(255)',
 		field_Oracle: 'varchar2(255)',

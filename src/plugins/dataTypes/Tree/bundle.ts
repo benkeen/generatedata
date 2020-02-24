@@ -1,30 +1,27 @@
 import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { generate, getMetadata } from './TextRandom.generate';
+import { generate, getMetadata } from './Tree.generate';
 
 const definition: DTDefinition = {
-	name: 'Random Number of Words',
-	fieldGroup: 'text',
-	fieldGroupOrder: 10,
+	name: 'Tree',
+	fieldGroup: 'other',
+	fieldGroupOrder: 30,
+	processOrder: 2,
 	schema: {
+		title: 'Tree',
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',
 		properties: {
-			startsWithLipsum: {
-				type: 'boolean'
+			autoIncRowNum: {
+				type: 'integer'
 			},
-			minWords: {
-				type: 'integer',
-				minimum: 1
-			},
-			maxWords: {
+			maxSiblings: {
 				type: 'integer',
 				minimum: 1
 			}
 		},
 		required: [
-			'startsWithLipsum',
-			'minWords',
-			'maxWords'
+			'autoIncRowNum',
+			'maxSiblings'
 		]
 	}
 };

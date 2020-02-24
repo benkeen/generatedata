@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	startsWithLipsum: false,
@@ -7,7 +7,7 @@ export const state = {
 	maxWords: 10
 };
 
-export const Options = ({ i18n, id, data, onUpdate }: OptionsProps): JSX.Element => {
+export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
@@ -48,7 +48,7 @@ export const Options = ({ i18n, id, data, onUpdate }: OptionsProps): JSX.Element
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.help}</p>;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.help}</p>;
 
 // var _validate = function(rows) {
 // 	var visibleProblemRows = [];

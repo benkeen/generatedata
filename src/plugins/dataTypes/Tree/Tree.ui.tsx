@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export type TreeState = {
 	autoIncRowNum: number | null,
@@ -11,7 +11,7 @@ export const state: TreeState = {
 	maxSiblings: null
 };
 
-export const Options = ({ data, id, onUpdate, i18n }: OptionsProps): JSX.Element => {
+export const Options = ({ data, id, onUpdate, i18n }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
@@ -35,7 +35,7 @@ export const Options = ({ data, id, onUpdate, i18n }: OptionsProps): JSX.Element
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_1}

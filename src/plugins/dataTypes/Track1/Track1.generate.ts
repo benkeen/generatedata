@@ -1,9 +1,8 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 // import { getRandomArrayValue } from '../../../utils/randomUtils';
 
 // data: GenerationData
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	// const selectedCardData = getRandomArrayValue(cardData);
 	// $generatedCardNumber = DataType_PAN::generateCreditCardNumber($cardData["prefix"], $cardData["length"]);
 
@@ -51,7 +50,7 @@ export const generate = (): DTGenerateReturnType => {
 	};
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(255)',
 		field_Oracle: 'varchar2(255)',
