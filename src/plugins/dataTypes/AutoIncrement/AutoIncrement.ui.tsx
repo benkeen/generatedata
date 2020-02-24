@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export type AutoIncrementState = {
 	example: string;
@@ -16,7 +16,7 @@ export const state: AutoIncrementState = {
 	incrementPlaceholder: ''
 };
 
-export const Example = ({ data, onUpdate }: ExampleProps): JSX.Element => {
+export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: string): void => {
 		const [incrementStart, incrementValue, incrementPlaceholder] = value.split(',');
 
@@ -49,7 +49,7 @@ export const Example = ({ data, onUpdate }: ExampleProps): JSX.Element => {
 	);
 };
 
-export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => {
+export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: number | string): void => {
 		onUpdate({
 			...data,
@@ -74,7 +74,7 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => 
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_intro}

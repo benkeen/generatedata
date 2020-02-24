@@ -1,14 +1,13 @@
 /**
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(34)',
 		field_Oracle: 'varchar2(34) NULL',

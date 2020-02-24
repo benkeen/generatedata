@@ -1,20 +1,28 @@
 import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './Boolean.ui';
-import { rowStateReducer, generate, getMetadata } from './Boolean.generate';
+import { Help, Example, Options } from './Date.ui';
+import { generate } from './Date.generate';
 
 const definition: DTDefinition = {
-	name: 'Alphanumeric',
-	fieldGroup: 'numeric',
-	fieldGroupOrder: 11,
+	name: 'Date',
+	fieldGroup: 'human_data',
+	fieldGroupOrder: 40,
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',
 		properties: {
+			fromDate: {
+				type: 'string'
+			},
+			toDate: {
+				type: 'string'
+			},
 			placeholder: {
 				type: 'string'
 			}
 		},
 		required: [
+			'fromDate',
+			'toDate',
 			'placeholder'
 		]
 	}
@@ -22,10 +30,8 @@ const definition: DTDefinition = {
 
 export default {
 	definition,
+	Help,
 	Example,
 	Options,
-	Help,
-	rowStateReducer,
-	generate,
-	getMetadata
+	generate
 } as DTBundle;

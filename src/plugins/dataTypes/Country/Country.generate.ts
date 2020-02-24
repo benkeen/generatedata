@@ -1,8 +1,16 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateResult, DTMetadata } from '../../../../types/dataTypes';
 
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
+
+export const getMetaData = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(100) default NULL',
+		field_Oracle: 'varchar2(100) default NULL',
+		field_MSSQL: 'VARCHAR(100) NULL'
+	}
+});
 
 /*
  * This data type generates a random country name. A few things to know:
@@ -128,14 +136,6 @@ class DataType_Country extends DataTypePlugin {
 		$this->numSelectedCountrySlugs = count($selectedCountrySlugs);
 
 		return ($json->settings->limitCountriesToSelectedPlugins) ? "countryPluginsOnly" : "all";
-	}
-
-	public function getDataTypeMetadata() {
-		return array(
-			"SQLField" => "varchar(100) default NULL",
-			"SQLField_Oracle" => "varchar2(100) default NULL",
-			"SQLField_MSSQL" => "VARCHAR(100) NULL"
-		);
 	}
 
 	public function getCountries($countrySlugs) {

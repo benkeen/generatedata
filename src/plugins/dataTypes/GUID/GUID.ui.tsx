@@ -1,4 +1,4 @@
 import * as React from 'react';
-import { HelpProps } from '../../../../types/dataTypes';
+import { DTHelpProps } from '../../../../types/dataTypes';
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.help}</p>;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.help}</p>;

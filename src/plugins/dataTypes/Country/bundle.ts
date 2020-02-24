@@ -22,8 +22,6 @@ const config: DTDefinition = {
 
 export default {
 	config,
-	Example,
 	Options,
-	Help,
 	generate
 };

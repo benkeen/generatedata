@@ -1,11 +1,10 @@
 import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help } from './Company.ui';
-import { generate, getMetadata } from './Company.generate';
-
+import { Help } from './GUID.ui';
+import { generate, getMetadata } from './GUID.generate';
 
 const definition: DTDefinition = {
-	name: 'Company',
-	fieldGroup: 'human_data',
+	name: 'GUID',
+	fieldGroup: 'numeric',
 	fieldGroupOrder: 50
 };
 

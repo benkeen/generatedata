@@ -1,7 +1,6 @@
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { getRandomNum, getRandomArrayValue } from '../../../utils/randomUtils';
 import { getLipsumWords } from '../../../utils/stringUtils';
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 
 
 const MAX_EMAIL_LENGTH = 254;
@@ -39,9 +38,9 @@ export const getRandomEmail = (wordsArr = words, suffixes = ["edu", "com", "org"
 };
 
 
-export const generate = (): DTGenerateReturnType => ({ display: getRandomEmail() });
+export const generate = (): DTGenerateResult => ({ display: getRandomEmail() });
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	general: {
 		dataType: 'string'
 	},

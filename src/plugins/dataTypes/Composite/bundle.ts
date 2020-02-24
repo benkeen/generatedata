@@ -1,9 +1,9 @@
-import { DTDefinition } from '../../../../types/dataTypes';
+import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
 import { Help } from './Composite.ui';
 import { generate, getMetadata } from './Composite.generate';
 
 
-const config: DTDefinition = {
+const definition: DTDefinition = {
 	name: 'Composite',
 	fieldGroup: 'other',
 	fieldGroupOrder: 20,
@@ -25,8 +25,8 @@ const config: DTDefinition = {
 };
 
 export default {
-	config,
+	definition,
 	Help,
 	generate,
 	getMetadata
-};
+} as DTBundle;

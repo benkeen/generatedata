@@ -1,29 +1,32 @@
 import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { generate, getMetadata } from './City.generate';
+import { Options, Help } from './LatLng.ui';
+import { generate, getMetadata } from './LatLng.generate';
 
 const definition: DTDefinition = {
-	name: 'City',
+	name: 'Latitude / Longitude',
 	fieldGroup: 'geo',
-	fieldGroupOrder: 20,
-	processOrder: 3,
-
-	// could we just use TS here? Rethink this.
+	fieldGroupOrder: 100,
 	schema: {
-		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',
 		properties: {
-			placeholder: {
-				type: 'string'
+			lat: {
+				type: 'boolean'
+			},
+			lng: {
+				type: 'boolean'
 			}
 		},
 		required: [
-			'placeholder'
+			'lat',
+			'lng'
 		]
 	}
 };
 
 export default {
 	definition,
+	Options,
+	Help,
 	generate,
 	getMetadata
 } as DTBundle;

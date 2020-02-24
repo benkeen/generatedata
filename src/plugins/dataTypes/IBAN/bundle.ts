@@ -1,12 +1,11 @@
 import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help } from './Company.ui';
-import { generate, getMetadata } from './Company.generate';
-
+import { Help } from './IBAN.ui';
+import { generate, getMetadata } from './IBAN.generate';
 
 const definition: DTDefinition = {
-	name: 'Company',
+	name: 'IBAN',
 	fieldGroup: 'human_data',
-	fieldGroupOrder: 50
+	fieldGroupOrder: 100
 };
 
 export default {

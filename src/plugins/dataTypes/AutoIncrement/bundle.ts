@@ -28,7 +28,7 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
+export default {
 	definition,
 	Example,
 	Options,
@@ -36,6 +36,4 @@ const bundle: DTBundle = {
 	rowStateReducer,
 	generate,
 	getMetadata
-};
-
-export default bundle;
+} as DTBundle;

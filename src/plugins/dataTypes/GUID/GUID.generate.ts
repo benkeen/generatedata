@@ -1,10 +1,9 @@
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 import { generateRandomAlphanumericStr } from '../../../utils/randomUtils';
 
 const generatedGUIDs: any = {};
 
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	const placeholderStr = "HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH";
 	let guid = generateRandomAlphanumericStr(placeholderStr);
 
@@ -17,7 +16,7 @@ export const generate = (): DTGenerateReturnType => {
 	return { display: guid };
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(36) NOT NULL',
 		field_Oracle: 'varchar2(36) NOT NULL',

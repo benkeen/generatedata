@@ -1,5 +1,4 @@
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
 import { LatLngState } from './LatLng.ui';
 import { getRandomNum } from '../../../utils/randomUtils';
 
@@ -18,7 +17,7 @@ const cachedMath = {
 	divisor: (DECIMAL_PLACES ^ 10)
 };
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const coords = [];
 	let lat, lng;
 	if (data.rowState.lat && data.rowState.lng) {
@@ -41,7 +40,7 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 	};
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(30) default NULL',
 		field_Oracle: 'varchar2(30) default NULL',

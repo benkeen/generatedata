@@ -1,14 +1,13 @@
 import { format, fromUnixTime } from 'date-fns';
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTMetadata } from '../../../../types/dataTypes';
 import { DateState } from './Date.ui';
 import { getRandomNum } from '../../../utils/randomUtils';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
 
 export const rowStateReducer = ({ fromDate, toDate, format }: DateState): Partial<DateState> => ({
 	fromDate, toDate, format
 });
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { fromDate, toDate, format: displayFormat } = data.rowState;
 	if (!displayFormat) {
 		return { display: '' };
@@ -18,7 +17,7 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 };
 
 // 	TODO: formatCode: $this->formatCode
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	general: {
 		dataType: 'date',
 	},

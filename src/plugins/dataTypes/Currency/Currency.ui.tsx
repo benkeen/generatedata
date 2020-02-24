@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
 
 export const state = {
@@ -11,7 +11,7 @@ export const state = {
 	currencySymbolLocation: 'prefix'
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (i: any): void => {
 		const [format, from, to, currencySymbol, currencySymbolLocation] = i.value.split('|');
 		onUpdate({
@@ -61,7 +61,7 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => 
 	);
 };
 
-export const Options = ({ i18n, data }: OptionsProps): JSX.Element => {
+export const Options = ({ i18n, data }: DTOptionsProps): JSX.Element => {
 
 	return (
 		<>
@@ -84,7 +84,7 @@ export const Options = ({ i18n, data }: OptionsProps): JSX.Element => {
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_intro}

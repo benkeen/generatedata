@@ -1,8 +1,8 @@
-import { DTDefinition } from '../../../../types/dataTypes';
+import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
 import { Example, Options, Help } from './Alphanumeric.ui';
 import { rowStateReducer, generate, getMetadata } from './Alphanumeric.generate';
 
-const config: DTDefinition = {
+const definition: DTDefinition = {
 	name: 'Boolean',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 10,
@@ -23,11 +23,11 @@ const config: DTDefinition = {
 };
 
 export default {
-	config,
+	definition,
 	Example,
 	Options,
 	Help,
 	rowStateReducer,
 	generate,
 	getMetadata
-};
+} as DTBundle;

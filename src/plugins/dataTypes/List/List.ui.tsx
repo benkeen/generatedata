@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import CreatableDropdown from '../../../components/dropdown/CreatableDropdown';
 
@@ -21,7 +21,7 @@ export const state: ListState = {
 	values: ''
 };
 
-export const Example = ({ data, onUpdate, i18n }: ExampleProps): JSX.Element => {
+export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {
 	const onChange = (example: any): void => {
 		onUpdate({
 			...data,
@@ -55,7 +55,7 @@ export const Example = ({ data, onUpdate, i18n }: ExampleProps): JSX.Element => 
 	);
 };
 
-export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element => {
+export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
@@ -121,7 +121,7 @@ export const Options = ({ i18n, data, id, onUpdate }: OptionsProps): JSX.Element
 	*/
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.help}</p>;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.help}</p>;
 
 // var _validate = function(rows) {
 // 	var missingOptions = {

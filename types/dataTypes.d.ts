@@ -32,7 +32,7 @@ export type DTDefinition = {
 	schema?: any;
 };
 
-export type DTFieldGroup = 'numeric' | 'geo' | 'human_data' | 'other';
+export type DTFieldGroup = 'numeric' | 'geo' | 'human_data' | 'other' | 'credit_card_data';
 
 export type GeneralMetadataTypes = {
     dataType: 'number' | 'string' | 'boolean' | 'date';
