@@ -1,6 +1,6 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateResult } from '../../../../types/dataTypes';
 
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 
@@ -47,19 +47,5 @@ class DataType_Computed extends DataTypePlugin {
 			"display" => $this->smarty->fetch('string:' . $generationContextData["generationOptions"])
 		);
 	}
-
-    public function getRowGenerationOptionsUI($generator, $postdata, $col, $num_cols) {
-        if (!isset($postdata["dtOption_$col"]) || empty($postdata["dtOption_$col"])) {
-            return false;
-        }
-        return $postdata["dtOption_$col"];
-    }
-
-    public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
-        if (empty($json->settings->placeholder)) {
-            return false;
-        }
-        return $json->settings->placeholder;
-    }
 }
 */

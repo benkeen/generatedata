@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { OptionsProps } from '../../../../types/dataTypes';
+import { DTOptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	allCountries: true
 };
 
-export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => (
+export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<>
 		<input
 			type="checkbox"

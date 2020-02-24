@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
 
 export type BooleanState = {
@@ -12,7 +12,7 @@ export const state: BooleanState = {
 	value: 'true'
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,
@@ -38,7 +38,7 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => 
 	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
+export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<input
 		type="text"
 		value={data.value}
@@ -47,7 +47,7 @@ export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
 	/>
 );
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DESC}

@@ -1,29 +1,17 @@
 import { DTDefinition } from '../../../../types/dataTypes';
-import { generate, getMetadata } from './City.generate';
+import { Help } from './Company.ui';
+import { generate, getMetadata } from './Company.generate';
 
 
 const config: DTDefinition = {
 	name: 'Company',
 	fieldGroup: 'human_data',
-	fieldGroupOrder: 50,
-
-	// could we just use TS here? Rethink this.
-	schema: {
-		$schema: 'http://json-schema.org/draft-04/schema#',
-		type: 'object',
-		properties: {
-			placeholder: {
-				type: 'string'
-			}
-		},
-		required: [
-			'placeholder'
-		]
-	}
+	fieldGroupOrder: 50
 };
 
 export default {
 	config,
+	Help,
 	generate,
 	getMetadata
 };

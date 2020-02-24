@@ -1,6 +1,6 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateResult } from '../../../../types/dataTypes';
 
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 

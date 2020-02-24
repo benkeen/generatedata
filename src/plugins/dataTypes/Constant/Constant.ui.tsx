@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export type ConstantType = {
 	loopCount: number;
@@ -11,9 +11,9 @@ export const state: ConstantType = {
 	values: ''
 };
 
-export const Example = ({ i18n }: ExampleProps): string => i18n.see_help_dialog;
+export const Example = ({ i18n }: DTExampleProps): string => i18n.see_help_dialog;
 
-export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => {
+export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
@@ -42,7 +42,7 @@ export const Options = ({ i18n, data, onUpdate }: OptionsProps): JSX.Element => 
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_1}

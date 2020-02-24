@@ -1,9 +1,16 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTGenerateResult, DTMetadata } from '../../../../types/dataTypes';
 
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'TEXT default NULL',
+		field_Oracle: 'BLOB default NULL',
+		field_MSSQL: 'VARCHAR(MAX) NULL'
+	}
+});
 
 /*
 class DataType_Composite extends DataTypePlugin {
@@ -54,15 +61,6 @@ class DataType_Composite extends DataTypePlugin {
 			return false;
 		}
 		return $json->settings->placeholder;
-	}
-
-
-	public function getDataTypeMetadata() {
-		return array(
-			"SQLField" => "TEXT default NULL",
-			"SQLField_Oracle" => "BLOB default NULL",
-			"SQLField_MSSQL" => "VARCHAR(MAX) NULL"
-		);
 	}
 }
 */

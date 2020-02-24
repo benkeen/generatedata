@@ -29,10 +29,10 @@ export type DTDefinition = {
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	processOrder?: number;
-	schema: any;
+	schema?: any;
 };
 
-export type DTFieldGroup = 'numeric' | 'geo' | 'human_data';
+export type DTFieldGroup = 'numeric' | 'geo' | 'human_data' | 'other';
 
 export type GeneralMetadataTypes = {
     dataType: 'number' | 'string' | 'boolean' | 'date';

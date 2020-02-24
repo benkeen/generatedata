@@ -1,7 +1,6 @@
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
 import { getRandomNum } from '../../../utils/randomUtils';
 import { getLipsumWords, uppercaseWords } from '../../../utils/stringUtils';
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 
 const { words } = getLipsumWords();
 const companyTypes = [
@@ -20,9 +19,9 @@ export const generateCompanyName = (wordsArr = words, types = companyTypes): str
 	return uppercaseWords(selectedWords.join(' ')) + ' ' + companyType;
 };
 
-export const generate = (): DTGenerateReturnType => ({ display: generateCompanyName() });
+export const generate = (): DTGenerateResult => ({ display: generateCompanyName() });
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(255)',
 		field_Oracle: 'varchar2(255)',

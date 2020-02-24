@@ -1,5 +1,4 @@
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 
 
 // private $countryRegions;
@@ -13,7 +12,7 @@ import { ExportTypeMetadata } from '../../../../types/exportTypes';
 //     }
 // }
 
-export const generate = (): DTGenerateReturnType => {
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 
@@ -56,7 +55,7 @@ export const generate = (): DTGenerateReturnType => {
 // };
 
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(255)',
 		field_Oracle: 'varchar2(255)',
