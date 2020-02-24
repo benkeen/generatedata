@@ -1,11 +1,13 @@
-<?php
+import { DTGenerateResult } from '../../../../types/dataTypes';
 
-/**
- * @package DataTypes
- */
+// data: DTGenerationData
+export const generate = (): DTGenerateResult => {
+	return { display: '' };
+};
 
-class DataType_Region extends DataTypePlugin {
-	protected $isEnabled = true;
+
+/*
+protected $isEnabled = true;
 	protected $dataTypeName = "Region";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 40;
@@ -23,10 +25,8 @@ class DataType_Region extends DataTypePlugin {
 		}
 	}
 
-	/**
 	 * Generate a random region, and return the display string and additional meta data for use
 	 * by any other Data Type.
-	 */
 	public function generate($generator, $generationContextData) {
 		$generationOptions = $generationContextData["generationOptions"];
 
@@ -189,3 +189,4 @@ class DataType_Region extends DataTypePlugin {
 		return $regionInfo;
 	}
 }
+*/

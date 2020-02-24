@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export type PhoneState = {
 	example: string;
@@ -12,7 +12,7 @@ export const state: PhoneState = {
 	option: '1-Xxx-Xxx-xxxx'
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,
@@ -40,7 +40,7 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): JSX.Element => 
 	);
 };
 
-export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
+export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<input
 		type="text"
 		value={data.option}
@@ -49,7 +49,7 @@ export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
 	/>
 );
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_text1}

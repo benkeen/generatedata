@@ -1,10 +1,9 @@
 import { getRandomNum } from '../../../utils/randomUtils';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
-import { DTGenerateReturnType } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 
-export const generate = (): DTGenerateReturnType => ({ display: getRandomNum(1111, 9999) });
+export const generate = (): DTGenerateResult => ({ display: getRandomNum(1111, 9999) });
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	general: {
 		dataType: 'number'
 	},

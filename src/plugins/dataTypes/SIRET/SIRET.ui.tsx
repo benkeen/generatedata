@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	example: '',
 	option: ''
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DESC}
@@ -33,7 +33,7 @@ export const Help = ({ i18n }: HelpProps): JSX.Element => (
 	</>
 );
 
-export const Options = ({ id, data, onUpdate }: OptionsProps): JSX.Element => {
+export const Options = ({ id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
 		// @ts-ignore
 		const value = e.target.value;

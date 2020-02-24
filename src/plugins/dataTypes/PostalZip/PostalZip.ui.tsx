@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HelpProps } from '../../../../types/dataTypes';
+import { DTHelpProps } from '../../../../types/dataTypes';
 
 export type PostalZipState = {
 
@@ -25,7 +25,7 @@ export const Options = (): JSX.Element => {
 	return <div />;
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => <p>{i18n.help_text}</p>;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.help_text}</p>;
 
 
 // var _saveRow = function(rowNum) {

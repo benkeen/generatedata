@@ -1,3 +1,11 @@
+import { DTGenerateResult } from '../../../../types/dataTypes';
+
+// data: DTGenerationData
+export const generate = (): DTGenerateResult => {
+	return { display: '' };
+};
+	
+	
 /*
 	// custom member vars for this Data Type
 	private $rSIREN = '';
@@ -36,12 +44,11 @@
 			// on concatène se nombre au siret
 			$siren .= $rand;
 
-			/* Le numéro SIRET est composé de 14 chiffres,
+			 * Le numéro SIRET est composé de 14 chiffres,
 			 *  dont un chiffre de contrôle (le dernier) qui permet de vérifier la validité du numéro de SIRET (SIREN + NIC).
 			 *   Celui-ci est calculé suivant la formule de Luhn.
 			 *   Le principe est le suivant : on multiplie les chiffres de rang impair à partir de la droite par 1, ceux de rang pair par 2 ;
 			 *    la somme des chiffres obtenus doit être multiple de 10.
-			 */
 			$ctrlSiren = $rand * $cleSiren;
 			$ctrlSiret = $rand * $cleSiret;
 
@@ -137,5 +144,4 @@
 	public function getNIC() {
 		return $this->rNIC;
 	}
-
 */

@@ -1,8 +1,6 @@
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
-	
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	console.log(data);
 	
 	/*
@@ -178,7 +176,7 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 	}
 */
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(10) default NULL',
 		field_Oracle: 'varchar2(10) default NULL',

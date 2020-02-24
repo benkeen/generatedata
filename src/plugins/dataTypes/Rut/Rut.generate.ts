@@ -1,3 +1,11 @@
+import { DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+
+// data: DTGenerationData
+export const generate = (): DTGenerateResult => {
+	return { display: '' };
+};
+	
+/*
 public function generate($generator, $generationContextData) {
 	$options = $generationContextData["generationOptions"];
 
@@ -85,3 +93,4 @@ private function getDigit($rut){
 	if($digit == 11) return "0";
 	return $digit;
 }
+*/
