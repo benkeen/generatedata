@@ -2,16 +2,17 @@ import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
 import { Help } from './Company.ui';
 import { generate, getMetadata } from './Company.generate';
 
-
 const definition: DTDefinition = {
 	name: 'Company',
 	fieldGroup: 'human_data',
 	fieldGroupOrder: 50
 };
 
-export default {
+const bundle: DTBundle = {
 	definition,
 	Help,
 	generate,
 	getMetadata
-} as DTBundle;
+};
+
+export default bundle;

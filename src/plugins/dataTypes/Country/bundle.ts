@@ -1,8 +1,8 @@
-import { DTDefinition } from '../../../../types/dataTypes';
+import { DTBundle, DTDefinition } from '../../../../types/dataTypes';
 import { Options } from './Country.ui';
 import { generate } from './Country.generate';
 
-const config: DTDefinition = {
+const definition: DTDefinition = {
 	name: 'Country',
 	fieldGroup: 'geo',
 	fieldGroupOrder: 50,
@@ -20,8 +20,10 @@ const config: DTDefinition = {
 	}
 };
 
-export default {
-	config,
+const bundle: DTBundle = {
+	definition,
 	Options,
 	generate
 };
+
+export default bundle;

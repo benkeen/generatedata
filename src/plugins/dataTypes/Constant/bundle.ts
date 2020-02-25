@@ -1,8 +1,8 @@
-import { DTDefinition } from '../../../../types/dataTypes';
+import { DTBundle, DTDefinition } from '../../../../types/dataTypes';
 import { Example, Options, Help } from './Constant.ui';
 import { generate } from './Constant.generate';
 
-const config: DTDefinition = {
+const definition: DTDefinition = {
 	name: 'Constant',
 	fieldGroup: 'other',
 	fieldGroupOrder: 10,
@@ -25,10 +25,12 @@ const config: DTDefinition = {
 	}
 };
 
-export default {
-	config,
+const bundle: DTBundle = {
+	definition,
 	Example,
 	Options,
 	Help,
 	generate
 };
+
+export default bundle;

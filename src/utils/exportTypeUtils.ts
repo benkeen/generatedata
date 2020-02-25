@@ -8,7 +8,6 @@ export const exportTypeOptions: DropdownOption[] = exportTypeConfig.map(({ name,
 
 
 export const loadExportTypeBundle = (exportType: string) => {
-
 	return import(/* webpackChunkName: "exportType-[request]" */ `../plugins/exportTypes/${exportType}/bundle`)
 		.then(({ default: et }) => {
 			console.log(et);

@@ -6,8 +6,8 @@ import storage from 'redux-persist/lib/storage';
 import { dataTypeNames } from '../../utils/dataTypeUtils';
 import { GDLocale } from '../../../types/general';
 import { DataType } from '../../../types/dataTypes';
-import { ExportType } from '../../../types/exportTypes';
-import { CountryType } from '../../../types/countryTypes';
+// import { ExportType } from '../../../types/exportTypes';
+// import { CountryType } from '../../../types/countryTypes';
 
 type InitReducer = {
 	localeFileLoaded: boolean;
@@ -15,20 +15,20 @@ type InitReducer = {
 	loadedDataTypes: {
 		[str in DataType]: boolean;
 	},
-	loadedExportTypes: {
-		[str in ExportType]: boolean;
-	},
-	loadedCountries: {
-		[str in CountryType]: boolean;
-	}
+	// loadedExportTypes: {
+	// 	[str in ExportType]: boolean;
+	// },
+	// loadedCountries: {
+	// 	[str in CountryType]: boolean;
+	// }
 };
 
 const initialState: InitReducer = {
 	localeFileLoaded: false,
 	locale: 'en',
 	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataType) => acc[name] = false, {}),
-	loadedExportTypes: dataTypeNames.reduce((acc: any, name: ExportType) => acc[name] = false, {}),
-	loadedCountries: dataTypeNames.reduce((acc: any, name: CountryType) => acc[name] = false, {})
+	// loadedExportTypes: dataTypeNames.reduce((acc: any, name: ExportType) => acc[name] = false, {}),
+	// loadedCountries: dataTypeNames.reduce((acc: any, name: CountryType) => acc[name] = false, {})
 }
 
 /**

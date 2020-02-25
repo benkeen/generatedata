@@ -7,8 +7,10 @@ const definition: DTDefinition = {
 	fieldGroupOrder: 10
 };
 
-export default {
+const bundle: DTBundle = {
 	definition,
 	generate,
 	getMetadata
-} as DTBundle;
+};
+
+export default bundle;

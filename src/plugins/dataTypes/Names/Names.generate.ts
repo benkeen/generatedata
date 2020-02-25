@@ -2,8 +2,7 @@ import { getRandomArrayValue, getRandomBool, getRandomCharInString } from '../..
 import { getUnique } from '../../../utils/arrayUtils';
 import { maleNames, femaleNames, lastNames } from './Names.data';
 import { NamesState } from './Names.ui';
-import { GenerationData, DTGenerateReturnType } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const genders = ['male', 'female'];
@@ -13,7 +12,7 @@ export const rowStateReducer = (state: NamesState): string => state.options;
 const getRandomGender = (): string => getRandomBool() ? genders[0] : genders[1];
 
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const placeholderStr = data.rowState;
 
 	// in case the user entered multiple | separated formats, pick one first
@@ -70,7 +69,7 @@ export const generate = (data: GenerationData): DTGenerateReturnType => {
 	};
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(255) default NULL',
 		field_Oracle: 'varchar2(255) default NULL',

@@ -1,8 +1,8 @@
-import { DTDefinition } from '../../../../types/dataTypes';
+import { DTBundle, DTDefinition } from '../../../../types/dataTypes';
 import { Help, Example, Options } from './Currency.ui';
 import { generate, getMetadata } from './Currency.generate';
 
-const config: DTDefinition = {
+const definition: DTDefinition = {
 	name: 'Currency',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 60,
@@ -37,11 +37,13 @@ const config: DTDefinition = {
 	}
 };
 
-export default {
-	config,
+const bundle: DTBundle = {
+	definition,
 	Example,
 	Options,
 	Help,
 	generate,
 	getMetadata
 };
+
+export default bundle;

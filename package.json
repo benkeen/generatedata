@@ -7,9 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "grunt & yarn build & yarn webpack",
+	"dev": "grunt & yarn build & yarn webpack",
+	"plugins": "yarn webpack --config ./webpack.build.config.js",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
-    "build": "yarn createTmpPluginsFile & yarn createPluginsMetadataFile",
+    "build": "yarn createTmpPluginsFile",
 	"test": "env NODE_ENV=test jest",
 	"createTmpPluginsFile": "tsc ./scripts/createTmpPluginsFile.ts --outDir ./build && node ./build/createTmpPluginsFile.js",
 	"createPluginsMetadataFile": "tsc ./scripts/createPluginsMetadataFile.ts --outDir ./build && node ./build/createPluginsMetadataFile.js"

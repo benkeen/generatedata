@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import Event from '@material-ui/icons/Event';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import * as styles from './Date.scss';
 
 export type DateState = {
@@ -54,7 +54,7 @@ export const getOptions = (): any[] => {
 	]);
 };
 
-export const Example = ({ data, onUpdate }: ExampleProps): JSX.Element => {
+export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = ({ value }: { value: string }): void => {
 		onUpdate({
 			...data,
@@ -72,7 +72,7 @@ export const Example = ({ data, onUpdate }: ExampleProps): JSX.Element => {
 	);
 };
 
-export const Options = ({ data, onUpdate, i18n }: OptionsProps): JSX.Element => {
+export const Options = ({ data, onUpdate, i18n }: DTOptionsProps): JSX.Element => {
 	const [isOpen, setOpen] = React.useState(false);
 	const [selectedDatePicker, setDatePicker] = React.useState('fromDate'); // fromDate / toDate
 	const onChange = (field: string, value: any): void => {
@@ -127,7 +127,7 @@ export const Options = ({ data, onUpdate, i18n }: OptionsProps): JSX.Element => 
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.help_intro}

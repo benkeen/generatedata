@@ -27,9 +27,11 @@ const definition: DTDefinition = {
 	}
 };
 
-export default {
+const bundle: DTBundle = {
 	definition,
 	Options,
 	generate,
 	getMetadata
-} as DTBundle;
+};
+
+export default bundle;

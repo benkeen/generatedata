@@ -1,7 +1,6 @@
-import { DTGenerateReturnType, GenerationData } from '../../../../types/dataTypes';
-import { ExportTypeMetadata } from '../../../../types/exportTypes';
+import { DTMetadata, DTGenerateResult, DTGenerationData } from '../../../../types/dataTypes';
 
-export const generate = (data: GenerationData): DTGenerateReturnType => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { mean, stddev, precision } = data.rowState;
 
 	return {
@@ -51,7 +50,7 @@ const random0to1 = (): number => {
 	return -1; // temp
 };
 
-export const getMetadata = (): ExportTypeMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(100)'
 	}

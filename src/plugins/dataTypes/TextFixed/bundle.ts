@@ -20,8 +20,10 @@ const definition: DTDefinition = {
 	}
 };
 
-export default {
+const bundle: DTBundle = {
 	definition,
 	generate,
 	getMetadata
-} as DTBundle;
+};
+
+export default bundle;

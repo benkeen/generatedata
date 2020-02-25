@@ -1,7 +1,8 @@
 import { coreConfig } from '../core';
 import { dataTypes } from '../../build/plugins';
 import { getStrings } from './langUtils';
-export { dataTypeNames } from '../../build/dataTypesListUI';
+
+export const dataTypeNames = Object.keys(dataTypes);
 
 // used for the Data Type selection dropdown
 export const getSortedGroupedDataTypes = (): any => {

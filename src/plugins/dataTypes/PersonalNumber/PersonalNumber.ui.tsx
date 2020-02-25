@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
 
 
@@ -11,7 +11,7 @@ export const state = {
 	separator: ' '
 };
 
-export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps): JSX.Element => {
+export const Example = ({ coreI18n, i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 
 	const onChange = (value: any): void => {
 		onUpdate({
@@ -35,14 +35,14 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: ExampleProps): JSX.E
 	);
 };
 
-export const Options = ({ i18n, data }: OptionsProps): JSX.Element => (
+export const Options = ({ i18n, data }: DTOptionsProps): JSX.Element => (
 	<div>
 		{i18n.separators}
 		<input type="text" style={{ width: 78 }} value={data.separator} title={i18n.separator_help} />
 	</div>
 );
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DESC}

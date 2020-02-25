@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	example: '',
 	option: ''
 };
 
-export const Example = ({ coreI18n, i18n, data }: ExampleProps) => (
+export const Example = ({ coreI18n, i18n, data }: DTExampleProps) => (
 	<select defaultValue={data.example}>
 		<option value="">{coreI18n.please_select}</option>
 		<option value="MaleName">{i18n.example_MaleName}</option>
@@ -23,11 +23,11 @@ export const Example = ({ coreI18n, i18n, data }: ExampleProps) => (
 	</select>
 );
 
-export const Options = ({ data, onUpdate }: OptionsProps) => (
+export const Options = ({ data, onUpdate }: DTOptionsProps) => (
 	<input type="text" value={data.value} onChange={(e) => onUpdate({ value: e.target.value })}/>
 );
 
-export const Help = ({ i18n }: HelpProps) => (
+export const Help = ({ i18n }: DTHelpProps) => (
 	<>
 		<p>
 			{i18n.help_intro}

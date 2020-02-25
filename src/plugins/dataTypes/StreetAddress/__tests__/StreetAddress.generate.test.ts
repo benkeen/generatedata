@@ -1,13 +1,13 @@
 import { generate } from '../StreetAddress.generate';
 import * as sinon from 'sinon';
 import * as randomUtils from '../../../../utils/randomUtils';
-import { GenerationData } from '../../../../../types/dataTypes';
+import { DTGenerationData } from '../../../../../types/dataTypes';
 
 // @ts-ignore
 import i18n from '../i18n/en';
 
 describe('generate', () => {
-	let data: GenerationData = {
+	let data: DTGenerationData = {
 		rowNum: 1,
 		rowState: '',
 		i18n,

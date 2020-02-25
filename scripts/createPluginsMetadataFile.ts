@@ -20,7 +20,7 @@ const generatePluginsMetadataFile = (): void => {
 	// 2. Export Types
 	
 	console.log(content);
-
+ 
 	createBuildFile('plugins.ts', content);
 };
 

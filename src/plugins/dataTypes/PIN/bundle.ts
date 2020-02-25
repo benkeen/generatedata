@@ -8,9 +8,11 @@ const definition: DTDefinition = {
 	fieldGroupOrder: 20
 };
 
-export default {
+const bundle: DTBundle = {
 	definition,
 	Help,
 	generate,
 	getMetadata
-} as DTBundle;
+};
+
+export default bundle;

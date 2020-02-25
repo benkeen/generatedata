@@ -23,7 +23,7 @@ const getDataTypesWithBundles = () => {
 
 const generateTmpImportPluginsFile = (): void => {
 	const dataTypes = getDataTypesWithBundles();
-	const imports = dataTypes.map((folder: string) => `import { definition: ${folder} } from '${baseFolder}/${folder}/bundle';`).join('\n');
+	const imports = dataTypes.map((folder: string) => `import ${folder} from '${baseFolder}/${folder}/bundle';`).join('\n');
 	const exports = `\n\nexport const dataTypes = {\n\t${dataTypes.join(',\n\t')}\n};\n`;
 	const content = `${imports}${exports}`;
 	helpers.createBuildFile('_tmpPluginList.ts', content);

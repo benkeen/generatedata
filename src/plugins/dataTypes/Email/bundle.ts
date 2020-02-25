@@ -7,7 +7,9 @@ const definition: DTDefinition = {
 	fieldGroupOrder: 30
 };
 
-export default {
+const bundle: DTBundle = {
 	definition,
 	generate
-} as DTBundle;
+};
+
+export default bundle;

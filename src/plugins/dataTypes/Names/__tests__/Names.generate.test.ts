@@ -1,11 +1,11 @@
 import { generate } from '../Names.generate';
 import * as sinon from 'sinon';
 import * as randomUtils from '../../../../utils/randomUtils';
-import { GenerationData } from '../../../../../types/dataTypes';
+import { DTGenerationData } from '../../../../../types/dataTypes';
 
 
 describe('generate method converts all placeholders', () => {
-	let data: GenerationData = {
+	let data: DTGenerationData = {
 		rowNum: 1,
 		rowState: '',
 		i18n: {},

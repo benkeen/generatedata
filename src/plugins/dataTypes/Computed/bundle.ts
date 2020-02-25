@@ -1,14 +1,11 @@
-import { DTDefinition } from '../../../../types/dataTypes';
+import { DTBundle, DTDefinition } from '../../../../types/dataTypes';
 import { Example, Options, Help } from './Computed.ui';
 import { generate } from './Computed.generate';
 
-
-const config: DTDefinition = {
+const definition: DTDefinition = {
 	name: 'Computed',
 	fieldGroup: 'other',
 	fieldGroupOrder: 60,
-
-	// could we just use TS here? Rethink this.
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',
@@ -23,10 +20,12 @@ const config: DTDefinition = {
 	}
 };
 
-export default {
-	config,
+const bundle: DTBundle = {
+	definition,
 	Example,
 	Options,
 	Help,
 	generate
 };
+
+export default bundle;

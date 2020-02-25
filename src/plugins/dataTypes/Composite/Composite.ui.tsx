@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export const state = {
 	value: ''
 };
 
-export const Example = ({ i18n }: ExampleProps): string => i18n.see_help_dialog;
+export const Example = ({ i18n }: DTExampleProps): string => i18n.see_help_dialog;
 
-export const Options = ({ data, onUpdate }: OptionsProps): JSX.Element => (
+export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<textarea onChange={(e): void => onUpdate({ value: e.target.value })} value={data.value} />
 );
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DESC}

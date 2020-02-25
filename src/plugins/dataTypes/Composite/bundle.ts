@@ -8,8 +8,6 @@ const definition: DTDefinition = {
 	fieldGroup: 'other',
 	fieldGroupOrder: 20,
 	processOrder: 150,
-
-	// could we just use TS here? Rethink this.
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',
@@ -24,9 +22,11 @@ const definition: DTDefinition = {
 	}
 };
 
-export default {
+const bundle: DTBundle = {
 	definition,
 	Help,
 	generate,
 	getMetadata
-} as DTBundle;
+};
+
+export default bundle;

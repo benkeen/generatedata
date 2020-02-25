@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ExampleProps, HelpProps, OptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { creditCardList, creditCardFormats } from './formats';
 
@@ -28,7 +28,7 @@ export const getFormattedCreditCardFormats = (ccType: string, separator: string)
 	return creditCardFormats[ccType].formats.join('\n').replace(/ /g, separator);
 };
 
-export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode => {
+export const Example = ({ i18n, data, onUpdate }: DTExampleProps): React.ReactNode => {
 	const onChange = (value: string): void => {
 		const newData: Partial<PanState> = {
 			...data,
@@ -54,7 +54,7 @@ export const Example = ({ i18n, data, onUpdate }: ExampleProps): React.ReactNode
 	);
 };
 
-export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode => {
+export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): React.ReactNode => {
 	const options = getCreditCardOptions(creditCardList, i18n);
 
 	const onChangeRandomOption = (randomBrands: any): void => {
@@ -133,7 +133,7 @@ export const Options = ({ data, i18n, onUpdate }: OptionsProps): React.ReactNode
 	);
 };
 
-export const Help = ({ i18n }: HelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<p>
 		{i18n.DESC}
 		{i18n.pan_help_intro}
