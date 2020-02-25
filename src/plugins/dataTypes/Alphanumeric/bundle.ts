@@ -6,8 +6,6 @@ const definition: DTDefinition = {
 	name: 'Boolean',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 10,
-
-	// could we just use TS here? Rethink this.
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',
