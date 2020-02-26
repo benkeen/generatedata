@@ -5,7 +5,7 @@ import * as actions from './init.actions';
 import storage from 'redux-persist/lib/storage';
 import { dataTypeNames } from '../../utils/dataTypeUtils';
 import { GDLocale } from '../../../types/general';
-import { DataType } from '../../../types/dataTypes';
+import { DataType } from '../../_plugins';
 // import { ExportType } from '../../../types/exportTypes';
 // import { CountryType } from '../../../types/countryTypes';
 

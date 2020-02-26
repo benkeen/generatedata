@@ -12,8 +12,8 @@ locales.forEach((locale) => {
 module.exports = {
 	entry: {
 		app: './src/index.tsx',
-		build: './src/build.tsx',
-		...localeFiles
+		build: './src/build.tsx'
+		// ...localeFiles
 	},
 
 	output: {

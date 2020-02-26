@@ -7,8 +7,8 @@ export const generate = (): DTGenerateResult => {
 
 export const getMetadata = (): DTMetadata => {
 	// Called before separator is set, so margin should be used
-	//$len = 10 + strlen(static::$sep);
-	let len = 11;  // Shoud be enough, allow for max one char sep
+	// $len = 10 + strlen(static::$sep);
+	const len = 11; // Should be enough, allow for max one char sep
 	return {
 		sql: {
 			field: `varchar(${len}) default NULL`,
@@ -16,7 +16,7 @@ export const getMetadata = (): DTMetadata => {
 			field_MSSQL: `VARCHAR(${len}) NULL`
 		}
 	};
-}
+};
 
 
 /*
@@ -96,13 +96,6 @@ export const getMetadata = (): DTMetadata => {
 			$chosenSep = "";
 		}
 		return $chosenSep;
-	}
-
-	public function getRowGenerationOptionsUI($generator, $postdata, $colNum, $numCols) {
-		return array(
-			"cc_separator"   => $postdata["dtOptionOrganisationNumber_sep_$colNum"],
-			"cc_format"      => $postdata["dtOption_$colNum"],
-		);
 	}
 
 */

@@ -1,6 +1,6 @@
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
-import { dataTypes, DataType } from '../_plugins';
+import { dataTypes } from '../_plugins';
 
 export const dataTypeNames = dataTypes.map((dataType) => dataType.name);
 
@@ -25,9 +25,9 @@ export const getSortedGroupedDataTypes = (): any => {
 
 // dataType: DataType | null
 export const getDataTypeComponents = (): any => {
-	let Options = null;
-	let Example = null;
-	let Help = null;
+	const Options = null;
+	const Example = null;
+	const Help = null;
 
 	// if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Options) {
 	// 	Options = dataTypes[dataType].Options;

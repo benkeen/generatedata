@@ -6,5 +6,5 @@ export const dataTypes = [
 
 export type ExportType = 'CSV' | 'JSON' | 'SQL';
 export const exportTypes = [
-	{ name: 'JSON', folder: 'JSON '}
+	{ name: 'JSON', folder: 'JSON' }
 ];

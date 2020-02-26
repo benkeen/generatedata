@@ -20,7 +20,7 @@ const definition: DTDefinition = {
 			length: {
 				type: 'string'
 			},
-			random_card: {
+			randomCard: {
 				type: 'array'
 			}
 		},

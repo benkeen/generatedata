@@ -1,5 +1,4 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
-export { DataType } from '../build/dataTypesListUI';
 import { AnyObject } from './general';
 
 // Every Data Type has a bundle file which needs to export a structure with this type
