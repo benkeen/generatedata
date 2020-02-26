@@ -12,7 +12,7 @@ locales.forEach((locale) => {
 module.exports = {
 	entry: {
 		app: './src/index.tsx',
-		// jsonBundle: './src/plugins/exportTypes/JSON/bundle.ts',
+		build: './src/build.tsx',
 		...localeFiles
 	},
 

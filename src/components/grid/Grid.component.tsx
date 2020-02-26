@@ -58,7 +58,12 @@ const Grid = ({
 
 	const getRows = (rows: DataRow[]): JSX.Element[] => {
 		return rows.map((row, index) => {
-			const { Example, Options } = getDataTypeComponents(row.dataType);
+			// const { Example, Options } = getDataTypeComponents(row.dataType);
+
+			// @ts-ignore-line
+			const Example = (props: any) => null;
+			// @ts-ignore-line
+			const Options = (props: any) => null;
 
 			let example: any = null;
 			let option: any = null;
