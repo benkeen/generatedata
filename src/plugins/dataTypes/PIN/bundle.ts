@@ -5,7 +5,13 @@ import { generate, getMetadata } from './PIN.generate';
 const definition: DTDefinition = {
 	name: 'PIN',
 	fieldGroup: 'credit_card_data',
-	fieldGroupOrder: 20
+	fieldGroupOrder: 20,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	]
 };
 
 const bundle: DTBundle = {

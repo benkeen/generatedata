@@ -5,7 +5,13 @@ import { generate, getMetadata } from './GUID.generate';
 const definition: DTDefinition = {
 	name: 'GUID',
 	fieldGroup: 'numeric',
-	fieldGroupOrder: 50
+	fieldGroupOrder: 50,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	]
 };
 
 const bundle: DTBundle = {

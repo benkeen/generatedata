@@ -6,6 +6,12 @@ const definition: DTDefinition = {
 	name: 'Standard Normal Distribution',
 	fieldGroup: 'math',
 	fieldGroupOrder: 10,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	],
 	schema: {
 		type: 'object',
 		properties: {

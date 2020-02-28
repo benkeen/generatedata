@@ -35,7 +35,7 @@ const getDataTypeI18n = (locales) => {
 	dataTypes.forEach(({ folder, folderPath }) => {
 		const localeInfo = {};
 		locales.forEach((locale) => {
-			const localeFile = `${folderPath}/i18n/${locale}.js`;
+			const localeFile = `${folderPath}/i18n/${locale}.ts`;
 			if (fs.existsSync(localeFile)) {
 				localeInfo[locale] = require(localeFile).default;
 			}

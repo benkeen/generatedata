@@ -5,7 +5,13 @@ import { generate } from './OrganizationNumber.generate';
 const definition: DTDefinition = {
 	name: 'Organization Number',
 	fieldGroup: 'human_data',
-	fieldGroupOrder: 111
+	fieldGroupOrder: 111,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	]
 };
 
 const bundle: DTBundle = {

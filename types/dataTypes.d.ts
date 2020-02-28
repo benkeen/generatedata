@@ -1,33 +1,15 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
-import { AnyObject } from './general';
+import { GDLocale, AnyObject } from './general';
 
-// Every Data Type has a bundle file which needs to export a structure with this type
-export type DTBundle = {
-
-	// the definition of the Data type
-	definition: DTDefinition;
-
-	// the generation function
-	generate: (data: DTGenerationData) => DTGenerateResult;
-
-	// optional <Example /> React component to show something in the UI for the "Example" column
-	Example?: any;
-
-	// optional <Options /> React component. This shows up in the Options column in the UI
-	Options?: any;
-
-	// optional <Help /> React component
-	Help?: any;
-
-	rowStateReducer?: (state: any) => any;
-	getMetadata?: () => DTMetadata;
-};
+export type DTExportTypeExports = 'Options' | 'Help' |  'Example' |  'rowStateReducer' |  'getMetadata';
 
 export type DTDefinition = {
 	name: string;
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	processOrder?: number;
+	localeFiles: GDLocale[];
+	exports: DTExportTypeExports[];
 	schema?: any;
 };
 

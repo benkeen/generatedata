@@ -6,6 +6,12 @@ const definition: DTDefinition = {
 	name: 'Rut',
 	fieldGroup: 'human_data',
 	fieldGroupOrder: 105,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	]
 };
 
 const bundle: DTBundle = {

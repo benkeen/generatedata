@@ -1,11 +1,17 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './Boolean.ui';
-import { rowStateReducer, generate, getMetadata } from './Boolean.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+export { Example, Options, Help } from './Boolean.ui';
+export { rowStateReducer, generate, getMetadata } from './Boolean.generate';
 
 const definition: DTDefinition = {
 	name: 'Alphanumeric',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 11,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',
@@ -20,14 +26,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	Help,
-	rowStateReducer,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

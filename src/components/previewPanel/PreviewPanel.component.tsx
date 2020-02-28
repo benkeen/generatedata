@@ -55,7 +55,7 @@ const PreviewPanel = ({
 			<div className={styles.noResults}>
 				<ArrowDropUp style={{ fontSize: 300, position: 'absolute' }} />
 				<div style={{ height: '100%', margin: 'auto' }}>
-					<h1>{i18n.no_data}</h1>
+					<h1>{i18n.preview_panel_no_data}</h1>
 					<p>{i18n.add_some_data_desc}</p>
 				</div>
 			</div>

@@ -5,7 +5,13 @@ import { generate, getMetadata } from './PersonalNumber.generate';
 const definition: DTDefinition = {
 	name: 'Personal Number',
 	fieldGroup: 'human_data',
-	fieldGroupOrder: 110
+	fieldGroupOrder: 110,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	],
 };
 
 const bundle: DTBundle = {

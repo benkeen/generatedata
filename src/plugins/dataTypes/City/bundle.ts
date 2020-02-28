@@ -1,11 +1,18 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { generate, getMetadata } from './City.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { generate, getMetadata } from './City.generate';
 
 const definition: DTDefinition = {
 	name: 'City',
 	fieldGroup: 'geo',
 	fieldGroupOrder: 20,
 	processOrder: 3,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'rowStateReducer', 'getMetadata'
+	],
 
 	// could we just use TS here? Rethink this.
 	schema: {
@@ -22,10 +29,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

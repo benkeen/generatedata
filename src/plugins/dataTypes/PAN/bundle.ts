@@ -6,6 +6,12 @@ const definition: DTDefinition = {
 	name: 'PAN',
 	fieldGroup: 'credit_card_data',
 	fieldGroupOrder: 10,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	],
 	schema: {
 		properties: {
 			brand: {

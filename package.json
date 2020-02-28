@@ -9,9 +9,8 @@
   "scripts": {
 	"dev": "grunt & yarn build & yarn webpack",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
-    "build": "yarn createTmpPluginsFile & node ./scripts/generateConfigFile.js",
-	"test": "env NODE_ENV=test jest",
-	"createTmpPluginsFile": "tsc ./scripts/createTmpPluginsFile.ts --outDir ./build && node ./build/createTmpPluginsFile.js"
+	"build": "node ./scripts/generateConfigFile.js",
+	"test": "env NODE_ENV=test jest"
   },
   "repository": {
     "type": "git",

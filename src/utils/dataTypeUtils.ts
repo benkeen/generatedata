@@ -1,20 +1,23 @@
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
-import { dataTypes } from '../_plugins';
+import { dataTypes, DataTypeFolder } from '../_plugins';
 
-export const dataTypeNames = dataTypes.map((dataType) => dataType.name);
+export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
 // used for the Data Type selection dropdown
 export const getSortedGroupedDataTypes = (): any => {
 	const i18n = getStrings();
 
 	return coreConfig.dataTypeGroups.map((group: string) => {
-		const options = dataTypes.filter((dataType: any) => dataType.fieldGroup === group).map((i: any) => {
-			return {
-				value: i.folder,
-				label: i.name
-			};
-		});
+		const options = Object.keys(dataTypes)
+			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
+			.map((dataType: DataTypeFolder) => {
+				return {
+					value: dataType,
+					label: dataTypes[dataType].name
+				};
+			});
+
 		return {
 			label: i18n.core[group],
 			options
@@ -42,28 +45,25 @@ export const getDataTypeComponents = (): any => {
 	return { Options, Example, Help };
 };
 
-
-// dataType: string
-export const getDataTypeDefaultState = (): any => {
+export const getDataTypeDefaultState = (dataType: string): any => {
+	console.log(dataTypes);
 	// return dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].state ? dataTypes[dataType].state : null;
 	return null;
 };
 
-
-// dataType: string
-export const getDataTypeHelpComponent = (): any => {
+export const getDataTypeHelpComponent = (dataType: string): any => {
+	console.log(dataTypes);
 	// return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : (): any => null;
 	return null;
 };
 
+type DataTypeProcessOrders = {
+	[name in DataTypeFolder]?: number;
+}
 
-// TODO move to var like above
-const processOrders: any = {};
-export const getDataTypeProcessOrders = (): any => {
-	dataTypes.forEach((row) => {
-		processOrders[row.folder] = row.processOrder;
-	});
-	return processOrders;
-};
+const processOrders: DataTypeProcessOrders = {}; 
+Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
+	processOrders[dataType] = (dataTypes[dataType].processOrder ? dataTypes[dataType].processOrder : 0) as number;
+});
 
-export const getDataTypeProcessOrder = (dataType: string): number => processOrders[dataType];
+export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType] as number;

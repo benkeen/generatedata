@@ -1,4 +1,4 @@
-import { DTBundle, DTDefinition } from '../../../../types/dataTypes';
+import { DTDefinition } from '../../../../types/dataTypes';
 import { Example, Options, Help } from './Constant.ui';
 import { generate } from './Constant.generate';
 
@@ -7,6 +7,12 @@ const definition: DTDefinition = {
 	fieldGroup: 'other',
 	fieldGroupOrder: 10,
 	processOrder: 100,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

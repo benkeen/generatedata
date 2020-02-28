@@ -1,5 +1,5 @@
-export default {
-	"a_few_links": "A few links",
+const core = {
+	a_few_links: "A few links",
 	"about": "About",
 	"about_para1": "Sometimes you need fake data for things like testing software, populating databases and creating realistic-looking mockups. For text, we have <i>lorem ipsum</i>; but for everything else...? This tool was written to provide a quick and simple way to let you generate large volumes of custom data in whatever format you require.",
 	"about_para2": "The <b>Generate</b> page contains the entire script: just fill in the various fields in the page to construct the data set you're interested in, then click the Generate button. And hey presto! Easy, huh?",
@@ -284,10 +284,20 @@ export default {
 	"your_data_sets": "Your Data Sets",
 	"zip_q": "Zip?",
 	"grid": "Grid",
-	"preview": "Preview",
-	no_data: "No data!",
+	preview: "Preview",
+	preview_panel_no_data: "No data!",
 	add_some_data_desc: 'Add some rows in the Grid panel above',
 	refresh_panel: 'Refresh Panel',
 	close_panel: 'Close panel',
 	generate_arrow: 'Generate &raquo;'
+};
+
+const i18n = {
+	core,
+	dataTypes: {
+
+	},
+	exportTypes: {
+
+	}
 };

@@ -13,7 +13,7 @@ const generatePluginsMetadataFile = (): void => {
 	const dtLines = dataTypeNames.map((dataTypeName: string) => {
 		// @ts-ignore-line
 		const currDataType = dataTypes[dataTypeName];
-		return `\t{ name: '${currDataType.name}', folder: '${currDataType.folder}', fieldGroup: '${currDataType.fieldGroup}', fieldGroupOrder: ${i.fieldGroupOrder}, processOrder: ${currDataType.processOrder} }`
+		return `\t{ name: '${currDataType.name}', folder: '${currDataType.folder}', fieldGroup: '${currDataType.fieldGroup}', fieldGroupOrder: ${currDataType.fieldGroupOrder}, processOrder: ${currDataType.processOrder} }`
 	});
 	content += `export const dataTypes = [\n${dtLines.join(',\n')}\n];\n\n`
 
@@ -24,7 +24,9 @@ const generatePluginsMetadataFile = (): void => {
 	createBuildFile('plugins.ts', content);
 };
 
+
 generatePluginsMetadataFile();
+
 
 
 // // const processDataTypes = () => {

@@ -6,6 +6,12 @@ const definition: DTDefinition = {
 	name: 'Custom List',
 	fieldGroup: 'other',
 	fieldGroupOrder: 40,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	],
 	schema: {
 		type: 'object',
 		properties: {

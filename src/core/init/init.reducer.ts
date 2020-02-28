@@ -13,7 +13,7 @@ type InitReducer = {
 	localeFileLoaded: boolean;
 	locale: GDLocale;
 	loadedDataTypes: {
-		[str in DataType]: boolean;
+		// [str in DataType]: boolean;
 	},
 	// loadedExportTypes: {
 	// 	[str in ExportType]: boolean;
@@ -29,7 +29,7 @@ const initialState: InitReducer = {
 	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataType) => acc[name] = false, {}),
 	// loadedExportTypes: dataTypeNames.reduce((acc: any, name: ExportType) => acc[name] = false, {}),
 	// loadedCountries: dataTypeNames.reduce((acc: any, name: CountryType) => acc[name] = false, {})
-}
+};
 
 /**
  * This stores various info about the initialization of the app: locale choice, what plugins have been loaded and anything 

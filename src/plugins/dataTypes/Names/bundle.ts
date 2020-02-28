@@ -6,6 +6,12 @@ const definition: DTDefinition = {
 	name: 'Names',
 	fieldGroup: 'human_data',
 	fieldGroupOrder: 10,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	],
 	schema: {
 		type: 'object',
 		properties: {

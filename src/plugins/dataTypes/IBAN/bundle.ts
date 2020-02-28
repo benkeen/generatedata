@@ -5,7 +5,13 @@ import { generate, getMetadata } from './IBAN.generate';
 const definition: DTDefinition = {
 	name: 'IBAN',
 	fieldGroup: 'human_data',
-	fieldGroupOrder: 100
+	fieldGroupOrder: 100,
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	],
+	exports: [
+		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+	],
 };
 
 const bundle: DTBundle = {
