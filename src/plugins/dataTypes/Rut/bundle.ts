@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Example, Options } from './Rut.ui';
-import { generate } from './Rut.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Example, Options } from './Rut.ui';
+export { generate } from './Rut.generate';
 
 const definition: DTDefinition = {
 	name: 'Rut',
@@ -10,15 +11,8 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Example'
 	]
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	generate
-};
-
-export default bundle;
+export default definition;

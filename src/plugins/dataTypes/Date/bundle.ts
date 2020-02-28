@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help, Example, Options } from './Date.ui';
-import { generate } from './Date.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help, Example, Options } from './Date.ui';
+export { generate } from './Date.generate';
 
 const definition: DTDefinition = {
 	name: 'Date',
@@ -10,7 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example'
 	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
@@ -34,12 +35,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	Help,
-	generate
-};
-
-export default bundle;
+export default definition;

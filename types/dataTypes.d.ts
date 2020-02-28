@@ -9,7 +9,7 @@ export type DTDefinition = {
 	fieldGroupOrder: number;
 	processOrder?: number;
 	localeFiles: GDLocale[];
-	exports: DTExportTypeExports[];
+	exports?: DTExportTypeExports[];
 	schema?: any;
 };
 

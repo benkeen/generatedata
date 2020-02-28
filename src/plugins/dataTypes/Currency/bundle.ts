@@ -1,6 +1,7 @@
-import { DTBundle, DTDefinition } from '../../../../types/dataTypes';
-import { Help, Example, Options } from './Currency.ui';
-import { generate, getMetadata } from './Currency.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help, Example, Options } from './Currency.ui';
+export { generate, getMetadata } from './Currency.generate';
 
 const definition: DTDefinition = {
 	name: 'Currency',
@@ -10,13 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
-	],
-	localeFiles: [
-		'de', 'en', 'es', 'fr', 'nl'
-	],
-	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example', 'getMetadata'
 	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
@@ -49,13 +44,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

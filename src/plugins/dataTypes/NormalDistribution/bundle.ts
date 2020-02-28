@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Options } from './NormalDistribution.ui';
-import { generate, getMetadata } from './NormalDistribution.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Options } from './NormalDistribution.ui';
+export { generate, getMetadata } from './NormalDistribution.generate';
 
 const definition: DTDefinition = {
 	name: 'Standard Normal Distribution',
@@ -10,7 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example', 'getMetadata'
 	],
 	schema: {
 		type: 'object',
@@ -33,11 +34,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Options,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

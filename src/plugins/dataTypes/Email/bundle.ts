@@ -1,5 +1,6 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { generate } from './Email.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { generate } from './Email.generate';
 
 const definition: DTDefinition = {
 	name: 'Email',
@@ -7,15 +8,7 @@ const definition: DTDefinition = {
 	fieldGroupOrder: 30,
 	localeFiles: [
 		'de', 'en', 'es', 'fr', 'nl'
-	],
-	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
 	]
 };
 
-const bundle: DTBundle = {
-	definition,
-	generate
-};
-
-export default bundle;
+export default definition;

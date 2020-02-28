@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help, Options } from './Region.ui';
-import { generate } from './Region.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help, Options } from './Region.ui';
+export { generate } from './Region.generate';
 
 const definition: DTDefinition = {
 	name: 'Region',
@@ -11,7 +12,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help'
 	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
@@ -24,11 +25,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Options,
-	Help,
-	generate,
-};
-
-export default bundle;
+export default definition;

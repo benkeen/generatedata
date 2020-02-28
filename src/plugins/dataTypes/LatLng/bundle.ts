@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Options, Help } from './LatLng.ui';
-import { generate, getMetadata } from './LatLng.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Options, Help } from './LatLng.ui';
+export { generate, getMetadata } from './LatLng.generate';
 
 const definition: DTDefinition = {
 	name: 'Latitude / Longitude',
@@ -10,7 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example', 'getMetadata'
 	],
 	schema: {
 		type: 'object',
@@ -29,12 +30,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Options,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

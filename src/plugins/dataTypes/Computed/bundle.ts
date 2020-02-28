@@ -1,6 +1,7 @@
-import { DTBundle, DTDefinition } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './Computed.ui';
-import { generate } from './Computed.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Example, Options, Help } from './Computed.ui';
+export { generate } from './Computed.generate';
 
 const definition: DTDefinition = {
 	name: 'Computed',
@@ -10,7 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example'
 	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
@@ -26,12 +27,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	Help,
-	generate
-};
-
-export default bundle;
+export default definition;

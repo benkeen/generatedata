@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help, Options } from './SIRET.ui';
-import { generate } from './SIRET.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help, Options } from './SIRET.ui';
+export { generate } from './SIRET.generate';
 
 const definition: DTDefinition = {
 	name: 'SIRET',
@@ -10,7 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'getMetadata'
 	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
@@ -29,11 +30,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Options,
-	Help,
-	generate
-};
-
-export default bundle;
+export default definition;

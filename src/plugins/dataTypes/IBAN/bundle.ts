@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help } from './IBAN.ui';
-import { generate, getMetadata } from './IBAN.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help } from './IBAN.ui';
+export { generate, getMetadata } from './IBAN.generate';
 
 const definition: DTDefinition = {
 	name: 'IBAN',
@@ -10,15 +11,8 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
-	],
+		'Help', 'getMetadata'
+	]
 };
 
-const bundle: DTBundle = {
-	definition,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

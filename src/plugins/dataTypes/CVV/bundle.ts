@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help } from './CVV.ui';
-import { generate, getMetadata } from './CVV.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help } from './CVV.ui';
+export { generate, getMetadata } from './CVV.generate';
 
 const definition: DTDefinition = {
 	name: 'CVV',
@@ -10,15 +11,8 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Help', 'rowStateReducer', 'getMetadata'
 	]
 };
 
-const bundle: DTBundle = {
-	definition,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

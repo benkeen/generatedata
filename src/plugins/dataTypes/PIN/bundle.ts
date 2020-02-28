@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help } from './PIN.ui';
-import { generate, getMetadata } from './PIN.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help } from './PIN.ui';
+export { generate, getMetadata } from './PIN.generate';
 
 const definition: DTDefinition = {
 	name: 'PIN',
@@ -10,15 +11,8 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Help', 'getMetadata'
 	]
 };
 
-const bundle: DTBundle = {
-	definition,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

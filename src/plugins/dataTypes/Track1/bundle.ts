@@ -1,5 +1,6 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { generate, getMetadata } from './Track1.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { generate, getMetadata } from './Track1.generate';
 
 const definition: DTDefinition = {
 	name: 'Track 1',
@@ -9,14 +10,8 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
-	],
+		'rowStateReducer', 'getMetadata'
+	]
 };
 
-const bundle: DTBundle = {
-	definition,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

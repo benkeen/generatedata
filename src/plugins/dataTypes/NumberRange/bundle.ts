@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help, Options } from './NumberRange.ui';
-import { generate, getMetadata } from './NumberRange.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help, Options } from './NumberRange.ui';
+export { generate, getMetadata } from './NumberRange.generate';
 
 const definition: DTDefinition = {
 	name: 'Number Range',
@@ -10,7 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example', 'getMetadata'
 	],
 	schema: {
 		type: 'object',
@@ -29,12 +30,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Options,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

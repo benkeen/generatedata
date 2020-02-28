@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help } from './GUID.ui';
-import { generate, getMetadata } from './GUID.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help } from './GUID.ui';
+export { generate, getMetadata } from './GUID.generate';
 
 const definition: DTDefinition = {
 	name: 'GUID',
@@ -10,15 +11,8 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Help', 'getMetadata'
 	]
 };
 
-const bundle: DTBundle = {
-	definition,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

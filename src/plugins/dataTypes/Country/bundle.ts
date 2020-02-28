@@ -1,6 +1,7 @@
-import { DTBundle, DTDefinition } from '../../../../types/dataTypes';
-import { Options } from './Country.ui';
-import { generate } from './Country.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Options } from './Country.ui';
+export { generate } from './Country.generate';
 
 const definition: DTDefinition = {
 	name: 'Country',
@@ -26,10 +27,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Options,
-	generate
-};
-
-export default bundle;
+export default definition;

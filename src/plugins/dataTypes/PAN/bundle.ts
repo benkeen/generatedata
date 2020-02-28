@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './PAN.ui';
-import { generate, getMetadata } from './PAN.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Example, Options, Help } from './PAN.ui';
+export { generate, getMetadata } from './PAN.generate';
 
 const definition: DTDefinition = {
 	name: 'PAN',
@@ -10,7 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example', 'getMetadata'
 	],
 	schema: {
 		properties: {
@@ -37,13 +38,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

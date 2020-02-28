@@ -1,6 +1,7 @@
 import { DTDefinition } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './Constant.ui';
-import { generate } from './Constant.generate';
+
+export { Example, Options, Help } from './Constant.ui';
+export { generate } from './Constant.generate';
 
 const definition: DTDefinition = {
 	name: 'Constant',
@@ -11,7 +12,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example'
 	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
@@ -31,12 +32,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	Help,
-	generate
-};
-
-export default bundle;
+export default definition;

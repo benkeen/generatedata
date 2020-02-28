@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './Phone.ui';
-import { generate, getMetadata } from './Phone.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Example, Options, Help } from './Phone.ui';
+export { generate, getMetadata } from './Phone.generate';
 
 const definition: DTDefinition = {
 	name: 'Phone / Fax',
@@ -10,7 +11,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example', 'getMetadata'
 	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
@@ -26,13 +27,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

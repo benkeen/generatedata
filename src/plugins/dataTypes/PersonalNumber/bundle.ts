@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './PersonalNumber.ui';
-import { generate, getMetadata } from './PersonalNumber.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Example, Options, Help } from './PersonalNumber.ui';
+export { generate, getMetadata } from './PersonalNumber.generate';
 
 const definition: DTDefinition = {
 	name: 'Personal Number',
@@ -10,17 +11,8 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Options', 'Help', 'Example', 'getMetadata'
 	],
 };
 
-const bundle: DTBundle = {
-	definition,
-	Example,
-	Options,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

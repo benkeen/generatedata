@@ -1,6 +1,7 @@
 import { DTDefinition } from '../../../../types/dataTypes';
-import { Help } from './Company.ui';
-import { generate, getMetadata } from './Company.generate';
+
+export { Help } from './Company.ui';
+export { generate, getMetadata } from './Company.generate';
 
 const definition: DTDefinition = {
 	name: 'Company',
@@ -10,15 +11,8 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Help', 'getMetadata'
 	]
 };
 
-const bundle: DTBundle = {
-	definition,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;

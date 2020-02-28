@@ -1,6 +1,7 @@
-import { DTDefinition, DTBundle } from '../../../../types/dataTypes';
-import { Help } from './PostalZip.ui';
-import { generate, getMetadata } from './PostalZip.generate';
+import { DTDefinition } from '../../../../types/dataTypes';
+
+export { Help } from './PostalZip.ui';
+export { generate, getMetadata } from './PostalZip.generate';
 
 const definition: DTDefinition = {
 	name: 'Postal / Zip',
@@ -11,7 +12,7 @@ const definition: DTDefinition = {
 		'de', 'en', 'es', 'fr', 'nl'
 	],
 	exports: [
-		'Options', 'Help', 'Example', 'rowStateReducer', 'getMetadata'
+		'Help', 'getMetadata'
 	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
@@ -28,11 +29,4 @@ const definition: DTDefinition = {
 	}
 };
 
-const bundle: DTBundle = {
-	definition,
-	Help,
-	generate,
-	getMetadata
-};
-
-export default bundle;
+export default definition;
