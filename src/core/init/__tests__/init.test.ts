@@ -1,5 +1,4 @@
 import { createStore, combineReducers } from 'redux';
-import * as sinon from 'sinon';
 import * as actions from '../init.actions';
 import * as selectors from '../init.selectors';
 import { reducer } from '../init.reducer';

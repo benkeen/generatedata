@@ -1,11 +1,13 @@
-import { exportTypes } from '../_plugins';
-import { DropdownOption } from '../components/dropdown/Dropdown';
+import { exportTypes, ExportTypeFolder } from '../_plugins';
+// import { DropdownOption } from '../components/dropdown/Dropdown';
 
-export const exportTypeOptions: DropdownOption[] = exportTypes.map(({ name, folder }) => ({
-	value: folder,
-	label: name
-}));
-
+export const exportTypeOptions = Object.keys(exportTypes)
+	.map((exportType: ExportTypeFolder) => {
+		return {
+			value: exportType,
+			label: exportTypes[exportType].name
+		};
+	});
 
 export const loadExportTypeBundle = (exportType: string) => {
 	return import(/* webpackChunkName: "exportType-[request]" */ `../plugins/exportTypes/${exportType}/bundle`)

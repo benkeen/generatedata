@@ -1,11 +1,10 @@
+import { GDLocale } from './general';
 import { BuilderLayout } from '../src/components/builder/Builder.component';
 
-export type ETBundle = {
-	initialState: any;
-    generate: any;
-    Settings?: React.ReactNode;
-    Preview?: React.ReactNode;
-}
+export type ETDefinition = {
+	name: string; 
+	localeFiles: GDLocale[];
+};
 
 export type ETSettings = {
 	onUpdate: Function; // from container

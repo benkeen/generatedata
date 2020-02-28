@@ -1,6 +1,7 @@
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
+import { keys } from '@material-ui/core/styles/createBreakpoints';
 
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
@@ -57,13 +58,15 @@ export const getDataTypeHelpComponent = (dataType: string): any => {
 	return null;
 };
 
-type DataTypeProcessOrders = {
-	[name in DataTypeFolder]?: number;
-}
+// type DataTypeProcessOrders = {
+// 	[name: keyof DataTypeFolder]?: number;
+// }
+type DataTypeProcessOrders = any;
 
-const processOrders: DataTypeProcessOrders = {}; 
+export const processOrders: DataTypeProcessOrders = {}; 
 Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
-	processOrders[dataType] = (dataTypes[dataType].processOrder ? dataTypes[dataType].processOrder : 0) as number;
+	processOrders[dataType] = dataTypes[dataType].processOrder;
 });
 
-export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType] as number;
+export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType];
+

@@ -1,13 +1,14 @@
-import { ETBundle } from '../../../../types/exportTypes';
-import { generate } from './JSON.generator';
-import { Settings, initialState } from './JSON.ui';
-import Preview from './JSON.preview';
+import { ETDefinition } from '../../../../types/exportTypes';
 
-const exportType: ETBundle = {
-	initialState,
-	generate,
-	Settings,
-	Preview
+export { generate } from './JSON.generator';
+export { Settings, initialState } from './JSON.ui';
+export { default as Preview } from './JSON.preview';
+
+const definition: ETDefinition = {
+	name: 'JSON',
+	localeFiles: [
+		'de', 'en', 'es', 'fr', 'nl'
+	]
 };
 
-export default exportType;
+export default definition;

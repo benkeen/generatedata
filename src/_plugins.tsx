@@ -74,7 +74,14 @@ export const dataTypes = {
 
 export type DataTypeFolder = keyof typeof dataTypes;
 
-// export type ExportType = 'CSV' | 'JSON' | 'SQL';
-// export const exportTypes = [
-// 	{ name: 'JSON', folder: 'JSON' }
-// ];
+
+// -------------------------------------------------------------------------------------------------------
+
+
+import JSON from '/Applications/MAMP/htdocs/generatedata/src/plugins/exportTypes/JSON/bundle';
+
+export const exportTypes = {
+	JSON
+};
+
+export type ExportTypeFolder = keyof typeof exportTypes;

@@ -5,16 +5,17 @@ import * as actions from './init.actions';
 import storage from 'redux-persist/lib/storage';
 import { dataTypeNames } from '../../utils/dataTypeUtils';
 import { GDLocale } from '../../../types/general';
-import { DataType } from '../../_plugins';
+import { DataTypeFolder } from '../../_plugins';
 // import { ExportType } from '../../../types/exportTypes';
 // import { CountryType } from '../../../types/countryTypes';
 
 type InitReducer = {
 	localeFileLoaded: boolean;
 	locale: GDLocale;
-	loadedDataTypes: {
-		// [str in DataType]: boolean;
-	},
+	loadedDataTypes: any; 
+	// {
+	// 	[str in DataTypeFolder]: boolean;
+	// },
 	// loadedExportTypes: {
 	// 	[str in ExportType]: boolean;
 	// },
@@ -26,7 +27,7 @@ type InitReducer = {
 const initialState: InitReducer = {
 	localeFileLoaded: false,
 	locale: 'en',
-	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataType) => acc[name] = false, {}),
+	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => acc[name] = false, {}),
 	// loadedExportTypes: dataTypeNames.reduce((acc: any, name: ExportType) => acc[name] = false, {}),
 	// loadedCountries: dataTypeNames.reduce((acc: any, name: CountryType) => acc[name] = false, {})
 };

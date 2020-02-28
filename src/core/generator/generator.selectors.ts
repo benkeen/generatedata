@@ -1,9 +1,10 @@
 import { createSelector } from 'reselect';
 import { getGenerationOptionsByDataType } from '../../utils/dataTypeGenerationUtils';
-import { getDataTypeProcessOrders } from '../../utils/dataTypeUtils';
+import { processOrders } from '../../utils/dataTypeUtils';
 import { GenerationTemplate } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { DataRow } from './generator.reducer';
+import { DataTypeFolder } from '../../_plugins';
 
 export const getExportType = (state: any): any => state.generator.exportType;
 export const getRows = (state: any): any => state.generator.rows;
@@ -70,14 +71,17 @@ export const getPreviewData = createSelector(
 	}
 );
 
+type Test = {
+	[num: number]: any
+};
+
 export const getGenerationTemplate = createSelector(
 	getNonEmptySortedRows,
 	(rows): GenerationTemplate => {
-		const processOrders = getDataTypeProcessOrders();
 
-		const templateByProcessOrder: any = {};
+		const templateByProcessOrder: Test = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
-			const processOrder = processOrders[dataType];
+			const processOrder = processOrders[dataType as DataTypeFolder] as number;
 
 			// TODO another assumption here. We need to validate the whole component right-up front during the
 			// build step and throw a nice error saying what's missing
