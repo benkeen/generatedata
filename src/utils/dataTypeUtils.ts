@@ -73,3 +73,13 @@ Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
 
 export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType];
 
+
+export const getDataTypeLocales = () => {
+	const dtLocales: any = {};
+	Object.keys(dataTypes)
+		.forEach((dataTypeFolder) => {
+			// @ts-ignore
+			dtLocales[dataTypeFolder] = dataTypes[dataTypeFolder].localeFiles;
+		});
+	return dtLocales;
+};
