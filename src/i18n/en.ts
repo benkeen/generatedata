@@ -1,5 +1,4 @@
-import store from '../store';
-import { getDataTypeLocales } from '../utils/dataTypeUtils';
+import { getDataTypeLocales } from '../utils/i18nBundleUtils';
 
 const core = {
 	aFewLinks: "A few links",

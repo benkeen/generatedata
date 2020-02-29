@@ -70,7 +70,9 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpD
 	}, [initialDataType]);
 
 	const dataTypes = getSortedGroupedDataTypes();
-	const Help = getDataTypeHelpComponent(dataType);
+	// const Help = getDataTypeHelpComponent(dataType);
+
+	const Help = (p: any): null => null;
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>

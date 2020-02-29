@@ -1,6 +1,8 @@
 import { ThunkDispatch } from 'redux-thunk';
 import * as langUtils from '../../utils/langUtils';
 import { GDLocale, GDAction } from '../../../types/general';
+import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
+import { ExportTypeFolder } from '../../_plugins';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -14,7 +16,6 @@ export const selectLocale = (locale: GDLocale) => {
 	return (dispatch: ThunkDispatch<any, any, any>): any => {
 		window.gd = {};
 		window.gd.localeLoaded = (strings: any) => {
-			console.log('NOW!!', strings);
 			langUtils.setLocale(locale, strings);
 			dispatch(setLocaleFileLoaded(locale));
 		};
@@ -22,4 +23,11 @@ export const selectLocale = (locale: GDLocale) => {
 		s.src = `./${locale}.js`;
 		document.body.appendChild(s);
 	};
+};
+
+export const selectExportType = (exportType: ExportTypeFolder) => {
+	loadExportTypeBundle(exportType)
+		.then((res: any) => {
+			console.log('well... response: ', res);
+		});
 };

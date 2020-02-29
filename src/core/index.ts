@@ -15,13 +15,12 @@ export const init = (): void => {
 	const state = store.getState();
 	const locale = initSelectors.getLocale(state);
 	const numRows = generatorSelectors.getNumRows(state);
-
-	// @ts-ignore-line
+	
 	store.dispatch(initActions.selectLocale(locale));
 
-	// how to add the default export type? We'll know on load (say a config setting). Perhaps after loading, an Export
-	// Type should register itself.
-	//console.log(config);
+	console.log('???');
+
+	store.dispatch(initActions.selectExportType(config.defaultExportType));
 
 	// *************************************************************************************** 
 	// - need central bundler loader.

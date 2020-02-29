@@ -9,10 +9,6 @@ export const exportTypeOptions = Object.keys(exportTypes)
 		};
 	});
 
-export const loadExportTypeBundle = (exportType: string): any => {
-	return import(/* webpackChunkName: "exportType-[request]" */ `../plugins/exportTypes/${exportType}/bundle`)
-		.then(({ default: et }) => {
-			console.log(et);
-			// flag this as loaded in the store.
-		});
-};
+export const loadExportTypeBundle = (exportType: string): any => (
+	import(/* webpackChunkName: "exportType-[request]" */ `../plugins/exportTypes/${exportType}/bundle`)
+);

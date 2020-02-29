@@ -7,7 +7,6 @@ import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { BuilderLayout } from '../builder/Builder.component';
-import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
 import * as styles from './PreviewPanel.scss';
 
 export type PreviewPanelProps = {
@@ -37,17 +36,16 @@ const PreviewPanel = ({
 	// so we can fade the spinner out when the content is loaded
 
 	// @ts-ignore
-	const ExportTypePreview: LoadableComponent = loadable(() => import(
-		/* webpackChunkName: "exportType-[index]" */
-		`../../plugins/exportTypes/${exportType}/${exportType}.preview`)
-	);
+	// const ExportTypePreview: LoadableComponent = loadable(() => import(
+	// 	/* webpackChunkName: "exportType-[request]" */
+	// 	`../../plugins/exportTypes/${exportType}/${exportType}.preview`)
+	// );
 
-	console.log('!!!');
-	loadExportTypeBundle('JSON');
+	// loadExportTypeBundle('JSON');
 
-	const getNoResults = (): JSX.Element | null => {
-		console.log(data);
+	const ExportTypePreview = (p: any): null => null;
 
+	const getNoResults = (): JSX.Element | null => {	 
 		if (data.rows.length > 0) {
 			return null;
 		}
@@ -95,17 +93,15 @@ const PreviewPanel = ({
 				fontSize: `${previewTextSize}px`,
 				lineHeight: `${previewTextSize + 7}px`
 			}}>
-				<React.Suspense fallback={<div>loading...</div>}>
-					<ExportTypePreview
-						numPreviewRows={numPreviewRows}
-						builderLayout={builderLayout}
-						exportTypeSettings={exportTypeSettings}
-						showRowNumbers={showRowNumbers}
-						enableLineWrapping={enableLineWrapping}
-						data={data}
-						theme={theme}
-					/>
-				</React.Suspense>
+				<ExportTypePreview
+					numPreviewRows={numPreviewRows}
+					builderLayout={builderLayout}
+					exportTypeSettings={exportTypeSettings}
+					showRowNumbers={showRowNumbers}
+					enableLineWrapping={enableLineWrapping}
+					data={data}
+					theme={theme}
+				/>
 			</div>
 		</div>
 	);

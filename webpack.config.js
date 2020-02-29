@@ -3,16 +3,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const localeFiles = {};
-const locales = ['en', 'fr', 'de', 'es', 'ja', 'nl', 'ta', 'zh'];
-locales.forEach((locale) => {
-	localeFiles[locale] = `./src/i18n/${locale}.ts`;
-});
-
 module.exports = {
 	entry: {
-		app: './src/index.tsx',
-		...localeFiles
+		app: './src/index.tsx'
 	},
 
 	output: {
