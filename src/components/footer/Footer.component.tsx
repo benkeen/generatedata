@@ -13,10 +13,10 @@ import { GDLocale } from '../../../types/general';
 import C from '../../core/constants';
 
 export type FooterProps = {
-	locale: GDLocale,
-	i18n: any,
+	locale: GDLocale;
+	i18n: any;
 	openExportTypeSettings: () => void;
-	onChangeLocale: (a: any) => void
+	onChangeLocale: (a: any) => void;
 };
 
 const options = [

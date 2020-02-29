@@ -34,7 +34,7 @@ const initialState: InitReducer = {
 
 /**
  * This stores various info about the initialization of the app: locale choice, what plugins have been loaded and anything 
- * high level like that. Will probably 
+ * high level like that.
  */
 export const reducer = (state = initialState, action: AnyAction): InitReducer => {
 	switch (action.type) {

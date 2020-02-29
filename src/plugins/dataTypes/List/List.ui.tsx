@@ -6,7 +6,7 @@ import CreatableDropdown from '../../../components/dropdown/CreatableDropdown';
 export type ListType = 'EXACTLY' | 'AT_MOST';
 
 export type ListState = {
-	example: String;
+	example: string;
 	listType: ListType;
 	exactly: string;
 	atMost: string;

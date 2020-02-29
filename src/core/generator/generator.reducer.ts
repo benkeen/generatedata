@@ -17,7 +17,7 @@ export type DataRows = {
 };
 
 export type PreviewData = {
-	[id: string]: any[]
+	[id: string]: any[];
 };
 
 export type ReducerState = {

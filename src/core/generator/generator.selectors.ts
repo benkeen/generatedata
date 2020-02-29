@@ -71,18 +71,17 @@ export const getPreviewData = createSelector(
 	}
 );
 
-type Test = {
-	[num: number]: any
+type ProcessOrders = {
+	[num: number]: any;
 };
 
 export const getGenerationTemplate = createSelector(
 	getNonEmptySortedRows,
 	(rows): GenerationTemplate => {
 
-		const templateByProcessOrder: Test = {};
+		const templateByProcessOrder: ProcessOrders = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
-			// const processOrder = processOrders[dataType as DataTypeFolder] as number; // hmph!
-			const processOrder = processOrders[dataType];
+			const processOrder = processOrders[dataType as DataTypeFolder];
 
 			// TODO another assumption here. We need to validate the whole component right-up front during the
 			// build step and throw a nice error saying what's missing

@@ -72,7 +72,7 @@ export const dataTypes = {
 	Tree
 };
 
-export type DataTypeFolder = any; // keyof typeof dataTypes;
+export type DataTypeFolder = keyof typeof dataTypes;
 
 
 // -------------------------------------------------------------------------------------------------------
@@ -84,4 +84,4 @@ export const exportTypes = {
 	JSON
 };
 
-export type ExportTypeFolder = any; // keyof typeof exportTypes;
+export type ExportTypeFolder = keyof typeof exportTypes;

@@ -1,5 +1,5 @@
 import React from 'react';
-import loadable, { LoadableComponent } from '@loadable/component';
+// import loadable, { LoadableComponent } from '@loadable/component';
 import Dropdown, { DropdownOption } from '../dropdown/Dropdown';
 import { exportTypeOptions } from '../../utils/exportTypeUtils';
 import * as styles from './ExportSettings.scss';
@@ -8,7 +8,7 @@ import { ExportSettingsTab } from './ExportSettings.types';
 export type ExportTypeTabProps = {
 	exportType: string;
 	onChangeExportType: (exportType: string) => void;
-	exportSettingsTab: ExportSettingsTab
+	exportSettingsTab: ExportSettingsTab;
 };
 
 export const ExportTypeTab = ({
@@ -21,7 +21,7 @@ export const ExportTypeTab = ({
 	// 	`../../plugins/exportTypes/${exportType}/${exportType}.ui`)
 	// );
 
-	const ExportTypeSettings = () => null;
+	const ExportTypeSettings = (): null => null;
 
 	return (
 		<div className={styles.tabContent}>

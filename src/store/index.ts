@@ -7,6 +7,15 @@ import reducerRegistry from './reducerRegistry';
 
 const initialState = {};
 
+// we need at least one reducer when first booting up. This ensures there's something for the store when this 
+// file is first imported
+export const stubReducer = (state = {}, action = {}) => state;
+const initPersistConfig = {
+	key: 'stub',
+	storage: storage
+};
+reducerRegistry.register('stub', persistReducer(initPersistConfig, stubReducer));
+
 const persistConfig = {
 	key: 'root',
 	storage,

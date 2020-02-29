@@ -7,7 +7,7 @@ export type PanState = {
 	example: string;
 	separator: string;
 	formats: string;
-	randomBrands: string[]
+	randomBrands: string[];
 };
 
 export const state: PanState = {

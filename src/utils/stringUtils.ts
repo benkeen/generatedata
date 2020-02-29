@@ -2,7 +2,7 @@ export const lipsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 const words = lipsum.split(/\s+/);
 const numWords = words.length;
 
-export const getLipsumWords = (): { words: string[], numWords: number } => ({
+export const getLipsumWords = (): { words: string[]; numWords: number } => ({
 	words,
 	numWords
 });

@@ -2,15 +2,13 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-// Need to be imported prior to below
-import './core/init/init.reducer';
-import './core/generator/generator.reducer';
-
 import store, { persistor } from './store';
 import Page from './components/page/Page.container';
 import Builder from './components/builder/Builder.container';
 import * as core from './core';
+
+import './core/init/init.reducer';
+import './core/generator/generator.reducer';
 
 
 /*
