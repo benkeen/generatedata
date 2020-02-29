@@ -3,6 +3,7 @@ import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { keys } from '@material-ui/core/styles/createBreakpoints';
 
+// @ts-ignore
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
 // used for the Data Type selection dropdown
@@ -11,10 +12,12 @@ export const getSortedGroupedDataTypes = (): any => {
 
 	return coreConfig.dataTypeGroups.map((group: string) => {
 		const options = Object.keys(dataTypes)
+			// @ts-ignore
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
 			.map((dataType: DataTypeFolder) => {
 				return {
 					value: dataType,
+					// @ts-ignore
 					label: dataTypes[dataType].name
 				};
 			});
@@ -65,6 +68,7 @@ type DataTypeProcessOrders = any;
 
 export const processOrders: DataTypeProcessOrders = {}; 
 Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
+	// @ts-ignore
 	processOrders[dataType] = dataTypes[dataType].processOrder;
 });
 

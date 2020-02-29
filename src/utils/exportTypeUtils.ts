@@ -5,6 +5,7 @@ export const exportTypeOptions = Object.keys(exportTypes)
 	.map((exportType: ExportTypeFolder) => {
 		return {
 			value: exportType,
+			// @ts-ignore
 			label: exportTypes[exportType].name
 		};
 	});

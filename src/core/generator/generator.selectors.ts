@@ -81,7 +81,8 @@ export const getGenerationTemplate = createSelector(
 
 		const templateByProcessOrder: Test = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
-			const processOrder = processOrders[dataType as DataTypeFolder] as number;
+			// const processOrder = processOrders[dataType as DataTypeFolder] as number; // hmph!
+			const processOrder = processOrders[dataType];
 
 			// TODO another assumption here. We need to validate the whole component right-up front during the
 			// build step and throw a nice error saying what's missing
