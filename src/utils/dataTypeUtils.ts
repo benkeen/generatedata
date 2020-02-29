@@ -1,7 +1,6 @@
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
-import { keys } from '@material-ui/core/styles/createBreakpoints';
 
 // @ts-ignore
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);

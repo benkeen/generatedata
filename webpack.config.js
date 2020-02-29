@@ -6,13 +6,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const localeFiles = {};
 const locales = ['en', 'fr', 'de', 'es', 'ja', 'nl', 'ta', 'zh'];
 locales.forEach((locale) => {
-	localeFiles[locale] = `./build/${locale}.js`;
+	localeFiles[locale] = `./src/i18n/${locale}.ts`;
 });
 
 module.exports = {
 	entry: {
-		app: './src/index.tsx'
-		// ...localeFiles
+		app: './src/index.tsx',
+		...localeFiles
 	},
 
 	output: {

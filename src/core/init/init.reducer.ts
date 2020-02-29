@@ -27,7 +27,13 @@ type InitReducer = {
 const initialState: InitReducer = {
 	localeFileLoaded: false,
 	locale: 'en',
-	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => acc[name] = false, {}),
+	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => {
+		return {
+			...acc,
+			[name]: false
+		}
+	}, {}),
+	
 	// loadedExportTypes: dataTypeNames.reduce((acc: any, name: ExportType) => acc[name] = false, {}),
 	// loadedCountries: dataTypeNames.reduce((acc: any, name: CountryType) => acc[name] = false, {})
 };

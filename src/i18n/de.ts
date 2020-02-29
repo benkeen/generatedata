@@ -1,3 +1,5 @@
+
+
 export default {
 	"a_few_links": "Ein paar Links",
 	"about": "Über",
