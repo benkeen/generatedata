@@ -34,6 +34,8 @@ documentation and everything else is for up to the v3 branch. You can find that 
 Although I'm no longer working on that branch, PRs and bug fixes are very welcome! Just branch off `v3` and put 
 your PRs in against that.
 
+v4 is dropping PHP and MySQL and re-writing the entire script in node. This script will eventually become available as a node package which you can use in your own packages to generate your own code programmatically, but it will continue to offer the REST API and UI for constructing and generating the data sets. 
+
 
 ## Pre-packaged solutions
 
