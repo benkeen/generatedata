@@ -5,12 +5,11 @@ export const exportTypeOptions = Object.keys(exportTypes)
 	.map((exportType: ExportTypeFolder) => {
 		return {
 			value: exportType,
-			// @ts-ignore
 			label: exportTypes[exportType].name
 		};
 	});
 
-export const loadExportTypeBundle = (exportType: string) => {
+export const loadExportTypeBundle = (exportType: string): any => {
 	return import(/* webpackChunkName: "exportType-[request]" */ `../plugins/exportTypes/${exportType}/bundle`)
 		.then(({ default: et }) => {
 			console.log(et);

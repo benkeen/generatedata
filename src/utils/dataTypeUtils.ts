@@ -1,6 +1,7 @@
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
+import { GDLocale } from '../../types/general';
 
 // @ts-ignore
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
@@ -49,37 +50,48 @@ export const getDataTypeComponents = (): any => {
 };
 
 export const getDataTypeDefaultState = (dataType: string): any => {
-	console.log(dataTypes);
+	console.log(dataType);
 	// return dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].state ? dataTypes[dataType].state : null;
 	return null;
 };
 
 export const getDataTypeHelpComponent = (dataType: string): any => {
-	console.log(dataTypes);
+	console.log(dataType);
 	// return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : (): any => null;
 	return null;
 };
 
-// type DataTypeProcessOrders = {
-// 	[name: keyof DataTypeFolder]?: number;
-// }
-type DataTypeProcessOrders = any;
+type DataTypeProcessOrders = {
+	[name in DataTypeFolder]?: number;
+}
 
 export const processOrders: DataTypeProcessOrders = {}; 
 Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
-	// @ts-ignore
 	processOrders[dataType] = dataTypes[dataType].processOrder;
 });
 
-export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType];
+export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType] as number;
 
 
-export const getDataTypeLocales = () => {
-	const dtLocales: any = {};
+export type DTLocaleMap = {
+	[str in DataTypeFolder]?: any;
+}
+
+export const getDataTypeLocales = (locale: GDLocale): any => {
+	const dtLocales: DTLocaleMap = {};
 	Object.keys(dataTypes)
-		.forEach((dataTypeFolder) => {
+		.forEach((folder: DataTypeFolder) => {
+			if (dataTypes[folder].localeFiles.indexOf(locale) === -1) {
+				return;
+			}
+
+			// here we use the more flexible requireJS import to grab the file content and stick it into our data 
+			// structure. That allows only the appropriate locale file bundle to include the necessary strings
+			
 			// @ts-ignore
-			dtLocales[dataTypeFolder] = dataTypes[dataTypeFolder].localeFiles;
+			const i18n = require(`../plugins/dataTypes/${folder}/i18n/${locale}`);
+			
+			dtLocales[folder] = i18n.default;
 		});
 	return dtLocales;
 };

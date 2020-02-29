@@ -1,3 +1,4 @@
+import store from '../store';
 import { getDataTypeLocales } from '../utils/dataTypeUtils';
 
 const core = {
@@ -294,15 +295,11 @@ const core = {
 	generateArrow: "Generate &raquo;",
 };
 
-const locales = getDataTypeLocales();
-
 const i18n = {
 	core,
-	dataTypes: {
-
-	},
-	exportTypes: {
-
-	}
+	dataTypes: getDataTypeLocales('en'),
+	exportTypes: {}
 };
 
+// load the locale info via an exposed global
+window.gd.localeLoaded(i18n);

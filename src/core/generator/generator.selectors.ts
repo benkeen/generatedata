@@ -87,10 +87,13 @@ export const getGenerationTemplate = createSelector(
 			// build step and throw a nice error saying what's missing
 			const { generate, getMetadata, rowStateReducer } = getGenerationOptionsByDataType(dataType);
 
+			// @ts-ignore
 			if (!templateByProcessOrder[processOrder]) {
+				// @ts-ignore
 				templateByProcessOrder[processOrder] = [];
 			}
 
+			// @ts-ignore
 			templateByProcessOrder[processOrder].push({
 				id,
 				title,
