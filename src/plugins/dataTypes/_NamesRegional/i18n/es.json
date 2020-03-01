@@ -1,0 +1,23 @@
+{
+	"NAME": "Nombres, regionales",
+	"DESC": "Este tipo de dato genera aleatoriamente nombres de persona (mayoritariamente occidentales) de acuerdo al formato que especifiques.",
+	"helpIntro": "Pues especificar múltiples formatos separándolos con el carácter tubería, |. Las siguientes cadenas serán convertidas a su nombre aleatorio equivalente:",
+	"incompleteFields": "The Name data type needs to have the format entered in the Options text field. Please fix the following rows:",
+	"name": "Nombre",
+	"exampleFemaleName": "Jane (Nombre de mujer)",
+	"exampleFemaleNameSurname": "Jane Smith",
+	"exampleMaleName": "John (Nombre de hombre)",
+	"exampleMaleNameSurname": "John Smith",
+	"exampleName": "Alex (cualquier sexo)",
+	"exampleName4": "Jenny, Toby, Ben, Peter",
+	"exampleNameInitialSurname": "Alex J. Smith",
+	"exampleNameSurname": "Alex Smith",
+	"exampleSurnameNameInitial": "Smith, John P.",
+	"exampleFullnames": "Alex Smith o Alex J. Smith",
+	"exampleSurname": "Smith (apellido)",
+	"typeFemaleName": "Un nombre de mujer.",
+	"typeInitial": "Una letra mayúscula, A-Z.",
+	"typeMaleName": "Un nombre de hombre.",
+	"typeName": "Un nombre, de hombre o mujer.",
+	"typeSurname": "Un apellido aleatorio."
+}

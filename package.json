@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "grunt & yarn build & yarn webpack",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
-    "build": "node ./scripts/generateConfigFile.js",
+	"build": "node ./scripts/generateConfigFile.js",
     "test": "env NODE_ENV=test jest"
   },
   "repository": {
@@ -50,6 +50,7 @@
     "date-fns": "^2.8.1",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "global": "^4.4.0",
     "jest-cli": "^24.9.0",
     "react": "^16.12.0",
     "react-beautiful-dnd": "^12.2.0",

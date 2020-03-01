@@ -1,0 +1,13 @@
+{
+	"NAME": "Boolean",
+	"DESC": "Ce type de données génère aléatoirement des noms de personnes (principalement occidentaux) en fonction du format que vous spécifiez.",
+	"helpIntro": "Vous pouvez spécifier les formats multiples en les séparant par le caractère pipe (|). Les chaînes suivantes seront converties en leur équivalent Boolean:",
+	"incompleteFields": "Le type de données Nom doit avoir un format précisé dans le champ de texte Options. Corrigez les lignes suivantes:",
+	"exampleYesNo": "Yes of No",
+	"exampleFalseTrue": "False of True",
+	"exampleZeroOne": "0 of 1",
+	"exampleYesNoShort": "Y of N",
+	"exampleFalseTrueShort": "F of T",
+	"exampleFalseTrueLower": "false of true",
+	"textDoubleQuotes": "Les valeurs <code>true</code> et <code>false</code> sont spéciales. Selon le type d'exportation, ils peuvent être générés sans guillemets."
+}

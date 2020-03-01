@@ -1,8 +1,0 @@
-export default {
-	NAME: "Straße",
-	DESC: "Generiert zufällige Straßenadressen .",
-	apNum: "Ap #",
-	name: "Straße",
-	poBox: "Postfach",
-	streetTypes: "St., St., Straße, Straße, Rd., Rd., Ave, Av., Avenue"
-};

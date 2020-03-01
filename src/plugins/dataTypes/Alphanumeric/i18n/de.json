@@ -1,0 +1,21 @@
+{
+	"NAME": "Alphanumerisch",
+	"DESC": "Erzeugt eine benutzerdefinierte zufällige alphanumerische Zeichenfolge oder Länge oder Format , durch Platzhalter Zeichen definiert.",
+	"exampleCanPostalCode": "(Can. PLZ)",
+	"examplePassword": "(Password)",
+	"exampleUSZipCode": "(US Postleitzahl)",
+	"help1": "Ein Groß-<b>L</b> etter.",
+	"help10": "Jede Anzahl, 1-9.",
+	"help11": "Ein Konsonant (obere oder untere).",
+	"help12": "Ein <b>H</b> exidecimal Nummer (0-F)",
+	"help2": "Ein Groß-<b>V</b>owel.",
+	"help3": "Ein Kleinbuchstaben <b>l</b> etter.",
+	"help4": "Ein Kleinbuchstaben <b>v</b> owel.",
+	"help5": "Ein Brief (oben oder unten).",
+	"help6": "Ein Vokal (obere oder untere).",
+	"help7": "Ein Groß-<b>C</b> onsonant.",
+	"help8": "Jede Zahl, 0-9.",
+	"help9": "Ein Kleinbuchstaben <b>c</b> onsonant.",
+	"helpIntro": "Dieser Datentyp können Sie zufällige alphanumerische Zeichenfolgen. Die folgende Tabelle enthält die Zeichenlegende für dieses Feld. Alle anderen Zeichen, die Sie in diesem Feld erscheint unescaped.",
+	"incompleteFields": "Alphanumerische Felder müssen Sie das Format, in dem Optionen Textfeld eingeben. Bitte beheben Sie die folgenden Zeilen:"
+}

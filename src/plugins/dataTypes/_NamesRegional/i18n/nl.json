@@ -1,0 +1,23 @@
+{
+	"NAME": "Namen, Regionaal",
+	"DESC": "Vergelijkbaar met het datatype Namen. Nu wordt er echter geprobeert een passende naam te generen die hoort bij het gegenereerde landenveld. Minder snel dan het datatype Namen.",
+	"helpIntro": "Door de extra complexiteit zal de code wat langzamer zijn. U kunt meerdere formaten opgeven gescheiden door een (|) karakter. De volgende Waarden worden gebruikt om een willekeurige Naam te genereren:",
+	"incompleteFields": "U moet minimaal een waarde opgeven in het optie tekst veld. Pas AUB de volgende rij(en) aan:",
+	"name": "Naam",
+	"exampleFemaleName": "Jane (Vrouwen Voornaam)",
+	"exampleFemaleNameSurname": "Jane Smith",
+	"exampleMaleName": "John (Mannen Voornaam)",
+	"exampleMaleNameSurname": "John Smith",
+	"exampleName": "Alex (willekeurig geslacht)",
+	"exampleName4": "Jenny, Toby, Ben, Peter",
+	"exampleNameInitialSurname": "Alex J. Smith",
+	"exampleNameSurname": "Alex Smith",
+	"exampleSurnameNameInitial": "Smith, John P.",
+	"exampleFullnames": "Alex Smith of Alex J. Smith",
+	"exampleSurname": "Smith (Achternaam)",
+	"typeFemaleName": "Een vrouwen voornaam.",
+	"typeInitial": "Een hoofdletter, A-Z.",
+	"typeMaleName": "Een mannen voornaam.",
+	"typeName": "Een voornaam, willekeurig mannelijk of vrouwelijk.",
+	"typeSurname": "Een willekeurige achternaam"
+}

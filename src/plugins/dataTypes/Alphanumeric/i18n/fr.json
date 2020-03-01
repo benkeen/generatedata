@@ -1,0 +1,21 @@
+{
+	"NAME": "Alphanumérique",
+	"DESC": "Génère une chaîne alphanumérique aléatoire coutume ou toute longueur ou le format , définie par les caractères d'espace réservé .",
+	"exampleCanPostalCode": "(Code postal Canada)",
+	"examplePassword": "(Mot de passe)",
+	"exampleUSZipCode": "(Code postal US)",
+	"help1": "Une <b>L</b>ettre majuscule.",
+	"help10": "N'importe quel nombre, 1-9.",
+	"help11": "Une consonne (majuscule ou minuscule).",
+	"help12": "Un nombre <b>H</b>exadécimal (0-F)",
+	"help2": "Une <b>V</b>oyelle majuscule.",
+	"help3": "Une <b>l</b>ettre minuscule.",
+	"help4": "Une <b>v</b>oyelle minuscule.",
+	"help5": "Une lettre (majuscule ou minuscule).",
+	"help6": "Une voyelle (majuscule ou minuscule).",
+	"help7": "Une <b>C</b>onsonne majuscule.",
+	"help8": "N'importe quel nombre, 0-9.",
+	"help9": "Une <b>c</b>onsonne minuscule.",
+	"helpIntro": "Ce type de données permet de générer au hasard des chaînes alphanumériques. Le tableau suivant contient la légende de caractères pour ce champ. Tous les autres caractères que vous entrez dans ce champ apparaîtront non-échappés.",
+	"incompleteFields": "Les champs alphanumériques nécessitent la saisie du format dans le champ de texte Options. Corrigez les lignes suivantes:"
+}

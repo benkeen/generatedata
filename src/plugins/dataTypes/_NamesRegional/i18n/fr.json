@@ -1,0 +1,23 @@
+{
+	"NAME": "Noms régionaux",
+	"DESC": "Ce type de données génère aléatoirement des noms. Il fonctionne comme le type de données <b>Noms</b>, à l'exception du fait qu'il génère des noms plus réalistes en fonction des pays précisés.",
+	"exampleFemaleName": "Jane (prénom féminin)",
+	"exampleFemaleNameSurname": "Jane Smith (nom complet féminin)",
+	"exampleMaleName": "John (prénom masculin)",
+	"exampleMaleNameSurname": "John Smith (nom complet masculin)",
+	"exampleName": "Alex (prénom masculin ou féminin)",
+	"exampleName4": "Jenny, Toby, Ben, Peter",
+	"exampleNameInitialSurname": "Alex J. Smith",
+	"exampleNameSurname": "Alex Smith",
+	"exampleSurnameNameInitial": "Smith, John P.",
+	"exampleFullnames": "Alex Smith ou Alex J. Smith",
+	"exampleSurname": "Smith (nom de famille)",
+	"helpIntro": "Par exemple des noms italiens seront générés si le pays Italie est sélectionné dans le champs 'Pays'. A cause de cette difficulté supplémentaire le script risque de fonctionner un peut plus lentement. Vous pouvez spécifier les formats multiples en les séparant par le caractère pipe (|). Les chaînes suivantes seront converties en leur équivalent aléatoire:",
+	"incompleteFields": "Le type de données Nom doit avoir un format précisé dans le champ de texte Options. Corrigez les lignes suivantes:",
+	"name": "Nom",
+	"typeFemaleName": "Un prénom féminin.",
+	"typeInitial": "Une lettre majuscule, AZ.",
+	"typeMaleName": "Un prénom masculin.",
+	"typeName": "Un prénom majuscule ou féminin.",
+	"typeSurname": "Un nom aléatoire."
+}

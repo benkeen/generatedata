@@ -1,0 +1,23 @@
+{
+	"NAME": "Names, Regional",
+	"DESC": "Similar to the Names data type, except it tries to generate names mapped to the country; e.g. Italian names appear when the data set row has Italy for the country field. Not as performant as Names.",
+	"helpIntro": "Because of this additional complexity, however, the code runs slightly slower. You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:",
+	"incompleteFields": "The Name data type needs to have the format entered in the Options text field. Please fix the following rows:",
+	"name": "Name",
+	"exampleFemaleName": "Jane (Female Name)",
+	"exampleFemaleNameSurname": "Jane Smith",
+	"exampleMaleName": "John (Male Name)",
+	"exampleMaleNameSurname": "John Smith",
+	"exampleName": "Alex (any gender)",
+	"exampleName4": "Jenny, Toby, Ben, Peter",
+	"exampleNameInitialSurname": "Alex J. Smith",
+	"exampleNameSurname": "Alex Smith",
+	"exampleSurnameNameInitial": "Smith, John P.",
+	"exampleFullnames": "Alex Smith or Alex J. Smith",
+	"exampleSurname": "Smith (surname)",
+	"typeFemaleName": "A female first name.",
+	"typeInitial": "An upper-case letter, A-Z.",
+	"typeMaleName": "A male first name.",
+	"typeName": "A first name, male or female.",
+	"typeSurname": "A random surname."
+}

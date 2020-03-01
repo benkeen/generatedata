@@ -1,0 +1,12 @@
+{
+	"NAME": "Personal Number",
+	"DESC": "Generates a personal number, used in some countries for social security insurance.",
+	"help_text": "At the present time only swedish ones are supported. The personal numbers are generated according to the format you specify:",
+	"incomplete_fields": "The PersonalNumber data type needs to have the format entered in the Options text field. Please fix the following rows:",
+	"example_PersonalNumberWithoutHyphen": "167502241016",
+	"example_PersonalNumberWithHyphen": "16750224-1016",
+	"type_PersonalNumberWithoutHyphen": "A (swedish) personal number with 12 siffers and no hyphen",
+	"type_PersonalNumberWithHyphen": "A (swedish) personal number with 12 siffers and an hyphen",
+	"separators": "Separators:",
+	"separator_help": "The characters you enter here will be used as separator in the personal number fields. Note: you can mix several separators, use | to separate them (for example -|+)."
+}

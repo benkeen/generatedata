@@ -1,0 +1,10 @@
+{
+	"NAME": "Auto-incrementado",
+	"DESC": "Proporciona muchas variaciones en un campo de incremento automático estándar : se inicia la costumbre de valor, tamaños de paso personalizables , la inclusión cadena arbitraria , incremento o decremento y más.",
+	"helpIntro": "Genera una columna que contiene un número único en cada fila, incrementándolo en el valor que introduzcas. Esta opción puede ser de ayuda para insertar los datos en una columna de base de datos con una clave primaria auto-incrementada.",
+	"helpPara2": "La cadena de patrón opcional permite introducir el valor de incremento generado dentro de una cadena de texto usando el patrón de sustitución <b>{\\$INCR}</b>. Por ejemplo:",
+	"increment": "Incremento:",
+	"placeholderStr": "Patrón de sustitución:",
+	"startAt": "Comenzar en:",
+	"incompleteFields": "Por favor, introduce los campos &quot;Empezar en&quot; e &quot;Incremento&quot; para todas las filas auto-incrementadas:"
+}

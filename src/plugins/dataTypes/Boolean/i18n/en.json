@@ -1,0 +1,13 @@
+{
+	"NAME": "Boolean",
+	"DESC": "Generates a Boolean value in the format you need.",
+	"helpIntro": "You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their Boolean equivalent:",
+	"incompleteFields": "The Boolean data type needs to have the format entered in the Options text field. Please fix the following rows:",
+	"exampleYesNo": "Yes or No",
+	"exampleFalseTrue": "False or True",
+	"exampleFalseTrueLower": "false or true",
+	"exampleZeroOne": "0 or 1",
+	"exampleYesNoShort": "Y or N",
+	"exampleFalseTrueShort": "F or T",
+	"textDoubleQuotes": "<code>true</code> and <code>false</code> values are special. Depending on the export type, these may be output without double quotes."
+}

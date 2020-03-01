@@ -1,0 +1,13 @@
+{
+	"NAME": "Boolean",
+	"DESC": "Dieser Datentyp zufällig generiert eine Boolean nach dem Format, das Sie angeben.",
+	"helpIntro": "Zeichen (|) können Sie mehrere Formate, indem Sie sie mit dem Rohr geben. Die folgenden Zeichenfolgen werden auf die Boolean umgerechnet werden:",
+	"incompleteFields": "Der Name Datentyp haben muss das Format eingetragen im Options Textfeld. Bitte beheben Sie die folgenden Zeilen:",
+	"exampleYesNo": "Yes oder No",
+	"exampleFalseTrue": "False oder True",
+	"exampleZeroOne": "0 oder 1",
+	"exampleYesNoShort": "Y oder N",
+	"exampleFalseTrueShort": "F oder T",
+	"exampleFalseTrueLower": "false oder true",
+	"textDoubleQuotes": "<code>true</code> und <code>false</code> Werte sind speziell. Je nach Exportart können diese ohne Anführungszeichen ausgegeben werden."
+}

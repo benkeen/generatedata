@@ -1,0 +1,23 @@
+{
+	"NAME": "Namen",
+	"DESC": "Dieser Datentyp zufällig generiert menschlichen Namen (meist Western) nach dem Format, das Sie angeben.",
+	"example_FemaleName": "Jane (Female Name)",
+	"example_FemaleName_Surname": "Jane Smith",
+	"example_MaleName": "John (männlich Name)",
+	"example_MaleName_Surname": "John Smith",
+	"example_Name": "Alex (geschlechtsspezifische)",
+	"example_Name4": "Jenny, Toby, Ben, Peter",
+	"example_Name_Initial_Surname": "Alex J. Smith",
+	"example_Name_Surname": "Alex Smith",
+	"example_Surname_Name_Initial": "Smith, John P.",
+	"example_fullnames": "Alex Smith oder Alex J. Smith",
+	"example_surname": "Smith (Familienname)",
+	"help_intro": "Zeichen (|) können Sie mehrere Formate, indem Sie sie mit dem Rohr geben. Die folgenden Zeichenfolgen werden auf die zufälligen Namen umgerechnet werden:",
+	"incomplete_fields": "Der Name Datentyp haben muss das Format eingetragen im Options Textfeld. Bitte beheben Sie die folgenden Zeilen:",
+	"name": "Name",
+	"type_FemaleName": "Ein weiblicher Vorname.",
+	"type_Initial": "Ein Großbuchstaben, AZ.",
+	"type_MaleName": "Ein männlicher Vorname.",
+	"type_Name": "Ein Vorname, männlich oder weiblich.",
+	"type_Surname": "Eine zufällige Nachnamen."
+}
