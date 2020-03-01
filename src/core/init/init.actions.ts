@@ -15,7 +15,7 @@ export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
 export const selectLocale = (locale: GDLocale) => {
 	return (dispatch: ThunkDispatch<any, any, any>): any => {
 		window.gd = {};
-		window.gd.localeLoaded = (strings: any) => {
+		window.gd.localeLoaded = (strings: any): void => {
 			langUtils.setLocale(locale, strings);
 			dispatch(setLocaleFileLoaded(locale));
 		};
@@ -25,7 +25,7 @@ export const selectLocale = (locale: GDLocale) => {
 	};
 };
 
-export const selectExportType = (exportType: ExportTypeFolder) => {
+export const selectExportType = (exportType: ExportTypeFolder): void => {
 	loadExportTypeBundle(exportType)
 		.then((res: any) => {
 			console.log('well... response: ', res);

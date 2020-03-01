@@ -9,7 +9,7 @@ const initialState = {};
 
 // we need at least one reducer when first booting up. This ensures there's something for the store when this 
 // file is first imported
-export const stubReducer = (state = {}, action = {}) => state;
+export const stubReducer = (state = {}): any => state;
 const initPersistConfig = {
 	key: 'stub',
 	storage: storage

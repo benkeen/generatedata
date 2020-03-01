@@ -14,15 +14,18 @@ export const initialState: JSONSettings = {
 };
 
 export const Settings: React.ReactNode = ({ data, i18n, onUpdate, id }: ETSettings) => {
-	const onChange = () => {
+	const onChange = (field: string, value: any): void => {
 		onUpdate({
-			...data
+			...data,
+			[field]: value
 		});
 	};
 
 	return (
 		<>
-			<input type="checkbox" id={`${id}-stripWhitespace`} value="1" />
+			<input type="checkbox" id={`${id}-stripWhitespace`} value="1" 
+				onChange={(e): void => onChange('stripWhitespace', e.target.checked)} />
+
 			<label htmlFor={`${id}-stripWhitespace`}>{i18n.strip_whitespace}</label><br />
 
 			{i18n.data_structure_format}

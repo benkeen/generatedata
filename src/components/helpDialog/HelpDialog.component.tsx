@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Dropdown from '../dropdown/Dropdown';
-import { getSortedGroupedDataTypes, getDataTypeHelpComponent } from '../../utils/dataTypeUtils';
+import { getSortedGroupedDataTypes } from '../../utils/dataTypeUtils';
 // import styles from './HelpDialog.scss';
 
 const dialogStyles = (theme: any): any => ({

@@ -1,3 +1,5 @@
+// TODO auto-generate this. 
+
 import Alphanumeric from './plugins/dataTypes/Alphanumeric/bundle';
 import AutoIncrement from './plugins/dataTypes/AutoIncrement/bundle';
 import Boolean from './plugins/dataTypes/Boolean/bundle';
@@ -77,7 +79,6 @@ export type DataTypeFolder = keyof typeof dataTypes;
 
 // -------------------------------------------------------------------------------------------------------
 
-
 import JSON from './plugins/exportTypes/JSON/bundle';
 
 export const exportTypes = {
@@ -85,3 +86,5 @@ export const exportTypes = {
 };
 
 export type ExportTypeFolder = keyof typeof exportTypes;
+
+// -------------------------------------------------------------------------------------------------------
