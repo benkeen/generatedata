@@ -1,8 +1,7 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react';
-// @ts-ignore
-import * as i18n from '../i18n/en';
 import { state, Help, Options } from '../Computed.ui';
+const i18n = require('../i18n/en.json');
 
 const defaultProps = {
 	coreI18n: {},

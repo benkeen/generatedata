@@ -2,9 +2,7 @@ import { generate } from '../StreetAddress.generate';
 import * as sinon from 'sinon';
 import * as randomUtils from '../../../../utils/randomUtils';
 import { DTGenerationData } from '../../../../../types/dataTypes';
-
-// @ts-ignore
-import i18n from '../i18n/en';
+const i18n = require('../i18n/en.json');
 
 describe('generate', () => {
 	let data: DTGenerationData = {

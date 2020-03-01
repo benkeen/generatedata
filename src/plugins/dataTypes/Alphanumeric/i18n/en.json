@@ -18,4 +18,4 @@
 	"help9": "A lowercase <b>c</b>onsonant.",
 	"helpIntro": "This Data Type lets you generate random alpha-numeric strings. The following table contains the character legend for this field. Any other characters you enter into this field will appear unescaped.",
 	"incompleteFields": "Alphanumeric fields require you to enter the format in the Options text field. Please fix the following rows:"
-};
+}

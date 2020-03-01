@@ -59,8 +59,7 @@ module.exports = {
 
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './src/index.html',
-			excludeChunks: locales
+			template: './src/index.html'
 		}),
 	],
 
