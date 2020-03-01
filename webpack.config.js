@@ -67,20 +67,20 @@ module.exports = {
 		extensions: ['.ts', '.tsx', '.js']
 	},
 
-	optimization: {
-		chunkIds: 'named',
-		splitChunks: {
-			cacheGroups: {
-				vendor: {
-					test: /node_modules/,
-					chunks: 'initial',
-					name: 'vendor',
-					priority: 10,
-					enforce: true
-				}
-			}
-		}
-	},
+	// optimization: {
+	// 	chunkIds: 'named',
+	// 	splitChunks: {
+	// 		cacheGroups: {
+	// 			vendor: {
+	// 				test: /node_modules/,
+	// 				chunks: 'initial',
+	// 				name: 'vendor',
+	// 				priority: 10,
+	// 				enforce: true
+	// 			}
+	// 		}
+	// 	}
+	// },
 
 	devtool: 'source-map'
 };

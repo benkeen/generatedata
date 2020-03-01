@@ -17,34 +17,7 @@ export const init = (): void => {
 	const numRows = generatorSelectors.getNumRows(state);
 	
 	store.dispatch(initActions.selectLocale(locale));
-
-	console.log('???');
-
 	store.dispatch(initActions.selectExportType(config.defaultExportType));
-
-	// *************************************************************************************** 
-	// - need central bundler loader.
-	// 		- Preview panel spinner
-	//		- Export Type settings panel spinner
-	// ***************************************************************************************
-
-	/*
-	Bundle content:
-	- All code: UI, generator
-	- i18n
-	- CSS.........?
-	*/
-
-	// const hmm = 'JSON';
-	// type ModuleType = typeof import(`../../dist/${hmm}`);
-	//
-	// // @ts-ignore-line
-	// import(`../../dist/${hmm}`)
-	//     .then((a) => {
-	//         console.log(a);
-	//     });
-
-	// defaultExportType
 
 	// if there are no rows, load some
 	if (numRows === 0) {

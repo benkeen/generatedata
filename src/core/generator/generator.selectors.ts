@@ -1,26 +1,26 @@
 import { createSelector } from 'reselect';
 import { getGenerationOptionsByDataType } from '../../utils/dataTypeGenerationUtils';
 import { processOrders } from '../../utils/dataTypeUtils';
-import { GenerationTemplate } from '../../../types/general';
+import { GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { DataRow } from './generator.reducer';
+import * as initSelectors from '../init/init.selectors';
 import { DataTypeFolder } from '../../_plugins';
 
-export const getExportType = (state: any): any => state.generator.exportType;
-export const getRows = (state: any): any => state.generator.rows;
-export const getSortedRows = (state: any): any[] => state.generator.sortedRows;
-export const isGridVisible = (state: any): boolean => state.generator.showGrid;
-export const isPreviewVisible = (state: any): boolean => state.generator.showPreview;
-export const getBuilderLayout = (state: any): BuilderLayout => state.generator.builderLayout;
-export const getNumPreviewRows = (state: any): number => state.generator.numPreviewRows;
-export const shouldShowRowNumbers = (state: any): boolean => state.generator.showRowNumbers;
-export const shouldEnableLineWrapping = (state: any): boolean => state.generator.enableLineWrapping;
-export const getTheme = (state: any): string => state.generator.theme;
-export const getPreviewTextSize = (state: any): number => state.generator.previewTextSize;
-export const getGeneratedPreviewData = (state: any): any => state.generator.generatedPreviewData;
-export const shouldShowExportSettings = (state: any): any => state.generator.showExportSettings;
-export const getPreviewPanelDimensions = (state: any): any => state.generator.previewPanelDimensions;
-export const getExportSettingsTab = (state: any): any => state.generator.exportSettingsTab;
+export const getExportType = (state: Store): any => state.generator.exportType;
+export const getRows = (state: Store): any => state.generator.rows;
+export const getSortedRows = (state: Store): any[] => state.generator.sortedRows;
+export const isGridVisible = (state: Store): boolean => state.generator.showGrid;
+export const isPreviewVisible = (state: Store): boolean => state.generator.showPreview;
+export const getBuilderLayout = (state: Store): BuilderLayout => state.generator.builderLayout;
+export const getNumPreviewRows = (state: Store): number => state.generator.numPreviewRows;
+export const shouldShowRowNumbers = (state: Store): boolean => state.generator.showRowNumbers;
+export const shouldEnableLineWrapping = (state: Store): boolean => state.generator.enableLineWrapping;
+export const getTheme = (state: Store): string => state.generator.theme;
+export const getPreviewTextSize = (state: Store): number => state.generator.previewTextSize;
+export const getGeneratedPreviewData = (state: Store): any => state.generator.generatedPreviewData;
+export const shouldShowExportSettings = (state: Store): any => state.generator.showExportSettings;
+export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
 
 export const getNumRows = createSelector(
 	getSortedRows,
@@ -125,4 +125,12 @@ export const getPreviewPanelData = createSelector(
 		columnTitles,
 		rows
 	})
+);
+
+export const getExportTypePreviewComponent = createSelector(
+	getExportType,
+	initSelectors.getLoadedExportTypes,
+	(exportType, loadedExportTypes) => {
+		
+	}
 );

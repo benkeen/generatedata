@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import * as langUtils from '../../utils/langUtils';
-import { GDLocale } from '../../../types/general';
+import { GDLocale, Store } from '../../../types/general';
 
-export const getLocale = (state: any): GDLocale => state.init.locale;
+export const getLocale = (state: Store): GDLocale => state.init.locale;
 export const getCoreI18n = createSelector(
 	getLocale,
 	(locale): any | null => {
@@ -11,7 +11,7 @@ export const getCoreI18n = createSelector(
 	}
 );
 
-export const localeFileLoaded = (state: any): boolean => state.init.localeFileLoaded;
+export const localeFileLoaded = (state: Store): boolean => state.init.localeFileLoaded;
 
 export const getDataTypeI18n = createSelector(
 	getLocale,
@@ -20,3 +20,6 @@ export const getDataTypeI18n = createSelector(
 		return strings ? strings.dataTypes : null;
 	}
 );
+
+export const getLoadedDataTypes = (state: Store) => state.init.loadedDataTypes;
+export const getLoadedExportTypes = (state: Store) => state.init.loadedExportTypes;

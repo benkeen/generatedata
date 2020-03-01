@@ -2,7 +2,6 @@ import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 
-// @ts-ignore
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
 // used for the Data Type selection dropdown
@@ -11,12 +10,10 @@ export const getSortedGroupedDataTypes = (): any => {
 
 	return coreConfig.dataTypeGroups.map((group: string) => {
 		const options = Object.keys(dataTypes)
-			// @ts-ignore
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
 			.map((dataType: DataTypeFolder) => {
 				return {
 					value: dataType,
-					// @ts-ignore
 					label: dataTypes[dataType].name
 				};
 			});

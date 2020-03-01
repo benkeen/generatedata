@@ -1,9 +1,17 @@
+import { InitState } from '../src/core/init/init.reducer';
+import { GeneratorState } from '../src/core/generator/generator.reducer';
+
 declare global {
     interface Window {
         gd: any;
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
     }
 }
+
+export type Store = {
+	init: InitState;
+	generator: GeneratorState;
+};
 
 export type GDLocale = 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
 

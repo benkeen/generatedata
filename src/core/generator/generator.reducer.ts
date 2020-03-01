@@ -20,7 +20,7 @@ export type PreviewData = {
 	[id: string]: any[];
 };
 
-export type ReducerState = {
+export type GeneratorState = {
 	exportType: string;
 	rows: DataRows;
 	sortedRows: string[];
@@ -42,7 +42,7 @@ export type ReducerState = {
  * This houses the content of the generator. The actual content of each row is dependent based on the
  * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
  */
-export const reducer = (state: ReducerState = {
+export const reducer = (state: GeneratorState = {
 	exportType: 'JSON',
 	rows: {},
 	sortedRows: [],
@@ -58,7 +58,7 @@ export const reducer = (state: ReducerState = {
 	previewTextSize: 12,
 	generatedPreviewData: {},
 	exportSettingsTab: 'exportType'
-}, action: AnyAction): ReducerState => {
+}, action: AnyAction): GeneratorState => {
 	switch (action.type) {
 
 		case actions.ADD_ROWS: {

@@ -10,7 +10,7 @@ import { BuilderLayout } from '../builder/Builder.component';
 import * as styles from './PreviewPanel.scss';
 
 export type PreviewPanelProps = {
-	exportType: string;
+	ExportTypePreview: any;
 	numPreviewRows: number;
 	builderLayout: BuilderLayout;
 	togglePreview: () => void;
@@ -28,25 +28,9 @@ export type PreviewPanelProps = {
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	exportType, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
+	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
 	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings
 }: PreviewPanelProps): React.ReactNode => {
-	
-	// TODO delay https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay - drop the fallback altogether
-	// so we can fade the spinner out when the content is loaded
-
-	// @ts-ignore
-	// const ExportTypePreview: LoadableComponent = loadable(() => import(
-	// 	/* webpackChunkName: "exportType-[request]" */
-	// 	`../../plugins/exportTypes/${exportType}/${exportType}.preview`)
-	// );
-
-	// loadExportTypeBundle('JSON');
-
-	console.log(exportType);
-
-	const ExportTypePreview = (p: any): null => null;
-
 	const getNoResults = (): JSX.Element | null => {	 
 		if (data.rows.length > 0) {
 			return null;

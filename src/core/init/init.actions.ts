@@ -25,9 +25,15 @@ export const selectLocale = (locale: GDLocale) => {
 	};
 };
 
-export const selectExportType = (exportType: ExportTypeFolder): void => {
-	loadExportTypeBundle(exportType)
-		.then((res: any) => {
-			console.log('well... response: ', res);
-		});
+export const EXPORT_TYPE_LOADED = 'EXPORT_TYPE_LOADED';
+export const selectExportType = (exportType: ExportTypeFolder): any => {
+	return (dispatch: any): any => {
+		loadExportTypeBundle(exportType)
+			.then(() => {
+				dispatch({
+					type: EXPORT_TYPE_LOADED,
+					payload: exportType
+				});
+			});
+	};
 };

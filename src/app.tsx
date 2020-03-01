@@ -20,8 +20,6 @@ routes:
 	donate
  */
 
-let initialized = false;
-
 const App = (): JSX.Element => (
 	<Provider store={store}>
 		<PersistGate loading={null} persistor={persistor}>
@@ -31,11 +29,7 @@ const App = (): JSX.Element => (
 				// re-initializes everything else we need, including loading the appropriate locale file based
 				// on whatever locale the user had selected
 				if (bootstrapped) {
-					if (!initialized) {
-						console.log('...');
-						core.init();
-						initialized = true;
-					}
+					core.init();
 				}
 
 				return (

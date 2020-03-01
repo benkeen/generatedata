@@ -1,9 +1,17 @@
 import { GDLocale } from './general';
 import { BuilderLayout } from '../src/components/builder/Builder.component';
 
+export type ETBundle = {
+	definition: ETDefinition;
+	generate: any; // TODO
+	initialState: any; // TODO generics? 
+	Preview: any;
+	Settings?: any;
+};
+
 export type ETDefinition = {
-	name: string; 
-	localeFiles: GDLocale[];
+	name: string;
+	schema: any;
 };
 
 export type ETSettings = {
