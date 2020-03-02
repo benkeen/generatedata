@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import loadable, { LoadableComponent } from '@loadable/component';
 import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
 import Settings from '@material-ui/icons/SettingsOutlined';

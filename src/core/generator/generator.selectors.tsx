@@ -1,11 +1,13 @@
+import React from 'react';
 import { createSelector } from 'reselect';
 import { getGenerationOptionsByDataType } from '../../utils/dataTypeGenerationUtils';
 import { processOrders } from '../../utils/dataTypeUtils';
+import { getExportTypePreview } from '../../utils/exportTypeUtils';
 import { GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { DataRow } from './generator.reducer';
 import * as initSelectors from '../init/init.selectors';
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 
 export const getExportType = (state: Store): any => state.generator.exportType;
 export const getRows = (state: Store): any => state.generator.rows;
@@ -127,10 +129,18 @@ export const getPreviewPanelData = createSelector(
 	})
 );
 
+
+/**
+ * Returns one of the following:
+ * - the Export Type's preview component, assuming its loaded.
+ */
 export const getExportTypePreviewComponent = createSelector(
 	getExportType,
 	initSelectors.getLoadedExportTypes,
 	(exportType, loadedExportTypes) => {
-		
+		if (loadedExportTypes[exportType as ExportTypeFolder]) {
+			return getExportTypePreview(exportType);
+		}
+		return () => <div>Loading!</div>;
 	}
 );

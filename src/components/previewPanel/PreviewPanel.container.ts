@@ -8,7 +8,6 @@ import * as actions from '../../core/generator/generator.actions';
 const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 	return {
 		ExportTypePreview: selectors.getExportTypePreviewComponent(state),
-
 		i18n: initSelectors.getCoreI18n(state),
 		numPreviewRows: selectors.getNumPreviewRows(state),
 		builderLayout: selectors.getBuilderLayout(state),

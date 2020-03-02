@@ -36,3 +36,6 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 			});
 	});
 };
+
+// assumes the callee knows what they're doing & that they've checked the component has been loaded
+export const getExportTypePreview = (exportType: ExportTypeFolder) => loadedExportTypes[exportType]?.Preview;
