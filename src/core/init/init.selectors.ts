@@ -21,5 +21,5 @@ export const getDataTypeI18n = createSelector(
 	}
 );
 
-export const getLoadedDataTypes = (state: Store) => state.init.loadedDataTypes;
-export const getLoadedExportTypes = (state: Store) => state.init.loadedExportTypes;
+export const getLoadedDataTypes = (state: Store): any => state.init.loadedDataTypes;
+export const getLoadedExportTypes = (state: Store): any => state.init.loadedExportTypes;

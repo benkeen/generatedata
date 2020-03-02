@@ -6,8 +6,8 @@ import { ExportTypeGenerateType, ExportTypeGenerationData } from '../../../types
 import { getStrings } from '../../utils/langUtils';
 
 // temporary of course
-import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
-import { JSONSettings } from '../../plugins/exportTypes/JSON/JSON.ui';
+// import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
+// import { JSONSettings } from '../../plugins/exportTypes/JSON/JSON.ui';
 
 // let exportTarget: ExportTarget;
 // let batchNum: number;

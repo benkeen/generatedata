@@ -137,10 +137,12 @@ export const getPreviewPanelData = createSelector(
 export const getExportTypePreviewComponent = createSelector(
 	getExportType,
 	initSelectors.getLoadedExportTypes,
-	(exportType, loadedExportTypes) => {
+	(exportType, loadedExportTypes): any => {
 		if (loadedExportTypes[exportType as ExportTypeFolder]) {
 			return getExportTypePreview(exportType);
 		}
-		return () => <div>Loading!</div>;
+		const Gee = (): any => <div>Loading!</div>;
+		Gee.displayName = "Gee";
+		return Gee;
 	}
 );

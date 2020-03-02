@@ -1,0 +1,35 @@
+const presets = [
+	{
+		presets: [
+			[
+				"@babel/preset-env",
+				{
+					"targets": {
+						"esmodules": true
+					}
+				}
+			],
+			[
+				"@babel/preset-react", {}
+			]
+		],
+		plugins: [
+			'@babel/plugin-syntax-dynamic-import'
+		],
+		env: {
+			"BUILD": {
+				"comments": true
+			},
+			"DEV": {
+				"comments": true
+			},
+			"DIST": {
+				"comments": true
+			}
+		}
+	}
+];
+
+module.exports = {
+	presets
+};

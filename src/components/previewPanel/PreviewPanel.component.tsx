@@ -57,15 +57,15 @@ const PreviewPanel = ({
 					</Tooltip>
 				</span>
 				<span onClick={refreshPreview}>
-					<Tooltip title={i18n.refresh_panel} placement="bottom">
-						<IconButton size="small" aria-label={i18n.refresh_panel}>
+					<Tooltip title={i18n.refreshPanel} placement="bottom">
+						<IconButton size="small" aria-label={i18n.refreshPanel}>
 							<Refresh fontSize="large" />
 						</IconButton>
 					</Tooltip>
 				</span>
 				<span onClick={togglePreview}>
-					<Tooltip title={i18n.close_panel} placement="bottom">
-						<IconButton size="small" aria-label={i18n.close_panel}>
+					<Tooltip title={i18n.closePanel} placement="bottom">
+						<IconButton size="small" aria-label={i18n.closePanel}>
 							<CloseIcon fontSize="large" />
 						</IconButton>
 					</Tooltip>

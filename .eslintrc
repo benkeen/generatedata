@@ -36,7 +36,7 @@
 			"error",
 			"always"
 		],
-		"allowIndentationTabs": true,
+		"allowIndentationTabs": 0,
 		"no-extra-parens": [
 			"off"
 		],

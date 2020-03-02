@@ -10,6 +10,7 @@ module.exports = {
 
 	output: {
 		path: __dirname + '/dist',
+		chunkFilename: '[name].bundle.js',
 		filename: '[name].js'
 	},
 
@@ -60,16 +61,23 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html'
-		}),
+		})
 	],
 
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js']
 	},
 
+	optimization: {
+		splitChunks: {
+			chunks: 'all'
+		}
+	},
+
 	// optimization: {
 	// 	chunkIds: 'named',
 	// 	splitChunks: {
+	// 		chunks: 'all',
 	// 		cacheGroups: {
 	// 			vendor: {
 	// 				test: /node_modules/,

@@ -11,7 +11,8 @@
     "module": "esnext",
     "target": "es6",
 	"jsx": "react",
-	"allowSyntheticDefaultImports": true
+	"allowSyntheticDefaultImports": true,
+	"removeComments": false
   },
   "exclude": ["node_modules"]
 }

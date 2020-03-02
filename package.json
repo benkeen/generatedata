@@ -7,9 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "grunt & yarn build & yarn webpack",
+    "dev": "grunt & grunt i18n & yarn build & yarn webpack",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
-	"build": "node ./scripts/generateConfigFile.js",
+    "build": "node ./scripts/generateConfigFile.js",
     "test": "env NODE_ENV=test jest"
   },
   "repository": {
@@ -69,6 +69,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "@teamsupercell/typings-for-css-modules-loader": "^2.1.0",

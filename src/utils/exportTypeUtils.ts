@@ -20,7 +20,11 @@ export const exportTypeOptions = Object.keys(exportTypes)
 
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	return new Promise((resolve, reject) => {
-		import(/* webpackChunkName: "exportType-[request]" */ `../plugins/exportTypes/${exportType}/bundle`)
+		import(
+			/* webpackChunkName: "exportTypeA" */
+			/* webpackMode: "lazy-once" */
+			`../plugins/exportTypes/${exportType}/bundle`
+		)
 			.then((def: any) => {
 				loadedExportTypes[exportType] = {
 					definition: def.default,
@@ -38,4 +42,4 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 };
 
 // assumes the callee knows what they're doing & that they've checked the component has been loaded
-export const getExportTypePreview = (exportType: ExportTypeFolder) => loadedExportTypes[exportType]?.Preview;
+export const getExportTypePreview = (exportType: ExportTypeFolder): JSX.Element => loadedExportTypes[exportType]?.Preview;

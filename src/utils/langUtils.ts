@@ -4,7 +4,6 @@ import { GDLocale } from '../../types/general.d';
 let currentLocale: GDLocale;
 const langStrings: any = {};
 
-
 export const setLocale = (locale: GDLocale, localeStrings: any): void => {
 	currentLocale = locale;
 	langStrings[locale] = localeStrings;
