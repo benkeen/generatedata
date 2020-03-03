@@ -21,8 +21,8 @@ export const exportTypeOptions = Object.keys(exportTypes)
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	return new Promise((resolve, reject) => {
 		import(
-			/* webpackChunkName: "exportTypeA" */
-			/* webpackMode: "lazy-once" */
+			/* webpackChunkName: "ET-[request]" */
+			/* webpackMode: "lazy" */
 			`../plugins/exportTypes/${exportType}/bundle`
 		)
 			.then((def: any) => {

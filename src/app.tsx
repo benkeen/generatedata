@@ -10,9 +10,6 @@ import * as core from './core';
 import './core/init/init.reducer';
 import './core/generator/generator.reducer';
 
-// import 'core-js/modules/es.promise';
-// import 'core-js/modules/es.array.iterator';
-
 /*
 routes:
 	welcome (?)

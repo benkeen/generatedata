@@ -12,10 +12,10 @@
 			"@babel/preset-react", {}
 		]
 	],
-	plugins: [
-		'@babel/plugin-syntax-dynamic-import'
+	"plugins": [
+		"@babel/plugin-syntax-dynamic-import"
 	],
-	env: {
+	"env": {
 		"BUILD": {
 			"comments": true
 		},

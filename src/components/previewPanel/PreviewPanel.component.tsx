@@ -30,7 +30,7 @@ const PreviewPanel = ({
 	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
 	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings
 }: PreviewPanelProps): React.ReactNode => {
-	const getNoResults = (): JSX.Element | null => {	 
+	const getNoResults = (): JSX.Element | null => {
 		if (data.rows.length > 0) {
 			return null;
 		}
@@ -76,7 +76,8 @@ const PreviewPanel = ({
 
 			<div className={styles.preview} style={{
 				fontSize: `${previewTextSize}px`,
-				lineHeight: `${previewTextSize + 7}px`
+				lineHeight: `${previewTextSize + 7}px`,
+				border: '1px solid red'
 			}}>
 				<ExportTypePreview
 					numPreviewRows={numPreviewRows}

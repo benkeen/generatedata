@@ -79,12 +79,12 @@ export type DataTypeFolder = keyof typeof dataTypes;
 
 // -------------------------------------------------------------------------------------------------------
 
-// import JSON from './plugins/exportTypes/JSON/bundle';
+import JSON from './plugins/exportTypes/JSON/config';
 
-// export const exportTypes = {
-// 	JSON
-// };
+export const exportTypes = {
+	JSON
+};
 
-// export type ExportTypeFolder = keyof typeof exportTypes;
+export type ExportTypeFolder = keyof typeof exportTypes;
 
 // -------------------------------------------------------------------------------------------------------

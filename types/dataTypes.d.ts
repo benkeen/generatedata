@@ -29,7 +29,6 @@ export type DTDefinition = {
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	processOrder?: number;
-	localeFiles: GDLocale[];
 	exports?: DTExportTypeExports[];
 	schema?: any;
 };

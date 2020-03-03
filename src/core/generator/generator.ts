@@ -31,23 +31,28 @@ import { getStrings } from '../../utils/langUtils';
 // let configurationID = null;
 
 
+// ExportTypeGenerateType
+
 export const generate = (data: ExportTypeGenerateType): string => {
 
 	// will be pulled from UI
-	const tmpExportTypeSettings: JSONSettings = {
-		stripWhitespace: false,
-		dataStructureFormat: 'simple'
-	};
+	// const tmpExportTypeSettings: JSONSettings = {
+	// 	stripWhitespace: false,
+	// 	dataStructureFormat: 'simple'
+	// };
 
 	// const generationContext = {
 	// 	environment: 'UI'
 	// };
 
 	// here we offload the generated data to the Export Type
-	const { content } = JSON.generate('UI', tmpExportTypeSettings, {
-		data,
-		generateExportData
-	});
+	// const { content } = JSON.generate('UI', tmpExportTypeSettings, {
+	// 	data,
+	// 	generateExportData
+	// });
+
+	console.log(data);
+	const content = '';
 
 	return content;
 };
