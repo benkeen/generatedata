@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'SIRET',
 	fieldGroup: 'human_data',
 	fieldGroupOrder: 100,
-	exports: [
-		'Options', 'Help', 'getMetadata'
-	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

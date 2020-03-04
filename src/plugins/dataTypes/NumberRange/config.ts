@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'Number Range',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 30,
-	exports: [
-		'Options', 'Help', 'Example', 'getMetadata'
-	],
 	schema: {
 		type: 'object',
 		properties: {

@@ -1,9 +1,12 @@
 import { GDAction } from '../../../types/general';
 import * as selectors from './generator.selectors';
-import { getDataTypeDefaultState } from '../../utils/dataTypeUtils';
 import { generateExportData } from './generator';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
-
+import { ExportTypeFolder, DataTypeFolder } from '../../_plugins';
+import { loadDataTypeBundle } from '../../utils/dataTypeUtils';
+import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
+import { EXPORT_TYPE_LOADED } from '../init/init.actions';
+import { DTBundle } from '../../../types/dataTypes';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -36,26 +39,22 @@ export const selectExportType = (exportType: ExportTypeFolder): any => {
 	};
 };
 
-
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
-export const onSelectDataType = (id: string, dataType: string): any => {
+export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
 	return (dispatch: any): any => {
 		loadDataTypeBundle(dataType)
-
-
-		// const dataTypeDefaultState = getDataTypeDefaultState(dataType);
-		// const selectDataType = (disp: any): any => new Promise((resolve: any) => {
-		// 	disp({
-		// 		type: SELECT_DATA_TYPE,
-		// 		payload: {
-		// 			id,
-		// 			value: dataType,
-		// 			data: dataTypeDefaultState
-		// 		}
-		// 	});
-		// 	resolve();
-		// });
-		// selectDataType(dispatch).then(() => dispatch(refreshPreview([id])));
+			.then((resp: any) => {
+				const bundle = resp.default as DTBundle;
+				dispatch({
+					type: SELECT_DATA_TYPE,
+					payload: {
+						id,
+						value: dataType,
+						data: bundle.initialState
+					}
+				});
+				dispatch(refreshPreview([id]));
+			});
 	};
 };
 

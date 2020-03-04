@@ -23,15 +23,6 @@ const selectStyles = {
 	menuPortal: (base: any): any => ({ ...base, zIndex: 1400 }) // drawer is 1300
 };
 
-// const style = {
-// control: base => ({
-// ...base,
-// // border: 0
-// // This line disable the blue border
-// boxShadow: "none"
-// })
-// };
-
 const Dropdown = ({ value, isGrouped, options, ...props }: any): JSX.Element => {
 	// react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.
 	// instead, our component use the `value` prop, which is converted here

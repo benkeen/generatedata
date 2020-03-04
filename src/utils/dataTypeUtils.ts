@@ -84,19 +84,17 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 			/* webpackMode: "lazy" */
 			`../plugins/dataTypes/${dataType}/bundle`
 		)
-			.then((def: any) => {
-				loadedDataTypes[dataType] = {
-					Example: def.Example ? def.Example : null,
-					Options: def.Options ? def.Options : null,
-					Help: def.Help ? def.Help : null,
-					generate: def.generate,
-					rowStateReducer: def.rowStateReducer ? def.rowStateReducer : null,
-					getMetadata: def.getMetadata ? def.getMetadata : null
-				};
+			.then((def: DTBundle) => {
+				loadedDataTypes[dataType] = def;
 				resolve(def);
 			})
 			.catch((e) => {
 				reject(e);
 			});
-	});
+	});	
+};
+
+export const getGenerationOptionsByDataType = (dataType: DataTypeFolder): any => {
+	const { generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
+	return { generate, getMetadata, rowStateReducer };
 };

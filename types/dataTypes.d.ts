@@ -25,7 +25,6 @@ export type DTDefinition = {
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	processOrder?: number;
-	exports?: DTExportTypeExports[];
 	schema?: any;
 };
 

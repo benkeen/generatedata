@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'Computed',
 	fieldGroup: 'other',
 	fieldGroupOrder: 60,
-	exports: [
-		'Options', 'Help', 'Example'
-	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

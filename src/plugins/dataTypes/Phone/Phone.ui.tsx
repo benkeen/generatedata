@@ -44,7 +44,7 @@ export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<input
 		type="text"
 		value={data.option}
-		onChange={(e): void => onUpdate({ ...state, option: e.target.value })}
+		onChange={(e): void => onUpdate({ ...initialState, option: e.target.value })}
 		style={{ width: '100%' }}
 	/>
 );

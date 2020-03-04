@@ -1,7 +1,6 @@
 import React from 'react';
 import { createSelector } from 'reselect';
-import { getGenerationOptionsByDataType } from '../../utils/dataTypeGenerationUtils';
-import { processOrders } from '../../utils/dataTypeUtils';
+import { processOrders, getGenerationOptionsByDataType } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
 import { GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
@@ -83,19 +82,16 @@ export const getGenerationTemplate = createSelector(
 
 		const templateByProcessOrder: ProcessOrders = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
-			const processOrder = processOrders[dataType as DataTypeFolder];
+			const processOrder = processOrders[dataType as DataTypeFolder] as number;
 
 			// TODO another assumption here. We need to validate the whole component right-up front during the
 			// build step and throw a nice error saying what's missing
 			const { generate, getMetadata, rowStateReducer } = getGenerationOptionsByDataType(dataType);
 
-			// @ts-ignore
 			if (!templateByProcessOrder[processOrder]) {
-				// @ts-ignore
 				templateByProcessOrder[processOrder] = [];
 			}
 
-			// @ts-ignore
 			templateByProcessOrder[processOrder].push({
 				id,
 				title,

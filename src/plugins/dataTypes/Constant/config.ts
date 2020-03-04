@@ -5,9 +5,6 @@ const definition: DTDefinition = {
 	fieldGroup: 'other',
 	fieldGroupOrder: 10,
 	processOrder: 100,
-	exports: [
-		'Options', 'Help', 'Example'
-	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

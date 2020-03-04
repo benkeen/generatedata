@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'Latitude / Longitude',
 	fieldGroup: 'geo',
 	fieldGroupOrder: 100,
-	exports: [
-		'Options', 'Help', 'Example', 'getMetadata'
-	],
 	schema: {
 		type: 'object',
 		properties: {

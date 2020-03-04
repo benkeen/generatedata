@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'Custom List',
 	fieldGroup: 'other',
 	fieldGroupOrder: 40,
-	exports: [
-		'Options', 'Help', 'Example', 'getMetadata'
-	],
 	schema: {
 		type: 'object',
 		properties: {

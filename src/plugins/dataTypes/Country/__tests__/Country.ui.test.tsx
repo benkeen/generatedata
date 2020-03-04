@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react';
-import { state, Options } from '../Country.ui';
+import { initialState, Options } from '../Country.ui';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {
@@ -12,7 +12,7 @@ const defaultProps = {
 
 describe('Options', () => {
 	it('changing the content should call callback', () => {
-		const data = { ...state };
+		const data = { ...initialState };
 		const onUpdate = jest.fn();
 		const { container } = render(
 			<Options 

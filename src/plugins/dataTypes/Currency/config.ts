@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'Currency',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 60,
-	exports: [
-		'Options', 'Help', 'Example', 'getMetadata'
-	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

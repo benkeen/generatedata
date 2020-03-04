@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'Names',
 	fieldGroup: 'human_data',
 	fieldGroupOrder: 10,
-	exports: [
-		'Options', 'Help', 'Example', 'getMetadata'
-	],
 	schema: {
 		type: 'object',
 		properties: {

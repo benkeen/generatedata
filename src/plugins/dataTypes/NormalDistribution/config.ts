@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'Standard Normal Distribution',
 	fieldGroup: 'math',
 	fieldGroupOrder: 10,
-	exports: [
-		'Options', 'Help', 'Example', 'getMetadata'
-	],
 	schema: {
 		type: 'object',
 		properties: {

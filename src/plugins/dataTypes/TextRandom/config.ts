@@ -4,9 +4,6 @@ const definition: DTDefinition = {
 	name: 'Random Number of Words',
 	fieldGroup: 'text',
 	fieldGroupOrder: 10,
-	exports: [
-		'rowStateReducer', 'getMetadata'
-	],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

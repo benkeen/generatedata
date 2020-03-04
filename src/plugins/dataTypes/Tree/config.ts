@@ -5,9 +5,6 @@ const definition: DTDefinition = {
 	fieldGroup: 'other',
 	fieldGroupOrder: 30,
 	processOrder: 2,
-	exports: [
-		'rowStateReducer', 'getMetadata'
-	],
 	schema: {
 		title: 'Tree',
 		$schema: 'http://json-schema.org/draft-04/schema#',
