@@ -80,7 +80,7 @@ const Grid = ({
 						/>
 					);
 				} else {
-					example = <div className={styles.emptyCol}>{i18n.no_examples_available}</div>;
+					example = <div className={styles.emptyCol}>{i18n.noExamplesAvailable}</div>;
 				}
 
 				if (Options) {
@@ -95,7 +95,7 @@ const Grid = ({
 						/>
 					);
 				} else {
-					option = <div className={styles.emptyCol}>{i18n.no_options_available}</div>;
+					option = <div className={styles.emptyCol}>{i18n.noOptionsAvailable}</div>;
 				}
 			}
 
@@ -171,8 +171,8 @@ const Grid = ({
 							<div className={styles.gridHeaderWrapper}>
 								<div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
 									<div className={styles.orderCol}>{rows.length}</div>
-									<div className={styles.titleCol}>{i18n.row_label}</div>
-									<div className={styles.dataTypeCol}>{i18n.data_type}</div>
+									<div className={styles.titleCol}>{i18n.rowLabel}</div>
+									<div className={styles.dataTypeCol}>{i18n.dataType}</div>
 									<div className={styles.examplesCol}>{i18n.examples}</div>
 									<div className={styles.optionsCol}>{i18n.options}</div>
 									<div className={styles.helpCol} />

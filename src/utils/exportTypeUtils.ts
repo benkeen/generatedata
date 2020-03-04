@@ -1,10 +1,10 @@
 import { exportTypes, ExportTypeFolder } from '../_plugins';
-import { ETBundle } from '../../types/exportTypes';
+// import { ETBundle } from '../../types/exportTypes';
 
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
 type LoadedExportTypes = {
-	[name in ExportTypeFolder]?: ETBundle; // TODO figure this one out... kinda important
+	[name in ExportTypeFolder]?: any; // ETBundle TODO figure this one out... kinda important
 }
 
 // this houses all Export Type code loaded async after the application starts
@@ -27,7 +27,6 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 		)
 			.then((def: any) => {
 				loadedExportTypes[exportType] = {
-					definition: def.default,
 					generate: def.generate,
 					initialState: def.initialState,
 					Preview: def.Preview,

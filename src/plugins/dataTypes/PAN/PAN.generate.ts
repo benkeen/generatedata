@@ -4,7 +4,7 @@ import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
 import { PanState } from './PAN.ui';
 
 
-export const getRowReducer = ({ formats, example }: PanState): any => ({
+export const rowStateReducer = ({ formats, example }: PanState): any => ({
 	formats,
 	ccCard: example
 });

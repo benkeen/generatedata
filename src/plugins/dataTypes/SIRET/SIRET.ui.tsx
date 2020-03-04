@@ -6,6 +6,26 @@ export const state = {
 	option: ''
 };
 
+export const Options = ({ id, data, onUpdate }: DTOptionsProps): JSX.Element => {
+	const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
+		// @ts-ignore
+		const value = e.target.value;
+		onUpdate({
+			...data,
+			option: value
+		});
+	};
+
+	return (
+		<>
+			<input type="radio" id={`${id}-siret`} value="SIRET" checked={data.option === 'SIRET'} onChange={onChange} />
+			<label htmlFor={`${id}-siret`}>SIRET</label>
+			<input type="radio" id={`${id}-siren`} value="SIREN" checked={data.option === 'SIREN'} onChange={onChange} />
+			<label htmlFor={`${id}-siren`}>SIREN</label>
+		</>
+	);
+};
+
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
@@ -32,27 +52,6 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</table>
 	</>
 );
-
-export const Options = ({ id, data, onUpdate }: DTOptionsProps): JSX.Element => {
-	const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
-		// @ts-ignore
-		const value = e.target.value;
-		onUpdate({
-			...data,
-			option: value
-		});
-	};
-
-	return (
-		<>
-			<input type="radio" id={`${id}-siret`} value="SIRET" checked={data.option === 'SIRET'} onChange={onChange} />
-			<label htmlFor={`${id}-siret`}>SIRET</label>
-			<input type="radio" id={`${id}-siren`} value="SIREN" checked={data.option === 'SIREN'} onChange={onChange} />
-			<label htmlFor={`${id}-siren`}>SIREN</label>
-		</>
-	);
-};
-
 
 // var _exampleChange = function (msg) {
 // 	$("input[name='dtOption_" + msg.rowID + "'][value='" + msg.value + "']").prop('checked', true);

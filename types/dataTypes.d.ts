@@ -5,12 +5,6 @@ export type DTExportTypeExports = 'Options' | 'Help' |  'Example' |  'rowStateRe
 
 export type DTBundle = {
 
-	// the definition of the Data type
-	definition: DTDefinition;
-
-	// the generation function
-	generate: (data: DTGenerationData) => DTGenerateResult;
-
 	// optional <Example /> React component to show something in the UI for the "Example" column
 	Example?: any;
 
@@ -20,6 +14,7 @@ export type DTBundle = {
 	// optional <Help /> React component
 	Help?: any;
 
+	generate: (data: DTGenerationData) => DTGenerateResult;
 	rowStateReducer?: (state: any) => any;
 	getMetadata?: () => DTMetadata;
 };

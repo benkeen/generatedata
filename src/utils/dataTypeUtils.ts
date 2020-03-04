@@ -1,6 +1,7 @@
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
+import { DTBundle } from '../../types/dataTypes';
 
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
@@ -67,3 +68,35 @@ Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
 });
 
 export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType] as number;
+
+
+type LoadedDataTypes = {
+	[name in DataTypeFolder]?: DTBundle;
+}
+
+// this houses all Export Type code loaded async after the application starts
+const loadedDataTypes: LoadedDataTypes = {};
+
+export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
+	return new Promise((resolve, reject) => {
+		import(
+			/* webpackChunkName: "DT-[request]" */
+			/* webpackMode: "lazy" */
+			`../plugins/dataTypes/${dataType}/bundle`
+		)
+			.then((def: any) => {
+				loadedDataTypes[dataType] = {
+					Example: def.Example ? def.Example : null,
+					Options: def.Options ? def.Options : null,
+					Help: def.Help ? def.Help : null,
+					generate: def.generate,
+					rowStateReducer: def.rowStateReducer ? def.rowStateReducer : null,
+					getMetadata: def.getMetadata ? def.getMetadata : null
+				};
+				resolve(def);
+			})
+			.catch((e) => {
+				reject(e);
+			});
+	});
+};

@@ -1,8 +1,6 @@
-import { GDLocale } from './general';
 import { BuilderLayout } from '../src/components/builder/Builder.component';
 
 export type ETBundle = {
-	definition: ETDefinition;
 	generate: any; // TODO
 	initialState: any; // TODO generics? 
 	Preview: any;

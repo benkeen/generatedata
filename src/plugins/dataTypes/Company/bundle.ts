@@ -1,2 +1,11 @@
-export { Help } from './Company.ui';
-export { generate, getMetadata } from './Company.generate';
+import { DTBundle } from '../../../../types/dataTypes';
+import { Help } from './Company.ui';
+import { generate, getMetadata } from './Company.generate';
+
+const bundle: DTBundle = {
+	Help,
+	generate,
+	getMetadata
+};
+
+export default bundle;

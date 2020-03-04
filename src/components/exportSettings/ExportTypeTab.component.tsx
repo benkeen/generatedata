@@ -14,13 +14,6 @@ export type ExportTypeTabProps = {
 export const ExportTypeTab = ({
 	exportType, onChangeExportType
 }: ExportTypeTabProps): JSX.Element => {
-
-	// @ts-ignore
-	// const ExportTypeSettings: LoadableComponent = loadable(() => import(
-	// 	/* webpackChunkName: "exportType-[index]" */
-	// 	`../../plugins/exportTypes/${exportType}/${exportType}.ui`)
-	// );
-
 	const ExportTypeSettings = (): null => null;
 
 	return (

@@ -27,6 +27,10 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (id: string, dataType: string): any => {
 	return (dispatch: any): any => {
+
+		
+
+
 		const dataTypeDefaultState = getDataTypeDefaultState(dataType);
 		const selectDataType = (disp: any): any => new Promise((resolve: any) => {
 			disp({

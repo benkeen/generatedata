@@ -4,7 +4,7 @@ export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 
-export const getMetaData = (): DTMetadata => ({
+export const getMetadata = (): DTMetadata => ({
 	sql: {
 		field: 'varchar(100) default NULL',
 		field_Oracle: 'varchar2(100) default NULL',
