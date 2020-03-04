@@ -2,11 +2,11 @@ import * as React from 'react';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export type TreeState = {
-	autoIncRowNum: number | null,
-	maxSiblings: number | null
+	autoIncRowNum: number | null;
+	maxSiblings: number | null;
 };
 
-export const state: TreeState = {
+export const initialState: TreeState = {
 	autoIncRowNum: null,
 	maxSiblings: null
 };

@@ -5,7 +5,7 @@ export type TextFixedState = {
 	numWords: number;
 };
 
-export const state: TextFixedState = {
+export const initialState: TextFixedState = {
 	numWords: 10
 };
 

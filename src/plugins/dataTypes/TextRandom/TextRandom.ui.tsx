@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+type TextRandomState = {
+	startsWithLipsum: boolean;
+	minWords: number;
+	maxWords: number;
+};
+
+export const initialState: TextRandomState = {
 	startsWithLipsum: false,
 	minWords: 1,
 	maxWords: 10
