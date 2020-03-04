@@ -1,5 +1,5 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
-import { GDLocale, AnyObject } from './general';
+import { AnyObject } from './general';
 
 export type DTExportTypeExports = 'Options' | 'Help' |  'Example' |  'rowStateReducer' |  'getMetadata';
 

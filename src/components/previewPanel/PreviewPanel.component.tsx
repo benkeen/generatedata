@@ -38,8 +38,8 @@ const PreviewPanel = ({
 			<div className={styles.noResults}>
 				<ArrowDropUp style={{ fontSize: 300, position: 'absolute' }} />
 				<div style={{ height: '100%', margin: 'auto' }}>
-					<h1>{i18n.preview_panel_no_data}</h1>
-					<p>{i18n.add_some_data_desc}</p>
+					<h1>{i18n.previewPanelNoData}</h1>
+					<p>{i18n.addSomeDataDesc}</p>
 				</div>
 			</div>
 		);
@@ -76,8 +76,7 @@ const PreviewPanel = ({
 
 			<div className={styles.preview} style={{
 				fontSize: `${previewTextSize}px`,
-				lineHeight: `${previewTextSize + 7}px`,
-				border: '1px solid red'
+				lineHeight: `${previewTextSize + 7}px`
 			}}>
 				<ExportTypePreview
 					numPreviewRows={numPreviewRows}
