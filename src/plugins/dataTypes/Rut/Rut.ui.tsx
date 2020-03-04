@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { DTExampleProps, DTOptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+type RutState = {
+	example: string;
+	thousandSep: boolean;
+	upper: boolean;
+	remDash: boolean;
+};
+
+export const initialState: RutState = {
 	example: '',
 	thousandSep: true,
 	upper: true,

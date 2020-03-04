@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+type SiretState = {
+	example: string;
+	option: string;
+};
+
+export const initialState: SiretState = {
 	example: '',
 	option: ''
 };

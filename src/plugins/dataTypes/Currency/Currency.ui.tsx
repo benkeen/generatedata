@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
 
-export const state = {
+export const initialState = {
 	example: '',
 	format: '',
 	from: '',

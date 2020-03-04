@@ -7,7 +7,7 @@ export type PhoneState = {
 	option: string;
 };
 
-export const state: PhoneState = {
+export const initialState: PhoneState = {
 	example: '1-Xxx-Xxx-xxxx',
 	option: '1-Xxx-Xxx-xxxx'
 };

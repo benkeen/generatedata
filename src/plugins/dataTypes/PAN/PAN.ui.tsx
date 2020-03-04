@@ -10,7 +10,7 @@ export type PanState = {
 	randomBrands: string[];
 };
 
-export const state: PanState = {
+export const initialState: PanState = {
 	example: 'mastercard',
 	separator: ' ',
 	formats: '',

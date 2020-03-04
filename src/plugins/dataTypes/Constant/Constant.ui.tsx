@@ -6,7 +6,7 @@ export type ConstantType = {
 	values: string;
 }
 
-export const state: ConstantType = {
+export const initialState: ConstantType = {
 	loopCount: 10,
 	values: ''
 };

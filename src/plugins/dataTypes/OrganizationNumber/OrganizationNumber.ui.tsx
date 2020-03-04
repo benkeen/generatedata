@@ -7,7 +7,7 @@ export type OrganizationNumberState = {
 	separator: string;
 };
 
-export const state: OrganizationNumberState = {
+export const initialState: OrganizationNumberState = {
 	example: '',
 	separator: ' '
 };

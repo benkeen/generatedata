@@ -7,7 +7,7 @@ export type AlphanumericState = {
 	value: string;
 }
 
-export const state: AlphanumericState = {
+export const initialState: AlphanumericState = {
 	example: '',
 	value: ''
 };

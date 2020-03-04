@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+export const initialState = {
 	value: ''
 };
 

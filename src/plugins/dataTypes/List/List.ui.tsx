@@ -13,7 +13,7 @@ export type ListState = {
 	values: string;
 };
 
-export const state: ListState = {
+export const initialState: ListState = {
 	example: '',
 	listType: 'EXACTLY',
 	exactly: '',

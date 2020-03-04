@@ -16,7 +16,7 @@ export type DateState = {
 	format: string;
 };
 
-export const state: DateState = {
+export const initialState: DateState = {
 	fromDate: parseInt(format(subYears(new Date(), 1), 't'), 10),
 	toDate: parseInt(format(addYears(new Date(), 1), 't'), 10),
 	example: '',

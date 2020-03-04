@@ -7,7 +7,7 @@ export type BooleanState = {
 	value: string;
 };
 
-export const state: BooleanState = {
+export const initialState: BooleanState = {
 	example: 'false',
 	value: 'true'
 };

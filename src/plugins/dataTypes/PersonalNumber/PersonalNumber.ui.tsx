@@ -6,7 +6,7 @@ import Dropdown from '../../../components/dropdown/Dropdown';
 // TODO: figure out what this component IS. Is it for specific countries? Sweden has 12 chars...
 // https://en.wikipedia.org/wiki/Personal_identity_number_%28Sweden%29
 
-export const state = {
+export const initialState = {
 	example: '',
 	separator: ' '
 };

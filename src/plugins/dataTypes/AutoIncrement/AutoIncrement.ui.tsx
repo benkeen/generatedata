@@ -9,7 +9,7 @@ export type AutoIncrementState = {
 	incrementPlaceholder: string;
 }
 
-export const state: AutoIncrementState = {
+export const initialState: AutoIncrementState = {
 	example: '1,1',
 	incrementStart: 1,
 	incrementValue: 1,

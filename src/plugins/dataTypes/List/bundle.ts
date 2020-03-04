@@ -1,8 +1,9 @@
 import { DTBundle } from '../../../../types/dataTypes';
-import { Example, Options, Help } from './List.ui';
+import { initialState, Example, Options, Help } from './List.ui';
 import { generate, getMetadata } from './List.generate';
 
 const bundle: DTBundle = {
+	initialState,
 	Example,
 	Options,
 	Help,

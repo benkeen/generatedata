@@ -24,26 +24,38 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 	}
 });
 
+export const selectExportType = (exportType: ExportTypeFolder): any => {
+	return (dispatch: any): any => {
+		loadExportTypeBundle(exportType)
+			.then(() => {
+				dispatch({
+					type: EXPORT_TYPE_LOADED,
+					payload: exportType
+				});
+			});
+	};
+};
+
+
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (id: string, dataType: string): any => {
 	return (dispatch: any): any => {
+		loadDataTypeBundle(dataType)
 
-		
 
-
-		const dataTypeDefaultState = getDataTypeDefaultState(dataType);
-		const selectDataType = (disp: any): any => new Promise((resolve: any) => {
-			disp({
-				type: SELECT_DATA_TYPE,
-				payload: {
-					id,
-					value: dataType,
-					data: dataTypeDefaultState
-				}
-			});
-			resolve();
-		});
-		selectDataType(dispatch).then(() => dispatch(refreshPreview([id])));
+		// const dataTypeDefaultState = getDataTypeDefaultState(dataType);
+		// const selectDataType = (disp: any): any => new Promise((resolve: any) => {
+		// 	disp({
+		// 		type: SELECT_DATA_TYPE,
+		// 		payload: {
+		// 			id,
+		// 			value: dataType,
+		// 			data: dataTypeDefaultState
+		// 		}
+		// 	});
+		// 	resolve();
+		// });
+		// selectDataType(dispatch).then(() => dispatch(refreshPreview([id])));
 	};
 };
 

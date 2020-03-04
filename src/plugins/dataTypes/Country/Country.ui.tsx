@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DTOptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+export const initialState = {
 	allCountries: true
 };
 

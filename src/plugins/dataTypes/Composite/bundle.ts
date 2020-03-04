@@ -1,8 +1,9 @@
 import { DTBundle } from '../../../../types/dataTypes';
-import { Help } from './Composite.ui';
+import { initialState, Help } from './Composite.ui';
 import { generate, getMetadata } from './Composite.generate';
 
 const bundle: DTBundle = {
+	initialState,
 	Help,
 	generate,
 	getMetadata

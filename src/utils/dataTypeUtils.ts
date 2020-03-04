@@ -3,6 +3,14 @@ import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle } from '../../types/dataTypes';
 
+type LoadedDataTypes = {
+	[name in DataTypeFolder]?: DTBundle;
+}
+
+// this houses all Export Type code loaded async after the application starts
+const loadedDataTypes: LoadedDataTypes = {};
+
+
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
 // used for the Data Type selection dropdown
@@ -68,14 +76,6 @@ Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
 });
 
 export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType] as number;
-
-
-type LoadedDataTypes = {
-	[name in DataTypeFolder]?: DTBundle;
-}
-
-// this houses all Export Type code loaded async after the application starts
-const loadedDataTypes: LoadedDataTypes = {};
 
 export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	return new Promise((resolve, reject) => {

@@ -6,7 +6,7 @@ export type LatLngState = {
 	lng: boolean;
 };
 
-export const state: LatLngState = {
+export const initialState: LatLngState = {
 	lat: true,
 	lng: true
 };

@@ -6,7 +6,7 @@ export type NumberRangeState = {
 	max: number;
 };
 
-export const state: NumberRangeState = {
+export const initialState: NumberRangeState = {
 	min: 0,
 	max: 10
 };

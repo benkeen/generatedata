@@ -7,7 +7,7 @@ export type NamesState = {
 	options: string;
 };
 
-export const state: NamesState = {
+export const initialState: NamesState = {
 	example: 'Name Surname',
 	options: 'Name Surname'
 };

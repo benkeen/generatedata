@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { DTOptionsProps } from '../../../../types/dataTypes';
 
-export const state = {
+type NormalDistributionState = {
+	mean: string;
+	sigma: string;
+	precision: number;
+};
+
+export const initialState: NormalDistributionState = {
 	mean: '',
 	sigma: '',
 	precision: 10

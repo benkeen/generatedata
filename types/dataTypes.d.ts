@@ -4,6 +4,7 @@ import { AnyObject } from './general';
 export type DTExportTypeExports = 'Options' | 'Help' |  'Example' |  'rowStateReducer' |  'getMetadata';
 
 export type DTBundle = {
+	initialState?: any;
 
 	// optional <Example /> React component to show something in the UI for the "Example" column
 	Example?: any;
