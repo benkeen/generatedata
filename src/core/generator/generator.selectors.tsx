@@ -1,6 +1,6 @@
 import React from 'react';
 import { createSelector } from 'reselect';
-import { processOrders, getGenerationOptionsByDataType } from '../../utils/dataTypeUtils';
+import { processOrders, getDataTypeExports } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
 import { GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
@@ -93,7 +93,7 @@ export const getGenerationTemplate = createSelector(
 
 			// TODO another assumption here. We need to validate the whole component right-up front during the
 			// build step and throw a nice error saying what's missing
-			const { generate, getMetadata, rowStateReducer } = getGenerationOptionsByDataType(dataType);
+			const { generate, getMetadata, rowStateReducer } = getDataTypeExports(dataType);
 
 			if (!templateByProcessOrder[processOrder]) {
 				templateByProcessOrder[processOrder] = [];

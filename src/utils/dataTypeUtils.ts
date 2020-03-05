@@ -17,8 +17,6 @@ export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder)
 export const getSortedGroupedDataTypes = (): any => {
 	const i18n = getStrings();
 
-	console.log(coreConfig.dataTypeGroups, i18n);
-
 	return coreConfig.dataTypeGroups.map((group: string) => {
 		const options = Object.keys(dataTypes)
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
@@ -54,23 +52,18 @@ export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
 	// @ts-ignore
 	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Example) {
 		// @ts-ignore
-		Example = dataTypes[dataType].Example;
+		Example = loadedDataTypes[dataType].Example;
 	}
 
 	// @ts-ignore
 	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Help) {
 		// @ts-ignore
-		Help = dataTypes[dataType].Help;
+		Help = loadedDataTypes[dataType].Help;
 	}
 
 	return { Options, Example, Help };
 };
 
-export const getDataTypeHelpComponent = (dataType: string): any => {
-	console.log(dataType);
-	// return dataTypes[dataType] && dataTypes[dataType].Help ? dataTypes[dataType].Help : (): any => null;
-	return null;
-};
 
 type DataTypeProcessOrders = {
 	[name in DataTypeFolder]?: number;
@@ -100,7 +93,7 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	});	
 };
 
-export const getGenerationOptionsByDataType = (dataType: DataTypeFolder): any => {
-	const { generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
-	return { generate, getMetadata, rowStateReducer };
+export const getDataTypeExports = (dataType: DataTypeFolder): any => {
+	const { Example, Options, Help, generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
+	return { Example, Options, Help, generate, getMetadata, rowStateReducer };
 };

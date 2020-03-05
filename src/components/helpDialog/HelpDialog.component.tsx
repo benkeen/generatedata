@@ -9,8 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Dropdown from '../dropdown/Dropdown';
-import { getSortedGroupedDataTypes } from '../../utils/dataTypeUtils';
-// import styles from './HelpDialog.scss';
+import { getSortedGroupedDataTypes, getDataTypeExports } from '../../utils/dataTypeUtils';
 
 const dialogStyles = (theme: any): any => ({
 	root: {
@@ -70,9 +69,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpD
 	}, [initialDataType]);
 
 	const dataTypes = getSortedGroupedDataTypes();
-	// const Help = getDataTypeHelpComponent(dataType);
-
-	const Help = (p: any): null => null;
+	const { Help } = getDataTypeExports(dataType);
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
