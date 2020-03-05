@@ -23,4 +23,6 @@ export const init = (): void => {
 	if (numRows === 0) {
 		store.dispatch(generatorActions.addRows(C.NUM_DEFAULT_ROWS));
 	}
+
+	console.log(generatorSelectors.getRowDataTypes(state));
 };

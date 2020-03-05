@@ -43,8 +43,6 @@ export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
 		return { Options, Example, Help };
 	}
 
-	console.log(dataType, loadedDataTypes, dataTypeNames.indexOf(dataType));
-
 	// @ts-ignore
 	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Options) {
 		// @ts-ignore
@@ -52,13 +50,13 @@ export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
 	}
 	
 	// @ts-ignore
-	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Example) {
+	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Example) {
 		// @ts-ignore
 		Example = dataTypes[dataType].Example;
 	}
 
 	// @ts-ignore
-	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Help) {
+	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Help) {
 		// @ts-ignore
 		Help = dataTypes[dataType].Help;
 	}

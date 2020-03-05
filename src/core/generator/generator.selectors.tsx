@@ -44,6 +44,13 @@ export const getColumnTitles = createSelector(
 	(rows) => rows.filter((row: any) => row.dataType !== null && row.title !== '').map((row: any) => row.title)
 );
 
+export const getRowDataTypes = createSelector(
+	getRows,
+	(rows) => (
+		Object.keys(rows).filter((id: string) => rows[id].dataType !== null).map((id: string) => rows[id].dataType)
+	)
+);
+
 export const getPreviewData = createSelector(
 	getNumPreviewRows,
 	getNonEmptySortedRows,
