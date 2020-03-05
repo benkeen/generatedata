@@ -2,7 +2,7 @@ import { DTDefinition } from '../../../../types/dataTypes';
 
 const definition: DTDefinition = {
 	name: 'PIN',
-	fieldGroup: 'credit_card_data',
+	fieldGroup: 'creditCardData',
 	fieldGroupOrder: 20
 };
 

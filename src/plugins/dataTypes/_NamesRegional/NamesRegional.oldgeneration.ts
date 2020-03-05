@@ -12,7 +12,7 @@ class DataType_NamesRegional extends DataTypePlugin {
 	protected $isEnabled = true;
 	protected $dataTypeName = "Names, Regional";
 	protected $hasHelpDialog = true;
-	protected $dataTypeFieldGroup = "human_data";
+	protected $dataTypeFieldGroup = "humanData";
 	protected $dataTypeFieldGroupOrder = 15;
 	protected $processOrder = 2;
 	protected $jsModules = array("NamesRegional.js");

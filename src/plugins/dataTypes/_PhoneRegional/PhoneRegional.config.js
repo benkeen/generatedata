@@ -1,6 +1,6 @@
 export default {
 	"name": "Phone / Fax, Regional",
-	"fieldGroup": "human_data",
+	"fieldGroup": "humanData",
 	"fieldGroupOrder": 25,
 	processOrder: 3,
 	"schema": {

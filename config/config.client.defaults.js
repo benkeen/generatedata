@@ -22,9 +22,9 @@ export default {
 	// importSqlListDatabases: false,
 
 	dataTypeGroups: [
-		'human_data',
+		'humanData',
 		'geo',
-		'credit_card_data',
+		'creditCardData',
 		'text',
 		'numeric',
 		'math',
@@ -33,11 +33,11 @@ export default {
 	continents: [
 		'africa',
 		'asia',
-		'central_america',
+		'centralAmerica',
 		'europe',
-		'north_america',
+		'northAmerica',
 		'oceania',
-		'south_america'
+		'southAmerica'
 	],
 
 	locales: [

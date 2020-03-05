@@ -6,6 +6,7 @@ import * as initActions from './init/init.actions';
 import * as initSelectors from './init/init.selectors';
 import * as generatorActions from './generator/generator.actions';
 import * as generatorSelectors from './generator/generator.selectors';
+import { loadDataTypeBundle } from '../utils/dataTypeUtils';
 
 // just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
 // data structure has hardly changed in 15 years and is unlikely to in the future
@@ -24,5 +25,6 @@ export const init = (): void => {
 		store.dispatch(generatorActions.addRows(C.NUM_DEFAULT_ROWS));
 	}
 
-	console.log(generatorSelectors.getRowDataTypes(state));
+	const preloadDataTypes = generatorSelectors.getRowDataTypes(state);
+	preloadDataTypes.forEach((dataType) => loadDataTypeBundle(dataType));
 };

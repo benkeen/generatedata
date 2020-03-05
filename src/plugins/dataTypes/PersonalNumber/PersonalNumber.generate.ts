@@ -20,7 +20,7 @@ export const getMetadata = (): DTMetadata => {
 /*
 	protected $isEnabled = true;
 	protected $dataTypeName = "PersonalNumber";
-	protected $dataTypeFieldGroup = "human_data";
+	protected $dataTypeFieldGroup = "humanData";
 	protected $dataTypeFieldGroupOrder = 110;
 	protected $jsModules = array("PersonalNumber.js");
 	private $generatedPersonnrs = array();

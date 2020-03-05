@@ -21,9 +21,9 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	};
 
 	const options = [
-		{ value: 'LxL xLx', label: `V6M 4C1 ${i18n.example_CanPostalCode}` },
-		{ value: 'xxxxx', label: `90210 ${i18n.example_USZipCode}` },
-		{ value: 'LLLxxLLLxLL', label: `eZg29gdF5K1 ${i18n.example_Password}` }
+		{ value: 'LxL xLx', label: `V6M 4C1 ${i18n.exampleCanPostalCode}` },
+		{ value: 'xxxxx', label: `90210 ${i18n.exampleUSZipCode}` },
+		{ value: 'LLLxxLLLxLL', label: `eZg29gdF5K1 ${i18n.examplePassword}` }
 	];
 
 	return (
@@ -54,39 +54,39 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			<tbody>
 				<tr>
 					<td><h4>L</h4></td>
-					<td>{i18n.help_1}</td>
+					<td>{i18n.help1}</td>
 					<td><h4>V</h4></td>
-					<td>{i18n.help_2}</td>
+					<td>{i18n.help2}</td>
 				</tr>
 				<tr>
 					<td><h4>l</h4></td>
-					<td>{i18n.help_3}</td>
+					<td>{i18n.help3}</td>
 					<td><h4>v</h4></td>
-					<td>{i18n.help_4}</td>
+					<td>{i18n.help4}</td>
 				</tr>
 				<tr>
 					<td><h4>D</h4></td>
-					<td>{i18n.help_5}</td>
+					<td>{i18n.help5}</td>
 					<td><h4>F</h4></td>
-					<td>{i18n.help_6}</td>
+					<td>{i18n.help6}</td>
 				</tr>
 				<tr>
 					<td><h4>C</h4></td>
-					<td>{i18n.help_7}</td>
+					<td>{i18n.help7}</td>
 					<td><h4>x</h4></td>
-					<td>{i18n.help_8}</td>
+					<td>{i18n.help8}</td>
 				</tr>
 				<tr>
 					<td><h4>c</h4></td>
-					<td>{i18n.help_9}</td>
+					<td>{i18n.help9}</td>
 					<td><h4>X</h4></td>
-					<td>{i18n.help_10}</td>
+					<td>{i18n.help10}</td>
 				</tr>
 				<tr>
 					<td><h4>E</h4></td>
-					<td>{i18n.help_11}</td>
+					<td>{i18n.help11}</td>
 					<td><h4>H</h4></td>
-					<td>{i18n.help_12}</td>
+					<td>{i18n.help12}</td>
 				</tr>
 			</tbody>
 		</table>

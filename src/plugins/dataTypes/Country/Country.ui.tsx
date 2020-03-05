@@ -12,7 +12,7 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 			checked={data.allCountries}
 			onChange={(): void => onUpdate({ allCountries: !data.allCountries })}
 		/>
-		<label>{i18n.limit_results}</label>
+		<label>{i18n.limitResults}</label>
 	</>
 );
 

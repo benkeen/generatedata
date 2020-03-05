@@ -4,7 +4,7 @@
 class DataType_PhoneRegional extends DataTypePlugin {
 	protected $isEnabled = true;
 	protected $dataTypeName = "Phone / Fax, Regional";
-	protected $dataTypeFieldGroup = "human_data";
+	protected $dataTypeFieldGroup = "humanData";
 	protected $dataTypeFieldGroupOrder = 25;
 	protected $jsModules = array("PhoneRegional.js");
 	protected $cssFiles = array("PhoneRegional.css");

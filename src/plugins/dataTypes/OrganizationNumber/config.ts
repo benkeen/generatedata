@@ -2,7 +2,7 @@ import { DTDefinition } from '../../../../types/dataTypes';
 
 const definition: DTDefinition = {
 	name: 'Organization Number',
-	fieldGroup: 'human_data',
+	fieldGroup: 'humanData',
 	fieldGroupOrder: 111
 };
 

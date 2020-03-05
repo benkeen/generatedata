@@ -17,6 +17,8 @@ export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder)
 export const getSortedGroupedDataTypes = (): any => {
 	const i18n = getStrings();
 
+	console.log(coreConfig.dataTypeGroups, i18n);
+
 	return coreConfig.dataTypeGroups.map((group: string) => {
 		const options = Object.keys(dataTypes)
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)

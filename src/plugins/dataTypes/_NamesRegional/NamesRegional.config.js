@@ -1,6 +1,6 @@
 export default {
 	"name": "Names, Regional",
-	"fieldGroup": "human_data",
+	"fieldGroup": "humanData",
 	"fieldGroupOrder": 15,
 	processOrder: 2,
 	"schema": {
