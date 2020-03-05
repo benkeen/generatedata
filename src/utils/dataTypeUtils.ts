@@ -4,11 +4,11 @@ import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle } from '../../types/dataTypes';
 
 type LoadedDataTypes = {
-	[name in DataTypeFolder]?: DTBundle;
+	[name in DataTypeFolder]: DTBundle;
 }
 
 // this houses all Export Type code loaded async after the application starts
-const loadedDataTypes: LoadedDataTypes = {};
+const loadedDataTypes: Partial<LoadedDataTypes> = {};
 
 
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
@@ -34,30 +34,36 @@ export const getSortedGroupedDataTypes = (): any => {
 	});
 };
 
+export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
+	let Options = (): null => null;
+	let Example = (): null => null;
+	let Help = (): null => null;
 
-// dataType: DataType | null
-export const getDataTypeComponents = (): any => {
-	const Options = null;
-	const Example = null;
-	const Help = null;
+	if (!dataType || !loadedDataTypes[dataType]) {
+		return { Options, Example, Help };
+	}
 
-	// if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Options) {
-	// 	Options = dataTypes[dataType].Options;
-	// }
-	// if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Example) {
-	// 	Example = dataTypes[dataType].Example;
-	// }
-	// if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Help) {
-	// 	Help = dataTypes[dataType].Help;
-	// }
+	console.log(dataType, loadedDataTypes, dataTypeNames.indexOf(dataType));
+
+	// @ts-ignore
+	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Options) {
+		// @ts-ignore
+		Options = loadedDataTypes[dataType].Options;
+	}
+	
+	// @ts-ignore
+	if (dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Example) {
+		// @ts-ignore
+		Example = dataTypes[dataType].Example;
+	}
+
+	// @ts-ignore
+	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].Help) {
+		// @ts-ignore
+		Help = dataTypes[dataType].Help;
+	}
 
 	return { Options, Example, Help };
-};
-
-export const getDataTypeDefaultState = (dataType: string): any => {
-	console.log(dataType);
-	// return dataTypeNames.indexOf(dataType) !== -1 && dataTypes[dataType].state ? dataTypes[dataType].state : null;
-	return null;
 };
 
 export const getDataTypeHelpComponent = (dataType: string): any => {
@@ -84,9 +90,9 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 			/* webpackMode: "lazy" */
 			`../plugins/dataTypes/${dataType}/bundle`
 		)
-			.then((def: DTBundle) => {
-				loadedDataTypes[dataType] = def;
-				resolve(def);
+			.then((definition: any) => {
+				loadedDataTypes[dataType] = definition.default;
+				resolve(definition.default);
 			})
 			.catch((e) => {
 				reject(e);

@@ -43,8 +43,9 @@ export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
 	return (dispatch: any): any => {
 		loadDataTypeBundle(dataType)
-			.then((resp: any) => {
-				const bundle = resp.default as DTBundle;
+			.then((bundle: DTBundle) => {
+				console.log(bundle);
+
 				dispatch({
 					type: SELECT_DATA_TYPE,
 					payload: {

@@ -158,13 +158,13 @@ describe('grid rows', () => {
 	// 	expect(rows[1].dataType).toEqual(null);
 	// 	expect(rows[2].dataType).toEqual(null);
 
-		// const dispatches = Thunk(actions.onSelectDataType(rows[1].id, 'JSON')).execute();
-		// console.log(dispatches);
+	// const dispatches = Thunk(actions.onSelectDataType(rows[1].id, 'JSON')).execute();
+	// console.log(dispatches);
 
-		// const updatedRows = selectors.getSortedRowsArray(store.getState());
-		// expect(updatedRows[0].dataType).toEqual(null);
-		// expect(updatedRows[1].dataType).toEqual('JSON');
-		// expect(updatedRows[2].dataType).toEqual(null);
+	// const updatedRows = selectors.getSortedRowsArray(store.getState());
+	// expect(updatedRows[0].dataType).toEqual(null);
+	// expect(updatedRows[1].dataType).toEqual('JSON');
+	// expect(updatedRows[2].dataType).toEqual(null);
 	// });
 	
 	// it('initializes the default data type state when selecting data type', () => {
