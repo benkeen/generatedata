@@ -31,8 +31,7 @@ export const getRandomCharInString = (str: string): string => {
 };
 
 /**
- * Converts the following characters in the parameter string and returns it:
- *
+ * Converts the following characters in the parameter string and returns the random string.
  *     C, c, E - any consonant (Upper case, lower case, any)
  *     V, v, F - any vowel (Upper case, lower case, any)
  *     L, l, D - any letter (Upper case, lower case, any)

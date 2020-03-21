@@ -1,7 +1,9 @@
+import React from 'react';
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle } from '../../types/dataTypes';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
@@ -9,7 +11,6 @@ type LoadedDataTypes = {
 
 // this houses all Export Type code loaded async after the application starts
 const loadedDataTypes: Partial<LoadedDataTypes> = {};
-
 
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
@@ -35,8 +36,8 @@ export const getSortedGroupedDataTypes = (): any => {
 };
 
 export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
+	let Example = (): any => <CircularProgress size={20} style={{ color: '#999999', margin: 5 }} />;;
 	let Options = (): null => null;
-	let Example = (): null => null;
 	let Help = (): null => null;
 
 	if (!dataType || !loadedDataTypes[dataType]) {
@@ -44,15 +45,15 @@ export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
 	}
 
 	// @ts-ignore
-	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Options) {
-		// @ts-ignore
-		Options = loadedDataTypes[dataType].Options;
-	}
-	
-	// @ts-ignore
 	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Example) {
 		// @ts-ignore
 		Example = loadedDataTypes[dataType].Example;
+	}
+
+	// @ts-ignore
+	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Options) {
+		// @ts-ignore
+		Options = loadedDataTypes[dataType].Options;
 	}
 
 	// @ts-ignore
@@ -93,7 +94,20 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	});	
 };
 
+// TODO this is being called before loadedDataTypes is populated, hence the 
 export const getDataTypeExports = (dataType: DataTypeFolder): any => {
+	const TmpOptions = (): null => null;
+	const TmpExample = (): null => null;
+	const TmpHelp = (): null => null;
+
+	if (!dataType || !loadedDataTypes[dataType]) {
+		return {
+			Options: TmpOptions,
+			Example: TmpExample,
+			Help: TmpHelp
+		};
+	}
+
 	const { Example, Options, Help, generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
 	return { Example, Options, Help, generate, getMetadata, rowStateReducer };
 };

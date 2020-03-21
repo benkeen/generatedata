@@ -5,10 +5,12 @@ import Footer, { FooterProps } from './Footer.component';
 import { GDLocale } from '../../../types/general';
 import * as initActions from '../../core/init/init.actions';
 import * as generatorActions from '../../core/generator/generator.actions';
+import * as generalUtils from '../../utils/generalUtils';
 
 const mapStateToProps = (state: any): Partial<FooterProps> => ({
 	i18n: initSelectors.getCoreI18n(state),
-	locale: initSelectors.getLocale(state)
+	locale: initSelectors.getLocale(state),
+	scriptVersion: generalUtils.getScriptVersion()
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({

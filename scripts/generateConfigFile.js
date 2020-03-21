@@ -1,6 +1,7 @@
 require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const path = require('path');
+const package = require('../package.json');
 const configDefaults = require('../config/config.client.defaults');
 
 let overrides = {};
@@ -10,6 +11,7 @@ if (fs.existsSync(configFile)) {
 }
 
 const completeConfigFile = {
+	version: package.version,
 	...configDefaults.default,
 	...overrides
 };

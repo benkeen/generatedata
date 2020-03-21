@@ -15,6 +15,7 @@ import C from '../../core/constants';
 export type FooterProps = {
 	locale: GDLocale;
 	i18n: any;
+	scriptVersion: string;
 	openExportTypeSettings: () => void;
 	onChangeLocale: (a: any) => void;
 };
@@ -37,7 +38,7 @@ const useListStyles = makeStyles(() =>
 	})
 );
 
-const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale }: FooterProps): JSX.Element => {
+const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale, scriptVersion }: FooterProps): JSX.Element => {
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
 
@@ -80,7 +81,7 @@ const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale }: Footer
 							</HtmlTooltip>
 						</ClickAwayListener>
 					</li>
-					<li>4.0.0</li>
+					<li>{scriptVersion}</li>
 				</ul>
 
 				<div>
@@ -88,7 +89,7 @@ const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale }: Footer
 					<Button onClick={openExportTypeSettings} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>JSON</Button>
 					<span style={{ padding: '6px 12px 0 6px', color: '#dddddd' }}>|</span>
 					<Button onClick={(): void => { }} variant="contained" color="primary" disableElevation>
-						<span dangerouslySetInnerHTML={{ __html: i18n.generate_arrow }} />
+						<span dangerouslySetInnerHTML={{ __html: i18n.generateArrow }} />
 					</Button>
 				</div>
 			</div>
