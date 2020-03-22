@@ -1,0 +1,18 @@
+{
+	"addDefaultAutoIncrementCol": "Fügen Sie Standard-Auto-Increment-Spalte",
+	"dbTableName": "Database Name der Tabelle",
+	"dbType": "Database Type",
+	"encloseTableBackquotes": "Schließen Sie Tabellen-und Feldnamen mit Backquotes",
+	"includeCreateTableQuery": "Fügen Sie CREATE TABLE-Abfrage",
+	"includeDropTableQuery": "Fügen Sie DROP TABLE-Abfrage",
+	"miscOptions": "Verschiedene Optionen",
+	"primaryKey": "Primary Key",
+	"rowLabel": "Tabellenspalte",
+	"rowLabelPlural": "Table Columns",
+	"statementType": "Statement Type",
+	"validationInvalidColName": "Bitte geben Sie eine gültige Datenbank Spaltennamen für jede Zeile (aZ und Unterstrich). Bitte beheben Sie die folgenden Zeilen:",
+	"validationInvalidTableName": "Bitte geben Sie eine gültige Datenbank-Tabelle Name (AZ und Unterstrichen).",
+	"validationInvalidBatchSize": "Bitte geben Sie eine gültige Chargengröße (1 - 300)",
+	"insertBatchSize": "INSERT Chargengröße",
+	"batchSizeDesc": "Anzahl der Zeilen, die pro Abfrage einfügen (1 - 300)"
+}

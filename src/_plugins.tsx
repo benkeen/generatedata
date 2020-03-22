@@ -1,4 +1,4 @@
-// TODO auto-generate this. 
+// TODO auto-generate this.
 
 import Alphanumeric from './plugins/dataTypes/Alphanumeric/config';
 import AutoIncrement from './plugins/dataTypes/AutoIncrement/config';
@@ -80,9 +80,11 @@ export type DataTypeFolder = keyof typeof dataTypes;
 // -------------------------------------------------------------------------------------------------------
 
 import JSON from './plugins/exportTypes/JSON/config';
+import SQL from './plugins/exportTypes/SQL/config';
 
 export const exportTypes = {
-	JSON
+	JSON,
+	SQL
 };
 
 export type ExportTypeFolder = keyof typeof exportTypes;

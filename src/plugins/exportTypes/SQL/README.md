@@ -1,11 +1,11 @@
 ## SQL Export Type
 
-This plugin is probably the most configurable Export Type currently available. It allows you to generate the random 
-data in SQL format for use in populating database such as MySQL, Oracle, SQLite and more. It offers a range of controls
+This plugin is probably the most configurable Export Type currently available. It generates the random data in SQL
+format for use in populating database such as MySQL, Oracle, SQLite and more. It offers a range of controls
 to generate exactly what you want: table names, database types, query type (INSERT/UPDATE), INSERT IGNORE, Primary Keys
 and others. Pretty cool.
 
-Using the Data Generator interface you can just select whatever options you want using your mouse & keyboard,
+Using the GenerateData interface you can just select whatever options you want using your mouse & keyboard,
 but if you're using the API, these are the settings you'll be interested in.
 
 - `tableName`: the string name of the database table to insert/update the data. *required*
@@ -21,6 +21,7 @@ generated. By and large you'll want this to be set to `insert`, the default valu
 INSERT statement to insert 10 rows at once. Defaults to 1.
 - `addPrimaryKey`: a boolean, defaults to `false`. This lets you choose to add a Primary Key field to your SQL 
 statements.
+
 
 #### Conditional settings
 

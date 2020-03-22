@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import { ETSettings } from '../../../../types/exportTypes';
 
 export type SQLSettings = {
 	tableName: string;
@@ -12,7 +13,7 @@ export type SQLSettings = {
 	addPrimaryKey: boolean;
 };
 
-const state: SQLSettings = {
+export const initialState: SQLSettings = {
 	tableName: 'myTable',
 	databaseType: 'MySQL',
 	createTable: true,
@@ -23,8 +24,7 @@ const state: SQLSettings = {
 	addPrimaryKey: true
 };
 
-
-export const Settings = ({ i18n, onUpdate, id, data }: { coreI18n: any, i18n: any, id: string, onUpdate: any, data: SQLSettings }) => {
+export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettings) => {
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
@@ -61,7 +61,7 @@ export const Settings = ({ i18n, onUpdate, id, data }: { coreI18n: any, i18n: an
 						<label htmlFor={`${id}-databaseType`}>{i18n.db_type}</label>
 					</div>
 					<div>
-						<Dropdown 
+						<Dropdown
 							id={`${id}-databaseType`}
 							value={data.databaseType}
 							options={options}
@@ -76,7 +76,7 @@ export const Settings = ({ i18n, onUpdate, id, data }: { coreI18n: any, i18n: an
 							<input
 								type="checkbox"
 								id={`${id}-createTable`}
-								checked={data.createTable} 
+								checked={data.createTable}
 								onChange={(e: any): void => onChange('databaseType', e.target.checked)}
 							/>
 							<label htmlFor={`${id}-createTable`}>
@@ -149,7 +149,7 @@ export const Settings = ({ i18n, onUpdate, id, data }: { coreI18n: any, i18n: an
 						<label
 							htmlFor="etSQL_insertBatchSize"
 							id="etSQL_batchSizeLabel">
-								{i18n.insert_batch_size}
+							{i18n.insert_batch_size}
 						</label>
 					</div>
 					<div>
@@ -175,22 +175,10 @@ export const Settings = ({ i18n, onUpdate, id, data }: { coreI18n: any, i18n: an
 			</div>
 		</>
 	);
-}
+};
 
 
 /*
-
-	var _init = function() {
-		$("#etSQL_databaseType").on("change", _onChangeDatabaseType);
-		$('input[name="etSQL_statementType"]').on("change", _onChangeStatementType);
-
-		var subscriptions = {};
-		subscriptions[C.EVENT.APP_START] = _onChangeSettings;
-		subscriptions[C.EVENT.IO.LOAD] = _onChangeSettings;
-		subscriptions[C.EVENT.RESULT_TYPE.CHANGE] = _resultTypeChanged;
-		subscriptions[C.EVENT.GENERATE] = _onGenerate;
-		manager.subscribe(MODULE_ID, subscriptions);
-	};
 
 	var _onChangeDatabaseType = function(e) {
 		_updateAvailableSettings(e.target.value);
@@ -370,29 +358,5 @@ export const Settings = ({ i18n, onUpdate, id, data }: { coreI18n: any, i18n: an
 			$("#etSQL_insertBatchSize").val(settings.insertBatchSize);
 		}
 		$("input[name=etSQL_primaryKey][value=" + settings.primaryKey + "]").attr("checked", "checked");
-	};
-
-	var _saveSettings = function() {
-		return {
-			tableName:    $("#etSQL_tableName").val(),
-			databaseType: $("#etSQL_databaseType").val(),
-			createTable:  $("#etSQL_createTable").attr("checked") ? 1 : 0,
-			dropTable:    $("#etSQL_dropTable").attr("checked") ? 1 : 0,
-			encloseWithBackquotes: $("#etSQL_encloseWithBackquotes").attr("checked") ? 1 : 0,
-			statementType: $("input[name=etSQL_statementType]:checked").val(),
-			insertBatchSize: $("#etSQL_insertBatchSize").val(),
-			primaryKey:    $("input[name=etSQL_primaryKey]:checked").val()
-		};
-	};
-
-	var _resetSettings = function() {
-		$("#etSQL_tableName").val("myTable");
-		$("#etSQL_databaseType").val("MySQL");
-		$("#etSQL_createTable").attr("checked", "checked");
-		$("#etSQL_dropTable").attr("checked", "checked");
-		$("#etSQL_encloseWithBackquotes").attr("checked", "checked");
-		$("#etSQL_insertBatchSize").val(10);
-		$("input[name=etSQL_statementType][value=insert]").attr("checked", "checked");
-		$("input[name=etSQL_primaryKey][value=default]").attr("checked", "checked");
 	};
 */

@@ -1,5 +1,4 @@
-// this type is for Data Types to describe how their field should be described for the SQL database table creation
-// statement
+// this is for Data Types to describe how their field should be described for the SQL DB table creation statement
 export type DatabaseTypes = {
 
     // e.g. "varchar(50)". This is the default

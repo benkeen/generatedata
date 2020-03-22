@@ -1,0 +1,18 @@
+{
+	"addDefaultAutoIncrementCol": "Ajouter une colonne d'auto-incrémentation",
+	"dbTableName": "Nom de la table",
+	"dbType": "Type de base de données",
+	"encloseTableBackquotes": "Protéger les noms des tables et des champs avec des `backquotes`",
+	"includeCreateTableQuery": "Inclure une requête CREATE TABLE",
+	"includeDropTableQuery": "Inclure une requête DROP TABLE",
+	"miscOptions": "Options diverses",
+	"primaryKey": "Clé primaire",
+	"rowLabel": "Colonne",
+	"rowLabelPlural": "Colonnes",
+	"statementType": "Type de requêtes",
+	"validationInvalidColName": "Entrez des noms valides pours les noms de colonnes pour chaque ligne (aZ et _). Corrigez les lignes suivantes:",
+	"validationInvalidTableName": "Entrer un nom de table de base de données valide (aZ et _).",
+	"validationInvalidBatchSize": "S'il vous plaît entrez la taille du lot valide (1 - 300)",
+	"insertBatchSize": "INSERT la taille du lot",
+	"batchSizeDesc": "Nombre de lignes à insérer par une requête (1 - 300)"
+}

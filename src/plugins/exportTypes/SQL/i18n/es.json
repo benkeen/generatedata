@@ -1,0 +1,18 @@
+{
+	"rowLabel": "Columna de la tabla",
+	"rowLabelPlural": "Columnas de la tabla",
+	"validationInvalidColName": "Por favor, introduce nombres válidos de columnas de la base de datos para cada fila (a-Z y guión bajo). Por favor, corrige las siguientes filas:",
+	"validationInvalidTableName": "Por favor, introduce un nombre válido de tabla de base de datos (a-Z y guión bajo).",
+	"validationInvalidBatchSize": "Por favor introduce el tamaño del lote válido (1-300)",
+	"dbTableName": "Nombre de tabla",
+	"dbType": "Tipo de base de datos",
+	"miscOptions": "Opciones varias",
+	"includeCreateTableQuery": "Incluir sentencia CREATE TABLE",
+	"includeDropTableQuery": "Incluir sentencia DROP TABLE",
+	"encloseTableBackquotes": "Entrecomillar nombres (tablas, columnas)",
+	"statementType": "Tipo de sentencia",
+	"primaryKey": "Clave primaria",
+	"addDefaultAutoIncrementCol": "Añadir columna auto-incrementada por defecto",
+	"insertBatchSize": "INSERT tamaño de lote",
+	"batchSizeDesc": "Número de filas a insertar por una consulta (1-300)"
+}
