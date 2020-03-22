@@ -54,7 +54,7 @@
     "jest-cli": "^24.9.0",
     "react": "^16.12.0",
     "react-beautiful-dnd": "^12.2.0",
-    "react-codemirror2": "^6.0.0",
+    "react-codemirror2": "^7.1.0",
     "react-dom": "^16.12.0",
     "react-measure": "^2.3.0",
     "react-redux": "^7.1.3",
