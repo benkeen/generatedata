@@ -111,12 +111,12 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	});
 };
 
-// TODO this is being called before loadedDataTypes is populated, hence the
 export const getDataTypeExports = (dataType: DataTypeFolder): any => {
 	const TmpOptions = (): null => null;
 	const TmpExample = (): null => null;
 	const TmpHelp = (): null => null;
 
+	// pity, this
 	if (!dataType || !loadedDataTypes[dataType]) {
 		return {
 			Options: TmpOptions,
@@ -126,7 +126,5 @@ export const getDataTypeExports = (dataType: DataTypeFolder): any => {
 	}
 
 	const { Example, Options, Help, generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
-	console.log('here!', loadedDataTypes[dataType]);
-
 	return { Example, Options, Help, generate, getMetadata, rowStateReducer };
 };

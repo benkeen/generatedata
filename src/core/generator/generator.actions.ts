@@ -89,10 +89,9 @@ export const togglePreview = (): GDAction => ({ type: TOGGLE_PREVIEW });
 
 export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 
-// make this the ONLY place that re-generates the preview panel data. Should be called on boot-up
+// make this the ONLY place that re-generates the preview panel data. This doesn't have to be called on boot-up because
+// the preview data is generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = []): any => {
-	console.log('refreshing preview data', idsToRefresh);
-
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
 		const template = selectors.getGenerationTemplate(state);

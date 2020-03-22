@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
-export type ConstantType = {
-	loopCount: number;
+export type ConstantState = {
+	loopCount: string;
 	values: string;
 }
 
-export const initialState: ConstantType = {
-	loopCount: 10,
+export const initialState: ConstantState = {
+	loopCount: '10',
 	values: ''
 };
 
-export const Example = ({ i18n }: DTExampleProps): string => i18n.see_help_dialog;
+export const Example = ({ coreI18n }: DTExampleProps): string => coreI18n.seeHelpDialog;
 
 export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
@@ -20,40 +20,33 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 			[field]: value
 		});
 	};
+
 	return (
-		<table cellSpacing="0" cellPadding="0">
-			<tbody>
-				<tr>
-					<td>{i18n.loop_count}</td>
-					<td>
-						<input type="text" value={data.loopCount} size={5}
-							onChange={(e): void => onChange('loopCount', e.target.value)} />
-					</td>
-				</tr>
-				<tr>
-					<td>{i18n.values}</td>
-					<td>
-						<input value={data.values} style={{ width: '100%' }}
-							onChange={(e): void => onChange('values', e.target.value)} />
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<div>
+			{i18n.loopCount}
+			<input type="text" value={data.loopCount} size={5}
+				onChange={(e): void => onChange('loopCount', e.target.value)} />
+			<br />
+
+			{i18n.values}
+			<input value={data.values} style={{ width: '100%' }}
+				onChange={(e): void => onChange('values', e.target.value)} />
+		</div>
 	);
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.help_1}
+			{i18n.help1}
 		</p>
 		<ul>
-			<li>{i18n.help_2}</li>
-			<li>{i18n.help_3}</li>
-			<li>{i18n.help_4}</li>
+			<li>{i18n.help2}</li>
+			<li>{i18n.help3}</li>
+			<li>{i18n.help4}</li>
 		</ul>
 		<p>
-			{i18n.help_5}
+			{i18n.help5}
 		</p>
 	</>
 );

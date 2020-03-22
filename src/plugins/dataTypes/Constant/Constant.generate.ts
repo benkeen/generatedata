@@ -1,7 +1,36 @@
-import { DTGenerateResult } from '../../../../types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '../../../../types/dataTypes';
+import { ConstantState } from './Constant.ui';
 
-export const generate = (): DTGenerateResult => {
-	return { display: '' };
+type CleanedRowState = {
+	loopCount: number;
+	values: any[];
+}
+
+// this assumes validation has already been performed. Perhaps a `valid` flag should be set in the state?
+export const rowStateReducer = (state: ConstantState): CleanedRowState => ({
+	loopCount: parseInt(state.loopCount, 10),
+	values: state.values.split(',')
+});
+
+export const generate = (data: DTGenerationData): DTGenerateResult => {
+	const rowNum = data.rowNum;
+	const { loopCount, values } = data.rowState;
+	const numValues = values.length;
+
+	let value = '';
+	if (numValues === 1) {
+		value = values[0];
+	} else {
+		let itemIndex = Math.floor((rowNum-1) / loopCount);
+		if (itemIndex > numValues - 1) {
+			itemIndex = (itemIndex % numValues);
+		}
+		value = values[itemIndex];
+	}
+
+	return {
+		display: value
+	};
 };
 
 /*

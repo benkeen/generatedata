@@ -56,9 +56,6 @@ export const getPreviewData = createSelector(
 	getNonEmptySortedRows,
 	getGeneratedPreviewData,
 	(numPreviewRows, rows, data) => {
-
-	    console.log('???', rows, data);
-
 		const numRows = rows.length;
 		const formattedData: any[] = [];
 
@@ -77,7 +74,6 @@ export const getPreviewData = createSelector(
 				formattedData.push(rowData);
 			}
 		}
-
 		return formattedData;
 	}
 );
@@ -89,7 +85,6 @@ type ProcessOrders = {
 export const getGenerationTemplate = createSelector(
 	getNonEmptySortedRows,
 	(rows): GenerationTemplate => {
-
 		const templateByProcessOrder: ProcessOrders = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
 			const processOrder = processOrders[dataType as DataTypeFolder] as number;
@@ -101,8 +96,6 @@ export const getGenerationTemplate = createSelector(
 			if (!templateByProcessOrder[processOrder]) {
 				templateByProcessOrder[processOrder] = [];
 			}
-
-			console.log('getting?');
 
 			templateByProcessOrder[processOrder].push({
 				id,
