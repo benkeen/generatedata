@@ -2,12 +2,16 @@ import React from 'react';
 import { createSelector } from 'reselect';
 import { processOrders, getDataTypeExports } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
-import { GenerationTemplate, Store } from '../../../types/general';
+import { GDLocale, GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { DataRow } from './generator.reducer';
-import * as initSelectors from '../init/init.selectors';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
+import * as langUtils from '../../utils/langUtils';
 
+export const getLocale = (state: Store): GDLocale => state.generator.locale;
+export const localeFileLoaded = (state: Store): boolean => state.generator.localeFileLoaded;
+export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
+export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
 export const getExportType = (state: Store): any => state.generator.exportType;
 export const getRows = (state: Store): any => state.generator.rows;
 export const getSortedRows = (state: Store): any[] => state.generator.sortedRows;
@@ -138,13 +142,39 @@ export const getPreviewPanelData = createSelector(
  */
 export const getExportTypePreviewComponent = createSelector(
 	getExportType,
-	initSelectors.getLoadedExportTypes,
+	getLoadedExportTypes,
 	(exportType, loadedExportTypes): any => {
 		if (loadedExportTypes[exportType as ExportTypeFolder]) {
 			return getExportTypePreview(exportType);
 		}
-		const Gee = (): any => <div>Loading!</div>;
-		Gee.displayName = "Gee";
-		return Gee;
+		const PreviewComponent = (): any => <div>Loading!</div>;
+		PreviewComponent.displayName = 'PreviewComponent';
+		return PreviewComponent;
 	}
 );
+
+export const getCoreI18n = createSelector(
+	getLocale,
+	(locale): any | null => {
+		const strings = langUtils.getStrings(locale);
+		return strings ? strings.core : null;
+	}
+);
+
+
+export const getDataTypeI18n = createSelector(
+	getLocale,
+	(locale): any | null => {
+		const strings = langUtils.getStrings(locale);
+		return strings ? strings.dataTypes : null;
+	}
+);
+
+export const getExportTypeI18n = createSelector(
+	getLocale,
+	(locale): any | null => {
+		const strings = langUtils.getStrings(locale);
+		return strings ? strings.exportTypes : null;
+	}
+);
+

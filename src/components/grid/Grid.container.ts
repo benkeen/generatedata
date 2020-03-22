@@ -2,15 +2,14 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../core/generator/generator.actions';
 import * as selectors from '../../core/generator/generator.selectors';
-import * as initSelectors from '../../core/init/init.selectors';
 import Grid, { GridProps } from './Grid.component';
 import { DataTypeFolder } from '../../_plugins';
 
 const mapStateToProps = (state: any): Partial<GridProps> => ({
-	i18n: initSelectors.getCoreI18n(state),
-	dataTypeI18n: initSelectors.getDataTypeI18n(state),
+	i18n: selectors.getCoreI18n(state),
+	dataTypeI18n: selectors.getDataTypeI18n(state),
 	rows: selectors.getSortedRowsArray(state),
-	loadedDataTypes: initSelectors.getLoadedDataTypes(state)
+	loadedDataTypes: selectors.getLoadedDataTypes(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({

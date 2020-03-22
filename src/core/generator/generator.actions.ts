@@ -1,10 +1,13 @@
-import { GDAction } from '../../../types/general';
+import { GDAction, GDLocale } from '../../../types/general';
 import * as selectors from './generator.selectors';
 import { generateExportData } from './generator';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import { loadDataTypeBundle } from '../../utils/dataTypeUtils';
+import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
 import { DTBundle } from '../../../types/dataTypes';
+import { ThunkDispatch } from 'redux-thunk';
+import * as langUtils from '../../utils/langUtils';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -146,10 +149,61 @@ export const toggleExportSettings = (tab?: ExportSettingsTab): GDAction => ({
 	}
 });
 
-export const CHANGE_EXPORT_TYPE = 'CHANGE_EXPORT_TYPE';
-export const changeExportType = (exportType: string): GDAction => ({
-	type: CHANGE_EXPORT_TYPE,
+export const SELECT_EXPORT_TYPE = 'SELECT_EXPORT_TYPE';
+export const onSelectExportType = (exportType: ExportTypeFolder): any => {
+	return (dispatch: any): any => {
+		dispatch({
+			type: SELECT_EXPORT_TYPE,
+			payload: {
+				exportType
+			}
+		});
+
+		loadExportTypeBundle(exportType)
+			.then((bundle: DTBundle) => {
+
+				//data: bundle.initialState
+
+				// dispatch(refreshPreview());
+				dispatch(exportTypeLoaded(exportType));
+			});
+	};
+};
+
+
+export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
+export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
+	type: LOCALE_FILE_LOADED,
+	payload: {
+		locale
+	}
+});
+
+export const selectLocale = (locale: GDLocale) => {
+	return (dispatch: ThunkDispatch<any, any, any>): any => {
+		window.gd = {};
+		window.gd.localeLoaded = (strings: any): void => {
+			langUtils.setLocale(locale, strings);
+			dispatch(setLocaleFileLoaded(locale));
+		};
+		const s = document.createElement('script');
+		s.src = `./${locale}.js`;
+		document.body.appendChild(s);
+	};
+};
+
+export const EXPORT_TYPE_LOADED = 'EXPORT_TYPE_LOADED';
+export const exportTypeLoaded = (exportType: ExportTypeFolder): any => ({
+	type: EXPORT_TYPE_LOADED,
 	payload: {
 		exportType
+	}
+});
+
+export const DATA_TYPE_LOADED = 'DATA_TYPE_LOADED';
+export const dataTypeLoaded = (dataType: DataTypeFolder): any => ({
+	type: DATA_TYPE_LOADED,
+	payload: {
+		dataType
 	}
 });

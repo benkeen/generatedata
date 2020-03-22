@@ -4,11 +4,11 @@ import { ExportTypeTab, ExportTypeTabProps } from './ExportTypeTab.component';
 import * as selectors from '../../core/generator/generator.selectors';
 import * as actions from '../../core/generator/generator.actions';
 import { getExportTypeSettingsComponent } from '../../utils/exportTypeUtils';
-import * as initSelectors from '../../core/init/init.selectors';
+import { ExportTypeFolder } from '../../_plugins';
 
 const mapStateToProps = (state: any): Partial<ExportTypeTabProps> => {
 	const exportType = selectors.getExportType(state);
-	let exportTypeI18n = initSelectors.getExportTypeI18n(state);
+	let exportTypeI18n = selectors.getExportTypeI18n(state);
 
 	if (exportTypeI18n !== null && exportTypeI18n[exportType]) {
 		exportTypeI18n = exportTypeI18n[exportType];
@@ -19,7 +19,7 @@ const mapStateToProps = (state: any): Partial<ExportTypeTabProps> => {
 	return {
 		exportType,
 		exportSettingsTab: selectors.getExportSettingsTab(state),
-		i18n: initSelectors.getCoreI18n(state),
+		i18n: selectors.getCoreI18n(state),
 		exportTypeI18n,
 		exportTypeSettings: settings,
 		SettingsComponent: getExportTypeSettingsComponent(exportType)
@@ -27,7 +27,7 @@ const mapStateToProps = (state: any): Partial<ExportTypeTabProps> => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ExportTypeTabProps> => ({
-	onChangeExportType: (exportType: string): any => dispatch(actions.changeExportType(exportType)),
+	onChangeExportType: (exportType: ExportTypeFolder): any => dispatch(actions.onSelectExportType(exportType)),
 	onUpdate: (data: any): any => dispatch(actions.configureExportType(data))
 });
 

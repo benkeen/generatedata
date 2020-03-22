@@ -7,7 +7,6 @@ import Page from './components/page/Page.container';
 import Builder from './components/builder/Builder.container';
 import * as core from './core';
 
-import './core/init/init.reducer';
 import './core/generator/generator.reducer';
 
 /*

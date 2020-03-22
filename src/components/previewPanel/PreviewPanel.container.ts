@@ -1,7 +1,6 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import PreviewPanel, { PreviewPanelProps } from './PreviewPanel.component';
-import * as initSelectors from '../../core/init/init.selectors';
 import * as selectors from '../../core/generator/generator.selectors';
 import * as actions from '../../core/generator/generator.actions';
 
@@ -13,7 +12,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 
 	return {
 		ExportTypePreview: selectors.getExportTypePreviewComponent(state),
-		i18n: initSelectors.getCoreI18n(state),
+		i18n: selectors.getCoreI18n(state),
 		numPreviewRows: selectors.getNumPreviewRows(state),
 		builderLayout: selectors.getBuilderLayout(state),
 		previewTextSize: selectors.getPreviewTextSize(state),

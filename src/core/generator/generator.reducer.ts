@@ -1,10 +1,15 @@
 import { AnyAction } from 'redux';
+import storage from "redux-persist/es/storage";
 import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
 import { generate } from 'shortid';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
-import { ExportTypeFolder } from '../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
+import { GDLocale } from '../../../types/general';
+import { dataTypeNames } from '../../utils/dataTypeUtils';
+import { exportTypeNames } from '../../utils/exportTypeUtils';
+import { persistReducer } from "redux-persist";
 
 export type DataRow = {
 	id: string;
@@ -28,6 +33,14 @@ export type ExportTypeSettings = {
 }
 
 export type GeneratorState = {
+	localeFileLoaded: boolean;
+	locale: GDLocale;
+	loadedDataTypes: {
+		[str in DataTypeFolder]: boolean;
+	};
+	loadedExportTypes: {
+		[str in ExportTypeFolder]: boolean;
+	};
 	exportType: string;
 	rows: DataRows;
 	sortedRows: string[];
@@ -50,6 +63,10 @@ export type GeneratorState = {
  * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
  */
 export const reducer = (state: GeneratorState = {
+	localeFileLoaded: false,
+	locale: 'en',
+	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
+	loadedExportTypes: exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	exportType: 'JSON',
 	rows: {},
 	sortedRows: [],
@@ -67,6 +84,31 @@ export const reducer = (state: GeneratorState = {
 	exportSettingsTab: 'exportType'
 }, action: AnyAction): GeneratorState => {
 	switch (action.type) {
+
+		case actions.LOCALE_FILE_LOADED:
+			return {
+				...state,
+				locale: action.payload.locale,
+				localeFileLoaded: true
+			};
+
+		case actions.DATA_TYPE_LOADED:
+			return {
+				...state,
+				loadedDataTypes: {
+					...state.loadedDataTypes,
+					[action.payload.dataType]: true
+				}
+			};
+
+		case actions.EXPORT_TYPE_LOADED:
+			return {
+				...state,
+				loadedExportTypes: {
+					...state.loadedExportTypes,
+					[action.payload.exportType]: true
+				}
+			};
 
 		case actions.ADD_ROWS: {
 			const newRows: DataRows = {};
@@ -133,6 +175,17 @@ export const reducer = (state: GeneratorState = {
 					}
 				}
 			};
+		}
+
+		case actions.SELECT_EXPORT_TYPE: {
+			return {
+				...state,
+				exportType: action.payload.exportType
+			};
+		}
+
+		case actions.EXPORT_TYPE_LOADED: {
+
 		}
 
 		case actions.REFRESH_PREVIEW_DATA: {
@@ -250,4 +303,14 @@ export const reducer = (state: GeneratorState = {
 	}
 };
 
-reducerRegistry.register('generator', reducer);
+const persistConfig = {
+	key: 'generator',
+	storage: storage,
+	blacklist: [
+		'localeFileLoaded',
+		'loadedDataTypes',
+		'loadedExportTypes'
+	]
+};
+
+reducerRegistry.register('generator', persistReducer(persistConfig, reducer));

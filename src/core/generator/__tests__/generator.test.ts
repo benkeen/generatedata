@@ -47,7 +47,7 @@ describe('generator section', () => {
 		store.dispatch(actions.toggleGrid());
 		expect(selectors.isGridVisible(store.getState())).toEqual(false);
 
-		// now check preview is back open again 
+		// now check preview is back open again
 		expect(selectors.isPreviewVisible(store.getState())).toEqual(true);
 	});
 
@@ -60,7 +60,7 @@ describe('generator section', () => {
 		store.dispatch(actions.togglePreview());
 		expect(selectors.isPreviewVisible(store.getState())).toEqual(false);
 
-		// now check grid is back open again 
+		// now check grid is back open again
 		expect(selectors.isGridVisible(store.getState())).toEqual(true);
 	});
 
@@ -111,7 +111,7 @@ describe('grid rows', () => {
 	it('added second batch of rows appends to end', () => {
 		store.dispatch(actions.addRows(5));
 		store.dispatch(actions.addRows(5));
-		
+
 		const rows = selectors.getRows(store.getState());
 		const rowKeys = Object.keys(rows);
 		expect(rowKeys.length).toEqual(10);
@@ -149,7 +149,7 @@ describe('grid rows', () => {
 		expect(updatedRows[1].title).toEqual('new value!');
 		expect(updatedRows[2].title).toEqual('');
 	});
-	
+
 	// it('changes the data type', () => {
 	// 	store.dispatch(actions.addRows(3));
 
@@ -166,9 +166,9 @@ describe('grid rows', () => {
 	// expect(updatedRows[1].dataType).toEqual('JSON');
 	// expect(updatedRows[2].dataType).toEqual(null);
 	// });
-	
+
 	// it('initializes the default data type state when selecting data type', () => {
-	// 	const defaultState = { 
+	// 	const defaultState = {
 	// 		arbitrary: 1,
 	// 		content: true
 	// 	};
@@ -202,3 +202,21 @@ describe('preview panel settings', () => {
 		expect(selectors.getNumRows(store.getState())).toEqual(10);
 	});
 });
+
+// describe('generator section', () => {
+// 	let store: any;
+// 	beforeEach(() => {
+// 		store = createStore(combineReducers({
+// 			init: reducer
+// 		}));
+// 	});
+//
+// 	it('the locale file is not loaded by default', () => {
+// 		expect(selectors.localeFileLoaded(store.getState())).toEqual(false);
+// 	});
+//
+// 	it('sets the locale as loaded', () => {
+// 		store.dispatch(actions.setLocaleFileLoaded('en'));
+// 		expect(selectors.localeFileLoaded(store.getState())).toEqual(true);
+// 	});
+// });

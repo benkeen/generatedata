@@ -1,4 +1,3 @@
-import { InitState } from '../src/core/init/init.reducer';
 import { GeneratorState } from '../src/core/generator/generator.reducer';
 
 declare global {
@@ -9,7 +8,6 @@ declare global {
 }
 
 export type Store = {
-	init: InitState;
 	generator: GeneratorState;
 };
 
