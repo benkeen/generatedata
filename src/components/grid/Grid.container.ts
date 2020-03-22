@@ -9,7 +9,8 @@ import { DataTypeFolder } from '../../_plugins';
 const mapStateToProps = (state: any): Partial<GridProps> => ({
 	i18n: initSelectors.getCoreI18n(state),
 	dataTypeI18n: initSelectors.getDataTypeI18n(state),
-	rows: selectors.getSortedRowsArray(state)
+	rows: selectors.getSortedRowsArray(state),
+	loadedDataTypes: initSelectors.getLoadedDataTypes(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({

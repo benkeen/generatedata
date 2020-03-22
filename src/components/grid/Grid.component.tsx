@@ -29,6 +29,7 @@ export type GridProps = {
 	toggleGrid: () => void;
 	i18n: any;
 	dataTypeI18n: any;
+	loadedDataTypes: any; // TODO
 }
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
@@ -46,7 +47,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProper
 
 const Grid = ({
 	rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, dataTypeI18n,
-	toggleGrid
+	toggleGrid, loadedDataTypes
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialogSection] = React.useState(false);

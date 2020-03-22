@@ -2,7 +2,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import * as langUtils from '../../utils/langUtils';
 import { GDLocale, GDAction } from '../../../types/general';
 import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
-import { ExportTypeFolder } from '../../_plugins';
+import { ExportTypeFolder, DataTypeFolder } from '../../_plugins';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -37,3 +37,11 @@ export const selectExportType = (exportType: ExportTypeFolder): any => {
 			});
 	};
 };
+
+export const DATA_TYPE_LOADED = 'DATA_TYPE_LOADED';
+export const dataTypeLoaded = (dataType: DataTypeFolder): any => ({
+	type: DATA_TYPE_LOADED,
+	payload: {
+		dataType
+	}
+});

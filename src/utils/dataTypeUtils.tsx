@@ -36,12 +36,17 @@ export const getSortedGroupedDataTypes = (): any => {
 };
 
 export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
-	let Example = (): any => <CircularProgress size={20} style={{ color: '#999999', margin: 5 }} />;;
-	let Options = (): null => null;
+	let Example = null;
+	let Options = null;
 	let Help = (): null => null;
 
 	if (!dataType || !loadedDataTypes[dataType]) {
-		return { Options, Example, Help };
+		return {
+			// eslint-disable-next-line react/display-name
+			Example: (): any => <CircularProgress size={20} style={{ color: '#999999', margin: 5 }} />,
+			Options,
+			Help
+		};
 	}
 
 	// @ts-ignore

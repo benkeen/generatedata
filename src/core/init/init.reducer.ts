@@ -45,6 +45,15 @@ export const reducer = (state = initialState, action: AnyAction): InitState => {
 				localeFileLoaded: true
 			};
 
+		case actions.DATA_TYPE_LOADED:
+			return {
+				...state,
+				loadedDataTypes: {
+					...state.loadedDataTypes,
+					[action.payload.dataType]: true
+				}
+			};
+
 		case actions.EXPORT_TYPE_LOADED:
 			return {
 				...state,
