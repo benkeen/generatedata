@@ -151,8 +151,8 @@ const Grid = ({
 	return (
 		<>
 			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={toggleGrid}>
-				<Tooltip title="Close panel" placement="bottom">
-					<IconButton size="small" aria-label="Close panel">
+				<Tooltip title={i18n.closePanel} placement="bottom">
+					<IconButton size="small" aria-label={i18n.closePanel}>
 						<CloseIcon fontSize="large" />
 					</IconButton>
 				</Tooltip>

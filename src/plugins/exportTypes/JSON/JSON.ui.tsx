@@ -7,7 +7,7 @@ export type JSONSettings = {
 	dataStructureFormat: DataStructureFormat;
 };
 
-// export used to supply default state to generator??
+// export used to supply default state to generator?
 export const initialState: JSONSettings = {
 	stripWhitespace: false,
 	dataStructureFormat: 'simple'
@@ -23,10 +23,10 @@ export const Settings: React.ReactNode = ({ data, i18n, onUpdate, id }: ETSettin
 
 	return (
 		<>
-			<input type="checkbox" id={`${id}-stripWhitespace`} value="1" 
+			<input type="checkbox" id={`${id}-stripWhitespace`} value="1"
 				onChange={(e): void => onChange('stripWhitespace', e.target.checked)} />
 
-			<label htmlFor={`${id}-stripWhitespace`}>{i18n.strip_whitespace}</label><br />
+			<label htmlFor={`${id}-stripWhitespace`}>{i18n.stripWhitespace}</label><br />
 
 			{i18n.data_structure_format}
 			<input type="radio" value="complex" id={`${id}-complex`} />

@@ -1,5 +1,6 @@
 import { exportTypes, ExportTypeFolder } from '../_plugins';
-// import { ETBundle } from '../../types/exportTypes';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import React from 'react';
 
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
@@ -42,3 +43,12 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 
 // assumes the callee knows what they're doing & that they've checked the component has been loaded
 export const getExportTypePreview = (exportType: ExportTypeFolder): JSX.Element => loadedExportTypes[exportType]?.Preview;
+
+export const getExportTypeSettings = (exportType: ExportTypeFolder): any => {
+	if (loadedExportTypes[exportType]) {
+		return loadedExportTypes[exportType].Settings;
+	}
+
+	// eslint-disable-next-line react/display-name
+	return (): any => <CircularProgress size={40} style={{ color: '#999999', margin: 5 }} />;
+};

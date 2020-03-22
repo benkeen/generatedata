@@ -1,5 +1,4 @@
 import React from 'react';
-// import loadable, { LoadableComponent } from '@loadable/component';
 import Dropdown, { DropdownOption } from '../dropdown/Dropdown';
 import { exportTypeOptions } from '../../utils/exportTypeUtils';
 import * as styles from './ExportSettings.scss';
@@ -7,15 +6,16 @@ import { ExportSettingsTab } from './ExportSettings.types';
 
 export type ExportTypeTabProps = {
 	exportType: string;
+	i18n: any;
+	exportTypeI18n: any;
 	onChangeExportType: (exportType: string) => void;
 	exportSettingsTab: ExportSettingsTab;
+	ExportTypeSettings: any;
 };
 
 export const ExportTypeTab = ({
-	exportType, onChangeExportType
+	exportType, i18n, exportTypeI18n, onChangeExportType, ExportTypeSettings
 }: ExportTypeTabProps): JSX.Element => {
-	const ExportTypeSettings = (): null => null;
-
 	return (
 		<div className={styles.tabContent}>
 			<div className={styles.row}>
@@ -30,10 +30,10 @@ export const ExportTypeTab = ({
 					</div>
 				</div>
 			</div>
-			<React.Suspense fallback={<div>loading...</div>}>
-				<ExportTypeSettings
- 				/>
-			</React.Suspense>
+			<ExportTypeSettings
+				coreI18n={i18n}
+				i18n={exportTypeI18n}
+			/>
 		</div>
 	);
 };

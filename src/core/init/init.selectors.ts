@@ -21,5 +21,13 @@ export const getDataTypeI18n = createSelector(
 	}
 );
 
+export const getExportTypeI18n = createSelector(
+	getLocale,
+	(locale): any | null => {
+		const strings = langUtils.getStrings(locale);
+		return strings ? strings.exportTypes : null;
+	}
+);
+
 export const getLoadedDataTypes = (state: Store): any => state.init.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.init.loadedExportTypes;
