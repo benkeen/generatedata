@@ -21,16 +21,28 @@ export const getSortedGroupedDataTypes = (): any => {
 	return coreConfig.dataTypeGroups.map((group: string) => {
 		const options = Object.keys(dataTypes)
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
-			.map((dataType: DataTypeFolder) => {
-				return {
-					value: dataType,
-					label: dataTypes[dataType].name
-				};
-			});
+			.map((dataType: DataTypeFolder) => ({
+				dataType,
+				sortOrder: dataTypes[dataType].fieldGroupOrder
+			}));
+
+		options.sort((a: any, b: any) => { 
+			if (a.sortOrder < b.sortOrder) {
+				return -1;
+			} else if (a.sortOrder > b.sortOrder) {
+				return 1;
+			}
+			return 0;
+		});
+
+		const sortedOptions = options.map(({ dataType }: { dataType: DataTypeFolder }) => ({
+			value: dataType,
+			label: dataTypes[dataType].name
+		}));
 
 		return {
 			label: i18n.core[group],
-			options
+			options: sortedOptions
 		};
 	});
 };
