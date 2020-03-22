@@ -90,9 +90,91 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 };
 
 
-// const getNestedData = () => {
+export const generateComplex = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
+	let content = '';
 
+	if (generationData.isFirstBatch) {
+		if (stripWhitespace) {
+			const cols = `"${generationData.columnTitles.join('","')}"`;
+			content += `{"cols":[${cols}],"data":[`;
+		} else {
+			const cols = `"${generationData.columnTitles.join('",\n\t\t"')}"`;
+			content += `{\n\t"cols": [\n\t\t${cols}\n\t],\n\t"data": [\n`;
+		}
+	}
+
+	const numRows = generationData.rows.length;
+	generationData.rows.forEach((row: any, rowIndex: number) => {
+		const rowValsArr: any[] = [];
+		generationData.columnTitles.forEach((colTitle: string, colIndex: number) => {
+			let value = row[colIndex];
+			if (!isNumeric(value) && !isJavascriptBoolean(value)) {
+				value = `"${value}"`;
+			}
+			rowValsArr.push(value);
+		});
+
+		if (stripWhitespace) {
+			const rowVals = rowValsArr.join(',');
+			content += `[${rowVals}]`;
+			if (rowIndex < numRows - 1) {
+				content += `,`;
+			}
+		} else {
+			const rowVals = rowValsArr.join(',\n\t\t\t');
+			content += `\t\t[\n\t\t\t${rowVals}\n\t\t]`;
+			if (rowIndex < numRows - 1) {
+				content += ",\n";
+			} else if (!generationData.isLastBatch) {
+				content += ",\n";
+			}
+		}
+	});
+
+	if (generationData.isLastBatch) {
+		if (stripWhitespace) {
+			content += `]}`;
+		} else {
+			content += `\n\t]\n}`;
+		}
+	}
+
+	return content;
+};
+
+
+// private function determineBooleanFields($template)
+// {
+// 	foreach ($template as $item) {
+// 	$this->booleanFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "boolean";
+// }
+// }
+//
+// private function isNumeric($index, $value)
+// {
+// 	return $this->numericFields[$index] && is_numeric($value);
+// }
+//
+// private function isJavascriptBoolean($index, $value)
+// {
+// 	return $this->booleanFields[$index] && ($value === "true" || $value === "false");
+// }
+
+// const determineNumericFields = ($template) => {
+// {
+//     // foreach ($template as $item){
+//     //     $this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
+//     // }
+// }
+
+
+// const getDownloadFilename = () => {
+// 	// $time = date("M-j-Y");
+// 	// return "data{$time}.json";
 // };
+
+export const isJavascriptBoolean = (n: any): boolean => n === 'true' || n === 'false' || n === true || n === false;
+export const isNested = (columnTitles: string[]): boolean => columnTitles.some((i: string) => /\./.test(i));
 
 
 // const getColumnValue = (prop: string, value: any) => {
@@ -172,120 +254,3 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 			}
 		}
     */
-
-
-/*
-private function generateComplex($generator, $data, $stripWhitespace)
-{
-	$content = "";
-	if ($generator->isFirstBatch()) {
-		$quotedCols = Utils::enquoteArray($data["colData"]);
-		if ($stripWhitespace) {
-			$cols = implode(",", $quotedCols);
-			$content .= "{\"cols\":[$cols],\"data\":[";
-		} else {
-			$cols = implode(",\n\t\t", $quotedCols);
-			$content .= "{\n\t\"cols\": [\n\t\t$cols\n\t],\n\t\"data\": [\n";
-		}
-	}
-
-	$numCols = count($data["colData"]);
-	$numRows = count($data["rowData"]);
-	for ($i = 0; $i < $numRows; $i++) {
-		$rowValsArr = array();
-		for ($j = 0; $j < $numCols; $j++) {
-			$currValue = $data["rowData"][$i][$j];
-			if ($this->isNumeric($j, $currValue) || $this->isJavascriptBoolean($j, $currValue)) {
-				$rowValsArr[] = $data["rowData"][$i][$j];
-			} else {
-				$rowValsArr[] = "\"" . $data["rowData"][$i][$j] . "\"";
-			}
-		}
-
-		if ($stripWhitespace) {
-			$rowVals = implode(",", $rowValsArr);
-			$content .= "[$rowVals]";
-			if ($i < $numRows - 1) {
-				$content .= ",";
-			}
-		} else {
-			$rowVals = implode(",\n\t\t\t", $rowValsArr);
-			$content .= "\t\t[\n\t\t\t$rowVals\n\t\t]";
-
-			if ($i < $numRows - 1) {
-				$content .= ",\n";
-			} else if (!$generator->isLastBatch()) {
-				$content .= ",\n";
-			}
-		}
-	}
-
-	if ($generator->isLastBatch()) {
-		if ($stripWhitespace) {
-			$content .= "]}";
-		} else {
-			$content .= "\n\t]\n}";
-		}
-	}
-	return $content;
-}
-
-private function shouldStripWhitespace()
-{
-	$default = false;
-	if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
-		$jsonSettings = $this->userSettings->export->settings;
-		$stripWhitespace = (property_exists($jsonSettings, "stripWhitespace")) ? $jsonSettings->stripWhitespace : $default;
-	} else {
-		$stripWhitespace = isset($this->userSettings["etJSON_stripWhitespace"]);
-	}
-	return $stripWhitespace;
-}
-
-// private function getDataStructureFormat()
-// {
-// 	$default = "complex";
-// 	if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
-// 		$jsonSettings = $this->userSettings->export->settings;
-// 		$format = (property_exists($jsonSettings, "dataStructureFormat")) ? $jsonSettings->dataStructureFormat : $default;
-// 	} else {
-// 		$format = isset($this->userSettings["etJSON_dataStructureFormat"]) ? $this->userSettings["etJSON_dataStructureFormat"] : $default;
-// 	}
-// 	return $format;
-// }
-//
-
-//
-// private function determineBooleanFields($template)
-// {
-// 	foreach ($template as $item) {
-// 	$this->booleanFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "boolean";
-// }
-// }
-//
-// private function isNumeric($index, $value)
-// {
-// 	return $this->numericFields[$index] && is_numeric($value);
-// }
-//
-// private function isJavascriptBoolean($index, $value)
-// {
-// 	return $this->booleanFields[$index] && ($value === "true" || $value === "false");
-// }
-*/
-
-// const determineNumericFields = ($template) => {
-// {
-//     // foreach ($template as $item){
-//     //     $this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
-//     // }
-// }
-
-
-// const getDownloadFilename = () => {
-// 	// $time = date("M-j-Y");
-// 	// return "data{$time}.json";
-// };
-
-export const isJavascriptBoolean = (n: any): boolean => n === 'true' || n === 'false' || n === true || n === false;
-export const isNested = (columnTitles: string[]): boolean => columnTitles.some((i: string) => /\./.test(i));

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import { BuilderLayout } from '../../../components/builder/Builder.component';
-import { generateSimple } from './JSON.generator';
+import { generateSimple, generateComplex } from './JSON.generator';
 import { JSONSettings } from './JSON.ui';
 import './JSON.scss';
 
-// TODO maybe provide these in the config definition & move codemirror/SyntaxHighlighter completely to the root. 
-// --- I guess the build would handle the importing of the CSS 
+// TODO maybe provide these in the config definition & move codemirror/SyntaxHighlighter completely to the root.
+// --- I guess the build would handle the importing of the CSS
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
@@ -21,15 +21,18 @@ type PreviewProps = {
 	theme: string;
 }
 
-const Preview = ({ data, theme, showRowNumbers, enableLineWrapping }: PreviewProps): JSX.Element | null => {
+const Preview = ({ data, theme, exportTypeSettings, showRowNumbers, enableLineWrapping }: PreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
 
+	// TODO this is painting twice here, every time the export type settings change
+
+	// rethink performance here
 	React.useEffect(() => {
-		// re-generate everything any time it changes, then do a diff on the changes. NOPE! WE need to do a diff
-		// on the generation template to see what changed THERE.
-		const content = generateSimple(data, false);
+		const content = exportTypeSettings.dataStructureFormat === 'simple'
+			? generateSimple(data, exportTypeSettings.stripWhitespace)
+			: generateComplex(data, exportTypeSettings.stripWhitespace);
 		setCode(content);
-	}, [data, setCode]);
+	}, [data, setCode, exportTypeSettings]);
 
 	if (!data.rows.length) {
 		return null;

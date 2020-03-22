@@ -14,7 +14,6 @@ export const initialState: JSONSettings = {
 
 export const Settings: React.ReactNode = ({ data, i18n, onUpdate, id }: ETSettings) => {
 	const onChange = (field: string, value: any): void => {
-		console.log('value? ', value);
 		onUpdate({
 			...data,
 			[field]: value
@@ -35,15 +34,15 @@ export const Settings: React.ReactNode = ({ data, i18n, onUpdate, id }: ETSettin
 
 			<div>
 				<span style={{ marginRight: 10 }}>{i18n.dataStructureFormat}</span>
+				<input type="radio" name="dataStructureFormat" value="simple" id={`${id}-simple`}
+					   checked={data.dataStructureFormat === 'simple'}
+					   onChange={(e): void => onChange('dataStructureFormat', e.target.value)} />
+				<label htmlFor={`${id}-simple`} style={{ marginRight: 10 }}>{i18n.simple}</label>
+
 				<input type="radio" name="dataStructureFormat" value="complex" id={`${id}-complex`}
 					checked={data.dataStructureFormat === 'complex'}
 					onChange={(e): void => onChange('dataStructureFormat', e.target.value)} />
-				<label htmlFor={`${id}-complex`} style={{ marginRight: 10 }}>{i18n.complex}</label>
-
-				<input type="radio" name="dataStructureFormat" value="simple" id={`${id}-simple`}
-					checked={data.dataStructureFormat === 'simple'}
-					onChange={(e): void => onChange('dataStructureFormat', e.target.value)} />
-				<label htmlFor={`${id}-simple`}>{i18n.simple}</label>
+				<label htmlFor={`${id}-complex`}>{i18n.complex}</label>
 			</div>
 		</>
 	);
