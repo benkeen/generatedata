@@ -161,11 +161,8 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 
 		loadExportTypeBundle(exportType)
 			.then((bundle: DTBundle) => {
-
-				//data: bundle.initialState
-
 				// dispatch(refreshPreview());
-				dispatch(exportTypeLoaded(exportType));
+				dispatch(exportTypeLoaded(exportType, bundle.initialState));
 			});
 	};
 };
@@ -193,10 +190,11 @@ export const selectLocale = (locale: GDLocale) => {
 };
 
 export const EXPORT_TYPE_LOADED = 'EXPORT_TYPE_LOADED';
-export const exportTypeLoaded = (exportType: ExportTypeFolder): any => ({
+export const exportTypeLoaded = (exportType: ExportTypeFolder, initialState: any): any => ({
 	type: EXPORT_TYPE_LOADED,
 	payload: {
-		exportType
+		exportType,
+		initialState
 	}
 });
 

@@ -3,36 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { Persistor } from 'redux-persist/es/types';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import storage from 'redux-persist/lib/storage';
-import reducerRegistry from './reducerRegistry';
-
-const initialState = {};
-
-// we need at least one reducer when first booting up. This ensures there's something for the store when this 
-// file is first imported
-export const stubReducer = (state = {}): any => state;
-const initPersistConfig = {
-	key: 'stub',
-	storage: storage
-};
-reducerRegistry.register('stub', persistReducer(initPersistConfig, stubReducer));
-
-const persistConfig = {
-	key: 'root',
-	storage,
-	blacklist: ['init']
-};
-
-// preserve initial state for not-yet-loaded reducers
-const combine = (reducers: any): any => {
-	const foundReducers = reducers;
-	const reducerNames = Object.keys(reducers);
-	Object.keys(initialState).forEach((item) => {
-		if (reducerNames.indexOf(item) === -1) {
-			foundReducers[item] = (state: any = null): any => state;
-		}
-	});
-	return combineReducers(reducers);
-};
+import reducer from '../core/generator/generator.reducer';
 
 let persistor: Persistor;
 function initStore(state: any): any {
@@ -47,11 +18,30 @@ function initStore(state: any): any {
 		}
 	}
 
-	const topLevelReducer = combine(reducerRegistry.getReducers());
-	const persistedReducer = persistReducer(persistConfig, topLevelReducer);
+	const rootPersistConfig = {
+		key: 'root',
+		storage: storage,
+		blacklist: ['generator']
+	};
+
+	const generatorPersistConfig = {
+		key: 'generator',
+		storage: storage,
+		blacklist: [
+			'localeFileLoaded',
+			'loadedDataTypes',
+			'loadedExportTypes'
+		]
+	};
+
+	const rootReducer = combineReducers({
+		generator: persistReducer(generatorPersistConfig, reducer)
+	});
+
+	const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);
 
 	const store = createStore(
-		persistedReducer,
+		persistedRootReducer,
 		state,
 		composeEnhancers(
 			applyMiddleware(...middleware),
@@ -59,8 +49,8 @@ function initStore(state: any): any {
 		)
 	);
 
-	// @ts-ignore-line
-	store.asyncReducers = {};
+	// // @ts-ignore-line
+	// store.asyncReducers = {};
 	persistor = persistStore(store);
 
 	return store;
@@ -70,11 +60,6 @@ function initStore(state: any): any {
 let store: any;
 if (process.env.NODE_ENV !== 'test') {
 	store = initStore({});
-
-	// allows dynamically changing the redux store as content is loaded async
-	reducerRegistry.setChangeListener((reducers: any) => {
-		store.replaceReducer(persistReducer(persistConfig, combine(reducers)));
-	});
 }
 
 export default store;

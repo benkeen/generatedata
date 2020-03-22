@@ -1,6 +1,4 @@
 import { AnyAction } from 'redux';
-import storage from "redux-persist/es/storage";
-import reducerRegistry from '../../store/reducerRegistry';
 import * as actions from './generator.actions';
 import { generate } from 'shortid';
 import { BuilderLayout } from '../../components/builder/Builder.component';
@@ -9,7 +7,6 @@ import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import { GDLocale } from '../../../types/general';
 import { dataTypeNames } from '../../utils/dataTypeUtils';
 import { exportTypeNames } from '../../utils/exportTypeUtils';
-import { persistReducer } from "redux-persist";
 
 export type DataRow = {
 	id: string;
@@ -107,6 +104,10 @@ export const reducer = (state: GeneratorState = {
 				loadedExportTypes: {
 					...state.loadedExportTypes,
 					[action.payload.exportType]: true
+				},
+				exportTypeSettings: {
+					...state.exportTypeSettings,
+					[action.payload.exportType]: action.payload.initialState
 				}
 			};
 
@@ -182,10 +183,6 @@ export const reducer = (state: GeneratorState = {
 				...state,
 				exportType: action.payload.exportType
 			};
-		}
-
-		case actions.EXPORT_TYPE_LOADED: {
-
 		}
 
 		case actions.REFRESH_PREVIEW_DATA: {
@@ -303,14 +300,4 @@ export const reducer = (state: GeneratorState = {
 	}
 };
 
-const persistConfig = {
-	key: 'generator',
-	storage: storage,
-	blacklist: [
-		'localeFileLoaded',
-		'loadedDataTypes',
-		'loadedExportTypes'
-	]
-};
-
-reducerRegistry.register('generator', persistReducer(persistConfig, reducer));
+export default reducer;

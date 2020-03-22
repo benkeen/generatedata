@@ -1,10 +1,9 @@
 import { createStore, combineReducers } from 'redux';
-import { Thunk } from 'redux-testkit';
-import * as sinon from 'sinon';
+// import { Thunk } from 'redux-testkit';
+// import * as sinon from 'sinon';
 import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
 import { reducer } from '../generator.reducer';
-import * as dateTypeUtils from '../../../utils/dataTypeUtils';
 
 describe('generator section', () => {
 	let store: any;
