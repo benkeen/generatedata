@@ -15,6 +15,8 @@ const getRandomGender = (): string => getRandomBool() ? genders[0] : genders[1];
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const placeholderStr = data.rowState;
 
+	console.log('names', data);
+
 	// in case the user entered multiple | separated formats, pick one first
 	const formats = placeholderStr.split('|');
 	let chosenFormat = formats[0];

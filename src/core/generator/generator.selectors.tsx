@@ -56,6 +56,9 @@ export const getPreviewData = createSelector(
 	getNonEmptySortedRows,
 	getGeneratedPreviewData,
 	(numPreviewRows, rows, data) => {
+
+	    console.log('???', rows, data);
+
 		const numRows = rows.length;
 		const formattedData: any[] = [];
 
@@ -98,6 +101,8 @@ export const getGenerationTemplate = createSelector(
 			if (!templateByProcessOrder[processOrder]) {
 				templateByProcessOrder[processOrder] = [];
 			}
+
+			console.log('getting?');
 
 			templateByProcessOrder[processOrder].push({
 				id,

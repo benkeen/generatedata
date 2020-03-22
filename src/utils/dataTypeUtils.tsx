@@ -26,7 +26,7 @@ export const getSortedGroupedDataTypes = (): any => {
 				sortOrder: dataTypes[dataType].fieldGroupOrder
 			}));
 
-		options.sort((a: any, b: any) => { 
+		options.sort((a: any, b: any) => {
 			if (a.sortOrder < b.sortOrder) {
 				return -1;
 			} else if (a.sortOrder > b.sortOrder) {
@@ -87,7 +87,7 @@ type DataTypeProcessOrders = {
 	[name in DataTypeFolder]?: number;
 }
 
-export const processOrders: DataTypeProcessOrders = {}; 
+export const processOrders: DataTypeProcessOrders = {};
 Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
 	processOrders[dataType] = dataTypes[dataType].processOrder;
 });
@@ -108,10 +108,10 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 			.catch((e) => {
 				reject(e);
 			});
-	});	
+	});
 };
 
-// TODO this is being called before loadedDataTypes is populated, hence the 
+// TODO this is being called before loadedDataTypes is populated, hence the
 export const getDataTypeExports = (dataType: DataTypeFolder): any => {
 	const TmpOptions = (): null => null;
 	const TmpExample = (): null => null;
@@ -126,5 +126,7 @@ export const getDataTypeExports = (dataType: DataTypeFolder): any => {
 	}
 
 	const { Example, Options, Help, generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
+	console.log('here!', loadedDataTypes[dataType]);
+
 	return { Example, Options, Help, generate, getMetadata, rowStateReducer };
 };
