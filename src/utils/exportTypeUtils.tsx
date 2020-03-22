@@ -44,7 +44,7 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 // assumes the callee knows what they're doing & that they've checked the component has been loaded
 export const getExportTypePreview = (exportType: ExportTypeFolder): JSX.Element => loadedExportTypes[exportType]?.Preview;
 
-export const getExportTypeSettings = (exportType: ExportTypeFolder): any => {
+export const getExportTypeSettingsComponent = (exportType: ExportTypeFolder): any => {
 	if (loadedExportTypes[exportType]) {
 		return loadedExportTypes[exportType].Settings;
 	}

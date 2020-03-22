@@ -21,6 +21,7 @@ export const getTheme = (state: Store): string => state.generator.theme;
 export const getPreviewTextSize = (state: Store): number => state.generator.previewTextSize;
 export const getGeneratedPreviewData = (state: Store): any => state.generator.generatedPreviewData;
 export const shouldShowExportSettings = (state: Store): any => state.generator.showExportSettings;
+export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
 
 export const getNumRows = createSelector(

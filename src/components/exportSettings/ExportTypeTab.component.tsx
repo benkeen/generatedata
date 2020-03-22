@@ -9,16 +9,18 @@ export type ExportTypeTabProps = {
 	i18n: any;
 	exportTypeI18n: any;
 	onChangeExportType: (exportType: string) => void;
+	onUpdate: any;
 	exportSettingsTab: ExportSettingsTab;
-	ExportTypeSettings: any;
+	SettingsComponent: any;
+	exportTypeSettings: any;
 };
 
 export const ExportTypeTab = ({
-	exportType, i18n, exportTypeI18n, onChangeExportType, ExportTypeSettings
+	exportType, i18n, exportTypeI18n, onChangeExportType, SettingsComponent, onUpdate, exportTypeSettings
 }: ExportTypeTabProps): JSX.Element => {
 	return (
 		<div className={styles.tabContent}>
-			<div className={styles.row}>
+			<div className={styles.row} style={{ marginBottom: 6 }}>
 				<div className={styles.label}>Format</div>
 				<div className={styles.field}>
 					<div style={{ width: 180 }}>
@@ -30,9 +32,12 @@ export const ExportTypeTab = ({
 					</div>
 				</div>
 			</div>
-			<ExportTypeSettings
+			<SettingsComponent
+				id={`exportTypeSettings-${exportType}`}
 				coreI18n={i18n}
 				i18n={exportTypeI18n}
+				onUpdate={onUpdate}
+				data={exportTypeSettings}
 			/>
 		</div>
 	);

@@ -4,6 +4,7 @@ import * as actions from './generator.actions';
 import { generate } from 'shortid';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
+import { ExportTypeFolder } from '../../_plugins';
 
 export type DataRow = {
 	id: string;
@@ -20,6 +21,12 @@ export type PreviewData = {
 	[id: string]: any[];
 };
 
+// we store all settings separately so in case a user switches from one to another, the previous settings aren't
+// wiped out
+export type ExportTypeSettings = {
+	[exportType in ExportTypeFolder]: any;
+}
+
 export type GeneratorState = {
 	exportType: string;
 	rows: DataRows;
@@ -28,7 +35,7 @@ export type GeneratorState = {
 	showPreview: boolean;
 	builderLayout: BuilderLayout;
 	showExportSettings: boolean;
-	exportTypeSettings: any;
+	exportTypeSettings: Partial<ExportTypeSettings>;
 	numPreviewRows: number;
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
@@ -136,7 +143,7 @@ export const reducer = (state: GeneratorState = {
 					...action.payload.previewData
 				}
 			};
-		};
+		}
 
 		case actions.CONFIGURE_DATA_TYPE:
 			return {
@@ -149,6 +156,16 @@ export const reducer = (state: GeneratorState = {
 					}
 				},
 			};
+
+		case actions.CONFIGURE_EXPORT_TYPE: {
+			return {
+				...state,
+				exportTypeSettings: {
+					...state.exportTypeSettings,
+					[state.exportType]: action.payload.data
+				}
+			};
+		}
 
 		case actions.REPOSITION_ROW: {
 			const newArray = state.sortedRows.filter((i) => i !== action.payload.id);
@@ -218,7 +235,7 @@ export const reducer = (state: GeneratorState = {
 			};
 
 		case actions.TOGGLE_EXPORT_SETTINGS: {
-			const newState = { 
+			const newState = {
 				...state,
 				showExportSettings: !state.showExportSettings
 			};

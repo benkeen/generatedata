@@ -7,7 +7,6 @@ export type JSONSettings = {
 	dataStructureFormat: DataStructureFormat;
 };
 
-// export used to supply default state to generator?
 export const initialState: JSONSettings = {
 	stripWhitespace: false,
 	dataStructureFormat: 'simple'
@@ -15,6 +14,7 @@ export const initialState: JSONSettings = {
 
 export const Settings: React.ReactNode = ({ data, i18n, onUpdate, id }: ETSettings) => {
 	const onChange = (field: string, value: any): void => {
+		console.log('value? ', value);
 		onUpdate({
 			...data,
 			[field]: value
@@ -23,17 +23,28 @@ export const Settings: React.ReactNode = ({ data, i18n, onUpdate, id }: ETSettin
 
 	return (
 		<>
-			<input type="checkbox" id={`${id}-stripWhitespace`} value="1"
-				onChange={(e): void => onChange('stripWhitespace', e.target.checked)} />
+			<div>
+				<input
+					type="checkbox"
+					id={`${id}-stripWhitespace`}
+					checked={data.stripWhitespace}
+					onChange={(): void => onChange('stripWhitespace', !data.stripWhitespace)}
+				/>
+				<label htmlFor={`${id}-stripWhitespace`} >{i18n.stripWhitespace}</label><br />
+			</div>
 
-			<label htmlFor={`${id}-stripWhitespace`}>{i18n.stripWhitespace}</label><br />
+			<div>
+				<span style={{ marginRight: 10 }}>{i18n.dataStructureFormat}</span>
+				<input type="radio" name="dataStructureFormat" value="complex" id={`${id}-complex`}
+					checked={data.dataStructureFormat === 'complex'}
+					onChange={(e): void => onChange('dataStructureFormat', e.target.value)} />
+				<label htmlFor={`${id}-complex`} style={{ marginRight: 10 }}>{i18n.complex}</label>
 
-			{i18n.data_structure_format}
-			<input type="radio" value="complex" id={`${id}-complex`} />
-			<label htmlFor={`${id}-complex`}>{i18n.complex}</label>
-
-			<input type="radio" value="simple" id={`${id}-simple`} />
-			<label htmlFor={`${id}-simple`}>{i18n.simple}</label>
+				<input type="radio" name="dataStructureFormat" value="simple" id={`${id}-simple`}
+					checked={data.dataStructureFormat === 'simple'}
+					onChange={(e): void => onChange('dataStructureFormat', e.target.value)} />
+				<label htmlFor={`${id}-simple`}>{i18n.simple}</label>
+			</div>
 		</>
 	);
 };

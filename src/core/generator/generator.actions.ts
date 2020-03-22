@@ -2,10 +2,8 @@ import { GDAction } from '../../../types/general';
 import * as selectors from './generator.selectors';
 import { generateExportData } from './generator';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
-import { ExportTypeFolder, DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder } from '../../_plugins';
 import { loadDataTypeBundle } from '../../utils/dataTypeUtils';
-import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
-import { EXPORT_TYPE_LOADED } from '../init/init.actions';
 import { DTBundle } from '../../../types/dataTypes';
 
 export const ADD_ROWS = 'ADD_ROWS';
@@ -27,18 +25,6 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 	}
 });
 
-export const selectExportType = (exportType: ExportTypeFolder): any => {
-	return (dispatch: any): any => {
-		loadExportTypeBundle(exportType)
-			.then(() => {
-				dispatch({
-					type: EXPORT_TYPE_LOADED,
-					payload: exportType
-				});
-			});
-	};
-};
-
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
 	return (dispatch: any): any => {
@@ -53,6 +39,7 @@ export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
 					}
 				});
 				dispatch(refreshPreview([id]));
+				// dispatch(initActions.dataTypeLoaded(dataType));
 			});
 	};
 };
@@ -72,6 +59,14 @@ export const onConfigureDataType = (id: string, data: any): any => {
 		configureDataType(dispatch).then(() => dispatch(refreshPreview([id])));
 	};
 };
+
+export const CONFIGURE_EXPORT_TYPE = 'CONFIGURE_EXPORT_TYPE';
+export const configureExportType = (data: any): GDAction => ({
+	type: CONFIGURE_EXPORT_TYPE,
+	payload: {
+		data
+	}
+});
 
 export const REPOSITION_ROW = 'REPOSITION_ROW';
 export const repositionRow = (id: string, newIndex: number): GDAction => ({
