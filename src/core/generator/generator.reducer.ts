@@ -1,6 +1,8 @@
 import { AnyAction } from 'redux';
-import * as actions from './generator.actions';
 import { generate } from 'shortid';
+// @ts-ignore-line
+import config from '../../../build/config.client';
+import * as actions from './generator.actions';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
@@ -64,7 +66,7 @@ export const reducer = (state: GeneratorState = {
 	locale: 'en',
 	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
 	loadedExportTypes: exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
-	exportType: 'JSON',
+	exportType: config.defaultExportType,
 	rows: {},
 	sortedRows: [],
 	showGrid: true,

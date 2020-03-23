@@ -1,6 +1,8 @@
 import * as React from 'react';
+import Switch from '@material-ui/core/Switch';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { ETSettings } from '../../../../types/exportTypes';
+
 
 export type SQLSettings = {
 	tableName: string;
@@ -25,7 +27,7 @@ export const initialState: SQLSettings = {
 };
 
 export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettings) => {
-	const onChange = (field: string, value: string): void => {
+	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
 			[field]: value
@@ -43,71 +45,77 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 	return (
 		<>
 			<div>
-				<div>
-					<div>
-						<label htmlFor={`${id}-tableName`}>{i18n.db_table_name}</label>
-					</div>
-					<div>
-						<input
-							type="text"
-							id={`${id}-tableName`}
-							value={data.tableName}
-							onChange={(e): void => onUpdate('tableName', e.target.value)}
-						/>
-					</div>
-				</div>
-				<div>
-					<div>
-						<label htmlFor={`${id}-databaseType`}>{i18n.db_type}</label>
-					</div>
-					<div>
-						<Dropdown
-							id={`${id}-databaseType`}
-							value={data.databaseType}
-							options={options}
-							onChange={(i: any): void => onChange('databaseType', i.value)}
-						/>
-					</div>
-				</div>
-				<div>
-					<div><label>{i18n.misc_options}</label></div>
-					<td>
+				<div style={{ display: 'flex', maxWidth: 400 }}>
+					<div style={{ flex: 1 }}>
+						<div>
+							<label htmlFor={`${id}-tableName`}>{i18n.dbTableName}</label>
+						</div>
 						<div>
 							<input
-								type="checkbox"
-								id={`${id}-createTable`}
+								type="text"
+								id={`${id}-tableName`}
+								value={data.tableName}
+								onChange={(e): void => onChange('tableName', e.target.value)}
+							/>
+						</div>
+					</div>
+					<div style={{ flex: 1 }}>
+						<div>
+							<label htmlFor={`${id}-databaseType`}>{i18n.dbType}</label>
+						</div>
+						<div>
+							<Dropdown
+								id={`${id}-databaseType`}
+								value={data.databaseType}
+								options={options}
+								onChange={(i: any): void => onChange('databaseType', i.value)}
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div><label>{i18n.miscOptions}</label></div>
+					<div>
+						<div>
+							<Switch
 								checked={data.createTable}
-								onChange={(e: any): void => onChange('databaseType', e.target.checked)}
+								id={`${id}-createTable`}
+								value="checked"
+								color="default"
+								onChange={(): void => onChange('createTable', !data.createTable)}
 							/>
 							<label htmlFor={`${id}-createTable`}>
-								{i18n.include_create_table_query}
+								{i18n.includeCreateTableQuery}
 							</label>
 						</div>
 						<div>
-							<input
-								type="checkbox"
-								id={`${id}-dropTable`}
+							<Switch
 								checked={data.dropTable}
-								onChange={(e: any): void => onChange('dropTable', e.target.checked)}
+								id={`${id}-dropTable`}
+								value="checked"
+								color="default"
+								onChange={(): void => onChange('dropTable', !data.dropTable)}
 							/>
-							<label htmlFor={`${id}-dropTable`}>{i18n.include_drop_table_query}</label>
+							<label htmlFor={`${id}-dropTable`}>{i18n.includeDropTableQuery}</label>
 						</div>
-						<div id="etSQL_encloseWithBackquotes_group">
-							<input
-								type="checkbox"
-								id={`${id}-encloseWithBackquotes`}
+						<div id="etSQL_encloseInBackquotes_group">
+							<Switch
 								checked={data.encloseInBackquotes}
-								onChange={(e: any): void => onChange('encloseWithBackquotes', e.target.checked)}
+								id={`${id}-encloseInBackquotes`}
+								value="checked"
+								color="default"
+								onChange={(): void => onChange('encloseInBackquotes', !data.encloseInBackquotes)}
 							/>
-							<label htmlFor="etSQL_encloseWithBackquotes">{i18n.enclose_table_backquotes}</label>
+							<label htmlFor={`${id}-encloseInBackquotes`}>{i18n.encloseTableBackquotes}</label>
 						</div>
-					</td>
+					</div>
 				</div>
 			</div>
 
 			<div>
 				<div>
-					<div><label>{i18n.statement_type}</label></div>
+					<div><label>{i18n.statementType}</label></div>
 					<div>
 						<li>
 							<input
@@ -149,7 +157,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 						<label
 							htmlFor="etSQL_insertBatchSize"
 							id="etSQL_batchSizeLabel">
-							{i18n.insert_batch_size}
+							{i18n.insertBatchSize}
 						</label>
 					</div>
 					<div>
@@ -158,17 +166,23 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 							id={`${id}-insertBatchSize`}
 							value={data.insertBatchSize}
 							style={{ width: 40 }}
-							title={i18n.batch_size_desc}
+							title={i18n.batchSizeDesc}
 							onChange={(e): void => onChange('insertBatchSize', e.target.value)}
 						/>
 					</div>
 				</div>
 				<div>
-					<div><label>{i18n.primary_key}</label></div>
+					<div><label>{i18n.primaryKey}</label></div>
 					<div>
 						<div>
-							<input type="checkbox" id={`${id}-primaryKey`} value="default" checked={data.addPrimaryKey} />
-							<label htmlFor={`${id}-primaryKey`}>{i18n.add_default_auto_increment_col}</label>
+							<Switch
+								checked={data.addPrimaryKey}
+								id={`${id}-addPrimaryKey`}
+								value="checked"
+								color="default"
+								onChange={(): void => onChange('addPrimaryKey', !data.addPrimaryKey)}
+							/>
+							<label htmlFor={`${id}-addPrimaryKey`}>{i18n.addDefaultAutoIncrementCol}</label>
 						</div>
 					</div>
 				</div>
@@ -179,7 +193,6 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 
 
 /*
-
 	var _onChangeDatabaseType = function(e) {
 		_updateAvailableSettings(e.target.value);
 	};

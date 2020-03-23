@@ -14,10 +14,11 @@ export const coreConfig = { ...config };
 export const init = (): void => {
 	const state = store.getState();
 	const locale = selectors.getLocale(state);
+	const exportType = selectors.getExportType(state);
 	const numRows = selectors.getNumRows(state);
 
 	store.dispatch(actions.selectLocale(locale));
-	store.dispatch(actions.onSelectExportType(config.defaultExportType));
+	store.dispatch(actions.onSelectExportType(exportType));
 
 	// if there are no rows, load some
 	if (numRows === 0) {

@@ -8,7 +8,7 @@
 	"dbType": "Database Type",
 	"miscOptions": "Misc Options",
 	"includeCreateTableQuery": "Include CREATE TABLE query",
-	"includeDropTableTuery": "Include DROP TABLE query",
+	"includeDropTableQuery": "Include DROP TABLE query",
 	"encloseTableBackquotes": "Enclose table and field names with backquotes",
 	"statementType": "Statement Type",
 	"primaryKey": "Primary Key",

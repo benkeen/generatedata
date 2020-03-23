@@ -9,7 +9,8 @@ import * as generalUtils from '../../utils/generalUtils';
 const mapStateToProps = (state: any): Partial<FooterProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	locale: selectors.getLocale(state),
-	scriptVersion: generalUtils.getScriptVersion()
+	scriptVersion: generalUtils.getScriptVersion(),
+	exportTypeLabel: selectors.getExportType(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
