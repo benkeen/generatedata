@@ -89,7 +89,7 @@ type DataTypeProcessOrders = {
 
 export const processOrders: DataTypeProcessOrders = {};
 Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
-	processOrders[dataType] = dataTypes[dataType].processOrder;
+	processOrders[dataType] = dataTypes[dataType].processOrder ? dataTypes[dataType].processOrder : 1;
 });
 
 export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType] as number;

@@ -33,7 +33,8 @@ describe('generateSimple', () => {
             ['Row #2, Cell #1', 'Row #2, Cell #2']
         ],
         isFirstBatch: true,
-        isLastBatch: true
+        isLastBatch: true,
+		metadata: {}
     };
 
     // my IDE likes to convert tabs to spaces & I'm not going to argue with it. This'll work across all developers
@@ -67,7 +68,8 @@ describe('generateSimple', () => {
                 ['Susan', '(604) 733-1224'],
             ],
             isFirstBatch: true,
-            isLastBatch: true
+            isLastBatch: true,
+			metadata: {}
         };
 
         expect(generateSimple(doubleQuoteData, false)).toEqual(
@@ -92,7 +94,8 @@ describe('generateSimple', () => {
                 ['Susan', 'Like "TOTALLY!"'],
             ],
             isFirstBatch: true,
-            isLastBatch: true
+            isLastBatch: true,
+			metadata: {}
         };
 
         expect(generateSimple(doubleQuoteValueData, false)).toEqual(
@@ -116,7 +119,8 @@ describe('generateSimple', () => {
                 ['0', 0, '1', 1, '1.23', 1.23]
             ],
             isFirstBatch: true,
-            isLastBatch: true
+            isLastBatch: true,
+			metadata: {}
         };
 
         expect(generateSimple(numData, true)).toEqual(
@@ -131,7 +135,8 @@ describe('generateSimple', () => {
                 ['false', false, 'true', true]
             ],
             isFirstBatch: true,
-            isLastBatch: true
+            isLastBatch: true,
+			metadata: {}
         };
 
         expect(generateSimple(numData, true)).toEqual(

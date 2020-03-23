@@ -51,14 +51,13 @@ export const generate = (data: ExportTypeGenerateType): string => {
 	// 	generateExportData
 	// });
 
-	console.log(data);
+	// console.log(data);
 	const content = '';
 
 	return content;
 };
 
 
-// drop this for the preview panel. Use the one above instead
 export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
 	const generationTemplate = data.template;
 	const i18n = getStrings();
@@ -72,8 +71,9 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 	const displayData: any = [];
 	const processOrders = Object.keys(generationTemplate);
 
+	const metadata: any[] = [];
 	let index = 0;
-	for (let rowNum = firstRowNum; rowNum <= lastRowNum; rowNum++) {
+	for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
 		if (!data.columnTitles[index]) {
 			index++;
 			continue;
@@ -86,15 +86,20 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 
 		processOrders.forEach((processOrder: string) => {
 			// @ts-ignore
-			for (let i = 0; i < generationTemplate[processOrder].length; i++) {
+			for (let i=0; i<generationTemplate[processOrder].length; i++) {
 				// @ts-ignore
 				const currCell = generationTemplate[processOrder][i];
 
+				// TODO This looks wrong
 				currRowData[currCell.colIndex] = currCell.generateFunc({
 					rowNum,
 					i18n: i18n.dataTypes[currCell.dataType],
 					rowState: currCell.rowState,
 					existingRowData: currRowData
+				});
+				metadata.push({
+					dataType: currCell.dataType,
+					cellMetadata: currCell.cellMetadata
 				});
 			}
 		});
@@ -107,11 +112,14 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 		// 	ksort($currRowData, SORT_NUMERIC);
 	}
 
+	console.log('!!!', metadata);
+
 	return {
 		isFirstBatch: true,
 		isLastBatch: true,
 		columnTitles: data.columnTitles,
-		rows: displayData
+		rows: displayData,
+		metadata
 	};
 };
 

@@ -54,4 +54,5 @@ export type ExportTypeGenerationData = {
     rows: any[]; // TODO see how this settles. Right now it's just an array of strings too: i.e. the generated values
     isFirstBatch: boolean;
     isLastBatch: boolean;
+    metadata: any;
 }

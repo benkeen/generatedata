@@ -1,5 +1,116 @@
+import { ExportTypeGenerationData } from '../../../../types/general';
+import { SQLSettings } from './SQL.ui';
+
 export const generate = (): any => {
 
+};
+
+
+// Generates a MySQL table with all the data.
+export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings ) => {
+	let content = '';
+	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
+	// $endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
+	// $prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
+
+	if (generationData.isFirstBatch) {
+		if (sqlSettings.dropTable) {
+			content += `DROP TABLE ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
+		}
+
+		if (sqlSettings.createTable) {
+			content += `CREATE TABLE ${backquote}{sqlSettings.tableName}${backquote} (\n`;
+			if (sqlSettings.addPrimaryKey) {
+				content += `  ${backquote}id${backquote} mediumint(8) unsigned NOT NULL auto_increment,\n`;
+			}
+
+			const cols: any[] = [];
+			// foreach ($this->template as $dataType) {
+			// 	// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
+			// 	$columnTypeInfo = "MEDIUMTEXT";
+			// 	if (isset($dataType["columnMetadata"]["SQLField_MySQL"])) {
+			// 		$columnTypeInfo = $dataType["columnMetadata"]["SQLField_MySQL"];
+			// 	} else if (isset($dataType["columnMetadata"]["SQLField"])) {
+			// 		$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
+			// 	}
+			// 	$cols[] = "{$prefix}{$this->backquote}{$dataType["title"]}{$this->backquote} $columnTypeInfo";
+			// }
+
+			content += cols.join(',\n');
+
+			if (sqlSettings.addPrimaryKey) {
+				content += `,\n  PRIMARY KEY (${backquote}id${backquote})\n) AUTO_INCREMENT=1;\n\n`;
+			} else {
+				content += `\n);\n\n`;
+			}
+		}
+	}
+
+	let colNamesStr = '';
+	if (sqlSettings.encloseInBackquotes) {
+		colNamesStr = `\`${generationData.columnTitles.join('`,`')}\``;
+	} else {
+		colNamesStr = generationData.columnTitles.join(',');
+	}
+
+	const numRows = generationData.rows.length;
+	const numCols = generationData.columnTitles.length;
+
+	generationData.rows.forEach((row: any, rowIndex: number) => {
+		if (sqlSettings.statementType === 'insert') {
+			const displayVals = [];
+
+			generationData.columnTitles.forEach((columnTitle: string) => {
+				// if ($this->numericFields[$j]) {
+				// 	$displayVals[] = $this->data["rowData"][$i][$j];
+				// } else {
+				// 	$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+				// }
+			});
+
+			// $rowDataStr[] = implode(",", $displayVals);
+			// if (count($rowDataStr) == $this->insertBatchSize) {
+			// 	$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+			// 	$rowDataStr = array();
+			// }
+		}
+		// } elseif ($this->sqlStatementType == "insertignore") {
+		// 	$displayVals = array();
+		// 	for ($j=0; $j<$numCols; $j++) {
+		// 		if ($this->numericFields[$j]) {
+		// 			$displayVals[] = $this->data["rowData"][$i][$j];
+		// 		} else {
+		// 			$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+		// 		}
+		// 	}
+		// 	$rowDataStr[] = implode(",", $displayVals);
+		// 	if (count($rowDataStr) == $this->insertBatchSize) {
+		// 		$content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+		// 		$rowDataStr = array();
+		// 	}
+		// } else {
+		// 	$pairs = array();
+		// 	for ($j=0; $j<$numCols; $j++) {
+		// 		$colName  = $this->data["colData"][$j];
+		// 		if ($this->numericFields[$j]) {
+		// 			$colValue = $this->data["rowData"][$i][$j];
+		// 		} else {
+		// 			$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+		// 		}
+		// 		$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
+		// 	}
+		//
+		// 	$pairsStr = implode(", ", $pairs);
+		// 	$rowNum = $this->currentBatchFirstRow + $i;
+		// 	$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
+		// }
+	});
+
+	// if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+	// 	content += "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+	// }
+
+	return content;
 };
 
 
@@ -24,7 +135,7 @@ export const generate = (): any => {
 	private $includeDropTable;
 	private $createTable;
 	private $databaseType;
-	private $tableName; 
+	private $tableName;
 	private $backquote;
 	private $sqlStatementType;
 	private $primaryKey;
@@ -98,109 +209,6 @@ export const generate = (): any => {
 		return true;
 	}
 
-	 * Generates a MySQL table with all the data.
-	 * @return string
-	private function generateCreateTableSQL_MySQL() {
-		$content = "";
-		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
-		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
-
-		if ($this->isFirstBatch) {
-			if ($this->includeDropTable) {
-				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
-				$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
-			}
-
-			if ($this->createTable) {
-				$content .= "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
-				if ($this->primaryKey == "default") {
-					$content .= "{$prefix}{$this->backquote}id{$this->backquote} mediumint(8) unsigned NOT NULL auto_increment,$endLineChar";
-				}
-
-				$cols = array();
-				foreach ($this->template as $dataType) {
-					// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
-					$columnTypeInfo = "MEDIUMTEXT";
-					if (isset($dataType["columnMetadata"]["SQLField_MySQL"])) {
-						$columnTypeInfo = $dataType["columnMetadata"]["SQLField_MySQL"];
-					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
-						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
-					}
-					$cols[] = "{$prefix}{$this->backquote}{$dataType["title"]}{$this->backquote} $columnTypeInfo";
-				}
-
-				$content .= implode(",$endLineChar", $cols);
-
-				if ($this->primaryKey == "default") {
-					$content .= ",$endLineChar{$prefix}PRIMARY KEY ({$this->backquote}id{$this->backquote})$endLineChar) AUTO_INCREMENT=1;{$endLineChar}{$endLineChar}";
-				} else if ($this->primaryKey == "none") {
-					$content .= "$endLineChar);{$endLineChar}{$endLineChar}";
-				}
-			}
-		}
-
-		$colNamesStr = "";
-		if ($this->backquote) {
-			$quoted = Utils::enquoteArray($this->data["colData"], "`");
-			$colNamesStr = implode(",", $quoted);
-		} else {
-			$colNamesStr = implode(",", $this->data["colData"]);
-		}
-
-		$numRows = count($this->data["rowData"]);
-		$numCols = count($this->data["colData"]);
-		for ($i=0; $i<$numRows; $i++) {
-			if ($this->sqlStatementType == "insert") {
-				$displayVals = array();
-				for ($j=0; $j<$numCols; $j++) {
-					if ($this->numericFields[$j]) {
-						$displayVals[] = $this->data["rowData"][$i][$j];
-					} else {
-						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
-					}
-				}
-				$rowDataStr[] = implode(",", $displayVals);
-				if (count($rowDataStr) == $this->insertBatchSize) {
-					$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-					$rowDataStr = array();
-				}
-			} elseif ($this->sqlStatementType == "insertignore") {
-				$displayVals = array();
-				for ($j=0; $j<$numCols; $j++) {
-					if ($this->numericFields[$j]) {
-						$displayVals[] = $this->data["rowData"][$i][$j];
-					} else {
-						$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
-					}
-				}
-				$rowDataStr[] = implode(",", $displayVals);
-				if (count($rowDataStr) == $this->insertBatchSize) {
-					$content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-					$rowDataStr = array();
-				}
-			} else {
-				$pairs = array();
-				for ($j=0; $j<$numCols; $j++) {
-					$colName  = $this->data["colData"][$j];
-					if ($this->numericFields[$j]) {
-						$colValue = $this->data["rowData"][$i][$j];
-					} else {
-						$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
-					}
-					$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
-				}
-
-				$pairsStr = implode(", ", $pairs);
-				$rowNum = $this->currentBatchFirstRow + $i;
-				$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
-			}
-		}
-		if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-			$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-		}
-
-		return $content;
-	}
 
 	 * Generates a MySQL table with all the data.
 	 * @return string
@@ -524,7 +532,7 @@ export const generate = (): any => {
                                     $content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES(" . implode('),(', $rowDataStr) . ");$endLineChar";
                                     $rowDataStr = array();
                                 }
-				
+
 				if (($currentRow % 1000) == 0) {
 					$content .= $endLineChar;
 					$content .= "PRINT 'Row {$currentRow} inserted';$endLineChar";
@@ -546,7 +554,7 @@ export const generate = (): any => {
 				$pairsStr = implode(", ", $pairs);
 				$rowNum = $this->currentBatchFirstRow + $i;
 				$content .= "UPDATE [{$this->tableName}] SET $pairsStr WHERE [{$this->tableName}ID] = $rowNum;$endLineChar";
-				
+
 				if (($currentRow % 1000) == 0) {
 					$content .= $endLineChar;
 					$content .= "PRINT 'Row {$currentRow} updated';$endLineChar";
@@ -562,7 +570,7 @@ export const generate = (): any => {
 		return $content;
 	}
 
-	
+
 	private function wrapGeneratedContent($generatedContent) {
 		$html =<<< END
 <!DOCTYPE html>

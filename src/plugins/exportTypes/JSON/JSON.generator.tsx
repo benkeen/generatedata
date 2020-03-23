@@ -8,20 +8,17 @@ import { isNumeric } from '../../../utils/generalUtils';
 // TODO will also need to pass in a whole thwack of other stuff previous assigned to $generator instance.
 // maybe change first param to $generationContext & include genEnvironment & everything else
 export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generator: any): any => {
-
 	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 	// $this->determineNumericFields($template);
 	// $this->determineBooleanFields($template);
 
-	// if ($dataStructureFormat == "complex") {
-	// 	$content = $this->generateComplex($generator, $data, $stripWhitespace);
-	// } else {
-	// 	$content = $this->generateSimple($generator, $data, $stripWhitespace);
-	// }
-	// const content = generateSimple(data);
-
 	const generatedData = generator.generateExportData(generator.data);
-	const content = generateSimple(generatedData, jsonSettings.stripWhitespace);
+	let content = '';
+	if (jsonSettings.dataStructureFormat === 'simple') {
+		content = generateSimple(generatedData, jsonSettings.stripWhitespace);
+	} else {
+		content = generateComplex(generatedData, jsonSettings.stripWhitespace);
+	}
 
 	return {
 		success: true,

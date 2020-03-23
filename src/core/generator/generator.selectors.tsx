@@ -92,6 +92,8 @@ export const getGenerationTemplate = createSelector(
 	(rows): GenerationTemplate => {
 		const templateByProcessOrder: ProcessOrders = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
+			console.log('--> ', processOrders);
+
 			const processOrder = processOrders[dataType as DataTypeFolder] as number;
 
 			// TODO another assumption here. We need to validate the whole component right-up front during the
@@ -160,7 +162,6 @@ export const getCoreI18n = createSelector(
 		return strings ? strings.core : null;
 	}
 );
-
 
 export const getDataTypeI18n = createSelector(
 	getLocale,
