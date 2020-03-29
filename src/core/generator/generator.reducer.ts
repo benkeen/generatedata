@@ -77,7 +77,7 @@ export const reducer = (state: GeneratorState = {
 	numPreviewRows: 5,
 	showRowNumbers: false,
 	enableLineWrapping: true,
-	theme: 'elegant',
+	theme: 'lucario',
 	previewTextSize: 12,
 	generatedPreviewData: {},
 	exportSettingsTab: 'exportType'

@@ -12,7 +12,7 @@
 	"encloseTableBackquotes": "Enclose table and field names with backquotes",
 	"statementType": "Statement Type",
 	"primaryKey": "Primary Key",
-	"addDefaultAutoIncrementCol": "Add default auto-increment column",
+	"addDefaultAutoIncrementPrimarykey": "Add default auto-increment primary key column",
 	"insertBatchSize": "INSERT batch size",
 	"batchSizeDesc": "Number of rows to insert per query (1 - 300)"
 }

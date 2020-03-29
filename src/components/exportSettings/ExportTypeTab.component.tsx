@@ -20,8 +20,8 @@ export const ExportTypeTab = ({
 }: ExportTypeTabProps): JSX.Element => {
 	return (
 		<div className={styles.tabContent}>
-			<div className={styles.row} style={{ marginBottom: 6 }}>
-				<div className={styles.label}>Format</div>
+			<div className={`${styles.row} ${styles.exportFormatRow}`} style={{ marginBottom: 6 }}>
+				<div className={styles.label}>{i18n.format}</div>
 				<div className={styles.field}>
 					<div style={{ width: 180 }}>
 						<Dropdown

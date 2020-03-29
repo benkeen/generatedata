@@ -1,7 +1,11 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { ETSettings } from '../../../../types/exportTypes';
+import styles from './SQL.scss';
 
 
 export type SQLSettings = {
@@ -45,8 +49,8 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 	return (
 		<>
 			<div>
-				<div style={{ display: 'flex', maxWidth: 400 }}>
-					<div style={{ flex: 1 }}>
+				<div className={styles.row}>
+					<div>
 						<div>
 							<label htmlFor={`${id}-tableName`}>{i18n.dbTableName}</label>
 						</div>
@@ -59,7 +63,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 							/>
 						</div>
 					</div>
-					<div style={{ flex: 1 }}>
+					<div>
 						<div>
 							<label htmlFor={`${id}-databaseType`}>{i18n.dbType}</label>
 						</div>
@@ -109,71 +113,6 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 							/>
 							<label htmlFor={`${id}-encloseInBackquotes`}>{i18n.encloseTableBackquotes}</label>
 						</div>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div>
-					<div><label>{i18n.statementType}</label></div>
-					<div>
-						<li>
-							<input
-								type="radio"
-								name={`${id}-statementType`}
-								id={`${id}-statementType1`}
-								value="insert"
-								checked={data.statementType === 'insert'}
-								onChange={(e): void => onChange('statementType', e.target.value)}
-							/>
-							<label htmlFor={`${id}-statementType1`}>INSERT</label>
-						</li>
-						<li id="etSQL_insertIgnore">
-							<input
-								type="radio"
-								name={`${id}-statementType`}
-								id={`${id}-statementType2`}
-								value="insertIgnore"
-								checked={data.statementType === 'insertIgnore'}
-								onChange={(e): void => onChange('statementType', e.target.value)}
-							/>
-							<label htmlFor="etSQL_statementType2">INSERT IGNORE</label>
-						</li>
-						<li>
-							<input
-								type="radio"
-								name={`${id}-statementType`}
-								id={`${id}-statementType3`}
-								value="update"
-								checked={data.statementType === 'update'}
-								onChange={(e): void => onChange('statementType', e.target.value)}
-							/>
-							<label htmlFor="etSQL_statementType3">UPDATE</label>
-						</li>
-					</div>
-				</div>
-				<div>
-					<div>
-						<label
-							htmlFor="etSQL_insertBatchSize"
-							id="etSQL_batchSizeLabel">
-							{i18n.insertBatchSize}
-						</label>
-					</div>
-					<div>
-						<input
-							type="text"
-							id={`${id}-insertBatchSize`}
-							value={data.insertBatchSize}
-							style={{ width: 40 }}
-							title={i18n.batchSizeDesc}
-							onChange={(e): void => onChange('insertBatchSize', e.target.value)}
-						/>
-					</div>
-				</div>
-				<div>
-					<div><label>{i18n.primaryKey}</label></div>
-					<div>
 						<div>
 							<Switch
 								checked={data.addPrimaryKey}
@@ -185,6 +124,55 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 							<label htmlFor={`${id}-addPrimaryKey`}>{i18n.addDefaultAutoIncrementCol}</label>
 						</div>
 					</div>
+				</div>
+			</div>
+
+			<div>
+				<div><label>{i18n.statementType}</label></div>
+				<RadioGroup name="gender1" value={data.statementType} onChange={(e): void => onChange('statementType', e.target.value)}>
+					<div>
+						<div>
+							<FormControlLabel
+								value="insert"
+								control={<Radio />}
+								label="INSERT"
+							/>
+						</div>
+						<div id="etSQL_insertIgnore">
+							<FormControlLabel
+								value="insertIgnore"
+								control={<Radio />}
+								label="INSERT IGNORE"
+							/>
+						</div>
+						<div>
+							<FormControlLabel
+								value="update"
+								control={<Radio />}
+								label="UPDATE"
+							/>
+						</div>
+					</div>
+				</RadioGroup>
+			</div>
+
+			<div className={styles.row}>
+				<div>
+					<label
+						htmlFor="etSQL_insertBatchSize"
+						id="etSQL_batchSizeLabel">
+						{i18n.insertBatchSize}
+					</label>
+				</div>
+				<div>
+					<input
+						type="text"
+						id={`${id}-insertBatchSize`}
+						value={data.insertBatchSize}
+						style={{ width: 40 }}
+						title={i18n.batchSizeDesc}
+						onChange={(e): void => onChange('insertBatchSize', e.target.value)}
+					/>
 				</div>
 			</div>
 		</>

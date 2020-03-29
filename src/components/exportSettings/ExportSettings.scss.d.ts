@@ -1,5 +1,6 @@
 declare namespace ExportSettingsScssModule {
   export interface IExportSettingsScss {
+    exportFormatRow: string;
     field: string;
     label: string;
     panelHorizontal: string;

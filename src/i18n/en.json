@@ -289,5 +289,9 @@
 	"addSomeDataDesc": "Add some rows in the Grid panel above",
 	"refreshPanel": "Refresh Panel",
 	"closePanel": "Close panel",
-	"generateArrow": "Generate &raquo;"
+	"generateArrow": "Generate &raquo;",
+
+	"exportType": "Export Type",
+	"previewPanel": "Preview Panel",
+	"format": "Format"
 }

@@ -25,3 +25,12 @@
 .panelVertical {
 	width: 400px;
 }
+
+.exportFormatRow {
+	border-bottom: 1px solid #cccccc;
+	padding-bottom: 10px;
+	border-radius: 5px;
+	.label {
+		font-size: 14px;
+	}
+}
