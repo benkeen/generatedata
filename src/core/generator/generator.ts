@@ -90,7 +90,8 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 				// @ts-ignore
 				const currCell = generationTemplate[processOrder][i];
 
-				// TODO This looks wrong
+				console.log(currCell.colIndex);
+
 				currRowData[currCell.colIndex] = currCell.generateFunc({
 					rowNum,
 					i18n: i18n.dataTypes[currCell.dataType],
@@ -103,6 +104,8 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 				});
 			}
 		});
+
+		console.log('__________________');
 
 		if (currRowData.length) {
 			displayData.push(currRowData.map((i: any): string => i.display));
