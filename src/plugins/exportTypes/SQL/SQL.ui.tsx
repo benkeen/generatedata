@@ -83,6 +83,16 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 					<div>
 						<div>
 							<Switch
+								checked={data.dropTable}
+								id={`${id}-dropTable`}
+								value="checked"
+								color="default"
+								onChange={(): void => onChange('dropTable', !data.dropTable)}
+							/>
+							<label htmlFor={`${id}-dropTable`}>{i18n.includeDropTableQuery}</label>
+						</div>
+						<div>
+							<Switch
 								checked={data.createTable}
 								id={`${id}-createTable`}
 								value="checked"
@@ -92,16 +102,6 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 							<label htmlFor={`${id}-createTable`}>
 								{i18n.includeCreateTableQuery}
 							</label>
-						</div>
-						<div>
-							<Switch
-								checked={data.dropTable}
-								id={`${id}-dropTable`}
-								value="checked"
-								color="default"
-								onChange={(): void => onChange('dropTable', !data.dropTable)}
-							/>
-							<label htmlFor={`${id}-dropTable`}>{i18n.includeDropTableQuery}</label>
 						</div>
 						<div id="etSQL_encloseInBackquotes_group">
 							<Switch
@@ -121,7 +121,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 								color="default"
 								onChange={(): void => onChange('addPrimaryKey', !data.addPrimaryKey)}
 							/>
-							<label htmlFor={`${id}-addPrimaryKey`}>{i18n.addDefaultAutoIncrementCol}</label>
+							<label htmlFor={`${id}-addPrimaryKey`}>{i18n.addDefaultAutoIncrementPrimaryKey}</label>
 						</div>
 					</div>
 				</div>
@@ -131,20 +131,39 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 				<div><label>{i18n.statementType}</label></div>
 				<RadioGroup name="gender1" value={data.statementType} onChange={(e): void => onChange('statementType', e.target.value)}>
 					<div>
-						<div>
-							<FormControlLabel
-								value="insert"
-								control={<Radio />}
-								label="INSERT"
-							/>
+						<div className={styles.row}>
+							<div>
+								<FormControlLabel
+									value="insert"
+									control={<Radio />}
+									label="INSERT"
+								/>
+								<br />
+								<FormControlLabel
+									id="etSQL_insertIgnore"
+									value="insertIgnore"
+									control={<Radio />}
+									label="INSERT IGNORE"
+								/>
+							</div>
+							<div>
+								<span style={{ fontSize: 50, color: '#dddddd' }}>&#125;</span>
+								<label
+									htmlFor="etSQL_insertBatchSize"
+									id="etSQL_batchSizeLabel">
+									{i18n.batchSize}
+								</label>
+								<input
+									type="text"
+									id={`${id}-insertBatchSize`}
+									value={data.insertBatchSize}
+									style={{ width: 40 }}
+									title={i18n.batchSizeDesc}
+									onChange={(e): void => onChange('insertBatchSize', e.target.value)}
+								/>
+							</div>
 						</div>
-						<div id="etSQL_insertIgnore">
-							<FormControlLabel
-								value="insertIgnore"
-								control={<Radio />}
-								label="INSERT IGNORE"
-							/>
-						</div>
+
 						<div>
 							<FormControlLabel
 								value="update"
@@ -155,35 +174,12 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 					</div>
 				</RadioGroup>
 			</div>
-
-			<div className={styles.row}>
-				<div>
-					<label
-						htmlFor="etSQL_insertBatchSize"
-						id="etSQL_batchSizeLabel">
-						{i18n.insertBatchSize}
-					</label>
-				</div>
-				<div>
-					<input
-						type="text"
-						id={`${id}-insertBatchSize`}
-						value={data.insertBatchSize}
-						style={{ width: 40 }}
-						title={i18n.batchSizeDesc}
-						onChange={(e): void => onChange('insertBatchSize', e.target.value)}
-					/>
-				</div>
-			</div>
 		</>
 	);
 };
 
 
 /*
-	var _onChangeDatabaseType = function(e) {
-		_updateAvailableSettings(e.target.value);
-	};
 
 	var _onChangeStatementType = function(e) {
 		if (e.target.value === "insert" || e.target.value === "insertignore") {

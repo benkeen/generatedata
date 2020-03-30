@@ -1,6 +1,7 @@
 import { ExportTypeGenerationData } from '../../../../types/general';
 import { SQLSettings } from './SQL.ui';
 
+
 export const generate = (): any => {
 
 };
@@ -13,13 +14,15 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 	// $endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
 	// $prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
 
+	console.log(generationData);
+
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
 			content += `DROP TABLE ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
 		}
 
 		if (sqlSettings.createTable) {
-			content += `CREATE TABLE ${backquote}{sqlSettings.tableName}${backquote} (\n`;
+			content += `CREATE TABLE ${backquote}${sqlSettings.tableName}${backquote} (\n`;
 			if (sqlSettings.addPrimaryKey) {
 				content += `  ${backquote}id${backquote} mediumint(8) unsigned NOT NULL auto_increment,\n`;
 			}
@@ -112,6 +115,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 
 	return content;
 };
+
 
 
 /*
