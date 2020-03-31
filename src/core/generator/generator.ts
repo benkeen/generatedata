@@ -2,8 +2,9 @@
  * Our generator class. This does the work of passing off the work off to the selected plugins and piecing the
  * generated data for returning to the client.
  */
-import { ExportTypeGenerateType, ExportTypeGenerationData } from '../../../types/general';
+import { ExportTypeGenerateType, ExportTypeGenerationData, ExportTypePreviewData } from '../../../types/general';
 import { getStrings } from '../../utils/langUtils';
+import { DataTypeFolder } from '../../_plugins';
 
 // temporary of course
 // import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
@@ -57,13 +58,16 @@ export const generate = (data: ExportTypeGenerateType): string => {
 	return content;
 };
 
+// export const generateExportData = () => {
+// 	$firstRowNum  = $this->getCurrentBatchFirstRow();
+// 	$lastRowNum   = $this->getCurrentBatchLastRow();
+// }
 
-export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGenerationData => {
+
+export const generatePreviewData = (data: ExportTypeGenerateType): ExportTypePreviewData => {
 	const generationTemplate = data.template;
 	const i18n = getStrings();
 
-	// 	$firstRowNum  = $this->getCurrentBatchFirstRow();
-	// 	$lastRowNum   = $this->getCurrentBatchLastRow();
 	const firstRowNum = 1;
 	const lastRowNum = data.numResults;
 
@@ -71,10 +75,11 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 	const displayData: any = [];
 	const processOrders = Object.keys(generationTemplate);
 
-	const metadata: any[] = [];
 	let index = 0;
 	for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
-		if (!data.columnTitles[index]) {
+
+		// ignore any rows that don't have a label. That's used by all Export Types for col titles, var names, DB col names etc.
+		if (!data.columns[index].title) {
 			index++;
 			continue;
 		}
@@ -89,23 +94,14 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 			for (let i=0; i<generationTemplate[processOrder].length; i++) {
 				// @ts-ignore
 				const currCell = generationTemplate[processOrder][i];
-
-				console.log(currCell.colIndex);
-
 				currRowData[currCell.colIndex] = currCell.generateFunc({
 					rowNum,
 					i18n: i18n.dataTypes[currCell.dataType],
 					rowState: currCell.rowState,
 					existingRowData: currRowData
 				});
-				metadata.push({
-					dataType: currCell.dataType,
-					cellMetadata: currCell.cellMetadata
-				});
 			}
 		});
-
-		console.log('__________________');
 
 		if (currRowData.length) {
 			displayData.push(currRowData.map((i: any): string => i.display));
@@ -115,15 +111,7 @@ export const generateExportData = (data: ExportTypeGenerateType): ExportTypeGene
 		// 	ksort($currRowData, SORT_NUMERIC);
 	}
 
-	console.log('!!!', metadata);
-
-	return {
-		isFirstBatch: true,
-		isLastBatch: true,
-		columnTitles: data.columnTitles,
-		rows: displayData,
-		metadata
-	};
+	return displayData;
 };
 
 

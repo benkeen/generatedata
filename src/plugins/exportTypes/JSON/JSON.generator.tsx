@@ -33,7 +33,7 @@ export const generateSimple = (generationData: ExportTypeGenerationData, stripWh
 	// generating a nested data structure is slower than just a plain JSON structure (see the README
 	// for details on how the nested data structure works). So rather than slow everyone down, we pass that
 	// off to a separate function
-	const nested = isNested(generationData.columnTitles);
+	const nested = isNested(generationData.columns.map((i: any) => i.title));
 
 	if (nested) {
 		// TODO
@@ -63,8 +63,8 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 		content += `${comma}${newline}${tab}{`;
 		comma = '';
 
-		generationData.columnTitles.forEach((columnTitle: any, colIndex: number) => {
-			const propName: string = columnTitle.replace(/"/, '"');
+		generationData.columns.forEach(({ title, dataType }: any, colIndex: number) => {
+			const propName: string = title.replace(/"/, '"');
 
 			// encase all values in double quotes unless it's a number column, or it's a boolean column and it's a
 			// valid JS boolean
@@ -89,13 +89,14 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 
 export const generateComplex = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
 	let content = '';
+	const colTitles = generationData.columns.map(({ title }: any) => title);
 
 	if (generationData.isFirstBatch) {
 		if (stripWhitespace) {
-			const cols = `"${generationData.columnTitles.join('","')}"`;
+			const cols = `"${colTitles.join('","')}"`;
 			content += `{"cols":[${cols}],"data":[`;
 		} else {
-			const cols = `"${generationData.columnTitles.join('",\n\t\t"')}"`;
+			const cols = `"${colTitles.join('",\n\t\t"')}"`;
 			content += `{\n\t"cols": [\n\t\t${cols}\n\t],\n\t"data": [\n`;
 		}
 	}
@@ -103,7 +104,7 @@ export const generateComplex = (generationData: ExportTypeGenerationData, stripW
 	const numRows = generationData.rows.length;
 	generationData.rows.forEach((row: any, rowIndex: number) => {
 		const rowValsArr: any[] = [];
-		generationData.columnTitles.forEach((colTitle: string, colIndex: number) => {
+		colTitles.forEach((colTitle: string, colIndex: number) => {
 			let value = row[colIndex];
 			if (!isNumeric(value) && !isJavascriptBoolean(value)) {
 				value = `"${value}"`;

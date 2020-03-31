@@ -2,11 +2,12 @@ import React from 'react';
 import { createSelector } from 'reselect';
 import { processOrders, getDataTypeExports } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
-import { GDLocale, GenerationTemplate, Store } from '../../../types/general';
+import { ColumnData, GDLocale, GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { DataRow } from './generator.reducer';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import * as langUtils from '../../utils/langUtils';
+import { getUnique } from '../../utils/arrayUtils';
 
 export const getLocale = (state: Store): GDLocale => state.generator.locale;
 export const localeFileLoaded = (state: Store): boolean => state.generator.localeFileLoaded;
@@ -44,9 +45,14 @@ export const getNonEmptySortedRows = createSelector(
 	(rows) => rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
 );
 
-export const getColumnTitles = createSelector(
-	getSortedRowsArray,
-	(rows) => rows.filter((row: any) => row.dataType !== null && row.title !== '').map((row: any) => row.title)
+export const getColumns = createSelector(
+	getNonEmptySortedRows,
+	(rows): ColumnData[] => (
+		rows.map(({ dataType, title }: any) => ({
+			title,
+			dataType
+		}))
+	)
 );
 
 export const getRowDataTypes = createSelector(
@@ -89,16 +95,12 @@ type ProcessOrders = {
 
 export const getGenerationTemplate = createSelector(
 	getNonEmptySortedRows,
+	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are async loaded
 	(rows): GenerationTemplate => {
 		const templateByProcessOrder: ProcessOrders = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
-			console.log('--> ', processOrders);
-
 			const processOrder = processOrders[dataType as DataTypeFolder] as number;
-
-			// TODO another assumption here. We need to validate the whole component right-up front during the
-			// build step and throw a nice error saying what's missing
-			const { generate, getMetadata, rowStateReducer } = getDataTypeExports(dataType);
+			const { generate, rowStateReducer } = getDataTypeExports(dataType);
 
 			if (!templateByProcessOrder[processOrder]) {
 				templateByProcessOrder[processOrder] = [];
@@ -113,30 +115,49 @@ export const getGenerationTemplate = createSelector(
 				// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row
 				// state into something friendlier for the generation step
 				rowState: rowStateReducer ? rowStateReducer(data) : data,
-
-				// DT methods for the actual generation of this cell
-				generateFunc: generate,
-				colMetadata: getMetadata ? getMetadata() : null
+				generateFunc: generate
 			});
 		});
 
-		// TODO sort by process order (keys) here
-
+		// TODO sort by process order (keys) here. Still need to figure that out
 		return templateByProcessOrder;
 	}
 );
 
-export const getPreviewPanelData = createSelector(
-	getColumnTitles,
-	getPreviewData,
-	(columnTitles, rows) => ({
-		isFirstBatch: true,
-		isLastBatch: true,
-		columnTitles,
-		rows
-	})
+export const getUniqueSelectedDataTypes = createSelector(
+	getSortedRowsArray,
+	(rows) => getUnique(rows.map((i: any): DataTypeFolder => i.dataType)).filter((i => i !== null))
 );
 
+export const getSelectedColumnDataTypeMetadata = createSelector(
+	getUniqueSelectedDataTypes,
+	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are async loaded
+	(dataTypes) => {
+		const dataTypeMetadata: any = {};
+		dataTypes.forEach((dataType: DataTypeFolder) => {
+			const { getMetadata } = getDataTypeExports(dataType);
+			dataTypeMetadata[dataType] = getMetadata ? getMetadata() : null;
+		});
+		return dataTypeMetadata;
+	}
+);
+
+/**
+ * This returns everything that the Export Type need to render the content of their preview panel: column info,
+ * generated row data, data type metadata,
+ */
+export const getPreviewPanelData = createSelector(
+	getColumns,
+	getPreviewData,
+	getSelectedColumnDataTypeMetadata,
+	(columns, rows, dataTypeMetadata) => ({
+		isFirstBatch: true,
+		isLastBatch: true,
+		columns,
+		rows,
+		dataTypeMetadata
+	})
+);
 
 /**
  * Returns one of the following:

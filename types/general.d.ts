@@ -1,4 +1,5 @@
 import { GeneratorState } from '../src/core/generator/generator.reducer';
+import { DataTypeFolder } from '../src/_plugins';
 
 declare global {
     interface Window {
@@ -36,12 +37,12 @@ export type GenerationTemplateRow = {
 }
 
 export type GenerationTemplate = {
-    [n: number]: GenerationTemplateRow[];
+    [num: number]: GenerationTemplateRow[];
 };
 
 export type ExportTypeGenerateType = {
     numResults: number;
-    columnTitles: string[];
+    columns: any; // TODO string[];
     template: GenerationTemplate;
 
     // "rowNum"            => $rowNum,
@@ -49,10 +50,20 @@ export type ExportTypeGenerateType = {
     // "existingRowData"   => $currRowData
 };
 
+export type ColumnData = {
+	title: string;
+	dataType: DataTypeFolder;
+};
+
 export type ExportTypeGenerationData = {
-    columnTitles: string[];
-    rows: any[]; // TODO see how this settles. Right now it's just an array of strings too: i.e. the generated values
+	columns: ColumnData[];
+	rows: any[]; // TODO see how this settles. Right now it's just an array of strings too: i.e. the generated values
     isFirstBatch: boolean;
     isLastBatch: boolean;
-    metadata: any;
-}
+	dataTypeMetadata: any;
+};
+
+export type ExportTypePreviewData = {
+	columns: any; //
+	rows: any[]; // TODO see how this settles. Right now it's just an array of strings too: i.e. the generated values
+};

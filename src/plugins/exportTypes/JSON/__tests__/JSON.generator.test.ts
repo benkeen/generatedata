@@ -27,14 +27,17 @@ describe('isNested', () => {
 
 describe('generateSimple', () => {
     const data: ExportTypeGenerationData = {
-        columnTitles: ['One', 'Two'],
+        columns: [
+        	{ title: 'One', dataType: 'Names' },
+			{ title: 'Two', dataType: 'Names' }
+		],
         rows: [
             ['Row #1, Cell #1', 'Row #1, Cell #2'],
             ['Row #2, Cell #1', 'Row #2, Cell #2']
         ],
         isFirstBatch: true,
         isLastBatch: true,
-		metadata: {}
+		dataTypeMetadata: {}
     };
 
     // my IDE likes to convert tabs to spaces & I'm not going to argue with it. This'll work across all developers
@@ -62,14 +65,17 @@ describe('generateSimple', () => {
 
     it('should escape double quotes within property names', () => {
         const doubleQuoteData: ExportTypeGenerationData = {
-            columnTitles: ['Name', '"Phone" Number'],
+            columns: [
+            	{ title: 'Name', dataType: 'Names' },
+				{ title: '"Phone" Number', dataType: 'Names' }
+			],
             rows: [
                 ['Tom', '(604) 123-1234'],
                 ['Susan', '(604) 733-1224'],
             ],
             isFirstBatch: true,
             isLastBatch: true,
-			metadata: {}
+			dataTypeMetadata: {}
         };
 
         expect(generateSimple(doubleQuoteData, false)).toEqual(
@@ -88,14 +94,17 @@ describe('generateSimple', () => {
 
     it('should escape double quotes within values', () => {
         const doubleQuoteValueData: ExportTypeGenerationData = {
-            columnTitles: ['Name', 'Phone'],
+            columns: [
+            	{ title: 'Name', dataType: 'Names' },
+				{ title: 'Phone', dataType: 'Names' }
+			],
             rows: [
                 ['Tom', '"Whoah" he said...'],
                 ['Susan', 'Like "TOTALLY!"'],
             ],
             isFirstBatch: true,
             isLastBatch: true,
-			metadata: {}
+			dataTypeMetadata: {}
         };
 
         expect(generateSimple(doubleQuoteValueData, false)).toEqual(
@@ -114,13 +123,20 @@ describe('generateSimple', () => {
 
     it('should not put double quotes around numbers', () => {
         const numData: ExportTypeGenerationData = {
-            columnTitles: ['Num1', 'Num2', 'Num3', 'Num4', 'Num5', 'Num6'],
+            columns: [
+				{ title: 'Num1', dataType: 'Names' },
+				{ title: 'Num2', dataType: 'Names' },
+				{ title: 'Num3', dataType: 'Names' },
+				{ title: 'Num4', dataType: 'Names' },
+				{ title: 'Num5', dataType: 'Names' },
+				{ title: 'Num6', dataType: 'Names' }
+			],
             rows: [
                 ['0', 0, '1', 1, '1.23', 1.23]
             ],
             isFirstBatch: true,
             isLastBatch: true,
-			metadata: {}
+			dataTypeMetadata: {}
         };
 
         expect(generateSimple(numData, true)).toEqual(
@@ -130,13 +146,18 @@ describe('generateSimple', () => {
 
     it('should not put double quotes around boolean values', () => {
         const numData: ExportTypeGenerationData = {
-            columnTitles: ['a', 'b', 'c', 'd'],
+            columns: [
+            	{ title: 'a', dataType: 'Names' },
+				{ title: 'b', dataType: 'Names' },
+				{ title: 'c', dataType: 'Names' },
+				{ title: 'd', dataType: 'Names' }
+			],
             rows: [
                 ['false', false, 'true', true]
             ],
             isFirstBatch: true,
             isLastBatch: true,
-			metadata: {}
+			dataTypeMetadata: {}
         };
 
         expect(generateSimple(numData, true)).toEqual(

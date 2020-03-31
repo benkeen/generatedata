@@ -1,6 +1,6 @@
 import { GDAction, GDLocale } from '../../../types/general';
 import * as selectors from './generator.selectors';
-import { generateExportData } from './generator';
+import { generatePreviewData } from './generator';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import { loadDataTypeBundle } from '../../utils/dataTypeUtils';
@@ -95,9 +95,9 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		const template = selectors.getGenerationTemplate(state);
 		const sortedRows = selectors.getSortedRows(state);
 
-		const data = generateExportData({
+		const data = generatePreviewData({
 			numResults: selectors.getNumPreviewRows(state),
-			columnTitles: selectors.getColumnTitles(state),
+			columns: selectors.getColumns(state),
 			template
 		});
 

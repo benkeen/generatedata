@@ -11,10 +11,10 @@ export const generate = (): any => {
 export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings ) => {
 	let content = '';
 	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
+	const colTitles = generationData.columns.map(({ title }) => title);
 	// $endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
 	// $prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
 
-	console.log(generationData);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -51,19 +51,19 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 
 	let colNamesStr = '';
 	if (sqlSettings.encloseInBackquotes) {
-		colNamesStr = `\`${generationData.columnTitles.join('`,`')}\``;
+		colNamesStr = `\`${colTitles.join('`,`')}\``;
 	} else {
-		colNamesStr = generationData.columnTitles.join(',');
+		colNamesStr = colTitles.join(',');
 	}
 
 	const numRows = generationData.rows.length;
-	const numCols = generationData.columnTitles.length;
+	const numCols = generationData.columns.length;
 
 	generationData.rows.forEach((row: any, rowIndex: number) => {
 		if (sqlSettings.statementType === 'insert') {
 			const displayVals = [];
 
-			generationData.columnTitles.forEach((columnTitle: string) => {
+			colTitles.forEach((columnTitle: string) => {
 				// if ($this->numericFields[$j]) {
 				// 	$displayVals[] = $this->data["rowData"][$i][$j];
 				// } else {
