@@ -9,16 +9,13 @@ export const generate = (): any => {
 
 // Generates a MySQL table with all the data.
 export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings ) => {
-	let content = '';
 	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
-	// $endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
-	// $prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
-
+	let content = '';
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
-			content += `DROP TABLE ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
+			content += `DROP TABLE IF EXISTS ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
 		}
 
 		if (sqlSettings.createTable) {
@@ -28,16 +25,18 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 			}
 
 			const cols: any[] = [];
-			// foreach ($this->template as $dataType) {
-			// 	// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
-			// 	$columnTypeInfo = "MEDIUMTEXT";
-			// 	if (isset($dataType["columnMetadata"]["SQLField_MySQL"])) {
-			// 		$columnTypeInfo = $dataType["columnMetadata"]["SQLField_MySQL"];
-			// 	} else if (isset($dataType["columnMetadata"]["SQLField"])) {
-			// 		$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
-			// 	}
-			// 	$cols[] = "{$prefix}{$this->backquote}{$dataType["title"]}{$this->backquote} $columnTypeInfo";
-			// }
+			generationData.columns.forEach(({ title, dataType }) => {
+				let columnTypeInfo = 'MEDIUMTEXT';
+				const metadata = generationData.dataTypeMetadata[dataType];
+				if (metadata && metadata.sql) {
+					if (metadata.sql.field_MySQL) {
+						columnTypeInfo = metadata.sql.field_MySQL;
+					} else if (metadata.sql.field) {
+						columnTypeInfo = metadata.sql.field;
+					}
+				}
+				cols.push(`  ${backquote}${title}${backquote} ${columnTypeInfo}`);
+			});
 
 			content += cols.join(',\n');
 
@@ -59,24 +58,29 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 	const numRows = generationData.rows.length;
 	const numCols = generationData.columns.length;
 
+	let rowDataStr: string[] = [];
 	generationData.rows.forEach((row: any, rowIndex: number) => {
 		if (sqlSettings.statementType === 'insert') {
-			const displayVals = [];
+			const displayVals: any = [];
 
-			colTitles.forEach((columnTitle: string) => {
+			colTitles.forEach((columnTitle: string, colIndex: number) => {
 				// if ($this->numericFields[$j]) {
 				// 	$displayVals[] = $this->data["rowData"][$i][$j];
 				// } else {
 				// 	$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
 				// }
+				displayVals.push(`"${row[colIndex]}"`);
 			});
 
-			// $rowDataStr[] = implode(",", $displayVals);
-			// if (count($rowDataStr) == $this->insertBatchSize) {
-			// 	$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-			// 	$rowDataStr = array();
-			// }
+			rowDataStr.push(displayVals.join(','));
+
+			// TODO the rows generated may not fit into this batch. Handle the remainders. Also put the right spacing fo
+			if (rowDataStr.length === 1) { // TODO sqlSettings.insertBatchSize
+				content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
+				rowDataStr = [];
+			}
 		}
+
 		// } elseif ($this->sqlStatementType == "insertignore") {
 		// 	$displayVals = array();
 		// 	for ($j=0; $j<$numCols; $j++) {
@@ -88,7 +92,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 		// 	}
 		// 	$rowDataStr[] = implode(",", $displayVals);
 		// 	if (count($rowDataStr) == $this->insertBatchSize) {
-		// 		$content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+		// 		$content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");\n";
 		// 		$rowDataStr = array();
 		// 	}
 		// } else {
@@ -105,12 +109,12 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 		//
 		// 	$pairsStr = implode(", ", $pairs);
 		// 	$rowNum = $this->currentBatchFirstRow + $i;
-		// 	$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
+		// 	$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;\n";
 		// }
 	});
 
 	// if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-	// 	content += "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+	// 	content += "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");\n";
 	// }
 
 	return content;
