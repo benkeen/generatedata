@@ -116,7 +116,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 };
 
 
-
 /*
 	protected $isEnabled = true;
 	protected $exportTypeName = "SQL";
@@ -143,7 +142,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 	private $sqlStatementType;
 	private $primaryKey;
 	private $insertBatchSize;
-
 
 	function generate($generator) {
 		$this->genEnvironment = $generator->genEnvironment;
@@ -204,14 +202,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 		$time = date("M-j-Y");
 		return "data{$time}.sql";
 	}
-
-	function isBatchSizeValid ($size) {
-		if (empty($size) || !is_numeric($size) || $size > 300) {
-			return false;
-		}
-		return true;
-	}
-
 
 	 * Generates a MySQL table with all the data.
 	 * @return string
@@ -573,59 +563,5 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 		return $content;
 	}
 
-
-	private function wrapGeneratedContent($generatedContent) {
-		$html =<<< END
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<style type="text/css">
-	body { margin: 10px; font-family: "lucida grande", arial; font-size: 9pt; }
-	</style>
-</head>
-<body>
-$generatedContent
-</body>
-</html>
-END;
-		return $html;
-	}
-
-
-	private function extractSettings() {
-		if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
-			$settings = $this->userSettings->export->settings;
-
-			// these two are enforced as required by the schema file
-			$this->databaseType     = $settings->databaseType;
-			$this->tableName        = $settings->tableName;
-
-			// optional values. Note the default values for each
-			$this->includeDropTable = property_exists($settings, "dropTable") ? $settings->dropTable : false;
-			$this->createTable      = property_exists($settings, "createTable") ? $settings->createTable : true;
-			$backquote = property_exists($settings, "encloseWithBackquotes") ? $settings->encloseWithBackquotes : false;
-			$this->backquote = ($backquote) ? "`" : "";
-			$this->sqlStatementType = property_exists($settings, "statementType") ? $settings->statementType : "insert";
-
-			$addPrimaryKey = property_exists($settings, "addPrimaryKey") ? $settings->addPrimaryKey : null;
-			if ($addPrimaryKey == null) {
-				$this->primaryKey = false;
-			} else {
-				$this->primaryKey = ($addPrimaryKey) ? "default" : "none";
-			}
-
-			$this->insertBatchSize = property_exists($settings, "insertBatchSize") ? $settings->insertBatchSize : 1;
-		} else {
-			$this->includeDropTable = isset($this->userSettings["etSQL_dropTable"]);
-			$this->createTable = isset($this->userSettings["etSQL_createTable"]);
-			$this->databaseType = $this->userSettings["etSQL_databaseType"];
-			$this->tableName = $this->userSettings["etSQL_tableName"];
-			$this->backquote = isset($this->userSettings["etSQL_encloseWithBackquotes"]) ? "`" : "";
-			$this->sqlStatementType = isset($this->userSettings["etSQL_statementType"]) ? $this->userSettings["etSQL_statementType"] : "insert";
-			$this->primaryKey = (isset($this->userSettings["etSQL_primaryKey"])) ? $this->userSettings["etSQL_primaryKey"] : "default";
-			$this->insertBatchSize = ($this->isBatchSizeValid($this->userSettings["etSQL_insertBatchSize"])) ? $this->userSettings["etSQL_insertBatchSize"] : 1;
-		}
-	}
 }
 */
