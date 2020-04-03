@@ -47,7 +47,7 @@ const PreviewPanel = ({
 
 	const themeName = getThemeName(theme);
 	return (
-		<div className={`${styles.previewPanel} ${themeName}`}>
+		<div className={`${styles.previewPanel} ${themeName}`} style={{ zIndex: 10000 }}>
 			<div className={styles.controls}>
 				<span onClick={toggleExportSettings}>
 					<Tooltip title="Settings" placement="bottom">

@@ -15,6 +15,8 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { incrementStart, incrementValue, incrementPlaceholder } = data.rowState;
 
 	let value = ((rowNum - 1) * incrementValue) + incrementStart;
+	console.log('generating...');
+
 	if (incrementPlaceholder) {
 		value = value.replace(/\${INCR}/g, value);
 	}

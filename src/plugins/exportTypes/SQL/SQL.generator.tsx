@@ -13,19 +13,15 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	// console.log(generationData.dataTypeMetadata);
-
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
 			content += `DROP TABLE IF EXISTS ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
 		}
-
 		if (sqlSettings.createTable) {
 			content += `CREATE TABLE ${backquote}${sqlSettings.tableName}${backquote} (\n`;
 			if (sqlSettings.addPrimaryKey) {
 				content += `  ${backquote}id${backquote} mediumint(8) unsigned NOT NULL auto_increment,\n`;
 			}
-
 			const cols: any[] = [];
 			generationData.columns.forEach(({ title, dataType }) => {
 				let columnTypeInfo = 'MEDIUMTEXT';
@@ -71,7 +67,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 
 			rowDataStr.push(displayVals.join(','));
 
-			if (rowDataStr.length === 5) { // TODO sqlSettings.insertBatchSize
+			if (rowDataStr.length === sqlSettings.insertBatchSize) {
 				content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
 				rowDataStr = [];
 			}
@@ -87,7 +83,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 			});
 
 			rowDataStr.push(displayVals.join(','));
-			if (rowDataStr.length === 5) { // TODO sqlSettings.insertBatchSize
+			if (rowDataStr.length === sqlSettings.insertBatchSize) {
 				content += `INSERT IGNORE INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
 				rowDataStr = [];
 			}
@@ -110,9 +106,9 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 
 	if (rowDataStr.length) {
 		if (sqlSettings.statementType === 'insert') {
-			// content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr}) VALUES (" . implode('),(', $rowDataStr) . ");\n`;
+			content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
 		} else if (sqlSettings.statementType === 'insertIgnore') {
-			// content += `INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} (${colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");\n`;
+			content += `INSERT IGNORE INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
 		}
 	}
 

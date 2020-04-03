@@ -154,12 +154,12 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 									{i18n.batchSize}
 								</label>
 								<input
-									type="text"
+									type="number"
 									id={`${id}-insertBatchSize`}
 									value={data.insertBatchSize}
 									style={{ width: 40 }}
 									title={i18n.batchSizeDesc}
-									onChange={(e): void => onChange('insertBatchSize', e.target.value)}
+									onChange={(e): void => onChange('insertBatchSize', parseInt(e.target.value, 10))}
 								/>
 							</div>
 						</div>

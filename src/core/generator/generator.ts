@@ -64,7 +64,7 @@ export const generate = (data: ExportTypeGenerateType): string => {
 // }
 
 
-export const generatePreviewData = (data: ExportTypeGenerateType): ExportTypePreviewData => {
+export const generatePreviewData = (data: ExportTypeGenerateType): any => {
 	const generationTemplate = data.template;
 	const i18n = getStrings();
 
