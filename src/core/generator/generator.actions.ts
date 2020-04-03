@@ -100,9 +100,6 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 			columns: selectors.getColumns(state),
 			template
 		});
-
-		console.log(data);
-
 		const previewData: any = {};
 		sortedRows.forEach((id: string, index: number) => {
 			if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {

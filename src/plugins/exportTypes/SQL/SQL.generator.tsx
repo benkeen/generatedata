@@ -8,10 +8,12 @@ export const generate = (): any => {
 
 
 // Generates a MySQL table with all the data.
-export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings ) => {
+export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
 	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
+
+	// console.log(generationData.dataTypeMetadata);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -39,7 +41,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 			});
 
 			content += cols.join(',\n');
-
 			if (sqlSettings.addPrimaryKey) {
 				content += `,\n  PRIMARY KEY (${backquote}id${backquote})\n) AUTO_INCREMENT=1;\n\n`;
 			} else {
@@ -55,14 +56,10 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 		colNamesStr = colTitles.join(',');
 	}
 
-	const numRows = generationData.rows.length;
-	const numCols = generationData.columns.length;
-
 	let rowDataStr: string[] = [];
 	generationData.rows.forEach((row: any, rowIndex: number) => {
 		if (sqlSettings.statementType === 'insert') {
 			const displayVals: any = [];
-
 			colTitles.forEach((columnTitle: string, colIndex: number) => {
 				// if ($this->numericFields[$j]) {
 				// 	$displayVals[] = $this->data["rowData"][$i][$j];
@@ -74,48 +71,50 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 
 			rowDataStr.push(displayVals.join(','));
 
-			// TODO the rows generated may not fit into this batch. Handle the remainders. Also put the right spacing fo
-			if (rowDataStr.length === 1) { // TODO sqlSettings.insertBatchSize
+			if (rowDataStr.length === 5) { // TODO sqlSettings.insertBatchSize
 				content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
 				rowDataStr = [];
 			}
-		}
+		} else if (sqlSettings.statementType === 'insertIgnore') {
+			const displayVals: any = [];
+			colTitles.forEach((columnTitle: string, colIndex: number) => {
+				// if ($this->numericFields[$j]) {
+				// 	$displayVals[] = $this->data["rowData"][$i][$j];
+				// } else {
+				// 	$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
+				// }
+				displayVals.push(`"${row[colIndex]}"`);
+			});
 
-		// } elseif ($this->sqlStatementType == "insertignore") {
-		// 	$displayVals = array();
-		// 	for ($j=0; $j<$numCols; $j++) {
-		// 		if ($this->numericFields[$j]) {
-		// 			$displayVals[] = $this->data["rowData"][$i][$j];
-		// 		} else {
-		// 			$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
-		// 		}
-		// 	}
-		// 	$rowDataStr[] = implode(",", $displayVals);
-		// 	if (count($rowDataStr) == $this->insertBatchSize) {
-		// 		$content .= "INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");\n";
-		// 		$rowDataStr = array();
-		// 	}
-		// } else {
-		// 	$pairs = array();
-		// 	for ($j=0; $j<$numCols; $j++) {
-		// 		$colName  = $this->data["colData"][$j];
-		// 		if ($this->numericFields[$j]) {
-		// 			$colValue = $this->data["rowData"][$i][$j];
-		// 		} else {
-		// 			$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
-		// 		}
-		// 		$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
-		// 	}
-		//
-		// 	$pairsStr = implode(", ", $pairs);
-		// 	$rowNum = $this->currentBatchFirstRow + $i;
-		// 	$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;\n";
-		// }
+			rowDataStr.push(displayVals.join(','));
+			if (rowDataStr.length === 5) { // TODO sqlSettings.insertBatchSize
+				content += `INSERT IGNORE INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
+				rowDataStr = [];
+			}
+		} else {
+			const pairs: string[] = [];
+			colTitles.forEach((title: string, colIndex: number) => {
+				// if ($this->numericFields[$j]) {
+				// 		$colValue = $this->data["rowData"][$i][$j];
+				// } else {
+				// 		$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
+				// }
+				const colValue = `"${row[colIndex]}"`;
+				pairs.push(`${backquote}${title}${backquote} = ${colValue}`);
+			});
+
+			const pairsStr = pairs.join(', ');
+			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${rowIndex+1};\n`;
+		}
 	});
 
-	// if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-	// 	content += "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");\n";
-	// }
+	if (rowDataStr.length) {
+		if (sqlSettings.statementType === 'insert') {
+			// content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr}) VALUES (" . implode('),(', $rowDataStr) . ");\n`;
+		} else if (sqlSettings.statementType === 'insertIgnore') {
+			// content += `INSERT IGNORE INTO {$this->backquote}{$this->tableName}{$this->backquote} (${colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");\n`;
+		}
+	}
 
 	return content;
 };
