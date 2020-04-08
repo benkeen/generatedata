@@ -23,7 +23,8 @@ const selectStyles = {
 	menuPortal: (base: any): any => ({ ...base, zIndex: 1400 }) // drawer is 1300
 };
 
-const Dropdown = ({ value, isGrouped, options, ...props }: any): JSX.Element => {
+
+const Dropdown = ({ value, isGrouped, options, placeholder, ...props }: any): JSX.Element => {
 	// react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.
 	// instead, our component use the `value` prop, which is converted here
 	let selectedValue = '';
@@ -39,12 +40,16 @@ const Dropdown = ({ value, isGrouped, options, ...props }: any): JSX.Element => 
 	} else {
 		selectedValue = options.find((row: any): any => row.value === value);
 	}
+
+	const placeholderStr = placeholder ? placeholder : 'Select...';
+
 	return (
 		<Select
 			{...props}
 			options={options}
 			value={selectedValue}
 			styles={selectStyles}
+			placeholder={placeholderStr}
 			menuPlacement="auto"
 			menuPortalTarget={document.body}
 		/>

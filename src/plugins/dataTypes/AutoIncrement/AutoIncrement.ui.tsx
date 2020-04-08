@@ -59,15 +59,15 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 
 	return (
 		<>
-			{i18n.start_at_c}
+			{i18n.startAt}
 			<input type="text" style={{ width: 40 }} value={data.incrementStart}
 				onChange={(e): void => onChange('incrementStart', parseFloat(e.target.value))} />
-			{i18n.increment_c}
+			{i18n.increment}
 			<input type="text" style={{ width: 40 }} value={data.incrementValue}
 				onChange={(e): void => onChange('incrementValue', parseFloat(e.target.value))} />
 
 			<br />
-			{i18n.placeholder_str}
+			{i18n.placeholderStr}
 			<input type="text" style={{ width: 100 }} value={data.incrementPlaceholder}
 				onChange={(e): void => onChange('incrementPlaceholder', e.target.value)} />
 		</>

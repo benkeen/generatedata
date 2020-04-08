@@ -65,6 +65,7 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 
 	return (
 		<Dropdown
+			placeholder="Date format"
 			value={data.example}
 			options={getOptions()}
 			onChange={onChange}

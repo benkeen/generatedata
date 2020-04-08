@@ -105,7 +105,6 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 			if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
 				return;
 			}
-			console.log(data);
 			previewData[id] = data.map((row: any): any => row[index]);
 		});
 

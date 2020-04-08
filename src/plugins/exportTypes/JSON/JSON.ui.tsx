@@ -3,12 +3,10 @@ import { ETSettings } from '../../../../types/exportTypes';
 
 export type DataStructureFormat = 'simple' | 'complex';
 export type JSONSettings = {
-	stripWhitespace: boolean;
 	dataStructureFormat: DataStructureFormat;
 };
 
 export const initialState: JSONSettings = {
-	stripWhitespace: false,
 	dataStructureFormat: 'simple'
 };
 
@@ -22,16 +20,6 @@ export const Settings: React.ReactNode = ({ data, i18n, onUpdate, id }: ETSettin
 
 	return (
 		<>
-			<div>
-				<input
-					type="checkbox"
-					id={`${id}-stripWhitespace`}
-					checked={data.stripWhitespace}
-					onChange={(): void => onChange('stripWhitespace', !data.stripWhitespace)}
-				/>
-				<label htmlFor={`${id}-stripWhitespace`} >{i18n.stripWhitespace}</label><br />
-			</div>
-
 			<div>
 				<span style={{ marginRight: 10 }}>{i18n.dataStructureFormat}</span>
 				<input type="radio" name="dataStructureFormat" value="simple" id={`${id}-simple`}

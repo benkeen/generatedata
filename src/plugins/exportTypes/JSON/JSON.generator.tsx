@@ -1,28 +1,26 @@
-import { ExportTypeGenerationData, GenEnvironment } from '../../../../types/general';
+import { ExportTypeGenerationData, GenerationSettings } from '../../../../types/general';
 import { JSONSettings } from './JSON.ui';
 import { isNumeric } from '../../../utils/generalUtils';
 
 
 // VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)
 
-// TODO will also need to pass in a whole thwack of other stuff previous assigned to $generator instance.
-// maybe change first param to $generationContext & include genEnvironment & everything else
-export const generate = (genEnvironment: GenEnvironment, jsonSettings: JSONSettings, generator: any): any => {
+export const generate = (generationSettings: GenerationSettings, jsonSettings: JSONSettings): any => {
 	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 	// $this->determineNumericFields($template);
 	// $this->determineBooleanFields($template);
 
-	const generatedData = generator.generateExportData(generator.data);
-	let content = '';
-	if (jsonSettings.dataStructureFormat === 'simple') {
-		content = generateSimple(generatedData, jsonSettings.stripWhitespace);
-	} else {
-		content = generateComplex(generatedData, jsonSettings.stripWhitespace);
-	}
+	// const generatedData = generator.generateExportData(generationSettings.generationData);
+	// let content = '';
+	// if (jsonSettings.dataStructureFormat === 'simple') {
+	// 	content = generateSimple(generatedData, generationSettings.stripWhitespace);
+	// } else {
+	// 	content = generateComplex(generatedData, generationSettings.stripWhitespace);
+	// }
 
 	return {
 		success: true,
-		content: content
+		content: '' // content
 	};
 };
 

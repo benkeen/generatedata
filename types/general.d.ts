@@ -16,6 +16,11 @@ export type GDLocale = 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
 
 export type GenEnvironment = 'API' | 'UI';
 
+export type GenerationSettings = {
+	env: GenEnvironment;
+	stripWhitespace: boolean;
+};
+
 export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
 
 export type GDAction = {

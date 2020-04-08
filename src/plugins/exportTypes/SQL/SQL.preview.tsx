@@ -11,7 +11,6 @@ require('codemirror/mode/sql/sql');
 const Preview = ({ data, theme, numPreviewRows, exportTypeSettings, showRowNumbers, enableLineWrapping }: ETPreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
 
-	// rethink performance here
 	React.useEffect(() => {
 		const content = generateMySQL(data, exportTypeSettings);
 		setCode(content);

@@ -10,6 +10,7 @@ require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 
+
 const Preview = ({ data, theme, exportTypeSettings, showRowNumbers, enableLineWrapping }: ETPreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
 
@@ -18,8 +19,8 @@ const Preview = ({ data, theme, exportTypeSettings, showRowNumbers, enableLineWr
 	// rethink performance here
 	React.useEffect(() => {
 		const content = exportTypeSettings.dataStructureFormat === 'simple'
-			? generateSimple(data, exportTypeSettings.stripWhitespace)
-			: generateComplex(data, exportTypeSettings.stripWhitespace);
+			? generateSimple(data, false)
+			: generateComplex(data, false);
 		setCode(content);
 	}, [data, setCode, exportTypeSettings]);
 
