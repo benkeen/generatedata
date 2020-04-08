@@ -13,6 +13,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		ExportTypePreview: selectors.getExportTypePreviewComponent(state),
 		i18n: selectors.getCoreI18n(state),
 
+		exportSettingsVisible: selectors.shouldShowExportSettings(state),
 		numPreviewRows: selectors.getNumPreviewRows(state),
 		builderLayout: selectors.getBuilderLayout(state),
 		previewTextSize: selectors.getPreviewTextSize(state),

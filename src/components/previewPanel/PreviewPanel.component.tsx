@@ -7,6 +7,7 @@ import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { BuilderLayout } from '../builder/Builder.component';
+import { Wrapper } from './PreviewPanelWrapper.component';
 import * as styles from './PreviewPanel.scss';
 
 export type PreviewPanelProps = {
@@ -17,6 +18,7 @@ export type PreviewPanelProps = {
 	refreshPreview: () => void;
 	toggleExportSettings: () => void;
 	exportTypeSettings: any; // TODO
+	exportSettingsVisible: boolean;
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
 	data: any;
@@ -29,11 +31,9 @@ const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperC
 
 const PreviewPanel = ({
 	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
-	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings
+	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible
 }: PreviewPanelProps): React.ReactNode => {
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
-
-	console.log(dimensions);
 
 	const getNoResults = (): JSX.Element | null => {
 		if (data.rows.length > 0) {
@@ -50,14 +50,37 @@ const PreviewPanel = ({
 		);
 	};
 
+	const panelDimensions = {
+		...dimensions,
+		right: 0
+	};
+
+	if (exportSettingsVisible) {
+		delete panelDimensions.height;
+		delete panelDimensions.width;
+		panelDimensions.top = 0;
+		panelDimensions.left = 400;
+		panelDimensions.bottom = 0;
+	} else {
+		delete panelDimensions.width;
+		delete panelDimensions.height;
+	}
+
+	console.log(panelDimensions);
+
 	const themeName = getThemeName(theme);
 	return (
-		<Measure
-			bounds
-			onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
-		>
-			{({ measureRef }): any => (
-				<div className={`${styles.previewPanel} ${themeName}`} ref={measureRef}>
+		<>
+			<Measure bounds onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}>
+				{({ measureRef }): any => <div ref={measureRef} style={{ height: '100%' }} />}
+			</Measure>
+			<Wrapper>
+				<div
+					className={`${styles.previewPanel} ${themeName}`}
+					style={{
+						position: 'absolute',
+						...panelDimensions
+					}}>
 					<div className={styles.controls}>
 						<span onClick={toggleExportSettings}>
 							<Tooltip title="Settings" placement="bottom">
@@ -99,8 +122,8 @@ const PreviewPanel = ({
 						/>
 					</div>
 				</div>
-			)}
-		</Measure>
+			</Wrapper>
+		</>
 	);
 };
 
