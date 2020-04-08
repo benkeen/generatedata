@@ -16,6 +16,7 @@ declare namespace GridScssModule {
     optionsCol: string;
     orderCol: string;
     scrollableGridRows: string;
+    smallScreenMode: string;
     titleCol: string;
   }
 }

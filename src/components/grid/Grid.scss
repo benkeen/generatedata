@@ -1,125 +1,144 @@
 .gridWrapper {
-  width: 100%;
-  padding: 0 10px;
-  height: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
+	width: 100%;
+	padding: 0 10px;
+	height: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
 }
 
 .gridHeaderWrapper {
-  max-width: 1024px;
-  margin: 10px auto 0;
+	max-width: 1024px;
+	margin: 10px auto 0;
 }
 
 div.gridHeader {
-  width: 100%;
-  font-weight: bold;
-  color: #666666;
-  min-height: 26px;
-  font-size: 13px;
-  border-bottom: 1px solid black;
-  border-radius: 0;
+	width: 100%;
+	font-weight: bold;
+	color: #666666;
+	min-height: 26px;
+	font-size: 13px;
+	border-bottom: 1px solid black;
+	border-radius: 0;
 
-  .orderCol {
-	  font-style: italic;
-	  color: #cccccc;
-	  padding: 0 0 0 17px;
-  }
+	.orderCol {
+		font-style: italic;
+		color: #cccccc;
+		padding: 0 0 0 17px;
+		margin-top: 2px;
+	}
+}
+
+.smallScreenMode {
+	display: none;
+	font-size: 10px;
+	float: right;
+	margin: 2px -64px;
+	cursor: pointer;
 }
 
 .scrollableGridRows {
-  width: 100%;
-  flex: 1;
-  overflow: scroll;
-  position: relative;
-  padding-top: 4px;
+	width: 100%;
+	flex: 1;
+	overflow: scroll;
+	position: relative;
+	padding-top: 4px;
 }
 
 .gridRowsWrapper {
-  max-width: 1024px;
-  margin: 0 auto;
+	max-width: 1024px;
+	margin: 0 auto;
 }
 
 .grid {
-  margin-bottom: 12px;
+	margin-bottom: 12px;
 }
 
 .gridRow {
-  display: flex;
-  flex-direction: row;
-  min-height: 35px;
-  align-items: flex-start;
-  border-radius: 4px;
+	display: flex;
+	flex-direction: row;
+	min-height: 35px;
+	align-items: flex-start;
+	border-radius: 4px;
 
-  &>div {
-    margin-right: 4px;
-    padding-top: 2px;
-  }
+	& > div {
+		margin-right: 4px;
+		padding-top: 2px;
+	}
 }
 
 div.orderCol {
-  flex: 0 0 40px;
-  display: flex;
-  margin-top: 6px;
-  padding: 4px 0 2px 2px;
-  color: #999999;
-  svg {
-    color: #cccccc;
-  }
+	flex: 0 0 40px;
+	display: flex;
+	margin-top: 6px;
+	padding: 4px 0 2px 2px;
+	color: #999999;
+
+	svg {
+		color: #cccccc;
+	}
 }
+
 .titleCol {
-  flex: 2; // 0 170px;
-  input {
-    width: 100%;
-  }
+	flex: 2; // 0 170px;
+	input {
+		width: 100%;
+	}
 }
+
 .dataTypeCol {
-  flex: 2; // 0 200px;
+	flex: 2; // 0 200px;
 }
+
 .examplesCol {
-  flex: 2; // 0 80px;
+	flex: 2; // 0 80px;
 }
+
 .optionsCol {
-  flex: 3;
+	flex: 3;
 }
 
 div.deleteCol, div.helpCol {
-  flex: 0 0 30px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  padding-top: 7px;
+	flex: 0 0 30px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	padding-top: 7px;
 
-  svg {
-    fill: #333333;
-  }
+	svg {
+		fill: #333333;
+	}
 
-  &:hover {
-    svg {
-      fill: #000000;
-    }
-  }
+	&:hover {
+		svg {
+			fill: #000000;
+		}
+	}
 }
 
 .addRows {
-  margin-bottom: 12px;
-  span, input {
-    margin-right: 6px;
-  }
-  input {
-    width: 42px;
-  }
+	margin-bottom: 12px;
+
+	span, input {
+		margin-right: 6px;
+	}
+
+	input {
+		width: 42px;
+	}
 }
 
 .emptyCol {
-  color: #999999;
-  padding: 7px 2px;
+	color: #999999;
+	padding: 7px 2px;
 }
 
 .gridSmall {
-  .examplesCol, .optionsCol {
-    display: none;
-  }
+	.examplesCol, .optionsCol {
+		display: none;
+	}
+	.smallScreenMode {
+		display: block;
+	}
 }

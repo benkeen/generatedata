@@ -64,9 +64,8 @@ const PreviewPanel = ({
 	} else {
 		delete panelDimensions.width;
 		delete panelDimensions.height;
+		panelDimensions.bottom = 71;
 	}
-
-	console.log(panelDimensions);
 
 	const themeName = getThemeName(theme);
 	return (
@@ -81,45 +80,47 @@ const PreviewPanel = ({
 						position: 'absolute',
 						...panelDimensions
 					}}>
-					<div className={styles.controls}>
-						<span onClick={toggleExportSettings}>
-							<Tooltip title="Settings" placement="bottom">
-								<IconButton size="small" aria-label="Settings">
-									<Settings fontSize="large" />
-								</IconButton>
-							</Tooltip>
-						</span>
-						<span onClick={refreshPreview}>
-							<Tooltip title={i18n.refreshPanel} placement="bottom">
-								<IconButton size="small" aria-label={i18n.refreshPanel}>
-									<Refresh fontSize="large" />
-								</IconButton>
-							</Tooltip>
-						</span>
-						<span onClick={togglePreview}>
-							<Tooltip title={i18n.closePanel} placement="bottom">
-								<IconButton size="small" aria-label={i18n.closePanel}>
-									<CloseIcon fontSize="large" />
-								</IconButton>
-							</Tooltip>
-						</span>
-					</div>
+					<div style={{ height: '100%' }}>
+						<div className={styles.controls}>
+							<span onClick={toggleExportSettings}>
+								<Tooltip title="Settings" placement="bottom">
+									<IconButton size="small" aria-label="Settings">
+										<Settings fontSize="large" />
+									</IconButton>
+								</Tooltip>
+							</span>
+							<span onClick={refreshPreview}>
+								<Tooltip title={i18n.refreshPanel} placement="bottom">
+									<IconButton size="small" aria-label={i18n.refreshPanel}>
+										<Refresh fontSize="large" />
+									</IconButton>
+								</Tooltip>
+							</span>
+							<span onClick={togglePreview}>
+								<Tooltip title={i18n.closePanel} placement="bottom">
+									<IconButton size="small" aria-label={i18n.closePanel}>
+										<CloseIcon fontSize="large" />
+									</IconButton>
+								</Tooltip>
+							</span>
+						</div>
 
-					{getNoResults()}
+						{getNoResults()}
 
-					<div className={styles.preview} style={{
-						fontSize: `${previewTextSize}px`,
-						lineHeight: `${previewTextSize + 7}px`
-					}}>
-						<ExportTypePreview
-							numPreviewRows={numPreviewRows}
-							builderLayout={builderLayout}
-							exportTypeSettings={exportTypeSettings}
-							showRowNumbers={showRowNumbers}
-							enableLineWrapping={enableLineWrapping}
-							data={data}
-							theme={theme}
-						/>
+						<div className={styles.preview} style={{
+							fontSize: `${previewTextSize}px`,
+							lineHeight: `${previewTextSize + 7}px`
+						}}>
+							<ExportTypePreview
+								numPreviewRows={numPreviewRows}
+								builderLayout={builderLayout}
+								exportTypeSettings={exportTypeSettings}
+								showRowNumbers={showRowNumbers}
+								enableLineWrapping={enableLineWrapping}
+								data={data}
+								theme={theme}
+							/>
+						</div>
 					</div>
 				</div>
 			</Wrapper>

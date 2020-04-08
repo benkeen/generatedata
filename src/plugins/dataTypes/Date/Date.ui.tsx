@@ -97,12 +97,14 @@ export const Options = ({ data, onUpdate, i18n }: DTOptionsProps): JSX.Element =
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 			<div>
 				<div className={styles.dateRow}>
-					<Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation>
+					<Button onClick={(): void => onBtnClick('fromDate')} variant="outlined" disableElevation
+						style={{ padding: '5px 4px 6px' }}>
 						{format(fromUnixTime(data.fromDate), 'MMM d, y')}
 						<Event />
 					</Button>
 					<ArrowRightAlt />
-					<Button onClick={(): void => onBtnClick('toDate')} variant="outlined" disableElevation>
+					<Button onClick={(): void => onBtnClick('toDate')} variant="outlined" disableElevation
+						style={{ padding: '5px 4px 6px' }}>
 						{format(fromUnixTime(data.toDate), 'MMM d, y')}
 						<Event />
 					</Button>
