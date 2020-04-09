@@ -146,11 +146,11 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 									label="INSERT IGNORE"
 								/>
 							</div>
-							<div>
+							<div className={styles.batchSize}>
 								<span style={{ fontSize: 50, color: '#dddddd' }}>&#125;</span>
 								<label
-									htmlFor="etSQL_insertBatchSize"
-									id="etSQL_batchSizeLabel">
+									htmlFor={`${id}_insertBatchSize`}
+									id={`${id}_insertBatchSize`}>
 									{i18n.batchSize}
 								</label>
 								<input
@@ -159,6 +159,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 									value={data.insertBatchSize}
 									style={{ width: 40 }}
 									title={i18n.batchSizeDesc}
+									disabled={data.statementType === 'update'}
 									onChange={(e): void => onChange('insertBatchSize', parseInt(e.target.value, 10))}
 								/>
 							</div>

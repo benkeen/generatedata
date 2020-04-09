@@ -32,8 +32,8 @@ export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings 
 					textColor="primary"
 					onChange={handleChange}
 				>
-					<Tab label={i18n.exportType} />
-					<Tab label={i18n.previewPanel} />
+					<Tab label="Settings" />
+					<Tab label="Preview" />
 				</Tabs>
 				{getTab()}
 			</div>

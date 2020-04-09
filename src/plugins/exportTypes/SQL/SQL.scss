@@ -4,3 +4,16 @@
 		flex: 1;
 	}
 }
+
+.batchSize {
+	display: flex;
+	align-items: center;
+
+	> span {
+		height: 38px;
+		margin-right: 4px;
+	}
+	> label {
+		margin-right: 4px;
+	}
+}
