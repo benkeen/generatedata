@@ -25,7 +25,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 export const getMetadata = (): DTMetadata => ({
 	general: {
-		dataType: 'number' // liiiiies!
+		dataType: 'number' // liiiiies! only conditional a number
 	},
 	sql: {
 		field: 'mediumint',
