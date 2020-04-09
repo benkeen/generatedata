@@ -1,1 +1,20 @@
-// export const getNumericField
+import { ColumnData, ExportTypeGenerationData } from '../../types/general';
+
+export const getNumericFieldColumnIndexes = (generationData: ExportTypeGenerationData): number[] => {
+	const dataTypeMap: any = {};
+	const dt = generationData.dataTypeMetadata;
+	Object.keys(dt).forEach((dataType) => {
+		if (dt[dataType] && dt[dataType].general && dt[dataType].general.dataType) {
+			dataTypeMap[dataType] = dt[dataType].general.dataType;
+		}
+	});
+
+	const numericFieldColIndexes: number[] = [];
+	generationData.columns.forEach((col: ColumnData, colIndex: number) => {
+		if (dataTypeMap[col.dataType]) {
+			numericFieldColIndexes.push(colIndex);
+		}
+	});
+
+	return numericFieldColIndexes;
+};

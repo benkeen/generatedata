@@ -1,4 +1,5 @@
 import { ExportTypeGenerationData } from '../../../../types/general';
+import { getNumericFieldColumnIndexes } from '../../../utils/generationUtils';
 import { SQLSettings } from './SQL.ui';
 
 
@@ -6,12 +7,22 @@ export const generate = (): any => {
 
 };
 
+const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[]): any => {
+	let val = '';
+	if (numericFieldIndexes.indexOf(colIndex) !== -1) {
+		val = value;
+	} else {
+		val = `"${value}"`;
+	}
+	return val;
+};
 
-// Generates a MySQL table with all the data.
 export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
 	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
+
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -57,12 +68,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 		if (sqlSettings.statementType === 'insert') {
 			const displayVals: any = [];
 			colTitles.forEach((columnTitle: string, colIndex: number) => {
-				// if ($this->numericFields[$j]) {
-				// 	$displayVals[] = $this->data["rowData"][$i][$j];
-				// } else {
-				// 	$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
-				// }
-				displayVals.push(`"${row[colIndex]}"`);
+				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
 			});
 
 			rowDataStr.push(displayVals.join(','));
@@ -74,12 +80,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 		} else if (sqlSettings.statementType === 'insertIgnore') {
 			const displayVals: any = [];
 			colTitles.forEach((columnTitle: string, colIndex: number) => {
-				// if ($this->numericFields[$j]) {
-				// 	$displayVals[] = $this->data["rowData"][$i][$j];
-				// } else {
-				// 	$displayVals[] = "\"" . $this->data["rowData"][$i][$j] . "\"";
-				// }
-				displayVals.push(`"${row[colIndex]}"`);
+				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
 			});
 
 			rowDataStr.push(displayVals.join(','));
@@ -90,12 +91,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 		} else {
 			const pairs: string[] = [];
 			colTitles.forEach((title: string, colIndex: number) => {
-				// if ($this->numericFields[$j]) {
-				// 		$colValue = $this->data["rowData"][$i][$j];
-				// } else {
-				// 		$colValue = "\"" . $this->data["rowData"][$i][$j] . "\"";
-				// }
-				const colValue = `"${row[colIndex]}"`;
+				const colValue = getWrappedValue(row[colIndex], colIndex, numericFieldIndexes);
 				pairs.push(`${backquote}${title}${backquote} = ${colValue}`);
 			});
 

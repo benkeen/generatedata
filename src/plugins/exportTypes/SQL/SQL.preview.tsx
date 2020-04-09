@@ -12,7 +12,16 @@ const Preview = ({ data, theme, numPreviewRows, exportTypeSettings, showRowNumbe
 	const [code, setCode] = React.useState('');
 
 	React.useEffect(() => {
-		const content = generateMySQL(data, exportTypeSettings);
+		let content = '';
+		if (exportTypeSettings.databaseType === 'MySQL') {
+			content = generateMySQL(data, exportTypeSettings);
+		} else if (exportTypeSettings.databaseType === 'Postgres') {
+
+		} else if (exportTypeSettings.databaseType === 'SQLite') {
+
+		} else if (exportTypeSettings.databaseType === 'Oracle') {
+		} else if (exportTypeSettings.databaseType === 'MSSQL') {
+		}
 		setCode(content);
 	}, [data, setCode, exportTypeSettings]);
 
