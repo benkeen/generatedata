@@ -88,10 +88,24 @@ window.gd.localeLoaded(i18n);
 					]
 				}
 			}
-		}
+		},
+		copy: {
+			main: {
+				files: [
+					{
+						expand: true,
+						cwd: 'src/images',
+						src: ['*'],
+						dest: 'dist/images/'
+					}
+				],
+			},
+		},
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.registerTask('default', ['cssmin']);
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.registerTask('default', ['cssmin', 'copy', 'i18n']);
+	grunt.registerTask('dev', ['default']);
 	grunt.registerTask('i18n', generateI18nBundles);
 };

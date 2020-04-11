@@ -33,7 +33,7 @@ const Header = ({
 		<header className={styles.header}>
 			<div>
 				<h1>
-					generatedata.com
+					<img src="./images/logo.png" width={256} height={32} />
 				</h1>
 				<nav>
 					<ul>
