@@ -8,6 +8,7 @@ declare namespace GridScssModule {
     grid: string;
     gridHeader: string;
     gridHeaderWrapper: string;
+    gridMedium: string;
     gridRow: string;
     gridRowsWrapper: string;
     gridSmall: string;

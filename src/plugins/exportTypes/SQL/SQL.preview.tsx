@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import { ETPreviewProps } from '../../../../types/exportTypes';
-import { generateMySQL } from './SQL.generator';
+import { generateMySQL, generatePostgres } from './SQL.generator';
 
 // TODO maybe provide these in the config definition & move codemirror/SyntaxHighlighter completely to the root.
 // --- I guess the build would handle the importing of the CSS
@@ -16,7 +16,7 @@ const Preview = ({ data, theme, numPreviewRows, exportTypeSettings, showRowNumbe
 		if (exportTypeSettings.databaseType === 'MySQL') {
 			content = generateMySQL(data, exportTypeSettings);
 		} else if (exportTypeSettings.databaseType === 'Postgres') {
-
+			content = generatePostgres(data, exportTypeSettings);
 		} else if (exportTypeSettings.databaseType === 'SQLite') {
 
 		} else if (exportTypeSettings.databaseType === 'Oracle') {

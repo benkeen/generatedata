@@ -7,6 +7,7 @@ export const generate = (): any => {
 
 };
 
+
 const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[]): any => {
 	let val = '';
 	if (numericFieldIndexes.indexOf(colIndex) !== -1) {
@@ -112,6 +113,97 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 };
 
 
+export const getDataTypeSqlMetadata = (generationData: ExportTypeGenerationData) => {
+	const sqlMetadata: any = {};
+	const dt = generationData.dataTypeMetadata;
+	Object.keys(dt).forEach((dataType) => {
+		if (dt[dataType] && dt[dataType].sql) {
+			sqlMetadata[dataType] = dt[dataType].sql;
+		}
+	});
+	return sqlMetadata;
+};
+
+export const generatePostgres = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
+	const colTitles = generationData.columns.map(({ title }) => title);
+	let content = '';
+
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+	const dataTypeSqlMetadata = getDataTypeSqlMetadata(generationData);
+
+	if (generationData.isFirstBatch) {
+		if (sqlSettings.dropTable) {
+			content += `DROP TABLE IF EXISTS "${sqlSettings.tableName}";\n\n`;
+		}
+		if (sqlSettings.createTable) {
+			content += `CREATE TABLE "${sqlSettings.tableName}" (\n`;
+
+			if (sqlSettings.addPrimaryKey) {
+				content += `  id SERIAL PRIMARY KEY,\n`;
+			}
+			const cols: any[] = [];
+			generationData.columns.forEach(({ title, dataType }) => {
+				let columnTypeInfo = 'MEDIUMTEXT';
+				const sqlMetadata = dataTypeSqlMetadata[dataType];
+				if (sqlMetadata) {
+					if (sqlMetadata.field_Postgres) {
+						columnTypeInfo = sqlMetadata.field_Postgres;
+					} else if (sqlMetadata.field) {
+						columnTypeInfo = sqlMetadata.field;
+					}
+				}
+				cols.push(`  ${title} ${columnTypeInfo}`);
+			});
+
+			content += cols.join(',\n');
+			content += `\n);\n\n`;
+		}
+	}
+
+	// const colNamesStr = implode(",", $this->data["colData"]);
+
+	// $numRows = count($this->data["rowData"]);
+	// $numCols = count($this->data["colData"]);
+	// for ($i=0; $i<$numRows; $i++) {
+	// 	if ($this->sqlStatementType == "insert") {
+	// 		$displayVals = array();
+	// 		for ($j=0; $j<$numCols; $j++) {
+	// 			if ($this->numericFields[$j]) {
+	// 				$displayVals[] = $this->data["rowData"][$i][$j];
+	// 			} else {
+	// 				$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
+	// 			}
+	// 		}
+	// 		$rowDataStr[] = implode(",", $displayVals);
+	// 		if (count($rowDataStr) == $this->insertBatchSize) {
+	// 			$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+	// 			$rowDataStr = array();
+	// 		}
+	// 	} else {
+	// 		$pairs = array();
+	// 		for ($j=0; $j<$numCols; $j++) {
+	// 			$colName  = $this->data["colData"][$j];
+	// 			if ($this->numericFields[$j]) {
+	// 				$colValue = $this->data["rowData"][$i][$j];
+	// 			} else {
+	// 				$colValue = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
+	// 			}
+	// 			$pairs[]  = "{$colName} = $colValue";
+	// 		}
+	//
+	// 		$pairsStr = implode(", ", $pairs);
+	// 		$rowNum = $this->currentBatchFirstRow + $i;
+	// 		$content .= "UPDATE \"{$this->tableName}\" SET $pairsStr WHERE id = $rowNum;$endLineChar";
+	// 	}
+	// }
+	// if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
+	// 	$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+	// }
+
+	return content;
+};
+
+
 /*
 	protected $isEnabled = true;
 	protected $exportTypeName = "SQL";
@@ -197,85 +289,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 	function getDownloadFilename($generator) {
 		$time = date("M-j-Y");
 		return "data{$time}.sql";
-	}
-
-	 * Generates a MySQL table with all the data.
-	 * @return string
-	private function generateCreateTableSQL_Postgres() {
-		$content = "";
-		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
-		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;" : "  ";
-
-		if ($this->isFirstBatch) {
-			if ($this->includeDropTable) {
-				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
-				$content .= "DROP TABLE IF EXISTS \"{$this->tableName}\";{$dropTableEndLine}";
-			}
-
-			if ($this->createTable) {
-				$content .= "CREATE TABLE \"{$this->tableName}\" ($endLineChar";
-				if ($this->primaryKey == "default") {
-					$content .= "{$prefix}id SERIAL PRIMARY KEY,$endLineChar";
-				}
-
-				$cols = array();
-				foreach ($this->template as $dataType) {
-					// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
-					$columnTypeInfo = "MEDIUMTEXT";
-					if (isset($dataType["columnMetadata"]["SQLField_Postgres"])) {
-						$columnTypeInfo = $dataType["columnMetadata"]["SQLField_Postgres"];
-					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
-						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
-					}
-					$cols[] = "{$prefix}{$dataType["title"]} $columnTypeInfo";
-				}
-
-				$content .= implode(",$endLineChar", $cols);
-				$content .= "$endLineChar);{$endLineChar}{$endLineChar}";
-			}
-		}
-
-		$colNamesStr = implode(",", $this->data["colData"]);
-
-		$numRows = count($this->data["rowData"]);
-		$numCols = count($this->data["colData"]);
-		for ($i=0; $i<$numRows; $i++) {
-			if ($this->sqlStatementType == "insert") {
-				$displayVals = array();
-				for ($j=0; $j<$numCols; $j++) {
-					if ($this->numericFields[$j]) {
-						$displayVals[] = $this->data["rowData"][$i][$j];
-					} else {
-						$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
-					}
-				}
-				$rowDataStr[] = implode(",", $displayVals);
-				if (count($rowDataStr) == $this->insertBatchSize) {
-					$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-					$rowDataStr = array();
-				}
-			} else {
-				$pairs = array();
-				for ($j=0; $j<$numCols; $j++) {
-					$colName  = $this->data["colData"][$j];
-					if ($this->numericFields[$j]) {
-						$colValue = $this->data["rowData"][$i][$j];
-					} else {
-						$colValue = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
-					}
-					$pairs[]  = "{$colName} = $colValue";
-				}
-
-				$pairsStr = implode(", ", $pairs);
-				$rowNum = $this->currentBatchFirstRow + $i;
-				$content .= "UPDATE \"{$this->tableName}\" SET $pairsStr WHERE id = $rowNum;$endLineChar";
-			}
-		}
-		if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-			$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-		}
-
-		return $content;
 	}
 
 

@@ -32,9 +32,10 @@ div.gridHeader {
 
 .smallScreenMode {
 	display: none;
+	position: absolute;
+	right: 10px;
+	margin: 2px 0 0;
 	font-size: 10px;
-	float: right;
-	margin: 2px -64px;
 	cursor: pointer;
 }
 
@@ -136,6 +137,15 @@ div.deleteCol, div.helpCol {
 
 .gridSmall {
 	.examplesCol, .optionsCol {
+		display: none;
+	}
+	.smallScreenMode {
+		display: block;
+	}
+}
+
+.gridMedium {
+	.examplesCol {
 		display: none;
 	}
 	.smallScreenMode {
