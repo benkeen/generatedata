@@ -1,8 +1,10 @@
-export default {
-	countryName: "Australia",
+import { CountryType } from '../../../../types/countries';
+
+export const getCountryData = (i18n: any): CountryType => ({
+	countryName: i18n.countryName,
 	countrySlug: "australia",
-	regionNames: "Australian St./Terr.",
-	continent: "oceania",
+	regionNames: i18n.regionNames,
+	continent: 'oceania',
 	extendedData: {
 		zipFormat: {
 			format: "Xxxx",
@@ -19,22 +21,22 @@ export default {
 			]
 		}
 	},
-	data: [
+	regions: [
 		{
-			"regionName": "Australian Capital Territory",
-			"regionShort": "ACT",
-			"regionSlug": "australian_capital_territories",
-			"weight": 3,
-			"cities": [
+			regionName: "Australian Capital Territory",
+			regionShort: "ACT",
+			regionSlug: "australian_capital_territories",
+			weight: 3,
+			cities: [
 				"Canberra"
 			]
 		},
 		{
-			"regionName": "New South Wales",
-			"regionShort": "NSW",
-			"regionSlug": "new_south_wales",
-			"weight": 69,
-			"cities": [
+			regionName: "New South Wales",
+			regionShort: "NSW",
+			regionSlug: "new_south_wales",
+			weight: 69,
+			cities: [
 				"Sydney",
 				"Albury",
 				"Armidale",
@@ -59,21 +61,21 @@ export default {
 			]
 		},
 		{
-			"regionName": "Northern Territory",
-			"regionShort": "NT",
-			"regionSlug": "northern_territory",
-			"weight": 2,
-			"cities": [
+			regionName: "Northern Territory",
+			regionShort: "NT",
+			regionSlug: "northern_territory",
+			weight: 2,
+			cities: [
 				"Darwin",
 				"Palmerston"
 			]
 		},
 		{
-			"regionName": "Queensland",
-			"regionShort": "QLD",
-			"regionSlug": "queensland",
-			"weight": 42,
-			"cities": [
+			regionName: "Queensland",
+			regionShort: "QLD",
+			regionSlug: "queensland",
+			weight: 42,
+			cities: [
 				"Brisbane",
 				"Bundaberg",
 				"Cairns",
@@ -95,11 +97,11 @@ export default {
 			]
 		},
 		{
-			"regionName": "South Australia",
-			"regionShort": "SA",
-			"regionSlug": "south_australia",
-			"weight": 16,
-			"cities": [
+			regionName: "South Australia",
+			regionShort: "SA",
+			regionSlug: "south_australia",
+			weight: 16,
+			cities: [
 				"Adelaide",
 				"Mount Gambier",
 				"Murray Bridge",
@@ -111,11 +113,11 @@ export default {
 			]
 		},
 		{
-			"regionName": "Tasmania",
-			"regionShort": "TAS",
-			"regionSlug": "tasmania",
-			"weight": 5,
-			"cities": [
+			regionName: "Tasmania",
+			regionShort: "TAS",
+			regionSlug: "tasmania",
+			weight: 5,
+			cities: [
 				"Greater Hobart",
 				"Burnie",
 				"Devonport",
@@ -123,11 +125,11 @@ export default {
 			]
 		},
 		{
-			"regionName": "Victoria",
-			"regionShort": "VIC",
-			"regionSlug": "victoria",
-			"weight": 52,
-			"cities": [
+			regionName: "Victoria",
+			regionShort: "VIC",
+			regionSlug: "victoria",
+			weight: 52,
+			cities: [
 				"Melbourne",
 				"Ararat",
 				"Bairnsdale",
@@ -154,11 +156,11 @@ export default {
 			]
 		},
 		{
-			"regionName": "Western Australia",
-			"regionShort": "WA",
-			"regionSlug": "western_australia",
-			"weight": 21,
-			"cities": [
+			regionName: "Western Australia",
+			regionShort: "WA",
+			regionSlug: "western_australia",
+			weight: 21,
+			cities: [
 				"Perth",
 				"Albany",
 				"Armadale",
@@ -184,4 +186,4 @@ export default {
 			]
 		}
 	]
-}
+});

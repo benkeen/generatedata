@@ -6,14 +6,7 @@ export const initialState = {
 };
 
 export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => (
-	<>
-		<input
-			type="checkbox"
-			checked={data.allCountries}
-			onChange={(): void => onUpdate({ allCountries: !data.allCountries })}
-		/>
-		<label>{i18n.limitResults}</label>
-	</>
+	<div />
 );
 
 
