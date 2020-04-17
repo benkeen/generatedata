@@ -1,8 +1,8 @@
 import { CountryType } from '../../../../types/countries';
 
-export const getCountryData = (i18n: any): CountryType => ({
+export default (i18n: any): CountryType => ({
 	countryName: i18n.countryName,
-	countrySlug: "australia",
+	countrySlug: 'australia',
 	regionNames: i18n.regionNames,
 	continent: 'oceania',
 	extendedData: {

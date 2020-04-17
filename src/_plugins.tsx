@@ -90,3 +90,5 @@ export const exportTypes = {
 export type ExportTypeFolder = keyof typeof exportTypes;
 
 // -------------------------------------------------------------------------------------------------------
+
+export type CountryType = 'Australia' | 'Austria';

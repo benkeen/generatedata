@@ -3,11 +3,19 @@ export type CountryType = {
 	countryName: string;
 	regionNames: string;
 	continent: Continent;
-	extendedData: any;
+	extendedData: {
+		zipFormat?: {
+			format: string;
+			replacements?: any;
+		},
+		phoneFormat?: {
+			displayFormats: string[]
+		}
+	};
 	regions: Region[];
 };
 
-export type Continent = 'oceania';
+export type Continent = 'oceania' | 'europe';
 
 export type Region = {
 	regionName: string;
