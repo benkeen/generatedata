@@ -1,13 +1,8 @@
 import React from 'react';
 import { CountryType } from '../_plugins';
-import { DTBundle } from '../../types/dataTypes';
-
-type LoadedCountries = {
-	[name in CountryType]: DTBundle;
-};
 
 // this houses all Export Type code loaded async after the application starts
-const loadedCountryTypes: Partial<CountryType> = {};
+const loadedCountryTypes: any = {};
 
 export const loadCountryBundle = (country: CountryType): any => {
 	return new Promise((resolve, reject) => {

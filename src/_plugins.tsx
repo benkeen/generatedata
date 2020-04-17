@@ -91,4 +91,4 @@ export type ExportTypeFolder = keyof typeof exportTypes;
 
 // -------------------------------------------------------------------------------------------------------
 
-export type CountryType = 'Australia' | 'Austria';
+export type CountryType = 'Australia' | 'Austria' | 'Belgium';

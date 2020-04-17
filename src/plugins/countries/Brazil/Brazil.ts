@@ -1,4 +1,6 @@
-export default {
+import { CountryType } from '../../../../types/countries';
+
+export default (i18n: any): CountryType => ({
 	"countryName": "Brazil",
 	"countrySlug": "brazil",
 	"regionNames": "Brazilian States",
@@ -308,4 +310,4 @@ export default {
 			}
 		}
 	]
-}
+});
