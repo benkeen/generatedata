@@ -1,14 +1,14 @@
 import { CountryType } from '../../../../types/countries';
 
 export default (i18n: any): CountryType => ({
-	"countryName": "Brazil",
-	"countrySlug": "brazil",
-	"regionNames": "Brazilian States",
-	"continent": "south_america",
-	"extendedData": {
-		"zipFormat": {
-			"format": "xxxxx-xxx",
-			"replacements": {
+	countryName: i18n.countryName,
+	countrySlug: "brazil",
+	regionNames: i18n.regionNames,
+	continent: "south_america",
+	extendedData: {
+		zipFormat: {
+			format: "xxxxx-xxx",
+			replacements: {
 				"X": "123456789",
 				"x": "0123456789",
 				"Y": "012345678",
@@ -23,13 +23,13 @@ export default (i18n: any): CountryType => ({
 			}
 		}
 	},
-	"data": [
+	regions: [
 		{
-			"regionName": "São Paulo",
-			"regionShort": "SP",
-			"regionSlug": "sau_paulo",
-			"weight": 41,
-			"cities": [
+			regionName: "São Paulo",
+			regionShort: "SP",
+			regionSlug: "sau_paulo",
+			weight: 41,
+			cities: [
 				"Guarulhos",
 				"Campinas",
 				"Osasco",
@@ -41,18 +41,18 @@ export default (i18n: any): CountryType => ({
 				"Carapicuíba",
 				"Piracicaba"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "1Xxxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "1Xxxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Minas Gerais",
-			"regionShort": "MG",
-			"regionSlug": "minas_gerais",
-			"weight": 20,
-			"cities": [
+			regionName: "Minas Gerais",
+			regionShort: "MG",
+			regionSlug: "minas_gerais",
+			weight: 20,
+			cities: [
 				"Belo Horizonte",
 				"Uberlândia",
 				"Contagem",
@@ -67,18 +67,18 @@ export default (i18n: any): CountryType => ({
 				"Divinópolis",
 				"Santa Luzia"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "3xxxxxxx"
+			extendedData: {
+				zipFormat: {
+					format: "3xxxxxxx"
 				}
 			}
 		},
 		{
-			"regionName": "Rio de Janeiro",
-			"regionShort": "RJ",
-			"regionSlug": "rio",
-			"weight": 16,
-			"cities": [
+			regionName: "Rio de Janeiro",
+			regionShort: "RJ",
+			regionSlug: "rio",
+			weight: 16,
+			cities: [
 				"Rio de Janeiro",
 				"São Gonçalo",
 				"Duque de Caxias",
@@ -89,18 +89,18 @@ export default (i18n: any): CountryType => ({
 				"São João de Meriti",
 				"Petrópolis"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "2Yxxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "2Yxxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Bahia",
-			"regionShort": "BA",
-			"regionSlug": "bahia",
-			"weight": 14,
-			"cities": [
+			regionName: "Bahia",
+			regionShort: "BA",
+			regionSlug: "bahia",
+			weight: 14,
+			cities: [
 				"Salvador",
 				"Feira de Santana",
 				"Vitória da Conquista",
@@ -110,18 +110,18 @@ export default (i18n: any): CountryType => ({
 				"Ilhéus",
 				"Lauro de Freitas"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "4Yxxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "4Yxxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Rio Grande do Sul",
-			"regionShort": "RS",
-			"regionSlug": "rio_grande",
-			"weight": 11,
-			"cities": [
+			regionName: "Rio Grande do Sul",
+			regionShort: "RS",
+			regionSlug: "rio_grande",
+			weight: 11,
+			cities: [
 				"Porto Alegre",
 				"Caxias do Sul",
 				"Pelotas",
@@ -131,18 +131,18 @@ export default (i18n: any): CountryType => ({
 				"Novo Hamburgo",
 				"Rio Grande"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "9xxxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "9xxxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Paraná",
-			"regionShort": "PR",
-			"regionSlug": "parana",
-			"weight": 11,
-			"cities": [
+			regionName: "Paraná",
+			regionShort: "PR",
+			regionSlug: "parana",
+			weight: 11,
+			cities: [
 				"Curitiba",
 				"Londrina",
 				"Maringá",
@@ -154,18 +154,18 @@ export default (i18n: any): CountryType => ({
 				"Guarapuava",
 				"Paranaguá"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "8Wxxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "8Wxxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Pernambuco",
-			"regionShort": "PE",
-			"regionSlug": "pernambuco",
-			"weight": 9,
-			"cities": [
+			regionName: "Pernambuco",
+			regionShort: "PE",
+			regionSlug: "pernambuco",
+			weight: 9,
+			cities: [
 				"Recife",
 				"Jaboatão dos Guararapes",
 				"Olinda",
@@ -175,18 +175,18 @@ export default (i18n: any): CountryType => ({
 				"Cabo de Santo Agostinho",
 				"Camaragibe"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "5Vxxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "5Vxxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Ceará",
-			"regionShort": "CE",
-			"regionSlug": "ceara",
-			"weight": 9,
-			"cities": [
+			regionName: "Ceará",
+			regionShort: "CE",
+			regionSlug: "ceara",
+			weight: 9,
+			cities: [
 				"Fortaleza",
 				"Caucaia",
 				"Juazeiro do Norte",
@@ -196,18 +196,18 @@ export default (i18n: any): CountryType => ({
 				"Itapipoca",
 				"Maranguape"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "6Sxxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "6Sxxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Pará",
-			"regionShort": "PA",
-			"regionSlug": "para",
-			"weight": 8,
-			"cities": [
+			regionName: "Pará",
+			regionShort: "PA",
+			regionSlug: "para",
+			weight: 8,
+			cities: [
 				"Belém",
 				"Ananindeua",
 				"Santarém",
@@ -218,18 +218,18 @@ export default (i18n: any): CountryType => ({
 				"Cametá",
 				"Bragança"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "6RYxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "6RYxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Maranhão",
-			"regionShort": "MA",
-			"regionSlug": "maranhao",
-			"weight": 7,
-			"cities": [
+			regionName: "Maranhão",
+			regionShort: "MA",
+			regionSlug: "maranhao",
+			weight: 7,
+			cities: [
 				"São Luís",
 				"Imperatriz",
 				"Timon",
@@ -243,18 +243,18 @@ export default (i18n: any): CountryType => ({
 				"Chapadinha",
 				"Barra do Corda"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "65xxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "65xxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Santa Catarina",
-			"regionShort": "SC",
-			"regionSlug": "santa_catarina",
-			"weight": 6,
-			"cities": [
+			regionName: "Santa Catarina",
+			regionShort: "SC",
+			regionSlug: "santa_catarina",
+			weight: 6,
+			cities: [
 				"Joinville",
 				"Florianópolis",
 				"Blumenau",
@@ -263,18 +263,18 @@ export default (i18n: any): CountryType => ({
 				"Chapecó",
 				"Itajaí"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "8Qxxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "8Qxxx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Goiás",
-			"regionShort": "GO",
-			"regionSlug": "goias",
-			"weight": 6,
-			"cities": [
+			regionName: "Goiás",
+			regionShort: "GO",
+			regionSlug: "goias",
+			weight: 6,
+			cities: [
 				"Goiânia",
 				"Aparecida de Goiânia",
 				"Anápolis",
@@ -283,18 +283,18 @@ export default (i18n: any): CountryType => ({
 				"Águas Lindas de Goiás",
 				"Valparaíso de Goiás"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "7P7xx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "7P7xx-xxx"
 				}
 			}
 		},
 		{
-			"regionName": "Paraíba",
-			"regionShort": "PB",
-			"regionSlug": "paraiba",
-			"weight": 4,
-			"cities": [
+			regionName: "Paraíba",
+			regionShort: "PB",
+			regionSlug: "paraiba",
+			weight: 4,
+			cities: [
 				"João Pessoa",
 				"Campina Grande",
 				"Santa Rita",
@@ -303,9 +303,9 @@ export default (i18n: any): CountryType => ({
 				"Sousa",
 				"Cajazeiras"
 			],
-			"extendedData": {
-				"zipFormat": {
-					"format": "58xxx-xxx"
+			extendedData: {
+				zipFormat: {
+					format: "58xxx-xxx"
 				}
 			}
 		}

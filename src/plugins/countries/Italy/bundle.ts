@@ -1,24 +1,25 @@
 /**
  * @package Countries
  */
+import { CountryType } from '../../../../types/countries';
 
-export default {
-	countryName: "Italy",
+export default (i18n: any): CountryType => ({
+	countryName: i18n.countryName,
 	countrySlug: "italy",
-	regionNames: "Regioni",
+	regionNames: i18n.regionNames,
 	continent: "europe",
-
 	extendedData: {
-		"zipFormat": "xxxxx"
+		zipFormat: {
+			format: "xxxxx"
+		}
 	},
-
-	data: [
+	regions: [
 		{
-			"regionName": "Piemonte",
-			"regionShort": "PIE",
-			"regionSlug": "piemonte",
-			"weight": 7,
-			"cities": [
+			regionName: "Piemonte",
+			regionShort: "PIE",
+			regionSlug: "piemonte",
+			weight: 7,
+			cities: [
 				"Alessandria",
 				"Asti",
 				"Barbania",
@@ -73,11 +74,11 @@ export default {
 		},
 
 		{
-			"regionName": "Valle d'Aosta",
-			"regionShort": "VDA",
-			"regionSlug": "valledaosta",
-			"weight": 1,
-			"cities": [
+			regionName: "Valle d'Aosta",
+			regionShort: "VDA",
+			regionSlug: "valledaosta",
+			weight: 1,
+			cities: [
 				"Allein",
 				"Antey-Saint-Andrè",
 				"Aosta",
@@ -132,11 +133,11 @@ export default {
 		},
 
 		{
-			"regionName": "Lombardia",
-			"regionShort": "LOM",
-			"regionSlug": "lombardia",
-			"weight": 16,
-			"cities": [
+			regionName: "Lombardia",
+			regionShort: "LOM",
+			regionSlug: "lombardia",
+			weight: 16,
+			cities: [
 				"Acquafredda",
 				"Annone di Brianza",
 				"Asso",
@@ -191,11 +192,11 @@ export default {
 		},
 
 		{
-			"regionName": "Trentino-Alto Adige",
-			"regionShort": "TAA",
-			"regionSlug": "trentinoaltoadige",
-			"weight": 2,
-			"cities": [
+			regionName: "Trentino-Alto Adige",
+			regionShort: "TAA",
+			regionSlug: "trentinoaltoadige",
+			weight: 2,
+			cities: [
 				"Albiano",
 				"Andalo",
 				"Bedollo",
@@ -250,11 +251,11 @@ export default {
 		},
 
 		{
-			"regionName": "Veneto",
-			"regionShort": "VEN",
-			"regionSlug": "veneto",
-			"weight": 8,
-			"cities": [
+			regionName: "Veneto",
+			regionShort: "VEN",
+			regionSlug: "veneto",
+			weight: 8,
+			cities: [
 				"Adria",
 				"Arsiè",
 				"Asigliano Veneto",
@@ -309,11 +310,11 @@ export default {
 		},
 
 		{
-			"regionName": "Friuli-Venezia Giulia",
-			"regionShort": "FVG",
-			"regionSlug": "friuliveneziagiulia",
-			"weight": 2,
-			"cities": [
+			regionName: "Friuli-Venezia Giulia",
+			regionShort: "FVG",
+			regionSlug: "friuliveneziagiulia",
+			weight: 2,
+			cities: [
 				"Amaro",
 				"Attimis",
 				"Bertiolo",
@@ -368,11 +369,11 @@ export default {
 		},
 
 		{
-			"regionName": "Liguria",
-			"regionShort": "LIG",
-			"regionSlug": "liguria",
-			"weight": 3,
-			"cities": [
+			regionName: "Liguria",
+			regionShort: "LIG",
+			regionSlug: "liguria",
+			weight: 3,
+			cities: [
 				"Alassio",
 				"Albisola Superiore",
 				"Aquila d'Arroscia",
@@ -427,11 +428,11 @@ export default {
 		},
 
 		{
-			"regionName": "Emilia-Romagna",
-			"regionShort": "ERM",
-			"regionSlug": "emiliaromagna",
-			"weight": 7,
-			"cities": [
+			regionName: "Emilia-Romagna",
+			regionShort: "ERM",
+			regionSlug: "emiliaromagna",
+			weight: 7,
+			cities: [
 				"Baiso",
 				"Baricella",
 				"Bazzano",
@@ -486,11 +487,11 @@ export default {
 		},
 
 		{
-			"regionName": "Toscana",
-			"regionShort": "TOS",
-			"regionSlug": "toscana",
-			"weight": 6,
-			"cities": [
+			regionName: "Toscana",
+			regionShort: "TOS",
+			regionSlug: "toscana",
+			weight: 6,
+			cities: [
 				"Anghiari",
 				"Bientina",
 				"Buti",
@@ -545,11 +546,11 @@ export default {
 		},
 
 		{
-			"regionName": "Umbria",
-			"regionShort": "UMB",
-			"regionSlug": "umbria",
-			"weight": 1,
-			"cities": [
+			regionName: "Umbria",
+			regionShort: "UMB",
+			regionSlug: "umbria",
+			weight: 1,
+			cities: [
 				"Acquasparta",
 				"Allerona",
 				"Alviano",
@@ -604,11 +605,11 @@ export default {
 		},
 
 		{
-			"regionName": "Marche",
-			"regionShort": "MAR",
-			"regionSlug": "marche",
-			"weight": 3,
-			"cities": [
+			regionName: "Marche",
+			regionShort: "MAR",
+			regionSlug: "marche",
+			weight: 3,
+			cities: [
 				"Acquasanta Terme",
 				"Altidona",
 				"Ancona",
@@ -663,11 +664,11 @@ export default {
 		},
 
 		{
-			"regionName": "Lazio",
-			"regionShort": "LAZ",
-			"regionSlug": "lazio",
-			"weight": 9,
-			"cities": [
+			regionName: "Lazio",
+			regionShort: "LAZ",
+			regionSlug: "lazio",
+			weight: 9,
+			cities: [
 				"Acquafondata",
 				"Allumiere",
 				"Alvito",
@@ -722,11 +723,11 @@ export default {
 		},
 
 		{
-			"regionName": "Abruzzo",
-			"regionShort": "ABR",
-			"regionSlug": "abruzzo",
-			"weight": 2,
-			"cities": [
+			regionName: "Abruzzo",
+			regionShort: "ABR",
+			regionSlug: "abruzzo",
+			weight: 2,
+			cities: [
 				"Abbateggio",
 				"Acciano",
 				"Ancarano",
@@ -781,11 +782,11 @@ export default {
 		},
 
 		{
-			"regionName": "Molise",
-			"regionShort": "MOL",
-			"regionSlug": "molise",
-			"weight": 1,
-			"cities": [
+			regionName: "Molise",
+			regionShort: "MOL",
+			regionSlug: "molise",
+			weight: 1,
+			cities: [
 				"Baranello",
 				"Belmonte del Sannio",
 				"Bojano",
@@ -840,11 +841,11 @@ export default {
 		},
 
 		{
-			"regionName": "Campania",
-			"regionShort": "CAM",
-			"regionSlug": "campania",
-			"weight": 10,
-			"cities": [
+			regionName: "Campania",
+			regionShort: "CAM",
+			regionSlug: "campania",
+			weight: 10,
+			cities: [
 				"Acerra",
 				"Altavilla Irpina",
 				"Arzano",
@@ -899,11 +900,11 @@ export default {
 		},
 
 		{
-			"regionName": "Puglia",
-			"regionShort": "PUG",
-			"regionSlug": "puglia",
-			"weight": 7,
-			"cities": [
+			regionName: "Puglia",
+			regionShort: "PUG",
+			regionSlug: "puglia",
+			weight: 7,
+			cities: [
 				"Accadia",
 				"Altamura",
 				"Arnesano",
@@ -958,11 +959,11 @@ export default {
 		},
 
 		{
-			"regionName": "Basilicata",
-			"regionShort": "BAS",
-			"regionSlug": "basilicata",
-			"weight": 1,
-			"cities": [
+			regionName: "Basilicata",
+			regionShort: "BAS",
+			regionSlug: "basilicata",
+			weight: 1,
+			cities: [
 				"Albano di Lucania",
 				"Aliano",
 				"Anzi",
@@ -1017,11 +1018,11 @@ export default {
 		},
 
 		{
-			"regionName": "Calabria",
-			"regionShort": "CAL",
-			"regionSlug": "calabria",
-			"weight": 3,
-			"cities": [
+			regionName: "Calabria",
+			regionShort: "CAL",
+			regionSlug: "calabria",
+			weight: 3,
+			cities: [
 				"Aiello Calabro",
 				"Aieta",
 				"Benestare",
@@ -1076,11 +1077,11 @@ export default {
 		},
 
 		{
-			"regionName": "Sicilia",
-			"regionShort": "SIC",
-			"regionSlug": "sicilia",
-			"weight": 8,
-			"cities": [
+			regionName: "Sicilia",
+			regionShort: "SIC",
+			regionSlug: "sicilia",
+			weight: 8,
+			cities: [
 				"Acireale",
 				"Acquedolci",
 				"Adrano",
@@ -1135,11 +1136,11 @@ export default {
 		},
 
 		{
-			"regionName": "Sardegna",
-			"regionShort": "SAR",
-			"regionSlug": "sardegna",
-			"weight": 3,
-			"cities": [
+			regionName: "Sardegna",
+			regionShort: "SAR",
+			regionSlug: "sardegna",
+			weight: 3,
+			cities: [
 				"Albagiara",
 				"Armungia",
 				"Birori",
@@ -1193,4 +1194,4 @@ export default {
 			]
 		}
 	]
-}
+});

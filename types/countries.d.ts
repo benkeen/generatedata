@@ -3,19 +3,22 @@ export type CountryType = {
 	countryName: string;
 	regionNames: string;
 	continent: Continent;
-	extendedData: {
-		zipFormat?: {
-			format: string;
-			replacements?: any;
-		},
-		phoneFormat?: {
-			displayFormats: string[]
-		}
-	};
 	regions: Region[];
+	extendedData?: ExtendedData;
 };
 
-export type Continent = 'oceania' | 'europe';
+export type Continent = 'asia' | 'central_america' | 'europe' | 'oceania' | 'south_america' | 'north_america';
+
+export type ExtendedData = {
+	zipFormat?: {
+		format: string;
+		replacements?: any;
+	},
+	phoneFormat?: {
+		areaCodes?: number[];
+		displayFormats?: string[];
+	}
+};
 
 export type Region = {
 	regionName: string;
@@ -23,4 +26,5 @@ export type Region = {
 	regionSlug: string;
 	weight: number;
 	cities: string[];
+	extendedData?: ExtendedData;
 };
