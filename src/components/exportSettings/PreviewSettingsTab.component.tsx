@@ -29,13 +29,11 @@ export const PreviewSettingsTab = ({
 			<div className={styles.row}>
 				<div className={styles.label}>Theme</div>
 				<div className={styles.field}>
-					<div style={{ width: 180 }}>
-						<Dropdown
-							value={theme}
-							options={C.THEMES}
-							onChange={({ value }: any): void => onChangeTheme(value)}
-						/>
-					</div>
+					<Dropdown
+						value={theme}
+						options={C.THEMES}
+						onChange={({ value }: any): void => onChangeTheme(value)}
+					/>
 				</div>
 			</div>
 			<div className={styles.row}>

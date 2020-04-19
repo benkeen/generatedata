@@ -2,9 +2,11 @@ declare namespace PreviewPanelScssModule {
   export interface IPreviewPanelScss {
     controls: string;
     noResults: string;
+    panelContent: string;
     preview: string;
     previewPanel: string;
     previewPanelContent: string;
+    topRow: string;
   }
 }
 

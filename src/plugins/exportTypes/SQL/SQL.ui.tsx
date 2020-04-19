@@ -51,9 +51,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 			<div>
 				<div className={styles.row}>
 					<div>
-						<div>
-							<label htmlFor={`${id}-tableName`}>{i18n.dbTableName}</label>
-						</div>
+						<label htmlFor={`${id}-tableName`}>{i18n.dbTableName}</label>
 						<div>
 							<input
 								type="text"
@@ -64,9 +62,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 						</div>
 					</div>
 					<div>
-						<div>
-							<label htmlFor={`${id}-databaseType`}>{i18n.dbType}</label>
-						</div>
+						<label htmlFor={`${id}-databaseType`}>{i18n.dbType}</label>
 						<div>
 							<Dropdown
 								id={`${id}-databaseType`}

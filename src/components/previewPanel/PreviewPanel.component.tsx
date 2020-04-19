@@ -1,14 +1,28 @@
 import * as React from 'react';
 import Measure from 'react-measure';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
-import Settings from '@material-ui/icons/SettingsOutlined';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { BuilderLayout } from '../builder/Builder.component';
 import { Wrapper } from './PreviewPanelWrapper.component';
 import * as styles from './PreviewPanel.scss';
+
+const ExportTypeButton = withStyles({
+	root: {
+		borderColor: '#ffffff',
+		color: '#ffffff',
+		marginRight: 6,
+		'&:hover': {
+			backgroundColor: '#0069d9',
+			borderColor: '#0062cc',
+			boxShadow: 'none',
+		}
+	}
+})(Button);
 
 export type PreviewPanelProps = {
 	ExportTypePreview: any; // TODO
@@ -24,6 +38,7 @@ export type PreviewPanelProps = {
 	data: any;
 	theme: string;
 	previewTextSize: number;
+	exportTypeLabel: string;
 	i18n: any;
 };
 
@@ -31,7 +46,7 @@ const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperC
 
 const PreviewPanel = ({
 	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
-	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible
+	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel
 }: PreviewPanelProps): React.ReactNode => {
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 
@@ -55,16 +70,19 @@ const PreviewPanel = ({
 		right: 0
 	};
 
+	let closeIconAction;
 	if (exportSettingsVisible) {
 		delete panelDimensions.height;
 		delete panelDimensions.width;
 		panelDimensions.top = 0;
 		panelDimensions.left = 400;
 		panelDimensions.bottom = 0;
+		closeIconAction = toggleExportSettings;
 	} else {
 		delete panelDimensions.width;
 		delete panelDimensions.height;
 		panelDimensions.bottom = 71;
+		closeIconAction = togglePreview;
 	}
 
 	const themeName = getThemeName(theme);
@@ -80,29 +98,34 @@ const PreviewPanel = ({
 						position: 'absolute',
 						...panelDimensions
 					}}>
-					<div style={{ height: '100%' }}>
-						<div className={styles.controls}>
-							<span onClick={toggleExportSettings}>
-								<Tooltip title="Settings" placement="bottom">
-									<IconButton size="small" aria-label="Settings">
-										<Settings fontSize="large" />
-									</IconButton>
-								</Tooltip>
-							</span>
-							<span onClick={refreshPreview}>
-								<Tooltip title={i18n.refreshPanel} placement="bottom">
-									<IconButton size="small" aria-label={i18n.refreshPanel}>
-										<Refresh fontSize="large" />
-									</IconButton>
-								</Tooltip>
-							</span>
-							<span onClick={togglePreview}>
-								<Tooltip title={i18n.closePanel} placement="bottom">
-									<IconButton size="small" aria-label={i18n.closePanel}>
-										<CloseIcon fontSize="large" />
-									</IconButton>
-								</Tooltip>
-							</span>
+					<div className={styles.panelContent}>
+						<div className={styles.topRow}>
+							<ExportTypeButton
+								disableElevation
+								disableFocusRipple
+								onClick={toggleExportSettings}
+								variant="outlined"
+								color="primary"
+								size="medium">
+								{exportTypeLabel}
+							</ExportTypeButton>
+
+							<div className={styles.controls}>
+								<span onClick={refreshPreview}>
+									<Tooltip title={i18n.refreshPanel} placement="bottom">
+										<IconButton size="small" aria-label={i18n.refreshPanel}>
+											<Refresh fontSize="large" />
+										</IconButton>
+									</Tooltip>
+								</span>
+								<span onClick={closeIconAction}>
+									<Tooltip title={i18n.closePanel} placement="bottom">
+										<IconButton size="small" aria-label={i18n.closePanel}>
+											<CloseIcon fontSize="large" />
+										</IconButton>
+									</Tooltip>
+								</span>
+							</div>
 						</div>
 
 						{getNoResults()}

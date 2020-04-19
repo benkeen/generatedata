@@ -3,8 +3,8 @@ declare namespace ExportSettingsScssModule {
     exportFormatRow: string;
     field: string;
     label: string;
+    panel: string;
     panelHorizontal: string;
-    panelVertical: string;
     row: string;
     tabContent: string;
   }

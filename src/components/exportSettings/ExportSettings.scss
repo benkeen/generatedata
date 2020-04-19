@@ -1,6 +1,6 @@
 .tabContent {
 	padding: 20px;
-	line-height: 28px;
+	//line-height: 28px;
 }
 
 .row {
@@ -22,15 +22,35 @@
 	width: 100%;
 }
 
-.panelVertical {
+.panel {
+	display: flex;
+	flex-direction: column;
 	width: 400px;
+	height: 100%;
+
+	button {
+		width: 50%;
+	}
+	section {
+		flex: 1;
+	}
+	footer {
+		padding: 15px;
+		button {
+			width: 100%;
+			height: 30px;
+		}
+	}
 }
 
 .exportFormatRow {
-	border-bottom: 1px solid #cccccc;
-	padding-bottom: 10px;
+	background-color: #DDE3EF;
+	padding: 10px;
+	margin-bottom: 10px;
 	border-radius: 5px;
+	height: inherit;
 	.label {
 		font-size: 14px;
+		flex: 0 0 140px;
 	}
 }

@@ -1,7 +1,13 @@
 .row {
 	display: flex;
+	margin: 12px 0;
 	&>div {
 		flex: 1;
+
+		&>label {
+			height: 20px;
+			display: block;
+		}
 	}
 }
 
