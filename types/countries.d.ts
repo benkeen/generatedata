@@ -7,7 +7,7 @@ export type CountryType = {
 	extendedData?: ExtendedData;
 };
 
-export type Continent = 'asia' | 'central_america' | 'europe' | 'oceania' | 'south_america' | 'north_america';
+export type Continent = 'africa' | 'asia' | 'central_america' | 'europe' | 'oceania' | 'south_america' | 'north_america';
 
 export type ExtendedData = {
 	zipFormat?: {
@@ -15,7 +15,7 @@ export type ExtendedData = {
 		replacements?: any;
 	},
 	phoneFormat?: {
-		areaCodes?: number[];
+		areaCodes?: number[] | string[];
 		displayFormats?: string[];
 	}
 };

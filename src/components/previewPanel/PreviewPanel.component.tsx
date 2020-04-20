@@ -71,6 +71,7 @@ const PreviewPanel = ({
 	};
 
 	let closeIconAction;
+	let exportTypeLabelBtnAction;
 	if (exportSettingsVisible) {
 		delete panelDimensions.height;
 		delete panelDimensions.width;
@@ -78,11 +79,15 @@ const PreviewPanel = ({
 		panelDimensions.left = 400;
 		panelDimensions.bottom = 0;
 		closeIconAction = toggleExportSettings;
+		exportTypeLabelBtnAction = () => {
+
+		};
 	} else {
 		delete panelDimensions.width;
 		delete panelDimensions.height;
 		panelDimensions.bottom = 71;
 		closeIconAction = togglePreview;
+		exportTypeLabelBtnAction = toggleExportSettings;
 	}
 
 	const themeName = getThemeName(theme);
@@ -103,7 +108,7 @@ const PreviewPanel = ({
 							<ExportTypeButton
 								disableElevation
 								disableFocusRipple
-								onClick={toggleExportSettings}
+								onClick={exportTypeLabelBtnAction}
 								variant="outlined"
 								color="primary"
 								size="medium">
