@@ -145,20 +145,10 @@ const Grid = ({
 	};
 
 	let gridSizeClass = '';
-	let smallScreenInfo: any = null;
 	if (dimensions.width < SMALL_BREAKPOINT) {
 		gridSizeClass = styles.gridSmall;
 	} else if (dimensions.width < MEDIUM_BREAKPOINT) {
 		gridSizeClass = styles.gridMedium;
-	}
-
-	if (dimensions.width < MEDIUM_BREAKPOINT) {
-		smallScreenInfo = (
-			<Tooltip
-				title="When the panel gets too small, some fields are hidden to make better use of the space. You can still edit all fields in this panel by clicking on the Settings icon for the row.">
-				<span className={styles.smallScreenMode}>Small screen mode</span>
-			</Tooltip>
-		);
 	}
 
 	return (
@@ -180,7 +170,6 @@ const Grid = ({
 						<div>
 							<div className={styles.gridHeaderWrapper}>
 								<div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
-									{smallScreenInfo}
 									<div className={styles.orderCol}>{rows.length}</div>
 									<div className={styles.titleCol}>{i18n.rowLabel}</div>
 									<div className={styles.dataTypeCol}>
