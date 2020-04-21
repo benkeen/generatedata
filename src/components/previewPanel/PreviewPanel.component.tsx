@@ -107,7 +107,6 @@ const PreviewPanel = ({
 						<div className={styles.topRow}>
 							<ExportTypeButton
 								disableElevation
-								disableFocusRipple
 								onClick={exportTypeLabelBtnAction}
 								variant="outlined"
 								color="primary"

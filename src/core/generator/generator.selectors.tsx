@@ -4,6 +4,7 @@ import { processOrders, getDataTypeExports } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
 import { ColumnData, GDLocale, GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
+import { PreviewPanelLoader } from '../../components/previewPanel/PreviewPanelLoader.component';
 import { DataRow } from './generator.reducer';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import * as langUtils from '../../utils/langUtils';
@@ -170,9 +171,7 @@ export const getExportTypePreviewComponent = createSelector(
 		if (loadedExportTypes[exportType as ExportTypeFolder]) {
 			return getExportTypePreview(exportType);
 		}
-		const PreviewComponent = (): any => <div>Loading!</div>;
-		PreviewComponent.displayName = 'PreviewComponent';
-		return PreviewComponent;
+		return PreviewPanelLoader;
 	}
 );
 

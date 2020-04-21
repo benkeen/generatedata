@@ -50,6 +50,11 @@
         flex-direction: column;
         flex: 1;
     }
+
+	.loading {
+		align-items: center;
+		justify-content: center;
+	}
 }
 
 .noResults {

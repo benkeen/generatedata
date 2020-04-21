@@ -71,7 +71,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 			colTitles.forEach((columnTitle: string, colIndex: number) => {
 				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
 			});
-
 			rowDataStr.push(displayVals.join(','));
 
 			if (rowDataStr.length === sqlSettings.insertBatchSize) {

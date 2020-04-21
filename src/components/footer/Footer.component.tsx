@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import HtmlTooltip from '../tooltip/HtmlTooltip';
 import styles from './Footer.scss';
 import { Github } from '../icons';
@@ -86,7 +87,8 @@ const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale, scriptVe
 
 				<div>
 					<Button onClick={(): void => { }} variant="contained" color="primary" disableElevation>
-						<span dangerouslySetInnerHTML={{ __html: i18n.generateArrow }} />
+						<span dangerouslySetInnerHTML={{ __html: i18n.generate }} />
+						<KeyboardArrowRightIcon />
 					</Button>
 				</div>
 			</div>
