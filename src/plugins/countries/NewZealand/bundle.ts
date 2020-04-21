@@ -40,4 +40,4 @@ export default (i18n: any): CountryType => ({
 			]
 		}
 	]
-}
+});

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import styles from './Names.scss';
 
 export type NamesState = {
 	example: string;
@@ -60,30 +61,36 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			{i18n.help_intro}
 		</p>
 
-		<table cellPadding="0" cellSpacing="1">
-			<tbody>
-				<tr>
-					<td><h4>Name</h4></td>
-					<td>{i18n.type_Name}</td>
-				</tr>
-				<tr>
-					<td><h4>MaleName</h4></td>
-					<td>{i18n.type_MaleName}</td>
-				</tr>
-				<tr>
-					<td><h4>FemaleName</h4></td>
-					<td>{i18n.type_FemaleName}</td>
-				</tr>
-				<tr>
-					<td><h4>Initial</h4></td>
-					<td>{i18n.type_Initial}</td>
-				</tr>
-				<tr>
-					<td><h4>Surname</h4></td>
-					<td>{i18n.type_Surname}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>Name</label>
+			</div>
+			<div className={styles.col2}>{i18n.type_Name}</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>MaleName</label>
+			</div>
+			<div className={styles.col2}>{i18n.type_MaleName}</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>FemaleName</label>
+			</div>
+			<div className={styles.col2}>{i18n.type_FemaleName}</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>Initial</label>
+			</div>
+			<div className={styles.col2}>{i18n.type_Initial}</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>Surname</label>
+			</div>
+			<div className={styles.col2}>{i18n.type_Surname}</div>
+		</div>
 	</>
 );
 

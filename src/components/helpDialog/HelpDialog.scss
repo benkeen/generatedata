@@ -1,0 +1,16 @@
+.contentPanel {
+	display: flex;
+}
+.dataTypeList {
+	flex: 0 0 200px;
+	margin-right: 15px;
+	input {
+		width: 100%;
+	}
+}
+.helpContent {
+	flex: 1;
+	p:first-child {
+		margin-top: 0;
+	}
+}

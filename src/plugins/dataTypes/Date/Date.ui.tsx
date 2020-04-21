@@ -136,119 +136,193 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			{i18n.help_intro}
 		</p>
 
-		<table cellPadding="0" cellSpacing="1">
-			<tr>
-				<td><h2>{i18n.char}</h2></td>
-				<td><h2>{i18n.description}</h2></td>
-				<td><h2>{i18n.example}</h2></td>
-			</tr>
-		</table>
+		<h3>{i18n.day}</h3>
 
-		<hr />
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>d</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_d}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_d_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>D</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_D}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_D_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>j</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_j}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_j_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>l</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_l}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_l_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>S</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_S}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_S_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>w</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_w}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_w_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>z</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_z}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_z_example}
+			</div>
+		</div>
 
-		<h3 className="gdSubtitle">{i18n.day}</h3>
-		<hr />
+		<h3>{i18n.week}</h3>
 
-		<table cellPadding="0" cellSpacing="1">
-			<tr>
-				<td><h4>d</h4></td>
-				<td>{i18n.help_d}</td>
-				<td>{i18n.help_d_example}</td>
-			</tr>
-			<tr>
-				<td><h4>D</h4></td>
-				<td>{i18n.help_D}</td>
-				<td>{i18n.help_D_example}</td>
-			</tr>
-			<tr>
-				<td><h4>j</h4></td>
-				<td>{i18n.help_j}</td>
-				<td>{i18n.help_j_example}</td>
-			</tr>
-			<tr>
-				<td><h4>l</h4></td>
-				<td>{i18n.help_l}</td>
-				<td>{i18n.help_l_example}</td>
-			</tr>
-			<tr>
-				<td valign="top"><h4>S</h4></td>
-				<td>{i18n.help_S}</td>
-				<td valign="top">{i18n.help_S_example}</td>
-			</tr>
-			<tr>
-				<td valign="top"><h4>w</h4></td>
-				<td valign="top">{i18n.help_w}</td>
-				<td valign="top">{i18n.help_w_example}</td>
-			</tr>
-			<tr>
-				<td><h4>z</h4></td>
-				<td>{i18n.help_z}</td>
-				<td>{i18n.help_z_example}</td>
-			</tr>
-		</table>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>W</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_W}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_W_example}
+			</div>
+		</div>
 
-		<h3 className="gdSubtitle">{i18n.week}</h3>
-		<hr />
+		<h3>{i18n.month}</h3>
 
-		<table cellPadding="0" cellSpacing="1">
-			<tr>
-				<td valign="top"><h4>W</h4></td>
-				<td valign="top">{i18n.help_W}</td>
-				<td valign="top">{i18n.help_W_example}</td>
-			</tr>
-		</table>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>F</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_F}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_F_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>m</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_m}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_m_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>M</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_M}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_M_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>n</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_n}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_n_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>t</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_t}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_t_example}
+			</div>
+		</div>
 
-		<h3 className="gdSubtitle">{i18n.month}</h3>
-		<hr />
+		<h3>{i18n.year}</h3>
 
-		<table cellPadding="0" cellSpacing="1">
-			<tr>
-				<td valign="top"><h4>F</h4></td>
-				<td>{i18n.help_F}</td>
-				<td valign="top">{i18n.help_F_example}</td>
-			</tr>
-			<tr>
-				<td><h4>m</h4></td>
-				<td>{i18n.help_m}</td>
-				<td>{i18n.help_m_example}</td>
-			</tr>
-			<tr>
-				<td><h4>M</h4></td>
-				<td>{i18n.help_M}</td>
-				<td>{i18n.help_M_example}</td>
-			</tr>
-			<tr>
-				<td valign="top"><h4>n</h4></td>
-				<td>{i18n.help_n}</td>
-				<td valign="top">{i18n.help_n_example}</td>
-			</tr>
-			<tr>
-				<td><h4>t</h4></td>
-				<td>{i18n.help_t}</td>
-				<td>{i18n.help_t_example}</td>
-			</tr>
-		</table>
-
-		<h3 className="gdSubtitle">{i18n.year}</h3>
-		<hr />
-
-		<table cellPadding="0" cellSpacing="1">
-			<tr>
-				<td><h4>L</h4></td>
-				<td>{i18n.help_L}</td>
-				<td>{i18n.help_L_example}</td>
-			</tr>
-			<tr>
-				<td><h4>Y</h4></td>
-				<td>{i18n.help_Y}</td>
-				<td>{i18n.help_Y_example}</td>
-			</tr>
-			<tr>
-				<td><h4>y</h4></td>
-				<td>{i18n.help_y}</td>
-				<td>{i18n.help_y_example}</td>
-			</tr>
-		</table>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>L</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_L}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_L_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>Y</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_Y}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_Y_example}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>y</label>
+			</div>
+			<div className={styles.col2}>
+				{i18n.help_y}
+			</div>
+			<div className={styles.col3}>
+				{i18n.help_y_example}
+			</div>
+		</div>
 	</>
 );
 

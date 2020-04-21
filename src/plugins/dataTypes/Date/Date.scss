@@ -28,3 +28,26 @@
         border-bottom: 0;
     }
 }
+
+.row {
+	display: flex;
+	align-items: flex-start;
+	padding-bottom: 12px;
+
+	.col1 {
+		flex: 0 0 60px;
+	}
+	.col2 {
+		flex: 1;
+	}
+	.col3 {
+		flex: 1;
+		color: #999999;
+	}
+
+	label {
+		background-color: #dfecfc;
+		border-radius: 3px;
+		padding: 1px 6px;
+	}
+}

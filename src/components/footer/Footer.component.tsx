@@ -85,10 +85,6 @@ const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale, scriptVe
 				</ul>
 
 				<div>
-					<Button onClick={(): void => { }} variant="outlined" color="primary" disableElevation style={{ marginRight: 6 }}>
-						{i18n.countries} (30)
-					</Button>
-					<span style={{ padding: '6px 12px 0 6px', color: '#dddddd' }}>|</span>
 					<Button onClick={(): void => { }} variant="contained" color="primary" disableElevation>
 						<span dangerouslySetInnerHTML={{ __html: i18n.generateArrow }} />
 					</Button>

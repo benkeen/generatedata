@@ -11,7 +11,7 @@
 	"help_D_example": "Mon through Sun",
 	"help_F": "A full textual representation of a month, such as January or March",
 	"help_F_example": "January through December",
-	"help_L": "Whether it&#39;s a leap year",
+	"help_L": "Whether it's a leap year",
 	"help_L_example": "1 if it is a leap year, 0 otherwise.",
 	"help_M": "A short textual representation of a month, three letters",
 	"help_M_example": "Jan through Dec",
