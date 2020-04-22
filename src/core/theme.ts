@@ -1,5 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
+// @ts-ignore-line
 const theme = createMuiTheme({
 	typography: {
 		fontFamily: 'garamond, "Open Sans", serif',
@@ -19,6 +20,11 @@ const theme = createMuiTheme({
 	// 	button: {
 	// 		fontSize: 'inherit'
 	// 	}
+		MuiDialog: {
+			root: {
+				zIndex: '5000 !important'
+			}
+		}
 	},
 	props: {
 		MuiButtonBase: {
