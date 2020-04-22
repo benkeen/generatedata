@@ -43,7 +43,7 @@ export const getSortedRowsArray = createSelector(
 
 export const getNonEmptySortedRows = createSelector(
 	getSortedRowsArray,
-	(rows) => rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
+	(rows) => rows.filter((row: DataRow) => row.title.trim() !== '' && row.dataType !== null && row.dataType.trim() !== '')
 );
 
 export const getColumns = createSelector(

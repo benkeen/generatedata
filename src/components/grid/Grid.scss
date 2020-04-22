@@ -119,10 +119,16 @@ div.deleteCol, div.helpCol {
 }
 
 .addRows {
+	display: flex;
+	align-items: center;
 	margin-bottom: 12px;
 
 	span, input {
 		margin-right: 6px;
+	}
+
+	input {
+		height: 26px;
 	}
 
 	input {

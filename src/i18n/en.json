@@ -293,5 +293,6 @@
 
 	"exportType": "Export Type",
 	"previewPanel": "Preview Panel",
-	"format": "Format"
+	"format": "Format",
+	"row": "Row"
 }

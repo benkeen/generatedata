@@ -9,6 +9,8 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 	const settings = selectors.getExportTypeSettings(state);
 	const exportTypeSettings = (settings[exportType]) ? settings[exportType] : {};
 
+	console.log(selectors.getPreviewPanelData(state));
+
 	return {
 		ExportTypePreview: selectors.getExportTypePreviewComponent(state),
 		i18n: selectors.getCoreI18n(state),

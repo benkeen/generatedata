@@ -1,20 +1,20 @@
+@import "../../styles/variables.scss";
+
+* {
+	box-sizing: border-box;
+}
+
 html, body {
     height: 100%;
     padding: 0;
     margin: 0;
 	font-family: garamond, 'Open Sans', serif;
-    //   font-family: 'Alegreya', serif;
     font-size: 12px;
 }
 
 input, select, textarea {
-    //   font-family: 'Alegreya', serif;
     font-family: garamond, 'Open Sans', serif;
     font-size: 12px;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 :global(#root) {
@@ -39,14 +39,14 @@ input, textarea, select {
     outline: none;
 
     &:focus {
-        border: 1px solid #2684ff;
+        border: 1px solid $primary-color;
     }
 }
 
 a {
-    color: #3f51b5;
+    color: $primary-color;
 
     &:hover {
-        border-bottom: 1px solid #3f51b5;
+        color: 1px solid darken($primary-color, 30%);
     }
 }

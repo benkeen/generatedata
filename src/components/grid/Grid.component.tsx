@@ -151,6 +151,8 @@ const Grid = ({
 		gridSizeClass = styles.gridMedium;
 	}
 
+	const addRowsBtnLabel = numRows === 1 ? i18n.row : i18n.rows;
+
 	return (
 		<>
 			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={toggleGrid}>
@@ -198,15 +200,24 @@ const Grid = ({
 										)}
 									</Droppable>
 								</DragDropContext>
-								<div className={styles.addRows}>
-									<form onSubmit={(e): any => e.preventDefault()}>
-										<span>{i18n.add}</span>
-										<input type="number" value={numRows} onChange={(e): void => setNumRows(parseInt(e.target.value, 10))}
-											min={1} max={1000} step={1} />
-										<Button size="small"
-											onClick={(): void => onAddRows(numRows)} variant="contained" color="primary" disableElevation>{i18n.rows}</Button>
-									</form>
-								</div>
+								<form onSubmit={(e): any => e.preventDefault()} className={styles.addRows}>
+									<span>{i18n.add}</span>
+									<input type="number"
+										value={numRows}
+										onChange={(e): void => setNumRows(parseInt(e.target.value, 10))}
+										min={1}
+										max={1000}
+										step={1}
+									/>
+									<Button
+										size="small"
+										onClick={(): void => onAddRows(numRows)}
+										variant="contained"
+										color="primary"
+										disableElevation>
+										{addRowsBtnLabel}
+									</Button>
+								</form>
 							</div>
 						</div>
 						<HelpDialog

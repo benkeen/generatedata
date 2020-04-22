@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
 
 // @ts-ignore-line
 const theme = createMuiTheme({
@@ -8,18 +9,11 @@ const theme = createMuiTheme({
 			fontSize: 'inherit'
 		},
 	},
-	// palette: {
-	// 	type: 'dark'
-	// 	// primary: {
-	// 	// 	main: '#2684ff'
-	// 	// }
-	// },
+	palette: {
+		primary: blue,
+		tonalOffset: 0.5
+	},
 	overrides: {
-	// 	MuiTypography: {
-	// 	}
-	// 	button: {
-	// 		fontSize: 'inherit'
-	// 	}
 		MuiDialog: {
 			root: {
 				zIndex: '5000 !important'
