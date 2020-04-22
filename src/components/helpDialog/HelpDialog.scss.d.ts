@@ -3,6 +3,7 @@ declare namespace HelpDialogScssModule {
     contentPanel: string;
     dataTypeList: string;
     helpContent: string;
+    list: string;
   }
 }
 

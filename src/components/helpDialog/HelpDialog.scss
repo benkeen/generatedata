@@ -1,17 +1,47 @@
+@import "../../styles/variables";
+
 .contentPanel {
 	display: flex;
+	overflow: hidden !important;
 }
 .dataTypeList {
 	flex: 0 0 200px;
 	margin-right: 15px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	font-size: 13px;
+
 	input {
 		width: 100%;
+		flex: 0 0 auto;
+	}
+
+	ul {
+		margin: 0;
+		list-style: none;
+		padding: 0 0 0 10px;
+		font-size: 12px;
+	}
+	li {
+		color: $primary-color;
+		cursor: pointer;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
 .helpContent {
 	flex: 1;
 	padding-bottom: 15px;
+	overflow: scroll;
+	font-size: 13px;
 	p:first-child {
 		margin-top: 0;
 	}
+}
+
+.list {
+	flex: 1;
+	overflow: scroll;
 }

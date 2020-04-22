@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 // import Dropdown from '../dropdown/Dropdown';
-import { getSortedGroupedDataTypes, getDataTypeExports } from '../../utils/dataTypeUtils';
+import { getSortedGroupedDataTypes, getDataTypeExports, getDataTypeName } from '../../utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
 
 const dialogStyles = (theme: any): any => ({
@@ -55,9 +55,7 @@ const DialogActions = withStyles(theme => ({
 
 // @ts-ignore-line
 const Dialog = withStyles(() => ({
-	// @ts-ignore-line
 	root: {
-		// @ts-ignore-line
 		zIndex: '5000 !important',
 		color: 'red',
 		width: '100%'
@@ -75,14 +73,37 @@ export type HelpDialogProps = {
 	i18n: any;
 }
 
+const DataTypeList = ({ onSelect }: any) => {
+	const dataTypes = getSortedGroupedDataTypes();
+
+	let content: any = [];
+	dataTypes.forEach(({ label, options }: { label: string, options: any }) => {
+		let list: any = options.map(({ value, label }: { value: string, label: string }) => {
+			return (
+				<li key={value} onClick={(): void => onSelect(value)}>{label}</li>
+			);
+		});
+		content.push(
+			<div key={label}>
+				<h3>{label}</h3>
+				<ul>
+				{list}
+				</ul>
+			</div>
+		);
+	});
+
+	return content;
+};
+
 const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpDialogProps): JSX.Element => {
 	const [dataType, setDataType] = React.useState();
 
+	console.log('dataType: ', dataType);
 	React.useEffect(() => {
 		setDataType(initialDataType);
 	}, [initialDataType]);
 
-	const dataTypes = getSortedGroupedDataTypes();
 	const { Help } = getDataTypeExports(dataType);
 
 	/*
@@ -94,14 +115,17 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpD
 	/>
 	*/
 
+	const name = getDataTypeName(dataType);
+
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
-			<DialogTitle onClose={onClose}>
-				Data Types
-			</DialogTitle>
+			<DialogTitle onClose={onClose}>{name}</DialogTitle>
 			<DialogContent dividers className={styles.contentPanel}>
 				<div className={styles.dataTypeList}>
 					<input type="text" placeholder="Filter Data Types" autoFocus />
+					<div className={styles.list}>
+						<DataTypeList onSelect={setDataType} />
+					</div>
 				</div>
 				<div className={styles.helpContent}>
 					<Help

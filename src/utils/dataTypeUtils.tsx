@@ -128,3 +128,10 @@ export const getDataTypeExports = (dataType: DataTypeFolder): any => {
 	const { Example, Options, Help, generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
 	return { Example, Options, Help, generate, getMetadata, rowStateReducer };
 };
+
+export const getDataTypeName = (dataType: DataTypeFolder) => {
+	if (!dataType || !dataTypes[dataType]) {
+		return '';
+	}
+	return dataTypes[dataType].name;
+};
