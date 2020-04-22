@@ -7,5 +7,7 @@ export default {
 		{ value: 'darcula', label: 'Darcula' },
 		{ value: 'elegant', label: 'Elegant' },
 		{ value: 'lucario', label: 'Lucario' }
-	]
+	],
+	MIN_PREVIEW_ROWS: 5,
+	MAX_PREVIEW_ROWS: 20
 };

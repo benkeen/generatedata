@@ -18,7 +18,13 @@ export type PreviewSettingsTabProps = {
 	updateNumPreviewRows: Function;
 };
 
-const options = getArrayOfSize(10).map((i, index) => ({ value: index + 1, label: index + 1 }));
+const previewRowOptions = getArrayOfSize(C.MAX_PREVIEW_ROWS - C.MIN_PREVIEW_ROWS + 1).map((i, index) => {
+	const rowNum = index + C.MIN_PREVIEW_ROWS;
+	return {
+		value: rowNum,
+		label: rowNum
+	};
+});
 
 export const PreviewSettingsTab = ({
 	theme, numPreviewRows, showRowNumbers, enableLineWrapping, previewTextSize, onChangeTheme,
@@ -76,7 +82,7 @@ export const PreviewSettingsTab = ({
 						<Dropdown
 							value={numPreviewRows}
 							onChange={(item: any): any => updateNumPreviewRows(item.value)}
-							options={options}
+							options={previewRowOptions}
 						/>
 					</div>
 				</div>

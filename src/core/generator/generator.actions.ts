@@ -8,6 +8,7 @@ import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
 import { DTBundle } from '../../../types/dataTypes';
 import { ThunkDispatch } from 'redux-thunk';
 import * as langUtils from '../../utils/langUtils';
+import C from '../../core/constants';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -96,7 +97,7 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		const sortedRows = selectors.getSortedRows(state);
 
 		const data = generatePreviewData({
-			numResults: selectors.getNumPreviewRows(state),
+			numResults: C.MAX_PREVIEW_ROWS,
 			columns: selectors.getColumns(state),
 			template
 		});
