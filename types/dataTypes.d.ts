@@ -1,5 +1,5 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
-import { AnyObject } from './general';
+import { AnyObject, Tag } from './general';
 
 export type DTExportTypeExports = 'Options' | 'Help' |  'Example' |  'rowStateReducer' |  'getMetadata';
 
@@ -25,6 +25,8 @@ export type DTDefinition = {
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	processOrder?: number;
+	countryTags?: any; // TODO map this to our Country plugins
+	tags?: Tag[];
 	schema?: any;
 };
 

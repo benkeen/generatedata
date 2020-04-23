@@ -72,3 +72,5 @@ export type ExportTypePreviewData = {
 	columns: any; //
 	rows: any[]; // TODO see how this settles. Right now it's just an array of strings too: i.e. the generated values
 };
+
+export type Tag = '';

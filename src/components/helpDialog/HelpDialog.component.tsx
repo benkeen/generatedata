@@ -8,7 +8,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-// import Dropdown from '../dropdown/Dropdown';
+import { DropdownOption } from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
 import { DataTypeFolder } from '../../_plugins';
@@ -63,7 +63,8 @@ const Dialog = withStyles(() => ({
 	},
 	paper: {
 		maxWidth: 1000,
-		width: '100%'
+		width: '100%',
+		height: '100%' // ensures the modal doesn't change size when the user filters the list of DTs
 	}
 }))(MuiDialog);
 
@@ -76,22 +77,28 @@ export type HelpDialogProps = {
 	onSelectDataType: (dataType: DataTypeFolder) => void;
 };
 
-const DataTypeList = ({ onSelect }: any): any => {
+const DataTypeList = ({ onSelect, filterString }: any): any => {
 	const dataTypes = getSortedGroupedDataTypes();
+	const regex = new RegExp(filterString, 'i');
 
 	const content: any = [];
 	dataTypes.forEach(({ label, options }: { label: string; options: any }) => {
-		const list: any = options.map(({ value, label }: { value: string; label: string }) => (
+		let list: any = options;
+		if (filterString.trim() !== '') {
+			list = list.filter(({ value, label }: DropdownOption) => regex.test(value) || regex.test(label));
+		}
+		list = list.map(({ value, label }: DropdownOption) => (
 			<li key={value} onClick={(): void => onSelect(value)}>{label}</li>
 		));
-		content.push(
-			<div key={label}>
-				<h3>{label}</h3>
-				<ul>
-					{list}
-				</ul>
-			</div>
-		);
+
+		if (list.length) {
+			content.push(
+				<div key={label}>
+					<h3>{label}</h3>
+					<ul>{list}</ul>
+				</div>
+			);
+		}
 	});
 
 	return content;
@@ -99,6 +106,7 @@ const DataTypeList = ({ onSelect }: any): any => {
 
 const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
 	const [dataType, setDataType] = React.useState();
+	const [filterString, setFilterString] = React.useState('');
 
 	const selectDataType = (dataType: DataTypeFolder) => {
 		onSelectDataType(dataType);
@@ -116,9 +124,17 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 			<DialogTitle onClose={onClose}>{name}</DialogTitle>
 			<DialogContent dividers className={styles.contentPanel}>
 				<div className={styles.dataTypeList}>
-					<input type="text" placeholder="Filter Data Types" autoFocus />
+					<input
+						type="text"
+						placeholder="Filter Data Types"
+						autoFocus
+						onChange={(e): void => setFilterString(e.target.value)}
+					/>
 					<div className={styles.list}>
-						<DataTypeList onSelect={selectDataType} />
+						<DataTypeList
+							filterString={filterString}
+							onSelect={selectDataType}
+						/>
 					</div>
 				</div>
 				<div className={styles.helpContent}>

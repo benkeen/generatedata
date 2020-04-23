@@ -30,7 +30,9 @@ export const Options = (): JSX.Element => {
 	return <div />;
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC} {i18n.help_text}</p>;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
+	<p>{i18n.DESC} <span dangerouslySetInnerHTML={{ __html: i18n.help_text }} /></p>
+);
 
 
 // var _saveRow = function(rowNum) {
