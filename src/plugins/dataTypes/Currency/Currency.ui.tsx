@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import styles from './Currency.scss';
 
 export const initialState = {
 	example: '',
@@ -29,10 +30,10 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 			label: 'US/Canada',
 			options: [
 				{ value: 'XXX.XX|0.00|100.00|$|prefix', label: '$0.00 -> $100.00' },
-				{ value: 'XX,XXX|5000|10000|$|prefix', label: `$5,000 -> $10,000 (${i18n.no_cents})` },
-				{ value: 'XXXXX.XX|1000.00|10000.00|$|prefix', label: `$1000.00 -> $10000.00 (${i18n.no_thousand_delimiters})` },
+				{ value: 'XX,XXX|5000|10000|$|prefix', label: `$5,000 -> $10,000 (${i18n.noCents})` },
+				{ value: 'XXXXX.XX|1000.00|10000.00|$|prefix', label: `$1000.00 -> $10000.00 (${i18n.noThousandDelimiters})` },
 				{ value: 'XXX,XXX.XX|-100000.00|100000.00|$|prefix', label: '-$100,000.00 -> $100,000.00' },
-				{ value: 'X.XX|0.00|100.00||prefix', label: `0.01 -> 1.00 (${i18n.no_dollar_sign})` },
+				{ value: 'X.XX|0.00|100.00||prefix', label: `0.01 -> 1.00 (${i18n.noDollarSign})` },
 				{ value: 'X.XXX.XXX,XX|100.00|1000.00|$|suffix', label: '100,00 $ -> 1.000,00 $ (French Canadian)' },
 				{ value: 'XXX XXX|10|100000||prefix', label: '10 -> 100 000' }
 			]
@@ -87,33 +88,39 @@ export const Options = ({ i18n, data }: DTOptionsProps): JSX.Element => {
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.help_intro}
+			{i18n.helpIntro}
 		</p>
 
-		<table cellPadding="0" cellSpacing="1">
-			<tbody>
-				<tr>
-					<td valign="top"><h4>{i18n.format}</h4></td>
-					<td>{i18n.format_desc}</td>
-				</tr>
-				<tr>
-					<td valign="top"><h4>{i18n.range_from}</h4></td>
-					<td>{i18n.range_from_desc}</td>
-				</tr>
-				<tr>
-					<td valign="top"><h4>{i18n.range_to}</h4></td>
-					<td>{i18n.range_to_desc}</td>
-				</tr>
-				<tr>
-					<td valign="top"><h4>{i18n.currency_symbol}</h4></td>
-					<td>{i18n.currency_symbol_desc}</td>
-				</tr>
-				<tr>
-					<td valign="top"><h4>{i18n.prefix_suffix}</h4></td>
-					<td>{i18n.prefix_suffix_desc}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>{i18n.format}</label>
+			</div>
+			<div className={styles.col2}>{i18n.formatDesc}</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>{i18n.rangeFrom}</label>
+			</div>
+			<div className={styles.col2}>{i18n.rangeFromDesc}</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>{i18n.rangeTo}</label>
+			</div>
+			<div className={styles.col2}>{i18n.rangeToDesc}</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>{i18n.currencySymbol}</label>
+			</div>
+			<div className={styles.col2}>{i18n.currencySymbolDesc}</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>{i18n.prefixSuffix}</label>
+			</div>
+			<div className={styles.col2}>{i18n.prefixSuffixDesc}</div>
+		</div>
 	</>
 );
 

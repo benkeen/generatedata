@@ -1,4 +1,3 @@
-import React from 'react';
 import { exportTypes, ExportTypeFolder } from '../_plugins';
 import { MediumSpinner } from '../components/loaders';
 

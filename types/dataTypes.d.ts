@@ -25,7 +25,7 @@ export type DTDefinition = {
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	processOrder?: number;
-	countryTags?: any; // TODO map this to our Country plugins
+	countryTags?: any; // TODO maybe map this to our Country plugins?
 	tags?: Tag[];
 	schema?: any;
 };
