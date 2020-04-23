@@ -43,7 +43,6 @@ export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
 					}
 				});
 				dispatch(refreshPreview([id]));
-				// dispatch(initActions.dataTypeLoaded(dataType));
 			});
 	};
 };
@@ -161,7 +160,6 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 
 		loadExportTypeBundle(exportType)
 			.then((bundle: DTBundle) => {
-				// dispatch(refreshPreview());
 				dispatch(exportTypeLoaded(exportType, bundle.initialState));
 			});
 	};

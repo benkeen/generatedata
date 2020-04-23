@@ -1,6 +1,6 @@
-import { exportTypes, ExportTypeFolder } from '../_plugins';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import React from 'react';
+import { exportTypes, ExportTypeFolder } from '../_plugins';
+import { MediumSpinner } from '../components/loaders';
 
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
@@ -48,7 +48,5 @@ export const getExportTypeSettingsComponent = (exportType: ExportTypeFolder): an
 	if (loadedExportTypes[exportType]) {
 		return loadedExportTypes[exportType].Settings;
 	}
-
-	// eslint-disable-next-line react/display-name
-	return (): any => <CircularProgress size={40} style={{ color: '#999999', margin: 5 }} />;
+	return MediumSpinner;
 };

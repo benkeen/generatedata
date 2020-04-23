@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 // import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
+import { DataTypeFolder } from '../../_plugins';
 
 const dialogStyles = (theme: any): any => ({
 	root: {
@@ -72,7 +73,8 @@ export type HelpDialogProps = {
 	onClose: any;
 	coreI18n: any;
 	dataTypeI18n: any;
-}
+	onSelectDataType: (dataType: DataTypeFolder) => void;
+};
 
 const DataTypeList = ({ onSelect }: any): any => {
 	const dataTypes = getSortedGroupedDataTypes();
@@ -95,8 +97,13 @@ const DataTypeList = ({ onSelect }: any): any => {
 	return content;
 };
 
-const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n }: HelpDialogProps): JSX.Element => {
+const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
 	const [dataType, setDataType] = React.useState();
+
+	const selectDataType = (dataType: DataTypeFolder) => {
+		onSelectDataType(dataType);
+		setDataType(dataType);
+	};
 
 	React.useEffect(() => {
 		setDataType(initialDataType);
@@ -111,7 +118,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n 
 				<div className={styles.dataTypeList}>
 					<input type="text" placeholder="Filter Data Types" autoFocus />
 					<div className={styles.list}>
-						<DataTypeList onSelect={setDataType} />
+						<DataTypeList onSelect={selectDataType} />
 					</div>
 				</div>
 				<div className={styles.helpContent}>

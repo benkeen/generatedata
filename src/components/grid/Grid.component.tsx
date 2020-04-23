@@ -12,8 +12,9 @@ import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import * as styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
-import HelpDialog from '../helpDialog/HelpDialog.container';
+import HelpDialog from '../helpDialog/HelpDialog.component';
 import { DataRow } from '../../core/generator/generator.reducer';
+import { DataTypeFolder } from '../../_plugins';
 
 
 const SMALL_BREAKPOINT = 650;
@@ -25,13 +26,14 @@ export type GridProps = {
 	onAddRows: (numRows: number) => void;
 	onChangeTitle: (id: string, value: string) => void;
 	onSelectDataType: (id: string, value: string) => void;
+	maybeLoadDataType: (dataType: DataTypeFolder) => void;
 	onConfigureDataType: (id: string, value: string) => void;
 	onSort: (id: string, newIndex: number) => void;
 	toggleGrid: () => void;
 	i18n: any;
 	dataTypeI18n: any;
 	loadedDataTypes: any; // TODO
-}
+};
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -48,7 +50,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProper
 
 const Grid = ({
 	rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, dataTypeI18n,
-	toggleGrid, loadedDataTypes
+	toggleGrid, maybeLoadDataType
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialogSection] = React.useState(false);
@@ -226,6 +228,7 @@ const Grid = ({
 							onClose={(): any => showHelpDialogSection(false)}
 							coreI18n={i18n}
 							dataTypeI18n={dataTypeI18n}
+							onSelectDataType={maybeLoadDataType}
 						/>
 					</div>
 				)}

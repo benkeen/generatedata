@@ -3,7 +3,7 @@ import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTHelpProps } from '../../types/dataTypes';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { SmallSpinner, MediumSpinner } from '../components/loaders';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
@@ -52,8 +52,6 @@ export const DefaultHelpComponent = ({ i18n }: DTHelpProps) => <p dangerouslySet
 
 // our main getter function to return everything known about a Data Type
 export const getDataType = (dataType: DataTypeFolder | null): any => {
-	const name = '';
-
 	// TODO standardize these. All should either return null or a component
 	let Example = null;
 	let Options = null;
@@ -61,11 +59,10 @@ export const getDataType = (dataType: DataTypeFolder | null): any => {
 
 	if (!dataType || !loadedDataTypes[dataType]) {
 		return {
-			name,
-			// eslint-disable-next-line react/display-name
-			Example: (): any => <CircularProgress size={20} style={{ color: '#999999', margin: 5 }} />,
+			name: dataType ? dataTypes[dataType].name : '',
+			Example: SmallSpinner,
 			Options,
-			Help
+			Help: MediumSpinner
 		};
 	}
 

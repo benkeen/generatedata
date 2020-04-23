@@ -4,6 +4,7 @@ import * as actions from '../../core/generator/generator.actions';
 import * as selectors from '../../core/generator/generator.selectors';
 import Grid, { GridProps } from './Grid.component';
 import { DataTypeFolder } from '../../_plugins';
+import { loadDataTypeBundle } from '../../utils/dataTypeUtils';
 
 const mapStateToProps = (state: any): Partial<GridProps> => ({
 	i18n: selectors.getCoreI18n(state),
@@ -19,6 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	onChangeTitle: (id: string, value: string): any => dispatch(actions.onChangeTitle(id, value)),
 	onSelectDataType: (id: string, value: DataTypeFolder): any => dispatch(actions.onSelectDataType(id, value)),
 	onConfigureDataType: (id: string, data: any): any => dispatch(actions.onConfigureDataType(id, data)),
+	maybeLoadDataType: loadDataTypeBundle,
 	toggleGrid: (): any => dispatch(actions.toggleGrid())
 });
 
