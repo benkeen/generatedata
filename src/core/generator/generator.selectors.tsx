@@ -1,6 +1,6 @@
 import React from 'react';
 import { createSelector } from 'reselect';
-import { processOrders, getDataTypeExports } from '../../utils/dataTypeUtils';
+import { processOrders, getDataType } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
 import { ColumnData, GDLocale, GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../../components/builder/Builder.component';
@@ -101,7 +101,7 @@ export const getGenerationTemplate = createSelector(
 		const templateByProcessOrder: ProcessOrders = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
 			const processOrder = processOrders[dataType as DataTypeFolder] as number;
-			const { generate, rowStateReducer } = getDataTypeExports(dataType);
+			const { generate, rowStateReducer } = getDataType(dataType);
 
 			if (!templateByProcessOrder[processOrder]) {
 				templateByProcessOrder[processOrder] = [];
@@ -136,7 +136,7 @@ export const getSelectedColumnDataTypeMetadata = createSelector(
 	(dataTypes) => {
 		const dataTypeMetadata: any = {};
 		dataTypes.forEach((dataType: DataTypeFolder) => {
-			const { getMetadata } = getDataTypeExports(dataType);
+			const { getMetadata } = getDataType(dataType);
 			dataTypeMetadata[dataType] = getMetadata ? getMetadata() : null;
 		});
 		return dataTypeMetadata;

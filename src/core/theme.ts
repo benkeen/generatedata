@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import color from '@material-ui/core/colors/indigo';
 
 // @ts-ignore-line
 const theme = createMuiTheme({
@@ -10,8 +10,7 @@ const theme = createMuiTheme({
 		},
 	},
 	palette: {
-		primary: blue,
-		tonalOffset: 0.5
+		primary: color
 	},
 	overrides: {
 		MuiDialog: {

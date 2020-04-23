@@ -11,7 +11,7 @@ import DragIndicator from '@material-ui/icons/DragIndicator';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import * as styles from './Grid.scss';
 import Dropdown from '../dropdown/Dropdown';
-import { getSortedGroupedDataTypes, getDataTypeComponents } from '../../utils/dataTypeUtils';
+import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.container';
 import { DataRow } from '../../core/generator/generator.reducer';
 
@@ -61,7 +61,7 @@ const Grid = ({
 	const getRows = (rows: DataRow[]): JSX.Element[] => {
 		return rows.map((row, index) => {
 			// @ts-ignore
-			const { Example, Options } = getDataTypeComponents(row.dataType);
+			const { Example, Options } = getDataType(row.dataType);
 
 			let example: any = null;
 			let option: any = null;
@@ -225,7 +225,7 @@ const Grid = ({
 							initialDataType={initialHelpSection}
 							onClose={(): any => showHelpDialogSection(false)}
 							coreI18n={i18n}
-							i18n={dataTypeI18n[initialHelpSection]}
+							dataTypeI18n={dataTypeI18n}
 						/>
 					</div>
 				)}

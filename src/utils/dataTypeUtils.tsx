@@ -2,7 +2,7 @@ import React from 'react';
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
-import { DTBundle } from '../../types/dataTypes';
+import { DTBundle, DTHelpProps } from '../../types/dataTypes';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 type LoadedDataTypes = {
@@ -47,13 +47,21 @@ export const getSortedGroupedDataTypes = (): any => {
 	});
 };
 
-export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
+export const DefaultHelpComponent = ({ i18n }: DTHelpProps) => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
+
+
+// our main getter function to return everything known about a Data Type
+export const getDataType = (dataType: DataTypeFolder | null): any => {
+	const name = '';
+
+	// TODO standardize these. All should either return null or a component
 	let Example = null;
 	let Options = null;
-	let Help = (): null => null;
+	let Help: any = (): null => null;
 
 	if (!dataType || !loadedDataTypes[dataType]) {
 		return {
+			name,
 			// eslint-disable-next-line react/display-name
 			Example: (): any => <CircularProgress size={20} style={{ color: '#999999', margin: 5 }} />,
 			Options,
@@ -61,25 +69,30 @@ export const getDataTypeComponents = (dataType: DataTypeFolder | null): any => {
 		};
 	}
 
-	// @ts-ignore
-	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Example) {
-		// @ts-ignore
-		Example = loadedDataTypes[dataType].Example;
+	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType]!.Example) {
+		Example = loadedDataTypes[dataType]!.Example;
 	}
 
-	// @ts-ignore
-	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Options) {
-		// @ts-ignore
-		Options = loadedDataTypes[dataType].Options;
+	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType]!.Options) {
+		Options = loadedDataTypes[dataType]!.Options;
 	}
 
-	// @ts-ignore
-	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType].Help) {
-		// @ts-ignore
-		Help = loadedDataTypes[dataType].Help;
+	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType]!.Help) {
+		Help = loadedDataTypes[dataType]!.Help;
+	} else {
+		Help = DefaultHelpComponent;
 	}
 
-	return { Options, Example, Help };
+	const { generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
+	return {
+		name: dataTypes[dataType].name,
+		Options,
+		Help,
+		Example,
+		generate,
+		getMetadata,
+		rowStateReducer
+	};
 };
 
 
@@ -111,27 +124,16 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	});
 };
 
-export const getDataTypeExports = (dataType: DataTypeFolder): any => {
-	const TmpOptions = (): null => null;
-	const TmpExample = (): null => null;
-	const TmpHelp = (): null => null;
-
-	// pity, this
-	if (!dataType || !loadedDataTypes[dataType]) {
-		return {
-			Options: TmpOptions,
-			Example: TmpExample,
-			Help: TmpHelp
-		};
-	}
-
-	const { Example, Options, Help, generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
-	return { Example, Options, Help, generate, getMetadata, rowStateReducer };
-};
-
-export const getDataTypeName = (dataType: DataTypeFolder) => {
-	if (!dataType || !dataTypes[dataType]) {
-		return '';
-	}
-	return dataTypes[dataType].name;
-};
+// export const getDataTypeExports = (dataType: DataTypeFolder): any => {
+// 	if (!dataType || !loadedDataTypes[dataType]) {
+// 		console.log('.');
+// 		return {
+// 			Options: (): null => null,
+// 			Example: (): null => null,
+// 			Help: (): null => null
+// 		};
+// 	}
+// 	console.log('returning...');
+// 	const { Example, Options, Help, generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
+// 	return { Example, Options, Help, generate, getMetadata, rowStateReducer };
+// };

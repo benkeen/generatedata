@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 // import Dropdown from '../dropdown/Dropdown';
-import { getSortedGroupedDataTypes, getDataTypeExports, getDataTypeName } from '../../utils/dataTypeUtils';
+import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
 
 const dialogStyles = (theme: any): any => ({
@@ -61,7 +61,8 @@ const Dialog = withStyles(() => ({
 		width: '100%'
 	},
 	paper: {
-		maxWidth: 1000
+		maxWidth: 1000,
+		width: '100%'
 	}
 }))(MuiDialog);
 
@@ -70,24 +71,22 @@ export type HelpDialogProps = {
 	visible: boolean;
 	onClose: any;
 	coreI18n: any;
-	i18n: any;
+	dataTypeI18n: any;
 }
 
-const DataTypeList = ({ onSelect }: any) => {
+const DataTypeList = ({ onSelect }: any): any => {
 	const dataTypes = getSortedGroupedDataTypes();
 
-	let content: any = [];
-	dataTypes.forEach(({ label, options }: { label: string, options: any }) => {
-		let list: any = options.map(({ value, label }: { value: string, label: string }) => {
-			return (
-				<li key={value} onClick={(): void => onSelect(value)}>{label}</li>
-			);
-		});
+	const content: any = [];
+	dataTypes.forEach(({ label, options }: { label: string; options: any }) => {
+		const list: any = options.map(({ value, label }: { value: string; label: string }) => (
+			<li key={value} onClick={(): void => onSelect(value)}>{label}</li>
+		));
 		content.push(
 			<div key={label}>
 				<h3>{label}</h3>
 				<ul>
-				{list}
+					{list}
 				</ul>
 			</div>
 		);
@@ -96,26 +95,14 @@ const DataTypeList = ({ onSelect }: any) => {
 	return content;
 };
 
-const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpDialogProps): JSX.Element => {
+const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n }: HelpDialogProps): JSX.Element => {
 	const [dataType, setDataType] = React.useState();
 
-	console.log('dataType: ', dataType);
 	React.useEffect(() => {
 		setDataType(initialDataType);
 	}, [initialDataType]);
 
-	const { Help } = getDataTypeExports(dataType);
-
-	/*
-	<Dropdown
-		isGrouped={true}
-		value={dataType}
-		onChange={(i: any): void => setDataType(i.value)}
-		options={dataTypes}
-	/>
-	*/
-
-	const name = getDataTypeName(dataType);
+	const { name, Help } = getDataType(dataType);
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
@@ -130,13 +117,13 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, i18n }: HelpD
 				<div className={styles.helpContent}>
 					<Help
 						coreI18n={coreI18n}
-						i18n={i18n}
+						i18n={dataTypeI18n[dataType]}
 					/>
 				</div>
 			</DialogContent>
 			<DialogActions>
 				<Button onClick={onClose} color="primary" variant="outlined">
-					Close
+					{coreI18n.close}
 				</Button>
 			</DialogActions>
 		</Dialog>

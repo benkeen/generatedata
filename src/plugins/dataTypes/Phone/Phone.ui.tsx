@@ -51,15 +51,9 @@ export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
-		<p>
-			{i18n.help_text1}
-		</p>
-		<p>
-			{i18n.help_text2}
-		</p>
-		<p>
-			{i18n.help_text3}
-		</p>
+		<p dangerouslySetInnerHTML={{ __html: i18n.helpText1 }} />
+		<p dangerouslySetInnerHTML={{ __html: i18n.helpText2 }} />
+		<p dangerouslySetInnerHTML={{ __html: i18n.helpText3 }} />
 	</>
 );
 

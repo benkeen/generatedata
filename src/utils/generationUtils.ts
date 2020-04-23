@@ -11,7 +11,6 @@ export const getNumericFieldColumnIndexes = (generationData: ExportTypeGeneratio
 
 	const numericFieldColIndexes: number[] = [];
 	generationData.columns.forEach((col: ColumnData, colIndex: number) => {
-		console.log(dataTypeMap[col.dataType]);
 		if (dataTypeMap[col.dataType] === 'number') {
 			numericFieldColIndexes.push(colIndex);
 		}
