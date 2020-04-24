@@ -51,16 +51,16 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DESC}
-			{i18n.help_intro}
+			{i18n.helpIntro}
 		</p>
 
 		<ul>
-			<li>{i18n.example_YesNo}</li>
-			<li>{i18n.example_FalseTrue}</li>
-			<li>{i18n.example_ZeroOne}</li>
-			<li>{i18n.example_YesNoShort}</li>
-			<li>{i18n.example_FalseTrueShort}</li>
-			<li>{i18n.example_FalseTrueLower}</li>
+			<li>{i18n.exampleYesNo}</li>
+			<li>{i18n.exampleFalseTrue}</li>
+			<li>{i18n.exampleZeroOne}</li>
+			<li>{i18n.exampleYesNoShort}</li>
+			<li>{i18n.exampleFalseTrueShort}</li>
+			<li>{i18n.exampleFalseTrueLower}</li>
 		</ul>
 
 		<p>

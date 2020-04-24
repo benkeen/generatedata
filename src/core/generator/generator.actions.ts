@@ -9,6 +9,7 @@ import { DTBundle } from '../../../types/dataTypes';
 import { ThunkDispatch } from 'redux-thunk';
 import * as langUtils from '../../utils/langUtils';
 import C from '../../core/constants';
+import { Dispatch } from 'redux';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -203,3 +204,11 @@ export const dataTypeLoaded = (dataType: DataTypeFolder): any => ({
 		dataType
 	}
 });
+
+export const loadDataTypeBundleAndUpdateStore = (dataType: DataTypeFolder): any => (dispatch: Dispatch) => (
+	loadDataTypeBundle(dataType)
+		.then(() => {
+			dispatch(dataTypeLoaded(dataType));
+		})
+);
+

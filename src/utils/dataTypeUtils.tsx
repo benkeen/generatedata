@@ -4,6 +4,8 @@ import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTHelpProps } from '../../types/dataTypes';
 import { SmallSpinner, MediumSpinner } from '../components/loaders';
+import { dataTypeLoaded } from '../core/generator/generator.actions';
+import { Dispatch } from 'redux';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
@@ -120,6 +122,7 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 			});
 	});
 };
+
 
 // export const getDataTypeExports = (dataType: DataTypeFolder): any => {
 // 	if (!dataType || !loadedDataTypes[dataType]) {
