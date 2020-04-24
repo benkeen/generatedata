@@ -62,13 +62,8 @@ const Grid = ({
 
 	const getRows = (rows: DataRow[]): JSX.Element[] => {
 		return rows.map((row, index) => {
-
 			// @ts-ignore
 			const { Example, Options } = getDataType(row.dataType);
-
-			if (row.dataType === 'Phone') {
-				console.log('???', getDataType(row.dataType));
-			}
 
 			let example: any = null;
 			let option: any = null;

@@ -33,7 +33,7 @@ export type DTDefinition = {
 export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'creditCardData' | 'math' | 'text';
 
 export type GeneralMetadataTypes = {
-    dataType: 'number' | 'string' | 'boolean' | 'date';
+    dataType: 'number' | 'string' | 'boolean' | 'date' | 'mixed';
 }
 
 export type DTMetadata = {

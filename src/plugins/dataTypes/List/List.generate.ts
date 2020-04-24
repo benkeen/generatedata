@@ -4,7 +4,7 @@ import { getRandomSubset, getRandomNum } from '../../../utils/randomUtils';
 
 export const rowStateReducer = ({ example, listType, exactly, atMost, values }: ListState): Partial<ListState> => ({
 	example, listType, exactly, atMost, values
-});	
+});
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { listType, values, exactly, atMost } = data.rowState;
@@ -23,7 +23,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 export const getMetadata = (): DTMetadata => ({
 	general: {
-		dataType: 'string'
+		dataType: 'mixed'
 	},
 	sql: {
 		field: 'varchar(255) default NULL',

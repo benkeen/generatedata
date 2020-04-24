@@ -3,6 +3,7 @@ declare namespace DateScssModule {
     col1: string;
     col2: string;
     col3: string;
+    dateBtn: string;
     dateField: string;
     dateRow: string;
     formatCodeLabel: string;

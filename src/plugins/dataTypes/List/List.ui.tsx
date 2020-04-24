@@ -31,19 +31,19 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 	};
 
 	const options = [
-		{ value: '1|3|5|7|9|11|13|15|17|19|21|23|25|27|29|31|33|35|37|39|41|43|45|47|49', label: i18n.example_1 },
-		{ value: '2|4|6|8|10|12|14|16|18|20|22|24|26|28|30|32|34|36|38|40|42|44|46|48|50', label: i18n.example_2 },
+		{ value: '1|3|5|7|9|11|13|15|17|19|21|23|25|27|29|31|33|35|37|39|41|43|45|47|49', label: i18n.example1 },
+		{ value: '2|4|6|8|10|12|14|16|18|20|22|24|26|28|30|32|34|36|38|40|42|44|46|48|50', label: i18n.example2 },
 		{ value: '1|2|3|4|5|6|7|8|9|10', label: '1-10' },
-		{ value: i18n.one_to_ten, label: i18n.example_3 },
-		{ value: '1|2|3|5|7|11|13|17|19|23|29|31|37|41|43|47|53|59|61|67|71|73|79|83|89|97', label: i18n.example_4 },
-		{ value: i18n.colours, label: i18n.example_5 },
-		{ value: i18n.relationship_states, label: i18n.example_6 },
-		{ value: i18n.prefix, label: i18n.example_7 },
-		{ value: i18n.company_names, label: i18n.example_8 },
-		{ value: i18n.companies, label: i18n.example_9 },
-		{ value: i18n.drug_names, label: i18n.example_10 },
-		{ value: i18n.food_types, label: i18n.example_11 },
-		{ value: i18n.car_brands, label: i18n.example_12 }
+		{ value: i18n.oneToTen, label: i18n.example3 },
+		{ value: '1|2|3|5|7|11|13|17|19|23|29|31|37|41|43|47|53|59|61|67|71|73|79|83|89|97', label: i18n.example4 },
+		{ value: i18n.colours, label: i18n.example5 },
+		{ value: i18n.relationshipStates, label: i18n.example6 },
+		{ value: i18n.prefix, label: i18n.example7 },
+		{ value: i18n.companyNames, label: i18n.example8 },
+		{ value: i18n.companies, label: i18n.example9 },
+		{ value: i18n.drugNames, label: i18n.example10 },
+		{ value: i18n.foodTypes, label: i18n.example11 },
+		{ value: i18n.carBrands, label: i18n.example12 }
 	];
 
 	return (
@@ -95,7 +95,7 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 					checked={data.listType === 'AT_MOST'}
 					onChange={(): void => onChange('listType', 'AT_MOST')}
 				/>
-				<label htmlFor={`listType2-${id}`}>{i18n.at_most}</label>
+				<label htmlFor={`listType2-${id}`}>{i18n.atMost}</label>
 				<input
 					type="text"
 					size={2}
@@ -121,7 +121,7 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 	*/
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.help}</p>;
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.help }} />;
 
 // var _validate = function(rows) {
 // 	var missingOptions = {
