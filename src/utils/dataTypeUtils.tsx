@@ -4,8 +4,7 @@ import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTHelpProps } from '../../types/dataTypes';
 import { SmallSpinner, MediumSpinner } from '../components/loaders';
-import { dataTypeLoaded } from '../core/generator/generator.actions';
-import { Dispatch } from 'redux';
+import { Simulate } from 'react-dom/test-utils';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
@@ -49,8 +48,7 @@ export const getSortedGroupedDataTypes = (): any => {
 	});
 };
 
-export const DefaultHelpComponent = ({ i18n }: DTHelpProps) => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
-
+export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
 
 // our main getter function to return everything known about a Data Type
 export const getDataType = (dataType: DataTypeFolder | null): any => {
@@ -68,15 +66,15 @@ export const getDataType = (dataType: DataTypeFolder | null): any => {
 		};
 	}
 
-	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType]!.Example) {
+	if (loadedDataTypes[dataType]!.Example) {
 		Example = loadedDataTypes[dataType]!.Example;
 	}
 
-	if (dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType]!.Options) {
+	if (loadedDataTypes[dataType]!.Options) {
 		Options = loadedDataTypes[dataType]!.Options;
 	}
 
-	if (dataType && dataTypeNames.indexOf(dataType) !== -1 && loadedDataTypes[dataType]!.Help) {
+	if (dataType && loadedDataTypes[dataType]!.Help) {
 		Help = loadedDataTypes[dataType]!.Help;
 	} else {
 		Help = DefaultHelpComponent;

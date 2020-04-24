@@ -21,14 +21,14 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	};
 
 	const options = [
-		{ value: '1-Xxx-Xxx-xxxx', label: i18n.example_1 },
-		{ value: '(Xxx) Xxx-xxxx', label: i18n.example_2 },
+		{ value: '1-Xxx-Xxx-xxxx', label: i18n.example1 },
+		{ value: '(Xxx) Xxx-xxxx', label: i18n.example2 },
 		{ value: '(01xxxx) xxxxx|(01xxx) xxxxxx|(01x1) xxx xxxx|(011x) xxx xxxx|(02x) xxxx xxxx|03xx xxx xxxx|055 xxxx xxxx|056 xxxx xxxx|070 xxxx xxxx|07624 xxxxxx|076 xxxx xxxx|07xxx xxxxxx|0800 xxx xxxx|08xx xxx xxxx|09xx xxx xxxx|(016977) xxxx|(01xxx) xxxxx|0500 xxxxxx|0800 xxxxxx|0800 1111|0845 46 4x', label: i18n.uk },
 		{ value: '0X xx xx xx xx', label: i18n.france },
 		{ value: '(0X) xxxx xxxx', label: i18n.australia },
 		{ value: '(0xx) xxxxxxxx|(0xxx) xxxxxxxx|(0xxxx) xxxxxxx|(03xxxx) xxxxxx', label: i18n.germany },
 		{ value: '0xx-xxx-xxxx', label: i18n.japan },
-		{ value: '1-Xxx-Xxx-xxxx|Xxx-xxxx', label: i18n.different_formats }
+		{ value: '1-Xxx-Xxx-xxxx|Xxx-xxxx', label: i18n.differentFormats }
 	];
 
 	return (

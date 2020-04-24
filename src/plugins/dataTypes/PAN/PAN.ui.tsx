@@ -34,7 +34,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): React.ReactNo
 			...data,
 			example: value
 		};
-		if (value === 'rand_card') { 
+		if (value === 'rand_card') {
 			newData.randomBrands = creditCardList;
 		} else {
 			newData.formats = getFormattedCreditCardFormats(value, data.separator);
@@ -84,7 +84,7 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): React.ReactNo
 				{i18n.ccformats}
 				<textarea
 					title={i18n.format_title}
-					style={{ height: 80, width: '100%' }} 
+					style={{ height: 80, width: '100%' }}
 					value={data.formats}
 					onChange={(e: any): void => onUpdate({
 						...data,
@@ -133,15 +133,15 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): React.ReactNo
 	);
 };
 
+
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<p>
 		{i18n.DESC}
-		{i18n.pan_help_intro}
-		<b>{i18n.mastercard}</b>, <b>{i18n.visa}</b>, <b>{i18n.visa_electron}</b>,
-		<b>{i18n.americanexpress}</b>, <b>{i18n.discover}</b>, <b>{i18n.american_diners}</b>,
-		<b>{i18n.carte_blanche}</b>, <b>{i18n.diners_club_international}</b>, <b>{i18n.enroute}</b>,
-		<b>{i18n.jcb}</b>, <b>{i18n.maestro}</b>, <b>{i18n.solo}</b>,
-		<b>{i18n.switch}</b>, <b>{i18n.laser}</b>.
+		{i18n.panHelpIntro} <b>{i18n.mastercard}</b>, <b>{i18n.visa}</b>, <b>{i18n.visaElectron}</b>, <b>
+		{i18n.amex}</b>, <b>{i18n.discover}</b>, <b>{i18n.americanDiners}</b>, <b>
+		{i18n.carteBlanche}</b>, <b>{i18n.dinersClubInt}</b>, <b>{i18n.dinersClubEnRoute}</b>, <b>
+		{i18n.jcb}</b>, <b>{i18n.maestro}</b>, <b>{i18n.solo}</b>, <b>
+		{i18n.switch}</b>, <b>{i18n.laser}</b>.
 	</p>
 );
 

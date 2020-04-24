@@ -43,6 +43,7 @@ export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
 						data: bundle.initialState
 					}
 				});
+				dispatch(dataTypeLoaded(dataType));
 				dispatch(refreshPreview([id]));
 			});
 	};

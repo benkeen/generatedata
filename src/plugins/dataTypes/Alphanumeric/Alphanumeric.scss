@@ -1,0 +1,24 @@
+.row {
+	display: flex;
+	align-items: flex-start;
+	padding-bottom: 12px;
+
+	.col1 {
+		flex: 0 0 60px;
+	}
+	.col2 {
+		flex: 1;
+	}
+	.col3 {
+		flex: 0 0 60px;
+	}
+	.col4 {
+		flex: 1;
+	}
+
+	label {
+		background-color: #dfecfc;
+		border-radius: 3px;
+		padding: 1px 6px;
+	}
+}

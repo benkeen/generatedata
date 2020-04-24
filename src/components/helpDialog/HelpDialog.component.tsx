@@ -109,7 +109,6 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 	const [filterString, setFilterString] = React.useState('');
 
 	const selectDataType = (dataType: DataTypeFolder) => {
-		console.log('on select', dataType);
 		onSelectDataType(dataType);
 		setDataType(dataType);
 	};

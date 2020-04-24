@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import styles from './SIRET.scss';
 
 type SiretState = {
 	example: string;
@@ -36,25 +37,23 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		<p>
 			{i18n.DESC}
 		</p>
-		<table cellPadding="0" cellSpacing="1">
-			<tbody>
-				<tr>
-					<td><h4>{i18n.SIRET}</h4></td>
-					<td>{i18n.type_SIRET}</td>
-				</tr>
-				<tr>
-					<td><h4>{i18n.SIREN}</h4></td>
-					<td>{i18n.type_SIREN}</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td><h4>{i18n.more_info}</h4></td>
-					<td><a href={i18n.help_link} target="_blank" rel="noopener noreferrer">WIKI SIRET</a></td>
-				</tr>
-			</tbody>
-		</table>
+
+		<div className={styles.row}>
+			<div className={styles.col1}>{i18n.SIRET}</div>
+			<div className={styles.col2}>
+				{i18n.typeSIRET}
+			</div>
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}>{i18n.SIREN}</div>
+			<div className={styles.col2}>
+				{i18n.typeSIREN}
+			</div>
+		</div>
+
+		<p>
+			{i18n.moreInfo} <a href={i18n.helpLink} target="_blank" rel="noopener noreferrer">Wikipedia - SIRET</a>
+		</p>
 	</>
 );
 

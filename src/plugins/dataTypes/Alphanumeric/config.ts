@@ -1,7 +1,7 @@
 import { DTDefinition } from '../../../../types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Boolean',
+	name: 'Alphanumeric',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 10,
 	schema: {

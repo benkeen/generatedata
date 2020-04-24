@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { DTExampleProps, DTOptionsProps, DTHelpProps } from '../../../../types/dataTypes';
+import styles from './Alphanumeric.scss';
 
 export type AlphanumericState = {
 	example: string;
@@ -47,51 +48,48 @@ export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.help_intro}
+			{i18n.helpIntro}
 		</p>
 
-		<table cellPadding="0" cellSpacing="1">
-			<tbody>
-				<tr>
-					<td><h4>L</h4></td>
-					<td>{i18n.help1}</td>
-					<td><h4>V</h4></td>
-					<td>{i18n.help2}</td>
-				</tr>
-				<tr>
-					<td><h4>l</h4></td>
-					<td>{i18n.help3}</td>
-					<td><h4>v</h4></td>
-					<td>{i18n.help4}</td>
-				</tr>
-				<tr>
-					<td><h4>D</h4></td>
-					<td>{i18n.help5}</td>
-					<td><h4>F</h4></td>
-					<td>{i18n.help6}</td>
-				</tr>
-				<tr>
-					<td><h4>C</h4></td>
-					<td>{i18n.help7}</td>
-					<td><h4>x</h4></td>
-					<td>{i18n.help8}</td>
-				</tr>
-				<tr>
-					<td><h4>c</h4></td>
-					<td>{i18n.help9}</td>
-					<td><h4>X</h4></td>
-					<td>{i18n.help10}</td>
-				</tr>
-				<tr>
-					<td><h4>E</h4></td>
-					<td>{i18n.help11}</td>
-					<td><h4>H</h4></td>
-					<td>{i18n.help12}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div className={styles.row}>
+			<div className={styles.col1}><label>L</label></div>
+			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help1 }} />
+			<div className={styles.col3}><label>V</label></div>
+			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help2 }} />
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}><label>l</label></div>
+			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help3 }} />
+			<div className={styles.col3}><label>v</label></div>
+			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help4 }} />
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}><label>D</label></div>
+			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help5 }} />
+			<div className={styles.col3}><label>F</label></div>
+			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help6 }} />
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}><label>C</label></div>
+			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help7 }} />
+			<div className={styles.col3}><label>x</label></div>
+			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help8 }} />
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}><label>c</label></div>
+			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help9 }} />
+			<div className={styles.col3}><label>X</label></div>
+			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help10 }} />
+		</div>
+		<div className={styles.row}>
+			<div className={styles.col1}><label>E</label></div>
+			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help11 }} />
+			<div className={styles.col3}><label>H</label></div>
+			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help12 }} />
+		</div>
 	</>
 );
+
 
 // export const validate = (rows, coreI18n) => {
 // 	var visibleProblemRows = [];
