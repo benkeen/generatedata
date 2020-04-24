@@ -22,9 +22,9 @@ div.gridHeader {
 	border-bottom: 1px solid black;
 	border-radius: 0;
 
-	&:nth-child(odd) {
-		background-color: white;
-	}
+	//&:nth-child(odd) {
+	//	background-color: white;
+	//}
 
 	.orderCol {
 		font-style: italic;
@@ -72,9 +72,9 @@ div.gridHeader {
 		padding-top: 2px;
 	}
 
-	&:nth-child(odd) {
-		background-color: #eaedf3;
-	}
+	//&:nth-child(odd) {
+	//	background-color: #eaedf3;
+	//}
 }
 
 div.orderCol {

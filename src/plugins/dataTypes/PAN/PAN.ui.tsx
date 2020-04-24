@@ -135,14 +135,7 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): React.ReactNo
 
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
-	<p>
-		{i18n.DESC}
-		{i18n.panHelpIntro} <b>{i18n.mastercard}</b>, <b>{i18n.visa}</b>, <b>{i18n.visaElectron}</b>, <b>
-		{i18n.amex}</b>, <b>{i18n.discover}</b>, <b>{i18n.americanDiners}</b>, <b>
-		{i18n.carteBlanche}</b>, <b>{i18n.dinersClubInt}</b>, <b>{i18n.dinersClubEnRoute}</b>, <b>
-		{i18n.jcb}</b>, <b>{i18n.maestro}</b>, <b>{i18n.solo}</b>, <b>
-		{i18n.switch}</b>, <b>{i18n.laser}</b>.
-	</p>
+	<p dangerouslySetInnerHTML={{ __html: `${i18n.DESC} ${i18n.panHelpIntro}` }} />
 );
 
 
