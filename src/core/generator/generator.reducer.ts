@@ -5,7 +5,7 @@ import config from '../../../build/config.client';
 import * as actions from './generator.actions';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../____plugins';
 import { GDLocale } from '../../../types/general';
 import { dataTypeNames } from '../../utils/dataTypeUtils';
 import { exportTypeNames } from '../../utils/exportTypeUtils';

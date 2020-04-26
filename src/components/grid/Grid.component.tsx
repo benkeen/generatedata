@@ -14,7 +14,7 @@ import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.component';
 import { DataRow } from '../../core/generator/generator.reducer';
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder } from '../../____plugins';
 
 
 const SMALL_BREAKPOINT = 650;

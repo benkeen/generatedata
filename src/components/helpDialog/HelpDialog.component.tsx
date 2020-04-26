@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { DropdownOption } from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder } from '../../____plugins';
 
 const dialogStyles = (theme: any): any => ({
 	root: {

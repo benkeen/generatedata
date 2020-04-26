@@ -85,7 +85,7 @@ const PreviewPanel = ({
 	} else {
 		delete panelDimensions.width;
 		delete panelDimensions.height;
-		panelDimensions.bottom = 71;
+		panelDimensions.bottom = 74;
 		closeIconAction = togglePreview;
 		exportTypeLabelBtnAction = toggleExportSettings;
 	}

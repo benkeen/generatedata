@@ -18,6 +18,29 @@ export default {
 	useMinifiedResources: false,
 	timeout: 300, // 5 minutes
 	apiEnabled: false,
+
+	// blacklists specific data types from being included in the generated application - they're handy for work-in-progress
+	// or if you simply have no use for them
+	dataTypeBlacklist: [
+		'_NamesRegional',
+		'_PhoneRegional',
+		'Computed',
+		'Tree'
+	],
+
+	exportTypeBlacklist: [
+		'CSV',
+		'Excel',
+		'HTML',
+		'LDIF',
+		'ProgrammingLanguage',
+		'XML'
+	],
+
+	countryBlacklist: [
+
+	],
+
 	// importSqlFeatureEnabled: true,
 	// importSqlListDatabases: false,
 

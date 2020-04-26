@@ -6,7 +6,7 @@ import { ColumnData, GDLocale, GenerationTemplate, Store } from '../../../types/
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { PreviewPanelLoader } from '../../components/previewPanel/PreviewPanelLoader.component';
 import { DataRow } from './generator.reducer';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../____plugins';
 import * as langUtils from '../../utils/langUtils';
 import { getUnique } from '../../utils/arrayUtils';
 

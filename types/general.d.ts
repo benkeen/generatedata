@@ -1,5 +1,5 @@
 import { GeneratorState } from '../src/core/generator/generator.reducer';
-import { DataTypeFolder } from '../src/_plugins';
+import { DataTypeFolder } from '../src/____plugins';
 
 declare global {
     interface Window {

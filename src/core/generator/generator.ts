@@ -4,7 +4,7 @@
  */
 import { ExportTypeGenerateType, ExportTypeGenerationData, ExportTypePreviewData } from '../../../types/general';
 import { getStrings } from '../../utils/langUtils';
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder } from '../../____plugins';
 
 // temporary of course
 // import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';

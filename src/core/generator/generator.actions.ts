@@ -2,7 +2,7 @@ import { GDAction, GDLocale } from '../../../types/general';
 import * as selectors from './generator.selectors';
 import { generatePreviewData } from './generator';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../____plugins';
 import { loadDataTypeBundle } from '../../utils/dataTypeUtils';
 import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
 import { DTBundle } from '../../../types/dataTypes';
