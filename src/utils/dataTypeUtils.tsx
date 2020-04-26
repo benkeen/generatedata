@@ -4,7 +4,6 @@ import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTHelpProps } from '../../types/dataTypes';
 import { SmallSpinner, MediumSpinner } from '../components/loaders';
-import { Simulate } from 'react-dom/test-utils';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
