@@ -2,7 +2,7 @@ import { GDAction, GDLocale } from '../../../types/general';
 import * as selectors from './generator.selectors';
 import { generatePreviewData } from './generator';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../____plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import { loadDataTypeBundle } from '../../utils/dataTypeUtils';
 import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
 import { DTBundle } from '../../../types/dataTypes';
@@ -212,4 +212,25 @@ export const loadDataTypeBundleAndUpdateStore = (dataType: DataTypeFolder): any 
 			dispatch(dataTypeLoaded(dataType));
 		})
 );
+
+
+export const SHOW_GENERATION_PANEL = 'SHOW_GENERATION_PANEL';
+export const showGenerationPanel = () => ({ type: SHOW_GENERATION_PANEL });
+
+export const HIDE_GENERATION_PANEL = 'HIDE_GENERATION_PANEL';
+export const hideGenerationPanel = () => ({ type: HIDE_GENERATION_PANEL });
+
+export const UPDATE_NUM_GENERATION_ROWS = 'UPDATE_NUM_GENERATION_ROWS';
+export const updateNumGenerationRows = (numGenerationRows: number) => ({
+	type: UPDATE_NUM_GENERATION_ROWS,
+	payload: {
+		numGenerationRows
+	}
+});
+
+export const TOGGLE_STRIP_WHITESPACE = 'TOGGLE_STRIP_WHITESPACE';
+export const toggleStripWhitespace = () => ({ type: TOGGLE_STRIP_WHITESPACE });
+
+export const GENERATE_DATA = 'GENERATE_DATA';
+export const generateData = () => ({ type: GENERATE_DATA });
 

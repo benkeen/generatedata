@@ -5,7 +5,7 @@ import config from '../../../build/config.client';
 import * as actions from './generator.actions';
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../____plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import { GDLocale } from '../../../types/general';
 import { dataTypeNames } from '../../utils/dataTypeUtils';
 import { exportTypeNames } from '../../utils/exportTypeUtils';
@@ -48,13 +48,16 @@ export type GeneratorState = {
 	builderLayout: BuilderLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
-	numPreviewRows: number;
+	showGenerationPanel: boolean;
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
 	theme: string;
 	previewTextSize: number;
 	generatedPreviewData: PreviewData;
 	exportSettingsTab: ExportSettingsTab;
+	numGenerationRows: number;
+	numPreviewRows: number;
+	stripWhitespace: boolean;
 };
 
 /**
@@ -80,7 +83,10 @@ export const reducer = (state: GeneratorState = {
 	theme: 'lucario',
 	previewTextSize: 12,
 	generatedPreviewData: {},
-	exportSettingsTab: 'exportType'
+	exportSettingsTab: 'exportType',
+	showGenerationPanel: false,
+	numGenerationRows: 100,
+	stripWhitespace: false
 }, action: AnyAction): GeneratorState => {
 	switch (action.type) {
 
@@ -296,6 +302,30 @@ export const reducer = (state: GeneratorState = {
 			}
 			return newState;
 		}
+
+		case actions.SHOW_GENERATION_PANEL:
+			return {
+				...state,
+				showGenerationPanel: true
+			};
+
+		case actions.HIDE_GENERATION_PANEL:
+			return {
+				...state,
+				showGenerationPanel: false
+			};
+
+		case actions.UPDATE_NUM_GENERATION_ROWS:
+			return {
+				...state,
+				numGenerationRows: action.payload.numGenerationRows
+			};
+
+		case actions.TOGGLE_STRIP_WHITESPACE:
+			return {
+				...state,
+				stripWhitespace: !action.payload.stripWhitespace
+			};
 
 		default:
 			return state;

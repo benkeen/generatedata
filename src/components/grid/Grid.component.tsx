@@ -14,7 +14,7 @@ import Dropdown from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.component';
 import { DataRow } from '../../core/generator/generator.reducer';
-import { DataTypeFolder } from '../../____plugins';
+import { DataTypeFolder } from '../../_plugins';
 
 
 const SMALL_BREAKPOINT = 650;
@@ -53,7 +53,7 @@ const Grid = ({
 	toggleGrid, maybeLoadDataType
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
-	const [helpDialogVisible, showHelpDialogSection] = React.useState(false);
+	const [helpDialogVisible, showHelpDialog] = React.useState(false);
 	const [initialHelpSection, setInitialDialogSection] = React.useState('');
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 
@@ -132,7 +132,7 @@ const Grid = ({
 									return;
 								}
 								setInitialDialogSection(row.dataType);
-								showHelpDialogSection(true);
+								showHelpDialog(true);
 							}}>
 								{row.dataType ? <SettingsIcon /> : null}
 							</div>
@@ -225,7 +225,7 @@ const Grid = ({
 						<HelpDialog
 							visible={helpDialogVisible}
 							initialDataType={initialHelpSection}
-							onClose={(): any => showHelpDialogSection(false)}
+							onClose={(): any => showHelpDialog(false)}
 							coreI18n={i18n}
 							dataTypeI18n={dataTypeI18n}
 							onSelectDataType={maybeLoadDataType}

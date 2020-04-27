@@ -3,6 +3,7 @@ import Grid from '../grid/Grid.container';
 import Preview from '../previewPanel/PreviewPanel.container';
 import SplitPane from 'react-split-pane';
 import ExportSettings from '../exportSettings/ExportSettings.container';
+import GenerationPanel from '../generationPanel/GenerationPanel.container';
 import './Builder.scss';
 
 export type BuilderLayout = 'horizontal' | 'vertical';
@@ -34,6 +35,7 @@ const Builder = ({ isGridVisible, isPreviewVisible, builderLayout }: BuilderProp
 				{getContent()}
 			</div>
 			<ExportSettings />
+			<GenerationPanel />
 		</div>
 	);
 };

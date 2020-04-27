@@ -38,7 +38,6 @@ export default {
 	],
 
 	countryBlacklist: [
-
 	],
 
 	// importSqlFeatureEnabled: true,

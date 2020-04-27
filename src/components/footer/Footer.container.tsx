@@ -15,7 +15,8 @@ const mapStateToProps = (state: any): Partial<FooterProps> => ({
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	// @ts-ignore-line
 	onChangeLocale: (locale: GDLocale): any => dispatch(actions.selectLocale(locale)),
-	openExportTypeSettings: (): any => dispatch(actions.toggleExportSettings('exportType'))
+	openExportTypeSettings: (): any => dispatch(actions.toggleExportSettings('exportType')),
+	onGenerate: (): any => dispatch(actions.showGenerationPanel())
 });
 
 export default connect(

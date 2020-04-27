@@ -111,8 +111,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 	return content;
 };
 
-
-export const getDataTypeSqlMetadata = (generationData: ExportTypeGenerationData) => {
+export const getDataTypeSqlMetadata = (generationData: ExportTypeGenerationData): any => {
 	const sqlMetadata: any = {};
 	const dt = generationData.dataTypeMetadata;
 	Object.keys(dt).forEach((dataType) => {

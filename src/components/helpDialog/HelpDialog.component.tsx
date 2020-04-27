@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { DropdownOption } from '../dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
-import { DataTypeFolder } from '../../____plugins';
+import { DataTypeFolder } from '../../_plugins';
 
 const dialogStyles = (theme: any): any => ({
 	root: {
@@ -58,7 +58,6 @@ const DialogActions = withStyles(theme => ({
 const Dialog = withStyles(() => ({
 	root: {
 		zIndex: '5000 !important',
-		color: 'red',
 		width: '100%'
 	},
 	paper: {

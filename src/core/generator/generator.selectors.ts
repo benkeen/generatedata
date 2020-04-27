@@ -1,4 +1,3 @@
-import React from 'react';
 import { createSelector } from 'reselect';
 import { processOrders, getDataType } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
@@ -6,7 +5,7 @@ import { ColumnData, GDLocale, GenerationTemplate, Store } from '../../../types/
 import { BuilderLayout } from '../../components/builder/Builder.component';
 import { PreviewPanelLoader } from '../../components/previewPanel/PreviewPanelLoader.component';
 import { DataRow } from './generator.reducer';
-import { DataTypeFolder, ExportTypeFolder } from '../../____plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import * as langUtils from '../../utils/langUtils';
 import { getUnique } from '../../utils/arrayUtils';
 
@@ -29,6 +28,8 @@ export const getGeneratedPreviewData = (state: Store): any => state.generator.ge
 export const shouldShowExportSettings = (state: Store): any => state.generator.showExportSettings;
 export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
+export const isGenerationPanelVisible = (state: Store): any => state.generator.showGenerationPanel;
+export const getNumGenerationRows = (state: Store): number => state.generator.numGenerationRows;
 
 export const getNumRows = createSelector(
 	getSortedRows,

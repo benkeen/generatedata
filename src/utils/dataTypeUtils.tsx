@@ -1,7 +1,7 @@
 import React from 'react';
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
-import { dataTypes, DataTypeFolder } from '../____plugins';
+import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTHelpProps } from '../../types/dataTypes';
 import { SmallSpinner, MediumSpinner } from '../components/loaders';
 

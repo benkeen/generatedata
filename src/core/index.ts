@@ -5,7 +5,7 @@ import C from './constants';
 import * as actions from './generator/generator.actions';
 import * as selectors from './generator/generator.selectors';
 import { loadDataTypeBundle } from '../utils/dataTypeUtils';
-import { DataTypeFolder } from '../____plugins';
+import { DataTypeFolder } from '../_plugins';
 
 // just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
 // data structure has hardly changed in 15 years and is unlikely to in the future

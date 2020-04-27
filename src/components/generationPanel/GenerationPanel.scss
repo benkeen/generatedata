@@ -1,0 +1,13 @@
+.row {
+	display: flex;
+	align-items: center;
+
+	input[type=number] {
+		width: 50px;
+		margin: 0 6px;
+	}
+}
+
+.intro {
+	margin-bottom: 12px;
+}

@@ -8,7 +8,7 @@ import { generateMySQL, generatePostgres } from './SQL.generator';
 require('codemirror/mode/sql/sql');
 
 
-const Preview = ({ data, theme, numPreviewRows, exportTypeSettings, showRowNumbers, enableLineWrapping }: ETPreviewProps): JSX.Element | null => {
+const Preview = ({ data, theme, exportTypeSettings, showRowNumbers, enableLineWrapping }: ETPreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
 
 	React.useEffect(() => {
