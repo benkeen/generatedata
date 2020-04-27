@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 // import * as sinon from 'sinon';
 import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
-import { reducer } from '../generator.reducer';
+import reducer from '../generator.reducer';
 
 describe('generator section', () => {
 	let store: any;
@@ -142,7 +142,7 @@ describe('grid rows', () => {
 		expect(rows[1].title).toEqual('');
 		expect(rows[2].title).toEqual('');
 
-		store.dispatch(actions.onChangeTitle(rows[1].id, 'new value!'));
+		store.dispatch(actions.onChangeTitle({ id: rows[1].id, value: 'new value!' }));
 		const updatedRows = selectors.getSortedRowsArray(store.getState());
 		expect(updatedRows[0].title).toEqual('');
 		expect(updatedRows[1].title).toEqual('new value!');

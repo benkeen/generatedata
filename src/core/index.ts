@@ -1,6 +1,6 @@
 // @ts-ignore-line
 import config from '../../build/config.client';
-import store from '../store';
+import store from './store';
 import C from './constants';
 import * as actions from './generator/generator.actions';
 import * as selectors from './generator/generator.selectors';

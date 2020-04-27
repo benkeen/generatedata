@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { Persistor } from 'redux-persist/es/types';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import storage from 'redux-persist/lib/storage';
-import reducer from '../core/generator/generator.reducer';
+import reducer from './generator/generator.reducer';
 
 let persistor: Persistor;
 function initStore(state: any): any {

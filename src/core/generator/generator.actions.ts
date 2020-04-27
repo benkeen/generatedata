@@ -1,4 +1,6 @@
-import { GDAction, GDLocale } from '../../../types/general';
+import { Dispatch } from 'redux'; // 236 lines before redux-toolkit refactor [REMOVE comment]
+import { createAction } from '@reduxjs/toolkit';
+import { GDLocale } from '../../../types/general';
 import * as selectors from './generator.selectors';
 import { generatePreviewData } from './generator';
 import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
@@ -9,29 +11,49 @@ import { DTBundle } from '../../../types/dataTypes';
 import { ThunkDispatch } from 'redux-thunk';
 import * as langUtils from '../../utils/langUtils';
 import C from '../../core/constants';
-import { Dispatch } from 'redux';
 
-export const ADD_ROWS = 'ADD_ROWS';
-export const addRows = (numRows: number): GDAction => ({
-	type: ADD_ROWS,
-	payload: {
-		numRows
-	}
-});
+export const addRows = createAction<number>('ADD_ROWS');
+export const removeRow = createAction<string>('REMOVE_ROW');
 
-export const REMOVE_ROW = 'REMOVE_ROW';
-export const removeRow = (id: string): GDAction => ({ type: REMOVE_ROW, payload: { id } });
+export type ChangeTitleType = {
+	id: string;
+	value: string;
+}
+export const onChangeTitle = createAction<ChangeTitleType>('CHANGE_TITLE');
+export const configureExportType = createAction<any>('CONFIGURE_EXPORT_TYPE');
 
-export const CHANGE_TITLE = 'CHANGE_TITLE';
-export const onChangeTitle = (id: string, value: string): GDAction => ({
-	type: CHANGE_TITLE,
-	payload: {
-		id, value
-	}
-});
+export type RepositionRowType = {
+	id: string;
+	newIndex: number;
+};
+export const repositionRow = createAction<RepositionRowType>('REPOSITION_ROW');
+export const toggleGrid = createAction('TOGGLE_GRID');
+export const togglePreview = createAction('TOGGLE_PREVIEW');
+export const toggleLayout = createAction('TOGGLE_LAYOUT');
+export const updateNumPreviewRows = createAction<number>('UPDATE_NUM_PREVIEW_ROWS');
+export const changeTheme = createAction<string>('CHANGE_THEME');
+export const toggleShowRowNumbers = createAction('TOGGLE_SHOW_ROW_NUMBERS');
+export const toggleLineWrapping = createAction('TOGGLE_LINE_WRAPPING');
+export const setPreviewTextSize = createAction<number>('SET_PREVIEW_TEXT_SIZE');
+export const toggleExportSettings = createAction<ExportSettingsTab | undefined>('TOGGLE_EXPORT_SETTINGS');
+export const setLocaleFileLoaded = createAction<GDLocale>('LOCALE_FILE_LOADED');
+
+export type ExportTypeLoadedType = {
+	exportType: ExportTypeFolder;
+	initialState: any;
+}
+export const exportTypeLoaded = createAction<ExportTypeLoadedType>('EXPORT_TYPE_LOADED');
+export const dataTypeLoaded = createAction<DataTypeFolder>('DATA_TYPE_LOADED');
+export const showGenerationPanel = createAction('SHOW_GENERATION_PANEL');
+export const hideGenerationPanel = createAction('HIDE_GENERATION_PANEL');
+export const updateNumGenerationRows = createAction<number>('UPDATE_NUM_GENERATION_ROWS');
+export const toggleStripWhitespace = createAction('TOGGLE_STRIP_WHITESPACE');
+export const generateData = createAction('GENERATE_DATA');
+
+// ------------------------------------------------
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
-export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
+export const onSelectDataType = (id: any, dataType: DataTypeFolder): any => {
 	return (dispatch: any): any => {
 		loadDataTypeBundle(dataType)
 			.then((bundle: DTBundle) => {
@@ -49,6 +71,7 @@ export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
 	};
 };
 
+
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
 export const onConfigureDataType = (id: string, data: any): any => {
 	return (dispatch: any): any => {
@@ -64,28 +87,6 @@ export const onConfigureDataType = (id: string, data: any): any => {
 		configureDataType(dispatch).then(() => dispatch(refreshPreview([id])));
 	};
 };
-
-export const CONFIGURE_EXPORT_TYPE = 'CONFIGURE_EXPORT_TYPE';
-export const configureExportType = (data: any): GDAction => ({
-	type: CONFIGURE_EXPORT_TYPE,
-	payload: {
-		data
-	}
-});
-
-export const REPOSITION_ROW = 'REPOSITION_ROW';
-export const repositionRow = (id: string, newIndex: number): GDAction => ({
-	type: REPOSITION_ROW,
-	payload: {
-		id, newIndex
-	}
-});
-
-export const TOGGLE_GRID = 'TOGGLE_GRID';
-export const toggleGrid = (): GDAction => ({ type: TOGGLE_GRID });
-
-export const TOGGLE_PREVIEW = 'TOGGLE_PREVIEW';
-export const togglePreview = (): GDAction => ({ type: TOGGLE_PREVIEW });
 
 export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 
@@ -119,37 +120,6 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 	};
 };
 
-export const TOGGLE_LAYOUT = 'TOGGLE_LAYOUT';
-export const toggleLayout = (): GDAction => ({ type: TOGGLE_LAYOUT });
-
-export const UPDATE_NUM_PREVIEW_ROWS = 'UPDATE_NUM_PREVIEW_ROWS';
-export const updateNumPreviewRows = (numRows: number): GDAction => ({ type: UPDATE_NUM_PREVIEW_ROWS, payload: { numRows } });
-
-export const CHANGE_THEME = 'CHANGE_THEME';
-export const changeTheme = (theme: string): GDAction => ({ type: CHANGE_THEME, payload: { theme } });
-
-export const TOGGLE_SHOW_ROW_NUMBERS = 'TOGGLE_SHOW_ROW_NUMBERS';
-export const toggleShowRowNumbers = (): GDAction => ({ type: TOGGLE_SHOW_ROW_NUMBERS });
-
-export const TOGGLE_LINE_WRAPPING = 'TOGGLE_LINE_WRAPPING';
-export const toggleLineWrapping = (): GDAction => ({ type: TOGGLE_LINE_WRAPPING });
-
-export const SET_PREVIEW_TEXT_SIZE = 'SET_PREVIEW_TEXT_SIZE';
-export const setPreviewTextSize = (previewTextSize: number): GDAction => ({
-	type: SET_PREVIEW_TEXT_SIZE,
-	payload: {
-		previewTextSize
-	}
-});
-
-export const TOGGLE_EXPORT_SETTINGS = 'TOGGLE_EXPORT_SETTINGS';
-export const toggleExportSettings = (tab?: ExportSettingsTab): GDAction => ({
-	type: TOGGLE_EXPORT_SETTINGS,
-	payload: {
-		tab
-	}
-});
-
 export const SELECT_EXPORT_TYPE = 'SELECT_EXPORT_TYPE';
 export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 	return (dispatch: any): any => {
@@ -162,19 +132,10 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 
 		loadExportTypeBundle(exportType)
 			.then((bundle: DTBundle) => {
-				dispatch(exportTypeLoaded(exportType, bundle.initialState));
+				dispatch(exportTypeLoaded({ exportType, initialState: bundle.initialState }));
 			});
 	};
 };
-
-
-export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
-export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
-	type: LOCALE_FILE_LOADED,
-	payload: {
-		locale
-	}
-});
 
 export const selectLocale = (locale: GDLocale) => {
 	return (dispatch: ThunkDispatch<any, any, any>): any => {
@@ -189,48 +150,10 @@ export const selectLocale = (locale: GDLocale) => {
 	};
 };
 
-export const EXPORT_TYPE_LOADED = 'EXPORT_TYPE_LOADED';
-export const exportTypeLoaded = (exportType: ExportTypeFolder, initialState: any): any => ({
-	type: EXPORT_TYPE_LOADED,
-	payload: {
-		exportType,
-		initialState
-	}
-});
-
-export const DATA_TYPE_LOADED = 'DATA_TYPE_LOADED';
-export const dataTypeLoaded = (dataType: DataTypeFolder): any => ({
-	type: DATA_TYPE_LOADED,
-	payload: {
-		dataType
-	}
-});
-
 export const loadDataTypeBundleAndUpdateStore = (dataType: DataTypeFolder): any => (dispatch: Dispatch) => (
 	loadDataTypeBundle(dataType)
 		.then(() => {
 			dispatch(dataTypeLoaded(dataType));
 		})
 );
-
-
-export const SHOW_GENERATION_PANEL = 'SHOW_GENERATION_PANEL';
-export const showGenerationPanel = () => ({ type: SHOW_GENERATION_PANEL });
-
-export const HIDE_GENERATION_PANEL = 'HIDE_GENERATION_PANEL';
-export const hideGenerationPanel = () => ({ type: HIDE_GENERATION_PANEL });
-
-export const UPDATE_NUM_GENERATION_ROWS = 'UPDATE_NUM_GENERATION_ROWS';
-export const updateNumGenerationRows = (numGenerationRows: number) => ({
-	type: UPDATE_NUM_GENERATION_ROWS,
-	payload: {
-		numGenerationRows
-	}
-});
-
-export const TOGGLE_STRIP_WHITESPACE = 'TOGGLE_STRIP_WHITESPACE';
-export const toggleStripWhitespace = () => ({ type: TOGGLE_STRIP_WHITESPACE });
-
-export const GENERATE_DATA = 'GENERATE_DATA';
-export const generateData = () => ({ type: GENERATE_DATA });
 
