@@ -1,6 +1,7 @@
 {
-	"stripWhitespace": "Strip whitespace from generated results",
-	"complex": "Complex",
-	"simple": "Simple",
-	"dataStructureFormat": "Data structure format"
+  "COL_TITLE": "Property Name",
+  "stripWhitespace": "Strip whitespace from generated results",
+  "complex": "Complex",
+  "simple": "Simple",
+  "dataStructureFormat": "Data structure format"
 }

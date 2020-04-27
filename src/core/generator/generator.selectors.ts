@@ -194,9 +194,15 @@ export const getDataTypeI18n = createSelector(
 
 export const getExportTypeI18n = createSelector(
 	getLocale,
-	(locale): any | null => {
+	getExportType,
+	(locale, exportType): any | null => {
 		const strings = langUtils.getStrings(locale);
-		return strings ? strings.exportTypes : null;
+		return strings ? strings.exportTypes[exportType] : null;
 	}
+);
+
+export const getExportTypeColumnTitle = createSelector(
+	getExportTypeI18n,
+	(i18n) => i18n.COL_TITLE
 );
 

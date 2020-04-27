@@ -1,6 +1,7 @@
 {
-	"complex": "Complex",
-	"dataStructureFormat": "Datastructuur format",
-	"simple": "Eenvoudig",
-	"stripWhitespace": "Verwijder spaties in de gegenereerde resultaten"
+  "COL_TITLE": "Property Name",
+  "complex": "Complex",
+  "dataStructureFormat": "Datastructuur format",
+  "simple": "Eenvoudig",
+  "stripWhitespace": "Verwijder spaties in de gegenereerde resultaten"
 }

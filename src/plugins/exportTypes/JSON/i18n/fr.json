@@ -1,7 +1,8 @@
 {
-	"complex": "Complexe",
-	"dataStructureFormat": "Format de la structure des données",
-	"simple": "Simple",
-	"stripWhitespace": "Enlever les espaces dans les résultats générés"
+  "COL_TITLE": "Property Name",
+  "complex": "Complexe",
+  "dataStructureFormat": "Format de la structure des données",
+  "simple": "Simple",
+  "stripWhitespace": "Enlever les espaces dans les résultats générés"
 }
 

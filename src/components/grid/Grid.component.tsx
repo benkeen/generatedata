@@ -32,6 +32,7 @@ export type GridProps = {
 	toggleGrid: () => void;
 	i18n: any;
 	dataTypeI18n: any;
+	columnTitle: string;
 	loadedDataTypes: any; // TODO
 };
 
@@ -50,7 +51,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProper
 
 const Grid = ({
 	rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, dataTypeI18n,
-	toggleGrid, maybeLoadDataType
+	columnTitle, toggleGrid, maybeLoadDataType
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialog] = React.useState(false);
@@ -114,9 +115,6 @@ const Grid = ({
 								<DragIndicator fontSize="small" />
 								{index + 1}
 							</div>
-							<div className={styles.titleCol}>
-								<input type="text" value={row.title} onChange={(e): void => onChangeTitle(row.id, e.target.value)} />
-							</div>
 							<div className={styles.dataTypeCol}>
 								<Dropdown
 									isGrouped={true}
@@ -124,6 +122,9 @@ const Grid = ({
 									onChange={(i: any): void => onSelectDataType(row.id, i.value)}
 									options={dataTypes}
 								/>
+							</div>
+							<div className={styles.titleCol}>
+								<input type="text" value={row.title} onChange={(e): void => onChangeTitle(row.id, e.target.value)} />
 							</div>
 							<div className={styles.examplesCol}>{example}</div>
 							<div className={styles.optionsCol}>{option}</div>
@@ -175,10 +176,10 @@ const Grid = ({
 							<div className={styles.gridHeaderWrapper}>
 								<div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
 									<div className={styles.orderCol}>{rows.length}</div>
-									<div className={styles.titleCol}>{i18n.rowLabel}</div>
 									<div className={styles.dataTypeCol}>
 										{i18n.dataType}
 									</div>
+									<div className={styles.titleCol}>{columnTitle}</div>
 									<div className={styles.examplesCol}>{i18n.examples}</div>
 									<div className={styles.optionsCol}>{i18n.options}</div>
 									<div className={styles.helpCol} />
