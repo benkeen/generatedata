@@ -50,8 +50,6 @@ export const updateNumGenerationRows = createAction<number>('UPDATE_NUM_GENERATI
 export const toggleStripWhitespace = createAction('TOGGLE_STRIP_WHITESPACE');
 export const generateData = createAction('GENERATE_DATA');
 
-// ------------------------------------------------
-
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (id: any, dataType: DataTypeFolder): any => {
 	return (dispatch: any): any => {

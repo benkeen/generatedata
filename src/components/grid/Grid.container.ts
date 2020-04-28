@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	onChangeTitle: (id: string, value: string): any => dispatch(actions.onChangeTitle({ id, value })),
 
 	// TODO could we combine onSelectDataType and maybeLoadDataTypa? They seem effectively the same
-	onSelectDataType: (id: string, value: DataTypeFolder): any => dispatch(actions.onSelectDataType(id, value)),
+	onSelectDataType: (id: string, dataType: DataTypeFolder): any => dispatch(actions.onSelectDataType(id, dataType)),
 	onConfigureDataType: (id: string, data: any): any => dispatch(actions.onConfigureDataType(id, data)),
 	maybeLoadDataType: (dataType: DataTypeFolder) => dispatch(actions.loadDataTypeBundleAndUpdateStore(dataType)),
 	toggleGrid: (): any => dispatch(actions.toggleGrid())
