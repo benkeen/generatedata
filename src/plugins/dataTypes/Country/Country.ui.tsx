@@ -1,11 +1,18 @@
 import * as React from 'react';
 import { DTOptionsProps } from '../../../../types/dataTypes';
+import { countryList } from '../../../_plugins';
 
 export const initialState = {
-	allCountries: true
+	selectedCountries: countryList
 };
 
 export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => (
+	<div>
+		{data.selectedCountries.length} countries
+	</div>
+);
+
+export const Help = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<div />
 );
 

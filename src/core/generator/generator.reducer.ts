@@ -89,14 +89,14 @@ export const reducer = (state: GeneratorState = {
 	stripWhitespace: false
 }, action: AnyAction): GeneratorState => {
 	switch (action.type) {
-		case [actions.setLocaleFileLoaded]:
+		case actions.LOCALE_FILE_LOADED:
 			return {
 				...state,
 				locale: action.payload.locale,
 				localeFileLoaded: true
 			};
 
-		case [actions.dataTypeLoaded]:
+		case actions.DATA_TYPE_LOADED:
 			return {
 				...state,
 				loadedDataTypes: {
@@ -105,7 +105,7 @@ export const reducer = (state: GeneratorState = {
 				}
 			};
 
-		case [actions.exportTypeLoaded]:
+		case actions.EXPORT_TYPE_LOADED:
 			return {
 				...state,
 				loadedExportTypes: {
@@ -118,7 +118,7 @@ export const reducer = (state: GeneratorState = {
 				}
 			};
 
-		case [actions.addRows]: {
+		case actions.ADD_ROWS: {
 			const newRows: DataRows = {};
 			const newRowIDs: string[] = [];
 			for (let i = 0; i < action.payload.numRows; i++) {
@@ -145,7 +145,7 @@ export const reducer = (state: GeneratorState = {
 			};
 		}
 
-		case [actions.removeRow]: {
+		case actions.REMOVE_ROW: {
 			const trimmedRowIds = state.sortedRows.filter((i) => i !== action.payload.id);
 			const updatedRows: DataRows = {};
 			trimmedRowIds.forEach((id) => {
@@ -158,7 +158,7 @@ export const reducer = (state: GeneratorState = {
 			};
 		}
 
-		case [actions.onChangeTitle]:
+		case actions.CHANGE_TITLE:
 			return {
 				...state,
 				rows: {
@@ -214,7 +214,7 @@ export const reducer = (state: GeneratorState = {
 				},
 			};
 
-		case [actions.configureExportType]: {
+		case actions.CONFIGURE_EXPORT_TYPE: {
 			return {
 				...state,
 				exportTypeSettings: {
@@ -224,7 +224,7 @@ export const reducer = (state: GeneratorState = {
 			};
 		}
 
-		case [actions.repositionRow]: {
+		case actions.REPOSITION_ROW: {
 			const newArray = state.sortedRows.filter((i) => i !== action.payload.id);
 			newArray.splice(action.payload.newIndex, 0, action.payload.id);
 			return {
@@ -233,7 +233,7 @@ export const reducer = (state: GeneratorState = {
 			};
 		}
 
-		case [actions.toggleGrid]: {
+		case actions.TOGGLE_GRID: {
 			const newState = {
 				...state,
 				showGrid: !state.showGrid
@@ -244,7 +244,7 @@ export const reducer = (state: GeneratorState = {
 			return newState;
 		}
 
-		case [actions.togglePreview]: {
+		case actions.TOGGLE_PREVIEW: {
 			const newState = {
 				...state,
 				showPreview: !state.showPreview
@@ -255,43 +255,43 @@ export const reducer = (state: GeneratorState = {
 			return newState;
 		}
 
-		case [actions.toggleLayout]:
+		case actions.TOGGLE_LAYOUT:
 			return {
 				...state,
 				builderLayout: state.builderLayout === 'horizontal' ? 'vertical' : 'horizontal'
 			};
 
-		case [actions.toggleLineWrapping]:
+		case actions.TOGGLE_LINE_WRAPPING:
 			return {
 				...state,
 				enableLineWrapping: !state.enableLineWrapping
 			};
 
-		case [actions.updateNumPreviewRows]:
+		case actions.UPDATE_NUM_PREVIEW_ROWS:
 			return {
 				...state,
 				numPreviewRows: action.payload.numRows
 			};
 
-		case [actions.changeTheme]:
+		case actions.CHANGE_THEME:
 			return {
 				...state,
 				theme: action.payload.theme
 			};
 
-		case [actions.toggleShowRowNumbers]:
+		case actions.TOGGLE_SHOW_ROW_NUMBERS:
 			return {
 				...state,
 				showRowNumbers: !state.showRowNumbers
 			};
 
-		case [actions.setPreviewTextSize]:
+		case actions.SET_PREVIEW_TEXT_SIZE:
 			return {
 				...state,
 				previewTextSize: action.payload.previewTextSize
 			};
 
-		case [actions.toggleExportSettings]: {
+		case actions.TOGGLE_EXPORT_SETTINGS: {
 			const newState = {
 				...state,
 				showExportSettings: !state.showExportSettings
@@ -302,25 +302,25 @@ export const reducer = (state: GeneratorState = {
 			return newState;
 		}
 
-		case [actions.showGenerationPanel]:
+		case actions.SHOW_GENERATION_PANEL:
 			return {
 				...state,
 				showGenerationPanel: true
 			};
 
-		case [actions.hideGenerationPanel]:
+		case actions.HIDE_GENERATION_PANEL:
 			return {
 				...state,
 				showGenerationPanel: false
 			};
 
-		case [actions.updateNumGenerationRows]:
+		case actions.UPDATE_NUM_GENERATION_ROWS:
 			return {
 				...state,
 				numGenerationRows: action.payload.numGenerationRows
 			};
 
-		case [actions.toggleStripWhitespace]:
+		case actions.TOGGLE_STRIP_WHITESPACE:
 			return {
 				...state,
 				stripWhitespace: !action.payload.stripWhitespace
