@@ -4,8 +4,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import store, { persistor } from './core/store';
-import Page from './components/page/Page.container';
-import Builder from './components/builder/Builder.container';
+import Page from './core/page/Page.container';
+import Builder from './core/builder/Builder.container';
 import * as core from './core';
 import theme from './core/theme';
 

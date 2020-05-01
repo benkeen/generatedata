@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import { BuilderLayout } from '../../../components/builder/Builder.component';
+import { BuilderLayout } from '../../../core/builder/Builder.component';
 import { ProgrammingLanguageState } from './ProgrammingLanguage.ui';
 import { generateCSharp } from './languages/CSharp';
 

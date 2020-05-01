@@ -8,7 +8,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { DropdownOption } from '../dropdown/Dropdown';
+import { DropdownOption } from '../../components/dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
 import { DataTypeFolder } from '../../_plugins';

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
 import { DTOptionsProps } from '../../../../types/dataTypes';
 import { countryList } from '../../../_plugins';
 
@@ -6,11 +7,23 @@ export const initialState = {
 	selectedCountries: countryList
 };
 
-export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => (
-	<div>
-		{data.selectedCountries.length} countries
-	</div>
-);
+
+const Dialog = () => {
+
+};
+
+export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
+	const [dialogVisible, setDialogVisiblity] = React.useState(false);
+	const numSelected = data.selectedCountries.length;
+	const label = (numSelected === countryList.length) ? `All (${numSelected}) countries` : `${numSelected} countries`;
+
+	return (
+		<div>
+			<Button onClick={() => {}} variant="outlined" color="primary" size="small">{label}</Button>
+
+		</div>
+	);
+};
 
 export const Help = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<div />

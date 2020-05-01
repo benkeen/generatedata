@@ -10,10 +10,10 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DragIndicator from '@material-ui/icons/DragIndicator';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import * as styles from './Grid.scss';
-import Dropdown from '../dropdown/Dropdown';
+import Dropdown from '../../components/dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.component';
-import { DataRow } from '../../core/generator/generator.reducer';
+import { DataRow } from '../generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 
 

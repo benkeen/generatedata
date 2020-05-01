@@ -2,8 +2,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Footer, { FooterProps } from './Footer.component';
 import { GDLocale } from '../../../types/general';
-import * as selectors from '../../core/generator/generator.selectors';
-import * as actions from '../../core/generator/generator.actions';
+import * as selectors from '../generator/generator.selectors';
+import * as actions from '../generator/generator.actions';
 import * as generalUtils from '../../utils/generalUtils';
 
 const mapStateToProps = (state: any): Partial<FooterProps> => ({

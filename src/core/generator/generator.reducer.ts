@@ -3,8 +3,8 @@ import { generate } from 'shortid';
 // @ts-ignore-line
 import config from '../../../build/config.client';
 import * as actions from './generator.actions';
-import { BuilderLayout } from '../../components/builder/Builder.component';
-import { ExportSettingsTab } from '../../components/exportSettings/ExportSettings.types';
+import { BuilderLayout } from '../builder/Builder.component';
+import { ExportSettingsTab } from '../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import { GDLocale } from '../../../types/general';
 import { dataTypeNames } from '../../utils/dataTypeUtils';

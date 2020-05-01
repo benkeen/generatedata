@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ExportTypeTab, ExportTypeTabProps } from './ExportTypeTab.component';
-import * as selectors from '../../core/generator/generator.selectors';
-import * as actions from '../../core/generator/generator.actions';
+import * as selectors from '../generator/generator.selectors';
+import * as actions from '../generator/generator.actions';
 import { getExportTypeSettingsComponent } from '../../utils/exportTypeUtils';
 import { ExportTypeFolder } from '../../_plugins';
 

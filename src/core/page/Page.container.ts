@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Page, { PageProps } from './Page.component';
-import * as selectors from '../../core/generator/generator.selectors';
+import * as selectors from '../generator/generator.selectors';
 
 const mapStateToProps = (state: any): Partial<PageProps> => ({
 	localeFileLoaded: selectors.localeFileLoaded(state)

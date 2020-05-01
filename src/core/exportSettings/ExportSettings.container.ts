@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ExportSettings, ExportSettingsProps } from './ExportSettings.component';
-import * as selectors from '../../core/generator/generator.selectors';
-import * as actions from '../../core/generator/generator.actions';
+import * as selectors from '../generator/generator.selectors';
+import * as actions from '../generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<ExportSettingsProps> => ({
 	i18n: selectors.getCoreI18n(state),

@@ -1,4 +1,4 @@
-import { BuilderLayout } from '../src/components/builder/Builder.component';
+import { BuilderLayout } from '../src/core/builder/Builder.component';
 
 export type ETBundle = {
 	generate: any; // TODO
