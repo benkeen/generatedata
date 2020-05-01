@@ -1,67 +1,61 @@
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import MuiDialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '../../components/dialogs';
 import styles from './GenerationPanel.scss';
 
-const dialogStyles = (theme: any): any => ({
-	root: {
-		margin: 0,
-		padding: theme.spacing(2)
-	},
-	closeButton: {
-		position: 'absolute',
-		right: theme.spacing(1),
-		top: 6,
-		color: theme.palette.grey[500]
-	}
-});
+// const dialogStyles = (theme: any): any => ({
+// 	root: {
+// 		margin: 0,
+// 		padding: theme.spacing(2)
+// 	},
+// 	closeButton: {
+// 		position: 'absolute',
+// 		right: theme.spacing(1),
+// 		top: 6,
+// 		color: theme.palette.grey[500]
+// 	}
+// });
+//
+// // @ts-ignore-line
+// const DialogTitle = withStyles(dialogStyles)((props: any): React.ReactNode => {
+// 	const { children, classes, onClose, ...other } = props;
+// 	return (
+// 		<MuiDialogTitle disableTypography className={classes.root} {...other}>
+// 			<Typography variant="h5">{children}</Typography>
+// 			{onClose ? (
+// 				<IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+// 					<CloseIcon fontSize="large" />
+// 				</IconButton>
+// 			) : null}
+// 		</MuiDialogTitle>
+// 	);
+// });
+//
+// const DialogContent = withStyles(theme => ({
+// 	root: {
+// 		padding: theme.spacing(2)
+// 	}
+// }))(MuiDialogContent);
+//
+// const DialogActions = withStyles(theme => ({
+// 	root: {
+// 		margin: 0,
+// 		padding: theme.spacing(1)
+// 	}
+// }))(MuiDialogActions);
+//
+// // @ts-ignore-line
+// const Dialog = withStyles(() => ({
+// 	root: {
+// 		zIndex: '5000 !important',
+// 		width: '100%'
+// 	},
+// 	paper: {
+// 		maxWidth: 500,
+// 		width: '100%'
+// 	}
+// }))(MuiDialog);
 
-// @ts-ignore-line
-const DialogTitle = withStyles(dialogStyles)((props: any): React.ReactNode => {
-	const { children, classes, onClose, ...other } = props;
-	return (
-		<MuiDialogTitle disableTypography className={classes.root} {...other}>
-			<Typography variant="h5">{children}</Typography>
-			{onClose ? (
-				<IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-					<CloseIcon fontSize="large" />
-				</IconButton>
-			) : null}
-		</MuiDialogTitle>
-	);
-});
-
-const DialogContent = withStyles(theme => ({
-	root: {
-		padding: theme.spacing(2)
-	}
-}))(MuiDialogContent);
-
-const DialogActions = withStyles(theme => ({
-	root: {
-		margin: 0,
-		padding: theme.spacing(1)
-	}
-}))(MuiDialogActions);
-
-// @ts-ignore-line
-const Dialog = withStyles(() => ({
-	root: {
-		zIndex: '5000 !important',
-		width: '100%'
-	},
-	paper: {
-		maxWidth: 500,
-		width: '100%'
-	}
-}))(MuiDialog);
 
 export type GenerationPanelProps = {
 	visible: boolean;
