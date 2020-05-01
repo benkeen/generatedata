@@ -50,7 +50,7 @@ export const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 // @ts-ignore-line
-export const Dialog = withStyles(() => ({
+export const Dialog = withStyles(({ maxWidth = 1000 }) => ({
 	root: {
 		zIndex: '5000 !important',
 		width: '100%'
@@ -61,3 +61,14 @@ export const Dialog = withStyles(() => ({
 		height: '100%' // ensures the modal doesn't change size when the user filters the list of DTs
 	}
 }))(MuiDialog);
+
+// const Dialog = withStyles(() => ({
+// 	root: {
+// 		zIndex: '5000 !important',
+// 		width: '100%'
+// 	},
+// 	paper: {
+// 		maxWidth: 500,
+// 		width: '100%'
+// 	}
+// }))(MuiDialog);

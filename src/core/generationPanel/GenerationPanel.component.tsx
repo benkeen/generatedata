@@ -3,60 +3,6 @@ import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '../../components/dialogs';
 import styles from './GenerationPanel.scss';
 
-// const dialogStyles = (theme: any): any => ({
-// 	root: {
-// 		margin: 0,
-// 		padding: theme.spacing(2)
-// 	},
-// 	closeButton: {
-// 		position: 'absolute',
-// 		right: theme.spacing(1),
-// 		top: 6,
-// 		color: theme.palette.grey[500]
-// 	}
-// });
-//
-// // @ts-ignore-line
-// const DialogTitle = withStyles(dialogStyles)((props: any): React.ReactNode => {
-// 	const { children, classes, onClose, ...other } = props;
-// 	return (
-// 		<MuiDialogTitle disableTypography className={classes.root} {...other}>
-// 			<Typography variant="h5">{children}</Typography>
-// 			{onClose ? (
-// 				<IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-// 					<CloseIcon fontSize="large" />
-// 				</IconButton>
-// 			) : null}
-// 		</MuiDialogTitle>
-// 	);
-// });
-//
-// const DialogContent = withStyles(theme => ({
-// 	root: {
-// 		padding: theme.spacing(2)
-// 	}
-// }))(MuiDialogContent);
-//
-// const DialogActions = withStyles(theme => ({
-// 	root: {
-// 		margin: 0,
-// 		padding: theme.spacing(1)
-// 	}
-// }))(MuiDialogActions);
-//
-// // @ts-ignore-line
-// const Dialog = withStyles(() => ({
-// 	root: {
-// 		zIndex: '5000 !important',
-// 		width: '100%'
-// 	},
-// 	paper: {
-// 		maxWidth: 500,
-// 		width: '100%'
-// 	}
-// }))(MuiDialog);
-
-
 export type GenerationPanelProps = {
 	visible: boolean;
 	onChangeNumGenerationRows: (numRows: number) => void;
@@ -71,7 +17,8 @@ export type GenerationPanelProps = {
 const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerationRows,
 	onChangeNumGenerationRows, onGenerate }: GenerationPanelProps): JSX.Element => {
 	return (
-		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
+		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}
+			contentStyle={{ maxWidth: 500 }}>
 			<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
 			<DialogContent dividers>
 				<div className={styles.intro}>
