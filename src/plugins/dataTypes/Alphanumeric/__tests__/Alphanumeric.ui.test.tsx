@@ -5,6 +5,7 @@ const i18n = require('../i18n/en.json');
 
 const defaultProps = {
 	coreI18n: {},
+	countryI18n: {},
 	i18n,
 	id: 'id',
 	dimensions: { width: 100, height: 100 }
@@ -15,7 +16,7 @@ describe('Example', () => {
 		const data = { ...initialState };
 		const onUpdate = jest.fn();
 		const { container } = render(
-			<Example 
+			<Example
 				{...defaultProps}
 				data={data}
 				onUpdate={onUpdate}
@@ -31,7 +32,7 @@ describe('Options', () => {
 		const data = { ...initialState };
 		const onUpdate = jest.fn();
 		const { container } = render(
-			<Options 
+			<Options
 				{...defaultProps}
 				data={data}
 				onUpdate={onUpdate}

@@ -9,6 +9,7 @@ describe('generate', () => {
 		rowNum: 1,
 		rowState: '',
 		i18n,
+		countryI18n: {},
 		existingRowData: []
 	};
 
@@ -47,7 +48,7 @@ describe('generate', () => {
 		sinon.stub(randomUtils, 'getRandomArrayValue').returns('St');
 		sinon.stub(randomUtils, 'getRandomNum')
 			.onCall(0).returns(3) // format #3
-			.onCall(1).returns(555) 
+			.onCall(1).returns(555)
 			.onCall(2).returns(1234);
 
 		expect(generate(data)).toEqual({
@@ -60,7 +61,7 @@ describe('generate', () => {
 		sinon.stub(randomUtils, 'getRandomArrayValue').returns('St');
 		sinon.stub(randomUtils, 'getRandomNum')
 			.onCall(0).returns(4) // format #4
-			.onCall(1).returns(555) 
+			.onCall(1).returns(555)
 			.onCall(2).returns(1234);
 
 		expect(generate(data)).toEqual({

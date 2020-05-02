@@ -9,6 +9,7 @@ describe('generate method converts all placeholders', () => {
 		rowNum: 1,
 		rowState: '',
 		i18n: {},
+		countryI18n: {},
 		existingRowData: []
 	};
 

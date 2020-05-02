@@ -50,7 +50,7 @@ export const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 // @ts-ignore-line
-export const Dialog = withStyles(({ maxWidth = 1000 }) => ({
+export const Dialog = withStyles(() => ({
 	root: {
 		zIndex: '5000 !important',
 		width: '100%'
@@ -62,13 +62,15 @@ export const Dialog = withStyles(({ maxWidth = 1000 }) => ({
 	}
 }))(MuiDialog);
 
-// const Dialog = withStyles(() => ({
-// 	root: {
-// 		zIndex: '5000 !important',
-// 		width: '100%'
-// 	},
-// 	paper: {
-// 		maxWidth: 500,
-// 		width: '100%'
-// 	}
-// }))(MuiDialog);
+// TODO Code reuse much? Figure out how to do this better.
+// @ts-ignore-line
+export const SmallDialog = withStyles(() => ({
+	root: {
+		zIndex: '5000 !important',
+		width: '100%'
+	},
+	paper: {
+		maxWidth: 500,
+		width: '100%'
+	}
+}))(MuiDialog);

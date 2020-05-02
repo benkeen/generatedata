@@ -1,4 +1,4 @@
-export default {
+{
 	"a_few_links": "Een aantal links",
 	"about": "Over",
 	"about_para1": "Soms heb je realistische test data nodig om je database te vullen en het creeren van mockups. ~Voor teksten gebruiken we: <i>lorem ipsum</i>; voor al het overige...? Deze tool is ontwikkeld om snel op een eenvoudige manier grote volumes test data te genereren in elk gewenst formaat.",
@@ -283,4 +283,5 @@ export default {
 	"your_data_set_name_here": "Hier de naam van uw dataset...",
 	"your_data_sets": "Uw datasets",
 	"zip_q": "ZIP?"
-};
+}
+

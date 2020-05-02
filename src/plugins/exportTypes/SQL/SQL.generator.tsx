@@ -123,10 +123,10 @@ export const getDataTypeSqlMetadata = (generationData: ExportTypeGenerationData)
 };
 
 export const generatePostgres = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
-	const colTitles = generationData.columns.map(({ title }) => title);
+	// const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+	// const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
 	const dataTypeSqlMetadata = getDataTypeSqlMetadata(generationData);
 
 	if (generationData.isFirstBatch) {

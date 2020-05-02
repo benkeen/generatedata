@@ -1,10 +1,11 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { initialState, Options } from '../Country.ui';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {
 	coreI18n: {},
+	countryI18n: {},
 	i18n,
 	id: 'id',
 	dimensions: { width: 100, height: 100 }

@@ -2,25 +2,39 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTOptionsProps } from '../../../../types/dataTypes';
 import { countryList } from '../../../_plugins';
+import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 
 export const initialState = {
 	selectedCountries: countryList
 };
 
+const Dialog = ({ visible, onClose, i18n }: any) => {
+	return (
+		<SmallDialog onClose={onClose} open={visible}>
+			<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
+			<DialogContent dividers>
 
-const Dialog = () => {
-
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={onClose} color="primary" variant="outlined">Close</Button>
+			</DialogActions>
+		</SmallDialog>
+	);
 };
 
-export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
-	const [dialogVisible, setDialogVisiblity] = React.useState(false);
+export const Options = ({ i18n, coreI18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
+	const [dialogVisible, setDialogVisibility] = React.useState(false);
 	const numSelected = data.selectedCountries.length;
 	const label = (numSelected === countryList.length) ? `All (${numSelected}) countries` : `${numSelected} countries`;
 
 	return (
 		<div>
 			<Button onClick={() => {}} variant="outlined" color="primary" size="small">{label}</Button>
-
+			<Dialog
+				visible={dialogVisible}
+				onClose={() => setDialogVisibility(false)}
+				i18n={i18n}
+			/>
 		</div>
 	);
 };

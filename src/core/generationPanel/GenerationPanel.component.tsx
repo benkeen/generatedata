@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '../../components/dialogs';
+import { SmallDialog, DialogTitle, DialogContent, DialogActions } from '../../components/dialogs';
 import styles from './GenerationPanel.scss';
 
 export type GenerationPanelProps = {
@@ -17,8 +17,7 @@ export type GenerationPanelProps = {
 const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerationRows,
 	onChangeNumGenerationRows, onGenerate }: GenerationPanelProps): JSX.Element => {
 	return (
-		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}
-			contentStyle={{ maxWidth: 500 }}>
+		<SmallDialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
 			<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
 			<DialogContent dividers>
 				<div className={styles.intro}>
@@ -43,7 +42,7 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratio
 			<DialogActions>
 				<Button onClick={onGenerate} color="primary" variant="outlined">Generate</Button>
 			</DialogActions>
-		</Dialog>
+		</SmallDialog>
 	);
 };
 

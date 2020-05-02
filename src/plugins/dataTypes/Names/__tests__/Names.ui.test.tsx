@@ -5,6 +5,7 @@ const i18n = require('../i18n/en.json');
 
 const defaultProps = {
 	coreI18n: {},
+	countryI18n: {},
 	i18n
 };
 

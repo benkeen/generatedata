@@ -49,6 +49,7 @@ export type Dimensions = {
 // Data Type <Example /> props
 export type DTExampleProps = {
     coreI18n: any;
+	countryI18n: any;
     i18n: any;
     data: any;
 	id: string;
@@ -59,6 +60,7 @@ export type DTExampleProps = {
 // Data Type <Options /> props
 export type DTOptionsProps = {
     coreI18n: any;
+	countryI18n: any;
     i18n: any;
     data: any;
 	id: string;
@@ -69,6 +71,7 @@ export type DTOptionsProps = {
 // Data Type <Help /> props
 export type DTHelpProps = {
     coreI18n: any;
+    countryI18n: any;
     i18n: any;
 };
 
@@ -76,6 +79,7 @@ export type DTGenerationData = {
     rowNum: number;
 	rowState: any;
 	i18n: any;
+	countryI18n: any;
     existingRowData: any[];
 };
 

@@ -4,13 +4,14 @@ import * as latlng from '../LatLng.generate';
 describe('generation method', () => {
 
 	const defaultSettings = {
-		rowNum: 1, 
+		rowNum: 1,
 		existingRowData: [],
-		i18n: {}
-	};
-	
+		i18n: {},
+		countryI18n: {}
+};
+
 	it('generates a single item when only lat is selected', () => {
-		const result = latlng.generate({ 
+		const result = latlng.generate({
 			...defaultSettings,
     		rowState: { lat: true, lng: false }
 		 });
@@ -20,7 +21,7 @@ describe('generation method', () => {
 	});
 
 	it('generates a single item when only lat is selected', () => {
-		const result = latlng.generate({ 
+		const result = latlng.generate({
 			...defaultSettings,
     		rowState: { lat: false, lng: true }
 		 });
@@ -30,7 +31,7 @@ describe('generation method', () => {
 	});
 
 	it('generates two item when both lat and lng are selected', () => {
-		const result = latlng.generate({ 
+		const result = latlng.generate({
 			...defaultSettings,
     		rowState: { lat: true, lng: true }
 		 });
@@ -40,7 +41,7 @@ describe('generation method', () => {
 	});
 
 	it('generates an empty string when neither lat nor lng is selected', () => {
-		const result = latlng.generate({ 
+		const result = latlng.generate({
 			...defaultSettings,
     		rowState: { lat: false, lng: false }
 		 });
