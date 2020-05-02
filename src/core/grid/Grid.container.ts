@@ -7,6 +7,7 @@ import { DataTypeFolder } from '../../_plugins';
 
 const mapStateToProps = (state: any): Partial<GridProps> => ({
 	i18n: selectors.getCoreI18n(state),
+	countryI18n: selectors.getCountryI18n(state),
 	dataTypeI18n: selectors.getDataTypeI18n(state),
 	columnTitle: selectors.getExportTypeColumnTitle(state),
 	rows: selectors.getSortedRowsArray(state),

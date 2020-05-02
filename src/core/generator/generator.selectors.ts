@@ -184,6 +184,14 @@ export const getCoreI18n = createSelector(
 	}
 );
 
+export const getCountryI18n = createSelector(
+	getLocale,
+	(locale): any | null => {
+		const strings = langUtils.getStrings(locale);
+		return strings ? strings.countries : null;
+	}
+);
+
 export const getDataTypeI18n = createSelector(
 	getLocale,
 	(locale): any | null => {

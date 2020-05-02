@@ -31,6 +31,7 @@ export type GridProps = {
 	onSort: (id: string, newIndex: number) => void;
 	toggleGrid: () => void;
 	i18n: any;
+	countryI18n: any;
 	dataTypeI18n: any;
 	columnTitle: string;
 	loadedDataTypes: any; // TODO
@@ -50,7 +51,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProper
 
 
 const Grid = ({
-	rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, dataTypeI18n,
+	rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, countryI18n, dataTypeI18n,
 	columnTitle, toggleGrid, maybeLoadDataType
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
@@ -73,6 +74,7 @@ const Grid = ({
 					example = (
 						<Example
 							coreI18n={i18n}
+							countryI18n={countryI18n}
 							i18n={row.dataType ? dataTypeI18n[row.dataType] : null}
 							id={row.id}
 							data={row.data}
@@ -88,6 +90,7 @@ const Grid = ({
 					option = (
 						<Options
 							coreI18n={i18n}
+							countryI18n={countryI18n}
 							i18n={row.dataType ? dataTypeI18n[row.dataType] : null}
 							id={row.id}
 							data={row.data}

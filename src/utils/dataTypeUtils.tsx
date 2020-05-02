@@ -119,18 +119,3 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 			});
 	});
 };
-
-
-// export const getDataTypeExports = (dataType: DataTypeFolder): any => {
-// 	if (!dataType || !loadedDataTypes[dataType]) {
-// 		console.log('.');
-// 		return {
-// 			Options: (): null => null,
-// 			Example: (): null => null,
-// 			Help: (): null => null
-// 		};
-// 	}
-// 	console.log('returning...');
-// 	const { Example, Options, Help, generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
-// 	return { Example, Options, Help, generate, getMetadata, rowStateReducer };
-// };
