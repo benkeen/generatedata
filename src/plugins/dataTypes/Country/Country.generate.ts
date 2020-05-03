@@ -1,7 +1,25 @@
-import { DTGenerateResult, DTMetadata } from '../../../../types/dataTypes';
+import { DTGenerateResult, DTGenerationData, DTMetadata } from '../../../../types/dataTypes';
+import fullCountryList from './fullCountryList';
+import { CountryState } from './Country.ui';
+import { getRandomArrayValue } from '../../../utils/randomUtils';
 
-export const generate = (): DTGenerateResult => {
-	return { display: '' };
+export const generate = (data: DTGenerationData): DTGenerateResult => {
+	const { source, selectedCountries } = data.rowState as CountryState;
+
+	const hasFilteredCountryList = selectedCountries.length > 0;
+
+	let result;
+	if (source === 'all') {
+		result = {
+			display: getRandomArrayValue(hasFilteredCountryList ? selectedCountries : fullCountryList)
+		};
+	} else {
+		result = {
+			display: ''
+		};
+	}
+
+	return result;
 };
 
 export const getMetadata = (): DTMetadata => ({
@@ -13,19 +31,6 @@ export const getMetadata = (): DTMetadata => ({
 });
 
 /*
- * This data type generates a random country name. A few things to know:
- * - The Core script comes with three database tables for country, region and city.
- * - The only countries listed in the country table are those for the Country-Specific Data plugins.
- * - This data type offers a single option when selected: "limit countries to those selected above". This
- *   is used to let the module know to either limit results to the selected Country plugins, or to pull from a much
- *   larger list (hardcoded in the class below). The benefits to using the country-specific data mapping is that
- *   it allows the script to intelligently generate rows of data where the City, Region and Country fields are
- *   in sync (i.e. no cities that don't belong to a particular region, etc).
- *
- * @author Ben Keen <ben.keen@gmail.com>
- * @package DataTypes
-class DataType_Country extends DataTypePlugin {
-	protected $dataTypeName = "Country";
 	protected $dataTypeFieldGroup = "geo";
 	protected $dataTypeFieldGroupOrder = 50;
 	protected $jsModules = array("Country.js");

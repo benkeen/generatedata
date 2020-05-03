@@ -11,7 +11,7 @@ import styles from './Country.scss';
 export type CountrySource = 'all' | 'plugins';
 export type CountryState = {
 	source: CountrySource;
-	selectedCountries: string[]; // gawd bloody knows the proper typings here
+	selectedCountries: string[];
 }
 
 export const initialState: CountryState = {
@@ -122,14 +122,14 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 		}
 	} else {
 		if (data.selectedCountries.length) {
-			label = `<b>${numSelected}</b> country plugins`;
+			label = `<b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.countryPlugin : i18n.countryPlugins);
 		} else {
 			label = i18n.allCountryPlugins;
 		}
 	}
 
 	return (
-		<div>
+		<div className={styles.buttonLabel}>
 			<Button
 				onClick={() => setDialogVisibility(true)}
 				variant="outlined"

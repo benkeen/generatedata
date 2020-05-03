@@ -1,5 +1,6 @@
 declare namespace CountryScssModule {
   export interface ICountryScss {
+    buttonLabel: string;
     sourceBlock: string;
   }
 }
