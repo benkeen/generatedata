@@ -105,18 +105,26 @@ export const reducer = (state: GeneratorState = {
 				}
 			};
 
-		case actions.EXPORT_TYPE_LOADED:
-			return {
+		case actions.EXPORT_TYPE_LOADED: {
+			const newState = {
 				...state,
 				loadedExportTypes: {
 					...state.loadedExportTypes,
 					[action.payload.exportType]: true
-				},
-				exportTypeSettings: {
-					...state.exportTypeSettings,
-					[action.payload.exportType]: action.payload.initialState
 				}
 			};
+
+			// we only ever initialize the export settings to the initial state when the export type hasn't been
+			// loaded yet. Note: this'll be an interesting upgrade problem
+			if (!state.exportTypeSettings[action.payload.exportType as ExportTypeFolder]) {
+				newState.exportTypeSettings = {
+					...state.exportTypeSettings,
+					[action.payload.exportType]: action.payload.initialState
+				};
+			}
+
+			return newState;
+		}
 
 		case actions.ADD_ROWS: {
 			const newRows: DataRows = {};
