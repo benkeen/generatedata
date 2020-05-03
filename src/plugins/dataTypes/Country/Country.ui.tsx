@@ -41,7 +41,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 		} else {
 			return {
 				value: countryName,
-				label: countryI18n[countryName].countryName
+				// label: countryI18n[countryName].countryName
 			};
 		}
 	});
@@ -98,7 +98,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 					closeMenuOnSelect={false}
 					isClearable={true}
 					defaultValue={selected}
-					value={selected}
+					value={data.selectedCountries}
 					onChange={(values: any) => onSelectCountries(values)}
 					options={data.source === 'all' ? fullCountryListOptions : countryPluginOptions}
 				/>
