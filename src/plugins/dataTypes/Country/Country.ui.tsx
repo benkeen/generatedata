@@ -6,6 +6,7 @@ import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../..
 import Dropdown from '../../../components/dropdown/Dropdown';
 import fullCountryList from './fullCountryList';
 import sharedStyles from '../../../styles/shared.scss';
+import styles from './Country.scss';
 
 export type CountrySource = 'all' | 'plugins';
 export type CountryState = {
@@ -24,11 +25,26 @@ const fullCountryListOptions = fullCountryList.map((countryName) => ({
 	label: countryName
 }));
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, i18n }: any) => {
+const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, i18n }: any) => {
 	const countryPluginOptions = countryList.map((countryName) => ({
 		value: countryName,
 		label: countryI18n[countryName].countryName
 	}));
+
+	const onSelectCountries = (countries: any) => {
+		onUpdateSelectedCountries(countries.map(({ value }: any) => value));
+	};
+
+	const selected = data.selectedCountries.map((countryName: string) => {
+		if (data.source === 'all') {
+			return { value: countryName, label: countryName };
+		} else {
+			return {
+				value: countryName,
+				label: countryI18n[countryName].countryName
+			};
+		}
+	});
 
 	return (
 		<SmallDialog onClose={onClose} open={visible}>
@@ -39,33 +55,37 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, i18n 
 				</div>
 
 				<h3>Source</h3>
-				<div>
-					<input
-						type="radio"
-						name={`${id}-source`}
-						id={`${id}-source-all`}
-						checked={data.source === 'all'}
-						onChange={() => onUpdateSource('all')}
-					/>
-					<label htmlFor={`${id}-source-all`}>All Countries ({fullCountryList.length})</label>
+
+				<div className={styles.sourceBlock}>
+					<Button onClick={() => onUpdateSource('all')} size="small" color="primary" variant="outlined"
+						style={{ marginRight: 10 }}>
+						<input
+							type="radio"
+							name={`${id}-source`}
+							id={`${id}-source-all`}
+							checked={data.source === 'all'}
+							onChange={() => {}}
+						/>
+						<span>All Countries ({fullCountryList.length})</span>
+					</Button>
+
+					<Button onClick={() => onUpdateSource('plugins')} size="small" color="primary" variant="outlined">
+						<input
+							type="radio"
+							name={`${id}-source`}
+							id={`${id}-source-all`}
+							checked={data.source === 'plugins'}
+							onChange={() => {}}
+						/>
+						<span>Country plugins ({countryList.length})</span>
+					</Button>
 				</div>
-				<div>
-					<input
-						type="radio"
-						name={`${id}-source`}
-						id={`${id}-source-plugins`}
-						checked={data.source === 'plugins'}
-						onChange={() => onUpdateSource('plugins')}
-					/>
-					<label htmlFor={`${id}-source-plugins`}>
-						Country plugins ({countryList.length})
-					</label>
-					<div className={sharedStyles.tip}>
-						Country plugins provide a richer data set for generating more realistic data. With this option
-						selected you can map other fields like Region, City, Postal/Zip and Phone to this row, ensuring
-						that each final row has a random region within the randomly selected country, a random city within
-						the region - and so on.
-					</div>
+
+				<div className={sharedStyles.tip}>
+					Country plugins provide a richer data set for generating more realistic data. With this option
+					selected you can map other fields like Region, City, Postal/Zip and Phone to this row, ensuring
+					that each final row has a random region within the randomly selected country, a random city within
+					the region - and so on.
 				</div>
 
 				<h3>Filter</h3>
@@ -77,9 +97,9 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, i18n 
 					isMulti
 					closeMenuOnSelect={false}
 					isClearable={true}
-					defaultValue={null}
-					value={null}
-					onChange={() => {}}
+					defaultValue={selected}
+					value={selected}
+					onChange={(values: any) => onSelectCountries(values)}
 					options={data.source === 'all' ? fullCountryListOptions : countryPluginOptions}
 				/>
 			</DialogContent>
@@ -125,7 +145,13 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 
 	return (
 		<div>
-			<Button onClick={() => setDialogVisibility(true)} variant="outlined" color="primary" size="small">{label}</Button>
+			<Button
+				onClick={() => setDialogVisibility(true)}
+				variant="outlined"
+				color="primary"
+				size="small">
+				<span dangerouslySetInnerHTML={{ __html: label }} />
+			</Button>
 			<Dialog
 				visible={dialogVisible}
 				data={data}

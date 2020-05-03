@@ -8,8 +8,8 @@ import Page from './core/page/Page.container';
 import Builder from './core/builder/Builder.container';
 import * as core from './core';
 import theme from './core/theme';
-
 import './core/generator/generator.reducer';
+import './styles/global.scss';
 
 /*
 routes:

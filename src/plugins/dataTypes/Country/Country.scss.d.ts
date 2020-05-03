@@ -1,6 +1,6 @@
 declare namespace CountryScssModule {
   export interface ICountryScss {
-    tip: string;
+    sourceBlock: string;
   }
 }
 
