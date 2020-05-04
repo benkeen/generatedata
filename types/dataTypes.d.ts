@@ -23,6 +23,7 @@ export type DTDefinition = {
 	name: string;
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
+	processOrder?: number; // TODO WILL REMOVE
 	dependencies?: DataTypeFolder[];
 	countryTags?: any; // TODO maybe map this to our Country plugins?
 	tags?: Tag[];

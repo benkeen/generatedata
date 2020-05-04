@@ -26,6 +26,7 @@ const fullCountryListOptions = fullCountryList.map((countryName) => ({
 }));
 
 const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, coreI18n, i18n }: any): JSX.Element => {
+	console.log('??????', countryList);
 	const countryPluginOptions = countryList.map((countryName) => ({
 		value: countryName,
 		label: countryI18n[countryName].countryName
