@@ -4,7 +4,7 @@ const definition: DTDefinition = {
 	name: 'Region',
 	fieldGroup: 'geo',
 	fieldGroupOrder: 40,
-	processOrder: 2,
+	dependencies: ['Country'],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

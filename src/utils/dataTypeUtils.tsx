@@ -101,7 +101,9 @@ Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
 	processOrders[dataType] = dataTypes[dataType].processOrder ? dataTypes[dataType].processOrder : 1;
 });
 
-export const getDataTypeProcessOrder = (dataType: DataTypeFolder): number => processOrders[dataType] as number;
+export const processBatches = {};
+
+
 
 export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	return new Promise((resolve, reject) => {

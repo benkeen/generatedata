@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { processOrders, getDataType } from '../../utils/dataTypeUtils';
+import { processBatches, getDataType } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
 import { ColumnData, GDLocale, GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../builder/Builder.component';

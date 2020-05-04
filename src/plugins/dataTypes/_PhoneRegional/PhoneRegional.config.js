@@ -2,7 +2,7 @@ export default {
 	"name": "Phone / Fax, Regional",
 	"fieldGroup": "humanData",
 	"fieldGroupOrder": 25,
-	processOrder: 3,
+	dependencies: ["Country", "Region"],
 	"schema": {
 		"title": "PhoneRegional",
 		"$schema": "http://json-schema.org/draft-04/schema#",

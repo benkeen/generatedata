@@ -39,6 +39,7 @@ export type GenerationTemplateRow = {
 	rowState: any;
     generateFunc: Function;
     colMetadata: () => any;
+    colIndex: number;
 }
 
 export type GenerationTemplate = {

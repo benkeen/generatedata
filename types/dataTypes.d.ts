@@ -1,7 +1,6 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject, Tag } from './general';
-
-export type DTExportTypeExports = 'Options' | 'Help' |  'Example' |  'rowStateReducer' |  'getMetadata';
+import { DataTypeFolder } from '../src/_plugins';
 
 export type DTBundle = {
 	initialState?: any;
@@ -24,7 +23,7 @@ export type DTDefinition = {
 	name: string;
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
-	processOrder?: number;
+	dependencies?: DataTypeFolder[];
 	countryTags?: any; // TODO maybe map this to our Country plugins?
 	tags?: Tag[];
 	schema?: any;

@@ -4,7 +4,7 @@ const definition: DTDefinition = {
 	name: 'Constant',
 	fieldGroup: 'other',
 	fieldGroupOrder: 10,
-	processOrder: 100,
+	dependencies: [], // was 100 process order ?
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

@@ -4,7 +4,7 @@ const definition: DTDefinition = {
 	name: 'Postal / Zip',
 	fieldGroup: 'geo',
 	fieldGroupOrder: 30,
-	processOrder: 3,
+	dependencies: ['Country', 'Region'],
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

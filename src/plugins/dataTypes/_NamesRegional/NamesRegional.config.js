@@ -2,7 +2,7 @@ export default {
 	"name": "Names, Regional",
 	"fieldGroup": "humanData",
 	"fieldGroupOrder": 15,
-	processOrder: 2,
+	dependencies: ["Country"],
 	"schema": {
 		"title": "NamesRegional",
 		"$schema": "http://json-schema.org/draft-04/schema#",

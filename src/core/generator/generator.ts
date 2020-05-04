@@ -2,7 +2,12 @@
  * Our generator class. This does the work of passing off the work off to the selected plugins and piecing the
  * generated data for returning to the client.
  */
-import { ExportTypeGenerateType, ExportTypeGenerationData, ExportTypePreviewData } from '../../../types/general';
+import {
+	ExportTypeGenerateType,
+	ExportTypeGenerationData,
+	ExportTypePreviewData,
+	GenerationTemplateRow
+} from '../../../types/general';
 import { getStrings } from '../../utils/langUtils';
 import { DataTypeFolder } from '../../_plugins';
 
@@ -64,6 +69,7 @@ export const generate = (data: ExportTypeGenerateType): string => {
 // }
 
 
+// TODO good GRIEF this needs tests. It's the backbone of the whole sodding app.
 export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> => {
 	return new Promise((resolve, reject) => {
 		const generationTemplate = data.template;
@@ -77,9 +83,11 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 		const processOrders = Object.keys(generationTemplate);
 
 		let index = 0;
+
+		// rows are independent! The only necessarily synchronous bit is between process orders (rename to processBlock / processChunk?)
 		for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
 
-			// ignore any rows that don't have a label. That's used by all Export Types for col titles, var names, DB col names etc.
+			// ignore any rows that don't have a title
 			if (!data.columns[index].title) {
 				index++;
 				continue;
@@ -87,43 +95,54 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 
 			// the generationTemplate is already grouped by process order. Just loop through each one, passing off the
 			// actual data generation to the appropriate Data Type. Note that we pass all previously generated
-			// data (including any metadata returned by the Data Type).
+			// data (including any metadata returned by the Data Type)
 			const currRowData: any = [];
 
-			processOrders.forEach((processOrder: string) => {
-				// @ts-ignore
-				for (let i=0; i<generationTemplate[processOrder].length; i++) {
-					// @ts-ignore
-					const currCell = generationTemplate[processOrder][i];
+			processOrders.forEach((processOrderParam: string) => {
+				const processOrder: number = parseInt(processOrderParam, 10);
+				const { promises, colIndexes } = processDataTypeProcessingBlock(generationTemplate[processOrder], rowNum, i18n, currRowData);
 
-					// Data Type generation functions can be sync or async. If it's a promise, wait for it to be resolved
-					const response = currCell.generateFunc({
-						rowNum,
-						i18n: i18n.dataTypes[currCell.dataType],
-						countryI18n: i18n.countries,
-						rowState: currCell.rowState,
-						existingRowData: currRowData
+				Promise.all(promises)
+					.then(() => {
+						console.log('process block is done!', colIndexes);
 					});
-
-					if (typeof response.then === 'function') {
-
-					} else {
-						console.log(processOrder, i);
-						currRowData[currCell.colIndex] = response;
-					}
-				}
 			});
 
 			if (currRowData.length) {
 				displayData.push(currRowData.map((i: any): string => i.display));
 			}
-
-			// 	// now sort the row columns in the desired order
-			// 	ksort($currRowData, SORT_NUMERIC);
 		}
 
 		resolve(displayData);
 	});
+};
+
+
+export const processDataTypeProcessingBlock = (cells: GenerationTemplateRow[], rowNum: number, i18n: any, currRowData: any[]): any => {
+	const colIndexes: number[] = [];
+	const promises = cells.map((currCell) => {
+		colIndexes.push(currCell.colIndex);
+
+		const response = currCell.generateFunc({
+			rowNum,
+			i18n: i18n.dataTypes[currCell.dataType],
+			countryI18n: i18n.countries,
+			rowState: currCell.rowState,
+			existingRowData: currRowData
+		});
+
+		// Data Type generation functions can be sync or async. If it's a promise, wait for it to be resolved
+		if (typeof response.then === 'function') {
+			return response;
+		} else {
+			return Promise.resolve(response);
+		}
+	});
+
+	return {
+		promises,
+		colIndexes
+	};
 };
 
 
