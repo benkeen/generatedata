@@ -1,9 +1,9 @@
 /**
  * @author Fareez Ahamed <fareez.ahamed@gmail.com>
  */
-import { CountryType } from '../../../../types/countries';
+import { GetCountryData } from '../../../../types/countries';
 
-export default (i18n: any): CountryType => ({
+const data: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
 	countrySlug: 'india',
 	regionNames: i18n.regionNames,
@@ -387,3 +387,5 @@ export default (i18n: any): CountryType => ({
 		}
 	]
 });
+
+export default data;

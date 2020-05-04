@@ -1,9 +1,9 @@
-import { CountryType } from '../../../../types/countries';
+import { GetCountryData } from '../../../../types/countries';
 
-export default (i18n: any): CountryType => ({
-	countryName: "Germany",
+const data: GetCountryData = (i18n) => ({
+	countryName: i18n.countryName,
     countrySlug: "germany",
-	regionNames: "German States",
+	regionNames: i18n.regionNames,
     continent: "europe",
     extendedData: {
 	    zipFormat: {
@@ -174,3 +174,5 @@ export default (i18n: any): CountryType => ({
 	    }
     ]
 });
+
+export default data;

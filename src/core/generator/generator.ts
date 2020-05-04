@@ -64,54 +64,66 @@ export const generate = (data: ExportTypeGenerateType): string => {
 // }
 
 
-export const generatePreviewData = (data: ExportTypeGenerateType): any => {
-	const generationTemplate = data.template;
-	const i18n = getStrings();
+export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> => {
+	return new Promise((resolve, reject) => {
+		const generationTemplate = data.template;
+		const i18n = getStrings();
 
-	const firstRowNum = 1;
-	const lastRowNum = data.numResults;
+		const firstRowNum = 1;
+		const lastRowNum = data.numResults;
 
-	// contains only the information needed for display purposes
-	const displayData: any = [];
-	const processOrders = Object.keys(generationTemplate);
+		// contains only the information needed for display purposes
+		const displayData: any = [];
+		const processOrders = Object.keys(generationTemplate);
 
-	let index = 0;
-	for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
+		let index = 0;
+		for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
 
-		// ignore any rows that don't have a label. That's used by all Export Types for col titles, var names, DB col names etc.
-		if (!data.columns[index].title) {
-			index++;
-			continue;
-		}
-
-		// the generationTemplate is already grouped by process order. Just loop through each one, passing off the
-		// actual data generation to the appropriate Data Type. Note that we pass all previously generated
-		// data (including any metadata returned by the Data Type).
-		const currRowData: any = [];
-
-		processOrders.forEach((processOrder: string) => {
-			// @ts-ignore
-			for (let i=0; i<generationTemplate[processOrder].length; i++) {
-				// @ts-ignore
-				const currCell = generationTemplate[processOrder][i];
-				currRowData[currCell.colIndex] = currCell.generateFunc({
-					rowNum,
-					i18n: i18n.dataTypes[currCell.dataType],
-					rowState: currCell.rowState,
-					existingRowData: currRowData
-				});
+			// ignore any rows that don't have a label. That's used by all Export Types for col titles, var names, DB col names etc.
+			if (!data.columns[index].title) {
+				index++;
+				continue;
 			}
-		});
 
-		if (currRowData.length) {
-			displayData.push(currRowData.map((i: any): string => i.display));
+			// the generationTemplate is already grouped by process order. Just loop through each one, passing off the
+			// actual data generation to the appropriate Data Type. Note that we pass all previously generated
+			// data (including any metadata returned by the Data Type).
+			const currRowData: any = [];
+
+			processOrders.forEach((processOrder: string) => {
+				// @ts-ignore
+				for (let i=0; i<generationTemplate[processOrder].length; i++) {
+					// @ts-ignore
+					const currCell = generationTemplate[processOrder][i];
+
+					// Data Type generation functions can be sync or async. If it's a promise, wait for it to be resolved
+					const response = currCell.generateFunc({
+						rowNum,
+						i18n: i18n.dataTypes[currCell.dataType],
+						countryI18n: i18n.countries,
+						rowState: currCell.rowState,
+						existingRowData: currRowData
+					});
+
+					if (typeof response.then === 'function') {
+
+					} else {
+						console.log(processOrder, i);
+						currRowData[currCell.colIndex] = response;
+					}
+				}
+			});
+
+			if (currRowData.length) {
+				displayData.push(currRowData.map((i: any): string => i.display));
+			}
+
+			// 	// now sort the row columns in the desired order
+			// 	ksort($currRowData, SORT_NUMERIC);
 		}
 
-		// 	// now sort the row columns in the desired order
-		// 	ksort($currRowData, SORT_NUMERIC);
-	}
-
-	return displayData;
+		resolve(displayData);
+	});
 };
 
 

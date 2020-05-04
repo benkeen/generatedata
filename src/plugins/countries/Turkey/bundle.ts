@@ -6,9 +6,9 @@
  *
  * Note: Turkey doesn't appear to have short codes for the provinces, so this just sets them all to the full name.
  */
-import { CountryType } from '../../../../types/countries';
+import { GetCountryData } from '../../../../types/countries';
 
-export default (i18n: any): CountryType => ({
+const data: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
 	countrySlug: "turkey",
 	regionNames: i18n.regionNames,
@@ -207,3 +207,5 @@ export default (i18n: any): CountryType => ({
 		}
 	]
 });
+
+export default data;

@@ -4,9 +4,9 @@
 * Source: https://es.wikipedia.org/wiki/Anexo%3AMunicipios_de_Espa%C3%B1a_por_poblaci%C3%B3n
 * @package Countries
 */
-import { CountryType } from '../../../../types/countries';
+import { GetCountryData } from '../../../../types/countries';
 
-export default (i18n: any): CountryType => ({
+const data: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
 	countrySlug: "spain",
 	regionNames: i18n.regionNames,
@@ -251,3 +251,5 @@ export default (i18n: any): CountryType => ({
 		}
 	]
 });
+
+export default data;

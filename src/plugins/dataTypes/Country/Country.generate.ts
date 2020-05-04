@@ -1,34 +1,48 @@
 import { DTGenerateResult, DTGenerationData, DTMetadata } from '../../../../types/dataTypes';
 import fullCountryList from './fullCountryList';
+import { countryList, CountryType } from '../../../_plugins';
 import { CountryState } from './Country.ui';
 import { getRandomArrayValue } from '../../../utils/randomUtils';
+import { loadCountryBundle } from '../../../utils/countryUtils';
+import { GetCountryData } from '../../../../types/countries';
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const { source, selectedCountries } = data.rowState as CountryState;
 
-	const hasFilteredCountryList = selectedCountries.length > 0;
+export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
+	return new Promise((resolve) => { // TODO error clause
+		const { rowState, countryI18n } = data;
+		const { source, selectedCountries } = rowState as CountryState;
 
-	let result;
-	if (source === 'all') {
-		result = {
-			display: getRandomArrayValue(hasFilteredCountryList ? selectedCountries : fullCountryList)
-		};
-	} else {
-		result = {
-			display: ''
-		};
-	}
+		const hasFilteredCountryList = selectedCountries.length > 0;
 
-	return result;
+		if (source === 'all') {
+			resolve({ display: getRandomArrayValue(hasFilteredCountryList ? selectedCountries : fullCountryList) });
+		} else {
+			const randomCountry = getRandomArrayValue(hasFilteredCountryList ? selectedCountries : countryList) as CountryType;
+			
+			loadCountryBundle(randomCountry)
+				.then((getData: GetCountryData) => {
+					const data = getData(countryI18n[randomCountry]);
+					resolve({
+						display: data.countryName,
+						slug: data.countrySlug
+						// id: ''
+					});
+				});
+		}
+	});
 };
 
 export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'string'
+	},
 	sql: {
 		field: 'varchar(100) default NULL',
 		field_Oracle: 'varchar2(100) default NULL',
 		field_MSSQL: 'VARCHAR(100) NULL'
 	}
 });
+
 
 /*
 	protected $dataTypeFieldGroup = "geo";

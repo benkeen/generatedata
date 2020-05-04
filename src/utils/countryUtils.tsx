@@ -1,4 +1,3 @@
-import React from 'react';
 import { CountryType } from '../_plugins';
 
 // this houses all Export Type code loaded async after the application starts

@@ -1,4 +1,8 @@
-export type CountryType = {
+export interface GetCountryData {
+	(i18n: any): CountryDataType;
+}
+
+export type CountryDataType = {
 	countrySlug: string;
 	countryName: string;
 	regionNames: string;

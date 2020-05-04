@@ -1,7 +1,7 @@
 // https://en.wikipedia.org/wiki/Category:Cities_and_towns_in_Russia_by_federal_subject
-import { CountryType } from '../../../../types/countries';
+import { GetCountryData } from '../../../../types/countries';
 
-export default (i18n: any): CountryType => ({
+const data: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
 	countrySlug: "RU",
 	regionNames: i18n.regionNames,
@@ -943,3 +943,5 @@ export default (i18n: any): CountryType => ({
 		}
 	]
 });
+
+export default data;

@@ -97,24 +97,27 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		const template = selectors.getGenerationTemplate(state);
 		const sortedRows = selectors.getSortedRows(state);
 
-		const data = generatePreviewData({
+		// TODO publish event here so a loading spinner should appear
+
+		generatePreviewData({
 			numResults: C.MAX_PREVIEW_ROWS,
 			columns: selectors.getColumns(state),
 			template
-		});
-		const previewData: any = {};
-		sortedRows.forEach((id: string, index: number) => {
-			if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
-				return;
-			}
-			previewData[id] = data.map((row: any): any => row[index]);
-		});
+		}).then((data: any) => {
+			const previewData: any = {};
+			sortedRows.forEach((id: string, index: number) => {
+				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
+					return;
+				}
+				previewData[id] = data.map((row: any): any => row[index]);
+			});
 
-		dispatch({
-			type: REFRESH_PREVIEW_DATA,
-			payload: {
-				previewData
-			}
+			dispatch({
+				type: REFRESH_PREVIEW_DATA,
+				payload: {
+					previewData
+				}
+			});
 		});
 	};
 };

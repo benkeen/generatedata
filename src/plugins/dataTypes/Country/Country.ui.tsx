@@ -25,13 +25,13 @@ const fullCountryListOptions = fullCountryList.map((countryName) => ({
 	label: countryName
 }));
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, coreI18n, i18n }: any) => {
+const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, coreI18n, i18n }: any): JSX.Element => {
 	const countryPluginOptions = countryList.map((countryName) => ({
 		value: countryName,
 		label: countryI18n[countryName].countryName
 	}));
 
-	const onSelectCountries = (countries: any) => {
+	const onSelectCountries = (countries: any): void => {
 		onUpdateSelectedCountries(countries ? countries.map(({ value }: any) => value) : []);
 	};
 
@@ -46,25 +46,25 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-					<Button onClick={() => onUpdateSource('all')} size="small" color="primary" variant="outlined"
+					<Button onClick={(): void => onUpdateSource('all')} size="small" color="primary" variant="outlined"
 						style={{ marginRight: 10 }}>
 						<input
 							type="radio"
 							name={`${id}-source`}
 							id={`${id}-source-all`}
 							checked={data.source === 'all'}
-							onChange={() => {}}
+							onChange={(): void => {}}
 						/>
 						<span>{i18n.allCountries} ({fullCountryList.length})</span>
 					</Button>
 
-					<Button onClick={() => onUpdateSource('plugins')} size="small" color="primary" variant="outlined">
+					<Button onClick={(): void => onUpdateSource('plugins')} size="small" color="primary" variant="outlined">
 						<input
 							type="radio"
 							name={`${id}-source`}
 							id={`${id}-source-all`}
 							checked={data.source === 'plugins'}
-							onChange={() => {}}
+							onChange={(): void => {}}
 						/>
 						<span>{i18n.countryPlugins} ({countryList.length})</span>
 					</Button>
@@ -84,7 +84,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 					closeMenuOnSelect={false}
 					isClearable={true}
 					value={data.selectedCountries}
-					onChange={(values: any) => onSelectCountries(values)}
+					onChange={(values: any): void => onSelectCountries(values)}
 					options={data.source === 'all' ? fullCountryListOptions : countryPluginOptions}
 				/>
 			</DialogContent>
@@ -99,14 +99,14 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 	const numSelected = data.selectedCountries.length;
 
-	const onUpdateSource = (source: CountrySource) => {
+	const onUpdateSource = (source: CountrySource): void => {
 		onUpdate({
 			source,
 			selectedCountries: []
 		});
 	};
 
-	const onUpdateSelectedCountries = (selectedCountries: string[]) => {
+	const onUpdateSelectedCountries = (selectedCountries: string[]): void => {
 		onUpdate({
 			...data,
 			selectedCountries
@@ -131,7 +131,7 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 	return (
 		<div className={styles.buttonLabel}>
 			<Button
-				onClick={() => setDialogVisibility(true)}
+				onClick={(): void => setDialogVisibility(true)}
 				variant="outlined"
 				color="primary"
 				size="small">
@@ -146,7 +146,7 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 				countryI18n={countryI18n}
 				onUpdateSource={onUpdateSource}
 				onUpdateSelectedCountries={onUpdateSelectedCountries}
-				onClose={() => setDialogVisibility(false)}
+				onClose={(): void => setDialogVisibility(false)}
 			/>
 		</div>
 	);
