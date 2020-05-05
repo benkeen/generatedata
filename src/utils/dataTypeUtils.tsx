@@ -101,9 +101,50 @@ Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
 	processOrders[dataType] = dataTypes[dataType].processOrder ? dataTypes[dataType].processOrder : 1;
 });
 
-export const processBatches = {};
+type ProcessBatches = {
+	[dt: string]: number;
+};
 
+export function RecursiveErrorException (remaining: string[]) {
+	// @ts-ignore-line
+	this.possibleProblematicDataTypes = remaining;
+	// @ts-ignore-line
+	this.name = 'Recursive dependency';
+}
 
+export const getProcessBatches = (dataTypes: any): ProcessBatches => {
+	let dataTypesToProcess = Object.keys(dataTypes);
+
+	const processBatches: ProcessBatches = {};
+	let previousLength = dataTypesToProcess.length;
+	let currentBatch = 1;
+
+	while (dataTypesToProcess.length > 0) {
+		const fulfilledDataTypes: any = [];
+		dataTypesToProcess.forEach((dataType) => {
+			// here, we're dealing with Data Types that have dependencies. Loop through them all and figure out if all
+			// of them have already been assigned to a process batch
+			const allDependenciesPositioned = !dataTypes[dataType].dependencies || dataTypes[dataType].dependencies.every((dependency: string) => !!processBatches[dependency]);
+			if (allDependenciesPositioned) {
+				fulfilledDataTypes.push(dataType);
+			}
+		});
+
+		if (fulfilledDataTypes.length) {
+			fulfilledDataTypes.forEach((dataType: string) => {
+				processBatches[dataType] = currentBatch;
+			});
+			dataTypesToProcess = dataTypesToProcess.filter((dataType) => fulfilledDataTypes.indexOf(dataType) === -1);
+			currentBatch++;
+		}
+
+		if (dataTypesToProcess.length === previousLength) {
+			// @ts-ignore-line
+			throw new RecursiveErrorException(dataTypesToProcess);
+		}
+	}
+	return processBatches;
+};
 
 export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	return new Promise((resolve, reject) => {
