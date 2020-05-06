@@ -1,4 +1,4 @@
-import { getProcessBatches, RecursiveErrorException } from '../dataTypeUtils';
+import { getProcessBatches } from '../dataTypeUtils';
 
 describe('getProcessBatches', () => {
 	it('data types with no dependencies all get added to the first process batch', () => {
@@ -79,7 +79,6 @@ describe('getProcessBatches', () => {
 				dependencies: ['One']
 			}
 		};
-
 		try {
 			getProcessBatches(testDataTypes)
 		} catch (e) {

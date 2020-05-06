@@ -102,7 +102,7 @@ Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
 });
 
 type ProcessBatches = {
-	[dt: string]: number;
+	[dt in DataTypeFolder]?: number;
 };
 
 export function RecursiveErrorException (remaining: string[]) {
@@ -112,6 +112,18 @@ export function RecursiveErrorException (remaining: string[]) {
 	this.name = 'Recursive dependency';
 }
 
+/**
+ * Data Types can register dependencies on other Data Types, so that when the row data is generated, the script
+ * ensures the dependencies are generated first and available for use by other Data Types. For example:
+ *
+ * Country <- Region <- City
+ *
+ * Here, the City DT expects the Region DT to be generated first, so it can generate a random city within whatever
+ * random region was generated. Then the same goes for Region with Country.
+ *
+ * This method examines all the dependencies and creates a flat object of dataType => process batch. Any recursive
+ * dependencies throw an error.
+ */
 export const getProcessBatches = (dataTypes: any): ProcessBatches => {
 	let dataTypesToProcess = Object.keys(dataTypes);
 
@@ -124,7 +136,7 @@ export const getProcessBatches = (dataTypes: any): ProcessBatches => {
 		dataTypesToProcess.forEach((dataType) => {
 			// here, we're dealing with Data Types that have dependencies. Loop through them all and figure out if all
 			// of them have already been assigned to a process batch
-			const allDependenciesPositioned = !dataTypes[dataType].dependencies || dataTypes[dataType].dependencies.every((dependency: string) => !!processBatches[dependency]);
+			const allDependenciesPositioned = !dataTypes[dataType].dependencies || dataTypes[dataType].dependencies.every((dependency: string) => !!processBatches[dependency as DataTypeFolder]);
 			if (allDependenciesPositioned) {
 				fulfilledDataTypes.push(dataType);
 			}
@@ -132,7 +144,7 @@ export const getProcessBatches = (dataTypes: any): ProcessBatches => {
 
 		if (fulfilledDataTypes.length) {
 			fulfilledDataTypes.forEach((dataType: string) => {
-				processBatches[dataType] = currentBatch;
+				processBatches[dataType as DataTypeFolder] = currentBatch;
 			});
 			dataTypesToProcess = dataTypesToProcess.filter((dataType) => fulfilledDataTypes.indexOf(dataType) === -1);
 			currentBatch++;
@@ -145,6 +157,7 @@ export const getProcessBatches = (dataTypes: any): ProcessBatches => {
 	}
 	return processBatches;
 };
+
 
 export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	return new Promise((resolve, reject) => {
