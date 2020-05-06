@@ -1,88 +1,161 @@
 import * as React from 'react';
-import { DTHelpProps } from '../../../../types/dataTypes';
+import Button from '@material-ui/core/Button';
+import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import { DataTypeFolder } from '../../../_plugins';
+import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
+import styles from './Region.scss';
+import sharedStyles from '../../../styles/shared.scss';
+export type RegionSource = 'autoFind' | 'any' | 'countries' | 'row';
 
-export const Options = (): JSX.Element => {
-	// $countryPlugins = Core::$countryPlugins;
-	//
-	// $html = "<div class=\"dtRegionCountry_noCountries\">{$this->L["no_countries_selected"]}</div>";
-	// foreach ($countryPlugins as $pluginInfo) {
-	// 	$slug       = $pluginInfo->getSlug();
-	// 	$regionName = $pluginInfo->getRegionNames();
-	//
-	// 	$html .= <<<EOF
-	// 	<div class="dtRegionCountry dtRegionCountry_$slug">
-	// 		<input type="checkbox" name="dtIncludeRegion_{$slug}_%ROW%" id="dtIncludeRegion_{$slug}_%ROW%" class="dtIncludeRegion dtIncludeRegion_{$slug}"
-	// 		       checked="checked" /><label for="dtIncludeRegion_{$slug}_%ROW%">$regionName</label>
-	// 		<span class="dtRegionFull">
-	// 	<input type="checkbox" name="dtIncludeRegion_{$slug}_Full_%ROW%" id="dtIncludeRegion_{$slug}_Full_%ROW%"
-	// 	       checked="checked" /><label for="dtIncludeRegion_{$slug}_Full_%ROW%"
-	// 	                                  id="dtIncludeRegion_{$slug}_FullLabel_%ROW%" class="dtRegionSuboptionActive">{$this->L["full"]}</label>
-	// </span>
-	// 		<span class="dtRegionShort">
-	// 	<input type="checkbox" name="dtIncludeRegion_{$slug}_Short_%ROW%" id="dtIncludeRegion_{$slug}_Short_%ROW%" checked="checked"
-	// 	/><label for="dtIncludeRegion_{$slug}_Short_%ROW%" id="dtIncludeRegion_{$slug}_ShortLabel_%ROW%"
-	// 	         class="dtRegionSuboptionActive">{$this->L["short"]}</label>
-	// </span>
-	// 	</div>
-	// 	EOF;
-	// }
-	// $html .= '<div id="dtRegionCountry_Complete%ROW%"></div>';
-	return <div />;
+export type RegionState = {
+	source: RegionSource;
+	selectedCountries: DataTypeFolder[];
+	targetRowId: string;
+};
+
+export const initialState: RegionState = {
+	source: 'autoFind',
+	selectedCountries: [],
+	targetRowId: ''
+};
+
+const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate }: any): JSX.Element => {
+	const onUpdateSource = (source: RegionSource): void => {
+		onUpdate({
+			...data,
+			source
+		});
+	};
+
+	const tipMap: any = {
+		autoFind: 'autoFindDesc',
+		any: 'anyDesc',
+		countries: 'countriesDesc',
+		row: 'rowDesc'
+	};
+
+	return (
+		<SmallDialog onClose={onClose} open={visible}>
+			<DialogTitle onClose={onClose}>{i18n.selectRegions}</DialogTitle>
+			<DialogContent dividers>
+				<div>
+					{i18n.explanation}
+				</div>
+
+				<h3>{i18n.source}</h3>
+
+				<div className={styles.sourceBlock}>
+					<Button onClick={(): void => onUpdateSource('autoFind')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
+						<input
+							type="radio"
+							name={`${id}-source`}
+							checked={data.source === 'autoFind'}
+							onChange={(): void => {}}
+						/>
+						<span>{i18n.autoFind}</span>
+					</Button>
+
+					<Button onClick={(): void => onUpdateSource('any')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
+						<input
+							type="radio"
+							name={`${id}-source`}
+							checked={data.source === 'any'}
+							onChange={(): void => {}}
+						/>
+						<span>{i18n.anyRegion}</span>
+					</Button>
+
+					<Button onClick={(): void => onUpdateSource('countries')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
+						<input
+							type="radio"
+							name={`${id}-source`}
+							checked={data.source === 'countries'}
+							onChange={(): void => {}}
+						/>
+						<span>{i18n.countries}</span>
+					</Button>
+
+					<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined">
+						<input
+							type="radio"
+							name={`${id}-source`}
+							checked={data.source === 'row'}
+							onChange={(): void => {}}
+						/>
+						<span>{i18n.countryRow}</span>
+					</Button>
+				</div>
+
+				<div className={sharedStyles.tip}>
+					{i18n[tipMap[data.source]]}
+				</div>
+
+				<h3>{i18n.format}</h3>
+
+				<p>
+					<input
+						type="checkbox"
+						value="full"
+					/>
+					<label htmlFor={`${id}-`}>Full</label>
+					<input
+						type="checkbox"
+						value="full"
+					/>
+					<label htmlFor={`${id}-`}>Short</label>
+				</p>
+
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+			</DialogActions>
+		</SmallDialog>
+	);
+};
+
+export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate }: DTOptionsProps): JSX.Element => {
+	const [dialogVisible, setDialogVisibility] = React.useState(false);
+
+	const numSelected = data.selectedCountries.length;
+
+	let label = '';
+	if (data.source === 'any') {
+		label = i18n.anyRegion;
+	} else if (data.source === 'autoFind') {
+		label = i18n.autoFind;
+	} else if (data.source === 'countries') {
+		label = `Any region from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
+	} else if (data.source === 'row') {
+		
+	}
+
+	return (
+		<div className={styles.buttonLabel}>
+			<Button
+				onClick={(): void => setDialogVisibility(true)}
+				variant="outlined"
+				color="primary"
+				size="small">
+				<span dangerouslySetInnerHTML={{ __html: label }} />
+			</Button>
+			<Dialog
+				visible={dialogVisible}
+				data={data}
+				id={id}
+				coreI18n={coreI18n}
+				i18n={i18n}
+				countryI18n={countryI18n}
+				onUpdate={onUpdate}
+				onClose={(): void => setDialogVisibility(false)}
+			/>
+		</div>
+	);
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<p>{i18n.DESC} <span dangerouslySetInnerHTML={{ __html: i18n.help_text }} /></p>
 );
 
-
-// var _saveRow = function(rowNum) {
-// 	var checked = [];
-// 	for (var i=0; i<_currSelectedCountries.length; i++) {
-// 		checked.push({
-// 			country: _currSelectedCountries[i],
-// 			regionSelected: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_" + rowNum).attr("checked") === "checked") ? 1 : 0,
-// 			regionFull: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Full_" + rowNum).attr("checked") === "checked") ? 1 : 0,
-// 			regionShort: ($("#dtIncludeRegion_" + _currSelectedCountries[i] + "_Short_" + rowNum).attr("checked") === "checked") ? 1 : 0
-// 		});
-// 	}
-//
-// 	// find the checkboxes in this row
-// 	return {
-// 		"checked": checked
-// 	};
-// };
-
-// var _loadRow = function(rowNum, data) {
-//
-// 	// a real mystery here. On Chrome (and maybe other browsers) if _saveRow returns an empty array for "checkedRows",
-// 	// the object key-value pair is completely dropped. Hence the check here
-// 	var rows = [];
-// 	if (typeof data !== 'undefined') {
-// 		rows = data.checked;
-// 	}
-// 	return {
-// 		execute: function() { },
-// 		isComplete: function() {
-// 			if ($("#dtRegionCountry_Complete" + rowNum).length) {
-// 				for (var i=0; i<rows.length; i++) {
-// 					var currCountry = rows[i].country;
-// 					if (rows[i].regionSelected === "0") {
-// 						$("#dtIncludeRegion_" + currCountry + "_" + rowNum).removeAttr("checked").trigger("click");
-// 					}
-// 					if (rows[i].regionFull === "0") {
-// 						$("#dtIncludeRegion_" + currCountry + "_Full_" + rowNum).removeAttr("checked");
-// 					}
-// 					if (rows[i].regionShort === "0") {
-// 						$("#dtIncludeRegion_" + currCountry + "_Short_" + rowNum).removeAttr("checked");
-// 					}
-// 				}
-// 				return true;
-// 			} else {
-// 				return false;
-// 			}
-// 		}
-// 	};
-// };
 
 // /**
 //  * This is called any time the country list changes - including on load. It ensures only the appropriate

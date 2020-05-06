@@ -85,5 +85,23 @@ describe('getProcessBatches', () => {
 			expect(e.name).toEqual('Recursive dependency');
 		}
 	});
+
+	it('recursive dependencies triggered after first batch throw an error', () => {
+		const testDataTypes = {
+			One: {
+				dependencies: ['Two']
+			},
+			Two: {
+				dependencies: ['One']
+			},
+			Three: {}
+		};
+		try {
+			getProcessBatches(testDataTypes)
+		} catch (e) {
+			expect(e.name).toEqual('Recursive dependency');
+		}
+	});
+
 });
 

@@ -80,33 +80,36 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 
 		// contains only the information needed for display purposes
 		const displayData: any = [];
-		const processOrders = Object.keys(generationTemplate);
+		const processBatches = Object.keys(generationTemplate);
 
 		let index = 0;
 
 		// rows are independent! The only necessarily synchronous bit is between process orders (rename to processBlock / processChunk?)
 		for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
-
 			// ignore any rows that don't have a title
 			if (!data.columns[index].title) {
 				index++;
 				continue;
 			}
 
-			// the generationTemplate is already grouped by process order. Just loop through each one, passing off the
-			// actual data generation to the appropriate Data Type. Note that we pass all previously generated
-			// data (including any metadata returned by the Data Type)
+			// the generationTemplate is already grouped by process batch. Just loop through each one, passing off the
+			// actual data generation to the appropriate Data Type. The whole POINT of the process batches is so that
+			// we can pass all previously generated data (including any metadata returned by the Data Type) to later batches
 			const currRowData: any = [];
 
-			processOrders.forEach((processOrderParam: string) => {
-				const processOrder: number = parseInt(processOrderParam, 10);
-				const { promises, colIndexes } = processDataTypeProcessingBlock(generationTemplate[processOrder], rowNum, i18n, currRowData);
+			for (let batch=0; batch<processBatches.length; batch++) {
+				const batchNum = parseInt(processBatches[batch], 10);
+				const { promises, colIndexes } = processDataTypeBatch(generationTemplate[batchNum], rowNum, i18n, currRowData);
 
+				console.log('done batch ', batchNum);
 				Promise.all(promises)
-					.then(() => {
-						console.log('process block is done!', colIndexes);
+					.then((results) => {
+
+						// now do next loop
+
+						// console.log('process block is done!', results);
 					});
-			});
+			}
 
 			if (currRowData.length) {
 				displayData.push(currRowData.map((i: any): string => i.display));
@@ -118,7 +121,7 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 };
 
 
-export const processDataTypeProcessingBlock = (cells: GenerationTemplateRow[], rowNum: number, i18n: any, currRowData: any[]): any => {
+export const processDataTypeBatch = (cells: GenerationTemplateRow[], rowNum: number, i18n: any, currRowData: any[]): any => {
 	const colIndexes: number[] = [];
 	const promises = cells.map((currCell) => {
 		colIndexes.push(currCell.colIndex);

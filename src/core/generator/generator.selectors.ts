@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { processOrders, getDataType } from '../../utils/dataTypeUtils';
+import { processBatches, getDataType } from '../../utils/dataTypeUtils';
 import { getExportTypePreview } from '../../utils/exportTypeUtils';
 import { ColumnData, GDLocale, GenerationTemplate, Store } from '../../../types/general';
 import { BuilderLayout } from '../builder/Builder.component';
@@ -101,7 +101,7 @@ export const getGenerationTemplate = createSelector(
 	(rows): GenerationTemplate => {
 		const templateByProcessOrder: ProcessOrders = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
-			const processOrder = processOrders[dataType as DataTypeFolder] as number;
+			const processOrder = processBatches[dataType as DataTypeFolder] as number;
 			const { generate, rowStateReducer } = getDataType(dataType);
 
 			if (!templateByProcessOrder[processOrder]) {
@@ -121,7 +121,7 @@ export const getGenerationTemplate = createSelector(
 			});
 		});
 
-		// TODO sort by process order (keys) here. Still need to figure that out
+		// TODO sort by process order (keys) here. Still need to figure that out. Coming very soon!
 		return templateByProcessOrder;
 	}
 );

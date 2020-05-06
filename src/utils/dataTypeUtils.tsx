@@ -91,21 +91,11 @@ export const getDataType = (dataType: DataTypeFolder | null): any => {
 	};
 };
 
-
-type DataTypeProcessOrders = {
-	[name in DataTypeFolder]?: number;
-}
-
-export const processOrders: DataTypeProcessOrders = {};
-Object.keys(dataTypes).map((dataType: DataTypeFolder) => {
-	processOrders[dataType] = dataTypes[dataType].processOrder ? dataTypes[dataType].processOrder : 1;
-});
-
-type ProcessBatches = {
+export type ProcessBatches = {
 	[dt in DataTypeFolder]?: number;
 };
 
-export function RecursiveErrorException (remaining: string[]) {
+export function RecursiveErrorException (remaining: string[]): void {
 	// @ts-ignore-line
 	this.possibleProblematicDataTypes = remaining;
 	// @ts-ignore-line
@@ -132,32 +122,37 @@ export const getProcessBatches = (dataTypes: any): ProcessBatches => {
 	let currentBatch = 1;
 
 	while (dataTypesToProcess.length > 0) {
-		const fulfilledDataTypes: any = [];
+		const resolvedDataTypes: any = [];
 		dataTypesToProcess.forEach((dataType) => {
 			// here, we're dealing with Data Types that have dependencies. Loop through them all and figure out if all
 			// of them have already been assigned to a process batch
 			const allDependenciesPositioned = !dataTypes[dataType].dependencies || dataTypes[dataType].dependencies.every((dependency: string) => !!processBatches[dependency as DataTypeFolder]);
 			if (allDependenciesPositioned) {
-				fulfilledDataTypes.push(dataType);
+				resolvedDataTypes.push(dataType);
 			}
 		});
 
-		if (fulfilledDataTypes.length) {
-			fulfilledDataTypes.forEach((dataType: string) => {
+		if (resolvedDataTypes.length) {
+			resolvedDataTypes.forEach((dataType: string) => {
 				processBatches[dataType as DataTypeFolder] = currentBatch;
 			});
-			dataTypesToProcess = dataTypesToProcess.filter((dataType) => fulfilledDataTypes.indexOf(dataType) === -1);
+			dataTypesToProcess = dataTypesToProcess.filter((dataType) => resolvedDataTypes.indexOf(dataType) === -1);
 			currentBatch++;
 		}
 
+		// simple check: every single pass of the DataTypes should be able to resolve at least one of them to a
+		// new batch number. If none got resolved we have a problem.
 		if (dataTypesToProcess.length === previousLength) {
 			// @ts-ignore-line
 			throw new RecursiveErrorException(dataTypesToProcess);
 		}
+
+		previousLength = dataTypesToProcess.length;
 	}
 	return processBatches;
 };
 
+export const processBatches = getProcessBatches(dataTypes);
 
 export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 	return new Promise((resolve, reject) => {
