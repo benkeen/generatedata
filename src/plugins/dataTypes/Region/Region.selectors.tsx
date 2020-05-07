@@ -6,8 +6,8 @@ import { getRowsByType } from '../../../core/generator/generator.selectors';
 // core script handles processing this and passing it back via a `countryRows` prop
 const getCountryRows = createSelector(
 	getRowsByType('Country'),
-	(countryRows) => {
-
+	(rows) => {
+		return rows;
 	}
 );
 

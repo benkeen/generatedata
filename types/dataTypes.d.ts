@@ -66,6 +66,9 @@ export type DTOptionsProps = {
 	id: string;
 	dimensions: Dimensions;
     onUpdate: (data: AnyObject) => void;
+
+    // for custom props. See DTCustomProps
+	[propName: string]: any;
 };
 
 // Data Type <Help /> props
@@ -89,7 +92,7 @@ export type DTGenerateResult = {
 }
 
 export type DTCustomProps = {
-	// weird, but this prevents the Data Type from overriding the core prop names accidentally
+	// weird, but setting these to undefined prevents the Data Type from overriding the core prop names accidentally
 	coreI18n?: undefined;
 	countryI18n?: undefined;
 	i18n?: undefined;
@@ -97,5 +100,6 @@ export type DTCustomProps = {
 	id?: undefined;
 	dimensions?: undefined;
 	onUpdate?: undefined;
+
 	[propName: string]: any;
 }

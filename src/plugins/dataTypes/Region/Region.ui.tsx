@@ -22,7 +22,7 @@ export const initialState: RegionState = {
 	targetRowId: ''
 };
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, customData }: any): JSX.Element => {
+const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate }: any): JSX.Element => {
 	const onUpdateSource = (source: RegionSource): void => {
 		onUpdate({
 			...data,
@@ -113,7 +113,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 	);
 };
 
-export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, countryRows }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
 	const numSelected = data.selectedCountries.length;
@@ -128,6 +128,8 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate }: DTO
 	} else if (data.source === 'row') {
 		label = 'Grid row';
 	}
+
+	console.log(countryRows);
 
 	return (
 		<div className={styles.buttonLabel}>

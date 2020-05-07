@@ -2,7 +2,7 @@ import React from 'react';
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
-import { DTBundle, DTHelpProps } from '../../types/dataTypes';
+import { DTBundle, DTCustomProps, DTHelpProps } from '../../types/dataTypes';
 import { SmallSpinner, MediumSpinner } from '../components/loaders';
 
 type LoadedDataTypes = {
@@ -79,6 +79,8 @@ export const getDataType = (dataType: DataTypeFolder | null): any => {
 		Help = DefaultHelpComponent;
 	}
 
+	const customProps = (dataType && loadedDataTypes[dataType]!.customProps) ? loadedDataTypes[dataType]!.customProps : {};
+
 	const { generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
 	return {
 		name: dataTypes[dataType].name,
@@ -87,7 +89,8 @@ export const getDataType = (dataType: DataTypeFolder | null): any => {
 		Example,
 		generate,
 		getMetadata,
-		rowStateReducer
+		rowStateReducer,
+		customProps
 	};
 };
 
@@ -169,4 +172,13 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 				reject(e);
 			});
 	});
+};
+
+
+export const getCustomProps = (customProps: DTCustomProps) => {
+	const values: any = {};
+	Object.keys(customProps).map((propName: string) => {
+		values[propName] = 1; //useSelector(customProps[propName]);
+	});
+	return values;
 };

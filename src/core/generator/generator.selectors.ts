@@ -220,7 +220,7 @@ export const getRowsByType = (dataType: DataTypeFolder) => {
 	return createSelector(
 		getSortedRowsArray,
 		(sortedRows) => {
-
+			return sortedRows;
 		}
 	);
 };
