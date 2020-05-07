@@ -17,13 +17,13 @@ export type DTBundle = {
 	generate: (data: DTGenerationData) => DTGenerateResult | Promise<DTGenerateResult>;
 	rowStateReducer?: (state: any) => any;
 	getMetadata?: () => DTMetadata;
+	customProps?: DTCustomProps;
 };
 
 export type DTDefinition = {
 	name: string;
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
-	processOrder?: number; // TODO WILL REMOVE
 	dependencies?: DataTypeFolder[];
 	countryTags?: any; // TODO maybe map this to our Country plugins?
 	tags?: Tag[];
@@ -86,4 +86,16 @@ export type DTGenerationData = {
 export type DTGenerateResult = {
 	display: string | number | boolean;
 	[key: string]: any;
+}
+
+export type DTCustomProps = {
+	// weird, but this prevents the Data Type from overriding the core prop names accidentally
+	coreI18n?: undefined;
+	countryI18n?: undefined;
+	i18n?: undefined;
+	data?: undefined;
+	id?: undefined;
+	dimensions?: undefined;
+	onUpdate?: undefined;
+	[propName: string]: any;
 }

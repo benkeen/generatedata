@@ -23,6 +23,9 @@ const theme = createMuiTheme({
 		MuiButtonBase: {
 			disableRipple: true
 		}
+	},
+	zIndex: {
+		tooltip: '5001 !important'
 	}
 });
 

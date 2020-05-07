@@ -214,3 +214,13 @@ export const getExportTypeColumnTitle = createSelector(
 	(i18n) => i18n.COL_TITLE
 );
 
+
+
+export const getRowsByType = (dataType: DataTypeFolder) => {
+	return createSelector(
+		getSortedRowsArray,
+		(sortedRows) => {
+
+		}
+	);
+};

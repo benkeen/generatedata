@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { createSelector } from 'reselect';
 import Button from '@material-ui/core/Button';
+import { Tooltip } from '../../../components/tooltips';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import { DataTypeFolder } from '../../../_plugins';
+import { getRowsByType } from '../../../core/generator/generator.selectors';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import styles from './Region.scss';
-import sharedStyles from '../../../styles/shared.scss';
+
 export type RegionSource = 'autoFind' | 'any' | 'countries' | 'row';
 
 export type RegionState = {
@@ -19,19 +22,12 @@ export const initialState: RegionState = {
 	targetRowId: ''
 };
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate }: any): JSX.Element => {
+const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, customData }: any): JSX.Element => {
 	const onUpdateSource = (source: RegionSource): void => {
 		onUpdate({
 			...data,
 			source
 		});
-	};
-
-	const tipMap: any = {
-		autoFind: 'autoFindDesc',
-		any: 'anyDesc',
-		countries: 'countriesDesc',
-		row: 'rowDesc'
 	};
 
 	return (
@@ -45,49 +41,53 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-					<Button onClick={(): void => onUpdateSource('autoFind')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-						<input
-							type="radio"
-							name={`${id}-source`}
-							checked={data.source === 'autoFind'}
-							onChange={(): void => {}}
-						/>
-						<span>{i18n.autoFind}</span>
-					</Button>
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.autoFindDesc }} />} arrow>
+						<Button onClick={(): void => onUpdateSource('autoFind')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
+							<input
+								type="radio"
+								name={`${id}-source`}
+								checked={data.source === 'autoFind'}
+								onChange={(): void => {}}
+							/>
+							<span>{i18n.autoFind}</span>
+						</Button>
+					</Tooltip>
 
-					<Button onClick={(): void => onUpdateSource('any')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-						<input
-							type="radio"
-							name={`${id}-source`}
-							checked={data.source === 'any'}
-							onChange={(): void => {}}
-						/>
-						<span>{i18n.anyRegion}</span>
-					</Button>
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.anyDesc }} />} arrow>
+						<Button onClick={(): void => onUpdateSource('any')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
+							<input
+								type="radio"
+								name={`${id}-source`}
+								checked={data.source === 'any'}
+								onChange={(): void => {}}
+							/>
+							<span>{i18n.anyRegion}</span>
+						</Button>
+					</Tooltip>
 
-					<Button onClick={(): void => onUpdateSource('countries')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-						<input
-							type="radio"
-							name={`${id}-source`}
-							checked={data.source === 'countries'}
-							onChange={(): void => {}}
-						/>
-						<span>{i18n.countries}</span>
-					</Button>
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.countriesDesc }} />} arrow>
+						<Button onClick={(): void => onUpdateSource('countries')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
+							<input
+								type="radio"
+								name={`${id}-source`}
+								checked={data.source === 'countries'}
+								onChange={(): void => {}}
+							/>
+							<span>{i18n.countries}</span>
+						</Button>
+					</Tooltip>
 
-					<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined">
-						<input
-							type="radio"
-							name={`${id}-source`}
-							checked={data.source === 'row'}
-							onChange={(): void => {}}
-						/>
-						<span>{i18n.countryRow}</span>
-					</Button>
-				</div>
-
-				<div className={sharedStyles.tip}>
-					{i18n[tipMap[data.source]]}
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.rowDesc }} />} arrow>
+						<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined">
+							<input
+								type="radio"
+								name={`${id}-source`}
+								checked={data.source === 'row'}
+								onChange={(): void => {}}
+							/>
+							<span>{i18n.gridRow}</span>
+						</Button>
+					</Tooltip>
 				</div>
 
 				<h3>{i18n.format}</h3>
@@ -126,7 +126,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate }: DTO
 	} else if (data.source === 'countries') {
 		label = `Any region from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
 	} else if (data.source === 'row') {
-		
+		label = 'Grid row';
 	}
 
 	return (
