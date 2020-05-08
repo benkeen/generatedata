@@ -39,7 +39,7 @@ export type GridRowProps = {
 	dimensions: { // TODO rename... what dimensions is this again? the whole screen size? Grid panel?
 		width: number;
 		height: number;
-	}
+	};
 };
 
 export const GridRow = ({
@@ -111,4 +111,4 @@ export const GridRow = ({
 			)}
 		</Draggable>
 	);
-}
+};

@@ -24,8 +24,6 @@ const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps
 	const dataTypeI18n = selectors.getDataTypeI18n(state);
 	const dtCustomProps = getCustomProps(customProps, state);
 
-	console.log('holy shit, custom props!!!', customProps);
-
 	return {
 		dtDropdownOptions: getSortedGroupedDataTypes(),
 		i18n: selectors.getCoreI18n(state),

@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { createSelector } from 'reselect';
 import Button from '@material-ui/core/Button';
 import { Tooltip } from '../../../components/tooltips';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import { DataTypeFolder } from '../../../_plugins';
-import { getRowsByType } from '../../../core/generator/generator.selectors';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import styles from './Region.scss';
 
