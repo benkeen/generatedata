@@ -13,7 +13,7 @@ import { exportTypeNames } from '../../utils/exportTypeUtils';
 export type DataRow = {
 	id: string;
 	title: string;
-	dataType: string | null;
+	dataType: DataTypeFolder | null;
 	data: any;
 };
 
@@ -29,7 +29,7 @@ export type PreviewData = {
 // wiped out
 export type ExportTypeSettings = {
 	[exportType in ExportTypeFolder]: any;
-}
+};
 
 export type GeneratorState = {
 	localeFileLoaded: boolean;

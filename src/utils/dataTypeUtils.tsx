@@ -4,6 +4,7 @@ import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '../../types/dataTypes';
 import { SmallSpinner, MediumSpinner } from '../components/loaders';
+import { Store } from '../../types/general';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
@@ -49,28 +50,32 @@ export const getSortedGroupedDataTypes = (): any => {
 
 export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
 
-// our main getter function to return everything known about a Data Type
-export const getDataType = (dataType: DataTypeFolder | null): any => {
-	// TODO standardize these. All should either return null or a component
-	let Example = null;
-	let Options = null;
-	let Help: any = (): null => null;
-
+export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO return type is important here. Dense method!
 	if (!dataType || !loadedDataTypes[dataType]) {
 		return {
 			name: dataType ? dataTypes[dataType].name : '',
 			Example: SmallSpinner,
-			Options,
+			Options: (): null => null,
 			Help: MediumSpinner
 		};
 	}
 
+	let Example;
+	let Options;
+	let Help;
+
 	if (loadedDataTypes[dataType]!.Example) {
 		Example = loadedDataTypes[dataType]!.Example;
+	} else {
+		// @ts-ignore-line
+		Example = ({ i18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{i18n.noExamplesAvailable}</div>;
 	}
 
 	if (loadedDataTypes[dataType]!.Options) {
 		Options = loadedDataTypes[dataType]!.Options;
+	} else {
+		// @ts-ignore-line
+		Options = ({ i18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{i18n.noOptionsAvailable}</div>;
 	}
 
 	if (dataType && loadedDataTypes[dataType]!.Help) {
@@ -175,10 +180,12 @@ export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
 };
 
 
-export const getCustomProps = (customProps: DTCustomProps) => {
+export const getCustomProps = (customProps: DTCustomProps, state: Store) => {
 	const values: any = {};
-	Object.keys(customProps).map((propName: string) => {
-		values[propName] = 1; //useSelector(customProps[propName]);
-	});
+	if (customProps) {
+		Object.keys(customProps).map((propName: string) => {
+			values[propName] = customProps[propName](state);
+		});
+	}
 	return values;
 };

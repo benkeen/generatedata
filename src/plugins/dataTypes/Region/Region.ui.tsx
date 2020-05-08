@@ -129,8 +129,6 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 		label = 'Grid row';
 	}
 
-	console.log(countryRows);
-
 	return (
 		<div className={styles.buttonLabel}>
 			<Button

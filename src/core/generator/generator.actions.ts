@@ -31,20 +31,24 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 });
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
-export const onSelectDataType = (id: string, dataType: DataTypeFolder): any => {
+export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): any => {
 	return (dispatch: any): any => {
 		loadDataTypeBundle(dataType)
 			.then((bundle: DTBundle) => {
-				dispatch({
-					type: SELECT_DATA_TYPE,
-					payload: {
-						id,
-						value: dataType,
-						data: bundle.initialState
-					}
-				});
 				dispatch(dataTypeLoaded(dataType));
-				dispatch(refreshPreview([id]));
+
+				// if it's been selected within the grid, select the row and update the preview panel
+				if (gridRowId) {
+					dispatch({
+						type: SELECT_DATA_TYPE,
+						payload: {
+							id: gridRowId,
+							value: dataType,
+							data: bundle.initialState
+						}
+					});
+					dispatch(refreshPreview([gridRowId]));
+				}
 			});
 	};
 };

@@ -76,6 +76,7 @@
     "@types/jest": "^24.0.25",
     "@types/loadable__component": "^5.10.0",
     "@types/node": "^12.12.21",
+    "@types/react-beautiful-dnd": "^12.1.2",
     "@types/react-measure": "^2.0.5",
     "@types/react-redux": "^7.1.5",
     "@types/react-router-dom": "^5.1.3",

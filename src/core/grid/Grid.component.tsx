@@ -7,10 +7,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import * as styles from './Grid.scss';
-import { getSortedGroupedDataTypes, getDataType, getCustomProps } from '../../utils/dataTypeUtils';
 import HelpDialog from '../helpDialog/HelpDialog.component';
 import { DataRow } from '../generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
+import GridRow from './GridRow.container';
 
 
 const SMALL_BREAKPOINT = 650;
@@ -18,12 +18,8 @@ const MEDIUM_BREAKPOINT = 780;
 
 export type GridProps = {
 	rows: DataRow[];
-	onRemove: (id: string) => void;
 	onAddRows: (numRows: number) => void;
-	onChangeTitle: (id: string, value: string) => void;
-	onSelectDataType: (id: string, value: string) => void;
-	maybeLoadDataType: (dataType: DataTypeFolder) => void;
-	onConfigureDataType: (id: string, value: string) => void;
+	onSelectDataType: (dataType: DataTypeFolder, id?: string) => void;
 	onSort: (id: string, newIndex: number) => void;
 	toggleGrid: () => void;
 	i18n: any;
@@ -33,22 +29,9 @@ export type GridProps = {
 	loadedDataTypes: any; // TODO
 };
 
-const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
-	const styles: React.CSSProperties = {
-		...draggableStyle,
-		userSelect: 'none',
-		margin: `0 0 0 0`,
-	};
-	if (isDragging) {
-		styles.background = '#0099cc';
-	}
-	return styles;
-};
-
 
 const Grid = ({
-	rows, onRemove, onAddRows, onChangeTitle, onSelectDataType, onConfigureDataType, onSort, i18n, countryI18n, dataTypeI18n,
-	columnTitle, toggleGrid, maybeLoadDataType
+	rows, onAddRows, onSelectDataType, onSort, i18n, countryI18n, dataTypeI18n, columnTitle, toggleGrid
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialog] = React.useState(false);
@@ -105,12 +88,20 @@ const Grid = ({
 												{...provided.droppableProps}
 												ref={provided.innerRef}
 											>
-												{rows.map((row, index) => <GridRow row={row} key={row.id} index={index} />)}
+												{rows.map((row, index) => (
+													<GridRow
+														row={row}
+														key={row.id}
+														index={index}
+														dimensions={dimensions}
+													/>
+												))}
 												{provided.placeholder}
 											</div>
 										)}
 									</Droppable>
 								</DragDropContext>
+
 								<form onSubmit={(e): any => e.preventDefault()} className={styles.addRows}>
 									<span>{i18n.add}</span>
 									<input type="number"
@@ -137,7 +128,7 @@ const Grid = ({
 							onClose={(): any => showHelpDialog(false)}
 							coreI18n={i18n}
 							dataTypeI18n={dataTypeI18n}
-							onSelectDataType={maybeLoadDataType}
+							onSelectDataType={onSelectDataType}
 						/>
 					</div>
 				)}
