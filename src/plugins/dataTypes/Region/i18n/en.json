@@ -12,7 +12,7 @@
   "format": "Format",
   "selectRegions": "Select Regions",
   "autoFind": "Auto-find",
-  "autoFindDesc": "This is the default behaviour. It looks for the first Country field in your data set that has <b>Country Plugin</b> as its source and generates a region for those countries.",
+  "autoFindDesc": "This is the default behaviour. It looks for the first Country field in your data set that has <b>Country Plugin</b> as its source and generates a region for those countries. If it doesn't find one, it generates any region name.",
   "anyDesc": "Generates any region name.",
   "countriesDesc": "Generates regions for any of the specified countries.",
   "countryRow": "Country Row",

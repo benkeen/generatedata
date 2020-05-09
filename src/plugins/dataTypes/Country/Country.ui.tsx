@@ -4,8 +4,8 @@ import { DTOptionsProps } from '../../../../types/dataTypes';
 import { countryList } from '../../../_plugins';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import { Tooltip } from '../../../components/tooltips';
 import fullCountryList from './fullCountryList';
-import sharedStyles from '../../../styles/shared.scss';
 import styles from './Country.scss';
 
 export type CountrySource = 'all' | 'plugins';
@@ -58,20 +58,18 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 						<span>{i18n.allCountries} ({fullCountryList.length})</span>
 					</Button>
 
-					<Button onClick={(): void => onUpdateSource('plugins')} size="small" color="primary" variant="outlined">
-						<input
-							type="radio"
-							name={`${id}-source`}
-							id={`${id}-source-all`}
-							checked={data.source === 'plugins'}
-							onChange={(): void => {}}
-						/>
-						<span>{i18n.countryPlugins} ({countryList.length})</span>
-					</Button>
-				</div>
-
-				<div className={sharedStyles.tip}>
-					{i18n.countryPluginsExplanation}
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.countryPluginsDesc }} />} arrow>
+						<Button onClick={(): void => onUpdateSource('plugins')} size="small" color="primary" variant="outlined">
+							<input
+								type="radio"
+								name={`${id}-source`}
+								id={`${id}-source-all`}
+								checked={data.source === 'plugins'}
+								onChange={(): void => {}}
+							/>
+							<span>{i18n.countryPlugins} ({countryList.length})</span>
+						</Button>
+					</Tooltip>
 				</div>
 
 				<h3>{i18n.filter}</h3>

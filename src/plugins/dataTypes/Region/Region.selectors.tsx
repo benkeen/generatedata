@@ -26,8 +26,12 @@ export const actionInterceptors = {
 		}
 		return null;
 	},
-	[CONFIGURE_DATA_TYPE]: () => {
 
+	[CONFIGURE_DATA_TYPE]: (countryRowId: string, rowState: RegionState, actionPayload: any) => {
+		if (actionPayload.id === rowState.targetRowId) {
+			return null;
+		}
+		return null;
 	}
 };
 

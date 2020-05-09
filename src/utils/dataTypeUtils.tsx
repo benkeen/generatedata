@@ -68,14 +68,14 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 		Example = loadedDataTypes[dataType]!.Example;
 	} else {
 		// @ts-ignore-line
-		Example = ({ i18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{i18n.noExamplesAvailable}</div>;
+		Example = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
 	}
 
 	if (loadedDataTypes[dataType]!.Options) {
 		Options = loadedDataTypes[dataType]!.Options;
 	} else {
 		// @ts-ignore-line
-		Options = ({ i18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{i18n.noOptionsAvailable}</div>;
+		Options = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>;
 	}
 
 	if (dataType && loadedDataTypes[dataType]!.Help) {

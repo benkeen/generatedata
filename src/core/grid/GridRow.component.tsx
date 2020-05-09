@@ -80,6 +80,7 @@ export const GridRow = ({
 							id={row.id}
 							data={row.data}
 							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+							emptyColClass={styles.emptyCol}
 							dimensions={{ height: dimensions.height, width: dimensions.width }}
 						/>
 					</div>
@@ -92,6 +93,7 @@ export const GridRow = ({
 							data={row.data}
 							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
 							dimensions={{ height: dimensions.height, width: dimensions.width }}
+							emptyColClass={styles.emptyCol}
 							{...dtCustomProps}
 						/>
 					</div>
