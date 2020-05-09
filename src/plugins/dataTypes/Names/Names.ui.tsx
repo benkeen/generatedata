@@ -16,7 +16,6 @@ export const initialState: NamesState = {
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (selected: DropdownOption): void => {
 		onUpdate({
-			...data,
 			example: selected.value,
 			options: selected.value
 		});
