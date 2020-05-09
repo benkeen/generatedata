@@ -51,12 +51,14 @@ export const getSortedGroupedDataTypes = (): any => {
 export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
 
 export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO return type is important here. Dense method!
+	const showNothing = (): null => null;
 	if (!dataType || !loadedDataTypes[dataType]) {
+
 		return {
 			name: dataType ? dataTypes[dataType].name : '',
-			Example: SmallSpinner,
-			Options: (): null => null,
-			Help: MediumSpinner
+			Example: !dataType ? showNothing : SmallSpinner,
+			Options: showNothing,
+			Help: !dataType ? showNothing : MediumSpinner
 		};
 	}
 
