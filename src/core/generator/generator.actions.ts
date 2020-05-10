@@ -3,7 +3,8 @@ import * as selectors from './generator.selectors';
 import { generatePreviewData } from './generator';
 import { ExportSettingsTab } from '../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
-import { loadDataTypeBundle } from '../../utils/dataTypeUtils';
+import { requestDataTypeBundle } from '../../utils/dataTypeUtils';
+import { registerInterceptors } from '../actionInterceptor';
 import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
 import { DTBundle } from '../../../types/dataTypes';
 import { ThunkDispatch } from 'redux-thunk';
@@ -32,25 +33,30 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): any => {
-	return (dispatch: any): any => {
-		loadDataTypeBundle(dataType)
-			.then((bundle: DTBundle) => {
-				dispatch(dataTypeLoaded(dataType));
+	return (dispatch: any): any => loadDataTypeBundle(dispatch, dataType, gridRowId);
+};
 
-				// if it's been selected within the grid, select the row and update the preview panel
-				if (gridRowId) {
-					dispatch({
-						type: SELECT_DATA_TYPE,
-						payload: {
-							id: gridRowId,
-							value: dataType,
-							data: bundle.initialState
-						}
-					});
-					dispatch(refreshPreview([gridRowId]));
-				}
-			});
-	};
+export const loadDataTypeBundle = (dispatch: Dispatch, dataType: DataTypeFolder, gridRowId?: string) => {
+	requestDataTypeBundle(dataType)
+		.then((bundle: DTBundle) => {
+			dispatch(dataTypeLoaded(dataType));
+			if (bundle.actionInterceptors) {
+				registerInterceptors(dataType, bundle.actionInterceptors);
+			}
+
+			// if it's been selected within the grid, select the row and update the preview panel
+			if (gridRowId) {
+				dispatch({
+					type: SELECT_DATA_TYPE,
+					payload: {
+						id: gridRowId,
+						value: dataType,
+						data: bundle.initialState
+					}
+				});
+				dispatch(refreshPreview([gridRowId]));
+			}
+		});
 };
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
@@ -212,14 +218,6 @@ export const dataTypeLoaded = (dataType: DataTypeFolder): any => ({
 		dataType
 	}
 });
-
-export const loadDataTypeBundleAndUpdateStore = (dataType: DataTypeFolder): any => (dispatch: Dispatch) => (
-	loadDataTypeBundle(dataType)
-		.then(() => {
-			dispatch(dataTypeLoaded(dataType));
-		})
-);
-
 
 export const SHOW_GENERATION_PANEL = 'SHOW_GENERATION_PANEL';
 export const showGenerationPanel = () => ({ type: SHOW_GENERATION_PANEL });

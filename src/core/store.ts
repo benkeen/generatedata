@@ -2,12 +2,12 @@ import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { Persistor } from 'redux-persist/es/types';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import actionsInterceptor from './actionInterceptor'
 import storage from 'redux-persist/lib/storage';
 import reducer from './generator/generator.reducer';
 
 let persistor: Persistor;
 function initStore(state: any): any {
-	const middleware = [thunk];
 	const enhancers: any = [];
 	let composeEnhancers = compose;
 
@@ -44,7 +44,10 @@ function initStore(state: any): any {
 		persistedRootReducer,
 		state,
 		composeEnhancers(
-			applyMiddleware(...middleware),
+			applyMiddleware(
+				thunk,
+				actionsInterceptor
+			),
 			...enhancers
 		)
 	);

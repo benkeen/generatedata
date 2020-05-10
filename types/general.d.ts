@@ -26,6 +26,7 @@ export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
 export type GDAction = {
 	type: string;
 	payload?: any
+	triggeredByInterceptor?: boolean;
 };
 
 export type AnyObject = {

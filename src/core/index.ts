@@ -4,7 +4,6 @@ import store from './store';
 import C from './constants';
 import * as actions from './generator/generator.actions';
 import * as selectors from './generator/generator.selectors';
-import { loadDataTypeBundle } from '../utils/dataTypeUtils';
 import { DataTypeFolder } from '../_plugins';
 
 // just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
@@ -26,9 +25,5 @@ export const init = (): void => {
 	}
 
 	const preloadDataTypes = selectors.getRowDataTypes(state);
-	preloadDataTypes.forEach((dataType: DataTypeFolder) => {
-		loadDataTypeBundle(dataType).then(() => {
-			store.dispatch(actions.dataTypeLoaded(dataType));
-		});
-	});
+	preloadDataTypes.forEach((dataType: DataTypeFolder) => actions.loadDataTypeBundle(store.dispatch, dataType));
 };

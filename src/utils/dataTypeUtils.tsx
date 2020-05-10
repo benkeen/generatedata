@@ -53,7 +53,6 @@ export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p d
 export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO return type is important here. Dense method!
 	const showNothing = (): null => null;
 	if (!dataType || !loadedDataTypes[dataType]) {
-
 		return {
 			name: dataType ? dataTypes[dataType].name : '',
 			Example: !dataType ? showNothing : SmallSpinner,
@@ -87,6 +86,7 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 	}
 
 	const customProps = (dataType && loadedDataTypes[dataType]!.customProps) ? loadedDataTypes[dataType]!.customProps : {};
+	const actionInterceptors = (dataType && loadedDataTypes[dataType]!.actionInterceptors) ? loadedDataTypes[dataType]!.actionInterceptors : {};
 
 	const { generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
 	return {
@@ -97,7 +97,8 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 		generate,
 		getMetadata,
 		rowStateReducer,
-		customProps
+		customProps,
+		actionInterceptors
 	};
 };
 
@@ -164,7 +165,7 @@ export const getProcessBatches = (dataTypes: any): ProcessBatches => {
 
 export const processBatches = getProcessBatches(dataTypes);
 
-export const loadDataTypeBundle = (dataType: DataTypeFolder): any => {
+export const requestDataTypeBundle = (dataType: DataTypeFolder): any => {
 	return new Promise((resolve, reject) => {
 		import(
 			/* webpackChunkName: "DT-[request]" */

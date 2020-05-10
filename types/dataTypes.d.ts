@@ -18,6 +18,21 @@ export type DTBundle = {
 	rowStateReducer?: (state: any) => any;
 	getMetadata?: () => DTMetadata;
 	customProps?: DTCustomProps;
+	actionInterceptors?: DTActionInterceptors;
+};
+
+export type DTActionInterceptors = {
+	[action: string]: DTActionInterceptor;
+};
+
+export interface DTActionInterceptor {
+	// TODO. generics? rowState and the `any` response here is the state type of the Data Type
+	(rowId: string, rowState: any, actionPayload: any): any | null;
+}
+
+export type DTInterceptorSingleAction = {
+	dataType: DataTypeFolder;
+	interceptor: DTActionInterceptor;
 };
 
 export type DTDefinition = {
@@ -25,7 +40,7 @@ export type DTDefinition = {
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	dependencies?: DataTypeFolder[];
-	countryTags?: any; // TODO maybe map this to our Country plugins?
+	countryTags?: any; // TODO incomplete. Maybe map this to our Country plugins?
 	tags?: Tag[];
 	schema?: any;
 };
