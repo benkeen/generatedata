@@ -3,19 +3,19 @@ import Button from '@material-ui/core/Button';
 import { DTOptionsProps } from '../../../../types/dataTypes';
 import { countryList } from '../../../_plugins';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
-import Dropdown from '../../../components/dropdown/Dropdown';
+import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { Tooltip } from '../../../components/tooltips';
 import fullCountryList from './fullCountryList';
 import styles from './Country.scss';
 
-export type CountrySource = 'all' | 'plugins';
+export type CountrySource = 'plugins' | 'all';
 export type CountryState = {
 	source: CountrySource;
 	selectedCountries: string[];
 }
 
 export const initialState: CountryState = {
-	source: 'all',
+	source: 'plugins',
 	selectedCountries: []
 };
 
@@ -32,7 +32,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 	}));
 
 	const onSelectCountries = (countries: any): void => {
-		onUpdateSelectedCountries(countries ? countries.map(({ value }: any) => value) : []);
+		onUpdateSelectedCountries(countries ? countries.map(({ value }: DropdownOption) => value) : []);
 	};
 
 	return (
@@ -46,20 +46,9 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-					<Button onClick={(): void => onUpdateSource('all')} size="small" color="primary" variant="outlined"
-						style={{ marginRight: 10 }}>
-						<input
-							type="radio"
-							name={`${id}-source`}
-							id={`${id}-source-all`}
-							checked={data.source === 'all'}
-							onChange={(): void => {}}
-						/>
-						<span>{i18n.allCountries} ({fullCountryList.length})</span>
-					</Button>
-
 					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.countryPluginsDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('plugins')} size="small" color="primary" variant="outlined">
+						<Button onClick={(): void => onUpdateSource('plugins')} size="small" color="primary" variant="outlined"
+							style={{ marginRight: 10 }}>
 							<input
 								type="radio"
 								name={`${id}-source`}
@@ -70,6 +59,17 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 							<span>{i18n.countryPlugins} ({countryList.length})</span>
 						</Button>
 					</Tooltip>
+
+					<Button onClick={(): void => onUpdateSource('all')} size="small" color="primary" variant="outlined">
+						<input
+							type="radio"
+							name={`${id}-source`}
+							id={`${id}-source-all`}
+							checked={data.source === 'all'}
+							onChange={(): void => {}}
+						/>
+						<span>{i18n.allCountries} ({fullCountryList.length})</span>
+					</Button>
 				</div>
 
 				<h3>{i18n.filter}</h3>
@@ -82,7 +82,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 					closeMenuOnSelect={false}
 					isClearable={true}
 					value={data.selectedCountries}
-					onChange={(values: any): void => onSelectCountries(values)}
+					onChange={onSelectCountries}
 					options={data.source === 'all' ? fullCountryListOptions : countryPluginOptions}
 				/>
 			</DialogContent>

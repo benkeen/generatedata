@@ -60,11 +60,12 @@ export const loadDataTypeBundle = (dispatch: Dispatch, dataType: DataTypeFolder,
 };
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
-export const onConfigureDataType = (id: string, data: any): any => {
+export const onConfigureDataType = (id: string, data: any, triggeredByInterceptor: boolean = false): any => {
 	return (dispatch: any): any => {
 		const configureDataType = (disp: any): any => new Promise((resolve: any) => {
 			disp({
 				type: CONFIGURE_DATA_TYPE,
+				triggeredByInterceptor,
 				payload: {
 					id, data
 				}

@@ -3,6 +3,7 @@ import { getRows } from './generator/generator.selectors';
 import { DataTypeFolder } from '../_plugins';
 import { DataRow } from './generator/generator.reducer';
 import { DTActionInterceptors, DTInterceptorSingleAction } from '../../types/dataTypes';
+import { onConfigureDataType } from './generator/generator.actions';
 
 // TODO what if onload, a user interacts with a pre-saved config prior to the data type loading and the interceptor
 // isn't registered yet? Other than defensively coding the Data Type generation I'm not sure how to handle that... I
@@ -36,7 +37,9 @@ const actionInterceptor = (store: Store) => (next: any) => (action: any) => {
 				const row: DataRow = rows[rowId];
 				if (row.dataType === dataType) {
 					const result = interceptor(rowId, row.data, action.payload);
-					console.log('result of interceptor: ', result);
+					if (result) {
+						store.dispatch(onConfigureDataType(rowId, result, true));
+					}
 				}
 			});
 		});

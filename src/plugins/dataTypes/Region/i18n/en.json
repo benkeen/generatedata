@@ -11,10 +11,11 @@
   "source": "Source",
   "format": "Format",
   "selectRegions": "Select Regions",
-  "autoFind": "Auto-find",
-  "autoFindDesc": "This is the default behaviour. It looks for the first Country field in your data set that has <b>Country Plugin</b> as its source and generates a region for those countries. If it doesn't find one, it generates any region name.",
+  "auto": "Auto",
+  "autoDesc": "This is the default behaviour. It looks for the first Country field in your data set that has <b>Country Plugin</b> as its source and generates a region for those countries. If it doesn't find one, it generates any region name.",
   "anyDesc": "Generates any region name.",
   "countriesDesc": "Generates regions for any of the specified countries.",
   "countryRow": "Country Row",
-  "rowDesc": "This lets you pinpoint a specific Country field in your data set that has Country Plugins as its source. It generates regions that map to the value in that field."
+  "rowDesc": "This lets you pinpoint a specific Country field in your data set that has Country Plugins as its source. It generates regions that map to the value in that field.",
+  "row": "Row"
 }

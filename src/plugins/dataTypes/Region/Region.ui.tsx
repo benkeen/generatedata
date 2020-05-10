@@ -5,9 +5,11 @@ import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import { DataTypeFolder } from '../../../_plugins';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
+import { countryList } from '../../../_plugins';
 import styles from './Region.scss';
+import { CountryState } from '../Country/Country.ui';
 
-export type RegionSource = 'autoFind' | 'any' | 'countries' | 'row';
+export type RegionSource = 'auto' | 'any' | 'countries' | 'row';
 
 export type RegionState = {
 	source: RegionSource;
@@ -16,28 +18,27 @@ export type RegionState = {
 };
 
 export const initialState: RegionState = {
-	source: 'autoFind',
+	source: 'auto',
 	selectedCountries: [],
 	targetRowId: ''
 };
 
 const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
+	const countryPluginRows = countryRows
+		.filter(({ data: countryRowData }: { data: CountryState }) => countryRowData.source === 'plugins')
+		.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
 
-	const getCountryRowOptions = () => (
-		countryRows.map(({ index, id, title }: any) => (
-			{ value: id, label: `${index+1}: ${title}` }
-		))
-	);
+	const countryPluginRowsExist = countryPluginRows.length > 0;
 
 	const onUpdateSource = (source: RegionSource): void => {
 		const newValues = {
 			...data,
 			source
 		};
+
 		// always autoselect the first Country row when switching to `Country Row` as the source
 		if (source === 'row') {
-			const options = getCountryRowOptions();
-			newValues.targetRowId = options[0].id
+			newValues.targetRowId = countryPluginRows[0].value
 		}
 		onUpdate(newValues);
 	};
@@ -49,18 +50,44 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 		});
 	};
 
+	const onSelectCountries = (countries: any): void => {
+		onUpdate({
+			...data,
+			selectedCountries: countries ? countries.map(({ value }: DropdownOption) => value) : []
+		});
+	};
+
 	const getCountryRow = () => {
 		if (data.source !== 'row') {
 			return null;
 		}
 
-		const options = getCountryRowOptions();
-
 		return (
 			<Dropdown
 				value={data.targetRowId}
 				onChange={onChangeTargetRow}
-				options={options}
+				options={countryPluginRows}
+			/>
+		);
+	};
+
+	const getCountryPluginsList = () => {
+		if (data.source !== 'countries') {
+			return null;
+		}
+		const countryPluginOptions = countryList.map((countryName) => ({
+			value: countryName,
+			label: countryI18n[countryName].countryName
+		}));
+
+		return (
+			<Dropdown
+				isMulti
+				closeMenuOnSelect={false}
+				isClearable={true}
+				value={data.selectedCountries}
+				onChange={onSelectCountries}
+				options={countryPluginOptions}
 			/>
 		);
 	};
@@ -76,15 +103,15 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.autoFindDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('autoFind')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.autoDesc }} />} arrow>
+						<Button onClick={(): void => onUpdateSource('auto')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
 							<input
 								type="radio"
 								name={`${id}-source`}
-								checked={data.source === 'autoFind'}
+								checked={data.source === 'auto'}
 								onChange={(): void => {}}
 							/>
-							<span>{i18n.autoFind}</span>
+							<span>{i18n.auto}</span>
 						</Button>
 					</Tooltip>
 
@@ -112,21 +139,28 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 						</Button>
 					</Tooltip>
 
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.rowDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined"
-							disabled={countryRows.length === 0}>
-							<input
-								type="radio"
-								name={`${id}-source`}
-								checked={data.source === 'row'}
-								onChange={(): void => {}}
-							/>
-							<span>{i18n.countryRow}</span>
-						</Button>
+					<Tooltip
+						arrow
+						title={<span dangerouslySetInnerHTML={{ __html: i18n.rowDesc }} />}
+						disableHoverListener={!countryPluginRowsExist}
+						disableFocusListener={!countryPluginRowsExist}>
+						<span>
+							<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined"
+								disabled={!countryPluginRowsExist}>
+								<input
+									type="radio"
+									name={`${id}-source`}
+									checked={data.source === 'row'}
+									onChange={(): void => {}}
+								/>
+								<span>{i18n.countryRow}</span>
+							</Button>
+						</span>
 					</Tooltip>
 				</div>
 
 				{getCountryRow()}
+				{getCountryPluginsList()}
 
 				<h3>{i18n.format}</h3>
 
@@ -159,20 +193,14 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 	let label = '';
 	if (data.source === 'any') {
 		label = i18n.anyRegion;
-	} else if (data.source === 'autoFind') {
-		label = i18n.autoFind;
+	} else if (data.source === 'auto') {
+		label = i18n.auto;
 	} else if (data.source === 'countries') {
 		label = `Any region from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
 	} else if (data.source === 'row') {
-		// TODO clean this up once we're further along
-		let rowNum = '?';
-		if (!countryRows.length) {
-			console.error('SHOULD NOT OCCUR');
-		} else {
-			const row = countryRows.find((row: any) => row.id === data.targetRowId);
-			rowNum = row.index + 1;
-		}
-		label = `${i18n.countryRow} (${rowNum})`;
+		const row = countryRows.find((row: any) => row.id === data.targetRowId);
+		const rowNum = row.index + 1;
+		label = `${i18n.countryRow} #${rowNum}`;
 	}
 
 	return (
