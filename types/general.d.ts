@@ -51,10 +51,6 @@ export type ExportTypeGenerateType = {
     numResults: number;
     columns: any; // TODO string[];
     template: GenerationTemplate;
-
-    // "rowNum"            => $rowNum,
-    // "generationOptions" => $genInfo["generationOptions"],
-    // "existingRowData"   => $currRowData
 };
 
 export type ColumnData = {

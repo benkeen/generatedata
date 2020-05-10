@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import { Tooltip } from '../../../components/tooltips';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import { DataTypeFolder } from '../../../_plugins';
+import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import styles from './Region.scss';
 
@@ -20,12 +21,48 @@ export const initialState: RegionState = {
 	targetRowId: ''
 };
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate }: any): JSX.Element => {
+const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
+
+	const getCountryRowOptions = () => (
+		countryRows.map(({ index, id, title }: any) => (
+			{ value: id, label: `${index+1}: ${title}` }
+		))
+	);
+
 	const onUpdateSource = (source: RegionSource): void => {
-		onUpdate({
+		const newValues = {
 			...data,
 			source
+		};
+		// always autoselect the first Country row when switching to `Country Row` as the source
+		if (source === 'row') {
+			const options = getCountryRowOptions();
+			newValues.targetRowId = options[0].id
+		}
+		onUpdate(newValues);
+	};
+
+	const onChangeTargetRow = (row: DropdownOption) => {
+		onUpdate({
+			...data,
+			targetRowId: row.value
 		});
+	};
+
+	const getCountryRow = () => {
+		if (data.source !== 'row') {
+			return null;
+		}
+
+		const options = getCountryRowOptions();
+
+		return (
+			<Dropdown
+				value={data.targetRowId}
+				onChange={onChangeTargetRow}
+				options={options}
+			/>
+		);
 	};
 
 	return (
@@ -76,17 +113,20 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 					</Tooltip>
 
 					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.rowDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined">
+						<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined"
+							disabled={countryRows.length === 0}>
 							<input
 								type="radio"
 								name={`${id}-source`}
 								checked={data.source === 'row'}
 								onChange={(): void => {}}
 							/>
-							<span>{i18n.gridRow}</span>
+							<span>{i18n.countryRow}</span>
 						</Button>
 					</Tooltip>
 				</div>
+
+				{getCountryRow()}
 
 				<h3>{i18n.format}</h3>
 
@@ -124,7 +164,15 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 	} else if (data.source === 'countries') {
 		label = `Any region from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
 	} else if (data.source === 'row') {
-		label = 'Grid row';
+		// TODO clean this up once we're further along
+		let rowNum = '?';
+		if (!countryRows.length) {
+			console.error('SHOULD NOT OCCUR');
+		} else {
+			const row = countryRows.find((row: any) => row.id === data.targetRowId);
+			rowNum = row.index + 1;
+		}
+		label = `${i18n.countryRow} (${rowNum})`;
 	}
 
 	return (
@@ -139,6 +187,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 			<Dialog
 				visible={dialogVisible}
 				data={data}
+				countryRows={countryRows}
 				id={id}
 				coreI18n={coreI18n}
 				i18n={i18n}

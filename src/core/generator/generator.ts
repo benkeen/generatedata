@@ -101,7 +101,6 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 				const batchNum = parseInt(processBatches[batch], 10);
 				const { promises, colIndexes } = processDataTypeBatch(generationTemplate[batchNum], rowNum, i18n, currRowData);
 
-				console.log('done batch ', batchNum);
 				Promise.all(promises)
 					.then((results) => {
 
