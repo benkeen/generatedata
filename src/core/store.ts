@@ -2,7 +2,7 @@ import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { Persistor } from 'redux-persist/es/types';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import actionsInterceptor from './actionInterceptor'
+import actionsInterceptor from './actionInterceptor';
 import storage from 'redux-persist/lib/storage';
 import reducer from './generator/generator.reducer';
 

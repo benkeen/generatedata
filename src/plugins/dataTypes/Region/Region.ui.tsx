@@ -38,7 +38,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 
 		// always autoselect the first Country row when switching to `Country Row` as the source
 		if (source === 'row') {
-			newValues.targetRowId = countryPluginRows[0].value
+			newValues.targetRowId = countryPluginRows[0].value;
 		}
 		onUpdate(newValues);
 	};
@@ -187,7 +187,6 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 
 export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, countryRows }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
-
 	const numSelected = data.selectedCountries.length;
 
 	let label = '';

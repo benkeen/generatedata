@@ -94,7 +94,6 @@ export type DTHelpProps = {
 };
 
 export type DTGenerationData = {
-	locale: GDLocale;
     rowNum: number;
 	rowState: any;
 	i18n: any;
