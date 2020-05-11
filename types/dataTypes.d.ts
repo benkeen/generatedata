@@ -1,5 +1,5 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
-import { AnyObject, Tag } from './general';
+import { AnyObject, GDLocale, Tag } from './general';
 import { DataTypeFolder } from '../src/_plugins';
 
 export type DTBundle = {
@@ -94,11 +94,21 @@ export type DTHelpProps = {
 };
 
 export type DTGenerationData = {
+	locale: GDLocale;
     rowNum: number;
 	rowState: any;
 	i18n: any;
 	countryI18n: any;
-    existingRowData: any[];
+    existingRowData: DTGenerationExistingRowData[];
+};
+
+export type DTGenerationExistingRowData = {
+	id: string;
+	colIndex: number; // bit confusing, but this is the index of the ROW in the UI.
+	dataType: DataTypeFolder;
+
+	// this contains the actual generated data from the data type
+	data: DTGenerateResult;
 };
 
 export type DTGenerateResult = {

@@ -1,8 +1,37 @@
-import { DTGenerateResult } from '../../../../types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '../../../../types/dataTypes';
+import { countryList, CountryType } from '../../../_plugins';
+import { loadCountryBundle } from '../../../utils/countryUtils';
+import { getRandomArrayValue } from '../../../utils/randomUtils';
+import { CountryDataType, GetCountryData } from '../../../../types/countries';
 
-// data: DTGenerationData
-export const generate = (): DTGenerateResult => {
-	return { display: '' };
+const countryRegions: any = {};
+
+export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
+	const { rowState, countryI18n } = data;
+
+	return new Promise((resolve) => {
+		if (rowState.source === 'any') {
+			const randomCountry = getRandomArrayValue(countryList);
+
+			if (countryRegions[randomCountry]) {
+				resolve({
+					display: getRandomArrayValue(countryRegions[randomCountry].full)
+				});
+			} else {
+				loadCountryBundle(randomCountry as CountryType)
+					.then((getCountryData: GetCountryData) => {
+						const countryData = getCountryData(countryI18n[randomCountry]);
+						countryRegions[randomCountry] = {
+							full: countryData.regions.map((i) => i.regionName),
+							short: countryData.regions.map((i) => i.regionShort)
+						};
+						resolve({
+							display: getRandomArrayValue(countryRegions[randomCountry].full)
+						});
+					});
+			}
+		}
+	});
 };
 
 

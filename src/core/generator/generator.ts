@@ -5,11 +5,11 @@
 import {
 	ExportTypeGenerateType,
 	ExportTypeGenerationData,
-	ExportTypePreviewData,
+	ExportTypePreviewData, GenerationTemplate,
 	GenerationTemplateRow
 } from '../../../types/general';
 import { getStrings } from '../../utils/langUtils';
-import { DataTypeFolder } from '../../_plugins';
+import { DTGenerateResult, DTGenerationExistingRowData } from '../../../types/dataTypes';
 
 // temporary of course
 // import * as JSON from '../../plugins/exportTypes/JSON/JSON.generator';
@@ -63,67 +63,91 @@ export const generate = (data: ExportTypeGenerateType): string => {
 	return content;
 };
 
-// export const generateExportData = () => {
-// 	$firstRowNum  = $this->getCurrentBatchFirstRow();
-// 	$lastRowNum   = $this->getCurrentBatchLastRow();
-// }
-
-
-// TODO good GRIEF this needs tests. It's the backbone of the whole sodding app.
+// TODO TEST EVERY LAST PART OF THIS
 export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> => {
 	return new Promise((resolve, reject) => {
 		const generationTemplate = data.template;
 		const i18n = getStrings();
 
-		const firstRowNum = 1;
+		// for the preview panel we always generate the max num of preview panel rows so when the user changes the
+		// visible rows the data's already there
 		const lastRowNum = data.numResults;
-
-		// contains only the information needed for display purposes
-		const displayData: any = [];
-		const processBatches = Object.keys(generationTemplate);
-
-		let index = 0;
+		const rowPromises = [];
 
 		// rows are independent! The only necessarily synchronous bit is between process orders (rename to processBlock / processChunk?)
-		for (let rowNum=firstRowNum; rowNum<=lastRowNum; rowNum++) {
+		for (let rowNum=1; rowNum<=lastRowNum; rowNum++) {
+
 			// ignore any rows that don't have a title
-			if (!data.columns[index].title) {
-				index++;
-				continue;
-			}
+			// if (!data.columns[index].title) {
+			// 	index++;
+			// 	continue;
+			// }
 
-			// the generationTemplate is already grouped by process batch. Just loop through each one, passing off the
-			// actual data generation to the appropriate Data Type. The whole POINT of the process batches is so that
-			// we can pass all previously generated data (including any metadata returned by the Data Type) to later batches
-			const currRowData: any = [];
-
-			for (let batch=0; batch<processBatches.length; batch++) {
-				const batchNum = parseInt(processBatches[batch], 10);
-				const { promises, colIndexes } = processDataTypeBatch(generationTemplate[batchNum], rowNum, i18n, currRowData);
-
-				Promise.all(promises)
-					.then((results) => {
-
-						// now do next loop
-
-						// console.log('process block is done!', results);
-					});
-			}
-
-			if (currRowData.length) {
-				displayData.push(currRowData.map((i: any): string => i.display));
-			}
+			const currRowData: DTGenerationExistingRowData[] = [];
+			rowPromises.push(processBatchSequence(generationTemplate, rowNum, i18n, currRowData));
 		}
 
-		resolve(displayData);
+		Promise.all(rowPromises)
+			.then((data) => {
+				resolve(data);
+			});
 	});
 };
 
 
-export const processDataTypeBatch = (cells: GenerationTemplateRow[], rowNum: number, i18n: any, currRowData: any[]): any => {
-	const colIndexes: number[] = [];
-	const promises = cells.map((currCell) => {
-		colIndexes.push(currCell.colIndex);
+const processBatchSequence = (generationTemplate: GenerationTemplate, rowNum: number, i18n: any, currRowData: DTGenerationExistingRowData[]) => {
+	return new Promise((resolveAll) => {
+		let sequence = Promise.resolve();
+		const processBatches = Object.keys(generationTemplate);
+
+		// process each batch sequentially. This ensures the data generated from one processing batch is available to any
+		// dependent children. For example, the Region data type needs the Country data being generated first so it
+		// knows what country regions to generate if a mapping had been selected in the UI
+		processBatches
+			.forEach((processBatch: string, batchIndex: number) => {
+				const processBatchNum = parseInt(processBatch, 10);
+				const currBatch = generationTemplate[processBatchNum];
+
+				// yup. We're mutating the currRowData param on each loop. We don't care hhahaha!!! Up yours, linter!
+				sequence = sequence
+					.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData))
+					.then((promises) => {
+						// console.log(`Batch ${processBatchNum} processed`);
+						return new Promise((resolveBatch) => {
+							Promise.all(promises)
+								.then((generatedData) => {
+									// console.log('all resolved.', generatedData);
+
+									generatedData.forEach((data, index) => {
+										const {id, colIndex, dataType} = currBatch[index];
+										currRowData.push({
+											id,
+											colIndex,
+											dataType,
+											data: data as DTGenerateResult
+										})
+									});
+									resolveBatch();
+
+									if (batchIndex === processBatches.length-1) {
+
+										// all our work is done. Return ONLY the `display` value for each
+										resolveAll(currRowData.map((row) => row.data.display));
+									}
+								});
+						});
+					});
+			});
+	});
+};
+
+
+// Data Type generate() functions can be sync or async, depending on their needs. This method calls the generation
+// method for all data types in a particular process batch and returns an array of promises, which when resolved,
+// return the generated data for that row
+export const processDataTypeBatch = (cells: GenerationTemplateRow[], rowNum: number, i18n: any, currRowData: any[]): any => (
+	cells.map((currCell) => {
+		// console.log('current row data? ', currRowData);
 
 		const response = currCell.generateFunc({
 			rowNum,
@@ -133,19 +157,13 @@ export const processDataTypeBatch = (cells: GenerationTemplateRow[], rowNum: num
 			existingRowData: currRowData
 		});
 
-		// Data Type generation functions can be sync or async. If it's a promise, wait for it to be resolved
 		if (typeof response.then === 'function') {
 			return response;
 		} else {
 			return Promise.resolve(response);
 		}
-	});
-
-	return {
-		promises,
-		colIndexes
-	};
-};
+	})
+);
 
 
 /**

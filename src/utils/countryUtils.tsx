@@ -1,4 +1,4 @@
-import { CountryType } from '../_plugins';
+import { CountryType, countryList } from '../_plugins';
 
 // this houses all Export Type code loaded async after the application starts
 const loadedCountryTypes: any = {};
@@ -18,4 +18,12 @@ export const loadCountryBundle = (country: CountryType): any => {
 				reject(e);
 			});
 	});
+};
+
+export const loadAllCountryBundles = () => {
+	const promises: any = [];
+	countryList.forEach((country) => {
+		promises.push(loadCountryBundle(country as CountryType));
+	});
+	return Promise.all(promises);
 };

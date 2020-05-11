@@ -36,7 +36,7 @@ export type AnyObject = {
 export type GenerationTemplateRow = {
 	id: string;
     title: string;
-    dataType: string;
+    dataType: DataTypeFolder;
 	rowState: any;
     generateFunc: Function;
     colMetadata: () => any;
