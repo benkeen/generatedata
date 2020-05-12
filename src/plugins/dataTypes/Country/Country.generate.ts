@@ -26,7 +26,8 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 					const data = getData(countryI18n[randomCountry]);
 					resolve({
 						display: data.countryName,
-						slug: data.countrySlug
+						slug: data.countrySlug,
+						countryDataType: randomCountry
 					});
 				});
 		}

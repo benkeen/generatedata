@@ -18,7 +18,7 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 			country = 'Canada'; // TODO
 		} else if (rowState.source === 'row') {
 			const countryRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
-			country = countryRow!.data.display as CountryType; // TODO is this localized? Problem!
+			country = countryRow!.data.countryDataType;
 		} else {
 			const list = rowState.source === 'any' ? countryList : rowState.selectedCountries;
 			country = getRandomArrayValue(list);
@@ -26,7 +26,8 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 
 		if (countryRegions[country]) {
 			resolve({
-				display: getRandomArrayValue(countryRegions[country].full)
+				display: getRandomArrayValue(countryRegions[country].full),
+				countryDataType: country
 			});
 		} else {
 			loadCountryBundle(country)
@@ -37,7 +38,8 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 						short: countryData.regions.map((i) => i.regionShort)
 					};
 					resolve({
-						display: getRandomArrayValue(countryRegions[country].full)
+						display: getRandomArrayValue(countryRegions[country].full),
+						countryDataType: country
 					});
 				});
 		}

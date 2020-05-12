@@ -125,7 +125,7 @@ const processBatchSequence = (generationTemplate: GenerationTemplate, rowNum: nu
 											colIndex,
 											dataType,
 											data: data as DTGenerateResult
-										})
+										});
 									});
 									resolveBatch();
 
@@ -147,8 +147,6 @@ const processBatchSequence = (generationTemplate: GenerationTemplate, rowNum: nu
 // return the generated data for that row
 export const processDataTypeBatch = (cells: GenerationTemplateRow[], rowNum: number, i18n: any, currRowData: any[]): any => (
 	cells.map((currCell) => {
-		// console.log('current row data? ', currRowData);
-
 		const response = currCell.generateFunc({
 			rowNum,
 			i18n: i18n.dataTypes[currCell.dataType],
