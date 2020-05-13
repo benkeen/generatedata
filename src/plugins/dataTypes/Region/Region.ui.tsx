@@ -9,7 +9,7 @@ import { countryList } from '../../../_plugins';
 import styles from './Region.scss';
 import { CountryState } from '../Country/Country.ui';
 
-export type RegionSource = 'auto' | 'any' | 'countries' | 'row';
+export type RegionSource = 'any' | 'countries' | 'row';
 
 export type RegionState = {
 	source: RegionSource;
@@ -18,7 +18,7 @@ export type RegionState = {
 };
 
 export const initialState: RegionState = {
-	source: 'auto',
+	source: 'any',
 	selectedCountries: [],
 	targetRowId: ''
 };
@@ -103,18 +103,6 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.autoDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('auto')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-							<input
-								type="radio"
-								name={`${id}-source`}
-								checked={data.source === 'auto'}
-								onChange={(): void => {}}
-							/>
-							<span>{i18n.auto}</span>
-						</Button>
-					</Tooltip>
-
 					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.anyDesc }} />} arrow>
 						<Button onClick={(): void => onUpdateSource('any')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
 							<input
@@ -192,8 +180,6 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 	let label = '';
 	if (data.source === 'any') {
 		label = i18n.anyRegion;
-	} else if (data.source === 'auto') {
-		label = i18n.auto;
 	} else if (data.source === 'countries') {
 		label = `Any region from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
 	} else if (data.source === 'row') {
