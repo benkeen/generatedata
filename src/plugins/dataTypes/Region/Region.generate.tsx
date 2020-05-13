@@ -1,4 +1,4 @@
-import { DTGenerateResult, DTGenerationData } from '../../../../types/dataTypes';
+import { DTGenerateResult, DTGenerationData, DTMetadata } from '../../../../types/dataTypes';
 import { countryList, CountryType } from '../../../_plugins';
 import { loadCountryBundle } from '../../../utils/countryUtils';
 import { getRandomArrayValue } from '../../../utils/randomUtils';
@@ -13,10 +13,7 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 	return new Promise((resolve) => {
 		let country: CountryType;
 
-		// see if there's a Country field. TODO this means returning more metadata about the row
-		if (rowState.source === 'auto') {
-			country = 'Canada'; // TODO
-		} else if (rowState.source === 'row') {
+		if (rowState.source === 'row') {
 			const countryRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
 			country = countryRow!.data.countryDataType;
 		} else {
@@ -46,11 +43,10 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 	});
 };
 
-
-// public function getDataTypeMetadata() {
-// 	return array(
-// 		"SQLField" => "varchar(50) default NULL",
-// 		"SQLField_Oracle" => "varchar2(50) default NULL",
-// 		"SQLField_MSSQL" => "VARCHAR(50) NULL"
-// 	);
-// }
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(50) default NULL',
+		field_Oracle: 'varchar2(50) default NULL',
+		field_MSSQL: 'VARCHAR(50) NULL'
+	}
+});

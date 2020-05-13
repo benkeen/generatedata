@@ -7,6 +7,7 @@ import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown'
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import { countryList } from '../../../_plugins';
 import styles from './City.scss';
+import { CountryState } from '../Country/Country.ui';
 
 export type RegionSource = 'any' | 'countries' | 'row';
 
@@ -22,10 +23,10 @@ export const initialState: CityState = {
 	targetRowId: ''
 };
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate }: any): JSX.Element => {
-	const countryPluginRows: any = [];
-		// .filter(({ data: countryRowData }: { data }: any) => countryRowData.source === 'plugins')
-		// .map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
+const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
+	const countryPluginRows = countryRows
+		.filter(({ data: countryRowData }: { data: CountryState }) => countryRowData.source === 'plugins')
+		.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
 
 	const countryPluginRowsExist = countryPluginRows.length > 0;
 
@@ -52,7 +53,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 	const onSelectCountries = (countries: any): void => {
 		onUpdate({
 			...data,
-			selectedCountries: [] // countries ? countries.map(({ value }: DropdownOption) => value) : []
+			selectedCountries: countries ? countries.map(({ value }: DropdownOption) => value) : []
 		});
 	};
 
@@ -102,7 +103,8 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.autoDesc }} />} arrow>
+
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.anyDesc }} />} arrow>
 						<Button onClick={(): void => onUpdateSource('any')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
 							<input
 								type="radio"
@@ -114,7 +116,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 						</Button>
 					</Tooltip>
 
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: '' }} />} arrow>
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.countriesDesc }} />} arrow>
 						<Button onClick={(): void => onUpdateSource('countries')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
 							<input
 								type="radio"
@@ -156,7 +158,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 	);
 };
 
-export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, countryRows }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 	const numSelected = data.selectedCountries.length;
 
@@ -166,9 +168,9 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate }: DTO
 	} else if (data.source === 'countries') {
 		label = `Any city from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
 	} else if (data.source === 'row') {
-		// const row = countryRows.find((row: any) => row.id === data.targetRowId);
-		// const rowNum = row.index + 1;
-		// label = `${i18n.countryRow} #${rowNum}`;
+		const row = countryRows.find((row: any) => row.id === data.targetRowId);
+		const rowNum = row.index + 1;
+		label = `${i18n.regionRow} #${rowNum}`;
 	}
 
 	return (
@@ -183,6 +185,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate }: DTO
 			<Dialog
 				visible={dialogVisible}
 				data={data}
+				countryRows={countryRows}
 				id={id}
 				coreI18n={coreI18n}
 				i18n={i18n}
