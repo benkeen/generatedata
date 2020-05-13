@@ -8,7 +8,7 @@ import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../..
 import { countryList } from '../../../_plugins';
 import styles from './City.scss';
 
-export type RegionSource = 'auto' | 'any' | 'countries' | 'row';
+export type RegionSource = 'any' | 'countries' | 'row';
 
 export type CityState = {
 	source: RegionSource;
@@ -17,7 +17,7 @@ export type CityState = {
 };
 
 export const initialState: CityState = {
-	source: 'auto',
+	source: 'any',
 	selectedCountries: [],
 	targetRowId: ''
 };
@@ -93,7 +93,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 
 	return (
 		<SmallDialog onClose={onClose} open={visible}>
-			<DialogTitle onClose={onClose}>{i18n.selectRegions}</DialogTitle>
+			<DialogTitle onClose={onClose}>{i18n.selectCities}</DialogTitle>
 			<DialogContent dividers>
 				<div>
 					{i18n.explanation}
@@ -103,18 +103,6 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 
 				<div className={styles.sourceBlock}>
 					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.autoDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('auto')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-							<input
-								type="radio"
-								name={`${id}-source`}
-								checked={data.source === 'auto'}
-								onChange={(): void => {}}
-							/>
-							<span>{i18n.auto}</span>
-						</Button>
-					</Tooltip>
-
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.anyDesc }} />} arrow>
 						<Button onClick={(): void => onUpdateSource('any')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
 							<input
 								type="radio"
@@ -122,11 +110,11 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 								checked={data.source === 'any'}
 								onChange={(): void => {}}
 							/>
-							<span>{i18n.anyRegion}</span>
+							<span>{i18n.anyCity}</span>
 						</Button>
 					</Tooltip>
 
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.countriesDesc }} />} arrow>
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: '' }} />} arrow>
 						<Button onClick={(): void => onUpdateSource('countries')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
 							<input
 								type="radio"
@@ -152,7 +140,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 									checked={data.source === 'row'}
 									onChange={(): void => {}}
 								/>
-								<span>{i18n.countryRow}</span>
+								<span>{i18n.regionRow}</span>
 							</Button>
 						</span>
 					</Tooltip>
@@ -160,22 +148,6 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 
 				{getCountryRow()}
 				{getCountryPluginsList()}
-
-				<h3>{i18n.format}</h3>
-
-				<p>
-					<input
-						type="checkbox"
-						value="full"
-					/>
-					<label htmlFor={`${id}-`}>Full</label>
-					<input
-						type="checkbox"
-						value="full"
-					/>
-					<label htmlFor={`${id}-`}>Short</label>
-				</p>
-
 			</DialogContent>
 			<DialogActions>
 				<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
@@ -190,11 +162,9 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate }: DTO
 
 	let label = '';
 	if (data.source === 'any') {
-		label = i18n.anyRegion;
-	} else if (data.source === 'auto') {
-		label = i18n.auto;
+		label = i18n.anyCity;
 	} else if (data.source === 'countries') {
-		label = `Any region from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
+		label = `Any city from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
 	} else if (data.source === 'row') {
 		// const row = countryRows.find((row: any) => row.id === data.targetRowId);
 		// const rowNum = row.index + 1;
