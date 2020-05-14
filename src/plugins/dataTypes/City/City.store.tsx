@@ -4,15 +4,13 @@ import { getSortedRowsArray } from '../../../core/generator/generator.selectors'
 import { CityState } from './City.ui';
 import { REMOVE_ROW, CONFIGURE_DATA_TYPE, SELECT_DATA_TYPE } from '../../../core/generator/generator.actions';
 
-// this defines a custom selector that extracts information about the country fields, needed by this component. The
-// core script handles processing this and passing it back via a `countryRows` prop to our Options component
-const getCountryRows = createSelector(
+const getRegionRows = createSelector(
 	getSortedRowsArray,
-	(rows) => rows.map((row, index) => ({ ...row, index })).filter(({ dataType }) => dataType === 'Country')
+	(rows) => rows.map((row, index) => ({ ...row, index })).filter(({ dataType }) => dataType === 'Region')
 );
 
 export const customProps: DTCustomProps = {
-	countryRows: getCountryRows
+	regionRows: getRegionRows
 };
 
 export const actionInterceptors = {

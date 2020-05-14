@@ -1,19 +1,24 @@
-import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult, DTGenerationData } from '../../../../types/dataTypes';
+import { countryList, CountryType } from '../../../_plugins';
+import { getRandomArrayValue } from '../../../utils/randomUtils';
 
+export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
+	const { rowState, countryI18n } = data;
 
-// private $countryRegions;
-// private $citiesByCountryRegion;
+	console.log(data);
 
-// public function __construct($runtimeContext) {
-//     parent::__construct($runtimeContext);
-//     if ($runtimeContext == "generation") {
-//         self::initCityList();
-//         $this->countryRegions = Core::$geoData->getCountryRegionHash();
-//     }
-// }
+	return new Promise((resolve) => {
+		// let country: CountryType;
 
-export const generate = (): DTGenerateResult => {
-	return { display: '' };
+		// if (rowState.source === 'row') {
+		// 	const countryRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
+		// 	region = countryRow!.data.countryDataType;
+		// } else {
+		// 	const list = rowState.source === 'any' ? countryList : rowState.selectedCountries;
+		// 	country = getRandomArrayValue(list);
+		// }
+		resolve();
+	});
 };
 
 

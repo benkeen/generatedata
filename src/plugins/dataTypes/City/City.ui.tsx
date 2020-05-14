@@ -23,12 +23,12 @@ export const initialState: CityState = {
 	targetRowId: ''
 };
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
-	const countryPluginRows = countryRows
-		.filter(({ data: countryRowData }: { data: CountryState }) => countryRowData.source === 'plugins')
+const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, regionRows }: any): JSX.Element => {
+	const regionPluginRows = regionRows
+		.filter(({ data: regionRowData }: { data: CountryState }) => regionRowData.source === 'plugins')
 		.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
 
-	const countryPluginRowsExist = countryPluginRows.length > 0;
+	const countryPluginRowsExist = regionPluginRows.length > 0;
 
 	const onUpdateSource = (source: RegionSource): void => {
 		const newValues = {
@@ -38,7 +38,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 
 		// always autoselect the first Country row when switching to `Country Row` as the source
 		if (source === 'row') {
-			newValues.targetRowId = countryPluginRows[0].value;
+			newValues.targetRowId = regionPluginRows[0].value;
 		}
 		onUpdate(newValues);
 	};
@@ -57,7 +57,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 		});
 	};
 
-	const getCountryRow = () => {
+	const getRegionRow = () => {
 		if (data.source !== 'row') {
 			return null;
 		}
@@ -66,7 +66,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 			<Dropdown
 				value={data.targetRowId}
 				onChange={onChangeTargetRow}
-				options={countryPluginRows}
+				options={regionPluginRows}
 			/>
 		);
 	};
@@ -148,7 +148,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 					</Tooltip>
 				</div>
 
-				{getCountryRow()}
+				{getRegionRow()}
 				{getCountryPluginsList()}
 			</DialogContent>
 			<DialogActions>
@@ -158,7 +158,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 	);
 };
 
-export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, countryRows }: DTOptionsProps): JSX.Element => {
+export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regionRows }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 	const numSelected = data.selectedCountries.length;
 
@@ -168,7 +168,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 	} else if (data.source === 'countries') {
 		label = `Any city from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
 	} else if (data.source === 'row') {
-		const row = countryRows.find((row: any) => row.id === data.targetRowId);
+		const row = regionRows.find((row: any) => row.id === data.targetRowId);
 		const rowNum = row.index + 1;
 		label = `${i18n.regionRow} #${rowNum}`;
 	}
@@ -185,7 +185,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 			<Dialog
 				visible={dialogVisible}
 				data={data}
-				countryRows={countryRows}
+				regionRows={regionRows}
 				id={id}
 				coreI18n={coreI18n}
 				i18n={i18n}
