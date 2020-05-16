@@ -27,3 +27,6 @@ export const loadAllCountryBundles = () => {
 	});
 	return Promise.all(promises);
 };
+
+// for scenarios where the consumer KNOWS the Country plugin has been loaded
+export const getCountryType = (countryType: CountryType) => loadedCountryTypes[countryType];

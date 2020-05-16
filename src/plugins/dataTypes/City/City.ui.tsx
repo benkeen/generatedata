@@ -8,6 +8,7 @@ import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../..
 import { countryList } from '../../../_plugins';
 import styles from './City.scss';
 import { CountryState } from '../Country/Country.ui';
+import { RegionState } from '../Region/Region.ui';
 
 export type RegionSource = 'any' | 'countries' | 'row';
 
@@ -25,18 +26,15 @@ export const initialState: CityState = {
 
 const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, regionRows }: any): JSX.Element => {
 	const regionPluginRows = regionRows
-		.filter(({ data: regionRowData }: { data: CountryState }) => regionRowData.source === 'plugins')
 		.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
 
-	const countryPluginRowsExist = regionPluginRows.length > 0;
+	const regionPluginRowsExist = regionPluginRows.length > 0;
 
 	const onUpdateSource = (source: RegionSource): void => {
 		const newValues = {
 			...data,
 			source
 		};
-
-		// always autoselect the first Country row when switching to `Country Row` as the source
 		if (source === 'row') {
 			newValues.targetRowId = regionPluginRows[0].value;
 		}
@@ -131,11 +129,11 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 					<Tooltip
 						arrow
 						title={<span dangerouslySetInnerHTML={{ __html: i18n.rowDesc }} />}
-						disableHoverListener={!countryPluginRowsExist}
-						disableFocusListener={!countryPluginRowsExist}>
+						disableHoverListener={!regionPluginRowsExist}
+						disableFocusListener={!regionPluginRowsExist}>
 						<span>
 							<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined"
-									disabled={!countryPluginRowsExist}>
+									disabled={!regionPluginRowsExist}>
 								<input
 									type="radio"
 									name={`${id}-source`}

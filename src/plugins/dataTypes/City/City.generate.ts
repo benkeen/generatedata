@@ -1,23 +1,24 @@
 import { DTMetadata, DTGenerateResult, DTGenerationData } from '../../../../types/dataTypes';
-import { countryList, CountryType } from '../../../_plugins';
+import { getCountryType, loadCountryBundle } from '../../../utils/countryUtils';
+import { GetCountryData, Region } from '../../../../types/countries';
 import { getRandomArrayValue } from '../../../utils/randomUtils';
 
 export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 	const { rowState, countryI18n } = data;
 
-	console.log(data);
-
 	return new Promise((resolve) => {
-		// let country: CountryType;
-
-		// if (rowState.source === 'row') {
-		// 	const countryRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
-		// 	region = countryRow!.data.countryDataType;
-		// } else {
-		// 	const list = rowState.source === 'any' ? countryList : rowState.selectedCountries;
-		// 	country = getRandomArrayValue(list);
-		// }
-		resolve();
+		if (rowState.source === 'row') {
+			const regionRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
+			const country = regionRow!.data.countryDataType;
+			loadCountryBundle(country)
+				.then((getCountryData: GetCountryData) => {
+					const countryData = getCountryData(countryI18n[country]);
+					const region = countryData.regions.find((i: Region) => i.regionName === regionRow!.data.display);
+					resolve({
+						display: getRandomArrayValue(region!.cities)
+					});
+				});
+		}
 	});
 };
 
