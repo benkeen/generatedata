@@ -1,13 +1,14 @@
 import { DTMetadata, DTGenerateResult, DTGenerationData } from '../../../../types/dataTypes';
-import { getCountryType, loadCountryBundle } from '../../../utils/countryUtils';
+import { loadCountryBundle } from '../../../utils/countryUtils';
 import { GetCountryData, Region } from '../../../../types/countries';
 import { getRandomArrayValue } from '../../../utils/randomUtils';
 
 export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 	const { rowState, countryI18n } = data;
+	const { source, selectedCountries } = rowState;
 
 	return new Promise((resolve) => {
-		if (rowState.source === 'row') {
+		if (source === 'row') {
 			const regionRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
 			const country = regionRow!.data.countryDataType;
 			loadCountryBundle(country)
@@ -18,6 +19,8 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 						display: getRandomArrayValue(region!.cities)
 					});
 				});
+		} else if (source === 'country') {
+
 		}
 	});
 };
