@@ -7,8 +7,6 @@ import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown'
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import { countryList } from '../../../_plugins';
 import styles from './City.scss';
-import { CountryState } from '../Country/Country.ui';
-import { RegionState } from '../Region/Region.ui';
 
 export type RegionSource = 'any' | 'countries' | 'row';
 

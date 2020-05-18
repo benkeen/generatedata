@@ -117,7 +117,6 @@ const processBatchSequence = (generationTemplate: GenerationTemplate, rowNum: nu
 							Promise.all(promises)
 								.then((generatedData) => {
 									// console.log('all resolved.', generatedData);
-
 									generatedData.forEach((data, index) => {
 										const {id, colIndex, dataType} = currBatch[index];
 										currRowData.push({
