@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { Tooltip } from '../../../components/tooltips';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
-import { DataTypeFolder } from '../../../_plugins';
+import { CountryType, DataTypeFolder } from '../../../_plugins';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import { countryList } from '../../../_plugins';
@@ -12,7 +12,7 @@ export type RegionSource = 'any' | 'countries' | 'row';
 
 export type CityState = {
 	source: RegionSource;
-	selectedCountries: DataTypeFolder[];
+	selectedCountries: CountryType[];
 	targetRowId: string;
 };
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTOptionsProps } from '../../../../types/dataTypes';
 import { countryList } from '../../../_plugins';
+import RadioPill from '../../../components/RadioPill';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { Tooltip } from '../../../components/tooltips';
@@ -46,30 +47,22 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.countryPluginsDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('plugins')} size="small" color="primary" variant="outlined"
-							style={{ marginRight: 10 }}>
-							<input
-								type="radio"
-								name={`${id}-source`}
-								id={`${id}-source-all`}
-								checked={data.source === 'plugins'}
-								onChange={(): void => {}}
-							/>
-							<span>{i18n.countryPlugins} ({countryList.length})</span>
-						</Button>
-					</Tooltip>
-
-					<Button onClick={(): void => onUpdateSource('all')} size="small" color="primary" variant="outlined">
-						<input
-							type="radio"
-							name={`${id}-source`}
-							id={`${id}-source-all`}
-							checked={data.source === 'all'}
-							onChange={(): void => {}}
-						/>
-						<span>{i18n.allCountries} ({fullCountryList.length})</span>
-					</Button>
+					<RadioPill
+						label={`${i18n.countryPlugins} (${countryList.length})`}
+						onClick={(): void => onUpdateSource('plugins')}
+						name={`${id}-source`}
+						checked={data.source === 'plugins'}
+						tooltip={i18n.countryPluginsDesc}
+						style={{ marginRight: 10 }}
+					/>
+					<RadioPill
+						label={`${i18n.allCountries} (${fullCountryList.length})`}
+						onClick={(): void => onUpdateSource('all')}
+						name={`${id}-source`}
+						checked={data.source === 'all'}
+						tooltip={i18n.countryPluginsDesc}
+						style={{ marginRight: 10 }}
+					/>
 				</div>
 
 				<h3>{i18n.filter}</h3>
