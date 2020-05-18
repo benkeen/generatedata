@@ -76,13 +76,6 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 
 		// rows are independent! The only necessarily synchronous bit is between process orders (rename to processBlock / processChunk?)
 		for (let rowNum=1; rowNum<=lastRowNum; rowNum++) {
-
-			// ignore any rows that don't have a title
-			// if (!data.columns[index].title) {
-			// 	index++;
-			// 	continue;
-			// }
-
 			const currRowData: DTGenerationExistingRowData[] = [];
 			rowPromises.push(processBatchSequence(generationTemplate, rowNum, i18n, currRowData));
 		}
@@ -113,10 +106,12 @@ const processBatchSequence = (generationTemplate: GenerationTemplate, rowNum: nu
 					.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData))
 					.then((promises) => {
 						// console.log(`Batch ${processBatchNum} processed`);
+
 						return new Promise((resolveBatch) => {
 							Promise.all(promises)
 								.then((generatedData) => {
 									// console.log('all resolved.', generatedData);
+
 									generatedData.forEach((data, index) => {
 										const {id, colIndex, dataType} = currBatch[index];
 										currRowData.push({
@@ -129,8 +124,7 @@ const processBatchSequence = (generationTemplate: GenerationTemplate, rowNum: nu
 									resolveBatch();
 
 									if (batchIndex === processBatches.length-1) {
-
-										// all our work is done. Return ONLY the `display` value for each
+										currRowData.sort((a: DTGenerationExistingRowData, b: DTGenerationExistingRowData): any => a.colIndex < b.colIndex ? -1 : 1);
 										resolveAll(currRowData.map((row) => row.data.display));
 									}
 								});

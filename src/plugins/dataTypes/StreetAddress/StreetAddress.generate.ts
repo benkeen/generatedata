@@ -7,10 +7,11 @@ const { words } = getLipsumWords();
 export const generate = ({ i18n }: DTGenerationData): DTGenerateResult => {
 	const { streetTypes, poBox, apNum } = i18n;
 	const streetName = uppercaseWords(generateRandomTextStr(words, false, 1));
-	const streetType = getRandomArrayValue(streetTypes);
+	const streetType = getRandomArrayValue(streetTypes.split(','));
 
 	const format = getRandomNum(1, 4);
 	let streetAddress = '';
+
 	switch (format) {
 		case 1:
 			streetAddress = `${poBox} ${getRandomNum(100, 999)}, ${getRandomNum(100, 9999)} ${streetName} ${streetType}`;
