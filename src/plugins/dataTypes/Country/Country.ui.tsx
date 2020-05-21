@@ -61,7 +61,6 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 						name={`${id}-source`}
 						checked={data.source === 'all'}
 						tooltip={i18n.countryPluginsDesc}
-						style={{ marginRight: 10 }}
 					/>
 				</div>
 

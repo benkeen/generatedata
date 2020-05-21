@@ -28,7 +28,10 @@ const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: 
 
 	if (tooltip) {
 		return (
-			<Tooltip title={<span dangerouslySetInnerHTML={{ __html: tooltip }} />} arrow>
+			<Tooltip title={<span dangerouslySetInnerHTML={{ __html: tooltip }} />}
+				arrow
+				disableHoverListener={disabled}
+				disableFocusListener={disabled}>
 				{button}
 			</Tooltip>
 		);

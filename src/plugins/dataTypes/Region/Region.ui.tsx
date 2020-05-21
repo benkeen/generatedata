@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { Tooltip } from '../../../components/tooltips';
 import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import { DataTypeFolder } from '../../../_plugins';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
@@ -8,6 +7,7 @@ import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../..
 import { countryList } from '../../../_plugins';
 import styles from './Region.scss';
 import { CountryState } from '../Country/Country.ui';
+import RadioPill from '../../../components/RadioPill';
 
 export type RegionSource = 'any' | 'countries' | 'row';
 
@@ -103,48 +103,30 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.anyDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('any')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-							<input
-								type="radio"
-								name={`${id}-source`}
-								checked={data.source === 'any'}
-								onChange={(): void => {}}
-							/>
-							<span>{i18n.anyRegion}</span>
-						</Button>
-					</Tooltip>
-
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.countriesDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('countries')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-							<input
-								type="radio"
-								name={`${id}-source`}
-								checked={data.source === 'countries'}
-								onChange={(): void => {}}
-							/>
-							<span>{i18n.countries}</span>
-						</Button>
-					</Tooltip>
-
-					<Tooltip
-						arrow
-						title={<span dangerouslySetInnerHTML={{ __html: i18n.rowDesc }} />}
-						disableHoverListener={!countryPluginRowsExist}
-						disableFocusListener={!countryPluginRowsExist}>
-						<span>
-							<Button onClick={(): void => onUpdateSource('row')} size="small" color="primary" variant="outlined"
-								disabled={!countryPluginRowsExist}>
-								<input
-									type="radio"
-									name={`${id}-source`}
-									checked={data.source === 'row'}
-									onChange={(): void => {}}
-								/>
-								<span>{i18n.countryRow}</span>
-							</Button>
-						</span>
-					</Tooltip>
+					<RadioPill
+						label={i18n.anyRegion}
+						onClick={(): void => onUpdateSource('any')}
+						name={`${id}-source`}
+						checked={data.source === 'any'}
+						tooltip={i18n.anyDesc}
+						style={{ marginRight: 10 }}
+					/>
+					<RadioPill
+						label={i18n.countries}
+						onClick={(): void => onUpdateSource('countries')}
+						name={`${id}-source`}
+						checked={data.source === 'countries'}
+						tooltip={i18n.countriesDesc}
+						style={{ marginRight: 10 }}
+					/>
+					<RadioPill
+						label={i18n.countryRow}
+						onClick={(): void => onUpdateSource('row')}
+						name={`${id}-source`}
+						checked={data.source === 'row'}
+						tooltip={i18n.rowDesc}
+						disabled={!countryPluginRowsExist}
+					/>
 				</div>
 
 				{getCountryRow()}

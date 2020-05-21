@@ -190,16 +190,3 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
-
-
-// N.B this also fires on page load, ensuring that _currSelectedCountries is initialized
-// var _countryChange = function(msg) {
-// 	_currSelectedCountries = msg.countries;
-// 	var shownClassesSelectors = [];
-// 	for (var i=0; i<msg.countries.length; i++) {
-// 		shownClassesSelectors.push(".dtCountry_" + msg.countries[i]);
-// 	}
-// 	var shownClassesSelector = shownClassesSelectors.join(",");
-// 	$(".dtCountry").hide();
-// 	$(shownClassesSelector).show();
-// };

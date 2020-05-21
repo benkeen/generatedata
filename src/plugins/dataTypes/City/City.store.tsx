@@ -14,15 +14,15 @@ export const customProps: DTCustomProps = {
 };
 
 export const actionInterceptors = {
-	// when a Country plugin row is removed, clean up any region fields that may have been mapped to it
-	[REMOVE_ROW]: (countryRowId: string, rowState: CityState, actionPayload: any) => {
-		// if (actionPayload.id === rowState.targetRowId) {
-		// 	return {
-		// 		...rowState,
-		// 		source: 'auto',
-		// 		targetRowId: ''
-		// 	};
-		// }
+	// when a Region plugin row is removed, clean up any city fields that may have been mapped to it
+	[REMOVE_ROW]: (regionRowId: string, rowState: CityState, actionPayload: any) => {
+		if (actionPayload.id === rowState.targetRowId) {
+			return {
+				...rowState,
+				source: 'any',
+				targetRowId: ''
+			};
+		}
 		return null;
 	},
 
