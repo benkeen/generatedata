@@ -6,7 +6,7 @@ import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown'
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import { countryList } from '../../../_plugins';
 import styles from './Region.scss';
-import RadioPill from '../../../components/RadioPill';
+import RadioPill, { RadioPillRow } from '../../../components/radioPills/RadioPill';
 import { removeItem } from '../../../utils/arrayUtils';
 
 export type RegionSource = 'any' | 'countries' | 'row';
@@ -104,14 +104,13 @@ const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18
 
 				<h3>{i18n.source}</h3>
 
-				<div className={styles.sourceBlock}>
+				<RadioPillRow>
 					<RadioPill
 						label={i18n.anyRegion}
 						onClick={(): void => onUpdateSource('any')}
 						name={`${id}-source`}
 						checked={data.source === 'any'}
 						tooltip={i18n.anyDesc}
-						style={{ marginRight: 10 }}
 					/>
 					<RadioPill
 						label={i18n.countries}
@@ -119,7 +118,6 @@ const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18
 						name={`${id}-source`}
 						checked={data.source === 'countries'}
 						tooltip={i18n.countriesDesc}
-						style={{ marginRight: 10 }}
 					/>
 					<RadioPill
 						label={i18n.countryRow}
@@ -129,7 +127,7 @@ const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18
 						tooltip={i18n.rowDesc}
 						disabled={!countryPluginRowsExist}
 					/>
-				</div>
+				</RadioPillRow>
 
 				{getCountryRow()}
 				{getCountryPluginsList()}

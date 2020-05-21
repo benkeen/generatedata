@@ -1,6 +1,9 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { Tooltip } from './tooltips';
+import { Tooltip } from '../tooltips';
+import styles from './RadioPill.scss';
+
+export const RadioPillRow = ({ children }: any): JSX.Element => <div className={styles.row}>{children}</div>;
 
 type RadioPillProps = {
 	label: string;

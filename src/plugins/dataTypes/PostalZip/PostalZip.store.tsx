@@ -19,19 +19,13 @@ const getRegionRows = createSelector(
 	(rows) => rows.map((row, index) => ({ ...row, index })).filter(({ dataType }) => dataType === 'Region')
 );
 
-const getCityRows = createSelector(
-	getSortedRowsArray,
-	(rows) => rows.map((row, index) => ({ ...row, index })).filter(({ dataType }) => dataType === 'City')
-);
-
 export const customProps: DTCustomProps = {
 	countryRows: getCountryRows,
-	regionRows: getRegionRows,
-	cityRows: getCityRows
+	regionRows: getRegionRows
 };
 
 export const actionInterceptors = {
-	// when a Region plugin row is removed, clean up any city fields that may have been mapped to it
+	// when a Country/Region plugin row is removed, clean up any postal/zip fields that were mapped to it
 	[REMOVE_ROW]: (sourceRowId: string, rowState: PostalZipState, actionPayload: any) => {
 		// if (actionPayload.id === rowState.targetRowId) {
 		// 	return {

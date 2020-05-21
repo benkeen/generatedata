@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTOptionsProps } from '../../../../types/dataTypes';
 import { countryList } from '../../../_plugins';
-import RadioPill from '../../../components/RadioPill';
+import RadioPill, { RadioPillRow } from '../../../components/radioPills/RadioPill';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { Tooltip } from '../../../components/tooltips';
@@ -46,14 +46,13 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 
 				<h3>{i18n.source}</h3>
 
-				<div className={styles.sourceBlock}>
+				<RadioPillRow>
 					<RadioPill
 						label={`${i18n.countryPlugins} (${countryList.length})`}
 						onClick={(): void => onUpdateSource('plugins')}
 						name={`${id}-source`}
 						checked={data.source === 'plugins'}
 						tooltip={i18n.countryPluginsDesc}
-						style={{ marginRight: 10 }}
 					/>
 					<RadioPill
 						label={`${i18n.allCountries} (${fullCountryList.length})`}
@@ -62,7 +61,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 						checked={data.source === 'all'}
 						tooltip={i18n.countryPluginsDesc}
 					/>
-				</div>
+				</RadioPillRow>
 
 				<h3>{i18n.filter}</h3>
 				<p>

@@ -1,7 +1,6 @@
 declare namespace CityScssModule {
   export interface ICityScss {
     buttonLabel: string;
-    sourceBlock: string;
   }
 }
 

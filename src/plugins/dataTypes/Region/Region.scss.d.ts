@@ -1,7 +1,6 @@
 declare namespace RegionScssModule {
   export interface IRegionScss {
     buttonLabel: string;
-    sourceBlock: string;
   }
 }
 
