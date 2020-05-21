@@ -6,26 +6,28 @@ import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown'
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import { countryList } from '../../../_plugins';
 import styles from './Region.scss';
-import { CountryState } from '../Country/Country.ui';
 import RadioPill from '../../../components/RadioPill';
+import { removeItem } from '../../../utils/arrayUtils';
 
 export type RegionSource = 'any' | 'countries' | 'row';
+export type RegionFormat = 'full' | 'short';
 
 export type RegionState = {
 	source: RegionSource;
 	selectedCountries: DataTypeFolder[];
 	targetRowId: string;
+	formats: RegionFormat[];
 };
 
 export const initialState: RegionState = {
 	source: 'any',
 	selectedCountries: [],
-	targetRowId: ''
+	targetRowId: '',
+	formats: ['full']
 };
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
+const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
 	const countryPluginRows = countryRows
-		.filter(({ data: countryRowData }: { data: CountryState }) => countryRowData.source === 'plugins')
 		.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
 
 	const countryPluginRowsExist = countryPluginRows.length > 0;
@@ -138,15 +140,20 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 					<input
 						type="checkbox"
 						value="full"
+						id={`${id}-full`}
+						checked={data.formats.indexOf('full') !== -1}
+						onChange={(e): void => onSetFormats('full', e.target.checked)}
 					/>
-					<label htmlFor={`${id}-`}>Full</label>
+					<label htmlFor={`${id}-full`}>Full</label>
 					<input
 						type="checkbox"
-						value="full"
+						value="short"
+						id={`${id}-short`}
+						checked={data.formats.indexOf('short') !== -1}
+						onChange={(e): void => onSetFormats('short', e.target.checked)}
 					/>
-					<label htmlFor={`${id}-`}>Short</label>
+					<label htmlFor={`${id}-short`}>Short</label>
 				</p>
-
 			</DialogContent>
 			<DialogActions>
 				<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
@@ -158,6 +165,22 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, countryRows }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 	const numSelected = data.selectedCountries.length;
+
+	const onSetFormats = (field: RegionFormat, checked: boolean) => {
+		let formats = data.formats;
+		if (checked) {
+			formats.push(field);
+		} else {
+			formats = removeItem(formats, field);
+		}
+
+		console.log('new: ', formats);
+
+		onUpdate({
+			...data,
+			formats
+		});
+	};
 
 	let label = '';
 	if (data.source === 'any') {
@@ -188,6 +211,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 				i18n={i18n}
 				countryI18n={countryI18n}
 				onUpdate={onUpdate}
+				onSetFormats={onSetFormats}
 				onClose={(): void => setDialogVisibility(false)}
 			/>
 		</div>

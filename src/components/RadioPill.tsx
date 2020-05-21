@@ -14,12 +14,11 @@ type RadioPillProps = {
 
 const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: RadioPillProps) => {
 	const button = (
-		<Button onClick={onClick} size="small" color="primary" variant="outlined" style={style}>
+		<Button onClick={onClick} size="small" color="primary" variant="outlined" style={style} disabled={disabled}>
 			<input
 				type="radio"
 				name={name}
 				checked={checked}
-				disabled={disabled}
 				onChange={(): void => {}}
 			/>
 			<span>{label}</span>
@@ -32,7 +31,9 @@ const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: 
 				arrow
 				disableHoverListener={disabled}
 				disableFocusListener={disabled}>
-				{button}
+				<span>
+					{button}
+				</span>
 			</Tooltip>
 		);
 	}

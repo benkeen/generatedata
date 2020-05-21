@@ -7,6 +7,7 @@ import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown'
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
 import { countryList } from '../../../_plugins';
 import styles from './City.scss';
+import RadioPill from '../../../components/RadioPill';
 
 export type RegionSource = 'any' | 'countries' | 'row';
 
@@ -99,30 +100,22 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 				<h3>{i18n.source}</h3>
 
 				<div className={styles.sourceBlock}>
-
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.anyDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('any')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-							<input
-								type="radio"
-								name={`${id}-source`}
-								checked={data.source === 'any'}
-								onChange={(): void => {}}
-							/>
-							<span>{i18n.anyCity}</span>
-						</Button>
-					</Tooltip>
-
-					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.countriesDesc }} />} arrow>
-						<Button onClick={(): void => onUpdateSource('countries')} size="small" color="primary" variant="outlined" style={{ marginRight: 10 }}>
-							<input
-								type="radio"
-								name={`${id}-source`}
-								checked={data.source === 'countries'}
-								onChange={(): void => {}}
-							/>
-							<span>{i18n.countries}</span>
-						</Button>
-					</Tooltip>
+					<RadioPill
+						label={i18n.anyCity}
+						onClick={(): void => onUpdateSource('any')}
+						name={`${id}-source`}
+						checked={data.source === 'any'}
+						tooltip={i18n.anyDesc}
+						style={{ marginRight: 10 }}
+					/>
+					<RadioPill
+						label={i18n.countries}
+						onClick={(): void => onUpdateSource('countries')}
+						name={`${id}-source`}
+						checked={data.source === 'countries'}
+						tooltip={i18n.countriesDesc}
+						style={{ marginRight: 10 }}
+					/>
 
 					<Tooltip
 						arrow
@@ -196,4 +189,3 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<p>{i18n.DESC} <span dangerouslySetInnerHTML={{ __html: i18n.help_text }} /></p>
 );
-

@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { DTCustomProps } from '../../../../types/dataTypes';
 import { getSortedRowsArray } from '../../../core/generator/generator.selectors';
 import { CityState } from './City.ui';
-import { REMOVE_ROW, CONFIGURE_DATA_TYPE, SELECT_DATA_TYPE } from '../../../core/generator/generator.actions';
+import { REMOVE_ROW, SELECT_DATA_TYPE } from '../../../core/generator/generator.actions';
 
 const getRegionRows = createSelector(
 	getSortedRowsArray,
@@ -26,22 +26,16 @@ export const actionInterceptors = {
 		return null;
 	},
 
-	// check any mapped Country rows don't make changes to their config that invalidates the region mapping
-	[CONFIGURE_DATA_TYPE]: (countryRowId: string, rowState: CityState, actionPayload: any) => {
-		// if (actionPayload.id === rowState.targetRowId) {
-		// 	return null;
-		// }
-		return null;
-	},
-
-	// when a user changes a Country row to something else, update any region mapping
-	[SELECT_DATA_TYPE]: (countryRowId: string, rowState: CityState, actionPayload: any) => {
-		// if (actionPayload.id === rowState.targetRowId) {
-		// 	console.log('kk');
-		// 	return null;
-		// }
+	[SELECT_DATA_TYPE]: (regionRowId: string, rowState: CityState, actionPayload: any) => {
+		if (actionPayload.id === rowState.targetRowId) {
+			if (actionPayload.value !== 'Region') {
+				return {
+					...rowState,
+					source: 'any',
+					targetRowId: ''
+				};
+			}
+		}
 		return null;
 	}
 };
-
-

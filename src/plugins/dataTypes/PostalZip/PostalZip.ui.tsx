@@ -22,7 +22,7 @@ export const initialState: PostalZipState = {
 	targetRowId: ''
 };
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, regionRows }: any): JSX.Element => {
+const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpdate, countryRows, regionRows, cityRows }: any): JSX.Element => {
 	const regionPluginRows = regionRows
 		.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
 
@@ -139,7 +139,6 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 						</span>
 					</Tooltip>
 				</div>
-
 				{getRegionRow()}
 				{getCountryPluginsList()}
 			</DialogContent>
@@ -150,7 +149,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 	);
 };
 
-export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regionRows }: DTOptionsProps): JSX.Element => {
+export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, countryRows, regionRows, cityRows }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 	const numSelected = data.selectedCountries.length;
 
@@ -177,7 +176,9 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 			<Dialog
 				visible={dialogVisible}
 				data={data}
+				countryRows={countryRows}
 				regionRows={regionRows}
+				cityRows={cityRows}
 				id={id}
 				coreI18n={coreI18n}
 				i18n={i18n}

@@ -2,3 +2,15 @@ export const getUnique = <T>(arr: T[]): T[] => arr.filter((v, i, a) => a.indexOf
 
 // returns an empty array of a particular size
 export const getArrayOfSize = (size: number): any[] => [...Array(size)];
+
+export const removeItem = (arr: any[], value: number | string | boolean) => {
+	let i = 0;
+	while (i < arr.length) {
+		if (arr[i] === value) {
+			arr.splice(i, 1);
+		} else {
+			++i;
+		}
+	}
+	return arr;
+};
