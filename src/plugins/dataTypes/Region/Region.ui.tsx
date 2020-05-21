@@ -197,37 +197,3 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<p>{i18n.DESC} <span dangerouslySetInnerHTML={{ __html: i18n.help_text }} /></p>
 );
-
-
-// /**
-//  * This is called any time the country list changes - including on load. It ensures only the appropriate
-//  * regions are displayed.
-//  */
-// var _countryChange = function(msg) {
-// 	_currSelectedCountries = msg.countries;
-// 	var shownClassesSelectors = [];
-// 	for (var i=0; i<msg.countries.length; i++) {
-// 		shownClassesSelectors.push(".dtRegionCountry_" + msg.countries[i] + ",.dtIncludeRegion_" + msg.countries[i]);
-// 	}
-// 	var shownClassesSelector = shownClassesSelectors.join(",");
-// 	$(".dtRegionCountry").hide();
-// 	$(shownClassesSelector).show();
-//
-// 	if (msg.countries.length > 0) {
-// 		$(".dtRegionCountry_noCountries").hide();
-// 	} else {
-// 		$(".dtRegionCountry_noCountries").show();
-// 	}
-// };
-//
-// var _toggleCountryRegion = function(e) {
-// 	var el = e.target;
-// 	var parent = $(el).parent();
-// 	if (el.checked) {
-// 		parent.find("span input").removeAttr("disabled");
-// 		parent.find("span label").addClass("dtRegionSuboptionActive").removeClass("dtRegionSuboptionInactive");
-// 	} else {
-// 		$(el).parent().find("span input").attr("disabled", "disabled");
-// 		parent.find("span label").addClass("dtRegionSuboptionInactive").removeClass("dtRegionSuboptionActive");
-// 	}
-// };
