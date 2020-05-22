@@ -1,7 +1,6 @@
 declare namespace PostalZipScssModule {
   export interface IPostalZipScss {
     buttonLabel: string;
-    sourceBlock: string;
   }
 }
 
