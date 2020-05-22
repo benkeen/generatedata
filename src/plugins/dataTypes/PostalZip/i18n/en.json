@@ -12,5 +12,7 @@
   "countryRowDesc": "This lets you pinpoint a specific Country field in your data set that has Country Plugins as its source. It generates postal/post/zip codes that map to the value from that field.",
   "regionRow": "Region Row",
   "regionRowDesc": "This lets you pinpoint a specific Region field in your data set. It generates postal/post/zip codes that map to the value from that field.",
-  "country": "Country"
+  "country": "Country",
+  "row": "Row",
+  "anyPostalZipFrom": "Any postal/zip from"
 }

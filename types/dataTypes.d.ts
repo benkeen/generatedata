@@ -61,6 +61,20 @@ export type Dimensions = {
 	height: number;
 };
 
+// Data Type <Options /> props
+export type DTOptionsProps = {
+	coreI18n: any;
+	countryI18n: any;
+	i18n: any;
+	data: any;
+	id: string;
+	dimensions: Dimensions;
+	onUpdate: (data: AnyObject) => void;
+
+	// for custom props. See DTCustomProps
+	[propName: string]: any;
+};
+
 // Data Type <Example /> props
 export type DTExampleProps = {
     coreI18n: any;
@@ -70,20 +84,6 @@ export type DTExampleProps = {
 	id: string;
 	dimensions: Dimensions;
     onUpdate: (data: AnyObject) => void;
-};
-
-// Data Type <Options /> props
-export type DTOptionsProps = {
-    coreI18n: any;
-	countryI18n: any;
-    i18n: any;
-    data: any;
-	id: string;
-	dimensions: Dimensions;
-    onUpdate: (data: AnyObject) => void;
-
-    // for custom props. See DTCustomProps
-	[propName: string]: any;
 };
 
 // Data Type <Help /> props

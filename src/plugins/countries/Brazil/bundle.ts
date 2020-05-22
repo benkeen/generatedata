@@ -9,8 +9,8 @@ const data: GetCountryData = (i18n) => ({
 		zipFormat: {
 			format: "xxxxx-xxx",
 			replacements: {
-				"X": "123456789",
-				"x": "0123456789",
+				// "X": "123456789",
+				// "x": "0123456789",
 				"Y": "012345678",
 				"W": "01234567",
 				"V": "0123456",

@@ -14,11 +14,7 @@ const data: GetCountryData = (i18n) => ({
 	continent: "asia",
 	extendedData: {
 		zipFormat: {
-			format: "*%%%%",
-			replacements: {
-				"*": "123456789",
-				"%": "0123456789"
-			}
+			format: "Xxxxx"
 		},
 		phoneFormat: {
 			displayFormats: [

@@ -8,13 +8,13 @@ export type CountryDataType = {
 	regionNames: string;
 	continent: Continent;
 	regions: Region[];
-	extendedData?: ExtendedData;
+	extendedData: ExtendedData;
 };
 
 export type Continent = 'africa' | 'asia' | 'central_america' | 'europe' | 'oceania' | 'south_america' | 'north_america';
 
 export type ExtendedData = {
-	zipFormat?: {
+	zipFormat: {
 		format: string;
 		replacements?: any;
 	},

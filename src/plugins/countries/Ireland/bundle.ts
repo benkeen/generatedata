@@ -11,6 +11,11 @@ const data: GetCountryData = (i18n) => ({
 	countrySlug: 'ireland',
 	regionNames: i18n.regionNames,
 	continent: 'europe',
+	extendedData: {
+		zipFormat: {
+			format: 'Xxxx'
+		}
+	},
 	regions: [
 		{
 			regionName: 'Leinster',

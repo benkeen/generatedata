@@ -1,75 +1,113 @@
 import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+import { countryList, CountryType } from '../../../_plugins';
+import { getRandomArrayValue } from '../../../utils/randomUtils';
+import { loadCountryBundle } from '../../../utils/countryUtils';
+import { GetCountryData, Region } from '../../../../types/countries';
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
-	console.log(data);
-	
-	/*
-	$selectedCountrySlugs = $generationContextData["generationOptions"];
 
-	// track the country info (this finds the FIRST country field listed)
-	$rowCountryInfo = array();
-	while (list($key, $info) = each($generationContextData["existingRowData"])) {
-		if ($info["dataTypeFolder"] == "Country") {
-			$rowCountryInfo = $info;
-			break;
+export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
+	const { rowState, countryI18n } = data;
+	const { source, selectedCountries } = rowState;
+
+	return new Promise((resolve) => {
+		let country: CountryType;
+		let regionRow: any;
+		if (source === 'any') {
+			country = getRandomArrayValue(countryList as CountryType[]);
+		} else if (source === 'countryRow') {
+			// regionRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
+			// country = regionRow!.data.countryDataType;
+		} else if (source === 'regionRow') {
+			// regionRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
+			// country = regionRow!.data.countryDataType;
+		} else {
+			// const list = rowState.selectedCountries.length ? selectedCountries : countryList;
+			// country = getRandomArrayValue(list);
 		}
-	}
 
-	// if there was no country, see if there's a region
-	$rowRegionInfo = array();
-	if (empty($rowCountryInfo)) {
-		reset($generationContextData["existingRowData"]);
-		while (list($key, $info) = each($generationContextData["existingRowData"])) {
-			if ($info["dataTypeFolder"] == "Region") {
-				$rowRegionInfo = $info;
-				break;
-			}
-		}
-	}
+		// @ts-ignore-line
+		loadCountryBundle(country)
+			.then((getCountryData: GetCountryData) => {
+				const countryData = getCountryData(countryI18n[country]);
 
-	// if we have a region, get the short code to use with the convert() function
-	$regionCode = "";
+				let selectedRegion;
+				if (regionRow) {
+					selectedRegion = countryData.regions.find((i: Region) => i.regionName === regionRow!.data.display);
+				} else {
+					selectedRegion = getRandomArrayValue(countryData.regions);
+				}
+				resolve({
+					display: getRandomArrayValue(selectedRegion!.cities)
+				});
+			});
+	});
+};
+
+
+/*
+$selectedCountrySlugs = $generationContextData["generationOptions"];
+
+// track the country info (this finds the FIRST country field listed)
+$rowCountryInfo = array();
+while (list($key, $info) = each($generationContextData["existingRowData"])) {
+	if ($info["dataTypeFolder"] == "Country") {
+		$rowCountryInfo = $info;
+		break;
+	}
+}
+
+// if there was no country, see if there's a region
+$rowRegionInfo = array();
+if (empty($rowCountryInfo)) {
 	reset($generationContextData["existingRowData"]);
 	while (list($key, $info) = each($generationContextData["existingRowData"])) {
 		if ($info["dataTypeFolder"] == "Region") {
-			$regionCode = $info["randomData"]["region_slug"];
+			$rowRegionInfo = $info;
 			break;
 		}
 	}
+}
 
-	$randomZip = "";
+// if we have a region, get the short code to use with the convert() function
+$regionCode = "";
+reset($generationContextData["existingRowData"]);
+while (list($key, $info) = each($generationContextData["existingRowData"])) {
+	if ($info["dataTypeFolder"] == "Region") {
+		$regionCode = $info["randomData"]["region_slug"];
+		break;
+	}
+}
 
-	// if there's neither a country nor a region, get a random country and generate a random zip/postal code
-	// in that format
-	if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
-		if (empty($selectedCountrySlugs)) {
-			$randCountrySlug = array_rand($this->zipFormats);
-		} else {
-			$randCountrySlug = $selectedCountrySlugs[mt_rand(0, count($selectedCountrySlugs)-1)];
-		}
-		$randomZip = $this->convert($randCountrySlug, "");
+$randomZip = "";
+
+// if there's neither a country nor a region, get a random country and generate a random zip/postal code
+// in that format
+if (empty($rowCountryInfo) && empty($rowRegionInfo)) {
+	if (empty($selectedCountrySlugs)) {
+		$randCountrySlug = array_rand($this->zipFormats);
 	} else {
+		$randCountrySlug = $selectedCountrySlugs[mt_rand(0, count($selectedCountrySlugs)-1)];
+	}
+	$randomZip = $this->convert($randCountrySlug, "");
+} else {
 
-		$countrySlug = "";
-		if (!empty($rowCountryInfo) && is_array($rowCountryInfo["randomData"]) && array_key_exists("slug", $rowCountryInfo["randomData"])) {
-			$countrySlug = $rowCountryInfo["randomData"]["slug"];
-		} else {
-			if (isset($rowRegionInfo["randomData"]) && is_array($rowRegionInfo["randomData"]) && array_key_exists("country_slug", $rowRegionInfo["randomData"])) {
-				$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
-			}
-		}
-
-		if (!empty($countrySlug) && in_array($countrySlug, $selectedCountrySlugs)) {
-			$randomZip = $this->convert($countrySlug, $regionCode);
-		} else {
-			$randCountrySlug = array_rand($this->zipFormats);
-			$randomZip = $this->convert($randCountrySlug, $regionCode);
+	$countrySlug = "";
+	if (!empty($rowCountryInfo) && is_array($rowCountryInfo["randomData"]) && array_key_exists("slug", $rowCountryInfo["randomData"])) {
+		$countrySlug = $rowCountryInfo["randomData"]["slug"];
+	} else {
+		if (isset($rowRegionInfo["randomData"]) && is_array($rowRegionInfo["randomData"]) && array_key_exists("country_slug", $rowRegionInfo["randomData"])) {
+			$countrySlug = $rowRegionInfo["randomData"]["country_slug"];
 		}
 	}
-	*/
 
-	return { display: '' }; // $randomZip
-};
+	if (!empty($countrySlug) && in_array($countrySlug, $selectedCountrySlugs)) {
+		$randomZip = $this->convert($countrySlug, $regionCode);
+	} else {
+		$randCountrySlug = array_rand($this->zipFormats);
+		$randomZip = $this->convert($randCountrySlug, $regionCode);
+	}
+}
+*/
 
 
 /*

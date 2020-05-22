@@ -9,8 +9,7 @@ const data: GetCountryData = (i18n) => ({
 		zipFormat: {
 			format: 'Xxxxx',
 			replacements: {
-				'X': '012',
-				'x': '0123456789'
+				'X': '012'
 			}
 		},
 		phoneFormat: {

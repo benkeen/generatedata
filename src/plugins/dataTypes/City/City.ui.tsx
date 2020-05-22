@@ -8,7 +8,7 @@ import { countryList } from '../../../_plugins';
 import styles from './City.scss';
 import RadioPill, { RadioPillRow } from '../../../components/radioPills/RadioPill';
 
-export type RegionSource = 'any' | 'countries' | 'row';
+export type RegionSource = 'any' | 'countries' | 'regionRow';
 
 export type CityState = {
 	source: RegionSource;
@@ -33,7 +33,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 			...data,
 			source
 		};
-		if (source === 'row') {
+		if (source === 'regionRow') {
 			newValues.targetRowId = regionPluginRows[0].value;
 		}
 		onUpdate(newValues);
@@ -54,7 +54,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 	};
 
 	const getRegionRow = () => {
-		if (data.source !== 'row') {
+		if (data.source !== 'regionRow') {
 			return null;
 		}
 
@@ -115,9 +115,9 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 					/>
 					<RadioPill
 						label={i18n.regionRow}
-						onClick={(): void => onUpdateSource('row')}
+						onClick={(): void => onUpdateSource('regionRow')}
 						name={`${id}-source`}
-						checked={data.source === 'countries'}
+						checked={data.source === 'regionRow'}
 						tooltip={i18n.rowDesc}
 						disabled={!regionPluginRowsExist}
 					/>
@@ -142,7 +142,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 		label = i18n.anyCity;
 	} else if (data.source === 'countries') {
 		label = `Any city from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
-	} else if (data.source === 'row') {
+	} else if (data.source === 'regionRow') {
 		const row = regionRows.find((row: any) => row.id === data.targetRowId);
 		const rowNum = row.index + 1;
 		label = `${i18n.regionRow} #${rowNum}`;

@@ -9,7 +9,7 @@ import { REMOVE_ROW, CONFIGURE_DATA_TYPE, SELECT_DATA_TYPE } from '../../../core
 const getCountryRows = createSelector(
 	getSortedRowsArray,
 	(rows) => rows.map((row, index) => ({ ...row, index })).filter(({ dataType, data }) => (
-		data.source === 'plugins' && dataType === 'Country'
+		dataType === 'Country' && data.source === 'plugins'
 	))
 );
 

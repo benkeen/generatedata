@@ -70,7 +70,17 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 	};
 
 	const getCountryPluginDropdown = () => {
-		return null;
+		if (data.source !== 'countryRow') {
+			return null;
+		}
+
+		return (
+			<Dropdown
+				value={data.targetRowId}
+				onChange={onChangeTargetRow}
+				options={countryPluginRows}
+			/>
+		);
 	};
 
 	const getCountriesDropdown = () => {
@@ -155,9 +165,13 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 	if (data.source === 'any') {
 		label = i18n.anyFormat;
 	} else if (data.source === 'countries') {
-		label = `Any postal/zip from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
+		label = `${i18n.anyPostalZipFrom} <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
 	} else if (data.source === 'countryRow') {
 		const row = countryRows.find((row: any) => row.id === data.targetRowId);
+		const rowNum = row.index + 1;
+		label = `${i18n.countryRow} #${rowNum}`;
+	} else if (data.source === 'regionRow') {
+		const row = regionRows.find((row: any) => row.id === data.targetRowId);
 		const rowNum = row.index + 1;
 		label = `${i18n.regionRow} #${rowNum}`;
 	}

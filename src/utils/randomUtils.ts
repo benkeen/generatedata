@@ -30,6 +30,22 @@ export const getRandomCharInString = (str: string): string => {
 	return str[index];
 };
 
+// TODO
+export const stringPlaceholders = {
+	X: '123456789',
+	x: '0123456789',
+	L: letters,
+	l: lowercaseLetters,
+	D: letters + lowercaseLetters,
+	C: consonants,
+	c: lowercaseConsonants,
+	E: consonants + lowercaseConsonants,
+	V: vowels,
+	v: lowercaseVowels,
+	F: vowels + lowercaseVowels,
+	h: hex,
+};
+
 /**
  * Converts the following characters in the parameter string and returns the random string.
  *     C, c, E - any consonant (Upper case, lower case, any)
@@ -38,6 +54,8 @@ export const getRandomCharInString = (str: string): string => {
  *     X       - 1-9
  *     x       - 0-9
  *     H       - 0-F
+ *
+ * *** Note: don't change these placeholders.
  */
 export const generateRandomAlphanumericStr = (str: string): string => {
 	if (!str) {
@@ -47,6 +65,7 @@ export const generateRandomAlphanumericStr = (str: string): string => {
 	// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9
 	let newStr = '';
 	for (let i = 0, j = str.length; i < j; i++) {
+
 		switch (str[i]) {
 			// Numbers
 			case 'X': newStr += getRandomNum(1, 9); break;
