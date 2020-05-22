@@ -30,7 +30,7 @@ describe('getRandomNum', () => {
             expect(expected.indexOf(randomUtils.getRandomNum(-2, 2)) !== -1).toBeTruthy();
         }
 	});
-	
+
     it('generates numbers when number range entirely negative', () => {
         const expected = [-4, -3, -2, -1];
         for (let i=0; i<50; i++) {
@@ -98,7 +98,7 @@ describe('generateRandomAlphanumericStr', () => {
 
 			// C = uppercase consonant
 			expect(randomUtils.consonants.indexOf(generated[0]) !== -1).toBeTruthy();
-			
+
 			// c = lowercase consonant
 			expect(randomUtils.lowercaseConsonants.indexOf(generated[1]) !== -1).toBeTruthy();
 

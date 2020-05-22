@@ -169,7 +169,7 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: "moscow-city",
 			weight: 11,
 			cities: [
-				"Mosocw"
+				"Moscow"
 			],
 			extendedData: {
 				zipFormat: {

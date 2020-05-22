@@ -1,8 +1,8 @@
 import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
 import { countryList, CountryType } from '../../../_plugins';
-import { getRandomArrayValue } from '../../../utils/randomUtils';
+import { getRandomArrayValue, generatePlaceholderStr } from '../../../utils/randomUtils';
 import { loadCountryBundle } from '../../../utils/countryUtils';
-import { GetCountryData, Region } from '../../../../types/countries';
+import { CountryDataType, GetCountryData, Region } from '../../../../types/countries';
 
 
 export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
@@ -30,18 +30,45 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 			.then((getCountryData: GetCountryData) => {
 				const countryData = getCountryData(countryI18n[country]);
 
-				let selectedRegion;
+				let selectedRegion: Region;
 				if (regionRow) {
-					selectedRegion = countryData.regions.find((i: Region) => i.regionName === regionRow!.data.display);
+					selectedRegion = countryData.regions.find((i: Region) => i.regionName === regionRow!.data.display) as Region;
 				} else {
 					selectedRegion = getRandomArrayValue(countryData.regions);
 				}
+
 				resolve({
-					display: getRandomArrayValue(selectedRegion!.cities)
+					display: getRegionPostalCode(countryData, selectedRegion)
 				});
 			});
 	});
 };
+
+
+const getRegionPostalCode = (countryData: CountryDataType, region: Region): string => {
+	let placeholders: any = {};
+	let format: string = countryData.extendedData.zipFormat.format;
+
+	if (countryData.extendedData.zipFormat.replacements) {
+		placeholders = countryData.extendedData.zipFormat.replacements;
+	}
+
+	if (region.extendedData) {
+		if (region.extendedData.zipFormat) {
+			if (region.extendedData.zipFormat.format) {
+				format = region.extendedData.zipFormat.format;
+			}
+			if (region.extendedData.zipFormat.replacements) {
+				placeholders = {
+					...placeholders,
+					...region.extendedData.zipFormat.replacements
+				};
+			}
+		}
+	}
+	return generatePlaceholderStr(format, placeholders);
+};
+
 
 
 /*

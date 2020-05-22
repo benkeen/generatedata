@@ -6,10 +6,10 @@ export const vowels = 'AEIOU';
 export const lowercaseVowels = vowels.toLowerCase();
 export const hex = '0123456789ABCDEF';
 
-const lettersLen = letters.length;
-const consonantsLen = consonants.length;
-const vowelsLen = vowels.length;
-const hexLen = hex.length;
+// const lettersLen = letters.length;
+// const consonantsLen = consonants.length;
+// const vowelsLen = vowels.length;
+// const hexLen = hex.length;
 
 // TODO should accommodate negative numbers
 export const getRandomNum = (min: number, max: number): number => {
@@ -30,8 +30,7 @@ export const getRandomCharInString = (str: string): string => {
 	return str[index];
 };
 
-// TODO
-export const stringPlaceholders = {
+export const defaultPlaceholders = {
 	X: '123456789',
 	x: '0123456789',
 	L: letters,
@@ -43,7 +42,7 @@ export const stringPlaceholders = {
 	V: vowels,
 	v: lowercaseVowels,
 	F: vowels + lowercaseVowels,
-	h: hex,
+	H: hex
 };
 
 /**
@@ -57,63 +56,18 @@ export const stringPlaceholders = {
  *
  * *** Note: don't change these placeholders.
  */
-export const generateRandomAlphanumericStr = (str: string): string => {
+export const generateRandomAlphanumericStr = (str: string, placeholders: any = defaultPlaceholders): string => {
 	if (!str) {
 		return '';
 	}
-
-	// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9
 	let newStr = '';
 	for (let i = 0, j = str.length; i < j; i++) {
-
-		switch (str[i]) {
-			// Numbers
-			case 'X': newStr += getRandomNum(1, 9); break;
-			case 'x': newStr += getRandomNum(0, 9); break;
-
-			// Letters
-			case 'L': newStr += letters[getRandomNum(0, lettersLen - 1)]; break;
-			case 'l': newStr += lowercaseLetters[getRandomNum(0, lettersLen - 1)]; break;
-			case 'D':
-				if (getRandomBool()) {
-					newStr += letters[getRandomNum(0, lettersLen - 1)];
-				} else {
-					newStr += lowercaseLetters[getRandomNum(0, lettersLen - 1)];
-				}
-				break;
-
-			// Consonants
-			case 'C': newStr += consonants[getRandomNum(0, consonantsLen - 1)]; break;
-			case 'c': newStr += lowercaseConsonants[getRandomNum(0, consonantsLen - 1)]; break;
-			case 'E':
-				if (getRandomBool()) {
-					newStr += consonants[getRandomNum(0, consonantsLen - 1)];
-				} else {
-					newStr += lowercaseConsonants[getRandomNum(0, consonantsLen - 1)];
-				}
-				break;
-
-			// Vowels
-			case 'V': newStr += vowels[getRandomNum(0, vowelsLen - 1)]; break;
-			case 'v': newStr += lowercaseVowels[getRandomNum(0, vowelsLen - 1)]; break;
-			case 'F':
-				if (getRandomBool()) {
-					newStr += vowels[getRandomNum(0, vowelsLen - 1)];
-				} else {
-					newStr += lowercaseVowels[getRandomNum(0, vowelsLen - 1)];
-				}
-				break;
-
-			case 'H':
-				newStr += hex[getRandomNum(0, hexLen - 1)];
-				break;
-
-			default:
-				newStr += str[i];
-				break;
+		if (placeholders.hasOwnProperty(str[i])) {
+			newStr += placeholders[str[i]][getRandomNum(0, placeholders[str[i]].length-1)];
+		} else {
+			newStr += str[i];
 		}
 	}
-
 	return newStr.trim();
 };
 
@@ -183,3 +137,11 @@ public static function generateRandomNumStr($str) {
 	return trim($new_str);
 }
 */
+
+export const generatePlaceholderStr = (str: string, customPlaceholders: any) => {
+	const placeholders = {
+		...defaultPlaceholders,
+		...customPlaceholders
+	};
+	return generateRandomAlphanumericStr(str, placeholders);
+};
