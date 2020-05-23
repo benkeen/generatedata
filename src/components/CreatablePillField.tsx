@@ -10,7 +10,9 @@ const selectStyles = {
 	control: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
 		boxShadow: 'none',
-		minHeight: 30
+		minHeight: 30,
+		maxHeight: 100,
+		overflow: 'scroll'
 	}),
 	dropdownIndicator: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
@@ -27,10 +29,18 @@ const selectStyles = {
 		...base,
 		padding: '0px 2px'
 	}),
+	container: (base: React.CSSProperties): React.CSSProperties => ({
+		...base,
+
+	}),
 	input: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
 		margin: 0,
 		padding: 0
+	}),
+	indicatorsContainer: (base: React.CSSProperties): React.CSSProperties => ({
+		...base,
+		alignItems: 'flex-start'
 	})
 };
 
@@ -41,14 +51,9 @@ export const createOption = (label: string): DropdownOption => ({
 
 const CreatablePillField = ({ onChange, value }: any) => {
 	const [tempValue, setTempValue] = React.useState('');
+	const options = value.map(createOption);
 
-	const handleChange = (newValue: any): void => {
-		onChange(newValue);
-	};
-
-	const handleInputChange = (newTempValue: string): void => {
-		setTempValue(newTempValue);
-	};
+	const handleInputChange = (newTempValue: string): void => setTempValue(newTempValue);
 
 	const handleKeyDown = (e: any): void => {
 		if (!tempValue) {
@@ -59,7 +64,7 @@ const CreatablePillField = ({ onChange, value }: any) => {
 			case 'Tab':
 				onChange({
 					inputValue: '',
-					value: [...value, createOption(tempValue)],
+					value: [...value, tempValue],
 				});
 				e.preventDefault();
 		}
@@ -77,7 +82,7 @@ const CreatablePillField = ({ onChange, value }: any) => {
 			onInputChange={handleInputChange}
 			onKeyDown={handleKeyDown}
 			placeholder="Type something and press enter..."
-			value={value}
+			value={options}
 			menuPlacement="auto"
 			menuPortalTarget={document.body}
 		/>

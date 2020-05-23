@@ -8,15 +8,14 @@ export const rowStateReducer = ({ example, listType, exactly, atMost, values }: 
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { listType, values, exactly, atMost } = data.rowState;
-	const allElements = values.split('|');
 
 	let val = '';
-	if (listType === 'EXACTLY') {
-		val = getRandomSubset(allElements, exactly).join(', ');
+	if (listType === 'exactly') {
+		val = getRandomSubset(values, exactly).join(', ');
 	} else {
 		// at MOST. So randomly calculate a number up to the num specified
 		const numItems = getRandomNum(0, atMost);
-		val = getRandomSubset(allElements, numItems).join(', ');
+		val = getRandomSubset(values, numItems).join(', ');
 	}
 	return { display: val };
 };

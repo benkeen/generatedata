@@ -27,7 +27,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 		onUpdate({
 			...data,
 			example: example,
-			values: example.split('|').map(createOption)
+			values: example.split('|')
 		});
 	};
 
@@ -123,25 +123,17 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 			</div>
 			<div>
 				<CreatablePillField
-					value={[
-						{ label: 'One', value: 'One' }
-					]}
-					onChange={(blah: any) => {
-						console.log('new: ', blah);
+					value={data.values}
+					onChange={(rows: any) => {
+						onUpdate({
+							...data,
+							values: rows.map(({ value }: DropdownOption) => value)
+						});
 					}}
 				/>
 			</div>
 		</>
 	);
-
-	/*
-		<input
-			type="text"
-			value={data.values}
-			onChange={(e): void => onChange('values', e.target.value)}
-			style={{ width: '100%' }}
-		/>
-	*/
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.help }} />;
