@@ -13,10 +13,10 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	if (listType === 'exactly') {
 		val = getRandomSubset(values, exactly).join(', ');
 	} else {
-		// at MOST. So randomly calculate a number up to the num specified
 		const numItems = getRandomNum(0, atMost);
 		val = getRandomSubset(values, numItems).join(', ');
 	}
+
 	return { display: val };
 };
 

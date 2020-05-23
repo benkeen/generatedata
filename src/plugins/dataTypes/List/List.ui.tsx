@@ -3,7 +3,6 @@ import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/d
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import CreatablePillField from '../../../components/CreatablePillField';
 
-
 export type ListType = 'exactly' | 'atMost';
 
 export type ListState = {
@@ -11,7 +10,7 @@ export type ListState = {
 	listType: ListType;
 	exactly: number;
 	atMost: number;
-	values: DropdownOption[];
+	values: string[];
 };
 
 export const initialState: ListState = {

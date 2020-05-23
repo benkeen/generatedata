@@ -1,22 +1,23 @@
 import * as React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import CreatablePillField from '../../../components/CreatablePillField';
 
 export type PhoneState = {
 	example: string;
-	option: string;
+	option: string[];
 };
 
 export const initialState: PhoneState = {
 	example: '1-Xxx-Xxx-xxxx',
-	option: '1-Xxx-Xxx-xxxx'
+	option: ['1-Xxx-Xxx-xxxx']
 };
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,
-			option: value
+			option: value.split('|')
 		});
 	};
 
@@ -40,14 +41,14 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
-	<input
-		type="text"
-		value={data.option}
-		onChange={(e): void => onUpdate({ ...initialState, option: e.target.value })}
-		style={{ width: '100%' }}
-	/>
-);
+export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => {
+	return (
+		<CreatablePillField
+			value={data.option}
+			onChange={(values: any) => onUpdate({...data, option: values})}
+		/>
+	);
+};
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
