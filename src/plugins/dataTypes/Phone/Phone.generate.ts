@@ -2,16 +2,11 @@ import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../type
 import { generateRandomAlphanumericStr, getRandomArrayValue } from '../../../utils/randomUtils';
 import { PhoneState } from './Phone.ui';
 
-export const rowStateReducer = (state: PhoneState): string => state.option;
+export const rowStateReducer = (state: PhoneState): string[] => state.option;
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const phoneStr = generateRandomAlphanumericStr(data.rowState);
-	const formats = phoneStr.split('|');
-	let chosenFormat = formats[0];
-	if (formats.length > 1) {
-		chosenFormat = getRandomArrayValue(formats);
-	}
-	return { display: chosenFormat };
+	const item: any = getRandomArrayValue(data.rowState);
+	return { display: generateRandomAlphanumericStr(item) };
 };
 
 export const getMetadata = (): DTMetadata => ({
