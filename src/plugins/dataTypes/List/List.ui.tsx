@@ -1,24 +1,25 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
-import Dropdown from '../../../components/dropdown/Dropdown';
-import CreatableDropdown from '../../../components/dropdown/CreatableDropdown';
+import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
+import CreatablePillField, { createOption } from '../../../components/CreatablePillField';
 
-export type ListType = 'EXACTLY' | 'AT_MOST';
+
+export type ListType = 'exactly' | 'atMost';
 
 export type ListState = {
 	example: string;
 	listType: ListType;
-	exactly: string;
-	atMost: string;
-	values: string;
+	exactly: number;
+	atMost: number;
+	values: DropdownOption[];
 };
 
 export const initialState: ListState = {
 	example: '',
-	listType: 'EXACTLY',
-	exactly: '',
-	atMost: '',
-	values: ''
+	listType: 'exactly',
+	exactly: 1,
+	atMost: 1,
+	values: []
 };
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {
@@ -26,7 +27,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 		onUpdate({
 			...data,
 			example: example,
-			values: example
+			values: example.split('|').map(createOption)
 		});
 	};
 
@@ -56,15 +57,18 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 };
 
 export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Element => {
+	const exactlyField = React.useRef<any>();
+	const atMostField = React.useRef<any>();
+
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
 			[field]: value
 		});
 
-		if (field === 'EXACTLY') {
+		if (field === 'exactly') {
 
-		} else if (field === 'AT_MOST') {
+		} else if (field === 'atMost') {
 
 		}
 	};
@@ -75,38 +79,57 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 				<input
 					type="radio"
 					id={`listType1-${id}`}
-					value="EXACTLY"
-					checked={data.listType === 'EXACTLY'}
-					onChange={(): void => onChange('listType', 'EXACTLY')}
+					value="exactly"
+					checked={data.listType === 'exactly'}
+					onChange={(): void => {
+						onChange('listType', 'exactly');
+						exactlyField.current.focus();
+					}}
 				/>
 				<label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
 				<input
-					type="text"
-					size={2}
+					ref={exactlyField}
+					type="number"
 					id={`dtListExactly_${id}`}
 					value={data.exactly}
-					style={{ margin: '0 6px 0 4px' }}
-					onChange={(e): void => onChange('exactly', e.target.value)}
+					style={{ margin: '0 6px 0 4px', width: 50 }}
+					onChange={(e): void => {
+						onChange('exactly', e.target.value);
+						onChange('listType', 'exactly');
+					}}
 				/>
 				<input
 					type="radio"
 					id={`listType2-${id}`}
-					value="AT_MOST"
-					checked={data.listType === 'AT_MOST'}
-					onChange={(): void => onChange('listType', 'AT_MOST')}
+					value="atMost"
+					checked={data.listType === 'atMost'}
+					onChange={(): void => {
+						onChange('listType', 'atMost');
+						atMostField.current.focus();
+					}}
 				/>
 				<label htmlFor={`listType2-${id}`}>{i18n.atMost}</label>
 				<input
-					type="text"
-					size={2}
+					ref={atMostField}
+					type="number"
 					id={`dtListAtMost_${id}`}
 					value={data.atMost}
-					style={{ margin: '0 6px 0 4px' }}
-					onChange={(e): void => onChange('atMost', e.target.value)}
+					style={{ margin: '0 6px 0 4px', width: 50 }}
+					onChange={(e): void => {
+						onChange('atMost', e.target.value);
+						onChange('listType', 'atMost');
+					}}
 				/>
 			</div>
 			<div>
-				<CreatableDropdown />
+				<CreatablePillField
+					value={[
+						{ label: 'One', value: 'One' }
+					]}
+					onChange={(blah: any) => {
+						console.log('new: ', blah);
+					}}
+				/>
 			</div>
 		</>
 	);

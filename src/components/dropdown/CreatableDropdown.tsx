@@ -67,6 +67,7 @@ const createOption = (label: string): DropdownOption => ({
 	value: label,
 });
 
+
 export default class CreatableInputOnly extends React.Component<any, any> {
 	state = {
 		inputValue: '',
@@ -82,6 +83,9 @@ export default class CreatableInputOnly extends React.Component<any, any> {
 	};
 
 	handleInputChange = (inputValue: string): void => {
+
+		console.log(inputValue);
+
 		this.setState({ inputValue });
 	};
 
@@ -90,11 +94,9 @@ export default class CreatableInputOnly extends React.Component<any, any> {
 		if (!inputValue) {
 			return;
 		}
-
 		switch (event.key) {
 			case 'Enter':
 			case 'Tab':
-				// console.log([...value, createOption(inputValue)]);
 				this.setState({
 					inputValue: '',
 					value: [...value, createOption(inputValue)],
