@@ -62,10 +62,8 @@ const CreatablePillField = ({ onChange, value }: any) => {
 		switch (e.key) {
 			case 'Enter':
 			case 'Tab':
-				onChange({
-					inputValue: '',
-					value: [...value, tempValue],
-				});
+				setTempValue('');
+				onChange([...value, tempValue]);
 				e.preventDefault();
 		}
 	};
@@ -78,10 +76,13 @@ const CreatablePillField = ({ onChange, value }: any) => {
 			isClearable
 			isMulti
 			menuIsOpen={false}
-			onChange={(newValue) => onChange(newValue)}
+			onChange={(options) => {
+				const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
+				onChange(newValues);
+			}}
 			onInputChange={handleInputChange}
 			onKeyDown={handleKeyDown}
-			placeholder="Type something and press enter..."
+			placeholder="Press enter to create item"
 			value={options}
 			menuPlacement="auto"
 			menuPortalTarget={document.body}
@@ -90,25 +91,3 @@ const CreatablePillField = ({ onChange, value }: any) => {
 };
 
 export default CreatablePillField;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

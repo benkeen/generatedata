@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
-import CreatablePillField, { createOption } from '../../../components/CreatablePillField';
+import CreatablePillField from '../../../components/CreatablePillField';
 
 
 export type ListType = 'exactly' | 'atMost';
@@ -60,17 +60,11 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 	const exactlyField = React.useRef<any>();
 	const atMostField = React.useRef<any>();
 
-	const onChange = (field: string, value: string): void => {
+	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
 			[field]: value
 		});
-
-		if (field === 'exactly') {
-
-		} else if (field === 'atMost') {
-
-		}
 	};
 
 	return (
@@ -90,12 +84,16 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 				<input
 					ref={exactlyField}
 					type="number"
+					min={1}
 					id={`dtListExactly_${id}`}
 					value={data.exactly}
-					style={{ margin: '0 6px 0 4px', width: 50 }}
+					style={{ margin: '0 6px 0 4px', width: 40 }}
 					onChange={(e): void => {
-						onChange('exactly', e.target.value);
-						onChange('listType', 'exactly');
+						onUpdate({
+							...data,
+							exactly: parseInt(e.target.value, 10),
+							listType: 'exactly'
+						});
 					}}
 				/>
 				<input
@@ -112,24 +110,23 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 				<input
 					ref={atMostField}
 					type="number"
+					min={1}
 					id={`dtListAtMost_${id}`}
 					value={data.atMost}
-					style={{ margin: '0 6px 0 4px', width: 50 }}
+					style={{ margin: '0 6px 0 4px', width: 40 }}
 					onChange={(e): void => {
-						onChange('atMost', e.target.value);
-						onChange('listType', 'atMost');
+						onUpdate({
+							...data,
+							atMost: parseInt(e.target.value, 10),
+							listType: 'atMost'
+						});
 					}}
 				/>
 			</div>
 			<div>
 				<CreatablePillField
 					value={data.values}
-					onChange={(rows: any) => {
-						onUpdate({
-							...data,
-							values: rows.map(({ value }: DropdownOption) => value)
-						});
-					}}
+					onChange={(values: any) => onUpdate({ ...data, values })}
 				/>
 			</div>
 		</>
@@ -137,50 +134,3 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.help }} />;
-
-// var _validate = function(rows) {
-// 	var missingOptions = {
-// 		fields: [],
-// 		visibleProblemRows: []
-// 	};
-// 	var invalidIntFields = {
-// 		fields: [],
-// 		visibleProblemRows: []
-// 	};
-//
-// 	var intOnly = /^\d+$/;
-// 	for (var i=0; i<rows.length; i++) {
-// 		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-//
-// 		// check the At Most and Exactly fields
-// 		var exactlyField = $("#dtListExactly_" + rows[i]);
-// 		var exactlyFieldValid = intOnly.test(exactlyField.val());
-// 		var atMostField = $("#dtListExactly_" + rows[i]);
-// 		var atMostFieldValid  = intOnly.test(atMostField.val());
-//
-// 		if (!exactlyFieldValid || !atMostFieldValid) {
-// 			if (!exactlyFieldValid) {
-// 				invalidIntFields.fields.push(exactlyField);
-// 			}
-// 			if (!atMostFieldValid) {
-// 				invalidIntFields.fields.push(atMostField);
-// 			}
-// 			invalidIntFields.visibleProblemRows.push(visibleRowNum);
-// 		}
-//
-// 		// check the option is filled in
-// 		var option = $.trim($("#dtOption_" + rows[i]).val());
-// 		if (option === "") {
-// 			missingOptions.visibleProblemRows.push(visibleRowNum);
-// 			missingOptions.fields.push($("#dtOption_" + rows[i]));
-// 		}
-// 	}
-// 	var errors = [];
-// 	if (missingOptions.visibleProblemRows.length) {
-// 		errors.push({ els: missingOptions.fields, error: LANG.incomplete_fields + " <b>" + missingOptions.visibleProblemRows.join(", ") + "</b>"});
-// 	}
-// 	if (invalidIntFields.visibleProblemRows.length) {
-// 		errors.push({ els: invalidIntFields.fields, error: LANG.invalid_int_fields + " <b>" + invalidIntFields.visibleProblemRows.join(", ") + "</b>"});
-// 	}
-// 	return errors;
-// };
