@@ -36,7 +36,7 @@ export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): 
 	return (dispatch: any): any => loadDataTypeBundle(dispatch, dataType, gridRowId);
 };
 
-export const loadDataTypeBundle = (dispatch: Dispatch, dataType: DataTypeFolder, gridRowId?: string) => {
+export const loadDataTypeBundle = (dispatch: Dispatch, dataType: DataTypeFolder, gridRowId?: string): void => {
 	requestDataTypeBundle(dataType)
 		.then((bundle: DTBundle) => {
 			dispatch(dataTypeLoaded(dataType));
@@ -60,7 +60,7 @@ export const loadDataTypeBundle = (dispatch: Dispatch, dataType: DataTypeFolder,
 };
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
-export const onConfigureDataType = (id: string, data: any, triggeredByInterceptor: boolean = false): any => {
+export const onConfigureDataType = (id: string, data: any, triggeredByInterceptor = false): any => {
 	return (dispatch: any): any => {
 		const configureDataType = (disp: any): any => new Promise((resolve: any) => {
 			disp({
@@ -204,7 +204,7 @@ export const selectLocale = (locale: GDLocale) => {
 };
 
 export const EXPORT_TYPE_LOADED = 'EXPORT_TYPE_LOADED';
-export const exportTypeLoaded = (exportType: ExportTypeFolder, initialState: any): any => ({
+export const exportTypeLoaded = (exportType: ExportTypeFolder, initialState: any): GDAction => ({
 	type: EXPORT_TYPE_LOADED,
 	payload: {
 		exportType,
@@ -213,7 +213,7 @@ export const exportTypeLoaded = (exportType: ExportTypeFolder, initialState: any
 });
 
 export const DATA_TYPE_LOADED = 'DATA_TYPE_LOADED';
-export const dataTypeLoaded = (dataType: DataTypeFolder): any => ({
+export const dataTypeLoaded = (dataType: DataTypeFolder): GDAction => ({
 	type: DATA_TYPE_LOADED,
 	payload: {
 		dataType
@@ -221,13 +221,13 @@ export const dataTypeLoaded = (dataType: DataTypeFolder): any => ({
 });
 
 export const SHOW_GENERATION_PANEL = 'SHOW_GENERATION_PANEL';
-export const showGenerationPanel = () => ({ type: SHOW_GENERATION_PANEL });
+export const showGenerationPanel = (): GDAction => ({ type: SHOW_GENERATION_PANEL });
 
 export const HIDE_GENERATION_PANEL = 'HIDE_GENERATION_PANEL';
-export const hideGenerationPanel = () => ({ type: HIDE_GENERATION_PANEL });
+export const hideGenerationPanel = (): GDAction => ({ type: HIDE_GENERATION_PANEL });
 
 export const UPDATE_NUM_GENERATION_ROWS = 'UPDATE_NUM_GENERATION_ROWS';
-export const updateNumGenerationRows = (numGenerationRows: number) => ({
+export const updateNumGenerationRows = (numGenerationRows: number): GDAction => ({
 	type: UPDATE_NUM_GENERATION_ROWS,
 	payload: {
 		numGenerationRows
@@ -235,7 +235,7 @@ export const updateNumGenerationRows = (numGenerationRows: number) => ({
 });
 
 export const TOGGLE_STRIP_WHITESPACE = 'TOGGLE_STRIP_WHITESPACE';
-export const toggleStripWhitespace = () => ({ type: TOGGLE_STRIP_WHITESPACE });
+export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITESPACE });
 
 export const GENERATE_DATA = 'GENERATE_DATA';
-export const generateData = () => ({ type: GENERATE_DATA });
+export const generateData = (): GDAction => ({ type: GENERATE_DATA });

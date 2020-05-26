@@ -97,7 +97,6 @@ export const generateRandomTextStr = (words: string[], startsWithLorem: boolean,
 	if (numWords > totalWords) {
 		numWords = totalWords;
 	}
-
 	if (startsWithLorem) {
 		return words.slice(0, numWords).join(' ');
 	} else {
@@ -138,7 +137,7 @@ public static function generateRandomNumStr($str) {
 }
 */
 
-export const generatePlaceholderStr = (str: string, customPlaceholders: any) => {
+export const generatePlaceholderStr = (str: string, customPlaceholders: any): string => {
 	const placeholders = {
 		...defaultPlaceholders,
 		...customPlaceholders

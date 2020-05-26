@@ -2,9 +2,9 @@ import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../type
 import { generateRandomTextStr } from '../../../utils/randomUtils';
 import { getLipsumWords } from '../../../utils/stringUtils';
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
+export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => {
 	const { words } = getLipsumWords();
-	const textStr = generateRandomTextStr(words, false, data.rowState.numWords);
+	const textStr = generateRandomTextStr(words, false, rowState.numWords);
 	return {
 		display: textStr
 	};

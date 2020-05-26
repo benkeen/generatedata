@@ -20,7 +20,7 @@ export const loadCountryBundle = (country: CountryType): any => {
 	});
 };
 
-export const loadAllCountryBundles = () => {
+export const loadAllCountryBundles = (): any => {
 	const promises: any = [];
 	countryList.forEach((country) => {
 		promises.push(loadCountryBundle(country as CountryType));

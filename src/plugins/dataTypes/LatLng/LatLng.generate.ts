@@ -18,17 +18,19 @@ const cachedMath = {
 };
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
+	const { rowState } = data;
+
 	const coords = [];
 	let lat, lng;
-	if (data.rowState.lat && data.rowState.lng) {
+	if (rowState.lat && rowState.lng) {
 		lat = getRandomNum(cachedMath.minLat, cachedMath.maxLat) / cachedMath.divisor;
 		coords.push(lat);
 		lng = getRandomNum(cachedMath.minLng, cachedMath.maxLng) / cachedMath.divisor;
 		coords.push(lng);
-	} else if (data.rowState.lat) {
+	} else if (rowState.lat) {
 		lat = getRandomNum(cachedMath.minLat, cachedMath.maxLat) / cachedMath.divisor;
 		coords.push(lat);
-	} else if (data.rowState.lng) {
+	} else if (rowState.lng) {
 		lng = getRandomNum(cachedMath.minLng, cachedMath.maxLng) / cachedMath.divisor;
 		coords.push(lng);
 	}

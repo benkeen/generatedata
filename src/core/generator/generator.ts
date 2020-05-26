@@ -2,12 +2,7 @@
  * Our generator class. This does the work of passing off the work off to the selected plugins and piecing the
  * generated data for returning to the client.
  */
-import {
-	ExportTypeGenerateType,
-	ExportTypeGenerationData,
-	ExportTypePreviewData, GenerationTemplate,
-	GenerationTemplateRow
-} from '../../../types/general';
+import { ExportTypeGenerateType, GenerationTemplate, GenerationTemplateRow } from '../../../types/general';
 import { getStrings } from '../../utils/langUtils';
 import { DTGenerateResult, DTGenerationExistingRowData } from '../../../types/dataTypes';
 
@@ -36,11 +31,10 @@ import { DTGenerateResult, DTGenerationExistingRowData } from '../../../types/da
 // // it won't be included in $postData passed to the constructor
 // let configurationID = null;
 
-
 // ExportTypeGenerateType
 
-export const generate = (data: ExportTypeGenerateType): string => {
-
+// data: ExportTypeGenerateType
+export const generate = (): string => {
 	// will be pulled from UI
 	// const tmpExportTypeSettings: JSONSettings = {
 	// 	stripWhitespace: false,
@@ -56,16 +50,12 @@ export const generate = (data: ExportTypeGenerateType): string => {
 	// 	data,
 	// 	generateExportData
 	// });
-
-	// console.log(data);
-	const content = '';
-
-	return content;
+	return '';
 };
 
 // TODO TEST EVERY LAST PART OF THIS
 export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> => {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		const generationTemplate = data.template;
 		const i18n = getStrings();
 
@@ -82,6 +72,7 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 
 		Promise.all(rowPromises)
 			.then((data) => {
+				console.log(data);
 				resolve(data);
 			});
 	});
@@ -110,10 +101,8 @@ const processBatchSequence = (generationTemplate: GenerationTemplate, rowNum: nu
 						return new Promise((resolveBatch) => {
 							Promise.all(promises)
 								.then((generatedData) => {
-									// console.log('all resolved.', generatedData);
-
 									generatedData.forEach((data, index) => {
-										const {id, colIndex, dataType} = currBatch[index];
+										const { id, colIndex, dataType } = currBatch[index];
 										currRowData.push({
 											id,
 											colIndex,

@@ -45,7 +45,7 @@ export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => {
 	return (
 		<CreatablePillField
 			value={data.option}
-			onChange={(values: any) => onUpdate({...data, option: values})}
+			onChange={(values: any) => onUpdate({ ...data, option: values })}
 		/>
 	);
 };
@@ -58,19 +58,3 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	</>
 );
 
-// var _validate = function(rows) {
-// 	var visibleProblemRows = [];
-// 	var problemFields      = [];
-// 	for (var i=0; i<rows.length; i++) {
-// 		if ($("#dtOption_" + rows[i]).val() === "") {
-// 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-// 			visibleProblemRows.push(visibleRowNum);
-// 			problemFields.push($("#dtOption_" + rows[i]));
-// 		}
-// 	}
-// 	var errors = [];
-// 	if (visibleProblemRows.length) {
-// 		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-// 	}
-// 	return errors;
-// };
