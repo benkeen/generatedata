@@ -21,6 +21,7 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 			{i18n.TextFixed_generate}
 			<input
 				type="number"
+				min="0"
 				style={{ width: 50, margin: '0 2px' }}
 				value={data.numWords}
 				onChange={onChange}

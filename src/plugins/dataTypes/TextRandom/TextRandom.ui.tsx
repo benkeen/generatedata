@@ -23,28 +23,31 @@ export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Eleme
 
 	return (
 		<>
-			<div>
+			<div style={{ margin: '5px 0' }}>
 				<input
 					type="checkbox"
 					id={`${id}-startsWithLipsum`}
-					onChange={(e): void => onChange('startsWithLipsum', e.target.value)}
+					checked={data.startsWithLipsum}
+					onChange={(e: any): void => onChange('startsWithLipsum', e.target.checked)}
 				/>
 				<label htmlFor={`${id}-startsWithLipsum`}>{i18n.start_with_lipsum}</label>
 			</div>
 			<div>
 				{i18n.generate}
 				#<input
-					type="text"
+					type="number"
+					min="0"
 					id={`${id}-minWords`}
-					style={{ width: 40 }}
+					style={{ width: 50, margin: '0 2px' }}
 					value={data.minWords}
 					onChange={(e): void => onChange('minWords', e.target.value)}
 				/>
 				{i18n.to}
 				#<input
-					type="text"
+					type="number"
+					min="0"
 					id={`${id}-maxWords`}
-					style={{ width: 40 }}
+					style={{ width: 50, margin: '0 2px' }}
 					value={data.maxWords}
 					onChange={(e): void => onChange('maxWords', e.target.value)}
 				/>

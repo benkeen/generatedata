@@ -4,6 +4,8 @@ import { getLipsumWords } from '../../../utils/stringUtils';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { startsWithLipsum, minWords, maxWords } = data.rowState;
+	console.log('--->', startsWithLipsum);
+
 	const { words } = getLipsumWords();
 	const textStr = generateRandomTextStr(words, startsWithLipsum, minWords, maxWords);
 	return {
