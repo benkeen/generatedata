@@ -2,12 +2,12 @@ import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
 
 export type ConstantState = {
-	loopCount: string;
+	loopCount: number;
 	values: string;
 }
 
 export const initialState: ConstantState = {
-	loopCount: '10',
+	loopCount: 10,
 	values: ''
 };
 
@@ -23,14 +23,21 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 
 	return (
 		<div>
-			{i18n.loopCount}
-			<input type="text" value={data.loopCount} size={5}
-				onChange={(e): void => onChange('loopCount', e.target.value)} />
-			<br />
-
-			{i18n.values}
-			<input value={data.values} style={{ width: '100%' }}
-				onChange={(e): void => onChange('values', e.target.value)} />
+			<div style={{ marginBottom: 2 }}>
+				{i18n.loopCount}
+				<input
+					type="number"
+					value={data.loopCount}
+					style={{ width: 50 }}
+					onChange={(e): void => onChange('loopCount', e.target.value)} />
+			</div>
+			<div style={{ display: 'flex', alignItems: 'center' }}>
+				{i18n.values}
+				<input
+					value={data.values}
+					style={{ width: '100%', marginLeft: 2 }}
+					onChange={(e): void => onChange('values', e.target.value)} />
+			</div>
 		</div>
 	);
 };
@@ -50,33 +57,3 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</p>
 	</>
 );
-
-// var _validate = function(rows) {
-// 		var invalidLoopCountFields = [];
-// 		var loopCountVisibleProblemRows = [];
-//
-// 		var emptyFields = [];
-// 		var emptyFieldProblemRows = [];
-//
-// 		for (var i=0; i<rows.length; i++) {
-// 			var loopVal = $.trim($("#dtConstantLoopCount_" + rows[i]).val());
-// 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-// 			if (loopVal === "" || !(/^\d+$/.test(loopVal))) {
-// 				loopCountVisibleProblemRows.push(visibleRowNum);
-// 				invalidLoopCountFields.push($("#dtConstantLoopCount_" + rows[i]));
-// 			}
-// 			if ($("#dtOption_" + rows[i]).val() === "") {
-// 				emptyFieldProblemRows.push(visibleRowNum);
-// 				emptyFields.push($("#dtOption_" + rows[i]));
-// 			}
-// 		}
-// 		var errors = [];
-// 		if (loopCountVisibleProblemRows.length) {
-// 			errors.push({ els: invalidLoopCountFields, error: LANG.invalid_loop_counts + " <b>" + loopCountVisibleProblemRows.join(", ") + "</b>"});
-// 		}
-// 		if (emptyFields.length) {
-// 			errors.push({ els: emptyFields, error: LANG.incomplete_fields + " <b>" + emptyFieldProblemRows.join(", ") + "</b>"});
-// 		}
-//
-// 		return errors;
-// 	};

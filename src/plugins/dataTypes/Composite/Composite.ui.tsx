@@ -41,8 +41,3 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</p>
 	</>
 );
-
-
-// var _validate = function() {
-// 	return [];
-// };
