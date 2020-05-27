@@ -37,9 +37,8 @@ const Header = ({
 				</h1>
 				<nav>
 					<ul>
-						<li><a href="#">Login</a></li>
 					</ul>
-					<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px' }}>
+					<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px', backgroundColor: '#ffffff' }}>
 						<Button className={isGridVisible ? styles.btnSelected : ''} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>{i18n.grid}</Button>
 						<Button className={isPreviewVisible ? styles.btnSelected : ''} onClick={togglePreview} startIcon={<PreviewIcon />}>{i18n.preview}</Button>
 						<Button onClick={toggleLayout}>

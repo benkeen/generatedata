@@ -59,6 +59,7 @@
     "object-curly-newline": "off",
     "import/no-mutable-exports": "off",
     "react/no-unused-prop-types": "off",
+    "react/no-unescaped-entities": "off",
     "react/jsx-indent": [
       2,
       "tab"

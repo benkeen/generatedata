@@ -64,7 +64,7 @@ const PreviewPanel = ({
 						position: 'absolute',
 						opacity: 0.1,
 						top: 'calc(100% - 84px)',
-						left: 'calc(100% - 210px)'
+						left: 'calc(100% - 125px)'
 					}} />
 					<div style={{ height: '100%', margin: 'auto' }}>
 						<h1>{i18n.previewPanelNoData}</h1>

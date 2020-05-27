@@ -48,7 +48,7 @@ export const getNonEmptySortedRows = createSelector(
 );
 
 export const getColumns = createSelector(
-	getNonEmptySortedRows,
+	getSortedRows,
 	(rows): ColumnData[] => (
 		rows.map(({ dataType, title }: any) => ({
 			title,

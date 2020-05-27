@@ -3,8 +3,6 @@ import { Draggable } from 'react-beautiful-dnd';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DragIndicator from '@material-ui/icons/DragIndicator';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
-// import { getSortedGroupedDataTypes, getDataType, getCustomProps } from '../../utils/dataTypeUtils';
-// import { getCustomProps, getDataType } from '../../utils/dataTypeUtils';
 import Dropdown from '../../components/dropdown/Dropdown';
 import * as styles from './Grid.scss';
 import { DataRow } from '../generator/generator.reducer';

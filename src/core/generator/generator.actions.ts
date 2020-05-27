@@ -46,6 +46,7 @@ export const loadDataTypeBundle = (dispatch: Dispatch, dataType: DataTypeFolder,
 
 			// if it's been selected within the grid, select the row and update the preview panel
 			if (gridRowId) {
+				console.log('data type loaded...', gridRowId);
 				dispatch({
 					type: SELECT_DATA_TYPE,
 					payload: {
@@ -109,12 +110,15 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		const sortedRows = selectors.getSortedRows(state);
 
 		// TODO publish event here so a loading spinner should appear
+		console.log('...', selectors.getColumns(state));
 
 		generatePreviewData({
 			numResults: C.MAX_PREVIEW_ROWS,
 			columns: selectors.getColumns(state),
 			template
 		}).then((data: any) => {
+			console.log('refresh preview: ', data, sortedRows);
+
 			const previewData: any = {};
 			sortedRows.forEach((id: string, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {

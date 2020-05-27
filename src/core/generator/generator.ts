@@ -72,7 +72,6 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 
 		Promise.all(rowPromises)
 			.then((data) => {
-				console.log(data);
 				resolve(data);
 			});
 	});

@@ -1,5 +1,7 @@
+@import "../../styles/variables";
+
 .header {
-    border-bottom: 1px solid #cccccc;
+	background-color: $bg-color;
     padding: 0 20px;
 
     & > div {

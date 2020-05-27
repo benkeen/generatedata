@@ -1,45 +1,47 @@
+@import "../../styles/variables";
+
 .footer {
-  flex: 0 0 60px;
-  border-top: 1px solid #cccccc;
-  padding: 20px;
+	flex: 0 0 60px;
+	background-color: $bg-color;
+	padding: 20px;
 
-  div {
-    margin: 0 auto;
-    display: flex;
-    align-content: space-between;
-    max-width: 1400px;
+	div {
+		margin: 0 auto;
+		display: flex;
+		align-content: space-between;
+		max-width: 1400px;
 
-    ul {
-      flex: 1;
-      display: flex;
-	  flex-direction: row;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      align-items: center;
+		ul {
+			flex: 1;
+			display: flex;
+			flex-direction: row;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			align-items: center;
 
-      li {
-        margin-right: 6px;
-	  }
+			li {
+				margin-right: 6px;
+			}
 
-	  svg {
-		  cursor: pointer;
-	  }
-    }
-  }
+			svg {
+				cursor: pointer;
+			}
+		}
+	}
 
-  a:hover {
-	  border-bottom: 0;
-  }
+	a:hover {
+		border-bottom: 0;
+	}
 
-  svg {
-    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0,0,0,0.60)));
-  }
+	svg {
+		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.60)));
+	}
 }
 
 div.selectLocale {
-  width: 130px;
-  display: inline-block;
+	width: 130px;
+	display: inline-block;
 }
 
 .selectedLocale span {

@@ -48,8 +48,8 @@ class ErrorBoundary extends React.Component<any, any> {
 								Sorry! Some sort of error occurred. This project is still in alpha so you may see this
 								page a little more than you'd like. On the bright side, the error's been logged and we'll
 								get to it. But in the meantime, feel free to complain about it via
-								a <a href="https://github.com/benkeen/generatedata/issues" target="_blank">github issue</a> -
-								that may help focus our efforts.
+								a <a href="https://github.com/benkeen/generatedata/issues" target="_blank"
+									 rel="noopener noreferrer">github issue</a> &#8212; that may help focus our efforts.
 							</p>
 
 							<Button
