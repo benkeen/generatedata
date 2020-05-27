@@ -4,12 +4,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
-import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
+import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { BuilderLayout } from '../builder/Builder.component';
 import { Wrapper } from './PreviewPanelWrapper.component';
 import * as styles from './PreviewPanel.scss';
+import { CSSProperties } from 'react';
 
 const ExportTypeButton = withStyles({
 	root: {
@@ -50,16 +51,25 @@ const PreviewPanel = ({
 }: PreviewPanelProps): React.ReactNode => {
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 
+	// const label = builderLayout === 'horizontal' ? i18n.addSomeDataHorizontalDesc : i18n.addSomeDataVerticalDesc;
 	const getNoResults = (): JSX.Element | null => {
 		if (data.rows.length > 0) {
 			return null;
 		}
 		return (
 			<div className={styles.noResults}>
-				<ArrowDropUp style={{ fontSize: 300, position: 'absolute' }} />
-				<div style={{ height: '100%', margin: 'auto' }}>
-					<h1>{i18n.previewPanelNoData}</h1>
-					<p>{i18n.addSomeDataDesc}</p>
+				<div style={{ marginTop: -26 }}>
+					<AddCircle style={{
+						fontSize: 100,
+						position: 'absolute',
+						opacity: 0.1,
+						top: 'calc(100% - 84px)',
+						left: 'calc(100% - 210px)'
+					}} />
+					<div style={{ height: '100%', margin: 'auto' }}>
+						<h1>{i18n.previewPanelNoData}</h1>
+						<p>{i18n.addSomeDataDesc}</p>
+					</div>
 				</div>
 			</div>
 		);
@@ -91,6 +101,16 @@ const PreviewPanel = ({
 	}
 
 	const themeName = getThemeName(theme);
+
+	const previewPanelStyles: CSSProperties = {
+		fontSize: `${previewTextSize}px`,
+		lineHeight: `${previewTextSize + 7}px`
+	};
+
+	if (data.rows.length === 0) {
+		previewPanelStyles.flex = 0;
+	}
+
 	return (
 		<>
 			<Measure bounds onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}>
@@ -134,10 +154,7 @@ const PreviewPanel = ({
 
 						{getNoResults()}
 
-						<div className={styles.preview} style={{
-							fontSize: `${previewTextSize}px`,
-							lineHeight: `${previewTextSize + 7}px`
-						}}>
+						<div className={styles.preview} style={previewPanelStyles}>
 							<ExportTypePreview
 								numPreviewRows={numPreviewRows}
 								builderLayout={builderLayout}

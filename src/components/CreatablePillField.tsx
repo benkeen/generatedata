@@ -1,9 +1,27 @@
 import * as React from 'react';
+import { components } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { DropdownOption } from './dropdown/Dropdown';
 
-const components = {
+function arrayMove(array: any, from: number, to: number) {
+	array = array.slice();
+	array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
+	return array;
+}
+
+const SortableMultiValue = SortableElement((props: any) => {
+	const onMouseDown = (e: any) => {
+		e.preventDefault();
+		e.stopPropagation();
+	};
+	const innerProps = { onMouseDown };
+	return <components.MultiValue {...props} innerProps={innerProps} />;
+});
+
+const customComponents = {
 	DropdownIndicator: null,
+	MultiValue: SortableMultiValue
 };
 
 const selectStyles = {
@@ -49,6 +67,8 @@ export const createOption = (label: string): DropdownOption => ({
 	value: label,
 });
 
+const SortableCreatableSelect = SortableContainer(CreatableSelect);
+
 const CreatablePillField = ({ onChange, value }: any) => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
@@ -68,13 +88,22 @@ const CreatablePillField = ({ onChange, value }: any) => {
 		}
 	};
 
+	const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number, newIndex: number }) => {
+		const sortedOptions = arrayMove(options, oldIndex, newIndex);
+		onChange(sortedOptions.map((i: DropdownOption) => i.value));
+	};
+
 	return (
-		<CreatableSelect
+		<SortableCreatableSelect
 			styles={selectStyles}
-			components={components}
+			components={customComponents}
 			inputValue={tempValue}
+			axis="xy"
+			distance={4}
+			getHelperDimensions={({ node }) => node.getBoundingClientRect()}
 			isClearable
 			isMulti
+			onSortEnd={onSortEnd}
 			menuIsOpen={false}
 			onChange={(options) => {
 				const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];

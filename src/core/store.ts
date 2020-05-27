@@ -51,9 +51,6 @@ function initStore(state: any): any {
 			...enhancers
 		)
 	);
-
-	// // @ts-ignore-line
-	// store.asyncReducers = {};
 	persistor = persistStore(store);
 
 	return store;

@@ -7,6 +7,7 @@ import store, { persistor } from './core/store';
 import Page from './core/page/Page.container';
 import Builder from './core/builder/Builder.container';
 import * as core from './core';
+import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
 import './core/generator/generator.reducer';
 import './styles/global.scss';
@@ -45,7 +46,9 @@ const App = (): JSX.Element => (
 										<div>Users</div>
 									</Route>
 									<Route path="/">
-										<Builder />
+										<ErrorBoundary>
+											<Builder />
+										</ErrorBoundary>
 									</Route>
 								</Switch>
 							</Page>

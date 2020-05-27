@@ -286,11 +286,10 @@
 	"grid": "Grid",
 	"preview": "Preview",
 	"previewPanelNoData": "No data!",
-	"addSomeDataDesc": "Add some rows in the Grid panel above",
+	"addSomeDataDesc": "Add some rows in the grid.",
 	"refreshPanel": "Refresh Panel",
 	"closePanel": "Close panel",
 	"generateArrow": "Generate &raquo;",
-
 	"exportType": "Export Type",
 	"previewPanel": "Preview Panel",
 	"format": "Format",
