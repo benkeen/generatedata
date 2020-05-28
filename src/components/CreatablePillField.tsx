@@ -88,7 +88,7 @@ const CreatablePillField = ({ onChange, value }: any) => {
 		}
 	};
 
-	const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number, newIndex: number }) => {
+	const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }) => {
 		const sortedOptions = arrayMove(options, oldIndex, newIndex);
 		onChange(sortedOptions.map((i: DropdownOption) => i.value));
 	};

@@ -47,8 +47,25 @@ export const getNonEmptySortedRows = createSelector(
 	(rows) => rows.filter((row: DataRow) => row.title.trim() !== '' && row.dataType !== null && row.dataType.trim() !== '')
 );
 
+export const getSortedRowsWithDataTypeSelected = createSelector(
+	getSortedRowsArray,
+	(rows) => rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
+);
+
+// returns everything in the grid where a data type has been selected
 export const getColumns = createSelector(
-	getSortedRows,
+	getSortedRowsWithDataTypeSelected,
+	(rows): ColumnData[] => {
+		return rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
+			.map(({ dataType, title }: any) => ({
+				title,
+				dataType
+			}));
+	}
+);
+
+export const getPreviewColumns = createSelector(
+	getNonEmptySortedRows,
 	(rows): ColumnData[] => (
 		rows.map(({ dataType, title }: any) => ({
 			title,
@@ -96,7 +113,7 @@ type ProcessOrders = {
 };
 
 export const getGenerationTemplate = createSelector(
-	getNonEmptySortedRows,
+	getSortedRowsWithDataTypeSelected,
 	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are async loaded
 	(rows): GenerationTemplate => {
 		const templateByProcessOrder: ProcessOrders = {};
@@ -121,7 +138,6 @@ export const getGenerationTemplate = createSelector(
 			});
 		});
 
-		// TODO sort by process order (keys) here. Still need to figure that out. Coming very soon!
 		return templateByProcessOrder;
 	}
 );
@@ -149,7 +165,7 @@ export const getSelectedColumnDataTypeMetadata = createSelector(
  * generated row data, data type metadata,
  */
 export const getPreviewPanelData = createSelector(
-	getColumns,
+	getPreviewColumns,
 	getPreviewData,
 	getSelectedColumnDataTypeMetadata,
 	(columns, rows, dataTypeMetadata) => ({

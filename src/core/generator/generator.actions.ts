@@ -109,16 +109,13 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		const template = selectors.getGenerationTemplate(state);
 		const sortedRows = selectors.getSortedRows(state);
 
-		// TODO publish event here so a loading spinner should appear
-		console.log('...', selectors.getColumns(state));
-
+		// this generates data for all rows that have a Data Type selected, but a title field value has to be
+		// entered for actually displaying in the preview panel
 		generatePreviewData({
 			numResults: C.MAX_PREVIEW_ROWS,
 			columns: selectors.getColumns(state),
 			template
 		}).then((data: any) => {
-			console.log('refresh preview: ', data, sortedRows);
-
 			const previewData: any = {};
 			sortedRows.forEach((id: string, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {

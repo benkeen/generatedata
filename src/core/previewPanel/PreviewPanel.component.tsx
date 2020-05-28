@@ -111,6 +111,8 @@ const PreviewPanel = ({
 		previewPanelStyles.flex = 0;
 	}
 
+	console.log('--->', data);
+
 	return (
 		<>
 			<Measure bounds onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}>

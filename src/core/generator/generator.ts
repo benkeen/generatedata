@@ -59,12 +59,14 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 		const generationTemplate = data.template;
 		const i18n = getStrings();
 
+		console.log(generationTemplate);
+
 		// for the preview panel we always generate the max num of preview panel rows so when the user changes the
 		// visible rows the data's already there
 		const lastRowNum = data.numResults;
 		const rowPromises = [];
 
-		// rows are independent! The only necessarily synchronous bit is between process orders (rename to processBlock / processChunk?)
+		// rows are independent! The only necessarily synchronous bit is between process batches
 		for (let rowNum=1; rowNum<=lastRowNum; rowNum++) {
 			const currRowData: DTGenerationExistingRowData[] = [];
 			rowPromises.push(processBatchSequence(generationTemplate, rowNum, i18n, currRowData));
@@ -385,33 +387,4 @@ export const processDataTypeBatch = (cells: GenerationTemplateRow[], rowNum: num
 // 	// sort by process order and return
 // 	ksort($templatesByProcessOrder, SORT_NUMERIC);
 // 	$this->template = $templatesByProcessOrder;
-// }
-
-
-/**
- * This is a helper function for use by the Export Types. It sifts through all the data and returns a hash containing
- * the information most likely to be needed for generation, namely:
- * 	  array(
- *       "isFirstBatch" => (boolean),
- *       "isLastBatch" => (boolean),
- *       "colData" => ordered array of the column names,
- *       "rowData" => an array of arrays. Each top level array
- *    );
- *
- * Using this function is completely optional - it's just provided for convenience.
- * @return array
- */
-//
-//
-// 	/**
-// 	 * Returns the user-defined generation data. This returns either the POST contents - as in when the user is using
-// 	 * the UI - or the API JSON content.
-// 	 * @return mixed
-// 	 */
-// 	public function getUserSettings() {
-// 	if ($this->genEnvironment === Constants::GEN_ENVIRONMENT_POST) {
-// 	return $this->postData;
-// } else {
-// 	return $this->apiData;
-// }
 // }

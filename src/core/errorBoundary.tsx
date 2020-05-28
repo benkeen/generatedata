@@ -21,16 +21,17 @@ class ErrorBoundary extends React.Component<any, any> {
 	}
 
 	componentDidCatch(error: any, errorInfo: any): any {
-		// You can also log the error to an error reporting service
 		// logErrorToMyService(error, errorInfo);
 	}
 
 	onClear () {
-		persistor.purge();
-		this.setState({
-			hasError: '',
-			error: ''
-		});
+		persistor.purge()
+			.then(() => {
+				this.setState({
+					hasError: false,
+					error: ''
+				});
+			});
 	}
 
 	render() {
