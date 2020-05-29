@@ -33,10 +33,18 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): any => {
-	return (dispatch: any): any => loadDataTypeBundle(dispatch, dataType, gridRowId);
+	return (dispatch: any, getState: any): any => loadDataTypeBundle(dispatch, getState, dataType, gridRowId);
 };
 
-export const loadDataTypeBundle = (dispatch: Dispatch, dataType: DataTypeFolder, gridRowId?: string): void => {
+// TODO:
+//   -- get current lang
+//   -- get locale file
+//   -- get default string
+export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: DataTypeFolder, gridRowId?: string): void => {
+	const dataTypeI18n = selectors.getDataTypeI18n(getState());
+
+	console.log('k', dataTypeI18n);
+
 	requestDataTypeBundle(dataType)
 		.then((bundle: DTBundle) => {
 			dispatch(dataTypeLoaded(dataType));
@@ -46,7 +54,6 @@ export const loadDataTypeBundle = (dispatch: Dispatch, dataType: DataTypeFolder,
 
 			// if it's been selected within the grid, select the row and update the preview panel
 			if (gridRowId) {
-				console.log('data type loaded...', gridRowId);
 				dispatch({
 					type: SELECT_DATA_TYPE,
 					payload: {

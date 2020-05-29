@@ -25,5 +25,5 @@ export const init = (): void => {
 	}
 
 	const preloadDataTypes = selectors.getRowDataTypes(state);
-	preloadDataTypes.forEach((dataType: DataTypeFolder) => actions.loadDataTypeBundle(store.dispatch, dataType));
+	preloadDataTypes.forEach((dataType: DataTypeFolder) => actions.loadDataTypeBundle(store.dispatch, store.getState, dataType));
 };
