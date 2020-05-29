@@ -1,5 +1,6 @@
 {
-	"NAME": "Land",
-	"DESC": "Genereert een willekeurige landnaam, met de optie om de subset te beperken tot die landen die zijn opgegeven via de interface.",
-	"limitResults": "Beperk landen tot wereldwijde selectie"
+  "NAME": "Land",
+  "DESC": "Genereert een willekeurige landnaam, met de optie om de subset te beperken tot die landen die zijn opgegeven via de interface.",
+  "DEFAULT_TITLE": "land",
+  "limitResults": "Beperk landen tot wereldwijde selectie"
 }

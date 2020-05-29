@@ -1,6 +1,7 @@
 {
   "NAME": "City",
   "DESC": "Displays a random city, or if data is available, displays a city for the appropriate country/region.",
+  "DEFAULT_TITLE": "city",
   "selectCities": "Select Cities",
   "regionRow": "Region row",
   "source": "Source",

@@ -1,4 +1,5 @@
 {
-	"NAME": "E-mail",
-	"DESC": "Erzeugt eine zufällige E-Mail Adresse ."
+  "NAME": "E-mail",
+  "DESC": "Erzeugt eine zufällige E-Mail Adresse .",
+  "DEFAULT_TITLE": "email"
 }

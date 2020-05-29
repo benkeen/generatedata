@@ -1,6 +1,7 @@
 {
-	"NAME": "Breite / Länge",
-	"DESC": "Dieser Datentyp generiert einen zufälligen Breite und / oder Länge. Wenn beide ausgewählt sind, zeigt er sowohl durch ein Komma getrennt.",
-	"latitude": "Breite",
-	"longitude": "Länge"
+  "NAME": "Breite / Länge",
+  "DESC": "Dieser Datentyp generiert einen zufälligen Breite und / oder Länge. Wenn beide ausgewählt sind, zeigt er sowohl durch ein Komma getrennt.",
+  "DEFAULT_TITLE": "latlng",
+  "latitude": "Breite",
+  "longitude": "Länge"
 }

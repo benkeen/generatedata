@@ -1,5 +1,6 @@
 {
-	"NAME": "Pays",
-	"DESC": "Génère un nom de pays aléatoire , avec la possibilité de limiter le sous-ensemble de ces pays sont entrés via l'interface .",
-	"limitResults": "Limiter les pays à la sélection mondiale"
+  "NAME": "Pays",
+  "DESC": "Génère un nom de pays aléatoire , avec la possibilité de limiter le sous-ensemble de ces pays sont entrés via l'interface .",
+  "DEFAULT_TITLE": "pays",
+  "limitResults": "Limiter les pays à la sélection mondiale"
 }

@@ -1,6 +1,7 @@
 {
-	"NAME": "Nums de compte bancaire (IBAN)",
-	"DESC": "Génère IBAN (International Bank Account Number).",
-	"help1": "L'IBAN a généré une somme de contrôle valide, countrycode la longueur et le BIC est au bon endroit.",
-	"help2": "Le nombre est hautement improbable qu'il soit vraiment tho <i>valide</i>, car il ya généralement un tas de vérifications à faire qui sont spécifiques des pays."
+  "NAME": "Nums de compte bancaire (IBAN)",
+  "DESC": "Génère IBAN (International Bank Account Number).",
+  "DEFAULT_TITLE": "iban",
+  "help1": "L'IBAN a généré une somme de contrôle valide, countrycode la longueur et le BIC est au bon endroit.",
+  "help2": "Le nombre est hautement improbable qu'il soit vraiment tho <i>valide</i>, car il ya généralement un tas de vérifications à faire qui sont spécifiques des pays."
 }

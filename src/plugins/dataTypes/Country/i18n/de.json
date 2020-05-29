@@ -1,5 +1,6 @@
 {
-	"NAME": "Land",
-	"DESC": "Erzeugt eine Zufallsländernamenmit der Option, um die Teilmenge , um diese Länder über die Schnittstelle eingegeben begrenzen.",
-	"limitResults": "Beschränken Sie die Länder auf die globale Auswahl"
+  "NAME": "Land",
+  "DESC": "Erzeugt eine Zufallsländernamenmit der Option, um die Teilmenge , um diese Länder über die Schnittstelle eingegeben begrenzen.",
+  "DEFAULT_TITLE": "land",
+  "limitResults": "Beschränken Sie die Länder auf die globale Auswahl"
 }

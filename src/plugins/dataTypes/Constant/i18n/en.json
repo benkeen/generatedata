@@ -1,13 +1,14 @@
 {
-	"NAME": "Constant",
-	"DESC": "Generates a column of data that has repeated values for multiple rows. You can make all rows have the same value, or assign the same value to groups of them.",
-	"help1": "This data type lets you generate a column of data that has repeating values from row to row. Here's a couple of examples to give you an idea of how this works.",
-	"help2": "If you'd like to provide the value \"1\" for every row, you can enter \"1\" in the Value(s) field and any value (>0) in the Loop Count field.",
-	"help3": "If you'd like to have 100 rows of the string \"Male\" followed by 100 rows of the string \"Female\" and repeat, you can enter \"100\" in the Loop Count field and \"Male|Female\" in the Value(s) field.",
-	"help4": "If you'd like 5 rows of 1 through 10, enter \"5\" for the Loop Count field, and \"1|2|3|4|5|6|7|8|9|10\" in the Value(s) field.",
-	"help5": "Try tinkering around with it. You'll get the idea.",
-	"loopCount": "Loop count:",
-	"values": "Value(s):",
-	"invalidLoopCounts": "Please enter numbers for Constant loop count fields. Please fix the following row(s):",
-	"incompleteFields": "The Constant data type needs to have the constants to be entered into the value(s) field. Please fix the following rows:"
+  "NAME": "Constant",
+  "DESC": "Generates a column of data that has repeated values for multiple rows. You can make all rows have the same value, or assign the same value to groups of them.",
+  "DEFAULT_TITLE": "constant",
+  "help1": "This data type lets you generate a column of data that has repeating values from row to row. Here's a couple of examples to give you an idea of how this works.",
+  "help2": "If you'd like to provide the value \"1\" for every row, you can enter \"1\" in the Value(s) field and any value (>0) in the Loop Count field.",
+  "help3": "If you'd like to have 100 rows of the string \"Male\" followed by 100 rows of the string \"Female\" and repeat, you can enter \"100\" in the Loop Count field and \"Male|Female\" in the Value(s) field.",
+  "help4": "If you'd like 5 rows of 1 through 10, enter \"5\" for the Loop Count field, and \"1|2|3|4|5|6|7|8|9|10\" in the Value(s) field.",
+  "help5": "Try tinkering around with it. You'll get the idea.",
+  "loopCount": "Loop count:",
+  "values": "Value(s):",
+  "invalidLoopCounts": "Please enter numbers for Constant loop count fields. Please fix the following row(s):",
+  "incompleteFields": "The Constant data type needs to have the constants to be entered into the value(s) field. Please fix the following rows:"
 }

@@ -1,5 +1,6 @@
 {
-	"NAME": "País",
-	"DESC": "Genera un nombre de país al azar , con la opción de limitar el subconjunto de esos países entraron a través de la interfaz.",
-	"limitResults": "Limitar países a la selección global"
+  "NAME": "País",
+  "DESC": "Genera un nombre de país al azar , con la opción de limitar el subconjunto de esos países entraron a través de la interfaz.",
+  "DEFAULT_TITLE": "pais",
+  "limitResults": "Limitar países a la selección global"
 }
