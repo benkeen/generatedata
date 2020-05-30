@@ -41,9 +41,13 @@ export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): 
 //   -- get locale file
 //   -- get default string
 export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: DataTypeFolder, gridRowId?: string): void => {
-	const dataTypeI18n = selectors.getDataTypeI18n(getState());
 
-	console.log('k', dataTypeI18n);
+	// I see.... this loads BEFORE the locale has been loaded, so (a) it's not correct and (b) reselect cache the incorrect result
+	// const dataTypeI18n = selectors.getDataTypeI18n(getState());
+
+	// if (dataTypeI18n && dataTypeI18n[dataType]) {
+	// 	console.log('k', dataTypeI18n[dataType]);
+	// }
 
 	requestDataTypeBundle(dataType)
 		.then((bundle: DTBundle) => {

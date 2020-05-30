@@ -28,7 +28,7 @@ const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps
 		dtDropdownOptions: getSortedGroupedDataTypes(),
 		i18n: selectors.getCoreI18n(state),
 		countryI18n: selectors.getCountryI18n(state),
-		selectedDataTypeI18n: dataType ? dataTypeI18n[dataType] : null,
+		selectedDataTypeI18n: dataTypeI18n && dataType ? dataTypeI18n[dataType] : null,
 		Example,
 		Options,
 		dtCustomProps,
