@@ -209,8 +209,12 @@ export const getCountryI18n = createSelector(
 );
 
 export const getDataTypeI18n = createSelector(
+	localeFileLoaded,
 	getLocale,
-	(locale): any | null => {
+	(localeFileLoaded, locale): any | null => {
+		if (!localeFileLoaded) {
+			return null;
+		}
 		const strings = langUtils.getStrings(locale);
 		return strings ? strings.dataTypes : null;
 	}

@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import * as styles from './Header.scss';
 import { GDLocale } from '../../../types/general';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import CheckBox from '@material-ui/icons/Checkbox';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
@@ -25,6 +26,7 @@ export type HeaderProps = {
 const Header = ({
 	isGridVisible, isPreviewVisible, toggleGrid, togglePreview, toggleLayout, i18n, builderLayout
 }: HeaderProps): JSX.Element => {
+	const [showClearDialog, setShowClearDialog] = useState(false);
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
 	const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
@@ -43,6 +45,9 @@ const Header = ({
 						<Button className={isPreviewVisible ? styles.btnSelected : ''} onClick={togglePreview} startIcon={<PreviewIcon />}>{i18n.preview}</Button>
 						<Button onClick={toggleLayout}>
 							<ToggleDirectionIcon />
+						</Button>
+						<Button>
+							<DeleteOutline />
 						</Button>
 					</ButtonGroup>
 				</nav>

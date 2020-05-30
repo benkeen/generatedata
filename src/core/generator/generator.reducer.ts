@@ -179,7 +179,9 @@ export const reducer = (state: GeneratorState = {
 			};
 
 		case actions.SELECT_DATA_TYPE: {
-			const { id, value, data } = action.payload;
+			const { id, value, data, defaultTitle } = action.payload;
+			const title = (state.rows[id].title) ? state.rows[id].title : defaultTitle;
+
 			return {
 				...state,
 				rows: {
@@ -187,7 +189,8 @@ export const reducer = (state: GeneratorState = {
 					[id]: {
 						...state.rows[id],
 						dataType: value,
-						data
+						data,
+						title
 					}
 				}
 			};
