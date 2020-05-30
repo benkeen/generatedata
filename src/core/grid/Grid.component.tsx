@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import * as styles from './Grid.scss';
-import HelpDialog from '../helpDialog/HelpDialog.component';
+import HelpDialog from '../dialogs/help/HelpDialog.component';
 import { DataRow } from '../generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 import GridRow from './GridRow.container';
@@ -92,7 +92,7 @@ const Grid = ({
 									<div className={styles.titleCol}>{columnTitle}</div>
 									<div className={styles.examplesCol}>{i18n.examples}</div>
 									<div className={styles.optionsCol}>{i18n.options}</div>
-									<div className={styles.helpCol} />
+									<div className={styles.settingsIconCol} />
 									<div className={styles.deleteCol} />
 								</div>
 							</div>

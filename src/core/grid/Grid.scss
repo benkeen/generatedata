@@ -22,10 +22,6 @@ div.gridHeader {
 	border-bottom: 1px solid black;
 	border-radius: 0;
 
-	//&:nth-child(odd) {
-	//	background-color: white;
-	//}
-
 	.orderCol {
 		font-style: italic;
 		color: #cccccc;
@@ -97,7 +93,21 @@ div.orderCol {
 }
 
 .dataTypeCol {
-	flex: 2; // 0 200px;
+	flex: 2;
+	display: flex;
+	align-items: center;
+}
+
+.dataTypeColDropdown {
+	flex: 1;
+	margin-right: 3px;
+}
+
+.dataTypeHelp {
+	flex: 0 0 15px;
+	svg {
+		color: #3399cc;
+	}
 }
 
 .examplesCol {
@@ -108,7 +118,7 @@ div.orderCol {
 	flex: 3;
 }
 
-div.deleteCol, div.helpCol {
+div.deleteCol, div.settingsIconCol {
 	flex: 0 0 30px;
 	cursor: pointer;
 	display: flex;
@@ -118,10 +128,12 @@ div.deleteCol, div.helpCol {
 	svg {
 		fill: #333333;
 	}
+}
 
+div.deleteCol {
 	&:hover {
 		svg {
-			fill: #000000;
+			fill: #990000;
 		}
 	}
 }
@@ -149,11 +161,15 @@ div.deleteCol, div.helpCol {
 	padding: 7px 2px;
 }
 
+div.settingsIconCol {
+	display: none;
+}
+
 .gridSmall {
 	.examplesCol, .optionsCol {
 		display: none;
 	}
-	.smallScreenMode {
+	.smallScreenMode, .settingsIconCol {
 		display: block;
 	}
 }

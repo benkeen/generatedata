@@ -3,6 +3,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DragIndicator from '@material-ui/icons/DragIndicator';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
+import InfoIcon from '@material-ui/icons/Info';
 import Dropdown from '../../components/dropdown/Dropdown';
 import * as styles from './Grid.scss';
 import { DataRow } from '../generator/generator.reducer';
@@ -61,11 +62,15 @@ export const GridRow = ({
 					</div>
 					<div className={styles.dataTypeCol}>
 						<Dropdown
+							className={styles.dataTypeColDropdown}
 							isGrouped={true}
 							value={row.dataType}
 							onChange={(i: any): void => onSelectDataType(i.value, row.id)}
 							options={dtDropdownOptions}
 						/>
+						<div className={styles.dataTypeHelp}>
+							{row.dataType ? <InfoIcon fontSize="small"/> : null}
+						</div>
 					</div>
 					<div className={styles.titleCol}>
 						<input type="text" value={row.title} onChange={(e): void => onChangeTitle(row.id, e.target.value)} />
@@ -95,7 +100,7 @@ export const GridRow = ({
 							{...dtCustomProps}
 						/>
 					</div>
-					<div className={styles.helpCol} onClick={(): void => {
+					<div className={styles.settingsIconCol} onClick={(): void => {
 						if (row.dataType === null) {
 							return;
 						}
