@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .gridWrapper {
 	width: 100%;
 	padding: 0 10px;
@@ -67,10 +69,6 @@ div.gridHeader {
 		margin-right: 4px;
 		padding-top: 2px;
 	}
-
-	//&:nth-child(odd) {
-	//	background-color: #eaedf3;
-	//}
 }
 
 div.orderCol {
@@ -79,14 +77,13 @@ div.orderCol {
 	margin-top: 6px;
 	padding: 4px 0 2px 2px;
 	color: #999999;
-
 	svg {
 		color: #cccccc;
 	}
 }
 
 .titleCol {
-	flex: 2; // 0 170px;
+	flex: 2;
 	input {
 		width: 100%;
 	}
@@ -106,12 +103,13 @@ div.orderCol {
 .dataTypeHelp {
 	flex: 0 0 15px;
 	svg {
-		color: #3399cc;
+		color: $primary-color;
+		cursor: pointer;
 	}
 }
 
 .examplesCol {
-	flex: 2; // 0 80px;
+	flex: 2;
 }
 
 .optionsCol {

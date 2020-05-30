@@ -39,11 +39,12 @@ export type GridRowProps = {
 		width: number;
 		height: number;
 	};
+	showHelpDialog: (dataType: DataTypeFolder) => void;
 };
 
 export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
-	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions
+	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions, showHelpDialog
 }: GridRowProps) => {
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
@@ -69,7 +70,7 @@ export const GridRow = ({
 							options={dtDropdownOptions}
 						/>
 						<div className={styles.dataTypeHelp}>
-							{row.dataType ? <InfoIcon fontSize="small"/> : null}
+							{row.dataType ? <InfoIcon fontSize="small" onClick={(): void => showHelpDialog(row.dataType as DataTypeFolder)} /> : null}
 						</div>
 					</div>
 					<div className={styles.titleCol}>
@@ -104,8 +105,6 @@ export const GridRow = ({
 						if (row.dataType === null) {
 							return;
 						}
-						// setInitialDialogSection(row.dataType);
-						// showHelpDialog(true);
 					}}>
 						{row.dataType ? <SettingsIcon /> : null}
 					</div>

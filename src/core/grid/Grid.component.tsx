@@ -47,23 +47,9 @@ const Grid = ({
 
 	const addRowsBtnLabel = numRows === 1 ? i18n.row : i18n.rows;
 
-	// TODO seems like this should be handled far higher up - things shouldn't load until this is ready
-	// console.log(dataTypeI18n);
-	// if (!dataTypeI18n) {
-	// 	return null;
-	// }
-
-	const getHelpDialog = () => {
-		return (
-			<HelpDialog
-				visible={helpDialogVisible}
-				initialDataType={initialHelpSection}
-				onClose={(): any => showHelpDialog(false)}
-				coreI18n={i18n}
-				dataTypeI18n={dataTypeI18n}
-				onSelectDataType={onSelectDataType}
-			/>
-		);
+	const onShowHelpDialog = (dataType: DataTypeFolder) => {
+		setInitialDialogSection(dataType);
+		showHelpDialog(true);
 	};
 
 	return (
@@ -113,6 +99,7 @@ const Grid = ({
 														key={row.id}
 														index={index}
 														dimensions={dimensions}
+														showHelpDialog={onShowHelpDialog}
 													/>
 												))}
 												{provided.placeholder}
@@ -141,7 +128,14 @@ const Grid = ({
 								</form>
 							</div>
 						</div>
-						{getHelpDialog()}
+						<HelpDialog
+							visible={helpDialogVisible}
+							initialDataType={initialHelpSection}
+							onClose={(): any => showHelpDialog(false)}
+							coreI18n={i18n}
+							dataTypeI18n={dataTypeI18n}
+							onSelectDataType={onSelectDataType}
+						/>
 					</div>
 				)}
 			</Measure>

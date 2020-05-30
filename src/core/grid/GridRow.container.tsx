@@ -15,6 +15,7 @@ type OwnProps = {
 		width: number;
 		height: number;
 	};
+	showHelpDialog: (dataType: DataTypeFolder) => void;
 };
 
 const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps> => {

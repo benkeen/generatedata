@@ -1,9 +1,6 @@
 declare namespace ClearGridScssModule {
   export interface IClearGridScss {
     contentPanel: string;
-    dataTypeList: string;
-    helpContent: string;
-    list: string;
   }
 }
 

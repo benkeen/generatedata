@@ -48,8 +48,8 @@ const Header = ({
 							<Button onClick={toggleLayout}>
 								<ToggleDirectionIcon />
 							</Button>
-							<Button>
-								<Delete onClick={(): void => setShowClearDialog(true)}/>
+							<Button onClick={(): void => setShowClearDialog(true)}>
+								<Delete/>
 							</Button>
 						</ButtonGroup>
 					</nav>
