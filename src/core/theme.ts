@@ -1,5 +1,4 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import color from '@material-ui/core/colors/indigo';
 
 // @ts-ignore-line
 const theme = createMuiTheme({
@@ -10,7 +9,9 @@ const theme = createMuiTheme({
 		},
 	},
 	palette: {
-		primary: color
+		primary: {
+			main: '#275eb5'
+		}
 	},
 	overrides: {
 		MuiDialog: {

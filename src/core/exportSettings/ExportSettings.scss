@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .tabContent {
 	padding: 20px;
 }
@@ -42,7 +44,7 @@
 }
 
 .exportFormatRow {
-	background-color: #DDE3EF;
+	background-color: $primary-pale-color;
 	padding: 10px;
 	margin-bottom: 10px;
 	border-radius: 5px;

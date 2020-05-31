@@ -1,3 +1,14 @@
+@import "./variables.scss";
+
 h3 {
 	margin: 10px 0 8px;
+}
+
+a {
+	text-decoration: none;
+	color: $primary-color;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }

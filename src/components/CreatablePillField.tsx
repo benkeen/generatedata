@@ -42,7 +42,7 @@ const selectStyles = {
 	}),
 	multiValue: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
-		backgroundColor: '#e3ebf7'
+		backgroundColor: '#e0ebfd'
 	}),
 	valueContainer: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,
