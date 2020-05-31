@@ -1,5 +1,5 @@
 {
-  "NAME": "Benutzerdefinierte Liste",
+  "NAME": "Liste",
   "DESC": "Erzeugt einen oder mehrere zufällige Werte aus einer beliebigen Liste von Elementen .",
   "DEFAULT_TITLE": "liste",
   "atMost": "Am meisten",
@@ -7,8 +7,8 @@
   "companies": "Systeme",
   "companyNames": "Accounting | Werbung | Asset Management | Customer Relations | Kundenservice | Finanzen | Human Resources | Legal Department | Media Relations | Payroll | Public Relations | Qualitätssicherung | Vertrieb und Marketing | Forschung und Entwicklung | Tech Support",
   "exactly": "Genau",
-  "example1": "Odd Nums unter 50",
-  "example2": "Auch Nums unter 50",
+  "example1": "Odd Nums unter 20",
+  "example2": "Auch Nums unter 20",
   "example3": "One-Ten",
   "example4": "Prime Nums unter 100",
   "example5": "Farben",

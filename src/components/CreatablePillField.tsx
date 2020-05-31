@@ -41,7 +41,8 @@ const selectStyles = {
 		padding: 4
 	}),
 	multiValue: (base: React.CSSProperties): React.CSSProperties => ({
-		...base
+		...base,
+		backgroundColor: '#e3ebf7'
 	}),
 	valueContainer: (base: React.CSSProperties): React.CSSProperties => ({
 		...base,

@@ -60,11 +60,7 @@ export type GeneratorState = {
 	stripWhitespace: boolean;
 };
 
-/**
- * This houses the content of the generator. The actual content of each row is dependent based on the
- * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
- */
-export const reducer = (state: GeneratorState = {
+const defaultState: GeneratorState = {
 	localeFileLoaded: false,
 	locale: 'en',
 	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
@@ -87,8 +83,21 @@ export const reducer = (state: GeneratorState = {
 	showGenerationPanel: false,
 	numGenerationRows: 100,
 	stripWhitespace: false
-}, action: AnyAction): GeneratorState => {
+};
+
+/**
+ * This houses the content of the generator. The actual content of each row is dependent based on the
+ * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
+ */
+export const reducer = (state = defaultState, action: AnyAction): GeneratorState => {
 	switch (action.type) {
+		case actions.CLEAR_GRID:
+			return {
+				...state,
+				rows: {},
+				sortedRows: []
+			};
+
 		case actions.LOCALE_FILE_LOADED:
 			return {
 				...state,

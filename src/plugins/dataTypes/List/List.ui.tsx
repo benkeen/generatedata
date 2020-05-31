@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
-import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
+import Dropdown from '../../../components/dropdown/Dropdown';
 import CreatablePillField from '../../../components/CreatablePillField';
 
 export type ListType = 'exactly' | 'atMost';
@@ -14,11 +14,11 @@ export type ListState = {
 };
 
 export const initialState: ListState = {
-	example: '',
+	example: '1|3|5|7|9|11|13|15|17|19',
 	listType: 'exactly',
 	exactly: 1,
 	atMost: 1,
-	values: []
+	values: ['1', '3', '5', '7', '9', '11', '13', '15', '17', '19']
 };
 
 export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element => {
@@ -31,8 +31,8 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 	};
 
 	const options = [
-		{ value: '1|3|5|7|9|11|13|15|17|19|21|23|25|27|29|31|33|35|37|39|41|43|45|47|49', label: i18n.example1 },
-		{ value: '2|4|6|8|10|12|14|16|18|20|22|24|26|28|30|32|34|36|38|40|42|44|46|48|50', label: i18n.example2 },
+		{ value: '1|3|5|7|9|11|13|15|17|19', label: i18n.example1 },
+		{ value: '2|4|6|8|10|12|14|16|18|20', label: i18n.example2 },
 		{ value: '1|2|3|4|5|6|7|8|9|10', label: '1-10' },
 		{ value: i18n.oneToTen, label: i18n.example3 },
 		{ value: '1|2|3|5|7|11|13|17|19|23|29|31|37|41|43|47|53|59|61|67|71|73|79|83|89|97', label: i18n.example4 },

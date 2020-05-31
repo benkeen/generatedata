@@ -75,12 +75,14 @@ Second, the generation code:
 validate this? Kinnnnnda important.
 
 
-How about a SINGLE generated build/plugins.js file that exports all plugin info.
-
-
-----------------------------------------
-
-
 Validation function: 
 
 - DEFINITELY need a command-line validation function to verify data types/export types etc. is valid. 
+
+
+---------------------------
+
+
+### Text rules:
+
+- titles, headings: capitalize every letter

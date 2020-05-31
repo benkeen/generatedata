@@ -1,5 +1,5 @@
 {
-  "NAME": "Aangepaste lijst",
+  "NAME": "Lijst",
   "DESC": "Genereert een of meer willekeurige waarden uit een willekeurige lijst van items.",
   "DEFAULT_TITLE": "lijst",
   "atMost": "Maximaal",
@@ -7,8 +7,8 @@
   "companies": "Microsoft|Apple|Google|Yahoo|Lycos|Altavista|Chami|Adobe|Borland|Lavasoft|Cakewalk|Sibelius|Finale|Unilver|Danone|Proctor and Gamble|Nestle|Bayer",
   "companyNames": "Boekhouding|Adverteren|Asset Management|Customer Relations|Klantenservice|Financiën|Personeelszaken|Juridische afdeling|Media Zaken|Salaris Administratie|PR Afdeling|Kwaliteitsgarantie|Sales en Marketing|Onderzoek en Ontwikkeling|Technische ondersteuning",
   "exactly": "Precies",
-  "example1": "Oneven nummers onder de 50",
-  "example2": "Even nummers onder de 50",
+  "example1": "Oneven nummers onder de 20",
+  "example2": "Even nummers onder de 20",
   "example3": "Een-Tien",
   "example4": "Priemgetallen onder de 100",
   "example5": "Kleuren",

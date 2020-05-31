@@ -15,6 +15,7 @@ export type HeaderProps = {
 	toggleGrid: () => void;
 	togglePreview: () => void;
 	toggleLayout: () => void;
+	onClearGrid: () => void;
 	isLoggedIn: boolean;
 	onChangeLocale: Function;
 	isGridVisible: boolean;
@@ -25,7 +26,7 @@ export type HeaderProps = {
 }
 
 const Header = ({
-	isGridVisible, isPreviewVisible, toggleGrid, togglePreview, toggleLayout, i18n, builderLayout
+	isGridVisible, isPreviewVisible, toggleGrid, togglePreview, toggleLayout, i18n, builderLayout, onClearGrid
 }: HeaderProps): JSX.Element => {
 	const [showClearDialog, setShowClearDialog] = useState(false);
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -37,7 +38,7 @@ const Header = ({
 			<header className={styles.header}>
 				<div>
 					<h1>
-						<img src="./images/logo.png" width={281} height={58} />
+						<img src="./images/logo.png" width={295} height={58} />
 					</h1>
 					<nav>
 						<ul>
@@ -49,7 +50,7 @@ const Header = ({
 								<ToggleDirectionIcon />
 							</Button>
 							<Button onClick={(): void => setShowClearDialog(true)}>
-								<Delete/>
+								<Delete />
 							</Button>
 						</ButtonGroup>
 					</nav>
@@ -58,7 +59,10 @@ const Header = ({
 			<ClearGridDialog
 				visible={showClearDialog}
 				onClose={(): void => setShowClearDialog(false)}
-				onClear={(): void => {}}
+				onClear={(): void => {
+					onClearGrid();
+					setShowClearDialog(false);
+				}}
 				i18n={i18n}
 			/>
 		</>

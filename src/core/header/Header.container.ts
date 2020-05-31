@@ -19,7 +19,10 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	onChangeLocale: (locale: GDLocale): any => dispatch(actions.selectLocale(locale)),
 	toggleGrid: (): any => dispatch(actions.toggleGrid()),
 	togglePreview: (): any => dispatch(actions.togglePreview()),
-	toggleLayout: (): any => dispatch(actions.toggleLayout())
+	toggleLayout: (): any => dispatch(actions.toggleLayout()),
+
+	// @ts-ignore
+	onClearGrid: (): any => dispatch(actions.clearGrid())
 });
 
 const container: any = connect(

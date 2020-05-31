@@ -13,7 +13,7 @@ export type ClearGridProps = {
 
 const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): JSX.Element => (
 	<SmallDialog onClose={onClose} open={visible}>
-		<DialogTitle onClose={onClose}>Clear grid</DialogTitle>
+		<DialogTitle onClose={onClose}>Clear Grid</DialogTitle>
 		<DialogContent dividers className={styles.contentPanel}>
 			<WarningIcon />
 			<div>

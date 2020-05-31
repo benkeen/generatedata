@@ -19,8 +19,8 @@ export type DateState = {
 export const initialState: DateState = {
 	fromDate: parseInt(format(subYears(new Date(), 1), 't'), 10),
 	toDate: parseInt(format(addYears(new Date(), 1), 't'), 10),
-	example: '',
-	format: 'MMM L, y'
+	example: 'MMM d, y',
+	format: 'MMM d, y'
 };
 
 export const getOptions = (): any[] => {

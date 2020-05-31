@@ -1,5 +1,5 @@
 {
-  "NAME": "Custom List",
+  "NAME": "List",
   "DESC": "Generates one or more random values from an arbitrary list of items.",
   "DEFAULT_TITLE": "list",
   "atMost": "At Most",
@@ -7,8 +7,8 @@
   "companies": "Microsoft|Macromedia|Google|Yahoo|Lycos|Altavista|Chami|Adobe|Borland|Lavasoft|Cakewalk|Sibelius|Finale|Apple Systems",
   "companyNames": "Accounting|Advertising|Asset Management|Customer Relations|Customer Service|Finances|Human Resources|Legal Department|Media Relations|Payroll|Public Relations|Quality Assurance|Sales and Marketing|Research and Development|Tech Support",
   "exactly": "Exactly",
-  "example1": "Odd Nums under 50",
-  "example2": "Even Nums under 50",
+  "example1": "Odd Nums under 20",
+  "example2": "Even Nums under 20",
   "example3": "One-Ten",
   "example4": "Prime Nums under 100",
   "example5": "Colours",

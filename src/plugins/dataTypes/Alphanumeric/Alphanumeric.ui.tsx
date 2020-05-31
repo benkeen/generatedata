@@ -9,8 +9,8 @@ export type AlphanumericState = {
 }
 
 export const initialState: AlphanumericState = {
-	example: '',
-	value: ''
+	example: 'LLLxxLLLxLL',
+	value: 'LLLxxLLLxLL'
 };
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {

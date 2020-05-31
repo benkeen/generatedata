@@ -4,11 +4,11 @@ import Dropdown from '../../../components/dropdown/Dropdown';
 import styles from './Currency.scss';
 
 export const initialState = {
-	example: '',
-	format: '',
-	from: '',
-	to: '',
-	currencySymbol: '',
+	example: 'XXX.XX|0.00|100.00|$|prefix',
+	format: 'XXX.XX',
+	from: '0.00',
+	to: '100.00',
+	currencySymbol: '$',
 	currencySymbolLocation: 'prefix'
 };
 

@@ -247,3 +247,9 @@ export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITE
 
 export const GENERATE_DATA = 'GENERATE_DATA';
 export const generateData = (): GDAction => ({ type: GENERATE_DATA });
+
+export const CLEAR_GRID = 'CLEAR_GRID';
+export const clearGrid = () => (dispatch: Dispatch) => {
+	dispatch({ type: CLEAR_GRID });
+	dispatch(addRows(5));
+};

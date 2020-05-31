@@ -16,7 +16,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProper
 		margin: `0 0 0 0`,
 	};
 	if (isDragging) {
-		styles.background = '#0099cc';
+		styles.background = '#e3ebf7';
 	}
 	return styles;
 };

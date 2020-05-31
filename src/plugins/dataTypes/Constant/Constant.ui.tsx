@@ -7,8 +7,8 @@ export type ConstantState = {
 }
 
 export const initialState: ConstantState = {
-	loopCount: 10,
-	values: ''
+	loopCount: 2,
+	values: '1,2'
 };
 
 export const Example = ({ coreI18n }: DTExampleProps): string => coreI18n.seeHelpDialog;

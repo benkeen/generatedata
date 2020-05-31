@@ -1,5 +1,5 @@
 {
-  "NAME": "Lista personalizada",
+  "NAME": "Lista",
   "DESC": "Genera uno o más valores aleatorios a partir de una lista arbitraria de artículos.",
   "DEFAULT_TITLE": "lista",
   "atMost": "Al menos",
@@ -7,8 +7,8 @@
   "companies": "Microsoft|Macromedia|Google|Yahoo|Lycos|Altavista|Chami|Adobe|Borland|Lavasoft|Cakewalk|Sibelius|Finale|Apple Systems",
   "companyNames": "Contabilidad|Publicidad|Gestión de activos|Atención al cliente|Finanzas|Recursos humanos|Departamento legal|Relaciones con los medios|Nóminas|Relaciones públicas|Gestión de la calidad|Ventas y Mercadotécnia|Investigación y desarrollo|Soporte técnico",
   "exactly": "Exactamente",
-  "example1": "Números impares menores de 50",
-  "example2": "Números pares menores de 50",
+  "example1": "Números impares menores de 20",
+  "example2": "Números pares menores de 20",
   "example3": "Uno-Diez",
   "example4": "Números primos menores de 100",
   "example5": "Colores",
