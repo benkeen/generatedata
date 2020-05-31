@@ -22,3 +22,6 @@ export const selectLocale = (locale: GDLocale) => {
 		document.body.appendChild(s);
 	};
 };
+
+export const TOGGLE_INTRO_DIALOG = 'TOGGLE_INTRO_DIALOG';
+export const toggleIntroDialog = () => ({ type: TOGGLE_INTRO_DIALOG });

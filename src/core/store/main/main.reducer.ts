@@ -5,11 +5,13 @@ import { GDLocale } from '../../../../types/general';
 export type MainState = {
 	localeFileLoaded: boolean;
 	locale: GDLocale;
+	showIntroDialog: boolean;
 };
 
 const defaultState: MainState = {
 	localeFileLoaded: false,
-	locale: 'en'
+	locale: 'en',
+	showIntroDialog: true
 };
 
 /**
@@ -23,6 +25,12 @@ export const reducer = (state = defaultState, action: AnyAction): MainState => {
 				...state,
 				locale: action.payload.locale,
 				localeFileLoaded: true
+			};
+
+		case actions.TOGGLE_INTRO_DIALOG:
+			return {
+				...state,
+				showIntroDialog: !state.showIntroDialog
 			};
 
 		default:

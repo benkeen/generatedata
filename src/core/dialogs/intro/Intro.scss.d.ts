@@ -1,12 +1,12 @@
-declare namespace ClearGridScssModule {
-  export interface IClearGridScss {
+declare namespace IntroScssModule {
+  export interface IIntroScss {
     contentPanel: string;
   }
 }
 
-declare const ClearGridScssModule: ClearGridScssModule.IClearGridScss & {
+declare const IntroScssModule: IntroScssModule.IIntroScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: ClearGridScssModule.IClearGridScss;
+  locals: IntroScssModule.IIntroScss;
 };
 
-export = ClearGridScssModule;
+export = IntroScssModule;

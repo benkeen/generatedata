@@ -10,6 +10,7 @@ import * as mainActions from '../store/main/main.actions';
 const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	locale: mainSelectors.getLocale(state),
+	showIntroDialog: mainSelectors.shouldShowIntroDialog(state),
 	isGridVisible: selectors.isGridVisible(state),
 	isPreviewVisible: selectors.isPreviewVisible(state),
 	builderLayout: selectors.getBuilderLayout(state),
@@ -24,7 +25,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	toggleLayout: (): any => dispatch(actions.toggleLayout()),
 
 	// @ts-ignore
-	onClearGrid: (): any => dispatch(actions.clearGrid())
+	onClearGrid: (): any => dispatch(actions.clearGrid()),
+	toggleIntroDialog: (): any => dispatch(mainActions.toggleIntroDialog())
 });
 
 const container: any = connect(

@@ -12,23 +12,27 @@ import { BuilderLayout } from '../builder/Builder.component';
 import ClearGridDialog from '../dialogs/clearGrid/ClearGrid.component';
 import { Tooltip } from '../../components/tooltips';
 import { toSentenceCase } from '../../utils/stringUtils';
+import IntroDialog from '../dialogs/intro/Intro.component';
 
 export type HeaderProps = {
 	toggleGrid: () => void;
 	togglePreview: () => void;
 	toggleLayout: () => void;
 	onClearGrid: () => void;
+	toggleIntroDialog: () => void;
 	isLoggedIn: boolean;
 	onChangeLocale: Function;
 	isGridVisible: boolean;
 	isPreviewVisible: boolean;
+	showIntroDialog: boolean;
 	locale: GDLocale;
 	builderLayout: BuilderLayout;
 	i18n: any;
 }
 
 const Header = ({
-	isGridVisible, isPreviewVisible, toggleGrid, togglePreview, toggleLayout, i18n, builderLayout, onClearGrid
+	isGridVisible, isPreviewVisible, toggleGrid, togglePreview, toggleLayout, i18n, builderLayout, onClearGrid,
+	toggleIntroDialog, showIntroDialog
 }: HeaderProps): JSX.Element => {
 	const [showClearDialog, setShowClearDialog] = useState(false);
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -65,7 +69,12 @@ const Header = ({
 			<header className={styles.header}>
 				<div>
 					<h1>
-						<img src="./images/logo.png" width={295} height={58} />
+						<img
+							src="./images/logo.png"
+							width={295}
+							height={58}
+							onClick={toggleIntroDialog}
+						/>
 					</h1>
 					<nav>
 						<ul>
@@ -98,6 +107,11 @@ const Header = ({
 					onClearGrid();
 					setShowClearDialog(false);
 				}}
+				i18n={i18n}
+			/>
+			<IntroDialog
+				visible={showIntroDialog}
+				onClose={toggleIntroDialog}
 				i18n={i18n}
 			/>
 		</>

@@ -6,28 +6,28 @@ import styles from './Intro.scss';
 export type IntroProps = {
 	visible: boolean;
 	onClose: any;
-	onClear: () => void;
 	i18n: any;
 };
 
-const IntroDialog = ({ visible, onClose, onClear, i18n }: IntroProps): JSX.Element => (
+const IntroDialog = ({ visible, onClose }: IntroProps): JSX.Element => (
 	<SmallDialog onClose={onClose} open={visible}>
-		<DialogTitle onClose={onClose}>Welcome - here be dragons!</DialogTitle>
+		<DialogTitle onClose={onClose}>generatedata 4.0.0 demo</DialogTitle>
 		<DialogContent dividers className={styles.contentPanel}>
+			<img src="./images/dice180x180.png" width={90} height={90} />
 			<div>
 				<p>
-					Welcome to generatedata.com v4. This is <b>NOT</b> a complete script: at this stage it's just a demo
-					site illustrating the new in-development script and to solicit feedback about what you do & don't like.
-					Check out <a href="http://generatedata.com" target="_blank">generatedata.com</a> for the current, working script.
+					Welcome! This is <b>NOT</b> a working site yet: it's just a demo of the
+					upcoming <a href="http://generatedata.com" target="_blank">generatedata.com</a> rewrite. So expect
+					weird behaviour, browser crashes, horror and fury.
 				</p>
 				<p>
-					Please report any issues on <a href="https://github.com/benkeen/generatedata/issues" target="_blank">github</a>.
+					You can follow the progress on <a href="https://github.com/benkeen/generatedata/issues" target="_blank">github</a>.
 				</p>
 			</div>
 		</DialogContent>
 		<DialogActions>
 			<Button onClick={onClose} color="primary" variant="outlined">
-				{i18n.continue}
+				Yeah, yeah.
 			</Button>
 		</DialogActions>
 	</SmallDialog>
