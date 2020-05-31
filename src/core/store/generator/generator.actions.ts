@@ -1,15 +1,13 @@
-import { GDAction, GDLocale } from '../../../types/general';
+import { GDAction } from '../../../../types/general';
 import * as selectors from './generator.selectors';
-import { generatePreviewData } from './generator';
-import { ExportSettingsTab } from '../exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
-import { requestDataTypeBundle } from '../../utils/dataTypeUtils';
-import { registerInterceptors } from '../actionInterceptor';
-import { loadExportTypeBundle } from '../../utils/exportTypeUtils';
-import { DTBundle } from '../../../types/dataTypes';
-import { ThunkDispatch } from 'redux-thunk';
-import * as langUtils from '../../utils/langUtils';
-import C from '../../core/constants';
+import { generatePreviewData } from '../../generator/generator';
+import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
+import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
+import { requestDataTypeBundle } from '../../../utils/dataTypeUtils';
+import { registerInterceptors } from '../../actionInterceptor';
+import { loadExportTypeBundle } from '../../../utils/exportTypeUtils';
+import { DTBundle } from '../../../../types/dataTypes';
+import C from '../../constants';
 import { Dispatch } from 'redux';
 
 export const ADD_ROWS = 'ADD_ROWS';
@@ -186,28 +184,6 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 			.then((bundle: DTBundle) => {
 				dispatch(exportTypeLoaded(exportType, bundle.initialState));
 			});
-	};
-};
-
-
-export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
-export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
-	type: LOCALE_FILE_LOADED,
-	payload: {
-		locale
-	}
-});
-
-export const selectLocale = (locale: GDLocale) => {
-	return (dispatch: ThunkDispatch<any, any, any>): any => {
-		window.gd = {};
-		window.gd.localeLoaded = (strings: any): void => {
-			langUtils.setLocale(locale, strings);
-			dispatch(setLocaleFileLoaded(locale));
-		};
-		const s = document.createElement('script');
-		s.src = `./${locale}.js`;
-		document.body.appendChild(s);
 	};
 };
 

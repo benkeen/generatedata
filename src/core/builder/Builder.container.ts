@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Builder, { BuilderProps } from './Builder.component';
-import * as selectors from '../generator/generator.selectors';
+import * as selectors from '../store/generator/generator.selectors';
 
 const mapStateToProps = (state: any): Partial<BuilderProps> => ({
 	isGridVisible: selectors.isGridVisible(state),

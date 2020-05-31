@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../generator/generator.actions';
-import * as selectors from '../generator/generator.selectors';
+import * as actions from '../store/generator/generator.actions';
+import * as selectors from '../store/generator/generator.selectors';
 import GenerationPanel, { GenerationPanelProps } from './GenerationPanel.component';
 
 const mapStateToProps = (state: any, ownProps: Partial<GenerationPanelProps>): Partial<GenerationPanelProps> => ({

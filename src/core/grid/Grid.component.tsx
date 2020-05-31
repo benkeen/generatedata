@@ -8,7 +8,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import * as styles from './Grid.scss';
 import HelpDialog from '../dialogs/help/HelpDialog.component';
-import { DataRow } from '../generator/generator.reducer';
+import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 import GridRow from './GridRow.container';
 

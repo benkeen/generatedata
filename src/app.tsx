@@ -9,7 +9,7 @@ import Builder from './core/builder/Builder.container';
 import * as core from './core';
 import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
-import './core/generator/generator.reducer';
+import './core/store/generator/generator.reducer';
 import './styles/global.scss';
 
 /*

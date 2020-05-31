@@ -6,7 +6,7 @@ import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import InfoIcon from '@material-ui/icons/Info';
 import Dropdown from '../../components/dropdown/Dropdown';
 import * as styles from './Grid.scss';
-import { DataRow } from '../generator/generator.reducer';
+import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {

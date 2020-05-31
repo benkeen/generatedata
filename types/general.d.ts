@@ -1,4 +1,5 @@
-import { GeneratorState } from '../src/core/generator/generator.reducer';
+import { GeneratorState } from '../src/core/store/generator/generator.reducer';
+import { MainState } from '../src/core/store/main/main.reducer';
 import { DataTypeFolder } from '../src/_plugins';
 
 declare global {
@@ -10,6 +11,7 @@ declare global {
 
 export type Store = {
 	generator: GeneratorState;
+	main: MainState;
 };
 
 export type GDLocale = 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
@@ -20,8 +22,6 @@ export type GenerationSettings = {
 	env: GenEnvironment;
 	stripWhitespace: boolean;
 };
-
-export type ExportTarget = 'inPage' | 'newTab' | 'promptDownload';
 
 export type GDAction = {
 	type: string;

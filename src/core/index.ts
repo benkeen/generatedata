@@ -2,8 +2,10 @@
 import config from '../../build/config.client';
 import store from './store';
 import C from './constants';
-import * as actions from './generator/generator.actions';
-import * as selectors from './generator/generator.selectors';
+import * as actions from './store/generator/generator.actions';
+import * as mainActions from './store/main/main.actions';
+import * as selectors from './store/generator/generator.selectors';
+import * as mainSelectors from './store/main/main.selectors';
 import { DataTypeFolder } from '../_plugins';
 
 // just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
@@ -12,11 +14,11 @@ export const coreConfig = { ...config };
 
 export const init = (): void => {
 	const state = store.getState();
-	const locale = selectors.getLocale(state);
+	const locale = mainSelectors.getLocale(state);
 	const exportType = selectors.getExportType(state);
 	const numRows = selectors.getNumRows(state);
 
-	store.dispatch(actions.selectLocale(locale));
+	store.dispatch(mainActions.selectLocale(locale));
 	store.dispatch(actions.onSelectExportType(exportType));
 
 	// if there are no rows, load some
@@ -25,6 +27,6 @@ export const init = (): void => {
 	}
 
 	const preloadDataTypes = selectors.getRowDataTypes(state);
-	
+
 	preloadDataTypes.forEach((dataType: DataTypeFolder) => actions.loadDataTypeBundle(store.dispatch, store.getState, dataType));
 };

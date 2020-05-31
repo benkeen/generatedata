@@ -1,13 +1,15 @@
 import { createStore, combineReducers } from 'redux';
 import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
-import reducer from '../generator.reducer';
+import generatorReducer from '../generator.reducer';
+import mainReducer from '../../main/main.reducer';
 
 describe('generator section', () => {
 	let store: any;
 	beforeEach(() => {
 		store = createStore(combineReducers({
-			generator: reducer
+			generator: generatorReducer,
+			main: mainReducer
 		}));
 	});
 
@@ -87,7 +89,8 @@ describe('grid rows', () => {
 	let store: any;
 	beforeEach(() => {
 		store = createStore(combineReducers({
-			generator: reducer
+			generator: generatorReducer,
+			main: mainReducer
 		}));
 	});
 
@@ -189,7 +192,8 @@ describe('preview panel settings', () => {
 	let store: any;
 	beforeEach(() => {
 		store = createStore(combineReducers({
-			generator: reducer
+			generator: generatorReducer,
+			main: mainReducer
 		}));
 	});
 
@@ -199,21 +203,3 @@ describe('preview panel settings', () => {
 		expect(selectors.getNumRows(store.getState())).toEqual(10);
 	});
 });
-
-// describe('generator section', () => {
-// 	let store: any;
-// 	beforeEach(() => {
-// 		store = createStore(combineReducers({
-// 			init: reducer
-// 		}));
-// 	});
-//
-// 	it('the locale file is not loaded by default', () => {
-// 		expect(selectors.localeFileLoaded(store.getState())).toEqual(false);
-// 	});
-//
-// 	it('sets the locale as loaded', () => {
-// 		store.dispatch(actions.setLocaleFileLoaded('en'));
-// 		expect(selectors.localeFileLoaded(store.getState())).toEqual(true);
-// 	});
-// });

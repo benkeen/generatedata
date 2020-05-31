@@ -2,9 +2,10 @@ import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { Persistor } from 'redux-persist/es/types';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import actionsInterceptor from './actionInterceptor';
+import actionsInterceptor from '../actionInterceptor';
 import storage from 'redux-persist/lib/storage';
-import reducer from './generator/generator.reducer';
+import generatorReducer from './generator/generator.reducer';
+import mainReducer from './main/main.reducer';
 
 let persistor: Persistor;
 function initStore(state: any): any {
@@ -21,21 +22,29 @@ function initStore(state: any): any {
 	const rootPersistConfig = {
 		key: 'root',
 		storage: storage,
-		blacklist: ['generator']
+		blacklist: ['generator', 'main']
 	};
 
 	const generatorPersistConfig = {
 		key: 'generator',
 		storage: storage,
 		blacklist: [
-			'localeFileLoaded',
 			'loadedDataTypes',
 			'loadedExportTypes'
 		]
 	};
 
+	const mainPersistConfig = {
+		key: 'main',
+		storage: storage,
+		blacklist: [
+			'localeFileLoaded'
+		]
+	};
+
 	const rootReducer = combineReducers({
-		generator: persistReducer(generatorPersistConfig, reducer)
+		generator: persistReducer(generatorPersistConfig, generatorReducer),
+		main: persistReducer(mainPersistConfig, mainReducer)
 	});
 
 	const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);

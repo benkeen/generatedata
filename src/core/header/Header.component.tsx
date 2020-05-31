@@ -36,10 +36,29 @@ const Header = ({
 	const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
 	const toggleLayoutEnabled = isGridVisible && isPreviewVisible;
 
-	let toggleLayoutBtnClasses = styles.toggleLayoutBtn;
-	if (!toggleLayoutEnabled) {
-		toggleLayoutBtnClasses += ` ${styles.toggleLayoutBtnDisabled}`;
-	}
+	// Material UI throws an error when it comes to having a tooltip on a disabled button, and within a ButtonGroup
+	// context it messes up the styles wrapping <Button> in a <span> like we do elsewhere. So this just constructs
+	// the JSX differently for the enabled/disabled state
+	const getToggleLayoutBtn = () => {
+		if (toggleLayoutEnabled) {
+			return (
+				<Tooltip title={<span dangerouslySetInnerHTML={{__html: i18n.togglePanelLayout}}/>}
+						 arrow
+						 disableHoverListener={!toggleLayoutEnabled}
+						 disableFocusListener={!toggleLayoutEnabled}>
+					<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={styles.toggleLayoutBtn}>
+						<ToggleDirectionIcon/>
+					</Button>
+				</Tooltip>
+			);
+		}
+
+		return (
+			<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={`${styles.toggleLayoutBtn} ${styles.toggleLayoutBtnDisabled}`}>
+				<ToggleDirectionIcon />
+			</Button>
+		);
+	};
 
 	return (
 		<>
@@ -62,16 +81,7 @@ const Header = ({
 									{i18n.preview}
 								</Button>
 							</Tooltip>
-							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.togglePanelLayout }} />}
-								arrow
-								disableHoverListener={!toggleLayoutEnabled}
-								disableFocusListener={!toggleLayoutEnabled}>
-								<span className={toggleLayoutBtnClasses}>
-									<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled}>
-										<ToggleDirectionIcon />
-									</Button>
-								</span>
-							</Tooltip>
+							{getToggleLayoutBtn()}
 							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: toSentenceCase(i18n.clearPage) }} />} arrow>
 								<Button onClick={(): void => setShowClearDialog(true)}>
 									<Delete />

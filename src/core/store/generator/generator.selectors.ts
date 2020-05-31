@@ -1,16 +1,15 @@
 import { createSelector } from 'reselect';
-import { processBatches, getDataType } from '../../utils/dataTypeUtils';
-import { getExportTypePreview } from '../../utils/exportTypeUtils';
-import { ColumnData, GDLocale, GenerationTemplate, Store } from '../../../types/general';
-import { BuilderLayout } from '../builder/Builder.component';
-import { PreviewPanelLoader } from '../previewPanel/PreviewPanelLoader.component';
+import { processBatches, getDataType } from '../../../utils/dataTypeUtils';
+import { getExportTypePreview } from '../../../utils/exportTypeUtils';
+import { ColumnData, GenerationTemplate, Store } from '../../../../types/general';
+import { BuilderLayout } from '../../builder/Builder.component';
+import { PreviewPanelLoader } from '../../previewPanel/PreviewPanelLoader.component';
 import { DataRow } from './generator.reducer';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
-import * as langUtils from '../../utils/langUtils';
-import { getUnique } from '../../utils/arrayUtils';
+import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
+import * as mainSelectors from '../main/main.selectors';
+import * as langUtils from '../../../utils/langUtils';
+import { getUnique } from '../../../utils/arrayUtils';
 
-export const getLocale = (state: Store): GDLocale => state.generator.locale;
-export const localeFileLoaded = (state: Store): boolean => state.generator.localeFileLoaded;
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
 export const getExportType = (state: Store): any => state.generator.exportType;
@@ -193,7 +192,7 @@ export const getExportTypePreviewComponent = createSelector(
 );
 
 export const getCoreI18n = createSelector(
-	getLocale,
+	mainSelectors.getLocale,
 	(locale): any | null => {
 		const strings = langUtils.getStrings(locale);
 		return strings ? strings.core : null;
@@ -201,7 +200,7 @@ export const getCoreI18n = createSelector(
 );
 
 export const getCountryI18n = createSelector(
-	getLocale,
+	mainSelectors.getLocale,
 	(locale): any | null => {
 		const strings = langUtils.getStrings(locale);
 		return strings ? strings.countries : null;
@@ -209,8 +208,8 @@ export const getCountryI18n = createSelector(
 );
 
 export const getDataTypeI18n = createSelector(
-	localeFileLoaded,
-	getLocale,
+	mainSelectors.localeFileLoaded,
+	mainSelectors.getLocale,
 	(localeFileLoaded, locale): any | null => {
 		if (!localeFileLoaded) {
 			return null;
@@ -221,7 +220,7 @@ export const getDataTypeI18n = createSelector(
 );
 
 export const getExportTypeI18n = createSelector(
-	getLocale,
+	mainSelectors.getLocale,
 	getExportType,
 	(locale, exportType): any | null => {
 		const strings = langUtils.getStrings(locale);

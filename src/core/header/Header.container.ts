@@ -2,12 +2,14 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import Header, { HeaderProps } from './Header.component';
 import { GDLocale } from '../../../types/general';
-import * as selectors from '../generator/generator.selectors';
-import * as actions from '../generator/generator.actions';
+import * as selectors from '../store/generator/generator.selectors';
+import * as mainSelectors from '../store/main/main.selectors';
+import * as actions from '../store/generator/generator.actions';
+import * as mainActions from '../store/main/main.actions';
 
 const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	i18n: selectors.getCoreI18n(state),
-	locale: selectors.getLocale(state),
+	locale: mainSelectors.getLocale(state),
 	isGridVisible: selectors.isGridVisible(state),
 	isPreviewVisible: selectors.isPreviewVisible(state),
 	builderLayout: selectors.getBuilderLayout(state),
@@ -16,7 +18,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	// @ts-ignore
-	onChangeLocale: (locale: GDLocale): any => dispatch(actions.selectLocale(locale)),
+	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
 	toggleGrid: (): any => dispatch(actions.toggleGrid()),
 	togglePreview: (): any => dispatch(actions.togglePreview()),
 	toggleLayout: (): any => dispatch(actions.toggleLayout()),

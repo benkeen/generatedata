@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { PreviewSettingsTab, PreviewSettingsTabProps } from './PreviewSettingsTab.component';
-import * as generatorSelectors from '../generator/generator.selectors';
-import * as generatorActions from '../generator/generator.actions';
+import * as generatorSelectors from '../store/generator/generator.selectors';
+import * as generatorActions from '../store/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<PreviewSettingsTabProps> => ({
 	numPreviewRows: generatorSelectors.getNumPreviewRows(state),

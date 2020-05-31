@@ -1,5 +1,5 @@
 /**
- * Our generator class. This does the work of passing off the work off to the selected plugins and piecing the
+ * Our generator. This does the work of passing off the work off to the selected plugins and piecing the
  * generated data for returning to the client.
  */
 import { ExportTypeGenerateType, GenerationTemplate, GenerationTemplateRow } from '../../../types/general';

@@ -1,14 +1,13 @@
 import { AnyAction } from 'redux';
 import { generate } from 'shortid';
 // @ts-ignore-line
-import config from '../../../build/config.client';
+import config from '../../../../build/config.client';
 import * as actions from './generator.actions';
-import { BuilderLayout } from '../builder/Builder.component';
-import { ExportSettingsTab } from '../exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
-import { GDLocale } from '../../../types/general';
-import { dataTypeNames } from '../../utils/dataTypeUtils';
-import { exportTypeNames } from '../../utils/exportTypeUtils';
+import { BuilderLayout } from '../../builder/Builder.component';
+import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
+import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
+import { dataTypeNames } from '../../../utils/dataTypeUtils';
+import { exportTypeNames } from '../../../utils/exportTypeUtils';
 
 export type DataRow = {
 	id: string;
@@ -32,8 +31,6 @@ export type ExportTypeSettings = {
 };
 
 export type GeneratorState = {
-	localeFileLoaded: boolean;
-	locale: GDLocale;
 	loadedDataTypes: {
 		[str in DataTypeFolder]: boolean;
 	};
@@ -60,9 +57,11 @@ export type GeneratorState = {
 	stripWhitespace: boolean;
 };
 
-const defaultState: GeneratorState = {
-	localeFileLoaded: false,
-	locale: 'en',
+/**
+ * This houses the content of the generator. The actual content of each row is dependent based on the
+ * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
+ */
+export const reducer = (state: GeneratorState = {
 	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
 	loadedExportTypes: exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	exportType: config.defaultExportType,
@@ -83,26 +82,13 @@ const defaultState: GeneratorState = {
 	showGenerationPanel: false,
 	numGenerationRows: 100,
 	stripWhitespace: false
-};
-
-/**
- * This houses the content of the generator. The actual content of each row is dependent based on the
- * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
- */
-export const reducer = (state = defaultState, action: AnyAction): GeneratorState => {
+}, action: AnyAction): GeneratorState => {
 	switch (action.type) {
 		case actions.CLEAR_GRID:
 			return {
 				...state,
 				rows: {},
 				sortedRows: []
-			};
-
-		case actions.LOCALE_FILE_LOADED:
-			return {
-				...state,
-				locale: action.payload.locale,
-				localeFileLoaded: true
 			};
 
 		case actions.DATA_TYPE_LOADED:
