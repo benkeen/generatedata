@@ -58,7 +58,6 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 						onClick={(): void => onUpdateSource('all')}
 						name={`${id}-source`}
 						checked={data.source === 'all'}
-						tooltip={i18n.countryPluginsDesc}
 					/>
 				</RadioPillRow>
 

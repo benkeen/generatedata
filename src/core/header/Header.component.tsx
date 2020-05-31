@@ -10,6 +10,8 @@ import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
 import { BuilderLayout } from '../builder/Builder.component';
 import ClearGridDialog from '../dialogs/clearGrid/ClearGrid.component';
+import { Tooltip } from '../../components/tooltips';
+import { toSentenceCase } from '../../utils/stringUtils';
 
 export type HeaderProps = {
 	toggleGrid: () => void;
@@ -32,6 +34,12 @@ const Header = ({
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
 	const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
+	const toggleLayoutEnabled = isGridVisible && isPreviewVisible;
+
+	let toggleLayoutBtnClasses = styles.toggleLayoutBtn;
+	if (!toggleLayoutEnabled) {
+		toggleLayoutBtnClasses += ` ${styles.toggleLayoutBtnDisabled}`;
+	}
 
 	return (
 		<>
@@ -44,14 +52,31 @@ const Header = ({
 						<ul>
 						</ul>
 						<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px', backgroundColor: '#ffffff' }}>
-							<Button className={isGridVisible ? styles.btnSelected : ''} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>{i18n.grid}</Button>
-							<Button className={isPreviewVisible ? styles.btnSelected : ''} onClick={togglePreview} startIcon={<PreviewIcon />}>{i18n.preview}</Button>
-							<Button onClick={toggleLayout}>
-								<ToggleDirectionIcon />
-							</Button>
-							<Button onClick={(): void => setShowClearDialog(true)}>
-								<Delete />
-							</Button>
+							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
+								<Button className={isGridVisible ? styles.btnSelected : ''} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>
+									{i18n.grid}
+								</Button>
+							</Tooltip>
+							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowPreviewPanel }} />} arrow>
+								<Button className={isPreviewVisible ? styles.btnSelected : ''} onClick={togglePreview} startIcon={<PreviewIcon />}>
+									{i18n.preview}
+								</Button>
+							</Tooltip>
+							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.togglePanelLayout }} />}
+								arrow
+								disableHoverListener={!toggleLayoutEnabled}
+								disableFocusListener={!toggleLayoutEnabled}>
+								<span className={toggleLayoutBtnClasses}>
+									<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled}>
+										<ToggleDirectionIcon />
+									</Button>
+								</span>
+							</Tooltip>
+							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: toSentenceCase(i18n.clearPage) }} />} arrow>
+								<Button onClick={(): void => setShowClearDialog(true)}>
+									<Delete />
+								</Button>
+							</Tooltip>
 						</ButtonGroup>
 					</nav>
 				</div>

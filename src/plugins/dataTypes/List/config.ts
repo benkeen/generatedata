@@ -1,7 +1,7 @@
 import { DTDefinition } from '../../../../types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Custom List',
+	name: 'List',
 	fieldGroup: 'other',
 	fieldGroupOrder: 40,
 	schema: {

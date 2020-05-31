@@ -82,7 +82,7 @@ Validation function:
 
 ---------------------------
 
-
 ### Text rules:
 
 - titles, headings: capitalize every letter
+- tooltips: sentence case, no ending period

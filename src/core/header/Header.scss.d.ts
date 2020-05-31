@@ -3,6 +3,8 @@ declare namespace HeaderScssModule {
     btnSelected: string;
     current: string;
     header: string;
+    toggleLayoutBtn: string;
+    toggleLayoutBtnDisabled: string;
   }
 }
 

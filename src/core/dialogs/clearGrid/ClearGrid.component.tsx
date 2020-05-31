@@ -13,11 +13,11 @@ export type ClearGridProps = {
 
 const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): JSX.Element => (
 	<SmallDialog onClose={onClose} open={visible}>
-		<DialogTitle onClose={onClose}>Clear Grid</DialogTitle>
+		<DialogTitle onClose={onClose}>{i18n.clearPage}</DialogTitle>
 		<DialogContent dividers className={styles.contentPanel}>
 			<WarningIcon />
 			<div>
-				Are you sure you want to clear the page? This will lose any changes you've made.
+				{i18n.clearPageConfirmation}
 			</div>
 		</DialogContent>
 		<DialogActions>
