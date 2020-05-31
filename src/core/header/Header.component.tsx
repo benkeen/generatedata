@@ -37,7 +37,7 @@ const Header = ({
 			<header className={styles.header}>
 				<div>
 					<h1>
-						<img src="./images/logo.png" width={256} height={32} />
+						<img src="./images/logo.png" width={281} height={58} />
 					</h1>
 					<nav>
 						<ul>

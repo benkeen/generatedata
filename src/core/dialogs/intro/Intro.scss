@@ -1,0 +1,14 @@
+@import "../../../styles/variables";
+
+div.contentPanel {
+	display: flex;
+	align-items: center;
+	overflow: hidden !important;
+	padding: 10px 16px;
+
+	svg {
+		color: orange;
+		font-size: 50px;
+		margin-right: 10px;
+	}
+}
