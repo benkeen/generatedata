@@ -14,7 +14,6 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	return { display: chosenFormat.trim() };
 };
 
-
 export const getMetadata = (): DTMetadata => ({
 	general: {
 		dataType: 'boolean'

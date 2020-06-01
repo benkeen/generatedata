@@ -22,8 +22,8 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 
 		onUpdate({
 			example: value,
-			incrementStart: parseFloat(incrementStart),
-			incrementValue: parseFloat(incrementValue),
+			incrementStart: parseInt(incrementStart, 10),
+			incrementValue: parseInt(incrementValue, 10),
 			incrementPlaceholder
 		});
 	};
@@ -59,17 +59,31 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 
 	return (
 		<>
-			{i18n.startAt}
-			<input type="text" style={{ width: 40 }} value={data.incrementStart}
-				onChange={(e): void => onChange('incrementStart', parseFloat(e.target.value))} />
-			{i18n.increment}
-			<input type="text" style={{ width: 40 }} value={data.incrementValue}
-				onChange={(e): void => onChange('incrementValue', parseFloat(e.target.value))} />
+			<div style={{ marginBottom: 2 }}>
+				{i18n.startAt}
+				<input
+					type="number"
+					style={{ width: 60 }}
+					value={data.incrementStart}
+					onChange={(e): void => onChange('incrementStart', parseInt(e.target.value, 10))}
+				/>
 
-			<br />
-			{i18n.placeholderStr}
-			<input type="text" style={{ width: 100 }} value={data.incrementPlaceholder}
-				onChange={(e): void => onChange('incrementPlaceholder', e.target.value)} />
+				{i18n.increment}
+				<input
+					type="number"
+					style={{ width: 60 }}
+					value={data.incrementValue}
+					onChange={(e): void => onChange('incrementValue', parseInt(e.target.value, 10))}
+				/>
+			</div>
+
+			<div>
+				{i18n.placeholderStr}
+				<input
+					type="text"
+					style={{ width: 100 }} value={data.incrementPlaceholder}
+					onChange={(e): void => onChange('incrementPlaceholder', e.target.value)} />
+			</div>
 		</>
 	);
 };
@@ -88,27 +102,3 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</ul>
 	</>
 );
-
-// var _validate = function(rows) {
-// 	var visibleProblemRows = [];
-// 	var problemFields      = [];
-// 	for (var i=0; i<rows.length; i++) {
-// 		var autoIncrementStart = $.trim($("#dtAutoIncrementStart_" + rows[i]).val());
-// 		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-// 		if (autoIncrementStart === "") {
-// 			problemFields.push($("#dtAutoIncrementStart_" + rows[i]));
-// 		}
-// 		var autoIncrementEnd = $.trim($("#dtAutoIncrementValue_" + rows[i]).val());
-// 		if (autoIncrementEnd === "") {
-// 			problemFields.push($("#dtAutoIncrementValue_" + rows[i]));
-// 		}
-// 		if (autoIncrementStart === "" || autoIncrementEnd === "") {
-// 			visibleProblemRows.push(visibleRowNum);
-// 		}
-// 	}
-// 	var errors = [];
-// 	if (visibleProblemRows.length) {
-// 		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-// 	}
-// 	return errors;
-// };
