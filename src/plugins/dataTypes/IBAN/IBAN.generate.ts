@@ -2,10 +2,177 @@
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
 import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
+import { generateRandomAlphanumericStr, getRandomArrayValue, getRandomBool } from '../../../utils/randomUtils';
+
+// Template definition
+// 	b :	NATIONAL_BANK_CODE
+// 	i :	BIC_CODE
+// 	d :	BRANCH_ID
+// 	c :	ACCOUNT_NUMBER
+// 	k :	IBAN_CHECKSUM
+// 	x :	NATIONAL_CHECKSUM
+// 	m :	MOD11_CHECKSUM
+// 	t :	ACCOUNT_TYPE
+// 	p :	PERSONAL_NUMBER
+// 	n :	COUNTRY_CODE
+//
+//  Based on http://en.wikipedia.org/wiki/International_Bank_Account_Number#IBAN_formats_by_country
+//  Corrected using various sources
+const countryCodes = [
+	{ code: 'AL', sepa: false, template: 'ALkkbbbddddxcccccccccccccccc', name: 'Albania' },
+	{ code: 'AD', sepa: false, template: 'ADkkbbbbddddcccccccccccc', name: 'Andorra' },
+	{ code: 'AT', sepa: true, template: 'ATkkbbbbbccccccccccc', name: 'Austria' },
+	{ code: 'AZ', sepa: false, template: 'AZkkbbbbcccccccccccccccccccc', name: 'Azerbaijan' },
+	{ code: 'BE', sepa: true, template: 'BEkkbbbcccccccxx', name: 'Belgium' },
+	{ code: 'BH', sepa: false, template: 'BHkkbbbbcccccccccccccc', name: 'Bahrain' },
+	{ code: 'BA', sepa: false, template: 'BAkkbbbdddccccccccxx', name: 'Bosnia and Herzegovina' },
+	{ code: 'BG', sepa: true, template: 'BGkkiiiiddddttcccccccc', name: 'Bulgaria' },
+	{ code: 'CR', sepa: false, template: 'CRkkbbbcccccccccccccc', name: 'Costa Rica' },
+	{ code: 'HR', sepa: false, template: 'HRkkbbbbbbbcccccccccc', name: 'Croatia' },
+	{ code: 'CY', sepa: true, template: 'CYkkbbbdddddcccccccccccccccc', name: 'Cyprus' },
+	{ code: 'CZ', sepa: true, template: 'CZkkbbbbddddddcccccccccc', name: 'Czech Republic' },
+	{ code: 'DK', sepa: true, template: 'DKkkbbbbcccccccccc',name: 'Denmark' },
+	{ code: 'DO', sepa: false, template: 'DOkkbbbbcccccccccccccccccccc', name: 'Dominican Republic' },
+	{ code: 'EE', sepa: true, template: 'EEkkbbddcccccccccccx', name: 'Estonia' },
+	{ code: 'FO', sepa: false, template: 'FOkkbbbbcccccccccx', name: 'Faroe Islands' },
+	{ code: 'FI', sepa: true, template: 'FIkkbbbbbbcccccccx', name: 'Finland' },
+	{ code: 'FR', sepa: true, template: 'FRkkbbbbbdddddcccccccccccxx', name: 'France' },
+	{ code: 'GE', sepa: false, template: 'GEkkbbcccccccccccccccc', name: 'Georgia' },
+	{ code: 'DE', sepa: true, template: 'DEkkbbbbbbbbcccccccccc', name: 'Germany' },
+	{ code: 'GI', sepa: false, template: 'GIkkiiiiccccccccccccccc', name: 'Gibraltar' },
+	{ code: 'GR', sepa: true, template: 'GRkkbbbddddcccccccccccccccc', name: 'Greece' },
+	{ code: 'GL', sepa: false, template: 'GLkkbbbbcccccccccc', name: 'Greenland' },
+	{ code: 'GT', sepa: false, template: 'GTkkbbbbcccccccccccccccccccc', name: 'Guatemala' },
+	{ code: 'HU', sepa: true, template: 'HUkkbbbddddxcccccccccccccccx', name: 'Hungary' },
+	{ code: 'IS', sepa: true, template: 'ISkkbbbbddccccccpppppppppp', name: 'Iceland' },
+	{ code: 'IE', sepa: true, template: 'IEkkiiiibbbbbbcccccccc', name: 'Ireland' },
+	{ code: 'IL', sepa: false, template: 'ILkkbbbnnnccccccccccccc', name: 'Israel' },
+	{ code: 'IT', sepa: true, template: 'ITkkxiiiiibbbbbcccccccccccc', name: 'Italy' },
+	{ code: 'KZ', sepa: false, template: 'KZkkbbbccccccccccccc', name: 'Kazakhstan' },
+	{ code: 'KW', sepa: false, template: 'KWkkbbbbcccccccccccccccccccccc', name: 'Kuwait' },
+	{ code: 'LV', sepa: true, template: 'LVkkiiiiccccccccccccc', name: 'Latvia' },
+	{ code: 'LB', sepa: false, template: 'LBkkbbbbcccccccccccccccccccc', name: 'Lebanon' },
+	{ code: 'LI', sepa: true, template: 'LIkkbbbbbcccccccccccc', name: 'Liechtenstein' },
+	{ code: 'LT', sepa: true, template: 'LTkkbbbbbccccccccccc', name: 'Lithuania' },
+	{ code: 'LU', sepa: true, template: 'LUkkbbbccccccccccccc', name: 'Luxembourg' },
+	{ code: 'MK', sepa: false, template: 'MKkkbbbccccccccccxx', name: 'Macedonia' },
+	{ code: 'MT', sepa: true, template: 'MTkkiiiidddddcccccccccccccccccc', name: 'Malta' },
+	{ code: 'MR', sepa: false, template: 'MRkkbbbbbdddddcccccccccccxx', name: 'Mauritania' },
+	{ code: 'MU', sepa: false, template: 'MUkkbbbbbbddcccccccccccccccccc', name: 'Mauritius' },
+	{ code: 'MC', sepa: true, template: 'MCkkbbbbbdddddcccccccccccxx', name: 'Monaco' },
+	{ code: 'MD', sepa: false, template: 'MDkkbbcccccccccccccccccc', name: 'Moldova' },
+	{ code: 'ME', sepa: false, template: 'MEkkbbbcccccccccccccxx', name: 'Montenegro' },
+	{ code: 'NL', sepa: true, template: 'NLkkiiiicccccccccc', name: 'Netherlands' },
+	{ code: 'NO', sepa: true, template: 'NOkkbbbbccccccx', name: 'Norway' },
+	{ code: 'PK', sepa: false, template: 'PKkkbbbbcccccccccccccccc', name: 'Pakistan' },
+	{ code: 'PS', sepa: false, template: 'PSkkbbbbxxxxxxxxxcccccccccccc', name: 'Palestinian Territory, Occupied' },
+	{ code: 'PL', sepa: true, template: 'PLkkbbbddddxcccccccccccccccc', name: 'Poland' },
+	{ code: 'PT', sepa: true, template: 'PTkkbbbbddddcccccccccccxx', name: 'Portugal' },
+	{ code: 'RO', sepa: true, template: 'ROkkiiiicccccccccccccccc', name: 'Romania' },
+	{ code: 'SM', sepa: false, template: 'SMkkxbbbbbdddddcccccccccccc', name: 'San Marino' },
+	{ code: 'SA', sepa: false, template: 'SAkkbbcccccccccccccccccc', name: 'Saudi Arabia' },
+	{ code: 'RS', sepa: false, template: 'RSkkbbbcccccccccccccxx', name: 'Serbia' },
+	{ code: 'SK', sepa: true, template: 'SKkkbbbbddddddcccccccccc', name: 'Slovakia' },
+	{ code: 'SI', sepa: true, template: 'SIkkbbdddccccccccxx', name: 'Slovenia' },
+	{ code: 'ES', sepa: true, template: 'ESkkbbbbddddxxcccccccccc', name: 'Spain' },
+	{ code: 'SE', sepa: true, template: 'SEkkbbbccccccccccccccccx', name: 'Sweden' },
+	{ code: 'CH', sepa: true, template: 'CHkkbbbbbcccccccccccc', name: 'Switzerland' },
+	{ code: 'TN', sepa: false, template: 'TNkkbbdddccccccccccccccc', name: 'Tunisia' },
+	{ code: 'TR', sepa: false, template: 'TRkkbbbbbxcccccccccccccccc', name: 'Turkey' },
+	{ code: 'AE', sepa: false, template: 'AEkkbbbcccccccccccccccc', name: 'United Arab Emirates' },
+	{ code: 'GB', sepa: true, template: 'GBkkiiiiddddddcccccccc', name: 'United Kingdom' },
+	{ code: 'VG', sepa: false, template: 'VGkkbbbbcccccccccccccccc', name: 'Virgin Islands, British' }
+];
 
 export const generate = (): DTGenerateResult => {
-	return { display: '' };
+	const countryCode = getRandomArrayValue(countryCodes);
+	const iban = fillTemplate(countryCode.template, countryCode.code);
+
+	return { display: iban };
 };
+
+const generateBic = (countryCode: string) => {
+	const withBranchCode = getRandomBool();
+	const branchCode = withBranchCode ? 'xxX' : '';
+	const format = `LLLL${countryCode}LL${branchCode}`;
+	return generateRandomAlphanumericStr(format);
+};
+
+const fillTemplate = (template: string, countryCode: string): string => {
+	const bic = generateBic(countryCode);
+	let bicPos = 0;
+	let unsigned = '';
+
+	const uppercaseTemplate = template.toUpperCase();
+	for (let i=0; i<template.length; i++) {
+		const c = template[i];
+		if (uppercaseTemplate[i] === c) {
+			unsigned += c;
+			continue;
+		}
+		if (c === 'i') {
+			unsigned += bic[bicPos++];
+			continue;
+		}
+		if (c === 'k') {
+			unsigned += '_';
+			continue;
+		}
+		unsigned += generateRandomAlphanumericStr('x');
+	}
+
+	return recalculateChecksum(unsigned);
+};
+
+
+// removes the current checksum digit from an IBAN string, and replaces it with what it should have been
+const recalculateChecksum = (ibanString: string): string => {
+	if (ibanString.length < 6) {
+		return ibanString;
+	}
+
+	const reordered = ibanString.substring(4) + ibanString.substring(0, 2);
+	let numerical = '';
+
+	const reorderedLength = reordered.length;
+	for (let i=0; i<reorderedLength; i++) {
+		numerical += chr2Int(reordered[i]);
+	}
+	numerical += '00';
+	const checksum = 98 - bigMod(numerical, 97);
+
+	return ibanString.substring(0, 2) + checksum.toString().padStart(2, '0') + ibanString.substring(4);
+};
+
+
+const bigMod = (x: string, y: number) => {
+	// how many numbers to take at once? careful not to exceed (int)
+	const take = 5;
+	let mod: string = '';
+
+	while (x.length > 0) {
+		let a = parseInt(mod + x.substring(0, take));
+		x = x.substring(take);
+		mod = (a % y).toString();
+	}
+
+	return parseInt(mod, 10);
+};
+
+const chr2Int = (chr: string) => {
+	const ord = getOrd(chr);
+
+	if (ord <=57 && ord >= 48) { //48 = '0', 57 = '9'
+		return ord - 48;
+	}
+	if (ord <= 90 && ord >= 65) { //90 = 'Z', 65 = 'A'
+		return 10 + (ord - 65);
+	}
+//	throw new Exception("Input character {$chr}({$ord}) does not map to an integer");
+};
+
+const getOrd = (str: string) => str.charCodeAt(0);
+
 
 export const getMetadata = (): DTMetadata => ({
 	sql: {
@@ -14,206 +181,4 @@ export const getMetadata = (): DTMetadata => ({
 		field_MSSQL: 'VARCHAR(34) NULL'
 	}
 });
-
-
-/*
-	 * Template definition
-	 * 	b :	NATIONAL_BANK_CODE
-	 * 	i :	BIC_CODE
-	 * 	d :	BRANCH_ID
-	 * 	c :	ACCOUNT_NUMBER
-	 * 	k :	IBAN_CHECKSUM
-	 * 	x :	NATIONAL_CHECKSUM
-	 * 	m :	MOD11_CHECKSUM
-	 * 	t :	ACCOUNT_TYPE
-	 * 	p :	PERSONAL_NUMBER
-	 * 	n :	COUNTRY_CODE
-	 *
-	 * Based on http://en.wikipedia.org/wiki/International_Bank_Account_Number#IBAN_formats_by_country
-	 * Corrected using various sources
-	 * @var array
-	private static $allCountryCodes = array(
-		array('code'=>'AL',	'sepa'=>false,	'template'=>'ALkkbbbddddxcccccccccccccccc',		'name'=>'Albania'),
-		array('code'=>'AD',	'sepa'=>false,	'template'=>'ADkkbbbbddddcccccccccccc',			'name'=>'Andorra'),
-		array('code'=>'AT',	'sepa'=>true,	'template'=>'ATkkbbbbbccccccccccc',				'name'=>'Austria'),
-		array('code'=>'AZ',	'sepa'=>false,	'template'=>'AZkkbbbbcccccccccccccccccccc',		'name'=>'Azerbaijan'),
-		array('code'=>'BE',	'sepa'=>true,	'template'=>'BEkkbbbcccccccxx',					'name'=>'Belgium'),
-		array('code'=>'BH',	'sepa'=>false,	'template'=>'BHkkbbbbcccccccccccccc',			'name'=>'Bahrain'),
-		array('code'=>'BA',	'sepa'=>false,	'template'=>'BAkkbbbdddccccccccxx',				'name'=>'Bosnia and Herzegovina'),
-		array('code'=>'BG',	'sepa'=>true,	'template'=>'BGkkiiiiddddttcccccccc',			'name'=>'Bulgaria'),
-		array('code'=>'CR',	'sepa'=>false,	'template'=>'CRkkbbbcccccccccccccc',			'name'=>'Costa Rica'),
-		array('code'=>'HR',	'sepa'=>false,	'template'=>'HRkkbbbbbbbcccccccccc',			'name'=>'Croatia'),
-		array('code'=>'CY',	'sepa'=>true,	'template'=>'CYkkbbbdddddcccccccccccccccc',		'name'=>'Cyprus'),
-		array('code'=>'CZ',	'sepa'=>true,	'template'=>'CZkkbbbbddddddcccccccccc',			'name'=>'Czech Republic'),
-		array('code'=>'DK',	'sepa'=>true,	'template'=>'DKkkbbbbcccccccccc',				'name'=>'Denmark'),
-		array('code'=>'DO',	'sepa'=>false,	'template'=>'DOkkbbbbcccccccccccccccccccc',		'name'=>'Dominican Republic'),
-		array('code'=>'EE',	'sepa'=>true,	'template'=>'EEkkbbddcccccccccccx',				'name'=>'Estonia'),
-		array('code'=>'FO',	'sepa'=>false,	'template'=>'FOkkbbbbcccccccccx',				'name'=>'Faroe Islands'),
-		array('code'=>'FI',	'sepa'=>true,	'template'=>'FIkkbbbbbbcccccccx',				'name'=>'Finland'),
-		array('code'=>'FR',	'sepa'=>true,	'template'=>'FRkkbbbbbdddddcccccccccccxx',		'name'=>'France'),
-		array('code'=>'GE',	'sepa'=>false,	'template'=>'GEkkbbcccccccccccccccc',			'name'=>'Georgia'),
-		array('code'=>'DE',	'sepa'=>true,	'template'=>'DEkkbbbbbbbbcccccccccc',			'name'=>'Germany'),
-		array('code'=>'GI',	'sepa'=>false,	'template'=>'GIkkiiiiccccccccccccccc',			'name'=>'Gibraltar'),
-		array('code'=>'GR',	'sepa'=>true,	'template'=>'GRkkbbbddddcccccccccccccccc',		'name'=>'Greece'),
-		array('code'=>'GL',	'sepa'=>false,	'template'=>'GLkkbbbbcccccccccc',				'name'=>'Greenland'),
-		array('code'=>'GT',	'sepa'=>false,	'template'=>'GTkkbbbbcccccccccccccccccccc',		'name'=>'Guatemala'),
-		array('code'=>'HU',	'sepa'=>true,	'template'=>'HUkkbbbddddxcccccccccccccccx',		'name'=>'Hungary'),
-		array('code'=>'IS',	'sepa'=>true,	'template'=>'ISkkbbbbddccccccpppppppppp',		'name'=>'Iceland'),
-		array('code'=>'IE',	'sepa'=>true,	'template'=>'IEkkiiiibbbbbbcccccccc',			'name'=>'Ireland'),
-		array('code'=>'IL',	'sepa'=>false,	'template'=>'ILkkbbbnnnccccccccccccc',			'name'=>'Israel'),
-		array('code'=>'IT',	'sepa'=>true,	'template'=>'ITkkxiiiiibbbbbcccccccccccc',		'name'=>'Italy'),
-		array('code'=>'KZ',	'sepa'=>false,	'template'=>'KZkkbbbccccccccccccc',				'name'=>'Kazakhstan'),
-		array('code'=>'KW',	'sepa'=>false,	'template'=>'KWkkbbbbcccccccccccccccccccccc',	'name'=>'Kuwait'),
-		array('code'=>'LV',	'sepa'=>true,	'template'=>'LVkkiiiiccccccccccccc',			'name'=>'Latvia'),
-		array('code'=>'LB',	'sepa'=>false,	'template'=>'LBkkbbbbcccccccccccccccccccc',		'name'=>'Lebanon'),
-		array('code'=>'LI',	'sepa'=>true,	'template'=>'LIkkbbbbbcccccccccccc',			'name'=>'Liechtenstein'),
-		array('code'=>'LT',	'sepa'=>true,	'template'=>'LTkkbbbbbccccccccccc',				'name'=>'Lithuania'),
-		array('code'=>'LU',	'sepa'=>true,	'template'=>'LUkkbbbccccccccccccc',				'name'=>'Luxembourg'),
-		array('code'=>'MK',	'sepa'=>false,	'template'=>'MKkkbbbccccccccccxx',				'name'=>'Macedonia'),
-		array('code'=>'MT',	'sepa'=>true,	'template'=>'MTkkiiiidddddcccccccccccccccccc',	'name'=>'Malta'),
-		array('code'=>'MR',	'sepa'=>false,	'template'=>'MRkkbbbbbdddddcccccccccccxx',		'name'=>'Mauritania'),
-		array('code'=>'MU',	'sepa'=>false,	'template'=>'MUkkbbbbbbddcccccccccccccccccc',	'name'=>'Mauritius'),
-		array('code'=>'MC',	'sepa'=>true,	'template'=>'MCkkbbbbbdddddcccccccccccxx',		'name'=>'Monaco'),
-		array('code'=>'MD',	'sepa'=>false,	'template'=>'MDkkbbcccccccccccccccccc',			'name'=>'Moldova'),
-		array('code'=>'ME',	'sepa'=>false,	'template'=>'MEkkbbbcccccccccccccxx',			'name'=>'Montenegro'),
-		array('code'=>'NL',	'sepa'=>true,	'template'=>'NLkkiiiicccccccccc',				'name'=>'Netherlands'),
-		array('code'=>'NO',	'sepa'=>true,	'template'=>'NOkkbbbbccccccx',					'name'=>'Norway'),
-		array('code'=>'PK',	'sepa'=>false,	'template'=>'PKkkbbbbcccccccccccccccc',			'name'=>'Pakistan'),
-		array('code'=>'PS',	'sepa'=>false,	'template'=>'PSkkbbbbxxxxxxxxxcccccccccccc',	'name'=>'Palestinian Territory, Occupied'),
-		array('code'=>'PL',	'sepa'=>true,	'template'=>'PLkkbbbddddxcccccccccccccccc',		'name'=>'Poland'),
-		array('code'=>'PT',	'sepa'=>true,	'template'=>'PTkkbbbbddddcccccccccccxx',		'name'=>'Portugal'),
-		array('code'=>'RO',	'sepa'=>true,	'template'=>'ROkkiiiicccccccccccccccc',			'name'=>'Romania'),
-		array('code'=>'SM',	'sepa'=>false,	'template'=>'SMkkxbbbbbdddddcccccccccccc',		'name'=>'San Marino'),
-		array('code'=>'SA',	'sepa'=>false,	'template'=>'SAkkbbcccccccccccccccccc',			'name'=>'Saudi Arabia'),
-		array('code'=>'RS',	'sepa'=>false,	'template'=>'RSkkbbbcccccccccccccxx',			'name'=>'Serbia'),
-		array('code'=>'SK',	'sepa'=>true,	'template'=>'SKkkbbbbddddddcccccccccc',			'name'=>'Slovakia'),
-		array('code'=>'SI',	'sepa'=>true,	'template'=>'SIkkbbdddccccccccxx',				'name'=>'Slovenia'),
-		array('code'=>'ES',	'sepa'=>true,	'template'=>'ESkkbbbbddddxxcccccccccc',			'name'=>'Spain'),
-		array('code'=>'SE',	'sepa'=>true,	'template'=>'SEkkbbbccccccccccccccccx',			'name'=>'Sweden'),
-		array('code'=>'CH',	'sepa'=>true,	'template'=>'CHkkbbbbbcccccccccccc',			'name'=>'Switzerland'),
-		array('code'=>'TN',	'sepa'=>false,	'template'=>'TNkkbbdddccccccccccccccc',			'name'=>'Tunisia'),
-		array('code'=>'TR',	'sepa'=>false,	'template'=>'TRkkbbbbbxcccccccccccccccc',		'name'=>'Turkey'),
-		array('code'=>'AE',	'sepa'=>false,	'template'=>'AEkkbbbcccccccccccccccc',			'name'=>'United Arab Emirates'),
-		array('code'=>'GB',	'sepa'=>true,	'template'=>'GBkkiiiiddddddcccccccc',			'name'=>'United Kingdom'),
-		array('code'=>'VG',	'sepa'=>false,	'template'=>'VGkkbbbbcccccccccccccccc',			'name'=>'Virgin Islands, British')
-	);
-
-	private static $countryCodes;
-	private static $numCountryCodes;
-
-	 * @TODO make the $onlySepa option variable
-	 * @param string $runtimeContext
-	public function __construct($runtimeContext) {
-		parent::__construct($runtimeContext);
-		$onlySepa = false;
-		if ($runtimeContext == "generation") {
-			$numCountryCodes = 0;
-			foreach (self::$allCountryCodes as $details) {
-				if (!$onlySepa || $details['sepa']) {
-					self::$countryCodes[] = $details;
-					$numCountryCodes++;
-				}
-			}
-			self::$numCountryCodes = $numCountryCodes;
-		}
-	}
-
-	public static function generateBic($countryCode) {
-		$withBranchCode = mt_rand(0, 1) == true;
-		$branchCode = $withBranchCode ? 'xxX' : '';
-		$format = 'LLLL' . $countryCode . 'LL' . $branchCode;
-
-		return Utils::generateRandomAlphanumericStr($format);
-	}
-
-	private static function fillTemplate($template, $countryCode) {
-		$bic = self::generateBic($countryCode);
-		$bicPos = 0;
-		$unsigned = '';
-		$len = strlen($template);
-
-		$uppercaseTemplate = strtoupper($template);
-		for ($i=0; $i<$len; $i++) {
-			$c = $template[$i];
-			if ($uppercaseTemplate[$i] === $c) {
-				$unsigned .= $c;
-				continue;
-			}
-			if ($c === 'i') {
-				$unsigned .= $bic{$bicPos++};
-				continue;
-			}
-			if ($c === 'k') {
-				$unsigned .= '_';
-				continue;
-			}
-			$unsigned .= Utils::generateRandomAlphanumericStr('x');
-		}
-		return self::recalculateChecksum($unsigned);
-	}
-
-	public static function getRandomCountry() {
-		return self::$countryCodes[mt_rand(0, self::$numCountryCodes-1)];
-	}
-
-	 * @todo Respect the selected country.
-	public function generate($generator, $generationContextData) {
-		$code = self::getRandomCountry();
-		$IBAN = self::fillTemplate($code['template'], $code['code']);
-		return array(
-			"display" => $IBAN
-		);
-	}
-
-	private static function chr2Int($chr) {
-
-		// this is a good idea for function robustness, but it slows down the code too much. Commenting out.
-//		if (strlen($chr) != 1) {
-//			throw new Exception("Requires a single character");
-//		}
-
-		$ord = ord($chr);
-
-		if ($ord <=57 && $ord >= 48) { //48 = '0', 57 = '9'
-			return $ord-48;
-		}
-		if ($ord <= 90 && $ord >= 65) { //90 = 'Z', 65 = 'A'
-			return 10 + ($ord - 65);
-		}
-		throw new Exception("Input character {$chr}({$ord}) does not map to an integer");
-	}
-
-	private static function bigMod( $x, $y ) {
-		// how many numbers to take at once? careful not to exceed (int)
-		$take = 5;
-		$mod = '';
-
-		do {
-			$a = intval($mod.substr($x, 0, $take));
-			$x = substr( $x, $take );
-			$mod = $a % $y;
-		} while (strlen($x));
-
-		return intval($mod);
-	}
-
-	 * Removes the current checksum digit from an IBAN string, and replaces it with what it should have been.
-	private static function recalculateChecksum($ibanString) {
-		if (strlen($ibanString) < 6) {
-			return $ibanString;
-		}
-
-		$reordered = substr($ibanString, 4) . substr($ibanString, 0, 2);
-		$numerical = '';
-		$reorderedLength = strlen($reordered);
-		for ($i=0; $i<$reorderedLength; $i++) {
-			$numerical .= self::chr2Int($reordered[$i]);
-		}
-		$numerical .= '00';
-
-		$checksum = 98 - self::bigMod($numerical, 97);
-
-		return substr($ibanString, 0, 2) . str_pad($checksum, 2, '0', STR_PAD_LEFT) . substr($ibanString, 4);
-	}
-*/
 

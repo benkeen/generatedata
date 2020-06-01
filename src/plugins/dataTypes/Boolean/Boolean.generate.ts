@@ -3,11 +3,10 @@ import { DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes'
 import { getRandomNum } from '../../../utils/randomUtils';
 import { BooleanState } from './Boolean.ui';
 
-export const rowStateReducer = (state: BooleanState): string => state.value;
+export const rowStateReducer = (state: BooleanState): string[] => state.values;
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const placeholderStr: string = data.rowState;
-	const formats = placeholderStr.split('|');
+	const formats = data.rowState;
 	let chosenFormat = formats[0];
 	if (formats.length > 1) {
 		chosenFormat = formats[getRandomNum(0, formats.length - 1)];

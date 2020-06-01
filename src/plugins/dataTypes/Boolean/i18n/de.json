@@ -5,10 +5,10 @@
   "helpIntro": "Zeichen (|) können Sie mehrere Formate, indem Sie sie mit dem Rohr geben. Die folgenden Zeichenfolgen werden auf die Boolean umgerechnet werden:",
   "incompleteFields": "Der Name Datentyp haben muss das Format eingetragen im Options Textfeld. Bitte beheben Sie die folgenden Zeilen:",
   "exampleYesNo": "Yes oder No",
-  "exampleFalseTrue": "False oder True",
+  "exampleTrueFalse": "True oder False",
   "exampleZeroOne": "0 oder 1",
   "exampleYesNoShort": "Y oder N",
-  "exampleFalseTrueShort": "F oder T",
-  "exampleFalseTrueLower": "false oder true",
+  "exampleTrueFalseShort": "T oder F",
+  "exampleTrueFalseLower": "true oder false",
   "textDoubleQuotes": "<code>true</code> und <code>false</code> Werte sind speziell. Je nach Exportart können diese ohne Anführungszeichen ausgegeben werden."
 }

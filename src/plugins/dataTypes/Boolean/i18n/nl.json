@@ -5,10 +5,10 @@
   "helpIntro": "U kunt meerdere formaten opgeven gescheiden door een (|) karakter. De volgende Waarden worden gebruikt om een willekeurige Boolean te genereren:",
   "incompleteFields": "U moet minimaal een waarde opgeven in het optie tekst veld. Pas AUB de volgende rij(en) aan:",
   "exampleYesNo": "Yes of No",
-  "exampleFalseTrue": "False of True",
+  "exampleTrueFalse": "True of False",
   "exampleZeroOne": "0 of 1",
   "exampleYesNoShort": "Y of N",
-  "exampleFalseTrueShort": "F of T",
-  "exampleFalseTrueLower": "false of true",
+  "exampleTrueFalseShort": "T of F",
+  "exampleTrueFalseLower": "true of false",
   "textDoubleQuotes": "<code>true</code> en <code>false</code> waarden zijn speciaal. Afhankelijk van het exporttype kunnen deze worden uitgevoerd zonder dubbele aanhalingstekens."
 }

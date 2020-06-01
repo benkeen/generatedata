@@ -5,10 +5,10 @@
   "helpIntro": "Pues especificar múltiples formatos separándolos con el carácter tubería, |. Las siguientes cadenas serán convertidas a su Boolean aleatorio equivalente:",
   "incompleteFields": "The Name data type needs to have the format entered in the Options text field. Please fix the following rows:",
   "exampleYesNo": "Yes of No",
-  "exampleFalseTrue": "False of True",
+  "exampleTrueFalse": "True of False",
   "exampleZeroOne": "0 of 1",
   "exampleYesNoShort": "Y of N",
-  "exampleFalseTrueShort": "F of T",
-  "exampleFalseTrueLower": "false of true",
+  "exampleTrueFalseShort": "T of F",
+  "exampleTrueFalseLower": "true of false",
   "textDoubleQuotes": "Los valores <code>true</code> y <code>false</code> son especiales. Dependiendo del tipo de exportación, estos pueden salir sin comillas dobles."
 }
