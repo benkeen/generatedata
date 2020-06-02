@@ -85,6 +85,25 @@ const createPluginsListFile = () => {
 	fs.writeFileSync(file, content);
 };
 
+
+// the import file allows anyone extending this application to define their own global imports to be included in the
+// webpack bundle. Right now I'm just using this for importing google analytics for the website, but it'll get
+// expanded on later for all the extra tabs (About, Donate etc.)
+const createImportFile = () => {
+	const importLines = [];
+	completeConfigFile.importFiles.forEach((filePathFromRoot) => {
+		importLines.push(`import "../${filePathFromRoot}"`);
+	});
+
+	const file = path.join(__dirname, '..', 'src/_imports.tsx');
+	if (fs.existsSync(file)) {
+		fs.unlinkSync(file);
+	}
+	fs.writeFileSync(file, importLines.join('\n'));
+};
+
+
 createBuildFile('config.client.js', `export default ${JSON.stringify(completeConfigFile, null, '\t')};`);
 
 createPluginsListFile();
+createImportFile();

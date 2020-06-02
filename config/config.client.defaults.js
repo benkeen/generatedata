@@ -66,30 +66,5 @@ export default {
 		'de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'
 	],
 
-	// controls the top-level tabs seen in the application.
-	tabs: [
-		{
-			id: 'generate',
-			label: 'Generate',
-			file: '...'
-		},
-		{
-			id: 'about',
-			label: 'About',
-			file: '...'
-		},
-		{
-			id: 'accounts',
-			label: 'Accounts',
-			requiresAuth: true
-		},
-		{
-			id: 'settings',
-			label: 'Settings',
-			requiresAuth: true
-		}
-	],
-
-	// custom settings that plugins may want to add. Just call core.getPluginSettings() to get them in your plugin
-	pluginSettings: {}
+	importFiles: []
 };
