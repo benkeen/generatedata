@@ -13,7 +13,7 @@ if (fs.existsSync(configFile)) {
 const completeConfigFile = {
 	version: package.version,
 	...configDefaults.default,
-	...overrides
+	...overrides.default
 };
 
 const createBuildFile = (filename, content) => {
