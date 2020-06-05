@@ -7,8 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "grunt & grunt dev & yarn build & yarn webpack",
+    "dev": "grunt & yarn build & yarn webpack",
+    "prod": "grunt & yarn build & yarn webpackProd",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
+    "webpackProd": "webpack --config ./webpack.config.js --mode=production",
     "build": "node ./scripts/generateConfigFile.js",
     "test": "env NODE_ENV=test jest"
   },
@@ -55,6 +57,7 @@
     "react-beautiful-dnd": "^12.2.0",
     "react-codemirror2": "^7.1.0",
     "react-dom": "^16.12.0",
+    "react-ga": "^2.7.0",
     "react-measure": "^2.3.0",
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
@@ -65,7 +68,9 @@
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "terser-webpack-plugin": "^3.0.3",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",

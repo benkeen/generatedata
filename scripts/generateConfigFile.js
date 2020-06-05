@@ -92,7 +92,7 @@ const createPluginsListFile = () => {
 const createImportFile = () => {
 	const importLines = [];
 	completeConfigFile.importFiles.forEach((filePathFromRoot) => {
-		importLines.push(`import "../${filePathFromRoot}"`);
+		importLines.push(`import '../${filePathFromRoot}';`);
 	});
 
 	const file = path.join(__dirname, '..', 'src/_imports.tsx');

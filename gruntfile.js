@@ -88,6 +88,6 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.registerTask('default', ['cssmin', 'copy', 'i18n']);
-	grunt.registerTask('dev', ['default']);
+	grunt.registerTask('build', ['default']);
 	grunt.registerTask('i18n', generateI18nBundles);
 };
