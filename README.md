@@ -28,8 +28,10 @@ the documentation for more info.
 
 ## `master` = v4 rewrite
 
-The master branch of this repo now contains the ongoing work for the v4 rewrite. The generatedata.com site, the 
-documentation and everything else is for up to the v3 branch. You can find that code in the `v3` branch. 
+The master branch of this repo now contains the ongoing work for the v4 rewrite, temporarily found here:
+http://generatedata4.com
+
+The generatedata.com site, the documentation and everything else is for up to the v3 branch. You can find that code in the `v3` branch. 
 
 Although I'm no longer working on that branch, PRs and bug fixes are very welcome! Just branch off `v3` and put 
 your PRs in against that.
@@ -46,6 +48,10 @@ of this script.
 - Also: [@LaiNathaniel's repo](https://github.com/LaiNathaniel/docker-generatedata)
 - And [Andy Shinn's instructions](https://github.com/benkeen/generatedata/pull/269)
 
+### Kubernetes Helm Chart
+
+Dmitry Rubtsov has put up a Helm chart here:
+https://github.com/dmirubtsov/generatedata-helm
 
 ### Vagrant 
 
