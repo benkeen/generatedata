@@ -56,8 +56,7 @@ export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.DESC}
-			{i18n.help_intro}
+			{i18n.DESC} {i18n.help_intro}
 		</p>
 
 		<div className={styles.row}>
