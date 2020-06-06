@@ -19,7 +19,7 @@ export const customProps: DTCustomProps = {
 
 export const actionInterceptors = {
 	// when a Country plugin row is removed, clean up any region fields that may have been mapped to it
-	[REMOVE_ROW]: (countryRowId: string, rowState: RegionState, actionPayload: any) => {
+	[REMOVE_ROW]: (countryRowId: string, rowState: RegionState, actionPayload: any): RegionState | null => {
 		if (actionPayload.id === rowState.targetRowId) {
 			return {
 				...rowState,
@@ -31,7 +31,7 @@ export const actionInterceptors = {
 	},
 
 	// check any mapped Country rows don't make changes to their config that invalidates the region mapping
-	[CONFIGURE_DATA_TYPE]: (countryRowId: string, rowState: RegionState, actionPayload: any) => {
+	[CONFIGURE_DATA_TYPE]: (countryRowId: string, rowState: RegionState, actionPayload: any): RegionState | null => {
 		if (actionPayload.id === rowState.targetRowId) {
 			if (actionPayload.data.source !== 'plugins') {
 				return {
@@ -45,7 +45,7 @@ export const actionInterceptors = {
 	},
 
 	// when a user changes a Country row to something else, update any region mapping
-	[SELECT_DATA_TYPE]: (countryRowId: string, rowState: RegionState, actionPayload: any) => {
+	[SELECT_DATA_TYPE]: (countryRowId: string, rowState: RegionState, actionPayload: any): RegionState | null => {
 		if (actionPayload.id === rowState.targetRowId) {
 			if (actionPayload.value !== 'Country') {
 				return {

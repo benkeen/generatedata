@@ -43,20 +43,19 @@ const Header = ({
 	// Material UI throws an error when it comes to having a tooltip on a disabled button, and within a ButtonGroup
 	// context it messes up the styles wrapping <Button> in a <span> like we do elsewhere. So this just constructs
 	// the JSX differently for the enabled/disabled state
-	const getToggleLayoutBtn = () => {
+	const getToggleLayoutBtn = (): JSX.Element => {
 		if (toggleLayoutEnabled) {
 			return (
-				<Tooltip title={<span dangerouslySetInnerHTML={{__html: i18n.togglePanelLayout}}/>}
-						 arrow
-						 disableHoverListener={!toggleLayoutEnabled}
-						 disableFocusListener={!toggleLayoutEnabled}>
+				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.togglePanelLayout }}/>}
+					arrow
+					disableHoverListener={!toggleLayoutEnabled}
+					disableFocusListener={!toggleLayoutEnabled}>
 					<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={styles.toggleLayoutBtn}>
 						<ToggleDirectionIcon/>
 					</Button>
 				</Tooltip>
 			);
 		}
-
 		return (
 			<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={`${styles.toggleLayoutBtn} ${styles.toggleLayoutBtnDisabled}`}>
 				<ToggleDirectionIcon />

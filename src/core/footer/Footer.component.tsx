@@ -11,6 +11,7 @@ import { HtmlTooltip } from '../../components/tooltips';
 import styles from './Footer.scss';
 import { Github } from '../../components/icons';
 import { GDLocale } from '../../../types/general';
+import Link from '../../components/Link';
 import C from '../constants';
 
 export type FooterProps = {
@@ -49,9 +50,9 @@ const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale, scriptVe
 			<div>
 				<ul>
 					<li>
-						<a href={C.GITHUB_URL} target="_blank" rel="noopener noreferrer">
+						<Link url={C.GITHUB_URL} offSite={true}>
 							<Github />
-						</a>
+						</Link>
 					</li>
 					<li>
 						<ClickAwayListener onClickAway={(): void => setLocaleTooltipVisibility(false)}>

@@ -22,11 +22,11 @@ class ErrorBoundary extends React.Component<any, any> {
 		};
 	}
 
-	componentDidCatch(error: any, errorInfo: any): any {
-		// logErrorToMyService(error, errorInfo);
-	}
+	// componentDidCatch(error: any, errorInfo: any): any {
+	// 	// logErrorToMyService(error, errorInfo);
+	// }
 
-	onClear () {
+	onClear(): void {
 		persistor.purge()
 			.then(() => {
 				this.setState({
@@ -36,7 +36,7 @@ class ErrorBoundary extends React.Component<any, any> {
 			});
 	}
 
-	render() {
+	render(): any {
 		if (this.state.hasError) {
 			return (
 				<>
@@ -52,8 +52,7 @@ class ErrorBoundary extends React.Component<any, any> {
 								<p style={{ fontSize: 13, color: '#999999', marginBottom: 20 }}>
 									Sorry! Some sort of error occurred. This project is still in alpha so you may see this
 									page a little more than you'd like. Feel free to complain about it via
-									a <a href="https://github.com/benkeen/generatedata/issues" target="_blank"
-									     rel="noopener noreferrer">github issue</a> &#8212; but we will get to it!
+									a <a href="https://github.com/benkeen/generatedata/issues" target="_blank" rel="noopener noreferrer">github issue</a> &#8212; but we will get to it!
 								</p>
 
 								<Button

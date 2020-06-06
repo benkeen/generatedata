@@ -91,7 +91,7 @@ export const generate = (): DTGenerateResult => {
 	return { display: iban };
 };
 
-const generateBic = (countryCode: string) => {
+const generateBic = (countryCode: string): string => {
 	const withBranchCode = getRandomBool();
 	const branchCode = withBranchCode ? 'xxX' : '';
 	const format = `LLLL${countryCode}LL${branchCode}`;
@@ -145,13 +145,13 @@ const recalculateChecksum = (ibanString: string): string => {
 };
 
 
-const bigMod = (x: string, y: number) => {
+const bigMod = (x: string, y: number): number => {
 	// how many numbers to take at once? careful not to exceed (int)
 	const take = 5;
-	let mod: string = '';
+	let mod = '';
 
 	while (x.length > 0) {
-		let a = parseInt(mod + x.substring(0, take));
+		const a = parseInt(mod + x.substring(0, take));
 		x = x.substring(take);
 		mod = (a % y).toString();
 	}
@@ -159,7 +159,7 @@ const bigMod = (x: string, y: number) => {
 	return parseInt(mod, 10);
 };
 
-const chr2Int = (chr: string) => {
+const chr2Int = (chr: string): number => {
 	const ord = getOrd(chr);
 
 	if (ord <=57 && ord >= 48) { //48 = '0', 57 = '9'
@@ -168,7 +168,9 @@ const chr2Int = (chr: string) => {
 	if (ord <= 90 && ord >= 65) { //90 = 'Z', 65 = 'A'
 		return 10 + (ord - 65);
 	}
-//	throw new Exception("Input character {$chr}({$ord}) does not map to an integer");
+
+	// throw new Exception("Input character {$chr}({$ord}) does not map to an integer");
+	return 0;
 };
 
 const getOrd = (str: string) => str.charCodeAt(0);
