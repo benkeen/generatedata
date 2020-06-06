@@ -83,11 +83,24 @@ window.gd.localeLoaded(i18n);
 				]
 			},
 		},
+
+		clean: {
+			dist: ['dist']
+		},
+
+		shell: {
+			webpackProd: {
+				command: 'yarn prod'
+			}
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-shell');
 	grunt.registerTask('default', ['cssmin', 'copy', 'i18n']);
 	grunt.registerTask('build', ['default']);
+	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
 	grunt.registerTask('i18n', generateI18nBundles);
 };

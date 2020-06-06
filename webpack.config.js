@@ -5,16 +5,20 @@ const TerserPlugin = require('terser-webpack-plugin')
 // var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
+
+	// juuuuust to make it really explicit & prevent unrecognized modes sneaking in
+	const mode = argv.mode === 'production' ? 'production' : 'development';
+
 	var config = {
-		mode: 'production',
+		mode,
 		entry: {
 			app: './src/index.tsx'
 		},
 
 		output: {
 			path: __dirname + '/dist',
-			chunkFilename: '[name].js',
-			filename: '[name].js'
+			chunkFilename: mode === 'development' ? '[name].js' : '[name]-[hash].js',
+			filename: mode === 'development' ? '[name].js' : '[name]-[hash].js'
 		},
 
 		module: {
