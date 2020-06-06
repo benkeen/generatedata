@@ -25,28 +25,30 @@ export const customProps: DTCustomProps = {
 };
 
 export const actionInterceptors = {
+
 	// when a Country/Region plugin row is removed, clean up any postal/zip fields that were mapped to it
-	[REMOVE_ROW]: (sourceRowId: string, rowState: PostalZipState, actionPayload: any) => {
-		// if (actionPayload.id === rowState.targetRowId) {
-		// 	return {
-		// 		...rowState,
-		// 		source: 'any',
-		// 		targetRowId: ''
-		// 	};
-		// }
+	[REMOVE_ROW]: (sourceRowId: string, rowState: PostalZipState, actionPayload: any): PostalZipState | null => {
+		if (actionPayload.id === rowState.targetRowId) {
+			return {
+				...rowState,
+				source: 'any',
+				targetRowId: ''
+			};
+		}
 		return null;
 	},
 
-	[SELECT_DATA_TYPE]: (sourceRowId: string, rowState: PostalZipState, actionPayload: any) => {
-		// if (actionPayload.id === rowState.targetRowId) {
-		// 	if (actionPayload.value !== 'Region') {
-		// 		return {
-		// 			...rowState,
-		// 			source: 'any',
-		// 			targetRowId: ''
-		// 		};
-		// 	}
-		// }
+	[SELECT_DATA_TYPE]: (sourceRowId: string, rowState: PostalZipState, actionPayload: any): PostalZipState | null => {
+		if (actionPayload.id === rowState.targetRowId) {
+			if ((rowState.source === 'regionRow' && actionPayload.value !== 'Region') ||
+				(rowState.source === 'countryRow' && actionPayload.value !== 'Country')) {
+				return {
+					...rowState,
+					source: 'any',
+					targetRowId: ''
+				};
+			}
+		}
 		return null;
 	}
 };

@@ -45,7 +45,7 @@ const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18
 		onUpdate(newValues);
 	};
 
-	const onChangeTargetRow = (row: DropdownOption) => {
+	const onChangeTargetRow = (row: DropdownOption): void => {
 		onUpdate({
 			...data,
 			targetRowId: row.value
@@ -59,7 +59,7 @@ const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18
 		});
 	};
 
-	const getCountryRow = () => {
+	const getCountryRow = (): React.ReactNode => {
 		if (data.source !== 'row') {
 			return null;
 		}
@@ -73,7 +73,7 @@ const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18
 		);
 	};
 
-	const getCountryPluginsList = () => {
+	const getCountryPluginsList = (): React.ReactNode => {
 		if (data.source !== 'countries') {
 			return null;
 		}
@@ -164,15 +164,13 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 	const numSelected = data.selectedCountries.length;
 
-	const onSetFormats = (field: RegionFormat, checked: boolean) => {
+	const onSetFormats = (field: RegionFormat, checked: boolean): void => {
 		let formats = data.formats;
 		if (checked) {
 			formats.push(field);
 		} else {
 			formats = removeItem(formats, field);
 		}
-
-		console.log('new: ', formats);
 
 		onUpdate({
 			...data,

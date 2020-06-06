@@ -11,4 +11,4 @@ export const uppercaseWords = (str: string): string => {
 	return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase());
 };
 
-export const toSentenceCase = (str: string) => str.toLowerCase().replace(/[a-z]/i, (letter) => letter.toUpperCase()).trim();
+export const toSentenceCase = (str: string): string => str.toLowerCase().replace(/[a-z]/i, (letter) => letter.toUpperCase()).trim();

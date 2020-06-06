@@ -39,7 +39,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 		onUpdate(newValues);
 	};
 
-	const onChangeTargetRow = (row: DropdownOption) => {
+	const onChangeTargetRow = (row: DropdownOption): void => {
 		onUpdate({
 			...data,
 			targetRowId: row.value
@@ -53,7 +53,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 		});
 	};
 
-	const getRegionRow = () => {
+	const getRegionRow = (): React.ReactNode => {
 		if (data.source !== 'regionRow') {
 			return null;
 		}
@@ -67,7 +67,7 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, onUpd
 		);
 	};
 
-	const getCountryPluginsList = () => {
+	const getCountryPluginsList = (): React.ReactNode => {
 		if (data.source !== 'countries') {
 			return null;
 		}

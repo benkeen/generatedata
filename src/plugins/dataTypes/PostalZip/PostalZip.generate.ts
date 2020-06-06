@@ -73,6 +73,9 @@ const getRegionPostalCode = (countryData: CountryDataType, region: Region): stri
 };
 
 export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'infer'
+	},
 	sql: {
 		field: 'varchar(10) default NULL',
 		field_Oracle: 'varchar2(10) default NULL',

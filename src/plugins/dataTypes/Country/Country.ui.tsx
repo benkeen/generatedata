@@ -139,7 +139,8 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 	);
 };
 
-export const Help = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => (
+// i18n, data, onUpdate
+export const Help = ({ }: DTOptionsProps): JSX.Element => (
 	<div />
 );
 

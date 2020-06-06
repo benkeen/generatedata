@@ -173,7 +173,7 @@ const chr2Int = (chr: string): number => {
 	return 0;
 };
 
-const getOrd = (str: string) => str.charCodeAt(0);
+const getOrd = (str: string): number => str.charCodeAt(0);
 
 
 export const getMetadata = (): DTMetadata => ({

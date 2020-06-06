@@ -15,7 +15,7 @@ export const customProps: DTCustomProps = {
 
 export const actionInterceptors = {
 	// when a Region plugin row is removed, clean up any city fields that may have been mapped to it
-	[REMOVE_ROW]: (regionRowId: string, rowState: CityState, actionPayload: any) => {
+	[REMOVE_ROW]: (regionRowId: string, rowState: CityState, actionPayload: any): CityState | null => {
 		if (actionPayload.id === rowState.targetRowId) {
 			return {
 				...rowState,
@@ -26,7 +26,7 @@ export const actionInterceptors = {
 		return null;
 	},
 
-	[SELECT_DATA_TYPE]: (regionRowId: string, rowState: CityState, actionPayload: any) => {
+	[SELECT_DATA_TYPE]: (regionRowId: string, rowState: CityState, actionPayload: any): CityState | null => {
 		if (actionPayload.id === rowState.targetRowId) {
 			if (actionPayload.value !== 'Region') {
 				return {

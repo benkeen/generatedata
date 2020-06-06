@@ -22,7 +22,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 export const getMetadata = (): DTMetadata => ({
 	general: {
-		dataType: 'mixed'
+		dataType: 'infer'
 	},
 	sql: {
 		field: 'varchar(255) default NULL',

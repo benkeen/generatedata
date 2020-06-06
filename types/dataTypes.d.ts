@@ -47,8 +47,15 @@ export type DTDefinition = {
 
 export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'creditCardData' | 'math' | 'text';
 
+
+export type DTMetadataType = 'number' | 'string' | 'boolean' | 'date' | 'infer';
+
+export interface GetDTMetadataType {
+	(rowState: any): DTMetadataType;
+}
+
 export type GeneralMetadataTypes = {
-    dataType: 'number' | 'string' | 'boolean' | 'date' | 'mixed';
+    dataType: DTMetadataType | GetDTMetadataType;
 }
 
 export type DTMetadata = {

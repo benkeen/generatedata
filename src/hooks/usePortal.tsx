@@ -1,52 +1,44 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
-/**
- * Creates DOM element to be used as React root.
- * @returns {HTMLElement}
- */
-function createRootElement(id: string) {
+const createRootElement = (id: string): HTMLDivElement => {
 	const rootContainer = document.createElement('div');
 	rootContainer.setAttribute('id', id);
 	return rootContainer;
-}
+};
 
-/**
- * Appends element as last child of body.
- * @param {HTMLElement} rootElem
- */
-function addRootElement(rootElem: any) {
+const addRootElement = (rootEl: any): void => {
 	document.body.insertBefore(
-		rootElem,
+		rootEl,
 		// @ts-ignore-line
-		document.body.lastElementChild.nextElementSibling,
+		document.body.lastElementChild.nextElementSibling
 	);
-}
+};
 
-function usePortal(id: string) {
-	const rootElemRef = useRef<any>(null);
+const usePortal = (id: string): HTMLDivElement => {
+	const rootElRef = useRef<any>(null);
 
-	useEffect(() => {
+	useEffect((): any => {
 		const existingParent = document.querySelector(`#${id}`);
 		const parentEl = existingParent || createRootElement(id);
 		if (!existingParent) {
 			addRootElement(parentEl);
 		}
-		parentEl.appendChild(rootElemRef.current);
+		parentEl.appendChild(rootElRef.current);
 
-		return () => {
-			rootElemRef.current.remove();
+		return (): void => {
+			rootElRef.current.remove();
 			parentEl.remove();
 		};
 	}, []);
 
-	function getRootElem() {
-		if (!rootElemRef.current) {
-			rootElemRef.current = document.createElement('div');
+	const getRootElem = (): any => {
+		if (!rootElRef.current) {
+			rootElRef.current = document.createElement('div');
 		}
-		return rootElemRef.current;
-	}
+		return rootElRef.current;
+	};
 
 	return getRootElem();
-}
+};
 
 export default usePortal;

@@ -22,7 +22,7 @@ const data: GetCountryData = (i18n) => ({
 		// https://en.wikipedia.org/wiki/Telephone_numbers_in_Vietnam
 		phoneFormat: {
 			areaCodes: [
-				203, 204, 205, 206, 207, 208, 209,   // Landlines
+				203, 204, 205, 206, 207, 208, 209, // Landlines
 				210, 211, 212, 213, 214, 215, 216, 218, 219,
 				220, 221, 222, 225, 226, 227, 228, 229,
 				232, 233, 234, 235, 236, 237, 238, 239,
@@ -42,18 +42,18 @@ const data: GetCountryData = (i18n) => ({
 		}
 	},
 
-    // our country-wide data, with info separated into regions
-    // https://en.wikipedia.org/wiki/Vietnam
+	// our country-wide data, with info separated into regions
+	// https://en.wikipedia.org/wiki/Vietnam
 	regions: [
-        // Red River Delta
-        {
+		// Red River Delta
+		{
 			regionName: 'Bắc Ninh',
 			regionShort: 'Bắc Ninh',
 			regionSlug: 'bac_ninh',
 			weight: 1,
 			cities: [
-                'Bắc Ninh', 'Từ Sơn', 'Hồ', 'Phố Mới', 'Lim', 'Chờ', 'Gia Bình', 'Thứa'
-            ]
+				'Bắc Ninh', 'Từ Sơn', 'Hồ', 'Phố Mới', 'Lim', 'Chờ', 'Gia Bình', 'Thứa'
+			]
 		},
 		{
 			regionName: 'Hà Nam',
@@ -61,8 +61,8 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'ha_nam',
 			weight: 1,
 			cities: [
-                'Phủ Lý', 'Bình Mỹ', 'Hòa Mạc', 'Quế', 'Vĩnh Trụ', 'Kiện Khê'
-            ]
+				'Phủ Lý', 'Bình Mỹ', 'Hòa Mạc', 'Quế', 'Vĩnh Trụ', 'Kiện Khê'
+			]
 		},
 		{
 			regionName: 'Hải Dương',
@@ -70,8 +70,8 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'hai_duong',
 			weight: 1,
 			cities: [
-                'Hải Dương', 'Chí Linh', 'Kẻ Sặt', 'Lai Cách', 'Gia Lộc', 'Phú Thái', 'Kinh Môn', 'Nam Sách',
-                 'Ninh Giang', 'Thanh Hà', 'Thanh Miện', 'Tứ Kỳ'
+				'Hải Dương', 'Chí Linh', 'Kẻ Sặt', 'Lai Cách', 'Gia Lộc', 'Phú Thái', 'Kinh Môn', 'Nam Sách',
+				'Ninh Giang', 'Thanh Hà', 'Thanh Miện', 'Tứ Kỳ'
 			]
 		},
 		{
@@ -80,8 +80,8 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'hung_yen',
 			weight: 1,
 			cities: [
-                'Hưng Yên', 'Mỹ Hào', 'Ân Thi', 'Khoái Châu', 'Lương Bằng', 'Trần Cao', 'Vương', 'Văn Giang',
-                'Như Quỳnh', 'Yên Mỹ'
+				'Hưng Yên', 'Mỹ Hào', 'Ân Thi', 'Khoái Châu', 'Lương Bằng', 'Trần Cao', 'Vương', 'Văn Giang',
+				'Như Quỳnh', 'Yên Mỹ'
 			]
 		},
 		{
@@ -90,8 +90,8 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'nam_dinh',
 			weight: 1,
 			cities: [
-                'Nam Định', 'Ngô Đồng', 'Yên Định', 'Mỹ Lộc', 'Nam Giang', 'Liễu Đề', 'Cổ Lễ', 'Gôi',
-                'Xuân Trường', 'Lâm'
+				'Nam Định', 'Ngô Đồng', 'Yên Định', 'Mỹ Lộc', 'Nam Giang', 'Liễu Đề', 'Cổ Lễ', 'Gôi',
+				'Xuân Trường', 'Lâm'
 			]
 		},
 		{
@@ -100,7 +100,7 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'ninh_binh',
 			weight: 1,
 			cities: [
-                'Ninh Bình', 'Tam Điệp', 'Me', 'Thiên Tôn', 'Phát Diệm', 'Nho Quan', 'Yên Ninh', 'Yên Thịnh'
+				'Ninh Bình', 'Tam Điệp', 'Me', 'Thiên Tôn', 'Phát Diệm', 'Nho Quan', 'Yên Ninh', 'Yên Thịnh'
 			]
 		},
 		{
@@ -109,7 +109,7 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'thai_binh',
 			weight: 1,
 			cities: [
-                'Thái Bình', 'Vũ Thư', 'Tiền Hải', 'Diêm Điền', 'Quỳnh Côi', 'Thanh Nê', 'Hưng Hà', 'Đông Hưng',
+				'Thái Bình', 'Vũ Thư', 'Tiền Hải', 'Diêm Điền', 'Quỳnh Côi', 'Thanh Nê', 'Hưng Hà', 'Đông Hưng',
 			]
 		},
 		{
@@ -118,7 +118,7 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'vinh_phuc',
 			weight: 1,
 			cities: [
-                'Vĩnh Yên', 'Phúc Yên', 'Yên Lạc', 'Vĩnh Tường', 'Hợp Hòa', 'Tam Đảo', 'Hoa Sơn', 'Hương Canh',
+				'Vĩnh Yên', 'Phúc Yên', 'Yên Lạc', 'Vĩnh Tường', 'Hợp Hòa', 'Tam Đảo', 'Hoa Sơn', 'Hương Canh',
 			]
 		},
 		{
@@ -134,95 +134,95 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'hai_phong_city',
 			weight: 1,
 			cities: ['Hải Phòng']
-        },
+		},
 
-        // Northeast Region
+		// Northeast Region
 		{
 			regionName: 'Bắc Giang',
 			regionShort: 'Bắc Giang',
 			regionSlug: 'bac_giang',
 			weight: 1,
-            cities: ['Bắc Giang']
+			cities: ['Bắc Giang']
 		},
 		{
 			regionName: 'Bắc Kạn',
 			regionShort: 'Bắc Kạn',
 			regionSlug: 'bac_kan',
 			weight: 1,
-            cities: ['Bắc Kạn']
+			cities: ['Bắc Kạn']
 		},
 		{
 			regionName: 'Cao Bằng',
 			regionShort: 'Cao Bằng',
 			regionSlug: 'cao_bang',
 			weight: 1,
-            cities: ['Cao Bằng']
+			cities: ['Cao Bằng']
 		},
 		{
 			regionName: 'Hà Giang',
 			regionShort: 'Hà Giang',
 			regionSlug: 'ha_giang',
 			weight: 1,
-            cities: ['Hà Giang']
+			cities: ['Hà Giang']
 		},
 		{
 			regionName: 'Lạng Sơn',
 			regionShort: 'Lạng Sơn',
 			regionSlug: 'lang_son',
 			weight: 1,
-            cities: ['Lạng Sơn']
+			cities: ['Lạng Sơn']
 		},
 		{
 			regionName: 'Lào Cai',
 			regionShort: 'Lào Cai',
 			regionSlug: 'lao_cai',
 			weight: 1,
-            cities: ['Lào Cai']
+			cities: ['Lào Cai']
 		},
 		{
 			regionName: 'Phú Thọ',
 			regionShort: 'Phú Thọ',
 			regionSlug: 'phu_tho',
 			weight: 1,
-            cities: ['Việt Trì']
+			cities: ['Việt Trì']
 		},
 		{
 			regionName: 'Quảng Ninh',
 			regionShort: 'Quảng Ninh',
 			regionSlug: 'quang_ninh',
 			weight: 1,
-            cities: ['Hạ Long']
+			cities: ['Hạ Long']
 		},
 		{
 			regionName: 'Thái Nguyên',
 			regionShort: 'Thái Nguyên',
 			regionSlug: 'thai_nguyen',
 			weight: 1,
-            cities: ['Thái Nguyên']
+			cities: ['Thái Nguyên']
 		},
 		{
 			regionName: 'Tuyên Quang',
 			regionShort: 'Tuyên Quang',
 			regionSlug: 'tuyen_quang',
 			weight: 1,
-            cities: ['Tuyên Quang']
+			cities: ['Tuyên Quang']
 		},
 		{
 			regionName: 'Yên Bái',
 			regionShort: 'Yên Bái',
 			regionSlug: 'yen_bai',
 			weight: 1,
-            cities: ['Yên Bái', 'Nghĩa Lộ']
-        },
+			cities: ['Yên Bái', 'Nghĩa Lộ']
+		},
 
-        // Northwest Region
+		// Northwest Region
 		{
 			regionName: 'Điện Biên',
 			regionShort: 'Điện Biên',
 			regionSlug: 'dien_bien',
 			weight: 1,
 			cities: [
-                'Điện Biên Phủ', 'Mường Lay'
+				'Điện Biên Phủ', 'Mường Lay'
 			]
 		},
 		{
@@ -231,7 +231,7 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'hoa_binh',
 			weight: 1,
 			cities: [
-                'Hòa Bình', 'Cao Phong', 'Bo', 'Kỳ Sơn'
+				'Hòa Bình', 'Cao Phong', 'Bo', 'Kỳ Sơn'
 			]
 		},
 		{
@@ -240,7 +240,7 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'lai_chau',
 			weight: 1,
 			cities: [
-                'Lai Châu', 'Mường Tè', 'Nậm Nhùn', 'Phong Thổ', 'Sìn Hồ', 'Tam Đường', 'Tân Uyên', 'Than Uyên'
+				'Lai Châu', 'Mường Tè', 'Nậm Nhùn', 'Phong Thổ', 'Sìn Hồ', 'Tam Đường', 'Tân Uyên', 'Than Uyên'
 			]
 		},
 		{
@@ -249,12 +249,12 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'son_la',
 			weight: 1,
 			cities: [
-                'Sơn La', 'Bắc Yên', 'Hát Lót', 'Mộc Châu', 'Ong', 'Phú Yên', 'Quỳnh Nhai', 'Sông Mã',
-                'Sốp Cộp', 'Thuận Châu', 'Yên Châu'
+				'Sơn La', 'Bắc Yên', 'Hát Lót', 'Mộc Châu', 'Ong', 'Phú Yên', 'Quỳnh Nhai', 'Sông Mã',
+				'Sốp Cộp', 'Thuận Châu', 'Yên Châu'
 			]
-        },
+		},
 
-        // North Central Coast
+		// North Central Coast
 		{
 			regionName: 'Hà Tĩnh',
 			regionShort: 'Hà Tĩnh',
@@ -296,9 +296,9 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'thua_thien-hue',
 			weight: 1,
 			cities: ['Huế']
-        },
+		},
 
-        // Central Highlands
+		// Central Highlands
 		{
 			regionName: 'Đắk Lắk',
 			regionShort: 'Đắk Lắk',
@@ -333,9 +333,9 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'lam_dong',
 			weight: 1,
 			cities: ['Da Lat']
-        },
+		},
 
-        // South Central Coast
+		// South Central Coast
 		{
 			regionName: 'Bình Định',
 			regionShort: 'Bình Định',
@@ -391,9 +391,9 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'da_nang_city',
 			weight: 1,
 			cities: ['Đà Nẵng']
-        },
+		},
 
-        // Southeast
+		// Southeast
 		{
 			regionName: 'Bà Rịa–Vũng Tàu',
 			regionShort: 'Bà Rịa–Vũng Tàu',
@@ -435,9 +435,9 @@ const data: GetCountryData = (i18n) => ({
 			regionSlug: 'ho_chi_minh_city',
 			weight: 1,
 			cities: ['Hồ Chí Minh City']
-        },
+		},
 
-        // Mekong Delta
+		// Mekong Delta
 		{
 			regionName: 'An Giang',
 			regionShort: 'An Giang',

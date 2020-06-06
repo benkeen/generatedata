@@ -42,7 +42,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<CreatablePillField
 		value={data.values}
-		onChange={(values: any) => onUpdate({ ...data, values })}
+		onChange={(values: any): void => onUpdate({ ...data, values })}
 	/>
 );
 

@@ -125,7 +125,7 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 			<div>
 				<CreatablePillField
 					value={data.values}
-					onChange={(values: any) => onUpdate({ ...data, values })}
+					onChange={(values: any): void => onUpdate({ ...data, values })}
 				/>
 			</div>
 		</>

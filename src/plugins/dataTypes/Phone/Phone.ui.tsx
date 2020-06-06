@@ -41,14 +41,12 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => {
-	return (
-		<CreatablePillField
-			value={data.option}
-			onChange={(values: any) => onUpdate({ ...data, option: values })}
-		/>
-	);
-};
+export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
+	<CreatablePillField
+		value={data.option}
+		onChange={(values: any): void => onUpdate({ ...data, option: values })}
+	/>
+);
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>

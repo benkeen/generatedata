@@ -1,11 +1,12 @@
-import { ExportTypeGenerationData, GenerationSettings } from '../../../../types/general';
-import { JSONSettings } from './JSON.ui';
+import { ExportTypeGenerationData } from '../../../../types/general';
+// import { JSONSettings } from './JSON.ui';
 import { isNumeric } from '../../../utils/generalUtils';
 
 
 // VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)
 
-export const generate = (generationSettings: GenerationSettings, jsonSettings: JSONSettings): any => {
+// generationSettings: GenerationSettings, jsonSettings: JSONSettings
+export const generate = (): any => {
 	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 	// $this->determineNumericFields($template);
 	// $this->determineBooleanFields($template);
@@ -61,11 +62,11 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 		content += `${comma}${newline}${tab}{`;
 		comma = '';
 
-		generationData.columns.forEach(({ title, dataType }: any, colIndex: number) => {
+		generationData.columns.forEach(({ title }: any, colIndex: number) => {
 			const propName: string = title.replace(/"/, '"');
 
-			// encase all values in double quotes unless it's a number column, or it's a boolean column and it's a
-			// valid JS boolean
+			// TODO - add "infer" option. Encase all values in double quotes unless it's a number column, or it's a
+			// boolean column and it's a valid JS boolean
 			let value = row[colIndex];
 			if (!isNumeric(value) && !isJavascriptBoolean(value)) {
 				value = `"${value}"`;
