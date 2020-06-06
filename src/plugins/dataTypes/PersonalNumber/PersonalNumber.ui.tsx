@@ -21,7 +21,7 @@ export const Example = ({ coreI18n, i18n, data, onUpdate }: DTExampleProps): JSX
 	};
 
 	const options = [
-		{ value: '', label: coreI18n.please_select },
+		{ value: '', label: coreI18n.pleaseSelect },
 		{ value: 'PersonalNumberWithoutHyphen', label: i18n.example_PersonalNumberWithoutHyphen },
 		{ value: 'PersonalNumberWithHyphen', label: i18n.example_PersonalNumberWithHyphen }
 	];
@@ -63,15 +63,3 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</table>
 	</>
 );
-
-
-// var _exampleChange = function (msg) {
-// 	var rowID = msg.rowID;
-// 	var selectedFormat = msg.value;
-//
-// 	var optionValue = "";
-// 	if (selectedFormat === "PersonalNumberWithHyphen") {
-// 		optionValue = "-";
-// 	}
-// 	$("#dtOptionPersonalNumber_sep_" + rowID).val(optionValue);
-// };
