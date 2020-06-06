@@ -225,7 +225,7 @@ export const GENERATE_DATA = 'GENERATE_DATA';
 export const generateData = (): GDAction => ({ type: GENERATE_DATA });
 
 export const CLEAR_GRID = 'CLEAR_GRID';
-export const clearGrid = () => (dispatch: Dispatch) => {
+export const clearGrid = (): any => (dispatch: Dispatch): void => {
 	dispatch({ type: CLEAR_GRID });
 	dispatch(addRows(5));
 };

@@ -24,4 +24,4 @@ export const selectLocale = (locale: GDLocale) => {
 };
 
 export const TOGGLE_INTRO_DIALOG = 'TOGGLE_INTRO_DIALOG';
-export const toggleIntroDialog = () => ({ type: TOGGLE_INTRO_DIALOG });
+export const toggleIntroDialog = (): GDAction => ({ type: TOGGLE_INTRO_DIALOG });

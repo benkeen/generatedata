@@ -1,8 +1,8 @@
-import React from 'react';
+import { ReactPortal } from 'react';
 import { createPortal } from 'react-dom';
 import usePortal from '../../hooks/usePortal';
 
-const Portal = ({ children }: any) => {
+const Portal = ({ children }: any): ReactPortal => {
 	const target = usePortal('previewPanelFullScreen');
 	return createPortal(
 		children,

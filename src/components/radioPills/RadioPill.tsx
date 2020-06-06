@@ -22,6 +22,7 @@ const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: 
 				type="radio"
 				name={name}
 				checked={checked}
+				disabled={disabled}
 				onChange={(): void => {}}
 			/>
 			<span>{label}</span>

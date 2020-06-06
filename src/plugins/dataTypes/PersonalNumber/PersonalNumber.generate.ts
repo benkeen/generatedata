@@ -7,7 +7,7 @@ export const generate = (): DTGenerateResult => {
 export const getMetadata = (): DTMetadata => {
 	// Called before separator is set, so margin should be used
 	// $len = 12 + strlen(static::$sep);
-	const len = 13; // Shoud be enough, allow for max one char sep
+	const len = 13; // should be enough, allow for max one char sep
 	return {
 		sql: {
 			field: `varchar(${len}) default NULL`,
