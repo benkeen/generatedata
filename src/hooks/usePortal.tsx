@@ -23,34 +23,24 @@ function addRootElement(rootElem: any) {
 }
 
 function usePortal(id: string) {
-	const rootElemRef = useRef(null);
+	const rootElemRef = useRef<any>(null);
 
-	useEffect(function setupElement() {
-		// Look for existing target dom element to append to
+	useEffect(() => {
 		const existingParent = document.querySelector(`#${id}`);
-		// Parent is either a new root or the existing dom element
-		const parentElem = existingParent || createRootElement(id);
-
-		// If there is no existing DOM element, add a new one.
+		const parentEl = existingParent || createRootElement(id);
 		if (!existingParent) {
-			addRootElement(parentElem);
+			addRootElement(parentEl);
 		}
+		parentEl.appendChild(rootElemRef.current);
 
-		// @ts-ignore-line
-		parentElem.appendChild(rootElemRef.current);
-
-		return function removeElement() {
-			// @ts-ignore-line
+		return () => {
 			rootElemRef.current.remove();
-			if (parentElem.childNodes.length === -1) {
-				parentElem.remove();
-			}
+			parentEl.remove();
 		};
 	}, []);
 
 	function getRootElem() {
 		if (!rootElemRef.current) {
-			// @ts-ignore-line
 			rootElemRef.current = document.createElement('div');
 		}
 		return rootElemRef.current;

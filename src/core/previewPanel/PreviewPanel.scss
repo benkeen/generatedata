@@ -1,10 +1,20 @@
 .previewPanel {
-	//transition: left .4s cubic-bezier(.42,-0.3,.78,1.25),
-	//			top .4s cubic-bezier(.42,-0.3,.78,1.25),
-	//			bottom .4s cubic-bezier(.42,-0.3,.78,1.25);
 	z-index: 5000;
+	height: 100%;
 	h1 {
 		margin: 0;
+	}
+}
+
+:global(#previewPanelFullScreen) {
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 400px;
+	bottom: 0;
+	z-index: 5000;
+	&>div {
+		height: 100%;
 	}
 }
 
