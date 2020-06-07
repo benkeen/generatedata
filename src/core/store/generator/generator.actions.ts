@@ -229,3 +229,11 @@ export const clearGrid = (): any => (dispatch: Dispatch): void => {
 	dispatch({ type: CLEAR_GRID });
 	dispatch(addRows(5));
 };
+
+export const SET_PANEL_SIZE = 'SET_PANEL_SIZE';
+export const setPanelSize = (size: number): GDAction => ({
+	type: SET_PANEL_SIZE,
+	payload: {
+		size
+	}
+});

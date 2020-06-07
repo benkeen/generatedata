@@ -49,8 +49,6 @@ const PreviewPanel = ({
 	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
 	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel
 }: PreviewPanelProps): React.ReactNode => {
-	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
-
 	const getNoResults = (): JSX.Element | null => {
 		if (data.rows.length > 0) {
 			return null;
@@ -150,16 +148,7 @@ const PreviewPanel = ({
 	}
 
 	return (
-		<Measure
-			bounds
-			onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
-		>
-			{({ measureRef }): any => (
-				<div ref={measureRef} className={`${styles.previewPanel} ${themeName}`}>
-					{content}
-				</div>
-			)}
-		</Measure>
+		<div className={`${styles.previewPanel} ${themeName}`}>{content}</div>
 	);
 };
 

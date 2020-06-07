@@ -8742,6 +8742,13 @@ react-ga@^2.7.0:
   resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.7.0.tgz#24328f157f31e8cffbf4de74a3396536679d8d7c"
   integrity sha512-AjC7UOZMvygrWTc2hKxTDvlMXEtbmA0IgJjmkhgmQQ3RkXrWR11xEagLGFGaNyaPnmg24oaIiaNPnEoftUhfXA==
 
+react-hooks-window-size@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/react-hooks-window-size/-/react-hooks-window-size-0.2.2.tgz#a96c824efeb5ae1530390c70b6e732c4d9c8f5e5"
+  integrity sha512-BWePUnckCBWufxNLMdzXOnQpdEySqgrE4vmPsDmrVqZ6Ix3tDFL6FB7H9rlUwQg2Bp5LxHEZXWuj4RrKuPs1cA==
+  dependencies:
+    tslib "^1.11.1"
+
 react-input-autosize@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.2.tgz#fcaa7020568ec206bc04be36f4eb68e647c4d8c2"
@@ -10384,6 +10391,11 @@ ts-loader@^6.2.1:
     loader-utils "^1.0.2"
     micromatch "^4.0.0"
     semver "^6.0.0"
+
+tslib@^1.11.1:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
+  integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
 tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"

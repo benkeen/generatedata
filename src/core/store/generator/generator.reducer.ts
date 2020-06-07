@@ -55,6 +55,8 @@ export type GeneratorState = {
 	numGenerationRows: number;
 	numPreviewRows: number;
 	stripWhitespace: boolean;
+	lastVerticalWidth: number | null;
+	lastHorizontalWidth: number | null;
 };
 
 /**
@@ -81,7 +83,9 @@ export const reducer = (state: GeneratorState = {
 	exportSettingsTab: 'exportType',
 	showGenerationPanel: false,
 	numGenerationRows: 100,
-	stripWhitespace: false
+	stripWhitespace: false,
+	lastVerticalWidth: null,
+	lastHorizontalWidth: null
 }, action: AnyAction): GeneratorState => {
 	switch (action.type) {
 		case actions.CLEAR_GRID:
@@ -331,6 +335,14 @@ export const reducer = (state: GeneratorState = {
 				...state,
 				stripWhitespace: !action.payload.stripWhitespace
 			};
+
+		case actions.SET_PANEL_SIZE: {
+			const setting = state.builderLayout === 'horizontal' ? 'lastHorizontalWidth' : 'lastVerticalWidth';
+			return {
+				...state,
+				[setting]: action.payload.size
+			};
+		}
 
 		default:
 			return state;

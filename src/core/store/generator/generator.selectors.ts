@@ -29,6 +29,8 @@ export const getExportTypeSettings = (state: Store): any => state.generator.expo
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
 export const isGenerationPanelVisible = (state: Store): any => state.generator.showGenerationPanel;
 export const getNumGenerationRows = (state: Store): number => state.generator.numGenerationRows;
+export const getLastVerticalWidth = (state: Store): number | null => state.generator.lastVerticalWidth;
+export const getLastHorizontalWidth = (state: Store): number | null => state.generator.lastHorizontalWidth;
 
 export const getNumRows = createSelector(
 	getSortedRows,
