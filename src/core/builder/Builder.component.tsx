@@ -41,7 +41,6 @@ const Builder = ({
 		}
 	}
 
-	console.log(builderLayout, defaultSize);
 	// TODO min browser dimension to show the full builder (both tabs) is 700x400
 
 	const getContent = (): JSX.Element => {

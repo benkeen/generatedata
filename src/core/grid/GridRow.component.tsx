@@ -3,11 +3,13 @@ import { Draggable } from 'react-beautiful-dnd';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DragIndicator from '@material-ui/icons/DragIndicator';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import InfoIcon from '@material-ui/icons/Info';
 import Dropdown from '../../components/dropdown/Dropdown';
 import * as styles from './Grid.scss';
 import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
+import { HtmlTooltip } from '../../components/tooltips';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -46,6 +48,66 @@ export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
 	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions, showHelpDialog
 }: GridRowProps): JSX.Element => {
+
+	const [open, setOpen] = React.useState(false);
+
+	const handleTooltipClose = () => {
+		setOpen(false);
+	};
+
+	const handleTooltipOpen = () => {
+		setOpen(true);
+	};
+
+	const getSettingsIcon = () => {
+		if (!row.dataType) {
+			return null;
+		}
+		return (
+			<ClickAwayListener onClickAway={handleTooltipClose}>
+				<HtmlTooltip
+					placement="left"
+					onClose={handleTooltipClose}
+					open={open}
+					disableFocusListener
+					disableHoverListener
+					title={
+						<div>
+							<h4>Example</h4>
+							<div>
+								<Example
+									coreI18n={i18n}
+									countryI18n={countryI18n}
+									i18n={selectedDataTypeI18n}
+									id={row.id}
+									data={row.data}
+									onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+									emptyColClass={styles.emptyCol}
+									dimensions={{ height: dimensions.height, width: dimensions.width }}
+								/>
+							</div>
+							<h4>Options</h4>
+							<Options
+								coreI18n={i18n}
+								countryI18n={countryI18n}
+								i18n={selectedDataTypeI18n}
+								id={row.id}
+								data={row.data}
+								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+								dimensions={{ height: dimensions.height, width: dimensions.width }}
+								emptyColClass={styles.emptyCol}
+								{...dtCustomProps}
+							/>
+						</div>
+					}
+					arrow
+				>
+					<SettingsIcon onClick={handleTooltipOpen} />
+				</HtmlTooltip>
+			</ClickAwayListener>
+		);
+	};
+
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
 			{(provided: any, snapshot: any): any => (
@@ -106,7 +168,7 @@ export const GridRow = ({
 							return;
 						}
 					}}>
-						{row.dataType ? <SettingsIcon /> : null}
+						{getSettingsIcon()}
 					</div>
 					<div className={styles.deleteCol} onClick={(): void => onRemove(row.id)}>
 						<HighlightOffIcon />
