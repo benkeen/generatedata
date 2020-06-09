@@ -45,7 +45,7 @@ export type GridRowProps = {
 export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
 	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions, showHelpDialog
-}: GridRowProps) => {
+}: GridRowProps): JSX.Element => {
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
 			{(provided: any, snapshot: any): any => (

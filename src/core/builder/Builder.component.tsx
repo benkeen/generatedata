@@ -5,6 +5,7 @@ import Preview from '../previewPanel/PreviewPanel.container';
 import SplitPane from 'react-split-pane';
 import ExportSettings from '../exportSettings/ExportSettings.container';
 import GenerationPanel from '../generationPanel/GenerationPanel.container';
+import C from '../constants';
 import './Builder.scss';
 
 export type BuilderLayout = 'horizontal' | 'vertical';
@@ -13,12 +14,12 @@ export type BuilderProps = {
 	isPreviewVisible: boolean;
 	builderLayout: BuilderLayout;
 	onResizePanels: (size: number) => void;
-	lastVerticalWidth: number | null;
-	lastHorizontalWidth: number | null;
+	lastLayoutWidth: number | null;
+	lastLayoutHeight: number | null;
 }
 
 const Builder = ({
-	isGridVisible, isPreviewVisible, builderLayout, onResizePanels, lastVerticalWidth, lastHorizontalWidth
+	isGridVisible, isPreviewVisible, builderLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight
 }: BuilderProps): JSX.Element => {
 	const windowSize = useWindowSize();
 	const onResize = (size: number) => onResizePanels(size);
@@ -29,17 +30,18 @@ const Builder = ({
 	if (builderLayout === 'vertical') {
 		minSize = 350;
 		maxSize = windowSize.width - 350;
-		if (lastVerticalWidth) {
-			defaultSize = lastVerticalWidth < maxSize ? lastVerticalWidth : maxSize;
+		if (lastLayoutWidth) {
+			defaultSize = lastLayoutWidth < maxSize ? lastLayoutWidth : maxSize;
 		}
 	} else {
-		minSize = 160;
-		maxSize = windowSize.height / 2;
-		if (lastHorizontalWidth) {
-			defaultSize = lastHorizontalWidth < maxSize ? lastHorizontalWidth : maxSize;
+		minSize = 100;
+		maxSize = (windowSize.height - (C.HEADER_HEIGHT + C.FOOTER_HEIGHT)) - 100;
+		if (lastLayoutHeight) {
+			defaultSize = lastLayoutHeight < maxSize ? lastLayoutHeight : maxSize;
 		}
 	}
 
+	console.log(builderLayout, defaultSize);
 	// TODO min browser dimension to show the full builder (both tabs) is 700x400
 
 	const getContent = (): JSX.Element => {
@@ -50,6 +52,7 @@ const Builder = ({
 					minSize={minSize}
 					maxSize={maxSize}
 					defaultSize={defaultSize}
+					size={defaultSize}
 					onChange={onResize}>
 					<Grid />
 					<Preview />

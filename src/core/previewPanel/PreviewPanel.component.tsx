@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Measure from 'react-measure';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
@@ -72,12 +71,11 @@ const PreviewPanel = ({
 		);
 	};
 
-
 	let closeIconAction: any;
 	let exportTypeLabelBtnAction: any;
 	if (exportSettingsVisible) {
 		closeIconAction = toggleExportSettings;
-		exportTypeLabelBtnAction = () => {};
+		exportTypeLabelBtnAction = (): void => {};
 	} else {
 		closeIconAction = togglePreview;
 		exportTypeLabelBtnAction = toggleExportSettings;

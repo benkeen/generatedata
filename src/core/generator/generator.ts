@@ -59,8 +59,6 @@ export const generatePreviewData = (data: ExportTypeGenerateType): Promise<any> 
 		const generationTemplate = data.template;
 		const i18n = getStrings();
 
-		console.log(generationTemplate);
-
 		// for the preview panel we always generate the max num of preview panel rows so when the user changes the
 		// visible rows the data's already there
 		const lastRowNum = data.numResults;

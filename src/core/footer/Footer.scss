@@ -3,13 +3,14 @@
 .footer {
 	flex: 0 0 60px;
 	background-color: $bg-color;
-	padding: 20px;
+	padding: 16px 20px;
 
 	div {
 		margin: 0 auto;
 		display: flex;
 		align-content: space-between;
 		max-width: 1400px;
+		height: 32px;
 
 		ul {
 			flex: 1;

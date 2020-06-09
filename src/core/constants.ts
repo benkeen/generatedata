@@ -9,5 +9,7 @@ export default {
 		{ value: 'lucario', label: 'Lucario' }
 	],
 	MIN_PREVIEW_ROWS: 5,
-	MAX_PREVIEW_ROWS: 20
+	MAX_PREVIEW_ROWS: 20,
+	HEADER_HEIGHT: 66,
+	FOOTER_HEIGHT: 66
 };

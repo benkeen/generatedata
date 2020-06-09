@@ -9,8 +9,8 @@ const mapStateToProps = (state: any): Partial<BuilderProps> => ({
 	isGridVisible: selectors.isGridVisible(state),
 	isPreviewVisible: selectors.isPreviewVisible(state),
 	builderLayout: selectors.getBuilderLayout(state),
-	lastVerticalWidth: selectors.getLastVerticalWidth(state),
-	lastHorizontalWidth: selectors.getLastHorizontalWidth(state)
+	lastLayoutWidth: selectors.getLastLayoutWidth(state),
+	lastLayoutHeight: selectors.getLastLayoutHeight(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<BuilderProps> => ({
