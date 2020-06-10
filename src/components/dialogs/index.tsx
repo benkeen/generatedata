@@ -52,11 +52,12 @@ export const DialogActions = withStyles(theme => ({
 // @ts-ignore-line
 export const Dialog = withStyles(() => ({
 	root: {
-		zIndex: '5000 !important',
+		zIndex: '5005 !important',
 		width: '100%'
 	},
 	paper: {
-		maxWidth: 1000,
+		maxWidth: 800,
+		maxHeight: 500,
 		width: '100%',
 		height: '100%' // ensures the modal doesn't change size when the user filters the list of DTs
 	}

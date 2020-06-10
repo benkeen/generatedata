@@ -7,17 +7,12 @@ type CleanedRowState = {
 }
 
 // this assumes validation has already been performed. Perhaps a `valid` flag should be set in the state?
-export const rowStateReducer = (state: ConstantState): CleanedRowState => ({
-	loopCount: state.loopCount,
-	values: state.values.split(',')
-});
+export const rowStateReducer = ({ loopCount, values }: ConstantState): CleanedRowState => ({ loopCount, values });
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const rowNum = data.rowNum;
 	const { loopCount, values } = data.rowState;
 	const numValues = values.length;
-
-	console.log(data);
 
 	let value = '';
 	if (numValues === 1) {

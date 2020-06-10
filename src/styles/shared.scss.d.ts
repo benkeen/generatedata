@@ -1,5 +1,6 @@
 declare namespace SharedScssModule {
   export interface ISharedScss {
+    emptyCol: string;
     tip: string;
   }
 }

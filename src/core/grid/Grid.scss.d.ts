@@ -5,7 +5,6 @@ declare namespace GridScssModule {
     dataTypeColDropdown: string;
     dataTypeHelp: string;
     deleteCol: string;
-    emptyCol: string;
     examplesCol: string;
     grid: string;
     gridHeader: string;

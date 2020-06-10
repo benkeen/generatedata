@@ -1,0 +1,13 @@
+.options {
+	label {
+		margin-right: 5px;
+	}
+}
+
+.values {
+	display: flex;
+	align-items: center;
+	&>div {
+		flex: 1;
+	}
+}

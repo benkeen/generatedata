@@ -1,17 +1,22 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import CreatablePillField from '../../../components/CreatablePillField';
+import styles from './Constant.scss';
+import sharedStyles from '../../../styles/shared.scss';
 
 export type ConstantState = {
 	loopCount: number;
-	values: string;
-}
+	values: string[];
+};
 
 export const initialState: ConstantState = {
 	loopCount: 2,
-	values: '1,2'
+	values: ['1', '2']
 };
 
-export const Example = ({ coreI18n }: DTExampleProps): string => coreI18n.seeHelpDialog;
+export const Example = ({ coreI18n }: DTExampleProps): JSX.Element => (
+	<div className={sharedStyles.emptyCol}>{coreI18n.seeHelpDialog}</div>
+);
 
 export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
@@ -22,21 +27,21 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 	};
 
 	return (
-		<div>
+		<div className={styles.options}>
 			<div style={{ marginBottom: 2 }}>
-				{i18n.loopCount}
+				<label>{i18n.loopCount}</label>
 				<input
 					type="number"
 					value={data.loopCount}
 					style={{ width: 50 }}
 					onChange={(e): void => onChange('loopCount', e.target.value)} />
 			</div>
-			<div style={{ display: 'flex', alignItems: 'center' }}>
-				{i18n.values}
-				<input
+			<div className={styles.values}>
+				<label>{i18n.values}</label>
+				<CreatablePillField
 					value={data.values}
-					style={{ width: '100%', marginLeft: 2 }}
-					onChange={(e): void => onChange('values', e.target.value)} />
+					onChange={(values: any): void => onUpdate({ ...data, values })}
+				/>
 			</div>
 		</div>
 	);

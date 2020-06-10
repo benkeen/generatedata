@@ -6,10 +6,11 @@ import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import InfoIcon from '@material-ui/icons/Info';
 import Dropdown from '../../components/dropdown/Dropdown';
-import * as styles from './Grid.scss';
 import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 import { HtmlTooltip } from '../../components/tooltips';
+import * as styles from './Grid.scss';
+import * as sharedStyles from '../../styles/shared.scss';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -82,7 +83,7 @@ export const GridRow = ({
 									id={row.id}
 									data={row.data}
 									onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-									emptyColClass={styles.emptyCol}
+									emptyColClass={sharedStyles.emptyCol}
 									dimensions={{ height: dimensions.height, width: dimensions.width }}
 								/>
 							</div>
@@ -95,7 +96,7 @@ export const GridRow = ({
 								data={row.data}
 								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
 								dimensions={{ height: dimensions.height, width: dimensions.width }}
-								emptyColClass={styles.emptyCol}
+								emptyColClass={sharedStyles.emptyCol}
 								{...dtCustomProps}
 							/>
 						</div>
@@ -146,7 +147,7 @@ export const GridRow = ({
 							id={row.id}
 							data={row.data}
 							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-							emptyColClass={styles.emptyCol}
+							emptyColClass={sharedStyles.emptyCol}
 							dimensions={{ height: dimensions.height, width: dimensions.width }}
 						/>
 					</div>
@@ -159,7 +160,7 @@ export const GridRow = ({
 							data={row.data}
 							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
 							dimensions={{ height: dimensions.height, width: dimensions.width }}
-							emptyColClass={styles.emptyCol}
+							emptyColClass={sharedStyles.emptyCol}
 							{...dtCustomProps}
 						/>
 					</div>
