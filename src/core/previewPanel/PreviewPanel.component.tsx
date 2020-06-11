@@ -87,8 +87,12 @@ const PreviewPanel = ({
 		lineHeight: `${previewTextSize + 7}px`
 	};
 
+	let refreshTooltipProps = {};
+	let refreshIconProps = {};
 	if (data.rows.length === 0) {
 		previewPanelStyles.flex = 0;
+		refreshTooltipProps = { disableHoverListener: true };
+		refreshIconProps = { disabled: true };
 	}
 
 	const content = (
@@ -105,17 +109,21 @@ const PreviewPanel = ({
 
 				<div className={styles.controls}>
 					<span onClick={refreshPreview}>
-						<Tooltip title={i18n.refreshPanel} placement="bottom">
-							<IconButton size="small" aria-label={i18n.refreshPanel}>
-								<Refresh fontSize="large" />
-							</IconButton>
+						<Tooltip title={i18n.refreshPanel} placement="bottom" {...refreshTooltipProps}>
+							<span>
+								<IconButton size="small" aria-label={i18n.refreshPanel} {...refreshIconProps}>
+									<Refresh fontSize="large" />
+								</IconButton>
+							</span>
 						</Tooltip>
 					</span>
 					<span onClick={closeIconAction}>
 						<Tooltip title={i18n.closePanel} placement="bottom">
-							<IconButton size="small" aria-label={i18n.closePanel}>
-								<CloseIcon fontSize="large" />
-							</IconButton>
+							<span>
+								<IconButton size="small" aria-label={i18n.closePanel}>
+									<CloseIcon fontSize="large" />
+								</IconButton>
+							</span>
 						</Tooltip>
 					</span>
 				</div>

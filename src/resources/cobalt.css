@@ -79,6 +79,9 @@
 .themeCobalt {
 	color: #cccccc;
 }
+.themeCobalt button[disabled] svg {
+    opacity: 0.3;
+}
 .themeCobalt svg {
 	fill: #cccccc;
 }

@@ -4,7 +4,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { mean, stddev, precision } = data.rowState;
 
 	return {
-		display: Math.round(gaussMs(mean, stddev)).toFixed(precision)
+		display: '--', // Math.round(gaussMs(mean, stddev)).toFixed(precision)
 	};
 };
 
@@ -37,7 +37,7 @@ const gauss = (): number => {
 		//  Set value for next call to this function
 		useValue = y * w;
 		useExists = true;
-		
+
 		return x * w;
 	}
 };

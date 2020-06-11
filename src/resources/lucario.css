@@ -85,6 +85,9 @@
 .themeLucario {
 	color: #cccccc;
 }
+.themeLucario button[disabled] svg {
+    opacity: 0.3;
+}
 .themeLucario svg {
 	fill: #cccccc;
 }

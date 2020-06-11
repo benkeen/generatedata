@@ -130,6 +130,9 @@
     background-color: #202020;
 	color: #cccccc;
 }
+.themeAmbiance button[disabled] svg {
+    opacity: 0.3;
+}
 .themeAmbiance svg {
 	fill: #cccccc;
 }

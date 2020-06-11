@@ -70,7 +70,7 @@ export const createOption = (label: string): DropdownOption => ({
 
 const SortableCreatableSelect = SortableContainer(CreatableSelect);
 
-const CreatablePillField = ({ onChange, value }: any) => {
+const CreatablePillField = ({ onChange, value, placeholder }: any) => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
@@ -112,12 +112,15 @@ const CreatablePillField = ({ onChange, value }: any) => {
 			}}
 			onInputChange={handleInputChange}
 			onKeyDown={handleKeyDown}
-			placeholder="Press enter to create item"
+			placeholder={placeholder}
 			value={options}
 			menuPlacement="auto"
 			menuPortalTarget={document.body}
 		/>
 	);
+};
+CreatablePillField.defaultProps = {
+	placeholder: 'Press enter to create item'
 };
 
 export default CreatablePillField;

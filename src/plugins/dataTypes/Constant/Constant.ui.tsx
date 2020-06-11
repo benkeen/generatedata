@@ -41,6 +41,7 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 				<CreatablePillField
 					value={data.values}
 					onChange={(values: any): void => onUpdate({ ...data, values })}
+					placeholder="Press enter to add item"
 				/>
 			</div>
 		</div>

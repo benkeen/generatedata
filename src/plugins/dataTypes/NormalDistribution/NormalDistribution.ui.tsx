@@ -23,34 +23,3 @@ export const Options = ({ i18n, id, data }: DTOptionsProps): JSX.Element => (
 		<input type="text" id={`${id}-precision`} style={{ width: 25 }} value={data.precision} />
 	</>
 );
-
-
-// var _validate = function(rows) {
-// 	var visibleProblemRows = [];
-// 	var problemFields      = [];
-// 	for (var i=0; i<rows.length; i++) {
-// 		var currMean  = $("#dtOptionMean_" + rows[i]);
-// 		var currSigma = $("#dtOptionSigma_" + rows[i]);
-// 		var currPrecision = $("#dtOptionPrecision_" + rows[i]);
-//
-// 		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-// 		if ($.trim(currMean.val()) === "" || $.trim(currSigma.val()) === "") {
-// 			visibleProblemRows.push(visibleRowNum);
-//
-// 			if ($.trim(currMean.val()) === "") {
-// 				problemFields.push(currMean);
-// 			}
-// 			if ($.trim(currSigma.val()) === "") {
-// 				problemFields.push(currSigma);
-// 			}
-//             if ($.trim(currPrecision.val()) === "") {
-//                 problemFields.push(currPrecision);
-//             }
-// 		}
-// 	}
-// 	var errors = [];
-// 	if (visibleProblemRows.length) {
-// 		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-// 	}
-// 	return errors;
-// };
