@@ -4,7 +4,7 @@ import { getExportTypePreview } from '../../../utils/exportTypeUtils';
 import { ColumnData, GenerationTemplate, Store } from '../../../../types/general';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { PreviewPanelLoader } from '../../previewPanel/PreviewPanelLoader.component';
-import { DataRow } from './generator.reducer';
+import { DataRow, DataRows } from './generator.reducer';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
 import * as langUtils from '../../../utils/langUtils';
@@ -12,9 +12,9 @@ import { getUnique } from '../../../utils/arrayUtils';
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
-export const getExportType = (state: Store): any => state.generator.exportType;
-export const getRows = (state: Store): any => state.generator.rows;
-export const getSortedRows = (state: Store): any[] => state.generator.sortedRows;
+export const getExportType = (state: Store): ExportTypeFolder => state.generator.exportType;
+export const getRows = (state: Store): DataRows => state.generator.rows;
+export const getSortedRows = (state: Store): string[] => state.generator.sortedRows;
 export const isGridVisible = (state: Store): boolean => state.generator.showGrid;
 export const isPreviewVisible = (state: Store): boolean => state.generator.showPreview;
 export const getBuilderLayout = (state: Store): BuilderLayout => state.generator.builderLayout;
@@ -41,6 +41,11 @@ export const getSortedRowsArray = createSelector(
 	getRows,
 	getSortedRows,
 	(rows, sorted) => sorted.map((id: string) => ({ ...rows[id], id }))
+);
+
+export const getTitles = createSelector(
+	getSortedRowsArray,
+	(rows) => rows.map(({ title }) => title)
 );
 
 export const getNonEmptySortedRows = createSelector(

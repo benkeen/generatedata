@@ -12,3 +12,14 @@ export const uppercaseWords = (str: string): string => {
 };
 
 export const toSentenceCase = (str: string): string => str.toLowerCase().replace(/[a-z]/i, (letter) => letter.toUpperCase()).trim();
+
+export const getUniqueString = (str: string, existingStrings: string[]): string => {
+	if (existingStrings.indexOf(str) === -1) {
+		return str;
+	}
+	let currNum = 1;
+	while (existingStrings.indexOf(`${str}${currNum}`) !== -1) {
+		currNum++;
+	}
+	return `${str}${currNum}`;
+};

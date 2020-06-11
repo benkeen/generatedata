@@ -4,6 +4,7 @@ import { generatePreviewData } from '../../generator/generator';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { requestDataTypeBundle } from '../../../utils/dataTypeUtils';
+import { getUniqueString } from '../../../utils/stringUtils';
 import { registerInterceptors } from '../../actionInterceptor';
 import { loadExportTypeBundle } from '../../../utils/exportTypeUtils';
 import { DTBundle } from '../../../../types/dataTypes';
@@ -40,6 +41,8 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 	let defaultTitle: string | null = null;
 	if (dataTypeI18n && dataTypeI18n[dataType]) {
 		defaultTitle = dataTypeI18n[dataType].DEFAULT_TITLE ? dataTypeI18n[dataType].DEFAULT_TITLE : dataType.toLowerCase();
+		const titles = selectors.getTitles(getState());
+		defaultTitle = getUniqueString(defaultTitle as string, titles);
 	}
 
 	requestDataTypeBundle(dataType)

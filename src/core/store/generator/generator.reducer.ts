@@ -37,7 +37,7 @@ export type GeneratorState = {
 	loadedExportTypes: {
 		[str in ExportTypeFolder]: boolean;
 	};
-	exportType: string;
+	exportType: ExportTypeFolder;
 	rows: DataRows;
 	sortedRows: string[];
 	showGrid: boolean;
