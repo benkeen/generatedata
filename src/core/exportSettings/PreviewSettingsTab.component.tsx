@@ -48,7 +48,7 @@ export const PreviewSettingsTab = ({
 					<Switch
 						checked={showRowNumbers}
 						value="checked"
-						color="default"
+						color="primary"
 						onChange={(): void => toggleRowNumbers()}
 					/>
 				</div>
@@ -59,7 +59,7 @@ export const PreviewSettingsTab = ({
 					<Switch
 						checked={enableLineWrapping}
 						value="checked"
-						color="default"
+						color="primary"
 						onChange={(): void => toggleLineWrapping()}
 					/>
 				</div>

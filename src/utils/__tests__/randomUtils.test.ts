@@ -190,22 +190,3 @@ describe('generatePlaceholderStr', () => {
 		expect(randomUtils.generatePlaceholderStr('ABC', defaultPlaceholders)).toEqual('123');
 	});
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

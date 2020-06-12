@@ -1,2 +1,13 @@
 // @import "../../../../node_modules/codemirror/lib/codemirror.css";
 @import '../../../../node_modules/codemirror/theme/material.css';
+
+.structureFormatRow {
+	margin-bottom: 8px;
+}
+
+.settings {
+	display: flex;
+	label {
+		margin-right: 6px;
+	}
+}
