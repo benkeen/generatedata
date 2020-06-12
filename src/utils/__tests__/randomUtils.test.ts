@@ -1,5 +1,12 @@
 import * as sinon from 'sinon';
 import * as randomUtils from '../randomUtils';
+import { letters } from '../randomUtils';
+import { lowercaseLetters } from '../randomUtils';
+import { consonants } from '../randomUtils';
+import { lowercaseConsonants } from '../randomUtils';
+import { vowels } from '../randomUtils';
+import { lowercaseVowels } from '../randomUtils';
+import { hex } from '../randomUtils';
 
 describe('getRandomNum', () => {
     it('generates numbers in expected range #1', () => {
@@ -172,3 +179,33 @@ describe('getRandomSubset', () => {
 		expect(randomUtils.getRandomSubset([1,2,3], 3).sort()).toEqual([1,2,3].sort());
 	});
 });
+
+describe('generatePlaceholderStr', () => {
+	it('generates string using custom placeholders', () => {
+		var defaultPlaceholders = {
+			A: '1',
+			B: '2',
+			C: '3'
+		};
+		expect(randomUtils.generatePlaceholderStr('ABC', defaultPlaceholders)).toEqual('123');
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

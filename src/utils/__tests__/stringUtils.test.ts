@@ -26,3 +26,11 @@ describe('getUniqueString', () => {
 	});
 });
 
+describe('toSentenceCase', () => {
+	it('converts strings to sentence case as expected', () => {
+		expect(stringUtils.toSentenceCase('')).toEqual('');
+		expect(stringUtils.toSentenceCase('hello')).toEqual('Hello');
+		expect(stringUtils.toSentenceCase('hello world')).toEqual('Hello world');
+		expect(stringUtils.toSentenceCase('HELLO WORLD')).toEqual('Hello world');
+	});
+});
