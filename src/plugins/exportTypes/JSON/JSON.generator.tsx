@@ -27,20 +27,7 @@ export const generate = (): any => {
 
 
 export const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
-	let content = '';
-
-	// generating a nested data structure is slower than just a plain JSON structure (see the README
-	// for details on how the nested data structure works). So rather than slow everyone down, we pass that
-	// off to a separate function
-	const nested = isNested(generationData.columns.map((i: any) => i.title));
-
-	if (nested) {
-		// TODO
-	} else {
-		content += getNonNestedData(generationData, stripWhitespace);
-	}
-
-	return content;
+	return getNonNestedData(generationData, stripWhitespace);
 };
 
 

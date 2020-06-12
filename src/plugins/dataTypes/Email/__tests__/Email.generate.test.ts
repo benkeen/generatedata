@@ -59,7 +59,7 @@ describe('getRandomEmail', () => {
             .onCall(1).returns(0) // prefix word offset
             .onCall(2).returns(1) // number of domain words
 			.onCall(3).returns(0); // domain word offset
-			
+
 		sinon.stub(randomUtils, 'getRandomArrayValue').returns('co'); // suffix
 
         expect(generation.getRandomEmail(['one.', 'two:', 'th,ree', 'four;'], ['co'])).toEqual('one.two.three.four@one.co');
@@ -71,7 +71,7 @@ describe('getRandomEmail', () => {
             .onCall(1).returns(0) // prefix word offset
             .onCall(2).returns(1) // number of domain words
 			.onCall(3).returns(2); // domain word offset
-			
+
 		sinon.stub(randomUtils, 'getRandomArrayValue').returns('ca'); // suffix
 
         expect(generation.getRandomEmail(words, ['co', 'ca', 'com'])).toEqual('one@three.ca');
@@ -89,5 +89,4 @@ describe('getRandomEmail', () => {
 
         expect(generation.getRandomEmail(words, ['ca'])).toEqual(`${'a'.repeat(75)}@${'b'.repeat(75)}.ca`);
     });
-
 });

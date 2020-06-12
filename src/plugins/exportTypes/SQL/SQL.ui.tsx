@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import { ETSettings } from '../../../../types/exportTypes';
 import styles from './SQL.scss';

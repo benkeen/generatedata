@@ -72,7 +72,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
 			});
 			rowDataStr.push(displayVals.join(','));
-
 			if (rowDataStr.length === sqlSettings.insertBatchSize) {
 				content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
 				rowDataStr = [];
@@ -82,7 +81,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 			colTitles.forEach((columnTitle: string, colIndex: number) => {
 				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
 			});
-
 			rowDataStr.push(displayVals.join(','));
 			if (rowDataStr.length === sqlSettings.insertBatchSize) {
 				content += `INSERT IGNORE INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
@@ -94,7 +92,6 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 				const colValue = getWrappedValue(row[colIndex], colIndex, numericFieldIndexes);
 				pairs.push(`${backquote}${title}${backquote} = ${colValue}`);
 			});
-
 			const pairsStr = pairs.join(', ');
 			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${rowIndex+1};\n`;
 		}

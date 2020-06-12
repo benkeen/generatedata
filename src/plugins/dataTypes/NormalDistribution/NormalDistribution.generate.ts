@@ -1,7 +1,8 @@
 import { DTMetadata, DTGenerateResult, DTGenerationData } from '../../../../types/dataTypes';
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const { mean, stddev, precision } = data.rowState;
+// data: DTGenerationData
+export const generate = (): DTGenerateResult => {
+	// const { mean, stddev, precision } = data.rowState;
 
 	return {
 		display: '--', // Math.round(gaussMs(mean, stddev)).toFixed(precision)
