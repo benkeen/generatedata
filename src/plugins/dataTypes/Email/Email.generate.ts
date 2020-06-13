@@ -37,7 +37,6 @@ export const getRandomEmail = (wordsArr = words, suffixes = ["edu", "com", "org"
 	return email;
 };
 
-
 export const generate = (): DTGenerateResult => ({ display: getRandomEmail() });
 
 export const getMetadata = (): DTMetadata => ({

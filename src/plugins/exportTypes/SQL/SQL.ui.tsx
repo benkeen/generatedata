@@ -7,7 +7,7 @@ import styles from './SQL.scss';
 
 export type SQLSettings = {
 	tableName: string;
-	databaseType: string;
+	databaseType: 'MySQL' | 'Postgres' | 'SQLite' | 'Oracle' | 'MSSQL';
 	createTable: boolean;
 	dropTable: boolean;
 	encloseInBackquotes: boolean;
@@ -43,6 +43,71 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 		{ value: 'MSSQL', label: 'MSSQL' }
 	];
 
+	const getBackquotesOption = (): React.ReactNode => {
+		if (data.databaseType === 'Postgres') {
+			return null;
+		}
+
+		return (
+			<div id="etSQL_encloseInBackquotes_group">
+				<Switch
+					checked={data.encloseInBackquotes}
+					id={`${id}-encloseInBackquotes`}
+					value="checked"
+					color="primary"
+					onChange={(): void => onChange('encloseInBackquotes', !data.encloseInBackquotes)}
+				/>
+				<label htmlFor={`${id}-encloseInBackquotes`}>{i18n.encloseTableBackquotes}</label>
+			</div>
+		);
+	};
+
+	const getInsertIgnoreOption = () => {
+		if (data.databaseType === 'Postgres') {
+			return null;
+		}
+		return (
+			<li>
+				<input
+					type="radio"
+					value="insertIgnore"
+					id={`${id}-insertIgnore`}
+					onChange={(): void => onChange('statementType', 'insertIgnore')}
+					checked={data.statementType === 'insertIgnore'}
+				/>
+				<label htmlFor={`${id}-insertIgnore`}>INSERT IGNORE</label>
+			</li>
+		);
+	};
+
+	const getInsertBatchSize = () => {
+		if (data.databaseType === 'Oracle') {
+			return null;
+		}
+
+		return (
+			<div className={styles.batchSize}>
+				<span className={styles.brace}>&#125;</span>
+				<label
+					htmlFor={`${id}_insertBatchSize`}
+					id={`${id}_insertBatchSize`}>
+					{i18n.batchSize}
+				</label>
+				<input
+					type="number"
+					id={`${id}-insertBatchSize`}
+					value={data.insertBatchSize}
+					style={{ width: 60 }}
+					title={i18n.batchSizeDesc}
+					disabled={data.statementType === 'update'}
+					min={1}
+					max={1000}
+					onChange={(e): void => onChange('insertBatchSize', parseInt(e.target.value, 10))}
+				/>
+			</div>
+		);
+	};
+
 	return (
 		<>
 			<div>
@@ -71,8 +136,8 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 					</div>
 				</div>
 
-				<div>
-					<div><label>{i18n.miscOptions}</label></div>
+				<div className={styles.block}>
+					<div><label className={styles.title}>{i18n.miscOptions}</label></div>
 					<div>
 						<div>
 							<Switch
@@ -96,16 +161,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 								{i18n.includeCreateTableQuery}
 							</label>
 						</div>
-						<div id="etSQL_encloseInBackquotes_group">
-							<Switch
-								checked={data.encloseInBackquotes}
-								id={`${id}-encloseInBackquotes`}
-								value="checked"
-								color="primary"
-								onChange={(): void => onChange('encloseInBackquotes', !data.encloseInBackquotes)}
-							/>
-							<label htmlFor={`${id}-encloseInBackquotes`}>{i18n.encloseTableBackquotes}</label>
-						</div>
+						{getBackquotesOption()}
 						<div>
 							<Switch
 								checked={data.addPrimaryKey}
@@ -120,8 +176,8 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 				</div>
 			</div>
 
-			<div>
-				<div><label>{i18n.statementType}</label></div>
+			<div className={styles.block}>
+				<div><label className={styles.title}>{i18n.statementType}</label></div>
 				<div>
 					<div className={styles.row}>
 						<ul>
@@ -145,37 +201,10 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 								/>
 								<label htmlFor={`${id}-update`}>UPDATE</label>
 							</li>
-							<li>
-								<input
-									type="radio"
-									value="insertIgnore"
-									id={`${id}-insertIgnore`}
-									onChange={(): void => onChange('statementType', 'insertIgnore')}
-									checked={data.statementType === 'insertIgnore'}
-								/>
-								<label htmlFor={`${id}-insertIgnore`}>INSERT IGNORE</label>
-							</li>
+							{getInsertIgnoreOption()}
 						</ul>
 
-						<div className={styles.batchSize}>
-							<span className={styles.brace}>&#125;</span>
-							<label
-								htmlFor={`${id}_insertBatchSize`}
-								id={`${id}_insertBatchSize`}>
-								{i18n.batchSize}
-							</label>
-							<input
-								type="number"
-								id={`${id}-insertBatchSize`}
-								value={data.insertBatchSize}
-								style={{ width: 60 }}
-								title={i18n.batchSizeDesc}
-								disabled={data.statementType === 'update'}
-								min={1}
-								max={1000}
-								onChange={(e): void => onChange('insertBatchSize', parseInt(e.target.value, 10))}
-							/>
-						</div>
+						{getInsertBatchSize()}
 					</div>
 				</div>
 			</div>
@@ -185,47 +214,6 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 
 
 /*
-
-	var _onChangeStatementType = function(e) {
-		if (e.target.value === "insert" || e.target.value === "insertignore") {
-			$("#etSQL_batchSizeLabel").css("color", "");
-			$("#etSQL_insertBatchSize").prop("disabled", false).removeClass("gdDisabled");
-		} else {
-			$("#etSQL_insertBatchSize").prop("disabled", true).addClass("gdDisabled");
-			$("#etSQL_batchSizeLabel").css("color", "#cccccc");
-		}
-	};
-
-	var _onChangeSettings = function() {
-		var dbType = $("#etSQL_databaseType").val();
-		_updateAvailableSettings(dbType);
-	};
-
-	var _updateAvailableSettings = function(dbType) {
-		if (dbType === "Postgres") {
-			$("#etSQL_encloseWithBackquotes").prop("disabled", true).prop("checked", false);
-			$("#etSQL_encloseWithBackquotes_group label").css("color", "#cccccc");
-		} else {
-			$("#etSQL_encloseWithBackquotes").prop("disabled", false);
-			$("#etSQL_encloseWithBackquotes_group label").css("color", "");
-		}
-
-		if (dbType === "MySQL") {
-			$("#etSQL_statementType2").prop("disabled", false);
-			$("#etSQL_insertIgnore label").css("color", "");
-		} else {
-			$("#etSQL_statementType2").prop("disabled", true).prop("checked", false);
-			$("#etSQL_insertIgnore label").css("color", "#cccccc");
-		}
-
-    if (dbType === "Oracle") {
-      $("#etSQL_insertBatchSize").prop("disabled", true).css("color", "#cccccc");
-      $("#etSQL_batchSizeLabel").css("color", "#cccccc");
-    } else {
-      $("#etSQL_insertBatchSize").prop("disabled", false).css("color", "");
-      $("#etSQL_batchSizeLabel").css("color", "");
-    }
-	};
 
 	var _resultTypeChanged = function(msg) {
 		if (msg.newExportType === "SQL") {
