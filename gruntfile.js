@@ -65,7 +65,6 @@ window.gd.localeLoaded(i18n);
 						'src/resources/ambience.css',
 						'src/resources/cobalt.css',
 						'src/resources/darcula.css',
-						'src/resources/elegant.css',
 						'src/resources/lucario.css'
 					]
 				}
