@@ -98,6 +98,7 @@ const PreviewPanel = ({
 	const content = (
 		<div className={styles.panelContent}>
 			<div className={styles.topRow}>
+				{exportSettingsVisible ? <div /> :
 				<ExportTypeButton
 					disableElevation
 					onClick={exportTypeLabelBtnAction}
@@ -105,7 +106,7 @@ const PreviewPanel = ({
 					color="primary"
 					size="medium">
 					{exportTypeLabel}
-				</ExportTypeButton>
+				</ExportTypeButton>}
 
 				<div className={styles.controls}>
 					<span onClick={refreshPreview}>
