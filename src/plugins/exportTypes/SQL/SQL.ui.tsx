@@ -63,7 +63,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 	};
 
 	const getInsertIgnoreOption = () => {
-		if (data.databaseType === 'Postgres') {
+		if (data.databaseType === 'Postgres' || data.databaseType === 'SQLite') {
 			return null;
 		}
 		return (

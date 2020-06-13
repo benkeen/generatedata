@@ -6,6 +6,8 @@ export type DatabaseTypes = {
 
     // database type-specific field descriptions
     field_Oracle?: string;
+	field_MySQL?: string;
     field_MSSQL?: string;
     field_Postgres?: string;
+	field_SQLite?: string;
 };
