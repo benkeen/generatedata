@@ -191,6 +191,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 								/>
 								<label htmlFor={`${id}-insert`}>INSERT</label>
 							</li>
+							{getInsertIgnoreOption()}
 							<li>
 								<input
 									type="radio"
@@ -201,7 +202,6 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 								/>
 								<label htmlFor={`${id}-update`}>UPDATE</label>
 							</li>
-							{getInsertIgnoreOption()}
 						</ul>
 
 						{getInsertBatchSize()}

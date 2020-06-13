@@ -95,18 +95,26 @@ const PreviewPanel = ({
 		refreshIconProps = { disabled: true };
 	}
 
+	const getExportSettingsBtn = (): React.ReactNode => {
+		if (exportSettingsVisible) {
+			return <div />;
+		}
+		return (
+			<ExportTypeButton
+				disableElevation
+				onClick={exportTypeLabelBtnAction}
+				variant="outlined"
+				color="primary"
+				size="medium">
+				{exportTypeLabel}
+			</ExportTypeButton>
+		);
+	};
+
 	const content = (
 		<div className={styles.panelContent}>
 			<div className={styles.topRow}>
-				{exportSettingsVisible ? <div /> :
-				<ExportTypeButton
-					disableElevation
-					onClick={exportTypeLabelBtnAction}
-					variant="outlined"
-					color="primary"
-					size="medium">
-					{exportTypeLabel}
-				</ExportTypeButton>}
+				{getExportSettingsBtn()}
 
 				<div className={styles.controls}>
 					<span onClick={refreshPreview}>

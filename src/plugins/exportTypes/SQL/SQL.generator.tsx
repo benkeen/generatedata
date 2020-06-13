@@ -120,10 +120,10 @@ export const getDataTypeSqlMetadata = (generationData: ExportTypeGenerationData)
 };
 
 export const generatePostgres = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
-	// const colTitles = generationData.columns.map(({ title }) => title);
+	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	// const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
 	const dataTypeSqlMetadata = getDataTypeSqlMetadata(generationData);
 
 	if (generationData.isFirstBatch) {
@@ -155,77 +155,40 @@ export const generatePostgres = (generationData: ExportTypeGenerationData, sqlSe
 		}
 	}
 
-	// const colNamesStr = implode(",", $this->data["colData"]);
+	const colNamesStr = colTitles.join(',');
 
-	// $numRows = count($this->data["rowData"]);
-	// $numCols = count($this->data["colData"]);
-	// for ($i=0; $i<$numRows; $i++) {
-	// 	if ($this->sqlStatementType == "insert") {
-	// 		$displayVals = array();
-	// 		for ($j=0; $j<$numCols; $j++) {
-	// 			if ($this->numericFields[$j]) {
-	// 				$displayVals[] = $this->data["rowData"][$i][$j];
-	// 			} else {
-	// 				$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
-	// 			}
-	// 		}
-	// 		$rowDataStr[] = implode(",", $displayVals);
-	// 		if (count($rowDataStr) == $this->insertBatchSize) {
-	// 			$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-	// 			$rowDataStr = array();
-	// 		}
-	// 	} else {
-	// 		$pairs = array();
-	// 		for ($j=0; $j<$numCols; $j++) {
-	// 			$colName  = $this->data["colData"][$j];
-	// 			if ($this->numericFields[$j]) {
-	// 				$colValue = $this->data["rowData"][$i][$j];
-	// 			} else {
-	// 				$colValue = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
-	// 			}
-	// 			$pairs[]  = "{$colName} = $colValue";
-	// 		}
-	//
-	// 		$pairsStr = implode(", ", $pairs);
-	// 		$rowNum = $this->currentBatchFirstRow + $i;
-	// 		$content .= "UPDATE \"{$this->tableName}\" SET $pairsStr WHERE id = $rowNum;$endLineChar";
-	// 	}
-	// }
-	// if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-	// 	$content .= "INSERT INTO \"{$this->tableName}\" ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-	// }
+	let rowDataStr: string[] = [];
+	generationData.rows.forEach((row: any, rowIndex: number) => {
+		if (sqlSettings.statementType === 'insert') {
+			const displayVals: any = [];
+			colTitles.forEach((columnTitle: string, colIndex: number) => {
+				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
+			});
+			rowDataStr.push(displayVals.join(','));
+			if (rowDataStr.length === sqlSettings.insertBatchSize) {
+				content += `INSERT INTO ${sqlSettings.tableName} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
+				rowDataStr = [];
+			}
+		} else {
+			const pairs: string[] = [];
+			colTitles.forEach((title: string, colIndex: number) => {
+				const colValue = getWrappedValue(row[colIndex], colIndex, numericFieldIndexes);
+				pairs.push(`${title} = ${colValue}`);
+			});
+			const pairsStr = pairs.join(', ');
+			content += `UPDATE ${sqlSettings.tableName} SET ${pairsStr} WHERE id = ${rowIndex+1};\n`;
+		}
+	});
+
+	if (rowDataStr.length && sqlSettings.statementType === 'insert') {
+		content += `INSERT INTO ${sqlSettings.tableName} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
+	}
 
 	return content;
 };
 
 
 /*
-	protected $isEnabled = true;
-	protected $exportTypeName = "SQL";
-	protected $jsModules = array("SQL.js");
-	protected $codeMirrorModes = array("sql");
-	protected $contentTypeHeader = "application/octet-stream";
-	protected $addHeadersInNewWindow = false;
-
-	public $L = array();
-
-	// stores various info about the current generation set
-	private $genEnvironment; // "API" or "POST"
-	private $template;
-	private $numericFields;
-	private $userSettings;
-	private $exportTarget;
-	private $isFirstBatch;
-	private $isLastBatch;
-	private $includeDropTable;
-	private $createTable;
-	private $databaseType;
-	private $tableName;
-	private $backquote;
-	private $sqlStatementType;
-	private $primaryKey;
-	private $insertBatchSize;
-
 	function generate($generator) {
 		$this->genEnvironment = $generator->genEnvironment;
 		$this->template     = $generator->getTemplateByDisplayOrder();
