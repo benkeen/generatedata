@@ -18,6 +18,7 @@ const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: numb
 	return val;
 };
 
+
 export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
 	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
@@ -258,92 +259,172 @@ export const generateSQLite = (generationData: ExportTypeGenerationData, sqlSett
 };
 
 
+export const generateOracle = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
+	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
+	const colTitles = generationData.columns.map(({ title }) => title);
+	let content = '';
 
-/*
-private function generateCreateTableSQL_Oracle() {
-	if ($this->isFirstBatch) {
-		if ($this->includeDropTable) {
-			$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n";
-			$content .= "DROP TABLE {$this->backquote}{$this->tableName}{$this->backquote};{$dropTableEndLine}";
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+
+	if (generationData.isFirstBatch) {
+		if (sqlSettings.dropTable) {
+			content += `DROP TABLE ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
 		}
-
-		if ($this->createTable) {
-			$content .= "CREATE TABLE {$this->backquote}{$this->tableName}{$this->backquote} ($endLineChar";
-			if ($this->primaryKey == "default") {
-				$content .= "{$prefix}{$this->backquote}id{$this->backquote} number primary key,$endLineChar";
+		if (sqlSettings.createTable) {
+			content += `CREATE TABLE ${backquote}${sqlSettings.tableName}${backquote} (\n`;
+			if (sqlSettings.addPrimaryKey) {
+				content += `  ${backquote}id${backquote} number primary key,\n`;
 			}
 
-			$cols = array();
-			foreach ($this->template as $dataType) {
-				// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
-				$columnTypeInfo = "MEDIUMTEXT";
-				if (isset($dataType["columnMetadata"]["SQLField_Oracle"])) {
-					$columnTypeInfo = $dataType["columnMetadata"]["SQLField_Oracle"];
-				} else if (isset($dataType["columnMetadata"]["SQLField"])) {
-					$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
+			const cols: any[] = [];
+			generationData.columns.forEach(({ title, dataType }) => {
+				let columnTypeInfo = 'MEDIUMTEXT';
+				const metadata = generationData.dataTypeMetadata[dataType];
+				if (metadata && metadata.sql) {
+					if (metadata.sql.field_Oracle) {
+						columnTypeInfo = metadata.sql.field_Oracle;
+					} else if (metadata.sql.field) {
+						columnTypeInfo = metadata.sql.field;
+					}
 				}
-				$cols[] = "{$prefix}{$this->backquote}{$dataType["title"]}{$this->backquote} $columnTypeInfo";
-			}
+				cols.push(`  ${backquote}${title}${backquote} ${columnTypeInfo}`);
+			});
 
-			$content .= implode(",$endLineChar", $cols);
-
-			if ($this->primaryKey == "default") {
-				$content .= ",$endLineChar{$prefix}PRIMARY KEY ({$this->backquote}id{$this->backquote})$endLineChar) AUTO_INCREMENT=1;{$endLineChar}{$endLineChar}";
-			} else if ($this->primaryKey == "none") {
-				$content .= "$endLineChar);{$endLineChar}{$endLineChar}";
+			content += cols.join(',\n');
+			if (sqlSettings.addPrimaryKey) {
+				content += `,\n  PRIMARY KEY (${backquote}id${backquote})\n) AUTO_INCREMENT=1;\n\n`;
+			} else {
+				content += `\n);\n\n`;
 			}
 		}
 	}
 
-	$colNamesStr = "";
-	if ($this->backquote) {
-		$quoted = Utils::enquoteArray($this->data["colData"], "`");
-		$colNamesStr = implode(",", $quoted);
+	let colNamesStr = '';
+	if (sqlSettings.encloseInBackquotes) {
+		colNamesStr = `\`${colTitles.join('`,`')}\``;
 	} else {
-		$colNamesStr = implode(",", $this->data["colData"]);
+		colNamesStr = colTitles.join(',');
 	}
 
-	$numRows = count($this->data["rowData"]);
-	$numCols = count($this->data["colData"]);
-	for ($i=0; $i<$numRows; $i++) {
-		if ($this->sqlStatementType == "insert") {
-			$displayVals = array();
-			for ($j=0; $j<$numCols; $j++) {
-				if ($this->numericFields[$j]) {
-					$displayVals[] = $this->data["rowData"][$i][$j];
-				} else {
-					$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
-				}
-			}
-			$rowDataStr[] = implode(",", $displayVals);
-			if (count($rowDataStr) == $this->insertBatchSize) {
-				$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
-				$rowDataStr = array();
-			}
+	const rowDataStr: string[] = [];
+	generationData.rows.forEach((row: any, rowIndex: number) => {
+		if (sqlSettings.statementType === 'insert') {
+			const displayVals: any = [];
+			colTitles.forEach((columnTitle: string, colIndex: number) => {
+				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
+			});
+			const rowDataStr = displayVals.join(',');
+			content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES (${rowDataStr});\n`;
 		} else {
-			$pairs = array();
-			for ($j=0; $j<$numCols; $j++) {
-				$colName  = $this->data["colData"][$j];
-				if ($this->numericFields[$j]) {
-					$colValue = $this->data["rowData"][$i][$j];
-				} else {
-					$colValue = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
-				}
-				$pairs[]  = "{$this->backquote}{$colName}{$this->backquote} = $colValue";
+			const pairs: string[] = [];
+			colTitles.forEach((title: string, colIndex: number) => {
+				const colValue = getWrappedValue(row[colIndex], colIndex, numericFieldIndexes);
+				pairs.push(`${backquote}${title}${backquote} = ${colValue}`);
+			});
+			const pairsStr = pairs.join(', ');
+			content += `UPDATE ${backquote}${sqlSettings.tableName}${backquote} SET ${pairsStr} WHERE ${backquote}id${backquote} = ${rowIndex+1};\n`;
+		}
+	});
+
+	if (rowDataStr.length && sqlSettings.statementType === 'insert') {
+		content += `INSERT INTO ${backquote}${sqlSettings.tableName}${backquote} (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
+	}
+
+	return content;
+};
+
+
+export const generateMSSQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
+	const colTitles = generationData.columns.map(({ title }) => title);
+	let content = '';
+
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+
+	if (generationData.isFirstBatch) {
+		if (sqlSettings.dropTable) {
+			content += `IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('${sqlSettings.tableName}'))\n`;
+			content += "BEGIN;\n";
+			content += `    DROP TABLE [${sqlSettings.tableName}];\n`;
+			content += "END;\n";
+			content += "GO\n\n";
+		}
+
+		if (sqlSettings.createTable) {
+			content += `CREATE TABLE [${sqlSettings.tableName}] (\n`;
+			if (sqlSettings.addPrimaryKey) {
+				content += `    [${sqlSettings.tableName}ID] INTEGER NOT NULL IDENTITY(1, 1),\n`;
 			}
 
-			$pairsStr = implode(", ", $pairs);
-			$rowNum = $this->currentBatchFirstRow + $i;
-			$content .= "UPDATE {$this->backquote}{$this->tableName}{$this->backquote} SET $pairsStr WHERE {$this->backquote}id{$this->backquote} = $rowNum;$endLineChar";
+			const cols: any[] = [];
+			generationData.columns.forEach(({ title, dataType }) => {
+				let columnTypeInfo = 'MEDIUMTEXT';
+				const metadata = generationData.dataTypeMetadata[dataType];
+
+				if (metadata && metadata.sql) {
+					if (metadata.sql.field_MSSQL) {
+						columnTypeInfo = metadata.sql.field_MSSQL;
+					} else if (metadata.sql.field) {
+						columnTypeInfo = metadata.sql.field;
+					}
+				}
+				cols.push(`    [${title}] ${columnTypeInfo}`);
+			});
+
+			content += cols.join(',\n');
+			if (sqlSettings.addPrimaryKey) {
+				content += `,\n    PRIMARY KEY ([${sqlSettings.tableName}ID])\n);\nGO\n\n`;
+			} else {
+				content += `\n);\nGO\n\n`;
+			}
 		}
 	}
-	if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-		$content .= "INSERT INTO {$this->backquote}{$this->tableName}{$this->backquote} ($colNamesStr) VALUES (" . implode('),(', $rowDataStr) . ");$endLineChar";
+
+	const colNamesStr = colTitles.join(',');
+
+	let rowDataStr: string[] = [];
+	generationData.rows.forEach((row: any, rowIndex: number) => {
+		if (sqlSettings.statementType === 'insert') {
+			const displayVals: any = [];
+			colTitles.forEach((columnTitle: string, colIndex: number) => {
+				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
+			});
+			rowDataStr.push(displayVals.join(','));
+			if (rowDataStr.length === sqlSettings.insertBatchSize) {
+				content += `INSERT INTO [${sqlSettings.tableName}] (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
+				rowDataStr = [];
+			}
+
+			// TODO - need the current row
+			// if (($currentRow % 1000) == 0) {
+			// 	$content .= $endLineChar;
+			// 	$content .= "PRINT 'Row {$currentRow} inserted';$endLineChar";
+			// 	$content .= "GO";
+			// 	$content .= $endLineChar;
+			// }
+		} else {
+			const pairs: string[] = [];
+			colTitles.forEach((title: string, colIndex: number) => {
+				const colValue = getWrappedValue(row[colIndex], colIndex, numericFieldIndexes);
+				pairs.push(`[${title}] = ${colValue}`);
+			});
+			const pairsStr = pairs.join(', ');
+			content += `UPDATE [${sqlSettings.tableName}] SET ${pairsStr} WHERE [{$this->tableName}ID] = ${rowIndex+1};\n`;
+
+			// if (($currentRow % 1000) == 0) {
+			// 	$content .= $endLineChar;
+			// 	$content .= "PRINT 'Row {$currentRow} updated';$endLineChar";
+			// 	$content .= "GO";
+			// 	$content .= $endLineChar;
+			// }
+		}
+	});
+
+	if (rowDataStr.length && sqlSettings.statementType === 'insert') {
+		content += `INSERT INTO [${sqlSettings.tableName}] (${colNamesStr})\nVALUES\n  (${rowDataStr.join('),\n  (')});\n`;
 	}
 
-	return $content;
-}
-*/
+	return content;
+};
 
 
 export const getDataTypeSqlMetadata = (generationData: ExportTypeGenerationData): any => {
@@ -356,108 +437,3 @@ export const getDataTypeSqlMetadata = (generationData: ExportTypeGenerationData)
 	});
 	return sqlMetadata;
 };
-
-
-/*
-	private function generateCreateTableSQL_MSSQL() {
-		$content = "";
-		$endLineChar = ($this->exportTarget == "newTab") ? "<br />\n" : "\n";
-		$prefix      = ($this->exportTarget == "newTab") ? "&nbsp;&nbsp;&nbsp;&nbsp;" : "    ";
-
-		if ($this->isFirstBatch) {
-			if ($this->includeDropTable) {
-				$dropTableEndLine = ($this->exportTarget == "newTab") ? "<br /><br /><hr size=\"1\" />\n" : "\n\n" ;
-				$content .= "IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('{$this->tableName}'))$endLineChar";
-				$content .= "BEGIN;$endLineChar";
-				$content .= "{$prefix}DROP TABLE [{$this->tableName}];$endLineChar";
-				$content .= "END;$endLineChar";
-				$content .= "GO{$dropTableEndLine}";
-			}
-
-			if ($this->createTable) {
-				$content .= "CREATE TABLE [{$this->tableName}] ($endLineChar";
-				if ($this->primaryKey == "default") {
-					$content .= "{$prefix}[{$this->tableName}ID] INTEGER NOT NULL IDENTITY(1, 1),$endLineChar";
-				}
-
-				$cols = array();
-				foreach ($this->template as $dataType) {
-					// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
-					$columnTypeInfo = "MEDIUMTEXT";
-					if (isset($dataType["columnMetadata"]["SQLField_MSSQL"])) {
-						$columnTypeInfo = $dataType["columnMetadata"]["SQLField_MSSQL"];
-					} else if (isset($dataType["columnMetadata"]["SQLField"])) {
-						$columnTypeInfo = $dataType["columnMetadata"]["SQLField"];
-					}
-					$cols[] = "{$prefix}[{$dataType["title"]}] $columnTypeInfo";
-				}
-
-				$content .= implode(",$endLineChar", $cols);
-
-				if ($this->primaryKey == "default") {
-					$content .= ",$endLineChar{$prefix}PRIMARY KEY ([{$this->tableName}ID])$endLineChar);{$endLineChar}GO{$endLineChar}{$endLineChar}";
-				} else if ($this->primaryKey == "none") {
-					$content .= "$endLineChar);{$endLineChar}GO{$endLineChar}{$endLineChar}";
-				}
-			}
-		}
-
-		$colNamesStr = "[" . implode("],[", $this->data["colData"]) . "]";
-		$numRows = count($this->data["rowData"]);
-		$numCols = count($this->data["colData"]);
-		for ($i=0; $i<$numRows; $i++) {
-			$currentRow = $i + 1;
-			if ($this->sqlStatementType == "insert") {
-				$displayVals = array();
-				for ($j=0; $j<$numCols; $j++) {
-					if ($this->numericFields[$j]) {
-						$displayVals[] = $this->data["rowData"][$i][$j];
-					} else {
-						$displayVals[] = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
-					}
-				}
-
-				$rowDataStr[] = implode(",", $displayVals);
-                                if (count($rowDataStr) == $this->insertBatchSize) {
-                                    $content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES(" . implode('),(', $rowDataStr) . ");$endLineChar";
-                                    $rowDataStr = array();
-                                }
-
-				if (($currentRow % 1000) == 0) {
-					$content .= $endLineChar;
-					$content .= "PRINT 'Row {$currentRow} inserted';$endLineChar";
-					$content .= "GO";
-					$content .= $endLineChar;
-				}
-			} else {
-				$pairs = array();
-				for ($j=0; $j<$numCols; $j++) {
-					$colName  = $this->data["colData"][$j];
-					if ($this->numericFields[$j]) {
-						$colValue = $this->data["rowData"][$i][$j];
-					} else {
-						$colValue = "'" . preg_replace("/'/", "''", $this->data["rowData"][$i][$j]) . "'";
-					}
-					$pairs[]  = "[{$colName}] = $colValue";
-				}
-
-				$pairsStr = implode(", ", $pairs);
-				$rowNum = $this->currentBatchFirstRow + $i;
-				$content .= "UPDATE [{$this->tableName}] SET $pairsStr WHERE [{$this->tableName}ID] = $rowNum;$endLineChar";
-
-				if (($currentRow % 1000) == 0) {
-					$content .= $endLineChar;
-					$content .= "PRINT 'Row {$currentRow} updated';$endLineChar";
-					$content .= "GO";
-					$content .= $endLineChar;
-				}
-			}
-		}
-		if (!empty($rowDataStr) && $this->sqlStatementType == "insert") {
-			$content .= "INSERT INTO {$this->tableName}($colNamesStr) VALUES(" . implode('),(', $rowDataStr) . ");$endLineChar";
-		}
-
-		return $content;
-	}
-}
-*/

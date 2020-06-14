@@ -52,15 +52,15 @@ export const GridRow = ({
 
 	const [open, setOpen] = React.useState(false);
 
-	const handleTooltipClose = () => {
+	const handleTooltipClose = (): void => {
 		setOpen(false);
 	};
 
-	const handleTooltipOpen = () => {
+	const handleTooltipOpen = (): void => {
 		setOpen(true);
 	};
 
-	const getSettingsIcon = () => {
+	const getSettingsIcon = (): React.ReactNode => {
 		if (!row.dataType) {
 			return null;
 		}

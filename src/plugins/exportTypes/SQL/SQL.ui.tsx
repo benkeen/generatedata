@@ -44,12 +44,12 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 	];
 
 	const getBackquotesOption = (): React.ReactNode => {
-		if (data.databaseType === 'Postgres') {
+		if (data.databaseType === 'Postgres' || data.databaseType === 'MSSQL') {
 			return null;
 		}
 
 		return (
-			<div id="etSQL_encloseInBackquotes_group">
+			<div>
 				<Switch
 					checked={data.encloseInBackquotes}
 					id={`${id}-encloseInBackquotes`}
@@ -62,8 +62,8 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 		);
 	};
 
-	const getInsertIgnoreOption = () => {
-		if (data.databaseType === 'Postgres' || data.databaseType === 'SQLite') {
+	const getInsertIgnoreOption = (): React.ReactNode => {
+		if (data.databaseType !== 'MySQL') {
 			return null;
 		}
 		return (
@@ -80,7 +80,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 		);
 	};
 
-	const getInsertBatchSize = () => {
+	const getInsertBatchSize = (): React.ReactNode => {
 		if (data.databaseType === 'Oracle') {
 			return null;
 		}
@@ -214,7 +214,6 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 
 
 /*
-
 	var _resultTypeChanged = function(msg) {
 		if (msg.newExportType === "SQL") {
 			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
