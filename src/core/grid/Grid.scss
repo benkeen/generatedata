@@ -12,7 +12,7 @@
 
 .gridHeaderWrapper {
 	max-width: 1024px;
-	margin: 10px auto 0;
+	margin: 15px auto 0;
 }
 
 div.gridHeader {
@@ -129,6 +129,7 @@ div.deleteCol, div.settingsIconCol {
 }
 
 div.deleteCol {
+	margin-right: 0;
 	&:hover {
 		svg {
 			fill: #990000;

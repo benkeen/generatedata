@@ -85,13 +85,22 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 			return null;
 		}
 
+		let classes = styles.batchSize;
+		let brace = null;
+		let label = <span><span className={styles.batchSizeHyphen}>&#8212;</span> {i18n.batchSize}</span>;
+		if (data.databaseType === 'MySQL') {
+			classes += ` ${styles.withBrace}`;
+			brace = <span className={styles.brace}>&#125;</span>;
+			label = i18n.batchSize;
+		}
+
 		return (
-			<div className={styles.batchSize}>
-				<span className={styles.brace}>&#125;</span>
+			<div className={classes}>
+				{brace}
 				<label
 					htmlFor={`${id}_insertBatchSize`}
 					id={`${id}_insertBatchSize`}>
-					{i18n.batchSize}
+					{label}
 				</label>
 				<input
 					type="number"
@@ -214,36 +223,6 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 
 
 /*
-	var _resultTypeChanged = function(msg) {
-		if (msg.newExportType === "SQL") {
-			$("#gdColTitleTop,#gdColTitleBottom").html(LANG.row_label);
-		}
-	};
-
-	 * If the user is generating in-page data with this Export Type, enable the XML
-	 * mode for the in-page editor. Since Oracle and SQLite don't have their own CodeMirror modes yet,
-	 * we just re-use MySQL for all of them: they're pretty similar, anyway.
-	var _onGenerate = function(msg) {
-		if (msg.exportTarget !== "inPage" || msg.exportType !== "SQL") {
-			return;
-		}
-
-		// the default mode is a simple x-sql mime type. But if there's a specific one available for the
-		// chosen database type, use that instead
-		var selectedSQLMode = $("#etSQL_databaseType").val();
-		var mode = "text/x-sql";
-		switch (selectedSQLMode) {
-			case "MySQL":
-				mode = "text/x-mysql";
-				break;
-			case "MSSQL":
-				mode = "text/x-mssql";
-				break;
-		}
-
-		msg.editor.setOption("mode", mode);
-	};
-
 	var _validate = function(rowNums) {
 		var errors = [];
 
@@ -320,32 +299,5 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 		}
 
 		return errors;
-	};
-
-	var _loadSettings = function(settings) {
-		$("#etSQL_tableName").val(settings.tableName);
-		$("#etSQL_databaseType").val(settings.databaseType);
-		if (settings.createTable == "1") {
-			$("#etSQL_createTable").attr("checked", "checked");
-		} else {
-			$("#etSQL_createTable").removeAttr("checked");
-		}
-		if (settings.dropTable == "1") {
-			$("#etSQL_dropTable").attr("checked", "checked");
-		} else {
-			$("#etSQL_dropTable").removeAttr("checked");
-		}
-		if (settings.encloseWithBackquotes == "1") {
-			$("#etSQL_encloseWithBackquotes").attr("checked", "checked");
-		} else {
-			$("#etSQL_encloseWithBackquotes").removeAttr("checked");
-		}
-
-		$("input[name=etSQL_statementType]:eq(" + settings.statementType + ")").attr("checked", "checked");
-
-		if (settings.hasOwnProperty("insertBatchSize")) {
-			$("#etSQL_insertBatchSize").val(settings.insertBatchSize);
-		}
-		$("input[name=etSQL_primaryKey][value=" + settings.primaryKey + "]").attr("checked", "checked");
 	};
 */

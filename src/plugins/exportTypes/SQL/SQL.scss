@@ -28,7 +28,11 @@
 .batchSize {
 	display: flex;
 	align-items: center;
-	height: 58px;
+	height: 31px;
+
+	&.withBrace {
+		height: 58px;
+	}
 
 	> span {
 		height: 38px;
@@ -40,6 +44,10 @@
 	input {
 		margin-top: -2px;
 	}
+}
+
+.batchSizeHyphen {
+	color: #cccccc;
 }
 
 .brace {

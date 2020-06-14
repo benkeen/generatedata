@@ -1,10 +1,12 @@
 declare namespace SqlScssModule {
   export interface ISqlScss {
     batchSize: string;
+    batchSizeHyphen: string;
     block: string;
     brace: string;
     row: string;
     title: string;
+    withBrace: string;
   }
 }
 
