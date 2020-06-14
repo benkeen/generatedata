@@ -2,7 +2,9 @@ declare namespace HeaderScssModule {
   export interface IHeaderScss {
     btnSelected: string;
     current: string;
+    gridBtn: string;
     header: string;
+    previewBtn: string;
     toggleLayoutBtn: string;
     toggleLayoutBtnDisabled: string;
   }

@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import * as styles from './Header.scss';
-import { GDLocale } from '../../../types/general';
+import { useWindowSize } from 'react-hooks-window-size';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import CheckBox from '@material-ui/icons/Checkbox';
 import Delete from '@material-ui/icons/Delete';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
+import MenuIcon from '@material-ui/icons/Menu';
 import { BuilderLayout } from '../builder/Builder.component';
 import ClearGridDialog from '../dialogs/clearGrid/ClearGrid.component';
 import { Tooltip } from '../../components/tooltips';
 import { toSentenceCase } from '../../utils/stringUtils';
 import IntroDialog from '../dialogs/intro/Intro.component';
+import { GDLocale } from '../../../types/general';
+import C from '../constants';
+import * as styles from './Header.scss';
 
 export type HeaderProps = {
 	toggleGrid: () => void;
@@ -37,8 +42,18 @@ const Header = ({
 	const [showClearDialog, setShowClearDialog] = useState(false);
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
+	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
+	const windowSize = useWindowSize();
 	const toggleLayoutEnabled = isGridVisible && isPreviewVisible;
+
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
 	// Material UI throws an error when it comes to having a tooltip on a disabled button, and within a ButtonGroup
 	// context it messes up the styles wrapping <Button> in a <span> like we do elsewhere. So this just constructs
@@ -63,6 +78,63 @@ const Header = ({
 		);
 	};
 
+	let gridBtnClasses = styles.gridBtn;
+	if (isGridVisible) {
+		gridBtnClasses += ` ${styles.btnSelected}`;
+	}
+
+	let previewBtnClasses = styles.previewBtn;
+	if (isPreviewVisible) {
+		previewBtnClasses += ` ${styles.btnSelected}`;
+	}
+
+	const getNav = () => {
+		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
+			return (
+				<>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+						<MenuIcon fontSize="large" />
+					</Button>
+					<Menu
+						id="simple-menu"
+						anchorEl={anchorEl}
+						keepMounted
+						open={Boolean(anchorEl)}
+						onClose={handleClose}
+					>
+						<MenuItem onClick={handleClose}>Clear grid</MenuItem>
+						<MenuItem onClick={handleClose}>(Show other panel)</MenuItem>
+					</Menu>
+				</>
+			);
+		}
+
+		return (
+			<>
+				<ul>
+				</ul>
+				<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px', backgroundColor: '#ffffff' }}>
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
+						<Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>
+							{i18n.grid}
+						</Button>
+					</Tooltip>
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowPreviewPanel }} />} arrow>
+						<Button className={previewBtnClasses} onClick={togglePreview} startIcon={<PreviewIcon />}>
+							{i18n.preview}
+						</Button>
+					</Tooltip>
+					{getToggleLayoutBtn()}
+					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: toSentenceCase(i18n.clearPage) }} />} arrow>
+						<Button onClick={(): void => setShowClearDialog(true)}>
+							<Delete />
+						</Button>
+					</Tooltip>
+				</ButtonGroup>
+			</>
+		);
+	};
+
 	return (
 		<>
 			<header className={styles.header}>
@@ -76,26 +148,7 @@ const Header = ({
 						/>
 					</h1>
 					<nav>
-						<ul>
-						</ul>
-						<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px', backgroundColor: '#ffffff' }}>
-							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
-								<Button className={isGridVisible ? styles.btnSelected : ''} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>
-									{i18n.grid}
-								</Button>
-							</Tooltip>
-							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowPreviewPanel }} />} arrow>
-								<Button className={isPreviewVisible ? styles.btnSelected : ''} onClick={togglePreview} startIcon={<PreviewIcon />}>
-									{i18n.preview}
-								</Button>
-							</Tooltip>
-							{getToggleLayoutBtn()}
-							<Tooltip title={<span dangerouslySetInnerHTML={{ __html: toSentenceCase(i18n.clearPage) }} />} arrow>
-								<Button onClick={(): void => setShowClearDialog(true)}>
-									<Delete />
-								</Button>
-							</Tooltip>
-						</ButtonGroup>
+						{getNav()}
 					</nav>
 				</div>
 			</header>

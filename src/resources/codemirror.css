@@ -331,7 +331,7 @@ div.CodeMirror-dragcursors {
 /* Used to force a border model for a node */
 .cm-force-border { padding-right: .1px; }
 
-@media print {
+    @media print {
 	/* Hide the cursor when printing */
 	.CodeMirror div.CodeMirror-cursors {
 		visibility: hidden;
