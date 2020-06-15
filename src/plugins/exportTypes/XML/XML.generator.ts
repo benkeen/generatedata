@@ -1,5 +1,37 @@
-export const generate = (): any => {
+import { ExportTypeGenerationData } from '../../../../types/general';
+import { XMLSettings } from './XML.ui';
 
+export const generate = (blah: any): any => {
+	console.log(blah);
+
+	return {
+		display: ''
+	};
+};
+
+export const generateXML = (generationData: ExportTypeGenerationData, xmlSettings: XMLSettings): string => {
+	const { rootNodeName, recordNodeName } = xmlSettings;
+
+	let content = "";
+	if (generationData.isFirstBatch) {
+		content += '<?xml version="1.0" encoding="UTF-8" ?>';
+		content += `<${rootNodeName}>\n`;
+	}
+
+	const numCols = generationData.columns.length;
+	// foreach ($data["rowData"] as $row) {
+	// 	$content .= "\t<{$recordNodeName}>\n";
+	// 	for ($i=0; $i<$numCols; $i++) {
+	// 		$content .= "\t\t<{$data["colData"][$i]}>{$row[$i]}</{$data["colData"][$i]}>\n";
+	// 	}
+	// 	$content .= "\t</{$recordNodeName}>\n";
+	// }
+
+	if (generationData.isLastBatch) {
+		content += `</${rootNodeName}>`;
+	}
+
+	return content;
 };
 
 /*
@@ -41,29 +73,6 @@ export const generate = (): any => {
 	 * @param array $postData
 	 * @return string
 	private function generateXML($generator, $postData) {
-		$data = $generator->generateExportData();
-		$rootNodeName   = $this->getXMLRootNodeName();
-		$recordNodeName = $this->getXMLRecordNodeName();
-
-		$content = "";
-		if ($generator->isFirstBatch()) {
-			$content .= '<?xml version="1.0" encoding="UTF-8" ?>';
-			$content .= "<{$rootNodeName}>\n";
-		}
-
-		$numCols = count($data["colData"]);
-		foreach ($data["rowData"] as $row) {
-			$content .= "\t<{$recordNodeName}>\n";
-			for ($i=0; $i<$numCols; $i++) {
-				$content .= "\t\t<{$data["colData"][$i]}>{$row[$i]}</{$data["colData"][$i]}>\n";
-			}
-			$content .= "\t</{$recordNodeName}>\n";
-		}
-
-		if ($generator->isLastBatch()) {
-			$content .= "</{$rootNodeName}>";
-		}
-		return $content;
 	}
 
 

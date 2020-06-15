@@ -1,4 +1,5 @@
-export default lang = {
+{
+	"COL_TITLE": "Node name",
 	"EXPORT_TYPE_NAME": "XML",
 	"available_smarty_vars": "Verfügbare Smarty Vars",
 	"batch_vars": "Boolsche ob die aktuelle Charge der Ergebnisse erzeugt ist die erste oder letzte. Dies wird immer nur für Benutzer Erzeugen der Daten in-Seite, die die Ergebnisse in Blöcken generiert verwendet. In allen anderen Situationen, beide sind immer wahr.",
@@ -15,4 +16,4 @@ export default lang = {
 	"row_label": "Node Name",
 	"row_label_plural": "Node Names",
 	"use_custom_xml_format": "Verwenden Sie benutzerdefinierte XML-Format"
-};
+}

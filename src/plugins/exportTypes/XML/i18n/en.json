@@ -1,4 +1,5 @@
-export default lang = {
+{
+	"COL_TITLE": "Node name",
 	"use_custom_xml_format": "Use custom XML format",
 	"row_label": "Node Name",
 	"row_label_plural": "Node Names",
@@ -14,4 +15,5 @@ export default lang = {
 	"col_names_array": "An ordered array of strings containing the column names.",
 	"row_data_array": "An ordered array of arrays. Each top level array contains the contents of the row; each child array contains an ordered array of values for each item of data.",
 	"reset_custom_html": "Reset Custom HTML"
-};
+}
+

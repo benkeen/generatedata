@@ -80,10 +80,12 @@ export type DataTypeFolder = keyof typeof dataTypes;
 
 import JSON from './plugins/exportTypes/JSON/config';
 import SQL from './plugins/exportTypes/SQL/config';
+import XML from './plugins/exportTypes/XML/config';
 
 export const exportTypes = {
 	JSON,
-	SQL
+	SQL,
+	XML
 };
 
 export type ExportTypeFolder = keyof typeof exportTypes;

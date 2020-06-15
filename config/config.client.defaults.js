@@ -33,8 +33,7 @@ export default {
 		'Excel',
 		'HTML',
 		'LDIF',
-		'ProgrammingLanguage',
-		'XML'
+		'ProgrammingLanguage'
 	],
 
 	countryBlacklist: [

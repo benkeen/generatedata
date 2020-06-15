@@ -78,12 +78,12 @@ const Header = ({
 		);
 	};
 
-	let gridBtnClasses = styles.gridBtn;
+	let gridBtnClasses = '';
 	if (isGridVisible) {
 		gridBtnClasses += ` ${styles.btnSelected}`;
 	}
 
-	let previewBtnClasses = styles.previewBtn;
+	let previewBtnClasses = '';
 	if (isPreviewVisible) {
 		previewBtnClasses += ` ${styles.btnSelected}`;
 	}
@@ -102,7 +102,10 @@ const Header = ({
 						open={Boolean(anchorEl)}
 						onClose={handleClose}
 					>
-						<MenuItem onClick={handleClose}>Clear grid</MenuItem>
+						<MenuItem onClick={((): void => {
+							handleClose();
+							setShowClearDialog(true);
+						})}>Clear grid</MenuItem>
 						<MenuItem onClick={handleClose}>(Show other panel)</MenuItem>
 					</Menu>
 				</>

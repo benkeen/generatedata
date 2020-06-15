@@ -1,4 +1,5 @@
-export default lang = {
+{
+	"COL_TITLE": "Node name",
 	"available_smarty_vars": "Beschikbare Smarty Variabelen",
 	"batch_vars": "Booleans om aan te geven of de huidige batch van resultaten die worden gegenereerd de eerste of de laatste is. Dit wordt alleen gebruikt voor type in-page, waarvoor de resultaten in blokken worden genereerd. In alle andere gevallen is de waarde waar.",
 	"col_names_array": "Een geordende array van tekenreeksen die de kolomnamen.",
@@ -14,4 +15,4 @@ export default lang = {
 	"row_label": "Node naam",
 	"row_label_plural": "Node Namen",
 	"use_custom_xml_format": "Aangepast XML-formaat"
-};
+}
