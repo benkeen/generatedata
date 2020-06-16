@@ -27,7 +27,7 @@ const Preview = ({ data, theme, exportTypeSettings, showRowNumbers, enableLineWr
 				setCode(value);
 			}}
 			options={{
-				mode: 'application/ld+json',
+				mode: 'xml',
 				theme,
 				lineNumbers: showRowNumbers,
 				lineWrapping: enableLineWrapping,

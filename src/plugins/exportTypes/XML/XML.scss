@@ -1,3 +1,10 @@
-.tmp {
-	color: pink;
+.row {
+	display: flex;
+	align-items: center;
+	label {
+		flex: 0 0 150px;
+	}
+	input {
+		flex: 1;
+	}
 }

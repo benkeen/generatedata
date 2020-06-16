@@ -1,6 +1,6 @@
 declare namespace XmlScssModule {
   export interface IXmlScss {
-    tmp: string;
+    row: string;
   }
 }
 
