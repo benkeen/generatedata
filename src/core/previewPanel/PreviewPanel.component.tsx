@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
 import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import { Tooltip } from '../../components/tooltips';
 import { BuilderLayout } from '../builder/Builder.component';
 import Portal from './PreviewPanelPortal.component';
 import C from '../constants';
@@ -127,7 +127,7 @@ const PreviewPanel = ({
 
 				<div className={styles.controls}>
 					<span onClick={refreshPreview}>
-						<Tooltip title={i18n.refreshPanel} placement="bottom" {...refreshTooltipProps}>
+						<Tooltip title={i18n.refreshPanel} placement="bottom" {...refreshTooltipProps} arrow>
 							<span>
 								<IconButton size="small" aria-label={i18n.refreshPanel} {...refreshIconProps}>
 									<Refresh fontSize="large" />
@@ -136,7 +136,7 @@ const PreviewPanel = ({
 						</Tooltip>
 					</span>
 					<span onClick={closeIconAction}>
-						<Tooltip title={i18n.closePanel} placement="bottom">
+						<Tooltip title={i18n.closePanel} placement="bottom" arrow>
 							<span>
 								<IconButton size="small" aria-label={i18n.closePanel}>
 									<CloseIcon fontSize="large" />

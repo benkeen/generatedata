@@ -39,7 +39,7 @@ input, textarea, select {
     outline: none;
 
     &:focus {
-        border: 1px solid $primary-color;
+        border: 1px solid $field-focus-color;
     }
 }
 

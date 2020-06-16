@@ -20,8 +20,8 @@ export const Tooltip = withStyles(() => ({
 		backgroundColor: '#333333',
 		maxWidth: 220,
 		color: '#dddddd',
-		lineHeight: '18px',
-		fontSize: 12,
+		lineHeight: '16px',
+		fontSize: 11,
 		padding: 10
 	},
 	arrow: {

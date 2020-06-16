@@ -5,10 +5,10 @@ import Measure from 'react-measure';
 import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import * as styles from './Grid.scss';
 import HelpDialog from '../dialogs/help/HelpDialog.component';
+import { Tooltip } from '../../components/tooltips';
 import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 import GridRow from './GridRow.container';
@@ -69,7 +69,11 @@ const Grid = ({
 	return (
 		<>
 			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={onClose}>
-				<Tooltip title={i18n.closePanel} placement="bottom">
+				<Tooltip
+					title={<span dangerouslySetInnerHTML={{ __html: i18n.closePanel }}/>}
+					placement="bottom"
+					arrow
+				>
 					<IconButton size="small" aria-label={i18n.closePanel}>
 						<CloseIcon fontSize="large" />
 					</IconButton>
