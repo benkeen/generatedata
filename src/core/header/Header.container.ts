@@ -13,6 +13,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	showIntroDialog: mainSelectors.shouldShowIntroDialog(state),
 	isGridVisible: selectors.isGridVisible(state),
 	isPreviewVisible: selectors.isPreviewVisible(state),
+	smallScreenVisiblePanel: selectors.getSmallScreenVisiblePanel(state),
 	builderLayout: selectors.getBuilderLayout(state),
 	isLoggedIn: false // TODO
 });
@@ -20,6 +21,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	// @ts-ignore
 	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
+	onChangeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel()),
 	toggleGrid: (): any => dispatch(actions.toggleGrid()),
 	togglePreview: (): any => dispatch(actions.togglePreview()),
 	toggleLayout: (): any => dispatch(actions.toggleLayout()),

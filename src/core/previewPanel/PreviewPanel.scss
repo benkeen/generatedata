@@ -1,5 +1,5 @@
 .previewPanel {
-	z-index: 5000;
+	z-index: 1400;
 	height: 100%;
 	h1 {
 		margin: 0;
@@ -12,7 +12,7 @@
 	top: 0;
 	left: 400px;
 	bottom: 0;
-	z-index: 5000;
+	z-index: 1400;
 	&>div {
 		height: 100%;
 	}
@@ -27,7 +27,7 @@
 }
 
 .controls {
-    z-index: 5001;
+    z-index: 1300;
 	justify-content: flex-end;
 
     button {

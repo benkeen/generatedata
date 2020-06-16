@@ -30,6 +30,8 @@ export type ExportTypeSettings = {
 	[exportType in ExportTypeFolder]: any;
 };
 
+export type GeneratorPanel = 'grid' | 'preview';
+
 export type GeneratorState = {
 	loadedDataTypes: {
 		[str in DataTypeFolder]: boolean;
@@ -42,6 +44,7 @@ export type GeneratorState = {
 	sortedRows: string[];
 	showGrid: boolean;
 	showPreview: boolean;
+	smallScreenVisiblePanel: GeneratorPanel;
 	builderLayout: BuilderLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
@@ -71,6 +74,7 @@ export const reducer = (state: GeneratorState = {
 	sortedRows: [],
 	showGrid: true,
 	showPreview: true,
+	smallScreenVisiblePanel: 'grid',
 	builderLayout: 'horizontal',
 	showExportSettings: false,
 	exportTypeSettings: {},
@@ -341,6 +345,13 @@ export const reducer = (state: GeneratorState = {
 			return {
 				...state,
 				[setting]: action.payload.size
+			};
+		}
+
+		case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL: {
+			return {
+				...state,
+				smallScreenVisiblePanel: state.smallScreenVisiblePanel === 'grid' ? 'preview' : 'grid'
 			};
 		}
 

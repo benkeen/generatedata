@@ -18,6 +18,7 @@ import IntroDialog from '../dialogs/intro/Intro.component';
 import { GDLocale } from '../../../types/general';
 import C from '../constants';
 import * as styles from './Header.scss';
+import { GeneratorPanel } from '../store/generator/generator.reducer';
 
 export type HeaderProps = {
 	toggleGrid: () => void;
@@ -25,33 +26,36 @@ export type HeaderProps = {
 	toggleLayout: () => void;
 	onClearGrid: () => void;
 	toggleIntroDialog: () => void;
+	onChangeSmallScreenVisiblePanel: () => void;
 	isLoggedIn: boolean;
 	onChangeLocale: Function;
 	isGridVisible: boolean;
 	isPreviewVisible: boolean;
+	smallScreenVisiblePanel: GeneratorPanel;
 	showIntroDialog: boolean;
 	locale: GDLocale;
 	builderLayout: BuilderLayout;
 	i18n: any;
-}
+};
 
 const Header = ({
-	isGridVisible, isPreviewVisible, toggleGrid, togglePreview, toggleLayout, i18n, builderLayout, onClearGrid,
-	toggleIntroDialog, showIntroDialog
+	isGridVisible, isPreviewVisible, smallScreenVisiblePanel, toggleGrid, togglePreview, toggleLayout, i18n,
+	builderLayout, onClearGrid, toggleIntroDialog, showIntroDialog, onChangeSmallScreenVisiblePanel
 }: HeaderProps): JSX.Element => {
 	const [showClearDialog, setShowClearDialog] = useState(false);
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
 	const PreviewIcon = isPreviewVisible ? CheckBox : CheckBoxOutlineBlank;
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
 	const ToggleDirectionIcon = builderLayout === 'horizontal' ? SwapHoriz : SwapVert;
 	const windowSize = useWindowSize();
 	const toggleLayoutEnabled = isGridVisible && isPreviewVisible;
 
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
 		setAnchorEl(event.currentTarget);
 	};
 
-	const handleClose = () => {
+	const handleClose = (): void => {
 		setAnchorEl(null);
 	};
 
@@ -66,7 +70,7 @@ const Header = ({
 					disableHoverListener={!toggleLayoutEnabled}
 					disableFocusListener={!toggleLayoutEnabled}>
 					<Button onClick={toggleLayout} disabled={!toggleLayoutEnabled} className={styles.toggleLayoutBtn}>
-						<ToggleDirectionIcon/>
+						<ToggleDirectionIcon />
 					</Button>
 				</Tooltip>
 			);
@@ -90,13 +94,14 @@ const Header = ({
 
 	const getNav = () => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
+			const togglePanelLabel = smallScreenVisiblePanel === 'grid' ? 'Show Preview' : 'Show Grid';
 			return (
 				<>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+					<Button aria-controls="nav-menu" aria-haspopup="true" onClick={handleClick}>
 						<MenuIcon fontSize="large" />
 					</Button>
 					<Menu
-						id="simple-menu"
+						id="nav-menu"
 						anchorEl={anchorEl}
 						keepMounted
 						open={Boolean(anchorEl)}
@@ -106,7 +111,10 @@ const Header = ({
 							handleClose();
 							setShowClearDialog(true);
 						})}>Clear grid</MenuItem>
-						<MenuItem onClick={handleClose}>(Show other panel)</MenuItem>
+						<MenuItem onClick={(): void => {
+							handleClose();
+							onChangeSmallScreenVisiblePanel();
+						}}>{togglePanelLabel}</MenuItem>
 					</Menu>
 				</>
 			);

@@ -7,6 +7,7 @@ import ExportSettings from '../exportSettings/ExportSettings.container';
 import GenerationPanel from '../generationPanel/GenerationPanel.container';
 import C from '../constants';
 import './Builder.scss';
+import { GeneratorPanel } from '../store/generator/generator.reducer';
 
 export type BuilderLayout = 'horizontal' | 'vertical';
 export type BuilderProps = {
@@ -16,13 +17,15 @@ export type BuilderProps = {
 	onResizePanels: (size: number) => void;
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
+	smallScreenVisiblePanel: GeneratorPanel;
 }
 
 const Builder = ({
-	isGridVisible, isPreviewVisible, builderLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight
+	isGridVisible, isPreviewVisible, builderLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
+	smallScreenVisiblePanel
 }: BuilderProps): JSX.Element => {
 	const windowSize = useWindowSize();
-	const onResize = (size: number) => onResizePanels(size);
+	const onResize = (size: number): void => onResizePanels(size);
 
 	let minSize: number;
 	let maxSize: number;
@@ -41,9 +44,11 @@ const Builder = ({
 		}
 	}
 
-	// TODO min browser dimension to show the full builder (both tabs) is 700x400
-
 	const getContent = (): JSX.Element => {
+		if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
+			return smallScreenVisiblePanel === 'grid' ? <Grid /> : <Preview />;
+		}
+
 		if (isGridVisible && isPreviewVisible) {
 			return (
 				<SplitPane

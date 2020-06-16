@@ -240,3 +240,6 @@ export const setPanelSize = (size: number): GDAction => ({
 		size
 	}
 });
+
+export const CHANGE_SMALL_SCREEN_VISIBLE_PANEL = 'CHANGE_SMALL_SCREEN_VISIBLE_PANEL';
+export const changeSmallScreenVisiblePanel = (): GDAction => ({ type: CHANGE_SMALL_SCREEN_VISIBLE_PANEL });
