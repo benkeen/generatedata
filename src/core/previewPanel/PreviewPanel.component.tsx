@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { CSSProperties } from 'react';
+import { useWindowSize } from 'react-hooks-window-size';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
@@ -8,8 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import { BuilderLayout } from '../builder/Builder.component';
 import Portal from './PreviewPanelPortal.component';
+import C from '../constants';
 import * as styles from './PreviewPanel.scss';
-import { CSSProperties } from 'react';
 
 const ExportTypeButton = withStyles({
 	root: {
@@ -30,6 +31,7 @@ export type PreviewPanelProps = {
 	builderLayout: BuilderLayout;
 	togglePreview: () => void;
 	refreshPreview: () => void;
+	changeSmallScreenVisiblePanel: () => void;
 	toggleExportSettings: () => void;
 	exportTypeSettings: any; // TODO
 	exportSettingsVisible: boolean;
@@ -46,8 +48,11 @@ const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperC
 
 const PreviewPanel = ({
 	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
-	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel
+	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel,
+	changeSmallScreenVisiblePanel
 }: PreviewPanelProps): React.ReactNode => {
+	const windowSize = useWindowSize();
+
 	const getNoResults = (): JSX.Element | null => {
 		if (data.rows.length > 0) {
 			return null;
@@ -77,7 +82,11 @@ const PreviewPanel = ({
 		closeIconAction = toggleExportSettings;
 		exportTypeLabelBtnAction = (): void => {};
 	} else {
-		closeIconAction = togglePreview;
+		if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
+			closeIconAction = changeSmallScreenVisiblePanel;
+		} else {
+			closeIconAction = togglePreview;
+		}
 		exportTypeLabelBtnAction = toggleExportSettings;
 	}
 

@@ -32,7 +32,8 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => ({
 	togglePreview: (): any => dispatch(actions.togglePreview()),
 	refreshPreview: (): any => dispatch(actions.refreshPreview()),
-	toggleExportSettings: (): any => dispatch(actions.toggleExportSettings('previewPanel'))
+	toggleExportSettings: (): any => dispatch(actions.toggleExportSettings('previewPanel')),
+	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel())
 });
 
 export default connect(

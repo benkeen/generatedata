@@ -2,6 +2,7 @@ import * as React from 'react';
 // @ts-ignore-line
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
+import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -11,6 +12,7 @@ import HelpDialog from '../dialogs/help/HelpDialog.component';
 import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 import GridRow from './GridRow.container';
+import C from '../constants';
 
 
 const SMALL_BREAKPOINT = 650;
@@ -27,16 +29,20 @@ export type GridProps = {
 	dataTypeI18n: any;
 	columnTitle: string;
 	loadedDataTypes: any; // TODO
+	changeSmallScreenVisiblePanel: () => void;
 };
 
 
 const Grid = ({
-	rows, onAddRows, onSelectDataType, onSort, i18n, countryI18n, dataTypeI18n, columnTitle, toggleGrid
+	rows, onAddRows, onSelectDataType, onSort, i18n, countryI18n, dataTypeI18n, columnTitle, toggleGrid,
+	changeSmallScreenVisiblePanel
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialog] = React.useState(false);
 	const [initialHelpSection, setInitialDialogSection] = React.useState('');
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
+
+	const windowSize = useWindowSize();
 
 	let gridSizeClass = '';
 	if (dimensions.width < SMALL_BREAKPOINT) {
@@ -52,9 +58,17 @@ const Grid = ({
 		showHelpDialog(true);
 	};
 
+	const onClose = () => {
+		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
+			changeSmallScreenVisiblePanel();
+		} else {
+			toggleGrid();
+		}
+	};
+
 	return (
 		<>
-			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={toggleGrid}>
+			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={onClose}>
 				<Tooltip title={i18n.closePanel} placement="bottom">
 					<IconButton size="small" aria-label={i18n.closePanel}>
 						<CloseIcon fontSize="large" />

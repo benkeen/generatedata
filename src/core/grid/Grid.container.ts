@@ -18,7 +18,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	onAddRows: (numRows: number): any => dispatch(actions.addRows(numRows)),
 	onSort: (id: string, newIndex: number): any => dispatch(actions.repositionRow(id, newIndex)),
 	onSelectDataType: (dataType: DataTypeFolder, id?: string): any => dispatch(actions.onSelectDataType(dataType, id)),
-	toggleGrid: (): any => dispatch(actions.toggleGrid())
+	toggleGrid: (): any => dispatch(actions.toggleGrid()),
+	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel())
 });
 
 const container: any = connect(
