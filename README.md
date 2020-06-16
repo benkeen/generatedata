@@ -75,7 +75,7 @@ https://github.com/benkeen/generatedata/graphs/contributors
 
 ## Changelog
 
-4.0.0 -*In development*: http://generatedata4.com
+4.0.0 - **In development**: http://generatedata4.com
 
 3.4.1 - Nov 24, 2019 
 - Excel Export Type updated for new PHP lib, thanks [@adibaby](https://github.com/adibaby)!
