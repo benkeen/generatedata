@@ -32,8 +32,7 @@ export default {
 		'CSV',
 		'Excel',
 		'HTML',
-		'LDIF',
-		'ProgrammingLanguage'
+		'LDIF'
 	],
 
 	countryBlacklist: [

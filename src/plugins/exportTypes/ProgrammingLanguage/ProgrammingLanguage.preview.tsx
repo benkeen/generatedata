@@ -4,6 +4,7 @@ import { BuilderLayout } from '../../../core/builder/Builder.component';
 import { ProgrammingLanguageState } from './ProgrammingLanguage.ui';
 import { generateCSharp } from './languages/CSharp';
 
+// "php", "perl", "htmlmixed", "xml", "javascript", "css", "clike", "ruby"
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
@@ -16,7 +17,7 @@ type PreviewProps = {
 	enableLineWrapping: boolean;
 	data: any;
 	theme: string;
-}
+};
 
 const Preview = ({ data, theme, showRowNumbers, enableLineWrapping }: PreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
