@@ -3,8 +3,10 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import { BuilderLayout } from '../../../core/builder/Builder.component';
 import { ProgrammingLanguageState } from './ProgrammingLanguage.ui';
 import { generateCSharp } from './languages/CSharp';
+import { generateJS } from './languages/Javascript';
+import { generatePerl } from './languages/Perl';
 
-// "php", "perl", "htmlmixed", "xml", "javascript", "css", "clike", "ruby"
+// "php", "perl", "htmlmixed", "xml", "javascript", "css", "clike", "ruby" <-- TODO these definitely need to be dynamic
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
@@ -19,13 +21,24 @@ type PreviewProps = {
 	theme: string;
 };
 
-const Preview = ({ data, theme, showRowNumbers, enableLineWrapping }: PreviewProps): JSX.Element | null => {
+const Preview = ({ data, theme, showRowNumbers, enableLineWrapping, exportTypeSettings }: PreviewProps): JSX.Element | null => {
+	const [mode, setMode] = React.useState('');
 	const [code, setCode] = React.useState('');
 
 	React.useEffect(() => {
-		// re-generate everything any time it changes, then do a diff on the changes. NOPE! WE need to do a diff
-		// on the generation template to see what changed THERE.
-		const content = generateCSharp(data);
+		let mode = '';
+		let content = '';
+		if (exportTypeSettings.language === 'JavaScript') {
+			content = generateJS(data);
+			mode = 'text/javascript';
+		} else if (exportTypeSettings.language === 'CSharp') {
+			content = generateCSharp(data);
+			mode = 'text/x-csharp';
+		} else if (exportTypeSettings.language === 'Perl') {
+			content = generatePerl(data);
+			mode = 'text/perl';
+		}
+		setMode(mode);
 		setCode(content);
 	}, [data, setCode]);
 
@@ -40,7 +53,7 @@ const Preview = ({ data, theme, showRowNumbers, enableLineWrapping }: PreviewPro
 				setCode(value);
 			}}
 			options={{
-				mode: 'application/ld+json',
+				mode,
 				theme,
 				lineNumbers: showRowNumbers,
 				lineWrapping: enableLineWrapping,

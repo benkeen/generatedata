@@ -1,38 +1,40 @@
-/*
-private function generateJS($data)
-{
-    $content = "";
-    if ($data["isFirstBatch"]) {
-        $content .= "var data = [\n";
-    }
+import { ExportTypeGenerationData } from '../../../../../types/general';
 
-    $numCols = count($data["colData"]);
-    $numRows = count($data["rowData"]);
+export const generateJS = (data: ExportTypeGenerationData): string => {
+	let content = '';
+	if (data.isFirstBatch) {
+		content += `var data = [\n`;
+	}
 
-    for ($i = 0; $i < $numRows; $i++) {
-        $content .= "\t{";
+	// TODO obviously
+	const numRows = 100000;
+	console.log(data);
 
-        $pairs = array();
-        for ($j = 0; $j < $numCols; $j++) {
-            $currValue = $data["rowData"][$i][$j];
-            if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
-                $pairs[] = "\"{$data["colData"][$j]}\": {$currValue}";
-            } else {
-                $pairs[] = "\"{$data["colData"][$j]}\": \"{$currValue}\"";
-            }
-        }
-        $content .= implode(", ", $pairs);
+	data.rows.forEach((row: any, rowIndex: number) => {
+		content += '\t{\n\t\t';
 
-        if ($data["isLastBatch"] && $i == $numRows - 1) {
-            $content .= "}\n";
-        } else {
-            $content .= "},\n";
-        }
-    }
+		const pairs: string[] = [];
+		data.columns.forEach(({ title }, colIndex) => {
+			const currValue = row[colIndex];
+			// if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
+			// 	$pairs[] = "\"{$data["colData"][$j]}\": {$currValue}";
+			// } else {
+			pairs.push(`"${title}": "${currValue}"`);
+			// }
+		});
 
-    if ($data["isLastBatch"]) {
-        $content .= "];\n";
-    }
-    return $content;
-}
-*/
+		content += pairs.join(',\n\t\t');
+
+		if (data.isLastBatch && rowIndex == numRows - 1) {
+			content += '\n\t}\n';
+		} else {
+			content += '\n\t},\n';
+		}
+	});
+
+	if (data.isLastBatch) {
+		content += '];\n';
+	}
+
+	return content;
+};
