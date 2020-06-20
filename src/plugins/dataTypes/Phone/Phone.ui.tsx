@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Dropdown from '../../../components/dropdown/Dropdown';
+import Dropdown from '~components/dropdown/Dropdown';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
-import CreatablePillField from '../../../components/CreatablePillField';
+import CreatablePillField from '~components/CreatablePillField';
 
 export type PhoneState = {
 	example: string;

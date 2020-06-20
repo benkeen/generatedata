@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
-import RadioPill, { RadioPillRow } from '../../../components/radioPills/RadioPill';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import { countryList, DataTypeFolder } from '../../../_plugins';
-import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
+import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '~components/dialogs';
 import styles from './PostalZip.scss';
 
 export type PostalZipSource = 'any' | 'countries' | 'countryRow' | 'regionRow';

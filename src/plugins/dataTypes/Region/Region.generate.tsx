@@ -1,8 +1,8 @@
 import { DTGenerateResult, DTGenerationData, DTMetadata } from '~types/dataTypes';
 import { countryList, CountryType } from '../../../_plugins';
-import { loadCountryBundle } from '../../../utils/countryUtils';
-import { getRandomArrayValue } from '../../../utils/randomUtils';
-import { GetCountryData } from '../../../../types/countries';
+import { loadCountryBundle } from '~utils/countryUtils';
+import { getRandomArrayValue } from '~utils/randomUtils';
+import { GetCountryData } from '~types/countries';
 
 
 const countryRegions: any = {};

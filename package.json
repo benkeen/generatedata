@@ -37,7 +37,10 @@
     },
     "testRegex": "/__tests__/.*\\.(ts|tsx|js)$",
     "moduleNameMapper": {
-      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
+      "^~components(.*)$": "<rootDir>/src/components$1",
+      "^~types(.*)$": "<rootDir>/types$1",
+      "^~utils(.*)$": "<rootDir>/src/utils$1"
     }
   },
   "dependencies": {

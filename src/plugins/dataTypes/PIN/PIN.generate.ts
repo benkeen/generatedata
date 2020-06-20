@@ -1,4 +1,4 @@
-import { getRandomNum } from '../../../utils/randomUtils';
+import { getRandomNum } from '~utils/randomUtils';
 import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
 
 export const generate = (): DTGenerateResult => ({ display: getRandomNum(1111, 9999) });

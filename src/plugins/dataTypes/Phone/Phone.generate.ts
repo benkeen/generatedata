@@ -1,5 +1,5 @@
 import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { generateRandomAlphanumericStr, getRandomArrayValue } from '../../../utils/randomUtils';
+import { generateRandomAlphanumericStr, getRandomArrayValue } from '~utils/randomUtils';
 import { PhoneState } from './Phone.ui';
 
 export const rowStateReducer = (state: PhoneState): string[] => state.option;

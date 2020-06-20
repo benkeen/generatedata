@@ -1,4 +1,4 @@
-import { getRandomNum } from '../../../utils/randomUtils';
+import { getRandomNum } from '~utils/randomUtils';
 import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { NumberRangeState } from './NumberRange.ui';
 

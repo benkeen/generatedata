@@ -1,8 +1,8 @@
 import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { countryList, CountryType } from '../../../_plugins';
-import { getRandomArrayValue, generatePlaceholderStr } from '../../../utils/randomUtils';
-import { loadCountryBundle } from '../../../utils/countryUtils';
-import { CountryDataType, GetCountryData, Region } from '../../../../types/countries';
+import { getRandomArrayValue, generatePlaceholderStr } from '~utils/randomUtils';
+import { loadCountryBundle } from '~utils/countryUtils';
+import { CountryDataType, GetCountryData, Region } from '~types/countries';
 
 
 export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {

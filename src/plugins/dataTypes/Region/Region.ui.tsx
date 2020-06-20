@@ -2,12 +2,12 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import { DataTypeFolder } from '../../../_plugins';
-import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
-import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '~components/dialogs';
 import { countryList } from '../../../_plugins';
 import styles from './Region.scss';
-import RadioPill, { RadioPillRow } from '../../../components/radioPills/RadioPill';
-import { removeItem } from '../../../utils/arrayUtils';
+import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import { removeItem } from '~utils/arrayUtils';
 
 export type RegionSource = 'any' | 'countries' | 'row';
 export type RegionFormat = 'full' | 'short';

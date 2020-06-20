@@ -1,5 +1,5 @@
-import { ExportTypeGenerationData } from '../../../../types/general';
-import { getNumericFieldColumnIndexes } from '../../../utils/generationUtils';
+import { ExportTypeGenerationData } from '~types/general';
+import { getNumericFieldColumnIndexes } from '~utils/generationUtils';
 import { SQLSettings } from './SQL.ui';
 
 

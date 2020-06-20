@@ -1,6 +1,6 @@
 import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { generateRandomTextStr } from '../../../utils/randomUtils';
-import { getLipsumWords } from '../../../utils/stringUtils';
+import { generateRandomTextStr } from '~utils/randomUtils';
+import { getLipsumWords } from '~utils/stringUtils';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { startsWithLipsum, minWords, maxWords } = data.rowState;

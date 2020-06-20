@@ -1,6 +1,6 @@
-import { ExportTypeGenerationData } from '../../../../types/general';
+import { ExportTypeGenerationData } from '~types/general';
 // import { JSONSettings } from './JSON.ui';
-import { isNumeric } from '../../../utils/generalUtils';
+import { isNumeric } from '~utils/generalUtils';
 
 
 // VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)

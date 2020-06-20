@@ -1,4 +1,4 @@
-import { ExportTypeGenerationData } from '../../../../types/general';
+import { ExportTypeGenerationData } from '~types/general';
 import { XMLSettings } from './XML.ui';
 
 export const generate = (): any => {

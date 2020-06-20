@@ -35,4 +35,5 @@ export const generatePerl = (data: ExportTypeGenerationData) => {
 	// 	$content .= ");";
 	// }
 	return content;
-}
+};
+

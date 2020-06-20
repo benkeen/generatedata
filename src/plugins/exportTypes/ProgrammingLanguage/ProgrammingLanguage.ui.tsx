@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 
 export type ProgrammingLanguageState = {
 	language: 'CSharp' | 'JavaScript' | 'Perl' | 'PHP' | 'Ruby';
