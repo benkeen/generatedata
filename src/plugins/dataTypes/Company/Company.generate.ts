@@ -1,6 +1,6 @@
-import { getRandomNum } from '../../../utils/randomUtils';
-import { getLipsumWords, uppercaseWords } from '../../../utils/stringUtils';
-import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
+import { getRandomNum } from '~utils/randomUtils';
+import { getLipsumWords, uppercaseWords } from '~utils/stringUtils';
+import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
 
 const { words } = getLipsumWords();
 const companyTypes = [

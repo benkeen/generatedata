@@ -12,7 +12,13 @@
     "target": "es6",
 	"jsx": "react",
 	"allowSyntheticDefaultImports": true,
-	"removeComments": false
+	"removeComments": false,
+    "baseUrl": "",
+    "paths": {
+      "~components/*": ["src/components/*"],
+      "~utils/*": ["src/utils/*"],
+      "~types/*": ["types/*"]
+    }
   },
   "exclude": ["node_modules"]
 }

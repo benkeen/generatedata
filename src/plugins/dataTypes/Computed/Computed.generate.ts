@@ -1,4 +1,4 @@
-import { DTGenerateResult } from '../../../../types/dataTypes';
+import { DTGenerateResult } from '~types/dataTypes';
 
 export const generate = (): DTGenerateResult => {
 	return { display: '' };

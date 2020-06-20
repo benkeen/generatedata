@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Help, Options } from './NumberRange.ui';
 import { rowStateReducer, generate, getMetadata } from './NumberRange.generate';
 

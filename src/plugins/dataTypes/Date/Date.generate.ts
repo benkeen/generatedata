@@ -1,7 +1,7 @@
 import { format, fromUnixTime } from 'date-fns';
-import { DTGenerationData, DTGenerateResult, DTMetadata } from '../../../../types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTMetadata } from '~types/dataTypes';
 import { DateState } from './Date.ui';
-import { getRandomNum } from '../../../utils/randomUtils';
+import { getRandomNum } from '~utils/randomUtils';
 
 export const rowStateReducer = ({ fromDate, toDate, format }: DateState): Partial<DateState> => ({
 	fromDate, toDate, format

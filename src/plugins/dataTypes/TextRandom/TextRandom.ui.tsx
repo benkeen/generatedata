@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 
 type TextRandomState = {
 	startsWithLipsum: boolean;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import { CountryType } from '../../../_plugins';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';

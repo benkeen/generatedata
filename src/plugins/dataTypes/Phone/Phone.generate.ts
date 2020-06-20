@@ -1,4 +1,4 @@
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { generateRandomAlphanumericStr, getRandomArrayValue } from '../../../utils/randomUtils';
 import { PhoneState } from './Phone.ui';
 

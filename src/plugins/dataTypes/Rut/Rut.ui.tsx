@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTExampleProps, DTOptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTOptionsProps } from '~types/dataTypes';
 
 type RutState = {
 	example: string;

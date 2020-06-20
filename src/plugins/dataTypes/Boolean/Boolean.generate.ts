@@ -1,6 +1,6 @@
-import { DTMetadata } from '../../../../types/dataTypes';
-import { DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
-import { getRandomNum } from '../../../utils/randomUtils';
+import { DTMetadata } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { getRandomNum } from '~utils/randomUtils';
 import { BooleanState } from './Boolean.ui';
 
 export const rowStateReducer = (state: BooleanState): string[] => state.values;

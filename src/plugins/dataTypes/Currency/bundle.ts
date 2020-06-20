@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Help, Example, Options } from './Currency.ui';
 import { generate, getMetadata } from './Currency.generate';
 

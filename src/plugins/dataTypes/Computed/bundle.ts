@@ -1,5 +1,4 @@
-
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help } from './Computed.ui';
 import { generate } from './Computed.generate';
 

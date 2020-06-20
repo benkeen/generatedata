@@ -1,7 +1,6 @@
-import { generateRandomAlphanumericStr, getRandomNum } from '../../../utils/randomUtils';
-import { DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+import { generateRandomAlphanumericStr, getRandomNum } from '~utils/randomUtils';
+import { DTGenerationData, DTGenerateResult, DTMetadata } from '~types/dataTypes';
 import { AlphanumericState } from './Alphanumeric.ui';
-import { DTMetadata } from '../../../../types/dataTypes';
 
 export const rowStateReducer = (state: AlphanumericState): string => state.value;
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Dropdown from '../../../components/dropdown/Dropdown';
-import { DTExampleProps, DTOptionsProps, DTHelpProps } from '../../../../types/dataTypes';
+import Dropdown from '~components/dropdown/Dropdown';
+import { DTExampleProps, DTOptionsProps, DTHelpProps } from '~types/dataTypes';
 import styles from './Alphanumeric.scss';
 
 export type AlphanumericState = {

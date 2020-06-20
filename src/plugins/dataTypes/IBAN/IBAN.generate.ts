@@ -1,8 +1,8 @@
 /**
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
-import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
-import { generateRandomAlphanumericStr, getRandomArrayValue, getRandomBool } from '../../../utils/randomUtils';
+import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
+import { generateRandomAlphanumericStr, getRandomArrayValue, getRandomBool } from '~utils/randomUtils';
 
 // Template definition
 // 	b :	NATIONAL_BANK_CODE

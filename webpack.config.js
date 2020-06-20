@@ -70,7 +70,12 @@ module.exports = (env, argv) => {
 		],
 
 		resolve: {
-			extensions: ['.ts', '.tsx', '.js']
+			extensions: ['.ts', '.tsx', '.js'],
+			alias: {
+				"~components": path.join(__dirname, "src/components"),
+				"~utils": path.join(__dirname, "src/utils"),
+				"~types": path.join(__dirname, "types/")
+			}
 		},
 
 		optimization: {

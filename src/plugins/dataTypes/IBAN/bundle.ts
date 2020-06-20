@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { Help } from './IBAN.ui';
 import { generate, getMetadata } from './IBAN.generate';
 

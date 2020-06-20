@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help } from './AutoIncrement.ui';
 import { rowStateReducer, generate, getMetadata } from './AutoIncrement.generate';
 

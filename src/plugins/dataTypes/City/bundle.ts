@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { generate, getMetadata } from './City.generate';
 import { initialState, Options, Help } from './City.ui';
 import { customProps, actionInterceptors } from './City.store';

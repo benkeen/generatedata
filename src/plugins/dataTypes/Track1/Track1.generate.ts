@@ -1,4 +1,4 @@
-import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
 // import { getRandomArrayValue } from '../../../utils/randomUtils';
 
 // data: GenerationData

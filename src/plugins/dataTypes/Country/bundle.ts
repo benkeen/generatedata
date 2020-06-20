@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Options } from './Country.ui';
 import { generate, getMetadata } from './Country.generate';
 

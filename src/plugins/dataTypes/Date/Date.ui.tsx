@@ -3,10 +3,10 @@ import { format, subYears, addYears, fromUnixTime } from 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import Button from '@material-ui/core/Button';
-import Dropdown from '../../../components/dropdown/Dropdown';
+import Dropdown from '~components/dropdown/Dropdown';
 import Event from '@material-ui/icons/Event';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import * as styles from './Date.scss';
 
 export type DateState = {

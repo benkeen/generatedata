@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTOptionsProps } from '../../../../types/dataTypes';
+import { DTOptionsProps } from '~types/dataTypes';
 
 type NormalDistributionState = {
 	mean: string;

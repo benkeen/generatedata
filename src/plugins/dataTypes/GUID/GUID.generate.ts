@@ -1,5 +1,5 @@
-import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
-import { generateRandomAlphanumericStr } from '../../../utils/randomUtils';
+import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
+import { generateRandomAlphanumericStr } from '~utils/randomUtils';
 
 const generatedGUIDs: any = {};
 
@@ -12,7 +12,7 @@ export const generate = (): DTGenerateResult => {
 		guid = generateRandomAlphanumericStr(placeholderStr);
 	}
 	generatedGUIDs[guid] = true;
-	
+
 	return { display: guid };
 };
 

@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options } from './Rut.ui';
 import { generate } from './Rut.generate';
 

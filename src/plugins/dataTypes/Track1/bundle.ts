@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { generate, getMetadata } from './Track1.generate';
 
 const bundle: DTBundle = {

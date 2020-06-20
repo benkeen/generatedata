@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Help } from './Composite.ui';
 import { generate, getMetadata } from './Composite.generate';
 

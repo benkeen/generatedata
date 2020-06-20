@@ -1,6 +1,6 @@
-import { getRandomNum, getRandomArrayValue } from '../../../utils/randomUtils';
-import { getLipsumWords } from '../../../utils/stringUtils';
-import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
+import { getRandomNum, getRandomArrayValue } from '~utils/randomUtils';
+import { getLipsumWords } from '~utils/stringUtils';
+import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
 
 
 const MAX_EMAIL_LENGTH = 254;

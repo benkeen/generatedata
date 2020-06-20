@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTHelpProps } from '../../../../types/dataTypes';
+import { DTHelpProps } from '~types/dataTypes';
 
 export const Options = () => {
 	// $countryPlugins = Core::$countryPlugins;

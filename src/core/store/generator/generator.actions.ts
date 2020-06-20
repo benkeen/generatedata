@@ -7,7 +7,7 @@ import { requestDataTypeBundle } from '../../../utils/dataTypeUtils';
 import { getUniqueString } from '../../../utils/stringUtils';
 import { registerInterceptors } from '../../actionInterceptor';
 import { loadExportTypeBundle } from '../../../utils/exportTypeUtils';
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import C from '../../constants';
 import { Dispatch } from 'redux';
 

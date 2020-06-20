@@ -1,6 +1,6 @@
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { LatLngState } from './LatLng.ui';
-import { getRandomNum } from '../../../utils/randomUtils';
+import { getRandomNum } from '~utils/randomUtils';
 
 export const rowStateReducer = (state: LatLngState): LatLngState => state;
 

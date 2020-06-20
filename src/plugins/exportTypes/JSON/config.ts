@@ -1,4 +1,4 @@
-import { ETDefinition } from '../../../../types/exportTypes';
+import { ETDefinition } from '~types/exportTypes';
 
 const definition: ETDefinition = {
 	name: 'JSON',

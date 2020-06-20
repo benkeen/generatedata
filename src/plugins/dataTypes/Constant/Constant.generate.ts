@@ -1,4 +1,4 @@
-import { DTGenerateResult, DTGenerationData, DTMetadata } from '../../../../types/dataTypes';
+import { DTGenerateResult, DTGenerationData, DTMetadata } from '~types/dataTypes';
 import { ConstantState } from './Constant.ui';
 
 type CleanedRowState = {

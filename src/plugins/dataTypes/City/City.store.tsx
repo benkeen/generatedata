@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
-import { DTCustomProps } from '../../../../types/dataTypes';
+import { DTCustomProps } from '~types/dataTypes';
 import { getSortedRowsArray } from '../../../core/store/generator/generator.selectors';
-import { CityState } from './City.ui';
 import { REMOVE_ROW, SELECT_DATA_TYPE } from '../../../core/store/generator/generator.actions';
+import { CityState } from './City.ui';
 
 const getRegionRows = createSelector(
 	getSortedRowsArray,

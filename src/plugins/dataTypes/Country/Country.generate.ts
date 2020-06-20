@@ -1,10 +1,10 @@
-import { DTGenerateResult, DTGenerationData, DTMetadata } from '../../../../types/dataTypes';
 import fullCountryList from './fullCountryList';
 import { countryList, CountryType } from '../../../_plugins';
 import { CountryState } from './Country.ui';
-import { getRandomArrayValue } from '../../../utils/randomUtils';
-import { loadCountryBundle } from '../../../utils/countryUtils';
-import { GetCountryData } from '../../../../types/countries';
+import { getRandomArrayValue } from '~utils/randomUtils';
+import { loadCountryBundle } from '~utils/countryUtils';
+import { GetCountryData } from '~types/countries';
+import { DTGenerateResult, DTGenerationData, DTMetadata } from '~types/dataTypes';
 
 
 export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {

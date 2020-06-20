@@ -1,4 +1,4 @@
-import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
 // import { creditCardFormats } from './formats';
 // import { getRandomArrayValue } from '../../../utils/randomUtils';
 import { PanState } from './PAN.ui';

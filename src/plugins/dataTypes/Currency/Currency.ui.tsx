@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
-import Dropdown from '../../../components/dropdown/Dropdown';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import Dropdown from '~components/dropdown/Dropdown';
 import styles from './Currency.scss';
 
 export const initialState = {

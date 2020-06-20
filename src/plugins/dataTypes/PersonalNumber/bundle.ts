@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help } from './PersonalNumber.ui';
 import { generate, getMetadata } from './PersonalNumber.generate';
 

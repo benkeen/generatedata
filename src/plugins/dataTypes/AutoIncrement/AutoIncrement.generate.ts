@@ -1,6 +1,6 @@
-import { DTMetadata } from '../../../../types/dataTypes';
+import { DTMetadata } from '~types/dataTypes';
 import { AutoIncrementState } from './AutoIncrement.ui';
-import { DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 
 // TODO: perhaps put the parseFloat()'s here. It'll only execute once prior to generation, so it's performant - and will
 // be more forgiving than on every key change on the UI

@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { DTCustomProps } from '../../../../types/dataTypes';
+import { DTCustomProps } from '~types/dataTypes';
 import { getSortedRowsArray } from '../../../core/store/generator/generator.selectors';
 import { PostalZipState } from './PostalZip.ui';
 import { REMOVE_ROW, SELECT_DATA_TYPE } from '../../../core/store/generator/generator.actions';

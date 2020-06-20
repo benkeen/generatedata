@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ETSettings } from '../../../../types/exportTypes';
+import { ETSettings } from '~types/exportTypes';
 import styles from './JSON.scss';
 
 export type DataStructureFormat = 'simple' | 'complex';

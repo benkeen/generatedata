@@ -1,4 +1,4 @@
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { getLipsumWords, uppercaseWords } from '../../../utils/stringUtils';
 import { generateRandomTextStr, getRandomNum, getRandomArrayValue } from '../../../utils/randomUtils';
 

@@ -1,4 +1,4 @@
-import { DTBundle } from '../../../../types/dataTypes';
+import { DTBundle } from '~types/dataTypes';
 import { initialState, Options, Help } from './TextFixed.ui';
 import { generate, getMetadata } from './TextFixed.generate';
 

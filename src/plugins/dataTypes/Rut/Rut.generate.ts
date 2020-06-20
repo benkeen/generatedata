@@ -1,10 +1,10 @@
-import { DTGenerateResult } from '../../../../types/dataTypes';
+import { DTGenerateResult } from '~types/dataTypes';
 
 // data: DTGenerationData
 export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
-	
+
 /*
 public function generate($generator, $generationContextData) {
 	$options = $generationContextData["generationOptions"];

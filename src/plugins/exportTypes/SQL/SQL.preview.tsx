@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import { ETPreviewProps } from '../../../../types/exportTypes';
+import { ETPreviewProps } from '~types/exportTypes';
 import { generateMySQL, generatePostgres, generateSQLite, generateOracle, generateMSSQL } from './SQL.generator';
 
 // TODO maybe provide these in the config definition & move codemirror/SyntaxHighlighter completely to the root?

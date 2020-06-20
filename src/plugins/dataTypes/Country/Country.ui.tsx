@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { DTOptionsProps } from '../../../../types/dataTypes';
+import { DTOptionsProps } from '~types/dataTypes';
 import { countryList } from '../../../_plugins';
-import RadioPill, { RadioPillRow } from '../../../components/radioPills/RadioPill';
-import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
-import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
+import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '~components/dialogs';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import fullCountryList from './fullCountryList';
 import styles from './Country.scss';
 

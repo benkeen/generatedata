@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 
 export const initialState = {
 	value: ''

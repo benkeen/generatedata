@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import { generateSimple, generateComplex } from './JSON.generator';
 import './JSON.scss';
-import { ETPreviewProps } from '../../../../types/exportTypes';
+import { ETPreviewProps } from '~types/exportTypes';
 
 // TODO maybe provide these in the config definition & move codemirror/SyntaxHighlighter completely to the root.
 // --- I guess the build would handle the importing of the CSS

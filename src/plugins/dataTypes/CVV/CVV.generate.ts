@@ -1,7 +1,7 @@
 // @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh
 // @package DataTypes
-import { getRandomNum } from '../../../utils/randomUtils';
-import { DTGenerateResult, DTMetadata } from '../../../../types/dataTypes';
+import { getRandomNum } from '~utils/randomUtils';
+import { DTGenerateResult, DTMetadata } from '~types/dataTypes';
 
 export const generate = (): DTGenerateResult => ({ display: getRandomNum(111, 999) });
 

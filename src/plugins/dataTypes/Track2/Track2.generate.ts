@@ -4,7 +4,7 @@
  * @description this class has a hard dependency on the PAN class NAMES class. That class contains a few public
  *              helper functions.
  */ 
-import { DTMetadata, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
 
 export const generate = (): DTGenerateResult => { // data: GenerationData
 	return { display: '' };

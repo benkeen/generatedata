@@ -1,4 +1,4 @@
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { countryList, CountryType } from '../../../_plugins';
 import { getRandomArrayValue, generatePlaceholderStr } from '../../../utils/randomUtils';
 import { loadCountryBundle } from '../../../utils/countryUtils';

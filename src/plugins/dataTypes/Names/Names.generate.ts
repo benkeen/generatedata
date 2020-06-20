@@ -1,8 +1,8 @@
-import { getRandomArrayValue, getRandomBool, getRandomCharInString } from '../../../utils/randomUtils';
-import { getUnique } from '../../../utils/arrayUtils';
+import { getRandomArrayValue, getRandomBool, getRandomCharInString } from '~utils/randomUtils';
+import { getUnique } from '~utils/arrayUtils';
 import { maleNames, femaleNames, lastNames } from './Names.data';
 import { NamesState } from './Names.ui';
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '../../../../types/dataTypes';
+import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const genders = ['male', 'female'];

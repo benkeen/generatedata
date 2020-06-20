@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import styles from './Names.scss';
 
 export type NamesState = {

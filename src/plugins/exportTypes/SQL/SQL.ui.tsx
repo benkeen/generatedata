@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 import Dropdown from '../../../components/dropdown/Dropdown';
-import { ETSettings } from '../../../../types/exportTypes';
+import { ETSettings } from '~types/exportTypes';
 import styles from './SQL.scss';
 
 

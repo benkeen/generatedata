@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '../../../../types/dataTypes';
-import CreatablePillField from '../../../components/CreatablePillField';
+import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import CreatablePillField from '~components/CreatablePillField';
 import styles from './Constant.scss';
 import sharedStyles from '../../../styles/shared.scss';
 

@@ -1,4 +1,4 @@
-import { DTDefinition } from '../../../../types/dataTypes';
+import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
 	name: 'Region',
