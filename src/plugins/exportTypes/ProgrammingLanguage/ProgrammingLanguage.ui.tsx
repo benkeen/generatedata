@@ -34,22 +34,22 @@ export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 		if (data.language === 'JavaScript') {
 			return (
 				<div className={styles.jsExportFormat}>
-					Export format
+					{i18n.format}
 					<RadioPillRow>
 						<RadioPill
-							label="Variable"
+							label={i18n.variable}
 							onClick={(): void => onChange('jsExportFormat', 'variable')}
 							name={`${id}-js-export-format`}
 							checked={data.jsExportFormat === 'variable'}
 						/>
 						<RadioPill
-							label="ES6 export"
+							label={i18n.es6Format}
 							onClick={(): void => onChange('jsExportFormat', 'es6')}
 							name={`${id}-js-export-format`}
 							checked={data.jsExportFormat === 'es6'}
 						/>
 						<RadioPill
-							label="Common JS export"
+							label={i18n.commonJsFormat}
 							onClick={(): void => onChange('jsExportFormat', 'commonJs')}
 							name={`${id}-js-export-format`}
 							checked={data.jsExportFormat === 'commonJs'}

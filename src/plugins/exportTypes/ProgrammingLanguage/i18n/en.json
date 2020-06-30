@@ -2,5 +2,9 @@
   "COL_TITLE": "Property Name",
   "EXPORT_TYPE_NAME": "Programming Language",
   "row_label": "Var/Prop Name",
-  "language": "Language"
+  "language": "Language",
+  "variable": "Variable",
+  "format": "Format",
+  "es6Format": "ES6 export",
+  "commonJsFormat": "Common JS export"
 }
