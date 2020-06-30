@@ -20,7 +20,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		showRowNumbers: selectors.shouldShowRowNumbers(state),
 		enableLineWrapping: selectors.shouldEnableLineWrapping(state),
 		theme: selectors.getTheme(state),
-		exportTypeLabel: selectors.getExportType(state),
+		exportTypeLabel: selectors.getExportTypeLabel(state),
 		exportTypeSettings,
 
 		// this'll need to change. It returns a fresh object on every keystroke, even if it was the same. That

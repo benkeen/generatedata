@@ -240,3 +240,9 @@ export const getExportTypeColumnTitle = createSelector(
 	getExportTypeI18n,
 	(i18n) => i18n.COL_TITLE
 );
+
+// TODO: need validation on the export type to confirm this prop exists
+export const getExportTypeLabel = createSelector(
+	getExportTypeI18n,
+	(i18n) => i18n.EXPORT_TYPE_NAME
+);
