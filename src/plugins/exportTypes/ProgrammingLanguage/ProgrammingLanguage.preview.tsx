@@ -10,6 +10,7 @@ import { generatePerl } from './languages/Perl';
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
+require('codemirror/mode/clike/clike');
 
 type PreviewProps = {
 	numPreviewRows: number;

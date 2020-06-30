@@ -2,8 +2,6 @@ import { ExportTypeGenerationData } from '~types/general';
 import { ProgrammingLanguageState } from '../ProgrammingLanguage.ui';
 
 export const generateJS = (data: ExportTypeGenerationData, exportTypeSettings: ProgrammingLanguageState): string => {
-	console.log(exportTypeSettings);
-
 	let content = '';
 	if (data.isFirstBatch) {
 		if (exportTypeSettings.jsExportFormat === 'variable') {
@@ -15,9 +13,7 @@ export const generateJS = (data: ExportTypeGenerationData, exportTypeSettings: P
 		}
 	}
 
-	// TODO obviously
-	const numRows = 100000;
-	console.log(data);
+	const numRows = 100000; // TODO
 
 	data.rows.forEach((row: any, rowIndex: number) => {
 		content += '\t{\n\t\t';

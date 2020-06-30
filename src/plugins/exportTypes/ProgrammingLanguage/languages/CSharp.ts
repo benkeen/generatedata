@@ -1,4 +1,5 @@
-import { isBoolean, isNumeric } from '../../../../utils/generalUtils';
+import { isBoolean, isNumeric } from '~utils/generalUtils';
+import { ExportTypeGenerationData } from '~types/general';
 
 // const sharpDateFormats = {
 //     "m/d/Y": "MM/dd/yyyy",
@@ -10,42 +11,35 @@ import { isBoolean, isNumeric } from '../../../../utils/generalUtils';
 //     "d.m.Y": "dd.MM.yyyy"
 // };
 
-export const generateCSharp = (data: any): string => {
+export const generateCSharp = (data: ExportTypeGenerationData): string => {
 	let content = '';
 	if (data.isFirstBatch) {
 		content += `var data = new [] {\n`;
 	}
 
-	const numCols = data.colData;
-	const numRows = data.rowData;
-
-	for (let i=0; i<numRows; i++) {
+	data.rows.forEach((row: any, rowIndex: number) => {
 		content += '\tnew { ';
+		const pairs: string[] = [];
+		data.columns.forEach(({ title }, colIndex) => {
+			const currValue = row[colIndex];
+			pairs.push(`${title} = "${currValue}"`);
 
-		const pairs = [];
-		for (let j=0; j<numCols; j++) {
-			const propName = data.colData[j].replace(/ /g, '');
-			const currValue = data.rowData[i][j];
-			if (isNumeric(currValue) || isBoolean(currValue)) {
-			    pairs.push(`${propName} = ${data.rowData[i][j]}`);
-			// } else if (sharpDateFormats[dateFormats[j]])) {
-			//     pairs.push(`{$propName} = DateTime.ParseExact(\"{$data["rowData"][$i][$j]}\", \"{$this->sharpDateFormats[$this->dateFormats[$j]]}\", CultureInfo.InvariantCulture)`);
-			} else {
-			    pairs.push(`${propName} = "${data.rowData[i][j]}"`);
-			}
-		}
+			// 		if (isNumeric(currValue) || isBoolean(currValue)) {
+			// 		    pairs.push(`${propName} = ${data.rowData[i][j]}`);
+			// 		// } else if (sharpDateFormats[dateFormats[j]])) {
+			// 		//     pairs.push(`{$propName} = DateTime.ParseExact(\"{$data["rowData"][$i][$j]}\", \"{$this->sharpDateFormats[$this->dateFormats[$j]]}\", CultureInfo.InvariantCulture)`);
+			// 		} else {
+			// 		    pairs.push(`${propName} = "${data.rowData[i][j]}"`);
+
+		});
 		content += pairs.join(', ');
 
-		if (data.isLastBatch && i == numRows - 1) {
-		    content += " }\n";
+		if (data.isLastBatch && rowIndex === data.rows.length-1) {
+			content += ' }\n};';
 		} else {
-		    content += " },\n";
+			content += ' },\n';
 		}
-	}
-
-	if (data.isLastBatch) {
-		content == '};\n';
-	}
+	});
 
 	return content;
 };
