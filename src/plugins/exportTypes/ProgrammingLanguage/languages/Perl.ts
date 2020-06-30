@@ -1,6 +1,6 @@
-import { ExportTypeGenerationData } from '../../../../../types/general';
+import { ExportTypeGenerationData } from '~types/general';
 
-export const generatePerl = (data: ExportTypeGenerationData) => {
+export const generatePerl = (data: ExportTypeGenerationData): string => {
 	let content = '';
 	if (data.isFirstBatch) {
 		content += "@data = (\n";

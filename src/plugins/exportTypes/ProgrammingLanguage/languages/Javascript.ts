@@ -1,9 +1,18 @@
-import { ExportTypeGenerationData } from '../../../../../types/general';
+import { ExportTypeGenerationData } from '~types/general';
+import { ProgrammingLanguageState } from '../ProgrammingLanguage.ui';
 
-export const generateJS = (data: ExportTypeGenerationData): string => {
+export const generateJS = (data: ExportTypeGenerationData, exportTypeSettings: ProgrammingLanguageState): string => {
+	console.log(exportTypeSettings);
+
 	let content = '';
 	if (data.isFirstBatch) {
-		content += `var data = [\n`;
+		if (exportTypeSettings.jsExportFormat === 'variable') {
+			content += `var data = [\n`;
+		} else if (exportTypeSettings.jsExportFormat == 'es6') {
+			content += `export default [\n`;
+		} else {
+			content += `module.exports = [\n`;
+		}
 	}
 
 	// TODO obviously

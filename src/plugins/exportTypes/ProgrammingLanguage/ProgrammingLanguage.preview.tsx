@@ -23,13 +23,13 @@ type PreviewProps = {
 
 const Preview = ({ data, theme, showRowNumbers, enableLineWrapping, exportTypeSettings }: PreviewProps): JSX.Element | null => {
 	const [mode, setMode] = React.useState('');
-	const [code, setCode] = React.useState('');
+	const [code, setCode] = React.useState(''); // memoize
 
 	React.useEffect(() => {
 		let mode = '';
 		let content = '';
 		if (exportTypeSettings.language === 'JavaScript') {
-			content = generateJS(data);
+			content = generateJS(data, exportTypeSettings);
 			mode = 'text/javascript';
 		} else if (exportTypeSettings.language === 'CSharp') {
 			content = generateCSharp(data);
@@ -40,7 +40,7 @@ const Preview = ({ data, theme, showRowNumbers, enableLineWrapping, exportTypeSe
 		}
 		setMode(mode);
 		setCode(content);
-	}, [data, setCode]);
+	}, [data, exportTypeSettings, setCode]);
 
 	if (!data.rows.length) {
 		return null;
