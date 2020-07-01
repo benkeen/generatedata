@@ -5,6 +5,7 @@ export type ETBundle = {
 	initialState: any; // TODO generics?
 	Preview: any;
 	Settings?: any;
+	getExportTypeLabel?: (data: any) => string; // TODO generics - data is same type as initialState
 };
 
 export type ETDefinition = {

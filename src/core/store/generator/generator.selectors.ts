@@ -1,14 +1,14 @@
 import { createSelector } from 'reselect';
-import { processBatches, getDataType } from '../../../utils/dataTypeUtils';
-import { getExportTypePreview } from '../../../utils/exportTypeUtils';
-import { ColumnData, GenerationTemplate, Store } from '../../../../types/general';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { PreviewPanelLoader } from '../../previewPanel/PreviewPanelLoader.component';
 import { DataRow, DataRows, GeneratorPanel } from './generator.reducer';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
-import * as langUtils from '../../../utils/langUtils';
-import { getUnique } from '../../../utils/arrayUtils';
+import * as langUtils from '~utils/langUtils';
+import { getUnique } from '~utils/arrayUtils';
+import { processBatches, getDataType } from '~utils/dataTypeUtils';
+import { getExportTypePreview, getExportTypeLabel as exportTypeUtilsGetExportTypeLabel } from '~utils/exportTypeUtils';
+import { ColumnData, GenerationTemplate, Store } from '~types/general';
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
@@ -241,8 +241,28 @@ export const getExportTypeColumnTitle = createSelector(
 	(i18n) => i18n.COL_TITLE
 );
 
-// TODO: need validation on the export type to confirm this prop exists
+
+// Export Types can optionally override the label that appears in the Preview panel. For example, instead of
+// just showing "Programming Language", they can show "PHP" or "Programming Language: Perl" or whatever they
+// want. By default it'll just show the localized Export Type name
+// TODO: need validation on the export type to confirm `EXPORT_TYPE_NAME` exists. Perhaps a separate grunt `validate` task
+// that's integrated into the build process to prevent incomplete/invalid bundles from being included
 export const getExportTypeLabel = createSelector(
+	getExportType,
+	getExportTypeSettings,
 	getExportTypeI18n,
-	(i18n) => i18n.EXPORT_TYPE_NAME
+	getLoadedExportTypes,
+	(exportType, exportTypeSettings, i18n, loadedExportTypes): string => {
+		if (loadedExportTypes[exportType]) {
+			const etSettings = exportTypeSettings[exportType];
+			const label = exportTypeUtilsGetExportTypeLabel(exportType, etSettings);
+			if (label) {
+				return label;
+			}
+		}
+
+		console.log(i18n);
+
+		return i18n.EXPORT_TYPE_NAME;
+	}
 );

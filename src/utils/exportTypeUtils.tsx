@@ -1,10 +1,11 @@
 import { exportTypes, ExportTypeFolder } from '../_plugins';
-import { MediumSpinner } from '../components/loaders';
+import { MediumSpinner } from '~components/loaders';
+import { ETBundle } from '~types/exportTypes';
 
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
 type LoadedExportTypes = {
-	[name in ExportTypeFolder]?: any; // ETBundle TODO figure this one out... kinda important
+	[name in ExportTypeFolder]?: ETBundle
 }
 
 // this houses all Export Type code loaded async after the application starts
@@ -29,6 +30,7 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 				loadedExportTypes[exportType] = {
 					generate: def.generate,
 					initialState: def.initialState,
+					getExportTypeLabel: def.getExportTypeLabel,
 					Preview: def.Preview,
 					Settings: def.Settings
 				};
@@ -40,12 +42,20 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	});
 };
 
-// assumes the callee knows what they're doing & that they've checked the component has been loaded
+// *** assumes the callee knows what they're doing & that they've checked the component has been loaded
 export const getExportTypePreview = (exportType: ExportTypeFolder): JSX.Element => loadedExportTypes[exportType]?.Preview;
+
+// *** assumes the callee knows what they're doing & that they've checked the component has been loaded
+export const getExportTypeLabel = (exportType: ExportTypeFolder, settings: any): string | null => {
+	const et = loadedExportTypes[exportType] as ETBundle;
+	return et.getExportTypeLabel ? et.getExportTypeLabel(settings) : null;
+};
 
 export const getExportTypeSettingsComponent = (exportType: ExportTypeFolder): any => {
 	if (loadedExportTypes[exportType]) {
-		return loadedExportTypes[exportType].Settings;
+		const et = loadedExportTypes[exportType] as ETBundle;
+		return et.Settings;
 	}
 	return MediumSpinner;
 };
+

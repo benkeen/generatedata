@@ -14,13 +14,15 @@ export const initialState: ProgrammingLanguageState = {
 	jsExportFormat: 'variable'
 };
 
-const options: DropdownOption[] = [
-	{ value: 'CSharp', label: 'C# (anonymous object)' },
-	{ value: 'JavaScript', label: 'JavaScript' },
-	{ value: 'Perl', label: 'Perl' },
-	{ value: 'PHP', label: 'PHP' },
-	{ value: 'Ruby', label: 'Ruby' }
-];
+const langMap: { [str: string]: string } = {
+	CSharp: 'C#',
+	JavaScript: 'JavaScript',
+	Perl: 'Perl',
+	PHP: 'PHP',
+	Ruby: 'Ruby'
+};
+
+const options: DropdownOption[] = Object.keys(langMap).map((key) => ({ value: key, label: langMap[key] }));
 
 export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 	const onChange = (prop: string, value: any): void => {
@@ -74,19 +76,4 @@ export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 	);
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const getExportTypeLabel = (data: ProgrammingLanguageState): string => data ? langMap[data.language] : '';

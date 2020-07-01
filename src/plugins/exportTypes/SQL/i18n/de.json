@@ -1,4 +1,5 @@
 {
+  "EXPORT_TYPE_NAME": "SQL",
   "COL_TITLE": "Column Name",
   "addDefaultAutoIncrementCol": "Fügen Sie Standard-Auto-Increment-Spalte",
   "dbTableName": "Database Name der Tabelle",

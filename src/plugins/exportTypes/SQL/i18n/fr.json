@@ -1,4 +1,5 @@
 {
+  "EXPORT_TYPE_NAME": "SQL",
   "COL_TITLE": "Column Name",
   "addDefaultAutoIncrementCol": "Ajouter une colonne d'auto-incrémentation",
   "dbTableName": "Nom de la table",
