@@ -13,8 +13,6 @@ export const generateJS = (data: ExportTypeGenerationData, exportTypeSettings: P
 		}
 	}
 
-	const numRows = 100000; // TODO
-
 	data.rows.forEach((row: any, rowIndex: number) => {
 		content += '\t{\n\t\t';
 
@@ -30,7 +28,7 @@ export const generateJS = (data: ExportTypeGenerationData, exportTypeSettings: P
 
 		content += pairs.join(',\n\t\t');
 
-		if (data.isLastBatch && rowIndex == numRows - 1) {
+		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
 			content += '\n\t}\n';
 		} else {
 			content += '\n\t},\n';

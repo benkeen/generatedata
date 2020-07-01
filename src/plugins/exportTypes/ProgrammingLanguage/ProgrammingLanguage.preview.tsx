@@ -11,6 +11,7 @@ require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 require('codemirror/mode/clike/clike');
+require('codemirror/mode/perl/perl');
 
 type PreviewProps = {
 	numPreviewRows: number;
@@ -37,7 +38,7 @@ const Preview = ({ data, theme, showRowNumbers, enableLineWrapping, exportTypeSe
 			mode = 'text/x-csharp';
 		} else if (exportTypeSettings.language === 'Perl') {
 			content = generatePerl(data);
-			mode = 'text/perl';
+			mode = 'text/x-perl';
 		}
 		setMode(mode);
 		setCode(content);

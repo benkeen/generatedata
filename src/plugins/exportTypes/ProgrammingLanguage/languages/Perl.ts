@@ -6,34 +6,32 @@ export const generatePerl = (data: ExportTypeGenerationData): string => {
 		content += "@data = (\n";
 	}
 
-	// $numCols = count($data["colData"]);
-	// $numRows = count($data["rowData"]);
+	data.rows.forEach((row: any, rowIndex: number) => {
+		const pairs: string[] = [];
+		data.columns.forEach(({ title }, colIndex) => {
+			const currValue = row[colIndex];
+			pairs.push(`"${title}" => "${currValue}"`);
 
-	// for ($i = 0; $i < $numRows; $i++) {
-	// 	$content .= "\t{";
-	//
-	// 	$pairs = array();
-	// 	for ($j = 0; $j < $numCols; $j++) {
-	// 		$varName = preg_replace('/"/', '\"', $data["colData"][$j]);
-	// 		$currValue = $data["rowData"][$i][$j];
-	// 		if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
-	// 			$pairs[] = "\"$varName\" => {$currValue}";
-	// 		} else {
-	// 			$pairs[] = "\"$varName\" => \"{$currValue}\"";
-	// 		}
-	// 	}
-	// 	$content .= implode(",", $pairs);
-	//
-	// 	if ($data["isLastBatch"] && $i == $numRows - 1) {
-	// 		$content .= "}\n";
-	// 	} else {
-	// 		$content .= "},\n";
-	// 	}
-	// }
-	//
-	// if ($data["isLastBatch"]) {
-	// 	$content .= ");";
-	// }
+			// 		if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
+			// 			$pairs[] = "\"$varName\" => {$currValue}";
+			// 		} else {
+			// 			$pairs[] = "\"$varName\" => \"{$currValue}\"";
+			// 		}
+		});
+
+		content += '\t{ ' + pairs.join(', ') + ' }';
+
+		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
+			content += '\n';
+		} else {
+			content += ',\n';
+		}
+	});
+
+	if (data.isLastBatch) {
+		content += ');';
+	}
+
 	return content;
 };
 
