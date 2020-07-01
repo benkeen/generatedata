@@ -1,20 +1,23 @@
 import * as React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-// import { generateSimple, generateComplex } from './HTML.generator';
+import { generateTableFormat, generateUlFormat, generateDlFormat } from './HTML.generator';
 import { ETPreviewProps } from '~types/exportTypes';
 
 require('codemirror/mode/xml/xml');
-// codeMirrorModes = array("xml", "smarty", "smartymixed", "htmlmixed", "css");
 
 
 const Preview = ({ data, theme, exportTypeSettings, showRowNumbers, enableLineWrapping }: ETPreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
 
-	// TODO this is painting twice here, every time the export type settings change
-
-	// rethink performance here
 	React.useEffect(() => {
-		const content = '';
+		let content = '';
+		if (exportTypeSettings.exportFormat === 'table') {
+			content = generateTableFormat(data);
+		} else if (exportTypeSettings.exportFormat === 'ul') {
+			content = generateUlFormat(data);
+		} else if (exportTypeSettings.exportFormat === 'dl') {
+			content = generateDlFormat(data);
+		}
 		setCode(content);
 	}, [data, setCode, exportTypeSettings]);
 
@@ -29,7 +32,7 @@ const Preview = ({ data, theme, exportTypeSettings, showRowNumbers, enableLineWr
 				setCode(value);
 			}}
 			options={{
-				mode: 'application/ld+json',
+				mode: 'xml',
 				theme,
 				lineNumbers: showRowNumbers,
 				lineWrapping: enableLineWrapping,

@@ -260,9 +260,6 @@ export const getExportTypeLabel = createSelector(
 				return label;
 			}
 		}
-
-		console.log(i18n);
-
 		return i18n.EXPORT_TYPE_NAME;
 	}
 );

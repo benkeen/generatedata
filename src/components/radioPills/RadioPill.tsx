@@ -3,7 +3,15 @@ import Button from '@material-ui/core/Button';
 import { Tooltip } from '../tooltips';
 import styles from './RadioPill.scss';
 
-export const RadioPillRow = ({ children }: any): JSX.Element => <div className={styles.row}>{children}</div>;
+export const RadioPillRow = ({ className, children }: any): JSX.Element => {
+	let classes = styles.row;
+	if (className) {
+		classes += ` ${className}`;
+	}
+	return (
+		<div className={classes}>{children}</div>
+	);
+};
 
 type RadioPillProps = {
 	label: string;
