@@ -4,12 +4,6 @@ export const generate = (): any => {
 
 /*
 class HTML extends ExportTypePlugin {
-	protected $isEnabled = true;
-	protected $exportTypeName = "HTML";
-	protected $jsModules = array("HTML.js");
-	protected $cssFiles = array("HTML.css");
-	protected $contentTypeHeader = "text/html";
-	protected $codeMirrorModes = array("xml", "smarty", "smartymixed", "htmlmixed", "css");
 
 	public function __construct($runtimeContext) {
 		parent::__construct($runtimeContext);

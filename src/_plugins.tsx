@@ -78,12 +78,14 @@ export const dataTypes = {
 
 export type DataTypeFolder = keyof typeof dataTypes;
 
+import HTML from './plugins/exportTypes/HTML/config';
 import JSON from './plugins/exportTypes/JSON/config';
 import ProgrammingLanguage from './plugins/exportTypes/ProgrammingLanguage/config';
 import SQL from './plugins/exportTypes/SQL/config';
 import XML from './plugins/exportTypes/XML/config';
 
 export const exportTypes = {
+	HTML,
 	JSON,
 	ProgrammingLanguage,
 	SQL,
