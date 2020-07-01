@@ -1,38 +1,35 @@
-/*
-private function generateRuby($data)
-{
-    $content = "";
-    if ($data["isFirstBatch"]) {
-        $content .= "data = [\n";
-    }
+import { ExportTypeGenerationData } from '~types/general';
 
-    $numCols = count($data["colData"]);
-    $numRows = count($data["rowData"]);
+export const generateRuby = (data: ExportTypeGenerationData): string => {
+	let content = '';
+	if (data.isFirstBatch) {
+		content += 'data = [\n';
+	}
 
-    for ($i = 0; $i < $numRows; $i++) {
-        $content .= "\t{";
+	data.rows.forEach((row: any, rowIndex: number) => {
+		const pairs: string[] = [];
+		data.columns.forEach(({ title }, colIndex) => {
+			const currValue = row[colIndex];
+			pairs.push(`'${title}': '${currValue}'`);
 
-        $pairs = array();
-        for ($j = 0; $j < $numCols; $j++) {
-            $currValue = $data["rowData"][$i][$j];
-            if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
-                $pairs[] = "'{$data["colData"][$j]}': {$currValue}";
-            } else {
-                $pairs[] = "'{$data["colData"][$j]}': '{$currValue}'";
-            }
-        }
-        $content .= implode(", ", $pairs);
+			// if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
+			// 	$pairs[] = "'{$data["colData"][$j]}': {$currValue}";
+			// } else {
+			// 	$pairs[] = "'{$data["colData"][$j]}': '{$currValue}'";
+			// }
+		});
+		content += '\t{ ' + pairs.join(', ') + ' }';
 
-        if ($data["isLastBatch"] && $i == $numRows - 1) {
-            $content .= "}\n";
-        } else {
-            $content .= "},\n";
-        }
-    }
+		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
+			content += '\n';
+		} else {
+			content += ',\n';
+		}
+	});
 
-    if ($data["isLastBatch"]) {
-        $content .= "];\n";
-    }
-    return $content;
-}
-*/
+	if (data.isLastBatch) {
+		content += ');';
+	}
+
+	return content;
+};

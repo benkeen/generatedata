@@ -5,6 +5,8 @@ import { ProgrammingLanguageState } from './ProgrammingLanguage.ui';
 import { generateCSharp } from './languages/CSharp';
 import { generateJS } from './languages/Javascript';
 import { generatePerl } from './languages/Perl';
+import { generatePhp } from './languages/PHP';
+import { generateRuby } from './languages/Ruby';
 
 // "php", "perl", "htmlmixed", "xml", "javascript", "css", "clike", "ruby" <-- TODO these definitely need to be dynamic
 require('codemirror/mode/javascript/javascript');
@@ -12,6 +14,8 @@ require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 require('codemirror/mode/clike/clike');
 require('codemirror/mode/perl/perl');
+require('codemirror/mode/php/php');
+require('codemirror/mode/ruby/ruby');
 
 type PreviewProps = {
 	numPreviewRows: number;
@@ -39,6 +43,12 @@ const Preview = ({ data, theme, showRowNumbers, enableLineWrapping, exportTypeSe
 		} else if (exportTypeSettings.language === 'Perl') {
 			content = generatePerl(data);
 			mode = 'text/x-perl';
+		} else if (exportTypeSettings.language === 'PHP') {
+			content = generatePhp(data);
+			mode = 'text/x-php';
+		} else if (exportTypeSettings.language === 'Ruby') {
+			content = generateRuby(data);
+			mode = 'text/x-ruby';
 		}
 		setMode(mode);
 		setCode(content);

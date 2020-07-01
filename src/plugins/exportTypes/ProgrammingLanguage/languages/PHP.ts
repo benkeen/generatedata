@@ -1,38 +1,36 @@
-/*
-private function generatePHP($data)
-{
-    $content = "";
-    if ($data["isFirstBatch"]) {
-        $content .= "<?" . "php\n\n\$data = array(\n";
-    }
+import { ExportTypeGenerationData } from '~types/general';
 
-    $numCols = count($data["colData"]);
-    $numRows = count($data["rowData"]);
+export const generatePhp = (data: ExportTypeGenerationData): string => {
+	let content = '';
+	if (data.isFirstBatch) {
+		content += '<?php\n\n\$data = array(\n';
+	}
 
-    for ($i = 0; $i < $numRows; $i++) {
-        $content .= "\tarray(";
+	data.rows.forEach((row: any, rowIndex: number) => {
+		const pairs: string[] = [];
+		data.columns.forEach(({ title }, colIndex) => {
+			const currValue = row[colIndex];
+			pairs.push(`"${title}" => "${currValue}"`);
 
-        $pairs = array();
-        for ($j = 0; $j < $numCols; $j++) {
-            $currValue = $data["rowData"][$i][$j];
-            if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
-                $pairs[] = "\"{$data["colData"][$j]}\"=>{$currValue}";
-            } else {
-                $pairs[] = "\"{$data["colData"][$j]}\"=>\"{$currValue}\"";
-            }
-        }
-        $content .= implode(",", $pairs);
+			// if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
+			// 	$pairs[] = "\"{$data["colData"][$j]}\"=>{$currValue}";
+			// } else {
+			// 	$pairs[] = "\"{$data["colData"][$j]}\"=>\"{$currValue}\"";
+			// }
+		});
+		content += '\tarray(' + pairs.join(', ') + ')';
 
-        if ($data["isLastBatch"] && $i == $numRows - 1) {
-            $content .= ")\n";
-        } else {
-            $content .= "),\n";
-        }
-    }
+		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
+			content += '\n';
+		} else {
+			content += ',\n';
+		}
+	});
 
-    if ($data["isLastBatch"]) {
-        $content .= ");\n\n?>";
-    }
-    return $content;
-}
-*/
+	if (data.isLastBatch) {
+		content += ');';
+	}
+
+	return content;
+};
+
