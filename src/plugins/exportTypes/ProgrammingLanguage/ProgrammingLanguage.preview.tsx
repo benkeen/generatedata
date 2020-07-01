@@ -8,7 +8,7 @@ import { generatePerl } from './languages/Perl';
 import { generatePhp } from './languages/PHP';
 import { generateRuby } from './languages/Ruby';
 
-// "php", "perl", "htmlmixed", "xml", "javascript", "css", "clike", "ruby" <-- TODO these definitely need to be dynamic
+// TODO these definitely need to be dynamic
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
