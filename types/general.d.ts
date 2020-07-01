@@ -47,7 +47,7 @@ export type GenerationTemplate = {
     [num: number]: GenerationTemplateRow[];
 };
 
-export type ExportTypeGenerateType = {
+export type GenerationProps = {
     numResults: number;
     columns: any; // TODO string[];
     template: GenerationTemplate;
