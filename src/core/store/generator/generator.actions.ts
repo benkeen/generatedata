@@ -1,13 +1,13 @@
-import { GDAction } from '../../../../types/general';
 import * as selectors from './generator.selectors';
 import { generatePreviewData } from '../../generator/generator';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
-import { requestDataTypeBundle } from '../../../utils/dataTypeUtils';
-import { getUniqueString } from '../../../utils/stringUtils';
+import { requestDataTypeBundle } from '~utils/dataTypeUtils';
+import { getUniqueString } from '~utils/stringUtils';
+import { loadExportTypeBundle } from '~utils/exportTypeUtils';
 import { registerInterceptors } from '../../actionInterceptor';
-import { loadExportTypeBundle } from '../../../utils/exportTypeUtils';
 import { DTBundle } from '~types/dataTypes';
+import { GDAction } from '~types/general';
 import C from '../../constants';
 import { Dispatch } from 'redux';
 
@@ -224,8 +224,16 @@ export const updateNumGenerationRows = (numGenerationRows: number): GDAction => 
 export const TOGGLE_STRIP_WHITESPACE = 'TOGGLE_STRIP_WHITESPACE';
 export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITESPACE });
 
-export const GENERATE_DATA = 'GENERATE_DATA';
-export const generateData = (): GDAction => ({ type: GENERATE_DATA });
+export const START_GENERATION = 'START_GENERATION';
+export const startGeneration = (): any => (dispatch: Dispatch): void => {
+	dispatch({ type: START_GENERATION });
+	// dispatch(generateNextBatch());
+
+	// trigger here
+};
+
+export const SET_BATCH_GENERATED_COMPLETE = 'SET_BATCH_GENERATED_COMPLETE';
+export const setBatchGeneratedComplete = () => ({ type: SET_BATCH_GENERATED_COMPLETE });
 
 export const CLEAR_GRID = 'CLEAR_GRID';
 export const clearGrid = (): any => (dispatch: Dispatch): void => {

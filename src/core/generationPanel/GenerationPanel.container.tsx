@@ -8,6 +8,7 @@ const mapStateToProps = (state: any, ownProps: Partial<GenerationPanelProps>): P
 	visible: selectors.isGenerationPanelVisible(state),
 	i18n: selectors.getCoreI18n(state),
 	numGenerationRows: selectors.getNumGenerationRows(state),
+	isGenerating: selectors.isGenerating(state),
 	...ownProps
 });
 
@@ -15,7 +16,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationPanelProps> =
 	onClose: (): any => dispatch(actions.hideGenerationPanel()),
 	onChangeNumGenerationRows: (numRows: number): any => dispatch(actions.updateNumGenerationRows(numRows)),
 	onToggleStripWhitespace: () => dispatch(actions.toggleStripWhitespace()),
-	onGenerate: () => dispatch(actions.generateData())
+	onGenerate: () => dispatch(actions.startGeneration())
 });
 
 export default connect(

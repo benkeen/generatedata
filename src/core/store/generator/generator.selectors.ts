@@ -32,6 +32,7 @@ export const isGenerationPanelVisible = (state: Store): any => state.generator.s
 export const getNumGenerationRows = (state: Store): number => state.generator.numGenerationRows;
 export const getLastLayoutWidth = (state: Store): number | null => state.generator.lastLayoutWidth;
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
+export const isGenerating = (state: Store): boolean => state.generator.isGenerating;
 
 export const getNumRows = createSelector(
 	getSortedRows,

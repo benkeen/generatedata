@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { SmallDialog, DialogTitle, DialogContent, DialogActions } from '../../components/dialogs';
+import { SmallDialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { CircularProgressWithLabel } from '~components/loaders';
 import styles from './GenerationPanel.scss';
 
 export type GenerationPanelProps = {
@@ -12,20 +13,27 @@ export type GenerationPanelProps = {
 	i18n: any;
 	stripWhitespace: boolean;
 	onToggleStripWhitespace: () => void;
+	isGenerating: boolean;
 };
 
-const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerationRows,
-	onChangeNumGenerationRows, onGenerate }: GenerationPanelProps): JSX.Element => {
-	return (
-		<SmallDialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
-			<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
-			<DialogContent dividers>
+const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerationRows, onChangeNumGenerationRows,
+	onGenerate, isGenerating }: GenerationPanelProps): JSX.Element => {
+
+	const getContent = () => {
+		if (isGenerating) {
+			return (
+				<CircularProgressWithLabel value={10} />
+			);
+		}
+
+		return (
+			<>
 				<div className={styles.intro}>
 					Finished building your data set? Great! Time to generate the data. Please note that
 					depending on the size of your data and the number of rows, this may take some time to complete.
 				</div>
 
-				<div className={styles.row}>
+				<div className={`${styles.row} ${styles.generationRow}`}>
 					Generate
 					<input
 						type="number"
@@ -38,6 +46,15 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratio
 					<input type="checkbox" id="stripWhitespace" checked={stripWhitespace} />
 					<label htmlFor="stripWhitespace">strip whitespace from generated content</label>
 				</div>
+			</>
+		);
+	};
+
+	return (
+		<SmallDialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
+			<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
+			<DialogContent dividers>
+				{getContent()}
 			</DialogContent>
 			<DialogActions>
 				<Button onClick={onGenerate} color="primary" variant="outlined">Generate</Button>

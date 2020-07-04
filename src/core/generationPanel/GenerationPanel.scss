@@ -1,13 +1,19 @@
 .row {
 	display: flex;
 	align-items: center;
-
-	input[type=number] {
-		width: 80px;
-		margin: 0 6px;
-	}
 }
 
 .intro {
 	margin-bottom: 12px;
+}
+
+.generationRow {
+	font-size: 14px;
+	margin-bottom: 10px;
+
+	input[type=number] {
+		width: 100px;
+		margin: 0 6px;
+		font-size: 14px;
+	}
 }

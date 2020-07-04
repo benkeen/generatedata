@@ -16,7 +16,6 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	return { display: format(fromUnixTime(date), displayFormat) };
 };
 
-// 	TODO: formatCode: $this->formatCode
 export const getMetadata = (): DTMetadata => ({
 	general: {
 		dataType: 'date',

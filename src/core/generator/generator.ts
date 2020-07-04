@@ -6,8 +6,9 @@ import { getStrings } from '~utils/langUtils';
 import { GenerationProps, GenerationTemplate, GenerationTemplateRow } from '~types/general';
 import { DTGenerateResult, DTGenerationExistingRowData } from '~types/dataTypes';
 
-// data: ExportTypeGenerateType
 export const generate = (data: GenerationProps): string => {
+	console.log(data);
+
 	// const generationContext = {
 	// 	environment: 'UI'
 	// };

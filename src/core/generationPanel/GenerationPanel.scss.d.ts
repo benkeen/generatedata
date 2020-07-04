@@ -1,5 +1,6 @@
 declare namespace GenerationPanelScssModule {
   export interface IGenerationPanelScss {
+    generationRow: string;
     intro: string;
     row: string;
   }
