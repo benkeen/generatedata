@@ -7,17 +7,18 @@ import GenerationPanel, { GenerationPanelProps } from './GenerationPanel.compone
 const mapStateToProps = (state: any, ownProps: Partial<GenerationPanelProps>): Partial<GenerationPanelProps> => ({
 	visible: selectors.isGenerationPanelVisible(state),
 	i18n: selectors.getCoreI18n(state),
-	numGenerationRows: selectors.getNumGenerationRows(state),
+	numRowsToGenerate: selectors.getNumRowsToGenerate(state),
 	isGenerating: selectors.isGenerating(state),
+	numGeneratedRows: selectors.getNumGeneratedRows(state),
 	...ownProps
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationPanelProps> => ({
 	onClose: (): any => {
-		dispatch(actions.stopGeneration());
+		dispatch(actions.cancelGeneration());
 		dispatch(actions.hideGenerationPanel());
 	},
-	onChangeNumGenerationRows: (numRows: number): any => dispatch(actions.updateNumGenerationRows(numRows)),
+	onChangeNumRowsToGenerate: (numRows: number): any => dispatch(actions.updateNumRowsToGenerate(numRows)),
 	onToggleStripWhitespace: () => dispatch(actions.toggleStripWhitespace()),
 	onGenerate: () => dispatch(actions.startGeneration())
 });

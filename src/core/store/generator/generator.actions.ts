@@ -1,5 +1,5 @@
 import * as selectors from './generator.selectors';
-import { generate, generatePreviewData } from '../../generator/generator';
+import { generateRowData } from '../../generator/generator';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
@@ -119,7 +119,7 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 
 		// this generates data for all rows that have a Data Type selected, but a title field value has to be
 		// entered for actually displaying in the preview panel
-		generatePreviewData({
+		generateRowData({
 			numResults: C.MAX_PREVIEW_ROWS,
 			columns: selectors.getColumns(state),
 			template
@@ -213,11 +213,11 @@ export const showGenerationPanel = (): GDAction => ({ type: SHOW_GENERATION_PANE
 export const HIDE_GENERATION_PANEL = 'HIDE_GENERATION_PANEL';
 export const hideGenerationPanel = (): GDAction => ({ type: HIDE_GENERATION_PANEL });
 
-export const UPDATE_NUM_GENERATION_ROWS = 'UPDATE_NUM_GENERATION_ROWS';
-export const updateNumGenerationRows = (numGenerationRows: number): GDAction => ({
-	type: UPDATE_NUM_GENERATION_ROWS,
+export const UPDATE_NUM_ROWS_TO_GENERATE = 'UPDATE_NUM_ROWS_TO_GENERATE';
+export const updateNumRowsToGenerate = (numRowsToGenerate: number): GDAction => ({
+	type: UPDATE_NUM_ROWS_TO_GENERATE,
 	payload: {
-		numGenerationRows
+		numRowsToGenerate
 	}
 });
 
@@ -228,24 +228,50 @@ export const START_GENERATION = 'START_GENERATION';
 export const startGeneration = (): any => (dispatch: Dispatch, getState: any): void => {
 	dispatch({ type: START_GENERATION });
 
-	// const state = getState();
+	const state = getState();
+	const template = selectors.getGenerationTemplate(state);
+	const numRowsToGenerate = selectors.getNumRowsToGenerate(state);
 
-	// this generates data for all rows that have a Data Type selected, but a title field value has to be
-	// entered for actually displaying in the preview panel
-	// generate({
-	// 	numResults: C.MAX_PREVIEW_ROWS,
-	// 	columns: selectors.getColumns(state),
-	// 	template
-	// }).then((data: any) => {
-	//
-	// })
+	// ------------------------------------------------------------------
+
+	const numBatches = Math.ceil(numRowsToGenerate / C.GENERATION_BATCH_SIZE);
+	const remainder = numRowsToGenerate % C.GENERATION_BATCH_SIZE;
+	const lastBatchSize = remainder === 0 ? C.GENERATION_BATCH_SIZE : remainder;
+
+	console.log('num batches: ', numBatches);
+
+	// convert this to sequence of promises 
+	for (let batchNum=1; batchNum<=numBatches; batchNum++) {
+		let numResults = C.GENERATION_BATCH_SIZE;
+		if (batchNum === numBatches) {
+			numResults = lastBatchSize;
+		}
+
+		// this generates data for all rows that have a Data Type selected, but a title field value has to be
+		// entered for actually displaying in the preview panel
+		generateRowData({
+			numResults,
+			columns: selectors.getColumns(state),
+			template
+		}).then((data: any) => {
+			console.log('___________________________________');
+			console.log(data);
+
+			// call export type here to get generated string
+
+			dispatch(setBatchGeneratedComplete());
+		});
+	}
+
+	// ------------------------------------------------------------------
+
 };
 
-export const STOP_GENERATION = 'STOP_GENERATION';
-export const stopGeneration = (): any => ({ type: STOP_GENERATION });
+export const CANCEL_GENERATION = 'CANCEL_GENERATION';
+export const cancelGeneration = (): GDAction => ({ type: CANCEL_GENERATION });
 
 export const SET_BATCH_GENERATED_COMPLETE = 'SET_BATCH_GENERATED_COMPLETE';
-export const setBatchGeneratedComplete = () => ({ type: SET_BATCH_GENERATED_COMPLETE });
+export const setBatchGeneratedComplete = (): GDAction => ({ type: SET_BATCH_GENERATED_COMPLETE });
 
 export const CLEAR_GRID = 'CLEAR_GRID';
 export const clearGrid = (): any => (dispatch: Dispatch): void => {

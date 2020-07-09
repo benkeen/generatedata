@@ -23,7 +23,7 @@ export const generate = (data: GenerationProps): string => {
 };
 
 // TODO TEST EVERY LAST PART OF THIS
-export const generatePreviewData = (data: GenerationProps): Promise<any> => {
+export const generateRowData = (data: GenerationProps): Promise<any> => {
 	return new Promise((resolve) => {
 		const generationTemplate = data.template;
 		const i18n = getStrings();

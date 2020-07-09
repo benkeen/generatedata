@@ -6,19 +6,19 @@ import styles from './GenerationPanel.scss';
 
 export type GenerationPanelProps = {
 	visible: boolean;
-	onChangeNumGenerationRows: (numRows: number) => void;
+	onChangeNumRowsToGenerate: (numRows: number) => void;
 	onClose: () => void;
 	onGenerate: () => void;
-	numGenerationRows: number;
+	numRowsToGenerate: number;
 	i18n: any;
 	stripWhitespace: boolean;
 	onToggleStripWhitespace: () => void;
+	numGeneratedRows: number;
 	isGenerating: boolean;
 };
 
-const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerationRows, onChangeNumGenerationRows,
+const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
 	onGenerate, isGenerating }: GenerationPanelProps): JSX.Element => {
-
 
 	const onCloseDialog = () => {
 		if (isGenerating) {
@@ -29,8 +29,9 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratio
 
 	const getContent = () => {
 		if (isGenerating) {
+			const percentage = Math.round((numGeneratedRows / numRowsToGenerate) * 100);
 			return (
-				<CircularProgressWithLabel value={10} />
+				<CircularProgressWithLabel value={percentage} />
 			);
 		}
 
@@ -45,8 +46,8 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratio
 					Generate
 					<input
 						type="number"
-						value={numGenerationRows}
-						onChange={(e: any) => onChangeNumGenerationRows(e.target.value)}
+						value={numRowsToGenerate}
+						onChange={(e: any) => onChangeNumRowsToGenerate(e.target.value)}
 					/> rows
 				</div>
 
@@ -58,6 +59,7 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratio
 		);
 	};
 
+	// TODO move clearGeneration code to onExit. That seems to run after the fade-out transition is complete
 	return (
 		<SmallDialog onClose={onCloseDialog} aria-labelledby="customized-dialog-title" open={visible}>
 			<DialogTitle onClose={onCloseDialog}>{i18n.generate}</DialogTitle>

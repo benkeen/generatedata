@@ -8,6 +8,7 @@ import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { dataTypeNames } from '~utils/dataTypeUtils';
 import { exportTypeNames } from '~utils/exportTypeUtils';
+import C from '../../constants';
 
 export type DataRow = {
 	id: string;
@@ -55,12 +56,12 @@ export type GeneratorState = {
 	previewTextSize: number;
 	generatedPreviewData: PreviewData;
 	exportSettingsTab: ExportSettingsTab;
-	numGenerationRows: number;
 	numPreviewRows: number;
 	stripWhitespace: boolean;
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
 	isGenerating: boolean;
+	numRowsToGenerate: number;
 	numGeneratedRows: number;
 };
 
@@ -88,7 +89,7 @@ export const reducer = (state: GeneratorState = {
 	generatedPreviewData: {},
 	exportSettingsTab: 'exportType',
 	showGenerationPanel: false,
-	numGenerationRows: 100,
+	numRowsToGenerate: 100,
 	stripWhitespace: false,
 	lastLayoutWidth: null,
 	lastLayoutHeight: null,
@@ -332,10 +333,31 @@ export const reducer = (state: GeneratorState = {
 				showGenerationPanel: false
 			};
 
-		case actions.UPDATE_NUM_GENERATION_ROWS:
+		case actions.UPDATE_NUM_ROWS_TO_GENERATE:
 			return {
 				...state,
-				numGenerationRows: action.payload.numGenerationRows
+				numRowsToGenerate: action.payload.numRowsToGenerate
+			};
+
+		case actions.SET_BATCH_GENERATED_COMPLETE: {
+			const { numRowsToGenerate, numGeneratedRows } = state;
+
+			let rowCount = numGeneratedRows + C.GENERATION_BATCH_SIZE;
+			if (rowCount > numRowsToGenerate) {
+				rowCount = numRowsToGenerate;
+			}
+
+			return {
+				...state,
+				numGeneratedRows: rowCount
+			};
+		}
+
+		case actions.CANCEL_GENERATION:
+			return {
+				...state,
+				isGenerating: false,
+				numGeneratedRows: 0
 			};
 
 		case actions.TOGGLE_STRIP_WHITESPACE:

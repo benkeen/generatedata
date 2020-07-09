@@ -29,10 +29,11 @@ export const shouldShowExportSettings = (state: Store): any => state.generator.s
 export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
 export const isGenerationPanelVisible = (state: Store): any => state.generator.showGenerationPanel;
-export const getNumGenerationRows = (state: Store): number => state.generator.numGenerationRows;
+export const getNumRowsToGenerate = (state: Store): number => state.generator.numRowsToGenerate;
 export const getLastLayoutWidth = (state: Store): number | null => state.generator.lastLayoutWidth;
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
 export const isGenerating = (state: Store): boolean => state.generator.isGenerating;
+export const getNumGeneratedRows = (state: Store): number => state.generator.numGeneratedRows;
 
 export const getNumRows = createSelector(
 	getSortedRows,
