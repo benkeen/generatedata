@@ -1,5 +1,5 @@
 import * as selectors from './generator.selectors';
-import { generatePreviewData } from '../../generator/generator';
+import { generate, generatePreviewData } from '../../generator/generator';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
@@ -225,12 +225,24 @@ export const TOGGLE_STRIP_WHITESPACE = 'TOGGLE_STRIP_WHITESPACE';
 export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITESPACE });
 
 export const START_GENERATION = 'START_GENERATION';
-export const startGeneration = (): any => (dispatch: Dispatch): void => {
+export const startGeneration = (): any => (dispatch: Dispatch, getState: any): void => {
 	dispatch({ type: START_GENERATION });
-	// dispatch(generateNextBatch());
 
-	// trigger here
+	// const state = getState();
+
+	// this generates data for all rows that have a Data Type selected, but a title field value has to be
+	// entered for actually displaying in the preview panel
+	// generate({
+	// 	numResults: C.MAX_PREVIEW_ROWS,
+	// 	columns: selectors.getColumns(state),
+	// 	template
+	// }).then((data: any) => {
+	//
+	// })
 };
+
+export const STOP_GENERATION = 'STOP_GENERATION';
+export const stopGeneration = (): any => ({ type: STOP_GENERATION });
 
 export const SET_BATCH_GENERATED_COMPLETE = 'SET_BATCH_GENERATED_COMPLETE';
 export const setBatchGeneratedComplete = () => ({ type: SET_BATCH_GENERATED_COMPLETE });

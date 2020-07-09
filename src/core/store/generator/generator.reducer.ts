@@ -6,8 +6,8 @@ import * as actions from './generator.actions';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
-import { dataTypeNames } from '../../../utils/dataTypeUtils';
-import { exportTypeNames } from '../../../utils/exportTypeUtils';
+import { dataTypeNames } from '~utils/dataTypeUtils';
+import { exportTypeNames } from '~utils/exportTypeUtils';
 
 export type DataRow = {
 	id: string;

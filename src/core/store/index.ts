@@ -30,7 +30,9 @@ function initStore(state: any): any {
 		storage: storage,
 		blacklist: [
 			'loadedDataTypes',
-			'loadedExportTypes'
+			'loadedExportTypes',
+			'isGenerating',
+			'numGeneratedRows'
 		]
 	};
 

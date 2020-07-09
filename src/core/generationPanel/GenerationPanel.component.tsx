@@ -19,6 +19,14 @@ export type GenerationPanelProps = {
 const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerationRows, onChangeNumGenerationRows,
 	onGenerate, isGenerating }: GenerationPanelProps): JSX.Element => {
 
+
+	const onCloseDialog = () => {
+		if (isGenerating) {
+			// TODO
+		}
+		onClose();
+	};
+
 	const getContent = () => {
 		if (isGenerating) {
 			return (
@@ -51,8 +59,8 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratio
 	};
 
 	return (
-		<SmallDialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
-			<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
+		<SmallDialog onClose={onCloseDialog} aria-labelledby="customized-dialog-title" open={visible}>
+			<DialogTitle onClose={onCloseDialog}>{i18n.generate}</DialogTitle>
 			<DialogContent dividers>
 				{getContent()}
 			</DialogContent>

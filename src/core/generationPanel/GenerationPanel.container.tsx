@@ -13,7 +13,10 @@ const mapStateToProps = (state: any, ownProps: Partial<GenerationPanelProps>): P
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationPanelProps> => ({
-	onClose: (): any => dispatch(actions.hideGenerationPanel()),
+	onClose: (): any => {
+		dispatch(actions.stopGeneration());
+		dispatch(actions.hideGenerationPanel());
+	},
 	onChangeNumGenerationRows: (numRows: number): any => dispatch(actions.updateNumGenerationRows(numRows)),
 	onToggleStripWhitespace: () => dispatch(actions.toggleStripWhitespace()),
 	onGenerate: () => dispatch(actions.startGeneration())
