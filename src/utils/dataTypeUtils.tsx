@@ -2,9 +2,9 @@ import React from 'react';
 import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
-import { DTBundle, DTCustomProps, DTHelpProps } from '../../types/dataTypes';
+import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
 import { SmallSpinner, MediumSpinner } from '../components/loaders';
-import { Store } from '../../types/general';
+import { Store } from '~types/general';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
@@ -86,13 +86,12 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 	const customProps = (dataType && loadedDataTypes[dataType]!.customProps) ? loadedDataTypes[dataType]!.customProps : {};
 	const actionInterceptors = (dataType && loadedDataTypes[dataType]!.actionInterceptors) ? loadedDataTypes[dataType]!.actionInterceptors : {};
 
-	const { generate, getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
+	const { getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
 	return {
 		name: dataTypes[dataType].name,
 		Options,
 		Help,
 		Example,
-		generate,
 		getMetadata,
 		rowStateReducer,
 		customProps,

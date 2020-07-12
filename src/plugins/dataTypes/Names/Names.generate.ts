@@ -1,6 +1,6 @@
 import { getRandomArrayValue, getRandomBool, getRandomCharInString } from '~utils/randomUtils';
 import { getUnique } from '~utils/arrayUtils';
-import { maleNames, femaleNames, lastNames } from './Names.data';
+import { maleNames, femaleNames, lastNames } from './Names.resources';
 import { NamesState } from './Names.ui';
 import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 

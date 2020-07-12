@@ -14,7 +14,7 @@ export type DTBundle = {
 	// optional <Help /> React component
 	Help?: any;
 
-	generate: (data: DTGenerationData) => DTGenerateResult | Promise<DTGenerateResult>;
+	// generate: (data: DTGenerationData) => DTGenerateResult | Promise<DTGenerateResult>;
 	rowStateReducer?: (state: any) => any;
 	getMetadata?: () => DTMetadata;
 	customProps?: DTCustomProps;
