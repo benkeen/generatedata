@@ -1,9 +1,9 @@
 import typescript from 'rollup-plugin-typescript2';
 
 export default {
-	input: 'src/utils/index.ts',
+	input: 'src/utils/webWorkerUtils.ts',
 	output: {
-		file: 'dist/utils123.js',
+		file: 'dist/webWorkerUtils.js',
 		format: 'es'
 	},
 	plugins: [
