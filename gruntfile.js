@@ -1,4 +1,5 @@
 const fs = require('fs');
+const spawn = require('child_process').spawn;
 
 module.exports = function (grunt) {
 	const dataTypesFolder = 'src/plugins/dataTypes';
@@ -90,15 +91,44 @@ window.gd.localeLoaded(i18n);
 		shell: {
 			webpackProd: {
 				command: 'yarn prod'
+			},
+			webworkers: {
+				command: 'npx rollup -c'
 			}
 		}
 	});
+
+	// spawns a separate process to boot up express
+	// let server;
+	// const startServer = () => {
+	// 	// grunt.util.spawn({
+	// 	// 	cmd: 'node',
+	// 	// 	args: ['app.js'],
+	// 	// 	opts: {
+	// 	// 		stdio: [
+	// 	// 			process.stdin,
+	// 	// 			process.stout,
+	// 	// 			process.stderr
+	// 	// 		]
+	// 	// 	}
+	// 	// });
+	// 	server = spawn('node', ['app.js']);
+	// };
+	//
+	// process.on('exit', () => {
+	// 	grunt.log.writeln('killing node server...');
+	// 	server.kill();
+	// 	grunt.log.writeln('killed node server');
+	// });
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-shell');
-	grunt.registerTask('default', ['cssmin', 'copy', 'i18n']);
+
+	grunt.registerTask('webworkers', 'shell:webworkers');
+	// grunt.registerTask('startServer', startServer); // not working yet
+	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webworkers']);
 	grunt.registerTask('build', ['default']);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
 	grunt.registerTask('i18n', generateI18nBundles);

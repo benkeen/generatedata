@@ -1,4 +1,4 @@
-import { ColumnData, ExportTypeGenerationData } from '../../types/general';
+import { ColumnData, ExportTypeGenerationData } from '~types/general';
 
 export const getNumericFieldColumnIndexes = (generationData: ExportTypeGenerationData): number[] => {
 	const dataTypeMap: any = {};

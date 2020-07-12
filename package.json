@@ -12,7 +12,8 @@
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
     "build": "node ./scripts/generateConfigFile.js",
-    "test": "env NODE_ENV=test jest"
+    "test": "env NODE_ENV=test jest",
+    "openBrowser": "concurrently \"http-server -a localhost -p 8080\" \"open http://localhost:8080\""
   },
   "repository": {
     "type": "git",
@@ -103,6 +104,7 @@
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-preset-airbnb": "^4.4.0",
+    "concurrently": "^5.2.0",
     "coveralls": "^3.0.9",
     "css-loader": "^3.4.0",
     "eslint": "^6.7.2",
