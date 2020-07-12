@@ -1,6 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Help, Example, Options } from './Date.ui';
-import { rowStateReducer, generate, getMetadata } from './Date.generate';
+import { rowStateReducer, getMetadata } from './Date.generate';
 
 const bundle: DTBundle = {
 	initialState,
@@ -8,7 +8,6 @@ const bundle: DTBundle = {
 	Help,
 	Example,
 	Options,
-	generate,
 	getMetadata
 };
 

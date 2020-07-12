@@ -1,6 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
 import { initialState, Example, Options, Help } from './Phone.ui';
-import { rowStateReducer, generate, getMetadata } from './Phone.generate';
+import { rowStateReducer, getMetadata } from './Phone.generate';
 
 const bundle: DTBundle = {
 	initialState,
@@ -8,7 +8,6 @@ const bundle: DTBundle = {
 	Options,
 	Help,
 	rowStateReducer,
-	generate,
 	getMetadata
 };
 
