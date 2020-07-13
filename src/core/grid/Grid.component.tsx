@@ -14,6 +14,8 @@ import { DataTypeFolder } from '../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../constants';
 
+// tmp
+import webWorkers from '../../_pluginWebWorkers';
 
 const SMALL_BREAKPOINT = 650;
 const MEDIUM_BREAKPOINT = 780;
@@ -64,6 +66,13 @@ const Grid = ({
 		} else {
 			toggleGrid();
 		}
+	};
+
+	const loadWebWorkers = () => {
+		const worker = new Worker(`./workers/${webWorkers.core}`);
+		worker.postMessage({
+			dataTypes: webWorkers.dataTypes
+		})
 	};
 
 	return (
@@ -144,6 +153,8 @@ const Grid = ({
 										{addRowsBtnLabel}
 									</Button>
 								</form>
+
+								<input type="button" value="Load web workers" onClick={loadWebWorkers} />
 							</div>
 						</div>
 						<HelpDialog

@@ -99,6 +99,7 @@ window.gd.localeLoaded(i18n);
 	};
 
 	const webWorkerMap = {
+		core: '',
 		dataTypes: {},
 		exportTypes: {}
 	};
@@ -123,6 +124,14 @@ window.gd.localeLoaded(i18n);
 		},
 
 		uglify: {
+			coreWebWorker: {
+				options: {
+					sourceMap: true
+				},
+				files: {
+					'dist/workers/coreWorker.js': ['src/core/generator/coreWorker.js']
+				}
+			},
 			dataTypeWebWorkers: {
 				options: {
 					sourceMap: true
@@ -158,10 +167,21 @@ window.gd.localeLoaded(i18n);
 		},
 
 		md5: {
+			coreWebWorker: {
+				files: {
+					'dist/workers/coreWorker.js': 'dist/workers/coreWorker.js'
+				},
+				options: {
+					after: (fileChanges) => {
+						console.log(fileChanges);
+						webWorkerMap.core = path.basename(fileChanges[0].newPath);
+					}
+				}
+			},
 			dataTypeWebWorkers: {
 				files: getIdentifyMap(dataTypeWebWorkerMap),
 				options: {
-					after: function (fileChanges) {
+					after: (fileChanges) => {
 						const map = {};
 						fileChanges.forEach((row) => {
 							const folders = path.dirname(row.oldPath).split(path.sep);
@@ -211,10 +231,13 @@ window.gd.localeLoaded(i18n);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
 	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
+
 	grunt.registerTask('webWorkers', [
 		'shell:webworkersUtilsFile',
+		'uglify:coreWebWorker',
 		'uglify:dataTypeWebWorkers',
 		'md5:dataTypeWebWorkers',
+		'md5:coreWebWorker',
 		'generateWorkerMapFile'
 	]);
 };

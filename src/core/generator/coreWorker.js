@@ -5,7 +5,13 @@ onmessage = function (e) {
 	var dataTypes = e.data.dataTypes;
 
 	// load the Data Type generator web worker files
-	dataTypes.forEach((dataType) => {
-		importScripts("utils1.js");
-	});
+	var dataTypeFolders = Object.keys(dataTypes);
+	for (var i=0; i<dataTypeFolders.length; i++) {
+		var folder = dataTypeFolders[i];
+		importScripts("./workers/" + dataTypes[folder]);
+	}
+
+	// here we go... let's generate some stuff! async allowed?
+
 };
+
