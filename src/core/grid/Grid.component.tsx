@@ -68,13 +68,6 @@ const Grid = ({
 		}
 	};
 
-	const loadWebWorkers = () => {
-		const worker = new Worker(`./workers/${webWorkers.core}`);
-		worker.postMessage({
-			dataTypes: webWorkers.dataTypes
-		})
-	};
-
 	return (
 		<>
 			<div style={{ position: 'fixed', right: 0, padding: 10 }} onClick={onClose}>
@@ -153,8 +146,6 @@ const Grid = ({
 										{addRowsBtnLabel}
 									</Button>
 								</form>
-
-								<input type="button" value="Load web workers" onClick={loadWebWorkers} />
 							</div>
 						</div>
 						<HelpDialog
