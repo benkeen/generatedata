@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { generate } from 'shortid';
 // @ts-ignore-line
-import config from '../../../../build/config.client';
+import config from '../../../../dist/config.client';
 import * as actions from './generator.actions';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';

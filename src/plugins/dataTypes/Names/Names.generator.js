@@ -4,16 +4,16 @@
 // var getUnique = window.gd.utils.arrayUtils;
 
 // these COULD be passed in...
-var femaleNames = window.gd.dataTypes.Names.femaleNames;
-var maleNames = window.gd.dataTypes.Names.maleNames;
-var lastNames = window.gd.dataTypes.Names.lastNames;
+// var femaleNames = window.gd.dataTypes.Names.femaleNames;
+// var maleNames = window.gd.dataTypes.Names.maleNames;
+// var lastNames = window.gd.dataTypes.Names.lastNames;
 
 var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var genders = ['male', 'female'];
 
-// how would the developer share this?
+// TODO how would the developer share this?
 var getRandomGender = function () {
-	getRandomBool() ? genders[0] : genders[1];
+	utils.randomUtils.getRandomBool() ? genders[0] : genders[1];
 };
 
 onmessage = function (e) {
@@ -21,9 +21,9 @@ onmessage = function (e) {
 
 	// in case the user entered multiple | separated formats, pick one first
 	var formats = placeholderStr.split('|');
-	let chosenFormat = formats[0];
+	var chosenFormat = formats[0];
 	if (formats.length > 1) {
-		chosenFormat = randomUtils.getRandomArrayValue(formats);
+		chosenFormat = utils.randomUtils.getRandomArrayValue(formats);
 	}
 
 	// the placeholder string with all the placeholders removed
@@ -35,33 +35,33 @@ onmessage = function (e) {
 
 	while (/MaleName/.test(output)) {
 		foundGenders.push('male');
-		output = output.replace(/MaleName/, randomUtils.getRandomArrayValue(maleNames));
+		output = output.replace(/MaleName/, utils.randomUtils.getRandomArrayValue(maleNames));
 	}
 
 	while (/FemaleName/.test(output)) {
 		foundGenders.push('female');
-		output = output.replace(/FemaleName/, randomUtils.getRandomArrayValue(femaleNames));
+		output = output.replace(/FemaleName/, utils.randomUtils.getRandomArrayValue(femaleNames));
 	}
 
 	while (/Name/.test(output)) {
-		const gender = getRandomGender();
+		var gender = getRandomGender();
 		foundGenders.push(gender);
-		const source = (gender === 'male') ? maleNames : femaleNames;
-		output = output.replace(/Name/, randomUtils.getRandomArrayValue(source));
+		var source = (gender === 'male') ? maleNames : femaleNames;
+		output = output.replace(/Name/, utils.randomUtils.getRandomArrayValue(source));
 	}
 
 	while (/Surname/.test(output)) {
-		output = output.replace(/Surname/, randomUtils.getRandomArrayValue(lastNames));
+		output = output.replace(/Surname/, utils.randomUtils.getRandomArrayValue(lastNames));
 	}
 	while (/Initial/.test(output)) {
-		output = output.replace(/Initial/, randomUtils.getRandomCharInString(letters));
+		output = output.replace(/Initial/, utils.randomUtils.getRandomCharInString(letters));
 	}
 
-	let gender = 'unknown';
+	var gender = 'unknown';
 	if (foundGenders.length === 1) {
 		gender = foundGenders[0];
 	} else if (foundGenders.length > 1) {
-		const uniques = arrayUtils.getUnique(foundGenders);
+		var uniques = utils.arrayUtils.getUnique(foundGenders);
 		if (uniques.length === 1) {
 			gender = uniques[0];
 		}
@@ -69,7 +69,6 @@ onmessage = function (e) {
 
 	postMessage({
 		display: output.trim(),
-		gender
+		gender: gender
 	});
 };
-

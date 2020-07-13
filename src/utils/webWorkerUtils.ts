@@ -16,3 +16,5 @@ const utils = {
 };
 
 // TODO also need to expose CUSTOM stuff that each plugin wants to expose
+
+// TODO can we generate a typings file from this?

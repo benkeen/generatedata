@@ -1,5 +1,17 @@
 const fs = require('fs');
-const spawn = require('child_process').spawn;
+const path = require('path');
+// const spawn = require('child_process').spawn;
+
+
+const distFolder = path.join(__dirname, '/dist');
+if (!fs.existsSync(distFolder)) {
+	fs.mkdirSync(distFolder);
+}
+
+const workersFolder = path.join(__dirname, '/dist/workers');
+if (!fs.existsSync(workersFolder)) {
+	fs.mkdirSync(workersFolder);
+}
 
 module.exports = function (grunt) {
 	const dataTypesFolder = 'src/plugins/dataTypes';
@@ -53,6 +65,31 @@ window.gd.localeLoaded(i18n);
 		fs.writeFileSync(`./dist/${locale}.js`, template);
 	};
 
+	// looks through the plugins and finds the plugins that have a generator web worker file
+	const dataTypeWebWorkerMap = (() => {
+		const baseFolder = path.join(__dirname, `/src/plugins/dataTypes`);
+		const folders = fs.readdirSync(baseFolder);
+
+		const map = {};
+		folders.forEach((folder) => {
+			const webworkerFile = path.join(__dirname, `/src/plugins/dataTypes/${folder}/${folder}.generator.js`);
+			if (!fs.existsSync(webworkerFile)) {
+				return;
+			}
+			map[`dist/workers/${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.js`];
+		});
+
+		return map;
+	})();
+
+	console.log(dataTypeWebWorkerMap);
+
+	/*
+	Process:
+	-rename them to includehash
+	-generate _pluginWebWorkers.ts in src
+	*/
+
 	grunt.initConfig({
 		cssmin: {
 			options: {
@@ -71,6 +108,16 @@ window.gd.localeLoaded(i18n);
 				}
 			}
 		},
+
+		uglify: {
+			dataTypeWebWorkers: {
+				options: {
+					sourceMap: true
+				},
+				files: dataTypeWebWorkerMap
+			}
+		},
+
 		copy: {
 			main: {
 				files: [
@@ -81,7 +128,7 @@ window.gd.localeLoaded(i18n);
 						dest: 'dist/images/'
 					}
 				]
-			},
+			}
 		},
 
 		clean: {
@@ -92,7 +139,7 @@ window.gd.localeLoaded(i18n);
 			webpackProd: {
 				command: 'yarn prod'
 			},
-			webworkers: {
+			webworkersUtilsFile: {
 				command: 'npx rollup -c'
 			}
 		}
@@ -125,11 +172,15 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-shell');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('webworkers', 'shell:webworkers');
 	// grunt.registerTask('startServer', startServer); // not working yet
 	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webworkers']);
 	grunt.registerTask('build', ['default']);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
 	grunt.registerTask('i18n', generateI18nBundles);
+	grunt.registerTask('webworkers', [
+		'shell:webworkersUtilsFile',
+		'uglify:dataTypeWebWorkers'
+	]);
 };

@@ -1,5 +1,5 @@
 // @ts-ignore-line
-import config from '../../build/config.client';
+import config from '../../dist/config.client';
 import store from './store';
 import C from './constants';
 import * as actions from './store/generator/generator.actions';

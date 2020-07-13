@@ -11,7 +11,7 @@
     "prod": "grunt & yarn build & yarn webpackProd",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
-    "build": "node ./scripts/generateConfigFile.js",
+    "build": "node ./build/build.js",
     "test": "env NODE_ENV=test jest",
     "openBrowser": "concurrently \"http-server -a localhost -p 8080\" \"open http://localhost:8080\""
   },
@@ -120,6 +120,8 @@
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-md5": "^0.1.12",
     "grunt-shell": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^25.4.0",
