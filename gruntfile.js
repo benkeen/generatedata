@@ -76,19 +76,32 @@ window.gd.localeLoaded(i18n);
 			if (!fs.existsSync(webworkerFile)) {
 				return;
 			}
-			map[`dist/workers/${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.js`];
+
+			map[`dist/workers/${folder}/${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.js`];
 		});
 
 		return map;
 	})();
 
-	console.log(dataTypeWebWorkerMap);
 
-	/*
-	Process:
-	-rename them to includehash
-	-generate _pluginWebWorkers.ts in src
-	*/
+	// returns an object where the keys + values are the same. Takes the keys out of the object passed
+	const getIdentifyMap = (obj) => {
+		const keys = Object.keys(obj);
+		const map = {};
+		keys.forEach((key) => {
+			map[key] = key;
+		});
+		return map;
+	};
+
+	const generateWorkerMapFile = () => {
+		fs.writeFileSync(`./src/_pluginWebWorkers.ts`, `export default ${JSON.stringify(webWorkerMap, null, '\t')};`);
+	};
+
+	const webWorkerMap = {
+		dataTypes: {},
+		exportTypes: {}
+	};
 
 	grunt.initConfig({
 		cssmin: {
@@ -142,6 +155,23 @@ window.gd.localeLoaded(i18n);
 			webworkersUtilsFile: {
 				command: 'npx rollup -c'
 			}
+		},
+
+		md5: {
+			dataTypeWebWorkers: {
+				files: getIdentifyMap(dataTypeWebWorkerMap),
+				options: {
+					after: function (fileChanges) {
+						const map = {};
+						fileChanges.forEach((row) => {
+							const folders = path.dirname(row.oldPath).split(path.sep);
+							const dataTypeFolder = folders[folders.length - 1];
+							map[dataTypeFolder] = path.basename(row.newPath);
+						});
+						webWorkerMap.dataTypes = map;
+					}
+				}
+			}
 		}
 	});
 
@@ -173,14 +203,18 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-shell');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-md5');
 
 	// grunt.registerTask('startServer', startServer); // not working yet
-	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webworkers']);
+	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webWorkers']);
 	grunt.registerTask('build', ['default']);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
+	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
-	grunt.registerTask('webworkers', [
+	grunt.registerTask('webWorkers', [
 		'shell:webworkersUtilsFile',
-		'uglify:dataTypeWebWorkers'
+		'uglify:dataTypeWebWorkers',
+		'md5:dataTypeWebWorkers',
+		'generateWorkerMapFile'
 	]);
 };
