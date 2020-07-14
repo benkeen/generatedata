@@ -1,10 +1,11 @@
 import * as selectors from './generator.selectors';
-import { generateRowData } from '../../generator/generator';
+// import { generateRowData } from '../../generator/generator';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
 import { getUniqueString } from '~utils/stringUtils';
 import { loadExportTypeBundle } from '~utils/exportTypeUtils';
+import { getCoreWorker, getDataTypeWorkerMap } from '~utils/coreUtils';
 import { registerInterceptors } from '../../actionInterceptor';
 import { DTBundle } from '~types/dataTypes';
 import { GDAction } from '~types/general';
@@ -112,33 +113,45 @@ export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 // make this the ONLY place that re-generates the preview panel data. This doesn't have to be called on boot-up because
 // the preview data is generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = []): any => {
+	const coreWorker = getCoreWorker();
+
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
 		const template = selectors.getGenerationTemplate(state);
 		const sortedRows = selectors.getSortedRows(state);
 
-		// this generates data for all rows that have a Data Type selected, but a title field value has to be
-		// entered for actually displaying in the preview panel
-		generateRowData({
+		const dataTypes = getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]);
+
+		coreWorker.postMessage({
 			numResults: C.MAX_PREVIEW_ROWS,
 			columns: selectors.getColumns(state),
-			template
-		}).then((data: any) => {
-			const previewData: any = {};
-			sortedRows.forEach((id: string, index: number) => {
-				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
-					return;
-				}
-				previewData[id] = data.map((row: any): any => row[index]);
-			});
-
-			dispatch({
-				type: REFRESH_PREVIEW_DATA,
-				payload: {
-					previewData
-				}
-			});
+			template,
+			dataTypes
 		});
+
+		coreWorker.onmessage = (data) => {
+			console.log(data);
+		};
+
+		// this generates data for all rows that have a Data Type selected, but a title field value has to be
+		// entered for actually displaying in the preview panel
+		// generateRowData({
+		// }).then((data: any) => {
+		// 	const previewData: any = {};
+		// 	sortedRows.forEach((id: string, index: number) => {
+		// 		if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
+		// 			return;
+		// 		}
+		// 		previewData[id] = data.map((row: any): any => row[index]);
+		// 	});
+		//
+		// 	dispatch({
+		// 		type: REFRESH_PREVIEW_DATA,
+		// 		payload: {
+		// 			previewData
+		// 		}
+		// 	});
+		// });
 	};
 };
 
@@ -249,18 +262,18 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 
 		// this generates data for all rows that have a Data Type selected, but a title field value has to be
 		// entered for actually displaying in the preview panel
-		generateRowData({
-			numResults,
-			columns: selectors.getColumns(state),
-			template
-		}).then((data: any) => {
-			console.log('___________________________________');
-			console.log(data);
-
-			// call export type here to get generated string
-
-			dispatch(setBatchGeneratedComplete());
-		});
+		// generateRowData({
+		// 	numResults,
+		// 	columns: selectors.getColumns(state),
+		// 	template
+		// }).then((data: any) => {
+		// 	console.log('___________________________________');
+		// 	console.log(data);
+		//
+		// 	// call export type here to get generated string
+		//
+		// 	dispatch(setBatchGeneratedComplete());
+		// });
 	}
 
 	// ------------------------------------------------------------------

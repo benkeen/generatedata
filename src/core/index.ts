@@ -7,16 +7,16 @@ import * as mainActions from './store/main/main.actions';
 import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
 import { DataTypeFolder } from '../_plugins';
+import { loadCoreWorker } from '~utils/coreUtils';
 import '../_imports';
-import webWorkers from '../_pluginWebWorkers';
 
 // just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
 // data structure has hardly changed in 15 years and is unlikely to in the future
 export const coreConfig = { ...config };
 
-export const coreWorker = new Worker(`./workers/${webWorkers.core}`);
-
 export const init = (): void => {
+	loadCoreWorker();
+
 	const state = store.getState();
 	const locale = mainSelectors.getLocale(state);
 	const exportType = selectors.getExportType(state);

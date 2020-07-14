@@ -1,23 +1,25 @@
 // this is the main generator web worker file for the Core script. It's used for generating a single batch of data.
 // right now it's es5. SUUUUURE be nice to at least use es6 if not TS
 
-import { GenerationProps, GenerationTemplate, GenerationTemplateRow } from "../../../types/general";
-import { getStrings } from "../../utils/langUtils";
-import { DTGenerateResult, DTGenerationExistingRowData } from "../../../types/dataTypes";
+// import { GenerationProps, GenerationTemplate, GenerationTemplateRow } from "../../../types/general";
+// import { getStrings } from "../../utils/langUtils";
+// import { DTGenerateResult, DTGenerationExistingRowData } from "../../../types/dataTypes";
 
 onmessage = function (e) {
 	var dataTypes = e.data.dataTypes;
 
-	// load the Data Type generator web worker files
+	console.log(e.data);
+
+	// load the Data Type generator web worker files. Pretty sure this caches them so we can safely import them
+	// every time
 	var dataTypeFolders = Object.keys(dataTypes);
 	for (var i=0; i<dataTypeFolders.length; i++) {
 		var folder = dataTypeFolders[i];
-		importScripts("./workers/" + dataTypes[folder]);
+		importScripts("./" + dataTypes[folder]);
 	}
 
 	// here we go... let's generate some stuff! async allowed?
 
-//
 // // TODO TEST EVERY LAST PART OF THIS
 // 	export const generateRowData = (data: GenerationProps): Promise<any> => {
 // 		return new Promise((resolve) => {
