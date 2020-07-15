@@ -251,8 +251,6 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	const remainder = numRowsToGenerate % C.GENERATION_BATCH_SIZE;
 	const lastBatchSize = remainder === 0 ? C.GENERATION_BATCH_SIZE : remainder;
 
-	console.log('num batches: ', numBatches);
-
 	// convert this to sequence of promises
 	for (let batchNum=1; batchNum<=numBatches; batchNum++) {
 		let numResults = C.GENERATION_BATCH_SIZE;

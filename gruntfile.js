@@ -132,6 +132,11 @@ window.gd.localeLoaded(i18n);
 					'dist/workers/coreWorker.js': ['src/core/generator/coreWorker.js']
 				}
 			},
+			coreUtils: {
+				files: {
+					'dist/coreWorker.js': ['src/core/generator/coreWorker.js']
+				}
+			},
 			dataTypeWebWorkers: {
 				options: {
 					sourceMap: true
@@ -173,8 +178,17 @@ window.gd.localeLoaded(i18n);
 				},
 				options: {
 					after: (fileChanges) => {
-						console.log(fileChanges);
 						webWorkerMap.core = path.basename(fileChanges[0].newPath);
+					}
+				}
+			},
+			coreUtils: {
+				files: {
+					'dist/webWorkerUtils.js': 'dist/webWorkerUtils.js'
+				},
+				options: {
+					after: (fileChanges) => {
+						webWorkerMap.utils = path.basename(fileChanges[0].newPath);
 					}
 				}
 			},
@@ -235,9 +249,11 @@ window.gd.localeLoaded(i18n);
 	grunt.registerTask('webWorkers', [
 		'shell:webworkersUtilsFile',
 		'uglify:coreWebWorker',
+		'uglify:coreUtils',
 		'uglify:dataTypeWebWorkers',
 		'md5:dataTypeWebWorkers',
 		'md5:coreWebWorker',
+		'md5:coreUtils',
 		'generateWorkerMapFile'
 	]);
 };
