@@ -38,7 +38,6 @@ export type GenerationTemplateRow = {
     title: string;
     dataType: DataTypeFolder;
 	rowState: any;
-    generateFunc: Function;
     colMetadata: () => any;
     colIndex: number;
 }

@@ -77,7 +77,7 @@ window.gd.localeLoaded(i18n);
 				return;
 			}
 
-			map[`dist/workers/${folder}/${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.js`];
+			map[`dist/workers/${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.js`];
 		});
 
 		return map;
@@ -198,8 +198,8 @@ window.gd.localeLoaded(i18n);
 					after: (fileChanges) => {
 						const map = {};
 						fileChanges.forEach((row) => {
-							const folders = path.dirname(row.oldPath).split(path.sep);
-							const dataTypeFolder = folders[folders.length - 1];
+							const filename = path.basename(row.newPath);
+							const [dataTypeFolder] = filename.split('.');
 							map[dataTypeFolder] = path.basename(row.newPath);
 						});
 						webWorkerMap.dataTypes = map;

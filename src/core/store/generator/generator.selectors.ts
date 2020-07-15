@@ -128,7 +128,7 @@ export const getGenerationTemplate = createSelector(
 		const templateByProcessOrder: ProcessOrders = {};
 		rows.map(({ id, title, dataType, data }: any, colIndex: number) => {
 			const processOrder = processBatches[dataType as DataTypeFolder] as number;
-			const { generate, rowStateReducer } = getDataType(dataType);
+			const { rowStateReducer } = getDataType(dataType);
 
 			if (!templateByProcessOrder[processOrder]) {
 				templateByProcessOrder[processOrder] = [];
@@ -142,8 +142,7 @@ export const getGenerationTemplate = createSelector(
 
 				// settings for the DT cell. The rowStateReducer is optional: it lets developers convert the Data Type row
 				// state into something friendlier for the generation step
-				rowState: rowStateReducer ? rowStateReducer(data) : data,
-				generateFunc: generate
+				rowState: rowStateReducer ? rowStateReducer(data) : data
 			});
 		});
 

@@ -7,6 +7,7 @@ import { getUniqueString } from '~utils/stringUtils';
 import { loadExportTypeBundle } from '~utils/exportTypeUtils';
 import { getCoreWorker, getDataTypeWorkerMap } from '~utils/coreUtils';
 import { registerInterceptors } from '../../actionInterceptor';
+import { getStrings } from '~utils/langUtils';
 import { DTBundle } from '~types/dataTypes';
 import { GDAction } from '~types/general';
 import C from '../../constants';
@@ -124,13 +125,15 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 
 		coreWorker.postMessage({
 			numResults: C.MAX_PREVIEW_ROWS,
+			batchSize: C.MAX_PREVIEW_ROWS,
 			columns: selectors.getColumns(state),
+			i18n: getStrings(),
 			template,
 			dataTypes
 		});
 
 		coreWorker.onmessage = (data) => {
-			console.log(data);
+			console.log("response from core worker: ", data);
 		};
 
 		// this generates data for all rows that have a Data Type selected, but a title field value has to be
