@@ -13,7 +13,7 @@ import { uglify } from "rollup-plugin-uglify";
 export default {
 	input: 'src/utils/webWorkerUtils.ts',
 	output: {
-		file: 'dist/webWorkerUtils.js',
+		file: 'dist/workers/webWorkerUtils.js',
 		format: 'es'
 	},
 	plugins: [

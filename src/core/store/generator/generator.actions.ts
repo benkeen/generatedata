@@ -5,7 +5,7 @@ import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
 import { getUniqueString } from '~utils/stringUtils';
 import { loadExportTypeBundle } from '~utils/exportTypeUtils';
-import { getCoreWorker, getDataTypeWorkerMap } from '~utils/coreUtils';
+import { getCoreWorker, getDataTypeWorkerMap, getCoreWorkerUtils } from '~utils/coreUtils';
 import { registerInterceptors } from '../../actionInterceptor';
 import { getStrings } from '~utils/langUtils';
 import { DTBundle } from '~types/dataTypes';
@@ -121,15 +121,16 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		const template = selectors.getGenerationTemplate(state);
 		const sortedRows = selectors.getSortedRows(state);
 
-		const dataTypes = getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]);
-
 		coreWorker.postMessage({
 			numResults: C.MAX_PREVIEW_ROWS,
 			batchSize: C.MAX_PREVIEW_ROWS,
 			columns: selectors.getColumns(state),
 			i18n: getStrings(),
 			template,
-			dataTypes
+			workerResources: {
+				coreUtils: getCoreWorkerUtils(),
+				dataTypes: getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[])
+			}
 		});
 
 		coreWorker.onmessage = (data) => {

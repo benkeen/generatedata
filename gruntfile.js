@@ -184,7 +184,7 @@ window.gd.localeLoaded(i18n);
 			},
 			coreUtils: {
 				files: {
-					'dist/webWorkerUtils.js': 'dist/webWorkerUtils.js'
+					'dist/workers/webWorkerUtils.js': 'dist/workers/webWorkerUtils.js'
 				},
 				options: {
 					after: (fileChanges) => {

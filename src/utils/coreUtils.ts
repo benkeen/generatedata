@@ -19,3 +19,5 @@ export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]) => {
 	});
 	return map;
 };
+
+export const getCoreWorkerUtils = () => webWorkers.utils;
