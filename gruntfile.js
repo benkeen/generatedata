@@ -166,8 +166,11 @@ window.gd.localeLoaded(i18n);
 			webpackProd: {
 				command: 'yarn prod'
 			},
+			coreWebWorkerFile: {
+				command: 'npx rollup -c --config-src=src/core/generator/coreWorker.ts'
+			},
 			webworkersUtilsFile: {
-				command: 'npx rollup -c'
+				command: 'npx rollup -c --config-src=src/utils/webWorkerUtils.ts'
 			}
 		},
 
@@ -209,29 +212,6 @@ window.gd.localeLoaded(i18n);
 		}
 	});
 
-	// spawns a separate process to boot up express
-	// let server;
-	// const startServer = () => {
-	// 	// grunt.util.spawn({
-	// 	// 	cmd: 'node',
-	// 	// 	args: ['app.js'],
-	// 	// 	opts: {
-	// 	// 		stdio: [
-	// 	// 			process.stdin,
-	// 	// 			process.stout,
-	// 	// 			process.stderr
-	// 	// 		]
-	// 	// 	}
-	// 	// });
-	// 	server = spawn('node', ['app.js']);
-	// };
-	//
-	// process.on('exit', () => {
-	// 	grunt.log.writeln('killing node server...');
-	// 	server.kill();
-	// 	grunt.log.writeln('killed node server');
-	// });
-
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
@@ -247,6 +227,7 @@ window.gd.localeLoaded(i18n);
 	grunt.registerTask('i18n', generateI18nBundles);
 
 	grunt.registerTask('webWorkers', [
+		'shell:coreWebWorkerFile',
 		'shell:webworkersUtilsFile',
 		'uglify:coreWebWorker',
 		'uglify:coreUtils',

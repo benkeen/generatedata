@@ -4,65 +4,56 @@
 // import { GenerationProps, GenerationTemplate, GenerationTemplateRow } from "../../../types/general";
 // import { DTGenerateResult, DTGenerationExistingRowData } from "../../../types/dataTypes";
 
-const loadedWorkers: any = {};
 let workerResources: any;
+let dataTypeWorkerMap: any = {};
 
 onmessage = function (e) {
 	workerResources = e.data.workerResources;
-	let dataTypeWorkerMap = workerResources.dataTypes;
+	dataTypeWorkerMap = workerResources.dataTypes;
 
 	// load main utils file
 	// importScripts("./" + dataTypes[folder]);
-
-	// load the Data Type generator web worker files. Pretty sure this caches them so we can safely import them
-	// every time
-	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
-		if (!loadedWorkers[dataType]) {
-			loadedWorkers[dataType] = new Worker(dataTypeWorkerMap[dataType])
-		}
-	});
 
 	// this would just keep looping like a crazy person. Every completed batch would be posted back to the parent script
 	generateBatch(e.data);
 };
 
 
-var generateBatch = function (data: any): Promise<any> {
-	return new Promise(function(resolve) {
-		var generationTemplate = data.template;
+const generateBatch = (data: any): Promise<any> => {
+	return new Promise((resolve) => {
+		const generationTemplate = data.template;
 
 		// for the preview panel we always generate the max num of preview panel rows so when the user changes the
 		// visible rows the data's already there
-		var lastRowNum = data.numResults;
-		var rowPromises = [];
+		const lastRowNum = 1000; // data.numResults;
+		const rowPromises = [];
 
-		// rows are independent! The only necessarily synchronous bit is between process batches
-		for (var rowNum=1; rowNum<=lastRowNum; rowNum++) {
-			var currRowData: any[] = []; // TODO
+
+		// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
+		// them all in a loop
+		for (let rowNum=1; rowNum<=lastRowNum; rowNum++) {
+			let currRowData: any[] = [];
 			rowPromises.push(processBatchSequence(generationTemplate, rowNum, data.i18n, currRowData));
 		}
 
 		Promise.all(rowPromises)
-			.then(function (data) {
-				console.log("resolving up here too.", data);
+			.then((data) => {
+				console.log("Final batch of data: ", data);
 				resolve(data);
 			});
 	});
 };
 
+const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[]) => {
+	const processBatches = Object.keys(generationTemplate);
 
-var processBatchSequence = function (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[]) {
-	return new Promise(function(resolveAll) {
+	return new Promise((resolveAll) => {
 		let sequence = Promise.resolve();
-		var processBatches = Object.keys(generationTemplate);
-
-		console.log(processBatches);
 
 		// process each batch sequentially. This ensures the data generated from one processing batch is available to any
 		// dependent children. For example, the Region data type needs the Country data being generated first so it
 		// knows what country regions to generate if a mapping had been selected in the UI
-
-		processBatches.forEach(function(processBatchNumberStr, batchIndex) {
+		processBatches.forEach((processBatchNumberStr, batchIndex) => {
 			const processBatchNum = parseInt(processBatchNumberStr, 10);
 			const currBatch = generationTemplate[processBatchNum];
 
@@ -70,24 +61,25 @@ var processBatchSequence = function (generationTemplate: any, rowNum: number, i1
 			sequence = sequence
 				.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData))
 				.then((promises) => {
+					// this bit's sneaky. It ensures that the CURRENT batch within the row being generated is fully processed
+					// before starting the next. That way, the generated data from earlier batches is available to later
+					// Data Types
 					return new Promise((resolveBatch) => {
 						Promise.all(promises)
-							.then((promiseResponses: any) => {
-								for (var i=0; i<promiseResponses.length; i++) {
-									const currPromiseData = promiseResponses[i].data;
+							.then((singleBatchResponses: any) => {
+								for (let i=0; i<singleBatchResponses.length; i++) {
 									currRowData.push({
 										id: currBatch[i].id,
 										colIndex: currBatch[i].colIndex,
 										dataType: currBatch[i].dataType,
-										data: currPromiseData
+										data: singleBatchResponses[i]
 									});
 								}
 								resolveBatch();
 
 								if (batchIndex === processBatches.length-1) {
-									currRowData.sort(function(a, b) { return a.colIndex < b.colIndex ? -1 : 1 });
-									console.log("resolving all batches: ", currRowData.map(function (row) { return row.data.display; }));
-									resolveAll(currRowData.map(function (row) { return row.data.display; }));
+									currRowData.sort((a, b) =>a.colIndex < b.colIndex ? -1 : 1);
+									resolveAll(currRowData.map((row) => row.data.display));
 								}
 							});
 					});
@@ -97,15 +89,15 @@ var processBatchSequence = function (generationTemplate: any, rowNum: number, i1
 	});
 };
 
-// Data Type generator functions can be sync or async, depending on their needs. This method calls the generation
+// Data Type generator functions can be sync or async, depending on their needs. This method calls the generator
 // method for all data types in a particular process batch and returns an array of promises, which when resolved,
-// return the generated data for that row
-const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any) => {
-	return cells.map((currCell: any) => {
-		var dataType = currCell.dataType;
-		var worker = loadedWorkers[dataType];
+// returning the generated data for that row
+const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any): Promise<any>[] => (
+	cells.map((currCell: any) => {
+		let dataType = currCell.dataType;
+		let worker = new Worker(dataTypeWorkerMap[dataType]);
 
-		return new Promise(function (resolve, reject) {
+		return new Promise((resolve, reject) => {
 			worker.postMessage({
 				rowNum: rowNum,
 				i18n: i18n.dataTypes[currCell.dataType],
@@ -122,17 +114,15 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 					// TODO
 					//response.then()
 				} else {
-					resolve(response);
+					resolve(response.data);
 				}
 			};
 
 			worker.onerror = (resp: any) => {
-				console.log("error: ", resp);
+				console.log('error: ', resp);
 				reject(resp);
 			};
 		});
-
-
 	})
-};
+);
 
