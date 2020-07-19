@@ -169,8 +169,17 @@ window.gd.localeLoaded(i18n);
 			coreWebWorkerFile: {
 				command: 'npx rollup -c --config-src=src/core/generator/coreWorker.ts'
 			},
-			webworkersUtilsFile: {
+			webWorkersUtilsFile: {
 				command: 'npx rollup -c --config-src=src/utils/webWorkerUtils.ts'
+			}
+		},
+
+		watch: {
+			webWorkers: {
+				files: [
+					'src/core/generator/coreWorker.ts'
+				],
+				tasks: ['webWorkers'],
 			}
 		},
 
@@ -217,18 +226,19 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-shell');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-md5');
 
-	// grunt.registerTask('startServer', startServer); // not working yet
 	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webWorkers']);
 	grunt.registerTask('build', ['default']);
+	grunt.registerTask('dev', ['cssmin', 'copy', 'i18n', 'webWorkers', 'watch:webWorkers']);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
 	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
 
 	grunt.registerTask('webWorkers', [
 		'shell:coreWebWorkerFile',
-		'shell:webworkersUtilsFile',
+		'shell:webWorkersUtilsFile',
 		'uglify:coreWebWorker',
 		'uglify:coreUtils',
 		'uglify:dataTypeWebWorkers',

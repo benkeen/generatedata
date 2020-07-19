@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "grunt & yarn build & yarn webpack",
+    "dev": "grunt dev & yarn build & yarn webpack",
     "prod": "grunt & yarn build & yarn webpackProd",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
@@ -121,6 +121,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-md5": "^0.1.12",
     "grunt-shell": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",

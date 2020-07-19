@@ -4,12 +4,24 @@
 // import { GenerationProps, GenerationTemplate, GenerationTemplateRow } from "../../../types/general";
 // import { DTGenerateResult, DTGenerationExistingRowData } from "../../../types/dataTypes";
 
+import { DataTypeFolder } from '../../_plugins';
+
 let workerResources: any;
+let loadedDataTypeWorkers: any = {};
 let dataTypeWorkerMap: any = {};
+const workerQueue: any = {};
 
 onmessage = function (e) {
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
+
+	// load the Data Type generator web worker files. Pretty sure this caches them so we can safely import them
+	// every time
+	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
+		if (!loadedDataTypeWorkers[dataType]) {
+			loadedDataTypeWorkers[dataType] = new Worker(dataTypeWorkerMap[dataType])
+		}
+	});
 
 	// load main utils file
 	// importScripts("./" + dataTypes[folder]);
@@ -25,9 +37,8 @@ const generateBatch = (data: any): Promise<any> => {
 
 		// for the preview panel we always generate the max num of preview panel rows so when the user changes the
 		// visible rows the data's already there
-		const lastRowNum = 1000; // data.numResults;
+		const lastRowNum = 100; // data.numResults;
 		const rowPromises = [];
-
 
 		// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
 		// them all in a loop
@@ -89,40 +100,81 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 	});
 };
 
-// Data Type generator functions can be sync or async, depending on their needs. This method calls the generator
-// method for all data types in a particular process batch and returns an array of promises, which when resolved,
-// returning the generated data for that row
 const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any): Promise<any>[] => (
 	cells.map((currCell: any) => {
 		let dataType = currCell.dataType;
-		let worker = new Worker(dataTypeWorkerMap[dataType]);
 
 		return new Promise((resolve, reject) => {
-			worker.postMessage({
+			queueJob(dataType, {
 				rowNum: rowNum,
-				i18n: i18n.dataTypes[currCell.dataType],
+				i18n: i18n.dataTypes[dataType],
 				countryI18n: i18n.countries,
 				rowState: currCell.rowState,
 				existingRowData: currRowData,
 				workerResources: {
 					coreUtils: workerResources.coreUtils
 				}
-			});
-
-			worker.onmessage = (response: any) => {
-				if (typeof response.then === 'function') {
-					// TODO
-					//response.then()
-				} else {
-					resolve(response.data);
-				}
-			};
-
-			worker.onerror = (resp: any) => {
-				console.log('error: ', resp);
-				reject(resp);
-			};
+			}, resolve, reject);
 		});
 	})
 );
 
+
+const queueJob = (dataType: DataTypeFolder, payload: any, resolve: any, reject: any) => {
+	if (!workerQueue[dataType]) {
+		workerQueue[dataType] = {
+			processing: false,
+			queue: []
+		};
+	}
+
+	workerQueue[dataType].queue.push({
+		payload,
+		resolve,
+		reject
+	});
+
+	processQueue(dataType);
+};
+
+
+const processQueue = (dataType: DataTypeFolder) => {
+	if (workerQueue[dataType].processing) {
+		return;
+	}
+	const queue = workerQueue[dataType].queue;
+	const worker = loadedDataTypeWorkers[dataType];
+
+	if (!queue.length) {
+		return;
+	}
+
+	workerQueue[dataType].processing = true;
+	const { payload, resolve, reject } = queue[0];
+
+	worker.postMessage(payload);
+
+	// Data Type generator functions can be sync or async, depending on their needs. This method calls the generator
+	// method for all data types in a particular process batch and returns an array of promises, which when resolved,
+	// returning the generated data for that row
+	worker.onmessage = (response: any) => {
+		if (typeof response.then === 'function') {
+			// TODO
+			//response.then()
+		} else {
+			resolve(response.data);
+			processNextItem(dataType);
+		}
+	};
+
+	worker.onerror = (resp: any) => {
+		reject(resp);
+		processNextItem(dataType);
+	};
+};
+
+const processNextItem = (dataType: DataTypeFolder) => {
+	workerQueue[dataType].queue.shift();
+	workerQueue[dataType].processing = false;
+	processQueue(dataType);
+};
