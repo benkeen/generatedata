@@ -1,5 +1,5 @@
 export default {
-	"core": "coreWorker-344845949ff13dbb38dbd8358b3f84cd.js",
+	"core": "coreWorker-c79bf4fe189d73082def5e1306658644.js",
 	"dataTypes": {
 		"Names": "Names.generator-fd2ded286a1cda7871ecb81e965f5de4.js",
 		"Phone": "Phone.generator-22da32ada80ba7e7f0706fc06de7e1e6.js"

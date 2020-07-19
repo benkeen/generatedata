@@ -133,29 +133,24 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 			}
 		});
 
-		coreWorker.onmessage = (data) => {
-			console.log("response from core worker: ", data);
-		};
+		coreWorker.onmessage = ({ data }) => {
+			console.log(data);
 
-		// this generates data for all rows that have a Data Type selected, but a title field value has to be
-		// entered for actually displaying in the preview panel
-		// generateRowData({
-		// }).then((data: any) => {
-		// 	const previewData: any = {};
-		// 	sortedRows.forEach((id: string, index: number) => {
-		// 		if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
-		// 			return;
-		// 		}
-		// 		previewData[id] = data.map((row: any): any => row[index]);
-		// 	});
-		//
-		// 	dispatch({
-		// 		type: REFRESH_PREVIEW_DATA,
-		// 		payload: {
-		// 			previewData
-		// 		}
-		// 	});
-		// });
+			const previewData: any = {};
+			sortedRows.forEach((id: string, index: number) => {
+				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
+					return;
+				}
+				previewData[id] = data.map((row: any): any => row[index]);
+			});
+
+			dispatch({
+				type: REFRESH_PREVIEW_DATA,
+				payload: {
+					previewData
+				}
+			});
+		};
 	};
 };
 

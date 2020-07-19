@@ -5,14 +5,17 @@ import { DataTypeFolder } from '../_plugins';
 export const getScriptVersion = (): string => coreConfig.version;
 
 let coreWorker: Worker;
-export const loadCoreWorker = () => {
+export const loadCoreWorker = (): void => {
 	coreWorker = new Worker(`./workers/${webWorkers.core}`);
 };
 
-export const getCoreWorker = () => coreWorker;
+export const getCoreWorker = (): Worker => coreWorker;
 
-export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]) => {
-	const map: any = {};
+export type DataTypeMap = {
+	[dataType in DataTypeFolder]?: string;
+};
+export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]): DataTypeMap => {
+	const map: DataTypeMap = {};
 	const dataTypeMap: any = webWorkers.dataTypes;
 	dataTypes.forEach((dataType: DataTypeFolder) => {
 		map[dataType] = dataTypeMap[dataType];
@@ -20,4 +23,4 @@ export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]) => {
 	return map;
 };
 
-export const getCoreWorkerUtils = () => webWorkers.utils;
+export const getCoreWorkerUtils = (): string => webWorkers.utils;

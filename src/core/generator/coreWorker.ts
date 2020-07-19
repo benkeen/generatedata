@@ -11,7 +11,9 @@ let loadedDataTypeWorkers: any = {};
 let dataTypeWorkerMap: any = {};
 const workerQueue: any = {};
 
-onmessage = function (e) {
+const context: Worker = self as any;
+
+context.onmessage = function (e) {
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
 
@@ -30,35 +32,33 @@ onmessage = function (e) {
 	generateBatch(e.data);
 };
 
+// this resolve the promise for every batch of data generated
+const generateBatch = (data: any): Promise<any> => new Promise((resolve) => {
+	const generationTemplate = data.template;
 
-const generateBatch = (data: any): Promise<any> => {
-	return new Promise((resolve) => {
-		const generationTemplate = data.template;
+	// for the preview panel we always generate the max num of preview panel rows so when the user changes the
+	// visible rows the data's already there
+	const lastRowNum = data.numResults;
+	const rowPromises: any = [];
 
-		// for the preview panel we always generate the max num of preview panel rows so when the user changes the
-		// visible rows the data's already there
-		const lastRowNum = 100; // data.numResults;
-		const rowPromises = [];
+	// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
+	// them all in a loop
+	for (let rowNum=1; rowNum<=lastRowNum; rowNum++) {
+		let currRowData: any[] = [];
+		rowPromises.push(processBatchSequence(generationTemplate, rowNum, data.i18n, currRowData));
+	}
 
-		// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
-		// them all in a loop
-		for (let rowNum=1; rowNum<=lastRowNum; rowNum++) {
-			let currRowData: any[] = [];
-			rowPromises.push(processBatchSequence(generationTemplate, rowNum, data.i18n, currRowData));
-		}
+	Promise.all(rowPromises)
+		.then((resp: any) => {
+			resolve();
+			context.postMessage(resp);
+		});
+});
 
-		Promise.all(rowPromises)
-			.then((data) => {
-				console.log("Final batch of data: ", data);
-				resolve(data);
-			});
-	});
-};
-
-const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[]) => {
+const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[]): any => {
 	const processBatches = Object.keys(generationTemplate);
 
-	return new Promise((resolveAll) => {
+	return new Promise((resolveAll): any => {
 		let sequence = Promise.resolve();
 
 		// process each batch sequentially. This ensures the data generated from one processing batch is available to any
