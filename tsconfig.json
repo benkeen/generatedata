@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "dom", "esnext"],
+    "lib": ["es6", "dom", "esnext", "webworker"],
     "outDir": "./dist/",
 	"sourceMap": true,
 	"esModuleInterop": true,

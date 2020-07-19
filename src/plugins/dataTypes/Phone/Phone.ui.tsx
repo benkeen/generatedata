@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import CreatablePillField from '~components/CreatablePillField';
 
 export type PhoneState = {
@@ -12,6 +12,8 @@ export const initialState: PhoneState = {
 	example: '1-Xxx-Xxx-xxxx',
 	option: ['1-Xxx-Xxx-xxxx']
 };
+
+export const rowStateReducer = (state: PhoneState): string[] => state.option;
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
@@ -55,4 +57,13 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		<p dangerouslySetInnerHTML={{ __html: i18n.helpText3 }} />
 	</>
 );
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(100) default NULL',
+		field_Oracle: 'varchar2(100) default NULL',
+		field_MSSQL: 'VARCHAR(100) NULL'
+	}
+});
+
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import styles from './Names.scss';
 
 export type NamesState = {
@@ -12,6 +12,8 @@ export const initialState: NamesState = {
 	example: 'Name Surname',
 	options: 'Name Surname'
 };
+
+export const rowStateReducer = (state: NamesState): string => state.options;
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (selected: DropdownOption): void => {
@@ -91,3 +93,11 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</div>
 	</>
 );
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(255) default NULL',
+		field_Oracle: 'varchar2(255) default NULL',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});

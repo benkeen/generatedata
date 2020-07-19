@@ -134,8 +134,6 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		});
 
 		coreWorker.onmessage = ({ data }) => {
-			console.log(data);
-
 			const previewData: any = {};
 			sortedRows.forEach((id: string, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {

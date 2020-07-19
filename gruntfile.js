@@ -72,12 +72,11 @@ window.gd.localeLoaded(i18n);
 
 		const map = {};
 		folders.forEach((folder) => {
-			const webworkerFile = path.join(__dirname, `/src/plugins/dataTypes/${folder}/${folder}.generator.js`);
+			const webworkerFile = path.join(__dirname, `/src/plugins/dataTypes/${folder}/${folder}.generator.ts`);
 			if (!fs.existsSync(webworkerFile)) {
 				return;
 			}
-
-			map[`dist/workers/${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.js`];
+			map[`dist/workers/${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.ts`];
 		});
 
 		return map;
@@ -96,6 +95,16 @@ window.gd.localeLoaded(i18n);
 
 	const generateWorkerMapFile = () => {
 		fs.writeFileSync(`./src/_pluginWebWorkers.ts`, `export default ${JSON.stringify(webWorkerMap, null, '\t')};`);
+	};
+
+	const getWebWorkerRollupCommands = () => {
+		const files = [
+			'src/core/generator/coreWorker.ts',
+			'src/utils/webWorkerUtils.ts'
+		].concat(Object.values(dataTypeWebWorkerMap));
+
+		const commands = files.map((file) => `npx rollup -c --config-src=${file}`);
+		return commands.join(' && ');
 	};
 
 	const webWorkerMap = {
@@ -123,27 +132,27 @@ window.gd.localeLoaded(i18n);
 			}
 		},
 
-		uglify: {
-			coreWebWorker: {
-				options: {
-					sourceMap: true
-				},
-				files: {
-					'dist/workers/coreWorker.js': ['src/core/generator/coreWorker.js']
-				}
-			},
-			coreUtils: {
-				files: {
-					'dist/coreWorker.js': ['src/core/generator/coreWorker.js']
-				}
-			},
-			dataTypeWebWorkers: {
-				options: {
-					sourceMap: true
-				},
-				files: dataTypeWebWorkerMap
-			}
-		},
+		// uglify: {
+		// 	coreWebWorker: {
+		// 		options: {
+		// 			sourceMap: true
+		// 		},
+		// 		files: {
+		// 			'dist/workers/coreWorker.js': ['src/core/generator/coreWorker.js']
+		// 		}
+		// 	},
+		// 	coreUtils: {
+		// 		files: {
+		// 			'dist/coreWorker.js': ['src/core/generator/coreWorker.js']
+		// 		}
+		// 	},
+		// 	dataTypeWebWorkers: {
+		// 		options: {
+		// 			sourceMap: true
+		// 		},
+		// 		files: dataTypeWebWorkerMap
+		// 	}
+		// },
 
 		copy: {
 			main: {
@@ -166,12 +175,9 @@ window.gd.localeLoaded(i18n);
 			webpackProd: {
 				command: 'yarn prod'
 			},
-			coreWebWorkerFile: {
-				command: 'npx rollup -c --config-src=src/core/generator/coreWorker.ts'
+			webWorkers: {
+				command: getWebWorkerRollupCommands()
 			},
-			webWorkersUtilsFile: {
-				command: 'npx rollup -c --config-src=src/utils/webWorkerUtils.ts'
-			}
 		},
 
 		watch: {
@@ -237,11 +243,13 @@ window.gd.localeLoaded(i18n);
 	grunt.registerTask('i18n', generateI18nBundles);
 
 	grunt.registerTask('webWorkers', [
-		'shell:coreWebWorkerFile',
-		'shell:webWorkersUtilsFile',
-		'uglify:coreWebWorker',
-		'uglify:coreUtils',
-		'uglify:dataTypeWebWorkers',
+		'shell:webWorkers',
+		// 'shell:coreWebWorkerFile',
+		// 'shell:webWorkersUtilsFile',
+		// 'shell:dataTypeWebWorkers',
+		// 'uglify:coreWebWorker',
+		// 'uglify:coreUtils',
+		// 'uglify:dataTypeWebWorkers',
 		'md5:dataTypeWebWorkers',
 		'md5:coreWebWorker',
 		'md5:coreUtils',
