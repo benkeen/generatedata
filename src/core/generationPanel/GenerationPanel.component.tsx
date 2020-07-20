@@ -30,8 +30,12 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 	const getContent = () => {
 		if (isGenerating) {
 			const percentage = Math.round((numGeneratedRows / numRowsToGenerate) * 100);
+
 			return (
-				<CircularProgressWithLabel value={percentage} />
+				<div>
+					<h3>Step 1: Generating data</h3>
+					<CircularProgressWithLabel value={percentage} />
+				</div>
 			);
 		}
 

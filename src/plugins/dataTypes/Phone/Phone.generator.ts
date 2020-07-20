@@ -1,8 +1,7 @@
 declare var utils: any;
 
 let coreUtilsLoaded = false;
-
-const onmessage = (e: any) => {
+onmessage = (e: any) => {
 	if (!coreUtilsLoaded) {
 		importScripts(e.data.workerResources.coreUtils);
 		coreUtilsLoaded = true;

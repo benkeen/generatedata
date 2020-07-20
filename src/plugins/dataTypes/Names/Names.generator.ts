@@ -86,7 +86,8 @@ const getRandomGender = () => utils.randomUtils.getRandomBool() ? genders[0] : g
 
 
 let coreUtilsLoaded = false;
-onmessage = (e) => {
+
+onmessage = (e: any) => {
 	if (!coreUtilsLoaded) {
 		importScripts(e.data.workerResources.coreUtils);
 		coreUtilsLoaded = true;
@@ -149,5 +150,5 @@ onmessage = (e) => {
 	});
 };
 
-// stupid TS: https://stackoverflow.com/a/41975448/1217608
-export {};
+// stupid *&^@# TS: https://stackoverflow.com/a/41975448/1217608
+export { };

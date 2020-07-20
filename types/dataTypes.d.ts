@@ -1,5 +1,5 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
-import { AnyObject, GDLocale, Tag } from './general';
+import { AnyObject, Tag } from './general';
 import { DataTypeFolder } from '../src/_plugins';
 
 export type DTBundle = {
@@ -84,13 +84,23 @@ export type DTOptionsProps = {
 
 // Data Type <Example /> props
 export type DTExampleProps = {
-    coreI18n: any;
-	countryI18n: any;
-    i18n: any;
     data: any;
 	id: string;
 	dimensions: Dimensions;
     onUpdate: (data: AnyObject) => void;
+	coreI18n: any;
+	countryI18n: any;
+	i18n: any;
+};
+
+// Data Type <Settings /> props
+export type DTSettingsProps = {
+	data: any;
+	id: string;
+	onUpdate: (data: AnyObject) => void;
+	coreI18n: any;
+	countryI18n: any;
+	i18n: any;
 };
 
 // Data Type <Help /> props

@@ -9,6 +9,7 @@ import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { dataTypeNames } from '~utils/dataTypeUtils';
 import { exportTypeNames } from '~utils/exportTypeUtils';
 import C from '../../constants';
+import { UPDATE_GENERATED_ROWS_COUNT } from './generator.actions';
 
 export type DataRow = {
 	id: string;
@@ -336,20 +337,14 @@ export const reducer = (state: GeneratorState = {
 		case actions.UPDATE_NUM_ROWS_TO_GENERATE:
 			return {
 				...state,
-				numRowsToGenerate: action.payload.numRowsToGenerate
+				numRowsToGenerate: parseInt(action.payload.numRowsToGenerate, 10)
 			};
 
-		case actions.SET_BATCH_GENERATED_COMPLETE: {
-			const { numRowsToGenerate, numGeneratedRows } = state;
-
-			let rowCount = numGeneratedRows + C.GENERATION_BATCH_SIZE;
-			if (rowCount > numRowsToGenerate) {
-				rowCount = numRowsToGenerate;
-			}
-
+		case actions.UPDATE_GENERATED_ROWS_COUNT: {
+			const { numGeneratedRows } = action.payload;
 			return {
 				...state,
-				numGeneratedRows: rowCount
+				numGeneratedRows
 			};
 		}
 

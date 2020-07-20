@@ -133,13 +133,15 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 			}
 		});
 
-		coreWorker.onmessage = ({ data }) => {
+		coreWorker.onmessage = (resp: MessageEvent) => {
+			const { data } = resp;
+			const { generatedData } = data;
 			const previewData: any = {};
 			sortedRows.forEach((id: string, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
 					return;
 				}
-				previewData[id] = data.map((row: any): any => row[index]);
+				previewData[id] = generatedData.map((row: any): any => row[index]);
 			});
 
 			dispatch({
@@ -242,44 +244,39 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	const template = selectors.getGenerationTemplate(state);
 	const numRowsToGenerate = selectors.getNumRowsToGenerate(state);
 
-	// ------------------------------------------------------------------
+	const coreWorker = getCoreWorker();
 
-	const numBatches = Math.ceil(numRowsToGenerate / C.GENERATION_BATCH_SIZE);
-	const remainder = numRowsToGenerate % C.GENERATION_BATCH_SIZE;
-	const lastBatchSize = remainder === 0 ? C.GENERATION_BATCH_SIZE : remainder;
-
-	// convert this to sequence of promises
-	for (let batchNum=1; batchNum<=numBatches; batchNum++) {
-		let numResults = C.GENERATION_BATCH_SIZE;
-		if (batchNum === numBatches) {
-			numResults = lastBatchSize;
+	coreWorker.postMessage({
+		numResults: numRowsToGenerate,
+		batchSize: C.GENERATION_BATCH_SIZE,
+		columns: selectors.getColumns(state),
+		i18n: getStrings(),
+		template,
+		workerResources: {
+			coreUtils: getCoreWorkerUtils(),
+			dataTypes: getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[])
 		}
+	});
 
-		// this generates data for all rows that have a Data Type selected, but a title field value has to be
-		// entered for actually displaying in the preview panel
-		// generateRowData({
-		// 	numResults,
-		// 	columns: selectors.getColumns(state),
-		// 	template
-		// }).then((data: any) => {
-		// 	console.log('___________________________________');
-		// 	console.log(data);
-		//
-		// 	// call export type here to get generated string
-		//
-		// 	dispatch(setBatchGeneratedComplete());
-		// });
-	}
+	coreWorker.onmessage = (response: any) => {
+		const { numGeneratedRows } = response.data; // data, completedBatchNum, isComplete
+		dispatch(updateGeneratedRowsCount(numGeneratedRows));
 
-	// ------------------------------------------------------------------
-
+		// dispatch(setBatchGeneratedComplete());
+	};
 };
+
+
+export const UPDATE_GENERATED_ROWS_COUNT = 'UPDATE_GENERATED_ROWS_COUNT';
+export const updateGeneratedRowsCount = (numGeneratedRows: number) => ({
+	type: UPDATE_GENERATED_ROWS_COUNT,
+	payload: {
+		numGeneratedRows
+	}
+});
 
 export const CANCEL_GENERATION = 'CANCEL_GENERATION';
 export const cancelGeneration = (): GDAction => ({ type: CANCEL_GENERATION });
-
-export const SET_BATCH_GENERATED_COMPLETE = 'SET_BATCH_GENERATED_COMPLETE';
-export const setBatchGeneratedComplete = (): GDAction => ({ type: SET_BATCH_GENERATED_COMPLETE });
 
 export const CLEAR_GRID = 'CLEAR_GRID';
 export const clearGrid = (): any => (dispatch: Dispatch): void => {

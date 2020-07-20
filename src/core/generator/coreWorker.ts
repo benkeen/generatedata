@@ -1,9 +1,3 @@
-// this is the main generator web worker file for the Core script. It's used for generating the entire data set.
-// right now it's es5. SUUUUURE be nice to at least use es6 if not TS
-
-// import { GenerationProps, GenerationTemplate, GenerationTemplateRow } from "../../../types/general";
-// import { DTGenerateResult, DTGenerationExistingRowData } from "../../../types/dataTypes";
-
 import { DataTypeFolder } from '../../_plugins';
 
 let workerResources: any;
@@ -13,7 +7,9 @@ const workerQueue: any = {};
 
 const context: Worker = self as any;
 
-context.onmessage = function (e) {
+context.onmessage = (e: any) => {
+	const { batchSize, numResults } = e.data;
+
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
 
@@ -25,33 +21,66 @@ context.onmessage = function (e) {
 		}
 	});
 
-	// load main utils file
-	// importScripts("./" + dataTypes[folder]);
-
 	// this would just keep looping like a crazy person. Every completed batch would be posted back to the parent script
-	generateBatch(e.data);
+	const numBatches = Math.ceil(numResults / batchSize);
+	generateNextBatch(e.data, numBatches, batchSize, 1);
 };
 
-// this resolve the promise for every batch of data generated
-const generateBatch = (data: any): Promise<any> => new Promise((resolve) => {
-	const generationTemplate = data.template;
 
-	// for the preview panel we always generate the max num of preview panel rows so when the user changes the
-	// visible rows the data's already there
-	const lastRowNum = data.numResults;
+const generateNextBatch = (data: any, numBatches: number, batchSize: number, batchNum: number) => {
+	const { firstRow, lastRow } = getBatchInfo(data.numResults, numBatches, batchSize, batchNum);
+
+	generateBatch({
+		template: data.template,
+		numResults: data.numResults,
+		i18n: data.i18n,
+		firstRow,
+		lastRow,
+		batchNum
+	})
+		.then(() => {
+			if (batchNum === numBatches) {
+				return;
+			}
+			generateNextBatch(data, numBatches, batchSize, batchNum+1);
+		});
+};
+
+
+const getBatchInfo = (numResults: number, numBatches: number, batchSize: number, batchNum: number): any => {
+	const firstRow = ((batchNum - 1) * batchSize) + 1;
+	let lastRow = batchNum * batchSize;
+	if (batchNum === numBatches) {
+		lastRow = firstRow + (numResults % batchSize) - 1;
+	}
+
+	return {
+		firstRow,
+		lastRow
+	};
+};
+
+
+// this resolve the promise for every batch of data generated
+const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum }: any): Promise<any> => new Promise((resolve) => {
 	const rowPromises: any = [];
 
 	// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
 	// them all in a loop
-	for (let rowNum=1; rowNum<=lastRowNum; rowNum++) {
+	for (let rowNum=firstRow; rowNum<=lastRow; rowNum++) {
 		let currRowData: any[] = [];
-		rowPromises.push(processBatchSequence(generationTemplate, rowNum, data.i18n, currRowData));
+		rowPromises.push(processBatchSequence(template, rowNum, i18n, currRowData));
 	}
 
 	Promise.all(rowPromises)
-		.then((resp: any) => {
+		.then((generatedData: any) => {
 			resolve();
-			context.postMessage(resp);
+
+			context.postMessage({
+				completedBatchNum: batchNum,
+				numGeneratedRows: lastRow,
+				generatedData
+			});
 		});
 });
 
