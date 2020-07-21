@@ -7,6 +7,7 @@ const workerQueue: any = {};
 
 const context: Worker = self as any;
 
+
 context.onmessage = (e: any) => {
 	const { batchSize, numResults } = e.data;
 

@@ -82,6 +82,21 @@ window.gd.localeLoaded(i18n);
 		return map;
 	})();
 
+	const exportTypeWebWorkerMap = (() => {
+		const baseFolder = path.join(__dirname, `/src/plugins/exportTypes`);
+		const folders = fs.readdirSync(baseFolder);
+
+		const map = {};
+		folders.forEach((folder) => {
+			const webworkerFile = path.join(__dirname, `/src/plugins/exportTypes/${folder}/${folder}.generator.ts`);
+			if (!fs.existsSync(webworkerFile)) {
+				return;
+			}
+			map[`dist/workers/${folder}.generator.js`] = [`src/plugins/exportTypes/${folder}/${folder}.generator.ts`];
+		});
+
+		return map;
+	})();
 
 	// returns an object where the keys + values are the same. Takes the keys out of the object passed
 	const getIdentifyMap = (obj) => {
@@ -99,16 +114,20 @@ window.gd.localeLoaded(i18n);
 
 	const getWebWorkerRollupCommands = () => {
 		const files = [
-			'src/core/generator/coreWorker.ts',
+			'src/core/generator/dataTypes.worker.ts',
 			'src/utils/webWorkerUtils.ts'
-		].concat(Object.values(dataTypeWebWorkerMap));
+		]
+			.concat(Object.values(dataTypeWebWorkerMap))
+			.concat(Object.values(exportTypeWebWorkerMap));
 
 		const commands = files.map((file) => `npx rollup -c --config-src=${file}`);
 		return commands.join(' && ');
 	};
 
 	const webWorkerMap = {
-		core: '',
+		coreWorker: '',
+		coreDataTypeWorker: '',
+		coreExportTypeWorker: '',
 		dataTypes: {},
 		exportTypes: {}
 	};
@@ -131,28 +150,6 @@ window.gd.localeLoaded(i18n);
 				}
 			}
 		},
-
-		// uglify: {
-		// 	coreWebWorker: {
-		// 		options: {
-		// 			sourceMap: true
-		// 		},
-		// 		files: {
-		// 			'dist/workers/coreWorker.js': ['src/core/generator/coreWorker.js']
-		// 		}
-		// 	},
-		// 	coreUtils: {
-		// 		files: {
-		// 			'dist/coreWorker.js': ['src/core/generator/coreWorker.js']
-		// 		}
-		// 	},
-		// 	dataTypeWebWorkers: {
-		// 		options: {
-		// 			sourceMap: true
-		// 		},
-		// 		files: dataTypeWebWorkerMap
-		// 	}
-		// },
 
 		copy: {
 			main: {
@@ -180,10 +177,11 @@ window.gd.localeLoaded(i18n);
 			},
 		},
 
+		// expand to include plugin files too
 		watch: {
 			webWorkers: {
 				files: [
-					'src/core/generator/coreWorker.ts'
+					'src/core/generator/dataTypes.worker.ts'
 				],
 				tasks: ['webWorkers'],
 			}
@@ -192,7 +190,7 @@ window.gd.localeLoaded(i18n);
 		md5: {
 			coreWebWorker: {
 				files: {
-					'dist/workers/coreWorker.js': 'dist/workers/coreWorker.js'
+					'dist/workers/dataTypes.worker.js': 'dist/workers/dataTypes.worker.js'
 				},
 				options: {
 					after: (fileChanges) => {
@@ -223,6 +221,20 @@ window.gd.localeLoaded(i18n);
 						webWorkerMap.dataTypes = map;
 					}
 				}
+			},
+			exportTypeWebWorkers: {
+				files: getIdentifyMap(exportTypeWebWorkerMap),
+				options: {
+					after: (fileChanges) => {
+						const map = {};
+						fileChanges.forEach((row) => {
+							const filename = path.basename(row.newPath);
+							const [exportTypeFolder] = filename.split('.');
+							map[exportTypeFolder] = path.basename(row.newPath);
+						});
+						webWorkerMap.exportTypes = map;
+					}
+				}
 			}
 		}
 	});
@@ -244,13 +256,8 @@ window.gd.localeLoaded(i18n);
 
 	grunt.registerTask('webWorkers', [
 		'shell:webWorkers',
-		// 'shell:coreWebWorkerFile',
-		// 'shell:webWorkersUtilsFile',
-		// 'shell:dataTypeWebWorkers',
-		// 'uglify:coreWebWorker',
-		// 'uglify:coreUtils',
-		// 'uglify:dataTypeWebWorkers',
 		'md5:dataTypeWebWorkers',
+		'md5:exportTypeWebWorkers',
 		'md5:coreWebWorker',
 		'md5:coreUtils',
 		'generateWorkerMapFile'

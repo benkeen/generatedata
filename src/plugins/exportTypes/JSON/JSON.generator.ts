@@ -1,12 +1,22 @@
 import { ExportTypeGenerationData } from '~types/general';
-// import { JSONSettings } from './JSON.ui';
-import { isNumeric } from '~utils/generalUtils';
+
+declare var utils: any;
 
 
 // VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)
 
+onmessage = (e: MessageEvent) => {
+
+};
+
+
+
+// --------------------------------------------------------------------------------------------------------------
+
+
+
 // generationSettings: GenerationSettings, jsonSettings: JSONSettings
-export const generate = (): any => {
+const generate = (): any => {
 	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
 	// $this->determineNumericFields($template);
 	// $this->determineBooleanFields($template);
@@ -26,7 +36,7 @@ export const generate = (): any => {
 };
 
 
-export const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
+const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
 	return getNonNestedData(generationData, stripWhitespace);
 };
 
@@ -55,7 +65,7 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 			// TODO - add "infer" option. Encase all values in double quotes unless it's a number column, or it's a
 			// boolean column and it's a valid JS boolean
 			let value = row[colIndex];
-			if (!isNumeric(value) && !isJavascriptBoolean(value)) {
+			if (!utils.generalUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
 				value = `"${value}"`;
 			}
 			content += `${comma}${newline}${tab}${tab}"${propName}":${space}${value}`;
@@ -73,7 +83,7 @@ const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitesp
 };
 
 
-export const generateComplex = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
+const generateComplex = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
 	let content = '';
 	const colTitles = generationData.columns.map(({ title }: any) => title);
 
@@ -92,7 +102,7 @@ export const generateComplex = (generationData: ExportTypeGenerationData, stripW
 		const rowValsArr: any[] = [];
 		colTitles.forEach((colTitle: string, colIndex: number) => {
 			let value = row[colIndex];
-			if (!isNumeric(value) && !isJavascriptBoolean(value)) {
+			if (!utils.generalUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
 				value = `"${value}"`;
 			}
 			rowValsArr.push(value);
@@ -157,84 +167,5 @@ export const generateComplex = (generationData: ExportTypeGenerationData, stripW
 // 	// return "data{$time}.json";
 // };
 
-export const isJavascriptBoolean = (n: any): boolean => n === 'true' || n === 'false' || n === true || n === false;
-export const isNested = (columnTitles: string[]): boolean => columnTitles.some((i: string) => /\./.test(i));
-
-
-// const getColumnValue = (prop: string, value: any) => {
-// 	const propName: string = prop.replace(/"/, '\"');
-
-// 	// x.y.z field names => nested JSON
-// 	const levels = propName.split('.');
-// 	const fieldName = levels[levels.length - 1];
-
-// // How many nested levels match the previous column?
-// for ($k = 0; $k < count($levels) && $k < count($nested) && $nested[$k] === $levels[$k]; $k++) {
-// }
-//
-// // Pop closing levels
-// while (count($nested) > $k) {
-//     $content .= $newline . str_repeat($tab, count($nested) + 1) . "}";
-//     array_pop($nested);
-//     $comma = ",";
-// }
-//
-// // Push new nested levels
-// for ($l = $k; $l < count($levels); $l++) {
-//     $lev = $levels[$l];
-//     array_push($nested, $lev);
-//     $content .= "{$comma}{$newline}" . str_repeat($tab, $l + 2) . "\"{$lev}\":{$space}{";
-//     $comma = "";
-// }
-// };
-
-/*
-[
-    {
-        prop: 'a',
-        value: 'whatever',
-        children: []
-    },
-    {
-        prop: 'b',
-        children: [
-            {
-                prop: 'c':
-                value: 'whatever',
-            },
-            {
-                prop: 'd',
-                children: [
-
-                ]
-            }
-        ]
-    },
-]
-*/
-
-
-/*
-- a
-- b.c
-- b.d.e
-- b.d.f
-- b.p.a
-- b.p.b
-
-	[
-		{
-			"a": "et.commodo@amet.org",
-			"b": {
-				"c": "vestibulum.neque.sed@nuncsedlibero.org",
-				"d": {
-					"e": "ac@musAeneaneget.ca",
-					"f": "tellus.Suspendisse@etpedeNunc.ca"
-				},
-				"p": {
-					"a": "est.ac@nostra.ca",
-					"b": "et.tristique@rutrum.org"
-				}
-			}
-		}
-    */
+const isJavascriptBoolean = (n: any): boolean => n === 'true' || n === 'false' || n === true || n === false;
+const isNested = (columnTitles: string[]): boolean => columnTitles.some((i: string) => /\./.test(i));

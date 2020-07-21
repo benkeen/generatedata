@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import { generateSimple, generateComplex } from './JSON.generator';
+// import { generateSimple, generateComplex } from './JSON.generator';
 import './JSON.scss';
 import { ETPreviewProps } from '~types/exportTypes';
 
@@ -11,12 +11,13 @@ require('codemirror/mode/xml/xml');
 require('codemirror/mode/markdown/markdown');
 
 
+// TODO make this part of the CORE, biatch!
+
 const Preview = ({ data, theme, exportTypeSettings, showRowNumbers, enableLineWrapping }: ETPreviewProps): JSX.Element | null => {
 	const [code, setCode] = React.useState('');
 
 	// TODO this is painting twice here, every time the export type settings change
 
-	// rethink performance here
 	React.useEffect(() => {
 		const content = exportTypeSettings.dataStructureFormat === 'simple'
 			? generateSimple(data, false)
