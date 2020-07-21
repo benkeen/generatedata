@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
 import { BuilderLayout } from '../../builder/Builder.component';
-import { PreviewPanelLoader } from '../../previewPanel/PreviewPanelLoader.component';
+// import { PreviewPanelLoader } from '../../previewPanel/PreviewPanelLoader.component';
 import { DataRow, DataRows, GeneratorPanel } from './generator.reducer';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
 import * as langUtils from '~utils/langUtils';
 import { getUnique } from '~utils/arrayUtils';
 import { processBatches, getDataType } from '~utils/dataTypeUtils';
-import { getExportTypePreview, getExportTypeLabel as exportTypeUtilsGetExportTypeLabel } from '~utils/exportTypeUtils';
+import { getExportTypeLabel as exportTypeUtilsGetExportTypeLabel } from '~utils/exportTypeUtils';
 import { ColumnData, GenerationTemplate, Store } from '~types/general';
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;

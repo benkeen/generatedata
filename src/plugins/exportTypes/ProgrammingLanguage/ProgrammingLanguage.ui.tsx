@@ -77,3 +77,15 @@ export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 };
 
 export const getExportTypeLabel = (data: ProgrammingLanguageState): string => data ? langMap[data.language] : '';
+
+
+export const getCodeMirrorMode = (settings: ProgrammingLanguageState) => {
+	const modes = {
+		JavaScript: 'text/javascript',
+		CSharp: 'text/x-csharp',
+		Perl: 'text/x-perl',
+		PHP: 'text/x-php',
+		Ruby: 'text/x-ruby'
+	};
+	return modes[settings.language];
+};

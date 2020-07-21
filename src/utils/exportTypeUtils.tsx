@@ -21,10 +21,9 @@ export const exportTypeOptions = Object.keys(exportTypes)
 
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	return new Promise((resolve, reject) => {
-
-		let mainPluginLoaded = false;
-		let codeMirrorModesLoaded = false;
-		let numCodeMirrorModes = 0;
+		// let mainPluginLoaded = false;
+		// let codeMirrorModesLoaded = false;
+		// let numCodeMirrorModes = 0;
 
 		// import the main code
 		import(
@@ -34,22 +33,28 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 		)
 			.then((def: any) => {
 				loadedExportTypes[exportType] = {
-					generate: def.generate,
+					Settings: def.Settings,
 					initialState: def.initialState,
 					getExportTypeLabel: def.getExportTypeLabel,
-					Settings: def.Settings
+					getCodeMirrorMode: def.getCodeMirrorMode
 				};
-				resolve(def);
+				// resolve(def);
 			})
 			.catch((e) => {
 				reject(e);
 			});
 
-		console.log(exportTypes[exportType]);
-
-		// also load the requested codemirror modes
-		// exportTypes[exportType].forEach(())
-
+		// load the code mirror mode files.
+		exportTypes[exportType].codeMirrorModes.map((mode) => {
+			import(
+				/* webpackChunkName: "codeMirror-[request]" */
+				/* webpackMode: "lazy" */
+				`../../node_modules/codemirror/mode/${mode}`
+			)
+			.then(() => {
+				console.log("loaded: ", mode);
+			});
+		});
 	});
 };
 

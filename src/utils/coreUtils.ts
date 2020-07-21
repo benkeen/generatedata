@@ -7,7 +7,7 @@ export const getScriptVersion = (): string => coreConfig.version;
 let coreWorker: Worker;
 let coreDataTypeWorker: Worker;
 export const loadCoreWorker = (): void => {
-	coreWorker = new Worker(`./workers/${webWorkers.core}`);
+	coreWorker = new Worker(`./workers/${webWorkers.coreWorker}`);
 };
 
 export const getCoreWorker = (): Worker => coreWorker;

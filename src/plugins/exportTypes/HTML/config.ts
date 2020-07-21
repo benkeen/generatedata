@@ -1,5 +1,8 @@
-export default {
+import { ETDefinition } from '~types/exportTypes';
+
+const definition: ETDefinition = {
 	name: "HTML",
+	codeMirrorModes: [],
 	schema: {
 		"title": "HTML",
 		"$schema": "http://json-schema.org/draft-04/schema#",
@@ -15,3 +18,5 @@ export default {
 		"required": ["exportFormat"]
 	}
 };
+
+export default definition;
