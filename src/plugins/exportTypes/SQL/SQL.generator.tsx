@@ -2,6 +2,29 @@ import { ExportTypeGenerationData } from '~types/general';
 import { getNumericFieldColumnIndexes } from '~utils/generationUtils';
 import { SQLSettings } from './SQL.ui';
 
+/*
+	const [code, setCode] = React.useState('');
+
+	React.useEffect(() => {
+		let content = '';
+		if (exportTypeSettings.databaseType === 'MySQL') {
+			content = generateMySQL(data, exportTypeSettings);
+		} else if (exportTypeSettings.databaseType === 'Postgres') {
+			content = generatePostgres(data, exportTypeSettings);
+		} else if (exportTypeSettings.databaseType === 'SQLite') {
+			content = generateSQLite(data, exportTypeSettings);
+		} else if (exportTypeSettings.databaseType === 'Oracle') {
+			content = generateOracle(data, exportTypeSettings);
+		} else if (exportTypeSettings.databaseType === 'MSSQL') {
+			content = generateMSSQL(data, exportTypeSettings);
+		}
+		setCode(content);
+	}, [data, setCode, exportTypeSettings]);
+
+	onBeforeChange={(value): void => {
+		setCode(value);
+	}}
+*/
 
 export const generate = (): any => {
 
@@ -17,7 +40,6 @@ const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: numb
 	}
 	return val;
 };
-
 
 export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
 	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';

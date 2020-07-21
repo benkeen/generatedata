@@ -185,20 +185,19 @@ export const getPreviewPanelData = createSelector(
 	})
 );
 
-/**
- * Returns one of the following:
- * - the Export Type's preview component, assuming its loaded.
- */
-export const getExportTypePreviewComponent = createSelector(
-	getExportType,
-	getLoadedExportTypes,
-	(exportType, loadedExportTypes): any => {
-		if (loadedExportTypes[exportType as ExportTypeFolder]) {
-			return getExportTypePreview(exportType);
-		}
-		return PreviewPanelLoader;
-	}
-);
+// export const getExportTypePreviewComponent = createSelector(
+// 	getExportType,
+// 	getLoadedExportTypes,
+// 	(exportType, loadedExportTypes): any => {
+// 		if (loadedExportTypes[exportType as ExportTypeFolder]) {
+// 			return getExportTypePreview(exportType);
+// 		}
+// 		return PreviewPanelLoader;
+// 	}
+// );
+
+// export const getExportTypePreviewData = createSelector(
+// );
 
 export const getCoreI18n = createSelector(
 	mainSelectors.getLocale,

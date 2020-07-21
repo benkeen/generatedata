@@ -1,5 +1,4 @@
 import * as selectors from './generator.selectors';
-// import { generateRowData } from '../../generator/generator';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
@@ -247,7 +246,7 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	const template = selectors.getGenerationTemplate(state);
 	const numRowsToGenerate = selectors.getNumRowsToGenerate(state);
 
-	// this will now be getCoreWorker & pass in everything needed for both the data type worker & export type worker
+	// TODO this will now be getCoreWorker & pass in everything needed for both the data type worker & export type worker
 	const coreWorker = getDataTypeWorker();
 
 	coreWorker.postMessage({

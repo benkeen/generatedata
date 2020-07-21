@@ -1,9 +1,8 @@
 import { BuilderLayout } from '../src/core/builder/Builder.component';
 
 export type ETBundle = {
-	generate: any; // TODO
-	initialState: any; // TODO generics?
-	Preview: any;
+	initialState: any; // TODO generics
+	getCodeMirrorMode: (settings: any) => string; // TODO generics - data is same type as initialState
 	Settings?: any;
 	getExportTypeLabel?: (data: any) => string; // TODO generics - data is same type as initialState
 };
@@ -11,6 +10,7 @@ export type ETBundle = {
 export type ETDefinition = {
 	name: string;
 	schema: any;
+	codeMirrorModes: string[];
 };
 
 export type ETSettings = {
@@ -23,11 +23,11 @@ export type ETSettings = {
 };
 
 export type ETPreviewProps = {
-	numPreviewRows: number;
 	builderLayout: BuilderLayout;
 	exportTypeSettings: any; // TODO
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
-	data: any;
+	data: string;
+	codeMirrorMode: string;
 	theme: string;
 };

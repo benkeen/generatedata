@@ -2,6 +2,9 @@ import { ETDefinition } from '~types/exportTypes';
 
 const definition: ETDefinition = {
 	name: 'SQL',
+	codeMirrorModes: [
+		'sql/sql'
+	],
 	schema: {
 		title: 'SQL',
 		$schema: 'http://json-schema.org/draft-04/schema#',

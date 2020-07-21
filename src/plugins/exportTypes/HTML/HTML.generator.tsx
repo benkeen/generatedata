@@ -1,5 +1,24 @@
 import { ExportTypeGenerationData } from '~types/general';
 
+/*
+	React.useEffect(() => {
+		let content = '';
+		if (exportTypeSettings.exportFormat === 'table') {
+			content = generateTableFormat(data);
+		} else if (exportTypeSettings.exportFormat === 'ul') {
+			content = generateUlFormat(data);
+		} else if (exportTypeSettings.exportFormat === 'dl') {
+			content = generateDlFormat(data);
+		}
+		setCode(content);
+	}, [data, setCode, exportTypeSettings]);
+
+	if (!data.rows.length) {
+		return null;
+	}
+
+mode: 'xml',
+ */
 export const generate = (): any => {
 
 };

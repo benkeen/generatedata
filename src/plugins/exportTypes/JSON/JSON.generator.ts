@@ -2,38 +2,16 @@ import { ExportTypeGenerationData } from '~types/general';
 
 declare var utils: any;
 
-
-// VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)
-
 onmessage = (e: MessageEvent) => {
 
-};
+	// exportTypeSettings.dataStructureFormat === 'simple'
+// 	? generateSimple(data, false)
+// 	: generateComplex(data, false);
 
+};
 
 
 // --------------------------------------------------------------------------------------------------------------
-
-
-
-// generationSettings: GenerationSettings, jsonSettings: JSONSettings
-const generate = (): any => {
-	// figure out which fields are strictly numeric or JS boolean values. We don't wrap those values in double quotes
-	// $this->determineNumericFields($template);
-	// $this->determineBooleanFields($template);
-
-	// const generatedData = generator.generateExportData(generationSettings.generationData);
-	// let content = '';
-	// if (jsonSettings.dataStructureFormat === 'simple') {
-	// 	content = generateSimple(generatedData, generationSettings.stripWhitespace);
-	// } else {
-	// 	content = generateComplex(generatedData, generationSettings.stripWhitespace);
-	// }
-
-	return {
-		success: true,
-		content: '' // content
-	};
-};
 
 
 const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {

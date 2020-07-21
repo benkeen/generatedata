@@ -21,6 +21,12 @@ export const exportTypeOptions = Object.keys(exportTypes)
 
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	return new Promise((resolve, reject) => {
+
+		let mainPluginLoaded = false;
+		let codeMirrorModesLoaded = false;
+		let numCodeMirrorModes = 0;
+
+		// import the main code
 		import(
 			/* webpackChunkName: "ET-[request]" */
 			/* webpackMode: "lazy" */
@@ -31,7 +37,6 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 					generate: def.generate,
 					initialState: def.initialState,
 					getExportTypeLabel: def.getExportTypeLabel,
-					Preview: def.Preview,
 					Settings: def.Settings
 				};
 				resolve(def);
@@ -39,11 +44,14 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 			.catch((e) => {
 				reject(e);
 			});
+
+		console.log(exportTypes[exportType]);
+
+		// also load the requested codemirror modes
+		// exportTypes[exportType].forEach(())
+
 	});
 };
-
-// *** assumes the callee knows what they're doing & that they've checked the component has been loaded
-export const getExportTypePreview = (exportType: ExportTypeFolder): JSX.Element => loadedExportTypes[exportType]?.Preview;
 
 // *** assumes the callee knows what they're doing & that they've checked the component has been loaded
 export const getExportTypeLabel = (exportType: ExportTypeFolder, settings: any): string | null => {

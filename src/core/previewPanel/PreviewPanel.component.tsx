@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import { Controlled as CodeMirror } from 'react-codemirror2';
 import { useWindowSize } from 'react-hooks-window-size';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -11,6 +12,7 @@ import { BuilderLayout } from '../builder/Builder.component';
 import Portal from './PreviewPanelPortal.component';
 import C from '../constants';
 import * as styles from './PreviewPanel.scss';
+import { ETPreviewProps } from 'types/exportTypes';
 
 const ExportTypeButton = withStyles({
 	root: {
@@ -120,6 +122,8 @@ const PreviewPanel = ({
 		);
 	};
 
+	const codeMirrorMode = '';
+
 	const content = (
 		<div className={styles.panelContent}>
 			<div className={styles.topRow}>
@@ -150,14 +154,16 @@ const PreviewPanel = ({
 			{getNoResults()}
 
 			<div className={styles.preview} style={previewPanelStyles}>
-				<ExportTypePreview
-					numPreviewRows={numPreviewRows}
-					builderLayout={builderLayout}
-					exportTypeSettings={exportTypeSettings}
-					showRowNumbers={showRowNumbers}
-					enableLineWrapping={enableLineWrapping}
-					data={data}
-					theme={theme}
+				<CodeMirror
+					value={data}
+					onBeforeChange={() => {}}
+					options={{
+						mode: codeMirrorMode,
+						theme,
+						lineNumbers: showRowNumbers,
+						lineWrapping: enableLineWrapping,
+						readOnly: true
+					}}
 				/>
 			</div>
 		</div>

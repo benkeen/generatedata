@@ -194,7 +194,7 @@ window.gd.localeLoaded(i18n);
 				},
 				options: {
 					after: (fileChanges) => {
-						webWorkerMap.core = path.basename(fileChanges[0].newPath);
+						webWorkerMap.coreWorker = path.basename(fileChanges[0].newPath);
 					}
 				}
 			},

@@ -11,6 +11,8 @@ export const initialState: JSONSettings = {
 	dataStructureFormat: 'simple'
 };
 
+// VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)
+
 export const Settings: React.ReactNode = ({ data, id, i18n, onUpdate }: ETSettings) => {
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
@@ -18,6 +20,7 @@ export const Settings: React.ReactNode = ({ data, id, i18n, onUpdate }: ETSettin
 			[field]: value
 		});
 	};
+
 	return (
 		<div>
 			<div className={styles.structureFormatRow}>
@@ -45,3 +48,5 @@ export const Settings: React.ReactNode = ({ data, id, i18n, onUpdate }: ETSettin
 		</div>
 	);
 };
+
+export const getCodeMirrorMode = () => 'application/ld+json';
