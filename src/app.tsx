@@ -3,6 +3,9 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
+
+// @ts-ignore-line
+import * as codemirror from 'codemirror';
 import store, { persistor } from './core/store';
 import Page from './core/page/Page.container';
 import Builder from './core/builder/Builder.container';
@@ -11,6 +14,8 @@ import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
 import './core/store/generator/generator.reducer';
 import './styles/global.scss';
+
+window.CodeMirror = codemirror;
 
 /*
 routes:

@@ -9,6 +9,7 @@ import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import { Tooltip } from '../../components/tooltips';
 import { BuilderLayout } from '../builder/Builder.component';
+import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 import Portal from './PreviewPanelPortal.component';
 import C from '../constants';
 import * as styles from './PreviewPanel.scss';
@@ -124,6 +125,26 @@ const PreviewPanel = ({
 
 	const codeMirrorMode = '';
 
+	const getCodeMirrorPanel = () => {
+		return (
+			<PreviewPanelLoader />
+		);
+
+		return (
+			<CodeMirror
+				value={data}
+				onBeforeChange={() => {}}
+				options={{
+					mode: codeMirrorMode,
+					theme,
+					lineNumbers: showRowNumbers,
+					lineWrapping: enableLineWrapping,
+					readOnly: true
+				}}
+			/>
+		);
+	};
+
 	const content = (
 		<div className={styles.panelContent}>
 			<div className={styles.topRow}>
@@ -154,17 +175,7 @@ const PreviewPanel = ({
 			{getNoResults()}
 
 			<div className={styles.preview} style={previewPanelStyles}>
-				<CodeMirror
-					value={data}
-					onBeforeChange={() => {}}
-					options={{
-						mode: codeMirrorMode,
-						theme,
-						lineNumbers: showRowNumbers,
-						lineWrapping: enableLineWrapping,
-						readOnly: true
-					}}
-				/>
+				{getCodeMirrorPanel()}
 			</div>
 		</div>
 	);

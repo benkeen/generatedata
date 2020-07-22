@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import { BuilderLayout } from '../../builder/Builder.component';
-// import { PreviewPanelLoader } from '../../previewPanel/PreviewPanelLoader.component';
 import { DataRow, DataRows, GeneratorPanel } from './generator.reducer';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';

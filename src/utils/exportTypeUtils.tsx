@@ -20,42 +20,40 @@ export const exportTypeOptions = Object.keys(exportTypes)
 	});
 
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
-	return new Promise((resolve, reject) => {
-		// let mainPluginLoaded = false;
-		// let codeMirrorModesLoaded = false;
-		// let numCodeMirrorModes = 0;
-
-		// import the main code
+	const etBundle = new Promise((resolve, reject) => {
 		import(
 			/* webpackChunkName: "ET-[request]" */
 			/* webpackMode: "lazy" */
 			`../plugins/exportTypes/${exportType}/bundle`
 		)
 			.then((def: any) => {
+				console.log("ahh!");
 				loadedExportTypes[exportType] = {
 					Settings: def.Settings,
 					initialState: def.initialState,
 					getExportTypeLabel: def.getExportTypeLabel,
 					getCodeMirrorMode: def.getCodeMirrorMode
 				};
-				// resolve(def);
+				resolve(def);
 			})
 			.catch((e) => {
 				reject(e);
 			});
+	});
 
-		// load the code mirror mode files.
-		exportTypes[exportType].codeMirrorModes.map((mode) => {
-			import(
-				/* webpackChunkName: "codeMirror-[request]" */
-				/* webpackMode: "lazy" */
-				`../../node_modules/codemirror/mode/${mode}`
-			)
-			.then(() => {
+	const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode) => {
+		return new Promise((resolve, reject) => {
+			const modeFile = document.createElement('script');
+			modeFile.src = `./mode/${mode}.js`;
+			modeFile.onload = () => {
 				console.log("loaded: ", mode);
-			});
+				resolve();
+			};
+			document.body.appendChild(modeFile);
 		});
 	});
+
+	return Promise.all([...codeMirrorModes, etBundle]);
 };
 
 // *** assumes the callee knows what they're doing & that they've checked the component has been loaded

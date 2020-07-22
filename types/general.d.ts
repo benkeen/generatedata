@@ -5,6 +5,7 @@ import { DataTypeFolder } from '../src/_plugins';
 declare global {
     interface Window {
         gd: any;
+        CodeMirror: any;
         __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
     }
 }
