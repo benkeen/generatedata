@@ -184,19 +184,11 @@ export const getPreviewPanelData = createSelector(
 	})
 );
 
-// export const getExportTypePreviewComponent = createSelector(
-// 	getExportType,
-// 	getLoadedExportTypes,
-// 	(exportType, loadedExportTypes): any => {
-// 		if (loadedExportTypes[exportType as ExportTypeFolder]) {
-// 			return getExportTypePreview(exportType);
-// 		}
-// 		return PreviewPanelLoader;
-// 	}
-// );
-
-// export const getExportTypePreviewData = createSelector(
-// );
+export const selectedExportTypeLoaded = createSelector(
+	getExportType,
+	getLoadedExportTypes,
+	(exportType, loadedExportTypes) => loadedExportTypes[exportType]
+);
 
 export const getCoreI18n = createSelector(
 	mainSelectors.getLocale,
@@ -260,5 +252,15 @@ export const getExportTypeLabel = createSelector(
 			}
 		}
 		return i18n.EXPORT_TYPE_NAME;
+	}
+);
+
+export const getCodeMirrorMode = createSelector(
+	selectedExportTypeLoaded,
+	getExportType,
+	(loaded, exportType) => {
+		if (!loaded) {
+			return "";
+		}
 	}
 );

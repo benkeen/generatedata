@@ -124,6 +124,11 @@ window.gd.localeLoaded(i18n);
 		return commands.join(' && ');
 	};
 
+	// copies over the code mirror mode folder into /dist where it can be loaded async at runtime
+	const copyCodeMirrorModes = () => {
+
+	};
+
 	const webWorkerMap = {
 		coreWorker: '',
 		coreDataTypeWorker: '',
@@ -159,6 +164,17 @@ window.gd.localeLoaded(i18n);
 						cwd: 'src/images',
 						src: ['*'],
 						dest: 'dist/images/'
+					}
+				]
+			},
+
+			codeMirrorModes: {
+				files: [
+					{
+						expand: true,
+						cwd: 'node_modules/codemirror/mode',
+						src: ['**/*'],
+						dest: 'dist/codeMirrorModes/'
 					}
 				]
 			}

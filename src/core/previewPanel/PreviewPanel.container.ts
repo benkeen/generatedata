@@ -10,9 +10,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 	const exportTypeSettings = (settings[exportType]) ? settings[exportType] : {};
 
 	return {
-		// ExportTypePreview: selectors.getExportTypePreviewComponent(state),
 		i18n: selectors.getCoreI18n(state),
-
 		exportSettingsVisible: selectors.shouldShowExportSettings(state),
 		numPreviewRows: selectors.getNumPreviewRows(state),
 		builderLayout: selectors.getBuilderLayout(state),
@@ -20,8 +18,10 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		showRowNumbers: selectors.shouldShowRowNumbers(state),
 		enableLineWrapping: selectors.shouldEnableLineWrapping(state),
 		theme: selectors.getTheme(state),
+		exportTypeLoaded: selectors.selectedExportTypeLoaded(state),
 		exportTypeLabel: selectors.getExportTypeLabel(state),
 		exportTypeSettings,
+		codeMirrorMode: selectors.getCodeMirrorMode(state),
 
 		// this'll need to change. It returns a fresh object on every keystroke, even if it was the same. That
 		// causes the preview panel to do a (slow) repaint every time

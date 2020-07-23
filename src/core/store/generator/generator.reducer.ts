@@ -8,8 +8,6 @@ import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { dataTypeNames } from '~utils/dataTypeUtils';
 import { exportTypeNames } from '~utils/exportTypeUtils';
-import C from '../../constants';
-import { UPDATE_GENERATED_ROWS_COUNT } from './generator.actions';
 
 export type DataRow = {
 	id: string;

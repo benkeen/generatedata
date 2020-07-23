@@ -199,6 +199,7 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 
 		loadExportTypeBundle(exportType)
 			.then((bundle: DTBundle) => {
+				console.log("ALL LOADED!");
 				dispatch(exportTypeLoaded(exportType, bundle.initialState));
 			});
 	};

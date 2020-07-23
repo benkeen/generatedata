@@ -19,6 +19,7 @@ export const exportTypeOptions = Object.keys(exportTypes)
 		};
 	});
 
+
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	const etBundle = new Promise((resolve, reject) => {
 		import(
@@ -27,7 +28,6 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 			`../plugins/exportTypes/${exportType}/bundle`
 		)
 			.then((def: any) => {
-				console.log("ahh!");
 				loadedExportTypes[exportType] = {
 					Settings: def.Settings,
 					initialState: def.initialState,
@@ -44,7 +44,7 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode) => {
 		return new Promise((resolve, reject) => {
 			const modeFile = document.createElement('script');
-			modeFile.src = `./mode/${mode}.js`;
+			modeFile.src = `./codeMirrorModes/${mode}.js`;
 			modeFile.onload = () => {
 				console.log("loaded: ", mode);
 				resolve();

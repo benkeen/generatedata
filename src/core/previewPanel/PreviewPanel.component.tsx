@@ -35,6 +35,7 @@ export type PreviewPanelProps = {
 	togglePreview: () => void;
 	refreshPreview: () => void;
 	changeSmallScreenVisiblePanel: () => void;
+	exportTypeLoaded: boolean;
 	toggleExportSettings: () => void;
 	exportTypeSettings: any; // TODO
 	exportSettingsVisible: boolean;
@@ -44,6 +45,7 @@ export type PreviewPanelProps = {
 	theme: string;
 	previewTextSize: number;
 	exportTypeLabel: string;
+	codeMirrorMode: string;
 	i18n: any;
 };
 
@@ -52,7 +54,7 @@ const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperC
 const PreviewPanel = ({
 	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
 	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel,
-	changeSmallScreenVisiblePanel
+	changeSmallScreenVisiblePanel, exportTypeLoaded, codeMirrorMode
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
 
@@ -111,6 +113,7 @@ const PreviewPanel = ({
 		if (exportSettingsVisible) {
 			return <div />;
 		}
+
 		return (
 			<ExportTypeButton
 				disableElevation
@@ -123,12 +126,12 @@ const PreviewPanel = ({
 		);
 	};
 
-	const codeMirrorMode = '';
-
 	const getCodeMirrorPanel = () => {
-		return (
-			<PreviewPanelLoader />
-		);
+		if (!exportTypeLoaded) {
+			return <PreviewPanelLoader/>;
+		}
+
+		console.log(data, codeMirrorMode, theme, showRowNumbers, enableLineWrapping);
 
 		return (
 			<CodeMirror
