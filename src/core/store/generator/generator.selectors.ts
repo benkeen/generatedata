@@ -256,11 +256,16 @@ export const getExportTypeLabel = createSelector(
 );
 
 export const getCodeMirrorMode = createSelector(
-	selectedExportTypeLoaded,
 	getExportType,
-	(loaded, exportType) => {
-		if (!loaded) {
+	getLoadedExportTypes,
+	getExportTypeSettings,
+	(exportType, loadedExportTypes, exportTypeSettings) => {
+		if (!loadedExportTypes[exportType]) {
 			return "";
 		}
+
+		const blah = exportTypeSettings[exportType].getCodeMirrorMode(exportTypeSettings[exportType].language);
+		console.log(blah);
+		return blah;
 	}
 );
