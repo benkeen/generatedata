@@ -5,7 +5,9 @@ import { DataTypeFolder, ExportTypeFolder } from '../_plugins';
 export const getScriptVersion = (): string => coreConfig.version;
 
 let coreWorker: Worker;
-let coreDataTypeWorker: Worker;
+let dataTypeWorker: Worker;
+let exportTypeWorker: Worker;
+
 export const loadCoreWorker = (): void => {
 	coreWorker = new Worker(`./workers/${webWorkers.coreWorker}`);
 };
@@ -13,10 +15,16 @@ export const loadCoreWorker = (): void => {
 export const getCoreWorker = (): Worker => coreWorker;
 
 export const loadDataTypeWorker = (): void => {
-	coreDataTypeWorker = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
+	dataTypeWorker = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
 };
 
-export const getDataTypeWorker = (): Worker => coreDataTypeWorker;
+export const getDataTypeWorker = (): Worker => dataTypeWorker;
+
+export const loadExportTypeWorker = (): void => {
+	exportTypeWorker = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
+};
+
+export const getExportTypeWorker = (): Worker => exportTypeWorker;
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;
@@ -37,7 +45,7 @@ export type ExportTypeMap = {
 
 export const getExportTypeWorkerMap = (exportTypes: ExportTypeFolder[]): ExportTypeMap => {
 	const map: ExportTypeMap = {};
-	const dataTypeMap: any = webWorkers.dataTypes;
+	const dataTypeMap: any = webWorkers.exportTypes;
 	exportTypes.forEach((exportType: ExportTypeFolder) => {
 		map[exportType] = dataTypeMap[exportType];
 	});

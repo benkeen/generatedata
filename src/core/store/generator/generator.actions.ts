@@ -4,7 +4,7 @@ import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
 import { getUniqueString } from '~utils/stringUtils';
 import { loadExportTypeBundle } from '~utils/exportTypeUtils';
-import { getDataTypeWorker, getDataTypeWorkerMap, getCoreWorkerUtils, getExportTypeWorkerMap } from '~utils/coreUtils';
+import * as coreUtils from '~utils/coreUtils';
 import { registerInterceptors } from '../../actionInterceptor';
 import { getStrings } from '~utils/langUtils';
 import { DTBundle } from '~types/dataTypes';
@@ -110,14 +110,17 @@ export const togglePreview = (): GDAction => ({ type: TOGGLE_PREVIEW });
 
 export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 
-// make this the ONLY place that re-generates the preview panel data. This doesn't have to be called on boot-up because
-// the preview data is generated on the fly, saved in the store and rehydrated when the app loads
+// this re-generates the preview panel data. This doesn't have to be called on boot-up because the preview data is
+// generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = []): any => {
-	const dataTypeWorker = getDataTypeWorker();
+	const dataTypeWorker = coreUtils.getDataTypeWorker();
+	const exportTypeWorker = coreUtils.getExportTypeWorker();
 
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
 		const template = selectors.getGenerationTemplate(state);
+		const dataTypePreviewData = selectors.getDataTypePreviewData(state);
+		const exportType = selectors.getExportType(state);
 		const sortedRows = selectors.getSortedRows(state);
 
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
@@ -130,28 +133,47 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 			i18n: getStrings(),
 			template,
 			workerResources: {
-				coreUtils: getCoreWorkerUtils(),
-				dataTypes: getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[])
+				coreUtils: coreUtils.getCoreWorkerUtils(),
+				dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[])
 			}
 		});
 
 		dataTypeWorker.onmessage = (resp: MessageEvent) => {
 			const { data } = resp;
 			const { generatedData } = data;
-			const previewData: any = {};
 			sortedRows.forEach((id: string, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
 					return;
 				}
-				previewData[id] = generatedData.map((row: any): any => row[index]);
+				dataTypePreviewData[id] = generatedData.map((row: any): any => row[index]);
 			});
 
-			dispatch({
-				type: REFRESH_PREVIEW_DATA,
-				payload: {
-					previewData
+			// great! So we've generated the data we need and manually only changed those lines that have just changed
+			// by the user via the UI. Next we need to pass off that work to the core Export Type worker, which calls
+			// the appropriate Export Type worker to generate the final string to display in the UI
+			exportTypeWorker.postMessage({
+				dataPacket: data,
+				exportType,
+				workerResources: {
+					coreUtils: coreUtils.getCoreWorkerUtils(),
+					dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
+					exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state))
 				}
 			});
+
+			exportTypeWorker.onmessage = (resp: MessageEvent) => {
+				const { data } = resp;
+
+				let previewString = "";
+
+				dispatch({
+					type: REFRESH_PREVIEW_DATA,
+					payload: {
+						dataTypePreviewData,
+						previewString
+					}
+				});
+			}
 		};
 	};
 };
@@ -199,7 +221,6 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 
 		loadExportTypeBundle(exportType)
 			.then((bundle: DTBundle) => {
-				console.log("ALL LOADED!");
 				dispatch(exportTypeLoaded(exportType, bundle.initialState));
 			});
 	};
@@ -247,8 +268,9 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	const template = selectors.getGenerationTemplate(state);
 	const numRowsToGenerate = selectors.getNumRowsToGenerate(state);
 
-	// TODO this will now be getCoreWorker & pass in everything needed for both the data type worker & export type worker
-	const coreWorker = getDataTypeWorker();
+	// TODO this will now be getCoreWorker & pass in everything needed for both the data type worker & export type worker,
+	// where the ENTIRE generation will run in a separate thread
+	const coreWorker = coreUtils.getCoreWorker();
 
 	coreWorker.postMessage({
 		numResults: numRowsToGenerate,
@@ -257,9 +279,9 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 		i18n: getStrings(),
 		template,
 		workerResources: {
-			coreUtils: getCoreWorkerUtils(),
-			dataTypes: getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
-			exportTypes: getExportTypeWorkerMap(selectors.getLoadedExportTypes(state))
+			coreUtils: coreUtils.getCoreWorkerUtils(),
+			dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
+			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state))
 		}
 	});
 

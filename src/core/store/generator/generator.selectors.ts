@@ -26,7 +26,7 @@ export const shouldShowRowNumbers = (state: Store): boolean => state.generator.s
 export const shouldEnableLineWrapping = (state: Store): boolean => state.generator.enableLineWrapping;
 export const getTheme = (state: Store): string => state.generator.theme;
 export const getPreviewTextSize = (state: Store): number => state.generator.previewTextSize;
-export const getGeneratedPreviewData = (state: Store): any => state.generator.generatedPreviewData;
+export const getDataTypePreviewData = (state: Store): any => state.generator.dataTypePreviewData;
 export const shouldShowExportSettings = (state: Store): any => state.generator.showExportSettings;
 export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
@@ -95,7 +95,7 @@ export const getRowDataTypes = createSelector(
 export const getPreviewData = createSelector(
 	getNumPreviewRows,
 	getNonEmptySortedRows,
-	getGeneratedPreviewData,
+	getDataTypePreviewData,
 	(numPreviewRows, rows, data) => {
 		const numRows = rows.length;
 		const formattedData: any[] = [];

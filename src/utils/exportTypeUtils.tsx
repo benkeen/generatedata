@@ -20,6 +20,7 @@ export const exportTypeOptions = Object.keys(exportTypes)
 	});
 
 
+// TODO error scenarios
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	const etBundle = new Promise((resolve, reject) => {
 		import(
@@ -46,7 +47,6 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 			const modeFile = document.createElement('script');
 			modeFile.src = `./codeMirrorModes/${mode}.js`;
 			modeFile.onload = () => {
-				console.log("loaded: ", mode);
 				resolve();
 			};
 			document.body.appendChild(modeFile);

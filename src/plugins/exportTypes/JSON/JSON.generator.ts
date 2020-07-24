@@ -3,6 +3,7 @@ import { ExportTypeGenerationData } from '~types/general';
 declare var utils: any;
 
 onmessage = (e: MessageEvent) => {
+	console.log('inside JSON generator worker!', e);
 
 	// exportTypeSettings.dataStructureFormat === 'simple'
 // 	? generateSimple(data, false)

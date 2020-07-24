@@ -53,7 +53,8 @@ export type GeneratorState = {
 	enableLineWrapping: boolean;
 	theme: string;
 	previewTextSize: number;
-	generatedPreviewData: PreviewData;
+	dataTypePreviewData: PreviewData;
+	finalPreviewString: string;
 	exportSettingsTab: ExportSettingsTab;
 	numPreviewRows: number;
 	stripWhitespace: boolean;
@@ -85,7 +86,8 @@ export const reducer = (state: GeneratorState = {
 	enableLineWrapping: true,
 	theme: 'lucario',
 	previewTextSize: 12,
-	generatedPreviewData: {},
+	dataTypePreviewData: {},
+	finalPreviewString: '',
 	exportSettingsTab: 'exportType',
 	showGenerationPanel: false,
 	numRowsToGenerate: 100,
@@ -213,8 +215,8 @@ export const reducer = (state: GeneratorState = {
 		case actions.REFRESH_PREVIEW_DATA: {
 			return {
 				...state,
-				generatedPreviewData: {
-					...state.generatedPreviewData,
+				dataTypePreviewData: {
+					...state.dataTypePreviewData,
 					...action.payload.previewData
 				}
 			};

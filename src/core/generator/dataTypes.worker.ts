@@ -80,6 +80,7 @@ const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum
 			context.postMessage({
 				completedBatchNum: batchNum,
 				numGeneratedRows: lastRow,
+				numResults,
 				generatedData
 			});
 		});
