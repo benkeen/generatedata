@@ -6,7 +6,10 @@ import * as mainSelectors from '../main/main.selectors';
 import * as langUtils from '~utils/langUtils';
 import { getUnique } from '~utils/arrayUtils';
 import { processBatches, getDataType } from '~utils/dataTypeUtils';
-import { getExportTypeLabel as exportTypeUtilsGetExportTypeLabel } from '~utils/exportTypeUtils';
+import {
+	getExportTypeLabel as exportTypeUtilsGetExportTypeLabel,
+	getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode
+} from '~utils/exportTypeUtils';
 import { ColumnData, GenerationTemplate, Store } from '~types/general';
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
@@ -255,6 +258,8 @@ export const getExportTypeLabel = createSelector(
 	}
 );
 
+// wrapper function for the Export Type's getCodeMirrorMode function. This ensures it's loaded and does the work
+// of figuring out what export type is currently loaded
 export const getCodeMirrorMode = createSelector(
 	getExportType,
 	getLoadedExportTypes,
@@ -263,9 +268,6 @@ export const getCodeMirrorMode = createSelector(
 		if (!loadedExportTypes[exportType]) {
 			return "";
 		}
-
-		const blah = exportTypeSettings[exportType].getCodeMirrorMode(exportTypeSettings[exportType].language);
-		console.log(blah);
-		return blah;
+		return exportTypeUtilsGetCodeMirrorMode(exportType, exportTypeSettings[exportType]);
 	}
 );

@@ -69,3 +69,8 @@ export const getExportTypeSettingsComponent = (exportType: ExportTypeFolder): an
 	}
 	return MediumSpinner;
 };
+
+export const getCodeMirrorMode = (exportType: ExportTypeFolder, exportTypeSettings: any): string => {
+	// @ts-ignore-line
+	return loadedExportTypes[exportType].getCodeMirrorMode(exportTypeSettings);
+};

@@ -131,11 +131,9 @@ const PreviewPanel = ({
 			return <PreviewPanelLoader/>;
 		}
 
-		console.log(data, codeMirrorMode, theme, showRowNumbers, enableLineWrapping);
-
 		return (
 			<CodeMirror
-				value={data}
+				value={""}
 				onBeforeChange={() => {}}
 				options={{
 					mode: codeMirrorMode,
