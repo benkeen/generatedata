@@ -7,7 +7,7 @@ import * as mainActions from './store/main/main.actions';
 import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
 import { DataTypeFolder } from '../_plugins';
-import { loadDataTypeWorker } from '~utils/coreUtils';
+import { loadCoreWorker, loadDataTypeWorker, loadExportTypeWorker } from '~utils/coreUtils';
 import '../_imports';
 
 // just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
@@ -15,7 +15,12 @@ import '../_imports';
 export const coreConfig = { ...config };
 
 export const init = (): void => {
+
+	// this loads the 3 web worker files. These farm out the work for the actual data generation so they can run in a
+	// separate process from the UI thread
+	// loadCoreWorker();
 	loadDataTypeWorker();
+	loadExportTypeWorker();
 
 	const state = store.getState();
 	const locale = mainSelectors.getLocale(state);

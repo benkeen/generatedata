@@ -115,6 +115,7 @@ window.gd.localeLoaded(i18n);
 	const getWebWorkerRollupCommands = () => {
 		const files = [
 			'src/core/generator/dataTypes.worker.ts',
+			'src/core/generator/exportTypes.worker.ts',
 			'src/utils/webWorkerUtils.ts'
 		]
 			.concat(Object.values(dataTypeWebWorkerMap))
@@ -122,11 +123,6 @@ window.gd.localeLoaded(i18n);
 
 		const commands = files.map((file) => `npx rollup -c --config-src=${file}`);
 		return commands.join(' && ');
-	};
-
-	// copies over the code mirror mode folder into /dist where it can be loaded async at runtime
-	const copyCodeMirrorModes = () => {
-
 	};
 
 	const webWorkerMap = {
@@ -197,20 +193,32 @@ window.gd.localeLoaded(i18n);
 		watch: {
 			webWorkers: {
 				files: [
-					'src/core/generator/dataTypes.worker.ts'
+					'src/core/generator/core.worker.ts',
+					'src/core/generator/dataTypes.worker.ts',
+					'src/core/generator/exportTypes.worker.ts'
 				],
 				tasks: ['webWorkers'],
 			}
 		},
 
 		md5: {
-			coreWebWorker: {
+			coreDataTypeWebWorker: {
 				files: {
 					'dist/workers/dataTypes.worker.js': 'dist/workers/dataTypes.worker.js'
 				},
 				options: {
 					after: (fileChanges) => {
-						webWorkerMap.coreWorker = path.basename(fileChanges[0].newPath);
+						webWorkerMap.coreDataTypeWorker = path.basename(fileChanges[0].newPath);
+					}
+				}
+			},
+			coreExportTypeWebWorker: {
+				files: {
+					'dist/workers/exportTypes.worker.js': 'dist/workers/exportTypes.worker.js'
+				},
+				options: {
+					after: (fileChanges) => {
+						webWorkerMap.coreExportTypeWorker = path.basename(fileChanges[0].newPath);
 					}
 				}
 			},
@@ -274,7 +282,8 @@ window.gd.localeLoaded(i18n);
 		'shell:webWorkers',
 		'md5:dataTypeWebWorkers',
 		'md5:exportTypeWebWorkers',
-		'md5:coreWebWorker',
+		'md5:coreDataTypeWebWorker',
+		'md5:coreExportTypeWebWorker',
 		'md5:coreUtils',
 		'generateWorkerMapFile'
 	]);

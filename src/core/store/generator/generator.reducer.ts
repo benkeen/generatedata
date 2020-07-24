@@ -215,10 +215,7 @@ export const reducer = (state: GeneratorState = {
 		case actions.REFRESH_PREVIEW_DATA: {
 			return {
 				...state,
-				dataTypePreviewData: {
-					...state.dataTypePreviewData,
-					...action.payload.previewData
-				}
+				dataTypePreviewData: action.payload.dataTypePreviewData
 			};
 		}
 

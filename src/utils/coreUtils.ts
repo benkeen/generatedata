@@ -21,7 +21,7 @@ export const loadDataTypeWorker = (): void => {
 export const getDataTypeWorker = (): Worker => dataTypeWorker;
 
 export const loadExportTypeWorker = (): void => {
-	exportTypeWorker = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
+	exportTypeWorker = new Worker(`./workers/${webWorkers.coreExportTypeWorker}`);
 };
 
 export const getExportTypeWorker = (): Worker => exportTypeWorker;
@@ -43,10 +43,10 @@ export type ExportTypeMap = {
 	[exportType in ExportTypeFolder]?: string;
 };
 
-export const getExportTypeWorkerMap = (exportTypes: ExportTypeFolder[]): ExportTypeMap => {
+export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMap => {
 	const map: ExportTypeMap = {};
 	const dataTypeMap: any = webWorkers.exportTypes;
-	exportTypes.forEach((exportType: ExportTypeFolder) => {
+	Object.keys(exportTypes).forEach((exportType: ExportTypeFolder) => {
 		map[exportType] = dataTypeMap[exportType];
 	});
 	return map;

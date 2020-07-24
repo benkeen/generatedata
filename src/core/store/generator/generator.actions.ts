@@ -121,7 +121,10 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		const template = selectors.getGenerationTemplate(state);
 		const dataTypePreviewData = selectors.getDataTypePreviewData(state);
 		const exportType = selectors.getExportType(state);
+		const exportTypeSettings = selectors.getExportTypeSettings(state);
 		const sortedRows = selectors.getSortedRows(state);
+
+		console.log("posting to data type worker.", dataTypeWorker);
 
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
@@ -138,7 +141,7 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 			}
 		});
 
-		dataTypeWorker.onmessage = (resp: MessageEvent) => {
+		dataTypeWorker.onmessage = (resp: MessageEvent): void => {
 			const { data } = resp;
 			const { generatedData } = data;
 			sortedRows.forEach((id: string, index: number) => {
@@ -148,12 +151,23 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 				dataTypePreviewData[id] = generatedData.map((row: any): any => row[index]);
 			});
 
+			console.log("???", resp);
+
+			dispatch({
+				type: REFRESH_PREVIEW_DATA,
+				payload: {
+					dataTypePreviewData,
+					// previewString
+				}
+			});
+
 			// great! So we've generated the data we need and manually only changed those lines that have just changed
 			// by the user via the UI. Next we need to pass off that work to the core Export Type worker, which calls
 			// the appropriate Export Type worker to generate the final string to display in the UI
 			exportTypeWorker.postMessage({
 				dataPacket: data,
 				exportType,
+				exportTypeSettings,
 				workerResources: {
 					coreUtils: coreUtils.getCoreWorkerUtils(),
 					dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
@@ -161,19 +175,11 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 				}
 			});
 
-			exportTypeWorker.onmessage = (resp: MessageEvent) => {
-				const { data } = resp;
+			exportTypeWorker.onmessage = (resp: MessageEvent): void => {
+				// const { data } = resp;
 
-				let previewString = "";
-
-				dispatch({
-					type: REFRESH_PREVIEW_DATA,
-					payload: {
-						dataTypePreviewData,
-						previewString
-					}
-				});
-			}
+				// let previewString = "";
+			};
 		};
 	};
 };
