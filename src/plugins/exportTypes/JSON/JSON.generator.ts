@@ -3,24 +3,17 @@ import { ExportTypeGenerationData } from '~types/general';
 declare var utils: any;
 
 onmessage = (e: MessageEvent) => {
-	console.log('inside JSON generator worker!', e);
+	const { data, settings } = e.data;
 
-	// exportTypeSettings.dataStructureFormat === 'simple'
-// 	? generateSimple(data, false)
-// 	: generateComplex(data, false);
+	const content = settings.dataStructureFormat === 'simple'
+		? generateSimple(data, false)
+		: generateComplex(data, false);
 
+	postMessage(content);
 };
-
-
-// --------------------------------------------------------------------------------------------------------------
 
 
 const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
-	return getNonNestedData(generationData, stripWhitespace);
-};
-
-
-const getNonNestedData = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
 	let content = '';
 	let comma = '';
 

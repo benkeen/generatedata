@@ -22,9 +22,6 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		exportTypeLabel: selectors.getExportTypeLabel(state),
 		exportTypeSettings,
 		codeMirrorMode: selectors.getCodeMirrorMode(state),
-
-		// this'll need to change. It returns a fresh object on every keystroke, even if it was the same. That
-		// causes the preview panel to do a (slow) repaint every time
 		data: selectors.getPreviewPanelData(state)
 	};
 };
