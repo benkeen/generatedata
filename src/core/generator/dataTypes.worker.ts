@@ -14,6 +14,8 @@ context.onmessage = (e: any) => {
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
 
+	console.log('worker map: ', dataTypeWorkerMap);
+
 	// load the Data Type generator web worker files. Pretty sure this caches them so we can safely import them
 	// every time
 	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
@@ -129,7 +131,6 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 					});
 				});
 		});
-
 	});
 };
 

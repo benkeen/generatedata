@@ -160,7 +160,7 @@ window.gd.localeLoaded(i18n);
 		webWorkerFileList.forEach((workerPath, index) => {
 			tasks[`webWorkerWatcher${index}`] = {
 				files: [workerPath],
-				tasks: [`buildWebWorker${index}`, `webWorkerMd5Task${index}`, 'generateWorkerMapFile']
+				tasks: [`shell:buildWebWorker${index}`, `md5:webWorkerMd5Task${index}`, 'generateWorkerMapFile']
 			}
 		});
 
@@ -183,11 +183,12 @@ window.gd.localeLoaded(i18n);
 			webWorkerMap.coreUtils = newFilename;
 		} else {
 			const [pluginFolder] = oldFile.split('.');
+			const cleanPluginFolder = pluginFolder.replace(/^(DT-|ET-)/, '');
 
 			if (/^DT-/.test(oldFile)) {
-				webWorkerMap.dataTypes[pluginFolder] = newFilename;
+				webWorkerMap.dataTypes[cleanPluginFolder] = newFilename;
 			} else {
-				webWorkerMap.exportTypes[pluginFolder] = newFilename;
+				webWorkerMap.exportTypes[cleanPluginFolder] = newFilename;
 			}
 		}
 	};
