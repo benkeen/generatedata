@@ -14,8 +14,6 @@ context.onmessage = (e: any) => {
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
 
-	console.log('worker map: ', dataTypeWorkerMap);
-
 	// load the Data Type generator web worker files. Pretty sure this caches them so we can safely import them
 	// every time
 	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
@@ -53,8 +51,10 @@ const generateNextBatch = (data: any, numBatches: number, batchSize: number, bat
 const getBatchInfo = (numResults: number, numBatches: number, batchSize: number, batchNum: number): any => {
 	const firstRow = ((batchNum - 1) * batchSize) + 1;
 	let lastRow = batchNum * batchSize;
+
+	// if it's the last batch, make sure the last row number isn't > the
 	if (batchNum === numBatches) {
-		lastRow = firstRow + (numResults % batchSize) - 1;
+		lastRow = numResults;
 	}
 
 	return {
@@ -78,8 +78,6 @@ const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum
 	Promise.all(rowPromises)
 		.then((generatedData: any) => {
 			resolve();
-
-			console.log("in response. ", generatedData);
 
 			context.postMessage({
 				completedBatchNum: batchNum,
@@ -134,8 +132,8 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 	});
 };
 
-const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any): Promise<any>[] => (
-	cells.map((currCell: any) => {
+const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any): Promise<any>[] => {
+	return cells.map((currCell: any) => {
 		let dataType = currCell.dataType;
 
 		return new Promise((resolve, reject) => {
@@ -151,7 +149,7 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 			}, resolve, reject);
 		});
 	})
-);
+};
 
 
 const queueJob = (dataType: DataTypeFolder, payload: any, resolve: any, reject: any) => {
@@ -167,8 +165,6 @@ const queueJob = (dataType: DataTypeFolder, payload: any, resolve: any, reject: 
 		resolve,
 		reject
 	});
-
-	console.log('queue: ', workerQueue);
 
 	processQueue(dataType);
 };

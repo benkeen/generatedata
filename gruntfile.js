@@ -12,23 +12,23 @@ if (!fs.existsSync(workersFolder)) {
 	fs.mkdirSync(workersFolder);
 }
 
+// stored in memory here. For the dev environment, changes to web worker files are watched and built separately,
+// then this object is updated with the change & the final map file is regenerated. For prod it's just done in
+// one go
+const webWorkerMap = {
+	coreWorker: '',
+	coreDataTypeWorker: '',
+	coreExportTypeWorker: '',
+	coreUtils: '',
+	dataTypes: {},
+	exportTypes: {}
+};
+
 module.exports = function (grunt) {
 	const dataTypesFolder = 'src/plugins/dataTypes';
 	const exportTypesFolder = 'src/plugins/exportTypes';
 	const countriesFolder = 'src/plugins/countries';
 	const locales = ['de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'];
-
-	// stored in memory here. For the dev environment, changes to web worker files are watched and built separately,
-	// then this object is updated with the change & the final map file is regenerated. For prod it's just done in
-	// one go
-	const webWorkerMap = {
-		coreWorker: '',
-		coreDataTypeWorker: '',
-		coreExportTypeWorker: '',
-		coreUtils: '',
-		dataTypes: {},
-		exportTypes: {}
-	};
 
 	const generateI18nBundles = () => {
 		locales.forEach((locale) => {
@@ -125,7 +125,12 @@ window.gd.localeLoaded(i18n);
 	const webWorkerFileList = webWorkerFileListWithType.map((i) => i.file);
 
 	const generateWorkerMapFile = () => {
+		console.log("...", webWorkerMap);
 		fs.writeFileSync(`./src/_pluginWebWorkers.ts`, `export default ${JSON.stringify(webWorkerMap, null, '\t')};`);
+	};
+
+	const updateWorkerMapFile = () => {
+		console.log("***** updating...");
 	};
 
 	const webWorkerShellCommands = (() => {
@@ -160,6 +165,7 @@ window.gd.localeLoaded(i18n);
 		webWorkerFileList.forEach((workerPath, index) => {
 			tasks[`webWorkerWatcher${index}`] = {
 				files: [workerPath],
+				options: { spawn: false },
 				tasks: [`shell:buildWebWorker${index}`, `md5:webWorkerMd5Task${index}`, 'generateWorkerMapFile']
 			}
 		});
@@ -167,8 +173,7 @@ window.gd.localeLoaded(i18n);
 		return tasks;
 	})();
 
-
-	const processMd5Change = (fileChanges) => {
+	const processMd5Change = (fileChanges, hmm) => {
 		const oldPath = fileChanges[0].oldPath;
 		const oldFile = path.basename(oldPath);
 		const newFilename = path.basename(fileChanges[0].newPath);
@@ -213,7 +218,7 @@ window.gd.localeLoaded(i18n);
 					[newFileLocation]: newFileLocation
 				},
 				options: {
-					after: processMd5Change
+					after: (fileChanges) => processMd5Change(fileChanges, webWorkerMap)
 				}
 			};
 		});
