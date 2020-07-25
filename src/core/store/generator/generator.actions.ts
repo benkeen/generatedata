@@ -149,7 +149,7 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 				dataTypePreviewData[id] = generatedData.map((row: any): any => row[index]);
 			});
 
-			console.log("response from DT web worker: ", data);
+			console.log("data. ", dataTypePreviewData);
 
 			// great! So we've generated the data we need and manually only changed those lines that have just changed
 			// by the user via the UI. Next we need to pass off that work to the core Export Type worker, which calls

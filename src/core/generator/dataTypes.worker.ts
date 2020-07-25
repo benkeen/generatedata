@@ -77,6 +77,8 @@ const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum
 		.then((generatedData: any) => {
 			resolve();
 
+			console.log("in response. ", generatedData);
+
 			context.postMessage({
 				completedBatchNum: batchNum,
 				numGeneratedRows: lastRow,
@@ -164,6 +166,8 @@ const queueJob = (dataType: DataTypeFolder, payload: any, resolve: any, reject: 
 		resolve,
 		reject
 	});
+
+	console.log('queue: ', workerQueue);
 
 	processQueue(dataType);
 };

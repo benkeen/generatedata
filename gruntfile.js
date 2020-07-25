@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-// const spawn = require('child_process').spawn;
 
 
 const distFolder = path.join(__dirname, '/dist');
@@ -18,6 +17,18 @@ module.exports = function (grunt) {
 	const exportTypesFolder = 'src/plugins/exportTypes';
 	const countriesFolder = 'src/plugins/countries';
 	const locales = ['de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'];
+
+	// stored in memory here. For the dev environment, changes to web worker files are watched and built separately,
+	// then this object is updated with the change & the final map file is regenerated. For prod it's just done in
+	// one go
+	const webWorkerMap = {
+		coreWorker: '',
+		coreDataTypeWorker: '',
+		coreExportTypeWorker: '',
+		coreUtils: '',
+		dataTypes: {},
+		exportTypes: {}
+	};
 
 	const generateI18nBundles = () => {
 		locales.forEach((locale) => {
@@ -76,7 +87,7 @@ window.gd.localeLoaded(i18n);
 			if (!fs.existsSync(webworkerFile)) {
 				return;
 			}
-			map[`dist/workers/${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.ts`];
+			map[`dist/workers/DT-${folder}.generator.js`] = [`src/plugins/dataTypes/${folder}/${folder}.generator.ts`];
 		});
 
 		return map;
@@ -92,45 +103,125 @@ window.gd.localeLoaded(i18n);
 			if (!fs.existsSync(webworkerFile)) {
 				return;
 			}
-			map[`dist/workers/${folder}.generator.js`] = [`src/plugins/exportTypes/${folder}/${folder}.generator.ts`];
+			map[`dist/workers/ET-${folder}.generator.js`] = [`src/plugins/exportTypes/${folder}/${folder}.generator.ts`];
 		});
 
 		return map;
 	})();
 
-	// returns an object where the keys + values are the same. Takes the keys out of the object passed
-	const getIdentifyMap = (obj) => {
-		const keys = Object.keys(obj);
-		const map = {};
-		keys.forEach((key) => {
-			map[key] = key;
-		});
-		return map;
-	};
+	const webWorkerFileListWithType = [
+		{ file: 'src/core/generator/core.worker.ts', type: 'core' },
+		{ file: 'src/core/generator/dataTypes.worker.ts', type: 'core' },
+		{ file: 'src/core/generator/exportTypes.worker.ts', type: 'core' },
+		{ file: 'src/utils/coreUtils.worker.ts', type: 'core' }
+	];
+	Object.values(dataTypeWebWorkerMap).forEach((dt) => {
+		webWorkerFileListWithType.push({ file: dt[0], type: 'dataType' });
+	});
+	Object.values(exportTypeWebWorkerMap).forEach((et) => {
+		webWorkerFileListWithType.push({ file: et[0], type: 'exportType' });
+	});
+
+	const webWorkerFileList = webWorkerFileListWithType.map((i) => i.file);
 
 	const generateWorkerMapFile = () => {
 		fs.writeFileSync(`./src/_pluginWebWorkers.ts`, `export default ${JSON.stringify(webWorkerMap, null, '\t')};`);
 	};
 
-	const getWebWorkerRollupCommands = () => {
-		const files = [
-			'src/core/generator/dataTypes.worker.ts',
-			'src/core/generator/exportTypes.worker.ts',
-			'src/utils/webWorkerUtils.ts'
-		]
-			.concat(Object.values(dataTypeWebWorkerMap))
-			.concat(Object.values(exportTypeWebWorkerMap));
+	const webWorkerShellCommands = (() => {
+		const commands = {};
 
-		const commands = files.map((file) => `npx rollup -c --config-src=${file}`);
-		return commands.join(' && ');
+		webWorkerFileListWithType.forEach(({ file, type }, index) => {
+			const filename = path.basename(file, path.extname(file));
+			let target = `dist/workers/${filename}.js`;
+
+			// sigh. Fussy, but we rename the Export Type & Data Types, just in case of conflicts
+			if (type === 'dataType') {
+				target = `dist/workers/DT-${filename}.js`;
+			} else if (type === 'exportType') {
+				target = `dist/workers/ET-${filename}.js`;
+			}
+
+			commands[`buildWebWorker${index}`] = {
+				command: `npx rollup -c --config-src=${file} --config-target=${target}`
+			}
+		});
+
+		return commands;
+	})();
+
+	const getWebWorkerBuildCommandNames = () => {
+		return Object.keys(webWorkerShellCommands).map((cmdName) => `shell:${cmdName}`);
 	};
 
-	const webWorkerMap = {
-		coreWorker: '',
-		coreDataTypeWorker: '',
-		coreExportTypeWorker: '',
-		dataTypes: {},
-		exportTypes: {}
+	const webWorkerWatchers = (() => {
+		const tasks = {};
+
+		webWorkerFileList.forEach((workerPath, index) => {
+			tasks[`webWorkerWatcher${index}`] = {
+				files: [workerPath],
+				tasks: [`buildWebWorker${index}`, `webWorkerMd5Task${index}`, 'generateWorkerMapFile']
+			}
+		});
+
+		return tasks;
+	})();
+
+
+	const processMd5Change = (fileChanges) => {
+		const oldPath = fileChanges[0].oldPath;
+		const oldFile = path.basename(oldPath);
+		const newFilename = path.basename(fileChanges[0].newPath);
+
+		if (oldPath === 'dist/workers/core.worker.js') {
+			webWorkerMap.coreWorker = newFilename;
+		} else if (oldPath === 'dist/workers/dataTypes.worker.js') {
+			webWorkerMap.coreDataTypeWorker = newFilename;
+		} else if (oldPath === 'dist/workers/exportTypes.worker.js') {
+			webWorkerMap.coreExportTypeWorker = newFilename;
+		} else if (oldPath === 'dist/workers/coreUtils.worker.js') {
+			webWorkerMap.coreUtils = newFilename;
+		} else {
+			const [pluginFolder] = oldFile.split('.');
+
+			if (/^DT-/.test(oldFile)) {
+				webWorkerMap.dataTypes[pluginFolder] = newFilename;
+			} else {
+				webWorkerMap.exportTypes[pluginFolder] = newFilename;
+			}
+		}
+	};
+
+	// these tasks execute individually AFTER the worker has already been generated in the dist/workers folder
+	const webWorkerMd5Tasks = (() => {
+		const tasks = {};
+		webWorkerFileListWithType.forEach(({ file, type }, index) => {
+			const fileWithoutExt = path.basename(file, path.extname(file));
+
+			let prefix = '';
+			if (type === 'dataType') {
+				prefix = 'DT-';
+			} else if (type === 'exportType') {
+				prefix = 'ET-';
+			}
+
+			const newFileLocation = `dist/workers/${prefix}${fileWithoutExt}.js`; // here it's now a JS file, not TS
+
+			tasks[`webWorkerMd5Task${index}`] = {
+				files: {
+					[newFileLocation]: newFileLocation
+				},
+				options: {
+					after: processMd5Change
+				}
+			};
+		});
+
+		return tasks;
+	})();
+
+	const getWebWorkerMd5TaskNames = () => {
+		return Object.keys(webWorkerMd5Tasks).map((cmdName) => `md5:${cmdName}`);
 	};
 
 	grunt.initConfig({
@@ -184,82 +275,15 @@ window.gd.localeLoaded(i18n);
 			webpackProd: {
 				command: 'yarn prod'
 			},
-			webWorkers: {
-				command: getWebWorkerRollupCommands()
-			},
+			...webWorkerShellCommands
 		},
 
-		// expand to include plugin files too
 		watch: {
-			webWorkers: {
-				files: [
-					'src/core/generator/core.worker.ts',
-					'src/core/generator/dataTypes.worker.ts',
-					'src/core/generator/exportTypes.worker.ts'
-				],
-				tasks: ['webWorkers'],
-			}
+			...webWorkerWatchers
 		},
 
 		md5: {
-			coreDataTypeWebWorker: {
-				files: {
-					'dist/workers/dataTypes.worker.js': 'dist/workers/dataTypes.worker.js'
-				},
-				options: {
-					after: (fileChanges) => {
-						webWorkerMap.coreDataTypeWorker = path.basename(fileChanges[0].newPath);
-					}
-				}
-			},
-			coreExportTypeWebWorker: {
-				files: {
-					'dist/workers/exportTypes.worker.js': 'dist/workers/exportTypes.worker.js'
-				},
-				options: {
-					after: (fileChanges) => {
-						webWorkerMap.coreExportTypeWorker = path.basename(fileChanges[0].newPath);
-					}
-				}
-			},
-			coreUtils: {
-				files: {
-					'dist/workers/webWorkerUtils.js': 'dist/workers/webWorkerUtils.js'
-				},
-				options: {
-					after: (fileChanges) => {
-						webWorkerMap.utils = path.basename(fileChanges[0].newPath);
-					}
-				}
-			},
-			dataTypeWebWorkers: {
-				files: getIdentifyMap(dataTypeWebWorkerMap),
-				options: {
-					after: (fileChanges) => {
-						const map = {};
-						fileChanges.forEach((row) => {
-							const filename = path.basename(row.newPath);
-							const [dataTypeFolder] = filename.split('.');
-							map[dataTypeFolder] = path.basename(row.newPath);
-						});
-						webWorkerMap.dataTypes = map;
-					}
-				}
-			},
-			exportTypeWebWorkers: {
-				files: getIdentifyMap(exportTypeWebWorkerMap),
-				options: {
-					after: (fileChanges) => {
-						const map = {};
-						fileChanges.forEach((row) => {
-							const filename = path.basename(row.newPath);
-							const [exportTypeFolder] = filename.split('.');
-							map[exportTypeFolder] = path.basename(row.newPath);
-						});
-						webWorkerMap.exportTypes = map;
-					}
-				}
-			}
+			...webWorkerMd5Tasks
 		}
 	});
 
@@ -272,19 +296,15 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-md5');
 
 	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webWorkers']);
-	grunt.registerTask('build', ['default']);
-	grunt.registerTask('dev', ['cssmin', 'copy', 'i18n', 'webWorkers', 'watch:webWorkers']);
+	grunt.registerTask('dev', ['cssmin', 'copy', 'i18n', 'webWorkers', 'watch']);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
+
 	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
 
 	grunt.registerTask('webWorkers', [
-		'shell:webWorkers',
-		'md5:dataTypeWebWorkers',
-		'md5:exportTypeWebWorkers',
-		'md5:coreDataTypeWebWorker',
-		'md5:coreExportTypeWebWorker',
-		'md5:coreUtils',
+		...getWebWorkerBuildCommandNames(),
+		...getWebWorkerMd5TaskNames(),
 		'generateWorkerMapFile'
 	]);
 };

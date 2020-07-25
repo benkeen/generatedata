@@ -93,6 +93,8 @@ onmessage = (e: any) => {
 		coreUtilsLoaded = true;
 	}
 
+	console.log("here!");
+
 	const placeholderStr = e.data.rowState;
 
 	// in case the user entered multiple | separated formats, pick one first
@@ -143,6 +145,9 @@ onmessage = (e: any) => {
 			gender = uniques[0];
 		}
 	}
+
+
+	console.log("alrighty. ", output.trim());
 
 	postMessage({
 		display: output.trim(),

@@ -52,4 +52,4 @@ export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMa
 	return map;
 };
 
-export const getCoreWorkerUtils = (): string => webWorkers.utils;
+export const getCoreWorkerUtils = (): string => webWorkers.coreUtils;

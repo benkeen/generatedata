@@ -5,7 +5,7 @@ let loadedExportTypeWorkers: any = {};
 let exportTypeWorkerMap: any = {};
 
 context.onmessage = (e: any) => {
-	const { dataPacket, exportType, numResults, exportTypeSettings } = e.data;
+	const { dataTypeGeneratedBatch, exportType, numResults, exportTypeSettings } = e.data;
 
 	workerResources = e.data.workerResources;
 	exportTypeWorkerMap = workerResources.exportTypes;
@@ -18,7 +18,7 @@ context.onmessage = (e: any) => {
 	worker.postMessage({
 		settings: exportTypeSettings[exportType],
 		numResults,
-		dataPacket
+		dataTypeGeneratedBatch
 	});
 };
 
