@@ -13,7 +13,6 @@ import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 import Portal from './PreviewPanelPortal.component';
 import C from '../constants';
 import * as styles from './PreviewPanel.scss';
-import { ETPreviewProps } from 'types/exportTypes';
 
 const ExportTypeButton = withStyles({
 	root: {
@@ -41,7 +40,8 @@ export type PreviewPanelProps = {
 	exportSettingsVisible: boolean;
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
-	data: any;
+	hasData: boolean;
+	previewString: string;
 	theme: string;
 	previewTextSize: number;
 	exportTypeLabel: string;
@@ -52,14 +52,14 @@ export type PreviewPanelProps = {
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, data, exportTypeSettings, showRowNumbers,
-	enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel,
-	changeSmallScreenVisiblePanel, exportTypeLoaded, codeMirrorMode
+	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, hasData, previewString,
+	exportTypeSettings, showRowNumbers, enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings,
+	exportSettingsVisible, exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, codeMirrorMode
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
 
 	const getNoResults = (): JSX.Element | null => {
-		if (data.rows.length > 0) {
+		if (hasData) {
 			return null;
 		}
 		return (
@@ -103,7 +103,7 @@ const PreviewPanel = ({
 
 	let refreshTooltipProps = {};
 	let refreshIconProps = {};
-	if (data.rows.length === 0) {
+	if (!hasData) {
 		previewPanelStyles.flex = 0;
 		refreshTooltipProps = { disableHoverListener: true };
 		refreshIconProps = { disabled: true };
@@ -127,14 +127,16 @@ const PreviewPanel = ({
 	};
 
 	const getCodeMirrorPanel = () => {
+		const [code, setCode] = React.useState(previewString);
+
 		if (!exportTypeLoaded) {
 			return <PreviewPanelLoader/>;
 		}
 
 		return (
 			<CodeMirror
-				value={""}
-				onBeforeChange={() => {}}
+				value={code}
+				onBeforeChange={(editor, data, value) => setCode(value)}
 				options={{
 					mode: codeMirrorMode,
 					theme,

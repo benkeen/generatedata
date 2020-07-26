@@ -125,12 +125,7 @@ window.gd.localeLoaded(i18n);
 	const webWorkerFileList = webWorkerFileListWithType.map((i) => i.file);
 
 	const generateWorkerMapFile = () => {
-		console.log("...", webWorkerMap);
 		fs.writeFileSync(`./src/_pluginWebWorkers.ts`, `export default ${JSON.stringify(webWorkerMap, null, '\t')};`);
-	};
-
-	const updateWorkerMapFile = () => {
-		console.log("***** updating...");
 	};
 
 	const webWorkerShellCommands = (() => {

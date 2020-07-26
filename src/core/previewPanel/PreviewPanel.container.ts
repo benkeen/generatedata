@@ -22,7 +22,8 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		exportTypeLabel: selectors.getExportTypeLabel(state),
 		exportTypeSettings,
 		codeMirrorMode: selectors.getCodeMirrorMode(state),
-		data: selectors.getPreviewPanelData(state)
+		hasData: selectors.hasData(state),
+		previewString: selectors.getPreviewString(state)
 	};
 };
 

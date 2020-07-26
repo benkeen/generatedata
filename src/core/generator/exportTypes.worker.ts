@@ -4,8 +4,10 @@ let workerResources: any;
 let loadedExportTypeWorkers: any = {};
 let exportTypeWorkerMap: any = {};
 
-context.onmessage = (e: any) => {
-	const { dataTypeGeneratedBatch, exportType, numResults, exportTypeSettings } = e.data;
+// sigh.... we just need the one coreWorker... TODO
+
+context.onmessage = (e: MessageEvent) => {
+	const { rows, columns, isFirstBatch, isLastBatch, exportType, numResults, exportTypeSettings } = e.data;
 
 	workerResources = e.data.workerResources;
 	exportTypeWorkerMap = workerResources.exportTypes;
@@ -15,11 +17,21 @@ context.onmessage = (e: any) => {
 	loadedExportTypeWorkers[exportType] = new Worker(exportTypeWorkerMap[exportType]);
 
 	const worker = loadedExportTypeWorkers[exportType];
+
 	worker.postMessage({
-		settings: exportTypeSettings[exportType],
+		isFirstBatch,
+		isLastBatch,
 		numResults,
-		dataTypeGeneratedBatch
+		rows,
+		columns,
+		settings: exportTypeSettings[exportType],
+		workerResources
 	});
+
+	worker.onmessage = (e: MessageEvent): void => {
+		context.postMessage(e.data);
+	};
 };
+
 
 export {};

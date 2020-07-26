@@ -43,10 +43,10 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	});
 
 	const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode) => {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			const modeFile = document.createElement('script');
 			modeFile.src = `./codeMirrorModes/${mode}.js`;
-			modeFile.onload = () => {
+			modeFile.onload = (): void => {
 				resolve();
 			};
 			document.body.appendChild(modeFile);

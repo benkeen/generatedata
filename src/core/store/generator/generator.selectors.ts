@@ -36,6 +36,7 @@ export const getLastLayoutWidth = (state: Store): number | null => state.generat
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
 export const isGenerating = (state: Store): boolean => state.generator.isGenerating;
 export const getNumGeneratedRows = (state: Store): number => state.generator.numGeneratedRows;
+export const getPreviewString = (state: Store): string => state.generator.previewString;
 
 export const getNumRows = createSelector(
 	getSortedRows,
@@ -170,21 +171,9 @@ export const getSelectedColumnDataTypeMetadata = createSelector(
 	}
 );
 
-/**
- * This returns everything that the Export Type need to render the content of their preview panel: column info,
- * generated row data, data type metadata,
- */
-export const getPreviewPanelData = createSelector(
-	getPreviewColumns,
+export const hasData = createSelector(
 	getPreviewData,
-	getSelectedColumnDataTypeMetadata,
-	(columns, rows, dataTypeMetadata) => ({
-		isFirstBatch: true,
-		isLastBatch: true,
-		columns,
-		rows,
-		dataTypeMetadata
-	})
+	(rows) => rows.length > 0
 );
 
 export const selectedExportTypeLoaded = createSelector(

@@ -2,14 +2,20 @@ import { ExportTypeGenerationData } from '~types/general';
 
 declare var utils: any;
 
-onmessage = (e: MessageEvent) => {
-	const { data, settings } = e.data;
+const context: Worker = self as any;
 
-	const content = settings.dataStructureFormat === 'simple'
-		? generateSimple(data, false)
-		: generateComplex(data, false);
+let coreUtilsLoaded = false;
+context.onmessage = (e: MessageEvent) => {
+	if (!coreUtilsLoaded) {
+		importScripts(e.data.workerResources.coreUtils);
+		coreUtilsLoaded = true;
+	}
 
-	postMessage(content);
+	const content = e.data.settings.dataStructureFormat === 'simple'
+		? generateSimple(e.data, false)
+		: generateComplex(e.data, false);
+
+	context.postMessage(content);
 };
 
 

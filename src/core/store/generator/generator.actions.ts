@@ -123,6 +123,7 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		const exportType = selectors.getExportType(state);
 		const exportTypeSettings = selectors.getExportTypeSettings(state);
 		const sortedRows = selectors.getSortedRows(state);
+		const columns = selectors.getColumns(state);
 
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
@@ -130,7 +131,7 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 		dataTypeWorker.postMessage({
 			numResults: C.MAX_PREVIEW_ROWS,
 			batchSize: C.MAX_PREVIEW_ROWS,
-			columns: selectors.getColumns(state),
+			columns,
 			i18n: getStrings(),
 			template,
 			workerResources: {
@@ -141,23 +142,28 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 
 		dataTypeWorker.onmessage = (resp: MessageEvent): void => {
 			const { data } = resp;
-			const { generatedData } = data;
+			const { generatedData, completedBatchNum, numResults, numGeneratedRows } = data;
+			const rows: any[] = [];
+
 			sortedRows.forEach((id: string, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
 					return;
 				}
-				dataTypePreviewData[id] = generatedData.map((row: any): any => row[index]);
+				const rowData = generatedData.map((row: any): any => row[index]);
+				dataTypePreviewData[id] = rowData;
+				rows.push(rowData);
 			});
-
-			console.log("data. ", dataTypePreviewData);
 
 			// great! So we've generated the data we need and manually only changed those lines that have just changed
 			// by the user via the UI. Next we need to pass off that work to the core Export Type worker, which calls
 			// the appropriate Export Type worker to generate the final string to display in the UI
 			exportTypeWorker.postMessage({
-				dataTypeGeneratedBatch: data,
+				rows,
+				columns,
 				exportType,
 				exportTypeSettings,
+				isFirstBatch: completedBatchNum === 1,
+				isLastBatch: numGeneratedRows === numResults,
 				workerResources: {
 					coreUtils: coreUtils.getCoreWorkerUtils(),
 					dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
@@ -166,15 +172,11 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 			});
 
 			exportTypeWorker.onmessage = (resp: MessageEvent): void => {
-				// const { data } = resp;
-
-				// let previewString = "";
-
 				dispatch({
 					type: REFRESH_PREVIEW_DATA,
 					payload: {
 						dataTypePreviewData,
-						// previewString
+						previewString: resp.data
 					}
 				});
 			};
