@@ -4,8 +4,10 @@ import * as selectors from '../store/generator/generator.selectors';
 
 const mapStateToProps = (state: any): any => {
 	return {
+		rows: selectors.getPreviewRows(state),
 		columns: selectors.getColumns(state),
 		rowDataTypes: selectors.getRowDataTypes(state),
+		dataTypeMetadata: selectors.getSelectedColumnDataTypeMetadata(state),
 		numPreviewRows: selectors.getNumPreviewRows(state),
 		showRowNumbers: selectors.shouldShowRowNumbers(state),
 		enableLineWrapping: selectors.shouldEnableLineWrapping(state),

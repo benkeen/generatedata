@@ -49,4 +49,4 @@ export const Settings: React.ReactNode = ({ data, id, i18n, onUpdate }: ETSettin
 	);
 };
 
-export const getCodeMirrorMode = () => 'application/ld+json';
+export const getCodeMirrorMode = (): string => 'application/ld+json';

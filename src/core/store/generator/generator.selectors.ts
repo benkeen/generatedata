@@ -92,7 +92,7 @@ export const getRowDataTypes = createSelector(
 	)
 );
 
-export const getPreviewData = createSelector(
+export const getPreviewRows = createSelector(
 	getNumPreviewRows,
 	getNonEmptySortedRows,
 	getDataTypePreviewData,
@@ -157,21 +157,21 @@ export const getUniqueSelectedDataTypes = createSelector(
 	(rows) => getUnique(rows.map((i: any): DataTypeFolder => i.dataType)).filter((i => i !== null))
 );
 
-// export const getSelectedColumnDataTypeMetadata = createSelector(
-// 	getUniqueSelectedDataTypes,
-// 	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are async loaded
-// 	(dataTypes) => {
-// 		const dataTypeMetadata: any = {};
-// 		dataTypes.forEach((dataType: DataTypeFolder) => {
-// 			const { getMetadata } = getDataType(dataType);
-// 			dataTypeMetadata[dataType] = getMetadata ? getMetadata() : null;
-// 		});
-// 		return dataTypeMetadata;
-// 	}
-// );
+export const getSelectedColumnDataTypeMetadata = createSelector(
+	getUniqueSelectedDataTypes,
+	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are loaded async
+	(dataTypes) => {
+		const dataTypeMetadata: any = {};
+		dataTypes.forEach((dataType: DataTypeFolder) => {
+			const { getMetadata } = getDataType(dataType);
+			dataTypeMetadata[dataType] = getMetadata ? getMetadata() : null;
+		});
+		return dataTypeMetadata;
+	}
+);
 
 export const hasData = createSelector(
-	getPreviewData,
+	getPreviewRows,
 	(rows) => rows.length > 0
 );
 

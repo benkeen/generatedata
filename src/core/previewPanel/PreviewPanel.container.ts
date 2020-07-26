@@ -11,6 +11,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 
 	return {
 		i18n: selectors.getCoreI18n(state),
+		theme: selectors.getTheme(state),
 		exportSettingsVisible: selectors.shouldShowExportSettings(state),
 		builderLayout: selectors.getBuilderLayout(state),
 		previewTextSize: selectors.getPreviewTextSize(state),

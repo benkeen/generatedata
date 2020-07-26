@@ -10,9 +10,9 @@ export type CodeMirrorWrapperProps = {
 	enableLineWrapping: boolean;
 };
 
-const CodeMirrorWrapper = (props: any) => {
+const CodeMirrorWrapper = (props: any): JSX.Element => {
 	const { codeMirrorMode, theme, showLineNumbers, enableLineWrapping } = props;
-	const [code, setCode] = React.useState(props.value);
+	const [code, setCode] = React.useState("");
 
 	React.useEffect(() => {
 		// when to re-run!
@@ -22,9 +22,11 @@ const CodeMirrorWrapper = (props: any) => {
 		// CHANGE row settings -> hard(ish)
 		// change export type -> easy
 		// change export type setting (which?) -> hard
-
-		setCode(generatePreviewString(props));
-	}, []);
+		generatePreviewString(props)
+			.then((str: string) => {
+				setCode(str);
+			});
+	});
 
 	return (
 		<CodeMirror
