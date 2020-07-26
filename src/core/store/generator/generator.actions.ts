@@ -149,8 +149,8 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 			});
 
 			// great! So we've generated the data we need and manually only changed those lines that have just changed
-			// by the user via the UI. Next we need to pass off that work to the core Export Type worker, which calls
-			// the appropriate Export Type worker to generate the final string to display in the UI
+			// by the user via the UI. The CodeMirrorWrapper component handles passing off that info to the export type
+			// web worker to generate the final string
 			dispatch({
 				type: REFRESH_PREVIEW_DATA,
 				payload: {
