@@ -36,7 +36,6 @@ export const getLastLayoutWidth = (state: Store): number | null => state.generat
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
 export const isGenerating = (state: Store): boolean => state.generator.isGenerating;
 export const getNumGeneratedRows = (state: Store): number => state.generator.numGeneratedRows;
-export const getPreviewString = (state: Store): string => state.generator.previewString;
 
 export const getNumRows = createSelector(
 	getSortedRows,
@@ -76,15 +75,15 @@ export const getColumns = createSelector(
 	}
 );
 
-export const getPreviewColumns = createSelector(
-	getNonEmptySortedRows,
-	(rows): ColumnData[] => (
-		rows.map(({ dataType, title }: any) => ({
-			title,
-			dataType
-		}))
-	)
-);
+// export const getPreviewColumns = createSelector(
+// 	getNonEmptySortedRows,
+// 	(rows): ColumnData[] => (
+// 		rows.map(({ dataType, title }: any) => ({
+// 			title,
+// 			dataType
+// 		}))
+// 	)
+// );
 
 export const getRowDataTypes = createSelector(
 	getRows,
@@ -158,18 +157,18 @@ export const getUniqueSelectedDataTypes = createSelector(
 	(rows) => getUnique(rows.map((i: any): DataTypeFolder => i.dataType)).filter((i => i !== null))
 );
 
-export const getSelectedColumnDataTypeMetadata = createSelector(
-	getUniqueSelectedDataTypes,
-	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are async loaded
-	(dataTypes) => {
-		const dataTypeMetadata: any = {};
-		dataTypes.forEach((dataType: DataTypeFolder) => {
-			const { getMetadata } = getDataType(dataType);
-			dataTypeMetadata[dataType] = getMetadata ? getMetadata() : null;
-		});
-		return dataTypeMetadata;
-	}
-);
+// export const getSelectedColumnDataTypeMetadata = createSelector(
+// 	getUniqueSelectedDataTypes,
+// 	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are async loaded
+// 	(dataTypes) => {
+// 		const dataTypeMetadata: any = {};
+// 		dataTypes.forEach((dataType: DataTypeFolder) => {
+// 			const { getMetadata } = getDataType(dataType);
+// 			dataTypeMetadata[dataType] = getMetadata ? getMetadata() : null;
+// 		});
+// 		return dataTypeMetadata;
+// 	}
+// );
 
 export const hasData = createSelector(
 	getPreviewData,

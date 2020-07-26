@@ -12,18 +12,12 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 	return {
 		i18n: selectors.getCoreI18n(state),
 		exportSettingsVisible: selectors.shouldShowExportSettings(state),
-		numPreviewRows: selectors.getNumPreviewRows(state),
 		builderLayout: selectors.getBuilderLayout(state),
 		previewTextSize: selectors.getPreviewTextSize(state),
-		showRowNumbers: selectors.shouldShowRowNumbers(state),
-		enableLineWrapping: selectors.shouldEnableLineWrapping(state),
-		theme: selectors.getTheme(state),
 		exportTypeLoaded: selectors.selectedExportTypeLoaded(state),
 		exportTypeLabel: selectors.getExportTypeLabel(state),
 		exportTypeSettings,
-		codeMirrorMode: selectors.getCodeMirrorMode(state),
 		hasData: selectors.hasData(state),
-		previewString: selectors.getPreviewString(state)
 	};
 };
 

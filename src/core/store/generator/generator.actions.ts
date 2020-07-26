@@ -114,14 +114,11 @@ export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 // generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = []): any => {
 	const dataTypeWorker = coreUtils.getDataTypeWorker();
-	const exportTypeWorker = coreUtils.getExportTypeWorker();
 
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
 		const template = selectors.getGenerationTemplate(state);
 		const dataTypePreviewData = selectors.getDataTypePreviewData(state);
-		const exportType = selectors.getExportType(state);
-		const exportTypeSettings = selectors.getExportTypeSettings(state);
 		const sortedRows = selectors.getSortedRows(state);
 		const columns = selectors.getColumns(state);
 
@@ -142,44 +139,24 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 
 		dataTypeWorker.onmessage = (resp: MessageEvent): void => {
 			const { data } = resp;
-			const { generatedData, completedBatchNum, numResults, numGeneratedRows } = data;
-			const rows: any[] = [];
+			const { generatedData } = data;
 
 			sortedRows.forEach((id: string, index: number) => {
 				if (idsToRefresh.length && idsToRefresh.indexOf(id) === -1) {
 					return;
 				}
-				const rowData = generatedData.map((row: any): any => row[index]);
-				dataTypePreviewData[id] = rowData;
-				rows.push(rowData);
+				dataTypePreviewData[id] = generatedData.map((row: any): any => row[index]);
 			});
 
 			// great! So we've generated the data we need and manually only changed those lines that have just changed
 			// by the user via the UI. Next we need to pass off that work to the core Export Type worker, which calls
 			// the appropriate Export Type worker to generate the final string to display in the UI
-			exportTypeWorker.postMessage({
-				rows,
-				columns,
-				exportType,
-				exportTypeSettings,
-				isFirstBatch: completedBatchNum === 1,
-				isLastBatch: numGeneratedRows === numResults,
-				workerResources: {
-					coreUtils: coreUtils.getCoreWorkerUtils(),
-					dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
-					exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state))
+			dispatch({
+				type: REFRESH_PREVIEW_DATA,
+				payload: {
+					dataTypePreviewData
 				}
 			});
-
-			exportTypeWorker.onmessage = (resp: MessageEvent): void => {
-				dispatch({
-					type: REFRESH_PREVIEW_DATA,
-					payload: {
-						dataTypePreviewData,
-						previewString: resp.data
-					}
-				});
-			};
 		};
 	};
 };

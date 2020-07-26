@@ -54,7 +54,6 @@ export type GeneratorState = {
 	theme: string;
 	previewTextSize: number;
 	dataTypePreviewData: PreviewData;
-	previewString: string;
 	exportSettingsTab: ExportSettingsTab;
 	numPreviewRows: number;
 	stripWhitespace: boolean;
@@ -87,7 +86,6 @@ export const reducer = (state: GeneratorState = {
 	theme: 'lucario',
 	previewTextSize: 12,
 	dataTypePreviewData: {},
-	previewString: '',
 	exportSettingsTab: 'exportType',
 	showGenerationPanel: false,
 	numRowsToGenerate: 100,
@@ -213,11 +211,9 @@ export const reducer = (state: GeneratorState = {
 		}
 
 		case actions.REFRESH_PREVIEW_DATA: {
-			const { dataTypePreviewData, previewString } = action.payload;
 			return {
 				...state,
-				dataTypePreviewData,
-				previewString
+				dataTypePreviewData: action.payload.dataTypePreviewData
 			};
 		}
 

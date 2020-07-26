@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Controlled as CodeMirror } from 'react-codemirror2';
+import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { useWindowSize } from 'react-hooks-window-size';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -29,7 +29,6 @@ const ExportTypeButton = withStyles({
 
 export type PreviewPanelProps = {
 	ExportTypePreview: any; // TODO
-	numPreviewRows: number;
 	builderLayout: BuilderLayout;
 	togglePreview: () => void;
 	refreshPreview: () => void;
@@ -38,23 +37,19 @@ export type PreviewPanelProps = {
 	toggleExportSettings: () => void;
 	exportTypeSettings: any; // TODO
 	exportSettingsVisible: boolean;
-	showRowNumbers: boolean;
-	enableLineWrapping: boolean;
 	hasData: boolean;
-	previewString: string;
 	theme: string;
 	previewTextSize: number;
 	exportTypeLabel: string;
-	codeMirrorMode: string;
 	i18n: any;
 };
 
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	ExportTypePreview, i18n, theme, builderLayout, togglePreview, numPreviewRows, hasData, previewString,
-	exportTypeSettings, showRowNumbers, enableLineWrapping, previewTextSize, refreshPreview, toggleExportSettings,
-	exportSettingsVisible, exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, codeMirrorMode
+	ExportTypePreview, i18n, theme, builderLayout, togglePreview, hasData, exportTypeSettings, previewTextSize,
+	refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel, changeSmallScreenVisiblePanel,
+	exportTypeLoaded
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
 
@@ -62,6 +57,7 @@ const PreviewPanel = ({
 		if (hasData) {
 			return null;
 		}
+
 		return (
 			<div className={styles.noResults}>
 				<div style={{ marginTop: -26 }}>
@@ -127,24 +123,12 @@ const PreviewPanel = ({
 	};
 
 	const getCodeMirrorPanel = () => {
-		const [code, setCode] = React.useState(previewString);
-
-		if (!exportTypeLoaded) {
+		if (!exportTypeLoaded) { //
 			return <PreviewPanelLoader/>;
 		}
 
 		return (
-			<CodeMirror
-				value={code}
-				onBeforeChange={(editor, data, value) => setCode(value)}
-				options={{
-					mode: codeMirrorMode,
-					theme,
-					lineNumbers: showRowNumbers,
-					lineWrapping: enableLineWrapping,
-					readOnly: true
-				}}
-			/>
+			<CodeMirrorWrapper />
 		);
 	};
 
