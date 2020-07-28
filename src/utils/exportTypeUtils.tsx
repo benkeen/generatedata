@@ -22,38 +22,43 @@ export const exportTypeOptions = Object.keys(exportTypes)
 
 // TODO error scenarios
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
-	const etBundle = new Promise((resolve, reject) => {
-		import(
-			/* webpackChunkName: "ET-[request]" */
-			/* webpackMode: "lazy" */
-			`../plugins/exportTypes/${exportType}/bundle`
-		)
-			.then((def: any) => {
-				loadedExportTypes[exportType] = {
-					Settings: def.Settings,
-					initialState: def.initialState,
-					getExportTypeLabel: def.getExportTypeLabel,
-					getCodeMirrorMode: def.getCodeMirrorMode
+	return new Promise((mainResolve) => {
+		const etBundle = new Promise((resolve, reject) => {
+			import(
+				/* webpackChunkName: "ET-[request]" */
+				/* webpackMode: "lazy" */
+				`../plugins/exportTypes/${exportType}/bundle`
+			)
+				.then((def: any) => {
+					loadedExportTypes[exportType] = {
+						Settings: def.Settings,
+						initialState: def.initialState,
+						getExportTypeLabel: def.getExportTypeLabel,
+						getCodeMirrorMode: def.getCodeMirrorMode
+					};
+					resolve(def);
+				})
+				.catch((e) => {
+					reject(e);
+				});
+		});
+
+		const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode) => {
+			return new Promise((resolve) => {
+				const modeFile = document.createElement('script');
+				modeFile.src = `./codeMirrorModes/${mode}.js`;
+				modeFile.onload = (): void => {
+					resolve();
 				};
-				resolve(def);
-			})
-			.catch((e) => {
-				reject(e);
+				document.body.appendChild(modeFile);
+			});
+		});
+
+		Promise.all([...codeMirrorModes, etBundle])
+			.then(() => {
+				mainResolve(etBundle);
 			});
 	});
-
-	const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode) => {
-		return new Promise((resolve) => {
-			const modeFile = document.createElement('script');
-			modeFile.src = `./codeMirrorModes/${mode}.js`;
-			modeFile.onload = (): void => {
-				resolve();
-			};
-			document.body.appendChild(modeFile);
-		});
-	});
-
-	return Promise.all([...codeMirrorModes, etBundle]);
 };
 
 // *** assumes the callee knows what they're doing & that they've checked the component has been loaded
