@@ -8,7 +8,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import { uglify } from "rollup-plugin-uglify";
 
-// usage: `npm rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js`
+// example usage: `npm rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js`
 export default (cmdLineArgs) => {
 	const { 'config-src': src, 'config-target': target } = cmdLineArgs;
 

@@ -4,6 +4,7 @@ export default {
 	"coreExportTypeWorker": "exportTypes.worker-aa94d88fb023b0549181d8c9c58c4549.js",
 	"coreUtils": "coreUtils.worker-1d69f9d21cc806e4e3117cb187d054ad.js",
 	"dataTypes": {
+		"Email": "DT-Email.generator-30a322414be834e27d74ad4d9bfac146.js",
 		"Names": "DT-Names.generator-5c4443c46e347d8e4808cda7cc8fe770.js",
 		"Phone": "DT-Phone.generator-b3c93faaeb766be62b94f36b7b9ae0d4.js"
 	},

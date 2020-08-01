@@ -32,7 +32,8 @@ function initStore(state: any): any {
 			'loadedDataTypes',
 			'loadedExportTypes',
 			'isGenerating',
-			'numGeneratedRows'
+			'numGeneratedRows',
+			'dataTypePreviewData' // blacklisted because it can just get too big. Instead it's re-generated on page load
 		]
 	};
 

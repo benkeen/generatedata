@@ -214,12 +214,7 @@ export const reducer = (state: GeneratorState = {
 			return {
 				...state,
 				dataTypePreviewData: {
-					...action.payload.dataTypePreviewData,
-
-					// bizarre... this causes redux-persist to work. Without it, it won't persist the preview data (?)
-					reduxPersistBug: {
-						workaround: true
-					}
+					...action.payload.dataTypePreviewData
 				}
 			};
 		}

@@ -1,28 +1,29 @@
-import { getRandomNum, getRandomArrayValue } from '~utils/randomUtils';
-import { getLipsumWords } from '~utils/stringUtils';
-import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
-
+declare var utils: any;
 
 const MAX_EMAIL_LENGTH = 254;
-const { words } = getLipsumWords();
+
+const getWords = () => {
+	const { words } = utils.stringUtils.getLipsumWords();
+	return words;
+};
 
 const removePunctuation = (arr: string[]): string[] => arr.map((i: string) => i.replace(/[.,:;]/g, ''));
 
-export const getRandomEmail = (wordsArr = words, suffixes = ["edu", "com", "org", "ca", "net", "co.uk"]): string => {
+const getRandomEmail = (wordsArr = getWords(), suffixes = ["edu", "com", "org", "ca", "net", "co.uk"]): string => {
 	const numWords = wordsArr.length;
-	const numPrefixWords = getRandomNum(1, 3);
-	const offset = getRandomNum(0, numWords - (numPrefixWords + 1));
+	const numPrefixWords = utils.randomUtils.getRandomNum(1, 3);
+	const offset = utils.randomUtils.getRandomNum(0, numWords - (numPrefixWords + 1));
 	const selectedWords = removePunctuation(wordsArr.slice(offset, offset + numPrefixWords));
 	const prefix = selectedWords.join('.');
 
 	// domain
-	const numDomainWords = getRandomNum(1, 3);
-	const domainOffset = getRandomNum(0, numWords - (numDomainWords + 1));
+	const numDomainWords = utils.randomUtils.getRandomNum(1, 3);
+	const domainOffset = utils.randomUtils.getRandomNum(0, numWords - (numDomainWords + 1));
 	const selectedDomainWords = removePunctuation(wordsArr.slice(domainOffset, domainOffset + numDomainWords));
 	const domain = selectedDomainWords.join('');
 
 	// suffix
-	const suffix = getRandomArrayValue(suffixes);
+	const suffix = utils.randomUtils.getRandomArrayValue(suffixes);
 
 	// if the email exceeded 254 chars (the max valid number of chars), truncate it. This could be way
 	// more elegant, but it's SUCH a fringe case I don't much mind
@@ -37,15 +38,18 @@ export const getRandomEmail = (wordsArr = words, suffixes = ["edu", "com", "org"
 	return email;
 };
 
-export const generate = (): DTGenerateResult => ({ display: getRandomEmail() });
+let utilsLoaded = false;
 
-export const getMetadata = (): DTMetadata => ({
-	general: {
-		dataType: 'string'
-	},
-	sql: {
-		field: 'varchar(255) default NULL',
-		field_Oracle: 'varchar2(255) default NULL',
-		field_MSSQL: 'VARCHAR(255) NULL'
+onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.coreUtils);
+		utilsLoaded = true;
 	}
-});
+
+	postMessage({
+		display: getRandomEmail()
+	});
+};
+
+// stupid *&^@# TS: https://stackoverflow.com/a/41975448/1217608
+export { };
