@@ -21,7 +21,7 @@ export type DataRows = {
 };
 
 export type PreviewData = {
-	[id: string]: any[];
+	[id: string]: any;
 };
 
 // we store all settings separately so in case a user switches from one to another, the previous settings aren't
@@ -213,7 +213,14 @@ export const reducer = (state: GeneratorState = {
 		case actions.REFRESH_PREVIEW_DATA: {
 			return {
 				...state,
-				dataTypePreviewData: action.payload.dataTypePreviewData
+				dataTypePreviewData: {
+					...action.payload.dataTypePreviewData,
+
+					// bizarre... this causes redux-persist to work. Without it, it won't persist the preview data (?)
+					reduxPersistBug: {
+						workaround: true
+					}
+				}
 			};
 		}
 

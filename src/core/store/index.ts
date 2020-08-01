@@ -21,13 +21,13 @@ function initStore(state: any): any {
 
 	const rootPersistConfig = {
 		key: 'root',
-		storage: storage,
+		storage,
 		blacklist: ['generator', 'main']
 	};
 
 	const generatorPersistConfig = {
 		key: 'generator',
-		storage: storage,
+		storage,
 		blacklist: [
 			'loadedDataTypes',
 			'loadedExportTypes',
@@ -38,7 +38,7 @@ function initStore(state: any): any {
 
 	const mainPersistConfig = {
 		key: 'main',
-		storage: storage,
+		storage,
 		blacklist: [
 			'localeFileLoaded'
 		]
