@@ -1,3 +1,5 @@
+test.skip('skip', () => {});
+
 // import { generateSimple, isNested } from '../JSON.generator';
 // import { ExportTypeGenerationData } from '~types/general';
 //

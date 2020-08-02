@@ -7,7 +7,7 @@ import * as mainActions from './store/main/main.actions';
 import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
 import { DataTypeFolder } from '../_plugins';
-import { loadCoreWorker, loadDataTypeWorker, loadExportTypeWorker } from '~utils/coreUtils';
+import { loadDataTypeWorker, loadExportTypeWorker } from '~utils/coreUtils';
 import '../_imports';
 
 // just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The

@@ -1,3 +1,5 @@
+test.skip('skip', () => {});
+
 // import * as generation from '../Email.generator';
 // import * as sinon from 'sinon';
 // import * as randomUtils from '../../../../utils/randomUtils';

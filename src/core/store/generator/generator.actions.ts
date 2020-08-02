@@ -65,6 +65,10 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 					}
 				});
 				dispatch(refreshPreview([gridRowId]));
+
+			// used onload. Populates the preview data for each page refresh
+			} else {
+				dispatch(maybePopulatePreviewData())
 			}
 		});
 };
@@ -205,6 +209,7 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 		loadExportTypeBundle(exportType)
 			.then((bundle: DTBundle) => {
 				dispatch(exportTypeLoaded(exportType, bundle.initialState));
+				dispatch(maybePopulatePreviewData());
 			});
 	};
 };
@@ -304,3 +309,8 @@ export const setPanelSize = (size: number): GDAction => ({
 
 export const CHANGE_SMALL_SCREEN_VISIBLE_PANEL = 'CHANGE_SMALL_SCREEN_VISIBLE_PANEL';
 export const changeSmallScreenVisiblePanel = (): GDAction => ({ type: CHANGE_SMALL_SCREEN_VISIBLE_PANEL });
+
+export const maybePopulatePreviewData = (): any => (dispatch: Dispatch, getState: any): void => {
+	// const shouldPopulate = getState()
+	console.log("maybe populate");
+};

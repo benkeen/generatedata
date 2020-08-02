@@ -75,16 +75,6 @@ export const getColumns = createSelector(
 	}
 );
 
-// export const getPreviewColumns = createSelector(
-// 	getNonEmptySortedRows,
-// 	(rows): ColumnData[] => (
-// 		rows.map(({ dataType, title }: any) => ({
-// 			title,
-// 			dataType
-// 		}))
-// 	)
-// );
-
 export const getRowDataTypes = createSelector(
 	getRows,
 	(rows) => (
@@ -257,5 +247,17 @@ export const getCodeMirrorMode = createSelector(
 			return "";
 		}
 		return exportTypeUtilsGetCodeMirrorMode(exportType, exportTypeSettings[exportType]);
+	}
+);
+
+export const shouldGeneratePreviewRows = createSelector(
+	getRowDataTypes,
+	getExportType,
+	getLoadedDataTypes,
+	getLoadedExportTypes,
+	getRows,
+	getDataTypePreviewData,
+	(dataTypes, exportType, loadedDataTypes, rowsObj, exportTypes) => {
+
 	}
 );
