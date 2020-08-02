@@ -1,7 +1,7 @@
-import { initialState } from '../generator.reducer';
+import { getInitialState } from '../generator.reducer';
 
 const state = {
-	generator: initialState
+	generator: getInitialState()
 };
 
 test.skip('skip', () => {});

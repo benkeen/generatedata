@@ -6,7 +6,7 @@ import * as actions from './generator.actions';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
-import { dataTypeNames } from '~utils/dataTypeUtils';
+import { dataTypeNames } from '../../../utils/dataTypeUtils';
 import { exportTypeNames } from '~utils/exportTypeUtils';
 
 export type DataRow = {
@@ -64,7 +64,7 @@ export type GeneratorState = {
 	numGeneratedRows: number;
 };
 
-export const initialState: GeneratorState = {
+export const getInitialState = (): GeneratorState => ({
 	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
 	loadedExportTypes: exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	exportType: config.defaultExportType,
@@ -90,9 +90,9 @@ export const initialState: GeneratorState = {
 	lastLayoutHeight: null,
 	isGenerating: false,
 	numGeneratedRows: 0
-};
+});
 
-export const reducer = (state = initialState, action: AnyAction): GeneratorState => {
+export const reducer = (state = getInitialState(), action: AnyAction): GeneratorState => {
 	switch (action.type) {
 		case actions.CLEAR_GRID:
 			return {
