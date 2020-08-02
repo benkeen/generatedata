@@ -3,7 +3,6 @@ cache/*
 .buildpath
 .idea*
 node_modules/*
-build/*
 config/config.client.js
 server/config.server.js
 dist/
