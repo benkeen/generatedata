@@ -78,6 +78,8 @@ const createPluginsListFile = () => {
 	content += `export type countryTuple = typeof countries;\n`;
 	content += `export type CountryType = countryTuple[number];\n`;
 
+	console.log("--------", content);
+
 	const file = path.join(__dirname, '..', 'src/_plugins.tsx');
 	if (fs.existsSync(file)) {
 		fs.unlinkSync(file);
