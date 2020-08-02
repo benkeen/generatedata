@@ -68,7 +68,7 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 
 			// used onload. Populates the preview data for each page refresh
 			} else {
-				dispatch(maybePopulatePreviewData())
+				dispatch(maybePopulatePreviewData());
 			}
 		});
 };

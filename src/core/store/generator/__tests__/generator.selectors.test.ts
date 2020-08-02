@@ -1,5 +1,10 @@
+import { initialState } from '../generator.reducer';
 
+const state = {
+	generator: initialState
+};
 
-describe("shouldGeneratePreviewRows", () => {
-
-});
+test.skip('skip', () => {});
+// describe("getRowDataTypes", () => {
+//
+// });

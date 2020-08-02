@@ -250,14 +250,14 @@ export const getCodeMirrorMode = createSelector(
 	}
 );
 
-export const shouldGeneratePreviewRows = createSelector(
-	getRowDataTypes,
-	getExportType,
-	getLoadedDataTypes,
-	getLoadedExportTypes,
-	getRows,
-	getDataTypePreviewData,
-	(dataTypes, exportType, loadedDataTypes, rowsObj, exportTypes) => {
-
-	}
-);
+// export const shouldGeneratePreviewRows = createSelector(
+// 	getRowDataTypes,
+// 	getExportType,
+// 	getLoadedDataTypes,
+// 	getLoadedExportTypes,
+// 	getRows,
+// 	getDataTypePreviewData,
+// 	(dataTypes, exportType, loadedDataTypes, rowsObj, exportTypes) => {
+//
+// 	}
+// );

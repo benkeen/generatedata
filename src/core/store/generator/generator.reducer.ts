@@ -64,11 +64,7 @@ export type GeneratorState = {
 	numGeneratedRows: number;
 };
 
-/**
- * This houses the content of the generator. The actual content of each row is dependent based on the
- * Data Type: they can choose to store whatever info in whatever format they want. So this is kind of like a frame.
- */
-export const reducer = (state: GeneratorState = {
+export const initialState: GeneratorState = {
 	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
 	loadedExportTypes: exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	exportType: config.defaultExportType,
@@ -94,7 +90,9 @@ export const reducer = (state: GeneratorState = {
 	lastLayoutHeight: null,
 	isGenerating: false,
 	numGeneratedRows: 0
-}, action: AnyAction): GeneratorState => {
+};
+
+export const reducer = (state = initialState, action: AnyAction): GeneratorState => {
 	switch (action.type) {
 		case actions.CLEAR_GRID:
 			return {
