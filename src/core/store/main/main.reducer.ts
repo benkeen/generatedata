@@ -8,7 +8,7 @@ export type MainState = {
 	showIntroDialog: boolean;
 };
 
-const defaultState: MainState = {
+export const defaultState: MainState = {
 	localeFileLoaded: false,
 	locale: 'en',
 	showIntroDialog: true

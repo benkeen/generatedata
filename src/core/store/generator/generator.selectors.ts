@@ -11,6 +11,8 @@ import {
 	getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode
 } from '~utils/exportTypeUtils';
 import { ColumnData, GenerationTemplate, Store } from '~types/general';
+import { Simulate } from 'react-dom/test-utils';
+import loadedData = Simulate.loadedData;
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
@@ -250,14 +252,32 @@ export const getCodeMirrorMode = createSelector(
 	}
 );
 
-// export const shouldGeneratePreviewRows = createSelector(
-// 	getRowDataTypes,
-// 	getExportType,
-// 	getLoadedDataTypes,
-// 	getLoadedExportTypes,
-// 	getRows,
-// 	getDataTypePreviewData,
-// 	(dataTypes, exportType, loadedDataTypes, rowsObj, exportTypes) => {
-//
-// 	}
-// );
+export const shouldGeneratePreviewRows = createSelector(
+	getRowDataTypes,
+	getExportType,
+	getLoadedDataTypes,
+	getLoadedExportTypes,
+	getRows,
+	getDataTypePreviewData,
+	(dataTypes, exportType, loadedDataTypes, loadedExportTypes, rowsObj, previewData) => {
+		if (!dataTypes.length) {
+			return false;
+		}
+
+		const allDataTypesLoaded = dataTypes.every((i: DataTypeFolder) => loadedDataTypes[i]);
+		if (!allDataTypesLoaded) {
+			return false;
+		}
+
+		if (!loadedExportTypes[exportType]) {
+			return false;
+		}
+
+		let alreadyGenerated = Object.keys(rowsObj).every((key: string) => !!previewData[key]);
+		if (alreadyGenerated) {
+			return false;
+		}
+
+		return true;
+	}
+);

@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
+import sinon from 'sinon';
 import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
 import generatorReducer from '../generator.reducer';
 import mainReducer from '../../main/main.reducer';
+import * as dataTypeUtils from '~utils/dataTypeUtils';
 
 describe('generator section', () => {
 	let store: any;
@@ -150,21 +152,24 @@ describe('grid rows', () => {
 		expect(updatedRows[2].title).toEqual('');
 	});
 
-	// it('changes the data type', () => {
+	// fit('changes the data type', () => {
 	// 	store.dispatch(actions.addRows(3));
-
+	//
 	// 	const rows = selectors.getSortedRowsArray(store.getState());
 	// 	expect(rows[0].dataType).toEqual(null);
 	// 	expect(rows[1].dataType).toEqual(null);
 	// 	expect(rows[2].dataType).toEqual(null);
-
-	// const dispatches = Thunk(actions.onSelectDataType(rows[1].id, 'JSON')).execute();
-	// console.log(dispatches);
-
-	// const updatedRows = selectors.getSortedRowsArray(store.getState());
-	// expect(updatedRows[0].dataType).toEqual(null);
-	// expect(updatedRows[1].dataType).toEqual('JSON');
-	// expect(updatedRows[2].dataType).toEqual(null);
+	//
+	// 	sinon.stub(dataTypeUtils, 'requestDataTypeBundle').returns(Promise.resolve({}));
+	// 	actions.onSelectDataType('Names', rows[1].id);
+	//
+	// 	// const dispatches = Thunk(actions.onSelectDataType(rows[1].id, 'JSON')).execute();
+	// 	// console.log(dispatches);
+	//
+	// 	const updatedRows = selectors.getSortedRowsArray(store.getState());
+	// 	expect(updatedRows[0].dataType).toEqual(null);
+	// 	expect(updatedRows[1].dataType).toEqual('Names');
+	// 	expect(updatedRows[2].dataType).toEqual(null);
 	// });
 
 	// it('initializes the default data type state when selecting data type', () => {
@@ -203,3 +208,27 @@ describe('preview panel settings', () => {
 		expect(selectors.getNumRows(store.getState())).toEqual(10);
 	});
 });
+
+
+describe("misc selectors", () => {
+	let store: any;
+	beforeEach(() => {
+		store = createStore(combineReducers({
+			generator: generatorReducer,
+			main: mainReducer
+		}));
+	});
+
+	describe("getRowDataTypes", () => {
+		it("returns nothing when there are no rows", () => {
+			expect(selectors.getRowDataTypes(store.getState())).toEqual([]);
+		});
+
+		// it("returns a single row's data type", () => {
+		// 	store.dispatch(actions.addRows(1));
+		// 	expect(selectors.getRowDataTypes(store.getState())).toEqual([]);
+		// });
+	});
+
+});
+
