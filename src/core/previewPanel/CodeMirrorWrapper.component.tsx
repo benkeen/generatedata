@@ -1,7 +1,7 @@
 import React from 'react';
-import * as coreUtils from '../../utils/coreUtils';
+import * as coreUtils from '~utils/coreUtils';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import { DataTypeFolder } from '../../_plugins';
+import * as workerUtils from '~utils/workerUtils';
 
 export type CodeMirrorWrapperProps = {
 	theme: string; // TODO
@@ -11,10 +11,19 @@ export type CodeMirrorWrapperProps = {
 };
 
 const CodeMirrorWrapper = (props: any): JSX.Element => {
-	const { codeMirrorMode, theme, showLineNumbers, enableLineWrapping } = props;
+	const {
+		rows, columns, exportType, exportTypeSettings, codeMirrorMode, theme, showLineNumbers, loadedExportTypes,
+		enableLineWrapping
+	} = props;
 	const [code, setCode] = React.useState("");
 
 	React.useEffect(() => {
+		if (!columns.length || !rows.length) {
+			return;
+		}
+
+		// console.log({ columns: cloneObj(columns), rows: cloneObj(rows) });
+
 		// when to re-run!
 		// add row -> easy
 		// remove row -> easy
@@ -26,7 +35,7 @@ const CodeMirrorWrapper = (props: any): JSX.Element => {
 			.then((str: string) => {
 				setCode(str);
 			});
-	});
+	}, [rows, columns, exportType, exportTypeSettings, loadedExportTypes]);
 
 	return (
 		<CodeMirror
@@ -45,14 +54,12 @@ const CodeMirrorWrapper = (props: any): JSX.Element => {
 
 export default CodeMirrorWrapper;
 
-
 export const generatePreviewString = (props: any) => {
-	const { rows, columns, exportType, exportTypeSettings, rowDataTypes, loadedExportTypes } = props;
+	const { rows, columns, exportType, exportTypeSettings, loadedExportTypes } = props;
+	const exportTypeWorker = coreUtils.getExportTypeWorker();
 
 	return new Promise((resolve) => {
-		const exportTypeWorker = coreUtils.getExportTypeWorker();
-
-		exportTypeWorker.postMessage({
+		workerUtils.performTask('exportTypeWorker', exportTypeWorker, {
 			rows,
 			columns,
 			exportType,
@@ -61,13 +68,12 @@ export const generatePreviewString = (props: any) => {
 			isLastBatch: true,
 			workerResources: {
 				coreUtils: coreUtils.getCoreWorkerUtils(),
-				dataTypes: coreUtils.getDataTypeWorkerMap(rowDataTypes as DataTypeFolder[]),
 				exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes)
 			}
-		});
-
-		exportTypeWorker.onmessage = ({ data }: MessageEvent): void => {
+		}, ({ data }: MessageEvent): void => {
+			console.log("data!");
+			// console.log("new data: ", data);
 			resolve(data);
-		};
+		});
 	});
 };

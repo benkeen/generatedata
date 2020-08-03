@@ -6,7 +6,7 @@
  * build size. But honestly it's <20KB and there are bigger fish to fry.
  */
 import typescript from 'rollup-plugin-typescript2';
-import { uglify } from "rollup-plugin-uglify";
+import { terser } from "rollup-plugin-terser";
 
 // example usage: `npm rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js`
 export default (cmdLineArgs) => {
@@ -31,7 +31,7 @@ export default (cmdLineArgs) => {
 					}
 				}
 			}),
-			uglify()
+			terser()
 		]
 	}
 };

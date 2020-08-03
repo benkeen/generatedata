@@ -4,10 +4,16 @@ let workerResources: any;
 let loadedExportTypeWorkers: any = {};
 let exportTypeWorkerMap: any = {};
 
+let abortedMessageIds: any = {};
+
 // sigh.... we just need the one coreWorker... TODO
 
 context.onmessage = (e: MessageEvent) => {
-	const { rows, columns, isFirstBatch, isLastBatch, exportType, numResults, exportTypeSettings } = e.data;
+	const { _action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults, exportTypeSettings } = e.data;
+
+	if (_action === 'abort') {
+		abortedMessageIds[_messageId] = true;
+	}
 
 	workerResources = e.data.workerResources;
 	exportTypeWorkerMap = workerResources.exportTypes;
@@ -29,7 +35,11 @@ context.onmessage = (e: MessageEvent) => {
 	});
 
 	worker.onmessage = (e: MessageEvent): void => {
-		context.postMessage(e.data);
+		if (abortedMessageIds[_messageId]) {
+			console.log("ABORTED");
+		} else {
+			context.postMessage(e.data);
+		}
 	};
 };
 

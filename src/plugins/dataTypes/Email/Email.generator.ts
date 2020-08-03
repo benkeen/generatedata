@@ -7,9 +7,9 @@ const getWords = () => {
 	return words;
 };
 
-const removePunctuation = (arr: string[]): string[] => arr.map((i: string) => i.replace(/[.,:;]/g, ''));
+export const removePunctuation = (arr: string[]): string[] => arr.map((i: string) => i.replace(/[.,:;]/g, ''));
 
-const getRandomEmail = (wordsArr = getWords(), suffixes = ["edu", "com", "org", "ca", "net", "co.uk"]): string => {
+export const getRandomEmail = (wordsArr = getWords(), suffixes = ["edu", "com", "org", "ca", "net", "co.uk"]): string => {
 	const numWords = wordsArr.length;
 	const numPrefixWords = utils.randomUtils.getRandomNum(1, 3);
 	const offset = utils.randomUtils.getRandomNum(0, numWords - (numPrefixWords + 1));
@@ -51,5 +51,3 @@ onmessage = (e: any) => {
 	});
 };
 
-// stupid *&^@# TS: https://stackoverflow.com/a/41975448/1217608
-export { };

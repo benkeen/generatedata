@@ -133,6 +133,16 @@ const PreviewPanel = ({
 		);
 	};
 
+	if (!initialDependenciesLoaded) {
+		return (
+			<div className={`${styles.previewPanel} ${themeName}`}>
+				<div className={styles.previewLoading}>
+					<PreviewPanelLoader />
+				</div>
+			</div>
+		);
+	}
+
 	const content = (
 		<div className={styles.panelContent}>
 			<div className={styles.topRow}>
@@ -167,16 +177,6 @@ const PreviewPanel = ({
 			</div>
 		</div>
 	);
-
-	if (!initialDependenciesLoaded) {
-		return (
-			<div className={`${styles.previewPanel} ${themeName}`}>
-				<div className={styles.previewLoading}>
-					<PreviewPanelLoader />
-				</div>
-			</div>
-		);
-	}
 
 	if (exportSettingsVisible) {
 		return (
