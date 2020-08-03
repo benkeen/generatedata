@@ -6,7 +6,7 @@ import * as actions from './generator.actions';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
-import { dataTypeNames } from '../../../utils/dataTypeUtils';
+import { dataTypeNames } from '~utils/dataTypeUtils';
 import { exportTypeNames } from '~utils/exportTypeUtils';
 
 export type DataRow = {
@@ -39,6 +39,11 @@ export type GeneratorState = {
 	loadedExportTypes: {
 		[str in ExportTypeFolder]: boolean;
 	};
+
+	// this is set to true on load after all necessary export types, data types for whatever last config they
+	// has have loaded, as well as re-generate a new batch of preview data. It's used to show a spinner in the
+	// Preview panel until it's ready to show data
+	initialDependenciesLoaded: boolean;
 	exportType: ExportTypeFolder;
 	rows: DataRows;
 	sortedRows: string[];
@@ -67,6 +72,7 @@ export type GeneratorState = {
 export const getInitialState = (): GeneratorState => ({
 	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
 	loadedExportTypes: exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
+	initialDependenciesLoaded: false,
 	exportType: config.defaultExportType,
 	rows: {},
 	sortedRows: [],
@@ -376,6 +382,12 @@ export const reducer = (state = getInitialState(), action: AnyAction): Generator
 				...state,
 				isGenerating: true,
 				numGeneratedRows: 0
+			};
+
+		case actions.SET_INITIAL_DEPENDENCIES_LOADED:
+			return {
+				...state,
+				initialDependenciesLoaded: true
 			};
 
 		default:

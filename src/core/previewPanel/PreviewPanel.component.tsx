@@ -34,6 +34,7 @@ export type PreviewPanelProps = {
 	refreshPreview: () => void;
 	changeSmallScreenVisiblePanel: () => void;
 	exportTypeLoaded: boolean;
+	initialDependenciesLoaded: boolean;
 	toggleExportSettings: () => void;
 	exportTypeSettings: any; // TODO
 	exportSettingsVisible: boolean;
@@ -49,7 +50,7 @@ const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperC
 const PreviewPanel = ({
 	ExportTypePreview, i18n, theme, builderLayout, togglePreview, hasData, exportTypeSettings, previewTextSize,
 	refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel, changeSmallScreenVisiblePanel,
-	exportTypeLoaded
+	exportTypeLoaded, initialDependenciesLoaded
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
 
@@ -123,7 +124,7 @@ const PreviewPanel = ({
 	};
 
 	const getCodeMirrorPanel = () => {
-		if (!exportTypeLoaded) { //
+		if (!exportTypeLoaded) {
 			return <PreviewPanelLoader/>;
 		}
 
@@ -166,6 +167,16 @@ const PreviewPanel = ({
 			</div>
 		</div>
 	);
+
+	if (!initialDependenciesLoaded) {
+		return (
+			<div className={`${styles.previewPanel} ${themeName}`}>
+				<div className={styles.previewLoading}>
+					<PreviewPanelLoader />
+				</div>
+			</div>
+		);
+	}
 
 	if (exportSettingsVisible) {
 		return (

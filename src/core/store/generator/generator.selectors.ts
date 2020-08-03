@@ -11,8 +11,6 @@ import {
 	getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode
 } from '~utils/exportTypeUtils';
 import { ColumnData, GenerationTemplate, Store } from '~types/general';
-import { Simulate } from 'react-dom/test-utils';
-import loadedData = Simulate.loadedData;
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
@@ -38,6 +36,12 @@ export const getLastLayoutWidth = (state: Store): number | null => state.generat
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
 export const isGenerating = (state: Store): boolean => state.generator.isGenerating;
 export const getNumGeneratedRows = (state: Store): number => state.generator.numGeneratedRows;
+export const isInitialDependenciesLoaded = (state: Store): boolean => state.generator.initialDependenciesLoaded;
+
+export const getRowIds = createSelector(
+	getRows,
+	(rows) => Object.keys(rows)
+);
 
 export const getNumRows = createSelector(
 	getSortedRows,
@@ -252,28 +256,37 @@ export const getCodeMirrorMode = createSelector(
 	}
 );
 
-export const shouldGeneratePreviewRows = createSelector(
+export const previewPanelDependenciesLoaded = createSelector(
 	getRowDataTypes,
 	getExportType,
 	getLoadedDataTypes,
 	getLoadedExportTypes,
-	getRows,
-	getDataTypePreviewData,
-	(dataTypes, exportType, loadedDataTypes, loadedExportTypes, rowsObj, previewData) => {
-		if (!dataTypes.length) {
-			return false;
-		}
-
+	(dataTypes, exportType, loadedDataTypes, loadedExportTypes) => {
 		const allDataTypesLoaded = dataTypes.every((i: DataTypeFolder) => loadedDataTypes[i]);
 		if (!allDataTypesLoaded) {
 			return false;
 		}
-
 		if (!loadedExportTypes[exportType]) {
 			return false;
 		}
+		return true;
+	}
+);
 
-		let alreadyGenerated = Object.keys(rowsObj).every((key: string) => !!previewData[key]);
+export const shouldGeneratePreviewRows = createSelector(
+	getRowDataTypes,
+	previewPanelDependenciesLoaded,
+	getRows,
+	getDataTypePreviewData,
+	(dataTypes, dependenciesLoaded, rowsObj, previewData) => {
+		if (!dataTypes.length) {
+			return false;
+		}
+		if (!dependenciesLoaded) {
+			return false;
+		}
+
+		const alreadyGenerated = Object.keys(rowsObj).every((key: string) => !!previewData[key]);
 		if (alreadyGenerated) {
 			return false;
 		}

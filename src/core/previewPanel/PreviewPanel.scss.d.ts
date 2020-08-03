@@ -5,6 +5,7 @@ declare namespace PreviewPanelScssModule {
     noResults: string;
     panelContent: string;
     preview: string;
+    previewLoading: string;
     previewPanel: string;
     previewPanelContent: string;
     topRow: string;

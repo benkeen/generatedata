@@ -65,10 +65,8 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 					}
 				});
 				dispatch(refreshPreview([gridRowId]));
-
-			// used onload. Populates the preview data for each page refresh
 			} else {
-				dispatch(maybePopulatePreviewData());
+				dispatch(checkPreviewPanelDependenciesLoaded());
 			}
 		});
 };
@@ -116,7 +114,7 @@ export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 
 // this re-generates the preview panel data. This doesn't have to be called on boot-up because the preview data is
 // generated on the fly, saved in the store and rehydrated when the app loads
-export const refreshPreview = (idsToRefresh: string[] = []): any => {
+export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = null): any => {
 	const dataTypeWorker = coreUtils.getDataTypeWorker();
 
 	return (dispatch: any, getState: any): any => {
@@ -161,6 +159,10 @@ export const refreshPreview = (idsToRefresh: string[] = []): any => {
 					dataTypePreviewData
 				}
 			});
+
+			if (onComplete) {
+				dispatch(onComplete());
+			}
 		};
 	};
 };
@@ -209,7 +211,7 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 		loadExportTypeBundle(exportType)
 			.then((bundle: DTBundle) => {
 				dispatch(exportTypeLoaded(exportType, bundle.initialState));
-				dispatch(maybePopulatePreviewData());
+				dispatch(checkPreviewPanelDependenciesLoaded());
 			});
 	};
 };
@@ -283,7 +285,7 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 
 
 export const UPDATE_GENERATED_ROWS_COUNT = 'UPDATE_GENERATED_ROWS_COUNT';
-export const updateGeneratedRowsCount = (numGeneratedRows: number) => ({
+export const updateGeneratedRowsCount = (numGeneratedRows: number): GDAction => ({
 	type: UPDATE_GENERATED_ROWS_COUNT,
 	payload: {
 		numGeneratedRows
@@ -310,7 +312,18 @@ export const setPanelSize = (size: number): GDAction => ({
 export const CHANGE_SMALL_SCREEN_VISIBLE_PANEL = 'CHANGE_SMALL_SCREEN_VISIBLE_PANEL';
 export const changeSmallScreenVisiblePanel = (): GDAction => ({ type: CHANGE_SMALL_SCREEN_VISIBLE_PANEL });
 
-export const maybePopulatePreviewData = (): any => (dispatch: Dispatch, getState: any): void => {
-	// const shouldPopulate = getState()
-	console.log("maybe populate");
+export const checkPreviewPanelDependenciesLoaded = (): any => (dispatch: Dispatch, getState: any): void => {
+	if (selectors.previewPanelDependenciesLoaded(getState())) {
+		const shouldPopulate = selectors.shouldGeneratePreviewRows(getState());
+
+		if (shouldPopulate) {
+			const rowIds = selectors.getRowIds(getState());
+			dispatch(refreshPreview(rowIds, setInitialDependenciesLoaded));
+		} else {
+			dispatch(setInitialDependenciesLoaded());
+		}
+	}
 };
+
+export const SET_INITIAL_DEPENDENCIES_LOADED = 'SET_INITIAL_DEPENDENCIES_LOADED';
+export const setInitialDependenciesLoaded = (): GDAction => ({ type: SET_INITIAL_DEPENDENCIES_LOADED });

@@ -19,6 +19,7 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		exportTypeLabel: selectors.getExportTypeLabel(state),
 		exportTypeSettings,
 		hasData: selectors.hasData(state),
+		initialDependenciesLoaded: selectors.isInitialDependenciesLoaded(state)
 	};
 };
 
