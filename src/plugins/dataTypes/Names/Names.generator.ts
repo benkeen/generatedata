@@ -1,4 +1,4 @@
-declare var utils: any;
+import utils from '../../../utils';
 
 const maleNames = [
 	"Aaron", "Abbot", "Abdul", "Abel", "Abraham", "Acton", "Adam", "Addison", "Adrian", "Ahmed", "Aidan", "Akeem",
@@ -87,7 +87,7 @@ const getRandomGender = () => utils.randomUtils.getRandomBool() ? genders[0] : g
 
 let coreUtilsLoaded = false;
 
-onmessage = (e: any) => {
+const onmessage = (e: any) => {
 	if (!coreUtilsLoaded) {
 		importScripts(e.data.workerResources.coreUtils);
 		coreUtilsLoaded = true;
@@ -149,6 +149,3 @@ onmessage = (e: any) => {
 		gender
 	});
 };
-
-// stupid TS: https://stackoverflow.com/a/41975448/1217608
-export {};

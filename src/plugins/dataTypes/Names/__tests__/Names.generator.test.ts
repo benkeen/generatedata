@@ -2,7 +2,7 @@ test.skip('skip', () => {});
 
 // import { onmessage as generate } from '../Names.generator';
 // import * as sinon from 'sinon';
-// import * as randomUtils from '../../../../utils/randomUtils';
+// import utils from '../../../../utils';
 // import { DTGenerationData } from '~types/dataTypes';
 //
 //
@@ -21,7 +21,7 @@ test.skip('skip', () => {});
 //
 // 	it('generates a single male name', () => {
 // 		data.rowState = 'MaleName';
-// 		sinon.stub(randomUtils, 'getRandomArrayValue').returns('Jim');
+// 		sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns('Jim');
 //
 // 		expect(generate(data)).toEqual({
 // 			display: 'Jim',
@@ -31,7 +31,7 @@ test.skip('skip', () => {});
 //
 // 	it('generates a single female name', () => {
 // 		data.rowState = 'FemaleName';
-// 		sinon.stub(randomUtils, 'getRandomArrayValue').returns('Sue');
+// 		sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns('Sue');
 //
 // 		expect(generate(data)).toEqual({
 // 			display: 'Sue',
@@ -41,7 +41,7 @@ test.skip('skip', () => {});
 //
 // 	it('generates two male names', () => {
 // 		data.rowState = 'MaleName, MaleName';
-// 		sinon.stub(randomUtils, 'getRandomArrayValue')
+// 		sinon.stub(utils.randomUtils, 'getRandomArrayValue')
 // 			.onCall(0).returns('Jim')
 // 			.onCall(1).returns('Bob');
 //
@@ -53,7 +53,7 @@ test.skip('skip', () => {});
 //
 // 	it('generates multiple male names', () => {
 // 		data.rowState = '[MaleName]!!MaleName--MaleName';
-// 		sinon.stub(randomUtils, 'getRandomArrayValue')
+// 		sinon.stub(utils.randomUtils, 'getRandomArrayValue')
 // 			.onCall(0).returns('Jim')
 // 			.onCall(1).returns('Jimbo')
 // 			.onCall(2).returns('Bob');
@@ -66,7 +66,7 @@ test.skip('skip', () => {});
 //
 // 	it('generates male and female names', () => {
 // 		data.rowState = 'FemaleName,MaleName';
-// 		sinon.stub(randomUtils, 'getRandomArrayValue')
+// 		sinon.stub(utils.randomUtils, 'getRandomArrayValue')
 // 			.onCall(0).returns('Thomas')
 // 			.onCall(1).returns('Susan');
 //
@@ -78,8 +78,8 @@ test.skip('skip', () => {});
 //
 // 	it('generates surnames', () => {
 // 		data.rowState = 'Surname';
-// 		sinon.stub(randomUtils, 'getRandomArrayValue')
-// 			.onCall(0).returns('Whatever')
+// 		sinon.stub(utils.randomUtils, 'getRandomArrayValue')
+// 			.onCall(0).returns('Whatever');
 //
 // 		expect(generate(data)).toEqual({
 // 			display: 'Whatever',
@@ -89,8 +89,8 @@ test.skip('skip', () => {});
 //
 // 	it('generates surnames', () => {
 // 		data.rowState = 'Initial';
-// 		sinon.stub(randomUtils, 'getRandomCharInString')
-// 			.onCall(0).returns('A')
+// 		sinon.stub(utils.randomUtils, 'getRandomCharInString')
+// 			.onCall(0).returns('A');
 //
 // 		expect(generate(data)).toEqual({
 // 			display: 'A',

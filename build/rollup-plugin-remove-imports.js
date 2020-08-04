@@ -1,7 +1,14 @@
 const RemoveImports = () => ({
 	name: 'remove-imports',
 	transform (code) {
-		const cleanCode = code.replace(/^import\s[^;]+;/m, '');
+		// console.log("BEFORE _______________________________________________________");
+		// console.log(code);
+
+		const cleanCode = code.replace(/^import\sutils[^;]+;/m, '');
+
+		// console.log("______________________ AFTER ___________________________ \n");
+		// console.log(cleanCode);
+
 		return cleanCode;
 	}
 });

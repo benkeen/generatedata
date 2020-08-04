@@ -9,7 +9,7 @@ const getWords = () => {
 
 export const removePunctuation = (arr: string[]): string[] => arr.map((i: string) => i.replace(/[.,:;]/g, ''));
 
-export const getRandomEmail = (wordsArr = getWords(), suffixes = ["edu", "com", "org", "ca", "net", "co.uk"]): string => {
+export const getRandomEmail = (wordsArr: string[], suffixes = ["edu", "com", "org", "ca", "net", "co.uk"]): string => {
 	const numWords = wordsArr.length;
 	const numPrefixWords = utils.randomUtils.getRandomNum(1, 3);
 	const offset = utils.randomUtils.getRandomNum(0, numWords - (numPrefixWords + 1));
@@ -40,16 +40,15 @@ export const getRandomEmail = (wordsArr = getWords(), suffixes = ["edu", "com", 
 
 let utilsLoaded = false;
 
-onmessage = (e: any) => {
+const onmessage = (e: any) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.coreUtils);
 		utilsLoaded = true;
 	}
 
+	const words = getWords();
+
 	postMessage({
-		display: getRandomEmail()
+		display: getRandomEmail(words)
 	});
 };
-
-// stupid TS: https://stackoverflow.com/a/41975448/1217608
-export {};

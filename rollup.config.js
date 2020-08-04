@@ -23,7 +23,6 @@ export default (cmdLineArgs) => {
 	// so each one doesn't get it bundled in
 	let extraProps = {};
 	if (/src\/plugins\/(dataTypes|exportTypes)/.test(src)) {
-		console.log("EXTERNAL", src);
 		extraProps.external = /src\/utils/;
 	}
 
