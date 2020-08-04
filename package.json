@@ -133,6 +133,7 @@
     "promise": "7.1.1",
     "redux-testkit": "^1.0.6",
     "reselect": "^4.0.0",
+    "rollup-plugin-strip-exports": "^2.0.6",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "sass-loader": "^8.0.0",

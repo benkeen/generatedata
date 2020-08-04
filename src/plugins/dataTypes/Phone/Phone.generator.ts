@@ -1,4 +1,4 @@
-declare var utils: any;
+import utils from '../../../utils';
 
 let coreUtilsLoaded = false;
 onmessage = (e: any) => {
@@ -7,11 +7,8 @@ onmessage = (e: any) => {
 		coreUtilsLoaded = true;
 	}
 
-	const item = utils.randomUtils.getRandomArrayValue(e.data.rowState);
+	const item: string = utils.randomUtils.getRandomArrayValue(e.data.rowState);
 	postMessage({
 		display: utils.randomUtils.generateRandomAlphanumericStr(item)
 	});
 };
-
-// stupid TS: https://stackoverflow.com/a/41975448/1217608
-export {};

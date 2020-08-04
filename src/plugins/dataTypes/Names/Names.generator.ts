@@ -150,5 +150,5 @@ onmessage = (e: any) => {
 	});
 };
 
-// stupid *&^@# TS: https://stackoverflow.com/a/41975448/1217608
-export { };
+// stupid TS: https://stackoverflow.com/a/41975448/1217608
+export {};

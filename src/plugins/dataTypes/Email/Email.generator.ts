@@ -1,4 +1,4 @@
-declare var utils: any;
+import utils from '../../../utils';
 
 const MAX_EMAIL_LENGTH = 254;
 
@@ -51,3 +51,5 @@ onmessage = (e: any) => {
 	});
 };
 
+// stupid TS: https://stackoverflow.com/a/41975448/1217608
+export {};

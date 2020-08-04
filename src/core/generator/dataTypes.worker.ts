@@ -4,9 +4,7 @@ let workerResources: any;
 let loadedDataTypeWorkers: any = {};
 let dataTypeWorkerMap: any = {};
 const workerQueue: any = {};
-
 const context: Worker = self as any;
-
 
 context.onmessage = (e: any) => {
 	const { batchSize, numResults } = e.data;
@@ -22,7 +20,6 @@ context.onmessage = (e: any) => {
 		}
 	});
 
-	// this would just keep looping like a crazy person. Every completed batch would be posted back to the parent script
 	const numBatches = Math.ceil(numResults / batchSize);
 	generateNextBatch(e.data, numBatches, batchSize, 1);
 };
