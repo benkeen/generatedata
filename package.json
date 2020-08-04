@@ -57,7 +57,7 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "global": "^4.4.0",
-    "react": "^16.12.0",
+    "react": "^16.13.1",
     "react-beautiful-dnd": "^12.2.0",
     "react-codemirror2": "^7.1.0",
     "react-dom": "^16.12.0",
