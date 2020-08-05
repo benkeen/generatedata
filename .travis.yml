@@ -1,10 +1,9 @@
 language: node_js
 node_js:
-  - "10"
   - node
 
 script:
-  - yarn install
+  - yarn install --frozen-lockfile
   - yarn build
   - yarn test
 
