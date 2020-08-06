@@ -1,12 +1,12 @@
-declare namespace CityScssModule {
+declare namespace CityScssNamespace {
   export interface ICityScss {
     buttonLabel: string;
   }
 }
 
-declare const CityScssModule: CityScssModule.ICityScss & {
+declare const CityScssModule: CityScssNamespace.ICityScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: CityScssModule.ICityScss;
+  locals: CityScssNamespace.ICityScss;
 };
 
 export = CityScssModule;

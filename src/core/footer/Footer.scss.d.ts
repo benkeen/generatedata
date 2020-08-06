@@ -1,4 +1,4 @@
-declare namespace FooterScssModule {
+declare namespace FooterScssNamespace {
   export interface IFooterScss {
     footer: string;
     selectLocale: string;
@@ -6,9 +6,9 @@ declare namespace FooterScssModule {
   }
 }
 
-declare const FooterScssModule: FooterScssModule.IFooterScss & {
+declare const FooterScssModule: FooterScssNamespace.IFooterScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: FooterScssModule.IFooterScss;
+  locals: FooterScssNamespace.IFooterScss;
 };
 
 export = FooterScssModule;

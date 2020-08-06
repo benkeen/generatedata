@@ -1,13 +1,13 @@
-declare namespace JsonScssModule {
+declare namespace JsonScssNamespace {
   export interface IJsonScss {
     settings: string;
     structureFormatRow: string;
   }
 }
 
-declare const JsonScssModule: JsonScssModule.IJsonScss & {
+declare const JsonScssModule: JsonScssNamespace.IJsonScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: JsonScssModule.IJsonScss;
+  locals: JsonScssNamespace.IJsonScss;
 };
 
 export = JsonScssModule;

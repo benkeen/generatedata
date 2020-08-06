@@ -1,12 +1,12 @@
-declare namespace CountryScssModule {
+declare namespace CountryScssNamespace {
   export interface ICountryScss {
     buttonLabel: string;
   }
 }
 
-declare const CountryScssModule: CountryScssModule.ICountryScss & {
+declare const CountryScssModule: CountryScssNamespace.ICountryScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: CountryScssModule.ICountryScss;
+  locals: CountryScssNamespace.ICountryScss;
 };
 
 export = CountryScssModule;

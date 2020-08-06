@@ -1,4 +1,4 @@
-declare namespace PreviewPanelScssModule {
+declare namespace PreviewPanelScssNamespace {
   export interface IPreviewPanelScss {
     controls: string;
     loading: string;
@@ -12,9 +12,9 @@ declare namespace PreviewPanelScssModule {
   }
 }
 
-declare const PreviewPanelScssModule: PreviewPanelScssModule.IPreviewPanelScss & {
+declare const PreviewPanelScssModule: PreviewPanelScssNamespace.IPreviewPanelScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: PreviewPanelScssModule.IPreviewPanelScss;
+  locals: PreviewPanelScssNamespace.IPreviewPanelScss;
 };
 
 export = PreviewPanelScssModule;

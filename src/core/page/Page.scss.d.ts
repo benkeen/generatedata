@@ -1,13 +1,13 @@
-declare namespace PageScssModule {
+declare namespace PageScssNamespace {
   export interface IPageScss {
     content: string;
     page: string;
   }
 }
 
-declare const PageScssModule: PageScssModule.IPageScss & {
+declare const PageScssModule: PageScssNamespace.IPageScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: PageScssModule.IPageScss;
+  locals: PageScssNamespace.IPageScss;
 };
 
 export = PageScssModule;

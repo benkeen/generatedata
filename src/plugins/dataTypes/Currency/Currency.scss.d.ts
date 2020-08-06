@@ -1,4 +1,4 @@
-declare namespace CurrencyScssModule {
+declare namespace CurrencyScssNamespace {
   export interface ICurrencyScss {
     col1: string;
     col2: string;
@@ -6,9 +6,9 @@ declare namespace CurrencyScssModule {
   }
 }
 
-declare const CurrencyScssModule: CurrencyScssModule.ICurrencyScss & {
+declare const CurrencyScssModule: CurrencyScssNamespace.ICurrencyScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: CurrencyScssModule.ICurrencyScss;
+  locals: CurrencyScssNamespace.ICurrencyScss;
 };
 
 export = CurrencyScssModule;

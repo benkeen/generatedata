@@ -7,7 +7,7 @@ import styles from './HelpDialog.scss';
 import { DataTypeFolder } from '../../../_plugins';
 
 export type HelpDialogProps = {
-	initialDataType: string;
+	initialDataType: DataTypeFolder | null;
 	visible: boolean;
 	onClose: any;
 	coreI18n: any;
@@ -43,7 +43,7 @@ const DataTypeList = ({ onSelect, filterString }: any): any => {
 };
 
 const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
-	const [dataType, setDataType] = React.useState();
+	const [dataType, setDataType] = React.useState<DataTypeFolder | null>(null);
 	const [filterString, setFilterString] = React.useState('');
 
 	const selectDataType = (dataType: DataTypeFolder) => {
@@ -56,6 +56,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 	}, [initialDataType]);
 
 	const { name, Help } = getDataType(dataType);
+	const i18n = dataType ? dataTypeI18n[dataType] : {};
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
@@ -78,7 +79,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 				<div className={styles.helpContent}>
 					<Help
 						coreI18n={coreI18n}
-						i18n={dataTypeI18n[dataType]}
+						i18n={i18n}
 					/>
 				</div>
 			</DialogContent>

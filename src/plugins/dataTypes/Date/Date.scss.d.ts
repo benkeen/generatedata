@@ -1,4 +1,4 @@
-declare namespace DateScssModule {
+declare namespace DateScssNamespace {
   export interface IDateScss {
     col1: string;
     col2: string;
@@ -11,9 +11,9 @@ declare namespace DateScssModule {
   }
 }
 
-declare const DateScssModule: DateScssModule.IDateScss & {
+declare const DateScssModule: DateScssNamespace.IDateScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: DateScssModule.IDateScss;
+  locals: DateScssNamespace.IDateScss;
 };
 
 export = DateScssModule;

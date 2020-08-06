@@ -1,13 +1,13 @@
-declare namespace SharedScssModule {
+declare namespace SharedScssNamespace {
   export interface ISharedScss {
     emptyCol: string;
     tip: string;
   }
 }
 
-declare const SharedScssModule: SharedScssModule.ISharedScss & {
+declare const SharedScssModule: SharedScssNamespace.ISharedScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: SharedScssModule.ISharedScss;
+  locals: SharedScssNamespace.ISharedScss;
 };
 
 export = SharedScssModule;

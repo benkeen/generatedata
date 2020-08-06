@@ -1,4 +1,4 @@
-declare namespace SqlScssModule {
+declare namespace SqlScssNamespace {
   export interface ISqlScss {
     batchSize: string;
     batchSizeHyphen: string;
@@ -10,9 +10,9 @@ declare namespace SqlScssModule {
   }
 }
 
-declare const SqlScssModule: SqlScssModule.ISqlScss & {
+declare const SqlScssModule: SqlScssNamespace.ISqlScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: SqlScssModule.ISqlScss;
+  locals: SqlScssNamespace.ISqlScss;
 };
 
 export = SqlScssModule;

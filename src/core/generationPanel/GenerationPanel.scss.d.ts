@@ -1,4 +1,4 @@
-declare namespace GenerationPanelScssModule {
+declare namespace GenerationPanelScssNamespace {
   export interface IGenerationPanelScss {
     generationRow: string;
     intro: string;
@@ -6,9 +6,9 @@ declare namespace GenerationPanelScssModule {
   }
 }
 
-declare const GenerationPanelScssModule: GenerationPanelScssModule.IGenerationPanelScss & {
+declare const GenerationPanelScssModule: GenerationPanelScssNamespace.IGenerationPanelScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: GenerationPanelScssModule.IGenerationPanelScss;
+  locals: GenerationPanelScssNamespace.IGenerationPanelScss;
 };
 
 export = GenerationPanelScssModule;

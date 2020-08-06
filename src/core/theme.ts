@@ -1,6 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-// @ts-ignore-line
 const theme = createMuiTheme({
 	typography: {
 		fontFamily: 'garamond, "Open Sans", serif',
@@ -16,6 +15,7 @@ const theme = createMuiTheme({
 	overrides: {
 		MuiDialog: {
 			root: {
+				// @ts-ignore-line
 				zIndex: '5000 !important'
 			}
 		}
@@ -26,6 +26,7 @@ const theme = createMuiTheme({
 		}
 	},
 	zIndex: {
+		// @ts-ignore-line
 		tooltip: '5001 !important'
 	}
 });

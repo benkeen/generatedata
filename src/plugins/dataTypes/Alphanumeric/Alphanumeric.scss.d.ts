@@ -1,4 +1,4 @@
-declare namespace AlphanumericScssModule {
+declare namespace AlphanumericScssNamespace {
   export interface IAlphanumericScss {
     col1: string;
     col2: string;
@@ -8,9 +8,9 @@ declare namespace AlphanumericScssModule {
   }
 }
 
-declare const AlphanumericScssModule: AlphanumericScssModule.IAlphanumericScss & {
+declare const AlphanumericScssModule: AlphanumericScssNamespace.IAlphanumericScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: AlphanumericScssModule.IAlphanumericScss;
+  locals: AlphanumericScssNamespace.IAlphanumericScss;
 };
 
 export = AlphanumericScssModule;

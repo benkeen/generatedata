@@ -1,4 +1,4 @@
-declare namespace ExportSettingsScssModule {
+declare namespace ExportSettingsScssNamespace {
   export interface IExportSettingsScss {
     exportFormatRow: string;
     field: string;
@@ -10,9 +10,9 @@ declare namespace ExportSettingsScssModule {
   }
 }
 
-declare const ExportSettingsScssModule: ExportSettingsScssModule.IExportSettingsScss & {
+declare const ExportSettingsScssModule: ExportSettingsScssNamespace.IExportSettingsScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: ExportSettingsScssModule.IExportSettingsScss;
+  locals: ExportSettingsScssNamespace.IExportSettingsScss;
 };
 
 export = ExportSettingsScssModule;

@@ -1,4 +1,4 @@
-declare namespace HeaderScssModule {
+declare namespace HeaderScssNamespace {
   export interface IHeaderScss {
     btnSelected: string;
     current: string;
@@ -8,9 +8,9 @@ declare namespace HeaderScssModule {
   }
 }
 
-declare const HeaderScssModule: HeaderScssModule.IHeaderScss & {
+declare const HeaderScssModule: HeaderScssNamespace.IHeaderScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: HeaderScssModule.IHeaderScss;
+  locals: HeaderScssNamespace.IHeaderScss;
 };
 
 export = HeaderScssModule;

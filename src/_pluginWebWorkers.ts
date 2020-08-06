@@ -5,7 +5,7 @@ export default {
 	"coreUtils": "coreUtils.worker-f85087f772d6dfd43504372e2d20c870.js",
 	"dataTypes": {
 		"Email": "DT-Email.generator-68b329da9893e34099c7d8ad5cb9c940.js",
-		"Names": "DT-Names.generator-885b2fba9520d7a67259e643b384d31b.js",
+		"Names": "DT-Names.generator-68b329da9893e34099c7d8ad5cb9c940.js",
 		"Phone": "DT-Phone.generator-43f905fdf33f55b7b933cd8ad305862f.js"
 	},
 	"exportTypes": {

@@ -14,9 +14,6 @@ import { DataTypeFolder } from '../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../constants';
 
-// tmp
-import webWorkers from '../../_pluginWebWorkers';
-
 const SMALL_BREAKPOINT = 650;
 const MEDIUM_BREAKPOINT = 780;
 
@@ -41,7 +38,7 @@ const Grid = ({
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialog] = React.useState(false);
-	const [initialHelpSection, setInitialDialogSection] = React.useState('');
+	const [initialHelpSection, setInitialDialogSection] = React.useState<DataTypeFolder | null>(null);
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 
 	const windowSize = useWindowSize();

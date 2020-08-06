@@ -1,4 +1,4 @@
-declare namespace GridScssModule {
+declare namespace GridScssNamespace {
   export interface IGridScss {
     addRows: string;
     dataTypeCol: string;
@@ -23,9 +23,9 @@ declare namespace GridScssModule {
   }
 }
 
-declare const GridScssModule: GridScssModule.IGridScss & {
+declare const GridScssModule: GridScssNamespace.IGridScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: GridScssModule.IGridScss;
+  locals: GridScssNamespace.IGridScss;
 };
 
 export = GridScssModule;

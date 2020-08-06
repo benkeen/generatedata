@@ -1,4 +1,4 @@
-declare namespace NamesScssModule {
+declare namespace NamesScssNamespace {
   export interface INamesScss {
     col1: string;
     col2: string;
@@ -6,9 +6,9 @@ declare namespace NamesScssModule {
   }
 }
 
-declare const NamesScssModule: NamesScssModule.INamesScss & {
+declare const NamesScssModule: NamesScssNamespace.INamesScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: NamesScssModule.INamesScss;
+  locals: NamesScssNamespace.INamesScss;
 };
 
 export = NamesScssModule;

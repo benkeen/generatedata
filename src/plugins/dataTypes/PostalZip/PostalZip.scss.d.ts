@@ -1,12 +1,12 @@
-declare namespace PostalZipScssModule {
+declare namespace PostalZipScssNamespace {
   export interface IPostalZipScss {
     buttonLabel: string;
   }
 }
 
-declare const PostalZipScssModule: PostalZipScssModule.IPostalZipScss & {
+declare const PostalZipScssModule: PostalZipScssNamespace.IPostalZipScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: PostalZipScssModule.IPostalZipScss;
+  locals: PostalZipScssNamespace.IPostalZipScss;
 };
 
 export = PostalZipScssModule;

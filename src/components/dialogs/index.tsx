@@ -21,8 +21,7 @@ const dialogStyles = (theme: any): any => ({
 	}
 });
 
-// @ts-ignore-line
-export const DialogTitle = withStyles(dialogStyles)((props: any): React.ReactNode => {
+export const DialogTitle = withStyles(dialogStyles)((props: any): any => {
 	const { children, classes, onClose, ...other } = props;
 	return (
 		<MuiDialogTitle disableTypography className={classes.root} {...other}>
