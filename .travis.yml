@@ -4,7 +4,7 @@ node_js:
   - "10"
 
 script:
-  - yarn install
+  - yarn install --pure-lockfile
   - yarn build
   - yarn test
 
