@@ -144,6 +144,8 @@ const onmessage = (e: any) => {
 		}
 	}
 
+	console.log("in names...");
+
 	postMessage({
 		display: output.trim(),
 		gender
