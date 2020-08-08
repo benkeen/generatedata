@@ -4,11 +4,11 @@ declare var utils: any;
 
 const context: Worker = self as any;
 
-let coreUtilsLoaded = false;
+let workerUtilsLoaded = false;
 context.onmessage = (e: MessageEvent) => {
-	if (!coreUtilsLoaded) {
-		importScripts(e.data.workerResources.coreUtils);
-		coreUtilsLoaded = true;
+	if (!workerUtilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
 	}
 
 	const content = e.data.settings.dataStructureFormat === 'simple'

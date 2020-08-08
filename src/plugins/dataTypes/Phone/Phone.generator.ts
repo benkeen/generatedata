@@ -1,10 +1,10 @@
 import utils from '../../../utils';
 
-let coreUtilsLoaded = false;
+let workerUtilsLoaded = false;
 onmessage = (e: any) => {
-	if (!coreUtilsLoaded) {
-		importScripts(e.data.workerResources.coreUtils);
-		coreUtilsLoaded = true;
+	if (!workerUtilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
 	}
 
 	const item: string = utils.randomUtils.getRandomArrayValue(e.data.rowState);

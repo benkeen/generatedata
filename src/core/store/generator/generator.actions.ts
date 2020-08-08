@@ -136,7 +136,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			i18n: getStrings(),
 			template,
 			workerResources: {
-				coreUtils: coreUtils.getCoreWorkerUtils(),
+				workerUtils: coreUtils.getWorkerUtils(),
 				dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[])
 			}
 		});
@@ -271,7 +271,7 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 		i18n: getStrings(),
 		template,
 		workerResources: {
-			coreUtils: coreUtils.getCoreWorkerUtils(),
+			workerUtils: coreUtils.getWorkerUtils(),
 			dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
 			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state))
 		}

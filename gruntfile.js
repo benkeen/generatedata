@@ -19,7 +19,7 @@ const webWorkerMap = {
 	coreWorker: '',
 	coreDataTypeWorker: '',
 	coreExportTypeWorker: '',
-	coreUtils: '',
+	workerUtils: '',
 	dataTypes: {},
 	exportTypes: {}
 };
@@ -113,7 +113,7 @@ window.gd.localeLoaded(i18n);
 		{ file: 'src/core/generator/core.worker.ts', type: 'core' },
 		{ file: 'src/core/generator/dataTypes.worker.ts', type: 'core' },
 		{ file: 'src/core/generator/exportTypes.worker.ts', type: 'core' },
-		{ file: 'src/utils/coreUtils.worker.ts', type: 'core' }
+		{ file: 'src/utils/workerUtils.ts', type: 'core' }
 	];
 	Object.values(dataTypeWebWorkerMap).forEach((dt) => {
 		webWorkerFileListWithType.push({ file: dt[0], type: 'dataType' });
@@ -179,8 +179,8 @@ window.gd.localeLoaded(i18n);
 			webWorkerMap.coreDataTypeWorker = newFilename;
 		} else if (oldPath === 'dist/workers/exportTypes.worker.js') {
 			webWorkerMap.coreExportTypeWorker = newFilename;
-		} else if (oldPath === 'dist/workers/coreUtils.worker.js') {
-			webWorkerMap.coreUtils = newFilename;
+		} else if (oldPath === 'dist/workers/workerUtils.js') {
+			webWorkerMap.workerUtils = newFilename;
 		} else {
 			const [pluginFolder] = oldFile.split('.');
 			const cleanPluginFolder = pluginFolder.replace(/^(DT-|ET-)/, '');

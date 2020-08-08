@@ -85,12 +85,13 @@ const genders = ['male', 'female'];
 const getRandomGender = () => utils.randomUtils.getRandomBool() ? genders[0] : genders[1];
 
 
-let coreUtilsLoaded = false;
+let workerUtilsLoaded = false;
 
 const onmessage = (e: any) => {
-	if (!coreUtilsLoaded) {
-		importScripts(e.data.workerResources.coreUtils);
-		coreUtilsLoaded = true;
+	if (!workerUtilsLoaded) {
+		console.log(e.data.workerResources);
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
 	}
 
 	console.log("__________________________ IN HERE");

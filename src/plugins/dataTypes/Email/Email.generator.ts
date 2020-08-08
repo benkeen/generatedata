@@ -42,7 +42,7 @@ let utilsLoaded = false;
 
 const onmessage = (e: any) => {
 	if (!utilsLoaded) {
-		importScripts(e.data.workerResources.coreUtils);
+		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
 	}
 

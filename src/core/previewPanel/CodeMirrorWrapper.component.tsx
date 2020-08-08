@@ -1,7 +1,6 @@
 import React from 'react';
 import * as coreUtils from '~utils/coreUtils';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import * as workerUtils from '~utils/workerUtils';
 
 export type CodeMirrorWrapperProps = {
 	theme: string; // TODO
@@ -59,7 +58,7 @@ export const generatePreviewString = (props: any) => {
 	const exportTypeWorker = coreUtils.getExportTypeWorker();
 
 	return new Promise((resolve) => {
-		workerUtils.performTask('exportTypeWorker', exportTypeWorker, {
+		coreUtils.performTask('exportTypeWorker', exportTypeWorker, {
 			rows,
 			columns,
 			exportType,
@@ -67,7 +66,7 @@ export const generatePreviewString = (props: any) => {
 			isFirstBatch: true,
 			isLastBatch: true,
 			workerResources: {
-				coreUtils: coreUtils.getCoreWorkerUtils(),
+				workerUtils: coreUtils.getWorkerUtils(),
 				exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes)
 			}
 		}, ({ data }: MessageEvent): void => {

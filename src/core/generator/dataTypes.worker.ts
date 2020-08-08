@@ -114,7 +114,7 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 					// Data Types
 					return new Promise((resolveBatch) => {
 
-						console.log("4", promises);
+						// console.log("4", promises);
 
 						Promise.all(promises)
 							.then((singleBatchResponses: any) => {
@@ -152,7 +152,7 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 				rowState: currCell.rowState,
 				existingRowData: currRowData,
 				workerResources: {
-					coreUtils: workerResources.coreUtils
+					workerUtils: workerResources.workerUtils
 				}
 			}, resolve, reject);
 		});
@@ -174,7 +174,7 @@ const queueJob = (dataType: DataTypeFolder, payload: any, resolve: any, reject: 
 		reject
 	});
 
-	console.log("process?");
+	// console.log("process?");
 
 	processQueue(dataType);
 };
@@ -194,7 +194,7 @@ const processQueue = (dataType: DataTypeFolder) => {
 	workerQueue[dataType].processing = true;
 	const { payload, resolve, reject } = queue[0];
 
-	console.log("posting: ", payload);
+	// console.log("posting: ", payload);
 	worker.postMessage(payload);
 
 	// Data Type generator functions can be sync or async, depending on their needs. This method calls the generator
