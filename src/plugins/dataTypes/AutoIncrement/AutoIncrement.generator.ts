@@ -1,16 +1,17 @@
-import utils from '../../../utils';
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 
+const eval2 = eval;
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const formats = data.rowState.split('|');
-	let chosenFormat = formats[0];
-	if (formats.length > 1) {
-		chosenFormat = formats[utils.randomUtils.getRandomNum(0, formats.length - 1)];
-	}
-	const val = utils.randomUtils.generateRandomAlphanumericStr(chosenFormat);
-	return { display: val };
-};
+	const rowNum = data.rowNum;
+	const { incrementStart, incrementValue, incrementPlaceholder } = data.rowState;
 
+	let value = ((rowNum - 1) * incrementValue) + incrementStart;
+	if (incrementPlaceholder) {
+		// value = value.replace(/\${INCR}/g, value);
+		value = eval2('`' + value + '`');
+	}
+	return { display: value };
+};
 
 let utilsLoaded = false;
 

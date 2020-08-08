@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { CountryType } from '../../../_plugins';
 import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
 import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
@@ -175,3 +175,11 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<p>{i18n.DESC} <span dangerouslySetInnerHTML={{ __html: i18n.help_text }} /></p>
 );
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(255)',
+		field_Oracle: 'varchar2(255)',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});

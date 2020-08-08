@@ -1,5 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options, Help, rowStateReducer, getMetadata } from './Alphanumeric.ui';
+import { initialState, Example, Options, Help, rowStateReducer, getMetadata } from './Alphanumeric';
 
 const bundle: DTBundle = {
 	initialState,

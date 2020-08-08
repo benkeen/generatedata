@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import CreatablePillField from '~components/CreatablePillField';
+import { AutoIncrementState } from '../AutoIncrement/AutoIncrement';
 
 export type BooleanState = {
 	example: string;
@@ -67,3 +68,16 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</p>
 	</>
 );
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'boolean'
+	},
+	sql: {
+		field: 'varchar(255) default NULL',
+		field_Oracle: 'varchar2(255) default NULL',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});
+
+export const rowStateReducer = (state: BooleanState): string[] => state.values;

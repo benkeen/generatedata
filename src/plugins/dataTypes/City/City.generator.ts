@@ -1,4 +1,4 @@
-import { DTMetadata, DTGenerateResult, DTGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { loadCountryBundle } from '~utils/countryUtils';
 import { GetCountryData, Region } from '~types/countries';
 import { getRandomArrayValue } from '~utils/randomUtils';
@@ -39,10 +39,15 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 };
 
 
-export const getMetadata = (): DTMetadata => ({
-	sql: {
-		field: 'varchar(255)',
-		field_Oracle: 'varchar2(255)',
-		field_MSSQL: 'VARCHAR(255) NULL'
+let utilsLoaded = false;
+
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
 	}
-});
+
+	postMessage(generate(e.data));
+};
+
+export {};

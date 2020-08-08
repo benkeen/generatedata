@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
 export type AutoIncrementState = {
 	example: string;
@@ -102,3 +102,23 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</ul>
 	</>
 );
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'number' // TODO liiiiies! only conditionally a number
+	},
+	sql: {
+		field: 'mediumint',
+		field_Oracle: 'number default NULL',
+		field_MSSQL: 'INTEGER NULL',
+		field_Postgres: 'integer NULL'
+	}
+});
+
+// TODO: perhaps put the parseFloat()'s here. It'll only execute once prior to generation, so it's performant - and will
+// be more forgiving than on every key change on the UI
+export const rowStateReducer = (state: AutoIncrementState): Partial<AutoIncrementState> => ({
+	incrementStart: state.incrementStart,
+	incrementValue: state.incrementValue,
+	incrementPlaceholder: state.incrementPlaceholder
+});

@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { DTCustomProps } from '~types/dataTypes';
 import { getSortedRowsArray } from '../../../core/store/generator/generator.selectors';
 import { REMOVE_ROW, SELECT_DATA_TYPE } from '../../../core/store/generator/generator.actions';
-import { CityState } from './City.ui';
+import { CityState } from './City';
 
 const getRegionRows = createSelector(
 	getSortedRowsArray,
