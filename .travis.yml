@@ -8,4 +8,8 @@ install:
 before_script:
   - yarn build
 
-#  - yarn test
+jobs:
+  include:
+    - stage: Produce Coverage
+      node_js: node
+      script: yarn build && jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
