@@ -70,8 +70,6 @@ export const generatePreviewString = (props: any) => {
 				exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes)
 			}
 		}, ({ data }: MessageEvent): void => {
-			console.log("data!");
-			// console.log("new data: ", data);
 			resolve(data);
 		});
 	});

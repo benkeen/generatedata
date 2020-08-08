@@ -81,23 +81,11 @@ const lastNames = [
 ];
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const genders = ['male', 'female'];
-
-const getRandomGender = () => utils.randomUtils.getRandomBool() ? genders[0] : genders[1];
-
-
 let workerUtilsLoaded = false;
 
-const onmessage = (e: any) => {
-	if (!workerUtilsLoaded) {
-		console.log(e.data.workerResources);
-		importScripts(e.data.workerResources.workerUtils);
-		workerUtilsLoaded = true;
-	}
+export const getRandomGender = () => utils.randomUtils.getRandomBool() ? genders[0] : genders[1];
 
-	console.log("__________________________ IN HERE");
-
-	const placeholderStr = e.data.rowState;
-
+export const generate = (placeholderStr: string) => {
 	// in case the user entered multiple | separated formats, pick one first
 	const formats = placeholderStr.split('|');
 	let chosenFormat = formats[0];
@@ -147,12 +135,19 @@ const onmessage = (e: any) => {
 		}
 	}
 
-	console.log("in names...");
-
-	postMessage({
+	return {
 		display: output.trim(),
 		gender
-	});
+	};
+};
+
+const onmessage = (e: any) => {
+	if (!workerUtilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
+	}
+
+	postMessage(generate(e.data.rowState));
 };
 
 export {};

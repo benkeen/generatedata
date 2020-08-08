@@ -91,8 +91,6 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 	return new Promise((resolveAll): any => {
 		let sequence = Promise.resolve();
 
-		// console.log("1");
-
 		// process each batch sequentially. This ensures the data generated from one processing batch is available to any
 		// dependent children. For example, the Region data type needs the Country data being generated first so it
 		// knows what country regions to generate if a mapping had been selected in the UI
@@ -100,22 +98,15 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 			const processBatchNum = parseInt(processBatchNumberStr, 10);
 			const currBatch = generationTemplate[processBatchNum];
 
-			// console.log("2");
-
 			// yup. We're mutating the currRowData param on each loop. We don't care hhahaha!!! Up yours, linter!
 			sequence = sequence
 				.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData))
 				.then((promises) => {
 
-					// console.log("3");
-
 					// this bit's sneaky. It ensures that the CURRENT batch within the row being generated is fully processed
 					// before starting the next. That way, the generated data from earlier batches is available to later
 					// Data Types
 					return new Promise((resolveBatch) => {
-
-						// console.log("4", promises);
-
 						Promise.all(promises)
 							.then((singleBatchResponses: any) => {
 								for (let i=0; i<singleBatchResponses.length; i++) {
@@ -128,7 +119,6 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 								}
 								resolveBatch();
 
-								console.log("5");
 								if (batchIndex === processBatches.length-1) {
 									currRowData.sort((a, b) =>a.colIndex < b.colIndex ? -1 : 1);
 									resolveAll(currRowData.map((row) => row.data.display));
