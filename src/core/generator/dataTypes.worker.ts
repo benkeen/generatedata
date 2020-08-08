@@ -12,8 +12,6 @@ context.onmessage = (e: any) => {
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
 
-	console.log(".");
-
 	// load the Data Type generator web worker files. Pretty sure this caches them so we can safely import them
 	// every time
 	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
@@ -74,13 +72,9 @@ const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum
 		rowPromises.push(processBatchSequence(template, rowNum, i18n, currRowData));
 	}
 
-	console.log("promise?", rowPromises);
-
 	Promise.all(rowPromises)
 		.then((generatedData: any) => {
 			resolve();
-
-			console.log("...");
 
 			context.postMessage({
 				completedBatchNum: batchNum,
@@ -97,7 +91,7 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 	return new Promise((resolveAll): any => {
 		let sequence = Promise.resolve();
 
-		console.log("1");
+		// console.log("1");
 
 		// process each batch sequentially. This ensures the data generated from one processing batch is available to any
 		// dependent children. For example, the Region data type needs the Country data being generated first so it
@@ -106,14 +100,14 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 			const processBatchNum = parseInt(processBatchNumberStr, 10);
 			const currBatch = generationTemplate[processBatchNum];
 
-			console.log("2");
+			// console.log("2");
 
 			// yup. We're mutating the currRowData param on each loop. We don't care hhahaha!!! Up yours, linter!
 			sequence = sequence
 				.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData))
 				.then((promises) => {
 
-					console.log("3");
+					// console.log("3");
 
 					// this bit's sneaky. It ensures that the CURRENT batch within the row being generated is fully processed
 					// before starting the next. That way, the generated data from earlier batches is available to later
@@ -151,8 +145,6 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 		let dataType = currCell.dataType;
 
 		return new Promise((resolve, reject) => {
-			console.log("qieing");
-
 			queueJob(dataType, {
 				rowNum: rowNum,
 				i18n: i18n.dataTypes[dataType],
@@ -202,6 +194,7 @@ const processQueue = (dataType: DataTypeFolder) => {
 	workerQueue[dataType].processing = true;
 	const { payload, resolve, reject } = queue[0];
 
+	console.log("posting: ", payload);
 	worker.postMessage(payload);
 
 	// Data Type generator functions can be sync or async, depending on their needs. This method calls the generator

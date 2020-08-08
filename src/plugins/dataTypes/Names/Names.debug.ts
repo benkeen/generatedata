@@ -1,4 +1,5 @@
-import utils from '../../../utils/index';
+// import utils from '../../../utils/index';
+declare var utils: any;
 
 const maleNames = [
 	"Aaron", "Abbot", "Abdul", "Abel", "Abraham", "Acton", "Adam", "Addison", "Adrian", "Ahmed", "Aidan", "Akeem",

@@ -1,14 +1,9 @@
 const RemoveImports = () => ({
 	name: 'remove-imports',
+
 	transform (code) {
-		// console.log("BEFORE _______________________________________________________");
-		// console.log(code);
-
-		const cleanCode = code.replace(/^import\sutils[^;]+;/m, '');
-
-		// console.log("______________________ AFTER ___________________________ \n");
-		// console.log(cleanCode);
-
+		// replace the import utils line with a declaration
+		const cleanCode = code.replace(/\bimport\sutils[^;]+;/, 'declare var utils: any;');
 		return cleanCode;
 	}
 });
