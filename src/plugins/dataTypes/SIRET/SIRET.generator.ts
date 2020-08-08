@@ -4,7 +4,19 @@ import { DTGenerateResult } from '~types/dataTypes';
 export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
-	
+
+
+let utilsLoaded = false;
+
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
+	}
+
+	postMessage(generate());
+};
+
 
 /*
 	// custom member vars for this Data Type

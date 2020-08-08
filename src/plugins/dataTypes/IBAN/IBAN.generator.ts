@@ -1,8 +1,8 @@
 /**
  * Original author (PHP): Joeri Noort <joert@joert.net>
  */
-import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
-import { generateRandomAlphanumericStr, getRandomArrayValue, getRandomBool } from '~utils/randomUtils';
+import utils from '../../../utils';
+import { DTGenerateResult } from '~types/dataTypes';
 
 // Template definition
 // 	b :	NATIONAL_BANK_CODE
@@ -85,17 +85,17 @@ const countryCodes = [
 ];
 
 export const generate = (): DTGenerateResult => {
-	const countryCode = getRandomArrayValue(countryCodes);
+	const countryCode = utils.randomUtils.getRandomArrayValue(countryCodes);
 	const iban = fillTemplate(countryCode.template, countryCode.code);
 
 	return { display: iban };
 };
 
 const generateBic = (countryCode: string): string => {
-	const withBranchCode = getRandomBool();
+	const withBranchCode = utils.randomUtils.getRandomBool();
 	const branchCode = withBranchCode ? 'xxX' : '';
 	const format = `LLLL${countryCode}LL${branchCode}`;
-	return generateRandomAlphanumericStr(format);
+	return utils.randomUtils.generateRandomAlphanumericStr(format);
 };
 
 const fillTemplate = (template: string, countryCode: string): string => {
@@ -118,7 +118,7 @@ const fillTemplate = (template: string, countryCode: string): string => {
 			unsigned += '_';
 			continue;
 		}
-		unsigned += generateRandomAlphanumericStr('x');
+		unsigned += utils.randomUtils.generateRandomAlphanumericStr('x');
 	}
 
 	return recalculateChecksum(unsigned);
@@ -176,11 +176,15 @@ const chr2Int = (chr: string): number => {
 const getOrd = (str: string): number => str.charCodeAt(0);
 
 
-export const getMetadata = (): DTMetadata => ({
-	sql: {
-		field: 'varchar(34)',
-		field_Oracle: 'varchar2(34) NULL',
-		field_MSSQL: 'VARCHAR(34) NULL'
-	}
-});
+let utilsLoaded = false;
 
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
+	}
+
+	postMessage(generate());
+};
+
+export {};

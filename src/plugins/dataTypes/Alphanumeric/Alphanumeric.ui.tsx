@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
-import { DTExampleProps, DTOptionsProps, DTHelpProps } from '~types/dataTypes';
+import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/dataTypes';
 import styles from './Alphanumeric.scss';
 
 export type AlphanumericState = {
@@ -112,3 +112,14 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 // 	}
 // 	return errors;
 // };
+
+
+export const rowStateReducer = (state: AlphanumericState): string => state.value;
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(255)',
+		field_Oracle: 'varchar2(255)',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});

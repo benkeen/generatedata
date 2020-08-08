@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTHelpProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata } from '~types/dataTypes';
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
@@ -9,3 +9,11 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</p>
 	</>
 );
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(34)',
+		field_Oracle: 'varchar2(34) NULL',
+		field_MSSQL: 'VARCHAR(34) NULL'
+	}
+});

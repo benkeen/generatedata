@@ -1,6 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { Help } from './IBAN.ui';
-import { getMetadata } from './IBAN.generate';
+import { Help, getMetadata } from './IBAN.ui';
 
 const bundle: DTBundle = {
 	Help,

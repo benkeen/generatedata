@@ -1,6 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options, Help } from './Alphanumeric.ui';
-import { rowStateReducer, getMetadata } from './Alphanumeric.generate';
+import { initialState, Example, Options, Help, rowStateReducer, getMetadata } from './Alphanumeric.ui';
 
 const bundle: DTBundle = {
 	initialState,
