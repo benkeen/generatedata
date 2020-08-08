@@ -4,6 +4,7 @@ node_js:
 
 install:
   - nvm install 10.18.0
+  - yarn install
 
 before_script:
   - yarn build
