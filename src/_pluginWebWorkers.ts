@@ -1,14 +1,16 @@
 export default {
-	"coreWorker": "core.worker-a79845e0a24d1fee6125857f47f44e73.js",
-	"coreDataTypeWorker": "dataTypes.worker-67da71f99649c50082fb57f4e5acb0e2.js",
-	"coreExportTypeWorker": "exportTypes.worker-42a57bb757a73d78b48489ce95315e63.js",
+	"coreWorker": "core.worker-5f4233332366926b2f94c6b196bc95fb.js",
+	"coreDataTypeWorker": "dataTypes.worker-8b5b6a0970d1d44ec1b287ba6b48cbe6.js",
+	"coreExportTypeWorker": "exportTypes.worker-65490cc29f6b6883a07af252844dfdb9.js",
 	"workerUtils": "workerUtils-f85087f772d6dfd43504372e2d20c870.js",
 	"dataTypes": {
-		"Email": "DT-Email.generator-f1276ffa1fd3336b822ebae17157ac99.js",
-		"Names": "DT-Names.generator-b82c1f234641dd65cbe6af8c082635b0.js",
+		"Company": "DT-Company.generator-b7bd7c08c48f94fb2c88412cc82fcef4.js",
+		"Date": "DT-Date.generator-4231dc0c676c244e7875ab48d20cbdc3.js",
+		"Email": "DT-Email.generator-f7cdbd7ed7c9a5e875803792dac1a601.js",
+		"Names": "DT-Names.generator-80fcb390572194835214908aaba7a2f6.js",
 		"Phone": "DT-Phone.generator-9af415fadc15108a59add915a1dbac95.js"
 	},
 	"exportTypes": {
-		"JSON": "ET-JSON.generator-16a3e1b617f9307a3b5e0ccb7c43ab21.js"
+		"JSON": "ET-JSON.generator-19552de543233e8b524d82e55a1d093c.js"
 	}
 };

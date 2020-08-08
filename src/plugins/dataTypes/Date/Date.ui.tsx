@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Dropdown from '~components/dropdown/Dropdown';
 import Event from '@material-ui/icons/Event';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import * as styles from './Date.scss';
 
 export type DateState = {
@@ -22,6 +22,21 @@ export const initialState: DateState = {
 	example: 'MMM d, y',
 	format: 'MMM d, y'
 };
+
+export const rowStateReducer = ({ fromDate, toDate, format }: DateState): Partial<DateState> => ({
+	fromDate, toDate, format
+});
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'date',
+	},
+	sql: {
+		field: 'varchar(255)',
+		field_Oracle: 'varchar2(255)',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});
 
 export const getOptions = (): any[] => {
 	const now = new Date();

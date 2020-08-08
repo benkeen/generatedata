@@ -5,14 +5,16 @@
  * this generated file & use the methods from the window object; as long as the typings were provided that'd cut down on
  * build size. But honestly it's <20KB and there are bigger fish to fry.
  */
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import removeExports from 'rollup-plugin-strip-exports';
 import { terser } from 'rollup-plugin-terser';
 import removeImports from './build/rollup-plugin-remove-imports';
 
-// example usage: `npm rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js`
-//
+// example usage:
+//    npm rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js`
 //    npx rollup -c --config-src=src/utils/workerUtils.ts --config-target=dist/debug.js
+//    npx rollup -c --config-src=src/plugins/dataTypes/Date/Date.generator.ts --config-target=dist/debug.js
 export default (cmdLineArgs) => {
 	const { 'config-src': src, 'config-target': target } = cmdLineArgs;
 
@@ -26,9 +28,10 @@ export default (cmdLineArgs) => {
 	// the whole point of the workerUtils file is to expose all utility methods in a single `utils` object
 	// for use by plugin web workers. This is available on the global scope within a web worker
 	if (src === 'src/utils/workerUtils.ts') {
-		terserCompressProps.top_retain = ['utils'];
+		terserCompressProps.top_retain = ['utils', 'onmessage'];
 	} else {
-		terserCompressProps.unused = false;
+		terserCompressProps.unused = true;
+		terserCompressProps.top_retain = ['utils', 'onmessage'];
 	}
 
 	return {
@@ -40,6 +43,7 @@ export default (cmdLineArgs) => {
 		treeshake: false,
 		plugins: [
 			removeImports(),
+			nodeResolve(),
 			typescript({
 				tsconfigOverride: {
 					compilerOptions: {

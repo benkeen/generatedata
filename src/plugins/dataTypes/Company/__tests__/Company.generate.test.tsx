@@ -1,4 +1,4 @@
-import * as generation from '../Company.generate';
+import * as generation from '../Company.generator';
 import * as sinon from 'sinon';
 import * as randomUtils from '../../../../utils/randomUtils';
 
