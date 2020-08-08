@@ -1,10 +1,6 @@
-os: osx
 language: node_js
-node_js:
-  - "10"
 
 script:
-  - yarn install --pure-lockfile
   - yarn build
   - yarn test
 
