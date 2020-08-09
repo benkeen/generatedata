@@ -1,25 +1,29 @@
-import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
-import { generateRandomAlphanumericStr } from '~utils/randomUtils';
+import { DTGenerateResult } from '~types/dataTypes';
+import utils from '../../../utils';
 
 const generatedGUIDs: any = {};
 
 export const generate = (): DTGenerateResult => {
 	const placeholderStr = "HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH";
-	let guid = generateRandomAlphanumericStr(placeholderStr);
+	let guid = utils.randomUtils.generateRandomAlphanumericStr(placeholderStr);
 
 	// pretty sodding unlikely, but just in case. Uniqueness is kinda the point of the Data Type after all.
 	while (generatedGUIDs[guid]) {
-		guid = generateRandomAlphanumericStr(placeholderStr);
+		guid = utils.randomUtils.generateRandomAlphanumericStr(placeholderStr);
 	}
 	generatedGUIDs[guid] = true;
 
 	return { display: guid };
 };
 
-export const getMetadata = (): DTMetadata => ({
-	sql: {
-		field: 'varchar(36) NOT NULL',
-		field_Oracle: 'varchar2(36) NOT NULL',
-		field_MSSQL: 'UNIQUEIDENTIFIER NULL'
+let utilsLoaded = false;
+
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
 	}
-});
+
+	postMessage(generate());
+};
+

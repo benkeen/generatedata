@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTOptionsProps } from '~types/dataTypes';
+import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
 type NormalDistributionState = {
 	mean: string;
@@ -23,3 +23,9 @@ export const Options = ({ i18n, id, data }: DTOptionsProps): JSX.Element => (
 		<input type="text" id={`${id}-precision`} style={{ width: 25 }} value={data.precision} />
 	</>
 );
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(100)'
+	}
+});

@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../store/generator/generator.actions';
 import * as selectors from '../store/generator/generator.selectors';
@@ -18,9 +18,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationPanelProps> =
 		dispatch(actions.cancelGeneration());
 		dispatch(actions.hideGenerationPanel());
 	},
-	onChangeNumRowsToGenerate: (numRows: number): any => dispatch(actions.updateNumRowsToGenerate(numRows)),
-	onToggleStripWhitespace: () => dispatch(actions.toggleStripWhitespace()),
-	onGenerate: () => dispatch(actions.startGeneration())
+	onChangeNumRowsToGenerate: (numRows: number): Action => dispatch(actions.updateNumRowsToGenerate(numRows)),
+	onToggleStripWhitespace: (): Action => dispatch(actions.toggleStripWhitespace()),
+	onGenerate: (): Action => dispatch(actions.startGeneration())
 });
 
 export default connect(

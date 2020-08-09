@@ -10,7 +10,7 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import { HtmlTooltip } from '../../components/tooltips';
 import styles from './Footer.scss';
 import { Github } from '../../components/icons';
-import { GDLocale } from '../../../types/general';
+import { GDLocale } from '~types/general';
 import Link from '../../components/Link';
 import C from '../constants';
 
@@ -18,7 +18,6 @@ export type FooterProps = {
 	locale: GDLocale;
 	i18n: any;
 	scriptVersion: string;
-	openExportTypeSettings: () => void;
 	onChangeLocale: (a: any) => void;
 	onGenerate: () => void;
 };
@@ -41,7 +40,7 @@ const useListStyles = makeStyles(() =>
 	})
 );
 
-const Footer = ({ openExportTypeSettings, i18n, locale, onChangeLocale, scriptVersion, onGenerate }: FooterProps): JSX.Element => {
+const Footer = ({ i18n, locale, onChangeLocale, scriptVersion, onGenerate }: FooterProps): JSX.Element => {
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
 

@@ -1,4 +1,4 @@
-import { GetCountryData } from '../../../../types/countries';
+import { GetCountryData } from '~types/countries';
 
 const data: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
@@ -18,8 +18,8 @@ const data: GetCountryData = (i18n) => ({
 				"@": "ABCEGHJKLMNPRSTVWXYZ",
 
 				// used in individual provinces below
-				"&": "GHJ",   // QC
-				"^": "KLMNP"  // ON
+				"&": "GHJ", // QC
+				"^": "KLMNP" // ON
 			}
 		},
 

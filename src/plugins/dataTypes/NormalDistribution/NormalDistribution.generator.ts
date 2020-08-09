@@ -50,9 +50,3 @@ const random0to1 = (): number => {
 	// return (float) mt_rand() / (float) mt_getrandmax() ;
 	return -1; // temp
 };
-
-export const getMetadata = (): DTMetadata => ({
-	sql: {
-		field: 'varchar(100)'
-	}
-});

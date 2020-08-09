@@ -92,7 +92,7 @@ const Header = ({
 		previewBtnClasses += ` ${styles.btnSelected}`;
 	}
 
-	const getNav = () => {
+	const getNav = (): React.ReactNode => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
 			const togglePanelLabel = smallScreenVisiblePanel === 'grid' ? 'Show Preview' : 'Show Grid';
 			return (

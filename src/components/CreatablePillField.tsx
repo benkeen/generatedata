@@ -4,14 +4,14 @@ import CreatableSelect from 'react-select/creatable';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { DropdownOption } from './dropdown/Dropdown';
 
-function arrayMove(array: any, from: number, to: number) {
+function arrayMove(array: any[], from: number, to: number): any[] {
 	array = array.slice();
 	array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
 	return array;
 }
 
 const SortableMultiValue = SortableElement((props: any) => {
-	const onMouseDown = (e: any) => {
+	const onMouseDown = (e: any): void => {
 		e.preventDefault();
 		e.stopPropagation();
 	};
@@ -70,7 +70,7 @@ export const createOption = (label: string): DropdownOption => ({
 
 const SortableCreatableSelect = SortableContainer(CreatableSelect);
 
-const CreatablePillField = ({ onChange, value, placeholder }: any) => {
+const CreatablePillField = ({ onChange, value, placeholder }: any): JSX.Element => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
@@ -89,7 +89,7 @@ const CreatablePillField = ({ onChange, value, placeholder }: any) => {
 		}
 	};
 
-	const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }) => {
+	const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number; newIndex: number }): void => {
 		const sortedOptions = arrayMove(options, oldIndex, newIndex);
 		onChange(sortedOptions.map((i: DropdownOption) => i.value));
 	};
@@ -101,12 +101,12 @@ const CreatablePillField = ({ onChange, value, placeholder }: any) => {
 			inputValue={tempValue}
 			axis="xy"
 			distance={4}
-			getHelperDimensions={({ node }) => node.getBoundingClientRect()}
+			getHelperDimensions={({ node }): any => node.getBoundingClientRect()}
 			isClearable
 			isMulti
 			onSortEnd={onSortEnd}
 			menuIsOpen={false}
-			onChange={(options) => {
+			onChange={(options): void => {
 				const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
 				onChange(newValues);
 			}}

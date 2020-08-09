@@ -34,7 +34,7 @@ const Dropdown = ({ value, isGrouped, options, placeholder, ...props }: any): JS
 	if (isGrouped) {
 		if (props.isMulti) {
 			selectedValue = [];
-			options.filter((group: any) => {
+			options.filter(() => { // group: any
 				// TODO
 				return true;
 			});

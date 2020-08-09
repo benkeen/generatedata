@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '../../../components/dialogs';
 import { DropdownOption } from '../../../components/dropdown/Dropdown';
-import { getSortedGroupedDataTypes, getDataType } from '../../../utils/dataTypeUtils';
+import { getSortedGroupedDataTypes, getDataType } from '~utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
 import { DataTypeFolder } from '../../../_plugins';
 
@@ -46,7 +46,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 	const [dataType, setDataType] = React.useState<DataTypeFolder | null>(null);
 	const [filterString, setFilterString] = React.useState('');
 
-	const selectDataType = (dataType: DataTypeFolder) => {
+	const selectDataType = (dataType: DataTypeFolder): void => {
 		onSelectDataType(dataType);
 		setDataType(dataType);
 	};

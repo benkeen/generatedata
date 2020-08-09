@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Category:Cities_and_towns_in_Russia_by_federal_subject
-import { GetCountryData } from '../../../../types/countries';
+import { GetCountryData } from '~types/countries';
 
 const data: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
@@ -23,8 +23,8 @@ const data: GetCountryData = (i18n) => ({
 				"*": "0123456789",
 
 				// used in individual federal subjects
-				"-": "01",	// (Kurgan, Ryazan, Tula} Oblast
-				"&": "012",   // Moscow City, (Pskov, Tver, Vologda, Orenburg, Penza, Vladimir, Yaroslavl} Oblast
+				"-": "01", // (Kurgan, Ryazan, Tula} Oblast
+				"&": "012", // Moscow City, (Pskov, Tver, Vologda, Orenburg, Penza, Vladimir, Yaroslavl} Oblast
 				"+": "0123",	// (Kirov, Novosibirsk, Saratov} Oblast
 				"U": "01234",	// (Kemerovo, Moscow, Sverdlovsk, Volgograd} Oblast
 				"X": "012345", // Moscow City

@@ -1,18 +1,25 @@
 /**
  * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
- * @package DataTypes
- * @description this class has a hard dependency on the PAN class NAMES class. That class contains a few public
- *              helper functions.
- */ 
+ */
 import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
 
-export const generate = (): DTGenerateResult => { // data: GenerationData
+export const generate = (): DTGenerateResult => {
 	return { display: '' };
+};
+
+let utilsLoaded = false;
+
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
+	}
+
+	postMessage(generate());
 };
 
 
 /* private $cardData;
-
 
 	public function __construct($runtimeContext) {
 		for ($i=622126; $i<=622925; $i++){
@@ -61,11 +68,3 @@ export const generate = (): DTGenerateResult => { // data: GenerationData
 		);
 	}
 */
-
-export const getMetadata = (): DTMetadata => ({
-	sql: {
-		field: 'varchar(255)',
-		field_Oracle: 'varchar2(255)',
-		field_MSSQL: 'VARCHAR(255) NULL'
-	}
-});

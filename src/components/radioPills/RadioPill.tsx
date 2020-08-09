@@ -23,7 +23,7 @@ type RadioPillProps = {
 	style?: any;
 };
 
-const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: RadioPillProps) => {
+const RadioPill = ({ label, onClick, name, checked, disabled, tooltip, style }: RadioPillProps): JSX.Element => {
 	const button = (
 		<Button onClick={onClick} size="small" color="primary" variant="outlined" style={style} disabled={disabled}>
 			<input

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import CreatablePillField from '~components/CreatablePillField';
-import { AutoIncrementState } from '../AutoIncrement/AutoIncrement';
 
 export type BooleanState = {
 	example: string;

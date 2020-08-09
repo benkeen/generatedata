@@ -39,7 +39,7 @@ const CodeMirrorWrapper = (props: any): JSX.Element => {
 	return (
 		<CodeMirror
 			value={code}
-			onBeforeChange={(editor, data, value) => setCode(value)}
+			onBeforeChange={(editor, data, value): void => setCode(value)}
 			options={{
 				mode: codeMirrorMode,
 				theme,
@@ -53,7 +53,7 @@ const CodeMirrorWrapper = (props: any): JSX.Element => {
 
 export default CodeMirrorWrapper;
 
-export const generatePreviewString = (props: any) => {
+export const generatePreviewString = (props: any): Promise<any> => {
 	const { rows, columns, exportType, exportTypeSettings, loadedExportTypes } = props;
 	const exportTypeWorker = coreUtils.getExportTypeWorker();
 

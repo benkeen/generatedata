@@ -8,7 +8,6 @@ import Refresh from '@material-ui/icons/Refresh';
 import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import { Tooltip } from '../../components/tooltips';
-import { BuilderLayout } from '../builder/Builder.component';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 import Portal from './PreviewPanelPortal.component';
 import C from '../constants';
@@ -28,15 +27,12 @@ const ExportTypeButton = withStyles({
 })(Button);
 
 export type PreviewPanelProps = {
-	ExportTypePreview: any; // TODO
-	builderLayout: BuilderLayout;
 	togglePreview: () => void;
 	refreshPreview: () => void;
 	changeSmallScreenVisiblePanel: () => void;
 	exportTypeLoaded: boolean;
 	initialDependenciesLoaded: boolean;
 	toggleExportSettings: () => void;
-	exportTypeSettings: any; // TODO
 	exportSettingsVisible: boolean;
 	hasData: boolean;
 	theme: string;
@@ -48,9 +44,8 @@ export type PreviewPanelProps = {
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
-	ExportTypePreview, i18n, theme, builderLayout, togglePreview, hasData, exportTypeSettings, previewTextSize,
-	refreshPreview, toggleExportSettings, exportSettingsVisible, exportTypeLabel, changeSmallScreenVisiblePanel,
-	exportTypeLoaded, initialDependenciesLoaded
+	i18n, theme, togglePreview, hasData, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible,
+	exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, initialDependenciesLoaded
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
 
@@ -123,7 +118,7 @@ const PreviewPanel = ({
 		);
 	};
 
-	const getCodeMirrorPanel = () => {
+	const getCodeMirrorPanel = (): React.ReactNode => {
 		if (!exportTypeLoaded) {
 			return <PreviewPanelLoader/>;
 		}

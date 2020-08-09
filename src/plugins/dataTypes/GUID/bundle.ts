@@ -1,6 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { Help } from './GUID';
-import { getMetadata } from './GUID.generator';
+import { Help, getMetadata } from './GUID';
 
 const bundle: DTBundle = {
 	Help,

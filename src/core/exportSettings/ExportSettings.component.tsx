@@ -8,12 +8,11 @@ import ExportTypeTab from './ExportTypeTab.container';
 import * as styles from './ExportSettings.scss';
 
 export type ExportSettingsProps = {
-	i18n: any;
 	showExportSettings: boolean;
 	toggleExportSettings: any;
 };
 
-export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings }: ExportSettingsProps): React.ReactElement => {
+export const ExportSettings = ({ showExportSettings, toggleExportSettings }: ExportSettingsProps): React.ReactElement => {
 	const [selectedTabIndex, setSelectedTabIndex] = React.useState(0);
 	const handleChange = (e: React.ChangeEvent<{}>, newValue: number): void => setSelectedTabIndex(newValue);
 	const getTab = (): JSX.Element | null => {

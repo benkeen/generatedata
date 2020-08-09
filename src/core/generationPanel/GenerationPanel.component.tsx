@@ -20,14 +20,14 @@ export type GenerationPanelProps = {
 const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
 	onGenerate, isGenerating }: GenerationPanelProps): JSX.Element => {
 
-	const onCloseDialog = () => {
+	const onCloseDialog = (): void => {
 		if (isGenerating) {
 			// TODO
 		}
 		onClose();
 	};
 
-	const getContent = () => {
+	const getContent = (): React.ReactNode => {
 		if (isGenerating) {
 			const percentage = Math.round((numGeneratedRows / numRowsToGenerate) * 100);
 
@@ -51,7 +51,7 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 					<input
 						type="number"
 						value={numRowsToGenerate}
-						onChange={(e: any) => onChangeNumRowsToGenerate(e.target.value)}
+						onChange={(e: any): void => onChangeNumRowsToGenerate(e.target.value)}
 					/> rows
 				</div>
 

@@ -4,24 +4,16 @@ import PreviewPanel, { PreviewPanelProps } from './PreviewPanel.component';
 import * as selectors from '../store/generator/generator.selectors';
 import * as actions from '../store/generator/generator.actions';
 
-const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
-	const exportType = selectors.getExportType(state);
-	const settings = selectors.getExportTypeSettings(state);
-	const exportTypeSettings = (settings[exportType]) ? settings[exportType] : {};
-
-	return {
-		i18n: selectors.getCoreI18n(state),
-		theme: selectors.getTheme(state),
-		exportSettingsVisible: selectors.shouldShowExportSettings(state),
-		builderLayout: selectors.getBuilderLayout(state),
-		previewTextSize: selectors.getPreviewTextSize(state),
-		exportTypeLoaded: selectors.selectedExportTypeLoaded(state),
-		exportTypeLabel: selectors.getExportTypeLabel(state),
-		exportTypeSettings,
-		hasData: selectors.hasData(state),
-		initialDependenciesLoaded: selectors.isInitialDependenciesLoaded(state)
-	};
-};
+const mapStateToProps = (state: any): Partial<PreviewPanelProps> => ({
+	i18n: selectors.getCoreI18n(state),
+	theme: selectors.getTheme(state),
+	exportSettingsVisible: selectors.shouldShowExportSettings(state),
+	previewTextSize: selectors.getPreviewTextSize(state),
+	exportTypeLoaded: selectors.selectedExportTypeLoaded(state),
+	exportTypeLabel: selectors.getExportTypeLabel(state),
+	hasData: selectors.hasData(state),
+	initialDependenciesLoaded: selectors.isInitialDependenciesLoaded(state)
+});
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => ({
 	togglePreview: (): any => dispatch(actions.togglePreview()),

@@ -6,7 +6,8 @@ const bundle: DTBundle = {
 	Example,
 	Options,
 	Help,
-	rowStateReducer
+	rowStateReducer,
+	getMetadata
 };
 
 export default bundle;

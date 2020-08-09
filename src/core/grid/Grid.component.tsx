@@ -1,6 +1,5 @@
 import * as React from 'react';
-// @ts-ignore-line
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Measure from 'react-measure';
 import { useWindowSize } from 'react-hooks-window-size';
 import CloseIcon from '@material-ui/icons/Close';
@@ -24,7 +23,6 @@ export type GridProps = {
 	onSort: (id: string, newIndex: number) => void;
 	toggleGrid: () => void;
 	i18n: any;
-	countryI18n: any;
 	dataTypeI18n: any;
 	columnTitle: string;
 	loadedDataTypes: any; // TODO
@@ -33,8 +31,7 @@ export type GridProps = {
 
 
 const Grid = ({
-	rows, onAddRows, onSelectDataType, onSort, i18n, countryI18n, dataTypeI18n, columnTitle, toggleGrid,
-	changeSmallScreenVisiblePanel
+	rows, onAddRows, onSelectDataType, onSort, i18n, dataTypeI18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
 	const [helpDialogVisible, showHelpDialog] = React.useState(false);
@@ -52,12 +49,12 @@ const Grid = ({
 
 	const addRowsBtnLabel = numRows === 1 ? i18n.row : i18n.rows;
 
-	const onShowHelpDialog = (dataType: DataTypeFolder) => {
+	const onShowHelpDialog = (dataType: DataTypeFolder): void => {
 		setInitialDialogSection(dataType);
 		showHelpDialog(true);
 	};
 
-	const onClose = () => {
+	const onClose = (): void => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
 			changeSmallScreenVisiblePanel();
 		} else {
