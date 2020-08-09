@@ -1,6 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options } from './NormalDistribution.ui';
-import { getMetadata } from './NormalDistribution.generate';
+import { initialState, Options } from './NormalDistribution';
+import { getMetadata } from './NormalDistribution.generator';
 
 const bundle: DTBundle = {
 	initialState,

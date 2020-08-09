@@ -1,6 +1,6 @@
 import { getRandomNum } from '~utils/randomUtils';
 import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { NumberRangeState } from './NumberRange.ui';
+import { NumberRangeState } from './NumberRange';
 
 export const rowStateReducer = (state: NumberRangeState): NumberRangeState => state;
 

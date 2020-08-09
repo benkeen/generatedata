@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
 export type LatLngState = {
 	lat: boolean;
@@ -32,3 +32,13 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
+
+export const rowStateReducer = (state: LatLngState): LatLngState => state;
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(30) default NULL',
+		field_Oracle: 'varchar2(30) default NULL',
+		field_MSSQL: 'VARCHAR(30) NULL'
+	}
+});

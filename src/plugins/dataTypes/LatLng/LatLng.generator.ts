@@ -1,8 +1,5 @@
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { LatLngState } from './LatLng.ui';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 import { getRandomNum } from '~utils/randomUtils';
-
-export const rowStateReducer = (state: LatLngState): LatLngState => state;
 
 const DECIMAL_PLACES = 5;
 
@@ -42,10 +39,13 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	};
 };
 
-export const getMetadata = (): DTMetadata => ({
-	sql: {
-		field: 'varchar(30) default NULL',
-		field_Oracle: 'varchar2(30) default NULL',
-		field_MSSQL: 'VARCHAR(30) NULL'
+let utilsLoaded = false;
+
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
 	}
-});
+
+	postMessage(generate(e.data));
+};

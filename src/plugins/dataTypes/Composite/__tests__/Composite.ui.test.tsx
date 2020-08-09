@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { initialState, Help, Options } from '../Composite.ui';
+import { initialState, Help, Options } from '../Composite';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {

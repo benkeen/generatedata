@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import * as ui from '../Date.ui';
+import * as ui from '../Date';
 
 const date = new Date(2020, 0, 3);
 

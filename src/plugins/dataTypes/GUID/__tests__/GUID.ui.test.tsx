@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react';
-import { Help } from '../GUID.ui';
+import { Help } from '../GUID';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {

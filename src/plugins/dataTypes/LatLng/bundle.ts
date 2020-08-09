@@ -1,6 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, Help } from './LatLng.ui';
-import { getMetadata } from './LatLng.generate';
+import { initialState, Options, Help, getMetadata } from './LatLng';
 
 const bundle: DTBundle = {
 	initialState,

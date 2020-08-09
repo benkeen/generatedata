@@ -52,3 +52,4 @@ const onmessage = (e: any) => {
 		display: getRandomEmail(words)
 	});
 };
+

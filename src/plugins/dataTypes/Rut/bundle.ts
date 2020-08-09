@@ -1,5 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options } from './Rut.ui';
+import { initialState, Example, Options } from './Rut';
 
 const bundle: DTBundle = {
 	initialState,

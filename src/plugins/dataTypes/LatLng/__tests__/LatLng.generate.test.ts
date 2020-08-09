@@ -1,4 +1,4 @@
-import * as latlng from '../LatLng.generate';
+import * as latlng from '../LatLng.generator';
 
 // klutzy tests
 describe('generation method', () => {

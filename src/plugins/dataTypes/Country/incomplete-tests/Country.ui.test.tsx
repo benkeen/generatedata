@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react';
-import { initialState, Options } from '../Country.ui';
+import { initialState, Options } from '../Country';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {

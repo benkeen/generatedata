@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react';
-import { getCreditCardOptions, Help } from '../PAN.ui';
+import { getCreditCardOptions, Help } from '../PAN';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {

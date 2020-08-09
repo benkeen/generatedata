@@ -1,5 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, Help } from './SIRET.ui';
+import { initialState, Options, Help } from './SIRET';
 
 const bundle: DTBundle = {
 	initialState,

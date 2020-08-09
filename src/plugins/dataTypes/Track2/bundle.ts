@@ -1,5 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { getMetadata } from './Track2.generate';
+import { getMetadata } from './Track2.generator';
 
 const bundle: DTBundle = {
 	getMetadata

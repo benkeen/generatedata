@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import CreatablePillField from '../../../components/CreatablePillField';
 
@@ -133,3 +133,19 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.help }} />;
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'infer'
+	},
+	sql: {
+		field: 'varchar(255) default NULL',
+		field_Oracle: 'varchar2(255) default NULL',
+		field_MSSQL: 'VARCHAR(255) NULL'
+	}
+});
+
+export const rowStateReducer = ({ example, listType, exactly, atMost, values }: ListState): Partial<ListState> => ({
+	example, listType, exactly, atMost, values
+});
+

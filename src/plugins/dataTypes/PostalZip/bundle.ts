@@ -1,6 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, Help } from './PostalZip.ui';
-import { getMetadata } from './PostalZip.generate';
+import { initialState, Options, Help } from './PostalZip';
+import { getMetadata } from './PostalZip.generator';
 import { customProps, actionInterceptors } from './PostalZip.store';
 
 const bundle: DTBundle = {

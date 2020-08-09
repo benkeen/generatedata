@@ -1,5 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { Help } from './CVV.ui';
+import { Help } from './CVV';
 import { getMetadata } from './CVV.generate';
 
 const bundle: DTBundle = {

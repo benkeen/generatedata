@@ -1,6 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, Help } from './TextRandom.ui';
-import { getMetadata } from './TextRandom.generate';
+import { initialState, Options, Help } from './TextRandom';
+import { getMetadata } from './TextRandom.generator';
 
 const bundle: DTBundle = {
 	initialState,

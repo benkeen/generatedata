@@ -1,6 +1,6 @@
 import fullCountryList from './fullCountryList';
 import { countryList, CountryType } from '../../../_plugins';
-import { CountryState } from './Country.ui';
+import { CountryState } from './Country';
 import { getRandomArrayValue } from '~utils/randomUtils';
 import { loadCountryBundle } from '~utils/countryUtils';
 import { GetCountryData } from '~types/countries';

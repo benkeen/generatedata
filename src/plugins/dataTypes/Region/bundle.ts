@@ -1,6 +1,6 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Help, Options } from './Region.ui';
-import { getMetadata } from './Region.generate';
+import { initialState, Help, Options } from './Region';
+import { getMetadata } from './Region.generator';
 import { customProps, actionInterceptors } from './Region.store';
 
 const bundle: DTBundle = {

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { DTCustomProps } from '~types/dataTypes';
 import { getSortedRowsArray } from '../../../core/store/generator/generator.selectors';
-import { RegionState } from './Region.ui';
+import { RegionState } from './Region';
 import { REMOVE_ROW, CONFIGURE_DATA_TYPE, SELECT_DATA_TYPE } from '../../../core/store/generator/generator.actions';
 
 // this defines a custom selector that extracts information about the country fields, needed by this component. The
