@@ -4,6 +4,22 @@ export const generate = (): DTGenerateResult => {
 	return { display: '' };
 };
 
+let utilsLoaded = false;
+
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
+	}
+
+	postMessage({
+		display: generate()
+	});
+};
+
+export {};
+
+
 /*
 class DataType_Computed extends DataTypePlugin {
 

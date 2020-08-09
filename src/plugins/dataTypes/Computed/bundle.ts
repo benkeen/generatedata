@@ -1,5 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options, Help } from './Computed.ui';
+import { initialState, Example, Options, Help } from './Computed';
 
 const bundle: DTBundle = {
 	initialState,

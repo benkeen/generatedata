@@ -38,7 +38,6 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 	});
 };
 
-
 let utilsLoaded = false;
 
 const onmessage = (e: any) => {

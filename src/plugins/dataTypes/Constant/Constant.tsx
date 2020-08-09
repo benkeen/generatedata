@@ -1,8 +1,13 @@
 import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import CreatablePillField from '~components/CreatablePillField';
 import styles from './Constant.scss';
 import sharedStyles from '../../../styles/shared.scss';
+
+type CleanedRowState = {
+	loopCount: number;
+	values: any[];
+}
 
 export type ConstantState = {
 	loopCount: number;
@@ -63,3 +68,18 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</p>
 	</>
 );
+
+// this assumes validation has already been performed. Perhaps a `valid` flag should be set in the state?
+export const rowStateReducer = ({ loopCount, values }: ConstantState): CleanedRowState => ({ loopCount, values });
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'string'
+	},
+	sql: {
+		field: 'TEXT default NULL',
+		field_Oracle: 'BLOB default NULL',
+		field_MSSQL: 'VARCHAR(MAX) NULL',
+		field_Postgres: 'TEXT NULL'
+	}
+});

@@ -1,6 +1,6 @@
-import * as generation from '../Company.generator';
 import * as sinon from 'sinon';
-import * as randomUtils from '../../../../utils/randomUtils';
+import * as generation from '../Company.generator';
+import utils from '../../../../utils';
 
 const companyTypes = ['Inc.', 'Co.'];
 const words = ['one', 'two', 'three'];
@@ -11,7 +11,7 @@ describe('generateCompanyName', () => {
     });
 
     it('generates a company name', () => {
-        sinon.stub(randomUtils, 'getRandomNum')
+        sinon.stub(utils.randomUtils, 'getRandomNum')
             .onCall(0).returns(1) // number of words
             .onCall(1).returns(0) // company name words offset
             .onCall(2).returns(0); // company type
@@ -20,7 +20,7 @@ describe('generateCompanyName', () => {
     });
 
     it('picks a random company word', () => {
-        sinon.stub(randomUtils, 'getRandomNum')
+        sinon.stub(utils.randomUtils, 'getRandomNum')
             .onCall(0).returns(1) // number of words
             .onCall(1).returns(1) // company name words offset
             .onCall(2).returns(0); // company type
@@ -29,7 +29,7 @@ describe('generateCompanyName', () => {
     });
 
     it('picks multiple company words', () => {
-        sinon.stub(randomUtils, 'getRandomNum')
+        sinon.stub(utils.randomUtils, 'getRandomNum')
             .onCall(0).returns(3) // number of words
             .onCall(1).returns(0) // company name words offset
             .onCall(2).returns(0); // company type
@@ -38,7 +38,7 @@ describe('generateCompanyName', () => {
     });
 
     it('picks a random company type', () => {
-        sinon.stub(randomUtils, 'getRandomNum')
+        sinon.stub(utils.randomUtils, 'getRandomNum')
             .onCall(0).returns(1) // number of words
             .onCall(1).returns(2) // company name words offset
             .onCall(2).returns(1); // company type
