@@ -12,7 +12,7 @@ import SwapVert from '@material-ui/icons/SwapVert';
 import MenuIcon from '@material-ui/icons/Menu';
 import { BuilderLayout } from '../builder/Builder.component';
 import ClearGridDialog from '../dialogs/clearGrid/ClearGrid.component';
-import { Tooltip } from '../../components/tooltips';
+import { Tooltip } from '~components/tooltips';
 import { toSentenceCase } from '~utils/stringUtils';
 import IntroDialog from '../dialogs/intro/Intro.component';
 import { GDLocale } from '~types/general';

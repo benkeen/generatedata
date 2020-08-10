@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import WarningIcon from '@material-ui/icons/Warning';
-import { SmallDialog, DialogTitle, DialogContent, DialogActions } from '../../../components/dialogs';
+import { SmallDialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import styles from './ClearGrid.scss';
 
 export type ClearGridProps = {

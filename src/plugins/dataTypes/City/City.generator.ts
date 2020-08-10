@@ -1,7 +1,6 @@
+import utils from '../../../utils';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
-import { loadCountryBundle } from '~utils/countryUtils';
 import { GetCountryData, Region } from '~types/countries';
-import { getRandomArrayValue } from '~utils/randomUtils';
 import { countryList, CountryType } from '../../../_plugins';
 
 export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
@@ -15,13 +14,13 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 			regionRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
 			country = regionRow!.data.countryDataType;
 		} else if (source === 'any') {
-			country = getRandomArrayValue(countryList as CountryType[]);
+			country = utils.randomUtils.getRandomArrayValue(countryList as CountryType[]);
 		} else {
 			const list = rowState.selectedCountries.length ? selectedCountries : countryList;
-			country = getRandomArrayValue(list);
+			country = utils.randomUtils.getRandomArrayValue(list);
 		}
 
-		loadCountryBundle(country)
+		utils.countryUtils.loadCountryBundle(country)
 			.then((getCountryData: GetCountryData) => {
 				const countryData = getCountryData(countryI18n[country]);
 
@@ -29,10 +28,11 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 				if (regionRow) {
 					selectedRegion = countryData.regions.find((i: Region) => i.regionName === regionRow!.data.display);
 				} else {
-					selectedRegion = getRandomArrayValue(countryData.regions);
+					selectedRegion = utils.randomUtils.getRandomArrayValue(countryData.regions);
 				}
+
 				resolve({
-					display: getRandomArrayValue(selectedRegion!.cities)
+					display: utils.randomUtils.getRandomArrayValue(selectedRegion!.cities)
 				});
 			});
 	});
@@ -46,7 +46,11 @@ const onmessage = (e: any) => {
 		utilsLoaded = true;
 	}
 
-	postMessage(generate(e.data));
+	generate(e.data)
+		.then((resp) => {
+			console.log("...", resp);
+			postMessage(resp);
+		});
 };
 
 export {};

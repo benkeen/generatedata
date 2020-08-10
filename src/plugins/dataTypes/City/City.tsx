@@ -2,11 +2,11 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { CountryType } from '../../../_plugins';
-import Dropdown, { DropdownOption } from '../../../components/dropdown/Dropdown';
-import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '../../../components/dialogs';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '~components/dialogs';
 import { countryList } from '../../../_plugins';
 import styles from './City.scss';
-import RadioPill, { RadioPillRow } from '../../../components/radioPills/RadioPill';
 
 export type RegionSource = 'any' | 'countries' | 'regionRow';
 

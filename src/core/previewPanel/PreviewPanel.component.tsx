@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
 import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
-import { Tooltip } from '../../components/tooltips';
+import { Tooltip } from '~components/tooltips';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 import Portal from './PreviewPanelPortal.component';
 import C from '../constants';

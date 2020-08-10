@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { SmallDialog, DialogTitle, DialogContent, DialogActions } from '../../../components/dialogs';
-import Link from '../../../components/Link';
+import { SmallDialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import Link from '~components/Link';
 import styles from './Intro.scss';
 
 export type IntroProps = {

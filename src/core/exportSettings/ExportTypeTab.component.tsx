@@ -1,6 +1,6 @@
 import React from 'react';
-import Dropdown, { DropdownOption } from '../../components/dropdown/Dropdown';
-import { exportTypeOptions } from '../../utils/exportTypeUtils';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import { exportTypeOptions } from '~utils/exportTypeUtils';
 import * as styles from './ExportSettings.scss';
 import { ExportSettingsTab } from './ExportSettings.types';
 

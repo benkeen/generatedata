@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '../../../components/dialogs';
-import { DropdownOption } from '../../../components/dropdown/Dropdown';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { DropdownOption } from '~components/dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '~utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
 import { DataTypeFolder } from '../../../_plugins';

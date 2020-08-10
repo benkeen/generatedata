@@ -5,10 +5,10 @@ import DragIndicator from '@material-ui/icons/DragIndicator';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import InfoIcon from '@material-ui/icons/Info';
-import Dropdown from '../../components/dropdown/Dropdown';
+import Dropdown from '~components/dropdown/Dropdown';
+import { HtmlTooltip } from '~components/tooltips';
 import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
-import { HtmlTooltip } from '../../components/tooltips';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../styles/shared.scss';
 

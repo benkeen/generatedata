@@ -7,11 +7,11 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import { HtmlTooltip } from '../../components/tooltips';
+import { HtmlTooltip } from '~components/tooltips';
 import styles from './Footer.scss';
-import { Github } from '../../components/icons';
+import { Github } from '~components/icons';
+import Link from '~components/Link';
 import { GDLocale } from '~types/general';
-import Link from '../../components/Link';
 import C from '../constants';
 
 export type FooterProps = {
