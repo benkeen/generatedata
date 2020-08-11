@@ -1,6 +1,6 @@
 import { GetCountryData } from '~types/countries';
 
-const data: GetCountryData = (i18n) => ({
+const Vietnam: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
 	continent: 'asia',
 	countrySlug: 'VN',
@@ -532,4 +532,4 @@ const data: GetCountryData = (i18n) => ({
 	]
 });
 
-export default data;
+export default Vietnam;

@@ -5,6 +5,7 @@
  * this generated file & use the methods from the window object; as long as the typings were provided that'd cut down on
  * build size. But honestly it's <20KB and there are bigger fish to fry.
  */
+import path from 'path';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import removeExports from 'rollup-plugin-strip-exports';
@@ -15,6 +16,7 @@ import removeImports from './build/rollup-plugin-remove-imports';
 //    npm rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js`
 //    npx rollup -c --config-src=src/utils/workerUtils.ts --config-target=dist/debug.js
 //    npx rollup -c --config-src=src/plugins/dataTypes/Date/Date.generator.ts --config-target=dist/debug.js
+//    npx rollup -c --config-src=src/plugins/countries/Australia/bundle.ts --config-target=dist/australia.js
 export default (cmdLineArgs) => {
 	const { 'config-src': src, 'config-target': target } = cmdLineArgs;
 
@@ -29,9 +31,12 @@ export default (cmdLineArgs) => {
 	// for use by plugin web workers. This is available on the global scope within a web worker
 	if (src === 'src/utils/workerUtils.ts') {
 		terserCompressProps.top_retain = ['utils', 'onmessage'];
+	} else if (/src\/plugins\/countries/.test(src)) {
+		const folder = path.dirname(src).split(path.sep);
+		terserCompressProps.top_retain = [folder[folder.length-1]];
 	} else {
 		terserCompressProps.unused = true;
-		terserCompressProps.top_retain = ['utils', 'onmessage'];
+		terserCompressProps.top_retain = ['utils', 'onmessage', 'Australia'];
 	}
 
 	return {

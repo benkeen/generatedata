@@ -192,10 +192,9 @@ const processQueue = (dataType: DataTypeFolder) => {
 	// returning the generated data for that row
 	worker.onmessage = (response: any) => {
 		if (typeof response.then === 'function') {
-			console.log("!!");
 			response
 				.then(() => {
-					console.log("resolved.");
+					console.log("resolved async data type.");
 					resolve(response.data);
 					processNextItem(dataType);
 				})

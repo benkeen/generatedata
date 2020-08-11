@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-
 const distFolder = path.join(__dirname, '/dist');
 if (!fs.existsSync(distFolder)) {
 	fs.mkdirSync(distFolder);
@@ -21,7 +20,8 @@ const webWorkerMap = {
 	coreExportTypeWorker: '',
 	workerUtils: '',
 	dataTypes: {},
-	exportTypes: {}
+	exportTypes: {},
+	countries: {}
 };
 
 module.exports = function (grunt) {
@@ -109,6 +109,22 @@ window.gd.localeLoaded(i18n);
 		return map;
 	})();
 
+	const countryWebWorkerMap = (() => {
+		const baseFolder = path.join(__dirname, `/src/plugins/countries`);
+		const folders = fs.readdirSync(baseFolder);
+
+		const map = {};
+		folders.forEach((folder) => {
+			const webworkerFile = path.join(__dirname, `/src/plugins/countries/${folder}/bundle.ts`);
+			if (!fs.existsSync(webworkerFile)) {
+				return;
+			}
+			map[`dist/workers/C-${folder}.js`] = [`src/plugins/countries/${folder}/bundle.ts`];
+		});
+
+		return map;
+	})();
+
 	const webWorkerFileListWithType = [
 		{ file: 'src/core/generator/core.worker.ts', type: 'core' },
 		{ file: 'src/core/generator/dataTypes.worker.ts', type: 'core' },
@@ -120,6 +136,9 @@ window.gd.localeLoaded(i18n);
 	});
 	Object.values(exportTypeWebWorkerMap).forEach((et) => {
 		webWorkerFileListWithType.push({ file: et[0], type: 'exportType' });
+	});
+	Object.values(countryWebWorkerMap).forEach((c) => {
+		webWorkerFileListWithType.push({ file: c[0], type: 'country' });
 	});
 
 	const webWorkerFileList = webWorkerFileListWithType.map((i) => i.file);
@@ -140,6 +159,9 @@ window.gd.localeLoaded(i18n);
 				target = `dist/workers/DT-${filename}.js`;
 			} else if (type === 'exportType') {
 				target = `dist/workers/ET-${filename}.js`;
+			} else if (type === 'country') {
+				const folderPath = path.dirname(file).split(path.sep);
+				target = `dist/workers/C-${folderPath[folderPath.length-1]}.js`;
 			}
 
 			commands[`buildWebWorker${index}`] = {
@@ -168,7 +190,7 @@ window.gd.localeLoaded(i18n);
 		return tasks;
 	})();
 
-	const processMd5Change = (fileChanges, hmm) => {
+	const processMd5Change = (fileChanges) => {
 		const oldPath = fileChanges[0].oldPath;
 		const oldFile = path.basename(oldPath);
 		const newFilename = path.basename(fileChanges[0].newPath);
@@ -183,12 +205,15 @@ window.gd.localeLoaded(i18n);
 			webWorkerMap.workerUtils = newFilename;
 		} else {
 			const [pluginFolder] = oldFile.split('.');
-			const cleanPluginFolder = pluginFolder.replace(/^(DT-|ET-)/, '');
+			const cleanPluginFolder = pluginFolder.replace(/^(DT-|ET-|C-)/, '');
 
 			if (/^DT-/.test(oldFile)) {
 				webWorkerMap.dataTypes[cleanPluginFolder] = newFilename;
-			} else {
+			} else if (/^ET-/.test(oldFile)) {
 				webWorkerMap.exportTypes[cleanPluginFolder] = newFilename;
+			} else {
+				let countryFolder = path.basename(oldPath, path.extname(oldPath)).replace(/(C-)/, '');
+				webWorkerMap.countries[countryFolder] = newFilename;
 			}
 		}
 	};
@@ -197,13 +222,17 @@ window.gd.localeLoaded(i18n);
 	const webWorkerMd5Tasks = (() => {
 		const tasks = {};
 		webWorkerFileListWithType.forEach(({ file, type }, index) => {
-			const fileWithoutExt = path.basename(file, path.extname(file));
+			let fileWithoutExt = path.basename(file, path.extname(file));
 
 			let prefix = '';
 			if (type === 'dataType') {
 				prefix = 'DT-';
 			} else if (type === 'exportType') {
 				prefix = 'ET-';
+			} else if (type === 'country') {
+				prefix = 'C-';
+				const folder = path.dirname(file).split(path.sep);
+				fileWithoutExt = folder[folder.length-1];
 			}
 
 			const newFileLocation = `dist/workers/${prefix}${fileWithoutExt}.js`; // here it's now a JS file, not TS

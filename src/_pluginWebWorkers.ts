@@ -1,8 +1,8 @@
 export default {
 	"coreWorker": "core.worker-5f4233332366926b2f94c6b196bc95fb.js",
-	"coreDataTypeWorker": "dataTypes.worker-4525b322c95c57223438c76a3849b4d4.js",
+	"coreDataTypeWorker": "dataTypes.worker-76a6477cb81d01a79f1b503a4e2825d1.js",
 	"coreExportTypeWorker": "exportTypes.worker-65490cc29f6b6883a07af252844dfdb9.js",
-	"workerUtils": "workerUtils-f85087f772d6dfd43504372e2d20c870.js",
+	"workerUtils": "workerUtils-c9ae6e31c50ada9e7306d33da96c1f8f.js",
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.generator-66472a871c0e00627d2662e1f30d9efb.js",
 		"AutoIncrement": "DT-AutoIncrement.generator-c2a347fd5e49ef7fa2a63ba7e85cef0c.js",
@@ -37,5 +37,36 @@ export default {
 	},
 	"exportTypes": {
 		"JSON": "ET-JSON.generator-19552de543233e8b524d82e55a1d093c.js"
+	},
+	"countries": {
+		"Australia": "C-Australia-04731d6865c56c8596fb8ca084d05e41.js",
+		"Austria": "C-Austria-5185d9be81b34ce8eae174400326f441.js",
+		"Belgium": "C-Belgium-da6a725a0b95449e735ea0bc57bb4fde.js",
+		"Brazil": "C-Brazil-ca17ba9aee2858c7b3c9ad00056a656e.js",
+		"Canada": "C-Canada-1c826271132feb4ac76452acc9f3e79a.js",
+		"Chile": "C-Chile-4072165354ffa97458ad73297cecfcda.js",
+		"Colombia": "C-Colombia-c8e50bafb2bc965dad9d17fdcbb90fea.js",
+		"CostaRica": "C-CostaRica-976faa5855c08123c368354f5be4813e.js",
+		"France": "C-France-4228cd73fedac07d7e9f85055ad95a98.js",
+		"Germany": "C-Germany-7dbfedeab1537dbe45da7e2ad9ad2c3c.js",
+		"India": "C-India-db9687ab1beedba75994406cc829c7f6.js",
+		"Indonesia": "C-Indonesia-669fd1db97ad676fb67525fc384ac2b7.js",
+		"Ireland": "C-Ireland-8604627544603265ab5feb20efd15a6d.js",
+		"Italy": "C-Italy-2e4c9beadcd9945c7e140eceab49a235.js",
+		"Mexico": "C-Mexico-cdff663c5106c50aa895317b2fdd4548.js",
+		"Netherlands": "C-Netherlands-b711b95f584dbc3d386271f6c4d55770.js",
+		"NewZealand": "C-NewZealand-0cfca826813b25787e80d1d93521b345.js",
+		"Nigeria": "C-Nigeria-7360454ce6c1a22323c2318da617106d.js",
+		"Pakistan": "C-Pakistan-8e7c45b3612873428e4a9063bab7cd4f.js",
+		"Peru": "C-Peru-912e6d22a6b34f23f8143919dfa27d32.js",
+		"Poland": "C-Poland-ddc55aaaa040bf112ee405fc66cc7123.js",
+		"Russia": "C-Russia-8af93b2b152c1ff5302d8f498cd99621.js",
+		"SouthKorea": "C-SouthKorea-3f580404cb48c14b95a29b7f6042c0cb.js",
+		"Spain": "C-Spain-2103c3532dcea4abc23b109f1aac165e.js",
+		"Sweden": "C-Sweden-2aa265082f1545a9bea98485884e090e.js",
+		"Turkey": "C-Turkey-187e9d73e6c6a72ce1ed7ad7761ad98b.js",
+		"UK": "C-UK-47f3cafec0bc9613e27660587c1c2e70.js",
+		"US": "C-US-8122495fae1a1ae5be1291acaf0fba50.js",
+		"Vietnam": "C-Vietnam-46d4cd2d23a078a9339d76d69438cda1.js"
 	}
 };

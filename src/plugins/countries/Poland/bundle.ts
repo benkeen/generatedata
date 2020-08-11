@@ -1,6 +1,6 @@
 import { GetCountryData } from '~types/countries';
 
-const data: GetCountryData = (i18n) => ({
+const Poland: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,
 	countrySlug: 'poland',
 	regionNames: i18n.regionNames,
@@ -161,4 +161,4 @@ const data: GetCountryData = (i18n) => ({
 	]
 });
 
-export default data;
+export default Poland;
