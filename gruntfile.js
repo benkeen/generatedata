@@ -172,7 +172,9 @@ window.gd.localeLoaded(i18n);
 		return commands;
 	})();
 
-	const getWebWorkerBuildCommandNames = () => {
+	const getWebWorkerBuildCommandNames = (useCache = false) => {
+
+
 		return Object.keys(webWorkerShellCommands).map((cmdName) => `shell:${cmdName}`);
 	};
 
@@ -212,7 +214,7 @@ window.gd.localeLoaded(i18n);
 			} else if (/^ET-/.test(oldFile)) {
 				webWorkerMap.exportTypes[cleanPluginFolder] = newFilename;
 			} else {
-				let countryFolder = path.basename(oldPath, path.extname(oldPath)).replace(/(C-)/, '');
+				const countryFolder = path.basename(oldPath, path.extname(oldPath)).replace(/(C-)/, '');
 				webWorkerMap.countries[countryFolder] = newFilename;
 			}
 		}
@@ -331,6 +333,11 @@ window.gd.localeLoaded(i18n);
 
 	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
+
+	grunt.registerTask('webWorkersDev', [
+		...getWebWorkerBuildCommandNames(true),
+		...getWebWorkerMd5TaskNames(true),
+	]);
 
 	grunt.registerTask('webWorkers', [
 		...getWebWorkerBuildCommandNames(),
