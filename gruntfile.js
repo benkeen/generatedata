@@ -166,7 +166,7 @@ window.gd.localeLoaded(i18n);
 
 			commands[`buildWebWorker${index}`] = {
 				command: `npx rollup -c --config-src=${file} --config-target=${target}`
-			}
+			};
 		});
 
 		return commands;
@@ -184,7 +184,7 @@ window.gd.localeLoaded(i18n);
 				files: [workerPath],
 				options: { spawn: false },
 				tasks: [`shell:buildWebWorker${index}`, `md5:webWorkerMd5Task${index}`, 'generateWorkerMapFile']
-			}
+			};
 		});
 
 		return tasks;

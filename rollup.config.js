@@ -6,17 +6,22 @@
  * build size. But honestly it's <20KB and there are bigger fish to fry.
  */
 import path from 'path';
+import fs from 'fs';
+import md5File from 'md5-file';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import removeExports from 'rollup-plugin-strip-exports';
 import { terser } from 'rollup-plugin-terser';
 import removeImports from './build/rollup-plugin-remove-imports';
+const helpers = require('./build/helpers');
 
-// example usage:
-//    npm rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js`
-//    npx rollup -c --config-src=src/utils/workerUtils.ts --config-target=dist/debug.js
-//    npx rollup -c --config-src=src/plugins/dataTypes/Date/Date.generator.ts --config-target=dist/debug.js
-//    npx rollup -c --config-src=src/plugins/countries/Australia/bundle.ts --config-target=dist/australia.js
+/**
+ * example usage:
+ *    npm rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js`
+ *    npx rollup -c --config-src=src/utils/workerUtils.ts --config-target=dist/debug.js
+ *    npx rollup -c --config-src=src/plugins/dataTypes/Date/Date.generator.ts --config-target=dist/debug.js
+ *    npx rollup -c --config-src=src/plugins/countries/Australia/bundle.ts --config-target=dist/australia.js
+ */
 export default (cmdLineArgs) => {
 	const { 'config-src': src, 'config-target': target } = cmdLineArgs;
 
@@ -26,6 +31,18 @@ export default (cmdLineArgs) => {
 	}
 
 	const terserCompressProps = {};
+
+	// before we do anything, we create a new file containing the hash of the file. This is used for performance reasons:
+	// building every last web worker bundle is slllllow! This file is used by the grunt tasks in dev to only ever
+	// regenerate the bundles if the content has changed
+	const file = helpers.getFileHash(src);
+	const fileHash = md5File.sync(src);
+	const folder = path.dirname(target);
+	const fileWithPath = `${folder}/${file}`;
+	if (fs.existsSync(fileWithPath)) {
+		fs.unlinkSync(fileWithPath);
+	}
+	fs.writeFileSync(fileWithPath, fileHash);
 
 	// the whole point of the workerUtils file is to expose all utility methods in a single `utils` object
 	// for use by plugin web workers. This is available on the global scope within a web worker
