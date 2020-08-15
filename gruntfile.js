@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const helpers = require('./build/helpers');
 
 const distFolder = path.join(__dirname, '/dist');
 if (!fs.existsSync(distFolder)) {
@@ -173,7 +174,10 @@ window.gd.localeLoaded(i18n);
 	})();
 
 	const getWebWorkerBuildCommandNames = (useCache = false) => {
-
+		webWorkerFileListWithType.forEach((i) => {
+			console.log(i.file, helpers.getFileHash(i.file));
+		});
+		return;
 
 		return Object.keys(webWorkerShellCommands).map((cmdName) => `shell:${cmdName}`);
 	};
