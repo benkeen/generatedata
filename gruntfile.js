@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const helpers = require('./build/helpers');
 
 const distFolder = path.join(__dirname, '/dist');
 if (!fs.existsSync(distFolder)) {
@@ -166,13 +167,18 @@ window.gd.localeLoaded(i18n);
 
 			commands[`buildWebWorker${index}`] = {
 				command: `npx rollup -c --config-src=${file} --config-target=${target}`
-			}
+			};
 		});
 
 		return commands;
 	})();
 
-	const getWebWorkerBuildCommandNames = () => {
+	const getWebWorkerBuildCommandNames = (useCache = false) => {
+		webWorkerFileListWithType.forEach((i) => {
+			console.log(i.file, helpers.getFileHash(i.file));
+		});
+		return;
+
 		return Object.keys(webWorkerShellCommands).map((cmdName) => `shell:${cmdName}`);
 	};
 
@@ -184,7 +190,7 @@ window.gd.localeLoaded(i18n);
 				files: [workerPath],
 				options: { spawn: false },
 				tasks: [`shell:buildWebWorker${index}`, `md5:webWorkerMd5Task${index}`, 'generateWorkerMapFile']
-			}
+			};
 		});
 
 		return tasks;
@@ -212,7 +218,7 @@ window.gd.localeLoaded(i18n);
 			} else if (/^ET-/.test(oldFile)) {
 				webWorkerMap.exportTypes[cleanPluginFolder] = newFilename;
 			} else {
-				let countryFolder = path.basename(oldPath, path.extname(oldPath)).replace(/(C-)/, '');
+				const countryFolder = path.basename(oldPath, path.extname(oldPath)).replace(/(C-)/, '');
 				webWorkerMap.countries[countryFolder] = newFilename;
 			}
 		}
@@ -331,6 +337,11 @@ window.gd.localeLoaded(i18n);
 
 	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
+
+	grunt.registerTask('webWorkersDev', [
+		...getWebWorkerBuildCommandNames(true),
+		...getWebWorkerMd5TaskNames(true),
+	]);
 
 	grunt.registerTask('webWorkers', [
 		...getWebWorkerBuildCommandNames(),

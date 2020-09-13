@@ -17,7 +17,8 @@ Just POST the following JSON content to:
             "title": "val",
             "settings": {
                 "mean": "0.7",
-                "sigma": "1"
+                "sigma": "1",
+                "precision": "3"
             }
         }
     ],
