@@ -10,6 +10,7 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 	return new Promise((resolve) => {
 		let country: CountryType;
 		let regionRow: any;
+
 		if (source === 'row') {
 			regionRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
 			country = regionRow!.data.countryDataType;

@@ -148,21 +148,21 @@ window.gd.localeLoaded(i18n);
 		fs.writeFileSync(`./src/_pluginWebWorkers.ts`, `export default ${JSON.stringify(webWorkerMap, null, '\t')};`);
 	};
 
-	const webWorkerShellCommands = (() => {
+	const getWebWorkerShellCommands = (omitFiles = {}) => {
 		const commands = {};
 
 		webWorkerFileListWithType.forEach(({ file, type }, index) => {
+			if (omitFiles[file]) {
+				console.log("worker file: ", file, " is unchanged. Omitting regeneration.");
+				return;
+			}
+
 			const filename = path.basename(file, path.extname(file));
 			let target = `dist/workers/${filename}.js`;
 
-			// sigh. Fussy, but we rename the Export Type & Data Types, just in case of conflicts
-			if (type === 'dataType') {
-				target = `dist/workers/DT-${filename}.js`;
-			} else if (type === 'exportType') {
-				target = `dist/workers/ET-${filename}.js`;
-			} else if (type === 'country') {
-				const folderPath = path.dirname(file).split(path.sep);
-				target = `dist/workers/C-${folderPath[folderPath.length-1]}.js`;
+			if (['dataType', 'exportType', 'country'].indexOf(type) !== -1) {
+				const filename = helpers.getScopedWorkerFilename(file, type);
+				target = `dist/workers/${filename}`;
 			}
 
 			commands[`buildWebWorker${index}`] = {
@@ -171,20 +171,40 @@ window.gd.localeLoaded(i18n);
 		});
 
 		return commands;
-	})();
+	};
 
-	const getWebWorkerBuildCommandNames = (useCache = false) => {
-		webWorkerFileListWithType.forEach((i) => {
-			console.log(i.file, helpers.getFileHash(i.file));
+	// generating every web worker bundle takes time. To get around that, rollup generates a file in the dist/workers
+	// file for each bundle, with the filename of form:
+	//      Plugins (e.g.):
+	//          __hash-DT-Alphanumeric.generator
+	//          __hash-ET-JSON.generator
+	//          __hash-C-Pakistan.generator
+	//
+	//      Core workers:
+	//          __hash-core.worker
+	//          __hash-dataTypes.worker
+	//          __hash-exportTypes.worker
+	//          __hash-workerUtils
+	// we then use that information here to check to see if we need to regenerate or not
+	const getWebWorkerBuildCommandNames = () => {
+
+		const omitFiles = {};
+		webWorkerFileListWithType.forEach(({ file, type }) => {
+			const filename = helpers.getScopedWorkerFilename(file, type);
+			const filenameHash = helpers.getHashFilename(filename);
+
+			if (!helpers.hasWorkerFileChanged(`${workersFolder}/${filename}`, `${workersFolder}/${filenameHash}`)) {
+				omitFiles[file] = true;
+			}
 		});
-		return;
 
-		return Object.keys(webWorkerShellCommands).map((cmdName) => `shell:${cmdName}`);
+		return Object.keys(getWebWorkerShellCommands(omitFiles)).map((cmdName) => `shell:${cmdName}`);
 	};
 
 	const webWorkerWatchers = (() => {
 		const tasks = {};
 
+		// this contains *ALL* web worker tasks. It ensures that everything is watched.
 		webWorkerFileList.forEach((workerPath, index) => {
 			tasks[`webWorkerWatcher${index}`] = {
 				files: [workerPath],
@@ -228,20 +248,8 @@ window.gd.localeLoaded(i18n);
 	const webWorkerMd5Tasks = (() => {
 		const tasks = {};
 		webWorkerFileListWithType.forEach(({ file, type }, index) => {
-			let fileWithoutExt = path.basename(file, path.extname(file));
-
-			let prefix = '';
-			if (type === 'dataType') {
-				prefix = 'DT-';
-			} else if (type === 'exportType') {
-				prefix = 'ET-';
-			} else if (type === 'country') {
-				prefix = 'C-';
-				const folder = path.dirname(file).split(path.sep);
-				fileWithoutExt = folder[folder.length-1];
-			}
-
-			const newFileLocation = `dist/workers/${prefix}${fileWithoutExt}.js`; // here it's now a JS file, not TS
+			const fileName = helpers.getScopedWorkerFilename(file, type);
+			const newFileLocation = `dist/workers/${fileName}`; // N.B. here it's now a JS file, not TS
 
 			tasks[`webWorkerMd5Task${index}`] = {
 				files: {
@@ -311,7 +319,9 @@ window.gd.localeLoaded(i18n);
 			webpackProd: {
 				command: 'yarn prod'
 			},
-			...webWorkerShellCommands
+
+			// note these aren't executed right away, so they contain ALL web workers, even those don't need regeneration
+			...getWebWorkerShellCommands()
 		},
 
 		watch: {
@@ -330,18 +340,12 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-md5');
-
 	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webWorkers']);
 	grunt.registerTask('dev', ['cssmin', 'copy', 'i18n', 'webWorkers', 'watch']);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
 
 	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
-
-	grunt.registerTask('webWorkersDev', [
-		...getWebWorkerBuildCommandNames(true),
-		...getWebWorkerMd5TaskNames(true),
-	]);
 
 	grunt.registerTask('webWorkers', [
 		...getWebWorkerBuildCommandNames(),

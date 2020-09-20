@@ -12,8 +12,7 @@ context.onmessage = (e: any) => {
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
 
-	// load the Data Type generator web worker files. Pretty sure this caches them so we can safely import them
-	// every time
+	// load the Data Type generator web worker files
 	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
 		if (!loadedDataTypeWorkers[dataType]) {
 			loadedDataTypeWorkers[dataType] = new Worker(dataTypeWorkerMap[dataType])
@@ -157,15 +156,11 @@ const queueJob = (dataType: DataTypeFolder, payload: any, resolve: any, reject: 
 			queue: []
 		};
 	}
-
 	workerQueue[dataType].queue.push({
 		payload,
 		resolve,
 		reject
 	});
-
-	// console.log("process?");
-
 	processQueue(dataType);
 };
 
@@ -184,7 +179,6 @@ const processQueue = (dataType: DataTypeFolder) => {
 	workerQueue[dataType].processing = true;
 	const { payload, resolve, reject } = queue[0];
 
-	// console.log("posting: ", payload);
 	worker.postMessage(payload);
 
 	// Data Type generator functions can be sync or async, depending on their needs. This method calls the generator
