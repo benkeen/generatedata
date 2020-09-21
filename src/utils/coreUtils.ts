@@ -14,6 +14,8 @@ export const loadCoreWorker = (): void => {
 
 export const getCoreWorker = (): Worker => coreWorker;
 
+export const getCountries = (): any => webWorkers.countries;
+
 export const loadDataTypeWorker = (): void => {
 	dataTypeWorker = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
 };

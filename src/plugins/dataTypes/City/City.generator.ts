@@ -1,42 +1,36 @@
 import utils from '../../../utils';
-import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
-import { GetCountryData, Region } from '~types/countries';
+import { DTGenerateResult } from '~types/dataTypes';
+import { Region } from '~types/countries';
 import { countryList, CountryType } from '../../../_plugins';
 
-export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
-	const { rowState, countryI18n } = data;
+export const generate = (data: any): DTGenerateResult => { // DTGenerationData
+	const { rowState } = data;
 	const { source, selectedCountries } = rowState;
 
-	return new Promise((resolve) => {
-		let country: CountryType;
-		let regionRow: any;
+	let country: CountryType;
+	let regionRow: any;
+	if (source === 'row') {
+		regionRow = data.existingRowData.find(({ id }: any) => id === rowState.targetRowId);
+		country = regionRow!.data.countryDataType;
+	} else if (source === 'any') {
+		country = utils.randomUtils.getRandomArrayValue(countryList as CountryType[]);
+	} else {
+		const list = rowState.selectedCountries.length ? selectedCountries : countryList;
+		country = utils.randomUtils.getRandomArrayValue(list);
+	}
 
-		if (source === 'row') {
-			regionRow = data.existingRowData.find(({ id }) => id === rowState.targetRowId);
-			country = regionRow!.data.countryDataType;
-		} else if (source === 'any') {
-			country = utils.randomUtils.getRandomArrayValue(countryList as CountryType[]);
-		} else {
-			const list = rowState.selectedCountries.length ? selectedCountries : countryList;
-			country = utils.randomUtils.getRandomArrayValue(list);
-		}
+	const countryData = data.countryData[country];
 
-		utils.countryUtils.loadCountryBundle(country)
-			.then((getCountryData: GetCountryData) => {
-				const countryData = getCountryData(countryI18n[country]);
+	let selectedRegion;
+	if (regionRow) {
+		selectedRegion = countryData.regions.find((i: Region) => i.regionName === regionRow!.data.display);
+	} else {
+		selectedRegion = utils.randomUtils.getRandomArrayValue(countryData.regions);
+	}
 
-				let selectedRegion;
-				if (regionRow) {
-					selectedRegion = countryData.regions.find((i: Region) => i.regionName === regionRow!.data.display);
-				} else {
-					selectedRegion = utils.randomUtils.getRandomArrayValue(countryData.regions);
-				}
-
-				resolve({
-					display: utils.randomUtils.getRandomArrayValue(selectedRegion!.cities)
-				});
-			});
-	});
+	return {
+		display: utils.randomUtils.getRandomArrayValue(selectedRegion!.cities)
+	};
 };
 
 let utilsLoaded = false;
@@ -47,11 +41,7 @@ const onmessage = (e: any) => {
 		utilsLoaded = true;
 	}
 
-	generate(e.data)
-		.then((resp) => {
-			console.log("...", resp);
-			postMessage(resp);
-		});
+	postMessage(generate(e.data));
 };
 
 export {};

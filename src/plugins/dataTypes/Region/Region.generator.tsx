@@ -27,6 +27,7 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 				countryDataType: country
 			});
 		} else {
+
 			loadCountryBundle(country)
 				.then((getCountryData: GetCountryData) => {
 					const countryData = getCountryData(countryI18n[country]);
@@ -39,6 +40,7 @@ export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
 						countryDataType: country
 					});
 				});
+
 		}
 	});
 };

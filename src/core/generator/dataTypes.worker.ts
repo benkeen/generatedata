@@ -3,6 +3,7 @@ import { DataTypeFolder } from '../../_plugins';
 let workerResources: any;
 let loadedDataTypeWorkers: any = {};
 let dataTypeWorkerMap: any = {};
+let countryData: any = {};
 const workerQueue: any = {};
 const context: Worker = self as any;
 
@@ -16,6 +17,26 @@ context.onmessage = (e: any) => {
 	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
 		if (!loadedDataTypeWorkers[dataType]) {
 			loadedDataTypeWorkers[dataType] = new Worker(dataTypeWorkerMap[dataType])
+		}
+	});
+
+	// here we load ALL country data types. :( I tried to avoid doing this and have the specific Data Type that needs them
+	// load them on the fly - that would obviously be a much cleaner solution; requests would only get made as needed.
+	// But it proved too problematic: *possibly* multiple requests to the same endpoint within different Data Type web workers
+	// doesn't make a separate request (looks like it doesn't though), but even if not, each web worker will get a copy of the
+	// data in their scope. Since Country data can be non trivial in size, this isn't great. I didn't want to bloat up
+	// the memory usage any more than necessary during data generation - it's already a serious issue. Instead this loads
+	// everything up front, once, and makes it available for any data type that wants it.
+
+	// Possibly we could look at the data types and only bother doing this step if one of them requires country data. But
+	// that should be a clean API & easy to debug
+
+	Object.keys(workerResources.countries).forEach((country: any) => {
+		if (!loadedDataTypeWorkers[country]) {
+			importScripts(workerResources.countries[country]);
+
+			// @ts-ignore
+			countryData[country] = context[country](e.data.i18n.countries[country]);
 		}
 	});
 
@@ -140,6 +161,7 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 				countryI18n: i18n.countries,
 				rowState: currCell.rowState,
 				existingRowData: currRowData,
+				countryData,
 				workerResources: {
 					workerUtils: workerResources.workerUtils
 				}
@@ -183,7 +205,7 @@ const processQueue = (dataType: DataTypeFolder) => {
 
 	// Data Type generator functions can be sync or async, depending on their needs. This method calls the generator
 	// method for all data types in a particular process batch and returns an array of promises, which when resolved,
-	// returning the generated data for that row
+	// returns the generated data for that row
 	worker.onmessage = (response: any) => {
 		if (typeof response.then === 'function') {
 			response
