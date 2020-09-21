@@ -1,14 +1,16 @@
 import * as latlng from '../LatLng.generator';
+import { DTGenerationData } from '~types/dataTypes';
 
 // klutzy tests
 describe('generation method', () => {
 
-	const defaultSettings = {
+	const defaultSettings: Partial<DTGenerationData> = {
 		rowNum: 1,
 		existingRowData: [],
 		i18n: {},
-		countryI18n: {}
-};
+		countryI18n: {},
+		countryData: {}
+	};
 
 	it('generates a single item when only lat is selected', () => {
 		const result = latlng.generate({

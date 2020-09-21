@@ -1,6 +1,6 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject, Tag } from './general';
-import { DataTypeFolder } from '../src/_plugins';
+import { CountryType, DataTypeFolder } from '../src/_plugins';
 
 export type DTBundle = {
 	initialState?: any;
@@ -116,6 +116,9 @@ export type DTGenerationData = {
 	i18n: any;
 	countryI18n: any;
     existingRowData: DTGenerationExistingRowData[];
+    countryData: {
+    	[key in CountryType]: any;
+	}
 };
 
 export type DTGenerationExistingRowData = {
