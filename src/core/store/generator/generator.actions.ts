@@ -258,12 +258,9 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	const state = getState();
 	const template = selectors.getGenerationTemplate(state);
 	const numRowsToGenerate = selectors.getNumRowsToGenerate(state);
+	const dataTypeWorker = coreUtils.getDataTypeWorker();
 
-	// TODO this will now be getCoreWorker & pass in everything needed for both the data type worker & export type worker,
-	// where the ENTIRE generation will run in a separate thread
-	const coreWorker = coreUtils.getCoreWorker();
-
-	coreWorker.postMessage({
+	dataTypeWorker.postMessage({
 		numResults: numRowsToGenerate,
 		batchSize: C.GENERATION_BATCH_SIZE,
 		columns: selectors.getColumns(state),
@@ -272,17 +269,42 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 		workerResources: {
 			workerUtils: coreUtils.getWorkerUtils(),
 			dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
-			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state))
+			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
+			countries: coreUtils.getCountries()
 		}
 	});
 
-	coreWorker.onmessage = (response: any): void => {
+	// start();
+
+	dataTypeWorker.onmessage = (response: any): void => {
 		const { numGeneratedRows } = response.data; // data, completedBatchNum, isComplete
+
 		dispatch(updateGeneratedRowsCount(numGeneratedRows));
 
+		if (numGeneratedRows >= numRowsToGenerate) {
+			// console.log("done", end());
+		}
 		// dispatch(setBatchGeneratedComplete());
 	};
 };
+
+// @ts-ignore
+let startTime, endTime;
+
+function start() {
+	startTime = new Date();
+}
+
+function end() {
+	endTime = new Date();
+
+	// @ts-ignore
+	let timeDiff = endTime - startTime;
+
+	timeDiff /= 1000;
+
+	return timeDiff;
+}
 
 
 export const UPDATE_GENERATED_ROWS_COUNT = 'UPDATE_GENERATED_ROWS_COUNT';

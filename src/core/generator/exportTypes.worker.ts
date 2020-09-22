@@ -5,8 +5,6 @@ let loadedExportTypeWorkers: any = {};
 let exportTypeWorkerMap: any = {};
 let abortedMessageIds: any = {};
 
-// sigh.... we just need the one coreWorker... TODO
-
 context.onmessage = (e: MessageEvent) => {
 	const { _action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults, exportTypeSettings } = e.data;
 
@@ -16,7 +14,6 @@ context.onmessage = (e: MessageEvent) => {
 
 	workerResources = e.data.workerResources;
 	exportTypeWorkerMap = workerResources.exportTypes;
-
 
 	if (!loadedExportTypeWorkers[exportType]) {
 		loadedExportTypeWorkers[exportType] = new Worker(exportTypeWorkerMap[exportType]);

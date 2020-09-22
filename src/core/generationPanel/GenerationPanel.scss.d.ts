@@ -1,7 +1,11 @@
 declare namespace GenerationPanelScssNamespace {
   export interface IGenerationPanelScss {
+    background: string;
+    generateOverlay: string;
     generationRow: string;
-    intro: string;
+    overlayWrapper: string;
+    panel1: string;
+    panel2: string;
     row: string;
   }
 }

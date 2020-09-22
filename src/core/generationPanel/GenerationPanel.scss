@@ -3,17 +3,59 @@
 	align-items: center;
 }
 
-.intro {
-	margin-bottom: 12px;
-}
-
 .generationRow {
 	font-size: 14px;
 	margin-bottom: 10px;
 
-	input[type=number] {
+	input {
 		width: 100px;
 		margin: 0 6px;
 		font-size: 14px;
 	}
+}
+
+.panel1 {
+	flex: 1;
+	position: relative;
+
+	h3 {
+		position: absolute;
+		color: #999999;
+		top: 48%;
+		left: 50%;
+		font-size: 38px;
+		margin-right: -50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.panel2 {
+	flex: 1;
+}
+
+.generateOverlay {
+	position: absolute;
+	z-index: 1;
+	padding: 30px;
+	background-color: white;
+	border-radius: 10px;
+	top: 50%;
+	margin-right: -50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.overlayWrapper {
+	position: relative;
+	height: 100%;
+}
+
+.background {
+	position: absolute;
+	background-color: #efefef;
+	opacity: 0.8;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 }
