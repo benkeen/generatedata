@@ -4,8 +4,9 @@ import { DTGenerationData } from '~types/dataTypes';
 // klutzy tests
 describe('generation method', () => {
 
-	const defaultSettings: Partial<DTGenerationData> = {
+	const defaultSettings: DTGenerationData = {
 		rowNum: 1,
+		rowState: {},
 		existingRowData: [],
 		i18n: {},
 		countryI18n: {},

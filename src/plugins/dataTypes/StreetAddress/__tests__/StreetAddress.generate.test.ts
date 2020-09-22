@@ -10,7 +10,8 @@ describe('generate', () => {
 		rowState: '',
 		i18n,
 		countryI18n: {},
-		existingRowData: []
+		existingRowData: [],
+		countryData: {}
 	};
 
 	afterEach(() => {

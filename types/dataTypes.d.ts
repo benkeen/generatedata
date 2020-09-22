@@ -117,7 +117,7 @@ export type DTGenerationData = {
 	countryI18n: any;
     existingRowData: DTGenerationExistingRowData[];
     countryData: {
-    	[key in CountryType]: any;
+    	[key in CountryType]?: any;
 	}
 };
 

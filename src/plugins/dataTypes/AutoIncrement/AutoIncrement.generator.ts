@@ -1,6 +1,7 @@
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 
-const eval2 = eval;
+const eval2 = eval; // workaround for build, I think...
+
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const rowNum = data.rowNum;
 	const { incrementStart, incrementValue, incrementPlaceholder } = data.rowState;

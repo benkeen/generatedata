@@ -1,6 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options } from './Country';
-import { getMetadata } from './Country.generate';
+import { initialState, Options, getMetadata } from './Country';
 
 const bundle: DTBundle = {
 	initialState,
