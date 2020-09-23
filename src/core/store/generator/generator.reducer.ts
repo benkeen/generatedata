@@ -271,11 +271,6 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === 'grid' ? 'preview' : 'grid';
 			break;
 
-		case actions.START_GENERATION:
-			draft.isGenerating = true;
-			draft.numGeneratedRows = 0;
-			break;
-
 		case actions.SET_INITIAL_DEPENDENCIES_LOADED:
 			draft.initialDependenciesLoaded = true;
 			break;

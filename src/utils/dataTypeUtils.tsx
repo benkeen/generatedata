@@ -3,7 +3,7 @@ import { coreConfig } from '../core';
 import { getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
-import { SmallSpinner, MediumSpinner } from '../components/loaders';
+import { SmallSpinner, MediumSpinner } from '~components/loaders';
 import { Store } from '~types/general';
 
 type LoadedDataTypes = {

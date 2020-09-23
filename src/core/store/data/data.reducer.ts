@@ -1,33 +1,46 @@
 import { AnyAction } from 'redux';
-// import { generate } from 'shortid';
+import { generate } from 'shortid';
 import produce from 'immer';
+import * as actions from '../generator/generator.actions';
 
 type DataBatch = {
-	generationStartTime: number;
-	generationEndTime: number;
+	startTime: Date;
+	endTime: Date | null;
 	numGeneratedRows: number;
 	numBatches: number;
-	batchGenerationTime: number[];
+	speed: number
 };
-
 export type DataState = {
-	batchIds: [],
-	generationSpeed: 100,
-	batches: DataBatch[];
+	batchIds: string[];
+	batches: {
+		[batchId: string]: DataBatch;
+	};
 };
 
 export const initialState: DataState = {
 	batchIds: [],
-	generationSpeed: 100,
-	batches: []
+	batches: {}
 };
+
+const getNewDataBatch = (): DataBatch => ({
+	startTime: new Date(),
+	endTime: null,
+	numGeneratedRows: 0,
+	numBatches: 0,
+	speed: 100
+});
 
 export const reducer = produce((draft: DataState, action: AnyAction) => {
 	switch (action.type) {
-		case actions.CLEAR_GRID:
-			draft.rows = {};
-			draft.sortedRows = [];
+		case actions.START_GENERATION:
+			const batchId = generate();
+			draft.batchIds.push(batchId);
+			draft.batches[batchId] = getNewDataBatch();
 			break;
+
+		// case actions.BATCH_PROCESSED:
+		// 	draft.
+		// 	break;
 	}
 }, initialState);
 

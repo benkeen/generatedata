@@ -4,8 +4,9 @@ import { Persistor } from 'redux-persist/es/types';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import actionsInterceptor from '../actionInterceptor';
 import storage from 'redux-persist/lib/storage';
-import generatorReducer from './generator/generator.reducer';
 import mainReducer from './main/main.reducer';
+import generatorReducer from './generator/generator.reducer';
+import dataReducer from './data/data.reducer';
 
 let persistor: Persistor;
 function initStore(state: any): any {
@@ -47,7 +48,8 @@ function initStore(state: any): any {
 
 	const rootReducer = combineReducers({
 		generator: persistReducer(generatorPersistConfig, generatorReducer),
-		main: persistReducer(mainPersistConfig, mainReducer)
+		main: persistReducer(mainPersistConfig, mainReducer),
+		data: dataReducer
 	});
 
 	const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);
