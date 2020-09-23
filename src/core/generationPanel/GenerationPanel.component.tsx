@@ -1,9 +1,10 @@
 import * as React from 'react';
 import NumberFormat from 'react-number-format';
 import { PieChart, Pie, Cell } from 'recharts';
+import CountUp from 'react-countup';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
-// import { CircularProgressWithLabel } from '~components/loaders';
+import usePrevious from '../../hooks/usePrevious';
 import styles from './GenerationPanel.scss';
 
 export type GenerationPanelProps = {
@@ -19,8 +20,21 @@ export type GenerationPanelProps = {
 	isGenerating: boolean;
 };
 
+const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
+	let decimalPlaces = 0;
+	if (numRowsToGenerate >= 10000) {
+		decimalPlaces = 1;
+	} else if (numRowsToGenerate >= 1000000) {
+		decimalPlaces = 2;
+	}
+	console.log(decimalPlaces);
+
+	return percentage.toFixed(decimalPlaces);
+};
+
 const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
 	onGenerate, isGenerating }: GenerationPanelProps): JSX.Element => {
+	const prevGeneratedRows = usePrevious(numGeneratedRows);
 
 	const onCloseDialog = (): void => {
 		if (isGenerating) {
@@ -33,16 +47,16 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 		let data = [
 			{ name: "Incomplete", value: 100, color: '#efefef' },
 		];
-		let paddingAngle = 0;
+
 		let percentage = 0;
 		let animation = false;
+
 		if (isGenerating) {
-			paddingAngle = 3;
 			animation = true;
-			percentage = Math.round((numGeneratedRows / numRowsToGenerate) * 100);
+			percentage = (numGeneratedRows / numRowsToGenerate) * 100;
 			data = [
-				{ name: "Incomplete", value: 100-percentage, color: '#efefef' },
-				{ name: "Complete", value: percentage, color: '#275eb5' }
+				{ name: "Complete", value: percentage, color: '#275eb5' },
+				{ name: "Incomplete", value: 100-percentage, color: '#efefef' }
 			];
 		}
 
@@ -55,10 +69,10 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 
 		return (
 			<div className={styles.overlayWrapper}>
-
 				<div style={{ display: 'flex' }}>
 					<div className={styles.panel1}>
-						<h3>{percentage}%</h3>
+						<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
+
 						<PieChart width={380} height={380}>
 							<Pie
 								dataKey="value"
@@ -70,7 +84,6 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 								outerRadius={140}
 								startAngle={90}
 								endAngle={-270}
-								paddingAngle={paddingAngle}
 								label>
 								{data.map((entry, index) => <Cell key={index} fill={data[index].color} />)}
 							</Pie>
@@ -78,8 +91,16 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 					</div>
 
 					<div className={styles.panel2}>
-						<div>Rows generated <b>{numGeneratedRows}</b></div>
-						<div>Estimated remaining time: </div>
+						<div>
+							Rows generated <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," />
+						</div>
+						<div>
+							Estimated time:
+						</div>
+						<div>
+							Remaining time:
+						</div>
+						Speed over time graph
 					</div>
 				</div>
 

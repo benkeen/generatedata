@@ -62,6 +62,7 @@
     "react": "^16.13.1",
     "react-beautiful-dnd": "^12.2.0",
     "react-codemirror2": "^7.1.0",
+    "react-countup": "^4.3.3",
     "react-dom": "^16.12.0",
     "react-ga": "^2.7.0",
     "react-hooks-window-size": "^0.2.2",

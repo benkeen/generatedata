@@ -288,25 +288,6 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	};
 };
 
-// @ts-ignore
-let startTime, endTime;
-
-function start() {
-	startTime = new Date();
-}
-
-function end() {
-	endTime = new Date();
-
-	// @ts-ignore
-	let timeDiff = endTime - startTime;
-
-	timeDiff /= 1000;
-
-	return timeDiff;
-}
-
-
 export const UPDATE_GENERATED_ROWS_COUNT = 'UPDATE_GENERATED_ROWS_COUNT';
 export const updateGeneratedRowsCount = (numGeneratedRows: number): GDAction => ({
 	type: UPDATE_GENERATED_ROWS_COUNT,
