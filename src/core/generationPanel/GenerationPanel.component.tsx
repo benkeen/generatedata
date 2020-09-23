@@ -35,13 +35,22 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 		];
 		let paddingAngle = 0;
 		let percentage = 0;
+		let animation = false;
 		if (isGenerating) {
 			paddingAngle = 3;
+			animation = true;
 			percentage = Math.round((numGeneratedRows / numRowsToGenerate) * 100);
 			data = [
 				{ name: "Incomplete", value: 100-percentage, color: '#efefef' },
 				{ name: "Complete", value: percentage, color: '#275eb5' }
 			];
+		}
+
+		let overlayClasses = styles.generateOverlay;
+		let backgroundClasses = styles.background;
+		if (isGenerating) {
+			overlayClasses += ` ${styles.fadeOut}`;
+			backgroundClasses += ` ${styles.fadeOut}`;
 		}
 
 		return (
@@ -53,7 +62,7 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 						<PieChart width={380} height={380}>
 							<Pie
 								dataKey="value"
-								isAnimationActive={true}
+								isAnimationActive={animation}
 								data={data}
 								cx={190}
 								cy={190}
@@ -74,12 +83,13 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 					</div>
 				</div>
 
-				<div className={styles.generateOverlay}>
+				<div className={overlayClasses}>
 					<div className={`${styles.row} ${styles.generationRow}`}>
 						Generate
 						<NumberFormat
 							value={numRowsToGenerate}
 							displayType="input"
+							autoFocus
 							thousandSeparator={true}
 							onValueChange={({ value }): void => onChangeNumRowsToGenerate(parseInt(value, 10))}
 						/>
@@ -91,7 +101,7 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 						<label htmlFor="stripWhitespace">strip whitespace from generated content</label>
 					</div>
 				</div>
-				<div className={styles.background} />
+				<div className={backgroundClasses} />
 
 			</div>
 		);

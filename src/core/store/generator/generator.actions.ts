@@ -120,7 +120,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
 		const template = selectors.getGenerationTemplate(state);
-		const dataTypePreviewData = selectors.getDataTypePreviewData(state);
+		const dataTypePreviewData = { ...selectors.getDataTypePreviewData(state) };
 		const sortedRows = selectors.getSortedRows(state);
 		const columns = selectors.getColumns(state);
 

@@ -10,7 +10,8 @@
 	input {
 		width: 100px;
 		margin: 0 6px;
-		font-size: 14px;
+		font-size: 16px;
+		color: #666666;
 	}
 }
 
@@ -53,9 +54,15 @@
 .background {
 	position: absolute;
 	background-color: #efefef;
-	opacity: 0.8;
+	opacity: 0.7;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
 }
+
+.fadeOut {
+	opacity: 0;
+	transition: opacity .25s ease-in-out;
+}
+

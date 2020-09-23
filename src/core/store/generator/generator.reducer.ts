@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import { generate } from 'shortid';
+import produce from 'immer';
 // @ts-ignore-line
 import config from '../../../../dist/config.client';
 import * as actions from './generator.actions';
@@ -98,51 +99,32 @@ export const getInitialState = (): GeneratorState => ({
 	numGeneratedRows: 0
 });
 
-export const reducer = (state = getInitialState(), action: AnyAction): GeneratorState => {
+export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 	switch (action.type) {
 		case actions.CLEAR_GRID:
-			return {
-				...state,
-				rows: {},
-				sortedRows: []
-			};
+			draft.rows = {};
+			draft.sortedRows = [];
+			break;
 
 		case actions.DATA_TYPE_LOADED:
-			return {
-				...state,
-				loadedDataTypes: {
-					...state.loadedDataTypes,
-					[action.payload.dataType]: true
-				}
-			};
+			draft.loadedDataTypes[action.payload.dataType as DataTypeFolder] = true;
+			break;
 
-		case actions.EXPORT_TYPE_LOADED: {
-			const newState = {
-				...state,
-				loadedExportTypes: {
-					...state.loadedExportTypes,
-					[action.payload.exportType]: true
-				}
-			};
+		case actions.EXPORT_TYPE_LOADED:
+			draft.loadedExportTypes[action.payload.exportType as ExportTypeFolder] = true;
 
 			// we only ever initialize the export settings to the initial state when the export type hasn't been
 			// loaded yet. Note: this'll be an interesting upgrade problem
-			if (!state.exportTypeSettings[action.payload.exportType as ExportTypeFolder]) {
-				newState.exportTypeSettings = {
-					...state.exportTypeSettings,
-					[action.payload.exportType]: action.payload.initialState
-				};
+			if (!draft.exportTypeSettings[action.payload.exportType as ExportTypeFolder]) {
+				draft.exportTypeSettings[action.payload.exportType as ExportTypeFolder] = action.payload.initialState;
 			}
-
-			return newState;
-		}
+			break;
 
 		case actions.ADD_ROWS: {
-			const newRows: DataRows = {};
 			const newRowIDs: string[] = [];
 			for (let i = 0; i < action.payload.numRows; i++) {
 				const rowId = generate();
-				newRows[rowId] = {
+				draft.rows[rowId] = {
 					id: rowId,
 					title: '',
 					dataType: null,
@@ -150,249 +132,154 @@ export const reducer = (state = getInitialState(), action: AnyAction): Generator
 				};
 				newRowIDs.push(rowId);
 			}
-
-			return {
-				...state,
-				rows: {
-					...state.rows,
-					...newRows
-				},
-				sortedRows: [
-					...state.sortedRows,
-					...newRowIDs
-				]
-			};
+			draft.sortedRows = [
+				...draft.sortedRows,
+				...newRowIDs
+			];
+			break;
 		}
 
+		// TODO clean up
 		case actions.REMOVE_ROW: {
-			const trimmedRowIds = state.sortedRows.filter((i) => i !== action.payload.id);
+			const trimmedRowIds = draft.sortedRows.filter((i) => i !== action.payload.id);
 			const updatedRows: DataRows = {};
 			trimmedRowIds.forEach((id) => {
-				updatedRows[id] = state.rows[id];
+				updatedRows[id] = draft.rows[id];
 			});
-			return {
-				...state,
-				rows: updatedRows,
-				sortedRows: trimmedRowIds
-			};
+			draft.rows = updatedRows;
+			draft.sortedRows = trimmedRowIds;
+			break;
 		}
 
 		case actions.CHANGE_TITLE:
-			return {
-				...state,
-				rows: {
-					...state.rows,
-					[action.payload.id]: {
-						...state.rows[action.payload.id],
-						title: action.payload.value
-					}
-				}
-			};
+			draft.rows[action.payload.id].title = action.payload.value;
+			break;
 
 		case actions.SELECT_DATA_TYPE: {
 			const { id, value, data, defaultTitle } = action.payload;
-			const title = (state.rows[id].title) ? state.rows[id].title : defaultTitle;
+			const title = (draft.rows[id].title) ? draft.rows[id].title : defaultTitle;
 
-			return {
-				...state,
-				rows: {
-					...state.rows,
-					[id]: {
-						...state.rows[id],
-						dataType: value,
-						data,
-						title
-					}
-				}
+			draft.rows[id] = {
+				...draft.rows[id],
+				dataType: value,
+				data,
+				title
 			};
+			break;
 		}
 
-		case actions.SELECT_EXPORT_TYPE: {
-			return {
-				...state,
-				exportType: action.payload.exportType
-			};
-		}
+		case actions.SELECT_EXPORT_TYPE:
+			draft.exportType = action.payload.exportType;
+			break;
 
-		case actions.REFRESH_PREVIEW_DATA: {
-			return {
-				...state,
-				dataTypePreviewData: {
-					...action.payload.dataTypePreviewData
-				}
+		case actions.REFRESH_PREVIEW_DATA:
+			draft.dataTypePreviewData = {
+				...action.payload.dataTypePreviewData
 			};
-		}
+			break;
 
 		case actions.CONFIGURE_DATA_TYPE:
-			return {
-				...state,
-				rows: {
-					...state.rows,
-					[action.payload.id]: {
-						...state.rows[action.payload.id],
-						data: action.payload.data
-					}
-				},
-			};
+			draft.rows[action.payload.id].data = action.payload.data;
+			break;
 
-		case actions.CONFIGURE_EXPORT_TYPE: {
-			return {
-				...state,
-				exportTypeSettings: {
-					...state.exportTypeSettings,
-					[state.exportType]: action.payload.data
-				}
-			};
-		}
+		case actions.CONFIGURE_EXPORT_TYPE:
+			draft.exportTypeSettings[draft.exportType] = action.payload.data;
+			break;
 
-		case actions.REPOSITION_ROW: {
-			const newArray = state.sortedRows.filter((i) => i !== action.payload.id);
+		case actions.REPOSITION_ROW:
+			const newArray = draft.sortedRows.filter((i) => i !== action.payload.id);
 			newArray.splice(action.payload.newIndex, 0, action.payload.id);
-			return {
-				...state,
-				sortedRows: newArray
-			};
-		}
+			draft.sortedRows = newArray;
+			break;
 
-		case actions.TOGGLE_GRID: {
-			const newState = {
-				...state,
-				showGrid: !state.showGrid
-			};
-			if (!state.showPreview) {
-				newState.showPreview = true;
+		case actions.TOGGLE_GRID:
+			draft.showGrid = !draft.showGrid;
+			if (!draft.showPreview) {
+				draft.showPreview = true;
 			}
-			return newState;
-		}
+			break;
 
-		case actions.TOGGLE_PREVIEW: {
-			const newState = {
-				...state,
-				showPreview: !state.showPreview
-			};
-			if (!state.showGrid) {
-				newState.showGrid = true;
+		case actions.TOGGLE_PREVIEW:
+			draft.showPreview = !draft.showPreview;
+			if (!draft.showGrid) {
+				draft.showGrid = true;
 			}
-			return newState;
-		}
+			break;
 
 		case actions.TOGGLE_LAYOUT:
-			return {
-				...state,
-				builderLayout: state.builderLayout === 'horizontal' ? 'vertical' : 'horizontal'
-			};
+			draft.builderLayout = draft.builderLayout === 'horizontal' ? 'vertical' : 'horizontal';
+			break;
 
 		case actions.TOGGLE_LINE_WRAPPING:
-			return {
-				...state,
-				enableLineWrapping: !state.enableLineWrapping
-			};
+			draft.enableLineWrapping = !draft.enableLineWrapping;
+			break;
 
 		case actions.UPDATE_NUM_PREVIEW_ROWS:
-			return {
-				...state,
-				numPreviewRows: action.payload.numRows
-			};
+			draft.numPreviewRows = action.payload.numRows;
+			break;
 
 		case actions.CHANGE_THEME:
-			return {
-				...state,
-				theme: action.payload.theme
-			};
+			draft.theme = action.payload.theme;
+			break;
 
 		case actions.TOGGLE_SHOW_ROW_NUMBERS:
-			return {
-				...state,
-				showRowNumbers: !state.showRowNumbers
-			};
+			draft.showRowNumbers = !draft.showRowNumbers;
+			break;
 
 		case actions.SET_PREVIEW_TEXT_SIZE:
-			return {
-				...state,
-				previewTextSize: action.payload.previewTextSize
-			};
+			draft.previewTextSize = action.payload.previewTextSize;
+			break;
 
-		case actions.TOGGLE_EXPORT_SETTINGS: {
-			const newState = {
-				...state,
-				showExportSettings: !state.showExportSettings
-			};
+		case actions.TOGGLE_EXPORT_SETTINGS:
+			draft.showExportSettings = !draft.showExportSettings;
 			if (action.payload.tab) {
-				newState.exportSettingsTab = action.payload.tab;
+				draft.exportSettingsTab = action.payload.tab;
 			}
-			return newState;
-		}
+			break;
 
 		case actions.SHOW_GENERATION_PANEL:
-			return {
-				...state,
-				showGenerationPanel: true
-			};
+			draft.showGenerationPanel = true;
+			break;
 
 		case actions.HIDE_GENERATION_PANEL:
-			return {
-				...state,
-				showGenerationPanel: false
-			};
+			draft.showGenerationPanel = false;
+			break;
 
 		case actions.UPDATE_NUM_ROWS_TO_GENERATE:
-			return {
-				...state,
-				numRowsToGenerate: parseInt(action.payload.numRowsToGenerate, 10)
-			};
+			draft.numRowsToGenerate = parseInt(action.payload.numRowsToGenerate, 10);
+			break;
 
-		case actions.UPDATE_GENERATED_ROWS_COUNT: {
-			const { numGeneratedRows } = action.payload;
-			return {
-				...state,
-				numGeneratedRows
-			};
-		}
+		case actions.UPDATE_GENERATED_ROWS_COUNT:
+			draft.numGeneratedRows = action.payload.numGeneratedRows;
+			break;
 
 		case actions.CANCEL_GENERATION:
-			return {
-				...state,
-				isGenerating: false,
-				numGeneratedRows: 0
-			};
+			draft.isGenerating = false;
+			draft.numGeneratedRows = 0;
+			break;
 
 		case actions.TOGGLE_STRIP_WHITESPACE:
-			return {
-				...state,
-				stripWhitespace: !action.payload.stripWhitespace
-			};
+			draft.stripWhitespace = !action.payload.stripWhitespace;
+			break;
 
-		case actions.SET_PANEL_SIZE: {
-			const setting = state.builderLayout === 'horizontal' ? 'lastLayoutHeight' : 'lastLayoutWidth';
-			return {
-				...state,
-				[setting]: action.payload.size
-			};
-		}
+		case actions.SET_PANEL_SIZE:
+			const setting = draft.builderLayout === 'horizontal' ? 'lastLayoutHeight' : 'lastLayoutWidth';
+			draft[setting] = action.payload.size;
+			break;
 
-		case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL: {
-			return {
-				...state,
-				smallScreenVisiblePanel: state.smallScreenVisiblePanel === 'grid' ? 'preview' : 'grid'
-			};
-		}
+		case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:
+			draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === 'grid' ? 'preview' : 'grid';
+			break;
 
 		case actions.START_GENERATION:
-			return {
-				...state,
-				isGenerating: true,
-				numGeneratedRows: 0
-			};
+			draft.isGenerating = true;
+			draft.numGeneratedRows = 0;
+			break;
 
 		case actions.SET_INITIAL_DEPENDENCIES_LOADED:
-			return {
-				...state,
-				initialDependenciesLoaded: true
-			};
-
-		default:
-			return state;
+			draft.initialDependenciesLoaded = true;
+			break;
 	}
-};
+}, getInitialState());
 
 export default reducer;
