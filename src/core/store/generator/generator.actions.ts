@@ -253,17 +253,27 @@ export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITE
 
 export const START_GENERATION = 'START_GENERATION';
 export const startGeneration = (): any => (dispatch: Dispatch, getState: any): void => {
-	dispatch({ type: START_GENERATION });
-
 	const state = getState();
-	const template = selectors.getGenerationTemplate(state);
 	const numRowsToGenerate = selectors.getNumRowsToGenerate(state);
+	const template = selectors.getGenerationTemplate(state);
+	const columns = selectors.getColumns(state);
+
+	console.log(template, columns);
+
+	dispatch({
+		type: START_GENERATION,
+		payload: {
+			numRowsToGenerate,
+			template
+		}
+	});
+
 	const dataTypeWorker = coreUtils.getDataTypeWorker();
 
 	dataTypeWorker.postMessage({
 		numResults: numRowsToGenerate,
 		batchSize: C.GENERATION_BATCH_SIZE,
-		columns: selectors.getColumns(state),
+		columns,
 		i18n: getStrings(),
 		template,
 		workerResources: {

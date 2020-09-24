@@ -9,8 +9,14 @@ type DataBatch = {
 	numGeneratedRows: number;
 	numBatches: number;
 	speed: number;
+	data: {
+		numRowsToGenerate: number;
+		template: any
+	}
 };
+
 export type DataState = {
+	currentBatchId: string | null;
 	batchIds: string[];
 	batches: {
 		[batchId: string]: DataBatch;
@@ -18,17 +24,21 @@ export type DataState = {
 };
 
 export const initialState: DataState = {
+	currentBatchId: null,
 	batchIds: [],
 	batches: {}
 };
 
-const getNewDataBatch = (): DataBatch => ({
+const getNewDataBatch = ({ numRowsToGenerate, template }: any): DataBatch => ({
 	startTime: new Date(),
 	endTime: null,
 	numGeneratedRows: 0,
 	numBatches: 0,
 	speed: 100,
-	// structure of data here.
+	data: {
+		numRowsToGenerate,
+		template
+	}
 });
 
 export const reducer = produce((draft: DataState, action: AnyAction) => {
@@ -36,12 +46,11 @@ export const reducer = produce((draft: DataState, action: AnyAction) => {
 		case actions.START_GENERATION:
 			const batchId = generate();
 			draft.batchIds.push(batchId);
-			draft.batches[batchId] = getNewDataBatch();
+			draft.batches[batchId] = getNewDataBatch({
+				...action.payload
+			});
+			draft.currentBatchId = batchId;
 			break;
-
-		// case actions.BATCH_PROCESSED:
-		// 	draft.
-		// 	break;
 	}
 }, initialState);
 
