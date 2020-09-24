@@ -27,7 +27,8 @@ const getNewDataBatch = (): DataBatch => ({
 	endTime: null,
 	numGeneratedRows: 0,
 	numBatches: 0,
-	speed: 100
+	speed: 100,
+	// structure of data here.
 });
 
 export const reducer = produce((draft: DataState, action: AnyAction) => {

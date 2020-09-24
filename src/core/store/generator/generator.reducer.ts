@@ -274,6 +274,10 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		case actions.SET_INITIAL_DEPENDENCIES_LOADED:
 			draft.initialDependenciesLoaded = true;
 			break;
+
+		case actions.START_GENERATION:
+			draft.showGenerationPanel = false;
+			break;
 	}
 }, getInitialState());
 
