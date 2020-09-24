@@ -34,7 +34,6 @@ export const isGenerationPanelVisible = (state: Store): any => state.generator.s
 export const getNumRowsToGenerate = (state: Store): number => state.generator.numRowsToGenerate;
 export const getLastLayoutWidth = (state: Store): number | null => state.generator.lastLayoutWidth;
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
-export const isGenerating = (state: Store): boolean => state.generator.isGenerating;
 export const getNumGeneratedRows = (state: Store): number => state.generator.numGeneratedRows;
 export const isInitialDependenciesLoaded = (state: Store): boolean => state.generator.initialDependenciesLoaded;
 

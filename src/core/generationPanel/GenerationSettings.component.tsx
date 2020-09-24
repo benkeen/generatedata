@@ -13,13 +13,10 @@ export type GenerationSettingsProps = {
 	i18n: any;
 	stripWhitespace: boolean;
 	onToggleStripWhitespace: () => void;
-	numGeneratedRows: number;
-	isGenerating: boolean;
 };
 
 const GenerationPanel = ({
-	visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
-	onGenerate
+	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onGenerate
 }: GenerationSettingsProps): JSX.Element => {
 	return (
 		<Dialog onClose={onClose} open={visible}>

@@ -54,7 +54,6 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p dangerouslySetInnerHTML={{ __html: i18n.helpText1 }} />
 		<p dangerouslySetInnerHTML={{ __html: i18n.helpText2 }} />
-		<p dangerouslySetInnerHTML={{ __html: i18n.helpText3 }} />
 	</>
 );
 
@@ -65,5 +64,3 @@ export const getMetadata = (): DTMetadata => ({
 		field_MSSQL: 'VARCHAR(100) NULL'
 	}
 });
-
-

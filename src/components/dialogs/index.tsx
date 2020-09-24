@@ -56,20 +56,16 @@ const useDialogStyles = makeStyles({
 	},
 	paper: {
 		borderRadius: 10
-	},
-	dialog: {
-		width: 300, //(props) => props.whatever
-		maxHeight: 150,
 	}
 });
 
 export const Dialog = (props: any) => {
-	const { root, paper, dialog } = useDialogStyles(props);
+	const { root, paper } = useDialogStyles(props);
 
 	return (
 		<MuiDialog
 			className={root}
-			classes={{ dialog, paper }}
+			classes={{ paper }}
 			{...props}
 		/>
 	);

@@ -65,7 +65,6 @@ export type GeneratorState = {
 	stripWhitespace: boolean;
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
-	isGenerating: boolean;
 	numRowsToGenerate: number;
 	numGeneratedRows: number;
 };
@@ -95,7 +94,6 @@ export const getInitialState = (): GeneratorState => ({
 	stripWhitespace: false,
 	lastLayoutWidth: null,
 	lastLayoutHeight: null,
-	isGenerating: false,
 	numGeneratedRows: 0
 });
 
@@ -251,11 +249,6 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.UPDATE_GENERATED_ROWS_COUNT:
 			draft.numGeneratedRows = action.payload.numGeneratedRows;
-			break;
-
-		case actions.CANCEL_GENERATION:
-			draft.isGenerating = false;
-			draft.numGeneratedRows = 0;
 			break;
 
 		case actions.TOGGLE_STRIP_WHITESPACE:

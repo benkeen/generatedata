@@ -23,7 +23,7 @@ function initStore(state: any): any {
 	const rootPersistConfig = {
 		key: 'root',
 		storage,
-		blacklist: ['generator', 'main']
+		blacklist: ['generator', 'main', 'data']
 	};
 
 	const generatorPersistConfig = {
@@ -34,7 +34,7 @@ function initStore(state: any): any {
 			'loadedExportTypes',
 			'isGenerating',
 			'numGeneratedRows',
-			'dataTypePreviewData' // blacklisted because it can just get too big. Instead it's re-generated on page load
+			'dataTypePreviewData' // blacklisted because it can just get too big. It gets re-generated when returning to site
 		]
 	};
 
@@ -46,10 +46,21 @@ function initStore(state: any): any {
 		]
 	};
 
+	// annoying. Should be able to just blacklist the entire section and not have to pinpoint them here. Lousy doc for react-redux. Not clear!
+	const dataPersistConfig = {
+		key: 'data',
+		storage,
+		blacklist: [
+			'visibleBatchId',
+			'batchIds',
+			'batches'
+		]
+	};
+
 	const rootReducer = combineReducers({
 		generator: persistReducer(generatorPersistConfig, generatorReducer),
 		main: persistReducer(mainPersistConfig, mainReducer),
-		data: dataReducer
+		data: persistReducer(dataPersistConfig, dataReducer)
 	});
 
 	const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);

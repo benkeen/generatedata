@@ -9,7 +9,7 @@ export type MainState = {
 	showIntroDialog: boolean;
 };
 
-export const defaultState: MainState = {
+export const initialState: MainState = {
 	localeFileLoaded: false,
 	locale: 'en',
 	showIntroDialog: true
@@ -26,6 +26,6 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			draft.showIntroDialog = !draft.showIntroDialog;
 			break;
 	}
-}, defaultState);
+}, initialState);
 
 export default reducer;

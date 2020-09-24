@@ -3,7 +3,7 @@ import { generate } from 'shortid';
 import produce from 'immer';
 import * as actions from '../generator/generator.actions';
 
-type DataBatch = {
+export type DataBatch = {
 	startTime: Date;
 	endTime: Date | null;
 	numGeneratedRows: number;
@@ -11,12 +11,16 @@ type DataBatch = {
 	speed: number;
 	data: {
 		numRowsToGenerate: number;
-		template: any
-	}
+		template: any;
+	};
 };
 
+export type DataBatches = {
+	[key: string]: DataBatch;
+}
+
 export type DataState = {
-	currentBatchId: string | null;
+	visibleBatchId: string | null;
 	batchIds: string[];
 	batches: {
 		[batchId: string]: DataBatch;
@@ -24,7 +28,7 @@ export type DataState = {
 };
 
 export const initialState: DataState = {
-	currentBatchId: null,
+	visibleBatchId: null,
 	batchIds: [],
 	batches: {}
 };
@@ -49,8 +53,13 @@ export const reducer = produce((draft: DataState, action: AnyAction) => {
 			draft.batches[batchId] = getNewDataBatch({
 				...action.payload
 			});
-			draft.currentBatchId = batchId;
+			draft.visibleBatchId = batchId;
 			break;
+
+		// case actions.CANCEL_GENERATION:
+			// draft.isGenerating = false;
+			// draft.numGeneratedRows = 0;
+			// break;
 	}
 }, initialState);
 

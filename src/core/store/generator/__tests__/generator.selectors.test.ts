@@ -1,5 +1,6 @@
 import { getInitialState } from '../generator.reducer';
-import { defaultState } from '../../main/main.reducer';
+import { initialState as initialMainState } from '../../main/main.reducer';
+import { initialState as initialDataState } from '../../data/data.reducer';
 import { shouldGeneratePreviewRows } from '../generator.selectors';
 import { Store } from '~types/general';
 
@@ -8,7 +9,8 @@ describe("shouldGeneratePreviewRows", () => {
 	beforeEach(() => {
 		state = {
 			generator: getInitialState(),
-			main: defaultState
+			main: initialMainState,
+			data: initialDataState
 		};
 	});
 

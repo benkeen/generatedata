@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 import { PieChart, Pie, Cell } from 'recharts';
 import CountUp from 'react-countup';
 import Button from '@material-ui/core/Button';
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
+import { Dialog, DialogContent } from '~components/dialogs'; // DialogTitle, DialogActions
 import usePrevious from '../../hooks/usePrevious';
 import styles from './ActivityPanel.scss';
 
@@ -27,8 +27,6 @@ const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
 	} else if (numRowsToGenerate >= 1000000) {
 		decimalPlaces = 2;
 	}
-	console.log(decimalPlaces);
-
 	return percentage.toFixed(decimalPlaces);
 };
 

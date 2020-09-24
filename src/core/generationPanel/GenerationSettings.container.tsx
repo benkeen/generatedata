@@ -8,7 +8,6 @@ const mapStateToProps = (state: any, ownProps: Partial<GenerationSettingsProps>)
 	visible: selectors.isGenerationPanelVisible(state),
 	i18n: selectors.getCoreI18n(state),
 	numRowsToGenerate: selectors.getNumRowsToGenerate(state),
-	numGeneratedRows: selectors.getNumGeneratedRows(state),
 	...ownProps
 });
 
