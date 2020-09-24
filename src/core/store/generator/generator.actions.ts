@@ -234,8 +234,8 @@ export const dataTypeLoaded = (dataType: DataTypeFolder): GDAction => ({
 	}
 });
 
-export const SHOW_GENERATION_PANEL = 'SHOW_GENERATION_PANEL';
-export const showGenerationPanel = (): GDAction => ({ type: SHOW_GENERATION_PANEL });
+export const SHOW_START_GENERATION_PANEL = 'SHOW_START_GENERATION_PANEL';
+export const showStartGenerationPanel = (): GDAction => ({ type: SHOW_START_GENERATION_PANEL });
 
 export const HIDE_GENERATION_PANEL = 'HIDE_GENERATION_PANEL';
 export const hideGenerationPanel = (): GDAction => ({ type: HIDE_GENERATION_PANEL });

@@ -55,7 +55,7 @@ const useDialogStyles = makeStyles({
 		width: '100%'
 	},
 	paper: {
-		borderRadius: 10
+		borderRadius: 6
 	}
 });
 
@@ -70,16 +70,3 @@ export const Dialog = (props: any) => {
 		/>
 	);
 };
-
-
-// @ts-ignore-line
-export const SmallDialog = withStyles(() => ({
-	root: {
-		zIndex: '5000 !important',
-		width: '100%'
-	},
-	paper: {
-		maxWidth: 500,
-		width: '100%'
-	}
-}))(MuiDialog);

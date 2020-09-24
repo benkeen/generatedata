@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { countryList } from '../../../_plugins';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
-import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import fullCountryList from './fullCountryList';
 import styles from './Country.scss';
@@ -25,7 +25,7 @@ const fullCountryListOptions = fullCountryList.map((countryName) => ({
 	label: countryName
 }));
 
-const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, coreI18n, i18n }: any): JSX.Element => {
+const CountryDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, coreI18n, i18n }: any): JSX.Element => {
 	const countryPluginOptions = countryList.map((countryName) => ({
 		value: countryName,
 		label: countryI18n[countryName].countryName
@@ -36,49 +36,51 @@ const Dialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpd
 	};
 
 	return (
-		<SmallDialog onClose={onClose} open={visible}>
-			<DialogTitle onClose={onClose}>{i18n.selectCountries}</DialogTitle>
-			<DialogContent dividers>
-				<div>
-					{i18n.explanation}
-				</div>
+		<Dialog onClose={onClose} open={visible}>
+			<div style={{ maxWidth: 500 }}>
+				<DialogTitle onClose={onClose}>{i18n.selectCountries}</DialogTitle>
+				<DialogContent dividers>
+					<div>
+						{i18n.explanation}
+					</div>
 
-				<h3>{i18n.source}</h3>
+					<h3>{i18n.source}</h3>
 
-				<RadioPillRow>
-					<RadioPill
-						label={`${i18n.countryPlugins} (${countryList.length})`}
-						onClick={(): void => onUpdateSource('plugins')}
-						name={`${id}-source`}
-						checked={data.source === 'plugins'}
-						tooltip={i18n.countryPluginsDesc}
+					<RadioPillRow>
+						<RadioPill
+							label={`${i18n.countryPlugins} (${countryList.length})`}
+							onClick={(): void => onUpdateSource('plugins')}
+							name={`${id}-source`}
+							checked={data.source === 'plugins'}
+							tooltip={i18n.countryPluginsDesc}
+						/>
+						<RadioPill
+							label={`${i18n.allCountries} (${fullCountryList.length})`}
+							onClick={(): void => onUpdateSource('all')}
+							name={`${id}-source`}
+							checked={data.source === 'all'}
+						/>
+					</RadioPillRow>
+
+					<h3>{i18n.filter}</h3>
+					<p>
+						{i18n.filterDesc}
+					</p>
+
+					<Dropdown
+						isMulti
+						closeMenuOnSelect={false}
+						isClearable={true}
+						value={data.selectedCountries}
+						onChange={onSelectCountries}
+						options={data.source === 'all' ? fullCountryListOptions : countryPluginOptions}
 					/>
-					<RadioPill
-						label={`${i18n.allCountries} (${fullCountryList.length})`}
-						onClick={(): void => onUpdateSource('all')}
-						name={`${id}-source`}
-						checked={data.source === 'all'}
-					/>
-				</RadioPillRow>
-
-				<h3>{i18n.filter}</h3>
-				<p>
-					{i18n.filterDesc}
-				</p>
-
-				<Dropdown
-					isMulti
-					closeMenuOnSelect={false}
-					isClearable={true}
-					value={data.selectedCountries}
-					onChange={onSelectCountries}
-					options={data.source === 'all' ? fullCountryListOptions : countryPluginOptions}
-				/>
-			</DialogContent>
-			<DialogActions>
-				<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
-			</DialogActions>
-		</SmallDialog>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+				</DialogActions>
+			</div>
+		</Dialog>
 	);
 };
 
@@ -124,7 +126,7 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 				size="small">
 				<span dangerouslySetInnerHTML={{ __html: label }} />
 			</Button>
-			<Dialog
+			<CountryDialog
 				visible={dialogVisible}
 				data={data}
 				id={id}

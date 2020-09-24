@@ -54,7 +54,7 @@ export type GeneratorState = {
 	builderLayout: BuilderLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
-	showGenerationPanel: boolean;
+	showStartGenerationPanel: boolean;
 	showRowNumbers: boolean;
 	enableLineWrapping: boolean;
 	theme: string;
@@ -89,7 +89,7 @@ export const getInitialState = (): GeneratorState => ({
 	previewTextSize: 12,
 	dataTypePreviewData: {},
 	exportSettingsTab: 'exportType',
-	showGenerationPanel: false,
+	showStartGenerationPanel: false,
 	numRowsToGenerate: 100,
 	stripWhitespace: false,
 	lastLayoutWidth: null,
@@ -235,12 +235,12 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			}
 			break;
 
-		case actions.SHOW_GENERATION_PANEL:
-			draft.showGenerationPanel = true;
+		case actions.SHOW_START_GENERATION_PANEL:
+			draft.showStartGenerationPanel = true;
 			break;
 
 		case actions.HIDE_GENERATION_PANEL:
-			draft.showGenerationPanel = false;
+			draft.showStartGenerationPanel = false;
 			break;
 
 		case actions.UPDATE_NUM_ROWS_TO_GENERATE:
@@ -269,7 +269,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.START_GENERATION:
-			draft.showGenerationPanel = false;
+			draft.showStartGenerationPanel = false;
 			break;
 	}
 }, getInitialState());

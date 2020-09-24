@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { DataTypeFolder } from '../../../_plugins';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
-import { DialogActions, DialogContent, DialogTitle, SmallDialog } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { countryList } from '../../../_plugins';
 import styles from './Region.scss';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
@@ -26,7 +26,7 @@ export const initialState: RegionState = {
 	formats: ['full']
 };
 
-const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
+const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18n, i18n, onUpdate, countryRows }: any): JSX.Element => {
 	const countryPluginRows = countryRows
 		.map(({ index, id, title }: any) => ({ value: id, label: `${i18n.row} #${index + 1}: ${title}` }));
 
@@ -95,68 +95,70 @@ const Dialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, coreI18
 	};
 
 	return (
-		<SmallDialog onClose={onClose} open={visible}>
-			<DialogTitle onClose={onClose}>{i18n.selectRegions}</DialogTitle>
-			<DialogContent dividers>
-				<div>
-					{i18n.explanation}
-				</div>
+		<Dialog onClose={onClose} open={visible}>
+			<div style={{ maxWidth: 800 }}>
+				<DialogTitle onClose={onClose}>{i18n.selectRegions}</DialogTitle>
+				<DialogContent dividers>
+					<div>
+						{i18n.explanation}
+					</div>
 
-				<h3>{i18n.source}</h3>
+					<h3>{i18n.source}</h3>
 
-				<RadioPillRow>
-					<RadioPill
-						label={i18n.anyRegion}
-						onClick={(): void => onUpdateSource('any')}
-						name={`${id}-source`}
-						checked={data.source === 'any'}
-						tooltip={i18n.anyDesc}
-					/>
-					<RadioPill
-						label={i18n.countries}
-						onClick={(): void => onUpdateSource('countries')}
-						name={`${id}-source`}
-						checked={data.source === 'countries'}
-						tooltip={i18n.countriesDesc}
-					/>
-					<RadioPill
-						label={i18n.countryRow}
-						onClick={(): void => onUpdateSource('row')}
-						name={`${id}-source`}
-						checked={data.source === 'row'}
-						tooltip={i18n.rowDesc}
-						disabled={!countryPluginRowsExist}
-					/>
-				</RadioPillRow>
+					<RadioPillRow>
+						<RadioPill
+							label={i18n.anyRegion}
+							onClick={(): void => onUpdateSource('any')}
+							name={`${id}-source`}
+							checked={data.source === 'any'}
+							tooltip={i18n.anyDesc}
+						/>
+						<RadioPill
+							label={i18n.countries}
+							onClick={(): void => onUpdateSource('countries')}
+							name={`${id}-source`}
+							checked={data.source === 'countries'}
+							tooltip={i18n.countriesDesc}
+						/>
+						<RadioPill
+							label={i18n.countryRow}
+							onClick={(): void => onUpdateSource('row')}
+							name={`${id}-source`}
+							checked={data.source === 'row'}
+							tooltip={i18n.rowDesc}
+							disabled={!countryPluginRowsExist}
+						/>
+					</RadioPillRow>
 
-				{getCountryRow()}
-				{getCountryPluginsList()}
+					{getCountryRow()}
+					{getCountryPluginsList()}
 
-				<h3>{i18n.format}</h3>
+					<h3>{i18n.format}</h3>
 
-				<p>
-					<input
-						type="checkbox"
-						value="full"
-						id={`${id}-full`}
-						checked={data.formats.indexOf('full') !== -1}
-						onChange={(e): void => onSetFormats('full', e.target.checked)}
-					/>
-					<label htmlFor={`${id}-full`}>Full</label>
-					<input
-						type="checkbox"
-						value="short"
-						id={`${id}-short`}
-						checked={data.formats.indexOf('short') !== -1}
-						onChange={(e): void => onSetFormats('short', e.target.checked)}
-					/>
-					<label htmlFor={`${id}-short`}>Short</label>
-				</p>
-			</DialogContent>
-			<DialogActions>
-				<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
-			</DialogActions>
-		</SmallDialog>
+					<p>
+						<input
+							type="checkbox"
+							value="full"
+							id={`${id}-full`}
+							checked={data.formats.indexOf('full') !== -1}
+							onChange={(e): void => onSetFormats('full', e.target.checked)}
+						/>
+						<label htmlFor={`${id}-full`}>Full</label>
+						<input
+							type="checkbox"
+							value="short"
+							id={`${id}-short`}
+							checked={data.formats.indexOf('short') !== -1}
+							onChange={(e): void => onSetFormats('short', e.target.checked)}
+						/>
+						<label htmlFor={`${id}-short`}>Short</label>
+					</p>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+				</DialogActions>
+			</div>
+		</Dialog>
 	);
 };
 
@@ -198,7 +200,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 				size="small">
 				<span dangerouslySetInnerHTML={{ __html: label }} />
 			</Button>
-			<Dialog
+			<RegionDialog
 				visible={dialogVisible}
 				data={data}
 				countryRows={countryRows}

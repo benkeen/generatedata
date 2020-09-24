@@ -1,8 +1,6 @@
 import * as React from 'react';
-import NumberFormat from 'react-number-format';
 import { PieChart, Pie, Cell } from 'recharts';
 import CountUp from 'react-countup';
-import Button from '@material-ui/core/Button';
 import { Dialog, DialogContent } from '~components/dialogs'; // DialogTitle, DialogActions
 import usePrevious from '../../hooks/usePrevious';
 import styles from './ActivityPanel.scss';
@@ -30,7 +28,7 @@ const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
 	return percentage.toFixed(decimalPlaces);
 };
 
-const ActionPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
+const ActivityPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
 	onGenerate, isGenerating }: GenerationPanelProps): JSX.Element => {
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 
@@ -56,13 +54,6 @@ const ActionPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows
 				{ name: "Complete", value: percentage, color: '#275eb5' },
 				{ name: "Incomplete", value: 100-percentage, color: '#efefef' }
 			];
-		}
-
-		let overlayClasses = styles.generateOverlay;
-		let backgroundClasses = styles.background;
-		if (isGenerating) {
-			overlayClasses += ` ${styles.fadeOut}`;
-			backgroundClasses += ` ${styles.fadeOut}`;
 		}
 
 		return (
@@ -98,36 +89,13 @@ const ActionPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows
 						<div>
 							Remaining time:
 						</div>
-						Speed over time graph
+						Speed over time graph :)
 					</div>
 				</div>
-
-				<div className={overlayClasses}>
-					<div className={`${styles.row} ${styles.generationRow}`}>
-						Generate
-						<NumberFormat
-							value={numRowsToGenerate}
-							displayType="input"
-							autoFocus
-							thousandSeparator={true}
-							onValueChange={({ value }): void => onChangeNumRowsToGenerate(parseInt(value, 10))}
-						/>
-						rows
-					</div>
-
-					<div className={styles.row}>
-						<input type="checkbox" id="stripWhitespace" checked={stripWhitespace} />
-						<label htmlFor="stripWhitespace">strip whitespace from generated content</label>
-					</div>
-
-					<Button onClick={onGenerate} color="primary" variant="contained">Generate</Button>
-				</div>
-				<div className={backgroundClasses} />
 			</div>
 		);
 	};
 
-	// TODO move clearGeneration code to onExit. That seems to run after the fade-out transition is complete
 	return (
 		<Dialog onClose={onCloseDialog} aria-labelledby="customized-dialog-title" open={visible}>
 			<DialogContent dividers style={{ padding: 0 }}>
@@ -137,4 +105,4 @@ const ActionPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows
 	);
 };
 
-export default ActionPanel;
+export default ActivityPanel;
