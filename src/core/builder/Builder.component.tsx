@@ -4,7 +4,8 @@ import Grid from '../grid/Grid.container';
 import Preview from '../previewPanel/PreviewPanel.container';
 import SplitPane from 'react-split-pane';
 import ExportSettings from '../exportSettings/ExportSettings.container';
-import GenerationPanel from '../generationPanel/GenerationPanel.container';
+import ActivityPanel from '../generationPanel/ActivityPanel.container';
+import GenerationSettings from '../generationPanel/GenerationSettings.container';
 import C from '../constants';
 import './Builder.scss';
 import { GeneratorPanel } from '../store/generator/generator.reducer';
@@ -75,7 +76,8 @@ const Builder = ({
 				{getContent()}
 			</div>
 			<ExportSettings />
-			<GenerationPanel />
+			<GenerationSettings />
+			<ActivityPanel />
 		</div>
 	);
 };

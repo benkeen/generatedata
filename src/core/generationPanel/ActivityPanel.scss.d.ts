@@ -1,5 +1,5 @@
-declare namespace GenerationPanelScssNamespace {
-  export interface IGenerationPanelScss {
+declare namespace ActivityPanelScssNamespace {
+  export interface IActivityPanelScss {
     background: string;
     fadeOut: string;
     generateOverlay: string;
@@ -11,9 +11,9 @@ declare namespace GenerationPanelScssNamespace {
   }
 }
 
-declare const GenerationPanelScssModule: GenerationPanelScssNamespace.IGenerationPanelScss & {
+declare const ActivityPanelScssModule: ActivityPanelScssNamespace.IActivityPanelScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: GenerationPanelScssNamespace.IGenerationPanelScss;
+  locals: ActivityPanelScssNamespace.IActivityPanelScss;
 };
 
-export = GenerationPanelScssModule;
+export = ActivityPanelScssModule;

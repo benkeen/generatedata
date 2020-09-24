@@ -5,7 +5,7 @@ import CountUp from 'react-countup';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import usePrevious from '../../hooks/usePrevious';
-import styles from './GenerationPanel.scss';
+import styles from './ActivityPanel.scss';
 
 export type GenerationPanelProps = {
 	visible: boolean;
@@ -32,7 +32,7 @@ const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
 	return percentage.toFixed(decimalPlaces);
 };
 
-const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
+const ActionPanel = ({ visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
 	onGenerate, isGenerating }: GenerationPanelProps): JSX.Element => {
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 
@@ -121,9 +121,10 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 						<input type="checkbox" id="stripWhitespace" checked={stripWhitespace} />
 						<label htmlFor="stripWhitespace">strip whitespace from generated content</label>
 					</div>
+
+					<Button onClick={onGenerate} color="primary" variant="contained">Generate</Button>
 				</div>
 				<div className={backgroundClasses} />
-
 			</div>
 		);
 	};
@@ -131,15 +132,11 @@ const GenerationPanel = ({ visible, onClose, i18n, stripWhitespace, numGenerated
 	// TODO move clearGeneration code to onExit. That seems to run after the fade-out transition is complete
 	return (
 		<Dialog onClose={onCloseDialog} aria-labelledby="customized-dialog-title" open={visible}>
-			<DialogTitle onClose={onCloseDialog}>{i18n.generate}</DialogTitle>
 			<DialogContent dividers style={{ padding: 0 }}>
 				{getContent()}
 			</DialogContent>
-			<DialogActions>
-				<Button onClick={onGenerate} color="primary" variant="outlined">Generate</Button>
-			</DialogActions>
 		</Dialog>
 	);
 };
 
-export default GenerationPanel;
+export default ActionPanel;

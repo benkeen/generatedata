@@ -8,7 +8,7 @@ type DataBatch = {
 	endTime: Date | null;
 	numGeneratedRows: number;
 	numBatches: number;
-	speed: number
+	speed: number;
 };
 export type DataState = {
 	batchIds: string[];

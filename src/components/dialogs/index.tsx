@@ -3,7 +3,7 @@ import MuiDialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import { withStyles } from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
@@ -48,21 +48,34 @@ export const DialogActions = withStyles(theme => ({
 	}
 }))(MuiDialogActions);
 
-// @ts-ignore-line
-export const Dialog = withStyles(() => ({
+const useDialogStyles = makeStyles({
 	root: {
+		// @ts-ignore-line
 		zIndex: '5005 !important',
 		width: '100%'
 	},
 	paper: {
-		maxWidth: 800,
-		maxHeight: 500,
-		width: '100%',
-		height: '100%' // ensures the modal doesn't change size when the user filters the list of DTs
+		borderRadius: 10
+	},
+	dialog: {
+		width: 300, //(props) => props.whatever
+		maxHeight: 150,
 	}
-}))(MuiDialog);
+});
 
-// TODO Code reuse much? Figure out how to do this better.
+export const Dialog = (props: any) => {
+	const { root, paper, dialog } = useDialogStyles(props);
+
+	return (
+		<MuiDialog
+			className={root}
+			classes={{ dialog, paper }}
+			{...props}
+		/>
+	);
+};
+
+
 // @ts-ignore-line
 export const SmallDialog = withStyles(() => ({
 	root: {

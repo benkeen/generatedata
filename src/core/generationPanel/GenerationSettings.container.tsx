@@ -2,18 +2,17 @@ import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../store/generator/generator.actions';
 import * as selectors from '../store/generator/generator.selectors';
-import GenerationPanel, { GenerationPanelProps } from './GenerationPanel.component';
+import GenerationSettings, { GenerationSettingsProps } from './GenerationSettings.component';
 
-const mapStateToProps = (state: any, ownProps: Partial<GenerationPanelProps>): Partial<GenerationPanelProps> => ({
+const mapStateToProps = (state: any, ownProps: Partial<GenerationSettingsProps>): Partial<GenerationSettingsProps> => ({
 	visible: selectors.isGenerationPanelVisible(state),
 	i18n: selectors.getCoreI18n(state),
 	numRowsToGenerate: selectors.getNumRowsToGenerate(state),
-	isGenerating: selectors.isGenerating(state),
 	numGeneratedRows: selectors.getNumGeneratedRows(state),
 	...ownProps
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationPanelProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationSettingsProps> => ({
 	onClose: (): any => {
 		dispatch(actions.cancelGeneration());
 		dispatch(actions.hideGenerationPanel());
@@ -26,4 +25,4 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationPanelProps> =
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(GenerationPanel);
+)(GenerationSettings);
