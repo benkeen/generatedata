@@ -96,7 +96,7 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
-			<div style={{ maxWidth: 800 }}>
+			<div style={{ width: 500 }}>
 				<DialogTitle onClose={onClose}>{i18n.selectRegions}</DialogTitle>
 				<DialogContent dividers>
 					<div>
