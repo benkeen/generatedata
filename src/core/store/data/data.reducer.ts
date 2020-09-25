@@ -6,6 +6,7 @@ import * as actions from '../generator/generator.actions';
 export type DataBatch = {
 	startTime: Date;
 	endTime: Date | null;
+	isPaused: boolean;
 	numGeneratedRows: number;
 	numBatches: number;
 	speed: number;
@@ -36,6 +37,7 @@ export const initialState: DataState = {
 const getNewDataBatch = ({ numRowsToGenerate, template }: any): DataBatch => ({
 	startTime: new Date(),
 	endTime: null,
+	isPaused: false,
 	numGeneratedRows: 0,
 	numBatches: 0,
 	speed: 100,

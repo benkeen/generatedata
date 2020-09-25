@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationPanelProps> =
 	},
 	onPause: () => {},
 	onContinue: () => {},
-	onCcan
+	onAbort: () => {},
 	onChangeNumRowsToGenerate: (numRows: number): Action => dispatch(actions.updateNumRowsToGenerate(numRows)),
 	onToggleStripWhitespace: (): Action => dispatch(actions.toggleStripWhitespace()),
 	onGenerate: (): Action => dispatch(actions.startGeneration())
