@@ -1,6 +1,6 @@
 import { GeneratorState } from '../src/core/store/generator/generator.reducer';
 import { MainState } from '../src/core/store/main/main.reducer';
-import { DataState } from '../src/core/store/data/data.reducer';
+import { PacketsState } from '../src/core/store/packets/packets.reducer';
 import { DataTypeFolder } from '../src/_plugins';
 
 declare global {
@@ -14,7 +14,7 @@ declare global {
 export type Store = {
 	generator: GeneratorState;
 	main: MainState;
-	data: DataState;
+	packets: PacketsState;
 };
 
 export type GDLocale = 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';

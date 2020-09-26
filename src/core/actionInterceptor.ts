@@ -2,7 +2,7 @@ import { Store } from 'redux';
 import { getRows } from './store/generator/generator.selectors';
 import { DataTypeFolder } from '../_plugins';
 import { DataRow } from './store/generator/generator.reducer';
-import { DTActionInterceptors, DTInterceptorSingleAction } from '../../types/dataTypes';
+import { DTActionInterceptors, DTInterceptorSingleAction } from '~types/dataTypes';
 import { onConfigureDataType } from './store/generator/generator.actions';
 
 // TODO what if onload, a user interacts with a pre-saved config prior to the data type loading and the interceptor

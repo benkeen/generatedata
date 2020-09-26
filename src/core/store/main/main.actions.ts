@@ -1,6 +1,6 @@
-import { GDAction, GDLocale } from '../../../../types/general';
+import { GDAction, GDLocale } from '~types/general';
 import { ThunkDispatch } from 'redux-thunk';
-import * as langUtils from '../../../utils/langUtils';
+import * as langUtils from '~utils/langUtils';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({

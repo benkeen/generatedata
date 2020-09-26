@@ -3,7 +3,8 @@ import { generate } from 'shortid';
 import produce from 'immer';
 import * as actions from '../generator/generator.actions';
 
-// a "packet" is an name for some generation going on. A user can have multiple packets running simultaneously via the UI.
+// can't say I'm thrilled with the term, but a "packet" is an name for a block of actual data generation going on. A user
+// can have multiple packets running simultaneously via the UI
 export type DataPacket = {
 	dataTypeWorkerId: string;
 	exportTypeWorkerId: string;
@@ -25,21 +26,19 @@ export type DataPackets = {
 	[packetId: string]: DataPacket;
 }
 
-export type DataState = {
+export type PacketsState = {
 	visiblePacketId: string | null;
 	packetIds: string[];
-	packets: {
-		[batchId: string]: DataPacket;
-	};
+	packets: DataPackets;
 };
 
-export const initialState: DataState = {
+export const initialState: PacketsState = {
 	visiblePacketId: null,
 	packetIds: [],
 	packets: {}
 };
 
-const getNewDataBatch = ({ dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns }: any): DataPacket => ({
+const getNewPacket = ({ dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns }: any): DataPacket => ({
 	dataTypeWorkerId,
 	exportTypeWorkerId,
 	startTime: new Date(),
@@ -56,14 +55,14 @@ const getNewDataBatch = ({ dataTypeWorkerId, exportTypeWorkerId, numRowsToGenera
 	}
 });
 
-export const reducer = produce((draft: DataState, action: AnyAction) => {
+export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 	switch (action.type) {
 		case actions.START_GENERATION:
 			const { dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns } = action.payload;
 
 			const batchId = generate();
-			draft.batchIds.push(batchId);
-			draft.batches[batchId] = getNewDataBatch({
+			draft.packetIds.push(batchId);
+			draft.packets[batchId] = getNewPacket({
 				dataTypeWorkerId,
 				exportTypeWorkerId,
 				numRowsToGenerate,
@@ -71,7 +70,7 @@ export const reducer = produce((draft: DataState, action: AnyAction) => {
 				dataTypes,
 				columns
 			});
-			draft.visibleBatchId = batchId;
+			draft.visiblePacketId = batchId;
 			break;
 
 		// case actions.CANCEL_GENERATION:
