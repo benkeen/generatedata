@@ -3,7 +3,10 @@ import { generate } from 'shortid';
 import produce from 'immer';
 import * as actions from '../generator/generator.actions';
 
-export type DataBatch = {
+// a "packet" is an name for some generation going on. A user can have multiple packets running simultaneously via the UI.
+export type DataPacket = {
+	dataTypeWorkerId: string;
+	exportTypeWorkerId: string;
 	startTime: Date;
 	endTime: Date | null;
 	isPaused: boolean;
@@ -13,28 +16,32 @@ export type DataBatch = {
 	data: {
 		numRowsToGenerate: number;
 		template: any;
+		dataTypes: any;
+		columns: any;
 	};
 };
 
-export type DataBatches = {
-	[key: string]: DataBatch;
+export type DataPackets = {
+	[packetId: string]: DataPacket;
 }
 
 export type DataState = {
-	visibleBatchId: string | null;
-	batchIds: string[];
-	batches: {
-		[batchId: string]: DataBatch;
+	visiblePacketId: string | null;
+	packetIds: string[];
+	packets: {
+		[batchId: string]: DataPacket;
 	};
 };
 
 export const initialState: DataState = {
-	visibleBatchId: null,
-	batchIds: [],
-	batches: {}
+	visiblePacketId: null,
+	packetIds: [],
+	packets: {}
 };
 
-const getNewDataBatch = ({ numRowsToGenerate, template }: any): DataBatch => ({
+const getNewDataBatch = ({ dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns }: any): DataPacket => ({
+	dataTypeWorkerId,
+	exportTypeWorkerId,
 	startTime: new Date(),
 	endTime: null,
 	isPaused: false,
@@ -43,17 +50,26 @@ const getNewDataBatch = ({ numRowsToGenerate, template }: any): DataBatch => ({
 	speed: 100,
 	data: {
 		numRowsToGenerate,
-		template
+		template,
+		dataTypes,
+		columns
 	}
 });
 
 export const reducer = produce((draft: DataState, action: AnyAction) => {
 	switch (action.type) {
 		case actions.START_GENERATION:
+			const { dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns } = action.payload;
+
 			const batchId = generate();
 			draft.batchIds.push(batchId);
 			draft.batches[batchId] = getNewDataBatch({
-				...action.payload
+				dataTypeWorkerId,
+				exportTypeWorkerId,
+				numRowsToGenerate,
+				template,
+				dataTypes,
+				columns
 			});
 			draft.visibleBatchId = batchId;
 			break;

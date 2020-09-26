@@ -11,6 +11,7 @@ import { DTBundle } from '~types/dataTypes';
 import { GDAction } from '~types/general';
 import C from '../../constants';
 import { Dispatch } from 'redux';
+import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -115,7 +116,7 @@ export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 // this re-generates the preview panel data. This doesn't have to be called on boot-up because the preview data is
 // generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = null): any => {
-	const dataTypeWorker = coreUtils.getDataTypeWorker();
+	const dataTypeWorker = coreUtils.getDataTypeWorker('preview');
 
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
@@ -254,48 +255,20 @@ export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITE
 export const START_GENERATION = 'START_GENERATION';
 export const startGeneration = (): any => (dispatch: Dispatch, getState: any): void => {
 	const state = getState();
-	const numRowsToGenerate = selectors.getNumRowsToGenerate(state);
-	const template = selectors.getGenerationTemplate(state);
-	const columns = selectors.getColumns(state);
 
-	console.log(template, columns);
-
+	// whenever we start generating some data, we stash all the current settings into the data batch instance. That way,
+	// we can happily generate multiple independent batch simultaneously
 	dispatch({
 		type: START_GENERATION,
 		payload: {
-			numRowsToGenerate,
-			template
+			dataTypeWorkerId: createDataTypeWorker(),
+			exportTypeWorkerId: createExportTypeWorker(),
+			numRowsToGenerate: selectors.getNumRowsToGenerate(state),
+			template: selectors.getGenerationTemplate(state),
+			dataTypes: selectors.getRowDataTypes(state),
+			columns: selectors.getColumns(state)
 		}
 	});
-
-	const dataTypeWorker = coreUtils.getDataTypeWorker();
-
-	dataTypeWorker.postMessage({
-		numResults: numRowsToGenerate,
-		batchSize: C.GENERATION_BATCH_SIZE,
-		columns,
-		i18n: getStrings(),
-		template,
-		workerResources: {
-			workerUtils: coreUtils.getWorkerUtils(),
-			dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
-			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
-			countries: coreUtils.getCountries()
-		}
-	});
-
-	// start();
-
-	dataTypeWorker.onmessage = (response: any): void => {
-		const { numGeneratedRows } = response.data; // data, completedBatchNum, isComplete
-
-		dispatch(updateGeneratedRowsCount(numGeneratedRows));
-
-		if (numGeneratedRows >= numRowsToGenerate) {
-			// console.log("done", end());
-		}
-		// dispatch(setBatchGeneratedComplete());
-	};
 };
 
 export const UPDATE_GENERATED_ROWS_COUNT = 'UPDATE_GENERATED_ROWS_COUNT';

@@ -1,32 +1,34 @@
 import { coreConfig } from '../core';
+import { generate } from 'shortid';
 import webWorkers from '../_pluginWebWorkers';
 import { DataTypeFolder, ExportTypeFolder } from '../_plugins';
 
 export const getScriptVersion = (): string => coreConfig.version;
 
-let coreWorker: Worker;
-let dataTypeWorker: Worker;
-let exportTypeWorker: Worker;
+type WorkerMap = {
+	[workerId: string]: Worker;
+}
 
-export const loadCoreWorker = (): void => {
-	coreWorker = new Worker(`./workers/${webWorkers.coreWorker}`);
-};
-
-export const getCoreWorker = (): Worker => coreWorker;
+let dataTypeWorkers: WorkerMap = {};
+let exportTypeWorkers: WorkerMap = {};
 
 export const getCountries = (): any => webWorkers.countries;
 
-export const loadDataTypeWorker = (): void => {
-	dataTypeWorker = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
+export const createDataTypeWorker = (customId: string | null = null): string => {
+	const workerId = (customId) ? customId : generate();
+	dataTypeWorkers[workerId] = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
+	return workerId;
 };
 
-export const getDataTypeWorker = (): Worker => dataTypeWorker;
+export const getDataTypeWorker = (id: string): Worker => dataTypeWorkers[id];
 
-export const loadExportTypeWorker = (): void => {
-	exportTypeWorker = new Worker(`./workers/${webWorkers.coreExportTypeWorker}`);
+export const createExportTypeWorker = (customId: string | null = null): string => {
+	const workerId = (customId) ? customId : generate();
+	exportTypeWorkers[workerId] = new Worker(`./workers/${webWorkers.coreExportTypeWorker}`);
+	return workerId;
 };
 
-export const getExportTypeWorker = (): Worker => exportTypeWorker;
+export const getExportTypeWorker = (id: string): Worker => exportTypeWorkers[id];
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;
