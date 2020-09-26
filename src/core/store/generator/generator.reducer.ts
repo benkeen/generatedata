@@ -237,11 +237,12 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			}
 			break;
 
+		// TODO lousy name SHOW_GENERATION_SETTINGS_PANEL is a slightly less awful
 		case actions.SHOW_START_GENERATION_PANEL:
 			draft.showStartGenerationPanel = true;
 			break;
 
-		case actions.HIDE_GENERATION_PANEL:
+		case actions.HIDE_START_GENERATION_PANEL:
 			draft.showStartGenerationPanel = false;
 			break;
 

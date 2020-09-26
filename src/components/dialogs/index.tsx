@@ -22,13 +22,15 @@ const dialogStyles = (theme: any): any => ({
 });
 
 export const DialogTitle = withStyles(dialogStyles)((props: any): any => {
-	const { children, classes, onClose, ...other } = props;
+	const { children, classes, onClose, customCloseIcon, ...other } = props;
+	const Close = customCloseIcon ? customCloseIcon : CloseIcon;
+
 	return (
 		<MuiDialogTitle disableTypography className={classes.root} {...other}>
 			<Typography variant="h5">{children}</Typography>
 			{onClose ? (
 				<IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-					<CloseIcon fontSize="large" />
+					<Close fontSize="large" />
 				</IconButton>
 			) : null}
 		</MuiDialogTitle>

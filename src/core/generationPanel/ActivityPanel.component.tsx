@@ -6,6 +6,7 @@ import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
 import Pause from '@material-ui/icons/Pause';
 import PlayArrow from '@material-ui/icons/PlayArrow';
+import ExpandMore from "@material-ui/icons/ExpandMore";
 import { Dialog, DialogContent, DialogTitle, DialogActions } from '~components/dialogs';
 import usePrevious from '../../hooks/usePrevious';
 import useDidUpdate from '../../hooks/useDidUpdate';
@@ -123,7 +124,7 @@ const ActivityPanel = ({
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ maxWidth: 800 }}>
-				<DialogTitle onClose={onClose}>
+				<DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
 					Generated: <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," className={styles.counter} /> rows
 				</DialogTitle>
 				<DialogContent dividers style={{ padding: 0 }}>

@@ -238,8 +238,8 @@ export const dataTypeLoaded = (dataType: DataTypeFolder): GDAction => ({
 export const SHOW_START_GENERATION_PANEL = 'SHOW_START_GENERATION_PANEL';
 export const showStartGenerationPanel = (): GDAction => ({ type: SHOW_START_GENERATION_PANEL });
 
-export const HIDE_GENERATION_PANEL = 'HIDE_GENERATION_PANEL';
-export const hideGenerationPanel = (): GDAction => ({ type: HIDE_GENERATION_PANEL });
+export const HIDE_START_GENERATION_PANEL = 'HIDE_START_GENERATION_PANEL';
+export const hideStartGenerationPanel = (): GDAction => ({ type: HIDE_START_GENERATION_PANEL });
 
 export const UPDATE_NUM_ROWS_TO_GENERATE = 'UPDATE_NUM_ROWS_TO_GENERATE';
 export const updateNumRowsToGenerate = (numRowsToGenerate: number): GDAction => ({

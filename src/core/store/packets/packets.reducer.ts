@@ -107,6 +107,13 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			draft.packets[action.payload.packetId].isPaused = false;
 			break;
 
+		case actions.ABORT_GENERATION:
+			break;
+
+		case actions.HIDE_ACTIVITY_PANEL:
+			draft.currentPacketId = null;
+			break;
+
 		case actions.LOG_DATA_BATCH: {
 			const { packetId, numGeneratedRows, data } = action.payload;
 

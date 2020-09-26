@@ -40,7 +40,7 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Activi
 
 	return {
 		...stateProps,
-		onClose: (): void => dispatch(actions.hideGenerationPanel()),
+		onClose: (): void => dispatch(packetActions.hideActivityPanel()),
 		logDataBatch: (numGeneratedRows: number, data: any) => dispatch(packetActions.logDataBatch(packetId, numGeneratedRows, data)),
 		onPause: (): GDAction => dispatch(packetActions.pauseGeneration(packetId)),
 		onContinue: (): GDAction => dispatch(packetActions.continueGeneration(packetId)),
@@ -53,19 +53,3 @@ export default connect(
 	mapDispatchToProps,
 	mergeProps
 )(ActivityPanel);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
