@@ -6,7 +6,7 @@ export const getVisiblePacketId = (state: Store): string | null => state.packets
 export const getPacketIds = (state: Store): string[] => state.packets.packetIds;
 export const getPackets = (state: Store): DataPackets => state.packets.packets;
 
-export const getCurrentBatch = createSelector(
+export const getVisiblePacket = createSelector(
 	getVisiblePacketId,
 	getPackets,
 	(packetId, packets) => packetId ? packets[packetId] : null
@@ -16,4 +16,13 @@ export const getCurrentBatch = createSelector(
 export const isGenerating = createSelector(
 	getPackets,
 	(packets) => Object.keys(packets).some((i: string) => packets[i].endTime === null)
+);
+
+
+// returns an ordered list of packet info for displaying some pills in the footer
+export const getActivePacketList = createSelector(
+	getPacketIds,
+	(packetIds) => {
+		return [];
+	}
 );

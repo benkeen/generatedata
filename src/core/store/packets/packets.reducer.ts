@@ -14,7 +14,10 @@ export type DataPacket = {
 	numGeneratedRows: number;
 	numBatches: number;
 	speed: number;
+
+	// this block contains data for the generation algorithms
 	data: {
+		stripWhitespace: boolean;
 		numRowsToGenerate: number;
 		template: any;
 		dataTypes: any;
@@ -38,7 +41,9 @@ export const initialState: PacketsState = {
 	packets: {}
 };
 
-const getNewPacket = ({ dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns }: any): DataPacket => ({
+const getNewPacket = ({
+	dataTypeWorkerId, exportTypeWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns
+}: any): DataPacket => ({
 	dataTypeWorkerId,
 	exportTypeWorkerId,
 	startTime: new Date(),
@@ -48,6 +53,7 @@ const getNewPacket = ({ dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate,
 	numBatches: 0,
 	speed: 100,
 	data: {
+		stripWhitespace,
 		numRowsToGenerate,
 		template,
 		dataTypes,

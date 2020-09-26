@@ -55,7 +55,7 @@ export default CodeMirrorWrapper;
 
 export const generatePreviewString = (props: any): Promise<any> => {
 	const { rows, columns, exportType, exportTypeSettings, loadedExportTypes } = props;
-	const exportTypeWorker = coreUtils.getExportTypeWorker();
+	const exportTypeWorker = coreUtils.getExportTypeWorker('preview');
 
 	return new Promise((resolve) => {
 		coreUtils.performTask('exportTypeWorker', exportTypeWorker, {

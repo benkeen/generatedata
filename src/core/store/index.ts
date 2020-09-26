@@ -6,7 +6,7 @@ import actionsInterceptor from '../actionInterceptor';
 import storage from 'redux-persist/lib/storage';
 import mainReducer from './main/main.reducer';
 import generatorReducer from './generator/generator.reducer';
-import dataReducer from './data/data.reducer';
+import packetsReducer from './packets/packets.reducer';
 
 let persistor: Persistor;
 function initStore(state: any): any {
@@ -60,7 +60,7 @@ function initStore(state: any): any {
 	const rootReducer = combineReducers({
 		generator: persistReducer(generatorPersistConfig, generatorReducer),
 		main: persistReducer(mainPersistConfig, mainReducer),
-		data: persistReducer(dataPersistConfig, dataReducer)
+		packets: persistReducer(dataPersistConfig, packetsReducer)
 	});
 
 	const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);

@@ -9,8 +9,8 @@ type WorkerMap = {
 	[workerId: string]: Worker;
 }
 
-let dataTypeWorkers: WorkerMap = {};
-let exportTypeWorkers: WorkerMap = {};
+const dataTypeWorkers: WorkerMap = {};
+const exportTypeWorkers: WorkerMap = {};
 
 export const getCountries = (): any => webWorkers.countries;
 

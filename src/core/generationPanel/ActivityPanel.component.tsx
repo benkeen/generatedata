@@ -9,24 +9,17 @@ import styles from './ActivityPanel.scss';
 import * as coreUtils from '~utils/coreUtils';
 import C from '../constants';
 import { getStrings } from '~utils/langUtils';
-import * as selectors from '../store/generator/generator.selectors';
-import { updateGeneratedRowsCount } from '../store/generator/generator.actions';
+import { DataPacket } from '../store/packets/packets.reducer';
 
-export type GenerationPanelProps = {
+export type ActivityPanelProps = {
 	visible: boolean;
-	onChangeNumRowsToGenerate: (numRows: number) => void;
-	onClose: () => void;
-	onGenerate: () => void;
-	numRowsToGenerate: number;
 	i18n: any;
-	stripWhitespace: boolean;
-	onToggleStripWhitespace: () => void;
-	numGeneratedRows: number;
-	isPaused: boolean;
-	//isComplete: boolean
+	packet: DataPacket | null;
+	onClose: () => void;
 	onPause: () => void;
 	onContinue: () => void;
 	onAbort: () => void;
+	workerResources: any;
 };
 
 const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
@@ -39,33 +32,36 @@ const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
 	return percentage.toFixed(decimalPlaces);
 };
 
-const ActivityPanel = ({
-	visible, onClose, i18n, stripWhitespace, numGeneratedRows, numRowsToGenerate, onChangeNumRowsToGenerate,
-	onGenerate, isPaused, onContinue, onPause
-}: GenerationPanelProps): JSX.Element => {
+const ActivityPanel = ({ visible, onClose, i18n, packet, onContinue, onPause, workerResources }: ActivityPanelProps): any => {
+	if (packet === null) {
+		return null;
+	}
+
+	const { isPaused, data, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows } = packet;
+	const { numRowsToGenerate, columns, template } = data;
+
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 
-	useEffect(() => {
-		const dataTypeWorker = coreUtils.getDataTypeWorker('preview');
+	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
+	const exportTypeWorker = coreUtils.getExportTypeWorker(exportTypeWorkerId);
 
-		dataTypeWorker.postMessage({
-			action: 'generate', // 'generate', 'pause', 'continue', 'abort'
-			numResults: numRowsToGenerate,
-			batchSize: C.GENERATION_BATCH_SIZE,
-			columns,
-			i18n: getStrings(),
-			template,
-			workerResources: {
-				workerUtils: coreUtils.getWorkerUtils(),
-				dataTypes: coreUtils.getDataTypeWorkerMap(dataTypes),
-				exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
-				countries: coreUtils.getCountries()
-			}
-		});
+	useEffect(() => {
+		if (numGeneratedRows === 0) {
+			dataTypeWorker.postMessage({
+				action: C.ACTIVITY_PANEL_ACTIONS.GENERATE,
+				numResults: numRowsToGenerate,
+				batchSize: C.GENERATION_BATCH_SIZE,
+				columns,
+				i18n: getStrings(),
+				template,
+				workerResources
+			});
+		}
 
 		// start();
 
 		dataTypeWorker.onmessage = (response: any): void => {
+			console.log(response);
 
 			// pass data on to exportTypeWorker here.
 
@@ -73,19 +69,17 @@ const ActivityPanel = ({
 
 			const { numGeneratedRows } = response.data; // data, completedBatchNum, isComplete
 
-			dispatch(updateGeneratedRowsCount(numGeneratedRows));
-
 			if (numGeneratedRows >= numRowsToGenerate) {
 				// console.log("done", end());
 			}
 			// dispatch(setBatchGeneratedComplete());
 		};
 
-	}, []);
+	}, [numGeneratedRows]);
 
 	const animation = true;
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
-	const data = [
+	const pieChartData = [
 		{ name: "Complete", value: percentage, color: '#275eb5' },
 		{ name: "Incomplete", value: 100-percentage, color: '#efefef' }
 	];
@@ -105,7 +99,7 @@ const ActivityPanel = ({
 								<Pie
 									dataKey="value"
 									isAnimationActive={animation}
-									data={data}
+									data={pieChartData}
 									cx={190}
 									cy={190}
 									innerRadius={100}
@@ -113,7 +107,7 @@ const ActivityPanel = ({
 									startAngle={90}
 									endAngle={-270}
 									label>
-									{data.map((entry, index) => <Cell key={index} fill={data[index].color} />)}
+									{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
 								</Pie>
 							</PieChart>
 
@@ -133,9 +127,7 @@ const ActivityPanel = ({
 								Remaining time:
 							</div>
 
-
 							Speed over time graph :)
-
 						</div>
 					</div>
 				</div>

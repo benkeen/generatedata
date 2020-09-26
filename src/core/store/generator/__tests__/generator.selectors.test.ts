@@ -1,6 +1,6 @@
 import { getInitialState } from '../generator.reducer';
 import { initialState as initialMainState } from '../../main/main.reducer';
-import { initialState as initialDataState } from '../../data/data.reducer';
+import { initialState as initialPacketState } from '../../packets/packets.reducer';
 import { shouldGeneratePreviewRows } from '../generator.selectors';
 import { Store } from '~types/general';
 
@@ -10,7 +10,7 @@ describe("shouldGeneratePreviewRows", () => {
 		state = {
 			generator: getInitialState(),
 			main: initialMainState,
-			data: initialDataState
+			packets: initialPacketState
 		};
 	});
 
