@@ -70,8 +70,9 @@ export type GeneratorState = {
 };
 
 export const getInitialState = (): GeneratorState => ({
-	loadedDataTypes: dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
-	loadedExportTypes: exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
+	// the extra check for existence on these vars is just to placate the tests (not sure why needed)
+	loadedDataTypes: dataTypeNames && dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
+	loadedExportTypes: exportTypeNames && exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	initialDependenciesLoaded: false,
 	exportType: config.defaultExportType,
 	rows: {},
