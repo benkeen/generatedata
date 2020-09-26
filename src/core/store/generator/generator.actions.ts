@@ -256,8 +256,9 @@ export const START_GENERATION = 'START_GENERATION';
 export const startGeneration = (): any => (dispatch: Dispatch, getState: any): void => {
 	const state = getState();
 
-	// whenever we start generating some data, we stash all the current settings into the data batch instance. That way,
-	// we can happily generate multiple independent batch simultaneously
+	// whenever we start generating some data, we stash all the current settings into the data packet instance. That way,
+	// we can happily generate multiple independent packets simultaneously while the user starts work on a new
+	// data set in the UI
 	dispatch({
 		type: START_GENERATION,
 		payload: {
@@ -266,18 +267,20 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 			numRowsToGenerate: selectors.getNumRowsToGenerate(state),
 			template: selectors.getGenerationTemplate(state),
 			dataTypes: selectors.getRowDataTypes(state),
-			columns: selectors.getColumns(state)
+			columns: selectors.getColumns(state),
+			exportType: selectors.getExportType(state),
+			exportTypeSettings: selectors.getExportTypeSettings(state)
 		}
 	});
 };
 
-export const UPDATE_GENERATED_ROWS_COUNT = 'UPDATE_GENERATED_ROWS_COUNT';
-export const updateGeneratedRowsCount = (numGeneratedRows: number): GDAction => ({
-	type: UPDATE_GENERATED_ROWS_COUNT,
-	payload: {
-		numGeneratedRows
-	}
-});
+// export const UPDATE_GENERATED_ROWS_COUNT = 'UPDATE_GENERATED_ROWS_COUNT';
+// export const updateGeneratedRowsCount = (numGeneratedRows: number): GDAction => ({
+// 	type: UPDATE_GENERATED_ROWS_COUNT,
+// 	payload: {
+// 		numGeneratedRows
+// 	}
+// });
 
 export const CANCEL_GENERATION = 'CANCEL_GENERATION';
 export const cancelGeneration = (): GDAction => ({ type: CANCEL_GENERATION });

@@ -18,7 +18,6 @@ export const isGenerating = createSelector(
 	(packets) => Object.keys(packets).some((i: string) => packets[i].endTime === null)
 );
 
-
 // returns an ordered list of packet info for displaying some pills in the footer
 export const getActivePacketList = createSelector(
 	getPacketIds,

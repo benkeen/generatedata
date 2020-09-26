@@ -20,6 +20,7 @@ export type FooterProps = {
 	scriptVersion: string;
 	onChangeLocale: (a: any) => void;
 	onGenerate: () => void;
+	isEnabled: boolean;
 };
 
 const options = [
@@ -40,7 +41,7 @@ const useListStyles = makeStyles(() =>
 	})
 );
 
-const Footer = ({ i18n, locale, onChangeLocale, scriptVersion, onGenerate }: FooterProps): JSX.Element => {
+const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGenerate }: FooterProps): JSX.Element => {
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
 
@@ -87,7 +88,7 @@ const Footer = ({ i18n, locale, onChangeLocale, scriptVersion, onGenerate }: Foo
 				</ul>
 
 				<div>
-					<Button onClick={onGenerate} variant="contained" color="primary" disableElevation>
+					<Button onClick={onGenerate} variant="contained" color="primary" disableElevation disabled={!isEnabled}>
 						<span dangerouslySetInnerHTML={{ __html: i18n.generate }} />
 						<KeyboardArrowRightIcon />
 					</Button>

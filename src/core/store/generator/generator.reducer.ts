@@ -248,10 +248,6 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.numRowsToGenerate = parseInt(action.payload.numRowsToGenerate, 10);
 			break;
 
-		case actions.UPDATE_GENERATED_ROWS_COUNT:
-			draft.numGeneratedRows = action.payload.numGeneratedRows;
-			break;
-
 		case actions.TOGGLE_STRIP_WHITESPACE:
 			draft.stripWhitespace = !action.payload.stripWhitespace;
 			break;

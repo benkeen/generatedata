@@ -23,7 +23,7 @@ function initStore(state: any): any {
 	const rootPersistConfig = {
 		key: 'root',
 		storage,
-		blacklist: ['generator', 'main', 'data']
+		blacklist: ['generator', 'main', 'packets']
 	};
 
 	const generatorPersistConfig = {
@@ -46,21 +46,21 @@ function initStore(state: any): any {
 		]
 	};
 
-	// annoying. Should be able to just blacklist the entire section and not have to pinpoint them here. Lousy doc for react-redux. Not clear!
-	const dataPersistConfig = {
-		key: 'data',
+	// TODO should be able to just blacklist the entire section and not have to pinpoint them here... doc really not clear
+	const packetsPersistConfig = {
+		key: 'packets',
 		storage,
 		blacklist: [
-			'visibleBatchId',
-			'batchIds',
-			'batches'
+			'visiblePacketId',
+			'packetIds',
+			'packets'
 		]
 	};
 
 	const rootReducer = combineReducers({
 		generator: persistReducer(generatorPersistConfig, generatorReducer),
 		main: persistReducer(mainPersistConfig, mainReducer),
-		packets: persistReducer(dataPersistConfig, packetsReducer)
+		packets: persistReducer(packetsPersistConfig, packetsReducer)
 	});
 
 	const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);

@@ -2,6 +2,7 @@ import { AnyAction } from 'redux';
 import { generate } from 'shortid';
 import produce from 'immer';
 import * as actions from '../generator/generator.actions';
+import { ExportTypeFolder } from '../../../_plugins';
 
 // can't say I'm thrilled with the term, but a "packet" is an name for a block of actual data generation going on. A user
 // can have multiple packets running simultaneously via the UI
@@ -22,6 +23,8 @@ export type DataPacket = {
 		template: any;
 		dataTypes: any;
 		columns: any;
+		exportType: ExportTypeFolder;
+		exportTypeSettings: any;
 	};
 };
 
@@ -42,7 +45,8 @@ export const initialState: PacketsState = {
 };
 
 const getNewPacket = ({
-	dataTypeWorkerId, exportTypeWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns
+	dataTypeWorkerId, exportTypeWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns,
+	exportType, exportTypeSettings
 }: any): DataPacket => ({
 	dataTypeWorkerId,
 	exportTypeWorkerId,
@@ -57,14 +61,19 @@ const getNewPacket = ({
 		numRowsToGenerate,
 		template,
 		dataTypes,
-		columns
+		columns,
+		exportType,
+		exportTypeSettings
 	}
 });
 
 export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 	switch (action.type) {
 		case actions.START_GENERATION:
-			const { dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns } = action.payload;
+			const {
+				dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns,
+				exportType, exportTypeSettings
+			} = action.payload;
 
 			const batchId = generate();
 			draft.packetIds.push(batchId);
@@ -74,7 +83,9 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				numRowsToGenerate,
 				template,
 				dataTypes,
-				columns
+				columns,
+				exportType,
+				exportTypeSettings
 			});
 			draft.visiblePacketId = batchId;
 			break;

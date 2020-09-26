@@ -11,7 +11,8 @@ import * as coreUtils from '~utils/coreUtils';
 const mapStateToProps = (state: any): Partial<FooterProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	locale: mainSelectors.getLocale(state),
-	scriptVersion: coreUtils.getScriptVersion()
+	scriptVersion: coreUtils.getScriptVersion(),
+	isEnabled: selectors.hasData(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({

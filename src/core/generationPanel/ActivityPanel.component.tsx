@@ -37,8 +37,10 @@ const ActivityPanel = ({ visible, onClose, i18n, packet, onContinue, onPause, wo
 		return null;
 	}
 
+	console.log(packet);
+
 	const { isPaused, data, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows } = packet;
-	const { numRowsToGenerate, columns, template } = data;
+	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings } = data;
 
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 
@@ -60,18 +62,33 @@ const ActivityPanel = ({ visible, onClose, i18n, packet, onContinue, onPause, wo
 
 		// start();
 
-		dataTypeWorker.onmessage = (response: any): void => {
-			console.log(response);
+		dataTypeWorker.onmessage = ({ data }: any): void => {
+			const { generatedData } = data;
 
-			// pass data on to exportTypeWorker here.
+			console.log(data);
+
+			// exportTypeWorker.postMessage({
+			// 	rows: generatedData,
+			// 	columns,
+			// 	exportType,
+			// 	exportTypeSettings,
+			// 	// isFirstBatch: true,
+			// 	// isLastBatch: true,
+			// 	workerResources
+			// });
+
+			// exportTypeWorker.onmessage = () => {
+			//
+			// };
 
 			// on THAT response, do these:
 
-			const { numGeneratedRows } = response.data; // data, completedBatchNum, isComplete
+			// const { numGeneratedRows } = response.data; // data, completedBatchNum, isComplete
 
 			if (numGeneratedRows >= numRowsToGenerate) {
 				// console.log("done", end());
 			}
+
 			// dispatch(setBatchGeneratedComplete());
 		};
 

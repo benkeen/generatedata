@@ -29,13 +29,13 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> => {
 
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ActivityPanelProps> => ({
-	onClose: (): any => {
+	onClose: (): void => {
 		dispatch(actions.cancelGeneration());
 		dispatch(actions.hideGenerationPanel());
 	},
-	onPause: () => {},
-	onContinue: () => {},
-	onAbort: () => {}
+	onPause: (): void => {},
+	onContinue: (): void => {},
+	onAbort: (): void => {}
 });
 
 export default connect(
