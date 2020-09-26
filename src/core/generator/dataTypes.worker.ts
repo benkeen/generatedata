@@ -6,9 +6,20 @@ let dataTypeWorkerMap: any = {};
 let countryData: any = {};
 const workerQueue: any = {};
 const context: Worker = self as any;
-let batchStartTime: number;
+let isPaused = false;
+let onContinueData: any = null;
 
 context.onmessage = (e: any) => {
+	if (e.data.action === 'PAUSE') {
+		isPaused = true;
+		return;
+	} else if (e.data.action === 'CONTINUE') {
+		isPaused = false;
+		const { data, numBatches, batchSize, batchNum } = onContinueData;
+		generateNextBatch(data, numBatches, batchSize, batchNum);
+		return;
+	}
+
 	const { batchSize, numResults } = e.data;
 
 	workerResources = e.data.workerResources;
@@ -47,8 +58,17 @@ context.onmessage = (e: any) => {
 
 
 const generateNextBatch = (data: any, numBatches: number, batchSize: number, batchNum: number) => {
-	batchStartTime = performance.now();
 	const { firstRow, lastRow } = getBatchInfo(data.numResults, numBatches, batchSize, batchNum);
+
+	if (isPaused) {
+		onContinueData = {
+			data,
+			numBatches,
+			batchSize,
+			batchNum
+		};
+		return;
+	}
 
 	generateBatch({
 		template: data.template,
@@ -102,8 +122,7 @@ const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum
 				completedBatchNum: batchNum,
 				numGeneratedRows: lastRow,
 				numResults,
-				generatedData,
-				duration: performance.now() - batchStartTime
+				generatedData
 			});
 		});
 });

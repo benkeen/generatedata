@@ -62,7 +62,7 @@ const getNewPacket = ({
 	isPaused: false,
 	numGeneratedRows: 0,
 	numBatches: 0,
-	speed: 100,
+	speed: 80,
 	config: {
 		stripWhitespace,
 		numRowsToGenerate,

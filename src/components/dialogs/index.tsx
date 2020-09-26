@@ -55,7 +55,8 @@ const useDialogStyles = makeStyles({
 		width: '100%'
 	},
 	paper: {
-		borderRadius: 6
+		borderRadius: 6,
+		maxWidth: 'inherit'
 	}
 });
 

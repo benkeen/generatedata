@@ -21,10 +21,10 @@
 
 	h3 {
 		position: absolute;
-		color: #999999;
-		top: 48%;
+		color: #666660;
+		top: 22%;
 		left: 50%;
-		font-size: 38px;
+		font-size: 19px;
 		margin-right: -50%;
 		transform: translate(-50%, -50%);
 	}
@@ -66,3 +66,6 @@
 	transition: opacity .25s ease-in-out;
 }
 
+.counter {
+	color: #275eb5;
+}
