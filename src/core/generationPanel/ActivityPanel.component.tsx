@@ -12,6 +12,7 @@ import { getStrings } from '~utils/langUtils';
 import { DataPacket } from '../store/packets/packets.reducer';
 
 export type ActivityPanelProps = {
+	packetId: string;
 	visible: boolean;
 	i18n: any;
 	packet: DataPacket | null;
@@ -20,6 +21,7 @@ export type ActivityPanelProps = {
 	onContinue: () => void;
 	onAbort: () => void;
 	workerResources: any;
+	logDataBatch: (packetId: string, numGeneratedRows: number, data: any) => void;
 };
 
 const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
@@ -32,66 +34,53 @@ const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
 	return percentage.toFixed(decimalPlaces);
 };
 
-const ActivityPanel = ({ visible, onClose, i18n, packet, onContinue, onPause, workerResources }: ActivityPanelProps): any => {
+const ActivityPanel = ({
+	packetId, visible, onClose, i18n, packet, onContinue, onPause, workerResources, logDataBatch
+}: ActivityPanelProps): any => {
 	if (packet === null) {
 		return null;
 	}
-
-	console.log(packet);
 
 	const { isPaused, data, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows } = packet;
 	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings } = data;
 
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
-
 	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
 	const exportTypeWorker = coreUtils.getExportTypeWorker(exportTypeWorkerId);
 
 	useEffect(() => {
-		if (numGeneratedRows === 0) {
-			dataTypeWorker.postMessage({
-				action: C.ACTIVITY_PANEL_ACTIONS.GENERATE,
-				numResults: numRowsToGenerate,
-				batchSize: C.GENERATION_BATCH_SIZE,
-				columns,
-				i18n: getStrings(),
-				template,
-				workerResources
-			});
+		if (numGeneratedRows !== 0) {
+			return;
 		}
 
-		// start();
+		dataTypeWorker.postMessage({
+			action: C.ACTIVITY_PANEL_ACTIONS.GENERATE,
+			numResults: numRowsToGenerate,
+			batchSize: C.GENERATION_BATCH_SIZE,
+			columns,
+			i18n: getStrings(),
+			template,
+			workerResources
+		});
 
 		dataTypeWorker.onmessage = ({ data }: any): void => {
-			const { generatedData } = data;
+			const { completedBatchNum, numGeneratedRows, generatedData } = data;
+			const isLastBatch = numGeneratedRows >= numRowsToGenerate;
 
-			console.log(data);
+			exportTypeWorker.postMessage({
+				rows: generatedData,
+				columns,
+				exportType,
+				exportTypeSettings,
+				isFirstBatch: completedBatchNum === 1,
+				isLastBatch,
+				workerResources
+			});
 
-			// exportTypeWorker.postMessage({
-			// 	rows: generatedData,
-			// 	columns,
-			// 	exportType,
-			// 	exportTypeSettings,
-			// 	// isFirstBatch: true,
-			// 	// isLastBatch: true,
-			// 	workerResources
-			// });
-
-			// exportTypeWorker.onmessage = () => {
-			//
-			// };
-
-			// on THAT response, do these:
-
-			// const { numGeneratedRows } = response.data; // data, completedBatchNum, isComplete
-
-			if (numGeneratedRows >= numRowsToGenerate) {
-				// console.log("done", end());
-			}
-
-			// dispatch(setBatchGeneratedComplete());
+			exportTypeWorker.onmessage = (resp: any) => {
+				logDataBatch(packetId, numGeneratedRows, resp.data);
+			};
 		};
-
 	}, [numGeneratedRows]);
 
 	const animation = true;

@@ -4,19 +4,17 @@ import produce from 'immer';
 import * as actions from '../generator/generator.actions';
 import { ExportTypeFolder } from '../../../_plugins';
 
-// can't say I'm thrilled with the term, but a "packet" is an name for a block of actual data generation going on. A user
-// can have multiple packets running simultaneously via the UI
 export type DataPacket = {
 	dataTypeWorkerId: string;
 	exportTypeWorkerId: string;
-	startTime: Date;
+	startTime: number;
 	endTime: Date | null;
 	isPaused: boolean;
 	numGeneratedRows: number;
 	numBatches: number;
 	speed: number;
 
-	// this block contains data for the generation algorithms
+	// this block contains the actual configuration data - data types and export type data - used in this generation packet
 	data: {
 		stripWhitespace: boolean;
 		numRowsToGenerate: number;
@@ -50,7 +48,7 @@ const getNewPacket = ({
 }: any): DataPacket => ({
 	dataTypeWorkerId,
 	exportTypeWorkerId,
-	startTime: new Date(),
+	startTime: performance.now(),
 	endTime: null,
 	isPaused: false,
 	numGeneratedRows: 0,
@@ -69,7 +67,7 @@ const getNewPacket = ({
 
 export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 	switch (action.type) {
-		case actions.START_GENERATION:
+		case actions.START_GENERATION: {
 			const {
 				dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns,
 				exportType, exportTypeSettings
@@ -89,6 +87,11 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			});
 			draft.visiblePacketId = batchId;
 			break;
+		}
+
+		case actions.LOG_DATA_BATCH: {
+
+		}
 
 		// case actions.CANCEL_GENERATION:
 			// draft.isGenerating = false;

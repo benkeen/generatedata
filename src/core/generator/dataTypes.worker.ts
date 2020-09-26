@@ -6,6 +6,7 @@ let dataTypeWorkerMap: any = {};
 let countryData: any = {};
 const workerQueue: any = {};
 const context: Worker = self as any;
+let batchStartTime: number;
 
 context.onmessage = (e: any) => {
 	const { batchSize, numResults } = e.data;
@@ -46,6 +47,7 @@ context.onmessage = (e: any) => {
 
 
 const generateNextBatch = (data: any, numBatches: number, batchSize: number, batchNum: number) => {
+	batchStartTime = performance.now();
 	const { firstRow, lastRow } = getBatchInfo(data.numResults, numBatches, batchSize, batchNum);
 
 	generateBatch({
@@ -100,7 +102,8 @@ const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum
 				completedBatchNum: batchNum,
 				numGeneratedRows: lastRow,
 				numResults,
-				generatedData
+				generatedData,
+				duration: performance.now() - batchStartTime
 			});
 		});
 });

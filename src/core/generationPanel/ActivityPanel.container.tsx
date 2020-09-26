@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<ActivityPanelProps> => 
 		dispatch(actions.cancelGeneration());
 		dispatch(actions.hideGenerationPanel());
 	},
+	logDataBatch: (packetId: string, numGeneratedRows: number, data: any) => dispatch(actions.logDataBatch(packetId, numGeneratedRows, data)),
 	onPause: (): void => {},
 	onContinue: (): void => {},
 	onAbort: (): void => {}

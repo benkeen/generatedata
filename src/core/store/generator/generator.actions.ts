@@ -274,13 +274,15 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 	});
 };
 
-// export const UPDATE_GENERATED_ROWS_COUNT = 'UPDATE_GENERATED_ROWS_COUNT';
-// export const updateGeneratedRowsCount = (numGeneratedRows: number): GDAction => ({
-// 	type: UPDATE_GENERATED_ROWS_COUNT,
-// 	payload: {
-// 		numGeneratedRows
-// 	}
-// });
+export const LOG_DATA_BATCH = 'LOG_DATA_BATCH';
+export const logDataBatch = (packetId: string, numGeneratedRows: number, data: any): GDAction => ({
+	type: LOG_DATA_BATCH,
+	payload: {
+		packetId,
+		numGeneratedRows,
+		data
+	}
+});
 
 export const CANCEL_GENERATION = 'CANCEL_GENERATION';
 export const cancelGeneration = (): GDAction => ({ type: CANCEL_GENERATION });
