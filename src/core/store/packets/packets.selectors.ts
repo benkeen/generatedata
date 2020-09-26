@@ -2,12 +2,12 @@ import { Store } from '~types/general';
 import { createSelector } from 'reselect';
 import { DataPackets } from './packets.reducer';
 
-export const getVisiblePacketId = (state: Store): string | null => state.packets.visiblePacketId;
+export const getCurrentPacketId = (state: Store): string | null => state.packets.currentPacketId;
 export const getPacketIds = (state: Store): string[] => state.packets.packetIds;
 export const getPackets = (state: Store): DataPackets => state.packets.packets;
 
-export const getVisiblePacket = createSelector(
-	getVisiblePacketId,
+export const getCurrentPacket = createSelector(
+	getCurrentPacketId,
 	getPackets,
 	(packetId, packets) => packetId ? packets[packetId] : null
 );
@@ -27,7 +27,7 @@ export const getActivePacketList = createSelector(
 );
 
 export const getBatchLoadTimes = createSelector(
-	getVisiblePacketId,
+	getCurrentPacketId,
 	getPackets,
 	(packetId, packets) => {
 		if (!packetId) {

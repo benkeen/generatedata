@@ -40,13 +40,13 @@ export type DataPackets = {
 }
 
 export type PacketsState = {
-	visiblePacketId: string | null;
+	currentPacketId: string | null;
 	packetIds: string[];
 	packets: DataPackets;
 };
 
 export const initialState: PacketsState = {
-	visiblePacketId: null,
+	currentPacketId: null,
 	packetIds: [],
 	packets: {}
 };
@@ -95,7 +95,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				exportType,
 				exportTypeSettings
 			});
-			draft.visiblePacketId = packetId;
+			draft.currentPacketId = packetId;
 			break;
 		}
 

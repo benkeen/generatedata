@@ -41,5 +41,6 @@ export const pauseGeneration = (packetId: string): GDAction => ({ type: PAUSE_GE
 export const CONTINUE_GENERATION = 'CONTINUE_GENERATION';
 export const continueGeneration = (packetId: string): GDAction => ({ type: CONTINUE_GENERATION, payload: { packetId } });
 
-export const CANCEL_GENERATION = 'CANCEL_GENERATION';
-export const cancelGeneration = (packetId: string): GDAction => ({ type: PAUSE_GENERATION, payload: { packetId } });
+export const ABORT_GENERATION = 'ABORT_GENERATION';
+export const abortGeneration = (packetId: string): GDAction => ({ type: ABORT_GENERATION, payload: { packetId } });
+

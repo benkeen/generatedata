@@ -51,7 +51,7 @@ function initStore(state: any): any {
 		key: 'packets',
 		storage,
 		blacklist: [
-			'visiblePacketId',
+			'currentPacketId',
 			'packetIds',
 			'packets'
 		]

@@ -6,13 +6,12 @@ import PlayArrow from '@material-ui/icons/PlayArrow';
 import { Dialog, DialogContent } from '~components/dialogs'; // DialogTitle, DialogActions
 import usePrevious from '../../hooks/usePrevious';
 import styles from './ActivityPanel.scss';
+import { DataPacket } from '../store/packets/packets.reducer';
 import * as coreUtils from '~utils/coreUtils';
 import C from '../constants';
 import { getStrings } from '~utils/langUtils';
-import { DataPacket } from '../store/packets/packets.reducer';
 
 export type ActivityPanelProps = {
-	packetId: string | null;
 	visible: boolean;
 	i18n: any;
 	packet: DataPacket | null;
@@ -21,7 +20,7 @@ export type ActivityPanelProps = {
 	onContinue: () => void;
 	onAbort: () => void;
 	workerResources: any;
-	logDataBatch: (packetId: string, numGeneratedRows: number, data: any) => void;
+	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
 };
 
@@ -36,9 +35,9 @@ const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
 };
 
 const ActivityPanel = ({
-	packetId, visible, onClose, i18n, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes
+	visible, onClose, i18n, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes
 }: ActivityPanelProps): any => {
-	if (packetId === null || packet === null) { // just for TS. They'll be null together.
+	if (packet === null) {
 		return null;
 	}
 
@@ -79,10 +78,14 @@ const ActivityPanel = ({
 			});
 
 			exportTypeWorker.onmessage = (resp: any) => {
-				logDataBatch(packetId, numGeneratedRows, resp.data);
+				logDataBatch(numGeneratedRows, resp.data);
 			};
 		};
 	}, [numGeneratedRows]);
+
+	useEffect(() => {
+		console.log("is paused?", isPaused);
+	}, [isPaused]);
 
 	const animation = true;
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
@@ -91,7 +94,9 @@ const ActivityPanel = ({
 		{ name: "Incomplete", value: 100-percentage, color: '#efefef' }
 	];
 
-	const pauseContinueIcon = isPaused ? <PlayArrow fontSize="large" onClick={onPause} /> : <Pause fontSize="large" onClick={onContinue} />;
+	const pauseContinueIcon = isPaused ?
+		<PlayArrow fontSize="large" onClick={onPause} /> :
+		<Pause fontSize="large" onClick={onContinue} />;
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
@@ -140,7 +145,7 @@ const ActivityPanel = ({
 									height={400}
 									data={batchLoadTimes}
 									margin={{
-										top: 10, right: 30, left: 0, bottom: 0,
+										top: 10, right: 30, left: 0, bottom: 0
 									}}
 								>
 									<CartesianGrid strokeDasharray="3 3" />
