@@ -4,6 +4,7 @@ import produce from 'immer';
 // @ts-ignore-line
 import config from '../../../../dist/config.client';
 import * as actions from './generator.actions';
+import * as packetActions from '../packets/packets.actions';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
@@ -265,7 +266,8 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.initialDependenciesLoaded = true;
 			break;
 
-		case actions.START_GENERATION:
+		// perhaps belongs in `packets`?
+		case packetActions.START_GENERATION:
 			draft.showStartGenerationPanel = false;
 			break;
 	}

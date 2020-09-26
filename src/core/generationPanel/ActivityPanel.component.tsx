@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, AreaChart, CartesianGrid, XAxis, YAxis, Area } from 'recharts';
 import CountUp from 'react-countup';
 import Pause from '@material-ui/icons/Pause';
 import PlayArrow from '@material-ui/icons/PlayArrow';
@@ -12,7 +12,7 @@ import { getStrings } from '~utils/langUtils';
 import { DataPacket } from '../store/packets/packets.reducer';
 
 export type ActivityPanelProps = {
-	packetId: string;
+	packetId: string | null;
 	visible: boolean;
 	i18n: any;
 	packet: DataPacket | null;
@@ -22,6 +22,7 @@ export type ActivityPanelProps = {
 	onAbort: () => void;
 	workerResources: any;
 	logDataBatch: (packetId: string, numGeneratedRows: number, data: any) => void;
+	batchLoadTimes: object[];
 };
 
 const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
@@ -35,14 +36,14 @@ const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
 };
 
 const ActivityPanel = ({
-	packetId, visible, onClose, i18n, packet, onContinue, onPause, workerResources, logDataBatch
+	packetId, visible, onClose, i18n, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes
 }: ActivityPanelProps): any => {
-	if (packet === null) {
+	if (packetId === null || packet === null) { // just for TS. They'll be null together.
 		return null;
 	}
 
-	const { isPaused, data, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows } = packet;
-	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings } = data;
+	const { isPaused, config, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows } = packet;
+	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings } = config;
 
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
@@ -90,54 +91,69 @@ const ActivityPanel = ({
 		{ name: "Incomplete", value: 100-percentage, color: '#efefef' }
 	];
 
-	const pauseContinueIcon = isPaused ? <Pause fontSize="large" onClick={onContinue} /> : <PlayArrow fontSize="large" onClick={onPause} />;
+	const pauseContinueIcon = isPaused ? <PlayArrow fontSize="large" onClick={onPause} /> : <Pause fontSize="large" onClick={onContinue} />;
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
-			<DialogContent dividers style={{ padding: 0 }}>
-				<div className={styles.overlayWrapper}>
-					<div style={{ display: 'flex' }}>
+			<div style={{ width: 500, padding: 20 }}>
+				<DialogContent dividers style={{ padding: 0 }}>
+					<div className={styles.overlayWrapper}>
+						<div style={{ display: 'flex' }}>
 
-						<div className={styles.panel1}>
-							<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
+							<div className={styles.panel1}>
+								<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
 
-							<PieChart width={380} height={380}>
-								<Pie
-									dataKey="value"
-									isAnimationActive={animation}
-									data={pieChartData}
-									cx={190}
-									cy={190}
-									innerRadius={100}
-									outerRadius={140}
-									startAngle={90}
-									endAngle={-270}
-									label>
-									{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
-								</Pie>
-							</PieChart>
+								<PieChart width={200} height={200}>
+									<Pie
+										dataKey="value"
+										isAnimationActive={animation}
+										data={pieChartData}
+										cx={100}
+										cy={100}
+										innerRadius={40}
+										outerRadius={90}
+										startAngle={90}
+										endAngle={-270}
+										label>
+										{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
+									</Pie>
+								</PieChart>
 
-							<div style={{ border: '1px solid #cccccc' }}>
-								{pauseContinueIcon}
-							</div>
-						</div>
-
-						<div className={styles.panel2}>
-							<div>
-								Rows generated <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," />
-							</div>
-							<div>
-								Estimated time:
-							</div>
-							<div>
-								Remaining time:
+								<div style={{ border: '1px solid #cccccc' }}>
+									{pauseContinueIcon}
+								</div>
 							</div>
 
-							Speed over time graph :)
+							<div className={styles.panel2}>
+								<div>
+									Rows generated <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," />
+								</div>
+								<div>
+									Estimated time:
+								</div>
+								<div>
+									Remaining time:
+								</div>
+
+								<AreaChart
+									width={500}
+									height={400}
+									data={batchLoadTimes}
+									margin={{
+										top: 10, right: 30, left: 0, bottom: 0,
+									}}
+								>
+									<CartesianGrid strokeDasharray="3 3" />
+									<XAxis dataKey="name" />
+									<YAxis />
+									<Area type="monotone" dataKey="duration" stroke="#8884d8" fill="#8884d8" />
+								</AreaChart>
+
+							</div>
 						</div>
 					</div>
-				</div>
-			</DialogContent>
+				</DialogContent>
+			</div>
 		</Dialog>
 	);
 };

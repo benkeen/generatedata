@@ -25,3 +25,27 @@ export const getActivePacketList = createSelector(
 		return [];
 	}
 );
+
+export const getBatchLoadTimes = createSelector(
+	getVisiblePacketId,
+	getPackets,
+	(packetId, packets) => {
+		if (!packetId) {
+			return [];
+		}
+
+		return packets[packetId].data.map(({ endTime }, index) => {
+			let duration;
+			if (index === 0) {
+				duration = endTime - packets[packetId].startTime;
+			} else {
+				duration = endTime - packets[packetId].data[index-1].endTime;
+			}
+
+			return {
+				label: index+1,
+				duration
+			};
+		});
+	}
+);

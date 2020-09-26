@@ -1,8 +1,14 @@
 import { AnyAction } from 'redux';
 import { generate } from 'shortid';
 import produce from 'immer';
-import * as actions from '../generator/generator.actions';
+import * as actions from './packets.actions';
 import { ExportTypeFolder } from '../../../_plugins';
+
+type GeneratedDataBatch = {
+	byteSize: number;
+	data: string;
+	endTime: number;
+};
 
 export type DataPacket = {
 	dataTypeWorkerId: string;
@@ -15,7 +21,7 @@ export type DataPacket = {
 	speed: number;
 
 	// this block contains the actual configuration data - data types and export type data - used in this generation packet
-	data: {
+	config: {
 		stripWhitespace: boolean;
 		numRowsToGenerate: number;
 		template: any;
@@ -24,6 +30,9 @@ export type DataPacket = {
 		exportType: ExportTypeFolder;
 		exportTypeSettings: any;
 	};
+
+	// information about the generated data
+	data: GeneratedDataBatch[];
 };
 
 export type DataPackets = {
@@ -54,7 +63,7 @@ const getNewPacket = ({
 	numGeneratedRows: 0,
 	numBatches: 0,
 	speed: 100,
-	data: {
+	config: {
 		stripWhitespace,
 		numRowsToGenerate,
 		template,
@@ -62,7 +71,8 @@ const getNewPacket = ({
 		columns,
 		exportType,
 		exportTypeSettings
-	}
+	},
+	data: []
 });
 
 export const reducer = produce((draft: PacketsState, action: AnyAction) => {
@@ -73,9 +83,9 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				exportType, exportTypeSettings
 			} = action.payload;
 
-			const batchId = generate();
-			draft.packetIds.push(batchId);
-			draft.packets[batchId] = getNewPacket({
+			const packetId = generate();
+			draft.packetIds.push(packetId);
+			draft.packets[packetId] = getNewPacket({
 				dataTypeWorkerId,
 				exportTypeWorkerId,
 				numRowsToGenerate,
@@ -85,18 +95,28 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				exportType,
 				exportTypeSettings
 			});
-			draft.visiblePacketId = batchId;
+			draft.visiblePacketId = packetId;
 			break;
 		}
 
+		case actions.PAUSE_GENERATION:
+			draft.packets[action.payload.packetId].isPaused = true;
+			break;
+
+		case actions.CONTINUE_GENERATION:
+			draft.packets[action.payload.packetId].isPaused = false;
+			break;
+
 		case actions.LOG_DATA_BATCH: {
+			const { packetId, numGeneratedRows, data } = action.payload;
 
+			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
+			draft.packets[packetId].data.push({
+				data,
+				byteSize: data.length,
+				endTime: performance.now()
+			});
 		}
-
-		// case actions.CANCEL_GENERATION:
-			// draft.isGenerating = false;
-			// draft.numGeneratedRows = 0;
-			// break;
 	}
 }, initialState);
 

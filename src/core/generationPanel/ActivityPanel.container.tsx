@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../store/generator/generator.actions';
+import * as packetActions from '../store/packets/packets.actions';
 import * as selectors from '../store/generator/generator.selectors';
 import * as packetSelectors from '../store/packets/packets.selectors';
 import ActivityPanel, { ActivityPanelProps } from './ActivityPanel.component';
@@ -14,7 +15,7 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> => {
 		workerResources = {
 			workerUtils: coreUtils.getWorkerUtils(),
 			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
-			dataTypes: coreUtils.getDataTypeWorkerMap(packet.data.dataTypes),
+			dataTypes: coreUtils.getDataTypeWorkerMap(packet.config.dataTypes),
 			countries: coreUtils.getCountries()
 		};
 	}
@@ -23,6 +24,8 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> => {
 		visible: packetSelectors.isGenerating(state),
 		i18n: selectors.getCoreI18n(state),
 		packet,
+		packetId: packetSelectors.getVisiblePacketId(state),
+		batchLoadTimes: packetSelectors.getBatchLoadTimes(state),
 		workerResources
 	};
 };
@@ -30,10 +33,9 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> => {
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ActivityPanelProps> => ({
 	onClose: (): void => {
-		dispatch(actions.cancelGeneration());
 		dispatch(actions.hideGenerationPanel());
 	},
-	logDataBatch: (packetId: string, numGeneratedRows: number, data: any) => dispatch(actions.logDataBatch(packetId, numGeneratedRows, data)),
+	logDataBatch: (packetId: string, numGeneratedRows: number, data: any) => dispatch(packetActions.logDataBatch(packetId, numGeneratedRows, data)),
 	onPause: (): void => {},
 	onContinue: (): void => {},
 	onAbort: (): void => {}
