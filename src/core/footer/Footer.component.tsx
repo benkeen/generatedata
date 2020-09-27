@@ -10,6 +10,7 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import { HtmlTooltip } from '~components/tooltips';
 import styles from './Footer.scss';
 import { Github } from '~components/icons';
+import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import Link from '~components/Link';
 import { GDLocale } from '~types/general';
 import C from '../constants';
@@ -84,7 +85,10 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGene
 							</HtmlTooltip>
 						</ClickAwayListener>
 					</li>
-					<li>{scriptVersion}</li>
+					<li style={{ marginRight: 30 }}>{scriptVersion}</li>
+					<li>
+						<ActivePacketsList />
+					</li>
 				</ul>
 
 				<div>

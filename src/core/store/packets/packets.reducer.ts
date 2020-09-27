@@ -114,6 +114,10 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			draft.currentPacketId = null;
 			break;
 
+		case actions.SHOW_ACTIVITY_PANEL:
+			draft.currentPacketId = action.payload.packetId;
+			break;
+
 		case actions.LOG_DATA_BATCH: {
 			const { packetId, numGeneratedRows, data } = action.payload;
 

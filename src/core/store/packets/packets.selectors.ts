@@ -21,8 +21,19 @@ export const isGenerating = createSelector(
 // returns an ordered list of packet info for displaying some pills in the footer
 export const getActivePacketList = createSelector(
 	getPacketIds,
-	(packetIds) => {
-		return [];
+	getPackets,
+	(packetIds, packets) => {
+		return packetIds.map((packetId: string) => {
+			const packet = packets[packetId];
+
+			return {
+				packetId,
+				label: packet.config.numRowsToGenerate.toString() + ' rows', // when we get into saving data sets, this'll be the name
+				percentage: (packet.numGeneratedRows / packet.config.numRowsToGenerate) * 100,
+				isPaused: packet.isPaused,
+				numRowsToGenerate: packet.config.numRowsToGenerate
+			};
+		});
 	}
 );
 

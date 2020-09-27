@@ -45,4 +45,7 @@ export const ABORT_GENERATION = 'ABORT_GENERATION';
 export const abortGeneration = (packetId: string): GDAction => ({ type: ABORT_GENERATION, payload: { packetId } });
 
 export const HIDE_ACTIVITY_PANEL = 'HIDE_ACTIVITY_PANEL';
-export const hideActivityPanel = () => ({ type: HIDE_ACTIVITY_PANEL });
+export const hideActivityPanel = (): GDAction => ({ type: HIDE_ACTIVITY_PANEL });
+
+export const SHOW_ACTIVITY_PANEL = 'SHOW_ACTIVITY_PANEL';
+export const showActivityPanel = (packetId: string): GDAction => ({ type: SHOW_ACTIVITY_PANEL, payload: { packetId } });

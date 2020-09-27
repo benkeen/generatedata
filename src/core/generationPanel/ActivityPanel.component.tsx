@@ -16,6 +16,7 @@ import * as coreUtils from '~utils/coreUtils';
 import C from '../constants';
 import { getStrings } from '~utils/langUtils';
 import { Tooltip } from '~components/tooltips';
+import { getPercentageLabel } from './generation.helpers';
 
 export type ActivityPanelProps = {
 	visible: boolean;
@@ -28,16 +29,6 @@ export type ActivityPanelProps = {
 	workerResources: any;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
-};
-
-const getPercentageLabel = (percentage: number, numRowsToGenerate: number) => {
-	let decimalPlaces = 0;
-	if (numRowsToGenerate >= 10000) {
-		decimalPlaces = 1;
-	} else if (numRowsToGenerate >= 1000000) {
-		decimalPlaces = 2;
-	}
-	return percentage.toFixed(decimalPlaces);
 };
 
 function valueLabelFormat(value: number) {
@@ -100,6 +91,9 @@ const ActivityPanel = ({
 	}, [isPaused]);
 
 	const animation = true;
+
+
+
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
 	const pieChartData = [
 		{ name: "Complete", value: percentage, color: '#275eb5' },
@@ -177,7 +171,7 @@ const ActivityPanel = ({
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<div style={{ flex: 1, display: 'flex', marginRight: 50 }}>
+					<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
 						<Tooltip title="Play / pause generation" placement="top" arrow style={{ marginRight: 50 }}>
 							<span>
 								<IconButton size="medium" aria-label="Play/Pause generation">
