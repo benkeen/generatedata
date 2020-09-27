@@ -1,5 +1,6 @@
 declare namespace ActivityPacketsListScssNamespace {
   export interface IActivityPacketsListScss {
+    chip: string;
     chipLabel: string;
   }
 }

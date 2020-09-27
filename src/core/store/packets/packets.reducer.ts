@@ -31,8 +31,13 @@ export type DataPacket = {
 		exportTypeSettings: any;
 	};
 
-	// information about the generated data
+	// the actual generated data
 	data: GeneratedDataBatch[];
+
+	stats: {
+		totalSize: number;
+		numRowsPerSecond: number[];
+	};
 };
 
 export type DataPackets = {
@@ -72,7 +77,11 @@ const getNewPacket = ({
 		exportType,
 		exportTypeSettings
 	},
-	data: []
+	data: [],
+	stats: {
+		totalSize: 0,
+		numRowsPerSecond: []
+	}
 });
 
 export const reducer = produce((draft: PacketsState, action: AnyAction) => {

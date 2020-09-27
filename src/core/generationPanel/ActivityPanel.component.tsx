@@ -92,6 +92,8 @@ const ActivityPanel = ({
 
 	const animation = true;
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
+	const isComplete = percentage === 100;
+
 	const pieChartData = [
 		{ name: "Complete", value: percentage, color: '#275eb5' },
 		{ name: "Incomplete", value: 100-percentage, color: '#efefef' }
@@ -112,12 +114,17 @@ const ActivityPanel = ({
 		}
 	];
 
-	const getActionButton = () => {
-		if (percentage === 100) {
+	const getActionButtons = () => {
+		if (isComplete) {
 			return (
-				<Button onClick={onDownload} color="primary" variant="outlined" style={{ marginRight: 10 }}>
-					Download
-				</Button>
+				<>
+					<Button onClick={onAbort} color="default" variant="outlined" style={{ marginRight: 10 }}>
+						Clear and Close
+					</Button>
+					<Button onClick={onDownload} color="primary" variant="outlined" style={{ marginRight: 10 }}>
+						Download
+					</Button>
+				</>
 			);
 		}
 
@@ -125,6 +132,32 @@ const ActivityPanel = ({
 			<Button onClick={onAbort} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
 				Cancel Generation
 			</Button>
+		);
+	};
+
+	const getGenerationControls = () => {
+		if (!isComplete) {
+			return null;
+		}
+
+		return (
+			<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
+				<Tooltip title="Play / pause generation" placement="top" arrow style={{ marginRight: 50 }}>
+					<IconButton size="medium" aria-label="Play/Pause generation">
+						{pauseContinueIcon}
+					</IconButton>
+				</Tooltip>
+				<Slider
+					defaultValue={speed}
+					aria-labelledby="discrete-slider-always"
+					step={1}
+					min={1}
+					max={100}
+					valueLabelDisplay="auto"
+					valueLabelFormat={valueLabelFormat}
+					marks={marks}
+				/>
+			</div>
 		);
 	};
 
@@ -162,14 +195,12 @@ const ActivityPanel = ({
 								<div>
 									Estimated Size:
 								</div>
-
 								<div>
 									Remaining time:
 								</div>
 								<div>
 									Size:
 								</div>
-
 							</div>
 
 							<div className={styles.panel2}>
@@ -192,28 +223,8 @@ const ActivityPanel = ({
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
-						<Tooltip title="Play / pause generation" placement="top" arrow style={{ marginRight: 50 }}>
-							<span>
-								<IconButton size="medium" aria-label="Play/Pause generation">
-									{pauseContinueIcon}
-								</IconButton>
-							</span>
-						</Tooltip>
-
-						<Slider
-							defaultValue={speed}
-							aria-labelledby="discrete-slider-always"
-							step={1}
-							min={1}
-							max={100}
-							valueLabelDisplay="auto"
-							valueLabelFormat={valueLabelFormat}
-							marks={marks}
-						/>
-					</div>
-
-					{getActionButton()}
+					{getGenerationControls()}
+					{getActionButtons()}
 				</DialogActions>
 			</div>
 		</Dialog>

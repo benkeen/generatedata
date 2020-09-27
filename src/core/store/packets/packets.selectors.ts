@@ -38,21 +38,19 @@ export const getActivePacketList = createSelector(
 );
 
 export const getBatchLoadTimes = createSelector(
-	getCurrentPacketId,
-	getPackets,
-	(packetId, packets) => {
-		if (!packetId) {
+	getCurrentPacket,
+	(packet) => {
+		if (!packet) {
 			return [];
 		}
 
-		return packets[packetId].data.map(({ endTime }, index) => {
+		return packet.data.map(({ endTime }, index) => {
 			let duration;
 			if (index === 0) {
-				duration = endTime - packets[packetId].startTime;
+				duration = endTime - packet.startTime;
 			} else {
-				duration = endTime - packets[packetId].data[index-1].endTime;
+				duration = endTime - packet.data[index-1].endTime;
 			}
-
 			return {
 				label: index+1,
 				duration
@@ -61,17 +59,24 @@ export const getBatchLoadTimes = createSelector(
 	}
 );
 
+export const getGeneratedDataSize = createSelector(
+	getCurrentPacket,
+	(packet) => {
+		return 0;
+	}
+);
+
 export const getCompletedDataString = createSelector(
-	getCurrentPacketId,
-	getPackets,
-	(packetId, packets) => {
-		if (!packetId) {
+	getCurrentPacket,
+	(packet) => {
+		if (!packet) {
 			return '';
 		}
 
 		let str = '';
-		packets[packetId].data.forEach(({ dataStr }) => str += dataStr);
+		packet.data.forEach(({ dataStr }) => str += dataStr);
 
 		return str;
 	}
 );
+
