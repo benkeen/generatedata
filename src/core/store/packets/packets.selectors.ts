@@ -60,3 +60,18 @@ export const getBatchLoadTimes = createSelector(
 		});
 	}
 );
+
+export const getCompletedDataString = createSelector(
+	getCurrentPacketId,
+	getPackets,
+	(packetId, packets) => {
+		if (!packetId) {
+			return '';
+		}
+
+		let str = '';
+		packets[packetId].data.forEach(({ dataStr }) => str += dataStr);
+
+		return str;
+	}
+);

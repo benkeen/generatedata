@@ -41,10 +41,11 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Activi
 	return {
 		...stateProps,
 		onClose: (): void => dispatch(packetActions.hideActivityPanel()),
-		logDataBatch: (numGeneratedRows: number, data: any) => dispatch(packetActions.logDataBatch(packetId, numGeneratedRows, data)),
+		logDataBatch: (numGeneratedRows: number, dataStr: string) => dispatch(packetActions.logDataBatch(packetId, numGeneratedRows, dataStr)),
 		onPause: (): GDAction => dispatch(packetActions.pauseGeneration(packetId)),
 		onContinue: (): GDAction => dispatch(packetActions.continueGeneration(packetId)),
-		onAbort: (): GDAction => dispatch(packetActions.abortGeneration(packetId))
+		onAbort: (): GDAction => dispatch(packetActions.abortGeneration(packetId)),
+		onDownload: (): any => dispatch(packetActions.promptToDownload()),
 	};
 };
 

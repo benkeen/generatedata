@@ -6,7 +6,7 @@ import { ExportTypeFolder } from '../../../_plugins';
 
 type GeneratedDataBatch = {
 	byteSize: number;
-	data: string;
+	dataStr: string;
 	endTime: number;
 };
 
@@ -119,12 +119,12 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			break;
 
 		case actions.LOG_DATA_BATCH: {
-			const { packetId, numGeneratedRows, data } = action.payload;
+			const { packetId, numGeneratedRows, dataStr } = action.payload;
 
 			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
 			draft.packets[packetId].data.push({
-				data,
-				byteSize: data.length,
+				dataStr,
+				byteSize: dataStr.length,
 				endTime: performance.now()
 			});
 		}

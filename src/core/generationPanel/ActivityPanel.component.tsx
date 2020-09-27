@@ -26,17 +26,17 @@ export type ActivityPanelProps = {
 	onPause: () => void;
 	onContinue: () => void;
 	onAbort: () => void;
+	onDownload: () => void;
 	workerResources: any;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
 };
 
-function valueLabelFormat(value: number) {
-	return `${value}%`;
-}
+const valueLabelFormat = (value: number) => `${value}%`;
 
 const ActivityPanel = ({
-	visible, onClose, i18n, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort
+	visible, onClose, i18n, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
+	onDownload
 }: ActivityPanelProps): any => {
 	if (packet === null) {
 		return null;
@@ -91,9 +91,6 @@ const ActivityPanel = ({
 	}, [isPaused]);
 
 	const animation = true;
-
-
-
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
 	const pieChartData = [
 		{ name: "Complete", value: percentage, color: '#275eb5' },
@@ -114,6 +111,22 @@ const ActivityPanel = ({
 			label: 'CPU-meltingly fast',
 		}
 	];
+
+	const getActionButton = () => {
+		if (percentage === 100) {
+			return (
+				<Button onClick={onDownload} color="primary" variant="outlined" style={{ marginRight: 10 }}>
+					Download
+				</Button>
+			);
+		}
+
+		return (
+			<Button onClick={onAbort} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
+				Cancel Generation
+			</Button>
+		);
+	};
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
@@ -147,8 +160,16 @@ const ActivityPanel = ({
 									Estimated time:
 								</div>
 								<div>
+									Estimated Size:
+								</div>
+
+								<div>
 									Remaining time:
 								</div>
+								<div>
+									Size:
+								</div>
+
 							</div>
 
 							<div className={styles.panel2}>
@@ -192,9 +213,7 @@ const ActivityPanel = ({
 						/>
 					</div>
 
-					<Button onClick={onAbort} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
-						Cancel Generation
-					</Button>
+					{getActionButton()}
 				</DialogActions>
 			</div>
 		</Dialog>

@@ -1,7 +1,9 @@
 import { Dispatch } from 'redux';
 import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 import * as selectors from '../generator/generator.selectors';
+import * as packetSelectors from '../packets/packets.selectors';
 import { GDAction } from '~types/general';
+import { downloadFile } from '../../generationPanel/generation.helpers';
 
 export const START_GENERATION = 'START_GENERATION';
 export const startGeneration = (): any => (dispatch: Dispatch, getState: any): void => {
@@ -26,12 +28,12 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 };
 
 export const LOG_DATA_BATCH = 'LOG_DATA_BATCH';
-export const logDataBatch = (packetId: string, numGeneratedRows: number, data: any): GDAction => ({
+export const logDataBatch = (packetId: string, numGeneratedRows: number, dataStr: string): GDAction => ({
 	type: LOG_DATA_BATCH,
 	payload: {
 		packetId,
 		numGeneratedRows,
-		data
+		dataStr
 	}
 });
 
@@ -49,3 +51,11 @@ export const hideActivityPanel = (): GDAction => ({ type: HIDE_ACTIVITY_PANEL })
 
 export const SHOW_ACTIVITY_PANEL = 'SHOW_ACTIVITY_PANEL';
 export const showActivityPanel = (packetId: string): GDAction => ({ type: SHOW_ACTIVITY_PANEL, payload: { packetId } });
+
+export const promptToDownload = () => (dispatch: Dispatch, getState: any) => {
+	const state = getState();
+	const packetId = packetSelectors.getCurrentPacketId(state);
+	const dataString = packetSelectors.getCompletedDataString(state);
+
+	downloadFile(`data-${packetId}.json`, dataString, 'application/json');
+};
