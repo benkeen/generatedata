@@ -25,7 +25,7 @@ export type ETSettings = {
 export type ETPreviewProps = {
 	builderLayout: BuilderLayout;
 	exportTypeSettings: any; // TODO
-	showRowNumbers: boolean;
+	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
 	data: string;
 	codeMirrorMode: string;

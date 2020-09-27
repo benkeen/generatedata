@@ -6,14 +6,14 @@ import * as generatorActions from '../store/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<PreviewSettingsTabProps> => ({
 	numPreviewRows: generatorSelectors.getNumPreviewRows(state),
-	showRowNumbers: generatorSelectors.shouldShowRowNumbers(state),
+	showLineNumbers: generatorSelectors.shouldShowLineNumbers(state),
 	theme: generatorSelectors.getTheme(state),
 	previewTextSize: generatorSelectors.getPreviewTextSize(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewSettingsTabProps> => ({
 	onChangeTheme: (theme: string): any => dispatch(generatorActions.changeTheme(theme)),
-	toggleRowNumbers: (): any => dispatch(generatorActions.toggleShowRowNumbers()),
+	toggleLineNumbers: (): any => dispatch(generatorActions.toggleShowLineNumbers()),
 	toggleLineWrapping: (): any => dispatch(generatorActions.toggleLineWrapping()),
 	onChangePreviewTextSize: (size: number): any => dispatch(generatorActions.setPreviewTextSize(size)),
 	updateNumPreviewRows: (numRows: number): any => dispatch(generatorActions.updateNumPreviewRows(numRows))

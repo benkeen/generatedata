@@ -8,11 +8,11 @@ import * as styles from './ExportSettings.scss';
 export type PreviewSettingsTabProps = {
 	theme: string;
 	numPreviewRows: number;
-	showRowNumbers: boolean;
+	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
 	previewTextSize: number;
 	onChangeTheme: Function;
-	toggleRowNumbers: Function;
+	toggleLineNumbers: Function;
 	toggleLineWrapping: Function;
 	onChangePreviewTextSize: Function;
 	updateNumPreviewRows: Function;
@@ -27,8 +27,8 @@ const previewRowOptions = getArrayOfSize(C.MAX_PREVIEW_ROWS - C.MIN_PREVIEW_ROWS
 });
 
 export const PreviewSettingsTab = ({
-	theme, numPreviewRows, showRowNumbers, enableLineWrapping, previewTextSize, onChangeTheme,
-	toggleRowNumbers, toggleLineWrapping, onChangePreviewTextSize, updateNumPreviewRows
+	theme, numPreviewRows, showLineNumbers, enableLineWrapping, previewTextSize, onChangeTheme,
+	toggleLineNumbers, toggleLineWrapping, onChangePreviewTextSize, updateNumPreviewRows
 }: PreviewSettingsTabProps): JSX.Element => {
 	return (
 		<div className={styles.tabContent}>
@@ -46,10 +46,10 @@ export const PreviewSettingsTab = ({
 				<div className={styles.label}>Show line numbers</div>
 				<div className={styles.field}>
 					<Switch
-						checked={showRowNumbers}
+						checked={showLineNumbers}
 						value="checked"
 						color="primary"
-						onChange={(): void => toggleRowNumbers()}
+						onChange={(): void => toggleLineNumbers()}
 					/>
 				</div>
 			</div>

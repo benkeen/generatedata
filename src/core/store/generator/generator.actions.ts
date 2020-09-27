@@ -178,8 +178,8 @@ export const updateNumPreviewRows = (numRows: number): GDAction => ({ type: UPDA
 export const CHANGE_THEME = 'CHANGE_THEME';
 export const changeTheme = (theme: string): GDAction => ({ type: CHANGE_THEME, payload: { theme } });
 
-export const TOGGLE_SHOW_ROW_NUMBERS = 'TOGGLE_SHOW_ROW_NUMBERS';
-export const toggleShowRowNumbers = (): GDAction => ({ type: TOGGLE_SHOW_ROW_NUMBERS });
+export const TOGGLE_SHOW_LINE_NUMBERS = 'TOGGLE_SHOW_LINE_NUMBERS';
+export const toggleShowLineNumbers = (): GDAction => ({ type: TOGGLE_SHOW_LINE_NUMBERS });
 
 export const TOGGLE_LINE_WRAPPING = 'TOGGLE_LINE_WRAPPING';
 export const toggleLineWrapping = (): GDAction => ({ type: TOGGLE_LINE_WRAPPING });

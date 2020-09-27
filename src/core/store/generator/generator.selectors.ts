@@ -22,7 +22,7 @@ export const isPreviewVisible = (state: Store): boolean => state.generator.showP
 export const getSmallScreenVisiblePanel = (state: Store): GeneratorPanel => state.generator.smallScreenVisiblePanel;
 export const getBuilderLayout = (state: Store): BuilderLayout => state.generator.builderLayout;
 export const getNumPreviewRows = (state: Store): number => state.generator.numPreviewRows;
-export const shouldShowRowNumbers = (state: Store): boolean => state.generator.showRowNumbers;
+export const shouldShowLineNumbers = (state: Store): boolean => state.generator.showLineNumbers;
 export const shouldEnableLineWrapping = (state: Store): boolean => state.generator.enableLineWrapping;
 export const getTheme = (state: Store): string => state.generator.theme;
 export const getPreviewTextSize = (state: Store): number => state.generator.previewTextSize;
@@ -34,7 +34,6 @@ export const isStartGenerationPanelVisible = (state: Store): any => state.genera
 export const getNumRowsToGenerate = (state: Store): number => state.generator.numRowsToGenerate;
 export const getLastLayoutWidth = (state: Store): number | null => state.generator.lastLayoutWidth;
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
-export const getNumGeneratedRows = (state: Store): number => state.generator.numGeneratedRows;
 export const isInitialDependenciesLoaded = (state: Store): boolean => state.generator.initialDependenciesLoaded;
 
 export const getRowIds = createSelector(

@@ -1,15 +1,22 @@
 import React from 'react';
 import * as coreUtils from '~utils/coreUtils';
 import { Controlled as CodeMirror } from 'react-codemirror2';
+import { ExportTypeFolder } from '../../_plugins';
+import { LoadedExportTypes } from '~utils/exportTypeUtils';
 
 export type CodeMirrorWrapperProps = {
-	theme: string; // TODO
+	rows: any;
+	columns: any;
+	exportType: ExportTypeFolder;
+	exportTypeSettings: any;
+	theme: string;
 	codeMirrorMode: string;
 	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
+	loadedExportTypes: LoadedExportTypes;
 };
 
-const CodeMirrorWrapper = (props: any): JSX.Element => {
+const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 	const {
 		rows, columns, exportType, exportTypeSettings, codeMirrorMode, theme, showLineNumbers, loadedExportTypes,
 		enableLineWrapping
@@ -35,6 +42,8 @@ const CodeMirrorWrapper = (props: any): JSX.Element => {
 				setCode(str);
 			});
 	}, [rows, columns, exportType, exportTypeSettings, loadedExportTypes]);
+
+	console.log({ showLineNumbers });
 
 	return (
 		<CodeMirror

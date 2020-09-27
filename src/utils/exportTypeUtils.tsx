@@ -4,7 +4,7 @@ import { ETBundle } from '~types/exportTypes';
 
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
-type LoadedExportTypes = {
+export type LoadedExportTypes = {
 	[name in ExportTypeFolder]?: ETBundle
 }
 

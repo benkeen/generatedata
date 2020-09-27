@@ -56,7 +56,7 @@ export type GeneratorState = {
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
 	showStartGenerationPanel: boolean;
-	showRowNumbers: boolean;
+	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
 	theme: string;
 	previewTextSize: number;
@@ -85,7 +85,7 @@ export const getInitialState = (): GeneratorState => ({
 	showExportSettings: false,
 	exportTypeSettings: {},
 	numPreviewRows: 5,
-	showRowNumbers: false,
+	showLineNumbers: false,
 	enableLineWrapping: true,
 	theme: 'lucario',
 	previewTextSize: 12,
@@ -222,8 +222,8 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.theme = action.payload.theme;
 			break;
 
-		case actions.TOGGLE_SHOW_ROW_NUMBERS:
-			draft.showRowNumbers = !draft.showRowNumbers;
+		case actions.TOGGLE_SHOW_LINE_NUMBERS:
+			draft.showLineNumbers = !draft.showLineNumbers;
 			break;
 
 		case actions.SET_PREVIEW_TEXT_SIZE:
