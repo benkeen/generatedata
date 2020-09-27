@@ -2,6 +2,10 @@ import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject, Tag } from './general';
 import { CountryType, DataTypeFolder } from '../src/_plugins';
 
+export type DataTypeMap = {
+	[dataType in DataTypeFolder]?: string;
+};
+
 export type DTBundle = {
 	initialState?: any;
 
@@ -46,7 +50,6 @@ export type DTDefinition = {
 };
 
 export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'creditCardData' | 'math' | 'text';
-
 
 export type DTMetadataType = 'number' | 'string' | 'boolean' | 'date' | 'infer';
 

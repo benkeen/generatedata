@@ -1,30 +1,32 @@
-import { ExportTypeGenerationData } from '~types/general';
+import { ETMessageData, ETOnMessage } from '~types/exportTypes';
 
-/*
-	React.useEffect(() => {
-		let content = '';
-		if (exportTypeSettings.exportFormat === 'table') {
-			content = generateTableFormat(data);
-		} else if (exportTypeSettings.exportFormat === 'ul') {
-			content = generateUlFormat(data);
-		} else if (exportTypeSettings.exportFormat === 'dl') {
-			content = generateDlFormat(data);
-		}
-		setCode(content);
-	}, [data, setCode, exportTypeSettings]);
+declare var utils: any;
 
-	if (!data.rows.length) {
-		return null;
+const context: Worker = self as any;
+
+let workerUtilsLoaded = false;
+context.onmessage = (e: ETOnMessage) => {
+	if (!workerUtilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
 	}
 
-mode: 'xml',
- */
-export const generate = (): any => {
+	const { dataStructureFormat } = e.data.settings;
 
+	let content = '';
+	if (dataStructureFormat === 'table') {
+		content = generateTableFormat(e.data);
+	} else if (dataStructureFormat === 'ul') {
+		content = generateUlFormat(e.data);
+	} else if (dataStructureFormat === 'dl') {
+		content = generateDlFormat(e.data);
+	}
+
+	context.postMessage(content);
 };
 
 
-export const generateTableFormat = (data: ExportTypeGenerationData): string => {
+export const generateTableFormat = (data: ETMessageData): string => {
 	let content = "";
 	if (data.isFirstBatch) {
 		content += "<table>\n\t<tr>\n";
@@ -49,7 +51,7 @@ export const generateTableFormat = (data: ExportTypeGenerationData): string => {
 	return content;
 };
 
-export const generateUlFormat = (data: ExportTypeGenerationData): string => {
+export const generateUlFormat = (data: ETMessageData): string => {
 	let content = '';
 	if (data.isFirstBatch) {
 		content += '<ul class="columns">\n';
@@ -70,7 +72,7 @@ export const generateUlFormat = (data: ExportTypeGenerationData): string => {
 	return content;
 };
 
-export const generateDlFormat = (data: ExportTypeGenerationData): string => {
+export const generateDlFormat = (data: ETMessageData): string => {
 	let content = '';
 	data.rows.forEach((row) => {
 		content += '<dl>\n';

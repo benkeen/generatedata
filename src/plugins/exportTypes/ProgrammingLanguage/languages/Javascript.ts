@@ -1,7 +1,7 @@
-import { ExportTypeGenerationData } from '~types/general';
+import { ETMessageData } from '~types/exportTypes';
 import { ProgrammingLanguageState } from '../ProgrammingLanguage.ui';
 
-export const generateJS = (data: ExportTypeGenerationData, exportTypeSettings: ProgrammingLanguageState): string => {
+export const generateJS = (data: ETMessageData, exportTypeSettings: ProgrammingLanguageState): string => {
 	let content = '';
 	if (data.isFirstBatch) {
 		if (exportTypeSettings.jsExportFormat === 'variable') {

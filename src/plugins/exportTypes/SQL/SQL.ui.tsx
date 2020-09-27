@@ -10,7 +10,7 @@ export type SQLSettings = {
 	databaseType: 'MySQL' | 'Postgres' | 'SQLite' | 'Oracle' | 'MSSQL';
 	createTable: boolean;
 	dropTable: boolean;
-	encloseInBackquotes: boolean;
+	encloseInBackQuotes: boolean;
 	statementType: 'insert' | 'insertIgnore' | 'update';
 	insertBatchSize: number;
 	addPrimaryKey: boolean;
@@ -21,7 +21,7 @@ export const initialState: SQLSettings = {
 	databaseType: 'MySQL',
 	createTable: true,
 	dropTable: true,
-	encloseInBackquotes: true,
+	encloseInBackQuotes: true,
 	statementType: 'insert',
 	insertBatchSize: 10,
 	addPrimaryKey: true
@@ -43,7 +43,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 		{ value: 'MSSQL', label: 'MSSQL' }
 	];
 
-	const getBackquotesOption = (): React.ReactNode => {
+	const getBackQuotesOption = (): React.ReactNode => {
 		if (data.databaseType === 'Postgres' || data.databaseType === 'MSSQL') {
 			return null;
 		}
@@ -51,13 +51,13 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 		return (
 			<div>
 				<Switch
-					checked={data.encloseInBackquotes}
-					id={`${id}-encloseInBackquotes`}
+					checked={data.encloseInBackQuotes}
+					id={`${id}-encloseInBackQuotes`}
 					value="checked"
 					color="primary"
-					onChange={(): void => onChange('encloseInBackquotes', !data.encloseInBackquotes)}
+					onChange={(): void => onChange('encloseInBackQuotes', !data.encloseInBackQuotes)}
 				/>
-				<label htmlFor={`${id}-encloseInBackquotes`}>{i18n.encloseTableBackquotes}</label>
+				<label htmlFor={`${id}-encloseInBackQuotes`}>{i18n.encloseTableBackquotes}</label>
 			</div>
 		);
 	};
@@ -170,7 +170,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 								{i18n.includeCreateTableQuery}
 							</label>
 						</div>
-						{getBackquotesOption()}
+						{getBackQuotesOption()}
 						<div>
 							<Switch
 								checked={data.addPrimaryKey}

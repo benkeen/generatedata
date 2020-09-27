@@ -1,6 +1,6 @@
-import { ExportTypeGenerationData } from '~types/general';
+import { ETMessageData } from '~types/exportTypes';
 
-export const generateRuby = (data: ExportTypeGenerationData): string => {
+export const generateRuby = (data: ETMessageData): string => {
 	let content = '';
 	if (data.isFirstBatch) {
 		content += 'data = [\n';

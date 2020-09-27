@@ -1,7 +1,7 @@
 test.skip('skip', () => {});
 
 // import { generateSimple, isNested } from '../JSON.generator';
-// import { ExportTypeGenerationData } from '~types/general';
+// import { ETMessageData } from '~types/exportTypes';
 //
 //
 // describe('isNested', () => {
@@ -28,7 +28,7 @@ test.skip('skip', () => {});
 //
 //
 // describe('generateSimple', () => {
-//     const data: ExportTypeGenerationData = {
+//     const data: ETMessageData = {
 //         columns: [
 //         	{ title: 'One', dataType: 'Names' },
 // 			{ title: 'Two', dataType: 'Names' }
@@ -66,7 +66,7 @@ test.skip('skip', () => {});
 //     });
 //
 //     it('should escape double quotes within property names', () => {
-//         const doubleQuoteData: ExportTypeGenerationData = {
+//         const doubleQuoteData: ETMessageData = {
 //             columns: [
 //             	{ title: 'Name', dataType: 'Names' },
 // 				{ title: '"Phone" Number', dataType: 'Names' }
@@ -95,7 +95,7 @@ test.skip('skip', () => {});
 //     });
 //
 //     it('should escape double quotes within values', () => {
-//         const doubleQuoteValueData: ExportTypeGenerationData = {
+//         const doubleQuoteValueData: ETMessageData = {
 //             columns: [
 //             	{ title: 'Name', dataType: 'Names' },
 // 				{ title: 'Phone', dataType: 'Names' }
@@ -124,7 +124,7 @@ test.skip('skip', () => {});
 //     });
 //
 //     it('should not put double quotes around numbers', () => {
-//         const numData: ExportTypeGenerationData = {
+//         const numData: ETMessageData = {
 //             columns: [
 // 				{ title: 'Num1', dataType: 'Names' },
 // 				{ title: 'Num2', dataType: 'Names' },
@@ -147,7 +147,7 @@ test.skip('skip', () => {});
 //     });
 //
 //     it('should not put double quotes around boolean values', () => {
-//         const numData: ExportTypeGenerationData = {
+//         const numData: ETMessageData = {
 //             columns: [
 //             	{ title: 'a', dataType: 'Names' },
 // 				{ title: 'b', dataType: 'Names' },

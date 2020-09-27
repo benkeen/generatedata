@@ -1,4 +1,4 @@
-import { ExportTypeGenerationData } from '~types/general';
+import { ETMessageData } from '~types/exportTypes';
 import { XMLSettings } from './XML.ui';
 
 export const generate = (): any => {
@@ -7,7 +7,7 @@ export const generate = (): any => {
 	};
 };
 
-export const generateXML = (generationData: ExportTypeGenerationData, xmlSettings: XMLSettings): string => {
+export const generateXML = (generationData: ETMessageData, xmlSettings: XMLSettings): string => {
 	const { rootNodeName, recordNodeName } = xmlSettings;
 
 	let content = "";

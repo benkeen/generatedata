@@ -1,5 +1,5 @@
 import { isBoolean, isNumeric } from '~utils/generalUtils';
-import { ExportTypeGenerationData } from '~types/general';
+import { ETMessageData } from '~types/exportTypes';
 
 // const sharpDateFormats = {
 //     "m/d/Y": "MM/dd/yyyy",
@@ -11,7 +11,7 @@ import { ExportTypeGenerationData } from '~types/general';
 //     "d.m.Y": "dd.MM.yyyy"
 // };
 
-export const generateCSharp = (data: ExportTypeGenerationData): string => {
+export const generateCSharp = (data: ETMessageData): string => {
 	let content = '';
 	if (data.isFirstBatch) {
 		content += `var data = new [] {\n`;

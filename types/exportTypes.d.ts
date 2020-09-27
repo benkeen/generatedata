@@ -1,4 +1,12 @@
 import { BuilderLayout } from '../src/core/builder/Builder.component';
+import { ColumnData } from '~types/general';
+import { ExportTypeFolder } from '../src/_plugins';
+import { CountryMap } from '~types/countries';
+import { DataTypeMap } from '~types/dataTypes';
+
+export type ExportTypeMap = {
+	[exportType in ExportTypeFolder]?: string;
+};
 
 export type ETBundle = {
 	initialState: any; // TODO generics
@@ -22,12 +30,22 @@ export type ETSettings = {
 	coreI18n: object;
 };
 
-export type ETPreviewProps = {
-	builderLayout: BuilderLayout;
-	exportTypeSettings: any; // TODO
-	showLineNumbers: boolean;
-	enableLineWrapping: boolean;
-	data: string;
-	codeMirrorMode: string;
-	theme: string;
+export type ETMessageData = {
+	action: 'generate' | 'pause' | 'continue' | 'abort';
+	columns: ColumnData[];
+	rows: any[];
+	isFirstBatch: boolean;
+	isLastBatch: boolean;
+	dataTypeMetadata: any; // TODO
+	settings: any; // TODO generic possible? This is the export type settings
+	workerResources: {
+		workerUtils: string;
+		exportTypes: ExportTypeMap;
+		dataTypes: DataTypeMap;
+		countries: CountryMap;
+	};
 };
+
+interface ETOnMessage extends MessageEvent {
+	data: ETMessageData
+}

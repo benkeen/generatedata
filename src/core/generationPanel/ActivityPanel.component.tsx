@@ -55,7 +55,7 @@ const ActivityPanel = ({
 		}
 
 		dataTypeWorker.postMessage({
-			action: C.ACTIVITY_PANEL_ACTIONS.GENERATE,
+			action: 'blah',
 			numResults: numRowsToGenerate,
 			batchSize: C.GENERATION_BATCH_SIZE,
 			columns,
@@ -136,7 +136,8 @@ const ActivityPanel = ({
 	};
 
 	const getGenerationControls = (): React.ReactNode => {
-		if (!isComplete) {
+		// TODO apply class to fade out instead
+		if (isComplete) {
 			return null;
 		}
 

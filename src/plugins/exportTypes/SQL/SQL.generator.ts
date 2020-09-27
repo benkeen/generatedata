@@ -1,4 +1,4 @@
-import { ExportTypeGenerationData } from '~types/general';
+import { ETMessageData } from '~types/exportTypes';
 import { getNumericFieldColumnIndexes } from '~utils/generationUtils';
 import { SQLSettings } from './SQL.ui';
 
@@ -41,8 +41,8 @@ const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: numb
 	return val;
 };
 
-export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
-	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
+export const generateMySQL = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
+	const backquote = sqlSettings.encloseInBackQuotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
@@ -81,7 +81,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 	}
 
 	let colNamesStr = '';
-	if (sqlSettings.encloseInBackquotes) {
+	if (sqlSettings.encloseInBackQuotes) {
 		colNamesStr = `\`${colTitles.join('`,`')}\``;
 	} else {
 		colNamesStr = colTitles.join(',');
@@ -132,7 +132,7 @@ export const generateMySQL = (generationData: ExportTypeGenerationData, sqlSetti
 };
 
 
-export const generatePostgres = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
+export const generatePostgres = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
@@ -201,8 +201,8 @@ export const generatePostgres = (generationData: ExportTypeGenerationData, sqlSe
 };
 
 
-export const generateSQLite = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
-	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
+export const generateSQLite = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
+	const backquote = sqlSettings.encloseInBackQuotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
@@ -244,7 +244,7 @@ export const generateSQLite = (generationData: ExportTypeGenerationData, sqlSett
 	}
 
 	let colNamesStr = '';
-	if (sqlSettings.encloseInBackquotes) {
+	if (sqlSettings.encloseInBackQuotes) {
 		colNamesStr = `\`${colTitles.join('`,`')}\``;
 	} else {
 		colNamesStr = colTitles.join(',');
@@ -281,8 +281,8 @@ export const generateSQLite = (generationData: ExportTypeGenerationData, sqlSett
 };
 
 
-export const generateOracle = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
-	const backquote = sqlSettings.encloseInBackquotes ? '`' : '';
+export const generateOracle = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
+	const backquote = sqlSettings.encloseInBackQuotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
@@ -322,7 +322,7 @@ export const generateOracle = (generationData: ExportTypeGenerationData, sqlSett
 	}
 
 	let colNamesStr = '';
-	if (sqlSettings.encloseInBackquotes) {
+	if (sqlSettings.encloseInBackQuotes) {
 		colNamesStr = `\`${colTitles.join('`,`')}\``;
 	} else {
 		colNamesStr = colTitles.join(',');
@@ -356,7 +356,7 @@ export const generateOracle = (generationData: ExportTypeGenerationData, sqlSett
 };
 
 
-export const generateMSSQL = (generationData: ExportTypeGenerationData, sqlSettings: SQLSettings): string => {
+export const generateMSSQL = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
@@ -449,7 +449,7 @@ export const generateMSSQL = (generationData: ExportTypeGenerationData, sqlSetti
 };
 
 
-export const getDataTypeSqlMetadata = (generationData: ExportTypeGenerationData): any => {
+export const getDataTypeSqlMetadata = (generationData: ETMessageData): any => {
 	const sqlMetadata: any = {};
 	const dt = generationData.dataTypeMetadata;
 	Object.keys(dt).forEach((dataType) => {

@@ -2,6 +2,8 @@ import { coreConfig } from '../core';
 import { generate } from 'shortid';
 import webWorkers from '../_pluginWebWorkers';
 import { DataTypeFolder, ExportTypeFolder } from '../_plugins';
+import { ExportTypeMap } from '~types/exportTypes';
+import { DataTypeMap } from '~types/dataTypes';
 
 export const getScriptVersion = (): string => coreConfig.version;
 
@@ -30,10 +32,6 @@ export const createExportTypeWorker = (customId: string | null = null): string =
 
 export const getExportTypeWorker = (id: string): Worker => exportTypeWorkers[id];
 
-export type DataTypeMap = {
-	[dataType in DataTypeFolder]?: string;
-};
-
 export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]): DataTypeMap => {
 	const map: DataTypeMap = {};
 	const dataTypeMap: any = webWorkers.dataTypes;
@@ -41,10 +39,6 @@ export const getDataTypeWorkerMap = (dataTypes: DataTypeFolder[]): DataTypeMap =
 		map[dataType] = dataTypeMap[dataType];
 	});
 	return map;
-};
-
-export type ExportTypeMap = {
-	[exportType in ExportTypeFolder]?: string;
 };
 
 export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMap => {

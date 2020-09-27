@@ -38,6 +38,7 @@ export default {
 		"Tree": "DT-Tree.generator-68b329da9893e34099c7d8ad5cb9c940.js"
 	},
 	"exportTypes": {
+		"HTML": "ET-HTML.generator-36c8695b5de254b4861c4d736396a48a.js",
 		"JSON": "ET-JSON.generator-19552de543233e8b524d82e55a1d093c.js"
 	},
 	"countries": {

@@ -1,11 +1,11 @@
-import { ExportTypeGenerationData } from '~types/general';
+import { ETOnMessage, ETMessageData } from '~types/exportTypes';
 
 declare var utils: any;
 
 const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
-context.onmessage = (e: MessageEvent) => {
+context.onmessage = (e: ETOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		workerUtilsLoaded = true;
@@ -19,7 +19,7 @@ context.onmessage = (e: MessageEvent) => {
 };
 
 
-const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
+const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean): string => {
 	let content = '';
 	let comma = '';
 
@@ -61,7 +61,7 @@ const generateSimple = (generationData: ExportTypeGenerationData, stripWhitespac
 };
 
 
-const generateComplex = (generationData: ExportTypeGenerationData, stripWhitespace: boolean): string => {
+const generateComplex = (generationData: ETMessageData, stripWhitespace: boolean): string => {
 	let content = '';
 	const colTitles = generationData.columns.map(({ title }: any) => title);
 

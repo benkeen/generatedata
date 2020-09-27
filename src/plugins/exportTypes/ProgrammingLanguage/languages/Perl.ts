@@ -1,6 +1,6 @@
-import { ExportTypeGenerationData } from '~types/general';
+import { ETMessageData } from '~types/exportTypes';
 
-export const generatePerl = (data: ExportTypeGenerationData): string => {
+export const generatePerl = (data: ETMessageData): string => {
 	let content = '';
 	if (data.isFirstBatch) {
 		content += "@data = (\n";

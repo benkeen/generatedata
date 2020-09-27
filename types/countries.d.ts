@@ -1,3 +1,5 @@
+import { CountryType } from '../src/_plugins';
+
 export interface GetCountryData {
 	(i18n: any): CountryDataType;
 }
@@ -10,6 +12,10 @@ export type CountryDataType = {
 	regions: Region[];
 	extendedData: ExtendedData;
 };
+
+export type CountryMap = {
+	[country in CountryType]?: string;
+}
 
 export type Continent = 'africa' | 'asia' | 'central_america' | 'europe' | 'oceania' | 'south_america' | 'north_america';
 

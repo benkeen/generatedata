@@ -49,23 +49,9 @@ export type GenerationTemplate = {
     [num: number]: GenerationTemplateRow[];
 };
 
-export type GenerationProps = {
-    numResults: number;
-    columns: any; // TODO string[];
-    template: GenerationTemplate;
-};
-
 export type ColumnData = {
 	title: string;
 	dataType: DataTypeFolder;
-};
-
-export type ExportTypeGenerationData = {
-	columns: ColumnData[];
-	rows: any[]; // TODO see how this settles. Right now it's just an array of strings too: i.e. the generated values
-    isFirstBatch: boolean;
-    isLastBatch: boolean;
-	dataTypeMetadata: any; // TODO
 };
 
 export type Tag = '';

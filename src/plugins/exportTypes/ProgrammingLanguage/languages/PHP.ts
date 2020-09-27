@@ -1,6 +1,6 @@
-import { ExportTypeGenerationData } from '~types/general';
+import { ETMessageData } from '~types/exportTypes';
 
-export const generatePhp = (data: ExportTypeGenerationData): string => {
+export const generatePhp = (data: ETMessageData): string => {
 	let content = '';
 	if (data.isFirstBatch) {
 		content += '<?php\n\n\$data = array(\n';

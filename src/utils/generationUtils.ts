@@ -1,6 +1,7 @@
-import { ColumnData, ExportTypeGenerationData } from '~types/general';
+import { ColumnData } from '~types/general';
+import { ETMessageData } from '~types/exportTypes';
 
-export const getNumericFieldColumnIndexes = (generationData: ExportTypeGenerationData): number[] => {
+export const getNumericFieldColumnIndexes = (generationData: ETMessageData): number[] => {
 	const dataTypeMap: any = {};
 	const dt = generationData.dataTypeMetadata;
 	Object.keys(dt).forEach((dataType) => {
