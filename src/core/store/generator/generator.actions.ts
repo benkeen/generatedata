@@ -1,17 +1,16 @@
+import { Dispatch } from 'redux';
 import * as selectors from './generator.selectors';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
+import { registerInterceptors } from '../../actionInterceptor';
+import * as coreUtils from '~utils/coreUtils';
+import { getStrings } from '~utils/langUtils';
 import { getUniqueString } from '~utils/stringUtils';
 import { loadExportTypeBundle } from '~utils/exportTypeUtils';
-import * as coreUtils from '~utils/coreUtils';
-import { registerInterceptors } from '../../actionInterceptor';
-import { getStrings } from '~utils/langUtils';
 import { DTBundle } from '~types/dataTypes';
 import { GDAction } from '~types/general';
 import C from '../../constants';
-import { Dispatch } from 'redux';
-import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({

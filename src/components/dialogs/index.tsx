@@ -62,7 +62,7 @@ const useDialogStyles = makeStyles({
 	}
 });
 
-export const Dialog = (props: any) => {
+export const Dialog = (props: any): JSX.Element => {
 	const { root, paper } = useDialogStyles(props);
 
 	return (

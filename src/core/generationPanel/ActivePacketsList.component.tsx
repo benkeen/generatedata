@@ -62,7 +62,7 @@ const ActivePacketsList = ({ packetList, openPacket }: ActivePacketsListProps): 
 					className={styles.chip}
 					clickable
 					color={color}
-					onClick={() => openPacket(packetId)}
+					onClick={(): void => openPacket(packetId)}
 					variant="outlined"
 					style={{ marginLeft: 10 }}
 				/>

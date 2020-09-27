@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../store/generator/generator.actions';
 import * as packetActions from '../store/packets/packets.actions';
 import * as selectors from '../store/generator/generator.selectors';
 import * as packetSelectors from '../store/packets/packets.selectors';
@@ -31,7 +30,7 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: 
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({ dispatch });
+const mapDispatchToProps = (dispatch: Dispatch): any => ({ dispatch });
 
 const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): ActivityPanelProps => {
 	if (stateProps.packet === null) {
@@ -41,7 +40,7 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Activi
 	return {
 		...stateProps,
 		onClose: (): void => dispatch(packetActions.hideActivityPanel()),
-		logDataBatch: (numGeneratedRows: number, dataStr: string) => dispatch(packetActions.logDataBatch(packetId, numGeneratedRows, dataStr)),
+		logDataBatch: (numGenRows: number, dataStr: string): GDAction => dispatch(packetActions.logDataBatch(packetId, numGenRows, dataStr)),
 		onPause: (): GDAction => dispatch(packetActions.pauseGeneration(packetId)),
 		onContinue: (): GDAction => dispatch(packetActions.continueGeneration(packetId)),
 		onAbort: (): GDAction => dispatch(packetActions.abortGeneration(packetId)),

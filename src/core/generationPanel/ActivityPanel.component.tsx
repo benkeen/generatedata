@@ -32,10 +32,10 @@ export type ActivityPanelProps = {
 	batchLoadTimes: object[];
 };
 
-const valueLabelFormat = (value: number) => `${value}%`;
+const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
-	visible, onClose, i18n, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
+	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
 	onDownload
 }: ActivityPanelProps): any => {
 	if (packet === null) {
@@ -78,7 +78,7 @@ const ActivityPanel = ({
 				workerResources
 			});
 
-			exportTypeWorker.onmessage = (resp: any) => {
+			exportTypeWorker.onmessage = (resp: any): void => {
 				logDataBatch(numGeneratedRows, resp.data);
 			};
 		};
@@ -114,7 +114,7 @@ const ActivityPanel = ({
 		}
 	];
 
-	const getActionButtons = () => {
+	const getActionButtons = (): JSX.Element => {
 		if (isComplete) {
 			return (
 				<>
@@ -135,7 +135,7 @@ const ActivityPanel = ({
 		);
 	};
 
-	const getGenerationControls = () => {
+	const getGenerationControls = (): React.ReactNode => {
 		if (!isComplete) {
 			return null;
 		}

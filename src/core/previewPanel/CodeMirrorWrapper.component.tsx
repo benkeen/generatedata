@@ -27,23 +27,11 @@ const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 		if (!columns.length || !rows.length) {
 			return;
 		}
-
-		// console.log({ columns: cloneObj(columns), rows: cloneObj(rows) });
-
-		// when to re-run!
-		// add row -> easy
-		// remove row -> easy
-		// CHANGE row type -> ok
-		// CHANGE row settings -> hard(ish)
-		// change export type -> easy
-		// change export type setting (which?) -> hard
 		generatePreviewString(props)
 			.then((str: string) => {
 				setCode(str);
 			});
 	}, [rows, columns, exportType, exportTypeSettings, loadedExportTypes]);
-
-	console.log({ showLineNumbers });
 
 	return (
 		<CodeMirror
