@@ -47,3 +47,5 @@ export const Settings = ({ i18n, id, data, onUpdate }: DTSettingsProps): JSX.Ele
 		</div>
 	);
 };
+
+export const getCodeMirrorMode = (): string => 'text/html';

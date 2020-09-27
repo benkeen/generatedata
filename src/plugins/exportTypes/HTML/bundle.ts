@@ -1,2 +1,2 @@
 export { generate } from './HTML.generator';
-export { Settings, initialState } from './HTML.ui';
+export { Settings, initialState, getCodeMirrorMode } from './HTML.ui';
