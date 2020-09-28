@@ -41,7 +41,7 @@ export default {
 		"HTML": "ET-HTML.generator-0dad4a06d764a8d790c8b22f618a0f04.js",
 		"JSON": "ET-JSON.generator-19552de543233e8b524d82e55a1d093c.js",
 		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-2b30e5cb019aa51d19a42d78bf94c2f2.js",
-		"SQL": "ET-SQL.generator-68b329da9893e34099c7d8ad5cb9c940.js",
+		"SQL": "ET-SQL.generator-28e382149148f3b36570f45aa6794dec.js",
 		"XML": "ET-XML.generator-68b329da9893e34099c7d8ad5cb9c940.js"
 	},
 	"countries": {

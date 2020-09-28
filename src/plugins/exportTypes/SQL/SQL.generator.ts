@@ -13,17 +13,19 @@ context.onmessage = (e: ETOnMessage) => {
 		workerUtilsLoaded = true;
 	}
 
+	const settings = e.data.settings;
+
 	let content = '';
-	if (exportTypeSettings.databaseType === 'MySQL') {
-		content = generateMySQL(data, exportTypeSettings);
-	} else if (exportTypeSettings.databaseType === 'Postgres') {
-		content = generatePostgres(data, exportTypeSettings);
-	} else if (exportTypeSettings.databaseType === 'SQLite') {
-		content = generateSQLite(data, exportTypeSettings);
-	} else if (exportTypeSettings.databaseType === 'Oracle') {
-		content = generateOracle(data, exportTypeSettings);
-	} else if (exportTypeSettings.databaseType === 'MSSQL') {
-		content = generateMSSQL(data, exportTypeSettings);
+	if (settings.databaseType === 'MySQL') {
+		content = generateMySQL(e.data);
+	} else if (settings.databaseType === 'Postgres') {
+		content = generatePostgres(e.data);
+	} else if (settings.databaseType === 'SQLite') {
+		content = generateSQLite(e.data);
+	} else if (settings.databaseType === 'Oracle') {
+		content = generateOracle(e.data);
+	} else if (settings.databaseType === 'MSSQL') {
+		content = generateMSSQL(e.data);
 	}
 
 	context.postMessage(content);
@@ -33,7 +35,6 @@ context.onmessage = (e: ETOnMessage) => {
 export const generate = (): any => {
 
 };
-
 
 const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[]): any => {
 	let val = '';
@@ -45,14 +46,17 @@ const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: numb
 	return val;
 };
 
-export const generateMySQL = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
+export const generateMySQL = (data: ETMessageData): string => {
+	const sqlSettings: SQLSettings = data.settings;
+	const { isFirstBatch, columns, rows, dataTypeMetadata } = data;
+
 	const backquote = sqlSettings.encloseInBackQuotes ? '`' : '';
-	const colTitles = generationData.columns.map(({ title }) => title);
+	const colTitles = columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = getNumericFieldColumnIndexes(data);
 
-	if (generationData.isFirstBatch) {
+	if (isFirstBatch) {
 		if (sqlSettings.dropTable) {
 			content += `DROP TABLE IF EXISTS ${backquote}${sqlSettings.tableName}${backquote};\n\n`;
 		}
@@ -62,9 +66,9 @@ export const generateMySQL = (generationData: ETMessageData, sqlSettings: SQLSet
 				content += `  ${backquote}id${backquote} mediumint(8) unsigned NOT NULL auto_increment,\n`;
 			}
 			const cols: any[] = [];
-			generationData.columns.forEach(({ title, dataType }) => {
+			columns.forEach(({ title, dataType }) => {
 				let columnTypeInfo = 'MEDIUMTEXT';
-				const metadata = generationData.dataTypeMetadata[dataType];
+				const metadata = dataTypeMetadata[dataType];
 				if (metadata && metadata.sql) {
 					if (metadata.sql.field_MySQL) {
 						columnTypeInfo = metadata.sql.field_MySQL;
@@ -92,7 +96,7 @@ export const generateMySQL = (generationData: ETMessageData, sqlSettings: SQLSet
 	}
 
 	let rowDataStr: string[] = [];
-	generationData.rows.forEach((row: any, rowIndex: number) => {
+	rows.forEach((row: any, rowIndex: number) => {
 		if (sqlSettings.statementType === 'insert') {
 			const displayVals: any = [];
 			colTitles.forEach((columnTitle: string, colIndex: number) => {
@@ -136,7 +140,8 @@ export const generateMySQL = (generationData: ETMessageData, sqlSettings: SQLSet
 };
 
 
-export const generatePostgres = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
+export const generatePostgres = (generationData: ETMessageData): string => {
+	const sqlSettings: SQLSettings = generationData.settings;
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
@@ -205,7 +210,8 @@ export const generatePostgres = (generationData: ETMessageData, sqlSettings: SQL
 };
 
 
-export const generateSQLite = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
+export const generateSQLite = (generationData: ETMessageData): string => {
+	const sqlSettings: SQLSettings = generationData.settings;
 	const backquote = sqlSettings.encloseInBackQuotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
@@ -285,7 +291,8 @@ export const generateSQLite = (generationData: ETMessageData, sqlSettings: SQLSe
 };
 
 
-export const generateOracle = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
+export const generateOracle = (generationData: ETMessageData): string => {
+	const sqlSettings: SQLSettings = generationData.settings;
 	const backquote = sqlSettings.encloseInBackQuotes ? '`' : '';
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
@@ -360,7 +367,8 @@ export const generateOracle = (generationData: ETMessageData, sqlSettings: SQLSe
 };
 
 
-export const generateMSSQL = (generationData: ETMessageData, sqlSettings: SQLSettings): string => {
+export const generateMSSQL = (generationData: ETMessageData): string => {
+	const sqlSettings: SQLSettings = generationData.settings;
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
