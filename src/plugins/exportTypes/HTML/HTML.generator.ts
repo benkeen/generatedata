@@ -11,14 +11,14 @@ context.onmessage = (e: ETOnMessage) => {
 		workerUtilsLoaded = true;
 	}
 
-	const { dataStructureFormat } = e.data.settings;
+	const { exportFormat } = e.data.settings;
 
 	let content = '';
-	if (dataStructureFormat === 'table') {
+	if (exportFormat === 'table') {
 		content = generateTableFormat(e.data);
-	} else if (dataStructureFormat === 'ul') {
+	} else if (exportFormat === 'ul') {
 		content = generateUlFormat(e.data);
-	} else if (dataStructureFormat === 'dl') {
+	} else if (exportFormat === 'dl') {
 		content = generateDlFormat(e.data);
 	}
 

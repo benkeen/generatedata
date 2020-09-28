@@ -38,8 +38,11 @@ export default {
 		"Tree": "DT-Tree.generator-68b329da9893e34099c7d8ad5cb9c940.js"
 	},
 	"exportTypes": {
-		"HTML": "ET-HTML.generator-36c8695b5de254b4861c4d736396a48a.js",
-		"JSON": "ET-JSON.generator-19552de543233e8b524d82e55a1d093c.js"
+		"HTML": "ET-HTML.generator-0dad4a06d764a8d790c8b22f618a0f04.js",
+		"JSON": "ET-JSON.generator-19552de543233e8b524d82e55a1d093c.js",
+		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-68b329da9893e34099c7d8ad5cb9c940.js",
+		"SQL": "ET-SQL.generator-68b329da9893e34099c7d8ad5cb9c940.js",
+		"XML": "ET-XML.generator-68b329da9893e34099c7d8ad5cb9c940.js"
 	},
 	"countries": {
 		"Australia": "C-Australia-04731d6865c56c8596fb8ca084d05e41.js",
