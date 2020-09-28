@@ -47,6 +47,8 @@ export const Settings = ({ data, i18n, id, onUpdate }: any): JSX.Element => {
 	);
 };
 
+export const getCodeMirrorMode = (): string => 'text/html';
+
 
 /*
 const _defaultCustomXML = '{if $isFirstBatch}\n<?xml version="1.0" encoding="UTF-8" ?>\n' +
