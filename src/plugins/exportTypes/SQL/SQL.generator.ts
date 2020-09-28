@@ -2,8 +2,6 @@ import { ETOnMessage, ETMessageData } from '~types/exportTypes';
 import { getNumericFieldColumnIndexes } from '~utils/generationUtils';
 import { SQLSettings } from './SQL.ui';
 
-declare var utils: any;
-
 const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
@@ -29,11 +27,6 @@ context.onmessage = (e: ETOnMessage) => {
 	}
 
 	context.postMessage(content);
-};
-
-
-export const generate = (): any => {
-
 };
 
 const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[]): any => {

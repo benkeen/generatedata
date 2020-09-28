@@ -6,7 +6,10 @@ let exportTypeWorkerMap: any = {};
 let abortedMessageIds: any = {};
 
 context.onmessage = (e: MessageEvent) => {
-	const { _action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults, exportTypeSettings } = e.data;
+	const {
+		_action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults,
+		exportTypeSettings, dataTypeMetadata
+	} = e.data;
 
 	if (_action === 'abort') {
 		abortedMessageIds[_messageId] = true;
@@ -28,6 +31,7 @@ context.onmessage = (e: MessageEvent) => {
 		rows,
 		columns,
 		settings: exportTypeSettings[exportType],
+		dataTypeMetadata,
 		workerResources
 	});
 

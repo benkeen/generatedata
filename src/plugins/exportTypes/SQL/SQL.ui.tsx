@@ -221,6 +221,7 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 	);
 };
 
+export const getCodeMirrorMode = (): string => 'text/x-sql';
 
 /*
 	var _validate = function(rowNums) {

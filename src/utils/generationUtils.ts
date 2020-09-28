@@ -1,9 +1,12 @@
 import { ColumnData } from '~types/general';
 import { ETMessageData } from '~types/exportTypes';
 
-export const getNumericFieldColumnIndexes = (generationData: ETMessageData): number[] => {
+export const getNumericFieldColumnIndexes = (data: ETMessageData): number[] => {
+
+	console.log(data);
+
 	const dataTypeMap: any = {};
-	const dt = generationData.dataTypeMetadata;
+	const dt = data.dataTypeMetadata;
 	Object.keys(dt).forEach((dataType) => {
 		if (dt[dataType] && dt[dataType].general && dt[dataType].general.dataType) {
 			dataTypeMap[dataType] = dt[dataType].general.dataType;
@@ -11,7 +14,7 @@ export const getNumericFieldColumnIndexes = (generationData: ETMessageData): num
 	});
 
 	const numericFieldColIndexes: number[] = [];
-	generationData.columns.forEach((col: ColumnData, colIndex: number) => {
+	data.columns.forEach((col: ColumnData, colIndex: number) => {
 		if (dataTypeMap[col.dataType] === 'number') {
 			numericFieldColIndexes.push(colIndex);
 		}
