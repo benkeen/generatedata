@@ -16,7 +16,8 @@ export type GenerationSettingsProps = {
 };
 
 const GenerationPanel = ({
-	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onGenerate
+	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onToggleStripWhitespace,
+	onGenerate
 }: GenerationSettingsProps): JSX.Element => (
 	<Dialog onClose={onClose} open={visible}>
 		<div style={{ width: 360, height: 156, padding: 22 }}>
@@ -33,7 +34,12 @@ const GenerationPanel = ({
 					rows
 				</div>
 				<div className={styles.row} style={{ marginBottom: 16 }}>
-					<input type="checkbox" id="stripWhitespace" checked={stripWhitespace} />
+					<input
+						type="checkbox"
+						id="stripWhitespace"
+						checked={stripWhitespace}
+						onChange={onToggleStripWhitespace}
+					/>
 					<label htmlFor="stripWhitespace">strip whitespace from generated content</label>
 				</div>
 				<Button

@@ -1,28 +1,32 @@
-/*
-	const [mode, setMode] = React.useState('');
-	const [code, setCode] = React.useState(''); // memoize
+import { ETOnMessage } from '~types/exportTypes';
+import { generateCSharp } from './languages/CSharp';
+import { generateJS } from './languages/Javascript';
+import { generatePerl } from './languages/Perl';
+import { generatePhp } from './languages/PHP';
+import { generateRuby } from './languages/Ruby';
 
-	React.useEffect(() => {
-		let mode = '';
-		let content = '';
-		if (exportTypeSettings.language === 'JavaScript') {
-			content = generateJS(data, exportTypeSettings);
-		} else if (exportTypeSettings.language === 'CSharp') {
-			content = generateCSharp(data);
-		} else if (exportTypeSettings.language === 'Perl') {
-			content = generatePerl(data);
-		} else if (exportTypeSettings.language === 'PHP') {
-			content = generatePhp(data);
-		} else if (exportTypeSettings.language === 'Ruby') {
-			content = generateRuby(data);
-		}
-		setMode(mode);
-		setCode(content);
-	}, [data, exportTypeSettings, setCode]);
-*/
+const context: Worker = self as any;
 
-export const generate = (): any => {
-	return {
-		display: ''
-	};
+let workerUtilsLoaded = false;
+context.onmessage = (e: ETOnMessage) => {
+	if (!workerUtilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
+	}
+	const { language } = e.data.settings;
+
+	let content;
+	if (language === 'JavaScript') {
+		content = generateJS(e.data);
+	} else if (language === 'CSharp') {
+		content = generateCSharp(e.data);
+	} else if (language === 'Perl') {
+		content = generatePerl(e.data);
+	} else if (language === 'PHP') {
+		content = generatePhp(e.data);
+	} else if (language === 'Ruby') {
+		content = generateRuby(e.data);
+	}
+
+	context.postMessage(content);
 };

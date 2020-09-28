@@ -3,7 +3,7 @@ import { ETMessageData } from '~types/exportTypes';
 export const generatePhp = (data: ETMessageData): string => {
 	let content = '';
 	if (data.isFirstBatch) {
-		content += '<?php\n\n\$data = array(\n';
+		content += '<?php\n\n\$data = [\n';
 	}
 
 	data.rows.forEach((row: any, rowIndex: number) => {
@@ -18,7 +18,7 @@ export const generatePhp = (data: ETMessageData): string => {
 			// 	$pairs[] = "\"{$data["colData"][$j]}\"=>\"{$currValue}\"";
 			// }
 		});
-		content += '\tarray(' + pairs.join(', ') + ')';
+		content += '\t[\n\t\t' + pairs.join(',\n\t\t') + '\n\t]';
 
 		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
 			content += '\n';
@@ -28,7 +28,7 @@ export const generatePhp = (data: ETMessageData): string => {
 	});
 
 	if (data.isLastBatch) {
-		content += ');';
+		content += '];';
 	}
 
 	return content;

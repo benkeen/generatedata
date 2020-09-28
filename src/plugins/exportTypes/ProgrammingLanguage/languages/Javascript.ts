@@ -1,23 +1,24 @@
 import { ETMessageData } from '~types/exportTypes';
-import { ProgrammingLanguageState } from '../ProgrammingLanguage.ui';
 
-export const generateJS = (data: ETMessageData, exportTypeSettings: ProgrammingLanguageState): string => {
+export const generateJS = (data: ETMessageData): string => {
+	const { isFirstBatch, isLastBatch, rows, columns, settings } = data;
+
 	let content = '';
-	if (data.isFirstBatch) {
-		if (exportTypeSettings.jsExportFormat === 'variable') {
+	if (isFirstBatch) {
+		if (settings.jsExportFormat === 'variable') {
 			content += `var data = [\n`;
-		} else if (exportTypeSettings.jsExportFormat == 'es6') {
+		} else if (settings.jsExportFormat == 'es6') {
 			content += `export default [\n`;
 		} else {
 			content += `module.exports = [\n`;
 		}
 	}
 
-	data.rows.forEach((row: any, rowIndex: number) => {
+	rows.forEach((row: any, rowIndex: number) => {
 		content += '\t{\n\t\t';
 
 		const pairs: string[] = [];
-		data.columns.forEach(({ title }, colIndex) => {
+		columns.forEach(({ title }, colIndex) => {
 			const currValue = row[colIndex];
 			// if ($this->isNumeric($j, $currValue) || $this->isBoolean($j, $currValue)) {
 			// 	$pairs[] = "\"{$data["colData"][$j]}\": {$currValue}";
@@ -28,14 +29,14 @@ export const generateJS = (data: ETMessageData, exportTypeSettings: ProgrammingL
 
 		content += pairs.join(',\n\t\t');
 
-		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
+		if (isLastBatch && rowIndex == rows.length - 1) {
 			content += '\n\t}\n';
 		} else {
 			content += '\n\t},\n';
 		}
 	});
 
-	if (data.isLastBatch) {
+	if (isLastBatch) {
 		content += '];\n';
 	}
 

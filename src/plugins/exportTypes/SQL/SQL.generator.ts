@@ -1,30 +1,34 @@
-import { ETMessageData } from '~types/exportTypes';
+import { ETOnMessage, ETMessageData } from '~types/exportTypes';
 import { getNumericFieldColumnIndexes } from '~utils/generationUtils';
 import { SQLSettings } from './SQL.ui';
 
-/*
-	const [code, setCode] = React.useState('');
+declare var utils: any;
 
-	React.useEffect(() => {
-		let content = '';
-		if (exportTypeSettings.databaseType === 'MySQL') {
-			content = generateMySQL(data, exportTypeSettings);
-		} else if (exportTypeSettings.databaseType === 'Postgres') {
-			content = generatePostgres(data, exportTypeSettings);
-		} else if (exportTypeSettings.databaseType === 'SQLite') {
-			content = generateSQLite(data, exportTypeSettings);
-		} else if (exportTypeSettings.databaseType === 'Oracle') {
-			content = generateOracle(data, exportTypeSettings);
-		} else if (exportTypeSettings.databaseType === 'MSSQL') {
-			content = generateMSSQL(data, exportTypeSettings);
-		}
-		setCode(content);
-	}, [data, setCode, exportTypeSettings]);
+const context: Worker = self as any;
 
-	onBeforeChange={(value): void => {
-		setCode(value);
-	}}
-*/
+let workerUtilsLoaded = false;
+context.onmessage = (e: ETOnMessage) => {
+	if (!workerUtilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
+	}
+
+	let content = '';
+	if (exportTypeSettings.databaseType === 'MySQL') {
+		content = generateMySQL(data, exportTypeSettings);
+	} else if (exportTypeSettings.databaseType === 'Postgres') {
+		content = generatePostgres(data, exportTypeSettings);
+	} else if (exportTypeSettings.databaseType === 'SQLite') {
+		content = generateSQLite(data, exportTypeSettings);
+	} else if (exportTypeSettings.databaseType === 'Oracle') {
+		content = generateOracle(data, exportTypeSettings);
+	} else if (exportTypeSettings.databaseType === 'MSSQL') {
+		content = generateMSSQL(data, exportTypeSettings);
+	}
+
+	context.postMessage(content);
+};
+
 
 export const generate = (): any => {
 

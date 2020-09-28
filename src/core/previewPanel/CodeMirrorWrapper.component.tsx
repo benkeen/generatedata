@@ -62,6 +62,7 @@ export const generatePreviewString = (props: any): Promise<any> => {
 			exportTypeSettings,
 			isFirstBatch: true,
 			isLastBatch: true,
+			stripWhitespace: false,
 			workerResources: {
 				workerUtils: coreUtils.getWorkerUtils(),
 				exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes)

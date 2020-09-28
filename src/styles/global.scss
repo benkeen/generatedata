@@ -12,3 +12,10 @@ a {
 		text-decoration: underline;
 	}
 }
+
+:global(.Select-menu-outer) {
+	z-index: 10000 !important;
+}
+body :global(.MuiTooltip-popper) {
+	z-index: 2;
+}

@@ -6,5 +6,5 @@
   "variable": "Variable",
   "format": "Format",
   "es6Format": "ES6 export",
-  "commonJsFormat": "Common JS export"
+  "commonJsFormat": "CommonJS export"
 }

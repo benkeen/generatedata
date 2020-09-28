@@ -237,7 +237,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			}
 			break;
 
-		// TODO lousy name SHOW_GENERATION_SETTINGS_PANEL is a slightly less awful
+		// TODO lousy name SHOW_GENERATION_SETTINGS_PANEL is less awful
 		case actions.SHOW_START_GENERATION_PANEL:
 			draft.showStartGenerationPanel = true;
 			break;
@@ -251,7 +251,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.TOGGLE_STRIP_WHITESPACE:
-			draft.stripWhitespace = !action.payload.stripWhitespace;
+			draft.stripWhitespace = !draft.stripWhitespace;
 			break;
 
 		case actions.SET_PANEL_SIZE:

@@ -55,7 +55,7 @@ const ActivityPanel = ({
 		}
 
 		dataTypeWorker.postMessage({
-			action: 'blah',
+			action: 'generate', // TODO
 			numResults: numRowsToGenerate,
 			batchSize: C.GENERATION_BATCH_SIZE,
 			columns,

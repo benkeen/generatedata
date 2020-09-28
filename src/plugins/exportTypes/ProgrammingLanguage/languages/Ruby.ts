@@ -18,7 +18,7 @@ export const generateRuby = (data: ETMessageData): string => {
 			// 	$pairs[] = "'{$data["colData"][$j]}': '{$currValue}'";
 			// }
 		});
-		content += '\t{ ' + pairs.join(', ') + ' }';
+		content += '\t{\n\t\t' + pairs.join(',\n\t\t') + '\n\t}';
 
 		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
 			content += '\n';

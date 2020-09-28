@@ -2,13 +2,14 @@ import { ETMessageData } from '~types/exportTypes';
 
 export const generatePerl = (data: ETMessageData): string => {
 	let content = '';
-	if (data.isFirstBatch) {
+	const { isFirstBatch, isLastBatch, rows, columns } = data;
+	if (isFirstBatch) {
 		content += "@data = (\n";
 	}
 
-	data.rows.forEach((row: any, rowIndex: number) => {
+	rows.forEach((row: any, rowIndex: number) => {
 		const pairs: string[] = [];
-		data.columns.forEach(({ title }, colIndex) => {
+		columns.forEach(({ title }, colIndex) => {
 			const currValue = row[colIndex];
 			pairs.push(`"${title}" => "${currValue}"`);
 
@@ -19,16 +20,16 @@ export const generatePerl = (data: ETMessageData): string => {
 			// 		}
 		});
 
-		content += '\t{ ' + pairs.join(', ') + ' }';
+		content += '\t{\n\t\t' + pairs.join(',\n\t\t') + '\n\t}';
 
-		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
+		if (isLastBatch && rowIndex == rows.length - 1) {
 			content += '\n';
 		} else {
 			content += ',\n';
 		}
 	});
 
-	if (data.isLastBatch) {
+	if (isLastBatch) {
 		content += ');';
 	}
 

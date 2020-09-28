@@ -1,7 +1,5 @@
 import { ETMessageData, ETOnMessage } from '~types/exportTypes';
 
-declare var utils: any;
-
 const context: Worker = self as any;
 
 let workerUtilsLoaded = false;

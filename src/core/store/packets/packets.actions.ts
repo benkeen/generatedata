@@ -18,6 +18,7 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 			dataTypeWorkerId: createDataTypeWorker(),
 			exportTypeWorkerId: createExportTypeWorker(),
 			numRowsToGenerate: selectors.getNumRowsToGenerate(state),
+			stripWhitespace: selectors.shouldStripWhitespace(state),
 			template: selectors.getGenerationTemplate(state),
 			dataTypes: selectors.getRowDataTypes(state),
 			columns: selectors.getColumns(state),

@@ -38,6 +38,7 @@ export type ETMessageData = {
 	isLastBatch: boolean;
 	dataTypeMetadata: any; // TODO
 	settings: any; // TODO generic possible? This is the export type settings
+	stripWhitespace: boolean;
 	workerResources: {
 		workerUtils: string;
 		exportTypes: ExportTypeMap;
