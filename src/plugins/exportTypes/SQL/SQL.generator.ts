@@ -10,7 +10,6 @@ context.onmessage = (e: ETOnMessage) => {
 		importScripts(e.data.workerResources.workerUtils);
 		workerUtilsLoaded = true;
 	}
-
 	const settings = e.data.settings;
 
 	let content = '';

@@ -24,8 +24,6 @@ context.onmessage = (e: MessageEvent) => {
 
 	const worker = loadedExportTypeWorkers[exportType];
 
-	console.log("...", stripWhitespace);
-
 	worker.postMessage({
 		isFirstBatch,
 		isLastBatch,

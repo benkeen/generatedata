@@ -60,11 +60,27 @@ export const getBatchLoadTimes = createSelector(
 	}
 );
 
-// may as well format it in this method too
-export const getGeneratedDataSize = createSelector(
+export const getPacketTotalSize = createSelector(
 	getCurrentPacket,
 	(packet) => {
-		return packet ? prettyBytes(packet.stats.totalSize) : null;
+		return packet ? packet.stats.totalSize : 0;
+	}
+);
+
+// may as well format it in this method too
+export const getGeneratedDataSizeLabel = createSelector(
+	getPacketTotalSize,
+	(totalSize) => prettyBytes(totalSize)
+);
+
+export const getEstimatedDataSize = createSelector(
+	getCurrentPacket,
+	getPacketTotalSize,
+	(packet, packetTotalSize) => {
+		if (!packet || packet.numGeneratedRows === 0) {
+			return '-';
+		}
+		return prettyBytes((packet.config.numRowsToGenerate / packet.numGeneratedRows) * packetTotalSize);
 	}
 );
 
@@ -81,4 +97,3 @@ export const getCompletedDataString = createSelector(
 		return str;
 	}
 );
-

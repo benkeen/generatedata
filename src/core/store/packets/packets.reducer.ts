@@ -137,13 +137,16 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			const { packetId, numGeneratedRows, dataStr } = action.payload;
 			const byteSize = getByteSize(dataStr);
 
-			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
-			draft.packets[packetId].data.push({
-				dataStr,
-				byteSize,
-				endTime: performance.now()
-			});
-			draft.packets[packetId].stats.totalSize += byteSize;
+			// check for existence in case the user just cancelled and an orphaned response comes back
+			if (draft.packets[packetId]) {
+				draft.packets[packetId].numGeneratedRows = numGeneratedRows;
+				draft.packets[packetId].data.push({
+					dataStr,
+					byteSize,
+					endTime: performance.now()
+				});
+				draft.packets[packetId].stats.totalSize += byteSize;
+			}
 			break;
 		}
 	}

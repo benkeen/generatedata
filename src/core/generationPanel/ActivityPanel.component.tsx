@@ -30,14 +30,15 @@ export type ActivityPanelProps = {
 	workerResources: any;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
-	dataSize: string | null;
+	dataSize: string;
+	estimatedSize: string;
 };
 
 const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
-	onDownload, dataSize
+	onDownload, dataSize, estimatedSize
 }: ActivityPanelProps): any => {
 	if (packet === null) {
 		return null;
@@ -196,10 +197,10 @@ const ActivityPanel = ({
 									Estimated time:
 								</div>
 								<div>
-									Estimated Size:
+									Remaining time:
 								</div>
 								<div>
-									Remaining time:
+									Estimated Size: <b>{estimatedSize}</b>
 								</div>
 								<div>
 									Size: <b>{dataSize}</b>
@@ -211,10 +212,7 @@ const ActivityPanel = ({
 									width={500}
 									height={400}
 									data={batchLoadTimes}
-									margin={{
-										top: 10, right: 30, left: 0, bottom: 0
-									}}
-								>
+									margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
 									<CartesianGrid strokeDasharray="3 3" />
 									<XAxis dataKey="name" />
 									<YAxis />
