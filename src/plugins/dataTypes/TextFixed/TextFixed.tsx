@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
 export type TextFixedState = {
 	numWords: number;
@@ -32,3 +32,14 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.TextFixed_help}</p>;
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'string'
+	},
+	sql: {
+		field: 'TEXT default NULL',
+		field_Oracle: 'BLOB default NULL',
+		field_MSSQL: 'VARCHAR(MAX) NULL'
+	}
+});

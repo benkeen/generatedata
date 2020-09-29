@@ -1,23 +1,20 @@
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { generateRandomTextStr } from '~utils/randomUtils';
-import { getLipsumWords } from '~utils/stringUtils';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import utils from '../../../utils';
+
+let utilsLoaded = false;
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
+	}
+	postMessage(generate(e.data));
+};
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { startsWithLipsum, minWords, maxWords } = data.rowState;
-	const { words } = getLipsumWords();
-	const textStr = generateRandomTextStr(words, startsWithLipsum, minWords, maxWords);
+	const { words } = utils.stringUtils.getLipsumWords();
+	const textStr = utils.randomUtils.generateRandomTextStr(words, startsWithLipsum, minWords, maxWords);
 	return {
 		display: textStr
 	};
 };
-
-export const getMetadata = (): DTMetadata => ({
-	general: {
-		dataType: 'string'
-	},
-	sql: {
-		field: 'TEXT default NULL',
-		field_Oracle: 'BLOB default NULL',
-		field_MSSQL: 'VARCHAR(MAX) NULL'
-	}
-});

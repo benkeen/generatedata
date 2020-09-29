@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
 type TextRandomState = {
 	startsWithLipsum: boolean;
@@ -84,3 +84,15 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.help}</p>;
 // 	}
 // 	return errors;
 // };
+
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'string'
+	},
+	sql: {
+		field: 'TEXT default NULL',
+		field_Oracle: 'BLOB default NULL',
+		field_MSSQL: 'VARCHAR(MAX) NULL'
+	}
+});
