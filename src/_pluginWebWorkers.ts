@@ -42,7 +42,7 @@ export default {
 		"JSON": "ET-JSON.generator-f74de0fdb0871a13416dbb30d40c3d77.js",
 		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-2b30e5cb019aa51d19a42d78bf94c2f2.js",
 		"SQL": "ET-SQL.generator-dfa6d812a56384fb2d3f36e20fed16b8.js",
-		"XML": "ET-XML.generator-c70b2181123a4f84b5584c9f877bbcf4.js"
+		"XML": "ET-XML.generator-2bb617f90572cee10202bbc4ecfb56c9.js"
 	},
 	"countries": {
 		"Australia": "C-Australia-04731d6865c56c8596fb8ca084d05e41.js",

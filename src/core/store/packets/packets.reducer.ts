@@ -143,7 +143,6 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				byteSize,
 				endTime: performance.now()
 			});
-
 			draft.packets[packetId].stats.totalSize += byteSize;
 			break;
 		}

@@ -14,21 +14,24 @@ context.onmessage = (e: ETOnMessage) => {
 };
 
 export const generateXML = (data: ETMessageData): string => {
-	const { isFirstBatch, isLastBatch, rows, columns  } = data;
+	const { isFirstBatch, isLastBatch, rows, columns, stripWhitespace } = data;
 	const { rootNodeName, recordNodeName } = data.settings as XMLSettings;
+
+	const newline = stripWhitespace ? '' : '\n';
+	const tab = stripWhitespace ? '' : '\t';
 
 	let content = "";
 	if (isFirstBatch) {
-		content += '<?xml version="1.0" encoding="UTF-8" ?>\n';
-		content += `<${rootNodeName}>\n`;
+		content += `<?xml version="1.0" encoding="UTF-8" ?>${newline}`;
+		content += `<${rootNodeName}>${newline}`;
 	}
 
 	rows.forEach((row: any) => {
-		content += `\t<${recordNodeName}>\n`;
+		content += `${tab}<${recordNodeName}>${newline}`;
 		columns.forEach(({ title }: any, colIndex: number) => {
-			content += `\t\t<${title}>${row[colIndex]}</${title}>\n`;
+			content += `${tab}${tab}<${title}>${row[colIndex]}</${title}>${newline}`;
 		});
-		content += `\t</${recordNodeName}>\n`;
+		content += `${tab}</${recordNodeName}>${newline}`;
 	});
 
 	if (isLastBatch) {

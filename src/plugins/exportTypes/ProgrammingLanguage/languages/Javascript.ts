@@ -1,21 +1,23 @@
 import { ETMessageData } from '~types/exportTypes';
 
-export const generateJS = (data: ETMessageData): string => {
+export const generateJS = (data: ETMessageData, stripWhitespace: boolean): string => {
 	const { isFirstBatch, isLastBatch, rows, columns, settings } = data;
+	const newline = (stripWhitespace) ? '' : '\n';
+	const tab = (stripWhitespace) ? '' : '\t';
 
 	let content = '';
 	if (isFirstBatch) {
 		if (settings.jsExportFormat === 'variable') {
-			content += `var data = [\n`;
+			content += `var data = [${newline}`;
 		} else if (settings.jsExportFormat == 'es6') {
-			content += `export default [\n`;
+			content += `export default [${newline}`;
 		} else {
-			content += `module.exports = [\n`;
+			content += `module.exports = [${newline}`;
 		}
 	}
 
 	rows.forEach((row: any, rowIndex: number) => {
-		content += '\t{\n\t\t';
+		content += `${tab}{${newline}${tab}${tab}`;
 
 		const pairs: string[] = [];
 		columns.forEach(({ title }, colIndex) => {
@@ -27,18 +29,23 @@ export const generateJS = (data: ETMessageData): string => {
 			// }
 		});
 
-		content += pairs.join(',\n\t\t');
+		content += pairs.join(`,${newline}${tab}${tab}`);
 
 		if (isLastBatch && rowIndex == rows.length - 1) {
-			content += '\n\t}\n';
+			content += `${newline}${tab}}${newline}`;
 		} else {
-			content += '\n\t},\n';
+			content += `${newline}${tab}},${newline}`;
 		}
 	});
 
 	if (isLastBatch) {
-		content += '];\n';
+		content += `];${newline}`;
 	}
 
 	return content;
 };
+
+
+
+
+

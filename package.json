@@ -59,6 +59,7 @@
     "express": "^4.17.1",
     "global": "^4.4.0",
     "immer": "^7.0.9",
+    "pretty-bytes": "^5.4.1",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^12.2.0",
     "react-codemirror2": "^7.1.0",

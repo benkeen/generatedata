@@ -30,7 +30,7 @@ export type ActivityPanelProps = {
 	workerResources: any;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
-	dataSize: number | null;
+	dataSize: string | null;
 };
 
 const valueLabelFormat = (value: number): string => `${value}%`;

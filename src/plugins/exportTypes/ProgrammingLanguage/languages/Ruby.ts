@@ -1,9 +1,12 @@
 import { ETMessageData } from '~types/exportTypes';
 
-export const generateRuby = (data: ETMessageData): string => {
+export const generateRuby = (data: ETMessageData, stripWhitespace: boolean): string => {
+	const newline = (stripWhitespace) ? '' : '\n';
+	const tab = (stripWhitespace) ? '' : '\t';
+
 	let content = '';
 	if (data.isFirstBatch) {
-		content += 'data = [\n';
+		content += `data = [${newline}`;
 	}
 
 	data.rows.forEach((row: any, rowIndex: number) => {
@@ -18,12 +21,12 @@ export const generateRuby = (data: ETMessageData): string => {
 			// 	$pairs[] = "'{$data["colData"][$j]}': '{$currValue}'";
 			// }
 		});
-		content += '\t{\n\t\t' + pairs.join(',\n\t\t') + '\n\t}';
+		content += `${tab}{${newline}${tab}${tab}` + pairs.join(`,${newline}${tab}${tab}`) + `${newline}${tab}}`;
 
 		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
-			content += '\n';
+			content += newline;
 		} else {
-			content += ',\n';
+			content += `,${newline}`;
 		}
 	});
 

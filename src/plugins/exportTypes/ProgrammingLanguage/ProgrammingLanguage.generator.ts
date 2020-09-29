@@ -9,23 +9,24 @@ const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
 context.onmessage = (e: ETOnMessage) => {
+	const { settings, stripWhitespace, workerResources } = e.data;
 	if (!workerUtilsLoaded) {
-		importScripts(e.data.workerResources.workerUtils);
+		importScripts(workerResources.workerUtils);
 		workerUtilsLoaded = true;
 	}
-	const { language } = e.data.settings;
+	const { language } = settings;
 
 	let content;
 	if (language === 'JavaScript') {
-		content = generateJS(e.data);
+		content = generateJS(e.data, stripWhitespace);
 	} else if (language === 'CSharp') {
-		content = generateCSharp(e.data);
+		content = generateCSharp(e.data, stripWhitespace);
 	} else if (language === 'Perl') {
-		content = generatePerl(e.data);
+		content = generatePerl(e.data, stripWhitespace);
 	} else if (language === 'PHP') {
-		content = generatePhp(e.data);
+		content = generatePhp(e.data, stripWhitespace);
 	} else if (language === 'Ruby') {
-		content = generateRuby(e.data);
+		content = generateRuby(e.data, stripWhitespace);
 	}
 
 	context.postMessage(content);

@@ -1,6 +1,7 @@
 import { Store } from '~types/general';
 import { createSelector } from 'reselect';
 import { DataPackets } from './packets.reducer';
+import prettyBytes from 'pretty-bytes';
 
 export const getCurrentPacketId = (state: Store): string | null => state.packets.currentPacketId;
 export const getPacketIds = (state: Store): string[] => state.packets.packetIds;
@@ -63,7 +64,7 @@ export const getBatchLoadTimes = createSelector(
 export const getGeneratedDataSize = createSelector(
 	getCurrentPacket,
 	(packet) => {
-		return packet ? packet.stats.totalSize : null;
+		return packet ? prettyBytes(packet.stats.totalSize) : null;
 	}
 );
 

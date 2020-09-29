@@ -11,15 +11,19 @@ import { ETMessageData } from '~types/exportTypes';
 //     "d.m.Y": "dd.MM.yyyy"
 // };
 
-export const generateCSharp = (data: ETMessageData): string => {
+export const generateCSharp = (data: ETMessageData, stripWhitespace: boolean): string => {
+	const newline = (stripWhitespace) ? '' : '\n';
+	const tab = (stripWhitespace) ? '' : '\t';
+
 	let content = '';
 	if (data.isFirstBatch) {
-		content += `var data = new [] {\n`;
+		content += `var data = new [] {${newline}`;
 	}
 
 	data.rows.forEach((row: any, rowIndex: number) => {
-		content += '\tnew { ';
+		content += `${tab}new { `;
 		const pairs: string[] = [];
+
 		data.columns.forEach(({ title }, colIndex) => {
 			const currValue = row[colIndex];
 			pairs.push(`${title} = "${currValue}"`);
@@ -35,9 +39,9 @@ export const generateCSharp = (data: ETMessageData): string => {
 		content += pairs.join(', ');
 
 		if (data.isLastBatch && rowIndex === data.rows.length-1) {
-			content += ' }\n};';
+			content += ` }${newline}};`;
 		} else {
-			content += ' },\n';
+			content += ` },${newline}`;
 		}
 	});
 
