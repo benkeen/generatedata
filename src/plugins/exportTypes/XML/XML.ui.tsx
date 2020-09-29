@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './XML.scss';
+import { ETSettings } from '~types/exportTypes';
 
 export type XMLSettings = {
 	rootNodeName: string;
@@ -15,7 +16,7 @@ export const initialState: XMLSettings = {
 	customFormat: ''
 };
 
-export const Settings = ({ data, i18n, id, onUpdate }: any): JSX.Element => {
+export const Settings = ({ data, i18n, id, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (prop: string, value: any): void => {
 		onUpdate({
 			...data,

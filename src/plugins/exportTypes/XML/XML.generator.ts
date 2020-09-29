@@ -1,30 +1,37 @@
-import { ETMessageData } from '~types/exportTypes';
+import { ETOnMessage, ETMessageData } from '~types/exportTypes';
 import { XMLSettings } from './XML.ui';
 
-export const generate = (): any => {
-	return {
-		display: ''
-	};
+const context: Worker = self as any;
+
+let workerUtilsLoaded = false;
+context.onmessage = (e: ETOnMessage) => {
+	if (!workerUtilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
+	}
+
+	context.postMessage(generateXML(e.data));
 };
 
-export const generateXML = (generationData: ETMessageData, xmlSettings: XMLSettings): string => {
-	const { rootNodeName, recordNodeName } = xmlSettings;
+export const generateXML = (data: ETMessageData): string => {
+	const { isFirstBatch, isLastBatch, rows, columns  } = data;
+	const { rootNodeName, recordNodeName } = data.settings as XMLSettings;
 
 	let content = "";
-	if (generationData.isFirstBatch) {
+	if (isFirstBatch) {
 		content += '<?xml version="1.0" encoding="UTF-8" ?>\n';
 		content += `<${rootNodeName}>\n`;
 	}
 
-	generationData.rows.forEach((row: any) => {
+	rows.forEach((row: any) => {
 		content += `\t<${recordNodeName}>\n`;
-		generationData.columns.forEach(({ title }: any, colIndex: number) => {
+		columns.forEach(({ title }: any, colIndex: number) => {
 			content += `\t\t<${title}>${row[colIndex]}</${title}>\n`;
 		});
 		content += `\t</${recordNodeName}>\n`;
 	});
 
-	if (generationData.isLastBatch) {
+	if (isLastBatch) {
 		content += `</${rootNodeName}>`;
 	}
 
