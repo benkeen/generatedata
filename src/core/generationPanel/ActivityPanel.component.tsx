@@ -30,20 +30,21 @@ export type ActivityPanelProps = {
 	workerResources: any;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
+	dataSize: number | null;
 };
 
 const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
-	onDownload
+	onDownload, dataSize
 }: ActivityPanelProps): any => {
 	if (packet === null) {
 		return null;
 	}
 
 	const { isPaused, config, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows, speed } = packet;
-	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings } = config;
+	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings, stripWhitespace } = config;
 
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
@@ -55,7 +56,7 @@ const ActivityPanel = ({
 		}
 
 		dataTypeWorker.postMessage({
-			action: 'generate', // TODO
+			action: 'generate',
 			numResults: numRowsToGenerate,
 			batchSize: C.GENERATION_BATCH_SIZE,
 			columns,
@@ -73,6 +74,7 @@ const ActivityPanel = ({
 				columns,
 				exportType,
 				exportTypeSettings,
+				stripWhitespace,
 				isFirstBatch: completedBatchNum === 1,
 				isLastBatch,
 				workerResources
@@ -200,7 +202,7 @@ const ActivityPanel = ({
 									Remaining time:
 								</div>
 								<div>
-									Size:
+									Size: <b>{dataSize}</b>
 								</div>
 							</div>
 

@@ -3,6 +3,7 @@ import { generate } from 'shortid';
 import produce from 'immer';
 import * as actions from './packets.actions';
 import { ExportTypeFolder } from '../../../_plugins';
+import { getByteSize } from '../../generationPanel/generation.helpers';
 
 type GeneratedDataBatch = {
 	byteSize: number;
@@ -89,7 +90,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 		case actions.START_GENERATION: {
 			const {
 				dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns,
-				exportType, exportTypeSettings
+				exportType, exportTypeSettings, stripWhitespace
 			} = action.payload;
 
 			const packetId = generate();
@@ -102,7 +103,8 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				dataTypes,
 				columns,
 				exportType,
-				exportTypeSettings
+				exportTypeSettings,
+				stripWhitespace
 			});
 			draft.currentPacketId = packetId;
 			break;
@@ -117,6 +119,10 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			break;
 
 		case actions.ABORT_GENERATION:
+			const packetId = draft.currentPacketId as string;
+			draft.currentPacketId = null;
+			draft.packetIds.splice(draft.packetIds.indexOf(packetId), 1);
+			delete draft.packets[packetId];
 			break;
 
 		case actions.HIDE_ACTIVITY_PANEL:
@@ -129,13 +135,17 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 		case actions.LOG_DATA_BATCH: {
 			const { packetId, numGeneratedRows, dataStr } = action.payload;
+			const byteSize = getByteSize(dataStr);
 
 			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
 			draft.packets[packetId].data.push({
 				dataStr,
-				byteSize: dataStr.length,
+				byteSize,
 				endTime: performance.now()
 			});
+
+			draft.packets[packetId].stats.totalSize += byteSize;
+			break;
 		}
 	}
 }, initialState);

@@ -25,21 +25,25 @@ context.onmessage = (e: ETOnMessage) => {
 
 
 export const generateTableFormat = (data: ETMessageData): string => {
+	const stripWhitespace = data.stripWhitespace;
+	const newline = stripWhitespace ? '' : '\n';
+	const tab = stripWhitespace ? '' : '\t';
+
 	let content = "";
 	if (data.isFirstBatch) {
-		content += "<table>\n\t<tr>\n";
+		content += `<table>${newline}${tab}<tr>${newline}`;
 		data.columns.forEach(({ title }) => {
-			content += `\t\t<th>${title}</th>\n`;
+			content += `${tab}${tab}<th>${title}</th>${newline}`;
 		});
-		content += "\t</tr>\n";
+		content += `${tab}</tr>${newline}`;
 	}
 
 	data.rows.forEach((row) => {
-		content += '\t<tr>\n';
+		content += `${tab}<tr>${newline}`;
 		data.columns.forEach((col, colIndex) => {
-			content += `\t\t<td>${row[colIndex]}</td>\n`;
+			content += `${tab}${tab}<td>${row[colIndex]}</td>${newline}`;
 		});
-		content += "\t</tr>\n";
+		content += `${tab}</tr>${newline}`;
 	});
 
 	if (data.isLastBatch) {
@@ -50,35 +54,43 @@ export const generateTableFormat = (data: ETMessageData): string => {
 };
 
 export const generateUlFormat = (data: ETMessageData): string => {
+	const stripWhitespace = data.stripWhitespace;
+	const newline = stripWhitespace ? '' : '\n';
+	const tab = stripWhitespace ? '' : '\t';
+
 	let content = '';
 	if (data.isFirstBatch) {
-		content += '<ul class="columns">\n';
+		content += `<ul class="columns">${newline}`;
 		data.columns.forEach(({ title }) => {
-			content += `\t<li>${title}</li>\n`;
+			content += `${tab}<li>${title}</li>${newline}`;
 		});
-		content += "</ul>\n";
+		content += `</ul>${newline}`;
 	}
 
 	data.rows.forEach((row) => {
-		content += '<ul>\n';
+		content += `<ul>${newline}`;
 		data.columns.forEach((col, colIndex) => {
-			content += `\t<li>${row[colIndex]}</li>\n`;
+			content += `${tab}<li>${row[colIndex]}</li>${newline}`;
 		});
-		content += "</ul>\n";
+		content += `</ul>${newline}`;
 	});
 
 	return content;
 };
 
 export const generateDlFormat = (data: ETMessageData): string => {
+	const stripWhitespace = data.stripWhitespace;
+	const newline = stripWhitespace ? '' : '\n';
+	const tab = stripWhitespace ? '' : '\t';
+
 	let content = '';
 	data.rows.forEach((row) => {
-		content += '<dl>\n';
+		content += `<dl>${newline}`;
 		data.columns.forEach(({ title }, colIndex) => {
-			content += `\t<dt>${title}</dt>\n`;
-			content += `\t<dd>${row[colIndex]}</dd>\n`;
+			content += `${tab}<dt>${title}</dt>${newline}`;
+			content += `${tab}<dd>${row[colIndex]}</dd>${newline}`;
 		});
-		content += "</dl>\n";
+		content += `</dl>${newline}`;
 	});
 	return content;
 };

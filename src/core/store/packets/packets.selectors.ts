@@ -59,12 +59,13 @@ export const getBatchLoadTimes = createSelector(
 	}
 );
 
-// export const getGeneratedDataSize = createSelector(
-// 	getCurrentPacket,
-// 	(packet) => {
-// 		return 0;
-// 	}
-// );
+// may as well format it in this method too
+export const getGeneratedDataSize = createSelector(
+	getCurrentPacket,
+	(packet) => {
+		return packet ? packet.stats.totalSize : null;
+	}
+);
 
 export const getCompletedDataString = createSelector(
 	getCurrentPacket,

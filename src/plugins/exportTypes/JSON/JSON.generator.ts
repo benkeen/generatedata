@@ -6,14 +6,16 @@ const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
 context.onmessage = (e: ETOnMessage) => {
+	const { workerResources, settings, stripWhitespace } = e.data;
+
 	if (!workerUtilsLoaded) {
-		importScripts(e.data.workerResources.workerUtils);
+		importScripts(workerResources.workerUtils);
 		workerUtilsLoaded = true;
 	}
 
-	const content = e.data.settings.dataStructureFormat === 'simple'
-		? generateSimple(e.data, false)
-		: generateComplex(e.data, false);
+	const content = settings.dataStructureFormat === 'simple'
+		? generateSimple(e.data, stripWhitespace)
+		: generateComplex(e.data, stripWhitespace);
 
 	context.postMessage(content);
 };

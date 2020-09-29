@@ -8,6 +8,8 @@ export const getPercentageLabel = (percentage: number, numRowsToGenerate: number
 	return percentage.toFixed(decimalPlaces);
 };
 
+export const getByteSize = (str: string) => encodeURI(str).split(/%(?:u[0-9A-F]{2})?[0-9A-F]{2}|./).length - 1;
+
 export const downloadFile = (filename: string, data: any, type: string): void => {
 	const file = new Blob([data], { type: type });
 	const a = document.createElement('a');

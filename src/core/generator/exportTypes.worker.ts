@@ -8,7 +8,7 @@ let abortedMessageIds: any = {};
 context.onmessage = (e: MessageEvent) => {
 	const {
 		_action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults,
-		exportTypeSettings, dataTypeMetadata
+		exportTypeSettings, dataTypeMetadata, stripWhitespace
 	} = e.data;
 
 	if (_action === 'abort') {
@@ -24,6 +24,8 @@ context.onmessage = (e: MessageEvent) => {
 
 	const worker = loadedExportTypeWorkers[exportType];
 
+	console.log("...", stripWhitespace);
+
 	worker.postMessage({
 		isFirstBatch,
 		isLastBatch,
@@ -32,6 +34,7 @@ context.onmessage = (e: MessageEvent) => {
 		columns,
 		settings: exportTypeSettings[exportType],
 		dataTypeMetadata,
+		stripWhitespace,
 		workerResources
 	});
 
