@@ -1,3 +1,8 @@
+:global(.Pane2) {
+	max-width: 100%;
+	overflow: hidden;
+}
+
 :global(.Resizer) {
 	background: #000;
 	opacity: 0.1;
