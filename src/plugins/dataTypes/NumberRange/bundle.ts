@@ -1,6 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Help, Options } from './NumberRange';
-import { rowStateReducer, getMetadata } from './NumberRange.generator';
+import { initialState, rowStateReducer, Help, Options, getMetadata } from './NumberRange';
 
 const bundle: DTBundle = {
 	initialState,

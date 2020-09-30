@@ -1,24 +1,17 @@
-import { getRandomNum } from '~utils/randomUtils';
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { NumberRangeState } from './NumberRange';
+import utils from '../../../utils';
+import { ETOnMessage } from '~types/exportTypes';
 
-export const rowStateReducer = (state: NumberRangeState): NumberRangeState => state;
+let utilsLoaded = false;
 
-export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const { min, max } = data.rowState;
-	return {
-		display: getRandomNum(min, max)
-	};
-};
-
-export const getMetadata = (): DTMetadata => ({
-	general: {
-		dataType: 'number'
-	},
-	sql: {
-		field: 'mediumint default NULL',
-		field_Oracle: 'varchar2(50) default NULL',
-		field_MSSQL: 'INTEGER NULL',
-		field_Postgres: 'integer NULL',
+const onmessage = (e: ETOnMessage) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
 	}
-});
+
+	const { min, max } = e.data.rowState;
+
+	postMessage({
+		display: utils.randomUtils.getRandomNum(min, max)
+	});
+};

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
 export type NumberRangeState = {
 	min: number;
@@ -10,6 +10,8 @@ export const initialState: NumberRangeState = {
 	min: 0,
 	max: 10
 };
+
+export const rowStateReducer = (state: NumberRangeState): NumberRangeState => state;
 
 export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
@@ -41,7 +43,6 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): JSX.Element =
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
 
-
 // var _validate = function(rows) {
 // 	var visibleProblemRows = [];
 // 	var problemFields      = [];
@@ -72,3 +73,15 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
 // 	}
 // 	return errors;
 // };
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'number'
+	},
+	sql: {
+		field: 'mediumint default NULL',
+		field_Oracle: 'varchar2(50) default NULL',
+		field_MSSQL: 'INTEGER NULL',
+		field_Postgres: 'integer NULL',
+	}
+});
