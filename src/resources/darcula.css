@@ -1,143 +1,185 @@
 .themeDarcula .cm-s-darcula {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+    font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 }
+
 .themeDarcula .cm-s-darcula.CodeMirror {
-  background: #2B2B2B;
-  color: #A9B7C6;
+    background: #2B2B2B;
+    color: #A9B7C6;
 }
+
 .themeDarcula .cm-s-darcula span.cm-meta {
-  color: #BBB529;
+    color: #BBB529;
 }
+
 .themeDarcula .cm-s-darcula span.cm-number {
-  color: #6897BB;
+    color: #6897BB;
 }
+
 .themeDarcula .cm-s-darcula span.cm-keyword {
-  color: #CC7832;
-  line-height: 1em;
-  font-weight: bold;
+    color: #CC7832;
+    line-height: 1em;
+    font-weight: bold;
 }
+
 .themeDarcula .cm-s-darcula span.cm-def {
-  color: #A9B7C6;
-  font-style: italic;
+    color: #A9B7C6;
+    font-style: italic;
 }
+
 .themeDarcula .cm-s-darcula span.cm-variable {
-  color: #A9B7C6;
+    color: #A9B7C6;
 }
+
 .themeDarcula .cm-s-darcula span.cm-variable-2 {
-  color: #A9B7C6;
+    color: #A9B7C6;
 }
+
 .themeDarcula .cm-s-darcula span.cm-variable-3 {
-  color: #9876AA;
+    color: #9876AA;
 }
+
 .themeDarcula .cm-s-darcula span.cm-type {
-  color: #AABBCC;
-  font-weight: bold;
+    color: #AABBCC;
+    font-weight: bold;
 }
+
 .themeDarcula .cm-s-darcula span.cm-property {
-  color: #FFC66D;
+    color: #FFC66D;
 }
+
 .themeDarcula .cm-s-darcula span.cm-operator {
-  color: #A9B7C6;
+    color: #A9B7C6;
 }
+
 .themeDarcula .cm-s-darcula span.cm-string {
-  color: #6A8759;
+    color: #6A8759;
 }
+
 .themeDarcula .cm-s-darcula span.cm-string-2 {
-  color: #6A8759;
+    color: #6A8759;
 }
+
 .themeDarcula .cm-s-darcula span.cm-comment {
-  color: #61A151;
-  font-style: italic;
+    color: #61A151;
+    font-style: italic;
 }
+
 .themeDarcula .cm-s-darcula span.cm-link {
-  color: #CC7832;
+    color: #CC7832;
 }
+
 .themeDarcula .cm-s-darcula span.cm-atom {
-  color: #CC7832;
+    color: #CC7832;
 }
+
 .themeDarcula .cm-s-darcula span.cm-error {
-  color: #BC3F3C;
+    color: #BC3F3C;
 }
+
 .themeDarcula .cm-s-darcula span.cm-tag {
-  color: #629755;
-  font-weight: bold;
-  font-style: italic;
-  text-decoration: underline;
+    color: #629755;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
 }
+
 .themeDarcula .cm-s-darcula span.cm-attribute {
-  color: #6897bb;
+    color: #6897bb;
 }
+
 .themeDarcula .cm-s-darcula span.cm-qualifier {
-  color: #6A8759;
+    color: #6A8759;
 }
+
 .themeDarcula .cm-s-darcula span.cm-bracket {
-  color: #A9B7C6;
+    color: #A9B7C6;
 }
+
 .themeDarcula .cm-s-darcula span.cm-builtin {
-  color: #FF9E59;
+    color: #FF9E59;
 }
+
 .themeDarcula .cm-s-darcula span.cm-special {
-  color: #FF9E59;
+    color: #FF9E59;
 }
+
 .themeDarcula .cm-s-darcula span.cm-matchhighlight {
-  color: #FFFFFF;
-  background-color: rgba(50, 89, 48, 0.7);
-  font-weight: normal;
+    color: #FFFFFF;
+    background-color: rgba(50, 89, 48, 0.7);
+    font-weight: normal;
 }
+
 .themeDarcula .cm-s-darcula span.cm-searching {
-  color: #FFFFFF;
-  background-color: rgba(61, 115, 59, 0.7);
-  font-weight: normal;
+    color: #FFFFFF;
+    background-color: rgba(61, 115, 59, 0.7);
+    font-weight: normal;
 }
+
 .themeDarcula .cm-s-darcula .CodeMirror-cursor {
-  border-left: 1px solid #A9B7C6;
+    border-left: 1px solid #A9B7C6;
 }
+
 .themeDarcula .cm-s-darcula .CodeMirror-activeline-background {
-  background: #323232;
+    background: #323232;
 }
+
 .themeDarcula .cm-s-darcula .CodeMirror-gutters {
-  background: #313335;
-  border-right: 1px solid #313335;
+    background: #313335;
+    border-right: 1px solid #313335;
 }
+
 .themeDarcula .cm-s-darcula .CodeMirror-guttermarker {
-  color: #FFEE80;
+    color: #FFEE80;
 }
+
 .themeDarcula .cm-s-darcula .CodeMirror-guttermarker-subtle {
-  color: #D0D0D0;
+    color: #D0D0D0;
 }
+
 .themeDarcula .cm-s-darcula .CodeMirrir-linenumber {
-  color: #606366;
+    color: #606366;
 }
+
 .themeDarcula .cm-s-darcula .CodeMirror-matchingbracket {
-  background-color: #3B514D;
-  color: #FFEF28 !important;
-  font-weight: bold;
+    background-color: #3B514D;
+    color: #FFEF28 !important;
+    font-weight: bold;
 }
+
 .themeDarcula .cm-s-darcula div.CodeMirror-selected {
-  background: #214283;
+    background: #214283;
 }
+
 .themeDarcula .CodeMirror-hints.darcula {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  color: #9C9E9E;
-  background-color: #3B3E3F !important;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    color: #9C9E9E;
+    background-color: #3B3E3F !important;
 }
+
 .themeDarcula .CodeMirror-hints.darcula .CodeMirror-hint-active {
-  background-color: #494D4E !important;
-  color: #9C9E9E !important;
+    background-color: #494D4E !important;
+    color: #9C9E9E !important;
 }
 
 /* ---------------- */
 
 .themeDarcula {
-	background-color: #2b2b2b;
+    background-color: #2b2b2b;
 }
+
 .themeDarcula {
-	color: #cccccc;
+    color: #cccccc;
 }
+
 .themeDarcula svg {
-	fill: #cccccc;
+    fill: #cccccc;
 }
+
 .themeDarcula button[disabled] svg {
     opacity: 0.3;
 }
 
+.themeDarcula .cm-s-darcula .CodeMirror-gutters {
+    background-color: #2b2b2b;
+    border-right: 1px solid #484848;
+}

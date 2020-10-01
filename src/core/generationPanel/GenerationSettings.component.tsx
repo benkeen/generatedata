@@ -1,7 +1,7 @@
 import * as React from 'react';
 import NumberFormat from 'react-number-format';
 import Button from '@material-ui/core/Button';
-import { Dialog, DialogContent } from '~components/dialogs';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './ActivityPanel.scss';
 
 export type GenerationSettingsProps = {
@@ -20,8 +20,9 @@ const GenerationPanel = ({
 	onGenerate
 }: GenerationSettingsProps): JSX.Element => (
 	<Dialog onClose={onClose} open={visible}>
-		<div style={{ width: 360, height: 156, padding: 22 }}>
-			<DialogContent style={{ padding: 0 }}>
+		<div style={{ width: 360 }}>
+			<DialogTitle onClose={onClose}>Generate</DialogTitle>
+			<DialogContent>
 				<div className={`${styles.row} ${styles.generationRow}`}>
 					Generate
 					<NumberFormat
@@ -42,17 +43,17 @@ const GenerationPanel = ({
 					/>
 					<label htmlFor="stripWhitespace">strip whitespace from generated content</label>
 				</div>
+			</DialogContent>
+			<DialogActions>
+				<Button
+					onClick={onClose}
+					color="default">{i18n.cancel}</Button>
 				<Button
 					type="submit"
 					onClick={onGenerate}
 					color="primary"
-					style={{ float: 'right' }}
 					variant="contained">{i18n.generate}</Button>
-				<Button
-					onClick={onClose}
-					color="default"
-					style={{ float: 'right', marginRight: 8 }}>{i18n.cancel}</Button>
-			</DialogContent>
+			</DialogActions>
 		</div>
 	</Dialog>
 );

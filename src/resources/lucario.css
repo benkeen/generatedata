@@ -1,93 +1,124 @@
 .themeLucario .cm-s-lucario.CodeMirror, .themeLucario .cm-s-lucario .CodeMirror-gutters {
-  background-color: #2b3e50 !important;
-  color: #f8f8f2 !important;
-  border: none;
+    background-color: #2b3e50 !important;
+    color: #f8f8f2 !important;
+    border: none;
 }
+
 .themeLucario .cm-s-lucario .CodeMirror-gutters {
-  color: #2b3e50;
+    color: #2b3e50;
 }
+
 .themeLucario .cm-s-lucario .CodeMirror-cursor {
-  border-left: solid thin #E6C845;
+    border-left: solid thin #E6C845;
 }
+
 .themeLucario .cm-s-lucario .CodeMirror-linenumber {
-  color: #f8f8f2;
+    color: #f8f8f2;
 }
+
 .themeLucario .cm-s-lucario .CodeMirror-selected {
-  background: #243443;
+    background: #243443;
 }
+
 .themeLucario .cm-s-lucario .CodeMirror-line::selection, .themeLucario .cm-s-lucario .CodeMirror-line > span::selection, .themeLucario .cm-s-lucario .CodeMirror-line > span > span::selection {
-  background: #243443;
+    background: #243443;
 }
+
 .themeLucario .cm-s-lucario .CodeMirror-line::-moz-selection, .themeLucario .cm-s-lucario .CodeMirror-line > span::-moz-selection, .themeLucario .cm-s-lucario .CodeMirror-line > span > span::-moz-selection {
-  background: #243443;
+    background: #243443;
 }
+
 .themeLucario .cm-s-lucario span.cm-comment {
-  color: #5c98cd;
+    color: #5c98cd;
 }
+
 .themeLucario .cm-s-lucario span.cm-string, .themeLucario .cm-s-lucario span.cm-string-2 {
-  color: #E6DB74;
+    color: #E6DB74;
 }
+
 .themeLucario .cm-s-lucario span.cm-number {
-  color: #ca94ff;
+    color: #ca94ff;
 }
+
 .themeLucario .cm-s-lucario span.cm-variable {
-  color: #f8f8f2;
+    color: #f8f8f2;
 }
+
 .themeLucario .cm-s-lucario span.cm-variable-2 {
-  color: #f8f8f2;
+    color: #f8f8f2;
 }
+
 .themeLucario .cm-s-lucario span.cm-def {
-  color: #72C05D;
+    color: #72C05D;
 }
+
 .themeLucario .cm-s-lucario span.cm-operator {
-  color: #66D9EF;
+    color: #66D9EF;
 }
+
 .themeLucario .cm-s-lucario span.cm-keyword {
-  color: #ff6541;
+    color: #ff6541;
 }
+
 .themeLucario .cm-s-lucario span.cm-atom {
-  color: #bd93f9;
+    color: #bd93f9;
 }
+
 .themeLucario .cm-s-lucario span.cm-meta {
-  color: #f8f8f2;
+    color: #f8f8f2;
 }
+
 .themeLucario .cm-s-lucario span.cm-tag {
-  color: #ff6541;
+    color: #ff6541;
 }
+
 .themeLucario .cm-s-lucario span.cm-attribute {
-  color: #66D9EF;
+    color: #66D9EF;
 }
+
 .themeLucario .cm-s-lucario span.cm-qualifier {
-  color: #72C05D;
+    color: #72C05D;
 }
+
 .themeLucario .cm-s-lucario span.cm-property {
-  color: #f8f8f2;
+    color: #f8f8f2;
 }
+
 .themeLucario .cm-s-lucario span.cm-builtin {
-  color: #72C05D;
+    color: #72C05D;
 }
+
 .themeLucario .cm-s-lucario span.cm-variable-3, .themeLucario .cm-s-lucario span.cm-type {
-  color: #ffb86c;
+    color: #ffb86c;
 }
+
 .themeLucario .cm-s-lucario .CodeMirror-activeline-background {
-  background: #243443;
+    background: #243443;
 }
+
 .themeLucario .cm-s-lucario .CodeMirror-matchingbracket {
-  text-decoration: underline;
-  color: white !important;
+    text-decoration: underline;
+    color: white !important;
 }
 
 /* ---------------- */
 
 .themeLucario {
-	background-color: #2b3e50;
+    background-color: #2b3e50;
 }
+
 .themeLucario {
-	color: #cccccc;
+    color: #cccccc;
 }
+
 .themeLucario button[disabled] svg {
     opacity: 0.3;
 }
+
 .themeLucario svg {
-	fill: #cccccc;
+    fill: #cccccc;
+}
+
+.themeLucario .cm-s-lucario .CodeMirror-linenumber {
+    color: #697988;
 }
