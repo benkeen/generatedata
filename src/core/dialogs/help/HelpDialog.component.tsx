@@ -60,7 +60,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
-			<div style={{ width: 800 }}>
+			<div style={{ width: 800, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 				<DialogTitle onClose={onClose}>{name}</DialogTitle>
 				<DialogContent dividers className={styles.contentPanel}>
 					<div className={styles.dataTypeList}>
