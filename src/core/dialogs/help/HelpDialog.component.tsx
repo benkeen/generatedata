@@ -60,34 +60,36 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
-			<DialogTitle onClose={onClose}>{name}</DialogTitle>
-			<DialogContent dividers className={styles.contentPanel}>
-				<div className={styles.dataTypeList}>
-					<input
-						type="text"
-						placeholder="Filter Data Types"
-						autoFocus
-						onChange={(e): void => setFilterString(e.target.value)}
-					/>
-					<div className={styles.list}>
-						<DataTypeList
-							filterString={filterString}
-							onSelect={selectDataType}
+			<div style={{ width: 800 }}>
+				<DialogTitle onClose={onClose}>{name}</DialogTitle>
+				<DialogContent dividers className={styles.contentPanel}>
+					<div className={styles.dataTypeList}>
+						<input
+							type="text"
+							placeholder={coreI18n.filterDataTypes}
+							autoFocus
+							onChange={(e): void => setFilterString(e.target.value)}
+						/>
+						<div className={styles.list}>
+							<DataTypeList
+								filterString={filterString}
+								onSelect={selectDataType}
+							/>
+						</div>
+					</div>
+					<div className={styles.helpContent}>
+						<Help
+							coreI18n={coreI18n}
+							i18n={i18n}
 						/>
 					</div>
-				</div>
-				<div className={styles.helpContent}>
-					<Help
-						coreI18n={coreI18n}
-						i18n={i18n}
-					/>
-				</div>
-			</DialogContent>
-			<DialogActions>
-				<Button onClick={onClose} color="primary" variant="outlined">
-					{coreI18n.close}
-				</Button>
-			</DialogActions>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={onClose} color="primary" variant="outlined">
+						{coreI18n.close}
+					</Button>
+				</DialogActions>
+			</div>
 		</Dialog>
 	);
 };

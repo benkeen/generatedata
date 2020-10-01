@@ -86,7 +86,7 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 					min={1}
 					id={`dtListExactly_${id}`}
 					value={data.exactly}
-					style={{ margin: '0 6px 0 4px', width: 40 }}
+					style={{ margin: '0 6px 0 4px', width: 50 }}
 					onChange={(e): void => {
 						onUpdate({
 							...data,
@@ -112,7 +112,7 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 					min={1}
 					id={`dtListAtMost_${id}`}
 					value={data.atMost}
-					style={{ margin: '0 6px 0 4px', width: 40 }}
+					style={{ margin: '0 6px 0 4px', width: 50 }}
 					onChange={(e): void => {
 						onUpdate({
 							...data,

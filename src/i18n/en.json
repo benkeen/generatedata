@@ -298,5 +298,16 @@
   "clearPageConfirmation": "Are you sure you want to clear the page? Any changes you've made will be lost.",
   "hideShowGrid": "Hide/show grid",
   "hideShowPreviewPanel": "Hide/show preview panel",
-  "togglePanelLayout": "Toggle panel layout"
+  "togglePanelLayout": "Toggle panel layout",
+  "filterDataTypes": "Filter Data Types",
+  "play": "Play",
+  "pause": "Pause",
+  "complete": "Complete",
+  "incomplete": "Incomplete",
+  "seriouslySlow": "Seriously slow",
+  "cpuMeltinglyFast": "CPU-meltingly fast",
+  "clearAndClose": "Clear and Close",
+  "cancelGeneration": "Cancel Generation",
+  "showPreview": "Show Preview",
+  "showGrid": "Show Grid"
 }

@@ -18,12 +18,14 @@ const IntroDialog = ({ visible, onClose }: IntroProps): JSX.Element => (
 				<img src="./images/dice180x180.png" width={90} height={90} />
 				<div>
 					<p>
-						Welcome! This is <b>NOT</b> a working site yet: it's just a demo of the
-						upcoming <Link url="http://generatedata.com" offSite={true}>generatedata.com</Link> rewrite.
-						So expect weird behaviour, browser crashes, horror and fury.
+						Welcome! This is the alpha version of generatedata v4 - the upcoming version
+						of <Link url="http://generatedata.com" offSite={true}>generatedata.com</Link>. This current
+						version (Oct, 2020) is functional but incomplete. Unlike the current live site which is limited
+						to generating 100 rows, you're welcome to generate up to 1 <i>million</i> rows.
 					</p>
 					<p>
-						You can follow the progress on <Link url="https://github.com/benkeen/generatedata/issues" offSite={true}>github</Link>.
+						There are no user accounts yet so you can't save your data, but that's coming next. You can
+						follow the progress on <Link url="https://github.com/benkeen/generatedata/issues" offSite={true}>github</Link>.
 					</p>
 				</div>
 			</DialogContent>

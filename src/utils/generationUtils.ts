@@ -2,9 +2,6 @@ import { ColumnData } from '~types/general';
 import { ETMessageData } from '~types/exportTypes';
 
 export const getNumericFieldColumnIndexes = (data: ETMessageData): number[] => {
-
-	console.log(data);
-
 	const dataTypeMap: any = {};
 	const dt = data.dataTypeMetadata;
 	Object.keys(dt).forEach((dataType) => {

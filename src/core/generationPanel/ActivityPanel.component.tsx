@@ -38,7 +38,7 @@ const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
-	onDownload, dataSize, estimatedSize
+	onDownload, dataSize, estimatedSize, i18n
 }: ActivityPanelProps): any => {
 	if (packet === null) {
 		return null;
@@ -93,13 +93,20 @@ const ActivityPanel = ({
 		});
 	}, [isPaused]);
 
+	useDidUpdate(() => {
+		dataTypeWorker.postMessage({
+			action: isPaused ? C.ACTIVITY_PANEL_ACTIONS.PAUSE : C.ACTIVITY_PANEL_ACTIONS.CONTINUE
+		});
+	}, [isPaused]);
+
+
 	const animation = true;
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
 	const isComplete = percentage === 100;
 
 	const pieChartData = [
-		{ name: "Complete", value: percentage, color: '#275eb5' },
-		{ name: "Incomplete", value: 100-percentage, color: '#efefef' }
+		{ name: i18n.complete, value: percentage, color: '#275eb5' },
+		{ name: i18n.incomplete, value: 100-percentage, color: '#efefef' }
 	];
 
 	const pauseContinueIcon = isPaused ?
@@ -109,11 +116,11 @@ const ActivityPanel = ({
 	const marks = [
 		{
 			value: 0,
-			label: 'Seriously slow',
+			label: i18n.seriouslySlow
 		},
 		{
 			value: 100,
-			label: 'CPU-meltingly fast',
+			label: i18n.cpuMeltinglyFast
 		}
 	];
 
@@ -122,10 +129,10 @@ const ActivityPanel = ({
 			return (
 				<>
 					<Button onClick={onAbort} color="default" variant="outlined" style={{ marginRight: 10 }}>
-						Clear and Close
+						{i18n.clearAndClose}
 					</Button>
 					<Button onClick={onDownload} color="primary" variant="outlined" style={{ marginRight: 10 }}>
-						Download
+						{i18n.download}
 					</Button>
 				</>
 			);
@@ -133,7 +140,7 @@ const ActivityPanel = ({
 
 		return (
 			<Button onClick={onAbort} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
-				Cancel Generation
+				{i18n.cancelGeneration}
 			</Button>
 		);
 	};
@@ -144,10 +151,13 @@ const ActivityPanel = ({
 			return null;
 		}
 
+		// TODO tooltip needs higher z-index
+		const tooltip = isPaused ? i18n.play : i18n.pause;
+
 		return (
 			<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
-				<Tooltip title="Play / pause generation" placement="top" arrow style={{ marginRight: 50 }}>
-					<IconButton size="medium" aria-label="Play/Pause generation">
+				<Tooltip title={tooltip} placement="top" arrow style={{ marginRight: 50 }}>
+					<IconButton size="medium" aria-label={tooltip}>
 						{pauseContinueIcon}
 					</IconButton>
 				</Tooltip>
@@ -218,7 +228,6 @@ const ActivityPanel = ({
 									<YAxis />
 									<Area type="monotone" dataKey="duration" stroke="#8884d8" fill="#8884d8" />
 								</AreaChart>
-
 							</div>
 						</div>
 					</div>

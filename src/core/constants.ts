@@ -18,6 +18,7 @@ export default {
 		GENERATE: 'GENERATE',
 		PAUSE: 'PAUSE',
 		CONTINUE: 'CONTINUE',
-		ABORT: 'ABORT'
+		ABORT: 'ABORT',
+		SET_LAG: 'SET_LAG'
 	}
 };

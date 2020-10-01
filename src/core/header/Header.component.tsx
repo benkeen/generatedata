@@ -94,7 +94,7 @@ const Header = ({
 
 	const getNav = (): React.ReactNode => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
-			const togglePanelLabel = smallScreenVisiblePanel === 'grid' ? 'Show Preview' : 'Show Grid';
+			const togglePanelLabel = smallScreenVisiblePanel === 'grid' ? i18n.showPreview : i18n.showGrid;
 			return (
 				<>
 					<Button aria-controls="nav-menu" aria-haspopup="true" onClick={handleClick}>
