@@ -53,34 +53,6 @@ const hasWorkerFileChanged = (filename, hashFile) => {
 };
 
 
-export const findStringsInEnFileMissingFromOtherLangFiles = (results, stringsByLocale) => {
-	const langs = Object.keys(stringsByLocale);
-
-	let count = 0;
-	results.lines.push('\nEnglish strings missing from other lang files:\n-------------------------------------------');
-	Object.keys(stringsByLocale['en_us']).forEach((key) => {
-		const missing = [];
-		langs.forEach((locale) => {
-			if (!stringsByLocale[locale][key]) {
-				missing.push(locale);
-			}
-		});
-		if (missing.length > 0) {
-			count++;
-			results.lines.push(`${key}\n   -missing from: ${missing.join(', ')}`);
-		}
-	});
-
-	if (count > 0) {
-		results.error = true;
-		results.lines.push(`-- MISSING ${count}`);
-	} else {
-		results.lines.push('All good!\n');
-	}
-
-	return results;
-};
-
 module.exports = {
 	getHashFilename,
 	generateWorkerHashfile,

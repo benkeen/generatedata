@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const helpers = require('./build/helpers');
+const i18n = require('./build/i18n');
 
 const distFolder = path.join(__dirname, '/dist');
 if (!fs.existsSync(distFolder)) {
@@ -153,7 +154,7 @@ window.gd.localeLoaded(i18n);
 
 		webWorkerFileListWithType.forEach(({ file, type }, index) => {
 			if (omitFiles[file]) {
-				console.log("worker file: ", file, " is unchanged. Omitting regeneration.");
+				// console.log("worker file: ", file, " is unchanged. Omitting regeneration.");
 				return;
 			}
 
@@ -333,19 +334,19 @@ window.gd.localeLoaded(i18n);
 		}
 	});
 
-	grunt.registerTask('i18n', () => {
+	const validateI18n = () => {
 		const stringsByLocale = {};
-		pkg.locales.forEach((locale) => {
-			stringsByLocale[locale] = getLocaleFileStrings(locale);
+		i18n.locales.forEach((locale) => {
+			stringsByLocale[locale] = i18n.getLocaleFileStrings(locale);
 		});
 
 		let results = {
 			error: false,
 			lines: []
 		};
-		findStringsInEnFileMissingFromOtherLangFiles(results, stringsByLocale);
-		findStringsInOtherFilesNotInEnFile(results, stringsByLocale);
-		parseCoreToFindUnusedStrings(results, stringsByLocale['en_us']);
+		i18n.findStringsInEnFileMissingFromOtherLangFiles(results, stringsByLocale);
+
+		// parseCoreToFindUnusedStrings(results, stringsByLocale['en_us']);
 
 		// actually halt the grunt process if there are errors
 		const output = results.lines.join('\n');
@@ -354,8 +355,7 @@ window.gd.localeLoaded(i18n);
 		} else {
 			grunt.log.write(output);
 		}
-	});
-
+	};
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
@@ -367,9 +367,9 @@ window.gd.localeLoaded(i18n);
 	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webWorkers']);
 	grunt.registerTask('dev', ['cssmin', 'copy', 'i18n', 'webWorkers', 'watch']);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
-
 	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
+	grunt.registerTask('validateI18n', validateI18n);
 
 	grunt.registerTask('webWorkers', [
 		...getWebWorkerBuildCommandNames(),
