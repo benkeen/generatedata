@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const dataTypesFolder = 'src/plugins/dataTypes';
 const exportTypesFolder = 'src/plugins/exportTypes';
-const locales = ['de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'];
+export const locales = ['de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'];
 
 
 // checks for:
@@ -22,8 +22,11 @@ const validateDataTypeI18n = (dataType) => {
 		// 		grunt.fail.fatal('problem parsing i18n file: ' + localeFile);
 		// 	}
 		// }
+
 	});
 	return imports;
 };
 
-validateDataTypeI18n('Alphanumeric');
+const getLocaleFileStrings = (locale) => {
+	return require(`./src/i18n/${locale}.json`);
+};

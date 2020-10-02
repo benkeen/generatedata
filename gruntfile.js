@@ -333,6 +333,30 @@ window.gd.localeLoaded(i18n);
 		}
 	});
 
+	grunt.registerTask('i18n', () => {
+		const stringsByLocale = {};
+		pkg.locales.forEach((locale) => {
+			stringsByLocale[locale] = getLocaleFileStrings(locale);
+		});
+
+		let results = {
+			error: false,
+			lines: []
+		};
+		findStringsInEnFileMissingFromOtherLangFiles(results, stringsByLocale);
+		findStringsInOtherFilesNotInEnFile(results, stringsByLocale);
+		parseCoreToFindUnusedStrings(results, stringsByLocale['en_us']);
+
+		// actually halt the grunt process if there are errors
+		const output = results.lines.join('\n');
+		if (results.error) {
+			grunt.fail.fatal(output);
+		} else {
+			grunt.log.write(output);
+		}
+	});
+
+
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
