@@ -383,9 +383,6 @@ window.gd.localeLoaded(i18n);
 		i18n.removeKeyFromI18nFiles(grunt.option('key'));
 	});
 
-
-	grunt.registerTask('sortI18nFiles', sortI18nFiles);
-
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
@@ -393,6 +390,8 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-md5');
+
+	grunt.registerTask('sortI18nFiles', sortI18nFiles);
 	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webWorkers']);
 	grunt.registerTask('dev', ['cssmin', 'copy', 'i18n', 'webWorkers', 'watch']);
 	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);

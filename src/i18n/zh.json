@@ -109,7 +109,6 @@
 	"hideDataFormatOptions": "隐藏数据格式化选项",
 	"hideError": "隐藏错误",
 	"hostName": "主机名称",
-	"hostNameDesc": "你的数据库连接名称. 通常是<i>localhost</i>, 但有时会是<i>mysql.yoursite.com</i>.",
 	"humanData": "人类数据",
 	"infoAndStats": "信息和状态",
 	"install": "安装",

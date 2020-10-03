@@ -110,7 +110,6 @@
 	"hideDataFormatOptions": "ocultar opciones de formato de datos",
 	"hideError": "Ocultar error",
 	"hostName": "Anfitrión",
-	"hostNameDesc": "El nombre de tu conexión a base de datos. A  menudo, basta con <i>localhost</i>, pero algunas veces es algo como <i>mysql.tusitio.com</i>.",
 	"humanData": "Datos humanos",
 	"infoAndStats": "Información y estadísticas",
 	"install": "Instalar",

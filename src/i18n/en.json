@@ -125,7 +125,6 @@
 	"hideShowGrid": "Hide/show grid",
 	"hideShowPreviewPanel": "Hide/show preview panel",
 	"hostName": "Host Name",
-	"hostNameDesc": "The name of your database connection. Often its just <i>localhost</i>, but sometimes its something like <i>mysqlyoursite.com</i>.",
 	"humanData": "Human Data",
 	"incomplete": "Incomplete",
 	"infoAndStats": "Info and Stats",

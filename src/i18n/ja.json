@@ -107,7 +107,6 @@
 	"hideDataFormatOptions": "hide data format options",
 	"hideError": "Hide error",
 	"hostName": "Host Name",
-	"hostNameDesc": "The name of your database connection. Often its just <i>localhost</i>, but sometimes its something like <i>mysql.yoursite.com</i>.",
 	"humanData": "Human Data",
 	"infoAndStats": "Info and Stats",
 	"install": "Install",
