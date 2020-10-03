@@ -240,5 +240,36 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets"
+	"yourDataSets": "Your Data Sets",
+
+
+  "cannotChangeNumRows": "申し訳ありませんが、生成される行数を変更することはできません。"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
