@@ -357,6 +357,23 @@ window.gd.localeLoaded(i18n);
 		}
 	};
 
+	const sortI18nFiles = () => {
+		i18n.locales.forEach((locale) => {
+			const data = i18n.getLocaleFileStrings(locale);
+			const file = `./src/i18n/${locale}.json`;
+			const sortedKeys = Object.keys(data).sort();
+
+			let sortedObj = {};
+			sortedKeys.forEach((key) => {
+				sortedObj[key] = data[key];
+			});
+
+			fs.writeFileSync(file, JSON.stringify(sortedObj, null, '\t'));
+		});
+	};
+
+	grunt.registerTask('sortI18nFiles', sortI18nFiles);
+
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
