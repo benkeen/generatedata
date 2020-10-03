@@ -22,6 +22,21 @@ same role as `settings.php` in previous versions of the script.
 At this point neither file does anything but that'll change very soon. 
 
 
+### Locale file helpers
+
+There are a several grunt helper functions for validation and managing the locale files. It's important to keep the files
+up to date so every i18n file contains the same keys and won't cause bugs when the user selects the 
+
+#### Core localization files
+
+These are found in `src/i18n`. They contain all the core i18n files.
+
+- `grunt validateI18n` - general validation function to examine all the localization files and check everything in sync.
+- `grunt validateI18n --key=fr` - same as above, except it only looks at a particular locale file.
+- `grunt removeI18nKey --key=xxx` - where xxx is the property name.
+- `grunt sortI18nFiles` - sorts the keys of all i18n files alphabetically.
+
+
 ### TODO
 
 - add base component generation script task.

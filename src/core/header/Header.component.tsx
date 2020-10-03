@@ -63,8 +63,6 @@ const Header = ({
 	// context it messes up the styles wrapping <Button> in a <span> like we do elsewhere. So this just constructs
 	// the JSX differently for the enabled/disabled state
 	const getToggleLayoutBtn = (): JSX.Element => {
-		console.log(toggleLayoutEnabled);
-
 		if (toggleLayoutEnabled) {
 			return (
 				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.togglePanelLayout }}/>}

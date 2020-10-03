@@ -115,7 +115,6 @@
 	"help_prerequisites": "Benodigdheden",
 	"hide_data_format_options": "Verberg dataformaat opties",
 	"hide_error": "Verberg fout",
-	"history": "Geschiedenis",
 	"host_name": "Hostnaam",
 	"host_name_desc": "De naam van je databaseverbinding. Vaak is het gewoon <i>localhost</i>, maar soms is het zoiets als <i>mysql.yoursite.com</i>.",
 	"humanData": "Menselijke data",

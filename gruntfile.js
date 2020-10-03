@@ -335,6 +335,8 @@ window.gd.localeLoaded(i18n);
 	});
 
 	const validateI18n = () => {
+		const targetLocale = grunt.option('locale') || null;
+
 		const stringsByLocale = {};
 		i18n.locales.forEach((locale) => {
 			stringsByLocale[locale] = i18n.getLocaleFileStrings(locale);
@@ -344,7 +346,7 @@ window.gd.localeLoaded(i18n);
 			error: false,
 			lines: []
 		};
-		i18n.findStringsInEnFileMissingFromOtherLangFiles(results, stringsByLocale);
+		i18n.findStringsInEnFileMissingFromOtherLangFiles(results, stringsByLocale, targetLocale);
 
 		// parseCoreToFindUnusedStrings(results, stringsByLocale['en_us']);
 
@@ -371,6 +373,16 @@ window.gd.localeLoaded(i18n);
 			fs.writeFileSync(file, JSON.stringify(sortedObj, null, '\t'));
 		});
 	};
+
+	// helper methods to operate on all lang files at once
+	grunt.registerTask('removeI18nKey', () => {
+		const key = grunt.option('key') || null;
+		if (!key) {
+			grunt.fail.fatal("Please enter a key to remove. Format: `grunt removeI18nKey --key=word_goodbye");
+		}
+		i18n.removeKeyFromI18nFiles(grunt.option('key'));
+	});
+
 
 	grunt.registerTask('sortI18nFiles', sortI18nFiles);
 

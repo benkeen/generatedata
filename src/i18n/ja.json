@@ -1,11 +1,5 @@
 {
-	"aFewLinks": "A few links",
 	"about": "About",
-	"aboutPara1": "Sometimes you need fake data for things like testing software, populating databases and creating realistic-looking mockups. For text, we have <i>lorem ipsum</i>; but for everything else...? This tool was written to provide a quick and simple way to let you generate large volumes of custom data in whatever format you require.",
-	"aboutPara2": "The <b>Generate</b> page contains the entire script: just fill in the various fields in the page to construct the data set youre interested in, then click the Generate button. And hey presto! Easy, huh?",
-	"aboutPara3": "The out-the-box script contains the sort of functionality you generally need. But nothings ever complete - maybe you need to generate random esoteric math equations, pull random tweets or display random images from Flickr with the word \"Red-backed vole\" in the title. Who knows. Everyones use-case is different.",
-	"aboutPara4": "With this in mind, the new version of the script (3.0.0+) was designed to be fully extensible: developers can write their own Data Types to generate new types of random data, and even customize the Export Types - i.e. the format in which the data is output. For people interested in generating more accurate localized geographical data, they can also add new Country plugins that supply region names (states, provinces, territories etc), city names and postal/zip code formats for their country of choice.",
-	"aboutPara5": "For more information on how to extend it, visit the <a href=\"http://benkeen.github.io/generatedata/developer.html\">developer documentation</a>.",
 	"aboutTitle": "What <i>is</i> this thing?",
 	"accountCreated": "Account Created",
 	"accountCreatedMsg": "An account has been created for you.",

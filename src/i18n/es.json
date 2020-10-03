@@ -1,11 +1,5 @@
 {
-	"aFewLinks": "Unos pocos enlaces",
 	"about": "Acerca de",
-	"aboutPara1": "Algunas veces necesitas datos falsos para cosas como probar programas, rellenar bases de datos y crear maquetas de aspecto realista. Para texto, tenemos el <i>lorem ipsum</i> pero, ¿y para todo lo demás? Esta herramienta fue escrita para proveer de una forma sencilla y rápida de generar grandes volúmenes de datos personalizados en cualquier formato que requieras.",
-	"aboutPara2": "La página <b>Generar</b> contiene el programa completo: sólo tienes que rellenar varios campos de la página para construir el conjunto de datos en que estés interesado y entonces hacer clic en el botón Generar. Y todo listo, fácil, ¿no?",
-	"aboutPara3": "El programa viene pre-configurado con la funcionalidad general que necesitas, pero no está completo. Puede que necesites generar ecuaciones matemáticas aleatorias, poner tweets aleatorios o visualizar imágenes aleatorias desde Flickr con la palabra \"Petirrojo\" en el título. ¿Quién sabe?, cada persona es un caso diferente.",
-	"aboutPara4": "Con esto en mente, la nueva versión del programa (3.0.0+) fue diseñada para ser totalmente extensible: los desarrolladores pueden escribir sus propios tipos de dato para generar nuevos tipos de datos aleatorios e incluso personalizar los tipos de exportación, es decir, el formato en que se salen los datos. Para gente interesada en datos de localización geográfica más precisos, también pueden añadir nuevos complementos de país que provean nombres de región (estados, provincias, territorios, etc.), nombres de ciudades y formatos de código postal para el país de su elección.",
-	"aboutPara5": "Para más información sobre como ampliarlo, visita la <a href=\"http://benkeen.github.io/generatedata/developer.html\">documentación de desarrollo</a>.",
 	"aboutTitle": "¿Qué <i>es</i> esto?",
 	"accountCreated": "Cuenta creada",
 	"accountCreatedMsg": "Se ha creado una cuenta para ti.",
@@ -277,6 +271,5 @@
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
 	"yourDataSetNameHere": "El nombre de tu conjunto de datos va aquí...",
-	"yourDataSets": "Tus conjuntos de datos",
-	"zipQ": "Zip?"
+	"yourDataSets": "Tus conjuntos de datos"
 }

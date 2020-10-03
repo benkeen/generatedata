@@ -1,11 +1,5 @@
 {
-	"aFewLinks": "Ein paar Links",
 	"about": "Über",
-	"aboutPara1": "Manchmal braucht man gefälschte Daten für Dinge wie Prüfsoftware, bevölkern Datenbanken und Erstellung realistischer aussehende Mockups. Für Text, haben wir <i>Lorem ipsum</i>, aber für alles andere ...? Dieses Tool wurde geschrieben, um eine schnelle und einfache Möglichkeit, um Sie erzeugen große Mengen von benutzerdefinierten Daten in welchem ​​Format Sie benötigen.",
-	"aboutPara2": "Die <b>generieren</b> Seite enthält das gesamte Skript: einfach in den verschiedenen Bereichen der Seite ausfüllen zu konstruieren die Daten legen Sie in interessiert sind, dann klicken Sie auf die Schaltfläche Erzeugen. Und schwupps! Einfach, oder?",
-	"aboutPara3": "Das out-the-box-Skript enthält die Art von Funktionalität, die Sie benötigen im Allgemeinen. Aber nichts ist jemals komplett - vielleicht brauchen Sie, um zufällige esoterischen mathematischen Gleichungen zu erzeugen, ziehen zufällige Tweets oder anzuzeigen zufällige Bilder von Flickr mit dem Wort \"Red-backed Wühlmäuse\" in den Titel. Wer weiß. Jeder der Use-Case ist anders.",
-	"aboutPara4": "Vor diesem Hintergrund wurde die neue Version des Skripts (3.0.0 +) entwickelt, um vollständig erweiterbar: Entwickler können ihre eigenen Datentypen zu schreiben, neue Arten von zufälligen Daten zu generieren, und sogar anpassen, die Export-Typen - also das Format, in dem die Daten ausgegeben werden. Für die Menschen in Erzeugung genauer lokalisierten geografischen Daten interessiert sind, können sie auch neue Land Plugins, die Bezeichnungen der Regionen (Länder, Provinzen, Territorien etc), Städtenamen und Post / zip-Formate liefern für ihr Land der Wahl.",
-	"aboutPara5": "Für weitere Informationen darüber, wie sie zu verlängern, besuchen Sie die <a href=\"http://benkeen.github.io/generatedata/developer.html\">Entwickler-Dokumentation</a>.",
 	"aboutTitle": "Was <i>ist</i> das Ding?",
 	"accountCreated": "Benutzerkonto erstellt",
 	"accountCreatedMsg": "Ein Benutzerkonto wurde für Sie erstellt.",
@@ -278,6 +272,5 @@
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
 	"yourDataSetNameHere": "Name für Datensatz eingeben...",
-	"yourDataSets": "Ihre Datensätze",
-	"zipQ": "Zip?"
+	"yourDataSets": "Ihre Datensätze"
 }
