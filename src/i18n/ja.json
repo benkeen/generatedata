@@ -24,6 +24,7 @@
 	"back": "戻る",
 	"blog": "Blog",
 	"cancel": "cancel",
+	"cannotChangeNumRows": "申し訳ありませんが、生成される行数を変更することはできません。",
 	"centralAmerica": "Central America",
 	"checkDatabaseInfo": "Check Database Info",
 	"clearThePage": "Clear the Page",
@@ -56,7 +57,9 @@
 	"defaultLanguage": "Default Language",
 	"defaultSaveFormEmptyStr": "Enter form name here",
 	"delete": "Delete",
+	"delete1DataSet": "1つのデータセットを削除します",
 	"deleteAccount": "Delete Account",
+	"deleteNDataSets": "%1データセットを削除する",
 	"developer": "Developer",
 	"developerDoc": "Developer doc",
 	"developerIntro": "The following sections lets you fine-tune what you see in your javascript console for development purposes.",
@@ -240,36 +243,5 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets",
-
-
-  "cannotChangeNumRows": "申し訳ありませんが、生成される行数を変更することはできません。"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	"yourDataSets": "Your Data Sets"
 }
