@@ -1,15 +1,42 @@
 const fs = require('fs');
 const path = require('path');
+const helpers = require('./helpers');
 
-// const dataTypesFolder = 'src/plugins/dataTypes';
-// const exportTypesFolder = 'src/plugins/exportTypes';
 const locales = ['de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'];
 
-const getLocaleFileStrings = (locale) => {
-	return require(getFilePath(locale));
+const getCoreLocaleFileStrings = (locale) => {
+	return require(getCoreLocaleFilePath(locale));
 };
 
-const findStringsInEnFileMissingFromOtherLangFiles = (results, stringsByLocale, targetLocale = null) => {
+const findMissingStrings = (stringsByLocale, targetLocale = null, baseLocale = 'en') => {
+	const locales = Object.keys(stringsByLocale);
+	const results = [];
+
+	const baseLocaleKeys = Object.keys(stringsByLocale[baseLocale]);
+	locales.forEach((locale) => {
+		if (targetLocale && targetLocale !== locale) {
+			return;
+		}
+
+		const targetLocaleKeys = Object.keys(stringsByLocale[locale]);
+
+		// missing from source file
+		const missing = helpers.arrayDiff(baseLocaleKeys, targetLocaleKeys);
+		missing.forEach((key) => {
+			results.push({ key, locale });
+		});
+
+		// extra ones in locale file
+		const extra = helpers.arrayDiff(targetLocaleKeys, baseLocaleKeys);
+		extra.forEach((key) => {
+			results.push({ key, locale, isExtra: true });
+		});
+	});
+
+	return results;
+};
+
+const findStringsInDataTypeEnFileMissingFromOtherLangFiles = (results, dataType, stringsByLocale) => {
 	const langs = Object.keys(stringsByLocale);
 
 	let count = 0;
@@ -41,13 +68,16 @@ const findStringsInEnFileMissingFromOtherLangFiles = (results, stringsByLocale, 
 	return results;
 };
 
-const getFilePath = (locale) => path.join(__dirname, '..', `src/i18n/${locale}.json`);
+
+
+const getCoreLocaleFilePath = (locale) => path.join(__dirname, '..', `src/i18n/${locale}.json`);
+const getDataTypeLocaleFilePath = (dataType, locale) => path.join(__dirname, '..', `src/plugins/dataTypes/${dataType}/i18n/${locale}.json`);
 
 const removeKeyFromI18nFiles = (key) => {
 	locales.forEach((locale) => {
-		const localeFile = getLocaleFileStrings(locale);
+		const localeFile = getCoreLocaleFileStrings(locale);
 		delete localeFile[key];
-		const file = getFilePath(locale);
+		const file = getCoreLocaleFilePath(locale);
 		fs.writeFileSync(file, JSON.stringify(localeFile, null, '\t'));
 	});
 };
@@ -106,11 +136,20 @@ const parseCoreToFindUnusedStrings = (results, en) => {
 	// }
 };
 
+const getDataTypeLocaleStrings = (dataType) => {
+	locales.forEach((locale) => {
+		const strings = require(getDataTypeLocaleFilePath(dataType, locale));
+
+		console.log(strings);
+	});
+}
+
 
 module.exports = {
 	locales,
-	getLocaleFileStrings,
-	findStringsInEnFileMissingFromOtherLangFiles,
+	getCoreLocaleFileStrings,
+	findMissingStrings,
 	parseCoreToFindUnusedStrings,
-	removeKeyFromI18nFiles
+	removeKeyFromI18nFiles,
+	getDataTypeLocaleStrings
 };

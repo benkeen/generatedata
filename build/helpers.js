@@ -2,6 +2,24 @@ const fs = require('fs');
 const md5File = require('md5-file');
 const path = require('path');
 
+const getPlugins = (pluginType, blacklist, checkConfigFileExistence = true) => {
+	const baseFolder = path.join(__dirname, '..', `/src/plugins/${pluginType}`);
+	const folders = fs.readdirSync(baseFolder);
+
+	return folders.filter((folder) => {
+		if (blacklist.indexOf(folder) !== -1) {
+			return false;
+		}
+		const bundle = `${baseFolder}/${folder}/bundle.ts`;
+		const config = `${baseFolder}/${folder}/config.ts`;
+		if (checkConfigFileExistence) {
+			return fs.existsSync(bundle) && fs.existsSync(config);
+		} else {
+			return fs.existsSync(bundle);
+		}
+	});
+};
+
 const getHashFilename = (target) => `__hash-${path.basename(target, path.extname(target))}`;
 
 const generateWorkerHashfile = (src, folder) => {
@@ -14,7 +32,6 @@ const generateWorkerHashfile = (src, folder) => {
 	}
 	fs.writeFileSync(fileWithPath, fileHash);
 };
-
 
 /**
  * Get a new scoped filename for a web worker plugin file (Export Type, Data Type, Country).
@@ -52,10 +69,15 @@ const hasWorkerFileChanged = (filename, hashFile) => {
 	return hasChanged;
 };
 
+// returns all the items in arr1 that are not in arr2
+const arrayDiff = (arr1, arr2) => arr1.filter((a) => arr2.indexOf(a) === -1);
+
 
 module.exports = {
+	getPlugins,
 	getHashFilename,
 	generateWorkerHashfile,
 	getScopedWorkerFilename,
-	hasWorkerFileChanged
+	hasWorkerFileChanged,
+	arrayDiff
 };

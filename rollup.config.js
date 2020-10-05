@@ -12,7 +12,6 @@ import removeExports from 'rollup-plugin-strip-exports';
 import { terser } from 'rollup-plugin-terser';
 import removeImports from './build/rollup-plugin-remove-imports';
 import workerHash from './build/rollup-plugin-worker-hash';
-const helpers = require('./build/helpers');
 
 // example usage:
 //    npx rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js
