@@ -137,11 +137,11 @@ const parseCoreToFindUnusedStrings = (results, en) => {
 };
 
 const getDataTypeLocaleStrings = (dataType) => {
+	const result = {};
 	locales.forEach((locale) => {
-		const strings = require(getDataTypeLocaleFilePath(dataType, locale));
-
-		console.log(strings);
+		result[locale] = require(getDataTypeLocaleFilePath(dataType, locale));
 	});
+	return result;
 };
 
 const validateCoreI18n = (baseLocale, targetLocale) => {
@@ -151,7 +151,28 @@ const validateCoreI18n = (baseLocale, targetLocale) => {
 	});
 
 	const missing = findMissingStrings(stringsByLocale, targetLocale, baseLocale);
+	return getMissingStrMessage(missing, baseLocale);
+};
 
+const validateDataTypeI18n = (baseLocale, targetDataType) => {
+	const dataTypes = helpers.getPlugins('dataTypes', [], false);
+
+	let str = '';
+	dataTypes.forEach((dataType) => {
+		if (targetDataType && targetDataType !== dataType) {
+			return;
+		}
+
+		const stringsByLocale = getDataTypeLocaleStrings(dataType);
+		const missing = findMissingStrings(stringsByLocale);
+
+		str += getMissingStrMessage(missing, baseLocale, `${dataType} -- `);
+	});
+
+	return str;
+};
+
+const getMissingStrMessage = (missing, baseLocale, prefix) => {
 	let str = '';
 	if (missing.length) {
 		let missingStr = [];
@@ -164,34 +185,18 @@ const validateCoreI18n = (baseLocale, targetLocale) => {
 			}
 		});
 
-		if (missingStr) {
-			str += `\n\n"${baseLocale}" strings missing from other lang files:\n-------------------------------------------\n`;
+		if (missingStr.length) {
+			str += `\n\n${prefix}"${baseLocale}" strings missing from other lang files:\n-------------------------------------------\n`;
 			str += missingStr.join('\n');
 		}
-		if (extraStr) {
-			str += `\n\n"Extra strings in locale files that are NOT in "${baseLocale}" file:\n-------------------------------------------\n`;
+		if (extraStr.length) {
+			str += `\n\n${prefix}Extra strings in locale files that are NOT in "${baseLocale}" file:\n-------------------------------------------\n`;
 			str += extraStr.join('\n');
 		}
 	}
-
 	return str;
 };
 
-const validateDataTypeI18n = (targetDataType) => {
-	const dataTypes = helpers.getPlugins('dataTypes', [], false);
-
-	let isValid = true;
-	dataTypes.forEach((dataType) => {
-		if (targetDataType && targetDataType !== dataType) {
-			return;
-		}
-
-		const strings = getDataTypeLocaleStrings(dataType);
-		// const missing = helpers.findStringsInDataTypeEnFileMissingFromOtherLangFiles();
-
-	});
-
-};
 
 
 module.exports = {

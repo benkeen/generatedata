@@ -1,5 +1,16 @@
 {
-  "NAME": "City",
-  "DESC": "Zeigt ein zufälliges Stadt , oder wenn Daten verfügbar sind , zeigt eine Stadt für das entsprechende Land / Region.",
-  "DEFAULT_TITLE": "stadt"
+  "NAME": "Stadt",
+  "DESC": "Zeigt eine zufällige Stadt an oder wenn Daten verfügbar sind, wird eine Stadt für das entsprechende Land / die entsprechende Region angezeigt.",
+  "DEFAULT_TITLE": "stadt",
+  "selectCities": "Wählen Sie Städte",
+  "regionRow": "Regionszeile",
+  "source": "Quelle",
+  "anyCity": "Irgendeine Stadt",
+  "explanation": "Hiermit wird gesteuert, welche Städtenamen von diesem Feld generiert werden.",
+  "anyDesc": "Erzeugt einen beliebigen Städtenamen.",
+  "countriesDesc": "Generiert Städtenamen aus den angegebenen Ländern.",
+  "rowDesc": "Dadurch wird ein bestimmtes Regionsfeld in Ihrem Datensatz ermittelt, dessen Quelle Regions-Plugins sind. Es werden Städte generiert, die dem Wert in diesem Feld zugeordnet sind.",
+  "row": "Reihe",
+  "country": "Land",
+  "countries": "Länder"
 }

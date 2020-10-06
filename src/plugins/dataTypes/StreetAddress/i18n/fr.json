@@ -2,8 +2,7 @@
   "NAME": "Adresse",
   "DESC": "Génère des adresses aléatoires .",
   "DEFAULT_TITLE": "habla",
-  "apNum": "Appartement ",
-  "name": "Adresse",
+  "apNum": "Appartement",
   "poBox": "CP",
   "streetTypes": "Rue,Route,Chemin,Rd.,Ave,Av.,Avenue,Impasse"
 }

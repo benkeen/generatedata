@@ -1,5 +1,16 @@
 {
   "NAME": "Stad",
-  "DESC": "Geeft een willekeurige stad , of indien de gegevens beschikbaar zijn , wordt een stad in het juiste land en/of regio gekozen.",
-  "DEFAULT_TITLE": "stad"
+  "DESC": "Geeft een willekeurige stad weer, of als gegevens beschikbaar zijn, wordt een stad voor het betreffende land / regio weergegeven.",
+  "DEFAULT_TITLE": "stad",
+  "selectCities": "Selecteer steden",
+  "regionRow": "Regio rij",
+  "source": "Bron",
+  "anyCity": "Elke stad",
+  "explanation": "Dit bepaalt welke stadsnamen door dit veld worden gegenereerd.",
+  "anyDesc": "Genereert een willekeurige plaatsnaam.",
+  "countriesDesc": "Genereert plaatsnamen uit de opgegeven landen.",
+  "rowDesc": "Dit lokaliseert een specifiek regioveld in uw dataset dat regioplug-ins als bron heeft. Het genereert steden die overeenkomen met de waarde in dat veld.",
+  "row": "Rij",
+  "country": "land",
+  "countries": "landen"
 }

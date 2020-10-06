@@ -2,7 +2,7 @@
   "NAME": "Berechnet",
   "DESC": "Hier können Sie programmatisch die Werte und Metadaten aus anderen Bereichen in der Reihe und gibt, was Sie wollen erzeugt zugreifen.",
   "DEFAULT_TITLE": "berechnet",
-  "see_help_dialog": "&nbsp;Siehe Hilfe-Dialog.",
+  "seeHelpDialog": "&nbsp;Siehe Hilfe-Dialog.",
   "helpPara1": "Die <b>computerisiert</b> Datentyp gibt Ihnen über Felder in der Zeile auf die Metadaten zugreifen Sie Informationen, was Ausgabe, die Sie lassen generieren auf dieser Grundlage. Wenn Sie nur zugreifen müssen der <i>erzeugt</i> String-Wert aus einem anderen Feld (das heißt, was Sie in der Ausgabe sehen) finden Sie in den <b>Verbund</b> Datentyp . Diese Art von Feld gibt Ihnen viel mehr Zugriff auf jedes Feld.",
   "helpPara2": "<b>{$ROW1}</b>, <b>{\\$ROW2}</b> usw. enthält alles, was verfügbar über diese spezielle Reihe. Die inhaltlichen Änderungen, basierend auf den Datentyp der Reihe und welche Bein erzeugt hat, aber auf hoher Ebene enthält die folgenden Eigenschaften:",
   "helpProp1": "<b>{$ROW1.OPTIONS}</b> - welche Optionen eingegeben wurden in die Schnittstelle / API-Aufruf für die Zeile",

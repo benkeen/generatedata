@@ -2,7 +2,8 @@
   "NAME": "Standardabweichung",
   "DESC": "Erzeugt ZufallsnormalverteiltenWerten mit einem kundengerechten Mittelwert und Standardabweichung .",
   "DEFAULT_TITLE": "feld",
-  "incomplete_fields": "Der Mittelwert und Sigma Felder sind für alle Normal Distribution Zeilen erforderlich. Bitte beheben Sie die folgenden Zeilen:",
+  "incompleteFields": "Der Mittelwert und Sigma Felder sind für alle Normal Distribution Zeilen erforderlich. Bitte beheben Sie die folgenden Zeilen:",
   "mean": "Bedeuten",
-  "precision": "Präzision"
+  "precision": "Präzision",
+  "standardDeviation": "Standardabweichung"
 }

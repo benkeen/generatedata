@@ -340,13 +340,18 @@ window.gd.localeLoaded(i18n);
 		const targetDataType = grunt.option('dataType') || null;
 		const targetExportType = grunt.option('exportType') || null;
 
+		let errors = '';
 		if (targetDataType) {
-			const errors = i18n.validateDataTypeI18n(targetDataType);
+			errors += i18n.validateDataTypeI18n(baseLocale, targetDataType);
 		} else if (targetExportType) {
-
+			// errors += i18n.validateDataTypeI18n(baseLocale, targetDataType);
 		} else {
-			const coreErrorStr = i18n.validateCoreI18n(baseLocale, targetLocale);
-			const dataTypeErrorStr = i18n.validateDataTypeI18n();
+			errors += i18n.validateCoreI18n(baseLocale, targetLocale);
+			errors += i18n.validateDataTypeI18n(baseLocale);
+		}
+
+		if (errors) {
+			grunt.fail.fatal(errors);
 		}
 	};
 

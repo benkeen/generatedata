@@ -7,6 +7,5 @@
   "help_2": "Les options vous permettent de spécifier lequel de vos lignes est celle d'auto-incrémentation et le nombre maximum d'enfants qu'un noeud peut avoir.",
   "invalid_fields": "Les options du type de données Arborescence doivent être des nombres. Corrigez les lignes:",
   "invalid_parent": "[Parent non valide]",
-  "max_num_sibling_nodes": "Nombre maximum de noeuds frères:",
-  "name": "Arbre (ID de ligne mère)"
+  "max_num_sibling_nodes": "Nombre maximum de noeuds frères:"
 }
