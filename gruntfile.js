@@ -335,64 +335,18 @@ window.gd.localeLoaded(i18n);
 	});
 
 	const validateI18n = () => {
-		const targetLocale = grunt.option('locale') || null;
 		const baseLocale = grunt.option('baseLocale') || 'en';
+		const targetLocale = grunt.option('locale') || null;
 		const targetDataType = grunt.option('dataType') || null;
 		const targetExportType = grunt.option('exportType') || null;
 
-		const stringsByLocale = {};
-		i18n.locales.forEach((locale) => {
-			stringsByLocale[locale] = i18n.getCoreLocaleFileStrings(locale);
-		});
+		if (targetDataType) {
+			const errors = i18n.validateDataTypeI18n(targetDataType);
+		} else if (targetExportType) {
 
-		const missing = i18n.findMissingStrings(stringsByLocale, targetLocale, baseLocale);
-
-		if (missing.length) {
-			let missingStr = [];
-			let extraStr = [];
-			missing.forEach(({ key, locale, isExtra }) => {
-				if (isExtra) {
-					extraStr.push(`- ${key}: ${locale}`);
-				} else {
-					missingStr.push(`- ${key}: ${locale}`);
-				}
-			});
-
-			let str = '';
-			if (missingStr) {
-				str += `\n\n"${baseLocale}" strings missing from other lang files:\n-------------------------------------------\n`;
-				str += missingStr.join('\n');
-			}
-			if (extraStr) {
-				str += `\n\n"Extra strings in locale files that are NOT in "${baseLocale}" file:\n-------------------------------------------\n`;
-				str += extraStr.join('\n');
-			}
-			grunt.fail.fatal(str);
-		}
-		// parseCoreToFindUnusedStrings(results, stringsByLocale['en_us']);
-	};
-
-	const validateDataTypeI18n = () => {
-		const targetDataType = grunt.option('dataType') || null;
-
-		const dataTypes = helpers.getPlugins('dataTypes', [], false);
-
-		let isValid = true;
-		dataTypes.forEach((dataType) => {
-			if (targetDataType && targetDataType !== dataType) {
-				return;
-			}
-
-			const strings = i18n.getDataTypeLocaleStrings(dataType);
-			// const missing = helpers.findStringsInDataTypeEnFileMissingFromOtherLangFiles();
-
-			if (missing.length) {
-				isValid = false;
-			}
-		});
-
-		if (!isValid) {
-			grunt.fail.fatal();
+		} else {
+			const coreErrorStr = i18n.validateCoreI18n(baseLocale, targetLocale);
+			const dataTypeErrorStr = i18n.validateDataTypeI18n();
 		}
 	};
 

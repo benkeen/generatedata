@@ -1,0 +1,16 @@
+{
+  "NAME": "PAN",
+  "DESC": "This data type generates random, valid credit card numbers according to the format you specify.",
+  "DEFAULT_TITLE": "pan",
+  "panIncompleteFields": "At least one card brand should be selected. Please fix the following rows:",
+  "separatorHelp": "The characters you enter here will be used to replace the spaces in the Credit Card format field below. To enter more than one separator, just separate them with a pipe (|) character.",
+  "formatIncompleteFields": "For PAN field CC Number formats, input <b>X's</b> and for separators input <b>spaces</b> according to the card length. Please fix the following rows:",
+  "panHelpIntro": "It is currently capable of generating numbers for the following brands: Mastercard, Visa, Visa Electron, American Express, Discover, American Diner's, Carte Blanche, Diner's Club International, enRoute, JCB, Maestro, Solo, Switch, Laser.",
+  "randCard": "Random Credit Card",
+  "ccrandom": "Select Card Brand:",
+  "formatTitle": "If length of X is not equal to the card length then that format will not get generated.",
+  "randBrandTitle": "The selected brand's card length and format are picked randomly.",
+  "length": "Length:",
+  "separators": "Separators:",
+  "ccformats": "Credit Card Format(s):"
+}

@@ -142,7 +142,56 @@ const getDataTypeLocaleStrings = (dataType) => {
 
 		console.log(strings);
 	});
-}
+};
+
+const validateCoreI18n = (baseLocale, targetLocale) => {
+	const stringsByLocale = {};
+	locales.forEach((locale) => {
+		stringsByLocale[locale] = getCoreLocaleFileStrings(locale);
+	});
+
+	const missing = findMissingStrings(stringsByLocale, targetLocale, baseLocale);
+
+	let str = '';
+	if (missing.length) {
+		let missingStr = [];
+		let extraStr = [];
+		missing.forEach(({ key, locale, isExtra }) => {
+			if (isExtra) {
+				extraStr.push(`- ${key}: ${locale}`);
+			} else {
+				missingStr.push(`- ${key}: ${locale}`);
+			}
+		});
+
+		if (missingStr) {
+			str += `\n\n"${baseLocale}" strings missing from other lang files:\n-------------------------------------------\n`;
+			str += missingStr.join('\n');
+		}
+		if (extraStr) {
+			str += `\n\n"Extra strings in locale files that are NOT in "${baseLocale}" file:\n-------------------------------------------\n`;
+			str += extraStr.join('\n');
+		}
+	}
+
+	return str;
+};
+
+const validateDataTypeI18n = (targetDataType) => {
+	const dataTypes = helpers.getPlugins('dataTypes', [], false);
+
+	let isValid = true;
+	dataTypes.forEach((dataType) => {
+		if (targetDataType && targetDataType !== dataType) {
+			return;
+		}
+
+		const strings = getDataTypeLocaleStrings(dataType);
+		// const missing = helpers.findStringsInDataTypeEnFileMissingFromOtherLangFiles();
+
+	});
+
+};
 
 
 module.exports = {
@@ -151,5 +200,7 @@ module.exports = {
 	findMissingStrings,
 	parseCoreToFindUnusedStrings,
 	removeKeyFromI18nFiles,
-	getDataTypeLocaleStrings
+	getDataTypeLocaleStrings,
+	validateCoreI18n,
+	validateDataTypeI18n
 };

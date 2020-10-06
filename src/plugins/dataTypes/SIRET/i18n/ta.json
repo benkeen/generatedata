@@ -1,0 +1,14 @@
+{
+  "NAME": "SIRET",
+  "DESC": "This Data Type generates a random SIRET/SIREN French business identification number.",
+  "DEFAULT_TITLE": "siret",
+  "helpLink": "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements",
+  "incompleteFields": "The SIRET data type needs to have the format entered in the Options text field. Please fix the following rows:",
+  "exampleSIRET": "508102811-00009 (SIRET : SIREN-NIC)",
+  "exampleSIREN": "508102811 (SIREN)",
+  "typeSIRET": " A random SIRET compound of a SIREN and NIC (508102811-00009).",
+  "typeSIREN": " A random SIREN (508102811).",
+  "SIRET": "SIRET:",
+  "SIREN": "SIREN:",
+  "moreInfo": "More info:"
+}

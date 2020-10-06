@@ -1,0 +1,7 @@
+{
+  "NAME": "Bank Account Nums (IBAN)",
+  "DESC": "Generates International Bank Account Numbers (IBAN).",
+  "DEFAULT_TITLE": "iban",
+  "help1": "The generated IBAN has a valid checksum, country code and length and the BIC is in the right place.",
+  "help2": "The number is highly unlikely to be really <i>valid</i> though, since there are usually a bunch of checks to do which are country specific."
+}
