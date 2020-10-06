@@ -1,0 +1,12 @@
+{
+  "EXPORT_TYPE_NAME": "HTML",
+  "COL_TITLE": "Node Name",
+  "dataFormat": "Data format",
+  "customHtmlFormat": "Custom HTML Format",
+  "useCustomHtmlFormat": "Use custom HTML format",
+  "batchVars": "Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.",
+  "colNamesArray": "An ordered array of strings containing the column names.",
+  "rowDataArray": "An ordered array of arrays. Each top level array contains the contents of the row; each child array contains an ordered array of values for each item of data.",
+  "availableSmartyVars": "Available Smarty Vars",
+  "resetCustomHtml": "Reset Custom HTML"
+}
