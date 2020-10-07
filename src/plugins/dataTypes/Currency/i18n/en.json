@@ -14,7 +14,6 @@
   "prefixSuffix": "Prefix/Suffix",
   "prefixSuffixDesc": "This determines where the currency symbol should appear.",
   "noCents": "no cents",
-  "noThousandSelimiters": "no thousand delimiters",
   "noDollarSign": "no dollar sign",
   "range": "Range",
   "to": "To",
@@ -22,5 +21,6 @@
   "suffix": "suffix",
   "incompleteFields": "The Currency data type needs to have the format entered. Please fix the following rows:",
   "invalidRangeFields": "Please only enter numbers in the Currency range fields (0-9 and decimal point). Please fix the following rows: ",
-  "invalidRange": "Please check the range goes from small to large. Please fix the following rows: "
+  "invalidRange": "Please check the range goes from small to large. Please fix the following rows: ",
+  "noThousandDelimiters": "No thousands separator"
 }

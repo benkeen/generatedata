@@ -2,5 +2,17 @@
   "NAME": "País",
   "DESC": "Genera un nombre de país al azar , con la opción de limitar el subconjunto de esos países entraron a través de la interfaz.",
   "DEFAULT_TITLE": "pais",
-  "limitResults": "Limitar países a la selección global"
+  "limitResults": "Limitar países a la selección global",
+  "country": "país",
+  "countries": "países",
+  "allCountryPlugins": "Todos los complementos de países",
+  "allCountries": "Todos los países",
+  "selectCountries": "Seleccionar países",
+  "source": "Fuente",
+  "explanation": "Esto controla qué nombres de países serán generados por este campo.",
+  "countryPlugins": "Complementos de países",
+  "countryPlugin": "Complemento de país",
+  "countryPluginsDesc": "Los complementos de países proporcionan un conjunto de datos más rico para generar resultados más realistas. Con esta opción seleccionada, puede asignar otros campos como Región, Ciudad, Postal / Código postal y Teléfono a esta fila, asegurándose de que cada fila final tenga una región aleatoria dentro del país seleccionado aleatoriamente, una ciudad aleatoria dentro de la región, y así sucesivamente.",
+  "filter": "Filtrar",
+  "filterDesc": "Esto hace que el campo solo genere un subconjunto de los países seleccionados anteriormente."
 }

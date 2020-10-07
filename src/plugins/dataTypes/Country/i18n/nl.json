@@ -2,5 +2,17 @@
   "NAME": "Land",
   "DESC": "Genereert een willekeurige landnaam, met de optie om de subset te beperken tot die landen die zijn opgegeven via de interface.",
   "DEFAULT_TITLE": "land",
-  "limitResults": "Beperk landen tot wereldwijde selectie"
+  "limitResults": "Beperk landen tot wereldwijde selectie",
+  "country": "land",
+  "countries": "landen",
+  "allCountryPlugins": "Alle landplug-ins",
+  "allCountries": "Alle landen",
+  "selectCountries": "Selecteer landen",
+  "source": "Bron",
+  "explanation": "Dit bepaalt welke landnamen door dit veld worden gegenereerd.",
+  "countryPlugins": "Land plug-ins",
+  "countryPlugin": "Land plug-in",
+  "countryPluginsDesc": "Land-plug-ins bieden een rijkere dataset voor het genereren van meer realistische resultaten. Als deze optie is geselecteerd, kunt u andere velden, zoals Regio, Stad, Post / postcode en Telefoon, aan deze rij toewijzen, zodat elke laatste rij een willekeurige regio heeft binnen het willekeurig geselecteerde land, een willekeurige stad binnen de regio, enzovoort.",
+  "filter": "Filter",
+  "filterDesc": "Hierdoor genereert het veld alleen een subset van de hierboven geselecteerde landen."
 }

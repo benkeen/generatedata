@@ -2,5 +2,17 @@
   "NAME": "Pays",
   "DESC": "Génère un nom de pays aléatoire , avec la possibilité de limiter le sous-ensemble de ces pays sont entrés via l'interface .",
   "DEFAULT_TITLE": "pays",
-  "limitResults": "Limiter les pays à la sélection mondiale"
+  "limitResults": "Limiter les pays à la sélection mondiale",
+  "country": "pays",
+  "countries": "des pays",
+  "allCountryPlugins": "Tous les plugins de pays",
+  "allCountries": "Tous les pays",
+  "selectCountries": "Sélectionnez des pays",
+  "source": "La source",
+  "explanation": "Cela contrôle quels noms de pays seront générés par ce champ.",
+  "countryPlugins": "Plugins de pays",
+  "countryPlugin": "Plugin de pays",
+  "countryPluginsDesc": "Les plugins de pays fournissent un ensemble de données plus riche pour générer des résultats plus réalistes. Avec cette option sélectionnée, vous pouvez mapper d'autres champs tels que Région, Ville, Postal / Zip et Téléphone à cette ligne, en vous assurant que chaque ligne finale a une région aléatoire dans le pays sélectionné au hasard, une ville aléatoire dans la région - et ainsi de suite.",
+  "filter": "Filtre",
+  "filterDesc": "Cela fait que le champ ne génère qu'un sous-ensemble des pays sélectionnés ci-dessus."
 }
