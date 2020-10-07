@@ -73,6 +73,11 @@ const findStringsInDataTypeEnFileMissingFromOtherLangFiles = (results, dataType,
 const getCoreLocaleFilePath = (locale) => path.join(__dirname, '..', `src/i18n/${locale}.json`);
 const getDataTypeLocaleFilePath = (dataType, locale) => path.join(__dirname, '..', `src/plugins/dataTypes/${dataType}/i18n/${locale}.json`);
 
+const getPluginLocaleFilePath = (plugin, pluginType, locale) => {
+	const pluginFolder = pluginType === 'dataType' ? 'dataTypes' : 'exportTypes';
+	return path.join(__dirname, '..', `src/plugins/${pluginFolder}/${plugin}/i18n/${locale}.json`);
+};
+
 const removeKeyFromI18nFiles = (key) => {
 	locales.forEach((locale) => {
 		const localeFile = getCoreLocaleFileStrings(locale);
@@ -136,10 +141,10 @@ const parseCoreToFindUnusedStrings = (results, en) => {
 	// }
 };
 
-const getDataTypeLocaleStrings = (dataType) => {
+const getPluginLocaleStrings = (plugin, pluginType) => {
 	const result = {};
 	locales.forEach((locale) => {
-		result[locale] = require(getDataTypeLocaleFilePath(dataType, locale));
+		result[locale] = require(getPluginLocaleFilePath(plugin, pluginType, locale));
 	});
 	return result;
 };
@@ -163,7 +168,25 @@ const validateDataTypeI18n = (baseLocale, targetDataType) => {
 			return;
 		}
 
-		const stringsByLocale = getDataTypeLocaleStrings(dataType);
+		const stringsByLocale = getPluginLocaleStrings(dataType, 'dataType');
+		const missing = findMissingStrings(stringsByLocale);
+
+		str += getMissingStrMessage(missing, baseLocale, `${dataType} -- `);
+	});
+
+	return str;
+};
+
+const validateExportTypeI18n = (baseLocale, targetExportType) => {
+	const exportTypes = helpers.getPlugins('exportTypes', [], false);
+
+	let str = '';
+	exportTypes.forEach((dataType) => {
+		if (targetExportType && targetExportType !== dataType) {
+			return;
+		}
+
+		const stringsByLocale = getPluginLocaleStrings(dataType, 'exportType');
 		const missing = findMissingStrings(stringsByLocale);
 
 		str += getMissingStrMessage(missing, baseLocale, `${dataType} -- `);
@@ -202,10 +225,10 @@ const getMissingStrMessage = (missing, baseLocale, prefix) => {
 module.exports = {
 	locales,
 	getCoreLocaleFileStrings,
-	findMissingStrings,
 	parseCoreToFindUnusedStrings,
 	removeKeyFromI18nFiles,
-	getDataTypeLocaleStrings,
+	getPluginLocaleStrings,
 	validateCoreI18n,
-	validateDataTypeI18n
+	validateDataTypeI18n,
+	validateExportTypeI18n
 };

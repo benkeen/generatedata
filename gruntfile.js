@@ -344,10 +344,11 @@ window.gd.localeLoaded(i18n);
 		if (targetDataType) {
 			errors += i18n.validateDataTypeI18n(baseLocale, targetDataType);
 		} else if (targetExportType) {
-			// errors += i18n.validateDataTypeI18n(baseLocale, targetDataType);
+			errors += i18n.validateExportTypeI18n(baseLocale, targetDataType);
 		} else {
 			errors += i18n.validateCoreI18n(baseLocale, targetLocale);
 			errors += i18n.validateDataTypeI18n(baseLocale);
+			errors += i18n.validateExportTypeI18n(baseLocale);
 		}
 
 		if (errors) {
