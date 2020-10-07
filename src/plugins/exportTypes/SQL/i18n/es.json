@@ -14,7 +14,7 @@
   "encloseTableBackquotes": "Entrecomillar nombres (tablas, columnas)",
   "statementType": "Tipo de sentencia",
   "primaryKey": "Clave primaria",
-  "addDefaultAutoIncrementCol": "Añadir columna auto-incrementada por defecto",
-  "insertBatchSize": "INSERT tamaño de lote",
-  "batchSizeDesc": "Número de filas a insertar por una consulta (1-300)"
+  "batchSizeDesc": "Número de filas a insertar por una consulta (1-300)",
+  "addDefaultAutoIncrementPrimaryKey": "Add default auto-increment primary key column",
+  "batchSize": "batch size"
 }

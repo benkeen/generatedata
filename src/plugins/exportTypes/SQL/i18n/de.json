@@ -1,7 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "SQL",
   "COL_TITLE": "Column Name",
-  "addDefaultAutoIncrementCol": "Fügen Sie Standard-Auto-Increment-Spalte",
   "dbTableName": "Database Name der Tabelle",
   "dbType": "Database Type",
   "encloseTableBackquotes": "Schließen Sie Tabellen-und Feldnamen mit Backquotes",
@@ -15,6 +14,7 @@
   "validationInvalidColName": "Bitte geben Sie eine gültige Datenbank Spaltennamen für jede Zeile (aZ und Unterstrich). Bitte beheben Sie die folgenden Zeilen:",
   "validationInvalidTableName": "Bitte geben Sie eine gültige Datenbank-Tabelle Name (AZ und Unterstrichen).",
   "validationInvalidBatchSize": "Bitte geben Sie eine gültige Chargengröße (1 - 300)",
-  "insertBatchSize": "INSERT Chargengröße",
-  "batchSizeDesc": "Anzahl der Zeilen, die pro Abfrage einfügen (1 - 300)"
+  "batchSizeDesc": "Anzahl der Zeilen, die pro Abfrage einfügen (1 - 300)",
+  "addDefaultAutoIncrementPrimaryKey": "Add default auto-increment primary key column",
+  "batchSize": "batch size"
 }
