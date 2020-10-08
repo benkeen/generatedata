@@ -3,6 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import Dropdown from '~components/dropdown/Dropdown';
 import { ETSettings } from '~types/exportTypes';
 import styles from './SQL.scss';
+import { ProgrammingLanguageState } from '../ProgrammingLanguage/ProgrammingLanguage.ui';
 
 
 export type SQLSettings = {
@@ -222,6 +223,9 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 };
 
 export const getCodeMirrorMode = (): string => 'text/x-sql';
+
+export const getExportTypeLabel = (data: SQLSettings): string => data.databaseType;
+
 
 /*
 	var _validate = function(rowNums) {

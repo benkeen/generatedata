@@ -1,1 +1,1 @@
-export { Settings, initialState, getCodeMirrorMode } from './SQL.ui';
+export { Settings, initialState, getCodeMirrorMode, getExportTypeLabel } from './SQL.ui';
