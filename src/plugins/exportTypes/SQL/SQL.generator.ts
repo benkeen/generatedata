@@ -1,6 +1,6 @@
 import { ETOnMessage, ETMessageData } from '~types/exportTypes';
 import { getNumericFieldColumnIndexes } from '~utils/generationUtils';
-import { SQLSettings } from './SQL.ui';
+import { SQLSettings } from './SQL';
 
 const context: Worker = self as any;
 

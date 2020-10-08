@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styles from './XML.scss';
-import { ETSettings } from '~types/exportTypes';
+import { ETSettings, ETState } from '~types/exportTypes';
 
-export type XMLSettings = {
+export interface XMLSettings extends ETState {
 	rootNodeName: string;
 	recordNodeName: string;
 	useCustomExportFormat: boolean;
@@ -13,7 +13,8 @@ export const initialState: XMLSettings = {
 	rootNodeName: 'records',
 	recordNodeName: 'record',
 	useCustomExportFormat: false,
-	customFormat: ''
+	customFormat: '',
+	isValid: true
 };
 
 export const Settings = ({ data, i18n, id, onUpdate }: ETSettings): JSX.Element => {

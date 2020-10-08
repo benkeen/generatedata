@@ -2,16 +2,18 @@ import * as React from 'react';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import styles from './ProgrammingLanguage.scss';
+import { ETState } from '~types/exportTypes';
 
 export type JavascriptExportFormat = 'variable' | 'es6' | 'commonJs';
-export type ProgrammingLanguageState = {
+export interface ProgrammingLanguageState extends ETState {
 	language: 'CSharp' | 'JavaScript' | 'Perl' | 'PHP' | 'Ruby';
 	jsExportFormat: JavascriptExportFormat;
-};
+}
 
 export const initialState: ProgrammingLanguageState = {
 	language: 'Perl',
-	jsExportFormat: 'variable'
+	jsExportFormat: 'variable',
+	isValid: true
 };
 
 const langMap: { [str: string]: string } = {

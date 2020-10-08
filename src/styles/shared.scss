@@ -6,3 +6,7 @@
 	padding: 7px 2px;
 	color: #999999;
 }
+
+input.errorField, textarea.errorField, select.errorField {
+	border: 1px solid #db0000;
+}

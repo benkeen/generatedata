@@ -1,1 +1,1 @@
-export { Settings, initialState, getCodeMirrorMode } from './HTML.ui';
+export { Settings, initialState, getCodeMirrorMode } from './HTML';

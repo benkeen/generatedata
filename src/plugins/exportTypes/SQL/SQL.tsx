@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 import Dropdown from '~components/dropdown/Dropdown';
-import { ETSettings } from '~types/exportTypes';
+import { ETSettings, ETState } from '~types/exportTypes';
 import styles from './SQL.scss';
-import { ProgrammingLanguageState } from '../ProgrammingLanguage/ProgrammingLanguage.ui';
 
 
-export type SQLSettings = {
+export interface SQLSettings extends ETState {
 	tableName: string;
 	databaseType: 'MySQL' | 'Postgres' | 'SQLite' | 'Oracle' | 'MSSQL';
 	createTable: boolean;
@@ -15,7 +14,8 @@ export type SQLSettings = {
 	statementType: 'insert' | 'insertIgnore' | 'update';
 	insertBatchSize: number;
 	addPrimaryKey: boolean;
-};
+	isValid: boolean;
+}
 
 export const initialState: SQLSettings = {
 	tableName: 'myTable',
@@ -25,7 +25,8 @@ export const initialState: SQLSettings = {
 	encloseInBackQuotes: true,
 	statementType: 'insert',
 	insertBatchSize: 10,
-	addPrimaryKey: true
+	addPrimaryKey: true,
+	isValid: true
 };
 
 export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettings) => {
@@ -226,58 +227,32 @@ export const getCodeMirrorMode = (): string => 'text/x-sql';
 
 export const getExportTypeLabel = (data: SQLSettings): string => data.databaseType;
 
+export const validateTitleField = (title: string, settings: SQLSettings): null | string => {
+	// as noted in issues/262, SQL Server allows spaces in the db names, hence the separate regexp. issues/426 noted
+	// that MySQL tables can begin with _ (and 0-9 as it turns out).
+	const validTableCol          = new RegExp("^[0-9a-zA-Z_$]*$");
+	const validTableColSQLServer = new RegExp("^[_a-zA-Z][0-9a-zA-Z_\\s]*$");
+
+	if (settings.databaseType === "MSSQL") {
+		if (!validTableColSQLServer.test(title)) {
+			return "error here.";
+		}
+	} else {
+		if (!validTableCol.test(title)) {
+			return "error string here.";
+		}
+	}
+
+	// errors.push({
+	// 	els: errorFields,
+	// 	error: LANG.validation_invalid_col_name + "<b>" + errorFieldVisibleRowNums.join(", ") + "</b>"
+	// });
+
+	return null;
+};
+
 
 /*
-	var _validate = function(rowNums) {
-		var errors = [];
-
-		// first, check the Table Column names that have been entered are valid
-		var errorFields = [];
-		var errorFieldVisibleRowNums = [];
-
-    // as noted in issues/262, SQL Server allows spaces in the db names, hence the separate regexp. issues/426 noted
-    // that MySQL tables can begin with _ (and 0-9 as it turns out).
-    var validTableCol          = new RegExp("^[0-9a-zA-Z_$]*$");
-    var validTableColSQLServer = new RegExp("^[_a-zA-Z][0-9a-zA-Z_\\s]*$");
-
-    var selectedSQLMode = $("#etSQL_databaseType").val();
-
-		for (var i=0; i<rowNums.length; i++) {
-			var tableColField = $("#gdTitle_" + rowNums[i]);
-			var tableColFieldVal = tableColField.val();
-
-			// we don't bother throwing an error if the field is empty, because that's caught by the Core script
-			if (tableColFieldVal === "") {
-        continue;
-      }
-
-      var hasError = false;
-      if (selectedSQLMode === "MSSQL") {
-        if (!validTableColSQLServer.test(tableColFieldVal)) {
-          hasError = true;
-        }
-      } else {
-        if (!validTableCol.test(tableColFieldVal)) {
-          hasError = true;
-        }
-      }
-
-      if (hasError) {
-        errorFields.push(tableColField);
-        errorFieldVisibleRowNums.push(generator.getVisibleRowOrderByRowNum(rowNums[i]));
-      }
-		}
-
-		if (errorFields.length) {
-
-      // N.B. the error message here isn't quite right for SQL Server, which permits spaces. But frankly it's best if they
-      // don't know about it. The code will work (the PHP side will automatically detect the space and wrap it in brackets)
-			errors.push({
-				els: errorFields,
-				error: LANG.validation_invalid_col_name + "<b>" + errorFieldVisibleRowNums.join(", ") + "</b>"
-			});
-		}
-
 		// secondly, check the SQL fields have all been entered properly
 		var tableNameField = $("#etSQL_tableName");
 		var tableNameFieldVal = $.trim(tableNameField.val());

@@ -34,7 +34,8 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 						Settings: def.Settings,
 						initialState: def.initialState,
 						getExportTypeLabel: def.getExportTypeLabel,
-						getCodeMirrorMode: def.getCodeMirrorMode
+						getCodeMirrorMode: def.getCodeMirrorMode,
+						validateTitleField: def.validateTitleField
 					};
 					resolve(def);
 				})

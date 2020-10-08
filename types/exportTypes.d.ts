@@ -13,7 +13,12 @@ export type ETBundle = {
 	getCodeMirrorMode: (settings: any) => string; // TODO generics - data is same type as initialState
 	Settings?: any;
 	getExportTypeLabel?: (data: any) => string; // TODO generics - data is same type as initialState
+	validateTitleField?: (title: string, settings: any) => string | null;
 };
+
+export interface ETState {
+	isValid: boolean;
+}
 
 export type ETDefinition = {
 	name: string;

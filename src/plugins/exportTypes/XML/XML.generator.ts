@@ -1,5 +1,5 @@
 import { ETOnMessage, ETMessageData } from '~types/exportTypes';
-import { XMLSettings } from './XML.ui';
+import { XMLSettings } from './XML';
 
 const context: Worker = self as any;
 

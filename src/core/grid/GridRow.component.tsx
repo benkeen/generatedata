@@ -111,71 +111,79 @@ export const GridRow = ({
 
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
-			{(provided: any, snapshot: any): any => (
-				<div className={styles.gridRow} key={row.id}
-					 ref={provided.innerRef}
-					 {...provided.draggableProps}
-					 style={getItemStyle(
-						 snapshot.isDragging,
-						 provided.draggableProps.style
-					 )}
-				>
-					<div className={styles.orderCol}{...provided.dragHandleProps}>
-						<DragIndicator fontSize="small" />
-						{index + 1}
-					</div>
-					<div className={styles.dataTypeCol}>
-						<Dropdown
-							className={styles.dataTypeColDropdown}
-							isGrouped={true}
-							value={row.dataType}
-							onChange={(i: any): void => onSelectDataType(i.value, row.id)}
-							options={dtDropdownOptions}
-						/>
-						<div className={styles.dataTypeHelp}>
-							{row.dataType ? <InfoIcon fontSize="small" onClick={(): void => showHelpDialog(row.dataType as DataTypeFolder)} /> : null}
+			{(provided: any, snapshot: any): any => {
+
+				// the title field is always required, regardless of Export Type
+				const titleColClasses = row.dataType && row.title.trim() === '' ? sharedStyles.errorField : '';
+
+				return (
+					<div className={styles.gridRow} key={row.id}
+						 ref={provided.innerRef}
+						 {...provided.draggableProps}
+						 style={getItemStyle(
+							 snapshot.isDragging,
+							 provided.draggableProps.style
+						 )}
+					>
+						<div className={styles.orderCol}{...provided.dragHandleProps}>
+							<DragIndicator fontSize="small"/>
+							{index + 1}
+						</div>
+						<div className={styles.dataTypeCol}>
+							<Dropdown
+								className={styles.dataTypeColDropdown}
+								isGrouped={true}
+								value={row.dataType}
+								onChange={(i: any): void => onSelectDataType(i.value, row.id)}
+								options={dtDropdownOptions}
+							/>
+							<div className={styles.dataTypeHelp}>
+								{row.dataType ? <InfoIcon fontSize="small" onClick={(): void => showHelpDialog(row.dataType as DataTypeFolder)}/> : null}
+							</div>
+						</div>
+						<div className={styles.titleCol}>
+							<input type="text" value={row.title}
+								   onChange={(e): void => onChangeTitle(row.id, e.target.value)}
+								   className={titleColClasses}/>
+						</div>
+						<div className={styles.examplesCol}>
+							<Example
+								coreI18n={i18n}
+								countryI18n={countryI18n}
+								i18n={selectedDataTypeI18n}
+								id={row.id}
+								data={row.data}
+								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+								emptyColClass={sharedStyles.emptyCol}
+								dimensions={{ height: dimensions.height, width: dimensions.width }}
+							/>
+						</div>
+						<div className={styles.optionsCol}>
+							<Options
+								coreI18n={i18n}
+								countryI18n={countryI18n}
+								i18n={selectedDataTypeI18n}
+								id={row.id}
+								data={row.data}
+								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+								dimensions={{ height: dimensions.height, width: dimensions.width }}
+								emptyColClass={sharedStyles.emptyCol}
+								{...dtCustomProps}
+							/>
+						</div>
+						<div className={styles.settingsIconCol} onClick={(): void => {
+							if (row.dataType === null) {
+								return;
+							}
+						}}>
+							{getSettingsIcon()}
+						</div>
+						<div className={styles.deleteCol} onClick={(): void => onRemove(row.id)}>
+							<HighlightOffIcon/>
 						</div>
 					</div>
-					<div className={styles.titleCol}>
-						<input type="text" value={row.title} onChange={(e): void => onChangeTitle(row.id, e.target.value)} />
-					</div>
-					<div className={styles.examplesCol}>
-						<Example
-							coreI18n={i18n}
-							countryI18n={countryI18n}
-							i18n={selectedDataTypeI18n}
-							id={row.id}
-							data={row.data}
-							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-							emptyColClass={sharedStyles.emptyCol}
-							dimensions={{ height: dimensions.height, width: dimensions.width }}
-						/>
-					</div>
-					<div className={styles.optionsCol}>
-						<Options
-							coreI18n={i18n}
-							countryI18n={countryI18n}
-							i18n={selectedDataTypeI18n}
-							id={row.id}
-							data={row.data}
-							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-							dimensions={{ height: dimensions.height, width: dimensions.width }}
-							emptyColClass={sharedStyles.emptyCol}
-							{...dtCustomProps}
-						/>
-					</div>
-					<div className={styles.settingsIconCol} onClick={(): void => {
-						if (row.dataType === null) {
-							return;
-						}
-					}}>
-						{getSettingsIcon()}
-					</div>
-					<div className={styles.deleteCol} onClick={(): void => onRemove(row.id)}>
-						<HighlightOffIcon />
-					</div>
-				</div>
-			)}
+				);
+			}}
 		</Draggable>
 	);
 };

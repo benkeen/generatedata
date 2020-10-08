@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { ETSettings } from '~types/exportTypes';
+import { ETSettings, ETState } from '~types/exportTypes';
 import styles from './JSON.scss';
 
 export type DataStructureFormat = 'simple' | 'complex';
-export type JSONSettings = {
+export interface JSONSettings extends ETState {
 	dataStructureFormat: DataStructureFormat;
-};
+}
 
 export const initialState: JSONSettings = {
-	dataStructureFormat: 'simple'
+	dataStructureFormat: 'simple',
+	isValid: true
 };
-
-// VALIDATION: needs to validate for invalid nested JSON (a.b.c, a.b)
 
 export const Settings: React.ReactNode = ({ data, id, i18n, onUpdate }: ETSettings) => {
 	const onChange = (field: string, value: any): void => {

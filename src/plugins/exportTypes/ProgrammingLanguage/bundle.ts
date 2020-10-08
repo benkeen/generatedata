@@ -1,1 +1,1 @@
-export { Settings, initialState, getExportTypeLabel, getCodeMirrorMode } from './ProgrammingLanguage.ui';
+export { Settings, initialState, getExportTypeLabel, getCodeMirrorMode } from './ProgrammingLanguage';

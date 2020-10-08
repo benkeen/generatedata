@@ -1,1 +1,1 @@
-export { Settings, initialState, getCodeMirrorMode } from './JSON.ui';
+export { Settings, initialState, getCodeMirrorMode } from './JSON';

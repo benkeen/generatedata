@@ -26,14 +26,14 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): JSX.Element =
 			{i18n.between}
 			<input
 				type="number"
-				style={{ width: 50 }}
+				style={{ width: 50, marginLeft: 2, marginRight: 2 }}
 				value={data.min}
 				onChange={(e: any): void => onChange('min', e.target.value)}
 			/>
 			{i18n.and}
 			<input
 				type="number"
-				style={{ width: 50 }}
+				style={{ width: 50, marginLeft: 2 }}
 				value={data.max}
 				onChange={(e: any): void => onChange('max', e.target.value)}
 			/>
