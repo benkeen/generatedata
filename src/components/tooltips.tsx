@@ -28,3 +28,19 @@ export const Tooltip = withStyles(() => ({
 		color: '#333333'
 	}
 }))(MuiTooltip);
+
+export const ErrorTooltip = withStyles(() => ({
+	tooltip: {
+		backgroundColor: '#D80000',
+		maxWidth: 220,
+		color: '#ffffff',
+		lineHeight: '16px',
+		fontSize: 11,
+		padding: 10
+	},
+	arrow: {
+		color: '#D80000'
+	}
+}))(MuiTooltip);
+
+

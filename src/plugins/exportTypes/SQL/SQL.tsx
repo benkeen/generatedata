@@ -230,7 +230,7 @@ export const getExportTypeLabel = (data: SQLSettings): string => data.databaseTy
 export const validateTitleField = (title: string, settings: SQLSettings): null | string => {
 	// as noted in issues/262, SQL Server allows spaces in the db names, hence the separate regexp. issues/426 noted
 	// that MySQL tables can begin with _ (and 0-9 as it turns out).
-	const validTableCol          = new RegExp("^[0-9a-zA-Z_$]*$");
+	const validTableCol = new RegExp("^[0-9a-zA-Z_$]*$");
 	const validTableColSQLServer = new RegExp("^[_a-zA-Z][0-9a-zA-Z_\\s]*$");
 
 	if (settings.databaseType === "MSSQL") {

@@ -4,5 +4,6 @@
   "DEFAULT_TITLE": "plagenumeros",
   "and": "et",
   "between": "Entre",
-  "incomplete_fields": "Précisez un minimum et un maximum pour les lignes suivantes:"
+  "enterNumericValue": "Veuillez saisir une valeur numérique",
+  "minValueGreaterThanMax": "Veuillez rendre la valeur maximale supérieure à la valeur minimale"
 }

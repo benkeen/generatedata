@@ -4,5 +4,6 @@
   "DEFAULT_TITLE": "numberrange",
   "and": "and",
   "between": "Between",
-  "incomplete_fields": "Please enter the number range (lowest and highest numbers) for the following rows: "
+  "enterNumericValue": "எண் மதிப்பை உள்ளிடவும்",
+  "minValueGreaterThanMax": "அதிகபட்ச மதிப்பை நிமிட மதிப்பை விட பெரிதாக்கவும்"
 }

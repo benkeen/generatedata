@@ -4,5 +4,6 @@
   "DEFAULT_TITLE": "numberrange",
   "and": "and",
   "between": "Between",
-  "incomplete_fields": "Please enter the number range (lowest and highest numbers) for the following rows: "
+  "enterNumericValue": "Please enter a numeric value",
+  "minValueGreaterThanMax": "Please make the max value larger than the min value"
 }

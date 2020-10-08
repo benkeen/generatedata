@@ -4,5 +4,6 @@
   "DEFAULT_TITLE": "nummernkreis",
   "and": "und",
   "between": "Zwischen",
-  "incomplete_fields": "Bitte geben Sie den Zahlenbereich (niedrigster und höchster Zahlen) für die folgenden Zeilen:"
+  "enterNumericValue": "Bitte geben Sie einen numerischen Wert ein",
+  "minValueGreaterThanMax": "Bitte machen Sie den Maximalwert größer als den Minimalwert"
 }

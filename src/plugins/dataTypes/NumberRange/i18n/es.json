@@ -4,5 +4,6 @@
   "DEFAULT_TITLE": "rangonumeros",
   "and": "y",
   "between": "Entre",
-  "incomplete_fields": "Por favor, introduce el rango numérico (números inferior y superior) para las siguientes filas:"
+  "enterNumericValue": "Por favor, introduzca un valor numérico",
+  "minValueGreaterThanMax": "Haz que el valor máximo sea mayor que el valor mínimo"
 }

@@ -4,5 +4,6 @@
   "DEFAULT_TITLE": "nummerbereik",
   "and": "en",
   "between": "Tussen",
-  "incomplete_fields": "Vul het nummerbereik (laagste en hoogste waarden) in voor de volgende rij(en0:"
+  "enterNumericValue": "Voer een numerieke waarde in",
+  "minValueGreaterThanMax": "Maak de maximale waarde groter dan de minimale waarde"
 }
