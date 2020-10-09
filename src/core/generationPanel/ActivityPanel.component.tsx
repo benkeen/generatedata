@@ -51,6 +51,12 @@ const ActivityPanel = ({
 	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
 	const exportTypeWorker = coreUtils.getExportTypeWorker(exportTypeWorkerId);
 
+	const abortPacket = (): void => {
+		onAbort();
+		dataTypeWorker.postMessage({ action: C.ACTIVITY_PANEL_ACTIONS.ABORT });
+		coreUtils.destroyDataTypeWorker(dataTypeWorkerId);
+	};
+
 	useEffect(() => {
 		if (numGeneratedRows !== 0) {
 			return;
@@ -139,7 +145,7 @@ const ActivityPanel = ({
 		}
 
 		return (
-			<Button onClick={onAbort} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
+			<Button onClick={abortPacket} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
 				{i18n.cancelGeneration}
 			</Button>
 		);

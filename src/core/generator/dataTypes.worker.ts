@@ -13,6 +13,9 @@ context.onmessage = (e: any) => {
 	if (e.data.action === 'PAUSE') {
 		isPaused = true;
 		return;
+	} else if (e.data.action === 'ABORT') {
+		isPaused = true;
+		return;
 	} else if (e.data.action === 'CONTINUE') {
 		isPaused = false;
 		const { data, numBatches, batchSize, batchNum } = onContinueData;

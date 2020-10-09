@@ -4,6 +4,6 @@
   "DEFAULT_TITLE": "numberrange",
   "and": "and",
   "between": "Between",
-  "enterNumericValue": "Please enter a numeric value",
-  "minValueGreaterThanMax": "Please make the max value larger than the min value"
+  "enterNumericValue": "Please enter a number",
+  "minValueGreaterThanMax": "Please make the max value larger than or equal to the min value"
 }

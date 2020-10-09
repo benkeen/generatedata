@@ -11,6 +11,7 @@ import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../styles/shared.scss';
+import TextField from '~components/TextField';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -114,7 +115,7 @@ export const GridRow = ({
 			{(provided: any, snapshot: any): any => {
 
 				// the title field is always required, regardless of Export Type
-				const titleColClasses = row.dataType && row.title.trim() === '' ? sharedStyles.errorField : '';
+				const titleColError = row.dataType && row.title.trim() === '' ? 'Required field' : '';
 
 				return (
 					<div className={styles.gridRow} key={row.id}
@@ -142,9 +143,11 @@ export const GridRow = ({
 							</div>
 						</div>
 						<div className={styles.titleCol}>
-							<input type="text" value={row.title}
-								   onChange={(e): void => onChangeTitle(row.id, e.target.value)}
-								   className={titleColClasses}/>
+							<TextField
+								error={titleColError}
+								value={row.title}
+								onChange={(e: any): void => onChangeTitle(row.id, e.target.value)}
+							/>
 						</div>
 						<div className={styles.examplesCol}>
 							<Example

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { ErrorTooltip } from '~components/tooltips';
-import sharedStyles from '../../../styles/shared.scss';
+import TextField from '~components/TextField';
 
 export type NumberRangeState = {
 	min: number;
@@ -24,51 +23,42 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): JSX.Element =
 	};
 
 	let minFieldError = '';
-	let minFieldClasses = '';
 	if (data.min === '') {
 		minFieldError = i18n.enterNumericValue;
-		minFieldClasses = sharedStyles.errorField;
 	}
 
 	let maxFieldError = '';
-	let maxFieldClasses = '';
 	if (data.max === '') {
 		maxFieldError = i18n.enterNumericValue;
-		maxFieldClasses = sharedStyles.errorField;
 	}
 	if (data.min !== '' && data.max !== '') {
 		const min = parseInt(data.min, 10);
 		const max = parseInt(data.max, 10);
 		if (min > max) {
 			maxFieldError = i18n.minValueGreaterThanMax;
-			maxFieldClasses = sharedStyles.errorField;
 		}
 	}
 
 	return (
 		<div>
 			{i18n.between}
-			<ErrorTooltip title={minFieldError} arrow disableHoverListener={!minFieldError} disableFocusListener={!minFieldError}>
-				<input
-					type="number"
-					style={{ width: 50, marginLeft: 2, marginRight: 2 }}
-					min={0}
-					value={data.min}
-					className={minFieldClasses}
-					onChange={(e: any): void => onChange('min', e.target.value)}
-				/>
-			</ErrorTooltip>
+			<TextField
+				type="number"
+				error={minFieldError}
+				style={{ width: 50, marginLeft: 2, marginRight: 2 }}
+				min={0}
+				value={data.min}
+				onChange={(e: any): void => onChange('min', e.target.value)}
+			/>
 			{i18n.and}
-			<ErrorTooltip title={maxFieldError} arrow disableHoverListener={!minFieldError} disableFocusListener={!maxFieldError}>
-				<input
-					type="number"
-					style={{ width: 50, marginLeft: 2 }}
-					min={0}
-					value={data.max}
-					className={maxFieldClasses}
-					onChange={(e: any): void => onChange('max', e.target.value)}
-				/>
-			</ErrorTooltip>
+			<TextField
+				type="number"
+				error={maxFieldError}
+				style={{ width: 50, marginLeft: 2 }}
+				min={0}
+				value={data.max}
+				onChange={(e: any): void => onChange('max', e.target.value)}
+			/>
 		</div>
 	);
 };

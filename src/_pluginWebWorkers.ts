@@ -1,8 +1,8 @@
 export default {
-	"coreWorker": "core.worker-5f4233332366926b2f94c6b196bc95fb.js",
-	"coreDataTypeWorker": "dataTypes.worker-3671333b11e63cd887573fa171c2141e.js",
+	"coreWorker": "",
+	"coreDataTypeWorker": "dataTypes.worker-50054fdd8ae28b259f617370ceb344a3.js",
 	"coreExportTypeWorker": "exportTypes.worker-9cfffcc679bbd65c3933f9d1f5e7a2b4.js",
-	"workerUtils": "workerUtils-c9ae6e31c50ada9e7306d33da96c1f8f.js",
+	"workerUtils": "workerUtils-1e7fad0293d1207d4795175f2d64d26e.js",
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.generator-0185a235eabc5b0a7ba6afdbb2af8676.js",
 		"AutoIncrement": "DT-AutoIncrement.generator-c2a347fd5e49ef7fa2a63ba7e85cef0c.js",
@@ -38,9 +38,9 @@ export default {
 		"Tree": "DT-Tree.generator-68b329da9893e34099c7d8ad5cb9c940.js"
 	},
 	"exportTypes": {
-		"HTML": "ET-HTML.generator-ec6e095583cfe48c5473fc29ad379319.js",
+		"HTML": "ET-HTML.generator-1f2109aec7e9cd759773fc7f28fd0966.js",
 		"JSON": "ET-JSON.generator-f74de0fdb0871a13416dbb30d40c3d77.js",
-		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-2b30e5cb019aa51d19a42d78bf94c2f2.js",
+		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-e00ea848c7d167060c5174236157e1d3.js",
 		"SQL": "ET-SQL.generator-a55b050d369b21ceb5499d230d557fc4.js",
 		"XML": "ET-XML.generator-2bb617f90572cee10202bbc4ecfb56c9.js"
 	},

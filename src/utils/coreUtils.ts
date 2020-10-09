@@ -24,6 +24,8 @@ export const createDataTypeWorker = (customId: string | null = null): string => 
 
 export const getDataTypeWorker = (id: string): Worker => dataTypeWorkers[id];
 
+export const destroyDataTypeWorker = (id: string): void => { delete dataTypeWorkers[id]; };
+
 export const createExportTypeWorker = (customId: string | null = null): string => {
 	const workerId = (customId) ? customId : generate();
 	exportTypeWorkers[workerId] = new Worker(`./workers/${webWorkers.coreExportTypeWorker}`);

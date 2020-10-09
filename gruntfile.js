@@ -128,7 +128,6 @@ window.gd.localeLoaded(i18n);
 	})();
 
 	const webWorkerFileListWithType = [
-		{ file: 'src/core/generator/core.worker.ts', type: 'core' },
 		{ file: 'src/core/generator/dataTypes.worker.ts', type: 'core' },
 		{ file: 'src/core/generator/exportTypes.worker.ts', type: 'core' },
 		{ file: 'src/utils/workerUtils.ts', type: 'core' }
