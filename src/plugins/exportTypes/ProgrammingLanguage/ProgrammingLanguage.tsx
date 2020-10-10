@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import styles from './ProgrammingLanguage.scss';
-import { ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETState } from '~types/exportTypes';
 
 export type JavascriptExportFormat = 'variable' | 'es6' | 'commonJs';
 export interface ProgrammingLanguageState extends ETState {
@@ -89,4 +89,22 @@ export const getCodeMirrorMode = (settings: ProgrammingLanguageState): any => {
 		Ruby: 'text/x-ruby'
 	};
 	return modes[settings.language];
+};
+
+export const getDownloadFileInfo = ({ packetId, settings }: ETDownloadPacket): ETDownloadPacketResponse => {
+	const map = {
+		CSharp: { extension: 'cs', fileType: '' },
+		JavaScript: { extension: 'js', fileType: '' },
+		Perl: { extension: 'pl', fileType: '' },
+		PHP: { extension: 'php', fileType: '' },
+		Ruby: { extension: 'rb', fileType: '' }
+	};
+
+	// @ts-ignore-line
+	const { fileType, extension } = map[settings.language];
+
+	return {
+		filename: `data-${packetId}.${extension}`,
+		fileType
+	};
 };

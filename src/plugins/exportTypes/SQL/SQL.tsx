@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 import Dropdown from '~components/dropdown/Dropdown';
-import { ETSettings, ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 import styles from './SQL.scss';
 
 
@@ -250,6 +250,12 @@ export const validateTitleField = (title: string, settings: SQLSettings): null |
 
 	return null;
 };
+
+export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => ({
+	filename: `data-${packetId}.sql`,
+	fileType: 'text/x-sql'
+});
+
 
 
 /*

@@ -34,6 +34,7 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 						Settings: def.Settings,
 						initialState: def.initialState,
 						getExportTypeLabel: def.getExportTypeLabel,
+						getDownloadFileInfo: def.getDownloadFileInfo,
 						getCodeMirrorMode: def.getCodeMirrorMode,
 						validateTitleField: def.validateTitleField
 					};

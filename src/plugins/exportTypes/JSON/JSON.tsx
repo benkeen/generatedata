@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ETSettings, ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 import styles from './JSON.scss';
 
 export type DataStructureFormat = 'simple' | 'complex';
@@ -49,3 +49,8 @@ export const Settings: React.ReactNode = ({ data, id, i18n, onUpdate }: ETSettin
 };
 
 export const getCodeMirrorMode = (): string => 'application/ld+json';
+
+export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => ({
+	filename: `data-${packetId}.json`,
+	fileType: 'application/json'
+});

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './XML.scss';
-import { ETSettings, ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 
 export interface XMLSettings extends ETState {
 	rootNodeName: string;
@@ -50,6 +50,11 @@ export const Settings = ({ data, i18n, id, onUpdate }: ETSettings): JSX.Element 
 };
 
 export const getCodeMirrorMode = (): string => 'text/html';
+
+export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => ({
+	filename: `data-${packetId}.sql`,
+	fileType: 'text/x-sql'
+});
 
 
 /*

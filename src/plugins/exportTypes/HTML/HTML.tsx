@@ -2,7 +2,7 @@ import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import styles from './HTML.scss';
 import { DTSettingsProps } from '~types/dataTypes';
-import { ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETState } from '~types/exportTypes';
 
 type ExportFormat = 'table' | 'ul' | 'dl';
 
@@ -51,3 +51,8 @@ export const Settings = ({ i18n, id, data, onUpdate }: DTSettingsProps): JSX.Ele
 };
 
 export const getCodeMirrorMode = (): string => 'text/html';
+
+export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => ({
+	filename: `data-${packetId}.html`,
+	fileType: 'text/html'
+});

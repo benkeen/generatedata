@@ -8,15 +8,11 @@ const TextField = ({ error, className, ...props }: any): JSX.Element => {
 		classes += ' ' + sharedStyles.errorField;
 	}
 
-	if (error) {
-		return (
-			<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
-				<input {...props} className={classes} />
-			</ErrorTooltip>
-		);
-	}
-
-	return <input {...props} className={classes} />;
+	return (
+		<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
+			<input {...props} className={classes} />
+		</ErrorTooltip>
+	);
 };
 
 TextField.defaultProps = {
