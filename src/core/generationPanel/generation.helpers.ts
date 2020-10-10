@@ -42,20 +42,18 @@ type secondCount = {
 // block almost certainly don't lie directly on the start second, second #4 would already have some number from the
 // previous batch
 export const getRowGenerationRatePerSecond = (
-	// this is the time the generation started
+	// this is the time the entire generation started. It'll remain fixed for an entire packet
 	baseTime: number,
 
-	// the time the batch was started to have been created
+	// the time the batch was started
 	batchStartTime: number,
 
 	// the time this batch stopped generating
 	batchEndTime: number,
 
-	// how many rows were generated in this interval
+	// how many rows were generated during the interval (will always be C.GENERATION_BATCH_SIZE)
 	numRows: number
 ): secondCount => {
-
-	// e.g. 617719.6500000427
 
 	// the math below relies on this being correct otherwise we'll get stuck in an infinite loop
 	if (batchEndTime <= batchStartTime) {
@@ -72,22 +70,22 @@ export const getRowGenerationRatePerSecond = (
 	const result: secondCount = {};
 
 	while (true) {
-		const endOfCurrentSecond = Math.floor(currTimeBlock + 1000);
+		const endOfCurrentSecondMs = Math.floor(Math.floor(currTimeBlock / 1000) * 1000) + 1000;
 
 		let secondDuration;
 		let shouldBreak = false;
-		if (endOfCurrentSecond >= batchEndTime) {
+		if (endOfCurrentSecondMs >= batchEndTime) {
 			secondDuration = batchEndTime - currTimeBlock;
 			shouldBreak = true;
 		} else {
-			secondDuration = endOfCurrentSecond - currTimeBlock;
+			secondDuration = endOfCurrentSecondMs - currTimeBlock;
 		}
 
 		// now see how many of the rows could fit into this duration
-		const numRowsInCurrentDuration =secondDuration / singleRowTime;
+		const numRowsInCurrentDuration = secondDuration / singleRowTime;
 
 		let currentSecondMs = Math.floor(currTimeBlock - baseTime);
-		currentSecond = ((currentSecondMs === 0) ? 0 : currentSecondMs / 1000) + 1;
+		currentSecond = ((currentSecondMs === 0) ? 0 : Math.floor(currentSecondMs / 1000)) + 1;
 
 		runningCount += numRowsInCurrentDuration;
 
@@ -100,11 +98,6 @@ export const getRowGenerationRatePerSecond = (
 		// update currTimeBlock for the next iteration
 		currTimeBlock += secondDuration;
 	}
-
-	// if there are any remainders, just tack them onto the last second
-	// if (runningCount < numRows) {
-	// 	result[currentSecond] += (numRows - runningCount);
-	// }
 
 	return result;
 };

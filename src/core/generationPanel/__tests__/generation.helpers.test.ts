@@ -22,5 +22,16 @@ describe('getRowGenerationRatePerSecond', () => {
 		expect(getRowGenerationRatePerSecond(0, 0, 2000, 60)).toEqual({ 1: 30, 2: 30 });
 	});
 
+	it("end fractions of a second are factored in", () => {
+		expect(getRowGenerationRatePerSecond(0, 0, 1500, 60)).toEqual({ 1: 40, 2: 20 });
+	});
+
+	it("start fractions of a second are factored in", () => {
+		expect(getRowGenerationRatePerSecond(0, 500, 2000, 60)).toEqual({ 1: 20, 2: 40 });
+	});
+
+
+	// test non-integer values
+
 });
 
