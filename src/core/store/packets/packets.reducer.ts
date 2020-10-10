@@ -37,7 +37,8 @@ export type DataPacket = {
 
 	stats: {
 		totalSize: number;
-		numRowsPerSecond: number[];
+		rowsPerSecondLog: { [second: number]: number },
+		lastCompleteLoggedSecond: number
 	};
 };
 
@@ -81,7 +82,8 @@ const getNewPacket = ({
 	data: [],
 	stats: {
 		totalSize: 0,
-		numRowsPerSecond: []
+		numRowsPerSecond: {},
+		lastCompleteLoggedSecond: 0
 	}
 });
 
@@ -134,19 +136,31 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			break;
 
 		case actions.LOG_DATA_BATCH: {
+			const now = performance.now();
 			const { packetId, numGeneratedRows, dataStr } = action.payload;
 			const byteSize = getByteSize(dataStr);
 
 			// check for existence in case the user just cancelled and an orphaned response comes back
-			if (draft.packets[packetId]) {
-				draft.packets[packetId].numGeneratedRows = numGeneratedRows;
-				draft.packets[packetId].data.push({
-					dataStr,
-					byteSize,
-					endTime: performance.now()
-				});
-				draft.packets[packetId].stats.totalSize += byteSize;
+			if (!draft.packets[packetId]) {
+				break;
 			}
+
+			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
+			draft.packets[packetId].data.push({
+				dataStr,
+				byteSize,
+				endTime: now
+			});
+			draft.packets[packetId].stats.totalSize += byteSize;
+
+			console.log(now);
+
+			// if (draft.packets[packetId].stats.lastCompleteLoggedSecond) {
+			//
+			// } else {
+			// 	draft.packages
+			// }
+
 			break;
 		}
 	}

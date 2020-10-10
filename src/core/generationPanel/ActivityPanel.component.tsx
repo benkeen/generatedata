@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { PieChart, Pie, Cell, AreaChart, CartesianGrid, XAxis, YAxis, Area } from 'recharts';
+import { PieChart, Pie, Cell, LineChart, CartesianGrid, XAxis, YAxis, Area } from 'recharts';
 import CountUp from 'react-countup';
 import IconButton from '@material-ui/core/IconButton';
 import Slider from '@material-ui/core/Slider';
@@ -197,7 +197,7 @@ const ActivityPanel = ({
 								<PieChart width={180} height={180}>
 									<Pie
 										dataKey="value"
-										isAnimationActive={animation}
+										isAnimationActive={false}
 										data={pieChartData}
 										cx={90}
 										cy={90}
@@ -224,7 +224,7 @@ const ActivityPanel = ({
 							</div>
 
 							<div className={styles.panel2}>
-								<AreaChart
+								<LineChart
 									width={500}
 									height={400}
 									data={batchLoadTimes}
@@ -233,7 +233,7 @@ const ActivityPanel = ({
 									<XAxis dataKey="name" />
 									<YAxis />
 									<Area type="monotone" dataKey="duration" stroke="#8884d8" fill="#8884d8" />
-								</AreaChart>
+								</LineChart>
 							</div>
 						</div>
 					</div>

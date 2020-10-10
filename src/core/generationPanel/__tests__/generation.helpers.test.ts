@@ -1,0 +1,26 @@
+import { getRowGenerationRatePerSecond } from '../generation.helpers';
+
+describe('getRowGenerationRatePerSecond', () => {
+	it('if exactly 1 second has gone by, the generation rate should be the exact generation count', () => {
+		expect(getRowGenerationRatePerSecond(0, 0, 1000, 123)).toEqual({ 1: 123 });
+		expect(getRowGenerationRatePerSecond(0, 1000, 2000, 55)).toEqual({ 2: 55 });
+	});
+
+	it('base time should be factored in and still return data in seconds', () => {
+		expect(getRowGenerationRatePerSecond(5000, 5000, 6000, 123)).toEqual({ 1: 123 });
+		expect(getRowGenerationRatePerSecond(5000, 6000, 7000, 55)).toEqual({ 2: 55 });
+	});
+
+	it('base time should be factored in', () => {
+		expect(getRowGenerationRatePerSecond(0, 5000, 6000, 10)).toEqual({ 6: 10 });
+		expect(getRowGenerationRatePerSecond(0, 6000, 7000, 19)).toEqual({ 7: 19 });
+	});
+
+	it('if exactly 2 seconds have passed, the generation rate is half the numRows passed', () => {
+		expect(getRowGenerationRatePerSecond(0, 0, 2000, 100)).toEqual({ 1: 50, 2: 50 });
+		expect(getRowGenerationRatePerSecond(0, 0, 2000, 150)).toEqual({ 1: 75, 2: 75 });
+		expect(getRowGenerationRatePerSecond(0, 0, 2000, 60)).toEqual({ 1: 30, 2: 30 });
+	});
+
+});
+

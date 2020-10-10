@@ -50,6 +50,8 @@ export const getSortedGroupedDataTypes = (): any => {
 
 export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
 
+const NoOptionsAvailable = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>; // eslint-disable-line
+
 export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO return type is important here. Dense method!
 	const showNothing = (): null => null;
 	if (!dataType || !loadedDataTypes[dataType]) {
@@ -74,7 +76,7 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 	if (loadedDataTypes[dataType]!.Options) {
 		Options = loadedDataTypes[dataType]!.Options;
 	} else {
-		Options = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>; // eslint-disable-line
+		Options = NoOptionsAvailable;
 	}
 
 	if (dataType && loadedDataTypes[dataType]!.Help) {

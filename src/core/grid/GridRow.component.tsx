@@ -50,16 +50,10 @@ export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
 	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions, showHelpDialog
 }: GridRowProps): JSX.Element => {
-
 	const [open, setOpen] = React.useState(false);
 
-	const handleTooltipClose = (): void => {
-		setOpen(false);
-	};
-
-	const handleTooltipOpen = (): void => {
-		setOpen(true);
-	};
+	const handleTooltipClose = (): void => setOpen(false);
+	const handleTooltipOpen = (): void => setOpen(true);
 
 	const getSettingsIcon = (): React.ReactNode => {
 		if (!row.dataType) {
@@ -109,6 +103,8 @@ export const GridRow = ({
 			</ClickAwayListener>
 		);
 	};
+
+	console.log("rendering: ", row.id);
 
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
@@ -182,7 +178,7 @@ export const GridRow = ({
 							{getSettingsIcon()}
 						</div>
 						<div className={styles.deleteCol} onClick={(): void => onRemove(row.id)}>
-							<HighlightOffIcon/>
+							<HighlightOffIcon />
 						</div>
 					</div>
 				);
