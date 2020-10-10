@@ -30,7 +30,7 @@ context.onmessage = (e: MessageEvent) => {
 		numResults,
 		rows,
 		columns,
-		settings: exportTypeSettings[exportType],
+		settings: exportTypeSettings,
 		dataTypeMetadata,
 		stripWhitespace,
 		workerResources

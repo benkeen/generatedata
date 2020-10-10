@@ -257,7 +257,6 @@ export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadP
 });
 
 
-
 /*
 		// secondly, check the SQL fields have all been entered properly
 		var tableNameField = $("#etSQL_tableName");

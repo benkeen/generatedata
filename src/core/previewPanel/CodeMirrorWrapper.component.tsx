@@ -60,7 +60,7 @@ export const generatePreviewString = (props: any): Promise<any> => {
 			rows,
 			columns,
 			exportType,
-			exportTypeSettings,
+			exportTypeSettings: exportTypeSettings[exportType],
 			isFirstBatch: true,
 			isLastBatch: true,
 			stripWhitespace: false,

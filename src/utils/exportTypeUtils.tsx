@@ -1,6 +1,6 @@
 import { exportTypes, ExportTypeFolder } from '../_plugins';
 import { MediumSpinner } from '~components/loaders';
-import { ETBundle } from '~types/exportTypes';
+import { ETBundle, ETDownloadPacketResponse } from '~types/exportTypes';
 
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
@@ -29,7 +29,8 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 				/* webpackMode: "lazy" */
 				`../plugins/exportTypes/${exportType}/bundle`
 			)
-				.then((def: any) => {
+				.then((resp: any) => {
+					const def = resp.default;
 					loadedExportTypes[exportType] = {
 						Settings: def.Settings,
 						initialState: def.initialState,
@@ -80,4 +81,12 @@ export const getExportTypeSettingsComponent = (exportType: ExportTypeFolder): an
 export const getCodeMirrorMode = (exportType: ExportTypeFolder, exportTypeSettings: any): string => {
 	// @ts-ignore-line
 	return loadedExportTypes[exportType].getCodeMirrorMode(exportTypeSettings);
+};
+
+export const getDownloadFileInfo = (packetId: string, exportType: ExportTypeFolder, exportTypeSettings: any): ETDownloadPacketResponse => {
+	// @ts-ignore-line
+	return loadedExportTypes[exportType].getDownloadFileInfo({
+		packetId,
+		settings: exportTypeSettings
+	});
 };

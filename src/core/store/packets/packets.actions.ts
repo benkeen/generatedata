@@ -2,12 +2,14 @@ import { Dispatch } from 'redux';
 import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
 import * as selectors from '../generator/generator.selectors';
 import * as packetSelectors from '../packets/packets.selectors';
+import { getDownloadFileInfo } from '~utils/exportTypeUtils';
 import { GDAction } from '~types/general';
 import { downloadFile } from '../../generationPanel/generation.helpers';
 
 export const START_GENERATION = 'START_GENERATION';
 export const startGeneration = (): any => (dispatch: Dispatch, getState: any): void => {
 	const state = getState();
+
 
 	// whenever we start generating some data, we stash all the current settings into the data packet instance. That way,
 	// we can happily generate multiple independent packets simultaneously while the user starts work on a new
@@ -23,7 +25,7 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 			dataTypes: selectors.getRowDataTypes(state),
 			columns: selectors.getColumns(state),
 			exportType: selectors.getExportType(state),
-			exportTypeSettings: selectors.getExportTypeSettings(state)
+			exportTypeSettings: selectors.getCurrentExportTypeSettings(state)
 		}
 	});
 };
@@ -57,6 +59,10 @@ export const promptToDownload = () => (dispatch: Dispatch, getState: any): void 
 	const state = getState();
 	const packetId = packetSelectors.getCurrentPacketId(state);
 	const dataString = packetSelectors.getCompletedDataString(state);
+	const packet = packetSelectors.getCurrentPacket(state);
+	const { exportType, exportTypeSettings } = packet!.config;
 
-	downloadFile(`data-${packetId}.json`, dataString, 'application/json');
+	const { filename, fileType } = getDownloadFileInfo(packetId!, exportType, exportTypeSettings);
+
+	downloadFile(filename, dataString, fileType);
 };

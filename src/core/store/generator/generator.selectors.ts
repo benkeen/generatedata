@@ -241,6 +241,12 @@ export const getExportTypeLabel = createSelector(
 	}
 );
 
+export const getCurrentExportTypeSettings = createSelector(
+	getExportType,
+	getExportTypeSettings,
+	(exportType, settings) => exportType ? settings[exportType] : {}
+);
+
 // wrapper function for the Export Type's getCodeMirrorMode function. This ensures it's loaded and does the work
 // of figuring out what export type is currently loaded
 export const getCodeMirrorMode = createSelector(

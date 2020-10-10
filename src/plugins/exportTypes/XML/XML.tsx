@@ -52,8 +52,8 @@ export const Settings = ({ data, i18n, id, onUpdate }: ETSettings): JSX.Element 
 export const getCodeMirrorMode = (): string => 'text/html';
 
 export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => ({
-	filename: `data-${packetId}.sql`,
-	fileType: 'text/x-sql'
+	filename: `data-${packetId}.xml`,
+	fileType: 'text/xml'
 });
 
 

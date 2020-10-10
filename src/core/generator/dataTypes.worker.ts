@@ -235,7 +235,6 @@ const processQueue = (dataType: DataTypeFolder) => {
 		if (typeof response.then === 'function') {
 			response
 				.then(() => {
-					console.log("resolved async data type.");
 					resolve(response.data);
 					processNextItem(dataType);
 				})
