@@ -47,7 +47,7 @@ context.onmessage = (e: any) => {
 	// that should be a clean API & easy to debug
 
 	Object.keys(workerResources.countries).forEach((country: any) => {
-		if (!loadedDataTypeWorkers[country]) {
+		if (!countryData[country]) {
 			importScripts(workerResources.countries[country]);
 
 			// @ts-ignore
