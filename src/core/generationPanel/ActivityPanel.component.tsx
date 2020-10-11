@@ -27,6 +27,8 @@ export type ActivityPanelProps = {
 	onContinue: () => void;
 	onAbort: () => void;
 	onDownload: () => void;
+	onChangeSpeed: (speed: number) => void;
+	tooltip: () => void;
 	workerResources: any;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
@@ -38,7 +40,7 @@ const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
-	onDownload, dataSize, estimatedSize, i18n
+	onDownload, onChangeSpeed, tooltip, dataSize, estimatedSize, i18n
 }: ActivityPanelProps): any => {
 	if (packet === null) {
 		return null;
@@ -146,7 +148,7 @@ const ActivityPanel = ({
 
 		return (
 			<Button onClick={abortPacket} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
-				{i18n.cancelGeneration}
+				{i18n.cancel}
 			</Button>
 		);
 	};
@@ -162,7 +164,7 @@ const ActivityPanel = ({
 
 		return (
 			<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
-				<Tooltip title={tooltip} placement="top" arrow style={{ marginRight: 50 }}>
+				<Tooltip title={tooltip} placement="top" arrow style={{ marginRight: 50, zIndex: 1000 }}>
 					<IconButton size="medium" aria-label={tooltip}>
 						{pauseContinueIcon}
 					</IconButton>
@@ -176,6 +178,7 @@ const ActivityPanel = ({
 					valueLabelDisplay="auto"
 					valueLabelFormat={valueLabelFormat}
 					marks={marks}
+					onChange={(e, value) => onChangeSpeed(value as number)}
 				/>
 			</div>
 		);

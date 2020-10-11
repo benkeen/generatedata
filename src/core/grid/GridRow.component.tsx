@@ -104,14 +104,12 @@ export const GridRow = ({
 		);
 	};
 
-	console.log("rendering: ", row.id);
-
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
 			{(provided: any, snapshot: any): any => {
 
 				// the title field is always required, regardless of Export Type
-				const titleColError = row.dataType && row.title.trim() === '' ? 'Required field' : '';
+				const titleColError = row.dataType && row.title.trim() === '' ? i18n.requiredField : '';
 
 				return (
 					<div className={styles.gridRow} key={row.id}

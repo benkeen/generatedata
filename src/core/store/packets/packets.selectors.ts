@@ -54,7 +54,8 @@ export const getBatchLoadTimes = createSelector(
 				seconds.push(i.toString());
 			}
 		} else {
-			seconds = seconds.slice(numLoadedSeconds - numSecondsToShow);
+			console.log(numLoadedSeconds - numSecondsToShow - 1);
+			seconds = seconds.slice(numLoadedSeconds - numSecondsToShow - 1);
 		}
 
 		return seconds.map((secondStr) => {

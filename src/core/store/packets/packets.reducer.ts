@@ -15,7 +15,8 @@ type GeneratedDataBatch = {
 export type DataPacket = {
 	dataTypeWorkerId: string;
 	exportTypeWorkerId: string;
-	startTime: number;
+	originalStartTime: number;
+	resumeTime: number;
 	endTime: Date | null;
 	isPaused: boolean;
 	numGeneratedRows: number;
@@ -62,31 +63,35 @@ export const initialState: PacketsState = {
 const getNewPacket = ({
 	dataTypeWorkerId, exportTypeWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns,
 	exportType, exportTypeSettings
-}: any): DataPacket => ({
-	dataTypeWorkerId,
-	exportTypeWorkerId,
-	startTime: performance.now(),
-	endTime: null,
-	isPaused: false,
-	numGeneratedRows: 0,
-	numBatches: 0,
-	speed: 80,
-	config: {
-		stripWhitespace,
-		numRowsToGenerate,
-		template,
-		dataTypes,
-		columns,
-		exportType,
-		exportTypeSettings
-	},
-	data: [],
-	stats: {
-		totalSize: 0,
-		rowGenerationRatePerSecond: {},
-		lastCompleteLoggedSecond: 0
-	}
-});
+}: any): DataPacket => {
+	const now = performance.now();
+	return {
+		dataTypeWorkerId,
+		exportTypeWorkerId,
+		originalStartTime: now,
+		resumeTime: now,
+		endTime: null,
+		isPaused: false,
+		numGeneratedRows: 0,
+		numBatches: 0,
+		speed: 80,
+		config: {
+			stripWhitespace,
+			numRowsToGenerate,
+			template,
+			dataTypes,
+			columns,
+			exportType,
+			exportTypeSettings
+		},
+		data: [],
+		stats: {
+			totalSize: 0,
+			rowGenerationRatePerSecond: {},
+			lastCompleteLoggedSecond: 0
+		}
+	};
+};
 
 export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 	switch (action.type) {
@@ -150,7 +155,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			// of the generation
 			const startTime = draft.packets[packetId].data.length ?
 				draft.packets[packetId].data[draft.packets[packetId].data.length-1].endTime :
-				draft.packets[packetId].startTime;
+				draft.packets[packetId].resumeTime;
 
 			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
 			draft.packets[packetId].data.push({
@@ -160,7 +165,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			});
 			draft.packets[packetId].stats.totalSize += byteSize;
 
-			const result = getRowGenerationRatePerSecond(draft.packets[packetId].startTime, startTime, now, C.GENERATION_BATCH_SIZE);
+			const result = getRowGenerationRatePerSecond(draft.packets[packetId].resumeTime, startTime, now, C.GENERATION_BATCH_SIZE);
 
 			const seconds = Object.keys(result);
 			seconds.forEach((second) => {

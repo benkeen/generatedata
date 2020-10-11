@@ -47,6 +47,7 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Activi
 		onContinue: (): GDAction => dispatch(packetActions.continueGeneration(packetId)),
 		onAbort: (): GDAction => dispatch(packetActions.abortGeneration(packetId)),
 		onDownload: (): any => dispatch(packetActions.promptToDownload()),
+		onChangeSpeed: (speed: number): any => dispatch(packetActions.changeSpeed(speed))
 	};
 };
 
