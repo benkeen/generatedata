@@ -1,12 +1,13 @@
-declare namespace GlobalScssModule {
+declare namespace GlobalScssNamespace {
   export interface IGlobalScss {
-    root: string;
+    "recharts-area": string;
+    "recharts-wrapper": string;
   }
 }
 
-declare const GlobalScssModule: GlobalScssModule.IGlobalScss & {
+declare const GlobalScssModule: GlobalScssNamespace.IGlobalScss & {
   /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-  locals: GlobalScssModule.IGlobalScss;
+  locals: GlobalScssNamespace.IGlobalScss;
 };
 
 export = GlobalScssModule;

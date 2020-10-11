@@ -40,6 +40,8 @@ const Grid = ({
 
 	const windowSize = useWindowSize();
 
+	console.log("rendering grid");
+
 	let gridSizeClass = '';
 	if (dimensions.width < SMALL_BREAKPOINT) {
 		gridSizeClass = styles.gridSmall;

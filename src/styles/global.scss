@@ -19,3 +19,7 @@ a {
 body :global(.MuiTooltip-popper) {
 	z-index: 2;
 }
+
+.recharts-wrapper .recharts-area {
+	transition: none;
+}

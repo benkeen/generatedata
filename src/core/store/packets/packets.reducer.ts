@@ -162,7 +162,8 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 			const result = getRowGenerationRatePerSecond(draft.packets[packetId].startTime, startTime, now, C.GENERATION_BATCH_SIZE);
 
-			Object.keys(result).forEach((second) => {
+			const seconds = Object.keys(result);
+			seconds.forEach((second) => {
 				const secondNum = parseInt(second, 10);
 				let currVal = draft.packets[packetId].stats.rowGenerationRatePerSecond[secondNum];
 				if (currVal) {
@@ -173,6 +174,11 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				draft.packets[packetId].stats.rowGenerationRatePerSecond[secondNum] = currVal;
 			});
 
+			console.log(seconds);
+
+			if (seconds.length > 1) {
+				draft.packets[packetId].stats.lastCompleteLoggedSecond = parseInt(seconds[seconds.length-2], 10);
+			}
 			break;
 		}
 	}

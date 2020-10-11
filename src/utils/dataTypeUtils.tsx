@@ -16,10 +16,17 @@ const loadedDataTypes: Partial<LoadedDataTypes> = {};
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
 // used for the Data Type selection dropdown
+let cachedSortedGroupedDataTypes: any;
 export const getSortedGroupedDataTypes = (): any => {
+
+	// TODO need to cache bust this when changing languages
+	if (cachedSortedGroupedDataTypes) {
+		return cachedSortedGroupedDataTypes;
+	}
+
 	const i18n = getStrings();
 
-	return coreConfig.dataTypeGroups.map((group: string) => {
+	cachedSortedGroupedDataTypes = coreConfig.dataTypeGroups.map((group: string) => {
 		const options = Object.keys(dataTypes)
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
 			.map((dataType: DataTypeFolder) => ({
@@ -46,14 +53,17 @@ export const getSortedGroupedDataTypes = (): any => {
 			options: sortedOptions
 		};
 	});
+
+	return cachedSortedGroupedDataTypes;
 };
 
 export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
 
-const NoOptionsAvailable = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>; // eslint-disable-line
+const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>; // eslint-disable-line
+const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>; // eslint-disable-line
+const showNothing = (): null => null;
 
 export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO return type is important here. Dense method!
-	const showNothing = (): null => null;
 	if (!dataType || !loadedDataTypes[dataType]) {
 		return {
 			name: dataType ? dataTypes[dataType].name : '',
@@ -70,13 +80,13 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 	if (loadedDataTypes[dataType]!.Example) {
 		Example = loadedDataTypes[dataType]!.Example;
 	} else {
-		Example = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>; // eslint-disable-line
+		Example = NoExample;
 	}
 
 	if (loadedDataTypes[dataType]!.Options) {
 		Options = loadedDataTypes[dataType]!.Options;
 	} else {
-		Options = NoOptionsAvailable;
+		Options = NoOptions;
 	}
 
 	if (dataType && loadedDataTypes[dataType]!.Help) {

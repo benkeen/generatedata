@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { PieChart, Pie, Cell, LineChart, CartesianGrid, XAxis, YAxis, Area } from 'recharts';
+import { PieChart, Pie, Cell, BarChart, CartesianGrid, XAxis, YAxis, Bar, Label } from 'recharts';
 import CountUp from 'react-countup';
 import IconButton from '@material-ui/core/IconButton';
 import Slider from '@material-ui/core/Slider';
@@ -106,7 +106,7 @@ const ActivityPanel = ({
 	}, [isPaused]);
 
 
-	const animation = true;
+	// const animation = true;
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
 	const isComplete = percentage === 100;
 
@@ -224,16 +224,19 @@ const ActivityPanel = ({
 							</div>
 
 							<div className={styles.panel2}>
-								<LineChart
+								<h4>Rows generated per second</h4>
+								<BarChart
 									width={500}
 									height={400}
 									data={batchLoadTimes}
-									margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+									margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
 									<CartesianGrid strokeDasharray="3 3" />
-									<XAxis dataKey="name" />
-									<YAxis />
-									<Area type="monotone" dataKey="duration" stroke="#8884d8" fill="#8884d8" />
-								</LineChart>
+									<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
+										<Label value="Seconds??" offset={10} position="insideBottom" />
+									</XAxis>
+									<YAxis dataKey="rowsPerSecond" />
+									<Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />
+								</BarChart>
 							</div>
 						</div>
 					</div>

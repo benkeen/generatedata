@@ -45,16 +45,28 @@ export const getBatchLoadTimes = createSelector(
 			return [];
 		}
 
-		return packet.data.map(({ endTime }, index) => {
-			let duration;
-			if (index === 0) {
-				duration = endTime - packet.startTime;
-			} else {
-				duration = endTime - packet.data[index-1].endTime;
+		const numSecondsToShow = 30;
+		let seconds = Object.keys(packet.stats.rowGenerationRatePerSecond);
+
+		const numLoadedSeconds = seconds.length;
+		if (numLoadedSeconds < numSecondsToShow) {
+			for (let i=numLoadedSeconds; i<=numSecondsToShow; i++) {
+				seconds.push(i.toString());
 			}
+		} else {
+			seconds = seconds.slice(numLoadedSeconds - numSecondsToShow);
+		}
+
+		console.log(packet.stats.lastCompleteLoggedSecond);
+
+		return seconds.map((secondStr) => {
+			const secondNum = parseInt(secondStr, 10);
+			const isComplete = secondNum <= packet.stats.lastCompleteLoggedSecond;
+			const rowsPerSecond = isComplete && packet.stats.rowGenerationRatePerSecond[secondNum] || 0;
+
 			return {
-				label: index+1,
-				duration
+				label: secondStr,
+				rowsPerSecond
 			};
 		});
 	}
