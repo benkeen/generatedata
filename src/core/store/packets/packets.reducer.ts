@@ -3,7 +3,8 @@ import { generate } from 'shortid';
 import produce from 'immer';
 import * as actions from './packets.actions';
 import { ExportTypeFolder } from '../../../_plugins';
-import { getByteSize } from '../../generationPanel/generation.helpers';
+import { getByteSize, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';
+import C from '../../constants';
 
 type GeneratedDataBatch = {
 	byteSize: number;
@@ -37,8 +38,8 @@ export type DataPacket = {
 
 	stats: {
 		totalSize: number;
-		rowsPerSecondLog: { [second: number]: number },
-		lastCompleteLoggedSecond: number
+		rowGenerationRatePerSecond: { [second: number]: number };
+		lastCompleteLoggedSecond: number;
 	};
 };
 
@@ -82,7 +83,7 @@ const getNewPacket = ({
 	data: [],
 	stats: {
 		totalSize: 0,
-		numRowsPerSecond: {},
+		rowGenerationRatePerSecond: {},
 		lastCompleteLoggedSecond: 0
 	}
 });
@@ -145,6 +146,12 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				break;
 			}
 
+			// the start time for this batch was either the previous completed batch, or for the very first one, the start
+			// of the generation
+			const startTime = draft.packets[packetId].data.length ?
+				draft.packets[packetId].data[draft.packets[packetId].data.length-1].endTime :
+				draft.packets[packetId].startTime;
+
 			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
 			draft.packets[packetId].data.push({
 				dataStr,
@@ -153,13 +160,18 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			});
 			draft.packets[packetId].stats.totalSize += byteSize;
 
-			console.log(now);
+			const result = getRowGenerationRatePerSecond(draft.packets[packetId].startTime, startTime, now, C.GENERATION_BATCH_SIZE);
 
-			// if (draft.packets[packetId].stats.lastCompleteLoggedSecond) {
-			//
-			// } else {
-			// 	draft.packages
-			// }
+			Object.keys(result).forEach((second) => {
+				const secondNum = parseInt(second, 10);
+				let currVal = draft.packets[packetId].stats.rowGenerationRatePerSecond[secondNum];
+				if (currVal) {
+					currVal += result[secondNum];
+				} else {
+					currVal = result[secondNum];
+				}
+				draft.packets[packetId].stats.rowGenerationRatePerSecond[secondNum] = currVal;
+			});
 
 			break;
 		}

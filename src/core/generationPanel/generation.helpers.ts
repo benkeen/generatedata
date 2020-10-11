@@ -65,7 +65,6 @@ export const getRowGenerationRatePerSecond = (
 
 	// now split the duration into discrete seconds, and loop over them, figuring out how many would
 	let currTimeBlock = batchStartTime;
-	let runningCount = 0;
 	let currentSecond;
 	const result: secondCount = {};
 
@@ -84,18 +83,14 @@ export const getRowGenerationRatePerSecond = (
 		// now see how many of the rows could fit into this duration
 		const numRowsInCurrentDuration = secondDuration / singleRowTime;
 
-		let currentSecondMs = Math.floor(currTimeBlock - baseTime);
+		const currentSecondMs = Math.floor(currTimeBlock - baseTime);
 		currentSecond = ((currentSecondMs === 0) ? 0 : Math.floor(currentSecondMs / 1000)) + 1;
-
-		runningCount += numRowsInCurrentDuration;
-
 		result[currentSecond] = parseFloat(numRowsInCurrentDuration.toFixed(2));
 
 		if (shouldBreak) {
 			break;
 		}
 
-		// update currTimeBlock for the next iteration
 		currTimeBlock += secondDuration;
 	}
 
