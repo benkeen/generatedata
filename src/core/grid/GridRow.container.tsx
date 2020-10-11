@@ -23,6 +23,8 @@ const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps
 
 	const { Example, Options, customProps } = getDataType(dataType);
 	const dataTypeI18n = selectors.getDataTypeI18n(state);
+
+	// TODO this is causing repaints
 	const dtCustomProps = getCustomProps(customProps, state);
 
 	return {

@@ -47,10 +47,11 @@ export const getNumRows = createSelector(
 	(rows) => rows.length
 );
 
+// problem! this returns a new array for any single row change, causing a repaint of the entire grid
 export const getSortedRowsArray = createSelector(
 	getRows,
 	getSortedRows,
-	(rows, sorted) => sorted.map((id: string) => ({ ...rows[id], id }))
+	(rows, sorted) => sorted.map((id: string) => rows[id])
 );
 
 export const getTitles = createSelector(

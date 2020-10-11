@@ -192,13 +192,15 @@ export const requestDataTypeBundle = (dataType: DataTypeFolder): any => {
 };
 
 
+const noValue = {};
 export const getCustomProps = (customProps: DTCustomProps, state: Store): object => {
-	const values: any = {};
+	const values: any = noValue;
 	if (customProps) {
 		Object.keys(customProps).map((propName: string) => {
 			values[propName] = customProps[propName](state);
 		});
 	}
+
 	return values;
 };
 

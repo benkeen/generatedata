@@ -12,7 +12,7 @@ import { DataTypeFolder } from '../../_plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../styles/shared.scss';
 import TextField from '~components/TextField';
-import withPropsCheck from '~utils/debugUtils';
+import { withPropsCheck } from '~utils/debugUtils';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {

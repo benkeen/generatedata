@@ -51,10 +51,10 @@ const Grid = ({
 
 	const addRowsBtnLabel = numRows === 1 ? i18n.row : i18n.rows;
 
-	const onShowHelpDialog = (dataType: DataTypeFolder): void => {
+	const onShowHelpDialog = React.useCallback((dataType: DataTypeFolder): void => {
 		setInitialDialogSection(dataType);
 		showHelpDialog(true);
-	};
+	}, []);
 
 	const onClose = (): void => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {

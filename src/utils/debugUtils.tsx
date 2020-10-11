@@ -1,29 +1,30 @@
+// debugging methods. These should never be included in the final bundle
 import * as React from 'react';
 
 interface Props<P> {
 	[key: string]: any;
 }
 
-export default function withPropsCheck<P>(WrappedComponent: React.ComponentType<P>): React.ComponentClass<Props<P>> {
+// debugging method to wrap any component to find out what props are causing repaints
+export function withPropsCheck<P>(WrappedComponent: React.ComponentType<P>): React.ComponentClass<Props<P>> {
 	return class PropsChecker extends React.Component<Props<P>> {
-		componentWillReceiveProps(nextProps: Props<P>) {
+		componentWillReceiveProps(nextProps: Props<P>): void {
 			Object.keys(nextProps)
-				.filter(key => nextProps[key] !== this.props[key])
-				.map((key) => {
+				.filter((key) => nextProps[key] !== this.props[key])
+				.map((key): void => {
 					console.log(
-						'changed property:',
-						key,
-						'from',
-						this.props[key],
-						'to',
-						nextProps[key],
+						'changed property:', key,
+						'from', this.props[key],
+						'to', nextProps[key],
 					);
 				});
 		}
 
-		render() {
+		render(): any {
 			// @ts-ignore-line
 			return <WrappedComponent {...this.props} />;
 		}
 	};
 }
+
+
