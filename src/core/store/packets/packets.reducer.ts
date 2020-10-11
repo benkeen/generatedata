@@ -174,11 +174,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				draft.packets[packetId].stats.rowGenerationRatePerSecond[secondNum] = currVal;
 			});
 
-			console.log(seconds);
-
-			if (seconds.length > 1) {
-				draft.packets[packetId].stats.lastCompleteLoggedSecond = parseInt(seconds[seconds.length-2], 10);
-			}
+			draft.packets[packetId].stats.lastCompleteLoggedSecond = parseInt(seconds[seconds.length-1], 10) - 1;
 			break;
 		}
 	}

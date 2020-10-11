@@ -12,7 +12,6 @@ import { DataTypeFolder } from '../../_plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../styles/shared.scss';
 import TextField from '~components/TextField';
-import { withPropsCheck } from '~utils/debugUtils';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -47,7 +46,7 @@ export type GridRowProps = {
 	showHelpDialog: (dataType: DataTypeFolder) => void;
 };
 
-export const GridRow = withPropsCheck(({
+export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
 	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions, showHelpDialog
 }: GridRowProps): JSX.Element => {
@@ -186,5 +185,4 @@ export const GridRow = withPropsCheck(({
 			}}
 		</Draggable>
 	);
-});
-
+};

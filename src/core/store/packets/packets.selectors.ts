@@ -57,8 +57,6 @@ export const getBatchLoadTimes = createSelector(
 			seconds = seconds.slice(numLoadedSeconds - numSecondsToShow);
 		}
 
-		console.log(packet.stats.lastCompleteLoggedSecond);
-
 		return seconds.map((secondStr) => {
 			const secondNum = parseInt(secondStr, 10);
 			const isComplete = secondNum <= packet.stats.lastCompleteLoggedSecond;

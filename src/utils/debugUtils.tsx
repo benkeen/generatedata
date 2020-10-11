@@ -1,11 +1,11 @@
-// debugging methods. These should never be included in the final bundle
+// debugging methods. These should never be included in the actual code
 import * as React from 'react';
 
 interface Props<P> {
 	[key: string]: any;
 }
 
-// debugging method to wrap any component to find out what props are causing repaints
+// quick debugging HOC to find out what props are causing repaints
 export function withPropsCheck<P>(WrappedComponent: React.ComponentType<P>): React.ComponentClass<Props<P>> {
 	return class PropsChecker extends React.Component<Props<P>> {
 		componentWillReceiveProps(nextProps: Props<P>): void {
