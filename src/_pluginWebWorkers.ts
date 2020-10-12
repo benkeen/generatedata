@@ -34,8 +34,7 @@ export default {
 		"TextFixed": "DT-TextFixed.generator-a0f7982ddb3ef9539240b5f992437bf9.js",
 		"TextRandom": "DT-TextRandom.generator-e5fdc055912cc4d1ca5761b9a4d69c42.js",
 		"Track1": "DT-Track1.generator-68b329da9893e34099c7d8ad5cb9c940.js",
-		"Track2": "DT-Track2.generator-853bfefc8d3f8a2a9d055de5f7c6a1f7.js",
-		"Tree": "DT-Tree.generator-68b329da9893e34099c7d8ad5cb9c940.js"
+		"Track2": "DT-Track2.generator-853bfefc8d3f8a2a9d055de5f7c6a1f7.js"
 	},
 	"exportTypes": {
 		"HTML": "ET-HTML.generator-1f2109aec7e9cd759773fc7f28fd0966.js",

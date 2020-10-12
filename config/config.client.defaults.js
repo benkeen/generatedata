@@ -24,8 +24,8 @@ export default {
 	dataTypeBlacklist: [
 		'_NamesRegional',
 		'_PhoneRegional',
-		'Computed',
-		'Tree'
+		'_Tree',
+		'Computed'
 	],
 
 	exportTypeBlacklist: [
@@ -34,8 +34,7 @@ export default {
 		'LDIF'
 	],
 
-	countryBlacklist: [
-	],
+	countryBlacklist: [],
 
 	// importSqlFeatureEnabled: true,
 	// importSqlListDatabases: false,

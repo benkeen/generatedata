@@ -1,6 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "Property Name",
+  "COL_TITLE": "Name des Anwesens",
   "complex": "Komplex",
   "dataStructureFormat": "Datenstruktur-Format",
   "simple": "Einfach",

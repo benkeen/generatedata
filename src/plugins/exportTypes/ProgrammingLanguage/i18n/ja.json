@@ -1,6 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "Programming Language",
-  "COL_TITLE": "Property Name",
+  "COL_TITLE": "プロパティ名",
   "row_label": "Var/Prop Name",
   "language": "Language",
   "variable": "Variable",

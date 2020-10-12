@@ -1,6 +1,6 @@
 import React from 'react';
 import { coreConfig } from '../core';
-import { getStrings } from './langUtils';
+import { getLocale, getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
 import { SmallSpinner, MediumSpinner } from '~components/loaders';
@@ -16,16 +16,17 @@ const loadedDataTypes: Partial<LoadedDataTypes> = {};
 export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
 
 // used for the Data Type selection dropdown
+let lastLocale: any;
 let cachedSortedGroupedDataTypes: any;
 export const getSortedGroupedDataTypes = (): any => {
+	const locale = getLocale();
+	const i18n = getStrings();
 
-	// TODO need to cache bust this when changing languages
-	if (cachedSortedGroupedDataTypes) {
+	if (cachedSortedGroupedDataTypes && lastLocale == locale) {
 		return cachedSortedGroupedDataTypes;
 	}
 
-	const i18n = getStrings();
-
+	lastLocale = locale;
 	cachedSortedGroupedDataTypes = coreConfig.dataTypeGroups.map((group: string) => {
 		const options = Object.keys(dataTypes)
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
@@ -45,7 +46,7 @@ export const getSortedGroupedDataTypes = (): any => {
 
 		const sortedOptions = options.map(({ dataType }: { dataType: DataTypeFolder }) => ({
 			value: dataType,
-			label: dataTypes[dataType].name
+			label: i18n.dataTypes[dataType].NAME
 		}));
 
 		return {

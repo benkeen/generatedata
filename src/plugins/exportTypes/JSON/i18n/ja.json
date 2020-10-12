@@ -1,6 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "JSON",
-  "COL_TITLE": "Property Name",
+  "COL_TITLE": "プロパティ名",
   "stripWhitespace": "Strip whitespace from generated results",
   "complex": "Complex",
   "simple": "Simple",

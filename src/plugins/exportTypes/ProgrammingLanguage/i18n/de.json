@@ -1,6 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "Programming Language",
-  "COL_TITLE": "Property Name",
+  "COL_TITLE": "Name des Anwesens",
   "row_label": "Var/Prop Name",
   "language": "Language",
   "variable": "Variable",
