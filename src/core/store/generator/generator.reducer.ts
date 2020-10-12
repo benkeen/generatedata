@@ -4,6 +4,7 @@ import produce from 'immer';
 // @ts-ignore-line
 import config from '../../../../dist/config.client';
 import * as actions from './generator.actions';
+import * as mainActions from '../main/main.actions';
 import * as packetActions from '../packets/packets.actions';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
@@ -101,6 +102,14 @@ export const getInitialState = (): GeneratorState => ({
 
 export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 	switch (action.type) {
+		case mainActions.RESET_STORE:
+			const initialState = getInitialState();
+			Object.keys(initialState).forEach((key) => {
+				// @ts-ignore-line
+				draft[key] = initialState[key];
+			});
+			break;
+
 		case actions.CLEAR_GRID:
 			draft.rows = {};
 			draft.sortedRows = [];

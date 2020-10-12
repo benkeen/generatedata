@@ -28,7 +28,6 @@ export type ActivityPanelProps = {
 	onAbort: () => void;
 	onDownload: () => void;
 	onChangeSpeed: (speed: number) => void;
-	tooltip: () => void;
 	workerResources: any;
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
@@ -40,7 +39,7 @@ const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
-	onDownload, onChangeSpeed, tooltip, dataSize, estimatedSize, i18n
+	onDownload, onChangeSpeed, dataSize, estimatedSize, i18n
 }: ActivityPanelProps): any => {
 	if (packet === null) {
 		return null;
@@ -178,7 +177,7 @@ const ActivityPanel = ({
 					valueLabelDisplay="auto"
 					valueLabelFormat={valueLabelFormat}
 					marks={marks}
-					onChange={(e, value) => onChangeSpeed(value as number)}
+					onChange={(e, value): void => onChangeSpeed(value as number)}
 				/>
 			</div>
 		);

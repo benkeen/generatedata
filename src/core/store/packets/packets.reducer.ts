@@ -5,6 +5,7 @@ import * as actions from './packets.actions';
 import { ExportTypeFolder } from '../../../_plugins';
 import { getByteSize, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';
 import C from '../../constants';
+import * as mainActions from '../main/main.actions';
 
 type GeneratedDataBatch = {
 	byteSize: number;
@@ -95,6 +96,13 @@ const getNewPacket = ({
 
 export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 	switch (action.type) {
+		case mainActions.RESET_STORE:
+			Object.keys(initialState).forEach((key) => {
+				// @ts-ignore-line
+				draft[key] = initialState[key];
+			});
+			break;
+
 		case actions.START_GENERATION: {
 			const {
 				dataTypeWorkerId, exportTypeWorkerId, numRowsToGenerate, template, dataTypes, columns,

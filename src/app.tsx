@@ -14,23 +14,23 @@ import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
 import './core/store/generator/generator.reducer';
 import './styles/global.scss';
+import C from './core/constants';
+import { getAppStateVersion } from './core/store/main/main.selectors';
+import { resetStore } from './core/store/main/main.actions';
 
 window.CodeMirror = codemirror;
 
-/*
-routes:
-	welcome (?)
-	tour (?)
-	about
-	documentation (?)
-	news
-	donate
- */
+const checkState = async (state: any): Promise<any> => {
+	const lastAppStateVersion = getAppStateVersion(state.getState());
+	if (lastAppStateVersion !== C.APP_STATE_VERSION) {
+		await state.dispatch(resetStore());
+	}
+};
 
 const App = (): JSX.Element => (
 	<Provider store={store}>
 		<ThemeProvider theme={theme}>
-			<PersistGate loading={null} persistor={persistor}>
+			<PersistGate loading={null} persistor={persistor} onBeforeLift={(): Promise<any> => checkState(store)}>
 				{(bootstrapped): JSX.Element => {
 
 					// PersistGate handles repopulating the redux store; core.init() re-initializes everything else we
