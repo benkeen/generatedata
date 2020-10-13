@@ -125,7 +125,7 @@ const Header = ({
 			<>
 				<ul>
 				</ul>
-				<ButtonGroup aria-label="" size="small" style={{ margin: '0 6px 0 12px', backgroundColor: '#ffffff' }}>
+				<ButtonGroup aria-label="" size="small" className={styles.items}>
 					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
 						<Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>
 							{i18n.grid}

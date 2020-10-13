@@ -62,6 +62,16 @@
     svg {
         fill: #aaaaaa;
     }
+
+	.items {
+		margin: 0 6px 0 12px;
+		background-color: #ffffff;
+		box-shadow: 0 1px 1px #cccccc;
+
+		&>button {
+			border: 0;
+		}
+	}
 }
 
 .btnSelected {

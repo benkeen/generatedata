@@ -13,6 +13,7 @@ import CVV from './plugins/dataTypes/CVV/config';
 import City from './plugins/dataTypes/City/config';
 import Company from './plugins/dataTypes/Company/config';
 import Composite from './plugins/dataTypes/Composite/config';
+import Computed from './plugins/dataTypes/Computed/config';
 import Constant from './plugins/dataTypes/Constant/config';
 import Country from './plugins/dataTypes/Country/config';
 import Currency from './plugins/dataTypes/Currency/config';
@@ -48,6 +49,7 @@ export const dataTypes = {
 	City,
 	Company,
 	Composite,
+	Computed,
 	Constant,
 	Country,
 	Currency,

@@ -24,8 +24,7 @@ export default {
 	dataTypeBlacklist: [
 		'_NamesRegional',
 		'_PhoneRegional',
-		'_Tree',
-		'Computed'
+		'_Tree'
 	],
 
 	exportTypeBlacklist: [
