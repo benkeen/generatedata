@@ -17,27 +17,27 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			{i18n.DESC}
 		</p>
 		<p>
-			{i18n.Composite_help_2}
+			{i18n.compositeHelp2}
 		</p>
 		<p>
-			{i18n.Composite_help_3}
+			{i18n.compositeHelp3}
 		</p>
 		<ul>
-			<li>{i18n.Composite_help_4}</li>
-			<li>{i18n.Composite_help_5}
+			<li>{i18n.compositeHelp4}</li>
+			<li>{i18n.compositeHelp5}
 				<ul>
-					<li><b>ROW2-ROW</b> - {i18n.Composite_subtraction}</li>
-					<li><b>ROW2*ROW</b> - {i18n.Composite_multiplication}</li>
-					<li><b>ROW2/ROW</b> - {i18n.Composite_division}</li>
+					<li><b>ROW2-ROW</b> - {i18n.compositeSubtraction}</li>
+					<li><b>ROW2*ROW</b> - {i18n.compositeMultiplication}</li>
+					<li><b>ROW2/ROW</b> - {i18n.compositeDivision}</li>
 				</ul>
 			</li>
 			<li>
-				{i18n.Composite_help_6}
+				{i18n.compositeHelp6}
 				<b>if ROW1 == 5 i18n.Composite_na else ROW1</b>
 			</li>
 		</ul>
 		<p>
-			{i18n.Composite_help_7}
+			{i18n.compositeHelp7}
 		</p>
 	</>
 );
