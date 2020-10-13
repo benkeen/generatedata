@@ -38,6 +38,20 @@ export const getActivePacketList = createSelector(
 	}
 );
 
+export const getLoadTimeDuration = createSelector(
+	getCurrentPacket,
+	(packet) => packet!.loadTimeGraphDuration
+);
+
+export const getLoadTimeDurationOptions = createSelector(
+	getCurrentPacket,
+	(packet) => {
+		if (!packet) {
+			return null;
+		}
+	}
+);
+
 export const getBatchLoadTimes = createSelector(
 	getCurrentPacket,
 	(packet) => {
@@ -54,7 +68,6 @@ export const getBatchLoadTimes = createSelector(
 				seconds.push(i.toString());
 			}
 		} else {
-			console.log(numLoadedSeconds - numSecondsToShow - 1);
 			seconds = seconds.slice(numLoadedSeconds - numSecondsToShow - 1);
 		}
 

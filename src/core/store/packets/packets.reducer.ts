@@ -13,6 +13,8 @@ type GeneratedDataBatch = {
 	endTime: number;
 };
 
+export type LoadTimeGraphDuration = 'all' | '15seconds' | '30seconds' | '1minute';
+
 export type DataPacket = {
 	dataTypeWorkerId: string;
 	exportTypeWorkerId: string;
@@ -23,6 +25,7 @@ export type DataPacket = {
 	numGeneratedRows: number;
 	numBatches: number;
 	speed: number;
+	loadTimeGraphDuration: LoadTimeGraphDuration;
 
 	// this block contains the actual configuration data - data types and export type data - used in this generation packet
 	config: {
@@ -66,6 +69,8 @@ const getNewPacket = ({
 	exportType, exportTypeSettings
 }: any): DataPacket => {
 	const now = performance.now();
+	const loadTimeGraphDuration = numRowsToGenerate <= 1000 ? 'all' : '15seconds';
+
 	return {
 		dataTypeWorkerId,
 		exportTypeWorkerId,
@@ -76,6 +81,7 @@ const getNewPacket = ({
 		numGeneratedRows: 0,
 		numBatches: 0,
 		speed: 80,
+		loadTimeGraphDuration,
 		config: {
 			stripWhitespace,
 			numRowsToGenerate,

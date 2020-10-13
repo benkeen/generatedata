@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { PieChart, Pie, Cell, BarChart, CartesianGrid, XAxis, YAxis, Bar, Label } from 'recharts';
 import CountUp from 'react-countup';
+import Measure from 'react-measure';
 import IconButton from '@material-ui/core/IconButton';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
@@ -11,7 +12,7 @@ import { Dialog, DialogContent, DialogTitle, DialogActions } from '~components/d
 import usePrevious from '../../hooks/usePrevious';
 import useDidUpdate from '../../hooks/useDidUpdate';
 import styles from './ActivityPanel.scss';
-import { DataPacket } from '../store/packets/packets.reducer';
+import { DataPacket, LoadTimeGraphDuration } from '../store/packets/packets.reducer';
 import * as coreUtils from '~utils/coreUtils';
 import C from '../constants';
 import { getStrings } from '~utils/langUtils';
@@ -33,6 +34,7 @@ export type ActivityPanelProps = {
 	batchLoadTimes: object[];
 	dataSize: string;
 	estimatedSize: string;
+	loadTimeGraphDuration: LoadTimeGraphDuration;
 };
 
 const valueLabelFormat = (value: number): string => `${value}%`;
@@ -48,6 +50,7 @@ const ActivityPanel = ({
 	const { isPaused, config, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows, speed } = packet;
 	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings, stripWhitespace } = config;
 
+	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
 	const exportTypeWorker = coreUtils.getExportTypeWorker(exportTypeWorkerId);
@@ -183,72 +186,81 @@ const ActivityPanel = ({
 		);
 	};
 
+	console.log(dimensions);
+
 	return (
-		<Dialog onClose={onClose} open={visible}>
-			<div style={{ maxWidth: 800 }}>
-				<DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
-					Generated: <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," className={styles.counter} /> rows
-				</DialogTitle>
-				<DialogContent dividers style={{ padding: 0 }}>
-					<div className={styles.overlayWrapper}>
-						<div style={{ display: 'flex' }}>
+		<Measure
+			bounds
+			onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
+		>
+			{({ measureRef }): any => (
+				<Dialog onClose={onClose} open={visible}>
+					<div style={{ maxWidth: 800, minHeight: 400 }} ref={measureRef}>
+						<DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
+							Generated: <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," className={styles.counter} /> rows
+						</DialogTitle>
+						<DialogContent dividers style={{ padding: 0 }}>
+							<div className={styles.overlayWrapper}>
+								<div style={{ display: 'flex' }}>
 
-							<div className={styles.panel1}>
-								<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
+									<div className={styles.panel1}>
+										<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
 
-								<PieChart width={180} height={180}>
-									<Pie
-										dataKey="value"
-										isAnimationActive={false}
-										data={pieChartData}
-										cx={90}
-										cy={90}
-										innerRadius={50}
-										outerRadius={85}
-										startAngle={90}
-										endAngle={-270}>
-										{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
-									</Pie>
-								</PieChart>
+										<PieChart width={180} height={180}>
+											<Pie
+												dataKey="value"
+												isAnimationActive={false}
+												data={pieChartData}
+												cx={90}
+												cy={90}
+												innerRadius={50}
+												outerRadius={85}
+												startAngle={90}
+												endAngle={-270}>
+												{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
+											</Pie>
+										</PieChart>
 
-								<div>
-									Estimated time:
-								</div>
-								<div>
-									Remaining time:
-								</div>
-								<div>
-									Estimated Size: <b>{estimatedSize}</b>
-								</div>
-								<div>
-									Size: <b>{dataSize}</b>
+										<div>
+											Estimated time:
+										</div>
+										<div>
+											Remaining time:
+										</div>
+										<div>
+											Estimated Size: <b>{estimatedSize}</b>
+										</div>
+										<div>
+											Size: <b>{dataSize}</b>
+										</div>
+									</div>
+
+									<div className={styles.panel2}>
+										<h4>Rows generated per second</h4>
+										<BarChart
+											width={500}
+											height={400}
+											data={batchLoadTimes}
+											margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
+											<CartesianGrid strokeDasharray="3 3" />
+											<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
+												<Label value="Seconds??" offset={10} position="insideBottom" />
+											</XAxis>
+											<YAxis dataKey="rowsPerSecond" />
+											<Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />
+										</BarChart>
+									</div>
 								</div>
 							</div>
-
-							<div className={styles.panel2}>
-								<h4>Rows generated per second</h4>
-								<BarChart
-									width={500}
-									height={400}
-									data={batchLoadTimes}
-									margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
-									<CartesianGrid strokeDasharray="3 3" />
-									<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
-										<Label value="Seconds??" offset={10} position="insideBottom" />
-									</XAxis>
-									<YAxis dataKey="rowsPerSecond" />
-									<Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />
-								</BarChart>
-							</div>
-						</div>
+						</DialogContent>
+						<DialogActions>
+							{getGenerationControls()}
+							{getActionButtons()}
+						</DialogActions>
 					</div>
-				</DialogContent>
-				<DialogActions>
-					{getGenerationControls()}
-					{getActionButtons()}
-				</DialogActions>
-			</div>
-		</Dialog>
+				</Dialog>
+			)}
+		</Measure>
 	);
 };
 

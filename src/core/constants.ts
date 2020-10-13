@@ -25,5 +25,10 @@ export default {
 		CONTINUE: 'CONTINUE',
 		ABORT: 'ABORT',
 		SET_LAG: 'SET_LAG'
+	},
+
+	ZINDEXES: {
+		DRAWER: 1300,
+		DIALOG: 5005
 	}
 };

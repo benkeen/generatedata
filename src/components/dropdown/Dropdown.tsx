@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
+import C from '../../core/constants';
 
 export type DropdownOption = {
 	value: string;
@@ -20,7 +21,7 @@ const selectStyles = {
 		...provided,
 		padding: 5
 	}),
-	menuPortal: (base: any): any => ({ ...base, zIndex: 5001 }) // drawer is 1300
+	menuPortal: (base: any): any => ({ ...base, zIndex: C.ZINDEXES.DRAWER })
 };
 
 

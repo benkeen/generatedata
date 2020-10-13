@@ -10,17 +10,7 @@ import { GDAction } from '~types/general';
 const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: string | null } => {
 	const packet = packetSelectors.getCurrentPacket(state);
 
-	let workerResources = {};
-	if (packet !== null) {
-		workerResources = {
-			workerUtils: coreUtils.getWorkerUtils(),
-			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
-			dataTypes: coreUtils.getDataTypeWorkerMap(packet.config.dataTypes),
-			countries: coreUtils.getCountries()
-		};
-	}
-
-	return {
+	const props: Partial<ActivityPanelProps> & { packetId: string | null } = {
 		visible: packetSelectors.isGenerating(state),
 		i18n: selectors.getCoreI18n(state),
 		packet,
@@ -28,8 +18,21 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: 
 		batchLoadTimes: packetSelectors.getBatchLoadTimes(state),
 		dataSize: packetSelectors.getGeneratedDataSizeLabel(state),
 		estimatedSize: packetSelectors.getEstimatedDataSize(state),
-		workerResources
+		workerResources: {}
 	};
+
+	if (packet !== null) {
+		props.workerResources = {
+			workerUtils: coreUtils.getWorkerUtils(),
+			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
+			dataTypes: coreUtils.getDataTypeWorkerMap(packet.config.dataTypes),
+			countries: coreUtils.getCountries()
+		};
+
+		props.loadTimeGraphDuration = packetSelectors.getLoadTimeDuration(state);
+	}
+
+	return props;
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): any => ({ dispatch });

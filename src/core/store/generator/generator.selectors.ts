@@ -216,10 +216,7 @@ export const getExportTypeI18n = createSelector(
 
 export const getExportTypeColumnTitle = createSelector(
 	getExportTypeI18n,
-	(i18n) => {
-		console.log(i18n);
-		return i18n.COL_TITLE;
-	}
+	(i18n) => i18n.COL_TITLE
 );
 
 
