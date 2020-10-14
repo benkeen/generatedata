@@ -30,4 +30,62 @@ describe('getCurrentPacket', () => {
 		expect(selectors.getCurrentPacket(state)!.dataTypeWorkerId).toEqual(2);
 	});
 
+	it('getActivePacketList', () => {
+		const packets: PacketsState = generalUtils.cloneObj(initialPacketState);
+		packets.currentPacketId = '456';
+		packets.packetIds = ['123', '456'];
+		packets.packets['123'] = getNewPacket({
+			dataTypeWorkerId: 1,
+			numRowsToGenerate: 5
+		});
+		packets.packets['456'] = getNewPacket({
+			dataTypeWorkerId: 2,
+			numRowsToGenerate: 10
+		});
+
+		let state: Store = {
+			generator: getInitialState(),
+			main: initialMainState,
+			packets
+		};
+		expect(selectors.getActivePacketList(state)).toEqual([
+			{
+				isPaused: false,
+				label: '5 rows',
+				numRowsToGenerate: 5,
+				packetId: '123',
+				percentage: 0
+			},
+			{
+				isPaused: false,
+				label: '10 rows',
+				numRowsToGenerate: 10,
+				packetId: '456',
+				percentage: 0
+			}
+		]);
+	});
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
