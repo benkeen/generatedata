@@ -64,7 +64,7 @@ export const initialState: PacketsState = {
 	packets: {}
 };
 
-const getNewPacket = ({
+export const getNewPacket = ({
 	dataTypeWorkerId, exportTypeWorkerId, stripWhitespace, numRowsToGenerate, template, dataTypes, columns,
 	exportType, exportTypeSettings
 }: any): DataPacket => {

@@ -21,7 +21,7 @@ const selectStyles = {
 		...provided,
 		padding: 5
 	}),
-	menuPortal: (base: any): any => ({ ...base, zIndex: C.ZINDEXES.DRAWER })
+	menuPortal: (base: any): any => ({ ...base, zIndex: C.ZINDEXES.DIALOG })
 };
 
 

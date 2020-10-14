@@ -108,6 +108,10 @@ export const getEstimatedDataSize = createSelector(
 	}
 );
 
+// export const getEstimatedTime = createSelector(
+//
+// );
+
 export const getCompletedDataString = createSelector(
 	getCurrentPacket,
 	(packet) => {

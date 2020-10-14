@@ -9,7 +9,6 @@ export default {
 		"Boolean": "DT-Boolean.generator-3f0e4c1f5683a779da459a22c5d1f268.js",
 		"City": "DT-City.generator-ebd4355dbc806400fbda36e488cec6e0.js",
 		"Company": "DT-Company.generator-b7bd7c08c48f94fb2c88412cc82fcef4.js",
-		"Computed": "DT-Computed.generator-094f15083b2183e5b07714ef262e5935.js",
 		"Constant": "DT-Constant.generator-34dd1f6d81154fe8e17685b74eca3cc3.js",
 		"Country": "DT-Country.generator-062c61a818ba914db4328bb6e2b0ad7e.js",
 		"Date": "DT-Date.generator-4231dc0c676c244e7875ab48d20cbdc3.js",
