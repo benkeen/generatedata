@@ -4,7 +4,6 @@ const definition: DTDefinition = {
 	name: 'Tree',
 	fieldGroup: 'other',
 	fieldGroupOrder: 30,
-	// processOrder: 2,
 	schema: {
 		title: 'Tree',
 		$schema: 'http://json-schema.org/draft-04/schema#',

@@ -2,8 +2,8 @@ import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
 	name: 'SIRET',
-	fieldGroup: 'humanData',
-	fieldGroupOrder: 100,
+	fieldGroup: 'countrySpecific',
+	fieldGroupOrder: 10,
 	schema: {
 		$schema: 'http://json-schema.org/draft-04/schema#',
 		type: 'object',

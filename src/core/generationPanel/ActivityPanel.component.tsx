@@ -246,7 +246,7 @@ const ActivityPanel = ({
 									</div>
 
 									<div className={styles.panel2}>
-										<h4>Rows generated per second</h4>
+										<h4>{i18n.rowsGeneratedPerSecond}</h4>
 										<BarChart
 											width={dimensions.width - pieSize}
 											height={dimensions.height - 185}
@@ -254,7 +254,7 @@ const ActivityPanel = ({
 											margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
 											<CartesianGrid strokeDasharray="3 3" />
 											<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
-												<Label value="Seconds" offset={0} position="insideBottom" />
+												<Label value={i18n.seconds} offset={0} position="insideBottom" />
 											</XAxis>
 											<YAxis dataKey="rowsPerSecond" />
 											<Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />

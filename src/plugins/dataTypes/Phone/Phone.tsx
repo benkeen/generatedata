@@ -24,8 +24,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	};
 
 	const options = [
-		{ value: '1-Xxx-Xxx-xxxx', label: i18n.example1 },
-		{ value: '(Xxx) Xxx-xxxx', label: i18n.example2 },
+		{ value: '1-Xxx-Xxx-xxxx|(Xxx) Xxx-xxxx', label: i18n.canada },
 		{ value: '(01xxxx) xxxxx|(01xxx) xxxxxx|(01x1) xxx xxxx|(011x) xxx xxxx|(02x) xxxx xxxx|03xx xxx xxxx|055 xxxx xxxx|056 xxxx xxxx|070 xxxx xxxx|07624 xxxxxx|076 xxxx xxxx|07xxx xxxxxx|0800 xxx xxxx|08xx xxx xxxx|09xx xxx xxxx|(016977) xxxx|(01xxx) xxxxx|0500 xxxxxx|0800 xxxxxx|0800 1111|0845 46 4x', label: i18n.uk },
 		{ value: '0X xx xx xx xx', label: i18n.france },
 		{ value: '(0X) xxxx xxxx', label: i18n.australia },

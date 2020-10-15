@@ -49,7 +49,7 @@ export type DTDefinition = {
 	schema?: any;
 };
 
-export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'creditCardData' | 'math' | 'text';
+export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'creditCardData' | 'math' | 'text' | 'countrySpecific';
 
 export type DTMetadataType = 'number' | 'string' | 'boolean' | 'date' | 'infer';
 

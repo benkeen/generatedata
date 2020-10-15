@@ -271,5 +271,8 @@
 	"yourDataSetNameHere": "Your data set name here...",
 	"yourDataSets": "Your Data Sets",
 
-  "clear": "Clear"
+  "clear": "Clear",
+  "rowsGeneratedPerSecond": "Rows generated per second",
+  "seconds": "Seconds",
+  "countrySpecific": "Country-specific"
 }

@@ -45,7 +45,8 @@ export default {
 		'text',
 		'numeric',
 		'math',
-		'other'
+		'other',
+		'countrySpecific'
 	],
 
 
