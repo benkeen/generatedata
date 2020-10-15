@@ -188,14 +188,17 @@ const ActivityPanel = ({
 
 	console.log(dimensions);
 
+	const panel1Width = dimensions.width / 100 * 20;
+	const pieSize = Math.floor(panel1Width * 0.9);
+
 	return (
 		<Measure
 			bounds
 			onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
 		>
 			{({ measureRef }): any => (
-				<Dialog onClose={onClose} open={visible}>
-					<div style={{ maxWidth: 800, minHeight: 400 }} ref={measureRef}>
+				<Dialog className={styles.activityPanel} onClose={onClose} open={visible}>
+					<div style={{ width: '100%', height: '100%' }} ref={measureRef}>
 						<DialogTitle onClose={onClose} customCloseIcon={ExpandMore}>
 							Generated: <CountUp start={prevGeneratedRows} end={numGeneratedRows} separator="," className={styles.counter} /> rows
 						</DialogTitle>
@@ -203,43 +206,50 @@ const ActivityPanel = ({
 							<div className={styles.overlayWrapper}>
 								<div style={{ display: 'flex' }}>
 
-									<div className={styles.panel1}>
-										<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
+									<div className={styles.panel1} style={{ width: panel1Width }}>
+										<div className={styles.pie}>
+											<h3>{getPercentageLabel(percentage, numRowsToGenerate)}%</h3>
+											<PieChart width={pieSize} height={pieSize}>
+												<Pie
+													dataKey="value"
+													isAnimationActive={false}
+													data={pieChartData}
+													cx={pieSize/2}
+													cy={pieSize/2}
+													innerRadius={pieSize/4}
+													outerRadius={pieSize/2 - 5}
+													startAngle={90}
+													endAngle={-270}>
+													{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
+												</Pie>
+											</PieChart>
+										</div>
 
-										<PieChart width={180} height={180}>
-											<Pie
-												dataKey="value"
-												isAnimationActive={false}
-												data={pieChartData}
-												cx={90}
-												cy={90}
-												innerRadius={50}
-												outerRadius={85}
-												startAngle={90}
-												endAngle={-270}>
-												{pieChartData.map((entry, index) => <Cell key={index} fill={pieChartData[index].color} />)}
-											</Pie>
-										</PieChart>
-
-										<div>
-											Estimated time:
-										</div>
-										<div>
-											Remaining time:
-										</div>
-										<div>
-											Estimated Size: <b>{estimatedSize}</b>
-										</div>
-										<div>
-											Size: <b>{dataSize}</b>
+										<div className={styles.dataPanel}>
+											<div className={styles.dataRow}>
+												<div className={styles.dataRowLabel}>Estimated time:</div>
+												<div className={styles.dataRowValue} />
+											</div>
+											<div className={styles.dataRow}>
+												<div className={styles.dataRowLabel}>Remaining time:</div>
+												<div className={styles.dataRowValue} />
+											</div>
+											<div className={styles.dataRow}>
+												<div className={styles.dataRowLabel}>Estimated size:</div>
+												<div className={styles.dataRowValue}>{estimatedSize}</div>
+											</div>
+											<div className={styles.dataRow}>
+												<div className={styles.dataRowLabel}>Size:</div>
+												<div className={styles.dataRowValue}>{dataSize}</div>
+											</div>
 										</div>
 									</div>
 
 									<div className={styles.panel2}>
 										<h4>Rows generated per second</h4>
 										<BarChart
-											width={500}
-											height={400}
+											width={dimensions.width - pieSize}
+											height={dimensions.height - 185}
 											data={batchLoadTimes}
 											margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
 											<CartesianGrid strokeDasharray="3 3" />

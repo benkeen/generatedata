@@ -44,7 +44,6 @@
       "^~utils(.*)$": "<rootDir>/src/utils$1"
     },
     "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
       "!src/**/*.container.tsx"
     ]
   },
