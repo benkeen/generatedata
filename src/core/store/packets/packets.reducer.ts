@@ -69,7 +69,7 @@ export const getNewPacket = ({
 	exportType, exportTypeSettings
 }: any): DataPacket => {
 	const now = performance.now();
-	const loadTimeGraphDuration = numRowsToGenerate <= 1000 ? 'all' : '15seconds';
+	const loadTimeGraphDuration = numRowsToGenerate <= 5000 ? 'all' : '15seconds';
 
 	return {
 		dataTypeWorkerId,

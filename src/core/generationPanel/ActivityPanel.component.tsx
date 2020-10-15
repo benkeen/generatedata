@@ -137,14 +137,14 @@ const ActivityPanel = ({
 	const getActionButtons = (): JSX.Element => {
 		if (isComplete) {
 			return (
-				<>
+				<div>
 					<Button onClick={onAbort} color="default" variant="outlined" style={{ marginRight: 10 }}>
-						{i18n.clearAndClose}
+						{i18n.clear}
 					</Button>
 					<Button onClick={onDownload} color="primary" variant="outlined" style={{ marginRight: 10 }}>
 						{i18n.download}
 					</Button>
-				</>
+				</div>
 			);
 		}
 
@@ -166,7 +166,7 @@ const ActivityPanel = ({
 
 		return (
 			<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
-				<Tooltip title={tooltip} placement="top" arrow style={{ marginRight: 50, zIndex: 1000 }}>
+				<Tooltip title={tooltip} placement="top" arrow style={{ marginRight: 50 }}>
 					<IconButton size="medium" aria-label={tooltip}>
 						{pauseContinueIcon}
 					</IconButton>
@@ -244,7 +244,7 @@ const ActivityPanel = ({
 											margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
 											<CartesianGrid strokeDasharray="3 3" />
 											<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
-												<Label value="Seconds??" offset={10} position="insideBottom" />
+												<Label value="Seconds" offset={0} position="insideBottom" />
 											</XAxis>
 											<YAxis dataKey="rowsPerSecond" />
 											<Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />
@@ -253,7 +253,7 @@ const ActivityPanel = ({
 								</div>
 							</div>
 						</DialogContent>
-						<DialogActions>
+						<DialogActions className={styles.actionsRow}>
 							{getGenerationControls()}
 							{getActionButtons()}
 						</DialogActions>

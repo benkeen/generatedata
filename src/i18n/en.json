@@ -28,7 +28,6 @@
 	"cannotChangeNumRows": "Sorry, you're not allowed to change the number of generated rows.",
 	"centralAmerica": "Central America",
 	"checkDatabaseInfo": "Check Database Info",
-	"clearAndClose": "Clear and Close",
 	"clearPage": "Clear Page",
 	"clearPageConfirmation": "Are you sure you want to clear the page? Any changes you've made will be lost.",
 	"clearThePage": "Clear the Page",
@@ -270,5 +269,7 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets"
+	"yourDataSets": "Your Data Sets",
+
+  "clear": "Clear"
 }

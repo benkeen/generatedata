@@ -1,5 +1,6 @@
 declare namespace ActivityPanelScssNamespace {
   export interface IActivityPanelScss {
+    actionsRow: string;
     background: string;
     counter: string;
     fadeOut: string;

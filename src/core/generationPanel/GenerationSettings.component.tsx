@@ -22,7 +22,7 @@ const GenerationPanel = ({
 	<Dialog onClose={onClose} open={visible}>
 		<div style={{ width: 360 }}>
 			<DialogTitle onClose={onClose}>Generate</DialogTitle>
-			<DialogContent>
+			<DialogContent dividers>
 				<div className={`${styles.row} ${styles.generationRow}`}>
 					Generate
 					<NumberFormat

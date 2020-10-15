@@ -2,6 +2,8 @@ import { Store } from '~types/general';
 import { createSelector } from 'reselect';
 import { DataPackets } from './packets.reducer';
 import prettyBytes from 'pretty-bytes';
+import { getFormattedNum } from '~utils/numberUtils';
+import { getLocale } from '../main/main.selectors';
 
 export const getCurrentPacketId = (state: Store): string | null => state.packets.currentPacketId;
 export const getPacketIds = (state: Store): string[] => state.packets.packetIds;
@@ -23,13 +25,14 @@ export const isGenerating = createSelector(
 export const getActivePacketList = createSelector(
 	getPacketIds,
 	getPackets,
-	(packetIds, packets) => {
+	getLocale,
+	(packetIds, packets, locale) => {
 		return packetIds.map((packetId: string) => {
 			const packet = packets[packetId];
 
 			return {
 				packetId,
-				label: packet.config.numRowsToGenerate.toString() + ' rows', // when we get into saving data sets, this'll be the name
+				label: getFormattedNum(packet.config.numRowsToGenerate, locale) + ' rows', // when we get into saving data sets, this'll be the name
 				percentage: (packet.numGeneratedRows / packet.config.numRowsToGenerate) * 100,
 				isPaused: packet.isPaused,
 				numRowsToGenerate: packet.config.numRowsToGenerate

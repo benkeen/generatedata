@@ -42,7 +42,11 @@
       "^~components(.*)$": "<rootDir>/src/components$1",
       "^~types(.*)$": "<rootDir>/types$1",
       "^~utils(.*)$": "<rootDir>/src/utils$1"
-    }
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.container.tsx"
+    ]
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",

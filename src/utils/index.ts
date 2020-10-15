@@ -4,6 +4,7 @@ import * as generalUtils from './generalUtils';
 import * as generationUtils from './generationUtils';
 import * as randomUtils from './randomUtils';
 import * as stringUtils from './stringUtils';
+import * as numberUtils from './numberUtils';
 
 export default {
 	arrayUtils: { ...arrayUtils },
@@ -11,5 +12,6 @@ export default {
 	generalUtils: { ...generalUtils },
 	generationUtils: { ...generationUtils },
 	randomUtils: { ...randomUtils },
-	stringUtils: { ...stringUtils }
+	stringUtils: { ...stringUtils },
+	numberUtils: { ...numberUtils }
 };
