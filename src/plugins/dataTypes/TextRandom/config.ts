@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Random Number of Words',
 	fieldGroup: 'text',
 	fieldGroupOrder: 10,
 	schema: {

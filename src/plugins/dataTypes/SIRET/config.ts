@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'SIRET',
 	fieldGroup: 'countrySpecific',
 	fieldGroupOrder: 10,
 	schema: {

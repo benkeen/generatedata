@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Constant',
 	fieldGroup: 'other',
 	fieldGroupOrder: 10,
 	dependencies: [], // was 100 process order ?

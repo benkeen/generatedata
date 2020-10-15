@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Region',
 	fieldGroup: 'geo',
 	fieldGroupOrder: 40,
 	dependencies: ['Country'],

@@ -1,9 +1,8 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Organization Number',
-	fieldGroup: 'humanData',
-	fieldGroupOrder: 111
+	fieldGroup: 'countrySpecific',
+	fieldGroupOrder: 40
 };
 
 export default definition;

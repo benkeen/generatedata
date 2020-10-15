@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Standard Normal Distribution',
 	fieldGroup: 'math',
 	fieldGroupOrder: 10,
 	schema: {

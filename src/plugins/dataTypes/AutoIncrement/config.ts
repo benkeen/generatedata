@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'AutoIncrement',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 20,
 	schema: {

@@ -40,12 +40,9 @@ export type DTInterceptorSingleAction = {
 };
 
 export type DTDefinition = {
-	name: string;
 	fieldGroup: DTFieldGroup;
 	fieldGroupOrder: number;
 	dependencies?: DataTypeFolder[];
-	countryTags?: any; // TODO incomplete. Maybe map this to our Country plugins?
-	tags?: Tag[];
 	schema?: any;
 };
 

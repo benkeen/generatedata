@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Latitude / Longitude',
 	fieldGroup: 'geo',
 	fieldGroupOrder: 100,
 	schema: {

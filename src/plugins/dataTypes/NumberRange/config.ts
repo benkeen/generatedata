@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Number Range',
 	fieldGroup: 'numeric',
 	fieldGroupOrder: 30,
 	schema: {

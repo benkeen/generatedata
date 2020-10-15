@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'Tree',
 	fieldGroup: 'other',
 	fieldGroupOrder: 30,
 	schema: {

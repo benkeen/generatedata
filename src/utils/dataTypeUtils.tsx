@@ -13,7 +13,7 @@ type LoadedDataTypes = {
 // this houses all Export Type code loaded async after the application starts
 const loadedDataTypes: Partial<LoadedDataTypes> = {};
 
-export const dataTypeNames = Object.keys(dataTypes).map((folder: DataTypeFolder) => dataTypes[folder].name);
+export const dataTypeNames = Object.keys(dataTypes);
 
 // used for the Data Type selection dropdown
 let lastLocale: any;
@@ -67,7 +67,6 @@ const showNothing = (): null => null;
 export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO return type is important here. Dense method!
 	if (!dataType || !loadedDataTypes[dataType]) {
 		return {
-			name: dataType ? dataTypes[dataType].name : '',
 			Example: !dataType ? showNothing : SmallSpinner,
 			Options: showNothing,
 			Help: !dataType ? showNothing : MediumSpinner
@@ -101,7 +100,6 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 
 	const { getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
 	return {
-		name: dataTypes[dataType].name,
 		Options,
 		Help,
 		Example,

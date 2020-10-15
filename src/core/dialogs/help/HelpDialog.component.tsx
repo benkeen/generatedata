@@ -55,13 +55,13 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 		setDataType(initialDataType);
 	}, [initialDataType]);
 
-	const { name, Help } = getDataType(dataType);
+	const { Help } = getDataType(dataType);
 	const i18n = dataType ? dataTypeI18n[dataType] : {};
 
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
 			<div style={{ width: 800, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-				<DialogTitle onClose={onClose}>{name}</DialogTitle>
+				<DialogTitle onClose={onClose}>{i18n.NAME}</DialogTitle>
 				<DialogContent dividers className={styles.contentPanel}>
 					<div className={styles.dataTypeList}>
 						<input

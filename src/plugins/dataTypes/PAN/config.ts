@@ -1,7 +1,6 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	name: 'PAN',
 	fieldGroup: 'creditCardData',
 	fieldGroupOrder: 10,
 	schema: {
