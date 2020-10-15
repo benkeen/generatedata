@@ -1,6 +1,6 @@
 {
   "NAME": "Fixed Number of Words",
-  "DESC": "This option generates a fixed number of random words, pulled from the standard lorem ipsum latin text.",
+  "DESC": "This option generates a fixed number of random words, pulled from the lorem ipsum latin text.",
   "DEFAULT_TITLE": "text",
   "TextFixed_generate": "Generate",
   "TextFixed_help": "This option generates a fixed number of random words, pulled from the standard lorem ipsum text.",

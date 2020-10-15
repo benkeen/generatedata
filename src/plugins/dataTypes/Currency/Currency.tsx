@@ -95,7 +95,7 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label>{i18n.format}</label>
 			</div>
-			<div className={styles.col2}>{i18n.formatDesc}</div>
+			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.formatDesc }} />
 		</div>
 		<div className={styles.row}>
 			<div className={styles.col1}>
@@ -113,7 +113,7 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label>{i18n.currencySymbol}</label>
 			</div>
-			<div className={styles.col2}>{i18n.currencySymbolDesc}</div>
+			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.currencySymbolDesc }}/>
 		</div>
 		<div className={styles.row}>
 			<div className={styles.col1}>
