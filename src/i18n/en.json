@@ -47,7 +47,6 @@
 	"createAccountRightarrow": "Create Account &raquo;",
 	"createFileRightarrow": "Create File &raquo;",
 	"createSettingsFile": "Create Settings File",
-	"creditCardData": "Credit Card Data",
 	"dataCreated": "Data Created",
 	"dataFormat": "Data Format",
 	"dataSet": "Data Set",
@@ -144,7 +143,6 @@
 	"loginUrlC": "Login URL:",
 	"logout": "Logout",
 	"makeDataSetPublicAgreement": "I understand that to share this Data Set, I need to make it public.",
-	"math": "Math",
 	"metaDescription": "GenerateData.com: free, GNU-licensed, random custom data generator for testing software",
 	"metaKeywords": "Random Data, Test Data, Sample Data, data generator, generate data",
 	"misc": "Misc",
@@ -274,5 +272,6 @@
   "clear": "Clear",
   "rowsGeneratedPerSecond": "Rows generated per second",
   "seconds": "Seconds",
-  "countrySpecific": "Country-specific"
+  "countrySpecific": "Country-specific",
+  "financial": "Financial"
 }

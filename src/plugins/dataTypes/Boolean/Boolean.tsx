@@ -55,16 +55,14 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 
 		<ul>
 			<li>{i18n.exampleYesNo}</li>
-			<li>{i18n.exampleFalseTrue}</li>
+			<li>{i18n.exampleTrueFalse}</li>
 			<li>{i18n.exampleZeroOne}</li>
 			<li>{i18n.exampleYesNoShort}</li>
-			<li>{i18n.exampleFalseTrueShort}</li>
-			<li>{i18n.exampleFalseTrueLower}</li>
+			<li>{i18n.exampleTrueFalseShort}</li>
+			<li>{i18n.exampleTrueFalseLower}</li>
 		</ul>
 
-		<p>
-			{i18n.text_double_quotes}
-		</p>
+		<p dangerouslySetInnerHTML={{ __html: i18n.textDoubleQuote }} />
 	</>
 );
 

@@ -124,28 +124,6 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	</>
 );
 
-
-// var _exampleChange = function(msg) {
-// 	var format = "";
-// 	var rangeFrom = "";
-// 	var rangeTo = "";
-// 	var symbol = "";
-// 	var symbolLocation = "";
-// 	if (msg.value) {
-// 		var parts = msg.value.split("|");
-// 		format = parts[0];
-// 		rangeFrom = parts[1];
-// 		rangeTo = parts[2];
-// 		symbol = parts[3];
-// 		symbolLocation = parts[4];
-// 	}
-// 	$("#dtCurrencyFormat_" + msg.rowID).val(format);
-// 	$("#dtCurrencyRangeFrom_" + msg.rowID).val(rangeFrom);
-// 	$("#dtCurrencyRangeTo_" + msg.rowID).val(rangeTo);
-// 	$("#dtCurrencySymbol_" + msg.rowID).val(symbol);
-// 	$("#dtCurrencySymbolLocation_" + msg.rowID).val(symbolLocation);
-// };
-
 // var _validate = function (rows) {
 // 	var problemFields = [];
 // 	var problemFields2 = [];

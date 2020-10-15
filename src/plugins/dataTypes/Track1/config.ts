@@ -1,7 +1,7 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	fieldGroup: 'creditCardData',
+	fieldGroup: 'financial',
 	fieldGroupOrder: 40
 };
 

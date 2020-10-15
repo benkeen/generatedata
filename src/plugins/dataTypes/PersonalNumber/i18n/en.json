@@ -1,8 +1,8 @@
 {
-  "NAME": "Personal Number",
+  "NAME": "Swedish Personal Number",
   "DESC": "Generates a personal number, used in some countries for social security insurance.",
   "DEFAULT_TITLE": "number",
-  "help_text": "At the present time only swedish ones are supported. The personal numbers are generated according to the format you specify:",
+  "help_text": "The personal numbers are generated according to the format you specify:",
   "incomplete_fields": "The PersonalNumber data type needs to have the format entered in the Options text field. Please fix the following rows:",
   "example_PersonalNumberWithoutHyphen": "167502241016",
   "example_PersonalNumberWithHyphen": "16750224-1016",

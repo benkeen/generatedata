@@ -1,8 +1,8 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	fieldGroup: 'math',
-	fieldGroupOrder: 10,
+	fieldGroup: 'numeric',
+	fieldGroupOrder: 35,
 	schema: {
 		type: 'object',
 		properties: {

@@ -41,11 +41,10 @@ export default {
 	dataTypeGroups: [
 		'humanData',
 		'geo',
-		'creditCardData',
 		'text',
 		'numeric',
-		'math',
 		'other',
+		'financial',
 		'countrySpecific'
 	],
 

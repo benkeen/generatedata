@@ -1,10 +1,10 @@
 .row {
 	display: flex;
-	height: 30px;
-	align-items: center;
+	align-items: flex-start;
+	margin-bottom: 8px;
 
 	.col1 {
-		flex: 0 0 120px;
+		flex: 0 0 130px;
 	}
 	.col2 {
 		flex: 1;

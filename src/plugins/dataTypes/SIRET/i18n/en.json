@@ -1,5 +1,5 @@
 {
-  "NAME": "SIRET",
+  "NAME": "French SIRET",
   "DESC": "This Data Type generates a random SIRET/SIREN French business identification number.",
   "DEFAULT_TITLE": "siret",
   "helpLink": "http://fr.wikipedia.org/wiki/Syst%C3%A8me_d%27identification_du_r%C3%A9pertoire_des_%C3%A9tablissements",

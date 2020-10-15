@@ -1,8 +1,8 @@
 import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
-	fieldGroup: 'humanData',
-	fieldGroupOrder: 100
+	fieldGroup: 'financial',
+	fieldGroupOrder: 5
 };
 
 export default definition;
