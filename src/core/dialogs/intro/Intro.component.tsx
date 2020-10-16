@@ -21,7 +21,7 @@ const IntroDialog = ({ visible, onClose }: IntroProps): JSX.Element => (
 						Welcome! This is the alpha version of generatedata v4 - the upcoming version
 						of <Link url="http://generatedata.com" offSite={true}>generatedata.com</Link>. This current
 						version (Oct, 2020) is functional but incomplete. Unlike the current live site which is limited
-						to generating 100 rows, you're welcome to generate up to 1 <i>million</i> rows.
+						to generating 100 rows, you're welcome to generate as many rows as you like.
 					</p>
 					<p>
 						There are no user accounts yet so you can't save your data, but that's coming next. You can

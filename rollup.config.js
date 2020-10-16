@@ -1,12 +1,13 @@
 /**
  * This generates es5 files for single entry-point TS files. It's used for the webworker files: core, core utils, plugins.
  *
- * TODO at the moment we're actually loading the utils code twice. The core script COULD load this generated file & use
- * the methods from the window object; as long as the typings were provided that'd cut down on build size. But honestly
- * it's <20KB and there are bigger fish to fry.
+ * TODO at the moment we're actually loading the utils code twice: once for the web workers, one in the code bundle.
+ * The core script COULD load this generated file & use the methods from the window object; as long as the typings were
+ * provided that'd cut down on build size. But honestly it's <20KB and there are bigger fish to fry.
  */
 import path from 'path';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import removeExports from 'rollup-plugin-strip-exports';
 import { terser } from 'rollup-plugin-terser';
@@ -17,6 +18,7 @@ import workerHash from './build/rollup-plugin-worker-hash';
 //    npx rollup -c --config-src=src/utils/coreUtils.ts --config-target=dist/workers/coreUtils.js
 //    npx rollup -c --config-src=src/utils/workerUtils.ts --config-target=dist/debug.js
 //    npx rollup -c --config-src=src/plugins/countries/Australia/bundle.ts --config-target=dist/australia.js
+//    npx rollup -c --config-src=src/plugins/dataTypes/AutoIncrement/AutoIncrement.generator.ts --config-target=dist/workers/DT-AutoIncrement.generator.js
 export default (cmdLineArgs) => {
 	const { 'config-src': src, 'config-target': target } = cmdLineArgs;
 
@@ -43,11 +45,12 @@ export default (cmdLineArgs) => {
 		input: src,
 		output: {
 			file: target,
-			format: 'es',
+			format: 'es'
 		},
 		treeshake: false,
 		plugins: [
 			removeImports(),
+			commonjs(),
 			nodeResolve(),
 			typescript({
 				tsconfigOverride: {
@@ -67,4 +70,3 @@ export default (cmdLineArgs) => {
 		]
 	}
 };
-

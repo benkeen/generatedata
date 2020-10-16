@@ -40,3 +40,19 @@ describe('cloneObj', () => {
 		expect(obj.one === clone.one).toBeTruthy();
 	});
 });
+
+describe('template', () => {
+	it('renders plain string', () => {
+		expect(generalUtils.template('hello', {})).toEqual('hello');
+	});
+
+	it('renders placeholder', () => {
+		expect(generalUtils.template('Hello {{name}}', { name: 'Ben' })).toEqual('Hello Ben');
+	});
+
+	it('check basic math', () => {
+		expect(generalUtils.template('Hello {{value+1}}', { value: 1 })).toEqual('Hello 2');
+		expect(generalUtils.template('{{value/10}}', { value: 250 })).toEqual('25');
+	});
+});
+

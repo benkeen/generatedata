@@ -1,6 +1,5 @@
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-
-const eval2 = eval; // workaround for build, I think...
+import utils from '../../../utils';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const rowNum = data.rowNum;
@@ -8,8 +7,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 	let value = ((rowNum - 1) * incrementValue) + incrementStart;
 	if (incrementPlaceholder) {
-		// value = value.replace(/\${INCR}/g, value);
-		value = eval2('`' + value + '`');
+		value = utils.generalUtils.template(incrementPlaceholder, { INCR: incrementValue });
 	}
 	return { display: value };
 };
