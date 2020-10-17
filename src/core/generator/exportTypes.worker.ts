@@ -8,7 +8,7 @@ let abortedMessageIds: any = {};
 context.onmessage = (e: MessageEvent) => {
 	const {
 		_action, _messageId, rows, columns, isFirstBatch, isLastBatch, exportType, numResults,
-		exportTypeSettings, dataTypeMetadata, stripWhitespace
+		exportTypeSettings, stripWhitespace
 	} = e.data;
 
 	if (_action === 'abort') {
@@ -31,7 +31,6 @@ context.onmessage = (e: MessageEvent) => {
 		rows,
 		columns,
 		settings: exportTypeSettings,
-		dataTypeMetadata,
 		stripWhitespace,
 		workerResources
 	});

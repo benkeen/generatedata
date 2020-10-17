@@ -74,10 +74,16 @@ export const getColumns = createSelector(
 	getSortedRowsWithDataTypeSelected,
 	(rows): ColumnData[] => {
 		return rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
-			.map(({ dataType, title }: any) => ({
-				title,
-				dataType
-			}));
+			.map(({ dataType, title, data }: any) => {
+				const { getMetadata } = getDataType(dataType);
+				const metadata = getMetadata ? getMetadata(data) : null;
+
+				return {
+					title,
+					dataType,
+					metadata
+				};
+			});
 	}
 );
 
@@ -151,22 +157,6 @@ export const getGenerationTemplate = createSelector(
 export const getUniqueSelectedDataTypes = createSelector(
 	getSortedRowsArray,
 	(rows) => getUnique(rows.map((i: any): DataTypeFolder => i.dataType)).filter((i => i !== null))
-);
-
-export const getSelectedColumnDataTypeMetadata = createSelector(
-	getUniqueSelectedDataTypes,
-	getLoadedDataTypes, // yup, intentional! This ensures the selector will be re-ran after the data types are loaded async
-	(dataTypes) => {
-		const dataTypeMetadata: any = {};
-		dataTypes.forEach((dataType: DataTypeFolder) => {
-			const { getMetadata } = getDataType(dataType);
-
-			console.log();
-
-			dataTypeMetadata[dataType] = getMetadata ? getMetadata() : null;
-		});
-		return dataTypeMetadata;
-	}
 );
 
 export const hasData = createSelector(

@@ -9,6 +9,7 @@ import * as generalUtils from './generalUtils';
 import * as generationUtils from './generationUtils';
 import * as randomUtils from './randomUtils';
 import * as stringUtils from './stringUtils';
+import * as numberUtils from './numberUtils';
 
 // all utility methods are exposed to web worker generation files on the global scope under `utils`
 const utils = {
@@ -17,5 +18,6 @@ const utils = {
 	generalUtils: { ...generalUtils },
 	generationUtils: { ...generationUtils },
 	randomUtils: { ...randomUtils },
-	stringUtils: { ...stringUtils }
+	stringUtils: { ...stringUtils },
+	numberUtils: { ...numberUtils }
 };

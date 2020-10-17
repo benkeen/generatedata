@@ -42,10 +42,8 @@ const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean)
 		generationData.columns.forEach(({ title }: any, colIndex: number) => {
 			const propName: string = title.replace(/"/, '"');
 
-			// TODO - add "infer" option. Encase all values in double quotes unless it's a number column, or it's a
-			// boolean column and it's a valid JS boolean
 			let value = row[colIndex];
-			if (!utils.generalUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
+			if (!utils.numberUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
 				value = `"${value}"`;
 			}
 			content += `${comma}${newline}${tab}${tab}"${propName}":${space}${value}`;
@@ -82,7 +80,7 @@ const generateComplex = (generationData: ETMessageData, stripWhitespace: boolean
 		const rowValsArr: any[] = [];
 		colTitles.forEach((colTitle: string, colIndex: number) => {
 			let value = row[colIndex];
-			if (!utils.generalUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
+			if (!utils.numberUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
 				value = `"${value}"`;
 			}
 			rowValsArr.push(value);

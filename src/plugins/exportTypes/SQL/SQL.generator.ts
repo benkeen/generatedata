@@ -40,7 +40,7 @@ const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: numb
 
 export const generateMySQL = (data: ETMessageData): string => {
 	const sqlSettings: SQLSettings = data.settings;
-	const { isFirstBatch, columns, rows, dataTypeMetadata } = data;
+	const { isFirstBatch, columns, rows } = data;
 
 	const backquote = sqlSettings.encloseInBackQuotes ? '`' : '';
 	const colTitles = columns.map(({ title }) => title);
@@ -58,9 +58,8 @@ export const generateMySQL = (data: ETMessageData): string => {
 				content += `  ${backquote}id${backquote} mediumint(8) unsigned NOT NULL auto_increment,\n`;
 			}
 			const cols: any[] = [];
-			columns.forEach(({ title, dataType }) => {
+			columns.forEach(({ title, dataType, metadata }) => {
 				let columnTypeInfo = 'MEDIUMTEXT';
-				const metadata = dataTypeMetadata[dataType];
 				if (metadata && metadata.sql) {
 					if (metadata.sql.field_MySQL) {
 						columnTypeInfo = metadata.sql.field_MySQL;
@@ -138,7 +137,6 @@ export const generatePostgres = (generationData: ETMessageData): string => {
 	let content = '';
 
 	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
-	const dataTypeSqlMetadata = getDataTypeSqlMetadata(generationData);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -151,14 +149,13 @@ export const generatePostgres = (generationData: ETMessageData): string => {
 				content += `  id SERIAL PRIMARY KEY,\n`;
 			}
 			const cols: any[] = [];
-			generationData.columns.forEach(({ title, dataType }) => {
+			generationData.columns.forEach(({ title, dataType, metadata }) => {
 				let columnTypeInfo = 'MEDIUMTEXT';
-				const sqlMetadata = dataTypeSqlMetadata[dataType];
-				if (sqlMetadata) {
-					if (sqlMetadata.field_Postgres) {
-						columnTypeInfo = sqlMetadata.field_Postgres;
-					} else if (sqlMetadata.field) {
-						columnTypeInfo = sqlMetadata.field;
+				if (metadata) {
+					if (metadata.field_Postgres) {
+						columnTypeInfo = metadata.field_Postgres;
+					} else if (metadata.field) {
+						columnTypeInfo = metadata.field;
 					}
 				}
 				cols.push(`  ${title} ${columnTypeInfo}`);
@@ -221,11 +218,10 @@ export const generateSQLite = (generationData: ETMessageData): string => {
 			}
 			const cols: any[] = [];
 
-			generationData.columns.forEach(({ title, dataType }) => {
+			generationData.columns.forEach(({ title, dataType, metadata }) => {
 				let columnTypeInfo = 'MEDIUMTEXT';
 
 				// figure out the content type. Default to MEDIUMTEXT, then use the specific SQLField_MySQL, then the SQLField
-				const metadata = generationData.dataTypeMetadata[dataType];
 				if (metadata && metadata.sql) {
 					if (metadata.sql.field_SQLite) {
 						columnTypeInfo = metadata.sql.field_SQLite;
@@ -302,9 +298,8 @@ export const generateOracle = (generationData: ETMessageData): string => {
 			}
 
 			const cols: any[] = [];
-			generationData.columns.forEach(({ title, dataType }) => {
+			generationData.columns.forEach(({ title, dataType, metadata }) => {
 				let columnTypeInfo = 'MEDIUMTEXT';
-				const metadata = generationData.dataTypeMetadata[dataType];
 				if (metadata && metadata.sql) {
 					if (metadata.sql.field_Oracle) {
 						columnTypeInfo = metadata.sql.field_Oracle;
@@ -382,10 +377,8 @@ export const generateMSSQL = (generationData: ETMessageData): string => {
 			}
 
 			const cols: any[] = [];
-			generationData.columns.forEach(({ title, dataType }) => {
+			generationData.columns.forEach(({ title, dataType, metadata }) => {
 				let columnTypeInfo = 'MEDIUMTEXT';
-				const metadata = generationData.dataTypeMetadata[dataType];
-
 				if (metadata && metadata.sql) {
 					if (metadata.sql.field_MSSQL) {
 						columnTypeInfo = metadata.sql.field_MSSQL;
@@ -450,16 +443,4 @@ export const generateMSSQL = (generationData: ETMessageData): string => {
 	}
 
 	return content;
-};
-
-
-export const getDataTypeSqlMetadata = (generationData: ETMessageData): any => {
-	const sqlMetadata: any = {};
-	const dt = generationData.dataTypeMetadata;
-	Object.keys(dt).forEach((dataType) => {
-		if (dt[dataType] && dt[dataType].sql) {
-			sqlMetadata[dataType] = dt[dataType].sql;
-		}
-	});
-	return sqlMetadata;
 };

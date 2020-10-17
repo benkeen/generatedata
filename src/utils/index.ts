@@ -13,5 +13,5 @@ export default {
 	generationUtils: { ...generationUtils },
 	randomUtils: { ...randomUtils },
 	stringUtils: { ...stringUtils },
-	numberUtils: { ...numberUtils },
+	numberUtils: { ...numberUtils }
 };

@@ -52,6 +52,7 @@ export type GenerationTemplate = {
 export type ColumnData = {
 	title: string;
 	dataType: DataTypeFolder;
+	metadata: any;
 };
 
 export type Tag = '';

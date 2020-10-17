@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { isNumeric } from '~utils/numberUtils';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '~types/dataTypes';
 
 export type AutoIncrementState = {
 	example: string;
@@ -103,10 +104,18 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	</>
 );
 
-export const getMetadata = (): DTMetadata => {
+export const getMetadata = (rowData: AutoIncrementState): DTMetadata => {
+	let dataType: DTMetadataType = isNumeric(rowData.incrementStart) && isNumeric(rowData.incrementValue) ? 'number' : 'string';
+
+	// if there's a placeholder defined, set it to a string if it contains any chars besides numbers & {{INCR}}, even spaces
+	if (rowData.incrementPlaceholder.trim()) {
+		const val = rowData.incrementPlaceholder.replace(/{{INCR}}/g, '');
+		dataType = /[^\d]/.test(val) ? 'string' : 'number';
+	}
+
 	return {
 		general: {
-			dataType: 'number' // TODO liiiiies! only conditionally a number
+			dataType
 		},
 		sql: {
 			field: 'mediumint',

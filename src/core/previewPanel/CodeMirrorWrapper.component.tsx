@@ -14,7 +14,6 @@ export type CodeMirrorWrapperProps = {
 	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
 	loadedExportTypes: LoadedExportTypes;
-	dataTypeMetadata: any;
 };
 
 const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
@@ -52,7 +51,7 @@ const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 export default CodeMirrorWrapper;
 
 export const generatePreviewString = (props: any): Promise<any> => {
-	const { rows, columns, exportType, exportTypeSettings, loadedExportTypes, dataTypeMetadata } = props;
+	const { rows, columns, exportType, exportTypeSettings, loadedExportTypes } = props;
 	const exportTypeWorker = coreUtils.getExportTypeWorker('preview');
 
 	return new Promise((resolve) => {
@@ -64,7 +63,6 @@ export const generatePreviewString = (props: any): Promise<any> => {
 			isFirstBatch: true,
 			isLastBatch: true,
 			stripWhitespace: false,
-			dataTypeMetadata,
 			workerResources: {
 				workerUtils: coreUtils.getWorkerUtils(),
 				exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes)

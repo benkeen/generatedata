@@ -12,8 +12,7 @@ const mapStateToProps = (state: Store): CodeMirrorWrapperProps => ({
 	codeMirrorMode: selectors.getCodeMirrorMode(state),
 	exportType: selectors.getExportType(state),
 	exportTypeSettings: selectors.getExportTypeSettings(state),
-	loadedExportTypes: selectors.getLoadedExportTypes(state),
-	dataTypeMetadata: selectors.getSelectedColumnDataTypeMetadata(state)
+	loadedExportTypes: selectors.getLoadedExportTypes(state)
 });
 
 export default connect(

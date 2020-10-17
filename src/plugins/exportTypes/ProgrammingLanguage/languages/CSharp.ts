@@ -1,4 +1,5 @@
-import { isBoolean, isNumeric } from '~utils/generalUtils';
+import { isBoolean } from '~utils/generalUtils';
+import { isNumeric } from '~utils/numberUtils';
 import { ETMessageData } from '~types/exportTypes';
 
 // const sharpDateFormats = {

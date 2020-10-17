@@ -20,7 +20,7 @@ export type DTBundle = {
 
 	// generate: (data: DTGenerationData) => DTGenerateResult | Promise<DTGenerateResult>;
 	rowStateReducer?: (state: any) => any;
-	getMetadata?: () => DTMetadata;
+	getMetadata?: (data: any) => DTMetadata;
 	customProps?: DTCustomProps;
 	actionInterceptors?: DTActionInterceptors;
 };
@@ -50,12 +50,8 @@ export type DTFieldGroup = 'numeric' | 'geo' | 'humanData' | 'other' | 'financia
 
 export type DTMetadataType = 'number' | 'string' | 'boolean' | 'date' | 'infer';
 
-export interface GetDTMetadataType {
-	(rowState: any): DTMetadataType;
-}
-
 export type GeneralMetadataTypes = {
-    dataType: DTMetadataType | GetDTMetadataType;
+    dataType: DTMetadataType;
 }
 
 export type DTMetadata = {

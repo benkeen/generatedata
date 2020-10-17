@@ -42,7 +42,6 @@ export type ETMessageData = {
 	rows: any[];
 	isFirstBatch: boolean;
 	isLastBatch: boolean;
-	dataTypeMetadata: any; // TODO
 	settings: any; // TODO generic possible? This is the export type settings
 	stripWhitespace: boolean;
 	rowState: any;
