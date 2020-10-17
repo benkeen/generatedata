@@ -4,15 +4,15 @@ import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/
 
 export type AutoIncrementState = {
 	example: string;
-	incrementStart: number;
-	incrementValue: number;
+	incrementStart: string;
+	incrementValue: string;
 	incrementPlaceholder: string;
 }
 
 export const initialState: AutoIncrementState = {
 	example: '1,1',
-	incrementStart: 1,
-	incrementValue: 1,
+	incrementStart: '1',
+	incrementValue: '1',
 	incrementPlaceholder: ''
 };
 
@@ -22,8 +22,8 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 
 		onUpdate({
 			example: value,
-			incrementStart: parseInt(incrementStart, 10),
-			incrementValue: parseInt(incrementValue, 10),
+			incrementStart,
+			incrementValue,
 			incrementPlaceholder
 		});
 	};
@@ -36,8 +36,8 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 		{ value: '1000,-1,', label: '1000, 999, 998, 997...' },
 		{ value: '0,-1,', label: '0, -1, -2, -3, -4...' },
 		{ value: '0,0.5,', label: '0, 0.5, 1, 1.5, 2...' },
-		{ value: '1,1,ROW-${INCR}', label: 'ROW-1, ROW-2, ROW-3,...' },
-		{ value: '2,4,${INCR}i', label: '2i, 4i, 6i, 8i...' }
+		{ value: '1,1,ROW-{{INCR}}', label: 'ROW-1, ROW-2, ROW-3,...' },
+		{ value: '2,4,{{INCR}}i', label: '2i, 4i, 6i, 8i...' }
 	];
 
 	return (
@@ -62,18 +62,18 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 			<div style={{ marginBottom: 2 }}>
 				{i18n.startAt}
 				<input
-					type="number"
+					type="text"
 					style={{ width: 60 }}
 					value={data.incrementStart}
-					onChange={(e): void => onChange('incrementStart', parseInt(e.target.value, 10))}
+					onChange={(e): void => onChange('incrementStart', e.target.value)}
 				/>
 
 				{i18n.increment}
 				<input
-					type="number"
+					type="text"
 					style={{ width: 60 }}
 					value={data.incrementValue}
-					onChange={(e): void => onChange('incrementValue', parseInt(e.target.value, 10))}
+					onChange={(e): void => onChange('incrementValue', e.target.value)}
 				/>
 			</div>
 
@@ -91,34 +91,34 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.help_intro}
+			{i18n.helpIntro}
 		</p>
 		<p>
-			{i18n.help_para2}
+			{i18n.helpPara2}
 		</p>
 		<ul>
-			<li><b>ROW-INCR</b> -&gt; ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
-			<li><b>INCR F</b> -&gt; 1F, 2F, 3F, 4F, ...</li>
+			<li><b>ROW-{'{{INCR}}'}</b> -&gt; ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
+			<li><b>{'{{INCR}}'}F</b> -&gt; 1F, 2F, 3F, 4F, ...</li>
 		</ul>
 	</>
 );
 
-export const getMetadata = (): DTMetadata => ({
-	general: {
-		dataType: 'number' // TODO liiiiies! only conditionally a number
-	},
-	sql: {
-		field: 'mediumint',
-		field_Oracle: 'number default NULL',
-		field_MSSQL: 'INTEGER NULL',
-		field_Postgres: 'integer NULL'
-	}
-});
+export const getMetadata = (): DTMetadata => {
+	return {
+		general: {
+			dataType: 'number' // TODO liiiiies! only conditionally a number
+		},
+		sql: {
+			field: 'mediumint',
+			field_Oracle: 'number default NULL',
+			field_MSSQL: 'INTEGER NULL',
+			field_Postgres: 'integer NULL'
+		}
+	};
+};
 
-// TODO: perhaps put the parseFloat()'s here. It'll only execute once prior to generation, so it's performant - and will
-// be more forgiving than on every key change on the UI
-export const rowStateReducer = (state: AutoIncrementState): Partial<AutoIncrementState> => ({
-	incrementStart: state.incrementStart,
-	incrementValue: state.incrementValue,
+export const rowStateReducer = (state: AutoIncrementState): any => ({
+	incrementStart: parseFloat(state.incrementStart),
+	incrementValue: parseFloat(state.incrementValue),
 	incrementPlaceholder: state.incrementPlaceholder
 });

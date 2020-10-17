@@ -160,6 +160,9 @@ export const getSelectedColumnDataTypeMetadata = createSelector(
 		const dataTypeMetadata: any = {};
 		dataTypes.forEach((dataType: DataTypeFolder) => {
 			const { getMetadata } = getDataType(dataType);
+
+			console.log();
+
 			dataTypeMetadata[dataType] = getMetadata ? getMetadata() : null;
 		});
 		return dataTypeMetadata;

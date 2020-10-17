@@ -7,7 +7,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 	let value = ((rowNum - 1) * incrementValue) + incrementStart;
 	if (incrementPlaceholder) {
-		value = utils.generalUtils.template(incrementPlaceholder, { INCR: incrementValue });
+		value = utils.generalUtils.template(incrementPlaceholder, { INCR: value });
 	}
 	return { display: value };
 };
