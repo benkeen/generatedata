@@ -50,8 +50,6 @@ const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean)
 
 			// otherwise, do a safety check and encase it in double quote if necessary
 			} else {
-				console.log(".", !isNaN(parseFloat(value)), isFinite(value));
-
 				if (!utils.numberUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
 					value = `"${value}"`;
 				}

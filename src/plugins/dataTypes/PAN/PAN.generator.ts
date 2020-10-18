@@ -11,7 +11,6 @@ export const rowStateReducer = ({ formats, example }: PanState): any => ({
 
 // data: GenerationData
 export const generate = (): DTGenerateResult => {
-	// console.log(data);
 	// creditCardFormats[data.example]
 
 	return { display: '' };

@@ -36,6 +36,9 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
 export const rowStateReducer = (state: LatLngState): LatLngState => state;
 
 export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'string'
+	},
 	sql: {
 		field: 'varchar(30) default NULL',
 		field_Oracle: 'varchar2(30) default NULL',

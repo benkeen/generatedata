@@ -186,7 +186,7 @@ const ActivityPanel = ({
 		);
 	};
 
-	console.log(dimensions);
+	// console.log(dimensions);
 
 	const panel1Width = dimensions.width / 100 * 20;
 	const pieSize = Math.floor(panel1Width * 0.9);
