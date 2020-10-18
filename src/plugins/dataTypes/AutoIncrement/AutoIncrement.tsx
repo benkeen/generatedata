@@ -110,7 +110,7 @@ export const getMetadata = (rowData: AutoIncrementState): DTMetadata => {
 	// if there's a placeholder defined, set it to a string if it contains any chars besides numbers & {{INCR}}, even spaces
 	if (rowData.incrementPlaceholder.trim()) {
 		const val = rowData.incrementPlaceholder.replace(/{{INCR}}/g, '');
-		dataType = /[^\d]/.test(val) ? 'string' : 'number';
+		dataType = val === '' || /^[\d\.]+$/.test(val) ? 'number' : 'string';
 	}
 
 	return {
@@ -126,8 +126,13 @@ export const getMetadata = (rowData: AutoIncrementState): DTMetadata => {
 	};
 };
 
-export const rowStateReducer = (state: AutoIncrementState): any => ({
-	incrementStart: parseFloat(state.incrementStart),
-	incrementValue: parseFloat(state.incrementValue),
-	incrementPlaceholder: state.incrementPlaceholder
-});
+export const rowStateReducer = (state: AutoIncrementState): any => {
+	const incrementStart = (state.incrementStart) ? parseFloat(state.incrementStart) : 0;
+	const incrementValue = (state.incrementValue) ? parseFloat(state.incrementValue) : 0;
+
+	return {
+		incrementStart,
+		incrementValue,
+		incrementPlaceholder: state.incrementPlaceholder
+	};
+};

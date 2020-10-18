@@ -39,13 +39,24 @@ const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean)
 		content += `${comma}${newline}${tab}{`;
 		comma = '';
 
-		generationData.columns.forEach(({ title }: any, colIndex: number) => {
+		generationData.columns.forEach(({ title, metadata }: any, colIndex: number) => {
 			const propName: string = title.replace(/"/, '"');
 
 			let value = row[colIndex];
-			if (!utils.numberUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
+
+			// if a DT has explicitly said it's a string, use a string
+			if (metadata && metadata.general && metadata.general.dataType && metadata.general.dataType === 'string') {
 				value = `"${value}"`;
+
+			// otherwise, do a safety check and encase it in double quote if necessary
+			} else {
+				console.log(".", !isNaN(parseFloat(value)), isFinite(value));
+
+				if (!utils.numberUtils.isNumeric(value) && !isJavascriptBoolean(value)) {
+					value = `"${value}"`;
+				}
 			}
+
 			content += `${comma}${newline}${tab}${tab}"${propName}":${space}${value}`;
 			comma = ',';
 		});
