@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import CopyToClipboard from '~components/CopyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import styles from './Names.scss';
 
@@ -55,7 +56,17 @@ export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 	/>
 );
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
+const Copy = ({ content, message, tooltip }: any): JSX.Element => (
+	<span className={styles.copy}>
+		<CopyToClipboard
+			tooltip={tooltip}
+			content={content}
+			message={message}
+		/>
+	</span>
+);
+
+export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.DESC} {i18n.help_intro}
@@ -65,11 +76,17 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label>Name</label>
 			</div>
+			<div className={styles.copyCol}>
+				<Copy content="Name" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard}/>
+			</div>
 			<div className={styles.col2}>{i18n.type_Name}</div>
 		</div>
 		<div className={styles.row}>
 			<div className={styles.col1}>
 				<label>MaleName</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="MaleName" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard}/>
 			</div>
 			<div className={styles.col2}>{i18n.type_MaleName}</div>
 		</div>
@@ -77,17 +94,26 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label>FemaleName</label>
 			</div>
+			<div className={styles.copyCol}>
+				<Copy content="FemaleName" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard}/>
+			</div>
 			<div className={styles.col2}>{i18n.type_FemaleName}</div>
 		</div>
 		<div className={styles.row}>
 			<div className={styles.col1}>
 				<label>Initial</label>
 			</div>
+			<div className={styles.copyCol}>
+				<Copy content="Initial" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard}/>
+			</div>
 			<div className={styles.col2}>{i18n.type_Initial}</div>
 		</div>
 		<div className={styles.row}>
 			<div className={styles.col1}>
 				<label>Surname</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="Surname" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard}/>
 			</div>
 			<div className={styles.col2}>{i18n.type_Surname}</div>
 		</div>

@@ -8,13 +8,13 @@ import styles from './CopyToClipboard.scss';
 
 const Alert = (props: AlertProps): JSX.Element => <MuiAlert elevation={6} variant="filled" {...props} />;
 
-const Copy = ({ message = 'Copied to clipboard', content }: any): JSX.Element => {
+const Copy = ({ message, tooltip, content }: any): JSX.Element => {
 	const [open, setOpen] = React.useState(false);
 
 	return (
 		<>
 			<CopyToClipboard text={content} onCopy={(): void => setOpen(true)}>
-				<FileCopyIcon fontSize="small" className={styles.copyIcon} titleAccess={message} />
+				<FileCopyIcon fontSize="small" className={styles.copyIcon} titleAccess={tooltip} />
 			</CopyToClipboard>
 
 			<Snackbar

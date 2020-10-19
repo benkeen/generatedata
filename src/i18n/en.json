@@ -274,5 +274,6 @@
   "seconds": "Seconds",
   "countrySpecific": "Country-specific",
   "financial": "Financial",
-  "copyToClipboard": "Copy to clipboard"
+  "copyToClipboard": "Copy to clipboard",
+  "copiedToClipboard": "Copied to clipboard"
 }
