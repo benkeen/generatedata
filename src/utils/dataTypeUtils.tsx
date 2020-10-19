@@ -191,9 +191,11 @@ export const requestDataTypeBundle = (dataType: DataTypeFolder): any => {
 };
 
 
-const noValue = {};
+// TODO - this is causing a repaint on every method call, which is really slow. But using noValue below doesn't
+// help: when the DT selectors called here return different values, it doesn't get reflected in the UI
+// const noValue = {};
 export const getCustomProps = (customProps: DTCustomProps, state: Store): object => {
-	const values: any = noValue;
+	const values: any = {};
 	if (customProps) {
 		Object.keys(customProps).map((propName: string) => {
 			values[propName] = customProps[propName](state);
