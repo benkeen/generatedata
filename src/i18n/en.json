@@ -273,5 +273,6 @@
   "rowsGeneratedPerSecond": "Rows generated per second",
   "seconds": "Seconds",
   "countrySpecific": "Country-specific",
-  "financial": "Financial"
+  "financial": "Financial",
+  "copyToClipboard": "Copy to clipboard"
 }

@@ -69,7 +69,6 @@ const generateSimple = (generationData: ETMessageData, stripWhitespace: boolean)
 	return content;
 };
 
-
 const generateComplex = (generationData: ETMessageData, stripWhitespace: boolean): string => {
 	let content = '';
 	const colTitles = generationData.columns.map(({ title }: any) => title);
@@ -147,7 +146,6 @@ const generateComplex = (generationData: ETMessageData, stripWhitespace: boolean
 //     //     $this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
 //     // }
 // }
-
 
 // const getDownloadFilename = () => {
 // 	// $time = date("M-j-Y");

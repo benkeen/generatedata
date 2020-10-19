@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
+import TextField from '~components/TextField';
+import CopyToClipboard from '~components/CopyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/dataTypes';
+import * as langUtils from '~utils/langUtils';
 import styles from './Alphanumeric.scss';
 
 export type AlphanumericState = {
@@ -12,6 +15,12 @@ export const initialState: AlphanumericState = {
 	example: 'LLLxxLLLxLL',
 	value: 'LLLxxLLLxLL'
 };
+
+const Copy = ({ content }: any): JSX.Element => (
+	<span className={styles.copy}>
+		<CopyToClipboard content={content} />
+	</span>
+);
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
@@ -36,14 +45,19 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
-	<input
-		type="text"
-		value={data.value}
-		onChange={(e): void => onUpdate({ ...data, value: e.target.value })}
-		style={{ width: '100%' }}
-	/>
-);
+export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => {
+	const i18n = langUtils.getStrings();
+	const titleColError = data.value.trim() === '' ? i18n.core.requiredField : '';
+
+	return (
+		<TextField
+			error={titleColError}
+			value={data.value}
+			onChange={(e: any): void => onUpdate({ ...data, value: e.target.value })}
+			style={{ width: '100%' }}
+		/>
+	);
+};
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
@@ -52,39 +66,99 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</p>
 
 		<div className={styles.row}>
-			<div className={styles.col1}><label>L</label></div>
+			<div className={styles.col1}>
+				<label>L</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="L" />
+			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help1 }} />
-			<div className={styles.col3}><label>V</label></div>
+			<div className={styles.col3}>
+				<label>V</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="V" />
+			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help2 }} />
 		</div>
 		<div className={styles.row}>
-			<div className={styles.col1}><label>l</label></div>
+			<div className={styles.col1}>
+				<label>l</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="l" />
+			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help3 }} />
-			<div className={styles.col3}><label>v</label></div>
+			<div className={styles.col3}>
+				<label>v</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="v" />
+			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help4 }} />
 		</div>
 		<div className={styles.row}>
-			<div className={styles.col1}><label>D</label></div>
+			<div className={styles.col1}>
+				<label>D</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="D" />
+			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help5 }} />
-			<div className={styles.col3}><label>F</label></div>
+			<div className={styles.col3}>
+				<label>F</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="F" />
+			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help6 }} />
 		</div>
 		<div className={styles.row}>
-			<div className={styles.col1}><label>C</label></div>
+			<div className={styles.col1}>
+				<label>C</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="C" />
+			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help7 }} />
-			<div className={styles.col3}><label>x</label></div>
+			<div className={styles.col3}>
+				<label>x</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="x" />
+			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help8 }} />
 		</div>
 		<div className={styles.row}>
-			<div className={styles.col1}><label>c</label></div>
+			<div className={styles.col1}>
+				<label>c</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="c" />
+			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help9 }} />
-			<div className={styles.col3}><label>X</label></div>
+			<div className={styles.col3}>
+				<label>X</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="X" />
+			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help10 }} />
 		</div>
 		<div className={styles.row}>
-			<div className={styles.col1}><label>E</label></div>
+			<div className={styles.col1}>
+				<label>E</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="E" />
+			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help11 }} />
-			<div className={styles.col3}><label>H</label></div>
+			<div className={styles.col3}>
+				<label>H</label>
+			</div>
+			<div className={styles.copyCol}>
+				<Copy content="H" />
+			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help12 }} />
 		</div>
 	</>

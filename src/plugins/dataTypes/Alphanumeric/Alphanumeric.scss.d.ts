@@ -4,6 +4,8 @@ declare namespace AlphanumericScssNamespace {
     col2: string;
     col3: string;
     col4: string;
+    copy: string;
+    copyCol: string;
     row: string;
   }
 }
