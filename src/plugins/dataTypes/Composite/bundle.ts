@@ -1,9 +1,10 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Help } from './Composite';
-import { getMetadata } from './Composite.generate';
+import { initialState, Example, Options, Help, getMetadata } from './Composite';
 
 const bundle: DTBundle = {
 	initialState,
+	Example,
+	Options,
 	Help,
 	getMetadata
 };

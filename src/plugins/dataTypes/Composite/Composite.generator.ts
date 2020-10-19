@@ -1,37 +1,27 @@
+import utils from '../../../utils';
 import { DTGenerateResult, DTMetadata } from '~types/dataTypes';
 
-export const generate = (): DTGenerateResult => {
+let utilsLoaded = false;
+
+export const generate = (data: any): DTGenerateResult => {
+	console.log(data);
+
 	return { display: '' };
 };
 
-export const getMetadata = (): DTMetadata => ({
-	sql: {
-		field: 'TEXT default NULL',
-		field_Oracle: 'BLOB default NULL',
-		field_MSSQL: 'VARCHAR(MAX) NULL'
+const onmessage = (e: any) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
 	}
-});
+
+	postMessage(generate(e.data));
+};
+
+export {};
+
 
 /*
-class DataType_Composite extends DataTypePlugin {
-	protected $isEnabled = true;
-	protected $dataTypeName = "Composite";
-	protected $hasHelpDialog = true;
-	protected $dataTypeFieldGroup = "other";
-	protected $dataTypeFieldGroupOrder = 20;
-	protected $jsModules = array("Composite.js");
-	protected $processOrder = 150;
-	private $smarty;
-
-	public function __construct($runtimeContext) {
-		parent::__construct($runtimeContext);
-		if ($runtimeContext == "generation") {
-			$this->smarty = new SecureSmarty();
-			$this->smarty->template_dir = realpath(__DIR__ . "/../../../resources/libs/smarty");
-			$this->smarty->compile_dir  = realpath(__DIR__ . "/../../../cache");
-		}
-	}
-
 	public function generate($generator, $generationContextData) {
 		$placeholders = array();
 		foreach ($generationContextData["existingRowData"] as $rowInfo) {

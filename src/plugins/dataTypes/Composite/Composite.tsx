@@ -1,14 +1,21 @@
 import * as React from 'react';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import sharedStyles from '../../../styles/shared.scss';
 
 export const initialState = {
 	value: ''
 };
 
-export const Example = ({ i18n }: DTExampleProps): string => i18n.see_help_dialog;
+export const Example = ({ coreI18n }: DTExampleProps): JSX.Element => (
+	<div className={sharedStyles.emptyCol}>{coreI18n.seeHelpDialog}</div>
+);
 
 export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
-	<textarea onChange={(e): void => onUpdate({ value: e.target.value })} value={data.value} />
+	<textarea
+		onChange={(e): void => onUpdate({ value: e.target.value })}
+		value={data.value}
+		style={{ width: '100%' }}
+	/>
 );
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
@@ -16,14 +23,11 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		<p>
 			{i18n.DESC}
 		</p>
-		<p>
-			{i18n.compositeHelp2}
-		</p>
-		<p>
-			{i18n.compositeHelp3}
-		</p>
+		<p dangerouslySetInnerHTML={{ __html: i18n.compositeHelp2 }} />
+		<p dangerouslySetInnerHTML={{ __html: i18n.compositeHelp3 }} />
+
 		<ul>
-			<li>{i18n.compositeHelp4}</li>
+			<li dangerouslySetInnerHTML={{ __html: i18n.compositeHelp4 }} />
 			<li>{i18n.compositeHelp5}
 				<ul>
 					<li><b>ROW2-ROW</b> - {i18n.compositeSubtraction}</li>
@@ -41,3 +45,11 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</p>
 	</>
 );
+
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'TEXT default NULL',
+		field_Oracle: 'BLOB default NULL',
+		field_MSSQL: 'VARCHAR(MAX) NULL'
+	}
+});

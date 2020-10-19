@@ -122,8 +122,9 @@ export function RecursiveErrorException (remaining: string[]): void {
 }
 
 /**
- * Data Types can register dependencies on other Data Types, so that when the row data is generated, the script
- * ensures the dependencies are generated first and available for use by other Data Types. For example:
+ * Data Types can register dependencies on other Data Types (the `dependencies` property of their config.ts file) so
+ * that when the row data is generated, the script ensures the dependencies are generated first and available for use.
+ * For example:
  *
  * Country <- Region <- City
  *
@@ -168,6 +169,9 @@ export const getProcessBatches = (dataTypes: any): ProcessBatches => {
 
 		previousLength = dataTypesToProcess.length;
 	}
+
+	console.log({ processBatches });
+
 	return processBatches;
 };
 
