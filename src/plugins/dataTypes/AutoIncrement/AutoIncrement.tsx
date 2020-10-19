@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
+import TextField from '~components/TextField';
 import { isNumeric } from '~utils/numberUtils';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '~types/dataTypes';
+import styles from './AutoIncrement.scss';
 
 export type AutoIncrementState = {
 	example: string;
@@ -50,7 +52,7 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 	);
 };
 
-export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: number | string): void => {
 		onUpdate({
 			...data,
@@ -58,34 +60,38 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 		});
 	};
 
+	const incStartError = data.incrementStart.trim() === '' ? coreI18n.requiredField : '';
+	const incValueError = data.incrementValue.trim() === '' ? coreI18n.requiredField : '';
+
 	return (
-		<>
+		<div className={styles.options}>
 			<div style={{ marginBottom: 2 }}>
-				{i18n.startAt}
-				<input
-					type="text"
-					style={{ width: 60 }}
+				<span>{i18n.startAt}</span>
+				<TextField
+					error={incStartError}
+					style={{ width: 60, marginRight: 2 }}
 					value={data.incrementStart}
-					onChange={(e): void => onChange('incrementStart', e.target.value)}
+					onChange={(e: any): void => onChange('incrementStart', e.target.value)}
 				/>
 
-				{i18n.increment}
-				<input
-					type="text"
+				<span>{i18n.increment}</span>
+				<TextField
+					error={incValueError}
 					style={{ width: 60 }}
 					value={data.incrementValue}
-					onChange={(e): void => onChange('incrementValue', e.target.value)}
+					onChange={(e: any): void => onChange('incrementValue', e.target.value)}
 				/>
 			</div>
 
 			<div>
-				{i18n.placeholderStr}
-				<input
-					type="text"
-					style={{ width: 100 }} value={data.incrementPlaceholder}
-					onChange={(e): void => onChange('incrementPlaceholder', e.target.value)} />
+				<span>{i18n.placeholderStr}</span>
+				<TextField
+					style={{ width: 100 }}
+					value={data.incrementPlaceholder}
+					onChange={(e: any): void => onChange('incrementPlaceholder', e.target.value)}
+				/>
 			</div>
-		</>
+		</div>
 	);
 };
 
@@ -94,9 +100,7 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		<p>
 			{i18n.helpIntro}
 		</p>
-		<p>
-			{i18n.helpPara2}
-		</p>
+		<p dangerouslySetInnerHTML={{ __html: i18n.helpPara2 }} />
 		<ul>
 			<li><b>ROW-{'{{INCR}}'}</b> -&gt; ROW-1, ROW-2, ROW-3, ROW-4, ...</li>
 			<li><b>{'{{INCR}}'}F</b> -&gt; 1F, 2F, 3F, 4F, ...</li>

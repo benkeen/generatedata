@@ -16,7 +16,8 @@ const TextField = ({ error, className, ...props }: any): JSX.Element => {
 };
 
 TextField.defaultProps = {
-	type: 'text'
+	type: 'text',
+	error: ''
 };
 
 export default TextField;
