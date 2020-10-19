@@ -3,7 +3,6 @@ import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
 import CopyToClipboard from '~components/CopyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/dataTypes';
-import * as langUtils from '~utils/langUtils';
 import styles from './Alphanumeric.scss';
 
 export type AlphanumericState = {
@@ -16,9 +15,12 @@ export const initialState: AlphanumericState = {
 	value: 'LLLxxLLLxLL'
 };
 
-const Copy = ({ content }: any): JSX.Element => (
+const Copy = ({ content, message }: any): JSX.Element => (
 	<span className={styles.copy}>
-		<CopyToClipboard content={content} />
+		<CopyToClipboard
+			content={content}
+			message={message}
+		/>
 	</span>
 );
 
@@ -45,9 +47,8 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => {
-	const i18n = langUtils.getStrings();
-	const titleColError = data.value.trim() === '' ? i18n.core.requiredField : '';
+export const Options = ({ coreI18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
+	const titleColError = data.value.trim() === '' ? coreI18n.requiredField : '';
 
 	return (
 		<TextField
@@ -59,7 +60,7 @@ export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => {
 	);
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
+export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
 			{i18n.helpIntro}
@@ -70,14 +71,14 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 				<label>L</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="L" />
+				<Copy content="L" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help1 }} />
 			<div className={styles.col3}>
 				<label>V</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="V" />
+				<Copy content="V" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help2 }} />
 		</div>
@@ -86,14 +87,14 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 				<label>l</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="l" />
+				<Copy content="l" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help3 }} />
 			<div className={styles.col3}>
 				<label>v</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="v" />
+				<Copy content="v" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help4 }} />
 		</div>
@@ -102,14 +103,14 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 				<label>D</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="D" />
+				<Copy content="D" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help5 }} />
 			<div className={styles.col3}>
 				<label>F</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="F" />
+				<Copy content="F" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help6 }} />
 		</div>
@@ -118,14 +119,14 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 				<label>C</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="C" />
+				<Copy content="C" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help7 }} />
 			<div className={styles.col3}>
 				<label>x</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="x" />
+				<Copy content="x" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help8 }} />
 		</div>
@@ -134,14 +135,14 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 				<label>c</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="c" />
+				<Copy content="c" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help9 }} />
 			<div className={styles.col3}>
 				<label>X</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="X" />
+				<Copy content="X" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help10 }} />
 		</div>
@@ -150,43 +151,19 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 				<label>E</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="E" />
+				<Copy content="E" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help11 }} />
 			<div className={styles.col3}>
 				<label>H</label>
 			</div>
 			<div className={styles.copyCol}>
-				<Copy content="H" />
+				<Copy content="H" message={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help12 }} />
 		</div>
 	</>
 );
-
-
-// export const validate = (rows, coreI18n) => {
-// 	var visibleProblemRows = [];
-// 	var problemFields = [];
-//
-// 	for (var i = 0; i < rows.length; i++) {
-// 		var currEl = $("#dtOption_" + rows[i]);
-// 		if ($.trim(currEl.val()) === "") {
-// 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-// 			visibleProblemRows.push(visibleRowNum);
-// 			problemFields.push(currEl);
-// 		}
-// 	}
-// 	var errors = [];
-// 	if (visibleProblemRows.length) {
-// 		errors.push({
-// 			els: problemFields,
-// 			error: i18n.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"
-// 		});
-// 	}
-// 	return errors;
-// };
-
 
 export const rowStateReducer = (state: AlphanumericState): string => state.value;
 
