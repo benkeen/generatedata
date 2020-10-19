@@ -2,13 +2,5 @@
   "NAME": "Boolean",
   "DESC": "Este tipo de dato genera aleatoriamente Boolean de acuerdo al formato que especifiques.",
   "DEFAULT_TITLE": "booleano",
-  "helpIntro": "Pues especificar múltiples formatos separándolos con el carácter tubería, |. Las siguientes cadenas serán convertidas a su Boolean aleatorio equivalente:",
-  "incompleteFields": "The Name data type needs to have the format entered in the Options text field. Please fix the following rows:",
-  "exampleYesNo": "Yes of No",
-  "exampleTrueFalse": "True of False",
-  "exampleZeroOne": "0 of 1",
-  "exampleYesNoShort": "Y of N",
-  "exampleTrueFalseShort": "T of F",
-  "exampleTrueFalseLower": "true of false",
-  "textDoubleQuotes": "Los valores <code>true</code> y <code>false</code> son especiales. Dependiendo del tipo de exportación, estos pueden salir sin comillas dobles."
+  "helpIntro": "El menú desplegable Ejemplos contiene varios valores booleanos de ejemplo (todos en inglés o universales). Para crear otros valores, simplemente escriba texto en el campo Opciones y haga clic en Intro."
 }

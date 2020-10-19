@@ -2,7 +2,9 @@ import * as React from 'react';
 import { components } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import { DropdownOption } from './dropdown/Dropdown';
+import { DropdownOption } from '../dropdown/Dropdown';
+import { ErrorTooltip } from '~components/tooltips';
+import styles from './CreatablePillField.scss';
 
 function arrayMove(array: any[], from: number, to: number): any[] {
 	array = array.slice();
@@ -70,7 +72,7 @@ export const createOption = (label: string): DropdownOption => ({
 
 const SortableCreatableSelect = SortableContainer(CreatableSelect);
 
-const CreatablePillField = ({ onChange, value, placeholder }: any): JSX.Element => {
+const CreatablePillField = ({ onChange, value, error, placeholder }: any): JSX.Element => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
@@ -94,29 +96,34 @@ const CreatablePillField = ({ onChange, value, placeholder }: any): JSX.Element 
 		onChange(sortedOptions.map((i: DropdownOption) => i.value));
 	};
 
+	const classes = (error) ? styles.errorField : '';
+
 	return (
-		<SortableCreatableSelect
-			styles={selectStyles}
-			components={customComponents}
-			inputValue={tempValue}
-			axis="xy"
-			distance={4}
-			getHelperDimensions={({ node }): any => node.getBoundingClientRect()}
-			isClearable
-			isMulti
-			onSortEnd={onSortEnd}
-			menuIsOpen={false}
-			onChange={(options): void => {
-				const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
-				onChange(newValues);
-			}}
-			onInputChange={handleInputChange}
-			onKeyDown={handleKeyDown}
-			placeholder={placeholder}
-			value={options}
-			menuPlacement="auto"
-			menuPortalTarget={document.body}
-		/>
+		<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
+			<SortableCreatableSelect
+				className={classes}
+				styles={selectStyles}
+				components={customComponents}
+				inputValue={tempValue}
+				axis="xy"
+				distance={4}
+				getHelperDimensions={({ node }): any => node.getBoundingClientRect()}
+				isClearable
+				isMulti
+				onSortEnd={onSortEnd}
+				menuIsOpen={false}
+				onChange={(options): void => {
+					const newValues = options ? options.map(({ value }: DropdownOption) => value) : [];
+					onChange(newValues);
+				}}
+				onInputChange={handleInputChange}
+				onKeyDown={handleKeyDown}
+				placeholder={placeholder}
+				value={options}
+				menuPlacement="auto"
+				menuPortalTarget={document.body}
+			/>
+		</ErrorTooltip>
 	);
 };
 CreatablePillField.defaultProps = {

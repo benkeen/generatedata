@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
-import CreatablePillField from '~components/CreatablePillField';
+import CreatablePillField from '~components/CreatablePillField/CreatablePillField';
 
 export type BooleanState = {
 	example: string;
@@ -13,7 +13,7 @@ export const initialState: BooleanState = {
 	values: ['Yes', 'No']
 };
 
-export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
+export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (value: any): void => {
 		onUpdate({
 			example: value,
@@ -22,12 +22,14 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	};
 
 	const options = [
-		{ value: 'Yes|No', label: i18n.exampleYesNo },
-		{ value: 'True|False', label: i18n.exampleTrueFalse },
-		{ value: 'true|false', label: i18n.exampleTrueFalseLower },
-		{ value: '0|1', label: i18n.exampleZeroOne },
-		{ value: 'Y|N', label: i18n.exampleYesNoShort },
-		{ value: 'T|F', label: i18n.exampleTrueFalseShort }
+		{ value: 'Yes|No', label: 'Yes / No' },
+		{ value: 'true|false', label: 'true / false' },
+		{ value: 'True|False', label: 'True / False' },
+		{ value: '0|1', label: '0 / 1' },
+		{ value: 'Y|N', label: 'Y / N' },
+		{ value: 'T|F', label: 'T / F' },
+		{ value: 'On|Off', label: 'On / Off' },
+		{ value: 'Down|Up', label: 'Down / Up' }
 	];
 
 	return (
@@ -39,8 +41,9 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
+export const Options = ({ coreI18n, data, onUpdate }: DTOptionsProps): JSX.Element => (
 	<CreatablePillField
+		error={data.values.length ? '' : coreI18n.requiredField}
 		value={data.values}
 		onChange={(values: any): void => onUpdate({ ...data, values })}
 	/>
@@ -48,21 +51,7 @@ export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
-		<p>
-			{i18n.DESC}
-			{i18n.helpIntro}
-		</p>
-
-		<ul>
-			<li>{i18n.exampleYesNo}</li>
-			<li>{i18n.exampleTrueFalse}</li>
-			<li>{i18n.exampleZeroOne}</li>
-			<li>{i18n.exampleYesNoShort}</li>
-			<li>{i18n.exampleTrueFalseShort}</li>
-			<li>{i18n.exampleTrueFalseLower}</li>
-		</ul>
-
-		<p dangerouslySetInnerHTML={{ __html: i18n.textDoubleQuote }} />
+		<p dangerouslySetInnerHTML={{ __html: `${i18n.DESC} ${i18n.helpIntro}` }} />
 	</>
 );
 

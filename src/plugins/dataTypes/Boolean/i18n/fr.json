@@ -1,14 +1,6 @@
 {
-  "NAME": "Boolean",
+  "NAME": "Booléen",
   "DESC": "Ce type de données génère aléatoirement des noms de personnes (principalement occidentaux) en fonction du format que vous spécifiez.",
   "DEFAULT_TITLE": "booleen",
-  "helpIntro": "Vous pouvez spécifier les formats multiples en les séparant par le caractère pipe (|). Les chaînes suivantes seront converties en leur équivalent Boolean:",
-  "incompleteFields": "Le type de données Nom doit avoir un format précisé dans le champ de texte Options. Corrigez les lignes suivantes:",
-  "exampleYesNo": "Yes of No",
-  "exampleTrueFalse": "True of False",
-  "exampleZeroOne": "0 of 1",
-  "exampleYesNoShort": "Y of N",
-  "exampleTrueFalseShort": "T of F",
-  "exampleTrueFalseLower": "true of false",
-  "textDoubleQuotes": "Les valeurs <code>true</code> et <code>false</code> sont spéciales. Selon le type d'exportation, ils peuvent être générés sans guillemets."
+  "helpIntro": "La liste déroulante Exemples contient plusieurs exemples de valeurs booléennes (toutes en anglais ou universelles). Pour créer d'autres valeurs, tapez simplement du texte dans le champ Options et cliquez sur Entrée."
 }

@@ -2,13 +2,5 @@
   "NAME": "Boolean",
   "DESC": "Genereerd een Boolean waarde in elk gewenst formaat.",
   "DEFAULT_TITLE": "boolean",
-  "helpIntro": "U kunt meerdere formaten opgeven gescheiden door een (|) karakter. De volgende Waarden worden gebruikt om een willekeurige Boolean te genereren:",
-  "incompleteFields": "U moet minimaal een waarde opgeven in het optie tekst veld. Pas AUB de volgende rij(en) aan:",
-  "exampleYesNo": "Yes of No",
-  "exampleTrueFalse": "True of False",
-  "exampleZeroOne": "0 of 1",
-  "exampleYesNoShort": "Y of N",
-  "exampleTrueFalseShort": "T of F",
-  "exampleTrueFalseLower": "true of false",
-  "textDoubleQuotes": "<code>true</code> en <code>false</code> waarden zijn speciaal. Afhankelijk van het exporttype kunnen deze worden uitgevoerd zonder dubbele aanhalingstekens."
+  "helpIntro": "De vervolgkeuzelijst Voorbeelden bevat verschillende voorbeeldbooleaanse waarden (allemaal Engels of universeel). Om andere waarden te maken, typ gewoon tekst in het veld Opties en klik op Enter."
 }

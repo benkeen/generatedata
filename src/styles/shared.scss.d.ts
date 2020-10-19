@@ -2,6 +2,7 @@ declare namespace SharedScssNamespace {
   export interface ISharedScss {
     emptyCol: string;
     errorField: string;
+    pill: string;
     tip: string;
   }
 }

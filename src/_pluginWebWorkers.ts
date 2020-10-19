@@ -6,7 +6,7 @@ export default {
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.generator-0185a235eabc5b0a7ba6afdbb2af8676.js",
 		"AutoIncrement": "DT-AutoIncrement.generator-eccb050ece38a91e2a849d125e417298.js",
-		"Boolean": "DT-Boolean.generator-3f0e4c1f5683a779da459a22c5d1f268.js",
+		"Boolean": "DT-Boolean.generator-7f17cf17c450482e71f66b8ccec1530a.js",
 		"City": "DT-City.generator-ebd4355dbc806400fbda36e488cec6e0.js",
 		"Company": "DT-Company.generator-b7bd7c08c48f94fb2c88412cc82fcef4.js",
 		"Constant": "DT-Constant.generator-34dd1f6d81154fe8e17685b74eca3cc3.js",
