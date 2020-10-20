@@ -1,4 +1,5 @@
 import { ColumnData } from '~types/general';
+import { affectedDataTypes } from '~utils/dataTypeUtils';
 
 export const getPercentageLabel = (percentage: number, numRowsToGenerate: number): string => {
 	let decimalPlaces = 0;
@@ -111,7 +112,7 @@ export const getRowGenerationRatePerSecond = (
  * not mapped to the region that just changed. This is because we're not yet formally defining the relationships
  * between the Data Types in a well-defined way. If we did that we could make this logic smarter. But right now, each
  * data type maps to other data types in whatever way they find useful (e.g. a Composite field just referencing it
- * via it's Options textare and entering a {{ROWX}} placeholder string.
+ * via its Options field and entering a {{ROWX}} placeholder string).
  */
 export const getUnchangedData = (idsToRefresh: string[], columns: ColumnData[], dataTypePreviewData: any) => {
 	if (!idsToRefresh.length) {
@@ -121,10 +122,17 @@ export const getUnchangedData = (idsToRefresh: string[], columns: ColumnData[], 
 	// loop through IDs to refresh
 	// get their data type
 	// get list of other DTs that depend on them
-	// stick 'em all into a giant list of data types
+	// stick 'em all into a Giant List o' Data Types To Refresh
 	// loop through all `columns` and if it's not in the Giant List o' Data Types To Refresh, add it to the unchangedData
 	// list
 
-	console.log(idsToRefresh, columns, dataTypePreviewData);
+
+	idsToRefresh.forEach((id) => {
+
+	});
+
+	console.log(columns);
+
+	// console.log(idsToRefresh, columns, dataTypePreviewData);
 };
 

@@ -1,4 +1,4 @@
-import { getProcessBatches } from '../dataTypeUtils';
+import { getProcessBatches, getAffectedDataTypes } from '../dataTypeUtils';
 
 describe('getProcessBatches', () => {
 	it('data types with no dependencies all get added to the first process batch', () => {
@@ -103,5 +103,46 @@ describe('getProcessBatches', () => {
 		}
 	});
 
+});
+
+
+describe('getAffectedDataTypes', () => {
+	it('calculates which Data Types are affected for each Data Type change #1', () => {
+		const testDataTypes = {
+			One: {
+				dependencies: ['Four']
+			},
+			Two: {},
+			Three: {},
+			Four: {}
+		};
+
+		expect(getAffectedDataTypes(testDataTypes)).toEqual({
+			One: [],
+			Two: [],
+			Three: [],
+			Four: ['One']
+		});
+	});
+
+	it('calculates which Data Types are affected for each Data Type change #2', () => {
+		const testDataTypes = {
+			One: {
+				dependencies: ['Four', 'Two', 'Three']
+			},
+			Two: {
+				dependencies: ['Three']
+			},
+			Three: {},
+			Four: {}
+		};
+
+		expect(getAffectedDataTypes(testDataTypes)).toEqual({
+			One: [],
+			Two: ['One'],
+			Three: ['One', 'Two'],
+			Four: ['One']
+		});
+	});
 });
 

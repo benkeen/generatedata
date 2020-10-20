@@ -110,7 +110,7 @@ export const getPreviewRows = createSelector(
 				if (!data[id]) {
 					continue;
 				}
-				rowData.push(data[id][j].display);
+				rowData.push(data[id][j]?.display);
 			}
 
 			if (rowData.length) {
