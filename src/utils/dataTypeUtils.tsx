@@ -170,8 +170,6 @@ export const getProcessBatches = (dataTypes: any): ProcessBatches => {
 		previousLength = dataTypesToProcess.length;
 	}
 
-	console.log({ processBatches });
-
 	return processBatches;
 };
 

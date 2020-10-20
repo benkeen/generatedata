@@ -1,3 +1,5 @@
+import { ColumnData } from '~types/general';
+
 export const getPercentageLabel = (percentage: number, numRowsToGenerate: number): string => {
 	let decimalPlaces = 0;
 	if (numRowsToGenerate >= 10000) {
@@ -96,3 +98,33 @@ export const getRowGenerationRatePerSecond = (
 
 	return result;
 };
+
+
+/*
+ * Used for the preview panel. When a user changes a row we need to figure out what rows to invalidate in the preview
+ * panel. Examples:
+ *  - A row change only affects itself. Just that row should be updated, all other rows can be marked as unchanged.
+ *  - A region row changes, and a city row depends on it. Here, both the region + city rows need to refresh.
+ *  - A county row changes, and 10 other rows are based on it. All 11 rows need to update.
+ *
+ * Note that this isn't as good as it could be. If a Region field changes, ALL City field get repainted - even if they're
+ * not mapped to the region that just changed. This is because we're not yet formally defining the relationships
+ * between the Data Types in a well-defined way. If we did that we could make this logic smarter. But right now, each
+ * data type maps to other data types in whatever way they find useful (e.g. a Composite field just referencing it
+ * via it's Options textare and entering a {{ROWX}} placeholder string.
+ */
+export const getUnchangedData = (idsToRefresh: string[], columns: ColumnData[], dataTypePreviewData: any) => {
+	if (!idsToRefresh.length) {
+		return {};
+	}
+
+	// loop through IDs to refresh
+	// get their data type
+	// get list of other DTs that depend on them
+	// stick 'em all into a giant list of data types
+	// loop through all `columns` and if it's not in the Giant List o' Data Types To Refresh, add it to the unchangedData
+	// list
+
+	console.log(idsToRefresh, columns, dataTypePreviewData);
+};
+

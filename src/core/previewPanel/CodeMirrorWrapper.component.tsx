@@ -5,7 +5,7 @@ import { ExportTypeFolder } from '../../_plugins';
 import { LoadedExportTypes } from '~utils/exportTypeUtils';
 
 export type CodeMirrorWrapperProps = {
-	rows: any;
+	previewRows: any;
 	columns: any;
 	exportType: ExportTypeFolder;
 	exportTypeSettings: any;
@@ -18,20 +18,20 @@ export type CodeMirrorWrapperProps = {
 
 const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 	const {
-		rows, columns, exportType, exportTypeSettings, codeMirrorMode, theme, showLineNumbers, loadedExportTypes,
+		previewRows, columns, exportType, exportTypeSettings, codeMirrorMode, theme, showLineNumbers, loadedExportTypes,
 		enableLineWrapping
 	} = props;
 	const [code, setCode] = React.useState("");
 
 	React.useEffect(() => {
-		if (!columns.length || !rows.length) {
+		if (!columns.length || !previewRows.length) {
 			return;
 		}
 		generatePreviewString(props)
 			.then((str: string) => {
 				setCode(str);
 			});
-	}, [rows, columns, exportType, exportTypeSettings, loadedExportTypes]);
+	}, [previewRows, columns, exportType, exportTypeSettings, loadedExportTypes]);
 
 	return (
 		<CodeMirror
@@ -51,12 +51,12 @@ const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 export default CodeMirrorWrapper;
 
 export const generatePreviewString = (props: any): Promise<any> => {
-	const { rows, columns, exportType, exportTypeSettings, loadedExportTypes } = props;
+	const { previewRows, columns, exportType, exportTypeSettings, loadedExportTypes } = props;
 	const exportTypeWorker = coreUtils.getExportTypeWorker('preview');
 
 	return new Promise((resolve) => {
 		coreUtils.performTask('exportTypeWorker', exportTypeWorker, {
-			rows,
+			rows: previewRows,
 			columns,
 			exportType,
 			exportTypeSettings: exportTypeSettings[exportType],

@@ -150,7 +150,7 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 
 					// this bit's sneaky. It ensures that the CURRENT batch within the row being generated is fully processed
 					// before starting the next. That way, the generated data from earlier batches is available to later
-					// Data Types
+					// Data Types for generating their own data
 					return new Promise((resolveBatch) => {
 						Promise.all(promises)
 							.then((singleBatchResponses: any) => {
@@ -166,7 +166,7 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 
 								if (batchIndex === processBatches.length-1) {
 									currRowData.sort((a, b) =>a.colIndex < b.colIndex ? -1 : 1);
-									resolveAll(currRowData.map((row) => row.data.display));
+									resolveAll(currRowData.map((row) => row.data));
 								}
 							});
 					});
@@ -180,6 +180,10 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 		let dataType = currCell.dataType;
 
 		return new Promise((resolve, reject) => {
+
+			// *** here only bother getting new data for the rows that we need
+			// console.log(currCell, rowNum);
+
 			queueJob(dataType, {
 				rowNum: rowNum,
 				i18n: i18n.dataTypes[dataType],

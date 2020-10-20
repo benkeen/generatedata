@@ -4,7 +4,7 @@ import { Store } from '~types/general';
 import CodeMirrorWrapper, { CodeMirrorWrapperProps } from './CodeMirrorWrapper.component';
 
 const mapStateToProps = (state: Store): CodeMirrorWrapperProps => ({
-	rows: selectors.getPreviewRows(state),
+	previewRows: selectors.getPreviewRows(state),
 	columns: selectors.getColumns(state),
 	showLineNumbers: selectors.shouldShowLineNumbers(state),
 	enableLineWrapping: selectors.shouldEnableLineWrapping(state),
