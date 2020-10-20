@@ -1,12 +1,18 @@
 import utils from '../../../utils';
-import { DTGenerateResult, DTMetadata } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData } from '~types/dataTypes';
 
 let utilsLoaded = false;
 
-export const generate = (data: any): DTGenerateResult => {
-	console.log(data);
+export const generate = (data: DTGenerationData): DTGenerateResult => {
+	const placeholders: any = {};
 
-	return { display: '' };
+	data.existingRowData.forEach((row: DTGenerationExistingRowData) => {
+		placeholders[`ROW${row.colIndex+1}`] = row.data.display;
+	});
+
+	return {
+		display: utils.generalUtils.template(data.rowState.value, placeholders)
+	};
 };
 
 const onmessage = (e: any) => {
@@ -19,38 +25,3 @@ const onmessage = (e: any) => {
 };
 
 export {};
-
-
-/*
-	public function generate($generator, $generationContextData) {
-		$placeholders = array();
-		foreach ($generationContextData["existingRowData"] as $rowInfo) {
-			$colNum = $rowInfo["colNum"];
-			$randomData  = is_array($rowInfo["randomData"]) ? $rowInfo["randomData"]["display"] : $rowInfo["randomData"];
-			$placeholders["ROW{$colNum}"] = $randomData;
-		}
-		while (list($key, $value) = each($placeholders)) {
-			$this->smarty->assign($key, $value);
-		}
-		$output = $this->smarty->fetch('string:' . $generationContextData["generationOptions"]);
-
-		return array(
-			"display" => $output
-		);
-	}
-
-	public function getRowGenerationOptionsUI($generator, $postdata, $col, $num_cols) {
-		if (!isset($postdata["dtOption_$col"]) || empty($postdata["dtOption_$col"])) {
-			return false;
-		}
-		return $postdata["dtOption_$col"];
-	}
-
-	public function getRowGenerationOptionsAPI($generator, $json, $numCols) {
-		if (empty($json->settings->placeholder)) {
-			return false;
-		}
-		return $json->settings->placeholder;
-	}
-}
-*/

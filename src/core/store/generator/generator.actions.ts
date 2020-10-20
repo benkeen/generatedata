@@ -124,9 +124,16 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 		const sortedRows = selectors.getSortedRows(state);
 		const columns = selectors.getColumns(state);
 
+		/*
+		Here we need to look at the changing IDs, and figure out all dependent rows.
+
+		Thing is, we need to feed in the OLD values
+
+		*/
+
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
-		// way clearer to the end user that way
+		// far clearer to the end user that way
 		dataTypeWorker.postMessage({
 			numResults: C.MAX_PREVIEW_ROWS,
 			batchSize: C.MAX_PREVIEW_ROWS,
