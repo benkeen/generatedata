@@ -123,25 +123,31 @@ export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & 
 
 	// first pass is to look at the list of IDs about to be refreshed, and get a list of data types in the
 	// grid that aren't affected by this change
-	const immediatelyUnchanged = columnsWithIndex
+	const unchangedDataTypes: any = {};
+	columnsWithIndex
 		.filter((col) => idsToRefresh.indexOf(col.id) === -1)
-		.map((col) => col.dataType);
-
-	const affectedDataTypesObj: any = {};
-	immediatelyUnchanged.forEach((dataType) => {
-		affectedDataTypes[dataType].forEach((dt: any) => {
-			if (!affectedDataTypesObj[dt]) {
-				affectedDataTypesObj[dt] = true;
-			}
+		.forEach((col) => {
+			unchangedDataTypes[col.dataType] = true;
 		});
+
+	// now loop through the changed row IDs and whittle down the list by examining any data types affected by those
+	// row changes
+	columnsWithIndex.forEach((col) => {
+		if (idsToRefresh.indexOf(col.id) !== -1) {
+			affectedDataTypes[col.dataType].forEach((dt: any) => {
+				if (unchangedDataTypes[dt]) {
+					delete unchangedDataTypes[dt];
+				}
+			});
+		}
 	});
 
-	console.log({ immediatelyUnchanged, affectedDataTypes });
+	console.log({ unchangedDataTypes });
 
 	const result: any = {};
 	columnsWithIndex.filter((col) => {
 		// just for clarity, because this is kinda dense
-		const colIsNotAffectedDataType = !affectedDataTypesObj[col.dataType];
+		const colIsNotAffectedDataType = unchangedDataTypes[col.dataType];
 		const isNotDirectlyChangedCol = idsToRefresh.indexOf(col.id) === -1;
 
 		return colIsNotAffectedDataType && isNotDirectlyChangedCol;
