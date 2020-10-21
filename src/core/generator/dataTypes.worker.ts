@@ -181,26 +181,21 @@ const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowDa
 		let dataType = currCell.dataType;
 
 		return new Promise((resolve, reject) => {
-
-			// *** here only bother getting new data for the rows that we need
-			//console.log(currCell, rowNum, unchanged);
-
-			if (unchanged[rowNum-1]) {
-				console.log("unchagned.");
-				resolve(unchanged[rowNum-1]);
+			if (unchanged[currCell.colIndex]) {
+				resolve(unchanged[currCell.colIndex][rowNum-1]);
+			} else {
+				queueJob(dataType, {
+					rowNum: rowNum,
+					i18n: i18n.dataTypes[dataType],
+					countryI18n: i18n.countries,
+					rowState: currCell.rowState,
+					existingRowData: currRowData,
+					countryData,
+					workerResources: {
+						workerUtils: workerResources.workerUtils
+					}
+				}, resolve, reject);
 			}
-
-			queueJob(dataType, {
-				rowNum: rowNum,
-				i18n: i18n.dataTypes[dataType],
-				countryI18n: i18n.countries,
-				rowState: currCell.rowState,
-				existingRowData: currRowData,
-				countryData,
-				workerResources: {
-					workerUtils: workerResources.workerUtils
-				}
-			}, resolve, reject);
 		});
 	})
 };
@@ -242,6 +237,7 @@ const processQueue = (dataType: DataTypeFolder) => {
 	// method for all data types in a particular process batch and returns an array of promises, which when resolved,
 	// returns the generated data for that row
 	worker.onmessage = (response: any) => {
+		// TODO this isn't used and looks fishy
 		if (typeof response.then === 'function') {
 			response
 				.then(() => {

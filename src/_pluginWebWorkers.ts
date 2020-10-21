@@ -1,6 +1,6 @@
 export default {
 	"coreWorker": "",
-	"coreDataTypeWorker": "dataTypes.worker-65f28d76c6cd6c9568bfd1bc2104fafe.js",
+	"coreDataTypeWorker": "dataTypes.worker-a08224543c896aae285fda4308170ce2.js",
 	"coreExportTypeWorker": "exportTypes.worker-9b546d7c7909e02146fafee124180d37.js",
 	"workerUtils": "workerUtils-3e4b0254a9f5dd745cc9892204c48b91.js",
 	"dataTypes": {

@@ -114,13 +114,15 @@ export const getRowGenerationRatePerSecond = (
  * data type maps to other data types in whatever way they find useful (e.g. a Composite field just referencing it
  * via its Options field and entering a {{ROWX}} placeholder string).
  */
-export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & { id: string })[] , dataTypePreviewData: any) => {
+export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & { id: string })[] , dataTypePreviewData: any): any => {
 	if (!idsToRefresh.length) {
 		return {};
 	}
 
 	const columnsWithIndex = columns.map((col, colIndex) => ({ ...col, colIndex }));
 
+	// first pass is to look at the list of IDs about to be refreshed, and get a list of data types in the
+	// grid that aren't affected by this change
 	const immediatelyUnchanged = columnsWithIndex
 		.filter((col) => idsToRefresh.indexOf(col.id) === -1)
 		.map((col) => col.dataType);
@@ -134,8 +136,9 @@ export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & 
 		});
 	});
 
+	console.log({ immediatelyUnchanged, affectedDataTypes });
+
 	const result: any = {};
-	// let hasData = false;
 	columnsWithIndex.filter((col) => {
 		// just for clarity, because this is kinda dense
 		const colIsNotAffectedDataType = !affectedDataTypesObj[col.dataType];
@@ -144,8 +147,9 @@ export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & 
 		return colIsNotAffectedDataType && isNotDirectlyChangedCol;
 	}).map((col) => {
 		result[col.colIndex] = dataTypePreviewData[col.id];
-		// hasData = true;
 	});
+
+	console.log("unchanged: ", result);
 
 	return result;
 };
