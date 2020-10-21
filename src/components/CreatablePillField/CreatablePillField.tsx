@@ -127,7 +127,8 @@ const CreatablePillField = ({ onChange, value, error, placeholder }: any): JSX.E
 	);
 };
 CreatablePillField.defaultProps = {
-	placeholder: 'Press enter to create item'
+	placeholder: 'Press enter to create item',
+	error: ''
 };
 
 export default CreatablePillField;

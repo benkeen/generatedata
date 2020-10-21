@@ -125,21 +125,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 		const sortedRows = selectors.getSortedRows(state);
 		const columns = selectors.getColumns(state);
 
-		/*
-		1. look at changing Ids.
-		2. get a list of existing data that doesn't need to change & pass that into dataTypeWorker. It'll use
-		   that to bypass the usual generation step, but still pass in all the necessary info for later process batches
-		   for correct data generation.
-		*/
-
-		console.log(sortedRows);
-
-		getUnchangedData(idsToRefresh, columns, dataTypePreviewData);
-
-		// desired format:
-		// unchangedData = {
-		// 	[index]: [20 objects of old data + metadata]
-		// }
+		const unchanged = getUnchangedData(idsToRefresh, columns, dataTypePreviewData);
 
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
@@ -147,6 +133,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 		dataTypeWorker.postMessage({
 			numResults: C.MAX_PREVIEW_ROWS,
 			batchSize: C.MAX_PREVIEW_ROWS,
+			unchanged,
 			columns,
 			i18n: getStrings(),
 			template,

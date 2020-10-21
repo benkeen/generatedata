@@ -178,7 +178,7 @@ export const processBatches = getProcessBatches(dataTypes);
 
 // returns a hash of { [data type] => [array of affected data types] }. This means that when the property Data Type
 // is changed, the Data Types in the key array could be affected
-export const getAffectedDataTypes = (dataTypes: any) => {
+export const getAffectedDataTypes = (dataTypes: any): any => {
 	const affectedDataTypes: any = {};
 
 	Object.keys(dataTypes).forEach((dataType: DataTypeFolder) => {

@@ -102,7 +102,7 @@ export const getRowGenerationRatePerSecond = (
 
 
 /*
- * Used for the preview panel. When a user changes a row we need to figure out what rows to invalidate in the preview
+ * Used for the preview panel only. When a user changes a row we need to figure out what rows to invalidate in the preview
  * panel. Examples:
  *  - A row change only affects itself. Just that row should be updated, all other rows can be marked as unchanged.
  *  - A region row changes, and a city row depends on it. Here, both the region + city rows need to refresh.
@@ -114,25 +114,38 @@ export const getRowGenerationRatePerSecond = (
  * data type maps to other data types in whatever way they find useful (e.g. a Composite field just referencing it
  * via its Options field and entering a {{ROWX}} placeholder string).
  */
-export const getUnchangedData = (idsToRefresh: string[], columns: ColumnData[], dataTypePreviewData: any) => {
+export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & { id: string })[] , dataTypePreviewData: any) => {
 	if (!idsToRefresh.length) {
 		return {};
 	}
 
-	// loop through IDs to refresh
-	// get their data type
-	// get list of other DTs that depend on them
-	// stick 'em all into a Giant List o' Data Types To Refresh
-	// loop through all `columns` and if it's not in the Giant List o' Data Types To Refresh, add it to the unchangedData
-	// list
+	const columnsWithIndex = columns.map((col, colIndex) => ({ ...col, colIndex }));
 
+	const immediatelyUnchanged = columnsWithIndex
+		.filter((col) => idsToRefresh.indexOf(col.id) === -1)
+		.map((col) => col.dataType);
 
-	idsToRefresh.forEach((id) => {
-
+	const affectedDataTypesObj: any = {};
+	immediatelyUnchanged.forEach((dataType) => {
+		affectedDataTypes[dataType].forEach((dt: any) => {
+			if (!affectedDataTypesObj[dt]) {
+				affectedDataTypesObj[dt] = true;
+			}
+		});
 	});
 
-	console.log(columns);
+	const result: any = {};
+	// let hasData = false;
+	columnsWithIndex.filter((col) => {
+		// just for clarity, because this is kinda dense
+		const colIsNotAffectedDataType = !affectedDataTypesObj[col.dataType];
+		const isNotDirectlyChangedCol = idsToRefresh.indexOf(col.id) === -1;
 
-	// console.log(idsToRefresh, columns, dataTypePreviewData);
+		return colIsNotAffectedDataType && isNotDirectlyChangedCol;
+	}).map((col) => {
+		result[col.colIndex] = dataTypePreviewData[col.id];
+		// hasData = true;
+	});
+
+	return result;
 };
-

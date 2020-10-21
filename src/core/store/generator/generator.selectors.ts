@@ -47,11 +47,16 @@ export const getNumRows = createSelector(
 	(rows) => rows.length
 );
 
-// problem! this returns a new array for any single row change, causing a repaint of the entire grid
 export const getSortedRowsArray = createSelector(
 	getRows,
 	getSortedRows,
 	(rows, sorted) => sorted.map((id: string) => rows[id])
+);
+
+export const getSortedRowsArrayWithIds = createSelector(
+	getRows,
+	getSortedRows,
+	(rows, sorted) => sorted.map((id: string) => ({ ...rows[id], id }))
 );
 
 export const getTitles = createSelector(
@@ -65,23 +70,24 @@ export const getNonEmptySortedRows = createSelector(
 );
 
 export const getSortedRowsWithDataTypeSelected = createSelector(
-	getSortedRowsArray,
+	getSortedRowsArrayWithIds,
 	(rows) => rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
 );
 
 // returns everything in the grid where a data type has been selected
 export const getColumns = createSelector(
 	getSortedRowsWithDataTypeSelected,
-	(rows): ColumnData[] => {
+	(rows): (ColumnData & { id: string })[] => {
 		return rows.filter((row: DataRow) => row.dataType !== null && row.dataType.trim() !== '')
-			.map(({ dataType, title, data }: any) => {
+			.map(({ dataType, title, data, id }: any) => {
 				const { getMetadata } = getDataType(dataType);
 				const metadata = getMetadata ? getMetadata(data) : null;
 
 				return {
 					title,
 					dataType,
-					metadata
+					metadata,
+					id
 				};
 			});
 	}

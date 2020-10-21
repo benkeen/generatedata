@@ -76,6 +76,7 @@ const generateNextBatch = (data: any, numBatches: number, batchSize: number, bat
 	generateBatch({
 		template: data.template,
 		numResults: data.numResults,
+		unchanged: data.unchanged,
 		i18n: data.i18n,
 		firstRow,
 		lastRow,
@@ -107,14 +108,14 @@ const getBatchInfo = (numResults: number, numBatches: number, batchSize: number,
 
 
 // this resolve the promise for every batch of data generated
-const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum }: any): Promise<any> => new Promise((resolve) => {
+const generateBatch = ({ template, unchanged, numResults, i18n, firstRow, lastRow, batchNum }: any): Promise<any> => new Promise((resolve) => {
 	const rowPromises: any = [];
 
 	// rows are independent! The only necessarily synchronous bit is between process batches. So here we just run
 	// them all in a loop
 	for (let rowNum=firstRow; rowNum<=lastRow; rowNum++) {
 		let currRowData: any[] = [];
-		rowPromises.push(processBatchSequence(template, rowNum, i18n, currRowData));
+		rowPromises.push(processBatchSequence(template, rowNum, i18n, currRowData, unchanged));
 	}
 
 	Promise.all(rowPromises)
@@ -130,7 +131,7 @@ const generateBatch = ({ template, numResults, i18n, firstRow, lastRow, batchNum
 		});
 });
 
-const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[]): any => {
+const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any, currRowData: any[], unchanged: any): any => {
 	const processBatches = Object.keys(generationTemplate);
 
 	return new Promise((resolveAll): any => {
@@ -145,7 +146,7 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 
 			// yup. We're mutating the currRowData param on each loop. We don't care hhahaha!!! Up yours, linter!
 			sequence = sequence
-				.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData))
+				.then(() => processDataTypeBatch(currBatch, rowNum, i18n, currRowData, unchanged))
 				.then((promises) => {
 
 					// this bit's sneaky. It ensures that the CURRENT batch within the row being generated is fully processed
@@ -175,14 +176,19 @@ const processBatchSequence = (generationTemplate: any, rowNum: number, i18n: any
 	});
 };
 
-const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any): Promise<any>[] => {
+const processDataTypeBatch = (cells: any[], rowNum: number, i18n: any, currRowData: any, unchanged: any): Promise<any>[] => {
 	return cells.map((currCell: any) => {
 		let dataType = currCell.dataType;
 
 		return new Promise((resolve, reject) => {
 
 			// *** here only bother getting new data for the rows that we need
-			// console.log(currCell, rowNum);
+			//console.log(currCell, rowNum, unchanged);
+
+			if (unchanged[rowNum-1]) {
+				console.log("unchagned.");
+				resolve(unchanged[rowNum-1]);
+			}
 
 			queueJob(dataType, {
 				rowNum: rowNum,

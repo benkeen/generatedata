@@ -30,4 +30,3 @@ describe('getRowGenerationRatePerSecond', () => {
 		expect(getRowGenerationRatePerSecond(0, 500, 2000, 60)).toEqual({ 1: 20, 2: 40 });
 	});
 });
-
