@@ -1,4 +1,6 @@
-import { CountryType } from '../_plugins';
+import { countryList } from '../_plugins';
+import { CountryType } from '~types/countries';
+
 
 // this houses all Export Type code loaded async after the application starts
 const loadedCountryTypes: any = {};
@@ -20,3 +22,5 @@ export const loadCountryBundle = (country: CountryType): any => {
 			});
 	});
 };
+
+export const getCountryList = () => countryList;

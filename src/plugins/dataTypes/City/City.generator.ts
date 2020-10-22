@@ -1,7 +1,7 @@
 import utils from '../../../utils';
 import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData } from '~types/dataTypes';
-import { Region } from '~types/countries';
-import { countryList, CountryType } from '../../../_plugins';
+import { Region, CountryType } from '~types/countries';
+import { countryList } from '../../../_plugins';
 import { CityState } from './City';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {

@@ -153,7 +153,5 @@ export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & 
 		result[col.colIndex] = dataTypePreviewData[col.id];
 	});
 
-	console.log("unchanged: ", result);
-
 	return result;
 };

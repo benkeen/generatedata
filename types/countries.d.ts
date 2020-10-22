@@ -1,4 +1,7 @@
-import { CountryType } from '../src/_plugins';
+import { countries } from '../src/_plugins';
+
+export type countryTuple = typeof countries;
+export type CountryType = countryTuple[number];
 
 export interface GetCountryData {
 	(i18n: any): CountryDataType;

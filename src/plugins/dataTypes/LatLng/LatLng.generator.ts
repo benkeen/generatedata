@@ -6,12 +6,13 @@ const DECIMAL_PLACES = 5;
 // Valid ranges:
 // Lat: -90 -> + 90
 // Lng: -180 -> +180
+const pow = Math.pow(DECIMAL_PLACES, 10);
 const cachedMath = {
-	minLat: -90 * (DECIMAL_PLACES ^ 10),
-	maxLat: 90 * (DECIMAL_PLACES ^ 10),
-	minLng: -180 * (DECIMAL_PLACES ^ 10),
-	maxLng: 180 * (DECIMAL_PLACES ^ 10),
-	divisor: (DECIMAL_PLACES ^ 10)
+	minLat: -90 * pow,
+	maxLat: 90 * pow,
+	minLng: -180 * pow,
+	maxLng: 180 * pow,
+	divisor: pow
 };
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {

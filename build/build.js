@@ -58,8 +58,6 @@ const createPluginsListFile = () => {
 	const countries = helpers.getPlugins('countries', completeConfigFile.countryBlacklist, false);
 	content += `\nexport const countryList = ['${countries.join('\', \'')}'];\n`;
 	content += `export const countries = ['${countries.join('\', \'')}'] as const;\n`;
-	content += `export type countryTuple = typeof countries;\n`;
-	content += `export type CountryType = countryTuple[number];\n`;
 
 	const file = path.join(__dirname, '..', 'src/_plugins.tsx');
 	if (fs.existsSync(file)) {

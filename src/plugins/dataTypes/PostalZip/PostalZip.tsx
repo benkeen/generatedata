@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
-import { DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { countryList, DataTypeFolder } from '../../../_plugins';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './PostalZip.scss';
@@ -87,6 +87,7 @@ const ZipDialog = ({ visible, data, id, onClose, countryI18n, coreI18n, i18n, on
 		if (data.source !== 'countries') {
 			return null;
 		}
+
 		const countryPluginOptions = countryList.map((countryName) => ({
 			value: countryName,
 			label: countryI18n[countryName].countryName
@@ -205,3 +206,14 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
+
+export const getMetadata = (): DTMetadata => ({
+	general: {
+		dataType: 'string'
+	},
+	sql: {
+		field: 'varchar(10) default NULL',
+		field_Oracle: 'varchar2(10) default NULL',
+		field_MSSQL: 'VARCHAR(10) NULL'
+	}
+});

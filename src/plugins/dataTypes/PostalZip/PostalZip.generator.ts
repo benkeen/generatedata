@@ -1,46 +1,52 @@
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { countryList, CountryType } from '../../../_plugins';
-import { getRandomArrayValue, generatePlaceholderStr } from '~utils/randomUtils';
-import { loadCountryBundle } from '~utils/countryUtils';
-import { CountryDataType, GetCountryData, Region } from '~types/countries';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { CountryDataType, CountryType, Region } from '~types/countries';
+import utils from '../../../utils';
+
+let workerUtilsLoaded = false;
+
+const onmessage = (e: any) => {
+	if (!workerUtilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		workerUtilsLoaded = true;
+	}
+
+	postMessage(generate(e.data));
+};
 
 
-export const generate = (data: DTGenerationData): Promise<DTGenerateResult> => {
-	const { rowState, countryI18n, existingRowData } = data;
+export const generate = (data: DTGenerationData): DTGenerateResult => {
+	const { rowState, countryData, existingRowData } = data;
 	const { source, selectedCountries } = rowState;
 
-	return new Promise((resolve) => {
-		let country: CountryType;
-		let regionRow: any;
-		if (source === 'any') {
-			country = getRandomArrayValue(countryList as CountryType[]);
-		} else if (source === 'countries') {
-			const list = selectedCountries.length ? selectedCountries : countryList;
-			country = getRandomArrayValue(list);
-		} else if (source === 'countryRow') {
-			const countryRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
-			country = countryRow!.data.countryDataType;
-		} else {
-			regionRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
-			country = regionRow!.data.countryDataType;
-		}
+	const countryList = utils.countryUtils.getCountryList();
 
-		loadCountryBundle(country)
-			.then((getCountryData: GetCountryData) => {
-				const countryData = getCountryData(countryI18n[country]);
+	let country: CountryType;
+	let regionRow: any;
 
-				let selectedRegion: Region;
-				if (regionRow) {
-					selectedRegion = countryData.regions.find((i: Region) => i.regionName === regionRow!.data.display) as Region;
-				} else {
-					selectedRegion = getRandomArrayValue(countryData.regions);
-				}
+	if (source === 'any') {
+		country = utils.randomUtils.getRandomArrayValue(countryList as CountryType[]);
+	} else if (source === 'countries') {
+		const list = selectedCountries.length ? selectedCountries : countryList;
+		country = utils.randomUtils.getRandomArrayValue(list);
+	} else if (source === 'countryRow') {
+		const countryRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
+		country = countryRow!.data.countryDataType;
+	} else {
+		regionRow = existingRowData.find(({ id }) => id === rowState.targetRowId);
+		country = regionRow!.data.countryDataType;
+	}
 
-				resolve({
-					display: getRegionPostalCode(countryData, selectedRegion)
-				});
-			});
-	});
+	const selectedCountry = countryData[country];
+	let selectedRegion: Region;
+	if (regionRow) {
+		selectedRegion = selectedCountry.regions.find((i: Region) => i.regionName === regionRow!.data.display) as Region;
+	} else {
+		selectedRegion = utils.randomUtils.getRandomArrayValue(selectedCountry.regions);
+	}
+
+	return {
+		display: getRegionPostalCode(selectedCountry, selectedRegion)
+	};
 };
 
 
@@ -67,18 +73,9 @@ const getRegionPostalCode = (countryData: CountryDataType, region: Region): stri
 	}
 
 	const formats = format.split('|');
-	const selectedFormat = getRandomArrayValue(formats);
+	const selectedFormat = utils.randomUtils.getRandomArrayValue(formats);
 
-	return generatePlaceholderStr(selectedFormat, placeholders);
+	return utils.randomUtils.generatePlaceholderStr(selectedFormat, placeholders);
 };
 
-export const getMetadata = (): DTMetadata => ({
-	general: {
-		dataType: 'infer'
-	},
-	sql: {
-		field: 'varchar(10) default NULL',
-		field_Oracle: 'varchar2(10) default NULL',
-		field_MSSQL: 'VARCHAR(10) NULL'
-	}
-});
+export {};

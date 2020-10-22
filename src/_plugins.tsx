@@ -99,5 +99,3 @@ export type ExportTypeFolder = keyof typeof exportTypes;
 
 export const countryList = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Pakistan', 'Peru', 'Poland', 'Russia', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Vietnam'];
 export const countries = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Pakistan', 'Peru', 'Poland', 'Russia', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Vietnam'] as const;
-export type countryTuple = typeof countries;
-export type CountryType = countryTuple[number];

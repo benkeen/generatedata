@@ -27,12 +27,12 @@ export const getRandomEmail = (wordsArr: string[], suffixes = ["edu", "com", "or
 
 	// if the email exceeded 254 chars (the max valid number of chars), truncate it. This could be way
 	// more elegant, but it's SUCH a fringe case I don't much mind
-	let email = `${prefix}@${domain}.${suffix}`;
+	let email = `${prefix}@${domain}.${suffix}`.toLowerCase();
 	const length = email.length;
 	if (length > MAX_EMAIL_LENGTH) {
 		const prefixChunk = prefix.slice(0, Math.ceil(prefix.length / 2));
 		const domainChunk = domain.slice(0, Math.ceil(domain.length / 2));
-		email = `${prefixChunk}@${domainChunk}.${suffix}`;
+		email = `${prefixChunk}@${domainChunk}.${suffix}`.toLowerCase();
 	}
 
 	return email;

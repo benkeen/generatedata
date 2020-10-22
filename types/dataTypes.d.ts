@@ -1,6 +1,7 @@
 import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
-import { AnyObject, Tag } from './general';
-import { CountryType, DataTypeFolder } from '../src/_plugins';
+import { AnyObject } from './general';
+import { DataTypeFolder } from '../src/_plugins';
+import { CountryType } from '~types/countries';
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;
@@ -140,6 +141,5 @@ export type DTCustomProps = {
 	id?: undefined;
 	dimensions?: undefined;
 	onUpdate?: undefined;
-
 	[propName: string]: any;
 }
