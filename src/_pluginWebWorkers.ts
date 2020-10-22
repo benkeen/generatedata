@@ -10,7 +10,7 @@ export default {
 		"City": "DT-City.generator-ebd4355dbc806400fbda36e488cec6e0.js",
 		"Company": "DT-Company.generator-b7bd7c08c48f94fb2c88412cc82fcef4.js",
 		"Composite": "DT-Composite.generator-34905b4d06d1520faa96c6be7746597c.js",
-		"Constant": "DT-Constant.generator-34dd1f6d81154fe8e17685b74eca3cc3.js",
+		"Constant": "DT-Constant.generator-ca9cf12d5f32cc92c9158072a5231bd9.js",
 		"Country": "DT-Country.generator-062c61a818ba914db4328bb6e2b0ad7e.js",
 		"Date": "DT-Date.generator-4231dc0c676c244e7875ab48d20cbdc3.js",
 		"Email": "DT-Email.generator-f7cdbd7ed7c9a5e875803792dac1a601.js",

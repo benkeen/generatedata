@@ -14,7 +14,6 @@
   "example_fullnames": "Alex Smith oder Alex J. Smith",
   "example_surname": "Smith (Familienname)",
   "help_intro": "Zeichen (|) können Sie mehrere Formate, indem Sie sie mit dem Rohr geben. Die folgenden Zeichenfolgen werden auf die zufälligen Namen umgerechnet werden:",
-  "incomplete_fields": "Der Name Datentyp haben muss das Format eingetragen im Options Textfeld. Bitte beheben Sie die folgenden Zeilen:",
   "name": "Name",
   "type_FemaleName": "Ein weiblicher Vorname.",
   "type_Initial": "Ein Großbuchstaben, AZ.",

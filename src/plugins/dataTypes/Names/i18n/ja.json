@@ -3,7 +3,6 @@
   "DESC": "Generates human names (mostly Western) in any format you need.",
   "DEFAULT_TITLE": "name",
   "help_intro": "You can specify multiple formats by separating them with the pipe (|) character. The following strings will be converted to their random name equivalent:",
-  "incomplete_fields": "The Name data type needs to have the format entered in the Options text field. Please fix the following rows:",
   "name": "Name",
   "example_FemaleName": "Jane (Female Name)",
   "example_FemaleName_Surname": "Jane Smith",

@@ -275,5 +275,6 @@
   "countrySpecific": "Country-specific",
   "financial": "Financial",
   "copyToClipboard": "Copy to clipboard",
-  "copiedToClipboard": "Copied to clipboard"
+  "copiedToClipboard": "Copied to clipboard",
+  "pressEnterAddItem": "Press enter to add item"
 }

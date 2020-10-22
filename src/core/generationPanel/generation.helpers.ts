@@ -142,8 +142,6 @@ export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & 
 		}
 	});
 
-	console.log({ unchangedDataTypes });
-
 	const result: any = {};
 	columnsWithIndex.filter((col) => {
 		// just for clarity, because this is kinda dense

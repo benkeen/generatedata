@@ -127,8 +127,6 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 
 		const unchanged = getUnchangedData(idsToRefresh, columns, dataTypePreviewData);
 
-		console.log({ unchanged });
-
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
 		// far clearer to the end user that way
