@@ -16,8 +16,9 @@ a {
 :global(.Select-menu-outer) {
 	z-index: 10000 !important;
 }
-body :global(.MuiTooltip-popper) {
-	z-index: 2;
+
+body :global(div.MuiTooltip-popper) {
+	z-index: 5010 !important;
 }
 
 .recharts-wrapper .recharts-area {

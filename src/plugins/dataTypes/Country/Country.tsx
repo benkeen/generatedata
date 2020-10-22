@@ -37,7 +37,7 @@ const CountryDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
-			<div style={{ maxWidth: 500 }}>
+			<div style={{ width: 500 }}>
 				<DialogTitle onClose={onClose}>{i18n.selectCountries}</DialogTitle>
 				<DialogContent dividers>
 					<div>

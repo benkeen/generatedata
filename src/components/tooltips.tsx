@@ -22,10 +22,10 @@ export const Tooltip = withStyles(() => ({
 		color: '#dddddd',
 		lineHeight: '16px',
 		fontSize: 11,
-		padding: 10
+		padding: 10,
 	},
 	arrow: {
-		color: '#333333'
+		color: '#333333',
 	}
 }))(MuiTooltip);
 
