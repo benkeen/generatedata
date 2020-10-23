@@ -9,8 +9,10 @@ import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { ErrorTooltip } from '~components/tooltips';
 import TextField from '~components/TextField';
+import CopyToClipboard from '~components/CopyToClipboard/CopyToClipboard';
 import * as sharedStyles from '../../../styles/shared.scss';
 import * as styles from './Date.scss';
+
 
 export type DateState = {
 	fromDate: number;
@@ -162,198 +164,47 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 	);
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
+const Copy = ({ content, tooltip, message }: any): JSX.Element => (
+	<span className={styles.copy}>
+		<CopyToClipboard
+			content={content}
+			message={message}
+			tooltip={tooltip}
+		/>
+	</span>
+);
+
+const generateRows = (letters: string[], i18n: any, coreI18n: any): JSX.Element[] => letters.map((letter: string): JSX.Element => (
+	<div className={styles.row} key={letter}>
+		<div className={styles.col1}>
+			<label>{letter}</label>
+		</div>
+		<div className={sharedStyles.copyCol}>
+			<Copy content={letter} message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
+		</div>
+		<div className={styles.col2}>
+			{i18n[`${letter}Format`]}
+		</div>
+		<div className={styles.col3}>
+			{i18n[`${letter}FormatExample`]}
+		</div>
+	</div>
+));
+
+export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 	<>
-		<p>
-			{i18n.helpIntro}
-		</p>
+		<p dangerouslySetInnerHTML={{ __html: i18n.helpIntro }} />
 
 		<h3>{i18n.day}</h3>
-
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>d</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_d}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_d_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>D</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_D}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_D_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>j</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_j}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_j_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>l</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_l}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_l_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>S</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_S}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_S_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>w</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_w}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_w_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>z</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_z}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_z_example}
-			</div>
-		</div>
+		{generateRows(['d', 'do', 'E', 'EEEE', 'EEEEE', 'EEEEEE', 'D'], i18n, coreI18n)}
 
 		<h3>{i18n.week}</h3>
-
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>W</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_W}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_W_example}
-			</div>
-		</div>
+		{generateRows(['l'], i18n, coreI18n)}
 
 		<h3>{i18n.month}</h3>
-
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>F</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_F}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_F_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>m</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_m}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_m_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>M</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_M}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_M_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>n</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_n}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_n_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>t</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_t}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_t_example}
-			</div>
-		</div>
+		{generateRows(['M', 'Mo', 'MMM', 'MMMM'], i18n, coreI18n)}
 
 		<h3>{i18n.year}</h3>
-
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>L</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_L}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_L_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>Y</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_Y}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_Y_example}
-			</div>
-		</div>
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>y</label>
-			</div>
-			<div className={styles.col2}>
-				{i18n.help_y}
-			</div>
-			<div className={styles.col3}>
-				{i18n.help_y_example}
-			</div>
-		</div>
+		{generateRows(['Y'], i18n, coreI18n)}
 	</>
 );

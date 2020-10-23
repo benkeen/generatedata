@@ -72,14 +72,14 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label className={sharedStyles.pill}>L</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="L" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help1 }} />
 			<div className={styles.col3}>
 				<label className={sharedStyles.pill}>V</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="V" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help2 }} />
@@ -88,14 +88,14 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label className={sharedStyles.pill}>l</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="l" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help3 }} />
 			<div className={styles.col3}>
 				<label className={sharedStyles.pill}>v</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="v" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help4 }} />
@@ -104,14 +104,14 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label className={sharedStyles.pill}>D</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="D" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help5 }} />
 			<div className={styles.col3}>
 				<label className={sharedStyles.pill}>F</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="F" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help6 }} />
@@ -120,14 +120,14 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label className={sharedStyles.pill}>C</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="C" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help7 }} />
 			<div className={styles.col3}>
 				<label className={sharedStyles.pill}>x</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="x" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help8 }} />
@@ -136,14 +136,14 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label className={sharedStyles.pill}>c</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="c" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help9 }} />
 			<div className={styles.col3}>
 				<label className={sharedStyles.pill}>X</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="X" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help10 }} />
@@ -152,14 +152,14 @@ export const Help = ({ coreI18n, i18n }: DTHelpProps): JSX.Element => (
 			<div className={styles.col1}>
 				<label className={sharedStyles.pill}>E</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="E" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.help11 }} />
 			<div className={styles.col3}>
 				<label className={sharedStyles.pill}>H</label>
 			</div>
-			<div className={styles.copyCol}>
+			<div className={sharedStyles.copyCol}>
 				<Copy content="H" message={coreI18n.copiedToClipboard} tooltip={coreI18n.copyToClipboard} />
 			</div>
 			<div className={styles.col4} dangerouslySetInnerHTML={{ __html: i18n.help12 }} />

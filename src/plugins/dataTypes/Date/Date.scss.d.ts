@@ -3,6 +3,7 @@ declare namespace DateScssNamespace {
     col1: string;
     col2: string;
     col3: string;
+    copy: string;
     dateBtn: string;
     dateField: string;
     dateRow: string;
