@@ -1,4 +1,5 @@
 import * as React from 'react';
+import TextField from '~components/TextField';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
 type TextRandomState = {
@@ -13,7 +14,7 @@ export const initialState: TextRandomState = {
 	maxWords: 10
 };
 
-export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ coreI18n, i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
 		onUpdate({
 			...data,
@@ -21,35 +22,40 @@ export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Eleme
 		});
 	};
 
+	const minWordsError = data.minWords ? '' : coreI18n.requiredField;
+	const maxWordsError = data.maxWords ? '' : coreI18n.requiredField;
+
 	return (
 		<>
-			<div style={{ margin: '5px 0' }}>
+			<div style={{ margin: '5px 0 2px' }}>
 				<input
 					type="checkbox"
 					id={`${id}-startsWithLipsum`}
 					checked={data.startsWithLipsum}
 					onChange={(e: any): void => onChange('startsWithLipsum', e.target.checked)}
 				/>
-				<label htmlFor={`${id}-startsWithLipsum`}>{i18n.start_with_lipsum}</label>
+				<label htmlFor={`${id}-startsWithLipsum`}>{i18n.startWithLipsum}</label>
 			</div>
-			<div>
+			<div style={{ marginLeft: 3 }}>
 				{i18n.generate}
-				#<input
+				<TextField
 					type="number"
 					min="0"
+					error={minWordsError}
 					id={`${id}-minWords`}
 					style={{ width: 50, margin: '0 2px' }}
 					value={data.minWords}
-					onChange={(e): void => onChange('minWords', e.target.value)}
+					onChange={(e: any): void => onChange('minWords', e.target.value)}
 				/>
 				{i18n.to}
-				#<input
+				<TextField
 					type="number"
 					min="0"
+					error={maxWordsError}
 					id={`${id}-maxWords`}
 					style={{ width: 50, margin: '0 2px' }}
 					value={data.maxWords}
-					onChange={(e): void => onChange('maxWords', e.target.value)}
+					onChange={(e: any): void => onChange('maxWords', e.target.value)}
 				/>
 				{i18n.words}
 			</div>
