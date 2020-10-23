@@ -7,6 +7,9 @@ import Dropdown from '~components/dropdown/Dropdown';
 import Event from '@material-ui/icons/Event';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { ErrorTooltip } from '~components/tooltips';
+import TextField from '~components/TextField';
+import * as sharedStyles from '../../../styles/shared.scss';
 import * as styles from './Date.scss';
 
 export type DateState = {
@@ -69,7 +72,7 @@ export const getOptions = (): any[] => {
 	]);
 };
 
-export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
+export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = ({ value }: { value: string }): void => {
 		onUpdate({
 			...data,
@@ -80,7 +83,7 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 
 	return (
 		<Dropdown
-			placeholder="Date format"
+			placeholder={i18n.dateFormat}
 			value={data.example}
 			options={getOptions()}
 			onChange={onChange}
@@ -88,9 +91,9 @@ export const Example = ({ data, onUpdate }: DTExampleProps): JSX.Element => {
 	);
 };
 
-export const Options = ({ data, onUpdate, i18n }: DTOptionsProps): JSX.Element => {
+export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX.Element => {
 	const [isOpen, setOpen] = React.useState(false);
-	const [selectedDatePicker, setDatePicker] = React.useState('fromDate'); // fromDate / toDate
+	const [selectedDatePicker, setDatePicker] = React.useState('fromDate');
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
@@ -108,6 +111,13 @@ export const Options = ({ data, onUpdate, i18n }: DTOptionsProps): JSX.Element =
 		setOpen(false);
 	};
 
+	let toDateClass = styles.dateBtn;
+	let toDateError = '';
+	if (data.fromDate > data.toDate) {
+		toDateClass += ` ${sharedStyles.errorField}`;
+		toDateError = i18n.endDateEarlierThanStartDate;
+	}
+
 	return (
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 			<div>
@@ -119,17 +129,22 @@ export const Options = ({ data, onUpdate, i18n }: DTOptionsProps): JSX.Element =
 						<Event />
 					</Button>
 					<ArrowRightAlt />
-					<Button onClick={(): void => onBtnClick('toDate')} variant="outlined" disableElevation className={styles.dateBtn}>
-						<span style={{ marginRight: 3 }}>
-							{format(fromUnixTime(data.toDate), 'MMM d, y')}
-						</span>
-						<Event />
-					</Button>
+					<ErrorTooltip title={toDateError} arrow disableHoverListener={!toDateError} disableFocusListener={!toDateError}>
+						<Button onClick={(): void => onBtnClick('toDate')} variant="outlined" disableElevation className={toDateClass}>
+							<span style={{ marginRight: 3 }}>
+								{format(fromUnixTime(data.toDate), 'MMM d, y')}
+							</span>
+							<Event />
+						</Button>
+					</ErrorTooltip>
 				</div>
 				<div>
-					<span className={styles.formatCodeLabel}>{i18n.format_code}</span>
-					<input type="text" value={data.format} style={{ width: 140 }}
-						onChange={(e): void => onChange('format', e.target.value)}
+					<span className={styles.formatCodeLabel}>{i18n.formatCode}</span>
+					<TextField
+						error={data.format ? '' : coreI18n.requiredField}
+						value={data.format}
+						style={{ width: 140 }}
+						onChange={(e: any): void => onChange('format', e.target.value)}
 					/>
 				</div>
 				<div style={{ display: 'none' }}>
@@ -150,7 +165,7 @@ export const Options = ({ data, onUpdate, i18n }: DTOptionsProps): JSX.Element =
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
-			{i18n.help_intro}
+			{i18n.helpIntro}
 		</p>
 
 		<h3>{i18n.day}</h3>
@@ -342,24 +357,3 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 		</div>
 	</>
 );
-
-
-// var _validate = function (rows) {
-// 	var visibleProblemRows = [];
-// 	var problemFields = [];
-// 	for (var i = 0; i < rows.length; i++) {
-// 		if ($("#dtOption_" + rows[i]).val() === "") {
-// 			var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-// 			visibleProblemRows.push(visibleRowNum);
-// 			problemFields.push($("#dtOption_" + rows[i]));
-// 		}
-// 	}
-// 	var errors = [];
-// 	if (visibleProblemRows.length) {
-// 		errors.push({
-// 			els: problemFields,
-// 			error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"
-// 		});
-// 	}
-// 	return errors;
-// };
