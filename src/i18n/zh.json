@@ -28,7 +28,6 @@
 	"cannotChangeNumRows": "对不起,不允许更改生成行数的数字.",
 	"centralAmerica": "中美洲",
 	"checkDatabaseInfo": "检查数据库信息",
-	"clearAndClose": "清除并关闭",
 	"clearPage": "清除页面",
 	"clearPageConfirmation": "您确定要清除页面吗？ 您所做的任何更改都将丢失。",
 	"clearThePage": "清空该页面",
@@ -48,7 +47,6 @@
 	"createAccountRightarrow": "创建账户 &raquo;",
 	"createFileRightarrow": "创建文件 &raquo;",
 	"createSettingsFile": "创建配置文件",
-	"creditCardData": "信用卡数据",
 	"dataCreated": "创建数据",
 	"dataFormat": "数据格式化",
 	"dataSet": "数据集",
@@ -145,7 +143,6 @@
 	"loginUrlC": "登录 URL:",
 	"logout": "登出",
 	"makeDataSetPublicAgreement": "我要分享该数据集,并且需要公开它.",
-	"math": "数学",
 	"metaDescription": "GenerateData.com: 用于生成测试软件中自定义随机数据,采用免费GNU协议",
 	"metaKeywords": "随机数据, 测试数据, 示例数据, 数据生成器, 生成数据",
 	"misc": "杂项",
@@ -270,5 +267,8 @@
 	"yes": "确认",
 	"yourAccount": "你的账号",
 	"yourDataSetNameHere": "在这里写数据集名称",
-	"yourDataSets": "你的数据集"
+	"yourDataSets": "你的数据集",
+  "clear": "明确",
+  "copiedToClipboard": "复制到剪贴板",
+  "copyToClipboard": "复制到剪贴板"
 }

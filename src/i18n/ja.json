@@ -28,7 +28,6 @@
 	"cannotChangeNumRows": "申し訳ありませんが、生成される行数を変更することはできません。",
 	"centralAmerica": "Central America",
 	"checkDatabaseInfo": "Check Database Info",
-	"clearAndClose": "クリアして閉じる",
 	"clearPage": "ページをクリア",
 	"clearPageConfirmation": "ページをクリアしてもよろしいですか？ 行った変更はすべて失われます。",
 	"clearThePage": "Clear the Page",
@@ -48,7 +47,6 @@
 	"createAccountRightarrow": "Create Account &raquo;",
 	"createFileRightarrow": "Create File &raquo;",
 	"createSettingsFile": "Create Settings File",
-	"creditCardData": "Credit Card Data",
 	"dataCreated": "Data Created",
 	"dataFormat": "Data Format",
 	"dataSet": "Data Set",
@@ -145,7 +143,6 @@
 	"loginUrlC": "Login URL:",
 	"logout": "Logout",
 	"makeDataSetPublicAgreement": "I understand that to share this Data Set, I need to make it public.",
-	"math": "Math",
 	"metaDescription": "GenerateData.com: free, GNU-licensed, random custom data generator for testing software",
 	"metaKeywords": "Random Data, Test Data, Sample Data, data generator, generate data",
 	"misc": "Misc",
@@ -270,5 +267,9 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets"
+	"yourDataSets": "Your Data Sets",
+
+  "clear": "晴れ",
+  "copiedToClipboard": "クリップボードにコピー",
+  "copyToClipboard": "クリップボードにコピー"
 }

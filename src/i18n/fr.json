@@ -28,7 +28,6 @@
 	"cannotChangeNumRows": "Désolé, vous nêtes pas autorisé à modifier le nombre de lignes générées.",
 	"centralAmerica": "Amérique Centrale",
 	"checkDatabaseInfo": "Base de données",
-	"clearAndClose": "Effacer et fermer",
 	"clearPage": "Effacer la page",
 	"clearPageConfirmation": "Voulez-vous vraiment effacer la page? Toutes les modifications que vous avez apportées seront perdues.",
 	"clearThePage": "Vider la page",
@@ -48,7 +47,6 @@
 	"createAccountRightarrow": "Créer un compte »",
 	"createFileRightarrow": "Créer un fichier »",
 	"createSettingsFile": "Fichier de paramètres",
-	"creditCardData": "Données de carte de crédit",
 	"dataCreated": "Données créées",
 	"dataFormat": "Format des données",
 	"dataSet": "Jeu de données",
@@ -145,7 +143,6 @@
 	"loginUrlC": "URL de connexion:",
 	"logout": "Déconnexion",
 	"makeDataSetPublicAgreement": "Je comprends que pour partager ce jeu de données jai besoin de le rendre public.",
-	"math": "Maths",
 	"metaDescription": "GenerateData.com: logiciel libre sous licence GNU GPL, générateur aléatoire de données personnalisé pour tester des applications.",
 	"metaKeywords": "Données aléatoires, données dessais, exemples, générateur de données, générer des données",
 	"misc": "Divers",
@@ -270,5 +267,9 @@
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
 	"yourDataSetNameHere": "Nom du jeu de données...",
-	"yourDataSets": "Vos jeux de données"
+	"yourDataSets": "Vos jeux de données",
+
+  "clear": "Claire",
+  "copiedToClipboard": "Copié dans le presse-papier",
+  "copyToClipboard": "Copier dans le presse-papier"
 }

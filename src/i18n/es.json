@@ -28,7 +28,6 @@
 	"cannotChangeNumRows": "Lo sentimos, no tienes permiso para cambiar el número de filas generadas.",
 	"centralAmerica": "América Central",
 	"checkDatabaseInfo": "Verificar información de la base de datos",
-	"clearAndClose": "Limpiar y cerrar",
 	"clearPage": "Limpiar página",
 	"clearPageConfirmation": "¿Estás seguro de que deseas borrar la página? Se perderán todos los cambios que haya realizado.",
 	"clearThePage": "Limpiar la página",
@@ -48,7 +47,6 @@
 	"createAccountRightarrow": "Crear cuenta &raquo;",
 	"createFileRightarrow": "Crear fichero &raquo;",
 	"createSettingsFile": "Crear fichero de ajustes",
-	"creditCardData": "Datos de tarjetas de crédito",
 	"dataCreated": "Datos creados",
 	"dataFormat": "Formato de datos",
 	"dataSet": "Conjunto de datos",
@@ -145,7 +143,6 @@
 	"loginUrlC": "URL de conexión:",
 	"logout": "Salir",
 	"makeDataSetPublicAgreement": "Entiendo que para compartir este conjunto de datos necesit hacerlo público.",
-	"math": "Matemático",
 	"metaDescription": "GenerateData.com: generador de datos aleatorios personalizable para pruebas de software libre y licenciado como GNU",
 	"metaKeywords": "Datos aleatorios, Datos de prueba, Datos de ejemplo, generador de datos, generar datos",
 	"misc": "Miscelánea",
@@ -270,5 +267,9 @@
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
 	"yourDataSetNameHere": "El nombre de tu conjunto de datos va aquí...",
-	"yourDataSets": "Tus conjuntos de datos"
+	"yourDataSets": "Tus conjuntos de datos",
+
+  "clear": "Clara",
+  "copiedToClipboard": "Copiada al portapapeles",
+  "copyToClipboard": "Copiar al portapapeles"
 }

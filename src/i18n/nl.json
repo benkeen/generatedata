@@ -28,7 +28,6 @@
 	"cannotChangeNumRows": "Sorry, u heeft onvoldoende rechten om het aant te genereren rijen aan te passen.",
 	"centralAmerica": "Midden Amerika",
 	"checkDatabaseInfo": "Check databaseinformatie",
-	"clearAndClose": "Wissen en sluiten",
 	"clearPage": "Duidelijke pagina",
 	"clearPageConfirmation": "Weet u zeker dat u de pagina wilt wissen? Alle aangebrachte wijzigingen gaan verloren.",
 	"clearThePage": "Pagina wissen",
@@ -48,7 +47,6 @@
 	"createAccountRightarrow": "Maak nieuwe gebruiker aan &raquo;",
 	"createFileRightarrow": "Creeer bestand &raquo;",
 	"createSettingsFile": "Instellingenbestand aanmaken",
-	"creditCardData": "Creditcarddata",
 	"dataCreated": "Gegevens gemaakt",
 	"dataFormat": "Dataformaat",
 	"dataSet": "Dataset",
@@ -145,7 +143,6 @@
 	"loginUrlC": "Login URL:",
 	"logout": "Uitloggen",
 	"makeDataSetPublicAgreement": "Ik ben ervan op de hoogte dat als ik deze dataset wil delen met anderen ik hem openbaar moet maken.",
-	"math": "Berekeningen",
 	"metaDescription": "GenerateData.com: free, GNU-licensed, willekeurige klant data generator voor het testen van software",
 	"metaKeywords": "Random Data, Test Data, Sample Data, data generator, generate data",
 	"misc": "Overig",
@@ -270,5 +267,9 @@
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
 	"yourDataSetNameHere": "Hier de naam van uw dataset...",
-	"yourDataSets": "Uw datasets"
+	"yourDataSets": "Uw datasets",
+
+  "clear": "Doorzichtig",
+  "copiedToClipboard": "Gekopieerd naar het klembord",
+  "copyToClipboard": "Kopieer naar klembord"
 }

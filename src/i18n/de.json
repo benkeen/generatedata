@@ -28,7 +28,6 @@
 	"cannotChangeNumRows": "Sorry, Sie sind nicht berechtigt, die Anzahl der generierten Zeilen zu ändern.",
 	"centralAmerica": "Zentralamerika",
 	"checkDatabaseInfo": "Datenbank-Informationen prüfen",
-	"clearAndClose": "Löschen und schließen",
 	"clearPage": "Seite löschen",
 	"clearPageConfirmation": "Möchten Sie die Seite wirklich löschen? Alle Änderungen, die Sie vorgenommen haben, gehen verloren.",
 	"clearThePage": "Seite leeren",
@@ -48,7 +47,6 @@
 	"createAccountRightarrow": "Konto erstellen »",
 	"createFileRightarrow": "Datei erstellen »",
 	"createSettingsFile": "settings.php erstellen",
-	"creditCardData": "Kreditkartendaten",
 	"dataCreated": "Daten erstellt",
 	"dataFormat": "Daten-Format",
 	"dataSet": "Datensatz",
@@ -145,7 +143,6 @@
 	"loginUrlC": "Login-URL:",
 	"logout": "Abmelden",
 	"makeDataSetPublicAgreement": "Ich verstehe, dass ich diesen Datensatz öffentlich machen muss.",
-	"math": "Mathe",
 	"metaDescription": "GenerateData.com: kostenlos, GNU-lizenzierte, zufälliger benutzerdefinierter Daten-Generator zum Testen von Software",
 	"metaKeywords": "Random Data, Test Data, Sample-Daten, Daten-Generator, Daten generieren",
 	"misc": "versch.",
@@ -270,5 +267,9 @@
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
 	"yourDataSetNameHere": "Name für Datensatz eingeben...",
-	"yourDataSets": "Ihre Datensätze"
+	"yourDataSets": "Ihre Datensätze",
+
+  "clear": "klar",
+  "copiedToClipboard": "In die Zwischenablage kopiert",
+  "copyToClipboard": "In die Zwischenablage kopieren"
 }

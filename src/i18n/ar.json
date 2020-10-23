@@ -29,7 +29,6 @@
     "cannotChangeNumRows" : "عذرًا , لا يُسمح لك بتغيير عدد الصفوف التي تم إنشاؤها.",
     "centralAmerica" : "أمريكا الوسطى",
     "checkDatabaseInfo" : "التحقق من معلومات قاعدة البيانات",
-    "clearAndClose" : "مسح وإغلاق",
     "clearPage" : "مسح الصفحة",
     "clearPageConfirmation" : "هل تريد بالتأكيد مسح الصفحة؟ أي تغييرات قمت بها سيتم فقدانها.",
     "clearThePage" : "مسح الصفحة",
@@ -49,7 +48,6 @@
     "createAccountRightarrow" : "إنشاء حساب &raquo;;",
     "createFileRightarrow" : "إنشاء ملف &raquo;",
     "createSettingsFile" : "إنشاء ملف إعدادات",
-    "creditCardData" : "بيانات بطاقة الائتمان",
     "dataCreated" : "بيانات تم إنشاؤها",
     "dataFormat" : "تنسيق البيانات",
     "dataSet" : "مجموعة البيانات",
@@ -269,5 +267,8 @@
     "yes" : "نعم",
     "yourAccount" : "حسابك",
     "yourDataSetNameHere" : "اسم مجموعة البيانات الخاصة بك هنا...",
-    "yourDataSets" : "مجموعات البيانات الخاصة بك"
+    "yourDataSets" : "مجموعات البيانات الخاصة بك",
+  "clear":"واضح",
+  "copiedToClipboard": "نسخ إلى الحافظة",
+  "copyToClipboard": "نسخ إلى الحافظة"
 }
