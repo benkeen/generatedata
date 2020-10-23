@@ -1,5 +1,5 @@
 import { ETOnMessage, ETMessageData } from '~types/exportTypes';
-import { getNumericFieldColumnIndexes } from '~utils/generationUtils';
+import utils from '../../../utils';
 import { SQLSettings } from './SQL';
 
 const context: Worker = self as any;
@@ -46,7 +46,7 @@ export const generateMySQL = (data: ETMessageData): string => {
 	const colTitles = columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = getNumericFieldColumnIndexes(data);
+	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(data);
 
 	if (isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -136,7 +136,7 @@ export const generatePostgres = (generationData: ETMessageData): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(generationData);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -205,7 +205,7 @@ export const generateSQLite = (generationData: ETMessageData): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(generationData);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -285,7 +285,7 @@ export const generateOracle = (generationData: ETMessageData): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(generationData);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -359,7 +359,7 @@ export const generateMSSQL = (generationData: ETMessageData): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(generationData);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {

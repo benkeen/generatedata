@@ -2,7 +2,7 @@ import React from 'react';
 import { ErrorTooltip } from '~components/tooltips';
 import sharedStyles from '../styles/shared.scss';
 
-const TextField = ({ error, className, ...props }: any): JSX.Element => {
+const TextField = React.forwardRef(({ error, className, ...props }: any, ref: any): JSX.Element => {
 	let classes = className;
 	if (error) {
 		classes += ' ' + sharedStyles.errorField;
@@ -10,10 +10,11 @@ const TextField = ({ error, className, ...props }: any): JSX.Element => {
 
 	return (
 		<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
-			<input {...props} className={classes} />
+			<input {...props} className={classes} ref={ref} />
 		</ErrorTooltip>
 	);
-};
+});
+TextField.displayName = 'TextField';
 
 TextField.defaultProps = {
 	type: 'text',

@@ -2,7 +2,7 @@ export default {
 	"coreWorker": "",
 	"coreDataTypeWorker": "dataTypes.worker-a08224543c896aae285fda4308170ce2.js",
 	"coreExportTypeWorker": "exportTypes.worker-9b546d7c7909e02146fafee124180d37.js",
-	"workerUtils": "workerUtils-7455b0fa2e257cf7452d4c62446b0253.js",
+	"workerUtils": "workerUtils-1904625bd7cdfcc58b0b1d37eb535407.js",
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.generator-0185a235eabc5b0a7ba6afdbb2af8676.js",
 		"AutoIncrement": "DT-AutoIncrement.generator-eccb050ece38a91e2a849d125e417298.js",
@@ -40,7 +40,7 @@ export default {
 		"HTML": "ET-HTML.generator-1f2109aec7e9cd759773fc7f28fd0966.js",
 		"JSON": "ET-JSON.generator-ae538f823c70436397059a1d05560b46.js",
 		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-e00ea848c7d167060c5174236157e1d3.js",
-		"SQL": "ET-SQL.generator-0313004c17bce83046b6235947c8dbf5.js",
+		"SQL": "ET-SQL.generator-5e5ae52f68c849b9b55098e748f43fa1.js",
 		"XML": "ET-XML.generator-2bb617f90572cee10202bbc4ecfb56c9.js"
 	},
 	"countries": {

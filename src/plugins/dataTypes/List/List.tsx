@@ -2,22 +2,23 @@ import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import CreatablePillField from '~components/CreatablePillField/CreatablePillField';
+import TextField from '~components/TextField';
 
 export type ListType = 'exactly' | 'atMost';
 
 export type ListState = {
 	example: string;
 	listType: ListType;
-	exactly: number;
-	atMost: number;
+	exactly: string;
+	atMost: string;
 	values: string[];
 };
 
 export const initialState: ListState = {
 	example: '1|3|5|7|9|11|13|15|17|19',
 	listType: 'exactly',
-	exactly: 1,
-	atMost: 1,
+	exactly: '1',
+	atMost: '1',
 	values: ['1', '3', '5', '7', '9', '11', '13', '15', '17', '19']
 };
 
@@ -55,7 +56,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ coreI18n, i18n, data, id, onUpdate }: DTOptionsProps): JSX.Element => {
 	const exactlyField = React.useRef<any>();
 	const atMostField = React.useRef<any>();
 
@@ -65,6 +66,9 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 			[field]: value
 		});
 	};
+
+	const exactlyError = data.exactly ? '' : coreI18n.requiredField;
+	const atMostError = data.atMost ? '' : coreI18n.requiredField;
 
 	return (
 		<>
@@ -80,17 +84,18 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 					}}
 				/>
 				<label htmlFor={`listType1-${id}`}>{i18n.exactly}</label>
-				<input
+				<TextField
+					error={exactlyError}
 					ref={exactlyField}
 					type="number"
 					min={1}
 					id={`dtListExactly_${id}`}
 					value={data.exactly}
 					style={{ margin: '0 6px 0 4px', width: 50 }}
-					onChange={(e): void => {
+					onChange={(e: any): void => {
 						onUpdate({
 							...data,
-							exactly: parseInt(e.target.value, 10),
+							exactly: e.target.value,
 							listType: 'exactly'
 						});
 					}}
@@ -106,17 +111,18 @@ export const Options = ({ i18n, data, id, onUpdate }: DTOptionsProps): JSX.Eleme
 					}}
 				/>
 				<label htmlFor={`listType2-${id}`}>{i18n.atMost}</label>
-				<input
+				<TextField
+					error={atMostError}
 					ref={atMostField}
 					type="number"
 					min={1}
 					id={`dtListAtMost_${id}`}
 					value={data.atMost}
 					style={{ margin: '0 6px 0 4px', width: 50 }}
-					onChange={(e): void => {
+					onChange={(e: any): void => {
 						onUpdate({
 							...data,
-							atMost: parseInt(e.target.value, 10),
+							atMost: e.target.value,
 							listType: 'atMost'
 						});
 					}}
@@ -145,7 +151,15 @@ export const getMetadata = (): DTMetadata => ({
 	}
 });
 
-export const rowStateReducer = ({ example, listType, exactly, atMost, values }: ListState): Partial<ListState> => ({
-	example, listType, exactly, atMost, values
-});
+export const rowStateReducer = ({ example, listType, exactly, atMost, values }: ListState): any => {
+	const cleanExactly = (listType === 'exactly' && listType.trim() === '') ? 1 : parseInt(exactly, 10);
+	const cleanAtMost = (listType === 'atMost' && listType.trim() === '') ? 1 : parseInt(atMost, 10);
 
+	return {
+		example,
+		listType,
+		exactly: cleanExactly,
+		atMost: cleanAtMost,
+		values
+	};
+};
