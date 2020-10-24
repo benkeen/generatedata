@@ -1,9 +1,10 @@
 import React, { CSSProperties } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
-import ErrorIcon from '@material-ui/icons/Error';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
+import ErrorIcon from '@material-ui/icons/ErrorOutline';
+import ErrorSolidIcon from '@material-ui/icons/Error';
 import Refresh from '@material-ui/icons/Refresh';
 import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
@@ -45,6 +46,41 @@ export type PreviewPanelProps = {
 
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
+const NoResultsBlock = ({ i18n, type }: any) => {
+	const map: any = {
+		invalidSettings: {
+			icon: ErrorSolidIcon,
+			title: 'Invalid settings!',
+			label: 'Edit your export type settings.'
+		},
+		noData: {
+			icon: AddCircle,
+			title: i18n.previewPanelNoData,
+			label: i18n.addSomeDataDesc
+		}
+	};
+
+	const Icon = map[type].icon;
+
+	return (
+		<div className={styles.noResults}>
+			<div style={{ marginTop: -26 }}>
+				<Icon style={{
+					fontSize: 100,
+					position: 'absolute',
+					opacity: 0.1,
+					top: 'calc(50% - 63px)',
+					left: 'calc(50% - 50px)'
+				}} />
+				<div style={{ height: '100%', margin: 'auto' }}>
+					<h1>{map[type].title}</h1>
+					<p>{map[type].label}</p>
+				</div>
+			</div>
+		</div>
+	);
+};
+
 const PreviewPanel = ({
 	i18n, theme, togglePreview, hasData, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible,
 	exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, initialDependenciesLoaded,
@@ -53,26 +89,18 @@ const PreviewPanel = ({
 	const windowSize = useWindowSize();
 
 	const getNoResults = (): JSX.Element | null => {
+		if (!hasValidExportTypeSettings) {
+			return (
+				<NoResultsBlock i18n={i18n} type="invalidSettings" />
+			);
+		}
+
 		if (hasData) {
 			return null;
 		}
 
 		return (
-			<div className={styles.noResults}>
-				<div style={{ marginTop: -26 }}>
-					<AddCircle style={{
-						fontSize: 100,
-						position: 'absolute',
-						opacity: 0.1,
-						top: 'calc(100% - 84px)',
-						left: 'calc(100% - 125px)'
-					}} />
-					<div style={{ height: '100%', margin: 'auto' }}>
-						<h1>{i18n.previewPanelNoData}</h1>
-						<p>{i18n.addSomeDataDesc}</p>
-					</div>
-				</div>
-			</div>
+			<NoResultsBlock i18n={i18n} type="noData" />
 		);
 	};
 
@@ -98,7 +126,7 @@ const PreviewPanel = ({
 
 	let refreshTooltipProps = {};
 	let refreshIconProps = {};
-	if (!hasData) {
+	if (!hasData || !hasValidExportTypeSettings) {
 		previewPanelStyles.flex = 0;
 		refreshTooltipProps = { disableHoverListener: true };
 		refreshIconProps = { disabled: true };
@@ -124,6 +152,10 @@ const PreviewPanel = ({
 	};
 
 	const getCodeMirrorPanel = (): React.ReactNode => {
+		if (!hasValidExportTypeSettings || !hasData) {
+			return null;
+		}
+
 		if (!exportTypeLoaded) {
 			return <PreviewPanelLoader/>;
 		}

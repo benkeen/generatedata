@@ -104,11 +104,3 @@ export const isExportTypeValid = (exportType: ExportTypeFolder, exportTypeSettin
 	return true;
 };
 
-
-
-
-
-
-
-
-
