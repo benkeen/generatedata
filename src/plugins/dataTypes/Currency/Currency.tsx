@@ -66,7 +66,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 };
 
 
-const CurrencySettingsDialog = ({ visible, data, id, onClose, coreI18n, i18n }: any): JSX.Element => {
+const CurrencySettingsDialog = ({ visible, data, onClose, coreI18n, i18n }: any): JSX.Element => {
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>

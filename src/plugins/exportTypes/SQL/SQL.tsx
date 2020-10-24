@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Switch from '@material-ui/core/Switch';
 import Dropdown from '~components/dropdown/Dropdown';
+import TextField from '~components/TextField';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 import styles from './SQL.scss';
 
@@ -29,7 +30,7 @@ export const initialState: SQLSettings = {
 	isValid: true
 };
 
-export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettings) => {
+export const Settings: React.ReactNode = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings) => {
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
@@ -104,20 +105,24 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 					id={`${id}_insertBatchSize`}>
 					{label}
 				</label>
-				<input
+				<TextField
 					type="number"
 					id={`${id}-insertBatchSize`}
 					value={data.insertBatchSize}
 					style={{ width: 60 }}
 					title={i18n.batchSizeDesc}
 					disabled={data.statementType === 'update'}
+					error={data.insertBatchSize ? '' : coreI18n.requiredField}
 					min={1}
 					max={1000}
-					onChange={(e): void => onChange('insertBatchSize', parseInt(e.target.value, 10))}
+					onChange={(e: any): void => onChange('insertBatchSize', parseInt(e.target.value, 10))}
 				/>
 			</div>
 		);
 	};
+
+
+	// TODO need better validation on the database table name
 
 	return (
 		<>
@@ -126,11 +131,11 @@ export const Settings: React.ReactNode = ({ i18n, onUpdate, id, data }: ETSettin
 					<div>
 						<label htmlFor={`${id}-tableName`}>{i18n.dbTableName}</label>
 						<div>
-							<input
-								type="text"
+							<TextField
+								error={data.tableName.trim() !== '' ? '' : coreI18n.requiredField}
 								id={`${id}-tableName`}
 								value={data.tableName}
-								onChange={(e): void => onChange('tableName', e.target.value)}
+								onChange={(e: any): void => onChange('tableName', e.target.value)}
 							/>
 						</div>
 					</div>
@@ -257,32 +262,26 @@ export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadP
 });
 
 
-/*
-		// secondly, check the SQL fields have all been entered properly
-		var tableNameField = $("#etSQL_tableName");
-		var tableNameFieldVal = $.trim(tableNameField.val());
-		var validTableName = new RegExp("^[a-zA-Z_][0-9a-zA-Z_$]*$");
-		if (tableNameFieldVal === "" || !validTableName.test(tableNameFieldVal)) {
-			errors.push({
-				els: tableNameField,
-				error: LANG.validation_invalid_table_name
-			});
-		}
+export const isValid = (settings: SQLSettings): boolean => {
+	if (!settings.tableName) {
+		return false;
+	}
 
-		// check batch size if current statement type is "insert" or "insertignore"
-		var statementType = $.trim($('input[name="etSQL_statementType"]:checked').val());
-		if (statementType === "insert" || statementType === "insertignore") {
-			var validBatchSize = new RegExp("^([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|300)$");
-			var batchSizeField = $("#etSQL_insertBatchSize");
-			var batchSizeFieldVal = $.trim(batchSizeField.val());
-			if (batchSizeFieldVal === "" || !validBatchSize.test(batchSizeFieldVal)) {
-				errors.push({
-					els: batchSizeField,
-					error: LANG.validation_invalid_batch_size
-				});
-			}
-		}
+	if (settings.databaseType !== 'Oracle' && !settings.insertBatchSize) {
+		return false;
+	}
 
-		return errors;
-	};
-*/
+	return true;
+};
+
+
+
+
+
+
+
+
+
+
+
+

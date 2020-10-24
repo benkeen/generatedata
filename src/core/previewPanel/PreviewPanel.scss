@@ -83,3 +83,14 @@
 	justify-items: center;
 	height: 100%;
 }
+
+button.error {
+	border-color: #dc4040;
+	color: #dc4040;
+
+	svg {
+		fill: #dc4040;
+		margin-left: 4px;
+		margin-top: -1px;
+	}
+}

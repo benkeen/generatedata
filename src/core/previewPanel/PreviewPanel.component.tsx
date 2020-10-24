@@ -1,12 +1,13 @@
 import React, { CSSProperties } from 'react';
-import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { useWindowSize } from 'react-hooks-window-size';
+import ErrorIcon from '@material-ui/icons/Error';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import Refresh from '@material-ui/icons/Refresh';
 import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
+import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { Tooltip } from '~components/tooltips';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
 import Portal from './PreviewPanelPortal.component';
@@ -39,13 +40,15 @@ export type PreviewPanelProps = {
 	previewTextSize: number;
 	exportTypeLabel: string;
 	i18n: any;
+	hasValidExportTypeSettings: boolean;
 };
 
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
 const PreviewPanel = ({
 	i18n, theme, togglePreview, hasData, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible,
-	exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, initialDependenciesLoaded
+	exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, initialDependenciesLoaded,
+	hasValidExportTypeSettings
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
 
@@ -112,8 +115,10 @@ const PreviewPanel = ({
 				onClick={exportTypeLabelBtnAction}
 				variant="outlined"
 				color="primary"
-				size="medium">
+				size="medium"
+				className={!hasValidExportTypeSettings ? styles.error : ''}>
 				{exportTypeLabel}
+				{!hasValidExportTypeSettings ? <ErrorIcon /> : null}
 			</ExportTypeButton>
 		);
 	};

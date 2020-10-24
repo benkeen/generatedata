@@ -15,6 +15,7 @@ export type ETBundle = {
 	Settings?: any;
 	getExportTypeLabel?: (data: any) => string; // TODO generics - data is same type as initialState
 	validateTitleField?: (title: string, settings: any) => string | null;
+	isValid?: (data: any) => boolean;
 };
 
 export interface ETState {
@@ -33,7 +34,7 @@ export type ETSettings = {
 	id: string;
 	layout: BuilderLayout;
 	i18n: any;
-	coreI18n: object;
+	coreI18n: any;
 };
 
 export type ETMessageData = {

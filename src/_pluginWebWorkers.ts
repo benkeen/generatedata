@@ -12,6 +12,7 @@ export default {
 		"Composite": "DT-Composite.generator-34905b4d06d1520faa96c6be7746597c.js",
 		"Constant": "DT-Constant.generator-ca9cf12d5f32cc92c9158072a5231bd9.js",
 		"Country": "DT-Country.generator-062c61a818ba914db4328bb6e2b0ad7e.js",
+		"Currency": "DT-Currency.generator-68b329da9893e34099c7d8ad5cb9c940.js",
 		"Date": "DT-Date.generator-4231dc0c676c244e7875ab48d20cbdc3.js",
 		"Email": "DT-Email.generator-5dbb6b7f47d42f1e187c32105ecc6a41.js",
 		"GUID": "DT-GUID.generator-54966dabad4987a193e4cf4a467d4d93.js",

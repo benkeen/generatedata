@@ -36,7 +36,8 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 						getExportTypeLabel: def.getExportTypeLabel,
 						getDownloadFileInfo: def.getDownloadFileInfo,
 						getCodeMirrorMode: def.getCodeMirrorMode,
-						validateTitleField: def.validateTitleField
+						validateTitleField: def.validateTitleField,
+						isValid: def.isValid
 					};
 					resolve(def);
 				})
@@ -89,3 +90,25 @@ export const getDownloadFileInfo = (packetId: string, exportType: ExportTypeFold
 		settings: exportTypeSettings
 	});
 };
+
+export const isExportTypeValid = (exportType: ExportTypeFolder, exportTypeSettings: any): boolean => {
+	if (!loadedExportTypes || !loadedExportTypes[exportType]) {
+		return true;
+	}
+
+	const et = loadedExportTypes![exportType]!;
+	if (et.isValid) {
+		return et.isValid(exportTypeSettings);
+	}
+
+	return true;
+};
+
+
+
+
+
+
+
+
+
