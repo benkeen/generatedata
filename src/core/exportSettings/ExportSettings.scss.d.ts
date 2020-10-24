@@ -1,11 +1,13 @@
 declare namespace ExportSettingsScssNamespace {
   export interface IExportSettingsScss {
     exportFormatRow: string;
+    fadeOut: string;
     field: string;
     label: string;
     panel: string;
     panelHorizontal: string;
     row: string;
+    spinner: string;
     tabContent: string;
   }
 }

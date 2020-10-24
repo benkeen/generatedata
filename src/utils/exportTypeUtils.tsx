@@ -1,5 +1,4 @@
 import { exportTypes, ExportTypeFolder } from '../_plugins';
-import { MediumSpinner } from '~components/loaders';
 import { ETBundle, ETDownloadPacketResponse } from '~types/exportTypes';
 
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
@@ -75,7 +74,7 @@ export const getExportTypeSettingsComponent = (exportType: ExportTypeFolder): an
 		const et = loadedExportTypes[exportType] as ETBundle;
 		return et.Settings;
 	}
-	return MediumSpinner;
+	return null;
 };
 
 export const getCodeMirrorMode = (exportType: ExportTypeFolder, exportTypeSettings: any): string => {

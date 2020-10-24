@@ -54,3 +54,16 @@
 		flex: 0 0 140px;
 	}
 }
+
+
+.spinner {
+	position: absolute;
+	top: calc(50% - 40px);
+	left: calc(50% - 40px);
+
+	&.fadeOut {
+		opacity: 0;
+		transition: opacity .25s ease-in-out;
+	}
+}
+

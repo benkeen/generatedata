@@ -3,6 +3,7 @@ import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { exportTypeOptions } from '~utils/exportTypeUtils';
 import * as styles from './ExportSettings.scss';
 import { ExportSettingsTab } from './ExportSettings.types';
+import { MediumSpinner } from '~components/loaders';
 
 export type ExportTypeTabProps = {
 	exportType: string;
@@ -18,9 +19,14 @@ export type ExportTypeTabProps = {
 export const ExportTypeTab = ({
 	exportType, i18n, exportTypeI18n, onChangeExportType, SettingsComponent, onUpdate, exportTypeSettings
 }: ExportTypeTabProps): JSX.Element => {
+
+	let spinnerStyles = styles.spinner;
+	if (SettingsComponent) {
+		spinnerStyles += ` ${styles.fadeOut}`;
+	}
+
 	return (
 		<div className={styles.tabContent}>
-
 			<div className={`${styles.row} ${styles.exportFormatRow}`}>
 				<div className={styles.label}>{i18n.format}</div>
 				<div className={styles.field}>
@@ -34,13 +40,14 @@ export const ExportTypeTab = ({
 				</div>
 			</div>
 
-			<SettingsComponent
+			{SettingsComponent ? <SettingsComponent
 				id={`exportTypeSettings-${exportType}`}
 				coreI18n={i18n}
 				i18n={exportTypeI18n}
 				onUpdate={onUpdate}
 				data={exportTypeSettings}
-			/>
+			/> : null}
+			<MediumSpinner className={spinnerStyles} />
 		</div>
 	);
 };
