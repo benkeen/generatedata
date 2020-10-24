@@ -2,7 +2,13 @@ import React from 'react';
 import CircularProgress, { CircularProgressProps } from '@material-ui/core/CircularProgress';
 
 export const SmallSpinner = (): any => <CircularProgress disableShrink size={20} style={{ color: '#999999', margin: 5 }} />;
-export const MediumSpinner = (): any => <CircularProgress disableShrink size={40} style={{ color: '#999999', margin: 5 }} />;
+export const MediumSpinner = (props: any): any => (
+	<CircularProgress
+		disableShrink size={40}
+		style={{ color: '#999999', margin: 5 }}
+		{...props}
+	/>
+);
 
 export const CircularProgressWithLabel = (props: CircularProgressProps & { value: number }): JSX.Element => (
 	<div style={{ position: 'relative', display: 'inline-flex' }}>

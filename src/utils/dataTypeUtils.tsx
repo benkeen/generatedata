@@ -3,7 +3,7 @@ import { coreConfig } from '../core';
 import { getLocale, getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
-import { SmallSpinner, MediumSpinner } from '~components/loaders';
+import { SmallSpinner } from '~components/loaders';
 import { Store } from '~types/general';
 
 type LoadedDataTypes = {
@@ -69,7 +69,7 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 		return {
 			Example: !dataType ? showNothing : SmallSpinner,
 			Options: showNothing,
-			Help: !dataType ? showNothing : MediumSpinner
+			Help: null
 		};
 	}
 

@@ -5,6 +5,7 @@ import { DropdownOption } from '~components/dropdown/Dropdown';
 import { getSortedGroupedDataTypes, getDataType } from '~utils/dataTypeUtils';
 import styles from './HelpDialog.scss';
 import { DataTypeFolder } from '../../../_plugins';
+import { MediumSpinner } from '~components/loaders';
 
 export type HelpDialogProps = {
 	initialDataType: DataTypeFolder | null;
@@ -58,6 +59,11 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 	const { Help } = getDataType(dataType);
 	const i18n = dataType ? dataTypeI18n[dataType] : {};
 
+	let spinnerStyles = styles.spinner;
+	if (Help) {
+		spinnerStyles += ` ${styles.fadeOut}`;
+	}
+
 	return (
 		<Dialog onClose={onClose} aria-labelledby="customized-dialog-title" open={visible}>
 			<div style={{ width: 800, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -78,10 +84,11 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 						</div>
 					</div>
 					<div className={styles.helpContent}>
-						<Help
+						{Help ? <Help
 							coreI18n={coreI18n}
 							i18n={i18n}
-						/>
+						/> : null}
+						<MediumSpinner className={spinnerStyles} />
 					</div>
 				</DialogContent>
 				<DialogActions>

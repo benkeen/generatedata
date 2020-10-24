@@ -2,8 +2,10 @@ declare namespace HelpDialogScssNamespace {
   export interface IHelpDialogScss {
     contentPanel: string;
     dataTypeList: string;
+    fadeOut: string;
     helpContent: string;
     list: string;
+    spinner: string;
   }
 }
 

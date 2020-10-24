@@ -275,5 +275,7 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets"
+	"yourDataSets": "Your Data Sets",
+
+  "stripWhitespace": "strip whitespace from generated content"
 }

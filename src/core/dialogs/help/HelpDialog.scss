@@ -33,6 +33,7 @@
 	}
 }
 .helpContent {
+	position: relative;
 	flex: 1;
 	padding-bottom: 15px;
 	overflow: scroll;
@@ -46,4 +47,15 @@
 .list {
 	flex: 1;
 	overflow: scroll;
+}
+
+.spinner {
+	position: absolute;
+	top: calc(50% - 40px);
+	left: calc(50% - 40px);
+
+	&.fadeOut {
+		opacity: 0;
+		transition: opacity .25s ease-in-out;
+	}
 }
