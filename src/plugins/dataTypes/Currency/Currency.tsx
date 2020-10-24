@@ -1,6 +1,9 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
+import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './Currency.scss';
 
 export const initialState = {
@@ -41,13 +44,13 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 		{
 			label: 'UK',
 			options: [
-				{ label: 'XXX.XX|0.00|100.00|£|prefix', value: '£0.00 -> £100.00' }
+				{ value: 'XXX.XX|0.00|100.00|£|prefix', label: '£0.00 -> £100.00' }
 			]
 		},
 		{
 			label: 'Euro',
 			options: [
-				{ label: 'XXX,XXX|100000|200000|€|prefix', value: '€100,000 -> €200,000' }
+				{ value: 'XXX,XXX|100000|200000|€|prefix', label: '€100,000 -> €200,000' }
 			]
 		}
 	];
@@ -62,25 +65,68 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ i18n, data }: DTOptionsProps): JSX.Element => {
+
+const CurrencySettingsDialog = ({ visible, data, id, onClose, coreI18n, i18n }: any): JSX.Element => {
+	return (
+		<Dialog onClose={onClose} open={visible}>
+			<div style={{ width: 500 }}>
+				<DialogTitle onClose={onClose}>Currency Settings</DialogTitle>
+				<DialogContent dividers>
+					<div>
+						{i18n.explanation}
+					</div>
+
+					<div>
+						Format: <input type="text" value={data.format} style={{ width: 160 }} />
+					</div>
+
+					<div>
+						{i18n.currencySymbol}
+						<input type="text" value={data.currencySymbol} style={{ width: 20 }} />
+						<select defaultValue={data.currencySymbolLocation}>
+							<option value="prefix">{i18n.prefix}</option>
+							<option value="suffix">{i18n.suffix}</option>
+						</select>
+					</div>
+
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+				</DialogActions>
+			</div>
+		</Dialog>
+	);
+};
+
+export const Options = ({ i18n, coreI18n, id, data }: DTOptionsProps): JSX.Element => {
+	const [dialogVisible, setDialogVisibility] = React.useState(false);
+
+	const label = "Settings";
 
 	return (
 		<>
-			<div>
-				{i18n.format}: <input type="text" value={data.format} style={{ width: 160 }} />
+			<input type="text" value={data.from} style={{ width: 80 }} />
+			<ArrowRightAlt />
+			<input type="text" value={data.to} style={{ width: 80 }} />
+
+			<div className={styles.buttonLabel}>
+				<Button
+					onClick={(): void => setDialogVisibility(true)}
+					variant="outlined"
+					color="primary"
+					size="small">
+					<span dangerouslySetInnerHTML={{ __html: label }} />
+				</Button>
+				<CurrencySettingsDialog
+					visible={dialogVisible}
+					data={data}
+					id={id}
+					i18n={i18n}
+					coreI18n={coreI18n}
+					onClose={(): void => setDialogVisibility(false)}
+				/>
 			</div>
-			<div>
-				{i18n.range} <input type="text" value={data.from} style={{ width: 80 }} />
-				{i18n.to} <input type="text" value={data.to} style={{ width: 80 }} />
-			</div>
-			<div>
-				{i18n.currency_symbol}
-				<input type="text" value={data.currencySymbol} style={{ width: 20 }} />
-				<select defaultValue={data.currencySymbolLocation}>
-					<option value="prefix">{i18n.prefix}</option>
-					<option value="suffix">{i18n.suffix}</option>
-				</select>
-			</div>
+
 		</>
 	);
 };
@@ -124,73 +170,3 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	</>
 );
 
-// var _validate = function (rows) {
-// 	var problemFields = [];
-// 	var problemFields2 = [];
-// 	var problemFields3 = [];
-// 	var invalidFormatRows = [];
-// 	var rowsWithInvalidRange = [];
-// 	var fromRangeGreaterThanToRange = [];
-//
-// 	for (var i = 0; i < rows.length; i++) {
-// 		var format = $("#dtCurrencyFormat_" + rows[i]);
-// 		var from = $("#dtCurrencyRangeFrom_" + rows[i]);
-// 		var to = $("#dtCurrencyRangeTo_" + rows[i]);
-// 		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-//
-// 		if ($.trim(format.val()) === "") {
-// 			invalidFormatRows.push(visibleRowNum);
-// 			problemFields.push(format);
-// 		}
-//
-// 		var validFromRange = true;
-// 		var validToRange = true;
-// 		if (from.val() === "" || from.val().match(/[^\d\.\-]/)) {
-// 			rowsWithInvalidRange.push(visibleRowNum);
-// 			validFromRange = false;
-// 			problemFields2.push(from);
-// 		}
-// 		if (to.val() === "" || to.val().match(/[^\d\.\-]/)) {
-// 			if ($.inArray(visibleRowNum, rowsWithInvalidRange) === -1) {
-// 				rowsWithInvalidRange.push(visibleRowNum);
-// 			}
-// 			validToRange = false;
-// 			problemFields2.push(to);
-// 		}
-//
-// 		if (validFromRange && validToRange) {
-// 			var fromNum = parseFloat(from.val());
-// 			var toNum = parseFloat(to.val());
-//
-// 			// allow the same value, just in case users want to have the same currency outputted for all
-// 			// rows (you never know)
-// 			if (fromNum > toNum) {
-// 				fromRangeGreaterThanToRange.push(visibleRowNum);
-// 				problemFields3.push(from);
-// 			}
-// 		}
-// 	}
-//
-// 	var errors = [];
-// 	if (invalidFormatRows.length) {
-// 		errors.push({
-// 			els: problemFields,
-// 			error: LANG.incomplete_fields + " <b>" + invalidFormatRows.join(", ") + "</b>"
-// 		});
-// 	}
-// 	if (rowsWithInvalidRange.length) {
-// 		errors.push({
-// 			els: problemFields2,
-// 			error: LANG.invalid_range_fields + " <b>" + rowsWithInvalidRange.join(", ") + "</b>"
-// 		});
-// 	}
-// 	if (fromRangeGreaterThanToRange.length) {
-// 		errors.push({
-// 			els: problemFields3,
-// 			error: LANG.invalid_range + " <b>" + fromRangeGreaterThanToRange.join(", ") + "</b>"
-// 		});
-// 	}
-//
-// 	return errors;
-// };
-//

@@ -14,20 +14,6 @@ export const getMetadata = (): DTMetadata => ({
 
 
 /*
-class DataType_Currency extends DataTypePlugin {
-	protected $dataTypeName = "Currency";
-	protected $dataTypeFieldGroup = "numeric";
-	protected $dataTypeFieldGroupOrder = 60;
-	protected $jsModules = array("Currency.js");
-
-	public function __construct($runtimeContext) {
-		parent::__construct($runtimeContext);
-		if ($runtimeContext == "generation") {
-
-		}
-	}
-
-	// meh. All this string manipulation code could be improved, I'm sure
 	public function generate($generator, $generationContextData) {
 		$rangeFrom    = preg_replace("/\D/", "", $generationContextData["generationOptions"]["rangeFrom"]);
 		$rangeTo      = preg_replace("/\D/", "", $generationContextData["generationOptions"]["rangeTo"]);
