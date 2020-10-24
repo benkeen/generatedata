@@ -46,7 +46,7 @@ export type PreviewPanelProps = {
 
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
-const NoResultsBlock = ({ i18n, type }: any) => {
+const NoResultsBlock = ({ i18n, type }: any): JSX.Element => {
 	const map: any = {
 		invalidSettings: {
 			icon: ErrorSolidIcon,

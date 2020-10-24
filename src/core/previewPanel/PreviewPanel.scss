@@ -93,4 +93,9 @@ button.error {
 		margin-left: 4px;
 		margin-top: -1px;
 	}
+
+	&:hover {
+		background-color: #503636;
+		border-color: #dc4040;
+	}
 }
