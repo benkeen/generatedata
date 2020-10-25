@@ -24,7 +24,22 @@ export default {
 	dataTypeBlacklist: [
 		'_NamesRegional',
 		'_PhoneRegional',
-		'_Tree'
+		'_Tree',
+
+		// incomplete - will be removed when they're done
+		'Composite',
+		'Computed',
+		'Currency',
+		'CVV',
+		'NormalDistribution',
+		'OrganizationNumber',
+		'PAN',
+		'PersonalNumber',
+		'PIN',
+		'Rut',
+		'SIRET',
+		'Track1',
+		'Track2'
 	],
 
 	exportTypeBlacklist: [

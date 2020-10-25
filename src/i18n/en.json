@@ -269,7 +269,7 @@
 	"validationNoLastName": "Please enter your last name.",
 	"validationNoMysqlUsername": "Please enter your MySQL username.",
 	"validationNoPassword": "Please enter your password.",
-	"validationNotLoggedIn": "You dont appear to be logged in. Please try logging in again.",
+	"validationNotLoggedIn": "You don't appear to be logged in. Please try logging in again.",
 	"version": "Version",
 	"website": "Website",
 	"yes": "Yes",
@@ -277,5 +277,27 @@
 	"yourDataSetNameHere": "Your data set name here...",
 	"yourDataSets": "Your Data Sets",
 
-  "stripWhitespace": "strip whitespace from generated content"
+  "stripWhitespace": "strip whitespace from generated content",
+  "invalidSettings": "Invalid settings!",
+  "editExportTypeSettings": "Please edit your export type settings."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

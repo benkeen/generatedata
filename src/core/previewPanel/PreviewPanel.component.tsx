@@ -50,8 +50,8 @@ const NoResultsBlock = ({ i18n, type }: any): JSX.Element => {
 	const map: any = {
 		invalidSettings: {
 			icon: ErrorSolidIcon,
-			title: 'Invalid settings!',
-			label: 'Edit your export type settings.'
+			title: i18n.invalidSettings,
+			label: i18n.editExportTypeSettings
 		},
 		noData: {
 			icon: AddCircle,
