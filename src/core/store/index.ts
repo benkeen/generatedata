@@ -30,11 +30,12 @@ function initStore(state: any): any {
 		key: 'generator',
 		storage,
 		blacklist: [
+			'initialDependenciesLoaded',
 			'loadedDataTypes',
 			'loadedExportTypes',
 			'isGenerating',
 			'numGeneratedRows',
-			'dataTypePreviewData' // blacklisted because it can just get too big. It gets re-generated when returning to site
+			'dataTypePreviewData'
 		]
 	};
 

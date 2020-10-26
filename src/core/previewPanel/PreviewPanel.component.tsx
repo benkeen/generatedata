@@ -157,13 +157,15 @@ const PreviewPanel = ({
 		}
 
 		if (!exportTypeLoaded) {
-			return <PreviewPanelLoader/>;
+			return <PreviewPanelLoader />;
 		}
 
 		return (
 			<CodeMirrorWrapper />
 		);
 	};
+
+	console.log("!", initialDependenciesLoaded);
 
 	if (!initialDependenciesLoaded) {
 		return (

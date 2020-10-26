@@ -22,7 +22,7 @@ export const generateCSharp = (data: ETMessageData, stripWhitespace: boolean): s
 	}
 
 	data.rows.forEach((row: any, rowIndex: number) => {
-		content += `${tab}new { `;
+		content += `${tab}new {${newline}${tab}${tab}`;
 		const pairs: string[] = [];
 
 		data.columns.forEach(({ title }, colIndex) => {
@@ -37,12 +37,12 @@ export const generateCSharp = (data: ETMessageData, stripWhitespace: boolean): s
 			// 		    pairs.push(`${propName} = "${data.rowData[i][j]}"`);
 
 		});
-		content += pairs.join(', ');
+		content += pairs.join(`,${newline}${tab}${tab}`);
 
 		if (data.isLastBatch && rowIndex === data.rows.length-1) {
-			content += ` }${newline}};`;
+			content += `${newline}${tab}}${newline}};`;
 		} else {
-			content += ` },${newline}`;
+			content += `${newline}${tab}},${newline}`;
 		}
 	});
 
