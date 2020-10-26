@@ -2,6 +2,9 @@ import * as React from 'react';
 import NumberFormat from 'react-number-format';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import { parseI18n } from '~utils/langUtils';
+import { getFormattedNum } from '~utils/numberUtils';
+import C from '../constants';
 import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { ErrorTooltip } from '~components/tooltips';
@@ -21,7 +24,12 @@ const GenerationPanel = ({
 	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onToggleStripWhitespace,
 	onGenerate
 }: GenerationSettingsProps): JSX.Element => {
-	const error = !numRowsToGenerate ? i18n.requiredField : '';
+	let error = '';
+	if (!numRowsToGenerate) {
+		error = i18n.requiredField;
+	} else if (numRowsToGenerate > C.MAX_ANON_ROWS) {
+		error = parseI18n(i18n.overMaxAnonRows, [getFormattedNum(C.MAX_ANON_ROWS)]);
+	}
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
@@ -60,7 +68,7 @@ const GenerationPanel = ({
 						type="submit"
 						onClick={onGenerate}
 						color="primary"
-						disabled={!numRowsToGenerate}
+						disabled={!!error}
 						variant="contained">{i18n.generate}</Button>
 				</DialogActions>
 			</div>

@@ -30,5 +30,7 @@ export default {
 	ZINDEXES: {
 		DRAWER: 1300,
 		DIALOG: 5005
-	}
+	},
+
+	MAX_ANON_ROWS: 10000
 };

@@ -279,7 +279,8 @@
 
   "stripWhitespace": "strip whitespace from generated content",
   "invalidSettings": "Invalid settings!",
-  "editExportTypeSettings": "Please edit your export type settings."
+  "editExportTypeSettings": "Please edit your export type settings.",
+  "overMaxAnonRows": "Sorry, you can only generate %1 rows. To generate larger volumes of data you'll need a user account on this site."
 
 
 
