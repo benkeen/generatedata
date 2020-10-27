@@ -95,7 +95,6 @@ const getBatchInfo = (numResults: number, numBatches: number, batchSize: number,
 	const firstRow = ((batchNum - 1) * batchSize) + 1;
 	let lastRow = batchNum * batchSize;
 
-	// if it's the last batch, make sure the last row number isn't > the
 	if (batchNum === numBatches) {
 		lastRow = numResults;
 	}

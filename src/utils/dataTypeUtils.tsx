@@ -3,7 +3,6 @@ import { coreConfig } from '../core';
 import { getLocale, getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder } from '../_plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
-import { SmallSpinner } from '~components/loaders';
 import { Store } from '~types/general';
 
 type LoadedDataTypes = {
@@ -60,33 +59,28 @@ export const getSortedGroupedDataTypes = (): any => {
 
 export const DefaultHelpComponent = ({ i18n }: DTHelpProps): JSX.Element => <p dangerouslySetInnerHTML={{ __html: i18n.DESC }} />;
 
-const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>; // eslint-disable-line
-const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>; // eslint-disable-line
 const showNothing = (): null => null;
 
 export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO return type is important here. Dense method!
 	if (!dataType || !loadedDataTypes[dataType]) {
 		return {
-			Example: !dataType ? showNothing : SmallSpinner,
+			Example: !dataType ? showNothing : null,
 			Options: showNothing,
-			Help: null
+			Help: null,
+			isLoaded: false
 		};
 	}
 
-	let Example;
-	let Options;
-	let Help;
+	let Example = null;
+	let Options = null;
+	let Help = null;
 
 	if (loadedDataTypes[dataType]!.Example) {
 		Example = loadedDataTypes[dataType]!.Example;
-	} else {
-		Example = NoExample;
 	}
 
 	if (loadedDataTypes[dataType]!.Options) {
 		Options = loadedDataTypes[dataType]!.Options;
-	} else {
-		Options = NoOptions;
 	}
 
 	if (dataType && loadedDataTypes[dataType]!.Help) {
@@ -100,6 +94,7 @@ export const getDataType = (dataType: DataTypeFolder | null): any => { // TODO r
 
 	const { getMetadata, rowStateReducer } = loadedDataTypes[dataType] as DTBundle;
 	return {
+		isLoaded: true,
 		Options,
 		Help,
 		Example,

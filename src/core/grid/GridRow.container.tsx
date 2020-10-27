@@ -21,7 +21,7 @@ type OwnProps = {
 const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps> => {
 	const { dataType } = ownProps.row;
 
-	const { Example, Options, customProps } = getDataType(dataType);
+	const { Example, Options, customProps, isLoaded } = getDataType(dataType);
 	const dataTypeI18n = selectors.getDataTypeI18n(state);
 	const dtCustomProps = getCustomProps(customProps, state);
 
@@ -32,6 +32,7 @@ const mapStateToProps = (state: Store, ownProps: OwnProps): Partial<GridRowProps
 		selectedDataTypeI18n: dataTypeI18n && dataType ? dataTypeI18n[dataType] : null,
 		Example,
 		Options,
+		isDataTypeLoaded: isLoaded,
 		dtCustomProps,
 		...ownProps
 	};

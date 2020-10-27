@@ -165,8 +165,6 @@ const PreviewPanel = ({
 		);
 	};
 
-	console.log("!", initialDependenciesLoaded);
-
 	if (!initialDependenciesLoaded) {
 		return (
 			<div className={`${styles.previewPanel} ${themeName}`}>

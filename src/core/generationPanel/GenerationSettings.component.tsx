@@ -69,6 +69,7 @@ const GenerationPanel = ({
 						onClick={onGenerate}
 						color="primary"
 						disabled={!!error}
+						disableElevation
 						variant="contained">{i18n.generate}</Button>
 				</DialogActions>
 			</div>

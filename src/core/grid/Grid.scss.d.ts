@@ -5,6 +5,7 @@ declare namespace GridScssNamespace {
     dataTypeColDropdown: string;
     dataTypeHelp: string;
     deleteCol: string;
+    disabledBtn: string;
     examplesCol: string;
     grid: string;
     gridHeader: string;

@@ -10,18 +10,19 @@ export type IntroProps = {
 	i18n: any;
 };
 
-const IntroDialog = ({ visible, onClose }: IntroProps): JSX.Element => (
+const IntroDialog = ({ i18n, visible, onClose }: IntroProps): JSX.Element => (
 	<Dialog onClose={onClose} open={visible}>
 		<div style={{ maxWidth: 500 }}>
-			<DialogTitle onClose={onClose}>generatedata 4.0.0 demo</DialogTitle>
+			<DialogTitle onClose={onClose}>generatedata 4.0.0 alpha</DialogTitle>
 			<DialogContent dividers className={styles.contentPanel}>
-				<img src="./images/dice180x180.png" width={90} height={90} />
+				<div style={{ width: 90, height: 90, marginRight: 10 }}>
+					<img src="./images/dice180x180.png" width={90} height={90} />
+				</div>
 				<div>
 					<p>
-						Welcome! This is the alpha version of generatedata v4 - the upcoming version
-						of <Link url="http://generatedata.com" offSite={true}>generatedata.com</Link>. This current
-						version (Oct, 2020) is functional but incomplete. Unlike the current live site which is limited
-						to generating 100 rows, you're welcome to generate as many rows as you like.
+						Welcome! This site demos the alpha version of the
+						new <Link url="http://generatedata.com" offSite={true}>generatedata.com</Link> site. The
+						script is functional but incomplete.
 					</p>
 					<p>
 						There are no user accounts yet so you can't save your data, but that's coming next. You can
@@ -30,9 +31,7 @@ const IntroDialog = ({ visible, onClose }: IntroProps): JSX.Element => (
 				</div>
 			</DialogContent>
 			<DialogActions>
-				<Button onClick={onClose} color="primary" variant="outlined">
-					Yeah, yeah.
-				</Button>
+				<Button onClick={onClose} color="primary" variant="outlined">{i18n.close}</Button>
 			</DialogActions>
 		</div>
 	</Dialog>

@@ -12,6 +12,7 @@ import { DataTypeFolder } from '../../_plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../styles/shared.scss';
 import TextField from '~components/TextField';
+import { SmallSpinner } from '~components/loaders';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -33,6 +34,7 @@ export type GridRowProps = {
 	i18n: any;
 	countryI18n: any;
 	selectedDataTypeI18n: any;
+	isDataTypeLoaded: boolean;
 	onChangeTitle: (id: string, value: string) => void;
 	onConfigureDataType: (id: string, value: string) => void;
 	onSelectDataType: (dataType: DataTypeFolder, id: string) => void;
@@ -46,19 +48,74 @@ export type GridRowProps = {
 	showHelpDialog: (dataType: DataTypeFolder) => void;
 };
 
+const NoExample = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noExamplesAvailable}</div>;
+const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div className={emptyColClass}>{coreI18n.noOptionsAvailable}</div>;
+
 export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
-	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions, showHelpDialog
+	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions, showHelpDialog, isDataTypeLoaded
 }: GridRowProps): JSX.Element => {
 	const [open, setOpen] = React.useState(false);
 
 	const handleTooltipClose = (): void => setOpen(false);
 	const handleTooltipOpen = (): void => setOpen(true);
 
+	// TODO move to separate component
 	const getSettingsIcon = (): React.ReactNode => {
 		if (!row.dataType) {
 			return null;
 		}
+
+		let example = null;
+		let options = null;
+
+		if (isDataTypeLoaded) {
+			if (Example !== null) {
+				example = (
+					<>
+						<h4>{i18n.example}</h4>
+						<div>
+							<Example
+								coreI18n={i18n}
+								countryI18n={countryI18n}
+								i18n={selectedDataTypeI18n}
+								id={row.id}
+								data={row.data}
+								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+								emptyColClass={sharedStyles.emptyCol}
+								dimensions={{height: dimensions.height, width: dimensions.width}}
+							/>
+						</div>
+					</>
+				);
+			}
+
+			if (Options !== null) {
+				options = (
+					<>
+						<h4>{i18n.options}</h4>
+						<Options
+							coreI18n={i18n}
+							countryI18n={countryI18n}
+							i18n={selectedDataTypeI18n}
+							id={row.id}
+							data={row.data}
+							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+							dimensions={{ height: dimensions.height, width: dimensions.width }}
+							emptyColClass={sharedStyles.emptyCol}
+							{...dtCustomProps}
+						/>
+					</>
+				);
+			}
+		} else {
+			example = <SmallSpinner />;
+		}
+
+		if (example === null && options === null) {
+			return <SettingsIcon className={styles.disabledBtn} />;
+		}
+
 		return (
 			<ClickAwayListener onClickAway={handleTooltipClose}>
 				<HtmlTooltip
@@ -69,31 +126,8 @@ export const GridRow = ({
 					disableHoverListener
 					title={
 						<div>
-							<h4>Example</h4>
-							<div>
-								<Example
-									coreI18n={i18n}
-									countryI18n={countryI18n}
-									i18n={selectedDataTypeI18n}
-									id={row.id}
-									data={row.data}
-									onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-									emptyColClass={sharedStyles.emptyCol}
-									dimensions={{ height: dimensions.height, width: dimensions.width }}
-								/>
-							</div>
-							<h4>Options</h4>
-							<Options
-								coreI18n={i18n}
-								countryI18n={countryI18n}
-								i18n={selectedDataTypeI18n}
-								id={row.id}
-								data={row.data}
-								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-								dimensions={{ height: dimensions.height, width: dimensions.width }}
-								emptyColClass={sharedStyles.emptyCol}
-								{...dtCustomProps}
-							/>
+							{example}
+							{options}
 						</div>
 					}
 					arrow
@@ -103,6 +137,47 @@ export const GridRow = ({
 			</ClickAwayListener>
 		);
 	};
+
+	let example: any = null;
+	let options: any = null;
+	if (isDataTypeLoaded) {
+		if (Example) {
+			example = (
+				<Example
+					coreI18n={i18n}
+					countryI18n={countryI18n}
+					i18n={selectedDataTypeI18n}
+					id={row.id}
+					data={row.data}
+					onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+					emptyColClass={sharedStyles.emptyCol}
+					dimensions={{ height: dimensions.height, width: dimensions.width }}
+				/>
+			);
+		} else {
+			example = <NoExample coreI18n={i18n} emptyColClass={sharedStyles.emptyCol} />;
+		}
+
+		if (Options) {
+			options = (
+				<Options
+					coreI18n={i18n}
+					countryI18n={countryI18n}
+					i18n={selectedDataTypeI18n}
+					id={row.id}
+					data={row.data}
+					onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
+					dimensions={{height: dimensions.height, width: dimensions.width}}
+					emptyColClass={sharedStyles.emptyCol}
+					{...dtCustomProps}
+				/>
+			);
+		} else {
+			options = <NoOptions coreI18n={i18n} emptyColClass={sharedStyles.emptyCol} />;
+		}
+	} else {
+		example = <SmallSpinner />;
+	}
 
 	return (
 		<Draggable key={row.id} draggableId={row.id} index={index}>
@@ -143,31 +218,8 @@ export const GridRow = ({
 								onChange={(e: any): void => onChangeTitle(row.id, e.target.value)}
 							/>
 						</div>
-						<div className={styles.examplesCol}>
-							<Example
-								coreI18n={i18n}
-								countryI18n={countryI18n}
-								i18n={selectedDataTypeI18n}
-								id={row.id}
-								data={row.data}
-								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-								emptyColClass={sharedStyles.emptyCol}
-								dimensions={{ height: dimensions.height, width: dimensions.width }}
-							/>
-						</div>
-						<div className={styles.optionsCol}>
-							<Options
-								coreI18n={i18n}
-								countryI18n={countryI18n}
-								i18n={selectedDataTypeI18n}
-								id={row.id}
-								data={row.data}
-								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-								dimensions={{ height: dimensions.height, width: dimensions.width }}
-								emptyColClass={sharedStyles.emptyCol}
-								{...dtCustomProps}
-							/>
-						</div>
+						<div className={styles.examplesCol}>{example}</div>
+						<div className={styles.optionsCol}>{options}</div>
 						<div className={styles.settingsIconCol} onClick={(): void => {
 							if (row.dataType === null) {
 								return;
