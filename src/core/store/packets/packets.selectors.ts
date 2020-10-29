@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { DataPackets } from './packets.reducer';
 import prettyBytes from 'pretty-bytes';
 import { getFormattedNum } from '~utils/numberUtils';
+import { formatDuration } from '~utils/dateUtils';
 import { getLocale } from '../main/main.selectors';
 import C from '../../constants';
 
@@ -114,13 +115,12 @@ export const getEstimatedDataSize = createSelector(
 
 export const getEstimatedTime = createSelector(
 	getCurrentPacket,
-	(packet): number | null => {
+	(packet): string => {
 		if (!packet) {
-			return null;
+			return '-';
 		}
 		const timeInMs = packet.stats.averageSpeed * (packet.config.numRowsToGenerate / C.GENERATION_BATCH_SIZE);
-		const seconds = timeInMs / 1000;
-		return seconds;
+		return formatDuration(timeInMs / 1000);
 	}
 );
 

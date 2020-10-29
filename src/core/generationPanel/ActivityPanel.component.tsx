@@ -34,7 +34,7 @@ export type ActivityPanelProps = {
 	batchLoadTimes: object[];
 	dataSize: string;
 	estimatedSize: string;
-	estimatedTime: number | string;
+	estimatedTime: string;
 	loadTimeGraphDuration: LoadTimeGraphDuration;
 };
 

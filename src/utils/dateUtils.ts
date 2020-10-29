@@ -1,4 +1,4 @@
-export const formatDuration = (duration: number) => {
+export const formatDuration = (duration: number): string => {
 	const secondsStr = Math.floor(duration % 60).toString();
 	const minutes = Math.floor(duration / 60) % 60;
 	const minutesStr = minutes.toString();
@@ -7,7 +7,7 @@ export const formatDuration = (duration: number) => {
 	const paddedSecondsStr = secondsStr.length < 2 ? 0 + secondsStr : secondsStr;
 
 	if (hours) {
-		// return `${hours}:`
+		return `${hours}:`;
 	} else if (minutes) {
 		return `${minutes}:${paddedSecondsStr}`;
 	} else {
