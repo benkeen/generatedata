@@ -4,6 +4,7 @@ import { DataPackets } from './packets.reducer';
 import prettyBytes from 'pretty-bytes';
 import { getFormattedNum } from '~utils/numberUtils';
 import { getLocale } from '../main/main.selectors';
+import C from '../../constants';
 
 export const getCurrentPacketId = (state: Store): string | null => state.packets.currentPacketId;
 export const getPacketIds = (state: Store): string[] => state.packets.packetIds;
@@ -111,8 +112,23 @@ export const getEstimatedDataSize = createSelector(
 	}
 );
 
-// export const getEstimatedTime = createSelector(
-//
+export const getEstimatedTime = createSelector(
+	getCurrentPacket,
+	(packet): number | null => {
+		if (!packet) {
+			return null;
+		}
+		const timeInMs = packet.stats.averageSpeed * (packet.config.numRowsToGenerate / C.GENERATION_BATCH_SIZE);
+		const seconds = timeInMs / 1000;
+
+	}
+);
+
+// export const getRemainingTime = createSelector(
+// 	getCurrentPacket,
+// 	(packet) => {
+// 		// const remainingRows = packet.config.numRowsToGenerate - packet.numGeneratedRows;
+// 	}
 // );
 
 export const getCompletedDataString = createSelector(

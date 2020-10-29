@@ -34,6 +34,7 @@ export type ActivityPanelProps = {
 	batchLoadTimes: object[];
 	dataSize: string;
 	estimatedSize: string;
+	estimatedTime: number | string;
 	loadTimeGraphDuration: LoadTimeGraphDuration;
 };
 
@@ -41,7 +42,7 @@ const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
-	onDownload, onChangeSpeed, dataSize, estimatedSize, i18n
+	onDownload, onChangeSpeed, dataSize, estimatedSize, estimatedTime, i18n
 }: ActivityPanelProps): any => {
 	if (packet === null) {
 		return null;
@@ -228,7 +229,7 @@ const ActivityPanel = ({
 										<div className={styles.dataPanel}>
 											<div className={styles.dataRow}>
 												<div className={styles.dataRowLabel}>Estimated time:</div>
-												<div className={styles.dataRowValue} />
+												<div className={styles.dataRowValue}>{estimatedTime}</div>
 											</div>
 											<div className={styles.dataRow}>
 												<div className={styles.dataRowLabel}>Remaining time:</div>

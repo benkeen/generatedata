@@ -18,6 +18,9 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: 
 		batchLoadTimes: packetSelectors.getBatchLoadTimes(state),
 		dataSize: packetSelectors.getGeneratedDataSizeLabel(state),
 		estimatedSize: packetSelectors.getEstimatedDataSize(state),
+
+		// @ts-ignore-line
+		estimatedTime: packetSelectors.getEstimatedTime(state),
 		workerResources: {}
 	};
 

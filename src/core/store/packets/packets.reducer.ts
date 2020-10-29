@@ -43,6 +43,7 @@ export type DataPacket = {
 
 	stats: {
 		totalSize: number;
+		averageSpeed: number;
 		rowGenerationRatePerSecond: { [second: number]: number };
 		lastCompleteLoggedSecond: number;
 	};
@@ -94,6 +95,7 @@ export const getNewPacket = ({
 		data: [],
 		stats: {
 			totalSize: 0,
+			averageSpeed: 0,
 			rowGenerationRatePerSecond: {},
 			lastCompleteLoggedSecond: 0
 		}
@@ -165,11 +167,23 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				break;
 			}
 
-			// the start time for this batch was either the previous completed batch, or for the very first one, the start
+			const numExistingPackets = draft.packets[packetId].data.length;
+
+			// the start time for this batch was either the previous completed batch, or for the very first one - the start
 			// of the generation
-			const startTime = draft.packets[packetId].data.length ?
+			const startTime = numExistingPackets > 0 ?
 				draft.packets[packetId].data[draft.packets[packetId].data.length-1].endTime :
 				draft.packets[packetId].resumeTime;
+
+			const duration = now - startTime;
+
+			let newAverageSpeed = duration;
+			if (numExistingPackets > 0) {
+				newAverageSpeed = ((draft.packets[packetId].stats.averageSpeed * numExistingPackets) + duration) / (numExistingPackets + 1);
+			}
+
+			draft.packets[packetId].stats.averageSpeed = newAverageSpeed;
+			draft.packets[packetId].stats.totalSize += byteSize;
 
 			draft.packets[packetId].numGeneratedRows = numGeneratedRows;
 			draft.packets[packetId].data.push({
@@ -177,7 +191,6 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				byteSize,
 				endTime: now
 			});
-			draft.packets[packetId].stats.totalSize += byteSize;
 
 			const result = getRowGenerationRatePerSecond(draft.packets[packetId].resumeTime, startTime, now, C.GENERATION_BATCH_SIZE);
 

@@ -76,7 +76,7 @@ const generateNextBatch = (data: any, numBatches: number, batchSize: number, bat
 	generateBatch({
 		template: data.template,
 		numResults: data.numResults,
-		unchanged: data.unchanged,
+		unchanged: data.unchanged || {},
 		i18n: data.i18n,
 		firstRow,
 		lastRow,

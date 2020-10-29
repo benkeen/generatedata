@@ -125,7 +125,13 @@ div.deleteCol, div.settingsIconCol {
 
 	svg {
 		fill: #333333;
+		transition: fill 0.5s ease-in-out;
 	}
+}
+
+div.settingsIconCol svg.disabledBtn {
+	fill: #eeeeee;
+	cursor: default;
 }
 
 div.deleteCol {
