@@ -120,7 +120,7 @@ export const getEstimatedTime = createSelector(
 		}
 		const timeInMs = packet.stats.averageSpeed * (packet.config.numRowsToGenerate / C.GENERATION_BATCH_SIZE);
 		const seconds = timeInMs / 1000;
-
+		return seconds;
 	}
 );
 
