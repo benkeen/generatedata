@@ -20,12 +20,12 @@ const IntroDialog = ({ i18n, visible, onClose }: IntroProps): JSX.Element => (
 				</div>
 				<div>
 					<p>
-						Welcome! This site demos the alpha version of the
-						new <Link url="http://generatedata.com" offSite={true}>generatedata.com</Link> site. The
+						Welcome! This site contains the alpha 4.0.0 version of the
+						upcoming <Link url="http://generatedata.com" offSite={true}>generatedata.com</Link> site. The
 						script is functional but incomplete.
 					</p>
 					<p>
-						There are no user accounts yet so you can't save your data, but that's coming next. You can
+						There are no user accounts yet so you can't save your data, but that's coming soon. You can
 						follow the progress on <Link url="https://github.com/benkeen/generatedata/issues" offSite={true}>github</Link>.
 					</p>
 				</div>

@@ -20,6 +20,7 @@ declare namespace GridScssNamespace {
     scrollableGridRows: string;
     settingsIconCol: string;
     smallScreenMode: string;
+    smallScreenSettingsTooltip: string;
     smallScreenSpinner: string;
     titleCol: string;
   }

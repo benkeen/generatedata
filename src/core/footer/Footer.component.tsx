@@ -14,6 +14,7 @@ import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import Link from '~components/Link';
 import { GDLocale } from '~types/general';
 import C from '../constants';
+import useOnClickOutside from 'use-onclickoutside';
 
 export type FooterProps = {
 	locale: GDLocale;
@@ -43,8 +44,13 @@ const useListStyles = makeStyles(() =>
 );
 
 const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGenerate }: FooterProps): JSX.Element => {
+	const popoverRef = React.useRef(null);
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
+
+	useOnClickOutside(popoverRef, () => {
+		setLocaleTooltipVisibility(false);
+	});
 
 	return (
 		<footer className={styles.footer}>
@@ -56,34 +62,32 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGene
 						</Link>
 					</li>
 					<li>
-						<ClickAwayListener onClickAway={(): void => setLocaleTooltipVisibility(false)}>
-							<HtmlTooltip
-								arrow
-								open={localeTooltipVisible}
-								placement="top"
-								disableFocusListener
-								disableTouchListener
-								interactive
-								onClose={(): void => setLocaleTooltipVisibility(false)}
-								title={
-									<div className={listClasses.root}>
-										<List>
-											{options.map((currLocale: any): JSX.Element => (
-												<ListItem
-													button
-													key={currLocale.value}
-													className={locale === currLocale.value ? styles.selectedLocale : ''}
-													onClick={(): void => onChangeLocale(currLocale.value)}>
-													<ListItemText primary={currLocale.label} />
-												</ListItem>
-											))}
-										</List>
-									</div>
-								}
-							>
-								<LanguageIcon fontSize="large" onClick={(): void => setLocaleTooltipVisibility(true)} />
-							</HtmlTooltip>
-						</ClickAwayListener>
+						<HtmlTooltip
+							arrow
+							open={localeTooltipVisible}
+							placement="top"
+							disableFocusListener
+							disableHoverListener
+							disableTouchListener
+							interactive
+							title={
+								<div className={listClasses.root} ref={popoverRef}>
+									<List>
+										{options.map((currLocale: any): JSX.Element => (
+											<ListItem
+												button
+												key={currLocale.value}
+												className={locale === currLocale.value ? styles.selectedLocale : ''}
+												onClick={(): void => onChangeLocale(currLocale.value)}>
+												<ListItemText primary={currLocale.label} />
+											</ListItem>
+										))}
+									</List>
+								</div>
+							}
+						>
+							<LanguageIcon fontSize="large" onClick={(): void => setLocaleTooltipVisibility(true)} />
+						</HtmlTooltip>
 					</li>
 					<li style={{ marginRight: 30 }}>{scriptVersion}</li>
 					<li>

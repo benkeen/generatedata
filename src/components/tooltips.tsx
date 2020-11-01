@@ -3,15 +3,14 @@ import { withStyles } from '@material-ui/core/styles';
 
 export const HtmlTooltip = withStyles(() => ({
 	tooltip: {
-		backgroundColor: '#f5f5f9',
+		backgroundColor: '#f0f2f5',
 		color: 'rgba(0, 0, 0, 0.87)',
-		maxWidth: 220,
-		border: '1px solid #dadde9',
 		fontSize: 12,
-		padding: 10
+		padding: 15,
+		border: '1px solid #ccd0d4'
 	},
 	arrow: {
-		color: '#dadde9'
+		color: '#ccd0d4'
 	}
 }))(MuiTooltip);
 

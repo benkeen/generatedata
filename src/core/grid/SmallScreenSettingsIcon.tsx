@@ -3,8 +3,8 @@ import * as sharedStyles from '../../styles/shared.scss';
 import { SmallSpinner } from '~components/loaders';
 import * as styles from './Grid.scss';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { HtmlTooltip } from '~components/tooltips';
+import useOnClickOutside from 'use-onclickoutside';
 import C from '../constants';
 
 
@@ -12,9 +12,22 @@ export const SmallScreenSettingsIcon = ({
 	id, data, dataType, isDataTypeLoaded, Example, Options, i18n, countryI18n, gridPanelDimensions,
 	selectedDataTypeI18n, onConfigureDataType, dtCustomProps
 }: any): any => {
+	const popoverRef = React.useRef(null);
 	const [open, setOpen] = React.useState(false);
 
-	const handleTooltipClose = (): void => setOpen(false);
+	useOnClickOutside(popoverRef, (e) => {
+
+		// the `gd-is-portal` part is added in case Data Types use other portal-based content besides react select. If
+		// that's the case, clicking it will always close the tooltip here. So to get around it, give the portal a class
+		// of gd-is-portal. That'll suppress the close event here,
+
+		if (e.target && (e.target.closest('.react-select__menu') || e.target.closest('gd-is-portal'))) {
+			console.log("is react select!");
+			return;
+		}
+		setOpen(false);
+	});
+
 	const handleTooltipOpen = (): void => setOpen(true);
 
 	if (!dataType || gridPanelDimensions.width >= C.GRID.MEDIUM_BREAKPOINT) {
@@ -49,9 +62,10 @@ export const SmallScreenSettingsIcon = ({
 	}
 
 	if (Options !== null) {
+		const titleStyle = Example === null ? {} : { marginTop: 10 };
 		options = (
 			<>
-				<h4>{i18n.options}</h4>
+				<h4 style={titleStyle}>{i18n.options}</h4>
 				<Options
 					coreI18n={i18n}
 					countryI18n={countryI18n}
@@ -71,24 +85,27 @@ export const SmallScreenSettingsIcon = ({
 		return <SettingsIcon className={styles.disabledBtn} />;
 	}
 
+	if (!open) {
+		return <SettingsIcon onClick={handleTooltipOpen} />;
+	}
+
 	return (
-		<ClickAwayListener onClickAway={handleTooltipClose}>
-			<HtmlTooltip
-				placement="left"
-				onClose={handleTooltipClose}
-				open={open}
-				disableFocusListener
-				disableHoverListener
-				title={
-					<div>
-						{example}
-						{options}
-					</div>
-				}
-				arrow
-			>
-				<SettingsIcon onClick={handleTooltipOpen} />
-			</HtmlTooltip>
-		</ClickAwayListener>
+		<HtmlTooltip
+			placement="left"
+			open={open}
+			disableFocusListener
+			disableHoverListener
+			disableTouchListener
+			interactive
+			title={
+				<div ref={popoverRef} className={styles.smallScreenSettingsTooltip}>
+					{example}
+					{options}
+				</div>
+			}
+			arrow
+		>
+			<SettingsIcon onClick={handleTooltipOpen} />
+		</HtmlTooltip>
 	);
 };

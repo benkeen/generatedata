@@ -57,12 +57,15 @@ const Dropdown = ({ value, isGrouped, options, placeholder, ...props }: any): JS
 		}
 	}
 
-	const placeholderStr = placeholder ? placeholder : 'Select...';
+	const placeholderStr = placeholder ? placeholder : 'Select...'; // TODO
+
+	// for debugging: menuIsOpen={true}
 
 	return (
 		<Select
 			{...props}
 			options={options}
+			classNamePrefix="react-select"
 			value={selectedValue}
 			styles={selectStyles}
 			placeholder={placeholderStr}

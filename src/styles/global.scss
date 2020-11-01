@@ -18,7 +18,7 @@ a {
 }
 
 body :global(div.MuiTooltip-popper) {
-	z-index: 5010 !important;
+	z-index: 5005 !important; // was 5010
 }
 
 .recharts-wrapper .recharts-area {

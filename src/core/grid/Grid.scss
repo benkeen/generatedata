@@ -190,3 +190,15 @@ div.settingsIconCol {
 .smallScreenSpinner {
 	margin-top: -2px !important;
 }
+
+.smallScreenSettingsTooltip {
+	width: 280px;
+
+	h4 {
+		margin: 0 0 5px;
+
+		&:nth-child(2) {
+			margin-top: 10px;
+		}
+	}
+}
