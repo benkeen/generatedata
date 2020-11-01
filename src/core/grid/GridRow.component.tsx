@@ -2,17 +2,15 @@ import * as React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DragIndicator from '@material-ui/icons/DragIndicator';
-import SettingsIcon from '@material-ui/icons/SettingsOutlined';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import InfoIcon from '@material-ui/icons/Info';
 import Dropdown from '~components/dropdown/Dropdown';
-import { HtmlTooltip } from '~components/tooltips';
 import { DataRow } from '../store/generator/generator.reducer';
 import { DataTypeFolder } from '../../_plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../styles/shared.scss';
 import TextField from '~components/TextField';
 import { SmallSpinner } from '~components/loaders';
+import { SmallScreenSettingsIcon } from './SmallScreenSettingsIcon';
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any): React.CSSProperties => {
 	const styles: React.CSSProperties = {
@@ -41,7 +39,7 @@ export type GridRowProps = {
 	onRemove: (id: string) => void;
 	dtCustomProps: { [propName: string]: any };
 	dtDropdownOptions: any;
-	dimensions: { // TODO rename... what dimensions is this again? the whole screen size? Grid panel?
+	gridPanelDimensions: {
 		width: number;
 		height: number;
 	};
@@ -53,93 +51,11 @@ const NoOptions = ({ coreI18n, emptyColClass }: any): JSX.Element => <div classN
 
 export const GridRow = ({
 	row, index, Example, Options, onRemove, onChangeTitle, onConfigureDataType, onSelectDataType, dtDropdownOptions,
-	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, dimensions, showHelpDialog, isDataTypeLoaded
+	i18n, countryI18n, selectedDataTypeI18n, dtCustomProps, gridPanelDimensions, showHelpDialog, isDataTypeLoaded
 }: GridRowProps): JSX.Element => {
-	const [open, setOpen] = React.useState(false);
-
-	const handleTooltipClose = (): void => setOpen(false);
-	const handleTooltipOpen = (): void => setOpen(true);
-
-	// TODO move to separate component
-	const getSettingsIcon = (): React.ReactNode => {
-		if (!row.dataType) {
-			return null;
-		}
-
-		let example = null;
-		let options = null;
-
-		if (isDataTypeLoaded) {
-			if (Example !== null) {
-				example = (
-					<>
-						<h4>{i18n.example}</h4>
-						<div>
-							<Example
-								coreI18n={i18n}
-								countryI18n={countryI18n}
-								i18n={selectedDataTypeI18n}
-								id={row.id}
-								data={row.data}
-								onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-								emptyColClass={sharedStyles.emptyCol}
-								dimensions={{height: dimensions.height, width: dimensions.width}}
-							/>
-						</div>
-					</>
-				);
-			}
-
-			if (Options !== null) {
-				options = (
-					<>
-						<h4>{i18n.options}</h4>
-						<Options
-							coreI18n={i18n}
-							countryI18n={countryI18n}
-							i18n={selectedDataTypeI18n}
-							id={row.id}
-							data={row.data}
-							onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-							dimensions={{ height: dimensions.height, width: dimensions.width }}
-							emptyColClass={sharedStyles.emptyCol}
-							{...dtCustomProps}
-						/>
-					</>
-				);
-			}
-		} else {
-			example = <SmallSpinner />;
-		}
-
-		if (example === null && options === null) {
-			return <SettingsIcon className={styles.disabledBtn} />;
-		}
-
-		return (
-			<ClickAwayListener onClickAway={handleTooltipClose}>
-				<HtmlTooltip
-					placement="left"
-					onClose={handleTooltipClose}
-					open={open}
-					disableFocusListener
-					disableHoverListener
-					title={
-						<div>
-							{example}
-							{options}
-						</div>
-					}
-					arrow
-				>
-					<SettingsIcon onClick={handleTooltipOpen} />
-				</HtmlTooltip>
-			</ClickAwayListener>
-		);
-	};
-
 	let example: any = null;
 	let options: any = null;
+
 	if (isDataTypeLoaded) {
 		if (Example) {
 			example = (
@@ -151,7 +67,7 @@ export const GridRow = ({
 					data={row.data}
 					onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
 					emptyColClass={sharedStyles.emptyCol}
-					dimensions={{ height: dimensions.height, width: dimensions.width }}
+					gridPanelDimensions={gridPanelDimensions}
 				/>
 			);
 		} else {
@@ -167,7 +83,7 @@ export const GridRow = ({
 					id={row.id}
 					data={row.data}
 					onUpdate={(data: any): void => onConfigureDataType(row.id, data)}
-					dimensions={{height: dimensions.height, width: dimensions.width}}
+					gridPanelDimensions={gridPanelDimensions}
 					emptyColClass={sharedStyles.emptyCol}
 					{...dtCustomProps}
 				/>
@@ -175,7 +91,7 @@ export const GridRow = ({
 		} else {
 			options = <NoOptions coreI18n={i18n} emptyColClass={sharedStyles.emptyCol} />;
 		}
-	} else {
+	} else if (!isDataTypeLoaded && row.dataType) {
 		example = <SmallSpinner />;
 	}
 
@@ -225,7 +141,20 @@ export const GridRow = ({
 								return;
 							}
 						}}>
-							{getSettingsIcon()}
+							<SmallScreenSettingsIcon
+								id={row.id}
+								data={row.data}
+								dataType={row.dataType}
+								Example={Example}
+								Options={Options}
+								isDataTypeLoaded={isDataTypeLoaded}
+								i18n={i18n}
+								countryI18n={countryI18n}
+								gridPanelDimensions={gridPanelDimensions}
+								selectedDataTypeI18n={selectedDataTypeI18n}
+								onConfigureDataType={onConfigureDataType}
+								dtCustomProps={dtCustomProps}
+							/>
 						</div>
 						<div className={styles.deleteCol} onClick={(): void => onRemove(row.id)}>
 							<HighlightOffIcon />

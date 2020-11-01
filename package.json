@@ -1,7 +1,7 @@
 {
   "name": "generatedata",
-  "version": "4.0.0",
-  "description": "Free, GNU-licensed, random custom data generator for testing software.",
+  "version": "4.0.0-alpha-20201030",
+  "description": "Free, MIT-licensed, random custom data generator for testing software.",
   "main": "index.js",
   "directories": {
     "test": "tests"

@@ -13,8 +13,6 @@ import { DataTypeFolder } from '../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../constants';
 
-const SMALL_BREAKPOINT = 650;
-const MEDIUM_BREAKPOINT = 780;
 
 export type GridProps = {
 	rows: DataRow[];
@@ -41,9 +39,9 @@ const Grid = ({
 	const windowSize = useWindowSize();
 
 	let gridSizeClass = '';
-	if (dimensions.width < SMALL_BREAKPOINT) {
+	if (dimensions.width < C.GRID.SMALL_BREAKPOINT) {
 		gridSizeClass = styles.gridSmall;
-	} else if (dimensions.width < MEDIUM_BREAKPOINT) {
+	} else if (dimensions.width < C.GRID.MEDIUM_BREAKPOINT) {
 		gridSizeClass = styles.gridMedium;
 	}
 
@@ -112,7 +110,7 @@ const Grid = ({
 														row={row}
 														key={row.id}
 														index={index}
-														dimensions={dimensions}
+														gridPanelDimensions={dimensions}
 														showHelpDialog={onShowHelpDialog}
 													/>
 												))}

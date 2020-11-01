@@ -72,7 +72,7 @@ export type DTOptionsProps = {
 	i18n: any;
 	data: any;
 	id: string;
-	dimensions: Dimensions;
+	gridPanelDimensions: Dimensions;
 	onUpdate: (data: AnyObject) => void;
 
 	// for custom props. See DTCustomProps
@@ -83,7 +83,7 @@ export type DTOptionsProps = {
 export type DTExampleProps = {
     data: any;
 	id: string;
-	dimensions: Dimensions;
+	gridPanelDimensions: Dimensions;
     onUpdate: (data: AnyObject) => void;
 	coreI18n: any;
 	countryI18n: any;
@@ -139,7 +139,7 @@ export type DTCustomProps = {
 	i18n?: undefined;
 	data?: undefined;
 	id?: undefined;
-	dimensions?: undefined;
+	gridPanelDimensions?: undefined;
 	onUpdate?: undefined;
 	[propName: string]: any;
 }

@@ -11,7 +11,7 @@ import * as selectors from '../store/generator/generator.selectors';
 type OwnProps = {
 	row: DataRow;
 	index: number;
-	dimensions: {
+	gridPanelDimensions: {
 		width: number;
 		height: number;
 	};
