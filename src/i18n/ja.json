@@ -28,6 +28,7 @@
 	"cannotChangeNumRows": "申し訳ありませんが、生成される行数を変更することはできません。",
 	"centralAmerica": "Central America",
 	"checkDatabaseInfo": "Check Database Info",
+	"clear": "晴れ",
 	"clearPage": "ページをクリア",
 	"clearPageConfirmation": "ページをクリアしてもよろしいですか？ 行った変更はすべて失われます。",
 	"clearThePage": "Clear the Page",
@@ -39,6 +40,8 @@
 	"confirmDeleteUserAccount": "Are you sure you want to delete this user account?",
 	"confirmEmptyForm": "本当にフォームをクリアしてもよろしいですか？",
 	"confirmFileExists": "Confirm File Exists",
+	"copiedToClipboard": "クリップボードにコピー",
+	"copyToClipboard": "クリップボードにコピー",
 	"countries": "Countries",
 	"country": "国",
 	"countrySpecificData": "Country-Specific Data",
@@ -222,6 +225,7 @@
 	"seeHelpDialog": "&nbsp;See help dialog.",
 	"selectCountry": "国を選択",
 	"selectDataType": "Select Data Type",
+	"selectEllipsis": "選択する...",
 	"selectLanguage": "Select Language",
 	"seriouslySlow": "ひどく遅い",
 	"settings": "Settings",
@@ -267,11 +271,5 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets",
-
-  "clear": "晴れ",
-  "copiedToClipboard": "クリップボードにコピー",
-  "copyToClipboard": "クリップボードにコピー",
-
-  "selectEllipsis": "選択する..."
+	"yourDataSets": "Your Data Sets"
 }

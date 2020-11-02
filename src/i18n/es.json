@@ -28,6 +28,7 @@
 	"cannotChangeNumRows": "Lo sentimos, no tienes permiso para cambiar el número de filas generadas.",
 	"centralAmerica": "América Central",
 	"checkDatabaseInfo": "Verificar información de la base de datos",
+	"clear": "Clara",
 	"clearPage": "Limpiar página",
 	"clearPageConfirmation": "¿Estás seguro de que deseas borrar la página? Se perderán todos los cambios que haya realizado.",
 	"clearThePage": "Limpiar la página",
@@ -39,8 +40,11 @@
 	"confirmDeleteUserAccount": "¿Estás seguro de querer eliminar esta cuenta de usuario?",
 	"confirmEmptyForm": "¿Está seguro de querer borrar la página?",
 	"confirmFileExists": "Confirmar archivo existe",
+	"copiedToClipboard": "Copiada al portapapeles",
+	"copyToClipboard": "Copiar al portapapeles",
 	"countries": "Países",
 	"country": "País",
+	"countrySpecific": "Específico del país",
 	"countrySpecificData": "Datos específicos de país",
 	"cpuMeltinglyFast": "CPU increíblemente rápido",
 	"createAccount": "Crear cuenta",
@@ -222,6 +226,7 @@
 	"seeHelpDialog": "&nbsp;Ver el diálogo de ayuda.",
 	"selectCountry": "Seleccionar país",
 	"selectDataType": "Seleccione tipo de dato",
+	"selectEllipsis": "Seleccione...",
 	"selectLanguage": "Elije idioma",
 	"seriouslySlow": "Seriamente lenta",
 	"settings": "Ajustes",
@@ -267,11 +272,5 @@
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
 	"yourDataSetNameHere": "El nombre de tu conjunto de datos va aquí...",
-	"yourDataSets": "Tus conjuntos de datos",
-
-  "clear": "Clara",
-  "copiedToClipboard": "Copiada al portapapeles",
-  "copyToClipboard": "Copiar al portapapeles",
-
-  "selectEllipsis": "Seleccione..."
+	"yourDataSets": "Tus conjuntos de datos"
 }

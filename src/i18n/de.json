@@ -28,6 +28,7 @@
 	"cannotChangeNumRows": "Sorry, Sie sind nicht berechtigt, die Anzahl der generierten Zeilen zu ändern.",
 	"centralAmerica": "Zentralamerika",
 	"checkDatabaseInfo": "Datenbank-Informationen prüfen",
+	"clear": "klar",
 	"clearPage": "Seite löschen",
 	"clearPageConfirmation": "Möchten Sie die Seite wirklich löschen? Alle Änderungen, die Sie vorgenommen haben, gehen verloren.",
 	"clearThePage": "Seite leeren",
@@ -39,8 +40,11 @@
 	"confirmDeleteUserAccount": "Sind Sie sicher, dass Sie dieses Benutzerkonto löschen möchten?",
 	"confirmEmptyForm": "Sind Sie sicher, dass Sie die Seite löschen möchten?",
 	"confirmFileExists": "Bestätigen, dass die Datei vorhanden ist",
+	"copiedToClipboard": "In die Zwischenablage kopiert",
+	"copyToClipboard": "In die Zwischenablage kopieren",
 	"countries": "Länder",
 	"country": "Land",
+	"countrySpecific": "Länderspezifisch",
 	"countrySpecificData": "länderspezifische Daten",
 	"cpuMeltinglyFast": "CPU-schmelzend schnell",
 	"createAccount": "Konto erstellen",
@@ -222,6 +226,7 @@
 	"seeHelpDialog": "Siehe Hilfe-Dialog.",
 	"selectCountry": "Land auswählen",
 	"selectDataType": "Daten-Typen auswählen",
+	"selectEllipsis": "Wählen...",
 	"selectLanguage": "Sprache auswählen",
 	"seriouslySlow": "ernsthaft langsam",
 	"settings": "Einstellungen",
@@ -267,11 +272,5 @@
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
 	"yourDataSetNameHere": "Name für Datensatz eingeben...",
-	"yourDataSets": "Ihre Datensätze",
-
-  "clear": "klar",
-  "copiedToClipboard": "In die Zwischenablage kopiert",
-  "copyToClipboard": "In die Zwischenablage kopieren",
-
-  "selectEllipsis": "Wählen..."
+	"yourDataSets": "Ihre Datensätze"
 }

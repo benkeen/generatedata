@@ -28,6 +28,7 @@
 	"cannotChangeNumRows": "对不起,不允许更改生成行数的数字.",
 	"centralAmerica": "中美洲",
 	"checkDatabaseInfo": "检查数据库信息",
+	"clear": "明确",
 	"clearPage": "清除页面",
 	"clearPageConfirmation": "您确定要清除页面吗？ 您所做的任何更改都将丢失。",
 	"clearThePage": "清空该页面",
@@ -39,6 +40,8 @@
 	"confirmDeleteUserAccount": "确定删除此账号?",
 	"confirmEmptyForm": "确定清空页面吗?",
 	"confirmFileExists": "文件确认已存在",
+	"copiedToClipboard": "复制到剪贴板",
+	"copyToClipboard": "复制到剪贴板",
 	"countries": "国家",
 	"country": "国家",
 	"countrySpecificData": "自定义城市数据",
@@ -222,6 +225,7 @@
 	"seeHelpDialog": "查看帮助对话框.",
 	"selectCountry": "选择国家",
 	"selectDataType": "选择数据类型",
+	"selectEllipsis": "选择...",
 	"selectLanguage": "选择语言",
 	"seriouslySlow": "严重慢",
 	"settings": "设置",
@@ -268,8 +272,6 @@
 	"yourAccount": "你的账号",
 	"yourDataSetNameHere": "在这里写数据集名称",
 	"yourDataSets": "你的数据集",
-  "clear": "明确",
-  "copiedToClipboard": "复制到剪贴板",
-  "copyToClipboard": "复制到剪贴板",
-  "selectEllipsis": "选择..."
+
+  "countrySpecific": "特定国家"
 }

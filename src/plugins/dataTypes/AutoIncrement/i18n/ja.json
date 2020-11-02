@@ -1,5 +1,5 @@
 {
-  "NAME": "Auto-increment",
+  "NAME": "自動増加",
   "DESC": "Provides many variations on an standard auto-increment field: custom start value, customizable step sizes, arbitrary string inclusion, increment or decrement and more. ",
   "DEFAULT_TITLE": "autoincrement",
   "helpIntro": "Generates a column that contains a unique number on each row, incrementing by whatever value you enter. This option can be helpful for inserting the data into a database field with an auto-increment primary key.",

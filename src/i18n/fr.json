@@ -28,6 +28,7 @@
 	"cannotChangeNumRows": "Désolé, vous nêtes pas autorisé à modifier le nombre de lignes générées.",
 	"centralAmerica": "Amérique Centrale",
 	"checkDatabaseInfo": "Base de données",
+	"clear": "Claire",
 	"clearPage": "Effacer la page",
 	"clearPageConfirmation": "Voulez-vous vraiment effacer la page? Toutes les modifications que vous avez apportées seront perdues.",
 	"clearThePage": "Vider la page",
@@ -39,6 +40,8 @@
 	"confirmDeleteUserAccount": "Êtes-vous sûr de vouloir supprimer ce compte utilisateur?",
 	"confirmEmptyForm": "Êtes-vous sûr de vouloir vider le formulaire?",
 	"confirmFileExists": "Fichier existant",
+	"copiedToClipboard": "Copié dans le presse-papier",
+	"copyToClipboard": "Copier dans le presse-papier",
 	"countries": "Pays",
 	"country": "Pays",
 	"countrySpecificData": "Données spécifiques aux pays...",
@@ -222,6 +225,7 @@
 	"seeHelpDialog": "Consulter laide.",
 	"selectCountry": "Choisissez le pays",
 	"selectDataType": "Choix du type de données",
+	"selectEllipsis": "Sélectionner...",
 	"selectLanguage": "Choix de la langue",
 	"seriouslySlow": "sérieusement lent",
 	"settings": "Réglages",
@@ -267,11 +271,5 @@
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
 	"yourDataSetNameHere": "Nom du jeu de données...",
-	"yourDataSets": "Vos jeux de données",
-
-  "clear": "Claire",
-  "copiedToClipboard": "Copié dans le presse-papier",
-  "copyToClipboard": "Copier dans le presse-papier",
-
-  "selectEllipsis": "Sélectionner..."
+	"yourDataSets": "Vos jeux de données"
 }

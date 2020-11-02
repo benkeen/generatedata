@@ -28,6 +28,7 @@
 	"cannotChangeNumRows": "மன்னிக்கவும், உருவாக்கப்பட்ட வரிசைகளின் எண்ணிக்கையை மாற்ற உங்களுக்கு அனுமதி இல்லை.",
 	"centralAmerica": "மத்திய அமெரிக்கா",
 	"checkDatabaseInfo": "தரவுத்தள தகவலை சரிபார்க்கவும்",
+	"clear": "அழி",
 	"clearPage": "பக்கத்தை அழி",
 	"clearPageConfirmation": "பக்கத்தை அழிக்க விரும்புகிறீர்களா? நீங்கள் செய்த எந்த மாற்றங்களும் இழக்கப்படும்.",
 	"clearThePage": "பக்கத்தை அழிக்கவும்",
@@ -39,6 +40,8 @@
 	"confirmDeleteUserAccount": "இந்த பயனர் கணக்கை நீக்க விரும்புகிறீர்களா?",
 	"confirmEmptyForm": "பக்கத்தை அழிக்க விரும்புகிறீர்களா?",
 	"confirmFileExists": "கோப்பு இருப்பதை உறுதிப்படுத்தவும்",
+	"copiedToClipboard": "கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது",
+	"copyToClipboard": "கிளிப்போர்டுக்கு நகலெடுக்கவும்",
 	"countries": "நாடுகள்",
 	"country": "நாடு",
 	"countrySpecificData": "நாடு சார்ந்த தரவு",
@@ -222,6 +225,7 @@
 	"seeHelpDialog": "உதவி உரையாடலைக் காண்க.",
 	"selectCountry": "நாட்டினை தேர்வுசெய்",
 	"selectDataType": "தரவு வகையைத் தேர்ந்தெடுக்கவும்",
+	"selectEllipsis": "தேர்ந்தெடு ...",
 	"selectLanguage": "மொழியை தேர்ந்தெடுங்கள்",
 	"seriouslySlow": "தீவிரமாக மெதுவாக",
 	"settings": "அமைப்புகள்",
@@ -269,9 +273,5 @@
 	"yourDataSetNameHere": "உங்கள் தரவு தொகுப்பு பெயர் இங்கே ...",
 	"yourDataSets": "உங்கள் தரவு அமைக்கிறது",
 
-  "clear": "அழி",
-  "copiedToClipboard": "கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது",
-  "copyToClipboard": "கிளிப்போர்டுக்கு நகலெடுக்கவும்",
-
-  "selectEllipsis": "தேர்ந்தெடு ..."
+  "countrySpecific": "நாடு சார்ந்த"
 }

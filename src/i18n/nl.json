@@ -28,6 +28,7 @@
 	"cannotChangeNumRows": "Sorry, u heeft onvoldoende rechten om het aant te genereren rijen aan te passen.",
 	"centralAmerica": "Midden Amerika",
 	"checkDatabaseInfo": "Check databaseinformatie",
+	"clear": "Doorzichtig",
 	"clearPage": "Duidelijke pagina",
 	"clearPageConfirmation": "Weet u zeker dat u de pagina wilt wissen? Alle aangebrachte wijzigingen gaan verloren.",
 	"clearThePage": "Pagina wissen",
@@ -39,6 +40,8 @@
 	"confirmDeleteUserAccount": "Weet u zeker dat u deze gebruiker wilt verwijderen?",
 	"confirmEmptyForm": "Weet u zeker dat u deze pagina leeg wilt maken?",
 	"confirmFileExists": "Bevestig dat het bestand al bestaat",
+	"copiedToClipboard": "Gekopieerd naar het klembord",
+	"copyToClipboard": "Kopieer naar klembord",
 	"countries": "Landen",
 	"country": "Land",
 	"countrySpecificData": "Land-specifieke data",
@@ -222,6 +225,7 @@
 	"seeHelpDialog": "&nbsp;Zie help venster.",
 	"selectCountry": "Selecteer land",
 	"selectDataType": "Selecteer datatype",
+	"selectEllipsis": "Selecteer ...",
 	"selectLanguage": "Selecteer taal",
 	"seriouslySlow": "serieus traag",
 	"settings": "Instellingen",
@@ -269,9 +273,5 @@
 	"yourDataSetNameHere": "Hier de naam van uw dataset...",
 	"yourDataSets": "Uw datasets",
 
-  "clear": "Doorzichtig",
-  "copiedToClipboard": "Gekopieerd naar het klembord",
-  "copyToClipboard": "Kopieer naar klembord",
-
-  "selectEllipsis": "Selecteer ..."
+  "countrySpecific": "Land specifiek"
 }

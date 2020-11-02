@@ -12,7 +12,7 @@
 	"addSomeDataDesc": "Add some rows in the grid.",
 	"admin": "Admin",
 	"adminAccount": "Admin account",
-  "africa": "Africa",
+	"africa": "Africa",
 	"allCountries": "All countries",
 	"allDataTypePlugins": "All Data Type plugins",
 	"allExportTypePlugins": "All Export Type plugins",
@@ -75,6 +75,7 @@
 	"donate": "Donate!",
 	"download": "Download",
 	"edit": "Edit",
+	"editExportTypeSettings": "Please edit your export type settings.",
 	"email": "Email",
 	"emailC": "Email:",
 	"emailNotSent": "We were unable to send the email notification.",
@@ -84,6 +85,7 @@
 	"enterUserAccountDetails": "Please enter your user account details below.",
 	"error": "error",
 	"europe": "Europe",
+	"example": "Example",
 	"examples": "Examples",
 	"exportType": "Export Type",
 	"exportTypeValidateError": "Ack! There was an error in the Export Types validate() function. Sorry, we cant proceed - call a developer",
@@ -131,6 +133,7 @@
 	"invalidAccountId": "The Account ID is not valid.",
 	"invalidNumResults": "Please enter a valid number of results.",
 	"invalidPassword": "Sorry, that password is not correct. Please try again.",
+	"invalidSettings": "Invalid settings!",
 	"invalidTableNames": "Database column names can only alphanumeric characters and must begin with a letter. Please fix the following ows",
 	"language": "English",
 	"lastEdited": "last edited",
@@ -184,6 +187,7 @@
 	"options": "Options",
 	"order": "Order",
 	"other": "Other",
+	"overMaxAnonRows": "Sorry, you can only generate %1 rows. To generate larger volumes of data you'll need a user account on this site.",
 	"password": "Password",
 	"passwordC": "Password:",
 	"passwordChangeNote": "You only need to fill the password fields in if you want to change it.",
@@ -230,6 +234,7 @@
 	"seeHelpDialog": "See help dialog.",
 	"selectCountry": "Select Country",
 	"selectDataType": "Select Data Type",
+	"selectEllipsis": "Select...",
 	"selectLanguage": "Select Language",
 	"seriouslySlow": "Seriously slow",
 	"settings": "Settings",
@@ -240,6 +245,7 @@
 	"singleUserAccountRequiresLogin": "Single user account, requires login",
 	"southAmerica": "South America",
 	"stillStuck": "Still stuck?",
+	"stripWhitespace": "strip whitespace from generated content",
 	"success": "success",
 	"tableColumn": "Table Column",
 	"tablePrefix": "Table Prefix",
@@ -275,30 +281,5 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets",
-
-  "stripWhitespace": "strip whitespace from generated content",
-  "invalidSettings": "Invalid settings!",
-  "editExportTypeSettings": "Please edit your export type settings.",
-  "overMaxAnonRows": "Sorry, you can only generate %1 rows. To generate larger volumes of data you'll need a user account on this site.",
-
-
-
-
-
-
-"example": "Example",
-
-
-
-"selectEllipsis": "Select..."
-
-
-
-
-
-
-
-
-
+	"yourDataSets": "Your Data Sets"
 }
