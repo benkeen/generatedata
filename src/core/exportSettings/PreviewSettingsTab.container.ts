@@ -7,6 +7,7 @@ import * as generatorActions from '../store/generator/generator.actions';
 const mapStateToProps = (state: any): Partial<PreviewSettingsTabProps> => ({
 	numPreviewRows: generatorSelectors.getNumPreviewRows(state),
 	showLineNumbers: generatorSelectors.shouldShowLineNumbers(state),
+	enableLineWrapping: generatorSelectors.shouldEnableLineWrapping(state),
 	theme: generatorSelectors.getTheme(state),
 	previewTextSize: generatorSelectors.getPreviewTextSize(state)
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { coreConfig } from '../core';
 import { getLocale, getStrings } from './langUtils';
-import { dataTypes, DataTypeFolder } from '../_plugins';
+import { dataTypes, DataTypeFolder, blacklistedDataTypeFolders } from '../_plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
 import { Store } from '~types/general';
 
@@ -29,6 +29,7 @@ export const getSortedGroupedDataTypes = (): any => {
 	cachedSortedGroupedDataTypes = coreConfig.dataTypeGroups.map((group: string) => {
 		const options = Object.keys(dataTypes)
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
+			.filter((dataType: DataTypeFolder) => blacklistedDataTypeFolders.indexOf(dataType) === -1)
 			.map((dataType: DataTypeFolder) => ({
 				dataType,
 				sortOrder: dataTypes[dataType].fieldGroupOrder

@@ -81,7 +81,7 @@ export const getNewPacket = ({
 		isPaused: false,
 		numGeneratedRows: 0,
 		numBatches: 0,
-		speed: 80,
+		speed: 100,
 		loadTimeGraphDuration,
 		config: {
 			stripWhitespace,

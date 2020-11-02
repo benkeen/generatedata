@@ -82,8 +82,6 @@ const generateNextBatch = (data: any, numBatches: number, batchSize: number, bat
 	const lagTime = (100 - currentSpeed) * 50;
 
 	setTimeout(() => {
-		console.log('lag time', lagTime);
-
 		generateBatch({
 			template: data.template,
 			numResults: data.numResults,

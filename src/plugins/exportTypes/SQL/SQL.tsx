@@ -110,7 +110,6 @@ export const Settings: React.ReactNode = ({ coreI18n, i18n, onUpdate, id, data }
 					id={`${id}-insertBatchSize`}
 					value={data.insertBatchSize}
 					style={{ width: 60 }}
-					title={i18n.batchSizeDesc}
 					disabled={data.statementType === 'update'}
 					error={data.insertBatchSize ? '' : coreI18n.requiredField}
 					min={1}
@@ -121,6 +120,7 @@ export const Settings: React.ReactNode = ({ coreI18n, i18n, onUpdate, id, data }
 		);
 	};
 
+	// TODO - add title for TextField above... title={i18n.batchSizeDesc}
 
 	// TODO need better validation on the database table name
 

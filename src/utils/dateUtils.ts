@@ -5,9 +5,10 @@ export const formatDuration = (duration: number): string => {
 	const hours = Math.floor(duration / 60 / 60);
 
 	const paddedSecondsStr = secondsStr.length < 2 ? 0 + secondsStr : secondsStr;
+	const paddedMinutesStr = minutesStr.length < 2 ? 0 + minutesStr : minutesStr;
 
 	if (hours) {
-		return `${hours}:`;
+		return `${hours}:${paddedMinutesStr}:${paddedSecondsStr}`;
 	} else if (minutes) {
 		return `${minutes}:${paddedSecondsStr}`;
 	} else {

@@ -40,12 +40,13 @@ const createPluginsListFile = () => {
 
 `;
 
-	const dataTypes = helpers.getPlugins('dataTypes', completeConfigFile.dataTypeBlacklist);
+	const dataTypes = helpers.getPlugins('dataTypes', []);
 	dataTypes.forEach((folder) => {
 		content += `import ${folder} from './plugins/dataTypes/${folder}/config';\n`;
 	});
 	content += `\nexport const dataTypes = {\n\t${dataTypes.join(',\n\t')}\n};\n`;
-	content += '\nexport type DataTypeFolder = keyof typeof dataTypes;\n\n';
+	content += '\nexport type DataTypeFolder = keyof typeof dataTypes;\n';
+	content += '\nexport const blacklistedDataTypeFolders = [\'' + completeConfigFile.dataTypeBlacklist.join('\',\'') + '\'];\n\n';
 
 	const exportTypes = helpers.getPlugins('exportTypes', completeConfigFile.exportTypeBlacklist);
 	exportTypes.forEach((folder) => {

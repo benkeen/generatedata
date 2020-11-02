@@ -3,7 +3,6 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
