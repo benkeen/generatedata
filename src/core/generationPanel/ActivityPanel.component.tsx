@@ -81,9 +81,10 @@ const ActivityPanel = ({
 		dataTypeWorker.onmessage = ({ data }: any): void => {
 			const { completedBatchNum, numGeneratedRows, generatedData } = data;
 			const isLastBatch = numGeneratedRows >= numRowsToGenerate;
+			const displayData = generatedData.map((row: any) => row.map((i: any) => i.display));
 
 			exportTypeWorker.postMessage({
-				rows: generatedData,
+				rows: displayData,
 				columns,
 				exportType,
 				exportTypeSettings,
