@@ -8,6 +8,7 @@ const workerQueue: any = {};
 const context: Worker = self as any;
 let isPaused = false;
 let onContinueData: any = null;
+let currentSpeed: number;
 
 context.onmessage = (e: any) => {
 	if (e.data.action === 'PAUSE') {
@@ -21,9 +22,14 @@ context.onmessage = (e: any) => {
 		const { data, numBatches, batchSize, batchNum } = onContinueData;
 		generateNextBatch(data, numBatches, batchSize, batchNum);
 		return;
+	} else if (e.data.action === 'CHANGE_SPEED') {
+		currentSpeed = e.data.speed;
+		return;
 	}
 
-	const { batchSize, numResults } = e.data;
+	const { batchSize, numResults, speed } = e.data;
+
+	currentSpeed = speed;
 
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
@@ -38,10 +44,10 @@ context.onmessage = (e: any) => {
 	// here we load ALL country data types. :( I tried to avoid doing this and have the specific Data Type that needs them
 	// load them on the fly - that would obviously be a much cleaner solution; requests would only get made as needed.
 	// But it proved too problematic: *possibly* multiple requests to the same endpoint within different Data Type web workers
-	// doesn't make a separate request (looks like it doesn't though), but even if not, each web worker will get a copy of the
+	// make a separate request (looks like it doesn't though), but even if not, each web worker will get a copy of the
 	// data in their scope. Since Country data can be non trivial in size, this isn't great. I didn't want to bloat up
 	// the memory usage any more than necessary during data generation - it's already a serious issue. Instead this loads
-	// everything up front, once, and makes it available for any data type that wants it.
+	// everything up front, once, and makes it available for any data type that wants it
 
 	// Possibly we could look at the data types and only bother doing this step if one of them requires country data. But
 	// that should be a clean API & easy to debug
@@ -73,21 +79,27 @@ const generateNextBatch = (data: any, numBatches: number, batchSize: number, bat
 		return;
 	}
 
-	generateBatch({
-		template: data.template,
-		numResults: data.numResults,
-		unchanged: data.unchanged || {},
-		i18n: data.i18n,
-		firstRow,
-		lastRow,
-		batchNum
-	})
-		.then(() => {
-			if (batchNum === numBatches) {
-				return;
-			}
-			generateNextBatch(data, numBatches, batchSize, batchNum+1);
-		});
+	const lagTime = (100 - currentSpeed) * 50;
+
+	setTimeout(() => {
+		console.log('lag time', lagTime);
+
+		generateBatch({
+			template: data.template,
+			numResults: data.numResults,
+			unchanged: data.unchanged || {},
+			i18n: data.i18n,
+			firstRow,
+			lastRow,
+			batchNum
+		})
+			.then(() => {
+				if (batchNum === numBatches) {
+					return;
+				}
+				generateNextBatch(data, numBatches, batchSize, batchNum + 1);
+			});
+	}, lagTime);
 };
 
 

@@ -28,7 +28,7 @@ export const getActionInterceptors = (action: string): DTInterceptorSingleAction
 
 const actionInterceptor = (store: Store) => (next: any): any => (action: any): any => {
 	// returns all interceptors for the current action
-	const interceptors = getActionInterceptors(action.type);
+	const interceptors = action && action.type ? getActionInterceptors(action.type) : [];
 
 	if (interceptors.length) {
 		const rows = getRows(store.getState());

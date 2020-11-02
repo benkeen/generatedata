@@ -56,9 +56,10 @@ export const SHOW_ACTIVITY_PANEL = 'SHOW_ACTIVITY_PANEL';
 export const showActivityPanel = (packetId: string): GDAction => ({ type: SHOW_ACTIVITY_PANEL, payload: { packetId } });
 
 export const CHANGE_SPEED = 'CHANGE_SPEED';
-export const changeSpeed = (speed: any): any => {
-	console.log({ speed });
-};
+export const changeSpeed = (speed: number): GDAction => ({
+	type: CHANGE_SPEED,
+	payload: { speed }
+});
 
 export const promptToDownload = () => (dispatch: Dispatch, getState: any): void => {
 	const state = getState();

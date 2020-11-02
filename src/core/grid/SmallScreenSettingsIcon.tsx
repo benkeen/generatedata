@@ -21,7 +21,8 @@ export const SmallScreenSettingsIcon = ({
 		// that's the case, clicking it will always close the tooltip here. So to get around it, give the portal a class
 		// of gd-is-portal. That'll suppress the close event here,
 
-		if (e.target && (e.target.closest('.react-select__menu') || e.target.closest('gd-is-portal'))) {
+		// @ts-ignore-line
+		if (e.target && e.target.closest && (e.target.closest('.react-select__menu') || e.target.closest('gd-is-portal'))) {
 			console.log("is react select!");
 			return;
 		}

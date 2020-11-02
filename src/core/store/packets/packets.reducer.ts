@@ -142,12 +142,13 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			draft.packets[action.payload.packetId].isPaused = false;
 			break;
 
-		case actions.ABORT_GENERATION:
+		case actions.ABORT_GENERATION: {
 			const packetId = draft.currentPacketId as string;
 			draft.currentPacketId = null;
 			draft.packetIds.splice(draft.packetIds.indexOf(packetId), 1);
 			delete draft.packets[packetId];
 			break;
+		}
 
 		case actions.HIDE_ACTIVITY_PANEL:
 			draft.currentPacketId = null;
@@ -157,6 +158,15 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 			draft.currentPacketId = action.payload.packetId;
 			break;
 
+		case actions.CHANGE_SPEED: {
+			if (draft.currentPacketId) {
+				console.log("setting....");
+				draft.packets[draft.currentPacketId].speed = action.payload.speed;
+			}
+			break;
+		}
+
+		// TODO yikes. TOTAAAAAALLLLY needs improving and testing. And maybe taking out behind the shed and shooting.
 		case actions.LOG_DATA_BATCH: {
 			const now = performance.now();
 			const { packetId, numGeneratedRows, dataStr } = action.payload;

@@ -71,6 +71,7 @@ const ActivityPanel = ({
 			action: 'generate',
 			numResults: numRowsToGenerate,
 			batchSize: C.GENERATION_BATCH_SIZE,
+			speed,
 			columns,
 			i18n: getStrings(),
 			template,
@@ -106,12 +107,11 @@ const ActivityPanel = ({
 
 	useDidUpdate(() => {
 		dataTypeWorker.postMessage({
-			action: isPaused ? C.ACTIVITY_PANEL_ACTIONS.PAUSE : C.ACTIVITY_PANEL_ACTIONS.CONTINUE
+			action: C.ACTIVITY_PANEL_ACTIONS.CHANGE_SPEED,
+			speed
 		});
-	}, [isPaused]);
+	}, [speed]);
 
-
-	// const animation = true;
 	const percentage = (numGeneratedRows / numRowsToGenerate) * 100;
 	const isComplete = percentage === 100;
 
@@ -162,7 +162,6 @@ const ActivityPanel = ({
 			return null;
 		}
 
-		// TODO tooltip needs higher z-index
 		const tooltip = isPaused ? i18n.play : i18n.pause;
 
 		return (
@@ -173,7 +172,7 @@ const ActivityPanel = ({
 					</IconButton>
 				</Tooltip>
 				<Slider
-					defaultValue={speed}
+					value={speed}
 					aria-labelledby="discrete-slider-always"
 					step={1}
 					min={1}
@@ -186,8 +185,6 @@ const ActivityPanel = ({
 			</div>
 		);
 	};
-
-	// console.log(dimensions);
 
 	const panel1Width = dimensions.width / 100 * 20;
 	const pieSize = Math.floor(panel1Width * 0.9);
