@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 	const dataTypesFolder = 'src/plugins/dataTypes';
 	const exportTypesFolder = 'src/plugins/exportTypes';
 	const countriesFolder = 'src/plugins/countries';
-	const locales = ['de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'];
+	const locales = ['ar', 'de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh']; // TODO boy these are listed everywhere...
 
 	const generateI18nBundles = () => {
 		locales.forEach((locale) => {

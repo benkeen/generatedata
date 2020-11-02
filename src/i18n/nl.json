@@ -271,5 +271,7 @@
 
   "clear": "Doorzichtig",
   "copiedToClipboard": "Gekopieerd naar het klembord",
-  "copyToClipboard": "Kopieer naar klembord"
+  "copyToClipboard": "Kopieer naar klembord",
+
+  "selectEllipsis": "Selecteer ..."
 }

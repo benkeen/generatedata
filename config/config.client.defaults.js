@@ -63,7 +63,6 @@ export default {
 		'countrySpecific'
 	],
 
-
 	continents: [
 		'africa',
 		'asia',
@@ -75,7 +74,7 @@ export default {
 	],
 
 	locales: [
-		'de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'
+		'ar', 'de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'
 	],
 
 	importFiles: []

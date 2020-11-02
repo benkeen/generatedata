@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
+import { getStrings } from '~utils/langUtils';
 import C from '../../core/constants';
 
 export type DropdownOption = {
@@ -26,6 +27,8 @@ const selectStyles = {
 
 
 const Dropdown = ({ value, isGrouped, options, placeholder, ...props }: any): JSX.Element => {
+	const i18n = getStrings();
+
 	// react-select has a terrible API. You need to pass the entire selected object as the `value` prop to prefill it.
 	// That's not something you'd normally save - you just want to save a single value, because, well, duh. So to
 	// make it behave like a sane component, our component here just accepts a single `value` prop - which is either the
@@ -57,7 +60,7 @@ const Dropdown = ({ value, isGrouped, options, placeholder, ...props }: any): JS
 		}
 	}
 
-	const placeholderStr = placeholder ? placeholder : 'Select...'; // TODO
+	const placeholderStr = placeholder ? placeholder : i18n.core.selectEllipsis;
 
 	// for debugging: menuIsOpen={true}
 

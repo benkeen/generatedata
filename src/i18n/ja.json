@@ -271,5 +271,7 @@
 
   "clear": "晴れ",
   "copiedToClipboard": "クリップボードにコピー",
-  "copyToClipboard": "クリップボードにコピー"
+  "copyToClipboard": "クリップボードにコピー",
+
+  "selectEllipsis": "選択する..."
 }

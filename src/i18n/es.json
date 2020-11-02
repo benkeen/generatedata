@@ -271,5 +271,7 @@
 
   "clear": "Clara",
   "copiedToClipboard": "Copiada al portapapeles",
-  "copyToClipboard": "Copiar al portapapeles"
+  "copyToClipboard": "Copiar al portapapeles",
+
+  "selectEllipsis": "Seleccione..."
 }

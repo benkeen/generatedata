@@ -270,5 +270,6 @@
     "yourDataSets" : "مجموعات البيانات الخاصة بك",
   "clear":"واضح",
   "copiedToClipboard": "نسخ إلى الحافظة",
-  "copyToClipboard": "نسخ إلى الحافظة"
+  "copyToClipboard": "نسخ إلى الحافظة",
+  "selectEllipsis": "تحديد..."
 }

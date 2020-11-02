@@ -25,11 +25,14 @@ export type FooterProps = {
 };
 
 const options = [
+	{ value: 'ar', label: 'عربى' },
 	{ value: 'de', label: 'Deutsch' },
 	{ value: 'en', label: 'English' },
 	{ value: 'es', label: 'Español' },
 	{ value: 'fr', label: 'Français' },
 	{ value: 'nl', label: 'Nederlands' },
+	{ value: 'ja', label: '日本人' },
+	{ value: 'ta', label: 'தமிழ்' },
 	{ value: 'zh', label: '中文' }
 ];
 

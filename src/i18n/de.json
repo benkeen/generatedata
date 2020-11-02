@@ -271,5 +271,7 @@
 
   "clear": "klar",
   "copiedToClipboard": "In die Zwischenablage kopiert",
-  "copyToClipboard": "In die Zwischenablage kopieren"
+  "copyToClipboard": "In die Zwischenablage kopieren",
+
+  "selectEllipsis": "Wählen..."
 }

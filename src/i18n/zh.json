@@ -270,5 +270,6 @@
 	"yourDataSets": "你的数据集",
   "clear": "明确",
   "copiedToClipboard": "复制到剪贴板",
-  "copyToClipboard": "复制到剪贴板"
+  "copyToClipboard": "复制到剪贴板",
+  "selectEllipsis": "选择..."
 }

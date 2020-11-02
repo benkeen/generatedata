@@ -271,5 +271,7 @@
 
   "clear": "Claire",
   "copiedToClipboard": "Copié dans le presse-papier",
-  "copyToClipboard": "Copier dans le presse-papier"
+  "copyToClipboard": "Copier dans le presse-papier",
+
+  "selectEllipsis": "Sélectionner..."
 }
