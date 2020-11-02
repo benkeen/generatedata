@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const helpers = require('./helpers');
 
-const locales = ['de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'];
+const locales = ['ar', 'de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh'];
 
 const getCoreLocaleFileStrings = (locale) => {
 	return require(getCoreLocaleFilePath(locale));
