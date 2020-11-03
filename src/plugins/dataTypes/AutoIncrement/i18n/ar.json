@@ -1,11 +1,11 @@
 {
   "NAME": "زيادة تلقائية",
-  "DESC": "Provides many variations on an standard auto-increment field: custom start value, customizable step sizes, arbitrary string inclusion, increment or decrement and more. ",
-  "DEFAULT_TITLE": "autoincrement",
-  "helpIntro": "Generates a column that contains a unique number on each row, incrementing by whatever value you enter. This option can be helpful for inserting the data into a database field with an auto-increment primary key.",
-  "helpPara2": "The optional placeholder string lets you embed the generated increment value within a string, via the <b>{\\$INCR}</b> placeholder. For example:",
-  "increment": "Increment:",
-  "placeholderStr": "Placeholder string:",
-  "startAt": "Start at:",
-  "incompleteFields": "Please enter the Start At and Increment fields for all Auto-increment rows:"
+  "DESC": "يوفر العديد من الاختلافات في حقل زيادة تلقائية قياسي: قيمة بدء مخصصة ، وأحجام خطوات قابلة للتخصيص ، وإدراج سلسلة عشوائية ، وزيادة أو إنقاص والمزيد.",
+  "DEFAULT_TITLE": "زيادة تلقائية",
+  "helpIntro": "يُنشئ عمودًا يحتوي على رقم فريد في كل صف ، يتزايد حسب القيمة التي تدخلها. يمكن أن يكون هذا الخيار مفيدًا لإدراج البيانات في حقل قاعدة بيانات باستخدام مفتاح أساسي لزيادة تلقائية.",
+  "helpPara2": "تتيح لك سلسلة العنصر النائب الاختيارية تضمين قيمة الزيادة المُنشأة داخل سلسلة ، عبر العنصر النائب {{INCR}}. فمثلا:",
+  "increment": "زيادة راتب:",
+  "placeholderStr": "سلسلة العنصر النائب:",
+  "startAt": "تبدأ في:",
+  "incompleteFields": "الرجاء إدخال حقلي البدء عند والزيادة لجميع صفوف الزيادة التلقائية:"
 }

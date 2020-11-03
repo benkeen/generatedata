@@ -1,11 +1,11 @@
 {
   "NAME": "自動増加",
-  "DESC": "Provides many variations on an standard auto-increment field: custom start value, customizable step sizes, arbitrary string inclusion, increment or decrement and more. ",
-  "DEFAULT_TITLE": "autoincrement",
-  "helpIntro": "Generates a column that contains a unique number on each row, incrementing by whatever value you enter. This option can be helpful for inserting the data into a database field with an auto-increment primary key.",
-  "helpPara2": "The optional placeholder string lets you embed the generated increment value within a string, via the <b>{\\$INCR}</b> placeholder. For example:",
-  "increment": "Increment:",
-  "placeholderStr": "Placeholder string:",
-  "startAt": "Start at:",
-  "incompleteFields": "Please enter the Start At and Increment fields for all Auto-increment rows:"
+  "DESC": "標準の自動インクリメントフィールドに多くのバリエーションを提供します：カスタム開始値、カスタマイズ可能なステップサイズ、任意の文字列の包含、インクリメントまたはデクリメントなど。",
+  "DEFAULT_TITLE": "自動増加",
+  "helpIntro": "入力した値に応じて、各行に一意の番号を含む列を生成します。 このオプションは、自動インクリメントの主キーを使用してデータベースフィールドにデータを挿入する場合に役立ちます。",
+  "helpPara2": "オプションのプレースホルダー文字列を使用すると、{{INCR}}プレースホルダーを介して、生成された増分値を文字列内に埋め込むことができます。 例えば：",
+  "increment": "インクリメント：",
+  "placeholderStr": "プレースホルダー文字列：",
+  "startAt": "開始：",
+  "incompleteFields": "すべての自動インクリメント行の[開始位置]フィールドと[インクリメント]フィールドに入力してください。"
 }

@@ -1,11 +1,11 @@
 {
-  "NAME": "Auto-Inkrement",
-  "DESC": "Bietet viele Variationen auf einem Standard- Auto-Inkrement- Bereich : benutzerdefinierte Startwert an, kundengerecht Schrittweiten , willkürliche Aufnahme string, Zunahme oder -abnahme und mehr.",
-  "DEFAULT_TITLE": "autoinkrement",
-  "helpIntro": "Erzeugt eine Spalte, die eine eindeutige Nummer in jeder Zeile enthält, Inkrementieren mit welchen Wert Sie eingeben. Diese Option kann hilfreich sein, zum Einsetzen der Daten in eine Datenbank Feld mit einem auto-increment Primärschlüssel.",
-  "helpPara2": "Die optionale Platzhalter-String können Sie betten die generierten Inkrementwert innerhalb einer Zeichenkette über die <b>{\\$ROW}</b> Platzhalter. Zum Beispiel:",
-  "incompleteFields": "Bitte geben Sie die Start At und Increment Felder für alle Auto-increment Zeilen:",
-  "increment": "Schrittweite:",
-  "placeholderStr": "Platzhalter-String:",
-  "startAt": "Start bei:"
+  "NAME": "Automatisches Inkrementieren",
+  "DESC": "Bietet viele Variationen eines Standardfelds für die automatische Inkrementierung: benutzerdefinierter Startwert, anpassbare Schrittgrößen, willkürliche Zeichenfolgeneinbeziehung, Inkrementierung oder Dekrementierung und mehr.",
+  "DEFAULT_TITLE": "autoink",
+  "helpIntro": "Erzeugt eine Spalte, die in jeder Zeile eine eindeutige Nummer enthält, die um den von Ihnen eingegebenen Wert erhöht wird. Diese Option kann hilfreich sein, um die Daten mit einem automatisch inkrementierten Primärschlüssel in ein Datenbankfeld einzufügen.",
+  "helpPara2": "Mit der optionalen Platzhalterzeichenfolge können Sie den generierten Inkrementwert über den Platzhalter {{INCR}} in eine Zeichenfolge einbetten. Beispielsweise:",
+  "increment": "Zuwachs:",
+  "placeholderStr": "Platzhalterzeichenfolge:",
+  "startAt": "Anfangen bei:",
+  "incompleteFields": "Bitte geben Sie die Felder Start bei und Inkrementieren für alle Zeilen mit automatischer Inkrementierung ein:"
 }

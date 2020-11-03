@@ -1,11 +1,11 @@
 {
   "NAME": "自动递增",
-  "DESC": "Provides many variations on an standard auto-increment field: custom start value, customizable step sizes, arbitrary string inclusion, increment or decrement and more. ",
-  "DEFAULT_TITLE": "autoincrement",
-  "helpIntro": "Generates a column that contains a unique number on each row, incrementing by whatever value you enter. This option can be helpful for inserting the data into a database field with an auto-increment primary key.",
-  "helpPara2": "The optional placeholder string lets you embed the generated increment value within a string, via the <b>{\\$INCR}</b> placeholder. For example:",
-  "increment": "Increment:",
-  "placeholderStr": "Placeholder string:",
-  "startAt": "Start at:",
-  "incompleteFields": "Please enter the Start At and Increment fields for all Auto-increment rows:"
+  "DESC": "在标准自动递增字段上提供了多种变体：自定义起始值，可自定义步长，任意字符串包含，递增或递减等等。",
+  "DEFAULT_TITLE": "自动递增",
+  "helpIntro": "生成一列，该列在每一行上包含一个唯一的数字，并按您输入的任何值递增。 此选项对于使用自动增量主键将数据插入数据库字段很有用。",
+  "helpPara2": "可选的占位符字符串使您可以通过{{INCR}}占位符将生成的增量值嵌入到字符串中。 例如：",
+  "increment": "增量：",
+  "placeholderStr": "占位符字符串：",
+  "startAt": "开始于：",
+  "incompleteFields": "请为所有自动增量行输入“开始于”和“增量”字段："
 }
