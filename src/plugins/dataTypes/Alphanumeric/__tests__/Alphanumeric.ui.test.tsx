@@ -1,6 +1,8 @@
 import React from 'react'
+import sinon from 'sinon';
 import { render, fireEvent } from '@testing-library/react';
 import { initialState, Options, Help, Example } from '../Alphanumeric';
+import * as langUtils from '~utils/langUtils';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {
@@ -13,6 +15,8 @@ const defaultProps = {
 
 describe('Example', () => {
 	it('renders', () => {
+		sinon.stub(langUtils, 'getStrings').returns({ core: {} });
+
 		const data = { ...initialState };
 		const onUpdate = jest.fn();
 		const { container } = render(
