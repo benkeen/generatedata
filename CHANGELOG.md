@@ -1,4 +1,4 @@
-### Changelog
+## Changelog
 
 For transparency, this page logs the changes to the 4.0.0 release, found here:
 http://generatedata4.com
