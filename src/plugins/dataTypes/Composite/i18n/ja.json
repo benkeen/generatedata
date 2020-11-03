@@ -1,15 +1,14 @@
 {
-  "NAME": "Composite",
-  "DESC": "The Composite data type lets you combine the data from any other row or rows, and manipulate it, change it, combine the information and more. The content should be entered in the Smarty templating language.",
-  "DEFAULT_TITLE": "composite",
-  "compositeDivision": "division",
-  "compositeHelp2": "To output the value from any row, just use the placeholders <b>{\\$ROW1}</b>, <b>{\\$ROW2}</b>, etc. You cannot refer to the current row - that would either melt the server and/or make the universe implode.",
-  "compositeHelp3": "Here are a few examples:",
-  "compositeHelp4": "Display a value from row 6: <b>{\\$ROW6}</b>",
-  "compositeHelp5": "Assuming row 1 and row 2 contain random numbers, the following are examples of some simple math:",
-  "compositeHelp6": "If row 1 contains the number 5, display &quot;N/A&quot;, otherwise just display the number.",
-  "compositeHelp7": "Please see the <a href=\\\"http://www.smarty.net/\\\">Smarty website</a> for more information on the syntax.",
-  "compositeMultiplication": "multiplication",
-  "compositeNa": "N/A",
-  "compositeSubtraction": "subtraction"
+  "NAME": "複合",
+  "DESC": "複合データ型を使用すると、他の1つまたは複数の行のデータを組み合わせたり、情報を変更/組み合わせたりすることができます。 テンプレートエンジンにunderscorejsテンプレートを使用します。",
+  "DEFAULT_TITLE": "複合",
+  "compositeDivision": "分割",
+  "compositeHelp2": "任意の行から値を出力するには、プレースホルダー{{ROW1}}、{{ROW2}}などを使用します。現在の行を参照することはできません。エラーがスローされるだけです。",
+  "compositeHelp3": "次にいくつかの例を示します。",
+  "compositeHelp4": "Display a value from row 6: {{ROW6}}",
+  "compositeHelp5": "行1と行2に乱数が含まれていると仮定すると、以下はいくつかの簡単な計算の例です。",
+  "compositeHelp6": "行1が偶数の場合は「偶数」を表示し、そうでない場合は行2の値を表示します。",
+  "compositeMultiplication": "乗算",
+  "compositeNa": "該当なし",
+  "compositeSubtraction": "減算"
 }

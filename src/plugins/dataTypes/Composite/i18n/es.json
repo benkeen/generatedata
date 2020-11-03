@@ -1,15 +1,14 @@
 {
-  "NAME": "Compuesto",
-  "DESC": "El tipo de dato Compueso permite combinar los datos de cualquier otra fila o filas y manipularlo, cambiarlo, combinar la información y mucho más. El contenido debería ser introducido en el lenguaje de plantillas Smarty.",
-  "DEFAULT_TITLE": "compuesto",
+  "NAME": "Compuesta",
+  "DESC": "El tipo de datos compuestos le permite combinar los datos de cualquier otra fila o filas, y cambiarlos / combinar la información y más. Utiliza plantillas de subrayado para el motor de plantillas.",
+  "DEFAULT_TITLE": "compuesta",
   "compositeDivision": "división",
-  "compositeHelp2": "Para producir el valor de cualquier fila, basta usar los patrones de sustitución <b>{\\$ROW1}</b>, <b>{\\$ROW2}</b>, etc. No puedes hacer referencia a la fila actual, lo que podría fundir el servidor y/o hacer que el Universo explotara.",
-  "compositeHelp3": "Aquí tienes algunos ejemplos:",
-  "compositeHelp4": "Mostrar un valor de la fila 6: <b>{\\$ROW6}</b>",
-  "compositeHelp5": "Asumiendo que las filas 1 y 2 contienen números aleatorios, lo siguiente es un ejemplo de un cálculo sencillo:",
-  "compositeHelp6": "Si la fila 1 contiene el número 5, mostrar &quot;N/D&quot;, en caso contrario, mostrar el número.",
-  "compositeHelp7": "Por favor, visita el sitio de <a href=\\\"http://www.smarty.net/\\\">Smarty</a> para ampliar información de la sintaxis.",
+  "compositeHelp2": "Para generar el valor de cualquier fila, simplemente use los marcadores de posición {{ROW1}}, {{ROW2}}, etc. No puede hacer referencia a la fila actual, solo arrojará un error.",
+  "compositeHelp3": "Aquí están algunos ejemplos:",
+  "compositeHelp4": "Mostrar un valor de la fila 6: {{ROW6}}",
+  "compositeHelp5": "Suponiendo que la fila 1 y la fila 2 contienen números aleatorios, los siguientes son ejemplos de algunas matemáticas simples:",
+  "compositeHelp6": "Si la fila 1 es par, muestre \"even\"; de lo contrario, muestre los valores de la fila 2.",
   "compositeMultiplication": "multiplicación",
-  "compositeNa": "N/D",
-  "compositeSubtraction": "substracción"
+  "compositeNa": "N / A",
+  "compositeSubtraction": "sustracción"
 }

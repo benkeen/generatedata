@@ -30,19 +30,16 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			<li dangerouslySetInnerHTML={{ __html: i18n.compositeHelp4 }} />
 			<li>{i18n.compositeHelp5}
 				<ul>
-					<li><b>ROW2-ROW</b> - {i18n.compositeSubtraction}</li>
-					<li><b>ROW2*ROW</b> - {i18n.compositeMultiplication}</li>
-					<li><b>ROW2/ROW</b> - {i18n.compositeDivision}</li>
+					<li><b>{`{{ROW2-ROW1}}`}</b> - {i18n.compositeSubtraction}</li>
+					<li><b>{`{{ROW2*ROW1}}`}</b> - {i18n.compositeMultiplication}</li>
+					<li><b>{`{{ROW2/ROW1}}`}</b> - {i18n.compositeDivision}</li>
 				</ul>
 			</li>
 			<li>
 				{i18n.compositeHelp6}
-				<b>if ROW1 == 5 i18n.Composite_na else ROW1</b>
+				<b>{`{{ROW1 % 2 ? "even" : ROW2}}`}</b>
 			</li>
 		</ul>
-		<p>
-			{i18n.compositeHelp7}
-		</p>
 	</>
 );
 

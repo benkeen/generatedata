@@ -82,7 +82,7 @@ export const dataTypes = {
 
 export type DataTypeFolder = keyof typeof dataTypes;
 
-export const blacklistedDataTypeFolders = ['_NamesRegional','_PhoneRegional','_Tree','Composite','Computed','Currency','CVV','NormalDistribution','OrganizationNumber','PAN','PersonalNumber','PIN','Rut','SIRET','Track1','Track2'];
+export const blacklistedDataTypeFolders = ['_NamesRegional','_PhoneRegional','_Tree','Computed','Currency','CVV','NormalDistribution','OrganizationNumber','PAN','PersonalNumber','PIN','Rut','SIRET','Track1','Track2'];
 
 import HTML from './plugins/exportTypes/HTML/config';
 import JSON from './plugins/exportTypes/JSON/config';

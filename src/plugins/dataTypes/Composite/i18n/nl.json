@@ -1,15 +1,14 @@
 {
-  "NAME": "Samengesteldveld",
-  "DESC": "Met het Composite (samengesteld) veldtype kunt u de gegevens van een andere rij of rijen combineren, manipuleren, wijzigen of zelfs nog meer. De inhoud moet worden opgenomen in de Smarty template taal.",
+  "NAME": "Composiet",
+  "DESC": "Met het gegevenstype Samengesteld kunt u de gegevens van elke andere rij of rijen combineren en deze wijzigen / de informatie combineren en meer. Het gebruikt underscorejs-sjablonen voor de sjabloonengine.",
   "DEFAULT_TITLE": "composiet",
-  "compositeDivision": "delen",
-  "compositeHelp2": "Om de waarde van een rij uit te voeren, gewoon gebruik maken van de tijdelijke aanduidingen <b>{\\$ROW1}</b>, <b>{\\$ROW2}</b>, enz. U kunt niet verwijzen naar de huidige rij - dat zou de server in een eeuwige loop brengen of laat universum imploderen.",
+  "compositeDivision": "afdeling",
+  "compositeHelp2": "Om de waarde van een willekeurige rij uit te voeren, gebruik je gewoon de tijdelijke aanduidingen {{ROW1}}, {{ROW2}}, enz. Je kunt niet naar de huidige rij verwijzen - het genereert alleen een fout.",
   "compositeHelp3": "Hier zijn een paar voorbeelden:",
-  "compositeHelp4": "Geef de waarde van rij 6: <b>{\\$ROW6}</b>",
-  "compositeHelp5": "Ervan uitgaande dat rij 1 en rij 2 willekeurige getallen bevatten, geven de volgende voorbeelden van een aantal eenvoudige wiskundige bewerkingen:",
-  "compositeHelp6": "Als rij 1 het nummer 5 bevat wordt deze  weergegeven \\\"N / A\\\", anders gewoon weer het nummer.",
-  "compositeHelp7": "Raadpleeg de <a href=\\\"http://www.smarty.net/\\\">Smarty website</a> voor meer informatie over de syntax.",
+  "compositeHelp4": "Geef een waarde weer uit rij 6: {{ROW6}}",
+  "compositeHelp5": "Ervan uitgaande dat rij 1 en rij 2 willekeurige getallen bevatten, zijn de volgende voorbeelden van enkele eenvoudige wiskunde:",
+  "compositeHelp6": "Als rij 1 even is, geeft u \"even\" weer, anders geeft u de waarden van rij 2 weer.",
   "compositeMultiplication": "vermenigvuldiging",
-  "compositeNa": "N / A",
+  "compositeNa": "Nvt",
   "compositeSubtraction": "aftrekken"
 }

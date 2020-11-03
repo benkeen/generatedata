@@ -2,7 +2,7 @@
   "NAME": "Namen",
   "DESC": "Dieser Datentyp zufällig generiert menschlichen Namen (meist Western) nach dem Format, das Sie angeben.",
   "DEFAULT_TITLE": "name",
-  "example_FemaleName": "Jane (Female Name)",
+  "example_FemaleName": "Jane (Weiblicher Name)",
   "example_FemaleName_Surname": "Jane Smith",
   "example_MaleName": "John (männlich Name)",
   "example_MaleName_Surname": "John Smith",
