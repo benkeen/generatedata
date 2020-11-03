@@ -1,15 +1,15 @@
 {
-  "NAME": "Phone / Fax",
-  "DESC": "Generates a random phone/fax number in a variety of formats for different countries/regions.",
-  "DEFAULT_TITLE": "phone",
-  "differentFormats": "Different formats",
-  "canada": "Canada",
-  "helpText1": "Whatever text you enter into the options text field will be used to generate telephone numbers. Capital <b>X</b>&#39;s will be converted to a random number between 1 and 9; lower-case <b>x</b>&#39;s will be converted to a random number between 0 and 9.",
-  "helpText2": "Select one of the values in the example dropdown for some ideas. Remember: anything other than the <b>X</b> and <b>x</b> character are left unconverted.",
-  "incompleteFields": "The Phone / Fax data type needs to have the format entered in the Options text field. Please fix the following rows:",
-  "uk": "UK",
-  "france": "France",
-  "germany": "Germany",
-  "australia": "Australia",
-  "japan": "Japan"
+  "NAME": "電話/ファックス",
+  "DESC": "国/地域ごとにさまざまな形式でランダムな電話/ファックス番号を生成します。",
+  "DEFAULT_TITLE": "電話",
+  "differentFormats": "さまざまな形式",
+  "canada": "カナダ",
+  "helpText1": "オプションテキストフィールドに入力したテキストはすべて、電話番号の生成に使用されます。 大文字のXは、1から9までの乱数に変換されます。 小文字のxは、0から9までの乱数に変換されます。",
+  "helpText2": "いくつかのアイデアについては、例のドロップダウンで値の1つを選択してください。 覚えておいてください：Xとx文字以外は変換されないままです。",
+  "incompleteFields": "電話/ファックスのデータ型では、[オプション]テキストフィールドに形式を入力する必要があります。 次の行を修正してください。",
+  "uk": "英国",
+  "france": "フランス",
+  "germany": "ドイツ",
+  "australia": "オーストラリア",
+  "japan": "日本"
 }

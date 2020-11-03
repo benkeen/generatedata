@@ -1,5 +1,5 @@
 {
-  "NAME": "Email",
-  "DESC": "Generates a random email address.",
-  "DEFAULT_TITLE": "email"
+  "NAME": "البريد الإلكتروني",
+  "DESC": "يولد عنوان بريد إلكتروني عشوائي.",
+  "DEFAULT_TITLE": "البريد الإلكتروني"
 }

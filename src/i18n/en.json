@@ -29,6 +29,7 @@
 	"centralAmerica": "Central America",
 	"checkDatabaseInfo": "Check Database Info",
 	"clear": "Clear",
+	"clearDataGridOnly": "Clear data grid only",
 	"clearPage": "Clear Page",
 	"clearPageConfirmation": "Are you sure you want to clear the page? Any changes you've made will be lost.",
 	"clearThePage": "Clear the Page",
@@ -215,6 +216,7 @@
 	"regenerate": "Regenerate",
 	"reportBug": "Report a bug",
 	"requiredField": "Required field",
+	"resetEverything": "Reset everything to default settings",
 	"resetPassword": "Reset Password",
 	"resetPlugins": "Reset plugins",
 	"row": "Row",
@@ -279,8 +281,5 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets",
-
-  "clearDataGridOnly": "Clear data grid only",
- "resetEverything": "Reset everything to default settings"
+	"yourDataSets": "Your Data Sets"
 }

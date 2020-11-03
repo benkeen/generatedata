@@ -33,7 +33,7 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 									name="gdClearPageOption"
 									id="gdClearPageOption1"
 									checked={clearType === 'dataOnly'}
-									onChange={() => onChangeClearType('dataOnly')}
+									onChange={(): void => onChangeClearType('dataOnly')}
 								/>
 								<label htmlFor="gdClearPageOption1">{i18n.clearDataGridOnly}</label>
 							</li>
@@ -43,7 +43,7 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 									name="gdClearPageOption"
 									id="gdClearPageOption2"
 									checked={clearType === 'everything'}
-									onChange={() => onChangeClearType('everything')}
+									onChange={(): void => onChangeClearType('everything')}
 								/>
 								<label htmlFor="gdClearPageOption2">{i18n.resetEverything}</label>
 							</li>
@@ -51,7 +51,7 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={() => onClear(clearType)} color="secondary" variant="outlined">
+					<Button onClick={(): void => onClear(clearType)} color="secondary" variant="outlined">
 						{i18n.yes}
 					</Button>
 					<Button onClick={onClose} color="primary" variant="outlined">

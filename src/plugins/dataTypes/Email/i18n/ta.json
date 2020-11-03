@@ -1,5 +1,5 @@
 {
-  "NAME": "Email",
-  "DESC": "Generates a random email address.",
-  "DEFAULT_TITLE": "email"
+  "NAME": "மின்னஞ்சல்",
+  "DESC": "சீரற்ற மின்னஞ்சல் முகவரியை உருவாக்குகிறது.",
+  "DEFAULT_TITLE": "மின்னஞ்சல்"
 }

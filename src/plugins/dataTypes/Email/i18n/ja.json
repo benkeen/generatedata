@@ -1,5 +1,5 @@
 {
-  "NAME": "Email",
-  "DESC": "Generates a random email address.",
-  "DEFAULT_TITLE": "email"
+  "NAME": "Eメール",
+  "DESC": "ランダムな電子メールアドレスを生成します。",
+  "DEFAULT_TITLE": "Eメール"
 }
