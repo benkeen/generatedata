@@ -56,7 +56,7 @@ export type GeneratorState = {
 	builderLayout: BuilderLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
-	showStartGenerationPanel: boolean;
+	showGenerationSettingsPanel: boolean;
 	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
 	theme: string;
@@ -68,7 +68,6 @@ export type GeneratorState = {
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
 	numRowsToGenerate: number;
-	numGeneratedRows: number;
 };
 
 export const getInitialState = (): GeneratorState => ({
@@ -86,18 +85,17 @@ export const getInitialState = (): GeneratorState => ({
 	showExportSettings: false,
 	exportTypeSettings: {},
 	numPreviewRows: 5,
-	showLineNumbers: false,
+	showLineNumbers: true,
 	enableLineWrapping: true,
 	theme: 'lucario',
 	previewTextSize: 12,
 	dataTypePreviewData: {},
 	exportSettingsTab: 'exportType',
-	showStartGenerationPanel: false,
+	showGenerationSettingsPanel: false,
 	numRowsToGenerate: 100,
 	stripWhitespace: false,
 	lastLayoutWidth: null,
-	lastLayoutHeight: null,
-	numGeneratedRows: 0
+	lastLayoutHeight: null
 });
 
 export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
@@ -114,6 +112,28 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.rows = {};
 			draft.sortedRows = [];
 			break;
+
+		case actions.RESET_GENERATOR: {
+			draft.rows = {};
+			draft.sortedRows = [];
+
+			const initialState = getInitialState();
+			const settingsToReset = [
+				'exportType', 'showGrid', 'showPreview', 'builderLayout', 'showExportSettings', 'numPreviewRows',
+				'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'exportSettingsTab', 'numRowsToGenerate',
+				'stripWhitespace'
+			];
+			settingsToReset.forEach((setting: any) => {
+				// @ts-ignore-line
+				draft[setting] = initialState[setting];
+			});
+
+			Object.keys(action.payload.exportTypeInitialStates).forEach((et: ExportTypeFolder) => {
+				draft.exportTypeSettings[et] = action.payload.exportTypeInitialStates[et];
+			});
+
+			break;
+		}
 
 		case actions.DATA_TYPE_LOADED:
 			draft.loadedDataTypes[action.payload.dataType as DataTypeFolder] = true;
@@ -246,13 +266,12 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			}
 			break;
 
-		// TODO lousy name SHOW_GENERATION_SETTINGS_PANEL is less awful
-		case actions.SHOW_START_GENERATION_PANEL:
-			draft.showStartGenerationPanel = true;
+		case actions.SHOW_GENERATION_SETTINGS_PANEL:
+			draft.showGenerationSettingsPanel = true;
 			break;
 
 		case actions.HIDE_START_GENERATION_PANEL:
-			draft.showStartGenerationPanel = false;
+			draft.showGenerationSettingsPanel = false;
 			break;
 
 		case actions.UPDATE_NUM_ROWS_TO_GENERATE:
@@ -276,9 +295,8 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.initialDependenciesLoaded = true;
 			break;
 
-		// perhaps belongs in `packets`?
 		case packetActions.START_GENERATION:
-			draft.showStartGenerationPanel = false;
+			draft.showGenerationSettingsPanel = false;
 			break;
 	}
 }, getInitialState());

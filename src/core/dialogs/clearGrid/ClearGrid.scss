@@ -11,4 +11,19 @@ div.contentPanel {
 		font-size: 50px;
 		margin-right: 10px;
 	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+		li {
+			display: flex;
+			margin-bottom: 4px;
+		}
+
+		input {
+			margin-right: 5px;
+		}
+	}
 }

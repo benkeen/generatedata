@@ -6,7 +6,7 @@ import * as selectors from '../store/generator/generator.selectors';
 import GenerationSettings, { GenerationSettingsProps } from './GenerationSettings.component';
 
 const mapStateToProps = (state: any, ownProps: Partial<GenerationSettingsProps>): Partial<GenerationSettingsProps> => ({
-	visible: selectors.isStartGenerationPanelVisible(state),
+	visible: selectors.isGenerationSettingsPanelVisible(state),
 	i18n: selectors.getCoreI18n(state),
 	numRowsToGenerate: selectors.getNumRowsToGenerate(state),
 	stripWhitespace: selectors.shouldStripWhitespace(state),

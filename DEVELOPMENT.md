@@ -42,8 +42,7 @@ These are found in `src/i18n`. They contain all the core i18n files.
 - add base component generation script task.
 - verification task to find missing schemas
 - revise schemas to make the entire config file schema based, not just the generation schema
-- Minimum node version? 8?
-- The script shouldn't have any trace of website content. Drop the website_i18n files.
+- Minimum node version? 12?
 - split config into config.web.js, config.server.js. config.server.js is never included in any bundle. Best way to 
 validate this? Kinnnnnda important.
 

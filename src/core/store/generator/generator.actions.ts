@@ -7,11 +7,12 @@ import { registerInterceptors } from '../../actionInterceptor';
 import * as coreUtils from '~utils/coreUtils';
 import { getStrings } from '~utils/langUtils';
 import { getUniqueString } from '~utils/stringUtils';
-import { loadExportTypeBundle } from '~utils/exportTypeUtils';
+import { loadExportTypeBundle, getExportTypeInitialState } from '~utils/exportTypeUtils';
 import { DTBundle } from '~types/dataTypes';
 import { GDAction } from '~types/general';
 import C from '../../constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
+import { ClearType } from '../../dialogs/clearGrid/ClearGrid.component';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -238,8 +239,8 @@ export const dataTypeLoaded = (dataType: DataTypeFolder): GDAction => ({
 	}
 });
 
-export const SHOW_START_GENERATION_PANEL = 'SHOW_START_GENERATION_PANEL';
-export const showStartGenerationPanel = (): GDAction => ({ type: SHOW_START_GENERATION_PANEL });
+export const SHOW_GENERATION_SETTINGS_PANEL = 'SHOW_GENERATION_SETTINGS_PANEL';
+export const showGenerationSettingsPanel = (): GDAction => ({ type: SHOW_GENERATION_SETTINGS_PANEL });
 
 export const HIDE_START_GENERATION_PANEL = 'HIDE_START_GENERATION_PANEL';
 export const hideStartGenerationPanel = (): GDAction => ({ type: HIDE_START_GENERATION_PANEL });
@@ -256,8 +257,26 @@ export const TOGGLE_STRIP_WHITESPACE = 'TOGGLE_STRIP_WHITESPACE';
 export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITESPACE });
 
 export const CLEAR_GRID = 'CLEAR_GRID';
-export const clearGrid = (): any => (dispatch: Dispatch): void => {
-	dispatch({ type: CLEAR_GRID });
+export const RESET_GENERATOR = 'RESET_GENERATOR';
+export const clearGrid = (clearType: ClearType): any => (dispatch: Dispatch, getState: any): void => {
+	if (clearType === "everything") {
+		const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
+
+		const exportTypeInitialStates: any = {};
+		loadedExportTypes.forEach((et: ExportTypeFolder) => {
+			exportTypeInitialStates[et] = getExportTypeInitialState(et);
+		});
+
+		dispatch({
+			type: RESET_GENERATOR,
+			payload: {
+				exportTypeInitialStates
+			}
+		});
+	} else {
+		dispatch({ type: CLEAR_GRID });
+	}
+
 	dispatch(addRows(5));
 };
 

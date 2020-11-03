@@ -279,5 +279,8 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets"
+	"yourDataSets": "Your Data Sets",
+
+  "clearDataGridOnly": "Clear data grid only",
+ "resetEverything": "Reset everything to default settings"
 }

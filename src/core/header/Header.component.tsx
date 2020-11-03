@@ -11,7 +11,7 @@ import SwapHoriz from '@material-ui/icons/SwapHoriz';
 import SwapVert from '@material-ui/icons/SwapVert';
 import MenuIcon from '@material-ui/icons/Menu';
 import { BuilderLayout } from '../builder/Builder.component';
-import ClearGridDialog from '../dialogs/clearGrid/ClearGrid.component';
+import ClearGridDialog, { ClearType } from '../dialogs/clearGrid/ClearGrid.component';
 import { Tooltip } from '~components/tooltips';
 import { toSentenceCase } from '~utils/stringUtils';
 import IntroDialog from '../dialogs/intro/Intro.component';
@@ -24,7 +24,7 @@ export type HeaderProps = {
 	toggleGrid: () => void;
 	togglePreview: () => void;
 	toggleLayout: () => void;
-	onClearGrid: () => void;
+	onClearGrid: (clearType: ClearType) => void;
 	toggleIntroDialog: () => void;
 	onChangeSmallScreenVisiblePanel: () => void;
 	isLoggedIn: boolean;
@@ -167,8 +167,8 @@ const Header = ({
 			<ClearGridDialog
 				visible={showClearDialog}
 				onClose={(): void => setShowClearDialog(false)}
-				onClear={(): void => {
-					onClearGrid();
+				onClear={(clearType): void => {
+					onClearGrid(clearType);
 					setShowClearDialog(false);
 				}}
 				i18n={i18n}

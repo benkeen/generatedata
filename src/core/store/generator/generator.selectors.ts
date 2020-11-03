@@ -30,7 +30,7 @@ export const getDataTypePreviewData = (state: Store): any => state.generator.dat
 export const shouldShowExportSettings = (state: Store): any => state.generator.showExportSettings;
 export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
-export const isStartGenerationPanelVisible = (state: Store): any => state.generator.showStartGenerationPanel;
+export const isGenerationSettingsPanelVisible = (state: Store): any => state.generator.showGenerationSettingsPanel;
 export const getNumRowsToGenerate = (state: Store): number => state.generator.numRowsToGenerate;
 export const getLastLayoutWidth = (state: Store): number | null => state.generator.lastLayoutWidth;
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
@@ -174,6 +174,11 @@ export const selectedExportTypeLoaded = createSelector(
 	getExportType,
 	getLoadedExportTypes,
 	(exportType, loadedExportTypes) => loadedExportTypes[exportType]
+);
+
+export const getLoadedExportTypesArray = createSelector(
+	getLoadedExportTypes,
+	(exportTypes) => Object.keys(exportTypes).filter((et: ExportTypeFolder) => exportTypes[et])
 );
 
 export const getCoreI18n = createSelector(

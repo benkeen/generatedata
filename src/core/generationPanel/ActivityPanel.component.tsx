@@ -73,7 +73,7 @@ const ActivityPanel = ({
 			batchSize: C.GENERATION_BATCH_SIZE,
 			speed,
 			columns,
-			i18n: getStrings(),
+			i18n: getStrings(), // TODO bug! the locale may not be loaded yet. Best to handle this higher up the app
 			template,
 			workerResources
 		});

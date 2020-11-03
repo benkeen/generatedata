@@ -6,6 +6,7 @@ import * as selectors from '../store/generator/generator.selectors';
 import * as mainSelectors from '../store/main/main.selectors';
 import * as actions from '../store/generator/generator.actions';
 import * as mainActions from '../store/main/main.actions';
+import { ClearType } from '../dialogs/clearGrid/ClearGrid.component';
 
 const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	i18n: selectors.getCoreI18n(state),
@@ -27,7 +28,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	toggleLayout: (): any => dispatch(actions.toggleLayout()),
 
 	// @ts-ignore
-	onClearGrid: (): any => dispatch(actions.clearGrid()),
+	onClearGrid: (clearType: ClearType): any => dispatch(actions.clearGrid(clearType)),
 	toggleIntroDialog: (): any => dispatch(mainActions.toggleIntroDialog())
 });
 
