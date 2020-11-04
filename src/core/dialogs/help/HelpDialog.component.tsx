@@ -19,8 +19,8 @@ export type HelpDialogProps = {
 const DataTypeList = ({ onSelect, filterString }: any): any => {
 	const dataTypes = getSortedGroupedDataTypes();
 	const regex = new RegExp(filterString, 'i');
-
 	const content: any = [];
+
 	dataTypes.forEach(({ label, options }: { label: string; options: any }) => {
 		let list: any = options;
 		if (filterString.trim() !== '') {
@@ -46,6 +46,8 @@ const DataTypeList = ({ onSelect, filterString }: any): any => {
 const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n, onSelectDataType }: HelpDialogProps): JSX.Element => {
 	const [dataType, setDataType] = React.useState<DataTypeFolder | null>(null);
 	const [filterString, setFilterString] = React.useState('');
+
+	console.log(filterString);
 
 	const selectDataType = (dataType: DataTypeFolder): void => {
 		onSelectDataType(dataType);
@@ -74,6 +76,7 @@ const HelpDialog = ({ initialDataType, visible, onClose, coreI18n, dataTypeI18n,
 							type="text"
 							placeholder={coreI18n.filterDataTypes}
 							autoFocus
+							value={filterString}
 							onChange={(e): void => setFilterString(e.target.value)}
 						/>
 						<div className={styles.list}>
