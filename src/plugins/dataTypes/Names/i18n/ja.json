@@ -2,7 +2,7 @@
   "NAME": "名前",
   "DESC": "必要な形式で人間の名前（主に西洋）を生成します。",
   "DEFAULT_TITLE": "名前",
-  "help_intro": "パイプ（|）文字で区切ることにより、複数のフォーマットを指定できます。 次の文字列は、同等のランダムな名前に変換されます。",
+  "help_intro": "Enterをクリックすると、複数の形式を指定できます。 次の文字列は、同等のランダムな名前に変換されます。",
   "name": "名前",
   "example_FemaleName": "Jane (女性の名前)",
   "example_FemaleName_Surname": "Jane Smith",

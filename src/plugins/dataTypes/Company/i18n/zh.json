@@ -1,5 +1,5 @@
 {
-  "NAME": "Company",
-  "DESC": "Generates a random company name, comprised of a lorem ipsum word and an appropriate suffix, like Dolor Inc., or Convallis Limited.",
-  "DEFAULT_TITLE": "company"
+  "NAME": "公司",
+  "DESC": "生成一个随机的公司名称，该名称由lorem ipsum单词和适当的后缀组成，例如Dolor Inc.或Convallis Limited。",
+  "DEFAULT_TITLE": "公司"
 }

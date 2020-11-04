@@ -2,7 +2,7 @@
   "NAME": "Namen",
   "DESC": "Genereerd (voornamelijk westerse) menselijke namen in elk gewenst formaat.",
   "DEFAULT_TITLE": "naam",
-  "help_intro": "U kunt meerdere formaten opgeven gescheiden door een (|) karakter. De volgende Waarden worden gebruikt om een willekeurige Naam te genereren:",
+  "help_intro": "U kunt meerdere formaten specificeren door op enter te klikken. De volgende strings worden geconverteerd naar hun equivalent voor willekeurige naam:",
   "name": "Naam",
   "example_FemaleName": "Jane (Vrouwen Voornaam)",
   "example_FemaleName_Surname": "Jane Smith",

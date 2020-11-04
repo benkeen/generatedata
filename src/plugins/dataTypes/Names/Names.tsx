@@ -2,25 +2,26 @@ import * as React from 'react';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import CopyToClipboard from '~components/CopyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import CreatablePillField from '~components/CreatablePillField/CreatablePillField';
 import styles from './Names.scss';
 
 export type NamesState = {
 	example: string;
-	options: string;
+	options: string[];
 };
 
 export const initialState: NamesState = {
 	example: 'Name Surname',
-	options: 'Name Surname'
+	options: ['Name Surname']
 };
 
-export const rowStateReducer = (state: NamesState): string => state.options;
+export const rowStateReducer = (state: NamesState): string[] => state.options;
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
 	const onChange = (selected: DropdownOption): void => {
 		onUpdate({
 			example: selected.value,
-			options: selected.value
+			options: selected.value.split('|')
 		});
 	};
 
@@ -35,7 +36,7 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 		{ value: 'Surname', label: i18n.example_surname },
 		{ value: 'Surname, Name Initial.', label: i18n.example_Surname_Name_Initial },
 		{ value: 'Name, Name, Name, Name', label: i18n.example_Name4 },
-		{ value: 'Name Surname|Name Initial. Surname', label: i18n.example_fullnames },
+		{ value: 'Name Surname|Name Initial. Surname', label: i18n.example_fullnames }
 	];
 
 	return (
@@ -47,14 +48,14 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 	);
 };
 
-export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => (
-	<input
-		type="text"
-		value={data.options}
-		onChange={(e): void => onUpdate({ ...data, options: e.target.value })}
-		style={{ width: '100%' }}
-	/>
-);
+export const Options = ({ data, onUpdate }: DTOptionsProps): JSX.Element => {
+	return (
+		<CreatablePillField
+			value={data.options}
+			onChange={(options: any): void => onUpdate({ ...data, options })}
+		/>
+	);
+};
 
 const Copy = ({ content, message, tooltip }: any): JSX.Element => (
 	<span className={styles.copy}>

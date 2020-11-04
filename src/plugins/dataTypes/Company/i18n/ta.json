@@ -1,5 +1,5 @@
 {
-  "NAME": "Company",
-  "DESC": "Generates a random company name, comprised of a lorem ipsum word and an appropriate suffix, like Dolor Inc., or Convallis Limited.",
-  "DEFAULT_TITLE": "company"
+  "NAME": "நிறுவனம்",
+  "DESC": "ஒரு லோரெம் இப்சம் சொல் மற்றும் டோலர் இன்க், அல்லது கான்வாலிஸ் லிமிடெட் போன்ற பொருத்தமான பின்னொட்டு ஆகியவற்றைக் கொண்ட ஒரு சீரற்ற நிறுவனத்தின் பெயரை உருவாக்குகிறது.",
+  "DEFAULT_TITLE": "நிறுவனம்"
 }

@@ -13,7 +13,7 @@
   "example_Surname_Name_Initial": "Smith, John P.",
   "example_fullnames": "Alex Smith ou Alex J. Smith",
   "example_surname": "Smith (nom de famille)",
-  "help_intro": "Vous pouvez spécifier les formats multiples en les séparant par le caractère pipe (|). Les chaînes suivantes seront converties en leur équivalent aléatoire:",
+  "help_intro": "Vous pouvez spécifier plusieurs formats en cliquant sur Entrée. Les chaînes suivantes seront converties en leur équivalent de nom aléatoire:",
   "name": "Nom",
   "type_FemaleName": "Un prénom féminin.",
   "type_Initial": "Une lettre majuscule, AZ.",

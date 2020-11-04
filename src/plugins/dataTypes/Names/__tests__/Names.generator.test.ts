@@ -11,7 +11,7 @@ describe('generate method converts all placeholders', () => {
 	it('generates a single male name', () => {
 		sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns('Jim');
 
-		expect(generate('MaleName')).toEqual({
+		expect(generate(['MaleName'])).toEqual({
 			display: 'Jim',
 			gender: 'male'
 		});
@@ -20,7 +20,7 @@ describe('generate method converts all placeholders', () => {
 	it('generates a single female name', () => {
 		sinon.stub(utils.randomUtils, 'getRandomArrayValue').returns('Sue');
 
-		expect(generate('FemaleName')).toEqual({
+		expect(generate(['FemaleName'])).toEqual({
 			display: 'Sue',
 			gender: 'female'
 		});
@@ -31,7 +31,7 @@ describe('generate method converts all placeholders', () => {
 			.onCall(0).returns('Jim')
 			.onCall(1).returns('Bob');
 
-		expect(generate('MaleName, MaleName')).toEqual({
+		expect(generate(['MaleName, MaleName'])).toEqual({
 			display: 'Jim, Bob',
 			gender: 'male'
 		});
@@ -43,7 +43,7 @@ describe('generate method converts all placeholders', () => {
 			.onCall(1).returns('Jimbo')
 			.onCall(2).returns('Bob');
 
-		expect(generate('[MaleName]!!MaleName--MaleName')).toEqual({
+		expect(generate(['[MaleName]!!MaleName--MaleName'])).toEqual({
 			display: '[Jim]!!Jimbo--Bob',
 			gender: 'male'
 		});
@@ -54,7 +54,7 @@ describe('generate method converts all placeholders', () => {
 			.onCall(0).returns('Thomas')
 			.onCall(1).returns('Susan');
 
-		expect(generate('FemaleName,MaleName')).toEqual({
+		expect(generate(['FemaleName,MaleName'])).toEqual({
 			display: 'Susan,Thomas',
 			gender: 'unknown'
 		});
@@ -64,7 +64,7 @@ describe('generate method converts all placeholders', () => {
 		sinon.stub(utils.randomUtils, 'getRandomArrayValue')
 			.onCall(0).returns('Whatever');
 
-		expect(generate('Surname')).toEqual({
+		expect(generate(['Surname'])).toEqual({
 			display: 'Whatever',
 			gender: 'unknown'
 		});
@@ -74,7 +74,7 @@ describe('generate method converts all placeholders', () => {
 		sinon.stub(utils.randomUtils, 'getRandomCharInString')
 			.onCall(0).returns('A');
 
-		expect(generate('Initial')).toEqual({
+		expect(generate(['Initial'])).toEqual({
 			display: 'A',
 			gender: 'unknown'
 		});

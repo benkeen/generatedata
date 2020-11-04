@@ -2,7 +2,7 @@
   "NAME": "Nombres",
   "DESC": "Este tipo de dato genera aleatoriamente nombres de persona (mayoritariamente occidentales) de acuerdo al formato que especifiques.",
   "DEFAULT_TITLE": "nombre",
-  "help_intro": "Pues especificar múltiples formatos separándolos con el carácter tubería, |. Las siguientes cadenas serán convertidas a su nombre aleatorio equivalente:",
+  "help_intro": "Puede especificar varios formatos haciendo clic en Intro. Las siguientes cadenas se convertirán a su equivalente de nombre aleatorio:",
   "name": "Nombre",
   "example_FemaleName": "Jane (Nombre de mujer)",
   "example_FemaleName_Surname": "Jane Smith",

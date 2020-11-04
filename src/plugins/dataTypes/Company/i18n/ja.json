@@ -1,5 +1,5 @@
 {
-  "NAME": "Company",
-  "DESC": "Generates a random company name, comprised of a lorem ipsum word and an appropriate suffix, like Dolor Inc., or Convallis Limited.",
-  "DEFAULT_TITLE": "company"
+  "NAME": "会社",
+  "DESC": "Loremipsumの単語と適切な接尾辞で構成されるランダムな会社名を生成します（DolorInc。やConvallisLimitedなど）。",
+  "DEFAULT_TITLE": "会社"
 }
