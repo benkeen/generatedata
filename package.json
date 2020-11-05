@@ -1,6 +1,6 @@
 {
   "name": "generatedata",
-  "version": "4.0.0-alpha-20201102",
+  "version": "4.0.0-alpha-20201104",
   "description": "Free, MIT-licensed, random custom data generator for testing software.",
   "main": "index.js",
   "directories": {
