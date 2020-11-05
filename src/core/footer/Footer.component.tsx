@@ -91,7 +91,9 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGene
 							<LanguageIcon fontSize="large" onClick={(): void => setLocaleTooltipVisibility(true)} />
 						</HtmlTooltip>
 					</li>
-					<li style={{ marginRight: 30 }}>{scriptVersion}</li>
+					<li className={styles.scriptVersion}>
+						<a href={C.CHANGELOG_URL} target="_blank" rel="noopener noreferrer">{scriptVersion}</a>
+					</li>
 					<li>
 						<ActivePacketsList />
 					</li>

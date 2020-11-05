@@ -13,6 +13,11 @@ Right now it's in early alpha. The current goals are:
 The next phase will be adding in the backend: user accounts, saving data sets and so on. 
 
 
+- `4.0.0-alpha-20201104`:
+    - Computed and Composite Data Types combined.
+    - Names Data Type options structure change.
+    - Fix for help dialog not resetting search text
+    - version now links to changelog
 - `4.0.0-alpha-20201102`:
   - all 9 languages now available to toggle between.
   - "Clear Page" modal now lets you either just clear the grid, or reset everything (all plugins) to their default settings  

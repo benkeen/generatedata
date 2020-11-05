@@ -48,3 +48,12 @@ div.selectLocale {
 .selectedLocale span {
 	font-weight: bold;
 }
+
+.scriptVersion a {
+	margin-right: 30px;
+	color: #333333;
+
+	&:hover {
+		text-decoration: none;
+	}
+}

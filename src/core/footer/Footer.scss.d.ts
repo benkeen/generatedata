@@ -1,6 +1,7 @@
 declare namespace FooterScssNamespace {
   export interface IFooterScss {
     footer: string;
+    scriptVersion: string;
     selectLocale: string;
     selectedLocale: string;
   }

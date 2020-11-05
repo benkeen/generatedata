@@ -2,7 +2,7 @@ import { DTDefinition } from '~types/dataTypes';
 
 const definition: DTDefinition = {
 	fieldGroup: 'other',
-	fieldGroupOrder: 60,
+	fieldGroupOrder: 20,
 	dependencies: [
 		'Alphanumeric', 'AutoIncrement', 'Boolean', 'City', 'Company', 'Constant', 'Country', 'Currency',
 		'CVV', 'Date', 'Email', 'GUID', 'IBAN', 'LatLng', 'List', 'Names', 'NormalDistribution', 'NumberRange',

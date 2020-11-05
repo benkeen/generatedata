@@ -28,12 +28,14 @@ describe('Options', () => {
 				value: 'new value!!'
 			}
 		});
+
 		expect(onUpdate).toBeCalledWith({
 			...initialState,
 			value: 'new value!!'
 		});
 	});
 });
+
 
 describe('Help', () => {
 	it('renders', () => {

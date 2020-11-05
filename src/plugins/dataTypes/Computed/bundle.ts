@@ -1,11 +1,12 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options, Help } from './Computed';
+import { initialState, Example, Options, Help, getMetadata } from './Computed';
 
 const bundle: DTBundle = {
 	initialState,
 	Example,
 	Options,
-	Help
+	Help,
+	getMetadata
 };
 
 export default bundle;

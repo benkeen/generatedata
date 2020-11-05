@@ -2,10 +2,11 @@ export default {
 	// any time we roll out backward incompatible redux structure changes, this number should be bumped. It causes
 	// anyone's setup to automatically reset & forget any previous saved redux store structure so there aren't
 	// incompatibility problems with the latest code
-	APP_STATE_VERSION: 2,
+	APP_STATE_VERSION: 3,
 
 	NUM_DEFAULT_ROWS: 5,
 	GITHUB_URL: 'https://github.com/benkeen/generatedata',
+	CHANGELOG_URL: 'https://github.com/benkeen/generatedata/blob/master/CHANGELOG.md',
 	THEMES: [
 		{ value: 'ambiance', label: 'Ambiance' },
 		{ value: 'cobalt', label: 'Cobalt' },

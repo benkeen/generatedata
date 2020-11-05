@@ -27,7 +27,6 @@ export default {
 		'_Tree',
 
 		// incomplete - will be removed when they're done
-		'Computed',
 		'Currency',
 		'CVV',
 		'NormalDistribution',

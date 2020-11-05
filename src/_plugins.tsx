@@ -12,7 +12,6 @@ import Boolean from './plugins/dataTypes/Boolean/config';
 import CVV from './plugins/dataTypes/CVV/config';
 import City from './plugins/dataTypes/City/config';
 import Company from './plugins/dataTypes/Company/config';
-import Composite from './plugins/dataTypes/Composite/config';
 import Computed from './plugins/dataTypes/Computed/config';
 import Constant from './plugins/dataTypes/Constant/config';
 import Country from './plugins/dataTypes/Country/config';
@@ -49,7 +48,6 @@ export const dataTypes = {
 	CVV,
 	City,
 	Company,
-	Composite,
 	Computed,
 	Constant,
 	Country,
@@ -82,7 +80,7 @@ export const dataTypes = {
 
 export type DataTypeFolder = keyof typeof dataTypes;
 
-export const blacklistedDataTypeFolders = ['_NamesRegional','_PhoneRegional','_Tree','Computed','Currency','CVV','NormalDistribution','OrganizationNumber','PAN','PersonalNumber','PIN','Rut','SIRET','Track1','Track2'];
+export const blacklistedDataTypeFolders = ['_NamesRegional','_PhoneRegional','_Tree','Currency','CVV','NormalDistribution','OrganizationNumber','PAN','PersonalNumber','PIN','Rut','SIRET','Track1','Track2'];
 
 import HTML from './plugins/exportTypes/HTML/config';
 import JSON from './plugins/exportTypes/JSON/config';
