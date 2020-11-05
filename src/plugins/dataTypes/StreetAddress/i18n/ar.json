@@ -1,8 +1,8 @@
 {
-  "NAME": "Street Address",
-  "DESC": "Generates random street addresses.",
-  "DEFAULT_TITLE": "address",
-  "apNum": "Ap #",
-  "poBox": "P.O. Box",
+  "NAME": "عنوان الشارع",
+  "DESC": "يولد عناوين شوارع عشوائية.",
+  "DEFAULT_TITLE": "عنوان",
+  "apNum": "أب #",
+  "poBox": "ص. صندوق",
   "streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
 }

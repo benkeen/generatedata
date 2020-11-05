@@ -1,8 +1,8 @@
 {
-  "NAME": "Street Address",
-  "DESC": "Generates random street addresses.",
-  "DEFAULT_TITLE": "address",
+  "NAME": "தெரு முகவரி",
+  "DESC": "சீரற்ற தெரு முகவரிகளை உருவாக்குகிறது.",
+  "DEFAULT_TITLE": "முகவரி",
   "apNum": "Ap #",
-  "poBox": "P.O. Box",
+  "poBox": "பி.ஓ. பெட்டி",
   "streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
 }

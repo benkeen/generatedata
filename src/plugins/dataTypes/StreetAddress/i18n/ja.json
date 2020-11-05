@@ -1,8 +1,8 @@
 {
-  "NAME": "Street Address",
-  "DESC": "Generates random street addresses.",
-  "DEFAULT_TITLE": "address",
+  "NAME": "住所",
+  "DESC": "ランダムな番地を生成します。",
+  "DEFAULT_TITLE": "住所",
   "apNum": "Ap #",
-  "poBox": "P.O. Box",
+  "poBox": "P.O. ボックス",
   "streetTypes": "St.,St.,Street,Road,Rd.,Rd.,Ave,Av.,Avenue"
 }
