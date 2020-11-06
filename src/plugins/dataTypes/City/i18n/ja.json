@@ -12,5 +12,7 @@
   "rowDesc": "これにより、リージョンプラグインをソースとして持つデータセット内の特定のリージョンフィールドが特定されます。 そのフィールドの値にマップする都市を生成します。",
   "row": "行",
   "country": "国",
-  "countries": "国"
+  "countries": "国",
+  "anyCityFrom1Country": "1か国の任意の都市",
+  "anyCityFromNCountries": "%1か国の任意の都市"
 }

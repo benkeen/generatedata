@@ -12,5 +12,7 @@
   "rowDesc": "Cela identifie un champ de région spécifique dans votre ensemble de données qui a des plugins de région comme source. Il génère des villes qui correspondent à la valeur de ce champ.",
   "row": "Rangée",
   "country": "pays",
-  "countries": "des pays"
+  "countries": "des pays",
+  "anyCityFrom1Country": "Cualquier ciudad de 1 país",
+  "anyCityFromNCountries": "Cualquier ciudad de %1 países"
 }

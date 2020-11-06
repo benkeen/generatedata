@@ -12,5 +12,7 @@
   "rowDesc": "Esto señala un campo de región específico en su conjunto de datos que tiene complementos de región como fuente. Genera ciudades que se asignan al valor en ese campo.",
   "row": "Fila",
   "country": "país",
-  "countries": "países"
+  "countries": "países",
+  "anyCityFrom1Country": "Cualquier ciudad de 1 país",
+  "anyCityFromNCountries": "Cualquier ciudad de %1 países"
 }

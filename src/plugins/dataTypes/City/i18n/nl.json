@@ -12,5 +12,7 @@
   "rowDesc": "Dit lokaliseert een specifiek regioveld in uw dataset dat regioplug-ins als bron heeft. Het genereert steden die overeenkomen met de waarde in dat veld.",
   "row": "Rij",
   "country": "land",
-  "countries": "landen"
+  "countries": "landen",
+  "anyCityFrom1Country": "Elke stad uit 1 land",
+  "anyCityFromNCountries": "Elke stad uit %1 landen"
 }

@@ -12,5 +12,7 @@
   "rowDesc": "Dadurch wird ein bestimmtes Regionsfeld in Ihrem Datensatz ermittelt, dessen Quelle Regions-Plugins sind. Es werden Städte generiert, die dem Wert in diesem Feld zugeordnet sind.",
   "row": "Reihe",
   "country": "Land",
-  "countries": "Länder"
+  "countries": "Länder",
+  "anyCityFrom1Country": "Jede Stadt aus 1 Land",
+  "anyCityFromNCountries": "Jede Stadt aus %1 Ländern"
 }

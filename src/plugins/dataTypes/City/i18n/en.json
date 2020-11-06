@@ -12,5 +12,7 @@
   "rowDesc": "This pinpoints a specific Region field in your data set that has Region Plugins as its source. It generates cities that map to the value in that field.",
   "row": "Row",
   "country": "country",
-  "countries": "countries"
+  "countries": "countries",
+  "anyCityFrom1Country": "Any city from 1 country",
+  "anyCityFromNCountries": "Any city from %1 countries"
 }

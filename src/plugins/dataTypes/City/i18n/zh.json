@@ -12,5 +12,7 @@
   "rowDesc": "这将在数据集中以区域插件为源的特定区域字段中查明。 它生成映射到该字段中的值的城市。",
   "row": "行",
   "country": "国家",
-  "countries": "国家"
+  "countries": "国家",
+  "anyCityFrom1Country": "来自1个国家/地区的任何城市",
+  "anyCityFromNCountries": "来自%1个国家/地区的任何城市"
 }

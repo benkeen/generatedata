@@ -1,7 +1,7 @@
 {
-  "NAME": "Latitude / Longitude",
-  "DESC": "This data type generates a random latitude and/or longitude. If both are selected, it displays both separated by a comma.",
+  "NAME": "خطوط العرض والطول",
+  "DESC": "يُنشئ نوع البيانات هذا خط عرض و / أو خط طول عشوائيًا. إذا تم تحديد كلاهما ، فسيتم عرض كلاهما مفصول بفاصلة.",
   "DEFAULT_TITLE": "latlng",
-  "latitude": "Latitude",
-  "longitude": "Longitude"
+  "latitude": "خط العرض",
+  "longitude": "خط الطول"
 }

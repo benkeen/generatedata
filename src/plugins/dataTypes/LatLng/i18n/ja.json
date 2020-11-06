@@ -1,7 +1,7 @@
 {
-  "NAME": "Latitude / Longitude",
-  "DESC": "This data type generates a random latitude and/or longitude. If both are selected, it displays both separated by a comma.",
+  "NAME": "緯度/経度",
+  "DESC": "このデータ型は、ランダムな緯度や経度を生成します。 両方を選択すると、両方がコンマで区切られて表示されます。",
   "DEFAULT_TITLE": "latlng",
-  "latitude": "Latitude",
-  "longitude": "Longitude"
+  "latitude": "緯度",
+  "longitude": "経度"
 }

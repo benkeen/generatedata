@@ -1,7 +1,7 @@
 {
-  "NAME": "Latitude / Longitude",
-  "DESC": "This data type generates a random latitude and/or longitude. If both are selected, it displays both separated by a comma.",
-  "DEFAULT_TITLE": "latlng",
-  "latitude": "Latitude",
-  "longitude": "Longitude"
+  "NAME": "纬度/经度",
+  "DESC": "此数据类型生成随机的纬度和/或经度。 如果同时选择了两者，则会显示两者并以逗号分隔。",
+  "DEFAULT_TITLE": "拉特朗",
+  "latitude": "纬度",
+  "longitude": "经度"
 }
