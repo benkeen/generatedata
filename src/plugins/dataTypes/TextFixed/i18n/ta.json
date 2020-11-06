@@ -1,9 +1,9 @@
 {
-  "NAME": "Fixed Number of Words",
-  "DESC": "This option generates a fixed number of random words, pulled from the standard lorem ipsum latin text.",
-  "DEFAULT_TITLE": "text",
-  "TextFixed_generate": "Generate",
-  "TextFixed_help": "This option generates a fixed number of random words, pulled from the standard lorem ipsum text.",
-  "TextFixed_words": "words",
-  "incomplete_fields": "Please enter the number of words you want to generate for all Fixed Number of Words fields. See rows: "
+  "NAME": "சொற்களின் நிலையான எண்ணிக்கை",
+  "DESC": "இந்த விருப்பம் ஒரு நிலையான எண்ணிக்கையிலான சீரற்ற சொற்களை உருவாக்குகிறது, இது நிலையான லோரெம் இப்சம் லத்தீன் உரையிலிருந்து இழுக்கப்படுகிறது.",
+  "DEFAULT_TITLE": "உரை",
+  "TextFixed_generate": "உருவாக்கு",
+  "TextFixed_help": "இந்த விருப்பம் ஒரு நிலையான எண்ணிக்கையிலான சீரற்ற சொற்களை உருவாக்குகிறது, இது நிலையான லோரெம் இப்சம் உரையிலிருந்து இழுக்கப்படுகிறது.",
+  "TextFixed_words": "சொற்கள்",
+  "incomplete_fields": "அனைத்து நிலையான சொற்களின் புலங்களுக்கும் நீங்கள் உருவாக்க விரும்பும் சொற்களின் எண்ணிக்கையை உள்ளிடவும். வரிசைகளைக் காண்க: "
 }

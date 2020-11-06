@@ -1,9 +1,9 @@
 {
-  "NAME": "Fixed Number of Words",
-  "DESC": "This option generates a fixed number of random words, pulled from the standard lorem ipsum latin text.",
-  "DEFAULT_TITLE": "text",
-  "TextFixed_generate": "Generate",
-  "TextFixed_help": "This option generates a fixed number of random words, pulled from the standard lorem ipsum text.",
-  "TextFixed_words": "words",
-  "incomplete_fields": "Please enter the number of words you want to generate for all Fixed Number of Words fields. See rows: "
+  "NAME": "固定字数",
+  "DESC": "此选项会从标准lorem ipsum拉丁文文本中提取固定数量的随机词。",
+  "DEFAULT_TITLE": "文本",
+  "TextFixed_generate": "生成",
+  "TextFixed_help": "此选项会从标准lorem ipsum文本中提取固定数量的随机单词。",
+  "TextFixed_words": "话",
+  "incomplete_fields": "请为所有固定字数字段输入要生成的字数。 查看行： "
 }

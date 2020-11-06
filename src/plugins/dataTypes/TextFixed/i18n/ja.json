@@ -1,9 +1,9 @@
 {
-  "NAME": "Fixed Number of Words",
-  "DESC": "This option generates a fixed number of random words, pulled from the standard lorem ipsum latin text.",
-  "DEFAULT_TITLE": "text",
-  "TextFixed_generate": "Generate",
-  "TextFixed_help": "This option generates a fixed number of random words, pulled from the standard lorem ipsum text.",
-  "TextFixed_words": "words",
-  "incomplete_fields": "Please enter the number of words you want to generate for all Fixed Number of Words fields. See rows: "
+  "NAME": "固定単語数",
+  "DESC": "このオプションは、標準のlorem ipsumlatinテキストから取得した固定数のランダムな単語を生成します。",
+  "DEFAULT_TITLE": "テキスト",
+  "TextFixed_generate": "生む",
+  "TextFixed_help": "このオプションは、標準のloremipsumテキストから取得した固定数のランダムな単語を生成します。",
+  "TextFixed_words": "言葉",
+  "incomplete_fields": "すべての[固定単語数]フィールドに、生成する単語数を入力してください。 行を参照してください： "
 }
