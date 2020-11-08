@@ -33,9 +33,11 @@ export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 			<div>
 				<label>{i18n.delimiterChars}</label>
 				<TextField
+					error={data.delimiter ? '' : i18n.validationNoDelimiter}
+					style={{ width: 30 }}
 					id={`${id}-delimiter`}
 					value={data.delimiter}
-					onChange={(e: any) => onChange('delimiter', e.target.value)}
+					onChange={(e: any): void => onChange('delimiter', e.target.value)}
 				/>
 			</div>
 			<div>
@@ -44,7 +46,7 @@ export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 					id={`${id}-eolChar`}
 					value={data.lineEndings}
 					options={options}
-					onChange={({ value }: DropdownOption): any => onChange('lineEndings', value)}
+					onChange={({ value }: DropdownOption): void => onChange('lineEndings', value)}
 				/>
 			</div>
 		</div>
@@ -57,3 +59,7 @@ export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadP
 	filename: `data-${packetId}.csv`,
 	fileType: 'application/csv'
 });
+
+export const isValid = (settings: CSVSettings): boolean => {
+	return settings.delimiter !== ''; // technically spaces are valid, I suppose
+};

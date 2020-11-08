@@ -1,7 +1,5 @@
 import { ETOnMessage, ETMessageData } from '~types/exportTypes';
 
-declare var utils: any;
-
 const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
@@ -16,58 +14,37 @@ context.onmessage = (e: ETOnMessage) => {
 	context.postMessage(generate(e.data));
 };
 
-const generate = (data: ETMessageData) => {
-	// $csvDelimiter = $this->getCSVDelimiter();
-	// $newline      = $this->getLineEndingChar();
-	//
-	// $data = $generator->generateExportData();
-	//
-	// $content = "";
-	// if ($data["isFirstBatch"]) {
-	// 	$content .= implode($csvDelimiter, $data["colData"]);
-	// }
-	// $numCols = count($data["colData"]);
-	// foreach ($data["rowData"] as $row) {
-	//
-	// 	// see if any of the cells contains the delimiter. If it does, wrap it in double quotes.
-	// 	$cleanRow = array();
-	// 	for ($i=0; $i<$numCols; $i++) {
-	// 		if (strpos($row[$i], $csvDelimiter) !== false) {
-	// 			$cleanRow[] = "\"" . preg_replace("/\"/", "\\\"", $row[$i]) . "\"";
-	// 		} else {
-	// 			$cleanRow[] = $row[$i];
-	// 		}
-	// 	}
-	// 	$content .= $newline . implode($csvDelimiter, $cleanRow);
-	// }
+const generate = (data: ETMessageData): string => {
+	const { columns, rows, isFirstBatch, settings } = data;
+	const { delimiter, lineEndings } = settings;
 
-	return '...';
+	const map: any = {
+		Windows: '\r\n',
+		Unix: '\n',
+		Mac: '\r'
+	};
+	const eol = map[lineEndings];
+
+	let content = '';
+	if (isFirstBatch) {
+		const titleRow = columns.map(({ title }) => title).join(delimiter);
+		content += `${titleRow}${eol}`;
+	}
+
+	const numCols = columns.length;
+	rows.forEach((row) => {
+		const cleanRow = [];
+		for (let i=0; i<numCols; i++) {
+			// see if any of the cells contains the delimiter. If it does, wrap the cell in double quotes
+			if (row[i].indexOf(delimiter) !== -1) {
+				cleanRow.push(`"${rows[i]}"`);
+			} else {
+				cleanRow.push(row[i]);
+			}
+		}
+		content += cleanRow.join(delimiter) + eol;
+	});
+
+	return content;
 };
 
-
-/*
-// return a string: "Windows", "Unix" or "Mac"
-private function getLineEndingChar() {
-	$type = "";
-	if ($this->genEnvironment == Constants::GEN_ENVIRONMENT_API) {
-		$type = $this->userSettings->export->settings->eol;
-	} else {
-		$type = $this->userSettings["etCSV_lineEndings"];
-	}
-
-	$newline = "";
-	switch ($type) {
-		case "Windows":
-			$newline = "\r\n";
-			break;
-		case "Unix":
-			$newline = "\n";
-			break;
-		case "Mac":
-		default:
-			$newline = "\r";
-			break;
-	}
-	return $newline;
-}
-*/
