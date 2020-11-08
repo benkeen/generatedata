@@ -41,7 +41,6 @@ export default {
 	],
 
 	exportTypeBlacklist: [
-		'CSV',
 		'Excel',
 		'LDIF'
 	],

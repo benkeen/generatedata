@@ -1,4 +1,5 @@
 import * as React from 'react';
+import TextField from '~components/TextField';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
 export type TextFixedState = {
@@ -9,7 +10,7 @@ export const initialState: TextFixedState = {
 	numWords: 10
 };
 
-export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ coreI18n, i18n, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
 		onUpdate({
 			numWords: parseInt(e.currentTarget.value, 10)
@@ -19,7 +20,8 @@ export const Options = ({ i18n, data, onUpdate }: DTOptionsProps): JSX.Element =
 	return (
 		<>
 			{i18n.TextFixed_generate}
-			<input
+			<TextField
+				error={data.numWords ? '' : coreI18n.requiredField}
 				type="number"
 				min="0"
 				style={{ width: 50, margin: '0 2px' }}
