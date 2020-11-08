@@ -1,0 +1,11 @@
+.settings {
+	display: flex;
+
+	&>div {
+		flex: 1;
+	}
+
+	label {
+		display: block;
+	}
+}

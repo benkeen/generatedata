@@ -1,6 +1,6 @@
 {
 	"EXPORT_TYPE_NAME": "CSV",
-	"delimiter_chars": "Delimiter char(s)",
-	"validation_no_delimiter": "Please enter a delimiter character for the CSV export type.",
-	"eol_char": "End of line character"
+	"delimiterChars": "区切り文字",
+	"validationNoDelimiter": "CSVエクスポートタイプの区切り文字を入力してください。",
+	"eolChar": "行末文字"
 }

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import TextField from '~components/TextField';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { ETDownloadPacket, ETDownloadPacketResponse } from '~types/exportTypes';
+import styles from './CSV.scss';
 
 export type CSVSettings = {
     delimiter: string;
@@ -12,6 +14,12 @@ export const initialState: CSVSettings = {
 	lineEndings: 'Unix'
 };
 
+const options = [
+	{ value: 'Windows', label: 'Windows' },
+	{ value: 'Unix', label: 'Unix' },
+	{ value: 'Mac', label: 'Mac' }
+];
+
 export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 	const onChange = (prop: string, value: string): void => {
 		onUpdate({
@@ -21,7 +29,7 @@ export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 	};
 
 	return (
-		<div>
+		<div className={styles.settings}>
 			<div>
 				<label>{i18n.delimiterChars}</label>
 				<TextField
@@ -32,11 +40,12 @@ export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 			</div>
 			<div>
 				<label>{i18n.eolChar}</label>
-				<select id={`${id}-eolChar`}>
-					<option value="Windows">Windows</option>
-					<option value="Unix">Unix</option>
-					<option value="Mac">Mac</option>
-				</select>
+				<Dropdown
+					id={`${id}-eolChar`}
+					value={data.lineEndings}
+					options={options}
+					onChange={({ value }: DropdownOption): any => onChange('lineEndings', value)}
+				/>
 			</div>
 		</div>
 	);
