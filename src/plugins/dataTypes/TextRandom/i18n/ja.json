@@ -1,10 +1,10 @@
 {
-  "NAME": "Random Number of Words",
-  "DESC": "This option generates a random number of words - the total number within the range that you specify (inclusive).",
-  "DEFAULT_TITLE": "text",
-  "startWithLipsum": "Start with \"Lorem Ipsum...\"",
-  "generate": "Generate",
-  "to": "to",
-  "words": "words",
-  "help": "This option generates a random number of words - the total number within the range that you specify (inclusive). As with the Fixed number option, the words are pulled the standard lorem ipsum latin text."
+  "NAME": "ランダムな単語数",
+  "DESC": "このオプションは、ランダムな数の単語（指定した範囲内の合計数（両端を含む））を生成します。",
+  "DEFAULT_TITLE": "テキスト",
+  "startWithLipsum": "「LoremIpsum ...」から始めます",
+  "generate": "生む",
+  "to": "に",
+  "words": "言葉",
+  "help": "このオプションは、ランダムな数の単語（指定した範囲内の合計数（両端を含む））を生成します。 固定番号オプションと同様に、単語は標準のloremipsumラテン語テキストで取得されます。"
 }

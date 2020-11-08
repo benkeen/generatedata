@@ -1,10 +1,10 @@
 {
-  "NAME": "Random Number of Words",
-  "DESC": "This option generates a random number of words - the total number within the range that you specify (inclusive).",
-  "DEFAULT_TITLE": "text",
-  "startWithLipsum": "Start with \"Lorem Ipsum...\"",
-  "generate": "Generate",
-  "to": "to",
-  "words": "words",
-  "help": "This option generates a random number of words - the total number within the range that you specify (inclusive). As with the Fixed number option, the words are pulled the standard lorem ipsum latin text."
+  "NAME": "随机词数",
+  "DESC": "此选项生成随机的单词数-您指定（包括）范围内的总数。",
+  "DEFAULT_TITLE": "文本",
+  "startWithLipsum": "以“ Lorem Ipsum ...”开头",
+  "generate": "生成",
+  "to": "至",
+  "words": "话",
+  "help": "此选项生成随机的单词数-您指定（包括）范围内的总数。 与“固定数字”选项一样，单词被拉入标准lorem ipsum拉丁文本。"
 }

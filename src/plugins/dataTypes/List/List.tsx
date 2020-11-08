@@ -40,7 +40,7 @@ export const Example = ({ data, onUpdate, i18n }: DTExampleProps): JSX.Element =
 		{ value: i18n.colours, label: i18n.example5 },
 		{ value: i18n.relationshipStates, label: i18n.example6 },
 		{ value: i18n.prefix, label: i18n.example7 },
-		{ value: i18n.companyNames, label: i18n.example8 },
+		{ value: i18n.departmentNames, label: i18n.example8 },
 		{ value: i18n.companies, label: i18n.example9 },
 		{ value: i18n.drugNames, label: i18n.example10 },
 		{ value: i18n.foodTypes, label: i18n.example11 },

@@ -1,9 +1,9 @@
 {
-  "NAME": "Number Range",
-  "DESC": "This randomly generates a number between the values you specify. Both fields allow you to enter negative numbers.",
-  "DEFAULT_TITLE": "numberrange",
-  "and": "and",
-  "between": "Between",
+  "NAME": "எண் வரம்பு",
+  "DESC": "இது நீங்கள் குறிப்பிடும் மதிப்புகளுக்கு இடையில் தோராயமாக ஒரு எண்ணை உருவாக்குகிறது. இரண்டு புலங்களும் எதிர்மறை எண்களை உள்ளிட உங்களை அனுமதிக்கின்றன.",
+  "DEFAULT_TITLE": "எண்",
+  "and": "மற்றும்",
+  "between": "இடையில்",
   "enterNumericValue": "எண் மதிப்பை உள்ளிடவும்",
   "minValueGreaterThanMax": "அதிகபட்ச மதிப்பை நிமிட மதிப்பை விட பெரிதாக்கவும்"
 }

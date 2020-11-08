@@ -1,9 +1,9 @@
 {
-  "NAME": "Number Range",
-  "DESC": "This randomly generates a number between the values you specify. Both fields allow you to enter negative numbers.",
-  "DEFAULT_TITLE": "numberrange",
-  "and": "and",
-  "between": "Between",
-  "enterNumericValue": "Please enter a number",
-  "minValueGreaterThanMax": "Please make the max value larger than or equal to the min value"
+  "NAME": "نطاق العدد",
+  "DESC": "يقوم هذا بشكل عشوائي بإنشاء رقم بين القيم التي تحددها. كلا الحقلين يسمحان لك بإدخال أرقام سالبة.",
+  "DEFAULT_TITLE": "ترقيم",
+  "and": "و",
+  "between": "ما بين",
+  "enterNumericValue": "الرجاء إدخال رقم",
+  "minValueGreaterThanMax": "يرجى جعل القيمة القصوى أكبر من أو تساوي الحد الأدنى للقيمة"
 }

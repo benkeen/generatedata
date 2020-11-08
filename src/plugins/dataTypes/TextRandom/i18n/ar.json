@@ -1,10 +1,10 @@
 {
-  "NAME": "Random Number of Words",
-  "DESC": "This option generates a random number of words - the total number within the range that you specify (inclusive).",
-  "DEFAULT_TITLE": "text",
-  "startWithLipsum": "Start with \"Lorem Ipsum...\"",
-  "generate": "Generate",
-  "to": "to",
-  "words": "words",
-  "help": "This option generates a random number of words - the total number within the range that you specify (inclusive). As with the Fixed number option, the words are pulled the standard lorem ipsum latin text."
+  "NAME": "عدد عشوائي من الكلمات",
+  "DESC": "يُنشئ هذا الخيار عددًا عشوائيًا من الكلمات - العدد الإجمالي داخل النطاق الذي تحدده (ضمناً).",
+  "DEFAULT_TITLE": "نص",
+  "startWithLipsum": "ابدأ بـ \"Lorem Ipsum ...\"",
+  "generate": "انشاء",
+  "to": "إلى",
+  "words": "كلمات",
+  "help": "يُنشئ هذا الخيار عددًا عشوائيًا من الكلمات - العدد الإجمالي داخل النطاق الذي تحدده (ضمناً). كما هو الحال مع خيار الرقم الثابت ، يتم سحب الكلمات بالنص القياسي lorem ipsum latin."
 }

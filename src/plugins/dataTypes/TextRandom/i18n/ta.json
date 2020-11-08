@@ -1,10 +1,10 @@
 {
-  "NAME": "Random Number of Words",
-  "DESC": "This option generates a random number of words - the total number within the range that you specify (inclusive).",
-  "DEFAULT_TITLE": "text",
-  "startWithLipsum": "Start with \"Lorem Ipsum...\"",
-  "generate": "Generate",
-  "to": "to",
-  "words": "words",
-  "help": "This option generates a random number of words - the total number within the range that you specify (inclusive). As with the Fixed number option, the words are pulled the standard lorem ipsum latin text."
+  "NAME": "சொற்களின் சீரற்ற எண்",
+  "DESC": "இந்த விருப்பம் சீரற்ற எண்ணிக்கையிலான சொற்களை உருவாக்குகிறது - நீங்கள் குறிப்பிடும் வரம்பில் உள்ள மொத்த எண்ணிக்கை (உள்ளடக்கியது).",
+  "DEFAULT_TITLE": "உரை",
+  "startWithLipsum": "\"லோரெம் இப்சம் ...\" உடன் தொடங்குங்கள்",
+  "generate": "உருவாக்கு",
+  "to": "க்கு",
+  "words": "சொற்கள்",
+  "help": "இந்த விருப்பம் சீரற்ற எண்ணிக்கையிலான சொற்களை உருவாக்குகிறது - நீங்கள் குறிப்பிடும் வரம்பில் உள்ள மொத்த எண்ணிக்கை (உள்ளடக்கியது). நிலையான எண் விருப்பத்தைப் போலவே, சொற்களும் நிலையான லோரெம் இப்சம் லத்தீன் உரையை இழுக்கின்றன."
 }

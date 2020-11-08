@@ -1,7 +1,7 @@
 {
-  "NAME": "Bank Account Nums (IBAN)",
-  "DESC": "Generates International Bank Account Numbers (IBAN).",
+  "NAME": "வங்கி கணக்கு எண் (IBAN)",
+  "DESC": "சர்வதேச வங்கி கணக்கு எண்களை (IBAN) உருவாக்குகிறது.",
   "DEFAULT_TITLE": "iban",
-  "help1": "The generated IBAN has a valid checksum, country code and length and the BIC is in the right place.",
-  "help2": "The number is highly unlikely to be really <i>valid</i> though, since there are usually a bunch of checks to do which are country specific."
+  "help1": "உருவாக்கப்பட்ட ஐபிஏஎன் செல்லுபடியாகும் செக்சம், நாட்டின் குறியீடு மற்றும் நீளம் மற்றும் பிஐசி சரியான இடத்தில் உள்ளது.",
+  "help2": "வழக்கமாக குறிப்பிட்ட எண்ணிக்கையிலான காசோலைகள் இருப்பதால், இந்த எண்ணிக்கை உண்மையிலேயே செல்லுபடியாகும்."
 }

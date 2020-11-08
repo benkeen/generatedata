@@ -1,7 +1,7 @@
 {
-  "NAME": "Bank Account Nums (IBAN)",
-  "DESC": "Generates International Bank Account Numbers (IBAN).",
+  "NAME": "銀行口座番号（IBAN）",
+  "DESC": "国際銀行口座番号（IBAN）を生成します。",
   "DEFAULT_TITLE": "iban",
-  "help1": "The generated IBAN has a valid checksum, country code and length and the BIC is in the right place.",
-  "help2": "The number is highly unlikely to be really <i>valid</i> though, since there are usually a bunch of checks to do which are country specific."
+  "help1": "生成されたIBANには有効なチェックサム、国コード、および長さがあり、BICは適切な場所にあります。",
+  "help2": "ただし、国固有のチェックが通常行われるため、この数値が実際に有効になる可能性はほとんどありません。"
 }

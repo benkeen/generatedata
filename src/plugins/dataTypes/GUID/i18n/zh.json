@@ -1,5 +1,5 @@
 {
-  "NAME": "GUID",
-  "DESC": "Generates a unique, random GUID (globally unique identifier) of the form: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX, where X is any hexidecimal digit).",
-  "DEFAULT_TITLE": "guid"
+  "NAME": "图形用户界面",
+  "DESC": "生成格式为XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX的唯一，随机的GUID（全局唯一标识符），其中X是任何十六进制数字）。",
+  "DEFAULT_TITLE": "图形用户界面"
 }

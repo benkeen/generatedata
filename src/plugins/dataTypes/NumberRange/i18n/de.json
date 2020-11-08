@@ -1,5 +1,5 @@
 {
-  "NAME": "Number Range",
+  "NAME": "Nummernkreis",
   "DESC": "Diese zufällig generiert eine Zahl zwischen den Werten, die Sie angeben. Beide Felder können Sie negative Werte eingeben.",
   "DEFAULT_TITLE": "nummernkreis",
   "and": "und",

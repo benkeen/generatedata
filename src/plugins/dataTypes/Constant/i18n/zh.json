@@ -1,14 +1,14 @@
 {
-  "NAME": "Constant",
-  "DESC": "Generates a column of data that has repeated values for multiple rows. You can make all rows have the same value, or assign the same value to groups of them.",
-  "DEFAULT_TITLE": "constant",
-  "help1": "This data type lets you generate a column of data that has repeating values from row to row. Here's a couple of examples to give you an idea of how this works.",
-  "help2": "If you'd like to provide the value \"1\" for every row, you can enter \"1\" in the Value(s) field and any value (>0) in the Loop Count field.",
-  "help3": "If you'd like to have 100 rows of the string \"Male\" followed by 100 rows of the string \"Female\" and repeat, you can enter \"100\" in the Loop Count field and \"Male|Female\" in the Value(s) field.",
-  "help4": "If you'd like 5 rows of 1 through 10, enter \"5\" for the Loop Count field, and \"1|2|3|4|5|6|7|8|9|10\" in the Value(s) field.",
-  "help5": "Try tinkering around with it. You'll get the idea.",
-  "loopCount": "Loop count:",
-  "values": "Value(s):",
-  "invalidLoopCounts": "Please enter numbers for Constant loop count fields. Please fix the following row(s):",
-  "incompleteFields": "The Constant data type needs to have the constants to be entered into the value(s) field. Please fix the following rows:"
+  "NAME": "不变",
+  "DESC": "生成一列具有多个行重复值的数据。 您可以使所有行具有相同的值，或将相同的值分配给它们的组。",
+  "DEFAULT_TITLE": "不变",
+  "help1": "通过此数据类型，您可以生成一列数据，每一列都有重复的值。 以下是一些示例，可让您大致了解其工作原理。",
+  "help2": "如果要为每行提供值“ 1”，则可以在“值”字段中输入“ 1”，并在“循环计数”字段中输入任何值（> 0）。",
+  "help3": "如果您希望字符串“ Male”具有100行，然后字符串“ Female”具有100行并重复，则可以在“循环计数”字段中输入“ 100”，在“值”中输入“ Male | Female” ）字段。",
+  "help4": "如果要从1到10排5排，请在“循环计数”字段中输入“ 5”，并在“值”中输入“ 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10” 领域。",
+  "help5": "尝试修改它。 您会明白的。",
+  "loopCount": "循环计数：",
+  "values": "值：",
+  "invalidLoopCounts": "请为“恒定循环计数”字段输入数字。 请修复以下行：",
+  "incompleteFields": "常量数据类型需要具有要在值字段中输入的常量。 请修复以下行："
 }

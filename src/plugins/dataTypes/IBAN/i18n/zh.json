@@ -1,7 +1,7 @@
 {
-  "NAME": "Bank Account Nums (IBAN)",
-  "DESC": "Generates International Bank Account Numbers (IBAN).",
+  "NAME": "银行帐号（IBAN）",
+  "DESC": "生成国际银行帐号（IBAN）。",
   "DEFAULT_TITLE": "iban",
-  "help1": "The generated IBAN has a valid checksum, country code and length and the BIC is in the right place.",
-  "help2": "The number is highly unlikely to be really <i>valid</i> though, since there are usually a bunch of checks to do which are country specific."
+  "help1": "生成的IBAN具有有效的校验和，国家/地区代码和长度，并且BIC在正确的位置。",
+  "help2": "但是，该数字不太可能真正有效，因为通常要进行一系列针对特定国家/地区的检查。"
 }

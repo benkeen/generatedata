@@ -1,9 +1,9 @@
 {
-  "NAME": "Number Range",
-  "DESC": "This randomly generates a number between the values you specify. Both fields allow you to enter negative numbers.",
-  "DEFAULT_TITLE": "numberrange",
-  "and": "and",
-  "between": "Between",
+  "NAME": "编号范围",
+  "DESC": "这将在您指定的值之间随机生成一个数字。 这两个字段均允许您输入负数。",
+  "DEFAULT_TITLE": "数字范围",
+  "and": "和",
+  "between": "之间",
   "enterNumericValue": "请输入一个数值",
   "minValueGreaterThanMax": "请使最大值大于最小值"
 }

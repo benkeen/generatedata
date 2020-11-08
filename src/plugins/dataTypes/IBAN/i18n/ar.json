@@ -1,7 +1,7 @@
 {
-  "NAME": "Bank Account Nums (IBAN)",
-  "DESC": "Generates International Bank Account Numbers (IBAN).",
+  "NAME": "أرقام الحسابات المصرفية (آيبان)",
+  "DESC": "يولد أرقام حسابات بنكية دولية (IBAN).",
   "DEFAULT_TITLE": "iban",
-  "help1": "The generated IBAN has a valid checksum, country code and length and the BIC is in the right place.",
-  "help2": "The number is highly unlikely to be really <i>valid</i> though, since there are usually a bunch of checks to do which are country specific."
+  "help1": "يحتوي IBAN الذي تم إنشاؤه على مجموع اختباري صالح ورمز البلد والطول و BIC في المكان المناسب.",
+  "help2": "من غير المرجح أن يكون الرقم صحيحًا حقًا ، نظرًا لوجود مجموعة من الفحوصات التي يجب القيام بها حسب البلد."
 }
