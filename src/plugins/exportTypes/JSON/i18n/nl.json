@@ -3,6 +3,5 @@
   "COL_TITLE": "Eigendomsnaam",
   "complex": "Complex",
   "dataStructureFormat": "Datastructuur format",
-  "simple": "Eenvoudig",
-  "stripWhitespace": "Verwijder spaties in de gegenereerde resultaten"
+  "simple": "Eenvoudig"
 }

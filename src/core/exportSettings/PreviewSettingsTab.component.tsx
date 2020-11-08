@@ -16,6 +16,7 @@ export type PreviewSettingsTabProps = {
 	toggleLineWrapping: Function;
 	onChangePreviewTextSize: Function;
 	updateNumPreviewRows: Function;
+	i18n: any;
 };
 
 const previewRowOptions = getArrayOfSize(C.MAX_PREVIEW_ROWS - C.MIN_PREVIEW_ROWS + 1).map((i, index) => {
@@ -28,12 +29,12 @@ const previewRowOptions = getArrayOfSize(C.MAX_PREVIEW_ROWS - C.MIN_PREVIEW_ROWS
 
 export const PreviewSettingsTab = ({
 	theme, numPreviewRows, showLineNumbers, enableLineWrapping, previewTextSize, onChangeTheme,
-	toggleLineNumbers, toggleLineWrapping, onChangePreviewTextSize, updateNumPreviewRows
+	toggleLineNumbers, toggleLineWrapping, onChangePreviewTextSize, updateNumPreviewRows, i18n
 }: PreviewSettingsTabProps): JSX.Element => {
 	return (
 		<div className={styles.tabContent}>
 			<div className={styles.row}>
-				<div className={styles.label}>Theme</div>
+				<div className={styles.label}>{i18n.theme}</div>
 				<div className={styles.field}>
 					<Dropdown
 						value={theme}
@@ -43,7 +44,7 @@ export const PreviewSettingsTab = ({
 				</div>
 			</div>
 			<div className={styles.row}>
-				<div className={styles.label}>Show line numbers</div>
+				<div className={styles.label}>{i18n.showLineNumbers}</div>
 				<div className={styles.field}>
 					<Switch
 						checked={showLineNumbers}
@@ -54,7 +55,7 @@ export const PreviewSettingsTab = ({
 				</div>
 			</div>
 			<div className={styles.row}>
-				<div className={styles.label}>Line wrapping</div>
+				<div className={styles.label}>{i18n.lineWrapping}</div>
 				<div className={styles.field}>
 					<Switch
 						checked={enableLineWrapping}
@@ -65,7 +66,7 @@ export const PreviewSettingsTab = ({
 				</div>
 			</div>
 			<div className={styles.row}>
-				<div className={styles.label}>Text size</div>
+				<div className={styles.label}>{i18n.textSize}</div>
 				<div className={styles.field}>
 					<input
 						type="number"
@@ -76,7 +77,7 @@ export const PreviewSettingsTab = ({
 				</div>
 			</div>
 			<div className={styles.row}>
-				<div className={styles.label}>Preview rows</div>
+				<div className={styles.label}>{i18n.previewRows}</div>
 				<div className={styles.field}>
 					<div style={{ width: 120 }}>
 						<Dropdown

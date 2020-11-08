@@ -1,12 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Node Name",
-  "dataFormat": "Data format",
-  "customHtmlFormat": "Custom HTML Format",
-  "useCustomHtmlFormat": "Use custom HTML format",
-  "batchVars": "Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.",
-  "colNamesArray": "An ordered array of strings containing the column names.",
-  "rowDataArray": "An ordered array of arrays. Each top level array contains the contents of the row; each child array contains an ordered array of values for each item of data.",
-  "availableSmartyVars": "Available Smarty Vars",
-  "resetCustomHtml": "Reset Custom HTML"
+  "COL_TITLE": "اسم العقدة",
+  "dataFormat": "تنسيق البيانات",
+  "batchVars": "القيم المنطقية لمعرفة ما إذا كانت الدفعة الحالية من النتائج التي يتم إنشاؤها هي الأولى أم الأخيرة. يتم استخدام هذا فقط للمستخدمين الذين يقومون بإنشاء البيانات في الصفحة ، مما يؤدي إلى إنشاء النتائج في أجزاء. بالنسبة لجميع المواقف الأخرى ، كلاهما صحيح دائمًا."
 }

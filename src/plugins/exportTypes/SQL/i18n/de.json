@@ -1,20 +1,19 @@
 {
   "EXPORT_TYPE_NAME": "SQL",
-  "COL_TITLE": "Column Name",
-  "dbTableName": "Database Name der Tabelle",
-  "dbType": "Database Type",
+  "COL_TITLE": "Spaltenname",
+  "dbTableName": "Datenbankname der Tabelle",
+  "dbType": "Datenbanktyp",
   "encloseTableBackquotes": "Schließen Sie Tabellen-und Feldnamen mit Backquotes",
   "includeCreateTableQuery": "Fügen Sie CREATE TABLE-Abfrage",
   "includeDropTableQuery": "Fügen Sie DROP TABLE-Abfrage",
   "miscOptions": "Verschiedene Optionen",
-  "primaryKey": "Primary Key",
+  "primaryKey": "Primärschlüssel",
   "rowLabel": "Tabellenspalte",
-  "rowLabelPlural": "Table Columns",
-  "statementType": "Statement Type",
+  "rowLabelPlural": "Tabellenspalten",
+  "statementType": "Anweisungstyp",
   "validationInvalidColName": "Bitte geben Sie eine gültige Datenbank Spaltennamen für jede Zeile (aZ und Unterstrich). Bitte beheben Sie die folgenden Zeilen:",
   "validationInvalidTableName": "Bitte geben Sie eine gültige Datenbank-Tabelle Name (AZ und Unterstrichen).",
-  "validationInvalidBatchSize": "Bitte geben Sie eine gültige Chargengröße (1 - 300)",
   "batchSizeDesc": "Anzahl der Zeilen, die pro Abfrage einfügen (1 - 300)",
-  "addDefaultAutoIncrementPrimaryKey": "Add default auto-increment primary key column",
-  "batchSize": "batch size"
+  "addDefaultAutoIncrementPrimaryKey": "Fügen Sie die Standard-Primärschlüsselspalte für die automatische Inkrementierung hinzu",
+  "batchSize": "Chargengröße"
 }

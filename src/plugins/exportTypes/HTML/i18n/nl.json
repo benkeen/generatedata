@@ -1,12 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Node Name",
-  "availableSmartyVars": "Beschikbare Smarty variabelen",
-  "batchVars": "Booleans om aan te geven of de huidige export batch de eerste of de laatste is. Dit wordt alleen gebruikt bij data die in-page wordt gegenereerd, waarbij de resultaten in blokken worden genereerd. In alle andere gevallen is deze waarde altijd waar.",
-  "colNamesArray": "Een geordende array van tekenreeksen die de kolomnamen bevatten.",
-  "customHtmlFormat": "Aangepaste HTML-indeling",
-  "dataFormat": "Data Formaat",
-  "resetCustomHtml": "Reset Aangepaste HTML",
-  "rowDataArray": "Een geordende array van arrays. Elke topniveau array bevat de inhoud van de rij; elk gerelateerde array bevat een geordende array van waarden voor alle gegeven.",
-  "useCustomHtmlFormat": "Gebruik aangepast HTML-formaat"
+  "COL_TITLE": "Knooppuntnaam",
+  "batchVars": "Booleans om aan te geven van de huidige export batch de eerste van de laatste is. Dit wordt alleen gebruikt bij data die in-page wordt gegenereerd, waarbij de resultaten in blokken worden gegenereerd. In alle andere gevallen is deze waarde altijd waar.",
+  "dataFormat": "Data Formaat"
 }

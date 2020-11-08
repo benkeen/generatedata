@@ -1,8 +1,7 @@
 {
   "EXPORT_TYPE_NAME": "JSON",
   "COL_TITLE": "プロパティ名",
-  "stripWhitespace": "Strip whitespace from generated results",
-  "complex": "Complex",
-  "simple": "Simple",
-  "dataStructureFormat": "Data structure format"
+  "complex": "繁雑",
+  "simple": "シンプル",
+  "dataStructureFormat": "データ構造フォーマット"
 }

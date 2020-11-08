@@ -1,12 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Node Name",
+  "COL_TITLE": "Nombre del nodo",
   "dataFormat": "Formato de datos",
-  "customHtmlFormat": "Formato HTML personalizado",
-  "useCustomHtmlFormat": "Usar formato HTML personalizado",
-  "batchVars": "Indica si el lote actual de resultados que será generado será el primero o el último. Esto sólo se usa para datos generado en la misma página, lo que genera los resultados por lotes. En el resto de situaciones, ambos son verdaderos.",
-  "colNamesArray": "Un array ordenado de cadenas conteniendo los nombres de columnas.",
-  "rowDataArray": "Un array ordenado de arrays. Cada array de nivel superior almacena los contenidos de la fila; cada array hijo contiene un array ordenado de valores para cada ítem de datos.",
-  "availableSmartyVars": "Variables Smarty disponibles",
-  "resetCustomHtml": "Restablecer HTML personalizado"
+  "batchVars": "Indica si el lote actual de resultados que será generado será el primero o el último. Esto sólo se usa para datos generado en la misma página, lo que genera los resultados por lotes. En el resto de situaciones, ambos son verdaderos."
 }

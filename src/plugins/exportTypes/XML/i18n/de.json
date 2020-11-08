@@ -1,18 +1,11 @@
 {
   "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Node name",
-  "batchVars": "Boolsche ob die aktuelle Charge der Ergebnisse erzeugt ist die erste oder letzte. Dies wird immer nur für Benutzer Erzeugen der Daten in-Seite, die die Ergebnisse in Blöcken generiert verwendet. In allen anderen Situationen, beide sind immer wahr.",
-  "colNamesArray": "Ein geordnetes Array von Strings mit den Spaltennamen.",
-  "invalidNodeNames": "XML-Knoten-Namen können dürfen nur alphanumerische Zeichen enthalten und muss mit einem Buchstaben beginnen. Bitte beheben Sie die folgenden Zeilen:",
-  "invalidXmlRecordNodeName": "Bitte geben Sie eine gültige XML-Datensatz Knoten-Wert.",
-  "invalidXmlRootNodeName": "Bitte geben Sie eine gültige XML-Wurzelknoten Wert.",
-  "missingXmlRecordNodeName": "Bitte geben Sie einen Wert für die XML-Datensatz-Knoten.",
-  "missingXmlRootNodeName": "Bitte geben Sie einen Wert für die XML-Root-Knoten.",
-  "recordNodeName": "Rekord Knotennamen",
-  "resetCustomHtml": "Zurücksetzen Custom HTML",
-  "rootNodeName": "Wurzelknoten Namen",
-  "rowDataArray": "Ein geordnetes Array von Arrays. Jeder Top-Level-Array enthält den Inhalt der Zeile, jedes Kind Array enthält eine geordnete Array von Werten für jedes Element von Daten.",
-  "rowLabel": "Node Name",
-  "rowLabelPlural": "Node Names",
-  "useCustomXmlFormat": "Verwenden Sie benutzerdefinierte XML-Format"
+  "COL_TITLE": "Knotenname",
+  "rowLabel": "Knotenname",
+  "rowLabelPlural": "Knotennamen",
+  "invalidNodeNames": "XML-Knotennamen dürfen nur alphanumerische Zeichen enthalten und müssen mit einem Buchstaben beginnen.",
+  "invalidXmlRecordNodeName": "Bitte geben Sie einen gültigen XML-Datensatzknotenwert ein.",
+  "invalidXmlRootNodeName": "Bitte geben Sie einen gültigen XML-Stammknotenwert ein.",
+  "rootNodeName": "Stammknotenname",
+  "recordNodeName": "Knotennamen aufzeichnen"
 }

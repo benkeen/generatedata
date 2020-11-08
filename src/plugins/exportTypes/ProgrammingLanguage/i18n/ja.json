@@ -1,10 +1,10 @@
 {
-  "EXPORT_TYPE_NAME": "Programming Language",
+  "EXPORT_TYPE_NAME": "プログラミング言語",
   "COL_TITLE": "プロパティ名",
-  "row_label": "Var/Prop Name",
-  "language": "Language",
-  "variable": "Variable",
-  "format": "Format",
-  "es6Format": "ES6 export",
-  "commonJsFormat": "CommonJS export"
+  "row_label": "変数/小道具名",
+  "language": "言語",
+  "variable": "変数",
+  "format": "フォーマット",
+  "es6Format": "ES6エクスポート",
+  "commonJsFormat": "CommonJSエクスポート"
 }

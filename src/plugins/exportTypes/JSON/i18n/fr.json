@@ -3,7 +3,6 @@
   "COL_TITLE": "Nom de la propriété",
   "complex": "Complexe",
   "dataStructureFormat": "Format de la structure des données",
-  "simple": "Simple",
-  "stripWhitespace": "Enlever les espaces dans les résultats générés"
+  "simple": "Simple"
 }
 

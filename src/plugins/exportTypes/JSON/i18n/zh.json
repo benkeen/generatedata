@@ -1,8 +1,7 @@
 {
   "EXPORT_TYPE_NAME": "JSON",
   "COL_TITLE": "物业名称",
-  "stripWhitespace": "Strip whitespace from generated results",
-  "complex": "Complex",
-  "simple": "Simple",
-  "dataStructureFormat": "Data structure format"
+  "complex": "数据结构格式",
+  "simple": "简单",
+  "dataStructureFormat": "数据结构格式"
 }

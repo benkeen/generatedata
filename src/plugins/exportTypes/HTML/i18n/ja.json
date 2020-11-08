@@ -1,12 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Node Name",
-  "dataFormat": "Data format",
-  "customHtmlFormat": "Custom HTML Format",
-  "useCustomHtmlFormat": "Use custom HTML format",
-  "batchVars": "Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.",
-  "colNamesArray": "An ordered array of strings containing the column names.",
-  "rowDataArray": "An ordered array of arrays. Each top level array contains the contents of the row; each child array contains an ordered array of values for each item of data.",
-  "availableSmartyVars": "Available Smarty Vars",
-  "resetCustomHtml": "Reset Custom HTML"
+  "COL_TITLE": "ノード名",
+  "dataFormat": "データ形式",
+  "batchVars": "生成されている結果の現在のバッチが最初であるか最後であるかを示すブール値。 これは、結果をチャンクで生成するページ内のデータを生成するユーザーにのみ使用されます。 他のすべての状況では、両方が常に当てはまります。"
 }

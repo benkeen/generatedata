@@ -5,7 +5,6 @@
   "rowLabelPlural": "Table Columns",
   "validationInvalidColName": "Please enter valid database column names for each row (a-Z and underscore characters). Please fix the following rows: ",
   "validationInvalidTableName": "Please enter a valid database table name (a-Z and underscores only).",
-  "validationInvalidBatchSize": "Please enter valid batch size (1 - 300)",
   "dbTableName": "Database table name",
   "dbType": "Database Type",
   "miscOptions": "Misc Options",

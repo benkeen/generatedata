@@ -1,11 +1,10 @@
 {
   "EXPORT_TYPE_NAME": "SQL",
-  "COL_TITLE": "Column Name",
+  "COL_TITLE": "Nombre de columna",
   "rowLabel": "Columna de la tabla",
   "rowLabelPlural": "Columnas de la tabla",
   "validationInvalidColName": "Por favor, introduce nombres válidos de columnas de la base de datos para cada fila (a-Z y guión bajo). Por favor, corrige las siguientes filas:",
   "validationInvalidTableName": "Por favor, introduce un nombre válido de tabla de base de datos (a-Z y guión bajo).",
-  "validationInvalidBatchSize": "Por favor introduce el tamaño del lote válido (1-300)",
   "dbTableName": "Nombre de tabla",
   "dbType": "Tipo de base de datos",
   "miscOptions": "Opciones varias",
@@ -15,6 +14,6 @@
   "statementType": "Tipo de sentencia",
   "primaryKey": "Clave primaria",
   "batchSizeDesc": "Número de filas a insertar por una consulta (1-300)",
-  "addDefaultAutoIncrementPrimaryKey": "Add default auto-increment primary key column",
-  "batchSize": "batch size"
+  "addDefaultAutoIncrementPrimaryKey": "Agregar columna de clave primaria predeterminada de incremento automático",
+  "batchSize": "tamaño del lote"
 }

@@ -1,18 +1,11 @@
 {
   "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Node name",
-  "useCustomXmlFormat": "Use custom XML format",
-  "rowLabel": "Node Name",
-  "rowLabelPlural": "Node Names",
-  "invalidNodeNames": "XML node names can must only contain alphanumeric characters and must begin with a letter. Please fix the following rows:",
-  "missingXmlRecordNodeName": "Please enter a value for the XML record node.",
-  "missingXmlRootNodeName": "Please enter a value for the XML root node.",
-  "invalidXmlRecordNodeName": "Please enter a valid XML record node value.",
-  "invalidXmlRootNodeName": "Please enter a valid XML root node value.",
-  "rootNodeName": "Root node name",
-  "recordNodeName": "Record node name",
-  "batchVars": "Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.",
-  "colNamesArray": "An ordered array of strings containing the column names.",
-  "rowDataArray": "An ordered array of arrays. Each top level array contains the contents of the row; each child array contains an ordered array of values for each item of data.",
-  "resetCustomHtml": "Reset Custom HTML"
+  "COL_TITLE": "اسم العقدة",
+  "rowLabel": "اسم العقدة",
+  "rowLabelPlural": "أسماء العقدة",
+  "invalidNodeNames": "يجب أن تحتوي أسماء عُقد XML فقط على أحرف أبجدية رقمية ويجب أن تبدأ بحرف.",
+  "invalidXmlRecordNodeName": "الرجاء إدخال قيمة عقدة سجل XML صالحة.",
+  "invalidXmlRootNodeName": "الرجاء إدخال قيمة عقدة جذر XML صالحة.",
+  "rootNodeName": "اسم عقدة الجذر",
+  "recordNodeName": "تسجيل اسم العقدة"
 }

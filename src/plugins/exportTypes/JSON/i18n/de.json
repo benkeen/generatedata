@@ -3,6 +3,5 @@
   "COL_TITLE": "Name des Anwesens",
   "complex": "Komplex",
   "dataStructureFormat": "Datenstruktur-Format",
-  "simple": "Einfach",
-  "stripWhitespace": "Isolieren Sie Leerzeichen aus generierten Ergebnisse"
+  "simple": "Einfach"
 }

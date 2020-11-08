@@ -1,18 +1,11 @@
 {
   "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Node name",
-  "useCustomXmlFormat": "Use custom XML format",
-  "rowLabel": "Node Name",
-  "rowLabelPlural": "Node Names",
-  "invalidNodeNames": "XML node names can must only contain alphanumeric characters and must begin with a letter. Please fix the following rows:",
-  "missingXmlRecordNodeName": "Please enter a value for the XML record node.",
-  "missingXmlRootNodeName": "Please enter a value for the XML root node.",
-  "invalidXmlRecordNodeName": "Please enter a valid XML record node value.",
-  "invalidXmlRootNodeName": "Please enter a valid XML root node value.",
-  "rootNodeName": "Root node name",
-  "recordNodeName": "Record node name",
-  "batchVars": "Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.",
-  "colNamesArray": "An ordered array of strings containing the column names.",
-  "rowDataArray": "An ordered array of arrays. Each top level array contains the contents of the row; each child array contains an ordered array of values for each item of data.",
-  "resetCustomHtml": "Reset Custom HTML"
+  "COL_TITLE": "முனை பெயர்",
+  "rowLabel": "முனை பெயர்",
+  "rowLabelPlural": "முனை பெயர்கள்",
+  "invalidNodeNames": "எக்ஸ்எம்எல் முனை பெயர்களில் எண்ணெழுத்து எழுத்துக்கள் மட்டுமே இருக்க வேண்டும் மற்றும் ஒரு எழுத்துடன் தொடங்க வேண்டும்.",
+  "invalidXmlRecordNodeName": "செல்லுபடியாகும் எக்ஸ்எம்எல் பதிவு முனை மதிப்பை உள்ளிடவும்.",
+  "invalidXmlRootNodeName": "செல்லுபடியாகும் எக்ஸ்எம்எல் ரூட் முனை மதிப்பை உள்ளிடவும்.",
+  "rootNodeName": "ரூட் முனை பெயர்",
+  "recordNodeName": "பதிவு முனை பெயர்"
 }

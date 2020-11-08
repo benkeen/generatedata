@@ -1,8 +1,8 @@
 {
   "EXPORT_TYPE_NAME": "SQL",
-  "COL_TITLE": "Column Name",
+  "COL_TITLE": "Kolomnaam",
   "dbTableName": "Database tabelnaam",
-  "dbType": "Database Type",
+  "dbType": "Databasetype",
   "encloseTableBackquotes": "Omsluit tabel-en veldnamen met aanhalingstekens",
   "includeCreateTableQuery": "Inclusief CREATE TABLE statement",
   "includeDropTableQuery": "Inclusief DROP TABLE statement",
@@ -13,8 +13,7 @@
   "statementType": "Statement Type",
   "validationInvalidColName": "Geef een geldige databank kolomnaam in voor elke rij (aZ en onderstrepingstekens). Pas de volgende rij(en) aan:",
   "validationInvalidTableName": "Geef een geldige database tabel naam (az en onderstrepingstekens alleen) in.",
-  "validationInvalidBatchSize": "Geef een geldige seriegrootte (1-300)",
-  "batchSizeDesc": "Aantal rijen uit te voegen per query (1-300)",
-  "addDefaultAutoIncrementPrimaryKey": "Add default auto-increment primary key column",
-  "batchSize": "batch size"
+  "batchSizeDesc": "Aantal rijen dat per query moet worden ingevoegd (1-300)",
+  "addDefaultAutoIncrementPrimaryKey": "Standaard automatisch verhogen primaire sleutelkolom toevoegen",
+  "batchSize": "seriegrootte"
 }

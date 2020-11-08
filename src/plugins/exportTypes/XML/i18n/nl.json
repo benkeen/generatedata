@@ -1,18 +1,11 @@
 {
   "EXPORT_TYPE_NAME": "XML",
-  "COL_TITLE": "Node name",
-  "batchVars": "Booleans om aan te geven of de huidige batch van resultaten die worden gegenereerd de eerste of de laatste is. Dit wordt alleen gebruikt voor type in-page, waarvoor de resultaten in blokken worden genereerd. In alle andere gevallen is de waarde waar.",
-  "colNamesArray": "Een geordende array van tekenreeksen die de kolomnamen.",
-  "invalidNodeNames": "XML-node namen kunnen mogen alleen bestaan uit alfanumerieke tekens en moeten beginnen met een letter. Pas de volgende rij(en) aan:",
-  "invalidXmlRecordNodeName": "Geef een geldige waarde op voor de XML record node naam.",
-  "invalidXmlRootNodeName": "Geef een geldige waarde op voor de XML root node naam.",
-  "missingXmlRecordNodeName": "Gelieve een waarde voor de XML record node naam.",
-  "missingXmlRootNodeName": "Gelieve een waarde voor de XML root node naam.",
-  "recordNodeName": "Record nodenaam",
-  "resetCustomHtml": "Reset Aangepaste HTML",
-  "rootNodeName": "Root node naam",
-  "rowDataArray": "Een geordende array van arrays. Elke topniveau array bevat de inhoud van de rij; elk gerelateerde array bevat een geordende array van waarden voor alle gegeven.",
-  "rowLabel": "Node naam",
+  "COL_TITLE": "Knooppuntnaam",
+  "rowLabel": "Knooppuntnaam",
   "rowLabelPlural": "Node Namen",
-  "useCustomXmlFormat": "Aangepast XML-formaat"
+  "invalidNodeNames": "XML-knooppuntnamen mogen alleen alfanumerieke tekens bevatten en moeten beginnen met een letter.",
+  "invalidXmlRecordNodeName": "Voer een geldige XML-recordknooppuntwaarde in.",
+  "invalidXmlRootNodeName": "Voer een geldige XML-hoofdknooppuntwaarde in.",
+  "rootNodeName": "Naam van hoofdknooppunt",
+  "recordNodeName": "Knooppuntnaam opnemen"
 }

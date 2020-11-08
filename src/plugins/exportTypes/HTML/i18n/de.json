@@ -1,12 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Node Name",
+  "COL_TITLE": "Knotenname",
   "dataFormat": "Datenformat",
-  "customHtmlFormat": "Custom HTML-Format",
-  "availableSmartyVars": "Verfügbare Smarty Vars",
-  "batchVars": "Boolsche ob die aktuelle Charge der Ergebnisse erzeugt ist die erste oder letzte. Dies wird immer nur für Benutzer Erzeugen der Daten in-Seite, die die Ergebnisse in Blöcken generiert verwendet. In allen anderen Situationen, beide sind immer wahr.",
-  "colNamesArray": "Ein geordnetes Array von Strings mit den Spaltennamen.",
-  "resetCustomHtml": "Zurücksetzen Custom HTML",
-  "rowDataArray": "Ein geordnetes Array von Arrays. Jeder Top-Level-Array enthält den Inhalt der Zeile, jedes Kind Array enthält eine geordnete Array von Werten für jedes Element von Daten.",
-  "useCustomHtmlFormat": "Verwenden Sie benutzerdefinierte HTML-Format"
+  "batchVars": "Boolsche ob die aktuelle Charge der Ergebnisse erzeugt ist die erste oder letzte. Dies wird immer nur für Benutzer Erzeugen der Daten in-Seite, die die Ergebnisse in Blöcken generiert verwendet. In allen anderen Situationen, beide sind immer wahr."
 }

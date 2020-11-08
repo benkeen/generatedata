@@ -1,12 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Node Name",
-  "dataFormat": "Data format",
-  "customHtmlFormat": "Custom HTML Format",
-  "useCustomHtmlFormat": "Use custom HTML format",
-  "batchVars": "Booleans for whether or not the current batch of results being generated is the first or last. This is only ever used for users generating the data in-page, which generates the results in chunks. For all other situations, both are always true.",
-  "colNamesArray": "An ordered array of strings containing the column names.",
-  "rowDataArray": "An ordered array of arrays. Each top level array contains the contents of the row; each child array contains an ordered array of values for each item of data.",
-  "availableSmartyVars": "Available Smarty Vars",
-  "resetCustomHtml": "Reset Custom HTML"
+  "COL_TITLE": "முனை பெயர்",
+  "dataFormat": "தரவு வடிவம்",
+  "batchVars": "தற்போதைய தொகுதி முடிவுகள் உருவாக்கப்படுகிறதா இல்லையா என்பதற்கான பூலியன்ஸ் முதல் அல்லது கடைசி. பக்கத்திலுள்ள தரவை உருவாக்கும் பயனர்களுக்கு மட்டுமே இது எப்போதும் பயன்படுத்தப்படுகிறது, இது துகள்களில் முடிவுகளை உருவாக்குகிறது. மற்ற எல்லா சூழ்நிலைகளுக்கும், இரண்டும் எப்போதும் உண்மைதான்."
 }
