@@ -24,7 +24,6 @@ export default {
 	dataTypeBlacklist: [
 		'_NamesRegional',
 		'_PhoneRegional',
-		'_Tree',
 
 		// incomplete - will be removed when they're done
 		'Currency',
@@ -41,7 +40,6 @@ export default {
 	],
 
 	exportTypeBlacklist: [
-		'Excel',
 		'LDIF'
 	],
 

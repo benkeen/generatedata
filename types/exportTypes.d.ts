@@ -9,9 +9,9 @@ export type ExportTypeMap = {
 };
 
 export type ETBundle = {
-	initialState: any; // TODO generics
 	getCodeMirrorMode: (settings: any) => string; // TODO generics - data is same type as initialState
 	getDownloadFileInfo: (downloadPacket: ETDownloadPacket) => ETDownloadPacketResponse;
+	initialState?: any; // TODO generics
 	Settings?: any;
 	getExportTypeLabel?: (data: any) => string; // TODO generics - data is same type as initialState
 	validateTitleField?: (title: string, settings: any) => string | null;

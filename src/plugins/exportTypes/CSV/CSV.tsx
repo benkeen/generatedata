@@ -53,6 +53,13 @@ export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
 	);
 };
 
+// CSV supplies their own custom Preview component, since showing raw CSV code via CodeMirror isn't much of a preview.
+// Instead, this simply renders the preview data as a table - closer to what they're actually going to end up with
+// TODO
+// export const Preview = () => {
+//
+// };
+
 export const getCodeMirrorMode = (): string => 'application/csv';
 
 export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => ({

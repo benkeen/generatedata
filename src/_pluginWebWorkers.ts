@@ -39,6 +39,7 @@ export default {
 	},
 	"exportTypes": {
 		"CSV": "ET-CSV.generator-d5399b6347edfc88d9840287e692c431.js",
+		"Excel": "ET-Excel.generator-0ee78f62cb499e0cf1e02091d5a0bb1e.js",
 		"HTML": "ET-HTML.generator-1f2109aec7e9cd759773fc7f28fd0966.js",
 		"JSON": "ET-JSON.generator-ae538f823c70436397059a1d05560b46.js",
 		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-8261c6791e53ccb6110aa5a29616c702.js",
