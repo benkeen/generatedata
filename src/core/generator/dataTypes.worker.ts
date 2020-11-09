@@ -54,6 +54,7 @@ context.onmessage = (e: any) => {
 
 	Object.keys(workerResources.countries).forEach((country: any) => {
 		if (!countryData[country]) {
+			console.log("import: ", workerResources.countries[country]);
 			importScripts(workerResources.countries[country]);
 
 			// @ts-ignore

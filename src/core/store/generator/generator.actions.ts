@@ -119,6 +119,8 @@ export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = null): any => {
 	const dataTypeWorker = coreUtils.getDataTypeWorker('preview');
 
+	console.log('refresh preview');
+
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
 		const template = selectors.getGenerationTemplate(state);
@@ -127,6 +129,8 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 		const columns = selectors.getColumns(state);
 
 		const unchanged = getUnchangedData(idsToRefresh, columns, dataTypePreviewData);
+
+		console.log("1...", coreUtils.getCountries());
 
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's

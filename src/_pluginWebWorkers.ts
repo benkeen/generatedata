@@ -1,6 +1,6 @@
 export default {
 	"coreWorker": "",
-	"coreDataTypeWorker": "dataTypes.worker-8fce71739063aeaff55d66991beaab39.js",
+	"coreDataTypeWorker": "dataTypes.worker-8c5c2bc0d576aa9256e42a856af1cd78.js",
 	"coreExportTypeWorker": "exportTypes.worker-9b546d7c7909e02146fafee124180d37.js",
 	"workerUtils": "workerUtils-654105339a7953834fce3aa9a7132b7b.js",
 	"dataTypes": {
@@ -24,7 +24,7 @@ export default {
 		"NumberRange": "DT-NumberRange.generator-057ed424452f4e991ebc399c615ae34c.js",
 		"OrganizationNumber": "DT-OrganizationNumber.generator-68b329da9893e34099c7d8ad5cb9c940.js",
 		"PAN": "DT-PAN.generator-68b329da9893e34099c7d8ad5cb9c940.js",
-		"PIN": "DT-PIN.generator-64bdeb5aab60a1e288601de1295eb798.js",
+		"PIN": "DT-PIN.generator-6bf27240d910141e37baec3b92db9242.js",
 		"PersonalNumber": "DT-PersonalNumber.generator-68b329da9893e34099c7d8ad5cb9c940.js",
 		"Phone": "DT-Phone.generator-9af415fadc15108a59add915a1dbac95.js",
 		"PostalZip": "DT-PostalZip.generator-b7cd5bb410930c1fb9c772190244ff6b.js",

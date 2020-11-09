@@ -1,6 +1,5 @@
 import { DTBundle } from '~types/dataTypes';
-import { Help } from './PIN';
-import { getMetadata } from './PIN.generator';
+import { Help, getMetadata } from './PIN';
 
 const bundle: DTBundle = {
 	Help,

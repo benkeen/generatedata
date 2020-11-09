@@ -1,5 +1,5 @@
 {
   "NAME": "PIN",
-  "DESC": "Generates a random credit card PIN number from 1111 to 9999.",
+  "DESC": "生成1111到9999之间的随机信用卡PIN码。",
   "DEFAULT_TITLE": "pin"
 }
