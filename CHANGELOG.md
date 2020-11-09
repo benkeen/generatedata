@@ -13,6 +13,9 @@ Right now it's in early alpha. The current goals are:
 The next phase will be adding in the backend: user accounts, saving data sets and so on. 
 
 
+- `4.0.0-alpha-20201108`:
+    - CSV, LDIF Export Types added.
+    - All Data Types and Export Types translated.
 - `4.0.0-alpha-20201104`:
     - Computed and Composite Data Types combined.
     - Names Data Type options structure change.
