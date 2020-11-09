@@ -1,1 +1,5 @@
-{}
+{
+  "EXPORT_TYPE_NAME": "LDIF",
+  "COL_TITLE": "LDAP-kenmerk",
+  "noAdditionalSettings": "Geen aanvullende instellingen"
+}

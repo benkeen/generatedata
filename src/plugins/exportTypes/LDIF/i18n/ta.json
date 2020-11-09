@@ -1,1 +1,5 @@
-{}
+{
+  "EXPORT_TYPE_NAME": "LDIF",
+  "COL_TITLE": "LDAP பண்புக்கூறு",
+  "noAdditionalSettings": "கூடுதல் அமைப்புகள் இல்லை"
+}

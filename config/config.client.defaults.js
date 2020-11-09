@@ -39,9 +39,7 @@ export default {
 		'Track2'
 	],
 
-	exportTypeBlacklist: [
-		'LDIF'
-	],
+	exportTypeBlacklist: [],
 
 	countryBlacklist: [],
 

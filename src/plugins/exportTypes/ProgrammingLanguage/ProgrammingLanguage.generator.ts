@@ -4,7 +4,6 @@ import { generateJS } from './languages/Javascript';
 import { generatePerl } from './languages/Perl';
 import { generatePhp } from './languages/PHP';
 import { generateRuby } from './languages/Ruby';
-
 const context: Worker = self as any;
 
 let workerUtilsLoaded = false;
