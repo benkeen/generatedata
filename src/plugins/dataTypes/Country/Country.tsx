@@ -19,7 +19,6 @@ export const initialState: CountryState = {
 	selectedCountries: []
 };
 
-// all English right now
 const fullCountryListOptions = fullCountryList.map((countryName) => ({
 	value: countryName,
 	label: countryName

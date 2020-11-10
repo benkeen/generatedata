@@ -1,5 +1,5 @@
 import utils from '../../../utils';
-import { DTMetadata, DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
 
 let utilsLoaded = false;
 const onmessage = (e: any) => {
@@ -11,8 +11,9 @@ const onmessage = (e: any) => {
 };
 
 export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => {
-	const { words } = utils.stringUtils.getLipsumWords();
-	const textStr = utils.randomUtils.generateRandomTextStr(words, false, rowState.numWords);
+	const { words, numWordsToGenerate } = rowState;
+	const textStr = utils.randomUtils.generateRandomTextStr(words, false, numWordsToGenerate);
+
 	return {
 		display: textStr
 	};

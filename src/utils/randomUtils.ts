@@ -88,54 +88,27 @@ export const getRandomSubset = <T> (arr: T[], size: number): T[] => {
 
 
 /**
- * Generates a string of lorem ipsum words.
+ * Generates a string of words from a source array of strings.
  */
-export const generateRandomTextStr = (words: string[], startsWithLorem: boolean, min: number, max?: number): string => {
+export const generateRandomTextStr = (words: string[], fromStart: boolean, min: number, max?: number): string => {
 	let numWords = (max) ? getRandomNum(min, max) : min;
 
 	const totalWords = words.length;
 	if (numWords > totalWords) {
 		numWords = totalWords;
 	}
-	if (startsWithLorem) {
+
+	if (numWords === 0) {
+		return '';
+	}
+
+	if (fromStart) {
 		return words.slice(0, numWords).join(' ');
 	} else {
-		const withoutLorem = words.slice(1);
 		const offset = getRandomNum(0, totalWords - 1 - numWords);
-		return withoutLorem.slice(offset, offset + numWords).join(' ');
+		return words.slice(offset, offset + numWords).join(' ');
 	}
 };
-
-
-// Converts all x's and X's in a string with a random digit. X's: 1-9, x's: 0-9.
-/*
-public static function generateRandomNumStr($str) {
-	// loop through each character and convert all unescaped X's to 1-9 and unescaped x's to 0-9.
-	$new_str = "";
-	$strlen = strlen($str);
-	for ($i=0; $i<$strlen; $i++) {
-		if ($str[$i] == '\\' && ($str[$i+1] == "X" || $str[$i+1] == "x")) {
-			continue;
-		} else if ($str[$i] == "X") {
-			if ($i != 0 && ($str[$i-1] == '\\')) {
-				$new_str .= "X";
-			} else {
-				$new_str .= mt_rand(1, 9);
-			}
-		} else if ($str[$i] == "x") {
-			if ($i != 0 && ($str[$i-1] == '\\')) {
-				$new_str .= "x";
-			} else {
-				$new_str .= mt_rand(0, 9);
-			}
-		} else {
-			$new_str .= $str[$i];
-		}
-	}
-
-	return trim($new_str);
-}
-*/
 
 export const generatePlaceholderStr = (str: string, customPlaceholders: any): string => {
 	const placeholders = {
@@ -144,16 +117,3 @@ export const generatePlaceholderStr = (str: string, customPlaceholders: any): st
 	};
 	return generateRandomAlphanumericStr(str, placeholders);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-

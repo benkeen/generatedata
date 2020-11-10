@@ -5,5 +5,12 @@
   "TextFixed_generate": "Generate",
   "TextFixed_help": "This option generates a fixed number of random words, pulled from the standard lorem ipsum text.",
   "TextFixed_words": "words",
-  "incomplete_fields": "Please enter the number of words you want to generate for all Fixed Number of Words fields. See rows: "
+  "incomplete_fields": "Please enter the number of words you want to generate for all Fixed Number of Words fields. See rows: ",
+  "selectWordSource": "Select Word Source",
+  "lipsumDesc": "Lorem ipsum is a standard dummy text based in Latin that's been in use since the 1500's.",
+  "customTextDesc": "This field lets you enter whatever text you would like to be used as the data source.",
+  "source": "Source",
+  "explanation": "This section lets you choose the data source for the words.",
+  "enterCustomText": "Enter some custom text here. Make sure you enter a good amount of words.",
+  "custom": "Custom"
 }
