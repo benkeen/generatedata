@@ -3,7 +3,13 @@
   "DESC": "此选项会从标准lorem ipsum拉丁文文本中提取固定数量的随机词。",
   "DEFAULT_TITLE": "文本",
   "TextFixed_generate": "生成",
-  "TextFixed_help": "此选项会从标准lorem ipsum文本中提取固定数量的随机单词。",
+  "TextFixed_help": "此数据类型生成随机的单词字符串。 您可以选择使用默认的随机lorem ipsum虚拟文本，也可以提供自己的文本。",
   "TextFixed_words": "话",
-  "incomplete_fields": "请为所有固定字数字段输入要生成的字数。 查看行： "
+  "selectWordSource": "选择词源",
+  "lipsumDesc": "Lorem ipsum是基于拉丁文的标准伪文本，自1500以来一直在使用。",
+  "customTextDesc": "通过此字段，您可以输入任何想要用作数据源的文本。",
+  "source": "资源",
+  "explanation": "本部分允许您选择单词的数据源。",
+  "enterCustomText": "在此处输入一些自定义文本。 确保输入了大量单词。",
+  "custom": "自订"
 }

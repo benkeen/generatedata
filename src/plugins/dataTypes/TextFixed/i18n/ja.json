@@ -3,7 +3,13 @@
   "DESC": "このオプションは、標準のlorem ipsumlatinテキストから取得した固定数のランダムな単語を生成します。",
   "DEFAULT_TITLE": "テキスト",
   "TextFixed_generate": "生む",
-  "TextFixed_help": "このオプションは、標準のloremipsumテキストから取得した固定数のランダムな単語を生成します。",
+  "TextFixed_help": "このデータ型は、ランダムな単語の文字列を生成します。 デフォルトのランダムloremipsumダミーテキストを使用するか、独自のテキストを提供するかを選択できます。",
   "TextFixed_words": "言葉",
-  "incomplete_fields": "すべての[固定単語数]フィールドに、生成する単語数を入力してください。 行を参照してください： "
+  "selectWordSource": "単語ソースを選択",
+  "lipsumDesc": "Lorem ipsumは、1500年代から使用されている、ラテン語に基づく標準のダミーテキストです。",
+  "customTextDesc": "このフィールドでは、データソースとして使用するテキストを入力できます。",
+  "source": "ソース",
+  "explanation": "このセクションでは、単語のデータソースを選択できます。",
+  "enterCustomText": "ここにカスタムテキストを入力します。 十分な量の単語を入力してください。",
+  "custom": "カスタム"
 }

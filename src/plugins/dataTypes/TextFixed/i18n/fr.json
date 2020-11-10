@@ -3,7 +3,13 @@
   "DESC": "Cette option génère un nombre fixe de mots aléatoires lorem ipsum (faux texte latin).",
   "DEFAULT_TITLE": "texto",
   "TextFixed_generate": "Générer",
-  "TextFixed_help": "Cette option génère un nombre fixe de mots aléatoires <a href=\\\"http://en.wikipedia.org/wiki/Lorem_ipsum\\\" target=\\\"_blank\\\">lorem ipsum</a> (faux texte latin).",
+  "TextFixed_help": "Ce type de données génère une chaîne aléatoire de mots. Vous avez le choix d'utiliser le texte factice aléatoire par défaut de lorem ipsum ou de fournir un texte de votre choix.",
   "TextFixed_words": "mots",
-  "incomplete_fields": "Entrez le nombre de mots que vous souhaitez générer. Voir les lignes:"
+  "selectWordSource": "Sélectionnez la source Word",
+  "lipsumDesc": "Lorem ipsum est un texte factice standard basé en latin et utilisé depuis les années 1500.",
+  "customTextDesc": "Ce champ vous permet de saisir le texte que vous souhaitez utiliser comme source de données.",
+  "source": "La source",
+  "explanation": "Cette section vous permet de choisir la source de données pour les mots.",
+  "enterCustomText": "Entrez un texte personnalisé ici. Assurez-vous de saisir une bonne quantité de mots.",
+  "custom": "Douane"
 }

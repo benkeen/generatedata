@@ -3,7 +3,13 @@
   "DESC": "Deze optie genereert een vast aantal willekeurige woorden, die uit de standaard Latijnse tekst Lorem ipsum worden gehaald.",
   "DEFAULT_TITLE": "tekst",
   "TextFixed_generate": "Genereer",
-  "TextFixed_help": "Deze optie genereert een vast aantal willekeurige woorden, die uit de standaard Latijnse tekst <a href=\\\"http://en.wikipedia.org/wiki/Lorem_ipsum\\\" target=\\\"_blank\\\">Lorem ipsum</a> worden gehaald.",
+  "TextFixed_help": "Dit gegevenstype genereert een willekeurige reeks woorden. U heeft de keuze om de standaard willekeurige lorem ipsum dummy-tekst te gebruiken, of u kunt uw eigen tekst opgeven.",
   "TextFixed_words": "woorden",
-  "incomplete_fields": "Vul het aantal woorden in dat u wilt genereren voor alle Vast Aantal Woorden velden. Zie rijen:"
+  "selectWordSource": "Selecteer Woordbron",
+  "lipsumDesc": "Lorem ipsum is een standaard dummy-tekst op basis van het Latijn die al sinds de jaren 1500 in gebruik is.",
+  "customTextDesc": "In dit veld kunt u elke tekst invoeren die u als gegevensbron wilt gebruiken.",
+  "source": "Bron",
+  "explanation": "In dit gedeelte kunt u de gegevensbron voor de woorden kiezen.",
+  "enterCustomText": "Voer hier wat aangepaste tekst in. Zorg ervoor dat u een groot aantal woorden invoert.",
+  "custom": "Op maat"
 }
