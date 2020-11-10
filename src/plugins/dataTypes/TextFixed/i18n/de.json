@@ -5,7 +5,7 @@
   "TextFixed_generate": "Erzeugen",
   "TextFixed_help": "Dieser Datentyp generiert eine zufällige Wortfolge. Sie haben die Wahl, den standardmäßigen zufälligen Lorem-Ipsum-Dummy-Text zu verwenden oder einen eigenen Text bereitzustellen.",
   "TextFixed_words": "Text",
-  "selectWordSource": "Wählen Sie Word Source",
+  "selectTextSource": "Wählen Sie Textquelle",
   "lipsumDesc": "Lorem ipsum ist ein Standard-Dummy-Text in lateinischer Sprache, der seit dem 16. Jahrhundert verwendet wird.",
   "customTextDesc": "In dieses Feld können Sie den Text eingeben, den Sie als Datenquelle verwenden möchten.",
   "source": "Quelle",

@@ -1,10 +1,17 @@
 {
-  "NAME": "Texte - Longueur Aléatoire",
-  "DESC": "Cette option génère un nombre aléatoire de mots - le nombre total étant compris dans la plage que vous spécifiez (maximum inclus).",
-  "DEFAULT_TITLE": "texto",
-  "generate": "Générer entre",
-  "help": "Cette option génère un nombre aléatoire de mots - le nombre total étant compris dans la plage que vous spécifiez (maximum inclus). Comme pour l'option Texte - Longueur fixe, les mots sont des mots aléatoires <a href=\\\"http://en.wikipedia.org/wiki/Lorem_ipsum\\\" target=\\\"_blank\\\">lorem ipsum</a> (faux texte latin).",
-  "startWithLipsum": "Commencez par \"Lorem Ipsum...\"",
-  "to": "et",
-  "words": "mots"
+  "NAME": "Nombre aléatoire de mots",
+  "DESC": "Ce type de données génère un nombre aléatoire de mots dans la plage spécifiée.",
+  "DEFAULT_TITLE": "texte",
+  "fromStart": "Commencer au début du texte",
+  "generate": "produire",
+  "to": "à",
+  "words": "mots",
+  "help": "Ce type de données génère un nombre aléatoire de mots dans la plage spécifiée. Vous pouvez choisir de générer des mots à partir du texte factice par défaut de lorem ipsum ou de fournir votre propre texte.",
+  "selectTextSource": "Sélectionnez la source du texte",
+  "lipsumDesc": "Lorem ipsum est un texte factice standard basé en latin et utilisé depuis les années 1500.",
+  "customTextDesc": "Ce champ vous permet de saisir le texte que vous souhaitez utiliser comme source de données.",
+  "source": "La source",
+  "explanation": "Cette section vous permet de personnaliser le texte utilisé comme source de données.",
+  "enterCustomText": "Entrez un texte personnalisé ici. Assurez-vous de saisir une bonne quantité de mots.",
+  "custom": "Douane"
 }

@@ -22,17 +22,17 @@ export const initialState: TextFixedState = {
 };
 
 const TextFieldDialog = ({
-	visible, customText, source, data, id, onClose, onUpdateSource, onUpdateCustomText, coreI18n, i18n
+	visible, data, id, onClose, onUpdateSource, onUpdateCustomText, coreI18n, i18n
 }: any): JSX.Element => {
 
 	const getCustomTextField = (): JSX.Element | null => {
-		if (source !== 'custom') {
+		if (data.textSource !== 'custom') {
 			return null;
 		}
 
 		return (
 			<textarea
-				value={customText}
+				value={data.customText}
 				placeholder={i18n.enterCustomText}
 				className={styles.customText}
 				onChange={onUpdateCustomText}
@@ -43,7 +43,7 @@ const TextFieldDialog = ({
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
-				<DialogTitle onClose={onClose}>{i18n.selectWordSource}</DialogTitle>
+				<DialogTitle onClose={onClose}>{i18n.selectTextSource}</DialogTitle>
 				<DialogContent dividers>
 					<div>
 						{i18n.explanation}
@@ -67,9 +67,7 @@ const TextFieldDialog = ({
 							tooltip={i18n.customTextDesc}
 						/>
 					</RadioPillRow>
-
 					{getCustomTextField()}
-
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
@@ -127,8 +125,6 @@ export const Options = ({ coreI18n, i18n, id, data, onUpdate }: DTOptionsProps):
 				id={id}
 				coreI18n={coreI18n}
 				i18n={i18n}
-				customText={data.customText}
-				source={data.textSource}
 				onUpdateSource={onUpdateSource}
 				onUpdateCustomText={onUpdateCustomText}
 				onClose={(): void => setDialogVisibility(false)}

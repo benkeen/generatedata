@@ -5,7 +5,7 @@
   "TextFixed_generate": "انشاء",
   "TextFixed_help": "يُنشئ نوع البيانات هذا سلسلة عشوائية من الكلمات. لديك خيار استخدام النص الافتراضي العشوائي lorem ipsum dummy ، أو تقديم نص خاص بك.",
   "TextFixed_words": "كلمات",
-  "selectWordSource": "حدد مصدر Word",
+  "selectTextSource": "حدد مصدر النص",
   "lipsumDesc": "Lorem ipsum هو نص وهمي قياسي يستند إلى اللاتينية ويستخدم منذ القرن الخامس عشر الميلادي.",
   "customTextDesc": "يتيح لك هذا الحقل إدخال أي نص ترغب في استخدامه كمصدر للبيانات.",
   "source": "مصدر",

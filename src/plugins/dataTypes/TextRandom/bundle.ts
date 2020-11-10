@@ -1,11 +1,12 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Options, Help, getMetadata } from './TextRandom';
+import { initialState, Options, Help, getMetadata, rowStateReducer } from './TextRandom';
 
 const bundle: DTBundle = {
 	initialState,
 	Options,
 	Help,
-	getMetadata
+	getMetadata,
+	rowStateReducer
 };
 
 export default bundle;

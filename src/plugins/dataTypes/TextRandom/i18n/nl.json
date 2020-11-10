@@ -1,10 +1,17 @@
 {
-  "NAME": "Willekeurig Aantal Woorden",
-  "DESC": "Deze optie genereert een willekeurig aantal woorden - het totale aantal ligt binnen het bereik dat u opgeeft (inclusief).",
+  "NAME": "Willekeurig aantal woorden",
+  "DESC": "Dit gegevenstype genereert een willekeurig aantal woorden binnen het opgegeven bereik.",
   "DEFAULT_TITLE": "tekst",
-  "generate": "Genereren",
-  "help": "Deze optie genereert een willekeurig aantal woorden - het totale aantal ligt binnen het bereik dat u opgeeft (inclusief). Net als bij de Vast Aantal Woorden type, worden de woorden uit de Latijnse tekst Lorem ipsum gehaald.",
-  "startWithLipsum": "Begin met \"Lorem Ipsum...\"",
-  "to": "tot",
-  "words": "woorden"
+  "fromStart": "Begin vanaf het begin van de tekst",
+  "generate": "Genereer",
+  "to": "naar",
+  "words": "woorden",
+  "help": "Dit gegevenstype genereert een willekeurig aantal woorden binnen het opgegeven bereik. U kunt ervoor kiezen om woorden te genereren uit de standaard lorem ipsum dummy-tekst, of u kunt zelf een tekst opgeven.",
+  "selectTextSource": "Selecteer Tekstbron",
+  "lipsumDesc": "Lorem ipsum is een standaard dummy-tekst op basis van het Latijn die al sinds de jaren 1500 in gebruik is.",
+  "customTextDesc": "In dit veld kunt u elke tekst invoeren die u als gegevensbron wilt gebruiken.",
+  "source": "Bron",
+  "explanation": "In dit gedeelte kunt u de tekst aanpassen die als gegevensbron wordt gebruikt.",
+  "enterCustomText": "Voer hier wat aangepaste tekst in. Zorg ervoor dat u een groot aantal woorden invoert.",
+  "custom": "Op maat"
 }

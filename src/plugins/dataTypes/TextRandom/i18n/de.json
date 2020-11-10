@@ -1,10 +1,17 @@
 {
-  "NAME": "Beliebige Anzahl von Wörtern",
-  "DESC": "Wie bei der Festnetznummer Option werden die Worte der Standard Lorem ipsum lateinischen Text gezogen.",
-  "DEFAULT_TITLE": "text",
-  "generate": "Erzeugen",
-  "help": "Wie bei der Festnetznummer Option werden die Worte der Standard Lorem ipsum lateinischen Text gezogen.",
-  "startWithLipsum": "Beginnen Sie mit \"Lorem ipsum...\"",
-  "to": "auf",
-  "words": "Text"
+  "NAME": "Zufällige Anzahl von Wörtern",
+  "DESC": "Dieser Datentyp generiert eine zufällige Anzahl von Wörtern innerhalb des angegebenen Bereichs.",
+  "DEFAULT_TITLE": "Text",
+  "fromStart": "Beginnen Sie am Anfang des Textes",
+  "generate": "Generieren",
+  "to": "zu",
+  "words": "Wörter",
+  "help": "Dieser Datentyp generiert eine zufällige Anzahl von Wörtern innerhalb des angegebenen Bereichs. Sie können wählen, ob Sie Wörter aus dem Standard-Lorem-Ipsum-Dummy-Text generieren oder einen eigenen Text angeben möchten.",
+  "selectTextSource": "Wählen Sie Textquelle",
+  "lipsumDesc": "Lorem ipsum ist ein Standard-Dummy-Text in lateinischer Sprache, der seit dem 16. Jahrhundert verwendet wird.",
+  "customTextDesc": "In dieses Feld können Sie den Text eingeben, den Sie als Datenquelle verwenden möchten.",
+  "source": "Quelle",
+  "explanation": "In diesem Abschnitt können Sie den als Datenquelle verwendeten Text anpassen.",
+  "enterCustomText": "Geben Sie hier einen benutzerdefinierten Text ein. Stellen Sie sicher, dass Sie eine gute Anzahl von Wörtern eingeben.",
+  "custom": "Benutzerdefiniert"
 }

@@ -5,7 +5,7 @@
   "TextFixed_generate": "Genereer",
   "TextFixed_help": "Dit gegevenstype genereert een willekeurige reeks woorden. U heeft de keuze om de standaard willekeurige lorem ipsum dummy-tekst te gebruiken, of u kunt uw eigen tekst opgeven.",
   "TextFixed_words": "woorden",
-  "selectWordSource": "Selecteer Woordbron",
+  "selectTextSource": "Selecteer Tekstbron",
   "lipsumDesc": "Lorem ipsum is een standaard dummy-tekst op basis van het Latijn die al sinds de jaren 1500 in gebruik is.",
   "customTextDesc": "In dit veld kunt u elke tekst invoeren die u als gegevensbron wilt gebruiken.",
   "source": "Bron",

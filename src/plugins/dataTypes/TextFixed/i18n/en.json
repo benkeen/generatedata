@@ -5,11 +5,11 @@
   "TextFixed_generate": "Generate",
   "TextFixed_help": "This Data Type generates a random string of words. You have the choice of using the default random lorem ipsum dummy text, or provide a text of your own.",
   "TextFixed_words": "words",
-  "selectWordSource": "Select Word Source",
+  "selectTextSource": "Select Text Source",
   "lipsumDesc": "Lorem ipsum is a standard dummy text based in Latin that's been in use since the 1500's.",
   "customTextDesc": "This field lets you enter whatever text you would like to be used as the data source.",
   "source": "Source",
-  "explanation": "This section lets you choose the data source for the words.",
+  "explanation": "This section lets you customize the text used as the data source.",
   "enterCustomText": "Enter some custom text here. Make sure you enter a good amount of words.",
   "custom": "Custom"
 }

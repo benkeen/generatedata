@@ -5,7 +5,7 @@
   "TextFixed_generate": "Générer",
   "TextFixed_help": "Ce type de données génère une chaîne aléatoire de mots. Vous avez le choix d'utiliser le texte factice aléatoire par défaut de lorem ipsum ou de fournir un texte de votre choix.",
   "TextFixed_words": "mots",
-  "selectWordSource": "Sélectionnez la source Word",
+  "selectTextSource": "Sélectionnez la source du texte",
   "lipsumDesc": "Lorem ipsum est un texte factice standard basé en latin et utilisé depuis les années 1500.",
   "customTextDesc": "Ce champ vous permet de saisir le texte que vous souhaitez utiliser comme source de données.",
   "source": "La source",

@@ -11,9 +11,8 @@ const onmessage = (e: any) => {
 };
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
-	const { startsWithLipsum, minWords, maxWords } = data.rowState;
-	const { words } = utils.stringUtils.getLipsumWords();
-	const textStr = utils.randomUtils.generateRandomTextStr(words, startsWithLipsum, minWords, maxWords);
+	const { fromStart, minWords, maxWords, words } = data.rowState;
+	const textStr = utils.randomUtils.generateRandomTextStr(words, fromStart, minWords, maxWords);
 	return {
 		display: textStr
 	};

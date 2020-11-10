@@ -5,7 +5,7 @@
   "TextFixed_generate": "Generar",
   "TextFixed_help": "Este tipo de datos genera una cadena de palabras aleatoria. Tiene la opción de utilizar el texto de relleno de lorem ipsum aleatorio predeterminado o proporcionar un texto propio.",
   "TextFixed_words": "palabras",
-  "selectWordSource": "Seleccionar fuente de palabra",
+  "selectTextSource": "Seleccionar fuente de texto",
   "lipsumDesc": "Lorem ipsum es un texto ficticio estándar basado en latín que se utiliza desde el siglo XVI.",
   "customTextDesc": "Este campo le permite ingresar cualquier texto que desee utilizar como fuente de datos.",
   "source": "Fuente",

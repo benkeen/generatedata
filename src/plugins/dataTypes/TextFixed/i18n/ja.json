@@ -5,7 +5,7 @@
   "TextFixed_generate": "生む",
   "TextFixed_help": "このデータ型は、ランダムな単語の文字列を生成します。 デフォルトのランダムloremipsumダミーテキストを使用するか、独自のテキストを提供するかを選択できます。",
   "TextFixed_words": "言葉",
-  "selectWordSource": "単語ソースを選択",
+  "selectTextSource": "抽出ソースを選択",
   "lipsumDesc": "Lorem ipsumは、1500年代から使用されている、ラテン語に基づく標準のダミーテキストです。",
   "customTextDesc": "このフィールドでは、データソースとして使用するテキストを入力できます。",
   "source": "ソース",

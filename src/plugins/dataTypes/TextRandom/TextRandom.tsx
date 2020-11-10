@@ -1,96 +1,167 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { getLipsumWords } from '~utils/stringUtils';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
+import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
+import styles from './TextRandom.scss';
+
+type TextSource = 'lipsum' | 'custom';
 
 type TextRandomState = {
-	startsWithLipsum: boolean;
+	fromStart: boolean;
 	minWords: number;
 	maxWords: number;
+	textSource: TextSource;
+	customText: string;
 };
 
 export const initialState: TextRandomState = {
-	startsWithLipsum: false,
+	fromStart: false,
 	minWords: 1,
-	maxWords: 10
+	maxWords: 10,
+	textSource: 'lipsum',
+	customText: ''
 };
 
+const TextRandomDialog = ({
+	 visible, data, id, onClose, onChangeFromStart, onUpdateSource, onUpdateCustomText, coreI18n, i18n
+}: any): JSX.Element => {
+
+	const getCustomTextField = (): JSX.Element | null => {
+		if (data.textSource !== 'custom') {
+			return null;
+		}
+
+		return (
+			<textarea
+				value={data.customText}
+				placeholder={i18n.enterCustomText}
+				className={styles.customText}
+				onChange={onUpdateCustomText}
+			/>
+		);
+	};
+
+	return (
+		<Dialog onClose={onClose} open={visible}>
+			<div style={{ width: 500 }}>
+				<DialogTitle onClose={onClose}>{i18n.selectTextSource}</DialogTitle>
+				<DialogContent dividers>
+					<div>
+						{i18n.explanation}
+					</div>
+
+					<h3>{i18n.source}</h3>
+
+					<RadioPillRow>
+						<RadioPill
+							label="Lorem ipsum"
+							onClick={(): void => onUpdateSource('lipsum')}
+							name={`${id}-source`}
+							checked={data.textSource === 'lipsum'}
+							tooltip={i18n.lipsumDesc}
+						/>
+						<RadioPill
+							label={i18n.custom}
+							onClick={(): void => onUpdateSource('custom')}
+							name={`${id}-source`}
+							checked={data.textSource === 'custom'}
+							tooltip={i18n.customTextDesc}
+						/>
+					</RadioPillRow>
+					{getCustomTextField()}
+					<div>
+						<input
+							type="checkbox"
+							id={`${id}-fromStart`}
+							checked={data.fromStart}
+							onChange={(e: any): void => onChangeFromStart(e.target.checked)}
+						/>
+						<label htmlFor={`${id}-fromStart`}>{i18n.fromStart}</label>
+					</div>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
+				</DialogActions>
+			</div>
+		</Dialog>
+	);
+};
+
+
 export const Options = ({ coreI18n, i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
-	const onChange = (field: string, value: string): void => {
+	const [dialogVisible, setDialogVisibility] = React.useState(false);
+
+	const onChange = (field: string, value: string | boolean): void => {
 		onUpdate({
 			...data,
 			[field]: value
 		});
 	};
 
-	const minWordsError = data.minWords ? '' : coreI18n.requiredField;
-	const maxWordsError = data.maxWords ? '' : coreI18n.requiredField;
+	const onUpdateSource = (textSource: TextSource): void => {
+		onUpdate({
+			...data,
+			textSource
+		});
+	};
+
+	const onUpdateCustomText = (e: React.FormEvent<HTMLTextAreaElement>): void => {
+		onUpdate({
+			...data,
+			customText: e.currentTarget.value
+		});
+	};
 
 	return (
 		<>
-			<div style={{ margin: '5px 0 2px' }}>
-				<input
-					type="checkbox"
-					id={`${id}-startsWithLipsum`}
-					checked={data.startsWithLipsum}
-					onChange={(e: any): void => onChange('startsWithLipsum', e.target.checked)}
-				/>
-				<label htmlFor={`${id}-startsWithLipsum`}>{i18n.startWithLipsum}</label>
-			</div>
-			<div style={{ marginLeft: 3 }}>
-				{i18n.generate}
-				<TextField
-					type="number"
-					min="0"
-					error={minWordsError}
-					id={`${id}-minWords`}
-					style={{ width: 50, margin: '0 2px' }}
-					value={data.minWords}
-					onChange={(e: any): void => onChange('minWords', e.target.value)}
-				/>
-				{i18n.to}
-				<TextField
-					type="number"
-					min="0"
-					error={maxWordsError}
-					id={`${id}-maxWords`}
-					style={{ width: 50, margin: '0 2px' }}
-					value={data.maxWords}
-					onChange={(e: any): void => onChange('maxWords', e.target.value)}
-				/>
+			{i18n.generate}
+			<TextField
+				type="number"
+				min="0"
+				error={data.minWords ? '' : coreI18n.requiredField}
+				id={`${id}-minWords`}
+				style={{ width: 50, margin: '0 2px' }}
+				value={data.minWords}
+				onChange={(e: any): void => onChange('minWords', e.target.value)}
+			/>
+			{i18n.to}
+			<TextField
+				type="number"
+				min="0"
+				error={data.maxWords ? '' : coreI18n.requiredField}
+				id={`${id}-maxWords`}
+				style={{ width: 50, margin: '0 2px' }}
+				value={data.maxWords}
+				onChange={(e: any): void => onChange('maxWords', e.target.value)}
+			/>
+			<Button
+				onClick={(): void => setDialogVisibility(true)}
+				variant="outlined"
+				color="primary"
+				size="small">
 				{i18n.words}
-			</div>
+			</Button>
+			<TextRandomDialog
+				visible={dialogVisible}
+				data={data}
+				id={id}
+				coreI18n={coreI18n}
+				i18n={i18n}
+				customText={data.customText}
+				source={data.textSource}
+				onChangeFromStart={(isChecked: boolean): void => onChange('fromStart', isChecked)}
+				onUpdateSource={onUpdateSource}
+				onUpdateCustomText={onUpdateCustomText}
+				onClose={(): void => setDialogVisibility(false)}
+			/>
 		</>
 	);
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.help}</p>;
-
-// var _validate = function(rows) {
-// 	var visibleProblemRows = [];
-// 	var problemFields      = [];
-// 	var isInt = /^\d+$/;
-// 	for (var i=0; i<rows.length; i++) {
-// 		var numWordsMin = $.trim($("#dtNumWordsMin_" + rows[i]).val());
-// 		var visibleRowNum = generator.getVisibleRowOrderByRowNum(rows[i]);
-// 		if (numWordsMin === "" || !isInt.test(numWordsMin)) {
-// 			visibleProblemRows.push(visibleRowNum);
-// 			problemFields.push($("#dtNumWordsMin_" + rows[i]));
-// 		}
-// 		var numWordsMax = $.trim($("#dtNumWordsMax_" + rows[i]).val());
-// 		if (numWordsMax === "" || !isInt.test(numWordsMax)) {
-// 			if ($.inArray(visibleRowNum, visibleProblemRows) == -1) {
-// 				visibleProblemRows.push(visibleRowNum);
-// 			}
-// 			problemFields.push($("#dtNumWordsMax_" + rows[i]));
-// 		}
-// 	}
-// 	var errors = [];
-// 	if (visibleProblemRows.length) {
-// 		errors.push({ els: problemFields, error: LANG.incomplete_fields + " <b>" + visibleProblemRows.join(", ") + "</b>"});
-// 	}
-// 	return errors;
-// };
-
 
 export const getMetadata = (): DTMetadata => ({
 	general: {
@@ -102,3 +173,13 @@ export const getMetadata = (): DTMetadata => ({
 		field_MSSQL: 'VARCHAR(MAX) NULL'
 	}
 });
+
+export const rowStateReducer = ({ fromStart, customText, textSource, minWords, maxWords }: TextRandomState): any => {
+	const { words } = getLipsumWords();
+	return {
+		fromStart,
+		minWords,
+		maxWords,
+		words: textSource === 'lipsum' ? words : customText.split(/\s+/)
+	};
+};
