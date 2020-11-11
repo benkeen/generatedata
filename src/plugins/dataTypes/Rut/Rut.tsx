@@ -47,6 +47,14 @@ export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Eleme
 	);
 };
 
+export const getMetadata = () => ({
+	sql: {
+		field: 'varchar(15) default NULL',
+		field_Oracle: 'varchar2(15) default NULL',
+		field_MSSQL: 'VARCHAR(15) NULL'
+	}
+});
+
 
 // var _validate = function (rows) {
 // 	var visibleProblemRows = [];

@@ -1,10 +1,11 @@
 import { DTBundle } from '~types/dataTypes';
-import { initialState, Example, Options } from './Rut';
+import { initialState, Example, Options, getMetadata } from './Rut';
 
 const bundle: DTBundle = {
 	initialState,
 	Example,
-	Options
+	Options,
+	getMetadata
 };
 
 export default bundle;

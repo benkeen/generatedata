@@ -31,7 +31,6 @@ export default {
 		'OrganizationNumber',
 		'PAN',
 		'PersonalNumber',
-		'Rut',
 		'SIRET',
 		'Track1',
 		'Track2'
