@@ -1,5 +1,5 @@
 {
   "NAME": "CVV",
-  "DESC": "Generates a random credit card CVV number from 111 to 999.",
+  "DESC": "يولد رقم بطاقة ائتمان عشوائي CVV من 111 إلى 999",
   "DEFAULT_TITLE": "cvv"
 }

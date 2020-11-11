@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
-import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
+import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './Currency.scss';
@@ -77,10 +77,6 @@ const CurrencySettingsDialog = ({ visible, data, onClose, coreI18n, i18n }: any)
 					</div>
 
 					<div>
-						Format: <input type="text" value={data.format} style={{ width: 160 }} />
-					</div>
-
-					<div>
 						{i18n.currencySymbol}
 						<input type="text" value={data.currencySymbol} style={{ width: 20 }} />
 						<select defaultValue={data.currencySymbolLocation}>
@@ -89,6 +85,9 @@ const CurrencySettingsDialog = ({ visible, data, onClose, coreI18n, i18n }: any)
 						</select>
 					</div>
 
+					<div>
+						Format: <input type="text" value={data.format} style={{ width: 160 }} />
+					</div>
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
@@ -101,32 +100,28 @@ const CurrencySettingsDialog = ({ visible, data, onClose, coreI18n, i18n }: any)
 export const Options = ({ i18n, coreI18n, id, data }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
-	const label = "Settings";
-
 	return (
 		<>
 			<input type="text" value={data.from} style={{ width: 80 }} />
 			<ArrowRightAlt />
-			<input type="text" value={data.to} style={{ width: 80 }} />
+			<input type="text" value={data.to} style={{ width: 80, marginRight: 2 }} />
 
-			<div className={styles.buttonLabel}>
-				<Button
-					onClick={(): void => setDialogVisibility(true)}
-					variant="outlined"
-					color="primary"
-					size="small">
-					<span dangerouslySetInnerHTML={{ __html: label }} />
-				</Button>
-				<CurrencySettingsDialog
-					visible={dialogVisible}
-					data={data}
-					id={id}
-					i18n={i18n}
-					coreI18n={coreI18n}
-					onClose={(): void => setDialogVisibility(false)}
-				/>
-			</div>
+			<Button
+				onClick={(): void => setDialogVisibility(true)}
+				variant="outlined"
+				color="primary"
+				size="small">
+				<span dangerouslySetInnerHTML={{ __html: 'Settings' }} />
+			</Button>
 
+			<CurrencySettingsDialog
+				visible={dialogVisible}
+				data={data}
+				id={id}
+				i18n={i18n}
+				coreI18n={coreI18n}
+				onClose={(): void => setDialogVisibility(false)}
+			/>
 		</>
 	);
 };
@@ -170,3 +165,10 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	</>
 );
 
+export const getMetadata = (): DTMetadata => ({
+	sql: {
+		field: 'varchar(100) default NULL',
+		field_Oracle: 'varchar2(100) default NULL',
+		field_MSSQL: 'VARCHAR(100) NULL'
+	}
+});

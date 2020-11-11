@@ -25,9 +25,8 @@ export default {
 		'_NamesRegional',
 		'_PhoneRegional',
 
-		// incomplete - will be removed when they're done
+		// incomplete - will be removed from here when they're done
 		'Currency',
-		'CVV',
 		'NormalDistribution',
 		'OrganizationNumber',
 		'PAN',

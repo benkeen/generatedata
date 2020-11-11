@@ -1,5 +1,5 @@
 {
   "NAME": "CVV",
-  "DESC": "Generates a random credit card CVV number from 111 to 999.",
+  "DESC": "111から999までのランダムなクレジットカードCVV番号を生成します。",
   "DEFAULT_TITLE": "cvv"
 }
