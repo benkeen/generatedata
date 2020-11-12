@@ -17,45 +17,36 @@ export {};
 
 
 export const generate = (data: ETMessageData): DTGenerateResult => {
-	const { formatCode, remDash, thousandSep, upper } = data.rowState;
+	const { formatCode, uppercaseDigit } = data.rowState;
 
 	const { getRandomNum } = utils.randomUtils;
 	const rutNumber = `${getRandomNum(5, 50)}${getRandomNum(0, 999)}${getRandomNum(0,999)}`;
 	const digit = getDigit(rutNumber);
 
-	let display = "";
+	let display = '';
 
-    if (formatCode.indexOf('xxxxxxxx') !== -1) {
-        if (thousandSep) {
-            display = utils.numberUtils.numberFormat(Number(rutNumber), 0, ",", ".");
-        } else {
-            $display = $rutn;
-        }
-    }
-
-    if (strpos($options["formatCode"], "xxxxxxxx-y") !== false) {
-        if (!$options["remdash"]) { // remove dash
-            $display .= "-";
-        }
-    }
-
-	if (strpos($options["formatCode"], "y") !== false) {
-		if ($options["upper"]) { // upper case digit???
-			$display .= strtoupper($digit);
-		} else {
-			$display .= $digit;
-		}
+    if (formatCode === '12.345.678-9' || formatCode === '12.345.678-9' || formatCode === '12.345.678') {
+		display = utils.numberUtils.numberFormat(Number(rutNumber), 0, ",", ".");
+    } else if (formatCode === '12345678-9' || formatCode === '123456789' || formatCode === '12345678') {
+		display = rutNumber;
 	}
-	*/
+
+	if (formatCode.indexOf('-') !== -1) {
+		display += '-';
+    }
+
+	if (formatCode.indexOf('9') !== -1) {
+		display += ((uppercaseDigit) ? digit.toUpperCase() : digit);
+	}
 
 	return {
-		display: '',
-		rut: '',
-		digit: ''
+		display,
+		rut: rutNumber,
+		digit
 	};
 };
 
-const getDigit = (rut: string) => {
+const getDigit = (rut: string): string => {
 	const rutNumReversedChars = rut.split('').reverse();
 
 	let n = 0;
@@ -72,7 +63,7 @@ const getDigit = (rut: string) => {
 		return "0";
 	}
 
-	return digit;
+	return digit.toString();
 };
 
 

@@ -86,7 +86,6 @@ export const getRandomSubset = <T> (arr: T[], size: number): T[] => {
 	return shuffled.slice(min);
 };
 
-
 /**
  * Generates a string of words from a source array of strings.
  */

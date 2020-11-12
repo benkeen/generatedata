@@ -1,24 +1,32 @@
 import * as React from 'react';
+import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
 
-type FormatCode = 'xxxxxxxx-y' | 'xxxxxxxx' | 'y';
+type FormatCode = '12345678-9' | '12.345.678-9' | '123456789' | '12.345.678-9' | '12345678' | '12.345.678' | '9';
+
 type RutState = {
 	example: string;
 	formatCode: FormatCode;
-	thousandSep: boolean;
-	upper: boolean;
-	remDash: boolean;
+	uppercaseDigit: boolean;
 };
 
 export const initialState: RutState = {
 	example: '',
-	formatCode: 'xxxxxxxx-y',
-	thousandSep: true,
-	upper: true,
-	remDash: true
+	formatCode: '12345678-9',
+	uppercaseDigit: true
 };
 
-export const Options = ({ coreI18n, i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
+export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
+	const options = [
+		{ value: '12345678-9', label: '12345678-9' },
+		{ value: '12.345.678-9', label: '12.345.678-9' },
+		{ value: '123456789', label: '123456789' },
+		{ value: '12.345.678-9', label: '12.345.678-9' },
+		{ value: '12345678', label: '12345678' },
+		{ value: '12.345.678', label: '12.345.678' },
+		{ value: '9', label: `9 (${i18n.onlyDigit})` }
+	];
+
 	const onChange = (field: string, value: string | boolean): void => {
 		onUpdate({
 			...data,
@@ -26,27 +34,32 @@ export const Options = ({ coreI18n, i18n, id, data, onUpdate }: DTOptionsProps):
 		});
 	};
 
-	return (
-		<>
-			<div>
-				Format:
-				<select onChange={(e): void => onChange('formatCode', e.target.value)}>
-					<option value="xxxxxxxx-y">12345678-9 ({i18n.rutDefault})</option>
-					<option value="xxxxxxxx">12345678 ({i18n.onlyNumber})</option>
-					<option value="y">9 ({i18n.onlyDigit})</option>
-				</select>
-			</div>
+	// the uppercase checkbox only applies to formats that include the final digit
+	const getUppercaseCheckbox = (): JSX.Element | null=> {
+		if (data.formatCode === '12345678' || data.formatCode === '12.345.678') {
+			return null;
+		}
 
-			<input type="checkbox" id={`${id}-thousandSep`} checked={data.thousandSep}
-				onChange={(e): void => onChange('thousandSep', e.target.checked)} />
-			<label htmlFor={`${id}-thousandSep`}>{i18n.thousandsSeparator}</label><br />
-			<input type="checkbox" id={`${id}-upper`} checked={data.upper}
-				onChange={(e): void => onChange('upper', e.target.checked)} />
-			<label htmlFor={`${id}-upper`}>{i18n.digitUppercase}</label><br />
-			<input type="checkbox" id={`${id}-remDash`} checked={data.remDash}
-				onChange={(e): void => onChange('remDash', e.target.checked)} />
-			<label htmlFor={`${id}-remDash`}>{i18n.removeDash}</label>
-		</>
+		return (
+			<div style={{ flex: '0 0 auto' }}>
+				<input type="checkbox" id={`${id}-upper`} checked={data.uppercaseDigit}
+					onChange={(e): void => onChange('uppercaseDigit', e.target.checked)} />
+				<label htmlFor={`${id}-upper`}>{i18n.digitUppercase}</label>
+			</div>
+		);
+	};
+
+	return (
+		<div style={{ display: 'flex', alignItems: 'center' }}>
+			<div style={{ flex: 1 }}>
+				<Dropdown
+					value={data.formatCode}
+					options={options}
+					onChange={({ value }: DropdownOption): any => onChange('formatCode', value)}
+				/>
+			</div>
+			{getUppercaseCheckbox()}
+		</div>
 	);
 };
 
