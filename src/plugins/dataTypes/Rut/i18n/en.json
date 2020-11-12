@@ -2,11 +2,6 @@
   "NAME": "Chilean RUT number",
   "DESC": "Generates a RUT/RUN Chilean National Identification Number.",
   "DEFAULT_TITLE": "rut",
-  "differentFormats": "Different formats",
-  "rutDefault": "Default",
-  "onlyNumber": "Only number",
   "onlyDigit": "Only verification digit",
-  "thousandsSeparator": "Thousands separator",
-  "digitUppercase": "Uppercase digit",
-  "removeDash": "Exclude dash"
+  "digitUppercase": "Uppercase digit"
 }
