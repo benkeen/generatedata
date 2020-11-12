@@ -21,7 +21,7 @@ export const Options = ({ i18n, id, data, onUpdate }: DTOptionsProps): JSX.Eleme
 		{ value: '12345678-9', label: '12345678-9' },
 		{ value: '12.345.678-9', label: '12.345.678-9' },
 		{ value: '123456789', label: '123456789' },
-		{ value: '12.345.678-9', label: '12.345.678-9' },
+		{ value: '12.345.6789', label: '12.345.6789' },
 		{ value: '12345678', label: '12345678' },
 		{ value: '12.345.678', label: '12.345.678' },
 		{ value: '9', label: `9 (${i18n.onlyDigit})` }
