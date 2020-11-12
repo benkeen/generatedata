@@ -17,26 +17,7 @@ export {};
 
 
 export const generate = (data: ETMessageData): DTGenerateResult => {
-	console.log(data);
-
-	/*
-	$rowRutInfo = array();
-	while (list($key, $info) = each($generationContextData["existingRowData"])) {
-		if ($info["dataTypeFolder"] == "Rut") {
-			$rowRutInfo = $info;
-			break;
-		}
-	}
-	reset($generationContextData["existingRowData"]);
-
-	if (!empty($rowRutInfo)) {
-        $rutn = $info["randomData"]["rut"];
-        $digit = $info["randomData"]["digit"];
-	} else {
-		$rutn = sprintf("%d%03d%03d", mt_rand(5, 50), mt_rand(0,999), mt_rand(0,999));
-        $digit = $this->getDigit($rutn);
-    }
-	*/
+	const { formatCode, remDash, thousandSep, upper } = data.rowState;
 
 	const { getRandomNum } = utils.randomUtils;
 	const rutNumber = `${getRandomNum(5, 50)}${getRandomNum(0, 999)}${getRandomNum(0,999)}`;
@@ -44,10 +25,9 @@ export const generate = (data: ETMessageData): DTGenerateResult => {
 
 	let display = "";
 
-	/*
-    if (strpos($options["formatCode"], "xxxxxxxx") !== false) {
-        if ($options["thousep"]) {
-            $display = number_format($rutn, 0, ",", ".");
+    if (formatCode.indexOf('xxxxxxxx') !== -1) {
+        if (thousandSep) {
+            display = utils.numberUtils.numberFormat(Number(rutNumber), 0, ",", ".");
         } else {
             $display = $rutn;
         }
@@ -78,12 +58,10 @@ export const generate = (data: ETMessageData): DTGenerateResult => {
 const getDigit = (rut: string) => {
 	const rutNumReversedChars = rut.split('').reverse();
 
-	let i, n;
-
-	// TODO old PHP code. Not verified when moved to JS
-	for (i = 0, n = 0;
-		 i<rutNumReversedChars.length;
-		 n += parseInt(rutNumReversedChars[i], 10) * (i % 6 + 2), i++);
+	let n = 0;
+	for (let i=0; i<rutNumReversedChars.length; i++) {
+		n += parseInt(rutNumReversedChars[i], 10) * (i % 6 + 2);
+	}
 
 	const digit = 11 - n % 11;
 

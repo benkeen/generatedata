@@ -1,12 +1,5 @@
 import * as sinon from 'sinon';
 import * as randomUtils from '../randomUtils';
-import { letters } from '../randomUtils';
-import { lowercaseLetters } from '../randomUtils';
-import { consonants } from '../randomUtils';
-import { lowercaseConsonants } from '../randomUtils';
-import { vowels } from '../randomUtils';
-import { lowercaseVowels } from '../randomUtils';
-import { hex } from '../randomUtils';
 
 describe('getRandomNum', () => {
     it('generates numbers in expected range #1', () => {
@@ -70,21 +63,17 @@ describe('generateRandomTextStr', () => {
 	});
 
 	it('generates a random word', () => {
-        sinon.stub(randomUtils, 'getRandomNum')
-			.onCall(0).returns(0);
-
-		expect(randomUtils.generateRandomTextStr(words, false, 1)).toEqual('two');
+        sinon.stub(randomUtils, 'getRandomNum').onCall(0).returns(0);
+		expect(randomUtils.generateRandomTextStr(words, false, 1)).toEqual('one');
 	});
 
 	it('generates another random word', () => {
-        sinon.stub(randomUtils, 'getRandomNum')
-			.onCall(0).returns(1);
-
-		expect(randomUtils.generateRandomTextStr(words, false, 1)).toEqual('three');
+        sinon.stub(randomUtils, 'getRandomNum').onCall(0).returns(1);
+		expect(randomUtils.generateRandomTextStr(words, false, 1)).toEqual('two');
 	});
 
-	it('generates two random words (has to be last 2)', () => {
-		expect(randomUtils.generateRandomTextStr(words, false, 2)).toEqual('two three');
+	it('generates two random words', () => {
+		expect(randomUtils.generateRandomTextStr(words, false, 2)).toEqual('one two');
 	});
 
 });
