@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
+import TextField from '~components/TextField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './Currency.scss';
 
@@ -97,15 +98,33 @@ const CurrencySettingsDialog = ({ visible, data, onClose, coreI18n, i18n }: any)
 	);
 };
 
-export const Options = ({ i18n, coreI18n, id, data }: DTOptionsProps): JSX.Element => {
+export const Options = ({ i18n, coreI18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
+
+	const onChange = (field: string, value: any) => {
+		onUpdate({
+			...data,
+			[field]: value
+		});
+	};
 
 	return (
 		<>
-			<input type="text" value={data.from} style={{ width: 80 }} />
+			<TextField
+				type="number"
+				value={data.from}
+				style={{ width: 80 }}
+				step="0.01"
+				onChange={(e: any): void => onChange('from', e.target.value)}
+			/>
 			<ArrowRightAlt />
-			<input type="text" value={data.to} style={{ width: 80, marginRight: 2 }} />
-
+			<TextField
+				type="number"
+				value={data.to}
+				style={{ width: 80, marginRight: 2 }}
+				step="0.01"
+				onChange={(e: any): void => onChange('to', e.target.value)}
+			/>
 			<Button
 				onClick={(): void => setDialogVisibility(true)}
 				variant="outlined"
