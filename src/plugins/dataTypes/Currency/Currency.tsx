@@ -42,7 +42,7 @@ export const Example = ({ i18n, data, onUpdate }: any): JSX.Element => {
 				{ value: '5000|10000|$|prefix||,|.', label: `$5,000 -> $10,000 (${i18n.noCents})` },
 				{ value: '1000.00|10000.00|$|prefix|true||.', label: `$1000.00 -> $10000.00 (${i18n.noThousandDelimiters})` },
 				{ value: '-100000.00|100000.00|$|prefix|true|,|.', label: '-$100,000.00 -> $100,000.00' },
-				{ value: '0.00|100.00||prefix|true|,|.', label: `0.01 -> 1.00 (${i18n.noDollarSign})` },
+				{ value: '0.01|1.00||prefix|true|,|.', label: `0.01 -> 1.00 (${i18n.noDollarSign})` },
 				{ value: '100.00|1000.00| $|suffix|true|.|,', label: '100,00 $ -> 1.000,00 $ (French Canadian)' },
 				{ value: '10|100000||prefix|| |.', label: '10 -> 100 000' }
 			]
@@ -179,7 +179,7 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate }: DTOptionsProps):
 				step={step}
 				onChange={(e: any): void => onChange('from', parseFloat(e.target.value).toFixed(2))}
 			/>
-			<ArrowRightAlt />
+			<ArrowRightAlt style={{ marginBottom: -4 }} />
 			<TextField
 				type="number"
 				value={data.to}
