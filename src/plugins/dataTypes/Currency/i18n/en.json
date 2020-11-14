@@ -3,10 +3,8 @@
   "DESC": "Generates a random currency value in whatever format and range you need.",
   "DEFAULT_TITLE": "currency",
   "helpIntro": "This data type generates random currency values in whatever format and range you want. The example dropdown contains several options so you can get a sense of how it works, but here's what each of the options means.",
-  "format": "Format",
-  "formatDesc": "The format field governs exactly how the money value should be formatted. <b>X</b>'s are converted into a number: all other values are left as-is.",
   "rangeFrom": "Range - From",
-  "rangeFromDesc": "Specifies the lower range of whatever values you want to generate. Note: this field should only contain numbers and (if you want) a decimal point and two following numbers to represent cents/pence/etc.",
+  "rangeFromDesc": "Specifies the lower range of whatever values you want to generate.",
   "rangeTo": "Range - To",
   "rangeToDesc": "The upper range of the numbers to generate.",
   "currencySymbol": "Currency Symbol",
@@ -19,8 +17,10 @@
   "to": "To",
   "prefix": "prefix",
   "suffix": "suffix",
-  "incompleteFields": "The Currency data type needs to have the format entered. Please fix the following rows:",
-  "invalidRangeFields": "Please only enter numbers in the Currency range fields (0-9 and decimal point). Please fix the following rows: ",
-  "invalidRange": "Please check the range goes from small to large. Please fix the following rows: ",
-  "noThousandDelimiters": "No thousands separator"
+  "noThousandDelimiters": "No thousands separator",
+  "separators": "Separators",
+  "separatorsDesc": "The separators field lets you customize the thousands and cents separator characters.",
+  "thousands": "thousands",
+  "cents": "cents",
+  "includeCents": "Include cents"
 }

@@ -1,31 +1,36 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
-import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './Currency.scss';
 
 export const initialState = {
-	example: 'XXX.XX|0.00|100.00|$|prefix',
-	format: 'XXX.XX',
+	example: '0.00|100.00|$|prefix',
 	from: '0.00',
 	to: '100.00',
 	currencySymbol: '$',
-	currencySymbolLocation: 'prefix'
+	currencySymbolLocation: 'prefix',
+	includeCents: true,
+	thousandsSeparator: ',',
+	centsSeparator: '.'
 };
 
-export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element => {
+export const Example = ({ i18n, data, onUpdate }: any): JSX.Element => {
 	const onChange = (i: any): void => {
-		const [format, from, to, currencySymbol, currencySymbolLocation] = i.value.split('|');
+		const [from, to, currencySymbol, currencySymbolLocation, includeCents, thousandsSeparator, centsSeparator] = i.value.split('|');
+
 		onUpdate({
 			example: i.value,
-			format,
 			from,
 			to,
 			currencySymbol,
-			currencySymbolLocation
+			currencySymbolLocation,
+			includeCents: includeCents === 'true',
+			thousandsSeparator,
+			centsSeparator
 		});
 	};
 
@@ -33,25 +38,26 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 		{
 			label: 'US/Canada',
 			options: [
-				{ value: 'XXX.XX|0.00|100.00|$|prefix', label: '$0.00 -> $100.00' },
-				{ value: 'XX,XXX|5000|10000|$|prefix', label: `$5,000 -> $10,000 (${i18n.noCents})` },
-				{ value: 'XXXXX.XX|1000.00|10000.00|$|prefix', label: `$1000.00 -> $10000.00 (${i18n.noThousandDelimiters})` },
-				{ value: 'XXX,XXX.XX|-100000.00|100000.00|$|prefix', label: '-$100,000.00 -> $100,000.00' },
-				{ value: 'X.XX|0.00|100.00||prefix', label: `0.01 -> 1.00 (${i18n.noDollarSign})` },
-				{ value: 'X.XXX.XXX,XX|100.00|1000.00|$|suffix', label: '100,00 $ -> 1.000,00 $ (French Canadian)' },
-				{ value: 'XXX XXX|10|100000||prefix', label: '10 -> 100 000' }
+				{ value: '0.00|100.00|$|prefix|true|,|.', label: '$0.00 -> $100.00' },
+				{ value: '5000|10000|$|prefix||,|.', label: `$5,000 -> $10,000 (${i18n.noCents})` },
+				{ value: '1000.00|10000.00|$|prefix|true||.', label: `$1000.00 -> $10000.00 (${i18n.noThousandDelimiters})` },
+				{ value: '-100000.00|100000.00|$|prefix|true|,|.', label: '-$100,000.00 -> $100,000.00' },
+				{ value: '0.00|100.00||prefix|true|,|.', label: `0.01 -> 1.00 (${i18n.noDollarSign})` },
+				{ value: '100.00|1000.00| $|suffix|true|.|,', label: '100,00 $ -> 1.000,00 $ (French Canadian)' },
+				{ value: '10|100000||prefix|| |.', label: '10 -> 100 000' }
 			]
 		},
 		{
 			label: 'UK',
 			options: [
-				{ value: 'XXX.XX|0.00|100.00|£|prefix', label: '£0.00 -> £100.00' }
+				{ value: '0.00|100.00|£|prefix|true|,|.', label: '£0.00 -> £100.00' },
+				{ value: '-100000.00|100000.00|£|prefix|true|,|.', label: '-£100.000.00 -> £100,000.00' }
 			]
 		},
 		{
 			label: 'Euro',
 			options: [
-				{ value: 'XXX,XXX|100000|200000|€|prefix', label: '€100,000 -> €200,000' }
+				{ value: '100000|200000|€|prefix||,|', label: '€100,000 -> €200,000' }
 			]
 		}
 	];
@@ -67,27 +73,81 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): JSX.Element =
 };
 
 
-const CurrencySettingsDialog = ({ visible, data, onClose, coreI18n, i18n }: any): JSX.Element => {
+const CurrencySettingsDialog = ({ id, visible, data, onUpdate, onClose, coreI18n, i18n }: any): JSX.Element => {
+	const onChange = (field: string, value: any): void => {
+		onUpdate({
+			...data,
+			[field]: value
+		});
+	};
+
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
 				<DialogTitle onClose={onClose}>Currency Settings</DialogTitle>
 				<DialogContent dividers>
-					<div>
-						{i18n.explanation}
+					<div style={{ marginBottom: 20 }}>
+						<h3>{coreI18n.example}</h3>
+						<Example
+							i18n={i18n}
+							data={data}
+							onUpdate={onUpdate}
+						/>
 					</div>
 
-					<div>
-						{i18n.currencySymbol}
-						<input type="text" value={data.currencySymbol} style={{ width: 20 }} />
-						<select defaultValue={data.currencySymbolLocation}>
-							<option value="prefix">{i18n.prefix}</option>
-							<option value="suffix">{i18n.suffix}</option>
-						</select>
-					</div>
+					<h3>{coreI18n.settings}</h3>
 
-					<div>
-						Format: <input type="text" value={data.format} style={{ width: 160 }} />
+					<div className={styles.row}>
+						<div className={styles.col1}>{i18n.currencySymbol}</div>
+						<div className={`${styles.col2} ${styles.currencyLine}`}>
+							<TextField
+								value={data.currencySymbol}
+								style={{ width: 30 }}
+								onChange={(e: any): void => onChange('currencySymbol', e.target.value)}
+							/>
+							<input
+								type="radio"
+								checked={data.currencySymbolLocation === 'prefix'}
+								name={`${id}-currencySymbolLocation`}
+								id={`${id}-currencySymbolLocation1`}
+								onChange={(): void => onChange('currencySymbolLocation', 'prefix')} />
+							<label htmlFor={`${id}-currencySymbolLocation1`}>Prefix</label>
+							<input
+								type="radio"
+								checked={data.currencySymbolLocation === 'suffix'}
+								name={`${id}-currencySymbolLocation`}
+								id={`${id}-currencySymbolLocation2`}
+								onChange={(): void => onChange('currencySymbolLocation', 'suffix')} />
+							<label htmlFor={`${id}-currencySymbolLocation2`}>Suffix</label>
+						</div>
+					</div>
+					<div className={styles.row}>
+						<div className={styles.col1}>Separators</div>
+						<div className={`${styles.col2} ${styles.separatorLine}`}>
+							{i18n.thousands}
+							<TextField
+								value={data.thousandsSeparator}
+								onChange={(e: any): void => onChange('thousandsSeparator', e.target.value)}
+								style={{ width: 30, marginRight: 20 }}
+							/>
+
+							{i18n.cents}
+							<TextField
+								value={data.centsSeparator}
+								onChange={(e: any): void => onChange('centsSeparator', e.target.value)}
+								style={{ width: 30 }}
+							/>
+						</div>
+					</div>
+					<div className={styles.row}>
+						<div className={styles.col1}>
+							<input
+								type="checkbox"
+								id={`${id}-includeCents`}
+								checked={data.includeCents}
+								onChange={(e: any): void => onChange('includeCents', e.target.checked)}/>
+							<label htmlFor={`${id}-includeCents`}>{i18n.includeCents}</label>
+						</div>
 					</div>
 				</DialogContent>
 				<DialogActions>
@@ -101,12 +161,14 @@ const CurrencySettingsDialog = ({ visible, data, onClose, coreI18n, i18n }: any)
 export const Options = ({ i18n, coreI18n, id, data, onUpdate }: DTOptionsProps): JSX.Element => {
 	const [dialogVisible, setDialogVisibility] = React.useState(false);
 
-	const onChange = (field: string, value: any) => {
+	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,
 			[field]: value
 		});
 	};
+
+	const step = data.includeCents ? 0.01 : 1;
 
 	return (
 		<>
@@ -114,29 +176,30 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate }: DTOptionsProps):
 				type="number"
 				value={data.from}
 				style={{ width: 80 }}
-				step="0.01"
-				onChange={(e: any): void => onChange('from', e.target.value)}
+				step={step}
+				onChange={(e: any): void => onChange('from', parseFloat(e.target.value).toFixed(2))}
 			/>
 			<ArrowRightAlt />
 			<TextField
 				type="number"
 				value={data.to}
 				style={{ width: 80, marginRight: 2 }}
-				step="0.01"
-				onChange={(e: any): void => onChange('to', e.target.value)}
+				step={step}
+				onChange={(e: any): void => onChange('to', parseFloat(e.target.value).toFixed(2))}
 			/>
 			<Button
 				onClick={(): void => setDialogVisibility(true)}
 				variant="outlined"
 				color="primary"
 				size="small">
-				<span dangerouslySetInnerHTML={{ __html: 'Settings' }} />
+				{coreI18n.settings}
 			</Button>
 
 			<CurrencySettingsDialog
 				visible={dialogVisible}
 				data={data}
 				id={id}
+				onUpdate={onUpdate}
 				i18n={i18n}
 				coreI18n={coreI18n}
 				onClose={(): void => setDialogVisibility(false)}
@@ -146,17 +209,11 @@ export const Options = ({ i18n, coreI18n, id, data, onUpdate }: DTOptionsProps):
 };
 
 export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
-	<>
+	<div className={styles.helpDialog}>
 		<p>
 			{i18n.helpIntro}
 		</p>
 
-		<div className={styles.row}>
-			<div className={styles.col1}>
-				<label>{i18n.format}</label>
-			</div>
-			<div className={styles.col2} dangerouslySetInnerHTML={{ __html: i18n.formatDesc }} />
-		</div>
 		<div className={styles.row}>
 			<div className={styles.col1}>
 				<label>{i18n.rangeFrom}</label>
@@ -181,7 +238,13 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 			</div>
 			<div className={styles.col2}>{i18n.prefixSuffixDesc}</div>
 		</div>
-	</>
+		<div className={styles.row}>
+			<div className={styles.col1}>
+				<label>{i18n.separators}</label>
+			</div>
+			<div className={styles.col2}>{i18n.separatorsDesc}</div>
+		</div>
+	</div>
 );
 
 export const getMetadata = (): DTMetadata => ({

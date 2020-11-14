@@ -21,4 +21,3 @@ const utils = {
 	stringUtils: { ...stringUtils },
 	numberUtils: { ...numberUtils }
 };
-

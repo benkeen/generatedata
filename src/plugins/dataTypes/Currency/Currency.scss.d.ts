@@ -3,7 +3,11 @@ declare namespace CurrencyScssNamespace {
     buttonLabel: string;
     col1: string;
     col2: string;
+    currencyLine: string;
+    helpDialog: string;
+    radioPill: string;
     row: string;
+    separatorLine: string;
   }
 }
 
