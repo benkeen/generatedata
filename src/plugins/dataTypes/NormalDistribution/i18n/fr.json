@@ -2,7 +2,6 @@
   "NAME": "Distribution Normale",
   "DESC": "Génère des valeurs aléatoires normalement distribuées avec un écart moyen et l'écart personnalisable .",
   "DEFAULT_TITLE": "champ",
-  "incompleteFields": "Les champs 'Moyenne' et 'Ecart type' sont nécessaires pour toutes les lignes de distribution normale. Corrigez les lignes suivantes:",
   "mean": "Moyenne",
   "standardDeviation": "Écart type",
   "precision": "Précision"

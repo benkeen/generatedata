@@ -4,6 +4,5 @@
   "DEFAULT_TITLE": "normaldist",
   "mean": "Mean",
   "standardDeviation": "Standard Dev.",
-  "precision": "Precision",
-  "incompleteFields": "The Mean and Sigma fields are required for all Normal Distribution rows. Please fix the following rows:"
+  "precision": "Precision"
 }

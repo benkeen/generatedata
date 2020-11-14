@@ -4,6 +4,5 @@
   "DEFAULT_TITLE": "campo",
   "mean": "Media",
   "standardDeviation": "Desviación estándar",
-  "incompleteFields": "Los campos Media y Sigma son obligatorios para todas las filas de Distribución normal. Por favor, corrija las siguientes filas:",
   "precision": "Precisión"
 }

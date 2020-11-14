@@ -21,7 +21,7 @@ export default {
 		"LatLng": "DT-LatLng.generator-e54a6ba6fdf1679297e01d8729131379.js",
 		"List": "DT-List.generator-fb40a2699f222571bfb5fd9a5c94c8f9.js",
 		"Names": "DT-Names.generator-e4d58d642288c8ca4b83bee05f206978.js",
-		"NormalDistribution": "DT-NormalDistribution.generator-68b329da9893e34099c7d8ad5cb9c940.js",
+		"NormalDistribution": "DT-NormalDistribution.generator-adbc977198013088e21d0c3ad5a62e7e.js",
 		"NumberRange": "DT-NumberRange.generator-057ed424452f4e991ebc399c615ae34c.js",
 		"OrganizationNumber": "DT-OrganizationNumber.generator-68b329da9893e34099c7d8ad5cb9c940.js",
 		"PAN": "DT-PAN.generator-68b329da9893e34099c7d8ad5cb9c940.js",

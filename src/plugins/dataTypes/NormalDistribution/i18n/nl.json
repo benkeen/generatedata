@@ -2,7 +2,6 @@
   "NAME": "Normaal Distributie",
   "DESC": "Toevalsgetallen normaal waarden met een aanpasbare gemiddelde en de standaarddeviatie .",
   "DEFAULT_TITLE": "veld",
-  "incompleteFields": "Les champs moyens et Sigma sont nécessaires pour toutes les lignes de distribution normale. S'il vous plaît corriger les lignes suivantes:",
   "mean": "Signifier",
   "standardDeviation": "Écart type",
   "precision": "Précision"
