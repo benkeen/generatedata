@@ -1,0 +1,13 @@
+version: "2"
+services:
+  node:
+    image: "node:12"
+    user: "node"
+    working_dir: /app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/app
+    expose:
+      - "8080"
+    command: "yarn docker"

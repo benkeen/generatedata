@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "grunt dev & yarn build & yarn webpack",
-    "prod": "grunt & yarn build & yarn webpackProd",
+    "prod": "grunt && yarn build && yarn webpackProd",
+    "docker": "grunt && yarn build && yarn webpackProd && node app.js",
     "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
     "build": "node ./build/build.js",
