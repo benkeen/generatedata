@@ -1,0 +1,127 @@
+{
+  "name": "rifm",
+  "version": "0.7.0",
+  "description": "Tiny react input formatter and mask",
+  "author": "istarkov",
+  "license": "MIT",
+  "main": "dist/rifm.cjs.js",
+  "module": "dist/rifm.esm.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build:code": "rollup -c",
+    "build:flow": "echo \"// @flow\n\nexport * from '../src'\" > dist/rifm.cjs.js.flow",
+    "build": "rimraf dist && npm run build:code && npm run build:flow",
+    "jest": "NODE_ICU_DATA=`yarn -s run node-full-icu-path` jest",
+    "test": "eslint ./ && flow check && yarn test:ts && yarn jest",
+    "test:ts": "tslint -p tsconfig.json",
+    "docz:build": "docz build",
+    "docz:dev": "docz dev",
+    "deploy:docz": "yarn docz:build && cp .docz/dist/index.html .docz/dist/404.html && gh-pages -d .docz/dist",
+    "precommit": "lint-staged",
+    "prepublishOnly": "yarn test && yarn build"
+  },
+  "lint-staged": {
+    "*.{js,md,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": 1,
+      "browser": 1,
+      "es6": 1,
+      "jest/globals": true
+    },
+    "parser": "babel-eslint",
+    "plugins": [
+      "react",
+      "flowtype",
+      "jsx-a11y",
+      "jest"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:flowtype/recommended",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "rules": {
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "warn",
+            "error",
+            "info"
+          ]
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@material-ui/core": "^1.3.1",
+    "alea": "^0.0.9",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.2.0",
+    "docz": "^0.13.7",
+    "docz-theme-default": "^0.13.7",
+    "dtslint": "^0.4.2",
+    "emotion": "^9.2.4",
+    "eslint": "^5.0.1",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-jest": "^21.22.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "flow-bin": "^0.93.0",
+    "full-icu": "^1.2.1",
+    "gh-pages": "^1.2.0",
+    "husky": "^0.14.3",
+    "jest": "^23.3.0",
+    "libphonenumber-js": "^1.2.15",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.10.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-powerplug": "^1.0.0-rc.1",
+    "react-test-renderer": "^16.8.2",
+    "rimraf": "^2.6.1",
+    "rollup": "^1.2.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-size-snapshot": "^0.8.0",
+    "rollup-plugin-terser": "^4.0.4",
+    "string-mask": "^0.3.0",
+    "tslint": "^5.12.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/istarkov/rifm.git"
+  },
+  "resolutions": {
+    "react": "~16.8.0",
+    "react-dom": "~16.8.0"
+  },
+  "typings": "./src/index.d.ts"
+}

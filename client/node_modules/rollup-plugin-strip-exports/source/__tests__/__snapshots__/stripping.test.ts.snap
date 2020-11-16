@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`all-from 1`] = `
+"
+"
+`;
+
+exports[`as 1`] = `
+"const test = 'string';
+"
+`;
+
+exports[`class 1`] = `
+"class Cat {
+  constructor() {}
+}
+"
+`;
+
+exports[`decleration 1`] = `
+"const test = 'string';
+"
+`;
+
+exports[`default-as 1`] = `
+"
+"
+`;
+
+exports[`default-class 1`] = `
+"class Dog {
+  constructor() {}
+}
+"
+`;
+
+exports[`default-class-instance 1`] = `
+"class Iguana {
+  constructor() {}
+}
+
+new Iguana();
+"
+`;
+
+exports[`default-const 1`] = `
+"const value = 'string';
+"
+`;
+
+exports[`default-function 1`] = `
+"function name(x) {
+  return x;
+}
+"
+`;
+
+exports[`default-literal 1`] = `
+"
+"
+`;
+
+exports[`default-named 1`] = `
+"const test = 'string';
+const test1 = 5;
+const test3 = false;
+const test4 = undefined;
+const test5 = new Symbol('duck');
+
+foo => {
+  console.log(foo + 'bar');
+};
+"
+`;
+
+exports[`multiple-named 1`] = `
+"const test = 'string';
+
+function test1() {
+  return 'string';
+}
+
+let inline = () => false;
+"
+`;

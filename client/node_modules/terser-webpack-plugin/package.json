@@ -1,0 +1,99 @@
+{
+  "name": "terser-webpack-plugin",
+  "version": "3.1.0",
+  "description": "Terser plugin for webpack",
+  "license": "MIT",
+  "repository": "webpack-contrib/terser-webpack-plugin",
+  "author": "webpack Contrib Team",
+  "homepage": "https://github.com/webpack-contrib/terser-webpack-plugin",
+  "bugs": "https://github.com/webpack-contrib/terser-webpack-plugin/issues",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/webpack"
+  },
+  "main": "dist/cjs.js",
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "scripts": {
+    "start": "npm run build -- -w",
+    "clean": "del-cli dist",
+    "prebuild": "npm run clean",
+    "build": "cross-env NODE_ENV=production babel src -d dist --copy-files",
+    "commitlint": "commitlint --from=master",
+    "security": "npm audit",
+    "lint:prettier": "prettier --list-different .",
+    "lint:js": "eslint --cache .",
+    "lint": "npm-run-all -l -p \"lint:**\"",
+    "test:only": "cross-env NODE_ENV=test jest",
+    "test:watch": "npm run test:only -- --watch",
+    "test:coverage": "npm run test:only -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
+    "pretest": "npm run lint",
+    "test": "npm run test:coverage",
+    "prepare": "npm run build",
+    "release": "standard-version",
+    "defaults": "webpack-defaults"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "webpack": "^4.0.0 || ^5.0.0"
+  },
+  "dependencies": {
+    "cacache": "^15.0.5",
+    "find-cache-dir": "^3.3.1",
+    "jest-worker": "^26.2.1",
+    "p-limit": "^3.0.2",
+    "schema-utils": "^2.6.6",
+    "serialize-javascript": "^4.0.0",
+    "source-map": "^0.6.1",
+    "terser": "^4.8.0",
+    "webpack-sources": "^1.4.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.1",
+    "@webpack-contrib/defaults": "^6.3.0",
+    "@webpack-contrib/eslint-config-webpack": "^3.0.0",
+    "babel-jest": "^26.2.1",
+    "copy-webpack-plugin": "^6.0.3",
+    "cross-env": "^7.0.2",
+    "del": "^5.1.0",
+    "del-cli": "^3.0.1",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "file-loader": "^6.0.0",
+    "husky": "^4.2.5",
+    "jest": "^26.2.1",
+    "lint-staged": "^10.2.11",
+    "memfs": "^3.2.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "standard-version": "^8.0.2",
+    "uglify-js": "^3.10.0",
+    "webpack": "^4.44.1",
+    "worker-loader": "^3.0.0"
+  },
+  "keywords": [
+    "uglify",
+    "uglify-js",
+    "uglify-es",
+    "terser",
+    "webpack",
+    "webpack-plugin",
+    "minification",
+    "compress",
+    "compressor",
+    "min",
+    "minification",
+    "minifier",
+    "minify",
+    "optimize",
+    "optimizer"
+  ]
+}

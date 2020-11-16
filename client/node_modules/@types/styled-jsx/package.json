@@ -1,0 +1,25 @@
+{
+    "name": "@types/styled-jsx",
+    "version": "2.2.8",
+    "description": "TypeScript definitions for styled-jsx",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "R1ZZU",
+            "url": "https://github.com/R1ZZU",
+            "githubUsername": "R1ZZU"
+        }
+    ],
+    "main": "",
+    "types": "index",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/react": "*"
+    },
+    "typesPublisherContentHash": "a09d2b723118a1325dea400d3489a3cc4ee36bf7d77ef08e086d9a5b0b4a770d",
+    "typeScriptVersion": "2.8"
+}

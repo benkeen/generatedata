@@ -1,0 +1,20 @@
+newPath:test/fixtures/output/after/test-849e27d0aa28588b7679e0b2a84035f9.js
+oldPath:test/fixtures/test.js
+content:// Only for testing
+
+newPath:test/fixtures/output/after/test2-92b02606afa9aa2a8cd9fb8e11d29045.js
+oldPath:test/fixtures/test2.js
+content:// Only for testing (test2.js)
+
+newPath:test/fixtures/output/after/js/file1-d41d8cd98f00b204e9800998ecf8427e.js
+oldPath:test/fixtures/expand/file1.js
+content:
+newPath:test/fixtures/output/after/js/file2-d41d8cd98f00b204e9800998ecf8427e.js
+oldPath:test/fixtures/expand/file2.js
+content:
+newPath:test/fixtures/output/after/css/file3-d41d8cd98f00b204e9800998ecf8427e.css
+oldPath:test/fixtures/expand/file3.css
+content:
+newPath:test/fixtures/output/after/css/file4-d41d8cd98f00b204e9800998ecf8427e.css
+oldPath:test/fixtures/expand/file4.css
+content:

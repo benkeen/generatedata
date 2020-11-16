@@ -1,0 +1,31 @@
+{
+  "name": "webpack-manifest-plugin",
+  "version": "1.1.0",
+  "description": "webpack plugin for generating asset manifests",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine"
+  },
+  "author": "Dane Thurber <dane.thurber@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^0.9.1",
+    "extract-text-webpack-plugin": "^0.5.0",
+    "jasmine": "^2.2.1",
+    "memory-fs": "^0.2.0",
+    "style-loader": "^0.8.3",
+    "webpack": "^1.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danethurber/webpack-manifest-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danethurber/webpack-manifest-plugin/issues"
+  },
+  "homepage": "https://github.com/danethurber/webpack-manifest-plugin",
+  "dependencies": {
+    "fs-extra": "^0.30.0",
+    "lodash": ">=3.5 <5"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "noEmit": false,
+    "resolveJsonModule": false,
+    "outDir": "./build/",
+    "rootDir": "source",
+    "declaration": true
+  },
+  "include": ["source"],
+  "exclude": ["**/__mocks__", "**/__tests__"]
+}

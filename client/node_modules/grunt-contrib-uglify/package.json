@@ -1,0 +1,38 @@
+{
+  "name": "grunt-contrib-uglify",
+  "description": "Minify JavaScript files with UglifyJS",
+  "version": "4.0.1",
+  "author": {
+    "name": "Grunt Team",
+    "url": "https://gruntjs.com/"
+  },
+  "repository": "gruntjs/grunt-contrib-uglify",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6"
+  },
+  "main": "tasks/uglify.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "maxmin": "^2.1.0",
+    "uglify-js": "^3.5.0",
+    "uri-path": "^1.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-internal": "^3.1.0",
+    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-contrib-nodeunit": "^2.0.0"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "files": [
+    "tasks"
+  ],
+  "appveyor_id": "ybtf5vbvtenii561"
+}

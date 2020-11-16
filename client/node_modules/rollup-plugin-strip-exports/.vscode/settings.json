@@ -1,0 +1,22 @@
+{
+  "search.exclude": {
+    "node_modules/**/*": true
+  },
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true
+  },
+  "eslint.options": {
+    "extensions": [".ts"]
+  },
+  "eslint.validate": ["typescript"],
+  "typescript.tsdk": "./node_modules/typescript/lib"
+}

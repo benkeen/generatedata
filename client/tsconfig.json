@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": ["es6", "dom", "esnext", "webworker"],
+    "outDir": "./dist/",
+	"sourceMap": true,
+	"esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es6",
+	"jsx": "react",
+	"allowSyntheticDefaultImports": true,
+	"removeComments": false,
+    "baseUrl": "",
+    "paths": {
+      "~components/*": ["src/components/*"],
+      "~utils/*": ["src/utils/*"],
+      "~types/*": ["types/*"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "max-len": [2, 120],
+    "react/jsx-filename-extension": 0
+  },
+  "settings": {
+    "import/resolve": {
+      "moduleDirectory": ["node_modules"]
+    }
+  }
+}

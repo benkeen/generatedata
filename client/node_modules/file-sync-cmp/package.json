@@ -1,0 +1,32 @@
+{
+  "name": "file-sync-cmp",
+  "version": "0.1.1",
+  "description": "Synchronous file comparison",
+  "main": "index.js",
+  "homepage": "https://github.com/mgeisler/file-sync-cmp/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgeisler/file-sync-cmp.git"
+  },
+  "keywords": [
+    "comparison"
+  ],
+  "author": {
+    "name": "Martin Geisler",
+    "email": "martin@geisler.net",
+    "url": "http://geisler.net/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mgeisler/file-sync-cmp/issues"
+  },
+  "devDependencies": {
+    "eslint": "0.10.1",
+    "mocha": "2.0.1",
+    "q": "1.1.2",
+    "tmp": "0.0.24"
+  },
+  "scripts": {
+    "test": "eslint . && mocha"
+  }
+}

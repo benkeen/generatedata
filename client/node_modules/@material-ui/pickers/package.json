@@ -1,0 +1,70 @@
+{
+  "name": "@material-ui/pickers",
+  "version": "3.2.10",
+  "private": false,
+  "description": "React components, that implements material design pickers for material-ui v4",
+  "keywords": [
+    "material-ui",
+    "pickers",
+    "@material-ui/pickers",
+    "datepicker",
+    "timepicker",
+    "date-picker",
+    "time-picker",
+    "react",
+    "react-component",
+    "material design"
+  ],
+  "sideEffects": false,
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui-pickers/issues"
+  },
+  "homepage": "https://material-ui-pickers.dev/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui-pickers"
+  },
+  "author": {
+    "name": "Dmitriy Kovalenko",
+    "email": "dmtr.kovalenko@outlook.com"
+  },
+  "peerDependencies": {
+    "@date-io/core": "^1.3.6",
+    "@material-ui/core": "^4.0.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.6.0",
+    "@date-io/core": "1.x",
+    "@types/styled-jsx": "^2.2.8",
+    "clsx": "^1.0.2",
+    "react-transition-group": "^4.0.0",
+    "rifm": "^0.7.0"
+  },
+  "size-limit": [
+    {
+      "path": "build/dist/@material-ui/pickers.esm.js",
+      "limit": "30 KB"
+    }
+  ],
+  "scripts": {
+    "test": "jest",
+    "test:date-fns": "UTILS=date-fns npm run test",
+    "test:luxon": "UTILS=luxon npm run test",
+    "test:moment": "UTILS=moment npm run test",
+    "start": "rollup --config rollup.config.dev.js --watch & npx tsc --watch",
+    "prebuild": "rimraf build",
+    "build:copy": "node copy.js",
+    "build:bundle": "rollup --config",
+    "build:typescript": "tsc --project tsconfig.json",
+    "build": "npm run build:typescript && npm run build:bundle && npm run build:copy",
+    "build:analyze": "npm run build",
+    "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive build"
+  },
+  "main": "./dist/material-ui-pickers.js",
+  "module": "./esm/index.js",
+  "typings": "./index.d.ts"
+}

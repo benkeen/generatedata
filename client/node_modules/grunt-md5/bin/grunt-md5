@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+require('grunt').npmTasks('grunt-md5').cli();
+
