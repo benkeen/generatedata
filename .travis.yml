@@ -3,7 +3,7 @@ node_js:
   - 12
 
 install:
-  - nvm install 10.18.0
+  - nvm install 12
   - yarn install
 
 before_script:

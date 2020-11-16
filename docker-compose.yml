@@ -1,12 +1,30 @@
 version: "3"
 services:
-  generatedata:
-    context: ./client # added
-    build: ..
+  webapp:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
+    container_name: webapp
     volumes:
-      - .:/home/app/generatedata
-      - /home/app/generatedata/node_modules
+      - ./client:/home/app/generatedata/client
+      - /home/app/generatedata/client/node_modules
   server:
-    context: ./client # added
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3001:3001'
+    restart: on-failure
+    container_name: server
+    volumes:
+      - ./server:/home/app/generatedata/server
+      - /home/app/generatedata/server/node_modules
+    ## this may be useful
+    environment:
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=
+      - PGPORT=5432
