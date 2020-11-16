@@ -388,9 +388,9 @@ window.gd.localeLoaded(i18n);
 	grunt.loadNpmTasks('grunt-md5');
 
 	grunt.registerTask('sortI18nFiles', sortI18nFiles);
-	grunt.registerTask('default', ['cssmin', 'copy', 'i18n', 'webWorkers']);
+	grunt.registerTask('default', ['cssmin', 'copy', 'i18n']); // 'webWorkers'
 	grunt.registerTask('dev', ['cssmin', 'copy', 'i18n', 'webWorkers', 'watch']);
-	grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
+	// grunt.registerTask('prod', ['clean:dist', 'build', 'shell:webpackProd']);
 	grunt.registerTask('generateWorkerMapFile', generateWorkerMapFile);
 	grunt.registerTask('i18n', generateI18nBundles);
 	grunt.registerTask('validateI18n', validateI18n);

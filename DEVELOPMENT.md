@@ -57,3 +57,22 @@ Validation function:
 
 - titles, headings: capitalize every letter
 - tooltips: sentence case, no ending period
+
+
+## Docker Notes
+
+Q: how to organize docker for local dev, prod, checkouts & still allow custom npm package builds for people to use
+the script via node? 
+
+Current thoughts:
+- _definitely_ want separate containers for nginx & the database
+- _probably_ want a container for the web app for easy prod builds + distributing a complete package.
+- how will local dev work? Copy the files into a container...? Seems pretty complicated. Seems like for local dev it
+may be acceptable to just requie
+
+- not sure how we'll tie in the additional code for the prod website and how that relates to docker. It'll need new
+FE code as well as extra DB code. 
+- need selenium tests. For that, having the whole docker setup will be invaluable. 
+
+For starters I think just getting containers up for the db + nginx.
+

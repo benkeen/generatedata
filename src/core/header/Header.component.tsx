@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import CheckBox from '@material-ui/icons/Checkbox';
+import CheckBox from '@material-ui/icons/CheckBox';
 import Delete from '@material-ui/icons/Delete';
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import SwapHoriz from '@material-ui/icons/SwapHoriz';
