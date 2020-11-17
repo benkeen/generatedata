@@ -5,7 +5,10 @@ const TerserPlugin = require('terser-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = (env, argv) => {
+
+	// TODO not working with package.json commands
 	const mode = argv.mode === 'production' ? 'production' : 'development';
+
 
 	var config = {
 		mode,
@@ -86,15 +89,16 @@ module.exports = (env, argv) => {
 		devtool: (mode === 'development') ? 'source-map' : false
 	};
 
-	if (argv.mode === 'development') {
+	if (mode === 'development') {
 		config.devServer = {
 			contentBase: path.join(__dirname, 'dist'),
+			host: '0.0.0.0',
 			port: 9000,
 			open: true
 		};
 	}
 
-	if (argv.mode === 'production') {
+	if (mode === 'production') {
 		config.optimization.minimizer = [
 			new TerserPlugin()
 		];

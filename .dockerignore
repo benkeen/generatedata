@@ -3,8 +3,7 @@ Dockerfile.dev
 .dockerignore
 .gitignore
 README.md
-dist
 server/node_modules
-client/node_modules
 client/dist
+client/node_modules
 node_modules

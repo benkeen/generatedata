@@ -7,5 +7,3 @@ COPY package.json yarn.lock $HOME/client/
 RUN yarn install --network-timeout 100000 && npm install -g grunt-cli
 COPY . $HOME/client/
 RUN yarn dockerBuild
-
-CMD ["yarn", "start"]

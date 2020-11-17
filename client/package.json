@@ -7,10 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "grunt dev & yarn build & yarn webpack",
+    "start": "grunt dev & yarn build & yarn webpackDev",
     "prod": "grunt && yarn build && yarn webpackProd",
     "dockerBuild": "grunt && yarn build",
-    "webpack": "webpack --config ./webpack.config.js --mode=development serve",
+    "webpackDev": "webpack --config ./webpack.config.js --mode=development serve",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
     "build": "node ./build/build.js",
     "test": "env NODE_ENV=test jest"
