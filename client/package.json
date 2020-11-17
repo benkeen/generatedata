@@ -10,7 +10,7 @@
     "start": "grunt dev & yarn build & yarn webpack",
     "prod": "grunt && yarn build && yarn webpackProd",
     "dockerBuild": "grunt && yarn build",
-    "webpack": "webpack --config ./webpack.config.js --mode=development --watch",
+    "webpack": "webpack --config ./webpack.config.js --mode=development serve",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
     "build": "node ./build/build.js",
     "test": "env NODE_ENV=test jest"
@@ -159,8 +159,9 @@
     "typescript": "^3.7.3",
     "use-onclickoutside": "^0.3.1",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^4.2.0",
     "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.11.0",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-manifest-plugin": "1.1.0"
   }

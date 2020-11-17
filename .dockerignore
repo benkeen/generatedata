@@ -1,6 +1,10 @@
 Dockerfile
+Dockerfile.dev
 .dockerignore
 .gitignore
 README.md
 dist
+server/node_modules
+client/node_modules
+client/dist
 node_modules

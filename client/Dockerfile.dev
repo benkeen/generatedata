@@ -1,11 +1,11 @@
 FROM node:12-alpine AS alpine
 
-ENV HOME=/home/app
+ENV HOME=/home/app/generatedata
 
-WORKDIR $HOME/generatedata
-COPY package.json yarn.lock $HOME/generatedata/
+WORKDIR $HOME/client
+COPY package.json yarn.lock $HOME/client/
 RUN yarn install --network-timeout 100000 && npm install -g grunt-cli
-COPY .. $HOME/generatedata
+COPY . $HOME/client/
 RUN yarn dockerBuild
 
-CMD ["node", "app.js"]
+CMD ["yarn", "start"]

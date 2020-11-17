@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save resolve-cwd
+$ npm install resolve-cwd
 ```
 
 
@@ -21,7 +21,7 @@ console.log(__dirname);
 console.log(process.cwd());
 //=> '/Users/sindresorhus/unicorn'
 
-resolveCwd('./foo');
+console.log(resolveCwd('./foo'));
 //=> '/Users/sindresorhus/unicorn/foo.js'
 ```
 
@@ -34,7 +34,7 @@ Like `require()`, throws when the module can't be found.
 
 ### resolveCwd.silent(moduleId)
 
-Returns `null` instead of throwing when the module can't be found.
+Returns `undefined` instead of throwing when the module can't be found.
 
 #### moduleId
 
@@ -46,10 +46,11 @@ What you would use in `require()`.
 ## Related
 
 - [resolve-from](https://github.com/sindresorhus/resolve-from) - Resolve the path of a module from a given path
-- [req-from](https://github.com/sindresorhus/req-from) - Require a module from a given path
-- [req-cwd](https://github.com/sindresorhus/req-cwd) - Require a module from the current working directory
+- [import-from](https://github.com/sindresorhus/import-from) - Import a module from a given path
+- [import-cwd](https://github.com/sindresorhus/import-cwd) - Import a module from the current working directory
 - [resolve-pkg](https://github.com/sindresorhus/resolve-pkg) - Resolve the path of a package regardless of it having an entry point
-- [lazy-req](https://github.com/sindresorhus/lazy-req) - Require modules lazily
+- [import-lazy](https://github.com/sindresorhus/import-lazy) - Import a module lazily
+- [resolve-global](https://github.com/sindresorhus/resolve-global) - Resolve the path of a globally installed module
 
 
 ## License

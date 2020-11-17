@@ -4,11 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
-// var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 module.exports = (env, argv) => {
-
-	// juuuuust to make it really explicit & prevent unrecognized modes sneaking in
 	const mode = argv.mode === 'production' ? 'production' : 'development';
 
 	var config = {
@@ -89,6 +85,14 @@ module.exports = (env, argv) => {
 
 		devtool: (mode === 'development') ? 'source-map' : false
 	};
+
+	if (argv.mode === 'development') {
+		config.devServer = {
+			contentBase: path.join(__dirname, 'dist'),
+			port: 9000,
+			open: true
+		};
+	}
 
 	if (argv.mode === 'production') {
 		config.optimization.minimizer = [

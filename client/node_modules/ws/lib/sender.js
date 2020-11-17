@@ -1,11 +1,11 @@
 'use strict';
 
-const crypto = require('crypto');
+const { randomBytes } = require('crypto');
 
 const PerMessageDeflate = require('./permessage-deflate');
-const bufferUtil = require('./buffer-util');
-const validation = require('./validation');
-const constants = require('./constants');
+const { EMPTY_BUFFER } = require('./constants');
+const { isValidStatusCode } = require('./validation');
+const { mask: applyMask, toBuffer } = require('./buffer-util');
 
 /**
  * HyBi Sender implementation.
@@ -17,7 +17,7 @@ class Sender {
    * @param {net.Socket} socket The connection socket
    * @param {Object} extensions An object containing the negotiated extensions
    */
-  constructor (socket, extensions) {
+  constructor(socket, extensions) {
     this._extensions = extensions || {};
     this._socket = socket;
 
@@ -42,8 +42,8 @@ class Sender {
    * @return {Buffer[]} The framed data as a list of `Buffer` instances
    * @public
    */
-  static frame (data, options) {
-    const merge = data.length < 1024 || (options.mask && options.readOnly);
+  static frame(data, options) {
+    const merge = options.mask && options.readOnly;
     var offset = options.mask ? 6 : 2;
     var payloadLength = data.length;
 
@@ -60,6 +60,8 @@ class Sender {
     target[0] = options.fin ? options.opcode | 0x80 : options.opcode;
     if (options.rsv1) target[0] |= 0x40;
 
+    target[1] = payloadLength;
+
     if (payloadLength === 126) {
       target.writeUInt16BE(data.length, 2);
     } else if (payloadLength === 127) {
@@ -67,30 +69,22 @@ class Sender {
       target.writeUInt32BE(data.length, 6);
     }
 
-    if (!options.mask) {
-      target[1] = payloadLength;
-      if (merge) {
-        data.copy(target, offset);
-        return [target];
-      }
+    if (!options.mask) return [target, data];
 
-      return [target, data];
-    }
+    const mask = randomBytes(4);
 
-    const mask = crypto.randomBytes(4);
-
-    target[1] = payloadLength | 0x80;
+    target[1] |= 0x80;
     target[offset - 4] = mask[0];
     target[offset - 3] = mask[1];
     target[offset - 2] = mask[2];
     target[offset - 1] = mask[3];
 
     if (merge) {
-      bufferUtil.mask(data, mask, target, offset, data.length);
+      applyMask(data, mask, target, offset, data.length);
       return [target];
     }
 
-    bufferUtil.mask(data, mask, data, 0, data.length);
+    applyMask(data, mask, data, 0, data.length);
     return [target, data];
   }
 
@@ -103,12 +97,12 @@ class Sender {
    * @param {Function} cb Callback
    * @public
    */
-  close (code, data, mask, cb) {
+  close(code, data, mask, cb) {
     var buf;
 
     if (code === undefined) {
-      buf = constants.EMPTY_BUFFER;
-    } else if (typeof code !== 'number' || !validation.isValidStatusCode(code)) {
+      buf = EMPTY_BUFFER;
+    } else if (typeof code !== 'number' || !isValidStatusCode(code)) {
       throw new TypeError('First argument must be a valid error code number');
     } else if (data === undefined || data === '') {
       buf = Buffer.allocUnsafe(2);
@@ -134,14 +128,17 @@ class Sender {
    * @param {Function} cb Callback
    * @private
    */
-  doClose (data, mask, cb) {
-    this.sendFrame(Sender.frame(data, {
-      fin: true,
-      rsv1: false,
-      opcode: 0x08,
-      mask,
-      readOnly: false
-    }), cb);
+  doClose(data, mask, cb) {
+    this.sendFrame(
+      Sender.frame(data, {
+        fin: true,
+        rsv1: false,
+        opcode: 0x08,
+        mask,
+        readOnly: false
+      }),
+      cb
+    );
   }
 
   /**
@@ -152,24 +149,13 @@ class Sender {
    * @param {Function} cb Callback
    * @public
    */
-  ping (data, mask, cb) {
-    var readOnly = true;
-
-    if (!Buffer.isBuffer(data)) {
-      if (data instanceof ArrayBuffer) {
-        data = Buffer.from(data);
-      } else if (ArrayBuffer.isView(data)) {
-        data = viewToBuffer(data);
-      } else {
-        data = Buffer.from(data);
-        readOnly = false;
-      }
-    }
+  ping(data, mask, cb) {
+    const buf = toBuffer(data);
 
     if (this._deflating) {
-      this.enqueue([this.doPing, data, mask, readOnly, cb]);
+      this.enqueue([this.doPing, buf, mask, toBuffer.readOnly, cb]);
     } else {
-      this.doPing(data, mask, readOnly, cb);
+      this.doPing(buf, mask, toBuffer.readOnly, cb);
     }
   }
 
@@ -182,14 +168,17 @@ class Sender {
    * @param {Function} cb Callback
    * @private
    */
-  doPing (data, mask, readOnly, cb) {
-    this.sendFrame(Sender.frame(data, {
-      fin: true,
-      rsv1: false,
-      opcode: 0x09,
-      mask,
-      readOnly
-    }), cb);
+  doPing(data, mask, readOnly, cb) {
+    this.sendFrame(
+      Sender.frame(data, {
+        fin: true,
+        rsv1: false,
+        opcode: 0x09,
+        mask,
+        readOnly
+      }),
+      cb
+    );
   }
 
   /**
@@ -200,24 +189,13 @@ class Sender {
    * @param {Function} cb Callback
    * @public
    */
-  pong (data, mask, cb) {
-    var readOnly = true;
-
-    if (!Buffer.isBuffer(data)) {
-      if (data instanceof ArrayBuffer) {
-        data = Buffer.from(data);
-      } else if (ArrayBuffer.isView(data)) {
-        data = viewToBuffer(data);
-      } else {
-        data = Buffer.from(data);
-        readOnly = false;
-      }
-    }
+  pong(data, mask, cb) {
+    const buf = toBuffer(data);
 
     if (this._deflating) {
-      this.enqueue([this.doPong, data, mask, readOnly, cb]);
+      this.enqueue([this.doPong, buf, mask, toBuffer.readOnly, cb]);
     } else {
-      this.doPong(data, mask, readOnly, cb);
+      this.doPong(buf, mask, toBuffer.readOnly, cb);
     }
   }
 
@@ -230,14 +208,17 @@ class Sender {
    * @param {Function} cb Callback
    * @private
    */
-  doPong (data, mask, readOnly, cb) {
-    this.sendFrame(Sender.frame(data, {
-      fin: true,
-      rsv1: false,
-      opcode: 0x0a,
-      mask,
-      readOnly
-    }), cb);
+  doPong(data, mask, readOnly, cb) {
+    this.sendFrame(
+      Sender.frame(data, {
+        fin: true,
+        rsv1: false,
+        opcode: 0x0a,
+        mask,
+        readOnly
+      }),
+      cb
+    );
   }
 
   /**
@@ -252,28 +233,16 @@ class Sender {
    * @param {Function} cb Callback
    * @public
    */
-  send (data, options, cb) {
+  send(data, options, cb) {
+    const buf = toBuffer(data);
+    const perMessageDeflate = this._extensions[PerMessageDeflate.extensionName];
     var opcode = options.binary ? 2 : 1;
     var rsv1 = options.compress;
-    var readOnly = true;
-
-    if (!Buffer.isBuffer(data)) {
-      if (data instanceof ArrayBuffer) {
-        data = Buffer.from(data);
-      } else if (ArrayBuffer.isView(data)) {
-        data = viewToBuffer(data);
-      } else {
-        data = Buffer.from(data);
-        readOnly = false;
-      }
-    }
-
-    const perMessageDeflate = this._extensions[PerMessageDeflate.extensionName];
 
     if (this._firstFragment) {
       this._firstFragment = false;
       if (rsv1 && perMessageDeflate) {
-        rsv1 = data.length >= perMessageDeflate._threshold;
+        rsv1 = buf.length >= perMessageDeflate._threshold;
       }
       this._compress = rsv1;
     } else {
@@ -289,22 +258,25 @@ class Sender {
         rsv1,
         opcode,
         mask: options.mask,
-        readOnly
+        readOnly: toBuffer.readOnly
       };
 
       if (this._deflating) {
-        this.enqueue([this.dispatch, data, this._compress, opts, cb]);
+        this.enqueue([this.dispatch, buf, this._compress, opts, cb]);
       } else {
-        this.dispatch(data, this._compress, opts, cb);
+        this.dispatch(buf, this._compress, opts, cb);
       }
     } else {
-      this.sendFrame(Sender.frame(data, {
-        fin: options.fin,
-        rsv1: false,
-        opcode,
-        mask: options.mask,
-        readOnly
-      }), cb);
+      this.sendFrame(
+        Sender.frame(buf, {
+          fin: options.fin,
+          rsv1: false,
+          opcode,
+          mask: options.mask,
+          readOnly: toBuffer.readOnly
+        }),
+        cb
+      );
     }
   }
 
@@ -322,7 +294,7 @@ class Sender {
    * @param {Function} cb Callback
    * @private
    */
-  dispatch (data, compress, options, cb) {
+  dispatch(data, compress, options, cb) {
     if (!compress) {
       this.sendFrame(Sender.frame(data, options), cb);
       return;
@@ -332,9 +304,9 @@ class Sender {
 
     this._deflating = true;
     perMessageDeflate.compress(data, options.fin, (_, buf) => {
+      this._deflating = false;
       options.readOnly = false;
       this.sendFrame(Sender.frame(buf, options), cb);
-      this._deflating = false;
       this.dequeue();
     });
   }
@@ -344,7 +316,7 @@ class Sender {
    *
    * @private
    */
-  dequeue () {
+  dequeue() {
     while (!this._deflating && this._queue.length) {
       const params = this._queue.shift();
 
@@ -359,7 +331,7 @@ class Sender {
    * @param {Array} params Send operation parameters.
    * @private
    */
-  enqueue (params) {
+  enqueue(params) {
     this._bufferedBytes += params[1].length;
     this._queue.push(params);
   }
@@ -371,10 +343,12 @@ class Sender {
    * @param {Function} cb Callback
    * @private
    */
-  sendFrame (list, cb) {
+  sendFrame(list, cb) {
     if (list.length === 2) {
+      this._socket.cork();
       this._socket.write(list[0]);
       this._socket.write(list[1], cb);
+      this._socket.uncork();
     } else {
       this._socket.write(list[0], cb);
     }
@@ -382,20 +356,3 @@ class Sender {
 }
 
 module.exports = Sender;
-
-/**
- * Converts an `ArrayBuffer` view into a buffer.
- *
- * @param {(DataView|TypedArray)} view The view to convert
- * @return {Buffer} Converted view
- * @private
- */
-function viewToBuffer (view) {
-  const buf = Buffer.from(view.buffer);
-
-  if (view.byteLength !== view.buffer.byteLength) {
-    return buf.slice(view.byteOffset, view.byteOffset + view.byteLength);
-  }
-
-  return buf;
-}

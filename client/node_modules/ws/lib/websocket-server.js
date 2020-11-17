@@ -3,12 +3,13 @@
 const EventEmitter = require('events');
 const crypto = require('crypto');
 const http = require('http');
-const url = require('url');
 
 const PerMessageDeflate = require('./permessage-deflate');
 const extension = require('./extension');
-const constants = require('./constants');
 const WebSocket = require('./websocket');
+const { GUID } = require('./constants');
+
+const keyRegex = /^[+/0-9A-Za-z]{22}==$/;
 
 /**
  * Class representing a WebSocket server.
@@ -20,34 +21,41 @@ class WebSocketServer extends EventEmitter {
    * Create a `WebSocketServer` instance.
    *
    * @param {Object} options Configuration options
+   * @param {Number} options.backlog The maximum length of the queue of pending
+   *     connections
+   * @param {Boolean} options.clientTracking Specifies whether or not to track
+   *     clients
+   * @param {Function} options.handleProtocols An hook to handle protocols
    * @param {String} options.host The hostname where to bind the server
+   * @param {Number} options.maxPayload The maximum allowed message size
+   * @param {Boolean} options.noServer Enable no server mode
+   * @param {String} options.path Accept only connections matching this path
+   * @param {(Boolean|Object)} options.perMessageDeflate Enable/disable
+   *     permessage-deflate
    * @param {Number} options.port The port where to bind the server
    * @param {http.Server} options.server A pre-created HTTP/S server to use
    * @param {Function} options.verifyClient An hook to reject connections
-   * @param {Function} options.handleProtocols An hook to handle protocols
-   * @param {String} options.path Accept only connections matching this path
-   * @param {Boolean} options.noServer Enable no server mode
-   * @param {Boolean} options.clientTracking Specifies whether or not to track clients
-   * @param {(Boolean|Object)} options.perMessageDeflate Enable/disable permessage-deflate
-   * @param {Number} options.maxPayload The maximum allowed message size
    * @param {Function} callback A listener for the `listening` event
    */
-  constructor (options, callback) {
+  constructor(options, callback) {
     super();
 
-    options = Object.assign({
-      maxPayload: 100 * 1024 * 1024,
-      perMessageDeflate: false,
-      handleProtocols: null,
-      clientTracking: true,
-      verifyClient: null,
-      noServer: false,
-      backlog: null, // use default (511 as implemented in net.js)
-      server: null,
-      host: null,
-      path: null,
-      port: null
-    }, options);
+    options = Object.assign(
+      {
+        maxPayload: 100 * 1024 * 1024,
+        perMessageDeflate: false,
+        handleProtocols: null,
+        clientTracking: true,
+        verifyClient: null,
+        noServer: false,
+        backlog: null, // use default (511 as implemented in net.js)
+        server: null,
+        host: null,
+        path: null,
+        port: null
+      },
+      options
+    );
 
     if (options.port == null && !options.server && !options.noServer) {
       throw new TypeError(
@@ -65,7 +73,12 @@ class WebSocketServer extends EventEmitter {
         });
         res.end(body);
       });
-      this._server.listen(options.port, options.host, options.backlog, callback);
+      this._server.listen(
+        options.port,
+        options.host,
+        options.backlog,
+        callback
+      );
     } else if (options.server) {
       this._server = options.server;
     }
@@ -96,7 +109,7 @@ class WebSocketServer extends EventEmitter {
    * @return {(Object|String|null)} The address of the server
    * @public
    */
-  address () {
+  address() {
     if (this.options.noServer) {
       throw new Error('The server is operating in "noServer" mode');
     }
@@ -111,7 +124,9 @@ class WebSocketServer extends EventEmitter {
    * @param {Function} cb Callback
    * @public
    */
-  close (cb) {
+  close(cb) {
+    if (cb) this.once('close', cb);
+
     //
     // Terminate all associated clients.
     //
@@ -128,10 +143,13 @@ class WebSocketServer extends EventEmitter {
       //
       // Close the http server if it was internally created.
       //
-      if (this.options.port != null) return server.close(cb);
+      if (this.options.port != null) {
+        server.close(() => this.emit('close'));
+        return;
+      }
     }
 
-    if (cb) cb();
+    process.nextTick(emitClose, this);
   }
 
   /**
@@ -141,9 +159,12 @@ class WebSocketServer extends EventEmitter {
    * @return {Boolean} `true` if the request is valid, else `false`
    * @public
    */
-  shouldHandle (req) {
-    if (this.options.path && url.parse(req.url).pathname !== this.options.path) {
-      return false;
+  shouldHandle(req) {
+    if (this.options.path) {
+      const index = req.url.indexOf('?');
+      const pathname = index !== -1 ? req.url.slice(0, index) : req.url;
+
+      if (pathname !== this.options.path) return false;
     }
 
     return true;
@@ -158,15 +179,22 @@ class WebSocketServer extends EventEmitter {
    * @param {Function} cb Callback
    * @public
    */
-  handleUpgrade (req, socket, head, cb) {
+  handleUpgrade(req, socket, head, cb) {
     socket.on('error', socketOnError);
 
+    const key =
+      req.headers['sec-websocket-key'] !== undefined
+        ? req.headers['sec-websocket-key'].trim()
+        : false;
     const version = +req.headers['sec-websocket-version'];
     const extensions = {};
 
     if (
-      req.method !== 'GET' || req.headers.upgrade.toLowerCase() !== 'websocket' ||
-      !req.headers['sec-websocket-key'] || (version !== 8 && version !== 13) ||
+      req.method !== 'GET' ||
+      req.headers.upgrade.toLowerCase() !== 'websocket' ||
+      !key ||
+      !keyRegex.test(key) ||
+      (version !== 8 && version !== 13) ||
       !this.shouldHandle(req)
     ) {
       return abortHandshake(socket, 400);
@@ -180,9 +208,7 @@ class WebSocketServer extends EventEmitter {
       );
 
       try {
-        const offers = extension.parse(
-          req.headers['sec-websocket-extensions']
-        );
+        const offers = extension.parse(req.headers['sec-websocket-extensions']);
 
         if (offers[PerMessageDeflate.extensionName]) {
           perMessageDeflate.accept(offers[PerMessageDeflate.extensionName]);
@@ -198,7 +224,8 @@ class WebSocketServer extends EventEmitter {
     //
     if (this.options.verifyClient) {
       const info = {
-        origin: req.headers[`${version === 8 ? 'sec-websocket-origin' : 'origin'}`],
+        origin:
+          req.headers[`${version === 8 ? 'sec-websocket-origin' : 'origin'}`],
         secure: !!(req.connection.authorized || req.connection.encrypted),
         req
       };
@@ -209,7 +236,7 @@ class WebSocketServer extends EventEmitter {
             return abortHandshake(socket, code || 401, message, headers);
           }
 
-          this.completeUpgrade(extensions, req, socket, head, cb);
+          this.completeUpgrade(key, extensions, req, socket, head, cb);
         });
         return;
       }
@@ -217,12 +244,13 @@ class WebSocketServer extends EventEmitter {
       if (!this.options.verifyClient(info)) return abortHandshake(socket, 401);
     }
 
-    this.completeUpgrade(extensions, req, socket, head, cb);
+    this.completeUpgrade(key, extensions, req, socket, head, cb);
   }
 
   /**
    * Upgrade the connection to WebSocket.
    *
+   * @param {String} key The value of the `Sec-WebSocket-Key` header
    * @param {Object} extensions The accepted extensions
    * @param {http.IncomingMessage} req The request object
    * @param {net.Socket} socket The network socket between the server and client
@@ -230,21 +258,22 @@ class WebSocketServer extends EventEmitter {
    * @param {Function} cb Callback
    * @private
    */
-  completeUpgrade (extensions, req, socket, head, cb) {
+  completeUpgrade(key, extensions, req, socket, head, cb) {
     //
     // Destroy the socket if the client has already sent a FIN packet.
     //
     if (!socket.readable || !socket.writable) return socket.destroy();
 
-    const key = crypto.createHash('sha1')
-      .update(req.headers['sec-websocket-key'] + constants.GUID, 'binary')
+    const digest = crypto
+      .createHash('sha1')
+      .update(key + GUID)
       .digest('base64');
 
     const headers = [
       'HTTP/1.1 101 Switching Protocols',
       'Upgrade: websocket',
       'Connection: Upgrade',
-      `Sec-WebSocket-Accept: ${key}`
+      `Sec-WebSocket-Accept: ${digest}`
     ];
 
     const ws = new WebSocket(null);
@@ -307,10 +336,10 @@ module.exports = WebSocketServer;
  * @return {Function} A function that will remove the added listeners when called
  * @private
  */
-function addListeners (server, map) {
+function addListeners(server, map) {
   for (const event of Object.keys(map)) server.on(event, map[event]);
 
-  return function removeListeners () {
+  return function removeListeners() {
     for (const event of Object.keys(map)) {
       server.removeListener(event, map[event]);
     }
@@ -318,11 +347,21 @@ function addListeners (server, map) {
 }
 
 /**
+ * Emit a `'close'` event on an `EventEmitter`.
+ *
+ * @param {EventEmitter} server The event emitter
+ * @private
+ */
+function emitClose(server) {
+  server.emit('close');
+}
+
+/**
  * Handle premature socket errors.
  *
  * @private
  */
-function socketOnError () {
+function socketOnError() {
   this.destroy();
 }
 
@@ -335,20 +374,25 @@ function socketOnError () {
  * @param {Object} [headers] Additional HTTP response headers
  * @private
  */
-function abortHandshake (socket, code, message, headers) {
+function abortHandshake(socket, code, message, headers) {
   if (socket.writable) {
     message = message || http.STATUS_CODES[code];
-    headers = Object.assign({
-      'Connection': 'close',
-      'Content-type': 'text/html',
-      'Content-Length': Buffer.byteLength(message)
-    }, headers);
+    headers = Object.assign(
+      {
+        Connection: 'close',
+        'Content-type': 'text/html',
+        'Content-Length': Buffer.byteLength(message)
+      },
+      headers
+    );
 
     socket.write(
       `HTTP/1.1 ${code} ${http.STATUS_CODES[code]}\r\n` +
-      Object.keys(headers).map(h => `${h}: ${headers[h]}`).join('\r\n') +
-      '\r\n\r\n' +
-      message
+        Object.keys(headers)
+          .map((h) => `${h}: ${headers[h]}`)
+          .join('\r\n') +
+        '\r\n\r\n' +
+        message
     );
   }
 

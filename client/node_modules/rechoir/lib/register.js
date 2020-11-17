@@ -1,10 +1,10 @@
-const path = require('path');
-const resolve = require('resolve');
+var resolve = require('resolve');
 
-module.exports = function (cwd, moduleName, register) {
+module.exports = function(cwd, moduleName, register) {
+  var result;
   try {
-    var modulePath = resolve.sync(moduleName, {basedir: cwd});
-    var result = require(modulePath);
+    var modulePath = resolve.sync(moduleName, { basedir: cwd });
+    result = require(modulePath);
     if (typeof register === 'function') {
       register(result);
     }
