@@ -1,5 +1,0 @@
-{
-  "sideEffects": false,
-  "module": "../esm/TimelineSeparator/index.js",
-  "typings": "./index.d.ts"
-}
