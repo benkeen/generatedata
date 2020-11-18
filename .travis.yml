@@ -7,7 +7,7 @@ install:
   - yarn install
 
 before_script:
-  - yarn build
+  - yarn buildClient
 
 jobs:
   include:
