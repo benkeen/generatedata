@@ -1,18 +1,24 @@
 # Development
 
-Version 4 of generatedata uses Docker to simplify packaging up the app for development and distribution. Quite
-honestly this is the first time I've really dug into Docker and it was a serious pain in the butt. But the benefits
-are undeniable. 
+Version 4 of generatedata uses Docker to simplify packaging up the app for development and distribution. Docker
+wasn't quite the wonder that I hoped it would be, but the benefits overall are undeniable.
+
+My goals with the dev environment was the following:
+- require as little setup as possible
+- require as few steps as possible to start and stop the dev environment
+- make it reasonably performant with hot reloading.
+
+Frankly, given the complexity of the app it's a tough thing to simplify. I experimented with getting the dev 
+environment running entirely within a Docker container so you'd need less stuff locally to make it run. I _did_ get 
+that running okay, but found it was simply too slow to be of practical use as a dev env. So instead, the local dev env 
+just uses a docker container for the _server and database_. The FE code is ran locally. I know that's a pain for
+non-frontend developers especially who aren't so familiar with setting up NVM, Grunt etc. - sorry about that! 
 
 #### Pre-requisites:
 
-I experimented with getting the dev environment running entirely within a Docker container, and although that _worked_
-I found it was just too slow to be of practical use. So instead, the local dev env just uses a docker container for the 
-server and database. The code is ran locally.
-
 - [Docker](https://docs.docker.com/get-docker/)
-- [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
-- [Grunt CLI]() - Note, the global here can probably be dropped & just have it reference node_modules (PRs welcome!)
+- [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) - namely node 12.
+- Grunt CLI (`npm install grunt-cli -g`)
 
 ### Running dev
 
