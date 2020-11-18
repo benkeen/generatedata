@@ -7,13 +7,14 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "grunt dev & yarn build & yarn webpackDev & yarn startServer",
+    "start": "yarn startClient & yarn startServer",
 
     "startClient": "cd client && grunt dev & yarn buildClient & yarn webpackDev",
     "buildClient": "node ./client/build/build.js",
 
-    "startServer": "docker-compose up",
-    "startDevServer": "nodemon ./server/app.js",
+    "startServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
+    "startNodeDevServer": "nodemon ./server/app.js",
+
     "webpackDev": "webpack serve --config ./client/webpack.config.js --mode=development",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
 

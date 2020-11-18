@@ -24,8 +24,8 @@ services:
 
   server:
     build:
-      context: ./server
-      dockerfile: Dockerfile.dev
+      context: ./
+      dockerfile: ./server/Dockerfile.dev
     depends_on:
       - db
     networks:
@@ -37,8 +37,8 @@ services:
     restart: on-failure
     container_name: server
     volumes:
-      - ./server:/home/app/generatedata/server
-      - /home/app/generatedata/server/node_modules
+      - .:/home/app/generatedata
+      - /home/app/generatedata/node_modules
 
   db:
     image: mariadb # TODO lock down version?

@@ -4,3 +4,4 @@ cache/*
 .idea*
 node_modules/*
 dist/
+.config
