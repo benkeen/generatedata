@@ -7,4 +7,4 @@ COPY package.json yarn.lock $HOME/server/
 RUN yarn install --network-timeout 100000 && npm install -g grunt-cli
 COPY . $HOME/server/
 
-CMD ["node", "app.js"]
+CMD ["yarn", "start"]

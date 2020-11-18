@@ -1,21 +1,21 @@
 version: "3"
 services:
 
-  webapp:
-    build:
-      context: ./client
-      dockerfile: Dockerfile.dev
-    expose:
-      - 9000
-    ports:
-      - 9000:9000
-    container_name: webapp
-    volumes:
-      - ./client:/home/app/generatedata/client
-      - /home/app/generatedata/client/node_modules
-    links:
-      - server
-    command: yarn webpackDev
+#  webapp:
+#    build:
+#      context: ./client
+#      dockerfile: Dockerfile.dev
+#    expose:
+#      - 9000
+#    ports:
+#      - 9000:9000
+#    container_name: webapp
+#    volumes:
+#      - ./client:/home/app/generatedata/client
+#      - /home/app/generatedata/client/node_modules
+#    links:
+#      - server
+#    command: yarn webpackDev
 
   server:
     build:
@@ -31,10 +31,23 @@ services:
       - ./server:/home/app/generatedata/server
       - /home/app/generatedata/server/node_modules
 
+  db:
+    image: mariadb # TODO lock down version?
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass357
+      MYSQL_DATABASE: generatedata
+    volumes:
+      - ./server/db.sql:/docker-entrypoint-initdb.d/setup.sql
+      - db_data:/var/lib/mysql/data
 
-    #    nginx:
+volumes:
+  db_data: {}
+
+#    nginx:
 #      image: nginx:latest
-#      container_name: production_nginx
+#      container_name: prod_nginx
 #      depends_on:
 #        - web
 #      volumes:

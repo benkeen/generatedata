@@ -1,25 +1,7 @@
 # Development
 
-> This file is incomplete. It's for v4 of the code only and out of date. When we're into alpha and things have solidified
+> This file is incomplete. It's for v4 of the code only and out of date. When things have solidified some more 
 I'll update it. 
-
-To run locally:
-
-- `yarn install`
-- `yarn build`
-- `node app.js`
-- in another tab: `yarn dev`
-
-Then open up http://localhost:8080/ in your web browser.
-
-
-### Site/installation configuration
-
-- **config.client.defaults.js** - contains all the default settings. 
-- **config.js** - contains whatever overridden settings for the particular installation. This'll serve the 
-same role as `settings.php` in previous versions of the script. 
-
-At this point neither file does anything but that'll change very soon. 
 
 
 ### Locale file helpers
@@ -37,42 +19,8 @@ These are found in `src/i18n`. They contain all the core i18n files.
 - `grunt sortI18nFiles` - sorts the keys of all i18n files alphabetically.
 
 
-### TODO
-
-- add base component generation script task.
-- verification task to find missing schemas
-- revise schemas to make the entire config file schema based, not just the generation schema
-- Minimum node version? 12?
-- split config into config.web.js, config.server.js. config.server.js is never included in any bundle. Best way to 
-validate this? Kinnnnnda important.
-
-
-Validation function: 
-
-- DEFINITELY need a command-line validation function to verify data types/export types etc. is valid. 
-
----------------------------
-
 ### Text rules:
 
 - titles, headings: capitalize every letter
 - tooltips: sentence case, no ending period
-
-
-## Docker Notes
-
-Q: how to organize docker for local dev, prod, checkouts & still allow custom npm package builds for people to use
-the script via node? 
-
-Current thoughts:
-- _definitely_ want separate containers for nginx & the database
-- _probably_ want a container for the web app for easy prod builds + distributing a complete package.
-- how will local dev work? Copy the files into a container...? Seems pretty complicated. Seems like for local dev it
-may be acceptable to just requie
-
-- not sure how we'll tie in the additional code for the prod website and how that relates to docker. It'll need new
-FE code as well as extra DB code. 
-- need selenium tests. For that, having the whole docker setup will be invaluable. 
-
-For starters I think just getting containers up for the db + nginx.
 

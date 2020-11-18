@@ -92,7 +92,7 @@ module.exports = (env, argv) => {
 	if (mode === 'development') {
 		config.devServer = {
 			contentBase: path.join(__dirname, 'dist'),
-			host: '0.0.0.0',
+			// host: '0.0.0.0', // needed when running within docker container
 			port: 9000,
 			open: true
 		};
