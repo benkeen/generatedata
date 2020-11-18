@@ -1,4 +1,9 @@
 version: "3"
+
+networks:
+  gd-network:
+    driver: bridge
+
 services:
 
 #  webapp:
@@ -21,6 +26,10 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    networks:
+      - gd-network
     expose:
       - 3001
     ports:
@@ -33,11 +42,21 @@ services:
 
   db:
     image: mariadb # TODO lock down version?
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    expose:
+      - 3306
     ports:
       - 3306:3306
+    networks:
+      - gd-network
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass357
+#      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: rootpass357 # user: root
       MYSQL_DATABASE: generatedata
+      MYSQL_ALLOW_EMPTY_PASSWORD: ok
+#      MYSQL_USER: gduser
+#      MYSQL_PASSWORD: gduser
     volumes:
       - ./server/db.sql:/docker-entrypoint-initdb.d/setup.sql
       - db_data:/var/lib/mysql/data
@@ -45,6 +64,7 @@ services:
 volumes:
   db_data: {}
 
+# *** For prod only.
 #    nginx:
 #      image: nginx:latest
 #      container_name: prod_nginx
