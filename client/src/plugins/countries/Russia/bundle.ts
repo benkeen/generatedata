@@ -1,5 +1,5 @@
 // https://en.wikipedia.org/wiki/Category:Cities_and_towns_in_Russia_by_federal_subject
-import { GetCountryData } from 'types/countries';
+import { GetCountryData } from '~types/countries';
 
 const Russia: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,

@@ -17,7 +17,6 @@ app.get('/api/here', (req, res) => {
 
 	connection.query('SELECT * FROM users', (error, results) => {
 		if (error) {
-			console.log("error! YAYAYAYAY");
 			throw error;
 		}
 
@@ -32,4 +31,4 @@ app.get('/api/here', (req, res) => {
 });
 
 app.listen(port);
-console.log('server started on port ' + port);
+console.log('Server started on port ' + port);

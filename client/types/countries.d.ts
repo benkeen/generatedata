@@ -1,4 +1,4 @@
-import { countries } from '../client/src/_plugins';
+import { countries } from '../src/_plugins';
 
 export type countryTuple = typeof countries;
 export type CountryType = countryTuple[number];

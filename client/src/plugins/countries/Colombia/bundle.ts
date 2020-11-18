@@ -4,7 +4,7 @@
  * Source data:
  * 		https://en.wikipedia.org/wiki/List_of_Colombian_Departments_by_population
  */
-import { GetCountryData } from 'types/countries';
+import { GetCountryData } from '~types/countries';
 
 const Colombia: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,

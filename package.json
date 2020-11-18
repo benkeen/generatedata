@@ -1,18 +1,24 @@
 {
   "name": "generatedata",
   "version": "4.0.0-alpha-20201111",
-  "description": "Free, MIT-licensed, random custom data generator for testing software.",
+  "description": "Free, MIT-licensed, random data generator for testing software.",
   "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "start": "grunt dev & yarn build & yarn webpackDev & docker-compose up",
-    "prod": "grunt && yarn build && yarn webpackProd",
-    "dockerBuild": "grunt && yarn build",
-    "webpackDev": "webpack --config ./webpack.config.js --mode=development serve",
+    "start": "grunt dev & yarn build & yarn webpackDev & yarn startServer",
+
+    "startClient": "cd client && grunt dev & yarn buildClient & yarn webpackDev",
+    "buildClient": "node ./client/build/build.js",
+
+    "startServer": "docker-compose up",
+    "startDevServer": "nodemon ./server/app.js",
+    "webpackDev": "webpack serve --config ./client/webpack.config.js --mode=development",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
-    "build": "node ./build/build.js",
+
+    "prod": "grunt && yarn buildClient && yarn webpackProd",
+    "dockerBuild": "grunt && yarn build",
     "test": "env NODE_ENV=test jest"
   },
   "repository": {
@@ -39,9 +45,9 @@
     "testRegex": "/__tests__/.*\\.(ts|tsx|js)$",
     "moduleNameMapper": {
       "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
-      "^~components(.*)$": "<rootDir>/src/components$1",
-      "^~types(.*)$": "<rootDir>/types$1",
-      "^~utils(.*)$": "<rootDir>/src/utils$1"
+      "^~components(.*)$": "<rootDir>/client/src/components$1",
+      "^~types(.*)$": "<rootDir>/client/types$1",
+      "^~utils(.*)$": "<rootDir>/client/src/utils$1"
     }
   },
   "dependencies": {
@@ -57,9 +63,11 @@
     "core-js": "3",
     "date-fns": "^2.8.1",
     "esm": "^3.2.25",
+    "express": "^4.17.1",
     "global": "^4.4.0",
     "handlebars": "^4.7.6",
     "immer": "^7.0.9",
+    "mysql": "mysqljs/mysql",
     "pretty-bytes": "^5.4.1",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^12.2.0",
@@ -142,6 +150,7 @@
     "json-loader": "0.5.4",
     "md5-file": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "nodemon": "^2.0.6",
     "node-sass": "^4.13.0",
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",

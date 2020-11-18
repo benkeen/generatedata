@@ -1,23 +1,24 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+
 
 module.exports = (env, argv) => {
 
 	// TODO not working with package.json commands
 	const mode = argv.mode === 'production' ? 'production' : 'development';
 
-
 	var config = {
 		mode,
+
 		entry: {
-			app: './src/index.tsx'
+			app: path.resolve(__dirname, 'src/index.tsx')
 		},
 
 		output: {
-			path: __dirname + '/dist',
+			path: path.join(__dirname, 'dist'),
 			chunkFilename: mode === 'development' ? '[name].js' : '[name]-[hash].js',
 			filename: mode === 'development' ? '[name].js' : '[name]-[hash].js'
 		},
@@ -67,16 +68,16 @@ module.exports = (env, argv) => {
 		plugins: [
 			new CaseSensitivePathsPlugin(),
 			new HtmlWebpackPlugin({
-				template: './src/index.html'
+				template: path.join(__dirname, 'src/index.html')
 			})
 		],
 
 		resolve: {
 			extensions: ['.ts', '.tsx', '.js'],
 			alias: {
-				"~components": path.join(__dirname, "src/components"),
-				"~utils": path.join(__dirname, "src/utils"),
-				"~types": path.join(__dirname, "types/")
+				'~components': path.join(__dirname, 'src/components'),
+				'~utils': path.join(__dirname, 'src/utils'),
+				'~types': path.join(__dirname, 'types')
 			}
 		},
 
@@ -95,6 +96,7 @@ module.exports = (env, argv) => {
 			// host: '0.0.0.0', // needed when running within docker container
 			port: 9000,
 			open: true
+			// publicPath: path.join(__dirname, 'dist')
 		};
 	}
 

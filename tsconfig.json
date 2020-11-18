@@ -15,9 +15,9 @@
 	"removeComments": false,
     "baseUrl": "",
     "paths": {
-      "~components/*": ["src/components/*"],
-      "~utils/*": ["src/utils/*"],
-      "~types/*": ["types/*"]
+      "~components/*": ["client/src/components/*"],
+      "~utils/*": ["client/src/utils/*"],
+      "~types/*": ["client/types/*"]
     }
   },
   "exclude": [

@@ -1,4 +1,4 @@
-import { GetCountryData } from 'types/countries';
+import { GetCountryData } from '~types/countries';
 
 const Austria: GetCountryData = (i18n) => ({
 	countryName: i18n.countryName,

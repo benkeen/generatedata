@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { CountryType } from 'types/countries';
+import { CountryType } from '~types/countries';
 import { parseI18n } from '~utils/langUtils';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';

@@ -1,5 +1,5 @@
 import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
-import { CountryDataType, CountryType, Region } from 'types/countries';
+import { CountryDataType, CountryType, Region } from '~types/countries';
 import utils from '../../../utils';
 
 let workerUtilsLoaded = false;

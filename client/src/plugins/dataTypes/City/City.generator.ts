@@ -1,6 +1,6 @@
 import utils from '../../../utils';
 import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData } from '~types/dataTypes';
-import { Region, CountryType } from 'types/countries';
+import { Region, CountryType } from '~types/countries';
 import { countryList } from '../../../_plugins';
 import { CityState } from './City';
 

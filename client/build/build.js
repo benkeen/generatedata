@@ -1,8 +1,8 @@
 require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const path = require('path');
-const package = require('../package.json');
-const configDefaults = require('./config.client.defaults');
+const package = require('../../package.json');
+const configDefaults = require('./config.client.defaults'); // TODO use .env
 const helpers = require("./helpers");
 
 let overrides = {};

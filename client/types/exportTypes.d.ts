@@ -1,6 +1,6 @@
-import { BuilderLayout } from '../client/src/core/builder/Builder.component';
+import { BuilderLayout } from '../src/core/builder/Builder.component';
 import { ColumnData } from '~types/general';
-import { ExportTypeFolder } from '../client/src/_plugins';
+import { ExportTypeFolder } from '../src/_plugins';
 import { CountryMap } from '~types/countries';
 import { DataTypeMap } from '~types/dataTypes';
 
