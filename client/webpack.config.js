@@ -4,11 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
+require('dotenv').config();
 
 module.exports = (env, argv) => {
-
-	// TODO not working with package.json commands
-	const mode = argv.mode === 'production' ? 'production' : 'development';
+	const mode = argv.mode === 'production' ? 'production' : 'development'; // TODO not working with package.json commands
 
 	var config = {
 		mode,
@@ -93,10 +92,9 @@ module.exports = (env, argv) => {
 	if (mode === 'development') {
 		config.devServer = {
 			contentBase: path.join(__dirname, 'dist'),
-			// host: '0.0.0.0', // needed when running within docker container
-			port: 9000,
+			port: process.env.GD_DEV_SERVER_PORT,
 			open: true
-			// publicPath: path.join(__dirname, 'dist')
+			// host: '0.0.0.0', // needed when running within docker container
 		};
 	}
 

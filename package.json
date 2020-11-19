@@ -7,17 +7,12 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "yarn startClient & yarn startServer",
-
     "startClient": "cd client && grunt dev & yarn buildClient & yarn webpackDev",
     "buildClient": "node ./client/build/build.js",
-
     "startServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
     "startNodeDevServer": "nodemon ./server/app.js",
-
     "webpackDev": "webpack serve --config ./client/webpack.config.js --mode=development",
     "webpackProd": "webpack --config ./webpack.config.js --mode=production",
-
     "prod": "grunt && yarn buildClient && yarn webpackProd",
     "dockerBuild": "grunt && yarn build",
     "test": "env NODE_ENV=test jest"
@@ -63,6 +58,7 @@
     "codemirror": "^5.50.2",
     "core-js": "3",
     "date-fns": "^2.8.1",
+    "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "global": "^4.4.0",
@@ -151,8 +147,8 @@
     "json-loader": "0.5.4",
     "md5-file": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
-    "nodemon": "^2.0.6",
     "node-sass": "^4.13.0",
+    "nodemon": "^2.0.6",
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
     "redux-testkit": "^1.0.6",

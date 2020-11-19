@@ -5,3 +5,4 @@ cache/*
 node_modules/*
 dist/
 .config
+.env

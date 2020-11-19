@@ -1,22 +1,13 @@
 /**
- * This contains the default settings for the Data Generator. The installation script will lead you through the
- * steps to create a config.js file in the root (one folder above the dist/ webroot so never publicly accessible)
- * and that'll contain the necessary overrides like DB settings. But this setting contains every one that can
- * be overwritten by the script.
+ * REMOVE THIS FILE.
  */
 export default {
-	isInDemoMode: false,
-	encryptionSalt: '',
-	errorReporting: '',
-	maxGeneratedRows: 100000,
 	defaultNumRows: 100,
 	maxDemoModeRows: 100,
 	maxDataSetHistorySize: 200,
 	defaultLocale: 'en',
 	defaultExportType: 'JSON', // has to map to the Export Type folder name
 	defaultCountryPlugins: [],
-	useMinifiedResources: false,
-	timeout: 300, // 5 minutes
 	apiEnabled: false,
 
 	// blacklists specific data types from being included in the generated application - they're handy for work-in-progress
@@ -37,9 +28,6 @@ export default {
 	exportTypeBlacklist: [],
 
 	countryBlacklist: [],
-
-	// importSqlFeatureEnabled: true,
-	// importSqlListDatabases: false,
 
 	dataTypeGroups: [
 		'humanData',

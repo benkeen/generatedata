@@ -1,25 +1,22 @@
 const express = require('express');
-const mysql = require('mysql');
-const port = process.env.PORT || 3001;
 const app = express();
+const helpers = require('./database.helpers');
 
+require('dotenv').config();
+
+
+app.get('/settings', (req, res) => {
+	res.json({
+		installed: false
+	});
+});
 
 app.get('/api/here', (req, res) => {
-	const connection = mysql.createConnection({
-		host: 'db',
-		port: 3306,
-		user: 'root',
-		password: 'rootpass357',
-		database: 'generatedata'
-	});
-
-	connection.connect();
-
-	connection.query('SELECT * FROM users', (error, results) => {
+	const connection = helpers.getConnection();
+	connection.query('SELECT * FROM user_accounts', (error, results) => {
 		if (error) {
 			throw error;
 		}
-
 		const data = results.map((i) => i.name);
 
 		res.json({
@@ -30,5 +27,5 @@ app.get('/api/here', (req, res) => {
 	connection.end();
 });
 
-app.listen(port);
-console.log('Server started on port ' + port);
+app.listen(process.env.GD_API_SERVER_PORT);
+console.log('Server started on port ' + process.env.GD_API_SERVER_PORT);
