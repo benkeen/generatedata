@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { DataRow, DataRows, GeneratorPanel } from './generator.reducer';
-import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
 import * as langUtils from '~utils/langUtils';
 import { getUnique } from '~utils/arrayUtils';

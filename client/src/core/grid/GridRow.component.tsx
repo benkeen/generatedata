@@ -5,7 +5,7 @@ import DragIndicator from '@material-ui/icons/DragIndicator';
 import InfoIcon from '@material-ui/icons/Info';
 import Dropdown from '~components/dropdown/Dropdown';
 import { DataRow } from '../store/generator/generator.reducer';
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder } from '../../../_plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../styles/shared.scss';
 import TextField from '~components/TextField';

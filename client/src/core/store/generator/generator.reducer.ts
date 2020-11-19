@@ -1,14 +1,13 @@
 import { AnyAction } from 'redux';
 import { generate } from 'shortid';
 import produce from 'immer';
-// @ts-ignore-line
-import envConfig from '../../../../dist/env.config';
 import * as actions from './generator.actions';
 import * as mainActions from '../main/main.actions';
 import * as packetActions from '../packets/packets.actions';
 import { BuilderLayout } from '../../builder/Builder.component';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
+import env from '../../../../_env';
 import { dataTypeNames } from '~utils/dataTypeUtils';
 import { exportTypeNames } from '~utils/exportTypeUtils';
 
@@ -75,7 +74,7 @@ export const getInitialState = (): GeneratorState => ({
 	loadedDataTypes: dataTypeNames && dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
 	loadedExportTypes: exportTypeNames && exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	initialDependenciesLoaded: false,
-	exportType: envConfig.defaultExportType,
+	exportType: env.defaultExportType,
 	rows: {},
 	sortedRows: [],
 	showGrid: true,
@@ -92,7 +91,7 @@ export const getInitialState = (): GeneratorState => ({
 	dataTypePreviewData: {},
 	exportSettingsTab: 'exportType',
 	showGenerationSettingsPanel: false,
-	numRowsToGenerate: envConfig.defaultNumRows,
+	numRowsToGenerate: env.defaultNumRows,
 	stripWhitespace: false,
 	lastLayoutWidth: null,
 	lastLayoutHeight: null

@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import * as selectors from './generator.selectors';
 import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../../_plugins';
+import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import { requestDataTypeBundle } from '~utils/dataTypeUtils';
 import { registerInterceptors } from '../../actionInterceptor';
 import * as coreUtils from '~utils/coreUtils';

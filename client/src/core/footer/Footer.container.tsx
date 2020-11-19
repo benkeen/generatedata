@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { envConfig } from '../';
+import env from '../../../_env';
 import Footer, { FooterProps } from './Footer.component';
 import { GDLocale } from '~types/general';
 import * as selectors from '../store/generator/generator.selectors';
@@ -14,7 +14,7 @@ const mapStateToProps = (state: any): Partial<FooterProps> => ({
 	locale: mainSelectors.getLocale(state),
 	scriptVersion: coreUtils.getScriptVersion(),
 	isEnabled: selectors.hasData(state),
-	availableLocales: envConfig.availableLocales
+	availableLocales: env.availableLocales
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({

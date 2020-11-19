@@ -9,7 +9,7 @@ import * as styles from './Grid.scss';
 import HelpDialog from '../dialogs/help/HelpDialog.component';
 import { Tooltip } from '~components/tooltips';
 import { DataRow } from '../store/generator/generator.reducer';
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder } from '../../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../constants';
 

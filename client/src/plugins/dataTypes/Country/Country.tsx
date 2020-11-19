@@ -1,12 +1,13 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import { countryList } from '../../../_plugins';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import fullCountryList from './fullCountryList';
+import { countryList } from '../../../../_plugins';
 import styles from './Country.scss';
+import { CountryType } from '~types/countries';
 
 export type CountrySource = 'plugins' | 'all';
 export type CountryState = {
@@ -25,7 +26,7 @@ const fullCountryListOptions = fullCountryList.map((countryName) => ({
 }));
 
 const CountryDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, coreI18n, i18n }: any): JSX.Element => {
-	const countryPluginOptions = countryList.map((countryName) => ({
+	const countryPluginOptions = countryList.map((countryName: CountryType) => ({
 		value: countryName,
 		label: countryI18n[countryName].countryName
 	}));

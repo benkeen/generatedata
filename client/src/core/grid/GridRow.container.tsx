@@ -5,7 +5,7 @@ import { getCustomProps, getDataType, getSortedGroupedDataTypes } from '~utils/d
 import { Store } from '~types/general';
 import { DataRow } from '../store/generator/generator.reducer';
 import * as actions from '../store/generator/generator.actions';
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder } from '../../../_plugins';
 import * as selectors from '../store/generator/generator.selectors';
 
 type OwnProps = {

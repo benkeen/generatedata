@@ -1,18 +1,12 @@
-// @ts-ignore-line
-import env from '../../dist/env.config';
 import store from './store';
 import C from './constants';
 import * as actions from './store/generator/generator.actions';
 import * as mainActions from './store/main/main.actions';
 import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
-import { DataTypeFolder } from '../_plugins';
+import { DataTypeFolder } from '../../_plugins';
 import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
-import '../_imports';
-
-// just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
-// data structure has hardly changed in 15 years and is unlikely to in the future
-export const envConfig = { ...env };
+import '../../_imports';
 
 export const init = (): void => {
 

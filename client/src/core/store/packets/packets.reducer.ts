@@ -2,7 +2,7 @@ import { AnyAction } from 'redux';
 import { generate } from 'shortid';
 import produce from 'immer';
 import * as actions from './packets.actions';
-import { ExportTypeFolder } from '../../../_plugins';
+import { ExportTypeFolder } from '../../../../_plugins';
 import { getByteSize, getRowGenerationRatePerSecond } from '../../generationPanel/generation.helpers';
 import C from '../../constants';
 import * as mainActions from '../main/main.actions';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NumberFormat from 'react-number-format';
-import { envConfig } from '../';
+import env from '../../../_env';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { parseI18n } from '~utils/langUtils';
@@ -27,8 +27,8 @@ const GenerationPanel = ({
 	let error = '';
 	if (!numRowsToGenerate) {
 		error = i18n.requiredField;
-	} else if (numRowsToGenerate > envConfig.maxDemoModeRows) {
-		error = parseI18n(i18n.overMaxAnonRows, [getFormattedNum(envConfig.maxDemoModeRows)]);
+	} else if (numRowsToGenerate > env.maxDemoModeRows) {
+		error = parseI18n(i18n.overMaxAnonRows, [getFormattedNum(env.maxDemoModeRows)]);
 	}
 
 	return (

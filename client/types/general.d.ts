@@ -17,7 +17,7 @@ export type Store = {
 	packets: PacketsState;
 };
 
-export type GDLocale = 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
+export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | 'zh';
 
 export type GenEnvironment = 'API' | 'UI';
 

@@ -6,7 +6,7 @@ import { parseI18n } from '~utils/langUtils';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import { countryList } from '../../../_plugins';
+import { countryList } from '../../../../_plugins';
 import styles from './City.scss';
 
 export type RegionSource = 'any' | 'countries' | 'regionRow';

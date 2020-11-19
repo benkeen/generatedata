@@ -1,4 +1,4 @@
-import { exportTypes, ExportTypeFolder } from '../_plugins';
+import { exportTypes, ExportTypeFolder } from '../../_plugins';
 import { ETBundle, ETDownloadPacketResponse } from '~types/exportTypes';
 
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);

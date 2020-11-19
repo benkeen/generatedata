@@ -1,4 +1,4 @@
-import { countryList } from '../_plugins';
+import { countryList } from '../../_plugins';
 import { CountryType } from '~types/countries';
 
 

@@ -1,4 +1,4 @@
-import { DataTypeFolder } from '../../_plugins';
+import { DataTypeFolder } from '../../../_plugins';
 
 let workerResources: any;
 let loadedDataTypeWorkers: any = {};

@@ -1,8 +1,7 @@
-import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
-import { countryList } from '../../../_plugins';
+import { countryList } from '../../../../_plugins';
 import { getRandomArrayValue } from '~utils/randomUtils';
+import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
 import { Region, CountryType } from '~types/countries';
-
 
 const countryRegions: any = {};
 
