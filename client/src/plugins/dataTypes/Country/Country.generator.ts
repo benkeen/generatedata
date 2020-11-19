@@ -1,5 +1,5 @@
 import fullCountryList from './fullCountryList';
-import { countryList } from '../../../_plugins';
+import { countryList } from '../../../../_plugins';
 import { CountryState } from './Country';
 import { getRandomArrayValue } from '~utils/randomUtils';
 import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';

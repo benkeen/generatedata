@@ -31,7 +31,7 @@ export type AppType = 'login'| 'open' | 'closed';
 
 export type EnvSettings = {
 	version: string;
-	appType: AppType; 
+	appType: AppType;
 	defaultNumRows: number;
 	maxDemoModeRows: number;
 	maxDataSetHistorySize: number;
