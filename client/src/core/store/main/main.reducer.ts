@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import produce from 'immer';
+import { envConfig } from '../../';
 import * as actions from './main.actions';
 import { GDLocale } from '~types/general';
 import C from '../../constants';
@@ -14,7 +15,7 @@ export type MainState = {
 export const initialState: MainState = {
 	appStateVersion: C.APP_STATE_VERSION,
 	localeFileLoaded: false,
-	locale: 'en',
+	locale: envConfig.defaultLocale,
 	showIntroDialog: true
 };
 

@@ -1,4 +1,3 @@
-// require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const path = require('path');
 const pkg = require('../../package.json');
@@ -7,20 +6,21 @@ const helpers = require('./helpers');
 require('dotenv').config();
 
 const envSettings = {
-	defaultNumRows: process.env.GD_DEFAULT_NUM_ROWS,
-	maxDemoModeRows: process.env.GD_MAX_DEMO_MODE_ROWS,
-	maxDataSetHistorySize: process.env.GD_MAX_DATASET_HISTORY_SIZE,
+	defaultNumRows: parseInt(process.env.GD_DEFAULT_NUM_ROWS),
+	maxDemoModeRows: parseInt(process.env.GD_MAX_DEMO_MODE_ROWS, 10),
+	maxDataSetHistorySize: parseInt(process.env.GD_MAX_DATASET_HISTORY_SIZE, 10),
 	defaultLocale: process.env.GD_DEFAULT_LOCALE,
 	defaultExportType: process.env.GD_DEFAULT_EXPORT_TYPE,
-	apiEnabled: process.env.GD_REST_API_ENABLED
+	apiEnabled: process.env.GD_REST_API_ENABLED === "true",
+	availableLocales: process.env.GD_LOCALES.split(',')
 };
 
-const completeConfigFile = {
+const envFile = {
 	version: pkg.version,
 	...envSettings
 };
 
-const generateConfigFile = (filename, content) => {
+const generateEnvFile = (filename, content) => {
 	const buildFolder = path.join(__dirname, '..', 'dist');
 	if (!fs.existsSync(buildFolder)) {
 		fs.mkdirSync(buildFolder, { recursive: true });
@@ -96,7 +96,8 @@ const createImportFile = () => {
 	fs.writeFileSync(file, importLines.join('\n'));
 };
 
-generateConfigFile('config.client.js', `export default ${JSON.stringify(completeConfigFile, null, '\t')};`);
+// TODO convert to TS. Now it's only used in the actual app
+generateEnvFile('env.config.js', `export default ${JSON.stringify(envFile, null, '\t')};`);
 
 createPluginsListFile();
 createImportFile();

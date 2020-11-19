@@ -39,8 +39,6 @@ export default {
 		DIALOG: 5005
 	},
 
-	MAX_ANON_ROWS: 10000, // TODO now in an .env setting
-
 	DATA_TYPE_GROUPS: [
 		'humanData',
 		'geo',

@@ -1,5 +1,5 @@
 // @ts-ignore-line
-import config from '../../dist/config.client';
+import env from '../../dist/env.config';
 import store from './store';
 import C from './constants';
 import * as actions from './store/generator/generator.actions';
@@ -12,7 +12,7 @@ import '../_imports';
 
 // just expose the entire config as is with a suitable name. No point adding separate getters, I don't think. The
 // data structure has hardly changed in 15 years and is unlikely to in the future
-export const coreConfig = { ...config };
+export const envConfig = { ...env };
 
 export const init = (): void => {
 

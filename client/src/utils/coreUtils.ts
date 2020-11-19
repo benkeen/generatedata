@@ -1,11 +1,11 @@
-import { coreConfig } from '../core';
+import { envConfig } from '../core';
 import { generate } from 'shortid';
 import webWorkers from '../_pluginWebWorkers';
 import { DataTypeFolder, ExportTypeFolder } from '../_plugins';
 import { ExportTypeMap } from '~types/exportTypes';
 import { DataTypeMap } from '~types/dataTypes';
 
-export const getScriptVersion = (): string => coreConfig.version;
+export const getScriptVersion = (): string => envConfig.version;
 
 type WorkerMap = {
 	[workerId: string]: Worker;

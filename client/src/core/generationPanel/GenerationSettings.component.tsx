@@ -1,10 +1,10 @@
 import * as React from 'react';
 import NumberFormat from 'react-number-format';
+import { envConfig } from '../';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { parseI18n } from '~utils/langUtils';
 import { getFormattedNum } from '~utils/numberUtils';
-import C from '../constants';
 import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { ErrorTooltip } from '~components/tooltips';
@@ -27,8 +27,8 @@ const GenerationPanel = ({
 	let error = '';
 	if (!numRowsToGenerate) {
 		error = i18n.requiredField;
-	} else if (numRowsToGenerate > C.MAX_ANON_ROWS) {
-		error = parseI18n(i18n.overMaxAnonRows, [getFormattedNum(C.MAX_ANON_ROWS)]);
+	} else if (numRowsToGenerate > envConfig.maxDemoModeRows) {
+		error = parseI18n(i18n.overMaxAnonRows, [getFormattedNum(envConfig.maxDemoModeRows)]);
 	}
 
 	return (
