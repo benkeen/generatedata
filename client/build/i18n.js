@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const helpers = require('./helpers');
 
-const locales = ['ar', 'de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh']; // TODO put this in one place!
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+
+const locales = process.env.GD_LOCALES.split(',');
 
 const getCoreLocaleFileStrings = (locale) => {
 	return require(getCoreLocaleFilePath(locale));

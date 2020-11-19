@@ -1,9 +1,9 @@
 import React from 'react';
-import { coreConfig } from '../core';
 import { getLocale, getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder, blacklistedDataTypeFolders } from '../_plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
 import { Store } from '~types/general';
+import C from '../core/constants';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
@@ -26,7 +26,7 @@ export const getSortedGroupedDataTypes = (): any => {
 	}
 
 	lastLocale = locale;
-	cachedSortedGroupedDataTypes = coreConfig.dataTypeGroups.map((group: string) => {
+	cachedSortedGroupedDataTypes = C.DATA_TYPE_GROUPS.map((group: string) => {
 		const options = Object.keys(dataTypes)
 			.filter((dataType: DataTypeFolder) => dataTypes[dataType].fieldGroup === group)
 			.filter((dataType: DataTypeFolder) => blacklistedDataTypeFolders.indexOf(dataType) === -1)

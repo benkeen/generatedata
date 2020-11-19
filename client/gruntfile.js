@@ -3,6 +3,10 @@ const path = require('path');
 const helpers = require('./build/helpers');
 const i18n = require('./build/i18n');
 
+require('dotenv').config();
+
+const locales = process.env.GD_LOCALES.split(',');
+
 const distFolder = path.join(__dirname, '/dist');
 if (!fs.existsSync(distFolder)) {
 	fs.mkdirSync(distFolder);
@@ -30,7 +34,6 @@ module.exports = function (grunt) {
 	const dataTypesFolder = 'src/plugins/dataTypes';
 	const exportTypesFolder = 'src/plugins/exportTypes';
 	const countriesFolder = 'src/plugins/countries';
-	const locales = ['ar', 'de', 'en', 'es', 'fr', 'ja', 'nl', 'ta', 'zh']; // TODO boy these are listed everywhere...
 
 	const generateI18nBundles = () => {
 		locales.forEach((locale) => {

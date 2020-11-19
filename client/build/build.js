@@ -1,20 +1,23 @@
-require = require('esm')(module); // allows us to read es6 files
+// require = require('esm')(module); // allows us to read es6 files
 const fs = require('fs');
 const path = require('path');
-const package = require('../../package.json');
-const configDefaults = require('./config.client.defaults'); // TODO use .env
-const helpers = require("./helpers");
+const pkg = require('../../package.json');
+const helpers = require('./helpers');
 
-let overrides = {};
-const configFile = path.join(__dirname, '..', 'config', 'config.client.js');
-if (fs.existsSync(configFile)) {
-	overrides = require(configFile);
-}
+require('dotenv').config();
+
+const envSettings = {
+	defaultNumRows: process.env.GD_DEFAULT_NUM_ROWS,
+	maxDemoModeRows: process.env.GD_MAX_DEMO_MODE_ROWS,
+	maxDataSetHistorySize: process.env.GD_MAX_DATASET_HISTORY_SIZE,
+	defaultLocale: process.env.GD_DEFAULT_LOCALE,
+	defaultExportType: process.env.GD_DEFAULT_EXPORT_TYPE,
+	apiEnabled: process.env.GD_REST_API_ENABLED
+};
 
 const completeConfigFile = {
-	version: package.version,
-	...configDefaults.default,
-	...overrides.default
+	version: pkg.version,
+	...envSettings
 };
 
 const generateConfigFile = (filename, content) => {
@@ -46,9 +49,9 @@ const createPluginsListFile = () => {
 	});
 	content += `\nexport const dataTypes = {\n\t${dataTypes.join(',\n\t')}\n};\n`;
 	content += '\nexport type DataTypeFolder = keyof typeof dataTypes;\n';
-	content += '\nexport const blacklistedDataTypeFolders = [\'' + completeConfigFile.dataTypeBlacklist.join('\',\'') + '\'];\n\n';
+	content += '\nexport const blacklistedDataTypeFolders = [\'' + process.env.GD_DATA_TYPE_BLACKLIST.split(',').join('\',\'') + '\'];\n\n';
 
-	const exportTypes = helpers.getPlugins('exportTypes', completeConfigFile.exportTypeBlacklist);
+	const exportTypes = helpers.getPlugins('exportTypes', process.env.GD_EXPORT_TYPE_BLACKLIST.split(','));
 	exportTypes.forEach((folder) => {
 		content += `import ${folder} from './plugins/exportTypes/${folder}/config';\n`;
 	});
@@ -56,7 +59,7 @@ const createPluginsListFile = () => {
 	content += '\nexport type ExportTypeFolder = keyof typeof exportTypes;\n\n';
 
 	// currently there's no metadata we need for countries, so we just keep track of the names
-	const countries = helpers.getPlugins('countries', completeConfigFile.countryBlacklist, false);
+	const countries = helpers.getPlugins('countries', process.env.GD_COUNTRY_BLACKLIST.split(','), false);
 	content += `\nexport const countryList = ['${countries.join('\', \'')}'];\n`;
 	content += `export const countries = ['${countries.join('\', \'')}'] as const;\n`;
 
@@ -73,9 +76,13 @@ const createPluginsListFile = () => {
 // expanded on later for all the extra tabs (About, Donate etc.)
 const createImportFile = () => {
 	const importLines = [];
-	completeConfigFile.importFiles.forEach((filePathFromRoot) => {
-		importLines.push(`import '../${filePathFromRoot}';`);
-	});
+	const files = process.env.GD_IMPORT_FILES;
+
+	if (files) {
+		files.split(',').forEach((filePathFromRoot) => {
+			importLines.push(`import '../${filePathFromRoot}';`);
+		});
+	}
 
 	const file = path.join(__dirname, '..', 'src/_imports.tsx');
 	if (fs.existsSync(file)) {
