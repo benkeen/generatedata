@@ -3,8 +3,6 @@ const mysql = require('mysql');
 require('dotenv').config();
 
 module.exports.getConnection = () => {
-	console.log({ env: process.env });
-
 	const connection = mysql.createConnection({
 		host: 'db',
 		port: process.env.GD_DB_PORT,

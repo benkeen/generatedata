@@ -1,0 +1,1 @@
+This folder will store your database. This file is here to prevent OSs removing the empty folder.

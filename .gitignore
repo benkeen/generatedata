@@ -6,3 +6,5 @@ node_modules/*
 dist/
 .config
 .env
+data/db
+!data/db/nodelete.txt

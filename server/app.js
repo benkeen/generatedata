@@ -13,11 +13,12 @@ app.get('/settings', (req, res) => {
 
 app.get('/api/here', (req, res) => {
 	const connection = helpers.getConnection();
+
 	connection.query('SELECT * FROM user_accounts', (error, results) => {
 		if (error) {
 			throw error;
 		}
-		const data = results.map((i) => i.name);
+		const data = results.map((i) => i.first_name);
 
 		res.json({
 			data
