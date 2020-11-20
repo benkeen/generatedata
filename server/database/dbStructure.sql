@@ -40,18 +40,18 @@ CREATE TABLE `settings` (
 ALTER TABLE `settings` ADD UNIQUE KEY `setting_name` (`setting_name`);
 
 
-DROP TABLE IF EXISTS `user_accounts`;
-CREATE TABLE `user_accounts` (
+DROP TABLE IF EXISTS `accounts`;
+CREATE TABLE `accounts` (
   `account_id` mediumint(8) UNSIGNED NOT NULL,
   `date_created` datetime NOT NULL,
   `last_updated` datetime NOT NULL,
   `last_logged_in` datetime DEFAULT NULL,
   `date_expires` datetime DEFAULT NULL,
   `account_type` enum('user','admin') NOT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `password_recovery_question` varchar(100) DEFAULT NULL,
   `password_recovery_answer` varchar(100) DEFAULT NULL,
   `num_rows_generated` mediumint(9) DEFAULT '0',
@@ -61,6 +61,6 @@ CREATE TABLE `user_accounts` (
   `selected_countries` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `user_accounts` ADD PRIMARY KEY (`account_id`);
-ALTER TABLE `user_accounts` MODIFY `account_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `accounts` ADD PRIMARY KEY (`account_id`);
+ALTER TABLE `accounts` MODIFY `account_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
 

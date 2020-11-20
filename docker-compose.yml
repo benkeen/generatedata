@@ -38,8 +38,9 @@ services:
       MYSQL_DATABASE: ${GD_DB_NAME}
       MYSQL_ALLOW_EMPTY_PASSWORD: ok
     volumes:
-      - ./server/db.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./server/database/dbStructure.sql:/docker-entrypoint-initdb.d/setup.sql
       - ./data/db:/var/lib/mysql
+
 
 # --------------------------------------------------
 
