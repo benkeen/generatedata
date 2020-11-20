@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 const accounts = require('./tables/accounts');
+// const configurations = require('./tables/configurations');
+// const configurationHistory = require('./tables/configuration_history');
 const settings = require('./tables/settings');
 
 require('dotenv').config();
-
-const db = {};
 
 const sequelize = new Sequelize(
 	process.env.GD_DB_NAME,
@@ -26,12 +26,9 @@ const sequelize = new Sequelize(
 	}
 );
 
-const models = [
-	accounts,
-	settings
-];
-
-models.forEach(model => {
+const db = {};
+// [accounts, configurations, configurationHistory, settings].forEach((model) => {
+[accounts, settings].forEach((model) => {
 	const seqModel = model(sequelize, Sequelize);
 	db[seqModel.name] = seqModel;
 });
@@ -42,7 +39,7 @@ Object.keys(db).forEach(key => {
 	}
 });
 
-// urgh.
+// urgh...
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -1,7 +1,9 @@
+# noinspection SqlNoDataSourceInspectionForFile
+
 CREATE DATABASE IF NOT EXISTS generatedata;
 
 CREATE USER 'gduser'@'%' IDENTIFIED BY 'gdpassword';
-GRANT CREATE, ALTER, INDEX, LOCK TABLES, REFERENCES, UPDATE, DELETE, DROP, SELECT, INSERT ON `projectone`.* TO 'gduser'@'%';
+GRANT CREATE, ALTER, INDEX, LOCK TABLES, REFERENCES, UPDATE, DELETE, DROP, SELECT, INSERT ON `generatedata`.* TO 'gduser'@'%';
 
 FLUSH PRIVILEGES;
 
