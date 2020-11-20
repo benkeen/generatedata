@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-const userAccountTable = require('./models/accounts');
+const accounts = require('./tables/accounts');
+const settings = require('./tables/settings');
 
 require('dotenv').config();
 
@@ -21,14 +22,13 @@ const sequelize = new Sequelize(
 			min: 0,
 			acquire: 30000,
 			idle: 10000,
-		},
-		// <http://docs.sequelizejs.com/manual/tutorial/querying.html#operators>
-		operatorsAliases: false
+		}
 	}
 );
 
 const models = [
-	userAccountTable
+	accounts,
+	settings
 ];
 
 models.forEach(model => {
@@ -42,7 +42,8 @@ Object.keys(db).forEach(key => {
 	}
 });
 
-db.sequelize = sequelize; // urgh.
+// urgh.
+db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;

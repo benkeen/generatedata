@@ -52,8 +52,6 @@ CREATE TABLE `accounts` (
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `password_recovery_question` varchar(100) DEFAULT NULL,
-  `password_recovery_answer` varchar(100) DEFAULT NULL,
   `num_rows_generated` mediumint(9) DEFAULT '0',
   `max_records` mediumint(9) DEFAULT NULL,
   `selected_data_types` text,
