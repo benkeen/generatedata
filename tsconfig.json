@@ -17,6 +17,7 @@
     "paths": {
       "~components/*": ["client/src/components/*"],
       "~utils/*": ["client/src/utils/*"],
+      "~store/*": ["client/src/core/store/*"],
       "~types/*": ["client/types/*"]
     }
   },

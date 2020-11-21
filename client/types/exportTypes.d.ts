@@ -1,8 +1,8 @@
 import { BuilderLayout } from '../src/core/builder/Builder.component';
 import { ColumnData } from '~types/general';
-import { ExportTypeFolder } from '../src/_plugins';
 import { CountryMap } from '~types/countries';
 import { DataTypeMap } from '~types/dataTypes';
+import { ExportTypeFolder } from '../_plugins';
 
 export type ExportTypeMap = {
 	[exportType in ExportTypeFolder]?: string;

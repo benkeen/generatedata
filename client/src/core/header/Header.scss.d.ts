@@ -3,6 +3,7 @@ declare namespace HeaderScssNamespace {
     btnSelected: string;
     current: string;
     header: string;
+    headerLinks: string;
     items: string;
     toggleLayoutBtn: string;
     toggleLayoutBtnDisabled: string;

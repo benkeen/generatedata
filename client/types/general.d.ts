@@ -1,7 +1,7 @@
-import { GeneratorState } from '../src/core/store/generator/generator.reducer';
-import { MainState } from '../src/core/store/main/main.reducer';
-import { PacketsState } from '../src/core/store/packets/packets.reducer';
-import { DataTypeFolder } from '../src/_plugins';
+import { GeneratorState } from '~store/generator/generator.reducer';
+import { MainState } from '~store/main/main.reducer';
+import { PacketsState } from '~store/packets/packets.reducer';
+import { DataTypeFolder } from '../_plugins';
 
 declare global {
     interface Window {

@@ -4,3 +4,5 @@ export const getAppStateVersion = (state: Store): number => state.main.appStateV
 export const getLocale = (state: Store): GDLocale => state.main.locale;
 export const localeFileLoaded = (state: Store): boolean => state.main.localeFileLoaded;
 export const shouldShowIntroDialog = (state: Store): boolean => state.main.showIntroDialog;
+export const shouldShowLoginDialog = (state: Store): boolean => state.main.showLoginDialog;
+export const shouldShowSignUpDialog = (state: Store): boolean => state.main.showSignUpDialog;

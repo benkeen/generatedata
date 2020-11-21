@@ -16,9 +16,7 @@ import C from '../constants';
 import useOnClickOutside from 'use-onclickoutside';
 
 // temp
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-
-
+// import { ApolloClient, InMemoryCache, gql, NormalizedCacheObject } from '@apollo/client';
 
 export type FooterProps = {
 	locale: GDLocale;
@@ -97,27 +95,27 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGene
 		);
 	};
 
-	const doStuff = () => {
-		const client = new ApolloClient({
-			uri: 'http://localhost:3001/graphql',
-			cache: new InMemoryCache()
-		});
-
-		client.query({
-			query: gql`
-				query Query {
-				  account(id: 1) {
-				    account_id
-				    first_name
-				    last_name
-				  }
-				  accounts {
-				    account_id
-				  }
-				}
-		    `
-		}).then(result => console.log(result));
-	};
+	// const doStuff = () => {
+	// 	const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
+	// 		uri: 'http://localhost:3001/graphql',
+	// 		cache: new InMemoryCache()
+	// 	});
+	//
+	// 	client.query({
+	// 		query: gql`
+	// 			query Query {
+	// 			  account(id: 1) {
+	// 			    account_id
+	// 			    first_name
+	// 			    last_name
+	// 			  }
+	// 			  accounts {
+	// 			    account_id
+	// 			  }
+	// 			}
+	// 	    `
+	// 	}).then(result => console.log(result));
+	// };
 
 	return (
 		<footer className={styles.footer}>
@@ -131,9 +129,6 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGene
 					{getLocaleSelector()}
 					<li className={styles.scriptVersion}>
 						<a href={C.CHANGELOG_URL} target="_blank" rel="noopener noreferrer">{scriptVersion}</a>
-					</li>
-					<li>
-						<button onClick={doStuff}>Do stuff</button>
 					</li>
 					<li>
 						<ActivePacketsList />

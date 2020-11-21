@@ -10,13 +10,17 @@ export type MainState = {
 	localeFileLoaded: boolean;
 	locale: GDLocale;
 	showIntroDialog: boolean;
+	showLoginDialog: boolean;
+	showSignUpDialog: boolean;
 };
 
 export const initialState: MainState = {
 	appStateVersion: C.APP_STATE_VERSION,
 	localeFileLoaded: false,
 	locale: env.defaultLocale,
-	showIntroDialog: true
+	showIntroDialog: true,
+	showLoginDialog: false,
+	showSignUpDialog: false
 };
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -35,6 +39,14 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.TOGGLE_INTRO_DIALOG:
 			draft.showIntroDialog = !draft.showIntroDialog;
+			break;
+
+		case actions.TOGGLE_LOGIN_DIALOG:
+			draft.showLoginDialog = !draft.showLoginDialog;
+			break;
+
+		case actions.TOGGLE_SIGNUP_DIALOG:
+			draft.showSignUpDialog = !draft.showSignUpDialog;
 			break;
 	}
 }, initialState);

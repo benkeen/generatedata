@@ -8,7 +8,11 @@ require('dotenv').config();
 
 const server = new ApolloServer({
 	typeDefs: schema.typeDefs,
-	resolvers: schema.resolvers
+	resolvers: schema.resolvers,
+	context: ({ req }) => {
+		const token = req.headers.authorization || '';
+		// https://www.apollographql.com/docs/react/caching/cache-configuration/
+	}
 });
 
 server.applyMiddleware({ app });

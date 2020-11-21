@@ -12,13 +12,15 @@ import SwapVert from '@material-ui/icons/SwapVert';
 import MenuIcon from '@material-ui/icons/Menu';
 import { BuilderLayout } from '../builder/Builder.component';
 import ClearGridDialog, { ClearType } from '../dialogs/clearGrid/ClearGrid.component';
+import LoginDialog from '../dialogs/login/Login.container';
+import SignUpDialog from '../dialogs/signup/SignUp.container';
+import IntroDialog from '../dialogs/intro/Intro.component';
 import { Tooltip } from '~components/tooltips';
 import { toSentenceCase } from '~utils/stringUtils';
-import IntroDialog from '../dialogs/intro/Intro.component';
 import { GDLocale } from '~types/general';
 import C from '../constants';
 import * as styles from './Header.scss';
-import { GeneratorPanel } from '../store/generator/generator.reducer';
+import { GeneratorPanel } from '~store/generator/generator.reducer';
 
 export type HeaderProps = {
 	toggleGrid: () => void;
@@ -33,6 +35,9 @@ export type HeaderProps = {
 	isPreviewVisible: boolean;
 	smallScreenVisiblePanel: GeneratorPanel;
 	showIntroDialog: boolean;
+	showLoginDialog: boolean;
+	toggleLoginDialog: () => void;
+	toggleSignUpDialog: () => void;
 	locale: GDLocale;
 	builderLayout: BuilderLayout;
 	i18n: any;
@@ -40,7 +45,8 @@ export type HeaderProps = {
 
 const Header = ({
 	isGridVisible, isPreviewVisible, smallScreenVisiblePanel, toggleGrid, togglePreview, toggleLayout, i18n,
-	builderLayout, onClearGrid, toggleIntroDialog, showIntroDialog, onChangeSmallScreenVisiblePanel
+	builderLayout, onClearGrid, toggleIntroDialog, showIntroDialog, toggleLoginDialog, toggleSignUpDialog,
+	onChangeSmallScreenVisiblePanel
 }: HeaderProps): JSX.Element => {
 	const [showClearDialog, setShowClearDialog] = useState(false);
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -123,8 +129,11 @@ const Header = ({
 
 		return (
 			<>
-				<ul>
+				<ul className={styles.headerLinks}>
+					<li onClick={toggleLoginDialog}>Login</li>
+					<li onClick={toggleSignUpDialog}>Sign up</li>
 				</ul>
+
 				<ButtonGroup aria-label="" size="small" className={styles.items}>
 					<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
 						<Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small" />}>
@@ -178,6 +187,8 @@ const Header = ({
 				onClose={toggleIntroDialog}
 				i18n={i18n}
 			/>
+			<LoginDialog />
+			<SignUpDialog />
 		</>
 	);
 };

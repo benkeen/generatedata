@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import { DTCustomProps } from '~types/dataTypes';
-import { getSortedRowsArray } from '../../../core/store/generator/generator.selectors';
+import { getSortedRowsArray } from '~store/generator/generator.selectors';
 import { PostalZipState } from './PostalZip';
-import { REMOVE_ROW, SELECT_DATA_TYPE } from '../../../core/store/generator/generator.actions';
+import { REMOVE_ROW, SELECT_DATA_TYPE } from '~store/generator/generator.actions';
 
 
 // Postal/Zip Data Types can take their source as either Country fields (set to "Plugins" as the source), Regions, or

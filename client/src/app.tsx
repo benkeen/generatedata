@@ -12,11 +12,11 @@ import Builder from './core/builder/Builder.container';
 import * as core from './core';
 import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
-import './core/store/generator/generator.reducer';
+import '~store/generator/generator.reducer';
 import './styles/global.scss';
 import C from './core/constants';
-import { getAppStateVersion } from './core/store/main/main.selectors';
-import { resetStore } from './core/store/main/main.actions';
+import { getAppStateVersion } from '~store/main/main.selectors';
+import { resetStore } from '~store/main/main.actions';
 
 window.CodeMirror = codemirror;
 

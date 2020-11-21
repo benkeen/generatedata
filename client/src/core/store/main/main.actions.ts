@@ -25,3 +25,9 @@ export const toggleIntroDialog = (): GDAction => ({ type: TOGGLE_INTRO_DIALOG })
 
 export const RESET_STORE = 'RESET_STORE';
 export const resetStore = (): GDAction => ({ type: RESET_STORE });
+
+export const TOGGLE_LOGIN_DIALOG = 'TOGGLE_LOGIN_DIALOG';
+export const toggleLoginDialog = (): GDAction => ({ type: TOGGLE_LOGIN_DIALOG });
+
+export const TOGGLE_SIGNUP_DIALOG = 'TOGGLE_SIGNUP_DIALOG';
+export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG });

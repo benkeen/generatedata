@@ -97,3 +97,17 @@
 		fill: #dddddd;
 	}
 }
+
+.headerLinks {
+	margin-right: 20px;
+
+	li {
+		cursor: pointer;
+		font-size: 12px;
+		transition: color .1s ease-in-out;
+
+		&:hover {
+			color: $primary-color;
+		}
+	}
+}
