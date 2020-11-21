@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const accounts = require('./tables/accounts');
-// const configurations = require('./tables/configurations');
-// const configurationHistory = require('./tables/configuration_history');
+const configurations = require('./tables/configurations');
+const configurationHistory = require('./tables/configuration_history');
 const settings = require('./tables/settings');
 
 require('dotenv').config();
@@ -21,14 +21,13 @@ const sequelize = new Sequelize(
 			max: 5,
 			min: 0,
 			acquire: 30000,
-			idle: 10000,
+			idle: 10000
 		}
 	}
 );
 
 const db = {};
-// [accounts, configurations, configurationHistory, settings].forEach((model) => {
-[accounts, settings].forEach((model) => {
+[accounts, configurations, configurationHistory, settings].forEach((model) => {
 	const seqModel = model(sequelize, Sequelize);
 	db[seqModel.name] = seqModel;
 });

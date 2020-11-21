@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { gql } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
@@ -13,19 +14,41 @@ export type LoginDialogProps = {
 	i18n: any;
 };
 
+const LOGIN_MUTATION = gql`
+	mutation LoginMutation($email: String!, $password: String!) {
+		login(email: $email, password: $password) {
+			token
+		}
+	}
+`;
+
+/*
+	mutation{
+		login(data: {
+			email: "tom@whatever.com",
+			password: "chicken"
+		}), {
+			token
+		}
+	}
+*/
+
 const LoginDialog = ({ visible, onClose, onClear, i18n }: LoginDialogProps): JSX.Element => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
 	return (
 		<Dialog onClose={onClose} open={visible} className={styles.loginDialog}>
 			<div style={{ width: 380 }}>
-				<DialogTitle onClose={onClose}>Login</DialogTitle>
+				<DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>
 
 				<DialogContent dividers>
 					<div>
 						<label>{i18n.email}</label>
 						<div style={{ marginBottom: 15 }}>
 							<TextField
-								value={'test@gmail.com'}
-								onChange={() => {}}
+								value={email}
+								onChange={(e: any): void => setEmail(e.target.value)}
 								style={{ width: '100%' }}
 								autoFocus
 							/>
@@ -35,7 +58,8 @@ const LoginDialog = ({ visible, onClose, onClear, i18n }: LoginDialogProps): JSX
 						<div style={{ marginBottom: 15 }}>
 							<TextField
 								type="password"
-								value={'test@gmail.com'}
+								value={password}
+								onChange={(e: any): void => setPassword(e.target.value)}
 								style={{ width: '100%' }}
 							/>
 						</div>

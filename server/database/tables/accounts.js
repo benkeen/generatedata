@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+
 	return sequelize.define('accounts', {
 		account_id: {
 			type: DataTypes.INTEGER(8).UNSIGNED,
@@ -35,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false
 		},
 		password: {
-			type: DataTypes.STRING(100),
+			type: DataTypes.STRING(255),
 			allowNull: false
 		},
 		num_rows_generated: {
@@ -59,4 +60,3 @@ module.exports = (sequelize, DataTypes) => {
 		timestamps: false
 	});
 };
-
