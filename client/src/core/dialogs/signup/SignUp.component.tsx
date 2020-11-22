@@ -2,16 +2,13 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent } from '~components/dialogs';
 
-export type ClearType = 'dataOnly' | 'everything';
-
 export type SignUpDialogProps = {
 	visible: boolean;
 	onClose: any;
-	onClear: (clearType: ClearType) => void;
 	i18n: any;
 };
 
-const SignUpDialog = ({ visible, onClose, onClear, i18n }: SignUpDialogProps): JSX.Element => {
+const SignUpDialog = ({ visible, onClose }: SignUpDialogProps): JSX.Element => {
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 420 }}>

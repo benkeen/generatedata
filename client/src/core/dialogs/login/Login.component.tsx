@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { gql } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
+
+// @ts-ignore-line
+import Cookies from 'js-cookie';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
@@ -22,20 +25,25 @@ const LOGIN_MUTATION = gql`
 	}
 `;
 
-/*
-	mutation{
-		login(data: {
-			email: "tom@whatever.com",
-			password: "chicken"
-		}), {
-			token
-		}
-	}
-*/
-
 const LoginDialog = ({ visible, onClose, onClear, i18n }: LoginDialogProps): JSX.Element => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [login, { data }] = useMutation(LOGIN_MUTATION);
+
+	const loginUser = async () => {
+		const response = await login({
+			variables: {
+				email,
+				password
+			}
+		});
+
+		if (response) {
+			console.log(response);
+
+			Cookies.set('token', response.data.login.token);
+		}
+	};
 
 	return (
 		<Dialog onClose={onClose} open={visible} className={styles.loginDialog}>
@@ -66,7 +74,7 @@ const LoginDialog = ({ visible, onClose, onClear, i18n }: LoginDialogProps): JSX
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={onClose} color="primary" variant="outlined">
+					<Button onClick={loginUser} color="primary" variant="outlined">
 						{i18n.login}
 					</Button>
 				</DialogActions>

@@ -15,9 +15,6 @@ import { GDLocale } from '~types/general';
 import C from '../constants';
 import useOnClickOutside from 'use-onclickoutside';
 
-// temp
-// import { ApolloClient, InMemoryCache, gql, NormalizedCacheObject } from '@apollo/client';
-
 export type FooterProps = {
 	locale: GDLocale;
 	i18n: any;

@@ -68,6 +68,7 @@
     "graphql": "^15.4.0",
     "handlebars": "^4.7.6",
     "immer": "^7.0.9",
+    "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "pretty-bytes": "^5.4.1",
