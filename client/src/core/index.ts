@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import store from './store';
 import C from './constants';
 import * as actions from './store/generator/generator.actions';
@@ -21,6 +22,11 @@ export const init = (): void => {
 
 	store.dispatch(mainActions.selectLocale(locale));
 	store.dispatch(actions.onSelectExportType(exportType));
+
+	// this a correct assumption? I don't think so
+	if (Cookies.get('token')) {
+		store.dispatch(mainActions.setAuthenticated());
+	}
 
 	// if there are no rows, load some
 	if (numRows === 0) {

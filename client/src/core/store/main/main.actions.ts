@@ -1,5 +1,9 @@
+import { Dispatch } from 'redux';
+import { gql } from '@apollo/client';
+import Cookies from 'js-cookie';
 import { GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
+import { apolloClient } from '../../../apolloClient';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -31,3 +35,27 @@ export const toggleLoginDialog = (): GDAction => ({ type: TOGGLE_LOGIN_DIALOG })
 
 export const TOGGLE_SIGNUP_DIALOG = 'TOGGLE_SIGNUP_DIALOG';
 export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG });
+
+export const AUTHENTICATED = 'AUTHENTICATED';
+
+export const setAuthenticated = () => ({ type: AUTHENTICATED });
+export const login = (email: string, password: string): any => async (dispatch: Dispatch) => {
+	const LOGIN_MUTATION = gql`
+        mutation LoginMutation($email: String!, $password: String!) {
+            login(email: $email, password: $password) {
+                token
+            }
+        }
+	`;
+
+	const response = await apolloClient.mutate({
+		mutation: LOGIN_MUTATION,
+		variables: { email, password }
+	});
+
+	if (response) {
+		Cookies.set('token', response.data.login.token);
+		dispatch(setAuthenticated());
+		dispatch(toggleLoginDialog());
+	}
+};

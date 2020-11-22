@@ -12,6 +12,7 @@ export type MainState = {
 	showIntroDialog: boolean;
 	showLoginDialog: boolean;
 	showSignUpDialog: boolean;
+	isLoggedIn: boolean;
 };
 
 export const initialState: MainState = {
@@ -20,7 +21,8 @@ export const initialState: MainState = {
 	locale: env.defaultLocale,
 	showIntroDialog: true,
 	showLoginDialog: false,
-	showSignUpDialog: false
+	showSignUpDialog: false,
+	isLoggedIn: false
 };
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -47,6 +49,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.TOGGLE_SIGNUP_DIALOG:
 			draft.showSignUpDialog = !draft.showSignUpDialog;
+			break;
+
+		case actions.AUTHENTICATED:
+			draft.isLoggedIn = true;
 			break;
 	}
 }, initialState);

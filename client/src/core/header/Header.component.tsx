@@ -46,7 +46,7 @@ export type HeaderProps = {
 const Header = ({
 	isGridVisible, isPreviewVisible, smallScreenVisiblePanel, toggleGrid, togglePreview, toggleLayout, i18n,
 	builderLayout, onClearGrid, toggleIntroDialog, showIntroDialog, toggleLoginDialog, toggleSignUpDialog,
-	onChangeSmallScreenVisiblePanel
+	onChangeSmallScreenVisiblePanel, isLoggedIn
 }: HeaderProps): JSX.Element => {
 	const [showClearDialog, setShowClearDialog] = useState(false);
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -99,6 +99,24 @@ const Header = ({
 		previewBtnClasses += ` ${styles.btnSelected}`;
 	}
 
+	const getHeaderLinks = () => {
+		if (isLoggedIn) {
+			return (
+				<>
+					<li>Account</li>
+					<li>Logout</li>
+				</>
+			);
+		}
+
+		return (
+			<>
+				<li onClick={toggleLoginDialog}>Login</li>
+				<li onClick={toggleSignUpDialog}>Sign up</li>
+			</>
+		);
+	};
+
 	const getNav = (): React.ReactNode => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
 			const togglePanelLabel = smallScreenVisiblePanel === 'grid' ? i18n.showPreview : i18n.showGrid;
@@ -130,8 +148,7 @@ const Header = ({
 		return (
 			<>
 				<ul className={styles.headerLinks}>
-					<li onClick={toggleLoginDialog}>Login</li>
-					<li onClick={toggleSignUpDialog}>Sign up</li>
+					{getHeaderLinks()}
 				</ul>
 
 				<ButtonGroup aria-label="" size="small" className={styles.items}>

@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
-
-// @ts-ignore-line
-import Cookies from 'js-cookie';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
@@ -14,35 +10,16 @@ export type LoginDialogProps = {
 	visible: boolean;
 	onClose: any;
 	onClear: (clearType: ClearType) => void;
+	onSubmit: (email: string, password: string) => void;
 	i18n: any;
 };
 
-const LOGIN_MUTATION = gql`
-	mutation LoginMutation($email: String!, $password: String!) {
-		login(email: $email, password: $password) {
-			token
-		}
-	}
-`;
-
-const LoginDialog = ({ visible, onClose, onClear, i18n }: LoginDialogProps): JSX.Element => {
+const LoginDialog = ({ visible, onClose, onClear, onSubmit, i18n }: LoginDialogProps): JSX.Element => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [login, { data }] = useMutation(LOGIN_MUTATION);
 
-	const loginUser = async () => {
-		const response = await login({
-			variables: {
-				email,
-				password
-			}
-		});
-
-		if (response) {
-			console.log(response);
-
-			Cookies.set('token', response.data.login.token);
-		}
+	const onLogin = () => {
+		onSubmit(email, password);
 	};
 
 	return (
@@ -74,7 +51,7 @@ const LoginDialog = ({ visible, onClose, onClear, i18n }: LoginDialogProps): JSX
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={loginUser} color="primary" variant="outlined">
+					<Button onClick={onLogin} color="primary" variant="outlined">
 						{i18n.login}
 					</Button>
 				</DialogActions>

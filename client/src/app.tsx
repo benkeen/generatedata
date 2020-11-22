@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { ApolloClient, ApolloProvider, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { apolloClient } from './apolloClient';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 // @ts-ignore-line
@@ -21,11 +22,6 @@ import { resetStore } from '~store/main/main.actions';
 
 window.CodeMirror = codemirror;
 
-const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-	uri: 'http://localhost:3001/graphql',
-	cache: new InMemoryCache()
-});
-
 const checkState = async (state: any): Promise<any> => {
 	const lastAppStateVersion = getAppStateVersion(state.getState());
 	if (lastAppStateVersion !== C.APP_STATE_VERSION) {
@@ -35,7 +31,7 @@ const checkState = async (state: any): Promise<any> => {
 
 const App = (): JSX.Element => (
 	<Provider store={store}>
-		<ApolloProvider client={client}>
+		<ApolloProvider client={apolloClient}>
 			<ThemeProvider theme={theme}>
 				<PersistGate loading={null} persistor={persistor} onBeforeLift={(): Promise<any> => checkState(store)}>
 					{(bootstrapped): JSX.Element => {

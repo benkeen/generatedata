@@ -16,7 +16,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	isPreviewVisible: selectors.isPreviewVisible(state),
 	smallScreenVisiblePanel: selectors.getSmallScreenVisiblePanel(state),
 	builderLayout: selectors.getBuilderLayout(state),
-	isLoggedIn: false // TODO soon!
+	isLoggedIn: mainSelectors.isLoggedIn(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
