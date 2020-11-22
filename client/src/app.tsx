@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/client';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { apolloClient } from './apolloClient';
+import { apolloClient } from './core/apolloClient';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 // @ts-ignore-line

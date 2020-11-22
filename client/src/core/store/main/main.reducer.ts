@@ -1,9 +1,9 @@
 import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as actions from './main.actions';
-import { GDLocale } from '~types/general';
 import C from '../../constants';
 import env from '../../../../_env';
+import { GDLocale } from '~types/general';
 
 export type MainState = {
 	appStateVersion: number;
@@ -13,6 +13,7 @@ export type MainState = {
 	showLoginDialog: boolean;
 	showSignUpDialog: boolean;
 	isLoggedIn: boolean;
+	userTokenVerified: boolean;
 };
 
 export const initialState: MainState = {
@@ -22,7 +23,11 @@ export const initialState: MainState = {
 	showIntroDialog: true,
 	showLoginDialog: false,
 	showSignUpDialog: false,
-	isLoggedIn: false
+	isLoggedIn: false,
+
+	// by default we assume the user isn't logged in when the page first loads, so this is set to true. If they
+	// *did* have a live session, this is set according during boot up when verifying their JWT
+	userTokenVerified: true
 };
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -52,9 +57,19 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			break;
 
 		case actions.AUTHENTICATED:
-			draft.isLoggedIn = true;
+			draft.isLoggedIn = action.payload.authenticated;
+			draft.userTokenVerified = true; // yup, even if they're not authenticated. Difficult var name - only applies for logged in users
+			break;
+
+		case actions.LOGOUT:
+			draft.isLoggedIn = false;
+			break;
+
+		case actions.VERIFYING_TOKEN:
+			draft.userTokenVerified = false;
 			break;
 	}
+
 }, initialState);
 
 export default reducer;

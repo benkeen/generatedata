@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
 import { GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
-import { apolloClient } from '../../../apolloClient';
+import { apolloClient } from '../../apolloClient';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -13,7 +13,7 @@ export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
 	}
 });
 
-export const selectLocale = (locale: GDLocale) => (dispatch: any): any => {
+export const selectLocale = (locale: GDLocale) => (dispatch: Dispatch): any => {
 	window.gd = {};
 	window.gd.localeLoaded = (strings: any): void => {
 		langUtils.setLocale(locale, strings);
@@ -38,7 +38,7 @@ export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG 
 
 export const AUTHENTICATED = 'AUTHENTICATED';
 
-export const setAuthenticated = () => ({ type: AUTHENTICATED });
+export const setAuthenticated = (authenticated = true) => ({ type: AUTHENTICATED, payload: { authenticated } });
 export const login = (email: string, password: string): any => async (dispatch: Dispatch) => {
 	const LOGIN_MUTATION = gql`
         mutation LoginMutation($email: String!, $password: String!) {
@@ -55,7 +55,37 @@ export const login = (email: string, password: string): any => async (dispatch: 
 
 	if (response) {
 		Cookies.set('token', response.data.login.token);
+
 		dispatch(setAuthenticated());
 		dispatch(toggleLoginDialog());
 	}
+};
+
+export const LOGOUT = 'LOGOUT';
+export const logout = (): GDAction => {
+	Cookies.remove('token');
+	return { type: LOGOUT };
+};
+
+
+export const VERIFYING_TOKEN = 'VERIFYING_TOKEN';
+export const verifyToken = () => async (dispatch: Dispatch) => {
+	dispatch({ type: VERIFYING_TOKEN });
+
+	const response = await apolloClient.query({
+		query: gql`
+			query VerifyToken {
+				verifyToken {
+					valid
+				}
+			}
+		`
+	});
+
+	const isValid = response.data.verifyToken.valid;
+	if (!isValid) {
+		Cookies.remove('token');
+	}
+
+	dispatch(setAuthenticated(isValid));
 };

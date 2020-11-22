@@ -41,12 +41,14 @@ export type HeaderProps = {
 	locale: GDLocale;
 	builderLayout: BuilderLayout;
 	i18n: any;
+	onLogout: () => void;
+	userTokenVerified: boolean;
 };
 
 const Header = ({
 	isGridVisible, isPreviewVisible, smallScreenVisiblePanel, toggleGrid, togglePreview, toggleLayout, i18n,
 	builderLayout, onClearGrid, toggleIntroDialog, showIntroDialog, toggleLoginDialog, toggleSignUpDialog,
-	onChangeSmallScreenVisiblePanel, isLoggedIn
+	onChangeSmallScreenVisiblePanel, isLoggedIn, onLogout, userTokenVerified
 }: HeaderProps): JSX.Element => {
 	const [showClearDialog, setShowClearDialog] = useState(false);
 	const GridIcon = isGridVisible ? CheckBox : CheckBoxOutlineBlank;
@@ -100,11 +102,15 @@ const Header = ({
 	}
 
 	const getHeaderLinks = () => {
+		if (!userTokenVerified) {
+			return null;
+		}
+
 		if (isLoggedIn) {
 			return (
 				<>
 					<li>Account</li>
-					<li>Logout</li>
+					<li onClick={onLogout}>Logout</li>
 				</>
 			);
 		}

@@ -16,7 +16,8 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	isPreviewVisible: selectors.isPreviewVisible(state),
 	smallScreenVisiblePanel: selectors.getSmallScreenVisiblePanel(state),
 	builderLayout: selectors.getBuilderLayout(state),
-	isLoggedIn: mainSelectors.isLoggedIn(state)
+	isLoggedIn: mainSelectors.isLoggedIn(state),
+	userTokenVerified: mainSelectors.isUserTokenVerified(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
@@ -30,7 +31,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 	// @ts-ignore
 	onClearGrid: (clearType: ClearType): any => dispatch(actions.clearGrid(clearType)),
 	toggleIntroDialog: (): any => dispatch(mainActions.toggleIntroDialog()),
-	toggleLoginDialog: (): any => dispatch(mainActions.toggleLoginDialog())
+	toggleLoginDialog: (): any => dispatch(mainActions.toggleLoginDialog()),
+	onLogout: (): any => dispatch(mainActions.logout())
 });
 
 const container: any = connect(

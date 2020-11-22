@@ -23,9 +23,9 @@ export const init = (): void => {
 	store.dispatch(mainActions.selectLocale(locale));
 	store.dispatch(actions.onSelectExportType(exportType));
 
-	// this a correct assumption? I don't think so
-	if (Cookies.get('token')) {
-		store.dispatch(mainActions.setAuthenticated());
+	// if there's a live session, verify the JWT is still valid
+	if (mainSelectors.isLoggedIn(state)) {
+		store.dispatch(mainActions.verifyToken());
 	}
 
 	// if there are no rows, load some

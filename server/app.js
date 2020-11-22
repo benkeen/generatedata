@@ -21,8 +21,9 @@ const server = new ApolloServer({
 		// // add the user to the context
 		// return { user };
 
+		// provides the auth token to all resolvers
 		return {
-			token: req.headers.authorization || ''
+			token: (req.headers.authorization || '').replace('Bearer ', '')
 		};
 	}
 });
@@ -30,9 +31,9 @@ const server = new ApolloServer({
 server.applyMiddleware({ app });
 
 // for debugging only
-app.get('/api/here', async (req, res) => {
-	// const hash = await authHelpers.getPasswordHash('test123');
-});
+// app.get('/api/here', async (req, res) => {
+// 	// const hash = await authHelpers.getPasswordHash('test123');
+// });
 
 app.listen(process.env.GD_API_SERVER_PORT);
 console.log('Server started on port ' + process.env.GD_API_SERVER_PORT);

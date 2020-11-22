@@ -7,3 +7,4 @@ export const shouldShowIntroDialog = (state: Store): boolean => state.main.showI
 export const shouldShowLoginDialog = (state: Store): boolean => state.main.showLoginDialog;
 export const shouldShowSignUpDialog = (state: Store): boolean => state.main.showSignUpDialog;
 export const isLoggedIn = (state: Store): boolean => state.main.isLoggedIn;
+export const isUserTokenVerified = (state: Store): boolean => state.main.userTokenVerified;

@@ -4,15 +4,24 @@ const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
 	Query: {
-		accounts: async (root, args, { req }) => {
-			console.log('trying to authenticate', req);
+		accounts: async (root, args, { token }) => {
+			console.log('trying to authenticate', token);
 
-			authHelpers.authenticate(req);
+			authHelpers.authenticate(token);
 
 			return db.accounts.findAll();
 		},
-		account: async (obj, args) => {
+
+		account: async (root, args) => {
 			return db.accounts.findByPk(args.id);
+		},
+
+		// for verifying a live JWT, found in the headers
+		verifyToken: async(root, args, { token }) => {
+			const valid = await authHelpers.authenticate(token);
+			return {
+				valid
+			};
 		}
 	},
 

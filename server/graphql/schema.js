@@ -7,6 +7,7 @@ const typeDefs = gql`
         settings: [Setting]
         configurations: [Configuration]
         configuration(id: ID!): Configuration
+	    verifyToken: AuthVerifiedPayload
     }
 
 	type Mutation {
@@ -41,6 +42,10 @@ const typeDefs = gql`
 
 	type AuthPayLoad {
 		token: String!
+	}
+	
+	type AuthVerifiedPayload {
+		valid: Boolean!
 	}
 `;
 
