@@ -12,16 +12,15 @@ import { Dialog, DialogContent, DialogTitle, DialogActions } from '~components/d
 import usePrevious from '../../hooks/usePrevious';
 import useDidUpdate from '../../hooks/useDidUpdate';
 import styles from './ActivityPanel.scss';
-import { DataPacket, LoadTimeGraphDuration } from '../store/packets/packets.reducer';
+import { DataPacket, LoadTimeGraphDuration } from '~store/packets/packets.reducer';
 import * as coreUtils from '~utils/coreUtils';
 import C from '../constants';
-import { getStrings } from '~utils/langUtils';
 import { Tooltip } from '~components/tooltips';
 import { getPercentageLabel } from './generation.helpers';
 
 export type ActivityPanelProps = {
 	visible: boolean;
-	i18n: any;
+	fullI18n: any;
 	packet: DataPacket | null;
 	onClose: () => void;
 	onPause: () => void;
@@ -42,11 +41,13 @@ const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
-	onDownload, onChangeSpeed, dataSize, estimatedSize, estimatedTime, i18n
+	onDownload, onChangeSpeed, dataSize, estimatedSize, estimatedTime, fullI18n
 }: ActivityPanelProps): any => {
-	if (packet === null) {
+	if (packet === null || fullI18n === null) {
 		return null;
 	}
+
+	const coreI18n = fullI18n.core;
 
 	const { isPaused, config, dataTypeWorkerId, exportTypeWorkerId, numGeneratedRows, speed } = packet;
 	const { numRowsToGenerate, columns, template, exportType, exportTypeSettings, stripWhitespace } = config;
@@ -73,7 +74,7 @@ const ActivityPanel = ({
 			batchSize: C.GENERATION_BATCH_SIZE,
 			speed,
 			columns,
-			i18n: getStrings(), // TODO bug! the locale may not be loaded yet. Best to handle this higher up the app
+			i18n: fullI18n,
 			template,
 			workerResources
 		});
@@ -117,8 +118,8 @@ const ActivityPanel = ({
 	const isComplete = percentage === 100;
 
 	const pieChartData = [
-		{ name: i18n.complete, value: percentage, color: '#275eb5' },
-		{ name: i18n.incomplete, value: 100-percentage, color: '#efefef' }
+		{ name: coreI18n.complete, value: percentage, color: '#275eb5' },
+		{ name: coreI18n.incomplete, value: 100-percentage, color: '#efefef' }
 	];
 
 	const pauseContinueIcon = isPaused ?
@@ -128,11 +129,11 @@ const ActivityPanel = ({
 	const marks = [
 		{
 			value: 0,
-			label: i18n.seriouslySlow
+			label: coreI18n.seriouslySlow
 		},
 		{
 			value: 100,
-			label: i18n.cpuMeltinglyFast
+			label: coreI18n.cpuMeltinglyFast
 		}
 	];
 
@@ -141,10 +142,10 @@ const ActivityPanel = ({
 			return (
 				<div>
 					<Button onClick={onAbort} color="default" variant="outlined" style={{ marginRight: 10 }}>
-						{i18n.clear}
+						{coreI18n.clear}
 					</Button>
 					<Button onClick={onDownload} color="primary" variant="outlined" style={{ marginRight: 10 }}>
-						{i18n.download}
+						{coreI18n.download}
 					</Button>
 				</div>
 			);
@@ -152,7 +153,7 @@ const ActivityPanel = ({
 
 		return (
 			<Button onClick={abortPacket} color="secondary" variant="outlined" style={{ marginRight: 10 }}>
-				{i18n.cancel}
+				{coreI18n.cancel}
 			</Button>
 		);
 	};
@@ -163,7 +164,7 @@ const ActivityPanel = ({
 			return null;
 		}
 
-		const tooltip = isPaused ? i18n.play : i18n.pause;
+		const tooltip = isPaused ? coreI18n.play : coreI18n.pause;
 
 		return (
 			<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
@@ -245,7 +246,7 @@ const ActivityPanel = ({
 									</div>
 
 									<div className={styles.panel2}>
-										<h4>{i18n.rowsGeneratedPerSecond}</h4>
+										<h4>{coreI18n.rowsGeneratedPerSecond}</h4>
 										<BarChart
 											width={dimensions.width - pieSize}
 											height={dimensions.height - 185}
@@ -253,7 +254,7 @@ const ActivityPanel = ({
 											margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
 											<CartesianGrid strokeDasharray="3 3" />
 											<XAxis dataKey="label" interval={0} tick={{ fontSize: 8 }}>
-												<Label value={i18n.seconds} offset={0} position="insideBottom" />
+												<Label value={coreI18n.seconds} offset={0} position="insideBottom" />
 											</XAxis>
 											<YAxis dataKey="rowsPerSecond" />
 											<Bar dataKey="rowsPerSecond" stroke="#275eb5" fill="#275eb5" isAnimationActive={false} />

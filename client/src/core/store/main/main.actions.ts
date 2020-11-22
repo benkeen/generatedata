@@ -38,18 +38,16 @@ export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG 
 
 export const AUTHENTICATED = 'AUTHENTICATED';
 
-export const setAuthenticated = (authenticated = true) => ({ type: AUTHENTICATED, payload: { authenticated } });
-export const login = (email: string, password: string): any => async (dispatch: Dispatch) => {
-	const LOGIN_MUTATION = gql`
-        mutation LoginMutation($email: String!, $password: String!) {
-            login(email: $email, password: $password) {
-                token
-            }
-        }
-	`;
-
+export const setAuthenticated = (authenticated = true): GDAction => ({ type: AUTHENTICATED, payload: { authenticated } });
+export const login = (email: string, password: string): any => async (dispatch: Dispatch): Promise<any> => {
 	const response = await apolloClient.mutate({
-		mutation: LOGIN_MUTATION,
+		mutation: gql`
+            mutation LoginMutation($email: String!, $password: String!) {
+                login(email: $email, password: $password) {
+                    token
+                }
+            }
+		`,
 		variables: { email, password }
 	});
 
@@ -69,7 +67,7 @@ export const logout = (): GDAction => {
 
 
 export const VERIFYING_TOKEN = 'VERIFYING_TOKEN';
-export const verifyToken = () => async (dispatch: Dispatch) => {
+export const verifyToken = () => async (dispatch: Dispatch): Promise<any> => {
 	dispatch({ type: VERIFYING_TOKEN });
 
 	const response = await apolloClient.query({

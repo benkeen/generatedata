@@ -2,7 +2,6 @@ const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const typeDefs = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
-// const authHelpers = require('./utils/auth');
 
 const app = express();
 
@@ -29,11 +28,5 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
-
-// for debugging only
-// app.get('/api/here', async (req, res) => {
-// 	// const hash = await authHelpers.getPasswordHash('test123');
-// });
-
 app.listen(process.env.GD_API_SERVER_PORT);
 console.log('Server started on port ' + process.env.GD_API_SERVER_PORT);

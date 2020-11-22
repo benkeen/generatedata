@@ -92,6 +92,7 @@ module.exports = (env, argv) => {
 
 	if (mode === 'development') {
 		config.devServer = {
+			historyApiFallback: true,
 			contentBase: path.join(__dirname, 'dist'),
 			port: process.env.GD_DEV_SERVER_PORT,
 			open: true

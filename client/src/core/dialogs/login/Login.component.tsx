@@ -4,17 +4,14 @@ import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import styles from './Login.scss';
 
-export type ClearType = 'dataOnly' | 'everything';
-
 export type LoginDialogProps = {
 	visible: boolean;
 	onClose: any;
-	onClear: (clearType: ClearType) => void;
 	onSubmit: (email: string, password: string) => void;
 	i18n: any;
 };
 
-const LoginDialog = ({ visible, onClose, onClear, onSubmit, i18n }: LoginDialogProps): JSX.Element => {
+const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JSX.Element => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 

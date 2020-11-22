@@ -12,7 +12,7 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: 
 
 	const props: Partial<ActivityPanelProps> & { packetId: string | null } = {
 		visible: packetSelectors.isGenerating(state),
-		i18n: selectors.getCoreI18n(state),
+		fullI18n: selectors.getI18n(state),
 		packet,
 		packetId: packetSelectors.getCurrentPacketId(state),
 		batchLoadTimes: packetSelectors.getBatchLoadTimes(state),

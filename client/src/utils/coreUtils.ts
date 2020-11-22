@@ -53,6 +53,7 @@ export const getExportTypeWorkerMap = (exportTypes: ExportTypeMap): ExportTypeMa
 	return map;
 };
 
+// TODO rename to getWorkerUtilsFilename ?
 export const getWorkerUtils = (): string => webWorkers.workerUtils;
 
 const messageIds: any = {};

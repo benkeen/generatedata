@@ -37,7 +37,7 @@ const App = (): JSX.Element => (
 					{(bootstrapped): JSX.Element => {
 
 						// PersistGate handles repopulating the redux store; core.init() re-initializes everything else we
-						// need, including loading the appropriate locale file based on whatever locale the user had selected
+						// need, including checking auth and loading the appropriate locale file
 						if (bootstrapped) {
 							core.init();
 						}
@@ -47,6 +47,9 @@ const App = (): JSX.Element => (
 								<ErrorBoundary>
 									<Page>
 										<Switch>
+											<Route path="/account">
+												<div>Account</div>
+											</Route>
 											<Route path="/about">
 												<div>About</div>
 											</Route>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useWindowSize } from 'react-hooks-window-size';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -109,7 +110,9 @@ const Header = ({
 		if (isLoggedIn) {
 			return (
 				<>
-					<li>Account</li>
+					<li><Link to="/about">About</Link></li>
+					<li><Link to="/">Generator</Link></li>
+					<li><Link to="/account">Account</Link></li>
 					<li onClick={onLogout}>Logout</li>
 				</>
 			);
@@ -117,6 +120,8 @@ const Header = ({
 
 		return (
 			<>
+				<li><Link to="/about">About</Link></li>
+				<li><Link to="/">Generator</Link></li>
 				<li onClick={toggleLoginDialog}>Login</li>
 				<li onClick={toggleSignUpDialog}>Sign up</li>
 			</>

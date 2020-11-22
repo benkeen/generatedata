@@ -10,7 +10,7 @@ import {
 	getExportTypeLabel as exportTypeUtilsGetExportTypeLabel,
 	getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode
 } from '~utils/exportTypeUtils';
-import { ColumnData, GenerationTemplate, Store } from '~types/general';
+import { ColumnData, GDLocale, GenerationTemplate, Store } from '~types/general';
 
 export const getLoadedDataTypes = (state: Store): any => state.generator.loadedDataTypes;
 export const getLoadedExportTypes = (state: Store): any => state.generator.loadedExportTypes;
@@ -179,6 +179,16 @@ export const selectedExportTypeLoaded = createSelector(
 export const getLoadedExportTypesArray = createSelector(
 	getLoadedExportTypes,
 	(exportTypes) => Object.keys(exportTypes).filter((et: ExportTypeFolder) => exportTypes[et])
+);
+
+// returns the entire i18n content
+export const getI18n = createSelector(
+	mainSelectors.localeFileLoaded,
+	mainSelectors.getLocale,
+	(localeFileLoaded, locale: GDLocale): any | null => {
+		const strings = langUtils.getStrings(locale);
+		return strings || null;
+	}
 );
 
 export const getCoreI18n = createSelector(
