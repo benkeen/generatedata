@@ -37,25 +37,28 @@ export const TOGGLE_SIGNUP_DIALOG = 'TOGGLE_SIGNUP_DIALOG';
 export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG });
 
 export const AUTHENTICATED = 'AUTHENTICATED';
-
 export const setAuthenticated = (authenticated = true): GDAction => ({ type: AUTHENTICATED, payload: { authenticated } });
-export const login = (email: string, password: string): any => async (dispatch: Dispatch): Promise<any> => {
+
+export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
 	const response = await apolloClient.mutate({
 		mutation: gql`
             mutation LoginMutation($email: String!, $password: String!) {
                 login(email: $email, password: $password) {
                     token
+					success
                 }
             }
 		`,
 		variables: { email, password }
 	});
 
-	if (response) {
+	if (response.data.login.success) {
 		Cookies.set('token', response.data.login.token);
 
 		dispatch(setAuthenticated());
 		dispatch(toggleLoginDialog());
+	} else {
+		onLoginError();
 	}
 };
 
@@ -64,7 +67,6 @@ export const logout = (): GDAction => {
 	Cookies.remove('token');
 	return { type: LOGOUT };
 };
-
 
 export const VERIFYING_TOKEN = 'VERIFYING_TOKEN';
 export const verifyToken = () => async (dispatch: Dispatch): Promise<any> => {

@@ -56,6 +56,10 @@ context.onmessage = (e: any) => {
 		if (!countryData[country]) {
 			importScripts(workerResources.countries[country]);
 
+			if (!e.data.i18n) {
+				console.log('**** GNARLY BUG HERE: i18n is not loaded in dataTypes.worker...');
+			}
+
 			// @ts-ignore
 			countryData[country] = context[country](e.data.i18n.countries[country]);
 		}

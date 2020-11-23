@@ -24,3 +24,7 @@ body :global(div.MuiTooltip-popper) {
 .recharts-wrapper .recharts-area {
 	transition: none;
 }
+
+body :global(.MuiAlert-filledError) {
+	background-color: #c52820;
+}

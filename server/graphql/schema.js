@@ -11,7 +11,7 @@ const typeDefs = gql`
     }
 
 	type Mutation {
-		login(email: String!, password: String!): AuthPayLoad!
+		login(email: String!, password: String!): AuthPayLoad
 	}
 
     type Account {
@@ -41,11 +41,12 @@ const typeDefs = gql`
 	}
 
 	type AuthPayLoad {
-		token: String!
+		success: Boolean
+		token: String
 	}
 	
 	type AuthVerifiedPayload {
-		valid: Boolean!
+		valid: Boolean
 	}
 `;
 

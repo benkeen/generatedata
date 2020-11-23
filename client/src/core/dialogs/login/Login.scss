@@ -6,3 +6,7 @@
 		font-size: 14px;
 	}
 }
+
+:global(#loginErrorPortal) :global(.MuiSnackbar-root) {
+	z-index: 5001;
+}

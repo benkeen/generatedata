@@ -10,8 +10,8 @@ import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { Tooltip } from '~components/tooltips';
+import Portal from '~components/Portal';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
-import Portal from './PreviewPanelPortal.component';
 import C from '../constants';
 import * as styles from './PreviewPanel.scss';
 
@@ -212,7 +212,7 @@ const PreviewPanel = ({
 
 	if (exportSettingsVisible) {
 		return (
-			<Portal>
+			<Portal id="previewPanelFullScreen">
 				<div className={`${styles.previewPanel} ${themeName}`}>{content}</div>
 			</Portal>
 		);

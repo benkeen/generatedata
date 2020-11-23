@@ -186,8 +186,10 @@ export const getI18n = createSelector(
 	mainSelectors.localeFileLoaded,
 	mainSelectors.getLocale,
 	(localeFileLoaded, locale: GDLocale): any | null => {
-		const strings = langUtils.getStrings(locale);
-		return strings || null;
+		if (!localeFileLoaded) {
+			return null;
+		}
+		return langUtils.getStrings(locale);
 	}
 );
 

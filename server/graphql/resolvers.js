@@ -1,12 +1,9 @@
 const db = require('../database');
 const authHelpers = require('../utils/auth');
-const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
 	Query: {
 		accounts: async (root, args, { token }) => {
-			console.log('trying to authenticate', token);
-
 			authHelpers.authenticate(token);
 
 			return db.accounts.findAll();
@@ -16,7 +13,7 @@ const resolvers = {
 			return db.accounts.findByPk(args.id);
 		},
 
-		// for verifying a live JWT, found in the headers
+		// for verifying a live JWT when a user refreshes the page. Token passed in the headers
 		verifyToken: async(root, args, { token }) => {
 			const valid = await authHelpers.authenticate(token);
 			return {
@@ -35,15 +32,13 @@ const resolvers = {
 			});
 
 			if (!user) {
-				throw new AuthenticationError('Unable to login');
-				return null;
+				return { success: false };
 			}
 
 			const { account_id, password: encodedPassword } = user.dataValues;
 			const isCorrect = await authHelpers.isValidPassword(password, encodedPassword);
 			if (!isCorrect) {
-				throw new AuthenticationError('Unable to login');
-				return null;
+				return { success: false };
 			}
 
 			const token = await authHelpers.getJwt({
@@ -52,8 +47,7 @@ const resolvers = {
 			});
 
 			return {
-				// account_id,
-				// email,
+				success: true,
 				token
 			};
 		}
