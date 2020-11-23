@@ -87,7 +87,7 @@ const renderGoogleLoginButton = (): void => {
 
 export const SignInWithGoogleButton = (): JSX.Element => <div id={googleBtnId} />;
 
-export const logout = () => {
+export const logoutGoogle = (): void => {
 	// @ts-ignore-line
 	const auth2 = window.gapi.auth2.getAuthInstance();
 	auth2.signOut();

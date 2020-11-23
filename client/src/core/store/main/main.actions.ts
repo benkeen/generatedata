@@ -1,10 +1,11 @@
 import { Dispatch } from 'redux';
 import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
-import { GDAction, GDLocale } from '~types/general';
+import { AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
-import { AuthMethod } from '~store/main/main.reducer';
+import { getAuthMethod } from '~store/main/main.selectors';
+import { logoutVendor } from '~utils/authUtils';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -38,7 +39,7 @@ export const TOGGLE_SIGNUP_DIALOG = 'TOGGLE_SIGNUP_DIALOG';
 export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG });
 
 export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
-export const setAuthenticationData = (authMethod: AuthMethod, firstName: string) => ({
+export const setAuthenticationData = (authMethod: AuthMethod, firstName: string): GDAction => ({
 	type: SET_AUTHENTICATION_DATA,
 	payload: {
 		authMethod,
@@ -81,9 +82,14 @@ export const login = (email: string, password: string, onLoginError: Function): 
 };
 
 export const LOGOUT = 'LOGOUT';
-export const logout = (): GDAction => {
+export const logout = (): any => (dispatch: Dispatch, getState: any): any => {
+
+	// if the user logged in with Google, Facebook etc. we need to also let them know
+	logoutVendor(getAuthMethod(getState()));
+
 	Cookies.remove('token');
-	return { type: LOGOUT };
+
+	dispatch({ type: LOGOUT });
 };
 
 export const VERIFYING_TOKEN = 'VERIFYING_TOKEN';

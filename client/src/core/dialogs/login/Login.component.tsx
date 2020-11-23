@@ -18,9 +18,10 @@ export type LoginDialogProps = {
 	i18n: any;
 };
 
+
 /**
  * The login dialog has baked-in support for standard logging into our database, but also optionally supports
- * logging in via external vendors: Google, Facebook and Github
+ * logging in via external vendors: Google, Facebook and Github.
  */
 const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
@@ -35,13 +36,13 @@ const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JS
 
 		let eError = '';
 		if (!email.trim()) {
-			eError = 'Please enter your email address';
+			eError = i18n.validationNoEmail;
 		} else if (!isValidEmail(email)) {
-			eError = 'Please enter a valid email address';
+			eError = i18n.validationInvalidEmail;
 		}
 		setEmailError(eError);
 
-		const pError = password ? '' : 'Please enter your password';
+		const pError = password ? '' : i18n.validationNoPassword;
 		setPasswordError(pError);
 
 		if (!eError && !pError) {
@@ -147,7 +148,7 @@ const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JS
 
 			<Portal id="loginErrorPortal">
 				<LoginError
-					message="Sorry there was an error logging in. Please check your credentials."
+					message={i18n.userNotFound}
 					visible={hasLoginError}
 					onClose={(): void => setLoginError(false)}
 				/>

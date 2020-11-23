@@ -1,5 +1,6 @@
 import env from '../../_env';
-import { SignInWithGoogleButton, initGoogleAuth } from '../core/auth/google/google';
+import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle } from '../core/auth/google/google';
+import { AuthMethod } from '~types/general';
 
 
 export const initAuthVendors = (): void => {
@@ -23,4 +24,10 @@ export const getVendorLoginButtons = (): React.ReactNode[] => {
 	}
 
 	return buttons;
+};
+
+export const logoutVendor = (authMethod: AuthMethod): void => {
+	if (authMethod === 'google') {
+		logoutGoogle();
+	}
 };

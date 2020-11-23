@@ -3,9 +3,7 @@ import produce from 'immer';
 import * as actions from './main.actions';
 import C from '../../constants';
 import env from '../../../../_env';
-import { GDLocale } from '~types/general';
-
-export type AuthMethod = 'default' | 'google';
+import { AuthMethod, GDLocale } from '~types/general';
 
 export type MainState = {
 	appStateVersion: number;
@@ -77,6 +75,8 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.LOGOUT:
 			draft.isLoggedIn = false;
+			draft.firstName = '';
+			draft.profileImage = null;
 			break;
 
 		case actions.VERIFYING_TOKEN:
