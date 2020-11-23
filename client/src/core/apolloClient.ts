@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, NormalizedCacheObject, ApolloLink, HttpLink, concat } from '@apollo/client';
+import fetch from 'cross-fetch';
 import Cookies from 'js-cookie';
 
 // TODO: generalized error handling when logged out
@@ -9,7 +10,8 @@ import Cookies from 'js-cookie';
 // })
 
 const httpLink = new HttpLink({
-	uri: 'http://localhost:3001/graphql'
+	uri: 'http://localhost:3001/graphql',
+	fetch
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {

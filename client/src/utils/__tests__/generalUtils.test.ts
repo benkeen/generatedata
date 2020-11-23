@@ -20,7 +20,7 @@ describe('cloneObj', () => {
 		const obj = { one: 114 };
 		expect(obj === obj).toBeTruthy();
 
-		const clone: any = generalUtils.cloneObj(obj)
+		const clone: any = generalUtils.cloneObj(obj);
 		expect(obj === clone).toBeFalsy();
 		expect(obj.one === clone.one).toBeTruthy();
 	});
@@ -41,3 +41,10 @@ describe('template', () => {
 	});
 });
 
+describe('isValidEmail', () => {
+	it('validates email as expected', () => {
+		expect(generalUtils.isValidEmail('nope')).toEqual(false);
+		expect(generalUtils.isValidEmail('')).toEqual(false);
+		expect(generalUtils.isValidEmail('a@b.com')).toEqual(true);
+	});
+});

@@ -11,3 +11,7 @@ export const template = (str: string, params: object): string => {
 	const compiled = uTemplate(str);
 	return compiled(params);
 };
+
+export const isValidEmail = (email: string): boolean => (
+	/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email)
+);

@@ -45,7 +45,8 @@ module.exports = (env, argv) => {
 							options: {
 								modules: {
 									localIdentName: '[name]__[local]--[hash:base64:3]'
-								}
+								},
+								url: false
 							}
 						},
 						{
@@ -94,6 +95,7 @@ module.exports = (env, argv) => {
 		config.devServer = {
 			historyApiFallback: true,
 			contentBase: path.join(__dirname, 'dist'),
+			// publicPath: 'http://localhost:9000',
 			port: process.env.GD_DEV_SERVER_PORT,
 			open: true
 			// host: '0.0.0.0', // needed when running within docker container

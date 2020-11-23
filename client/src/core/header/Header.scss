@@ -1,7 +1,7 @@
 @import "../../styles/variables";
 
 .header {
-	background-color: $bg-color;
+	background-image: url("./images/bg.png");
     padding: 0 20px;
 
 	img {
@@ -46,7 +46,7 @@
 
             li {
                 display: inline-block;
-                margin: 0 8px;
+                margin: 0 10px;
 
                 &.current a {
                     color: #000000;
@@ -104,7 +104,7 @@
 
 	li {
 		cursor: pointer;
-		font-size: 12px;
+		font-size: 13px;
 		transition: color .1s ease-in-out;
 
 		&:hover {

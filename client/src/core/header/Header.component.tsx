@@ -102,7 +102,7 @@ const Header = ({
 		previewBtnClasses += ` ${styles.btnSelected}`;
 	}
 
-	const getHeaderLinks = () => {
+	const getHeaderLinks = (): JSX.Element | null => {
 		if (!userTokenVerified) {
 			return null;
 		}
