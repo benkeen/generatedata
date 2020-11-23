@@ -112,7 +112,12 @@ const Header = ({
 				<>
 					<li><Link to="/about">About</Link></li>
 					<li><Link to="/">Generator</Link></li>
-					<li><Link to="/account">Account</Link></li>
+					<li>|</li>
+					<li>
+						<Link to="/account">
+							Account
+						</Link>
+					</li>
 					<li onClick={onLogout}>Logout</li>
 				</>
 			);

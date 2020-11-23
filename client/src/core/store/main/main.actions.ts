@@ -37,11 +37,12 @@ export const toggleLoginDialog = (): GDAction => ({ type: TOGGLE_LOGIN_DIALOG })
 export const TOGGLE_SIGNUP_DIALOG = 'TOGGLE_SIGNUP_DIALOG';
 export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG });
 
-export const SET_AUTHENTICATION_METHOD = 'SET_AUTHENTICATION_METHOD';
-export const setAuthenticationMethod = (authMethod: AuthMethod) => ({
-	type: SET_AUTHENTICATION_METHOD,
+export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
+export const setAuthenticationData = (authMethod: AuthMethod, firstName: string) => ({
+	type: SET_AUTHENTICATION_DATA,
 	payload: {
-		authMethod
+		authMethod,
+		firstName
 	}
 });
 
@@ -60,7 +61,8 @@ export const login = (email: string, password: string, onLoginError: Function): 
             mutation LoginMutation($email: String!, $password: String!) {
                 login(email: $email, password: $password) {
                     token
-					success
+					success,
+					firstName
                 }
             }
 		`,
@@ -68,10 +70,10 @@ export const login = (email: string, password: string, onLoginError: Function): 
 	});
 
 	if (response.data.login.success) {
-		Cookies.set('token', response.data.login.token);
+		const { token, firstName } = response.data.login;
+		Cookies.set('token', token);
 
-		dispatch(setAuthenticationMethod('default'));
-		dispatch(setAuthenticated());
+		dispatch(setAuthenticationData('default', firstName));
 		dispatch(toggleLoginDialog());
 	} else {
 		onLoginError();

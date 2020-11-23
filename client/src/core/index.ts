@@ -31,7 +31,7 @@ export const init = (): void => {
 		store.dispatch(mainActions.verifyToken());
 	}
 
-	// if there are no rows, load some
+	// if there are no rows, load some!
 	if (numRows === 0) {
 		store.dispatch(actions.addRows(C.NUM_DEFAULT_ROWS));
 	}

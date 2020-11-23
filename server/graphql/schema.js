@@ -43,6 +43,7 @@ const typeDefs = gql`
 	type AuthPayLoad {
 		success: Boolean
 		token: String
+		firstName: String
 	}
 	
 	type AuthVerifiedPayload {

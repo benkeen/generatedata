@@ -17,6 +17,8 @@ export type MainState = {
 	showSignUpDialog: boolean;
 	isLoggedIn: boolean;
 	userTokenVerified: boolean;
+	firstName: string;
+	profileImage: string | null;
 };
 
 export const initialState: MainState = {
@@ -28,6 +30,8 @@ export const initialState: MainState = {
 	showLoginDialog: false,
 	showSignUpDialog: false,
 	isLoggedIn: false,
+	firstName: '',
+	profileImage: null,
 
 	// by default we assume the user isn't logged in when the page first loads, so this is set to true. If they
 	// *did* have a live session, this is set according during boot up when verifying their JWT
@@ -63,6 +67,12 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 		case actions.AUTHENTICATED:
 			draft.isLoggedIn = action.payload.authenticated;
 			draft.userTokenVerified = true; // yup, even if they're not authenticated. Difficult var name - only applies for logged in users
+			break;
+
+		case actions.SET_AUTHENTICATION_DATA:
+			draft.isLoggedIn = true;
+			draft.authMethod = action.payload.authMethod;
+			draft.firstName = action.payload.firstName;
 			break;
 
 		case actions.LOGOUT:

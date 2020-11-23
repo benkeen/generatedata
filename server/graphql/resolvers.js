@@ -25,7 +25,7 @@ const resolvers = {
 	Mutation: {
 		login: async (root, { email, password }) => {
 			const user = await db.accounts.findOne({
-				attributes: ['account_id', 'password'],
+				attributes: ['account_id', 'password', 'first_name'],
 				where: {
 					email
 				}
@@ -35,7 +35,7 @@ const resolvers = {
 				return { success: false };
 			}
 
-			const { account_id, password: encodedPassword } = user.dataValues;
+			const { account_id, first_name, password: encodedPassword } = user.dataValues;
 			const isCorrect = await authHelpers.isValidPassword(password, encodedPassword);
 			if (!isCorrect) {
 				return { success: false };
@@ -48,7 +48,8 @@ const resolvers = {
 
 			return {
 				success: true,
-				token
+				token,
+				firstName: first_name
 			};
 		}
 	}
