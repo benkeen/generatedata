@@ -18,6 +18,8 @@ export type EnvSettings = {
 	defaultExportType: ExportTypeFolder;
 	apiEnabled: boolean;
 	availableLocales: GDLocale[];
+	googleAuthClientId: string;
+	googleAuthClientSecret: string;
 };
 
 const envSettings: EnvSettings = {
@@ -39,7 +41,9 @@ const envSettings: EnvSettings = {
 		"nl",
 		"ta",
 		"zh"
-	]
+	],
+	"googleAuthClientId": "707804813649-fje5koej54rr79d4fspstura0rvsie9c.apps.googleusercontent.com",
+	"googleAuthClientSecret": "6oSdW-PTs9d2rvzNcxIHw-dK"
 };
 
 export default envSettings;

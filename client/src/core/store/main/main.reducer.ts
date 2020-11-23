@@ -5,8 +5,11 @@ import C from '../../constants';
 import env from '../../../../_env';
 import { GDLocale } from '~types/general';
 
+export type AuthMethod = 'default' | 'google';
+
 export type MainState = {
 	appStateVersion: number;
+	authMethod: AuthMethod;
 	localeFileLoaded: boolean;
 	locale: GDLocale;
 	showIntroDialog: boolean;
@@ -18,6 +21,7 @@ export type MainState = {
 
 export const initialState: MainState = {
 	appStateVersion: C.APP_STATE_VERSION,
+	authMethod: 'default',
 	localeFileLoaded: false,
 	locale: env.defaultLocale,
 	showIntroDialog: true,

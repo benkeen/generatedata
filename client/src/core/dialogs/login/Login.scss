@@ -10,3 +10,28 @@
 :global(#loginErrorPortal) :global(.MuiSnackbar-root) {
 	z-index: 5001;
 }
+
+.withSecondCol {
+	display: flex;
+	flex-direction: row;
+}
+
+.col {
+	flex: 1;
+}
+
+.separator {
+	margin: 0 25px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	border-left: 1px solid #efefef;
+
+	&>div {
+		position: absolute;
+		left: -7px;
+		background-color: white;
+		padding: 2px;
+		color: #555555;
+	}
+}

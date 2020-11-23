@@ -6,6 +6,10 @@ import Portal from '~components/Portal';
 import { isValidEmail } from '~utils/generalUtils';
 import styles from './Login.scss';
 import LoginError from './LoginError.component';
+import { hasVendorLogin, getVendorLoginButtons } from '~utils/authUtils';
+
+const showVendorLoginColumn = hasVendorLogin();
+const vendorLoginButtons = getVendorLoginButtons();
 
 export type LoginDialogProps = {
 	visible: boolean;
@@ -14,6 +18,10 @@ export type LoginDialogProps = {
 	i18n: any;
 };
 
+/**
+ * The login dialog has baked-in support for standard logging into our database, but also optionally supports
+ * logging in via external vendors: Google, Facebook and Github
+ */
 const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
@@ -62,39 +70,70 @@ const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JS
 		setPassword(password);
 	};
 
+	let width = 380;
+	let layoutClass = '';
+
+	if (showVendorLoginColumn) {
+		width = 500;
+		layoutClass = styles.withSecondCol;
+	}
+
+	const getSecondColumn = (): JSX.Element | null => {
+		if (!showVendorLoginColumn) {
+			return null;
+		}
+
+		// @ts-ignore-line
+		const buttons = vendorLoginButtons.map((VendorButton, index) => <VendorButton key={index} />);
+
+		return (
+			<>
+				<div className={styles.separator}>
+					<div>or</div>
+				</div>
+				<div className={styles.col}>
+					{buttons}
+				</div>
+			</>
+		);
+	};
+
 	return (
 		<>
 			<Dialog onClose={onClose} open={visible} className={styles.loginDialog}>
 				<form onSubmit={onLogin}>
-					<div style={{ width: 380 }}>
+					<div style={{ width }}>
 						<DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>
 
 						<DialogContent dividers>
-							<div>
-								<label>{i18n.email}</label>
-								<div style={{ marginBottom: 15 }}>
-									<TextField
-										ref={textFieldRef}
-										value={email}
-										error={emailError}
-										name="email"
-										onChange={(e: any): void => updateEmail(e.target.value)}
-										style={{ width: '100%' }}
-										autoFocus
-									/>
-								</div>
+							<div className={layoutClass}>
+								<div className={styles.col}>
+									<label>{i18n.email}</label>
+									<div style={{ marginBottom: 15 }}>
+										<TextField
+											ref={textFieldRef}
+											value={email}
+											error={emailError}
+											name="email"
+											onChange={(e: any): void => updateEmail(e.target.value)}
+											style={{ width: '100%' }}
+											autoFocus
+										/>
+									</div>
 
-								<label>{i18n.password}</label>
-								<div style={{ marginBottom: 15 }}>
-									<TextField
-										type="password"
-										error={passwordError}
-										name="password"
-										value={password}
-										onChange={(e: any): void => updatePassword(e.target.value)}
-										style={{ width: '100%' }}
-									/>
+									<label>{i18n.password}</label>
+									<div style={{ marginBottom: 15 }}>
+										<TextField
+											type="password"
+											error={passwordError}
+											name="password"
+											value={password}
+											onChange={(e: any): void => updatePassword(e.target.value)}
+											style={{ width: '100%' }}
+										/>
+									</div>
 								</div>
+								{getSecondColumn()}
 							</div>
 						</DialogContent>
 						<DialogActions>

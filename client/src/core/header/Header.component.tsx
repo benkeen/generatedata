@@ -122,6 +122,7 @@ const Header = ({
 			<>
 				<li><Link to="/about">About</Link></li>
 				<li><Link to="/">Generator</Link></li>
+				<li>|</li>
 				<li onClick={toggleLoginDialog}>Login</li>
 				<li onClick={toggleSignUpDialog}>Sign up</li>
 			</>

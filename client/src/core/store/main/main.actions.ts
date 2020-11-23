@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
+import { AuthMethod } from '~store/main/main.reducer';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -36,9 +37,23 @@ export const toggleLoginDialog = (): GDAction => ({ type: TOGGLE_LOGIN_DIALOG })
 export const TOGGLE_SIGNUP_DIALOG = 'TOGGLE_SIGNUP_DIALOG';
 export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG });
 
-export const AUTHENTICATED = 'AUTHENTICATED';
-export const setAuthenticated = (authenticated = true): GDAction => ({ type: AUTHENTICATED, payload: { authenticated } });
+export const SET_AUTHENTICATION_METHOD = 'SET_AUTHENTICATION_METHOD';
+export const setAuthenticationMethod = (authMethod: AuthMethod) => ({
+	type: SET_AUTHENTICATION_METHOD,
+	payload: {
+		authMethod
+	}
+});
 
+export const AUTHENTICATED = 'AUTHENTICATED';
+export const setAuthenticated = (authenticated = true): GDAction => ({
+	type: AUTHENTICATED,
+	payload: {
+		authenticated
+	}
+});
+
+// default authentication
 export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
 	const response = await apolloClient.mutate({
 		mutation: gql`
@@ -55,6 +70,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
 	if (response.data.login.success) {
 		Cookies.set('token', response.data.login.token);
 
+		dispatch(setAuthenticationMethod('default'));
 		dispatch(setAuthenticated());
 		dispatch(toggleLoginDialog());
 	} else {

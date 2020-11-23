@@ -19,7 +19,9 @@ const envSettings = {
 	defaultLocale: process.env.GD_DEFAULT_LOCALE,
 	defaultExportType: process.env.GD_DEFAULT_EXPORT_TYPE,
 	apiEnabled: process.env.GD_REST_API_ENABLED === "true",
-	availableLocales: process.env.GD_LOCALES.split(',')
+	availableLocales: process.env.GD_LOCALES.split(','),
+	googleAuthClientId: process.env.GD_GOOGLE_AUTH_CLIENT_ID,
+	googleAuthClientSecret: process.env.GD_GOOGLE_AUTH_CLIENT_SECRET
 };
 
 const envSettingsFile = `${banner}
@@ -39,6 +41,8 @@ export type EnvSettings = {
 	defaultExportType: ExportTypeFolder;
 	apiEnabled: boolean;
 	availableLocales: GDLocale[];
+	googleAuthClientId: string;
+	googleAuthClientSecret: string;
 };
 `;
 
@@ -121,5 +125,3 @@ generateEnvFile('_env.ts', JSON.stringify(envFile, null, '\t'));
 
 createPluginsListFile();
 createImportFile();
-
-// copyPluginWebWorkers();

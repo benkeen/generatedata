@@ -6,6 +6,7 @@ import * as selectors from './store/generator/generator.selectors';
 import * as mainSelectors from './store/main/main.selectors';
 import { DataTypeFolder } from '../../_plugins';
 import { createDataTypeWorker, createExportTypeWorker } from '~utils/coreUtils';
+import { initAuthVendors } from '~utils/authUtils';
 import '../../_imports';
 
 export const init = (): void => {
@@ -13,6 +14,9 @@ export const init = (): void => {
 	// create the preview workers. These handle the job of farming out work to the various plugin worker files.
 	createDataTypeWorker('preview');
 	createExportTypeWorker('preview');
+
+	// initialize any external vendors (Google, Github, Facebook) that are set up for login
+	initAuthVendors();
 
 	const state = store.getState();
 	const locale = mainSelectors.getLocale(state);

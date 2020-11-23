@@ -27,6 +27,10 @@ const server = new ApolloServer({
 	}
 });
 
+app.get('/oath2callback', (req, res) => {
+	console.log(req.query.code);
+});
+
 server.applyMiddleware({ app });
 app.listen(process.env.GD_API_SERVER_PORT);
 console.log('Server started on port ' + process.env.GD_API_SERVER_PORT);
