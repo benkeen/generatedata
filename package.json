@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "cd client && grunt dev & yarn buildClient & yarn webpackDev",
+    "coverage": "yarn jest --coverage",
     "buildClient": "node ./client/build/build.js",
     "startNodeDevServer": "nodemon ./server/app.js",
     "webpackDev": "webpack serve --config ./client/webpack.config.js --mode=development",

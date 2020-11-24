@@ -4,15 +4,10 @@ import CreatableSelect from 'react-select/creatable';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { DropdownOption } from '../dropdown/Dropdown';
 import { ErrorTooltip } from '~components/tooltips';
+import { arrayMove } from '~utils/arrayUtils';
 import styles from './CreatablePillField.scss';
 
-function arrayMove(array: any[], from: number, to: number): any[] {
-	array = array.slice();
-	array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
-	return array;
-}
-
-const SortableMultiValue = SortableElement((props: any) => {
+export const SortableMultiValue = SortableElement((props: any) => {
 	const onMouseDown = (e: any): void => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -72,7 +67,15 @@ export const createOption = (label: string): DropdownOption => ({
 
 const SortableCreatableSelect = SortableContainer(CreatableSelect);
 
-const CreatablePillField = ({ onChange, value, error, placeholder }: any): JSX.Element => {
+
+export type CreatablePillFieldProps = {
+	onChange: (newValues: string[]) => void;
+	value: string[];
+	error: string;
+	placeholder: string;
+}
+
+const CreatablePillField = ({ onChange, value, error, placeholder }: CreatablePillFieldProps): JSX.Element => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
