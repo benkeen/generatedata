@@ -38,14 +38,23 @@
       "^.+\\.jsx?$": "babel-jest",
       "\\.(ts|tsx)$": "ts-jest"
     },
-    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$",
+    "testRegex": "/__tests__/.*\\.(ts|tsx)$",
     "moduleNameMapper": {
       "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
       "^~components(.*)$": "<rootDir>/client/src/components$1",
       "^~types(.*)$": "<rootDir>/client/types$1",
       "^~utils(.*)$": "<rootDir>/client/src/utils$1",
       "^~store(.*)$": "<rootDir>/client/src/core/store$1"
-    }
+    },
+    "collectCoverageFrom": [
+      "<rootDir>/client/src/**/*.(ts|tsx)"
+    ],
+    "coveragePathIgnorePatterns": [
+      "bundle.ts",
+      ".*.scss.d.ts",
+      ".*.types.d.ts",
+      "src/plugins/dataTypes/_.*/*.ts"
+    ]
   },
   "dependencies": {
     "@apollo/client": "^3.2.7",
