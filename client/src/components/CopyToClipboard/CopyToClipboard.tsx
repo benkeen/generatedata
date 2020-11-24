@@ -8,7 +8,7 @@ import styles from './CopyToClipboard.scss';
 
 const Alert = (props: AlertProps): JSX.Element => <MuiAlert elevation={6} variant="filled" {...props} />;
 
-const Copy = ({ message, tooltip, content }: any): JSX.Element => {
+const Copy = ({ message, tooltip, content, autoHideDuration }: any): JSX.Element => {
 	const [open, setOpen] = React.useState(false);
 
 	return (
@@ -23,13 +23,16 @@ const Copy = ({ message, tooltip, content }: any): JSX.Element => {
 					horizontal: 'right'
 				}}
 				open={open}
-				autoHideDuration={5000}
+				autoHideDuration={autoHideDuration}
 				onClose={(): void => setOpen(false)}
 			>
 				<Alert onClose={(): void => setOpen(false)} severity="success">{message}</Alert>
 			</Snackbar>
 		</>
 	);
+};
+Copy.defaultProps = {
+	autoHideDuration: 5000
 };
 
 export default Copy;

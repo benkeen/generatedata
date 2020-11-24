@@ -89,8 +89,4 @@ describe('LoginDialog', () => {
 
 		expect(onSubmit).toHaveBeenCalledWith("tom@something.com", "password123", expect.anything());
 	});
-
-
-
-
 });
