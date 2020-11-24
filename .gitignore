@@ -8,3 +8,4 @@ dist/
 .env
 data/db
 !data/db/nodelete.txt
+client/_env.ts

@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 require('dotenv').config();
 
@@ -100,6 +101,10 @@ module.exports = (env, argv) => {
 			open: true
 			// host: '0.0.0.0', // needed when running within docker container
 		};
+
+		// just uncomment this & the include above to auto-genenerate the bundle analyzer treemap. It'll show up when
+		// running `yarn start`
+		// config.plugins.push(new BundleAnalyzerPlugin());
 	}
 
 	if (mode === 'production') {

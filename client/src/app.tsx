@@ -3,11 +3,9 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/client';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { apolloClient } from './core/apolloClient';
 import { ThemeProvider } from '@material-ui/core/styles';
-
-// @ts-ignore-line
 import * as codemirror from 'codemirror';
+import { apolloClient } from './core/apolloClient';
 import store, { persistor } from './core/store';
 import Page from './core/page/Page.container';
 import Builder from './core/builder/Builder.container';

@@ -27,10 +27,23 @@ const authenticate = async (token) => {
 	return false;
 };
 
+const decodeToken = (token) => {
+	const decodedToken = jwt.decode(token, { complete: true });
+
+	if (!decodedToken) {
+		throw new Error();
+	}
+
+	console.log("hjeade", decodedToken);
+
+	return decodedToken;
+};
+
 
 module.exports = {
 	getPasswordHash,
 	isValidPassword,
 	getJwt,
-	authenticate
+	authenticate,
+	decodeToken
 };

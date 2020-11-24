@@ -1,5 +1,8 @@
 import React from 'react';
+import { gql } from '@apollo/client';
+import Cookies from 'js-cookie';
 import env from '../../../../_env';
+import { apolloClient } from '../../apolloClient';
 
 const googleBtnId = 'google-signin-button';
 
@@ -9,47 +12,48 @@ export const initGoogleAuth = (): void => {
 	meta.content = env.googleAuthClientId;
 	document.head.appendChild(meta);
 
-	// <a href={url}><img src="/images/btn_google_signin_dark_normal_web@2x.png" width={191} height={46} /></a>
-
-	// <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-
 	const script = document.createElement('script');
 	script.src = 'https://apis.google.com/js/platform.js?onload=renderButton';
 	script.async = true;
 	script.defer = true;
 	document.body.appendChild(script);
 
-	// oauth2Client = new google.auth.OAuth2(
-	// 	env.googleAuthClientId,
-	// 	env.googleAuthClientSecret,
-	// 	'http://localhost:9000'
-	// );
-	//
-	// url = oauth2Client.generateAuthUrl({
-	// 	// 'online' (default) or 'offline' (gets refresh_token)
-	// 	access_type: 'offline',
-	//
-	// 	// If you only need one scope you can pass it as a string
-	// 	scope: []
-	// });
-
-	// const scopes = [
-	// 	// 'https://www.googleapis.com/auth/blogger',
-	// ];
-
 	// @ts-ignore-line
 	window.renderButton = renderGoogleLoginButton;
 };
 
 // note this also fires on page refreshes when the user is already logged in
-const onAuthenticated = (googleUser: any): void => {
+const onAuthenticated = async (googleUser: any): Promise<any> => {
 	const profile = googleUser.getBasicProfile();
+	// console.log('Logged in as: ' + profile.getName());
+	// console.log(profile.getImageUrl());
 
-	console.log('Logged in as: ' + profile.getName());
-	console.log(profile.getImageUrl());
+	const googleToken = googleUser.getAuthResponse().id_token;
 
-	const token = googleUser.getAuthResponse().id_token;
-	console.log(token);
+	const response = await apolloClient.mutate({
+		mutation: gql`
+            mutation LoginWithGoogle($googleToken: String!) {
+                loginWithGoogle(googleToken: $googleToken) {
+                    token
+                    success,
+                    firstName
+                }
+            }
+		`,
+		variables: { googleToken }
+	});
+
+	//
+	if (response.data.loginWithGoogle.success) {
+		const { token } = response.data.loginWithGoogle;
+		Cookies.set('token', token);
+
+		// store.dispatch(setAuthenticationData('default', firstName));
+		// store.dispatch(toggleLoginDialog());
+	} else {
+		// store.onLoginError();
+	}
+
 };
 
 const onFailure = (error: any): void => {

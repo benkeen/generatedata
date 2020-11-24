@@ -4,13 +4,13 @@ import { AuthMethod } from '~types/general';
 
 
 export const initAuthVendors = (): void => {
-	if (env.googleAuthClientId && env.googleAuthClientSecret) {
+	if (env.googleAuthClientId) {
 		initGoogleAuth();
 	}
 };
 
 export const hasVendorLogin = (): boolean => {
-	if (env.googleAuthClientId && env.googleAuthClientSecret) {
+	if (env.googleAuthClientId) {
 		return true;
 	}
 	return false;
@@ -19,7 +19,7 @@ export const hasVendorLogin = (): boolean => {
 export const getVendorLoginButtons = (): React.ReactNode[] => {
 	const buttons = [];
 
-	if (env.googleAuthClientId && env.googleAuthClientSecret) {
+	if (env.googleAuthClientId) {
 		buttons.push(SignInWithGoogleButton);
 	}
 
