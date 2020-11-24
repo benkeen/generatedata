@@ -102,9 +102,11 @@ div.orderCol {
 
 .dataTypeHelp {
 	flex: 0 0 15px;
+	font-size: 16px;
 	svg {
 		color: $primary-color;
 		cursor: pointer;
+		margin-top: 5px;
 	}
 }
 

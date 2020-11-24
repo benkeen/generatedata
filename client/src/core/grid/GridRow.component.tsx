@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DragIndicator from '@material-ui/icons/DragIndicator';
-import InfoIcon from '@material-ui/icons/Info';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
 import Dropdown from '~components/dropdown/Dropdown';
-import { DataRow } from '../store/generator/generator.reducer';
+import { DataRow } from '~store/generator/generator.reducer';
 import { DataTypeFolder } from '../../../_plugins';
 import * as styles from './Grid.scss';
 import * as sharedStyles from '../../styles/shared.scss';
@@ -124,7 +124,7 @@ export const GridRow = ({
 								options={dtDropdownOptions}
 							/>
 							<div className={styles.dataTypeHelp}>
-								{row.dataType ? <InfoIcon fontSize="small" onClick={(): void => showHelpDialog(row.dataType as DataTypeFolder)}/> : null}
+								{row.dataType ? <InfoIcon fontSize="inherit" onClick={(): void => showHelpDialog(row.dataType as DataTypeFolder)}/> : null}
 							</div>
 						</div>
 						<div className={styles.titleCol}>
