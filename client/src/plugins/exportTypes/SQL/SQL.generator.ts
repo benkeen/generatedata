@@ -1,6 +1,6 @@
 import { ETOnMessage, ETMessageData } from '~types/exportTypes';
-import utils from '../../../utils';
 import { SQLSettings } from './SQL';
+import { ColumnData } from '~types/general';
 
 const context: Worker = self as any;
 
@@ -46,7 +46,7 @@ export const generateMySQL = (data: ETMessageData): string => {
 	const colTitles = columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(data);
+	const numericFieldIndexes = getNumericFieldColumnIndexes(data.columns);
 
 	if (isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -136,7 +136,7 @@ export const generatePostgres = (generationData: ETMessageData): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData.columns);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -152,10 +152,10 @@ export const generatePostgres = (generationData: ETMessageData): string => {
 			generationData.columns.forEach(({ title, dataType, metadata }) => {
 				let columnTypeInfo = 'MEDIUMTEXT';
 				if (metadata) {
-					if (metadata.field_Postgres) {
-						columnTypeInfo = metadata.field_Postgres;
-					} else if (metadata.field) {
-						columnTypeInfo = metadata.field;
+					if (metadata.sql && metadata.sql.field_Postgres) {
+						columnTypeInfo = metadata.sql.field_Postgres;
+					} else if (metadata.sql && metadata.sql.field) {
+						columnTypeInfo = metadata.sql.field;
 					}
 				}
 				cols.push(`  ${title} ${columnTypeInfo}`);
@@ -205,7 +205,7 @@ export const generateSQLite = (generationData: ETMessageData): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData.columns);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -285,7 +285,7 @@ export const generateOracle = (generationData: ETMessageData): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData.columns);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -359,7 +359,7 @@ export const generateMSSQL = (generationData: ETMessageData): string => {
 	const colTitles = generationData.columns.map(({ title }) => title);
 	let content = '';
 
-	const numericFieldIndexes = utils.generationUtils.getNumericFieldColumnIndexes(generationData);
+	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData.columns);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
@@ -443,4 +443,20 @@ export const generateMSSQL = (generationData: ETMessageData): string => {
 	}
 
 	return content;
+};
+
+
+export const getNumericFieldColumnIndexes = (columns: ColumnData[]): number[] => {
+	const numericFieldColIndexes: number[] = [];
+
+	columns.forEach((col: ColumnData, colIndex: number) => {
+		const { metadata } = col;
+		const dataType = metadata.general && metadata.general.dataType;
+
+		if (dataType === 'number') {
+			numericFieldColIndexes.push(colIndex);
+		}
+	});
+
+	return numericFieldColIndexes;
 };

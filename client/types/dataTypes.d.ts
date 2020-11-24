@@ -1,6 +1,6 @@
-import { DatabaseTypes } from '../client/src/plugins/exportTypes/SQL/SQL.types';
+import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject } from './general';
-import { DataTypeFolder } from '../client/src/_plugins';
+import { DataTypeFolder } from '../_plugins';
 import { CountryType } from '~types/countries';
 
 export type DataTypeMap = {

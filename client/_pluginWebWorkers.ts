@@ -44,7 +44,7 @@ export default {
 		"JSON": "ET-JSON.generator-ae538f823c70436397059a1d05560b46.js",
 		"LDIF": "ET-LDIF.generator-9849abbd090ddb81504c8aa23a2f0bc5.js",
 		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-8261c6791e53ccb6110aa5a29616c702.js",
-		"SQL": "ET-SQL.generator-5e5ae52f68c849b9b55098e748f43fa1.js",
+		"SQL": "ET-SQL.generator-abd7f41ec477cf8a12b9706d82e3f64c.js",
 		"XML": "ET-XML.generator-2bb617f90572cee10202bbc4ecfb56c9.js"
 	},
 	"countries": {

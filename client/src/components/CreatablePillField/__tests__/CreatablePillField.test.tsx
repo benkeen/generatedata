@@ -9,15 +9,10 @@ const defaultProps = {
 
 describe('CreatablePillField', () => {
 	it('renders', () => {
-		const onClose = jest.fn();
 		const { baseElement } = render(
 			<CreatablePillField
 				{...defaultProps}
 			/>
 		);
-		//
-		// const closeButton = baseElement.querySelector('.MuiDialogTitle-root button') as HTMLButtonElement;
-		// fireEvent.click(closeButton);
-		// expect(onClose).toBeCalled();
 	});
 });

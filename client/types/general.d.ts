@@ -2,6 +2,7 @@ import { GeneratorState } from '~store/generator/generator.reducer';
 import { MainState } from '~store/main/main.reducer';
 import { PacketsState } from '~store/packets/packets.reducer';
 import { DataTypeFolder } from '../_plugins';
+import { DTMetadata } from '~types/dataTypes';
 
 declare global {
     interface Window {
@@ -54,7 +55,5 @@ export type GenerationTemplate = {
 export type ColumnData = {
 	title: string;
 	dataType: DataTypeFolder;
-	metadata: any;
+	metadata: DTMetadata;
 };
-
-export type Tag = '';
