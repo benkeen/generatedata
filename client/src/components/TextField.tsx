@@ -3,7 +3,7 @@ import { ErrorTooltip } from '~components/tooltips';
 import sharedStyles from '../styles/shared.scss';
 
 const TextField = React.forwardRef(({ error, className, ...props }: any, ref: any): JSX.Element => {
-	let classes = className;
+	let classes = className ? className : '';
 	if (error) {
 		classes += ' ' + sharedStyles.errorField;
 	}

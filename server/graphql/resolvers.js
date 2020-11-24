@@ -4,7 +4,6 @@ const authUtils = require('../utils/authUtils');
 // const stringUtils = require('../utils/stringUtils');
 const { OAuth2Client } = require('google-auth-library');
 
-
 const resolvers = {
 	Query: {
 		accounts: async (root, args, { token }) => {

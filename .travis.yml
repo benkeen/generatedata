@@ -7,10 +7,10 @@ install:
   - yarn install
 
 before_script:
-  - yarn buildClient
+  - cp .env.default .env && yarn buildClient
 
 jobs:
   include:
     - stage: Produce Coverage
       node_js: node
-      script: cp .env.default .env && yarn buildClient && jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+      script: yarn buildClient && jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
