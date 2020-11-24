@@ -8,7 +8,7 @@ import * as codemirror from 'codemirror';
 import { apolloClient } from './core/apolloClient';
 import store, { persistor } from './core/store';
 import Page from './core/page/Page.container';
-import Builder from './core/builder/Builder.container';
+import Generator from './core/generator/Generator.container';
 import * as core from './core';
 import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
@@ -55,7 +55,7 @@ const App = (): JSX.Element => (
 												<div>Users</div>
 											</Route>
 											<Route path="/">
-												<Builder />
+												<Generator />
 											</Route>
 										</Switch>
 									</Page>

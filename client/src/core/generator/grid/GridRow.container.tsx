@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { GridRow, GridRowProps } from './GridRow.component';
 import { getCustomProps, getDataType, getSortedGroupedDataTypes } from '~utils/dataTypeUtils';
 import { Store } from '~types/general';
-import { DataRow } from '../store/generator/generator.reducer';
-import * as actions from '../store/generator/generator.actions';
-import { DataTypeFolder } from '../../../_plugins';
-import * as selectors from '../store/generator/generator.selectors';
+import { DataRow } from '~store/generator/generator.reducer';
+import * as actions from '~store/generator/generator.actions';
+import * as selectors from '~store/generator/generator.selectors';
+import { DataTypeFolder } from '../../../../_plugins';
 
 type OwnProps = {
 	row: DataRow;

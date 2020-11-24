@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
-import CopyToClipboard from '~components/CopyToClipboard/CopyToClipboard';
+import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
-import CreatablePillField from '~components/CreatablePillField/CreatablePillField';
+import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import styles from './Names.scss';
 
 export type NamesState = {

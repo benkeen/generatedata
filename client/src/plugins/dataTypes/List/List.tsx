@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import Dropdown from '~components/dropdown/Dropdown';
-import CreatablePillField from '~components/CreatablePillField/CreatablePillField';
+import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import TextField from '~components/TextField';
 
 export type ListType = 'exactly' | 'atMost';

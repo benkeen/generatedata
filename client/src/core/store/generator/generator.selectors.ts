@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { BuilderLayout } from '../../builder/Builder.component';
+import { GeneratorLayout } from '../../generator/Generator.component';
 import { DataRow, DataRows, GeneratorPanel } from './generator.reducer';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import * as mainSelectors from '../main/main.selectors';
@@ -20,7 +20,7 @@ export const getSortedRows = (state: Store): string[] => state.generator.sortedR
 export const isGridVisible = (state: Store): boolean => state.generator.showGrid;
 export const isPreviewVisible = (state: Store): boolean => state.generator.showPreview;
 export const getSmallScreenVisiblePanel = (state: Store): GeneratorPanel => state.generator.smallScreenVisiblePanel;
-export const getBuilderLayout = (state: Store): BuilderLayout => state.generator.builderLayout;
+export const getGeneratorLayout = (state: Store): GeneratorLayout => state.generator.generatorLayout;
 export const getNumPreviewRows = (state: Store): number => state.generator.numPreviewRows;
 export const shouldShowLineNumbers = (state: Store): boolean => state.generator.showLineNumbers;
 export const shouldEnableLineWrapping = (state: Store): boolean => state.generator.enableLineWrapping;

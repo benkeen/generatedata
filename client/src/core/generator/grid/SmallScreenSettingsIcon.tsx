@@ -1,11 +1,11 @@
 import React from 'react';
-import * as sharedStyles from '../../styles/shared.scss';
+import * as sharedStyles from '../../../styles/shared.scss';
 import { SmallSpinner } from '~components/loaders';
 import * as styles from './Grid.scss';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import { HtmlTooltip } from '~components/tooltips';
 import useOnClickOutside from 'use-onclickoutside';
-import C from '../constants';
+import C from '../../constants';
 
 
 export const SmallScreenSettingsIcon = ({

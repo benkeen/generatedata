@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTMetadataType, DTOptionsProps } from '~types/dataTypes';
-import CreatablePillField from '~components/CreatablePillField/CreatablePillField';
+import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import TextField from '~components/TextField';
 import { isBoolean } from '~utils/generalUtils';
 import { isNumeric } from '~utils/numberUtils';

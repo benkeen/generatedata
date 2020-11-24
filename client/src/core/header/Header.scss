@@ -58,45 +58,8 @@
     a {
         text-decoration: none;
     }
-
-    svg {
-        fill: #aaaaaa;
-    }
-
-	.items {
-		margin: 0 6px 0 12px;
-		background-color: #ffffff;
-		box-shadow: 0 1px 1px #cccccc;
-
-		&>button {
-			border: 0;
-		}
-	}
 }
 
-.btnSelected {
-    svg {
-        fill: #aaaaaa;
-    }
-}
-
-.toggleLayoutBtn {
-	border: 1px solid rgba(0, 0, 0, 0.23);
-	border-right: 0;
-	width: 40px;
-
-	button {
-		height: 30px;
-		width: 40px;
-		min-width: inherit;
-	}
-}
-
-.toggleLayoutBtnDisabled {
-	svg {
-		fill: #dddddd;
-	}
-}
 
 .headerLinks {
 	margin-right: 20px;

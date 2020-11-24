@@ -2,8 +2,8 @@ import React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
 import Switch from '@material-ui/core/Switch';
 import { getArrayOfSize } from '~utils/arrayUtils';
-import C from '../constants';
 import * as styles from './ExportSettings.scss';
+import C from '../../constants';
 
 export type PreviewSettingsTabProps = {
 	theme: string;

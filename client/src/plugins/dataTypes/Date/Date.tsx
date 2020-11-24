@@ -9,7 +9,7 @@ import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 import { DTExampleProps, DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { ErrorTooltip } from '~components/tooltips';
 import TextField from '~components/TextField';
-import CopyToClipboard from '~components/CopyToClipboard/CopyToClipboard';
+import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import * as sharedStyles from '../../../styles/shared.scss';
 import * as styles from './Date.scss';
 

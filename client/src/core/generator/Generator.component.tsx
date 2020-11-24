@@ -1,20 +1,21 @@
 import * as React from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
-import Grid from '../grid/Grid.container';
-import Preview from '../previewPanel/PreviewPanel.container';
 import SplitPane from 'react-split-pane';
-import ExportSettings from '../exportSettings/ExportSettings.container';
+import Grid from './grid/Grid.container';
+import Preview from './previewPanel/PreviewPanel.container';
+import { GeneratorPanel } from '~store/generator/generator.reducer';
+import ExportSettings from './exportSettings/ExportSettings.container';
 import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
+import BuilderControls from './panelControls/PanelControls.container';
 import C from '../constants';
-import './Builder.scss';
-import { GeneratorPanel } from '../store/generator/generator.reducer';
+import './Generator.scss';
 
-export type BuilderLayout = 'horizontal' | 'vertical';
-export type BuilderProps = {
+export type GeneratorLayout = 'horizontal' | 'vertical';
+export type GeneratorProps = {
 	isGridVisible: boolean;
 	isPreviewVisible: boolean;
-	builderLayout: BuilderLayout;
+	generatorLayout: GeneratorLayout;
 	onResizePanels: (size: number) => void;
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
@@ -22,16 +23,16 @@ export type BuilderProps = {
 }
 
 const Builder = ({
-	isGridVisible, isPreviewVisible, builderLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
+	isGridVisible, isPreviewVisible, generatorLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
 	smallScreenVisiblePanel
-}: BuilderProps): JSX.Element => {
+}: GeneratorProps): JSX.Element => {
 	const windowSize = useWindowSize();
 	const onResize = (size: number): void => onResizePanels(size);
 
 	let minSize: number;
 	let maxSize: number;
 	let defaultSize: number | string = '50%';
-	if (builderLayout === 'vertical') {
+	if (generatorLayout === 'vertical') {
 		minSize = 350;
 		maxSize = windowSize.width - 350;
 		if (lastLayoutWidth) {
@@ -53,7 +54,7 @@ const Builder = ({
 		if (isGridVisible && isPreviewVisible) {
 			return (
 				<SplitPane
-					split={builderLayout}
+					split={generatorLayout}
 					minSize={minSize}
 					maxSize={maxSize}
 					defaultSize={defaultSize}
@@ -72,6 +73,7 @@ const Builder = ({
 
 	return (
 		<div style={{ height: '100%' }}>
+			<BuilderControls />
 			<div style={{ height: '100%', position: 'relative' }}>
 				{getContent()}
 			</div>

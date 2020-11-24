@@ -4,12 +4,12 @@ import produce from 'immer';
 import * as actions from './generator.actions';
 import * as mainActions from '../main/main.actions';
 import * as packetActions from '../packets/packets.actions';
-import { BuilderLayout } from '../../builder/Builder.component';
-import { ExportSettingsTab } from '../../exportSettings/ExportSettings.types';
+import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
 import env from '../../../../_env';
 import { dataTypeNames } from '~utils/dataTypeUtils';
 import { exportTypeNames } from '~utils/exportTypeUtils';
+import { GeneratorLayout } from '../../generator/Generator.component';
 
 export type DataRow = {
 	id: string;
@@ -52,7 +52,7 @@ export type GeneratorState = {
 	showGrid: boolean;
 	showPreview: boolean;
 	smallScreenVisiblePanel: GeneratorPanel;
-	builderLayout: BuilderLayout;
+	generatorLayout: GeneratorLayout;
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
 	showGenerationSettingsPanel: boolean;
@@ -80,7 +80,7 @@ export const getInitialState = (): GeneratorState => ({
 	showGrid: true,
 	showPreview: true,
 	smallScreenVisiblePanel: 'grid',
-	builderLayout: 'horizontal',
+	generatorLayout: 'horizontal',
 	showExportSettings: false,
 	exportTypeSettings: {},
 	numPreviewRows: 5,
@@ -235,7 +235,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.TOGGLE_LAYOUT:
-			draft.builderLayout = draft.builderLayout === 'horizontal' ? 'vertical' : 'horizontal';
+			draft.generatorLayout = draft.generatorLayout === 'horizontal' ? 'vertical' : 'horizontal';
 			break;
 
 		case actions.TOGGLE_LINE_WRAPPING:
@@ -282,7 +282,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 
 		case actions.SET_PANEL_SIZE:
-			const setting = draft.builderLayout === 'horizontal' ? 'lastLayoutHeight' : 'lastLayoutWidth';
+			const setting = draft.generatorLayout === 'horizontal' ? 'lastLayoutHeight' : 'lastLayoutWidth';
 			draft[setting] = action.payload.size;
 			break;
 

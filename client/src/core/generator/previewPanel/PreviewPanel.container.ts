@@ -2,8 +2,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import PreviewPanel, { PreviewPanelProps } from './PreviewPanel.component';
 import { isExportTypeValid } from '~utils/exportTypeUtils';
-import * as selectors from '../store/generator/generator.selectors';
-import * as actions from '../store/generator/generator.actions';
+import * as selectors from '~store/generator/generator.selectors';
+import * as actions from '~store/generator/generator.actions';
 
 const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 	const exportType = selectors.getExportType(state);

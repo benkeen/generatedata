@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Dropdown from '~components/dropdown/Dropdown';
 import TextField from '~components/TextField';
-import CopyToClipboard from '~components/CopyToClipboard/CopyToClipboard';
+import CopyToClipboard from '~components/copyToClipboard/CopyToClipboard';
 import { DTExampleProps, DTOptionsProps, DTHelpProps, DTMetadata } from '~types/dataTypes';
 import styles from './Alphanumeric.scss';
 import sharedStyles from '../../../styles/shared.scss';

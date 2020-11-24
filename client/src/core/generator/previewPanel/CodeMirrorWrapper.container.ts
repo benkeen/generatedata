@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as selectors from '../store/generator/generator.selectors';
+import * as selectors from '~store/generator/generator.selectors';
 import { Store } from '~types/general';
 import CodeMirrorWrapper, { CodeMirrorWrapperProps } from './CodeMirrorWrapper.component';
 

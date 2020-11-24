@@ -1,7 +1,7 @@
 import React from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import * as coreUtils from '~utils/coreUtils';
-import { ExportTypeFolder } from '../../../_plugins';
+import { ExportTypeFolder } from '../../../../_plugins';
 import { LoadedExportTypes } from '~utils/exportTypeUtils';
 
 export type CodeMirrorWrapperProps = {

@@ -12,7 +12,7 @@ import CodeMirrorWrapper from './CodeMirrorWrapper.container';
 import { Tooltip } from '~components/tooltips';
 import Portal from '~components/Portal';
 import { PreviewPanelLoader } from './PreviewPanelLoader.component';
-import C from '../constants';
+import C from '../../constants';
 import * as styles from './PreviewPanel.scss';
 
 const ExportTypeButton = withStyles({

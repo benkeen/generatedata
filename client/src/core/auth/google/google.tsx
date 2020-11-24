@@ -24,7 +24,7 @@ export const initGoogleAuth = (): void => {
 
 // note this also fires on page refreshes when the user is already logged in
 const onAuthenticated = async (googleUser: any): Promise<any> => {
-	const profile = googleUser.getBasicProfile();
+	// const profile = googleUser.getBasicProfile();
 	// console.log('Logged in as: ' + profile.getName());
 	// console.log(profile.getImageUrl());
 
