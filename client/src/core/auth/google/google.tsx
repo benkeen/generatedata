@@ -3,6 +3,8 @@ import { gql } from '@apollo/client';
 import Cookies from 'js-cookie';
 import env from '../../../../_env';
 import { apolloClient } from '../../apolloClient';
+import store from '../../store';
+import { setAuthenticationData } from '~store/main/main.actions';
 
 const googleBtnId = 'google-signin-button';
 
@@ -16,6 +18,9 @@ export const initGoogleAuth = (): void => {
 	script.src = 'https://apis.google.com/js/platform.js?onload=renderButton';
 	script.async = true;
 	script.defer = true;
+	script.onload = () => {
+		// console.log("loaded.", window.gapi);
+	};
 	document.body.appendChild(script);
 
 	// @ts-ignore-line
@@ -36,21 +41,22 @@ const onAuthenticated = async (googleUser: any): Promise<any> => {
                 loginWithGoogle(googleToken: $googleToken) {
                     token
                     success,
-                    firstName
+                    firstName,
+					error,
+                    profileImage
                 }
             }
 		`,
 		variables: { googleToken }
 	});
 
-	//
 	if (response.data.loginWithGoogle.success) {
-		const { token } = response.data.loginWithGoogle;
+		const { token, firstName, profileImage } = response.data.loginWithGoogle;
 		Cookies.set('token', token);
-
-		// store.dispatch(setAuthenticationData('default', firstName));
-		// store.dispatch(toggleLoginDialog());
+		store.dispatch(setAuthenticationData({ authMethod: 'google', firstName, profileImage }));
 	} else {
+		console.log('Error: ', response.data.loginWithGoogle);
+
 		// store.onLoginError();
 	}
 
@@ -93,6 +99,6 @@ export const SignInWithGoogleButton = (): JSX.Element => <div id={googleBtnId} /
 
 export const logoutGoogle = (): void => {
 	// @ts-ignore-line
-	const auth2 = window.gapi.auth2.getAuthInstance();
-	auth2.signOut();
+	// const auth2 = window.gapi.auth2.getAuthInstance();
+	// auth2.signOut();
 };

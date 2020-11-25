@@ -7,7 +7,6 @@ import { GeneratorPanel } from '~store/generator/generator.reducer';
 import ExportSettings from './exportSettings/ExportSettings.container';
 import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
-import PanelControlsRow from './controlsRow/ControlsRow.container';
 import C from '../constants';
 import './Generator.scss';
 

@@ -9,12 +9,10 @@ const typeDefs = gql`
         configuration(id: ID!): Configuration
 	    verifyToken: AuthVerifiedPayload
     }
-
 	type Mutation {
 		login(email: String!, password: String!): AuthPayLoad
         loginWithGoogle(googleToken: String!): AuthPayLoad
 	}
-
     type Account {
         account_id: ID!
         date_created: String
@@ -40,13 +38,13 @@ const typeDefs = gql`
 		PUBLIC
 		PRIVATE	
 	}
-
 	type AuthPayLoad {
 		success: Boolean
 		token: String
 		firstName: String
+		error: String
+        profileImage: String
 	}
-	
 	type AuthVerifiedPayload {
 		valid: Boolean
 	}

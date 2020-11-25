@@ -39,12 +39,15 @@ export const TOGGLE_SIGNUP_DIALOG = 'TOGGLE_SIGNUP_DIALOG';
 export const toggleSignUpDialog = (): GDAction => ({ type: TOGGLE_SIGNUP_DIALOG });
 
 export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
-export const setAuthenticationData = (authMethod: AuthMethod, firstName: string): GDAction => ({
+
+export type AuthData = {
+	authMethod: AuthMethod;
+	firstName: string;
+	profileImage?: string;
+}
+export const setAuthenticationData = (authData: AuthData): GDAction => ({
 	type: SET_AUTHENTICATION_DATA,
-	payload: {
-		authMethod,
-		firstName
-	}
+	payload: authData
 });
 
 export const AUTHENTICATED = 'AUTHENTICATED';
@@ -74,7 +77,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
 		const { token, firstName } = response.data.login;
 		Cookies.set('token', token);
 
-		dispatch(setAuthenticationData('default', firstName));
+		dispatch(setAuthenticationData({ authMethod: 'default', firstName }));
 		dispatch(toggleLoginDialog());
 	} else {
 		onLoginError();

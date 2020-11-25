@@ -71,6 +71,9 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			draft.isLoggedIn = true;
 			draft.authMethod = action.payload.authMethod;
 			draft.firstName = action.payload.firstName;
+			if (action.payload.profileImage) {
+				draft.profileImage = action.payload.profileImage;
+			}
 			break;
 
 		case actions.LOGOUT:

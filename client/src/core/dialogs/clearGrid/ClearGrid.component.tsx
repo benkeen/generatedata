@@ -51,10 +51,10 @@ const ClearGridDialog = ({ visible, onClose, onClear, i18n }: ClearGridProps): J
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={(): void => onClear(clearType)} color="secondary" variant="outlined">
+					<Button onClick={(): void => onClear(clearType)} color="secondary" variant="outlined" className="clearGrid">
 						{i18n.yes}
 					</Button>
-					<Button onClick={onClose} color="primary" variant="outlined">
+					<Button onClick={onClose} color="primary" variant="outlined" className="cancelClearGrid">
 						{i18n.no}
 					</Button>
 				</DialogActions>
