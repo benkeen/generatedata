@@ -30,8 +30,11 @@
 	}
 }
 
-.toggleLayoutBtnDisabled {
+:global(.MuiButton-root.Mui-disabled).toggleLayoutBtnDisabled {
+	border: 0;
+
 	svg {
 		fill: #dddddd;
 	}
 }
+

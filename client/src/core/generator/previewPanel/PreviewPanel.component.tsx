@@ -64,12 +64,12 @@ const NoResultsBlock = ({ i18n, type }: any): JSX.Element => {
 
 	return (
 		<div className={styles.noResults}>
-			<div style={{ marginTop: -26 }}>
+			<div style={{ marginTop: -55 }}>
 				<Icon style={{
 					fontSize: 100,
 					position: 'absolute',
 					opacity: 0.1,
-					top: 'calc(50% - 63px)',
+					top: 'calc(50% - 86px)',
 					left: 'calc(50% - 50px)'
 				}} />
 				<div style={{ height: '100%', margin: 'auto' }}>

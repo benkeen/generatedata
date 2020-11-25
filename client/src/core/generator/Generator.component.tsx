@@ -7,7 +7,7 @@ import { GeneratorPanel } from '~store/generator/generator.reducer';
 import ExportSettings from './exportSettings/ExportSettings.container';
 import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
-import BuilderControls from './panelControls/PanelControls.container';
+import PanelControlsRow from './controlsRow/ControlsRow.container';
 import C from '../constants';
 import './Generator.scss';
 
@@ -73,7 +73,6 @@ const Builder = ({
 
 	return (
 		<div style={{ height: '100%' }}>
-			<BuilderControls />
 			<div style={{ height: '100%', position: 'relative' }}>
 				{getContent()}
 			</div>

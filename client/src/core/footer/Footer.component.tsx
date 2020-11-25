@@ -10,6 +10,7 @@ import { HtmlTooltip } from '~components/tooltips';
 import styles from './Footer.scss';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
+import PanelControls from '../generator/panelControls/PanelControls.container';
 import Link from '~components/Link';
 import { GDLocale } from '~types/general';
 import C from '../constants';
@@ -133,6 +134,8 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGene
 				</ul>
 
 				<div>
+					<PanelControls className={styles.controls} />
+
 					<Button onClick={onGenerate} variant="contained" color="primary" disableElevation disabled={!isEnabled}>
 						<span dangerouslySetInnerHTML={{ __html: i18n.generate }} />
 						<KeyboardArrowRightIcon />

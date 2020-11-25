@@ -13,6 +13,7 @@ import { GeneratorLayout } from '../Generator.component';
 import * as styles from './PanelControls.scss';
 
 export type PanelControlsProps = {
+	className: string;
 	toggleGrid: () => void;
 	togglePreview: () => void;
 	toggleLayout: () => void;
@@ -24,7 +25,7 @@ export type PanelControlsProps = {
 };
 
 export const PanelControls = ({
-	toggleGrid, togglePreview, toggleLayout, onClearGrid, isGridVisible, isPreviewVisible, generatorLayout, i18n
+	className, toggleGrid, togglePreview, toggleLayout, onClearGrid, isGridVisible, isPreviewVisible, generatorLayout, i18n
 }: PanelControlsProps): JSX.Element => {
 	const [showClearDialog, setShowClearDialog] = useState(false);
 
@@ -69,7 +70,7 @@ export const PanelControls = ({
 
 	return (
 		<>
-			<ButtonGroup aria-label="" size="small" className={styles.builderControls}>
+			<ButtonGroup aria-label="" size="small" className={`${className} ${styles.builderControls}`}>
 				<Tooltip title={<span dangerouslySetInnerHTML={{ __html: i18n.hideShowGrid }} />} arrow>
 					<Button className={gridBtnClasses} onClick={toggleGrid} startIcon={<GridIcon fontSize="small"/>}>
 						{i18n.grid}
