@@ -73,5 +73,13 @@ describe('ClearGrid', () => {
 		fireEvent.click(yesButton);
 
 		expect(onClear).toHaveBeenCalledWith('everything');
+
+
+		fireEvent.click(baseElement.querySelector('#gdClearPageOption1') as HTMLInputElement);
+
+		const noButton = baseElement.querySelector('.clearGrid') as HTMLButtonElement;
+		fireEvent.click(noButton);
+
+		expect(onClear).toHaveBeenCalledWith('dataOnly');
 	});
 });

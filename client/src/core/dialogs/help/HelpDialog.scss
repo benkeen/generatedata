@@ -59,3 +59,10 @@
 		transition: opacity .25s ease-in-out;
 	}
 }
+
+.dialog {
+	width: 800px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}

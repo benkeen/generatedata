@@ -105,7 +105,6 @@ const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JS
 				<form onSubmit={onLogin}>
 					<div style={{ width }}>
 						<DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>
-
 						<DialogContent dividers>
 							<div className={layoutClass}>
 								<div className={styles.col}>
