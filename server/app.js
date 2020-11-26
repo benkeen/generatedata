@@ -11,8 +11,7 @@ const server = new ApolloServer({
 	typeDefs,
 	resolvers,
 
-	// this seems like a better place for blanket auth checking rather than on a per-resolver level...
-	context: ({ req }) => {
+	context: ({ req, res }) => {
 
 		// try to retrieve a user with the token
 		// const user = getUser(token);
@@ -22,6 +21,7 @@ const server = new ApolloServer({
 
 		// provides the auth token to all resolvers
 		return {
+			res,
 			token: (req.headers.authorization || '').replace('Bearer ', '')
 		};
 	}

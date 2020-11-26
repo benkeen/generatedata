@@ -24,7 +24,7 @@ const resolvers = {
 	},
 
 	Mutation: {
-		login: async (root, { email, password }) => {
+		login: async (root, { email, password }, { res }) => {
 			const user = await db.accounts.findOne({
 				attributes: ['account_id', 'password', 'first_name'],
 				where: {
@@ -43,6 +43,10 @@ const resolvers = {
 			}
 
 			const token = await authUtils.getJwt({ account_id, email });
+
+			console.log("RES: ", res);
+
+			// res.cookie("jwt", accessToken, { secure: true, httpOnly: true })
 
 			return {
 				success: true,
