@@ -12,7 +12,7 @@ const getPasswordHash = async (plainTextPassword) => {
 
 const isValidPassword = async (plainTextPassword, hash) => await bcrypt.compare(plainTextPassword, hash);
 
-const getJwt = (payload) => jwt.sign(payload, process.env.GD_JWT_SECRET, { expiresIn: '3m' });
+const getJwt = (payload) => jwt.sign(payload, process.env.GD_JWT_SECRET, { expiresIn: '15m' });
 
 const authenticate = async (token) => {
 	if (token) {
@@ -34,11 +34,15 @@ const decodeToken = (token) => {
 		throw new Error();
 	}
 
-	console.log("hjeade", decodedToken);
-
 	return decodedToken;
 };
 
+// const outputTestPwd = async () => {
+// 	const hash = await getPasswordHash('test123');
+// 	console.log(hash);
+// };
+//
+// outputTestPwd();
 
 module.exports = {
 	getPasswordHash,

@@ -34,7 +34,8 @@
         align-items: center;
 
         ul {
-            display: inline-block;
+            display: flex;
+			align-items: center;
             list-style: none;
             font-size: 14px;
 
@@ -67,6 +68,14 @@
 		&:hover {
 			color: $primary-color;
 		}
+	}
+}
+
+li.logoutLink {
+	margin-right: 0;
+
+	button {
+		font-size: 22px;
 	}
 }
 

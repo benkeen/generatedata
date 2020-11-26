@@ -4,6 +4,7 @@ declare namespace HeaderScssNamespace {
     fadein: string;
     header: string;
     headerLinks: string;
+    logoutLink: string;
   }
 }
 

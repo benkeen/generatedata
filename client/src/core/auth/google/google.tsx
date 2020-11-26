@@ -18,7 +18,7 @@ export const initGoogleAuth = (): void => {
 	script.src = 'https://apis.google.com/js/platform.js?onload=renderButton';
 	script.async = true;
 	script.defer = true;
-	script.onload = () => {
+	script.onload = (): void => {
 		// console.log("loaded.", window.gapi);
 	};
 	document.body.appendChild(script);

@@ -1,17 +1,11 @@
-import { getInitialState } from '../generator.reducer';
-import { initialState as initialMainState } from '../../main/main.reducer';
-import { initialState as initialPacketState } from '../../packets/packets.reducer';
 import { shouldGeneratePreviewRows } from '../generator.selectors';
+import { getTestState } from '../../../../../tests/testHelpers';
 import { Store } from '~types/general';
 
 describe("shouldGeneratePreviewRows", () => {
 	let state: Store;
 	beforeEach(() => {
-		state = {
-			generator: getInitialState(),
-			main: initialMainState,
-			packets: initialPacketState
-		};
+		state = getTestState();
 	});
 
 	it("return false when there's no data type rows", () => {

@@ -5,12 +5,15 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
+import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
+import IconButton from '@material-ui/core/IconButton';
 import LoginDialog from '../dialogs/login/Login.container';
 import IntroDialog from '../dialogs/intro/Intro.component';
 import { GDLocale } from '~types/general';
 import C from '../constants';
 import * as styles from './Header.scss';
 import { GeneratorPanel } from '~store/generator/generator.reducer';
+import { Tooltip } from '~components/tooltips';
 
 export type HeaderProps = {
 	toggleIntroDialog: () => void;
@@ -24,11 +27,13 @@ export type HeaderProps = {
 	i18n: any;
 	onLogout: () => void;
 	userTokenVerified: boolean;
+	firstName: string;
+	profileImage: string | null;
 };
 
 const Header = ({
 	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, toggleLoginDialog,
-	onChangeSmallScreenVisiblePanel, isLoggedIn, onLogout, userTokenVerified
+	onChangeSmallScreenVisiblePanel, isLoggedIn, onLogout, userTokenVerified, firstName
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -55,9 +60,17 @@ const Header = ({
 					<li><Link to="/">Generator</Link></li>
 					<li>|</li>
 					<li>
-						<Link to="/account">Account</Link>
+						<Link to="/account">{firstName}</Link>
 					</li>
-					<li onClick={onLogout}>Logout</li>
+					<li className={styles.logoutLink}>
+						<Tooltip title={i18n.logout} placement="bottom" arrow>
+							<span>
+								<IconButton size="small" aria-label={i18n.closePanel} onClick={onLogout}>
+									<LogoutIcon fontSize="inherit" />
+								</IconButton>
+							</span>
+						</Tooltip>
+					</li>
 				</>
 			);
 		}

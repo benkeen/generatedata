@@ -13,7 +13,9 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	showIntroDialog: mainSelectors.shouldShowIntroDialog(state),
 	smallScreenVisiblePanel: selectors.getSmallScreenVisiblePanel(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
-	userTokenVerified: mainSelectors.isUserTokenVerified(state)
+	userTokenVerified: mainSelectors.isUserTokenVerified(state),
+	firstName: mainSelectors.getFirstName(state),
+	profileImage: mainSelectors.getProfileImage(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({

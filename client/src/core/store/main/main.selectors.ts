@@ -8,3 +8,6 @@ export const shouldShowIntroDialog = (state: Store): boolean => state.main.showI
 export const shouldShowLoginDialog = (state: Store): boolean => state.main.showLoginDialog;
 export const isLoggedIn = (state: Store): boolean => state.main.isLoggedIn;
 export const isUserTokenVerified = (state: Store): boolean => state.main.userTokenVerified;
+export const getFirstName = (state: Store): string => state.main.firstName;
+export const getProfileImage = (state: Store): string | null => state.main.profileImage;
+
