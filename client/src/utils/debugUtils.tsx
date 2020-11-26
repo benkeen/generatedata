@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 // debugging methods. These should never be included in the actual code
 import * as React from 'react';
 
