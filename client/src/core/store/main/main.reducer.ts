@@ -12,7 +12,6 @@ export type MainState = {
 	locale: GDLocale;
 	showIntroDialog: boolean;
 	showLoginDialog: boolean;
-	showSignUpDialog: boolean;
 	isLoggedIn: boolean;
 	userTokenVerified: boolean;
 	firstName: string;
@@ -26,7 +25,6 @@ export const initialState: MainState = {
 	locale: env.defaultLocale,
 	showIntroDialog: true,
 	showLoginDialog: false,
-	showSignUpDialog: false,
 	isLoggedIn: false,
 	firstName: '',
 	profileImage: null,
@@ -56,10 +54,6 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.TOGGLE_LOGIN_DIALOG:
 			draft.showLoginDialog = !draft.showLoginDialog;
-			break;
-
-		case actions.TOGGLE_SIGNUP_DIALOG:
-			draft.showSignUpDialog = !draft.showSignUpDialog;
 			break;
 
 		case actions.AUTHENTICATED:

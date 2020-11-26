@@ -6,7 +6,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
-import SignUpDialog from '../dialogs/signup/SignUp.container';
 import IntroDialog from '../dialogs/intro/Intro.component';
 import { GDLocale } from '~types/general';
 import C from '../constants';
@@ -21,7 +20,6 @@ export type HeaderProps = {
 	showIntroDialog: boolean;
 	showLoginDialog: boolean;
 	toggleLoginDialog: () => void;
-	toggleSignUpDialog: () => void;
 	locale: GDLocale;
 	i18n: any;
 	onLogout: () => void;
@@ -29,7 +27,7 @@ export type HeaderProps = {
 };
 
 const Header = ({
-	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, toggleLoginDialog, toggleSignUpDialog,
+	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, toggleLoginDialog,
 	onChangeSmallScreenVisiblePanel, isLoggedIn, onLogout, userTokenVerified
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -57,9 +55,7 @@ const Header = ({
 					<li><Link to="/">Generator</Link></li>
 					<li>|</li>
 					<li>
-						<Link to="/account">
-							Account
-						</Link>
+						<Link to="/account">Account</Link>
 					</li>
 					<li onClick={onLogout}>Logout</li>
 				</>
@@ -70,9 +66,9 @@ const Header = ({
 			<>
 				<li><Link to="/about">About</Link></li>
 				<li><Link to="/">Generator</Link></li>
+				<li><Link to="/signup">Sign Up</Link></li>
 				<li>|</li>
 				<li onClick={toggleLoginDialog}>Login</li>
-				<li onClick={toggleSignUpDialog}>Sign up</li>
 			</>
 		);
 	};
@@ -153,7 +149,6 @@ const Header = ({
 				i18n={i18n}
 			/>
 			<LoginDialog />
-			<SignUpDialog />
 		</>
 	);
 };

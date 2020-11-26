@@ -45,17 +45,17 @@ const App = (): JSX.Element => (
 								<ErrorBoundary>
 									<Page>
 										<Switch>
+											<Route path="/">
+												<Generator />
+											</Route>
 											<Route path="/account">
 												<div>Account</div>
 											</Route>
 											<Route path="/about">
 												<div>About</div>
 											</Route>
-											<Route path="/users">
-												<div>Users</div>
-											</Route>
-											<Route path="/">
-												<Generator />
+											<Route path="/signup">
+												<div>Sign Up</div>
 											</Route>
 										</Switch>
 									</Page>

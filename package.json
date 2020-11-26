@@ -53,6 +53,7 @@
       "bundle.ts",
       ".*.scss.d.ts",
       ".*.types.d.ts",
+      ".*.container.(ts|tsx)",
       "src/plugins/dataTypes/_.*/*.ts"
     ]
   },
