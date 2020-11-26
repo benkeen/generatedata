@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import { Persistor } from 'redux-persist/es/types';
