@@ -125,6 +125,25 @@ const resolvers = {
 				token: newToken,
 				tokenExpiry
 			};
+		},
+
+		// this is for an explicit logout action. It clears the refresh token in the DB
+		logout: async (root, args, { req }) => {
+			if (!req.cookies.refreshToken) {
+				return { success: true };
+			}
+
+			const refreshToken = req.cookies.refreshToken;
+			const user = await db.accounts.findOne({
+				attributes: ['accountId'],
+				where: {
+					refreshToken
+				}
+			});
+
+			user.update({ refreshToken: null });
+
+			return { success: true };
 		}
 	}
 };
@@ -140,9 +159,9 @@ const getNewTokenAndSetRefreshTokenCookie = async (accountId, email, user, res) 
 	// but it'll be automatically passed along with any subsequent requests to the server - including the
 	// all-important refreshToken refresh. This info enables the front-end code to automatically extend the
 	// lifespan of the living token (`token`)
-	const tokenExpiry = process.env.GD_JWT_REFRESH_TOKEN_LIFESPAN_MINS * 60 * 1000;
+	const tokenExpiry = process.env.GD_JWT_LIFESPAN_MINS * 60 * 1000;
 
-	res.cookie("refreshToken", refreshToken, { // TODO hash this?
+	res.cookie("refreshToken", refreshToken, { // TODO hash this for sending to the client
 		secure: false, // TODO
 		httpOnly: true,
 		maxAge: tokenExpiry,

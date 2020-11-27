@@ -3,13 +3,15 @@ import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle } from '../core/au
 import { AuthMethod } from '~types/general';
 
 let authToken: string;
-let authTokenExpiry: number;
 
-export const setAuthToken = (token: string, tokenExpiry: number) => {
+export const setAuthToken = (token: string, tokenExpiry: number, onRefresh: Function) => {
 	authToken = token;
-	authTokenExpiry = tokenExpiry;
 
-	// start timer
+	// refresh the token 1 minute before it expires
+	const timeout = setTimeout(() => {
+		onRefresh();
+		clearTimeout(timeout);
+	}, tokenExpiry - 1000);
 };
 
 export const getAuthToken = () => authToken;

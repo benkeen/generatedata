@@ -12,7 +12,9 @@ const typeDefs = gql`
 		login(email: String!, password: String!): AuthPayLoad
         loginWithGoogle(googleToken: String!): AuthPayLoad
         refreshToken: AuthPayLoad
+		logout: LogoutPayload
 	}
+
     type Account {
         account_id: ID!
         date_created: String
@@ -45,6 +47,9 @@ const typeDefs = gql`
 		firstName: String
 		error: String
         profileImage: String
+	}
+	type LogoutPayload {
+		success: Boolean
 	}
 `;
 

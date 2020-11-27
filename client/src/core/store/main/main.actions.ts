@@ -72,7 +72,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
 
 	if (response.data.login.success) {
 		const { token, tokenExpiry, firstName } = response.data.login;
-		setAuthToken(token, tokenExpiry);
+		setAuthToken(token, tokenExpiry, (): any => refreshToken()(dispatch));
 
 		dispatch(setAuthenticationData({ authMethod: 'default', firstName }));
 		dispatch(toggleLoginDialog());
@@ -82,17 +82,30 @@ export const login = (email: string, password: string, onLoginError: Function): 
 };
 
 export const LOGOUT = 'LOGOUT';
-export const logout = (): any => (dispatch: Dispatch, getState: any): any => {
+export const logout = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 
 	// if the user logged in with Google, Facebook etc. we need to also let them know
 	logoutVendor(getAuthMethod(getState()));
 
 	dispatch({ type: LOGOUT });
+
+	// doesn't awfully matter if this fails. It's just for cleanup
+	await apolloClient.mutate({
+		mutation: gql`
+            mutation Logout {
+                logout {
+                    success
+                }
+            }
+		`
+	});
 };
 
 export const REFRESHING_TOKEN = 'REFRESHING_TOKEN';
 export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	dispatch({ type: REFRESHING_TOKEN });
+
+	console.log('refreshing token.');
 
 	const response = await apolloClient.mutate({
 		mutation: gql`
@@ -109,7 +122,9 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	const success = response.data.refreshToken.success;
 	if (success) {
 		const { token, tokenExpiry } = response.data.refreshToken;
-		setAuthToken(token, tokenExpiry);
+		setAuthToken(token, tokenExpiry, (): any => refreshToken()(dispatch));
+
+		console.log('refreshed! ', token);
 	}
 
 	dispatch(setAuthenticated(success));
