@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { generate } from 'shortid';
+import { nanoid } from 'nanoid';
 import produce from 'immer';
 import * as actions from './packets.actions';
 import { ExportTypeFolder } from '../../../../_plugins';
@@ -117,7 +117,7 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 				exportType, exportTypeSettings, stripWhitespace
 			} = action.payload;
 
-			const packetId = generate();
+			const packetId = nanoid();
 			draft.packetIds.push(packetId);
 			draft.packets[packetId] = getNewPacket({
 				dataTypeWorkerId,

@@ -28,7 +28,7 @@ export const init = (): void => {
 
 	// if there's a live session, verify the JWT is still valid
 	if (mainSelectors.isLoggedIn(state)) {
-		store.dispatch(mainActions.verifyToken());
+		store.dispatch(mainActions.refreshToken());
 	}
 
 	// if there are no rows, load some!

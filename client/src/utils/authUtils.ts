@@ -2,6 +2,15 @@ import env from '../../_env';
 import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle } from '../core/auth/google/google';
 import { AuthMethod } from '~types/general';
 
+let authToken: string;
+let authTokenExpiry: number;
+
+export const setAuthToken = (token: string, tokenExpiry: number) => {
+	authToken = token;
+	authTokenExpiry = tokenExpiry;
+};
+
+export const getAuthToken = () => authToken;
 
 export const initAuthVendors = (): void => {
 	if (env.googleAuthClientId) {

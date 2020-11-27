@@ -1,4 +1,4 @@
-import { generate } from 'shortid';
+import { nanoid } from 'nanoid';
 import webWorkers from '../../_pluginWebWorkers';
 import { DataTypeFolder, ExportTypeFolder } from '../../_plugins';
 import env from '../../_env';
@@ -18,7 +18,7 @@ const exportTypeWorkers: WorkerMap = {};
 export const getCountries = (): any => webWorkers.countries;
 
 export const createDataTypeWorker = (customId: string | null = null): string => {
-	const workerId = (customId) ? customId : generate();
+	const workerId = (customId) ? customId : nanoid();
 	dataTypeWorkers[workerId] = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);
 	return workerId;
 };
@@ -28,7 +28,7 @@ export const getDataTypeWorker = (id: string): Worker => dataTypeWorkers[id];
 export const destroyDataTypeWorker = (id: string): void => { delete dataTypeWorkers[id]; };
 
 export const createExportTypeWorker = (customId: string | null = null): string => {
-	const workerId = (customId) ? customId : generate();
+	const workerId = (customId) ? customId : nanoid();
 	exportTypeWorkers[workerId] = new Worker(`./workers/${webWorkers.coreExportTypeWorker}`);
 	return workerId;
 };

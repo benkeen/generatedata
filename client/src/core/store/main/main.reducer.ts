@@ -76,7 +76,7 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			draft.profileImage = null;
 			break;
 
-		case actions.VERIFYING_TOKEN:
+		case actions.REFRESHING_TOKEN:
 			draft.userTokenVerified = false;
 			break;
 	}

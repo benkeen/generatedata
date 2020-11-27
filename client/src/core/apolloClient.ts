@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, NormalizedCacheObject, ApolloLink, HttpLink, concat } from '@apollo/client';
 import fetch from 'cross-fetch';
-import Cookies from 'js-cookie';
+import * as authUtils from '~utils/authUtils';
 
 // TODO: generalized error handling when logged out
 // import { onError } from 'apollo-link-error';
@@ -10,13 +10,15 @@ import Cookies from 'js-cookie';
 // })
 
 const httpLink = new HttpLink({
-	uri: 'http://localhost:3001/graphql',
-	fetch
+	uri: 'http://127.0.0.1:3001/graphql',
+	fetch,
+	credentials: 'include'
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
-	const token = Cookies.get('token');
+	const token = authUtils.getAuthToken();
 
+	// this adds the current active jwt token to all requests so the server can authenticate the user
 	if (token) {
 		operation.setContext({
 			headers: {

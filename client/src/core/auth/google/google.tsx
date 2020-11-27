@@ -52,7 +52,7 @@ const onAuthenticated = async (googleUser: any): Promise<any> => {
 
 	if (response.data.loginWithGoogle.success) {
 		const { token, firstName, profileImage } = response.data.loginWithGoogle;
-		Cookies.set('token', token);
+		// Cookies.set('token', token);
 		store.dispatch(setAuthenticationData({ authMethod: 'google', firstName, profileImage }));
 	} else {
 		console.log('Error: ', response.data.loginWithGoogle);

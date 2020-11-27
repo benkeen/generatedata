@@ -49,6 +49,7 @@ CREATE TABLE `accounts` (
   `last_updated` datetime NOT NULL,
   `last_logged_in` datetime DEFAULT NULL,
   `date_expires` datetime DEFAULT NULL,
+  `refresh_token` varchar(200) DEFAULT NULL,
   `account_type` enum('user','admin') NOT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,

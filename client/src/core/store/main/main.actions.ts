@@ -1,11 +1,10 @@
 import { Dispatch } from 'redux';
 import { gql } from '@apollo/client';
-import Cookies from 'js-cookie';
 import { AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
 import { getAuthMethod } from '~store/main/main.selectors';
-import { logoutVendor } from '~utils/authUtils';
+import { logoutVendor, setAuthToken } from '~utils/authUtils';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -71,8 +70,9 @@ export const login = (email: string, password: string, onLoginError: Function): 
 	});
 
 	if (response.data.login.success) {
-		const { token, firstName } = response.data.login;
-		Cookies.set('token', token);
+		const { token, tokenExpiry, firstName } = response.data.login;
+		// Cookies.set('token', token);
+		setAuthToken(token, tokenExpiry);
 
 		dispatch(setAuthenticationData({ authMethod: 'default', firstName }));
 		dispatch(toggleLoginDialog());
@@ -87,28 +87,29 @@ export const logout = (): any => (dispatch: Dispatch, getState: any): any => {
 	// if the user logged in with Google, Facebook etc. we need to also let them know
 	logoutVendor(getAuthMethod(getState()));
 
-	Cookies.remove('token');
+	// Cookies.remove('token');
 
 	dispatch({ type: LOGOUT });
 };
 
-export const VERIFYING_TOKEN = 'VERIFYING_TOKEN';
-export const verifyToken = () => async (dispatch: Dispatch): Promise<any> => {
-	dispatch({ type: VERIFYING_TOKEN });
+export const REFRESHING_TOKEN = 'REFRESHING_TOKEN';
+export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
+	dispatch({ type: REFRESHING_TOKEN });
 
-	const response = await apolloClient.query({
-		query: gql`
-			query VerifyToken {
-				verifyToken {
-					valid
+	const response = await apolloClient.mutate({
+		mutation: gql`
+			mutation RefreshToken {
+                refreshToken {
+					token,
+					success
 				}
 			}
 		`
 	});
 
-	const isValid = response.data.verifyToken.valid;
+	const isValid = response.data.refreshToken.success;
 	if (!isValid) {
-		Cookies.remove('token');
+		// Cookies.remove('token');
 	}
 
 	dispatch(setAuthenticated(isValid));

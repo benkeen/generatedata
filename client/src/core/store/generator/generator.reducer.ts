@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { generate } from 'shortid';
+import { nanoid } from 'nanoid';
 import produce from 'immer';
 import * as actions from './generator.actions';
 import * as mainActions from '../main/main.actions';
@@ -151,7 +151,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		case actions.ADD_ROWS: {
 			const newRowIDs: string[] = [];
 			for (let i = 0; i < action.payload.numRows; i++) {
-				const rowId = generate();
+				const rowId = nanoid();
 				draft.rows[rowId] = {
 					id: rowId,
 					title: '',

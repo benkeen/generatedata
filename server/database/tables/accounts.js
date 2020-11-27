@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
 		date_expires: {
 			type: DataTypes.DATE
 		},
+		refresh_token: {
+			type: DataTypes.STRING(200)
+		},
 		account_type: {
 			type: DataTypes.ENUM('admin', 'user'),
 			allowNull: false

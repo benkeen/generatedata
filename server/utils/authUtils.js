@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 
 require('dotenv').config();
 
-
 const saltRounds = 10;
 const getPasswordHash = async (plainTextPassword) => {
 	const salt = await bcrypt.genSalt(saltRounds);
@@ -12,7 +11,9 @@ const getPasswordHash = async (plainTextPassword) => {
 
 const isValidPassword = async (plainTextPassword, hash) => await bcrypt.compare(plainTextPassword, hash);
 
-const getJwt = (payload) => jwt.sign(payload, process.env.GD_JWT_SECRET, { expiresIn: '15m' });
+const getJwt = (payload) => jwt.sign(payload, process.env.GD_JWT_SECRET, {
+	expiresIn: `${process.env.GD_JWT_LIFESPAN_MINS}m`
+});
 
 const authenticate = async (token) => {
 	if (token) {
