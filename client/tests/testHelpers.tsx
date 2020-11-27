@@ -5,7 +5,7 @@ import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { getInitialState } from '~store/generator/generator.reducer';
-import { initialState as initialMainState, MainState } from '~store/main/main.reducer';
+import { initialState as initialMainState } from '~store/main/main.reducer';
 import { initialState as initialPacketState } from '~store/packets/packets.reducer';
 import * as langUtils from '~utils/langUtils';
 import { setLocaleFileLoaded } from '~store/main/main.actions';
@@ -14,6 +14,7 @@ import mainReducer from '~store/main/main.reducer';
 import packetsReducer from '~store/packets/packets.reducer';
 
 const i18n = require('../src/i18n/en.json');
+const jsonI18n = require('../src/plugins/exportTypes/JSON/i18n/en.json');
 
 const rootReducer = combineReducers({
 	generator: generatorReducer,
@@ -34,7 +35,9 @@ export const renderWithStoreAndRouter = (
 	langUtils.setLocale('en', {
 		core: i18n,
 		dataTypes: {},
-		exportTypes: {},
+		exportTypes: {
+			JSON: jsonI18n
+		},
 		countries: {}
 	});
 	store.dispatch(setLocaleFileLoaded('en'));

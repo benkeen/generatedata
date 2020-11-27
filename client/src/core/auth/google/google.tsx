@@ -1,6 +1,5 @@
 import React from 'react';
 import { gql } from '@apollo/client';
-import Cookies from 'js-cookie';
 import env from '../../../../_env';
 import { apolloClient } from '../../apolloClient';
 import store from '../../store';

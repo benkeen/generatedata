@@ -184,7 +184,7 @@
     "sass-loader": "^8.0.0",
     "sinon": "^8.0.4",
     "style-loader": "^1.0.0",
-    "ts-jest": "^24.2.0",
+    "ts-jest": "^25.5.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.3",
     "use-onclickoutside": "^0.3.1",
