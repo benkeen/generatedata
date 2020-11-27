@@ -9,9 +9,9 @@ export const setAuthToken = (token: string, tokenExpiry: number, onRefresh: Func
 
 	// refresh the token 1 minute before it expires
 	const timeout = setTimeout(() => {
-		onRefresh();
 		clearTimeout(timeout);
-	}, tokenExpiry - 1000);
+		onRefresh();
+	}, (tokenExpiry - 60) * 1000);
 };
 
 export const getAuthToken = () => authToken;

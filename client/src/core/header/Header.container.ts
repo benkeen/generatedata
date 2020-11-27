@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
 
 	// @ts-ignore
 	toggleIntroDialog: (): any => dispatch(mainActions.toggleIntroDialog()),
-	toggleLoginDialog: (): any => dispatch(mainActions.toggleLoginDialog()),
+	showLoginDialog: (): any => dispatch(mainActions.setLoginDialogVisibility(true)),
 	onLogout: (): any => dispatch(mainActions.logout())
 });
 

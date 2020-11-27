@@ -21,8 +21,7 @@ export type HeaderProps = {
 	isLoggedIn: boolean;
 	smallScreenVisiblePanel: GeneratorPanel;
 	showIntroDialog: boolean;
-	showLoginDialog: boolean;
-	toggleLoginDialog: () => void;
+	showLoginDialog: () => void;
 	locale: GDLocale;
 	i18n: any;
 	onLogout: () => void;
@@ -32,8 +31,8 @@ export type HeaderProps = {
 };
 
 const Header = ({
-	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, toggleLoginDialog,
-	onChangeSmallScreenVisiblePanel, isLoggedIn, onLogout, userTokenVerified, firstName
+	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
+	isLoggedIn, onLogout, userTokenVerified, firstName
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -81,7 +80,7 @@ const Header = ({
 				<li><Link to="/">Generator</Link></li>
 				<li><Link to="/signup">Sign Up</Link></li>
 				<li>|</li>
-				<li onClick={toggleLoginDialog}>Login</li>
+				<li onClick={showLoginDialog}>Login</li>
 			</>
 		);
 	};

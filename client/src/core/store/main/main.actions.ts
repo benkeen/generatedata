@@ -31,8 +31,13 @@ export const toggleIntroDialog = (): GDAction => ({ type: TOGGLE_INTRO_DIALOG })
 export const RESET_STORE = 'RESET_STORE';
 export const resetStore = (): GDAction => ({ type: RESET_STORE });
 
-export const TOGGLE_LOGIN_DIALOG = 'TOGGLE_LOGIN_DIALOG';
-export const toggleLoginDialog = (): GDAction => ({ type: TOGGLE_LOGIN_DIALOG });
+export const SET_LOGIN_DIALOG_VISIBILITY = 'SET_LOGIN_DIALOG_VISIBILITY';
+export const setLoginDialogVisibility = (visible: boolean): GDAction => ({
+	type: SET_LOGIN_DIALOG_VISIBILITY,
+	payload: {
+		visible
+	}
+});
 
 export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
 
@@ -54,8 +59,13 @@ export const setAuthenticated = (authenticated = true): GDAction => ({
 	}
 });
 
+export const START_LOGIN = 'START_LOGIN';
+export const startLogin = () => ({ type: START_LOGIN });
+
 // default authentication
 export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
+	dispatch(startLogin());
+
 	const response = await apolloClient.mutate({
 		mutation: gql`
             mutation LoginMutation($email: String!, $password: String!) {
@@ -75,7 +85,7 @@ export const login = (email: string, password: string, onLoginError: Function): 
 		setAuthToken(token, tokenExpiry, (): any => refreshToken()(dispatch));
 
 		dispatch(setAuthenticationData({ authMethod: 'default', firstName }));
-		dispatch(toggleLoginDialog());
+		dispatch(setLoginDialogVisibility(false));
 	} else {
 		onLoginError();
 	}

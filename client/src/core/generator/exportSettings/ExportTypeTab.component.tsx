@@ -3,7 +3,7 @@ import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import { exportTypeOptions } from '~utils/exportTypeUtils';
 import * as styles from './ExportSettings.scss';
 import { ExportSettingsTab } from './ExportSettings.types';
-import { MediumSpinner } from '~components/loaders';
+import { MediumSpinner } from '~components/loaders/loaders';
 
 export type ExportTypeTabProps = {
 	exportType: string;

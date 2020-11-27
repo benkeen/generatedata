@@ -1,6 +1,6 @@
 import React from 'react';
 import * as sharedStyles from '../../../styles/shared.scss';
-import { SmallSpinner } from '~components/loaders';
+import { SmallSpinner } from '~components/loaders/loaders';
 import * as styles from './Grid.scss';
 import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import { HtmlTooltip } from '~components/tooltips';

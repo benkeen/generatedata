@@ -4,6 +4,7 @@ import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import Portal from '~components/Portal';
 import { isValidEmail } from '~utils/generalUtils';
+import { DialogLoadingSpinner } from '~components/loaders/loaders';
 import styles from './Login.scss';
 import LoginError from './LoginError.component';
 import { hasVendorLogin, getVendorLoginButtons } from '~utils/authUtils';
@@ -13,17 +14,17 @@ const vendorLoginButtons = getVendorLoginButtons();
 
 export type LoginDialogProps = {
 	visible: boolean;
+	isLoggingIn: boolean;
 	onClose: any;
 	onSubmit: (email: string, password: string, onError: Function) => void;
 	i18n: any;
 };
 
-
 /**
  * The login dialog has baked-in support for standard logging into our database, but also optionally supports
  * logging in via external vendors: Google, Facebook and Github.
  */
-const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JSX.Element => {
+const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, i18n }: LoginDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
@@ -117,6 +118,7 @@ const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JS
 											name="email"
 											onChange={(e: any): void => updateEmail(e.target.value)}
 											style={{ width: '100%' }}
+											disabled={isLoggingIn}
 											autoFocus
 										/>
 									</div>
@@ -130,6 +132,7 @@ const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JS
 											value={password}
 											onChange={(e: any): void => updatePassword(e.target.value)}
 											style={{ width: '100%' }}
+											disabled={isLoggingIn}
 										/>
 									</div>
 								</div>
@@ -137,12 +140,13 @@ const LoginDialog = ({ visible, onClose, onSubmit, i18n }: LoginDialogProps): JS
 							</div>
 						</DialogContent>
 						<DialogActions>
-							<Button type="submit" onClick={onLogin} color="primary" variant="outlined">
+							<Button type="submit" onClick={onLogin} color="primary" variant="outlined" disabled={isLoggingIn}>
 								{i18n.login}
 							</Button>
 						</DialogActions>
 					</div>
 				</form>
+				<DialogLoadingSpinner visible={isLoggingIn} />
 			</Dialog>
 
 			<Portal id="loginErrorPortal">

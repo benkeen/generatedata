@@ -8,6 +8,7 @@ const defaultProps = {
 	visible: false,
 	onClose: () => {},
 	onSubmit: () => {},
+	isLoggingIn: false,
 	i18n
 };
 

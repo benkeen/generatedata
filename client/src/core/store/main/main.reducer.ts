@@ -16,6 +16,7 @@ export type MainState = {
 	userTokenVerified: boolean;
 	firstName: string;
 	profileImage: string | null;
+	isLoggingIn: boolean;
 };
 
 export const initialState: MainState = {
@@ -31,7 +32,8 @@ export const initialState: MainState = {
 
 	// by default we assume the user isn't logged in when the page first loads, so this is set to true. If they
 	// *did* have a live session, this is set according during boot up when verifying their JWT
-	userTokenVerified: true
+	userTokenVerified: true,
+	isLoggingIn: false
 };
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -52,8 +54,8 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			draft.showIntroDialog = !draft.showIntroDialog;
 			break;
 
-		case actions.TOGGLE_LOGIN_DIALOG:
-			draft.showLoginDialog = !draft.showLoginDialog;
+		case actions.SET_LOGIN_DIALOG_VISIBILITY:
+			draft.showLoginDialog = action.payload.visible;
 			break;
 
 		case actions.AUTHENTICATED:
@@ -63,6 +65,7 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.SET_AUTHENTICATION_DATA:
 			draft.isLoggedIn = true;
+			draft.isLoggingIn = false;
 			draft.authMethod = action.payload.authMethod;
 			draft.firstName = action.payload.firstName;
 			if (action.payload.profileImage) {
@@ -78,6 +81,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.REFRESHING_TOKEN:
 			draft.userTokenVerified = false;
+			break;
+
+		case actions.START_LOGIN:
+			draft.isLoggingIn = true;
 			break;
 	}
 
