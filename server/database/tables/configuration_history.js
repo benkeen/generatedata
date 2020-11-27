@@ -1,22 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define('configuration_history', {
-		history_id: {
+		historyId: {
 			type: DataTypes.INTEGER(9),
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'history_id'
 		},
-		configuration_id: {
+		configurationId: {
 			type: DataTypes.INTEGER(9),
-			allowNull: false
+			allowNull: false,
+			field: 'configuration_id'
 		},
-		last_updated: {
+		lastUpdated: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'last_updated'
 		},
-		configuration_name: {
+		configurationName: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'configuration_name'
 		},
 		content: {
 			type: DataTypes.TEXT

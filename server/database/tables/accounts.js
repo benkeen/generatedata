@@ -1,38 +1,47 @@
 module.exports = (sequelize, DataTypes) => {
 
 	return sequelize.define('accounts', {
-		account_id: {
+		accountId: {
 			type: DataTypes.INTEGER(8).UNSIGNED,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'account_id'
 		},
-		date_created: {
+		dateCreated: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'date_created'
 		},
-		last_updated: {
+		lastUpdated: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'last_updated'
 		},
-		last_logged_in: {
-			type: DataTypes.DATE
+		lastLoggedIn: {
+			type: DataTypes.DATE,
+			field: 'last_logged_in'
 		},
-		date_expires: {
-			type: DataTypes.DATE
+		dateExpires: {
+			type: DataTypes.DATE,
+			field: 'date_expires'
 		},
-		refresh_token: {
-			type: DataTypes.STRING(200)
+		refreshToken: {
+			type: DataTypes.STRING(200),
+			field: 'refresh_token'
 		},
-		account_type: {
+		accountType: {
 			type: DataTypes.ENUM('admin', 'user'),
-			allowNull: false
+			allowNull: false,
+			field: 'account_type'
 		},
-		first_name: {
-			type: DataTypes.STRING(255)
+		firstName: {
+			type: DataTypes.STRING(255),
+			field: 'first_name'
 		},
-		last_name: {
-			type: DataTypes.STRING(255)
+		lastName: {
+			type: DataTypes.STRING(255),
+			field: 'firstName'
 		},
 		email: {
 			type: DataTypes.STRING(255),
@@ -42,21 +51,26 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(255),
 			allowNull: false
 		},
-		num_rows_generated: {
+		numRowsGenerated: {
 			type: DataTypes.INTEGER(9).UNSIGNED,
-			allowNull: false
+			allowNull: false,
+			field: 'num_rows_generated'
 		},
-		max_records: {
-		    type: DataTypes.INTEGER(9).UNSIGNED
+		maxRecords: {
+		    type: DataTypes.INTEGER(9).UNSIGNED,
+			field: 'max_records'
 	    },
-		selected_data_types: {
-			type: DataTypes.TEXT
+		selectedDataTypes: {
+			type: DataTypes.TEXT,
+			field: 'selected_data_types'
 		},
-		selected_export_types: {
-			type: DataTypes.TEXT
+		selectedExportTypes: {
+			type: DataTypes.TEXT,
+			field: 'selected_export_types'
 		},
-		selected_countries: {
-			type: DataTypes.TEXT
+		selectedCountries: {
+			type: DataTypes.TEXT,
+			field: 'selected_countries'
 		}
 	}, {
 		tableName: 'accounts',

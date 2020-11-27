@@ -61,7 +61,8 @@ export const login = (email: string, password: string, onLoginError: Function): 
             mutation LoginMutation($email: String!, $password: String!) {
                 login(email: $email, password: $password) {
                     token
-					success,
+					tokenExpiry
+					success
 					firstName
                 }
             }
@@ -71,7 +72,6 @@ export const login = (email: string, password: string, onLoginError: Function): 
 
 	if (response.data.login.success) {
 		const { token, tokenExpiry, firstName } = response.data.login;
-		// Cookies.set('token', token);
 		setAuthToken(token, tokenExpiry);
 
 		dispatch(setAuthenticationData({ authMethod: 'default', firstName }));
@@ -87,8 +87,6 @@ export const logout = (): any => (dispatch: Dispatch, getState: any): any => {
 	// if the user logged in with Google, Facebook etc. we need to also let them know
 	logoutVendor(getAuthMethod(getState()));
 
-	// Cookies.remove('token');
-
 	dispatch({ type: LOGOUT });
 };
 
@@ -100,17 +98,19 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 		mutation: gql`
 			mutation RefreshToken {
                 refreshToken {
-					token,
+					token
+					tokenExpiry
 					success
 				}
 			}
 		`
 	});
 
-	const isValid = response.data.refreshToken.success;
-	if (!isValid) {
-		// Cookies.remove('token');
+	const success = response.data.refreshToken.success;
+	if (success) {
+		const { token, tokenExpiry } = response.data.refreshToken;
+		setAuthToken(token, tokenExpiry);
 	}
 
-	dispatch(setAuthenticated(isValid));
+	dispatch(setAuthenticated(success));
 };

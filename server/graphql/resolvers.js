@@ -7,7 +7,6 @@ const resolvers = {
 	Query: {
 		accounts: async (root, args, { token }) => {
 			authUtils.authenticate(token);
-
 			return db.accounts.findAll();
 		},
 
@@ -16,14 +15,14 @@ const resolvers = {
 		},
 
 		configurations: async (root, args) => {
-			return db.configurations.findByPk(args.account_id);
+			return db.configurations.findByPk(args.accountId);
 		}
 	},
 
 	Mutation: {
 		login: async (root, { email, password }, { res }) => {
 			const user = await db.accounts.findOne({
-				attributes: ['account_id', 'password', 'first_name'],
+				attributes: ['accountId', 'password', 'firstName'],
 				where: {
 					email
 				}
@@ -33,41 +32,19 @@ const resolvers = {
 				return { success: false };
 			}
 
-			const { account_id, first_name, password: encodedPassword } = user.dataValues;
+			const { accountId, firstName, password: encodedPassword } = user.dataValues;
 			const isCorrect = await authUtils.isValidPassword(password, encodedPassword);
 			if (!isCorrect) {
 				return { success: false };
 			}
 
-			const token = await authUtils.getJwt({ account_id, email });
-
-			// store the refresh token in a cookie and stash in the db
-			const refreshToken = nanoid();
-			await user.update({ refresh_token: refreshToken });
-
-			// now set it in a cookie. This info cannot be accessed by any running JS in the page (thanks to httpOnly),
-			// but it'll be automatically passed along with any subsequent requests to the server - including the
-			// all-important refreshToken refresh. This info enables the front-end code to automatically extend the
-			// lifespan of the living token (`token`)
-			// res.header('Access-Control-Allow-Credentials', 'true');
-			// res.header('access-control-expose-headers', 'Set-Cookie');
-
-			// res.header('Access-Control-Allow-Credentials', true);
-			// res.header('Access-Control-Allow-Origin', 'http://localhost:9000');
-			// res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
-			// res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-			res.cookie("refresh-token", refreshToken, { // TODO hash this?
-				secure: false, // TODO
-				httpOnly: true,
-				maxAge: process.env.GD_JWT_REFRESH_TOKEN_LIFESPAN_MINS * 60 * 1000,
-				domain: '127.0.0.1'
-			});
-
+			const { token, tokenExpiry } = await getNewTokenAndSetRefreshTokenCookie(accountId, email, user, res);
 
 			return {
 				success: true,
 				token,
-				firstName: first_name
+				tokenExpiry,
+				firstName
 			};
 		},
 
@@ -99,7 +76,7 @@ const resolvers = {
 
 			// here the authentication has passed. Now verify the account exists
 			const user = await db.accounts.findOne({
-				attributes: ['account_id', 'password', 'first_name'],
+				attributes: ['accountId', 'password', 'firstName'],
 				where: {
 					email
 				}
@@ -112,8 +89,8 @@ const resolvers = {
 				};
 			}
 
-			const { account_id } = user.dataValues;
-			const token = await authUtils.getJwt({ account_id, email });
+			const { accountId } = user.dataValues;
+			const token = await authUtils.getJwt({ accountId, email });
 
 			return {
 				success: true,
@@ -123,26 +100,56 @@ const resolvers = {
 			};
 		},
 
-		refreshToken: async(root, args, { token, req }) => {
-			// const valid = await authUtils.authenticate(token);
+		refreshToken: async (root, args, { token, req, res }) => {
+			if (!req.cookies.refreshToken) {
+				return { success: false };
+			}
 
-			console.log("in refresh token.");
-			console.log(req, args);
+			const refreshToken = req.cookies.refreshToken;
+			const user = await db.accounts.findOne({
+				attributes: ['accountId', 'firstName'],
+				where: {
+					refreshToken
+				}
+			});
 
-			// const user = await db.accounts.findOne({
-			// 	attributes: ['account_id', 'password', 'first_name'],
-			// 	where: {
-			// 		refresh_token
-			// 	}
-			// });
+			if (!user) {
+				return { success: false };
+			}
+
+			const { accountId, email } = user.dataValues;
+			const { token: newToken, tokenExpiry } = await getNewTokenAndSetRefreshTokenCookie(accountId, email, user, res);
 
 			return {
-				success: false
+				success: true,
+				token: newToken,
+				tokenExpiry
 			};
 		}
-
 	}
 };
 
+const getNewTokenAndSetRefreshTokenCookie = async (accountId, email, user, res) => {
+	const token = await authUtils.getJwt({ accountId, email });
+
+	// store the refresh token in a cookie and stash in the db
+	const refreshToken = nanoid();
+	await user.update({ refreshToken: refreshToken });
+
+	// now set it in a cookie. This info cannot be accessed by any running JS in the page (thanks to httpOnly),
+	// but it'll be automatically passed along with any subsequent requests to the server - including the
+	// all-important refreshToken refresh. This info enables the front-end code to automatically extend the
+	// lifespan of the living token (`token`)
+	const tokenExpiry = process.env.GD_JWT_REFRESH_TOKEN_LIFESPAN_MINS * 60 * 1000;
+
+	res.cookie("refreshToken", refreshToken, { // TODO hash this?
+		secure: false, // TODO
+		httpOnly: true,
+		maxAge: tokenExpiry,
+		domain: 'localhost'
+	});
+
+	return { token, tokenExpiry };
+};
 
 module.exports = resolvers;

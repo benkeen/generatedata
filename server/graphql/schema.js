@@ -41,6 +41,7 @@ const typeDefs = gql`
 	type AuthPayLoad {
 		success: Boolean
 		token: String
+		tokenExpiry: Int
 		firstName: String
 		error: String
         profileImage: String

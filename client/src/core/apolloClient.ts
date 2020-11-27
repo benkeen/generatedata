@@ -10,7 +10,7 @@ import * as authUtils from '~utils/authUtils';
 // })
 
 const httpLink = new HttpLink({
-	uri: 'http://127.0.0.1:3001/graphql',
+	uri: 'http://localhost:3001/graphql',
 	fetch,
 	credentials: 'include'
 });

@@ -8,6 +8,8 @@ let authTokenExpiry: number;
 export const setAuthToken = (token: string, tokenExpiry: number) => {
 	authToken = token;
 	authTokenExpiry = tokenExpiry;
+
+	// start timer
 };
 
 export const getAuthToken = () => authToken;

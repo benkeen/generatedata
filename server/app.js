@@ -12,24 +12,17 @@ const app = express();
 
 // see: https://github.com/expressjs/cors#configuration-options
 const corsOptions = {
-	origin: `http://127.0.0.1:${process.env.GD_DEV_SERVER_PORT}`,
+	origin: `http://localhost:${process.env.GD_DEV_SERVER_PORT}`,
 	credentials: true
 };
 
 app.use(cookieParser());
-
-// app.use(function (req, res, next) {
-// 	res.header("Access-Control-Allow-Origin", "*");
-// 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-// 	next();
-// });
 
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
 	// cors: corsOptions,
 	context: ({ req, res }) => {
-		console.log("cookies: ", Object.keys(req.cookies));
 
 		// try to retrieve a user with the token
 		// const user = getUser(token);

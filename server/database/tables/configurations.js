@@ -1,25 +1,29 @@
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define('configurations', {
-		configuration_id: {
+		configurationId: {
 			type: DataTypes.INTEGER(9),
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'configuration_id'
 		},
 		status: {
 			type: DataTypes.ENUM('public', 'private'),
 			allowNull: false
 		},
-		date_created: {
+		dateCreated: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'date_created'
 		},
-		account_id: {
+		accountId: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'account_id'
 		},
-		num_rows_generated: {
-			type: DataTypes.INTEGER(9)
+		numRowsGenerated: {
+			type: DataTypes.INTEGER(9),
+			field: 'num_rows_generated'
 		}
 	}, {
 		tableName: 'configurations',

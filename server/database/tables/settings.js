@@ -1,14 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define('settings', {
-		setting_name: {
-			type: DataTypes.STRING
+		settingName: {
+			type: DataTypes.STRING,
+			field: 'setting_name'
 		},
-		setting_value: {
-			type: DataTypes.STRING
+		settingValue: {
+			type: DataTypes.STRING,
+			field: 'setting_value'
 		}
 	}, {
 		tableName: 'settings',
 		timestamps: false
 	});
 };
-
