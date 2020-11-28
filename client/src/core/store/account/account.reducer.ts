@@ -1,16 +1,21 @@
 import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as mainActions from '../main/main.actions';
+// import * as actions from './account.actions';
+import { AccountType } from '~types/account';
+
+export type SelectedAccountTab = 'dataSet' | 'profile' | 'payments';
 
 export type AccountState = {
 	firstName: string;
 	lastName: string;
 	email: string;
 	dateExpires: string;
-	accountType: 'user' | 'admin';
+	accountType: AccountType;
 	profileImage: string | null;
 	numRowsGenerated: number;
 	configurations: [];
+	selectedTab: SelectedAccountTab;
 };
 
 export const initialState: AccountState = {
@@ -21,7 +26,8 @@ export const initialState: AccountState = {
 	accountType: 'user',
 	profileImage: null,
 	numRowsGenerated: 0,
-	configurations: []
+	configurations: [],
+	selectedTab: 'dataSet'
 };
 
 export const reducer = produce((draft: AccountState, action: AnyAction) => {
@@ -32,12 +38,6 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				draft[key] = initialState[key];
 			});
 			break;
-		case mainActions.SET_AUTHENTICATION_DATA:
-			draft.firstName = action.payload.firstName;
-			if (action.payload.profileImage) {
-				draft.profileImage = action.payload.profileImage;
-			}
-			break;
 
 		// TODO maybe RESET
 		case mainActions.LOGOUT:
@@ -47,6 +47,17 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.numRowsGenerated = 0;
 			draft.configurations = [];
 			break;
+
+		case mainActions.SET_AUTHENTICATION_DATA: {
+			const { firstName, lastName, dateExpires, accountType, email, numRowsGenerated } = action.payload;
+			draft.firstName = firstName;
+			draft.lastName = lastName;
+			draft.dateExpires = dateExpires;
+			draft.accountType = accountType;
+			draft.email = email;
+			draft.numRowsGenerated = numRowsGenerated;
+			break;
+		}
 	}
 
 }, initialState);

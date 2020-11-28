@@ -19,7 +19,7 @@ const httpLink = new HttpLink({
 const authMiddleware = new ApolloLink((operation, forward) => {
 	const token = mainSelectors.getAuthToken(store.getState());
 
-	console.log('adding token header?', mainSelectors.getAuthToken(store.getState()));
+	// console.log('adding token header?', mainSelectors.getAuthToken(store.getState()));
 
 	// this adds the current active jwt token to all requests so the server can authenticate the user
 	if (token) {

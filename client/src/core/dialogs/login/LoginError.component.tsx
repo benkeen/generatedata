@@ -23,7 +23,7 @@ const LoginError = ({ message, visible, onClose }: any): JSX.Element => {
 				horizontal: 'center'
 			}}
 			open={open}
-			autoHideDuration={5000}
+			autoHideDuration={50000}
 			onClose={handleClose}
 		>
 			<Alert onClose={handleClose} severity="error">{message}</Alert>

@@ -39,13 +39,11 @@ const decodeToken = (token) => {
 };
 
 const getUser = (token) => {
-	console.log("???", token);
-
-	// const decodedToken = decodeToken(token);
-	//
-	// console.log("-->", decodedToken);
-
-	return {};
+	if (!token) {
+		return {};
+	}
+	const decodedToken = decodeToken(token);
+	return decodedToken.payload;
 };
 
 // const outputTestPwd = async () => {

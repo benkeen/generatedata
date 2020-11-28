@@ -25,8 +25,6 @@ const server = new ApolloServer({
 	context: ({ req, res }) => {
 		const token = (req.headers.authorization || '').replace('Bearer ', '');
 
-		console.log("context...?", req.headers);
-		
 		// try to retrieve a user with the token
 		const user = authUtils.getUser(token);
 
@@ -35,12 +33,11 @@ const server = new ApolloServer({
 		return {
 			res,
 			req,
-			token
-			// user
+			token,
+			user
 		};
 	}
 });
-
 
 server.applyMiddleware({
 	app,

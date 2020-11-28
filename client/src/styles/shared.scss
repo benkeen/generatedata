@@ -24,3 +24,7 @@ input.errorField, textarea.errorField, select.errorField, button.errorField {
 .copyCol {
 	flex: 0 0 26px;
 }
+
+:global(div.MuiAlert-root) {
+	font-size: 1rem;
+}

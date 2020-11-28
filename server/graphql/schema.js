@@ -9,9 +9,9 @@ const typeDefs = gql`
         configuration(id: ID!): Configuration
     }
 	type Mutation {
-		login(email: String!, password: String!): AuthPayLoad
-        loginWithGoogle(googleToken: String!): AuthPayLoad
-        refreshToken: AuthPayLoad
+		login(email: String!, password: String!): AuthResponseWithAccount
+        loginWithGoogle(googleToken: String!): AuthResponseWithAccount
+        refreshToken: AuthResponseWithAccount
 		logout: LogoutPayload
 	}
     type Account {
@@ -23,6 +23,7 @@ const typeDefs = gql`
 		lastName: String
 		email: String
         numRowsGenerated: Int
+        profileImage: String
     }
     type Setting {
         settingName: String
@@ -39,14 +40,21 @@ const typeDefs = gql`
 		PUBLIC
 		PRIVATE	
 	}
-	type AuthPayLoad {
-		success: Boolean
-		token: String
-		tokenExpiry: Int
-		firstName: String
-		error: String
+    type AuthResponseWithAccount {
+        success: Boolean
+        token: String
+        tokenExpiry: Int
+        error: String
+        accountId: ID
+        dateExpires: String
+        accountType: AccountType
+        dateCreated: String
+        firstName: String
+        lastName: String
+        email: String
+        numRowsGenerated: Int
         profileImage: String
-	}
+    }
 	type LogoutPayload {
 		success: Boolean
 	}

@@ -5,6 +5,7 @@ import * as langUtils from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
 import { getAuthMethod } from '~store/main/main.selectors';
 import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
+import { AccountType } from '~types/account';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -42,10 +43,16 @@ export const setLoginDialogVisibility = (visible: boolean): GDAction => ({
 export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
 
 export type AuthData = {
-	authMethod: AuthMethod;
+	authMethod?: AuthMethod;
 	token: string;
 	firstName: string;
-	profileImage?: string;
+	lastName: string;
+	email: string;
+	profileImage: string;
+	dateExpires: string;
+	dateCreated: string;
+	accountType: AccountType;
+	numRowsGenerated: number;
 };
 
 export const setAuthenticationData = (authData: AuthData): GDAction => ({
@@ -76,6 +83,13 @@ export const login = (email: string, password: string, onLoginError: Function): 
 					tokenExpiry
 					success
 					firstName
+                    lastName
+                    dateExpires
+                    accountType
+                    dateCreated
+                    email
+                    numRowsGenerated
+                    profileImage
                 }
             }
 		`,
@@ -83,10 +97,13 @@ export const login = (email: string, password: string, onLoginError: Function): 
 	});
 
 	if (response.data.login.success) {
-		const { token, tokenExpiry, firstName } = response.data.login;
-		setAuthTokenRefresh(tokenExpiry, (): any => refreshToken()(dispatch));
+		setAuthTokenRefresh(response.data.login.tokenExpiry, (): any => refreshToken()(dispatch));
 
-		dispatch(setAuthenticationData({ token, authMethod: 'default', firstName }));
+		dispatch(setAuthenticationData({
+			...response.data.login,
+			authMethod: 'default'
+		}));
+
 		dispatch(setLoginDialogVisibility(false));
 	} else {
 		onLoginError();
@@ -120,17 +137,23 @@ export const REFRESHING_TOKEN = 'REFRESHING_TOKEN';
 export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	dispatch({ type: REFRESHING_TOKEN });
 
-	console.log('refreshing token.');
-
 	const response = await apolloClient.mutate({
 		mutation: gql`
 			mutation RefreshToken {
                 refreshToken {
-					token
-					tokenExpiry
-					success
+                    token
+                    tokenExpiry
+                    success
+                    firstName
+                    lastName
+                    dateExpires
+                    accountType
+                    dateCreated
+                    email
+                    numRowsGenerated
+                    profileImage
 				}
-			}
+            }
 		`
 	});
 
@@ -138,6 +161,7 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	if (success) {
 		const { token, tokenExpiry } = response.data.refreshToken;
 		setAuthTokenRefresh(tokenExpiry, (): any => refreshToken()(dispatch));
+		dispatch(setAuthenticationData(response.data.refreshToken));
 		dispatch(setAuthToken(token));
 	} else {
 		console.log('token NOT refreshed', response);

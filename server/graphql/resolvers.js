@@ -10,11 +10,13 @@ const resolvers = {
 			return db.accounts.findAll();
 		},
 
-		account: async (root, args) => {
-			return db.accounts.findByPk(args.id);
+		account: async (root, args, { user, token }) => {
+			authUtils.authenticate(token);
+			return db.accounts.findByPk(user.accountId);
 		},
 
 		configurations: async (root, args) => {
+			authUtils.authenticate(token);
 			return db.configurations.findByPk(args.accountId);
 		}
 	},
@@ -22,7 +24,10 @@ const resolvers = {
 	Mutation: {
 		login: async (root, { email, password }, { res }) => {
 			const user = await db.accounts.findOne({
-				attributes: ['accountId', 'password', 'firstName'],
+				attributes: [
+					'accountId', 'password', 'firstName', 'lastName', 'dateCreated', 'dateExpires',
+					'numRowsGenerated', 'profileImage'
+				],
 				where: {
 					email
 				}
@@ -32,7 +37,7 @@ const resolvers = {
 				return { success: false };
 			}
 
-			const { accountId, firstName, password: encodedPassword } = user.dataValues;
+			const { accountId, password: encodedPassword } = user.dataValues;
 			const isCorrect = await authUtils.isValidPassword(password, encodedPassword);
 			if (!isCorrect) {
 				return { success: false };
@@ -44,7 +49,8 @@ const resolvers = {
 				success: true,
 				token,
 				tokenExpiry,
-				firstName
+				email,
+				...user.dataValues
 			};
 		},
 
@@ -108,7 +114,10 @@ const resolvers = {
 
 			const refreshToken = req.cookies.refreshToken;
 			const user = await db.accounts.findOne({
-				attributes: ['accountId', 'firstName'],
+				attributes: [
+					'accountId', 'firstName', 'email', 'lastName', 'dateCreated', 'dateExpires',
+					'numRowsGenerated', 'profileImage'
+				],
 				where: {
 					refreshToken
 				}
@@ -125,7 +134,8 @@ const resolvers = {
 			return {
 				success: true,
 				token: newToken,
-				tokenExpiry
+				tokenExpiry,
+				...user.dataValues
 			};
 		},
 

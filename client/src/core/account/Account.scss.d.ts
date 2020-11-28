@@ -1,6 +1,8 @@
 declare namespace AccountScssNamespace {
   export interface IAccountScss {
     page: string;
+    selected: string;
+    tab: string;
   }
 }
 

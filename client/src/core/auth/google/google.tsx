@@ -39,9 +39,15 @@ const onAuthenticated = async (googleUser: any): Promise<any> => {
             mutation LoginWithGoogle($googleToken: String!) {
                 loginWithGoogle(googleToken: $googleToken) {
                     token
-                    success,
-                    firstName,
-					error,
+                    success
+					error
+                    firstName
+                    lastName
+                    dateExpires
+                    accountType
+                    dateCreated
+                    email
+                    numRowsGenerated
                     profileImage
                 }
             }
@@ -50,8 +56,7 @@ const onAuthenticated = async (googleUser: any): Promise<any> => {
 	});
 
 	if (response.data.loginWithGoogle.success) {
-		const { token, firstName, profileImage } = response.data.loginWithGoogle;
-		store.dispatch(setAuthenticationData({ token, authMethod: 'google', firstName, profileImage }));
+		store.dispatch(setAuthenticationData({ ...response.data.loginWithGoogle, authMethod: 'google' }));
 	} else {
 		console.log('Error: ', response.data.loginWithGoogle);
 		// store.onLoginError();

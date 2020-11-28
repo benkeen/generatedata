@@ -20,7 +20,7 @@ export const MediumSpinner = (props: any): any => (
 	/>
 );
 
-export const DefaultSpinner = () => <CircularProgress />;
+export const DefaultSpinner = (): JSX.Element => <CircularProgress />;
 
 export const DialogLoadingSpinner = ({ visible }: any): JSX.Element | null => {
 	if (!visible) {
@@ -36,7 +36,7 @@ export const DialogLoadingSpinner = ({ visible }: any): JSX.Element | null => {
 	);
 };
 
-export const Centered = ({ children }: any) => (
+export const Centered = ({ children }: any): JSX.Element => (
 	<div style={{ display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', margin: 'auto' }}>
 		{children}
 	</div>

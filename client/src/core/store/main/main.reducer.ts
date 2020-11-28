@@ -77,7 +77,7 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 			break;
 
 		case actions.SET_AUTH_TOKEN:
-			draft.authToken = action.payload.authToken;
+			draft.authToken = action.payload.token;
 			break;
 
 		case actions.START_LOGIN:
