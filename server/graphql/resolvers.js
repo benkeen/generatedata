@@ -102,6 +102,7 @@ const resolvers = {
 
 		refreshToken: async (root, args, { token, req, res }) => {
 			if (!req.cookies.refreshToken) {
+				console.log('no refresh token! unable to refresh');
 				return { success: false };
 			}
 
@@ -114,6 +115,7 @@ const resolvers = {
 			});
 
 			if (!user) {
+				console.log('not found with token: ', req.cookies.refreshToken);
 				return { success: false };
 			}
 
@@ -159,7 +161,7 @@ const getNewTokenAndSetRefreshTokenCookie = async (accountId, email, user, res) 
 	// but it'll be automatically passed along with any subsequent requests to the server - including the
 	// all-important refreshToken refresh. This info enables the front-end code to automatically extend the
 	// lifespan of the living token (`token`)
-	const tokenExpiry = process.env.GD_JWT_LIFESPAN_MINS * 60; // seconds
+	const tokenExpiry = process.env.GD_JWT_LIFESPAN_MINS * 60 * 1000; // milliseconds
 
 	res.cookie("refreshToken", refreshToken, { // TODO hash this for sending to the client
 		secure: false, // TODO
@@ -167,8 +169,6 @@ const getNewTokenAndSetRefreshTokenCookie = async (accountId, email, user, res) 
 		maxAge: tokenExpiry,
 		domain: 'localhost' // TODO
 	});
-
-	console.log({ token, tokenExpiry });
 
 	return { token, tokenExpiry };
 };

@@ -4,7 +4,7 @@ import { AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
 import { getAuthMethod } from '~store/main/main.selectors';
-import { logoutVendor, setAuthToken } from '~utils/authUtils';
+import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -14,7 +14,7 @@ export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
 	}
 });
 
-export const selectLocale = (locale: GDLocale) => (dispatch: Dispatch): any => {
+export const selectLocale = (locale: GDLocale): any => (dispatch: Dispatch): any => {
 	window.gd = {};
 	window.gd.localeLoaded = (strings: any): void => {
 		langUtils.setLocale(locale, strings);
@@ -43,9 +43,11 @@ export const SET_AUTHENTICATION_DATA = 'SET_AUTHENTICATION_DATA';
 
 export type AuthData = {
 	authMethod: AuthMethod;
+	token: string;
 	firstName: string;
 	profileImage?: string;
-}
+};
+
 export const setAuthenticationData = (authData: AuthData): GDAction => ({
 	type: SET_AUTHENTICATION_DATA,
 	payload: authData
@@ -60,7 +62,7 @@ export const setAuthenticated = (authenticated = true): GDAction => ({
 });
 
 export const START_LOGIN = 'START_LOGIN';
-export const startLogin = () => ({ type: START_LOGIN });
+export const startLogin = (): GDAction => ({ type: START_LOGIN });
 
 // default authentication
 export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
@@ -82,9 +84,9 @@ export const login = (email: string, password: string, onLoginError: Function): 
 
 	if (response.data.login.success) {
 		const { token, tokenExpiry, firstName } = response.data.login;
-		setAuthToken(token, tokenExpiry, (): any => refreshToken()(dispatch));
+		setAuthTokenRefresh(tokenExpiry, (): any => refreshToken()(dispatch));
 
-		dispatch(setAuthenticationData({ authMethod: 'default', firstName }));
+		dispatch(setAuthenticationData({ token, authMethod: 'default', firstName }));
 		dispatch(setLoginDialogVisibility(false));
 	} else {
 		onLoginError();
@@ -111,6 +113,9 @@ export const logout = (): any => async (dispatch: Dispatch, getState: any): Prom
 	});
 };
 
+export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
+export const setAuthToken = (token: string): GDAction => ({ type: SET_AUTH_TOKEN, payload: { token } });
+
 export const REFRESHING_TOKEN = 'REFRESHING_TOKEN';
 export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	dispatch({ type: REFRESHING_TOKEN });
@@ -132,10 +137,15 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	const success = response.data.refreshToken.success;
 	if (success) {
 		const { token, tokenExpiry } = response.data.refreshToken;
-		setAuthToken(token, tokenExpiry, (): any => refreshToken()(dispatch));
-
-		console.log('refreshed! ', token);
+		setAuthTokenRefresh(tokenExpiry, (): any => refreshToken()(dispatch));
+		dispatch(setAuthToken(token));
+	} else {
+		console.log('token NOT refreshed', response);
 	}
 
 	dispatch(setAuthenticated(success));
+	dispatch(setOnloadAuthDetermined());
 };
+
+export const ONLOAD_AUTH_DETERMINED = 'ONLOAD_AUTH_DETERMINED';
+export const setOnloadAuthDetermined = (): GDAction => ({ type: ONLOAD_AUTH_DETERMINED });

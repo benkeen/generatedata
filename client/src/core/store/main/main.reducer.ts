@@ -13,9 +13,9 @@ export type MainState = {
 	showIntroDialog: boolean;
 	showLoginDialog: boolean;
 	isLoggedIn: boolean;
-	userTokenVerified: boolean;
-	firstName: string;
-	profileImage: string | null;
+	authToken: string;
+	isOnloadAuthDetermined: boolean;
+	isRefreshingToken: boolean;
 	isLoggingIn: boolean;
 };
 
@@ -27,12 +27,9 @@ export const initialState: MainState = {
 	showIntroDialog: true,
 	showLoginDialog: false,
 	isLoggedIn: false,
-	firstName: '',
-	profileImage: null,
-
-	// by default we assume the user isn't logged in when the page first loads, so this is set to true. If they
-	// *did* have a live session, this is set according during boot up when verifying their JWT
-	userTokenVerified: true,
+	authToken: '',
+	isOnloadAuthDetermined: false,
+	isRefreshingToken: false,
 	isLoggingIn: false
 };
 
@@ -60,31 +57,35 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.AUTHENTICATED:
 			draft.isLoggedIn = action.payload.authenticated;
-			draft.userTokenVerified = true; // yup, even if they're not authenticated. Difficult var name - only applies for logged in users
+			draft.isRefreshingToken = true; // yup, even if they're not authenticated. Difficult var name - only applies for logged in users
 			break;
 
 		case actions.SET_AUTHENTICATION_DATA:
 			draft.isLoggedIn = true;
 			draft.isLoggingIn = false;
+			draft.authToken = action.payload.token;
 			draft.authMethod = action.payload.authMethod;
-			draft.firstName = action.payload.firstName;
-			if (action.payload.profileImage) {
-				draft.profileImage = action.payload.profileImage;
-			}
 			break;
 
 		case actions.LOGOUT:
 			draft.isLoggedIn = false;
-			draft.firstName = '';
-			draft.profileImage = null;
+			draft.authToken = '';
 			break;
 
 		case actions.REFRESHING_TOKEN:
-			draft.userTokenVerified = false;
+			draft.isRefreshingToken = false;
+			break;
+
+		case actions.SET_AUTH_TOKEN:
+			draft.authToken = action.payload.authToken;
 			break;
 
 		case actions.START_LOGIN:
 			draft.isLoggingIn = true;
+			break;
+
+		case actions.ONLOAD_AUTH_DETERMINED:
+			draft.isOnloadAuthDetermined = true;
 			break;
 	}
 

@@ -7,7 +7,6 @@ export const localeFileLoaded = (state: Store): boolean => state.main.localeFile
 export const shouldShowIntroDialog = (state: Store): boolean => state.main.showIntroDialog;
 export const shouldShowLoginDialog = (state: Store): boolean => state.main.showLoginDialog;
 export const isLoggedIn = (state: Store): boolean => state.main.isLoggedIn;
-export const isUserTokenVerified = (state: Store): boolean => state.main.userTokenVerified;
-export const getFirstName = (state: Store): string => state.main.firstName;
-export const getProfileImage = (state: Store): string | null => state.main.profileImage;
+export const isOnloadAuthDetermined = (state: Store): boolean => state.main.isOnloadAuthDetermined;
 export const isLoggingIn = (state: Store): boolean => state.main.isLoggedIn;
+export const getAuthToken = (state: Store): string => state.main.authToken;

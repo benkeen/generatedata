@@ -10,6 +10,7 @@ import { apolloClient } from './core/apolloClient';
 import store, { persistor } from './core/store';
 import Page from './core/page/Page.container';
 import Generator from './core/generator/Generator.container';
+import AccountPage from './core/account/Account.container';
 import * as core from './core';
 import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
@@ -46,17 +47,17 @@ const App = (): JSX.Element => (
 								<ErrorBoundary>
 									<Page>
 										<Switch>
-											<Route path="/">
-												<Generator />
-											</Route>
 											<Route path="/account">
-												<div>Account</div>
+												<AccountPage />
 											</Route>
 											<Route path="/about">
 												<div>About</div>
 											</Route>
 											<Route path="/signup">
 												<div>Sign Up</div>
+											</Route>
+											<Route path="/">
+												<Generator />
 											</Route>
 										</Switch>
 									</Page>

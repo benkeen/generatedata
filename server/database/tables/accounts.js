@@ -59,19 +59,7 @@ module.exports = (sequelize, DataTypes) => {
 		maxRecords: {
 		    type: DataTypes.INTEGER(9).UNSIGNED,
 			field: 'max_records'
-	    },
-		selectedDataTypes: {
-			type: DataTypes.TEXT,
-			field: 'selected_data_types'
-		},
-		selectedExportTypes: {
-			type: DataTypes.TEXT,
-			field: 'selected_export_types'
-		},
-		selectedCountries: {
-			type: DataTypes.TEXT,
-			field: 'selected_countries'
-		}
+	    }
 	}, {
 		tableName: 'accounts',
 		timestamps: false

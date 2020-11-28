@@ -17,9 +17,9 @@ export const initGoogleAuth = (): void => {
 	script.src = 'https://apis.google.com/js/platform.js?onload=renderButton';
 	script.async = true;
 	script.defer = true;
-	script.onload = (): void => {
-		// console.log("loaded.", window.gapi);
-	};
+	// script.onload = (): void => {
+	// 	 console.log("loaded.", window.gapi);
+	// };
 	document.body.appendChild(script);
 
 	// @ts-ignore-line
@@ -51,14 +51,11 @@ const onAuthenticated = async (googleUser: any): Promise<any> => {
 
 	if (response.data.loginWithGoogle.success) {
 		const { token, firstName, profileImage } = response.data.loginWithGoogle;
-		// Cookies.set('token', token);
-		store.dispatch(setAuthenticationData({ authMethod: 'google', firstName, profileImage }));
+		store.dispatch(setAuthenticationData({ token, authMethod: 'google', firstName, profileImage }));
 	} else {
 		console.log('Error: ', response.data.loginWithGoogle);
-
 		// store.onLoginError();
 	}
-
 };
 
 const onFailure = (error: any): void => {
@@ -66,7 +63,6 @@ const onFailure = (error: any): void => {
 };
 
 const renderGoogleLoginButton = (): void => {
-
 	// react can take a little longer to initially render the login panel, so this waits until the btn is available
 	// before initializing the button
 	const observer = new MutationObserver((): void => {

@@ -193,6 +193,7 @@ export const getI18n = createSelector(
 	}
 );
 
+// TODO hmm.. this kinda belongs in `main` not `generator`
 export const getCoreI18n = createSelector(
 	mainSelectors.getLocale,
 	(locale): any | null => {

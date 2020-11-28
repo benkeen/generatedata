@@ -2,6 +2,7 @@ import { getNewPacket, initialState as initialPacketState, PacketsState } from '
 import * as selectors from '../packets.selectors';
 import { getInitialState } from '../../generator/generator.reducer';
 import { initialState as initialMainState } from '../../main/main.reducer';
+import { initialState as initialAccountState } from '../../account/account.reducer';
 import * as generalUtils from '~utils/generalUtils';
 import { Store } from '~types/general';
 
@@ -10,7 +11,8 @@ describe('getCurrentPacket', () => {
 		let state: Store = {
 			generator: getInitialState(),
 			main: initialMainState,
-			packets: initialPacketState
+			packets: initialPacketState,
+			account: initialAccountState
 		};
 		expect(selectors.getCurrentPacket(state)).toEqual(null);
 	});
@@ -25,7 +27,8 @@ describe('getCurrentPacket', () => {
 		let state: Store = {
 			generator: getInitialState(),
 			main: initialMainState,
-			packets
+			packets,
+			account: initialAccountState
 		};
 		expect(selectors.getCurrentPacket(state)!.dataTypeWorkerId).toEqual(2);
 	});
@@ -46,7 +49,8 @@ describe('getCurrentPacket', () => {
 		let state: Store = {
 			generator: getInitialState(),
 			main: initialMainState,
-			packets
+			packets,
+			account: initialAccountState
 		};
 		expect(selectors.getActivePacketList(state)).toEqual([
 			{
@@ -65,27 +69,4 @@ describe('getCurrentPacket', () => {
 			}
 		]);
 	});
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

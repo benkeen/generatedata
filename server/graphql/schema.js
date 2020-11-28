@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type Query {
         accounts: [Account]
-        account(id: ID!): Account
+        account: Account
         settings: [Setting]
         configurations: [Configuration]
         configuration(id: ID!): Configuration
@@ -14,20 +14,19 @@ const typeDefs = gql`
         refreshToken: AuthPayLoad
 		logout: LogoutPayload
 	}
-
     type Account {
-        account_id: ID!
-        date_created: String
-        last_updated: String
-        last_logged_in: String
-        first_name: String
-		last_name: String
+	    accountId: ID
+        dateExpires: String
+        accountType: AccountType
+        dateCreated: String
+        firstName: String
+		lastName: String
 		email: String
-		password: String
+        numRowsGenerated: Int
     }
     type Setting {
-        setting_name: String
-        setting_value: String
+        settingName: String
+        settingValue: String
     }
     type Configuration {
         configuration_id: ID
@@ -50,6 +49,10 @@ const typeDefs = gql`
 	}
 	type LogoutPayload {
 		success: Boolean
+	}
+	enum AccountType {
+		user
+		admin
 	}
 `;
 

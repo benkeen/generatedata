@@ -3,6 +3,7 @@ const express = require('express');
 const typeDefs = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
 const cookieParser = require('cookie-parser');
+const authUtils = require('./utils/authUtils');
 // const cors = require('cors');
 
 require('dotenv').config();
@@ -21,21 +22,21 @@ app.use(cookieParser());
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
-	// cors: corsOptions,
 	context: ({ req, res }) => {
+		const token = (req.headers.authorization || '').replace('Bearer ', '');
 
+		console.log("context...?", req.headers);
+		
 		// try to retrieve a user with the token
-		// const user = getUser(token);
-		//
-		// // add the user to the context
-		// return { user };
+		const user = authUtils.getUser(token);
 
 		// provides the auth token to all resolvers, plus access to the original request + response objects for
 		// more fine-tune stuff
 		return {
 			res,
 			req,
-			token: (req.headers.authorization || '').replace('Bearer ', '')
+			token
+			// user
 		};
 	}
 });

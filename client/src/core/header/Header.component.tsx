@@ -25,14 +25,15 @@ export type HeaderProps = {
 	locale: GDLocale;
 	i18n: any;
 	onLogout: () => void;
-	userTokenVerified: boolean;
+	isAuth: boolean;
 	firstName: string;
 	profileImage: string | null;
+	isOnloadAuthDetermined: boolean;
 };
 
 const Header = ({
 	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
-	isLoggedIn, onLogout, userTokenVerified, firstName
+	isLoggedIn, onLogout, isOnloadAuthDetermined, firstName
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -48,7 +49,7 @@ const Header = ({
 	};
 
 	const getHeaderLinks = (): JSX.Element | null => {
-		if (!userTokenVerified) {
+		if (!isOnloadAuthDetermined) {
 			return null;
 		}
 

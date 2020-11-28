@@ -1,6 +1,7 @@
 import { GeneratorState } from '~store/generator/generator.reducer';
 import { MainState } from '~store/main/main.reducer';
 import { PacketsState } from '~store/packets/packets.reducer';
+import { AccountState } from '~store/account/account.reducer';
 import { DataTypeFolder } from '../_plugins';
 import { DTMetadata } from '~types/dataTypes';
 
@@ -16,6 +17,7 @@ export type Store = {
 	generator: GeneratorState;
 	main: MainState;
 	packets: PacketsState;
+	account: AccountState;
 };
 
 export type AuthMethod = 'default' | 'google';

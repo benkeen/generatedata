@@ -56,10 +56,7 @@ CREATE TABLE `accounts` (
   `email` varchar(255) NOT NULL,
   `password` varchar(100) NOT NULL,
   `num_rows_generated` mediumint(9) DEFAULT '0',
-  `max_records` mediumint(9) DEFAULT NULL,
-  `selected_data_types` text,
-  `selected_export_types` text,
-  `selected_countries` text
+  `max_records` mediumint(9) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `accounts` ADD PRIMARY KEY (`account_id`);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { Centered, DefaultSpinner } from '~components/loaders/loaders';
 import Header from '../header/Header.container';
 import Footer from '../footer/Footer.container';
 import * as styles from './Page.scss';
@@ -19,9 +19,9 @@ const Page = ({ localeFileLoaded, children }: PageProps): JSX.Element => {
 			<Footer />
 		</>
 	) : (
-		<div style={{ display: 'flex', height: 40, justifyContent: 'center', margin: 'auto' }}>
-			<CircularProgress />
-		</div>
+		<Centered>
+			<DefaultSpinner />
+		</Centered>
 	);
 
 	return (

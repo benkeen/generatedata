@@ -2,19 +2,13 @@ import env from '../../_env';
 import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle } from '../core/auth/google/google';
 import { AuthMethod } from '~types/general';
 
-let authToken: string;
-
-export const setAuthToken = (token: string, tokenExpiry: number, onRefresh: Function) => {
-	authToken = token;
-
-	// refresh the token 1 minute before it expires
-	const timeout = setTimeout(() => {
+// refresh the token 1 minute before it expires
+export const setAuthTokenRefresh = (tokenExpiry: number, onRefresh: Function): void => {
+	const timeout = setTimeout((): void => {
 		clearTimeout(timeout);
 		onRefresh();
-	}, (tokenExpiry - 60) * 1000);
+	}, tokenExpiry - (60 * 1000));
 };
-
-export const getAuthToken = () => authToken;
 
 export const initAuthVendors = (): void => {
 	if (env.googleAuthClientId) {
