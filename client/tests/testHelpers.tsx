@@ -13,6 +13,7 @@ import { setLocaleFileLoaded } from '~store/main/main.actions';
 import generatorReducer from '~store/generator/generator.reducer';
 import mainReducer from '~store/main/main.reducer';
 import packetsReducer from '~store/packets/packets.reducer';
+import accountReducer from '~store/account/account.reducer';
 
 const i18n = require('../src/i18n/en.json');
 const jsonI18n = require('../src/plugins/exportTypes/JSON/i18n/en.json');
@@ -20,7 +21,8 @@ const jsonI18n = require('../src/plugins/exportTypes/JSON/i18n/en.json');
 const rootReducer = combineReducers({
 	generator: generatorReducer,
 	main: mainReducer,
-	packets: packetsReducer
+	packets: packetsReducer,
+	account: accountReducer
 });
 
 export const renderWithStoreAndRouter = (
