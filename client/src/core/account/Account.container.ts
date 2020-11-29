@@ -1,22 +1,20 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as selectors from '~store/generator/generator.selectors';
+import * as accountActions from '~store/account/account.actions';
 import * as accountSelectors from '~store/account/account.selectors';
-import * as accountActions from '../store/account/account.actions';
 import AccountPage, { AccountPageProps } from './Account.component';
 import { withAuth } from '../auth/withAuth';
 import { Store } from '~types/general';
+import { SelectedAccountTab } from '~types/account';
 
 const mapStateToProps = (state: Store): Partial<AccountPageProps> => ({
-	firstName: accountSelectors.getFirstName(state),
-	lastName: accountSelectors.getLastName(state),
-	email: accountSelectors.getEmail(state),
-	i18n: selectors.getCoreI18n(state)
+	i18n: selectors.getCoreI18n(state),
+	selectedTab: accountSelectors.getSelectedTab(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountPageProps> => ({
-	// @ts-ignore-line
-	updateAccount: (): any => dispatch(accountActions.updateAccount())
+	onChangeTab: (tab: SelectedAccountTab) => dispatch(accountActions.onChangeTab(tab))
 });
 
 const container: any = connect(

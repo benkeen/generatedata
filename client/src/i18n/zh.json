@@ -239,5 +239,7 @@
 	"yes": "确认",
 	"yourAccount": "你的账号",
 	"yourDataSetNameHere": "在这里写数据集名称",
-	"yourDataSets": "你的数据集"
+
+  "dataSets": "数据集",
+  "changePassword": "更改密码"
 }

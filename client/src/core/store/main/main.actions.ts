@@ -84,10 +84,12 @@ export const login = (email: string, password: string, onLoginError: Function): 
 					success
 					firstName
                     lastName
+                    email
+					country
+					region
                     dateExpires
                     accountType
                     dateCreated
-                    email
                     numRowsGenerated
                     profileImage
                 }
@@ -146,10 +148,12 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
                     success
                     firstName
                     lastName
+					email
+                    country
+                    region
                     dateExpires
                     accountType
                     dateCreated
-                    email
                     numRowsGenerated
                     profileImage
 				}

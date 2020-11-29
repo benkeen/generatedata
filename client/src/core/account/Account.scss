@@ -16,7 +16,7 @@
 	}
 
 	nav {
-		flex: 0 0 250px;
+		flex: 0 0 240px;
 	}
 
 	.tab {
@@ -31,6 +31,8 @@
 
 	ul {
 		list-style: none;
+		padding-left: 0;
+
 		li {
 			padding: 10px 10px;
 			font-size: 14px;
@@ -45,6 +47,14 @@
 				color: $primary-color;
 			}
 		}
+	}
+
+	:global(.react-select__placeholder), :global(.react-select__single-value) {
+		font-size: 14px;
+	}
+
+	.numGeneratedRows {
+		font-size: 32px;
 	}
 }
 

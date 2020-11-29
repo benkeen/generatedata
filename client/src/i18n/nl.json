@@ -239,5 +239,7 @@
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
 	"yourDataSetNameHere": "Hier de naam van uw dataset...",
-	"yourDataSets": "Uw datasets"
+
+  "dataSets": "Gegevenssets",
+  "changePassword": "Verander wachtwoord"
 }

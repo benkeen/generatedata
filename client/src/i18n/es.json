@@ -239,5 +239,8 @@
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
 	"yourDataSetNameHere": "El nombre de tu conjunto de datos va aquí...",
-	"yourDataSets": "Tus conjuntos de datos"
+
+  "dataSets": "Conjuntos de datos",
+  "changePassword": "Cambia la contraseña"
+
 }

@@ -25,7 +25,7 @@ const resolvers = {
 		login: async (root, { email, password }, { res }) => {
 			const user = await db.accounts.findOne({
 				attributes: [
-					'accountId', 'password', 'firstName', 'lastName', 'dateCreated', 'dateExpires',
+					'accountId', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated', 'dateExpires',
 					'numRowsGenerated', 'profileImage'
 				],
 				where: {
@@ -115,7 +115,7 @@ const resolvers = {
 			const refreshToken = req.cookies.refreshToken;
 			const user = await db.accounts.findOne({
 				attributes: [
-					'accountId', 'firstName', 'email', 'lastName', 'dateCreated', 'dateExpires',
+					'accountId', 'firstName', 'email', 'lastName', 'country', 'region', 'dateCreated', 'dateExpires',
 					'numRowsGenerated', 'profileImage'
 				],
 				where: {

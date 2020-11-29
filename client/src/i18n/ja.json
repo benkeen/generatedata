@@ -239,5 +239,7 @@
 	"yes": "Yes",
 	"yourAccount": "Your Account",
 	"yourDataSetNameHere": "Your data set name here...",
-	"yourDataSets": "Your Data Sets"
+
+  "dataSets": "データセット",
+  "changePassword": "パスワードを変更する"
 }

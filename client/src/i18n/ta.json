@@ -239,5 +239,7 @@
 	"yes": "ஆம்",
 	"yourAccount": "உங்கள் கணக்கு",
 	"yourDataSetNameHere": "உங்கள் தரவு தொகுப்பு பெயர் இங்கே ...",
-	"yourDataSets": "உங்கள் தரவு அமைக்கிறது"
+
+  "dataSets": "தரவு அமைக்கிறது",
+  "changePassword": "கடவுச்சொல்லை மாற்று"
 }

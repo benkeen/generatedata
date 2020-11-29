@@ -1,5 +1,6 @@
 declare namespace AccountScssNamespace {
   export interface IAccountScss {
+    numGeneratedRows: string;
     page: string;
     selected: string;
     tab: string;

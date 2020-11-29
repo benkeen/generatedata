@@ -239,5 +239,8 @@
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
 	"yourDataSetNameHere": "Name für Datensatz eingeben...",
-	"yourDataSets": "Ihre Datensätze"
+
+  "dataSets": "Datensätze",
+  "changePassword": "Passwort ändern"
+
 }

@@ -239,5 +239,8 @@
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
 	"yourDataSetNameHere": "Nom du jeu de données...",
-	"yourDataSets": "Vos jeux de données"
+
+  "dataSets": "Ensembles de données",
+  "changePassword": "Changer le mot de passe"
+
 }

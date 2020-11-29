@@ -22,6 +22,8 @@ const typeDefs = gql`
         firstName: String
 		lastName: String
 		email: String
+	    country: String
+	    region: String
         numRowsGenerated: Int
         profileImage: String
     }
@@ -52,6 +54,8 @@ const typeDefs = gql`
         firstName: String
         lastName: String
         email: String
+	    country: String
+	    region: String
         numRowsGenerated: Int
         profileImage: String
     }

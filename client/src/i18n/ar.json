@@ -239,5 +239,7 @@
 	"yes": "نعم",
 	"yourAccount": "حسابك",
 	"yourDataSetNameHere": "اسم مجموعة البيانات الخاصة بك هنا...",
-	"yourDataSets": "مجموعات البيانات الخاصة بك"
+
+  "dataSets": "مجموعات البيانات",
+  "changePassword": "غير كلمة السر"
 }
