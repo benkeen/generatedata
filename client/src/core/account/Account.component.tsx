@@ -21,9 +21,6 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 		}
 	};
 
-	console.log(selectedTab);
-
-
 	return (
 		<section className={styles.page}>
 			<nav>

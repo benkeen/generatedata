@@ -5,6 +5,7 @@ import * as accountSelectors from '~store/account/account.selectors';
 import * as accountActions from '~store/account/account.actions';
 import YourAccount, { YourAccountProps } from './YourAccount.component';
 import { Store } from '~types/general';
+import { AccountEditingData } from '~store/account/account.reducer';
 
 const mapStateToProps = (state: Store): Partial<YourAccountProps> => ({
 	data: accountSelectors.getEditingData(state),
@@ -13,8 +14,7 @@ const mapStateToProps = (state: Store): Partial<YourAccountProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<YourAccountProps> => ({
-	// @ts-ignore-line
-	updateAccount: (): any => dispatch(accountActions.updateAccount())
+	updateAccount: (data: AccountEditingData): any => dispatch(accountActions.updateAccount(data))
 });
 
 const container: any = connect(

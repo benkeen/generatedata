@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import produce from 'immer';
 import * as mainActions from '../main/main.actions';
+import * as actions from '../account/account.actions';
 import { AccountType, SelectedAccountTab } from '~types/account';
 
 export type AccountEditingData = {
@@ -84,6 +85,15 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			};
 			break;
 		}
+
+		case actions.CHANGE_ACCOUNT_TAB:
+			draft.selectedTab = action.payload.tab;
+			break;
+
+		case actions.UPDATE_ACCOUNT:
+			console.log(action.payload);
+			draft.editingData = action.payload;
+			break;
 	}
 
 }, initialState);

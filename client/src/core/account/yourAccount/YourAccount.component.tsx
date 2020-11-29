@@ -9,14 +9,17 @@ import { AccountEditingData } from '~store/account/account.reducer';
 export type YourAccountProps = {
 	data: AccountEditingData;
 	numGeneratedRows: number;
-	updateAccount: (fieldName: string, value: string) => void;
+	updateAccount: (data: AccountEditingData) => void;
 	onSave: () => void;
 	i18n: any;
 };
 
 const YourAccount = ({ data, numGeneratedRows, updateAccount, onSave, i18n }: YourAccountProps) => {
 	const update = (fieldName: string, value: string): void => {
-		updateAccount(fieldName, value);
+		updateAccount({
+			...data,
+			[fieldName]: value
+		});
 	};
 
 	const getCanadianRegions = () => {
