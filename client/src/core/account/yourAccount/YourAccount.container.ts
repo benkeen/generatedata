@@ -14,7 +14,9 @@ const mapStateToProps = (state: Store): Partial<YourAccountProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<YourAccountProps> => ({
-	updateAccount: (data: AccountEditingData): any => dispatch(accountActions.updateAccount(data))
+	updateAccount: (data: AccountEditingData): any => dispatch(accountActions.updateAccount(data)),
+	onCancel: () => dispatch(accountActions.cancelChanges()),
+	onSave: () => dispatch(accountActions.saveChanges()),
 });
 
 const container: any = connect(

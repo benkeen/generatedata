@@ -1,5 +1,6 @@
 declare namespace AccountScssNamespace {
   export interface IAccountScss {
+    cancelLink: string;
     numGeneratedRows: string;
     page: string;
     selected: string;

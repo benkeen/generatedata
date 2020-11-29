@@ -1,7 +1,8 @@
 import React from 'react';
-import YourAccount from './yourAccount/YourAccount.container';
-import * as styles from './Account.scss';
 import { SelectedAccountTab } from '~types/account';
+import YourAccount from './yourAccount/YourAccount.container';
+import ChangePassword from './changePassword/ChangePassword.container';
+import * as styles from './Account.scss';
 
 export type AccountPageProps = {
 	selectedTab: SelectedAccountTab;
@@ -17,7 +18,7 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 		} else if (selectedTab === 'yourAccount') {
 			return <YourAccount />;
 		} else if (selectedTab === 'changePassword') {
-			return null;
+			return <ChangePassword />;
 		}
 	};
 

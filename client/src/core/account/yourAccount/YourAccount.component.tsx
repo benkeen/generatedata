@@ -3,18 +3,19 @@ import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import Dropdown from '~components/dropdown/Dropdown';
 import { canadianProvinceOptions, countryDropdownOptions } from '~utils/countryUtils';
-import * as styles from '../Account.scss';
 import { AccountEditingData } from '~store/account/account.reducer';
+import * as styles from '../Account.scss';
 
 export type YourAccountProps = {
 	data: AccountEditingData;
 	numGeneratedRows: number;
 	updateAccount: (data: AccountEditingData) => void;
 	onSave: () => void;
+	onCancel: () => void;
 	i18n: any;
 };
 
-const YourAccount = ({ data, numGeneratedRows, updateAccount, onSave, i18n }: YourAccountProps) => {
+const YourAccount = ({ data, numGeneratedRows, updateAccount, onSave, onCancel, i18n }: YourAccountProps) => {
 	const update = (fieldName: string, value: string): void => {
 		updateAccount({
 			...data,
@@ -100,7 +101,10 @@ const YourAccount = ({ data, numGeneratedRows, updateAccount, onSave, i18n }: Yo
 				</div>
 			</div>
 
-			<Button onClick={handleSave} color="primary" variant="contained" disableElevation>{i18n.save}</Button>
+			<div>
+				<Button onClick={handleSave} color="primary" variant="contained" disableElevation>{i18n.save}</Button>
+				<span onClick={onCancel} className={styles.cancelLink}>{i18n.cancel}</span>
+			</div>
 		</>
 	);
 };

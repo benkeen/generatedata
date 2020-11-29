@@ -91,8 +91,19 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case actions.UPDATE_ACCOUNT:
-			console.log(action.payload);
 			draft.editingData = action.payload;
+			break;
+
+		case actions.CANCEL_ACCOUNT_CHANGES:
+			draft.editingData = {
+				firstName: draft.firstName,
+				lastName: draft.lastName,
+				email: draft.email,
+				country: draft.country,
+				region: draft.region
+			};
+			break;
+		case actions.SAVE_ACCOUNT_CHANGES:
 			break;
 	}
 
