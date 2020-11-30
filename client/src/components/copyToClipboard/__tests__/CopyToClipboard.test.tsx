@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import CopyToClipboard from '../CopyToClipboard';
 
 jest.mock('copy-to-clipboard', () => {
@@ -23,16 +23,5 @@ describe('CopyToClipboard', () => {
 
 		expect(baseElement.querySelector('.copyIcon')).toBeTruthy();
 		expect(baseElement.innerHTML).toContain(defaultProps.tooltip);
-	});
-
-	it('clicking icon shows notification with message', () => {
-		const { baseElement } = render(
-			<CopyToClipboard
-				{...defaultProps}
-			/>
-		);
-
-		fireEvent.click(baseElement.querySelector('.copyIcon') as Element);
-		expect(baseElement.innerHTML).toContain(defaultProps.message);
 	});
 });
