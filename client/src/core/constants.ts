@@ -2,7 +2,7 @@ export default {
 	// any time we roll out backward incompatible redux structure changes, this number should be bumped. It causes
 	// anyone's setup to automatically reset & forget any previous saved redux store structure so there aren't
 	// incompatibility problems with the latest code
-	APP_STATE_VERSION: 6,
+	APP_STATE_VERSION: 7,
 
 	NUM_DEFAULT_ROWS: 4,
 	GITHUB_URL: 'https://github.com/benkeen/generatedata',

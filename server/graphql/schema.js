@@ -9,10 +9,12 @@ const typeDefs = gql`
         configuration(id: ID!): Configuration
     }
 	type Mutation {
-		login(email: String!, password: String!): AuthResponseWithAccount
-        loginWithGoogle(googleToken: String!): AuthResponseWithAccount
-        refreshToken: AuthResponseWithAccount
-		logout: LogoutPayload
+		login(email: String!, password: String!): AuthResponse
+        loginWithGoogle(googleToken: String!): AuthResponse
+        refreshToken: AuthResponse
+		logout: GeneralResponse
+        updateAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
+		updatePassword(password: String!): GeneralResponse
 	}
     type Account {
 	    accountId: ID
@@ -42,7 +44,7 @@ const typeDefs = gql`
 		PUBLIC
 		PRIVATE	
 	}
-    type AuthResponseWithAccount {
+    type AuthResponse {
         success: Boolean
         token: String
         tokenExpiry: Int
@@ -59,7 +61,7 @@ const typeDefs = gql`
         numRowsGenerated: Int
         profileImage: String
     }
-	type LogoutPayload {
+	type GeneralResponse {
 		success: Boolean
 	}
 	enum AccountType {

@@ -4,10 +4,8 @@ const typeDefs = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
 const cookieParser = require('cookie-parser');
 const authUtils = require('./utils/authUtils');
-// const cors = require('cors');
 
 require('dotenv').config();
-
 
 const app = express();
 
@@ -23,6 +21,8 @@ const server = new ApolloServer({
 	typeDefs,
 	resolvers,
 	context: ({ req, res }) => {
+		// the token is the "live" token with a short expiry time, passed along with every request in a header while
+		// the user is logged in
 		const token = (req.headers.authorization || '').replace('Bearer ', '');
 
 		// try to retrieve a user with the token

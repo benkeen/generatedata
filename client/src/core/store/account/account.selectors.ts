@@ -3,8 +3,6 @@ import { SelectedAccountTab } from '~types/account';
 import { AccountEditingData } from '~store/account/account.reducer';
 
 export const getFirstName = (state: Store): string => state.account.firstName;
-export const getLastName = (state: Store): string => state.account.lastName;
-export const getEmail = (state: Store): string => state.account.email;
 export const getNumGeneratedRows = (state: Store): number => state.account.numRowsGenerated;
 export const getProfileImage = (state: Store): string | null => state.account.profileImage;
 export const getSelectedTab = (state: Store): SelectedAccountTab => state.account.selectedTab;
