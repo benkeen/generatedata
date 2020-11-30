@@ -4,6 +4,7 @@ import { getEditingData } from '~store/account/account.selectors';
 import { GDAction } from '~types/general';
 import { Dispatch } from 'redux';
 import { apolloClient } from '../../apolloClient';
+import { addToast } from '~utils/generalUtils';
 import { gql } from '@apollo/client';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
@@ -40,7 +41,10 @@ export const saveChanges = (): any => async (dispatch: Dispatch, getState: any):
 		variables: { firstName, lastName, email, country, region }
 	});
 
-	// TODO error handling
+	addToast({
+		type: 'success',
+		message: 'Your account has been updated.'
+	});
 
 	dispatch({ type: ACCOUNT_UPDATED });
 };

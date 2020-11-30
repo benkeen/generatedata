@@ -14,6 +14,7 @@ import AccountPage from './core/account/Account.container';
 import * as core from './core';
 import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
+import Toast from '~components/toast/Toast.component';
 import '~store/generator/generator.reducer';
 import './styles/global.scss';
 import C from './core/constants';
@@ -60,6 +61,7 @@ const App = (): JSX.Element => (
 												<Generator />
 											</Route>
 										</Switch>
+										<Toast />
 									</Page>
 								</ErrorBoundary>
 							</Router>

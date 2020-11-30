@@ -7,10 +7,6 @@
 	}
 }
 
-:global(#loginErrorPortal) :global(.MuiSnackbar-root) {
-	z-index: 5001;
-}
-
 .withSecondCol {
 	display: flex;
 	flex-direction: row;

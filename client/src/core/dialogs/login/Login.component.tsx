@@ -2,12 +2,10 @@ import React, { useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
-import Portal from '~components/Portal';
-import { isValidEmail } from '~utils/generalUtils';
+import { isValidEmail, addToast } from '~utils/generalUtils';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
-import styles from './Login.scss';
-import LoginError from './LoginError.component';
 import { hasVendorLogin, getVendorLoginButtons } from '~utils/authUtils';
+import styles from './Login.scss';
 
 const showVendorLoginColumn = hasVendorLogin();
 const vendorLoginButtons = getVendorLoginButtons();
@@ -30,7 +28,6 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, i18n }: LoginDia
 	const [emailError, setEmailError] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordError, setPasswordError] = useState('');
-	const [hasLoginError, setLoginError] = useState(false);
 
 	const onLogin = (e: any): void => {
 		e.preventDefault();
@@ -48,7 +45,10 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, i18n }: LoginDia
 
 		if (!eError && !pError) {
 			onSubmit(email, password, () => {
-				setLoginError(true);
+				addToast({
+					type: 'error',
+					message: i18n.userNotFound
+				});
 
 				if (textFieldRef && textFieldRef.current) {
 					textFieldRef.current.select();
@@ -148,14 +148,6 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, i18n }: LoginDia
 				</form>
 				<DialogLoadingSpinner visible={isLoggingIn} />
 			</Dialog>
-
-			<Portal id="loginErrorPortal">
-				<LoginError
-					message={i18n.userNotFound}
-					visible={hasLoginError}
-					onClose={(): void => setLoginError(false)}
-				/>
-			</Portal>
 		</>
 	);
 };
