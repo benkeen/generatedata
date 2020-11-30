@@ -69,7 +69,7 @@ const YourAccount = ({ data, numGeneratedRows, accountHasChanges, updateAccount,
 	};
 
 	return (
-		<form onSubmit={handleSave}>
+		<form onSubmit={handleSave} autoComplete="off">
 			<div style={{ display: 'flex', flexDirection: 'row', marginBottom: 10 }}>
 				<div style={{ flex: 1, paddingRight: 20 }}>
 					<label>{i18n.firstName}</label>
