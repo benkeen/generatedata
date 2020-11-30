@@ -12,14 +12,14 @@ export type AccountPageProps = {
 
 const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.Element => {
 
-	const getTab = () => {
+	const getTab = (): JSX.Element | null => {
 		if (selectedTab === 'dataSets') {
 			return null;
 		} else if (selectedTab === 'yourAccount') {
 			return <YourAccount />;
-		} else if (selectedTab === 'changePassword') {
-			return <ChangePassword />;
 		}
+
+		return <ChangePassword />;
 	};
 
 	return (

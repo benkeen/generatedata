@@ -8,11 +8,11 @@ export type ChangePasswordProps = {
 	i18n: any;
 };
 
-const ChangePassword = ({ onSave, i18n }: ChangePasswordProps) => {
+const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
 	const [password, setPassword] = useState('');
 	const [password2, setPassword2] = useState('');
 
-	const handleSave = () => {
+	const handleSave = (): void => {
 		onSave(password);
 	};
 

@@ -7,7 +7,7 @@ import { apolloClient } from '../../apolloClient';
 import { gql } from '@apollo/client';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
-export const updateAccount = (data: AccountEditingData) => ({
+export const updateAccount = (data: AccountEditingData): GDAction => ({
 	type: UPDATE_ACCOUNT,
 	payload: {
 		...data
@@ -15,7 +15,7 @@ export const updateAccount = (data: AccountEditingData) => ({
 });
 
 export const CHANGE_ACCOUNT_TAB = 'CHANGE_ACCOUNT_TAB';
-export const onChangeTab = (tab: SelectedAccountTab) => ({
+export const onChangeTab = (tab: SelectedAccountTab): GDAction => ({
 	type: CHANGE_ACCOUNT_TAB,
 	payload: {
 		tab
@@ -25,11 +25,11 @@ export const onChangeTab = (tab: SelectedAccountTab) => ({
 export const CANCEL_ACCOUNT_CHANGES = 'CANCEL_ACCOUNT_CHANGES';
 export const cancelChanges = (): GDAction => ({ type: CANCEL_ACCOUNT_CHANGES });
 
-export const SAVE_ACCOUNT_CHANGES = 'SAVE_ACCOUNT_CHANGES';
-export const saveChanges = (): any => async (dispatch: Dispatch, getState: any) => {
+export const ACCOUNT_UPDATED = 'ACCOUNT_UPDATED';
+export const saveChanges = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const { firstName, lastName, email, country, region } = getEditingData(getState());
 
-	const response = await apolloClient.mutate({
+	await apolloClient.mutate({
 		mutation: gql`
             mutation UpdateAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
                 updateAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
@@ -40,8 +40,9 @@ export const saveChanges = (): any => async (dispatch: Dispatch, getState: any) 
 		variables: { firstName, lastName, email, country, region }
 	});
 
-	console.log(response);
+	// TODO error handling
 
+	dispatch({ type: ACCOUNT_UPDATED });
 };
 
 export const SAVE_PASSWORD = 'SAVE_PASSWORD';

@@ -103,7 +103,13 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 				region: draft.region
 			};
 			break;
-		case actions.SAVE_ACCOUNT_CHANGES:
+
+		case actions.ACCOUNT_UPDATED:
+			draft.firstName = draft.editingData.firstName;
+			draft.lastName = draft.editingData.lastName;
+			draft.email = draft.editingData.email;
+			draft.country = draft.editingData.country;
+			draft.region = draft.editingData.region;
 			break;
 	}
 

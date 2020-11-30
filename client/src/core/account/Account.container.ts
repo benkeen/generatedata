@@ -14,7 +14,7 @@ const mapStateToProps = (state: Store): Partial<AccountPageProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountPageProps> => ({
-	onChangeTab: (tab: SelectedAccountTab) => dispatch(accountActions.onChangeTab(tab))
+	onChangeTab: (tab: SelectedAccountTab): any => dispatch(accountActions.onChangeTab(tab))
 });
 
 const container: any = connect(

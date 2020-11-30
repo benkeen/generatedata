@@ -140,7 +140,7 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, i18n }: LoginDia
 							</div>
 						</DialogContent>
 						<DialogActions>
-							<Button type="submit" onClick={onLogin} color="primary" variant="outlined" disabled={isLoggingIn}>
+							<Button type="submit" color="primary" variant="outlined" disabled={isLoggingIn}>
 								{i18n.login}
 							</Button>
 						</DialogActions>
