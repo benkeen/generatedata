@@ -17,22 +17,27 @@ export const getRoutes = (): GDRoute[] => {
 	return routes;
 };
 
-let customHeaderLinks: GDHeaderLink[] = [];
+export interface CustomHeaderLinkGetter {
+	(isLoggedIn: boolean): GDHeaderLink[];
+}
 
-export const setCustomHeaderLinks = (links: GDHeaderLink[]) => customHeaderLinks = links;
+let customHeaderLinkGetter: CustomHeaderLinkGetter;
+
+// allows external code to override the header links
+export const registerCustomHeaderLinksGetter: any = (getter: CustomHeaderLinkGetter) => customHeaderLinkGetter = getter;
 
 export const getHeaderLinks = (isLoggedIn: boolean): GDHeaderLink[] => {
 	const appType = process.env.GD_APP_TYPE;
 
-	if (customHeaderLinks.length) {
-		return customHeaderLinks;
+	if (customHeaderLinkGetter) {
+		return customHeaderLinkGetter(isLoggedIn);
 	}
 
 	let links: GDHeaderLink[] = [];
 	switch (appType) {
 		case 'login':
 			if (isLoggedIn) {
-				links = ['generator', 'separator', 'dataSets', 'userAccount', 'logout'];
+				links = ['generator', 'dataSets', 'separator', 'userAccount', 'logout'];
 			} else {
 				links = ['generator', 'separator', 'loginDialog'];
 			}
@@ -46,7 +51,7 @@ export const getHeaderLinks = (isLoggedIn: boolean): GDHeaderLink[] => {
 			if (isLoggedIn) {
 				links = ['generator', 'separator', 'dataSets', 'userAccount', 'logout'];
 			} else {
-				links = ['generator', 'signup',  'separator', 'loginDialog', 'logout'];
+				links = ['generator', 'signup', 'separator', 'loginDialog', 'logout'];
 			}
 			break;
 
