@@ -20,6 +20,7 @@ const mapStateToProps = (state: any): Partial<FooterProps> => ({
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	// @ts-ignore-line
 	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
+	onSave: (): any => {},
 	onGenerate: (): any => dispatch(actions.showGenerationSettingsPanel())
 });
 

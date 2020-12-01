@@ -22,6 +22,7 @@ export type FooterProps = {
 	scriptVersion: string;
 	onChangeLocale: (a: any) => void;
 	onGenerate: () => void;
+	onSave: () => void;
 	isEnabled: boolean;
 	availableLocales: GDLocale[];
 };
@@ -47,7 +48,7 @@ const useListStyles = makeStyles(() =>
 	})
 );
 
-const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGenerate, availableLocales }: FooterProps): JSX.Element => {
+const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, availableLocales }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
@@ -113,6 +114,10 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onGene
 
 				<div>
 					<PanelControls className={styles.controls} />
+
+					<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
+						Save
+					</Button>
 
 					<Button onClick={onGenerate} variant="contained" color="primary" disableElevation disabled={!isEnabled}>
 						<span dangerouslySetInnerHTML={{ __html: i18n.generate }} />

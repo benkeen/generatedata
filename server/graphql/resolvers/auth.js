@@ -163,7 +163,6 @@ const getNewTokenAndSetRefreshTokenCookie = async (accountId, email, user, res) 
 	return { token, tokenExpiry };
 };
 
-
 module.exports = {
 	login,
 	loginWithGoogle,
