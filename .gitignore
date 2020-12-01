@@ -10,3 +10,4 @@ data/db
 !data/db/nodelete.txt
 client/_env.ts
 coverage
+yarn-error.log

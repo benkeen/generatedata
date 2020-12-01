@@ -116,7 +116,7 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave
 					<PanelControls className={styles.controls} />
 
 					<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
-						Save
+						{i18n.save}
 					</Button>
 
 					<Button onClick={onGenerate} variant="contained" color="primary" disableElevation disabled={!isEnabled}>
