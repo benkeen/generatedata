@@ -1,19 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useWindowSize } from 'react-hooks-window-size';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
-import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
-import IconButton from '@material-ui/core/IconButton';
 import LoginDialog from '../dialogs/login/Login.container';
 import IntroDialog from '../dialogs/intro/Intro.component';
 import { GDLocale } from '~types/general';
 import C from '../constants';
 import * as styles from './Header.scss';
 import { GeneratorPanel } from '~store/generator/generator.reducer';
-import { Tooltip } from '~components/tooltips';
+import HeaderLinks from './HeaderLinks.component';
+import { getHeaderLinks } from '~utils/routeUtils';
 
 export type HeaderProps = {
 	toggleIntroDialog: () => void;
@@ -46,45 +44,6 @@ const Header = ({
 
 	const handleClose = (): void => {
 		setAnchorEl(null);
-	};
-
-	const getHeaderLinks = (): JSX.Element | null => {
-		if (!isOnloadAuthDetermined) {
-			return null;
-		}
-
-		if (isLoggedIn) {
-			return (
-				<>
-					<li><Link to="/">Generator</Link></li>
-					<li>|</li>
-					<li>
-						<Link to="/datasets">Data Sets</Link>
-					</li>
-					<li>
-						<Link to="/account">{firstName}</Link>
-					</li>
-					<li className={styles.logoutLink}>
-						<Tooltip title={i18n.logout} placement="bottom" arrow>
-							<span>
-								<IconButton size="small" aria-label={i18n.closePanel} onClick={onLogout}>
-									<LogoutIcon fontSize="inherit" />
-								</IconButton>
-							</span>
-						</Tooltip>
-					</li>
-				</>
-			);
-		}
-
-		return (
-			<>
-				<li><Link to="/">Generator</Link></li>
-				<li><Link to="/signup">Sign Up</Link></li>
-				<li>|</li>
-				<li onClick={showLoginDialog}>Login</li>
-			</>
-		);
 	};
 
 	/*
@@ -135,7 +94,15 @@ const Header = ({
 
 		return (
 			<ul className={styles.headerLinks}>
-				{getHeaderLinks()}
+				{isOnloadAuthDetermined ?
+					<HeaderLinks
+						headerLinks={getHeaderLinks(isLoggedIn)}
+						firstName={firstName}
+						showLoginDialog={showLoginDialog}
+						onLogout={onLogout}
+						i18n={i18n}
+					/> : null
+				}
 			</ul>
 		);
 	};

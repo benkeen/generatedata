@@ -26,6 +26,24 @@ export type GDLocale = 'ar' | 'en' | 'fr' | 'de' | 'es' | 'ja' | 'nl' | 'ta' | '
 
 export type GenEnvironment = 'API' | 'UI';
 
+// these have special semantic meaning within the script. When the navigation includes them, things like the label
+// and action are preset within the core script
+export type GDPresetHeaderLinks = 'generator' | 'signup' | 'separator' | 'dataSets' | 'userAccount' | 'loginDialog' |
+	'loginPage' | 'logout';
+
+// this is for custom header links
+export type GDCustomHeaderLink = {
+	path: string;
+	labelI18nKey: string; // yup. This currently has to be baked into the applications main i18n files.
+}
+
+export type GDHeaderLink = GDPresetHeaderLinks | GDCustomHeaderLink;
+
+export type GDRoute = {
+	path: string;
+	component: any;
+}
+
 export type GenerationSettings = {
 	env: GenEnvironment;
 	stripWhitespace: boolean;
