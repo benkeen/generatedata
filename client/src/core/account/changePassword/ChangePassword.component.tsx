@@ -19,13 +19,12 @@ const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
 	const [password2, setPassword2] = useState('');
 	const [password2Error, setPassword2Error] = useState('');
 
-
-	const onSuccess = () => {
+	const onSuccess = (): void => {
 		setCurrentPassword('');
 		setPassword('');
 		setPassword2('');
 	};
-	const onError = () => {
+	const onError = (): void => {
 		setCurrentPasswordError(i18n.passwordUpdateInvalidPassword);
 		currentPasswordField.current!.focus();
 	};

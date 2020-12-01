@@ -4,15 +4,10 @@
 }
 
 :global(.Resizer) {
-	background: #000;
-	opacity: 0.1;
+	background-image: url("./images/bg.png");
 	z-index: 1;
 	box-sizing: border-box;
 	background-clip: padding-box;
-
-	&:hover {
-		transition: opacity .2s ease-in-out;
-	}
 
 	&:global(.horizontal) {
 		flex: 0 0 auto;
@@ -22,7 +17,8 @@
 		width: 100%;
 
 		&:hover {
-			opacity: 0.3;
+			background-image: none;
+			background-color: #dddddd;
 		}
 	}
 
@@ -32,7 +28,8 @@
 		cursor: col-resize;
 
 		&:hover {
-			opacity: 0.3;
+			background-image: none;
+			background-color: #dddddd;
 		}
 	}
 

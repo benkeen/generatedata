@@ -38,7 +38,7 @@ export const initialState: AccountState = {
 	profileImage: null,
 	numRowsGenerated: 0,
 	configurations: [],
-	selectedTab: 'dataSets',
+	selectedTab: 'yourAccount',
 	editingData: {
 		firstName: '',
 		lastName: '',

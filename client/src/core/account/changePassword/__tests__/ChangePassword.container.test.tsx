@@ -11,4 +11,3 @@ describe('ChangePassword container', () => {
 		expect(baseElement.querySelector('div')).toBeTruthy();
 	});
 });
-

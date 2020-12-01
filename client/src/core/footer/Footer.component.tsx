@@ -5,7 +5,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import SaveIcon from '@material-ui/icons/Save';
+import GearIcon from '@material-ui/icons/Settings';
 import { HtmlTooltip } from '~components/tooltips';
 import styles from './Footer.scss';
 import { Github } from '~components/icons';
@@ -24,9 +25,11 @@ export type FooterProps = {
 	onGenerate: () => void;
 	onSave: () => void;
 	isEnabled: boolean;
+	isLoggedIn: boolean;
 	availableLocales: GDLocale[];
 };
 
+// TODO move
 const allLocaleOptions = [
 	{ value: 'ar', label: 'عربى' },
 	{ value: 'de', label: 'Deutsch' },
@@ -48,7 +51,9 @@ const useListStyles = makeStyles(() =>
 	})
 );
 
-const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, availableLocales }: FooterProps): JSX.Element => {
+const Footer = ({
+	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, isLoggedIn, availableLocales
+}: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
@@ -94,6 +99,19 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave
 		);
 	};
 
+	const getSaveButton = (): JSX.Element | null => {
+		if (!isLoggedIn) {
+			return null;
+		}
+
+		return (
+			<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
+				<SaveIcon />
+				{i18n.save}
+			</Button>
+		);
+	};
+
 	return (
 		<footer className={styles.footer}>
 			<div>
@@ -114,14 +132,17 @@ const Footer = ({ i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave
 
 				<div>
 					<PanelControls className={styles.controls} />
-
-					<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
-						{i18n.save}
-					</Button>
-
-					<Button onClick={onGenerate} variant="contained" color="primary" disableElevation disabled={!isEnabled}>
-						<span dangerouslySetInnerHTML={{ __html: i18n.generate }} />
-						<KeyboardArrowRightIcon />
+					{getSaveButton()}
+					<Button
+						onClick={onGenerate}
+						className={styles.generateButton}
+						variant="contained"
+						color="primary"
+						disableElevation
+						disabled={!isEnabled}
+					>
+						<GearIcon />
+						{i18n.generate}
 					</Button>
 				</div>
 			</div>

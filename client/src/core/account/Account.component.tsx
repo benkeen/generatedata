@@ -13,9 +13,7 @@ export type AccountPageProps = {
 const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.Element => {
 
 	const getTab = (): JSX.Element | null => {
-		if (selectedTab === 'dataSets') {
-			return null;
-		} else if (selectedTab === 'yourAccount') {
+		if (selectedTab === 'yourAccount') {
 			return <YourAccount />;
 		}
 
@@ -26,12 +24,6 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 		<section className={styles.page}>
 			<nav>
 				<ul>
-					<li
-						className={selectedTab === 'dataSets' ? styles.selected : ''}
-						onClick={(): void => onChangeTab('dataSets')}
-					>
-						{i18n.dataSets}
-					</li>
 					<li
 						className={selectedTab === 'yourAccount' ? styles.selected : ''}
 						onClick={(): void => onChangeTab('yourAccount')}

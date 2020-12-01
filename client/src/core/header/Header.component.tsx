@@ -56,7 +56,6 @@ const Header = ({
 		if (isLoggedIn) {
 			return (
 				<>
-					<li><Link to="/about">About</Link></li>
 					<li><Link to="/">Generator</Link></li>
 					<li>|</li>
 					<li>

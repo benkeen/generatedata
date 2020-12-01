@@ -36,7 +36,16 @@
 	}
 
 	svg {
-		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.60)));
+		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.80)));
+	}
+
+	button.generateButton, button.saveButton {
+		font-size: 13px;
+
+		svg {
+			font-size: 15px;
+			margin: 0 5px 0 -5px;
+		}
 	}
 }
 
@@ -66,4 +75,7 @@ button.saveButton {
 	background-color: green;
 	color: white;
 	margin-right: 20px;
+	&:hover {
+		background-color: #3d8f24;
+	}
 }

@@ -14,6 +14,7 @@ const mapStateToProps = (state: any): Partial<FooterProps> => ({
 	locale: mainSelectors.getLocale(state),
 	scriptVersion: coreUtils.getScriptVersion(),
 	isEnabled: selectors.hasData(state),
+	isLoggedIn: mainSelectors.isLoggedIn(state),
 	availableLocales: env.availableLocales
 });
 

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/client';
 import { PersistGate } from 'redux-persist/integration/react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import * as codemirror from 'codemirror';
 import { apolloClient } from './core/apolloClient';
@@ -30,7 +30,46 @@ const checkState = async (state: any): Promise<any> => {
 	}
 };
 
-const App = (): JSX.Element => (
+const App = withRouter(({ history }: any) => {
+
+	history.listen((location: any, action: any) => {
+		console.log(action, location.pathname, location.state);
+	});
+
+	/*
+
+	/account -> always visible for all setups
+
+	closed:
+		-> need to redirect to full page login.
+
+	 */
+
+	return (
+		<ErrorBoundary>
+			<Page>
+				<Switch>
+					<Route path="/account">
+						<AccountPage />
+					</Route>
+					<Route path="/about">
+						<div>About</div>
+					</Route>
+					<Route path="/signup">
+						<div>Sign Up</div>
+					</Route>
+					<Route path="/">
+						<Generator />
+					</Route>
+				</Switch>
+				<Toast />
+			</Page>
+		</ErrorBoundary>
+	);
+});
+
+
+const AppWrapper = (): JSX.Element => (
 	<Provider store={store}>
 		<ApolloProvider client={apolloClient}>
 			<ThemeProvider theme={theme}>
@@ -45,25 +84,7 @@ const App = (): JSX.Element => (
 
 						return (
 							<Router>
-								<ErrorBoundary>
-									<Page>
-										<Switch>
-											<Route path="/account">
-												<AccountPage />
-											</Route>
-											<Route path="/about">
-												<div>About</div>
-											</Route>
-											<Route path="/signup">
-												<div>Sign Up</div>
-											</Route>
-											<Route path="/">
-												<Generator />
-											</Route>
-										</Switch>
-										<Toast />
-									</Page>
-								</ErrorBoundary>
+								<App />
 							</Router>
 						);
 					}}
@@ -73,4 +94,4 @@ const App = (): JSX.Element => (
 	</Provider>
 );
 
-export default App;
+export default AppWrapper;
