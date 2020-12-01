@@ -59,6 +59,9 @@ const Header = ({
 					<li><Link to="/">Generator</Link></li>
 					<li>|</li>
 					<li>
+						<Link to="/datasets">Data Sets</Link>
+					</li>
+					<li>
 						<Link to="/account">{firstName}</Link>
 					</li>
 					<li className={styles.logoutLink}>
@@ -76,7 +79,6 @@ const Header = ({
 
 		return (
 			<>
-				<li><Link to="/about">About</Link></li>
 				<li><Link to="/">Generator</Link></li>
 				<li><Link to="/signup">Sign Up</Link></li>
 				<li>|</li>

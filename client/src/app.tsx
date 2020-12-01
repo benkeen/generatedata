@@ -1,16 +1,14 @@
 /* istanbul ignore file */
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import { ApolloProvider } from '@apollo/client';
-import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ApolloProvider } from '@apollo/client';
 import * as codemirror from 'codemirror';
+import { PersistGate } from 'redux-persist/integration/react';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { apolloClient } from './core/apolloClient';
 import store, { persistor } from './core/store';
 import Page from './core/page/Page.container';
-import Generator from './core/generator/Generator.container';
-import AccountPage from './core/account/Account.container';
 import * as core from './core';
 import ErrorBoundary from './core/errorBoundary';
 import theme from './core/theme';
@@ -20,6 +18,7 @@ import './styles/global.scss';
 import C from './core/constants';
 import { getAppStateVersion } from '~store/main/main.selectors';
 import { resetStore } from '~store/main/main.actions';
+import { getRoutes } from '~utils/routeUtils';
 
 window.CodeMirror = codemirror;
 
@@ -36,32 +35,15 @@ const App = withRouter(({ history }: any) => {
 		console.log(action, location.pathname, location.state);
 	});
 
-	/*
-
-	/account -> always visible for all setups
-
-	closed:
-		-> need to redirect to full page login.
-
-	 */
+	const routes = getRoutes();
 
 	return (
 		<ErrorBoundary>
 			<Page>
 				<Switch>
-					<Route path="/account">
-						<AccountPage />
-					</Route>
-					<Route path="/about">
-						<div>About</div>
-					</Route>
-					<Route path="/signup">
-						<div>Sign Up</div>
-					</Route>
-					<Route path="/">
-						<Generator />
-					</Route>
+					{routes.map(({ path, component: Component }, index) => <Route key={index} path={path}><Component /></Route>)}
 				</Switch>
+
 				<Toast />
 			</Page>
 		</ErrorBoundary>

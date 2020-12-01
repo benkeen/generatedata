@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 require('dotenv').config();
@@ -70,6 +71,9 @@ module.exports = (env, argv) => {
 			new CaseSensitivePathsPlugin(),
 			new HtmlWebpackPlugin({
 				template: path.join(__dirname, 'src/index.html')
+			}),
+			new Dotenv({
+
 			})
 		],
 
@@ -88,6 +92,10 @@ module.exports = (env, argv) => {
 				chunks: 'all'
 			}
 		},
+
+		// node: {
+		// 	fs: 'empty'
+		// },
 
 		devtool: (mode === 'development') ? 'source-map' : false
 	};
