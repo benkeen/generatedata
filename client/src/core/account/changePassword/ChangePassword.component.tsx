@@ -1,16 +1,16 @@
 import React, { useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
-// import * as styles from '../Account.scss';
 
 export type ChangePasswordProps = {
-	onSave: (password: string) => void;
+	onSave: (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void) => void;
 	i18n: any;
 };
 
 const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
 	const currentPasswordField = useRef<HTMLInputElement>();
 	const [currentPassword, setCurrentPassword] = useState('');
+	const [currentPasswordError, setCurrentPasswordError] = useState('');
 
 	const passwordField = useRef<HTMLInputElement>();
 	const [password, setPassword] = useState('');
@@ -19,11 +19,22 @@ const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
 	const [password2, setPassword2] = useState('');
 	const [password2Error, setPassword2Error] = useState('');
 
+
+	const onSuccess = () => {
+		setCurrentPassword('');
+		setPassword('');
+		setPassword2('');
+	};
+	const onError = () => {
+		setCurrentPasswordError(i18n.passwordUpdateInvalidPassword);
+		currentPasswordField.current!.focus();
+	};
+
 	const handleSave = (e: any): void => {
 		e.preventDefault();
 
 		if (isValid(true)) {
-			onSave(password);
+			onSave(currentPassword, password, onSuccess, onError);
 		}
 	};
 
@@ -54,15 +65,20 @@ const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
 	return (
 		<form onSubmit={handleSave} autoComplete="off">
 			<div style={{ marginBottom: 10, width: 400 }}>
-				<label>Current password</label>
+				<label>{i18n.currentPassword}</label>
 				<div style={{ marginBottom: 15, paddingBottom: 20, borderBottom: '1px solid #dddddd' }}>
 					<TextField
 						type="password"
+						error={currentPasswordError}
 						ref={currentPasswordField}
 						value={currentPassword}
 						name="currentPassword"
-						onChange={(e: any): void => setCurrentPassword(e.target.value)}
+						onChange={(e: any): void => {
+							setCurrentPasswordError('');
+							setCurrentPassword(e.target.value);
+						}}
 						style={{ width: 220 }}
+						tooltipPlacement="right"
 						autoFocus
 					/>
 				</div>
@@ -76,6 +92,7 @@ const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
 						name="password"
 						onChange={(e: any): void => setPassword(e.target.value)}
 						style={{ width: 220 }}
+						tooltipPlacement="right"
 					/>
 				</div>
 
@@ -87,9 +104,13 @@ const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
 						value={password2}
 						error={password2Error}
 						name="password2"
-						onChange={(e: any): void => setPassword2(e.target.value)}
-						autocomplete="off"
+						onChange={(e: any): void => {
+							setPassword2Error('');
+							setPassword2(e.target.value);
+						}}
+						autoComplete="off"
 						style={{ width: 220 }}
+						tooltipPlacement="right"
 					/>
 				</div>
 			</div>

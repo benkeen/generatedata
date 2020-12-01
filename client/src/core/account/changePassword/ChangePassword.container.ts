@@ -10,7 +10,9 @@ const mapStateToProps = (state: Store): Partial<ChangePasswordProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<ChangePasswordProps> => ({
-	onSave: (password: string): any => dispatch(accountActions.savePassword(password))
+	onSave: (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void): any => (
+		dispatch(accountActions.savePassword(currentPassword, newPassword, onSuccess, onError))
+	)
 });
 
 const container: any = connect(

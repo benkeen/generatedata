@@ -243,5 +243,8 @@
   "dataSets": "Data Sets",
   "changePassword": "Change Password",
   "validationNoCurrentPassword": "Please enter your current password",
-  "validationDifferentNewPasswords": "Please make sure your new passwords match"
+  "validationDifferentNewPasswords": "Please make sure your new passwords match",
+  "passwordUpdated": "Your password has been updated.",
+  "passwordUpdateInvalidPassword": "Your current password is incorrect. Please re-enter.",
+  "currentPassword": "Current password"
 }

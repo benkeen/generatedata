@@ -87,7 +87,7 @@ export const getRandomGender = () => utils.randomUtils.getRandomBool() ? genders
 
 export const generate = (formats: string[]) => {
 	// in case the user entered multiple | separated formats, pick one first
-	let chosenFormat = formats[0];
+	let chosenFormat = formats.length ? formats[0] : '';
 	if (formats.length > 1) {
 		chosenFormat = utils.randomUtils.getRandomArrayValue(formats);
 	}

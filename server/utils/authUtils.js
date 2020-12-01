@@ -46,18 +46,10 @@ const getUser = (token) => {
 	return decodedToken.payload;
 };
 
-// const outputTestPwd = async () => {
-// 	const hash = await getPasswordHash('test123');
-// 	console.log(hash);
-// };
-//
-// outputTestPwd();
-
 module.exports = {
 	getPasswordHash,
 	isValidPassword,
 	getJwt,
 	authenticate,
-	decodeToken,
 	getUser
 };

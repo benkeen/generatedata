@@ -27,8 +27,21 @@ const updatePassword = async (root, args, { token, user }) => {
 	const { accountId } = user;
 	const userRecord = await db.accounts.findByPk(accountId);
 
-	const { password } = args;
-	userRecord.update({ password });
+	const { currentPassword, newPassword } = args;
+	const isCorrect = await authUtils.isValidPassword(currentPassword, userRecord.dataValues.password);
+
+	if (!isCorrect) {
+		return {
+			success: false,
+			error: 'PASSWORD_INCORRECT'
+		};
+	}
+
+	const newPasswordHash = await authUtils.getPasswordHash(newPassword);
+
+	userRecord.update({
+		password: newPasswordHash
+	});
 
 	return {
 		success: true

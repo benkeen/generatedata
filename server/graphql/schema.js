@@ -14,7 +14,7 @@ const typeDefs = gql`
         refreshToken: AuthResponse
 		logout: GeneralResponse
         updateAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
-		updatePassword(password: String!): GeneralResponse
+		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
 	}
     type Account {
 	    accountId: ID
@@ -34,11 +34,11 @@ const typeDefs = gql`
         settingValue: String
     }
     type Configuration {
-        configuration_id: ID
+        configurationId: ID
 		status: ConfigurationStatus
-		date_created: String
-		account_id: ID
-		num_rows_generated: Int
+		dateCreated: String
+		accountId: ID
+		numRowsGenerated: Int
 	}
 	enum ConfigurationStatus {
 		PUBLIC
@@ -63,6 +63,7 @@ const typeDefs = gql`
     }
 	type GeneralResponse {
 		success: Boolean
+		error: String
 	}
 	enum AccountType {
 		user
