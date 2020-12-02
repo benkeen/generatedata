@@ -14,10 +14,13 @@ export type YourAccountProps = {
 	updateAccount: (data: AccountEditingData) => void;
 	onSave: () => void;
 	onCancel: () => void;
+	className: string;
 	i18n: any;
 };
 
-const YourAccount = ({ data, numGeneratedRows, accountHasChanges, updateAccount, onSave, onCancel, i18n }: YourAccountProps): JSX.Element => {
+const YourAccount = ({
+	data, numGeneratedRows, accountHasChanges, updateAccount, onSave, onCancel, className, i18n
+}: YourAccountProps): JSX.Element => {
 	const update = (fieldName: string, value: string): void => {
 		updateAccount({
 			...data,
@@ -69,7 +72,7 @@ const YourAccount = ({ data, numGeneratedRows, accountHasChanges, updateAccount,
 	};
 
 	return (
-		<form onSubmit={handleSave} autoComplete="off">
+		<form onSubmit={handleSave} autoComplete="off" className={className}>
 			<div style={{ display: 'flex', flexDirection: 'row', marginBottom: 10 }}>
 				<div style={{ flex: 1, paddingRight: 20 }}>
 					<label>{i18n.firstName}</label>

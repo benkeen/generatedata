@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SelectedAccountTab } from '~types/account';
 import YourAccount from './yourAccount/YourAccount.container';
 import ChangePassword from './changePassword/ChangePassword.container';
@@ -11,13 +11,25 @@ export type AccountPageProps = {
 };
 
 const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.Element => {
+	const [yourAccountClasses, setYourAccountClasses] = useState(styles.hidden);
+	const [changePasswordClasses, setChangePasswordClasses] = useState(styles.hidden);
+
+	useEffect(() => {
+		if (selectedTab === 'yourAccount') {
+			setChangePasswordClasses(styles.hidden);
+			setYourAccountClasses(styles.shown);
+		} else {
+			setChangePasswordClasses(styles.shown);
+			setYourAccountClasses(styles.hidden);
+		}
+	}, [selectedTab]);
 
 	const getTab = (): JSX.Element | null => {
 		if (selectedTab === 'yourAccount') {
-			return <YourAccount />;
+			return <YourAccount className={yourAccountClasses} />;
 		}
 
-		return <ChangePassword />;
+		return <ChangePassword className={changePasswordClasses} />;
 	};
 
 	return (

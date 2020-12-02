@@ -12,11 +12,13 @@ import * as styles from './Header.scss';
 import { GeneratorPanel } from '~store/generator/generator.reducer';
 import HeaderLinks from './HeaderLinks.component';
 import { getHeaderLinks } from '~utils/routeUtils';
+import { AccountType } from '~types/account';
 
 export type HeaderProps = {
 	toggleIntroDialog: () => void;
 	onChangeSmallScreenVisiblePanel: () => void;
 	isLoggedIn: boolean;
+	accountType: AccountType;
 	smallScreenVisiblePanel: GeneratorPanel;
 	showIntroDialog: boolean;
 	showLoginDialog: () => void;
@@ -31,7 +33,7 @@ export type HeaderProps = {
 
 const Header = ({
 	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
-	isLoggedIn, onLogout, isOnloadAuthDetermined, firstName
+	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, firstName
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -96,7 +98,7 @@ const Header = ({
 			<ul className={styles.headerLinks}>
 				{isOnloadAuthDetermined ?
 					<HeaderLinks
-						headerLinks={getHeaderLinks(isLoggedIn)}
+						headerLinks={getHeaderLinks(isLoggedIn, accountType)}
 						firstName={firstName}
 						showLoginDialog={showLoginDialog}
 						onLogout={onLogout}

@@ -1,5 +1,5 @@
 import { Store } from '~types/general';
-import { SelectedAccountTab } from '~types/account';
+import { AccountType, SelectedAccountTab } from '~types/account';
 import { AccountEditingData } from '~store/account/account.reducer';
 import { createSelector } from 'reselect';
 
@@ -8,6 +8,7 @@ export const getLastName = (state: Store): string => state.account.lastName;
 export const getEmail = (state: Store): string => state.account.email;
 export const getCountry = (state: Store): string => state.account.country;
 export const getRegion = (state: Store): string => state.account.region;
+export const getAccountType = (state: Store): AccountType => state.account.accountType;
 export const getNumGeneratedRows = (state: Store): number => state.account.numRowsGenerated;
 export const getProfileImage = (state: Store): string | null => state.account.profileImage;
 export const getSelectedTab = (state: Store): SelectedAccountTab => state.account.selectedTab;

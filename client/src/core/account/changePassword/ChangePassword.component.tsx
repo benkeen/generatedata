@@ -4,10 +4,11 @@ import TextField from '~components/TextField';
 
 export type ChangePasswordProps = {
 	onSave: (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void) => void;
+	className: string;
 	i18n: any;
 };
 
-const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
+const ChangePassword = ({ onSave, className, i18n }: ChangePasswordProps): JSX.Element => {
 	const currentPasswordField = useRef<HTMLInputElement>();
 	const [currentPassword, setCurrentPassword] = useState('');
 	const [currentPasswordError, setCurrentPasswordError] = useState('');
@@ -62,7 +63,7 @@ const ChangePassword = ({ onSave, i18n }: ChangePasswordProps): JSX.Element => {
 	const submitButtonEnabled = isValid();
 
 	return (
-		<form onSubmit={handleSave} autoComplete="off">
+		<form onSubmit={handleSave} autoComplete="off" className={className}>
 			<div style={{ marginBottom: 10, width: 400 }}>
 				<label>{i18n.currentPassword}</label>
 				<div style={{ marginBottom: 15, paddingBottom: 20, borderBottom: '1px solid #dddddd' }}>

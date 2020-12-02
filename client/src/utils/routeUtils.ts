@@ -1,6 +1,7 @@
 import Generator from '~core/generator/Generator.container';
 import AccountPage from '~core/account/Account.container';
 import DataSetsPage from '~core/account/dataSets/DataSets.container';
+import AccountsPage from '~core/accounts/Accounts.container';
 import { GDHeaderLink, GDRoute } from '~types/general';
 import { AccountType } from '~types/account';
 
@@ -14,6 +15,7 @@ export const registerCustomRoutes = (routes: GDRoute[]): void => {
 export const getRoutes = (): GDRoute[] => {
 	const routes: GDRoute[] = [
 		{ path: '/account', component: AccountPage },
+		{ path: '/accounts', component: AccountsPage },
 		{ path: '/login', component: () => {} }, // LoginPage
 		{ path: '/datasets', component: DataSetsPage }
 	];

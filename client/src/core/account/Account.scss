@@ -69,3 +69,11 @@
 	}
 }
 
+.hidden {
+	opacity: 0;
+}
+.shown {
+	opacity: 1;
+	transition: opacity 300ms ease-in-out;
+}
+

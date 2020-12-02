@@ -14,6 +14,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	showIntroDialog: mainSelectors.shouldShowIntroDialog(state),
 	smallScreenVisiblePanel: selectors.getSmallScreenVisiblePanel(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
+	accountType: accountSelectors.getAccountType(state),
 	isOnloadAuthDetermined: mainSelectors.isOnloadAuthDetermined(state),
 	firstName: accountSelectors.getFirstName(state),
 	profileImage: accountSelectors.getProfileImage(state)
