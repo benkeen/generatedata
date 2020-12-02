@@ -44,7 +44,8 @@
       "^~components(.*)$": "<rootDir>/client/src/components$1",
       "^~types(.*)$": "<rootDir>/client/types$1",
       "^~utils(.*)$": "<rootDir>/client/src/utils$1",
-      "^~store(.*)$": "<rootDir>/client/src/core/store$1"
+      "^~store(.*)$": "<rootDir>/client/src/core/store$1",
+      "^~core(.*)$": "<rootDir>/client/src/core$1"
     },
     "collectCoverageFrom": [
       "<rootDir>/client/src/**/*.(ts|tsx)"

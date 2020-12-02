@@ -18,6 +18,7 @@
       "~components/*": ["client/src/components/*"],
       "~utils/*": ["client/src/utils/*"],
       "~store/*": ["client/src/core/store/*"],
+      "~core/*": ["client/src/core/*"],
       "~types/*": ["client/types/*"]
     }
   },

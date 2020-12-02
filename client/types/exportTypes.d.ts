@@ -1,4 +1,4 @@
-import { BuilderLayout } from '../src/core/builder/Builder.component';
+import { GeneratorLayout } from '~core/generator/Generator.component';
 import { ColumnData } from '~types/general';
 import { CountryMap } from '~types/countries';
 import { DataTypeMap } from '~types/dataTypes';
@@ -32,7 +32,7 @@ export type ETSettings = {
 	onUpdate: Function; // from container
 	data: any; // from store
 	id: string;
-	layout: BuilderLayout;
+	layout: GeneratorLayout;
 	i18n: any;
 	coreI18n: any;
 };

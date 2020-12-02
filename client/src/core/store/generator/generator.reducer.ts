@@ -118,7 +118,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 			const initialState = getInitialState();
 			const settingsToReset = [
-				'exportType', 'showGrid', 'showPreview', 'builderLayout', 'showExportSettings', 'numPreviewRows',
+				'exportType', 'showGrid', 'showPreview', 'generatorLayout', 'showExportSettings', 'numPreviewRows',
 				'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'exportSettingsTab', 'numRowsToGenerate',
 				'stripWhitespace'
 			];

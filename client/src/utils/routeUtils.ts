@@ -1,36 +1,57 @@
-import Generator from '../core/generator/Generator.container';
-import AccountPage from '../core/account/Account.container';
-import DataSetsPage from '../core/account/dataSets/DataSets.container';
+import Generator from '~core/generator/Generator.container';
+import AccountPage from '~core/account/Account.container';
+import DataSetsPage from '~core/account/dataSets/DataSets.container';
 import { GDHeaderLink, GDRoute } from '~types/general';
+import { AccountType } from '~types/account';
 
-// called on boot-up. Returns the list of available react-router route info for this installation
+let customRoutes: GDRoute[] = [];
+export const registerCustomRoutes = (routes: GDRoute[]): void => {
+	customRoutes = routes;
+};
+
+// called on boot-up. Returns the list of available react-router routes plus the components they should link to. This
+// allows external customization via the `registerCustomRoutes` method above
 export const getRoutes = (): GDRoute[] => {
 	const routes: GDRoute[] = [
 		{ path: '/account', component: AccountPage },
+		{ path: '/login', component: () => {} }, // LoginPage
 		{ path: '/datasets', component: DataSetsPage }
 	];
 
-	if (process.env.GD_APP_TYPE !== 'prod') {
-		routes.push({ path: '/', component: Generator });
+	// react-router is a bit fussy about the order of routes; the root one has to come last. Since that is configurable
+	// (prod root = a splash intro page; local is the generator) we have to do a little work here to get them in the
+	// right order
+	const nonRootRoutes = customRoutes.filter((route) => route.path !== '/');
+	if (nonRootRoutes.length) {
+		routes.concat(nonRootRoutes);
+	}
+
+	routes.push({ path: process.env.GD_GENERATOR_PATH || '/', component: Generator });
+	const rootRoutes = customRoutes.filter((route) => route.path === '/');
+
+	if (rootRoutes.length) {
+		routes.concat(rootRoutes);
 	}
 
 	return routes;
 };
 
 export interface CustomHeaderLinkGetter {
-	(isLoggedIn: boolean): GDHeaderLink[];
+	(isLoggedIn: boolean, accountType: AccountType): GDHeaderLink[];
 }
 
 let customHeaderLinkGetter: CustomHeaderLinkGetter;
 
 // allows external code to override the header links
-export const registerCustomHeaderLinksGetter: any = (getter: CustomHeaderLinkGetter) => customHeaderLinkGetter = getter;
+export const registerCustomHeaderLinksGetter = (getter: CustomHeaderLinkGetter): void => {
+	customHeaderLinkGetter = getter;
+};
 
-export const getHeaderLinks = (isLoggedIn: boolean): GDHeaderLink[] => {
+export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): GDHeaderLink[] => {
 	const appType = process.env.GD_APP_TYPE;
 
 	if (customHeaderLinkGetter) {
-		return customHeaderLinkGetter(isLoggedIn);
+		return customHeaderLinkGetter(isLoggedIn, accountType);
 	}
 
 	let links: GDHeaderLink[] = [];

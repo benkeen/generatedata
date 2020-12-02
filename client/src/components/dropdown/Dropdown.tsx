@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Select, { ControlProps, OptionTypeBase, IndicatorProps } from 'react-select';
 import { getStrings } from '~utils/langUtils';
-import C from '../../core/constants';
+import C from '~core/constants';
 
 export type DropdownOption = {
 	value: string;

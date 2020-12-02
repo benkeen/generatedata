@@ -6,19 +6,19 @@ import { ApolloProvider } from '@apollo/client';
 import * as codemirror from 'codemirror';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { apolloClient } from './core/apolloClient';
-import store, { persistor } from './core/store';
-import Page from './core/page/Page.container';
-import * as core from './core';
-import ErrorBoundary from './core/errorBoundary';
-import theme from './core/theme';
+import { apolloClient } from '~core/apolloClient';
+import store, { persistor } from '~core/store';
+import Page from '~core/page/Page.container';
+import * as core from '~core/index';
+import ErrorBoundary from '~core/errorBoundary';
+import theme from '~core/theme';
 import Toast from '~components/toast/Toast.component';
-import '~store/generator/generator.reducer';
-import './styles/global.scss';
-import C from './core/constants';
+import C from '~core/constants';
 import { getAppStateVersion } from '~store/main/main.selectors';
 import { resetStore } from '~store/main/main.actions';
 import { getRoutes } from '~utils/routeUtils';
+import '~store/generator/generator.reducer';
+import './styles/global.scss';
 
 window.CodeMirror = codemirror;
 

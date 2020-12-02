@@ -1,5 +1,5 @@
 import env from '../../_env';
-import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle } from '../core/auth/google/google';
+import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle } from '~core/auth/google/google';
 import { AuthMethod } from '~types/general';
 
 // refresh the token 1 minute before it expires

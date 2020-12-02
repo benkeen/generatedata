@@ -3,7 +3,7 @@ import { getLocale, getStrings } from './langUtils';
 import { dataTypes, DataTypeFolder, blacklistedDataTypeFolders } from '../../_plugins';
 import { DTBundle, DTCustomProps, DTHelpProps } from '~types/dataTypes';
 import { Store } from '~types/general';
-import C from '../core/constants';
+import C from '~core/constants';
 
 type LoadedDataTypes = {
 	[name in DataTypeFolder]: DTBundle;
