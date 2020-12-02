@@ -15,7 +15,8 @@ const mapStateToProps = (state: any): Partial<FooterProps> => ({
 	scriptVersion: coreUtils.getScriptVersion(),
 	isEnabled: selectors.hasData(state),
 	isLoggedIn: mainSelectors.isLoggedIn(state),
-	availableLocales: env.availableLocales
+	currentPage: mainSelectors.getCurrentPage(state),
+	availableLocales: env.availableLocales,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({

@@ -26,6 +26,7 @@ export type FooterProps = {
 	onSave: () => void;
 	isEnabled: boolean;
 	isLoggedIn: boolean;
+	currentPage: string;
 	availableLocales: GDLocale[];
 };
 
@@ -52,7 +53,7 @@ const useListStyles = makeStyles(() =>
 );
 
 const Footer = ({
-	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, isLoggedIn, availableLocales
+	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, isLoggedIn, currentPage, availableLocales
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
@@ -112,6 +113,11 @@ const Footer = ({
 		);
 	};
 
+	let generatorControlsClasses = styles.generatorControls;
+	if (currentPage === process.env.GD_GENERATOR_PATH) {
+		generatorControlsClasses += ` ${styles.visible}`;
+	}
+
 	return (
 		<footer className={styles.footer}>
 			<div>
@@ -130,7 +136,7 @@ const Footer = ({
 					</li>
 				</ul>
 
-				<div>
+				<div className={generatorControlsClasses}>
 					<PanelControls className={styles.controls} />
 					{getSaveButton()}
 					<Button

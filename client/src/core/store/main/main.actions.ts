@@ -6,6 +6,7 @@ import { apolloClient } from '../../apolloClient';
 import { getAuthMethod } from '~store/main/main.selectors';
 import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
 import { AccountType } from '~types/account';
+import store from '~core/store';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -31,6 +32,18 @@ export const toggleIntroDialog = (): GDAction => ({ type: TOGGLE_INTRO_DIALOG })
 
 export const RESET_STORE = 'RESET_STORE';
 export const resetStore = (): GDAction => ({ type: RESET_STORE });
+
+export const PAGE_CHANGE = 'PAGE_CHANGE';
+export const initRouteListener = (history: any) => {
+	history.listen((location: any) => {
+		store.dispatch({
+			type: PAGE_CHANGE,
+			payload: {
+				page: location.pathname
+			}
+		});
+	});
+};
 
 export const SET_LOGIN_DIALOG_VISIBILITY = 'SET_LOGIN_DIALOG_VISIBILITY';
 export const setLoginDialogVisibility = (visible: boolean): GDAction => ({

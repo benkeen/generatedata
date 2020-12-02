@@ -17,6 +17,7 @@ export type MainState = {
 	isOnloadAuthDetermined: boolean;
 	isRefreshingToken: boolean;
 	isLoggingIn: boolean;
+	currentPage: string;
 };
 
 export const initialState: MainState = {
@@ -30,7 +31,8 @@ export const initialState: MainState = {
 	authToken: '',
 	isOnloadAuthDetermined: false,
 	isRefreshingToken: false,
-	isLoggingIn: false
+	isLoggingIn: false,
+	currentPage: ''
 };
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -86,6 +88,10 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.ONLOAD_AUTH_DETERMINED:
 			draft.isOnloadAuthDetermined = true;
+			break;
+
+		case actions.PAGE_CHANGE:
+			draft.currentPage = action.payload.page;
 			break;
 	}
 

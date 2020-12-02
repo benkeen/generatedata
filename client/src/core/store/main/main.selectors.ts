@@ -10,3 +10,4 @@ export const isLoggedIn = (state: Store): boolean => state.main.isLoggedIn;
 export const isOnloadAuthDetermined = (state: Store): boolean => state.main.isOnloadAuthDetermined;
 export const isLoggingIn = (state: Store): boolean => state.main.isLoggedIn;
 export const getAuthToken = (state: Store): string => state.main.authToken;
+export const getCurrentPage = (state: Store): string => state.main.currentPage;

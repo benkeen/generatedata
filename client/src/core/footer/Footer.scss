@@ -79,3 +79,13 @@ button.saveButton {
 		background-color: #3d8f24;
 	}
 }
+
+
+.generatorControls {
+	opacity: 0;
+	transition: opacity 200ms ease-in-out;
+
+	&.visible {
+		opacity: 1;
+	}
+}

@@ -15,7 +15,7 @@ import theme from '~core/theme';
 import Toast from '~components/toast/Toast.component';
 import C from '~core/constants';
 import { getAppStateVersion } from '~store/main/main.selectors';
-import { resetStore } from '~store/main/main.actions';
+import { resetStore, initRouteListener } from '~store/main/main.actions';
 import { getRoutes } from '~utils/routeUtils';
 import '~store/generator/generator.reducer';
 import './styles/global.scss';
@@ -30,10 +30,7 @@ const checkState = async (state: any): Promise<any> => {
 };
 
 const App = withRouter(({ history }: any) => {
-
-	history.listen((location: any, action: any) => {
-		console.log(action, location.pathname, location.state);
-	});
+	initRouteListener(history);
 
 	const routes = getRoutes();
 
