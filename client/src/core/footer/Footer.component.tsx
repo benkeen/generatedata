@@ -27,6 +27,7 @@ export type FooterProps = {
 	onChangeLocale: (a: any) => void;
 	onGenerate: () => void;
 	onSave: () => void;
+	onSaveNewDataSet: () => void;
 	isEnabled: boolean;
 	currentPage: string;
 	currentDataSetId: number | null;
@@ -57,7 +58,7 @@ const useListStyles = makeStyles(() =>
 
 const Footer = ({
 	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
-	currentDataSetId
+	currentDataSetId, onSaveNewDataSet
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
 	const anchorRef = React.useRef<HTMLDivElement>(null);
@@ -106,7 +107,7 @@ const Footer = ({
 		);
 	};
 
-	// we always show the login button
+	// we always show the login button. It'll show a "you must login in" dialog if they're not logged in/registered
 	const getSaveButton = (): JSX.Element | null => {
 
 		const open = false;
@@ -125,7 +126,8 @@ const Footer = ({
 					aria-label="split button"
 					disabled={!isEnabled}>
 					<Button onClick={onSave} className={styles.saveButtonAsMainBtn}>
-						<SaveIcon/> {i18n.save}
+						<SaveIcon />
+						{i18n.save}
 					</Button>
 					<Button
 						color="primary"
@@ -144,7 +146,7 @@ const Footer = ({
 		}
 
 		return (
-			<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
+			<Button onClick={onSaveNewDataSet} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
 				<SaveIcon />
 				{i18n.save}
 			</Button>

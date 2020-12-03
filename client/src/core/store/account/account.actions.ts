@@ -1,7 +1,7 @@
 import { SelectedAccountTab } from '~types/account';
 import { AccountEditingData } from '~store/account/account.reducer';
 import { getEditingData } from '~store/account/account.selectors';
-import { getDataSetSavePackage } from '~store/generator/generator.selectors';
+import { getDataSetSavePackage, getCurrentDataSetId } from '~store/generator/generator.selectors';
 import { GDAction } from '~types/general';
 import { Dispatch } from 'redux';
 import { apolloClient } from '../../apolloClient';
@@ -102,7 +102,7 @@ export const hideSaveDataSetDialog = (): GDAction => ({ type: HIDE_SAVE_DATA_SET
 // };
 
 export const SET_CURRENT_DATA_SET = 'SET_CURRENT_DATA_SET';
-export const saveDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
+export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 	const data: any = getDataSetSavePackage(getState());
 
@@ -138,4 +138,32 @@ export const saveDataSet = (dataSetName: string): any => async (dispatch: Dispat
 			message: i18n.core.dataSetSaved
 		});
 	}
+
+	// TODO error handling
 };
+
+export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState: any) => {
+	const i18n = getStrings();
+
+	const state = getState();
+	const data: any = getDataSetSavePackage(state);
+	const dataSetId = getCurrentDataSetId(state);
+
+	const response = await apolloClient.mutate({
+		mutation: gql`
+            mutation SaveDataSet($dataSetId: ID!, $content: String!) {
+                saveDataSet(dataSetId: $dataSetId, content: $content) {
+                    success
+                    error
+                    dataSetId
+                }
+            }
+		`,
+		variables: {
+			dataSetId,
+			content: JSON.stringify(data)
+		}
+	});
+
+};
+

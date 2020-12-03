@@ -15,8 +15,9 @@ const typeDefs = gql`
 		logout: GeneralResponse
         updateAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
-        saveNewDataSet(dataSetName: String!, content: String!): NewDataSetRespnse
-	} 
+        saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetRespnse
+        saveDataSet(dataSetId: ID!, content: String!): SavedDataSetRespnse
+	}
     type Account {
 	    accountId: ID
         dateExpires: String
@@ -67,7 +68,7 @@ const typeDefs = gql`
 		error: String
 	}
     
-    type NewDataSetRespnse {
+    type SavedDataSetRespnse {
 	    success: Boolean
 	    error: String
 	    dataSetId: ID

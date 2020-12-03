@@ -13,7 +13,8 @@ const vendorLoginButtons = getVendorLoginButtons();
 export type LoginDialogProps = {
 	visible: boolean;
 	isLoggingIn: boolean;
-	onClose: any;
+	onClose: () => void;
+	onExited: () => void;
 	onSubmit: (email: string, password: string, onError: Function) => void;
 	i18n: any;
 };
@@ -22,7 +23,7 @@ export type LoginDialogProps = {
  * The login dialog has baked-in support for standard logging into our database, but also optionally supports
  * logging in via external vendors: Google, Facebook and Github.
  */
-const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, i18n }: LoginDialogProps): JSX.Element => {
+const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, i18n }: LoginDialogProps): JSX.Element => {
 	const textFieldRef = useRef<any>();
 	const [email, setEmail] = useState('');
 	const [emailError, setEmailError] = useState('');
@@ -102,7 +103,7 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, i18n }: LoginDia
 
 	return (
 		<>
-			<Dialog onClose={onClose} open={visible} className={styles.loginDialog}>
+			<Dialog onClose={onClose} open={visible} className={styles.loginDialog} onExited={onExited}>
 				<form onSubmit={onLogin}>
 					<div style={{ width }}>
 						<DialogTitle onClose={onClose}>{i18n.login}</DialogTitle>

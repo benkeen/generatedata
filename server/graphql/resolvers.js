@@ -32,7 +32,8 @@ const resolvers = {
 		// account-related resolvers
 		updateAccount: accountResolvers.updateAccount,
 		updatePassword: accountResolvers.updatePassword,
-		saveNewDataSet: dataSetResolvers.saveNewDataSet
+		saveNewDataSet: dataSetResolvers.saveNewDataSet,
+		saveDataSet: dataSetResolvers.saveDataSet
 	}
 };
 

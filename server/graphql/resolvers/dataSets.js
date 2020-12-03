@@ -28,6 +28,17 @@ const saveNewDataSet = async (root, { dataSetName, content }, { token, user }) =
 	};
 };
 
+const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
+	authUtils.authenticate(token);
+
+	// now check the user is able to access and change this data set
+	let hasAccess = false;
+
+	console.log(user);
+};
+
+
 module.exports = {
-	saveNewDataSet
+	saveNewDataSet,
+	saveDataSet
 };

@@ -7,6 +7,9 @@ import { getAuthMethod } from '~store/main/main.selectors';
 import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
 import { AccountType } from '~types/account';
 import store from '~core/store';
+import { showSaveDataSetDialog } from '~store/account/account.actions';
+import { addToast } from '~utils/generalUtils';
+import { getStrings } from '~utils/langUtils';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -84,8 +87,23 @@ export const setAuthenticated = (authenticated = true): GDAction => ({
 export const START_LOGIN = 'START_LOGIN';
 export const startLogin = (): GDAction => ({ type: START_LOGIN });
 
+
+// hacky, but if we need something like this elsewhere I can revisit. This is used by the Login button in Save dialog.
+// When the user clicks that, we want to return them to the Save dialog after authentication. The register process is more
+// complicated so I think returning them to the save dialog after all that might be a bit much. They can always just
+// re-click the Save button at that step (nothing would have been lost, unlike with v3)
+let loginFlow = '';
+export const setReturnToSaveDataSet = (): void => {
+	loginFlow = 'fromSaveDataSet';
+};
+export const clearLoginFlow = (): any => {
+	loginFlow = '';
+};
+
 // default authentication
 export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
+	const i18n = getStrings();
+
 	dispatch(startLogin());
 
 	const response = await apolloClient.mutate({
@@ -120,6 +138,17 @@ export const login = (email: string, password: string, onLoginError: Function): 
 		}));
 
 		dispatch(setLoginDialogVisibility(false));
+
+		addToast({
+			type: 'success',
+			message: i18n.core.nowLoggedIn
+		});
+
+		if (loginFlow === 'fromSaveDataSet') {
+			dispatch(showSaveDataSetDialog());
+			loginFlow = '';
+		}
+
 	} else {
 		onLoginError();
 	}

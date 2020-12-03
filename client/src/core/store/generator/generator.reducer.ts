@@ -112,6 +112,19 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			});
 			break;
 
+		// TODO needs to be cleaned up. Combine with LOGOUT action?
+		case mainActions.AUTHENTICATED:
+			if (!action.payload.authenticated) {
+				draft.currentDataSetId = null;
+				draft.currentDataSetName = '';
+			}
+			break;
+
+		case mainActions.LOGOUT:
+			draft.currentDataSetId = null;
+			draft.currentDataSetName = '';
+			break;
+
 		case actions.CLEAR_GRID:
 			draft.rows = {};
 			draft.sortedRows = [];
