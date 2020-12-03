@@ -81,28 +81,28 @@ export const savePassword = (currentPassword: string, newPassword: string, onSuc
 };
 
 export const SHOW_SAVE_DATA_SET_DIALOG = 'SHOW_SAVE_DATA_SET_DIALOG';
-export const showSaveDataSetDialog = () => ({ type: SHOW_SAVE_DATA_SET_DIALOG });
+export const showSaveDataSetDialog = (): GDAction => ({ type: SHOW_SAVE_DATA_SET_DIALOG });
 
 export const HIDE_SAVE_DATA_SET_DIALOG = 'HIDE_SAVE_DATA_SET_DIALOG';
-export const hideSaveDataSetDialog = () => ({ type: HIDE_SAVE_DATA_SET_DIALOG });
+export const hideSaveDataSetDialog = (): GDAction => ({ type: HIDE_SAVE_DATA_SET_DIALOG });
 
-export const getDataSets = () => async (dispatch: Dispatch): Promise<any> => {
-	// const response = await apolloClient.query({
-	// 	query: gql`
-    //         query GetDataSets {
-    //             getDataSets {
-    //                 success
-    //                 error
-    //             }
-    //         }
-	// 	`
-	// });
-
-	console.log(dispatch);
-};
+// export const getDataSets = () => async (dispatch: Dispatch): Promise<any> => {
+// 	// const response = await apolloClient.query({
+// 	// 	query: gql`
+//     //         query GetDataSets {
+//     //             getDataSets {
+//     //                 success
+//     //                 error
+//     //             }
+//     //         }
+// 	// 	`
+// 	// });
+//
+// 	console.log(dispatch);
+// };
 
 export const SET_CURRENT_DATA_SET = 'SET_CURRENT_DATA_SET';
-export const saveDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any) => {
+export const saveDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 	const data: any = getDataSetSavePackage(getState());
 

@@ -16,13 +16,14 @@ const mapStateToProps = (state: any): Partial<FooterProps> => ({
 	scriptVersion: coreUtils.getScriptVersion(),
 	isEnabled: selectors.hasData(state),
 	currentPage: mainSelectors.getCurrentPage(state),
+	currentDataSetId: selectors.getCurrentDataSetId(state),
 	availableLocales: env.availableLocales
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	// @ts-ignore-line
 	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
-	onSave: () => dispatch(accountActions.showSaveDataSetDialog()),
+	onSave: (): any => dispatch(accountActions.showSaveDataSetDialog()),
 	onGenerate: (): any => dispatch(actions.showGenerationSettingsPanel())
 });
 

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import LanguageIcon from '@material-ui/icons/Language';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import SaveIcon from '@material-ui/icons/Save';
 import GearIcon from '@material-ui/icons/Settings';
 import { HtmlTooltip } from '~components/tooltips';
@@ -27,6 +29,7 @@ export type FooterProps = {
 	onSave: () => void;
 	isEnabled: boolean;
 	currentPage: string;
+	currentDataSetId: number | null;
 	availableLocales: GDLocale[];
 };
 
@@ -53,9 +56,12 @@ const useListStyles = makeStyles(() =>
 );
 
 const Footer = ({
-	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales
+	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
+	currentDataSetId
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
+	const anchorRef = React.useRef<HTMLDivElement>(null);
+
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
 
@@ -101,12 +107,49 @@ const Footer = ({
 	};
 
 	// we always show the login button
-	const getSaveButton = (): JSX.Element | null => (
-		<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
-			<SaveIcon />
-			{i18n.save}
-		</Button>
-	);
+	const getSaveButton = (): JSX.Element | null => {
+
+		const open = false;
+		const handleToggle = (): void => {};
+
+		// if the data set has already been saved, we give them a split button: the main button immediately saves,
+		// the arrow gives them the option to create a new data set via the "Save as" option
+		if (currentDataSetId) {
+			return (
+				<ButtonGroup
+					variant="contained"
+					color="primary"
+					className={styles.saveButtonAs}
+					ref={anchorRef}
+					disableElevation
+					aria-label="split button"
+					disabled={!isEnabled}>
+					<Button onClick={onSave} className={styles.saveButtonAsMainBtn}>
+						<SaveIcon/> {i18n.save}
+					</Button>
+					<Button
+						color="primary"
+						size="small"
+						aria-controls={open ? 'split-button-menu' : undefined}
+						aria-expanded={open ? 'true' : undefined}
+						aria-label="Save data set as new name"
+						aria-haspopup="menu"
+						className={styles.saveBtnArrow}
+						onClick={handleToggle}
+					>
+						<ArrowDropDownIcon />
+					</Button>
+				</ButtonGroup>
+			);
+		}
+
+		return (
+			<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
+				<SaveIcon />
+				{i18n.save}
+			</Button>
+		);
+	};
 
 	let generatorControlsClasses = styles.generatorControls;
 	if (currentPage === process.env.GD_GENERATOR_PATH) {

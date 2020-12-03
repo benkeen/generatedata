@@ -11,18 +11,16 @@ import * as mainSelectors from '~store/main/main.selectors';
 const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: accountSelectors.shouldShowSaveDataSetDialog(state),
-	isLoggedIn: mainSelectors.isLoggedIn(state),
-	currentDataSetId: selectors.getCurrentDataSetId(state),
-	currentDataSetName: selectors.getCurrentDataSetName(state)
+	isLoggedIn: mainSelectors.isLoggedIn(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<SaveDataSetDialogProps> => ({
-	onClose: () => dispatch(actions.hideSaveDataSetDialog()),
-	onRedirectToLogin: () => {
+	onClose: (): any => dispatch(actions.hideSaveDataSetDialog()),
+	onRedirectToLogin: (): any => {
 		dispatch(actions.hideSaveDataSetDialog());
 		dispatch(mainActions.setLoginDialogVisibility(true));
 	},
-	onSave: (dataSetName: string) => dispatch(actions.saveDataSet(dataSetName))
+	onSave: (dataSetName: string): any => dispatch(actions.saveDataSet(dataSetName))
 });
 
 const container: any = connect(

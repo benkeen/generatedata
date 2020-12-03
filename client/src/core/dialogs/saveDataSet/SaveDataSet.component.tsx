@@ -11,13 +11,11 @@ export type SaveDataSetDialogProps = {
 	onRedirectToLogin: () => void;
 	onClose: any;
 	onSave: (dataSetName: string) => void;
-	currentDataSetId: number | null;
-	currentDataSetName: string;
 	i18n: any;
 };
 
 const SaveDataSetDialog = ({
-	visible, isLoggedIn, onClose, onSave, onRedirectToLogin, currentDataSetId, currentDataSetName, i18n
+	visible, isLoggedIn, onClose, onSave, onRedirectToLogin, i18n
 }: SaveDataSetDialogProps): JSX.Element => {
 	const newDataSetNameField = useRef<HTMLInputElement>();
 	const [newDataSetName, setNewDataSetName] = useState('');
@@ -32,7 +30,7 @@ const SaveDataSetDialog = ({
 				placeholder={i18n.dataSetName}
 				autoFocus
 				value={newDataSetName}
-				onChange={(e: any) => {
+				onChange={(e: any): void => {
 					setNewDataSetName(e.target.value);
 					setNewDataSetErrorName('');
 				}}
@@ -40,7 +38,7 @@ const SaveDataSetDialog = ({
 		</div>
 	);
 
-	const saveDataSet = (e: any) => {
+	const saveDataSet = (e: any): void => {
 		e.preventDefault();
 
 		if (!newDataSetName.trim()) {

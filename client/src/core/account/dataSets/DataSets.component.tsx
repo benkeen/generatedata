@@ -5,7 +5,7 @@ export type DataSetsProps = {
 	i18n: any;
 };
 
-const DataSets = ({ i18n }: DataSetsProps): JSX.Element => {
+const DataSets = ({ }: DataSetsProps): JSX.Element => {
 	return (
 		<section className={styles.page}>
 			<h2>Data sets</h2>

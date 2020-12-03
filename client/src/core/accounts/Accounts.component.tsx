@@ -4,9 +4,9 @@ export type AccountsPageProps = {
 	i18n: any;
 };
 
-const Accounts = () => {
+const Accounts = (): JSX.Element => {
 	return (
-		<div></div>
+		<div />
 	);
 };
 

@@ -4,7 +4,10 @@ declare namespace FooterScssNamespace {
     footer: string;
     generateButton: string;
     generatorControls: string;
+    saveBtnArrow: string;
     saveButton: string;
+    saveButtonAs: string;
+    saveButtonAsMainBtn: string;
     scriptVersion: string;
     selectLocale: string;
     selectedLocale: string;

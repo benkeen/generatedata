@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+// import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as selectors from '~store/generator/generator.selectors';
 import AccountsPage, { AccountsPageProps } from './Accounts.component';
@@ -8,7 +8,8 @@ const mapStateToProps = (state: Store): Partial<AccountsPageProps> => ({
 	i18n: selectors.getCoreI18n(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsPageProps> => ({
+// dispatch: Dispatch
+const mapDispatchToProps = (): Partial<AccountsPageProps> => ({
 });
 
 const container: any = connect(

@@ -39,7 +39,7 @@
 		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.80)));
 	}
 
-	button.generateButton, button.saveButton {
+	button.generateButton, button.saveButton, button.saveButtonAsMainBtn {
 		font-size: 13px;
 
 		svg {
@@ -72,14 +72,35 @@ div.controls {
 }
 
 button.saveButton {
-	background-color: green;
+	background-color: $primary-submit;
 	color: white;
-	margin-right: 20px;
+	margin-right: 15px;
+
 	&:hover {
-		background-color: #3d8f24;
+		background-color: $primary-submit-hover;
 	}
 }
 
+div.saveButtonAs {
+	margin-right: 15px;
+	button {
+		background-color: $primary-submit;
+		color: white;
+
+		&:hover {
+			background-color: $primary-submit-hover;
+		}
+	}
+}
+
+button.saveBtnArrow {
+	min-width: inherit;
+	padding: 0 6px;
+
+	svg {
+		margin: 0;
+	}
+}
 
 .generatorControls {
 	opacity: 0;
