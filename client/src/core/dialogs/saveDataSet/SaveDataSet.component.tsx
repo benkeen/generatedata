@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import styles from './SaveDataSet.scss';
 
@@ -9,14 +10,46 @@ export type SaveDataSetDialogProps = {
 	isLoggedIn: boolean;
 	onRedirectToLogin: () => void;
 	onClose: any;
+	onSave: (dataSetName: string) => void;
 	i18n: any;
 };
 
-const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, onRedirectToLogin, i18n }: SaveDataSetDialogProps): JSX.Element => {
+const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, onSave, onRedirectToLogin, i18n }: SaveDataSetDialogProps): JSX.Element => {
+	const newDataSetNameField = useRef<HTMLInputElement>();
+	const [newDataSetName, setNewDataSetName] = useState('');
+	const [newDataSetNameError, setNewDataSetErrorName] = useState('');
+
 	let title = i18n.save;
-	let content: any = '';
+	let content = (
+		<div className={styles.newDataSet}>
+			<TextField
+				ref={newDataSetNameField}
+				error={newDataSetNameError}
+				placeholder={i18n.dataSetName}
+				autoFocus
+				value={newDataSetName}
+				onChange={(e: any) => {
+					setNewDataSetName(e.target.value);
+					setNewDataSetErrorName('');
+				}}
+			/>
+		</div>
+	);
+
+	const saveDataSet = (e: any) => {
+		e.preventDefault();
+
+		if (!newDataSetName.trim()) {
+			setNewDataSetErrorName('Please enter the name of your data set');
+			newDataSetNameField.current!.focus();
+		} else {
+			onSave(newDataSetName);
+			// TODO loading spinner
+		}
+	};
+
 	let buttons = (
-		<Button onClick={onClose} color="primary" variant="outlined">
+		<Button type="submit" color="primary" variant="outlined">
 			{i18n.save}
 		</Button>
 	);
@@ -43,15 +76,17 @@ const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, onRedirectToLogin, i1
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
-			<div style={{ width: 420 }}>
-				<DialogTitle onClose={onClose}>{title}</DialogTitle>
-				<DialogContent dividers className={styles.contentPanel}>
-					{content}
-				</DialogContent>
-				<DialogActions>
-					{buttons}
-				</DialogActions>
-			</div>
+			<form onSubmit={saveDataSet}>
+				<div style={{ width: 420 }}>
+					<DialogTitle onClose={onClose}>{title}</DialogTitle>
+					<DialogContent dividers className={styles.contentPanel}>
+						{content}
+					</DialogContent>
+					<DialogActions>
+						{buttons}
+					</DialogActions>
+				</div>
+			</form>
 		</Dialog>
 	);
 };

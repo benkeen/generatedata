@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<SaveDataSetDialogProps>
 	onRedirectToLogin: () => {
 		dispatch(actions.hideSaveDataSetDialog());
 		dispatch(mainActions.setLoginDialogVisibility(true));
-	}
+	},
+	onSave: (dataSetName: string) => dispatch(actions.saveDataSet(dataSetName))
 });
 
 const container: any = connect(

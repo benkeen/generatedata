@@ -1,6 +1,7 @@
 declare namespace SaveDataSetScssNamespace {
   export interface ISaveDataSetScss {
     contentPanel: string;
+    newDataSet: string;
     notLoggedIn: string;
   }
 }

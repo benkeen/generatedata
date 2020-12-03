@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 			field: 'date_created'
 		},
 		accountId: {
-			type: DataTypes.DATE,
+			type: DataTypes.INTEGER(9),
 			allowNull: false,
 			field: 'account_id'
 		},

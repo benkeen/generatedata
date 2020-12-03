@@ -2,6 +2,7 @@ const db = require('../database');
 const authUtils = require('../utils/authUtils');
 const authResolvers = require('./resolvers/auth');
 const accountResolvers = require('./resolvers/account');
+const dataSetResolvers = require('./resolvers/dataSets');
 
 const resolvers = {
 	Query: {
@@ -30,7 +31,8 @@ const resolvers = {
 
 		// account-related resolvers
 		updateAccount: accountResolvers.updateAccount,
-		updatePassword: accountResolvers.updatePassword
+		updatePassword: accountResolvers.updatePassword,
+		saveNewDataSet: dataSetResolvers.saveNewDataSet
 	}
 };
 

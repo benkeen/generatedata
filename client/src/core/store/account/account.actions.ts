@@ -1,6 +1,7 @@
 import { SelectedAccountTab } from '~types/account';
 import { AccountEditingData } from '~store/account/account.reducer';
 import { getEditingData } from '~store/account/account.selectors';
+import { getDataSetSavePackage } from '~store/generator/generator.selectors';
 import { GDAction } from '~types/general';
 import { Dispatch } from 'redux';
 import { apolloClient } from '../../apolloClient';
@@ -86,17 +87,47 @@ export const HIDE_SAVE_DATA_SET_DIALOG = 'HIDE_SAVE_DATA_SET_DIALOG';
 export const hideSaveDataSetDialog = () => ({ type: HIDE_SAVE_DATA_SET_DIALOG });
 
 export const getDataSets = () => async (dispatch: Dispatch): Promise<any> => {
-	const response = await apolloClient.query({
-		query: gql`
-            query GetDataSets {
-                getDataSets {
-                    success
-                    error
-                }
-            }
-		`
-	});
+	// const response = await apolloClient.query({
+	// 	query: gql`
+    //         query GetDataSets {
+    //             getDataSets {
+    //                 success
+    //                 error
+    //             }
+    //         }
+	// 	`
+	// });
 
-	console.log(response, dispatch);
+	console.log(dispatch);
 };
 
+export const saveDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any) => {
+	const data: any = getDataSetSavePackage(getState());
+
+	const response = await apolloClient.mutate({
+		mutation: gql`
+            mutation SaveNewDataSet($dataSetName: String!, $settings: String!) {
+                saveNewDataSet(dataSetName: $dataSetName, settings: $settings) {
+                    success
+                    error
+					dataSetId
+                }
+            }
+		`,
+		variables: { dataSetName, settings: JSON.stringify(data) }
+	});
+
+	console.log(response);
+
+	// if (!response.data.updatePassword.success) {
+	// 	onError();
+	// 	return;
+	// }
+
+	// addToast({
+	// 	type: 'success',
+	// 	message: i18n.core.passwordUpdated
+	// });
+	// onSuccess();
+
+};

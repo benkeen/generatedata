@@ -317,3 +317,17 @@ export const shouldGeneratePreviewRows = createSelector(
 		return true;
 	}
 );
+
+export const getDataSetSavePackage = createSelector(
+	getExportType,
+	getCurrentExportTypeSettings,
+	getRows,
+	getSortedRows,
+	(exportType, exportTypeSettings, rows, sortedRows) => ({
+		exportType,
+		exportTypeSettings,
+		rows,
+		sortedRows
+	})
+);
+
