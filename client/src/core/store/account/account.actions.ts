@@ -84,3 +84,19 @@ export const showSaveDataSetDialog = () => ({ type: SHOW_SAVE_DATA_SET_DIALOG })
 
 export const HIDE_SAVE_DATA_SET_DIALOG = 'HIDE_SAVE_DATA_SET_DIALOG';
 export const hideSaveDataSetDialog = () => ({ type: HIDE_SAVE_DATA_SET_DIALOG });
+
+export const getDataSets = () => async (dispatch: Dispatch): Promise<any> => {
+	const response = await apolloClient.query({
+		query: gql`
+            query GetDataSets {
+                getDataSets {
+                    success
+                    error
+                }
+            }
+		`
+	});
+
+	console.log(response, dispatch);
+};
+

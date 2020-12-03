@@ -15,9 +15,9 @@ const resolvers = {
 			return db.accounts.findByPk(user.accountId);
 		},
 
-		configurations: async (root, args) => {
+		datasets: async (root, args) => {
 			authUtils.authenticate(token);
-			return db.configurations.findByPk(args.accountId);
+			return db.datasets.findByPk(args.accountId);
 		}
 	},
 

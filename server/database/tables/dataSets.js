@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
-	return sequelize.define('configurations', {
-		configurationId: {
+	return sequelize.define('dataSets', {
+		dataSetId: {
 			type: DataTypes.INTEGER(9),
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
-			field: 'configuration_id'
+			field: 'dataset_id'
 		},
 		status: {
 			type: DataTypes.ENUM('public', 'private'),
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
 			field: 'num_rows_generated'
 		}
 	}, {
-		tableName: 'configurations',
+		tableName: 'datasets',
 		timestamps: false
 	});
 };

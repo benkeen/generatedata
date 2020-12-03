@@ -7,30 +7,30 @@ GRANT CREATE, ALTER, INDEX, LOCK TABLES, REFERENCES, UPDATE, DELETE, DROP, SELEC
 
 FLUSH PRIVILEGES;
 
-DROP TABLE IF EXISTS `configurations`;
-CREATE TABLE `configurations` (
-  `configuration_id` mediumint(9) NOT NULL,
+DROP TABLE IF EXISTS `datasets`;
+CREATE TABLE `datasets` (
+  `dataset_id` mediumint(9) NOT NULL,
   `status` enum('public','private') NOT NULL,
   `date_created` datetime NOT NULL,
   `account_id` mediumint(9) NOT NULL,
   `num_rows_generated` mediumint(9) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `configurations` ADD PRIMARY KEY (`configuration_id`);
-ALTER TABLE `configurations` MODIFY `configuration_id` mediumint(9) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `datasets` ADD PRIMARY KEY (`dataset_id`);
+ALTER TABLE `datasets` MODIFY `dataset_id` mediumint(9) NOT NULL AUTO_INCREMENT;
 
 
-DROP TABLE IF EXISTS `configuration_history`;
-CREATE TABLE `configuration_history` (
+DROP TABLE IF EXISTS `dataset_history`;
+CREATE TABLE `dataset_history` (
   `history_id` mediumint(9) NOT NULL,
-  `configuration_id` mediumint(9) NOT NULL,
+  `dataset_id` mediumint(9) NOT NULL,
   `last_updated` datetime NOT NULL,
-  `configuration_name` varchar(100) NOT NULL,
+  `dataset_name` varchar(100) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `configuration_history` ADD PRIMARY KEY (`history_id`);
-ALTER TABLE `configuration_history` MODIFY `history_id` mediumint(9) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `dataset_history` ADD PRIMARY KEY (`history_id`);
+ALTER TABLE `dataset_history` MODIFY `history_id` mediumint(9) NOT NULL AUTO_INCREMENT;
 
 
 DROP TABLE IF EXISTS `settings`;

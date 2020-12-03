@@ -4,6 +4,7 @@ import SaveDataSetDialog, { SaveDataSetDialogProps } from './SaveDataSet.compone
 import * as selectors from '~store/generator/generator.selectors';
 import * as accountSelectors from '~store/account/account.selectors';
 import * as actions from '~store/account/account.actions';
+import * as mainActions from '~store/main/main.actions';
 import * as mainSelectors from '~store/main/main.selectors';
 
 
@@ -14,7 +15,11 @@ const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<SaveDataSetDialogProps> => ({
-	onClose: () => dispatch(actions.hideSaveDataSetDialog())
+	onClose: () => dispatch(actions.hideSaveDataSetDialog()),
+	onRedirectToLogin: () => {
+		dispatch(actions.hideSaveDataSetDialog());
+		dispatch(mainActions.setLoginDialogVisibility(true));
+	}
 });
 
 const container: any = connect(

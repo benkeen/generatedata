@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-	return sequelize.define('configuration_history', {
+	return sequelize.define('dataSetHistory', {
 		historyId: {
 			type: DataTypes.INTEGER(9),
 			allowNull: false,
@@ -7,26 +7,26 @@ module.exports = (sequelize, DataTypes) => {
 			autoIncrement: true,
 			field: 'history_id'
 		},
-		configurationId: {
+		dataSetId: {
 			type: DataTypes.INTEGER(9),
 			allowNull: false,
-			field: 'configuration_id'
+			field: 'dataset_id'
 		},
 		lastUpdated: {
 			type: DataTypes.DATE,
 			allowNull: false,
 			field: 'last_updated'
 		},
-		configurationName: {
+		dataSetName: {
 			type: DataTypes.DATE,
 			allowNull: false,
-			field: 'configuration_name'
+			field: 'dataset_name'
 		},
 		content: {
 			type: DataTypes.TEXT
 		}
 	}, {
-		tableName: 'configuration_history',
+		tableName: 'dataset_history',
 		timestamps: false
 	});
 };

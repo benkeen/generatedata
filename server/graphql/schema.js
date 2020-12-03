@@ -5,8 +5,8 @@ const typeDefs = gql`
         accounts: [Account]
         account: Account
         settings: [Setting]
-        configurations: [Configuration]
-        configuration(id: ID!): Configuration
+        datasets: [DataSet]
+        dataset(id: ID!): DataSet
     }
 	type Mutation {
 		login(email: String!, password: String!): AuthResponse
@@ -33,14 +33,14 @@ const typeDefs = gql`
         settingName: String
         settingValue: String
     }
-    type Configuration {
-        configurationId: ID
-		status: ConfigurationStatus
+    type DataSet {
+        dataSetId: ID
+		status: DataSetStatus
 		dateCreated: String
 		accountId: ID
 		numRowsGenerated: Int
 	}
-	enum ConfigurationStatus {
+	enum DataSetStatus {
 		PUBLIC
 		PRIVATE	
 	}

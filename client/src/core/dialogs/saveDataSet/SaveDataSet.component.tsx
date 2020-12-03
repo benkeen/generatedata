@@ -7,11 +7,12 @@ import styles from './SaveDataSet.scss';
 export type SaveDataSetDialogProps = {
 	visible: boolean;
 	isLoggedIn: boolean;
+	onRedirectToLogin: () => void;
 	onClose: any;
 	i18n: any;
 };
 
-const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, i18n }: SaveDataSetDialogProps): JSX.Element => {
+const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, onRedirectToLogin, i18n }: SaveDataSetDialogProps): JSX.Element => {
 	let title = i18n.save;
 	let content: any = '';
 	let buttons = (
@@ -30,7 +31,7 @@ const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, i18n }: SaveDataSetDi
 		);
 		buttons = (
 			<>
-				<Button onClick={onClose} color="primary" variant="outlined">
+				<Button onClick={onRedirectToLogin} color="primary" variant="outlined">
 					{i18n.login}
 				</Button>
 				<Button onClick={onClose} color="primary" variant="outlined">

@@ -1,4 +1,5 @@
 import React from 'react';
+import * as styles from '~core/account/Account.scss';
 
 export type DataSetsProps = {
 	i18n: any;
@@ -6,7 +7,9 @@ export type DataSetsProps = {
 
 const DataSets = ({ i18n }: DataSetsProps): JSX.Element => {
 	return (
-		<div>Data sets</div>
+		<section className={styles.page}>
+			<h2>Data sets</h2>
+		</section>
 	);
 };
 

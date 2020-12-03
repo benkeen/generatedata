@@ -4,6 +4,7 @@ describe('getRoutes', () => {
 	it('returns all available routes by default with the generator page the last one with the root path', () => {
 		const defaultPaths = [
 			'/account',
+			'/accounts',
 			'/login',
 			'/datasets',
 			'/'

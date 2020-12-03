@@ -8,7 +8,7 @@ const login = async (root, { email, password }, { res }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
 			'accountId', 'accountType', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated',
-			'dateExpires', 'numRowsGenerated', 'profileImage'
+			'dateExpires', 'numRowsGenerated'
 		],
 		where: {
 			email
@@ -99,7 +99,7 @@ const refreshToken = async (root, args, { token, req, res }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
 			'accountId', 'accountType', 'firstName', 'email', 'lastName', 'country', 'region', 'dateCreated',
-			'dateExpires', 'numRowsGenerated', 'profileImage'
+			'dateExpires', 'numRowsGenerated'
 		],
 		where: {
 			refreshToken

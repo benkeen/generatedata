@@ -43,10 +43,6 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(255),
 			field: 'last_name'
 		},
-		profileImage: {
-			type: DataTypes.STRING(255),
-			field: 'profile_image'
-		},
 		email: {
 			type: DataTypes.STRING(255),
 			allowNull: false
