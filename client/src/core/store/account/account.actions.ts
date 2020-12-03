@@ -78,3 +78,9 @@ export const savePassword = (currentPassword: string, newPassword: string, onSuc
 	});
 	onSuccess();
 };
+
+export const SHOW_SAVE_DATA_SET_DIALOG = 'SHOW_SAVE_DATA_SET_DIALOG';
+export const showSaveDataSetDialog = () => ({ type: SHOW_SAVE_DATA_SET_DIALOG });
+
+export const HIDE_SAVE_DATA_SET_DIALOG = 'HIDE_SAVE_DATA_SET_DIALOG';
+export const hideSaveDataSetDialog = () => ({ type: HIDE_SAVE_DATA_SET_DIALOG });

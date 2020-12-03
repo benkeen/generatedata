@@ -4,9 +4,10 @@ import env from '../../../_env';
 import Footer, { FooterProps } from './Footer.component';
 import { GDLocale } from '~types/general';
 import * as selectors from '../store/generator/generator.selectors';
-import * as mainSelectors from '../store/main/main.selectors';
 import * as actions from '../store/generator/generator.actions';
+import * as mainSelectors from '../store/main/main.selectors';
 import * as mainActions from '../store/main/main.actions';
+import * as accountActions from '../store/account/account.actions';
 import * as coreUtils from '../../utils/coreUtils';
 
 const mapStateToProps = (state: any): Partial<FooterProps> => ({
@@ -14,15 +15,14 @@ const mapStateToProps = (state: any): Partial<FooterProps> => ({
 	locale: mainSelectors.getLocale(state),
 	scriptVersion: coreUtils.getScriptVersion(),
 	isEnabled: selectors.hasData(state),
-	isLoggedIn: mainSelectors.isLoggedIn(state),
 	currentPage: mainSelectors.getCurrentPage(state),
-	availableLocales: env.availableLocales,
+	availableLocales: env.availableLocales
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	// @ts-ignore-line
 	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
-	onSave: (): any => {},
+	onSave: () => dispatch(accountActions.showSaveDataSetDialog()),
 	onGenerate: (): any => dispatch(actions.showGenerationSettingsPanel())
 });
 

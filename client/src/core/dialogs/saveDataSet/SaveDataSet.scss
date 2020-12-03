@@ -1,0 +1,38 @@
+@import "../../../styles/variables";
+
+div.contentPanel {
+	display: flex;
+	align-items: center;
+	overflow: hidden !important;
+	padding: 10px 16px;
+
+	.notLoggedIn {
+		margin: 8px 0;
+		line-height: 20px;
+		font-size: 13px;
+		display: flex;
+		align-items: center;
+
+		svg {
+			color: #275eb5;
+			opacity: 0.8;
+			font-size: 50px;
+			margin-right: 18px;
+		}
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+		li {
+			display: flex;
+			margin-bottom: 4px;
+		}
+
+		input {
+			margin-right: 5px;
+		}
+	}
+}

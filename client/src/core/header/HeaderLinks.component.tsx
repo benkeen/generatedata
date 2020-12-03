@@ -27,6 +27,8 @@ const HeaderLinks = ({ headerLinks, firstName, showLoginDialog, onLogout, i18n }
 			links.push(<li key="dataSets"><Link to="/datasets">{i18n.dataSets}</Link></li>);
 		} else if (headerLink === 'userAccount') {
 			links.push(<li key="account"><Link to="/account">{firstName}</Link></li>);
+		} else if (headerLink === 'accounts') {
+			links.push(<li key="accounts"><Link to="/accounts">{i18n.accounts}</Link></li>);
 		} else if (headerLink === 'logout') {
 			links.push(
 				<li className={styles.logoutLink} key="logout">

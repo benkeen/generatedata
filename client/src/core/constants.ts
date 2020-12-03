@@ -7,6 +7,15 @@ export default {
 	NUM_DEFAULT_ROWS: 4,
 	GITHUB_URL: 'https://github.com/benkeen/generatedata',
 	CHANGELOG_URL: 'https://github.com/benkeen/generatedata/blob/master/CHANGELOG.md',
+
+	// these map to the GD_APP_TYPE env var. They're the different available configurations for this GD installation
+	APP_TYPES: {
+		LOGIN: 'login',
+		SINGLE: 'single',
+		OPEN: 'open',
+		CLOSED: 'closed'
+	},
+
 	THEMES: [
 		{ value: 'ambiance', label: 'Ambiance' },
 		{ value: 'cobalt', label: 'Cobalt' },

@@ -13,6 +13,7 @@ export type AccountEditingData = {
 };
 
 export type AccountState = {
+	showSaveDataSetDialog: boolean;
 	firstName: string;
 	lastName: string;
 	email: string;
@@ -28,6 +29,7 @@ export type AccountState = {
 };
 
 export const initialState: AccountState = {
+	showSaveDataSetDialog: false,
 	firstName: '',
 	lastName: '',
 	email: '',
@@ -110,6 +112,14 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.email = draft.editingData.email;
 			draft.country = draft.editingData.country;
 			draft.region = draft.editingData.region;
+			break;
+
+		case actions.SHOW_SAVE_DATA_SET_DIALOG:
+			draft.showSaveDataSetDialog = true;
+			break;
+
+		case actions.HIDE_SAVE_DATA_SET_DIALOG:
+			draft.showSaveDataSetDialog = false;
 			break;
 	}
 

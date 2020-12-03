@@ -34,7 +34,7 @@ export const RESET_STORE = 'RESET_STORE';
 export const resetStore = (): GDAction => ({ type: RESET_STORE });
 
 export const PAGE_CHANGE = 'PAGE_CHANGE';
-export const initRouteListener = (history: any) => {
+export const initRouteListener = (history: any): void => {
 	history.listen((location: any) => {
 		store.dispatch({
 			type: PAGE_CHANGE,

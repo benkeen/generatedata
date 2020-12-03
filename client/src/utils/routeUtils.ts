@@ -1,9 +1,11 @@
 import Generator from '~core/generator/Generator.container';
 import AccountPage from '~core/account/Account.container';
 import DataSetsPage from '~core/account/dataSets/DataSets.container';
+import LoginPage from '~core/auth/loginPage/LoginPage.container';
 import AccountsPage from '~core/accounts/Accounts.container';
 import { GDHeaderLink, GDRoute } from '~types/general';
 import { AccountType } from '~types/account';
+import C from '../core/constants';
 
 let customRoutes: GDRoute[] = [];
 export const registerCustomRoutes = (routes: GDRoute[]): void => {
@@ -16,7 +18,7 @@ export const getRoutes = (): GDRoute[] => {
 	const routes: GDRoute[] = [
 		{ path: '/account', component: AccountPage },
 		{ path: '/accounts', component: AccountsPage },
-		{ path: '/login', component: () => {} }, // LoginPage
+		{ path: '/login', component: LoginPage },
 		{ path: '/datasets', component: DataSetsPage }
 	];
 
@@ -58,19 +60,28 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 
 	let links: GDHeaderLink[] = [];
 	switch (appType) {
-		case 'login':
+
+		// login - allows anonymous access but without logging in they can't save their data sets or generate more than
+		// GD_MAX_DEMO_MODE_ROWS at a time. Only the admin account can create new accounts
+		case C.APP_TYPES.LOGIN:
 			if (isLoggedIn) {
-				links = ['generator', 'dataSets', 'separator', 'userAccount', 'logout'];
+				links = ['generator'];
+				if (accountType === 'admin' || accountType === 'superadmin') {
+					links.push('accounts');
+				}
+				links = links.concat(['dataSets', 'separator', 'userAccount', 'logout']);
 			} else {
 				links = ['generator', 'separator', 'loginDialog'];
 			}
 			break;
 
-		case 'single':
+		// single - there's only ever a single account and that user is logged in by default
+		case C.APP_TYPES.SINGLE:
 			links = ['generator', 'separator', 'userAccount'];
 			break;
 
-		case 'open':
+		// open - anyone that has access to the URL can use the application anonymously or create an account
+		case C.APP_TYPES.OPEN:
 			if (isLoggedIn) {
 				links = ['generator', 'separator', 'dataSets', 'userAccount', 'logout'];
 			} else {
@@ -78,7 +89,8 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 			}
 			break;
 
-		case 'closed':
+		// closed - no-one can access the script without logging in first
+		case C.APP_TYPES.CLOSED:
 			if (isLoggedIn) {
 				links = ['generator', 'separator', 'dataSets', 'userAccount', 'logout'];
 			} else {

@@ -29,7 +29,7 @@ export type GenEnvironment = 'API' | 'UI';
 // these have special semantic meaning within the script. When the navigation includes them, things like the label
 // and action are preset within the core script
 export type GDPresetHeaderLinks = 'generator' | 'signup' | 'separator' | 'dataSets' | 'userAccount' | 'loginDialog' |
-	'loginPage' | 'logout';
+	'accounts' | 'loginPage' | 'logout';
 
 // this is for custom header links
 export type GDCustomHeaderLink = {

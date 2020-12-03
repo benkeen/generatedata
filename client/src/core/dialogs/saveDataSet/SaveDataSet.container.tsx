@@ -1,0 +1,25 @@
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import SaveDataSetDialog, { SaveDataSetDialogProps } from './SaveDataSet.component';
+import * as selectors from '~store/generator/generator.selectors';
+import * as accountSelectors from '~store/account/account.selectors';
+import * as actions from '~store/account/account.actions';
+import * as mainSelectors from '~store/main/main.selectors';
+
+
+const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
+	i18n: selectors.getCoreI18n(state),
+	visible: accountSelectors.shouldShowSaveDataSetDialog(state),
+	isLoggedIn: mainSelectors.isLoggedIn(state)
+});
+
+const mapDispatchToProps = (dispatch: Dispatch): Partial<SaveDataSetDialogProps> => ({
+	onClose: () => dispatch(actions.hideSaveDataSetDialog())
+});
+
+const container: any = connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(SaveDataSetDialog);
+
+export default container;

@@ -13,6 +13,7 @@ export const getNumGeneratedRows = (state: Store): number => state.account.numRo
 export const getProfileImage = (state: Store): string | null => state.account.profileImage;
 export const getSelectedTab = (state: Store): SelectedAccountTab => state.account.selectedTab;
 export const getEditingData = (state: Store): AccountEditingData => state.account.editingData;
+export const shouldShowSaveDataSetDialog = (state: Store): boolean => state.account.showSaveDataSetDialog;
 
 export const accountHasChanges = createSelector(
 	getFirstName,

@@ -12,6 +12,7 @@ import styles from './Footer.scss';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
+import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
 import Link from '~components/Link';
 import { GDLocale } from '~types/general';
 import C from '../constants';
@@ -25,7 +26,6 @@ export type FooterProps = {
 	onGenerate: () => void;
 	onSave: () => void;
 	isEnabled: boolean;
-	isLoggedIn: boolean;
 	currentPage: string;
 	availableLocales: GDLocale[];
 };
@@ -53,7 +53,7 @@ const useListStyles = makeStyles(() =>
 );
 
 const Footer = ({
-	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, isLoggedIn, currentPage, availableLocales
+	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
@@ -100,18 +100,13 @@ const Footer = ({
 		);
 	};
 
-	const getSaveButton = (): JSX.Element | null => {
-		if (!isLoggedIn) {
-			return null;
-		}
-
-		return (
-			<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
-				<SaveIcon />
-				{i18n.save}
-			</Button>
-		);
-	};
+	// we always show the login button
+	const getSaveButton = (): JSX.Element | null => (
+		<Button onClick={onSave} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
+			<SaveIcon />
+			{i18n.save}
+		</Button>
+	);
 
 	let generatorControlsClasses = styles.generatorControls;
 	if (currentPage === process.env.GD_GENERATOR_PATH) {
@@ -119,40 +114,43 @@ const Footer = ({
 	}
 
 	return (
-		<footer className={styles.footer}>
-			<div>
-				<ul>
-					<li>
-						<Link url={C.GITHUB_URL} offSite={true}>
-							<Github />
-						</Link>
-					</li>
-					{getLocaleSelector()}
-					<li className={styles.scriptVersion}>
-						<a href={C.CHANGELOG_URL} target="_blank" rel="noopener noreferrer">{scriptVersion}</a>
-					</li>
-					<li>
-						<ActivePacketsList />
-					</li>
-				</ul>
+		<>
+			<footer className={styles.footer}>
+				<div>
+					<ul>
+						<li>
+							<Link url={C.GITHUB_URL} offSite={true}>
+								<Github />
+							</Link>
+						</li>
+						{getLocaleSelector()}
+						<li className={styles.scriptVersion}>
+							<a href={C.CHANGELOG_URL} target="_blank" rel="noopener noreferrer">{scriptVersion}</a>
+						</li>
+						<li>
+							<ActivePacketsList />
+						</li>
+					</ul>
 
-				<div className={generatorControlsClasses}>
-					<PanelControls className={styles.controls} />
-					{getSaveButton()}
-					<Button
-						onClick={onGenerate}
-						className={styles.generateButton}
-						variant="contained"
-						color="primary"
-						disableElevation
-						disabled={!isEnabled}
-					>
-						<GearIcon />
-						{i18n.generate}
-					</Button>
+					<div className={generatorControlsClasses}>
+						<PanelControls className={styles.controls} />
+						{getSaveButton()}
+						<Button
+							onClick={onGenerate}
+							className={styles.generateButton}
+							variant="contained"
+							color="primary"
+							disableElevation
+							disabled={!isEnabled}
+						>
+							<GearIcon />
+							{i18n.generate}
+						</Button>
+					</div>
 				</div>
-			</div>
-		</footer>
+			</footer>
+			<SaveDataSetDialog />
+		</>
 	);
 };
 

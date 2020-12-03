@@ -7,8 +7,8 @@ const authUtils = require('../../utils/authUtils');
 const login = async (root, { email, password }, { res }) => {
 	const user = await db.accounts.findOne({
 		attributes: [
-			'accountId', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated', 'dateExpires',
-			'numRowsGenerated', 'profileImage'
+			'accountId', 'accountType', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated',
+			'dateExpires', 'numRowsGenerated', 'profileImage'
 		],
 		where: {
 			email
@@ -98,8 +98,8 @@ const refreshToken = async (root, args, { token, req, res }) => {
 	const refreshToken = req.cookies.refreshToken;
 	const user = await db.accounts.findOne({
 		attributes: [
-			'accountId', 'firstName', 'email', 'lastName', 'country', 'region', 'dateCreated', 'dateExpires',
-			'numRowsGenerated', 'profileImage'
+			'accountId', 'accountType', 'firstName', 'email', 'lastName', 'country', 'region', 'dateCreated',
+			'dateExpires', 'numRowsGenerated', 'profileImage'
 		],
 		where: {
 			refreshToken
