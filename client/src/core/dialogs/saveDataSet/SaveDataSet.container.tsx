@@ -11,7 +11,9 @@ import * as mainSelectors from '~store/main/main.selectors';
 const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: accountSelectors.shouldShowSaveDataSetDialog(state),
-	isLoggedIn: mainSelectors.isLoggedIn(state)
+	isLoggedIn: mainSelectors.isLoggedIn(state),
+	currentDataSetId: selectors.getCurrentDataSetId(state),
+	currentDataSetName: selectors.getCurrentDataSetName(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<SaveDataSetDialogProps> => ({

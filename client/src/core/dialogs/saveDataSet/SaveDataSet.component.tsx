@@ -11,10 +11,14 @@ export type SaveDataSetDialogProps = {
 	onRedirectToLogin: () => void;
 	onClose: any;
 	onSave: (dataSetName: string) => void;
+	currentDataSetId: number | null;
+	currentDataSetName: string;
 	i18n: any;
 };
 
-const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, onSave, onRedirectToLogin, i18n }: SaveDataSetDialogProps): JSX.Element => {
+const SaveDataSetDialog = ({
+	visible, isLoggedIn, onClose, onSave, onRedirectToLogin, currentDataSetId, currentDataSetName, i18n
+}: SaveDataSetDialogProps): JSX.Element => {
 	const newDataSetNameField = useRef<HTMLInputElement>();
 	const [newDataSetName, setNewDataSetName] = useState('');
 	const [newDataSetNameError, setNewDataSetErrorName] = useState('');
@@ -40,7 +44,7 @@ const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, onSave, onRedirectToL
 		e.preventDefault();
 
 		if (!newDataSetName.trim()) {
-			setNewDataSetErrorName('Please enter the name of your data set');
+			setNewDataSetErrorName(i18n.missingDataSetName);
 			newDataSetNameField.current!.focus();
 		} else {
 			onSave(newDataSetName);
@@ -55,7 +59,7 @@ const SaveDataSetDialog = ({ visible, isLoggedIn, onClose, onSave, onRedirectToL
 	);
 
 	if (!isLoggedIn) {
-		title = 'Please login';
+		title = i18n.pleaseLogin;
 		content = (
 			<div className={styles.notLoggedIn}>
 				<PersonAddIcon />

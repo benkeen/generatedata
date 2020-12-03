@@ -12,18 +12,14 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 			field: 'dataset_id'
 		},
-		lastUpdated: {
+		dateCreated: {
 			type: DataTypes.DATE,
 			allowNull: false,
-			field: 'last_updated'
-		},
-		dataSetName: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			field: 'dataset_name'
+			field: 'date_created'
 		},
 		content: {
-			type: DataTypes.TEXT
+			type: DataTypes.TEXT,
+			allowNull: false
 		}
 	}, {
 		tableName: 'dataset_history',

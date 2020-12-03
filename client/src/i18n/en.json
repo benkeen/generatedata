@@ -187,5 +187,24 @@
 	"yourAccount": "Your Account",
 
   "signup": "Sign Up",
-  "register": "Register"
+  "register": "Register",
+  "dataSetSaved": "Your data set has been saved.",
+  "missingDataSetName": "Please enter the name of your data set",
+  "pleaseLogin": "Please login"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

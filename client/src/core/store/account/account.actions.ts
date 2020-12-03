@@ -101,33 +101,41 @@ export const getDataSets = () => async (dispatch: Dispatch): Promise<any> => {
 	console.log(dispatch);
 };
 
+export const SET_CURRENT_DATA_SET = 'SET_CURRENT_DATA_SET';
 export const saveDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any) => {
+	const i18n = getStrings();
 	const data: any = getDataSetSavePackage(getState());
 
 	const response = await apolloClient.mutate({
 		mutation: gql`
-            mutation SaveNewDataSet($dataSetName: String!, $settings: String!) {
-                saveNewDataSet(dataSetName: $dataSetName, settings: $settings) {
+            mutation SaveNewDataSet($dataSetName: String!, $content: String!) {
+                saveNewDataSet(dataSetName: $dataSetName, content: $content) {
                     success
                     error
 					dataSetId
                 }
             }
 		`,
-		variables: { dataSetName, settings: JSON.stringify(data) }
+		variables: {
+			dataSetName,
+			content: JSON.stringify(data)
+		}
 	});
 
-	console.log(response);
+	if (response.data.saveNewDataSet.success) {
+		dispatch({
+			type: SET_CURRENT_DATA_SET,
+			payload: {
+				dataSetName,
+				dataSetId: parseInt(response.data.saveNewDataSet.dataSetId, 10)
+			}
+		});
 
-	// if (!response.data.updatePassword.success) {
-	// 	onError();
-	// 	return;
-	// }
+		dispatch(hideSaveDataSetDialog());
 
-	// addToast({
-	// 	type: 'success',
-	// 	message: i18n.core.passwordUpdated
-	// });
-	// onSuccess();
-
+		addToast({
+			type: 'success',
+			message: i18n.core.dataSetSaved
+		});
+	}
 };

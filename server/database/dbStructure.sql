@@ -10,6 +10,7 @@ FLUSH PRIVILEGES;
 DROP TABLE IF EXISTS `datasets`;
 CREATE TABLE `datasets` (
   `dataset_id` mediumint(9) NOT NULL,
+  `dataset_name` varchar(255) NOT NULL DEFAULT '',
   `status` enum('public','private') NOT NULL,
   `date_created` datetime NOT NULL,
   `account_id` mediumint(9) NOT NULL,
@@ -24,8 +25,7 @@ DROP TABLE IF EXISTS `dataset_history`;
 CREATE TABLE `dataset_history` (
   `history_id` mediumint(9) NOT NULL,
   `dataset_id` mediumint(9) NOT NULL,
-  `last_updated` datetime NOT NULL,
-  `dataset_name` varchar(100) NOT NULL,
+  `date_created` datetime NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

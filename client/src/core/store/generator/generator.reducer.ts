@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import produce from 'immer';
 import * as actions from './generator.actions';
 import * as mainActions from '../main/main.actions';
+import * as accountActions from '../account/account.actions';
 import * as packetActions from '../packets/packets.actions';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
@@ -67,6 +68,8 @@ export type GeneratorState = {
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
 	numRowsToGenerate: number;
+	currentDataSetId: number | null;
+	currentDataSetName: string;
 };
 
 export const getInitialState = (): GeneratorState => ({
@@ -94,7 +97,9 @@ export const getInitialState = (): GeneratorState => ({
 	numRowsToGenerate: env.defaultNumRows,
 	stripWhitespace: false,
 	lastLayoutWidth: null,
-	lastLayoutHeight: null
+	lastLayoutHeight: null,
+	currentDataSetId: null,
+	currentDataSetName: ''
 });
 
 export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
@@ -110,6 +115,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		case actions.CLEAR_GRID:
 			draft.rows = {};
 			draft.sortedRows = [];
+			draft.currentDataSetId = null;
 			break;
 
 		case actions.RESET_GENERATOR: {
@@ -120,7 +126,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			const settingsToReset = [
 				'exportType', 'showGrid', 'showPreview', 'generatorLayout', 'showExportSettings', 'numPreviewRows',
 				'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'exportSettingsTab', 'numRowsToGenerate',
-				'stripWhitespace'
+				'stripWhitespace', 'currentDataSetId'
 			];
 			settingsToReset.forEach((setting: any) => {
 				// @ts-ignore-line
@@ -130,7 +136,6 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			Object.keys(action.payload.exportTypeInitialStates).forEach((et: ExportTypeFolder) => {
 				draft.exportTypeSettings[et] = action.payload.exportTypeInitialStates[et];
 			});
-
 			break;
 		}
 
@@ -167,7 +172,6 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			break;
 		}
 
-		// TODO clean up
 		case actions.REMOVE_ROW: {
 			const trimmedRowIds = draft.sortedRows.filter((i) => i !== action.payload.id);
 			const updatedRows: DataRows = {};
@@ -297,7 +301,13 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 		case packetActions.START_GENERATION:
 			draft.showGenerationSettingsPanel = false;
 			break;
+
+		case accountActions.SET_CURRENT_DATA_SET:
+			draft.currentDataSetName = action.payload.dataSetName;
+			draft.currentDataSetId = action.payload.dataSetId;
+			break;
 	}
 }, getInitialState());
 
 export default reducer;
+

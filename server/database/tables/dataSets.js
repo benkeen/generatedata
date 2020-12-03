@@ -7,6 +7,11 @@ module.exports = (sequelize, DataTypes) => {
 			autoIncrement: true,
 			field: 'dataset_id'
 		},
+		dataSetName: {
+			type: DataTypes.STRING(255),
+			field: 'dataset_name',
+			allowNull: false
+		},
 		status: {
 			type: DataTypes.ENUM('public', 'private'),
 			allowNull: false
@@ -23,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		numRowsGenerated: {
 			type: DataTypes.INTEGER(9),
-			field: 'num_rows_generated'
+			field: 'num_rows_generated',
+			allowNull: false
 		}
 	}, {
 		tableName: 'datasets',

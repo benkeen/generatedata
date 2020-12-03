@@ -36,6 +36,8 @@ export const getLastLayoutWidth = (state: Store): number | null => state.generat
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;
 export const isInitialDependenciesLoaded = (state: Store): boolean => state.generator.initialDependenciesLoaded;
 export const shouldStripWhitespace = (state: Store): boolean => state.generator.stripWhitespace;
+export const getCurrentDataSetId = (state: Store): number | null => state.generator.currentDataSetId;
+export const getCurrentDataSetName = (state: Store): string => state.generator.currentDataSetName;
 
 export const getRowIds = createSelector(
 	getRows,
