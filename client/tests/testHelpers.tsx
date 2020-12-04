@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
@@ -15,6 +15,9 @@ import generatorReducer from '~store/generator/generator.reducer';
 import mainReducer from '~store/main/main.reducer';
 import packetsReducer from '~store/packets/packets.reducer';
 import accountReducer from '~store/account/account.reducer';
+import accountsReducer from '~store/accounts/accounts.reducer';
+import thunk from 'redux-thunk';
+import actionsInterceptor from '~core/actionInterceptor';
 
 const i18n = require('../src/i18n/en.json');
 const jsonI18n = require('../src/plugins/exportTypes/JSON/i18n/en.json');
@@ -23,14 +26,20 @@ const rootReducer = combineReducers({
 	generator: generatorReducer,
 	main: mainReducer,
 	packets: packetsReducer,
-	account: accountReducer
+	account: accountReducer,
+	accounts: accountsReducer
 });
 
 export const renderWithStoreAndRouter = (
 	component: any,
 	{
 		initialState = getTestState(),
-		store = createStore(rootReducer, initialState),
+		store = createStore(rootReducer, initialState, compose(
+			applyMiddleware(
+				thunk,
+				actionsInterceptor
+			)
+		)),
 		route = '/',
 		history = createMemoryHistory({ initialEntries: [route] }),
 	}: any = {}

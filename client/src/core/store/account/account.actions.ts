@@ -152,7 +152,7 @@ export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dis
 	// TODO error handling
 };
 
-export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState: any) => {
+export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 
 	const state = getState();
@@ -174,6 +174,7 @@ export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState:
 			content: JSON.stringify(data)
 		}
 	});
+
 
 };
 

@@ -12,7 +12,7 @@ const mapStateToProps = (state: Store): Partial<AccountsPageProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<AccountsPageProps> => ({
-	onInit: () => dispatch(accountsActions.getAccounts())
+	onInit: (): any => dispatch(accountsActions.getAccounts())
 });
 
 const container: any = connect(
