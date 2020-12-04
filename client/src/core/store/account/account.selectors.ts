@@ -14,6 +14,7 @@ export const getProfileImage = (state: Store): string | null => state.account.pr
 export const getSelectedTab = (state: Store): SelectedAccountTab => state.account.selectedTab;
 export const getEditingData = (state: Store): AccountEditingData => state.account.editingData;
 export const shouldShowSaveDataSetDialog = (state: Store): boolean => state.account.showSaveDataSetDialog;
+export const getDataSets = (state: Store): any[] => state.account.dataSets;
 
 export const accountHasChanges = createSelector(
 	getFirstName,

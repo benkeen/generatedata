@@ -23,7 +23,7 @@ export type AccountState = {
 	accountType: AccountType;
 	profileImage: string | null;
 	numRowsGenerated: number;
-	configurations: [];
+	dataSets: any[];
 	selectedTab: SelectedAccountTab;
 	editingData: AccountEditingData;
 };
@@ -39,7 +39,7 @@ export const initialState: AccountState = {
 	accountType: 'user',
 	profileImage: null,
 	numRowsGenerated: 0,
-	configurations: [],
+	dataSets: [],
 	selectedTab: 'yourAccount',
 	editingData: {
 		firstName: '',
@@ -65,7 +65,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.lastName = '';
 			draft.profileImage = null;
 			draft.numRowsGenerated = 0;
-			draft.configurations = [];
+			draft.dataSets = [];
 			break;
 
 		case mainActions.SET_AUTHENTICATION_DATA: {
@@ -120,6 +120,10 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 
 		case actions.HIDE_SAVE_DATA_SET_DIALOG:
 			draft.showSaveDataSetDialog = false;
+			break;
+
+		case actions.LOAD_DATA_SETS:
+			draft.dataSets = action.payload.dataSets;
 			break;
 	}
 

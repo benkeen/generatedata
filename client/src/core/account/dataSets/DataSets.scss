@@ -1,0 +1,45 @@
+.page {
+	font-size: 13px;
+}
+
+.row {
+	display: flex;
+	width: 100%;
+	padding: 6px;
+}
+
+.body .row {
+	&:hover {
+		background-color: #f9f9f9;
+	}
+}
+
+.header {
+	font-weight: bold;
+	border-bottom: 1px solid #333333;
+}
+
+.dataSetName {
+	flex: 1;
+}
+
+.dateCreated {
+	flex: 1;
+}
+
+.lastModified {
+	flex: 1;
+}
+
+.numRowsGenerated {
+	flex: 1;
+}
+
+.status {
+	flex: 0 0 100px;
+}
+
+.del {
+	flex: 0 0 30px;
+	align-items: center;
+}

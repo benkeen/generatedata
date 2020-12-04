@@ -86,20 +86,30 @@ export const showSaveDataSetDialog = (): GDAction => ({ type: SHOW_SAVE_DATA_SET
 export const HIDE_SAVE_DATA_SET_DIALOG = 'HIDE_SAVE_DATA_SET_DIALOG';
 export const hideSaveDataSetDialog = (): GDAction => ({ type: HIDE_SAVE_DATA_SET_DIALOG });
 
-// export const getDataSets = () => async (dispatch: Dispatch): Promise<any> => {
-// 	// const response = await apolloClient.query({
-// 	// 	query: gql`
-//     //         query GetDataSets {
-//     //             getDataSets {
-//     //                 success
-//     //                 error
-//     //             }
-//     //         }
-// 	// 	`
-// 	// });
-//
-// 	console.log(dispatch);
-// };
+export const LOAD_DATA_SETS = 'LOAD_DATA_SETS';
+
+export const getDataSets = (): any => async (dispatch: Dispatch): Promise<any> => {
+	const response = await apolloClient.query({
+		query: gql`
+            query GetDataSets {
+                datasets {
+					dataSetId
+					dataSetName
+                    status
+					dateCreated
+					numRowsGenerated
+				}
+            }
+		`
+	});
+
+	dispatch({
+		type: LOAD_DATA_SETS,
+		payload: {
+			dataSets: response.data.datasets
+		}
+	});
+};
 
 export const SET_CURRENT_DATA_SET = 'SET_CURRENT_DATA_SET';
 export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {

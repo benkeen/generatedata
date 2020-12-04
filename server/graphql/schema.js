@@ -37,14 +37,11 @@ const typeDefs = gql`
     }
     type DataSet {
         dataSetId: ID
-		status: DataSetStatus
+	    dataSetName: String
+		status: String
 		dateCreated: String
 		accountId: ID
 		numRowsGenerated: Int
-	}
-	enum DataSetStatus {
-		PUBLIC
-		PRIVATE	
 	}
     type AuthResponse {
         success: Boolean

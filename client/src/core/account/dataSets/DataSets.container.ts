@@ -1,15 +1,19 @@
-// import { Dispatch } from 'redux';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import * as selectors from '~store/generator/generator.selectors';
+import * as actionSelectors from '~store/account/account.selectors';
+import * as accountActions from '~store/account/account.actions';
 import DataSets, { DataSetsProps } from './DataSets.component';
 import { Store } from '~types/general';
+import { withAuth } from '~core/auth/withAuth';
 
 const mapStateToProps = (state: Store): Partial<DataSetsProps> => ({
-	i18n: selectors.getCoreI18n(state)
+	i18n: selectors.getCoreI18n(state),
+	dataSets: actionSelectors.getDataSets(state)
 });
 
-// dispatch: Dispatch
-const mapDispatchToProps = (): Partial<DataSetsProps> => ({
+const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetsProps> => ({
+	onInit: () => dispatch(accountActions.getDataSets())
 });
 
 const container: any = connect(
@@ -17,4 +21,4 @@ const container: any = connect(
 	mapDispatchToProps
 )(DataSets);
 
-export default container;
+export default withAuth(container);
