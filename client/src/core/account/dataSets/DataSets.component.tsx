@@ -10,8 +10,6 @@ export type DataSetsProps = {
 };
 
 const Row = ({ dataSetName, dateCreated, numRowsGenerated }: any): JSX.Element => {
-	console.log(dateCreated, numRowsGenerated);
-
 	return (
 		<div className={styles.row}>
 			<div className={styles.dataSetName}>{dataSetName}</div>

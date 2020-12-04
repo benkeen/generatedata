@@ -8,6 +8,7 @@ import { getInitialState } from '~store/generator/generator.reducer';
 import { initialState as initialMainState } from '~store/main/main.reducer';
 import { initialState as initialPacketState } from '~store/packets/packets.reducer';
 import { initialState as initialAccountState } from '~store/account/account.reducer';
+import { initialState as initialAccountsState } from '~store/accounts/accounts.reducer';
 import * as langUtils from '~utils/langUtils';
 import { setLocaleFileLoaded } from '~store/main/main.actions';
 import generatorReducer from '~store/generator/generator.reducer';
@@ -59,5 +60,6 @@ export const getTestState = () => ({
 	generator: getInitialState(),
 	main: initialMainState,
 	packets: initialPacketState,
-	account: initialAccountState
+	account: initialAccountState,
+	accounts: initialAccountsState
 });

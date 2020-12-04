@@ -9,6 +9,7 @@ import mainReducer from './main/main.reducer';
 import generatorReducer from './generator/generator.reducer';
 import packetsReducer from './packets/packets.reducer';
 import accountReducer from './account/account.reducer';
+import accountsReducer from './accounts/accounts.reducer';
 
 let persistor: Persistor;
 function initStore(state: any): any {
@@ -67,7 +68,8 @@ function initStore(state: any): any {
 		generator: persistReducer(generatorPersistConfig, generatorReducer),
 		main: persistReducer(mainPersistConfig, mainReducer),
 		packets: persistReducer(packetsPersistConfig, packetsReducer),
-		account: accountReducer
+		account: accountReducer,
+		accounts: accountsReducer
 	});
 
 	const persistedRootReducer = persistReducer(rootPersistConfig, rootReducer);
