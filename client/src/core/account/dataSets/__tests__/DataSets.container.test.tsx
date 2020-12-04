@@ -1,16 +1,16 @@
 import React from 'react';
-import Accounts from '../Accounts.container';
-import { renderWithStoreAndRouter } from '../../../../tests/testHelpers';
+import DataSets from '../DataSets.container';
+import { renderWithStoreAndRouter } from '../../../../../tests/testHelpers';
 
-describe('Accounts', () => {
+describe('DataSets', () => {
 
 	// need to finish deciding exactly what the header will contain before adding these tests
 
 	it('renders', () => {
 		const { baseElement } = renderWithStoreAndRouter(
-			<Accounts />
+			<DataSets />
 		);
 
-		expect(baseElement.querySelector('header')).toBeTruthy();
+		expect(baseElement.querySelector('div')).toBeTruthy();
 	});
 });

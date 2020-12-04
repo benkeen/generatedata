@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from '../Header.container';
+import Page from '../Page.container';
 import { renderWithStoreAndRouter } from '../../../../tests/testHelpers';
 
-describe('Header', () => {
+describe('Page', () => {
 
 	// need to finish deciding exactly what the header will contain before adding these tests
 
 	it('renders', () => {
 		const { baseElement } = renderWithStoreAndRouter(
-			<Header />
+			<Page />
 		);
 
 		expect(baseElement.querySelector('header')).toBeTruthy();

@@ -1,6 +1,6 @@
 # generatedata.com
 
-[![Build Status](https://travis-ci.org/benkeen/generatedata.svg?branch=master)](https://travis-ci.org/benkeen/generatedata)
+[![Build Status](https://travis-ci.com/benkeen/generatedata.svg?branch=master)](https://travis-ci.com/benkeen/generatedata)
 [![Coverage Status](https://coveralls.io/repos/github/benkeen/generatedata/badge.svg?branch=master)](https://coveralls.io/github/benkeen/generatedata?branch=master)
 
 This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 

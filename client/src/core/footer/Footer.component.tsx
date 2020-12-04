@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Grow from '@material-ui/core/Grow';
+import Popper from '@material-ui/core/Popper';
 import LanguageIcon from '@material-ui/icons/Language';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import SaveIcon from '@material-ui/icons/Save';
@@ -28,6 +30,7 @@ export type FooterProps = {
 	onGenerate: () => void;
 	onSave: () => void;
 	onSaveNewDataSet: () => void;
+	onSaveAs: () => void;
 	isEnabled: boolean;
 	currentPage: string;
 	currentDataSetId: number | null;
@@ -58,10 +61,12 @@ const useListStyles = makeStyles(() =>
 
 const Footer = ({
 	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
-	currentDataSetId, onSaveNewDataSet
+	currentDataSetId, onSaveNewDataSet, onSaveAs
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
+	const saveAsButtonRef = React.useRef(null);
 	const anchorRef = React.useRef<HTMLDivElement>(null);
+	const [saveAsMenuOpen, setSaveAsMenuOpen] = useState(false);
 
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
@@ -69,6 +74,11 @@ const Footer = ({
 	useOnClickOutside(popoverRef, () => {
 		setLocaleTooltipVisibility(false);
 	});
+
+	useOnClickOutside(saveAsButtonRef, () => {
+		setSaveAsMenuOpen(false);
+	});
+
 
 	const getLocaleSelector = (): JSX.Element | null => {
 		if (availableLocales.length < 1) {
@@ -110,38 +120,57 @@ const Footer = ({
 	// we always show the login button. It'll show a "you must login in" dialog if they're not logged in/registered
 	const getSaveButton = (): JSX.Element | null => {
 
-		const open = false;
-		const handleToggle = (): void => {};
-
 		// if the data set has already been saved, we give them a split button: the main button immediately saves,
 		// the arrow gives them the option to create a new data set via the "Save as" option
 		if (currentDataSetId) {
 			return (
-				<ButtonGroup
-					variant="contained"
-					color="primary"
-					className={styles.saveButtonAs}
-					ref={anchorRef}
-					disableElevation
-					aria-label="split button"
-					disabled={!isEnabled}>
-					<Button onClick={onSave} className={styles.saveButtonAsMainBtn}>
-						<SaveIcon />
-						{i18n.save}
-					</Button>
-					<Button
+				<div ref={saveAsButtonRef} style={{ position: 'relative' }}>
+					<ButtonGroup
+						variant="contained"
 						color="primary"
-						size="small"
-						aria-controls={open ? 'split-button-menu' : undefined}
-						aria-expanded={open ? 'true' : undefined}
-						aria-label="Save data set as new name"
-						aria-haspopup="menu"
-						className={styles.saveBtnArrow}
-						onClick={handleToggle}
-					>
-						<ArrowDropDownIcon />
-					</Button>
-				</ButtonGroup>
+						className={styles.saveButtonAs}
+						ref={anchorRef}
+						disableElevation
+						aria-label="split button"
+						disabled={!isEnabled}>
+						<Button onClick={onSave} className={styles.saveButtonAsMainBtn}>
+							<SaveIcon />
+							{i18n.save}
+						</Button>
+						<Button
+							color="primary"
+							size="small"
+							aria-controls={saveAsMenuOpen ? 'split-button-menu' : undefined}
+							aria-expanded={saveAsMenuOpen ? 'true' : undefined}
+							aria-label="Save data set as new name"
+							aria-haspopup="menu"
+							className={styles.saveBtnArrow}
+							onClick={(): void => setSaveAsMenuOpen(!saveAsMenuOpen)}
+						>
+							<ArrowDropDownIcon />
+						</Button>
+					</ButtonGroup>
+
+					<Popper
+						open={saveAsMenuOpen}
+						anchorEl={anchorRef.current}
+						transition
+						placement="top-end"
+						className={styles.saveAsRow}
+						onClick={(e) => {
+							e.preventDefault();
+							e.stopPropagation();
+							onSaveAs();
+						}}>
+						{({ TransitionProps }): any => (
+							<Grow {...TransitionProps}>
+								<div>
+									{i18n.saveAs}
+								</div>
+							</Grow>
+						)}
+					</Popper>
+				</div>
 			);
 		}
 
