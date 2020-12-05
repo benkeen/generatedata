@@ -1,11 +1,18 @@
 .page {
 	font-size: 13px;
 	max-width: 1024px;
-	margin: 15px auto 0;
+	margin: 0 auto 0;
 	width: 100%;
 	padding: 0 10px;
 	height: 100%;
 	flex: 1;
+	display: flex;
+
+	&>div {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
 }
 
 .row {
@@ -15,18 +22,23 @@
 	align-items: center;
 }
 
-.body .row {
-	&:hover {
-		background-color: #f9f9f9;
-	}
-}
-
 .header {
+	margin-top: 15px;
 	font-weight: bold;
 	font-size: 13px;
 	color: #666666;
 	padding-top: 2px;
 	border-bottom: 1px solid #333333;
+}
+
+.body {
+	overflow: scroll;
+
+	.row {
+		&:hover {
+			background-color: #f9f9f9;
+		}
+	}
 }
 
 .dataSetName {
@@ -46,11 +58,17 @@
 }
 
 .status {
-	flex: 0 0 100px;
+	flex: 0 0 80px;
+}
+
+.load {
+	flex: 0 0 90px;
+	text-align: center;
 }
 
 .history {
-	flex: 0 0 100px;
+	flex: 0 0 90px;
+	text-align: center;
 }
 
 .del {

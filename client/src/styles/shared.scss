@@ -84,3 +84,14 @@ input.errorField, textarea.errorField, select.errorField, button.errorField {
 		font-size: 14px;
 	}
 }
+
+.cancelLink {
+	margin-left: 15px;
+	font-size: 13px;
+	color: #999999;
+	cursor: pointer;
+
+	&:hover {
+		color: $primary-color;
+	}
+}

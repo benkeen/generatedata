@@ -53,8 +53,27 @@ const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
 	};
 };
 
+const deleteDataSet = async (root, { dataSetId, content }, { token, user }) => {
+	authUtils.authenticate(token);
+
+	// TODO check access
+
+	if (user.accountType === 'user') {
+		console.log("TODO");
+		return;
+	}
+
+	db.dataSets.destroy({ where: { dataSetId } });
+	db.dataSetHistory.destroy({ where: { dataSetId } });
+
+	return {
+		success: true
+	};
+};
+
 
 module.exports = {
 	saveNewDataSet,
-	saveDataSet
+	saveDataSet,
+	deleteDataSet
 };

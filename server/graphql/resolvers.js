@@ -49,7 +49,8 @@ const resolvers = {
 		updateAccount: accountResolvers.updateAccount,
 		updatePassword: accountResolvers.updatePassword,
 		saveNewDataSet: dataSetResolvers.saveNewDataSet,
-		saveDataSet: dataSetResolvers.saveDataSet
+		saveDataSet: dataSetResolvers.saveDataSet,
+		deleteDataSet: dataSetResolvers.deleteDataSet
 	}
 };
 

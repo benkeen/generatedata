@@ -4,17 +4,6 @@
 	.numGeneratedRows {
 		font-size: 32px;
 	}
-
-	.cancelLink {
-		margin-left: 15px;
-		font-size: 13px;
-		color: #999999;
-		cursor: pointer;
-
-		&:hover {
-			color: $primary-color;
-		}
-	}
 }
 
 .hidden {

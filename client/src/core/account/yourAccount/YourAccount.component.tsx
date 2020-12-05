@@ -5,7 +5,8 @@ import Dropdown from '~components/dropdown/Dropdown';
 import { canadianProvinceOptions, countryDropdownOptions } from '~utils/countryUtils';
 import { AccountEditingData } from '~store/account/account.reducer';
 import { isValidEmail } from '~utils/generalUtils';
-import * as styles from '../Account.scss';
+import sharedStyles from '../../../styles/shared.scss';
+import styles from '../Account.scss';
 
 export type YourAccountProps = {
 	data: AccountEditingData;
@@ -140,7 +141,7 @@ const YourAccount = ({
 					{i18n.save}
 				</Button>
 
-				<span onClick={onCancel} className={styles.cancelLink}>{i18n.cancel}</span>
+				<span onClick={onCancel} className={sharedStyles.cancelLink}>{i18n.cancel}</span>
 			</div>
 		</form>
 	);

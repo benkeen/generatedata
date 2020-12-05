@@ -14,7 +14,7 @@ const mapStateToProps = (state: Store): Partial<DataSetsProps> => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetsProps> => ({
 	onInit: (): any => dispatch(accountActions.getDataSets()),
-	onDelete: (dataSetId: number): any => {}
+	onDelete: (dataSetId: number): any => dispatch(accountActions.deleteDataSet(dataSetId))
 });
 
 const container: any = connect(

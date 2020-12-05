@@ -17,6 +17,7 @@ const typeDefs = gql`
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
         saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetRespnse
         saveDataSet(dataSetId: ID!, content: String!): SavedDataSetRespnse
+		deleteDataSet(dataSetId: ID!): GeneralResponse
 	}
     type Account {
 	    accountId: ID!
@@ -73,7 +74,6 @@ const typeDefs = gql`
 		success: Boolean
 		error: String
 	}
-    
     type SavedDataSetRespnse {
 	    success: Boolean
 	    error: String

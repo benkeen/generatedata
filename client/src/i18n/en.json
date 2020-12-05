@@ -192,21 +192,9 @@
   "missingDataSetName": "Please enter the name of your data set",
   "pleaseLogin": "Please login",
   "nowLoggedIn": "You have been logged in.",
-  "saveAs": "Save as"
+  "saveAs": "Save as",
+  "history": "History",
+  "deleteDataSet": "Delete Data Set",
+  "deleteDataSetConfirm": "Are you sure you want to delete this Data Set?"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
