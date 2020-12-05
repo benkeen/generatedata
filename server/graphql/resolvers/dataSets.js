@@ -34,7 +34,23 @@ const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
 	// now check the user is able to access and change this data set
 	let hasAccess = false;
 
-	console.log(user);
+	if (user.accountType === 'user') {
+		const dataSet = db.dataSets.findByPk(dataSetId);
+		console.log(dataSet);
+		return;
+	}
+
+	const dateCreated = new Date().getTime();
+	await db.dataSetHistory.create({
+		dataSetId,
+		dateCreated,
+		content
+	});
+
+	return {
+		success: true,
+		dataSetId
+	};
 };
 
 

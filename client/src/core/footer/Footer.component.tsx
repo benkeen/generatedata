@@ -79,7 +79,6 @@ const Footer = ({
 		setSaveAsMenuOpen(false);
 	});
 
-
 	const getLocaleSelector = (): JSX.Element | null => {
 		if (availableLocales.length < 1) {
 			return null;
@@ -157,7 +156,7 @@ const Footer = ({
 						transition
 						placement="top-end"
 						className={styles.saveAsRow}
-						onClick={(e) => {
+						onClick={(e): void => {
 							e.preventDefault();
 							e.stopPropagation();
 							onSaveAs();

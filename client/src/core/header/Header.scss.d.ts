@@ -5,6 +5,7 @@ declare namespace HeaderScssNamespace {
     header: string;
     headerLinks: string;
     logoutLink: string;
+    selected: string;
   }
 }
 

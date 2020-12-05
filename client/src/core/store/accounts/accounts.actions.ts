@@ -21,7 +21,7 @@ export const getAccounts = (): any => async (dispatch: Dispatch): Promise<any> =
 	dispatch({
 		type: ACCOUNTS_LOADED,
 		payload: {
-			dataSets: response.data.accounts
+			accounts: response.data.accounts
 		}
 	});
 };

@@ -4,7 +4,10 @@ declare namespace SharedScssNamespace {
     emptyCol: string;
     errorField: string;
     pill: string;
+    selected: string;
+    tab: string;
     tip: string;
+    twoColPage: string;
   }
 }
 

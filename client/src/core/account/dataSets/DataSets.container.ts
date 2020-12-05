@@ -13,7 +13,8 @@ const mapStateToProps = (state: Store): Partial<DataSetsProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetsProps> => ({
-	onInit: () => dispatch(accountActions.getDataSets())
+	onInit: (): any => dispatch(accountActions.getDataSets()),
+	onDelete: (dataSetId: number): any => {}
 });
 
 const container: any = connect(

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { SelectedAccountTab } from '~types/account';
 import YourAccount from './yourAccount/YourAccount.container';
 import ChangePassword from './changePassword/ChangePassword.container';
-import * as styles from './Account.scss';
+import * as sharedStyles from '../../styles/shared.scss';
+import styles from './Account.scss';
 
 export type AccountPageProps = {
 	selectedTab: SelectedAccountTab;
@@ -10,7 +11,7 @@ export type AccountPageProps = {
 	i18n: any;
 };
 
-const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.Element => {
+const AccountPage = ({ selectedTab, onChangeTab }: AccountPageProps): JSX.Element => {
 	const [yourAccountClasses, setYourAccountClasses] = useState(styles.hidden);
 	const [changePasswordClasses, setChangePasswordClasses] = useState(styles.hidden);
 
@@ -33,24 +34,24 @@ const AccountPage = ({ selectedTab, onChangeTab, i18n }: AccountPageProps): JSX.
 	};
 
 	return (
-		<section className={styles.page}>
+		<section className={sharedStyles.twoColPage}>
 			<nav>
 				<ul>
 					<li
-						className={selectedTab === 'yourAccount' ? styles.selected : ''}
+						className={selectedTab === 'yourAccount' ? sharedStyles.selected : ''}
 						onClick={(): void => onChangeTab('yourAccount')}
 					>
-						{i18n.yourAccount}
+						Accounts
 					</li>
 					<li
-						className={selectedTab === 'changePassword' ? styles.selected : ''}
+						className={selectedTab === 'changePassword' ? sharedStyles.selected : ''}
 						onClick={(): void => onChangeTab('changePassword')}
 					>
-						{i18n.changePassword}
+						Create Account
 					</li>
 				</ul>
 			</nav>
-			<div className={styles.tab}>
+			<div className={`${sharedStyles.tab} ${styles.accountPage}`}>
 				{getTab()}
 			</div>
 		</section>

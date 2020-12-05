@@ -175,6 +175,11 @@ export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState:
 		}
 	});
 
-
+	if (response.data.saveDataSet.success) {
+		addToast({
+			type: 'success',
+			message: i18n.core.dataSetSaved
+		});
+	}
 };
 

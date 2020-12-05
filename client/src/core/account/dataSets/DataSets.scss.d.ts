@@ -5,6 +5,7 @@ declare namespace DataSetsScssNamespace {
     dateCreated: string;
     del: string;
     header: string;
+    history: string;
     lastModified: string;
     numRowsGenerated: string;
     page: string;

@@ -6,9 +6,16 @@ const dataSetResolvers = require('./resolvers/dataSets');
 
 const resolvers = {
 	Query: {
-		accounts: async (root, args, { token }) => {
+		accounts: async (root, args, { token, user }) => {
 			authUtils.authenticate(token);
-			return db.accounts.findAll();
+			return db.accounts.findAll({
+				where: {
+					createdBy: user.accountId
+				},
+				order: [
+					['dateCreated', 'DESC']
+				]
+			});
 		},
 
 		account: async (root, args, { user, token }) => {
@@ -23,11 +30,13 @@ const resolvers = {
 			return db.dataSets.findAll({
 				where: {
 					accountId
-				}
+				},
+				order: [
+					['dateCreated', 'DESC']
+				]
 			});
 		}
 	},
-
 
 	Mutation: {
 		// authentication resolvers

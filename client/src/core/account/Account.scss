@@ -1,58 +1,6 @@
 @import "../../styles/variables.scss";
 
-
-.page {
-	max-width: 1024px;
-	margin: 15px auto 0;
-	width: 100%;
-	padding: 0 10px;
-	height: 100%;
-	flex: 1;
-	display: flex;
-	flex-direction: row;
-
-	input {
-		font-size: 14px;
-	}
-
-	nav {
-		flex: 0 0 240px;
-	}
-
-	.tab {
-		flex: 1;
-		padding: 20px 0;
-		overflow: scroll;
-	}
-
-	label {
-		color: #999999;
-	}
-
-	ul {
-		list-style: none;
-		padding-left: 0;
-
-		li {
-			padding: 10px 10px;
-			font-size: 14px;
-			cursor: pointer;
-			transition: color 0.2s ease-in-out;
-
-			&:hover {
-				color: $primary-color;
-			}
-
-			&.selected {
-				color: $primary-color;
-			}
-		}
-	}
-
-	:global(.react-select__placeholder), :global(.react-select__single-value) {
-		font-size: 14px;
-	}
-
+.accountPage {
 	.numGeneratedRows {
 		font-size: 32px;
 	}

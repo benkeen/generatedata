@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
 			autoIncrement: true,
 			field: 'account_id'
 		},
+		createdBy: {
+			type: DataTypes.INTEGER(8).UNSIGNED,
+			field: 'created_by'
+		},
 		dateCreated: {
 			type: DataTypes.DATE,
 			allowNull: false,

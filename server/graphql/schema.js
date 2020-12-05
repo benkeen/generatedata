@@ -19,7 +19,8 @@ const typeDefs = gql`
         saveDataSet(dataSetId: ID!, content: String!): SavedDataSetRespnse
 	}
     type Account {
-	    accountId: ID
+	    accountId: ID!
+	    createdBy: ID
         dateExpires: String
         accountType: AccountType
         dateCreated: String
@@ -40,9 +41,17 @@ const typeDefs = gql`
 	    dataSetName: String
 		status: String
 		dateCreated: String
+        lastUpdated: String
 		accountId: ID
 		numRowsGenerated: Int
+	    history: [DataSetHistory]
 	}
+    type DataSetHistory {
+        historyId: ID!
+	    dataSetId: ID!
+	    dateCreated: String
+	    content: String
+    }
     type AuthResponse {
         success: Boolean
         token: String

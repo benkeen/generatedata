@@ -15,6 +15,7 @@ import { getHeaderLinks } from '~utils/routeUtils';
 import { AccountType } from '~types/account';
 
 export type HeaderProps = {
+	currentPage: string;
 	toggleIntroDialog: () => void;
 	onChangeSmallScreenVisiblePanel: () => void;
 	isLoggedIn: boolean;
@@ -33,7 +34,7 @@ export type HeaderProps = {
 
 const Header = ({
 	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
-	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, firstName
+	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, firstName, currentPage
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -98,6 +99,7 @@ const Header = ({
 			<ul className={styles.headerLinks}>
 				{isOnloadAuthDetermined ?
 					<HeaderLinks
+						currentPage={currentPage}
 						headerLinks={getHeaderLinks(isLoggedIn, accountType)}
 						firstName={firstName}
 						showLoginDialog={showLoginDialog}
