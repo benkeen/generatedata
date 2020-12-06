@@ -174,21 +174,3 @@ export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState:
 		});
 	}
 };
-
-// export const deleteDataSet = (dataSetId: number): any => async (dispatch: Dispatch): Promise<any> => {
-// 	const response = await apolloClient.mutate({
-// 		mutation: DELETE_DATA_SET,
-// 		variables: {
-// 			dataSetId
-// 		}
-// 	});
-//
-// 	if (response.data.deleteDataSet.success) {
-// 		await dispatch(getDataSets());
-//
-// 		addToast({
-// 			type: 'success',
-// 			message: 'The data set has been deleted.'
-// 		});
-// 	}
-// };

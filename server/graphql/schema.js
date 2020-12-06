@@ -5,8 +5,9 @@ const typeDefs = gql`
         accounts: [Account]
         account: Account
         settings: [Setting]
-        datasets: [DataSet]
-        dataset(id: ID!): DataSet
+        dataSets: [DataSet]
+        dataSet(id: ID!): DataSet
+	    dataSetHistory(dataSetId: ID!): DataSetHistory
     }
 	type Mutation {
 		login(email: String!, password: String!): AuthResponse

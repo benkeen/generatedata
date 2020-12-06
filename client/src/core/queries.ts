@@ -14,7 +14,7 @@ export const GET_ACCOUNTS = gql`
 
 export const GET_DATA_SETS = gql`
     query GetDataSets {
-        datasets {
+        dataSets {
             dataSetId
             dataSetName
             status
@@ -22,6 +22,18 @@ export const GET_DATA_SETS = gql`
             numRowsGenerated
         }
     }
+`;
+
+export const GET_DATA_SET = gql`
+	query GetDataSet($dataSetId: ID!) {
+		dataSet(id: $dataSetId){
+            dataSetId
+            dataSetName
+            status
+            dateCreated
+            numRowsGenerated
+		}
+	}
 `;
 
 export const DELETE_DATA_SET = gql`

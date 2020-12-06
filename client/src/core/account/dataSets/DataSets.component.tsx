@@ -39,8 +39,18 @@ const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
 	const [selectedDataSet, selectDataSet] = useState<DataSet>();
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
 	const { data } = useQuery(GET_DATA_SETS);
-	const [deleteDataSet] = useMutation(DELETE_DATA_SET);
 
+	// TODO loading spinner
+	const [deleteDataSet] = useMutation(DELETE_DATA_SET, {
+		refetchQueries: [
+			{ query: GET_DATA_SETS }
+		],
+		onCompleted: () => {
+			setDeleteDialogVisibility(false);
+		}
+	});
+
+	// show spinner here
 	if (!data || !data.datasets) {
 		return null;
 	}
@@ -76,7 +86,6 @@ const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
 					</div>
 				</div>
 			</section>
-
 			<DeleteDataSetDialog
 				visible={dialogVisible}
 				dataSetName={selectedDataSet ? selectedDataSet.dataSetName : null}
