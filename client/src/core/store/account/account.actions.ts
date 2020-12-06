@@ -8,6 +8,7 @@ import { apolloClient } from '../../apolloClient';
 import { addToast } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
 import { gql } from '@apollo/client';
+import { GET_DATA_SETS } from '~core/queries';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const updateAccount = (data: AccountEditingData): GDAction => ({
@@ -88,20 +89,8 @@ export const hideSaveDataSetDialog = (): GDAction => ({ type: HIDE_SAVE_DATA_SET
 
 export const LOAD_DATA_SETS = 'LOAD_DATA_SETS';
 export const getDataSets = (onComplete?: Function): any => async (dispatch: Dispatch): Promise<any> => {
-	console.log("1");
-
 	const response = await apolloClient.query({
-		query: gql`
-            query GetDataSets {
-                datasets {
-					dataSetId
-					dataSetName
-                    status
-					dateCreated
-					numRowsGenerated
-				}
-            }
-		`
+		query: GET_DATA_SETS
 	});
 
 	console.log("2", response.data.datasets);
@@ -112,10 +101,6 @@ export const getDataSets = (onComplete?: Function): any => async (dispatch: Disp
 			dataSets: [...response.data.datasets]
 		}
 	});
-
-	// if (onComplete) {
-	// 	onComplete();
-	// }
 };
 
 export const SET_CURRENT_DATA_SET = 'SET_CURRENT_DATA_SET';
@@ -190,30 +175,20 @@ export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState:
 	}
 };
 
-export const deleteDataSet = (dataSetId: number): any => async (dispatch: Dispatch): Promise<any> => {
-	// const i18n = getStrings();
-
-	const response = await apolloClient.mutate({
-		mutation: gql`
-            mutation DeleteDataSet($dataSetId: ID!) {
-                deleteDataSet(dataSetId: $dataSetId) {
-                    success
-                    error
-                }
-            }
-		`,
-		variables: {
-			dataSetId
-		}
-	});
-
-	if (response.data.deleteDataSet.success) {
-		console.log("get?");
-		await dispatch(getDataSets());
-
-		addToast({
-			type: 'success',
-			message: 'The data set has been deleted.'
-		});
-	}
-};
+// export const deleteDataSet = (dataSetId: number): any => async (dispatch: Dispatch): Promise<any> => {
+// 	const response = await apolloClient.mutate({
+// 		mutation: DELETE_DATA_SET,
+// 		variables: {
+// 			dataSetId
+// 		}
+// 	});
+//
+// 	if (response.data.deleteDataSet.success) {
+// 		await dispatch(getDataSets());
+//
+// 		addToast({
+// 			type: 'success',
+// 			message: 'The data set has been deleted.'
+// 		});
+// 	}
+// };

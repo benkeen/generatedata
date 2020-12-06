@@ -5,6 +5,8 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DeleteDataSetDialog from './DeleteDataSetDialog.component';
 import * as styles from './DataSets.scss';
 import { DataSet } from '~types/dataSets';
+import { DELETE_DATA_SET, GET_DATA_SETS } from '~core/queries';
+import { useQuery, useMutation } from '@apollo/client';
 
 const Row = ({ onDelete, dataSet, i18n }: any): JSX.Element => {
 	return (
@@ -31,22 +33,15 @@ const Row = ({ onDelete, dataSet, i18n }: any): JSX.Element => {
 
 export type DataSetsProps = {
 	i18n: any;
-	onInit: () => void;
-	onDelete: (dataSetId: number) => void;
-	dataSets: any;
 };
 
-const DataSets = ({ onInit, onDelete, dataSets, i18n }: DataSetsProps): JSX.Element | null => {
+const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
 	const [selectedDataSet, selectDataSet] = useState<DataSet>();
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
+	const { data } = useQuery(GET_DATA_SETS);
+	const [deleteDataSet] = useMutation(DELETE_DATA_SET);
 
-	console.log(dataSets);
-
-	useEffect(() => {
-		onInit();
-	}, []);
-
-	if (!dataSets || !dataSets.length) {
+	if (!data || !data.datasets) {
 		return null;
 	}
 
@@ -70,7 +65,7 @@ const DataSets = ({ onInit, onDelete, dataSets, i18n }: DataSetsProps): JSX.Elem
 						<div className={styles.del} />
 					</div>
 					<div className={styles.body}>
-						{dataSets.map((dataSet: DataSet, index: number) => (
+						{data.datasets.map((dataSet: DataSet) => (
 							<Row
 								key={dataSet.dataSetId}
 								dataSet={dataSet}
@@ -86,7 +81,11 @@ const DataSets = ({ onInit, onDelete, dataSets, i18n }: DataSetsProps): JSX.Elem
 				visible={dialogVisible}
 				dataSetName={selectedDataSet ? selectedDataSet.dataSetName : null}
 				onClose={(): void => setDeleteDialogVisibility(false)}
-				onDelete={() => onDelete(selectedDataSet!.dataSetId)}
+				onDelete={() => deleteDataSet({
+					variables: {
+						dataSetId: selectedDataSet!.dataSetId
+					}
+				})}
 				i18n={i18n}
 			/>
 		</>
