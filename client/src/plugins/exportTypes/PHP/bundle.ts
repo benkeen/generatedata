@@ -1,10 +1,8 @@
 import { ETBundle } from '~types/exportTypes';
-import { Settings, initialState, getExportTypeLabel, getCodeMirrorMode, getDownloadFileInfo } from './ProgrammingLanguage';
+import { Settings, getCodeMirrorMode, getDownloadFileInfo } from './PHP';
 
 const bundle: ETBundle = {
 	Settings,
-	initialState,
-	getExportTypeLabel,
 	getCodeMirrorMode,
 	getDownloadFileInfo
 };

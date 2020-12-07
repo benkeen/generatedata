@@ -2,7 +2,7 @@ export default {
 	"coreWorker": "",
 	"coreDataTypeWorker": "dataTypes.worker-c96ae4bd8d2c15f7ce609ea58ec63882.js",
 	"coreExportTypeWorker": "exportTypes.worker-9b546d7c7909e02146fafee124180d37.js",
-	"workerUtils": "workerUtils-13607ef9aee53fb0a538fd574d5c0ceb.js",
+	"workerUtils": "workerUtils-17ca4305a3cd9b6fc206cf10bcc64773.js",
 	"dataTypes": {
 		"Alphanumeric": "DT-Alphanumeric.generator-0185a235eabc5b0a7ba6afdbb2af8676.js",
 		"AutoIncrement": "DT-AutoIncrement.generator-eccb050ece38a91e2a849d125e417298.js",
@@ -20,7 +20,7 @@ export default {
 		"IBAN": "DT-IBAN.generator-b92eaa02e83c98a15767dfd6866d8bd1.js",
 		"LatLng": "DT-LatLng.generator-e54a6ba6fdf1679297e01d8729131379.js",
 		"List": "DT-List.generator-fb40a2699f222571bfb5fd9a5c94c8f9.js",
-		"Names": "DT-Names.generator-ae3c5e080e4d69ec2d7c2269e49f5217.js",
+		"Names": "DT-Names.generator-5ae4a508c7a493e9fc54f8e732729372.js",
 		"NormalDistribution": "DT-NormalDistribution.generator-adbc977198013088e21d0c3ad5a62e7e.js",
 		"NumberRange": "DT-NumberRange.generator-057ed424452f4e991ebc399c615ae34c.js",
 		"OrganizationNumber": "DT-OrganizationNumber.generator-68b329da9893e34099c7d8ad5cb9c940.js",
@@ -40,10 +40,14 @@ export default {
 	},
 	"exportTypes": {
 		"CSV": "ET-CSV.generator-d5399b6347edfc88d9840287e692c431.js",
+		"CSharp": "ET-CSharp.generator-9de02b5943dc66a8d455628417606f2d.js",
 		"HTML": "ET-HTML.generator-1f2109aec7e9cd759773fc7f28fd0966.js",
 		"JSON": "ET-JSON.generator-ae538f823c70436397059a1d05560b46.js",
+		"Javascript": "ET-Javascript.generator-83c5458f47c507470be2af21ca5ca1bd.js",
 		"LDIF": "ET-LDIF.generator-9849abbd090ddb81504c8aa23a2f0bc5.js",
-		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-8261c6791e53ccb6110aa5a29616c702.js",
+		"PHP": "ET-PHP.generator-0a19f3050652f96b21555e1752a0c4c6.js",
+		"Perl": "ET-Perl.generator-df47046d1c609b2d741f89e42cccc64b.js",
+		"Ruby": "ET-Ruby.generator-ac8488a5383529eec4c26079079b6508.js",
 		"SQL": "ET-SQL.generator-abd7f41ec477cf8a12b9706d82e3f64c.js",
 		"Typescript": "ET-Typescript.generator-0f2138ac8ee212d7606e5b804cc24014.js",
 		"XML": "ET-XML.generator-2bb617f90572cee10202bbc4ecfb56c9.js"

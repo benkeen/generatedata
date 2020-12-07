@@ -1,6 +1,17 @@
-import { ETMessageData } from '~types/exportTypes';
+import { ETMessageData, ETOnMessage } from '~types/exportTypes';
+const context: Worker = self as any;
 
-export const generateRuby = (data: ETMessageData, stripWhitespace: boolean): string => {
+let workerUtilsLoaded = false;
+context.onmessage = (e: ETOnMessage) => {
+	const { stripWhitespace, workerResources } = e.data;
+	if (!workerUtilsLoaded) {
+		importScripts(workerResources.workerUtils);
+		workerUtilsLoaded = true;
+	}
+	context.postMessage(generate(e.data, stripWhitespace));
+};
+
+export const generate = (data: ETMessageData, stripWhitespace: boolean): string => {
 	const newline = (stripWhitespace) ? '' : '\n';
 	const tab = (stripWhitespace) ? '' : '\t';
 
@@ -31,7 +42,7 @@ export const generateRuby = (data: ETMessageData, stripWhitespace: boolean): str
 	});
 
 	if (data.isLastBatch) {
-		content += ');';
+		content += '];';
 	}
 
 	return content;

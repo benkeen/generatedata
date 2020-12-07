@@ -1,8 +1,9 @@
 import { exportTypes, ExportTypeFolder } from '../../_plugins';
 import { ETBundle, ETDownloadPacketResponse } from '~types/exportTypes';
+import C from '~core/constants';
+import { getLocale, getStrings } from '~utils/langUtils';
 
-// TODO - should use i18n!
-export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
+// export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
 export type LoadedExportTypes = {
 	[name in ExportTypeFolder]?: ETBundle
@@ -11,14 +12,38 @@ export type LoadedExportTypes = {
 // this houses all Export Type code loaded async after the application starts
 const loadedExportTypes: LoadedExportTypes = {};
 
-export const exportTypeOptions = Object.keys(exportTypes)
-	.map((exportType: ExportTypeFolder) => {
+let cachedGroupedExportTypes: any;
+let lastLocale: any;
+export const getGroupedExportTypes = (): any => {
+	const locale = getLocale();
+	const i18n = getStrings();
+
+	if (cachedGroupedExportTypes && lastLocale == locale) {
+		return cachedGroupedExportTypes;
+	}
+
+	const groupI18nMap: any = {
+		core: 'coreExportType',
+		programmingLanguage: 'programmingLanguages'
+	};
+
+	lastLocale = locale;
+	cachedGroupedExportTypes = C.EXPORT_TYPE_GROUPS.map((group: string) => {
+		const options = Object.keys(exportTypes)
+			.filter((exportType: ExportTypeFolder) => exportTypes[exportType].fieldGroup === group)
+			.map((exportType: ExportTypeFolder) => ({
+				value: exportType,
+				label: i18n.exportTypes[exportType].EXPORT_TYPE_NAME
+			}));
+
 		return {
-			value: exportType,
-			label: exportTypes[exportType].name
+			label: i18n.core[groupI18nMap[group]],
+			options: options
 		};
 	});
 
+	return cachedGroupedExportTypes;
+};
 
 // TODO error scenarios
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {

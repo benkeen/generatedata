@@ -6,10 +6,8 @@ import * as mainActions from '../main/main.actions';
 import * as accountActions from '../account/account.actions';
 import * as packetActions from '../packets/packets.actions';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
-import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
+import { DataTypeFolder, ExportTypeFolder, exportTypes, dataTypes } from '../../../../_plugins';
 import env from '../../../../_env';
-import { dataTypeNames } from '~utils/dataTypeUtils';
-import { exportTypeNames } from '~utils/exportTypeUtils';
 import { GeneratorLayout } from '../../generator/Generator.component';
 
 export type DataRow = {
@@ -74,8 +72,8 @@ export type GeneratorState = {
 
 export const getInitialState = (): GeneratorState => ({
 	// the extra check for existence on these vars is just to placate the tests (not sure why needed)
-	loadedDataTypes: dataTypeNames && dataTypeNames.reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
-	loadedExportTypes: exportTypeNames && exportTypeNames.reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
+	loadedDataTypes: Object.keys(dataTypes).reduce((acc: any, name: DataTypeFolder) => ({ ...acc, [name]: false }), {}),
+	loadedExportTypes: Object.keys(exportTypes).reduce((acc: any, name: ExportTypeFolder) => ({ ...acc, [name]: false }), {}),
 	initialDependenciesLoaded: false,
 	exportType: env.defaultExportType,
 	rows: {},

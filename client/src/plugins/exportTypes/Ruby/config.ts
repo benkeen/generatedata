@@ -1,12 +1,11 @@
 import { ETDefinition } from '~types/exportTypes';
 
 const definition: ETDefinition = {
-	name: 'Typescript',
+	name: 'Ruby',
 	fieldGroup: 'programmingLanguage',
 	codeMirrorModes: [
-		'javascript/javascript',
-		'xml/xml',
-		'markdown/markdown'
+		'clike/clike',
+		'ruby/ruby'
 	]
 };
 

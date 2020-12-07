@@ -1,7 +1,8 @@
 import { ETDefinition } from '~types/exportTypes';
 
 const definition: ETDefinition = {
-	name: 'Programming Language',
+	name: 'Javascript',
+	fieldGroup: 'programmingLanguage',
 	codeMirrorModes: [
 		'javascript/javascript',
 		'xml/xml',
@@ -10,9 +11,7 @@ const definition: ETDefinition = {
 		'perl/perl',
 		'php/php',
 		'ruby/ruby'
-	],
-	schema: {
-	}
+	]
 };
 
 export default definition;

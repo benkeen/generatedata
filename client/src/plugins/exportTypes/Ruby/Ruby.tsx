@@ -3,11 +3,11 @@ import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/e
 
 export const Settings = ({ i18n }: ETSettings): JSX.Element => <div>{i18n.noAdditionalSettings}</div>;
 
-export const getCodeMirrorMode = (): string => 'text/x-csharp';
+export const getCodeMirrorMode = (): string => 'text/x-ruby';
 
 export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadPacketResponse => {
 	return {
-		filename: `data-${packetId}.cs`,
+		filename: `data-${packetId}.pl`,
 		fileType: ''
 	};
 };

@@ -22,9 +22,11 @@ export interface ETState {
 	isValid: boolean;
 }
 
+export type ETFieldGroup = 'core' | 'programmingLanguage';
+
 export type ETDefinition = {
 	name: string;
-	schema: any;
+	fieldGroup: ETFieldGroup;
 	codeMirrorModes: string[];
 };
 
