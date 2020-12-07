@@ -1,10 +1,4 @@
 {
   "EXPORT_TYPE_NAME": "Perl",
-  "COL_TITLE": "Nom de la propriété",
-  "row_label": "Nom de la variable / prop",
-  "language": "Langue",
-  "variable": "Variable",
-  "format": "Format",
-  "es6Format": "Exportation ES6",
-  "commonJsFormat": "Exportation CommonJS"
+  "COL_TITLE": "Nom de la propriété"
 }

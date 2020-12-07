@@ -8,6 +8,7 @@ const bundle: ETBundle = {
 	getExportTypeLabel,
 	getCodeMirrorMode,
 	validateTitleField,
+	isValid,
 	getDownloadFileInfo
 };
 

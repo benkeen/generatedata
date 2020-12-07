@@ -1,10 +1,4 @@
 {
   "EXPORT_TYPE_NAME": "PHP",
-  "COL_TITLE": "物业名称",
-  "row_label": "变量/道具名称",
-  "language": "语言",
-  "variable": "变量",
-  "format": "格式",
-  "es6Format": "ES6导出",
-  "commonJsFormat": "CommonJS导出"
+  "COL_TITLE": "物业名称"
 }

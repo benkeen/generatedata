@@ -1,10 +1,4 @@
 {
   "EXPORT_TYPE_NAME": "Ruby",
-  "COL_TITLE": "Property Name",
-  "row_label": "Var/Prop Name",
-  "language": "Language",
-  "variable": "Variable",
-  "format": "Format",
-  "es6Format": "ES6 export",
-  "commonJsFormat": "CommonJS export"
+  "COL_TITLE": "Property Name"
 }

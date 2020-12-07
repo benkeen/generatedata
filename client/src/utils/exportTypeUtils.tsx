@@ -33,7 +33,7 @@ export const getGroupedExportTypes = (): any => {
 			.filter((exportType: ExportTypeFolder) => exportTypes[exportType].fieldGroup === group)
 			.map((exportType: ExportTypeFolder) => ({
 				value: exportType,
-				label: i18n.exportTypes[exportType].EXPORT_TYPE_NAME
+				label: i18n.exportTypes[exportType] ? i18n.exportTypes[exportType].EXPORT_TYPE_NAME : ''
 			}));
 
 		return {

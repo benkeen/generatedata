@@ -1,10 +1,4 @@
 {
   "EXPORT_TYPE_NAME": "PHP",
-  "COL_TITLE": "Eigendomsnaam",
-  "row_label": "Var / Prop-naam",
-  "language": "Taal",
-  "variable": "Variabel",
-  "format": "Formaat",
-  "es6Format": "ES6-export",
-  "commonJsFormat": "CommonJS-export"
+  "COL_TITLE": "Eigendomsnaam"
 }

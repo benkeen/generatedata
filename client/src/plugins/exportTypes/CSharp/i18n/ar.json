@@ -1,10 +1,4 @@
 {
   "EXPORT_TYPE_NAME": "C#",
-  "COL_TITLE": "اسم الخاصية",
-  "row_label": "Var / اسم الدعامة",
-  "language": "لغة",
-  "variable": "متغير",
-  "format": "شكل",
-  "es6Format": "تصدير ES6",
-  "commonJsFormat": "تصدير CommonJS"
+  "COL_TITLE": "اسم الخاصية"
 }

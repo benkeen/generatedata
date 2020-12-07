@@ -1,10 +1,4 @@
 {
   "EXPORT_TYPE_NAME": "Ruby",
-  "COL_TITLE": "Name des Anwesens",
-  "row_label": "Var/Prop Name",
-  "language": "Sprache",
-  "variable": "Variable",
-  "format": "Format",
-  "es6Format": "ES6-Export",
-  "commonJsFormat": "CommonJS-Export"
+  "COL_TITLE": "Name des Anwesens"
 }

@@ -25,7 +25,6 @@ export interface ETState {
 export type ETFieldGroup = 'core' | 'programmingLanguage';
 
 export type ETDefinition = {
-	name: string;
 	fieldGroup: ETFieldGroup;
 	codeMirrorModes: string[];
 };
