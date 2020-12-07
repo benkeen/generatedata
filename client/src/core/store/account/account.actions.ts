@@ -7,8 +7,7 @@ import { Dispatch } from 'redux';
 import { apolloClient } from '../../apolloClient';
 import { addToast } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
-import { gql } from '@apollo/client';
-import { GET_DATA_SETS, SAVE_ACCOUNT, SAVE_CURRENT_DATA_SET, SAVE_NEW_DATA_SET, UPDATE_PASSWORD } from '~core/queries';
+import * as queries from '~core/queries';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const updateAccount = (data: AccountEditingData): GDAction => ({
@@ -36,7 +35,7 @@ export const saveChanges = (): any => async (dispatch: Dispatch, getState: any):
 	const { firstName, lastName, email, country, region } = getEditingData(getState());
 
 	await apolloClient.mutate({
-		mutation: SAVE_ACCOUNT,
+		mutation: queries.SAVE_ACCOUNT,
 		variables: { firstName, lastName, email, country, region }
 	});
 
@@ -52,7 +51,7 @@ export const savePassword = (currentPassword: string, newPassword: string, onSuc
 	const i18n = getStrings();
 
 	const response = await apolloClient.mutate({
-		mutation: UPDATE_PASSWORD,
+		mutation: queries.UPDATE_PASSWORD,
 		variables: { currentPassword, newPassword }
 	});
 
@@ -77,13 +76,13 @@ export const hideSaveDataSetDialog = (): GDAction => ({ type: HIDE_SAVE_DATA_SET
 export const LOAD_DATA_SETS = 'LOAD_DATA_SETS';
 export const getDataSets = (onComplete?: Function): any => async (dispatch: Dispatch): Promise<any> => {
 	const response = await apolloClient.query({
-		query: GET_DATA_SETS
+		query: queries.GET_DATA_SETS
 	});
 
 	dispatch({
 		type: LOAD_DATA_SETS,
 		payload: {
-			dataSets: [...response.data.datasets]
+			dataSets: [...response.data.dataSets]
 		}
 	});
 };
@@ -94,7 +93,7 @@ export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dis
 	const data: any = getDataSetSavePackage(getState());
 
 	const response = await apolloClient.mutate({
-		mutation: SAVE_NEW_DATA_SET,
+		mutation: queries.SAVE_NEW_DATA_SET,
 		variables: {
 			dataSetName,
 			content: JSON.stringify(data)
@@ -129,7 +128,7 @@ export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState:
 	const dataSetId = getCurrentDataSetId(state);
 
 	const response = await apolloClient.mutate({
-		mutation: SAVE_CURRENT_DATA_SET,
+		mutation: queries.SAVE_CURRENT_DATA_SET,
 		variables: {
 			dataSetId,
 			content: JSON.stringify(data)

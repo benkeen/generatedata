@@ -1,0 +1,10 @@
+{
+  "EXPORT_TYPE_NAME": "Lenguaje de programación",
+  "COL_TITLE": "Nombre de la propiedad",
+  "row_label": "Var/Prop Name",
+  "language": "Idioma",
+  "variable": "Variable",
+  "format": "Formato",
+  "es6Format": "Exportación ES6",
+  "commonJsFormat": "Exportación CommonJS"
+}

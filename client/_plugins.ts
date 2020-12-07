@@ -85,6 +85,7 @@ import JSON from './src/plugins/exportTypes/JSON/config';
 import LDIF from './src/plugins/exportTypes/LDIF/config';
 import ProgrammingLanguage from './src/plugins/exportTypes/ProgrammingLanguage/config';
 import SQL from './src/plugins/exportTypes/SQL/config';
+import Typescript from './src/plugins/exportTypes/Typescript/config';
 import XML from './src/plugins/exportTypes/XML/config';
 
 export const exportTypes = {
@@ -94,6 +95,7 @@ export const exportTypes = {
 	LDIF,
 	ProgrammingLanguage,
 	SQL,
+	Typescript,
 	XML
 };
 

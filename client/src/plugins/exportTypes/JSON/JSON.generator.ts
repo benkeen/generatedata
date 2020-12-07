@@ -122,35 +122,4 @@ const generateComplex = (generationData: ETMessageData, stripWhitespace: boolean
 	return content;
 };
 
-
-// private function determineBooleanFields($template)
-// {
-// 	foreach ($template as $item) {
-// 	$this->booleanFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "boolean";
-// }
-// }
-//
-// private function isNumeric($index, $value)
-// {
-// 	return $this->numericFields[$index] && is_numeric($value);
-// }
-//
-// private function isJavascriptBoolean($index, $value)
-// {
-// 	return $this->booleanFields[$index] && ($value === "true" || $value === "false");
-// }
-
-// const determineNumericFields = ($template) => {
-// {
-//     // foreach ($template as $item){
-//     //     $this->numericFields[] = isset($item["columnMetadata"]["type"]) && $item["columnMetadata"]["type"] == "numeric";
-//     // }
-// }
-
-// const getDownloadFilename = () => {
-// 	// $time = date("M-j-Y");
-// 	// return "data{$time}.json";
-// };
-
 const isJavascriptBoolean = (n: any): boolean => n === 'true' || n === 'false' || n === true || n === false;
-const isNested = (columnTitles: string[]): boolean => columnTitles.some((i: string) => /\./.test(i));

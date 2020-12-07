@@ -34,6 +34,7 @@ const typeDefs = gql`
         numRowsGenerated: Int
         profileImage: String
     }
+
     type Setting {
         settingName: String
         settingValue: String

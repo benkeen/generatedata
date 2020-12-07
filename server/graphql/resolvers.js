@@ -23,7 +23,7 @@ const resolvers = {
 			return db.accounts.findByPk(user.accountId);
 		},
 
-		datasets: async (root, args, { token, user }) => {
+		dataSets: async (root, args, { token, user }) => {
 			authUtils.authenticate(token);
 
 			const { accountId } = user;
@@ -53,5 +53,6 @@ const resolvers = {
 		deleteDataSet: dataSetResolvers.deleteDataSet
 	}
 };
+
 
 module.exports = resolvers;

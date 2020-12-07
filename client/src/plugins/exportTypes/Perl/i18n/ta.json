@@ -1,0 +1,10 @@
+{
+  "EXPORT_TYPE_NAME": "நிரலாக்க மொழி",
+  "COL_TITLE": "சொத்தின் பெயர்",
+  "row_label": "வர் / ப்ராப் பெயர்",
+  "language": "மொழி",
+  "variable": "மாறி",
+  "format": "வடிவம்",
+  "es6Format": "ES6 ஏற்றுமதி",
+  "commonJsFormat": "காமன்ஜேஎஸ் ஏற்றுமதி"
+}

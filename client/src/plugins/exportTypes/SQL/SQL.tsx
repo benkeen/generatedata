@@ -273,5 +273,3 @@ export const isValid = (settings: SQLSettings): boolean => {
 
 	return true;
 };
-
-

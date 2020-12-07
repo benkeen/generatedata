@@ -1,6 +1,15 @@
-import { isBoolean } from '~utils/generalUtils';
-import { isNumeric } from '~utils/numberUtils';
-import { ETMessageData } from '~types/exportTypes';
+import { ETMessageData, ETOnMessage } from '~types/exportTypes';
+const context: Worker = self as any;
+
+let workerUtilsLoaded = false;
+context.onmessage = (e: ETOnMessage) => {
+	const { stripWhitespace, workerResources } = e.data;
+	if (!workerUtilsLoaded) {
+		importScripts(workerResources.workerUtils);
+		workerUtilsLoaded = true;
+	}
+	context.postMessage(generate(e.data, stripWhitespace));
+};
 
 // const sharpDateFormats = {
 //     "m/d/Y": "MM/dd/yyyy",
@@ -12,7 +21,7 @@ import { ETMessageData } from '~types/exportTypes';
 //     "d.m.Y": "dd.MM.yyyy"
 // };
 
-export const generateCSharp = (data: ETMessageData, stripWhitespace: boolean): string => {
+export const generate = (data: ETMessageData, stripWhitespace: boolean): string => {
 	const newline = (stripWhitespace) ? '' : '\n';
 	const tab = (stripWhitespace) ? '' : '\t';
 

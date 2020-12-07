@@ -51,7 +51,7 @@ const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
 	});
 
 	// show spinner here
-	if (!data || !data.datasets) {
+	if (!data || !data.dataSets) {
 		return null;
 	}
 
@@ -75,7 +75,7 @@ const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
 						<div className={styles.del} />
 					</div>
 					<div className={styles.body}>
-						{data.datasets.map((dataSet: DataSet) => (
+						{data.dataSets.map((dataSet: DataSet) => (
 							<Row
 								key={dataSet.dataSetId}
 								dataSet={dataSet}

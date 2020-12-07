@@ -45,6 +45,7 @@ export default {
 		"LDIF": "ET-LDIF.generator-9849abbd090ddb81504c8aa23a2f0bc5.js",
 		"ProgrammingLanguage": "ET-ProgrammingLanguage.generator-8261c6791e53ccb6110aa5a29616c702.js",
 		"SQL": "ET-SQL.generator-abd7f41ec477cf8a12b9706d82e3f64c.js",
+		"Typescript": "ET-Typescript.generator-0f2138ac8ee212d7606e5b804cc24014.js",
 		"XML": "ET-XML.generator-2bb617f90572cee10202bbc4ecfb56c9.js"
 	},
 	"countries": {

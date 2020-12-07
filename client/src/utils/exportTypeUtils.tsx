@@ -1,6 +1,7 @@
 import { exportTypes, ExportTypeFolder } from '../../_plugins';
 import { ETBundle, ETDownloadPacketResponse } from '~types/exportTypes';
 
+// TODO - should use i18n!
 export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
 export type LoadedExportTypes = {
