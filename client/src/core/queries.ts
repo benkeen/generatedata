@@ -44,3 +44,40 @@ export const DELETE_DATA_SET = gql`
         }
     }
 `;
+
+export const SAVE_NEW_DATA_SET = gql`
+	mutation SaveNewDataSet($dataSetName: String!, $content: String!) {
+		saveNewDataSet(dataSetName: $dataSetName, content: $content) {
+			success
+			error
+			dataSetId
+		}
+	}
+`;
+
+export const SAVE_CURRENT_DATA_SET = gql`
+	mutation SaveDataSet($dataSetId: ID!, $content: String!) {
+		saveDataSet(dataSetId: $dataSetId, content: $content) {
+			success
+			error
+			dataSetId
+		}
+	}
+`;
+
+export const SAVE_ACCOUNT = gql`
+	mutation UpdateAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
+		updateAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
+			success
+		}
+	}
+`;
+
+export const UPDATE_PASSWORD = gql`
+    mutation UpdatePassword($currentPassword: String!, $newPassword: String!) {
+        updatePassword(currentPassword: $currentPassword, newPassword: $newPassword) {
+            success
+            error
+        }
+    }
+`;

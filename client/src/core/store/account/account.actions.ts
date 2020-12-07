@@ -8,7 +8,7 @@ import { apolloClient } from '../../apolloClient';
 import { addToast } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
 import { gql } from '@apollo/client';
-import { GET_DATA_SETS } from '~core/queries';
+import { GET_DATA_SETS, SAVE_ACCOUNT, SAVE_CURRENT_DATA_SET, SAVE_NEW_DATA_SET, UPDATE_PASSWORD } from '~core/queries';
 
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const updateAccount = (data: AccountEditingData): GDAction => ({
@@ -36,13 +36,7 @@ export const saveChanges = (): any => async (dispatch: Dispatch, getState: any):
 	const { firstName, lastName, email, country, region } = getEditingData(getState());
 
 	await apolloClient.mutate({
-		mutation: gql`
-            mutation UpdateAccount($firstName: String!, $lastName: String!, $email: String!, $country: String!, $region: String) {
-                updateAccount(firstName: $firstName, lastName: $lastName, email: $email, country: $country, region: $region) {
-                    success
-                }
-            }
-		`,
+		mutation: SAVE_ACCOUNT,
 		variables: { firstName, lastName, email, country, region }
 	});
 
@@ -58,14 +52,7 @@ export const savePassword = (currentPassword: string, newPassword: string, onSuc
 	const i18n = getStrings();
 
 	const response = await apolloClient.mutate({
-		mutation: gql`
-            mutation UpdatePassword($currentPassword: String!, $newPassword: String!) {
-                updatePassword(currentPassword: $currentPassword, newPassword: $newPassword) {
-                    success
-					error
-                }
-            }
-		`,
+		mutation: UPDATE_PASSWORD,
 		variables: { currentPassword, newPassword }
 	});
 
@@ -93,8 +80,6 @@ export const getDataSets = (onComplete?: Function): any => async (dispatch: Disp
 		query: GET_DATA_SETS
 	});
 
-	console.log("2", response.data.datasets);
-
 	dispatch({
 		type: LOAD_DATA_SETS,
 		payload: {
@@ -109,15 +94,7 @@ export const saveNewDataSet = (dataSetName: string): any => async (dispatch: Dis
 	const data: any = getDataSetSavePackage(getState());
 
 	const response = await apolloClient.mutate({
-		mutation: gql`
-            mutation SaveNewDataSet($dataSetName: String!, $content: String!) {
-                saveNewDataSet(dataSetName: $dataSetName, content: $content) {
-                    success
-                    error
-					dataSetId
-                }
-            }
-		`,
+		mutation: SAVE_NEW_DATA_SET,
 		variables: {
 			dataSetName,
 			content: JSON.stringify(data)
@@ -152,15 +129,7 @@ export const saveCurrentDataSet = (): any => async(dispatch: Dispatch, getState:
 	const dataSetId = getCurrentDataSetId(state);
 
 	const response = await apolloClient.mutate({
-		mutation: gql`
-            mutation SaveDataSet($dataSetId: ID!, $content: String!) {
-                saveDataSet(dataSetId: $dataSetId, content: $content) {
-                    success
-                    error
-                    dataSetId
-                }
-            }
-		`,
+		mutation: SAVE_CURRENT_DATA_SET,
 		variables: {
 			dataSetId,
 			content: JSON.stringify(data)
