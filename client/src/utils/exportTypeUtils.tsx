@@ -1,7 +1,8 @@
 import { exportTypes, ExportTypeFolder } from '../../_plugins';
-import { ETBundle, ETDownloadPacketResponse } from '~types/exportTypes';
+import { ETBundle, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
 import C from '~core/constants';
 import { getLocale, getStrings } from '~utils/langUtils';
+import * as React from 'react';
 
 // export const exportTypeNames = Object.keys(exportTypes).map((folder: ExportTypeFolder) => exportTypes[folder].name);
 
@@ -45,6 +46,8 @@ export const getGroupedExportTypes = (): any => {
 	return cachedGroupedExportTypes;
 };
 
+export const DefaultSettings = ({ coreI18n }: ETSettings): JSX.Element => <div>{coreI18n.noAdditionalSettings}</div>;
+
 // TODO error scenarios
 export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 	return new Promise((mainResolve) => {
@@ -57,7 +60,7 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 				.then((resp: any) => {
 					const def = resp.default;
 					loadedExportTypes[exportType] = {
-						Settings: def.Settings,
+						Settings: def.Settings || DefaultSettings,
 						initialState: def.initialState,
 						getExportTypeLabel: def.getExportTypeLabel,
 						getDownloadFileInfo: def.getDownloadFileInfo,

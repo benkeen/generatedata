@@ -1,8 +1,7 @@
 import { ETBundle } from '~types/exportTypes';
-import { Settings, getCodeMirrorMode, getDownloadFileInfo } from './Perl';
+import { getCodeMirrorMode, getDownloadFileInfo } from './Perl';
 
 const bundle: ETBundle = {
-	Settings,
 	getCodeMirrorMode,
 	getDownloadFileInfo
 };

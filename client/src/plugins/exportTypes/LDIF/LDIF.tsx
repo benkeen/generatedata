@@ -1,7 +1,4 @@
-import React from 'react';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
-
-export const Settings = ({ i18n }: ETSettings): JSX.Element => <div>{i18n.noAdditionalSettings}</div>;
+import { ETDownloadPacket, ETDownloadPacketResponse } from '~types/exportTypes';
 
 export const getCodeMirrorMode = (): string => 'text/x-yaml';
 

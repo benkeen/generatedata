@@ -1,8 +1,7 @@
 import { ETBundle } from '~types/exportTypes';
-import { Settings, getCodeMirrorMode, getDownloadFileInfo } from './Ruby';
+import { getCodeMirrorMode, getDownloadFileInfo } from './Ruby';
 
 const bundle: ETBundle = {
-	Settings,
 	getCodeMirrorMode,
 	getDownloadFileInfo
 };

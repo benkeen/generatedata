@@ -74,7 +74,9 @@ export const HIDE_SAVE_DATA_SET_DIALOG = 'HIDE_SAVE_DATA_SET_DIALOG';
 export const hideSaveDataSetDialog = (): GDAction => ({ type: HIDE_SAVE_DATA_SET_DIALOG });
 
 export const LOAD_DATA_SETS = 'LOAD_DATA_SETS';
-export const getDataSets = (onComplete?: Function): any => async (dispatch: Dispatch): Promise<any> => {
+
+// onComplete?: Function
+export const getDataSets = (): any => async (dispatch: Dispatch): Promise<any> => {
 	const response = await apolloClient.query({
 		query: queries.GET_DATA_SETS
 	});

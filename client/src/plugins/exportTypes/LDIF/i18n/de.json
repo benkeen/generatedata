@@ -1,5 +1,4 @@
 {
   "EXPORT_TYPE_NAME": "LDIF",
-  "COL_TITLE": "LDAP Attribute",
-  "noAdditionalSettings": "Keine zusätzlichen Einstellungen"
+  "COL_TITLE": "LDAP Attribute"
 }

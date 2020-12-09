@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { format, fromUnixTime } from 'date-fns';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -55,7 +55,7 @@ const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
 		return null;
 	}
 
-	const onShowDeleteDialog = (dataSet: DataSet) => {
+	const onShowDeleteDialog = (dataSet: DataSet): void => {
 		selectDataSet(dataSet);
 		setDeleteDialogVisibility(true);
 	};
@@ -90,7 +90,7 @@ const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
 				visible={dialogVisible}
 				dataSetName={selectedDataSet ? selectedDataSet.dataSetName : null}
 				onClose={(): void => setDeleteDialogVisibility(false)}
-				onDelete={() => deleteDataSet({
+				onDelete={(): any => deleteDataSet({
 					variables: {
 						dataSetId: selectedDataSet!.dataSetId
 					}
