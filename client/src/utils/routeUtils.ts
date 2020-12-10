@@ -69,7 +69,7 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 				if (accountType === 'admin' || accountType === 'superadmin') {
 					links.push('accounts');
 				}
-				links = links.concat(['dataSets', 'separator', 'userAccount', 'logout']);
+				links = links.concat(['separator', 'userAccount', 'logout']);
 			} else {
 				links = ['generator', 'separator', 'loginDialog'];
 			}
@@ -83,7 +83,7 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 		// open - anyone that has access to the URL can use the application anonymously or create an account
 		case C.APP_TYPES.OPEN:
 			if (isLoggedIn) {
-				links = ['generator', 'separator', 'dataSets', 'userAccount', 'logout'];
+				links = ['generator', 'separator', 'userAccount', 'logout'];
 			} else {
 				links = ['generator', 'signup', 'separator', 'loginDialog', 'logout'];
 			}
@@ -92,7 +92,7 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 		// closed - no-one can access the script without logging in first
 		case C.APP_TYPES.CLOSED:
 			if (isLoggedIn) {
-				links = ['generator', 'separator', 'dataSets', 'userAccount', 'logout'];
+				links = ['generator', 'separator', 'userAccount', 'logout'];
 			} else {
 				links = ['loginPage'];
 			}

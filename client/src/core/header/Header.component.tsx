@@ -27,14 +27,13 @@ export type HeaderProps = {
 	i18n: any;
 	onLogout: () => void;
 	isAuth: boolean;
-	firstName: string;
 	profileImage: string | null;
 	isOnloadAuthDetermined: boolean;
 };
 
 const Header = ({
 	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
-	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, firstName, currentPage
+	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -101,7 +100,6 @@ const Header = ({
 					<HeaderLinks
 						currentPage={currentPage}
 						headerLinks={getHeaderLinks(isLoggedIn, accountType)}
-						firstName={firstName}
 						showLoginDialog={showLoginDialog}
 						onLogout={onLogout}
 						i18n={i18n}

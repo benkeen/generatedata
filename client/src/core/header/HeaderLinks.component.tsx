@@ -9,7 +9,6 @@ import styles from './Header.scss';
 export type HeaderLinksProps = {
 	currentPage: string;
 	headerLinks: GDHeaderLink[];
-	firstName: string | null;
 	showLoginDialog: () => void;
 	onLogout: () => void;
 	i18n: any;
@@ -22,7 +21,7 @@ const getClassName = (path: string, currentPage: string): string => {
 	return currentPage === `/${path}` ? styles.selected : '';
 };
 
-const HeaderLinks = ({ currentPage, headerLinks, firstName, showLoginDialog, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
+const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
 	const links: any = [];
 	const generatorPath = process.env.GD_GENERATOR_PATH || ''; // just to placate TS
 
@@ -44,7 +43,7 @@ const HeaderLinks = ({ currentPage, headerLinks, firstName, showLoginDialog, onL
 		} else if (headerLink === 'userAccount') {
 			links.push(
 				<li key="account" className={getClassName('account', currentPage)}>
-					<Link to="/account">{firstName}</Link>
+					<Link to="/account">{i18n.yourAccount}</Link>
 				</li>
 			);
 		} else if (headerLink === 'accounts') {

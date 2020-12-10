@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { format, fromUnixTime } from 'date-fns';
+// import { format, fromUnixTime } from 'date-fns';
+import { useQuery, useMutation } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import * as queries from '~core/queries';
 import DeleteDataSetDialog from './DeleteDataSetDialog.component';
-import * as styles from './DataSets.scss';
+import styles from './DataSets.scss';
 import { DataSet } from '~types/dataSets';
-import { DELETE_DATA_SET, GET_DATA_SETS } from '~core/queries';
-import { useQuery, useMutation } from '@apollo/client';
 
+// {format(fromUnixTime(dataSet.dateCreated/1000), 'MMM d, y h:mm b')}
 const Row = ({ onDelete, dataSet, i18n }: any): JSX.Element => {
 	return (
 		<div className={styles.row}>
 			<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
-			<div className={styles.dateCreated}>{format(fromUnixTime(dataSet.dateCreated/1000), 'MMM d, y h:mm b')}</div>
 			<div className={styles.lastModified}></div>
 			<div className={styles.numRowsGenerated}>{dataSet.numRowsGenerated}</div>
 			<div className={styles.status}>
@@ -32,18 +32,19 @@ const Row = ({ onDelete, dataSet, i18n }: any): JSX.Element => {
 };
 
 export type DataSetsProps = {
+	className: string;
 	i18n: any;
 };
 
-const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
+const DataSets = ({ className, i18n }: DataSetsProps): JSX.Element | null => {
 	const [selectedDataSet, selectDataSet] = useState<DataSet>();
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
-	const { data } = useQuery(GET_DATA_SETS);
+	const { data } = useQuery(queries.GET_DATA_SETS);
 
 	// TODO loading spinner
-	const [deleteDataSet] = useMutation(DELETE_DATA_SET, {
+	const [deleteDataSet] = useMutation(queries.DELETE_DATA_SET, {
 		refetchQueries: [
-			{ query: GET_DATA_SETS }
+			{ query: queries.GET_DATA_SETS }
 		],
 		onCompleted: () => {
 			setDeleteDialogVisibility(false);
@@ -62,14 +63,13 @@ const DataSets = ({ i18n }: DataSetsProps): JSX.Element | null => {
 
 	return (
 		<>
-			<section className={`${styles.page}`}>
+			<section className={`${className} ${styles.page}`}>
 				<div style={{ width: '100%' }}>
 					<div className={`${styles.row} ${styles.header}`}>
 						<div className={styles.dataSetName}>{i18n.dataSetName}</div>
-						<div className={styles.dateCreated}>{i18n.dateCreated}</div>
 						<div className={styles.lastModified}>{i18n.lastModified}</div>
 						<div className={styles.numRowsGenerated}>{i18n.rowsGenerated}</div>
-						<div className={styles.status}>{i18n.publicQ}</div>
+						<div className={styles.status}>Status</div>
 						<div className={styles.load}>{i18n.load}</div>
 						<div className={styles.history}>{i18n.history}</div>
 						<div className={styles.del} />
