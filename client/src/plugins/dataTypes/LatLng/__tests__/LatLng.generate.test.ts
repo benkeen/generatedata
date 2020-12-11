@@ -10,7 +10,10 @@ describe('generation method', () => {
 		existingRowData: [],
 		i18n: {},
 		countryI18n: {},
-		countryData: {}
+		countryData: {},
+		workerResources: {
+			workerUtils: ''
+		}
 	};
 
 	it('generates a single item when only lat is selected', () => {
