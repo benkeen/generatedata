@@ -1,6 +1,6 @@
-import { DTGenerateResult } from '~types/dataTypes';
+import { DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	postMessage(generate(e.data.rowState));
 };
 
@@ -46,5 +46,3 @@ const gauss = (): number => {
 
 // returns random number with a flat distribution from -1 to 1 inclusive
 const randomPN = (): number => (2.0 * Math.random()) - 1.0;
-
-export {};

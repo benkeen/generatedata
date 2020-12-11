@@ -1,6 +1,6 @@
 import { format, fromUnixTime } from 'date-fns';
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { fromDate, toDate, format: displayFormat } = data.rowState;
@@ -13,7 +13,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 let workerUtilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		workerUtilsLoaded = true;
@@ -21,5 +21,3 @@ const onmessage = (e: any) => {
 
 	postMessage(generate(e.data));
 };
-
-export {};

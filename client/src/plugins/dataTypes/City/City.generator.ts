@@ -1,5 +1,5 @@
 import utils from '../../../utils';
-import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData, DTGenerationExistingRowData, DTOnMessage } from '~types/dataTypes';
 import { Region, CountryType } from '~types/countries';
 import { countryList } from '../../../../_plugins';
 import { CityState } from './City';
@@ -36,7 +36,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
@@ -44,5 +44,3 @@ const onmessage = (e: any) => {
 
 	postMessage(generate(e.data));
 };
-
-export {};

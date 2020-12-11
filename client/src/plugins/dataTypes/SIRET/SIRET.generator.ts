@@ -1,4 +1,4 @@
-import { DTGenerateResult } from '~types/dataTypes';
+import { DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
 // data: DTGenerationData
 export const generate = (): DTGenerateResult => {
@@ -8,7 +8,7 @@ export const generate = (): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
@@ -16,7 +16,6 @@ const onmessage = (e: any) => {
 
 	postMessage(generate());
 };
-
 
 /*
 	// custom member vars for this Data Type

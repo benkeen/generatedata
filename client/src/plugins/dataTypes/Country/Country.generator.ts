@@ -2,7 +2,7 @@ import fullCountryList from './fullCountryList';
 import { countryList } from '../../../../_plugins';
 import { CountryState } from './Country';
 import { getRandomArrayValue } from '~utils/randomUtils';
-import { DTGenerateResult, DTGenerationData } from '~types/dataTypes';
+import { DTGenerateResult, DTGenerationData, DTOnMessage } from '~types/dataTypes';
 import { CountryType } from '~types/countries';
 
 
@@ -30,7 +30,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
@@ -38,5 +38,3 @@ const onmessage = (e: any) => {
 
 	postMessage(generate(e.data));
 };
-
-export {};

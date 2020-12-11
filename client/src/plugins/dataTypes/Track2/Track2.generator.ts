@@ -1,7 +1,7 @@
 /**
  * @author Ben Keen <ben.keen@gmail.com>, origin code Zeeshan Shaikh <zeeshanyshaikh@gmail.com>
  */
-import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
 export const generate = (): DTGenerateResult => {
 	return { display: '' };
@@ -9,7 +9,7 @@ export const generate = (): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;

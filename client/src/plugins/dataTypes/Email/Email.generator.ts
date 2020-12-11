@@ -1,4 +1,5 @@
 import utils from '../../../utils';
+import { DTOnMessage } from '~types/dataTypes';
 
 const MAX_EMAIL_LENGTH = 254;
 
@@ -39,8 +40,7 @@ export const getRandomEmail = (wordsArr: string[], suffixes = ["edu", "com", "or
 };
 
 let utilsLoaded = false;
-
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;

@@ -1,7 +1,7 @@
 import { GeneratorLayout } from '~core/generator/Generator.component';
 import { ColumnData } from '~types/general';
-import { CountryMap } from '~types/countries';
-import { DataTypeMap } from '~types/dataTypes';
+import { CountryMap, CountryType } from '~types/countries';
+import { DataTypeMap, DTGenerationExistingRowData } from '~types/dataTypes';
 import { ExportTypeFolder } from '../_plugins';
 
 export type ExportTypeMap = {
@@ -58,7 +58,6 @@ export type ETMessageData = {
 interface ETOnMessage extends MessageEvent {
 	data: ETMessageData
 }
-
 
 export type ETDownloadPacket = {
 	packetId: string;

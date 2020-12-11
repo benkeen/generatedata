@@ -2,6 +2,7 @@ import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject } from './general';
 import { DataTypeFolder } from '../_plugins';
 import { CountryType } from '~types/countries';
+import { ETMessageData } from '~types/exportTypes';
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;
@@ -19,7 +20,6 @@ export type DTBundle = {
 	// optional <Help /> React component
 	Help?: any;
 
-	// generate: (data: DTGenerationData) => DTGenerateResult | Promise<DTGenerateResult>;
 	rowStateReducer?: (state: any) => any;
 	getMetadata?: (data: any) => DTMetadata;
 	customProps?: DTCustomProps;
@@ -108,15 +108,22 @@ export type DTHelpProps = {
 };
 
 export type DTGenerationData = {
-    rowNum: number;
+	rowNum: number;
 	rowState: any;
 	i18n: any;
 	countryI18n: any;
-    existingRowData: DTGenerationExistingRowData[];
-    countryData: {
-    	[key in CountryType]?: any;
+	existingRowData: DTGenerationExistingRowData[];
+	countryData: {
+		[key in CountryType]?: any;
+	},
+	workerResources: {
+		workerUtils: string;
 	}
-};
+}
+
+interface DTOnMessage extends MessageEvent {
+	data: DTGenerationData
+}
 
 export type DTGenerationExistingRowData = {
 	id: string;

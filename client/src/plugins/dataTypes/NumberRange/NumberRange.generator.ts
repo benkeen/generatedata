@@ -1,9 +1,9 @@
 import utils from '../../../utils';
-import { ETOnMessage } from '~types/exportTypes';
+import { DTOnMessage } from '~types/dataTypes';
 
 let utilsLoaded = false;
 
-const onmessage = (e: ETOnMessage) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;

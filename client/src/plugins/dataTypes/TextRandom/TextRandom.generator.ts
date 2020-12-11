@@ -1,8 +1,8 @@
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 import utils from '../../../utils';
 
 let utilsLoaded = false;
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;

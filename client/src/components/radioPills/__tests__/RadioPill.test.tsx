@@ -39,4 +39,18 @@ describe('RadioPill', () => {
 
 		expect(container.innerHTML).toContain('Label!');
 	});
+
+	it('includes name field', () => {
+		const { container } = render(
+			<RadioPill
+				label="Label!"
+				onClick={() => {}}
+				name="name123"
+				checked={false}
+				disabled={false}
+			/>
+		);
+
+		expect(container.querySelector('[name=name123]')).toBeTruthy();
+	});
 });

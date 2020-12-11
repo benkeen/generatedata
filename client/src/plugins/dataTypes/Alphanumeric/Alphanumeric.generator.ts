@@ -1,5 +1,5 @@
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
 export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => {
 	const formats = rowState.split('|');
@@ -11,16 +11,11 @@ export const generate = ({ rowState }: DTGenerationData): DTGenerateResult => {
 	return { display: val };
 };
 
-
 let utilsLoaded = false;
-
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
 	}
-
 	postMessage(generate(e.data));
 };
-
-export {};

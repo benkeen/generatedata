@@ -1,10 +1,9 @@
-import { DTGenerateResult } from '~types/dataTypes';
-import { ETMessageData, ETOnMessage } from '~types/exportTypes';
+import { DTGenerateResult, DTGenerationData, DTOnMessage } from '~types/dataTypes';
 import utils from '../../../utils';
 
 let utilsLoaded = false;
 
-const onmessage = (e: ETOnMessage) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
@@ -13,10 +12,7 @@ const onmessage = (e: ETOnMessage) => {
 	postMessage(generate(e.data));
 };
 
-export {};
-
-
-export const generate = (data: ETMessageData): DTGenerateResult => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
 	const { formatCode, uppercaseDigit } = data.rowState;
 
 	const { getRandomNum } = utils.randomUtils;

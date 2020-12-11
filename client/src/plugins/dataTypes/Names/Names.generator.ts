@@ -1,4 +1,5 @@
 import utils from '../../../utils';
+import { DTOnMessage } from '~types/dataTypes';
 
 const maleNames = [
 	"Aaron", "Abbot", "Abdul", "Abel", "Abraham", "Acton", "Adam", "Addison", "Adrian", "Ahmed", "Aidan", "Akeem",
@@ -140,7 +141,7 @@ export const generate = (formats: string[]) => {
 	};
 };
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		workerUtilsLoaded = true;
@@ -148,5 +149,3 @@ const onmessage = (e: any) => {
 
 	postMessage(generate(e.data.rowState));
 };
-
-export {};

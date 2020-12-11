@@ -1,4 +1,4 @@
-import { getRowGenerationRatePerSecond } from '../generation.helpers';
+import { getRowGenerationRatePerSecond, getPercentageLabel } from '../generation.helpers';
 
 describe('getRowGenerationRatePerSecond', () => {
 	it('if exactly 1 second has gone by, the generation rate should be the exact generation count', () => {
@@ -28,5 +28,14 @@ describe('getRowGenerationRatePerSecond', () => {
 
 	it("start fractions of a second are factored in", () => {
 		expect(getRowGenerationRatePerSecond(0, 500, 2000, 60)).toEqual({ 1: 20, 2: 40 });
+	});
+});
+
+describe('getPercentageLabel', () => {
+	it('returns appropriate decimal places based on num generated', () => {
+		expect(getPercentageLabel(90, 1000)).toEqual('90');
+		expect(getPercentageLabel(90, 10000)).toEqual('90.0');
+		expect(getPercentageLabel(90, 100000)).toEqual('90.0');
+		expect(getPercentageLabel(90, 1000000)).toEqual('90.00');
 	});
 });

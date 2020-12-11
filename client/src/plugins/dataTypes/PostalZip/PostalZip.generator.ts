@@ -1,10 +1,10 @@
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 import { CountryDataType, CountryType, Region } from '~types/countries';
 import utils from '../../../utils';
 
 let workerUtilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		workerUtilsLoaded = true;
@@ -77,5 +77,3 @@ const getRegionPostalCode = (countryData: CountryDataType, region: Region): stri
 
 	return utils.randomUtils.generatePlaceholderStr(selectedFormat, placeholders);
 };
-
-export {};

@@ -1,4 +1,5 @@
 import utils from '../../../utils';
+import { DTOnMessage } from '~types/dataTypes';
 
 const getWords = () => {
 	const { words } = utils.stringUtils.getLipsumWords();
@@ -23,7 +24,7 @@ export const generateCompanyName = (wordsArr: string[], types = companyTypes): s
 
 let utilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
@@ -35,5 +36,3 @@ const onmessage = (e: any) => {
 		display: generateCompanyName(words)
 	});
 };
-
-export {};

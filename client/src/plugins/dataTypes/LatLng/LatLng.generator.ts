@@ -1,4 +1,4 @@
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 import { getRandomNum } from '~utils/randomUtils';
 
 const DECIMAL_PLACES = 5;
@@ -42,7 +42,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;

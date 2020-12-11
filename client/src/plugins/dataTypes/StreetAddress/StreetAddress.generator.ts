@@ -1,5 +1,5 @@
 import utils from '../../../utils';
-import { DTGenerationData, DTGenerateResult } from '~types/dataTypes';
+import { DTGenerationData, DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 
 const getWords = () => {
 	const { words } = utils.stringUtils.getLipsumWords();
@@ -36,7 +36,7 @@ export const generate = ({ i18n }: DTGenerationData): DTGenerateResult => {
 
 let workerUtilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		workerUtilsLoaded = true;
@@ -44,5 +44,3 @@ const onmessage = (e: any) => {
 
 	postMessage(generate(e.data));
 };
-
-export {};

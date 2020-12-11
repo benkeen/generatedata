@@ -1,4 +1,4 @@
-import { DTGenerateResult } from '~types/dataTypes';
+import { DTGenerateResult, DTOnMessage } from '~types/dataTypes';
 import utils from '../../../utils';
 
 const generatedGUIDs: any = {};
@@ -18,7 +18,7 @@ export const generate = (): DTGenerateResult => {
 
 let utilsLoaded = false;
 
-const onmessage = (e: any) => {
+export const onmessage = (e: DTOnMessage) => {
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;
@@ -26,4 +26,3 @@ const onmessage = (e: any) => {
 
 	postMessage(generate());
 };
-
