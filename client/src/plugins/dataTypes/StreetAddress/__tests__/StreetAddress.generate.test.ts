@@ -11,7 +11,10 @@ describe('generate', () => {
 		i18n,
 		countryI18n: {},
 		existingRowData: [],
-		countryData: {}
+		countryData: {},
+		workerResources: {
+			workerUtils: ''
+		}
 	};
 
 	afterEach(() => {
