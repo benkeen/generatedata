@@ -26,9 +26,10 @@ describe('Example', () => {
 				onUpdate={onUpdate}
 			/>
 		);
-		// TODO should test change
 		expect(container).toBeTruthy();
 	});
+
+
 });
 
 describe('Options', () => {
