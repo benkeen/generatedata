@@ -32,11 +32,15 @@ const db = {};
 	db[seqModel.name] = seqModel;
 });
 
-Object.keys(db).forEach(key => {
-	if ('associate' in db[key]) {
-		db[key].associate(db);
-	}
-});
+// define our associations
+db.dataSets.hasMany(db.dataSetHistory, { foreignKey: 'dataSetId' });
+db.dataSetHistory.belongsTo(db.dataSets);
+
+// Object.keys(db).forEach(key => {
+// 	if ('associate' in db[key]) {
+// 		db[key].associate(db);
+// 	}
+// });
 
 // urgh...
 db.sequelize = sequelize;

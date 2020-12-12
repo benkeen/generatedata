@@ -27,13 +27,40 @@ const resolvers = {
 			authUtils.authenticate(token);
 
 			const { accountId } = user;
-			return db.dataSets.findAll({
-				where: {
-					accountId
-				},
-				order: [
-					['dateCreated', 'DESC']
-				]
+
+			const [results] = await db.sequelize.query(`
+				SELECT d.dataset_name,
+				    d.dataset_id AS dataSetId,
+				    d.num_rows_generated as numRowsGenerated,
+				    dsh.*,
+					unix_timestamp(d.date_created) AS dateCreatedUnix,
+					unix_timestamp(dsh.date_created) AS historyDateCreated
+				FROM datasets d
+				LEFT JOIN dataset_history dsh ON dsh.dataset_id = d.dataset_id
+					AND dsh.history_id =
+						(SELECT history_id
+						 FROM dataset_history dsh2
+						 WHERE dsh2.dataset_id = d.dataset_id
+						 ORDER BY history_id DESC
+						 LIMIT 1)
+				WHERE account_id = ${accountId}
+				ORDER BY dsh.date_created DESC 
+			`);
+
+			return results.map((row) => {
+				console.log(row);
+
+				return {
+					dataSetId: row.dataSetId,
+					status: row.status,
+					dateCreated: row.date_created,
+					numRowsGenerated: row.numRowsGenerated,
+					historyId: row.history_id,
+					dataSetName: row.dataset_name,
+					content: row.content,
+					dataCreatedUnix: row.dateCreatedUnix,
+					historyDateCreated: row.historyDateCreated
+				};
 			});
 		}
 	},

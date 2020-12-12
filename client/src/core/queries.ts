@@ -19,7 +19,9 @@ export const GET_DATA_SETS = gql`
             dataSetName
             status
             dateCreated
+			content
             numRowsGenerated
+            historyDateCreated
         }
     }
 `;

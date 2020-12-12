@@ -13,6 +13,8 @@ import { GDAction } from '~types/general';
 import C from '../../constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import { ClearType } from '../../dialogs/clearGrid/ClearGrid.component';
+import { DataSetListItem } from '~types/dataSets';
+import store from '~core/store';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -306,3 +308,23 @@ export const checkPreviewPanelDependenciesLoaded = (): any => (dispatch: Dispatc
 
 export const SET_INITIAL_DEPENDENCIES_LOADED = 'SET_INITIAL_DEPENDENCIES_LOADED';
 export const setInitialDependenciesLoaded = (): GDAction => ({ type: SET_INITIAL_DEPENDENCIES_LOADED });
+
+export const LOAD_DATA_SET = 'LOAD_DATA_SET';
+export const loadDataSet = (dataSet: DataSetListItem): any => {
+	console.log({ dataSet });
+
+	const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
+
+	// load all the datasets and export type
+	// preloadDataTypes.forEach((dataType: DataTypeFolder) => actions.loadDataTypeBundle(store.dispatch, store.getState, dataType));
+
+	return {
+		type: LOAD_DATA_SET,
+		payload: {
+			exportType,
+			exportTypeSettings,
+			rows,
+			sortedRows
+		}
+	};
+};

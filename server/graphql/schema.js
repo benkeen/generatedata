@@ -5,7 +5,7 @@ const typeDefs = gql`
         accounts: [Account]
         account: Account
         settings: [Setting]
-        dataSets: [DataSet]
+        dataSets: [DataSetListItem]
         dataSet(id: ID!): DataSet
 	    dataSetHistory(dataSetId: ID!): DataSetHistory
     }
@@ -34,7 +34,6 @@ const typeDefs = gql`
         numRowsGenerated: Int
         profileImage: String
     }
-
     type Setting {
         settingName: String
         settingValue: String
@@ -49,6 +48,17 @@ const typeDefs = gql`
 		numRowsGenerated: Int
 	    history: [DataSetHistory]
 	}
+    type DataSetListItem {
+        dataSetId: ID
+        status: String
+        dateCreated: String
+        numRowsGenerated: Int
+        historyId: ID
+        dataSetName: String
+        content: String
+        dataCreatedUnix: Int
+        historyDateCreated: String
+    }
     type DataSetHistory {
         historyId: ID!
 	    dataSetId: ID!

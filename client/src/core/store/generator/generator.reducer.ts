@@ -317,6 +317,12 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.currentDataSetName = action.payload.dataSetName;
 			draft.currentDataSetId = action.payload.dataSetId;
 			break;
+
+		case accountActions.LOAD_DATA_SETS: {
+			const { exportType, exportTypeSettings, rows, sortedRows } = action.payload;
+			draft.exportType = exportType;
+			break;
+		}
 	}
 }, getInitialState());
 

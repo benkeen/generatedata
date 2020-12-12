@@ -4,7 +4,7 @@
   "DEFAULT_TITLE": "telefon",
   "australia": "Australien",
   "differentFormats": "Unterschiedliche Formate",
-  "canada": "Canada",
+  "northAmerica": "Nordamerika",
   "france": "Frankreich",
   "germany": "Deutschland",
   "helpText1": "Was Text Sie in den Optionen Textfeld eingeben werden verwendet, um Telefonnummern zu generieren. Kapital <b>X</b>'s zu einer Zufallszahl zwischen 1 und 9 umgewandelt werden; Kleinbuchstaben <b>x</b>'s zu einer Zufallszahl umgewandelt werden zwischen 0 und 9.",

@@ -1,43 +1,41 @@
 import React, { useState } from 'react';
-// import { format, fromUnixTime } from 'date-fns';
 import { useQuery, useMutation } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import * as queries from '~core/queries';
 import DeleteDataSetDialog from './DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
-import { DataSet } from '~types/dataSets';
+import { DataSetListItem } from '~types/dataSets';
+import { formatUnixTime } from '~utils/dateUtils';
 
-// {format(fromUnixTime(dataSet.dateCreated/1000), 'MMM d, y h:mm b')}
-const Row = ({ onDelete, dataSet, i18n }: any): JSX.Element => {
-	return (
-		<div className={styles.row}>
-			<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
-			<div className={styles.lastModified}></div>
-			<div className={styles.numRowsGenerated}>{dataSet.numRowsGenerated}</div>
-			<div className={styles.status}>
-				{dataSet.status === 'public' ? 'Public' : 'Private'}
-			</div>
-			<div className={styles.load}>
-				<Button size="small" type="submit" color="secondary" variant="outlined">{i18n.load}</Button>
-			</div>
-			<div className={styles.history}>
-				<Button size="small" type="submit" color="primary" variant="outlined">{i18n.history}</Button>
-			</div>
-			<div className={styles.del} onClick={onDelete}>
-				<HighlightOffIcon />
-			</div>
+const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
+	<div className={styles.row}>
+		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
+		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreated)}</div>
+		<div className={styles.numRowsGenerated}>{dataSet.numRowsGenerated}</div>
+		<div className={styles.status}>
+			{dataSet.status === 'public' ? 'Public' : 'Private'}
 		</div>
-	);
-};
+		<div className={styles.load}>
+			<Button size="small" type="submit" color="secondary" variant="outlined" onClick={onLoad}>{i18n.load}</Button>
+		</div>
+		<div className={styles.history}>
+			<Button size="small" type="submit" color="primary" variant="outlined">{i18n.history}</Button>
+		</div>
+		<div className={styles.del} onClick={onDelete}>
+			<HighlightOffIcon />
+		</div>
+	</div>
+);
 
 export type DataSetsProps = {
+	onLoadDataSet: (dataSet: DataSetListItem) => void;
 	className: string;
 	i18n: any;
 };
 
-const DataSets = ({ className, i18n }: DataSetsProps): JSX.Element | null => {
-	const [selectedDataSet, selectDataSet] = useState<DataSet>();
+const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Element | null => {
+	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
 	const { data } = useQuery(queries.GET_DATA_SETS);
 
@@ -56,7 +54,7 @@ const DataSets = ({ className, i18n }: DataSetsProps): JSX.Element | null => {
 		return null;
 	}
 
-	const onShowDeleteDialog = (dataSet: DataSet): void => {
+	const onShowDeleteDialog = (dataSet: DataSetListItem): void => {
 		selectDataSet(dataSet);
 		setDeleteDialogVisibility(true);
 	};
@@ -75,11 +73,12 @@ const DataSets = ({ className, i18n }: DataSetsProps): JSX.Element | null => {
 						<div className={styles.del} />
 					</div>
 					<div className={styles.body}>
-						{data.dataSets.map((dataSet: DataSet) => (
+						{data.dataSets.map((dataSet: DataSetListItem) => (
 							<Row
 								key={dataSet.dataSetId}
 								dataSet={dataSet}
 								onDelete={(): void => onShowDeleteDialog(dataSet)}
+								onLoad={(): void => onLoadDataSet(dataSet)}
 								i18n={i18n}
 							/>
 						))}
