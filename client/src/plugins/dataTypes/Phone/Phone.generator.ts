@@ -1,7 +1,7 @@
 import utils from '../../../utils';
 
 let workerUtilsLoaded = false;
-onmessage = (e: any) => {
+export const onmessage = (e: any) => {
 	if (!workerUtilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		workerUtilsLoaded = true;

@@ -1,7 +1,7 @@
-import { getRandomNum } from '~utils/randomUtils';
+import utils from '../../../utils';
 
-onmessage = () => {
+export const onmessage = () => {
 	postMessage({
-		display: getRandomNum(1111, 9999)
+		display: utils.randomUtils.getRandomNum(1111, 9999)
 	});
 };
