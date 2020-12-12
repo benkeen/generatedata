@@ -72,3 +72,15 @@ export const getTestState = () => ({
 	account: initialAccountState,
 	accounts: initialAccountsState
 });
+
+// requires the DT test to supply i18n and rowState (if pertinent)
+export const getBlankDTGeneratorPayload = () => ({
+	rowNum: 1,
+	rowState: null,
+	countryI18n: {},
+	existingRowData: [],
+	countryData: {},
+	workerResources: {
+		workerUtils: ''
+	}
+});

@@ -28,8 +28,6 @@ describe('Example', () => {
 		);
 		expect(container).toBeTruthy();
 	});
-
-
 });
 
 describe('Options', () => {

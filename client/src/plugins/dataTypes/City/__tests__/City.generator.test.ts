@@ -1,7 +1,5 @@
-import sinon from 'sinon';
-import utils from '../../../../utils';
-import { onmessage } from '../Alphanumeric.generator';
-import { initialState } from '../Alphanumeric';
+/* istanbul ignore file */
+import { onmessage } from '../City.generator';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
 const i18n = require('../i18n/en.json');
@@ -18,14 +16,14 @@ describe('onmessage', () => {
 		const payload: any = {
 			data: {
 				...getBlankDTGeneratorPayload(),
-				rowState: initialState.value,
+				rowState: {
+					selectedCountries: []
+				},
 				i18n
 			}
 		};
 
-		sinon.stub(utils.randomUtils, 'generateRandomAlphanumericStr').returns('*****');
-
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: '*****' });
+		expect(postMessage).toHaveBeenCalledWith({ display: 'Booyah' });
 	});
 });

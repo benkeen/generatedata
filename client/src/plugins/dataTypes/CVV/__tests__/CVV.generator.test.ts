@@ -1,8 +1,7 @@
 import sinon from 'sinon';
-import utils from '../../../../utils';
-import { onmessage } from '../Alphanumeric.generator';
-import { initialState } from '../Alphanumeric';
+import { onmessage } from '../CVV.generator';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
+import utils from '~utils/index';
 
 const i18n = require('../i18n/en.json');
 
@@ -18,14 +17,13 @@ describe('onmessage', () => {
 		const payload: any = {
 			data: {
 				...getBlankDTGeneratorPayload(),
-				rowState: initialState.value,
 				i18n
 			}
 		};
 
-		sinon.stub(utils.randomUtils, 'generateRandomAlphanumericStr').returns('*****');
+		sinon.stub(utils.randomUtils, 'getRandomNum').onCall(0).returns(123);
 
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: '*****' });
+		expect(postMessage).toHaveBeenCalledWith({ display: 123 });
 	});
 });

@@ -1,7 +1,4 @@
-import sinon from 'sinon';
-import utils from '../../../../utils';
-import { onmessage } from '../Alphanumeric.generator';
-import { initialState } from '../Alphanumeric';
+import { onmessage } from '../Boolean.generator';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
 const i18n = require('../i18n/en.json');
@@ -18,14 +15,12 @@ describe('onmessage', () => {
 		const payload: any = {
 			data: {
 				...getBlankDTGeneratorPayload(),
-				rowState: initialState.value,
+				rowState: ['Booyah'],
 				i18n
 			}
 		};
 
-		sinon.stub(utils.randomUtils, 'generateRandomAlphanumericStr').returns('*****');
-
 		onmessage(payload);
-		expect(postMessage).toHaveBeenCalledWith({ display: '*****' });
+		expect(postMessage).toHaveBeenCalledWith({ display: 'Booyah' });
 	});
 });
