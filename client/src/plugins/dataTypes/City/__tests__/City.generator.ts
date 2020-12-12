@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+
 import { onmessage } from '../City.generator';
 import { getBlankDTGeneratorPayload } from '../../../../../tests/testHelpers';
 
