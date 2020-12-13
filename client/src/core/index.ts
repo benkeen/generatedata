@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import store from './store';
 import C from './constants';
 import * as actions from './store/generator/generator.actions';

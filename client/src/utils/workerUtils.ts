@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 /**
  * A separate bundle of this file is created by the build and loaded separately. This allows the main utility code
  * to be shared by the core code and any web worker code. That can just importScripts() the build file and load
