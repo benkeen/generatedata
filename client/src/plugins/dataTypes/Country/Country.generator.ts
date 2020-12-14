@@ -1,7 +1,7 @@
 import fullCountryList from './fullCountryList';
 import { countryList } from '../../../../_plugins';
 import { CountryState } from './Country';
-import { getRandomArrayValue } from '~utils/randomUtils';
+import utils from '../../../utils';
 import { DTGenerateResult, DTGenerationData, DTOnMessage } from '~types/dataTypes';
 import { CountryType } from '~types/countries';
 
@@ -14,12 +14,12 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 
 	if (source === 'all') {
 		return {
-			display: getRandomArrayValue(hasFilteredCountryList ? selectedCountries : fullCountryList)
+			display: utils.randomUtils.getRandomArrayValue(hasFilteredCountryList ? selectedCountries : fullCountryList)
 		};
 	} else {
-		const randomCountry = getRandomArrayValue(hasFilteredCountryList ? selectedCountries : countryList) as CountryType;
-
+		const randomCountry = utils.randomUtils.getRandomArrayValue(hasFilteredCountryList ? selectedCountries : countryList) as CountryType;
 		const data = countryData[randomCountry];
+
 		return {
 			display: data.countryName,
 			slug: data.countrySlug,
