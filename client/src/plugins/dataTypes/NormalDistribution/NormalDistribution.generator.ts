@@ -14,12 +14,12 @@ export const generate = (rowState: any): DTGenerateResult => {
 
 // adjust our gaussian random to fit the mean and standard deviation. The division by 4 is an arbitrary value to help
 // fit the distribution within our required range, and gives a best fit for stddev = 1.0
-const gaussMs = (mean: number, stddev: number): number => gauss() * (stddev / 4) + mean;
+export const gaussMs = (mean: number, stddev: number): number => gauss() * (stddev / 4) + mean;
 
 let useExists = false;
 let useValue: number;
 
-const gauss = (): number => {
+export const gauss = (): number => {
 	if (useExists) {
 		// use value from a previous call to this function
 		useExists = false;
@@ -45,4 +45,4 @@ const gauss = (): number => {
 };
 
 // returns random number with a flat distribution from -1 to 1 inclusive
-const randomPN = (): number => (2.0 * Math.random()) - 1.0;
+export const randomPN = (): number => (2.0 * Math.random()) - 1.0;
