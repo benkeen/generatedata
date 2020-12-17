@@ -71,9 +71,15 @@ const deleteDataSet = async (root, { dataSetId, content }, { token, user }) => {
 	};
 };
 
+const updateDataSetGenerationCount = (root, { dataSetId, content }, { token, user }) => {
+	authUtils.authenticate(token);
+
+
+};
 
 module.exports = {
 	saveNewDataSet,
 	saveDataSet,
-	deleteDataSet
+	deleteDataSet,
+	updateDataSetGenerationCount
 };

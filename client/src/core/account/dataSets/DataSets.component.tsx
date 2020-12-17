@@ -42,7 +42,7 @@ const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Elemen
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
 	const { data } = useQuery(queries.GET_DATA_SETS);
 
-	const loadDataSet = (dataSet: DataSetListItem) => {
+	const loadDataSet = (dataSet: DataSetListItem): void => {
 		onLoadDataSet(dataSet);
 		history.push(getGeneratorRoute());
 	};

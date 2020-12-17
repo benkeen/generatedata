@@ -47,21 +47,17 @@ const resolvers = {
 				ORDER BY dsh.date_created DESC 
 			`);
 
-			return results.map((row) => {
-				console.log(row);
-
-				return {
-					dataSetId: row.dataSetId,
-					status: row.status,
-					dateCreated: row.date_created,
-					numRowsGenerated: row.numRowsGenerated,
-					historyId: row.history_id,
-					dataSetName: row.dataset_name,
-					content: row.content,
-					dataCreatedUnix: row.dateCreatedUnix,
-					historyDateCreated: row.historyDateCreated
-				};
-			});
+			return results.map((row) => ({
+				dataSetId: row.dataSetId,
+				status: row.status,
+				dateCreated: row.date_created,
+				numRowsGenerated: row.numRowsGenerated,
+				historyId: row.history_id,
+				dataSetName: row.dataset_name,
+				content: row.content,
+				dataCreatedUnix: row.dateCreatedUnix,
+				historyDateCreated: row.historyDateCreated
+			}));
 		}
 	},
 
@@ -77,7 +73,8 @@ const resolvers = {
 		updatePassword: accountResolvers.updatePassword,
 		saveNewDataSet: dataSetResolvers.saveNewDataSet,
 		saveDataSet: dataSetResolvers.saveDataSet,
-		deleteDataSet: dataSetResolvers.deleteDataSet
+		deleteDataSet: dataSetResolvers.deleteDataSet,
+		updateDataSetGenerationCount: dataSetResolvers.updateDataSetGenerationCount
 	}
 };
 

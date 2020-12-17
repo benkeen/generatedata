@@ -14,7 +14,6 @@ import C from '../../constants';
 import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import { ClearType } from '../../dialogs/clearGrid/ClearGrid.component';
 import { DataSetListItem } from '~types/dataSets';
-import store from '~core/store';
 import { getUnique } from '~utils/arrayUtils';
 
 export const ADD_ROWS = 'ADD_ROWS';
@@ -311,25 +310,25 @@ export const SET_INITIAL_DEPENDENCIES_LOADED = 'SET_INITIAL_DEPENDENCIES_LOADED'
 export const setInitialDependenciesLoaded = (): GDAction => ({ type: SET_INITIAL_DEPENDENCIES_LOADED });
 
 export const LOAD_DATA_SET = 'LOAD_DATA_SET';
-export const loadDataSet = (dataSet: DataSetListItem): any => (dispatch: Dispatch, getState: any) => {
+export const loadDataSet = (dataSet: DataSetListItem): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
-	const dataTypes = sortedRows.map((hash: string) => rows[hash].dataType).filter((dataType: DataTypeFolder | null) => dataType !== null);
 
+	const dataTypes = sortedRows.map((hash: string) => rows[hash].dataType).filter((dataType: DataTypeFolder | null) => dataType !== null);
 	const uniqueDataTypes = getUnique(dataTypes);
 
 	// load all the datasets and export type
 	onSelectExportType(exportType);
 	uniqueDataTypes.forEach((dataType: DataTypeFolder) => loadDataTypeBundle(dispatch, getState, dataType));
 
-	console.log("loading shit: ", exportType, uniqueDataTypes);
-
-	return {
+	dispatch({
 		type: LOAD_DATA_SET,
 		payload: {
 			exportType,
 			exportTypeSettings,
 			rows,
-			sortedRows
+			sortedRows,
+			dataSetId: dataSet.dataSetId,
+			dataSetName: dataSet.dataSetName
 		}
-	};
+	});
 };
