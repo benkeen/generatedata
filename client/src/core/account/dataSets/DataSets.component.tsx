@@ -7,6 +7,8 @@ import DeleteDataSetDialog from './DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
 import { DataSetListItem } from '~types/dataSets';
 import { formatUnixTime } from '~utils/dateUtils';
+import { getGeneratorRoute } from '~utils/routeUtils';
+import { useHistory } from 'react-router';
 
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 	<div className={styles.row}>
@@ -35,9 +37,15 @@ export type DataSetsProps = {
 };
 
 const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Element | null => {
+	const history = useHistory();
 	const [selectedDataSet, selectDataSet] = useState<DataSetListItem>();
 	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
 	const { data } = useQuery(queries.GET_DATA_SETS);
+
+	const loadDataSet = (dataSet: DataSetListItem) => {
+		onLoadDataSet(dataSet);
+		history.push(getGeneratorRoute());
+	};
 
 	// TODO loading spinner
 	const [deleteDataSet] = useMutation(queries.DELETE_DATA_SET, {
@@ -78,7 +86,7 @@ const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Elemen
 								key={dataSet.dataSetId}
 								dataSet={dataSet}
 								onDelete={(): void => onShowDeleteDialog(dataSet)}
-								onLoad={(): void => onLoadDataSet(dataSet)}
+								onLoad={(): void => loadDataSet(dataSet)}
 								i18n={i18n}
 							/>
 						))}

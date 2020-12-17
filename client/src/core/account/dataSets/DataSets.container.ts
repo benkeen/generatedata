@@ -12,7 +12,7 @@ const mapStateToProps = (state: Store): Partial<DataSetsProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<DataSetsProps> => ({
-	onLoadDataSet: (dataSet: DataSetListItem) => dispatch(actions.loadDataSet(dataSet))
+	onLoadDataSet: (dataSet: DataSetListItem): any => dispatch(actions.loadDataSet(dataSet))
 });
 
 const container: any = connect(

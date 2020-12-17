@@ -40,6 +40,8 @@ export const getRoutes = (): GDRoute[] => {
 	return routes;
 };
 
+export const getGeneratorRoute = (): string => process.env.GD_GENERATOR_PATH || '';
+
 export interface CustomHeaderLinkGetter {
 	(isLoggedIn: boolean, accountType: AccountType): GDHeaderLink[];
 }

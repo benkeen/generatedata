@@ -15,8 +15,3 @@ export const getAccounts = (): any => async (dispatch: Dispatch): Promise<any> =
 		}
 	});
 };
-
-// export const loadDataSet = (dataSetId: number) => {
-// 	// retrieve data set
-// 	// load
-// };

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
 import { GDHeaderLink } from '~types/general';
+import { getGeneratorRoute } from '~utils/routeUtils';
 import { Tooltip } from '~components/tooltips';
 import styles from './Header.scss';
 
@@ -23,7 +24,7 @@ const getClassName = (path: string, currentPage: string): string => {
 
 const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
 	const links: any = [];
-	const generatorPath = process.env.GD_GENERATOR_PATH || ''; // just to placate TS
+	const generatorPath = getGeneratorRoute();
 
 	headerLinks.forEach((headerLink, index) => {
 		if (headerLink === 'generator') {
