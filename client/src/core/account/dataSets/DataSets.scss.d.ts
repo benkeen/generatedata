@@ -7,8 +7,8 @@ declare namespace DataSetsScssNamespace {
     header: string;
     history: string;
     lastModified: string;
-    load: string;
     numRowsGenerated: string;
+    open: string;
     page: string;
     row: string;
     status: string;

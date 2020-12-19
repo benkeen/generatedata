@@ -13,13 +13,13 @@ import { useHistory } from 'react-router';
 const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 	<div className={styles.row}>
 		<div className={styles.dataSetName}>{dataSet.dataSetName}</div>
-		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreated)}</div>
+		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
 		<div className={styles.numRowsGenerated}>{dataSet.numRowsGenerated}</div>
 		<div className={styles.status}>
 			{dataSet.status === 'public' ? 'Public' : 'Private'}
 		</div>
-		<div className={styles.load}>
-			<Button size="small" type="submit" color="secondary" variant="outlined" onClick={onLoad}>{i18n.load}</Button>
+		<div className={styles.open}>
+			<Button size="small" type="submit" color="secondary" variant="outlined" onClick={onLoad}>{i18n.open}</Button>
 		</div>
 		<div className={styles.history}>
 			<Button size="small" type="submit" color="primary" variant="outlined">{i18n.history}</Button>
@@ -76,7 +76,7 @@ const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Elemen
 						<div className={styles.lastModified}>{i18n.lastModified}</div>
 						<div className={styles.numRowsGenerated}>{i18n.rowsGenerated}</div>
 						<div className={styles.status}>Status</div>
-						<div className={styles.load}>{i18n.load}</div>
+						<div className={styles.open}>{i18n.open}</div>
 						<div className={styles.history}>{i18n.history}</div>
 						<div className={styles.del} />
 					</div>

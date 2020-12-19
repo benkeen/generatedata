@@ -55,8 +55,6 @@ export const logDataBatch = (packetId: string, numGeneratedRows: number, dataStr
 				generatedRows: numGeneratedRows
 			}
 		});
-
-
 	}
 
 	dispatch({

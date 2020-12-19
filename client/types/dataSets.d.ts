@@ -3,9 +3,9 @@ export type DataSetListItem = {
 	dataSetId: number;
 	dataSetName: string;
 	status: 'private' | 'public';
-	dateCreated: Date;
 	accountId: number;
 	content: string;
 	numRowsGenerated: number;
-	historyDateCreated: string;
+	dateCreatedUnix: string;
+	historyDateCreatedUnix: string;
 };

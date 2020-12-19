@@ -21,7 +21,7 @@ export const GET_DATA_SETS = gql`
             dateCreated
 			content
             numRowsGenerated
-            historyDateCreated
+            historyDateCreatedUnix
         }
     }
 `;

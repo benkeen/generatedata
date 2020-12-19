@@ -9,7 +9,7 @@ export interface TypescriptSettings extends ETState {
 }
 
 export const initialState: TypescriptSettings = {
-	typeName: 'GeneratedData',
+	typeName: 'RandomData',
 	varName: 'data',
 	isValid: true
 };

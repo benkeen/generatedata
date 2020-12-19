@@ -22,5 +22,5 @@ export const formatUnixTime = (time: number): string => {
 	if (!time) {
 		return '';
 	}
-	return format(fromUnixTime(time/1000), 'MMM d, y h:mm b');
+	return format(fromUnixTime(time), 'MMM d, y h:mm b');
 };

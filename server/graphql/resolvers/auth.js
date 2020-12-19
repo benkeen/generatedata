@@ -91,7 +91,7 @@ const loginWithGoogle = async (root, { googleToken }) => {
 
 const refreshToken = async (root, args, { token, req, res }) => {
 	if (!req.cookies.refreshToken) {
-		console.log('no refresh token! unable to refresh');
+		console.log('no existing refresh token! unable to refresh');
 		return { success: false };
 	}
 
@@ -153,7 +153,7 @@ const getNewTokenAndSetRefreshTokenCookie = async (accountId, email, user, res) 
 	// lifespan of the living token (`token`)
 	const tokenExpiry = process.env.GD_JWT_LIFESPAN_MINS * 60 * 1000; // milliseconds
 
-	res.cookie("refreshToken", refreshToken, { // TODO hash this for sending to the client
+	res.cookie("refreshToken", refreshToken, { // TODO hash this for sending to the client?
 		secure: false, // TODO
 		httpOnly: true,
 		maxAge: tokenExpiry,

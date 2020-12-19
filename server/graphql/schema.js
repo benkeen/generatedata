@@ -58,7 +58,7 @@ const typeDefs = gql`
         dataSetName: String
         content: String
         dataCreatedUnix: Int
-        historyDateCreated: String
+        historyDateCreatedUnix: Int
     }
     type DataSetHistory {
         historyId: ID!
