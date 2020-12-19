@@ -71,7 +71,7 @@ const resolvers = {
 		updateAccount: accountResolvers.updateAccount,
 		updatePassword: accountResolvers.updatePassword,
 		saveNewDataSet: dataSetResolvers.saveNewDataSet,
-		renameNewDataSet: dataSetResolvers.renameDataSet,
+		renameDataSet: dataSetResolvers.renameDataSet,
 		saveDataSet: dataSetResolvers.saveDataSet,
 		deleteDataSet: dataSetResolvers.deleteDataSet,
 		updateDataSetGenerationCount: dataSetResolvers.updateDataSetGenerationCount

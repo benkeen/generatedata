@@ -12,7 +12,8 @@ const mapStateToProps = (state: any): Partial<GeneratorControlsProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorControlsProps> => ({
-	onUpdate: (dataSetName: string): any => dispatch(actions.renameDataSet(dataSetName))
+	onUpdate: (dataSetName: string): any => dispatch(actions.renameDataSet(dataSetName)),
+	onSaveDataSet: (): any => dispatch(actions.showSaveDataSetDialog()),
 });
 
 const container: any = connect(

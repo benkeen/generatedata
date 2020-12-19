@@ -18,7 +18,7 @@ const typeDefs = gql`
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
         saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetResponse
         saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse
-        renameNewDataSet(dataSetId: ID!, dataSetName: String): GeneralResponse
+        renameDataSet(dataSetId: ID!, dataSetName: String): GeneralResponse
 		deleteDataSet(dataSetId: ID!): GeneralResponse
         updateDataSetGenerationCount(dataSetId: ID, generatedRows: Int): GeneralResponse
 	}

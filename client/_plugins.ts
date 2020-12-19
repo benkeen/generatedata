@@ -36,7 +36,6 @@ import TextFixed from './src/plugins/dataTypes/TextFixed/config';
 import TextRandom from './src/plugins/dataTypes/TextRandom/config';
 import Track1 from './src/plugins/dataTypes/Track1/config';
 import Track2 from './src/plugins/dataTypes/Track2/config';
-import _Tree from './src/plugins/dataTypes/_Tree/config';
 
 export const dataTypes = {
 	Alphanumeric,
@@ -71,8 +70,7 @@ export const dataTypes = {
 	TextFixed,
 	TextRandom,
 	Track1,
-	Track2,
-	_Tree
+	Track2
 };
 
 export type DataTypeFolder = keyof typeof dataTypes;

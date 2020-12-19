@@ -17,7 +17,6 @@ import sharedStyles from '../../styles/shared.scss';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
-import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
 import Link from '~components/Link';
 import { GDLocale } from '~types/general';
 import C from '../constants';
@@ -222,7 +221,6 @@ const Footer = ({
 					</div>
 				</div>
 			</footer>
-			<SaveDataSetDialog />
 		</>
 	);
 };

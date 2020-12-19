@@ -7,7 +7,6 @@ import * as actions from '~store/account/account.actions';
 import * as mainActions from '~store/main/main.actions';
 import * as mainSelectors from '~store/main/main.selectors';
 
-
 const mapStateToProps = (state: any): Partial<SaveDataSetDialogProps> => ({
 	i18n: selectors.getCoreI18n(state),
 	visible: accountSelectors.shouldShowSaveDataSetDialog(state),

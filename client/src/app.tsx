@@ -12,6 +12,7 @@ import Page from '~core/page/Page.container';
 import * as core from '~core/index';
 import ErrorBoundary from '~core/errorBoundary';
 import theme from '~core/theme';
+import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
 import Toast from '~components/toast/Toast.component';
 import C from '~core/constants';
 import { getAppStateVersion } from '~store/main/main.selectors';
@@ -19,6 +20,7 @@ import { resetStore, initRouteListener } from '~store/main/main.actions';
 import { getRoutes } from '~utils/routeUtils';
 import '~store/generator/generator.reducer';
 import './styles/global.scss';
+
 
 window.CodeMirror = codemirror;
 
@@ -40,8 +42,8 @@ const App = withRouter(({ history }: any) => {
 				<Switch>
 					{routes.map(({ path, component: Component }, index) => <Route key={index} path={path}><Component /></Route>)}
 				</Switch>
-
 				<Toast />
+				<SaveDataSetDialog />
 			</Page>
 		</ErrorBoundary>
 	);

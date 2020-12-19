@@ -28,19 +28,14 @@ const saveNewDataSet = async (root, { dataSetName, content }, { token, user }) =
 	};
 };
 
-const renameDataSet = async (root, { dataSetName, content }, { token, user }) => {
+const renameDataSet = async (root, { dataSetId, dataSetName }, { token }) => {
 	authUtils.authenticate(token);
 
-	const { accountId } = user;
+	// TODO security. Check user can update this data set
 
-	const dateCreated = new Date().getTime();
+	const dataSet = await db.dataSets.findByPk(dataSetId);
 
-	// const { dataSetId } = dataSet.dataValues;
-	// await db.dataSetHistory.create({
-	// 	dataSetId,
-	// 	dateCreated,
-	// 	content
-	// });
+	await dataSet.update({ dataSetName });
 
 	return {
 		success: true
@@ -92,7 +87,6 @@ const deleteDataSet = async (root, { dataSetId, content }, { token, user }) => {
 
 const updateDataSetGenerationCount = (root, { dataSetId, content }, { token, user }) => {
 	authUtils.authenticate(token);
-
 
 };
 
