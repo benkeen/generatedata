@@ -13,6 +13,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import GearIcon from '@material-ui/icons/Settings';
 import { HtmlTooltip } from '~components/tooltips';
 import styles from './Footer.scss';
+import sharedStyles from '../../styles/shared.scss';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
@@ -181,9 +182,9 @@ const Footer = ({
 		);
 	};
 
-	let generatorControlsClasses = styles.generatorControls;
+	let generatorControlsClasses = sharedStyles.generatorControls;
 	if (currentPage === process.env.GD_GENERATOR_PATH) {
-		generatorControlsClasses += ` ${styles.visible}`;
+		generatorControlsClasses += ` ${sharedStyles.visible}`;
 	}
 
 	return (

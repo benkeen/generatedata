@@ -6,9 +6,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
 import IntroDialog from '../dialogs/intro/Intro.component';
+import GeneratorControls from './GeneratorControls.container';
 import { GDLocale } from '~types/general';
 import C from '../constants';
-import * as styles from './Header.scss';
+import sharedStyles from '../../styles/shared.scss';
+import styles from './Header.scss';
 import { GeneratorPanel } from '~store/generator/generator.reducer';
 import HeaderLinks from './HeaderLinks.component';
 import { getHeaderLinks } from '~utils/routeUtils';
@@ -67,6 +69,11 @@ const Header = ({
 	</Menu>
 	*/
 
+	let generatorControlsClasses = `${sharedStyles.generatorControls} ${styles.controls}`;
+	if (currentPage === process.env.GD_GENERATOR_PATH) {
+		generatorControlsClasses += ` ${sharedStyles.visible}`;
+	}
+
 	const getNav = (): React.ReactNode => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
 			const togglePanelLabel = smallScreenVisiblePanel === 'grid' ? i18n.showPreview : i18n.showGrid;
@@ -115,12 +122,16 @@ const Header = ({
 				<div>
 					<h1>
 						<img
-							src="./images/logo.png"
-							width={295}
-							height={58}
+							src="./images/dice80.png"
+							width={40}
+							height={40}
 							onClick={toggleIntroDialog}
+							alt="site logo"
 						/>
 					</h1>
+					<div className={generatorControlsClasses}>
+						<GeneratorControls />
+					</div>
 					<nav>
 						{getNav()}
 					</nav>

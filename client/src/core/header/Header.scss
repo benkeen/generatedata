@@ -2,13 +2,16 @@
 
 .header {
 	background-image: url("./images/bg.png");
-    padding: 0 20px;
+	padding: 0 20px 0 10px;
+	height: 60px;
+	display: flex;
 
 	img {
 		cursor: pointer;
 	}
 
     & > div {
+		width: 100%;
         max-width: 1400px;
         margin: 0 auto;
         display: flex;
@@ -17,11 +20,12 @@
     }
 
     h1 {
-        flex: 1;
+        flex: 0;
         display: flex;
         flex-direction: row;
         align-items: center;
 		margin: 4px 0 4px;
+		padding-right: 10px;
     }
 
     section {
@@ -53,8 +57,23 @@
     a {
         text-decoration: none;
     }
-}
 
+	.controls {
+		flex: 1;
+
+		input {
+			background-color: transparent;
+			border: 1px solid transparent;
+			transition: border 150ms ease-in-out;
+			text-overflow: ellipsis;
+
+			&:hover, &:focus {
+				border: 1px solid $primary-color;
+				text-overflow: inherit;
+			}
+		}
+	}
+}
 
 .headerLinks {
 	margin-right: 20px;

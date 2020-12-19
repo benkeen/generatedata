@@ -4,11 +4,13 @@ declare namespace SharedScssNamespace {
     copyCol: string;
     emptyCol: string;
     errorField: string;
+    generatorControls: string;
     pill: string;
     selected: string;
     tab: string;
     tip: string;
     twoColPage: string;
+    visible: string;
   }
 }
 

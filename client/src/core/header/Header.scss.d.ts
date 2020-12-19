@@ -1,5 +1,6 @@
 declare namespace HeaderScssNamespace {
   export interface IHeaderScss {
+    controls: string;
     current: string;
     fadein: string;
     header: string;

@@ -108,15 +108,6 @@ button.saveBtnArrow {
 	}
 }
 
-.generatorControls {
-	opacity: 0;
-	transition: opacity 200ms ease-in-out;
-
-	&.visible {
-		opacity: 1;
-	}
-}
-
 .saveAsRow {
 	cursor: pointer;
 	background-color: $primary-submit;

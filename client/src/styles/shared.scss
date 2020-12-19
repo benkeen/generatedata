@@ -95,3 +95,12 @@ input.errorField, textarea.errorField, select.errorField, button.errorField {
 		color: $primary-color;
 	}
 }
+
+.generatorControls {
+	opacity: 0;
+	transition: opacity 200ms ease-in-out;
+
+	&.visible {
+		opacity: 1;
+	}
+}
