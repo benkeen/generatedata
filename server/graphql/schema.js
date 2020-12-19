@@ -19,6 +19,7 @@ const typeDefs = gql`
         saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetRespnse
         saveDataSet(dataSetId: ID!, content: String!): SavedDataSetRespnse
 		deleteDataSet(dataSetId: ID!): GeneralResponse
+        updateDataSetGenerationCount(dataSetId: ID, generatedRows: Int): GeneralResponse
 	}
     type Account {
 	    accountId: ID!

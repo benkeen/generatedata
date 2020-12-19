@@ -160,7 +160,6 @@ export const reducer = produce((draft: PacketsState, action: AnyAction) => {
 
 		case actions.CHANGE_SPEED: {
 			if (draft.currentPacketId) {
-				console.log("setting....");
 				draft.packets[draft.currentPacketId].speed = action.payload.speed;
 			}
 			break;

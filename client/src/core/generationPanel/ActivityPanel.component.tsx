@@ -169,9 +169,11 @@ const ActivityPanel = ({
 		return (
 			<div style={{ flex: 1, display: 'flex', marginRight: 80 }}>
 				<Tooltip title={tooltip} placement="top" arrow style={{ marginRight: 50 }}>
-					<IconButton size="medium" aria-label={tooltip}>
-						{pauseContinueIcon}
-					</IconButton>
+					<span>
+						<IconButton size="medium" aria-label={tooltip}>
+							{pauseContinueIcon}
+						</IconButton>
+					</span>
 				</Tooltip>
 				<Slider
 					value={speed}

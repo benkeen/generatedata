@@ -5,11 +5,13 @@ import * as packetSelectors from './packets.selectors';
 import { getDownloadFileInfo } from '~utils/exportTypeUtils';
 import { GDAction } from '~types/general';
 import { downloadFile } from '../../generationPanel/generation.helpers';
+import * as mainSelectors from '~store/main/main.selectors';
+import { apolloClient } from '~core/apolloClient';
+import { gql } from '@apollo/client';
 
 export const START_GENERATION = 'START_GENERATION';
 export const startGeneration = (): any => (dispatch: Dispatch, getState: any): void => {
 	const state = getState();
-
 
 	// whenever we start generating some data, we stash all the current settings into the data packet instance. That way,
 	// we can happily generate multiple independent packets simultaneously while the user starts work on a new
@@ -31,14 +33,41 @@ export const startGeneration = (): any => (dispatch: Dispatch, getState: any): v
 };
 
 export const LOG_DATA_BATCH = 'LOG_DATA_BATCH';
-export const logDataBatch = (packetId: string, numGeneratedRows: number, dataStr: string): GDAction => ({
-	type: LOG_DATA_BATCH,
-	payload: {
-		packetId,
-		numGeneratedRows,
-		dataStr
+export const logDataBatch = (packetId: string, numGeneratedRows: number, dataStr: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
+	const state = getState();
+	const numRowsToGenerate = selectors.getNumRowsToGenerate(state);
+	const isLoggedIn = mainSelectors.isLoggedIn(state);
+	const currentDataSetId = selectors.getCurrentDataSetId(state);
+
+	// if the packet has been fully generated track the generated row count
+	if (isLoggedIn && currentDataSetId !== null && numRowsToGenerate === numGeneratedRows) {
+		const response = await apolloClient.mutate({
+			mutation: gql`
+                mutation UpdateDataSetGenerationCount($dataSetId: ID!, $generatedRows: Int!) {
+                    updateDataSetGenerationCount(dataSetId: $dataSetId, generatedRows: $generatedRows) {
+                        success
+						error
+                    }
+                }
+			`,
+			variables: {
+				dataSetId: currentDataSetId,
+				generatedRows: numGeneratedRows
+			}
+		});
+
+
 	}
-});
+
+	dispatch({
+		type: LOG_DATA_BATCH,
+		payload: {
+			packetId,
+			numGeneratedRows,
+			dataStr
+		}
+	});
+};
 
 export const PAUSE_GENERATION = 'PAUSE_GENERATION';
 export const pauseGeneration = (packetId: string): GDAction => ({ type: PAUSE_GENERATION, payload: { packetId } });
