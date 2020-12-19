@@ -28,6 +28,25 @@ const saveNewDataSet = async (root, { dataSetName, content }, { token, user }) =
 	};
 };
 
+const renameDataSet = async (root, { dataSetName, content }, { token, user }) => {
+	authUtils.authenticate(token);
+
+	const { accountId } = user;
+
+	const dateCreated = new Date().getTime();
+
+	// const { dataSetId } = dataSet.dataValues;
+	// await db.dataSetHistory.create({
+	// 	dataSetId,
+	// 	dateCreated,
+	// 	content
+	// });
+
+	return {
+		success: true
+	};
+};
+
 const saveDataSet = async (root, { dataSetId, content }, { token, user }) => {
 	authUtils.authenticate(token);
 
@@ -80,6 +99,7 @@ const updateDataSetGenerationCount = (root, { dataSetId, content }, { token, use
 module.exports = {
 	saveNewDataSet,
 	saveDataSet,
+	renameDataSet,
 	deleteDataSet,
 	updateDataSetGenerationCount
 };

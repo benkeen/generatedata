@@ -64,7 +64,7 @@ const generate = (generationData: ETMessageData, stripWhitespace: boolean): stri
 	});
 
 	if (generationData.isLastBatch) {
-		content += `${newline}]`;
+		content += `${newline}];`;
 	}
 
 	return content;
@@ -78,7 +78,7 @@ const generateTypes = (typeName: string, colData: ColumnData[]) => {
 		typeBlock += `\t${title}: ${type};\n`;
 	});
 
-	typeBlock += '}\n\n';
+	typeBlock += '};\n\n';
 
 	return typeBlock;
 };

@@ -57,6 +57,16 @@ export const SAVE_NEW_DATA_SET = gql`
 	}
 `;
 
+export const RENAME_DATA_SET = gql`
+    mutation RenameDataSet($dataSetId: ID!, $dataSetName: String!) {
+        renameDataSet(dataSetId: $dataSetId, dataSetName: $dataSetName) {
+            success
+            error
+        }
+    }
+`;
+
+
 export const SAVE_CURRENT_DATA_SET = gql`
 	mutation SaveDataSet($dataSetId: ID!, $content: String!) {
 		saveDataSet(dataSetId: $dataSetId, content: $content) {

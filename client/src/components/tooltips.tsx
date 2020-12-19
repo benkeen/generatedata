@@ -6,7 +6,7 @@ export const HtmlTooltip = withStyles(() => ({
 		backgroundColor: '#f0f2f5',
 		color: 'rgba(0, 0, 0, 0.87)',
 		fontSize: 12,
-		padding: 15,
+		padding: 0,
 		border: '1px solid #ccd0d4'
 	},
 	arrow: {

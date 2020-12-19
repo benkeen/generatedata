@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Measure from 'react-measure';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import AutoSizer from 'react-input-autosize';
 
 export type GeneratorControlsProps = {
@@ -13,6 +15,10 @@ const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate }: GeneratorContr
 	const [dimensions, setDimensions] = useState<any>({ height: 0, width: 0 });
 	const [newDataSetName, setNewDataSetName] = useState(dataSetName);
 
+	useEffect(() => {
+		setNewDataSetName(dataSetName);
+	}, [dataSetName]);
+
 	const onChange = (e: any): void => {
 		setNewDataSetName(e.target.value);
 	};
@@ -21,24 +27,24 @@ const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate }: GeneratorContr
 		if (e.key === 'Escape') {
 			setNewDataSetName(dataSetName);
 		} else if (e.key === 'Enter') {
-			console.log("<enter>");
 			onUpdate(newDataSetName);
 		}
 	};
 
-	const getMenu = () => {
+	const getMenu = (): JSX.Element | null => {
 		if (!isLoggedIn) {
 			return null;
 		}
-
 		return (
-			<span>
-				^
+			<span style={{ display: 'flex', alignItems: 'center' }}>
+				<IconButton size="small" aria-label="Data Set Options">
+					<ArrowDropDownIcon fontSize="large" />
+				</IconButton>
 			</span>
 		);
 	};
 
-	const maxInputFieldWidth = dimensions.width - 50;
+	const maxInputFieldWidth = dimensions.width - 30;
 
 	return (
 		<Measure
@@ -46,7 +52,7 @@ const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate }: GeneratorContr
 			onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
 		>
 			{({ measureRef }): any => (
-				<div ref={measureRef}>
+				<div ref={measureRef} style={{ display: 'flex' }}>
 					<AutoSizer
 						inputStyle={{ fontSize: 18, maxWidth: maxInputFieldWidth }}
 						placeholder="Enter Data Set Name here..."

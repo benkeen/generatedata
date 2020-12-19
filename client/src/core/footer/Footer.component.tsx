@@ -54,8 +54,7 @@ const allLocaleOptions = [
 const useListStyles = makeStyles(() =>
 	createStyles({
 		root: {
-			width: '100%',
-			maxWidth: 360
+			width: 130
 		}
 	})
 );
@@ -97,7 +96,7 @@ const Footer = ({
 					interactive
 					title={
 						<div className={listClasses.root} ref={popoverRef}>
-							<List>
+							<List disablePadding>
 								{allLocaleOptions.map((currLocale: any): JSX.Element => (
 									<ListItem
 										button

@@ -1,6 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "HTML",
-  "COL_TITLE": "Nom du nœud",
+  "COL_TITLE": "Titre de la colonne",
   "dataFormat": "Format des données",
   "batchVars": "Booléen permettant de savoir si le lot courant des résultats générés est le premier ou le dernier. N'est utilisé que dans le cas d'une génération des données dans la page, ce qui génère des résultats en morceaux. Pour tous les autres cas, les deux valeurs sont toujours vrai."
 }

@@ -7,8 +7,8 @@ import * as accountActions from '../account/account.actions';
 import * as packetActions from '../packets/packets.actions';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder, exportTypes, dataTypes } from '../../../../_plugins';
-import env from '../../../../_env';
 import { GeneratorLayout } from '../../generator/Generator.component';
+import env from '../../../../_env';
 
 export type DataRow = {
 	id: string;
@@ -127,6 +127,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.rows = {};
 			draft.sortedRows = [];
 			draft.currentDataSetId = null;
+			draft.currentDataSetName = '';
 			break;
 
 		case actions.RESET_GENERATOR: {
@@ -137,7 +138,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			const settingsToReset = [
 				'exportType', 'showGrid', 'showPreview', 'generatorLayout', 'showExportSettings', 'numPreviewRows',
 				'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'exportSettingsTab', 'numRowsToGenerate',
-				'stripWhitespace', 'currentDataSetId'
+				'stripWhitespace', 'currentDataSetId', 'currentDataSetName'
 			];
 			settingsToReset.forEach((setting: any) => {
 				// @ts-ignore-line
@@ -320,7 +321,6 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.LOAD_DATA_SET: {
 			const { exportType, exportTypeSettings, rows, sortedRows, dataSetId, dataSetName } = action.payload;
-
 			draft.exportType = exportType;
 			draft.exportTypeSettings[exportType as ExportTypeFolder] = exportTypeSettings;
 			draft.rows = rows;
@@ -329,6 +329,10 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.currentDataSetName = dataSetName;
 			break;
 		}
+
+		case accountActions.UPDATE_CURRENT_DATA_SET_NAME:
+			draft.currentDataSetName = action.payload.dataSetName;
+			break;
 	}
 }, getInitialState());
 

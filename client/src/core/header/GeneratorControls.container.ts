@@ -1,16 +1,18 @@
-// import { Dispatch } from 'redux';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import GeneratorControls, { GeneratorControlsProps } from './GeneratorControls.component';
 import * as selectors from '../store/generator/generator.selectors';
+import * as actions from '~store/account/account.actions';
+import * as mainSelectors from '~store/main/main.selectors';
 
 const mapStateToProps = (state: any): Partial<GeneratorControlsProps> => ({
 	i18n: selectors.getCoreI18n(state),
-	dataSetName: ''
+	isLoggedIn: mainSelectors.isLoggedIn(state),
+	dataSetName: selectors.getCurrentDataSetName(state)
 });
 
-// dispatch: Dispatch
-const mapDispatchToProps = (): Partial<GeneratorControlsProps> => ({
-	// onLogout: (): any => dispatch(mainActions.logout())
+const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorControlsProps> => ({
+	onUpdate: (dataSetName: string): any => dispatch(actions.renameDataSet(dataSetName))
 });
 
 const container: any = connect(

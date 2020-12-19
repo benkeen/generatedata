@@ -16,8 +16,9 @@ const typeDefs = gql`
 		logout: GeneralResponse
         updateAccount(firstName: String!, lastName: String!, email: String!, country: String!, region: String): GeneralResponse
 		updatePassword(currentPassword: String!, newPassword: String!): GeneralResponse
-        saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetRespnse
-        saveDataSet(dataSetId: ID!, content: String!): SavedDataSetRespnse
+        saveNewDataSet(dataSetName: String!, content: String!): SavedDataSetResponse
+        saveDataSet(dataSetId: ID!, content: String!): SavedDataSetResponse
+        renameNewDataSet(dataSetId: ID!, dataSetName: String): GeneralResponse
 		deleteDataSet(dataSetId: ID!): GeneralResponse
         updateDataSetGenerationCount(dataSetId: ID, generatedRows: Int): GeneralResponse
 	}
@@ -87,7 +88,7 @@ const typeDefs = gql`
 		success: Boolean
 		error: String
 	}
-    type SavedDataSetRespnse {
+    type SavedDataSetResponse {
 	    success: Boolean
 	    error: String
 	    dataSetId: ID
