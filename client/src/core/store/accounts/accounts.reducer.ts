@@ -22,7 +22,6 @@ export const reducer = produce((draft: AccountsState, action: AnyAction) => {
 			break;
 
 		case actions.ACCOUNTS_LOADED:
-			console.log("loaded: ", action.payload);
 			draft.accounts = action.payload.accounts;
 			break;
 	}
