@@ -3,7 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import * as queries from '~core/queries';
-import DeleteDataSetDialog from './DeleteDataSetDialog.component';
+import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
 import styles from './DataSets.scss';
 import { DataSetListItem } from '~types/dataSets';
 import { formatUnixTime } from '~utils/dateUtils';
@@ -47,7 +47,6 @@ const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Elemen
 		history.push(getGeneratorRoute());
 	};
 
-	// TODO loading spinner
 	const [deleteDataSet] = useMutation(queries.DELETE_DATA_SET, {
 		refetchQueries: [
 			{ query: queries.GET_DATA_SETS }

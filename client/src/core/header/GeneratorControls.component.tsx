@@ -8,19 +8,27 @@ import { HtmlTooltip } from '~components/tooltips';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import useOnClickOutside from 'use-onclickoutside';
+import { useMutation } from '@apollo/client';
+import DeleteDataSetDialog from '~core/dialogs/deleteDataSet/DeleteDataSetDialog.component';
+import * as queries from '~core/queries';
 
 export type GeneratorControlsProps = {
 	i18n: any;
+	dataSetId: number | null;
 	dataSetName: string;
 	isLoggedIn: boolean;
 	onUpdate: (newDataSetName: string) => void;
 	onSaveDataSet: () => void;
+	onClearGrid: () => void;
 };
 
-const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate, onSaveDataSet }: GeneratorControlsProps): JSX.Element => {
+const GeneratorControls = ({
+	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onClearGrid
+}: GeneratorControlsProps): JSX.Element => {
 	const popoverRef = useRef(null);
 	const inputFieldRef = useRef(null);
 
+	const [dialogVisible, setDeleteDialogVisibility] = useState(false);
 	const [dimensions, setDimensions] = useState<any>({ height: 0, width: 0 });
 	const [newDataSetName, setNewDataSetName] = useState(dataSetName);
 	const [dataSetMenuVisible, setMenuVisibility] = useState(false);
@@ -32,6 +40,16 @@ const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate, onSaveDataSet }:
 	useEffect(() => {
 		setNewDataSetName(dataSetName);
 	}, [dataSetName]);
+
+	const [deleteDataSet] = useMutation(queries.DELETE_DATA_SET, {
+		refetchQueries: [
+			{ query: queries.GET_DATA_SETS }
+		],
+		onCompleted: () => {
+			setDeleteDialogVisibility(false);
+			onClearGrid();
+		}
+	});
 
 	const onChange = (e: any): void => {
 		setNewDataSetName(e.target.value);
@@ -46,7 +64,7 @@ const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate, onSaveDataSet }:
 	};
 
 	const getMenu = (): JSX.Element | null => {
-		if (!isLoggedIn) {
+		if (!isLoggedIn || dataSetId === null) {
 			return null;
 		}
 
@@ -81,7 +99,10 @@ const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate, onSaveDataSet }:
 								<ListItem
 									button
 									key="delete"
-									onClick={(): void => {}}>
+									onClick={(): any => {
+										setMenuVisibility(false);
+										setDeleteDialogVisibility(true);
+									}}>
 									<ListItemText primary="Delete" />
 								</ListItem>
 							</List>
@@ -101,7 +122,7 @@ const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate, onSaveDataSet }:
 	const onFocus = (e: any) => {
 		e.preventDefault();
 
-		if (!isLoggedIn) {
+		if (!isLoggedIn || dataSetId === null) {
 			onSaveDataSet();
 			// @ts-ignore-line
 			inputFieldRef.current!.blur();
@@ -111,25 +132,38 @@ const GeneratorControls = ({ isLoggedIn, dataSetName, onUpdate, onSaveDataSet }:
 	const maxInputFieldWidth = dimensions.width - 30;
 
 	return (
-		<Measure
-			bounds
-			onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
-		>
-			{({ measureRef }): any => (
-				<div ref={measureRef} style={{ display: 'flex' }}>
-					<AutoSizer
-						ref={inputFieldRef}
-						inputStyle={{ fontSize: 18, maxWidth: maxInputFieldWidth }}
-						placeholder="Enter Data Set Name here..."
-						onFocus={onFocus}
-						onChange={onChange}
-						onKeyUp={onKeyUp}
-						value={newDataSetName}
-					/>
-					{getMenu()}
-				</div>
-			)}
-		</Measure>
+		<>
+			<Measure
+				bounds
+				onResize={(contentRect: any): void => setDimensions(contentRect.bounds)}
+			>
+				{({ measureRef }): any => (
+					<div ref={measureRef} style={{ display: 'flex' }}>
+						<AutoSizer
+							ref={inputFieldRef}
+							inputStyle={{ fontSize: 18, maxWidth: maxInputFieldWidth }}
+							placeholder="New Data Set"
+							onFocus={onFocus}
+							onChange={onChange}
+							onKeyUp={onKeyUp}
+							value={newDataSetName}
+						/>
+						{getMenu()}
+					</div>
+				)}
+			</Measure>
+
+			<DeleteDataSetDialog
+				visible={dialogVisible}
+				onClose={(): void => setDeleteDialogVisibility(false)}
+				onDelete={(): any => deleteDataSet({
+					variables: {
+						dataSetId
+					}
+				})}
+				i18n={i18n}
+			/>
+		</>
 	);
 };
 

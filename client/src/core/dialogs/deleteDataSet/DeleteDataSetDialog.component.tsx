@@ -6,10 +6,10 @@ import styles from './DeleteDataSetDialog.scss';
 
 export type DeleteDataSetDialogProps = {
 	visible: boolean;
-	dataSetName: string | null;
 	onClose: () => void;
 	onDelete: () => void;
 	i18n: any;
+	dataSetName?: string | null;
 };
 
 const DeleteDataSetDialog = ({ visible, dataSetName, onClose, onDelete, i18n }: DeleteDataSetDialogProps): JSX.Element => (
@@ -17,10 +17,10 @@ const DeleteDataSetDialog = ({ visible, dataSetName, onClose, onDelete, i18n }: 
 		<div style={{ width: 420 }}>
 			<DialogTitle onClose={onClose}>{i18n.deleteDataSet}</DialogTitle>
 			<DialogContent dividers className={styles.contentPanel}>
-				<WarningIcon/>
+				<WarningIcon />
 				<div style={{ flex: 1 }}>
 					{i18n.deleteDataSetConfirm}
-					<div className={styles.dataSetName}>{dataSetName}</div>
+					{dataSetName ? <div className={styles.dataSetName}>{dataSetName}</div> : null}
 				</div>
 			</DialogContent>
 			<DialogActions>
