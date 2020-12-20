@@ -20,10 +20,11 @@ export type GeneratorControlsProps = {
 	onUpdate: (newDataSetName: string) => void;
 	onSaveDataSet: () => void;
 	onClearGrid: () => void;
+	disabled: boolean;
 };
 
 const GeneratorControls = ({
-	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onClearGrid
+	i18n, isLoggedIn, dataSetId, dataSetName, onUpdate, onSaveDataSet, onClearGrid, disabled
 }: GeneratorControlsProps): JSX.Element => {
 	const popoverRef = useRef(null);
 	const inputFieldRef = useRef(null);
@@ -110,7 +111,7 @@ const GeneratorControls = ({
 					}
 				>
 					<span>
-						<IconButton size="small" aria-label={i18n.dataSetOptions}>
+						<IconButton size="small" aria-label={i18n.dataSetOptions} disabled={disabled}>
 							<ArrowDropDownIcon fontSize="large" onClick={(): void => setMenuVisibility(true)} />
 						</IconButton>
 					</span>
@@ -147,6 +148,7 @@ const GeneratorControls = ({
 							onChange={onChange}
 							onKeyUp={onKeyUp}
 							value={newDataSetName}
+							disabled={disabled}
 						/>
 						{getMenu()}
 					</div>

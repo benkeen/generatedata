@@ -112,9 +112,11 @@ const Header = ({
 	};
 
 	let generatorControlsClasses = `${sharedStyles.generatorControls} ${styles.controls}`;
+	let generatorControlsDisabled = true;
 	let logoClasses = sharedStyles.mainLogo;
 	if (currentPage === process.env.GD_GENERATOR_PATH) {
 		generatorControlsClasses += ` ${sharedStyles.visible}`;
+		generatorControlsDisabled = false;
 	} else {
 		logoClasses += ` ${sharedStyles.visible}`;
 	}
@@ -136,7 +138,7 @@ const Header = ({
 						<img src="./images/logo.png" alt="generatedata.com" />
 					</div>
 					<div className={generatorControlsClasses}>
-						<GeneratorControls />
+						<GeneratorControls disabled={generatorControlsDisabled} />
 					</div>
 					<nav>
 						{getNav()}
