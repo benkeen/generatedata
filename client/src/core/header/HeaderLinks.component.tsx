@@ -16,10 +16,12 @@ export type HeaderLinksProps = {
 };
 
 const getClassName = (path: string, currentPage: string): string => {
-	if (path === '/' && currentPage === '/') {
+	const pathWithSlash = path.charAt(0) === '/' ? path : `/${path}`;
+
+	if (pathWithSlash === '/' && currentPage === '/') {
 		return styles.selected;
 	}
-	return currentPage === `/${path}` ? styles.selected : '';
+	return currentPage === pathWithSlash ? styles.selected : '';
 };
 
 const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
@@ -30,7 +32,7 @@ const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, onLogout, i18n
 		if (typeof headerLink === 'object' && headerLink.path) {
 			const link = headerLink as GDCustomHeaderLink;
 			links.push(
-				<li key="generator" className={getClassName(link.path, currentPage)}>
+				<li key={link.path} className={getClassName(link.path, currentPage)}>
 					<Link to={link.path}>{i18n[link.labelI18nKey]}</Link>
 				</li>
 			);

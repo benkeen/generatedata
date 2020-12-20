@@ -10,53 +10,53 @@
 		cursor: pointer;
 	}
 
-    & > div {
+	& > div {
 		width: 100%;
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
+		max-width: 1400px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
 
-    h1 {
-        flex: 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+	h1 {
+		flex: 0;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
 		margin: 4px 0 4px;
 		padding-right: 10px;
-    }
+	}
 
-    section {
-        float: right;
-    }
+	section {
+		float: right;
+	}
 
-    nav {
-        flex: 0 0 auto;
-        display: flex;
-        align-items: center;
+	nav {
+		flex: 0 0 auto;
+		display: flex;
+		align-items: center;
 
-        ul {
-            display: flex;
+		ul {
+			display: flex;
 			align-items: center;
-            list-style: none;
-            font-size: 14px;
+			list-style: none;
+			font-size: 14px;
 
-            li {
-                display: inline-block;
-                margin: 0 10px;
+			li {
+				display: inline-block;
+				margin: 0 10px;
 
-                &.current a {
-                    color: #000000;
-                }
-            }
-        }
-    }
+				&.current a {
+					color: #000000;
+				}
+			}
+		}
+	}
 
-    a {
-        text-decoration: none;
-    }
+	a {
+		text-decoration: none;
+	}
 
 	.controls {
 		flex: 1;
@@ -79,19 +79,22 @@
 	margin-right: 20px;
 	animation: fadein 1s;
 
-	li {
+	li, a {
+		color: #2e3d4e;
 		cursor: pointer;
 		font-size: 13px;
 		transition: color .1s ease-in-out;
+		text-decoration: none;
 
-		&:hover {
+		a:hover, &:hover {
 			color: $primary-color;
+			text-decoration: none;
 		}
 	}
 }
 
 .selected a {
-	color: #2e3d4e;
+	color: $primary-color;
 }
 
 li.logoutLink {

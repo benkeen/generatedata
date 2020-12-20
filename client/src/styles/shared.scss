@@ -104,3 +104,24 @@ input.errorField, textarea.errorField, select.errorField, button.errorField {
 		opacity: 1;
 	}
 }
+
+.fadeIn {
+	opacity: 0;
+	transition: opacity 200ms ease-in-out;
+}
+
+.mainLogo {
+	opacity: 0;
+	position: absolute;
+	left: 62px;
+	top: 17px;
+	transition: opacity 200ms ease-in-out;
+
+	img {
+		width: 200px;
+	}
+
+	&.visible {
+		opacity: 1;
+	}
+}

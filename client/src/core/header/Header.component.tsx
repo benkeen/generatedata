@@ -34,9 +34,9 @@ export type HeaderProps = {
 };
 
 const Header = ({
-	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
-	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
-}: HeaderProps): JSX.Element => {
+					smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
+					isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
+				}: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
 	// TODO put in the top-level app. Here's not appropriate
@@ -68,11 +68,6 @@ const Header = ({
 		}}>{togglePanelLabel}</MenuItem>
 	</Menu>
 	*/
-
-	let generatorControlsClasses = `${sharedStyles.generatorControls} ${styles.controls}`;
-	if (currentPage === process.env.GD_GENERATOR_PATH) {
-		generatorControlsClasses += ` ${sharedStyles.visible}`;
-	}
 
 	const getNav = (): React.ReactNode => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
@@ -116,6 +111,14 @@ const Header = ({
 		);
 	};
 
+	let generatorControlsClasses = `${sharedStyles.generatorControls} ${styles.controls}`;
+	let logoClasses = sharedStyles.mainLogo;
+	if (currentPage === process.env.GD_GENERATOR_PATH) {
+		generatorControlsClasses += ` ${sharedStyles.visible}`;
+	} else {
+		logoClasses += ` ${sharedStyles.visible}`;
+	}
+
 	return (
 		<>
 			<header className={styles.header}>
@@ -129,6 +132,9 @@ const Header = ({
 							alt="site logo"
 						/>
 					</h1>
+					<div className={logoClasses}>
+						<img src="./images/logo.png" />
+					</div>
 					<div className={generatorControlsClasses}>
 						<GeneratorControls />
 					</div>
