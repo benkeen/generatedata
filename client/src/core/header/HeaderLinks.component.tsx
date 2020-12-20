@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import LogoutIcon from '@material-ui/icons/PowerSettingsNew';
-import { GDHeaderLink } from '~types/general';
+import { GDCustomHeaderLink, GDHeaderLink } from '~types/general';
 import { getGeneratorRoute } from '~utils/routeUtils';
 import { Tooltip } from '~components/tooltips';
 import styles from './Header.scss';
@@ -27,7 +27,14 @@ const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, onLogout, i18n
 	const generatorPath = getGeneratorRoute();
 
 	headerLinks.forEach((headerLink, index) => {
-		if (headerLink === 'generator') {
+		if (typeof headerLink === 'object' && headerLink.path) {
+			const link = headerLink as GDCustomHeaderLink;
+			links.push(
+				<li key="generator" className={getClassName(link.path, currentPage)}>
+					<Link to={link.path}>{i18n[link.labelI18nKey]}</Link>
+				</li>
+			);
+		} else if (headerLink === 'generator') {
 			links.push(
 				<li key="generator" className={getClassName(generatorPath, currentPage)}>
 					<Link to={generatorPath}>{i18n.generator}</Link>

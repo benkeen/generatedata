@@ -15,7 +15,7 @@ export const registerCustomRoutes = (routes: GDRoute[]): void => {
 // called on boot-up. Returns the list of available react-router routes plus the components they should link to. This
 // allows external customization via the `registerCustomRoutes` method above
 export const getRoutes = (): GDRoute[] => {
-	const routes: GDRoute[] = [
+	let routes: GDRoute[] = [
 		{ path: '/account', component: AccountPage },
 		{ path: '/accounts', component: AccountsPage },
 		{ path: '/login', component: LoginPage },
@@ -34,7 +34,7 @@ export const getRoutes = (): GDRoute[] => {
 	const rootRoutes = customRoutes.filter((route) => route.path === '/');
 
 	if (rootRoutes.length) {
-		routes.concat(rootRoutes);
+		routes = routes.concat(rootRoutes);
 	}
 
 	return routes;
