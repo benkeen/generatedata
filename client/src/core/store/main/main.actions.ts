@@ -156,11 +156,17 @@ export const login = (email: string, password: string, onLoginError: Function): 
 
 export const LOGOUT = 'LOGOUT';
 export const logout = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
+	const i18n = getStrings();
 
 	// if the user logged in with Google, Facebook etc. we need to also let them know
 	logoutVendor(getAuthMethod(getState()));
 
 	dispatch({ type: LOGOUT });
+
+	addToast({
+		type: 'success',
+		message: i18n.core.nowLoggedOut
+	});
 
 	// doesn't awfully matter if this fails. It's just for cleanup
 	await apolloClient.mutate({
