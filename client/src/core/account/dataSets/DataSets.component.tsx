@@ -16,7 +16,7 @@ const Row = ({ onDelete, onLoad, dataSet, i18n }: any): JSX.Element => (
 		<div className={styles.dateCreated}>{formatUnixTime(dataSet.historyDateCreatedUnix)}</div>
 		<div className={styles.numRowsGenerated}>{dataSet.numRowsGenerated}</div>
 		<div className={styles.status}>
-			{dataSet.status === 'public' ? 'Public' : 'Private'}
+			{dataSet.status === 'public' ? i18n.public : i18n.private}
 		</div>
 		<div className={styles.open}>
 			<Button size="small" type="submit" color="secondary" variant="outlined" onClick={onLoad}>{i18n.open}</Button>
@@ -74,7 +74,7 @@ const DataSets = ({ onLoadDataSet, className, i18n }: DataSetsProps): JSX.Elemen
 						<div className={styles.dataSetName}>{i18n.dataSetName}</div>
 						<div className={styles.lastModified}>{i18n.lastModified}</div>
 						<div className={styles.numRowsGenerated}>{i18n.rowsGenerated}</div>
-						<div className={styles.status}>Status</div>
+						<div className={styles.status}>{i18n.status}</div>
 						<div className={styles.open}>{i18n.open}</div>
 						<div className={styles.history}>{i18n.history}</div>
 						<div className={styles.del} />

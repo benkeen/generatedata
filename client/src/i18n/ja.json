@@ -48,6 +48,7 @@
 	"dataSet": "データセット",
 	"dataSetHelp": "ここで、生成するデータの種類を正確に定義します。 1行か2行入力して、[生成]ボタンをクリックしてみてください。 あなたはそれのこつをかなり速く得るでしょう。",
 	"dataSetName": "データセット名",
+	"dataSetOptions": "データセットオプション",
 	"dataSetSaved": "データセットが保存されました。",
 	"dataSets": "データセット",
 	"dataType": "データ・タイプ",
@@ -107,12 +108,15 @@
 	"load": "負荷",
 	"loading": "読み込んでいます...",
 	"login": "ログインする",
+	"loginToSave": "データセットを保存するには、最初にアカウントが必要です。 以下からログインまたは登録してください。",
 	"logout": "ログアウト",
 	"makeDataSetPublicAgreement": "このデータセットを共有するには、公開する必要があることを理解しています。",
 	"metaDescription": "generatedata.com：ソフトウェアをテストするための無料のMITライセンスのランダムカスタムデータジェネレーター",
 	"metaKeywords": "ランダムデータ、テストデータ、サンプルデータ、データジェネレーター、データの生成",
 	"missingDataSetName": "データセットの名前を入力してください",
+	"newDataSet": "新しいデータセット",
 	"no": "No",
+	"noAdditionalSettings": "追加設定なし",
 	"noExamplesAvailable": "利用可能な例はありません。",
 	"noOptionsAvailable": "利用可能なオプションはありません。",
 	"northAmerica": "北米",
@@ -120,6 +124,7 @@
 	"numResults": "結果の数",
 	"numeric": "数値",
 	"oceania": "オセアニア",
+	"open": "開いた",
 	"options": "オプション",
 	"order": "注文",
 	"other": "その他",
@@ -174,11 +179,12 @@
 	"showLineNumbers": "行のプレビュー",
 	"showPreview": "ショープレビュー",
 	"signup": "サインアップ",
+	"siteLogo": "サイトのロゴ",
 	"southAmerica": "南アメリカ",
 	"stripWhitespace": "生成されたコンテンツから空白を取り除く",
 	"success": "成功",
 	"textSize": "文字サイズ",
-	"title": "generatedata.com",
+	"theme": "テーマ",
 	"togglePanelLayout": "パネルレイアウトの切り替え",
 	"update": "更新",
 	"updateAccount": "アカウントを更新する",
@@ -198,25 +204,10 @@
 	"yes": "Yes",
 	"yourAccount": "あなたのアカウント",
 
-  "noAdditionalSettings": "追加設定なし",
-  "theme": "テーマ"
+  "or": "または",
+  "status": "状態",
+  "public": "公衆",
+  "private": "民間",
+  "totalNumGeneratedRows": "生成された行の総数"
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -48,6 +48,7 @@
 	"dataSet": "Dataset",
 	"dataSetHelp": "Hier definieerd u precies welke data gegenereerd moet worden. Probeer een rij of 2 in te vullen en click op de genereer knop. Dan zult u snel doorhebben hoe het werkt.",
 	"dataSetName": "Datasetnaam",
+	"dataSetOptions": "Opties voor datasets",
 	"dataSetSaved": "Uw dataset is opgeslagen.",
 	"dataSets": "Gegevenssets",
 	"dataType": "Datatype",
@@ -107,12 +108,15 @@
 	"load": "Laden",
 	"loading": "Laden...",
 	"login": "Inloggen",
+	"loginToSave": "Om uw datasets op te slaan heeft u eerst een account nodig. Gelieve in te loggen of hieronder te registreren.",
 	"logout": "Uitloggen",
 	"makeDataSetPublicAgreement": "Ik ben ervan op de hoogte dat als ik deze dataset wil delen met anderen ik hem openbaar moet maken.",
 	"metaDescription": "GenerateData.com: free, GNU-licensed, willekeurige klant data generator voor het testen van software",
 	"metaKeywords": "Random Data, Test Data, Sample Data, data generator, generate data",
 	"missingDataSetName": "Voer de naam van uw dataset in",
+	"newDataSet": "Nieuwe dataset",
 	"no": "Nee",
+	"noAdditionalSettings": "Geen aanvullende instellingen",
 	"noExamplesAvailable": "Geen voorbeelden beschikbaar.",
 	"noOptionsAvailable": "Geen opties beschikbaar.",
 	"northAmerica": "Noord Amerika",
@@ -120,6 +124,7 @@
 	"numResults": "Aantal resultaten",
 	"numeric": "Numeriek",
 	"oceania": "Oceanie",
+	"open": "Open",
 	"options": "Opties",
 	"order": "Sorteren",
 	"other": "Anders",
@@ -174,11 +179,12 @@
 	"showLineNumbers": "Toon regelnummers",
 	"showPreview": "Voorbeeld weergeven",
 	"signup": "Aanmelden",
+	"siteLogo": "logo van de site",
 	"southAmerica": "Zuid Amerika",
 	"stripWhitespace": "strip witruimte van gegenereerde inhoud",
 	"success": "success",
 	"textSize": "Lettergrootte",
-	"title": "generatedata.com",
+	"theme": "Thema",
 	"togglePanelLayout": "Schakelen tussen paneelindeling",
 	"update": "Bijwerken",
 	"updateAccount": "Update gebruiker",
@@ -198,27 +204,10 @@
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
 
-  "noAdditionalSettings": "Geen aanvullende instellingen",
-  "theme": "Thema"
+  "or": "of",
+  "status": "Toestand",
+  "public": "Openbaar",
+  "private": "Privaat",
+  "totalNumGeneratedRows": "Totaal aantal gegenereerde rijen"
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

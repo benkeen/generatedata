@@ -1,4 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "Typescript",
-  "COL_TITLE": "சொத்தின் பெயர்"
+  "COL_TITLE": "சொத்தின் பெயர்",
+  "typeName": "பெயரைத் தட்டச்சு செய்க",
+  "exportedVarName": "ஏற்றுமதி செய்யப்பட்ட மாறி பெயர்"
 }

@@ -48,6 +48,7 @@
 	"dataSet": "Datensatz",
 	"dataSetHelp": "Hier definieren Sie, welche Daten Sie erstellen wollen. Geben Sie einfach 2-3 Zeilen und drücken Sie auf den Button \"Erzeugen\". Sie werden den Dreh ziemlich schnell raus bekommen.",
 	"dataSetName": "Datensatz-Name",
+	"dataSetOptions": "Datensatzoptionen",
 	"dataSetSaved": "Ihr Datensatz wurde gespeichert.",
 	"dataSets": "Datensätze",
 	"dataType": "Datentyp",
@@ -107,12 +108,15 @@
 	"load": "Laden",
 	"loading": "Lädt...",
 	"login": "Login",
+	"loginToSave": "Um Ihre Datensätze zu speichern, benötigen Sie zunächst ein Konto. Bitte melden Sie sich an oder registrieren Sie sich unten.",
 	"logout": "Abmelden",
 	"makeDataSetPublicAgreement": "Ich verstehe, dass ich diesen Datensatz öffentlich machen muss.",
 	"metaDescription": "GenerateData.com: kostenlos, GNU-lizenzierte, zufälliger benutzerdefinierter Daten-Generator zum Testen von Software",
 	"metaKeywords": "Random Data, Test Data, Sample-Daten, Daten-Generator, Daten generieren",
 	"missingDataSetName": "Bitte geben Sie den Namen Ihres Datensatzes ein",
+	"newDataSet": "Neuer Datensatz",
 	"no": "Nein",
+	"noAdditionalSettings": "Keine zusätzlichen Einstellungen",
 	"noExamplesAvailable": "Keine Beispiele zur Verfügung.",
 	"noOptionsAvailable": "Keine Optionen verfügbar.",
 	"northAmerica": "Nordamerika",
@@ -120,6 +124,7 @@
 	"numResults": "Anz. Ergebnisse",
 	"numeric": "Numerisch",
 	"oceania": "Ozeanien",
+	"open": "öffnen",
 	"options": "Optionen",
 	"order": "Bestellen",
 	"other": "Andere",
@@ -174,11 +179,12 @@
 	"showLineNumbers": "Vorschau von Zeilen",
 	"showPreview": "Vorschau zeigen",
 	"signup": "Anmelden",
+	"siteLogo": "Site-Logo",
 	"southAmerica": "Südamerika",
 	"stripWhitespace": "Entfernen Sie Leerzeichen von generierten Inhalten",
 	"success": "Erfolgreich",
 	"textSize": "Textgröße",
-	"title": "generatedata.com",
+	"theme": "Thema",
 	"togglePanelLayout": "Panel-Layout umschalten",
 	"update": "Aktualisieren",
 	"updateAccount": "Benutzerkonto aktualisieren",
@@ -198,24 +204,10 @@
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
 
-  "noAdditionalSettings": "Keine zusätzlichen Einstellungen",
-  "theme": "Thema"
+  "or": "oder",
+  "status": "Status",
+  "public": "Öffentlichkeit",
+  "private": "Privat",
+  "totalNumGeneratedRows": "Gesamtzahl der generierten Zeilen"
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

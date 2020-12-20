@@ -14,7 +14,7 @@ export const initialState: TypescriptSettings = {
 	isValid: true
 };
 
-export const Settings: React.ReactNode = ({ data, id, coreI18n, onUpdate }: ETSettings) => { // i18n
+export const Settings: React.ReactNode = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings) => {
 	const onChange = (field: string, value: string): void => {
 		const newValues = {
 			...data,
@@ -30,7 +30,7 @@ export const Settings: React.ReactNode = ({ data, id, coreI18n, onUpdate }: ETSe
 
 	return (
 		<div>
-			<label htmlFor={`${id}-typeName`}>Type name</label>
+			<label htmlFor={`${id}-typeName`}>{i18n.typeName}</label>
 			<TextField
 				id={`${id}-typeName`}
 				error={data.typeName !== '' ? '' : coreI18n.requiredField}
@@ -39,8 +39,9 @@ export const Settings: React.ReactNode = ({ data, id, coreI18n, onUpdate }: ETSe
 				onChange={(e: any): void => onChange('typeName', e.target.value)}
 			/>
 
-			<label>Exported variable name</label>
+			<label htmlFor={`${id}-exportedVarName`}>{i18n.exportedVarName}</label>
 			<TextField
+				id={`${id}-exportedVarName`}
 				error={data.varName !== '' ? '' : coreI18n.requiredField}
 				value={data.varName}
 				style={{ width: '100%' }}

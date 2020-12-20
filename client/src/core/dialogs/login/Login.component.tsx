@@ -92,7 +92,7 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, i18n }
 		return (
 			<>
 				<div className={styles.separator}>
-					<div>or</div>
+					<div>{i18n.or}</div>
 				</div>
 				<div className={styles.col}>
 					{buttons}

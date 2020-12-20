@@ -123,7 +123,7 @@ const YourAccount = ({
 				</div>
 
 				<div style={{ flex: 1, borderLeft: '1px solid #f2f2f2', paddingLeft: 20 }}>
-					<label>Total num generated rows</label>
+					<label>{i18n.totalNumGeneratedRows}</label>
 					<div className={styles.numGeneratedRows} style={{ marginBottom: 15 }}>
 						{numGeneratedRows}
 					</div>

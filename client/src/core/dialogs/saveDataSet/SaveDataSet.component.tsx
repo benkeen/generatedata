@@ -61,7 +61,7 @@ const SaveDataSetDialog = ({
 		content = (
 			<div className={styles.notLoggedIn}>
 				<PersonAddIcon />
-				In order to save your data sets you first need an account. Please login or register below.
+				{i18n.loginToSave}
 			</div>
 		);
 		buttons = (

@@ -48,6 +48,7 @@
 	"dataSet": "Jeu de données",
 	"dataSetHelp": "Cest ici que vous définissez précisément le genre de données que vous souhaitez générer. Essayez de remplir une ligne ou deux et cliquez sur le bouton Générer. Vous comprendrez le fonctionnement très rapidement !",
 	"dataSetName": "Nom du jeu de données",
+	"dataSetOptions": "Options d'ensemble de données",
 	"dataSetSaved": "Votre ensemble de données a été enregistré.",
 	"dataSets": "Ensembles de données",
 	"dataType": "Type de données",
@@ -107,12 +108,15 @@
 	"load": "Charger",
 	"loading": "Chargement...",
 	"login": "Login",
+	"loginToSave": "Afin de sauvegarder vos ensembles de données, vous avez d'abord besoin d'un compte. Veuillez vous connecter ou vous inscrire ci-dessous.",
 	"logout": "Déconnexion",
 	"makeDataSetPublicAgreement": "Je comprends que pour partager ce jeu de données jai besoin de le rendre public.",
 	"metaDescription": "GenerateData.com: logiciel libre sous licence GNU GPL, générateur aléatoire de données personnalisé pour tester des applications.",
 	"metaKeywords": "Données aléatoires, données dessais, exemples, générateur de données, générer des données",
 	"missingDataSetName": "Veuillez saisir le nom de votre ensemble de données",
+	"newDataSet": "Nouvel ensemble de données",
 	"no": "Aucun",
+	"noAdditionalSettings": "Aucun paramètre supplémentaire",
 	"noExamplesAvailable": "Aucun exemple disponible.",
 	"noOptionsAvailable": "Aucune option disponible.",
 	"northAmerica": "Amérique du Nord",
@@ -120,6 +124,7 @@
 	"numResults": "Résultats",
 	"numeric": "Numérique",
 	"oceania": "Océanie",
+	"open": "ouvert",
 	"options": "Options",
 	"order": "Ordre",
 	"other": "Autre",
@@ -174,11 +179,12 @@
 	"showLineNumbers": "Afficher les numéros de ligne",
 	"showPreview": "Afficher l'aperçu",
 	"signup": "S'inscrire",
+	"siteLogo": "logo du site",
 	"southAmerica": "Amérique du Sud",
 	"stripWhitespace": "supprimer les espaces blancs du contenu généré",
 	"success": "Succès",
 	"textSize": "Taille du texte",
-	"title": "generatedata.com",
+	"theme": "Thème",
 	"togglePanelLayout": "Basculer la disposition du panneau",
 	"update": "Mettre à jour",
 	"updateAccount": "Mise à jour du compte",
@@ -198,30 +204,9 @@
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
 
-  "noAdditionalSettings": "Aucun paramètre supplémentaire",
-  "theme": "Thème"
+  "or": "ou",
+  "status": "Statut",
+  "public": "Public",
+  "private": "Privé",
+  "totalNumGeneratedRows": "Nombre total de lignes générées"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

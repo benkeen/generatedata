@@ -129,11 +129,11 @@ const Header = ({
 							width={40}
 							height={40}
 							onClick={toggleIntroDialog}
-							alt="site logo"
+							alt={i18n.siteLogo}
 						/>
 					</h1>
 					<div className={logoClasses}>
-						<img src="./images/logo.png" />
+						<img src="./images/logo.png" alt="generatedata.com" />
 					</div>
 					<div className={generatorControlsClasses}>
 						<GeneratorControls />

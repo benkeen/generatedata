@@ -94,7 +94,7 @@ const GeneratorControls = ({
 									button
 									key="history"
 									onClick={(): void => {}}>
-									<ListItemText primary="History" />
+									<ListItemText primary={i18n.history} />
 								</ListItem>
 								<ListItem
 									button
@@ -103,14 +103,14 @@ const GeneratorControls = ({
 										setMenuVisibility(false);
 										setDeleteDialogVisibility(true);
 									}}>
-									<ListItemText primary="Delete" />
+									<ListItemText primary={i18n.delete} />
 								</ListItem>
 							</List>
 						</div>
 					}
 				>
 					<span>
-						<IconButton size="small" aria-label="Data Set Options">
+						<IconButton size="small" aria-label={i18n.dataSetOptions}>
 							<ArrowDropDownIcon fontSize="large" onClick={(): void => setMenuVisibility(true)} />
 						</IconButton>
 					</span>
@@ -142,7 +142,7 @@ const GeneratorControls = ({
 						<AutoSizer
 							ref={inputFieldRef}
 							inputStyle={{ fontSize: 18, maxWidth: maxInputFieldWidth }}
-							placeholder="New Data Set"
+							placeholder={i18n.newDataSet}
 							onFocus={onFocus}
 							onChange={onChange}
 							onKeyUp={onKeyUp}

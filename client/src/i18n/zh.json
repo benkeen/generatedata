@@ -48,6 +48,7 @@
 	"dataSet": "数据集",
 	"dataSetHelp": "在这里你可以生成你想要的数据.尝试填充一行并且点击生成按钮.你会很快的掌握它",
 	"dataSetName": "数据集名称",
+	"dataSetOptions": "数据集选项",
 	"dataSetSaved": "您的数据集已保存。",
 	"dataSets": "数据集",
 	"dataType": "数据类型",
@@ -107,12 +108,15 @@
 	"load": "加载",
 	"loading": "加载...",
 	"login": "登录",
+	"loginToSave": "为了保存数据集，您首先需要一个帐户。 请在下面登录或注册。",
 	"logout": "登出",
 	"makeDataSetPublicAgreement": "我要分享该数据集,并且需要公开它.",
 	"metaDescription": "GenerateData.com: 用于生成测试软件中自定义随机数据,采用免费GNU协议",
 	"metaKeywords": "随机数据, 测试数据, 示例数据, 数据生成器, 生成数据",
 	"missingDataSetName": "请输入您的数据集名称",
+	"newDataSet": "新数据集",
 	"no": "取消",
+	"noAdditionalSettings": "没有其他设置",
 	"noExamplesAvailable": "没有可用的示例.",
 	"noOptionsAvailable": "没有可用选项.",
 	"northAmerica": "北美州",
@@ -120,6 +124,7 @@
 	"numResults": "结果数",
 	"numeric": "数值型",
 	"oceania": "大洋洲",
+	"open": "打开",
 	"options": "选项",
 	"order": "顺序",
 	"other": "其他",
@@ -174,11 +179,12 @@
 	"showLineNumbers": "显示行号",
 	"showPreview": "显示预览",
 	"signup": "注册",
+	"siteLogo": "网站徽标",
 	"southAmerica": "南美洲",
 	"stripWhitespace": "从生成的内容中删除空格",
 	"success": "成功",
 	"textSize": "字体大小",
-	"title": "generatedata.com",
+	"theme": "主题",
 	"togglePanelLayout": "切换面板布局",
 	"update": "更新",
 	"updateAccount": "更新账号",
@@ -198,26 +204,10 @@
 	"yes": "确认",
 	"yourAccount": "你的账号",
 
-  "noAdditionalSettings": "没有其他设置",
-  "theme": "主题"
+  "or": "要么",
+  "status": "状态",
+  "public": "上市",
+  "private": "私人的",
+  "totalNumGeneratedRows": "总生成行数"
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

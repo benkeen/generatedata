@@ -41,8 +41,8 @@ const Accounts = ({ selectedTab, accounts, onInit, onChangeTab, i18n }: Accounts
 		return (
 			<div style={{ width: '100%', marginBottom: 20 }}>
 				<div className={`${styles.row} ${styles.header}`}>
-					<div className={styles.dataSetName}>First name</div>
-					<div className={styles.dateCreated}>Last name</div>
+					<div className={styles.dataSetName}>{i18n.firstName}</div>
+					<div className={styles.dateCreated}>{i18n.lastName}</div>
 					<div className={styles.del} />
 				</div>
 				<div className={styles.body}>
@@ -76,7 +76,7 @@ const Accounts = ({ selectedTab, accounts, onInit, onChangeTab, i18n }: Accounts
 
 				<div>
 					<div>
-						<label>First name</label>
+						<label>{i18n.firstName}</label>
 						<div style={{ marginBottom: 15 }}>
 							<TextField
 								value=""
@@ -88,7 +88,7 @@ const Accounts = ({ selectedTab, accounts, onInit, onChangeTab, i18n }: Accounts
 							/>
 						</div>
 
-						<label>Last name</label>
+						<label>{i18n.lastName}</label>
 						<div style={{ marginBottom: 15 }}>
 							<TextField
 								type="password"
@@ -115,7 +115,7 @@ const Accounts = ({ selectedTab, accounts, onInit, onChangeTab, i18n }: Accounts
 				</div>
 
 				<Button size="medium" onClick={(): void => {}} color="primary" variant="outlined">
-					Create Account
+					{i18n.createAccount}
 				</Button>
 
 			</div>

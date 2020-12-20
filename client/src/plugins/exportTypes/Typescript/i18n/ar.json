@@ -1,4 +1,6 @@
 {
   "EXPORT_TYPE_NAME": "Typescript",
-  "COL_TITLE": "اسم الخاصية"
+  "COL_TITLE": "اسم الخاصية",
+  "typeName": "أكتب اسم",
+  "exportedVarName": "تم تصدير اسم المتغير"
 }
