@@ -28,7 +28,7 @@ const envSettingsFile = `${banner}
 import { GDLocale } from '~types/general';
 import { ExportTypeFolder } from './_plugins';
 
-export type AppType = 'login'| 'open' | 'closed';
+export type AppType = 'login' | 'open' | 'closed' | 'prod';
 
 export type EnvSettings = {
 	version: string;
