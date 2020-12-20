@@ -34,9 +34,9 @@ export type HeaderProps = {
 };
 
 const Header = ({
-					smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
-					isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
-				}: HeaderProps): JSX.Element => {
+	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
+	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
+}: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
 	// TODO put in the top-level app. Here's not appropriate

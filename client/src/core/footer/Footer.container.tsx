@@ -9,16 +9,22 @@ import * as mainSelectors from '../store/main/main.selectors';
 import * as mainActions from '../store/main/main.actions';
 import * as accountActions from '../store/account/account.actions';
 import * as coreUtils from '../../utils/coreUtils';
+import { isExportTypeValid } from '~utils/exportTypeUtils';
 
-const mapStateToProps = (state: any): Partial<FooterProps> => ({
-	i18n: selectors.getCoreI18n(state),
-	locale: mainSelectors.getLocale(state),
-	scriptVersion: coreUtils.getScriptVersion(),
-	isEnabled: selectors.hasData(state),
-	currentPage: mainSelectors.getCurrentPage(state),
-	currentDataSetId: selectors.getCurrentDataSetId(state),
-	availableLocales: env.availableLocales
-});
+const mapStateToProps = (state: any): Partial<FooterProps> => {
+	const exportType = selectors.getExportType(state);
+	const exportTypeSettings = selectors.getCurrentExportTypeSettings(state);
+
+	return {
+		i18n: selectors.getCoreI18n(state),
+		locale: mainSelectors.getLocale(state),
+		scriptVersion: coreUtils.getScriptVersion(),
+		actionButtonsEnabled: selectors.hasData(state) && isExportTypeValid(exportType, exportTypeSettings),
+		currentPage: mainSelectors.getCurrentPage(state),
+		currentDataSetId: selectors.getCurrentDataSetId(state),
+		availableLocales: env.availableLocales
+	};
+};
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	// @ts-ignore-line

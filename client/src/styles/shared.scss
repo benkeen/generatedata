@@ -116,6 +116,7 @@ input.errorField, textarea.errorField, select.errorField, button.errorField {
 	left: 62px;
 	top: 17px;
 	transition: opacity 200ms ease-in-out;
+	user-select: none;
 
 	img {
 		width: 200px;

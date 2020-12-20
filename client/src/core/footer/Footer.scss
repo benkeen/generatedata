@@ -46,6 +46,10 @@
 			font-size: 15px;
 			margin: 0 5px 0 -5px;
 		}
+
+		&:global(.Mui-disabled) {
+			border-color: #bbbbbb;
+		}
 	}
 }
 

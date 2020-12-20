@@ -4,7 +4,9 @@ declare namespace SharedScssNamespace {
     copyCol: string;
     emptyCol: string;
     errorField: string;
+    fadeIn: string;
     generatorControls: string;
+    mainLogo: string;
     pill: string;
     selected: string;
     tab: string;

@@ -31,7 +31,7 @@ export type FooterProps = {
 	onSave: () => void;
 	onSaveNewDataSet: () => void;
 	onSaveAs: () => void;
-	isEnabled: boolean;
+	actionButtonsEnabled: boolean;
 	currentPage: string;
 	currentDataSetId: number | null;
 	availableLocales: GDLocale[];
@@ -59,7 +59,7 @@ const useListStyles = makeStyles(() =>
 );
 
 const Footer = ({
-	i18n, locale, isEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
+	i18n, locale, actionButtonsEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
 	currentDataSetId, onSaveNewDataSet, onSaveAs
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
@@ -130,7 +130,7 @@ const Footer = ({
 						ref={anchorRef}
 						disableElevation
 						aria-label="split button"
-						disabled={!isEnabled}>
+						disabled={!actionButtonsEnabled}>
 						<Button onClick={onSave} className={styles.saveButtonAsMainBtn}>
 							<SaveIcon />
 							{i18n.save}
@@ -173,7 +173,12 @@ const Footer = ({
 		}
 
 		return (
-			<Button onClick={onSaveNewDataSet} className={styles.saveButton} variant="contained" disableElevation disabled={!isEnabled}>
+			<Button
+				onClick={onSaveNewDataSet}
+				className={styles.saveButton}
+				variant="contained"
+				disableElevation
+				disabled={!actionButtonsEnabled}>
 				<SaveIcon />
 				{i18n.save}
 			</Button>
@@ -213,7 +218,7 @@ const Footer = ({
 							variant="contained"
 							color="primary"
 							disableElevation
-							disabled={!isEnabled}
+							disabled={!actionButtonsEnabled}
 						>
 							<GearIcon />
 							{i18n.generate}

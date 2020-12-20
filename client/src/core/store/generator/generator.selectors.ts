@@ -8,7 +8,7 @@ import { getUnique } from '~utils/arrayUtils';
 import { processBatches, getDataType } from '~utils/dataTypeUtils';
 import {
 	getExportTypeLabel as exportTypeUtilsGetExportTypeLabel,
-	getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode
+	getCodeMirrorMode as exportTypeUtilsGetCodeMirrorMode, isExportTypeValid
 } from '~utils/exportTypeUtils';
 import { ColumnData, GDLocale, GenerationTemplate, Store } from '~types/general';
 
