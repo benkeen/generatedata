@@ -18,10 +18,12 @@ export default {
 
 	THEMES: [
 		{ value: 'ambiance', label: 'Ambiance' },
+		{ value: 'bespin', label: 'Bespin' },
 		{ value: 'cobalt', label: 'Cobalt' },
 		{ value: 'darcula', label: 'Darcula' },
 		{ value: 'lucario', label: 'Lucario' }
 	],
+
 	MIN_PREVIEW_ROWS: 5,
 	MAX_PREVIEW_ROWS: 20,
 	HEADER_HEIGHT: 66,

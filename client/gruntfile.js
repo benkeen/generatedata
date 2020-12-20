@@ -282,6 +282,7 @@ window.gd.localeLoaded(i18n);
 					'dist/styles.css': [
 						'src/resources/codemirror.css',
 						'src/resources/ambience.css',
+						'src/resources/bespin.css',
 						'src/resources/cobalt.css',
 						'src/resources/darcula.css',
 						'src/resources/lucario.css'

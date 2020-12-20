@@ -1,0 +1,67 @@
+.themeBespin .cm-s-bespin {
+    font-size: 1em;
+    line-height: 1.5em;
+    font-family: inconsolata, monospace;
+    letter-spacing: 0.3px;
+    word-spacing: 1px;
+    background: #28211C;
+    color: #BAAE9E;
+}
+.themeBespin .cm-s-bespin .CodeMirror-lines {
+    padding: 8px 0;
+}
+.themeBespin .cm-s-bespin .CodeMirror-gutters {
+    box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+    background-color: #28211C;
+    padding-right: 10px;
+    z-index: 3;
+    border: none;
+}
+.themeBespin .cm-s-bespin div.CodeMirror-cursor {
+    border-left: 3px solid #BAAE9E;
+}
+.themeBespin .cm-s-bespin .CodeMirror-activeline-background {
+    background: #FFFFFF08;
+}
+.themeBespin .cm-s-bespin .CodeMirror-selected {
+    background: #DDF0FF33;
+}
+.themeBespin .cm-s-bespin .cm-comment {
+    font-style: italic;
+    color: #666666;
+}
+.themeBespin .cm-s-bespin .cm-keyword {
+    color: #5EA6EA;
+}
+.themeBespin .cm-s-bespin .cm-string {
+    color: #54BE0D;
+}
+.themeBespin .cm-s-bespin .cm-property {
+    color: #DAD085;
+}
+.themeBespin .cm-s-bespin .cm-variable-2 {
+    color: #5EA6EA;
+}
+.themeBespin .cm-s-bespin .cm-atom {
+    color: #DAD085;
+}
+.themeBespin .cm-s-bespin .cm-number {
+    color: #DAD085;
+}
+.themeBespin .cm-s-bespin .cm-operator {
+    color: #5EA6EA;
+}
+
+.themeBespin {
+    background-color: #28211c;
+    color: #cccccc;
+}
+
+.themeBespin button[disabled] svg {
+    opacity: 0.3;
+}
+
+.themeBespin svg {
+    fill: #cccccc;
+}
