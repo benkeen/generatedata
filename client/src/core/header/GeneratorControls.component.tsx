@@ -120,7 +120,7 @@ const GeneratorControls = ({
 		);
 	};
 
-	const onFocus = (e: any) => {
+	const onFocus = (e: any): void => {
 		e.preventDefault();
 
 		if (!isLoggedIn || dataSetId === null) {

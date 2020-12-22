@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
@@ -32,7 +32,9 @@ const checkState = async (state: any): Promise<any> => {
 };
 
 const App = withRouter(({ history }: any) => {
-	initRouteListener(history);
+	useEffect(() => {
+		initRouteListener(history);
+	}, []);
 
 	const routes = getRoutes();
 

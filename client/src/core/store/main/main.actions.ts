@@ -10,6 +10,7 @@ import store from '~core/store';
 import { showSaveDataSetDialog } from '~store/account/account.actions';
 import { addToast } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
+import { updateBodyClass } from '~utils/routeUtils';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -38,7 +39,11 @@ export const resetStore = (): GDAction => ({ type: RESET_STORE });
 
 export const PAGE_CHANGE = 'PAGE_CHANGE';
 export const initRouteListener = (history: any): void => {
+	updateBodyClass(history.location.pathname);
+
 	history.listen((location: any) => {
+		updateBodyClass(location.pathname);
+
 		store.dispatch({
 			type: PAGE_CHANGE,
 			payload: {

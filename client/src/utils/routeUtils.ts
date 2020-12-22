@@ -103,3 +103,14 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 
 	return links;
 };
+
+export const updateBodyClass = (pathname: string) => {
+	let pageId = pathname.replace('/', '');
+	if (pageId === '') {
+		const generatorPath = process.env.GD_GENERATOR_PATH;
+		pageId = generatorPath === '/generator' ? 'home' : 'generator';
+	}
+
+	// bit aggressive, but we're not appending any other body classes right now so this is fine
+	document.body.className = `page-${pageId}`;
+};

@@ -44,6 +44,12 @@ TODO.
 
 
 
+### Troubleshooting
+
+> ERROR: for db  Cannot start service db: error while creating mount source path '/host_mnt/Users/benkeen/generatedata-site.com/data/db': mkdir /host_mnt/Users/benkeen/generatedata-site.com/data/db: no such file or directory
+  ERROR: Encountered errors while bringing up the project.
+
+Restarting Docker seemed to fix this. I did that via the UI tool.
 
 
 
@@ -54,7 +60,7 @@ There are a several grunt helper functions for validation and managing the local
 up to date so every i18n file contains the same keys and won't cause bugs when the user selects the 
 
 #### Core localization files
-
+F
 These are found in `src/i18n`. They contain all the core i18n files.
 
 - `grunt validateI18n` - general validation function to examine all the localization files and check everything in sync.
