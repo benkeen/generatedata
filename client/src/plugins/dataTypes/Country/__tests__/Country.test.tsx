@@ -1,0 +1,44 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+import { Help, Options, initialState } from '../Country';
+
+const i18n = require('../i18n/en.json');
+
+const helpProps = {
+	coreI18n: {},
+	countryI18n: {},
+	i18n
+};
+
+const optionsProps = {
+	coreI18n: {},
+	countryI18n: {},
+	i18n,
+	id: 'id',
+	gridPanelDimensions: { width: 100, height: 100 }
+};
+
+
+describe('Help', () => {
+	it('renders', () => {
+		const { container } = render(<Help {...helpProps} />);
+		expect(container).toBeTruthy();
+	});
+});
+
+describe('Options', () => {
+	it('renders', () => {
+		const data = { ...initialState };
+		const onUpdate = jest.fn();
+
+		const { container } = render(
+			<Options
+				{...optionsProps}
+				data={data}
+				onUpdate={onUpdate}
+				regionRows={[]}
+			/>
+		);
+		expect(container).toBeTruthy();
+	});
+});

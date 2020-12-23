@@ -2,7 +2,6 @@ import { DatabaseTypes } from '../src/plugins/exportTypes/SQL/SQL.types';
 import { AnyObject } from './general';
 import { DataTypeFolder } from '../_plugins';
 import { CountryType } from '~types/countries';
-import { ETMessageData } from '~types/exportTypes';
 
 export type DataTypeMap = {
 	[dataType in DataTypeFolder]?: string;

@@ -14,7 +14,7 @@ export const initialState: TypescriptSettings = {
 	isValid: true
 };
 
-export const Settings: React.ReactNode = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings) => {
+export const Settings = ({ i18n, data, id, coreI18n, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (field: string, value: string): void => {
 		const newValues = {
 			...data,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TextField from '~components/TextField';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
-import { ETDownloadPacket, ETDownloadPacketResponse } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings } from '~types/exportTypes';
 import styles from './CSV.scss';
 
 export type CSVSettings = {
@@ -20,7 +20,7 @@ const options = [
 	{ value: 'Mac', label: 'Mac' }
 ];
 
-export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
+export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (prop: string, value: string): void => {
 		onUpdate({
 			...data,

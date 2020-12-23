@@ -12,7 +12,7 @@ export const initialState: JSONSettings = {
 	isValid: true
 };
 
-export const Settings: React.ReactNode = ({ data, id, i18n, onUpdate }: ETSettings) => {
+export const Settings = ({ data, id, i18n, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (field: string, value: any): void => {
 		onUpdate({
 			...data,

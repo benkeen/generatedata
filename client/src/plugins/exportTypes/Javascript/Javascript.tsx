@@ -1,7 +1,7 @@
 import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import styles from './Javascript.scss';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 
 export type JavascriptExportFormat = 'variable' | 'es6' | 'commonJs';
 export interface ProgrammingLanguageState extends ETState {
@@ -13,7 +13,7 @@ export const initialState: ProgrammingLanguageState = {
 	isValid: true
 };
 
-export const Settings = ({ i18n, id, data, onUpdate }: any): JSX.Element => {
+export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (prop: string, value: any): void => {
 		onUpdate({
 			...data,

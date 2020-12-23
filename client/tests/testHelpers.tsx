@@ -20,6 +20,8 @@ import accountReducer from '~store/account/account.reducer';
 import accountsReducer from '~store/accounts/accounts.reducer';
 import thunk from 'redux-thunk';
 import actionsInterceptor from '~core/actionInterceptor';
+import { GeneratorLayout } from '~core/generator/Generator.component';
+import { ETSettings } from '~types/exportTypes';
 
 const i18n = require('../src/i18n/en.json');
 const jsonI18n = require('../src/plugins/exportTypes/JSON/i18n/en.json');
@@ -88,3 +90,13 @@ export const getBlankDTGeneratorPayload = () => ({
 		workerUtils: ''
 	}
 });
+
+
+export const defaultETSettings: ETSettings = {
+	onUpdate: () => {},
+	data: null,
+	coreI18n: {},
+	i18n: {},
+	id: 'id',
+	layout: 'horizontal' as GeneratorLayout
+};

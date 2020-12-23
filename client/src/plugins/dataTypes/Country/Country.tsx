@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { DTMetadata, DTOptionsProps } from '~types/dataTypes';
+import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
@@ -28,7 +28,7 @@ const fullCountryListOptions = fullCountryList.map((countryName) => ({
 const CountryDialog = ({ visible, data, id, onClose, countryI18n, onUpdateSource, onUpdateSelectedCountries, coreI18n, i18n }: any): JSX.Element => {
 	const countryPluginOptions = countryList.map((countryName: CountryType) => ({
 		value: countryName,
-		label: countryI18n[countryName].countryName
+		label: countryI18n[countryName]?.countryName // `?` is for testing right now
 	}));
 
 	const onSelectCountries = (countries: any): void => {
@@ -141,8 +141,7 @@ export const Options = ({ i18n, coreI18n, countryI18n, id, data, onUpdate }: DTO
 	);
 };
 
-// i18n, data, onUpdate
-export const Help = ({ }: DTOptionsProps): JSX.Element => (
+export const Help = ({ }: DTHelpProps): JSX.Element => (
 	<div />
 );
 

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import styles from './HTML.scss';
-import { DTSettingsProps } from '~types/dataTypes';
-import { ETDownloadPacket, ETDownloadPacketResponse, ETState } from '~types/exportTypes';
+import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
 
 type ExportFormat = 'table' | 'ul' | 'dl';
 
@@ -15,7 +14,7 @@ export const initialState: HTMLSettings = {
 	isValid: true // there's no way the config settings for the HTML ET can be misconfigured, so this is always true
 };
 
-export const Settings = ({ i18n, id, data, onUpdate }: DTSettingsProps): JSX.Element => {
+export const Settings = ({ i18n, id, data, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (exportFormat: ExportFormat): void => {
 		onUpdate({
 			...data,
