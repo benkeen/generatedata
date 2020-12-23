@@ -1,7 +1,7 @@
 import React from 'react';
 import { persistor } from './store';
 import Button from '@material-ui/core/Button';
-import { Cockroach } from '../components/icons';
+import { Cockroach } from '~components/icons';
 import Header from './header/Header.container';
 import Footer from './footer/Footer.container';
 

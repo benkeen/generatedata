@@ -10,7 +10,7 @@ import { apolloClient } from '~core/apolloClient';
 import store, { persistor } from '~core/store';
 import Page from '~core/page/Page.container';
 import * as core from '~core/index';
-import ErrorBoundary from '~core/errorBoundary';
+import ErrorBoundary from '~core/ErrorBoundary.component';
 import theme from '~core/theme';
 import SaveDataSetDialog from '~core/dialogs/saveDataSet/SaveDataSet.container';
 import Toast from '~components/toast/Toast.component';

@@ -3,7 +3,7 @@ import { SelectedAccountTab } from '~types/account';
 import DataSets from './dataSets/DataSets.container';
 import YourAccount from './yourAccount/YourAccount.container';
 import ChangePassword from './changePassword/ChangePassword.container';
-import * as sharedStyles from '../../styles/shared.scss';
+import sharedStyles from '../../styles/shared.scss';
 import styles from './Account.scss';
 
 export type AccountPageProps = {

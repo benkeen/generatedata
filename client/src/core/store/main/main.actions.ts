@@ -39,17 +39,10 @@ export const resetStore = (): GDAction => ({ type: RESET_STORE });
 
 export const PAGE_CHANGE = 'PAGE_CHANGE';
 export const initRouteListener = (history: any): void => {
-	updateBodyClass(history.location.pathname);
+	updateBodyClass(store, history.location.pathname);
 
 	history.listen((location: any) => {
-		updateBodyClass(location.pathname);
-
-		store.dispatch({
-			type: PAGE_CHANGE,
-			payload: {
-				page: location.pathname
-			}
-		});
+		updateBodyClass(store, location.pathname);
 	});
 };
 
@@ -116,13 +109,13 @@ export const login = (email: string, password: string, onLoginError: Function): 
             mutation LoginMutation($email: String!, $password: String!) {
                 login(email: $email, password: $password) {
                     token
-					tokenExpiry
-					success
-					firstName
+                    tokenExpiry
+                    success
+                    firstName
                     lastName
                     email
-					country
-					region
+                    country
+                    region
                     dateExpires
                     accountType
                     dateCreated
@@ -194,14 +187,14 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 
 	const response = await apolloClient.mutate({
 		mutation: gql`
-			mutation RefreshToken {
+            mutation RefreshToken {
                 refreshToken {
                     token
                     tokenExpiry
                     success
                     firstName
                     lastName
-					email
+                    email
                     country
                     region
                     dateExpires
@@ -209,7 +202,7 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
                     dateCreated
                     numRowsGenerated
                     profileImage
-				}
+                }
             }
 		`
 	});
