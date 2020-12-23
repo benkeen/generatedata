@@ -179,9 +179,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 	);
 };
 
-export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
-	<p>{i18n.DESC} <span dangerouslySetInnerHTML={{ __html: i18n.help_text }} /></p>
-);
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => <p>{i18n.DESC}</p>;
 
 export const getMetadata = (): DTMetadata => ({
 	sql: {

@@ -17,7 +17,7 @@ import sharedStyles from '../../styles/shared.scss';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
-import Link from '~components/Link';
+import LinkComponent from '~components/Link.component';
 import { GDLocale } from '~types/general';
 import C from '../constants';
 import useOnClickOutside from 'use-onclickoutside';
@@ -196,9 +196,9 @@ const Footer = ({
 				<div>
 					<ul>
 						<li>
-							<Link url={C.GITHUB_URL} offSite={true}>
+							<LinkComponent url={C.GITHUB_URL} offSite={true}>
 								<Github />
-							</Link>
+							</LinkComponent>
 						</li>
 						{getLocaleSelector()}
 						<li className={styles.scriptVersion}>

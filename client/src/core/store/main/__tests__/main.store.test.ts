@@ -24,37 +24,21 @@ describe('accounts section', () => {
 		expect(selectors.localeFileLoaded(store.getState())).toEqual(false);
 	});
 
-	// it('updates an account', () => {
-	//
-	// 	// check default account info state
-	// 	expect(selectors.getFirstName(store.getState())).toEqual('');
-	// 	expect(selectors.getLastName(store.getState())).toEqual('');
-	// 	expect(selectors.getEmail(store.getState())).toEqual('');
-	// 	expect(selectors.getCountry(store.getState())).toEqual('');
-	// 	expect(selectors.getRegion(store.getState())).toEqual('');
-	//
-	// 	store.dispatch(actions.updateAccount({
-	// 		firstName: 'Tom',
-	// 		lastName: 'Jones',
-	// 		email: 'tom@jones.net',
-	// 		country: 'Canada',
-	// 		region: 'British Columbia'
-	// 	}));
-	//
-	// 	// check nothing has been changed in the main state for the user
-	// 	expect(selectors.getFirstName(store.getState())).toEqual('');
-	// 	expect(selectors.getLastName(store.getState())).toEqual('');
-	// 	expect(selectors.getEmail(store.getState())).toEqual('');
-	// 	expect(selectors.getCountry(store.getState())).toEqual('');
-	// 	expect(selectors.getRegion(store.getState())).toEqual('');
-	//
-	// 	// now confirm the editing data has been updated
-	// 	const editingData = selectors.getEditingData(store.getState());
-	// 	expect(editingData.firstName).toEqual('Tom');
-	// 	expect(editingData.lastName).toEqual('Jones');
-	// 	expect(editingData.email).toEqual('tom@jones.net');
-	// 	expect(editingData.country).toEqual('Canada');
-	// 	expect(editingData.region).toEqual('British Columbia');
-	// });
+	it('login dialog visibility', () => {
+		expect(selectors.shouldShowLoginDialog(store.getState())).toEqual(false);
+
+		store.dispatch(actions.setLoginDialogVisibility(true));
+		expect(selectors.shouldShowLoginDialog(store.getState())).toEqual(true);
+
+		store.dispatch(actions.setLoginDialogVisibility(false));
+		expect(selectors.shouldShowLoginDialog(store.getState())).toEqual(false);
+	});
+
+	it('sets auth', () => {
+		expect(selectors.isLoggedIn(store.getState())).toEqual(false);
+
+		store.dispatch(actions.setAuthenticated(true));
+		expect(selectors.isLoggedIn(store.getState())).toEqual(true);
+	});
 
 });
