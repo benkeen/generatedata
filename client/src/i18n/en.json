@@ -208,5 +208,7 @@
 	"validationNoPassword": "Please enter your password",
 	"version": "Version",
 	"yes": "Yes",
-	"yourAccount": "Your Account"
+	"yourAccount": "Your Account",
+
+  "takeTour": "Take a tour"
 }

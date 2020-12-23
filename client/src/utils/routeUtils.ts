@@ -105,7 +105,7 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 	return links;
 };
 
-export const updateBodyClass = (store: any, pathname: string) => {
+export const updateBodyClass = (store: any, pathname: string): void => {
 	let pageId = pathname.replace('/', '');
 	if (pageId === '') {
 		const generatorPath = process.env.GD_GENERATOR_PATH;
