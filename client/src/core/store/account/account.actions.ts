@@ -29,6 +29,8 @@ export const CANCEL_ACCOUNT_CHANGES = 'CANCEL_ACCOUNT_CHANGES';
 export const cancelChanges = (): GDAction => ({ type: CANCEL_ACCOUNT_CHANGES });
 
 export const ACCOUNT_UPDATED = 'ACCOUNT_UPDATED';
+export const accountUpdated = () => ({ type: ACCOUNT_UPDATED });
+
 export const saveChanges = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();
 
@@ -44,7 +46,7 @@ export const saveChanges = (): any => async (dispatch: Dispatch, getState: any):
 		message: i18n.core.accountUpdated
 	});
 
-	dispatch({ type: ACCOUNT_UPDATED });
+	dispatch(accountUpdated());
 };
 
 export const savePassword = (currentPassword: string, newPassword: string, onSuccess: () => void, onError: () => void): any => async (): Promise<any> => {

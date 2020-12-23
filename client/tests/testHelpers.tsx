@@ -24,7 +24,7 @@ import actionsInterceptor from '~core/actionInterceptor';
 const i18n = require('../src/i18n/en.json');
 const jsonI18n = require('../src/plugins/exportTypes/JSON/i18n/en.json');
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
 	generator: generatorReducer,
 	main: mainReducer,
 	packets: packetsReducer,

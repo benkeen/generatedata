@@ -62,6 +62,8 @@ export type AuthData = {
 	firstName: string;
 	lastName: string;
 	email: string;
+	country: string;
+	region: string;
 	profileImage: string;
 	dateExpires: string;
 	dateCreated: string;

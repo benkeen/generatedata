@@ -40,7 +40,7 @@ export const initialState: AccountState = {
 	profileImage: null,
 	numRowsGenerated: 0,
 	dataSets: [],
-	selectedTab: 'yourAccount',
+	selectedTab: 'dataSets',
 	editingData: {
 		firstName: '',
 		lastName: '',
@@ -69,7 +69,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			break;
 
 		case mainActions.SET_AUTHENTICATION_DATA: {
-			const { firstName, lastName, dateExpires, accountType, email, country, region, numRowsGenerated } = action.payload;
+			const { firstName, lastName, dateExpires, accountType, email, country, region, profileImage, numRowsGenerated } = action.payload;
 			draft.firstName = firstName;
 			draft.lastName = lastName;
 			draft.email = email;
@@ -77,6 +77,7 @@ export const reducer = produce((draft: AccountState, action: AnyAction) => {
 			draft.region = region;
 			draft.dateExpires = dateExpires;
 			draft.accountType = accountType;
+			draft.profileImage = profileImage;
 			draft.numRowsGenerated = numRowsGenerated;
 			draft.editingData = {
 				firstName,
