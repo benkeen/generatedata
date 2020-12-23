@@ -31,9 +31,6 @@ export const selectLocale = (locale: GDLocale): any => (dispatch: Dispatch): any
 	document.body.appendChild(s);
 };
 
-export const TOGGLE_INTRO_DIALOG = 'TOGGLE_INTRO_DIALOG';
-export const toggleIntroDialog = (): GDAction => ({ type: TOGGLE_INTRO_DIALOG });
-
 export const RESET_STORE = 'RESET_STORE';
 export const resetStore = (): GDAction => ({ type: RESET_STORE });
 

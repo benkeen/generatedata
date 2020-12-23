@@ -4,7 +4,7 @@ import { FlushThunks } from 'redux-testkit';
 import { rootReducer } from '../../../../../tests/testHelpers';
 import * as actions from '../account.actions';
 import * as selectors from '../account.selectors';
-import { setAuthenticationData } from '~store/main/main.actions';
+import { setAuthenticationData, LOGOUT } from '~store/main/main.actions';
 
 describe('accounts section', () => {
 	let flushThunks;
@@ -144,6 +144,24 @@ describe('accounts section', () => {
 		expect(selectors.getProfileImage(store.getState())).toEqual('image-here.jpg');
 		expect(selectors.getAccountType(store.getState())).toEqual('admin');
 		expect(selectors.getNumGeneratedRows(store.getState())).toEqual(50000);
+	});
+
+	it('logging out clears the pertinent account info', () => {
+		store.dispatch(actions.updateAccount({
+			firstName: 'Tom',
+			lastName: 'Jones',
+			email: 'tom@jones.net',
+			country: 'Canada',
+			region: 'British Columbia'
+		}));
+
+		store.dispatch({ type: LOGOUT });
+
+		expect(selectors.getFirstName(store.getState())).toEqual('');
+		expect(selectors.getLastName(store.getState())).toEqual('');
+		expect(selectors.getEmail(store.getState())).toEqual('');
+		expect(selectors.getCountry(store.getState())).toEqual('');
+		expect(selectors.getRegion(store.getState())).toEqual('');
 	});
 
 });

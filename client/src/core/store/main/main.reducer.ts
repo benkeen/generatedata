@@ -10,7 +10,6 @@ export type MainState = {
 	authMethod: AuthMethod;
 	localeFileLoaded: boolean;
 	locale: GDLocale;
-	showIntroDialog: boolean;
 	showLoginDialog: boolean;
 	isLoggedIn: boolean;
 	authToken: string;
@@ -25,7 +24,6 @@ export const initialState: MainState = {
 	authMethod: 'default',
 	localeFileLoaded: false,
 	locale: env.defaultLocale,
-	showIntroDialog: true,
 	showLoginDialog: false,
 	isLoggedIn: false,
 	authToken: '',
@@ -47,10 +45,6 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 		case actions.LOCALE_FILE_LOADED:
 			draft.locale = action.payload.locale;
 			draft.localeFileLoaded = true;
-			break;
-
-		case actions.TOGGLE_INTRO_DIALOG:
-			draft.showIntroDialog = !draft.showIntroDialog;
 			break;
 
 		case actions.SET_LOGIN_DIALOG_VISIBILITY:

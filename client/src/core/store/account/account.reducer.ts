@@ -52,20 +52,12 @@ export const initialState: AccountState = {
 
 export const reducer = produce((draft: AccountState, action: AnyAction) => {
 	switch (action.type) {
+		case mainActions.LOGOUT:
 		case mainActions.RESET_STORE:
 			Object.keys(initialState).forEach((key) => {
 				// @ts-ignore-line
 				draft[key] = initialState[key];
 			});
-			break;
-
-		// TODO maybe RESET
-		case mainActions.LOGOUT:
-			draft.firstName = '';
-			draft.lastName = '';
-			draft.profileImage = null;
-			draft.numRowsGenerated = 0;
-			draft.dataSets = [];
 			break;
 
 		case mainActions.SET_AUTHENTICATION_DATA: {

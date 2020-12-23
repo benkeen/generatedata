@@ -5,7 +5,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import LoginDialog from '../dialogs/login/Login.container';
-import IntroDialog from '../dialogs/intro/Intro.component';
 import GeneratorControls from './GeneratorControls.container';
 import { GDLocale } from '~types/general';
 import C from '../constants';
@@ -18,12 +17,10 @@ import { AccountType } from '~types/account';
 
 export type HeaderProps = {
 	currentPage: string;
-	toggleIntroDialog: () => void;
 	onChangeSmallScreenVisiblePanel: () => void;
 	isLoggedIn: boolean;
 	accountType: AccountType;
 	smallScreenVisiblePanel: GeneratorPanel;
-	showIntroDialog: boolean;
 	showLoginDialog: () => void;
 	locale: GDLocale;
 	i18n: any;
@@ -34,7 +31,7 @@ export type HeaderProps = {
 };
 
 const Header = ({
-	smallScreenVisiblePanel, i18n, toggleIntroDialog, showIntroDialog, showLoginDialog, onChangeSmallScreenVisiblePanel,
+	smallScreenVisiblePanel, i18n, showLoginDialog, onChangeSmallScreenVisiblePanel,
 	isLoggedIn, onLogout, accountType, isOnloadAuthDetermined, currentPage
 }: HeaderProps): JSX.Element => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -130,7 +127,6 @@ const Header = ({
 							src="./images/dice80.png"
 							width={40}
 							height={40}
-							onClick={toggleIntroDialog}
 							alt={i18n.siteLogo}
 						/>
 					</h1>
@@ -145,11 +141,6 @@ const Header = ({
 					</nav>
 				</div>
 			</header>
-			<IntroDialog
-				visible={showIntroDialog}
-				onClose={toggleIntroDialog}
-				i18n={i18n}
-			/>
 			<LoginDialog />
 		</>
 	);
