@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { DTHelpProps, DTMetadata, DTOptionsProps } from '~types/dataTypes';
 import { CountryType } from '~types/countries';
-import { parseI18n } from '~utils/langUtils';
+import { getI18nString } from '~utils/langUtils';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
@@ -147,7 +147,7 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, regio
 		if (numSelected === 1) {
 			label = i18n.anyCityFrom1Country;
 		} else {
-			label = parseI18n(i18n.anyCityFromNCountries, [`<b>${numSelected}</b>`]);
+			label = getI18nString(i18n.anyCityFromNCountries, [`<b>${numSelected}</b>`]);
 		}
 	} else if (data.source === 'regionRow') {
 		const row = regionRows.find((row: any) => row.id === data.targetRowId);

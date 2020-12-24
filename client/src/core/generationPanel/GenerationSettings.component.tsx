@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 import env from '../../../_env';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import { parseI18n } from '~utils/langUtils';
+import { getI18nString } from '~utils/langUtils';
 import { getFormattedNum } from '~utils/numberUtils';
 import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
@@ -28,7 +28,7 @@ const GenerationPanel = ({
 	if (!numRowsToGenerate) {
 		error = i18n.requiredField;
 	} else if (numRowsToGenerate > env.maxDemoModeRows) {
-		error = parseI18n(i18n.overMaxAnonRows, [getFormattedNum(env.maxDemoModeRows)]);
+		error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(env.maxDemoModeRows)]);
 	}
 
 	return (

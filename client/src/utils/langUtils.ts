@@ -13,9 +13,29 @@ export const getLocale = (): GDLocale => currentLocale;
 
 export const getStrings = (locale?: GDLocale): any => langStrings[locale || currentLocale];
 
-export const parseI18n = (i18nString: string, placeholders: any[]): string => (
-	placeholders.reduce((acc, item, index) => {
-		const regex = new RegExp(`%${index+1}`, 'g');
-		return acc.replace(regex, item);
-	}, i18nString)
-);
+// use this for constructing JSX
+export const getI18n = (i18nString: string, placeholders: any[]): any => {
+	const parts = i18nString.split(/(%\d+)/);
+	const parsed: any = [];
+
+	parts.forEach((part) => {
+		if (/%\d+/.test(part)) {
+			const index = parseInt(part.replace('%', ''), 10) - 1;
+
+			if (index < placeholders.length) {
+				parsed.push(placeholders[index]);
+
+				// if there's no placeholder for this, just add the original value which looked like a placeholder
+			} else {
+				parsed.push(part);
+			}
+		} else {
+			parsed.push(part);
+		}
+	});
+
+	return parsed;
+};
+
+// use this getting a string
+export const getI18nString = (i18nString: string, placeholders: any[]): string => getI18n(i18nString, placeholders).join('');
