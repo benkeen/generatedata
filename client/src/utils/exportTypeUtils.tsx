@@ -75,6 +75,8 @@ export const loadExportTypeBundle = (exportType: ExportTypeFolder): any => {
 				});
 		});
 
+		// TODO this reloads the code mirror modes multiple times unnecessarily
+
 		const codeMirrorModes = exportTypes[exportType].codeMirrorModes.map((mode) => {
 			return new Promise((resolve) => {
 				const modeFile = document.createElement('script');

@@ -1,4 +1,5 @@
-import { Dispatch } from 'redux';
+import { Action, Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import * as selectors from './generator.selectors';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';
@@ -74,6 +75,17 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 			}
 		});
 };
+
+export const preloadDataTypeBundle = (dataType: DataTypeFolder) => async (dispatch: Dispatch): Promise<any> => (
+	requestDataTypeBundle(dataType)
+		.then((bundle: DTBundle) => {
+			dispatch(dataTypeLoaded(dataType));
+			if (bundle.actionInterceptors) {
+				// TODO this fires for each time this method is called, even though the bundle is only ever loaded once
+				registerInterceptors(dataType, bundle.actionInterceptors);
+			}
+		})
+);
 
 export const CONFIGURE_DATA_TYPE = 'CONFIGURE_DATA_TYPE';
 export const onConfigureDataType = (id: string, data: any, triggeredByInterceptor = false): any => {
@@ -224,6 +236,13 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 	};
 };
 
+export const preloadExportTypeBundle = (exportType: ExportTypeFolder) => async (dispatch: Dispatch): Promise<any> => (
+	loadExportTypeBundle(exportType)
+		.then((bundle: DTBundle) => {
+			dispatch(exportTypeLoaded(exportType, bundle.initialState));
+		})
+);
+
 export const EXPORT_TYPE_LOADED = 'EXPORT_TYPE_LOADED';
 export const exportTypeLoaded = (exportType: ExportTypeFolder, initialState: any): GDAction => ({
 	type: EXPORT_TYPE_LOADED,
@@ -260,7 +279,7 @@ export const toggleStripWhitespace = (): GDAction => ({ type: TOGGLE_STRIP_WHITE
 
 export const CLEAR_GRID = 'CLEAR_GRID';
 export const RESET_GENERATOR = 'RESET_GENERATOR';
-export const clearGrid = (clearType: ClearType): any => (dispatch: Dispatch, getState: any): void => {
+export const clearGrid = (clearType: ClearType, addDefaultRows = true): any => (dispatch: Dispatch, getState: any): void => {
 	if (clearType === "everything") {
 		const loadedExportTypes = selectors.getLoadedExportTypesArray(getState());
 
@@ -279,7 +298,9 @@ export const clearGrid = (clearType: ClearType): any => (dispatch: Dispatch, get
 		dispatch({ type: CLEAR_GRID });
 	}
 
-	dispatch(addRows(5));
+	if (addDefaultRows) {
+		dispatch(addRows(5));
+	}
 };
 
 export const SET_PANEL_SIZE = 'SET_PANEL_SIZE';
