@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Generator, { GeneratorProps } from './Generator.component';
 import * as selectors from '~store/generator/generator.selectors';
+import * as mainSelectors from '~store/main/main.selectors';
 import * as actions from '~store/generator/generator.actions';
 import { GDAction } from '~types/general';
 
@@ -12,6 +13,8 @@ const mapStateToProps = (state: any): Partial<GeneratorProps> => ({
 	lastLayoutWidth: selectors.getLastLayoutWidth(state),
 	lastLayoutHeight: selectors.getLastLayoutHeight(state),
 	smallScreenVisiblePanel: selectors.getSmallScreenVisiblePanel(state),
+	showTour: mainSelectors.shouldShowTour(state),
+	tourBundleLoaded: mainSelectors.isTourBundleLoaded(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GeneratorProps> => ({

@@ -1,6 +1,6 @@
 {
   "name": "generatedata",
-  "version": "4.0.0-alpha-20201223",
+  "version": "4.0.0-alpha3",
   "description": "Free, MIT-licensed, random data generator for testing software.",
   "main": "index.js",
   "directories": {
@@ -106,12 +106,14 @@
     "react-select": "^3.0.8",
     "react-sortable-hoc": "^1.11.0",
     "react-split-pane": "^0.1.89",
+    "reactour": "^1.18.0",
     "recharts": "^1.8.5",
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "rollup": "^2.31.0",
     "sequelize": "^6.3.5",
+    "styled-components": "^4.0.0",
     "terser-webpack-plugin": "^3.0.3",
     "underscore": "^1.11.0"
   },

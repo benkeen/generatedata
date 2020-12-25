@@ -8,7 +8,7 @@ import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
 import { AccountType } from '~types/account';
 import store from '~core/store';
 import { showSaveDataSetDialog } from '~store/account/account.actions';
-import { addToast } from '~utils/generalUtils';
+import { addToast, setTourComponent } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
 import { updateBodyClass } from '~utils/routeUtils';
 
@@ -222,3 +222,29 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 
 export const ONLOAD_AUTH_DETERMINED = 'ONLOAD_AUTH_DETERMINED';
 export const setOnloadAuthDetermined = (): GDAction => ({ type: ONLOAD_AUTH_DETERMINED });
+
+export const TOGGLE_TOUR = 'TOGGLE_TOUR';
+export const TOUR_BUNDLE_LOADED = 'TOUR_BUNDLE_LOADED';
+export const takeTour = (): any => (dispatch: Dispatch) => {
+	dispatch({ type: TOGGLE_TOUR });
+
+	// TODO check hashing of final file here
+	import(
+		/* webpackChunkName: "tour" */
+		/* webpackMode: "lazy" */
+		`../../../tour`
+	)
+		.then((resp) => {
+			// @ts-ignore-line
+			setTourComponent(resp.default);
+			dispatch({ type: TOUR_BUNDLE_LOADED });
+		})
+		.catch(() => {
+			dispatch({ type: TOGGLE_TOUR });
+
+			addToast({
+				type: 'success',
+				message: 'Sorry, there was a problem loading the tour.'
+			});
+		});
+};

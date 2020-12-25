@@ -17,6 +17,8 @@ export type MainState = {
 	isRefreshingToken: boolean;
 	isLoggingIn: boolean;
 	currentPage: string;
+	showTour: boolean;
+	tourBundleLoaded: boolean;
 };
 
 export const initialState: MainState = {
@@ -30,7 +32,9 @@ export const initialState: MainState = {
 	isOnloadAuthDetermined: false,
 	isRefreshingToken: false,
 	isLoggingIn: false,
-	currentPage: ''
+	currentPage: '',
+	showTour: false,
+	tourBundleLoaded: false
 };
 
 export const reducer = produce((draft: MainState, action: AnyAction) => {
@@ -86,6 +90,14 @@ export const reducer = produce((draft: MainState, action: AnyAction) => {
 
 		case actions.PAGE_CHANGE:
 			draft.currentPage = action.payload.page;
+			break;
+
+		case actions.TOGGLE_TOUR:
+			draft.showTour = !draft.showTour;
+			break;
+
+		case actions.TOUR_BUNDLE_LOADED:
+			draft.tourBundleLoaded = true;
 			break;
 	}
 

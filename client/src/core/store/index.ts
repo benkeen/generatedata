@@ -39,8 +39,6 @@ function initStore(state: any): any {
 			'isGenerating',
 			'numGeneratedRows',
 			'dataTypePreviewData'
-			// 'currentDataSetId',
-			// 'currentDataSetName'
 		]
 	};
 
@@ -49,7 +47,8 @@ function initStore(state: any): any {
 		storage,
 		blacklist: [
 			'localeFileLoaded',
-			'isOnloadAuthDetermined'
+			'isOnloadAuthDetermined',
+			'tourBundleLoaded'
 		]
 	};
 

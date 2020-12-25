@@ -31,7 +31,8 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	onChangeLocale: (locale: GDLocale): any => dispatch(mainActions.selectLocale(locale)),
 	onSave: (): any => dispatch(accountActions.saveCurrentDataSet()),
 	onSaveNewDataSet: (): any => dispatch(accountActions.showSaveDataSetDialog()),
-	onGenerate: (): any => dispatch(actions.showGenerationSettingsPanel())
+	onGenerate: (): any => dispatch(actions.showGenerationSettingsPanel()),
+	onTakeTour: (): any => dispatch(mainActions.takeTour())
 });
 
 export default connect(

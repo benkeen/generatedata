@@ -11,13 +11,14 @@ import LanguageIcon from '@material-ui/icons/Language';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import SaveIcon from '@material-ui/icons/Save';
 import GearIcon from '@material-ui/icons/Settings';
+import Person from '@material-ui/icons/EmojiPeople';
 import { HtmlTooltip } from '~components/tooltips';
 import styles from './Footer.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
-import LinkComponent from '~components/Link.component';
+import Link from '~components/Link.component';
 import { GDLocale } from '~types/general';
 import C from '../constants';
 import useOnClickOutside from 'use-onclickoutside';
@@ -35,6 +36,7 @@ export type FooterProps = {
 	currentPage: string;
 	currentDataSetId: number | null;
 	availableLocales: GDLocale[];
+	onTakeTour: () => void;
 };
 
 // TODO move
@@ -60,7 +62,7 @@ const useListStyles = makeStyles(() =>
 
 const Footer = ({
 	i18n, locale, actionButtonsEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
-	currentDataSetId, onSaveNewDataSet, onSaveAs
+	currentDataSetId, onSaveNewDataSet, onSaveAs, onTakeTour
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
 	const saveAsButtonRef = React.useRef(null);
@@ -196,11 +198,15 @@ const Footer = ({
 				<div>
 					<ul>
 						<li>
-							<LinkComponent url={C.GITHUB_URL} offSite={true}>
+							<Link url={C.GITHUB_URL} offSite={true}>
 								<Github />
-							</LinkComponent>
+							</Link>
 						</li>
 						{getLocaleSelector()}
+						<li>
+							<Person />
+							<span onClick={onTakeTour}>{i18n.takeTour}</span>
+						</li>
 						<li className={styles.scriptVersion}>
 							<a href={C.CHANGELOG_URL} target="_blank" rel="noopener noreferrer">{scriptVersion}</a>
 						</li>

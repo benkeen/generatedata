@@ -7,8 +7,10 @@ import { GeneratorPanel } from '~store/generator/generator.reducer';
 import ExportSettings from './exportSettings/ExportSettings.container';
 import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
+import { FullPageLoadingSpinner } from '~components/loaders/loaders';
 import C from '../constants';
 import './Generator.scss';
+import { getTourComponent } from '~utils/generalUtils';
 
 export type GeneratorLayout = 'horizontal' | 'vertical';
 export type GeneratorProps = {
@@ -19,11 +21,13 @@ export type GeneratorProps = {
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
 	smallScreenVisiblePanel: GeneratorPanel;
+	showTour: boolean;
+	tourBundleLoaded: boolean;
 }
 
 const Builder = ({
 	isGridVisible, isPreviewVisible, generatorLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
-	smallScreenVisiblePanel
+	smallScreenVisiblePanel, showTour, tourBundleLoaded
 }: GeneratorProps): JSX.Element => {
 	const windowSize = useWindowSize();
 	const onResize = (size: number): void => onResizePanels(size);
@@ -70,6 +74,18 @@ const Builder = ({
 		return <Preview />;
 	};
 
+	const getTour = () => {
+		if (!showTour) {
+			return null;
+		}
+
+		if (!tourBundleLoaded) {
+			return <FullPageLoadingSpinner />;
+		}
+
+		return getTourComponent();
+	};
+
 	return (
 		<div style={{ height: '100%' }}>
 			<div style={{ height: '100%', position: 'relative' }}>
@@ -78,6 +94,7 @@ const Builder = ({
 			<ExportSettings />
 			<GenerationSettings />
 			<ActivityPanel />
+			{getTour()}
 		</div>
 	);
 };
