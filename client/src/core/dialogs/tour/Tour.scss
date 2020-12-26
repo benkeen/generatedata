@@ -1,0 +1,24 @@
+.cols {
+	display: flex;
+	flex-direction: row;
+}
+
+.col {
+	flex: 1;
+
+	:global(.MuiButtonBase-root) {
+		margin-bottom: 6px;
+
+		svg {
+			margin-right: 6px;
+		}
+	}
+}
+
+.separator {
+	margin: 0 25px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	border-left: 1px solid #efefef;
+}

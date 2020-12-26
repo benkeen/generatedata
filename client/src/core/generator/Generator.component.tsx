@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
 import SplitPane from 'react-split-pane';
 import Grid from './grid/Grid.container';
@@ -7,13 +7,13 @@ import { GeneratorPanel } from '~store/generator/generator.reducer';
 import ExportSettings from './exportSettings/ExportSettings.container';
 import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
-import { FullPageLoadingSpinner } from '~components/loaders/loaders';
+import TourDialog from '~core/dialogs/tour/Tour.container';
 import C from '../constants';
 import './Generator.scss';
-import { getTourComponent } from '~utils/generalUtils';
 
 export type GeneratorLayout = 'horizontal' | 'vertical';
 export type GeneratorProps = {
+	i18n: any;
 	isGridVisible: boolean;
 	isPreviewVisible: boolean;
 	generatorLayout: GeneratorLayout;
@@ -21,14 +21,13 @@ export type GeneratorProps = {
 	lastLayoutWidth: number | null;
 	lastLayoutHeight: number | null;
 	smallScreenVisiblePanel: GeneratorPanel;
-	showTour: boolean;
-	tourBundleLoaded: boolean;
 }
 
 const Builder = ({
 	isGridVisible, isPreviewVisible, generatorLayout, onResizePanels, lastLayoutWidth, lastLayoutHeight,
-	smallScreenVisiblePanel, showTour, tourBundleLoaded
+	smallScreenVisiblePanel
 }: GeneratorProps): JSX.Element => {
+
 	const windowSize = useWindowSize();
 	const onResize = (size: number): void => onResizePanels(size);
 
@@ -57,6 +56,7 @@ const Builder = ({
 		if (isGridVisible && isPreviewVisible) {
 			return (
 				<SplitPane
+					className="gdGridPanel"
 					split={generatorLayout}
 					minSize={minSize}
 					maxSize={maxSize}
@@ -74,18 +74,6 @@ const Builder = ({
 		return <Preview />;
 	};
 
-	const getTour = () => {
-		if (!showTour) {
-			return null;
-		}
-
-		if (!tourBundleLoaded) {
-			return <FullPageLoadingSpinner />;
-		}
-
-		return getTourComponent();
-	};
-
 	return (
 		<div style={{ height: '100%' }}>
 			<div style={{ height: '100%', position: 'relative' }}>
@@ -94,7 +82,7 @@ const Builder = ({
 			<ExportSettings />
 			<GenerationSettings />
 			<ActivityPanel />
-			{getTour()}
+			<TourDialog />
 		</div>
 	);
 };

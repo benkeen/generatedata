@@ -41,4 +41,4 @@ export const setTourComponent = (tour: React.ReactElement): void => {
 	tourComponent = tour;
 };
 
-export const getTourComponent = () => tourComponent;
+export const getTourComponent = (): any => tourComponent;

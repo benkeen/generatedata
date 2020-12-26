@@ -22,11 +22,23 @@
 			align-items: center;
 
 			li {
-				margin-right: 8px;
+				display: flex;
+				margin-right: 10px;
+
+				a {
+					height: 24px;
+				}
+
+				&:hover {
+					svg {
+						fill: $primary-color;
+					}
+				}
 			}
 
 			svg {
 				cursor: pointer;
+				transition: fill 0.15s ease-in-out;
 			}
 		}
 	}
@@ -125,5 +137,18 @@ button.saveBtnArrow {
 
 	&:hover {
 		background-color: $primary-submit-hover;
+	}
+}
+
+.tourBtn:global(.MuiButtonBase-root) {
+	text-transform: none;
+	transition: color 0.15s ease-in-out;
+	margin-left: -6px;
+
+	svg {
+		margin-right: 4px;
+	}
+	&:hover {
+		color: $primary-color;
 	}
 }

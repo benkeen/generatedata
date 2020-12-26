@@ -36,7 +36,7 @@ export type FooterProps = {
 	currentPage: string;
 	currentDataSetId: number | null;
 	availableLocales: GDLocale[];
-	onTakeTour: () => void;
+	showTourDialog: () => void;
 };
 
 // TODO move
@@ -62,7 +62,7 @@ const useListStyles = makeStyles(() =>
 
 const Footer = ({
 	i18n, locale, actionButtonsEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
-	currentDataSetId, onSaveNewDataSet, onSaveAs, onTakeTour
+	currentDataSetId, onSaveNewDataSet, onSaveAs, showTourDialog
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
 	const saveAsButtonRef = React.useRef(null);
@@ -192,6 +192,12 @@ const Footer = ({
 		generatorControlsClasses += ` ${sharedStyles.visible}`;
 	}
 
+	/*
+		<li className={styles.scriptVersion}>
+			<a href={C.CHANGELOG_URL} target="_blank" rel="noopener noreferrer">{scriptVersion}</a>
+		</li>
+	*/
+
 	return (
 		<>
 			<footer className={styles.footer}>
@@ -204,11 +210,10 @@ const Footer = ({
 						</li>
 						{getLocaleSelector()}
 						<li>
-							<Person />
-							<span onClick={onTakeTour}>{i18n.takeTour}</span>
-						</li>
-						<li className={styles.scriptVersion}>
-							<a href={C.CHANGELOG_URL} target="_blank" rel="noopener noreferrer">{scriptVersion}</a>
+							<Button className={styles.tourBtn} onClick={showTourDialog}>
+								<Person />
+								<span>{i18n.takeTour}</span>
+							</Button>
 						</li>
 						<li>
 							<ActivePacketsList />

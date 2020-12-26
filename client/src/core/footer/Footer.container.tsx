@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<FooterProps> => ({
 	onSave: (): any => dispatch(accountActions.saveCurrentDataSet()),
 	onSaveNewDataSet: (): any => dispatch(accountActions.showSaveDataSetDialog()),
 	onGenerate: (): any => dispatch(actions.showGenerationSettingsPanel()),
-	onTakeTour: (): any => dispatch(mainActions.takeTour())
+	showTourDialog: (): any => dispatch(mainActions.toggleTour())
 });
 
 export default connect(

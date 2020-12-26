@@ -224,10 +224,10 @@ export const ONLOAD_AUTH_DETERMINED = 'ONLOAD_AUTH_DETERMINED';
 export const setOnloadAuthDetermined = (): GDAction => ({ type: ONLOAD_AUTH_DETERMINED });
 
 export const TOGGLE_TOUR = 'TOGGLE_TOUR';
-export const TOUR_BUNDLE_LOADED = 'TOUR_BUNDLE_LOADED';
-export const takeTour = (): any => (dispatch: Dispatch) => {
-	dispatch({ type: TOGGLE_TOUR });
+export const toggleTour = () => ({ type: TOGGLE_TOUR });
 
+export const TOUR_BUNDLE_LOADED = 'TOUR_BUNDLE_LOADED';
+export const loadTourBundle = (): any => (dispatch: Dispatch) => {
 	// TODO check hashing of final file here
 	import(
 		/* webpackChunkName: "tour" */

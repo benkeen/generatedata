@@ -11,6 +11,7 @@ declare namespace FooterScssNamespace {
     scriptVersion: string;
     selectLocale: string;
     selectedLocale: string;
+    tourBtn: string;
   }
 }
 
