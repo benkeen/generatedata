@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .cols {
 	display: flex;
 	flex-direction: row;
@@ -11,7 +13,7 @@
 	}
 
 	:global(.MuiButtonBase-root) {
-		margin-bottom: 8px;
+		margin-bottom: 10px;
 
 		svg {
 			margin-left: -4px;
@@ -29,18 +31,31 @@
 }
 
 svg.tourMask {
-	opacity: 0.6;
+	opacity: 0.7;
 	color: #0e365c;
 }
 
-.introDialog {
+.introDialog, .tourPage {
 	font-size: 13px;
 
 	p {
 		line-height: 20px;
 	}
+
+	button {
+		font-size: 12px;
+	}
 }
 
 .buttonCol {
 	font-size: 12px;
+
+	b {
+		color: $primary-color;
+	}
+}
+
+div[data-tour-elem="controls"] {
+	display: flex;
+	justify-content: center;
 }

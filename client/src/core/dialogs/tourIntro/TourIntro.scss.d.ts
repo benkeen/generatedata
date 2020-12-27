@@ -6,6 +6,7 @@ declare namespace TourIntroScssNamespace {
     introDialog: string;
     separator: string;
     tourMask: string;
+    tourPage: string;
   }
 }
 

@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
 import { gql } from '@apollo/client';
 import { AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';

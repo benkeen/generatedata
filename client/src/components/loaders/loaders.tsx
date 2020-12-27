@@ -42,8 +42,7 @@ export const Centered = ({ children }: any): JSX.Element => (
 	</div>
 );
 
-
-export const FullPageLoadingSpinner = () => (
+export const FullPageLoadingSpinner = (): JSX.Element => (
 	<>
 		<div style={{ position: 'absolute', top: 0, zIndex: 6002, height: '100%', width: '100%' }}>
 			<div style={{

@@ -15,7 +15,12 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<TourDialogProps> => ({
 	loadTourBundle: () => dispatch(mainActions.loadTourBundle()),
 
 	// @ts-ignore-line
-	onClose: () => dispatch(mainActions.hideTourIntroDialog())
+	onClose: () => dispatch(mainActions.hideTourIntroDialog()),
+
+	// onStartTour: () => dispatch(mainActions.startTour()),
+
+	// @ts-ignore-line
+	onCompleteTour: () => dispatch(mainActions.showTourIntroDialog())
 });
 
 export default connect(

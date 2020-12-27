@@ -1,5 +1,6 @@
 import React from 'react';
 import Reactour from 'reactour';
+import Button from '@material-ui/core/Button';
 import env from '../../_env';
 
 const Step1 = (): JSX.Element => (
@@ -18,7 +19,7 @@ const Step2 = (): JSX.Element => (
 		<h2>The Grid Panel</h2>
 
 		<p>
-			The grid panel is where you construct what data you want to generate. Here you can customize the Data Types,
+			The grid panel is where you construct what data you want to generate. Here you can choose the Data Types,
 			how they're configured and the order in which they appear. See the separate tour on the Grid Panel for more
 			detailed information on this panel.
 		</p>
@@ -93,6 +94,21 @@ const Step7 = (): JSX.Element => (
 	</>
 );
 
+
+const Step8 = ({ close }: any): JSX.Element => (
+	<>
+		<h2>Complete!</h2>
+
+		<p>
+			<Button
+				size="medium"
+				color="primary"
+				variant="outlined"
+				onClick={close}>Try a different tour</Button>
+		</p>
+	</>
+);
+
 const commonStyles = {
 	borderRadius: 6,
 	margin: 12
@@ -154,6 +170,12 @@ const steps = [
 			...commonStyles,
 			marginRight: -20
 		}
+	},
+	{
+		content: Step8,
+		style: {
+			...commonStyles
+		}
 	}
 ];
 
@@ -163,9 +185,11 @@ export type TourProps = {
 	maskClassName: string;
 	closeWithMask: boolean;
 	disableInteraction: boolean;
+	accentColor: string;
+	className: string;
 };
 
-const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction }: TourProps) => {
+const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction, accentColor, className }: TourProps) => {
 	return (
 		<Reactour
 			steps={steps}
@@ -175,6 +199,8 @@ const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteractio
 			maskSpace={0}
 			closeWithMask={closeWithMask}
 			disableInteraction={disableInteraction}
+			accentColor={accentColor}
+			className={className}
 		/>
 	);
 };
