@@ -152,3 +152,9 @@ button.saveBtnArrow {
 		color: $primary-color;
 	}
 }
+
+@media (max-width: 600px) {
+	button.tourBtn {
+		display: none;
+	}
+}

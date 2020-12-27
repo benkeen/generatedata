@@ -7,7 +7,7 @@ import { GeneratorPanel } from '~store/generator/generator.reducer';
 import ExportSettings from './exportSettings/ExportSettings.container';
 import ActivityPanel from '../generationPanel/ActivityPanel.container';
 import GenerationSettings from '../generationPanel/GenerationSettings.container';
-import TourDialog from '~core/dialogs/tour/Tour.container';
+import TourDialog from '~core/dialogs/tourIntro/TourIntro.container';
 import C from '../constants';
 import './Generator.scss';
 

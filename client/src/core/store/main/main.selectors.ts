@@ -10,6 +10,5 @@ export const isOnloadAuthDetermined = (state: Store): boolean => state.main.isOn
 export const isLoggingIn = (state: Store): boolean => state.main.isLoggedIn;
 export const getAuthToken = (state: Store): string => state.main.authToken;
 export const getCurrentPage = (state: Store): string => state.main.currentPage;
-export const shouldShowTour = (state: Store): boolean => state.main.showTour;
+export const tourIntroDialogVisible = (state: Store): boolean => state.main.tourIntroDialogVisible;
 export const isTourBundleLoaded = (state: Store): boolean => state.main.tourBundleLoaded;
-

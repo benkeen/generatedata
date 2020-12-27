@@ -6,10 +6,15 @@
 .col {
 	flex: 1;
 
+	h3 {
+		margin-top: 0;
+	}
+
 	:global(.MuiButtonBase-root) {
-		margin-bottom: 6px;
+		margin-bottom: 8px;
 
 		svg {
+			margin-left: -4px;
 			margin-right: 6px;
 		}
 	}
@@ -21,4 +26,9 @@
 	display: flex;
 	align-items: center;
 	border-left: 1px solid #efefef;
+}
+
+svg.tourMask {
+	opacity: 0.6;
+	color: #0e365c;
 }

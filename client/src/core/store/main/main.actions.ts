@@ -3,14 +3,14 @@ import { gql } from '@apollo/client';
 import { AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
 import { apolloClient } from '../../apolloClient';
-import { getAuthMethod } from '~store/main/main.selectors';
+import { getAuthMethod, getCurrentPage } from '~store/main/main.selectors';
 import { logoutVendor, setAuthTokenRefresh } from '~utils/authUtils';
 import { AccountType } from '~types/account';
 import store from '~core/store';
 import { showSaveDataSetDialog } from '~store/account/account.actions';
-import { addToast, setTourComponent } from '~utils/generalUtils';
+import { addToast, setTourComponents } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
-import { updateBodyClass } from '~utils/routeUtils';
+import { updateBodyClass, getGeneratorRoute } from '~utils/routeUtils';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -223,24 +223,33 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 export const ONLOAD_AUTH_DETERMINED = 'ONLOAD_AUTH_DETERMINED';
 export const setOnloadAuthDetermined = (): GDAction => ({ type: ONLOAD_AUTH_DETERMINED });
 
-export const TOGGLE_TOUR = 'TOGGLE_TOUR';
-export const toggleTour = () => ({ type: TOGGLE_TOUR });
+export const SHOW_TOUR_INTRO_DIALOG = 'SHOW_TOUR_INTRO_DIALOG';
+export const showTourIntroDialog = (history?: any) => (dispatch: Dispatch, getState: any): any => {
+	// the tour is specific to the generator page, so always redirect there when showing/hiding it
+	if (history && getCurrentPage(getState()) !== getGeneratorRoute()) {
+		history.push(getGeneratorRoute());
+	}
+
+	dispatch({ type: SHOW_TOUR_INTRO_DIALOG });
+};
+
+export const HIDE_TOUR_INTRO_DIALOG = 'HIDE_TOUR_INTRO_DIALOG';
+export const hideTourIntroDialog = () => ({ type: HIDE_TOUR_INTRO_DIALOG });
 
 export const TOUR_BUNDLE_LOADED = 'TOUR_BUNDLE_LOADED';
 export const loadTourBundle = (): any => (dispatch: Dispatch) => {
-	// TODO check hashing of final file here
+	// TODO check hashing of bundle here
 	import(
 		/* webpackChunkName: "tour" */
 		/* webpackMode: "lazy" */
-		`../../../tour`
+		`../../../tours`
 	)
 		.then((resp) => {
-			// @ts-ignore-line
-			setTourComponent(resp.default);
+			setTourComponents(resp);
 			dispatch({ type: TOUR_BUNDLE_LOADED });
 		})
 		.catch(() => {
-			dispatch({ type: TOGGLE_TOUR });
+			dispatch(hideTourIntroDialog());
 
 			addToast({
 				type: 'success',
