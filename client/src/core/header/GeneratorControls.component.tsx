@@ -141,6 +141,7 @@ const GeneratorControls = ({
 				{({ measureRef }): any => (
 					<div ref={measureRef} style={{ display: 'flex' }}>
 						<AutoSizer
+							className="tour-dataSetName"
 							ref={inputFieldRef}
 							inputStyle={{ fontSize: 18, maxWidth: maxInputFieldWidth }}
 							placeholder={i18n.newDataSet}

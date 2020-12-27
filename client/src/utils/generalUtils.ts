@@ -1,4 +1,3 @@
-import React from 'react';
 // @ts-ignore-line
 import { template as uTemplate, templateSettings } from 'underscore';
 import { AlertProps } from '@material-ui/lab';
@@ -36,9 +35,9 @@ export const addToast = (toast: ToastType): void => {
 	toastRef.add(toast);
 };
 
-let tourComponent: React.ReactElement;
-export const setTourComponent = (tour: React.ReactElement): void => {
-	tourComponent = tour;
+let tourComponents: any;
+export const setTourComponents = (tour: any): void => {
+	tourComponents = tour;
 };
 
-export const getTourComponent = (): any => tourComponent;
+export const getTourComponents = (): any => tourComponents;

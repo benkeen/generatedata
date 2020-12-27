@@ -31,7 +31,7 @@ const TourDialog = ({ tourIntroDialogVisible, onClose, tourBundleLoaded, loadTou
 	}, [tourBundleLoaded, currentTour]);
 
 	useEffect(() => {
-		if (tourIntroDialogVisible && tourBundleLoaded) {
+		if (tourIntroDialogVisible) {
 			setLoadingBundle(false);
 		}
 	}, [tourIntroDialogVisible]);
@@ -69,6 +69,7 @@ const TourDialog = ({ tourIntroDialogVisible, onClose, tourBundleLoaded, loadTou
 				i18n={i18n}
 				maskClassName={styles.tourMask}
 				closeWithMask={false}
+				disableInteraction={true}
 			/>
 		);
 	};
@@ -76,9 +77,9 @@ const TourDialog = ({ tourIntroDialogVisible, onClose, tourBundleLoaded, loadTou
 	return (
 		<>
 			<Dialog onClose={closeIntroDialog} open={tourIntroDialogVisible}>
-				<div style={{ width: 540 }}>
+				<div style={{ width: 600 }}>
 					<DialogTitle onClose={onClose}>Take a tour</DialogTitle>
-					<DialogContent dividers>
+					<DialogContent dividers className={styles.introDialog}>
 						<div className={styles.cols}>
 							<div className={styles.col}>
 								<h3>Welcome to the generator!</h3>
@@ -96,7 +97,8 @@ const TourDialog = ({ tourIntroDialogVisible, onClose, tourBundleLoaded, loadTou
 							</div>
 
 							<div className={styles.separator} />
-							<div className={styles.col}>
+
+							<div className={`${styles.col} ${styles.buttonCol}`}>
 								<Button color="primary" variant="outlined" onClick={() => selectTour('intro')}>
 									<GearIcon />
 									Intro to the generator

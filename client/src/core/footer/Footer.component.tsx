@@ -128,7 +128,7 @@ const Footer = ({
 					<ButtonGroup
 						variant="contained"
 						color="primary"
-						className={styles.saveButtonAs}
+						className={`${styles.saveButtonAs} tour-saveButton`}
 						ref={anchorRef}
 						disableElevation
 						aria-label="split button"
@@ -177,7 +177,7 @@ const Footer = ({
 		return (
 			<Button
 				onClick={onSaveNewDataSet}
-				className={styles.saveButton}
+				className={`${styles.saveButton} tour-saveButton`}
 				variant="contained"
 				disableElevation
 				disabled={!actionButtonsEnabled}>
@@ -191,12 +191,6 @@ const Footer = ({
 	if (currentPage === process.env.GD_GENERATOR_PATH) {
 		generatorControlsClasses += ` ${sharedStyles.visible}`;
 	}
-
-	/*
-		<li className={styles.scriptVersion}>
-			<a href={C.CHANGELOG_URL} target="_blank" rel="noopener noreferrer">{scriptVersion}</a>
-		</li>
-	*/
 
 	return (
 		<>
@@ -221,11 +215,11 @@ const Footer = ({
 					</ul>
 
 					<div className={generatorControlsClasses}>
-						<PanelControls className={styles.controls} />
+						<PanelControls className={`${styles.controls} tour-panelControls`} />
 						{getSaveButton()}
 						<Button
 							onClick={onGenerate}
-							className={styles.generateButton}
+							className={`${styles.generateButton} tour-generateButton`}
 							variant="contained"
 							color="primary"
 							disableElevation

@@ -2338,6 +2338,13 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/reactour@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@types/reactour/-/reactour-1.17.1.tgz#3bea0713276152ca321e1128586e2c5f8df70208"
+  integrity sha512-IZigAkKwfP883ZgPZJhVkTE7suDB+HzuWiamPzwZfRQ9kwAv1qUN3pjweXb0vVyLv/cgcGbY8jsip0CcaWOSqw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/recharts@^1.8.15":
   version "1.8.15"
   resolved "https://registry.yarnpkg.com/@types/recharts/-/recharts-1.8.15.tgz#02bc06085c9a31a58c00194d15377b45cf506bbf"

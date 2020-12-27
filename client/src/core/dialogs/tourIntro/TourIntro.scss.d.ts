@@ -1,7 +1,9 @@
 declare namespace TourIntroScssNamespace {
   export interface ITourIntroScss {
+    buttonCol: string;
     col: string;
     cols: string;
+    introDialog: string;
     separator: string;
     tourMask: string;
   }
