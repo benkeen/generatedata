@@ -10,7 +10,7 @@ import { getTourComponents } from '~utils/generalUtils';
 import styles from './TourIntro.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 
-type Tour = 'intro' | 'grid' | 'preview' | 'yourAccount';
+type Tour = 'IntroToGenerator' | 'GridPanel' | 'PreviewPanel' | 'YourAccount';
 
 export type TourDialogProps = {
 	tourIntroDialogVisible: boolean;
@@ -79,7 +79,7 @@ const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundl
 		}
 
 		const tours = getTourComponents();
-		const Tour = tours.IntroToGenerator;
+		const Tour = tours[currentTour];
 
 		return (
 			<Tour
@@ -99,43 +99,48 @@ const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundl
 		<>
 			<Dialog onClose={closeIntroDialog} open={tourIntroDialogVisible}>
 				<div style={{ width: 600 }}>
-					<DialogTitle onClose={onClose}>Take a tour</DialogTitle>
+					<DialogTitle onClose={onClose}>{i18n.takeTour}</DialogTitle>
 					<DialogContent dividers className={styles.introDialog}>
 						<div className={styles.cols}>
 							<div className={styles.col}>
-								<h3>Welcome to the generator!</h3>
+								<h3>{i18n.welcomeToTheGenerator}</h3>
 
 								<p>
-									This tool provides a lot of functionality and it can be a little overwhelming at first.
-									Click on one of the buttons to the right to take a tour about that particular feature.
+									{i18n.tourIntroPara1}
 								</p>
 
 								<p>
-									Note that when the tour starts, it'll temporarily overwrite the content of the generator
-									to illustrate certain things about the interface. But don't worry - as soon as the tour
-									is over, it'll return your data to its original state.
+									{i18n.tourIntroPara2}
 								</p>
 							</div>
 
 							<div className={styles.separator} />
 
 							<div className={`${styles.col} ${styles.buttonCol}`}>
-								<Button color="primary" variant="outlined" onClick={(): void => selectTour('intro')}>
-									<GearIcon />
-									Intro to the generator
-								</Button>
-								<Button color="primary" variant="outlined" onClick={(): void => selectTour('grid')}>
-									<ListIcon />
-									The Grid Panel
-								</Button>
-								<Button color="primary" variant="outlined" onClick={(): void => selectTour('preview')}>
-									<PreviewIcon />
-									The Preview Panel
-								</Button>
-								<Button color="primary" variant="outlined" disabled={true} onClick={(): void => selectTour('yourAccount')}>
-									<PersonIcon />
-									Your User Account
-								</Button>
+								<div>
+									<Button color="primary" variant="outlined" onClick={(): void => selectTour('IntroToGenerator')}>
+										<GearIcon />
+										{i18n.introToGenerator}
+									</Button>
+								</div>
+								<div>
+									<Button color="primary" variant="outlined" onClick={(): void => selectTour('GridPanel')}>
+										<ListIcon />
+										{i18n.theGridPanel}
+									</Button>
+								</div>
+								<div>
+									<Button color="primary" variant="outlined" onClick={(): void => selectTour('PreviewPanel')}>
+										<PreviewIcon />
+										{i18n.thePreviewPanel}
+									</Button>
+								</div>
+								<div>
+									<Button color="primary" variant="outlined" disabled={true} onClick={(): void => selectTour('YourAccount')}>
+										<PersonIcon />
+										{i18n.yourUserAccount}
+									</Button>
+								</div>
 							</div>
 						</div>
 					</DialogContent>

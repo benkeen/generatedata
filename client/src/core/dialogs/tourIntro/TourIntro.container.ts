@@ -12,15 +12,15 @@ const mapStateToProps = (state: any): Partial<TourDialogProps> => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<TourDialogProps> => ({
-	loadTourBundle: () => dispatch(mainActions.loadTourBundle()),
+	loadTourBundle: (): any => dispatch(mainActions.loadTourBundle()),
 
 	// @ts-ignore-line
-	onClose: () => dispatch(mainActions.hideTourIntroDialog()),
+	onClose: (): any => dispatch(mainActions.hideTourIntroDialog()),
 
 	// onStartTour: () => dispatch(mainActions.startTour()),
 
 	// @ts-ignore-line
-	onCompleteTour: () => dispatch(mainActions.showTourIntroDialog())
+	onCompleteTour: (): any => dispatch(mainActions.showTourIntroDialog())
 });
 
 export default connect(

@@ -12,15 +12,14 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import SaveIcon from '@material-ui/icons/Save';
 import GearIcon from '@material-ui/icons/Settings';
 import Person from '@material-ui/icons/EmojiPeople';
-import { HtmlTooltip } from '~components/tooltips';
+import { HtmlTooltip, Tooltip } from '~components/tooltips';
 import styles from './Footer.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { Github } from '~components/icons';
 import ActivePacketsList from '../generationPanel/ActivePacketsList.container';
 import PanelControls from '../generator/panelControls/PanelControls.container';
-import Link from '~components/Link.component';
+import AboutDialog from '~core/dialogs/about/About.component';
 import { GDLocale } from '~types/general';
-import C from '../constants';
 import useOnClickOutside from 'use-onclickoutside';
 
 export type FooterProps = {
@@ -68,6 +67,7 @@ const Footer = ({
 	const saveAsButtonRef = React.useRef(null);
 	const anchorRef = React.useRef<HTMLDivElement>(null);
 	const [saveAsMenuOpen, setSaveAsMenuOpen] = useState(false);
+	const [showAboutDialog, setAboutDialogVisibility] = useState(false);
 
 	const [localeTooltipVisible, setLocaleTooltipVisibility] = React.useState(false);
 	const listClasses = useListStyles();
@@ -86,7 +86,7 @@ const Footer = ({
 		}
 
 		return (
-			<li>
+			<li className={styles.langIconEl}>
 				<HtmlTooltip
 					arrow
 					open={localeTooltipVisible}
@@ -197,10 +197,12 @@ const Footer = ({
 			<footer className={styles.footer}>
 				<div>
 					<ul>
-						<li>
-							<Link url={C.GITHUB_URL} offSite={true}>
-								<Github />
-							</Link>
+						<li className={styles.aboutIconEl}>
+							<Tooltip title="About this script" arrow>
+								<span onClick={() => setAboutDialogVisibility(true)}>
+									<Github />
+								</span>
+							</Tooltip>
 						</li>
 						{getLocaleSelector()}
 						<li>
@@ -231,6 +233,12 @@ const Footer = ({
 					</div>
 				</div>
 			</footer>
+			<AboutDialog
+				visible={showAboutDialog}
+				onClose={() => setAboutDialogVisibility(false)}
+				scriptVersion={scriptVersion}
+				i18n={i18n}
+			/>
 		</>
 	);
 };

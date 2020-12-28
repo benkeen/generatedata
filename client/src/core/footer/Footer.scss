@@ -25,10 +25,6 @@
 				display: flex;
 				margin-right: 10px;
 
-				a {
-					height: 24px;
-				}
-
 				&:hover {
 					svg {
 						fill: $primary-color;
@@ -48,7 +44,7 @@
 	}
 
 	svg {
-		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.80)));
+		-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0.6)));
 	}
 
 	button.generateButton, button.saveButton, button.saveButtonAsMainBtn {
@@ -61,6 +57,19 @@
 
 		&:global(.Mui-disabled) {
 			border-color: #bbbbbb;
+		}
+	}
+
+	.aboutIconEl {
+		height: 24px;
+	}
+
+	.langIconEl {
+		height: 24px;
+		svg {
+			height: 28px;
+			width: 28px;
+			margin-top: -2px;
 		}
 	}
 }

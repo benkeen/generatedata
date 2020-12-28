@@ -69,6 +69,7 @@ export const Dialog = (props: any): JSX.Element => {
 		<MuiDialog
 			className={root}
 			classes={{ paper }}
+			scroll="paper"
 			{...props}
 		/>
 	);

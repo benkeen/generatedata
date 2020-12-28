@@ -1,5 +1,4 @@
-import { Action, Dispatch } from 'redux';
-import { ThunkAction } from 'redux-thunk';
+import { Dispatch } from 'redux';
 import * as selectors from './generator.selectors';
 import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings.types';
 import { DataTypeFolder, ExportTypeFolder } from '../../../../_plugins';

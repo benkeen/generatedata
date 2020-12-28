@@ -1,8 +1,10 @@
 declare namespace FooterScssNamespace {
   export interface IFooterScss {
+    aboutIconEl: string;
     controls: string;
     footer: string;
     generateButton: string;
+    langIconEl: string;
     saveAsRow: string;
     saveBtnArrow: string;
     saveButton: string;

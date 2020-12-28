@@ -1,0 +1,19 @@
+@import "../../../styles/variables";
+
+.aboutDialog {
+	.actions {
+		button {
+			svg {
+				fill: $primary-color;
+				height: 18px;
+				width: 18px;
+				margin-right: 6px;
+				margin-left: -4px;
+			}
+		}
+	}
+
+	h4 span {
+		color: $primary-color;
+	}
+}

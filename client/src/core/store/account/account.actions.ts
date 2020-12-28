@@ -29,7 +29,7 @@ export const CANCEL_ACCOUNT_CHANGES = 'CANCEL_ACCOUNT_CHANGES';
 export const cancelChanges = (): GDAction => ({ type: CANCEL_ACCOUNT_CHANGES });
 
 export const ACCOUNT_UPDATED = 'ACCOUNT_UPDATED';
-export const accountUpdated = () => ({ type: ACCOUNT_UPDATED });
+export const accountUpdated = (): GDAction => ({ type: ACCOUNT_UPDATED });
 
 export const saveChanges = (): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const i18n = getStrings();

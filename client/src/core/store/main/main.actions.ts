@@ -1,4 +1,4 @@
-import { AnyAction, Dispatch } from 'redux';
+import { Dispatch } from 'redux';
 import { gql } from '@apollo/client';
 import { AuthMethod, GDAction, GDLocale } from '~types/general';
 import * as langUtils from '~utils/langUtils';
@@ -234,10 +234,10 @@ export const showTourIntroDialog = (history?: any) => (dispatch: Dispatch, getSt
 };
 
 export const HIDE_TOUR_INTRO_DIALOG = 'HIDE_TOUR_INTRO_DIALOG';
-export const hideTourIntroDialog = () => ({ type: HIDE_TOUR_INTRO_DIALOG });
+export const hideTourIntroDialog = (): GDAction => ({ type: HIDE_TOUR_INTRO_DIALOG });
 
 export const TOUR_BUNDLE_LOADED = 'TOUR_BUNDLE_LOADED';
-export const loadTourBundle = (): any => (dispatch: Dispatch) => {
+export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
 	// TODO check hashing of bundle here
 	import(
 		/* webpackChunkName: "tour" */
