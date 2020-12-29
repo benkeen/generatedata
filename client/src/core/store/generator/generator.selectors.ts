@@ -30,7 +30,9 @@ export const getDataTypePreviewData = (state: Store): any => state.generator.dat
 export const shouldShowExportSettings = (state: Store): any => state.generator.showExportSettings;
 export const getExportTypeSettings = (state: Store): any => state.generator.exportTypeSettings;
 export const getExportSettingsTab = (state: Store): any => state.generator.exportSettingsTab;
-export const isGenerationSettingsPanelVisible = (state: Store): any => state.generator.showGenerationSettingsPanel;
+export const isGenerationSettingsPanelVisible = (state: Store): boolean => state.generator.showGenerationSettingsPanel;
+export const isHelpDialogVisible = (state: Store): boolean => state.generator.showHelpDialog;
+export const getHelpDialogSection = (state: Store): DataTypeFolder | null => state.generator.helpDialogSection;
 export const getNumRowsToGenerate = (state: Store): number => state.generator.numRowsToGenerate;
 export const getLastLayoutWidth = (state: Store): number | null => state.generator.lastLayoutWidth;
 export const getLastLayoutHeight = (state: Store): number | null => state.generator.lastLayoutHeight;

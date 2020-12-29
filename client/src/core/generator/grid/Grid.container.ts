@@ -10,7 +10,9 @@ const mapStateToProps = (state: any): Partial<GridProps> => ({
 	dataTypeI18n: selectors.getDataTypeI18n(state),
 	columnTitle: selectors.getExportTypeColumnTitle(state),
 	rows: selectors.getSortedRowsArray(state),
-	loadedDataTypes: selectors.getLoadedDataTypes(state)
+	loadedDataTypes: selectors.getLoadedDataTypes(state),
+	helpDialogVisible: selectors.isHelpDialogVisible(state),
+	helpDialogSection: selectors.getHelpDialogSection(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
@@ -18,7 +20,9 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	onSort: (id: string, newIndex: number): any => dispatch(actions.repositionRow(id, newIndex)),
 	onSelectDataType: (dataType: DataTypeFolder, id?: string): any => dispatch(actions.onSelectDataType(dataType, id)),
 	toggleGrid: (): any => dispatch(actions.toggleGrid()),
-	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel())
+	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel()),
+	showHelpDialog: (dataType: DataTypeFolder): any => dispatch(actions.showHelpDialog(dataType)),
+	hideHelpDialog: () => dispatch(actions.hideHelpDialog())
 });
 
 const container: any = connect(

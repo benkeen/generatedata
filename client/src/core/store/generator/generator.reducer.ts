@@ -44,6 +44,8 @@ export type StashedGeneratorState = {
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
 	showGenerationSettingsPanel: boolean;
+	showHelpDialog: boolean;
+	helpDialogSection: DataTypeFolder | null;
 	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
 	theme: string;
@@ -59,8 +61,8 @@ export type StashedGeneratorState = {
 
 const stashProps = [
 	'exportType', 'rows', 'sortedRows', 'showGrid', 'showPreview', 'smallScreenVisiblePanel',
-	'generatorLayout', 'showExportSettings', 'exportTypeSettings', 'showGenerationSettingsPanel',
-	'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'dataTypePreviewData',
+	'generatorLayout', 'showExportSettings', 'exportTypeSettings', 'showGenerationSettingsPanel', 'showHelpDialog',
+	'helpDialogSection', 'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'dataTypePreviewData',
 	'exportSettingsTab', 'numPreviewRows', 'stripWhitespace', 'numPreviewRows', 'stripWhitespace',
 	'currentDataSetId', 'currentDataSetName'
 ];
@@ -87,6 +89,8 @@ export type GeneratorState = {
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
 	showGenerationSettingsPanel: boolean;
+	showHelpDialog: boolean;
+	helpDialogSection: DataTypeFolder | null;
 	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
 	theme: string;
@@ -125,6 +129,8 @@ export const getInitialState = (): GeneratorState => ({
 	dataTypePreviewData: {},
 	exportSettingsTab: 'exportType',
 	showGenerationSettingsPanel: false,
+	showHelpDialog: false,
+	helpDialogSection: null,
 	numRowsToGenerate: env.defaultNumRows,
 	stripWhitespace: false,
 	lastLayoutWidth: null,
@@ -384,6 +390,15 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 				draft[prop] = draft.stashedState[prop];
 			});
 			draft.stashedState = null;
+			break;
+
+		case actions.SHOW_HELP_DIALOG:
+			draft.showHelpDialog = true;
+			draft.helpDialogSection = action.payload.dataType;
+			break;
+
+		case actions.HIDE_HELP_DIALOG:
+			draft.showHelpDialog = false;
 			break;
 	}
 }, getInitialState());

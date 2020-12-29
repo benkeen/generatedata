@@ -25,15 +25,18 @@ export type GridProps = {
 	columnTitle: string;
 	loadedDataTypes: any; // TODO
 	changeSmallScreenVisiblePanel: () => void;
+	showHelpDialog: (section: DataTypeFolder) => void;
+	hideHelpDialog: () => void;
+	helpDialogSection: DataTypeFolder | null;
+	helpDialogVisible: boolean;
 };
 
 
 const Grid = ({
-	rows, onAddRows, onSelectDataType, onSort, i18n, dataTypeI18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel
+	rows, onAddRows, onSelectDataType, onSort, i18n, dataTypeI18n, columnTitle, toggleGrid, changeSmallScreenVisiblePanel,
+	showHelpDialog, hideHelpDialog, helpDialogSection, helpDialogVisible
 }: GridProps): JSX.Element => {
 	const [numRows, setNumRows] = React.useState(1);
-	const [helpDialogVisible, showHelpDialog] = React.useState(false);
-	const [initialHelpSection, setInitialDialogSection] = React.useState<DataTypeFolder | null>(null);
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 
 	const windowSize = useWindowSize();
@@ -46,11 +49,6 @@ const Grid = ({
 	}
 
 	const addRowsBtnLabel = numRows === 1 ? i18n.row : i18n.rows;
-
-	const onShowHelpDialog = React.useCallback((dataType: DataTypeFolder): void => {
-		setInitialDialogSection(dataType);
-		showHelpDialog(true);
-	}, []);
 
 	const onClose = (): void => {
 		if (windowSize.width <= C.SMALL_SCREEN_WIDTH) {
@@ -111,7 +109,7 @@ const Grid = ({
 														key={row.id}
 														index={index}
 														gridPanelDimensions={dimensions}
-														showHelpDialog={onShowHelpDialog}
+														showHelpDialog={showHelpDialog}
 													/>
 												))}
 												{provided.placeholder}
@@ -142,8 +140,8 @@ const Grid = ({
 						</div>
 						<HelpDialog
 							visible={helpDialogVisible}
-							initialDataType={initialHelpSection}
-							onClose={(): any => showHelpDialog(false)}
+							initialDataType={helpDialogSection}
+							onClose={hideHelpDialog}
 							coreI18n={i18n}
 							dataTypeI18n={dataTypeI18n}
 							onSelectDataType={onSelectDataType}

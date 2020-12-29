@@ -265,6 +265,17 @@ export const showGenerationSettingsPanel = (): GDAction => ({ type: SHOW_GENERAT
 export const HIDE_START_GENERATION_PANEL = 'HIDE_START_GENERATION_PANEL';
 export const hideStartGenerationPanel = (): GDAction => ({ type: HIDE_START_GENERATION_PANEL });
 
+export const SHOW_HELP_DIALOG = 'SHOW_HELP_DIALOG';
+export const showHelpDialog = (dataType: DataTypeFolder): GDAction => ({
+	type: SHOW_HELP_DIALOG,
+	payload: {
+		dataType
+	}
+});
+
+export const HIDE_HELP_DIALOG = 'HIDE_HELP_DIALOG';
+export const hideHelpDialog = (): GDAction => ({ type: HIDE_HELP_DIALOG });
+
 export const UPDATE_NUM_ROWS_TO_GENERATE = 'UPDATE_NUM_ROWS_TO_GENERATE';
 export const updateNumRowsToGenerate = (numRowsToGenerate: number): GDAction => ({
 	type: UPDATE_NUM_ROWS_TO_GENERATE,
