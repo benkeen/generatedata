@@ -245,7 +245,7 @@ export const loadTourBundle = (): any => (dispatch: Dispatch): void => {
 		`../../../tours`
 	)
 		.then((resp) => {
-			setTourComponents(resp);
+			setTourComponents(resp.default);
 			dispatch({ type: TOUR_BUNDLE_LOADED });
 		})
 		.catch(() => {

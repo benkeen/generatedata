@@ -38,7 +38,8 @@ function initStore(state: any): any {
 			'loadedExportTypes',
 			'isGenerating',
 			'numGeneratedRows',
-			'dataTypePreviewData'
+			'dataTypePreviewData',
+			'stashedState'
 		]
 	};
 

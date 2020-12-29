@@ -2,7 +2,11 @@ import React from 'react';
 import Reactour, { ReactourStepPosition } from 'reactour';
 import Button from '@material-ui/core/Button';
 import env from '../../_env';
+import store from '~core/store';
 import { getI18nString, getStrings } from '~utils/langUtils';
+import * as selectors from '~store/generator/generator.selectors';
+import * as actions from '~store/generator/generator.actions';
+
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -143,7 +147,32 @@ const steps = [
 		style: {
 			...commonStyles
 		},
-		position: 'center' as ReactourStepPosition
+		position: 'center' as ReactourStepPosition,
+		action: (): void => {
+			store.dispatch(actions.clearGrid('dataOnly', false));
+			store.dispatch(actions.addRows(5));
+
+			const state = store.getState();
+			const rows = selectors.getSortedRowsArray(state);
+
+			store.dispatch(actions.onSelectDataType('Names', rows[0].id));
+			store.dispatch(actions.onSelectDataType('Phone', rows[1].id));
+			store.dispatch(actions.onSelectDataType('Email', rows[2].id));
+			store.dispatch(actions.onSelectDataType('StreetAddress', rows[3].id));
+			store.dispatch(actions.onSelectDataType('City', rows[4].id));
+			store.dispatch(actions.onSelectExportType('JSON'));
+
+			const layout = selectors.getGeneratorLayout(state);
+			if (layout === 'horizontal') {
+				store.dispatch(actions.toggleLayout());
+			}
+			if (!selectors.isGridVisible(state)) {
+				store.dispatch(actions.toggleGrid());
+			}
+			if (!selectors.isPreviewVisible(state)) {
+				store.dispatch(actions.togglePreview());
+			}
+		}
 	},
 	{
 		content: Step2,

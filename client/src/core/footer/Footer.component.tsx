@@ -199,7 +199,7 @@ const Footer = ({
 					<ul>
 						<li className={styles.aboutIconEl}>
 							<Tooltip title="About this script" arrow>
-								<span onClick={() => setAboutDialogVisibility(true)}>
+								<span onClick={(): void => setAboutDialogVisibility(true)}>
 									<Github />
 								</span>
 							</Tooltip>
@@ -235,7 +235,7 @@ const Footer = ({
 			</footer>
 			<AboutDialog
 				visible={showAboutDialog}
-				onClose={() => setAboutDialogVisibility(false)}
+				onClose={(): void => setAboutDialogVisibility(false)}
 				scriptVersion={scriptVersion}
 				i18n={i18n}
 			/>

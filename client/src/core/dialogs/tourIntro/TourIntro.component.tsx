@@ -10,19 +10,24 @@ import { getTourComponents } from '~utils/generalUtils';
 import styles from './TourIntro.scss';
 import { useWindowSize } from 'react-hooks-window-size';
 
-type Tour = 'IntroToGenerator' | 'GridPanel' | 'PreviewPanel' | 'YourAccount';
+type Tour = 'intro' | 'gridPanel' | 'previewPanel' | 'yourAccount';
 
 export type TourDialogProps = {
 	tourIntroDialogVisible: boolean;
 	onCompleteTour: () => void;
 	currentTour: Tour;
 	onClose: () => void;
-	i18n: any;
 	tourBundleLoaded: boolean;
 	loadTourBundle: () => void;
+	saveGeneratorState: () => void;
+	restoreGeneratorState: () => void;
+	i18n: any;
 };
 
-const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundleLoaded, loadTourBundle, i18n }: TourDialogProps): JSX.Element => {
+const TourDialog = ({
+	tourIntroDialogVisible, onCompleteTour, onClose, tourBundleLoaded, loadTourBundle, restoreGeneratorState,
+	saveGeneratorState, i18n
+}: TourDialogProps): JSX.Element => {
 	const windowSize = useWindowSize();
 
 	const [loadingBundle, setLoadingBundle] = useState(false);
@@ -37,8 +42,14 @@ const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundl
 	useEffect(() => {
 		if (tourIntroDialogVisible) {
 			setLoadingBundle(false);
+
+		// unreadable logic, but this fires when the tour dialog was just hidden and there's a tour slated to be shown.
+		// It saves the current generator state before the tour messes around with it
+		} else if (currentTour !== null) {
+			saveGeneratorState();
 		}
 	}, [tourIntroDialogVisible]);
+
 
 	// hide the tour if the screen gets too small
 	useEffect(() => {
@@ -49,12 +60,12 @@ const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundl
 		}
 	}, [windowSize.width]);
 
-	const closeIntroDialog = () => {
+	const closeIntroDialog = (): void => {
 		setCurrentTour(null);
 		onClose();
 	};
 
-	const selectTour = (tour: Tour) => {
+	const selectTour = (tour: Tour): void => {
 		// load the tour bundle and show a loading spinner until it's ready. At that point, we backup the current
 		// generator settings, close this intro dialog and open the selected tour
 		setLoadingBundle(true);
@@ -68,23 +79,24 @@ const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundl
 	};
 
 	// when a user exits a tour they're taken back to the intro panel again
-	const onComplete = (): void => {
+	const onExit = (): void => {
+		restoreGeneratorState();
 		setCurrentTour(null);
-		onCompleteTour();
+		onCompleteTour(); // maybe just rename to showIntroDialog ?
 	};
 
-	const getCurrentTour = () => {
+	const getCurrentTour = (): JSX.Element | null => {
 		if (tourIntroDialogVisible || !currentTour || !tourBundleLoaded) {
 			return null;
 		}
 
 		const tours = getTourComponents();
-		const Tour = tours[currentTour];
+		const Tour = tours[currentTour].component;
 
 		return (
 			<Tour
 				isOpen={true}
-				onClose={onComplete}
+				onClose={onExit}
 				i18n={i18n}
 				maskClassName={styles.tourMask}
 				closeWithMask={false}
@@ -118,25 +130,25 @@ const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundl
 
 							<div className={`${styles.col} ${styles.buttonCol}`}>
 								<div>
-									<Button color="primary" variant="outlined" onClick={(): void => selectTour('IntroToGenerator')}>
+									<Button color="primary" variant="outlined" onClick={(): void => selectTour('intro')}>
 										<GearIcon />
 										{i18n.introToGenerator}
 									</Button>
 								</div>
 								<div>
-									<Button color="primary" variant="outlined" onClick={(): void => selectTour('GridPanel')}>
+									<Button color="primary" variant="outlined" onClick={(): void => selectTour('gridPanel')}>
 										<ListIcon />
 										{i18n.theGridPanel}
 									</Button>
 								</div>
 								<div>
-									<Button color="primary" variant="outlined" onClick={(): void => selectTour('PreviewPanel')}>
+									<Button color="primary" variant="outlined" onClick={(): void => selectTour('previewPanel')}>
 										<PreviewIcon />
 										{i18n.thePreviewPanel}
 									</Button>
 								</div>
 								<div>
-									<Button color="primary" variant="outlined" disabled={true} onClick={(): void => selectTour('YourAccount')}>
+									<Button color="primary" variant="outlined" disabled={true} onClick={(): void => selectTour('yourAccount')}>
 										<PersonIcon />
 										{i18n.yourUserAccount}
 									</Button>
@@ -145,7 +157,7 @@ const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundl
 						</div>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={closeIntroDialog} color="primary" variant="outlined">{i18n.close}</Button>
+						<Button onClick={closeIntroDialog} color="default" variant="outlined">{i18n.close}</Button>
 					</DialogActions>
 				</div>
 				<DialogLoadingSpinner visible={loadingBundle} />
@@ -154,6 +166,5 @@ const TourDialog = ({ tourIntroDialogVisible, onCompleteTour, onClose, tourBundl
 		</>
 	);
 };
-
 
 export default TourDialog;

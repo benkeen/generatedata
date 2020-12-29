@@ -352,3 +352,10 @@ export const loadDataSet = (dataSet: DataSetListItem): any => async (dispatch: D
 		}
 	});
 };
+
+export const STASH_GENERATOR_STATE = 'STASH_GENERATOR_STATE';
+export const stashGeneratorState = (): GDAction => ({ type: STASH_GENERATOR_STATE });
+
+export const POP_STASHED_STATE = 'POP_STASHED_STATE';
+export const popStashedState = (): GDAction => ({ type: POP_STASHED_STATE });
+

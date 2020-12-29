@@ -13,7 +13,12 @@
 		}
 	}
 
-	h4 span {
-		color: $primary-color;
+	h4 {
+		margin-top: 0;
+	}
+
+	:global(.MuiDialogContent-root) {
+		font-size: 13px;
+		line-height: 20px;
 	}
 }

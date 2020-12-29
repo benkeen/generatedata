@@ -213,6 +213,10 @@ export type TourProps = {
 	className: string;
 };
 
+export const initialTourState = {
+
+};
+
 const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction, accentColor, className }: TourProps): JSX.Element => (
 	<Reactour
 		steps={steps}

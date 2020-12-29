@@ -2,7 +2,9 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import { Github } from '~components/icons';
+import Link from '~components/Link.component';
 import styles from './About.scss';
+import { Tooltip } from '~components/tooltips';
 
 export type AboutProps = {
 	visible: boolean;
@@ -13,22 +15,30 @@ export type AboutProps = {
 
 const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps): JSX.Element => (
 	<Dialog onClose={onClose} open={visible} className={styles.aboutDialog}>
-		<div style={{ width: 420 }}>
+		<div style={{ width: 460 }}>
 			<DialogTitle onClose={onClose}>{i18n.about}</DialogTitle>
 			<DialogContent dividers>
 				<div>
-					{i18n.aboutInfo}
+					<h4>generatedata.com &#8212;
+						<Tooltip title="View changelog">
+							<span>
+								<Link url="https://github.com/benkeen/generatedata/blob/master/CHANGELOG.md" offSite={true}>v{scriptVersion}</Link>
+							</span>
+						</Tooltip>
+					</h4>
 				</div>
-
 				<p>
-					<h4>generatedata.com &#8212; <span>v{scriptVersion}</span></h4>
+					{i18n.aboutInfoPara1}
+				</p>
+				<p>
+					{i18n.aboutInfoPara2}
 				</p>
 			</DialogContent>
 			<DialogActions className={styles.actions}>
-				<Button onClick={onClose} color="primary" variant="outlined">
+				<Button onClick={onClose} color="default" variant="outlined">
 					{i18n.close}
 				</Button>
-				<Button onClick={() => {
+				<Button onClick={(): void => {
 					window.open('https://github.com/benkeen/generatedata', '_blank');
 				}} color="primary" variant="outlined">
 					<Github />

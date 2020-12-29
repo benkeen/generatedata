@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import TourIntroDialog, { TourDialogProps } from './TourIntro.component';
 import * as selectors from '~store/generator/generator.selectors';
+import * as actions from '~store/generator/generator.actions';
 import * as mainSelectors from '~store/main/main.selectors';
 import * as mainActions from '~store/main/main.actions';
 
@@ -17,10 +18,10 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<TourDialogProps> => ({
 	// @ts-ignore-line
 	onClose: (): any => dispatch(mainActions.hideTourIntroDialog()),
 
-	// onStartTour: () => dispatch(mainActions.startTour()),
-
 	// @ts-ignore-line
-	onCompleteTour: (): any => dispatch(mainActions.showTourIntroDialog())
+	onCompleteTour: (): any => dispatch(mainActions.showTourIntroDialog()),
+	saveGeneratorState: (): any => dispatch(actions.stashGeneratorState()),
+	restoreGeneratorState: (): any => dispatch(actions.popStashedState())
 });
 
 export default connect(

@@ -33,6 +33,38 @@ export type ExportTypeSettings = {
 
 export type GeneratorPanel = 'grid' | 'preview';
 
+export type StashedGeneratorState = {
+	exportType: ExportTypeFolder;
+	rows: DataRows;
+	sortedRows: string[];
+	showGrid: boolean;
+	showPreview: boolean;
+	smallScreenVisiblePanel: GeneratorPanel;
+	generatorLayout: GeneratorLayout;
+	showExportSettings: boolean;
+	exportTypeSettings: Partial<ExportTypeSettings>;
+	showGenerationSettingsPanel: boolean;
+	showLineNumbers: boolean;
+	enableLineWrapping: boolean;
+	theme: string;
+	previewTextSize: number;
+	dataTypePreviewData: PreviewData;
+	exportSettingsTab: ExportSettingsTab;
+	numPreviewRows: number;
+	stripWhitespace: boolean;
+	numRowsToGenerate: number;
+	currentDataSetId: number | null;
+	currentDataSetName: string;
+};
+
+const stashProps = [
+	'exportType', 'rows', 'sortedRows', 'showGrid', 'showPreview', 'smallScreenVisiblePanel',
+	'generatorLayout', 'showExportSettings', 'exportTypeSettings', 'showGenerationSettingsPanel',
+	'showLineNumbers', 'enableLineWrapping', 'theme', 'previewTextSize', 'dataTypePreviewData',
+	'exportSettingsTab', 'numPreviewRows', 'stripWhitespace', 'numPreviewRows', 'stripWhitespace',
+	'currentDataSetId', 'currentDataSetName'
+];
+
 export type GeneratorState = {
 	loadedDataTypes: {
 		[str in DataTypeFolder]: boolean;
@@ -68,6 +100,7 @@ export type GeneratorState = {
 	numRowsToGenerate: number;
 	currentDataSetId: number | null;
 	currentDataSetName: string;
+	stashedState: StashedGeneratorState | null;
 };
 
 export const getInitialState = (): GeneratorState => ({
@@ -97,7 +130,8 @@ export const getInitialState = (): GeneratorState => ({
 	lastLayoutWidth: null,
 	lastLayoutHeight: null,
 	currentDataSetId: null,
-	currentDataSetName: ''
+	currentDataSetName: '',
+	stashedState: null
 });
 
 export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
@@ -332,6 +366,21 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case accountActions.UPDATE_CURRENT_DATA_SET_NAME:
 			draft.currentDataSetName = action.payload.dataSetName;
+			break;
+
+		case actions.STASH_GENERATOR_STATE:
+			stashProps.map((prop: string) => {
+				// @ts-ignore-line
+				draft.lastStashedState[prop] = draft[prop];
+			});
+			break;
+
+		case actions.POP_STASHED_STATE:
+			stashProps.map((prop: string) => {
+				// @ts-ignore-line
+				draft[prop] = draft.lastStashedState[prop];
+			});
+			draft.stashedState = null;
 			break;
 	}
 }, getInitialState());
