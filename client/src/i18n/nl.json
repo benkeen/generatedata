@@ -90,7 +90,6 @@
 	"generatorTourCompleteDesc": "Oké, je kent nu de belangrijkste elementen van de generator!",
 	"geo": "Geo",
 	"grid": "rooster",
-	"gridPanelTourDesc": "Het rasterpaneel is waar u construeert welke gegevens u wilt genereren. Hier kunt u kiezen tussen de verschillende gegevenstypen, hoe ze zijn geconfigureerd en de volgorde waarin ze verschijnen. Zie de rondleiding op het rasterpaneel voor meer gedetailleerde details over deze sectie.",
 	"help": "Help",
 	"hideShowGrid": "Raster verbergen / weergeven",
 	"hideShowPreviewPanel": "Verberg / toon voorbeeldpaneel",
@@ -232,5 +231,10 @@
 	"welcomeToTheGenerator": "Welkom bij de generator!",
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
-	"yourUserAccount": "Uw gebruikersaccount"
+	"yourUserAccount": "Uw gebruikersaccount",
+
+  "gridPanelTourDesc1": "Het rasterpaneel is waar u de gegevens construeert die u wilt genereren. Hier kunt u kiezen tussen de verschillende gegevenstypen, hoe ze zijn geconfigureerd en de volgorde waarin ze verschijnen. In het voorbeeld hier hebben we vijf velden: naam, telefoonnummer, e-mail, adres en stad. ",
+  "gridPanelTourDesc2": "Zie de rondleiding op het rasterpaneel voor meer gedetailleerde informatie over deze sectie.",
+  "aboutInfoPara1": "De Data Generator is een open source-project dat ik heb gemaakt in het late paleolithische tijdperk (circa 2004) en dat gedurende zijn levensduur vele, vele bijdragen heeft gehad. Om de paar jaar herschrijf ik het met behulp van de nieuwste en beste beschikbare technologieën: deze versie werd voltooid in 2021, gemaakt met React, Redux, Typescript, GraphQL, Docker, webwerkers, elastiekjes, ducttape en heel veel vloeken.",
+  "aboutInfoPara2": "Je kunt het project vinden op github. Download het, vork het of voel je vrij om bij te dragen. Genieten!"
 }

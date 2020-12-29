@@ -368,17 +368,20 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.currentDataSetName = action.payload.dataSetName;
 			break;
 
-		case actions.STASH_GENERATOR_STATE:
+		case actions.STASH_GENERATOR_STATE: {
+			const lastStashedState: any = {};
 			stashProps.map((prop: string) => {
 				// @ts-ignore-line
-				draft.lastStashedState[prop] = draft[prop];
+				lastStashedState[prop] = draft[prop];
 			});
+			draft.stashedState = lastStashedState;
 			break;
+		}
 
 		case actions.POP_STASHED_STATE:
 			stashProps.map((prop: string) => {
 				// @ts-ignore-line
-				draft[prop] = draft.lastStashedState[prop];
+				draft[prop] = draft.stashedState[prop];
 			});
 			draft.stashedState = null;
 			break;

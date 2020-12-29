@@ -90,7 +90,6 @@
 	"generatorTourCompleteDesc": "Alright, you now know the key elements of the generator!",
 	"geo": "Geo",
 	"grid": "Grid",
-	"gridPanelTourDesc": "The grid panel is where you construct what data you want to generate. Here you can choose between the different Data Types, how they're configured and the order in which they appear. See the tour on the Grid Panel for more granular details on this section.",
 	"help": "Help",
 	"hideShowGrid": "Hide/show grid",
 	"hideShowPreviewPanel": "Hide/show preview panel",
@@ -234,6 +233,9 @@
 	"yourAccount": "Your Account",
 	"yourUserAccount": "Your User Account",
 
-  "aboutInfoPara1": "The Data Generator is an open source project I created back in the late paleolithic era (circa 2004) and has had many, many contributors over its lifespan. Every few years I rewrite it using the latest and greatest available technologies: this version was completed in 2021, made with React, Redux, Typescript, GraphQL, Docker, web workers and a whole lot of cursing.",
-  "aboutInfoPara2": "You can find the project on github. Download it, fork it, or even feel free to contribute. Enjoy!"
+
+  "gridPanelTourDesc1": "The grid panel is where you construct the data you want to generate. Here you can choose between the different Data Types, how they're configured and the order in which they appear. In the example here, we have five fields: Name, Phone, Email, Street address and City.",
+  "gridPanelTourDesc2": "See the tour on the Grid Panel for more detailed information on this section.",
+  "aboutInfoPara1": "The Data Generator is an open source project I created back in the late paleolithic era (circa 2004) and has had many, many contributors over its lifespan. Every few years I rewrite it using the latest and greatest available technologies: this version was completed in 2021, made with React, Redux, Typescript, GraphQL, Docker, web workers, rubber bands, duct tape and a whole lot of cursing.",
+  "aboutInfoPara2": "You can find the project on github. Download it, fork it, or feel free to contribute. Enjoy!"
 }

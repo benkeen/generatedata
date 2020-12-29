@@ -82,7 +82,7 @@ const Grid = ({
 					<div className={`${styles.gridWrapper} ${gridSizeClass}`} ref={measureRef}>
 						<div>
 							<div className={styles.gridHeaderWrapper}>
-								<div className={`${styles.gridRow} ${styles.gridHeader}`} style={{ flex: `0 0 auto` }}>
+								<div className={`${styles.gridRow} ${styles.gridHeader} tour-gridHeader`} style={{ flex: `0 0 auto` }}>
 									<div className={styles.orderCol}>{rows.length}</div>
 									<div className={styles.dataTypeCol}>
 										{i18n.dataType}
@@ -96,7 +96,7 @@ const Grid = ({
 							</div>
 						</div>
 						<div className={styles.scrollableGridRows}>
-							<div className={styles.gridRowsWrapper}>
+							<div className={`${styles.gridRowsWrapper} tour-gridRows`}>
 								<DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
 									<Droppable droppableId="droppable">
 										{(provided: any): any => (

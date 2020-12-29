@@ -103,7 +103,7 @@ export const GridRow = ({
 				const titleColError = row.dataType && row.title.trim() === '' ? i18n.requiredField : '';
 
 				return (
-					<div className={styles.gridRow} key={row.id}
+					<div className={`${styles.gridRow} tour-gridRow`} key={row.id}
 						 ref={provided.innerRef}
 						 {...provided.draggableProps}
 						 style={getItemStyle(

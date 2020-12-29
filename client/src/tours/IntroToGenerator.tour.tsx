@@ -30,7 +30,10 @@ const Step2 = (): JSX.Element => {
 			<h2>{i18n.theGridPanel}</h2>
 
 			<p>
-				{i18n.gridPanelTourDesc}
+				{i18n.gridPanelTourDesc1}
+			</p>
+			<p>
+				{i18n.gridPanelTourDesc2}
 			</p>
 		</>
 	);

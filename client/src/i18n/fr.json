@@ -90,7 +90,6 @@
 	"generatorTourCompleteDesc": "D'accord, vous connaissez maintenant les éléments clés du générateur!",
 	"geo": "Géo.",
 	"grid": "La grille",
-	"gridPanelTourDesc": "Le panneau de grille est l'endroit où vous construisez les données que vous souhaitez générer. Ici, vous pouvez choisir entre les différents types de données, comment ils sont configurés et l'ordre dans lequel ils apparaissent. Consultez la visite guidée du panneau de grille pour plus de détails sur cette section.",
 	"help": "Aide",
 	"hideShowGrid": "Masquer / afficher la grille",
 	"hideShowPreviewPanel": "Masquer / afficher le panneau d'aperçu",
@@ -232,5 +231,11 @@
 	"welcomeToTheGenerator": "Bienvenido al generador!",
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
-	"yourUserAccount": "Su cuenta de usuario"
+	"yourUserAccount": "Su cuenta de usuario",
+
+  "gridPanelTourDesc1": "Le panneau de grille est l'endroit où vous construisez les données que vous souhaitez générer. Ici, vous pouvez choisir entre les différents types de données, comment ils sont configurés et l'ordre dans lequel ils apparaissent. Dans l'exemple ici, nous avons cinq champs: Nom, Téléphone, Email, Adresse et Ville.",
+  "gridPanelTourDesc2": "Consultez la visite guidée du panneau de grille pour plus d'informations sur cette section.",
+  "aboutInfoPara1": "Le générateur de données est un projet open source que j'ai créé à la fin du paléolithique (vers 2004) et qui a eu de très nombreux contributeurs au cours de sa vie. Toutes les quelques années, je la réécris en utilisant les dernières et les meilleures technologies disponibles: cette version a été achevée en 2021, réalisée avec React, Redux, Typescript, GraphQL, Docker, des web workers, des élastiques, du ruban adhésif et beaucoup de malédictions.",
+  "aboutInfoPara2": "Vous pouvez trouver le projet sur github. Téléchargez-le, ajoutez-le ou n'hésitez pas à contribuer. Prendre plaisir!"
+
 }

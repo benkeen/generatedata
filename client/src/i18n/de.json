@@ -90,7 +90,6 @@
 	"generatorTourCompleteDesc": "Okay, Sie kennen jetzt die Schlüsselelemente des Generators!",
 	"geo": "Geo",
 	"grid": "Gitter",
-	"gridPanelTourDesc": "Im Rasterfeld erstellen Sie, welche Daten Sie generieren möchten. Hier können Sie zwischen den verschiedenen Datentypen, ihrer Konfiguration und der Reihenfolge ihrer Anzeige wählen. Weitere Informationen zu diesem Abschnitt finden Sie in der Tour im Grid Panel.",
 	"help": "Hilfe",
 	"hideShowGrid": "Raster ausblenden / anzeigen",
 	"hideShowPreviewPanel": "Vorschaufenster ausblenden / einblenden",
@@ -232,5 +231,11 @@
 	"welcomeToTheGenerator": "Willkommen im Generator!",
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
-	"yourUserAccount": "Ihr Benutzerkonto"
+	"yourUserAccount": "Ihr Benutzerkonto",
+
+  "gridPanelTourDesc1": "Im Rasterfeld erstellen Sie die Daten, die Sie generieren möchten. Hier können Sie zwischen den verschiedenen Datentypen, ihrer Konfiguration und der Reihenfolge ihrer Anzeige wählen. Im Beispiel hier haben wir fünf Felder: Name, Telefon, E-Mail, Straße und Stadt.",
+  "gridPanelTourDesc2": "Weitere Informationen zu diesem Abschnitt finden Sie in der Tour im Grid Panel.",
+  "aboutInfoPara1": "Der Datengenerator ist ein Open-Source-Projekt, das ich in der späten Altsteinzeit (ca. 2004) erstellt habe und über seine gesamte Lebensdauer viele, viele Mitwirkende hatte. Alle paar Jahre schreibe ich es mit den neuesten und besten verfügbaren Technologien neu: Diese Version wurde 2021 fertiggestellt und mit React, Redux, Typescript, GraphQL, Docker, Web-Workern, Gummibändern, Klebeband und viel Fluchen erstellt.",
+  "aboutInfoPara2": "Sie finden das Projekt auf github. Laden Sie es herunter, geben Sie es ab oder tragen Sie dazu bei. Genießen!"
+
 }
