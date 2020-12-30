@@ -93,7 +93,7 @@ const Grid = ({
 								</div>
 							</div>
 						</div>
-						<div className={styles.scrollableGridRows}>
+						<div className={`${styles.scrollableGridRows} tour-scrollableGridRows`}>
 							<div className={`${styles.gridRowsWrapper} tour-gridRows`}>
 								<DragDropContext onDragEnd={({ draggableId, destination }: any): any => onSort(draggableId, destination.index)}>
 									<Droppable droppableId="droppable">
@@ -118,7 +118,7 @@ const Grid = ({
 									</Droppable>
 								</DragDropContext>
 
-								<form onSubmit={(e): any => e.preventDefault()} className={styles.addRows}>
+								<form onSubmit={(e): any => e.preventDefault()} className={`${styles.addRows} tour-addRows`}>
 									<span>{i18n.add}</span>
 									<input type="number"
 										value={numRows}

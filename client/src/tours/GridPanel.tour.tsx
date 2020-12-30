@@ -1,11 +1,11 @@
 import React from 'react';
 import Reactour, { ReactourStepPosition } from 'reactour';
-import Button from '@material-ui/core/Button';
-import env from '../../_env';
-import { getI18nString, getStrings } from '~utils/langUtils';
+import { getStrings } from '~utils/langUtils';
 import store from '~core/store';
 import * as actions from '~store/generator/generator.actions';
 import * as selectors from '~store/generator/generator.selectors';
+import { TourCompleteStep } from './Components.tour';
+import { TourProps } from '~types/general';
 
 const Step1 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
@@ -13,16 +13,11 @@ const Step1 = (): JSX.Element => {
 	return (
 		<>
 			<h2>{i18n.theGridPanel}</h2>
-
 			<p>
-				The grid panel is where you build the data you want to generate. For this tour, we've hidden
-				the preview panel (see the unchecked "Preview" button at the bottom right of the page) to give us
-				more space to work with. We've also added 10 rows of different data types, just for illustration
-				purposes.
+				{i18n.gridPanelTourIntroDesc1}
 			</p>
-
 			<p>
-				Let's start with the table columns.
+				{i18n.gridPanelTourIntroDesc2}
 			</p>
 		</>
 	);
@@ -33,12 +28,10 @@ const Step2 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2>Columns</h2>
+			<h2>{i18n.columns}</h2>
 
 			<p>
-				The grid will show as many of the columns as it can, depending on your screen real estate. When it's
-				too small, it'll show a cog icon for each row that opens up an infotip with the hidden column content.
-				The next few steps explain each of the columns, using the first Names row as a demonstration.
+				{i18n.columnsDesc}
 			</p>
 		</>
 	);
@@ -49,16 +42,12 @@ const Step3 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2>The row number</h2>
-
+			<h2>{i18n.rowNumber}</h2>
 			<p>
-				The first column in the grid contains the row number. To reorder the row, just click and drag
-				this element up or down.
+				{i18n.rowNumDesc1}
 			</p>
-
 			<p>
-				The value in the header for this column shows the total number of rows in your grid. This can
-				be handy when you have really large data sets and it goes offscreen.
+				{i18n.rowNumDesc2}
 			</p>
 		</>
 	);
@@ -69,11 +58,9 @@ const Step4 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2>Data Type</h2>
+			<h2>{i18n.dataType}</h2>
 			<p>
-				This contains a dropdown listing every available Data Type. When you select a value, it will load that
-				Data Type into memory and update the remainder of the columns for that row. Each Data Type has its own
-				unique settings.
+				{i18n.dataTypeDesc}
 			</p>
 		</>
 	);
@@ -84,11 +71,9 @@ const Step5 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2>Help Icon</h2>
-
+			<h2>{i18n.helpIcon}</h2>
 			<p>
-				When you select a Data Type in the previous column, an icon will appear here. Clicking it opens
-				a help dialog containing information about that Data Type (see the next tour step for a demo).
+				{i18n.helpIconDesc}
 			</p>
 		</>
 	);
@@ -96,14 +81,12 @@ const Step5 = (): JSX.Element => {
 
 const Step6 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
-	const saveBtnDesc = getI18nString(i18n.saveButtonDesc, [env.maxDataSetHistorySize]);
 
 	return (
 		<>
-			<h2>{i18n.theSaveButton}</h2>
-
+			<h2>{i18n.nameColumn}</h2>
 			<p>
-				{saveBtnDesc}
+				{i18n.nameColumnDesc}
 			</p>
 		</>
 	);
@@ -114,36 +97,56 @@ const Step7 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2>{i18n.theGenerateButton}</h2>
-
+			<h2>{i18n.exampleColumn}</h2>
 			<p>
-				{i18n.generateBtnDesc}
+				{i18n.exampleColumnDesc}
 			</p>
 		</>
 	);
 };
 
-const Step8 = ({ close }: any): JSX.Element => {
+const Step8 = (): JSX.Element => {
 	const { core: i18n } = getStrings();
 
 	return (
 		<>
-			<h2>{i18n.tourComplete}</h2>
-
+			<h2>{i18n.optionsColumn}</h2>
 			<p>
-				{i18n.generatorTourCompleteDesc}
+				{i18n.optionsColumnDesc1}
 			</p>
-
 			<p>
-				<Button
-					size="medium"
-					color="primary"
-					variant="outlined"
-					onClick={close}>{i18n.tryDifferentTour}</Button>
+				{i18n.optionsColumnDesc2}
 			</p>
 		</>
 	);
 };
+
+const Step9 = (): JSX.Element => {
+	const { core: i18n } = getStrings();
+
+	return (
+		<>
+			<h2>{i18n.deleteRow}</h2>
+			<p>
+				{i18n.deleteRowDesc}
+			</p>
+		</>
+	);
+};
+
+const Step10 = (): JSX.Element => {
+	const { core: i18n } = getStrings();
+
+	return (
+		<>
+			<h2>{i18n.addRows}</h2>
+			<p>
+				{i18n.addRowsDesc}
+			</p>
+		</>
+	);
+};
+
 
 const commonStyles = {
 	borderRadius: 6,
@@ -166,6 +169,13 @@ const steps = [
 				const state = store.getState();
 				const rows = selectors.getSortedRowsArray(state);
 
+				if (!selectors.isGridVisible(state)) {
+					store.dispatch(actions.toggleGrid());
+				}
+				if (selectors.isPreviewVisible(state)) {
+					store.dispatch(actions.togglePreview());
+				}
+
 				store.dispatch(actions.onSelectDataType('Names', rows[0].id));
 				store.dispatch(actions.onSelectDataType('Phone', rows[1].id));
 				store.dispatch(actions.onSelectDataType('Email', rows[2].id));
@@ -177,13 +187,8 @@ const steps = [
 				store.dispatch(actions.onSelectDataType('Alphanumeric', rows[8].id));
 				store.dispatch(actions.onSelectDataType('Boolean', rows[9].id));
 
-				if (!selectors.isGridVisible(state)) {
-					store.dispatch(actions.toggleGrid());
-				}
-				if (selectors.isPreviewVisible(state)) {
-					store.dispatch(actions.togglePreview());
-				}
-			}, 100);
+				document.querySelector('.tour-scrollableGridRows')!.scrollTop = 0;
+			}, 10);
 		}
 	},
 	{
@@ -204,7 +209,7 @@ const steps = [
 	},
 	{
 		content: Step4,
-		selector: '.tour-gridRow>div:nth-child(2)>div:nth-child(1)',
+		selector: '.tour-gridRow>div:nth-child(2)>div:nth-child(1) div',
 		style: {
 			...commonStyles
 		},
@@ -212,7 +217,7 @@ const steps = [
 	},
 	{
 		content: Step5,
-		selector: '.tour-gridRow>div:nth-child(2)>div:nth-child(2)',
+		selector: '.tour-gridRow>div:nth-child(2)>div:nth-child(2) svg',
 		style: {
 			...commonStyles
 		},
@@ -220,20 +225,39 @@ const steps = [
 	},
 	{
 		content: Step6,
-		// selector: '.tour-helpDialog',
+		selector: '.tour-gridRow div:nth-child(3) input',
 		style: {
 			...commonStyles
 		},
-		action: (): void => {
-			const els = document.querySelectorAll('.tour-gridRow>div:nth-child(2)>div:nth-child(2) svg');
-
-			// @ts-ignore-line
-			els[0].click();
-		}
+		position: 'bottom' as ReactourStepPosition
 	},
 	{
 		content: Step7,
-		selector: '.tour-generateButton',
+		selector: '.tour-gridRow div:nth-child(4)>*',
+		style: {
+			...commonStyles
+		},
+		position: 'bottom' as ReactourStepPosition
+	},
+	{
+		content: Step8,
+		selector: '.tour-gridRow div:nth-child(5)>*',
+		style: {
+			...commonStyles
+		},
+		position: 'bottom' as ReactourStepPosition
+	},
+	{
+		content: Step9,
+		selector: '.tour-gridRow div:nth-child(7) svg',
+		style: {
+			...commonStyles
+		},
+		position: 'bottom' as ReactourStepPosition
+	},
+	{
+		content: Step10,
+		selector: '.tour-addRows',
 		style: {
 			...commonStyles,
 			marginTop: -20
@@ -241,22 +265,12 @@ const steps = [
 		position: 'top' as ReactourStepPosition
 	},
 	{
-		content: Step8,
+		content: TourCompleteStep,
 		style: {
 			...commonStyles
 		}
 	}
 ];
-
-export type TourProps = {
-	isOpen: boolean;
-	onClose: () => void;
-	maskClassName: string;
-	closeWithMask: boolean;
-	disableInteraction: boolean;
-	accentColor: string;
-	className: string;
-};
 
 const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction, accentColor, className }: TourProps): JSX.Element => (
 	<Reactour
@@ -269,6 +283,7 @@ const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteractio
 		disableInteraction={disableInteraction}
 		accentColor={accentColor}
 		className={className}
+		disableFocusLock={true}
 	/>
 );
 

@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<TourDialogProps> => ({
 	onClose: (): any => dispatch(mainActions.hideTourIntroDialog()),
 
 	// @ts-ignore-line
-	onCompleteTour: (): any => dispatch(mainActions.showTourIntroDialog()),
+	showTourIntroDialog: (): any => dispatch(mainActions.showTourIntroDialog()),
 	saveGeneratorState: (): any => dispatch(actions.stashGeneratorState()),
 	restoreGeneratorState: (): any => dispatch(actions.popStashedState())
 });

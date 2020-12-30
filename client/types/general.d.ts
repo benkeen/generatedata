@@ -79,3 +79,13 @@ export type ColumnData = {
 	dataType: DataTypeFolder;
 	metadata: DTMetadata;
 };
+
+export type TourProps = {
+	isOpen: boolean;
+	onClose: () => void;
+	maskClassName: string;
+	closeWithMask: boolean;
+	disableInteraction: boolean;
+	accentColor: string;
+	className: string;
+};

@@ -14,7 +14,7 @@ type Tour = 'intro' | 'gridPanel' | 'previewPanel' | 'yourAccount';
 
 export type TourDialogProps = {
 	tourIntroDialogVisible: boolean;
-	onCompleteTour: () => void;
+	showTourIntroDialog: () => void;
 	currentTour: Tour;
 	onClose: () => void;
 	tourBundleLoaded: boolean;
@@ -25,7 +25,7 @@ export type TourDialogProps = {
 };
 
 const TourDialog = ({
-	tourIntroDialogVisible, onCompleteTour, onClose, tourBundleLoaded, loadTourBundle, restoreGeneratorState,
+	tourIntroDialogVisible, showTourIntroDialog, onClose, tourBundleLoaded, loadTourBundle, restoreGeneratorState,
 	saveGeneratorState, i18n
 }: TourDialogProps): JSX.Element => {
 	const windowSize = useWindowSize();
@@ -79,10 +79,13 @@ const TourDialog = ({
 	};
 
 	// when a user exits a tour they're taken back to the intro panel again
-	const onExit = (): void => {
+	const onExit = (completelyExit: boolean): void => {
 		restoreGeneratorState();
 		setCurrentTour(null);
-		onCompleteTour(); // maybe just rename to showIntroDialog ?
+
+		if (completelyExit !== true) {
+			showTourIntroDialog();
+		}
 	};
 
 	const getCurrentTour = (): JSX.Element | null => {

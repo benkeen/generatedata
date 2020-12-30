@@ -87,7 +87,6 @@
 	"generate": "Genereer",
 	"generateBtnDesc": "Als je klaar bent met het configureren van je dataset en hebt bevestigd dat het eruitziet zoals je wilt, is het tijd om wat data in volume te genereren! Klik op deze knop om uw gegevens te genereren. Afhankelijk van het aantal rijen in het gegevensraster en het aantal rijen dat u wilt genereren, kan dit even duren.",
 	"generator": "Generator",
-	"generatorTourCompleteDesc": "Oké, je kent nu de belangrijkste elementen van de generator!",
 	"geo": "Geo",
 	"grid": "rooster",
 	"help": "Help",
@@ -236,5 +235,7 @@
   "gridPanelTourDesc1": "Het rasterpaneel is waar u de gegevens construeert die u wilt genereren. Hier kunt u kiezen tussen de verschillende gegevenstypen, hoe ze zijn geconfigureerd en de volgorde waarin ze verschijnen. In het voorbeeld hier hebben we vijf velden: naam, telefoonnummer, e-mail, adres en stad. ",
   "gridPanelTourDesc2": "Zie de rondleiding op het rasterpaneel voor meer gedetailleerde informatie over deze sectie.",
   "aboutInfoPara1": "De Data Generator is een open source-project dat ik heb gemaakt in het late paleolithische tijdperk (circa 2004) en dat gedurende zijn levensduur vele, vele bijdragen heeft gehad. Om de paar jaar herschrijf ik het met behulp van de nieuwste en beste beschikbare technologieën: deze versie werd voltooid in 2021, gemaakt met React, Redux, Typescript, GraphQL, Docker, webwerkers, elastiekjes, ducttape en heel veel vloeken.",
-  "aboutInfoPara2": "Je kunt het project vinden op github. Download het, vork het of voel je vrij om bij te dragen. Genieten!"
+  "aboutInfoPara2": "Je kunt het project vinden op github. Download het, vork het of voel je vrij om bij te dragen. Genieten!",
+
+  "tourCompleteDesc": "All done! Choose one of the buttons below to continue."
 }

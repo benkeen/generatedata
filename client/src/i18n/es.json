@@ -87,7 +87,6 @@
 	"generate": "Generar",
 	"generateBtnDesc": "Una vez que haya terminado de configurar su conjunto de datos y haya confirmado que se ve como desea, ¡es hora de generar algunos datos en volumen! Haga clic en este botón para generar sus datos. Dependiendo de la cantidad de filas en la cuadrícula de datos y la cantidad de filas que desee generar, esto puede llevar algún tiempo.",
 	"generator": "Generador",
-	"generatorTourCompleteDesc": "Muy bien, ahora conoces los elementos clave del generador.",
 	"geo": "Geográficos",
 	"grid": "Cuadrícula",
 	"help": "Ayuda",
@@ -236,6 +235,7 @@
   "gridPanelTourDesc1": "El panel de cuadrícula es donde construye los datos que desea generar. Aquí puede elegir entre los diferentes tipos de datos, cómo están configurados y el orden en que aparecen. En el ejemplo aquí, tenemos cinco campos: Nombre, Teléfono, Correo electrónico, Dirección y Ciudad.",
   "gridPanelTourDesc2": "Consulte el recorrido en el Panel de cuadrícula para obtener información más detallada sobre esta sección.",
   "aboutInfoPara1": "El Generador de datos es un proyecto de código abierto que creé en la era paleolítica tardía (alrededor de 2004) y ha tenido muchos, muchos contribuyentes a lo largo de su vida útil. Cada pocos años lo reescribo utilizando las últimas y mejores tecnologías disponibles: esta versión se completó en 2021, hecha con React, Redux, Typescript, GraphQL, Docker, web Workers, bandas elásticas, cinta adhesiva y muchas maldiciones.",
-  "aboutInfoPara2": "Puedes encontrar el proyecto en github. Descárgalo, bifurcalo o siéntete libre de contribuir. ¡Disfrutar!"
+  "aboutInfoPara2": "Puedes encontrar el proyecto en github. Descárgalo, bifurcalo o siéntete libre de contribuir. ¡Disfrutar!",
 
+  "tourCompleteDesc": "All done! Choose one of the buttons below to continue."
 }

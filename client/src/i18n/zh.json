@@ -87,7 +87,6 @@
 	"generate": "生成",
 	"generateBtnDesc": "完成数据集的配置并确认其外观后，现在该生成大量数据了！ 单击此按钮生成您的数据。 根据数据网格中的行数和要生成的行数，这可能需要一些时间。",
 	"generator": "生成器",
-	"generatorTourCompleteDesc": "好了，您现在知道了生成器的关键要素！",
 	"geo": "Geo",
 	"grid": "格",
 	"help": "帮助",
@@ -236,6 +235,7 @@
   "gridPanelTourDesc1": "网格面板是您构造要生成的数据的地方。 在这里，您可以选择不同的数据类型，配置方式以及显示顺序。 在此处的示例中，我们有五个字段：姓名，电话，电子邮件，街道地址和城市。",
   "gridPanelTourDesc2": "有关此部分的更多详细信息，请参见“网格面板”上的导览。",
   "aboutInfoPara1": "数据生成器是我在旧石器时代末期（大约在2004年）创建的一个开源项目，在其生命周期中有许多贡献者。 我每隔几年就会使用最新和最先进的技术对其进行重写：此版本于2021年完成，由React，Redux，Typescript，GraphQL，Docker，Web Worker，橡皮筋，胶带和大量诅咒制成。",
-  "aboutInfoPara2": "您可以在github上找到该项目。 下载，分叉或随意贡献。 请享用！"
+  "aboutInfoPara2": "您可以在github上找到该项目。 下载，分叉或随意贡献。 请享用！",
 
+  "tourCompleteDesc": "All done! Choose one of the buttons below to continue."
 }

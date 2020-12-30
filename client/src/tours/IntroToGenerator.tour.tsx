@@ -1,11 +1,12 @@
 import React from 'react';
 import Reactour, { ReactourStepPosition } from 'reactour';
-import Button from '@material-ui/core/Button';
 import env from '../../_env';
 import store from '~core/store';
 import { getI18nString, getStrings } from '~utils/langUtils';
 import * as selectors from '~store/generator/generator.selectors';
 import * as actions from '~store/generator/generator.actions';
+import { TourCompleteStep } from './Components.tour';
+import { TourProps } from '~types/general';
 
 
 const Step1 = (): JSX.Element => {
@@ -116,33 +117,10 @@ const Step7 = (): JSX.Element => {
 	);
 };
 
-const Step8 = ({ close }: any): JSX.Element => {
-	const { core: i18n } = getStrings();
-
-	return (
-		<>
-			<h2>{i18n.tourComplete}</h2>
-
-			<p>
-				{i18n.generatorTourCompleteDesc}
-			</p>
-
-			<p>
-				<Button
-					size="medium"
-					color="primary"
-					variant="outlined"
-					onClick={close}>{i18n.tryDifferentTour}</Button>
-			</p>
-		</>
-	);
-};
-
 const commonStyles = {
 	borderRadius: 6,
 	margin: 12
 };
-
 
 const steps = [
 	{
@@ -228,22 +206,12 @@ const steps = [
 		position: 'top' as ReactourStepPosition
 	},
 	{
-		content: Step8,
+		content: TourCompleteStep,
 		style: {
 			...commonStyles
 		}
 	}
 ];
-
-export type TourProps = {
-	isOpen: boolean;
-	onClose: () => void;
-	maskClassName: string;
-	closeWithMask: boolean;
-	disableInteraction: boolean;
-	accentColor: string;
-	className: string;
-};
 
 const Tour = ({ isOpen, onClose, maskClassName, closeWithMask, disableInteraction, accentColor, className }: TourProps): JSX.Element => (
 	<Reactour

@@ -87,7 +87,6 @@
 	"generate": "Erzeugen",
 	"generateBtnDesc": "Sobald Sie die Konfiguration Ihres Datensatzes abgeschlossen und bestätigt haben, dass er Ihren Wünschen entspricht, ist es Zeit, einige Daten in großem Umfang zu generieren! Klicken Sie auf diese Schaltfläche, um Ihre Daten zu generieren. Abhängig von der Anzahl der Zeilen im Datenraster und der Anzahl der Zeilen, die Sie generieren möchten, kann dies einige Zeit dauern.",
 	"generator": "Generator",
-	"generatorTourCompleteDesc": "Okay, Sie kennen jetzt die Schlüsselelemente des Generators!",
 	"geo": "Geo",
 	"grid": "Gitter",
 	"help": "Hilfe",
@@ -236,6 +235,7 @@
   "gridPanelTourDesc1": "Im Rasterfeld erstellen Sie die Daten, die Sie generieren möchten. Hier können Sie zwischen den verschiedenen Datentypen, ihrer Konfiguration und der Reihenfolge ihrer Anzeige wählen. Im Beispiel hier haben wir fünf Felder: Name, Telefon, E-Mail, Straße und Stadt.",
   "gridPanelTourDesc2": "Weitere Informationen zu diesem Abschnitt finden Sie in der Tour im Grid Panel.",
   "aboutInfoPara1": "Der Datengenerator ist ein Open-Source-Projekt, das ich in der späten Altsteinzeit (ca. 2004) erstellt habe und über seine gesamte Lebensdauer viele, viele Mitwirkende hatte. Alle paar Jahre schreibe ich es mit den neuesten und besten verfügbaren Technologien neu: Diese Version wurde 2021 fertiggestellt und mit React, Redux, Typescript, GraphQL, Docker, Web-Workern, Gummibändern, Klebeband und viel Fluchen erstellt.",
-  "aboutInfoPara2": "Sie finden das Projekt auf github. Laden Sie es herunter, geben Sie es ab oder tragen Sie dazu bei. Genießen!"
+  "aboutInfoPara2": "Sie finden das Projekt auf github. Laden Sie es herunter, geben Sie es ab oder tragen Sie dazu bei. Genießen!",
 
+  "tourCompleteDesc": "All done! Choose one of the buttons below to continue."
 }
