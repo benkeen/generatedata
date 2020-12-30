@@ -176,6 +176,11 @@ const steps = [
 					store.dispatch(actions.togglePreview());
 				}
 
+				const layout = selectors.getGeneratorLayout(state);
+				if (layout === 'vertical') {
+					store.dispatch(actions.toggleLayout());
+				}
+
 				store.dispatch(actions.onSelectDataType('Names', rows[0].id));
 				store.dispatch(actions.onSelectDataType('Phone', rows[1].id));
 				store.dispatch(actions.onSelectDataType('Email', rows[2].id));

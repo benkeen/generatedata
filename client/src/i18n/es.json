@@ -255,5 +255,7 @@
 	"welcomeToTheGenerator": "Bienvenido al generador!",
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
-	"yourUserAccount": "Su cuenta de usuario"
+	"yourUserAccount": "Su cuenta de usuario",
+
+  "exit": "Salida"
 }

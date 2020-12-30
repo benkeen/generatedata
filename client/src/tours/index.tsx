@@ -1,5 +1,6 @@
 import GridPanel from './GridPanel.tour';
 import IntroToGenerator from './IntroToGenerator.tour';
+import PreviewPanel from './PreviewPanel.tour';
 
 const tours = {
 	intro: {
@@ -7,6 +8,9 @@ const tours = {
 	},
 	gridPanel: {
 		component: GridPanel
+	},
+	previewPanel: {
+		component: PreviewPanel
 	}
 };
 

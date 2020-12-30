@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<GridProps> => ({
 	toggleGrid: (): any => dispatch(actions.toggleGrid()),
 	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel()),
 	showHelpDialog: (dataType: DataTypeFolder): any => dispatch(actions.showHelpDialog(dataType)),
-	hideHelpDialog: () => dispatch(actions.hideHelpDialog())
+	hideHelpDialog: (): any => dispatch(actions.hideHelpDialog())
 });
 
 const container: any = connect(

@@ -255,5 +255,7 @@
 	"welcomeToTheGenerator": "مرحبًا بك في المولد!",
 	"yes": "نعم",
 	"yourAccount": "حسابك",
-	"yourUserAccount": "حساب المستخدم الخاص بك"
+	"yourUserAccount": "حساب المستخدم الخاص بك",
+
+  "exit": "خروج"
 }

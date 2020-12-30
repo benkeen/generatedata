@@ -255,5 +255,7 @@
 	"welcomeToTheGenerator": "Welkom bij de generator!",
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
-	"yourUserAccount": "Uw gebruikersaccount"
+	"yourUserAccount": "Uw gebruikersaccount",
+
+  "exit": "Uitgang"
 }

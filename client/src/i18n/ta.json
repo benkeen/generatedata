@@ -255,5 +255,7 @@
 	"welcomeToTheGenerator": "ஜெனரேட்டருக்கு வருக!",
 	"yes": "ஆம்",
 	"yourAccount": "உங்கள் கணக்கு",
-	"yourUserAccount": "உங்கள் பயனர் கணக்கு"
+	"yourUserAccount": "உங்கள் பயனர் கணக்கு",
+
+  "exit": "வெளியேறு"
 }
