@@ -26,12 +26,13 @@ export const ExportSettings = ({ i18n, showExportSettings, toggleExportSettings 
 
 	return (
 		<Drawer open={showExportSettings} anchor="left" onClose={toggleExportSettings}>
-			<div className={styles.panel}>
+			<div className={`${styles.panel} tour-exportTypePanel`}>
 				<Tabs
 					value={selectedTabIndex}
 					indicatorColor="primary"
 					textColor="primary"
 					onChange={handleChange}
+					className="tour-exportTypePanelTabs"
 				>
 					<Tab label={i18n.settings} />
 					<Tab label={i18n.preview} />

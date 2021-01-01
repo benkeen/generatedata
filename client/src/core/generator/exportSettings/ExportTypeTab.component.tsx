@@ -26,10 +26,10 @@ export const ExportTypeTab = ({
 	}
 
 	return (
-		<div className={styles.tabContent}>
+		<div className={`${styles.tabContent} tour-exportTypeTabContent`}>
 			<div className={`${styles.row} ${styles.exportFormatRow}`}>
 				<div className={styles.label}>{i18n.format}</div>
-				<div className={styles.field}>
+				<div className={`${styles.field} tour-exportTypeDropdown`}>
 					<div style={{ width: 180 }}>
 						<Dropdown
 							isGrouped={true}
@@ -41,13 +41,15 @@ export const ExportTypeTab = ({
 				</div>
 			</div>
 
-			{SettingsComponent ? <SettingsComponent
-				id={`exportTypeSettings-${exportType}`}
-				coreI18n={i18n}
-				i18n={exportTypeI18n}
-				onUpdate={onUpdate}
-				data={exportTypeSettings}
-			/> : null}
+			<div className="tour-exportTypeSettings">
+				{SettingsComponent ? <SettingsComponent
+					id={`exportTypeSettings-${exportType}`}
+					coreI18n={i18n}
+					i18n={exportTypeI18n}
+					onUpdate={onUpdate}
+					data={exportTypeSettings}
+				/> : null}
+			</div>
 			<MediumSpinner className={spinnerStyles} />
 		</div>
 	);

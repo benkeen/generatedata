@@ -135,13 +135,16 @@ const steps = [
 
 			const state = store.getState();
 			const rows = selectors.getSortedRowsArray(state);
+			const ids = rows.map(({ id }) => id);
 
-			store.dispatch(actions.onSelectDataType('Names', rows[0].id));
-			store.dispatch(actions.onSelectDataType('Phone', rows[1].id));
-			store.dispatch(actions.onSelectDataType('Email', rows[2].id));
-			store.dispatch(actions.onSelectDataType('StreetAddress', rows[3].id));
-			store.dispatch(actions.onSelectDataType('City', rows[4].id));
+			store.dispatch(actions.onSelectDataType('Names', ids[0]));
+			store.dispatch(actions.onSelectDataType('Phone', ids[1]));
+			store.dispatch(actions.onSelectDataType('Email', ids[2]));
+			store.dispatch(actions.onSelectDataType('StreetAddress', ids[3]));
+			store.dispatch(actions.onSelectDataType('City', ids[4]));
 			store.dispatch(actions.onSelectExportType('JSON'));
+
+			store.dispatch(actions.refreshPreview(ids));
 
 			const layout = selectors.getGeneratorLayout(state);
 			if (layout === 'horizontal') {

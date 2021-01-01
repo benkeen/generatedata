@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
-import GearIcon from '@material-ui/icons/Settings';
-import ListIcon from '@material-ui/icons/FormatListBulleted';
-import PreviewIcon from '@material-ui/icons/Visibility';
-import PersonIcon from '@material-ui/icons/Person';
 import { getTourComponents } from '~utils/generalUtils';
 import styles from './TourIntro.scss';
 import { useWindowSize } from 'react-hooks-window-size';
@@ -134,26 +130,22 @@ const TourDialog = ({
 							<div className={`${styles.col} ${styles.buttonCol}`}>
 								<div>
 									<Button color="primary" variant="outlined" onClick={(): void => selectTour('intro')}>
-										<GearIcon />
-										{i18n.introToGenerator}
+										1. {i18n.introToGenerator}
 									</Button>
 								</div>
 								<div>
 									<Button color="primary" variant="outlined" onClick={(): void => selectTour('gridPanel')}>
-										<ListIcon />
-										{i18n.theGridPanel}
+										2. {i18n.theGridPanel}
 									</Button>
 								</div>
 								<div>
 									<Button color="primary" variant="outlined" onClick={(): void => selectTour('previewPanel')}>
-										<PreviewIcon />
-										{i18n.thePreviewPanel}
+										3. {i18n.thePreviewPanel}
 									</Button>
 								</div>
 								<div>
 									<Button color="primary" variant="outlined" disabled={true} onClick={(): void => selectTour('yourAccount')}>
-										<PersonIcon />
-										{i18n.yourUserAccount}
+										4. {i18n.yourUserAccount}
 									</Button>
 								</div>
 							</div>

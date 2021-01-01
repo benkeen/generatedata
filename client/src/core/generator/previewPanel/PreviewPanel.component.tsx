@@ -137,6 +137,11 @@ const PreviewPanel = ({
 			return <div />;
 		}
 
+		let exportTypeButtonClasses = 'tour-exportTypeBtn';
+		if (!hasValidExportTypeSettings) {
+			exportTypeButtonClasses += ` ${styles.error}`;
+		}
+
 		return (
 			<ExportTypeButton
 				disableElevation
@@ -144,7 +149,7 @@ const PreviewPanel = ({
 				variant="outlined"
 				color="primary"
 				size="medium"
-				className={!hasValidExportTypeSettings ? styles.error : ''}>
+				className={exportTypeButtonClasses}>
 				{exportTypeLabel}
 				{!hasValidExportTypeSettings ? <ErrorIcon /> : null}
 			</ExportTypeButton>
@@ -180,7 +185,7 @@ const PreviewPanel = ({
 			<div className={styles.topRow}>
 				{getExportSettingsBtn()}
 
-				<div className={styles.controls}>
+				<div className={`${styles.controls} tour-previewPanelControls`}>
 					<span onClick={refreshPreview}>
 						<Tooltip title={i18n.refreshPanel} placement="bottom" {...refreshTooltipProps} arrow>
 							<span>

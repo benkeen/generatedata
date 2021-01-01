@@ -181,16 +181,20 @@ const steps = [
 					store.dispatch(actions.toggleLayout());
 				}
 
-				store.dispatch(actions.onSelectDataType('Names', rows[0].id));
-				store.dispatch(actions.onSelectDataType('Phone', rows[1].id));
-				store.dispatch(actions.onSelectDataType('Email', rows[2].id));
-				store.dispatch(actions.onSelectDataType('StreetAddress', rows[3].id));
-				store.dispatch(actions.onSelectDataType('City', rows[4].id));
-				store.dispatch(actions.onSelectDataType('Region', rows[5].id));
-				store.dispatch(actions.onSelectDataType('Country', rows[6].id));
-				store.dispatch(actions.onSelectDataType('LatLng', rows[7].id));
-				store.dispatch(actions.onSelectDataType('Alphanumeric', rows[8].id));
-				store.dispatch(actions.onSelectDataType('Boolean', rows[9].id));
+				const ids = rows.map(({ id }) => id);
+
+				store.dispatch(actions.onSelectDataType('Names', ids[0]));
+				store.dispatch(actions.onSelectDataType('Phone', ids[1]));
+				store.dispatch(actions.onSelectDataType('Email', ids[2]));
+				store.dispatch(actions.onSelectDataType('StreetAddress', ids[3]));
+				store.dispatch(actions.onSelectDataType('City', ids[4]));
+				store.dispatch(actions.onSelectDataType('Region', ids[5]));
+				store.dispatch(actions.onSelectDataType('Country', ids[6]));
+				store.dispatch(actions.onSelectDataType('LatLng', ids[7]));
+				store.dispatch(actions.onSelectDataType('Alphanumeric', ids[8]));
+				store.dispatch(actions.onSelectDataType('Boolean', ids[8]));
+
+				store.dispatch(actions.refreshPreview(ids));
 
 				document.querySelector('.tour-scrollableGridRows')!.scrollTop = 0;
 			}, 10);

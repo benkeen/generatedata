@@ -14,9 +14,7 @@ const Step1 = (): JSX.Element => {
 		<>
 			<h2>{i18n.thePreviewPanel}</h2>
 			<p>
-				The purpose of the preview panel is to give you a live, visual representation of exactly what data
-				you're generating so you don't waste any time. This tour does a quick introduction to how the preview
-				panel works.
+				{i18n.previewPanelTourDesc}
 			</p>
 		</>
 	);
@@ -27,9 +25,9 @@ const Step2 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2></h2>
+			<h2>{i18n.panelContents}</h2>
 			<p>
-
+				{i18n.panelContentsDesc}
 			</p>
 		</>
 	);
@@ -40,9 +38,9 @@ const Step3 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2></h2>
+			<h2>{i18n.panelControls}</h2>
 			<p>
-
+				{i18n.previewPanelControlsDesc}
 			</p>
 		</>
 	);
@@ -53,9 +51,12 @@ const Step4 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2></h2>
+			<h2>{i18n.theExportTypeBtn}</h2>
 			<p>
-
+				{i18n.exportTypeBtnDesc}
+			</p>
+			<p>
+				{i18n.clickExportTypeBtn}
 			</p>
 		</>
 	);
@@ -66,14 +67,71 @@ const Step5 = (): JSX.Element => {
 
 	return (
 		<>
-			<h2></h2>
+			<h2>{i18n.editingExportTypes}</h2>
 			<p>
-
+				{i18n.editExportTypePage}
+			</p>
+			<p>
+				{i18n.editExportTypePageConfig}
 			</p>
 		</>
 	);
 };
 
+const Step6 = (): JSX.Element => {
+	const { core: i18n } = getStrings();
+
+	return (
+		<>
+			<h2>{i18n.exportTypeSelection}</h2>
+			<p>
+				{i18n.exportTypeSelectionDesc}
+			</p>
+		</>
+	);
+};
+
+const Step7 = (): JSX.Element => {
+	const { core: i18n } = getStrings();
+
+	return (
+		<>
+			<h2>{i18n.exportTypeOptionsTs}</h2>
+			<p>
+				{i18n.exportTypeOptionsTsDesc}
+			</p>
+			<p>
+				{i18n.exportTypeOptionsTsDesc2}
+			</p>
+		</>
+	);
+};
+
+const Step8 = (): JSX.Element => {
+	const { core: i18n } = getStrings();
+
+	return (
+		<>
+			<h2>{i18n.exportTypeOptionsSql}</h2>
+			<p>
+				{i18n.exportTypeOptionsSqlDesc}
+			</p>
+		</>
+	);
+};
+
+const Step9 = (): JSX.Element => {
+	const { core: i18n } = getStrings();
+
+	return (
+		<>
+			<h2>{i18n.panelTabs}</h2>
+			<p>
+				{i18n.panelTabsDesc}
+			</p>
+		</>
+	);
+};
 
 const commonStyles = {
 	borderRadius: 6,
@@ -91,11 +149,15 @@ const steps = [
 		action: (): void => {
 			setTimeout(() => {
 				store.dispatch(actions.clearGrid('dataOnly', false));
-				store.dispatch(actions.addRows(10));
+				store.dispatch(actions.addRows(5));
 
 				const state = store.getState();
 				const rows = selectors.getSortedRowsArray(state);
 
+				const layout = selectors.getGeneratorLayout(state);
+				if (layout === 'horizontal') {
+					store.dispatch(actions.toggleLayout());
+				}
 				if (!selectors.isGridVisible(state)) {
 					store.dispatch(actions.toggleGrid());
 				}
@@ -103,37 +165,92 @@ const steps = [
 					store.dispatch(actions.togglePreview());
 				}
 
-				store.dispatch(actions.onSelectDataType('Country', rows[0].id));
-				store.dispatch(actions.onSelectDataType('Region', rows[1].id));
-				store.dispatch(actions.onSelectDataType('City', rows[2].id));
-				store.dispatch(actions.onSelectDataType('StreetAddress', rows[3].id));
-				store.dispatch(actions.onSelectDataType('PostalZip', rows[4].id));
+				const ids = rows.map(({ id }) => id);
+
+				store.dispatch(actions.onSelectDataType('Country', ids[0]));
+				store.dispatch(actions.onSelectDataType('Region', ids[1]));
+				store.dispatch(actions.onSelectDataType('City', ids[2]));
+				store.dispatch(actions.onSelectDataType('StreetAddress', ids[3]));
+				store.dispatch(actions.onSelectDataType('PostalZip', ids[4]));
+
+				store.dispatch(actions.refreshPreview(ids));
+
+				store.dispatch(actions.onSelectExportType('Typescript'));
 			}, 10);
 		}
 	},
 	{
 		content: Step2,
+		selector: '.gdGridPanel>div:nth-child(3)',
 		style: {
-			...commonStyles
+			...commonStyles,
+			marginLeft: -20
 		}
 	},
+
 	{
 		content: Step3,
+		selector: '.tour-previewPanelControls',
 		style: {
 			...commonStyles
-		}
+		},
+		position: 'bottom' as ReactourStepPosition
 	},
 	{
 		content: Step4,
+		selector: '.tour-exportTypeBtn',
 		style: {
 			...commonStyles
-		}
+		},
+		position: 'bottom' as ReactourStepPosition
 	},
 	{
 		content: Step5,
 		style: {
 			...commonStyles
+		},
+		action: (): void => {
+			store.dispatch(actions.toggleExportSettings('previewPanel'));
 		}
+	},
+	{
+		content: Step6,
+		selector: '.tour-exportTypeDropdown>div',
+		style: {
+			...commonStyles,
+			marginLeft: 20
+		},
+		position: 'right' as ReactourStepPosition
+	},
+	{
+		content: Step7,
+		selector: '.tour-exportTypePanel',
+		style: {
+			...commonStyles,
+			marginLeft: 20
+		},
+		position: 'right' as ReactourStepPosition
+	},
+	{
+		content: Step8,
+		selector: '.tour-exportTypePanel',
+		style: {
+			...commonStyles,
+			marginLeft: 20
+		},
+		action: (): void => {
+			store.dispatch(actions.onSelectExportType('SQL'));
+		},
+		position: 'right' as ReactourStepPosition
+	},
+	{
+		content: Step9,
+		selector: '.tour-exportTypePanelTabs',
+		style: {
+			...commonStyles,
+			marginLeft: 20
+		},
+		position: 'left' as ReactourStepPosition
 	},
 	{
 		content: TourCompleteStep,
