@@ -29,7 +29,7 @@ export const TourCompleteStep = ({ close }: any): JSX.Element => {
 					size="medium"
 					color="default"
 					variant="outlined"
-					onClick={onExit}>{i18n.exit}</Button>
+					onClick={onExit}>Exit</Button>
 			</p>
 		</>
 	);
