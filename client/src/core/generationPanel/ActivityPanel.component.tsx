@@ -68,6 +68,10 @@ const ActivityPanel = ({
 			return;
 		}
 
+		if (!fullI18n) {
+			console.log('[should never be true!]', fullI18n);
+		}
+
 		dataTypeWorker.postMessage({
 			action: 'generate',
 			numResults: numRowsToGenerate,

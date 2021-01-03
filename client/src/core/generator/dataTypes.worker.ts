@@ -58,6 +58,7 @@ context.onmessage = (e: any) => {
 
 			if (!e.data.i18n) {
 				console.log('**** GNARLY BUG HERE: i18n is not loaded in dataTypes.worker...');
+				console.log(e.data);
 			}
 
 			// @ts-ignore
