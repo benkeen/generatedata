@@ -1,7 +1,7 @@
 import { GeneratorLayout } from '~core/generator/Generator.component';
 import { ColumnData } from '~types/general';
-import { CountryMap, CountryType } from '~types/countries';
-import { DataTypeMap, DTGenerationExistingRowData } from '~types/dataTypes';
+import { CountryMap } from '~types/countries';
+import { DataTypeMap } from '~types/dataTypes';
 import { ExportTypeFolder } from '../_plugins';
 
 export type ExportTypeMap = {

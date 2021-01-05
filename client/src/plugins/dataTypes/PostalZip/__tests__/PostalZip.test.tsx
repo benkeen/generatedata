@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react';
-import { Help } from '../PostalZip';
+import { Help, Options } from '../PostalZip';
 const i18n = require('../i18n/en.json');
 
 const defaultHelpProps = {
@@ -24,14 +24,18 @@ describe('Help', () => {
 	});
 });
 
-// describe('Options', () => {
-// 	it('renders', () => {
-// 		const { container } = render(
-// 			<Options
-// 				{...optionsProps}
-// 				data={{}}
-// 				onUpdate={() => {}}
-// 			/>);
-// 		expect(container).toBeTruthy();
-// 	});
-// });
+describe('Options', () => {
+	it('renders', () => {
+		const { container } = render(
+			<Options
+				{...optionsProps}
+				data={{
+					selectedCountries: []
+				}}
+				onUpdate={() => {}}
+				countryRows={[]}
+				regionRows={[]}
+			/>);
+		expect(container).toBeTruthy();
+	});
+});

@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react';
-import { Help } from '../Region';
+import { Help, Options } from '../Region';
 const i18n = require('../i18n/en.json');
 
 const defaultProps = {
@@ -15,6 +15,15 @@ const defaultProps = {
 	onUpdate: () => {}
 };
 
+const optionsProps = {
+	coreI18n: {},
+	countryI18n: {},
+	i18n,
+	id: 'id',
+	gridPanelDimensions: { width: 100, height: 100 }
+};
+
+
 describe('Help', () => {
 	it('renders', () => {
 		const { container } = render(<Help {...defaultProps}/>);
@@ -22,9 +31,19 @@ describe('Help', () => {
 	});
 });
 
-// describe('Options', () => {
-// 	it('renders', () => {
-// 		const { container } = render(<Options {...defaultProps} />);
-// 		expect(container).toBeTruthy();
-// 	});
-// });
+describe('Options', () => {
+	it('renders', () => {
+		const { container } = render(
+			<Options
+				{...optionsProps}
+				data={{
+					selectedCountries: [],
+					formats: ['full']
+				}}
+				onUpdate={() => {}}
+				countryRows={[]}
+			/>
+		);
+		expect(container).toBeTruthy();
+	});
+});
