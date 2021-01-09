@@ -21,6 +21,12 @@ import { getRoutes } from '~utils/routeUtils';
 import '~store/generator/generator.reducer';
 import './styles/global.scss';
 
+if (process.env.NODE_ENV === 'development') {
+	const whyDidYouRender = require('@welldone-software/why-did-you-render');
+	whyDidYouRender(React, {
+		trackAllPureComponents: true,
+	});
+}
 
 window.CodeMirror = codemirror;
 

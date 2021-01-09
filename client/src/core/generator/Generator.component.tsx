@@ -48,6 +48,10 @@ const Builder = ({
 		}
 	}
 
+	// const { minSize, maxSize, defaultSize } = useMemo(() => {
+	//
+	// }, [generatorLayout]);
+
 	const getContent = (): JSX.Element => {
 		if (windowSize.width < C.SMALL_SCREEN_WIDTH) {
 			return smallScreenVisiblePanel === 'grid' ? <Grid /> : <Preview />;

@@ -12,6 +12,7 @@ import { DataRow } from '~store/generator/generator.reducer';
 import { DataTypeFolder } from '../../../../_plugins';
 import GridRow from './GridRow.container';
 import C from '../../constants';
+import { useMemo } from 'react';
 
 
 export type GridProps = {
@@ -57,6 +58,16 @@ const Grid = ({
 			toggleGrid();
 		}
 	};
+
+	// uber-kludge. Ensures we're passing the same dimensions object ref to prevent repaints of GridRow
+	const memoizedDimensions = useMemo(() => (dimensions), [
+		dimensions.bottom,
+		dimensions.height,
+		dimensions.left,
+		dimensions.right,
+		dimensions.top,
+		dimensions.width
+	]);
 
 	return (
 		<>
@@ -108,7 +119,7 @@ const Grid = ({
 														row={row}
 														key={row.id}
 														index={index}
-														gridPanelDimensions={dimensions}
+														gridPanelDimensions={memoizedDimensions}
 														showHelpDialog={showHelpDialog}
 													/>
 												))}
