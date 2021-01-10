@@ -80,6 +80,7 @@ const loginWithGoogle = async (root, { googleToken }) => {
 
 	const { accountId } = user.dataValues;
 	const token = await authUtils.getJwt({ accountId, email });
+	// const { token, tokenExpiry } = await getNewTokenAndSetRefreshTokenCookie(accountId, email, user, res);
 
 	return {
 		success: true,

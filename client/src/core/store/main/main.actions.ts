@@ -99,8 +99,6 @@ export const clearLoginFlow = (): any => {
 
 // default authentication
 export const login = (email: string, password: string, onLoginError: Function): any => async (dispatch: Dispatch): Promise<any> => {
-	const i18n = getStrings();
-
 	dispatch(startLogin());
 
 	const response = await apolloClient.mutate({
@@ -127,27 +125,33 @@ export const login = (email: string, password: string, onLoginError: Function): 
 	});
 
 	if (response.data.login.success) {
-		setAuthTokenRefresh(response.data.login.tokenExpiry, (): any => refreshToken()(dispatch));
-
 		dispatch(setAuthenticationData({
 			...response.data.login,
 			authMethod: 'default'
 		}));
-
-		dispatch(setLoginDialogVisibility(false));
-
-		addToast({
-			type: 'success',
-			message: i18n.core.nowLoggedIn
-		});
-
-		if (loginFlow === 'fromSaveDataSet') {
-			dispatch(showSaveDataSetDialog());
-			loginFlow = '';
-		}
-
+		onLoginSuccess(response.data.login.tokenExpiry, dispatch);
 	} else {
 		onLoginError();
+	}
+};
+
+export const onLoginSuccess = (tokenExpiry: number | null, dispatch: Dispatch): void => {
+	const i18n = getStrings();
+
+	if (tokenExpiry) {
+		setAuthTokenRefresh(tokenExpiry, (): any => refreshToken()(dispatch));
+	}
+
+	dispatch(setLoginDialogVisibility(false));
+
+	addToast({
+		type: 'success',
+		message: i18n.core.nowLoggedIn
+	});
+
+	if (loginFlow === 'fromSaveDataSet') {
+		dispatch(showSaveDataSetDialog());
+		loginFlow = '';
 	}
 };
 

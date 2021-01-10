@@ -12,6 +12,7 @@ export type HeaderLinksProps = {
 	headerLinks: GDHeaderLink[];
 	showLoginDialog: () => void;
 	onLogout: () => void;
+	profileImage: string | null;
 	i18n: any;
 };
 
@@ -24,7 +25,7 @@ const getClassName = (path: string, currentPage: string): string => {
 	return currentPage === pathWithSlash ? styles.selected : '';
 };
 
-const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
+const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profileImage, onLogout, i18n }: HeaderLinksProps): JSX.Element => {
 	const links: any = [];
 	const generatorPath = getGeneratorRoute();
 
@@ -51,9 +52,12 @@ const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, onLogout, i18n
 				</li>
 			);
 		} else if (headerLink === 'userAccount') {
+			const userImage = (profileImage) ? <img src={profileImage} /> : null;
+			const classes = `${styles.userAccount} ${getClassName('account', currentPage)}`;
+
 			links.push(
-				<li key="account" className={getClassName('account', currentPage)}>
-					<Link to="/account">{i18n.yourAccount}</Link>
+				<li key="account" className={classes}>
+					{userImage} <Link to="/account">{i18n.yourAccount}</Link>
 				</li>
 			);
 		} else if (headerLink === 'accounts') {

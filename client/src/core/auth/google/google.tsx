@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 import env from '../../../../_env';
 import { apolloClient } from '../../apolloClient';
 import store from '../../store';
-import { setAuthenticationData } from '~store/main/main.actions';
+import { setAuthenticationData, onLoginSuccess } from '~store/main/main.actions';
 
 const googleBtnId = 'google-signin-button';
 
@@ -56,7 +56,12 @@ const onAuthenticated = async (googleUser: any): Promise<any> => {
 	});
 
 	if (response.data.loginWithGoogle.success) {
-		store.dispatch(setAuthenticationData({ ...response.data.loginWithGoogle, authMethod: 'google' }));
+		store.dispatch(setAuthenticationData({
+			...response.data.loginWithGoogle,
+			authMethod: 'google'
+		}));
+
+		onLoginSuccess(null, store.dispatch);
 	} else {
 		console.log('Error: ', response.data.loginWithGoogle);
 		// store.onLoginError();
@@ -69,7 +74,7 @@ const onFailure = (error: any): void => {
 
 export const onLoginPanelRender = (): void => {
 	const observer = new MutationObserver((): void => {
-		if (document.contains(document.getElementById(googleBtnId))) {
+		if (document.contains(document.getElementById(googleBtnId)) && window.gapi) {
 			window.gapi.signin2.render(googleBtnId, {
 				scope: 'profile email',
 				width: 210,

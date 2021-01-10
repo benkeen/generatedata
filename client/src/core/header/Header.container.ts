@@ -16,7 +16,7 @@ const mapStateToProps = (state: any): Partial<HeaderProps> => ({
 	isLoggedIn: mainSelectors.isLoggedIn(state),
 	accountType: accountSelectors.getAccountType(state),
 	isOnloadAuthDetermined: mainSelectors.isOnloadAuthDetermined(state),
-	profileImage: accountSelectors.getProfileImage(state)
+	profileImage: accountSelectors.getProfileImage(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<HeaderProps> => ({
