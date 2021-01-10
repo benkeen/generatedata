@@ -43,7 +43,7 @@ export type PreviewPanelProps = {
 	hasValidExportTypeSettings: boolean;
 	hasBulkActionPending: boolean;
 	initialDependenciesLoaded: boolean; // set once on load
-	previewPanelDependenciesLoaded: boolean; // set every time a user selects 
+	previewPanelDependenciesLoaded: boolean; // set every time a user selects
 	initRefresh: any;
 };
 

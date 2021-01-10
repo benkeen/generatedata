@@ -7,31 +7,31 @@ import { setAuthenticationData } from '~store/main/main.actions';
 
 const googleBtnId = 'google-signin-button';
 
-export const initGoogleAuth = (): void => {
-	const meta = document.createElement('meta');
-	meta.name = 'google-signin-client_id';
-	meta.content = env.googleAuthClientId;
-	document.head.appendChild(meta);
+const init = (): void => {
+	window.gapi.load('client:auth2', (): void => {
+		/* eslint-disable @typescript-eslint/camelcase */
+		const auth2 = window.gapi.auth2.init({ client_id: env.googleAuthClientId, scope: 'profile' });
 
-	const script = document.createElement('script');
-	script.src = 'https://apis.google.com/js/platform.js?onload=renderButton';
-	script.async = true;
-	script.defer = true;
-	// script.onload = (): void => {
-	// 	 console.log("loaded.", window.gapi);
-	// };
-	document.body.appendChild(script);
-
-	// @ts-ignore-line
-	window.renderButton = renderGoogleLoginButton;
+		auth2.isSignedIn.listen((isSignedIn: any): void => {
+			if (isSignedIn) {
+				onAuthenticated(auth2.currentUser.get());
+			}
+		});
+	});
 };
 
-// note this also fires on page refreshes when the user is already logged in
-const onAuthenticated = async (googleUser: any): Promise<any> => {
-	// const profile = googleUser.getBasicProfile();
-	// console.log('Logged in as: ' + profile.getName());
-	// console.log(profile.getImageUrl());
+// TODO rename
+export const initGoogleAuth = (): void => {
+	const script = document.createElement('script');
+	script.src = 'https://apis.google.com/js/platform.js?onload=initGoogleAuth';
+	script.async = true;
+	script.defer = true;
+	document.body.appendChild(script);
 
+	window.initGoogleAuth = init;
+};
+
+const onAuthenticated = async (googleUser: any): Promise<any> => {
 	const googleToken = googleUser.getAuthResponse().id_token;
 
 	const response = await apolloClient.mutate({
@@ -67,12 +67,9 @@ const onFailure = (error: any): void => {
 	console.log(error);
 };
 
-const renderGoogleLoginButton = (): void => {
-	// react can take a little longer to initially render the login panel, so this waits until the btn is available
-	// before initializing the button
+export const onLoginPanelRender = (): void => {
 	const observer = new MutationObserver((): void => {
 		if (document.contains(document.getElementById(googleBtnId))) {
-			// @ts-ignore-line
 			window.gapi.signin2.render(googleBtnId, {
 				scope: 'profile email',
 				width: 210,
@@ -82,7 +79,6 @@ const renderGoogleLoginButton = (): void => {
 				onsuccess: onAuthenticated,
 				onfailure: onFailure
 			});
-
 			observer.disconnect();
 		}
 	});
@@ -98,7 +94,6 @@ const renderGoogleLoginButton = (): void => {
 export const SignInWithGoogleButton = (): JSX.Element => <div id={googleBtnId} />;
 
 export const logoutGoogle = (): void => {
-	// @ts-ignore-line
-	// const auth2 = window.gapi.auth2.getAuthInstance();
-	// auth2.signOut();
+	const auth2 = window.gapi.auth2.getAuthInstance();
+	auth2.signOut();
 };

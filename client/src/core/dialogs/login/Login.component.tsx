@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '~components/TextField';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '~components/dialogs';
 import { isValidEmail, addToast } from '~utils/generalUtils';
 import { DialogLoadingSpinner } from '~components/loaders/loaders';
-import { hasVendorLogin, getVendorLoginButtons } from '~utils/authUtils';
+import { hasVendorLogin, getVendorLoginButtons, getLoginComponentRenderMethods } from '~utils/authUtils';
 import styles from './Login.scss';
 
 const showVendorLoginColumn = hasVendorLogin();
@@ -29,6 +29,13 @@ const LoginDialog = ({ visible, onClose, isLoggingIn, onSubmit, onExited, i18n }
 	const [emailError, setEmailError] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordError, setPasswordError] = useState('');
+
+	useEffect(() => {
+		if (!visible) {
+			return;
+		}
+		getLoginComponentRenderMethods().map((func) => func());
+	}, [visible]);
 
 	const onLogin = (e: any): void => {
 		e.preventDefault();

@@ -292,17 +292,14 @@ export const previewPanelDependenciesLoaded = createSelector(
 	mainSelectors.localeFileLoaded,
 	(dataTypes, exportType, loadedDataTypes, loadedExportTypes, localeFileLoaded) => {
 		if (!localeFileLoaded || !loadedExportTypes[exportType]) {
-			console.log('not loaded. ', { localeFileLoaded, exportType: loadedExportTypes[exportType] });
 			return false;
 		}
 
 		const allDataTypesLoaded = dataTypes.every((i: DataTypeFolder) => loadedDataTypes[i]);
 		if (!allDataTypesLoaded) {
-			console.log('DTs not loaded');
 			return false;
 		}
 
-		console.log('previewPanelDependenciesLoaded: TRUE!');
 		return true;
 	}
 );

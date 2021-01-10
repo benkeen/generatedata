@@ -1,5 +1,5 @@
 import env from '../../_env';
-import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle } from '~core/auth/google/google';
+import { SignInWithGoogleButton, initGoogleAuth, logoutGoogle, onLoginPanelRender } from '~core/auth/google/google';
 import { AuthMethod } from '~types/general';
 
 // refresh the token 1 minute before it expires
@@ -31,6 +31,14 @@ export const getVendorLoginButtons = (): React.ReactNode[] => {
 	}
 
 	return buttons;
+};
+
+export const getLoginComponentRenderMethods = (): Function[] => {
+	const methods = [];
+	if (env.googleAuthClientId) {
+		methods.push(onLoginPanelRender);
+	}
+	return methods;
 };
 
 export const logoutVendor = (authMethod: AuthMethod): void => {
