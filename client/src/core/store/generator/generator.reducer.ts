@@ -44,6 +44,7 @@ export type StashedGeneratorState = {
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
 	showGenerationSettingsPanel: boolean;
+	bulkActionPending: boolean;
 	showHelpDialog: boolean;
 	helpDialogSection: DataTypeFolder | null;
 	showLineNumbers: boolean;
@@ -89,6 +90,7 @@ export type GeneratorState = {
 	showExportSettings: boolean;
 	exportTypeSettings: Partial<ExportTypeSettings>;
 	showGenerationSettingsPanel: boolean;
+	bulkActionPending: boolean;
 	showHelpDialog: boolean;
 	helpDialogSection: DataTypeFolder | null;
 	showLineNumbers: boolean;
@@ -129,6 +131,7 @@ export const getInitialState = (): GeneratorState => ({
 	dataTypePreviewData: {},
 	exportSettingsTab: 'exportType',
 	showGenerationSettingsPanel: false,
+	bulkActionPending: true,
 	showHelpDialog: false,
 	helpDialogSection: null,
 	numRowsToGenerate: env.defaultNumRows,
@@ -344,6 +347,10 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.CHANGE_SMALL_SCREEN_VISIBLE_PANEL:
 			draft.smallScreenVisiblePanel = draft.smallScreenVisiblePanel === 'grid' ? 'preview' : 'grid';
+			break;
+
+		case actions.SET_BULK_ACTION:
+			draft.bulkActionPending = !action.payload.isComplete;
 			break;
 
 		case actions.SET_INITIAL_DEPENDENCIES_LOADED:

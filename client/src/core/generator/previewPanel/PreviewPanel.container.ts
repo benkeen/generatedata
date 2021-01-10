@@ -18,13 +18,19 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 		exportTypeLabel: selectors.getExportTypeLabel(state),
 		hasData: selectors.hasData(state),
 		initialDependenciesLoaded: selectors.isInitialDependenciesLoaded(state),
-		hasValidExportTypeSettings: isExportTypeValid(exportType, exportTypeSettings[exportType])
+		hasValidExportTypeSettings: isExportTypeValid(exportType, exportTypeSettings[exportType]),
+		hasBulkActionPending: selectors.hasBulkActionPending(state),
+		previewPanelDependenciesLoaded: selectors.previewPanelDependenciesLoaded(state)
 	};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => ({
 	togglePreview: (): any => dispatch(actions.togglePreview()),
 	refreshPreview: (): any => dispatch(actions.refreshPreview()),
+	initRefresh: (): any => {
+		dispatch(actions.setBulkAction(true));
+		dispatch(actions.refreshPreview([], actions.setInitialDependenciesLoaded));
+	},
 	toggleExportSettings: (): any => dispatch(actions.toggleExportSettings('previewPanel')),
 	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel())
 });

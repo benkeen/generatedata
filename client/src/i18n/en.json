@@ -275,5 +275,7 @@
 	"welcomeToTheGenerator": "Welcome to the generator!",
 	"yes": "Yes",
 	"yourAccount": "Your Account",
-	"yourUserAccount": "Your User Account"
+	"yourUserAccount": "Your User Account",
+
+  "dataSetLoaded": "The data set has been loaded."
 }

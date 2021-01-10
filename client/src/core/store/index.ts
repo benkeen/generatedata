@@ -39,7 +39,8 @@ function initStore(state: any): any {
 			'isGenerating',
 			'numGeneratedRows',
 			'dataTypePreviewData',
-			'stashedState'
+			'stashedState',
+			'bulkActionPending'
 		]
 	};
 

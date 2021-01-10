@@ -8,6 +8,7 @@ import * as coreUtils from '~utils/coreUtils';
 import { getStrings } from '~utils/langUtils';
 import { getUniqueString } from '~utils/stringUtils';
 import { loadExportTypeBundle, getExportTypeInitialState } from '~utils/exportTypeUtils';
+import { addToast } from '~utils/generalUtils';
 import { DTBundle } from '~types/dataTypes';
 import { GDAction } from '~types/general';
 import C from '../../constants';
@@ -37,10 +38,21 @@ export const onChangeTitle = (id: string, value: string): GDAction => ({
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): any => {
-	return (dispatch: any, getState: any): any => loadDataTypeBundle(dispatch, getState, dataType, gridRowId);
+	return (dispatch: any, getState: any): any => loadDataTypeBundle(dispatch, getState, dataType, { gridRowId });
 };
 
-export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: DataTypeFolder, gridRowId?: string): void => {
+export type LoadDataTypeBundleOptions = {
+	gridRowId?: string;
+	shouldRefreshPreviewPanel?: boolean;
+};
+
+export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: DataTypeFolder, opts: LoadDataTypeBundleOptions = {}): void => {
+	const options = {
+		gridRowId: null,
+		shouldRefreshPreviewPanel: true,
+		...opts
+	};
+
 	const dataTypeI18n = selectors.getDataTypeI18n(getState());
 
 	let defaultTitle: string | null = null;
@@ -58,19 +70,22 @@ export const loadDataTypeBundle = (dispatch: Dispatch, getState: any, dataType: 
 			}
 
 			// if it's been selected within the grid, select the row and update the preview panel
-			if (gridRowId) {
+			const ids = [];
+			if (options.gridRowId) {
+				ids.push(options.gridRowId);
 				dispatch({
 					type: SELECT_DATA_TYPE,
 					payload: {
-						id: gridRowId,
+						id: options.gridRowId,
 						value: dataType,
 						data: bundle.initialState,
 						defaultTitle
 					}
 				});
-				dispatch(refreshPreview([gridRowId]));
-			} else {
-				dispatch(checkPreviewPanelDependenciesLoaded());
+			}
+
+			if (options.shouldRefreshPreviewPanel) {
+				dispatch(refreshPreview(ids));
 			}
 		});
 };
@@ -127,6 +142,17 @@ export const togglePreview = (): GDAction => ({ type: TOGGLE_PREVIEW });
 
 export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
 
+// export const safeRefreshPreview = (): any => (dispatch: Dispatch, getState: any): void => {
+// 	if (selectors.previewPanelDependenciesLoaded(getState())) {
+// 		const shouldPopulate = selectors.shouldGeneratePreviewRows(getState());
+//
+// 		if (shouldPopulate) {
+// 			const rowIds = selectors.getRowIds(getState());
+// 			dispatch(refreshPreview(rowIds));
+// 		}
+// 	}
+// };
+
 // this re-generates the preview panel data. This doesn't have to be called on boot-up because the preview data is
 // generated on the fly, saved in the store and rehydrated when the app loads
 export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = null): any => {
@@ -134,12 +160,16 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 
 	return (dispatch: any, getState: any): any => {
 		const state = getState();
+		const i18n = getStrings();
+
 		const template = selectors.getGenerationTemplate(state);
 		const dataTypePreviewData = { ...selectors.getDataTypePreviewData(state) };
 		const sortedRows = selectors.getSortedRows(state);
 		const columns = selectors.getColumns(state);
 
 		const unchanged = getUnchangedData(idsToRefresh, columns, dataTypePreviewData);
+
+		console.log('in refreshPreview()');
 
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
@@ -149,7 +179,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			batchSize: C.MAX_PREVIEW_ROWS,
 			unchanged,
 			columns,
-			i18n: getStrings(),
+			i18n,
 			template,
 			workerResources: {
 				workerUtils: coreUtils.getWorkerUtils(),
@@ -218,7 +248,7 @@ export const toggleExportSettings = (tab?: ExportSettingsTab): GDAction => ({
 });
 
 export const SELECT_EXPORT_TYPE = 'SELECT_EXPORT_TYPE';
-export const onSelectExportType = (exportType: ExportTypeFolder): any => {
+export const onSelectExportType = (exportType: ExportTypeFolder, shouldRefreshPreviewPanel = true): any => {
 	return (dispatch: any): any => {
 		dispatch({
 			type: SELECT_EXPORT_TYPE,
@@ -230,7 +260,10 @@ export const onSelectExportType = (exportType: ExportTypeFolder): any => {
 		loadExportTypeBundle(exportType)
 			.then((bundle: DTBundle) => {
 				dispatch(exportTypeLoaded(exportType, bundle.initialState));
-				dispatch(checkPreviewPanelDependenciesLoaded());
+
+				if (shouldRefreshPreviewPanel) {
+					dispatch(refreshPreview());
+				}
 			});
 	};
 };
@@ -324,32 +357,32 @@ export const setPanelSize = (size: number): GDAction => ({
 export const CHANGE_SMALL_SCREEN_VISIBLE_PANEL = 'CHANGE_SMALL_SCREEN_VISIBLE_PANEL';
 export const changeSmallScreenVisiblePanel = (): GDAction => ({ type: CHANGE_SMALL_SCREEN_VISIBLE_PANEL });
 
-export const checkPreviewPanelDependenciesLoaded = (): any => (dispatch: Dispatch, getState: any): void => {
-	if (selectors.previewPanelDependenciesLoaded(getState())) {
-		const shouldPopulate = selectors.shouldGeneratePreviewRows(getState());
-
-		if (shouldPopulate) {
-			const rowIds = selectors.getRowIds(getState());
-			dispatch(refreshPreview(rowIds, setInitialDependenciesLoaded));
-		} else {
-			dispatch(setInitialDependenciesLoaded());
-		}
-	}
-};
-
 export const SET_INITIAL_DEPENDENCIES_LOADED = 'SET_INITIAL_DEPENDENCIES_LOADED';
 export const setInitialDependenciesLoaded = (): GDAction => ({ type: SET_INITIAL_DEPENDENCIES_LOADED });
 
+export const SET_BULK_ACTION = 'SET_BULK_ACTION';
+export const setBulkAction = (isComplete: boolean): GDAction => ({ type: SET_BULK_ACTION, payload: { isComplete } });
+
 export const LOAD_DATA_SET = 'LOAD_DATA_SET';
 export const loadDataSet = (dataSet: DataSetListItem): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
+	const i18n = getStrings();
 	const { exportType, exportTypeSettings, rows, sortedRows } = JSON.parse(dataSet.content);
 
 	const dataTypes = sortedRows.map((hash: string) => rows[hash].dataType).filter((dataType: DataTypeFolder | null) => dataType !== null);
 	const uniqueDataTypes = getUnique(dataTypes);
 
+	dispatch({
+		type: SET_BULK_ACTION,
+		payload: {
+			isComplete: false
+		}
+	});
+
 	// load all the datasets and export type
-	onSelectExportType(exportType);
-	uniqueDataTypes.forEach((dataType: DataTypeFolder) => loadDataTypeBundle(dispatch, getState, dataType));
+	dispatch(onSelectExportType(exportType, false));
+	uniqueDataTypes.forEach((dataType: DataTypeFolder) => (
+		loadDataTypeBundle(dispatch, getState, dataType, { shouldRefreshPreviewPanel: false })
+	));
 
 	dispatch({
 		type: LOAD_DATA_SET,
@@ -361,6 +394,11 @@ export const loadDataSet = (dataSet: DataSetListItem): any => async (dispatch: D
 			dataSetId: dataSet.dataSetId,
 			dataSetName: dataSet.dataSetName
 		}
+	});
+
+	addToast({
+		type: 'success',
+		message: i18n.core.dataSetLoaded
 	});
 };
 

@@ -40,6 +40,7 @@ export const isInitialDependenciesLoaded = (state: Store): boolean => state.gene
 export const shouldStripWhitespace = (state: Store): boolean => state.generator.stripWhitespace;
 export const getCurrentDataSetId = (state: Store): number | null => state.generator.currentDataSetId;
 export const getCurrentDataSetName = (state: Store): string => state.generator.currentDataSetName;
+export const hasBulkActionPending = (state: Store): boolean => state.generator.bulkActionPending;
 
 export const getRowIds = createSelector(
 	getRows,
@@ -288,14 +289,20 @@ export const previewPanelDependenciesLoaded = createSelector(
 	getExportType,
 	getLoadedDataTypes,
 	getLoadedExportTypes,
-	(dataTypes, exportType, loadedDataTypes, loadedExportTypes) => {
+	mainSelectors.localeFileLoaded,
+	(dataTypes, exportType, loadedDataTypes, loadedExportTypes, localeFileLoaded) => {
+		if (!localeFileLoaded || !loadedExportTypes[exportType]) {
+			console.log('not loaded. ', { localeFileLoaded, exportType: loadedExportTypes[exportType] });
+			return false;
+		}
+
 		const allDataTypesLoaded = dataTypes.every((i: DataTypeFolder) => loadedDataTypes[i]);
 		if (!allDataTypesLoaded) {
+			console.log('DTs not loaded');
 			return false;
 		}
-		if (!loadedExportTypes[exportType]) {
-			return false;
-		}
+
+		console.log('previewPanelDependenciesLoaded: TRUE!');
 		return true;
 	}
 );

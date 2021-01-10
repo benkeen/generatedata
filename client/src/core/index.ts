@@ -25,7 +25,7 @@ export const init = (): void => {
 	const numRows = selectors.getNumRows(state);
 
 	store.dispatch(mainActions.selectLocale(locale));
-	store.dispatch(actions.onSelectExportType(exportType));
+	store.dispatch(actions.onSelectExportType(exportType, false));
 
 	// if there's a live session, verify the JWT is still valid
 	if (mainSelectors.isLoggedIn(state)) {
@@ -41,5 +41,7 @@ export const init = (): void => {
 
 	const preloadDataTypes = selectors.getRowDataTypes(state);
 
-	preloadDataTypes.forEach((dataType: DataTypeFolder) => actions.loadDataTypeBundle(store.dispatch, store.getState, dataType));
+	preloadDataTypes.forEach((dataType: DataTypeFolder) => (
+		actions.loadDataTypeBundle(store.dispatch, store.getState, dataType, { shouldRefreshPreviewPanel: false })
+	));
 };

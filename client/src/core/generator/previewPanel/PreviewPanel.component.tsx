@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { useEffect, CSSProperties } from 'react';
 import { useWindowSize } from 'react-hooks-window-size';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -33,7 +33,6 @@ export type PreviewPanelProps = {
 	refreshPreview: () => void;
 	changeSmallScreenVisiblePanel: () => void;
 	exportTypeLoaded: boolean;
-	initialDependenciesLoaded: boolean;
 	toggleExportSettings: () => void;
 	exportSettingsVisible: boolean;
 	hasData: boolean;
@@ -42,6 +41,10 @@ export type PreviewPanelProps = {
 	exportTypeLabel: string;
 	i18n: any;
 	hasValidExportTypeSettings: boolean;
+	hasBulkActionPending: boolean;
+	initialDependenciesLoaded: boolean; // set once on load
+	previewPanelDependenciesLoaded: boolean; // set every time a user selects 
+	initRefresh: any;
 };
 
 const getThemeName = (theme: string): string => `theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
@@ -84,9 +87,21 @@ const NoResultsBlock = ({ i18n, type }: any): JSX.Element => {
 const PreviewPanel = ({
 	i18n, theme, togglePreview, hasData, previewTextSize, refreshPreview, toggleExportSettings, exportSettingsVisible,
 	exportTypeLabel, changeSmallScreenVisiblePanel, exportTypeLoaded, initialDependenciesLoaded,
-	hasValidExportTypeSettings
+	hasValidExportTypeSettings, hasBulkActionPending, previewPanelDependenciesLoaded, initRefresh
 }: PreviewPanelProps): React.ReactNode => {
 	const windowSize = useWindowSize();
+
+	// on load, and after a user loads a data set, rather than retrigger a refresh of the preview panel after every little
+	// change, we do it once when all data types, the export type and locale file have been loaded
+	useEffect(() => {
+		if (!hasBulkActionPending) {
+			return;
+		}
+		if (previewPanelDependenciesLoaded) {
+			initRefresh();
+		}
+
+	}, [hasBulkActionPending, previewPanelDependenciesLoaded]);
 
 	const getNoResults = (): JSX.Element | null => {
 		if (!hasValidExportTypeSettings) {
