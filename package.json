@@ -38,6 +38,9 @@
       "^.+\\.jsx?$": "babel-jest",
       "\\.(ts|tsx)$": "ts-jest"
     },
+    "setupFilesAfterEnv": [
+      "<rootDir>/client/tests/jestSetup.ts"
+    ],
     "testRegex": "/__tests__/.*\\.(ts|tsx)$",
     "moduleNameMapper": {
       "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",

@@ -10,11 +10,13 @@ describe("shouldGeneratePreviewRows", () => {
 
 	it("return false when there's no data type rows", () => {
 		state.generator.loadedExportTypes.JSON = true;
+		state.main.localeFileLoaded = true;
 		expect(shouldGeneratePreviewRows(state)).toEqual(false);
 	});
 
 	it("return false when there is a data type but it's not loaded yet", () => {
 		state.generator.loadedExportTypes.JSON = true;
+		state.main.localeFileLoaded = true;
 		state.generator.rows = {
 			abc: {
 				id: 'abc',
@@ -29,6 +31,7 @@ describe("shouldGeneratePreviewRows", () => {
 
 	it("return true when there is a single data type that's been loaded", () => {
 		state.generator.loadedExportTypes.JSON = true;
+		state.main.localeFileLoaded = true;
 		state.generator.rows = {
 			abc: {
 				id: 'abc',
@@ -43,6 +46,7 @@ describe("shouldGeneratePreviewRows", () => {
 
 	it("with multiple data types only returns true when they're all loaded", () => {
 		state.generator.loadedExportTypes.JSON = true;
+		state.main.localeFileLoaded = true;
 		state.generator.rows = {
 			abc: {
 				id: 'abc',
@@ -77,6 +81,7 @@ describe("shouldGeneratePreviewRows", () => {
 
 	it('should return false when the current export type isn\'t loaded yet', () => {
 		state.generator.loadedExportTypes.JSON = false; // just to be explicit
+		state.main.localeFileLoaded = true;
 		state.generator.rows = {
 			abc: {
 				id: 'abc',
@@ -91,6 +96,7 @@ describe("shouldGeneratePreviewRows", () => {
 
 	it('should return false when all row data has already been generated', () => {
 		state.generator.loadedExportTypes.JSON = true;
+		state.main.localeFileLoaded = true;
 		state.generator.rows = {
 			abc: {
 				id: 'abc',

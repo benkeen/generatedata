@@ -26,6 +26,7 @@ import { ETSettings } from '~types/exportTypes';
 const i18n = require('../src/i18n/en.json');
 const jsonI18n = require('../src/plugins/exportTypes/JSON/i18n/en.json');
 
+
 export const rootReducer = combineReducers({
 	generator: generatorReducer,
 	main: mainReducer,
@@ -73,10 +74,10 @@ export const renderWithStoreAndRouter = (
 
 export const getTestState = () => ({
 	generator: getInitialState(),
-	main: initialMainState,
-	packets: initialPacketState,
-	account: initialAccountState,
-	accounts: initialAccountsState
+	main: { ...initialMainState },
+	packets: { ...initialPacketState },
+	account: { ...initialAccountState },
+	accounts: { ...initialAccountsState }
 });
 
 // requires the DT test to supply i18n and rowState (if pertinent)
