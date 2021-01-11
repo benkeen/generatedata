@@ -129,13 +129,13 @@ export const login = (email: string, password: string, onLoginError: Function): 
 			...response.data.login,
 			authMethod: 'default'
 		}));
-		onLoginSuccess(response.data.login.tokenExpiry, dispatch);
+		onLoginSuccess(response.data.login.tokenExpiry, false, dispatch);
 	} else {
 		onLoginError();
 	}
 };
 
-export const onLoginSuccess = (tokenExpiry: number | null, dispatch: Dispatch): void => {
+export const onLoginSuccess = (tokenExpiry: number | null, onPageRender: boolean, dispatch: Dispatch): void => {
 	const i18n = getStrings();
 
 	if (tokenExpiry) {
@@ -144,14 +144,16 @@ export const onLoginSuccess = (tokenExpiry: number | null, dispatch: Dispatch): 
 
 	dispatch(setLoginDialogVisibility(false));
 
-	addToast({
-		type: 'success',
-		message: i18n.core.nowLoggedIn
-	});
+	if (!onPageRender) {
+		addToast({
+			type: 'success',
+			message: i18n.core.nowLoggedIn
+		});
 
-	if (loginFlow === 'fromSaveDataSet') {
-		dispatch(showSaveDataSetDialog());
-		loginFlow = '';
+		if (loginFlow === 'fromSaveDataSet') {
+			dispatch(showSaveDataSetDialog());
+			loginFlow = '';
+		}
 	}
 };
 
@@ -221,6 +223,8 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	}
 
 	dispatch(setAuthenticated(success));
+
+	console.log('onload auth determined');
 	dispatch(setOnloadAuthDetermined());
 };
 

@@ -14,7 +14,8 @@ const init = (): void => {
 
 		auth2.isSignedIn.listen((isSignedIn: any): void => {
 			if (isSignedIn) {
-				onAuthenticated(auth2.currentUser.get());
+				console.log('determined that logged in (google)');
+				onAuthenticated(auth2.currentUser.get(), { onPageRender: true });
 			}
 		});
 	});
@@ -31,7 +32,16 @@ export const initGoogleAuth = (): void => {
 	window.initGoogleAuth = init;
 };
 
-const onAuthenticated = async (googleUser: any): Promise<any> => {
+export type AuthenticatedOptions = {
+	onPageRender?: boolean;
+};
+
+const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {}): Promise<any> => {
+	const options = {
+		onPageRender: false,
+		...opts
+	};
+
 	const googleToken = googleUser.getAuthResponse().id_token;
 
 	const response = await apolloClient.mutate({
@@ -56,12 +66,14 @@ const onAuthenticated = async (googleUser: any): Promise<any> => {
 	});
 
 	if (response.data.loginWithGoogle.success) {
+		console.log(response.data.loginWithGoogle);
+
 		store.dispatch(setAuthenticationData({
 			...response.data.loginWithGoogle,
 			authMethod: 'google'
 		}));
 
-		onLoginSuccess(null, store.dispatch);
+		onLoginSuccess(null, options.onPageRender, store.dispatch);
 	} else {
 		console.log('Error: ', response.data.loginWithGoogle);
 		// store.onLoginError();

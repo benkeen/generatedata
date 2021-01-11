@@ -39,7 +39,6 @@ const login = async (root, { email, password }, { res }) => {
 
 const loginWithGoogle = async (root, { googleToken }) => {
 	const client = new OAuth2Client(process.env.GD_GOOGLE_AUTH_CLIENT_ID);
-	let firstName = '';
 	let email = '';
 	let profileImage = '';
 
@@ -50,7 +49,6 @@ const loginWithGoogle = async (root, { googleToken }) => {
 		});
 		const payload = ticket.getPayload();
 
-		firstName = payload.given_name;
 		email = payload.email;
 		profileImage = payload.picture;
 	}
@@ -65,7 +63,10 @@ const loginWithGoogle = async (root, { googleToken }) => {
 
 	// here the authentication has passed. Now verify the account exists
 	const user = await db.accounts.findOne({
-		attributes: ['accountId', 'password', 'firstName'],
+		attributes: [
+			'accountId', 'accountType', 'password', 'firstName', 'lastName', 'country', 'region', 'dateCreated',
+			'dateExpires', 'numRowsGenerated'
+		],
 		where: {
 			email
 		}
@@ -78,14 +79,19 @@ const loginWithGoogle = async (root, { googleToken }) => {
 		};
 	}
 
-	const { accountId } = user.dataValues;
+	const { accountId, accountType, firstName, lastName, dateExpires, dateCreated, numRowsGenerated } = user.dataValues;
 	const token = await authUtils.getJwt({ accountId, email });
-	// const { token, tokenExpiry } = await getNewTokenAndSetRefreshTokenCookie(accountId, email, user, res);
 
 	return {
 		success: true,
 		token,
 		firstName,
+		lastName,
+		email,
+		accountType,
+		dateExpires,
+		dateCreated,
+		numRowsGenerated,
 		profileImage
 	};
 };

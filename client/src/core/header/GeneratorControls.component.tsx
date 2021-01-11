@@ -111,8 +111,8 @@ const GeneratorControls = ({
 					}
 				>
 					<span>
-						<IconButton size="small" aria-label={i18n.dataSetOptions} disabled={disabled}>
-							<ArrowDropDownIcon fontSize="large" onClick={(): void => setMenuVisibility(true)} />
+						<IconButton size="small" aria-label={i18n.dataSetOptions} disabled={disabled} onClick={(): void => setMenuVisibility(true)}>
+							<ArrowDropDownIcon fontSize="large" />
 						</IconButton>
 					</span>
 				</HtmlTooltip>
