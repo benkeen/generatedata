@@ -11,6 +11,7 @@ import { showSaveDataSetDialog } from '~store/account/account.actions';
 import { addToast, setTourComponents } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
 import { updateBodyClass, getGeneratorRoute } from '~utils/routeUtils';
+import { CLEAR_GRID } from '~store/generator/generator.actions';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -165,6 +166,7 @@ export const logout = (): any => async (dispatch: Dispatch, getState: any): Prom
 	logoutVendor(getAuthMethod(getState()));
 
 	dispatch({ type: LOGOUT });
+	dispatch({ type: CLEAR_GRID });
 
 	addToast({
 		type: 'success',
