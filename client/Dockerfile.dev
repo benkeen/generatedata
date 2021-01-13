@@ -6,4 +6,6 @@ WORKDIR $HOME/client
 COPY package.json yarn.lock $HOME/client/
 RUN yarn install --network-timeout 100000 && npm install -g grunt-cli
 COPY . $HOME/client/
-RUN yarn dockerBuild
+
+## builds the entire FE code. Just doesn't start it. That's handled in the docker-compose-prod file.
+RUN yarn prod
