@@ -2,10 +2,10 @@ FROM node:12-alpine AS alpine
 
 ENV HOME=/home/app/generatedata
 
-WORKDIR $HOME/client
-COPY package.json yarn.lock $HOME/client/
+WORKDIR $HOME
+COPY package.json yarn.lock $HOME/
 RUN yarn install --network-timeout 100000 && npm install -g grunt-cli
-COPY . $HOME/client/
+COPY ./client $HOME/client/
 
 ## builds the entire FE code. Just doesn't start it. That's handled in the docker-compose-prod file.
-RUN yarn prod
+#RUN yarn prod

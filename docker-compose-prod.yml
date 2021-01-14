@@ -41,11 +41,10 @@ services:
 #      - ./server/database/dbStructure.sql:/docker-entrypoint-initdb.d/setup.sql
 #      - ./data/db:/var/lib/mysql
 
-
   webapp:
     build:
       context: ./
-      dockerfile: ./client/Dockerfile.dev
+      dockerfile: ./client/Dockerfile.prod
     expose:
       - 9000
     ports:
@@ -56,7 +55,7 @@ services:
       - /home/app/generatedata/node_modules
 #        links:
 #          - server
-    command: yarn prod
+#    command: yarn prod
 
     # *** For prod only.
 #    nginx:
