@@ -17,5 +17,8 @@
   "countriesDesc": "生成任何指定国家/地区的区域。",
   "countryRow": "国家行",
   "rowDesc": "这样，您就可以在数据集中以“国家/地区插件”作为来源的特定“国家/地区”字段中定位。 它生成映射到该字段中值的区域。",
-  "row": "行"
+  "row": "行",
+
+  "anyRegionFromCountry": "1个国家/地区的任何地区",
+  "anyRegionFromCountries": "来自％1个国家/地区的任何地区"
 }

@@ -17,8 +17,8 @@
 
     "prod": "cd client && grunt & yarn buildClient & yarn webpackProd",
     "prodAll": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up",
-    "devServerUp": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
-    "devServerDown": "docker-compose down"
+    "startDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
+    "stopDevServer": "docker-compose down"
   },
   "repository": {
     "type": "git",

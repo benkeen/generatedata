@@ -17,5 +17,9 @@
   "countriesDesc": "指定された国のいずれかの地域を生成します。",
   "countryRow": "国の行",
   "rowDesc": "これにより、カントリープラグインをソースとして持つデータセット内の特定の国フィールドを特定できます。 そのフィールドの値にマップする領域を生成します。",
-  "row": "行"
+  "row": "行",
+
+  "anyRegionFromCountry": "1か国の任意の地域",
+  "anyRegionFromCountries": "%1諸国の任意の地域"
+
 }

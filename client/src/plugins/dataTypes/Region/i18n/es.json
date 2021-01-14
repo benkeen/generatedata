@@ -17,5 +17,9 @@
   "countriesDesc": "Genera regiones para cualquiera de los países especificados.",
   "countryRow": "Fila de país",
   "rowDesc": "Esto le permite identificar un campo de país específico en su conjunto de datos que tiene complementos de país como fuente. Genera regiones que se asignan al valor en ese campo.",
-  "row": "Fila"
+  "row": "Fila",
+
+  "anyRegionFromCountry": "Cualquier región de 1 país",
+  "anyRegionFromCountries": "Cualquier región de %1 países"
+
 }

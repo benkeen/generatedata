@@ -7,8 +7,9 @@ import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/d
 import styles from './Region.scss';
 import RadioPill, { RadioPillRow } from '~components/radioPills/RadioPill';
 import { removeItem } from '~utils/arrayUtils';
+import { getI18nString } from '~utils/langUtils';
 
-export type RegionSource = 'any' | 'countries' | 'row';
+export type RegionSource = 'anyRegion' | 'countries' | 'countryRow';
 export type RegionFormat = 'full' | 'short';
 
 export type RegionState = {
@@ -19,7 +20,7 @@ export type RegionState = {
 };
 
 export const initialState: RegionState = {
-	source: 'any',
+	source: 'anyRegion',
 	selectedCountries: [],
 	targetRowId: '',
 	formats: ['full']
@@ -38,7 +39,7 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 		};
 
 		// always autoselect the first Country row when switching to `Country Row` as the source
-		if (source === 'row') {
+		if (source === 'countryRow') {
 			newValues.targetRowId = countryPluginRows[0].value;
 		}
 		onUpdate(newValues);
@@ -59,7 +60,7 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 	};
 
 	const getCountryRow = (): React.ReactNode => {
-		if (data.source !== 'row') {
+		if (data.source !== 'countries') {
 			return null;
 		}
 
@@ -107,9 +108,9 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 					<RadioPillRow>
 						<RadioPill
 							label={i18n.anyRegion}
-							onClick={(): void => onUpdateSource('any')}
+							onClick={(): void => onUpdateSource('anyRegion')}
 							name={`${id}-source`}
-							checked={data.source === 'any'}
+							checked={data.source === 'anyRegion'}
 							tooltip={i18n.anyDesc}
 						/>
 						<RadioPill
@@ -121,9 +122,9 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 						/>
 						<RadioPill
 							label={i18n.countryRow}
-							onClick={(): void => onUpdateSource('row')}
+							onClick={(): void => onUpdateSource('countryRow')}
 							name={`${id}-source`}
-							checked={data.source === 'row'}
+							checked={data.source === 'countryRow'}
 							tooltip={i18n.rowDesc}
 							disabled={!countryPluginRowsExist}
 						/>
@@ -166,7 +167,8 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 	const numSelected = data.selectedCountries.length;
 
 	const onSetFormats = (field: RegionFormat, checked: boolean): void => {
-		let formats = data.formats;
+		let formats = [...data.formats];
+
 		if (checked) {
 			formats.push(field);
 		} else {
@@ -180,11 +182,15 @@ export const Options = ({ id, data, coreI18n, i18n, countryI18n, onUpdate, count
 	};
 
 	let label = '';
-	if (data.source === 'any') {
+	if (data.source === 'anyRegion') {
 		label = i18n.anyRegion;
 	} else if (data.source === 'countries') {
-		label = `Any region from <b>${numSelected}</b> ` + ((numSelected === 1) ? i18n.country : i18n.countries);
-	} else if (data.source === 'row') {
+		if (numSelected === 1) {
+			label = i18n.anyRegionFromCountry;
+		} else {
+			label = getI18nString(i18n.anyRegionFromCountries, [numSelected]);
+		}
+	} else if (data.source === 'countryRow') {
 		const row = countryRows.find((row: any) => row.id === data.targetRowId);
 		const rowNum = row.index + 1;
 		label = `${i18n.countryRow} #${rowNum}`;

@@ -23,7 +23,7 @@ export const actionInterceptors = {
 		if (actionPayload.id === rowState.targetRowId) {
 			return {
 				...rowState,
-				source: 'any',
+				source: 'anyRegion',
 				targetRowId: ''
 			};
 		}
@@ -36,7 +36,7 @@ export const actionInterceptors = {
 			if (actionPayload.data.source !== 'plugins') {
 				return {
 					...rowState,
-					source: 'any',
+					source: 'anyRegion',
 					targetRowId: ''
 				};
 			}
@@ -50,7 +50,7 @@ export const actionInterceptors = {
 			if (actionPayload.value !== 'Country') {
 				return {
 					...rowState,
-					source: 'any',
+					source: 'anyRegion',
 					targetRowId: ''
 				};
 			}

@@ -166,10 +166,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 		const dataTypePreviewData = { ...selectors.getDataTypePreviewData(state) };
 		const sortedRows = selectors.getSortedRows(state);
 		const columns = selectors.getColumns(state);
-
 		const unchanged = getUnchangedData(idsToRefresh, columns, dataTypePreviewData);
-
-		console.log('in refreshPreview()');
 
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's

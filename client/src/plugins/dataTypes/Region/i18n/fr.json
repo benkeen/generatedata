@@ -17,5 +17,8 @@
   "countriesDesc": "Génère des régions pour l'un des pays spécifiés.",
   "countryRow": "Country Row",
   "rowDesc": "Cela vous permet d'identifier un champ Pays spécifique dans votre ensemble de données dont la source est les Plugins Pays. Il génère des régions qui correspondent à la valeur de ce champ.",
-  "row": "Rangée"
+  "row": "Rangée",
+
+  "anyRegionFromCountry": "Toute région d'un pays",
+  "anyRegionFromCountries": "Toute région de %1 pays"
 }
