@@ -2,10 +2,31 @@ FROM node:12-alpine AS alpine
 
 ENV HOME=/home/app/generatedata
 
-WORKDIR $HOME
-COPY package.json yarn.lock $HOME/
-RUN yarn install --network-timeout 100000 && npm install -g grunt-cli
-COPY ./client $HOME/client/
+## --------------------------------------------------------------
+## Webapp
+# I guess the whole point of this bit is to run node so we can generate the webapp. But that can come
+# later. All we want to get going right now is running the webapp with nginx.
+## --------------------------------------------------------------
 
-## builds the entire FE code. Just doesn't start it. That's handled in the docker-compose-prod file.
-#RUN yarn prod
+#WORKDIR $HOME
+
+#COPY package.json yarn.lock $HOME/
+#RUN yarn install --network-timeout 100000 && npm install -g grunt-cli
+
+# temporary experiment. Let's just copy the dist content & rely on it being build already
+#COPY ./client/dist $HOME/client/dist/
+
+#EXPOSE 80
+
+## --------------------------------------------------------------
+## nginx
+## --------------------------------------------------------------
+
+FROM nginx:alpine
+
+## replace the default nginx index page with our app
+RUN rm -rf /usr/share/nginx/html/*
+COPY ./client/dist /usr/share/nginx/html
+COPY ./server/nginx/nginx.conf /etc/nginx/nginx.conf
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
