@@ -74,3 +74,11 @@ These are found in `src/i18n`. They contain all the core i18n files.
 - titles, headings: capitalize every letter
 - tooltips: sentence case, no ending period
 
+
+
+### Building
+
+(temp notes)
+
+- `yarn prod` - builds entire dist/ folder
+- `yarn prodAllBuild` - 

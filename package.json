@@ -19,6 +19,7 @@
 
     "prodAll": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up",
     "prodAllBuild": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up --build",
+
     "startDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
     "stopDevServer": "docker-compose down"
   },
