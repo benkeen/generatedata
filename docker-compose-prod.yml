@@ -5,54 +5,56 @@ networks:
     driver: bridge
 
 services:
-#  server:
-#    build:
-#      context: ./
-#      dockerfile: ./server/Dockerfile.dev
-#    depends_on:
-#      - db
-#    networks:
-#      - gd-network
-#    expose:
-#      - "${GD_API_SERVER_PORT}"
-#    ports:
-#      - "${GD_API_SERVER_PORT}:${GD_API_SERVER_PORT}"
-#    restart: on-failure
-#    container_name: server
-#    volumes:
-#      - .:/home/app/generatedata
-#      - /home/app/generatedata/node_modules
-#
-#  db:
-#    image: mariadb:10.5.8
-#    command: --default-authentication-plugin=mysql_native_password
-#    restart: always
-#    expose:
-#      - "${GD_DB_PORT}"
-#    ports:
-#      - "${GD_DB_PORT}:${GD_DB_PORT}"
-#    networks:
-#      - gd-network
-#    environment:
-#      MYSQL_ROOT_PASSWORD: ${GD_MYSQL_ROOT_PASSWORD}
-#      MYSQL_DATABASE: ${GD_DB_NAME}
-#      MYSQL_ALLOW_EMPTY_PASSWORD: ok
-#    volumes:
-#      - ./server/database/dbStructure.sql:/docker-entrypoint-initdb.d/setup.sql
-#      - ./data/db:/var/lib/mysql
+  server:
+    build:
+      context: ./
+      dockerfile: ./server/Dockerfile.dev
+    depends_on:
+      - db
+    networks:
+      - gd-network
+    expose:
+      - "${GD_API_SERVER_PORT}"
+    ports:
+      - "${GD_API_SERVER_PORT}:${GD_API_SERVER_PORT}"
+    restart: on-failure
+    container_name: server
+    volumes:
+      - .:/home/app/generatedata
+      - /home/app/generatedata/node_modules
+
+  db:
+    image: mariadb:10.5.8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    expose:
+      - "${GD_DB_PORT}"
+    ports:
+      - "${GD_DB_PORT}:${GD_DB_PORT}"
+    networks:
+      - gd-network
+    environment:
+      MYSQL_ROOT_PASSWORD: ${GD_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${GD_DB_NAME}
+      MYSQL_ALLOW_EMPTY_PASSWORD: ok
+    volumes:
+      - ./server/database/dbStructure.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./data/db:/var/lib/mysql
 
   # contains the webapp + starts nginx
   webapp:
     build:
       context: ./
       dockerfile: ./client/Dockerfile.prod
-#    depends_on:
-#      - server
+    networks:
+      - gd-network
+    depends_on:
+      - server
     expose:
       - 9000
-      - 80
+#      - 80
     ports:
       - 9000:9000
-      - 80:80
+#      - 80:80
       - 443:443
     container_name: webapp
