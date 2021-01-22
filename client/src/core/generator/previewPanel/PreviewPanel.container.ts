@@ -27,8 +27,9 @@ const mapStateToProps = (state: any): Partial<PreviewPanelProps> => {
 const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => ({
 	togglePreview: (): any => dispatch(actions.togglePreview()),
 	refreshPreview: (): any => dispatch(actions.refreshPreview()),
+
+	// TODO rename?
 	initRefresh: (): any => {
-		dispatch(actions.setBulkAction(true));
 		dispatch(actions.refreshPreview([], actions.setInitialDependenciesLoaded));
 	},
 	toggleExportSettings: (): any => dispatch(actions.toggleExportSettings('previewPanel')),

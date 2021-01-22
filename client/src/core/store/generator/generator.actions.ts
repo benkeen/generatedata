@@ -168,6 +168,12 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 		const columns = selectors.getColumns(state);
 		const unchanged = getUnchangedData(idsToRefresh, columns, dataTypePreviewData);
 
+		// for initial bootup the page may be empty. This ensures the onComplete action fires (the `onmessage` doesn't fire
+		// when no columns)
+		if (!columns.length && onComplete) {
+			dispatch(onComplete());
+		}
+
 		// here we DO need to generate the data independently of the final string in the appropriate export type format.
 		// That allows us to tease out what changes on each keystroke in the UI and only refresh specific fields - it's
 		// far clearer to the end user that way

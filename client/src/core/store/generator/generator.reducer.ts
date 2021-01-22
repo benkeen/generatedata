@@ -131,7 +131,7 @@ export const getInitialState = (): GeneratorState => ({
 	dataTypePreviewData: {},
 	exportSettingsTab: 'exportType',
 	showGenerationSettingsPanel: false,
-	bulkActionPending: true,
+	bulkActionPending: true, // for brand new page loads we assume there's a bulk action to re-load
 	showHelpDialog: false,
 	helpDialogSection: null,
 	numRowsToGenerate: env.defaultNumRows,

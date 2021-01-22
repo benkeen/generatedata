@@ -92,11 +92,12 @@ const PreviewPanel = ({
 	const windowSize = useWindowSize();
 
 	// on load, and after a user loads a data set, rather than retrigger a refresh of the preview panel after every little
-	// change, we do it once when all data types, the export type and locale file have been loaded
+	// change, we do it ONCE when all data types, the export type and locale file have been loaded
 	useEffect(() => {
 		if (!hasBulkActionPending) {
 			return;
 		}
+
 		if (previewPanelDependenciesLoaded) {
 			initRefresh();
 		}
