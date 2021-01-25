@@ -12,8 +12,6 @@ import * as mainSelectors from './store/main/main.selectors';
 
 const protocol = process.env.GD_WEB_USE_HTTPS === 'true' ? 'https' : 'http';
 
-console.log("url: ---", `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_API_SERVER_PORT}/graphql`);
-
 const httpLink = new HttpLink({
 	uri: `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_API_SERVER_PORT}/graphql`,
 	fetch,
