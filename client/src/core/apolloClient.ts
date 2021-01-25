@@ -10,8 +10,12 @@ import * as mainSelectors from './store/main/main.selectors';
 // 	if (networkError.statusCode === 401) logout();
 // })
 
+const protocol = process.env.GD_WEB_USE_HTTPS === 'true' ? 'https' : 'http';
+
+console.log("url: ---", `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_API_SERVER_PORT}/graphql`);
+
 const httpLink = new HttpLink({
-	uri: 'http://localhost:3001/graphql',
+	uri: `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_API_SERVER_PORT}/graphql`,
 	fetch,
 	credentials: 'include'
 });

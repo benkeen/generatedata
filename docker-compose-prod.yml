@@ -22,6 +22,8 @@ services:
     volumes:
       - .:/home/app/generatedata
       - /home/app/generatedata/node_modules
+    environment:
+      - NODE_ENV=production
 
   db:
     image: mariadb:10.5.8

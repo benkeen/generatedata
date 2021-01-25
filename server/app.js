@@ -9,9 +9,14 @@ require('dotenv').config();
 
 const app = express();
 
+
+const protocol = process.env.GD_WEB_USE_HTTPS === 'true' ? 'https' : 'http';
+
+console.log("--> origin ", `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_WEB_SERVER_PORT}`);
+
 // see: https://github.com/expressjs/cors#configuration-options
 const corsOptions = {
-	origin: `http://localhost:${process.env.GD_WEB_SERVER_PORT}`,
+	origin: `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_WEB_SERVER_PORT}`,
 	credentials: true
 };
 
