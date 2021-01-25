@@ -164,7 +164,7 @@ const getNewTokenAndSetRefreshTokenCookie = async (accountId, email, user, res) 
 		secure: false, // TODO
 		httpOnly: true,
 		maxAge: tokenExpiry,
-		domain: 'localhost' // TODO
+		domain: process.env.GD_WEB_DOMAIN
 	});
 
 	return { token, tokenExpiry };
