@@ -122,7 +122,7 @@ const Header = ({
 	return (
 		<>
 			<header className={styles.header}>
-				<div>
+				<div style={{ position: 'relative' }}>
 					<h1>
 						<img
 							src="./images/dice80.png"

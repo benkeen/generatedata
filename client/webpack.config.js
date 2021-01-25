@@ -106,7 +106,7 @@ module.exports = (env, argv) => {
 			historyApiFallback: true,
 			contentBase: path.join(__dirname, 'dist'),
 			// publicPath: 'http://localhost:9000',
-			port: process.env.GD_DEV_SERVER_PORT,
+			port: process.env.GD_WEB_SERVER_PORT,
 			open: true
 			// host: '0.0.0.0', // needed when running within docker container
 		};

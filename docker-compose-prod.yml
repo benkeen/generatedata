@@ -51,10 +51,7 @@ services:
     depends_on:
       - server
     expose:
-      - 9000
-#      - 80
+      - "${GD_WEB_SERVER_PORT}"
     ports:
-      - 9000:9000
-#      - 80:80
-      - 443:443
+      - "${GD_WEB_SERVER_PORT}:${GD_WEB_SERVER_PORT}"
     container_name: webapp

@@ -11,7 +11,7 @@ const app = express();
 
 // see: https://github.com/expressjs/cors#configuration-options
 const corsOptions = {
-	origin: `http://localhost:${process.env.GD_DEV_SERVER_PORT}`,
+	origin: `http://localhost:${process.env.GD_WEB_SERVER_PORT}`,
 	credentials: true
 };
 
