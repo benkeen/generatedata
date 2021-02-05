@@ -45,15 +45,11 @@ services:
 
   # contains the webapp + starts nginx
   webapp:
-    build:
-      context: ./
-      dockerfile: ./client/Dockerfile.prod
-    networks:
-      - gd-network
-    depends_on:
-      - server
-    expose:
-      - "${GD_WEB_SERVER_PORT}"
+    container_name: webapp
+    image: nginx:latest
     ports:
       - "${GD_WEB_SERVER_PORT}:${GD_WEB_SERVER_PORT}"
-    container_name: webapp
+    depends_on:
+      - server
+    networks:
+      - gd-network
