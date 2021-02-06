@@ -7,6 +7,8 @@
     "test": "tests"
   },
   "scripts": {
+    "preinstall": "node scripts/checkNodeVersion.js",
+    "prestart": "node scripts/checkNodeVersion.js",
     "start": "cd client && grunt dev & yarn buildClient & yarn webpackDev",
     "coverage": "yarn jest --coverage",
     "buildClient": "node ./client/build/build.js",
@@ -14,12 +16,9 @@
     "webpackDev": "webpack serve --config ./client/webpack.config.js --mode=development",
     "webpackProd": "webpack --config ./client/webpack.config.js --mode=production",
     "test": "env NODE_ENV=test jest",
-
     "prod": "cd client && grunt & yarn buildClient & yarn webpackProd",
-
     "prodAll": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up",
     "prodAllBuild": "COMPOSE_HTTP_TIMEOUT=150 docker-compose -f docker-compose-prod.yml up --build",
-
     "startDevServer": "COMPOSE_HTTP_TIMEOUT=150 docker-compose up",
     "stopDevServer": "docker-compose down"
   },

@@ -78,7 +78,17 @@ These are found in `src/i18n`. They contain all the core i18n files.
 
 ### Building
 
-(temp notes)
+Local dev, general steps:
 
-- `yarn prod` - builds entire dist/ folder
 - `yarn prodAllBuild` - 
+- `yarn startDevServer` - 
+
+
+### Common problems
+
+#### Logging in with Google works but logs out when page is refreshed
+
+If you find that after logging in with Google it gets lost after refreshing the page, check your system clock. The 
+OAuth2Client lib we're using uses the system clock when re-validating the google auth info. My own computer locally
+(an 2017 Mac) when I leave it on for too long the time gets very out of whack, causing this problem. Restarting the 
+computer (which restarts the clock) fixes it.
