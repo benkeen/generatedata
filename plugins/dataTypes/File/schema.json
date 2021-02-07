@@ -1,0 +1,24 @@
+{
+    "title": "File",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "path": {
+            "type": "string"
+        },
+        "extensions": {
+            "type": "string"
+        },
+        "lengthMin": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250
+        },
+        "lengthMax": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250
+        }
+    },
+    "required": ["extensions", "lengthMin", "lengthMax"]
+}
