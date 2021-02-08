@@ -36,9 +36,11 @@ const mapDispatchToProps = (dispatch: Dispatch): Partial<PreviewPanelProps> => (
 	changeSmallScreenVisiblePanel: (): any => dispatch(actions.changeSmallScreenVisiblePanel())
 });
 
-export default connect(
+const container: any = connect(
 	mapStateToProps,
 	mapDispatchToProps
 
 // @ts-ignore
 )(PreviewPanel);
+
+export default container;

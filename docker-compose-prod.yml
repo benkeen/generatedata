@@ -8,7 +8,7 @@ services:
   server:
     build:
       context: ./
-      dockerfile: ./server/Dockerfile.dev
+      dockerfile: server/Dockerfile
     depends_on:
       - db
     networks:

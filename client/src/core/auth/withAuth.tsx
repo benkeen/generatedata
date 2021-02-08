@@ -6,30 +6,36 @@ import { DefaultSpinner, Centered } from '~components/loaders/loaders';
 
 // simple HOC to require authentication before rendering a component. If the onload auth isn't determined yet it shows a
 // loading spinner; if the auth is determined and they're not logged in it redirects to the homepage
-export const withAuth = (Component: any) => ({ props }: any): JSX.Element | null => {
-	const authDetermined = useSelector(isOnloadAuthDetermined);
-	const loggedIn = useSelector(isLoggedIn);
-	const history = useHistory();
+export const withAuth = (Component: any): any => {
+	const ComponentWithAuth = ({ props }: any): JSX.Element | null => {
+		const authDetermined = useSelector(isOnloadAuthDetermined);
+		const loggedIn = useSelector(isLoggedIn);
+		const history = useHistory();
 
-	useEffect(() => {
-		if (authDetermined && !loggedIn) {
-			history.push('/');
+		useEffect(() => {
+			if (authDetermined && !loggedIn) {
+				history.push('/');
+			}
+		}, [loggedIn, authDetermined]);
+
+		if (!authDetermined) {
+			return (
+				<Centered>
+					<DefaultSpinner />
+				</Centered>
+			);
 		}
-	}, [loggedIn, authDetermined]);
 
-	if (!authDetermined) {
+		if (!loggedIn) {
+			return null;
+		}
+
 		return (
-			<Centered>
-				<DefaultSpinner />
-			</Centered>
+			<Component {...props} />
 		);
-	}
+	};
 
-	if (!loggedIn) {
-		return null;
-	}
+	ComponentWithAuth.displayName = 'ComponentWithAuth';
 
-	return (
-		<Component {...props} />
-	);
+	return ComponentWithAuth;
 };

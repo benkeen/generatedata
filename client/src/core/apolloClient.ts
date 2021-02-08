@@ -12,8 +12,15 @@ import * as mainSelectors from './store/main/main.selectors';
 
 const protocol = process.env.GD_WEB_USE_HTTPS === 'true' ? 'https' : 'http';
 
+// this could be improved For prod environments we use the same port and use nginx to route the requests
+// to the graphql server
+let uri = `${protocol}://${process.env.GD_WEB_DOMAIN}/graphql`;
+if (process.env.NODE_ENV === "development") {
+	uri = `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_API_SERVER_PORT}/graphql`;
+}
+
 const httpLink = new HttpLink({
-	uri: `${protocol}://${process.env.GD_WEB_DOMAIN}:${process.env.GD_API_SERVER_PORT}/graphql`,
+	uri,
 	fetch,
 	credentials: 'include'
 });

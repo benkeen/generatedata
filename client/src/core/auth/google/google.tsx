@@ -14,7 +14,6 @@ const init = (): void => {
 
 		auth2.isSignedIn.listen((isSignedIn: any): void => {
 			if (isSignedIn) {
-				console.log('determined that logged in (google)');
 				onAuthenticated(auth2.currentUser.get(), { onPageRender: true });
 			}
 		});
@@ -66,8 +65,6 @@ const onAuthenticated = async (googleUser: any, opts: AuthenticatedOptions = {})
 	});
 
 	if (response.data.loginWithGoogle.success) {
-		console.log(response.data.loginWithGoogle);
-
 		store.dispatch(setAuthenticationData({
 			...response.data.loginWithGoogle,
 			authMethod: 'google'
