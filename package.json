@@ -7,8 +7,6 @@
     "test": "tests"
   },
   "scripts": {
-    "preinstall": "node scripts/checkNodeVersion.js",
-    "prestart": "node scripts/checkNodeVersion.js",
     "start": "cd client && grunt dev & yarn buildClient & yarn webpackDev",
     "coverage": "yarn jest --coverage",
     "buildClient": "node ./client/build/build.js",

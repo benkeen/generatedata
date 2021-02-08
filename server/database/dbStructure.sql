@@ -56,6 +56,8 @@ CREATE TABLE `accounts` (
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `region` varchar(255) NOT NULL,
   `num_rows_generated` mediumint(9) DEFAULT '0',
   `max_records` mediumint(9) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

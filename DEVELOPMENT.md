@@ -15,20 +15,24 @@ trade-off I had to make.
 - [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) - namely node 12.
 - Grunt CLI (`npm install grunt-cli -g`)
 
-### Running dev
+
+### Running dev environment
 
 - `git clone https://github.com/benkeen/generatedata.git` - this clones the repo to your local computer. On Mac, I'd
 suggest putting it in your `~` folder; I tried it in other locations but Docker ran into permissions issues.  
-     
+
 - `nvm install`
     - assuming your have NVM installed (see above), this'll choose the right node version. If not, just choose the 
-    right node version specified in the `.nvmrc` file. 
+    right node version specified in the `.nvmrc` file. If you're not running the correct version of node it will 
+    throw an error during startup.
 
-- `yarn install` 
+- `yarn install`
 - `docker-compose up -d` - this boots up the server + database containers. If you find it times out (it may well the 
-first time), use the command: `COMPOSE_HTTP_TIMEOUT=150 docker-compose up -d` 
+first time), use the command: `COMPOSE_HTTP_TIMEOUT=150 docker-compose up -d`
 - `yarn start` - this boots up the client-side code. Be warned: this does a *LOT* of stuff and the first time you run
 it it'll take a very long time to run. Subsequent runs will be much faster. 
+
+At this point, you should be able to navigate to `http://localhost:9000` in your browser.
 
 
 #### Shutting down dev env
@@ -38,19 +42,13 @@ it it'll take a very long time to run. Subsequent runs will be much faster.
 I've found that sometimes that command chokes and you have to wait a few minutes before it runs properly. Presumably
 it's because the docker container was still in the process of booting up.
 
-#### Other handy Docker commands 
-
-TODO.
-
-
 
 ### Troubleshooting
 
-> ERROR: for db  Cannot start service db: error while creating mount source path '/host_mnt/Users/benkeen/generatedata-site.com/data/db': mkdir /host_mnt/Users/benkeen/generatedata-site.com/data/db: no such file or directory
+> ERROR: for db  Cannot start service db: error while creating mount source path '/host_mnt/xxx/data/db': mkdir /host_mnt/Users/xxx/data/db: no such file or directory
   ERROR: Encountered errors while bringing up the project.
 
 Restarting Docker seemed to fix this. I did that via the UI tool.
-
 
 
 

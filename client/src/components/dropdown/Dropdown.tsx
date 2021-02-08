@@ -9,16 +9,16 @@ export type DropdownOption = {
 };
 
 const selectStyles = {
-	control: (provided: ControlProps<OptionTypeBase, boolean>): any => ({
+	control: (provided: ControlProps<OptionTypeBase>): any => ({
 		...provided,
 		minHeight: 20,
 		boxShadow: 'none'
 	}),
-	indicatorsContainer: (provided: IndicatorProps<OptionTypeBase, boolean>): any => ({
+	indicatorsContainer: (provided: IndicatorProps<OptionTypeBase>): any => ({
 		...provided,
 		height: 28
 	}),
-	indicatorContainer: (provided: IndicatorProps<OptionTypeBase, boolean>): any => ({
+	indicatorContainer: (provided: IndicatorProps<OptionTypeBase>): any => ({
 		...provided,
 		padding: 5
 	}),
