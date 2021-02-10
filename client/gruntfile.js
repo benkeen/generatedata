@@ -26,8 +26,8 @@ const webWorkerMap = {
 	coreExportTypeWorker: '',
 	workerUtils: '',
 	dataTypes: {},
-	exportTypes: {},
-	countries: {}
+	exportTypes: {}
+	// countries: {}
 };
 
 module.exports = function (grunt) {
@@ -114,21 +114,21 @@ window.gd.localeLoaded(i18n);
 		return map;
 	})();
 
-	const countryWebWorkerMap = (() => {
-		const baseFolder = path.join(__dirname, `/src/plugins/countries`);
-		const folders = fs.readdirSync(baseFolder);
-
-		const map = {};
-		folders.forEach((folder) => {
-			const webworkerFile = path.join(__dirname, `/src/plugins/countries/${folder}/bundle.ts`);
-			if (!fs.existsSync(webworkerFile)) {
-				return;
-			}
-			map[`dist/workers/C-${folder}.js`] = [`src/plugins/countries/${folder}/bundle.ts`];
-		});
-
-		return map;
-	})();
+	// const countryWebWorkerMap = (() => {
+	// 	const baseFolder = path.join(__dirname, `/src/plugins/countries`);
+	// 	const folders = fs.readdirSync(baseFolder);
+	//
+	// 	const map = {};
+	// 	folders.forEach((folder) => {
+	// 		const webworkerFile = path.join(__dirname, `/src/plugins/countries/${folder}/bundle.ts`);
+	// 		if (!fs.existsSync(webworkerFile)) {
+	// 			return;
+	// 		}
+	// 		map[`dist/workers/C-${folder}.js`] = [`src/plugins/countries/${folder}/bundle.ts`];
+	// 	});
+	//
+	// 	return map;
+	// })();
 
 	const webWorkerFileListWithType = [
 		{ file: 'src/core/generator/dataTypes.worker.ts', type: 'core' },
@@ -141,9 +141,9 @@ window.gd.localeLoaded(i18n);
 	Object.values(exportTypeWebWorkerMap).forEach((et) => {
 		webWorkerFileListWithType.push({ file: et[0], type: 'exportType' });
 	});
-	Object.values(countryWebWorkerMap).forEach((c) => {
-		webWorkerFileListWithType.push({ file: c[0], type: 'country' });
-	});
+	// Object.values(countryWebWorkerMap).forEach((c) => {
+	// 	webWorkerFileListWithType.push({ file: c[0], type: 'country' });
+	// });
 
 	const webWorkerFileList = webWorkerFileListWithType.map((i) => i.file);
 
@@ -163,7 +163,7 @@ window.gd.localeLoaded(i18n);
 			const filename = path.basename(file, path.extname(file));
 			let target = `dist/workers/${filename}.js`;
 
-			if (['dataType', 'exportType', 'country'].indexOf(type) !== -1) {
+			if (['dataType', 'exportType'].indexOf(type) !== -1) { // 'country'
 				const filename = helpers.getScopedWorkerFilename(file, type);
 				target = `dist/workers/${filename}`;
 			}
