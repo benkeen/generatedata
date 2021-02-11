@@ -16,6 +16,7 @@ import { getUnchangedData } from '../../generationPanel/generation.helpers';
 import { ClearType } from '../../dialogs/clearGrid/ClearGrid.component';
 import { DataSetListItem } from '~types/dataSets';
 import { getUnique } from '~utils/arrayUtils';
+import { getCountryData } from '~utils/countryUtils';
 
 export const ADD_ROWS = 'ADD_ROWS';
 export const addRows = (numRows: number): GDAction => ({
@@ -187,7 +188,7 @@ export const refreshPreview = (idsToRefresh: string[] = [], onComplete: any = nu
 			workerResources: {
 				workerUtils: coreUtils.getWorkerUtils(),
 				dataTypes: coreUtils.getDataTypeWorkerMap(selectors.getRowDataTypes(state) as DataTypeFolder[]),
-				countries: coreUtils.getCountries()
+				countryData: getCountryData()
 			}
 		});
 

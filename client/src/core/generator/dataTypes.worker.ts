@@ -33,6 +33,7 @@ context.onmessage = (e: any) => {
 
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
+	countryData = workerResources.countyData;
 
 	// load the Data Type generator web worker files
 	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
@@ -41,30 +42,6 @@ context.onmessage = (e: any) => {
 		}
 	});
 
-	// here we load ALL country data types. :( I tried to avoid doing this and have the specific Data Type that needs them
-	// load them on the fly - that would obviously be a much cleaner solution; requests would only get made as needed.
-	// But it proved too problematic: *possibly* multiple requests to the same endpoint within different Data Type web workers
-	// make a separate request (looks like it doesn't though), but even if not, each web worker will get a copy of the
-	// data in their scope. Since Country data can be non trivial in size, this isn't great. I didn't want to bloat up
-	// the memory usage any more than necessary during data generation - it's already a serious issue. Instead this loads
-	// everything up front, once, and makes it available for any data type that wants it
-
-	// Possibly we could look at the data types and only bother doing this step if one of them requires country data. But
-	// that should be a clean API & easy to debug
-
-	Object.keys(workerResources.countries).forEach((country: any) => {
-		if (!countryData[country]) {
-			importScripts(workerResources.countries[country]);
-
-			if (!e.data.i18n) {
-				console.log('**** GNARLY BUG HERE: i18n is not loaded in dataTypes.worker...');
-				console.log(e.data);
-			}
-
-			// @ts-ignore
-			countryData[country] = context[country](e.data.i18n.countries[country]);
-		}
-	});
 
 	const numBatches = Math.ceil(numResults / batchSize);
 	generateNextBatch(e.data, numBatches, batchSize, 1);

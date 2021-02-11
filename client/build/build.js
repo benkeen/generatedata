@@ -75,6 +75,9 @@ const createPluginsListFile = () => {
 	content += '\nexport const blacklistedDataTypeFolders = [\'' + process.env.GD_DATA_TYPE_BLACKLIST.split(',').join('\',\'') + '\'];\n\n';
 
 	const exportTypes = helpers.getPlugins('exportTypes', process.env.GD_EXPORT_TYPE_BLACKLIST.split(','));
+	exportTypes.forEach((folder) => {
+		content += `import ${folder} from './src/plugins/exportTypes/${folder}/config';\n`;
+	});
 	content += `\nexport const exportTypes = {\n\t${exportTypes.join(',\n\t')}\n};\n`;
 	content += '\nexport type ExportTypeFolder = keyof typeof exportTypes;\n\n';
 
@@ -82,8 +85,8 @@ const createPluginsListFile = () => {
 	const countries = helpers.getPlugins('countries', process.env.GD_COUNTRY_BLACKLIST.split(','), false);
 	const map = {};
 	countries.forEach((folder) => {
-		content += `import C_${folder} from './src/plugins/countries/${folder}/bundle';\n`;
-		map[`C_${folder}`] = folder;
+		content += `import Country${folder} from './src/plugins/countries/${folder}/bundle';\n`;
+		map[`Country${folder}`] = folder;
 	});
 	content += `\nexport const countryList = ['${countries.join('\', \'')}'];\n`;
 	content += `export const countries = ['${countries.join('\', \'')}'] as const;\n`;

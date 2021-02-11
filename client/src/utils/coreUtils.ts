@@ -15,8 +15,6 @@ type WorkerMap = {
 const dataTypeWorkers: WorkerMap = {};
 const exportTypeWorkers: WorkerMap = {};
 
-export const getCountries = (): any => webWorkers.countries;
-
 export const createDataTypeWorker = (customId: string | null = null): string => {
 	const workerId = (customId) ? customId : nanoid();
 	dataTypeWorkers[workerId] = new Worker(`./workers/${webWorkers.coreDataTypeWorker}`);

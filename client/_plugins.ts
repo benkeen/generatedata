@@ -77,6 +77,18 @@ export type DataTypeFolder = keyof typeof dataTypes;
 
 export const blacklistedDataTypeFolders = ['_NamesRegional','_PhoneRegional','OrganizationNumber','PAN','PersonalNumber','SIRET','Track1','Track2'];
 
+import CSV from './src/plugins/exportTypes/CSV/config';
+import CSharp from './src/plugins/exportTypes/CSharp/config';
+import HTML from './src/plugins/exportTypes/HTML/config';
+import JSON from './src/plugins/exportTypes/JSON/config';
+import Javascript from './src/plugins/exportTypes/Javascript/config';
+import LDIF from './src/plugins/exportTypes/LDIF/config';
+import PHP from './src/plugins/exportTypes/PHP/config';
+import Perl from './src/plugins/exportTypes/Perl/config';
+import Ruby from './src/plugins/exportTypes/Ruby/config';
+import SQL from './src/plugins/exportTypes/SQL/config';
+import Typescript from './src/plugins/exportTypes/Typescript/config';
+import XML from './src/plugins/exportTypes/XML/config';
 
 export const exportTypes = {
 	CSV,
@@ -95,66 +107,66 @@ export const exportTypes = {
 
 export type ExportTypeFolder = keyof typeof exportTypes;
 
-import C_Australia from './src/plugins/countries/Australia/bundle';
-import C_Austria from './src/plugins/countries/Austria/bundle';
-import C_Belgium from './src/plugins/countries/Belgium/bundle';
-import C_Brazil from './src/plugins/countries/Brazil/bundle';
-import C_Canada from './src/plugins/countries/Canada/bundle';
-import C_Chile from './src/plugins/countries/Chile/bundle';
-import C_Colombia from './src/plugins/countries/Colombia/bundle';
-import C_CostaRica from './src/plugins/countries/CostaRica/bundle';
-import C_France from './src/plugins/countries/France/bundle';
-import C_Germany from './src/plugins/countries/Germany/bundle';
-import C_India from './src/plugins/countries/India/bundle';
-import C_Indonesia from './src/plugins/countries/Indonesia/bundle';
-import C_Ireland from './src/plugins/countries/Ireland/bundle';
-import C_Italy from './src/plugins/countries/Italy/bundle';
-import C_Mexico from './src/plugins/countries/Mexico/bundle';
-import C_Netherlands from './src/plugins/countries/Netherlands/bundle';
-import C_NewZealand from './src/plugins/countries/NewZealand/bundle';
-import C_Nigeria from './src/plugins/countries/Nigeria/bundle';
-import C_Pakistan from './src/plugins/countries/Pakistan/bundle';
-import C_Peru from './src/plugins/countries/Peru/bundle';
-import C_Poland from './src/plugins/countries/Poland/bundle';
-import C_Russia from './src/plugins/countries/Russia/bundle';
-import C_SouthKorea from './src/plugins/countries/SouthKorea/bundle';
-import C_Spain from './src/plugins/countries/Spain/bundle';
-import C_Sweden from './src/plugins/countries/Sweden/bundle';
-import C_Turkey from './src/plugins/countries/Turkey/bundle';
-import C_UK from './src/plugins/countries/UK/bundle';
-import C_US from './src/plugins/countries/US/bundle';
-import C_Vietnam from './src/plugins/countries/Vietnam/bundle';
+import CountryAustralia from './src/plugins/countries/Australia/bundle';
+import CountryAustria from './src/plugins/countries/Austria/bundle';
+import CountryBelgium from './src/plugins/countries/Belgium/bundle';
+import CountryBrazil from './src/plugins/countries/Brazil/bundle';
+import CountryCanada from './src/plugins/countries/Canada/bundle';
+import CountryChile from './src/plugins/countries/Chile/bundle';
+import CountryColombia from './src/plugins/countries/Colombia/bundle';
+import CountryCostaRica from './src/plugins/countries/CostaRica/bundle';
+import CountryFrance from './src/plugins/countries/France/bundle';
+import CountryGermany from './src/plugins/countries/Germany/bundle';
+import CountryIndia from './src/plugins/countries/India/bundle';
+import CountryIndonesia from './src/plugins/countries/Indonesia/bundle';
+import CountryIreland from './src/plugins/countries/Ireland/bundle';
+import CountryItaly from './src/plugins/countries/Italy/bundle';
+import CountryMexico from './src/plugins/countries/Mexico/bundle';
+import CountryNetherlands from './src/plugins/countries/Netherlands/bundle';
+import CountryNewZealand from './src/plugins/countries/NewZealand/bundle';
+import CountryNigeria from './src/plugins/countries/Nigeria/bundle';
+import CountryPakistan from './src/plugins/countries/Pakistan/bundle';
+import CountryPeru from './src/plugins/countries/Peru/bundle';
+import CountryPoland from './src/plugins/countries/Poland/bundle';
+import CountryRussia from './src/plugins/countries/Russia/bundle';
+import CountrySouthKorea from './src/plugins/countries/SouthKorea/bundle';
+import CountrySpain from './src/plugins/countries/Spain/bundle';
+import CountrySweden from './src/plugins/countries/Sweden/bundle';
+import CountryTurkey from './src/plugins/countries/Turkey/bundle';
+import CountryUK from './src/plugins/countries/UK/bundle';
+import CountryUS from './src/plugins/countries/US/bundle';
+import CountryVietnam from './src/plugins/countries/Vietnam/bundle';
 
 export const countryList = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Pakistan', 'Peru', 'Poland', 'Russia', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Vietnam'];
 export const countries = ['Australia', 'Austria', 'Belgium', 'Brazil', 'Canada', 'Chile', 'Colombia', 'CostaRica', 'France', 'Germany', 'India', 'Indonesia', 'Ireland', 'Italy', 'Mexico', 'Netherlands', 'NewZealand', 'Nigeria', 'Pakistan', 'Peru', 'Poland', 'Russia', 'SouthKorea', 'Spain', 'Sweden', 'Turkey', 'UK', 'US', 'Vietnam'] as const;
 export const countryMethods = {
-	Australia: C_Australia,
-	Austria: C_Austria,
-	Belgium: C_Belgium,
-	Brazil: C_Brazil,
-	Canada: C_Canada,
-	Chile: C_Chile,
-	Colombia: C_Colombia,
-	CostaRica: C_CostaRica,
-	France: C_France,
-	Germany: C_Germany,
-	India: C_India,
-	Indonesia: C_Indonesia,
-	Ireland: C_Ireland,
-	Italy: C_Italy,
-	Mexico: C_Mexico,
-	Netherlands: C_Netherlands,
-	NewZealand: C_NewZealand,
-	Nigeria: C_Nigeria,
-	Pakistan: C_Pakistan,
-	Peru: C_Peru,
-	Poland: C_Poland,
-	Russia: C_Russia,
-	SouthKorea: C_SouthKorea,
-	Spain: C_Spain,
-	Sweden: C_Sweden,
-	Turkey: C_Turkey,
-	UK: C_UK,
-	US: C_US,
-	Vietnam: C_Vietnam
+	Australia: CountryAustralia,
+	Austria: CountryAustria,
+	Belgium: CountryBelgium,
+	Brazil: CountryBrazil,
+	Canada: CountryCanada,
+	Chile: CountryChile,
+	Colombia: CountryColombia,
+	CostaRica: CountryCostaRica,
+	France: CountryFrance,
+	Germany: CountryGermany,
+	India: CountryIndia,
+	Indonesia: CountryIndonesia,
+	Ireland: CountryIreland,
+	Italy: CountryItaly,
+	Mexico: CountryMexico,
+	Netherlands: CountryNetherlands,
+	NewZealand: CountryNewZealand,
+	Nigeria: CountryNigeria,
+	Pakistan: CountryPakistan,
+	Peru: CountryPeru,
+	Poland: CountryPoland,
+	Russia: CountryRussia,
+	SouthKorea: CountrySouthKorea,
+	Spain: CountrySpain,
+	Sweden: CountrySweden,
+	Turkey: CountryTurkey,
+	UK: CountryUK,
+	US: CountryUS,
+	Vietnam: CountryVietnam
 };

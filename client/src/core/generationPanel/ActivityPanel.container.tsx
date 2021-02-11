@@ -6,6 +6,7 @@ import * as packetSelectors from '../store/packets/packets.selectors';
 import ActivityPanel, { ActivityPanelProps } from './ActivityPanel.component';
 import * as coreUtils from '~utils/coreUtils';
 import { GDAction } from '~types/general';
+import { getCountryData } from '~utils/countryUtils';
 
 const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: string | null } => {
 	const packet = packetSelectors.getCurrentPacket(state);
@@ -27,7 +28,7 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: 
 			workerUtils: coreUtils.getWorkerUtils(),
 			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
 			dataTypes: coreUtils.getDataTypeWorkerMap(packet.config.dataTypes),
-			countries: coreUtils.getCountries()
+			countryData: getCountryData()
 		};
 
 		props.loadTimeGraphDuration = packetSelectors.getLoadTimeDuration(state);
