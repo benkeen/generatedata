@@ -12,7 +12,7 @@ export default {
 		"Company": "DT-Company.generator-b7bd7c08c48f94fb2c88412cc82fcef4.js",
 		"Computed": "DT-Computed.generator-51452612f3dcfd6bae1a695081e53a36.js",
 		"Constant": "DT-Constant.generator-ca9cf12d5f32cc92c9158072a5231bd9.js",
-		"Country": "DT-Country.generator-e55e3bc3609fd0e6e56d2a4b072df051.js",
+		"Country": "DT-Country.generator-21a2011f365e57de5b97b167d4906f3b.js",
 		"Currency": "DT-Currency.generator-a5a862ac03206548ee1458fcf6a958a2.js",
 		"Date": "DT-Date.generator-4231dc0c676c244e7875ab48d20cbdc3.js",
 		"Email": "DT-Email.generator-573875ba35cf6ef3067ccc4dd2da1779.js",

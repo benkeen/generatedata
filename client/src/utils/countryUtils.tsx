@@ -1,12 +1,12 @@
 import { countryList, countryMethods } from '../../_plugins';
-import { CountryType } from '~types/countries';
+import { CountryDataType, CountryType } from '~types/countries';
 import { DropdownOption } from '~components/dropdown/Dropdown';
 import { getStrings } from '~utils/langUtils';
 
 
 export const getCountryList = (): string[] => countryList;
 
-export const getCountryData = () => {
+export const getCountryData = (): CountryDataType => {
 	const localeStrings = getStrings();
 
 	const data: any = {};
