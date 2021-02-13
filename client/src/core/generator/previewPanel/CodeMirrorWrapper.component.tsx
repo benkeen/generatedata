@@ -3,6 +3,7 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import * as coreUtils from '~utils/coreUtils';
 import { ExportTypeFolder } from '../../../../_plugins';
 import { LoadedExportTypes } from '~utils/exportTypeUtils';
+import { getCountryData } from '~utils/countryUtils';
 
 export type CodeMirrorWrapperProps = {
 	previewRows: any;
@@ -65,7 +66,8 @@ export const generatePreviewString = (props: any): Promise<any> => {
 			stripWhitespace: false,
 			workerResources: {
 				workerUtils: coreUtils.getWorkerUtils(),
-				exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes)
+				exportTypes: coreUtils.getExportTypeWorkerMap(loadedExportTypes),
+				countryData: getCountryData()
 			}
 		}, ({ data }: MessageEvent): void => {
 			resolve(data);

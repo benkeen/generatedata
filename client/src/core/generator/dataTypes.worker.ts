@@ -33,7 +33,7 @@ context.onmessage = (e: any) => {
 
 	workerResources = e.data.workerResources;
 	dataTypeWorkerMap = workerResources.dataTypes;
-	countryData = workerResources.countyData;
+	countryData = workerResources.countryData;
 
 	// load the Data Type generator web worker files
 	Object.keys(dataTypeWorkerMap).forEach((dataType) => {
@@ -41,7 +41,6 @@ context.onmessage = (e: any) => {
 			loadedDataTypeWorkers[dataType] = new Worker(dataTypeWorkerMap[dataType])
 		}
 	});
-
 
 	const numBatches = Math.ceil(numResults / batchSize);
 	generateNextBatch(e.data, numBatches, batchSize, 1);

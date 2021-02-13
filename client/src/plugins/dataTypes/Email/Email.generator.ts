@@ -41,6 +41,10 @@ export const getRandomEmail = (wordsArr: string[], suffixes = ["edu", "com", "or
 
 let utilsLoaded = false;
 export const onmessage = (e: DTOnMessage) => {
+	if (!e.data.workerResources.workerUtils) {
+		console.log("MISSING worker utils: ", e.data.workerResources);
+	}
+
 	if (!utilsLoaded) {
 		importScripts(e.data.workerResources.workerUtils);
 		utilsLoaded = true;

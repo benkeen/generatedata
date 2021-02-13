@@ -1,6 +1,6 @@
 export default {
 	"coreWorker": "",
-	"coreDataTypeWorker": "dataTypes.worker-363c282e152b2eef56c5aa702a6e8cb2.js",
+	"coreDataTypeWorker": "dataTypes.worker-4f71f7740852e8b21caac7dd04704a67.js",
 	"coreExportTypeWorker": "exportTypes.worker-9b546d7c7909e02146fafee124180d37.js",
 	"workerUtils": "workerUtils-47fa97bd16f16b4031c923a447041805.js",
 	"dataTypes": {
@@ -12,10 +12,10 @@ export default {
 		"Company": "DT-Company.generator-b7bd7c08c48f94fb2c88412cc82fcef4.js",
 		"Computed": "DT-Computed.generator-51452612f3dcfd6bae1a695081e53a36.js",
 		"Constant": "DT-Constant.generator-ca9cf12d5f32cc92c9158072a5231bd9.js",
-		"Country": "DT-Country.generator-21a2011f365e57de5b97b167d4906f3b.js",
+		"Country": "DT-Country.generator-e55e3bc3609fd0e6e56d2a4b072df051.js",
 		"Currency": "DT-Currency.generator-a5a862ac03206548ee1458fcf6a958a2.js",
 		"Date": "DT-Date.generator-4231dc0c676c244e7875ab48d20cbdc3.js",
-		"Email": "DT-Email.generator-5dbb6b7f47d42f1e187c32105ecc6a41.js",
+		"Email": "DT-Email.generator-573875ba35cf6ef3067ccc4dd2da1779.js",
 		"GUID": "DT-GUID.generator-54966dabad4987a193e4cf4a467d4d93.js",
 		"IBAN": "DT-IBAN.generator-b92eaa02e83c98a15767dfd6866d8bd1.js",
 		"LatLng": "DT-LatLng.generator-e54a6ba6fdf1679297e01d8729131379.js",
