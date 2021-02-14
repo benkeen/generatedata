@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styles from './XML.scss';
 import { ETDownloadPacket, ETDownloadPacketResponse, ETSettings, ETState } from '~types/exportTypes';
+import { SQLSettings } from '../SQL/SQL';
 
 export interface XMLSettings extends ETState {
 	rootNodeName: string;
@@ -55,3 +56,23 @@ export const getDownloadFileInfo = ({ packetId }: ETDownloadPacket): ETDownloadP
 	filename: `data-${packetId}.xml`,
 	fileType: 'text/xml'
 });
+
+export const validateTitleField = (title: string): null | string => {
+	const valid = new RegExp("^[_a-zA-Z][0-9a-zA-Z_]*$");
+
+	if (valid.test(title)) {
+		return "invalid field";
+	}
+
+	// if (settings.databaseType === "MSSQL") {
+	// 	if (!validTableColSQLServer.test(title)) {
+	// 		return "error here.";
+	// 	}
+	// } else {
+	// 	if (!validTableCol.test(title)) {
+	// 		return "error string here.";
+	// 	}
+	// }
+
+	return null;
+};

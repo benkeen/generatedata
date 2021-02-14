@@ -30,12 +30,20 @@ export const REMOVE_ROW = 'REMOVE_ROW';
 export const removeRow = (id: string): GDAction => ({ type: REMOVE_ROW, payload: { id } });
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
-export const onChangeTitle = (id: string, value: string): GDAction => ({
-	type: CHANGE_TITLE,
-	payload: {
-		id, value
+export const onChangeTitle = (id: string, value: string): any => async (dispatch: Dispatch, getState: any) => {
+	dispatch({
+		type: CHANGE_TITLE,
+		payload: {
+			id, value
+		}
+	});
+
+	const state = getState();
+	const validate = selectors.getExportTypeTitleValidationFunction(state);
+	if (validate) {
+		console.log(validate(value));
 	}
-});
+};
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';
 export const onSelectDataType = (dataType: DataTypeFolder, gridRowId?: string): any => {
@@ -142,17 +150,6 @@ export const TOGGLE_PREVIEW = 'TOGGLE_PREVIEW';
 export const togglePreview = (): GDAction => ({ type: TOGGLE_PREVIEW });
 
 export const REFRESH_PREVIEW_DATA = 'REFRESH_PREVIEW_DATA';
-
-// export const safeRefreshPreview = (): any => (dispatch: Dispatch, getState: any): void => {
-// 	if (selectors.previewPanelDependenciesLoaded(getState())) {
-// 		const shouldPopulate = selectors.shouldGeneratePreviewRows(getState());
-//
-// 		if (shouldPopulate) {
-// 			const rowIds = selectors.getRowIds(getState());
-// 			dispatch(refreshPreview(rowIds));
-// 		}
-// 	}
-// };
 
 // this re-generates the preview panel data. This doesn't have to be called on boot-up because the preview data is
 // generated on the fly, saved in the store and rehydrated when the app loads
