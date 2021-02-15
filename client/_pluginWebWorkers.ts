@@ -39,7 +39,7 @@ export default {
 		"Track2": "DT-Track2.generator-853bfefc8d3f8a2a9d055de5f7c6a1f7.js"
 	},
 	"exportTypes": {
-		"CSV": "ET-CSV.generator-d5399b6347edfc88d9840287e692c431.js",
+		"CSV": "ET-CSV.generator-1133b36681cf5839f9613dbce1e1eb36.js",
 		"CSharp": "ET-CSharp.generator-9de02b5943dc66a8d455628417606f2d.js",
 		"HTML": "ET-HTML.generator-1f2109aec7e9cd759773fc7f28fd0966.js",
 		"JSON": "ET-JSON.generator-ae538f823c70436397059a1d05560b46.js",
