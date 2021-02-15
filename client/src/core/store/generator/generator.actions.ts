@@ -30,7 +30,7 @@ export const REMOVE_ROW = 'REMOVE_ROW';
 export const removeRow = (id: string): GDAction => ({ type: REMOVE_ROW, payload: { id } });
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
-export const onChangeTitle = (id: string, value: string): any => async (dispatch: Dispatch, getState: any) => {
+export const onChangeTitle = (id: string, value: string): any => async (dispatch: Dispatch, getState: any): Promise<any> => {
 	const state = getState();
 	const validateTitle = selectors.getExportTypeTitleValidationFunction(state);
 

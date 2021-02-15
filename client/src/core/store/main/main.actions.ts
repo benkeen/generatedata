@@ -12,6 +12,8 @@ import { addToast, setTourComponents } from '~utils/generalUtils';
 import { getStrings } from '~utils/langUtils';
 import { updateBodyClass, getGeneratorRoute } from '~utils/routeUtils';
 import { CLEAR_GRID } from '~store/generator/generator.actions';
+import * as actions from '~store/generator/generator.actions';
+import C from '~core/constants';
 
 export const LOCALE_FILE_LOADED = 'LOCALE_FILE_LOADED';
 export const setLocaleFileLoaded = (locale: GDLocale): GDAction => ({
@@ -167,6 +169,7 @@ export const logout = (): any => async (dispatch: Dispatch, getState: any): Prom
 
 	dispatch({ type: LOGOUT });
 	dispatch({ type: CLEAR_GRID });
+	dispatch(actions.addRows(C.NUM_DEFAULT_ROWS));
 
 	addToast({
 		type: 'success',
