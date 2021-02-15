@@ -3,7 +3,8 @@
   "COL_TITLE": "Knotenname",
   "rowLabel": "Knotenname",
   "rowLabelPlural": "Knotennamen",
-  "invalidNodeNames": "XML-Knotennamen dürfen nur alphanumerische Zeichen enthalten und müssen mit einem Buchstaben beginnen.",
+  "invalidNodeName": "XML-Knotennamen dürfen nur die folgenden Zeichen enthalten: a-Z, 0-9, -, _ ,.",
+
   "invalidXmlRecordNodeName": "Bitte geben Sie einen gültigen XML-Datensatzknotenwert ein.",
   "invalidXmlRootNodeName": "Bitte geben Sie einen gültigen XML-Stammknotenwert ein.",
   "rootNodeName": "Stammknotenname",

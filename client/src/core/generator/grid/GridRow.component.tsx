@@ -100,7 +100,14 @@ export const GridRow = ({
 			{(provided: any, snapshot: any): any => {
 
 				// the title field is always required, regardless of Export Type
-				const titleColError = row.dataType && row.title.trim() === '' ? i18n.requiredField : '';
+				let titleColError = '';
+				if (row.dataType) {
+					if (row.title.trim() === '') {
+						titleColError = i18n.requiredField;
+					} else if (row.titleError) {
+						titleColError = row.titleError;
+					}
+				}
 
 				return (
 					<div className={`${styles.gridRow} tour-gridRow`} key={row.id}

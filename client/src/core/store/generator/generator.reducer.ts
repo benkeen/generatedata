@@ -13,6 +13,11 @@ import env from '../../../../_env';
 export type DataRow = {
 	id: string;
 	title: string;
+
+	// a title field can only contain a single error at a time. If it's empty, the UI will automatically show the error.
+	// otherwise it's up to the current Export Type to provide a validateTitleField() method that returns the appropriate
+	// (single) error
+	titleError: string | null;
 	dataType: DataTypeFolder | null;
 	data: any;
 };
@@ -215,6 +220,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 				draft.rows[rowId] = {
 					id: rowId,
 					title: '',
+					titleError: null,
 					dataType: null,
 					data: null
 				};
@@ -240,6 +246,7 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 
 		case actions.CHANGE_TITLE:
 			draft.rows[action.payload.id].title = action.payload.value;
+			draft.rows[action.payload.id].titleError = action.payload.titleError;
 			break;
 
 		case actions.SELECT_DATA_TYPE: {

@@ -22,6 +22,7 @@ describe("shouldGeneratePreviewRows", () => {
 				id: 'abc',
 				dataType: 'Names',
 				title: 'Test',
+				titleError: null,
 				data: {}
 			}
 		};
@@ -37,6 +38,7 @@ describe("shouldGeneratePreviewRows", () => {
 				id: 'abc',
 				dataType: 'Names',
 				title: 'Test',
+				titleError: null,
 				data: {}
 			}
 		};
@@ -52,18 +54,21 @@ describe("shouldGeneratePreviewRows", () => {
 				id: 'abc',
 				dataType: 'Names',
 				title: 'Test 1',
+				titleError: null,
 				data: {}
 			},
 			def: {
 				id: 'def',
 				dataType: 'Phone',
 				title: 'Test 2',
+				titleError: null,
 				data: {}
 			},
 			ghi: {
 				id: 'ghi',
 				dataType: 'City',
 				title: 'Test 3',
+				titleError: null,
 				data: {}
 			}
 		};
@@ -87,6 +92,7 @@ describe("shouldGeneratePreviewRows", () => {
 				id: 'abc',
 				dataType: 'Names',
 				title: 'Test',
+				titleError: null,
 				data: {}
 			}
 		};
@@ -102,6 +108,7 @@ describe("shouldGeneratePreviewRows", () => {
 				id: 'abc',
 				dataType: 'Names',
 				title: 'Test',
+				titleError: null,
 				data: {}
 			}
 		};

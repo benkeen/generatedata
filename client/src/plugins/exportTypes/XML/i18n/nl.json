@@ -3,7 +3,8 @@
   "COL_TITLE": "Knooppuntnaam",
   "rowLabel": "Knooppuntnaam",
   "rowLabelPlural": "Node Namen",
-  "invalidNodeNames": "XML-knooppuntnamen mogen alleen alfanumerieke tekens bevatten en moeten beginnen met een letter.",
+  "invalidNodeName": "XML-knooppuntnamen mogen alleen de volgende tekens bevatten: a-Z, 0-9, -, _,.",
+
   "invalidXmlRecordNodeName": "Voer een geldige XML-recordknooppuntwaarde in.",
   "invalidXmlRootNodeName": "Voer een geldige XML-hoofdknooppuntwaarde in.",
   "rootNodeName": "Naam van hoofdknooppunt",

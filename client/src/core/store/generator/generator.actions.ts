@@ -31,18 +31,22 @@ export const removeRow = (id: string): GDAction => ({ type: REMOVE_ROW, payload:
 
 export const CHANGE_TITLE = 'CHANGE_TITLE';
 export const onChangeTitle = (id: string, value: string): any => async (dispatch: Dispatch, getState: any) => {
+	const state = getState();
+	const validateTitle = selectors.getExportTypeTitleValidationFunction(state);
+
+	let titleError = null;
+	if (validateTitle) {
+		const i18n = selectors.getExportTypeI18n(state);
+		const settings = selectors.getCurrentExportTypeSettings(state);
+		titleError = validateTitle(value, i18n, settings);
+	}
+
 	dispatch({
 		type: CHANGE_TITLE,
 		payload: {
-			id, value
+			id, value, titleError
 		}
 	});
-
-	const state = getState();
-	const validate = selectors.getExportTypeTitleValidationFunction(state);
-	if (validate) {
-		console.log(validate(value));
-	}
 };
 
 export const SELECT_DATA_TYPE = 'SELECT_DATA_TYPE';

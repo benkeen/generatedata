@@ -8,13 +8,17 @@ export type ExportTypeMap = {
 	[exportType in ExportTypeFolder]?: string;
 };
 
+export interface ETValidateTitleField {
+	(title: string, i18n: any, settings?: any): string | null;
+}
+
 export type ETBundle = {
 	getCodeMirrorMode: (settings: any) => string; // TODO generics - data is same type as initialState
 	getDownloadFileInfo: (downloadPacket: ETDownloadPacket) => ETDownloadPacketResponse;
 	initialState?: any; // TODO generics
 	Settings?: any;
 	getExportTypeLabel?: (data: any) => string; // TODO generics - data is same type as initialState
-	validateTitleField?: (title: string, settings: any) => string | null;
+	validateTitleField?: ETValidateTitleField;
 	isValid?: (data: any) => boolean;
 };
 
