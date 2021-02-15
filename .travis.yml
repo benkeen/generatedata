@@ -7,7 +7,7 @@ install:
   - yarn install
 
 before_script:
-  - cp .env.default .env && yarn buildClient
+  - cp .env.default .env && yarn build
 
 jobs:
   include:
