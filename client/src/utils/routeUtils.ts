@@ -21,7 +21,7 @@ export const getRoutes = (): GDRoute[] => {
 		{ path: '/accounts', component: AccountsPage },
 		{ path: '/login', component: LoginPage },
 		{ path: '/datasets', component: DataSetsPage },
-		{ path: '/signup', component: DataSetsPage }
+		{ path: '/register', component: DataSetsPage }
 	];
 
 	// react-router is a bit fussy about the order of routes; the root one has to come last. Since that is configurable
@@ -35,7 +35,7 @@ export const getRoutes = (): GDRoute[] => {
 	routes.push({ path: process.env.GD_GENERATOR_PATH || '/', component: Generator });
 	const rootRoutes = customRoutes.filter((route) => route.path === '/');
 
-	// lastly, add or overwrite any existing routes (e.g. signup) with the custom routes
+	// lastly, add or overwrite any existing routes (e.g. register) with the custom routes
 	customRoutes.forEach(({ path, component }: GDRoute) => {
 		let found = false;
 		for (let i=0; i<routes.length; i++) {
@@ -103,7 +103,7 @@ export const getHeaderLinks = (isLoggedIn: boolean, accountType: AccountType): G
 			if (isLoggedIn) {
 				links = ['generator', 'separator', 'userAccount', 'logout'];
 			} else {
-				links = ['generator', 'signup', 'separator', 'loginDialog', 'logout'];
+				links = ['generator', 'register', 'separator', 'loginDialog', 'logout'];
 			}
 			break;
 

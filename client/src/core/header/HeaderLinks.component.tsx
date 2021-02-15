@@ -78,10 +78,10 @@ const HeaderLinks = ({ currentPage, headerLinks, showLoginDialog, profileImage, 
 					</Tooltip>
 				</li>
 			);
-		} else if (headerLink === 'signup') {
+		} else if (headerLink === 'register') {
 			links.push(
-				<li key="signup" className={getClassName('signup', currentPage)}>
-					<Link to="/signup">{i18n.signup}</Link>
+				<li key="register" className={getClassName('register', currentPage)}>
+					<Link to="/register">{i18n.register}</Link>
 				</li>
 			);
 		} else if (headerLink === 'loginDialog') {

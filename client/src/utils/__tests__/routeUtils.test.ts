@@ -7,7 +7,7 @@ describe('getRoutes', () => {
 			'/accounts',
 			'/login',
 			'/datasets',
-			'/signup',
+			'/register',
 			'/'
 		];
 
