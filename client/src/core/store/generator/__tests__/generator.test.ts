@@ -1,10 +1,8 @@
 import { createStore, combineReducers } from 'redux';
-import sinon from 'sinon';
 import * as actions from '../generator.actions';
 import * as selectors from '../generator.selectors';
 import generatorReducer from '../generator.reducer';
 import mainReducer from '../../main/main.reducer';
-import * as dataTypeUtils from '~utils/dataTypeUtils';
 
 describe('generator section', () => {
 	let store: any;
@@ -136,21 +134,21 @@ describe('grid rows', () => {
 		expect(sortedRows.length).toEqual(4);
 	});
 
-	it('changes the row title', () => {
-		store.dispatch(actions.addRows(3));
-
-		// should be blank by default
-		const rows = selectors.getSortedRowsArray(store.getState());
-		expect(rows[0].title).toEqual('');
-		expect(rows[1].title).toEqual('');
-		expect(rows[2].title).toEqual('');
-
-		store.dispatch(actions.onChangeTitle(rows[1].id, 'new value!'));
-		const updatedRows = selectors.getSortedRowsArray(store.getState());
-		expect(updatedRows[0].title).toEqual('');
-		expect(updatedRows[1].title).toEqual('new value!');
-		expect(updatedRows[2].title).toEqual('');
-	});
+	// fit('changes the row title', () => {
+	// 	store.dispatch(actions.addRows(3));
+	//
+	// 	// should be blank by default
+	// 	const rows = selectors.getSortedRowsArray(store.getState());
+	// 	expect(rows[0].title).toEqual('');
+	// 	expect(rows[1].title).toEqual('');
+	// 	expect(rows[2].title).toEqual('');
+	//
+	// 	store.dispatch(actions.onChangeTitle(rows[1].id, 'new value!'));
+	// 	const updatedRows = selectors.getSortedRowsArray(store.getState());
+	// 	expect(updatedRows[0].title).toEqual('');
+	// 	expect(updatedRows[1].title).toEqual('new value!');
+	// 	expect(updatedRows[2].title).toEqual('');
+	// });
 
 	// fit('changes the data type', () => {
 	// 	store.dispatch(actions.addRows(3));

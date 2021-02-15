@@ -4,10 +4,6 @@
   "rowLabel": "Node Name",
   "rowLabelPlural": "Node Names",
   "invalidNodeName": "XML node names can only contain the following characters: a-Z, 0-9, -, _, .",
-
-  "invalidXmlRecordNodeName": "Please enter a valid XML record node value.",
-  "invalidXmlRootNodeName": "Please enter a valid XML root node value.",
-
   "rootNodeName": "Root node name",
   "recordNodeName": "Record node name"
 }

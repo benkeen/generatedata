@@ -4,8 +4,6 @@
   "rowLabel": "اسم العقدة",
   "rowLabelPlural": "أسماء العقدة",
   "invalidNodeName": "يمكن أن يحتوي اسم عقدة XML فقط على الأحرف التالية: a-Z, 0-9, -, _, .",
-  "invalidXmlRecordNodeName": "الرجاء إدخال قيمة عقدة سجل XML صالحة.",
-  "invalidXmlRootNodeName": "الرجاء إدخال قيمة عقدة جذر XML صالحة.",
   "rootNodeName": "اسم عقدة الجذر",
   "recordNodeName": "تسجيل اسم العقدة"
 }

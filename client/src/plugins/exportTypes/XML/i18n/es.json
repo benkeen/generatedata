@@ -4,9 +4,6 @@
   "rowLabel": "Nombre del nodo",
   "rowLabelPlural": "Nombres de nodo",
   "invalidNodeName": "Los nombres de nodo XML solo pueden contener los siguientes caracteres: a-Z, 0-9, -, _,.",
-
-  "invalidXmlRecordNodeName": "Introduzca un valor de nodo de registro XML válido.",
-  "invalidXmlRootNodeName": "Ingrese un valor de nodo raíz XML válido.",
   "rootNodeName": "Nombre del nodo raíz",
   "recordNodeName": "Registrar nombre de nodo"
 }

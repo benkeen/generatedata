@@ -4,9 +4,6 @@
   "rowLabel": "Nom du nœud",
   "rowLabelPlural": "Noms des nœuds",
   "invalidNodeName": "Les noms de nœuds XML ne peuvent contenir que les caractères suivants: a-Z, 0-9, -, _,.",
-
-  "invalidXmlRecordNodeName": "Veuillez saisir une valeur de nœud d'enregistrement XML valide.",
-  "invalidXmlRootNodeName": "Veuillez saisir une valeur de nœud racine XML valide.",
   "rootNodeName": "Nom du nœud racine",
   "recordNodeName": "Enregistrer le nom du nœud"
 }

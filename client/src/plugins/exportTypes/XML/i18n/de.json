@@ -4,9 +4,6 @@
   "rowLabel": "Knotenname",
   "rowLabelPlural": "Knotennamen",
   "invalidNodeName": "XML-Knotennamen dürfen nur die folgenden Zeichen enthalten: a-Z, 0-9, -, _ ,.",
-
-  "invalidXmlRecordNodeName": "Bitte geben Sie einen gültigen XML-Datensatzknotenwert ein.",
-  "invalidXmlRootNodeName": "Bitte geben Sie einen gültigen XML-Stammknotenwert ein.",
   "rootNodeName": "Stammknotenname",
   "recordNodeName": "Knotennamen aufzeichnen"
 }

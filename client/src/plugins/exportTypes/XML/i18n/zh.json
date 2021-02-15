@@ -4,9 +4,6 @@
   "rowLabel": "节点名称",
   "rowLabelPlural": "节点名称",
   "invalidNodeName": "XML节点名称只能包含以下字符：a-Z，0-9，-，_ 、。",
-
-  "invalidXmlRecordNodeName": "请输入有效的XML记录节点值。",
-  "invalidXmlRootNodeName": "请输入有效的XML根节点值。",
   "rootNodeName": "根节点名称",
   "recordNodeName": "记录节点名称"
 }

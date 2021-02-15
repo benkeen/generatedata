@@ -112,7 +112,7 @@ export const getExportTypeSettingsComponent = (exportType: ExportTypeFolder): an
 	return null;
 };
 
-export const getExportTypeTitleValidationFunction = (exportType: ExportTypeFolder) => {
+export const getExportTypeTitleValidationFunction = (exportType: ExportTypeFolder): any => {
 	if (loadedExportTypes[exportType]?.validateTitleField) {
 		const et = loadedExportTypes[exportType] as ETBundle;
 		return et.validateTitleField;

@@ -7,7 +7,7 @@ import {
 	ETState,
 	ETValidateTitleField
 } from '~types/exportTypes';
-import { SQLSettings } from '../SQL/SQL';
+import TextField from '~components/TextField';
 
 export interface XMLSettings extends ETState {
 	rootNodeName: string;
@@ -24,7 +24,7 @@ export const initialState: XMLSettings = {
 	isValid: true
 };
 
-export const Settings = ({ data, i18n, id, onUpdate }: ETSettings): JSX.Element => {
+export const Settings = ({ data, i18n, coreI18n, id, onUpdate }: ETSettings): JSX.Element => {
 	const onChange = (prop: string, value: any): void => {
 		onUpdate({
 			...data,
@@ -32,24 +32,38 @@ export const Settings = ({ data, i18n, id, onUpdate }: ETSettings): JSX.Element 
 		});
 	};
 
+	let rootNodeNameError = '';
+	if (data.rootNodeName.trim() === '') {
+		rootNodeNameError = coreI18n.requiredField;
+	} else if (!isValidNodeName(data.rootNodeName)) {
+		rootNodeNameError = i18n.invalidNodeName;
+	}
+
+	let recordNodeNameError = '';
+	if (data.recordNodeName.trim() === '') {
+		recordNodeNameError = coreI18n.requiredField;
+	} else if (!isValidNodeName(data.recordNodeName)) {
+		recordNodeNameError = i18n.invalidNodeName;
+	}
+
 	return (
 		<>
 			<div className={styles.row}>
 				<label htmlFor={`${id}-rootNodeName`}>{i18n.rootNodeName}</label>
-				<input
-					type="text"
+				<TextField
+					error={rootNodeNameError}
 					id={`${id}-rootNodeName`}
 					value={data.rootNodeName}
-					onChange={(e): void => onChange('rootNodeName', e.target.value)}
+					onChange={(e: any): void => onChange('rootNodeName', e.target.value)}
 				/>
 			</div>
 			<div className={styles.row}>
 				<label htmlFor={`${id}-recordNodeName`}>{i18n.recordNodeName}</label>
-				<input
-					type="text"
+				<TextField
+					error={recordNodeNameError}
 					id={`${id}-recordNodeName`}
 					value={data.recordNodeName}
-					onChange={(e): void => onChange('recordNodeName', e.target.value)}
+					onChange={(e: any): void => onChange('recordNodeName', e.target.value)}
 				/>
 			</div>
 		</>

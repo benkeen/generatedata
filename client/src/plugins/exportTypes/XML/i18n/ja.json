@@ -4,9 +4,6 @@
   "rowLabel": "ノード名",
   "rowLabelPlural": "ノード名",
   "invalidNodeName": "XMLノード名には、a-Z、0-9、-、_、。の文字のみを含めることができます。",
-
-  "invalidXmlRecordNodeName": "有効なXMLレコードノード値を入力してください。",
-  "invalidXmlRootNodeName": "有効なXMLルートノード値を入力してください。",
   "rootNodeName": "ルートノード名",
   "recordNodeName": "レコードノード名"
 }
