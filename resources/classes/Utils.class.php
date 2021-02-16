@@ -58,7 +58,6 @@ class Utils {
 				 case "loggedIn":
 					if (empty(Core::$user)) {
 						throw new GDException(Exceptions::NOTLOGGEDIN);
-						return;
 					}
 					 break;
 
@@ -68,7 +67,7 @@ class Utils {
 					if ($values === true && $settingsFileExists) {
 						throw new GDException(Exceptions::SETTINGSFILEEXISTS);
 					}
-					 break;
+					break;
 			 }
 		}
 	}
@@ -107,7 +106,6 @@ class Utils {
 	public static function returnRandomSubset($set, $num) {
 		if (!is_array($set) || !is_numeric($num)) {
 			throw new Exception(ErrorCodes::INVALID_PARAMS);
-			return;
 		}
 		// check $num is no greater than the total set
 		$numInSet = count($set);
@@ -289,7 +287,8 @@ class Utils {
 	/**
 	 * Generates a string of lorem ipsum words.
 	 *
-	 * @param string $starts_with_lipsum  - true/false
+	 * @param array $words
+	 * @param string $startsWithLipsum  - true/false
 	 * @param string $type                - "fixed"/"range"
 	 * @param integer $min     - the minimum # of words to return OR the total number
 	 * @param integer $max     - the max # of words to return (or null for "fixed" type)
