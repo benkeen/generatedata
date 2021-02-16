@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.com/benkeen/generatedata.svg?branch=master)](https://travis-ci.com/benkeen/generatedata)
 [![Coverage Status](https://coveralls.io/repos/github/benkeen/generatedata/badge.svg?branch=master)](https://coveralls.io/github/benkeen/generatedata?branch=master)
 
+> Feb 2021: new alpha version of 4.0.0 website up! https://site.generatedata4.com 
+> Please report all bugs in the issues section. 
+
 This is the repo for the downloadable version of [generatedata.com](http://www.generatedata.com). The 
 script is essentially an *engine* to generate any sort of random data in any format. It currently comes with 30 or 
 so *Data Types* (types of data it generates), 8 *Export Types* (formats for the data), plus around 30 data sets for specific countries (city names, regions etc). But more importantly it can be extended in any way you want. Check out the [developer documentation](http://benkeen.github.io/generatedata/developer.html)
