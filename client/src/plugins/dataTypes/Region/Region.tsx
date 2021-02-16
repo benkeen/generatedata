@@ -60,7 +60,7 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 	};
 
 	const getCountryRow = (): React.ReactNode => {
-		if (data.source !== 'countries') {
+		if (data.source !== 'countryRow') {
 			return null;
 		}
 
@@ -143,7 +143,7 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 							checked={data.formats.indexOf('full') !== -1}
 							onChange={(e): void => onSetFormats('full', e.target.checked)}
 						/>
-						<label htmlFor={`${id}-full`}>Full</label>
+						<label htmlFor={`${id}-full`}>{i18n.full}</label>
 						<input
 							type="checkbox"
 							value="short"
@@ -151,7 +151,7 @@ const RegionDialog = ({ visible, data, id, onClose, onSetFormats, countryI18n, c
 							checked={data.formats.indexOf('short') !== -1}
 							onChange={(e): void => onSetFormats('short', e.target.checked)}
 						/>
-						<label htmlFor={`${id}-short`}>Short</label>
+						<label htmlFor={`${id}-short`}>{i18n.short}</label>
 					</p>
 				</DialogContent>
 				<DialogActions>

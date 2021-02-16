@@ -18,7 +18,6 @@
   "countryRow": "Country Row",
   "rowDesc": "This lets you pinpoint a specific Country field in your data set that has Country Plugins as its source. It generates regions that map to the value in that field.",
   "row": "Row",
-
   "anyRegionFromCountry": "Any region from 1 country",
   "anyRegionFromCountries": "Any region from %1 countries"
 }

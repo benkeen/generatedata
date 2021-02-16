@@ -4,7 +4,7 @@ import { DTGenerateResult, DTGenerationData, DTOnMessage } from '~types/dataType
 import { Region, CountryType } from '~types/countries';
 import { RegionFormat } from './Region';
 
-// used for caching purposes. This is populated each ti
+// used for caching purposes
 const countryRegions: any = {};
 
 export const generate = (data: DTGenerationData): DTGenerateResult => {
@@ -18,6 +18,13 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	} else {
 		const list = rowState.source === 'anyRegion' ? countryList : rowState.selectedCountries;
 		country = getRandomArrayValue(list);
+	}
+
+	if (!country) {
+		return {
+			display: '',
+			country: ''
+		};
 	}
 
 	if (countryRegions[country]) {
