@@ -35,7 +35,12 @@ class JSON extends ExportTypePlugin
 
 		if ($dataStructureFormat == "complex") {
 			$content = $this->generateComplex($generator, $data, $stripWhitespace);
-		} else {
+		}
+		else if ($dataStructureFormat == "lines")
+		{
+			$content = $this->generateJsonLines($generator, $data, $stripWhitespace);
+		}
+		else {
 			$content = $this->generateSimple($generator, $data, $stripWhitespace);
 		}
 
@@ -43,6 +48,46 @@ class JSON extends ExportTypePlugin
 			"success" => true,
 			"content" => $content
 		);
+	}
+
+	private function generateJsonLines($generator, $data, $stripWhitespace)
+	{
+		$newline = ($stripWhitespace) ? "" : "\n";
+		$space = ($stripWhitespace) ? "" : " ";
+
+		$nested = array();
+
+		$content = "";
+		$comma = "";
+		
+		$numCols = count($data["colData"]);
+		$numRows = count($data["rowData"]);
+
+		for ($i = 0; $i < $numRows; $i++) {
+			$content .= "{";
+			$comma = "";
+			$space_between_columns = "";
+
+			for ($j = 0; $j < $numCols; $j++) {
+				$varName = preg_replace('/"/', '\"', $data["colData"][$j]);
+
+				// x.y.z field names => Nested JSON
+				$levels = explode(".", $varName);
+				$fieldName = array_pop($levels);
+
+				// encase all values in double quotes unless it's a number column, or it's a boolean column and it's a valid JS boolean
+				$value = $data["rowData"][$i][$j];
+				if (!$this->isNumeric($j, $value) && !$this->isJavascriptBoolean($j, $value)) {
+					$value = "\"$value\"";
+				}
+				$content .= "{$comma}{$space_between_columns}" . "\"{$fieldName}\":{$space}{$value}";
+				$comma = ",";
+				$space_between_columns = $space;
+			}
+			
+			$content .= "}{$newline}";
+		}
+		return $content;
 	}
 
 	private function generateSimple($generator, $data, $stripWhitespace)
@@ -175,6 +220,8 @@ class JSON extends ExportTypePlugin
 		return $content;
 	}
 
+
+
 	/**
 	 * Used for constructing the filename of the filename when downloading.
 	 * @see ExportTypePlugin::getDownloadFilename()
@@ -195,8 +242,10 @@ class JSON extends ExportTypePlugin
 	{$this->L["data_structure_format"]}
 		<input type="radio" name="etJSON_dataStructureFormat" value="complex" id="stJSON_dataStructureFormat1" checked="checked" />
 			<label for="stJSON_dataStructureFormat1">{$this->L["complex"]}</label>
-		<input type="radio" name="etJSON_dataStructureFormat" value="simple" id="stJSON_dataStructureFormat2" />
-			<label for="stJSON_dataStructureFormat2">{$this->L["simple"]}</label>
+		<input type="radio" name="etJSON_dataStructureFormat" value="lines" id="stJSON_dataStructureFormat2" />
+			<label for="stJSON_dataStructureFormat2">{$this->L["lines"]}</label>
+		<input type="radio" name="etJSON_dataStructureFormat" value="simple" id="stJSON_dataStructureFormat3" />
+			<label for="stJSON_dataStructureFormat3">{$this->L["simple"]}</label>
 END;
 		return $html;
 	}
