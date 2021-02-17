@@ -28,12 +28,12 @@ context.onmessage = (e: ETOnMessage) => {
 	context.postMessage(content);
 };
 
-const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[]): any => {
+const getWrappedValue = (value: any, colIndex: number, numericFieldIndexes: number[], quote: string = '"'): any => {
 	let val = '';
 	if (numericFieldIndexes.indexOf(colIndex) !== -1) {
 		val = value;
 	} else {
-		val = `"${value}"`;
+		val = `${quote}${value}${quote}`;
 	}
 	return val;
 };
@@ -357,13 +357,14 @@ export const generateOracle = (generationData: ETMessageData): string => {
 export const generateMSSQL = (generationData: ETMessageData): string => {
 	const sqlSettings: SQLSettings = generationData.settings;
 	const colTitles = generationData.columns.map(({ title }) => title);
+	const quote = sqlSettings.quotes === 'single' ? '\'' : '"';
 	let content = '';
 
 	const numericFieldIndexes = getNumericFieldColumnIndexes(generationData.columns);
 
 	if (generationData.isFirstBatch) {
 		if (sqlSettings.dropTable) {
-			content += `IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('${sqlSettings.tableName}'))\n`;
+			content += `IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID(${quote}${sqlSettings.tableName}${quote}))\n`;
 			content += "BEGIN;\n";
 			content += `    DROP TABLE [${sqlSettings.tableName}];\n`;
 			content += "END;\n";
@@ -405,7 +406,7 @@ export const generateMSSQL = (generationData: ETMessageData): string => {
 		if (sqlSettings.statementType === 'insert') {
 			const displayVals: any = [];
 			colTitles.forEach((columnTitle: string, colIndex: number) => {
-				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes));
+				displayVals.push(getWrappedValue(row[colIndex], colIndex, numericFieldIndexes, quote));
 			});
 			rowDataStr.push(displayVals.join(','));
 			if (rowDataStr.length === sqlSettings.insertBatchSize) {

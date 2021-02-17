@@ -16,6 +16,7 @@ export interface SQLSettings extends ETState {
 	insertBatchSize: number;
 	addPrimaryKey: boolean;
 	isValid: boolean;
+	quotes: 'single' | 'double';
 }
 
 export const initialState: SQLSettings = {
@@ -27,7 +28,8 @@ export const initialState: SQLSettings = {
 	statementType: 'insert',
 	insertBatchSize: 10,
 	addPrimaryKey: true,
-	isValid: true
+	isValid: true,
+	quotes: 'single'
 };
 
 export const Settings: React.ReactNode = ({ coreI18n, i18n, onUpdate, id, data }: ETSettings) => {
@@ -116,6 +118,46 @@ export const Settings: React.ReactNode = ({ coreI18n, i18n, onUpdate, id, data }
 					max={1000}
 					onChange={(e: any): void => onChange('insertBatchSize', parseInt(e.target.value, 10))}
 				/>
+			</div>
+		);
+	};
+
+	const getQuotes = (): React.ReactNode => {
+		if (data.databaseType !== 'MSSQL') {
+			return null;
+		}
+
+		return (
+			<div className={styles.block}>
+				<div><label className={styles.title}>Quotes</label></div>
+				<div>
+					<div className={styles.row}>
+						<ul>
+							<li>
+								<input
+									type="radio"
+									value="single"
+									name={`${id}-quotes`}
+									id={`${id}-quotesSingle`}
+									onChange={(): void => onChange('quotes', 'single')}
+									checked={data.quotes === 'single'}
+								/>
+								<label htmlFor={`${id}-quotesSingle`}>Single</label>
+							</li>
+							<li>
+								<input
+									type="radio"
+									value="double"
+									name={`${id}-quotes`}
+									id={`${id}-quotesDouble`}
+									onChange={(): void => onChange('quotes', 'double')}
+									checked={data.quotes === 'double'}
+								/>
+								<label htmlFor={`${id}-quotesDouble`}>Double</label>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		);
 	};
@@ -224,6 +266,8 @@ export const Settings: React.ReactNode = ({ coreI18n, i18n, onUpdate, id, data }
 					</div>
 				</div>
 			</div>
+
+			{getQuotes()}
 		</>
 	);
 };
@@ -247,11 +291,6 @@ export const validateTitleField = (title: string, settings: SQLSettings): null |
 			return "error string here.";
 		}
 	}
-
-	// errors.push({
-	// 	els: errorFields,
-	// 	error: LANG.validation_invalid_col_name + "<b>" + errorFieldVisibleRowNums.join(", ") + "</b>"
-	// });
 
 	return null;
 };
