@@ -23,7 +23,7 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	if (!country) {
 		return {
 			display: '',
-			country: ''
+			countryDataType: ''
 		};
 	}
 
@@ -48,6 +48,10 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 };
 
 export const getDisplayValue = (countryData: any, formats: RegionFormat[]): string => {
+	if (!formats.length) {
+		return '';
+	}
+
 	const format = getRandomArrayValue(formats);
 	return getRandomArrayValue(countryData[format]);
 };
