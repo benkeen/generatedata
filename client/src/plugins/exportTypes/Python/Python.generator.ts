@@ -24,9 +24,9 @@ export const generate = (data: ETMessageData, stripWhitespace: boolean): string 
 		const pairs: string[] = [];
 		data.columns.forEach(({ title }, colIndex) => {
 			const currValue = row[colIndex];
-			pairs.push(`"${title}" => "${currValue}"`);
+			pairs.push(`${title}: "${currValue}"`);
 		});
-		content += `${tab}[${newline}${tab}${tab}` + pairs.join(`,${newline}${tab}${tab}`) + `${newline}${tab}]`;
+		content += `${tab}{${newline}${tab}${tab}` + pairs.join(`,${newline}${tab}${tab}`) + `${newline}${tab}}`;
 
 		if (data.isLastBatch && rowIndex == data.rows.length - 1) {
 			content += newline;
