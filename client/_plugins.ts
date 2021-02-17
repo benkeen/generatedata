@@ -85,6 +85,7 @@ import Javascript from './src/plugins/exportTypes/Javascript/config';
 import LDIF from './src/plugins/exportTypes/LDIF/config';
 import PHP from './src/plugins/exportTypes/PHP/config';
 import Perl from './src/plugins/exportTypes/Perl/config';
+import Python from './src/plugins/exportTypes/Python/config';
 import Ruby from './src/plugins/exportTypes/Ruby/config';
 import SQL from './src/plugins/exportTypes/SQL/config';
 import Typescript from './src/plugins/exportTypes/Typescript/config';
@@ -99,6 +100,7 @@ export const exportTypes = {
 	LDIF,
 	PHP,
 	Perl,
+	Python,
 	Ruby,
 	SQL,
 	Typescript,

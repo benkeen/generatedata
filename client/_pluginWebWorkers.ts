@@ -47,6 +47,7 @@ export default {
 		"LDIF": "ET-LDIF.generator-9849abbd090ddb81504c8aa23a2f0bc5.js",
 		"PHP": "ET-PHP.generator-0a19f3050652f96b21555e1752a0c4c6.js",
 		"Perl": "ET-Perl.generator-df47046d1c609b2d741f89e42cccc64b.js",
+		"Python": "ET-Python.generator-b1e1958af1979e69d30c758f7135ea7a.js",
 		"Ruby": "ET-Ruby.generator-ac8488a5383529eec4c26079079b6508.js",
 		"SQL": "ET-SQL.generator-b41df6164e6d636efda11dadba9f32b7.js",
 		"Typescript": "ET-Typescript.generator-fef1536c370c937fd2ab9c3da2440814.js",
