@@ -49,7 +49,7 @@ export const getOptions = (): any[] => {
 	const options: any = [];
 	const formats = [
 		'MMM d, y', // Jan 1, 2020
-		'MMMM do, y',// January 1st, 2020
+		'MMMM do, y', // January 1st, 2020
 		'EEE, MMM dd', // Wed, Jan 01
 		'EEE, MMM do, y', // Wed, Jan 1st, 2012
 		'LL.dd.yy', // 03.25.20
@@ -97,6 +97,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 	const [isOpen, setOpen] = React.useState(false);
 	const [selectedDatePicker, setDatePicker] = React.useState('fromDate');
 	const onChange = (field: string, value: any): void => {
+		console.log("on change? ", field, value);
 		onUpdate({
 			...data,
 			[field]: value
@@ -104,8 +105,8 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 	};
 
 	const onBtnClick = (btn: string): void => {
-		setOpen(true);
 		setDatePicker(btn);
+		setOpen(true);
 	};
 
 	const onSelectDate = (btn: string, value: any): void => {
@@ -119,7 +120,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 		toDateClass += ` ${sharedStyles.errorField}`;
 		toDateError = i18n.endDateEarlierThanStartDate;
 	}
-
+	
 	return (
 		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 			<div>
@@ -154,7 +155,7 @@ export const Options = ({ data, onUpdate, i18n, coreI18n }: DTOptionsProps): JSX
 						autoOk
 						open={isOpen}
 						className={styles.dateField}
-						value={fromUnixTime(selectedDatePicker === 'fromDate' ? data.toDate : data.fromDate)}
+						value={fromUnixTime(selectedDatePicker === 'fromDate' ? data.fromDate : data.toDate)}
 						onChange={(val: any): void => onSelectDate(selectedDatePicker, format(val, 't'))}
 						onClose={(): void => setOpen(false)}
 					/>
