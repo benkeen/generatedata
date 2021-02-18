@@ -13,7 +13,15 @@ describe('onmessage', () => {
 	it('generates random data', () => {
 		sinon.stub(utils.randomUtils, 'getRandomNum').returns(444);
 
-		onmessage();
+		const payload: any = {
+			data: {
+				workerResources: {
+					workerUtils: ''
+				}
+			}
+		};
+
+		onmessage(payload);
 		expect(postMessage).toHaveBeenCalledWith({ display: 444 });
 	});
 });

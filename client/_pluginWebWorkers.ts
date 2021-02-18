@@ -25,7 +25,7 @@ export default {
 		"NumberRange": "DT-NumberRange.generator-057ed424452f4e991ebc399c615ae34c.js",
 		"OrganizationNumber": "DT-OrganizationNumber.generator-68b329da9893e34099c7d8ad5cb9c940.js",
 		"PAN": "DT-PAN.generator-68b329da9893e34099c7d8ad5cb9c940.js",
-		"PIN": "DT-PIN.generator-9cdff17b25ecb631e9e57aaaea8b59d7.js",
+		"PIN": "DT-PIN.generator-4148c7f0f2190e7ee7e83a06e0143247.js",
 		"PersonalNumber": "DT-PersonalNumber.generator-68b329da9893e34099c7d8ad5cb9c940.js",
 		"Phone": "DT-Phone.generator-ca7bb8282784726ece5e8ced1ccfd964.js",
 		"PostalZip": "DT-PostalZip.generator-b7cd5bb410930c1fb9c772190244ff6b.js",
