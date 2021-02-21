@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import * as coreUtils from '~utils/coreUtils';
 import { ExportTypeFolder } from '../../../../_plugins';
 import { LoadedExportTypes } from '~utils/exportTypeUtils';
 import { getCountryData } from '~utils/countryUtils';
+import { GeneratorLayout } from '~core/generator/Generator.component';
 
 export type CodeMirrorWrapperProps = {
 	previewRows: any;
@@ -14,17 +15,19 @@ export type CodeMirrorWrapperProps = {
 	codeMirrorMode: string;
 	showLineNumbers: boolean;
 	enableLineWrapping: boolean;
+	generatorLayout: GeneratorLayout;
 	loadedExportTypes: LoadedExportTypes;
 };
 
 const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 	const {
 		previewRows, columns, exportType, exportTypeSettings, codeMirrorMode, theme, showLineNumbers, loadedExportTypes,
-		enableLineWrapping
+		generatorLayout, enableLineWrapping
 	} = props;
-	const [code, setCode] = React.useState("");
+	const [code, setCode] = React.useState('');
+	const [codeMirrorInstance, setCodeMirrorInstance] = React.useState<any>(null);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (!columns.length || !previewRows.length) {
 			return;
 		}
@@ -34,10 +37,17 @@ const CodeMirrorWrapper = (props: CodeMirrorWrapperProps): JSX.Element => {
 			});
 	}, [previewRows, columns, exportType, exportTypeSettings, loadedExportTypes]);
 
+	useEffect(() => {
+		if (codeMirrorInstance) {
+			codeMirrorInstance.refresh();
+		}
+	}, [generatorLayout]);
+
 	return (
 		<CodeMirror
 			value={code}
 			onBeforeChange={(editor, data, value): void => setCode(value)}
+			editorDidMount={(editor): void => setCodeMirrorInstance(editor)}
 			options={{
 				mode: codeMirrorMode,
 				theme,
