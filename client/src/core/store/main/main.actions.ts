@@ -228,8 +228,6 @@ export const refreshToken = () => async (dispatch: Dispatch): Promise<any> => {
 	}
 
 	dispatch(setAuthenticated(success));
-
-	console.log('onload auth determined');
 	dispatch(setOnloadAuthDetermined());
 };
 

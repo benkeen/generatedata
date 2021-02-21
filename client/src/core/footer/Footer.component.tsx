@@ -35,7 +35,7 @@ export type FooterProps = {
 	currentPage: string;
 	currentDataSetId: number | null;
 	availableLocales: GDLocale[];
-	showTourDialog: () => void;
+	showTourDialog: (history: any) => void;
 	customFooterLinks: JSX.Element[];
 };
 
