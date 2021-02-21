@@ -9,5 +9,5 @@ export const registerCustomFooterLink = (link: any): void => {
 };
 
 export const getCustomFooterLinks = (): any[] => (
-	customFooterLinks.map((Link: any) => <Link />)
+	customFooterLinks.map((Link: any, index: number) => <Link key={index} />)
 );

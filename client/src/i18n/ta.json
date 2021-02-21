@@ -276,5 +276,9 @@
 	"welcomeToTheGenerator": "ஜெனரேட்டருக்கு வருக!",
 	"yes": "ஆம்",
 	"yourAccount": "உங்கள் கணக்கு",
-	"yourUserAccount": "உங்கள் பயனர் கணக்கு"
+	"yourUserAccount": "உங்கள் பயனர் கணக்கு",
+
+  "viewChangelog": "சேஞ்ச்லாக் காண்க",
+  "viewOnGithub": "கிதுபில் காண்க"
+
 }

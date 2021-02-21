@@ -20,7 +20,7 @@ const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps): JSX
 			<DialogContent dividers>
 				<div>
 					<h4>generatedata.com &#8212;
-						<Tooltip title="View changelog">
+						<Tooltip title={i18n.viewChangelog}>
 							<span>
 								<Link url="https://github.com/benkeen/generatedata/blob/master/CHANGELOG.md" offSite={true}>v{scriptVersion}</Link>
 							</span>
@@ -42,7 +42,7 @@ const AboutDialog = ({ visible, onClose, scriptVersion, i18n }: AboutProps): JSX
 					window.open('https://github.com/benkeen/generatedata', '_blank');
 				}} color="primary" variant="outlined">
 					<Github />
-					View on Github
+					{i18n.viewOnGithub}
 				</Button>
 			</DialogActions>
 		</div>

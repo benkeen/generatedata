@@ -276,5 +276,9 @@
 	"welcomeToTheGenerator": "欢迎使用发电机！",
 	"yes": "确认",
 	"yourAccount": "你的账号",
-	"yourUserAccount": "您的用户帐号"
+	"yourUserAccount": "您的用户帐号",
+
+  "viewChangelog": "查看变更日志",
+  "viewOnGithub": "在Github上查看"
+
 }

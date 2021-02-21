@@ -276,5 +276,9 @@
 	"welcomeToTheGenerator": "Bienvenido al generador!",
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
-	"yourUserAccount": "Su cuenta de usuario"
+	"yourUserAccount": "Su cuenta de usuario",
+
+  "viewChangelog": "Voir la log des modifications",
+  "viewOnGithub": "Voir sur Github"
+
 }

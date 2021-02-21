@@ -276,5 +276,9 @@
 	"welcomeToTheGenerator": "ジェネレーターへようこそ！",
 	"yes": "Yes",
 	"yourAccount": "あなたのアカウント",
-	"yourUserAccount": "あなたのユーザーアカウント"
+	"yourUserAccount": "あなたのユーザーアカウント",
+
+  "viewChangelog": "変更ログを表示",
+  "viewOnGithub": "Githubで表示"
+
 }
