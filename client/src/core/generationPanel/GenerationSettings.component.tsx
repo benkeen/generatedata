@@ -33,7 +33,7 @@ const GenerationPanel = ({
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
-			<div style={{ width: 360 }}>
+			<div style={{ width: 400 }}>
 				<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
 				<DialogContent dividers>
 					<div className={`${styles.row} ${styles.generationRow}`}>

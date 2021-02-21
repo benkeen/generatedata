@@ -8,6 +8,7 @@ import { AccountType } from '~types/account';
 import { PAGE_CHANGE } from '~store/main/main.actions';
 import C from '../core/constants';
 
+// TODO move this under `extensionUtils`
 let customRoutes: GDRoute[] = [];
 export const registerCustomRoutes = (routes: GDRoute[]): void => {
 	customRoutes = routes;

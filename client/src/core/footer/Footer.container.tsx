@@ -10,6 +10,7 @@ import * as mainActions from '../store/main/main.actions';
 import * as accountActions from '../store/account/account.actions';
 import * as coreUtils from '../../utils/coreUtils';
 import { isExportTypeValid } from '~utils/exportTypeUtils';
+import { getCustomFooterLinks } from '~utils/extensionUtils';
 
 const mapStateToProps = (state: any): Partial<FooterProps> => {
 	const exportType = selectors.getExportType(state);
@@ -22,7 +23,8 @@ const mapStateToProps = (state: any): Partial<FooterProps> => {
 		actionButtonsEnabled: selectors.hasData(state) && isExportTypeValid(exportType, exportTypeSettings),
 		currentPage: mainSelectors.getCurrentPage(state),
 		currentDataSetId: selectors.getCurrentDataSetId(state),
-		availableLocales: env.availableLocales
+		availableLocales: env.availableLocales,
+		customFooterLinks: getCustomFooterLinks()
 	};
 };
 

@@ -36,6 +36,7 @@ export type FooterProps = {
 	currentDataSetId: number | null;
 	availableLocales: GDLocale[];
 	showTourDialog: () => void;
+	customFooterLinks: JSX.Element[];
 };
 
 // TODO move
@@ -61,7 +62,7 @@ const useListStyles = makeStyles(() =>
 
 const Footer = ({
 	i18n, locale, actionButtonsEnabled, onChangeLocale, scriptVersion, onSave, onGenerate, currentPage, availableLocales,
-	currentDataSetId, onSaveNewDataSet, onSaveAs, showTourDialog
+	currentDataSetId, onSaveNewDataSet, onSaveAs, showTourDialog, customFooterLinks
 }: FooterProps): JSX.Element => {
 	const popoverRef = React.useRef(null);
 	const saveAsButtonRef = React.useRef(null);
@@ -211,6 +212,7 @@ const Footer = ({
 								<span>{i18n.takeTour}</span>
 							</Button>
 						</li>
+						{customFooterLinks}
 						<li>
 							<ActivePacketsList />
 						</li>
