@@ -10,7 +10,11 @@ declare namespace ActivityPanelScssNamespace {
     dataRowValue: string;
     fadeOut: string;
     generateOverlay: string;
+    generationLabel: string;
+    generationOverlay: string;
+    generationOverlayBg: string;
     generationRow: string;
+    generationSettingsContent: string;
     overlayWrapper: string;
     panel1: string;
     panel2: string;

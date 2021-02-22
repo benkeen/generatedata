@@ -8,6 +8,8 @@ import { getFormattedNum } from '~utils/numberUtils';
 import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { ErrorTooltip } from '~components/tooltips';
+// import { MediumSpinner } from '~components/loaders/loaders';
+// import Engine from './Engine.component';
 
 export type GenerationSettingsProps = {
 	visible: boolean;
@@ -31,11 +33,21 @@ const GenerationPanel = ({
 		error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(env.maxDemoModeRows)]);
 	}
 
+	/*
+	<div className={styles.generationOverlayBg} />
+	<div className={styles.generationOverlay}>
+		<MediumSpinner style={{ margin: 15 }} />
+		<div className={styles.generationLabel}>
+			Generated <b>100</b> / <b>1000</b>
+		</div>
+	</div>
+	*/
+
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 400 }}>
 				<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
-				<DialogContent dividers>
+				<DialogContent dividers className={styles.generationSettingsContent}>
 					<div className={`${styles.row} ${styles.generationRow}`}>
 						{i18n.generate}
 						<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
