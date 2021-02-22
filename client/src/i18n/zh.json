@@ -2,6 +2,7 @@
 	"about": "关于",
 	"aboutInfoPara1": "数据生成器是我在旧石器时代末期（大约在2004年）创建的一个开源项目，在其生命周期中有许多贡献者。 我每隔几年就会使用最新和最先进的技术对其进行重写：此版本于2021年完成，由React，Redux，Typescript，GraphQL，Docker，Web Worker，橡皮筋，胶带和大量诅咒制成。",
 	"aboutInfoPara2": "您可以在github上找到该项目。 下载，分叉或随意贡献。 请享用！",
+	"aboutThisScript": "关于此脚本",
 	"accountCreated": "账户创建",
 	"accountCreatedMsg": "该账户已创建.",
 	"accountInfo": "账户信息",
@@ -225,6 +226,7 @@
 	"save": "保存",
 	"saveAs": "另存为",
 	"saveButtonDesc": "如果您在网站上拥有一个用户帐户，则此按钮将保存您的数据集。 如果您尚未登录，则单击它会提示您先登录。 系统保留对数据集的最近%1更改的历史记录，因此您可以随时返回查看旧版本。",
+	"saveDataSetNewName": "将数据集另存为新名称",
 	"seconds": "秒",
 	"seeHelpDialog": "查看帮助对话框.",
 	"selectCountry": "选择国家",
@@ -273,12 +275,10 @@
 	"validationNoLastName": "请输入你的姓氏.",
 	"validationNoPassword": "请输入密码.",
 	"version": "版本",
+	"viewChangelog": "查看变更日志",
+	"viewOnGithub": "在Github上查看",
 	"welcomeToTheGenerator": "欢迎使用发电机！",
 	"yes": "确认",
 	"yourAccount": "你的账号",
-	"yourUserAccount": "您的用户帐号",
-
-  "viewChangelog": "查看变更日志",
-  "viewOnGithub": "在Github上查看"
-
+	"yourUserAccount": "您的用户帐号"
 }

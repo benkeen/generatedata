@@ -2,6 +2,7 @@
 	"about": "Acerca de",
 	"aboutInfoPara1": "El Generador de datos es un proyecto de código abierto que creé en la era paleolítica tardía (alrededor de 2004) y ha tenido muchos, muchos contribuyentes a lo largo de su vida útil. Cada pocos años lo reescribo utilizando las últimas y mejores tecnologías disponibles: esta versión se completó en 2021, hecha con React, Redux, Typescript, GraphQL, Docker, web Workers, bandas elásticas, cinta adhesiva y muchas maldiciones.",
 	"aboutInfoPara2": "Puedes encontrar el proyecto en github. Descárgalo, bifurcalo o siéntete libre de contribuir. ¡Disfrutar!",
+	"aboutThisScript": "Acerca de este guión",
 	"accountCreated": "Cuenta creada",
 	"accountCreatedMsg": "Se ha creado una cuenta para ti.",
 	"accountInfo": "Información de cuenta",
@@ -225,6 +226,7 @@
 	"save": "Salvar",
 	"saveAs": "Guardar como",
 	"saveButtonDesc": "Si tiene una cuenta de usuario en el sitio, este botón guardará su conjunto de datos. Si no ha iniciado sesión, al hacer clic en él, se le pedirá que inicie sesión primero. El sistema mantiene un historial de los últimos %1 cambios en un conjunto de datos, por lo que siempre puede volver atrás y ver versiones anteriores.",
+	"saveDataSetNewName": "Guardar el conjunto de datos con un nombre nuevo",
 	"seconds": "Segundos",
 	"seeHelpDialog": "&nbsp;Ver el diálogo de ayuda.",
 	"selectCountry": "Seleccionar país",
@@ -273,12 +275,10 @@
 	"validationNoLastName": "Por favor, introduce tus apellidos.",
 	"validationNoPassword": "Por favor, introduce tu contraseña.",
 	"version": "Versión",
+	"viewChangelog": "Ver registro de cambios",
+	"viewOnGithub": "Ver en Github",
 	"welcomeToTheGenerator": "Bienvenido al generador!",
 	"yes": "Sí",
 	"yourAccount": "Tu cuenta",
-	"yourUserAccount": "Su cuenta de usuario",
-
-  "viewChangelog": "Ver registro de cambios",
-  "viewOnGithub": "Ver en Github"
-
+	"yourUserAccount": "Su cuenta de usuario"
 }

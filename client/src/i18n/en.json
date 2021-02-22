@@ -2,6 +2,7 @@
 	"about": "About",
 	"aboutInfoPara1": "The Data Generator is an open source project I created back in the late paleolithic era (circa 2004) and has had many, many contributors over its lifespan. Every few years I rewrite it using the latest and greatest available technologies: this version was completed in 2021, made with React, Redux, Typescript, GraphQL, Docker, web workers, rubber bands, duct tape and a whole lot of cursing.",
 	"aboutInfoPara2": "You can find the project on github. Download it, fork it, or feel free to contribute. Enjoy!",
+	"aboutThisScript": "About this script",
 	"accountCreated": "Account Created",
 	"accountCreatedMsg": "An account has been created for you.",
 	"accountInfo": "Account Info",
@@ -225,6 +226,7 @@
 	"save": "Save",
 	"saveAs": "Save as",
 	"saveButtonDesc": "If you have a user account on the site this button will save your data set. If you're not logged in, clicking it will prompt you to login first. The system keeps a history of the last %1 changes to a Data Set, so you can always go back and view older versions.",
+	"saveDataSetNewName": "Save data set as new name",
 	"seconds": "Seconds",
 	"seeHelpDialog": "See help dialog.",
 	"selectCountry": "Select Country",
@@ -273,12 +275,10 @@
 	"validationNoLastName": "Please enter your last name",
 	"validationNoPassword": "Please enter your password",
 	"version": "Version",
+	"viewChangelog": "View changelog",
+	"viewOnGithub": "View on Github",
 	"welcomeToTheGenerator": "Welcome to the generator!",
 	"yes": "Yes",
 	"yourAccount": "Your Account",
-	"yourUserAccount": "Your User Account",
-
-  "viewChangelog": "View changelog",
-  "viewOnGithub": "View on Github"
-
+	"yourUserAccount": "Your User Account"
 }

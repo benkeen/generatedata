@@ -2,6 +2,7 @@
 	"about": "A propos",
 	"aboutInfoPara1": "Le générateur de données est un projet open source que j'ai créé à la fin du paléolithique (vers 2004) et qui a eu de très nombreux contributeurs au cours de sa vie. Toutes les quelques années, je la réécris en utilisant les dernières et les meilleures technologies disponibles: cette version a été achevée en 2021, réalisée avec React, Redux, Typescript, GraphQL, Docker, des web workers, des élastiques, du ruban adhésif et beaucoup de malédictions.",
 	"aboutInfoPara2": "Vous pouvez trouver le projet sur github. Téléchargez-le, ajoutez-le ou n'hésitez pas à contribuer. Prendre plaisir!",
+	"aboutThisScript": "À propos de ce script",
 	"accountCreated": "Compte utilisateur créé",
 	"accountCreatedMsg": "Un compte a été créé avec succès.",
 	"accountInfo": "Informations sur le compte",
@@ -225,6 +226,7 @@
 	"save": "Sauver",
 	"saveAs": "Enregistrer sous",
 	"saveButtonDesc": "Si vous avez un compte utilisateur sur le site, ce bouton enregistrera votre jeu de données. Si vous n'êtes pas connecté, cliquer dessus vous invitera à vous connecter en premier. Le système conserve un historique des %1 dernières modifications apportées à un ensemble de données, afin que vous puissiez toujours revenir en arrière et afficher les anciennes versions.",
+	"saveDataSetNewName": "Enregistrer l'ensemble de données sous un nouveau nom",
 	"seconds": "Secondes",
 	"seeHelpDialog": "Consulter laide.",
 	"selectCountry": "Choisissez le pays",
@@ -273,12 +275,10 @@
 	"validationNoLastName": "Entrez votre nom de famille.",
 	"validationNoPassword": "ntrez votre mot de passe.",
 	"version": "Version",
+	"viewChangelog": "Voir la log des modifications",
+	"viewOnGithub": "Voir sur Github",
 	"welcomeToTheGenerator": "Bienvenido al generador!",
 	"yes": "Oui",
 	"yourAccount": "Votre compte",
-	"yourUserAccount": "Su cuenta de usuario",
-
-  "viewChangelog": "Voir la log des modifications",
-  "viewOnGithub": "Voir sur Github"
-
+	"yourUserAccount": "Su cuenta de usuario"
 }

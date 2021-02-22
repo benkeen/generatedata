@@ -2,6 +2,7 @@
 	"about": "約",
 	"aboutInfoPara1": "データジェネレーターは、旧石器時代後期（2004年頃）に私が作成したオープンソースプロジェクトであり、その存続期間にわたって多くの貢献者がいます。 数年ごとに、最新かつ最高の利用可能なテクノロジーを使用して書き直します。このバージョンは2021年に完成し、React、Redux、Typescript、GraphQL、Docker、Webワーカー、輪ゴム、ダクトテープ、および多くの呪いで作成されました。",
 	"aboutInfoPara2": "プロジェクトはgithubにあります。 ダウンロードするか、フォークするか、気軽に投稿してください。 楽しい！",
+	"aboutThisScript": "このスクリプトについて",
 	"accountCreated": "アカウントが作成されました",
 	"accountCreatedMsg": "アカウントが作成されました。",
 	"accountInfo": "アカウント情報",
@@ -225,6 +226,7 @@
 	"save": "セーブ",
 	"saveAs": "名前を付けて保存",
 	"saveButtonDesc": "サイトにユーザーアカウントがある場合、このボタンはデータセットを保存します。 ログインしていない場合は、クリックすると最初にログインするように求められます。 システムはデータセットへの最後の%1変更の履歴を保持するため、いつでも戻って古いバージョンを表示できます。",
+	"saveDataSetNewName": "データセットを新しい名前で保存する",
 	"seconds": "秒",
 	"seeHelpDialog": "ヘルプダイアログを参照してください。",
 	"selectCountry": "国を選択",
@@ -273,12 +275,10 @@
 	"validationNoLastName": "あなたの姓を入力",
 	"validationNoPassword": "パスワードを入力してください",
 	"version": "バージョン",
+	"viewChangelog": "変更ログを表示",
+	"viewOnGithub": "Githubで表示",
 	"welcomeToTheGenerator": "ジェネレーターへようこそ！",
 	"yes": "Yes",
 	"yourAccount": "あなたのアカウント",
-	"yourUserAccount": "あなたのユーザーアカウント",
-
-  "viewChangelog": "変更ログを表示",
-  "viewOnGithub": "Githubで表示"
-
+	"yourUserAccount": "あなたのユーザーアカウント"
 }

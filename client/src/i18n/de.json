@@ -2,6 +2,7 @@
 	"about": "Über",
 	"aboutInfoPara1": "Der Datengenerator ist ein Open-Source-Projekt, das ich in der späten Altsteinzeit (ca. 2004) erstellt habe und über seine gesamte Lebensdauer viele, viele Mitwirkende hatte. Alle paar Jahre schreibe ich es mit den neuesten und besten verfügbaren Technologien neu: Diese Version wurde 2021 fertiggestellt und mit React, Redux, Typescript, GraphQL, Docker, Web-Workern, Gummibändern, Klebeband und viel Fluchen erstellt.",
 	"aboutInfoPara2": "Sie finden das Projekt auf github. Laden Sie es herunter, geben Sie es ab oder tragen Sie dazu bei. Genießen!",
+	"aboutThisScript": "Über dieses Skript",
 	"accountCreated": "Benutzerkonto erstellt",
 	"accountCreatedMsg": "Ein Benutzerkonto wurde für Sie erstellt.",
 	"accountInfo": "Benutzerkonten-Daten",
@@ -225,6 +226,7 @@
 	"save": "Speichern",
 	"saveAs": "Speichern als",
 	"saveButtonDesc": "Wenn Sie ein Benutzerkonto auf der Site haben, speichert diese Schaltfläche Ihren Datensatz. Wenn Sie nicht angemeldet sind, werden Sie durch Klicken darauf aufgefordert, sich zuerst anzumelden. Das System speichert den Verlauf der letzten %1-Änderungen an einem Datensatz, sodass Sie jederzeit zurückgehen und ältere Versionen anzeigen können.",
+	"saveDataSetNewName": "Datensatz als neuen Namen speichern",
 	"seconds": "Sekunden",
 	"seeHelpDialog": "Siehe Hilfe-Dialog.",
 	"selectCountry": "Land auswählen",
@@ -273,12 +275,10 @@
 	"validationNoLastName": "Bitte geben Sie Ihren Nachnamen an.",
 	"validationNoPassword": "Bitte geben Sie Ihr Passwort ein.",
 	"version": "Version",
+	"viewChangelog": "Änderungsprotokoll anzeigen",
+	"viewOnGithub": "Blick auf Github",
 	"welcomeToTheGenerator": "Willkommen im Generator!",
 	"yes": "Ja",
 	"yourAccount": "Ihr Konto",
-	"yourUserAccount": "Ihr Benutzerkonto",
-
-  "viewChangelog": "Änderungsprotokoll anzeigen",
-  "viewOnGithub": "Blick auf Github"
-
+	"yourUserAccount": "Ihr Benutzerkonto"
 }

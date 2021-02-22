@@ -143,7 +143,7 @@ const Footer = ({
 							size="small"
 							aria-controls={saveAsMenuOpen ? 'split-button-menu' : undefined}
 							aria-expanded={saveAsMenuOpen ? 'true' : undefined}
-							aria-label="Save data set as new name"
+							aria-label={i18n.saveDataSetNewName}
 							aria-haspopup="menu"
 							className={styles.saveBtnArrow}
 							onClick={(): void => setSaveAsMenuOpen(!saveAsMenuOpen)}
@@ -199,7 +199,7 @@ const Footer = ({
 				<div>
 					<ul>
 						<li className={styles.aboutIconEl}>
-							<Tooltip title="About this script" arrow>
+							<Tooltip title={i18n.aboutThisScript} arrow>
 								<span onClick={(): void => setAboutDialogVisibility(true)}>
 									<Github />
 								</span>

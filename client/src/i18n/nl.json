@@ -2,6 +2,7 @@
 	"about": "Over",
 	"aboutInfoPara1": "De Data Generator is een open source-project dat ik heb gemaakt in het late paleolithische tijdperk (circa 2004) en dat gedurende zijn levensduur vele, vele bijdragen heeft gehad. Om de paar jaar herschrijf ik het met behulp van de nieuwste en beste beschikbare technologieën: deze versie werd voltooid in 2021, gemaakt met React, Redux, Typescript, GraphQL, Docker, webwerkers, elastiekjes, ducttape en heel veel vloeken.",
 	"aboutInfoPara2": "Je kunt het project vinden op github. Download het, vork het of voel je vrij om bij te dragen. Genieten!",
+	"aboutThisScript": "Over dit script",
 	"accountCreated": "Gebruikersaccount aangemaakt",
 	"accountCreatedMsg": "Er is een gebruikersaccount voor u aangemaakt.",
 	"accountInfo": "Gebruikersgegevens",
@@ -225,6 +226,7 @@
 	"save": "Opslaan",
 	"saveAs": "Opslaan als",
 	"saveButtonDesc": "Als u een gebruikersaccount op de site heeft, slaat deze knop uw dataset op. Als u niet bent aangemeld, klikt u erop om eerst in te loggen. Het systeem houdt een geschiedenis bij van de laatste %1 wijzigingen in een dataset, zodat u altijd terug kunt gaan en oudere versies kunt bekijken.",
+	"saveDataSetNewName": "Sla dataset op als nieuwe naam",
 	"seconds": "Seconden",
 	"seeHelpDialog": "&nbsp;Zie help venster.",
 	"selectCountry": "Selecteer land",
@@ -273,12 +275,10 @@
 	"validationNoLastName": "Wat is uw achternaam?",
 	"validationNoPassword": "Wat is uw wachtwoord?",
 	"version": "Versie",
+	"viewChangelog": "Bekijk changelog",
+	"viewOnGithub": "Bekijk op Github",
 	"welcomeToTheGenerator": "Welkom bij de generator!",
 	"yes": "Ja",
 	"yourAccount": "Uw gebruikersnaam",
-	"yourUserAccount": "Uw gebruikersaccount",
-
-  "viewChangelog": "Bekijk changelog",
-  "viewOnGithub": "Bekijk op Github"
-
+	"yourUserAccount": "Uw gebruikersaccount"
 }
