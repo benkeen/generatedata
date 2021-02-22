@@ -16,7 +16,7 @@ import * as coreUtils from '~utils/coreUtils';
 import C from '../constants';
 import { Tooltip } from '~components/tooltips';
 import { getPercentageLabel } from './generation.helpers';
-import Engine from './Engine.component';
+import Engine from './Engine.container';
 
 export type ActivityPanelProps = {
 	visible: boolean;
@@ -28,8 +28,6 @@ export type ActivityPanelProps = {
 	onAbort: () => void;
 	onDownload: () => void;
 	onChangeSpeed: (speed: number) => void;
-	workerResources: any;
-	logDataBatch: (numGeneratedRows: number, data: any) => void;
 	batchLoadTimes: object[];
 	dataSize: string;
 	estimatedSize: string;
@@ -40,8 +38,8 @@ export type ActivityPanelProps = {
 const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
-	visible, onClose, packet, onContinue, onPause, workerResources, logDataBatch, batchLoadTimes, onAbort,
-	onDownload, onChangeSpeed, dataSize, estimatedSize, estimatedTime, fullI18n
+	visible, onClose, packet, onContinue, onPause, batchLoadTimes, onAbort, onDownload, onChangeSpeed, dataSize,
+	estimatedSize, estimatedTime, fullI18n
 }: ActivityPanelProps): any => {
 	if (packet === null || fullI18n === null) {
 		return null;
@@ -50,6 +48,8 @@ const ActivityPanel = ({
 	const coreI18n = fullI18n.core;
 	const { isPaused, config, dataTypeWorkerId, numGeneratedRows, speed } = packet;
 	const { numRowsToGenerate } = config;
+
+	console.log(packet);
 
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
@@ -227,12 +227,7 @@ const ActivityPanel = ({
 					</Dialog>
 				)}
 			</Measure>
-			<Engine
-				fullI18n={fullI18n}
-				packet={packet}
-				workerResources={workerResources}
-				logDataBatch={logDataBatch}
-			/>
+			<Engine />
 		</>
 	);
 };

@@ -9,7 +9,7 @@ import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { ErrorTooltip } from '~components/tooltips';
 // import { MediumSpinner } from '~components/loaders/loaders';
-// import Engine from './Engine.component';
+import Engine from './Engine.container';
 
 export type GenerationSettingsProps = {
 	visible: boolean;
@@ -20,11 +20,11 @@ export type GenerationSettingsProps = {
 	i18n: any;
 	stripWhitespace: boolean;
 	onToggleStripWhitespace: () => void;
+	workerResources: any;
 };
 
 const GenerationPanel = ({
-	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onToggleStripWhitespace,
-	onGenerate
+	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onToggleStripWhitespace, onGenerate
 }: GenerationSettingsProps): JSX.Element => {
 	let error = '';
 	if (!numRowsToGenerate) {
@@ -33,59 +33,79 @@ const GenerationPanel = ({
 		error = getI18nString(i18n.overMaxAnonRows, [getFormattedNum(env.maxDemoModeRows)]);
 	}
 
-	/*
-	<div className={styles.generationOverlayBg} />
-	<div className={styles.generationOverlay}>
-		<MediumSpinner style={{ margin: 15 }} />
-		<div className={styles.generationLabel}>
-			Generated <b>100</b> / <b>1000</b>
-		</div>
-	</div>
-	*/
+	const getEngine = (): JSX.Element | null => {
+		if (!visible) {
+			return null;
+		}
+
+		return (
+			<Engine />
+		);
+	};
+
+	const getGenerationOverlay = (): JSX.Element | null => {
+		return null;
+
+		// return (
+		// 	<>
+		// 		<div className={styles.generationOverlayBg} />
+		// 		<div className={styles.generationOverlay}>
+		// 			<MediumSpinner style={{ margin: 15 }} />
+		// 			<div className={styles.generationLabel}>
+		// 				Generated <b>100</b> / <b>1000</b>
+		// 			</div>
+		// 		</div>
+		// 	</>
+		// );
+	};
 
 	return (
-		<Dialog onClose={onClose} open={visible}>
-			<div style={{ width: 400 }}>
-				<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
-				<DialogContent dividers className={styles.generationSettingsContent}>
-					<div className={`${styles.row} ${styles.generationRow}`}>
-						{i18n.generate}
-						<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
-							<NumberFormat
-								className={error ? sharedStyles.errorField : ''}
-								value={numRowsToGenerate}
-								displayType="input"
-								autoFocus
-								thousandSeparator={true}
-								onValueChange={({ value }): void => onChangeNumRowsToGenerate(parseInt(value, 10))}
+		<>
+			<Dialog onClose={onClose} open={visible}>
+				<div style={{ width: 400 }}>
+					<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
+					<DialogContent dividers className={styles.generationSettingsContent}>
+						{getGenerationOverlay()}
+						<div className={`${styles.row} ${styles.generationRow}`}>
+							{i18n.generate}
+							<ErrorTooltip title={error} arrow disableHoverListener={!error} disableFocusListener={!error}>
+								<NumberFormat
+									className={error ? sharedStyles.errorField : ''}
+									value={numRowsToGenerate}
+									displayType="input"
+									autoFocus
+									thousandSeparator={true}
+									onValueChange={({ value }): void => onChangeNumRowsToGenerate(parseInt(value, 10))}
+								/>
+							</ErrorTooltip>
+							{i18n.rows}
+						</div>
+						<div className={styles.row} style={{ marginBottom: 16 }}>
+							<input
+								type="checkbox"
+								id="stripWhitespace"
+								checked={stripWhitespace}
+								onChange={onToggleStripWhitespace}
 							/>
-						</ErrorTooltip>
-						{i18n.rows}
-					</div>
-					<div className={styles.row} style={{ marginBottom: 16 }}>
-						<input
-							type="checkbox"
-							id="stripWhitespace"
-							checked={stripWhitespace}
-							onChange={onToggleStripWhitespace}
-						/>
-						<label htmlFor="stripWhitespace">{i18n.stripWhitespace}</label>
-					</div>
-				</DialogContent>
-				<DialogActions>
-					<Button
-						onClick={onClose}
-						color="default">{i18n.cancel}</Button>
-					<Button
-						type="submit"
-						onClick={onGenerate}
-						color="primary"
-						disabled={!!error}
-						disableElevation
-						variant="contained">{i18n.generate}</Button>
-				</DialogActions>
-			</div>
-		</Dialog>
+							<label htmlFor="stripWhitespace">{i18n.stripWhitespace}</label>
+						</div>
+					</DialogContent>
+					<DialogActions>
+						<Button
+							onClick={onClose}
+							color="default">{i18n.cancel}</Button>
+						<Button
+							type="submit"
+							onClick={onGenerate}
+							color="primary"
+							disabled={!!error}
+							disableElevation
+							variant="contained">{i18n.generate}</Button>
+					</DialogActions>
+				</div>
+			</Dialog>
+			{getEngine()}
+		</>
 	);
 };
 

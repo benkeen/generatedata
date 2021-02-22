@@ -4,9 +4,7 @@ import * as packetActions from '../store/packets/packets.actions';
 import * as selectors from '../store/generator/generator.selectors';
 import * as packetSelectors from '../store/packets/packets.selectors';
 import ActivityPanel, { ActivityPanelProps } from './ActivityPanel.component';
-import * as coreUtils from '~utils/coreUtils';
 import { GDAction } from '~types/general';
-import { getCountryData } from '~utils/countryUtils';
 
 const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: string | null } => {
 	const packet = packetSelectors.getCurrentPacket(state);
@@ -19,18 +17,10 @@ const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: 
 		batchLoadTimes: packetSelectors.getBatchLoadTimes(state),
 		dataSize: packetSelectors.getGeneratedDataSizeLabel(state),
 		estimatedSize: packetSelectors.getEstimatedDataSize(state),
-		estimatedTime: packetSelectors.getEstimatedTime(state),
-		workerResources: {}
+		estimatedTime: packetSelectors.getEstimatedTime(state)
 	};
 
 	if (packet !== null) {
-		props.workerResources = {
-			workerUtils: coreUtils.getWorkerUtils(),
-			exportTypes: coreUtils.getExportTypeWorkerMap(selectors.getLoadedExportTypes(state)),
-			dataTypes: coreUtils.getDataTypeWorkerMap(packet.config.dataTypes),
-			countryData: getCountryData()
-		};
-
 		props.loadTimeGraphDuration = packetSelectors.getLoadTimeDuration(state);
 	}
 
@@ -47,7 +37,6 @@ const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): Activi
 	return {
 		...stateProps,
 		onClose: (): void => dispatch(packetActions.hideActivityPanel()),
-		logDataBatch: (numGenRows: number, dataStr: string): GDAction => dispatch(packetActions.logDataBatch(packetId, numGenRows, dataStr)),
 		onPause: (): GDAction => dispatch(packetActions.pauseGeneration(packetId)),
 		onContinue: (): GDAction => dispatch(packetActions.continueGeneration(packetId)),
 		onAbort: (): GDAction => dispatch(packetActions.abortGeneration(packetId)),

@@ -11,7 +11,8 @@ export type EngineProps = {
 	logDataBatch: (numGeneratedRows: number, data: any) => void;
 };
 
-// this component does the actual work of generating the data and populating the store
+// this component does the actual work of generating the data and populating the store. It doesn't have a DOM presence,
+// it's just done this way to utilize the lifecycle methods (node-friendly for npm package? I think so...)
 const Engine = ({ packet, workerResources, logDataBatch, fullI18n }: EngineProps): any => {
 	if (packet === null || fullI18n === null) {
 		return null;
