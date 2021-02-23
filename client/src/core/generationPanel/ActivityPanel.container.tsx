@@ -5,12 +5,14 @@ import * as selectors from '../store/generator/generator.selectors';
 import * as packetSelectors from '../store/packets/packets.selectors';
 import ActivityPanel, { ActivityPanelProps } from './ActivityPanel.component';
 import { GDAction } from '~types/general';
+import C from '../constants';
 
 const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: string | null } => {
 	const packet = packetSelectors.getCurrentPacket(state);
+	const largePacketSize = !!packet && packet.config.numRowsToGenerate > C.SMALL_GENERATION_COUNT;
 
 	const props: Partial<ActivityPanelProps> & { packetId: string | null } = {
-		visible: packetSelectors.isGenerating(state),
+		visible: largePacketSize && packetSelectors.isGenerating(state),
 		fullI18n: selectors.getI18n(state),
 		packet,
 		packetId: packetSelectors.getCurrentPacketId(state),

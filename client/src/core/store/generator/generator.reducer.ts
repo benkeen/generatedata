@@ -9,6 +9,7 @@ import { ExportSettingsTab } from '../../generator/exportSettings/ExportSettings
 import { DataTypeFolder, ExportTypeFolder, exportTypes, dataTypes } from '../../../../_plugins';
 import { GeneratorLayout } from '../../generator/Generator.component';
 import env from '../../../../_env';
+import C from '../../constants';
 
 export type DataRow = {
 	id: string;
@@ -364,8 +365,12 @@ export const reducer = produce((draft: GeneratorState, action: AnyAction) => {
 			draft.initialDependenciesLoaded = true;
 			break;
 
+		// only hide the generation settings panel for larger packet sizes. For smaller sizes, just show the spinner
+		// overlay
 		case packetActions.START_GENERATION:
-			draft.showGenerationSettingsPanel = false;
+			if (action.payload.numRowsToGenerate > C.SMALL_GENERATION_COUNT) {
+				draft.showGenerationSettingsPanel = false;
+			}
 			break;
 
 		case accountActions.SET_CURRENT_DATA_SET:

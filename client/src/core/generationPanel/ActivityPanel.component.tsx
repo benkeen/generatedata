@@ -49,8 +49,6 @@ const ActivityPanel = ({
 	const { isPaused, config, dataTypeWorkerId, numGeneratedRows, speed } = packet;
 	const { numRowsToGenerate } = config;
 
-	console.log(packet);
-
 	const [dimensions, setDimensions] = React.useState<any>({ height: 0, width: 0 });
 	const prevGeneratedRows = usePrevious(numGeneratedRows);
 	const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);

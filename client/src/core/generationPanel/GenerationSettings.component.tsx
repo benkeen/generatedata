@@ -8,11 +8,12 @@ import { getFormattedNum } from '~utils/numberUtils';
 import styles from './ActivityPanel.scss';
 import sharedStyles from '../../styles/shared.scss';
 import { ErrorTooltip } from '~components/tooltips';
-// import { MediumSpinner } from '~components/loaders/loaders';
+import { MediumSpinner } from '~components/loaders/loaders';
 import Engine from './Engine.container';
 
 export type GenerationSettingsProps = {
 	visible: boolean;
+	isGenerating: boolean;
 	onChangeNumRowsToGenerate: (numRows: number) => void;
 	onClose: () => void;
 	onGenerate: () => void;
@@ -24,7 +25,8 @@ export type GenerationSettingsProps = {
 };
 
 const GenerationPanel = ({
-	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onToggleStripWhitespace, onGenerate
+	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onToggleStripWhitespace,
+	onGenerate, isGenerating
 }: GenerationSettingsProps): JSX.Element => {
 	let error = '';
 	if (!numRowsToGenerate) {
@@ -34,7 +36,7 @@ const GenerationPanel = ({
 	}
 
 	const getEngine = (): JSX.Element | null => {
-		if (!visible) {
+		if (!visible || !isGenerating) {
 			return null;
 		}
 
@@ -44,19 +46,21 @@ const GenerationPanel = ({
 	};
 
 	const getGenerationOverlay = (): JSX.Element | null => {
-		return null;
+		if (!isGenerating) {
+			return null;
+		}
 
-		// return (
-		// 	<>
-		// 		<div className={styles.generationOverlayBg} />
-		// 		<div className={styles.generationOverlay}>
-		// 			<MediumSpinner style={{ margin: 15 }} />
-		// 			<div className={styles.generationLabel}>
-		// 				Generated <b>100</b> / <b>1000</b>
-		// 			</div>
-		// 		</div>
-		// 	</>
-		// );
+		return (
+			<>
+				<div className={styles.generationOverlayBg} />
+				<div className={styles.generationOverlay}>
+					<MediumSpinner style={{ margin: 15 }} />
+					<div className={styles.generationLabel}>
+						Generated <b>100</b> / <b>1000</b>
+					</div>
+				</div>
+			</>
+		);
 	};
 
 	return (
@@ -98,9 +102,12 @@ const GenerationPanel = ({
 							type="submit"
 							onClick={onGenerate}
 							color="primary"
-							disabled={!!error}
+							disabled={!!error || isGenerating}
 							disableElevation
-							variant="contained">{i18n.generate}</Button>
+							variant="contained"
+						>
+							{i18n.generate}
+						</Button>
 					</DialogActions>
 				</div>
 			</Dialog>

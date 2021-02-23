@@ -29,6 +29,8 @@ const Engine = ({ packet, workerResources, logDataBatch, fullI18n }: EngineProps
 			return;
 		}
 
+		console.log("!", numGeneratedRows);
+
 		dataTypeWorker.postMessage({
 			action: 'generate',
 			numResults: numRowsToGenerate,
