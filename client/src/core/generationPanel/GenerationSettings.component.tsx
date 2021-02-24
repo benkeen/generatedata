@@ -13,6 +13,7 @@ import Engine from './Engine.container';
 import { DataPacket } from '~store/packets/packets.reducer';
 import C from '~core/constants';
 import * as coreUtils from '~utils/coreUtils';
+import CheckIcon from '@material-ui/icons/Check';
 
 export type GenerationSettingsProps = {
 	visible: boolean;
@@ -62,7 +63,8 @@ const GenerationSettingsPanel = ({
 			return (
 				<>
 					<div className={styles.generationOverlayBg} />
-					<div>
+					<div className={styles.generationComplete}>
+						<CheckIcon fontSize="large" />
 						Data generated.
 					</div>
 				</>
