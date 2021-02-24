@@ -6,12 +6,14 @@ import * as selectors from '../store/generator/generator.selectors';
 import GenerationSettings, { GenerationSettingsProps } from './GenerationSettings.component';
 import C from '~core/constants';
 import * as packetSelectors from '~store/packets/packets.selectors';
+import { GDAction } from '~types/general';
 
 const mapStateToProps = (state: any, ownProps: Partial<GenerationSettingsProps>): Partial<GenerationSettingsProps> => {
 	const packet = packetSelectors.getCurrentPacket(state);
 	const largePacketSize = !!packet && packet.config.numRowsToGenerate > C.SMALL_GENERATION_COUNT;
 
 	return {
+		packet,
 		visible: selectors.isGenerationSettingsPanelVisible(state),
 		isGenerating: !largePacketSize && packetSelectors.isGenerating(state),
 		i18n: selectors.getCoreI18n(state),
@@ -21,14 +23,30 @@ const mapStateToProps = (state: any, ownProps: Partial<GenerationSettingsProps>)
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): Partial<GenerationSettingsProps> => ({
-	onClose: (): Action => dispatch(actions.hideStartGenerationPanel()),
-	onChangeNumRowsToGenerate: (numRows: number): Action => dispatch(actions.updateNumRowsToGenerate(numRows)),
-	onToggleStripWhitespace: (): Action => dispatch(actions.toggleStripWhitespace()),
-	onGenerate: (): Action => dispatch(packetActions.startGeneration())
-});
+const mapDispatchToProps = (dispatch: Dispatch): { dispatch: any } => ({ dispatch });
+
+const mergeProps = ({ packetId, ...stateProps }: any, { dispatch }: any): GenerationSettingsProps => {
+	const props = {
+		...stateProps,
+		onClose: (): Action => dispatch(actions.hideStartGenerationPanel()),
+		onChangeNumRowsToGenerate: (numRows: number): Action => dispatch(actions.updateNumRowsToGenerate(numRows)),
+		onToggleStripWhitespace: (): Action => dispatch(actions.toggleStripWhitespace()),
+		onGenerate: (): Action => dispatch(packetActions.startGeneration())
+	};
+
+	if (stateProps.packet === null) {
+		return props;
+	}
+
+	return {
+		...props,
+		onAbort: (): GDAction => dispatch(packetActions.abortGeneration(packetId)),
+		onDownload: (): any => dispatch(packetActions.promptToDownload()),
+	};
+};
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
+	mergeProps
 )(GenerationSettings);

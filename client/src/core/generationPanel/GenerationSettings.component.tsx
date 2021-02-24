@@ -10,13 +10,19 @@ import sharedStyles from '../../styles/shared.scss';
 import { ErrorTooltip } from '~components/tooltips';
 import { MediumSpinner } from '~components/loaders/loaders';
 import Engine from './Engine.container';
+import { DataPacket } from '~store/packets/packets.reducer';
+import C from '~core/constants';
+import * as coreUtils from '~utils/coreUtils';
 
 export type GenerationSettingsProps = {
 	visible: boolean;
+	packet: DataPacket | null;
 	isGenerating: boolean;
 	onChangeNumRowsToGenerate: (numRows: number) => void;
 	onClose: () => void;
 	onGenerate: () => void;
+	onAbort: () => void;
+	onDownload: () => void;
 	numRowsToGenerate: number;
 	i18n: any;
 	stripWhitespace: boolean;
@@ -24,9 +30,9 @@ export type GenerationSettingsProps = {
 	workerResources: any;
 };
 
-const GenerationPanel = ({
+const GenerationSettingsPanel = ({
 	visible, onClose, i18n, stripWhitespace, numRowsToGenerate, onChangeNumRowsToGenerate, onToggleStripWhitespace,
-	onGenerate, isGenerating
+	onGenerate, isGenerating, packet, onAbort, onDownload
 }: GenerationSettingsProps): JSX.Element => {
 	let error = '';
 	if (!numRowsToGenerate) {
@@ -46,8 +52,21 @@ const GenerationPanel = ({
 	};
 
 	const getGenerationOverlay = (): JSX.Element | null => {
-		if (!isGenerating) {
+		if (!isGenerating || !packet) {
 			return null;
+		}
+
+		const { numGeneratedRows } = packet;
+
+		if (packet.numGeneratedRows === numRowsToGenerate) {
+			return (
+				<>
+					<div className={styles.generationOverlayBg} />
+					<div>
+						Data generated.
+					</div>
+				</>
+			);
 		}
 
 		return (
@@ -56,18 +75,49 @@ const GenerationPanel = ({
 				<div className={styles.generationOverlay}>
 					<MediumSpinner style={{ margin: 15 }} />
 					<div className={styles.generationLabel}>
-						Generated <b>100</b> / <b>1000</b>
+						Generated <b>{numGeneratedRows}</b> / <b>{numRowsToGenerate}</b>
 					</div>
 				</div>
 			</>
 		);
 	};
 
+	let buttonLabel = i18n.generate;
+	let actionButtonClick = onGenerate;
+	let actionButtonDisabled = !!error || isGenerating;
+
+	if (packet) {
+		if (packet.numGeneratedRows === numRowsToGenerate) {
+			buttonLabel = i18n.download;
+			actionButtonClick = onDownload;
+			actionButtonDisabled = false;
+		}
+	}
+
+	const closeModal = (): void => {
+		if (packet) {
+			const { dataTypeWorkerId } = packet;
+			const dataTypeWorker = coreUtils.getDataTypeWorker(dataTypeWorkerId);
+
+			onAbort();
+			onClose();
+			dataTypeWorker.postMessage({ action: C.ACTIVITY_PANEL_ACTIONS.ABORT });
+			coreUtils.destroyDataTypeWorker(dataTypeWorkerId);
+		} else {
+			onClose();
+		}
+	};
+
+	let cancelButton: any = <Button onClick={closeModal} color="default">{i18n.cancel}</Button>;
+	if (packet && packet.numGeneratedRows === numRowsToGenerate) {
+		cancelButton = null;
+	}
+
 	return (
 		<>
 			<Dialog onClose={onClose} open={visible}>
 				<div style={{ width: 400 }}>
-					<DialogTitle onClose={onClose}>{i18n.generate}</DialogTitle>
+					<DialogTitle onClose={closeModal}>{i18n.generate}</DialogTitle>
 					<DialogContent dividers className={styles.generationSettingsContent}>
 						{getGenerationOverlay()}
 						<div className={`${styles.row} ${styles.generationRow}`}>
@@ -95,18 +145,16 @@ const GenerationPanel = ({
 						</div>
 					</DialogContent>
 					<DialogActions>
-						<Button
-							onClick={onClose}
-							color="default">{i18n.cancel}</Button>
+						{cancelButton}
 						<Button
 							type="submit"
-							onClick={onGenerate}
+							onClick={actionButtonClick}
 							color="primary"
-							disabled={!!error || isGenerating}
+							disabled={actionButtonDisabled}
 							disableElevation
 							variant="contained"
 						>
-							{i18n.generate}
+							{buttonLabel}
 						</Button>
 					</DialogActions>
 				</div>
@@ -116,4 +164,4 @@ const GenerationPanel = ({
 	);
 };
 
-export default GenerationPanel;
+export default GenerationSettingsPanel;

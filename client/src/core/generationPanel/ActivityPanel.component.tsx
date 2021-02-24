@@ -78,14 +78,8 @@ const ActivityPanel = ({
 	}
 
 	const marks = [
-		{
-			value: 0,
-			label: coreI18n.seriouslySlow
-		},
-		{
-			value: 100,
-			label: coreI18n.cpuMeltinglyFast
-		}
+		{ value: 0, label: coreI18n.seriouslySlow },
+		{ value: 100, label: coreI18n.cpuMeltinglyFast }
 	];
 
 	const getActionButtons = (): JSX.Element => {
