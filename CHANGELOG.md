@@ -12,6 +12,11 @@ Right now it's in early alpha. The current goals are:
 
 The next phase will be adding in the backend: user accounts, saving data sets and so on. 
 
+- `4.0.0-alpha-20210224`:
+    - Assorted lib updates.
+- `4.0.0-alpha-20210223`:
+    - Improved generation settings panel.
+    - i18n fixes.
 - `4.0.0-alpha-20201111`:
     - Chilean RUT number, PIN and CVV Data Types added.
     - Fixed/Random Number of Words Data Types expanded to allow providing your own text as word source.
