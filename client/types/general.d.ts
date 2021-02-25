@@ -55,7 +55,7 @@ export type GenerationSettings = {
 
 export type GDAction = {
 	type: string;
-	payload?: any
+	payload?: any;
 	triggeredByInterceptor?: boolean;
 };
 
@@ -91,3 +91,8 @@ export type TourProps = {
 	accentColor: string;
 	className: string;
 };
+
+export const enum GenerationActivityPanel {
+	small = 'small',
+	large = 'large'
+}

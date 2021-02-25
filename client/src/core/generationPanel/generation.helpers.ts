@@ -1,5 +1,6 @@
-import { ColumnData } from '~types/general';
+import { ColumnData, GenerationActivityPanel } from '~types/general';
 import { affectedDataTypes } from '~utils/dataTypeUtils';
+import C from '../constants';
 
 export const getPercentageLabel = (percentage: number, numRowsToGenerate: number): string => {
 	let decimalPlaces = 0;
@@ -154,4 +155,9 @@ export const getUnchangedData = (idsToRefresh: string[], columns: (ColumnData & 
 	});
 
 	return result;
+};
+
+
+export const getGenerationActivityPanel = (numRowsToGenerate: number): GenerationActivityPanel => {
+	return (numRowsToGenerate > C.SMALL_GENERATION_COUNT) ? GenerationActivityPanel.large : GenerationActivityPanel.small;
 };

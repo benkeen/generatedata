@@ -4,12 +4,12 @@ import * as packetActions from '../store/packets/packets.actions';
 import * as selectors from '../store/generator/generator.selectors';
 import * as packetSelectors from '../store/packets/packets.selectors';
 import ActivityPanel, { ActivityPanelProps } from './ActivityPanel.component';
-import { GDAction } from '~types/general';
-import C from '../constants';
+import { GDAction, GenerationActivityPanel } from '~types/general';
+import { getGenerationActivityPanel } from '~core/generationPanel/generation.helpers';
 
 const mapStateToProps = (state: any): Partial<ActivityPanelProps> & { packetId: string | null } => {
 	const packet = packetSelectors.getCurrentPacket(state);
-	const largePacketSize = !!packet && packet.config.numRowsToGenerate > C.SMALL_GENERATION_COUNT;
+	const largePacketSize = !!packet && getGenerationActivityPanel(packet.config.numRowsToGenerate) === GenerationActivityPanel.large;
 
 	const props: Partial<ActivityPanelProps> & { packetId: string | null } = {
 		visible: largePacketSize && packetSelectors.isGenerating(state),
