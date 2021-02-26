@@ -1,31 +1,26 @@
 import * as React from 'react';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
+import CreatablePillField from '~components/creatablePillField/CreatablePillField';
 import { creditCardList, creditCardFormats } from './formats';
 
 export type PanState = {
 	example: string;
-	separator: string;
-	formats: string;
+	formats: string[];
 	randomBrands: string[];
 };
 
 export const initialState: PanState = {
 	example: 'mastercard',
-	separator: ' ',
-	formats: '',
+	formats: [],
 	randomBrands: []
 };
 
 export const getCreditCardOptions = (formats: string[], i18n: any): DropdownOption[] => {
 	return formats.map((format) => ({
-		value: format, label: i18n[format]
+		value: format,
+		label: i18n[format]
 	}));
-};
-
-export const getFormattedCreditCardFormats = (ccType: string, separator: string): string => {
-	// @ts-ignore-line
-	return creditCardFormats[ccType].formats.join('\n').replace(/ /g, separator);
 };
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): React.ReactNode => {
@@ -34,16 +29,22 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): React.ReactNo
 			...data,
 			example: value
 		};
+
+		console.log({ value });
+
 		if (value === 'rand_card') {
 			newData.randomBrands = creditCardList;
 		} else {
-			newData.formats = getFormattedCreditCardFormats(value, data.separator);
+			// @ts-ignore-line
+			newData.formats = creditCardFormats[value].formats;
 		}
 		onUpdate(newData);
 	};
 
+	console.log(creditCardList);
+
 	const options = getCreditCardOptions(creditCardList, i18n);
-	options.push({ value: 'rand_card', label: i18n.rand_card });
+	options.push({ value: 'rand_card', label: i18n.randCard });
 
 	return (
 		<Dropdown
@@ -64,34 +65,16 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): React.ReactNo
 		});
 	};
 
-	const onChangeSeparator = (separator: string): void => {
-		const newData = {
-			...data,
-			separator
-		};
-		if (data.example !== 'rand_data') {
-			newData.formats = getFormattedCreditCardFormats(data.example, separator);
-		}
-		onUpdate(newData);
-	};
-
 	const getCCFormats = (): JSX.Element | null => {
 		if (data.example === 'rand_card') {
 			return null;
 		}
+
 		return (
-			<div>
-				{i18n.ccformats}
-				<textarea
-					title={i18n.format_title}
-					style={{ height: 80, width: '100%' }}
-					value={data.formats}
-					onChange={(e: any): void => onUpdate({
-						...data,
-						formats: e.target.value
-					})}
-				/>
-			</div>
+			<CreatablePillField
+				value={data.formats}
+				onChange={(formats: any): void => onUpdate({ ...data, formats })}
+			/>
 		);
 	};
 
@@ -101,7 +84,6 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): React.ReactNo
 		}
 		const selected = getCreditCardOptions(data.randomBrands, i18n);
 
-		// title={i18n.rand_brand_title} style={{ height: 100, width: '100%' }}
 		return (
 			<Dropdown
 				isMulti
@@ -117,16 +99,6 @@ export const Options = ({ data, i18n, onUpdate }: DTOptionsProps): React.ReactNo
 
 	return (
 		<>
-			<div style={{ marginBottom: 4 }}>
-				<span>{i18n.separators}</span>
-				<input
-					type="text"
-					style={{ width: 30 }}
-					value={data.separator}
-					title={i18n.separator_help}
-					onChange={(e: any): void => onChangeSeparator(e.target.value)}
-				/>
-			</div>
 			{getCCFormats()}
 			{getRandomOptions()}
 		</>
@@ -138,7 +110,7 @@ export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<p dangerouslySetInnerHTML={{ __html: `${i18n.DESC} ${i18n.panHelpIntro}` }} />
 );
 
-
+ 
 // var _validate = function(rows) {
 // 	var cardTypeProblemVisibleRows = [];
 // 	var cardTypeProblemFields      = [];

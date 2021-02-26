@@ -27,7 +27,6 @@ const webWorkerMap = {
 	workerUtils: '',
 	dataTypes: {},
 	exportTypes: {}
-	// countries: {}
 };
 
 module.exports = function (grunt) {
@@ -114,22 +113,6 @@ window.gd.localeLoaded(i18n);
 		return map;
 	})();
 
-	// const countryWebWorkerMap = (() => {
-	// 	const baseFolder = path.join(__dirname, `/src/plugins/countries`);
-	// 	const folders = fs.readdirSync(baseFolder);
-	//
-	// 	const map = {};
-	// 	folders.forEach((folder) => {
-	// 		const webworkerFile = path.join(__dirname, `/src/plugins/countries/${folder}/bundle.ts`);
-	// 		if (!fs.existsSync(webworkerFile)) {
-	// 			return;
-	// 		}
-	// 		map[`dist/workers/C-${folder}.js`] = [`src/plugins/countries/${folder}/bundle.ts`];
-	// 	});
-	//
-	// 	return map;
-	// })();
-
 	const webWorkerFileListWithType = [
 		{ file: 'src/core/generator/dataTypes.worker.ts', type: 'core' },
 		{ file: 'src/core/generator/exportTypes.worker.ts', type: 'core' },
@@ -141,9 +124,6 @@ window.gd.localeLoaded(i18n);
 	Object.values(exportTypeWebWorkerMap).forEach((et) => {
 		webWorkerFileListWithType.push({ file: et[0], type: 'exportType' });
 	});
-	// Object.values(countryWebWorkerMap).forEach((c) => {
-	// 	webWorkerFileListWithType.push({ file: c[0], type: 'country' });
-	// });
 
 	const webWorkerFileList = webWorkerFileListWithType.map((i) => i.file);
 
@@ -181,7 +161,6 @@ window.gd.localeLoaded(i18n);
 	//      Plugins (e.g.):
 	//          __hash-DT-Alphanumeric.generator
 	//          __hash-ET-JSON.generator
-	//          __hash-C-Pakistan.generator
 	//
 	//      Core workers:
 	//          __hash-core.worker

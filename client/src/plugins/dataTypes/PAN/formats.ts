@@ -37,6 +37,7 @@ export const creditCardList = [
 	'dinersClubEnRoute', 'jcb', 'maestro', 'solo', 'switch', 'laser'
 ];
 
+
 export const creditCardFormats = {
 	visa: {
 		prefix: [4539, 4556, 4916, 4532, 4929, 40240071, 4485, 4716, 4],

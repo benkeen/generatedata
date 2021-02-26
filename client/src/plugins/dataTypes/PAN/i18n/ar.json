@@ -12,5 +12,19 @@
   "randBrandTitle": "The selected brand's card length and format are picked randomly.",
   "length": "Length:",
   "separators": "Separators:",
-  "ccformats": "Credit Card Format(s):"
+  "ccformats": "Credit Card Format(s):",
+
+  "mastercard": "Mastercard",
+  "visa": "Visa",
+  "visaElectron": "Visa Electron",
+  "amex": "American Express",
+  "discover": "Discover",
+  "carteBlanche": "Carte Blanche",
+  "dinersClubInt": "Diners Club International",
+  "dinersClubEnRoute": "Diners Club enRoute",
+  "jcb": "JCB",
+  "maestro": "Maestro",
+  "solo": "Solo",
+  "switch": "Switch",
+  "laser": "Laser"
 }

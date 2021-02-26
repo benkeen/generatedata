@@ -75,7 +75,7 @@ export const dataTypes = {
 
 export type DataTypeFolder = keyof typeof dataTypes;
 
-export const blacklistedDataTypeFolders = ['_NamesRegional','_PhoneRegional','OrganizationNumber','PAN','PersonalNumber','SIRET','Track1','Track2'];
+export const blacklistedDataTypeFolders = ['_NamesRegional','_PhoneRegional','OrganizationNumber','PersonalNumber','SIRET','Track1','Track2'];
 
 import CSV from './src/plugins/exportTypes/CSV/config';
 import CSharp from './src/plugins/exportTypes/CSharp/config';

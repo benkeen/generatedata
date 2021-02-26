@@ -124,12 +124,18 @@ export const getEstimatedTime = createSelector(
 	}
 );
 
-// export const getRemainingTime = createSelector(
-// 	getCurrentPacket,
-// 	(packet) => {
-// 		// const remainingRows = packet.config.numRowsToGenerate - packet.numGeneratedRows;
-// 	}
-// );
+export const getEstimatedTimeRemaining = createSelector(
+	getCurrentPacket,
+	(packet) => {
+		if (!packet) {
+			return '-';
+		}
+		const timeInMs = packet.stats.averageSpeed * (packet.config.numRowsToGenerate / C.GENERATION_BATCH_SIZE);
+		return formatDuration(timeInMs / 1000);
+
+		// const remainingRows = packet.config.numRowsToGenerate - packet.numGeneratedRows;
+	}
+);
 
 export const getCompletedDataString = createSelector(
 	getCurrentPacket,

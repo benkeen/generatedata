@@ -32,6 +32,7 @@ export type ActivityPanelProps = {
 	dataSize: string;
 	estimatedSize: string;
 	estimatedTime: string;
+	estimatedTimeRemaining: string;
 	loadTimeGraphDuration: LoadTimeGraphDuration;
 };
 
@@ -39,7 +40,7 @@ const valueLabelFormat = (value: number): string => `${value}%`;
 
 const ActivityPanel = ({
 	visible, onClose, packet, onContinue, onPause, batchLoadTimes, onAbort, onDownload, onChangeSpeed, dataSize,
-	estimatedSize, estimatedTime, fullI18n
+	estimatedSize, estimatedTime, estimatedTimeRemaining, fullI18n
 }: ActivityPanelProps): any => {
 	if (packet === null || fullI18n === null) {
 		return null;
@@ -180,7 +181,7 @@ const ActivityPanel = ({
 												</div>
 												<div className={styles.dataRow}>
 													<div className={styles.dataRowLabel}>Remaining time:</div>
-													<div className={styles.dataRowValue} />
+													<div className={styles.dataRowValue}>{estimatedTimeRemaining}</div>
 												</div>
 												<div className={styles.dataRow}>
 													<div className={styles.dataRowLabel}>Estimated size:</div>
