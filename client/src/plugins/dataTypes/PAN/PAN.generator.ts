@@ -1,20 +1,55 @@
-import { DTMetadata, DTGenerateResult } from '~types/dataTypes';
+import { DTMetadata, DTGenerateResult, DTOnMessage, DTGenerationData } from '~types/dataTypes';
 // import { creditCardFormats } from './formats';
 // import { getRandomArrayValue } from '../../../utils/randomUtils';
 import { PanState } from './PAN';
 
 
-export const rowStateReducer = ({ formats, example }: PanState): any => ({
-	formats,
+export const rowStateReducer = ({ cardFormats, example }: PanState): any => ({
+	cardFormats,
 	ccCard: example
 });
 
-// data: GenerationData
-export const generate = (): DTGenerateResult => {
+export const generate = (data: DTGenerationData): DTGenerateResult => {
+	// console.log(data);
+
 	// creditCardFormats[data.example]
+	//
+	// if ($options["cc_brand"] == "rand_card") {
+	// 	$options = $this->setRandomCardInfo($options);
+	// }
+
+	// this just gets a random length of the format..
+	// $ccLength    = self::getRandomPANLength($options["cc_length"]);
+
+	// boy this is bad code. Looks lke this then returns the random format itself
+	// $ccFormat    = self::getRandomPANFormat($options["cc_format"], $ccLength);
+
+	// nope. Removed.
+	// $ccSeparator = self::getRandomPANSeparator($options["cc_separator"]);
+	//
+	// $ccData = self::getCreditCardData($options["cc_brand"]);
+	// $card = self::generateCreditCardNumber($ccData["prefix"], $ccLength);
+	// $cardNumber = $this->convertFormat($ccLength, $ccFormat, $ccSeparator, $card);
+	//
+	// if (empty($cardNumber)) {
+	// 	$cardNumber = "$ccLength, $ccFormat, {$options["cc_brand"]}, {$options["cc_format"]}";
+	// }
+
 
 	return { display: '' };
 };
+
+
+let utilsLoaded = false;
+export const onmessage = (e: DTOnMessage) => {
+	if (!utilsLoaded) {
+		importScripts(e.data.workerResources.workerUtils);
+		utilsLoaded = true;
+	}
+
+	postMessage(generate(e.data));
+};
+
 
 /*
 	public function __construct($runtimeContext) {
@@ -166,22 +201,22 @@ export const generate = (): DTGenerateResult => {
 		return $chosenSep;
 	}
 
-	private static function getRandomPANLength($userSelectedLength) {
-		// if there's more than 1 card length then pick a random one
-		if ($userSelectedLength == "12-19") {
-			$userSelectedLength = "12,13,14,15,16,17,18,19";
-		} else if ($userSelectedLength == "16-19") {
-			$userSelectedLength = "16,17,18,19";
-		}
-
-		$lengths = explode(",", $userSelectedLength);
-		$chosenLength = 0;
-		if (count($lengths) >= 1) {
-			$chosenLength = $lengths[mt_rand(0, count($lengths)-1)];
-		}
-
-		return $chosenLength;
-	}
+	// private static function getRandomPANLength($userSelectedLength) {
+	// 	// if there's more than 1 card length then pick a random one
+	// 	if ($userSelectedLength == "12-19") {
+	// 		$userSelectedLength = "12,13,14,15,16,17,18,19";
+	// 	} else if ($userSelectedLength == "16-19") {
+	// 		$userSelectedLength = "16,17,18,19";
+	// 	}
+	//
+	// 	$lengths = explode(",", $userSelectedLength);
+	// 	$chosenLength = 0;
+	// 	if (count($lengths) >= 1) {
+	// 		$chosenLength = $lengths[mt_rand(0, count($lengths)-1)];
+	// 	}
+	//
+	// 	return $chosenLength;
+	// }
 
 	// --------------------------------------------------------------------------------------------
 	// Public functions
@@ -203,42 +238,45 @@ export const generate = (): DTGenerateResult => {
 	}
 */
 
-// const generateCreditCardNumber = (prefixList: string[], length: number) => {
+/*
+const generateCreditCardNumber = (prefixList: string[], length: number) => {
 
-// 	// why is this call ccNumber? It was a prefix...
-// 	const ccNumber = getRandomArrayValue(prefixList);
+	// why is this call ccNumber? It was a prefix...
+	const ccNumber = getRandomArrayValue(prefixList);
 
-// // generate digits
-// $count = strlen($ccNumber);
-// while ($count < ($length - 1)) {
-// 	$ccNumber .= mt_rand(0, 9);
-// 	$count++;
-// }
+	// generate digits
+	$count = strlen($ccNumber);
+	while ($count < ($length - 1)) {
+		$ccNumber .= mt_rand(0, 9);
+		$count++;
+	}
 
-// // calculate sum
-// $sum = 0;
-// $pos = 0;
+	// calculate sum
+	$sum = 0;
+	$pos = 0;
 
-// $reversedCCnumber = strrev($ccNumber);
-// while ($pos < $length - 1) {
-// 	$odd = $reversedCCnumber[$pos]*2;
-// 	if ($odd > 9) {
-// 		$odd -= 9;
-// 	}
-// 	$sum += $odd;
+	$reversedCCnumber = strrev($ccNumber);
+	while ($pos < $length - 1) {
+		$odd = $reversedCCnumber[$pos]*2;
+		if ($odd > 9) {
+			$odd -= 9;
+		}
+		$sum += $odd;
 
-// 	if ($pos != ($length - 2)) {
-// 		$sum += $reversedCCnumber[$pos+1];
-// 	}
-// 	$pos += 2;
-// }
+		if ($pos != ($length - 2)) {
+			$sum += $reversedCCnumber[$pos+1];
+		}
+		$pos += 2;
+	}
 
-// // calculate check digit
-// $checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
-// $ccNumber .= $checkDigit;
+	// calculate check digit
+	$checkDigit = ((floor($sum/10) + 1) * 10 - $sum) % 10;
+	$ccNumber .= $checkDigit;
 
-// return $ccNumber;
-// }
+	return $ccNumber;
+}
+*/
+
 
 export const getMetadata = (): DTMetadata => ({
 	sql: {
