@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
-import { creditCardFormats, CreditCardFormatType, CreditCardType, creditCardTypes } from './formats';
-import { cloneObj } from '~utils/generalUtils';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
-import styles from './PAN.scss';
-import { toSentenceCase } from '~utils/stringUtils';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
+import { cloneObj } from '~utils/generalUtils';
+import { toSentenceCase } from '~utils/stringUtils';
 import { getI18nString } from '~utils/langUtils';
+import { creditCardFormats, CreditCardFormatType, CreditCardType, creditCardTypes } from './formats';
+import styles from './PAN.scss';
 
 export type PanState = {
 	example: string;
@@ -105,8 +105,6 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
 
 	const updateFormats = (formats: string[]): void => {
 		setFormatError('');
-
-		// format the validation strings to convert lowercase x's to X's
 		const uppercaseFormats = formats.map((format) => format.replace(/x/g, 'X'));
 		onUpdateCardFormats(selectedCard, uppercaseFormats);
 	};
@@ -150,6 +148,36 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
 		);
 	};
 
+	const getFormatsSection = (): JSX.Element => {
+		if (!data.cardTypes.length) {
+			return (
+				<div className={styles.noCreditCards}>{i18n.noCreditCards}</div>
+			);
+		}
+
+		return (
+			<>
+				<div style={{ marginBottom: 6 }}>
+					<Dropdown
+						value={selectedCard}
+						options={getCreditCardOptions(data.cardTypes, i18n)}
+						onChange={({ value }: { value: CreditCardType }): void => selectCreditCard(value)}
+					/>
+				</div>
+
+				{getFormatDesc(selectedCard)}
+				{getFormatError()}
+
+				<CreatablePillField
+					value={selectedCard && data.cardFormats[selectedCard] ? data.cardFormats[selectedCard].formats : []}
+					onChange={(formats: string[]): void => updateFormats(formats)}
+					placeholder={i18n.enterFormats}
+					onValidateNewItem={(newFormat: string): boolean => validateFormat(newFormat)}
+				/>
+			</>
+		);
+	};
+
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
@@ -163,7 +191,7 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
 							options={getCreditCardOptions(creditCardTypes, i18n)}
 							closeMenuOnSelect={false}
 							onChange={(formats: any): void => {
-								onUpdateSelectedCards(formats.map(({ value }: DropdownOption) => value));
+								onUpdateSelectedCards(formats ? formats.map(({ value }: DropdownOption) => value) : []);
 							}}
 						/>
 					</div>
@@ -173,23 +201,7 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCard
 						{i18n.formatsDesc}
 					</p>
 
-					<div style={{ marginBottom: 6 }}>
-						<Dropdown
-							value={selectedCard}
-							options={getCreditCardOptions(data.cardTypes, i18n)}
-							onChange={({ value }: { value: CreditCardType }): void => selectCreditCard(value)}
-						/>
-					</div>
-
-					{getFormatDesc(selectedCard)}
-					{getFormatError()}
-
-					<CreatablePillField
-						value={selectedCard ? data.cardFormats[selectedCard].formats : []}
-						onChange={(formats: string[]): void => updateFormats(formats)}
-						placeholder={i18n.enterFormats}
-						onValidateNewItem={(newFormat: string): boolean => validateFormat(newFormat)}
-					/>
+					{getFormatsSection()}
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>

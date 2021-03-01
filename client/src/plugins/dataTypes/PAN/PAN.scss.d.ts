@@ -2,6 +2,7 @@ declare namespace PanScssNamespace {
   export interface IPanScss {
     buttonLabel: string;
     error: string;
+    noCreditCards: string;
     validLengthsTip: string;
   }
 }

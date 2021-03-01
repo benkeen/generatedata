@@ -13,12 +13,8 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	// console.log(data);
 
 	// creditCardFormats[data.example]
-	//
-	// if ($options["cc_brand"] == "rand_card") {
-	// 	$options = $this->setRandomCardInfo($options);
-	// }
 
-	// this just gets a random length of the format..
+	// this just gets a random length of the format
 	// $ccLength    = self::getRandomPANLength($options["cc_length"]);
 
 	// boy this is bad code. Looks lke this then returns the random format itself
@@ -34,7 +30,6 @@ export const generate = (data: DTGenerationData): DTGenerateResult => {
 	// if (empty($cardNumber)) {
 	// 	$cardNumber = "$ccLength, $ccFormat, {$options["cc_brand"]}, {$options["cc_format"]}";
 	// }
-
 
 	return { display: '' };
 };
