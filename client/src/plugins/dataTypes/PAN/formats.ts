@@ -44,7 +44,7 @@ for (const value in CreditCardType) {
 }
 
 export type CreditCardFormatType = {
-	[key in CreditCardType]: {
+	[key in CreditCardType]?: {
 		prefix: number[];
 		formats: string[];
 		validNumChars: number[];

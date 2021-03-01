@@ -10,10 +10,10 @@
 }
 
 input.errorField, textarea.errorField, select.errorField, button.errorField {
-	border: 1px solid #db0000;
+	border: 1px solid $error;
 
 	&:focus {
-		border: 1px solid #db0000;
+		border: 1px solid $error;
 	}
 }
 

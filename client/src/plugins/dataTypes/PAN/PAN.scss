@@ -1,3 +1,18 @@
+@import "../../../styles/variables";
+
 .buttonLabel {
 	margin-top: 4px;
+}
+
+.validLengthsTip {
+	b {
+		color: $primary-color;
+		font-weight: bold;
+	}
+	margin: 2px 0 6px;
+}
+
+.error {
+	color: $error;
+	padding: 2px 0 6px;
 }

@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { DTExampleProps, DTHelpProps, DTOptionsProps } from '~types/dataTypes';
 import Dropdown, { DropdownOption } from '~components/dropdown/Dropdown';
-import { creditCardFormats, CreditCardType, creditCardTypes } from './formats';
+import { creditCardFormats, CreditCardFormatType, CreditCardType, creditCardTypes } from './formats';
 import { cloneObj } from '~utils/generalUtils';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '~components/dialogs';
 import styles from './PAN.scss';
 import { toSentenceCase } from '~utils/stringUtils';
 import CreatablePillField from '~components/creatablePillField/CreatablePillField';
+import { getI18nString } from '~utils/langUtils';
 
 export type PanState = {
 	example: string;
 	cardTypes: CreditCardType[];
-	cardFormats: {
-		[key in CreditCardType]?: string[];
-	};
+	cardFormats: CreditCardFormatType;
 };
 
 export const initialState: PanState = {
@@ -23,12 +22,12 @@ export const initialState: PanState = {
 	cardFormats: cloneObj(creditCardFormats)
 };
 
-export const getCreditCardOptions = (formats: string[], i18n: any): DropdownOption[] => {
-	return formats.map((format) => ({
+export const getCreditCardOptions = (formats: string[], i18n: any): DropdownOption[] => (
+	formats.map((format) => ({
 		value: format,
 		label: i18n[format]
-	}));
-};
+	}))
+);
 
 export const Example = ({ i18n, data, onUpdate }: DTExampleProps): React.ReactNode => {
 	const onChange = (value: string): void => {
@@ -87,41 +86,77 @@ export const Example = ({ i18n, data, onUpdate }: DTExampleProps): React.ReactNo
 	);
 };
 
-const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, coreI18n, i18n }: any): JSX.Element => {
+const validFormat = (cardType: CreditCardType, format: string, allFormats: CreditCardFormatType): boolean => {
+	const validNumChars = allFormats[cardType]!.validNumChars;
+	const numChars = format.replace(/[^X]/gi, '').length;
+	return validNumChars.indexOf(numChars) !== -1;
+};
+
+const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, onUpdateCardFormats, coreI18n, i18n }: any): JSX.Element => {
 	const [selectedCard, setSelectedCard] = useState<CreditCardType | null>(null);
-	const [selectedCardFormats, setSelectedCardFormats] = useState<string[]>([]);
+	const [formatError, setFormatError] = useState('');
 
 	useEffect(() => {
 		if (data.cardTypes.indexOf(selectedCard) === -1) {
 			const firstCard = data.cardTypes[0] as CreditCardType;
 			setSelectedCard(firstCard);
-			setSelectedCardFormats(creditCardFormats[firstCard].formats);
 		}
 	}, [data.cardTypes.length]);
 
-	const updateFormats = (formats: string[]) => {
+	const updateFormats = (formats: string[]): void => {
+		setFormatError('');
 
+		// format the validation strings to convert lowercase x's to X's
+		const uppercaseFormats = formats.map((format) => format.replace(/x/g, 'X'));
+		onUpdateCardFormats(selectedCard, uppercaseFormats);
+	};
+
+	const validateFormat = (format: string): boolean => {
+		const isValid = validFormat(selectedCard as CreditCardType, format, creditCardFormats);
+		if (!isValid) {
+			setFormatError(i18n.invalidNewFormat);
+		}
+		return isValid;
 	};
 
 	const selectCreditCard = (creditCard: CreditCardType): void => {
 		setSelectedCard(creditCard);
-		setSelectedCardFormats(creditCardFormats[creditCard].formats);
 	};
 
-	let formatDesc = '';
-	if (i18n[selectedCard as string]) {
-		formatDesc = i18n[selectedCard as string];
-	}
+	const getFormatDesc = (creditCard: CreditCardType | null): JSX.Element | null => {
+		if (!creditCard) {
+			return null;
+		}
+
+		const validLengths = creditCardFormats[creditCard]!.validNumChars;
+		const i18nKey = (validLengths.length === 1) ? i18n.validCardNumberSingleLength : i18n.validCardNumberMultipleLengths;
+
+		const text = getI18nString(i18nKey, [
+			`<b>${i18n[creditCard]}</b>`,
+			validLengths.map((length, index) => `<b key=${index}>${length}</b>`).join(', ')
+		]);
+
+		return (
+			<div className={styles.validLengthsTip} dangerouslySetInnerHTML={{ __html: text }} />
+		);
+	};
+
+	const getFormatError = (): JSX.Element | null => {
+		if (!formatError) {
+			return null;
+		}
+		return (
+			<div className={styles.error}>{formatError}</div>
+		);
+	};
 
 	return (
 		<Dialog onClose={onClose} open={visible}>
 			<div style={{ width: 500 }}>
-				<DialogTitle onClose={onClose}>Select credit cards</DialogTitle>
+				<DialogTitle onClose={onClose}>{i18n.selectCreditCards}</DialogTitle>
 				<DialogContent dividers>
-
 					<div style={{ marginBottom: 16 }}>
 						<h3>{toSentenceCase(i18n.creditCards)}</h3>
-
 						<Dropdown
 							isMulti
 							value={data.cardTypes}
@@ -135,28 +170,26 @@ const PANDialog = ({ visible, data, onClose, onUpdateSelectedCards, coreI18n, i1
 
 					<h3>{i18n.formats}</h3>
 					<p>
-						This lets you customize the <i>formats</i> of each credit card you have selected above. You
-						can add your own formats, using whatever character delimiter you like - as long as the number
-						of "X"s (automatically converted to numbers) you enter is valid for that credit card type.
+						{i18n.formatsDesc}
 					</p>
 
 					<div style={{ marginBottom: 6 }}>
 						<Dropdown
 							value={selectedCard}
 							options={getCreditCardOptions(data.cardTypes, i18n)}
-							onChange={({ value }: { value: CreditCardType }) => selectCreditCard(value)}
+							onChange={({ value }: { value: CreditCardType }): void => selectCreditCard(value)}
 						/>
 					</div>
 
-					{formatDesc}
+					{getFormatDesc(selectedCard)}
+					{getFormatError()}
 
 					<CreatablePillField
-						value={selectedCardFormats}
-						onChange={(formats: string[]) => updateFormats(formats)}
-						placeholder="Enter credit card formats"
-						error=""
+						value={selectedCard ? data.cardFormats[selectedCard].formats : []}
+						onChange={(formats: string[]): void => updateFormats(formats)}
+						placeholder={i18n.enterFormats}
+						onValidateNewItem={(newFormat: string): boolean => validateFormat(newFormat)}
 					/>
-
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={onClose} color="primary" variant="outlined">{coreI18n.close}</Button>
@@ -171,9 +204,32 @@ export const Options = ({ data, i18n, coreI18n, onUpdate }: DTOptionsProps): Rea
 	const numSelected = data.cardTypes.length;
 
 	const onUpdateSelectedCards = (cardTypes: CreditCardType[]): void => {
+		const cardFormats: CreditCardFormatType = {};
+		cardTypes.forEach((cardType) => {
+			if (data.cardFormats[cardType]) {
+				cardFormats[cardType] = data.cardFormats[cardType];
+			} else {
+				cardFormats[cardType] = creditCardFormats[cardType];
+			}
+		});
+
 		onUpdate({
 			...data,
-			cardTypes
+			cardTypes,
+			cardFormats
+		});
+	};
+
+	const onUpdateCardFormats = (cardType: CreditCardType, formats: string[]): void => {
+		onUpdate({
+			...data,
+			cardFormats: {
+				...data.cardFormats,
+				[cardType]: {
+					...data.cardFormats[cardType],
+					formats
+				}
+			}
 		});
 	};
 
@@ -194,25 +250,20 @@ export const Options = ({ data, i18n, coreI18n, onUpdate }: DTOptionsProps): Rea
 				i18n={i18n}
 				coreI18n={coreI18n}
 				onUpdateSelectedCards={onUpdateSelectedCards}
+				onUpdateCardFormats={onUpdateCardFormats}
 				onClose={(): void => setDialogVisibility(false)}
 			/>
 		</div>
 	);
 };
 
-export const Help = ({ }: DTHelpProps): JSX.Element => (
+export const Help = ({ i18n }: DTHelpProps): JSX.Element => (
 	<>
 		<p>
-			This generates valid credit card PANs (Primary Access Numbers) for most of the major credit cards.
-			By default, it'll generate credit card numbers from any supported type (Visa, Mastercard, American Express
-			and others), but you have the option to limit the list to whichever you want.
+			{i18n.help1}
 		</p>
-
 		<p>
-			In addition, you can customize the format of the generated number (e.g. supply a custom character delimiter).
-			For that, you would enter a string of X's in the custom format field, with whatever other characters you
-			want, then click enter. The field will validate that you've entered a valid number of X's: different credit
-			cards have different valid character lengths.
+			{i18n.help2}
 		</p>
 	</>
 );

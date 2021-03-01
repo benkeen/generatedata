@@ -73,9 +73,10 @@ export type CreatablePillFieldProps = {
 	value: string[];
 	error: string;
 	placeholder: string;
+	onValidateNewItem?: (value: string) => boolean;
 }
 
-const CreatablePillField = ({ onChange, value, error, placeholder }: CreatablePillFieldProps): JSX.Element => {
+const CreatablePillField = ({ onChange, onValidateNewItem, value, error, placeholder }: CreatablePillFieldProps): JSX.Element => {
 	const [tempValue, setTempValue] = React.useState('');
 	const options = value.map(createOption);
 
@@ -88,6 +89,12 @@ const CreatablePillField = ({ onChange, value, error, placeholder }: CreatablePi
 		switch (e.key) {
 			case 'Enter':
 			case 'Tab':
+				if (onValidateNewItem) {
+					const isValid = onValidateNewItem(tempValue);
+					if (!isValid) {
+						return;
+					}
+				}
 				setTempValue('');
 				onChange([...value, tempValue]);
 				e.preventDefault();
